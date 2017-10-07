@@ -1,6 +1,6 @@
 ---
-title: Funzioni per la creazione di definizioni dell'interfaccia utente di Applicazione gestita di Azure | Microsoft Docs
-description: Illustra le funzioni da usare durante la creazione di definizioni dell'interfaccia utente per le applicazioni gestite di Azure
+title: aaaAzure funzioni di definizione dell'interfaccia utente di creare applicazioni gestite | Documenti Microsoft
+description: Viene descritto toouse funzioni hello durante la costruzione di definizioni dell'interfaccia utente per le applicazioni gestite di Azure
 services: azure-resource-manager
 documentationcenter: na
 author: tabrezm
@@ -13,14 +13,14 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/12/2017
 ms.author: tabrezm;tomfitz
-ms.openlocfilehash: 635e44a7ec6f9244f5fe75eb5ad947cdd8ae59a4
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a34c6202372168cda769c471b1c9fdd539dd0f1b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="createuidefinition-elements"></a>Elementi di CreateUiDefinition
-Questo articolo illustra lo schema e le proprietà per tutti gli elementi supportati di CreateUiDefinition. Usare questi elementi quando si [crea un'applicazione Azure gestita](managed-application-publishing.md). Lo schema per la maggior parte degli elementi è il seguente:
+Questo articolo descrive lo schema di hello e proprietà per tutti gli elementi supportati di un CreateUiDefinition. Usare questi elementi quando si [crea un'applicazione Azure gestita](managed-application-publishing.md). schema di Hello per la maggior parte degli elementi è come segue:
 
 ```json
 {
@@ -28,7 +28,7 @@ Questo articolo illustra lo schema e le proprietà per tutti gli elementi suppor
   "type": "Microsoft.Common.TextBox",
   "label": "Some text box",
   "defaultValue": "foobar",
-  "toolTip": "Keep calm and visit the [Azure Portal](portal.azure.com).",
+  "toolTip": "Keep calm and visit hello [Azure Portal](portal.azure.com).",
   "constraints": {},
   "options": {},
   "visible": true
@@ -36,18 +36,18 @@ Questo articolo illustra lo schema e le proprietà per tutti gli elementi suppor
 ```
 | Proprietà | Obbligatorio | Description |
 | -------- | -------- | ----------- |
-| name | Sì | Identificatore interno per fare riferimento a un'istanza specifica di un elemento. Il nome dell'elemento viene usato con maggiore frequenza in `outputs`, dove i valori di output degli elementi specificati vengono mappati ai parametri del modello. È anche possibile usarlo per associare il valore di output di un elemento al valore `defaultValue` di un altro elemento. |
-| type | Sì | Controllo dell'interfaccia utente da sottoporre a rendering per l'elemento. Per un elenco di tipi supportati, vedere [Elementi](#elements). |
-| label | Sì | Testo visualizzato dell'elemento. Alcuni tipi di elemento includono più etichette, quindi il valore può essere un oggetto contenente più stringhe. |
-| defaultValue | No | Valore predefinito dell'elemento. Alcuni tipi di elementi supportano valori predefiniti complessi, quindi il valore può essere un oggetto. |
-| toolTip | No | Testo da visualizzare nella descrizione comando dell'elemento. Analogamente a `label`, alcuni elementi supportano più stringhe di descrizione comando. I collegamenti inline possono essere incorporati tramite la sintassi di markdown.
-| constraints | No | Una o più proprietà usate per personalizzare il comportamento di convalida dell'elemento. Le proprietà supportate per constraints dipendono dal tipo di elemento. Alcuni tipi di elementi non supportano la personalizzazione del comportamento di convalida e quindi non includono alcuna proprietà constraints. |
-| options | No | Proprietà aggiuntive per la personalizzazione del comportamento dell'elemento. Analogamente a `constraints`, le proprietà supportate dipendono dal tipo di elemento. |
-| visible | No | Indica se l'elemento è visualizzato. Se `true`, l'elemento e gli elementi figlio applicabili vengono visualizzati. Il valore predefinito è `true`. Usare le [funzioni logiche](managed-application-createuidefinition-functions.md#logical-functions) per controllare dinamicamente il valore di questa proprietà.
+| name | Sì | Un identificatore interno tooreference un'istanza specifica di un elemento. Hello utilizzo più comune di nome dell'elemento hello è `outputs`, in cui i valori di output di hello di hello specificata elementi sono mappate toohello parametri del modello di hello. È possibile anche utilizzare il valore di output di hello toobind di toohello un elemento `defaultValue` di un altro elemento. |
+| type | Sì | Hello toorender di controllo dell'interfaccia utente per l'elemento hello. Per un elenco di tipi supportati, vedere [Elementi](#elements). |
+| label | Sì | Hello visualizzare il testo dell'elemento hello. Alcuni tipi di elemento contengono più etichette, pertanto il valore di hello potrebbe essere un oggetto che contiene più stringhe. |
+| defaultValue | No | valore predefinito di Hello dell'elemento hello. Alcuni tipi di elemento supportano i valori predefiniti complessa, pertanto il valore di hello potrebbe essere un oggetto. |
+| toolTip | No | toodisplay di testo Hello nella descrizione hello dell'elemento hello. Simile troppo`label`, alcuni elementi supportano più stringhe di comando dello strumento. I collegamenti inline possono essere incorporati tramite la sintassi di markdown.
+| constraints | No | Una o più proprietà di comportamento di convalida di hello toocustomize utilizzati dell'elemento hello. proprietà Hello è supportato per i vincoli variano in base a tipo di elemento. Alcuni tipi di elemento non supporta la personalizzazione del comportamento di convalida hello e pertanto non dispone di alcuna proprietà di vincoli. |
+| options | No | Proprietà aggiuntive che consentono di personalizzare il comportamento di hello dell'elemento hello. Simile troppo`constraints`, proprietà hello supportato variano dal tipo di elemento. |
+| visible | No | Indica se l'elemento hello viene visualizzato. Se `true`, elemento hello e gli elementi figlio applicabili vengono visualizzati. valore predefinito di Hello è `true`. Utilizzare [funzioni logiche](managed-application-createuidefinition-functions.md#logical-functions) toodynamically controllare questo valore della proprietà.
 
 ## <a name="elements"></a>Elementi
 
-La documentazione per ogni elemento include un esempio di interfaccia utente, uno schema, commenti sul comportamento dell'elemento, in genere relativi alla convalida e alla personalizzazione supportata, e infine output di esempio.
+Hello documentazione per ogni elemento contiene un esempio dell'interfaccia utente, schema, la sezione Osservazioni sul comportamento di hello dell'elemento hello (in genere per quanto riguarda la convalida e la personalizzazione supportata) e output di esempio.
 
 - [Microsoft.Common.DropDown](managed-application-microsoft-common-dropdown.md)
 - [Microsoft.Common.FileUpload](managed-application-microsoft-common-fileupload.md)
@@ -64,5 +64,5 @@ La documentazione per ogni elemento include un esempio di interfaccia utente, un
 - [Microsoft.Storage.StorageAccountSelector](managed-application-microsoft-storage-storageaccountselector.md)
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Per un'introduzione alle applicazioni gestite, vedere [Panoramica di Applicazione gestita di Azure](managed-application-overview.md).
-* Per un'introduzione alla creazione delle definizioni dell'interfaccia utente, vedere [Introduzione a CreateUiDefinition](managed-application-createuidefinition-overview.md).
+* Per le applicazioni toomanaged un'introduzione, vedere [Panoramica applicazione gestita di Azure](managed-application-overview.md).
+* Le definizioni di interfaccia utente toocreating un'introduzione, vedere [introduzione CreateUiDefinition](managed-application-createuidefinition-overview.md).

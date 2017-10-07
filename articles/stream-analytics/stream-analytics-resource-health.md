@@ -1,6 +1,6 @@
 ---
-title: "Usare il pannello Integrità risorse nella funzionalità di analisi di flusso di Azure | Microsoft Docs"
-description: Informazioni su come individuare i problemi durante la risoluzione dei processi di analisi di flusso.
+title: "aaa utilizzare hello integrità pannello della risorsa in Analitica di flusso di Azure | Documenti Microsoft"
+description: Come toopinpoint viene generato quando la risoluzione dei problemi dei processi di flusso Analitica.
 keywords: diagramma di flusso della risoluzione dei problemi, pannello delle risorse
 documentationcenter: 
 services: stream-analytics
@@ -15,25 +15,25 @@ ms.tgt_pltfrm: na
 ms.workload: data-services
 ms.date: 05/01/2017
 ms.author: jeffstok
-ms.openlocfilehash: 2834692ab9df6c47b9dcb0f3c5a72b32f9fee2d6
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 72bf187adc28143c910f624688200ccc69f8e273
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="stream-analytics-resource-health-blade"></a>Pannello Integrità risorse della funzionalità di analisi di flusso
 
-Il pannello **Integrità risorse** nel portale di Azure mostra l'integrità dei processi di analisi di flusso di Azure. Mostra inoltre le azioni che possono aiutare a risolvere i problemi. 
+Hello **integrità delle risorse** pannello nel portale di Azure hello Mostra integrità hello processi Analitica di flusso di Azure. Mostra inoltre le azioni che possono aiutare a risolvere i problemi. 
 
-Il pannello **Integrità risorse** è progettato per aiutare a determinare più rapidamente se un problema ha origine nell'applicazione e se è causato da un evento in Azure. Aiuta a comprendere quando è consigliabile aprire un caso di supporto per ricevere assistenza.
+Hello **integrità delle risorse** pannello è previsto toohelp individuare più rapidamente se hello radice di un problema è un'applicazione hello o se è provocato da un evento in Azure. Consente anche di sapere quando un supporto tooopen caso tooreceive assistenza.
 
 ## <a name="troubleshooting-workflow"></a>Flusso di lavoro relativo alla risoluzione dei problemi
 
-Per vedere l'integrità delle risorse nei processi di analisi di flusso, selezionare il pannello **Integrità risorse**. 
+integrità delle risorse hello toosee per i processi di flusso Analitica, seleziona hello **integrità delle risorse** blade. 
 
 ![Flusso della risoluzione dei problemi di analisi di flusso: accesso](media/stream-analytics-resource-health/stream-analytics-access-troubleshooting.png)
 
-Il diagramma di flusso seguente aiuta a decidere quali aspetti considerare e quando aprire un caso di supporto.
+Hello seguente diagramma di flusso può aiutare a prendere decisioni su quali toolook e quando tooopen un caso di supporto.
 
 ![Flusso della risoluzione dei problemi di analisi di flusso: mappa](media/stream-analytics-resource-health/stream-analytics-troubleshooting-map.png)
 
@@ -41,7 +41,7 @@ Il diagramma di flusso seguente aiuta a decidere quali aspetti considerare e qua
 Per ottenere assistenza aggiuntiva, provare ad accedere al [forum di Analisi di flusso di Azure](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureStreamAnalytics).
 
 ## <a name="next-steps"></a>Passaggi successivi
-* [Presentazione di Analisi di flusso](stream-analytics-introduction.md)
+* [Introduzione tooStream Analitica](stream-analytics-introduction.md)
 * [Introduzione ad Analisi di flusso](stream-analytics-real-time-fraud-detection.md)
 * [Scalabilità dei processi di Analisi di flusso](stream-analytics-scale-jobs.md)
 * [Informazioni di riferimento sul linguaggio di query di Analisi di flusso](https://msdn.microsoft.com/library/azure/dn834998.aspx)

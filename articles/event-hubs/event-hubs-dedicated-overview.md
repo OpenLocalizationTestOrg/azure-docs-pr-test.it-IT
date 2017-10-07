@@ -1,5 +1,5 @@
 ---
-title: "Panoramica della capacità di Hub eventi dedicato di Azure | Microsoft Docs"
+title: "aaaOverview della capacità di hub di eventi di Azure dedicato | Documenti Microsoft"
 description: "Panoramica della capacità di Hub eventi dedicato di Microsoft Azure."
 services: event-hubs
 documentationcenter: na
@@ -14,17 +14,17 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/01/2017
 ms.author: sethm;babanisa
-ms.openlocfilehash: b3af61ec0923a0d9d207cee790d59aa9254a578b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 79c09975e5c0a6d4729c8f836576770abaaf322e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="overview-of-event-hubs-dedicated"></a>Panoramica di Hub eventi dedicato
 
-La capacità di *Hub eventi dedicato* offre distribuzioni a tenant singolo per i clienti con i requisiti più rigorosi. Al massimo delle sue capacità, Hub eventi di Azure può inserire più di due milioni di eventi al secondo o fino a 2 GB al secondo di dati di telemetria con archiviazione completamente durevole e latenza inferiore al secondo. Ciò consente di usare anche le soluzioni integrate, mediante l'elaborazione in tempo reale e di batch nello stesso sistema. La funzionalità Archivio di Hub eventi, inclusa nell'offerta, consente di ridurre la complessità della soluzione grazie all'unico flusso che supporta le pipeline in tempo reale e basate su batch.
+*Gli hub di eventi dedicato* offre le distribuzioni single-tenant per i clienti con hello requisiti più complessi. Su larga scala completa, hub eventi di Azure può ingresso oltre 2 milioni di eventi al secondo o too2 GB al secondo di telemetria con una latenza di archiviazione e frazioni di secondo completamente durevole. Questo inoltre Abilita integrata soluzioni dall'elaborazione in tempo reale e batch in hello stesso sistema. Con l'archivio di hub di eventi inclusi nell'offerta di hello, è possibile ridurre la complessità di hello della soluzione con un singolo flusso supporta la pipeline in tempo reale e basata su batch.
 
-La tabella seguente confronta i livelli di servizio disponibili per Hub eventi. L'offerta di Hub eventi dedicato comporta un prezzo mensile fisso, rispetto ai prezzi di utilizzo per la maggior parte delle funzionalità dei livelli Standard e Basic. Il livello Dedicato offre le funzionalità del piano Standard, ma con capacità su scala aziendale per i clienti con carichi di lavoro intensi. 
+Hello nella tabella seguente vengono confrontati i livelli di servizio disponibili hello degli hub di eventi. offerta di Hello dedicato hub eventi è un prezzo mensile fissato, toousage rispetto ai prezzi per la maggior parte delle funzionalità di Standard e Basic. livello dedicato Hello offre funzionalità di hello del piano Standard hello, ma con capacità di scala enterprise per i clienti con carichi di lavoro complesse. 
 
 | Funzionalità | Basic | Standard | Dedicato |
 | --- |:---:|:---:|:---:|
@@ -34,37 +34,37 @@ La tabella seguente confronta i livelli di servizio disponibili per Hub eventi. 
 | Criteri per i server di pubblicazione | N/D | Sì | Sì |     
 | Gruppi di utenti | 1 - Impostazione predefinita | 20 | 20 |
 | Risposta a messaggi | Sì | Sì | Sì |
-| Numero massimo di unità di velocità effettiva | 20 | 20 (con flessibilità fino a 100)  | 1 UC≈200 |
+| Numero massimo di unità di velocità effettiva | 20 | 20 (too100 flessibile)  | 1 UC≈200 |
 | Connessioni negoziate | 100 incluse | 1.000 incluse | 100 K incluse |
 | Connessioni negoziate aggiuntive | N/D | Sì | Sì |
-| Conservazione dei messaggi | 1 giorno incluso | 1 giorno incluso | Fino a 7 giorni inclusi |
+| Conservazione dei messaggi | 1 giorno incluso | 1 giorno incluso | Backup too7 giorni inclusi |
 | Archivio (anteprima) | N/D   | Pagamento per ogni ora | Incluso |
 
 ## <a name="benefits-of-event-hubs-dedicated-capacity"></a>Vantaggi della capacità di Hub eventi dedicato
 
-Quando si usa Hub eventi dedicato sono disponibili i vantaggi seguenti:
+Hello seguenti vantaggi sono disponibile quando si usano gli hub di eventi dedicato:
 
 * Hosting a tenant singolo senza interferenze da altri tenant.
-* Incremento delle dimensioni dei messaggi fino a 1 MB rispetto a 256 KB per i piani Standard e Basic.
+* Messaggio di dimensioni aumentano too1 MB rispetto too256 KB per Standard e Basic.
 * Prestazioni sempre ripetibili.
-* Capacità garantita per soddisfare le esigenze a livello di burst.
-* Scalabilità compresa tra 1 e 8 unità di capacità per offrire fino a 2 milioni di eventi in ingresso al secondo.
-  * Le unità di capacità gestiscono la scalabilità per Hub eventi dedicato e ogni unità di capacità può offrire circa l'equivalente di 200 unità elaborate.
+* Capacità toomeet che il potenziamento deve è garantito.
+* Scalabile compreso tra 1 e unità di capacità 8 (CU): fornendo too2 un milione eventi in ingresso al secondo.
+  * Per gestire la scalabilità hello per dedicato hub eventi, in cui ogni CU può fornire circa hello equivalente 200 unità di velocità effettiva (TU).
 * Manutenzione ridotta al minimo: il bilanciamento del carico, gli aggiornamenti del sistema operativo, le patch di protezione e il partizionamento vengono gestiti automaticamente.
 * Prezzo mensile fisso.
 
-Hub eventi dedicato rimuove anche alcune limitazioni relative alla velocità effettiva presenti nel livello Standard. Le unità elaborate nei livelli Base e Standard danno diritto a 1000 eventi al secondo oppure a 1 MB al secondo in ingresso per unità elaborata e al doppio in uscita. Il livello Dedicato non prevede restrizioni sul numero di eventi in ingresso e in uscita. Questi limiti vengono gestiti solo dalla capacità di elaborazione degli hub eventi acquistati.
+Dedicato hub eventi rimuove anche alcuni dei limiti di velocità effettiva di hello dell'offerta Standard hello. Unità di velocità effettiva nei livelli Basic e Standard è autorizzare too1000 eventi al secondo o 1 MB al secondo di ingresso per TU e double tale quantità di traffico in uscita. offerta di scala dedicato Hello non presenta alcuna restrizione in entrata e in uscita evento esegue il conteggio. Questi limiti vengono gestiti solo con hello capacità di hello acquistato hub eventi di elaborazione.
 
-Il servizio è destinato agli utenti che usano quantità elevate di dati di telemetria ed è disponibile ai clienti con contratto Enterprise.
+Questo servizio è rivolto agli utenti di telemetria più grande hello e toocustomers disponibili con un contratto enterprise agreement.
 
-## <a name="how-to-onboard"></a>Modalità di esecuzione dell'onboarding
+## <a name="how-tooonboard"></a>Come tooonboard
 
-La piattaforma Dedicata di Hub eventi viene offerta tramite un contratto Enterprise con unità di capacità di varie dimensioni. Ogni unità di capacità fornisce circa l'equivalente di 200 unità elaborate. È possibile aumentare o ridurre la capacità nel corso del mese in base alle esigenze specifiche, aggiungendo o rimuovendo le unità di capacità. Il piano Dedicato è unico nel suo genere perché consente di usufruire di più onboarding pratico dal team di produzione di Hub eventi per ottenere la distribuzione flessibile desiderata. 
+piattaforma di Hello dedicato hub eventi verrà offerti attraverso un contratto enterprise agreement con diverse dimensioni di per. Ogni aggiornamento Cumulativo fornisce circa hello equivalente 200 unità di velocità effettiva. È possibile ridimensionare la capacità verso l'alto o verso il basso in tutto hello mese toomeet esigenze aggiungendo o rimuovendo per. piano dedicato Hello è univoco, in quanto è possibile che si verifichi un caricamento più pratico da hello gli hub di eventi prodotto team tooget hello distribuzione flessibile che è adatta alle proprie esigenze. 
 
 ## <a name="next-steps"></a>Passaggi successivi
-Per informazioni aggiuntive sul livello Dedicato di Hub eventi, contattare il rappresentante di vendita Microsoft o il Supporto tecnico Microsoft. Per altre informazioni su Hub eventi visitare i collegamenti seguenti:
+Contattare il rappresentante Microsoft o il supporto Microsoft tooget ulteriori dettagli capacità dedicato hub di eventi. È possibile visualizzare altre informazioni sugli hub di eventi visitando hello seguenti collegamenti:
 
-Per informazioni dettagliate sui prezzi visitare i collegamenti seguenti:
+Per informazioni dettagliate sui prezzi, visitare hello seguenti collegamenti:
 
-- [Tariffe di Hub eventi dedicato](https://azure.microsoft.com/pricing/details/event-hubs/). Per informazioni aggiuntive sulla capacità di Hub eventi dedicato, contattare il rappresentante di vendita Microsoft o il Supporto tecnico Microsoft.
-- Le [Domande frequenti si Hub eventi](event-hubs-faq.md) contengono informazioni sui prezzi e risposte ad alcune domande frequenti sugli Hub eventi. 
+- [Tariffe di Hub eventi dedicato](https://azure.microsoft.com/pricing/details/event-hubs/). È anche possibile contattare il rappresentante Microsoft o i dettagli aggiuntivi di supporto Microsoft tooget sulla capacità dedicato hub eventi.
+- Hello [domande frequenti sull'hub di eventi](event-hubs-faq.md) contiene informazioni sui prezzi e le risposte alcune domande frequenti sugli hub di eventi. 

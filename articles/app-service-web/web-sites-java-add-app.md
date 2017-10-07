@@ -1,6 +1,6 @@
 ---
-title: Distribuire l'applicazione di esempio nelle app Web di Servizio app di Azure
-description: "In questa esercitazione viene illustrato come aggiungere una pagina o applicazione per l'istanza di Azure applicazione servizio Web App è già configurato per l'utilizzo di Java."
+title: aaaAdd un tooAzure applicazione Java App del servizio Web App
+description: "Questa esercitazione viene illustrato come tooadd un'istanza tooyour pagina o un'applicazione Azure applicazione servizio Web App è già configurato toouse Java."
 services: app-service\web
 documentationcenter: java
 author: rmcmurray
@@ -14,28 +14,28 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 04/25/2017
 ms.author: robmcm
-ms.openlocfilehash: c28e7c499ed02b759df580f4b14a971b6aec5b67
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2feb464b2933921ad2887779a6b7589634e2e2f9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="add-a-java-application-to-azure-app-service-web-apps"></a>Distribuire l'applicazione di esempio nelle app Web di Servizio app di Azure
-Dopo aver inizializzato l'app Web Java nel [servizio app di Azure][Azure App Service] come indicato in [Creazione di un'app Web Java nel servizio app di Azure](web-sites-java-get-started.md), è possibile caricare l'applicazione inserendo il file WAR nella cartella **webapps**.
+# <a name="add-a-java-application-tooazure-app-service-web-apps"></a>Aggiungere un tooAzure applicazione Java App del servizio Web App
+Dopo aver inizializzato l'app web Java in [Azure App Service] [ Azure App Service] come illustrato in [creare un'app web Java in Azure App Service](web-sites-java-get-started.md), è possibile caricare l'applicazione inserendo la GUERRA hello **webapps** cartella.
 
-Il percorso della cartella **webapps** varia a seconda della configurazione del sito Web.
+Hello toohello percorso di navigazione **webapps** cartella varia in base al come impostare l'istanza di App Web.
 
-* Se si configura il sito Web usando Azure Marketplace, il percorso della cartella **webapps** sarà nel formato **d:\home\site\wwwroot\bin\application\_server\webapps**, dove **application\_server** è il nome del server applicazioni usato per l'istanza di App Web. 
-* Se si configura il sito Web usando l'interfaccia utente di configurazione di Azure, il percorso della cartella **webapps** sarà nel formato **d:\home\site\wwwroot\webapps**. 
+* Se si configura l'app web utilizzando hello Azure Marketplace, hello percorso toohello **webapps** cartella è nel formato di hello **d:\home\site\wwwroot\bin\application\_server\webapps**, dove **applicazione\_server** nome hello del server applicazioni hello attivo per l'istanza di App Web. 
+* Se si configura l'app web utilizzando l'interfaccia utente di configurazione Azure hello, hello percorso toohello **webapps** cartella è nel formato di hello **d:\home\site\wwwroot\webapps**. 
 
-Si noti che è possibile usare il controllo del codice sorgente per caricare l'applicazione o le pagine Web, anche negli [scenari di integrazione continua](app-service-continuous-deployment.md). È anche possibile usare l'FTP per caricare le pagine web o l'applicazione. Per altre informazioni sulla distribuzione delle applicazioni tramite FTP, vedere [Distribuire l'app nel Servizio app di Azure].
+Si noti che è possibile utilizzare tooupload di controllo di origine, l'applicazione o pagine web, tra cui [scenari di integrazione continua](app-service-continuous-deployment.md). FTP è anche un'opzione per caricare l'applicazione o pagine web. Per ulteriori informazioni sulla distribuzione delle applicazioni tramite FTP, vedere [distribuire il servizio App di tooAzure app].
 
-Dopo avere caricato il file WAR nella cartella **webapps** , il server applicazioni Tomcat ne rileverà l'aggiunta e lo caricherà automaticamente. Si noti che se vengono copiati file (eccetto i file WAR) nella directory ROOT, è necessario riavviare il server applicazioni per utilizzarli. La funzionalità di caricamento automatico per i siti Web Java Tomcat in esecuzione in Azure si basa su un nuovo file WAR aggiunto o su nuovi file o nuove directory create nella cartella **webapps** . 
+Nota per le applicazioni web Tomcat: dopo aver caricato il toohello file WAR **webapps** cartella, il server applicazioni Tomcat hello rileverà che è stato aggiunto e verrà caricato automaticamente. Si noti che se si copia una directory radice dei file (ad eccezione dei file WAR) toohello, server applicazioni hello sarà necessario toobe riavviare tali file vengono utilizzati. funzionalità autoload Hello per le app web di Java Tomcat hello in esecuzione in Azure è basata su un nuovo file WAR da aggiungere oppure toohello di aggiungere nuovi file o directory **webapps** cartella. 
 
 <a name="see-also"></a>
 
 ## <a name="see-also"></a>Vedere anche
-Per altre informazioni su come usare Azure con Java, vedere il [Centro per sviluppatori Java di Azure].
+Per ulteriori informazioni sull'uso di Azure con Java, vedere hello [Centro per sviluppatori Java di Azure].
 
 [application-insights-app-insights-java-get-started](../application-insights/app-insights-java-get-started.md)
 
@@ -43,4 +43,4 @@ Per altre informazioni su come usare Azure con Java, vedere il [Centro per svilu
 
 [Centro per sviluppatori Java di Azure]: https://azure.microsoft.com/develop/java/
 [Azure App Service]: http://go.microsoft.com/fwlink/?LinkId=529714
-[Distribuire l'app nel Servizio app di Azure]: ./web-sites-deploy.md
+[distribuire il servizio App di tooAzure app]: ./web-sites-deploy.md

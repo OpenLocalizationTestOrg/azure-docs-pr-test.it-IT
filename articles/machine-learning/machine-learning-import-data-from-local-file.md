@@ -1,7 +1,7 @@
 ---
-title: Importare dati da un file in Azure Machine Learning Studio | Microsoft Docs
-description: Informazioni su come caricare un file di dati di training dal disco rigido in Azure Machine Learning Studio. Questa operazione crea un modulo set di dati nell'area di lavoro.
-keywords: dati di importazione,formato dati,tipi di dati,origini dati,dati di training
+title: aaaImport dati da un file in Azure Machine Learning Studio | Documenti Microsoft
+description: Informazioni su come il tooAzure rigido Machine Learning Studio file tooupload dati di training. Consente di creare un modulo di set di dati nell'area di lavoro hello.
+keywords: dati di importazione, formato dati, tipi di dati, origini dati, dati di training
 services: machine-learning
 documentationcenter: 
 author: garyericson
@@ -15,31 +15,31 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/20/2017
 ms.author: garye;bradsev
-ms.openlocfilehash: 18010864160ceb2d76aea37196e6944bbe426457
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 636facd9042145382c953a1c75969149ede6f6fe
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="import-training-data-from-a-file-on-your-hard-drive-into-machine-learning-studio"></a>Importare dati di training da un file sul disco rigido in Machine Learning Studio
 [!INCLUDE [import-data-into-aml-studio-selector](../../includes/machine-learning-import-data-into-aml-studio.md)]
 
-Informazioni su come caricare un file di dati da utilizzare come dati di training dal disco rigido in Azure Machine Learning Studio. Importando il file di dati, si dispone di un modulo set di dati pronto per l'utilizzo nell'area di lavoro.
+Informazioni su come tooupload un tipo di dati di file da toouse il disco rigido come dati di training in Azure Machine Learning Studio. Tramite l'importazione di file di dati hello, si dispone di un modulo di set di dati pronto per l'utilizzo nell'area di lavoro.
 
-## <a name="steps-to-import-data-from-a-local-file"></a>Passaggi per importare dati da un file locale
-Per importare dati da un disco rigido locale effettuare le operazioni seguenti:
+## <a name="steps-tooimport-data-from-a-local-file"></a>Dati tooimport i passaggi da un file locale
+tooimport dati da un disco rigido locale, hello seguenti:
 
-1. Fare clic su **+ NEW** nella parte inferiore della finestra di Machine Learning Studio.
+1. Fare clic su **+ nuovo** nella parte inferiore di hello della finestra di Machine Learning Studio hello.
 2. Selezionare **DATASET** (SET DI DATI) e **FROM LOCAL FILE** (DA FILE LOCALE).
-3. Nella finestra di dialogo **Caricare un nuovo set di dati** selezionare il file da caricare
-4. Immettere un nome, identificare il tipo di dati e immettere facoltativamente una descrizione. Una descrizione è consigliabile perché consente di registrare tutte le caratteristiche relative ai dati da tenere presenti quando si useranno tali dati in futuro.
-5. La casella di controllo **Questa è la nuova versione di un set di dati esistente** consente di aggiornare un set di dati esistente con nuovi dati. Fare clic su questa casella di controllo e quindi immettere il nome di un set di dati esistente.
+3. In hello **caricare un nuovo set di dati** finestra di dialogo Sfoglia toohello file da tooupload
+4. Immettere un nome, identificare il tipo di dati hello e immettere facoltativamente una descrizione. È consigliabile una descrizione: consente toorecord qualsiasi caratteristica sui dati hello che si desidera tooremember quando si utilizzano dati hello in futuro hello.
+5. casella di controllo di Hello **si tratta hello nuova versione di un set di dati esistente** consente tooupdate un set di dati esistente con nuovi dati. Fare clic su questa casella di controllo e quindi immettere il nome di hello di un set di dati esistente.
 
 ![Caricare un nuovo set di dati](media/machine-learning-import-data-from-local-file/upload-dataset.png)
 
-Durante il caricamento, verrà visualizzato un messaggio che indica che il file è in fase di caricamento. Il tempo di caricamento dipende dalle dimensioni dei dati e dalla velocità della connessione al servizio. Se è già noto che il file richiederà molto tempo, è possibile eseguire altre operazioni in Machine Learning Studio durante l'attesa. In caso di chiusura del browser, tuttavia, il caricamento dei dati avrà esito negativo.
+Durante il caricamento, verrà visualizzato un messaggio che indica che il file è in fase di caricamento. Caricare tempo dipende dalle dimensioni hello la velocità di hello e dati del servizio toohello connessione. Se si conosce il file hello richiederà molto tempo, è possibile eseguire altre operazioni all'interno di Machine Learning Studio durante l'attesa. Tuttavia, chiudere il browser hello determina toofail di caricamento dati hello.
 
 ## <a name="dataset-module-is-ready-for-use"></a>Il modulo set di dati è pronto per l'utilizzo
-Una volta caricati, i dati vengono archiviati in un modulo di set di dati e sono disponibili per eventuali esperimenti nell'area di lavoro.
+Dopo aver caricati i dati, viene archiviato in un modulo di set di dati e viene esperimento tooany disponibile nell'area di lavoro.
 
-Durante la modifica di un esperimento, è possibile individuare i set di dati creati nell'elenco **My Datasets** (Set di dati personali) presente nell'elenco **Saved Datasets** (Set di dati salvati) nella tavolozza dei moduli. È possibile trascinare il set di dati nell'area di disegno dell'esperimento per usarlo per l'ulteriore analisi e l'apprendimento automatico.
+Quando si modifica un esperimento, è possibile trovare hello set di dati sono stati creati in hello **set di dati personali** elenco hello **Saved Datasets** elenco tavolozza modulo hello. È possibile trascinare e rilasciare hello set di dati nell'area di disegno esperimento hello quando si desidera toouse hello set di dati per un'ulteriore analitica e machine learning.

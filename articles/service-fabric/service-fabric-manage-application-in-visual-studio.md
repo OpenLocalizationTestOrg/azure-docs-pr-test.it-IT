@@ -1,6 +1,6 @@
 ---
-title: Gestire le applicazioni in Visual Studio | Microsoft Docs
-description: "Usare Visual Studio per creare, sviluppare, creare pacchetti, distribuire ed effettuare il debug di applicazioni dell’infrastruttura di servizi e di servizi."
+title: aaaManage le applicazioni in Visual Studio | Documenti Microsoft
+description: Utilizzare toocreate di Visual Studio, sviluppare, pacchetto, distribuzione e debug di applicazioni di Service Fabric e ai servizi.
 services: service-fabric
 documentationcenter: .net
 author: mikkelhegn
@@ -14,62 +14,62 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/07/2017
 ms.author: mikkelhegn
-ms.openlocfilehash: 3f6a47a15b74a7ceb6504b2834be62e76ab70bcc
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b2d5803d85e4f9645dcbece33a2208bc0955498d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-visual-studio-to-simplify-writing-and-managing-your-service-fabric-applications"></a>Usare Visual Studio per semplificare la scrittura e la gestione delle applicazioni dell’infrastruttura di servizi
-È possibile gestire le applicazioni e i servizi di Service Fabric di Azure tramite Visual Studio. Dopo aver [configurato l'ambiente di sviluppo](service-fabric-get-started.md), è infatti possibile usare Visual Studio per creare applicazioni di Service Fabric, aggiungere servizi o creare i pacchetti, registrare e distribuire le applicazioni nel cluster di sviluppo locale.
+# <a name="use-visual-studio-toosimplify-writing-and-managing-your-service-fabric-applications"></a>Utilizzare Visual Studio toosimplify scrittura e la gestione delle applicazioni di Service Fabric
+È possibile gestire le applicazioni e i servizi di Service Fabric di Azure tramite Visual Studio. Dopo aver [configurare l'ambiente di sviluppo](service-fabric-get-started.md), è possibile utilizzare applicazioni di Service Fabric toocreate Visual Studio, aggiungere registro servizi o di pacchetto e distribuire le applicazioni del cluster di sviluppo locale.
 
 ## <a name="deploy-your-service-fabric-application"></a>Distribuire l'applicazione di Service Fabric
-Per impostazione predefinita, la distribuzione di un'applicazione combina in un'unica operazione i passaggi seguenti:
+Per impostazione predefinita, la distribuzione di un'applicazione combina hello in una semplice operazione come segue:
 
-1. Creazione del pacchetto applicazione
-2. Caricamento del pacchetto applicazione in Image Store
-3. Registrazione del tipo di applicazione
+1. Creazione pacchetto di applicazione hello
+2. Archivio di immagini di caricamento hello applicazione pacchetto toohello
+3. Registrazione del tipo di applicazione hello
 4. Rimozione delle eventuali istanze dell'applicazione in esecuzione
 5. Creazione di un'istanza dell'applicazione
 
-In Visual Studio se si preme **F5** l'applicazione viene distribuita e il debugger viene allegato a tutte le istanze dell'applicazione. È possibile utilizzare **Ctrl + F5** per distribuire un'applicazione senza il debug, o pubblicare in un cluster locale o remoto mediante il profilo di pubblicazione. Per altre informazioni, consultare [Pubblicare un'applicazione in un cluster remoto mediante Visual Studio](service-fabric-publish-app-remote-cluster.md).
+In Visual Studio, premere **F5** distribuisce l'applicazione e collegare le istanze dell'applicazione hello debugger tooall. È possibile utilizzare **Ctrl + F5** toodeploy un'applicazione senza debug oppure è possibile pubblicare tooa locale o remota del cluster tramite hello profilo di pubblicazione. Per ulteriori informazioni, vedere [pubblicare un cluster remoto tooa delle applicazioni con Visual Studio](service-fabric-publish-app-remote-cluster.md).
 
 ### <a name="application-debug-mode"></a>Modalità di debug applicazione
-Visual Studio include la proprietà **Modalità di debug applicazione** che controlla la modalità di distribuzione dell'applicazione nel contesto del debug.
+Visual Studio forniscono una proprietà denominata **modalità di Debug dell'applicazione**, che controlla la modalità di distribuzione di applicazioni di Visual studi toohandle come parte di debug.
 
-#### <a name="to-set-the-application-debug-mode-property"></a>Per impostare la proprietà Modalità di debug applicazione
-1. Nel menu di scelta rapida del progetto applicazione Service Fabric (*.sfproj) scegliere **Proprietà** (o premere **F4**).
-2. Nella finestra **Proprietà** impostare la proprietà **Modalità di debug applicazione**.
+#### <a name="tooset-hello-application-debug-mode-property"></a>hello tooset proprietà modalità di Debug dell'applicazione
+1. In hello Service Fabric del progetto dell'applicazione (*. sfproj) dal menu di scelta rapida scegliere **proprietà** (o premere hello **F4** chiave).
+2. In hello **proprietà** finestra, hello set **modalità di Debug dell'applicazione** proprietà.
 
 ![Impostare la proprietà Modalità di debug applicazione][debugmodeproperty]
 
 #### <a name="application-debug-modes"></a>Modalità di debug dell'applicazione
 
-1. **Aggiorna l'applicazione**: questa modalità consente di modificare rapidamente il codice e di eseguirne il debug e supporta la modifica dei file Web statici durante il debug. Questa modalità funziona solo se il cluster di sviluppo locale è in [modalità a 1 nodo](/service-fabric-get-started-with-a-local-cluster.md#one-node-and-five-node-cluster-mode).
-2. **Rimuovi applicazione** fa sì che l'applicazione venga rimossa al termine della sessione di debug.
-3. **Aggiornamento automatico**: l'applicazione resta in esecuzione al termine della sessione di debug. La sessione di debug successiva considera la distribuzione come un aggiornamento. Il processo di aggiornamento mantiene tutti i dati immessi in una sessione di debug precedente.
-4. **Mantieni l'applicazione**: l'applicazione resta in esecuzione nel cluster al termine della sessione di debug. All'inizio della sessione di debug successiva, l'applicazione viene rimossa.
+1. **Aggiornare applicazione** questa modalità consente modifiche tooquickly ed eseguire il debug del codice e supporta la modifica di file web statici durante il debug. Questa modalità funziona solo se il cluster di sviluppo locale è in [modalità a 1 nodo](/service-fabric-get-started-with-a-local-cluster.md#one-node-and-five-node-cluster-mode).
+2. **Rimuovere l'applicazione** cause hello toobe applicazione rimossi quando termina la sessione di debug hello.
+3. **L'aggiornamento automatico** applicazione hello continua toorun quando termina la sessione di debug hello. Hello successiva sessione di debug verrà considerato distribuzione hello un aggiornamento. processo di aggiornamento Hello mantiene tutti i dati immessi in una sessione di debug precedente.
+4. **Applicazione di mantenere** mantiene applicazione hello in esecuzione in cluster hello quando hello debug sessione termina. Hello inizio hello successiva sessione di debug, un'applicazione hello verrà rimossi.
 
-Con l'opzione **Aggiornamento automatico** i dati vengono mantenuti applicando le funzionalità di aggiornamento dell'applicazione di Service Fabric. Per altre informazioni sull'aggiornamento delle applicazioni e su come è possibile eseguire un aggiornamento in un ambiente reale, vedere [Aggiornamento di un'applicazione di Service Fabric](service-fabric-application-upgrade.md).
+Per **l'aggiornamento automatico** i dati vengono conservati applicando la funzionalità di aggiornamento dell'applicazione hello di Service Fabric. Per altre informazioni sull'aggiornamento delle applicazioni e su come è possibile eseguire un aggiornamento in un ambiente reale, vedere [Aggiornamento di un'applicazione di Service Fabric](service-fabric-application-upgrade.md).
 
-## <a name="add-a-service-to-your-service-fabric-application"></a>Aggiungere un servizio all'applicazione di Service Fabric
-È possibile aggiungere nuovi servizi all'applicazione per estenderne le funzionalità.  Per essere certi che il servizio venga incluso nel pacchetto applicazione, aggiungere il servizio usando la voce di menu **New Fabric Service** .
+## <a name="add-a-service-tooyour-service-fabric-application"></a>Aggiungere un tooyour servizio applicazione di Service Fabric
+È possibile aggiungere nuovi servizi tooyour applicazione tooextend relativa funzionalità.  tooensure servizio hello viene incluso nel pacchetto dell'applicazione, aggiungere il servizio di hello tramite hello **nuovo Service Fabric...**  voce di menu.
 
 ![Aggiungere un nuovo servizio di Service Fabric][newservice]
 
-Selezionare un tipo di progetto di Service Fabric da aggiungere all'applicazione e specificare un nome per il servizio.  Per decidere più facilmente quale tipo di servizio usare, vedere [Scelta di un framework per il servizio](service-fabric-choose-framework.md) .
+Selezionare un'applicazione di Service Fabric progetto tipo tooadd tooyour e specificare un nome per il servizio di hello.  Vedere [scelta di un framework per il servizio](service-fabric-choose-framework.md) toohelp si decide quale servizio digitare toouse.
 
-![Selezionare un tipo di progetto di servizio Service Fabric da aggiungere all'applicazione][addserviceproject]
+![Selezionare un'applicazione tooyour tooadd tipo di Service Fabric servizio progetto][addserviceproject]
 
-Il nuovo servizio viene aggiunto alla soluzione e al pacchetto dell'applicazione esistente. I riferimenti e un'istanza del servizio predefinita vengono aggiunti al manifesto dell'applicazione, in modo che il servizio venga creato e avviato alla successiva distribuzione dell'applicazione.
+nuovo servizio Hello viene aggiunto tooyour soluzione e il pacchetto di applicazione esistente. riferimenti al servizio Hello e un'istanza del servizio predefinito sarà manifesto dell'applicazione toohello aggiunto, causando hello servizio toobe creata e avviata hello successivo che si distribuisce un'applicazione hello.
 
-![Il nuovo servizio viene aggiunto al manifesto dell'applicazione][newserviceapplicationmanifest]
+![nuovo servizio Hello viene aggiunto il manifesto di applicazione tooyour][newserviceapplicationmanifest]
 
 ## <a name="package-your-service-fabric-application"></a>Creazione del pacchetto per l'applicazione di Service Fabric
-Per distribuire l'applicazione e i relativi servizi in un cluster, è necessario creare un pacchetto dell’applicazione.  Il pacchetto organizza il manifesto dell'applicazione, i manifesti dei servizi e gli altri file necessari in un layout specifico.  Visual Studio imposta e gestisce il pacchetto nella cartella del progetto dell'applicazione, nella cartella "pkg".  Facendo clic su **Pacchetto** dal menu di scelta rapida **Applicazione** il pacchetto dell'applicazione viene creato o aggiornato.
+un'applicazione hello toodeploy e il cluster tooa services, è necessario toocreate un pacchetto di applicazione.  Consente di organizzare i pacchetti Hello manifesto dell'applicazione hello, i manifesti del servizio e altri file necessari in un layout specifico.  Visual Studio configura e gestisce i pacchetti hello nella cartella del progetto dell'applicazione hello, nella directory 'pkg' hello.  Fare clic su **pacchetto** da hello **applicazione** Crea menu di scelta rapida o aggiornamenti hello pacchetto dell'applicazione.
 
 ## <a name="remove-applications-and-application-types-using-cloud-explorer"></a>Rimuovere applicazioni e tipi di applicazione con Cloud Explorer
-In Visual Studio è possibile eseguire operazioni di gestione dei cluster di base con Cloud Explorer, che può essere avviato dal menu **Visualizza** . È ad esempio possibile eliminare applicazioni e annullare il provisioning di tipi di applicazione in cluster locali o remoti.
+È possibile eseguire le operazioni di Gestione cluster di base dall'interno Visual Studio Cloud Explorer, che è possibile avviare da hello usando **vista** menu. È ad esempio possibile eliminare applicazioni e annullare il provisioning di tipi di applicazione in cluster locali o remoti.
 
 ![Rimuovere un'applicazione][removeapplication]
 
@@ -78,7 +78,7 @@ In Visual Studio è possibile eseguire operazioni di gestione dei cluster di bas
 >
 >
 
-<!--Every topic should have next steps and links to the next logical set of content to keep the customer engaged-->
+<!--Every topic should have next steps and links toohello next logical set of content tookeep hello customer engaged-->
 ## <a name="next-steps"></a>Passaggi successivi
 * [Modello di applicazione di Service Fabric](service-fabric-application-model.md)
 * [Distribuzione di un'applicazione di Service Fabric](service-fabric-deploy-remove-applications.md)

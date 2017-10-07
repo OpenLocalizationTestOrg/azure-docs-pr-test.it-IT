@@ -1,6 +1,6 @@
 ---
-title: Risorse e SDK .NET per Azure Cosmos DB | Documentazione Microsoft
-description: Tutte le informazioni sull'SDK e sull'API .NET, incluse le date di rilascio, le date di ritiro e le modifiche apportate tra le versioni di Azure Cosmos DB .NET SDK.
+title: aaaAzure Cosmos DB .NET SDK e risorse | Documenti Microsoft
+description: Altre informazioni sui hello .NET API e SDK tra date di rilascio, date di ritiro e le modifiche apportate tra ogni versione di hello Azure Cosmos DB .NET SDK.
 services: cosmos-db
 documentationcenter: .net
 author: rnagpal
@@ -15,11 +15,11 @@ ms.topic: article
 ms.date: 08/11/2017
 ms.author: rnagpal
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 317792e04244a96cf8e47bc7e4a7f633f7a6d8c3
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 0ec30e0130067a9b8d4c9176cf7465bac8925bf9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-cosmos-db-net-sdk-download-and-release-notes"></a>Azure Cosmos DB .NET SDK: download e note sulla versione
 > [!div class="op_single_selector"]
@@ -43,7 +43,7 @@ ms.lasthandoff: 08/18/2017
 
 <tr><td>**Esempi**</td><td>[Esempi di codice .NET](documentdb-dotnet-samples.md)</td></tr>
 
-<tr><td>**Attività iniziali**</td><td>[Introduzione ad Azure Cosmos DB .NET SDK](documentdb-get-started.md)</td></tr>
+<tr><td>**Introduzione**</td><td>[Introduzione a hello Azure Cosmos DB .NET SDK](documentdb-get-started.md)</td></tr>
 
 <tr><td>**Esercitazione sull'app Web**</td><td>[Sviluppo di applicazioni Web con Azure Cosmos DB](documentdb-dotnet-application.md)</td></tr>
 
@@ -54,15 +54,15 @@ ms.lasthandoff: 08/18/2017
 
 ### <a name="a-name11701170"></a><a name="1.17.0"/>1.17.0 
 
-* Aggiunta del supporto per PartitionKeyRangeId come FeedOption per limitare l'ambito dei risultati di query a un intervallo di chiavi di partizione specifico. 
-* Aggiunta del supporto per StartTime come ChangeFeedOption per avviare la ricerca delle modifiche a partire dall'ora di inizio.
+* Aggiunta del supporto per PartitionKeyRangeId come un FeedOption per definire l'ambito di valore di intervallo di chiavi di query risultati tooa partizione specifica. 
+* Aggiunta del supporto per StartTime come un toostart ChangeFeedOption cercando modifiche hello dopo tale periodo di tempo.
 
 ### <a name="a-name11611161"></a><a name="1.16.1"/>1.16.1
-* È stato risolto un problema nella classe JsonSerializable che può generare un'eccezione di overflow dello stack.
+* Risolto un problema in hello classe JsonSerializable che potrebbe causare un'eccezione di overflow dello stack.
 
 ### <a name="a-name11601160"></a><a name="1.16.0"/>1.16.0
-*   È stato risolto un problema che richiedeva di ricompilare l'applicazione a causa dell'introduzione di JsonSerializerSettings come parametro opzionale nel costruttore DocumentClient.
-* È stato contrassegnato come obsoleto il costruttore DocumentClient che richiedeva JsonSerializerSettings come parametro più recente per consentire i valori predefiniti dei parametri ConnectionPolicy e ConsistencyLevel quando si passava il parametro JsonSerializerSettings.
+*   Risolto un problema che hanno richiesto la ricompilazione di un'applicazione hello a causa di introduzione toohello di JsonSerializerSettings come un parametro facoltativo nel costruttore DocumentClient hello.
+* Hello contrassegnata DocumentClient costruttore obsoleta necessari JsonSerializerSettings hello tooallow parametro ultimo per i valori predefiniti dei parametri ConnectionPolicy e ConsistencyLevel quando vengono passati nel parametro JsonSerializerSettings.
 
 ### <a name="a-name11501150"></a><a name="1.15.0"/>1.15.0
 *   Aggiunta del supporto per la definizione di JsonSerializerSettings personalizzate durante la creazione di un'istanza di [DocumentClient](/dotnet/api/microsoft.azure.documents.client.documentclient?view=azure-dotnet).
@@ -73,9 +73,9 @@ ms.lasthandoff: 08/18/2017
 ### <a name="a-name11401140"></a><a name="1.14.0"/>1.14.0
 *   Aggiunta del supporto per un nuovo livello di coerenza denominato ConsistentPrefix.
 *   Aggiunta del supporto per le metriche delle query per le singole partizioni.
-*   Aggiunta del supporto per la limitazione delle dimensioni del token di continuazione per le query.
+*   Aggiunta del supporto per la limitazione delle dimensioni di hello hello del token di continuazione per le query.
 *   Aggiunta del supporto per una traccia più dettagliata delle richieste non riuscite.
-*   Alcuni miglioramenti delle prestazioni nell'SDK.
+*   Introdotti alcuni miglioramenti delle prestazioni hello SDK.
 
 ### <a name="a-name11341134"></a><a name="1.13.4"/>1.13.4
 * Stesse funzionalità della versione 1.13.3. Alcune modifiche interne.
@@ -84,96 +84,96 @@ ms.lasthandoff: 08/18/2017
 * Stesse funzionalità della versione 1.13.2. Alcune modifiche interne.
 
 ### <a name="a-name11321132"></a><a name="1.13.2"/>1.13.2
-* Risolto un problema per cui il valore PartitionKey in FeedOptions veniva ignorato per le query di aggregazione.
+* Risolto un problema che ignorati valore PartitionKey hello fornito FeedOptions per le query di aggregazione.
 * Risolto un problema nella gestione trasparente delle partizioni durante l'esecuzione dell'ordinamento per query della partizione trasversale intermedia.
 
 ### <a name="a-name11311131"></a><a name="1.13.1"/>1.13.1
-* Correzione di un problema che ha causato deadlock in alcune API asincrone, se usate in un contesto ASP.NET.
+* Risolto un problema che ha causato deadlock in alcune hello async API quando utilizzato all'interno di contesto ASP.NET.
 
 ### <a name="a-name11301130"></a><a name="1.13.0"/>1.13.0
-* Correzioni per rendere l'SDK più resiliente per il failover automatico in determinate condizioni.
+* Consente di correggere toomake SDK più failover tooautomatic resiliente a determinate condizioni.
 
 ### <a name="a-name11221122"></a><a name="1.12.2"/>1.12.2
-* Correzione di un problema che occasionalmente causa un'eccezione WebException, ovvero l'impossibilità di risolvere il nome remoto.
-* Aggiunta del supporto per la lettura diretta di un documento con tipo includendo nuovi overload all'API ReadDocumentAsync.
+* Correzione di un problema che causa un'eccezione WebException: Impossibile risolto nome remoto hello.
+* Hello aggiunto il supporto per lettura diretta di un documento tipizzato tramite l'aggiunta di nuove API tooReadDocumentAsync di overload.
 
 ### <a name="a-name11211121"></a><a name="1.12.1"/>1.12.1
 * Aggiunta del supporto LINQ per le query di aggregazione (COUNT, MIN, MAX, SUM e AVG).
-* Correzione per un problema di perdita di memoria per l'oggetto ConnectionPolicy provocata dall'uso del gestore eventi.
+* Correzione per un problema di perdita di memoria per oggetto ConnectionPolicy hello causato dall'uso di hello del gestore eventi.
 * Correzione per un problema relativo al mancato funzionamento di UpsertAttachmentAsync in caso di uso di ETag.
 * Correzione di un problema relativo al mancato funzionamento della continuazione della query di tipo order-by tra partizioni in caso di ordinamento in un campo di tipo stringa.
 
 ### <a name="a-name11201120"></a><a name="1.12.0"/>1.12.0
 * Aggiunta del supporto per le query di aggregazione (COUNT, MIN, MAX, SUM e AVG). Vedere [Supporto dell'aggregazione](documentdb-sql-query.md#Aggregates).
-* Velocità effettiva minima ridotta nelle raccolte partizionate da 10.100 UR/s a 2.500 UR/s.
+* Più basso di velocità effettiva minima per le raccolte partizionate da 10,100 UR/sec too2500 UR/sec.
 
 ### <a name="a-name11141114"></a><a name="1.11.4"/>1.11.4
-* Correzione di un problema che causava l'esito negativo di alcune query tra partizioni nel processo host a 32 bit.
-* Correzione di un problema che impediva l'aggiornamento del contenitore della sessione con il token per le richieste con esito negativo in modalità gateway.
+* Correzione di un problema in cui alcune delle query tra partizioni hello non venivano eseguiti nel processo host a 32 bit hello.
+* Correzione di un problema in cui il contenitore di sessione hello non è stato viene aggiornato con token hello per le richieste non riuscite in modalità di Gateway.
 * Correzione di un problema che causava, in alcuni casi, l'esito negativo di una query con chiamate definite dall'utente nella proiezione.
-* Correzioni alle prestazioni lato client per aumentare la velocità effettiva di lettura e scrittura delle richieste.
+* Correzioni per le prestazioni sul lato client per aumentare hello lettura e scrittura di velocità effettiva di richieste di hello.
 
 ### <a name="a-name11131113"></a><a name="1.11.3"/>1.11.3
-* Correzione di un problema che impediva l'aggiornamento del contenitore della sessione con il token per le richieste con esito negativo.
-* Aggiunta del supporto per consentire il funzionamento dell'SDK in un processo host a 32 bit. Si noti che se si usano query tra partizioni, è consigliabile usare l'elaborazione dell'host a 64 bit per migliorare le prestazioni.
+* Correzione di un problema in cui il contenitore di sessione hello non è stato viene aggiornato con token hello per le richieste non riuscite.
+* Aggiunta del supporto per toowork SDK hello in un processo host a 32 bit. Si noti che se si usano query tra partizioni, è consigliabile usare l'elaborazione dell'host a 64 bit per migliorare le prestazioni.
 * Prestazioni migliorate per gli scenari che riguardano query con un numero elevato di valori della chiave di partizione in un'espressione IN.
-* Varie statistiche popolate sulla quota di risorse in ResourceResponse per le richieste di lettura della raccolta documenti quando è impostata l'opzione di richiesta PopulateQuotaInfo.
+* Popolato varie statistiche di quota di risorse in hello ResourceResponse per raccolta richieste di lettura quando è impostata l'opzione richiesta PopulateQuotaInfo.
 
 ### <a name="a-name11111111"></a><a name="1.11.1"/>1.11.1
-* Risoluzione secondaria per i problemi di prestazioni relativi all'API CreateDocumentCollectionIfNotExistsAsync introdotta nella versione 1.11.0.
-* Risoluzione dei problemi delle prestazioni nell'SDK per scenari che comportano un livello molto elevato di richieste simultanee.
+* Correzione delle prestazioni secondaria per hello API CreateDocumentCollectionIfNotExistsAsync introdotta in 1.11.0.
+* Correzione di prestazioni in hello SDK per scenari che comportano un livello elevato di richieste simultanee.
 
 ### <a name="a-name11101110"></a><a name="1.11.0"/>1.11.0
-* Supporto per nuove classi e metodi per elaborare il [feed di modifiche](change-feed.md) dei documenti in una raccolta.
+* Supporto per nuove hello di classi e metodi tooprocess [modificare feed](change-feed.md) di documenti all'interno di una raccolta.
 * Supporto per la continuazione della query tra partizioni e miglioramenti delle prestazioni per le query tra partizioni.
 * Aggiunta dei metodi CreateDatabaseIfNotExistsAsync e CreateDocumentCollectionIfNotExistsAsync.
 * Supporto di LINQ per le funzioni di sistema: IsDefined, IsNull e IsPrimitive.
-* Correzione per l'inserimento automatico nel Cestino degli assembly Microsoft.Azure.Documents.ServiceInterop.dll e DocumentDB.Spatial.Sql.dll nella cartella Cestino dell'applicazione quando si usa il pacchetto Nuget con progetti che includono strumenti project.json.
+* Correzione automatica binplacing della cartella bin del Microsoft.Azure.Documents.ServiceInterop.dll e DocumentDB.Spatial.Sql.dll assembly tooapplication quando si utilizza il pacchetto Nuget di hello ai progetti con gli strumenti di Project.
 * Supporto per l'emissione di tracce ETW lato client che possono essere utili in scenari di debug.
 
 ### <a name="a-name11001100"></a><a name="1.10.0"/>1.10.0
 * Aggiunto il supporto per la connettività diretta delle raccolte partizionate.
-* Miglioramento delle prestazioni per il livello di coerenza con obsolescenza associata.
+* Prestazioni migliorate per il livello di coerenza con obsolescenza hello.
 * Aggiunta Polygon e LineString DataTypes quando si specifica il criterio di indicizzazione per la raccolta criteri per le query spaziali di geo-fencing.
 * Aggiunto il supporto LINQ per StringEnumConverter, IsoDateTimeConverter e UnixDateTimeConverter durante la traduzione dei predicati.
 * Varie correzioni di bug dell'SDK.
 
 ### <a name="a-name195195"></a><a name="1.9.5"/>1.9.5
-* Risolto un problema che causava l'eccezione NotFoundException seguente: la sessione di lettura non è disponibile per il token della sessione di input. In alcuni casi questa eccezione si è verificata durante l'esecuzione di query per l'area di lettura di un account geograficamente distribuito.
-* L'esposizione della proprietà ResponseStream nella classe ResourceResponse consente l'accesso diretto al flusso sottostante proveniente da una risposta.
+* Risolto un problema che ha provocato un hello seguente NotFoundException: hello leggere sessione non è disponibile per il token di sessione di input hello. In alcuni casi, questa eccezione si è verificato quando si eseguono query per hello area lettura di un account geograficamente distribuite.
+* Proprietà ResponseStream hello in hello ResourceResponse classe, che consente di flusso sottostante toohello di accesso diretto da una risposta esposta.
 
 ### <a name="a-name194194"></a><a name="1.9.4"/>1.9.4
-* Modificate le classi ResourceResponse, FeedResponse, StoredProcedureResponse e MediaResponse per l'implementazione dell'interfaccia pubblica corrispondente in modo che possano essere simulate per la distribuzione basata su test (TDD).
+* Hello modificato ResourceResponse, FeedResponse, StoredProcedureResponse e MediaResponse classi tooimplement hello corrispondente interfaccia pubblica in modo che può essere esempio per test basati sui distribuzione (TDD).
 * Risolto un problema che causava un'intestazione di chiave di partizione non valida con l'uso di un oggetto JsonSerializerSettings personalizzato per la serializzazione dei dati.
 
 ### <a name="a-name193193"></a><a name="1.9.3"/>1.9.3
-* Risoluzione di un problema che provocava l'esito negativo con errore delle query con esecuzione prolungata. Al momento il token di autorizzazione non è valido.
-* Risoluzione di un problema che rimuoveva l'oggetto SqlParameterCollection originale dalle query top/order-by tra partizioni.
+* Risolto un problema che ha causato lunga query toofail con errore: token di autorizzazione non è valido in hello ora corrente.
+* Fissa un problema che rimosso hello SqlParameterCollection originale da tra query top/order by della partizione.
 
 ### <a name="a-name192192"></a><a name="1.9.2"/>1.9.2
 * Aggiunta del supporto per le query parallele nelle raccolte partizionate.
 * Aggiunta del supporto ORDER BY e TOP tra partizioni per le raccolte partizionate.
-* Correzione di riferimenti mancanti a DocumentDB.Spatial.Sql.dll e Microsoft.Azure.Documents.ServiceInterop.dll, necessari quando si fa riferimento a un progetto di Azure Cosmos DB con riferimento al pacchetto Nuget Azure Cosmos DB.
-* Correzione della possibilità di usare parametri di tipi diversi per le funzioni definite dall'utente in LINQ. 
-* Risoluzione di un bug per gli account replicati a livello globale in cui le chiamate Upsert sono state indirizzate verso posizioni di lettura invece di posizioni di scrittura.
-* Aggiunta di metodi mancanti all'interfaccia IDocumentClient: 
+* Hello predefinito mancante riferimenti tooDocumentDB.Spatial.Sql.dll e Microsoft.Azure.Documents.ServiceInterop.dll che sono necessari quando si fa riferimento a un progetto di database Cosmos Azure con un pacchetto Nuget di Azure Cosmos DB toohello di riferimento.
+* Fissa il possibilità hello toouse parametri di tipo diverso quando si utilizzano le funzioni definite dall'utente in LINQ. 
+* Correzione di un bug per gli account replicati globalmente in chiamate Upsert avveniva percorsi tooread diretto invece dei percorsi di scrittura.
+* Interfaccia IDocumentClient toohello metodi aggiunti mancanti: 
   * il metodo UpsertAttachmentAsync che accetta mediaStream e opzioni come parametri
   * il metodo CreateAttachmentAsync che accetta opzioni come parametro
   * il metodo CreateOfferQuery che accetta querySpec come parametro.
-* Rivelazione di classi pubbliche esposte nell'interfaccia IDocumentClient.
+* Classi pubbliche non sealed che vengono esposte nell'interfaccia IDocumentClient hello.
 
 ### <a name="a-name180180"></a><a name="1.8.0"/>1.8.0
-* Aggiunta del supporto per gli account di database con più aree.
-* Aggiunta del supporto per la ripetizione dei tentativi delle richieste limitate.  L'utente può personalizzare il numero di tentativi e il tempo di attesa massimo configurando la proprietà ConnectionPolicy.RetryOptions.
-* Aggiunta di una nuova interfaccia IDocumentClient che definisce le firme di tutti i metodi e di tutte le proprietà DocumenClient.  Come parte di questa modifica, anche i metodi di estensione che creano IQueryable e IOrderedQueryable sono stati modificati in metodi sulla stessa classe DocumentClient.
-* Aggiunta dell'opzione di configurazione per impostare ServicePoint.ConnectionLimit per un URI dell'endpoint di Azure Cosmos DB specifico.  Usare ConnectionPolicy.MaxConnectionLimit per modificare il valore predefinito, impostato su 50.
+* Supporto aggiunto hello per gli account di database con più aree.
+* Aggiunta del supporto per la ripetizione dei tentativi delle richieste limitate.  Utente può personalizzare il numero di hello di tentativi e tempo di attesa massimo hello configurando la proprietà ConnectionPolicy.RetryOptions hello.
+* Aggiungere una nuova interfaccia IDocumentClient che definisce le firme di tutti i metodi e proprietà DocumenClient hello.  Come parte di questa modifica, modificare anche i metodi di estensione che creano IQueryable e IOrderedQueryable toomethods sul hello DocumentClient classe stessa.
+* Aggiunta hello tooset opzione di configurazione ServicePoint.ConnectionLimit per un determinato endpoint di Azure Cosmos DB Uri.  Utilizzare ConnectionPolicy.MaxConnectionLimit toochange hello valore predefinito, che è impostato too50.
 * IPartitionResolver e la relativa implementazione sono stati deprecati.  Il supporto per IPartitionResolver è ora obsoleto. È consigliabile usare le raccolte partizionate per un'archiviazione e una velocità effettiva superiori.
 
 ### <a name="a-name171171"></a><a name="1.7.1"/>1.7.1
-* Aggiunta di un overload al metodo ExecuteStoredProcedureAsync basato su URI che accetta RequestOptions come parametro.
+* Aggiungere un tooUri overload basato su metodo ExecuteStoredProcedureAsync che accetta RequestOptions come parametro.
 
 ### <a name="a-name170170"></a><a name="1.7.0"/>1.7.0
-* Aggiunta del supporto per la durata (TTL) relativa ai documenti.
+* Aggiunto il supporto di (durata TTL) toolive di tempo per i documenti.
 
 ### <a name="a-name163163"></a><a name="1.6.3"/>1.6.3
 * Correzione di un bug nel pacchetto Nuget di .NET SDK per creare il pacchetto come parte di una soluzione del servizio cloud di Azure.
@@ -182,39 +182,39 @@ ms.lasthandoff: 08/18/2017
 * Implementazione delle [raccolte partizionate](partition-data.md) e dei [livelli di prestazioni definiti dall'utente](performance-levels.md). 
 
 ### <a name="a-name153153"></a><a name="1.5.3"/>1.5.3
-* **[Correzione]** Se si eseguono query nell'endpoint Azure Cosmos DB viene generato il messaggio seguente: "System.Net.Http.HttpRequestException: Errore durante la copia del contenuto in un flusso".
+* **[Predefinito]**  Genera query Azure Cosmos DB endpoint: ' System.Net.Http.HttpRequestException: errore durante la copia di flusso di contenuto tooa'.
 
 ### <a name="a-name152152"></a><a name="1.5.2"/>1.5.2
 * Supporto LINQ espanso, tra cui nuovi operatori per il paging, espressioni condizionali e confronto di intervalli.
-  * Operatore Take per abilitare il comportamento SELECT TOP in LINQ
-  * Operatore CompareTo per abilitare i confronti di intervallo di stringa
+  * Richiedere operatore tooenable comportamento SELECT TOP nelle query LINQ
+  * Confronti degli intervalli CompareTo operatore tooenable stringa
   * Operatori Conditional (?) e Coalesce (??)
 * **[Corretto]** ArgumentOutOfRangeException durante l'unione della proiezione del modello con Where-In in una query LINQ. [N. 81](https://github.com/Azure/azure-documentdb-dotnet/issues/81)
 
 ### <a name="a-name151151"></a><a name="1.5.1"/>1.5.1
-* **[Corretto]** Se Select non è l'ultima espressione il provider LINQ presuppone che non ci sia alcuna proiezione e produce SELECT * in modo non corretto.  [#58](https://github.com/Azure/azure-documentdb-dotnet/issues/58)
+* **[Predefinito]**  Se selezionare non è di tipo hello ultima espressione hello Provider LINQ non presunto Nessuna proiezione e prodotti selezionare * in modo non corretto.  [#58](https://github.com/Azure/azure-documentdb-dotnet/issues/58)
 
 ### <a name="a-name150150"></a><a name="1.5.0"/>1.5.0
 * Implementazione di Upsert, aggiunti metodi UpsertXXXAsync
 * Miglioramenti delle prestazioni per tutte le richieste
 * Supporto del provider LINQ per metodi condizionali, coalesce e CompareTo per le stringhe
-* **[Corretto]** Provider LINQ --> Implementa il metodo Contains nell'elenco per generare lo stesso codice SQL generato in IEnumerable e Matrice
-* **[Corretto]** BackoffRetryUtility usa nuovamente lo stesso HttpRequestMessage anziché crearne uno nuovo in un tentativo successivo
-* **[Obsoleto]** UriFactory.CreateCollection --> Ora deve usare UriFactory.CreateDocumentCollection
+* **[Predefinito]**  Provider LINQ--> implementare contiene metodo toogenerate elenco hello SQL stesso come in IEnumerable e matrice
+* **[Predefinito]**  BackoffRetryUtility utilizza hello HttpRequestMessage stesso anziché crearne uno nuovo con nuovo tentativo
+* **[Obsoleto]** UriFactory.CreateCollection --&gt; Ora deve usare UriFactory.CreateDocumentCollection
 
 ### <a name="a-name141141"></a><a name="1.4.1"/>1.4.1
 * **[Corretto]** Problemi di localizzazione quando si usano impostazioni cultura diverse dalla lingua inglese, ad esempio nl-NL e così via. 
 
 ### <a name="a-name140140"></a><a name="1.4.0"/>1.4.0
 * Aggiunto il routing basato su IP
-  * Nuovo helper UriFactory per agevolare la costruzione di collegamenti alle risorse basati su ID
-  * Nuovi overload su DocumentClient da eseguire nell'URI
+  * Nuovo supporto UriFactory tooassist con la creazione di collegamenti a risorse basate su ID
+  * Nuovi overload in tootake DocumentClient nell'URI
 * Aggiunti IsValid() and IsValidDetailed() in LINQ per i dati geospaziali
 * Migliorato il supporto del provider LINQ:
   * **Matematica** : Abs, Acos, Asin, Atan, Ceiling, Cos, Exp, Floor, Log, Log10, Pow, Round, Sign, Sin, Sqrt, Tan, Truncate
   * **Stringa** : Concat, Contains, EndsWith, IndexOf, Count, ToLower, TrimStart, Replace, Reverse, TrimEnd, StartsWith, SubString, ToUpper
   * **Matrice** : Concat, Contains, Count
-  * **IN** 
+  * **IN**
 
 ### <a name="a-name130130"></a><a name="1.3.0"/>1.3.0
 * Aggiunto il supporto per la modifica dei criteri di indicizzazione.
@@ -228,17 +228,17 @@ ms.lasthandoff: 08/18/2017
 
 ### <a name="a-name120120"></a><a name="1.2.0"/>1.2.0
 * Aggiunta una dipendenza su Newtonsoft.Json 5.0.7.
-* Apportate modifiche per il supporto di Order By:
+* Le modifiche apportate toosupport Order By:
   
   * Supporto del provider LINQ per OrderBy() o OrderByDescending()
-  * IndexingPolicy per il supporto di Order By 
+  * Toosupport IndexingPolicy Order By 
     
     **Possibile modifica importante** 
     
-    Se è presente un codice che effettua il provisioning delle raccolte con criteri di indicizzazione personalizzati, è necessario che il codice venga aggiornato in modo da supportare la nuova classe IndexingPolicy. Se non sono presenti criteri di indicizzazione, tale modifica non avrà alcun impatto.
+    Se si dispone di codice esistente raccolte che esegue il provisioning con un criterio personalizzato di indicizzazione, il toobe esigenze di codice esistenti aggiornato la classe toosupport hello nuovo IndexingPolicy. Se non sono presenti criteri di indicizzazione, tale modifica non avrà alcun impatto.
 
 ### <a name="a-name110110"></a><a name="1.1.0"/>1.1.0
-* Aggiunto il supporto per il partizionamento dei dati con IPartitionResolver e le nuove classi HashPartitionResolver e RangePartitionResolver.
+* Aggiunta del supporto per il partizionamento dei dati utilizzando classi HashPartitionResolver e RangePartitionResolver nuovo hello e hello IPartitionResolver.
 * Aggiunta la serializzazione di DataContract.
 * Aggiunto il supporto per GUID nel provider LINQ.
 * Aggiunto il supporto per UDF in LINQ.
@@ -247,11 +247,11 @@ ms.lasthandoff: 08/18/2017
 * SDK con disponibilità generale
 
 ## <a name="release--retirement-dates"></a>Date di rilascio e di ritiro
-Microsoft invia una notifica almeno **12 mesi** prima del ritiro di un SDK per agevolare la transizione a una versione più recente o supportata.
+Microsoft fornisce una notifica almeno **12 mesi** prima di ritirare un SDK in ordine toosmooth hello transizione tooa più recente/supportata versione.
 
-Le nuove caratteristiche e funzionalità e le ottimizzazioni vengono aggiunte solo all'SDK corrente. È quindi consigliabile eseguire sempre l'aggiornamento alla versione più recente dell'SDK quanto prima. 
+Nuove caratteristiche e funzionalità e le ottimizzazioni vengono aggiunti solo toohello corrente SDK, pertanto è consigliabile che è sempre aggiornamento toohello SDK più recente non appena possibile. 
 
-Qualsiasi richiesta inviata ad Azure Cosmos DB con un SDK ritirato viene rifiutata dal servizio.
+Qualsiasi tooAzure le richieste vengono rifiutate DB Cosmos utilizzando un SDK ritirato dal servizio hello.
 
 <br/>
 
@@ -301,5 +301,5 @@ Qualsiasi richiesta inviata ad Azure Cosmos DB con un SDK ritirato viene rifiuta
 [!INCLUDE [cosmos-db-sdk-faq](../../includes/cosmos-db-sdk-faq.md)]
 
 ## <a name="see-also"></a>Vedere anche
-Per altre informazioni su Cosmos DB, vedere la pagina del servizio [Microsoft Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/). 
+toolearn ulteriori informazioni su Cosmos DB, vedere [DB di Microsoft Azure Cosmos](https://azure.microsoft.com/services/cosmos-db/) pagina del servizio. 
 

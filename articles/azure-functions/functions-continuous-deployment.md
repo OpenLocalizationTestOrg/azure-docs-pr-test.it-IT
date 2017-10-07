@@ -1,6 +1,6 @@
 ---
-title: Distribuzione continua per Funzioni di Azure | Documentazione Microsoft
-description: "Per pubblicare Funzioni di Azure, usare le funzionalità di distribuzione continua del servizio app di Azure."
+title: distribuzione aaaContinuous per le funzioni di Azure | Documenti Microsoft
+description: "Utilizzare le funzionalità di distribuzione continua del servizio App di Azure toopublish delle funzioni di Azure."
 services: functions
 documentationcenter: na
 author: ggailey777
@@ -15,16 +15,16 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 09/25/2016
 ms.author: glenga
-ms.openlocfilehash: 3756f1a039730bfd99b0375ce9bfeaf27178f2e0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 28c44f737dad3feab3cf54f7dd42b6a978d0617e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="continuous-deployment-for-azure-functions"></a>Distribuzione continua per Funzioni di Azure
-Le funzioni di Azure semplificano la distribuzione dell'app per le funzioni usando l'integrazione continua del servizio app. Le funzioni si integrano con Dropbox, GitHub, BitBucket e Visual Studio Team Services, VSTS. In questo modo viene abilitato un flusso di lavoro in cui gli aggiornamenti al codice della funzione vengono eseguiti tramite una di queste distribuzioni del trigger dei servizi integrati in Azure. Se non si ha familiarità con Funzioni di Azure, iniziare con [Panoramica di Funzioni di Azure](functions-overview.md).
+Funzioni di Azure rende facile toodeploy app funzione mediante l'integrazione continua di servizio App. Le funzioni si integrano con Dropbox, GitHub, BitBucket e Visual Studio Team Services, VSTS. In questo modo un flusso di lavoro in cui il codice di funzione viene aggiornato utilizzando uno di questi tooAzure di distribuzione di servizi integrati trigger. Nel caso di nuove funzioni tooAzure, iniziare con [panoramica delle funzioni di Azure](functions-overview.md).
 
-La distribuzione continua è un'ottima opzione per i progetti in cui vengono integrati contributi numerosi e frequenti. Consente anche di mantenere il controllo dell'origine del codice funzione. Sono attualmente supportate le origini di distribuzione seguenti:
+La distribuzione continua è un'ottima opzione per i progetti in cui vengono integrati contributi numerosi e frequenti. Consente anche di mantenere il controllo dell'origine del codice funzione. Hello seguenti origini di distribuzione è attualmente supportata:
 
 * [Bitbucket](https://bitbucket.org/)
 * [Dropbox](https://www.dropbox.com/)
@@ -34,113 +34,113 @@ La distribuzione continua è un'ottima opzione per i progetti in cui vengono int
 * [OneDrive](https://onedrive.live.com/)
 * [Visual Studio Team Services](https://www.visualstudio.com/team-services/)
 
-Le distribuzioni sono configurate in base alla singola app per le funzioni. Dopo aver abilitato la distribuzione continua, l'accesso al codice di funzione nel portale viene impostato su *sola lettura*.
+Le distribuzioni sono configurate in base alla singola app per le funzioni. Dopo aver abilitata la distribuzione continua, l'accesso di codice toofunction nel portale di hello è impostato troppo*sola lettura*.
 
 ## <a name="continuous-deployment-requirements"></a>Requisiti per la distribuzione continua
 
-È necessario che l'origine della distribuzione sia configurata e che il codice funzioni sia presente nell'origine della distribuzione prima di configurare la distribuzione continua. In una determinata distribuzione di app per le funzioni, ogni funzione si trova in una sottodirectory denominata, dove il nome della directory è il nome della funzione.  
+È necessario disporre dell'origine di distribuzione configurati e il codice funzioni nell'origine distribuzione hello prima di impostare la distribuzione continua. In una distribuzione di app di funzione specificata, ogni funzione si trova in una sottodirectory denominata, dove il nome di directory hello è il nome di hello della funzione hello.  
 
 [!INCLUDE [functions-folder-structure](../../includes/functions-folder-structure.md)]
 
 ## <a name="set-up-continuous-deployment"></a>Configurare la distribuzione continua
-Usare la procedura seguente per configurare la distribuzione continua per un'app per le funzioni esistente. Questa procedura illustra l'integrazione con un archivio di GitHub. Una procedura analoga si applica a Visual Studio Team Services o ad altri servizi di distribuzione.
+Utilizzare questa distribuzione continua tooconfigure di procedure per un'app di funzione esistente. Questa procedura illustra l'integrazione con un archivio di GitHub. Una procedura analoga si applica a Visual Studio Team Services o ad altri servizi di distribuzione.
 
-1. Nell'app per le funzioni nel [portale di Azure](https://portal.azure.com) fare clic su **Funzionalità della piattaforma** e **Opzioni di distribuzione**. 
+1. Nell'app di funzione in hello [portale di Azure](https://portal.azure.com), fare clic su **funzionalità della piattaforma** e **opzioni di distribuzione**. 
    
     ![Configurare la distribuzione continua](./media/functions-continuous-deployment/setup-deployment.png)
  
-2. Quindi, nel pannello **Distribuzione** fare clic su **Installazione**.
+2. Quindi in hello **distribuzioni** fare clic su pannello **installazione**.
  
     ![Configurare la distribuzione continua](./media/functions-continuous-deployment/setup-deployment-1.png)
    
-2. Nel pannello **Origine distribuzione** fare clic su **Scegliere l'origine**, quindi inserire le informazioni per l'origine della distribuzione scelta e fare clic su **OK**.
+2. In hello **origine distribuzione** pannello, fare clic su **origine scegliere**, quindi immettere le informazioni di hello per l'origine di distribuzione scelto e fare clic su **OK**.
    
     ![Scegliere l'origine della distribuzione](./media/functions-continuous-deployment/choose-deployment-source.png)
 
-Dopo aver configurato la distribuzione continua, tutti le modifiche dei file nell'origine della distribuzione vengono copiate nell'app per le funzioni e viene attivata una distribuzione completa del sito. Il sito viene ridistribuito quando vengono aggiornati i file nell'origine.
+Dopo aver configurata la distribuzione continua, tutte le modifiche ai file dell'origine di distribuzione vengono copiati toohello app di funzione e viene attivata una distribuzione completa del sito. sito Hello viene ridistribuito quando vengono aggiornati i file di origine hello.
 
 ## <a name="deployment-options"></a>Opzioni di distribuzione
 
-Di seguito sono indicati alcuni scenari di distribuzione tipici:
+di seguito Hello sono alcuni scenari di distribuzione tipiche:
 
 - [Creare una distribuzione di staging](#staging)
-- [Trasferire le funzioni esistenti nella distribuzione continua](#existing)
+- [Spostare una distribuzione esistente toocontinuous di funzioni](#existing)
 
 <a name="staging"></a>
 ### <a name="create-a-staging-deployment"></a>Creare una distribuzione di staging
 
 Le app per le funzioni non supportano ancora slot di distribuzione. È comunque possibile gestire distribuzioni di staging e di produzione separate tramite l'integrazione continua.
 
-Il processo per la configurazione e l'uso di una distribuzione di staging è in genere simile al seguente:
+processo tooconfigure Hello e di lavoro con una distribuzione di gestione temporanea è in genere simile al seguente:
 
-1. Creare due app per le funzioni nella sottoscrizione, una per il codice di produzione e una per lo staging. 
+1. Creare due applicazioni di funzione nella sottoscrizione, uno per il codice di produzione hello e uno per la gestione temporanea. 
 
 2. Creare un'origine della distribuzione, se non è già presente. Questo esempio usa [GitHub].
 
-3. Per l'app per le funzioni di produzione, eseguire i passaggi illustrati sopra in **Configurare la distribuzione continua** e impostare il ramo di distribuzione sul ramo master dell'archivio GitHub.
+3. Per l'app di funzione di produzione, hello completo precedente i passaggi **impostare la distribuzione continua** e set hello distribuzione ramo toohello ramo master del repository di GitHub.
    
     ![Scegliere il ramo della distribuzione](./media/functions-continuous-deployment/choose-deployment-branch.png)
 
-4. Ripetere questo passaggio per l'app per le funzioni di staging, ma scegliere il ramo di staging nel repository GitHub. Se l'origine della distribuzione non supporta le diramazioni, usare una cartella diversa.
+4. Ripetere questo passaggio per hello app di funzione di gestione temporanea, ma scegliere hello gestione temporanea invece di ramo nel repository di GitHub. Se l'origine della distribuzione non supporta le diramazioni, usare una cartella diversa.
     
-5. Apportare aggiornamenti al codice nel ramo o nella cartella di staging, quindi verificare che le modifiche vengono apportate nella distribuzione di staging.
+5. Apportare aggiornamenti tooyour codice hello ramo o una cartella di gestione temporanea, quindi verificare che tali modifiche si rifletteranno in hello distribuzione di gestione temporanea.
 
-6. Dopo i test, unire le modifiche dal ramo di staging nel ramo master. Questa unione attiva la distribuzione nell'app per le funzioni di produzione. Se l'origine della distribuzione non supporta i rami, sovrascrivere i file nella cartella di produzione con i file dalla cartella di staging.
+6. Al termine del test, unire le modifiche dal ramo di gestione temporanea nel ramo master hello hello. Questo tipo di merge Attiva distribuzione toohello produzione funzione app. Se l'origine di distribuzione non supporta i rami, sovrascrivere i file nella cartella di produzione hello hello con file hello hello cartella di gestione temporanea.
 
 <a name="existing"></a>
-### <a name="move-existing-functions-to-continuous-deployment"></a>Trasferire le funzioni esistenti nella distribuzione continua
-Quando si hanno funzioni esistenti che sono state create e gestite nel portale, è necessario scaricare i file del codice di funzione esistenti tramite FTP o il repository Git locale prima di configurare la distribuzione continua come descritto in precedenza. Questa operazione può essere eseguita nelle impostazioni del servizio app dell'app per le funzioni. Dopo aver scaricato i file, è possibile caricarli nell'origine scelta per la distribuzione continua.
+### <a name="move-existing-functions-toocontinuous-deployment"></a>Spostare una distribuzione esistente toocontinuous di funzioni
+Quando si dispongono di funzioni esistenti creati e gestiti nel portale di hello, è necessario toodownload esistente funzione tramite FTP o hello repository Git locale prima di impostare la distribuzione continua come descritto in precedenza i file di codice. È possibile farlo in hello le impostazioni di servizio App per l'app di funzione. Dopo che vengono scaricati i file, è possibile caricare le origine distribuzione continua tooyour scelto.
 
 > [!NOTE]
-> Dopo aver configurato l'integrazione continua, non sarà più possibile modificare i file di origine nel portale di Funzioni.
+> Dopo aver configurato l'integrazione continua, non sarà non è più in grado di tooedit l'origine dei file nel portale le funzioni hello.
 
 - [Procedura: Configurare le credenziali di distribuzione](#credentials)
 - [Procedura: Scaricare i file con FTP](#downftp)
-- [Procedura: scaricare file tramite l'archivio GIT locale](#downgit)
+- [Procedura: scaricare file utilizzando l'archivio Git locale hello](#downgit)
 
 <a name="credentials"></a>
 #### <a name="how-to-configure-deployment-credentials"></a>Procedura: Configurare le credenziali di distribuzione
-Prima di poter scaricare i file dall'app per le funzioni con FTP o l'archivio GIT locale, è necessario configurare le credenziali per accedere al sito. Le credenziali vengono impostate a livello di app per le funzioni. Usare la procedura seguente per impostare le credenziali di distribuzione nel portale di Azure:
+Prima di poter scaricare i file dall'app di funzione con FTP o nell'archivio Git locale, è necessario configurare il sito di hello tooaccess credenziali. Le credenziali vengono impostate a livello di app di funzione hello. Utilizzare hello seguenti passaggi viene tooset le credenziali di distribuzione nel portale di Azure hello:
 
-1. Nell'app per le funzioni nel [portale di Azure](https://portal.azure.com) fare clic su **Funzionalità della piattaforma** e **Credenziali distribuzione**.
+1. Nell'app di funzione in hello [portale di Azure](https://portal.azure.com), fare clic su **funzionalità della piattaforma** e **le credenziali di distribuzione**.
    
     ![Impostare le credenziali di distribuzione locali](./media/functions-continuous-deployment/setup-deployment-credentials.png)
 
-2. Immettere un nome utente e una password, quindi fare clic su **Salva**. È ora possibile usare queste credenziali per accedere all'app per le funzioni da FTP o dal repository Git predefinito.
+2. Immettere un nome utente e una password, quindi fare clic su **Salva**. Ora è possibile utilizzare questi tooaccess credenziali app funzione dal repository Git predefinito hello o FTP.
 
 <a name="downftp"></a>
 #### <a name="how-to-download-files-using-ftp"></a>Procedura: Scaricare i file tramite FTP
 
-1. Nell'app per le funzioni nel [portale di Azure](https://portal.azure.com) fare clic su **Funzionalità della piattaforma** e su **Proprietà**, quindi copiare i valori di **Utente FTP/distribuzione**, **Nome host FTP** e **Nome host FTPS**.  
+1. Nell'app di funzione in hello [portale di Azure](https://portal.azure.com), fare clic su **funzionalità della piattaforma** e **proprietà**, quindi copiare i valori hello per **utente FTP/distribuzione**, **Nome Host FTP**, e **nome Host FTPS**.  
 
-    **Utente FTP/distribuzione** deve essere immesso come visualizzato nel portale, includendo il nome dell'app, per rendere disponibile un contesto appropriato per il server FTP.
+    **Utente FTP/distribuzione** deve essere immesso come visualizzato nel portale di hello, incluso il nome dell'applicazione hello, tooprovide contesto appropriato per il server FTP hello.
    
     ![Ottenere le informazioni di distribuzione](./media/functions-continuous-deployment/get-deployment-credentials.png)
 
-2. Dal client FTP, usare le informazioni di connessione raccolte per connettersi all'app e scaricare i file di origine per le funzioni.
+2. Dal client FTP, utilizzare le informazioni di connessione hello raccolte tooconnect tooyour app e scaricare i file di origine hello per le funzioni.
 
 <a name="downgit"></a>
 #### <a name="how-to-download-files-using-a-local-git-repository"></a>Procedura: scaricare file tramite l'archivio GIT locale
 
-1. Nell'app per le funzioni nel [portale di Azure](https://portal.azure.com) fare clic su **Funzionalità della piattaforma** e **Opzioni di distribuzione**. 
+1. Nell'app di funzione in hello [portale di Azure](https://portal.azure.com), fare clic su **funzionalità della piattaforma** e **opzioni di distribuzione**. 
    
     ![Configurare la distribuzione continua](./media/functions-continuous-deployment/setup-deployment.png)
  
-2. Quindi, nel pannello **Distribuzione** fare clic su **Installazione**.
+2. Quindi in hello **distribuzioni** fare clic su pannello **installazione**.
  
     ![Configurare la distribuzione continua](./media/functions-continuous-deployment/setup-deployment-1.png)
    
-2. Nel pannello **Origine distribuzione** fare clic su **Archivio Git locale** e quindi fare clic su **OK**.
+2. In hello **origine distribuzione** pannello, fare clic su **repository Git locale** e quindi fare clic su **OK**.
 
-3. In **Funzionalità della piattaforma** fare clic su **Proprietà** e prendere nota del valore dell'URL GIT. 
+3. In **funzionalità della piattaforma**, fare clic su **proprietà** e annotare il valore di hello dell'URL di Git. 
    
     ![Configurare la distribuzione continua](./media/functions-continuous-deployment/get-local-git-deployment-url.png)
 
-4. Clonare l'archivio nel computer locale tramite il prompt dei comandi compatibile con GIT o con lo strumento GIT preferito. Il comando clone GIT è simile al seguente:
+4. Clonare il repository hello sul computer locale utilizzando un prompt dei comandi basato su Git o lo strumento preferito di Git. comando di Git clone Hello è simile al seguente:
    
         git clone https://username@my-function-app.scm.azurewebsites.net:443/my-function-app.git
 
-5. Recuperare i file dell'app per le funzioni nel clone nel computer locale, come nell'esempio seguente:
+5. Recuperare i file dal clone toohello app di funzione nel computer locale, come in hello di esempio seguente:
    
         git pull origin master
    

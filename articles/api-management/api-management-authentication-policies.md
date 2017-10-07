@@ -1,6 +1,6 @@
 ---
-title: Criteri di autenticazione di Gestione API di Azure | Documentazione Microsoft
-description: Informazioni sui criteri di autenticazione disponibili per l'uso in Gestione API di Azure.
+title: criteri di autenticazione di gestione API aaaAzure | Documenti Microsoft
+description: Informazioni sui criteri di autenticazione hello disponibili per l'utilizzo in Gestione API di Azure.
 services: api-management
 documentationcenter: 
 author: miaojiang
@@ -14,14 +14,14 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/09/2017
 ms.author: apimpm
-ms.openlocfilehash: 63ef20a56ab7721f9ecc7025d05963cc4b0c27a0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ce93cced66cb67520e97c7c15f3685bffb08e1f5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="api-management-authentication-policies"></a>Criteri di autenticazione di Gestione API di Azure
-Questo argomento fornisce un riferimento per i seguenti criteri di Gestione API. Per informazioni sull'aggiunta e sulla configurazione dei criteri, vedere [Criteri di Gestione API](http://go.microsoft.com/fwlink/?LinkID=398186).  
+In questo argomento fornisce un riferimento per i seguenti criteri di gestione API hello. Per informazioni sull'aggiunta e sulla configurazione dei criteri, vedere [Criteri di Gestione API](http://go.microsoft.com/fwlink/?LinkID=398186).  
   
 ##  <a name="AuthenticationPolicies"></a> Criteri di autenticazione  
   
@@ -30,7 +30,7 @@ Questo argomento fornisce un riferimento per i seguenti criteri di Gestione API.
 -   [Autenticazione con certificato](api-management-authentication-policies.md#ClientCertificate): consente di eseguire l'autenticazione con un servizio back-end tramite certificati client.  
   
 ##  <a name="Basic"></a> Autenticazione con base  
- Usare il criterio `authentication-basic` per eseguire l'autenticazione con un servizio di back-end tramite l'autenticazione di base. Questo criterio imposta l'intestazione di autorizzazione HTTP sul valore corrispondente alle credenziali specificate nei criteri.  
+ Hello utilizzare `authentication-basic` tooauthenticate criteri con un servizio back-end mediante autenticazione di base. Questo criterio imposta toohello intestazione autorizzazione HTTP di hello credenziali toohello corrispondente valore fornite nei criteri di hello.  
   
 ### <a name="policy-statement"></a>Istruzione del criterio  
   
@@ -54,18 +54,18 @@ Questo argomento fornisce un riferimento per i seguenti criteri di Gestione API.
   
 |Nome|Descrizione|Obbligatorio|Default|  
 |----------|-----------------|--------------|-------------|  
-|username|Specifica il nome utente della credenziale di base.|Sì|N/D|  
-|password|Specifica la password della credenziale di base.|Sì|N/D|  
+|username|Specifica nome utente hello della credenziale di base hello.|Sì|N/D|  
+|password|Specifica la password di hello della credenziale di base hello.|Sì|N/D|  
   
 ### <a name="usage"></a>Utilizzo  
- Questo criterio può essere usato nelle [sezioni](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) e negli [ambiti](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes) del criterio seguenti.  
+ Questo criterio può essere utilizzato hello seguenti criteri [sezioni](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) e [ambiti](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
   
--   **Sezioni del criterio:** in ingresso  
+-   **Sezioni del criterio:** inbound  
   
 -   **Ambiti del criterio:** API  
   
 ##  <a name="ClientCertificate"></a> Autenticazione con certificato client  
- Usare il criterio `authentication-certificate` per eseguire l'autenticazione con un servizio di back-end tramite il certificato client. Il certificato deve essere prima [installato in Gestione API](http://go.microsoft.com/fwlink/?LinkID=511599) e viene identificato tramite la relativa identificazione personale.  
+ Hello utilizzare `authentication-certificate` tooauthenticate criteri con un servizio back-end tramite certificato client. certificato di Hello deve toobe [installato in Gestione API](http://go.microsoft.com/fwlink/?LinkID=511599) primo ed è identificato dalla relativa identificazione personale.  
   
 ### <a name="policy-statement"></a>Istruzione del criterio  
   
@@ -89,12 +89,12 @@ Questo argomento fornisce un riferimento per i seguenti criteri di Gestione API.
   
 |Nome|Descrizione|Obbligatorio|Default|  
 |----------|-----------------|--------------|-------------|  
-|thumbprint|Identificazione personale del certificato client.|Sì|N/D|  
+|thumbprint|Hello identificazione personale del certificato client hello.|Sì|N/D|  
   
 ### <a name="usage"></a>Utilizzo  
- Questo criterio può essere usato nelle [sezioni](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) e negli [ambiti](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes) del criterio seguenti.  
+ Questo criterio può essere utilizzato hello seguenti criteri [sezioni](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) e [ambiti](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
   
--   **Sezioni del criterio:** in ingresso  
+-   **Sezioni del criterio:** inbound  
   
 -   **Ambiti del criterio:** API  
   

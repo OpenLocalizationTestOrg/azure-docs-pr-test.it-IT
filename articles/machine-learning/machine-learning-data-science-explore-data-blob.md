@@ -1,6 +1,6 @@
 ---
-title: Esplorare i dati nell'archiviazione BLOB di Azure con Pandas | Microsoft Docs
-description: Come esplorare i dati archiviati nel contenitore BLOB di Azure utilizzando Pandas.
+title: dati aaaExplore in Azure blob storage con Pandas | Documenti Microsoft
+description: Tooexplore i dati archiviati in Azure blob come contenitore utilizzando Pandas.
 services: machine-learning,storage
 documentationcenter: 
 author: bradsev
@@ -14,16 +14,16 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/24/2017
 ms.author: bradsev
-ms.openlocfilehash: e1b33b17270122a38228484a56c8324c5b4505a0
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 28f3c0aebf2300006066c4b19dcb1f0a76a1deb2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="explore-data-in-azure-blob-storage-with-pandas"></a>Esplorare i dati nell'archiviazione BLOB di Azure con Pandas
-In questo documento viene descritto come esplorare i dati archiviati nel contenitore BLOB di Azure mediante il pacchetto Python [Pandas](http://pandas.pydata.org/) .
+Questo documento descrive come tooexplore i dati archiviati in Azure blob contenitore usando [Pandas](http://pandas.pydata.org/) pacchetto Python.
 
-Il **menu** seguente collega ad argomenti che descrivono come usare gli strumenti per esplorare i dati da vari ambienti di archiviazione. Questa attività è un passaggio del [Processo di analisi scientifica dei dati]().
+esempio Hello **menu** collegamenti tootopics che descrivono come toouse strumenti tooexplore dati da diversi ambienti di archiviazione. Questa attività è un passaggio di hello [il processo di analisi scientifica dei dati]().
 
 [!INCLUDE [cap-explore-data-selector](../../includes/cap-explore-data-selector.md)]
 
@@ -31,12 +31,12 @@ Il **menu** seguente collega ad argomenti che descrivono come usare gli strument
 Questo articolo presuppone che l'utente abbia:
 
 * Creato un account di archiviazione di Azure. Per istruzioni, vedere [Creare un account di archiviazione di Azure](../storage/common/storage-create-storage-account.md#create-a-storage-account)
-* I dati sono stati archiviati in un account di archiviazione BLOB di Azure. Per le istruzioni, vedere [Spostamento dei dati da e verso Archiviazione di Azure](../storage/common/storage-moving-data.md)
+* I dati sono stati archiviati in un account di archiviazione BLOB di Azure. Se sono necessarie istruzioni, vedere [tooand di spostamento dei dati da archiviazione di Azure](../storage/common/storage-moving-data.md)
 
-## <a name="load-the-data-into-a-pandas-dataframe"></a>Caricare i dati in un intervallo di dati Pandas
-Per esplorare e modificare un set di dati, i dati devono essere innanzitutto scaricati dall'origine BLOB in un file locale che può essere quindi caricato in un frame di dati Pandas. Ecco i passaggi da seguire per questa procedura:
+## <a name="load-hello-data-into-a-pandas-dataframe"></a>Caricare i dati di hello in un frame di dati Pandas
+tooexplore e modificare un set di dati, deve prima essere scaricato da hello blob tooa locale file di origine, che può quindi essere caricato in un frame di dati Pandas. Di seguito sono hello passaggi toofollow per questa procedura:
 
-1. Scaricare i dati da BLOB Azure con l’esempio di codice Python riportato di seguito utilizzando il servizio BLOB. Sostituire la variabile nel codice seguente con i valori specifici: 
+1. Scaricare dati hello da Azure blob con hello seguente esempio di codice Python mediante il servizio blob. Sostituire la variabile hello nel seguente codice con i valori specifici hello: 
    
         from azure.storage.blob import BlobService
         import tables
@@ -52,52 +52,52 @@ Per esplorare e modificare un set di dati, i dati devono essere innanzitutto sca
         blob_service=BlobService(account_name=STORAGEACCOUNTNAME,account_key=STORAGEACCOUNTKEY)
         blob_service.get_blob_to_path(CONTAINERNAME,BLOBNAME,LOCALFILENAME)
         t2=time.time()
-        print(("It takes %s seconds to download "+blobname) % (t2 - t1))
-2. Leggere i dati in un frame di dati Pandas dal file scaricato.
+        print(("It takes %s seconds toodownload "+blobname) % (t2 - t1))
+2. Lettura dati hello in un frame di dati Pandas da hello scaricati i file.
    
-        #LOCALFILE is the file path    
+        #LOCALFILE is hello file path    
         dataframe_blobdata = pd.read_csv(LOCALFILE)
 
-A questo punto si è pronti per esplorare i dati e generare le funzionalità di questo set di dati.
+Ora pronto tooexplore hello dati, generare funzioni in questo set di dati.
 
 ## <a name="blob-dataexploration"></a>Esempi di esplorazione dei dati utilizzando Pandas
-Di seguito sono riportati alcuni esempi dei modi per esplorare i dati utilizzando Pandas:
+Ecco alcuni esempi di modalità dati tooexplore Pandas utilizzando:
 
-1. Controllare il **numero di righe e colonne** 
+1. Controllare hello **numero di righe e colonne** 
    
-        print 'the size of the data is: %d rows and  %d columns' % dataframe_blobdata.shape
-2. **Controllare** le prime o le ultime **righe** nel set di dati seguente:
+        print 'hello size of hello data is: %d rows and  %d columns' % dataframe_blobdata.shape
+2. **Controllare** hello alcuni primo o ultimi **righe** in hello seguente set di dati:
    
         dataframe_blobdata.head(10)
    
         dataframe_blobdata.tail(10)
-3. Controllare il **tipo di dati** importato in ogni colonna mediante il seguente codice di esempio
+3. Controllare hello **tipo di dati** ogni colonna è stato importato come usando hello seguente codice di esempio
    
         for col in dataframe_blobdata.columns:
             print dataframe_blobdata[col].name, ':\t', dataframe_blobdata[col].dtype
-4. Controllare le **statistiche di base** per le colonne nel set di dati come segue
+4. Controllare hello **statistiche di base** per colonne hello hello set di dati, come indicato di seguito
    
         dataframe_blobdata.describe()
-5. Esaminare il numero di voci per ogni valore della colonna come indicato di seguito
+5. Esaminare il numero di hello di voci per ogni valore di colonna come indicato di seguito
    
         dataframe_blobdata['<column_name>'].value_counts()
-6. **Contare i valori mancanti** rispetto al numero effettivo di voci in ogni colonna utilizzando il seguente codice di esempio
+6. **Conteggio dei valori mancanti** rispetto al numero effettivo di hello di voci in ogni colonna utilizzando hello seguente codice di esempio
    
         miss_num = dataframe_blobdata.shape[0] - dataframe_blobdata.count()
         print miss_num
-7. Se si dispongono di **valori mancanti** per una colonna specifica nei dati, è possibile eliminarli come indicato di seguito:
+7. Se dispone di **valori mancanti** per una colonna specifica in dati hello, è possibile rilasciarli come indicato di seguito:
    
      dataframe_blobdata_noNA = dataframe_blobdata.dropna()   dataframe_blobdata_noNA.shape
    
-   È possibile sostituire i valori mancanti anche con la funzione modalità:
+   Un altro modo tooreplace i valori mancanti è con funzione di modalità hello:
    
-     dataframe_blobdata_mode = dataframe_blobdata.fillna({'<nome_colonna>':dataframe_blobdata['<nome_colonna>'].mode()[0]})        
-8. Creare un grafico **istogramma** utilizzando un numero variabile di contenitori per tracciare la distribuzione di una variabile    
+     dataframe_blobdata_mode = dataframe_blobdata.fillna({'<column_name>':dataframe_blobdata['<column_name>'].mode()[0]})        
+8. Creare un **istogramma** tracciato con un numero variabile di distribuzione di hello tooplot bin di una variabile    
    
         dataframe_blobdata['<column_name>'].value_counts().plot(kind='bar')
    
         np.log(dataframe_blobdata['<column_name>']+1).hist(bins=50)
-9. Esaminare le **correlazioni** tra le variabili utilizzando un grafico di dispersione o la funzione di correlazione incorporata
+9. Esaminare **correlazioni** tra le variabili utilizzando un scatterplot o funzione di correlazione incorporata hello
    
         #relationship between column_a and column_b using scatter plot
         plt.scatter(dataframe_blobdata['<column_a>'], dataframe_blobdata['<column_b>'])

@@ -1,6 +1,6 @@
 ---
-title: Elaborare messaggi da dispositivo a cloud dell'hub IoT di Azure (Java) | Microsoft Docs
-description: Come elaborare i messaggi da dispositivo a cloud dell'hub IoT usando le regole di routing e gli endpoint personalizzati per inviare i messaggi agli altri servizi di back-end.
+title: i messaggi da dispositivo a cloud Azure IoT Hub (linguaggio) aaaProcess | Documenti Microsoft
+description: Come i messaggi da dispositivo a cloud IoT Hub utilizzando le regole di routing e gli endpoint personalizzati toodispatch tooprocess messaggi tooother servizi di back-end.
 services: iot-hub
 documentationcenter: java
 author: dominicbetts
@@ -14,44 +14,44 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/29/2017
 ms.author: dobett
-ms.openlocfilehash: d1aca8f39e305105d4ec9f63fbe7bee95487e294
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 084e84e721ca4297c4d7d6cb06a43b0bed9bce85
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="process-iot-hub-device-to-cloud-messages-java"></a>Elaborare messaggi da dispositivo a cloud dell'hub IoT (Java)
 
 [!INCLUDE [iot-hub-selector-process-d2c](../../includes/iot-hub-selector-process-d2c.md)]
 
-L'hub IoT di Azure è un servizio completamente gestito che consente comunicazioni bidirezionali affidabili e sicure tra milioni di dispositivi e un back-end della soluzione. Altre esercitazioni, ad esempio [Get started with IoT Hub] e [Inviare messaggi da cloud a dispositivo con l'hub IoT][lnk-c2d], illustrano come usare le funzionalità di messaggistica di base da dispositivo a cloud e da cloud a dispositivo dell'hub IoT.
+L'hub IoT di Azure è un servizio completamente gestito che consente comunicazioni bidirezionali affidabili e sicure tra milioni di dispositivi e un back-end della soluzione. Altre esercitazioni ([iniziare con l'IoT Hub] e [inviare messaggi da cloud a dispositivo con l'IoT Hub][lnk-c2d]) viene illustrato come toouse hello base dispositivo a cloud e cloud a dispositivo funzionalità di messaggistica di IoT Hub.
 
-Questa esercitazione è basata sul codice mostrato nell'esercitazione [Get started with IoT Hub] (Introduzione all'hub IoT) e come usare il routing dei messaggi per elaborare i messaggi da dispositivo a cloud in modo scalabile. L'esercitazione illustra come elaborare i messaggi che richiedono un intervento immediato dal back-end della soluzione. Ad esempio, un dispositivo potrebbe inviare un messaggio di avviso che attiva l'inserimento di un ticket in un sistema CRM. Al contrario, i messaggi di punto dati vengono semplicemente inseriti in un motore di analisi. Ad esempio, i dati di telemetria sulla temperatura di un dispositivo che devono essere archiviati per una successiva analisi costituiscono un messaggio di punti dati.
+In questa esercitazione si basa sul codice hello di hello [iniziare con l'IoT Hub] esercitazione e Mostra come toouse messaggio routing dei messaggi da dispositivo a cloud tooprocess in modo scalabile. esercitazione Hello viene illustrato come tooprocess messaggi che richiedono un intervento immediato dalla soluzione hello back-end. Ad esempio, un dispositivo potrebbe inviare un messaggio di avviso che attiva l'inserimento di un ticket in un sistema CRM. Al contrario, i messaggi di punto dati vengono semplicemente inseriti in un motore di analisi. Telemetria temperatura da un dispositivo che è toobe archiviati per poterli analizzare in seguito è ad esempio, un messaggio di punto dati.
 
-Al termine di questa esercitazione, vengono eseguite tre app console Java:
+Alla fine di hello di questa esercitazione, si esegue tre applicazioni di console Java:
 
-* **SimulatedDevice**, una versione modificata dell'app creata nell'esercitazione [Get started with IoT Hub] , che invia messaggi di punti dati da dispositivo a cloud ogni secondo e messaggi interattivi da dispositivo a cloud ogni 10 secondi. Questa app usa il protocollo AMQP per comunicare con l'hub IoT.
-* **read-d2c-messages** consente di visualizzare i dati di telemetria inviati dall'app per dispositivo.
-* **read-critical-queue** rimuove dalla coda i messaggi dalla coda importanti della coda del bus di servizio collegato all'hub IoT.
+* **dispositivo simulato**, una versione modificata dell'applicazione hello creato in hello [iniziare con l'IoT Hub] esercitazione, invia i messaggi da dispositivo a cloud punto dati ogni secondo e messaggi di dispositivo a cloud interattivo ogni 10 secondi. Questa app utilizza hello AMQP protocollo toocommunicate con l'IoT Hub.
+* **i messaggi di d2c lettura** Visualizza dati di telemetria hello inviati per l'app del dispositivo.
+* **lettura coda critico** coda i messaggi critici hello da hello Bus di servizio collegata coda toohello hub IoT.
 
 > [!NOTE]
-> L'hub IoT offre il supporto SDK per molte piattaforme e linguaggi, inclusi C, Java e JavaScript. Per istruzioni su come sostituire il dispositivo in questa esercitazione con un dispositivo fisico e su come connettere dispositivi a un hub IoT, fare riferimento al [Centro per sviluppatori Azure IoT].
+> L'hub IoT offre il supporto SDK per molte piattaforme e linguaggi, inclusi C, Java e JavaScript. Per istruzioni su come tooreplace hello dispositivo in questa esercitazione con un dispositivo fisico, e tooconnect dispositivi tooan IoT Hub, vedere hello [Centro per sviluppatori di Azure IoT].
 
-Per completare l'esercitazione, sono necessari gli elementi seguenti:
+toocomplete questa esercitazione, è necessario hello seguenti:
 
-* Una versione di lavoro completa dell'esercitazione di [Get started with IoT Hub] .
-* [Java SE Development Kit 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) più recente
+* Una versione completa di utilizzo di hello [iniziare con l'IoT Hub] esercitazione.
+* versione più recente Hello [Java SE Development Kit 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
 * [Maven 3](https://maven.apache.org/install.html)
 * Un account Azure attivo. Se non si dispone di un account, è possibile creare un [account di valutazione gratuita] in pochi minuti.
 
 È necessaria una conoscenza di base di [Archiviazione di Azure] e del [bus di servizio di Azure].
 
 ## <a name="send-interactive-messages-from-a-device-app"></a>Inviare messaggi interattivi da un'app per dispositivi
-In questa sezione viene modificata l'app per dispositivi creata nell'esercitazione [Get started with IoT Hub] per inviare occasionalmente messaggi che richiedono un intervento immediato.
+In questa sezione, si modifica hello app del dispositivo è stato creato in hello [iniziare con l'IoT Hub] toooccasionally esercitazione inviare i messaggi che richiedono l'elaborazione immediata.
 
-1. Usare un editor di testo per aprire il file simulated-device\src\main\java\com\mycompany\app\App.java. Questo file contiene il codice dell'app **simulated-device** creata durante l'esercitazione di [Get started with IoT Hub] .
+1. Utilizzare un file di testo dell'editor tooopen hello simulated-device\src\main\java\com\mycompany\app\App.java. Questo file contiene codice hello hello **dispositivo simulato** app è stato creato in hello [iniziare con l'IoT Hub] esercitazione.
 
-2. Sostituire la classe **MessageSender** con il codice seguente:
+2. Sostituire hello **MessageSender** classe con hello seguente codice:
 
     ```java
     private static class MessageSender implements Runnable {
@@ -99,53 +99,53 @@ In questa sezione viene modificata l'app per dispositivi creata nell'esercitazio
     }
     ```
    
-    Questo metodo aggiunge in modo casuale la proprietà `"level": "critical"` ai messaggi inviati dal dispositivo, simulando così un messaggio che richiede l'intervento immediato del back-end dell'applicazione. L'applicazione passa queste informazioni nelle proprietà del messaggio anziché nel corpo del messaggio, in modo che l'hub IoT possa indirizzare il messaggio alla destinazione messaggi appropriata.
+    Questo metodo aggiunge in modo casuale proprietà hello `"level": "critical"` toomessages inviato dal dispositivo hello, che simula un messaggio che richiede un intervento immediato per hello applicazione back-end. un'applicazione Hello passa le informazioni nelle proprietà di messaggio hello, anziché nel corpo del messaggio hello, in modo che l'IoT Hub può instradare destinazione dei messaggi appropriata toohello messaggio hello.
    
    > [!NOTE]
-   > È possibile usare le proprietà del messaggio per indirizzare i messaggi in diversi scenari, tra cui l'elaborazione del percorso a freddo, oltre all'esempio del percorso a caldo mostrato qui.
+   > È possibile utilizzare i messaggi tooroute di proprietà di messaggio per vari scenari, tra cui freddo-path, l'elaborazione, inoltre toohello percorso ricorrente riportato di seguito viene illustrato di seguito.
 
-2. Salvare e chiudere il file simulated-device\src\main\java\com\mycompany\app\App.java.
+2. Salvare e chiudere il file di simulated-device\src\main\java\com\mycompany\app\App.java hello.
 
     > [!NOTE]
-    > Per semplicità, questa esercitazione non implementa alcun criterio di ripetizione. Nel codice di produzione è consigliabile implementare criteri di ripetizione dei tentativi, ad esempio un backoff esponenziale, come indicato nell'articolo di MSDN relativo alla [Transient Fault Handling](Gestione degli errori temporanei).
+    > Per i migliori risultati hello di semplicità, in questa esercitazione non implementa alcun criterio di tentativo. Nel codice di produzione, è necessario implementare un criterio di ripetizione, ad esempio backoff esponenziale, come indicato nell'articolo MSDN hello [gestione degli errori temporanei].
 
-3. Per compilare l'app **simulated-device** con Maven, eseguire questo comando al prompt dei comandi nella cartella simulated-device:
+3. hello toobuild **dispositivo simulato** app usando Maven, eseguire hello comando al prompt dei comandi di hello nella cartella dispositivo simulato hello seguente:
 
     ```cmd/sh
     mvn clean package -DskipTests
     ```
 
-## <a name="add-a-queue-to-your-iot-hub-and-route-messages-to-it"></a>Aggiungere una coda all'hub IoT e indirizzarvi i messaggi
+## <a name="add-a-queue-tooyour-iot-hub-and-route-messages-tooit"></a>Aggiungere una coda tooyour IoT hub e instradare i messaggi tooit
 
-In questa sezione, viene illustrato come creare una coda del bus di servizio, connetterla all'hub IoT e configurare l'hub IoT per inviare messaggi alla coda in base alla presenza di una proprietà del messaggio. Per altre informazioni su come elaborare i messaggi dalle code del bus di servizio, vedere [Get started with queues][lnk-sb-queues-java] (Introduzione alle code).
+In questa sezione, creare una coda di Service Bus, connetterlo hub IoT tooyour e configurare la coda IoT hub toosend messaggi toohello in base hello presenza di una proprietà nel messaggio hello. Per ulteriori informazioni su come tooprocess messaggi dalle code del Bus di servizio, vedere [iniziare con le code][lnk-sb-queues-java].
 
-1. Creare una coda del bus di servizio, come descritto in [Get started with queues][lnk-sb-queues-java] (Introduzione alle code). Prendere nota dello spazio dei nomi e del nome della coda.
+1. Creare una coda del bus di servizio, come descritto in [Get started with queues][lnk-sb-queues-java] (Introduzione alle code). Prendere nota del nome dello spazio dei nomi e di Accodamento di hello.
 
-2. Nel Portale di Azure, aprire l'hub IoT e fare clic su **Endpoint**.
+2. In hello portale di Azure, aprire l'hub IoT e fare clic su **endpoint**.
 
     ![Endpoint in hub IoT][30]
 
-3. Nel pannello **Endpoint** fare clic su **Aggiungi** in alto per aggiungere la coda all'hub IoT. Denominare l'endpoint **CriticalQueue** e usare il menu a discesa per selezionare **Coda del bus di servizio**, lo spazio dei nomi del bus di servizio in cui si trova la coda e il nome della coda. Al termine, fare clic su **Salva** nella parte inferiore.
+3. In hello **endpoint** pannello, fare clic su **Aggiungi** in hello tooadd superiore dell'hub IoT tooyour di coda. Endpoint hello nome **CriticalQueue** e utilizzare hello elenchi a discesa tooselect **coda di Service Bus**hello dello spazio dei nomi Service Bus in cui risiede la coda e nome della coda di hello. Al termine, fare clic su **salvare** nella parte inferiore di hello.
 
     ![Aggiunta di un endpoint][31]
 
-4. Fare clic su **Route** nell'hub IoT. Fare clic su **Aggiungi** nella parte superiore del pannello per creare una regola di routing che indirizzi i messaggi alla coda appena aggiunta. Selezionare **DeviceTelemetry** come origine dei dati. Immettere `level="critical"` come condizione, quindi scegliere la coda appena aggiunta come endpoint personalizzato, come endpoint della regola di routing. Al termine, fare clic su **Salva** nella parte inferiore.
+4. Fare clic su **Route** nell'hub IoT. Fare clic su **Aggiungi** nella parte superiore di hello di hello pannello toocreate una regola di routing che instrada i messaggi toohello coda è appena aggiunto. Selezionare **DeviceTelemetry** come origine dati hello. Immettere `level="critical"` come condizione hello e scegliere coda hello appena aggiunto come un endpoint personalizzato come hello endpoint regola di routing. Al termine, fare clic su **salvare** nella parte inferiore di hello.
 
     ![Aggiunta di un route][32]
 
-    Assicurarsi che il route di fallback sia impostato su **ON**. Questa impostazione è la configurazione predefinita dell'hub IoT.
+    Assicurarsi di route fallback hello è troppo**ON**. Questa impostazione è una configurazione predefinita di hello di un hub IoT.
 
     ![Route di fallback][33]
 
-## <a name="optional-read-from-the-queue-endpoint"></a>(Facoltativo) Lettura dell'endpoint della coda
+## <a name="optional-read-from-hello-queue-endpoint"></a>(Facoltativo) Lettura dall'endpoint di coda hello
 
-È facoltativamente possibile leggere i messaggi dall'endpoint della coda seguendo le istruzioni contenute in [Get started with queues][lnk-sb-queues-java] (Introduzione alle code). Denominare l'app **read-critical-queue**.
+Facoltativamente, è possibile leggere i messaggi hello dall'endpoint di coda hello seguendo le istruzioni hello [iniziare con le code][lnk-sb-queues-java]. Nome hello app **lettura coda critico**.
 
-## <a name="run-the-applications"></a>Eseguire le applicazioni
+## <a name="run-hello-applications"></a>Eseguire applicazioni hello
 
-A questo punto è possibile eseguire le tre applicazioni.
+Si è ora pronto toorun hello e tre le applicazioni.
 
-1. Per eseguire l'applicazione **read-d2c-messages** in un prompt dei comandi o nella shell passare alla cartella read-d2c ed eseguire il comando seguente:
+1. hello toorun **d2c-i-messaggi** applicazione, in un prompt dei comandi della shell passare toohello lettura d2c cartella ed eseguire hello comando seguente:
 
    ```cmd/sh
    mvn exec:java -Dexec.mainClass="com.mycompany.app.App"
@@ -153,7 +153,7 @@ A questo punto è possibile eseguire le tre applicazioni.
 
    ![Eseguire read-d2c-messages][readd2c]
 
-2. Per eseguire l'applicazione **read-critical-queue** in un prompt dei comandi o nella shell passare alla cartella read-critical-queue ed eseguire il comando seguente:
+2. hello toorun **lettura coda critico** applicazione, in un prompt dei comandi della shell esplorazione delle cartelle di lettura coda critico toohello ed esecuzione hello comando seguente:
 
    ```cmd/sh
    mvn exec:java -Dexec.mainClass="com.mycompany.app.App"
@@ -161,7 +161,7 @@ A questo punto è possibile eseguire le tre applicazioni.
    
    ![Eseguire read-critical-queue][readqueue]
 
-3. Per eseguire l'app **simulated-device**, in un prompt dei comandi o nella shell passare alla cartella simulated-device ed eseguire questo comando:
+3. hello toorun **dispositivo simulato** app, in un prompt dei comandi della shell passare cartella dispositivo simulato toohello ed eseguire hello comando seguente:
 
    ```cmd/sh
    mvn exec:java -Dexec.mainClass="com.mycompany.app.App"
@@ -171,15 +171,15 @@ A questo punto è possibile eseguire le tre applicazioni.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-In questa esercitazione è stato descritto come inviare i messaggi da dispositivo a cloud in modo affidabile usando la funzionalità di routing dei messaggi dell'hub IoT.
+In questa esercitazione è stato descritto come tooreliably inviare i messaggi da dispositivo a cloud tramite funzionalità di routing messaggi hello dell'IoT Hub.
 
-L'esercitazione [Come inviare messaggi da cloud a dispositivo con l'hub IoT][lnk-c2d] descrive le modalità di invio dei messaggi ai dispositivi dal back-end della soluzione.
+Hello [come toosend cloud a dispositivo messaggi con l'IoT Hub] [ lnk-c2d] viene illustrato come toosend messaggi dispositivi tooyour la soluzione di back-end.
 
-Per avere esempi di soluzioni complete che usano l'hub IoT, vedere [Azure IoT Suite][lnk-suite].
+esempi di toosee di soluzioni end-to-end completate che usa IoT Hub, vedere [Azure IoT Suite][lnk-suite].
 
-Per altre informazioni sullo sviluppo delle soluzioni con l'hub IoT, vedere la [Guida per sviluppatori dell'hub IoT].
+toolearn più sullo sviluppo di soluzioni con l'IoT Hub, vedere hello [Guida per sviluppatori di IoT Hub].
 
-Per ulteriori informazioni sul routing dei messaggi nell'hub IoT, vedere [Inviare e ricevere messaggi con l'hub IoT][lnk-devguide-messaging].
+toolearn informazioni su routing dei messaggi nell'IoT Hub, vedere [inviare e ricevere messaggi con l'IoT Hub][lnk-devguide-messaging].
 
 <!-- Images. -->
 <!-- TODO: UPDATE PICTURES -->
@@ -199,11 +199,11 @@ Per ulteriori informazioni sul routing dei messaggi nell'hub IoT, vedere [Inviar
 [Archiviazione di Azure]: https://azure.microsoft.com/documentation/services/storage/
 [bus di servizio di Azure]: https://azure.microsoft.com/documentation/services/service-bus/
 
-[Guida per sviluppatori dell'hub IoT]: iot-hub-devguide.md
+[Guida per sviluppatori di IoT Hub]: iot-hub-devguide.md
 [lnk-devguide-messaging]: iot-hub-devguide-messaging.md
-[Get started with IoT Hub]: iot-hub-java-java-getstarted.md
-[Centro per sviluppatori Azure IoT]: https://azure.microsoft.com/develop/iot
-[Transient Fault Handling]: https://msdn.microsoft.com/library/hh675232.aspx
+[iniziare con l'IoT Hub]: iot-hub-java-java-getstarted.md
+[Centro per sviluppatori di Azure IoT]: https://azure.microsoft.com/develop/iot
+[gestione degli errori temporanei]: https://msdn.microsoft.com/library/hh675232.aspx
 
 <!-- Links -->
 [Transient Fault Handling]: https://msdn.microsoft.com/library/hh680901(v=pandp.50).aspx

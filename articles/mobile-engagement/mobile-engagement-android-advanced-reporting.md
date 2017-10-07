@@ -1,6 +1,6 @@
 ---
-title: Opzioni di segnalazione avanzata per Android SDK per Azure Mobile Engagement
-description: Descrive come eseguire la segnalazione avanzata per l'acquisizione di analisi per Android SDK per Azure Mobile Engagement
+title: opzioni di Azure Mobile Engagement SDK Android reporting aaaAdvanced
+description: Viene descritto come toodo avanzate reporting toocapture analitica per Azure Mobile Engagement SDK Android
 services: mobile-engagement
 documentationcenter: mobile
 author: piyushjo
@@ -14,11 +14,11 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 08/10/2016
 ms.author: piyushjo;ricksal
-ms.openlocfilehash: 2a1445afa2c2fca1a31ad9c012b9c8a917ebf65c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 5c8f4ea36c54715f4e09fd43c96132c15019a71b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="advanced-reporting-with-engagement-on-android"></a>Segnalazione avanzata con Engagement in Android
 > [!div class="op_single_selector"]
@@ -29,28 +29,28 @@ ms.lasthandoff: 07/11/2017
 > 
 > 
 
-Questo argomento descrive scenari di segnalazione aggiuntivi nell'applicazione Android. È possibile applicare queste opzioni all'app creata nell'esercitazione [introduttiva](mobile-engagement-android-get-started.md) .
+Questo argomento descrive scenari di segnalazione aggiuntivi nell'applicazione Android. È possibile applicare queste app toohello opzioni creato in hello [Introduzione](mobile-engagement-android-get-started.md) esercitazione.
 
 ## <a name="prerequisites"></a>Prerequisiti
 [!INCLUDE [Prereqs](../../includes/mobile-engagement-android-prereqs.md)]
 
-Anche se l'esercitazione completata è stata volutamente diretta e semplice, sono disponibili opzioni avanzate.
+esercitazione Hello è completata è stata volutamente semplice e diretto, ma vi sono le opzioni avanzate è possibile scegliere.
 
 ## <a name="modifying-your-activity-classes"></a>Modifica delle classi `Activity`
-Nell'[esercitazione introduttiva](mobile-engagement-android-get-started.md) è stato sufficiente fare in modo che le sottoclassi `*Activity` ereditassero dalle corrispondenti classi `Engagement*Activity`. Se, ad esempio, l'attività legacy estende `ListActivity`, si fa in modo di estendere `EngagementListActivity`.
+In hello [esercitazione introduttiva](mobile-engagement-android-get-started.md), tutti toodo era stata toomake il `*Activity` sottoclassi ereditano hello corrispondente `Engagement*Activity` classi. Se, ad esempio, l'attività legacy estende `ListActivity`, si fa in modo di estendere `EngagementListActivity`.
 
 > [!IMPORTANT]
-> Quando si usa `EngagementListActivity` o `EngagementExpandableListActivity`, assicurarsi che tutte le chiamate a `requestWindowFeature(...);` vengano eseguite prima della chiamata a `super.onCreate(...);`. In caso contrario, si verificherà un arresto anomalo del sistema.
+> Quando si utilizza `EngagementListActivity` o `EngagementExpandableListActivity`, assicurarsi che tutte le chiamate troppo`requestWindowFeature(...);` diventa troppo prima chiamata hello`super.onCreate(...);`, in caso contrario si verifica un arresto anomalo.
 > 
 > 
 
-Queste classi sono incluse nella cartella `src` e possono essere copiate nel progetto. Sono reperibili anche in **JavaDoc**.
+È possibile trovare queste classi in hello `src` cartella e possono copiare nel progetto. classi di Hello sono anche in hello **JavaDoc**.
 
 ## <a name="alternate-method-call-startactivity-and-endactivity-manually"></a>Metodo alternativo: chiamare manualmente `startActivity()` e `endActivity()`
-Se non si può o non si vuole eseguire l'overload delle classi `Activity`, è possibile avviare e terminare le attività chiamando direttamente i metodi di `EngagementAgent`.
+Se non è possibile o non si desidera toooverload il `Activity` classi, è possibile invece iniziare e terminare le attività chiamando hello `EngagementAgent`del diretta dei metodi.
 
 > [!IMPORTANT]
-> Android SDK non chiama mai il metodo `endActivity()`, neanche alla chiusura dell'applicazione; in Android le applicazioni in realtà non vengono mai chiuse. Per questo motivo, è *ALTAMENTE* consigliabile chiamare il metodo `startActivity()` nel callback `onResume` di *TUTTE* le attività e il metodo `endActivity()` nel callback `onPause()` di *TUTTE* le attività. È l'unico modo per evitare la perdita di sessioni. In caso di perdita di una sessione, il servizio Engagement non si disconnetterà mai dal back-end di Engagement, dato che il servizio rimane connesso fintanto che una sessione è in sospeso.
+> Hello, Android SDK non chiama mai hello `endActivity()` (metodo), anche quando viene chiusa l'applicazione hello (in Android, non chiudere le applicazioni sono mai). È pertanto *elevata* consigliato hello toocall `startActivity()` metodo hello `onResume` callback di *tutti* le attività e hello `endActivity()` metodo hello `onPause()` callback di *tutti* delle attività. Si tratta di hello solo modo toobe assicurarsi che le sessioni non vengano comunicate. Se una sessione viene perso, hello servizio Engagement non disconnette mai dal back-end Engagement hello (dal momento che il servizio di hello rimane connesso, purché una sessione è in sospeso).
 > 
 > 
 
@@ -62,7 +62,7 @@ Di seguito è fornito un esempio:
       protected void onResume()
       {
         super.onResume();
-        String activityNameOnEngagement = EngagementAgentUtils.buildEngagementActivityName(getClass()); // Uses short class name and removes "Activity" at the end.
+        String activityNameOnEngagement = EngagementAgentUtils.buildEngagementActivityName(getClass()); // Uses short class name and removes "Activity" at hello end.
         EngagementAgent.getInstance(this).startActivity(this, activityNameOnEngagement, null);
       }
 
@@ -74,12 +74,12 @@ Di seguito è fornito un esempio:
       }
     }
 
-Questo esempio è simile alla classe `EngagementActivity` e alle relative varianti, il cui codice di origine è disponibile nella cartella `src`.
+Questo esempio è simile toohello `EngagementActivity` classe e le sue varianti, il cui codice sorgente viene fornito in hello `src` cartella.
 
 ## <a name="using-applicationoncreate"></a>Uso di Application.onCreate()
-Il codice inserito in `Application.onCreate()` e in altri callback dell'applicazione verrà eseguito per tutti i processi dell'applicazione, incluso il servizio Engagement. È possibile che si verifichino effetti collaterali indesiderati, ad esempio allocazioni di memoria e thread superflui nel processo di Engagement oppure ricevitori o servizi di trasmissione duplicati.
+Inserire nel codice `Application.onCreate()` e in un'altra applicazione callback viene eseguito per tutti i processi dell'applicazione, incluso hello Engagement servizio. Potrebbe disporre gli effetti collaterali indesiderati, come le allocazioni di memoria non necessari e i thread nel processo di Engagement hello, o duplicato broadcast ricevitori o servizi.
 
-Se si esegue l'override di `Application.onCreate()`, è consigliabile aggiungere il frammento di codice seguente all'inizio della funzione `Application.onCreate()`:
+Se esegue l'override `Application.onCreate()`, è consigliabile aggiungere hello seguente frammento di codice all'inizio di hello del `Application.onCreate()` funzione:
 
      public void onCreate()
      {
@@ -89,17 +89,17 @@ Se si esegue l'override di `Application.onCreate()`, è consigliabile aggiungere
        ... Your code...
      }
 
-È possibile eseguire la stessa operazione per `Application.onTerminate()`, `Application.onLowMemory()` e `Application.onConfigurationChanged(...)`.
+È possibile eseguire hello stessa operazione per `Application.onTerminate()`, `Application.onLowMemory()`, e `Application.onConfigurationChanged(...)`.
 
-È anche possibile estendere `EngagementApplication` anziché `Application`: il callback esegue il controllo del processo `Application.onCreate()` e chiama `Application.onApplicationProcessCreate()` solo se il processo corrente non è quello che ospita il servizio Engagement. Per gli altri callback vengono applicate le stesse regole.
+È anche possibile estendere `EngagementApplication` anziché estensione `Application`: hello callback `Application.onCreate()` hello controllo processo e chiama `Application.onApplicationProcessCreate()` solo se il processo corrente hello è non hello uno hello Engagement servizio di hosting, hello stesse regole valide per Hello altre richiamate.
 
-## <a name="tags-in-the-androidmanifestxml-file"></a>Tag nel file AndroidManifest.xml
-Nel tag service nel file AndroidManifest.xml l'attributo `android:label` consente di scegliere il nome del servizio Engagement così come verrà presentato agli utenti finali nella schermata dei servizi in esecuzione sul telefono. È consigliabile impostare questo attributo su `"<Your application name>Service"`, ad esempio `"AcmeFunGameService"`.
+## <a name="tags-in-hello-androidmanifestxml-file"></a>Tag nel file AndroidManifest.xml hello
+Nel tag di servizio hello nel file AndroidManifest.xml hello, hello `android:label` attributo consente un nome hello toochoose di hello servizio Engagement così come viene visualizzato agli utenti di tooend nella schermata di "Servizi in esecuzione" hello del telefono. È consigliabile impostare questo attributo troppo`"<Your application name>Service"` (ad esempio, `"AcmeFunGameService"`).
 
-Se si specifica l'attributo `android:process` , il servizio Engagement verrà eseguito nel relativo processo; l'esecuzione di Engagement nello stesso processo dell'applicazione può ridurre la reattività del thread principale o dell'interfaccia utente.
+Se si specifica hello `android:process` attributo assicura che hello viene eseguito il servizio Engagement in un processo (Engagement in esecuzione nella stessa procedura adottata l'applicazione esegue il thread principale o dell'interfaccia utente potenzialmente tempi hello).
 
 ## <a name="building-with-proguard"></a>Compilazione con ProGuard
-Se si compila il pacchetto dell'applicazione con ProGuard, è necessario mantenere alcune classi. È possibile usare il frammento di codice di configurazione seguente:
+Se si compila il pacchetto dell'applicazione con ProGuard, è necessario tookeep alcune classi. È possibile utilizzare hello seguente frammento di configurazione:
 
     -keep public class * extends android.os.IInterface
     -keep class com.microsoft.azure.engagement.reach.activity.EngagementWebAnnouncementActivity$EngagementReachContentJS {

@@ -1,5 +1,5 @@
 ---
-title: Opzioni Group by in SQL Data Warehouse | Documentazione Microsoft
+title: aaaGroup dalle opzioni in SQL Data Warehouse | Documenti Microsoft
 description: "Suggerimenti per l’implementazione delle opzioni group by in SQL Data Warehouse di Azure per lo sviluppo di soluzioni."
 services: sql-data-warehouse
 documentationcenter: NA
@@ -15,14 +15,14 @@ ms.workload: data-services
 ms.custom: queries
 ms.date: 10/31/2016
 ms.author: jrj;barbkess
-ms.openlocfilehash: da71cb834c13da5d0f5690f471efc6c696163f30
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: cc443c2af4e3ef2babd74d78aa6fb57bb3c1c7ea
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="group-by-options-in-sql-data-warehouse"></a>Opzioni Group by in SQL Data Warehouse
-La clausola [GROUP BY][GROUP BY] viene usata per aggregare i dati a un set di righe di riepilogo. Include inoltre alcune opzioni che ne estendono la funzionalità che devono essere evitate in quanto non sono supportate direttamente SQL Data Warehouse di Azure.
+Hello [GROUP BY] [ GROUP BY] viene utilizzata la clausola set riepilogo tooaggregate dati tooa di righe. Include inoltre alcune opzioni che estendono la funzionalità che toobe necessità aggirato come non sono supportati direttamente da Azure SQL Data Warehouse.
 
 Queste opzioni sono
 
@@ -31,9 +31,9 @@ Queste opzioni sono
 * GROUP BY con CUBE
 
 ## <a name="rollup-and-grouping-sets-options"></a>Opzioni di rollup e raggruppamento di set
-L'opzione più semplice consiste nell'utilizzare `UNION ALL` invece di eseguire il rollup anziché utilizzare la sintassi esplicita. Il risultato è esattamente lo stesso
+opzione più semplice Hello è toouse `UNION ALL` invece tooperform hello rollup anziché basarsi sul hello sintassi esplicita. risultato Hello è esattamente hello stesso
 
-Di seguito è riportato un esempio di istruzione group by utilizzando l’opzione `ROLLUP` :
+Di seguito è riportato un esempio di un gruppo dall'istruzione tramite hello `ROLLUP` opzione:
 
 ```sql
 SELECT [SalesTerritoryCountry]
@@ -48,13 +48,13 @@ GROUP BY ROLLUP (
 ;
 ```
 
-Usando ROLLUP sono state richieste le aggregazioni seguenti:
+Con i ROLLUP è stato richiesto hello seguendo le aggregazioni:
 
 * Paese e area
 * Paese
 * Grand Total
 
-Per sostituire questo valore è necessario utilizzare `UNION ALL`; specificando le aggregazioni necessarie in modo esplicito per restituire gli stessi risultati:
+tooreplace questo valore è necessario toouse `UNION ALL`; specificando le aggregazioni hello richieste in modo esplicito tooreturn hello stessi risultati:
 
 ```sql
 SELECT [SalesTerritoryCountry]
@@ -81,14 +81,14 @@ FROM  dbo.factInternetSales s
 JOIN  dbo.DimSalesTerritory t     ON s.SalesTerritoryKey       = t.SalesTerritoryKey;
 ```
 
-Per GROUPING SETS è necessario adottare la stessa entità e creare solo sezioni UNION ALL per i livelli di aggregazione che si desidera visualizzare.
+Per GROUPING SETS, è sufficiente toodo è adottare hello stesso principale, ma solo creare sezioni UNION ALL per hello livelli di aggregazione desideriamo toosee
 
 ## <a name="cube-options"></a>Opzioni Cube
-È possibile creare un GROUP BY WITH CUBE utilizzando l'approccio UNION ALL. Il problema è che il codice può risultare complesso e difficile da gestire. Per risolvere questo problema è possibile utilizzare questo approccio avanzato.
+È possibile toocreate un GROUP BY WITH CUBE approccio di hello UNION ALL. problema di Hello è che il codice hello può diventare rapidamente un'operazione complessa e difficile da gestire. toomitigate questo è possibile utilizzare questo più avanzate approccio.
 
-Utilizzare l'esempio precedente.
+Consente di usare il precedente esempio di hello.
 
-Il primo passaggio consiste nel definire il cubo che definisce tutti i livelli di aggregazione che si desidera creare. È importante tenere conto del CROSS JOIN delle due tabelle derivate. In tal modo tutti i livelli vengono generati automaticamente. Il resto del codice è disponibile per la formattazione.
+primo passaggio Hello è hello toodefine 'cube' che definisce tutti i livelli di aggregazione che si desidera toocreate hello. È importante tootake nota di hello CROSS JOIN di tabelle derivate due hello. Tutti i livelli di hello viene generato automaticamente. resto di Hello del codice hello è effettivamente presente per la formattazione.
 
 ```sql
 CREATE TABLE #Cube
@@ -119,11 +119,11 @@ SELECT Cols
 FROM GrpCube;
 ```
 
-Di seguito sono illustrati i risultati del CTAS:
+risultati Hello di hello un'istruzione CTAS può essere illustrata di seguito:
 
 ![][1]
 
-Il secondo passaggio consiste nel specificare una tabella di destinazione per archiviare i risultati temporanei:
+secondo passaggio Hello è toospecify che comporta un provvisorio toostore tabella di destinazione:
 
 ```sql
 DECLARE
@@ -146,7 +146,7 @@ WITH
 ;
 ```
 
-Il terzo passaggio consiste nell’eseguire il ciclo del cubo delle colonne per eseguire l'aggregazione. La query verrà eseguita una volta per ogni riga nella tabella temporanea #Cube e i risultati verranno archiviati nella tabella temporanea #Results
+terzo passaggio Hello è tooloop sul cubo di esecuzione hello aggregazione di colonne. query Hello verrà eseguito una volta per ogni riga nella tabella temporanea hello #Cube e archiviare i risultati di hello nella tabella temporanea hello #Results
 
 ```sql
 SET @nbr =(SELECT MAX(Seq) FROM #Cube);
@@ -170,7 +170,7 @@ BEGIN
 END
 ```
 
-Infine è possibile restituire i risultati semplicemente leggendo dalla tabella temporanea #Results
+Infine è possibile restituire i risultati di hello semplicemente leggendo da una tabella temporanea hello #Results
 
 ```sql
 SELECT *
@@ -179,7 +179,7 @@ ORDER BY 1,2,3
 ;
 ```
 
-Suddividendo il codice in sezioni e generando un costrutto di ciclo il codice diventa più gestibile e gestibile e sostenibile.
+Suddivisione di codice hello in sezioni e generando un ciclo hello costrutto di codice diventa più gestibile e gestibile.
 
 ## <a name="next-steps"></a>Passaggi successivi
 Per altri suggerimenti sullo sviluppo, vedere la [panoramica dello sviluppo][development overview].

@@ -1,6 +1,6 @@
 ---
-title: Note sulla serializzazione dei tipi di attori di Reliable Actors | Documentazione Microsoft
-description: Illustra i requisiti di base per la definizione delle classi serializzabili che possono essere usate per definire le interfacce e lo stato di Service Fabric Reliable Actors.
+title: note attori aaaReliable attore digitare serializzazione | Documenti Microsoft
+description: Illustra i requisiti di base per la definizione di interfacce e classi serializzabili che possono essere utilizzati toodefine stati Service Fabric Reliable Actors
 services: service-fabric
 documentationcenter: .net
 author: vturecek
@@ -14,17 +14,17 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/29/2017
 ms.author: vturecek
-ms.openlocfilehash: 4b48b893e5a3bf5620f00a336576efe1ad63def8
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d8584e7d90fe1c68af38983e71e5d0a7554689bf
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="notes-on-service-fabric-reliable-actors-type-serialization"></a>Note sulla serializzazione dei tipi di Service Fabric Reliable Actors
-Gli argomenti di tutti i metodi, i tipi di risultati delle attività restituiti da ogni metodo in un'interfaccia attore e gli oggetti archiviati nel gestore di stato di un attore devono essere [serializzabili in base al contratto dati](https://msdn.microsoft.com/library/ms731923.aspx). Questo vale anche per gli argomenti dei metodi definiti nelle [interfacce degli eventi dell'attore](service-fabric-reliable-actors-events.md). I metodi di interfaccia degli eventi dell'attore restituiscono sempre un valore void.
+Hello gli argomenti di tutti i metodi, tipi di risultati delle attività hello restituiti da ogni metodo in un'interfaccia attore, che devono essere oggetti archiviati nel gestore degli Stati dell'attore [di contratto dati serializzabile](https://msdn.microsoft.com/library/ms731923.aspx). Questo vale anche toohello argomenti dei metodi di hello definiti nella [interfacce eventi attore](service-fabric-reliable-actors-events.md). I metodi di interfaccia degli eventi dell'attore restituiscono sempre un valore void.
 
 ## <a name="custom-data-types"></a>Tipi di dati personalizzati
-In questo esempio l'interfaccia attore seguente definisce un metodo che restituisce un tipo di dati personalizzato denominato `VoicemailBox`:
+In questo esempio hello interfaccia attore seguente definisce un metodo che restituisce un tipo di dati personalizzato denominato `VoicemailBox`:
 
 ```csharp
 public interface IVoiceMailBoxActor : IActor
@@ -40,7 +40,7 @@ public interface VoiceMailBoxActor extends Actor
 }
 ```
 
-L'interfaccia è implementata da un attore, che usa il gestore di stato per archiviare un oggetto `VoicemailBox`:
+Hello viene implementata mediante un attore che utilizza hello stato manager toostore un `VoicemailBox` oggetto:
 
 ```csharp
 [StatePersistence(StatePersistence.Persisted)]
@@ -76,12 +76,12 @@ public class VoiceMailBoxActorImpl extends FabricActor implements VoicemailBoxAc
 
 ```
 
-In questo esempio l'oggetto `VoicemailBox` viene serializzato quando:
+In questo esempio hello `VoicemailBox` viene serializzato l'oggetto quando:
 
-* L'oggetto viene trasmesso tra un'istanza di un attore e un chiamante.
-* L'oggetto viene salvato nel gestore di stato in cui viene reso persistente sul disco e replicato in altri nodi.
+* oggetto Hello verrà trasmessi tra un'istanza di attore e un chiamante.
+* oggetto Hello viene salvato nel gestore degli stati hello in cui è toodisk persistente e replicati tooother nodi.
 
-Il framework Reliable Actors usa la serializzazione di DataContract. Gli oggetti dati personalizzati e i relativi membri devono quindi essere annotati con gli attributi **DataContract** e **DataMember** rispettivamente.
+framework Reliable Actor Hello Usa la serializzazione di DataContract. Pertanto, hello oggetti dati personalizzati e i relativi membri devono essere annotati con hello **DataContract** e **DataMember** rispettivamente gli attributi.
 
 ```csharp
 [DataContract]

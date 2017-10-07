@@ -1,5 +1,5 @@
 ---
-title: "Accessi dopo più errori"
+title: "aaaSign aggiuntivi dopo più errori"
 description: "Un report indica gli utenti che hanno eseguito correttamente l'accesso dopo più tentativi di accesso consecutivi non riusciti."
 services: active-directory
 documentationcenter: 
@@ -14,20 +14,20 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/04/2016
 ms.author: saah;kenhoff
-ms.openlocfilehash: e55e0145adbdb1f41a8b8753d5555f20e96bf161
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 48d137dc3abf65287cb3b9ba8a6ff10340f6741f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="sign-ins-after-multiple-failures"></a>Accessi dopo più errori
 Questo report indica gli utenti che hanno eseguito correttamente l'accesso dopo più tentativi di accesso consecutivi non riusciti. Le possibili cause includono:
 
-* L'utente ha dimenticato la password</li><li>L’utente è vittima di un attacco di forza bruta per l’individuazione della password riuscito
+* L'utente ha dimenticato la password</li><li>Utente è vittima hello di una password ha esito positivo di un'ipotesi di attacco di forza bruta
 
-I risultati di questo report mostreranno il numero di tentativi di accesso consecutivi non riusciti effettuati prima dell’accesso riuscito e un timestamp associato con il primo accesso riuscito.
+Nei risultati del report verranno mostrati hello numero di tentativi consecutivi non accedi apportati toohello precedente ha esito positivo Accedi e un timestamp associato hello primo ha esito positivo Accedi.
 
-**Impostazioni report**: è possibile configurare il numero minimo di tentativi di accesso consecutivi non riusciti che devono verificarsi affinché l’informazione sia segnalata nel report. Quando si apportano modifiche a questa impostazione si noti che le modifiche non si applicano a eventuali accessi non riusciti attualmente visualizzati nel report. Verranno tuttavia applicate a tutti gli accessi successivi. Le modifiche a questo report possono essere apportate solo dagli amministratori autorizzati.
+**Report impostazioni**: È possibile configurare il numero minimo di hello di accesso non riusciti consecutivi tentativi che devono verificarsi prima che possono essere visualizzato nel report hello. Quando si apportano modifiche toothis impostarlo è toonote importante che tali modifiche non verranno applicati tooany esistente non riuscita accessi che attualmente visualizzati nel rapporto. Tuttavia, saranno applicati tooall future-accessi. Le modifiche toothis report può essere apportata esclusivamente dagli amministratori autorizzati.
 
 ![Accessi dopo più errori](./media/active-directory-reporting-sign-ins-after-multiple-failures/signInsAfterMultipleFailures.PNG)
 

@@ -1,5 +1,5 @@
 ---
-title: 'Backup di Azure: Ripristinare lo stato del sistema per Windows Server | Microsoft Docs'
+title: 'Backup di Azure: Ripristino dello stato del sistema tooa Windows Server | Documenti Microsoft'
 description: Procedura dettagliata per il ripristino dello stato del sistema di Windows Server da un backup in Azure.
 services: backup
 documentationcenter: 
@@ -14,81 +14,81 @@ ms.devlang: na
 ms.topic: article
 ms.date: 8/18/2017
 ms.author: saurse;trinadhk;markgal;
-ms.openlocfilehash: 320c85f8045d9b72cf7f430d2e2736ba8e5ec269
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: a45506507f53e2744350d3b6b2e52f1db415de4f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="restore-system-state-to-windows-server"></a>Ripristinare lo stato del sistema per Windows Server
+# <a name="restore-system-state-toowindows-server"></a>Ripristino dello stato del sistema tooWindows Server
 
-Questo articolo illustra come ripristinare i backup dello stato del sistema di Windows Server da un insieme di credenziali di Servizi di ripristino di Azure. Per ripristinare lo stato del sistema, è necessario avere un backup dello stato del sistema, creato usando le istruzioni disponibili in [Eseguire il backup dello stato del sistema](backup-azure-system-state.md#back-up-windows-server-system-state-preview), e assicurarsi di avere installato la [versione più recente dell'agente dei Servizi di ripristino di Microsoft Azure](http://aka.ms/azurebackup_agent). Il ripristino dei dati dello stato del sistema di Windows Server da un insieme di credenziali di Servizi di ripristino di Azure è un processo in due passaggi:
+Questo articolo illustra come insieme di credenziali di backup dello stato del sistema di Windows Server toorestore da un ripristino di servizi di Azure. toorestore dello stato del sistema, è necessario eseguire il backup dello stato del sistema (create utilizzando le istruzioni di hello in [eseguire il backup dello stato del sistema](backup-azure-system-state.md#back-up-windows-server-system-state-preview)) e assicurarsi di aver installato hello [versione più recente di Microsoft Azure Recovery hello L'agente di servizi (MARS)](http://aka.ms/azurebackup_agent). Il ripristino dei dati dello stato del sistema di Windows Server da un insieme di credenziali di Servizi di ripristino di Azure è un processo in due passaggi:
 
 1. Ripristinare lo stato del sistema sotto forma di file da Backup di Azure. Quando si ripristina lo stato del sistema sotto forma di file da Backup di Azure, è possibile eseguire una di queste operazioni:
-  * Ripristinare lo stato del sistema nello stesso server in cui è stato creato il backup.
-  * Ripristinare il file dello stato del sistema in un server alternativo.
+  * Ripristino dello stato del sistema toohello nello stesso server in cui sono stati eseguiti backup hello, o
+  * Server alternativo tooan file ripristino dello stato del sistema.
 
-2. Applicare i file dello stato del sistema ripristinato in un'istanza di Windows Server.
+2. Applicare tooa di file hello ripristinato lo stato del sistema Windows Server.
 
 
-## <a name="recover-system-state-files-to-the-same-server"></a>Ripristinare i file dello stato del sistema nello stesso server
-La procedura seguente illustra come eseguire il rollback della configurazione di Windows Server a uno stato precedente. Il rollback della configurazione del server a uno stato noto e stabile può essere estremamente utile. La procedura seguente consente di ripristinare lo stato del sistema del server da un insieme di credenziali dei Servizi di ripristino. 
+## <a name="recover-system-state-files-toohello-same-server"></a>Ripristinare lo stato del sistema file toohello nello stesso server
+Hello alla procedura seguente viene illustrato come tooroll eseguire il backup di stato precedente tooa configurazione del Server di Windows. Tooa indietro di configurazione noto, lo stato stabile, il server in sequenza può essere molto utile. Hello successivo dello stato del sistema del server di passaggi restore hello da un insieme di credenziali di servizi di ripristino. 
 
-1. Aprire lo snap-in di **Backup di Microsoft Azure** . Se non si sa dove è stato installato lo snap-in, cercare **Backup di Microsoft Azure** nel computer o nel server.
+1. Aprire hello **Backup di Microsoft Azure** snap-in. Se non si conosce in hello snap-in è stato installato, eseguire la ricerca computer hello o un server per **Microsoft Azure Backup**.
 
-    L'applicazione desktop dovrebbe essere visualizzata nei risultati della ricerca.
+    app desktop Hello dovrebbe essere visualizzato nei risultati della ricerca hello.
 
-2. Fare clic su **Ripristina dati** per avviare la procedura guidata.
+2. Fare clic su **Ripristina dati** guidata hello toostart.
 
     ![Ripristina dati](./media/backup-azure-restore-windows-server/recover.png)
 
-3. Nel riquadro **Guida introduttiva** selezionare l'opzione **This server (Questo server) (`<server name>`)** e fare clic su **Avanti** per ripristinare i dati nello stesso server o computer.
+3. In hello **Introduzione** riquadro, toorestore hello dati toohello stesso server o computer, selezionare **server (`<server name>`)** e fare clic su **Avanti**.
 
-    ![Scegliere l'opzione This server (Questo server) per ripristinare i dati nello stesso computer](./media/backup-azure-restore-system-state/samemachine.png)
+    ![Scegliere questo toohello di dati server opzione toorestore hello nello stesso computer](./media/backup-azure-restore-system-state/samemachine.png)
 
-4. Nel riquadro **Seleziona modalità di ripristino** scegliere **Stato del sistema** e quindi fare clic su **Avanti**.
+4. In hello **selezionare la modalità di ripristino** riquadro scegliere **dello stato del sistema** e quindi fare clic su **Avanti**.
 
     ![Ricerca dei file](./media/backup-azure-restore-system-state/recover-type-selection.png)
 
-5. Nel calendario del riquadro **Seleziona volume e data** selezionare un punto di ripristino. 
+5. Nel calendario hello in **seleziona Volume e data** punto riquadro, selezionare un ripristino. 
 
-    È possibile ripristinare da qualsiasi punto di ripristino. Le date in **grassetto** indicano la disponibilità di almeno un punto di ripristino. Dopo aver selezionato una data, se sono disponibili più punti di ripristino, scegliere quello appropriato dall'elenco a discesa **Ora**.
+    È possibile ripristinare da qualsiasi punto di ripristino. Le date in **grassetto** indicare hello la disponibilità di almeno un punto di ripristino. Dopo aver selezionato una data, se sono disponibili più punti di ripristino, scegliere il punto di ripristino specifico di hello da hello **ora** dal menu a discesa.
 
     ![Volume e dati](./media/backup-azure-restore-system-state/select-date.png)
 
-6. Dopo aver selezionato il punto di ripristino, fare clic su **Avanti**.
+6. Dopo aver scelto toorestore punto di ripristino hello, fare clic su **Avanti**.
 
-    Backup di Azure monta il punto di ripristino locale e lo usa come volume di ripristino.
+    Backup di Azure monta il punto di ripristino locali hello che viene utilizzato come un volume di ripristino.
 
-7. Nel riquadro successivo specificare la destinazione per i file ripristinati dello stato del sistema e quindi fare clic su **Sfoglia** per aprire Esplora risorse e trovare i file e le cartelle necessari. L'opzione **Crea copie in modo da mantenere entrambe le versioni** crea copie dei singoli file in un archivio di file dello stato del sistema esistente invece di creare la copia dell'intero archivio dello stato del sistema.
+7. Nel riquadro successivo di hello, specificare una destinazione hello per hello ripristinati i file di stato del sistema e fare clic su **Sfoglia** tooopen in Esplora risorse e individuare i file hello e le cartelle desiderate. opzione Hello **crea copie in modo da mantenere entrambe le versioni**, crea le copie dei singoli file in un archivio di file di stato del sistema esistente anziché creare una copia di hello dell'intero archivio dello stato del sistema di hello.
 
     ![Opzioni di ripristino](./media/backup-azure-restore-system-state/recover-as-files.png)
 
-8. Verificare i dettagli relativi al ripristino nel riquadro **Conferma** e fare clic su **Ripristina**.
+8. Verificare i dettagli di hello di ripristino su hello **conferma** riquadro e fare clic su **ripristinare**.
 
-   ![Fare clic su Ripristina per confermare l'azione di ripristino](./media/backup-azure-restore-system-state/confirm-recovery.png)
+   ![Fare clic su Ripristina tooacknowledge hello Ripristina azione](./media/backup-azure-restore-system-state/confirm-recovery.png)
 
-9. Copiare la directory *WindowsImageBackup* nella destinazione di ripristino in un volume non critico del server. Il volume del sistema operativo Windows è in genere il volume critico.
+9. Hello copia *WindowsImageBackup* directory hello volume non critici tooa destinazione di ripristino del server di hello. In genere, il volume del sistema operativo Windows hello è volume critico hello.
 
-10. Al termine del ripristino, seguire la procedura illustrata nella sezione [Applicare i file ripristinati dello stato del sistema a Windows Server](backup-azure-restore-system-state.md#apply-restored-system-state-files-to-the-windows-server) per completare il processo di ripristino dello stato del sistema.
+10. Dopo il ripristino di hello ha esito positivo, seguire i passaggi di hello nella sezione hello [applica ripristinato lo stato del sistema toohello di file Server Windows](backup-azure-restore-system-state.md#apply-restored-system-state-files-to-the-windows-server), hello toocomplete il processo di ripristino dello stato del sistema.
 
-## <a name="recover-system-state-files-to-an-alternate-server"></a>Ripristinare il file dello stato del sistema in un server alternativo
+## <a name="recover-system-state-files-tooan-alternate-server"></a>Ripristinare lo stato del sistema file server alternativo tooan
 
-Se l'istanza di Windows Server è danneggiata o inaccessibile e si vuole ripristinarne uno stato stabile eseguendo il ripristino dello stato del sistema di Windows Server, è possibile ripristinare lo stato del sistema del server danneggiato da un altro server. Seguire questa procedura per ripristinare lo stato del sistema in un server separato.  
+Se il Server di Windows è danneggiato o non è accessibile e che si desidera toorestore è stabile tooa recuperando hello dello stato del sistema di Windows Server, è possibile ripristinare lo stato del sistema del server di hello danneggiato da un altro server. Utilizzare hello seguendo i passaggi toohello ripristino dello stato del sistema in un server distinto.  
 
-Include la terminologia utilizzata in questi passaggi:
+terminologia di Hello utilizzata in questa procedura include:
 
-- *Computer di origine* : il computer di origine da cui è stato eseguito il backup e che non è attualmente disponibile.
-- *Computer di destinazione* : il computer in cui i dati vengono ripristinati.
-- *Insieme di credenziali di esempio*: l'insieme di credenziali dei servizi di ripristino in cui il *computer di origine* e il *computer di destinazione* sono registrati. <br/>
+- *Computer di origine* : macchina originale di hello dal backup hello è stato eseguito e non è attualmente disponibile.
+- *Computer di destinazione* : dati di hello macchina toowhich hello viene ripristinati.
+- *Insieme di credenziali di esempio* : hello toowhich insieme di credenziali per servizi di ripristino di hello *macchina di origine* e *nel computer di destinazione* registrati. <br/>
 
 > [!NOTE]
-> I backup eseguiti da un computer non possono essere ripristinati in un computer che esegue una versione precedente del sistema operativo. Ad esempio, i backup eseguiti da un computer con Windows Server 2016 non possono essere ripristinati in Windows Server 2012 R2. È tuttavia possibile eseguire l'operazione inversa. È possibile usare i backup da Windows Server 2012 R2 per ripristinare Windows Server 2016.
+> I backup eseguiti da un computer non possono essere ripristinato tooa macchina esegue una versione precedente del sistema operativo hello. Ad esempio, i backup eseguiti da Windows Server 2016 non può essere ripristino tooWindows Server 2012 R2. È tuttavia possibile inverso hello. È possibile utilizzare i backup di Windows Server 2012 R2 toorestore Windows Server 2016.
 >
 
-1. Aprire lo snap-in di **Backup di Microsoft Azure** nel *Computer di destinazione*.
-2. Assicurarsi che il *computer di destinazione* e il *computer di origine* siano registrati nello stesso insieme di credenziali dei servizi di ripristino.
-3. Fare clic su **Ripristina dati** per avviare il flusso di lavoro.
+1. Aprire hello **Backup di Microsoft Azure** snap-in hello *nel computer di destinazione*.
+2. Verificare che hello *inviala* hello e *macchina di origine* sono registrato toohello servizi di ripristino stesso insieme di credenziali.
+3. Fare clic su **Ripristina dati** flusso di lavoro tooinitiate hello.
 
     ![Ripristina dati](./media/backup-azure-restore-windows-server-classic/recover.png)
 
@@ -96,116 +96,116 @@ Include la terminologia utilizzata in questi passaggi:
 
     ![Un altro server](./media/backup-azure-restore-system-state/anotherserver.png)
 
-5. Specificare il file dell'insieme di credenziali che corrisponde all' *Insieme di credenziali di esempio*. Se il file dell'insieme di credenziali non è valido (o è scaduto), è necessario scaricarne uno nuovo dall'*insieme di credenziali di esempio* nel Portale di Azure. Dopo aver specificato il file dell'insieme di credenziali, viene visualizzato l'insieme di credenziali di Servizi di ripristino associato al file di credenziali dell'insieme di credenziali.
+5. Fornire file delle credenziali dell'insieme di credenziali hello corrispondente toohello *insieme di credenziali di esempio*. Caso di file delle credenziali dell'insieme di credenziali hello (scaduti o non validi), è possibile scaricare un nuovo file delle credenziali dell'insieme di credenziali da hello *insieme di credenziali di esempio* in hello portale di Azure. Una volta file delle credenziali dell'insieme di credenziali hello viene fornito, viene visualizzata insieme di credenziali di servizi di ripristino hello associata al file delle credenziali dell'insieme di credenziali di hello.
 
-6. Nel riquadro Seleziona server di backup selezionare il *computer di origine* dall'elenco di computer visualizzati.
+6. Nel riquadro di selezione Server di Backup hello selezionare hello *macchina di origine* dall'elenco di hello macchine visualizzato.
 
     ![Elenco di computer](./media/backup-azure-restore-windows-server-classic/machinelist.png)
 
-7. Nel riquadro Seleziona modalità di ripristino scegliere **Stato del sistema** e quindi fare clic su **Avanti**. 
+7. Nel riquadro di selezione modalità ripristino hello, scegliere **dello stato del sistema** e fare clic su **Avanti**. 
 
-    ![Search](./media/backup-azure-restore-system-state/recover-type-selection.png)
+    ![Ricerca](./media/backup-azure-restore-system-state/recover-type-selection.png)
 
-8. Nel riquadro **Seleziona volume e data** del Calendario selezionare un punto di ripristino. È possibile ripristinare da qualsiasi punto di ripristino. Le date in **grassetto** indicano la disponibilità di almeno un punto di ripristino. Dopo aver selezionato una data, se sono disponibili più punti di ripristino, scegliere quello appropriato dal menu a discesa **Ora**. 
+8. Nel calendario Ciao hello **seleziona Volume e data** punto riquadro, selezionare un ripristino. È possibile ripristinare da qualsiasi punto di ripristino. Le date in **grassetto** indicare hello la disponibilità di almeno un punto di ripristino. Dopo aver selezionato una data, se sono disponibili più punti di ripristino, scegliere il punto di ripristino specifico di hello da hello **ora** dal menu a discesa. 
 
     ![Ricerca di elementi](./media/backup-azure-restore-system-state/select-date.png)
 
-9. Dopo aver selezionato il punto di ripristino, fare clic su **Avanti**.
+9. Dopo aver scelto toorestore punto di ripristino hello, fare clic su **Avanti**.
 
-10. Nel riquadro **Selezionare la modalità di ripristino dello stato del sistema** specificare la destinazione per il ripristino dei file dello stato del sistema, quindi fare clic su **Avanti**.
+10. In hello **selezionare modalità di ripristino dello stato sistema** riquadro specificare hello destinazione in cui si desidera toobe ripristinati i file dello stato del sistema, quindi fare clic su **Avanti**.
 
     ![Crittografia](./media/backup-azure-restore-system-state/recover-as-files.png)
 
-    L'opzione **Crea copie in modo da mantenere entrambe le versioni** crea copie dei singoli file in un archivio di file dello stato del sistema esistente invece di creare la copia dell'intero archivio dello stato del sistema.
+    opzione Hello **crea copie in modo da mantenere entrambe le versioni**, crea le copie dei singoli file in un archivio di file di stato del sistema esistente anziché creare una copia di hello dell'intero archivio dello stato del sistema di hello.
 
-11. Verificare i dettagli relativi al ripristino nel riquadro Conferma e fare clic su **Ripristina**. 
+11. Verificare i dettagli di hello di ripristino nel riquadro di conferma hello e fare clic su **ripristinare**. 
 
-    ![Fare clic sul pulsante Ripristina per confermare il processo di ripristino](./media/backup-azure-restore-system-state/confirm-recovery.png)
+    ![Fare clic su processo di ripristino hello tooconfirm pulsante Ripristina hello](./media/backup-azure-restore-system-state/confirm-recovery.png)
 
-12. Copiare la directory *WindowsImageBackup* in un volume non critico del server, ad esempio D:\). Il volume del sistema operativo Windows è in genere il volume critico.
+12. Hello copia *WindowsImageBackup* volume non critici tooa di directory di server hello (ad esempio d:\). Volume del sistema operativo Windows hello è in genere volume critico hello.
 
-13. Per completare il processo di ripristino, usare la sezione seguente per [applicare i file ripristinati dello stato del sistema a un'istanza di Windows Server](backup-azure-restore-system-state.md#apply-restored-system-state-on-a-windows-server).
+13. processo di ripristino hello toocomplete, sezione troppo seguente hello utilizzare[applicare i file di stato del sistema hello ripristinato in un Server Windows](backup-azure-restore-system-state.md#apply-restored-system-state-on-a-windows-server).
 
 
 
 
 ## <a name="apply-restored-system-state-on-a-windows-server"></a>Applicare lo stato del sistema ripristinato a un'istanza di Windows Server
 
-Dopo avere ripristinato lo stato del sistema sotto forma di file tramite l'agente dei Servizi di ripristino di Microsoft Azure, usare l'utilità Windows Server Backup per applicare lo stato del sistema ripristinato a un'istanza di Windows Server. L'utilità Windows Server Backup è già disponibile nel server. La procedura seguente illustra come applicare lo stato del sistema ripristinato.
+Dopo aver ripristinato lo stato del sistema come file con l'agente di servizi di ripristino di Azure, utilizzare hello Windows Server Backup Utilità tooapply hello recuperato tooWindows dello stato del sistema Server. Hello utilità di Windows Server Backup è già disponibile nel server di hello. Hello alla procedura seguente viene illustrato come tooapply hello ripristinato lo stato del sistema.
 
-1. Usare i comandi seguenti per riavviare il server in *Modalità di ripristino dei servizi directory*. In un prompt dei comandi con privilegi elevati:
+1. Seguente hello utilizzare comandi tooreboot server *modalità ripristino servizi Directory*. In un prompt dei comandi con privilegi elevati:
 
     ```
     PS C:\> Bcdedit /set safeboot dsrepair
     PS C:\> Shutdown /r /t 0
     ```
 
-2. Dopo il riavvio aprire lo snap-in Windows Server Backup. Se non si conosce il percorso di installazione dello snap-in, cercare **Windows Server Backup** nel computer o nel server.
+2. Dopo il riavvio di hello, aprire lo snap-in Windows Server Backup hello. Se non si conosce in hello snap-in è stato installato, eseguire la ricerca computer hello o un server per **Windows Server Backup**.
 
-    L'applicazione desktop viene visualizzata nei risultati della ricerca.
+    app desktop Hello viene visualizzato nei risultati della ricerca hello.
 
-3. Nello snap-in selezionare **Backup locale**.
+3. Hello nello snap-in, selezionare **Backup locale**.
 
-    ![Selezionare Backup locale per eseguire il ripristino da tale posizione](./media/backup-azure-restore-system-state/win-server-backup-local-backup.png)
+    ![Selezionare i Backup locale toorestore da qui](./media/backup-azure-restore-system-state/win-server-backup-local-backup.png)
 
-4. Nel **riquadro Azioni** della console Backup locale fare clic su **Ripristina** per aprire il Ripristino guidato.
+4. Nella console di Backup locale hello in hello **riquadro azioni**, fare clic su **ripristinare** tooopen hello ripristino guidato.
 
-5. Selezionare l'opzione **Backup archiviato in un altro percorso** e fare clic su **Avanti**.
+5. Selezionare l'opzione di hello, **un backup archiviato in un'altra posizione**, fare clic su **Avanti**.
 
-   ![Scegliere il ripristino in un server diverso](./media/backup-azure-restore-system-state/backup-stored-in-diff-location.png)
+   ![Scegliere toorecover tooa diversi server](./media/backup-azure-restore-system-state/backup-stored-in-diff-location.png)
 
-6. Quando si specifica il tipo di posizione, selezionare **Cartella condivisa remota** se il backup dello stato del sistema è stato ripristinato in un altro server. Se lo stato del sistema è stato ripristinato localmente, selezionare **Unità locali**. 
+6. Quando si specifica il tipo di posizione hello, selezionare **cartella condivisa remota** se il backup dello stato del sistema è stato ripristinato tooanother server. Se lo stato del sistema è stato ripristinato localmente, selezionare **Unità locali**. 
 
-    ![Specificare se eseguire il ripristino da un server locale o da un altro server](./media/backup-azure-restore-system-state/ss-recovery-remote-shared-folder.png)
+    ![Selezionare se toorecovery dal server locale o in un altro](./media/backup-azure-restore-system-state/ss-recovery-remote-shared-folder.png)
 
-7. Immettere il percorso della directory *WindowsImageBackup* oppure scegliere l'unità locale contenente questa directory, ad esempio D:\WindowsImageBackup, ripristinata come parte del ripristino dei file dello stato del sistema tramite l'agente dei Servizi di ripristino di Azure Recovery e quindi fare clic su **Avanti**.
+7. Immettere hello percorso toohello *WindowsImageBackup* directory, oppure scegliere unità di hello locale contenente la directory (ad esempio, D:\WindowsImageBackup), ripristinata come parte del ripristino di file hello dello stato del sistema mediante il ripristino di Azure L'agente e fare clic su servizi **Avanti**.
 
-    ![Percorso del file condiviso](./media/backup-azure-restore-system-state/ss-recovery-remote-folder.png)
+    ![percorso file condiviso toohello](./media/backup-azure-restore-system-state/ss-recovery-remote-folder.png)
 
-8. Selezionare la versione dello stato del sistema da ripristinare, quindi fare clic su **Avanti**.
+8. Versione di hello selezionare lo stato del sistema che desidera toorestore e fare clic su **Avanti**.
 
-9. Nel riquadro Seleziona tipo di ripristino selezionare**Stato del sistema** e quindi fare clic su **Avanti**.
+9. Nel riquadro di selezione tipo di ripristino hello, selezionare **dello stato del sistema** e fare clic su **Avanti**.
 
-10. Come percorso del ripristino dello stato del sistema selezionare **Percorso originale** e fare clic su **Avanti**.
+10. Per la posizione di hello di hello ripristino dello stato del sistema, selezionare **nel percorso originale**, fare clic su **Avanti**.
 
-11. Verificare i dettagli della conferma e le impostazioni di riavvio, quindi fare clic su **Ripristina** per applicare i file ripristinati dello stato del sistema.
+11. Rivedere i dettagli di conferma hello, verificare le impostazioni di riavvio hello e fare clic su **ripristinare** tooapplly hello ripristino dei file di stato del sistema.
 
-    ![Avviare il ripristino dei file dello stato del sistema](./media/backup-azure-restore-system-state/launch-ss-recovery.png)
+    ![avvio hello ripristinare i file di stato del sistema](./media/backup-azure-restore-system-state/launch-ss-recovery.png)
 
 ## <a name="special-considerations-for-system-state-recovery-on-active-directory-server"></a>Considerazioni speciali per il ripristino dello stato del sistema nel server di Active Directory
 
-Il backup dello stato del sistema include i dati di Active Directory. Seguire questa procedura per ripristinare Active Directory Domain Service (AD DS) dallo stato corrente a uno stato precedente.
+Il backup dello stato del sistema include i dati di Active Directory. Utilizzare hello seguendo i passaggi toorestore servizi di dominio Active Directory (AD DS) dallo stato tooa precedente stato corrente.
 
-1. Riavviare il controller di dominio in Modalità ripristino servizi directory.
-2. Seguire [questa procedura](https://technet.microsoft.com/en-us/library/cc794755(v=ws.10).aspx) per usare i cmdlet di Windows Server Backup per ripristinare AD DS.
+1. Riavviare il controller di dominio di hello in Directory Services in modalità ripristino.
+2. Seguire i passaggi di hello [qui](https://technet.microsoft.com/en-us/library/cc794755(v=ws.10).aspx) toorecover i cmdlet di Windows Server Backup toouse di dominio Active Directory.
 
 
 ## <a name="troubleshoot-failed-system-state-restore"></a>Risolvere i problemi relativi a un ripristino non riuscito dello stato del sistema
 
-Se il processo precedente di applicazione dello stato del sistema non viene completato correttamente, usare Ambiente ripristino Windows per ripristinare l'istanza di Windows Server. La procedura seguente illustra come eseguire il ripristino con Ambiente ripristino Windows. Usare questa opzione solo se Windows Server non viene avviato normalmente dopo un ripristino dello stato del sistema. Il processo seguente cancella i dati non di sistema, quindi occorre eseguirlo con cautela. 
+Se il processo precedente di hello dell'applicazione dello stato del sistema non viene completata correttamente, utilizzare hello ambiente ripristino (Win) toorecover di Windows Server. Hello passaggi seguenti illustrano come toorecover tramite ambiente ripristino Windows. Usare questa opzione solo se Windows Server non viene avviato normalmente dopo un ripristino dello stato del sistema. processo Hello Cancella i dati non di sistema, prestare attenzione. 
 
-1. Avviare l'istanza di Windows Server in Ambiente ripristino Windows.
+1. Avvio di Windows Server in ambiente ripristino (Win) hello.
 
-2. Selezionare una delle opzioni disponibili per la risoluzione dei problemi.
+2. Selezionare hello disponibili tre opzioni di risoluzione dei problemi.
 
     ![Menu iniziale](./media/backup-azure-restore-system-state/winre-1.png)
 
-3. Dalla schermata **Opzioni avanzate** selezionare **Prompt dei comandi** e specificare il nome utente e la password dell'amministratore del server.
+3. Da hello **opzioni avanzate** selezionare **prompt dei comandi** e fornire nome utente amministratore di server hello e una password.
 
    ![Menu iniziale](./media/backup-azure-restore-system-state/winre-2.png)
 
-4. Specificare il nome utente e la password dell'amministratore del server.
+4. Specificare nome utente amministratore di server hello e la password.
 
     ![Menu iniziale](./media/backup-azure-restore-system-state/winre-3.png)
 
-5. Quando si apre il prompt dei comandi in modalità Amministratore, eseguire questo comando per ottenere le versioni del backup dello stato del sistema.
+5. Quando si apre il prompt di comandi hello in modalità amministratore, eseguire versioni dello stato del sistema di hello tooget comando backup successivo.
 
     ```
     Wbadmin get versions -backuptarget:<Volume where WindowsImageBackup folder is copied>:
     ```
     ![Ottenere le versioni del backup dello stato del sistema](./media/backup-azure-restore-system-state/winre-4.png)
 
-6. Eseguire il comando seguente per ottenere tutti i volumi disponibili nel backup.
+6. Eseguire hello successivo comando tooget tutti i volumi nel backup hello.
 
     ```
     Wbadmin get items -version:<copy version from above step> -backuptarget:<Backup volume>
@@ -213,7 +213,7 @@ Se il processo precedente di applicazione dello stato del sistema non viene comp
 
     ![Ottenere le versioni del backup dello stato del sistema](./media/backup-azure-restore-system-state/winre-5.png)
 
-7. Il comando seguente ripristina tutti i volumi che fanno parte del backup dello stato del sistema. Si noti che questo passaggio ripristina solo i volumi critici che fanno parte dello stato del sistema. Tutti i dati non di sistema vengono cancellati.
+7. Hello comando che segue recupera tutti i volumi che fanno parte di hello Backup dello stato del sistema. Si noti che questo passaggio consente di ripristinare solo hello volumi critici che fanno parte dello stato del sistema hello. Tutti i dati non di sistema vengono cancellati.
 
     ```
     Wbadmin start recovery -items:C: -itemtype:Volume -version:<Backupversion> -backuptarget:<backup target volume>

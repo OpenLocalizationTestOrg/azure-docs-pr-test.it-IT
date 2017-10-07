@@ -1,5 +1,5 @@
 ---
-title: Ridimensionamento automatico e ambiente del servizio app (versione 1)
+title: aaaAutoscaling e v1 ambiente del servizio App
 description: Ridimensionamento automatico e ambiente del servizio app
 services: app-service
 documentationcenter: 
@@ -14,30 +14,30 @@ ms.devlang: na
 ms.topic: article
 ms.date: 7/11/2017
 ms.author: ccompy
-ms.openlocfilehash: f32affd285f3918feb0e893543f2a28f678b7b10
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 1a03cf494309e80596b64471d1a067b2f64a9fee
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="autoscaling-and-app-service-environment-v1"></a>Ridimensionamento automatico e ambiente del servizio app (versione 1)
 
 > [!NOTE]
-> Questo articolo fa riferimento all'ambiente del servizio app v1  Esiste una nuova versione dell'ambiente del servizio app che, oltre ad essere più facile da usare, può essere eseguita in un'infrastruttura più potente. Per altre informazioni su questa nuova versione, vedere [Introduzione ad Ambiente del servizio app](../app-service/app-service-environment/intro.md).
+> Questo articolo è sull'ambiente del servizio App v1 hello.  È una versione più recente di hello ambiente del servizio App che è più facile toouse e viene eseguito sull'infrastruttura più potente. informazioni sulla nuova versione di hello iniziare con hello toolearn [toohello introduzione ambiente del servizio App](../app-service/app-service-environment/intro.md).
 > 
 
 Gli ambienti del servizio app di Azure supportano il *ridimensionamento automatico*. È possibile ridimensionare automaticamente singoli pool di lavoro in base alle metriche o alla pianificazione.
 
 ![Opzioni di ridimensionamento automatico per un pool di lavoro.][intro]
 
-Il ridimensionamento automatico consente di ottimizzare l'utilizzo delle risorse aumentando o riducendo automaticamente le risorse di un ambiente del servizio app, in base al budget o al profilo di carico.
+La scalabilità automatica consente di ottimizzare l'utilizzo delle risorse mediante automaticamente l'espansione e riduzione di un toofit di ambiente del servizio App profilo budget e di carico.
 
 ## <a name="configure-worker-pool-autoscale"></a>Configurare il ridimensionamento automatico del pool di lavoro
-È possibile accedere alla funzionalità di ridimensionamento automatico dalla scheda **Impostazioni** del pool di lavoro.
+È possibile accedere a funzionalità di scalabilità automatica hello da hello **impostazioni** tab di pool di lavoro hello.
 
-![Scheda Impostazioni del pool di lavoro.][settings-scale]
+![Scheda Impostazioni del pool di lavoro hello.][settings-scale]
 
-L'interfaccia utente risulterà familiare, perché si tratta della stessa esperienza visualizzata quando si ridimensiona un piano di servizio app. 
+Da qui, hello interfaccia deve essere piuttosto familiare perché è hello pianificare la stessa esperienza che viene visualizzato quando si scala di un servizio App. 
 
 ![Impostazioni di ridimensionamento manuale.][scale-manual]
 
@@ -45,25 +45,25 @@ L'interfaccia utente risulterà familiare, perché si tratta della stessa esperi
 
 ![Impostazioni di ridimensionamento automatico.][scale-profile]
 
-I profili di ridimensionamento automatico consentono di impostare i limiti per il piano. Ciò consente di ottenere prestazioni coerenti impostando un valore del piano con un limite minimo (1) e un tetto di spesa prevedibile impostando un limite massimo (2).
+Profili di scalabilità automatica sono limiti di tooset utili sulla scala. Ciò consente di ottenere prestazioni coerenti impostando un valore del piano con un limite minimo (1) e un tetto di spesa prevedibile impostando un limite massimo (2).
 
 ![Impostazioni di ridimensionamento nel profilo.][scale-profile2]
 
-Dopo aver definito il profilo, è possibile aggiungere regole di ridimensionamento automatico per aumentare o ridurre il numero di istanze nel pool di lavoro entro i limiti definiti nel profilo. Le regole di ridimensionamento automatico sono basate su metriche.
+Dopo aver definito un profilo, è possibile aggiungere tooscale regole di scalabilità automatica verso l'alto o verso il basso il numero di hello di istanze nel pool di lavoro hello all'interno dei limiti di hello definiti dal profilo hello. Le regole di ridimensionamento automatico sono basate su metriche.
 
 ![Regola di ridimensionamento.][scale-rule]
 
- Per definire le regole di ridimensionamento automatico, è possibile usare qualsiasi metrica del pool di lavoro o del front-end. Si tratta delle stesse metriche che è possibile monitorare nei grafici del pannello delle risorse o per cui si possono impostare avvisi.
+ Qualsiasi metrica front-end o un pool di lavoro può essere toodefine utilizzate regole di scalabilità automatica. Queste metriche sono hello stesse metriche è possibile monitorare in diagrammi di pannello risorse hello o impostare gli avvisi per.
 
 ## <a name="autoscale-example"></a>Esempio di ridimensionamento automatico
 Per illustrare il ridimensionamento automatico di un ambiente del servizio app, si userà uno scenario con procedure dettagliate.
 
-Questo articolo descrive tutte le considerazioni necessarie per configurare il ridimensionamento automatico, nonché tutte le interazioni che entrano in gioco quando si configura il ridimensionamento automatico di ambienti del servizio app ospitati in un ambiente del servizio app.
+Questo articolo illustra tutte le considerazioni necessarie hello quando si configura scalabilità automatica. articolo Hello illustra hello interazioni che entrano riprodurre quando si analizzano la scalabilità automatica gli ambienti del servizio App che sono ospitati nell'ambiente del servizio App.
 
 ### <a name="scenario-introduction"></a>Introduzione dello scenario
-Diego è amministratore di sistema presso una società e ha eseguito la migrazione di una parte dei carichi di lavoro che gestisce a un ambiente del servizio app.
+Frank è un sysadmin per un'azienda che ha eseguito la migrazione di una parte dei carichi di lavoro hello che egli gestisce tooan ambiente del servizio App.
 
-L'ambiente del servizio app è configurato per la scalabilità manuale come segue:
+Hello servizio App di ambiente è configurato scala toomanual come segue:
 
 * **Front-end:** 3
 * **Pool di lavoro 1**: 10
@@ -72,9 +72,9 @@ L'ambiente del servizio app è configurato per la scalabilità manuale come segu
 
 Il pool di lavoro 1 viene usato per i carichi di lavoro di produzione, mentre il pool di lavoro 2 e il pool di lavoro 3 sono usati per il controllo di qualità e i carichi di lavoro di sviluppo.
 
-I piani del servizio app per il controllo di qualità e lo sviluppo vengono configurati per il ridimensionamento manuale. Il piano del servizio app di produzione è impostato per il ridimensionamento automatico, in modo da adeguarsi alle variazioni del carico e del traffico.
+Hello App piani di servizio per il controllo della qualità e sviluppo sono configurati toomanual scala. produzione Hello piano di servizio App è impostato toodeal tooautoscale con le variazioni del carico e il traffico.
 
-Diego ha una notevole familiarità con l'applicazione. Sa che le ore di picco di carico sono comprese tra le 9:00 e le 18:00, perché si tratta di un'applicazione di line-of-business (LOB) che i dipendenti usano mentre sono in ufficio. L'utilizzo si riduce al termine della giornata lavorativa degli utenti. Al di fuori dagli orari di picco il carico è ancora presente in parte, perché gli utenti possono accedere all'app in modalità remota usando i propri dispositivi mobili o i PC di casa. Il piano di servizio app è già configurato per il ridimensionamento automatico in base all'utilizzo della CPU con le regole seguenti:
+Frank è dimestichezza con l'applicazione hello. Questi conosce ore di punta hello per il carico siano tra 9:00:00 e le 18.00 poiché si tratta di un'applicazione di line-of-business (LOB) che i dipendenti usano mentre si trovano in office hello. L'utilizzo si riduce al termine della giornata lavorativa degli utenti. Di fuori ore di punta, è ancora presente un carico in quanto gli utenti possono accedere in remoto hello app usando i dispositivi mobili o home PC. produzione di Hello piano di servizio App è già configurato tooautoscale in base all'utilizzo della CPU con hello seguenti regole:
 
 ![Impostazioni specifiche per l'app LOB.][asp-scale]
 
@@ -84,7 +84,7 @@ Diego ha una notevole familiarità con l'applicazione. Sa che le ore di picco di
 | **Ridimensiona in base a:** regole per la pianificazione e le prestazioni |**Ridimensiona in base a:** regole per la pianificazione e le prestazioni |
 | **Profilo:** giorni della settimana |**Profilo:** fine settimana |
 | **Tipo:** ricorrenza |**Tipo:** ricorrenza |
-| **Intervallo di destinazione:** da 5 a 20 istanze |**Intervallo di destinazione:** da 3 a 10 istanze |
+| **Intervallo di destinazione:** 5 istanze too20 |**Intervallo di destinazione:** 3 istanze too10 |
 | **Giorni:** Lunedì, Martedì, Mercoledì, Giovedì, Venerdì |**Giorni:** Sabato, Domenica |
 | **Ora di inizio:** 9:00 |**Ora di inizio:** 9:00 |
 | **Fuso orario:** UTC -08 |**Fuso orario:** UTC -08 |
@@ -108,44 +108,44 @@ Diego ha una notevole familiarità con l'applicazione. Sa che le ore di picco di
 | **Disattiva regole dopo (minuti):** 20 |**Disattiva regole dopo (minuti):** 10 |
 
 ### <a name="app-service-plan-inflation-rate"></a>Tasso di inflazione del piano di servizio app
-I piani di servizio app configurati per il ridimensionamento automatico vengono ridimensionati automaticamente in base al tasso massimo su base oraria. Questa frequenza può essere calcolata in base ai valori specificati nella regola di ridimensionamento automatico.
+Piani di servizio App che sono tooautoscale configurato a tale scopo una velocità massima di ogni ora. Questa velocità può essere calcolata in base ai valori hello specificati nella regola di scalabilità automatica hello.
 
-È importante comprendere e calcolare il *tasso di inflazione del piano di servizio app* per il ridimensionamento automatico dell'ambiente del servizio app, perché l'operazione di ridimensionamento del pool di lavoro non è istantanea.
+Comprensione e il calcolo hello *tasso di un piano di servizio App* è importante per la scalabilità automatica di servizio App ambiente perché il pool di lavoro tooa modifiche di scala non hanno effetto immediato.
 
-Il tasso di inflazione del piano di servizio app viene calcolato come segue:
+frequenza di un piano di servizio App Hello viene calcolata come segue:
 
 ![Calcolo del tasso di inflazione del piano di servizio app.][ASP-Inflation]
 
-In base alla regola Ridimensionamento automatico - Aumento per il profilo Giorno feriale del piano di servizio app di produzione la formula sarà simile alla seguente:
+Basato su hello Autoscale-regola di scalabilità verticale per il profilo del giorno feriale hello di produzione hello piano di servizio App:
 
 ![Tasso di inflazione del piano di servizio app per i giorni feriali basato su Ridimensionamento automatico - Regola di aumento.][Equation1]
 
-Nel caso della regola Ridimensionamento automatico - Aumento per il profilo Fine settimana del piano di servizio app di produzione la formula sarà la seguente:
+Nel caso di hello di scalabilità automatica: regola di scalabilità verticale per il profilo del fine settimana hello di produzione hello piano di servizio App, hello formula hello viene risolto in:
 
 ![Tasso di inflazione del piano di servizio app per i fine settimana basato su Ridimensionamento automatico - Regola di aumento.][Equation2]
 
 Questo valore può anche essere calcolato per le operazioni di riduzione.
 
-In base alla regola Ridimensionamento automatico - Riduzione per il profilo Giorno feriale del piano di servizio app di produzione la formula sarà simile alla seguente:
+In base a hello Autoscale-regola di scalabilità verso il basso per il profilo del giorno feriale hello di produzione hello piano di servizio App, ciò si presenterebbe come segue:
 
 ![Tasso di inflazione del piano di servizio app per i giorni feriali basato su Ridimensionamento automatico - Regola di riduzione.][Equation3]
 
-Nel caso della regola Ridimensionamento automatico - Riduzione per il profilo Fine settimana del piano di servizio app di produzione la formula sarà la seguente:  
+Nel caso di hello di scalabilità automatica: regola scalabilità verso il basso per il profilo del fine settimana hello di produzione hello piano di servizio App, hello formula hello viene risolto in:  
 
 ![Tasso di inflazione del piano di servizio app per i fine settimana basato su Ridimensionamento automatico - Regola di riduzione.][Equation4]
 
-Il piano di servizio app di produzione può aumentare al tasso massimo di 8 istanze all'ora durante la settimana e di 4 istanze all'ora durante il fine settimana e può rilasciare le istanze al tasso massimo di 4 istanze all'ora durante la settimana e di 6 istanze all'ora durante il fine settimana.
+produzione Hello piano di servizio App può raggiungere una velocità massima di otto istanze all'ora durante la settimana hello e quattro le istanze all'ora durante il weekend hello. È possibile rilasciare le istanze di una velocità massima di quattro istanze/ora settimana hello e sei istanze/ora durante il fine settimana.
 
-Se in un pool di lavoro sono ospitati più piani di servizio app, è necessario calcolare il *tasso di inflazione totale* come somma dei tassi di inflazione per tutti i piani di servizio app ospitati in quel pool di lavoro.
+Se più piani di servizio App sono ospitati in un pool di lavoro, è necessario hello toocalculate *frequenza un totale* come somma hello hello un tasso di per hello tutti i piani di servizio App che vengono hosting del pool di lavoro.
 
 ![Calcolo del tasso di inflazione totale per più piani di servizio app ospitati in un pool di lavoro.][ASP-Total-Inflation]
 
-### <a name="use-the-app-service-plan-inflation-rate-to-define-worker-pool-autoscale-rules"></a>Usare il tasso di inflazione del piano di servizio app per definire le regole di ridimensionamento automatico del pool di lavoro
-Ai pool di lavoro che ospitano piani di servizio app configurati per il ridimensionamento automatico è necessario allocare un buffer di capacità. Il buffer consente alle operazioni di ridimensionamento automatico di aumentare e ridurre il piano di servizio app in base alle esigenze. Il buffer minimo sarà costituito dal tasso di inflazione totale calcolato per il piano di servizio app.
+### <a name="use-hello-app-service-plan-inflation-rate-toodefine-worker-pool-autoscale-rules"></a>Hello utilizzare servizio App di pianificare le regole di scalabilità automatica di un tasso toodefine lavoro pool
+Pool di lavoro che ospitano i piani di servizio App che sono configurati tooautoscale necessario allocare un buffer di capacità. buffer Hello consente toogrow di operazioni di scalabilità automatica hello e ridurre il piano di servizio App in base alle esigenze. minima del buffer Hello sarebbe hello calcolato totale App servizio prevede un tasso.
 
-Poiché l'applicazione delle operazioni di ridimensionamento dell'ambiente del servizio app richiede tempo, qualsiasi modifica deve tenere conto delle ulteriori variazioni della domanda che possono verificarsi mentre è in corso un'operazione di ridimensionamento. Per questo motivo è consigliabile usare il tasso di inflazione totale calcolato per il piano di servizio app come numero minimo di istanze aggiunte per ogni operazione di ridimensionamento automatico.
+Le operazioni di ridimensionamento di servizio App ambiente richiedono alcuni tooapply ora, qualsiasi modifica dovrebbe tenere in considerazione ulteriori modifiche di richiesta che poteva verificarsi durante un'operazione di scala è in corso. tooaccommodate questa latenza, si consiglia di utilizzare hello calcolato totale App servizio prevede un tasso come numero minimo di hello di istanze che vengono aggiunti per ogni operazione di scalabilità automatica.
 
-Con queste informazioni Diego può definire le regole e il profilo di ridimensionamento automatico seguenti:
+Con queste informazioni, Frank possono definire hello seguente profilo di scalabilità automatica e le regole:
 
 ![Regole del profilo di ridimensionamento automatico per l'esempio LOB.][Worker-Pool-Scale]
 
@@ -155,7 +155,7 @@ Con queste informazioni Diego può definire le regole e il profilo di ridimensio
 | **Ridimensiona in base a:** regole per la pianificazione e le prestazioni |**Ridimensiona in base a:** regole per la pianificazione e le prestazioni |
 | **Profilo:** giorni della settimana |**Profilo:** fine settimana |
 | **Tipo:** ricorrenza |**Tipo:** ricorrenza |
-| **Intervallo di destinazione:** da 13 a 25 istanze |**Intervallo di destinazione:** da 6 a 15 istanze |
+| **Intervallo di destinazione:** istanze too25 13 |**Intervallo di destinazione:** 6 istanze too15 |
 | **Giorni:** Lunedì, Martedì, Mercoledì, Giovedì, Venerdì |**Giorni:** Sabato, Domenica |
 | **Ora di inizio:** 7:00 |**Ora di inizio:** 9:00 |
 | **Fuso orario:** UTC -08 |**Fuso orario:** UTC -08 |
@@ -178,19 +178,19 @@ Con queste informazioni Diego può definire le regole e il profilo di ridimensio
 | **Azione:** riduci numero di 2 |**Azione:** riduci numero di 3 |
 | **Disattiva regole dopo (minuti):** 120 |**Disattiva regole dopo (minuti):** 120 |
 
-L'intervallo di destinazione definito nel profilo è calcolato in base al numero minimo di istanze definito nel profilo per il piano di servizio app più il buffer.
+intervallo di destinazione definito nel profilo hello Hello viene calcolato da istanze di hello minimo definite nel profilo per il piano di servizio App hello + buffer.
 
-L'intervallo massimo corrisponde alla somma di tutti gli intervalli massimi per tutti i piani di servizio app ospitati nel pool di lavoro.
+intervallo massimo Hello sarebbe somma hello di tutti gli intervalli massimo hello per tutti i piani di servizio App ospitati nel pool di lavoro hello.
 
-L'aumento del numero per le regole di aumento deve essere impostato su un valore pari ad almeno 1 volta il tasso di inflazione per il piano di servizio app per l'operazione di aumento.
+conteggio di aumento per l'aumento di hello regole Hello deve essere set tooat almeno 1 X la frequenza di un piano di servizio App per la scala backup.
 
-La riduzione del numero può essere regolata su un valore compreso tra la metà o una volta il tasso di inflazione del piano di servizio app per l'operazione di riduzione.
+Conteggio di riduzione può essere adattata toosomething compreso tra 1/2 X o X 1 hello velocità di un piano di servizio App per la scalabilità verso il basso.
 
 ### <a name="autoscale-for-front-end-pool"></a>Ridimensionamento automatico per il pool front-end
 Le regole per il ridimensionamento automatico front-end sono più semplici rispetto ai pool di lavoro. È prima di tutto necessario  
-assicurarsi che la durata della misurazione e i timer di raffreddamento tengano presente che le operazioni di ridimensionamento in un piano di servizio app non sono istantanee.
+Assicurarsi che la durata della misurazione hello e timer di raffreddamento hello considera che le operazioni di ridimensionamento in un piano di servizio App non sono istantanee.
 
-Per questo scenario, Diego sa che la percentuale di errore aumenta quando i pool front-end raggiungono un utilizzo di CPU dell'80% e imposta la regola di scalabilità automatica in modo da aumentare le istanze come descritto di seguito:
+Per questo scenario, Frank SA tale tasso di errore hello aumenta dopo front-end di raggiungere l'80% della CPU e imposta la scalabilità automatica hello istanze tooincrease regola nel modo seguente:
 
 ![Impostazioni di ridimensionamento automatico per il pool front-end.][Front-End-Scale]
 
@@ -200,7 +200,7 @@ Per questo scenario, Diego sa che la percentuale di errore aumenta quando i pool
 | **Ridimensiona in base a:** regole per la pianificazione e le prestazioni |
 | **Profilo:** ogni giorno |
 | **Tipo:** ricorrenza |
-| **Intervallo di destinazione:** da 3 a 10 istanze |
+| **Intervallo di destinazione:** 3 istanze too10 |
 | **Giorni:** ogni giorno |
 | **Ora di inizio:** 9:00 |
 | **Fuso orario:** UTC -08 |

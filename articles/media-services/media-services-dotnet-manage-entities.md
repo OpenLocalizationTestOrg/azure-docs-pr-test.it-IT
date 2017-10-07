@@ -1,6 +1,6 @@
 ---
-title: "Gestione di asset ed entità correlate con Media Services .NET SDK"
-description: "Informazioni su come gestire asset ed entità correlate con Media Services SDK for .NET."
+title: "Asset aaaManaging e le relative entità con Media Services .NET SDK"
+description: "Informazioni su come asset toomanage e le entità correlate con hello Media Services SDK per .NET."
 author: juliako
 manager: cfowler
 editor: 
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/17/2017
 ms.author: juliako
-ms.openlocfilehash: 5efe16a09808267d0797521f9e1df2b60aec9cbb
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 59a8543ffc6f7f30da2c67a6fcae09bc46da7a52
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="managing-assets-and-related-entities-with-media-services-net-sdk"></a>Gestione di asset ed entità correlate con Media Services .NET SDK
 > [!div class="op_single_selector"]
@@ -27,50 +27,50 @@ ms.lasthandoff: 08/29/2017
 > 
 > 
 
-Questo argomento illustra come gestire le entità dei Servizi multimediali di Azure con .NET. 
+In questo argomento viene illustrata la modalità di servizi multimediali di Azure di toomanage entità con .NET. 
 
 >[!NOTE]
-> A partire dal 1° aprile 2017, tutti i record di processo presenti nell'account e più vecchi di 90 giorni verranno eliminati automaticamente, insieme ai record attività associati, anche se il numero totale di record è inferiore alla quota massima. Ad esempio, il 1° aprile 2017 qualsiasi record di processo nell'account precedente il 31 dicembre 2016 verrà automaticamente eliminato. Se è necessario archiviare le informazioni sul processo o sull'attività, è possibile usare il codice descritto in questo argomento.
+> A partire dal 1 aprile 2017, qualsiasi record di processo più vecchi di 90 giorni account vengono eliminate automaticamente, insieme ai relativi record di attività associato, anche se il numero di record hello sotto la quota massima di hello. Ad esempio, il 1° aprile 2017 qualsiasi record di processo nell'account precedente il 31 dicembre 2016 verrà automaticamente eliminato. Se sono necessarie informazioni di processi/attività hello tooarchive, è possibile utilizzare codice hello descritte in questo argomento.
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-Configurare l'ambiente di sviluppo e popolare il file app.config con le informazioni di connessione, come descritto in [Sviluppo di applicazioni di Servizi multimediali con .NET](media-services-dotnet-how-to-use.md). 
+Configurare l'ambiente di sviluppo e di popolare il file app. config hello con informazioni di connessione, come descritto in [lo sviluppo di servizi multimediali con .NET](media-services-dotnet-how-to-use.md). 
 
 ## <a name="get-an-asset-reference"></a>Ottenere un riferimento a un asset
-Un'attività comune consiste nell'ottenere un riferimento a un asset esistente in Servizi multimediali. L'esempio di codice seguente mostra come ottenere un riferimento a un asset dalla raccolta Assets sull'oggetto contesto del server, in base all'ID dell'asset. L'esempio di codice seguente usa una query Linq per ottenere un riferimento a un oggetto IAsset.
+Un'attività comune consiste tooget un asset esistente tooan di riferimento in servizi multimediali. Hello esempio di codice seguente viene illustrato come ottenere un riferimento a un asset dalla raccolta di risorse hello in server hello oggetto di contesto, in base a un hello ID asset seguente codice viene illustrato come utilizzare una query Linq tooget tooan esistente IAsset oggetto di riferimento.
 
     static IAsset GetAsset(string assetId)
     {
-        // Use a LINQ Select query to get an asset.
+        // Use a LINQ Select query tooget an asset.
         var assetInstance =
             from a in _context.Assets
             where a.Id == assetId
             select a;
-        // Reference the asset as an IAsset.
+        // Reference hello asset as an IAsset.
         IAsset asset = assetInstance.FirstOrDefault();
 
         return asset;
     }
 
 ## <a name="list-all-assets"></a>Elencare tutti gli asset
-Man mano che aumenta il numero degli asset archiviati, è utile elencarli tutti. L'esempio di codice seguente mostra come scorrere la raccolta Assets nell'oggetto contesto del server. Con ogni asset, l'esempio di codice scrive anche alcuni valori delle relative proprietà nella console. Ogni asset, ad esempio, può includere numerosi file multimediali. L'esempio di codice elenca tutti i file associati a ogni asset.
+Man mano che aumenta il numero di hello degli asset nel servizio di archiviazione, è utile toolist le risorse. Hello esempio di codice seguente viene illustrato come tooiterate tramite hello raccolta di risorse dell'oggetto di contesto server hello. Con ogni asset, esempio di codice hello scrive inoltre alcune delle relative console toohello valori di proprietà. Ogni asset, ad esempio, può includere numerosi file multimediali. esempio di codice Hello scrive tutti i file associati a ogni asset.
 
     static void ListAssets()
     {
-        string waitMessage = "Building the list. This may take a few "
-            + "seconds to a few minutes depending on how many assets "
+        string waitMessage = "Building hello list. This may take a few "
+            + "seconds tooa few minutes depending on how many assets "
             + "you have."
             + Environment.NewLine + Environment.NewLine
             + "Please wait..."
             + Environment.NewLine;
         Console.Write(waitMessage);
 
-        // Create a Stringbuilder to store the list that we build. 
+        // Create a Stringbuilder toostore hello list that we build. 
         StringBuilder builder = new StringBuilder();
 
         foreach (IAsset asset in _context.Assets)
         {
-            // Display the collection of assets.
+            // Display hello collection of assets.
             builder.AppendLine("");
             builder.AppendLine("******ASSET******");
             builder.AppendLine("Asset ID: " + asset.Id);
@@ -78,7 +78,7 @@ Man mano che aumenta il numero degli asset archiviati, è utile elencarli tutti.
             builder.AppendLine("==============");
             builder.AppendLine("******ASSET FILES******");
 
-            // Display the files associated with each asset. 
+            // Display hello files associated with each asset. 
             foreach (IAssetFile fileItem in asset.AssetFiles)
             {
                 builder.AppendLine("Name: " + fileItem.Name);
@@ -93,48 +93,48 @@ Man mano che aumenta il numero degli asset archiviati, è utile elencarli tutti.
 
 ## <a name="get-a-job-reference"></a>Ottenere un riferimento a un processo
 
-Quando si usano attività di elaborazione nel codice di Servizi multimediali, è spesso necessario ottenere un riferimento a un processo esistente in base a un ID. L'esempio di codice seguente mostra come ottenere un riferimento a un oggetto IJob dalla raccolta Jobs.
+Quando si lavora con l'elaborazione delle attività nel codice di servizi multimediali, è spesso necessario tooget un processo esistente tooan riferimento in base a un hello ID. esempio di codice seguente viene illustrato come tooget tooan un riferimento IJob oggetto dalla raccolta di processi hello.
 
-Può essere necessario ottenere un riferimento a un processo quando si avvia un processo di codifica di lunga esecuzione e si vuole verificare lo stato del processo su un thread. In casi come questo, quando il metodo è restituito da un thread, è necessario recuperare un riferimento aggiornato a un processo.
+Potrebbe necessario tooget riferimento a un processo quando si avvia un processo di codifica di lunga durata e lo stato del processo hello toocheck su un thread necessario. In casi come questo, quando il metodo hello viene restituito da un thread, è necessario un processo di riferimento aggiornato tooa tooretrieve.
 
     static IJob GetJob(string jobId)
     {
-        // Use a Linq select query to get an updated 
+        // Use a Linq select query tooget an updated 
         // reference by Id. 
         var jobInstance =
             from j in _context.Jobs
             where j.Id == jobId
             select j;
-        // Return the job reference as an Ijob. 
+        // Return hello job reference as an Ijob. 
         IJob job = jobInstance.FirstOrDefault();
 
         return job;
     }
 
 ## <a name="list-jobs-and-assets"></a>Elencare i processi e gli asset
-Un'importante attività correlata consiste nell'elencare gli asset con il relativo processo associato in Servizi multimediali. L'esempio di codice seguente mostra come elencare ogni oggetto IJob e quindi, per ogni processo, visualizzare le proprietà relative al processo, tutte le attività correlate, tutti gli asset di input e tutti gli asset di output. Il codice di questo esempio può essere utile per molte altre attività. Se ad esempio si vuole elencare gli asset di output di uno o più processi di codifica eseguiti in precedenza, questo codice mostra come accedere agli asset di output. Quando è disponibile un riferimento a un asset di output, è quindi possibile distribuire il contenuto ad altri utenti o applicazioni scaricandolo o specificando gli URL. 
+Un'importante attività correlata è asset toolist con il relativo processo associato in servizi multimediali. Hello esempio di codice seguente illustra come toolist ogni oggetto IJob, per ogni processo, viene quindi visualizzato processo hello, tutte le attività correlate, asset di input tutte le proprietà e tutti gli asset di output. in questo esempio di codice Hello può essere utile per molte altre attività. Ad esempio, se si desidera asset di output di hello toolist da uno o più processi di codifica eseguiti in precedenza, questo codice viene illustrato come hello tooaccess gli asset di output. Quando si dispone di un asset di output tooan di riferimento, è quindi possibile recapitare hello tooother contenuto utenti o applicazioni scaricandolo o specificando gli URL. 
 
-Per altre informazioni sulle opzioni per la distribuzione degli asset, vedere [Distribuire asset con Media Services SDK for .NET](media-services-deliver-streaming-content.md).
+Per ulteriori informazioni sulle opzioni per la distribuzione degli asset, vedere [distribuzione di asset con Media Services SDK per .NET hello](media-services-deliver-streaming-content.md).
 
-    // List all jobs on the server, and for each job, also list 
+    // List all jobs on hello server, and for each job, also list 
     // all tasks, all input assets, all output assets.
 
     static void ListJobsAndAssets()
     {
-        string waitMessage = "Building the list. This may take a few "
-            + "seconds to a few minutes depending on how many assets "
+        string waitMessage = "Building hello list. This may take a few "
+            + "seconds tooa few minutes depending on how many assets "
             + "you have."
             + Environment.NewLine + Environment.NewLine
             + "Please wait..."
             + Environment.NewLine;
         Console.Write(waitMessage);
 
-        // Create a Stringbuilder to store the list that we build. 
+        // Create a Stringbuilder toostore hello list that we build. 
         StringBuilder builder = new StringBuilder();
 
         foreach (IJob job in _context.Jobs)
         {
-            // Display the collection of jobs on the server.
+            // Display hello collection of jobs on hello server.
             builder.AppendLine("");
             builder.AppendLine("******JOB*******");
             builder.AppendLine("Job ID: " + job.Id);
@@ -144,7 +144,7 @@ Per altre informazioni sulle opzioni per la distribuzione degli asset, vedere [D
             builder.AppendLine("==============");
 
 
-            // For each job, display the associated tasks (a job  
+            // For each job, display hello associated tasks (a job  
             // has one or more tasks). 
             builder.AppendLine("******TASKS*******");
             foreach (ITask task in job.Tasks)
@@ -160,7 +160,7 @@ Per altre informazioni sulle opzioni per la distribuzione degli asset, vedere [D
                 builder.AppendLine("==============");
             }
 
-            // For each job, display the list of input media assets.
+            // For each job, display hello list of input media assets.
             builder.AppendLine("******JOB INPUT MEDIA ASSETS*******");
             foreach (IAsset inputAsset in job.InputMediaAssets)
             {
@@ -173,7 +173,7 @@ Per altre informazioni sulle opzioni per la distribuzione degli asset, vedere [D
                 }
             }
 
-            // For each job, display the list of output media assets.
+            // For each job, display hello list of output media assets.
             builder.AppendLine("******JOB OUTPUT MEDIA ASSETS*******");
             foreach (IAsset theAsset in job.OutputMediaAssets)
             {
@@ -192,9 +192,9 @@ Per altre informazioni sulle opzioni per la distribuzione degli asset, vedere [D
     }
 
 ## <a name="list-all-access-policies"></a>Elencare tutti i criteri di accesso
-In Servizi multimediali è possibile definire un criterio di accesso per un asset o i relativi file. Un criterio di accesso definisce le autorizzazioni per un file o un asset, ovvero il tipo di accesso e la durata. Nel codice di Servizi multimediali, in genere si definisce un criterio di accesso creando un oggetto IAccessPolicy e associandolo a un asset esistente. È quindi necessario creare un oggetto ILocator, che permette di fornire l'accesso diretto agli asset in Servizi multimediali. Il progetto di Visual Studio fornito con questa serie di argomenti include diversi esempi di codice in cui è illustrato come creare e assegnare criteri di accesso e localizzatori agli asset.
+In Servizi multimediali è possibile definire un criterio di accesso per un asset o i relativi file. Un criterio di accesso definisce le autorizzazioni di hello per un file o una risorsa (il tipo di accesso e la durata di hello). Nel codice di Servizi multimediali, in genere si definisce un criterio di accesso creando un oggetto IAccessPolicy e associandolo a un asset esistente. È quindi necessario creare un oggetto ILocator, che consente di fornire accesso diretto tooassets in servizi multimediali. progetto di Visual Studio Hello che accompagna la serie di documentazione contiene alcuni esempi di codice che illustrano come toocreate e assegnare l'accesso tooassets criteri e i localizzatori.
 
-L'esempio di codice seguente illustra come elencare tutti i criteri di accesso nel server e mostra il tipo di autorizzazioni associato a ognuno. Un altro modo utile per visualizzare i criteri di accesso consiste nell'elencare tutti gli oggetti ILocator nel server e quindi, per ogni localizzatore, elencare il relativo criterio di accesso associato usando la relativa proprietà AccessPolicy.
+Hello seguente esempio di codice viene illustrato come toolist tutti i criteri di accesso nel server di hello e Mostra hello tipo di autorizzazioni associati a ognuna. Criteri di accesso di un altro modo utile tooview è toolist tutti gli oggetti ILocator nel server di hello e quindi per ogni localizzatore, è possibile elencare i criteri di accesso associato utilizzando la relativa proprietà AccessPolicy.
 
     static void ListAllPolicies()
     {
@@ -212,9 +212,9 @@ L'esempio di codice seguente illustra come elencare tutti i criteri di accesso n
 ## <a name="limit-access-policies"></a>Limitare i criteri di accesso 
 
 >[!NOTE]
-> È previsto un limite di 1.000.000 di criteri per i diversi criteri AMS (ad esempio per i criteri Locator o ContentKeyAuthorizationPolicy). Usare lo stesso ID criterio se si usano sempre gli stessi giorni/autorizzazioni di accesso, come nel cado di criteri per i localizzatori che devono rimanere attivi per molto tempo (criteri di non caricamento). 
+> È previsto un limite di 1.000.000 di criteri per i diversi criteri AMS (ad esempio per i criteri Locator o ContentKeyAuthorizationPolicy). È consigliabile utilizzare hello stesso ID di criteri, se si utilizza sempre hello stesso giorni accesso le autorizzazioni, ad esempio, i criteri per i localizzatori che sono previsti tooremain sul posto per un lungo periodo (non-caricamento criteri). 
 
-Ad esempio è possibile creare un insieme generico di criteri con il codice seguente che vengono eseguiti una sola volta nell'applicazione. È possibile registrare gli ID in un file di log per usarli in seguito:
+Ad esempio, è possibile creare un insieme generico di criteri con hello seguente di codice che verrebbe eseguito solo una volta nell'applicazione. È possibile registrare i file di log tooa ID per un utilizzo successivo:
 
     double year = 365.25;
     double week = 7;
@@ -226,18 +226,18 @@ Ad esempio è possibile creare un insieme generico di criteri con il codice segu
     Console.WriteLine("100 year policy ID is: " + policy100Year.Id);
     Console.WriteLine("One week policy ID is: " + policyWeek.Id);
 
-Quindi sarà possibile usare gli ID esistenti nel codice come segue:
+Quindi, è possibile utilizzare hello esistente ID nel codice simile al seguente:
 
     const string policy1YearId = "nb:pid:UUID:2a4f0104-51a9-4078-ae26-c730f88d35cf";
 
 
-    // Get the standard policy for 1 year read only
+    // Get hello standard policy for 1 year read only
     var tempPolicyId = from b in _context.AccessPolicies
                        where b.Id == policy1YearId
                        select b;
     IAccessPolicy policy1Year = tempPolicyId.FirstOrDefault();
 
-    // Get the existing asset
+    // Get hello existing asset
     var tempAsset = from a in _context.Assets
                 where a.Id == assetID
                 select a;
@@ -246,14 +246,14 @@ Quindi sarà possibile usare gli ID esistenti nel codice come segue:
     ILocator originLocator = _context.Locators.CreateLocator(LocatorType.OnDemandOrigin, asset,
         policy1Year,
         DateTime.UtcNow.AddMinutes(-5));
-    Console.WriteLine("The locator base path is " + originLocator.BaseUri.ToString());
+    Console.WriteLine("hello locator base path is " + originLocator.BaseUri.ToString());
 
 ## <a name="list-all-locators"></a>Elencare tutti i localizzatori
-Un localizzatore è un URL che fornisce un percorso diretto per accedere a un asset, insieme alle autorizzazioni per l'asset definite dal criterio di accesso associato del localizzatore. A ogni asset può essere associata una raccolta di oggetti ILocator per la relativa proprietà Locators. Anche nel contesto del server è disponibile una raccolta Locators contenente tutti i localizzatori.
+Un indicatore di posizione è un URL che fornisce un percorso diretto di tooaccess un asset, insieme a asset toohello autorizzazioni come definito dai criteri di accesso associato del localizzatore hello. A ogni asset può essere associata una raccolta di oggetti ILocator per la relativa proprietà Locators. contesto server Hello dispone di una raccolta di indicatori di posizione che contiene tutti i localizzatori.
 
-Nell'esempio di codice seguente sono elencati tutti i localizzatori nel server. Per ogni localizzatore, sono mostrati l'ID per l'asset e il criterio di accesso correlati. Sono anche visualizzati il tipo di autorizzazioni, la data di scadenza e il percorso completo dell'asset.
+Hello esempio di codice seguente vengono elencati tutti i localizzatori nel server di hello. Per ogni localizzatore, Mostra hello Id per l'asset correlati hello e criteri di accesso. Visualizza anche il tipo di hello di asset toohello percorso completo di hello, data di scadenza hello e autorizzazioni.
 
-Si noti che il percorso localizzatore per un asset è solo un URL di base per l'accesso all'asset. Per creare un percorso diretto per i singoli file a cui un utente o un'applicazione potrebbe accedere, il codice deve aggiungere il percorso del file specifico al percorso localizzatore. Per altre informazioni su come eseguire questa operazione, vedere l'argomento [Distribuire asset con Media Services SDK for .NET](media-services-deliver-streaming-content.md).
+Si noti che un asset di tooan percorso localizzatore è solo un asset base toohello URL. toocreate che tooindividual un percorso diretto di file che un utente o un'applicazione potrebbe accedere, il codice deve aggiungere il percorso localizzatore toohello di hello file specifico percorso. Per ulteriori informazioni su come toodo questa operazione, vedere argomento hello [distribuzione di asset con Media Services SDK per .NET hello](media-services-deliver-streaming-content.md).
 
     static void ListAllLocators()
     {
@@ -265,18 +265,18 @@ Si noti che il percorso localizzatore per un asset è solo un URL di base per l'
             Console.WriteLine("Locator access policy Id: " + locator.AccessPolicyId);
             Console.WriteLine("Access policy permissions: " + locator.AccessPolicy.Permissions);
             Console.WriteLine("Locator expiration: " + locator.ExpirationDateTime);
-            // The locator path is the base or parent path (with included permissions) to access  
-            // the media content of an asset. To create a full URL to a specific media file, take 
-            // the locator path and then append a file name and info as needed.  
+            // hello locator path is hello base or parent path (with included permissions) tooaccess  
+            // hello media content of an asset. toocreate a full URL tooa specific media file, take 
+            // hello locator path and then append a file name and info as needed.  
             Console.WriteLine("Locator base path: " + locator.Path);
             Console.WriteLine("");
         }
     }
 
 ## <a name="enumerating-through-large-collections-of-entities"></a>Enumerazione di grandi raccolte di entità
-Quando si esegue una query di entità, è previsto un limite di 1000 entità restituite in una sola volta perché la versione 2 pubblica di REST limita i risultati della query a 1000 risultati. Quando si esegue l'enumerazione di grandi raccolte di entità, è necessario usare la proprietà Skip and Take. 
+Quando una query sulle entità, è previsto un limite di 1000 entità restituito in una sola volta perché v2 REST pubblici limita risultati too1000 risultati della query. Quando l'enumerazione di raccolte di entità di grandi dimensioni, è necessario toouse Skip e Take. 
 
-La funzione seguente consente di scorrere tutti i processi nell'account di Servizi multimediali specificato. Servizi multimediali restituisce 1000 processi nella raccolta di processi. La funzione usa la proprietà Skip and Take per assicurarsi che tutti i processi vengano enumerati (se si dispone di più di 1000 processi nell'account).
+Hello seguente funzione scorre tutti i processi di hello hello fornito Account di servizi multimediali. Servizi multimediali restituisce 1000 processi nella raccolta di processi. funzione Hello rende utilizzare ignorare ed eseguire toomake assicurarsi che tutti i processi vengono enumerati (nel caso in cui si dispone di più di 1.000 processi nell'account).
 
     static void ProcessJobs()
     {
@@ -289,7 +289,7 @@ La funzione seguente consente di scorrere tutti i processi nell'account di Servi
 
             while (true)
             {
-                // Loop through all Jobs (1000 at a time) in the Media Services account
+                // Loop through all Jobs (1000 at a time) in hello Media Services account
                 IQueryable _jobsCollectionQuery = _context.Jobs.Skip(skipSize).Take(batchSize);
                 foreach (IJob job in _jobsCollectionQuery)
                 {
@@ -315,23 +315,23 @@ La funzione seguente consente di scorrere tutti i processi nell'account di Servi
     }
 
 ## <a name="delete-an-asset"></a>Eliminare un asset
-Nell'esempio seguente sarà eliminato un asset.
+Hello di esempio seguente elimina un asset.
 
     static void DeleteAsset( IAsset asset)
     {
-        // delete the asset
+        // delete hello asset
         asset.Delete();
 
         // Verify asset deletion
         if (GetAsset(asset.Id) == null)
-            Console.WriteLine("Deleted the Asset");
+            Console.WriteLine("Deleted hello Asset");
 
     }
 
 ## <a name="delete-a-job"></a>Eliminare un processo
-Per eliminare un processo, è necessario verificarne lo stato indicato nella proprietà State. I processi completati o annullati possono essere eliminati direttamente, mentre i processi che hanno altri stati, ad esempio che sono accodati, pianificati o in elaborazione, devono essere annullati prima di poter essere eliminati.
+toodelete un processo, è necessario controllare lo stato di hello di hello processo come indicato nella proprietà State hello. I processi completati o annullati possono essere eliminati direttamente, mentre i processi che hanno altri stati, ad esempio che sono accodati, pianificati o in elaborazione, devono essere annullati prima di poter essere eliminati.
 
-L'esempio di codice seguente illustra un metodo per eliminare un processo verificandone lo stato e procedendo con l'eliminazione quando lo stato è completato o annullato. Questo codice dipende dalla sezione precedente di questo argomento per ottenere un riferimento a un processo: Ottenere un riferimento a un processo.
+Hello esempio di codice seguente viene illustrato un metodo per l'eliminazione di un processo verificandone ed eliminando quindi quando lo stato di hello è completato o annullato. Questo codice dipende dalla sezione precedente di hello in questo argomento per il recupero di un processo di riferimento tooa: ottenere un riferimento a un processo.
 
     static void DeleteJob(string jobId)
     {
@@ -353,7 +353,7 @@ L'esempio di codice seguente illustra un metodo per eliminare un processo verifi
                 case JobState.Error:
                     // Job errors should already be logged by polling or event 
                     // handling methods such as CheckJobProgress or StateChanged.
-                    // You can also call job.DeleteAsync to do async deletes.
+                    // You can also call job.DeleteAsync toodo async deletes.
                     job.Delete();
                     Console.WriteLine("Job has been deleted.");
                     jobDeleted = true;
@@ -380,12 +380,12 @@ L'esempio di codice seguente illustra un metodo per eliminare un processo verifi
 
 
 ## <a name="delete-an-access-policy"></a>Eliminare un criterio di accesso
-L'esempio di codice seguente illustra come ottenere un riferimento a un criterio di accesso in base all'ID del criterio e quindi come eliminare il criterio.
+Hello esempio di codice seguente viene illustrato come tooget un criterio di accesso tooan riferimento basato su un Id del criterio e criteri di hello toodelete.
 
     static void DeleteAccessPolicy(string existingPolicyId)
     {
-        // To delete a specific access policy, get a reference to the policy.  
-        // based on the policy Id passed to the method.
+        // toodelete a specific access policy, get a reference toohello policy.  
+        // based on hello policy Id passed toohello method.
         var policyInstance =
                 from p in _context.AccessPolicies
                 where p.Id == existingPolicyId
@@ -398,7 +398,7 @@ L'esempio di codice seguente illustra come ottenere un riferimento a un criterio
 
 
 
-## <a name="media-services-learning-paths"></a>Percorsi di apprendimento di Media Services
+## <a name="media-services-learning-paths"></a>Percorsi di apprendimento di Servizi multimediali
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 
 ## <a name="provide-feedback"></a>Fornire commenti e suggerimenti

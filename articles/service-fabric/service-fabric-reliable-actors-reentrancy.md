@@ -1,6 +1,6 @@
 ---
-title: Reentrancy nei microservizi di Azure basati su attori | Documentazione Microsoft
-description: Introduzione alla rientranza per Reliable Actors di Service Fabric
+title: aaaReentrancy in microservizi Azure basato su attori | Documenti Microsoft
+description: Introduzione tooreentrancy per Service Fabric Reliable Actors
 services: service-fabric
 documentationcenter: .net
 author: vturecek
@@ -14,16 +14,16 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/29/2017
 ms.author: vturecek
-ms.openlocfilehash: 00fcccb379bf1ba3875fbaba57a05b00fa228622
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 61c69bcf0f100e075d19ba155954c05789b71761
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="reliable-actors-reentrancy"></a>Rientranza di Reliable Actors
-Per impostazione predefinita, il runtime di Reliable Actors consente la reentrancy basata sul contesto di chiamata logico. Ciò consente agli attori di essere rientranti se si trovano nella stessa catena del contesto di chiamata. Ad esempio, l'attore A invia un messaggio all'attore B che invia un messaggio all'attore C. Durante l'elaborazione del messaggio, se l'attore C chiama l'attore A, il messaggio è rientrante e sarà quindi consentito. Tutti gli altri messaggi che fanno parte di un contesto di chiamata diverso verranno bloccati sull'attore A fino al completamento dell'elaborazione.
+runtime Reliable Actors Hello, per impostazione predefinita, consente la rientranza basata sul contesto di chiamata logico. In questo modo rientrante toobe attori che si trovano nella hello stessa catena del contesto di chiamata. Ad esempio, un attore invia un tooActor messaggio B, che invia un tooActor messaggio C. Come parte dell'elaborazione dei messaggi hello, se attore C chiama attore, un messaggio hello è rientrante, pertanto sarà possibile. Tutti gli altri messaggi che fanno parte di un contesto di chiamata diverso verranno bloccati sull'attore A fino al completamento dell'elaborazione.
 
-Per la reentrancy degli attori sono disponibili due opzioni, definite nell'enumerazione `ActorReentrancyMode` :
+Sono disponibili due opzioni per reentrancy attore definita in hello `ActorReentrancyMode` enum:
 
 * `LogicalCallContext` (comportamento predefinito)
 * `Disallowed` : disabilita la reentrancy
@@ -42,9 +42,9 @@ public enum ActorReentrancyMode
     Disallowed(2)
 }
 ```
-La reentrancy può essere configurata nelle impostazioni di `ActorService`durante la registrazione. L'impostazione si applica a tutte le istanze degli attori create nel servizio Actor.
+La reentrancy può essere configurata nelle impostazioni di `ActorService`durante la registrazione. impostazione di Hello applica le istanze di attore tooall create nel servizio actor hello.
 
-L'esempio seguente illustra un servizio Actor che imposta la modalità di reentrancy su `ActorReentrancyMode.Disallowed`. In questo caso, se un attore invia un messaggio rientrante a un altro attore verrà generata un'eccezione di tipo `FabricException` .
+Hello esempio seguente viene illustrato un servizio actor che imposta la modalità della reentrancy hello troppo`ActorReentrancyMode.Disallowed`. In questo caso, se un attore invia un attore tooanother messaggio rientrante, un'eccezione di tipo `FabricException` verrà generata.
 
 ```csharp
 static class Program
@@ -110,4 +110,4 @@ static class Program
 
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Acquisire altre informazioni sulla reentrancy nella [documentazione di riferimento delle API di Actors](https://msdn.microsoft.com/library/azure/dn971626.aspx)
+* Ulteriori informazioni sulla reentrancy in hello [documentazione di riferimento API attore](https://msdn.microsoft.com/library/azure/dn971626.aspx)

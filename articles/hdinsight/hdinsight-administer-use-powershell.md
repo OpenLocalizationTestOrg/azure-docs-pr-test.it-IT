@@ -1,6 +1,6 @@
 ---
-title: 'Gestire cluster Hadoop in HDInsight con PowerShell: Azure | Microsoft Docs'
-description: "Informazioni su come eseguire attività amministrative per i cluster Hadoop in HDInsight tramite Azure PowerShell."
+title: cluster aaaManage Hadoop in HDInsight con PowerShell - Azure | Documenti Microsoft
+description: "Informazioni su come attività amministrative tooperform per hello cluster Hadoop in HDInsight con Azure PowerShell."
 services: hdinsight
 editor: cgronlun
 manager: jhubbard
@@ -16,20 +16,20 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/25/2017
 ms.author: jgao
-ms.openlocfilehash: c47dabd7c4aa4ba0be08c419989e536711f03677
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3df082d752fa8c703db82a54b82b740290af6729
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="manage-hadoop-clusters-in-hdinsight-by-using-azure-powershell"></a>Gestire cluster Hadoop in HDInsight tramite Azure PowerShell
 [!INCLUDE [selector](../../includes/hdinsight-portal-management-selector.md)]
 
-Azure PowerShell è un ambiente di scripting potente che può essere usato per controllare e automatizzare la distribuzione e la gestione dei carichi di lavoro in Azure. In questo articolo verrà illustrato come gestire cluster Hadoop in Azure HDInsight usando una console di Azure PowerShell locale tramite Windows PowerShell. Per l'elenco dei cmdlet PowerShell per HDInsight, vedere [Documentazione di riferimento di cmdlet di HDInsight][hdinsight-powershell-reference].
+Azure PowerShell è un ambiente di scripting potente che è possibile utilizzare toocontrol e automatizzare la distribuzione di hello e la gestione dei carichi di lavoro in Azure. In questo articolo si apprenderà come toomanage di cluster Hadoop in HDInsight di Azure tramite una console di Azure PowerShell locale tramite hello utilizzato Windows PowerShell. Per hello l'elenco dei cmdlet HDInsight PowerShell hello, vedere [riferimento ai cmdlet di HDInsight][hdinsight-powershell-reference].
 
 **Prerequisiti**
 
-Per eseguire le procedure descritte nell'articolo è necessario:
+Prima di iniziare questo articolo, è necessario disporre delle seguenti hello:
 
 * **Una sottoscrizione di Azure**. Vedere [Ottenere una versione di prova gratuita di Azure](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/).
 
@@ -38,85 +38,85 @@ Per eseguire le procedure descritte nell'articolo è necessario:
 
 Se è installato Azure PowerShell versione 0.9x, è necessario disinstallarlo prima di installare una versione più recente.
 
-Per controllare la versione di PowerShell installata:
+versione di hello toocheck di hello installato PowerShell:
 
     Get-Module *azure*
 
-Per disinstallare la versione precedente, eseguire Programmi e Funzionalità nel Pannello di controllo.
+toouninstall hello versione meno recente, eseguire programmi e funzionalità nel Pannello di controllo hello.
 
 ## <a name="create-clusters"></a>Creare i cluster
 Vedere [Creare cluster basati su Linux in HDInsight tramite Azure PowerShell](hdinsight-hadoop-create-linux-clusters-azure-powershell.md)
 
 ## <a name="list-clusters"></a>Elencare cluster
-Usare il comando seguente per visualizzare l'elenco di tutti i cluster nella sottoscrizione corrente:
+Utilizzare hello seguente toolist comando tutti i cluster nella sottoscrizione corrente hello:
 
     Get-AzureRmHDInsightCluster
 
 ## <a name="show-cluster"></a>Mostrare cluster
-Usare il comando seguente per visualizzare i dettagli di un cluster specifico nella sottoscrizione corrente:
+Utilizzare i seguenti comandi tooshow dettagli di un cluster specifico nella sottoscrizione corrente hello hello:
 
     Get-AzureRmHDInsightCluster -ClusterName <Cluster Name>
 
 ## <a name="delete-clusters"></a>Eliminare cluster
-Utilizzare il comando seguente per eliminare un cluster:
+Utilizzare hello successivo comando toodelete un cluster:
 
     Remove-AzureRmHDInsightCluster -ClusterName <Cluster Name>
 
-È inoltre possibile eliminare un cluster rimuovendo il gruppo di risorse che lo contiene. Tenere presente che questa operazione eliminerà tutte le risorse nel gruppo, compreso l’account di archiviazione predefinito.
+Inoltre, è possibile eliminare un cluster tramite la rimozione di gruppo di risorse hello contenente cluster hello. Si noti, questa operazione eliminerà tutte le risorse di hello gruppo hello inclusi account di archiviazione predefinito hello.
 
     Remove-AzureRmResourceGroup -Name <Resource Group Name>
 
 ## <a name="scale-clusters"></a>Ridimensionare i cluster
-La funzionalità di scalabilità del cluster consente di modificare il numero di nodi del ruolo di lavoro usati da un cluster in esecuzione in Azure HDInsight senza dover ricreare il cluster.
+scalabilità funzionalità cluster di Hello consente numero hello toochange di nodi di lavoro utilizzato da un cluster che è in esecuzione in Azure HDInsight senza toore-creare cluster hello.
 
 > [!NOTE]
-> Sono supportati solo i cluster con HDInsight versione 3.1.3 o successive. Se non si è certi della versione del cluster, è possibile controllare la pagina delle proprietà.  Vedere [Elencare e visualizzare i cluster](hdinsight-administer-use-portal-linux.md#list-and-show-clusters).
+> Sono supportati solo i cluster con HDInsight versione 3.1.3 o successive. Se si è certi della versione di hello del cluster, è possibile controllare una pagina delle proprietà hello.  Vedere [Elencare e visualizzare i cluster](hdinsight-administer-use-portal-linux.md#list-and-show-clusters).
 >
 >
 
-Questa sezione descrive l'impatto della modifica del numero di nodi dati per ogni tipo di cluster supportato da HDInsight:
+impatto di Hello di modifica del numero di hello di nodi di dati per ogni tipo di cluster supportato da HDInsight:
 
 * Hadoop
 
-    È possibile aumentare facilmente il numero di nodi del ruolo di lavoro in un cluster Hadoop in esecuzione senza conseguenze per eventuali processi in sospeso o in esecuzione. È inoltre possibile inviare nuovi processi mentre è in corso l'operazione. Gli errori in un'operazione di scalabilità vengono gestiti in modo che il cluster rimanga sempre in uno stato funzionale.
+    È possibile aumentare facilmente numero hello di nodi di lavoro in un cluster Hadoop che è in esecuzione senza conseguenze per tutti i processi in sospeso o in esecuzione. È inoltre possibile avviare nuovi processi mentre è in corso hello operazione. Gli errori in un'operazione di ridimensionamento normalmente vengono gestiti in modo che hello cluster rimanga sempre in uno stato funzionale.
 
-    Quando un cluster Hadoop viene ridimensionato riducendo il numero di nodi dati, alcuni dei servizi del cluster vengono riavviati. In questo modo, tutti i processi in esecuzione e in attesa daranno esito negativo dopo il completamento dell'operazione di ridimensionamento. È tuttavia possibile inviare nuovamente i processi una volta completata l'operazione.
+    Quando un cluster Hadoop è ridotta, riducendo il numero di hello di nodi di dati, alcuni dei servizi di hello cluster hello vengono riavviati. In questo modo tutti in esecuzione e in sospeso toofail processi al completamento di hello di hello l'operazione di ridimensionamento. È tuttavia possibile inviare di nuovo i processi di hello al termine dell'operazione di hello.
 * HBase
 
-    È possibile aggiungere o rimuovere facilmente nodi nel cluster HBase mentre è in esecuzione. I server a livello di area vengono bilanciati automaticamente entro pochi minuti dal completamento dell'operazione di ridimensionamento. È tuttavia possibile anche bilanciare manualmente i server a livello di area accedendo al nodo head del cluster ed eseguendo i comandi seguenti da una finestra del prompt dei comandi:
+    Senza problemi, è possibile aggiungere o rimuovere cluster HBase di nodi tooyour mentre è in esecuzione. Server locali sono bilanciati automaticamente entro pochi minuti di completare l'operazione di ridimensionamento hello. Tuttavia, è possibile bilanciare manualmente server regionali hello accedendo toohello nodo head del cluster e in esecuzione hello seguendo i comandi da una finestra del prompt dei comandi:
 
         >pushd %HBASE_HOME%\bin
         >hbase shell
         >balancer
 * Storm
 
-    È possibile aggiungere o rimuovere facilmente nodi dati dal cluster Storm mentre è in esecuzione. Tuttavia, dopo il completamento dell'operazione di ridimensionamento, è necessario bilanciare nuovamente la topologia.
+    Senza problemi, è possibile aggiungere o rimuovere cluster Storm tooyour nodi di dati in fase di esecuzione. Tuttavia, dopo il completamento dell'operazione di ridimensionamento hello, sarà necessario topologia hello toorebalance.
 
     A tale scopo, è possibile scegliere tra due opzioni:
 
   * Interfaccia utente Web di Storm
   * Interfaccia della riga di comando (CLI)
 
-    Per altre informazioni, fare riferimento alla [documentazione su Apache Storm](http://storm.apache.org/documentation/Understanding-the-parallelism-of-a-Storm-topology.html) .
+    Consultare toohello [documentazione di Apache Storm](http://storm.apache.org/documentation/Understanding-the-parallelism-of-a-Storm-topology.html) per altri dettagli.
 
-    L'interfaccia utente Web di Storm è disponibile nel cluster HDInsight:
+    interfaccia utente web di Storm Hello è disponibile nel cluster HDInsight hello:
 
     ![Ribilanciamento scala di HDInsight Storm](./media/hdinsight-administer-use-management-portal/hdinsight.portal.scale.cluster.png)
 
-    Di seguito viene fornito un esempio d'uso del comando CLI per ribilanciare la topologia di Storm:
+    Di seguito è riportato un esempio come toouse hello CLI comando topologia di Storm toorebalance hello:
 
-        ## Reconfigure the topology "mytopology" to use 5 worker processes,
-        ## the spout "blue-spout" to use 3 executors, and
-        ## the bolt "yellow-bolt" to use 10 executors
+        ## Reconfigure hello topology "mytopology" toouse 5 worker processes,
+        ## hello spout "blue-spout" toouse 3 executors, and
+        ## hello bolt "yellow-bolt" toouse 10 executors
         $ storm rebalance mytopology -n 5 -e blue-spout=3 -e yellow-bolt=10
 
-Per modificare le dimensioni del cluster Hadoop mediante Azure PowerShell, eseguire il comando seguente da un computer client:
+hello toochange dimensioni del cluster Hadoop usando Azure PowerShell, eseguire hello comando seguente da un computer client:
 
     Set-AzureRmHDInsightClusterSize -ClusterName <Cluster Name> -TargetInstanceCount <NewSize>
 
 
 ## <a name="grantrevoke-access"></a>Concedere/Revocare l'accesso
-Per i cluster HDInsight sono disponibili i servizi Web HTTP seguenti (tutti con endpoint RESTful):
+Cluster HDInsight sono hello (tutti questi servizi hanno endpoint REST) i servizi HTTP web seguente:
 
 * ODBC
 * JDBC
@@ -124,37 +124,37 @@ Per i cluster HDInsight sono disponibili i servizi Web HTTP seguenti (tutti con 
 * Oozie
 * Templeton
 
-Per impostazione predefinita, a questi servizi è concesso l'accesso. L'accesso può essere revocato/concesso, Per revocare:
+Per impostazione predefinita, a questi servizi è concesso l'accesso. È possibile revocare o concedere l'accesso hello. toorevoke:
 
     Revoke-AzureRmHDInsightHttpServicesAccess -ClusterName <Cluster Name>
 
-Per concedere:
+toogrant:
 
     $clusterName = "<HDInsight Cluster Name>"
 
     # Credential option 1
     $hadoopUserName = "admin"
-    $hadoopUserPassword = "<Enter the Password>"
+    $hadoopUserPassword = "<Enter hello Password>"
     $hadoopUserPW = ConvertTo-SecureString -String $hadoopUserPassword -AsPlainText -Force
     $credential = New-Object System.Management.Automation.PSCredential($hadoopUserName,$hadoopUserPW)
 
     # Credential option 2
-    #$credential = Get-Credential -Message "Enter the HTTP username and password:" -UserName "admin"
+    #$credential = Get-Credential -Message "Enter hello HTTP username and password:" -UserName "admin"
 
     Grant-AzureRmHDInsightHttpServicesAccess -ClusterName $clusterName -HttpCredential $credential
 
 > [!NOTE]
-> La concessione/revoca dell'accesso implica la reimpostazione del nome utente e della password del cluster.
+> Per concedere o revocare l'accesso hello, sarà necessario reimpostare la password e nome utente di hello del cluster.
 >
 >
 
-Questa operazione può essere eseguita anche tramite il portale. Vedere l'articolo su come [amministrare HDInsight con il portale di Azure][hdinsight-admin-portal].
+Questa operazione può anche essere eseguita tramite hello portale. Vedere [HDInsight amministrare tramite hello Azure portal][hdinsight-admin-portal].
 
 ## <a name="update-http-user-credentials"></a>Aggiornare le credenziali utente HTTP
-È la stessa procedura di [Concedere/revocare l'accesso HTTP](#grant/revoke-access). Se al cluster è stato concesso l'accesso HTTP, è necessario prima revocarlo.  E quindi concedere l'accesso con le nuove credenziali utente HTTP.
+È hello stessa stored procedure come [accesso Grant/revoke HTTP](#grant/revoke-access). Se il cluster hello è stata concessa hello accesso HTTP, è necessario revocare.  E quindi concedere l'accesso di hello con nuove credenziali utente HTTP.
 
-## <a name="find-the-default-storage-account"></a>Trovare l'account di archiviazione predefinito
-Il seguente script di Powershell dimostra come ottenere il nome dell’account di archiviazione predefinito e la chiave dell’account di archiviazione predefinita per un cluster.
+## <a name="find-hello-default-storage-account"></a>Trovare l'account di archiviazione predefinito hello
+Hello lo script di Powershell seguente viene illustrato come tooget hello Nome account di archiviazione predefinito e hello chiave account di archiviazione predefinito per un cluster.
 
     $clusterName = "<HDInsight Cluster Name>"
 
@@ -165,8 +165,8 @@ Il seguente script di Powershell dimostra come ottenere il nome dell’account d
     $defaultStorageAccountKey = (Get-AzureRmStorageAccountKey -ResourceGroupName $resourceGroupName -Name $defaultStorageAccountName)[0].Value
     $defaultStorageAccountContext = New-AzureStorageContext -StorageAccountName $defaultStorageAccountName -StorageAccountKey $defaultStorageAccountKey
 
-## <a name="find-the-resource-group"></a>Trovare il gruppo di risorse
-Nella modalità Resource Manager ogni cluster HDInsight appartiene a un gruppo di risorse di Azure.  Trovare il gruppo di risorse:
+## <a name="find-hello-resource-group"></a>Trovare il gruppo di risorse hello
+In modalità di gestione risorse di hello, ogni cluster HDInsight appartiene tooan gruppo di risorse di Azure.  gruppo di risorse toofind hello:
 
     $clusterName = "<HDInsight Cluster Name>"
 
@@ -175,35 +175,35 @@ Nella modalità Resource Manager ogni cluster HDInsight appartiene a un gruppo d
 
 
 ## <a name="submit-jobs"></a>Inviare i processi
-**Inviare processi MapReduce**
+**processi MapReduce toosubmit**
 
 Vedere [esempi di MapReduce di Hadoop in HDInsight basato su Windows](hdinsight-run-samples.md).
 
-**Inviare processi Hive**
+**processi Hive toosubmit**
 
 Vedere [Esecuzione di query Hive tramite PowerShell](hdinsight-hadoop-use-hive-powershell.md)
 
-**Inviare processi Pig**
+**processi Pig toosubmit**
 
 Vedere [Eseguire processi Pig mediante PowerShell](hdinsight-hadoop-use-pig-powershell.md).
 
-**Inviare processi Sqoop**
+**toosubmit Sqoop processi**
 
 Vedere [Usare Sqoop con Hadoop in HDInsight](hdinsight-use-sqoop.md).
 
-**Inviare processi Oozie**
+**processi di Oozie toosubmit**
 
-Vedere [Usare Oozie con Hadoop per definire ed eseguire un flusso di lavoro in HDInsight](hdinsight-use-oozie.md).
+Vedere [utilizzare Oozie con Hadoop toodefine ed eseguire un flusso di lavoro in HDInsight](hdinsight-use-oozie.md).
 
-## <a name="upload-data-to-azure-blob-storage"></a>Caricare dati nell'archivio BLOB di Azure
-Vedere[Caricare dati in HDInsight][hdinsight-upload-data].
+## <a name="upload-data-tooazure-blob-storage"></a>Carica l'archiviazione Blob di dati tooAzure
+Vedere [caricare dati tooHDInsight][hdinsight-upload-data].
 
 ## <a name="see-also"></a>Vedere anche
 * [Documentazione di riferimento dei cmdlet di HDInsight][hdinsight-powershell-reference]
-* [Amministrare HDInsight con il portale di Azure][hdinsight-admin-portal]
+* [Amministrazione di HDInsight tramite hello portale di Azure][hdinsight-admin-portal]
 * [Amministrare HDInsight con l'interfaccia della riga di comando][hdinsight-admin-cli]
 * [Creare cluster HDInsight][hdinsight-provision]
-* [Caricare dati in HDInsight][hdinsight-upload-data]
+* [Caricare dati tooHDInsight][hdinsight-upload-data]
 * [Inviare processi Hadoop a livello di codice][hdinsight-submit-jobs]
 * [Introduzione ad Azure HDInsight][hdinsight-get-started]
 

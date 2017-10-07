@@ -1,6 +1,6 @@
 ---
-title: Gestire le acquisizioni di pacchetti con Azure Network Watcher - Interfaccia della riga di comando di Azure 2.0 | Microsoft Docs
-description: "Questa pagina illustra come gestire la funzionalità di acquisizione di pacchetti di Network Watcher usando l'interfaccia della riga di comando di Azure 2.0"
+title: acquisizioni di pacchetti aaaManage con Watcher di rete di Azure - CLI di Azure 2.0 | Documenti Microsoft
+description: "Questa pagina viene illustrato come toomanage hello funzionalità di acquisizione di pacchetti di controllo di rete mediante Azure CLI 2.0"
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
-ms.openlocfilehash: c94eb46f31f2f19b843ccd7bf77b8a39943a07d4
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d19cb7d0ca3b7a9bc0546859e07ef6d4df4f42d3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="manage-packet-captures-with-azure-network-watcher-using-azure-cli-20"></a>Gestire le acquisizioni di pacchetti con Azure Network Watcher usando l'interfaccia della riga di comando di Azure 2.0
 
@@ -29,13 +29,13 @@ ms.lasthandoff: 07/11/2017
 > - [Interfaccia della riga di comando 2.0](network-watcher-packet-capture-manage-cli.md)
 > - [API REST di Azure](network-watcher-packet-capture-manage-rest.md)
 
-Il servizio di acquisizione di pacchetti di Network Watcher consente di creare sessioni di acquisizione per registrare il traffico da e verso una macchina virtuale. Sono disponibili filtri per la sessione di acquisizione per garantire che venga acquisito solo il traffico desiderato. Il servizio di acquisizione di pacchetti consente di individuare eventuali anomalie di rete in modo proattivo e reattivo. Altri utilizzi comprendono la raccolta di statistiche di rete, informazioni sulle intrusioni nella rete, debug delle comunicazioni client-server e molto altro ancora. La possibilità di attivare da remoto l'acquisizione di pacchetti evita di dover eseguire manualmente questa operazione sul computer desiderato, consentendo un notevole risparmio di tempo.
+Acquisizione di pacchetti di rete Watcher consente tooand toocreate acquisizione sessioni tootrack traffico da una macchina virtuale. I filtri vengono forniti per hello acquisizione sessione tooensure che si acquisisce solo il traffico hello desiderato. Acquisizione di pacchetti consente toodiagnose anomalie di rete in modo proattivo e reattivo. Altri usi includono la raccolta di statistiche di rete, ottenere informazioni su intrusioni di rete, client-server toodebug le comunicazioni e molto altro ancora. Essendo in grado di tooremotely trigger pacchetto acquisizioni, questa funzionalità semplifica il carico di hello dell'esecuzione di acquisizione pacchetto eseguita manualmente e nel computer desiderato hello, che consente di risparmiare tempo prezioso.
 
-Questo articolo usa l'interfaccia della riga di comando di nuova generazione per il modello di distribuzione di gestione delle risorse, ovvero l'interfaccia della riga di comando di Azure 2.0, disponibile per Windows, Mac e Linux.
+In questo articolo utilizza la nuova generazione CLI per modello di distribuzione Gestione risorse hello, CLI di Azure 2.0, che è disponibile per Windows, Mac e Linux.
 
-Per eseguire i passaggi indicati in questo articolo è necessario [installare l'interfaccia della riga di comando di Azure per Mac, Linux e Windows (interfaccia della riga di comando di Azure)](https://docs.microsoft.com/en-us/cli/azure/install-az-cli2).
+hello tooperform i passaggi in questo articolo, è necessario troppo[installare hello interfaccia della riga di comando di Azure per Mac, Linux e Windows (Azure CLI)](https://docs.microsoft.com/en-us/cli/azure/install-az-cli2).
 
-Questo articolo illustra le diverse attività di gestione attualmente disponibili per l'acquisizione di pacchetti.
+In questo articolo illustra hello diverse operazioni di gestione che sono attualmente disponibili per l'acquisizione di pacchetti.
 
 - [**Avviare un'acquisizione di pacchetti**](#start-a-packet-capture)
 - [**Interrompere un'acquisizione di pacchetti**](#stop-a-packet-capture)
@@ -44,19 +44,19 @@ Questo articolo illustra le diverse attività di gestione attualmente disponibil
 
 ## <a name="before-you-begin"></a>Prima di iniziare
 
-Questo articolo presuppone che l'utente disponga delle risorse seguenti:
+Questo articolo si presuppone di che aver hello seguenti risorse:
 
-- Un'istanza di Network Watcher nell'area in cui creare un'acquisizione di pacchetti.
-- Una macchina virtuale con l'estensione di acquisizione di pacchetti abilitata.
+- Un'istanza del controllo di rete nell'area di hello desiderato toocreate un'acquisizione pacchetti
+- Una macchina virtuale con i pacchetti hello acquisire estensione abilitata.
 
 > [!IMPORTANT]
-> L'acquisizione di pacchetti richiede un agente in esecuzione nella macchina virtuale. L'agente viene installato come estensione. Per informazioni sulle estensioni di VM, leggere l'articolo sulle [estensioni e funzionalità della macchina virtuale](../virtual-machines/windows/extensions-features.md).
+> Acquisizione pacchetto richiede toobe un agente in esecuzione nella macchina virtuale hello. Hello agente viene installato come un'estensione. Per informazioni sulle estensioni di VM, leggere l'articolo sulle [estensioni e funzionalità della macchina virtuale](../virtual-machines/windows/extensions-features.md).
 
 ## <a name="install-vm-extension"></a>Installare un'estensione di macchina virtuale
 
 ### <a name="step-1"></a>Passaggio 1
 
-Eseguire il cmdlet `az vm extension set` per installare l'agente di acquisizione di pacchetti sulla macchina virtuale guest.
+Eseguire hello `az vm extension set` agente cmdlet tooinstall hello pacchetto acquisizione sulla macchina virtuale guest di hello.
 
 Per le macchine virtuali Windows:
 
@@ -72,13 +72,13 @@ az vm extension set --resource-group resourceGroupName --vm-name virtualMachineN
 
 ### <a name="step-2"></a>Passaggio 2
 
-Per verificare che l'agente sia stato installato, eseguire il cmdlet `vm extension get` e passare il gruppo di risorse e il nome della macchina virtuale. Controllare l'elenco risultante per verificare l'installazione dell'agente.
+tooensure che hello agente è installato, eseguire hello `vm extension get` cmdlet e passarlo a gruppo di risorse hello e nome della macchina virtuale. Controllare hello risultante elenco tooensure hello agente è installato.
 
 ```azurecli
 az vm extension show -resource-group resourceGroupName --vm-name virtualMachineName --name NetworkWatcherAgentWindows
 ```
 
-L'esempio seguente riporta una possibile risposta all'esecuzione di `az vm extension show`.
+Hello di esempio seguente è riportato un esempio di risposta hello esecuzione`az vm extension show`
 
 ```json
 {
@@ -102,11 +102,11 @@ L'esempio seguente riporta una possibile risposta all'esecuzione di `az vm exten
 
 ## <a name="start-a-packet-capture"></a>Avviare un'acquisizione di pacchetti
 
-Dopo aver completato i passaggi precedenti, l'agente di acquisizione di pacchetti è installato nella macchina virtuale.
+Una volta hello passaggi precedenti, agente di acquisizione di pacchetti hello è installato nella macchina virtuale hello.
 
 ### <a name="step-1"></a>Passaggio 1
 
-Il passaggio successivo consente di recuperare l'istanza di Network Watcher. Il nome dell'istanza di Network Watcher viene passato al cmdlet `az network watcher show` nel passaggio 4.
+passaggio successivo Hello è istanza di tooretrieve hello Watcher di rete. Il nome TImpossibile di hello Watcher di rete viene passato toohello `az network watcher show` cmdlet nel passaggio 4.
 
 ```azurecli
 az network watcher show -resource-group resourceGroup -name networkWatcherName
@@ -114,7 +114,7 @@ az network watcher show -resource-group resourceGroup -name networkWatcherName
 
 ### <a name="step-2"></a>Passaggio 2
 
-Recuperare un account di archiviazione. L'account di archiviazione viene usato per archiviare il file di acquisizione di pacchetti.
+Recuperare un account di archiviazione. Questo account di archiviazione è file di acquisizione di pacchetti hello toostore utilizzato.
 
 ```azurecli
 azure storage account list
@@ -122,13 +122,13 @@ azure storage account list
 
 ### <a name="step-3"></a>Passaggio 3
 
-È possibile usare i filtri per limitare i dati archiviati dall'acquisizione di pacchetti. L'esempio seguente imposta un'acquisizione di pacchetto con diversi filtri.  I primi tre filtri acquisiscono il traffico TCP in uscita solo dall'indirizzo IP 10.0.0.3 verso le porte di destinazione 20, 80 e 443.  L'ultimo filtro acquisisce solo il traffico UDP.
+I filtri possono essere utilizzati toolimit hello i dati archiviati dall'acquisizione di pacchetti hello. Hello questo esempio viene impostata un'acquisizione pacchetto con diversi filtri.  Hello innanzitutto tre filtri raccolgono il traffico TCP in uscita solo da indirizzo IP locale 10.0.0.3 toodestination porte 20, 80 e 443.  ultimo filtro Hello raccoglie solo il traffico UDP.
 
 ```azurecli
 az network watcher packet-capture create --resource-group {resoureceurceGroupName} --vm {vmName} --name packetCaptureName --storage-account gwteststorage123abc --filters "[{\"protocol\":\"TCP\", \"remoteIPAddress\":\"1.1.1.1-255.255.255\",\"localIPAddress\":\"10.0.0.3\", \"remotePort\":\"20\"},{\"protocol\":\"TCP\", \"remoteIPAddress\":\"1.1.1.1-255.255.255\",\"localIPAddress\":\"10.0.0.3\", \"remotePort\":\"80\"},{\"protocol\":\"TCP\", \"remoteIPAddress\":\"1.1.1.1-255.255.255\",\"localIPAddress\":\"10.0.0.3\", \"remotePort\":\"443\"},{\"protocol\":\"UDP\"}]"
 ```
 
-L'esempio seguente riporta l'output previsto dall'esecuzione del cmdlet `az network watcher packet-capture create`.
+esempio Hello è output di hello prevista dell'esecuzione hello `az network watcher packet-capture create` cmdlet.
 
 ```json
 {
@@ -183,13 +183,13 @@ roviders/microsoft.compute/virtualmachines/{vmName}/2017/05/25/packetcapture_16_
 
 ## <a name="get-a-packet-capture"></a>Ottenere un'acquisizione di pacchetti
 
-L'esecuzione del cmdlet `az network watcher packet-capture show` consente di recuperare lo stato di un'acquisizione di pacchetti attualmente in esecuzione o completata.
+Esecuzione hello `az network watcher packet-capture show` cmdlet recupera informazioni sullo stato hello di un'acquisizione di pacchetti attualmente in esecuzione o è stata completata.
 
 ```azurecli
 az network watcher packet-capture show --name packetCaptureName --location westcentralus
 ```
 
-L'esempio seguente riporta l'output ottenuto dall'esecuzione del cmdlet `az network watcher packet-capture show`. L'esempio seguente mostra il risultato ottenuto al completamento dell'acquisizione di pacchetti. Il valore PacketCaptureStatus è Stopped, mentre il valore StopReason corrisponde a TimeExceeded. Questo valore indica che l'acquisizione di pacchetti ha avuto esito positivo ed è stata eseguita per il tempo necessario.
+esempio Hello è output hello hello `az network watcher packet-capture show` cmdlet. Hello seguito è riportata al termine dell'acquisizione hello. valore PacketCaptureStatus Hello viene arrestato, con un StopReason di TimeExceeded. Questo valore indica che acquisizione pacchetti hello ha avuto esito positivo e il tempo di esecuzione.
 
 ```
 {
@@ -243,14 +243,14 @@ ure_16_22_34_630.cap"
 
 ## <a name="stop-a-packet-capture"></a>Interrompere un'acquisizione di pacchetti
 
-L'esecuzione del cmdlet `az network watcher packet-capture stop` consente di interrompere un'acquisizione di pacchetti in corso.
+Eseguendo hello `az network watcher packet-capture stop` cmdlet, se una sessione di acquisizione è in corso viene arrestata.
 
 ```azurecli
 az network watcher packet-capture stop --name packetCaptureName --location westcentralus
 ```
 
 > [!NOTE]
-> Il cmdlet non restituisce alcuna risposta se eseguito in una sessione di acquisizione in corso o in una sessione esistente che è già stata interrotta.
+> cmdlet di Hello non restituisce alcuna risposta quando è stato eseguito in una sessione di acquisizione attualmente in esecuzione o di una sessione esistente che è già stato arrestato.
 
 ## <a name="delete-a-packet-capture"></a>Eliminare un'acquisizione di pacchetti
 
@@ -259,13 +259,13 @@ az network watcher packet-capture delete --name packetCaptureName --location wes
 ```
 
 > [!NOTE]
-> L'eliminazione di un'acquisizione di pacchetti non elimina il file nell'account di archiviazione.
+> L'eliminazione di un'acquisizione di pacchetti non elimina il file hello nell'account di archiviazione hello.
 
 ## <a name="download-a-packet-capture"></a>Scaricare un'acquisizione di pacchetti
 
-Dopo aver completato la sessione di acquisizione di pacchetti, è possibile scaricare il file di acquisizione nell'archiviazione BLOB o in un file locale nella macchina virtuale. La posizione di archiviazione dell'acquisizione di pacchetti viene definita al momento della creazione della sessione. Uno strumento utile per accedere ai file di acquisizione salvati in un account di archiviazione è Esplora archivi di Microsoft Azure, disponibile qui: http://storageexplorer.com/
+Una volta completata la sessione di acquisizione di pacchetti, hello acquisizione file può essere caricato tooblob tooa o archiviazione locale nella macchina virtuale hello. percorso di archiviazione Hello dell'acquisizione di pacchetti hello è definito al momento della creazione della sessione hello. Tooaccess un utile strumento questi file di acquisizione di account di archiviazione tooa salvato è Microsoft Azure Storage Explorer, che può essere scaricata qui: http://storageexplorer.com/
 
-Se viene specificato un account di archiviazione, i file di acquisizione di pacchetti vengono salvati in un account di archiviazione nel percorso seguente:
+Se viene specificato un account di archiviazione, i file di acquisizione dei pacchetti vengono salvati tooa account di archiviazione in hello seguente posizione:
 
 ```
 https://{storageAccountName}.blob.core.windows.net/network-watcher-logs/subscriptions/{subscriptionId}/resourcegroups/{storageAccountResourceGroup}/providers/microsoft.compute/virtualmachines/{VMName}/{year}/{month}/{day}/packetCapture_{creationTime}.cap
@@ -273,7 +273,7 @@ https://{storageAccountName}.blob.core.windows.net/network-watcher-logs/subscrip
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Per altre informazioni su come automatizzare le acquisizioni di pacchetti tramite gli avvisi della macchina virtuale, leggere l'articolo su come [creare un'acquisizione di pacchetti attivata da un avviso](network-watcher-alert-triggered-packet-capture.md).
+Informazioni su come acquisizioni di pacchetti tooautomate con gli avvisi di macchina virtuale visualizzando [creare un'acquisizione pacchetto attivati avvisi](network-watcher-alert-triggered-packet-capture.md)
 
 Per stabilire se un traffico specificato è consentito all'interno o all'esterno di una macchina virtuale, vedere [Check IP flow verify](network-watcher-check-ip-flow-verify-portal.md) (Controllare la verifica del flusso IP).
 

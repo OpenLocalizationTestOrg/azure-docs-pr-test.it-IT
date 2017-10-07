@@ -1,6 +1,6 @@
 ---
-title: Informazioni su come gestire i servizi Web di AzureML con Gestione API | Documentazione Microsoft
-description: Guida che mostra come gestire i servizi Web di AzureML con Gestione API.
+title: aaaLearn come toomanage Azure ml web services tramite Gestione API | Documenti Microsoft
+description: Una Guida che illustra come toomanage Azure ml web services tramite Gestione API.
 keywords: apprendimento automatico, gestione api
 services: machine-learning
 documentationcenter: 
@@ -15,112 +15,112 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/19/2017
 ms.author: roalexan
-ms.openlocfilehash: 65eff3f4971f79886a840bb19bf76aaab48878de
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6e764fbfd71be6cc908a1c8d3d8889969fc651a1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="learn-how-to-manage-azureml-web-services-using-api-management"></a>Informazioni su come gestire i servizi Web di AzureML con Gestione API
-## <a name="overview"></a>Overview
-Questa guida illustra le procedure per iniziare subito a usare Gestione API per gestire i servizi Web di AzureML.
+# <a name="learn-how-toomanage-azureml-web-services-using-api-management"></a>Informazioni su come toomanage Azure ml web services tramite Gestione API
+## <a name="overview"></a>Panoramica
+Questa guida illustra come tooquickly informazioni introduttive sull'utilizzo di servizi web di Azure ml toomanage gestione API.
 
 ## <a name="what-is-azure-api-management"></a>Cos'è Gestione API di Azure?
-Gestione API di Azure è un servizio di Azure che consente di gestire gli endpoint dell'API REST definendo l'accesso utente, la limitazione all'utilizzo e il monitoraggio del dashboard. Per informazioni dettagliate su Gestione API di Azure, fare clic [qui](https://azure.microsoft.com/services/api-management/) . Per una guida introduttiva a Gestione API di Azure, fare clic [qui](../api-management/api-management-get-started.md) . L'altra guida, su cui è basata questa, tratta più argomenti, tra cui le configurazioni delle notifiche, il livello di prezzo, la gestione delle risposte, l'autenticazione utente, la creazione di prodotti, le sottoscrizioni per sviluppatori e il dashboarding dell'uso.
+Gestione API di Azure è un servizio di Azure che consente di gestire gli endpoint dell'API REST definendo l'accesso utente, la limitazione all'utilizzo e il monitoraggio del dashboard. Per informazioni dettagliate su Gestione API di Azure, fare clic [qui](https://azure.microsoft.com/services/api-management/) . Fare clic su [qui](../api-management/api-management-get-started.md) per una Guida per la modalità di avvio tooget con gestione API di Azure. L'altra guida, su cui è basata questa, tratta più argomenti, tra cui le configurazioni delle notifiche, il livello di prezzo, la gestione delle risposte, l'autenticazione utente, la creazione di prodotti, le sottoscrizioni per sviluppatori e il dashboarding dell'uso.
 
 ## <a name="what-is-azureml"></a>Informazioni su AzureML
-AzureML è un servizio di Azure basato su Machine Learning che consente di compilare, distribuire e condividere facilmente soluzioni di analisi avanzate. Per informazioni dettagliate su AzureML, fare clic [qui](https://azure.microsoft.com/services/machine-learning/) .
+Azure ml è un servizio di Azure per l'apprendimento automatico che consente la compilazione tooeasily, distribuire e condividere soluzioni analitica avanzate. Per informazioni dettagliate su AzureML, fare clic [qui](https://azure.microsoft.com/services/machine-learning/) .
 
 ## <a name="prerequisites"></a>Prerequisiti
-Per completare questa guida, è necessario:
+toocomplete questa Guida, è necessario:
 
-* Un account Azure. Se non si dispone di un account Azure, fare clic [qui](https://azure.microsoft.com/pricing/free-trial/) per informazioni dettagliate su come creare un account di prova gratuito.
-* Un account AzureML. Se non si dispone di un account AzureML, fare clic [qui](https://studio.azureml.net/) per informazioni dettagliate su come creare un account di prova gratuito.
-* L'area di lavoro, il servizio e l'api_key per un esperimento di AzureML distribuito come servizio web. Per informazioni dettagliate su come creare un esperimento di AzureML, fare clic [qui](machine-learning-create-experiment.md) . Per informazioni dettagliate su come distribuire un esperimento di AzureML come servizio Web, fare clic [qui](machine-learning-publish-a-machine-learning-web-service.md) . In alternativa, l'Appendice A contiene le istruzioni per creare e testare un semplice esperimento di AzureML e distribuirlo come servizio Web.
+* Un account Azure. Se non si dispone di un account Azure, fare clic su [qui](https://azure.microsoft.com/pricing/free-trial/) per informazioni dettagliate su come toocreate un account di prova.
+* Un account AzureML. Se non si dispone di un account di Azure ml, fare clic su [qui](https://studio.azureml.net/) per informazioni dettagliate su come toocreate un account di prova.
+* area di lavoro Hello e del servizio api_key per un esperimento di Azure ml distribuito come servizio web. Fare clic su [qui](machine-learning-create-experiment.md) per informazioni dettagliate sulla modalità di sperimentare toocreate un Azure ml. Fare clic su [qui](machine-learning-publish-a-machine-learning-web-service.md) per informazioni dettagliate su come toodeploy un Azure ml esperimento come servizio web. In alternativa, nell'appendice contiene istruzioni di toocreate test un Azure ml semplice esperimento ed e distribuirla come servizio web.
 
 ## <a name="create-an-api-management-instance"></a>Creare un'istanza di Gestione API
-Di seguito sono riportati i passaggi per gestire il servizio Web di AzureML con Gestione API. Creare innanzitutto un'istanza del servizio. Accedere al [portale classico](https://manage.windowsazure.com/) e fare clic su **Nuovo** > **Servizi app** > **Gestione API** > **Crea**.
+Di seguito sono passaggi hello per l'utilizzo di gestione API toomanage il servizio web di Azure ml. Creare innanzitutto un'istanza del servizio. Accedi toohello [portale classico](https://manage.windowsazure.com/) e fare clic su **New** > **servizi App** > **gestione API**  >  **Creare**.
 
 ![create-instance](./media/machine-learning-manage-web-service-endpoints-using-api-management/create-instance.png)
 
-Specificare un **URL**univoco. Questa guida usa **demoazureml** : sarà necessario sceglierne uno diverso. Scegliere **Sottoscrizione** e **Area** per l'istanza del servizio. Una volta effettuate le selezioni, fare clic sul pulsante Avanti.
+Specificare un **URL**univoco. Questa Guida usa **demoazureml** – toochoose sarà necessario un valore diverso. Scegliere hello desiderato **sottoscrizione** e **area** per l'istanza del servizio. Dopo aver effettuato le selezioni, fare clic sul pulsante Avanti hello.
 
 ![create-service-1](./media/machine-learning-manage-web-service-endpoints-using-api-management/create-service-1.png)
 
-Specificare un valore per **Nome organizzazione**. Questa guida usa **demoazureml** : sarà necessario sceglierne uno diverso. Immettere l'indirizzo di posta elettronica nel campo **Indirizzo di posta elettronica dell'amministratore** . Questo indirizzo di posta elettronica viene usato per le notifiche inviate dal sistema Gestione API.
+Specificare un valore per hello **nome organizzazione**. Questa Guida usa **demoazureml** – toochoose sarà necessario un valore diverso. Immettere l'indirizzo di posta elettronica in hello **posta elettronica amministratore** campo. Questo indirizzo di posta elettronica viene utilizzato per notifiche da hello sistema gestione API.
 
 ![create-service-2](./media/machine-learning-manage-web-service-endpoints-using-api-management/create-service-2.png)
 
-Selezionare la casella di controllo per creare l'istanza del servizio. *La creazione di un nuovo servizio richiede fino a trenta minuti*.
+Fare clic su hello casella di controllo toocreate all'istanza del servizio. *Occupi toothirty minuti per un nuovo toobe servizio creato*.
 
-## <a name="create-the-api"></a>Creare l'API
-Dopo aver creato l'istanza del servizio, l'operazione successiva consiste nel creare l'API. Un'API rappresenta un set di operazioni che possono essere richiamate da un'applicazione client. Le operazioni API vengono trasmesse tramite proxy ai servizi Web esistenti. Questa guida crea le API che usano un proxy per i servizi Web RRS e BES di AzureML esistenti.
+## <a name="create-hello-api"></a>Creare API hello
+Una volta creata l'istanza del servizio hello, hello sarà toocreate hello API. Un'API rappresenta un set di operazioni che possono essere richiamate da un'applicazione client. Le operazioni dell'API sono servizi web tooexisting elaborate. Questa Guida consente di creare le API che toohello proxy AzureML RRS e BES servizi web esistenti.
 
-Le API vengono create e configurate dal portale di pubblicazione delle API, accessibile dal portale di Azure classico. Per raggiungere il portale di pubblicazione, selezionare l'istanza del servizio.
+API create e configurate dal portale di pubblicazione di hello API, è possibile accedervi tramite hello portale classico di Azure. tooreach hello selezionare portale, server di pubblicazione all'istanza del servizio.
 
 ![select-service-instance](./media/machine-learning-manage-web-service-endpoints-using-api-management/select-service-instance.png)
 
-Fare clic su **Gestisci** nel portale di Azure classico per il servizio Gestione API.
+Fare clic su **Gestisci** in hello portale classico di Azure per il servizio Gestione API.
 
 ![manage-service](./media/machine-learning-manage-web-service-endpoints-using-api-management/manage-service.png)
 
-Fare clic su **API** dal menu **Gestione API** sulla sinistra, quindi scegliere **Aggiungi API**.
+Fare clic su **API** da hello **gestione API** menu hello a sinistra e quindi fare clic su **aggiungere API**.
 
 ![api-management-menu](./media/machine-learning-manage-web-service-endpoints-using-api-management/api-management-menu.png)
 
-Digitare **AzureML Demo API** in **Nome API Web**. Digitare **https://ussouthcentral.services.azureml.net** in **URL del servizio Web**. Digitare **azureml-demo** in **Web API URL suffix** (Suffisso URL API Web). Selezionare **HTTPS** come schema dell'**URL API Web**. Selezionare **Starter** (Avviatore) in **Prodotti**. Al termine, fare clic su **Salva** per creare l'API.
+Tipo **API di Azure ml Demo** come hello **nome API Web**. Tipo **https://ussouthcentral.services.azureml.net** come hello **URL servizio Web**. Tipo **demo di Azure ml** come hello **suffisso URL dell'API Web**. Controllare **HTTPS** come hello **l'URL dell'API Web** schema. Selezionare **Starter** (Avviatore) in **Prodotti**. Al termine, fare clic su **salvare** toocreate hello API.
 
 ![add-new-api](./media/machine-learning-manage-web-service-endpoints-using-api-management/add-new-api.png)
 
-## <a name="add-the-operations"></a>Aggiungere le operazioni
-Fare clic su **Aggiungi operazione** per aggiungere operazioni a questa API.
+## <a name="add-hello-operations"></a>Aggiungere le operazioni di hello
+Fare clic su **l'operazione di aggiunta** tooadd operazioni toothis API.
 
 ![add-operation](./media/machine-learning-manage-web-service-endpoints-using-api-management/add-operation.png)
 
-Verrà visualizzata la finestra **Nuova operazione** in cui la scheda **Firma** è selezionata per impostazione predefinita.
+Hello **nuova operazione** finestra verranno visualizzate e hello **firma** scheda verrà selezionata per impostazione predefinita.
 
 ## <a name="add-rrs-operation"></a>Aggiungere un'operazione RRS
-Creare innanzitutto un'operazione per il servizio RRS di AzureML. Selezionare **POST** come **Verbo HTTP**. Digitare **/workspaces/{areadilavoro}/services/{servizio}/execute?api-version={versioneapi}&details={dettagli}** come **Modello di URL**. Digitare **RRS Execute** in **Nome visualizzato**.
+Creare innanzitutto un'operazione per il servizio AzureML RRS hello. Selezionare **POST** come hello **verbo HTTP**. Tipo **/workspaces/ {area di lavoro} / Services / {servizio} / execute? api-version = {apiversion} & dettagli = {dettagli}** come hello **modello di URL**. Tipo **RR eseguire** come hello **nome visualizzato**.
 
 ![add-rrs-operation-signature](./media/machine-learning-manage-web-service-endpoints-using-api-management/add-rrs-operation-signature.png)
 
-Fare clic su **Risposte** > **AGGIUNGI** a sinistra e selezionare **200 OK**. Fare clic su **Salva** per salvare questa operazione.
+Fare clic su **risposte** > **aggiungere** su hello a sinistra e seleziona **200 OK**. Fare clic su **salvare** toosave questa operazione.
 
 ![add-rrs-operation-response](./media/machine-learning-manage-web-service-endpoints-using-api-management/add-rrs-operation-response.png)
 
 ## <a name="add-bes-operations"></a>Aggiungere operazioni BES
-Non sono incluse schermate per le operazioni di BES perché sono molto simili a quelle per l'aggiunta dell'operazione RRS.
+Schermate non sono incluse per hello operazioni BES come se fossero toothose molto simili per l'aggiunta di operazione RR hello.
 
 ### <a name="submit-but-not-start-a-batch-execution-job"></a>Inviare (ma non avviare) un processo di esecuzione in batch
-Fare clic su **aggiungi operazione** per aggiungere l'operazione BES di AzureML all'API. Selezionare **POST** in **Verbo HTTP**. Digitare **/workspaces/{areadilavoro}/services/{servizio}/jobs?api-version={versioneapi}** in **Modello URL**. Digitare **BES Submit** in **Nome visualizzato**. Fare clic su **Risposte** > **AGGIUNGI** a sinistra e selezionare **200 OK**. Fare clic su **Salva** per salvare questa operazione.
+Fare clic su **l'operazione di aggiunta** tooadd hello Azure ml BES operazione toohello API. Selezionare **POST** per hello **verbo HTTP**. Tipo **/workspaces/ {area di lavoro} / Services / {servizio} / processi? api-version = {apiversion}** per hello **modello di URL**. Tipo **inviare BES** per hello **nome visualizzato**. Fare clic su **risposte** > **aggiungere** su hello a sinistra e seleziona **200 OK**. Fare clic su **salvare** toosave questa operazione.
 
 ### <a name="start-a-batch-execution-job"></a>Avviare un processo di esecuzione in batch
-Fare clic su **aggiungi operazione** per aggiungere l'operazione BES di AzureML all'API. Selezionare **POST** in **Verbo HTTP**. Digitare **/workspaces/{areadilavoro}/services/{servizio}/jobs/{jobid}/start?api-version={versioneapi}** in **Modello URL**. Digitare **BES Start** in **Nome visualizzato**. Fare clic su **Risposte** > **AGGIUNGI** a sinistra e selezionare **200 OK**. Fare clic su **Salva** per salvare questa operazione.
+Fare clic su **l'operazione di aggiunta** tooadd hello Azure ml BES operazione toohello API. Selezionare **POST** per hello **verbo HTTP**. Tipo **/workspaces/ {area di lavoro} / Services / {servizio} /jobs/ {jobid} / avvia? api-version = {apiversion}** per hello **modello di URL**. Tipo **avviare BES** per hello **nome visualizzato**. Fare clic su **risposte** > **aggiungere** su hello a sinistra e seleziona **200 OK**. Fare clic su **salvare** toosave questa operazione.
 
-### <a name="get-the-status-or-result-of-a-batch-execution-job"></a>Ottenere lo stato o il risultato di un processo di esecuzione del Batch
-Fare clic su **aggiungi operazione** per aggiungere l'operazione BES di AzureML all'API. Selezionare **GET** in **Verbo HTTP**. Digitare **/workspaces/{areadilavoro}/services/{servizio}/jobs/{jobid}?api-version={versioneapi}** in **Modello URL**. Digitare **BES Status** in **Nome visualizzato**. Fare clic su **Risposte** > **AGGIUNGI** a sinistra e selezionare **200 OK**. Fare clic su **Salva** per salvare questa operazione.
+### <a name="get-hello-status-or-result-of-a-batch-execution-job"></a>Ottenere lo stato di hello o il risultato di un processo di esecuzione Batch
+Fare clic su **l'operazione di aggiunta** tooadd hello Azure ml BES operazione toohello API. Selezionare **ottenere** per hello **verbo HTTP**. Tipo **/workspaces/ {area di lavoro} / Services / {servizio} /jobs/ {jobid}? api-version = {apiversion}** per hello **modello di URL**. Tipo **stato BES** per hello **nome visualizzato**. Fare clic su **risposte** > **aggiungere** su hello a sinistra e seleziona **200 OK**. Fare clic su **salvare** toosave questa operazione.
 
 ### <a name="delete-a-batch-execution-job"></a>Eliminare un processo di esecuzione in batch
-Fare clic su **aggiungi operazione** per aggiungere l'operazione BES di AzureML all'API. Selezionare **DELETE** in **Verbo HTTP**. Digitare **/workspaces/{areadilavoro}/services/{servizio}/jobs/{jobid}?api-version={versioneapi}** in **Modello URL**. Digitare **BES Delete** in **Nome visualizzato**. Fare clic su **Risposte** > **AGGIUNGI** a sinistra e selezionare **200 OK**. Fare clic su **Salva** per salvare questa operazione.
+Fare clic su **l'operazione di aggiunta** tooadd hello Azure ml BES operazione toohello API. Selezionare **eliminare** per hello **verbo HTTP**. Tipo **/workspaces/ {area di lavoro} / Services / {servizio} /jobs/ {jobid}? api-version = {apiversion}** per hello **modello di URL**. Tipo **eliminare BES** per hello **nome visualizzato**. Fare clic su **risposte** > **aggiungere** su hello a sinistra e seleziona **200 OK**. Fare clic su **salvare** toosave questa operazione.
 
-## <a name="call-an-operation-from-the-developer-portal"></a>Chiamare un'operazione dal portale per sviluppatori
-È possibile chiamare le operazioni direttamente dal portale per sviluppatori, che consente di visualizzare e testare le operazioni di un'API in tutta comodità. In questo passaggio della guida si chiamerà il metodo **RRS Execute** aggiunto all'**AzureML Demo API**. Fare clic su **Portale per sviluppatori** nel menu in alto a destra del portale classico.
+## <a name="call-an-operation-from-hello-developer-portal"></a>Chiamare un'operazione dal portale per sviluppatori hello
+Operazioni possono essere chiamate direttamente dal portale per sviluppatori di hello, che fornisce un modo pratico di tooview e testare il funzionamento di hello di un'API. In questo passaggio Guida si chiamerà hello **RR eseguire** metodo che è stato aggiunto toohello **API di Azure ml Demo**. Fare clic su **portale per sviluppatori** dal menu hello hello in alto a destra di hello portale classico.
 
 ![developer-portal](./media/machine-learning-manage-web-service-endpoints-using-api-management/developer-portal.png)
 
-Fare clic su **API** nel menu superiore e quindi su **AzureML Demo API** per visualizzare le operazioni disponibili.
+Fare clic su **API** dal menu superiore hello e quindi fare clic su **API di Azure ml Demo** operazioni hello toosee disponibili.
 
 ![demoazureml-api](./media/machine-learning-manage-web-service-endpoints-using-api-management/demoazureml-api.png)
 
-Selezionare **RRS Execute** come operazione. Fare clic su **Prova**.
+Selezionare **RR eseguire** per l'operazione di hello. Fare clic su **Prova**.
 
 ![try-it](./media/machine-learning-manage-web-service-endpoints-using-api-management/try-it.png)
 
-Per i parametri della richiesta, digitare l'**area di lavoro**, il **servizio**, **2.0** per la **versione API** e **true** per i **dettagli**. È possibile trovare l'**area di lavoro** e il **servizio** nel dashboard del servizio Web di AzureML (vedere **Testare il servizio Web** nell'Appendice A).
+Per i parametri di richiesta, digitare il **dell'area di lavoro**, **servizio**, **2.0** per hello **apiversion**, e **true**per hello **dettagli**. È possibile trovare il **dell'area di lavoro** e **servizio** nel dashboard del servizio web di Azure ml hello (vedere **Test servizio web hello** nell'appendice).
 
-Per le intestazioni della richiesta, fare clic su **Aggiungi intestazione**, digitare **Content-Type** e **application/json**, quindi fare clic su **Aggiungi intestazione** e digitare **Authorization** e **Bearer <YOUR AZUREML SERVICE API-KEY>**. È possibile trovare la **chiave API** nel dashboard del servizio Web di AzureML (vedere **Testare il servizio Web** nell'Appendice A).
+Per le intestazioni della richiesta, fare clic su **Aggiungi intestazione**, digitare **Content-Type** e **application/json**, quindi fare clic su **Aggiungi intestazione** e digitare **Authorization** e **Bearer <YOUR AZUREML SERVICE API-KEY>**. È possibile trovare il **chiave api** nel dashboard del servizio web di Azure ml hello (vedere **Test servizio web hello** nell'appendice).
 
-Digitare **{"Inputs": {"input1": {"ColumnNames": ["Col2"], "Values": [["This is a good day"]]}}, "GlobalParameters": {}}** come corpo della richiesta.
+Tipo **{"Input": {"input1": {"ColumnNames": "Valori" ["Col2"]: [["questo è un buon giorno"]]}}, "Globalparameters della": {}}** per il corpo della richiesta hello.
 
 ![azureml-demo-api](./media/machine-learning-manage-web-service-endpoints-using-api-management/azureml-demo-api.png)
 
@@ -128,48 +128,48 @@ Fare clic su **Send**.
 
 ![Send](./media/machine-learning-manage-web-service-endpoints-using-api-management/send.png)
 
-Una volta richiamata un'operazione, nel portale per sviluppatori vengono visualizzati l'**URL richiesto** restituito dal servizio back-end, lo **Stato della risposta**, le **Intestazioni della risposta** e l'eventuale **Contenuto della risposta**.
+Dopo un'operazione viene richiamata, il portale per sviluppatori di hello Visualizza hello **URL richiesto** dal servizio back-end hello, hello **stato della risposta**, hello **le intestazioni di risposta**, e qualsiasi **contenuto della risposta**.
 
 ![response-status](./media/machine-learning-manage-web-service-endpoints-using-api-management/response-status.png)
 
 ## <a name="appendix-a---creating-and-testing-a-simple-azureml-web-service"></a>Appendice A - Creazione e test di un semplice servizio Web di AzureML
-### <a name="creating-the-experiment"></a>Creazione di un esperimento
-Di seguito sono riportati i passaggi per creare un semplice esperimento di AzureML e distribuirlo come servizio Web. Il servizio Web accetta come input una colonna di testo arbitrario e restituisce un set di funzionalità rappresentate come valori Integer. ad esempio:
+### <a name="creating-hello-experiment"></a>Creazione di sperimentazione hello
+Di seguito sono passaggi hello per la creazione di un semplice esperimento di Azure ml e distribuirla come servizio web. Hello web servizio accetta come input una colonna di testo arbitrario e restituisce un set di funzionalità rappresentati come numeri interi. ad esempio:
 
 | Text | Testo con hash |
 | --- | --- |
 | This is a good day |1 1 2 2 0 2 0 1 |
 
-Per prima cosa, usando il browser preferito, andare a [https://studio.azureml.net/](https://studio.azureml.net/) e immettere le credenziali di accesso. Quindi creare un nuovo esperimento vuoto.
+In primo luogo, usando un browser di propria scelta, passare a: [https://studio.azureml.net/](https://studio.azureml.net/) e immettere le credenziali toolog in. Quindi creare un nuovo esperimento vuoto.
 
 ![search-experiment-templates](./media/machine-learning-manage-web-service-endpoints-using-api-management/search-experiment-templates.png)
 
-Rinominarlo **SimpleFeatureHashingExperiment**. Espandere **Saved Datasets** (Set di dati salvati) e trascinare **Book Reviews from Amazon** (Recensioni di libri da Amazon) sull'esperimento.
+Rinominarlo troppo**SimpleFeatureHashingExperiment**. Espandere **Saved Datasets** (Set di dati salvati) e trascinare **Book Reviews from Amazon** (Recensioni di libri da Amazon) sull'esperimento.
 
 ![simple-feature-hashing-experiment](./media/machine-learning-manage-web-service-endpoints-using-api-management/simple-feature-hashing-experiment.png)
 
-Espandere **Data Transformation** (Trasformazioni di dati) e **Manipulation** (Manipolazione), quindi trascinare **Select Columns in Dataset** (Seleziona colonne in set di dati) sull'esperimento. Connettere **Book Reviews from Amazon** (Recensioni sul libro da Amazon) a **Select Columns in Dataset** (Seleziona colonne in set di dati).
+Espandere **Data Transformation** (Trasformazioni di dati) e **Manipulation** (Manipolazione), quindi trascinare **Select Columns in Dataset** (Seleziona colonne in set di dati) sull'esperimento. Connettersi **recensioni da Amazon** troppo**selezionare le colonne nel set di dati**.
 
 ![select-columns](./media/machine-learning-manage-web-service-endpoints-using-api-management/project-columns.png)
 
-Fare clic su **Select Columns in Dataset** (Seleziona colonne in set di dati), quindi fare clic su **Launch column selector** (Avvia selettore di colonna) e selezionare **Col2**. Fare clic sul segno di spunta per applicare queste modifiche.
+Fare clic su **Select Columns in Dataset** (Seleziona colonne in set di dati), quindi fare clic su **Launch column selector** (Avvia selettore di colonna) e selezionare **Col2**. Fare clic su hello segno di spunta tooapply queste modifiche.
 
 ![select-columns](./media/machine-learning-manage-web-service-endpoints-using-api-management/select-columns.png)
 
-Espandere **Text Analytics** (Analisi testo) e trascinare **Feature Hashing** sull'esperimento. Connettere **Select Columns in Dataset** (Seleziona colonne in set di dati) a **Feature Hashing**.
+Espandere **testo Analitica** e trascinare **Feature Hashing** nella sperimentazione hello. Connettersi **selezionare le colonne nel set di dati** troppo**Feature Hashing**.
 
 ![connect-project-columns](./media/machine-learning-manage-web-service-endpoints-using-api-management/connect-project-columns.png)
 
-Digitare **3** in **Hashing bitsize**. Verranno create 8 (23) colonne.
+Tipo **3** per hello **Hashing bitsize**. Verranno create 8 (23) colonne.
 
 ![hashing-bitsize](./media/machine-learning-manage-web-service-endpoints-using-api-management/hashing-bitsize.png)
 
-A questo punto, è possibile fare clic su **Run** per testare l'esperimento.
+A questo punto, è opportuno tooclick **eseguire** esperimento hello tootest.
 
 ![Run](./media/machine-learning-manage-web-service-endpoints-using-api-management/run.png)
 
 ### <a name="create-a-web-service"></a>Creare un servizio Web
-Ora creare un servizio Web. Espandere **Servizio Web** e trascinare **Input** sull'esperimento. Connettere **Input** a **Feature Hashing**. Trascinare anche **output** sull'esperimento. Connettere **Output** a **Feature Hashing**.
+Ora creare un servizio Web. Espandere **Servizio Web** e trascinare **Input** sull'esperimento. Connettersi **Input** troppo**Feature Hashing**. Trascinare anche **output** sull'esperimento. Connettersi **Output** troppo**Feature Hashing**.
 
 ![output-to-feature-hashing](./media/machine-learning-manage-web-service-endpoints-using-api-management/output-to-feature-hashing.png)
 
@@ -177,28 +177,28 @@ Fare cli su **Publish web service**.
 
 ![publish-web-service](./media/machine-learning-manage-web-service-endpoints-using-api-management/publish-web-service.png)
 
-Fare clic su **Yes** per pubblicare l'esperimento.
+Fare clic su **Sì** esperimento hello toopublish.
 
 ![yes-to-publish](./media/machine-learning-manage-web-service-endpoints-using-api-management/yes-to-publish.png)
 
-### <a name="test-the-web-service"></a>Testare il servizio Web
-Un servizio Web di AzureML è costituito dagli endpoint RSS (servizio di richiesta/risposta) e BES (servizio di esecuzione batch). RSS è per l'esecuzione sincrona. BES è per l'esecuzione di processi asincrona. Per testare il servizio Web con la seguente origine Python di esempio, potrebbe essere necessario scaricare e installare Azure SDK per Python (vedere: [Come installare Python](../python-how-to-install.md)).
+### <a name="test-hello-web-service"></a>Servizio web hello di test
+Un servizio Web di AzureML è costituito dagli endpoint RSS (servizio di richiesta/risposta) e BES (servizio di esecuzione batch). RSS è per l'esecuzione sincrona. BES è per l'esecuzione di processi asincrona. tootest del servizio web con origine Python hello esempio riportato di seguito, potrebbe essere necessario toodownload e hello installare Azure SDK per Python (vedere: [come tooinstall Python](../python-how-to-install.md)).
 
-Per la seguente origine di esempio, saranno necessari anche l'**area di lavoro**, il **servizio** e la **chiave API** dell'esperimento. È possibile trovare l'area di lavoro e il servizio facendo clic su **Richiesta/risposta** o su **Esecuzione batch** per l'esperimento nel dashboard del servizio Web.
+È inoltre necessario hello **dell'area di lavoro**, **servizio**, e **api_key** dell'esperimento per l'origine di esempio hello riportato di seguito. È possibile trovare l'area di lavoro hello e il servizio facendo clic su **richiesta/risposta** o **esecuzione Batch** per l'esperimento nel dashboard del servizio web hello.
 
 ![find-workspace-and-service](./media/machine-learning-manage-web-service-endpoints-using-api-management/find-workspace-and-service.png)
 
-È possibile trovare la **chiave API** facendo clic sull'esperimento nel dashboard del servizio Web.
+È possibile trovare hello **api_key** facendo esperimento nel dashboard del servizio web hello.
 
 ![find-api-key](./media/machine-learning-manage-web-service-endpoints-using-api-management/find-api-key.png)
 
 #### <a name="test-rrs-endpoint"></a>Testare l'endpoint RRS
 ##### <a name="test-button"></a>Pulsante Test
-Un modo semplice per testare l'endpoint RRS consiste nel fare clic su **Test** nel dashboard del servizio.
+Un endpoint di record di risorse facilmente tootest hello è tooclick **Test** nel dashboard del servizio web hello.
 
 ![test](./media/machine-learning-manage-web-service-endpoints-using-api-management/test.png)
 
-Digitare **This is a good day** in **col2**. Fare clic sul segno di spunta.
+Digitare **This is a good day** in **col2**. Fare clic su hello segno di spunta.
 
 ![enter-data](./media/machine-learning-manage-web-service-endpoints-using-api-management/enter-data.png)
 
@@ -207,9 +207,9 @@ Verrà visualizzato qualcosa di simile a quanto segue
 ![sample-output](./media/machine-learning-manage-web-service-endpoints-using-api-management/sample-output.png)
 
 ##### <a name="sample-code"></a>Codice di esempio
-È possibile testare RRS anche dal codice client. Se si fa clic su **Richiesta/risposta** sul dashboard e si scorre fino in fondo, si vedrà il codice di esempio per C#, Python e R. Si vedrà anche la sintassi della richiesta RRS, incluso l'URI della richiesta, le intestazioni e il corpo.
+Un altro modo tootest i record di risorse è dal codice client. Se si fa clic **richiesta/risposta** hello dashboard e scorrere toohello lato inferiore, verrà visualizzato il codice di esempio per c#, Python e R. Si verifica anche la sintassi di hello di richieste di record di risorse hello, inclusi hello richiesta URI, intestazioni e corpo.
 
-Questa guida mostra un esempio di Python funzionante. Sarà necessario modificarlo con l'**area di lavoro**, il **servizio** e la **chiave API** dell'esperimento.
+Questa guida mostra un esempio di Python funzionante. Sarà necessario toomodify con hello **dell'area di lavoro**, **servizio**, e **api_key** dell'esperimento.
 
     import urllib2
     import json
@@ -234,14 +234,14 @@ Questa guida mostra un esempio di Python funzionante. Sarà necessario modificar
         result = response.read()
         print "result:" + result
             except urllib2.HTTPError, error:
-        print("The request failed with status code: " + str(error.code))
+        print("hello request failed with status code: " + str(error.code))
         print(error.info())
         print(json.loads(error.read()))
 
 #### <a name="test-bes-endpoint"></a>Testare l'endpoint BES
-Fare clic su **Esecuzione batch** sul dashboard e scorrere fino in fondo. Si vedrà il codice di esempio per C#, Python e R. Si vedrà anche la sintassi delle richieste BES per inviare un processo, avviare un processo, ottenere lo stato o i risultati di un processo ed eliminare un processo.
+Fare clic su **esecuzione Batch** nella parte inferiore di toohello dashboard e scorrere hello. Verrà visualizzato il codice di esempio per c#, Python e R. Si verifica anche la sintassi di hello di hello BES richieste toosubmit un processo, avviare un processo, ottenere lo stato di hello o risultati di un processo ed eliminare un processo.
 
-Questa guida mostra un esempio di Python funzionante. È necessario modificarlo con l'**area di lavoro**, il **servizio** e la **chiave API** dell'esperimento. È anche necessario modificare il **nome account di archiviazione**, la **chiave dell'account di archiviazione** e il **nome del contenitore di archiviazione**. Infine sarà necessario modificare il percorso del **file di input** e il percorso del **file di output**.
+Questa guida mostra un esempio di Python funzionante. È necessario toomodify con hello **dell'area di lavoro**, **servizio**, e **api_key** dell'esperimento. Inoltre, è necessario hello toomodify **nome account di archiviazione**, **chiave account di archiviazione**, e **nome del contenitore di archiviazione**. Infine, sarà necessario percorso hello toomodify di hello **file di input** e il percorso di hello di hello **file di output**.
 
     import urllib2
     import json
@@ -249,21 +249,21 @@ Questa guida mostra un esempio di Python funzionante. È necessario modificarlo 
     from azure.storage import *
     workspace = "<REPLACE WITH YOUR WORKSPACE ID>"
     service = "<REPLACE WITH YOUR SERVICE ID>"
-    api_key = "<REPLACE WITH THE API KEY FOR YOUR WEB SERVICE>"
+    api_key = "<REPLACE WITH hello API KEY FOR YOUR WEB SERVICE>"
     storage_account_name = "<REPLACE WITH YOUR AZURE STORAGE ACCOUNT NAME>"
     storage_account_key = "<REPLACE WITH YOUR AZURE STORAGE KEY>"
     storage_container_name = "<REPLACE WITH YOUR AZURE STORAGE CONTAINER NAME>"
-    input_file = "<REPLACE WITH THE LOCATION OF YOUR INPUT FILE>" # Example: C:\\mydata.csv
-    output_file = "<REPLACE WITH THE LOCATION OF YOUR OUTPUT FILE>" # Example: C:\\myresults.csv
+    input_file = "<REPLACE WITH hello LOCATION OF YOUR INPUT FILE>" # Example: C:\\mydata.csv
+    output_file = "<REPLACE WITH hello LOCATION OF YOUR OUTPUT FILE>" # Example: C:\\myresults.csv
     input_blob_name = "mydatablob.csv"
     output_blob_name = "myresultsblob.csv"
     def printHttpError(httpError):
-    print("The request failed with status code: " + str(httpError.code))
+    print("hello request failed with status code: " + str(httpError.code))
     print(httpError.info())
     print(json.loads(httpError.read()))
     return
     def saveBlobToFile(blobUrl, resultsLabel):
-    print("Reading the result from " + blobUrl)
+    print("Reading hello result from " + blobUrl)
     try:
         response = urllib2.urlopen(blobUrl)
     except urllib2.HTTPError, error:
@@ -271,7 +271,7 @@ Questa guida mostra un esempio di Python funzionante. È necessario modificarlo 
         return
     with open(output_file, "w+") as f:
         f.write(response.read())
-    print(resultsLabel + " have been written to the file " + output_file)
+    print(resultsLabel + " have been written toohello file " + output_file)
     return
     def processResults(result):
     first = True
@@ -281,23 +281,23 @@ Questa guida mostra un esempio di Python funzionante. È necessario modificarlo 
         sas_token = result_blob_location["SasBlobToken"]
         base_url = result_blob_location["BaseLocation"]
         relative_url = result_blob_location["RelativeLocation"]
-        print("The results for " + outputName + " are available at the following Azure Storage location:")
+        print("hello results for " + outputName + " are available at hello following Azure Storage location:")
         print("BaseLocation: " + base_url)
         print("RelativeLocation: " + relative_url)
         print("SasBlobToken: " + sas_token)
         if (first):
             first = False
             url3 = base_url + relative_url + sas_token
-            saveBlobToFile(url3, "The results for " + outputName)
+            saveBlobToFile(url3, "hello results for " + outputName)
     return
 
     def invokeBatchExecutionService():
     url = "https://ussouthcentral.services.azureml.net/workspaces/" + workspace +"/services/" + service +"/jobs"
     blob_service = BlobService(account_name=storage_account_name, account_key=storage_account_key)
-    print("Uploading the input to blob storage...")
+    print("Uploading hello input tooblob storage...")
     data_to_upload = open(input_file, "r").read()
     blob_service.put_blob(storage_container_name, input_blob_name, data_to_upload, x_ms_blob_type="BlockBlob")
-    print "Uploaded the input to blob storage"
+    print "Uploaded hello input tooblob storage"
     input_blob_path = "/" + storage_container_name + "/" + input_blob_name
     connection_string = "DefaultEndpointsProtocol=https;AccountName=" + storage_account_name + ";AccountKey=" + storage_account_key
     payload =  {
@@ -313,8 +313,8 @@ Questa guida mostra un esempio di Python funzionante. È necessario modificarlo 
     }
         body = str.encode(json.dumps(payload))
     headers = { "Content-Type":"application/json", "Authorization":("Bearer " + api_key)}
-    print("Submitting the job...")
-    # submit the job
+    print("Submitting hello job...")
+    # submit hello job
     req = urllib2.Request(url + "?api-version=2.0", body, headers)
     try:
         response = urllib2.urlopen(req)
@@ -322,10 +322,10 @@ Questa guida mostra un esempio di Python funzionante. È necessario modificarlo 
         printHttpError(error)
         return
     result = response.read()
-    job_id = result[1:-1] # remove the enclosing double-quotes
+    job_id = result[1:-1] # remove hello enclosing double-quotes
     print("Job ID: " + job_id)
-    # start the job
-    print("Starting the job...")
+    # start hello job
+    print("Starting hello job...")
     req = urllib2.Request(url + "/" + job_id + "/start?api-version=2.0", "", headers)
     try:
         response = urllib2.urlopen(req)
@@ -335,8 +335,8 @@ Questa guida mostra un esempio di Python funzionante. È necessario modificarlo 
     url2 = url + "/" + job_id + "?api-version=2.0"
 
     while True:
-        print("Checking the job status...")
-        # If you are using Python 3+, replace urllib2 with urllib.request in the follwing code
+        print("Checking hello job status...")
+        # If you are using Python 3+, replace urllib2 with urllib.request in hello follwing code
         req = urllib2.Request(url2, headers = { "Authorization":("Bearer " + api_key) })
         try:
             response = urllib2.urlopen(req)

@@ -1,6 +1,6 @@
 ---
-title: Procedure consigliate per la sicurezza dei carichi di lavoro IaaS in Azure | Microsoft Docs
-description: " La migrazione dei carichi di lavoro ad Azure IaaS offre l'opportunità di rivalutare i progetti "
+title: aaaSecurity best practices per IaaS carichi di lavoro in Azure | Documenti Microsoft
+description: " migrazione di Hello di carichi di lavoro tooAzure IaaS porta tooreevaluate opportunità del Design "
 services: security
 documentationcenter: na
 author: barclayn
@@ -14,122 +14,122 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 03/29/2017
 ms.author: barclayn
-ms.openlocfilehash: b05ab20087c9bb391be7317b47d6dc2565206947
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 9cee1ca6effe9561e51dc8b945e7388ffea169b6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="security-best-practices-for-iaas-workloads-in-azure"></a>Procedure consigliate per la sicurezza dei carichi di lavoro IaaS in Azure
 
-Alcune delle considerazioni necessarie per lo spostamento di carichi di lavoro nell'infrastruttura distribuita come servizio (IaaS) di Azure sono simili a quelle relative alla protezione degli ambienti virtuali. Nel passaggio all'infrastruttura IaaS di Azure è possibile applicare le competenze acquisite nella protezione degli ambienti virtuali e usare un nuovo set di opzioni per la protezione degli asset.
+Come concetto sull'infrastruttura di tooAzure lo spostamento dei carichi di lavoro è stato avviato come servizio (IaaS), probabilmente realizzare che alcune considerazioni familiarità. protezione degli ambienti virtuali. Quando si sposta tooAzure IaaS, è possibile applicare l'esperienza per proteggere gli ambienti virtuali e utilizzare un nuovo set di opzioni toohelp sicuro le risorse.
 
-Prima di tutto, occorre precisare che le risorse locali non verranno trasferite con una corrispondenza uno-a-uno in Azure. Le nuove sfide e le nuove opzioni offrono l'opportunità di rivalutare i progetti, gli strumenti e i processi esistenti.
+Per iniziare, indicante che dovremmo non Prevediamo toobring risorse locali come tooAzure uno a uno. nuove sfide Hello hello nuove opzioni e portare tooreevaluate opportunità esistente deigns, strumenti e processi.
 
-Le responsabilità di sicurezza dell'utente dipendono dal tipo di servizio cloud. Il grafico seguente mostra un riepilogo delle responsabilità di Microsoft e dell'utente:
+Responsabilità per la sicurezza è basata sul tipo hello del servizio cloud. Hello grafico seguente viene riepilogato il saldo di hello di responsabilità di Microsoft e si:
 
 
 ![Aree di responsabilità](./media/azure-security-iaas/sec-cloudstack-new.png)
 
 
-Questo articolo illustra alcune delle opzioni disponibili in Azure che permettono di rispondere ai requisiti di sicurezza dell'organizzazione. I requisiti di sicurezza possono variare in base al tipo di carico di lavoro. Nessuna di queste procedure consigliate è di per sé sufficiente a proteggere i sistemi. Nel campo della sicurezza, è più che mai necessario scegliere le opzioni appropriate e fare in modo che le varie soluzioni si completino a vicenda.
+Parleremo alcune delle opzioni di hello disponibili in Azure che consentono di soddisfare i requisiti di sicurezza dell'organizzazione. I requisiti di sicurezza possono variare in base al tipo di carico di lavoro. Nessuna di queste procedure consigliate è di per sé sufficiente a proteggere i sistemi. Come qualsiasi altro elemento nella sicurezza, aver toochoose le opzioni appropriate hello e vedere come soluzioni hello possano complementari con l'inserimento di spazi vuoti.
 
 ## <a name="use-privileged-access-workstations"></a>Usare workstation con accesso con privilegi
 
-Le organizzazioni sono spesso vittima di attacchi informatici perché gli amministratori eseguono azioni mentre usano account con diritti elevati. Questo avviene di solito in modo non intenzionale, ma perché la configurazione e i processi esistenti lo consentono. La maggior parte degli utenti conosce a livello concettuale i rischi legati a tali azioni, ma sceglie comunque di eseguirle.
+Le organizzazioni spesso rientrano sfruttano toocyberattacks perché gli amministratori di eseguono azioni durante l'utilizzo di account con diritti elevati. Questo avviene di solito in modo non intenzionale, ma perché la configurazione e i processi esistenti lo consentono. La maggior parte degli utenti comprende il rischio di hello delle azioni seguenti da un punto di vista concettuale, ma comunque scegliere toodo li.
 
-Controllare la posta elettronica e navigare in Internet possono sembrare operazioni innocue, ma possono esporre gli account con privilegi elevati al rischio di compromissione da parte di utenti malintenzionati. Questi potrebbero usare attività di esplorazione, messaggi di posta elettronica creati appositamente o altre tecniche per ottenere l'accesso all'azienda. Per eseguire tutte le attività di amministrazione di Azure riducendo l'esposizione a danni accidentali, è consigliabile usare workstation di gestione sicure.
+In questo esempio, di controllo della posta elettronica e l'esplorazione Internet hello sembra abbastanza innocuo. Ma che potrebbero espongono toocompromise account con privilegi elevati da dannoso attori che possono usare le attività di esplorazione, appositamente messaggi di posta elettronica o altri tooyour enterprise di tecniche toogain accesso. È consigliabile utilizzare hello delle workstation di gestione della protezione per l'esecuzione di tutte le attività di amministrazione di Azure, in modo compromesso tooaccidental l'esposizione di riduzione.
 
-Per le attività sensibili, le workstation con accesso con privilegi offrono un sistema operativo dedicato, protetto dagli attacchi provenienti da Internet e dai vettori di minacce. Separare le attività e gli account sensibili da workstation e dispositivi usati quotidianamente assicura una protezione molto efficace contro gli attacchi di phishing, le vulnerabilità di applicazioni e sistemi operativi, vari attacchi di rappresentazione e tecniche di furto delle credenziali, come la registrazione delle pressioni di tasti, pass-the-hash e pass-the-ticket.
+Per le attività sensibili, le workstation con accesso con privilegi offrono un sistema operativo dedicato, protetto dagli attacchi provenienti da Internet e dai vettori di minacce. Separazione di queste attività sensibili e gli account da hello utilizzo giornaliero workstation e dispositivi offre protezione avanzata da attacchi di phishing, applicazione e le vulnerabilità del sistema operativo, diversi attacchi di rappresentazione e attacchi con furto di credenziali come tasto di scelta rapida registrazione e Pass-the-Hash, Pass-the-Ticket.
 
-L'uso di workstation dotate di accesso con privilegi rappresenta un'estensione della procedura consigliata e ampiamente diffusa di adottare un account amministrativo assegnato individualmente separato dall'account utente standard. Una workstation dotata di accesso con privilegi offre un ambiente affidabile per gli account sensibili.
+Hello PAW approccio è un'estensione di hello ben definito e consiglia toouse pratica di un account amministrativo singolarmente assegnato separato da un account utente standard. Una workstation dotata di accesso con privilegi offre un ambiente affidabile per gli account sensibili.
 
 Per altre informazioni e istruzioni sull'implementazione, vedere [Workstation con accesso con privilegi](https://technet.microsoft.com/windows-server-docs/security/securing-privileged-access/privileged-access-workstations).
 
 ## <a name="use-multi-factor-authentication"></a>Usare Multi-Factor Authentication
 
-In passato il perimetro della rete era usato per controllare l'accesso ai dati aziendali. In un mondo dominato dai dispositivi mobili e basato sul cloud l'identità deve essere il piano di controllo per l'accesso a servizi IaaS da qualsiasi dispositivo. L'identità permette anche di ottenere visibilità e informazioni dettagliate sulla posizione e la modalità d'uso dei dati. Proteggere l'identità digitale degli utenti di Azure è la cosa fondamentale per difendere le sottoscrizioni dal furto delle identità e da altri crimini informatici.
+Hello precedente, il perimetro della rete è stato utilizzato toocontrol accesso toocorporate dati. In un ambiente cloud-first, prima di dispositivi mobili, l'identità è il piano di controllo hello: si utilizzano servizi di tooIaaS toocontrol accesso da qualsiasi dispositivo. Inoltre utilizzarla tooget visibilità e comprendere dove e come i dati vengono utilizzati. La protezione dell'identità digitale hello degli utenti di Azure è fondamenta hello di proteggere le sottoscrizioni di furto di identità e altri cybercrimes.
 
-Una delle cose più utili da fare per proteggere un account è abilitare l'autenticazione a due fattori. Questo un metodo di autenticazione che non si limita all'uso di una password, ma permette di ridurre il rischio di accesso da parte di un utente che si sia impossessato della password di qualcun altro.
+Uno dei passaggi di hello più utili che è possibile eseguire toosecure un account è tooenable autenticazione a due fattori. L'autenticazione a due fattori è un modo per l'autenticazione mediante un elemento password tooa aggiunta. Consente di ridurre il rischio di hello di accesso da un utente che gestisce tooget password di un altro utente.
 
-[Azure Multi-Factor Authentication](../multi-factor-authentication/multi-factor-authentication.md) permette di proteggere l'accesso ai dati e alle applicazioni, garantendo al tempo stesso agli utenti una procedura di accesso semplice. Offre un'autenticazione avanzata con una gamma di semplici opzioni di verifica, ad esempio una telefonata, un SMS o una notifica dell'app per dispositivi mobili. Gli utenti possono scegliere il metodo preferito.
+[Azure multi-Factor Authentication](../multi-factor-authentication/multi-factor-authentication.md) consente di proteggere toodata di accesso e le applicazioni rispettando richiesta dell'utente per un semplice processo. Offre un'autenticazione avanzata con una gamma di semplici opzioni di verifica, ad esempio una telefonata, un SMS o una notifica dell'app per dispositivi mobili. Gli utenti di scegliere il metodo hello che preferiscono.
 
-Il mezzo più semplice per usare Multi-Factor Authentication è l'app per dispositivi mobili Microsoft Authenticator, disponibile per i dispositivi mobili che eseguono Windows, iOS e Android. Con la versione più recente di Windows 10 e l'integrazione dell'istanza locale di Active Directory con Azure Active Directory, è possibile usare [Windows Hello for Business](../active-directory/active-directory-azureadjoin-passport-deployment.md) per semplificare l'accesso Single Sign-On alle risorse di Azure. In tal caso il dispositivo Windows 10 viene usato come secondo fattore di autenticazione.
+toouse modo più semplice di Hello multi-Factor Authentication è hello Microsoft Authenticator app per dispositivi mobili che può essere usato nei dispositivi mobili che eseguono Windows, iOS e Android. Con la versione più recente di hello di integrazione di hello di locale di Active Directory con Azure Active Directory (Azure AD) e Windows 10 [Windows Hello for Business](../active-directory/active-directory-azureadjoin-passport-deployment.md) può essere usato per le risorse trasparente single sign-on tooAzure. In questo caso, il dispositivo Windows 10 hello viene utilizzato come secondo fattore di hello per l'autenticazione.
 
-Per gli account che gestiscono la sottoscrizione di Azure e quelli che possono accedere a macchine virtuali, Multi-Factor Authentication offre un livello di sicurezza molto maggiore rispetto all'uso della sola password. Altre forme di autenticazione a due fattori possono essere altrettanto efficaci, ma più complesse da distribuire se non sono già nell'ambiente di produzione.
+Per gli account che gestiscono la sottoscrizione di Azure e per gli account che possono accedere toovirtual macchine, utilizzo multi-Factor Authentication fornisce un altro livello di protezione maggiore rispetto all'utilizzo solo di una password. Altre forme di autenticazione a due fattori possono essere altrettanto efficaci, ma più complesse da distribuire se non sono già nell'ambiente di produzione.
 
-Lo screenshot seguente mostra alcune delle opzioni disponibili per Azure Multi-Factor Authentication:
+Hello schermata seguente mostra alcune delle opzioni di hello disponibili per Azure multi-Factor Authentication:
 
 ![Opzioni di Multi-Factor Authentication](./media/azure-security-iaas/mfa-options.png)
 
 ## <a name="limit-and-constrain-administrative-access"></a>Limitare e vincolare l'accesso amministrativo
 
-Proteggere gli account che gestiscono la sottoscrizione di Azure è estremamente importante. La compromissione di uno di questi account vanifica qualsiasi azione intrapresa per garantire la riservatezza e l'integrità dei dati. Come dimostra il caso di [Edward Snowden](https://en.wikipedia.org/wiki/Edward_Snowden), colpevole di aver diffuso informazioni riservate del governo USA, gli attacchi sferrati dall'interno rappresentano una minaccia notevole per la sicurezza di qualunque organizzazione.
+Proteggere gli account di hello in grado di gestire la sottoscrizione di Azure è estremamente importante. compromissione Hello di uno di questi account Nega valore hello hello tutti gli altri passaggi che è possibile adottare tooensure hello riservatezza e integrità dei dati. Di recente come illustrato hello [Edward Snowden](https://en.wikipedia.org/wiki/Edward_Snowden) perdita delle informazioni classificate, attacchi interni comportare toohello un rischio elevato sicurezza complessiva di qualsiasi organizzazione.
 
-Per valutare i singoli utenti a cui concedere diritti amministrativi, seguire criteri simili a questi:
+Valutare i singoli utenti i diritti amministrativi per toothese simile a criteri seguenti:
 
 - Eseguono attività che richiedono privilegi amministrativi?
-- Con quale frequenza vengono eseguite queste attività?
-- C'è un motivo specifico per cui le attività non possono essere eseguite da un altro amministratore?
+- La frequenza con cui vengono eseguite attività hello?
+- Esiste un motivo specifico perché un altro amministratore per conto del cliente non è possibile eseguire operazioni di hello?
 
-Perché non sono accettabili gli approcci alternativi documentati per la concessione dei privilegi?
+Documentare tutti gli altri privilegi di hello toogranting noti agli approcci alternativi e ogni non è accettabile.
 
-Il ricorso all'amministrazione JIT evita di avere account con diritti elevati nei periodi in cui tali diritti non sono necessari. Gli account hanno diritti elevati per un periodo di tempo limitato, per permettere agli amministratori di svolgere il proprio lavoro. Tali diritti vengono poi rimossi alla fine di un turno o al termine di un'attività.
+uso di Hello di amministrazione-in-time impedisce esistenza inutili hello degli account con diritti elevati durante i periodi di quando non sono necessari i diritti. Gli account hanno diritti elevati per un periodo di tempo limitato, per permettere agli amministratori di svolgere il proprio lavoro. Quindi, tali diritti vengono rimossi alla fine di hello di uno spostamento o quando un'attività viene completata.
 
-È possibile usare [Privileged Identity Management](../active-directory/active-directory-privileged-identity-management-configure.md) per gestire, monitorare e controllare l'accesso all'interno dell'organizzazione. Questa tecnologia permette di tenere sotto controllo le azioni intraprese dai singoli utenti nell'organizzazione e introduce l'amministrazione JIT in Azure AD attraverso il concetto di amministratori idonei. Gli amministratori idonei sono persone che dispongono di account ai quali possono essere concessi diritti di amministratore. Gli utenti di questo tipo possono essere sottoposti a un processo di attivazione e vedersi concedere diritti amministrativi per un periodo di tempo limitato.
+È possibile utilizzare [Privileged Identity Management](../active-directory/active-directory-privileged-identity-management-configure.md) toomanage, monitoraggio e controllo degli accessi nell'organizzazione. Consente di restare informati hello eseguire azioni di singoli utenti dell'organizzazione. Comporta anche amministrazione just-in-time tooAzure AD introducendo il concetto di hello del gruppo amministratori idonei. Questi sono persone che gli account con toobe potenziali hello dispongono dei diritti di amministrazione. Gli utenti di questo tipo possono essere sottoposti a un processo di attivazione e vedersi concedere diritti amministrativi per un periodo di tempo limitato.
 
 
 ## <a name="use-devtest-labs"></a>Usare DevTest Labs
 
-L'uso di Azure negli ambienti lab e di sviluppo offre alle organizzazioni una maggiore agilità a livello di sviluppo e testing, grazie all'eliminazione dei ritardi dovuti all'approvvigionamento dell'hardware. Sfortunatamente, la mancanza di esperienza o il desiderio di accelerarne l'adozione può portare un amministratore a un'eccessiva permissività nell'assegnazione dei diritti. Tale rischio può esporre involontariamente l'organizzazione ad attacchi interni, perché alcuni utenti potrebbero vedersi concedere un accesso molto più avanzato del necessario.
+Uso di Azure per esercitazioni pratiche e di ambienti di sviluppo offre la flessibilità di toogain organizzazioni nello sviluppo e test da ritardi di stoccaggio hello tenendo introdotte approvvigionamento di hardware. Sfortunatamente, una mancanza di una certa familiarità con Azure o un toohelp desiderio accelerare l'adozione potrebbe causare hello amministratore toobe eccessivamente permissivo con assegnazione di diritti. Questo rischio potrebbe accidentalmente esporre hello organizzazione toointernal attacchi. perché alcuni utenti potrebbero vedersi concedere un accesso molto più avanzato del necessario.
 
-Il servizio [Azure DevTest Labs](../devtest-lab/devtest-lab-overview.md) fa uso del [controllo degli accessi in base al ruolo di Azure](../active-directory/role-based-access-control-what-is.md), che permette di organizzare i compiti all'interno del team in ruoli, che concedono solo il livello di accesso necessario agli utenti per svolgere il proprio lavoro. Il controllo degli accessi in base al ruolo prevede i ruoli predefiniti di proprietario, utente lab e collaboratore, che possono anche essere usati per assegnare diritti a partner esterni e semplificare notevolmente la collaborazione.
+Hello [Azure DevTest Labs](../devtest-lab/devtest-lab-overview.md) utilizzata dal servizio [gestire il controllo di accesso](../active-directory/role-based-access-control-what-is.md) (RBAC). Utilizzando RBAC, è possibile separare compiti all'interno del team in ruoli che concedono solo livello di hello di accesso necessaria per gli utenti toodo i processi. Il controllo degli accessi in base al ruolo prevede i ruoli predefiniti di proprietario, utente lab e collaboratore, È possibile utilizzare anche i partner di tooexternal questi ruoli tooassign diritti e semplificare notevolmente la collaborazione.
 
-L'uso del controllo degli accessi in base al ruolo in DevTest Labs permette di creare [ruoli personalizzati](../devtest-lab/devtest-lab-grant-user-permissions-to-specific-lab-policies.md) aggiuntivi. DevTest Labs non si limita a semplificare la gestione delle autorizzazioni, ma semplifica anche il processo di provisioning degli ambienti e permette di gestire altre problematiche tipiche dei team che operano in ambienti di sviluppo e test. Richiede un po' di preparazione, ma con il tempo permette di semplificare il lavoro del team.
+Poiché DevTest Labs utilizza RBAC, è possibile toocreate aggiuntive, [ruoli personalizzati](../devtest-lab/devtest-lab-grant-user-permissions-to-specific-lab-policies.md). DevTest Labs non solo semplifica la gestione di hello di autorizzazioni, semplifica il processo di hello di recupero eseguito il provisioning di ambienti. e permette di gestire altre problematiche tipiche dei team che operano in ambienti di sviluppo e test. Richiede alcune attività di preparazione, ma hello a lungo termine, per facilitare le cose per il team.
 
 Le funzionalità di Azure DevTest Labs includono:
 
-- Controllo amministrativo sulle opzioni disponibili per gli utenti Questo consente all'amministratore una gestione centralizzata di alcuni aspetti relativi alle macchine virtuali, come le dimensioni consentite, il numero massimo e gli orari di avvio e arresto.
+- Opzioni di controllo amministrativo su hello toousers disponibili. messaggio per l'amministratore può gestire centralmente elementi quali dimensioni delle macchine Virtuali consentite, il numero massimo di macchine virtuali e macchine virtuali vengono avviate e di arresto.
 - Automazione della creazione dell'ambiente lab.
 - Verifica dei costi.
 - Distribuzione semplificata di macchine virtuali per attività di collaborazione temporanee.
-- Funzionalità self-service che consente agli utenti di effettuare il provisioning dei lab tramite modelli.
+- Self-Service che consente di laboratorio gli utenti tooprovision tramite modelli.
 - Gestione e limitazione dell'utilizzo.
 
-![Uso di DevTest Labs per creare un lab](./media/azure-security-iaas/devtestlabs.png)
+![Utilizzo di DevTest Labs toocreate un lab](./media/azure-security-iaas/devtestlabs.png)
 
-L'uso di DevTest Labs è disponibile senza costi aggiuntivi. La creazione di lab, criteri, modelli ed elementi è gratuita. Si pagano solo le risorse di Azure usate nei lab, come le macchine virtuali, gli account di archiviazione e le reti virtuali.
+Senza alcun costo aggiuntivo non è associata a utilizzo hello di DevTest Labs. creazione di Hello di labs, criteri, i modelli e gli elementi è disponibile. Si pagano per hello solo le risorse di Azure utilizzate nei propri laboratori, ad esempio macchine virtuali, gli account di archiviazione e reti virtuali.
 
 
 
 ## <a name="control-and-limit-endpoint-access"></a>Controllare e limitare l'accesso agli endpoint
 
-Per poter eseguire l'hosting di lab o sistemi di produzione in Azure, i sistemi devono essere accessibili da Internet. Per impostazione predefinita, nelle nuove macchine virtuali Windows la porta RDP è accessibile da Internet, mentre nelle macchine virtuali Linux la porta SSH è aperta. Per ridurre al minimo il rischio di accesso non autorizzato, è necessario provvedere a limitare gli endpoint esposti.
+Hosting labs o sistemi di produzione in Azure significa che i sistemi necessitano toobe accessibile da Internet hello. Per impostazione predefinita, una nuova macchina virtuale di Windows è la porta RDP hello accessibile da Internet hello e una macchina virtuale Linux aperto porta SSH hello. Eseguire operazioni toolimit esposti endpoint è rischio hello toominimize necessarie di accesso non autorizzato.
 
-Le tecnologie di Azure consentono di limitare l'accesso agli endpoint amministrativi. Ad esempio, è possibile usare i [gruppi di sicurezza di rete](../virtual-network/virtual-networks-nsg.md). Quando si usa Azure Resource Manager per la distribuzione, i gruppi di sicurezza di rete limitano l'accesso da tutte le reti ai soli endpoint di gestione, RDP o SSH. Gli NSG sono un po' l'equivalente degli ACL dei router. È possibile usarli per controllare rigorosamente la comunicazione di rete tra i vari segmenti delle reti di Azure, con risultati analoghi a quelli della creazione di reti perimetrali o altre reti isolate. I gruppi di sicurezza di rete non controllano il traffico, ma contribuiscono alla segmentazione della rete.
+Tecnologie di Azure consentono di limitare l'endpoint di amministrazione di hello accesso toothose. Ad esempio, è possibile usare i [gruppi di sicurezza di rete](../virtual-network/virtual-networks-nsg.md). Quando si usa Gestione risorse di Azure per la distribuzione, NSGs limitare l'accesso di hello da tutte le reti toojust hello Gestione endpoint (RDP o SSH). Gli NSG sono un po' l'equivalente degli ACL dei router. È possibile utilizzare le comunicazioni di rete tootightly controllo hello tra i vari segmenti della rete di Azure. Ciò è simile toocreating le reti in reti perimetrali o altre reti isolate. Non controllano il traffico di hello, ma sono utili con la segmentazione della rete.
 
 
-In Azure è possibile configurare una [VPN da sito a sito](../vpn-gateway/vpn-gateway-howto-site-to-site-resource-manager-portal.md) dalla rete locale. Una VPN da sito a sito consente di estendere la rete locale al cloud, offrendo una ulteriore opportunità di usare i gruppi di sicurezza di rete. È infatti possibile modificare il gruppo di sicurezza di rete per non consentire l'accesso se non dalla rete locale. È quindi possibile fare in modo che l'amministrazione avvenga eseguendo prima la connessione alla rete di Azure tramite VPN.
+In Azure è possibile configurare una [VPN da sito a sito](../vpn-gateway/vpn-gateway-howto-site-to-site-resource-manager-portal.md) dalla rete locale. Una VPN site-to-site estende locale cloud toohello di rete. In questo modo è un'altra possibilità toouse NSGs, perché è inoltre possibile modificare hello NSGs toonot consentire l'accesso da un punto qualsiasi rete locale hello. È quindi possibile richiedere che l'amministrazione viene eseguita dal primo toohello connessione rete di Azure tramite VPN.
 
-L'opzione VPN da sito a sito può risultare più interessante quando si ospitano sistemi di produzione strettamente integrati con le risorse locali in Azure.
+opzione di Hello site-to-site VPN potrebbe essere molto interessante nei casi in cui si ospitano sistemi di produzione che sono strettamente integrati con le risorse locali in Azure.
 
-In alternativa, è possibile usare l'opzione [da punto a sito](../vpn-gateway/vpn-gateway-howto-point-to-site-rm-ps.md) per la gestione di sistemi che non richiedono l'accesso alle risorse locali e che possono essere isolati nella relativa rete virtuale di Azure. Dalla workstation amministrativa gli amministratori possono connettersi tramite VPN all'ambiente ospitato in Azure.
+In alternativa, è possibile utilizzare hello [point-to-site](../vpn-gateway/vpn-gateway-howto-point-to-site-rm-ps.md) opzione nelle situazioni in cui si desidera toomanage sistemi che non è necessario accedere alle risorse di tooon locale. e che possono essere isolati nella relativa rete virtuale di Azure. Gli amministratori possono VPN in hello Azure ospitati ambiente dalla propria workstation amministrative.
 
 >[!NOTE]
->Entrambe le opzioni VPN permettono di riconfigurare gli elenchi ACL nei gruppi di sicurezza di rete in modo da non consentire l'accesso da Internet agli endpoint di gestione.
+>È possibile utilizzare entrambi hello tooreconfigure di opzione VPN che elenchi ACL hello NSGs toonot consentire accesso toomanagement endpoint da hello Internet.
 
-Un'altra opzione che vale la pena considerare è la distribuzione di un [Gateway Desktop remoto](../multi-factor-authentication/multi-factor-authentication-get-started-server-rdg.md), utile per connettersi ai server desktop remoto in modo sicuro tramite HTTPS, applicando controlli più dettagliati alle connessioni.
+Un'altra opzione che vale la pena considerare è la distribuzione di un [Gateway Desktop remoto](../multi-factor-authentication/multi-factor-authentication-get-started-server-rdg.md), È possibile utilizzare questa distribuzione toosecurely collegare i server Desktop tooRemote su HTTPS, mentre l'applicazione più dettagliate controlla toothose connessioni.
 
-Le funzionalità disponibili includono:
+Funzionalità che si avrebbero accesso tooinclude:
 
-- Opzioni di amministrazione per limitare le connessioni alle richieste provenienti da sistemi specifici
+- Amministratore opzioni toolimit toorequests di connessioni da sistemi specifici.
 - Autenticazione tramite smart card o Azure Multi-Factor Authentication.
-- Possibilità di stabilire a quali sistemi sia possibile connettersi tramite il gateway
+- Controllo su quali sistemi un utente può toovia hello gateway di connessione.
 - Possibilità di controllare il reindirizzamento a dischi e dispositivi
 
 ## <a name="use-a-key-management-solution"></a>Usare una soluzione di gestione delle chiavi
 
-La gestione sicura delle chiavi è fondamentale per proteggere i dati nel cloud. Con l'[insieme di credenziali delle chiavi di Azure](../key-vault/key-vault-whatis.md), è possibile archiviare in tutta sicurezza le chiavi di crittografia e altri dati segreti, come le password, all'interno di moduli di protezione hardware. Per una maggiore sicurezza, è possibile importare o generare le chiavi in moduli di protezione hardware.
+Gestione delle chiavi protetta è essenziale tooprotecting dati nel cloud hello. Con l'[insieme di credenziali delle chiavi di Azure](../key-vault/key-vault-whatis.md), è possibile archiviare in tutta sicurezza le chiavi di crittografia e altri dati segreti, come le password, all'interno di moduli di protezione hardware. Per una maggiore sicurezza, è possibile importare o generare le chiavi in moduli di protezione hardware.
 
 Microsoft elabora le chiavi in moduli di protezione hardware FIPS 140-2 di livello 2 convalidati (hardware e firmware). È possibile monitorare e controllare l'uso delle chiavi con la registrazione di Azure, inviando i log ad Azure o alla propria soluzione SIEM (Security Information and Event Management) per ulteriori analisi e rilevamento delle minacce.
 
@@ -138,14 +138,14 @@ Chiunque abbia una sottoscrizione di Azure può creare e usare insiemi di creden
 
 ## <a name="encrypt-virtual-disks-and-disk-storage"></a>Crittografare i dischi virtuali e l'archiviazione su disco
 
-[Crittografia dischi di Azure](https://gallery.technet.microsoft.com/Azure-Disk-Encryption-for-a0018eb0) protegge dai rischi di furto dei dati o esposizione da accesso non autorizzato attraverso lo spostamento di un disco, che potrebbe essere collegato a un altro sistema per aggirare altri controlli di sicurezza. La crittografia del disco usa [BitLocker](https://technet.microsoft.com/library/hh831713) in Windows e DM-Crypt in Linux per crittografare il sistema operativo e le unità dati. Crittografia dischi di Azure si integra con Key Vault per consentire il controllo e la gestione delle chiavi di crittografia. È disponibile per le macchine virtuali Standard e le macchine virtuali con Archiviazione Premium.
+[Crittografia disco Azure](https://gallery.technet.microsoft.com/Azure-Disk-Encryption-for-a0018eb0) indirizzi hello rischio di esposizione dall'accesso non autorizzato che è possibile ottenere mediante lo spostamento di un disco o il furto di dati. disco Hello può essere collegato tooanother sistema come modalità di esclusione di altri controlli di sicurezza. Usa la crittografia del disco [BitLocker](https://technet.microsoft.com/library/hh831713) in Windows e di data mining-Crypt tooencrypt Linux del sistema operativo e unità dati. Crittografia disco Azure si integra con l'insieme di credenziali chiave toocontrol e gestire chiavi di crittografia hello. È disponibile per le macchine virtuali Standard e le macchine virtuali con Archiviazione Premium.
 
 Per altre informazioni, vedere [Crittografia dischi di Azure per macchine virtuali IaaS Windows e Linux](azure-security-disk-encryption.md).
 
-La [crittografia del servizio di archiviazione di Azure](../storage/common/storage-service-encryption.md) permette di protegge i dati inattivi. È abilitata a livello dell'account di Archiviazione e permette di crittografare i dati man mano che vengono scritti nel data center, per poi decrittografarli automaticamente quando vi si accede. Supporta gli scenari seguenti:
+La [crittografia del servizio di archiviazione di Azure](../storage/common/storage-service-encryption.md) permette di protegge i dati inattivi. È abilitata a livello di account di archiviazione hello. e permette di crittografare i dati man mano che vengono scritti nel data center, per poi decrittografarli automaticamente quando vi si accede. Supporta hello seguenti scenari:
 
 - Crittografia di BLOB in blocchi, BLOB di aggiunta e BLOB di pagine.
-- Crittografia di dischi rigidi virtuali archiviati e modelli trasferiti in Azure da posizioni locali.
+- La crittografia dei dischi rigidi virtuali e i modelli archiviati portato tooAzure locale
 - Crittografia del sistema operativo sottostante e dei dischi dati per macchine virtuali IaaS create usando i dischi rigidi virtuali.
 
 Prima di procedere con la crittografia del servizio di archiviazione di Azure, occorre tenere presenti due limitazioni:
@@ -155,72 +155,72 @@ Prima di procedere con la crittografia del servizio di archiviazione di Azure, o
 
 ## <a name="use-a-centralized-security-management-system"></a>Usare un sistema di gestione della sicurezza centralizzato
 
-I server devono essere monitorati per tenere sotto controllo l'applicazione di patch, la configurazione, gli eventi e le attività potenzialmente problematiche per la sicurezza. A tale scopo, è possibile usare il [Centro sicurezza](https://azure.microsoft.com/services/security-center/) e [Operations Management Suite Security & Compliance](https://azure.microsoft.com/services/security-center/). Entrambe queste opzioni non si limitano alla configurazione del sistema operativo, ma consentono anche di monitorare la configurazione dell'infrastruttura sottostante, come la configurazione di rete e l'uso di appliance virtuali.
+I server devono toobe monitorati per l'applicazione di patch, configurazione, eventi e le attività che potrebbero essere considerate problemi di sicurezza. tooaddress tali problemi, è possibile utilizzare [Centro sicurezza PC](https://azure.microsoft.com/services/security-center/) e [Operations Management Suite Security and Compliance](https://azure.microsoft.com/services/security-center/). Entrambe queste opzioni vanno oltre la configurazione del sistema operativo hello hello. Oltre a fornire il monitoraggio della configurazione di hello di hello infrastruttura, come ad esempio la configurazione di rete e l'utilizzo dell'appliance virtuale sottostante.
 
 ## <a name="manage-operating-systems"></a>Gestire i sistemi operativi
 
-Come per qualunque altro server o workstation dell'ambiente usato, in una distribuzione IaaS l'utente rimane responsabile della gestione dei sistemi distribuiti. L'applicazione di patch, la protezione avanzata, l'assegnazione di diritti e qualsiasi altra attività correlata alla manutenzione del sistema rimangono responsabilità dell'utente. Per i sistemi strettamente integrati con le risorse locali, può essere utile usare gli stessi strumenti e procedure adottati a livello locale per gli antivirus, gli antimalware, l'applicazione di patch e i backup.
+In una distribuzione IaaS, si è ancora responsabile della gestione hello dei sistemi di hello distribuiti, proprio come qualsiasi altro server o workstation nell'ambiente in uso. L'applicazione di patch, la protezione avanzata, diritti e qualsiasi altra attività correlate toohello manutenzione del sistema sono ancora responsabilità dell'utente. Per i sistemi che sono strettamente integrati con le risorse locali, è possibile toouse hello gli stessi strumenti e procedure che si usi locale per elementi come i virus, antimalware, l'applicazione di patch e backup.
 
 ### <a name="harden-systems"></a>Implementare la protezione avanzata dei sistemi
-La protezione avanzata deve essere implementata in tutte le macchine virtuali nell'infrastruttura IaaS di Azure, in modo da esporre solo gli endpoint di servizio necessari per le applicazioni installate. Per le macchine virtuali Windows, seguire le raccomandazioni pubblicate da Microsoft per la soluzione [Security Compliance Manager](https://technet.microsoft.com/solutionaccelerators/cc835245.aspx).
+Tutte le macchine virtuali in Azure IaaS devono essere protette in modo che espongono solo gli endpoint di servizio necessari per le applicazioni installate hello. Per le macchine virtuali Windows, seguire le indicazioni hello pubblicati da Microsoft come linee di base per hello [Security Compliance Manager](https://technet.microsoft.com/solutionaccelerators/cc835245.aspx) soluzione.
 
-Security Compliance Manager è uno strumento gratuito che consente di configurare e gestire rapidamente desktop, data center tradizionali e cloud pubblici e privati tramite criteri di gruppo e System Center Configuration Manager.
+Security Compliance Manager è uno strumento gratuito È possibile utilizzare tooquickly configurare e gestire il desktop, tradizionale dei Data Center e cloud pubblici e privati con System Center Configuration Manager e criteri di gruppo.
 
 Security Compliance Manager offre criteri pronti per la distribuzione e pacchetti di configurazione di Gestione configurazione desiderata già testati. Queste baseline si basano sulle [linee guida Microsoft sulla sicurezza](https://technet.microsoft.com/en-us/library/cc184906.aspx) e le procedure consigliate del settore e permettono di gestire eventuali deviazioni della configurazione, rispondere ai requisiti di conformità e ridurre le minacce per la sicurezza.
 
-È possibile usare Security Compliance Manager per importare la configurazione corrente dei computer con due metodi diversi. Il primo consiste nell'importare criteri di gruppo basati su Active Directory. Il secondo consiste nell'importare la configurazione di un computer di riferimento "golden master" usando lo [strumento LocalGPO](https://blogs.technet.microsoft.com/secguide/2016/01/21/lgpo-exe-local-group-policy-object-utility-v1-0/) per eseguire il backup dei criteri di gruppo locali. È quindi possibile importare i criteri di gruppo locali in Security Compliance Manager.
+È possibile utilizzare configurazione corrente di hello tooimport Security Compliance Manager i computer utilizzando due metodi diversi. Il primo consiste nell'importare criteri di gruppo basati su Active Directory. In secondo luogo, è possibile importare la configurazione hello di "master finale" computer di riferimento utilizzando hello [LocalGPO strumento](https://blogs.technet.microsoft.com/secguide/2016/01/21/lgpo-exe-local-group-policy-object-utility-v1-0/) tooback hello locale i criteri di gruppo. È quindi possibile importare i criteri di gruppo locali hello in Security Compliance Manager.
 
-Confrontare gli standard applicati alle procedure consigliate del settore, personalizzarli e creare nuovi criteri e pacchetti di configurazione di Gestione configurazione desiderata. Le linee di base sono state pubblicate per tutti i sistemi operativi supportati, tra cui l'Aggiornamento dell'anniversario di Windows 10 e Windows Server 2016.
+Confrontare le norme tooindustry procedure consigliate, personalizzare e creare nuovi criteri e Desired Configuration Management Pack di configurazione. Le linee di base sono state pubblicate per tutti i sistemi operativi supportati, tra cui l'Aggiornamento dell'anniversario di Windows 10 e Windows Server 2016.
 
 
 ### <a name="install-and-manage-antimalware"></a>Installare e gestire l'antimalware
 
-Per gli ambienti ospitati separatamente dall'ambiente di produzione, è possibile usare un'estensione antimalware per la protezione delle macchine virtuali e dei servizi cloud che si integra con il [Centro sicurezza di Azure](../security-center/security-center-intro.md).
+Per gli ambienti ospitati separatamente dall'ambiente di produzione, è possibile utilizzare un toohelp estensione antimalware proteggere le macchine virtuali e i servizi cloud. che si integra con il [Centro sicurezza di Azure](../security-center/security-center-intro.md).
 
 
 [Microsoft Antimalware](azure-security-antimalware.md) include caratteristiche come la protezione in tempo reale, l'analisi pianificata, il monitoraggio e aggiornamento malware, l'aggiornamento delle firme e del motore, il reporting di campioni, la raccolta degli eventi di esclusione e il [supporto della PowerShell](https://msdn.microsoft.com/library/dn771715.aspx).
 
 ![Antimalware Azure](./media/azure-security-iaas/azantimalware.png)
 
-### <a name="install-the-latest-security-updates"></a>Installare gli aggiornamenti della sicurezza più recenti
-I lab e i sistemi esterni sono tra i primi carichi di lavoro che i clienti spostano in Azure. Se le macchine virtuali di Azure ospitano applicazioni o servizi che devono essere accessibili da Internet, è importante fare attenzione all'applicazione di patch. Non limitarsi all'applicazione di patch relative al sistema operativo. Anche le vulnerabilità senza patch delle applicazioni di terze parti possono causare problemi facilmente evitabili con una buona gestione delle patch.
+### <a name="install-hello-latest-security-updates"></a>Installare gli aggiornamenti di sicurezza più recenti hello
+Alcuni dei hello carichi di lavoro prima che i clienti spostano tooAzure sono labs e sistemi con accesso esterno. Se le macchine virtuali ospitate da Azure ospitare applicazioni o servizi che devono toobe accessibile toohello Internet, essere implica l'applicazione di patch. Patch oltre hello del sistema operativo. Vulnerabilità senza patch sulle applicazioni di terze parti può anche causare tooproblems che può essere evitata se buona gestione delle patch è attiva.
 
 ### <a name="deploy-and-test-a-backup-solution"></a>Distribuire e testare una soluzione di backup
 
-Esattamente come gli aggiornamenti della sicurezza, anche il backup deve essere gestito come qualsiasi altra operazione, anche per quanto riguarda i sistemi dell'ambiente di produzione che si estendono al cloud. I sistemi di sviluppo e test devono seguire strategie di backup con funzionalità di ripristino simili a quelle che gli utenti degli ambienti locali sono ormai abituati a usare.
+Esattamente come gli aggiornamenti della sicurezza, è necessario un backup hello toobe gestito stesso modo in cui si gestiscono tutte le altre operazioni. Ciò è vero dei sistemi che fanno parte di estensione toohello cloud nell'ambiente di produzione. I sistemi di test e dev devono seguire le strategie di backup che forniscono funzionalità di ripristino che sono simili agli utenti di toowhat hanno acquisito familiarità con, in base alla propria esperienza con gli ambienti on-premise.
 
-Se possibile, i carichi di lavoro di produzione spostati in Azure devono integrarsi con le soluzioni di backup esistenti. In alternativa, per le esigenze di backup è possibile usare [Backup di Azure](../backup/backup-azure-arm-vms.md).
+I carichi di lavoro spostato tooAzure deve essere integrato con soluzioni di backup esistenti quando possibile. In alternativa, utilizzare [Azure Backup](../backup/backup-azure-arm-vms.md) toohelp soddisfare le esigenze di backup.
 
 
-## <a name="monitor"></a>Monitoraggio
+## <a name="monitor"></a>Monitorare
 
-Il [Centro sicurezza](../security-center/security-center-intro.md) analizza in modo continuo lo stato di protezione delle risorse di Azure per identificare le potenziali vulnerabilità di sicurezza. Un elenco di suggerimenti illustra in dettaglio il processo di configurazione dei controlli necessari.
+[Centro sicurezza PC](../security-center/security-center-intro.md) fornisce la valutazione continuativa dello stato di sicurezza hello di risorse di Azure tooidentify potenziali vulnerabilità nella sicurezza. Un elenco di suggerimenti in modo semplificato il processo di hello di configurazione di controlli necessari.
 
 Tra gli esempi sono inclusi:
 
-- Provisioning di antimalware per identificare e rimuovere il software dannoso.
-- Configurazione dei gruppi di sicurezza di rete e delle regole per controllare il traffico verso le macchine virtuali.
-- Provisioning di Web application firewall per la difesa da attacchi diretti alle applicazioni Web.
+- Provisioning toohelp antimalware, identificare e rimuovere il software dannoso.
+- Configurazione di sicurezza e gruppi di regole toocontrol traffico toovirtual macchine della rete.
+- Firewall applicazione web toohelp difendersi da attacchi che le applicazioni web di destinazione di provisioning.
 - Distribuzione di aggiornamenti di sistema mancanti.
-- Risoluzione delle configurazioni del sistema operativo che non corrispondono alle baseline consigliate.
+- Indirizzamento delle configurazioni del sistema operativo che non corrispondono a hello consiglia le linee di base.
 
-L'immagine seguente mostra alcune delle opzioni che è possibile abilitare nel Centro sicurezza.
+Hello immagine seguente mostra alcune delle opzioni di hello che è possibile abilitare in Centro sicurezza PC.
 
 ![Criteri del Centro sicurezza di Azure](./media/azure-security-iaas/security-center-policies.png)
 
 [Operations Management Suite](../operations-management-suite/operations-management-suite-overview.md) è una soluzione Microsoft per la gestione IT basata sul cloud che consente di gestire e proteggere l'infrastruttura locale e cloud. Dato che viene implementato come servizio basato sul cloud, Operations Management Suite può essere distribuito rapidamente e con un investimento minimo in termini di risorse dell'infrastruttura.
 
-Le nuove funzionalità sono disponibili automaticamente, evitando così i costi di manutenzione e aggiornamento continui. Operations Management Suite si integra anche con System Center Operations Manager. Include diversi componenti che migliorano la gestione dei carichi di lavoro di Azure, tra cui il modulo [Sicurezza e conformità](../operations-management-suite/oms-security-getting-started.md).
+Le nuove funzionalità sono disponibili automaticamente, evitando così i costi di manutenzione e aggiornamento continui. Operations Management Suite si integra anche con System Center Operations Manager. Dispone di diversi componenti toohelp migliorare la gestione di carichi di lavoro Azure, tra cui un [Security and Compliance](../operations-management-suite/oms-security-getting-started.md) modulo.
 
-È possibile usare le funzionalità di sicurezza e conformità in Operations Management Suite per visualizzare informazioni sulle risorse, organizzate in quattro categorie principali:
+È possibile utilizzare le funzionalità di sicurezza e conformità hello nelle informazioni di Operations Management Suite tooview sulle risorse. informazioni di Hello sono suddivisa in quattro categorie principali:
 
-- **Domini di sicurezza**. Permette di esplorare ulteriormente i record di sicurezza nel tempo. Permette di accedere alla valutazione antimalware, alla valutazione degli aggiornamenti, a informazioni sulla sicurezza di rete, a informazioni su identità e accessi e ai computer che generano eventi di sicurezza. Consente un accesso rapido al dashboard del Centro sicurezza di Azure.
-- **Errori rilevanti**. Permette di identificare rapidamente il numero di problemi attivi e la relativa gravità.
+- **Domini di sicurezza**. Permette di esplorare ulteriormente i record di sicurezza nel tempo. Permette di accedere alla valutazione antimalware, alla valutazione degli aggiornamenti, a informazioni sulla sicurezza di rete, a informazioni su identità e accessi e ai computer che generano eventi di sicurezza. Sfruttare i vantaggi del dashboard di accesso rapido toohello Centro sicurezza di Azure.
+- **Problemi rilevanti**: identificare il numero di problemi attivi hello rapidamente e hello gravità di questi problemi.
 - **Rilevamenti (anteprima)**. Permette di identificare i modelli di attacco visualizzando gli avvisi di sicurezza relativi alle risorse non appena vengono generati.
-- **Intelligence per le minacce**. Permette di identificare i modelli di attacco visualizzando il numero totale di server con traffico IP dannoso in uscita, il tipo di minaccia e una mappa che mostra la provenienza di tali indirizzi IP.
-- **Query comuni sulla sicurezza**. Permette di visualizzare un elenco delle query più comuni sulla sicurezza che è possibile usare per monitorare l'ambiente. Facendo clic su una query, viene visualizzato il pannello **Ricerca** con i risultati della query.
+- **Minaccia intelligence**: identificazione di attacco hello di modelli di visualizzazione del numero totale di hello del server con traffico IP dannoso in uscita, il tipo di minaccia intenzionale e una mappa che mostra provenienza questi indirizzi IP.
+- **Query comuni di sicurezza**: vedere un elenco di sicurezza più comune di hello esegue una query che è possibile utilizzare toomonitor l'ambiente. Quando si fa clic su uno di tali query, hello **ricerca** pannello apre e Visualizza risultati hello per tale query.
 
-Lo screenshot seguente mostra un esempio delle informazioni visualizzate in Operations Management Suite.
+Hello schermata riportata di seguito viene illustrato un esempio di informazioni hello visualizzabili Operations Management Suite.
 
 ![Baseline della sicurezza di Operations Management Suite](./media/azure-security-iaas/oms-security-baseline.png)
 

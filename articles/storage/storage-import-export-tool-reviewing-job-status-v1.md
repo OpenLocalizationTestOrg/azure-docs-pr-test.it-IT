@@ -1,6 +1,6 @@
 ---
-title: Esame dello stato del processo di importazione/esportazione di Azure - versione 1 | Documentazione Microsoft
-description: "Informazioni su come usare i file di log creati quando il processo di importazione o esportazione è stato eseguito per visualizzare lo stato del processo di importazione/esportazione."
+title: stato del processo di importazione/esportazione di Azure - v1 aaaReviewing | Documenti Microsoft
+description: "Informazioni su come file di log di hello toouse creati quando hello importazione o Esporta processo è stato eseguito il processo di importazione/esportazione di hello stato hello toosee."
 author: muralikk
 manager: syadav
 editor: tysonn
@@ -14,29 +14,29 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/26/2017
 ms.author: muralikk
-ms.openlocfilehash: 621e41df127fded6ec6fe1f71e86cb8630965a70
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 378bc9a7ef6bfe65209413c8c4134f313a2c0d79
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="reviewing-azure-importexport-job-status-with-copy-log-files"></a>Esame dello stato del processo di Importazione/Esportazione di Azure con i file di log di copia
-Quando il servizio Importazione/Esportazione di Microsoft Azure elabora unità associate a un processo di importazione o esportazione, scrive file di log di copia per l'account di archiviazione verso cui o da cui si importano o si esportano BLOB. Il file di log contiene lo stato dettagliato di ogni file importato o esportato. L'URL ad ogni file di log di copia viene restituito quando si esegue una query sullo stato di un processo completato. Per ulteriori informazioni, vedere [Get Job](/rest/api/storageservices/Get-Job3).  
+Quando hello servizio importazione/esportazione di Microsoft Azure elabora unità associate a un processo di importazione o esportazione, viene scritta copia log file toohello storage account tooor da cui si importano o esportano i BLOB. file di log Hello contiene lo stato dettagliato di ogni file importato o esportato. file di log di copia di Hello URL tooeach viene restituito quando si esegue una query sullo stato di hello di un processo completato. vedere [recupero del processo](/rest/api/storageservices/Get-Job3) per ulteriori informazioni.  
 
 ## <a name="example-urls"></a>URL di esempio
 
-Di seguito sono mostrati URL di esempio per i file di log di copia per un processo di importazione con due unità:  
+di seguito Hello sono gli URL di esempio per i file di log di copia per un processo di importazione con due unità:  
   
  `http://myaccount.blob.core.windows.net/ImportExportStatesPath/waies/myjob_9WM35C2V_20130921-034307-902_error.xml`  
   
  `http://myaccount.blob.core.windows.net/ImportExportStatesPath/waies/myjob_9WM45A6Q_20130921-042122-021_error.xml`  
   
- Per informazioni sul formato dei log di copia e l'elenco completo dei codici di stato, vedere [Formato dei file di log del servizio Importazione/Esportazione di Azure](storage-import-export-file-format-log.md).  
+ Vedere [il servizio di importazione/esportazione il formato di File di Log](storage-import-export-file-format-log.md) formato hello dei log di copia e l'elenco completo di hello dei codici di stato.  
   
 ## <a name="next-steps"></a>Passaggi successivi
  
- * [Configurazione dello strumento Importazione/Esportazione di Azure](storage-import-export-tool-setup-v1.md)   
+ * [Impostazione hello strumento di importazione/esportazione di Azure](storage-import-export-tool-setup-v1.md)   
  * [Preparing hard drives for an import job](storage-import-export-tool-preparing-hard-drives-import-v1.md) (Preparazione dei dischi rigidi per un processo di importazione)   
  * [Repairing an import job](storage-import-export-tool-repairing-an-import-job-v1.md) (Riparazione di un processo di importazione)   
  * [Repairing an export job](storage-import-export-tool-repairing-an-export-job-v1.md) (Riparazione di un processo di esportazione)   
- * [Risoluzione dei problemi relativi allo strumento Importazione/Esportazione di Azure](storage-import-export-tool-troubleshooting-v1.md)
+ * [Risoluzione dei problemi hello strumento di importazione/esportazione di Azure](storage-import-export-tool-troubleshooting-v1.md)

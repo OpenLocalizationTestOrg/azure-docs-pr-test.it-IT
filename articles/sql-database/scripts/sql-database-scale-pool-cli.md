@@ -1,6 +1,6 @@
 ---
-title: Script di esempio dell'interfaccia della riga di comando di Azure per il ridimensionamento di un pool elastico SQL nel database SQL di Azure | Microsoft Docs
-description: Script di esempio dell'interfaccia della riga di comando di Azure per il ridimensionamento di un pool elastico SQL nel database SQL di Azure
+title: esempio di aaaCLI ridimensiona un Database SQL Azure di pool elastico SQL | Documenti Microsoft
+description: Azure CLI esempio script tooscale un pool elastico SQL nel Database di SQL Azure
 services: sql-database
 documentationcenter: sql-database
 author: janeng
@@ -16,13 +16,13 @@ ms.tgt_pltfrm: sql-database
 ms.workload: database
 ms.date: 06/23/2017
 ms.author: janeng
-ms.openlocfilehash: 888d2b7b7c118fede82d39881570a3b3d7b09961
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 436128b8183213f78b9abc2ec46efe2a3ed3c37c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-cli-to-scale-a-sql-elastic-pool-in-azure-sql-database"></a>Usare l'interfaccia della riga di comando per ridimensionare un pool elastico SQL nel database SQL di Azure
+# <a name="use-cli-tooscale-a-sql-elastic-pool-in-azure-sql-database"></a>Utilizzare tooscale CLI un pool elastico SQL nel Database di SQL Azure
 
 Questo script di esempio dell'interfaccia della riga di comando di Azure crea pool elastici SQL, sposta i database in pool e modifica i livelli di prestazioni del pool elastico. 
 
@@ -30,15 +30,15 @@ Questo script di esempio dell'interfaccia della riga di comando di Azure crea po
 
 [!INCLUDE [cloud-shell-try-it.md](../../../includes/cloud-shell-try-it.md)]
 
-Se si sceglie di installare e usare l'interfaccia della riga di comando in locale, per questo argomento è necessario eseguire la versione 2.0 o successiva dell'interfaccia della riga di comando di Azure. Eseguire `az --version` per trovare la versione. Se è necessario eseguire l'installazione o l'aggiornamento, vedere [Installare l'interfaccia della riga di comando di Azure 2.0]( /cli/azure/install-azure-cli). 
+Se si sceglie tooinstall e utilizza hello CLI in locale, in questo argomento è necessario che si esegue hello Azure CLI versione 2.0 o versione successiva. Eseguire `az --version` versione hello toofind. Se è necessario tooinstall o l'aggiornamento, vedere [installare Azure CLI 2.0]( /cli/azure/install-azure-cli). 
 
 ## <a name="sample-script"></a>Script di esempio
 
-[!code-azurecli-interactive[main](../../../cli_scripts/sql-database/scale-pool/scale-pool.sh "Spostare database tra pool")]
+[!code-azurecli-interactive[main](../../../cli_scripts/sql-database/scale-pool/scale-pool.sh "Move database between pools")]
 
 ## <a name="clean-up-deployment"></a>Pulire la distribuzione
 
-Dopo l'esecuzione dello script di esempio, è possibile usare il comando seguente per rimuovere il gruppo di risorse e tutte le risorse ad esso associate.
+Dopo l'esecuzione di script di esempio hello, hello comando seguente può essere utilizzato tooremove gruppo di risorse hello e tutte le risorse associate.
 
 ```azurecli-interactive
 az group delete --name myResourceGroup
@@ -46,19 +46,19 @@ az group delete --name myResourceGroup
 
 ## <a name="script-explanation"></a>Spiegazione dello script
 
-Questo script usa i comandi seguenti per creare un gruppo di risorse, un server logico, un database SQL e le regole del firewall. Ogni comando della tabella include collegamenti alla documentazione specifica del comando.
+Questo script utilizza hello seguenti comandi toocreate un gruppo di risorse, server logico, Database SQL e le regole del firewall. Ogni comando in documentazione specifica toocommand hello tabella collegamenti.
 
 | Comando | Note |
 |---|---|
 | [az group create](https://docs.microsoft.com/cli/azure/group#create) | Consente di creare un gruppo di risorse in cui sono archiviate tutte le risorse. |
-| [az sql server create](https://docs.microsoft.com/cli/azure/sql/server#create) | Consente di creare un server logico che ospita il database SQL. |
-| [az sql elastic-pools create](https://docs.microsoft.com/cli/azure/sql/elastic-pool#create) | Consente di creare un pool di database elastico all'interno del server logico. |
-| [az sql db create](https://docs.microsoft.com/cli/azure/sql/db#create) | Consente di creare il database SQL nel server logico. |
-| [az sql elastic-pools update](https://docs.microsoft.com/cli/azure/sql/elastic-pool#update) | Consente di aggiornare un pool di database elastico, in questo esempio modifica l'eDTU assegnato. |
+| [az sql server create](https://docs.microsoft.com/cli/azure/sql/server#create) | Crea un server logico che gli host hello Database SQL. |
+| [az sql elastic-pools create](https://docs.microsoft.com/cli/azure/sql/elastic-pool#create) | Crea un pool di database elastico all'interno di server logico hello. |
+| [az sql db create](https://docs.microsoft.com/cli/azure/sql/db#create) | Crea hello Database di SQL server logico hello. |
+| [az sql elastic-pools update](https://docs.microsoft.com/cli/azure/sql/elastic-pool#update) | Aggiorna un pool di database elastico, in questo hello modifiche esempio assegnato eDTU. |
 | [az group delete](https://docs.microsoft.com/cli/azure/vm/extension#set) | Consente di eliminare un gruppo di risorse incluse tutte le risorse annidate. |
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Per altre informazioni sull'interfaccia della riga di comando di Azure, vedere la [documentazione sull'interfaccia della riga di comando di Azure](https://docs.microsoft.com/cli/azure/overview).
+Per ulteriori informazioni su hello CLI di Azure, vedere [documentazione CLI di Azure](https://docs.microsoft.com/cli/azure/overview).
 
-Per altri esempi di script dell'interfaccia della riga di comando per database SQL, vedere la [documentazione del database SQL di Azure](../sql-database-cli-samples.md).
+Ulteriori esempi di script SQL Database CLI sono reperibile in hello [documentazione relativa al Database di SQL Azure](../sql-database-cli-samples.md).

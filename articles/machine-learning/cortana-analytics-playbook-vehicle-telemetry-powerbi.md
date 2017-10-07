@@ -1,6 +1,6 @@
 ---
-title: "Dashboard di Power BI sull'integrità dei veicoli e sulle abitudini di guida - Azure | Documentazione Microsoft"
-description: "Usare le funzionalità di Cortana Intelligence per ottenere informazioni dettagliate predittive e in tempo reale sullo stato di integrità del veicolo e sulle abitudini di guida."
+title: "aaaPower BI Dashboard di integrità veicolo e gestire abitudini - Azure | Documenti Microsoft"
+description: "Utilizzare funzionalità di hello di insights di predittiva e in tempo reale toogain Intelligence Cortana sull'integrità del veicolo e abitudini di Guida."
 services: machine-learning
 documentationcenter: 
 author: bradsev
@@ -14,69 +14,69 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/16/2016
 ms.author: bradsev
-ms.openlocfilehash: f880aceb1657ffdfe909b73f175b9673d9ab02cd
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0bd054d943387ecad7301236eebae22458173aba
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="vehicle-telemetry-analytics-solution-template-power-bi-dashboard-setup-instructions"></a>Istruzioni di configurazione del dashboard di Power BI per il modello di soluzione per l'analisi dei dati di telemetria del veicolo
-Questo **menu** contiene i collegamenti alle sezioni dello studio. 
+Questo **menu** capitoli toohello questo playbook è collegato. 
 
 [!INCLUDE [cap-vehicle-telemetry-playbook-selector](../../includes/cap-vehicle-telemetry-playbook-selector.md)]
 
-La soluzione per l'analisi dei dati di telemetria del veicolo illustra come le concessionarie d'auto, i produttori di automobili e le compagnie di assicurazione possano sfruttare le funzionalità di Cortana Intelligence per ottenere informazioni dettagliate predittive e in tempo reale sullo stato di integrità del veicolo e sulle abitudini di guida in modo da apportare miglioramenti nelle aree dell'esperienza cliente, di ricerca e sviluppo e delle campagne di marketing. Questo documento contiene istruzioni dettagliate su come configurare i report e il dashboard di Power BI dopo la distribuzione della soluzione nella sottoscrizione. 
+Hello soluzione Analitica telemetria veicolo illustra come società di assicurazioni, produttori di automobili e settore automobilistico trae possono sfruttare le funzionalità di hello di Cortana Intelligence toogain predittive e in tempo reale informazioni dettagliate sui integrità veicolo e Guida miglioramenti di toodrive abitudini nell'area di hello del cliente verifica, R & D e campagne di marketing. Questo documento contiene istruzioni dettagliate su come configurare i report di Power BI hello e dashboard dopo aver distribuita la soluzione hello nella sottoscrizione. 
 
 ## <a name="prerequisites"></a>Prerequisiti
-1. Distribuire la soluzione per l'[analisi dei dati di telemetria](https://gallery.cortanaintelligence.com/Solution/5bdb23f3abb448268b7402ab8907cc90)  
+1. Distribuire hello [telemetria Analitica](https://gallery.cortanaintelligence.com/Solution/5bdb23f3abb448268b7402ab8907cc90) soluzione  
 2. [Installare Microsoft Power BI Desktop](http://www.microsoft.com/download/details.aspx?id=45331)
 3. Una [sottoscrizione di Azure](https://azure.microsoft.com/pricing/free-trial/). Se non si dispone di una sottoscrizione Azure, iniziare con una sottoscrizione gratuita di Azure.
 4. Account di Microsoft Power BI
 
 ## <a name="cortana-intelligence-suite-components"></a>Componenti di Cortana Intelligence Suite
-Come parte del modello di soluzione per l'analisi dei dati di telemetria del veicolo, nella sottoscrizione vengono distribuiti i servizi di Cortana Intelligence seguenti.
+Come parte del modello di soluzione hello veicolo telemetria Analitica, hello seguenti Intelligence Cortana services viene distribuito nella sottoscrizione.
 
 * **Hub eventi** per l'inserimento di milioni di eventi di telemetria del veicolo in Azure.
 * **Analisi di flusso** per ottenere informazioni dettagliate in tempo reale sul funzionamento del veicolo e salvare i dati in modo permanente nello spazio di archiviazione a lungo termine per un'analisi batch avanzata.
-* **Machine Learning** per il rilevamento di anomalie in tempo reale e l'elaborazione batch per ottenere informazioni predittive.
-* **HDInsight** per trasformare i dati su larga scala
-* **Data Factory** gestisce l'orchestrazione, la pianificazione, la gestione delle risorse e il monitoraggio della pipeline di elaborazione batch.
+* **Machine Learning** per il rilevamento di anomalie in tempo reale e approfondimenti predittiva toogain di elaborazione batch.
+* **HDInsight** tootransform sfruttate dati su larga scala
+* **Data Factory** gestisce l'orchestrazione, pianificazione, la gestione delle risorse e il monitoraggio della pipeline di elaborazione batch hello.
 
 **Power BI** offre alla soluzione un dashboard completo per la visualizzazione di dati in tempo reale e di analisi predittiva. 
 
-La soluzione usa due origini dati diverse: **segnali del veicolo e set di dati di diagnostica simulati** e **catalogo dei veicoli**.
+soluzione Hello utilizza due origini dati diverse: **simulato segnali veicolo e set di dati diagnostici** e **catalogo veicolo**.
 
-Nella soluzione è incluso un simulatore di dati telematici relativi al veicolo. Il simulatore genera informazioni di diagnostica e segnali corrispondenti allo stato del veicolo e allo schema di guida in un determinato momento. 
+Nella soluzione è incluso un simulatore di dati telematici relativi al veicolo. Genera informazioni di diagnostica ed segnala stato toohello corrispondente del veicolo hello e modello determinante in un determinato punto nel tempo. 
 
-Il catalogo del veicolo è un set di dati di riferimento contenente il numero di identificazione del veicolo per il mapping del modello.
+Hello veicolo catalogo è un mapping riferimento set di dati contenente VPN toomodel
 
 ## <a name="power-bi-dashboard-preparation"></a>Preparazione del dashboard di Power BI
 ### <a name="setup-power-bi-real-time-dashboard"></a>Configurare il dashboard in tempo reale di Power BI
 
-**Avviare l'applicazione dashboard in tempo reale** Dopo aver completato la distribuzione, è necessario seguire le istruzioni di funzionamento manuale
+**Avviare un'applicazione hello dashboard in tempo reale** al termine della distribuzione di hello, è necessario seguire le istruzioni di operazione manuale hello
 
 * Scaricare l'applicazione dashboard in tempo reale RealtimeDashboardApp.zip e decomprimere il file.
-*  Nella cartella non compressa, aprire il file di configurazione app 'RealtimeDashboardApp.exe.config', sostituire appSettings per hub eventi, archiviazione BLOB e connessioni al servizio ML con i valori indicati nelle istruzioni di funzionamento manuale e salvare le modifiche.
-* Eseguire l'applicazione RealtimeDashboardApp.exe. Specificare le credenziali di Power BI valide nella finestra di accesso visualizzata e fare clic sul pulsante **Accetto**. Viene avviata l'esecuzione dell'app.
+*  Nella cartella decompresso hello, aprire file di configurazione app 'RealtimeDashboardApp.exe.config', sostituire appSettings per le connessioni di servizio hub eventi, l'archiviazione Blob e ML con i valori hello in istruzioni di operazione manuale hello e salvare le modifiche.
+* Eseguire l'applicazione RealtimeDashboardApp.exe. Una finestra di dialogo di accesso popup, fornire le credenziali di Power BI valide e fare clic su hello **Accept** pulsante. Quindi l'applicazione hello inizierà toorun.
 
-   ![Accedere a Power BI](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/5-sign-into-powerbi.png)
+   ![Accedi tooPower BI](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/5-sign-into-powerbi.png)
    
    ![Autorizzazioni per il dashboard di Power BI](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/6-powerbi-dashboard-permissions.png)
 
-* Accedere al sito Web di Power BI e creare dashboard in tempo reale.
+* Sito Web tooPowerBI account di accesso e creare dashboard in tempo reale.
 
-A questo punto si è pronti per configurare il dashboard di Power BI con visualizzazioni avanzate, per ottenere informazioni dettagliate predittive e in tempo reale sull'integrità del veicolo e sulle abitudini di guida. Per creare tutti i report e configurare il dashboard, sono necessari da circa 45 minuti a un'ora. 
+A questo punto, si è pronti tooconfigure dashboard di Power BI hello con le visualizzazioni dettagliate toogain in tempo reale e abitudini predittive informazioni essenziali quanto a integrità veicolo e la Guida. Sono necessari circa 45 minuti tooan ora toocreate hello tutti i report e configurare hello dashboard. 
 
 ### <a name="configure-power-bi-reports"></a>Configurare i report di Power BI
-Il completamento dei report in tempo reale e del dashboard richiede circa 30-45 minuti. Passare a [http://powerbi.com](http://powerbi.com) e accedere.
+i report in tempo reale di Hello e dashboard hello richiedere circa 30 a 45 minuti toocomplete. Sfoglia troppo[http://powerbi.com](http://powerbi.com) e account di accesso.
 
-![Accedere a Power BI](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/6-1-powerbi-signin.png)
+![Accedi tooPower BI](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/6-1-powerbi-signin.png)
 
-Viene generato un nuovo set di dati in Power BI. Fare clic sul set di dati **ConnectedCarsRealtime**.
+Viene generato un nuovo set di dati in Power BI. Fare clic su hello **ConnectedCarsRealtime** set di dati.
 
 ![Selezionare il set di dati in tempo reale delle automobili connesse](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/7-select-connected-cars-realtime-dataset.png)
 
-Salvare il report vuoto premendo **CTRL+S**.
+Salvare hello report vuoto utilizzando **Ctrl + s**.
 
 ![Salvare il report vuoto](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/8-save-blank-report.png)
 
@@ -91,10 +91,10 @@ Questa soluzione include tre report in tempo reale:
 2. Veicoli che richiedono manutenzione
 3. Statistiche sull'integrità dei veicoli
 
-È possibile scegliere di configurare tutti e tre i report in tempo reale o interrompere la procedura dopo ogni fase e passare alla successiva sezione di configurazione dei report in batch. È consigliabile creare tutti e tre i report per visualizzare le informazioni dettagliate complete del percorso in tempo reale della soluzione.  
+È possibile scegliere tooconfigure tutti i report in tempo reale tre hello o arrestarsi dopo qualsiasi fase e procedere toohello successiva sezione di configurazione dei report di batch hello. È consigliabile toocreate tutti hello tre riporta informazioni dettagliate completo toovisualize hello del percorso in tempo reale di hello di soluzione hello.  
 
 ### <a name="1-vehicles-in-operation"></a>1. Veicoli operativi
-Fare doppio clic su **Pagina 1** e rinominarla "Veicoli operativi"  
+Fare doppio clic su **pagina 1** e rinominarlo troppo "Veicoli nell'operazione"  
     ![Automobili connesse: veicoli operativi](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/connected-cars-3.4a.png)  
 
 Selezionare il campo **vin** da **Fields** e scegliere **"Card"** come tipo di visualizzazione.  
@@ -102,33 +102,33 @@ Selezionare il campo **vin** da **Fields** e scegliere **"Card"** come tipo di v
 Viene creata una visualizzazione di tipo scheda come illustrato nella figura.  
     ![Automobili connesse: seleziona vin](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/connected-cars-3.4b.png)
 
-Fare clic sull'area vuota per aggiungere una nuova visualizzazione.  
+Fare clic su nuova visualizzazione tooadd area vuota hello.  
 
-Selezionare **Città** e **vin** dai campi. Cambiare la visualizzazione in **"Map"**. Trascinare **vin** nell'area valori. Trascinare **città** dai campi nell'area **Legenda**.   
+Selezionare **Città** e **vin** dai campi. Modificare anche le visualizzazione**"Mappa"**. Trascinare **vin** nell'area valori. Trascinare **Città** dai campi troppo**legenda** area.   
     ![Automobili connesse: visualizzazione scheda](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/connected-cars-3.4c.png)
 
-Selezionare la sezione **Formato** da **Visualizzazioni**, fare clic su **Titolo** e modificare il **testo** in **"Veicoli operativi in base alla città"**.  
+Selezionare **formato** sezione **visualizzazioni**, fare clic su **titolo** e modificare hello **testo** troppo**"veicoli operazione in base alla città"**.  
     ![Automobili connesse: veicoli operativi in base alla città](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/connected-cars-3.4d.png)   
 
 La visualizzazione finale è simile a quella illustrata nella figura.    
     ![Automobili connesse: visualizzazione finale](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/connected-cars-3.4e.png)
 
-Fare clic sull'area vuota per aggiungere una nuova visualizzazione.  
+Fare clic su nuova visualizzazione tooadd area vuota hello.  
 
-Selezionare **Città** e **vin**, modificare il tipo di visualizzazione in **Istogramma a colonne raggruppate**. Verificare che il campo **Città** sia nell'**area Asse** e **vin** nell'**area Valore**  
+Selezionare **Città** e **VPN**, modificare il tipo di visualizzazione anche**istogramma a colonne raggruppate**. Verificare che il campo **Città** sia nell'**area Asse** e **vin** nell'**area Valore**  
 
 Ordinare il grafico in base a **"Count of vin"**  
     ![Automobili connesse: conteggio di vin](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/connected-cars-3.4f.png)  
 
-Modificare il campo **Titolo** del grafico in **"Veicoli operativi per città"**  
+Il grafico cambia **titolo** troppo**"Veicoli nell'operazione in base alla città"**  
 
-Fare clic sulla sezione **Formato**, quindi selezionare **Colori dati** e in **Mostra tutto** fare clic su **"Attiva"**  
+Fare clic su hello **formato** sezione, quindi selezionare **colori dati**, fare clic su hello **"On"** troppo**Mostra tutto**  
     ![Automobili connesse: mostra tutti i colori dei dati](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/connected-cars-3.4g.png)  
 
-Modificare il colore delle singole città facendo clic sull'icona del colore.  
+Modificare il colore di hello di singole città facendo clic sull'icona di colore.  
     ![Automobili connesse: modifica colori](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/connected-cars-3.4h.png)  
 
-Fare clic sull'area vuota per aggiungere una nuova visualizzazione.  
+Fare clic su nuova visualizzazione tooadd area vuota hello.  
 
 Dalle visualizzazioni selezionare **Istogramma a colonne raggruppate**, trascinare il campo **città** nell'area **Asse**, **Modello** nell'area **Legenda** e **vin** nell'area **Valore**.  
     ![Automobili connesse: istogramma a colonne raggruppate](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/connected-cars-3.4i.png)  
@@ -137,34 +137,34 @@ Dalle visualizzazioni selezionare **Istogramma a colonne raggruppate**, trascina
 Ridisporre la visualizzazione nella pagina come illustrato nella figura.  
     ![Automobili connesse: visualizzazioni](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/connected-cars-3.4k.png)
 
-Il report in tempo reale "Veicoli operativi" è stato configurato correttamente. È possibile procedere per creare il report in tempo reale successivo o interrompere la procedura e configurare il dashboard. 
+Report in tempo reale di hello "Veicoli nell'operazione" è stata configurata. È possibile procedere toocreate hello successivo in tempo reale report o interrompere la procedura e configurare hello dashboard. 
 
 ### <a name="2-vehicles-requiring-maintenance"></a>2. Veicoli che richiedono manutenzione
-Fare clic su ![Add](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/connected-cars-3.4add.png) per aggiungere un nuovo report e rinominarlo **"Veicoli che richiedono manutenzione"**
+Fare clic su ![Aggiungi](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/connected-cars-3.4add.png) tooadd un nuovo report, rinominare troppo**"Veicoli che richiedono manutenzione"**
 
 ![Automobili connesse: veicoli che richiedono manutenzione](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/connected-cars-3.4l.png)  
 
-Selezionare il campo **vin** e modificare il tipo di visualizzazione in **Scheda**.  
+Selezionare **VPN** campo e modificare il tipo di visualizzazione troppo**scheda**.  
     ![Automobili connesse: visualizzazione scheda vin](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/connected-cars-3.4m.png)  
 
-Nel set di dati è presente un campo denominato "MaintenanceLabel". Questo campo può avere un valore pari a "0" o "1". È impostato dal modello di Azure Machine Learning fornito come parte della soluzione e integrato nel percorso in tempo reale. Il valore "1" indica che un veicolo richiede manutenzione. 
+Abbiamo un campo denominato "MaintenanceLabel" nel set di dati hello. Questo campo può avere un valore pari a "0" o "1". Viene impostato dal modello di Azure Machine Learning hello effettuato il provisioning come parte della soluzione e integrato con il percorso di hello in tempo reale. il valore di Hello "1" indica che un veicolo richiede attività di manutenzione. 
 
-Per aggiungere il filtro **Page Level** e visualizzare i dati relativi ai veicoli che richiedono manutenzione: 
+tooadd un **a livello di pagina** filtro per la visualizzazione dei dati veicoli, che richiedono manutenzione: 
 
-1. Trascinare il campo **"MaintenanceLabel"** in **Filtri a livello di pagina**.  
+1. Hello trascinare **"MaintenanceLabel"** campo in **filtri a livello di pagina**.  
    ![Automobili connesse: filtri del livello di pagina](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/connected-cars-3.4n1.png)  
 2. Fare clic sul menu **Basic Filtering** presente in basso nella schermata del filtro MaintenanceLabel in Page Level Filter.  
    ![Automobili connesse: filtro base](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/connected-cars-3.4n2.png)  
-3. Impostare il valore del filtro su **"1"**    
+3. Impostare il valore di filtro troppo**"1"**    
    ![Automobili connesse: valore di filtro](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/connected-cars-3.4n3.png)  
 
-Fare clic sull'area vuota per aggiungere una nuova visualizzazione.  
+Fare clic su nuova visualizzazione tooadd area vuota hello.  
 
 Dalle visualizzazioni selezionare **Istogramma a colonne raggruppate**  
 ![Automobili connesse: visualizzazione scheda vin](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/connected-cars-3.4o.png)  
 ![Automobili connesse: istogramma a colonne raggruppate](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/connected-cars-3.4p.png)
 
-Trascinare il campo **Modello** nell'area **Asse** e **vin** nell'area **Valore**. Ordinare quindi la visualizzazione in base a **Count of vin**.  Modificare il campo **Titolo** del grafico in **"Veicoli che richiedono manutenzione in base al modello"**  
+Campo trascinare **modello** in **asse** area **VPN** troppo**valore** area. Ordinare quindi la visualizzazione in base a **Count of vin**.  Il grafico cambia **titolo** troppo**"Veicoli richiesta dal modello di manutenzione"**  
 
 Trascinare i campi **vin** in **Saturazione colore** presente nella sezione **Campi** ![Campi](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/connected-cars-3.4field.png) della scheda **Visualizzazione**  
 ![Automobili connesse: saturazione dei colori](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/connected-cars-3.4q.png)  
@@ -175,146 +175,146 @@ Cambiare il colore minimo in: **FF6300**
 ![Automobili connesse: modifiche dei colori](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/connected-cars-3.4r.png)  
 ![Automobili connesse: nuovi colori di visualizzazione](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/connected-cars-3.4s.png)  
 
-Fare clic sull'area vuota per aggiungere una nuova visualizzazione.  
+Fare clic su nuova visualizzazione tooadd area vuota hello.  
 
-Selezionare **Istogramma a colonne raggruppate** dalle visualizzazioni, trascinare il campo **vin** nell'area **Valore** e il campo **Città** nell'area **Asse**. Ordinare il grafico in base a **"Count of vin"**. Modificare il campo **Titolo** del grafico in **"Veicoli che richiedono manutenzione in base alla città"**   
+Selezionare **Istogramma a colonne raggruppate** dalle visualizzazioni, trascinare il campo **vin** nell'area **Valore** e il campo **Città** nell'area **Asse**. Ordinare il grafico in base a **"Count of vin"**. Il grafico cambia **titolo** troppo**"Veicoli che richiedono manutenzione in base alla città"**   
 ![Automobili connesse: veicoli che richiedono manutenzione in base alla città](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/connected-cars-3.4t.png)  
 
-Fare clic sull'area vuota per aggiungere una nuova visualizzazione.  
+Fare clic su nuova visualizzazione tooadd area vuota hello.  
 
-Selezionare la visualizzazione **Scheda con più righe** dalle visualizzazioni, trascinare **Modello** e **vin** nell'area **Campi**.  
+Selezionare **scheda con più righe** visualizzazione da visualizzazioni, trascinare **modello** e **VPN** in hello **campi** area.  
 ![Automobili connesse: scheda con più righe](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/connected-cars-3.4u.png)    
 
-Ridisponendo tutte le visualizzazioni, il report finale avrà l'aspetto seguente:   
+Report finale hello ridisposizione tutti di visualizzazione hello, simile al seguente:  
 ![Automobili connesse: scheda con più righe](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/connected-cars-3.4v.png)  
 
-Il report in tempo reale "Veicoli che richiedono manutenzione" è stato configurato correttamente. È possibile procedere per creare il report in tempo reale successivo o interrompere la procedura e configurare il dashboard. 
+È stato configurato correttamente i report in tempo reale di hello "Veicoli che richiedono manutenzione". È possibile procedere toocreate hello successivo in tempo reale report o interrompere la procedura e configurare hello dashboard. 
 
 ### <a name="3-vehicles-health-statistics"></a>3. Statistiche sull'integrità dei veicoli
-Fare clic su ![Add](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/connected-cars-3.4add.png) per aggiungere un nuovo report e rinominarlo **"Statistiche sull'integrità dei veicoli"**  
+Fare clic su ![Aggiungi](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/connected-cars-3.4add.png) tooadd nuovo report, rinominarla troppo**"Veicoli delle statistiche di integrità"**  
 
-Selezionare la visualizzazione **Misuratore** dalle visualizzazioni, quindi trascinare il campo **Velocità** nelle aree **Valore, Valore minimo, Valore massimo**.  
+Selezionare **misuratore** visualizzazione da visualizzazioni, quindi trascinare hello **velocità** campo in **, valore minimo, massimo valore** aree.  
 ![Automobili connesse: scheda con più righe](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/connected-cars-3.4w.png)  
 
-Modificare l'aggregazione predefinita di **velocità** nell'area **Valore** su **Media** 
+Modificare l'aggregazione predefinita hello di **velocità** in **valore area** troppo**medio** 
 
-Modificare l'aggregazione predefinita di **velocità** nell'area **Valore minimo** su **Minima**
+Modificare l'aggregazione predefinita hello di **velocità** in **area minima** troppo**minimo**
 
-Modificare l'aggregazione predefinita di **velocità** nell'area **Valore massimo** su **Massima**
+Modificare l'aggregazione predefinita hello di **velocità** in **area massima** troppo**massimo**
 
 ![Automobili connesse: scheda con più righe](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/connected-cars-3.4x.png)  
 
-Rinominare il campo **Titolo misuratore** in **"Velocità media"** 
+Rinominare hello **misuratore titolo** troppo**"Velocità media"** 
 
 ![Automobili connesse: misuratore](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/connected-cars-3.4y.png)  
 
-Fare clic sull'area vuota per aggiungere una nuova visualizzazione.  
+Fare clic su nuova visualizzazione tooadd area vuota hello.  
 
 Allo stesso modo, aggiungere un **Misuratore** per **media olio motore**, **media carburante** e **media temperatura motore**.  
 
-Modificare l'aggregazione predefinita dei campi in ogni misuratore come indicato nei passaggi precedenti per il misuratore **"Velocità media"**.
+Modificare l'aggregazione predefinita hello di campi in ogni misuratore in base di sopra di passaggi **"Velocità media"** del misuratore.
 
 ![Automobili connesse: misuratori](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/connected-cars-3.4z.png)
 
-Fare clic sull'area vuota per aggiungere una nuova visualizzazione.
+Fare clic su nuova visualizzazione tooadd area vuota hello.
 
-Selezionare **Grafico a linee e istogramma a colonne raggruppate** dalle visualizzazioni, quindi trascinare il campo **Città** in **Asse condiviso**, trascinare i campi **velocità**, **pressione gomme ed olio motore** nell'area **Valori colonna**, modificare il tipo di aggregazione in **Media**. 
+Selezionare **riga e istogramma a colonne raggruppate** visualizzazioni, quindi trascinare **Città** campo in **asse condiviso**, trascinare **velocità**, **campi tirepressure ed engineoil** in **i valori di colonna** area, modificare il tipo di aggregazione troppo**Media**. 
 
-Trascinare il campo **Temperatura motore** nell'area **Valori riga** e modificare il tipo di aggregazione in **Media**. 
+Hello trascinare **engineTemperature** campo in **valori riga** area, modificare il tipo di aggregazione di hello troppo**Media**. 
 
 ![Automobili connesse: campi di visualizzazione](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/connected-cars-3.4aa.png)
 
-Modificare il campo **Titolo** del grafico in **"Media velocità, pressione pneumatici, temperatura dell'olio e del motore"**.  
+Grafico hello modifica **titolo** troppo**"Media velocità, pressione tire, olio motore e temperatura del motore"**.  
 
 ![Automobili connesse: campi di visualizzazione](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/connected-cars-3.4bb.png)
 
-Fare clic sull'area vuota per aggiungere una nuova visualizzazione.
+Fare clic su nuova visualizzazione tooadd area vuota hello.
 
-Nelle visualizzazioni selezionare **Treemap**, trascinare il campo **Modello** nell'area **Gruppo** e il campo **MaintenanceProbability** nell'area **Valori**.
+Selezionare **Treemap** visualizzazione da visualizzazioni, trascinare hello **modello** campo in hello **gruppo** area e trascinare hello  **MaintenanceProbability** in hello **valori** area.
 
-Modificare il campo **Titolo** del grafico in **"Modelli di veicolo che richiedono manutenzione"**.
+Grafico hello modifica **titolo** troppo**"Modelli veicolo che richiedono manutenzione"**.
 
 ![Automobili connesse: modifica titolo del grafico](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/connected-cars-3.4cc.png)
 
-Fare clic sull'area vuota per aggiungere una nuova visualizzazione.
+Fare clic su nuova visualizzazione tooadd area vuota hello.
 
-Nella visualizzazione selezionare **Grafico a barre in pila 100%**, trascinare il campo **città** nell'area **Asse** e i campi **MaintenanceProbability** e **RecallProbability** nell'area **Valore**.
+Selezionare **barre del grafico in pila 100%** dalla visualizzazione, trascinare hello **Città** campo in hello **asse** area e trascinare hello **MaintenanceProbability**, **RecallProbability** campi hello **valore** area.
 
 ![Automobili connesse: aggiungi nuova visualizzazione](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/connected-cars-3.4dd.png)
 
-Fare clic su **Formato**, selezionare **Colori dati** e impostare il colore di **MaintenanceProbability** sul valore **"F2C80F"**.
+Fare clic su **formato**selezionare **colori dati**e set hello **MaintenanceProbability** toohello valore di colore **"F2C80F"**.
 
-Modificare il campo **Titolo** del grafico in **"Probabilità di manutenzione e richiamo del veicolo in base alla città"**.
+Hello modifica **titolo** di hello grafico troppo**"Probabilità del veicolo manutenzione e richiamare by City"**.
 
 ![Automobili connesse: aggiungi nuova visualizzazione](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/connected-cars-3.4ee.png)
 
-Fare clic sull'area vuota per aggiungere una nuova visualizzazione.
+Fare clic su nuova visualizzazione tooadd area vuota hello.
 
-Nelle visualizzazioni selezionare **Grafico ad area**, trascinare il campo **Modello** nell'area **Asse** e i campi **engineOil, tirepressure, speed e MaintenanceProbability** nell'area **Valori**. Modificare il tipo di aggregazione in **"Average"**. 
+Selezionare **grafico ad Area** dalla visualizzazione da visualizzazioni, trascinare hello **modello** campo in hello **asse** area e trascinare hello **engineOil, tirepressure, velocità e MaintenanceProbability** campi hello **valori** area. Modificare il tipo di aggregazione troppo**"Medio"**. 
 
 ![Automobili connesse: modifica tipo di aggregazione](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/connected-cars-3.4ff.png)
 
-Modificare il titolo del grafico in **"Media per olio motore, pressione pneumatici, velocità e probabilità di manutenzione in base al modello"**.
+Modificare il titolo di hello del grafico hello troppo**"Media olio motore, tire probabilità pressione, velocità e la manutenzione dal modello"**.
 
 ![Automobili connesse: modifica titolo del grafico](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/connected-cars-3.4gg.png)
 
-Fare clic sull'area vuota per aggiungere una nuova visualizzazione:
+Fare clic su nuova visualizzazione tooadd area vuota hello:
 
 1. Nelle visualizzazioni selezionare **Scatter Chart** .
-2. Trascinare il campo **Modello** nelle aree **Dettagli** e **Legenda**.
-3. Trascinare il campo **carburante** nell'area **Asse X** e modificare l'aggregazione in **Media**.
-4. Trascinare il campo **engineTemperature** nell'area **Asse Y** e modificare l'aggregazione in **Media**
-5. Trascinare il campo **vin** nell'area **Dimensioni**.
+2. Hello trascinare **modello** campo in hello **dettagli** e **legenda** area.
+3. Hello trascinare **carburante** campo in hello **asse x** area, modificare anche le aggregazioni hello**Media**.
+4. Trascinare **engineTemparature** in **area asse y**, modificare anche le aggregazioni hello**medio**
+5. Hello trascinare **VPN** campo in hello **dimensioni** area.
 
 ![Automobili connesse: aggiungi nuova visualizzazione](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/connected-cars-3.4hh.png)
 
-Modificare il campo **Titolo** del grafico in **"Medie per carburante e temperatura del motore in base al modello"**.
+Grafico hello modifica **titolo** troppo**"Medie di carburante, temperatura motore dal modello"**.
 
 ![Automobili connesse: modifica titolo del grafico](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/connected-cars-3.4ii.png)
 
-Il report finale avrà un aspetto simile al seguente.
+report finale Hello apparirà come illustrato di seguito.
 
 ![Automobili connesse: report finale](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/connected-cars-3.4jj.png)
 
-### <a name="pin-visualizations-from-the-reports-to-the-real-time-dashboard"></a>Aggiungere visualizzazioni dai report al dashboard in tempo reale
-Creare un dashboard vuoto facendo clic sull'icona del segno più accanto a Dashboard. È possibile denominarlo "Dashboard di analisi dei dati di telemetria di veicolo".
+### <a name="pin-visualizations-from-hello-reports-toohello-real-time-dashboard"></a>Visualizzazioni di pin di dashboard in tempo reale di hello report toohello
+Creare un dashboard vuoto da facendo clic sull'icona di addizione hello tooDashboards successivo. È possibile denominarlo "Dashboard di analisi dei dati di telemetria di veicolo".
 
 ![Automobili connesse: dashboard](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/connected-cars-3.5.png)
 
-Aggiungere la visualizzazione dei report precedenti al dashboard. 
+Visualizzazione di hello pin da hello sopra dashboard toohello di report. 
 
 ![Automobili connesse: dashboard](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/connected-cars-3.6.png)
 
-Il dashboard dovrebbe avere l'aspetto illustrato di seguito una volta creati tutti e tre i report e aggiunte le visualizzazioni corrispondenti al dashboard. Se non sono stati creati tutti i report, il dashboard potrebbe apparire diverso. 
+Quando tutti hello tre report vengono creati e hello corrispondente visualizzazioni dashboard toohello bloccati, dashboard Hello dovrebbe apparire come segue. Se non è stato creato tutti i report di hello, il dashboard potrebbe essere diverso. 
 
 ![Automobili connesse: dashboard](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/connected-cars-4.0.png)
 
-Congratulazioni. Il dashboard in tempo reale è stato creato correttamente. Continuando a eseguire CarEventGenerator.exe e RealtimeDashboardApp.exe, gli aggiornamenti saranno visualizzati in tempo reale nel dashboard. Il completamento dei passaggi seguenti dovrebbe richiedere circa 10-15 minuti .
+Congratulazioni. Dashboard in tempo reale hello è stato creato. Mentre si continua a tooexecute CarEventGenerator.exe e RealtimeDashboardApp.exe, vedrai aggiornamenti in tempo reale nel dashboard di hello. Occorrere hello di toocomplete too15 circa 10 minuti alla procedura seguente.
 
 ## <a name="setup-power-bi-batch-processing-dashboard"></a>Configurare il dashboard di elaborazione batch di PowerBI
 > [!NOTE]
-> Occorrono circa due ore dal completamento della distribuzione perché la pipeline di elaborazione batch end-to-end completi l'esecuzione ed elabori un anno di dati generati. Quindi, attendere il completamento prima di procedere con i passaggi successivi. 
+> Accetta circa due ore (da hello corretto completamento di distribuzione hello) per il batch di tooend fine hello esecuzione toofinish della pipeline di elaborazione e l'elaborazione di un valore di anno di dati generati. Pertanto si consiglia di attendere hello toofinish prima di procedere con passaggi successivi hello di elaborazione. 
 > 
 > 
 
-**Scaricare il file di progettazione Power BI**
+**Scaricare il file della finestra di progettazione di Power BI hello**
 
-* Un file di progettazione Power BI preconfigurato è incluso con le istruzioni di funzionamento manuale della distribuzione
-* Cercare 2. Impostare il dashboard di elaborazione batch Power BI È possibile scaricare il modello di Power BI per il dashboard di elaborazione batch denominato **ConnectedCarsPbiReport.pbix**.
+* Un file della finestra di progettazione di Power BI configurati in precedenza è incluso come parte della distribuzione hello istruzioni operazione manuale
+* Cercare 2. Dashboard di elaborazione batch di installazione Power BI è possibile scaricare il modello di Power BI hello per l'elaborazione batch dashboard denominate **ConnectedCarsPbiReport.pbix**.
 * Salvare in locale
 
 **Configurare i report di Power BI**
 
-* Aprire il file di progettazione '**ConnectedCarsPbiReport.pbix**' tramite Power BI Desktop. Se non lo si è ancora fatto, installare Power BI Desktop da [Installazione Power BI Desktop](http://www.microsoft.com/download/details.aspx?id=45331). 
-* Fare clic su **Modifica query**.
+* File di progettazione aprire hello '**ConnectedCarsPbiReport.pbix**' con Power BI Desktop. Se non si dispone, installa hello Power BI Desktop dal [installare Power BI Desktop](http://www.microsoft.com/download/details.aspx?id=45331). 
+* Fare clic su hello **modifica query**.
 
 ![Modificare la query di Power BI](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/10-edit-powerbi-query.png)
 
-* Fare doppio clic sull'**origine**.
+* Fare doppio clic su hello **origine**.
 
 ![Impostare l'origine di Power BI](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/11-set-powerbi-source.png)
 
-* Aggiornare la stringa di connessione del server con il server di Azure SQL di cui è stato effettuato il provisioning come parte della distribuzione.  Esaminare le istruzioni di funzionamento manuale in 
+* Aggiornare la stringa di connessione Server con hello Azure SQL server in cui è stato eseguito il provisioning come parte della distribuzione hello.  Cerca in istruzioni di operazione manuale hello in 
 
     4. Database SQL di Azure
     
@@ -328,37 +328,37 @@ Congratulazioni. Il dashboard in tempo reale è stato creato correttamente. Cont
 ![Impostare il database Power BI](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/12-set-powerbi-database.png)
 
 * Fare clic su **OK**.
-* La scheda **Credenziali di Windows** è selezionata per impostazione predefinita. Modificarla in **Credenziali di database** facendo clic sulla scheda **Database** a destra.
-* Specificare **Nome utente** e **Password** del database SQL di Azure specificato durante la relativa configurazione della distribuzione.
+* Si noterà **credenziale Windows** scheda selezionata per impostazione predefinita, modificarla troppo**le credenziali del Database** facendo clic su **Database** scheda nella parte destra.
+* Fornire hello **Username** e **Password** di Database SQL di Azure che è stato specificato durante il programma di installazione di distribuzione.
 
 ![Ottenere le credenziali del database](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/13-provide-database-credentials.png)
 
 * Fare clic su **Connetti**
-* Ripetere i passaggi precedenti per ciascuna delle tre query rimanenti presenti nel riquadro destro, quindi aggiornare i dettagli di connessione dell'origine dati.
-* Fare clic su **Chiudi e carica**. I set di dati del file di Power BI Desktop sono connessi alle tabelle del database SQL di Azure.
+* Ripetere hello sopra i passaggi per ogni query hello tre rimanenti presenti nel riquadro destro e quindi aggiornare i dettagli di connessione origine dati hello.
+* Fare clic su **Chiudi e carica**. Set di file di dati di Power BI Desktop sono tabelle di Database di Azure tooSQL connesso.
 * **Chiudi** per chiudere il file Power BI Desktop.
 
 ![Chiudere Power BI Desktop](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/14-close-powerbi-desktop.png)
 
-* Fare clic sul pulsante **Salva** per salvare le modifiche apportate. 
+* Fare clic su **salvare** pulsante modifiche hello toosave. 
 
-Sono stati configurati tutti i report corrispondenti al percorso di elaborazione batch nella soluzione. 
+È stato configurato tutti i report di hello toohello percorso di elaborazione batch nella soluzione hello corrispondente. 
 
-## <a name="upload-to-powerbicom"></a>Caricare in *powerbi.com*
-1. Passare al portale Web di Power BI all'indirizzo http://powerbi.com e accedere.
+## <a name="upload-toopowerbicom"></a>Caricare troppo*powerbi.com*
+1. Passare portale web di Power BI toohello http://powerbi.com e account di accesso.
 2. Fare clic su **Recupera dati**  
-3. Caricare il file di Power BI Desktop.  
-4. Per caricarlo, fare clic su **Recupera dati -> Recupera File -> File locale**  
-5. Individuare il file **"**ConnectedCarsPbiReport.pbix**"**  
-6. Una volta caricato il file, si verrà reindirizzati nuovamente all'area di lavoro di PowerBI.  
+3. Caricare il File di Power BI Desktop hello.  
+4. tooupload, fare clic su **recupera dati -> ottenere file -> file locale**  
+5. Passare toohello **"**ConnectedCarsPbiReport.pbix**"**  
+6. Una volta caricato il file hello, sarà tooyour indietro spostarsi area di lavoro di Power BI.  
 
 Verranno creati automaticamente un set di dati, un report e un dashboard vuoto.  
 
-Aggiungere grafici a un nuovo dashboard denominato **Vehicle Telemetry Analytics Dashboard**  (Dashboard di analisi dei dati di telemetria del veicolo) in **Power BI**. Fare clic sul dashboard vuoto creato in precedenza, quindi passare alla sezione **Report** e fare clic sul report appena caricato.  
+PIN grafici tooa nuovo dashboard chiamato **veicolo telemetria Analitica Dashboard** in **Power BI**. Fare clic su dashboard di hello vuoto creato in precedenza e quindi passare toohello **report** fare clic su sezione hello appena caricato report.  
 
 ![Vehicle Telemetry Power BI.com](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/vehicle-telemetry-dashboard1.png) 
 
-**Il report include sei pagine:**  
+**Nota hello report ha sei pagine:**  
 Pagina 1: Densità veicolo  
 Pagina 2: Integrità veicolo in tempo reale  
 Pagina 3: Veicoli guidati in modo aggressivo   
@@ -368,40 +368,40 @@ Pagina 6: Logo di Contoso
 
 ![Connected Cars Power BI.com](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/vehicle-telemetry-dashboard2.png)
 
-**Dalla pagina 3**aggiungere quanto segue:  
+**Dalla pagina 3**, aggiungere il seguente hello:  
 
 1. Count of vin  
    ![Connected Cars Power BI.com](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/vehicle-telemetry-dashboard3.png) 
 2. Veicoli guidati in modo aggressivo in base al modello: grafico a cascata   
    ![Telemetria veicolo: aggiungi grafici 4](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/vehicle-telemetry-dashboard4.png)
 
-**Dalla pagina 5**aggiungere quanto segue: 
+**Dalla pagina 5**, aggiungere il seguente hello: 
 
 1. Count of vin    
    ![Telemetria veicolo: aggiungi grafici 5](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/vehicle-telemetry-dashboard5.png)  
 2. Veicoli guidati con un consumo efficiente del carburante in base al modello: istogramma a colonne raggruppate   
    ![Telemetria veicolo: aggiungi grafici 6](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/vehicle-telemetry-dashboard6.png)
 
-**Dalla pagina 4**aggiungere quanto segue:  
+**Dalla pagina 4**, aggiungere il seguente hello:  
 
 1. Count of vin  
    ![Telemetria veicolo: aggiungi grafici 7](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/vehicle-telemetry-dashboard7.png) 
 2. Veicoli richiamati in base alla città e al modello: grafico ad albero   
    ![Telemetria veicolo: aggiungi grafici 8](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/vehicle-telemetry-dashboard8.png)  
 
-**Dalla pagina 6**aggiungere quanto segue:  
+**Dalla pagina 6**, aggiungere il seguente hello:  
 
 1. Logo Contoso Motors   
    ![Telemetria veicolo: aggiungi grafici 9](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/vehicle-telemetry-dashboard9.png)
 
-**Organizzare il dashboard**  
+**Organizzare il dashboard di hello**  
 
-1. Passare al dashboard
-2. Passare il mouse su ciascun grafico e rinominarlo in base alla denominazione specificata nell'immagine seguente del dashboard completo. Spostare anche i grafici come illustrato nel dashboard seguente.  
+1. Passare toohello dashboard
+2. Passare il mouse su ogni grafico e rinominarlo in base a denominazione hello fornito nell'immagine di un dashboard completo hello riportato di seguito. Spostare anche i grafici di hello intorno toolook come dashboard hello riportato di seguito.  
    ![Telemetria veicolo: organizza dashboard 2](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/vehicle-telemetry-organize-dashboard2.png)  
    ![Vehicle Telemetry Power BI.com](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/vehicle-telemetry-dashboard.png)
-3. Se tutti i report sono stati creati come indicato in questo documento, il dashboard finale completato dovrebbe avere un aspetto simile al seguente. 
+3. Se è stato creato tutti i report di hello, come indicato in questo documento, hello finale dashboard completato dovrebbe essere simile hello seguente illustrazione. 
 
 ![Telemetria veicolo: organizza dashboard 2](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/vehicle-telemetry-organize-dashboard3.png)
 
-Congratulazioni. Sono stati creati il report e il dashboard per ottenere in tempo reale informazioni dettagliate in batch e predittive sullo stato di integrità dei veicoli e sulle abitudini di guida.  
+Congratulazioni. Sono stati creati correttamente i report di hello e hello toogain dashboard in tempo reale, predittiva e abitudini di insights di batch su integrità veicolo e la Guida.  

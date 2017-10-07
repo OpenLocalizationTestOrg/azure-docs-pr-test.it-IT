@@ -1,5 +1,5 @@
 ---
-title: Transparent Data Encryption in SQL Data Warehouse (T-SQL) | Documentazione Microsoft
+title: la crittografia dei dati nel Data Warehouse di SQL (T-SQL) aaaTransparent | Documenti Microsoft
 description: Transparent Data Encryption (TDE) in SQL Data Warehouse (T-SQL).
 services: sql-data-warehouse
 documentationcenter: 
@@ -15,11 +15,11 @@ ms.topic: article
 ms.custom: security
 ms.date: 10/31/2016
 ms.author: rortloff;barbkess
-ms.openlocfilehash: 74c9032aababdce91ed617cd7a4c628915b42504
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3894431c76f14b217f3a6b9a42dbf2f4d216bad6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-with-transparent-data-encryption-tde"></a>Introduzione a Transparent Data Encryption (TDE)
 > [!div class="op_single_selector"]
@@ -31,38 +31,38 @@ ms.lasthandoff: 07/11/2017
 > 
 
 ## <a name="required-permssions"></a>Autorizzazioni necessarie
-Per abilitare Transparent Data Encryption (TDE), è necessario essere un amministratore o un membro del ruolo dbmanager.
+tooenable Transparent Data Encryption (TDE), è necessario essere un amministratore o un membro del ruolo dbmanager hello.
 
 ## <a name="enabling-encryption"></a>Abilitazione della crittografia
-Per abilitare TDE per un SQL Data Warehouse, seguire questa procedura:
+Seguire questi tooenable passaggi TDE per un SQL Data Warehouse:
 
-1. Connettere il database *master* sul server che ospita il database usando un account di accesso di un amministratore o di un membro del ruolo **dbmanager** nel database master.
-2. Eseguire l'istruzione seguente per crittografare il database.
+1. Connettersi toohello *master* database hello server che ospita il database hello utilizzando un account di accesso è un amministratore o un membro di hello **dbmanager** ruolo nel database master hello
+2. Eseguire hello seguente database hello tooencrypt di istruzione.
 
 ```sql
 ALTER DATABASE [AdventureWorks] SET ENCRYPTION ON;
 ```
 
 ## <a name="disabling-encryption"></a>Disabilitazione della crittografia
-Per disabilitare TDE per un SQL Data Warehouse, seguire questa procedura:
+Seguire questi toodisable passaggi TDE per un SQL Data Warehouse:
 
-1. Connettere il database *master* usando un account di accesso di un amministratore o di un membro del ruolo **dbmanager** nel database master.
-2. Eseguire l'istruzione seguente per crittografare il database.
+1. Connettersi toohello *master* database utilizzando un account di accesso è un amministratore o un membro di hello **dbmanager** ruolo nel database master hello
+2. Eseguire hello seguente database hello tooencrypt di istruzione.
 
 ```sql
 ALTER DATABASE [AdventureWorks] SET ENCRYPTION OFF;
 ```
 
 > [!NOTE]
-> Prima di modificare le impostazioni TDE, è necessario interrompere la sospensione di SQL Data Warehouse.
+> Prima di modificare le impostazioni di Transparent Data Encryption toohello, è necessario riprendere una pausa SQL Data Warehouse.
 > 
 > 
 
 ## <a name="verifying-encryption"></a>Verifica della crittografia
-Per verificare lo stato della crittografia per un SQL Data Warehouse, seguire questa procedura:
+lo stato di crittografia tooverify per SQL Data Warehouse, procedura hello riportata di seguito:
 
-1. Connettere il database *master* o dell'istanza usando un account di accesso di un amministratore o di un membro del ruolo **dbmanager** nel database master.
-2. Eseguire l'istruzione seguente per crittografare il database.
+1. Connettersi toohello *master* o database dell'istanza utilizzando un account di accesso è un amministratore o un membro di hello **dbmanager** ruolo nel database master hello
+2. Eseguire hello seguente database hello tooencrypt di istruzione.
 
 ```sql
 SELECT

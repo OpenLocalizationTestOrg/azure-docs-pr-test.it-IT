@@ -1,6 +1,6 @@
 ---
 title: 'Azure Active Directory Domain Services: Introduzione | Microsoft Docs'
-description: Abilitare Azure Active Directory Domain Services tramite il portale di Azure (anteprima)
+description: Abilitare Azure Active Directory Domain Services utilizzando hello del portale di Azure (anteprima)
 services: active-directory-ds
 documentationcenter: 
 author: mahesh-unnikrishnan
@@ -14,64 +14,64 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/15/2017
 ms.author: maheshu
-ms.openlocfilehash: f87bcf33d3b1eb21c7d84814e4c4086f664e293d
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 8bde872a13bc9960d1e62c74017ff78a8953a0a9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="enable-azure-active-directory-domain-services-using-the-azure-portal-preview"></a>Abilitare Azure Active Directory Domain Services tramite il portale di Azure (Anteprima)
+# <a name="enable-azure-active-directory-domain-services-using-hello-azure-portal-preview"></a>Abilitare Azure Active Directory Domain Services utilizzando hello del portale di Azure (anteprima)
 
 
 ## <a name="task-3-configure-administrative-group"></a>Attività 3: Configurare un gruppo amministrativo
-In questa attività di configurazione si crea un gruppo amministrativo nella directory di Azure AD. Questo gruppo amministrativo speciale è chiamato *AAD DC Administrators*. Ai membri di questo gruppo vengono concesse autorizzazioni amministrative per i computer aggiunti al dominio gestito. Nei computer appartenenti a un dominio viene aggiunto al gruppo degli amministratori. Inoltre, i membri di questo gruppo possono usare Desktop remoto per connettersi ai computer del dominio da remoto.
+In questa attività di configurazione si crea un gruppo amministrativo nella directory di Azure AD. Questo gruppo amministrativo speciale è chiamato *AAD DC Administrators*. Membri di questo gruppo vengono concesse le autorizzazioni amministrative nei computer di dominio gestiti toohello appartenenti a un dominio. In computer appartenenti a un dominio, questo gruppo viene aggiunto il gruppo di amministratori toohello. Inoltre, i membri di questo gruppo è possono utilizzare Desktop remoto tooconnect in modalità remota toodomain computer appartenenti a un.
 
 > [!NOTE]
-> Non sarà possibile esercitare i privilegi di amministratore di dominio o amministratore dell'organizzazione all'interno del dominio gestito creato con Azure Active Directory Domain Services. Nei domini gestiti questi privilegi sono riservati dal servizio e non vengono resi disponibili agli utenti all'interno del tenant. Per poter eseguire alcune operazioni con privilegi, sarà tuttavia possibile usare il gruppo amministrativo speciale creato in questa attività di configurazione. Queste operazioni prevedono l'aggiunta di computer al dominio, l'appartenenza al gruppo di amministrazione su computer aggiunti al dominio e la configurazione di Criteri di gruppo.
+> Non si dispone delle autorizzazioni di amministratore dell'organizzazione o di amministratore di dominio nel dominio gestito hello creato tramite Azure Active Directory Domain Services. Nei domini gestiti, queste autorizzazioni sono riservate dal servizio hello e non vengono resi disponibili toousers nel tenant di hello. Tuttavia, è possibile utilizzare gruppo amministrativo di hello speciale creato in questa tooperform di attività di configurazione alcune operazioni privilegiate. Tali operazioni includono l'aggiunta a dominio toohello computer appartenenti toohello gruppo di amministrazione nei computer appartenenti a un dominio e la configurazione dei criteri di gruppo.
 >
 
-La procedura guidata crea automaticamente il gruppo amministrativo nella directory di Azure AD. Il gruppo viene chiamato "Amministratori di AAD DC". Se si dispone di un gruppo esistente con questo nome nella directory di Azure AD, la procedura guidata seleziona questo gruppo. È possibile configurare l'appartenenza al gruppo usando la pagina **Gruppo Amministratori** della procedura guidata.
+procedura guidata di Hello crea automaticamente il gruppo amministrativo di hello nella directory di Azure AD. Il gruppo viene chiamato "Amministratori di AAD DC". Se si dispone di un gruppo esistente con lo stesso nome nella directory di Azure AD, la procedura guidata hello seleziona questo gruppo. È possibile configurare l'appartenenza al gruppo usando hello **gruppo amministratore** pagina della procedura guidata.
 
-1. Per configurare l'appartenenza al gruppo, fare clic su **Amministratori di AAD DC**.
+1. l'appartenenza al gruppo tooconfigure, fare clic su **gli amministratori di controller di dominio di AAD**.
 
     ![Configurare l'appartenenza al gruppo](./media/getting-started/domain-services-blade-admingroup.png)
 
-2. Fare clic su **Aggiungi membri** per aggiungere gli utenti dalla directory di Azure AD al gruppo di amministratori.
+2. Fare clic su hello **aggiungere membri** pulsante tooadd gli utenti del gruppo dell'amministratore toohello directory Azure AD.
 
-3. Al termine, fare clic su **OK** per passare alla pagina **Riepilogo** della procedura guidata.
+3. Al termine, fare clic su **OK** toomove su toohello **riepilogo** pagina della procedura guidata hello.
 
-4. Nella pagina **Riepilogo** della procedura guidata controllare le impostazioni di configurazione per il dominio gestito. Se necessario, è possibile tornare a qualsiasi passaggio precedente della procedura guidata per eseguire le modifiche desiderate. Al termine, fare clic su **OK** per creare il nuovo dominio gestito.
+4. In hello **riepilogo** pagina della procedura guidata hello, rivedere le impostazioni di configurazione di hello per il dominio gestito hello. È possibile tornare tooany passaggio delle modifiche di toomake hello procedura guidata, se necessario. Al termine, fare clic su **OK** toocreate hello gestiti nuovo dominio.
 
     ![Riepilogo](./media/getting-started/domain-services-blade-summary.png)
 
-5. Viene visualizzata una notifica che mostra lo stato di avanzamento della distribuzione di Azure AD Domain Services. Fare clic sulla notifica per visualizzare lo stato di avanzamento dettagliato del processo di distribuzione.
+5. Viene visualizzata una notifica che mostra lo stato di avanzamento hello della distribuzione di servizi di dominio Active Directory di Azure. Fare clic su notifica hello toosee dettagliate per la distribuzione di hello lo stato di avanzamento.
 
     ![Notifica - Distribuzione in corso](./media/getting-started/domain-services-blade-deployment-in-progress.png)
 
 
 ## <a name="provision-your-managed-domain"></a>Effettuare il provisioning del dominio gestito
-Il processo di provisioning del dominio gestito può richiedere fino a un'ora.
+Hello processo di provisioning del dominio gestito può richiedere tooan ora.
 
-1. Mentre è in corso la distribuzione, è possibile cercare "domain services" nella casella di ricerca **Cerca risorse**. Selezionare **Azure AD Domain Services** dai risultati della ricerca. Nel pannello **Azure AD Domain Services** viene elencato il dominio gestito di cui viene effettuato il provisioning.
+1. Durante la distribuzione è in corso, è possibile cercare "servizi di dominio' in hello **individuare risorse** casella di ricerca. Selezionare **servizi di dominio Active Directory di Azure** dai risultati di ricerca hello. Hello **servizi di dominio Active Directory di Azure** pannello elenca hello un dominio gestito che viene eseguito il provisioning.
 
     ![Trovare il dominio gestito di cui viene effettuato il provisioning](./media/getting-started/domain-services-provisioning-state-find-resource.png)
 
-2. Fare clic sul nome del dominio gestito (ad esempio, "contoso100.com") per visualizzare altre informazioni sul dominio.
+2. Fare clic su nome hello di hello gestito dominio (ad esempio, ' contoso100.com') toosee ulteriori dettagli su dominio hello.
 
     ![Domain Services - Stato del provisioning](./media/getting-started/domain-services-provisioning-state.png)
 
-3. La scheda **Panoramica** indica che il dominio è attualmente sottoposto a provisioning. Non è possibile configurare il dominio gestito fino a quando non ne è stato completato il provisioning. Per completare il provisioning del dominio gestito può essere necessaria fino a un'ora.
+3. Hello **Panoramica** scheda Mostra il dominio hello è attualmente in corso il provisioning. È possibile configurare dominio gestito hello fino a quando non è completamente disponibile. Potrebbe richiedere fino a ora tooan per toobe il dominio gestito eseguito il provisioning completo.
 
-    ![Domain Services - Scheda Panoramica durante lo stato di provisioning ](./media/getting-started/domain-services-provisioning-state-details.png)
+    ![Servizi di dominio - scheda Panoramica durante hello lo stato di provisioning ](./media/getting-started/domain-services-provisioning-state-details.png)
 
-4. Al termine del provisioning del dominio gestito, nella scheda **Panoramica** il dominio gestito è impostato su **In esecuzione**.
+4. Quando è stato effettuato il provisioning dominio gestito hello, hello **Panoramica** scheda Mostra stato dominio hello come **esecuzione**.
 
     ![Domain Services - Scheda Panoramica al termine del provisioning](./media/getting-started/domain-services-provisioned.png)
 
-5. Nella scheda **Proprietà** vengono visualizzati i due indirizzi IP in cui sono disponibili i controller di dominio per la rete virtuale.
+5. In hello **proprietà** scheda, viene visualizzato due indirizzi IP del dominio sono disponibili per la rete virtuale hello controller.
 
     ![Domain Services - Scheda Proprietà al termine del provisioning](./media/getting-started/domain-services-provisioned-properties.png)
 
 
 ## <a name="next-step"></a>Passaggio successivo
-[Attività 4: Aggiornare le impostazioni DNS per la rete virtuale di Azure](active-directory-ds-getting-started-dns.md)
+[Attività 4: aggiornare le impostazioni DNS di hello per hello rete virtuale di Azure](active-directory-ds-getting-started-dns.md)

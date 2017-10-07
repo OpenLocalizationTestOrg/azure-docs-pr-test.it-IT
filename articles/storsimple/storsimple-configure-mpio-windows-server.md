@@ -1,6 +1,6 @@
 ---
-title: Configurare MPIO per il dispositivo StorSimple | Microsoft Docs
-description: Descrive come configurare Multipath I/O per il dispositivo StorSimple connesso a un host che esegue Windows Server 2012 R2
+title: aaaConfigure MPIO per il dispositivo StorSimple | Documenti Microsoft
+description: "Descrive la modalità di connessione tooa host che esegue Windows Server 2012 R2 tooconfigure Multipath i/o (MPIO) per il dispositivo StorSimple."
 services: storsimple
 documentationcenter: 
 author: alkohli
@@ -14,109 +14,108 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 04/03/2017
 ms.author: alkohli
-ms.openlocfilehash: 77f06b6ef146bdea8dc2f6cb920979e827626e35
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 08cd53039b3868217c7d28e97d7c3c695c06e399
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="configure-multipath-io-for-your-storsimple-device"></a>Configurare Multipath I/O per il dispositivo StorSimple
-Microsoft ha creato il supporto per funzionalità Multipath I/O (MPIO) in Windows Server per consentire la creazione di configurazioni SAN a elevata disponibilità e con tolleranza d’errore. MPIO utilizza componenti di percorso fisico ridondanti, adattatori, cavi e interruttori, per creare percorsi logici tra il server e il dispositivo di archiviazione. Se si verifica un errore del componente, che causa l’errore di un percorso logico, la logica dei percorsi multipli utilizza un percorso alternativo per l’I/O, in modo che le applicazioni possano continuare ad accedere ai dati. Inoltre, in base alla configurazione, MPIO può anche migliorare le prestazioni bilanciando nuovamente il carico tra tutti questi percorsi. Per ulteriori informazioni, vedere [Panoramica di Multipath I/O](https://technet.microsoft.com/library/cc725907.aspx "Panoramica di Multipath I/O and features").  
+Microsoft compilato il supporto per funzionalità di hello Multipath i/o (MPIO) in Windows Server toohelp le configurazioni SAN a disponibilità elevata, a tolleranza di errore di compilazione. MPIO utilizza componenti del percorso fisico ridondanti, schede, cavi e commutatori, toocreate percorsi logici tra server hello e dispositivo di archiviazione hello. Se si verifica un errore di componente, con conseguente errore toofail un percorso logico, la logica Multipath Usa un percorso alternativo per i/o in modo che le applicazioni possano comunque accedere ai dati. Inoltre dipende dalla configurazione MPIO possa anche migliorare le prestazioni nuovo bilanciamento del carico hello tra tutti questi percorsi. Per ulteriori informazioni, vedere [Panoramica di Multipath I/O](https://technet.microsoft.com/library/cc725907.aspx "Panoramica di Multipath I/O and features").  
 
-Per la disponibilità elevata della soluzione StorSimple, è necessario configurare MPIO nel dispositivo StorSimple. Quando MPIO è installato nei server host che eseguono Windows Server 2012 R2, i server possono dunque tollerare un errore di collegamento, di rete o di interfaccia. 
+MPIO deve essere configurata nel dispositivo StorSimple per hello a disponibilità elevata della soluzione StorSimple. Quando MPIO è installato nel server host che eseguono Windows Server 2012 R2, i server hello possono quindi in grado di tollerare un collegamento, rete o errori dell'interfaccia. 
 
-MPIO è una funzionalità facoltativa in Windows Server, e non è installata per impostazione predefinita. Deve essere installata come funzionalità tramite Server Manager. In questo argomento vengono descritti i passaggi da seguire per installare e utilizzare la funzionalità MPIO in un host che esegue Windows Server 2012 R2 e connesso a un dispositivo fisico StorSimple.
+MPIO è una funzionalità facoltativa in Windows Server, e non è installata per impostazione predefinita. Deve essere installata come funzionalità tramite Server Manager. Questo argomento descrive i passaggi di hello devono seguire tooinstall e utilizzo funzionalità MPIO hello in un host che eseguono Windows Server 2012 R2 e connesso tooa dispositivo fisico StorSimple.
 
 > [!NOTE]
 > **Questa procedura è valida solo per StorSimple serie 8000. La funzionalità MPIO non è attualmente supportata in un dispositivo virtuale StorSimple.**
 > 
 > 
 
-È necessario attenersi alla seguente procedura per configurare MPIO nel dispositivo StorSimple:
+È necessario toofollow questi tooconfigure passaggi MPIO nel dispositivo StorSimple:
 
-* Passaggio 1: Installare MPIO nell'host Windows Server
+* Passaggio 1: Installare MPIO nell'host Windows Server hello
 * Passaggio 2: Configurare MPIO per volumi StorSimple
-* Passaggio 3: Montare i volumi StorSimple nell'host
+* Passaggio 3: Montare i volumi StorSimple sull'host hello
 * Passaggio 4: Configurare MPIO per la disponibilità elevata e il bilanciamento del carico
 
-Ognuno dei passaggi precedenti viene illustrato nelle sezioni seguenti.
+Ogni hello di sopra di passaggi è illustrato in hello le sezioni seguenti.
 
-## <a name="step-1-install-mpio-on-the-windows-server-host"></a>Passaggio 1: Installare MPIO nell'host Windows Server
-Per installare questa funzionalità nell'host Windows Server, completare la procedura seguente.
+## <a name="step-1-install-mpio-on-hello-windows-server-host"></a>Passaggio 1: Installare MPIO nell'host Windows Server hello
+completamento di questa funzionalità nell'host Windows Server, tooinstall hello seguenti procedure.
 
-#### <a name="to-install-mpio-on-the-host"></a>Per installare MPIO nell'host
-1. Aprire Server Manager nell'host Windows Server. Per impostazione predefinita, quando un membro del gruppo Administrators accede a un computer che esegue Windows Server 2012 R2 o Windows Server 2012 viene avviato Server Manager. Se Server Manager non è già aperto, fare clic su **Start > Server Manager**.
+#### <a name="tooinstall-mpio-on-hello-host"></a>tooinstall MPIO nell'host di hello
+1. Aprire Server Manager nell'host Windows Server. Per impostazione predefinita, Server Manager viene avviato quando un membro del gruppo Administrators hello accede tooa computer che esegue Windows Server 2012 R2 o Windows Server 2012. Se hello Server Manager non è già aperto, fare clic su **Start > Server Manager**.
    ![Server Manager](./media/storsimple-configure-mpio-windows-server/IC740997.png)
-2. Fare clic su **Server Manager > Dashboard > Aggiungi ruoli e funzionalità**. Verrà avviata la procedura guidata **Aggiungi ruoli e funzionalità** .
+2. Fare clic su **Server Manager > Dashboard > Aggiungi ruoli e funzionalità**. Verrà avviata hello **Aggiungi ruoli e funzionalità** procedura guidata.
    ![Aggiunta guidata ruoli e funzionalità 1](./media/storsimple-configure-mpio-windows-server/IC740998.png)
-3. Nella procedura guidata **Aggiungi ruoli e funzionalità** , effettuare le seguenti operazioni:
+3. In hello **Aggiungi ruoli e funzionalità** guidata hello seguenti:
    
-   * Nella pagina **Prima di iniziare** fare clic su **Avanti**.
-   * Nella pagina **Seleziona tipo di installazione** accettare l'impostazione predefinita di **Installazione basata su ruoli o basata su funzionalità**. Fare clic su **Avanti**.![Aggiunta guidata ruoli e funzionalità 2](./media/storsimple-configure-mpio-windows-server/IC740999.png)
-   * Nella pagina **Selezione server di destinazione** scegliere **Selezionare un server dal pool di server**. Il server host deve essere rilevato automaticamente. Fare clic su **Avanti**.
-   * Nella pagina **Selezione ruoli server** fare clic su **Avanti**.
-   * Nella pagina **Selezione funzionalità** selezionare **Multipath I/O** e fare clic su **Avanti**.![Aggiunta guidata ruoli e funzionalità 5](./media/storsimple-configure-mpio-windows-server/IC741000.png)
-   * Nella pagina **Conferma selezioni per l'installazione** confermare la selezione e quindi scegliere **Riavvia automaticamente il server di destinazione se necessario**, come mostrato di seguito. Fare clic su **Installa**.![Aggiunta guidata ruoli e funzionalità 8](./media/storsimple-configure-mpio-windows-server/IC741001.png)
-   * Al termine dell'installazione si riceverà una notifica. Fare clic su **Chiudi** per chiudere la procedura guidata.![Aggiunta guidata ruoli e funzionalità 9](./media/storsimple-configure-mpio-windows-server/IC741002.png)
+   * In hello **prima di iniziare** pagina, fare clic su **Avanti**.
+   * In hello **Selezione tipo di installazione** accettare l'impostazione predefinita hello **basata su ruoli o basata su funzionalità** installazione. Fare clic su **Avanti**.![Aggiunta guidata ruoli e funzionalità 2](./media/storsimple-configure-mpio-windows-server/IC740999.png)
+   * In hello **Selezione server di destinazione** pagina, scegliere **selezionare un server dal pool di server hello**. Il server host deve essere rilevato automaticamente. Fare clic su **Avanti**.
+   * In hello **Selezione ruoli server** pagina, fare clic su **Avanti**.
+   * In hello **Selezione funzionalità** selezionare **Multipath i/o**, fare clic su **Avanti**.![ Aggiunta guidata ruoli e funzionalità 5](./media/storsimple-configure-mpio-windows-server/IC741000.png)
+   * In hello **Conferma selezioni per l'installazione** pagina, confermare la selezione di hello e quindi selezionare **riavvio del server di destinazione hello automaticamente se necessario**, come illustrato di seguito. Fare clic su **Installa**.![Aggiunta guidata ruoli e funzionalità 8](./media/storsimple-configure-mpio-windows-server/IC741001.png)
+   * Riceverà la notifica al termine dell'installazione di hello. Fare clic su **Chiudi** guidata hello tooclose.![ Aggiunta guidata ruoli e funzionalità 9](./media/storsimple-configure-mpio-windows-server/IC741002.png)
 
 ## <a name="step-2-configure-mpio-for-storsimple-volumes"></a>Passaggio 2: Configurare MPIO per volumi StorSimple
-Per identificare i volumi StorSimple, è necessario configurare MPIO. Per configurare MPIO in modo che riconosca i volumi StorSimple, effettuare le seguenti operazioni.
+La funzionalità MPIO deve volumi StorSimple di tooidentify toobe configurato. tooconfigure MPIO toorecognize i volumi StorSimple, eseguire hello alla procedura seguente.
 
-#### <a name="to-configure-mpio-for-storsimple-volumes"></a>Per configurare MPIO per i volumi StorSimple
-1. Aprire la **configurazione MPIO**. Fare clic su **Server Manager > Dashboard > Strumenti > MPIO**.
-2. Nella finestra di dialogo **MPIO Properties** (Proprietà MPIO) selezionare la scheda **Individua percorsi multipli**.
+#### <a name="tooconfigure-mpio-for-storsimple-volumes"></a>tooconfigure MPIO per i volumi StorSimple
+1. Aprire hello **configurazione MPIO**. Fare clic su **Server Manager > Dashboard > Strumenti > MPIO**.
+2. In hello **proprietà MPIO** la finestra di dialogo, seleziona hello **individua percorsi multipli** scheda.
 3. Selezionare **Aggiungi supporto per dispositivi iSCSI**, quindi fare clic su **Aggiungi**.  
    ![Proprietà MPIO Individua percorsi multipli](./media/storsimple-configure-mpio-windows-server/IC741003.png)
-4. Riavviare il server quando richiesto.
-5. Nella finestra di dialogo **MPIO Properties** (Proprietà MPIO), fare clic sulla scheda **Dispositivi MPIO**. Fare clic su **Aggiungi**.
+4. Riavviare il computer server hello quando richiesto.
+5. In hello **proprietà MPIO** finestra di dialogo fare clic su hello **dispositivi MPIO** scheda. Fare clic su **aggiungere**.
     </br>![Proprietà MPIO Dispositivi MPIO](./media/storsimple-configure-mpio-windows-server/IC741004.png)
-6. Nella finestra di dialogo **Aggiungi supporto MPIO**, in **ID hardware del dispositivo**, immettere il numero di serie del dispositivo. Per ottenere il numero di serie del dispositivo, accedere al servizio StorSimple Manager e navigare fino a **Dispositivi > Dashboard**. Il numero di serie del dispositivo è visualizzato nel riquadro destro **Riepilogo rapido** del dashboard dispositivo.
+6. In hello **Aggiungi supporto MPIO** nella finestra di dialogo **ID Hardware del dispositivo**, immettere il numero di serie del dispositivo. È possibile ottenere il numero di serie di hello dispositivo l'accesso al servizio StorSimple Manager e quindi passando troppo**dispositivi > Dashboard**. numero di serie Hello viene visualizzato nella finestra di destra hello **Quick Glance** riquadro del dashboard del dispositivo hello.
     </br>![Aggiungi supporto MPIO](./media/storsimple-configure-mpio-windows-server/IC741005.png)
-7. Riavviare il server quando richiesto.
+7. Riavviare il computer server hello quando richiesto.
 
-## <a name="step-3-mount-storsimple-volumes-on-the-host"></a>Passaggio 3: Montare i volumi StorSimple nell'host
-Dopo la configurazione di MPIO in Windows Server, i volumi creati nel dispositivo StorSimple possono essere montati ed è quindi possibile sfruttare MPIO per garantire la ridondanza. Per montare un volume, attenersi alla seguente procedura.
+## <a name="step-3-mount-storsimple-volumes-on-hello-host"></a>Passaggio 3: Montare i volumi StorSimple sull'host hello
+Una volta configurata la funzionalità MPIO in Windows Server, volumi creati nel dispositivo StorSimple hello possono essere montati e possono quindi sfruttare i vantaggi di MPIO per la ridondanza. toomount un volume, eseguire hello alla procedura seguente.
 
-#### <a name="to-mount-volumes-on-the-host"></a>Per montare i volumi nell'host
-1. Aprire la finestra **Proprietà iniziatore iSCSI** sull'host Windows Server. Fare clic su **Server Manager > Dashboard > Strumenti > Iniziatore iSCSI**.
-2. Nella finestra di dialogo **iSCSI Initiator Properties** (Proprietà iniziatore iSCSI) fare clic sulla scheda Individuazione, quindi fare clic su **Individua portale destinazione**.
-3. Nella finestra di dialogo **Individua portale destinazione** , effettuare le operazioni seguenti:
+#### <a name="toomount-volumes-on-hello-host"></a>volumi host hello toomount
+1. Aprire hello **iniziatore iSCSI-proprietà** finestra in host Windows Server hello. Fare clic su **Server Manager > Dashboard > Strumenti > Iniziatore iSCSI**.
+2. In hello **iniziatore iSCSI-proprietà** la finestra di dialogo, fare clic sulla scheda individuazione hello e quindi fare clic su **individua portale destinazione**.
+3. In hello **individua portale destinazione** finestra di dialogo casella, hello seguenti:
    
-   * Immettere l'indirizzo IP della porta DATA del dispositivo StorSimple (ad esempio, immettere DATA 0).
-   * Fare clic su **OK** per tornare alla finestra di dialogo **iSCSI Initiator Properties** (Proprietà iniziatore iSCSI).
+   * Immettere l'indirizzo IP hello di hello porta DATA del dispositivo StorSimple (ad esempio, immettere DATA 0).
+   * Fare clic su **OK** tooreturn toohello **iniziatore iSCSI-proprietà** la finestra di dialogo.
      
      > [!IMPORTANT]
-     > **Se si utilizza una rete privata per le connessioni iSCSI, immettere l'indirizzo IP della porta DATA connessa alla rete privata.**
+     > **Se si utilizza una rete privata per le connessioni iSCSI, immettere l'indirizzo IP hello hello dati della porta di cui è connesso toohello rete privata.**
      > 
      > 
-4. Ripetere i passaggi 2-3 per una seconda interfaccia di rete (ad esempio, DATA 1) sul dispositivo. Tenere presente che queste interfacce devono essere abilitate per iSCSI. Per ulteriori informazioni, andare a [Modificare le interfacce di rete](storsimple-modify-device-config.md#modify-network-interfaces).
-5. Selezionare la scheda **Destinazioni** nella finestra di dialogo **iSCSI Initiator Properties** (Proprietà iniziatore iSCSI). Dovrebbe essere visualizzato l'IQN destinazione del dispositivo StorSimple in **Destinazioni individuate**.
+4. Ripetere i passaggi 2-3 per una seconda interfaccia di rete (ad esempio, DATA 1) sul dispositivo. Tenere presente che queste interfacce devono essere abilitate per iSCSI. ulteriori informazioni, vedere toolearn [modificare interfacce di rete](storsimple-modify-device-config.md#modify-network-interfaces).
+5. Seleziona hello **destinazioni** scheda hello **iniziatore iSCSI-proprietà** la finestra di dialogo. Dovrebbe essere dispositivo StorSimple hello destinazione IQN in **destinazioni individuate**.
 
    ![Scheda destinazioni proprietà iniziatore iSCSI](./media/storsimple-configure-mpio-windows-server/IC741007.png)
    
-6. Fare clic su **Connetti** per stabilire una sessione iSCSI con il dispositivo StorSimple. Verrà visualizzata una finestra di dialogo **Connessione alla destinazione** .
-7. Nella finestra di dialogo **Connessione alla destinazione** selezionare la casella di controllo **Consenti percorsi multipli**. Fare clic su **Advanced**.
-8. Nella finestra di dialogo **Impostazioni avanzate** , effettuare le seguenti operazioni:                                        
+6. Fare clic su **Connetti** tooestablish una sessione iSCSI con il dispositivo StorSimple. Oggetto **connettersi tooTarget** verrà visualizzata la finestra di dialogo.
+7. In hello **connettersi tooTarget** la finestra di dialogo, seleziona hello **abilitare multi-path** casella di controllo. Fare clic su **Advanced**.
+8. In hello **impostazioni avanzate** finestra di dialogo casella, hello seguenti:                                        
    
-   * Nell'elenco a discesa **Scheda locale** selezionare **Iniziatore iSCSI Microsoft**.
-   * Nell'elenco a discesa **IP iniziatore** , selezionare l’indirizzo IP dell'host.
-   * Nell’elenco a discesa **IP portale di destinazione** , selezionare l’IP dell’interfaccia dispositivo.
-   * Fare clic su **OK** per tornare alla finestra di dialogo **iSCSI Initiator Properties** (Proprietà iniziatore iSCSI).
-9. Fare clic su **Proprietà**. Nella finestra di dialogo **Proprietà** fare clic su **Aggiungi sessione**.
-10. Nella finestra di dialogo **Connessione alla destinazione** selezionare la casella di controllo **Consenti percorsi multipli**. Fare clic su **Advanced**.
-11. Nella finestra di dialogo **Impostazioni avanzate** :                                        
+   * In hello **scheda locale** elenco a discesa, seleziona **iniziatore iSCSI Microsoft**.
+   * In hello **IP iniziatore** elenco a discesa, l'indirizzo IP di hello selezionare dell'host hello.
+   * In hello **portale destinazione** IP riepilogo, selezionare hello IP dell'interfaccia di dispositivo.
+   * Fare clic su **OK** tooreturn toohello **iniziatore iSCSI-proprietà** la finestra di dialogo.
+9. Fare clic su **Proprietà**. In hello **proprietà** la finestra di dialogo, fare clic su **Aggiungi sessione**.
+10. In hello **connettersi tooTarget** la finestra di dialogo, seleziona hello **abilitare multi-path** casella di controllo. Fare clic su **Advanced**.
+11. In hello **impostazioni avanzate** la finestra di dialogo:                                        
     
-    * Nell’elenco a discesa **Scheda locale** , selezionare Iniziatore iSCSI Microsoft.
-    * Nell’elenco a discesa **IP iniziatore** , selezionare l’indirizzo IP corrispondente all'host. In questo caso, si sta eseguendo la connessione di due interfacce di rete sul dispositivo a una singola interfaccia di rete sull'host. Pertanto, questa interfaccia è identica a quella fornita per la prima sessione.
-    * Nell’elenco a discesa **IP portale di destinazione** , selezionare l’indirizzo IP per la seconda interfaccia di dati abilitata sul dispositivo.
-    * Fare clic su **OK** per tornare alla finestra di dialogo Proprietà iniziatore iSCSI. È stata aggiunta una seconda sessione alla destinazione.
-12. Aprire **Gestione computer** passando a **Server Manager > Dashboard > Gestione computer**. Nel riquadro sinistro fare clic su **Archiviazione > Gestione disco**. I volumi creati nel dispositivo StorSimple che sono visibili a questo host verranno visualizzati in **Gestione disco** come nuovi dischi.
-13. Inizializzare il disco e creare un nuovo volume. Durante il processo di formattazione, selezionare una dimensione blocco di 64 KB.
+    * In hello **scheda locale** elenco a discesa, selezionare iniziatore iSCSI Microsoft.
+    * In hello **IP iniziatore** elenco a discesa, host toohello corrispondente di hello selezionare IP indirizzo. In questo caso, ci si connette due interfacce di rete su hello dispositivo tooa singola interfaccia di rete sull'host hello. Pertanto, questa interfaccia è hello identici a quelli forniti per hello prima sessione.
+    * In hello **IP portale destinazione** elenco a discesa, indirizzo IP selezionare hello hello seconda interfaccia dati abilitata sul dispositivo hello.
+    * Fare clic su **OK** finestra di dialogo Proprietà iniziatore iSCSI toohello di tooreturn. È stata aggiunta una seconda destinazione toohello sessione.
+12. Aprire **Gestione Computer** passando troppo**Server Manager > Dashboard > Gestione Computer**. Nel riquadro di sinistra hello, fare clic su **archiviazione > Gestione disco**. Hello volumi creati nel dispositivo StorSimple hello che sono visibili toothis host verranno visualizzato in **Gestione disco** come nuovi dischi.
+13. Inizializzare il disco hello e creare un nuovo volume. Durante il processo di formattazione hello, selezionare una dimensione del blocco di 64 KB.
     ![Gestione disco](./media/storsimple-configure-mpio-windows-server/IC741008.png)
-14. In **Gestione disco** fare clic con il pulsante destro del mouse su **Disco** e selezionare **Proprietà**.
-15. Nella finestra di dialogo **Multi-Path Disk Device Properties** (Proprietà dispositivo disco con percorsi multipli) di StorSimple Model #### fare clic sulla scheda **MPIO**.
-    ![StorSimple 8100 Multi-Path Disk DeviceProp.](./media/storsimple-configure-mpio-windows-server/IC741009.png)
-16. Nella sezione **Nome DSM** fare clic su **Dettagli** e verificare che i parametri impostati siano quelli predefiniti. I parametri predefiniti sono:
+14. In **Gestione disco**, hello rapida **disco** e selezionare **proprietà**.
+15. In hello modello StorSimple # # # **proprietà dispositivo disco con percorsi multipli** finestra di dialogo fare clic su hello **MPIO** scheda. ![StorSimple 8100 Multi-Path Disk DeviceProp.](./media/storsimple-configure-mpio-windows-server/IC741009.png)
+16. In hello **nome DSM** fare clic su **dettagli** e verificare che i parametri di hello vengono impostati i parametri predefiniti toohello. i parametri predefiniti Hello sono:
     
     * Periodo di verifica percorso = 30
     * Numero di tentativi = 3
@@ -125,47 +124,47 @@ Dopo la configurazione di MPIO in Windows Server, i volumi creati nel dispositiv
     * Verifica percorso attivata = deselezionata.
 
 > [!NOTE]
-> **Non modificare i parametri predefiniti.**
+> **Non modificare i parametri predefiniti hello.**
 
 
 ## <a name="step-4-configure-mpio-for-high-availability-and-load-balancing"></a>Passaggio 4: Configurare MPIO per la disponibilità elevata e il bilanciamento del carico
-Per la disponibilità elevata e il bilanciamento del carico basato su percorsi multipli, è necessario aggiungere manualmente più sessioni per dichiarare i diversi percorsi disponibili. Ad esempio, se l'host dispone di due interfacce connesse alla rete SAN e il dispositivo dispone di due interfacce connesse alla rete SAN, è necessario configurare quattro sessioni con permutazioni percorso corrette (se ciascuna interfaccia DATA e ciascuna interfaccia host si trova in una subnet IP diversa e non è instradabile saranno necessarie solo due sessioni).
+Per percorsi multipli in base a disponibilità elevata e bilanciamento del carico, più sessioni devono essere aggiunta manualmente toodeclare hello diversi percorsi disponibili. Ad esempio, se hello host dispone di due interfacce connesse dispositivo tooSAN e hello ha due tooSAN connessi di interfacce, sono necessarie quattro sessioni configurate con permutazioni di percorso corrette (solo due sessioni sarà necessario se ogni interfaccia DATA e l'interfaccia dell'host in un'altra subnet IP e non è instradabile).
 
-**È consigliabile avere almeno 8 sessioni parallele attive tra il dispositivo e l'applicazione host in uso.** Ciò può essere ottenuto tramite l'abilitazione di 4 interfacce di rete nel sistema Windows Server in uso. Usare interfacce di rete fisiche o interfacce virtuali tramite le tecnologie di virtualizzazione di rete a livello di hardware o di sistema operativo nell'host Windows Server. Con le due interfacce di rete sul dispositivo, questa configurazione restituirà 8 sessioni attive. Questa configurazione consente di ottimizzare la velocità effettiva del dispositivo e del cloud.
+**È consigliabile disporre di almeno 8 sessioni parallele attive tra il dispositivo di hello e l'applicazione host.** Ciò può essere ottenuto tramite l'abilitazione di 4 interfacce di rete nel sistema Windows Server in uso. Utilizzare le interfacce di rete fisica o virtuale interfacce tramite le tecnologie di virtualizzazione di rete a livello di hardware o sistema operativo hello nell'host Windows Server. Con hello due interfacce di rete nel dispositivo hello, questa configurazione comporta 8 sessioni attive. Questa configurazione consente di ottimizzare la velocità effettiva dispositivo e cloud hello.
 
 > [!IMPORTANT]
-> **È consigliabile non combinare interfacce di rete da 1 GbE e da 10 GbE. Se si utilizzano due interfacce di rete, devono essere di tipo identico.**
+> **È consigliabile non combinare interfacce di rete da 1 GbE e da 10 GbE. Se si usano due interfacce di rete, entrambe le interfacce devono essere hello stesso tipo.**
 
-Nella procedura seguente viene descritto come aggiungere le sessioni quando un dispositivo StorSimple con due interfacce di rete viene connesso a un host con due interfacce di rete. In questo modo solo 2 sessioni sono attive. Usare la stessa procedura con un dispositivo StorSimple con due interfacce di rete connesse a un host con quattro interfacce di rete. Sarà necessario configurare 8 sessioni anziché 4 come descritto qui.
+Hello procedura riportata di seguito viene descritto come le sessioni di tooadd quando un dispositivo StorSimple con due interfacce di rete è connessa tooa host con due interfacce di rete. In questo modo solo 2 sessioni sono attive. Utilizzare la stessa procedura con un dispositivo StorSimple con host connesso tooa interfacce di rete due con quattro interfacce di rete. È necessario tooconfigure 8 anziché hello 4 sessioni descritte di seguito.
 
-### <a name="to-configure-mpio-for-high-availability-and-load-balancing"></a>Per configurare MPIO per la disponibilità elevata e il bilanciamento del carico
-1. Eseguire un rilevamento della destinazione: nella finestra di dialogo **iSCSI Initiator Properties** (Proprietà iniziatore iSCSI), nella scheda **Individuazione**, fare clic su **Individua portale**.
-2. Nella finestra di dialogo **Connessione alla destinazione** , immettere l’indirizzo IP di una delle interfacce di rete del dispositivo.
-3. Fare clic su **OK** per tornare alla finestra di dialogo **iSCSI Initiator Properties** (Proprietà iniziatore iSCSI).
-4. Nella finestra di dialogo **iSCSI Initiator Properties** (Proprietà iniziatore iSCSI) selezionare la scheda **Destinazioni**, evidenziare la destinazione scoperta, quindi fare clic su **Connetti**. Viene visualizzata la finestra di dialogo **Connessione alla destinazione** .
-5. Nella finestra di dialogo **Connessione alla destinazione** :
+### <a name="tooconfigure-mpio-for-high-availability-and-load-balancing"></a>tooconfigure MPIO per la disponibilità elevata e bilanciamento del carico
+1. Eseguire un'individuazione della destinazione hello: in hello **iniziatore iSCSI-proprietà** della finestra di dialogo hello **individuazione** scheda, fare clic su **individua portale**.
+2. In hello **connettersi tooTarget** finestra di dialogo immettere l'indirizzo IP hello di una delle interfacce di rete del dispositivo hello.
+3. Fare clic su **OK** tooreturn toohello **iniziatore iSCSI-proprietà** la finestra di dialogo.
+4. In hello **iniziatore iSCSI-proprietà** la finestra di dialogo, seleziona hello **destinazioni** scheda, evidenziare la destinazione hello individuato e quindi fare clic su **Connetti**. Hello **connettersi tooTarget** viene visualizzata la finestra di dialogo.
+5. In hello **connettersi tooTarget** la finestra di dialogo:
    
-   * Lasciare l’impostazione di destinazione selezionata predefinita **Aggiungi connessione all’elenco Destinazioni preferite** . In questo modo il dispositivo tenta automaticamente di riavviare la connessione ogni volta che il computer viene riavviato.
-   * Selezionare la casella di controllo **Consenti percorsi multipli** .
+   * Per impostazione predefinita hello lasciare selezionata l'impostazione della destinazione per **Aggiungi connessione** toohello elenco destinazioni preferite. In questo modo il dispositivo hello eseguito automaticamente un tentativo connessione hello toorestart ogni riavvio del computer.
+   * Seleziona hello **abilitare multi-path** casella di controllo.
    * Fare clic su **Advanced**.
-6. Nella finestra di dialogo **Impostazioni avanzate** :
+6. In hello **impostazioni avanzate** la finestra di dialogo:
    
-   * Nell'elenco a discesa **Scheda locale** selezionare **Iniziatore iSCSI Microsoft**.
-   * Nell'elenco a discesa **IP iniziatore** , selezionare l’indirizzo IP dell'host.
-   * Nell’elenco a discesa **IP portale di destinazione** , selezionare l’indirizzo IP dell’interfaccia di dati abilitata sul dispositivo.
-   * Fare clic su **OK** per tornare alla finestra di dialogo Proprietà iniziatore iSCSI.
-7. Fare clic su **Proprietà** e nella finestra di dialogo **Proprietà** fare clic su **Aggiungi sessione**.
-8. Nella finestra di dialogo **Connessione alla destinazione** selezionare la casella di controllo **Consenti percorsi multipli**, quindi fare clic su **Avanzate**.
-9. Nella finestra di dialogo **Impostazioni avanzate** :
+   * In hello **scheda locale** elenco a discesa, seleziona **iniziatore iSCSI Microsoft**.
+   * In hello **IP iniziatore** elenco a discesa, l'indirizzo IP di hello selezionare dell'host hello.
+   * In hello **IP portale destinazione** elenco a discesa, selezionare hello indirizzo IP di hello dati interfaccia attivato sul dispositivo hello.
+   * Fare clic su **OK** finestra di dialogo Proprietà iniziatore iSCSI toohello di tooreturn.
+7. Fare clic su **proprietà**e in hello **proprietà** la finestra di dialogo, fare clic su **Aggiungi sessione**.
+8. In hello **connettersi tooTarget** la finestra di dialogo, seleziona hello **abilitare multi-path** casella di controllo e quindi fare clic su **avanzate**.
+9. In hello **impostazioni avanzate** la finestra di dialogo:
    
-   1. Nell'elenco a discesa **Scheda locale** selezionare **Iniziatore iSCSI Microsoft**.
-   2. Nell’elenco a discesa **IP iniziatore** , selezionare l’indirizzo IP corrispondente alla seconda interfaccia dell'host.
-   3. Nell’elenco a discesa **IP portale di destinazione** , selezionare l’indirizzo IP per la seconda interfaccia di dati abilitata sul dispositivo.
-   4. Fare clic su **OK** per tornare alla finestra di dialogo **iSCSI Initiator Properties** (Proprietà iniziatore iSCSI). È stata aggiunta ora una seconda sessione alla destinazione.
-10. Ripetere i passaggi da 8 a 10 per aggiungere altre sessioni (percorsi) alla destinazione. Con due interfacce nell'host e due sul dispositivo, è possibile aggiungere un totale di quattro sessioni.
-11. Dopo aver aggiunto le sessioni (percorsi) desiderate, nella finestra di dialogo **iSCSI Initiator Properties** (Proprietà iniziatore iSCSI) selezionare la destinazione e fare clic su **Proprietà**. Nella scheda Sessioni della finestra di dialogo **Proprietà** , notare i quatto identificatori di sessione che corrispondono alle possibili permutazioni di percorso. Per annullare una sessione, selezionare la casella di controllo accanto a un identificatore di sessione, quindi fare clic su **Disconnetti**.
-12. Per visualizzare i dispositivi presentati all'interno delle sessioni, selezionare la scheda **Dispositivi** . Per configurare il criterio MPIO per un dispositivo selezionato, fare clic su **MPIO**. Verrà visualizzata la finestra di dialogo **Dettagli dispositivo** . Nella scheda **MPIO** è possibile selezionare le impostazioni **Criterio di bilanciamento del carico** appropriate. È inoltre possibile visualizzare il tipo di percorso **Attivo** o **Standby**.
+   1. In hello **scheda locale** elenco a discesa, seleziona **iniziatore iSCSI Microsoft**.
+   2. In hello **IP iniziatore** elenco a discesa, selezionare hello indirizzo IP corrispondente toohello seconda interfaccia sull'host hello.
+   3. In hello **IP portale destinazione** elenco a discesa, indirizzo IP selezionare hello hello seconda interfaccia dati abilitata sul dispositivo hello.
+   4. Fare clic su **OK** tooreturn toohello **iniziatore iSCSI-proprietà** la finestra di dialogo. È stato aggiunto una secondo destinazione toohello sessione.
+10. Ripetere destinazione toohello di passaggi da 8 a 10 tooadd altre sessioni (percorsi). Con due interfacce sull'host hello e due su dispositivo hello, è possibile aggiungere un totale di quattro sessioni.
+11. Dopo aver aggiunto le sessioni di hello desiderato (percorsi), in hello **iniziatore iSCSI-proprietà** la finestra di dialogo, destinazione hello selezionare e fare clic su **proprietà**. Nella scheda sessioni hello di hello **proprietà** della finestra di dialogo Nota hello quattro identificatori di sessione che corrispondono toohello possibili permutazioni di percorso. toocancel una sessione, selezionare l'identificatore di sessione successiva tooa di hello casella di controllo e quindi fare clic su **Disconnect**.
+12. tooview dispositivi presentati nelle sessioni, seleziona hello **dispositivi** hello tooconfigure scheda Criteri MPIO per un dispositivo selezionato, fare clic su **MPIO**. Hello **dettagli dispositivo** verrà visualizzata la finestra di dialogo. In hello **MPIO** scheda, è possibile selezionare hello appropriato **il criterio di bilanciamento del carico** impostazioni. È inoltre possibile visualizzare hello **Active** o **Standby** tipo di percorso.
 
 ## <a name="next-steps"></a>Passaggi successivi
-Ulteriori informazioni in [Utilizzare il servizio StorSimple Manager per modificare la configurazione del dispositivo StorSimple](storsimple-modify-device-config.md).
+Altre informazioni, vedere [utilizzando hello toomodify servizio StorSimple Manager la configurazione del dispositivo StorSimple](storsimple-modify-device-config.md).
 

@@ -1,6 +1,6 @@
 ---
-title: Ambienti di calcolo supportati da Azure Data Factory | Microsoft Docs
-description: "Informazioni sugli ambienti di calcolo che è possibile usare nelle pipeline di Azure Data Factory (ad esempio, Azure HDInsight) per trasformare o elaborare i dati."
+title: ambienti aaaCompute supportati da Data Factory di Azure | Documenti Microsoft
+description: "Informazioni sugli ambienti di calcolo che è possibile utilizzare nei dati di processo o tootransform pipeline (ad esempio Azure HDInsight) Data Factory di Azure."
 services: data-factory
 documentationcenter: 
 author: sharonlo101
@@ -13,16 +13,16 @@ ms.tgt_pltfrm: na
 ms.topic: article
 ms.date: 07/25/2017
 ms.author: shlo
-ms.openlocfilehash: da7110614e684656da3ef9830780606e1576684d
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: aba7d7de695bc1c7d475f1e741ee3b3e884151c0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="compute-environments-supported-by-azure-data-factory"></a>Ambienti di calcolo supportati da Azure Data Factory
-Questo articolo spiega i diversi ambienti di calcolo che è possibile utilizzare per elaborare o una trasformare dati. Fornisce inoltre informazioni dettagliate sulle diverse configurazioni (on-demand e bring your own) supportate da Data Factory durante la configurazione di servizi collegati che collegano questi ambienti a una data factory di Azure.
+Questo articolo illustra gli ambienti di calcolo diversi che è possibile utilizzare tooprocess o trasformare i dati. Fornisce inoltre informazioni dettagliate sulle diverse configurazioni (su richiesta e della modalità) supportati da Data Factory quando si configura servizi collegati collegamento questi calcolo ambienti tooan data factory di Azure.
 
-La seguente tabella presenta un elenco degli ambienti di calcolo supportati da Data Factory e le attività eseguibili in tali ambienti. 
+Hello nella tabella seguente fornisce un elenco degli ambienti di elaborazione supportata dalle attività di Data Factory e hello che è possibile eseguire su di essi. 
 
 | Ambiente di calcolo | attività |
 | --- | --- |
@@ -33,56 +33,56 @@ La seguente tabella presenta un elenco degli ambienti di calcolo supportati da D
 | [Azure SQL](#azure-sql-linked-service), [Azure SQL Data Warehouse](#azure-sql-data-warehouse-linked-service), [SQL Server](#sql-server-linked-service) |[Stored procedure](data-factory-stored-proc-activity.md) |
 
 ## <a name="supported-hdinsight-versions-in-azure-data-factory"></a>Versioni supportate di HDInsight in Azure Data Factory
-Azure HDInsight supporta più versioni cluster di Hadoop che possono essere distribuite in qualsiasi momento. Ogni versione scelta crea una versione specifica della distribuzione HDP (Hortonworks Data Platform) e un set di componenti contenuti in tale distribuzione. Microsoft aggiorna continuamente l'elenco delle versioni supportate di HDInsight per offrire i componenti dell'ecosistema Hadoop e le correzioni più recenti. HDInsight 3.2 è stato dichiarato deprecato a partire dal 1° aprile 2017. Per altre dettagliate, vedere le [versioni di HDInsight supportate](../hdinsight/hdinsight-component-versioning.md#supported-hdinsight-versions).
+Azure HDInsight supporta più versioni cluster di Hadoop che possono essere distribuite in qualsiasi momento. Ogni opzione di versione viene creata una versione specifica di distribuzione di hello Hortonworks Data Platform (HDP) e un set di componenti contenuti all'interno di tale distribuzione. Microsoft tiene aggiornamento hello dell'elenco delle versioni supportate di HDInsight tooprovide Hadoop ecosistema di componenti più recenti e correzioni. Hello 3.2 di HDInsight è deprecato in 1 aprile 2017. Per altre dettagliate, vedere le [versioni di HDInsight supportate](../hdinsight/hdinsight-component-versioning.md#supported-hdinsight-versions).
 
-Ciò ha un impatto sulle versioni esistenti di Azure Data Factory che hanno attività in esecuzione nei cluster HDInsight 3.2. È consigliabile seguire le linee guida illustrate nella sezione seguente per aggiornare le data factory interessate:
+Ciò ha un impatto sulle versioni esistenti di Azure Data Factory che hanno attività in esecuzione nei cluster HDInsight 3.2. Si consiglia di linee guida di utenti toofollow hello nella seguente sezione tooupdate hello hello interessati Data Factory:
 
-### <a name="for-linked-services-pointing-to-your-own-hdinsight-clusters"></a>Per i servizi collegati che puntano ai cluster HDInsight
-* **Servizi collegati HDInsight che puntano ai cluster HDInsight 3.2 o versioni precedenti:**
+### <a name="for-linked-services-pointing-tooyour-own-hdinsight-clusters"></a>Per i servizi collegati che punta a un cluster di HDInsight tooyour
+* **I servizi collegati HDInsight verso tooyour proprietari HDInsight 3.2 o di sotto di cluster:**
 
-  Azure Data Factory supporta l'invio di processi ai cluster HDInsight dalla versione 3.1 alla [versione più recente di HDInsight supportata](../hdinsight/hdinsight-component-versioning.md#supported-hdinsight-versions). Tuttavia, dal 1° aprile 2017 non è più possibile creare cluster HDInsight 3.2 in base ai criteri sulle funzionalità deprecate documentati in [Versioni supportate di HDInsight](../hdinsight/hdinsight-component-versioning.md#supported-hdinsight-versions).  
+  Azure Data Factory supporta l'invio tooyour processi cluster HDInsight proprio da HDI 3.1 troppo[hello supportata più recente versione di HDInsight](../hdinsight/hdinsight-component-versioning.md#supported-hdinsight-versions). Tuttavia, non è più creare cluster HDInsight 3.2 dopo il 1 aprile 2017 in base a criteri per deprecare hello documentati in [HDInsight versioni supportate](../hdinsight/hdinsight-component-versioning.md#supported-hdinsight-versions).  
 
   **Consigli:** 
-  * Eseguire test per garantire la compatibilità delle attività che fanno riferimento a questi servizi collegati con la [versione più recente di HDInsight supportata](../hdinsight/hdinsight-component-versioning.md#supported-hdinsight-versions) usando le informazioni documentate in [Componenti di Hadoop disponibili con diverse versioni di HDInsight](../hdinsight/hdinsight-component-versioning.md#hadoop-components-available-with-different-hdinsight-versions) e [Note sulla versione di Hortonworks associate alle versioni di HDInsight](../hdinsight/hdinsight-component-versioning.md#hortonworks-release-notes-associated-with-hdinsight-versions).
-  * Aggiornare il cluster HDInsight 3.2 alla [versione più recente di HDInsight supportata](../hdinsight/hdinsight-component-versioning.md#supported-hdinsight-versions) per ottenere i componenti dell'ecosistema Hadoop e le correzioni più recenti. 
+  * Eseguire test tooensure hello compatibilità di attività che fanno riferimento a questa servizi collegati troppo hello[hello supportata più recente versione di HDInsight](../hdinsight/hdinsight-component-versioning.md#supported-hdinsight-versions) con informazioni documentate in [disponibili con i componenti di Hadoop versioni diverse di HDInsight](../hdinsight/hdinsight-component-versioning.md#hadoop-components-available-with-different-hdinsight-versions) e [Hortonworks note associato alle versioni HDInsight](../hdinsight/hdinsight-component-versioning.md#hortonworks-release-notes-associated-with-hdinsight-versions).
+  * Aggiornare il cluster di HDInsight 3.2 troppo[hello supportata più recente versione di HDInsight](../hdinsight/hdinsight-component-versioning.md#supported-hdinsight-versions) tooget hello componenti ecosistema di Hadoop e le correzioni più recenti. 
 
-* **Servizi collegati HDInsight che puntano ai cluster HDInsight 3.3 o versioni successive:**
+* **I servizi collegati HDInsight verso tooyour proprietari HDInsight 3.3 o versione successiva di cluster:**
 
-  Azure Data Factory supporta l'invio di processi ai cluster HDInsight dalla versione 3.1 alla [versione più recente di HDInsight supportata](../hdinsight/hdinsight-component-versioning.md#supported-hdinsight-versions). 
+  Azure Data Factory supporta l'invio tooyour processi cluster HDInsight proprio da HDI 3.1 troppo[hello supportata più recente versione di HDInsight](../hdinsight/hdinsight-component-versioning.md#supported-hdinsight-versions). 
   
   **Consigli:** 
-  * Non è necessaria alcuna azione dalla prospettiva di Data Factory. Se tuttavia si usa una versione precedente di HDInsight, è comunque consigliabile eseguire l'aggiornamento alla [versione più recente di HDInsight supportata](../hdinsight/hdinsight-component-versioning.md#supported-hdinsight-versions) per ottenere i componenti dell'ecosistema Hadoop e le correzioni più recenti.
+  * Non è necessaria alcuna azione dalla prospettiva di Data Factory. Tuttavia, se si utilizza una versione precedente di HDInsight, si consiglia comunque l'aggiornamento troppo[hello supportata più recente versione di HDInsight](../hdinsight/hdinsight-component-versioning.md#supported-hdinsight-versions) tooget hello componenti ecosistema di Hadoop e le correzioni più recenti.
 
 ### <a name="for-hdinsight-on-demand-linked-services"></a>Per i servizi collegati HDInsight su richiesta
 * **La versione 3.2 o precedente viene specificata nella definizione JSON dei servizi collegati HDInsight su richiesta:**
   
-  Azure Data Factory supporterà la creazione di cluster HDInsight su richiesta della versione 3.3 o successiva a partire dal **15/05/2017**. E il termine del supporto per i servizi collegati HDInsight 3.2 su richiesta esistenti è stato esteso al **15/07/2017**.  
+  Azure Data Factory supporterà la creazione di cluster HDInsight su richiesta della versione 3.3 o successiva a partire dal **15/05/2017**. E, alla fine di hello del supporto per esistente 3.2 di HDInsight su richiesta è troppo estesa dei servizi collegati**15/07/2017**.  
 
   **Consigli:** 
-  * Eseguire test per garantire la compatibilità delle attività che fanno riferimento a questi servizi collegati con la [versione più recente di HDInsight supportata](../hdinsight/hdinsight-component-versioning.md#supported-hdinsight-versions) usando le informazioni documentate in [Componenti di Hadoop disponibili con diverse versioni di HDInsight](../hdinsight/hdinsight-component-versioning.md#hadoop-components-available-with-different-hdinsight-versions) e [Note sulla versione di Hortonworks associate alle versioni di HDInsight](../hdinsight/hdinsight-component-versioning.md#hortonworks-release-notes-associated-with-hdinsight-versions).
-  * Prima del **15/07/2017**, aggiornare la proprietà Version nella definizione JSON del servizio collegato HDI su richiesta alla [versione più recente di HDInsight supportata](../hdinsight/hdinsight-component-versioning.md#supported-hdinsight-versions) per ottenere i componenti e le correzioni più recenti dell'ecosistema Hadoop. Per una definizione JSON dettagliata, vedere l'esempio in [Servizio collegato Azure HDInsight su richiesta](#azure-hdinsight-on-demand-linked-service). 
+  * Eseguire test tooensure hello compatibilità di attività che fanno riferimento a questa servizi collegati troppo hello [hello supportata più recente versione di HDInsight](../hdinsight/hdinsight-component-versioning.md#supported-hdinsight-versions) con informazioni documentate in [disponibili con i componenti di Hadoop versioni diverse di HDInsight](../hdinsight/hdinsight-component-versioning.md#hadoop-components-available-with-different-hdinsight-versions) e [Hortonworks note associato alle versioni HDInsight](../hdinsight/hdinsight-component-versioning.md#hortonworks-release-notes-associated-with-hdinsight-versions).
+  * Prima di **15/07/2017**, aggiornare la proprietà di versione di hello nella definizione JSON di servizio su richiesta HDI collegato troppo[hello supportata più recente versione di HDInsight](../hdinsight/hdinsight-component-versioning.md#supported-hdinsight-versions) tooget hello Hadoop ecosistema di componenti più recenti e correzioni. Per definizione JSON dettagliata, vedere toohello [esempio di servizio collegato di Azure HDInsight su richiesta](#azure-hdinsight-on-demand-linked-service). 
 
 * **Versione non specificata nei servizi collegati HDInsight su richiesta:**
   
-  Azure Data Factory supporterà la creazione di cluster HDInsight su richiesta della versione 3.3 o successiva a partire dal **15/05/2017**. E il termine del supporto per i servizi collegati HDInsight 3.2 su richiesta esistenti è stato esteso al **15/07/2017**. 
+  Azure Data Factory supporterà la creazione di cluster HDInsight su richiesta della versione 3.3 o successiva a partire dal **15/05/2017**. E, fine hello del supporto tecnico clienti collegato 3.2 di HDInsight su richiesta tooexisting è troppo esteso.**15/07/2017**. 
 
-  Prima del **15/07/2017** i valori predefiniti, se non specificati, delle proprietà version e osType sono: 
+  Prima di **15/07/2017**, se lasciato vuoto, per la versione è valori predefiniti di hello e osType proprietà sono: 
 
   | Proprietà | Default Value | Obbligatorio |
   | --- | --- | --- |
   Versione   | HDI 3.1 per cluster Windows e HDI 3.2 per cluster Linux.| No
-  osType | Il valore predefinito è Windows | No
+  osType | valore predefinito di Hello è Windows | No
 
-  Dopo il **15/07/2017** i valori predefiniti, se non specificati, delle proprietà version e osType sono:
+  Dopo aver **15/07/2017**, se lasciato vuoto, per la versione è valori predefiniti di hello e osType proprietà sono:
 
   | Proprietà | Default Value | Obbligatorio |
   | --- | --- | --- |
   Versione   | HDI 3.3 per cluster Windows e HDI 3.5 per cluster Linux.    | No
-  osType | Il valore predefinito è Linux | No
+  osType | valore predefinito di Hello è Linux   | No
 
   **Consigli:** 
-  * Prima del **15/07/2017** eseguire test per garantire la compatibilità delle attività che fanno riferimento a questi servizi collegati con la [versione più recente di HDInsight supportata](../hdinsight/hdinsight-component-versioning.md#supported-hdinsight-versions) usando le informazioni documentate in [Componenti di Hadoop disponibili con diverse versioni di HDInsight](../hdinsight/hdinsight-component-versioning.md#hadoop-components-available-with-different-hdinsight-versions) e [Note sulla versione di Hortonworks associate alle versioni di HDInsight](../hdinsight/hdinsight-component-versioning.md#hortonworks-release-notes-associated-with-hdinsight-versions).  
-  * Dopo il **15/07/2017**, se si vuole eseguire l'override delle impostazioni predefinite, assicurarsi di specificare in modo esplicito i valori di osType e Version. 
+  * Prima di **15/07/2017**, eseguire test tooensure hello compatibilità di attività che fanno riferimento a questa servizi collegati troppo hello[hello supportata più recente versione di HDInsight](../hdinsight/hdinsight-component-versioning.md#supported-hdinsight-versions) con informazioni documentate in [Hadoop componenti disponibili con diverse versioni di HDInsight](../hdinsight/hdinsight-component-versioning.md#hadoop-components-available-with-different-hdinsight-versions) e [Hortonworks note associato alle versioni HDInsight](../hdinsight/hdinsight-component-versioning.md#hortonworks-release-notes-associated-with-hdinsight-versions).  
+  * Dopo aver **15/07/2017**, assicurarsi di specificare in modo esplicito i valori di versione e osType se si desidera che le impostazioni predefinite di toooverride hello. 
 
 >[!Note]
 >Azure Data Factory non supporta attualmente i cluster HDInsight con Azure Data Lake Store come archivio primario. È necessario usare Archiviazione di Azure come archivio primario per i cluster HDInsight. 
@@ -90,29 +90,29 @@ Ciò ha un impatto sulle versioni esistenti di Azure Data Factory che hanno atti
 >  
 
 ## <a name="on-demand-compute-environment"></a>Ambiente di calcolo “on-demand”
-In questo tipo di configurazione, l'ambiente informatico è completamente gestito dal servizio Azure Data Factory. Viene automaticamente creato dal servizio Data Factory prima che un processo venga inviato per l’elaborazione dati e rimosso quando il processo viene completato. Gli utenti possono configurare e controllare le impostazioni granulari dell'ambiente di elaborazione su richiesta per l'esecuzione del processo, la gestione del cluster e azioni di avvio automatico.
+In questo tipo di configurazione, l'ambiente informatico hello è completamente gestiti dal servizio Azure Data Factory di hello. Viene automaticamente creata dal servizio Data Factory hello prima tooprocess inviato dati è un processo e rimosse quando viene completato il processo di hello. Si può creare un servizio collegato per l'ambiente di calcolo su richiesta hello, configurarlo e controllare le impostazioni del livello di granularità per l'esecuzione del processo, la gestione di cluster e l'avvio di azioni.
 
 > [!NOTE]
-> La configurazione su richiesta è attualmente supportata solo per i cluster HDInsight di Azure.
+> configurazione di Hello su richiesta è attualmente supportato solo per i cluster HDInsight di Azure.
 > 
 > 
 
 ## <a name="azure-hdinsight-on-demand-linked-service"></a>Servizio collegato Azure HDInsight su richiesta
-Il servizio Data factory di Azure può creare automaticamente un cluster HDInsight su richiesta basato su Windows o Linux per elaborare i dati. La creazione del cluster avviene nella stessa area dell'account di archiviazione (proprietà linkedServiceName in JSON) associato al cluster. L'account di archiviazione deve essere un account di archiviazione di Azure standard per utilizzo generico. 
+Hello servizio Azure Data Factory può creare automaticamente un dati di tooprocess di basati su Windows o Linux su richiesta HDInsight cluster. Hello cluster viene creato nella stessa area dell'account di archiviazione hello (proprietà linkedServiceName in JSON hello) associata a cluster hello hello. account di archiviazione Hello deve essere un account di archiviazione di Azure standard utilizzo generale. 
 
-Tenere presente i seguenti punti **importanti** sul servizio collegato HDInsight su richiesta:
+Si noti segue hello **importante** punti su HDInsight su richiesta di servizio collegato:
 
-* Non viene visualizzato il cluster HDInsight su richiesta creato nella sottoscrizione di Azure. Il servizio Azure Data Factory gestisce il cluster HDInsight su richiesta per conto dell'utente.
-* I registri per i processi eseguiti su un cluster HDInsight su richiesta vengono copiati nell'account di archiviazione associato al cluster HDInsight. È possibile accedere a questi log dal portale di Azure nel pannello **Dettagli di esecuzione di attività** . Per informazioni dettagliate, vedere l'articolo [Monitoraggio e gestione delle pipeline](data-factory-monitor-manage-pipelines.md) .
-* Viene addebitato solo il tempo in cui il cluster HDInsight è attivo e i processi in esecuzione.
+* Hello su richiesta non viene visualizzato il cluster HDInsight creato nella sottoscrizione di Azure. Hello servizio Data Factory di Azure consente di gestire cluster HDInsight su richiesta di hello per conto dell'utente.
+* Hello log per i processi eseguiti in un HDInsight su richiesta cluster vengono copiati toohello account di archiviazione associato al cluster HDInsight hello. È possibile accedere a questi log dal portale di Azure in hello hello **Dettagli esecuzione attività** blade. Per informazioni dettagliate, vedere l'articolo [Monitoraggio e gestione delle pipeline](data-factory-monitor-manage-pipelines.md) .
+* Vengono addebitati solo i hello ora cluster HDInsight hello backup e i processi in esecuzione.
 
 > [!IMPORTANT]
-> Richiede in genere almeno **20 minuti** per il provisioning di un cluster HDInsight di Azure su richiesta.
+> In genere necessario **20 minuti** o altre tooprovision un Azure HDInsight su richiesta del cluster.
 > 
 > 
 
 ### <a name="example"></a>Esempio
-Il codice JSON seguente definisce un servizio collegato HDInsight su richiesta basato su Linux. Il servizio Data factory crea automaticamente un cluster HDInsight **basato su Linux** durante l'elaborazione di una sezione di dati. 
+Hello JSON seguente definisce un servizio di collegato di HDInsight su richiesta basati su Linux. Hello servizio Data Factory crea automaticamente un **basati su Linux** cluster HDInsight durante l'elaborazione di una sezione di dati. 
 
 ```json
 {
@@ -130,26 +130,26 @@ Il codice JSON seguente definisce un servizio collegato HDInsight su richiesta b
 }
 ```
 
-Per usare un cluster HDInsight basato su Windows, impostare **osType** su **windows** oppure evitare di usare la proprietà dato che il valore predefinito è windows.  
+impostare un cluster HDInsight basati su Windows, toouse **osType** troppo**windows** o non utilizzare proprietà hello come valore predefinito di hello: windows.  
 
 > [!IMPORTANT]
-> Il cluster HDInsight crea un **contenitore predefinito** nell'archivio BLOB specificato nel file JSON (**linkedServiceName**). HDInsight non elimina il contenitore quando viene eliminato il cluster. Questo comportamento dipende dalla progettazione. Con il servizio collegato HDInsight su richiesta, viene creato un cluster HDInsight ogni volta che è necessario elaborare una sezione, a meno che non esista un cluster attivo (**timeToLive**) che viene eliminato al termine dell'elaborazione. 
+> Crea cluster HDInsight Hello un **contenitore predefinito** nell'archiviazione blob hello specificato in JSON hello (**linkedServiceName**). HDInsight non eliminare questo contenitore quando viene eliminato il cluster hello. Questo comportamento dipende dalla progettazione. Con il servizio collegato di HDInsight su richiesta, un cluster HDInsight viene creato ogni volta che una sezione deve toobe elaborati a meno che non vi è un cluster esistente in tempo reale (**timeToLive**) e viene eliminata quando viene eseguita un'elaborazione hello. 
 > 
-> Man mano che vengono elaborate più sezioni, vengono visualizzati numerosi contenitori nell'archivio BLOB di Azure. Se non sono necessari per risolvere i problemi relativi ai processi, è possibile eliminarli per ridurre i costi di archiviazione. I nomi dei contenitori seguono il modello `adf**yourdatafactoryname**-**linkedservicename**-datetimestamp`. Per eliminare i contenitori nell'archivio BLOB di Azure, usare strumenti come [Microsoft Azure Storage Explorer](http://storageexplorer.com/) .
+> Man mano che vengono elaborate più sezioni, vengono visualizzati numerosi contenitori nell'archivio BLOB di Azure. Se non li necessario per la risoluzione dei problemi dei processi di hello, è opportuno toodelete li tooreduce hello il costo di archiviazione. i nomi di Hello di questi contenitori seguono un modello: `adf**yourdatafactoryname**-**linkedservicename**-datetimestamp`. Utilizzare strumenti come [Esplora archivi Microsoft](http://storageexplorer.com/) toodelete contenitori di Azure nell'archiviazione blob.
 > 
 > 
 
 ### <a name="properties"></a>Proprietà
 | Proprietà | Descrizione | Obbligatorio |
 | --- | --- | --- |
-| type |La proprietà type deve essere impostata su **HDInsightOnDemand**. |Sì |
-| clusterSize |Numero di nodi del ruolo di lavoro/nodi dati nel cluster. Il cluster HDInsight viene creato con 2 nodi head e il numero di nodi del ruolo di lavoro specificato per questa proprietà. I nodi sono di dimensione Standard_D3, con 4 core, quindi un cluster di 4 nodi del ruolo di lavoro ha 24 core, ossia 4\*4 = 16 core per i nodi del ruolo di lavoro + 2\*4 = 8 core per i nodi head. Vedere [Creare cluster Hadoop basati su Linux in HDInsight](../hdinsight/hdinsight-hadoop-provision-linux-clusters.md) per i dettagli sul livello Standard_D3. |Sì |
-| timeToLive |Il tempo di inattività consentito per il cluster HDInsight su richiesta. Specifica per quanto tempo il cluster HDInsight su richiesta rimane attivo dopo il completamento di un'attività eseguita se non sono presenti altri processi attivi del cluster.<br/><br/>Ad esempio, se un'esecuzione di attività accetta 6 minuti e timetolive è impostato su 5 minuti, il cluster rimane attivo per altri 5 minuti dopo i 6 minuti di elaborazione dell'attività. Se un'altra attività viene eseguita entro i 6 minuti consentiti, verrà elaborata dallo stesso cluster.<br/><br/>Poiché la creazione di un cluster HDInsight su richiesta è un'operazione che usa un numero elevato di risorse e potrebbe richiedere alcuni minuti, usare questa impostazione a seconda delle necessità per migliorare le prestazioni di una data factory riutilizzando un cluster HDInsight su richiesta.<br/><br/>Se si imposta il valore della proprietà timetolive su 0, il cluster viene eliminato non appena l'esecuzione dell'attività viene completata. Se si imposta un valore elevato, tuttavia, il cluster può rimanere inattivo inutilmente causando costi elevati. È quindi importante impostare il valore appropriato in base alle esigenze.<br/><br/>Se il valore della proprietà timetolive è impostato in modo appropriato, più pipeline possono condividere la stessa istanza del cluster HDInsight su richiesta.  |Sì |
-| version |Versione del cluster HDInsight Il valore predefinito è 3.1 per cluster Windows e 3.2 per cluster Linux. |No |
-| linkedServiceName | Servizio collegato Archiviazione di Azure che il cluster su richiesta deve usare per l'archiviazione e l'elaborazione dei dati. Il cluster HDInsight viene creato nella stessa area dell'account di Archiviazione di Azure.<p>Non è attualmente possibile creare un cluster HDInsight su richiesta che usa Azure Data Lake Store come risorsa di archiviazione. Per archiviare i dati dei risultati dell'elaborazione di HDInsight in un'istanza di Azure Data Lake Store, usare un'attività di copia per copiare i dati dall'archivio BLOB di Azure in Azure Data Lake Store. </p>  | Sì |
-| additionalLinkedServiceNames |Specifica account di archiviazione aggiuntivi per il servizio collegato HDInsight in modo che il servizio Data Factory possa registrarli per conto dell'utente. Questi account di archiviazione devono essere nella stessa area del cluster HDInsight, che viene creato nella stessa area dell'account di archiviazione specificato da linkedServiceName. |No |
+| type |proprietà tipo Hello deve essere impostato troppo**HDInsightOnDemand**. |Sì |
+| clusterSize |Numero di nodi di lavoro o dati in cluster hello. cluster HDInsight Hello viene creato con 2 nodi head e il numero di hello di nodi di lavoro che è specificato per questa proprietà. nodi Hello sono di dimensioni Standard_D3 con 4 core, pertanto un cluster di nodi di 4 lavoro accetta 24 core (4\*4 = 16 core per i nodi di lavoro, più 2\*4 = 8 core per i nodi head). Vedere [cluster basati su Linux creare Hadoop in HDInsight](../hdinsight/hdinsight-hadoop-provision-linux-clusters.md) per informazioni dettagliate su livello hello Standard_D3. |Sì |
+| timeToLive |Hello consentito tempo di inattività per il cluster HDInsight su richiesta di hello. Specifica quanto tempo rimarrà attivo cluster HDInsight su richiesta di hello dopo il completamento di un'attività eseguita se non sono disponibili altri processi attivi cluster hello.<br/><br/>Ad esempio, se un'attività eseguita richiede 6 minuti e la proprietà timetolive è impostato too5 minuti, hello cluster rimane attivo per 5 minuti dopo hello 6 minuti di elaborazione di esecuzione dell'attività hello. Se l'esecuzione di un'altra attività viene eseguita con finestra 6 minuti hello, che viene elaborato dalla hello dello stesso cluster.<br/><br/>Creazione di un cluster di HDInsight su richiesta è un'operazione dispendiosa (potrebbe richiedere un po' di tempo), quindi utilizzare questa impostazione prestazioni tooimprove necessari per una data factory riutilizzando un cluster di HDInsight su richiesta.<br/><br/>Se si imposta la proprietà timetolive valore too0, cluster hello viene eliminato, non appena viene completata l'esecuzione dell'attività hello. Considerando che, se si imposta un valore elevato, cluster hello può rimanere inattivo inutilmente risultante in costi elevati. Pertanto, è importante impostare hello di valore appropriato in base alle proprie esigenze.<br/><br/>Se è impostato in modo appropriato i valore della proprietà timetolive hello, più pipeline possono condividere istanza hello del cluster HDInsight su richiesta di hello.  |Sì |
+| version |Versione del cluster HDInsight hello. valore predefinito di Hello è 3.1 per cluster di Windows e 3.2 per cluster Linux. |No |
+| linkedServiceName | Servizio collegato di archiviazione Azure: toobe utilizzato dal cluster di hello su richiesta per l'archiviazione e l'elaborazione dei dati. Hello cluster HDInsight viene creato in hello stessa area come questo account di archiviazione di Azure.<p>Attualmente, è possibile creare un cluster HDInsight su richiesta che utilizza un archivio Azure Data Lake come archiviazione hello. Se si desiderano dati del risultato hello toostore dal HDInsight l'elaborazione in un archivio Azure Data Lake, utilizzare un attività di copia toocopy hello dati dall'archiviazione Blob di Azure di hello toohello archivio Azure Data Lake. </p>  | Sì |
+| additionalLinkedServiceNames |Specifica l'account di archiviazione aggiuntivi per hello HDInsight servizio collegato in modo che il servizio di Data Factory hello può registrare per conto dell'utente. Questi account di archiviazione devono essere in hello stessa area cluster HDInsight hello, che viene creato in hello stessa regione dell'account di archiviazione hello specificato da linkedServiceName. |No |
 | osType |Tipo di sistema operativo. I valori consentiti sono: Windows (impostazione predefinita) e Linux |No |
-| hcatalogLinkedServiceName |Il nome del servizio collegato di Azure SQL che fa riferimento al database HCatalog. Viene creato il cluster HDInsight su richiesta usando il database SQL di Azure come metastore. |No |
+| hcatalogLinkedServiceName |nome Hello del collegato SQL Azure database HCatalog toohello punto del servizio. cluster di HDInsight su richiesta Hello viene creato utilizzando il database di SQL Azure hello come metastore hello. |No |
 
 #### <a name="additionallinkedservicenames-json-example"></a>Esempio di codice JSON additionalLinkedServiceNames
 
@@ -161,18 +161,18 @@ Per usare un cluster HDInsight basato su Windows, impostare **osType** su **wind
 ```
 
 ### <a name="advanced-properties"></a>Advanced Properties
-È inoltre possibile specificare le seguenti proprietà per la configurazione granulare del cluster HDInsight su richiesta.
+È inoltre possibile specificare le proprietà seguenti per configurazione granulare di hello del cluster HDInsight su richiesta di hello hello.
 
 | Proprietà | Descrizione | Obbligatorio |
 |:--- |:--- |:--- |
-| coreConfiguration |Specifica i parametri di configurazione di base (ad esempio core-site.xml) per il cluster HDInsight da creare. |No |
-| hBaseConfiguration |Specifica i parametri di configurazione HBase (hbase-site.xml) per il cluster HDInsight. |No |
-| hdfsConfiguration |Specifica i parametri di configurazione HDFS (hdfs-site.xml) per il cluster HDInsight. |No |
-| hiveConfiguration |Specifica i parametri di configurazione hive (hive-site.xml) per il cluster HDInsight. |No |
-| mapReduceConfiguration |Specifica i parametri di configurazione MapReduce (mapred-site.xml) per il cluster HDInsight. |No |
-| oozieConfiguration |Specifica i parametri di configurazione Oozie (oozie-site.xml) per il cluster HDInsight. |No |
-| stormConfiguration |Specifica i parametri di configurazione Storm (storm-site.xml) per il cluster HDInsight. |No |
-| yarnConfiguration |Specifica i parametri di configurazione Yarn (yarn-site.xml) per il cluster HDInsight. |No |
+| coreConfiguration |Specifica i parametri di configurazione principali hello (come in core-Site.XML) per hello HDInsight cluster toobe creato. |No |
+| hBaseConfiguration |Specifica hello parametri di configurazione HBase (hbase-Site.XML) per il cluster HDInsight hello. |No |
+| hdfsConfiguration |Specifica hello parametri di configurazione HDFS (hdfs-Site.XML) per il cluster HDInsight hello. |No |
+| hiveConfiguration |Specifica hello parametri di configurazione hive (hive-Site.XML) per il cluster HDInsight hello. |No |
+| mapReduceConfiguration |Specifica hello parametri di configurazione MapReduce (mapred-Site.XML) per il cluster HDInsight hello. |No |
+| oozieConfiguration |Specifica hello parametri di configurazione Oozie (oozie-Site.XML) per il cluster HDInsight hello. |No |
+| stormConfiguration |Specifica hello parametri di configurazione Storm (Storm-Site.XML) per il cluster HDInsight hello. |No |
+| yarnConfiguration |Specifica hello parametri di configurazione Yarn (yarn-Site.XML) per il cluster HDInsight hello. |No |
 
 #### <a name="example--on-demand-hdinsight-cluster-configuration-with-advanced-properties"></a>Esempio: configurazione del cluster HDInsight su richiesta con le proprietà avanzate
 
@@ -212,30 +212,30 @@ Per usare un cluster HDInsight basato su Windows, impostare **osType** su **wind
 ```
 
 ### <a name="node-sizes"></a>Dimensioni dei nodi
-È possibile specificare le dimensioni dei nodi head, di dati e zookeeper usando le proprietà seguenti: 
+È possibile specificare le dimensioni di hello dei nodi head, i dati e zookeeper utilizzando hello le proprietà seguenti: 
 
 | Proprietà | Descrizione | Obbligatorio |
 |:--- |:--- |:--- |
-| headNodeSize |Specifica le dimensioni del nodo head Il valore predefinito è Standard_D3. Vedere la sezione **Specificare le dimensioni dei nodi** per informazioni dettagliate. |No |
-| dataNodeSize |Specifica le dimensioni del nodo dei dati. Il valore predefinito è Standard_D3. |No |
-| zookeeperNodeSize |Specifica le dimensioni del nodo Zookeeper. Il valore predefinito è Standard_D3. |No |
+| headNodeSize |Specifica dimensioni hello del nodo head hello. valore predefinito di Hello è: Standard_D3. Vedere hello **specificare le dimensioni dei nodi** sezione per informazioni dettagliate. |No |
+| dataNodeSize |Specifica dimensioni hello del nodo di dati hello. valore predefinito di Hello è: Standard_D3. |No |
+| zookeeperNodeSize |Specifica dimensioni hello del nodo di zoo hello. valore predefinito di Hello è: Standard_D3. |No |
 
 #### <a name="specifying-node-sizes"></a>Specificare le dimensioni dei nodi
-Vedere l'articolo relativo alle [dimensioni delle macchine virtuali](../virtual-machines/linux/sizes.md) per i valori della stringa che è necessario specificare per le proprietà indicate nella sezione precedente. I valori devono essere conformi a **CMDLET e API** a cui si fa riferimento nell'articolo. Come si vede nell'articolo, il nodo dei dati di grandi dimensioni (per impostazione predefinita) ha 7 GB di memoria, che potrebbe non essere adatto al proprio scenario. 
+Vedere hello [le dimensioni delle macchine virtuali](../virtual-machines/linux/sizes.md) articolo per i valori stringa, è necessario toospecify per proprietà hello indicate nella sezione precedente hello. i valori di Hello devono tooconform toohello **cmdlet & API** a cui fa riferimento nell'articolo hello. Come si può notare nell'articolo hello, nodo dati hello (impostazione predefinita) di grandi dimensioni è 7 GB di memoria, che potrebbe non essere adeguata per il proprio scenario. 
 
-Per creare nodi head e nodi del ruolo di lavoro di dimensioni D4, è necessario specificare **Standard_D4** come valore per le proprietà headNodeSize e dataNodeSize. 
+Se si desidera toocreate D4 dimensioni nodi head e lavoro, specificare **Standard_D4** come valore di hello per le proprietà headNodeSize e dataNodeSize. 
 
 ```json
 "headNodeSize": "Standard_D4",    
 "dataNodeSize": "Standard_D4",
 ```
 
-Se si specifica un valore errato per queste proprietà, potrebbe essere visualizzato il seguente **errore:** impossibile creare il cluster. Eccezione: impossibile completare l'operazione di creazione del cluster. L'operazione non è riuscita con codice '400'. Nello stato del cluster è apparso il messaggio 'Errore'. Messaggio: ’PreClusterCreationValidationFailure’. Quando si riceve questo errore, assicurarsi di usare il nome di **CMDLET e API** della tabella dell'articolo relativo alle [dimensioni delle macchine virtuali](../virtual-machines/linux/sizes.md).  
+Se si specifica un valore errato per queste proprietà, si potrebbe ricevere seguente hello **errore:** cluster toocreate non riuscito. Eccezione: L'operazione di creazione cluster di hello toocomplete non è possibile. L'operazione non è riuscita con codice '400'. Nello stato del cluster è apparso il messaggio 'Errore'. Messaggio: ’PreClusterCreationValidationFailure’. Quando si riceve questo errore, verificare che si sta utilizzando hello **CMDLET & API** nome tabella hello hello [le dimensioni delle macchine virtuali](../virtual-machines/linux/sizes.md) articolo.  
 
 ## <a name="bring-your-own-compute-environment"></a>Ambiente di calcolo “bring your own”
-In questo tipo di configurazione, gli utenti possono registrare un ambiente informatico già esistente come servizio collegato in Data Factory. L'ambiente di elaborazione viene gestito dall'utente e il servizio Data Factory viene utilizzato per eseguire le attività.
+In questo tipo di configurazione, gli utenti possono registrare un ambiente informatico già esistente come servizio collegato in Data Factory. ambiente di elaborazione Hello è gestito da utente hello e hello servizio Data Factory utilizza le attività di hello tooexecute.
 
-Questo tipo di configurazione è supportato per gli ambienti di calcolo seguenti:
+Questo tipo di configurazione è supportato per gli ambienti di calcolo seguente hello:
 
 * HDInsight di Azure
 * Azure Batch
@@ -244,7 +244,7 @@ Questo tipo di configurazione è supportato per gli ambienti di calcolo seguenti
 * Azure SQL DB, Azure SQL DW e SQL Server
 
 ## <a name="azure-hdinsight-linked-service"></a>Servizio collegato Azure HDInsight
-È possibile creare un servizio collegato Azure HDInsight per registrare il proprio cluster HDInsight con Data Factory.
+È possibile creare cluster HDInsight un tooregister di servizio collegato di HDInsight di Azure con Data Factory.
 
 ### <a name="example"></a>Esempio
 
@@ -266,20 +266,20 @@ Questo tipo di configurazione è supportato per gli ambienti di calcolo seguenti
 ### <a name="properties"></a>Proprietà
 | Proprietà | Descrizione | Obbligatorio |
 | --- | --- | --- |
-| type |La proprietà type deve essere impostata su **HDInsight**. |Sì |
-| clusterUri |L'URI del cluster HDInsight. |Sì |
-| username |Specifica il nome dell'utente da utilizzare per connettersi a un cluster HDInsight esistente. |Sì |
-| password |Specifica la password per l'account utente. |Sì |
-| linkedServiceName | Nome del servizio collegato all'archiviazione di Azure che fa riferimento all'archiviazione BLOB di Azure usata dal cluster HDInsight. <p>Attualmente non è possibile specificare un servizio collegato di Azure Data Lake Store per questa proprietà. Se il cluster HDInsight dispone di accesso a Data Lake Store, è possibile accedere ai dati in Azure Data Lake Store da script Hive/Pig. </p>  |Sì |
+| type |proprietà tipo Hello deve essere impostato troppo**HDInsight**. |Sì |
+| clusterUri |URI del cluster HDInsight hello Hello. |Sì |
+| username |Specificare nome hello di hello utente toobe utilizzata cluster di HDInsight tooconnect tooan esistente. |Sì |
+| password |Specificare la password per l'account utente di hello. |Sì |
+| linkedServiceName | Nome di servizio collegato di archiviazione di Azure che fa riferimento nell'archiviazione blob di Azure toohello hello utilizzato da hello cluster HDInsight. <p>Attualmente non è possibile specificare un servizio collegato di Azure Data Lake Store per questa proprietà. Se il cluster di HDInsight hello dispone di accesso toohello archivio Data Lake, è possibile accedere ai dati hello archivio Azure Data Lake dagli script Hive o Pig. </p>  |Sì |
 
 ## <a name="azure-batch-linked-service"></a>Servizio collegato Azure Batch
-È possibile creare un servizio collegato di Azure Batch per registrare un pool di Batch di macchine virtuali (VM) a una data factory. È possibile eseguire le attività .NET personalizzate utilizzando Batch Azure o Azure HDInsight.
+È possibile creare un tooregister di servizio collegato di Azure Batch con un pool di Batch di macchine virtuali (VM) tooa data factory. È possibile eseguire le attività .NET personalizzate utilizzando Batch Azure o Azure HDInsight.
 
-Vedere i seguenti argomenti se non si ha familiarità con il servizio di Azure Batch:
+Vedere i seguenti argomenti in caso di nuovo servizio di Batch tooAzure:
 
-* [Nozioni di base di Azure Batch](../batch/batch-technical-overview.md) per una panoramica del servizio Azure Batch.
-* Cmdlet [New-AzureBatchAccount](https://msdn.microsoft.com/library/mt125880.aspx) per creare un account Azure Batch oppure [portale di Azure](../batch/batch-account-create-portal.md) per creare l'account Azure Batch usando il portale di Azure. Per istruzioni dettagliate sull'utilizzo del cmdlet, consultare [Utilizzo di Azure PowerShell per gestire l'account di Azure Batch](http://blogs.technet.com/b/windowshpc/archive/2014/10/28/using-azure-powershell-to-manage-azure-batch-account.aspx) .
-* [New AzureBatchPool](https://msdn.microsoft.com/library/mt125936.aspx) per creare un pool di Batch di Azure.
+* [Nozioni di base di Azure Batch](../batch/batch-technical-overview.md) per una panoramica del servizio Azure Batch hello.
+* [Nuovo AzureBatchAccount](https://msdn.microsoft.com/library/mt125880.aspx) toocreate cmdlet un account Azure Batch (o) [portale di Azure](../batch/batch-account-create-portal.md) account di Azure Batch hello toocreate tramite il portale di Azure. Vedere [toomanage PowerShell utilizzando Account di Azure Batch](http://blogs.technet.com/b/windowshpc/archive/2014/10/28/using-azure-powershell-to-manage-azure-batch-account.aspx) argomento per istruzioni dettagliate sull'utilizzo di cmdlet hello.
+* [Nuovo AzureBatchPool](https://msdn.microsoft.com/library/mt125936.aspx) toocreate cmdlet un pool di Batch di Azure.
 
 ### <a name="example"></a>Esempio
 
@@ -298,13 +298,13 @@ Vedere i seguenti argomenti se non si ha familiarità con il servizio di Azure B
 }
 ```
 
-Aggiungere "**.\<nome area\>**" al nome dell'account Batch per la proprietà **accountName**. Esempio:
+Aggiungere "**.\< nome dell'area\>**"toohello nome dell'account di batch per hello **accountName** proprietà. Esempio:
 
 ```json
 "accountName": "mybatchaccount.eastus"
 ```
 
-Un'altra opzione consiste nell'indicazione dell'endpoint batchUri, come illustrato nell'esempio seguente:
+Un'altra opzione è l'endpoint di batchUri hello tooprovide come illustrato nel seguente esempio hello:
 
 ```json
 "accountName": "adfteam",
@@ -314,14 +314,14 @@ Un'altra opzione consiste nell'indicazione dell'endpoint batchUri, come illustra
 ### <a name="properties"></a>Proprietà
 | Proprietà | Descrizione | Obbligatorio |
 | --- | --- | --- |
-| type |La proprietà type deve essere impostata su **AzureBatch**. |Sì |
-| accountName |Nome dell'account Azure Batch. |Sì |
-| accessKey |Chiave di accesso per l'account Azure Batch. |Sì |
-| poolName |Nome del pool di macchine virtuali. |Sì |
-| linkedServiceName |Nome dello spazio di archiviazione del servizio collegato Azure associato al servizio collegato Azure Batch. Questo servizio collegato viene utilizzato per organizzare i file necessari per eseguire l'attività e archiviare i log di esecuzione dell’attività. |Sì |
+| type |proprietà tipo Hello deve essere impostato troppo**AzureBatch**. |Sì |
+| accountName |Nome dell'account Azure Batch hello. |Sì |
+| accessKey |Chiave di accesso per account Azure Batch hello. |Sì |
+| poolName |Nome del pool di hello delle macchine virtuali. |Sì |
+| linkedServiceName |Nome del servizio collegato di archiviazione di Azure associato a questo servizio collegato di Azure Batch hello. Questo servizio collegato viene utilizzato per i file di gestione temporanea attività hello toorun e l'archiviazione dei log di esecuzione di attività hello obbligatori. |Sì |
 
 ## <a name="azure-machine-learning-linked-service"></a>Servizio collegato di Azure Machine Learning
-Si crea un servizio collegato di Azure Machine Learning per registrare un endpoint di punteggio batch Machine Learning a una data factory.
+Creare un tooregister di servizio collegato di Azure Machine Learning punteggio tooa data factory di endpoint di un batch di Machine Learning.
 
 ### <a name="example"></a>Esempio
 
@@ -341,36 +341,36 @@ Si crea un servizio collegato di Azure Machine Learning per registrare un endpoi
 ### <a name="properties"></a>Proprietà
 | Proprietà | Descrizione | Obbligatorio |
 | --- | --- | --- |
-| type |La proprietà type deve essere impostata su **AzureML**. |Sì |
-| mlEndpoint |L’URL del batch punteggio. |Sì |
-| apiKey |Modello dell'area di lavoro pubblicato di API. |Sì |
+| Tipo |proprietà di tipo Hello deve essere impostata su: **Azure ml**. |Sì |
+| mlEndpoint |URL di punteggio batch di Hello. |Sì |
+| apiKey |Hello pubblicati API del modello di area di lavoro. |Sì |
 
 ## <a name="azure-data-lake-analytics-linked-service"></a>Servizio collegato di Azure Data Lake Analytics
-Creare un servizio collegato di **Azure Data Lake Analytics** per collegare un servizio di calcolo di Azure Data Lake Analytics a una Data Factory di Azure. L'attività U-SQL di Data Lake Analytics nella pipeline fa riferimento a questo servizio collegato. 
+Si crea un **Azure Data Lake Analitica** collegato servizio toolink una factory di dati di Azure tooan del servizio di calcolo di Azure Data Lake Analitica. attività Data Lake Analitica U-SQL nella pipeline hello Hello fa riferimento a servizio toothis collegato. 
 
-La tabella seguente fornisce le descrizioni delle proprietà generiche usate nella definizione JSON. È possibile scegliere anche tra l'autenticazione basata sull'entità servizio e l'autenticazione basata sulle credenziali utente.
+Hello nella tabella seguente vengono fornite descrizioni per hello generica proprietà utilizzate nella definizione JSON hello. È possibile scegliere anche tra l'autenticazione basata sull'entità servizio e l'autenticazione basata sulle credenziali utente.
 
 | Proprietà | Descrizione | Obbligatorio |
 | --- | --- | --- |
-| **type** |La proprietà type deve essere impostata su **AzureDataLakeAnalytics**. |Sì |
+| **type** |proprietà di tipo Hello deve essere impostata su: **AzureDataLakeAnalytics**. |Sì |
 | **accountName** |Nome dell'account di Azure Data Lake Analytics. |Sì |
 | **dataLakeAnalyticsUri** |URI di Azure Data Lake Analytics. |No |
-| **subscriptionId** |ID sottoscrizione di Azure |No (se non specificata, viene usata la sottoscrizione della Data factory). |
-| **resourceGroupName** |Nome del gruppo di risorse di Azure |No (se non specificata, viene usato il gruppo di risorse di Data Factory). |
+| **subscriptionId** |ID sottoscrizione di Azure |No (se non specificato, sottoscrizione di hello viene utilizzata una data factory). |
+| **resourceGroupName** |Nome del gruppo di risorse di Azure |No (se non specificato, il gruppo di risorse di hello viene utilizzata una data factory). |
 
 ### <a name="service-principal-authentication-recommended"></a>Autenticazione basata su entità servizio (opzione consigliata)
-Per usare l'autenticazione basata su entità servizio, registrare un'entità applicazione in Azure Active Directory (Azure AD) e concedere a tale entità l'accesso a Data Lake Store. Per la procedura dettaglia, vedere [Autenticazione da servizio a servizio](../data-lake-store/data-lake-store-authenticate-using-active-directory.md). Prendere nota dei valori seguenti che si usano per definire il servizio collegato:
+toouse l'autenticazione dell'entità servizio, registrare un'entità di applicazione in Azure Active Directory (Azure AD) e concedere hello accedere all'archivio Lake tooData. Per la procedura dettaglia, vedere [Autenticazione da servizio a servizio](../data-lake-store/data-lake-store-authenticate-using-active-directory.md). Prendere nota dei seguenti valori, che permette di hello hello toodefine servizio collegato:
 * ID applicazione
 * Chiave applicazione 
 * ID tenant
 
-Usare l'autenticazione basata su entità servizio specificando le proprietà seguenti:
+Utilizzare l'autenticazione dell'entità servizio specificando hello le proprietà seguenti:
 
 | Proprietà | Descrizione | Obbligatorio |
 |:--- |:--- |:--- |
-| **servicePrincipalId** | Specificare l'ID client dell'applicazione. | Sì |
-| **servicePrincipalKey** | Specificare la chiave dell'applicazione. | Sì |
-| **tenant** | Specificare le informazioni sul tenant (nome di dominio o ID tenant) in cui si trova l'applicazione. È possibile recuperarlo passando il cursore del mouse sull'angolo superiore destro del portale di Azure. | Sì |
+| **servicePrincipalId** | Specificare un ID client. dell'applicazione hello | Sì |
+| **servicePrincipalKey** | Specificare la chiave dell'applicazione hello. | Sì |
+| **tenant** | Specificare le informazioni di hello tenant (dominio tenant o nome ID) in cui risiede l'applicazione. È possibile recuperarlo dal passaggio del mouse hello nell'angolo superiore destro di hello di hello portale di Azure. | Sì |
 
 **Esempio: autenticazione basata su entità servizio**
 ```json
@@ -392,12 +392,12 @@ Usare l'autenticazione basata su entità servizio specificando le proprietà seg
 ```
 
 ### <a name="user-credential-authentication"></a>Autenticazione basata su credenziali utente
-In alternativa, è possibile usare l'autenticazione delle credenziali dell'utente per Data Lake Analytics specificando le proprietà seguenti:
+In alternativa, è possibile utilizzare l'autenticazione delle credenziali utente per Data Lake Analitica specificando hello le proprietà seguenti:
 
 | Proprietà | Descrizione | Obbligatorio |
 |:--- |:--- |:--- |
-| **authorization** | Fare clic sul pulsante **Autorizza** nell'editor di Data Factory e immettere le credenziali per assegnare l'URL di autorizzazione generato automaticamente a questa proprietà. | Sì |
-| **sessionId** | ID sessione OAuth dalla sessione di autorizzazione oauth. Ogni ID di sessione è univoco e può essere usato solo una volta. Questa impostazione viene generata automaticamente quando si usa l'editor di Data Factory. | Sì |
+| **authorization** | Fare clic su hello **Authorize** pulsante hello Editor delle Data Factory e immettere le credenziali dell'utente che assegna la proprietà toothis hello generato automaticamente autorizzazione URL. | Sì |
+| **sessionId** | ID di sessione OAuth della sessione di autorizzazione OAuth hello. Ogni ID di sessione è univoco e può essere usato solo una volta. Questa impostazione viene generata automaticamente quando si utilizza hello Editor delle Data Factory. | Sì |
 
 **Esempio: autenticazione basata su credenziali utente**
 ```json
@@ -418,14 +418,14 @@ In alternativa, è possibile usare l'autenticazione delle credenziali dell'utent
 ```
 
 #### <a name="token-expiration"></a>Scadenza del token
-Il codice di autorizzazione generato con il pulsante **Autorizza** ha una scadenza. Per le scadenze dei diversi tipi di account utente, vedere la tabella seguente. Alla **scadenza del token** di autenticazione potrebbe essere visualizzato un messaggio di errore simile al seguente: Errore dell'operazione relativa alle credenziali: invalid_grant - AADSTS70002: Errore di convalida delle credenziali. AADSTS70008: La concessione dell'accesso specificata è scaduta o è stata revocata. ID traccia: d18629e8-af88-43c5-88e3-d8419eb1fca1 ID correlazione: fac30a0c-6be6-4e02-8d69-a776d2ffefd7 Timestamp: 2015-12-15 21:09:31Z.
+codice di autorizzazione è stato generato utilizzando hello Hello **Authorize** pulsante scade dopo qualche minuto. Vedere hello nella tabella seguente per date di scadenza hello per diversi tipi di account utente. Si può vedere hello seguente messaggio di errore hello quando l'autenticazione **scadenza del token**: errore nell'operazione di credenziali: invalid_grant - AADSTS70002: errore di convalida delle credenziali. AADSTS70008: hello fornito concessione di accesso è scaduto o revocato. ID traccia: d18629e8-af88-43c5-88e3-d8419eb1fca1 ID correlazione: fac30a0c-6be6-4e02-8d69-a776d2ffefd7 Timestamp: 2015-12-15 21:09:31Z.
 
 | Tipo di utente | Scade dopo |
 |:--- |:--- |
 | Account utente NON gestiti da Azure Active Directory (@hotmail.com, @live.com e così via). |12 ore |
-| Account utente gestiti da Azure Active Directory (AAD) |14 giorni dopo l'esecuzione dell'ultima sezione. <br/><br/>90 giorni, se viene eseguita una sezione basata sul servizio collegato OAuth almeno una volta ogni 14 giorni. |
+| Account utente gestiti da Azure Active Directory (AAD) |eseguire 14 giorni dopo l'ultima sezione di hello. <br/><br/>90 giorni, se viene eseguita una sezione basata sul servizio collegato OAuth almeno una volta ogni 14 giorni. |
 
-Per evitare/risolvere questo problema, alla **scadenza del token** ripetere l'autorizzazione usando il pulsante **Autorizza** e ridistribuire il servizio collegato. È anche possibile generare valori per le proprietà **sessionId** e **authorization** a livello di codice usando il codice seguente:
+tooavoid e risolvere questo errore, riautorizzare utilizzando hello **Authorize** pulsante quando hello **scadenza del token** e ridistribuire il servizio collegato hello. È anche possibile generare valori per le proprietà **sessionId** e **authorization** a livello di codice usando il codice seguente:
 
 ```csharp
 if (linkedService.Properties.TypeProperties is AzureDataLakeStoreLinkedService ||
@@ -452,14 +452,14 @@ if (linkedService.Properties.TypeProperties is AzureDataLakeStoreLinkedService |
 }
 ```
 
-Per informazioni dettagliate sulle classi di Data Factory usate nel codice, vedere gli argomenti [AzureDataLakeStoreLinkedService Class](https://msdn.microsoft.com/library/microsoft.azure.management.datafactories.models.azuredatalakestorelinkedservice.aspx), [AzureDataLakeAnalyticsLinkedService Class](https://msdn.microsoft.com/library/microsoft.azure.management.datafactories.models.azuredatalakeanalyticslinkedservice.aspx) e [AuthorizationSessionGetResponse Class](https://msdn.microsoft.com/library/microsoft.azure.management.datafactories.models.authorizationsessiongetresponse.aspx). Aggiungere un riferimento a: Microsoft.IdentityModel.Clients.ActiveDirectory.WindowsForms.dll per la classe WindowsFormsWebAuthenticationDialog. 
+Vedere [AzureDataLakeStoreLinkedService classe](https://msdn.microsoft.com/library/microsoft.azure.management.datafactories.models.azuredatalakestorelinkedservice.aspx), [AzureDataLakeAnalyticsLinkedService classe](https://msdn.microsoft.com/library/microsoft.azure.management.datafactories.models.azuredatalakeanalyticslinkedservice.aspx), e [AuthorizationSessionGetResponse classe](https://msdn.microsoft.com/library/microsoft.azure.management.datafactories.models.authorizationsessiongetresponse.aspx) argomenti per informazioni dettagliate informazioni sulle classi di Data Factory hello usate nel codice hello. Aggiungere un riferimento a: Microsoft.IdentityModel.Clients.ActiveDirectory.WindowsForms.dll per hello WindowsFormsWebAuthenticationDialog classe. 
 
 ## <a name="azure-sql-linked-service"></a>Servizio collegato di Azure SQL
-Si crea un servizio collegato di Azure SQL e lo si utilizza con l’ [Attività di stored procedure](data-factory-stored-proc-activity.md) per richiamare una procedura stored da una pipeline Data Factory. Vedere l’articolo [Connettore di Azure SQL](data-factory-azure-sql-connector.md#linked-service-properties) per informazioni dettagliate su questo servizio collegato.
+È possibile creare un servizio collegato SQL Azure e usarlo con hello [attività Stored Procedure](data-factory-stored-proc-activity.md) tooinvoke una stored procedure da una pipeline di Data Factory. Vedere l’articolo [Connettore di Azure SQL](data-factory-azure-sql-connector.md#linked-service-properties) per informazioni dettagliate su questo servizio collegato.
 
 ## <a name="azure-sql-data-warehouse-linked-service"></a>Servizio collegato di Azure SQL Data Warehouse
-Si crea un servizio collegato di Azure SQL Data Warehouse e lo si usa con l' [attività di stored procedure](data-factory-stored-proc-activity.md) per richiamare una stored procedure da una pipeline Data Factory. Vedere l'articolo [Proprietà del servizio collegato di Azure SQL Data Warehouse](data-factory-azure-sql-data-warehouse-connector.md#linked-service-properties) per informazioni dettagliate su questo servizio collegato.
+È possibile creare un servizio collegato di Azure SQL Data Warehouse e usarlo con hello [attività Stored Procedure](data-factory-stored-proc-activity.md) tooinvoke una stored procedure da una pipeline di Data Factory. Vedere l'articolo [Proprietà del servizio collegato di Azure SQL Data Warehouse](data-factory-azure-sql-data-warehouse-connector.md#linked-service-properties) per informazioni dettagliate su questo servizio collegato.
 
 ## <a name="sql-server-linked-service"></a>Servizio collegato di SQL Server
-Si crea un servizio collegato di SQL Server e lo si usa con l' [attività di stored procedure](data-factory-stored-proc-activity.md) per richiamare una stored procedure da una pipeline Data Factory. Vedere l'articolo [Proprietà del servizio collegato SQL Server](data-factory-sqlserver-connector.md#linked-service-properties) per informazioni dettagliate su questo servizio collegato.
+Creare un servizio collegato SQL Server e usarlo con hello [attività Stored Procedure](data-factory-stored-proc-activity.md) tooinvoke una stored procedure da una pipeline di Data Factory. Vedere l'articolo [Proprietà del servizio collegato SQL Server](data-factory-sqlserver-connector.md#linked-service-properties) per informazioni dettagliate su questo servizio collegato.
 

@@ -1,6 +1,6 @@
 ---
-title: Metadati di informazioni sul dispositivo nella soluzione per il monitoraggio remoto | Documentazione Microsoft
-description: Descrizione della soluzione preconfigurata per il monitoraggio remoto di Azure IoT e relativa architettura.
+title: metadati di informazioni aaaDevice nella soluzione di monitoraggio remoto hello | Documenti Microsoft
+description: Una descrizione di hello Azure IoT preconfigurato soluzione di monitoraggio remoto e la relativa architettura.
 services: 
 suite: iot-suite
 documentationcenter: 
@@ -15,50 +15,50 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/24/2017
 ms.author: dobett
-ms.openlocfilehash: f8fd452806a0a0b98cf8e434c9bd55700083a6c5
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 8387b98b8b2ae4934b0c900bc4df37dc17337c60
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="device-information-metadata-in-the-remote-monitoring-preconfigured-solution"></a>Metadati di informazioni sul dispositivo nella soluzione preconfigurata per il monitoraggio remoto
+# <a name="device-information-metadata-in-hello-remote-monitoring-preconfigured-solution"></a>Metadati informazioni del dispositivo nella soluzione preconfigurata di monitoraggio remoto hello
 
-La soluzione preconfigurata per il monitoraggio remoto di Azure IoT Suite dimostra un approccio per la gestione dei metadati del dispositivo. Questo articolo delinea l'approccio adottato da questa soluzione per illustrare:
+Hello Azure IoT Suite soluzione preconfigurata di monitoraggio remoto viene illustrato un approccio per la gestione dei metadati del dispositivo. Questo articolo vengono illustrati l'approccio di hello questa soluzione richiede tooenable toounderstand è:
 
-* Quali metadati del dispositivo vengono archiviati dalla soluzione.
-* Come la soluzione gestisce i metadati del dispositivo.
+* Soluzione di hello metadati quali dispositivi vengono archiviati.
+* Come soluzione hello gestisce i metadati del dispositivo hello.
 
 ## <a name="context"></a>Context
 
-La soluzione preconfigurata per il monitoraggio remoto usa l'[hub IoT di Azure][lnk-iot-hub] per consentire ai dispositivi di inviare dati al cloud. La soluzione archivia le informazioni sui dispositivi in tre posizioni diverse:
+Hello monitoraggio remoto preconfigurato soluzione utilizza [IoT Hub Azure] [ lnk-iot-hub] tooenable toohello di dati toosend i dispositivi cloud. soluzione Hello archivia informazioni sui dispositivi in tre percorsi diversi:
 
 | Percorso | Informazioni archiviate | Implementazione |
 | -------- | ------------------ | -------------- |
-| Registro delle identità | ID del dispositivo, chiavi di autenticazione, stato di abilitazione | Predefinito nell'hub IoT |
-| Dispositivi gemelli | Metadati: proprietà segnalate, proprietà desiderate, tag | Predefinito nell'hub IoT |
+| Registro delle identità | ID del dispositivo, chiavi di autenticazione, stato di abilitazione | TooIoT incorporato Hub |
+| Dispositivi gemelli | Metadati: proprietà segnalate, proprietà desiderate, tag | TooIoT incorporato Hub |
 | Cosmos DB | Cronologia dei comandi e dei metodi | Personalizzato per la soluzione |
 
-L'hub IoT include un [registro delle identità dei dispositivi][lnk-identity-registry] per gestire l'accesso all'hub IoT e usa i [dispositivi gemelli][lnk-device-twin] per gestire i metadati del dispositivo. È disponibile anche un *registro dei dispositivi* specifico della soluzione di monitoraggio remoto, che archivia la cronologia dei comandi e dei metodi. La soluzione di monitoraggio remoto usa un database [Cosmos DB][lnk-docdb] per implementare un archivio personalizzato per la cronologia dei comandi e dei metodi.
+IoT Hub include un [registro identità dispositivo] [ lnk-identity-registry] toomanage accedere hub IoT tooan e utilizza [gemelli dispositivo] [ lnk-device-twin] toomanage metadati del dispositivo . È disponibile anche un *registro dei dispositivi* specifico della soluzione di monitoraggio remoto, che archivia la cronologia dei comandi e dei metodi. Hello remoto monitoraggio soluzione utilizza un [DB Cosmos] [ lnk-docdb] tooimplement database un archivio personalizzato per la cronologia del comando e il metodo.
 
 > [!NOTE]
-> La soluzione preconfigurata per il monitoraggio remoto mantiene il registro delle identità dei dispositivi sincronizzato con le informazioni disponibili nel database Cosmos DB. Entrambi usano lo stesso ID dispositivo per identificare in modo univoco ogni dispositivo connesso all'hub IoT.
+> Hello soluzione preconfigurata di monitoraggio remoto mantiene la sincronizzazione con le informazioni di hello del Registro di sistema di hello dispositivo identity nel database DB Cosmos hello. Entrambi utilizzano hello stesso dispositivo id toouniquely identificare ogni dispositivo connesso tooyour IoT hub.
 
 ## <a name="device-metadata"></a>Metadati del dispositivo
 
-L'hub IoT gestisce un [dispositivo gemello][lnk-device-twin] per ogni dispositivo simulato e fisico connesso a una soluzione di monitoraggio remoto. La soluzione usa i dispositivi gemelli per gestire i metadati associati ai dispositivi. Un dispositivo gemello è un documento JSON gestito dall'hub IoT e la soluzione usa l'API dell'hub IoT per interagire con i dispositivi gemelli.
+IoT Hub conserva un [doppi dispositivo] [ lnk-device-twin] per ogni dispositivo simulato e fisico connessi tooa soluzione di monitoraggio remoto. soluzione di Hello utilizza metadati del dispositivo gemelli toomanage hello associati ai dispositivi. Un doppio di un dispositivo è un documento JSON mantenuto dall'IoT Hub e soluzione hello utilizza hello API dell'Hub IoT toointeract con gemelli di dispositivo.
 
 Un dispositivo gemello archivia tre tipi di metadati:
 
-- Le *proprietà segnalate* vengono inviate a un hub IoT da un dispositivo. Nella soluzione di monitoraggio remoto, i dispositivi simulati inviano le proprietà all'avvio e in risposta a comandi e metodi di tipo **Change device state**. È possibile visualizzare le proprietà segnalate in **Elenco dispositivi** e **Dettagli dispositivo** nel portale della soluzione. Le proprietà segnalate sono di sola lettura.
-- Le *proprietà desiderate* vengono recuperate dall'hub IoT dai dispositivi. Le modifiche di configurazione necessarie nel dispositivo sono a carico del dispositivo. Il dispositivo deve anche segnalare la modifica all'hub come proprietà segnalata. È possibile impostare un valore della proprietà desiderata tramite il portale della soluzione.
-- I *tag* esistono solo nel dispositivo gemello e non vengono mai sincronizzati con un dispositivo. È possibile impostare i valori dei tag nel portale della soluzione e usarli per filtrare l'elenco di dispositivi. La soluzione usa un tag anche per identificare l'icona da visualizzare per un dispositivo nel portale della soluzione.
+- *Proprietà segnalati* hub IoT tooan inviati da un dispositivo. Nella soluzione di monitoraggio remoto hello, simulati i dispositivi le inviano proprietà restituita all'avvio e in risposta troppo**modificare lo stato del dispositivo** comandi e i metodi. È possibile visualizzare le proprietà segnalate in hello **elenco dei dispositivi** e **dettagli dispositivo** nel portale di soluzione hello. Le proprietà segnalate sono di sola lettura.
+- *Le proprietà desiderate* vengono recuperati dall'hub IoT hello dai dispositivi. È responsabilità di hello di hello dispositivo toomake modificare qualsiasi configurazione necessarie sul dispositivo hello. È anche la responsabilità di hello dell'hub di hello dispositivo tooreport hello modifica toohello indietro come proprietà segnalate. È possibile impostare un valore di proprietà desiderato tramite il portale di soluzione hello.
+- *Tag* esiste solo in un doppio dispositivo hello e non vengono mai sincronizzata con un dispositivo. È possibile impostare i valori di tag nel portale di soluzione hello e possono essere utilizzati filtrare l'elenco di hello dei dispositivi. soluzione Hello utilizza anche un toodisplay di icona hello tooidentify tag per un dispositivo nel portale di soluzione hello.
 
-Le proprietà segnalate dai dispositivi simulati includono ad esempio il produttore, il numero di modello, la latitudine e la longitudine. I dispositivi simulati restituiscono anche l'elenco di metodi supportati come proprietà segnalata.
+Esempio segnalato proprietà dai dispositivi hello simulato includono produttore, il numero di modello, latitudine e longitudine. Dispositivi simulati anche restituiranno elenco hello dei metodi supportati come una proprietà segnalata.
 
 > [!NOTE]
-> Il codice del dispositivo simulato usa le proprietà desiderate **Desired.Config.TemperatureMeanValue** e **Desired.Config.TelemetryInterval** soltanto per aggiornare le proprietà segnalate inviate all'hub IoT. Tutte le altre richieste di modifica delle proprietà desiderate vengono ignorate.
+> Hello dispositivo simulato solo codice hello **Desired.Config.TemperatureMeanValue** e **Desired.Config.TelemetryInterval** hello tooupdate proprietà desiderate segnalati proprietà restituita tooIoT Hub. Tutte le altre richieste di modifica delle proprietà desiderate vengono ignorate.
 
-Un documento JSON di metadati di informazioni sul dispositivo archiviato nel database Cosmos DB del registro dei dispositivi ha la struttura seguente:
+Un documento JSON di dispositivo informazioni dei metadati archiviato nel database di DB Cosmos hello dispositivo del Registro di sistema ha hello seguente struttura:
 
 ```json
 {
@@ -80,42 +80,42 @@ Un documento JSON di metadati di informazioni sul dispositivo archiviato nel dat
 ```
 
 > [!NOTE]
-> Le informazioni sul dispositivo possono includere anche metadati per descrivere la telemetria inviata dal dispositivo all'hub IoT. La soluzione per il monitoraggio remoto usa questi metadati di telemetria per personalizzare la visualizzazione della [telemetria dinamica][lnk-dynamic-telemetry] nel dashboard.
+> Informazioni sul dispositivo possono includere anche metadati toodescribe hello telemetria hello dispositivo invia tooIoT Hub. soluzione di monitoraggio remoto Hello utilizza questo toocustomize metadati telemetria la modalità di visualizzazione dashboard hello [telemetria dinamica][lnk-dynamic-telemetry].
 
 ## <a name="lifecycle"></a>Ciclo di vita
 
-Quando si crea per la prima volta un dispositivo nel portale della soluzione, la soluzione crea una voce nel database Cosmos DB per archiviare la cronologia dei comandi e dei metodi. A questo punto la soluzione crea anche una voce per il dispositivo nel registro delle identità dei dispositivi che genera le chiavi usate dal dispositivo per l'autenticazione con l'hub IoT. Viene creato anche un dispositivo gemello.
+Quando si crea un dispositivo nel portale di soluzione hello, soluzione hello crea una voce nel comando di toostore database DB Cosmos hello e la cronologia di metodo. A questo punto, la soluzione hello crea anche una voce per il dispositivo hello hello dispositivo identità del Registro di sistema, che genera l'errore hello chiavi hello dispositivo utilizza tooauthenticate con l'IoT Hub. Viene creato anche un dispositivo gemello.
 
-Quando un dispositivo si connette per la prima volta alla soluzione, invia proprietà segnalate e un messaggio informativo sul dispositivo I valori delle proprietà segnalate vengono salvati automaticamente nel dispositivo gemello. Le proprietà segnalate includono il produttore del modello, il numero di modello, il numero di serie e un elenco di metodi supportati. Il messaggio informativo sul dispositivo include un elenco dei comandi supportati dal dispositivo, incluse le informazioni sui parametri dei comandi. Quando la soluzione riceve il messaggio, aggiorna le informazioni sui dispositivi nel database Cosmos DB.
+Quando un dispositivo si connette prima soluzione toohello, invia proprietà segnalate e un messaggio di informazioni del dispositivo. Hello riportati i valori delle proprietà vengono salvati automaticamente in un doppio dispositivo hello. Hello segnalato proprietà includono produttore del dispositivo hello, numero di modello, il numero di serie e un elenco dei metodi supportati. messaggio di informazioni del dispositivo Hello include elenco hello dei comandi di hello hello dispositivo supporta incluse informazioni relative a eventuali parametri di comando. Quando la soluzione hello riceve questo messaggio, aggiorna le informazioni sul dispositivo hello nel database DB Cosmos hello.
 
-### <a name="view-and-edit-device-information-in-the-solution-portal"></a>Visualizzare e modificare informazioni sul dispositivo nel portale della soluzione
+### <a name="view-and-edit-device-information-in-hello-solution-portal"></a>Visualizzare e modificare le informazioni sul dispositivo nel portale di soluzione hello
 
-Per impostazione predefinita, l'elenco di dispositivi nel portale della soluzione visualizza le proprietà del dispositivo seguenti come colonne: **Stato**, **ID dispositivo**, **Produttore**, **Numero modello**, **Numero di serie**, **Firmware**, **Piattaforma**, **Processore** e **RAM installata**. È possibile personalizzare le colonne facendo clic su **Editor di colonne**. Le proprietà **Latitudine** e **Longitudine** del dispositivo determinano la posizione nella mappa di Bing nel dashboard.
+elenco dei dispositivi nel portale di soluzione hello Hello Visualizza hello seguenti delle proprietà del dispositivo come colonne per impostazione predefinita: **stato**, **DeviceId**, **produttore**, **Numero modello**, **numero di serie**, **Firmware**, **piattaforma**, **processore**e  **RAM installata**. È possibile personalizzare le colonne di hello facendo **editor colonna**. proprietà del dispositivo Hello **latitudine** e **longitudine** unità posizione hello hello mappa di Bing nel dashboard di hello.
 
 ![Editor di colonne nell'elenco di dispositivi][img-device-list]
 
-Nel riquadro **Dettagli dispositivo** nel portale della soluzione, è possibile modificare le proprietà desiderate e i tag. Le proprietà segnalate sono di sola lettura.
+In hello **dettagli dispositivo** riquadro nel portale di soluzione hello, è possibile modificare le proprietà desiderate e tag (indicato proprietà sono di sola lettura).
 
 ![Riquadro Dettagli dispositivo][img-device-edit]
 
-È possibile usare il portale della soluzione per rimuovere un dispositivo dalla soluzione. Quando si rimuove un dispositivo, la soluzione rimuove la voce del dispositivo dal registro delle identità e quindi elimina il dispositivo gemello. La soluzione rimuove anche le informazioni correlate al dispositivo dal database Cosmos DB. Prima di poter rimuovere un dispositivo, è necessario disabilitarlo.
+È possibile utilizzare hello soluzione portale tooremove un dispositivo dalla soluzione. Quando si rimuove un dispositivo, la soluzione hello rimuove la voce di dispositivo hello dal Registro di sistema di identità ed elimina un doppio dispositivo hello. soluzione Hello rimuove anche dispositivo toohello correlati di informazioni dai database DB Cosmos hello. Prima di poter rimuovere un dispositivo, è necessario disabilitarlo.
 
 ![Rimuovere un dispositivo][img-device-remove]
 
 ## <a name="device-information-message-processing"></a>Elaborazione dei messaggi informativi sul dispositivo
 
-I messaggi informativi sul dispositivo inviati da un dispositivo sono diversi dai messaggi di telemetria. I messaggi informativi sul dispositivo includono i comandi a cui un dispositivo può rispondere e l'eventuale cronologia dei comandi. L'hub IoT non conosce i metadati contenuti in un messaggio informativo sul dispositivo ed elabora il messaggio come qualsiasi altro messaggio inviato dal dispositivo al cloud. Nella soluzione per il monitoraggio remoto, un processo di [Analisi di flusso di Azure][lnk-stream-analytics] legge i messaggi dall'hub IoT. Il processo **DeviceInfo** di Analisi di flusso filtra i messaggi contenenti **"ObjectType": "DeviceInfo"** e li inoltra all'istanza dell'host **EventProcessorHost** in esecuzione in un processo Web. La logica nell'istanza di **EventProcessorHost** usa l'ID dispositivo per trovare il record di Cosmos DB per il dispositivo specifico e aggiorna il record.
+I messaggi informativi sul dispositivo inviati da un dispositivo sono diversi dai messaggi di telemetria. I messaggi informativi dispositivo includono comandi hello a che un dispositivo può rispondere e la cronologia dei comandi. IoT Hub stessa non ha alcuna conoscenza di hello metadati contenuti in un messaggio di informazioni del dispositivo e i processi hello messaggio hello allo stesso modo elabora i messaggi da dispositivo a cloud. Nella soluzione, di monitoraggio remoto hello un [Azure flusso Analitica] [ lnk-stream-analytics] processo (ASA) legge messaggi hello dall'IoT Hub. Hello **DeviceInfo** analitica di flusso del processo i filtri per messaggi che contengono **"ObjectType": "DeviceInfo"** e li inoltra toohello **EventProcessorHost** host istanza in esecuzione in un processo web. Logica di hello **EventProcessorHost** istanza utilizza i record del dispositivo id toofind hello Cosmos DB hello per record hello dispositivo e di aggiornamento specifico hello.
 
 > [!NOTE]
-> Un messaggio informativo sul dispositivo è un messaggio standard inviato dal dispositivo al cloud. La soluzione distingue i messaggi informativi sul dispositivo dai messaggi di telemetria usando le query di Analisi di flusso di Azure.
+> Un messaggio informativo sul dispositivo è un messaggio standard inviato dal dispositivo al cloud. soluzione Hello viene fatta distinzione tra i messaggi informativi di dispositivo e i messaggi di dati di telemetria tramite query ASA.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Dopo aver illustrato come personalizzare le soluzioni preconfigurate, è possibile esplorare alcune altre funzionalità e soluzioni preconfigurate di Suite IoT:
+Dopo aver apprendere come personalizzare soluzioni hello preconfigurato, è possibile esplorare alcune hello altre caratteristiche e funzionalità di soluzioni di IoT Suite preconfigurato hello:
 
 * [Panoramica della soluzione preconfigurata di manutenzione predittiva][lnk-predictive-overview]
 * [Domande frequenti su IoT Suite][lnk-faq]
-* [Sicurezza IoT sin dall'inizio][lnk-security-groundup]
+* [Sicurezza di IoT da hello messa a terra][lnk-security-groundup]
 
 <!-- Images and links -->
 [img-device-list]: media/iot-suite-remote-monitoring-device-info/image1.png

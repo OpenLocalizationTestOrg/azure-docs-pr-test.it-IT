@@ -1,6 +1,6 @@
 ---
-title: Azure RemoteApp come salva dati e impostazioni? | Documentazione Microsoft
-description: Informazioni su come Azure RemoteApp salva i dati dell'utente utilizzando il disco del profilo utente.
+title: salvare le impostazioni e dati utente, aaaHow non Azure RemoteApp? | Microsoft Docs
+description: Informazioni su come vengono salvati i dati utente tramite disco hello Azure RemoteApp.
 services: remoteapp
 documentationcenter: 
 author: msmbaldwin
@@ -13,136 +13,136 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/26/2017
 ms.author: mbaldwin
-ms.openlocfilehash: 4993bf507536659d7951e1552559cf0a6061d345
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: dccebc7861e8a0d87cb3ee174f399a2df7fe023c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="how-does-azure-remoteapp-save-user-data-and-settings"></a>Azure RemoteApp come salva dati e impostazioni?
 > [!IMPORTANT]
-> Azure RemoteApp verrà sospeso a partire dal 31 agosto 2017. Per i dettagli, vedere l' [annuncio](https://go.microsoft.com/fwlink/?linkid=821148) .
+> Azure RemoteApp verrà sospeso a partire dal 31 agosto 2017. Hello lettura [annuncio](https://go.microsoft.com/fwlink/?linkid=821148) per informazioni dettagliate.
 > 
 > 
 
-Azure RemoteApp salva identità utente e personalizzazioni nei dispositivi e nelle sessioni. Tali dati utente vengono archiviati in un disco per ogni raccolta per utente, noto come disco del profilo utente (UPD). Il disco segue l'utente e garantisce che l'utente disponga di un'esperienza coerente, indipendentemente da dove si registrano gli accessi.
+Azure RemoteApp salva identità utente e personalizzazioni nei dispositivi e nelle sessioni. Tali dati utente vengono archiviati in un disco per ogni raccolta per utente, noto come disco del profilo utente (UPD). disco Hello segue utente hello e assicura hello utente dispone di un'esperienza coerente, indipendentemente dal fatto in cui accedono.
 
-I dischi dei profili utente sono completamente trasparenti all'utente - gli utenti salvano i documenti nella loro cartella documenti (su quello che sembra essere un'unità locale) e modificano le impostazioni della loro applicazione come di consueto. Allo stesso tempo, tutte le impostazioni personali vengono mantenute quando ci si connette a RemoteApp di Azure da qualsiasi dispositivo. L'utente vede è i propri dati nella stessa posizione.
+I dischi dei profili utente sono completamente trasparenti toohello utente, gli utenti di salvare una cartella documenti tootheir di documenti (su quanto visualizzato toobe un'unità locale) e modificare le impostazioni di app come al solito. AT hello stesso vengono mantenute le impostazioni di tempo, tutti personali quando ci si connette tooAzure RemoteApp da qualsiasi dispositivo. Tutti gli utenti di hello vede i relativi dati in hello stessa posizione.
 
 Ogni UPD dispone di 50GB di archiviazione permanente e contiene entrambe le impostazioni applicazione e dati utente. 
 
 Leggere le informazioni specifiche sui dati del profilo utente.
 
 > [!NOTE]
-> È necessario disabilitare il disco del profilo utente? È ora possibile eseguire questa operazione: per informazioni dettagliate, consultare il post di blog di Pavithra relativo alla [disabilitazione dei dischi dei profili utente in Azure RemoteApp](https://blogs.technet.microsoft.com/enterprisemobility/2015/11/11/disable-user-profile-disks-upds-in-azure-remoteapp/).
+> È necessario toodisable hello UPD? È ora possibile eseguire questa operazione: per informazioni dettagliate, consultare il post di blog di Pavithra relativo alla [disabilitazione dei dischi dei profili utente in Azure RemoteApp](https://blogs.technet.microsoft.com/enterprisemobility/2015/11/11/disable-user-profile-disks-upds-in-azure-remoteapp/).
 > 
 > 
 
-## <a name="how-can-an-admin-get-to-the-data"></a>Come può un amministratore accedere ai dati?
-Se è necessario accedere ai dati per uno degli utenti, per il ripristino di emergenza o se l'utente lascia la società, contattare il supporto tecnico di Azure e fornire le informazioni di sottoscrizione per la raccolta e l'identità dell'utente. Il team di Azure RemoteApp fornirà un URL per il disco rigido virtuale. Scaricare il disco rigido virtuale e recuperare i documenti o i file necessari. Si noti che il disco rigido virtuale è di 50GB, pertanto ci può volere del tempo per scaricarlo.
+## <a name="how-can-an-admin-get-toohello-data"></a>Come un amministratore può ottenere i dati toohello?
+Se sono necessari dati hello tooaccess per uno degli utenti (per il ripristino di emergenza o se utente hello lascia la società hello), contattare il supporto tecnico di Azure e fornire informazioni sulla sottoscrizione hello per la raccolta di hello e identità utente hello. il team di Azure RemoteApp Hello fornirà un toohello URL VHD. Scaricare il disco rigido virtuale e recuperare i documenti o i file necessari. Si noti che hello disco rigido virtuale è 50GB, in modo richiederà toodownload un bit è.
 
-## <a name="is-the-data-backed-up"></a>Si esegue il backup dei dati?
-Sì, si salva una copia di backup dei dati utente per ogni posizione geografica. I dati sono di sola lettura ed è possibile accedervi allo stesso modo dei dati normali (contattare RemoteApp di Azure per ottenerli), se il data center principale è attivo. I dati vengono copiati in tempo reale nel percorso di backup e non si mantengono copie delle diverse versioni. Pertanto, nel danneggiamento dei dati, non sarà possibile ripristinare una versione valida nota in precedenza ma se il data center principale non è attivo, sarà possibile ottenere dati utente da un altro percorso.
+## <a name="is-hello-data-backed-up"></a>Dati hello viene eseguito il backup?
+Sì, si salva una copia di backup dei dati utente hello per ogni area geografica. Hello dati è di sola lettura ed è possibile accedere in hello stesso modo come dati normali hello sarebbe (contattare tooget Azure RemoteApp è), se hello data center primario è inattivo. dati Hello sono percorso di backup copiati toohello in tempo reale e abbiamo non dispongono di copie di versioni diverse. In tal caso, il danneggiamento dei dati, nel è non saranno in grado di toorestore è noto in precedenza versione funzionante, ma se hello data center primario è inattivo, si sarà in grado di tooget dati definite dall'utente tooa hello altra posizione.
 
-## <a name="how-do-users-see-the-upd-on-the-server-side"></a>Gli utenti come visualizzano il UPD sul lato server?
-Ogni utente dispone di proprie directory nel server associate al proprio UPD: c:\Users\username.
+## <a name="how-do-users-see-hello-upd-on-hello-server-side"></a>Come gli utenti visualizzano hello UPD sul lato server hello?
+Ciascun utente avrà le proprie directory server che esegue il mapping tootheir UPD hello: c:\Users\username.
 
-## <a name="whats-the-best-way-to-use-outlook-and-upd"></a>Qual’è il miglior modo di utilizzare Outlook e UPD?
-RemoteApp di Azure consente di salvare lo stato di Outlook (cassette postali, file PST) tra le sessioni. A tale scopo, è necessario che PST sia archiviato nei dati di profilo utente (c:\utenti\<nomeutente>). Questo è il percorso predefinito per i dati, quindi fino a quando non si modifica la posizione, i dati verranno mantenuti tra le sessioni.
+## <a name="whats-hello-best-way-toouse-outlook-and-upd"></a>Che cos'è hello migliore modo toouse Outlook e UPD?
+Azure RemoteApp Salva lo stato di Outlook di hello (cassette postali, pst) tra le sessioni. tooenable, abbiamo base hello toobe PST archiviati nei dati di profilo utente hello (c:\users\<nomeutente >). Questo è il percorso predefinito hello per i dati di hello, pertanto, a condizione che non si modifica il percorso di hello, dati hello verranno mantenute tra le sessioni.
 
 È inoltre consigliabile utilizzare la modalità "cache" in Outlook e utilizzare la modalità "server/online" per la ricerca.
 
 Per altre informazioni sull'uso di Outlook e Azure RemoteApp, consultare [questo articolo](remoteapp-outlook.md) .
 
 ## <a name="what-about-redirection"></a>Come funziona il reindirizzamento?
-È possibile configurare Azure RemoteApp per consentire agli utenti di accedere ai dispositivi locali mediante il [reindirizzamento](remoteapp-redirection.md). I dispositivi locali saranno in grado di accedere ai dati sull’UPD.
+È possibile configurare utenti toolet accedere ai dispositivi locali mediante la configurazione di Azure RemoteApp [reindirizzamento](remoteapp-redirection.md). Dispositivi locali potranno quindi essere in grado di tooaccess dati hello hello UPD.
 
 ## <a name="can-i-use-my-upd-as-a-network-share"></a>È possibile utilizzare l’UPD come condivisione di rete?
-No. UPDs non può essere utilizzato come una condivisione di rete. Un UPD è disponibile per l’utente solo quando l'utente è attivamente connesso a RemoteApp di Azure.
+No. UPDs non può essere utilizzato come una condivisione di rete. Un UPD è utente toohello disponibile solo quando l'utente di hello è attivamente connesso tooAzure RemoteApp.
 
 ## <a name="if-i-delete-a-user-from-a-collection-is-their-upd-deleted"></a>Se si elimina un utente da una raccolta, viene eliminato anche il suo UPD?
-No, quando si elimina un utente, non si elimina automaticamente l’UPD - memorizziamo i dati fino a quando non si elimina la raccolta. 90 giorni dopo l'eliminazione della raccolta, eliminiamo tutti gli UPD. 
+No, quando si elimina un utente, è non eliminare automaticamente hello UPD - invece è archiviare dati hello fino a quando non si elimina raccolta hello. 90 giorni dopo l'eliminazione di una raccolta di hello, vengono eliminati tutti che. 
 
-Se si desidera eliminare un UPD da una raccolta, contattare RemoteApp di Azure - possiamo eliminare l’UPD per conto degli utenti.
+Se è necessario toodelete un UPD da una raccolta, contattare Azure RemoteApp, è possibile eliminare UPD dal nostro lato.
 
 ## <a name="can-i-access-my-users-upds-either-current-or-deleted-users"></a>È possibile accedere agli UPD dei propri utenti (utenti correnti o eliminati)?
-Sì, se si contatta [Azure RemoteApp](mailto:remoteappforum@microsoft.com), viene fornito un URL per l'accesso ai dati. Per scaricare i dati o file dal UPD prima della scadenza dell'accesso, si avranno a disposizione circa 10 ore.
+Sì, se si contatta il [Azure RemoteApp](mailto:remoteappforum@microsoft.com), è possibile impostare è con un tooaccess URL dati hello. È necessario sul toodownload 10 ore i dati o file da hello UPD prima della scadenza accesso hello.
 
 ## <a name="are-upds-available-offline"></a>Gli UPD sono disponibili offline?
-Attualmente non viene fornito l'accesso offline agli UPD, oltre alle 10 ore di accesso descritte in precedenza. Ciò significa che non è attualmente disponibile un modo per fornire un accesso per lunghi tempi per poter completare le attività più complesse, come l’esecuzione di un software antivirus nei UPD o l'accesso ai dati per un controllo.
+In questo momento non si forniscono tooUPDs accesso offline, oltre a finestra di accesso di 10 ore hello descritto in precedenza. Ciò significa che si dispone attualmente di un modo tooprovide all'accesso per attività abbastanza a lungo toocomplete più complessa, come in esecuzione un software antivirus in hello che o l'accesso ai dati per un controllo.
 
 ## <a name="do-registry-key-settings-persist"></a>Vengono mantenute le impostazioni della chiave del Registro di sistema?
-Sì, qualsiasi elemento scritto in HKEY_Current_User fa parte del UPD.
+Sì, scrittura tooHKEY_Current_User fa parte di hello UPD.
 
 ## <a name="can-i-disable-upds-for-a-collection"></a>È possibile disattivare gli UPD per una raccolta?
-Sì, è possibile chiedere ad Azure RemoteApp di disabilitare gli UPD per una sottoscrizione, ma non è possibile eseguirla manualmente. Ciò significa che gli UPD verranno disabilitati per tutte le raccolte nella sottoscrizione.
+Sì, è possibile chiedere toodisable Azure RemoteApp che per una sottoscrizione, ma non è possibile eseguire manualmente. Ciò significa che che verranno disabilitati per tutte le raccolte nella sottoscrizione hello.
 
-È consigliabile disabilitare i dischi del profilo utente in una delle situazioni seguenti: 
+È possibile che toodisable delle hello seguenti situazioni: 
 
 * È necessario disporre di accesso e controllo completi dei dati utente (a scopo di controllo e verifica, ad esempio negli istituti finanziari).
-* Si dispone di soluzioni locali di gestione del profilo utente di terze parti e si desidera continuare a usarle nella distribuzione di Azure RemoteApp aggiunta al dominio. Questa opzione richiede il caricamento dell'agente del profilo nell'immagine gold. 
-* Non è necessaria una risorsa di archiviazione di dati locale oppure tutti i dati sono archiviati nel cloud o in una condivisione file e si vuole controllare il salvataggio dei dati in modalità locale tramite Azure RemoteApp.
+* Si dispone di parti 3rd utente profilo di gestione soluzioni in locale e si desidera utilizzarli nella distribuzione di Azure RemoteApp dominio toocontinue. Ciò richiede hello profilo agente toobe caricati immagine gold hello. 
+* Non è necessario spazio di archiviazione di dati locale o si dispongono di tutti i dati nel hello cloud o la condivisione file e si desidera toocontrol salvataggio di dati localmente utilizzando Azure RemoteApp.
 
 Per altre informazioni, vedere il post di blog relativo alla [disabilitazione dei dischi dei profili utente in Azure RemoteApp](https://blogs.technet.microsoft.com/enterprisemobility/2015/11/11/disable-user-profile-disks-upds-in-azure-remoteapp/).
 
-## <a name="can-i-restrict-users-from-saving-data-to-the-system-drive"></a>È possibile limitare gli utenti nel salvataggio dei dati nell'unità di sistema?
-Sì, ma è necessario impostarlo nell'immagine modello prima di creare la raccolta. Per bloccare l'accesso all'unità del sistema, attenersi alla procedura seguente:
+## <a name="can-i-restrict-users-from-saving-data-toohello-system-drive"></a>È possibile limitare gli utenti dal salvataggio di unità di sistema toohello dati?
+Sì, ma è necessario tooset che backup nel modello hello immagine prima di creare una raccolta di hello. Utilizzare hello unità di sistema toohello accesso tooblock i passaggi seguenti:
 
-1. Eseguire **gpedit.msc** nell'immagine modello.
-2. Passare a **Configurazione utente > Modelli amministrativi > Componenti di Windows > Esplora**.
-3. Selezionare le opzioni seguenti:
+1. Eseguire **gpedit. msc** nell'immagine modello hello.
+2. Passare troppo**configurazione utente > modelli amministrativi > componenti di Windows > Esplora**.
+3. Hello seleziona le opzioni seguenti:
    * **Nascondi le unità specificate in risorse del Computer**
-   * **Impedire l'accesso alle unità dal Computer locale**
+   * **Impedire l'accesso toodrives dal computer locale**
 
-## <a name="can-i-seed-upds-i-want-to-put-some-data-in-the-upd-thats-available-the-first-time-the-user-signs-in"></a>È possibile inizializzare gli UPD? Desidero inserire dei dati nell’UPD disponibile la prima volta che l'utente accede.
-Sì, quando si crea l'immagine modello, è possibile aggiungere informazioni al profilo predefinito. Tale informazione viene quindi aggiunta al UPD.
+## <a name="can-i-seed-upds-i-want-tooput-some-data-in-hello-upd-thats-available-hello-first-time-hello-user-signs-in"></a>È possibile inizializzare gli UPD? Si desidera tooput alcuni dati hello UPD che è disponibile hello hello utente effettua l'accesso.
+Sì, quando si crea l'immagine modello hello, è possibile aggiungere profilo predefinito toohello di informazioni. Questa informazione verrà quindi aggiunta toohello UPD.
 
-## <a name="can-i-change-the-size-of-the-upd-depending-on-how-much-data-i-want-to-store"></a>È possibile modificare le dimensioni dell’UPD a seconda della quantità di dati si desidera archiviare?
-No, tutti gli UPD hanno 50 GB di spazio di archiviazione. Se si desidera archiviare diverse quantità di dati, procedere come segue:
+## <a name="can-i-change-hello-size-of-hello-upd-depending-on-how-much-data-i-want-toostore"></a>È possibile modificare le dimensioni di hello di hello UPD a seconda della quantità di dati desiderato toostore?
+No, tutti gli UPD hanno 50 GB di spazio di archiviazione. Se si desidera toostore quantità diverse di dati, provare l'esempio hello:
 
-1. Disabilitare gli UPD per la raccolta.
-2. Configurare una condivisione di file per gli utenti.
-3. Caricare la condivisione file utilizzando uno script di avvio. Per ulteriori informazioni sugli script di avvio in Azure RemoteApp, vedere di seguito.
-4. Indirizzare gli utenti al salvataggio di tutti i dati nella condivisione file.
+1. Disabilitare che per la raccolta di hello.
+2. Configurare una condivisione file per gli utenti tooaccess.
+3. Condivisione di file hello carico usando uno script di avvio. Per ulteriori informazioni sugli script di avvio in Azure RemoteApp, vedere di seguito.
+4. Indirizzare gli utenti toosave condivisione file di tutti i dati toohello.
 
 ## <a name="how-do-i-run-a-startup-script-in-azure-remoteapp"></a>Come eseguire uno script di avvio in Azure RemoteApp
-Se si desidera eseguire uno script di avvio, iniziare creando un'attività pianificata nell'immagine modello che si intende utilizzare per la raccolta. (Eseguire tale operazione *prima* di eseguire sysprep.) 
+Se si desidera toorun uno script di avvio, iniziare creando un'attività pianificata nell'immagine modello hello verrà toouse per la raccolta di hello. (Eseguire tale operazione *prima* di eseguire sysprep.) 
 
 ![Creare un'attività di sistema](./media/remoteapp-upd/upd1.png)
 
 ![Creare un'attività di sistema che viene eseguita quando un utente accede](./media/remoteapp-upd/upd2.png)
 
-Nella sezione Sicurezza della scheda **Generale** modificare l'**Account utente** in "BUILTIN\Users."
+In hello **generale** scheda, hello toochange assicurarsi di essere **Account utente** in sicurezza troppo "BUILTIN\Users".
 
-![Modificare l'account utente in un gruppo](./media/remoteapp-upd/upd4.png)
+![Modificare il gruppo tooa account utente di hello](./media/remoteapp-upd/upd4.png)
 
-L'attività pianificata avvierà lo script di avvio, utilizzando le credenziali dell'utente. Pianificare l'attività affinché venga eseguita ogni volta che un utente accede.
+attività pianificata Hello verrà avviato lo script di avvio, utilizzando le credenziali dell'utente hello. Pianificare hello attività toorun ogni volta un utente accede.
 
-![Impostare il trigger per l'attività come "al momento dell'accesso"](./media/remoteapp-upd/upd3.png)
+![Imposta il trigger hello per le attività di hello come "All'accesso"](./media/remoteapp-upd/upd3.png)
 
 È inoltre possibile usare [gli script di avvio basati su criteri di gruppo](https://technet.microsoft.com/library/cc779329%28v=ws.10%29.aspx). 
 
-## <a name="what-about-placing-a-startup-script-in-the-start-menu-would-that-work"></a>Come funziona l'inserimento di uno script di avvio nel menu Start? Funziona?
-In altre parole, è possibile creare un file con estensione .bat che esegue uno script di configurazione, salvarlo nella cartella c:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp e eseguire quindi lo script ogni volta che un utente avvia una sessione di RemoteApp?
+## <a name="what-about-placing-a-startup-script-in-hello-start-menu-would-that-work"></a>Menu di avvio per quanto riguarda l'inserimento di uno script di avvio in hello? Funziona?
+In altre parole, è possibile creare un file con estensione bat che esegue uno script di finestra di configurazione e salvarlo toohello c:\ProgramData\Microsoft\Windows\Start di Avvio\Programmi\Esecuzione e hanno quindi lo script eseguito ogni volta che un utente avvia una sessione di RemoteApp?
 
-No, tale opzione non è supportata da RemoteApp di Azure, che utilizza host sessione Desktop remoto che inoltre non supporta gli script di avvio nel menu Start.
+No, che non è supportata con Azure RemoteApp, che utilizza host sessione Desktop remoto, che non supporta inoltre gli script di avvio nel menu Start hello.
 
-## <a name="can-i-use-mstscexe-the-remote-desktop-program-to-configure-logon-scripts"></a>È possibile utilizzare mstsc.exe (il programma Desktop remoto) per configurare gli script di accesso?
+## <a name="can-i-use-mstscexe-hello-remote-desktop-program-tooconfigure-logon-scripts"></a>È possibile utilizzare gli script di accesso tooconfigure mstsc.exe (programma di Desktop remoto hello)?
 No, tale opzione non è supportata da Azure RemoteApp.
 
-## <a name="can-i-store-data-on-the-vm-locally"></a>È possibile archiviare dati sulla VM in locale?
-NO, i dati archiviati in un punto qualsiasi della VM diverso dall’UPD andranno persi. È molto probabile l'utente non riceva la stessa VM al successivo accesso ad Azure RemoteApp. Non viene mantenuta la persistenza utente-VM, pertanto l'utente non eseguirà l'accesso alla stessa VM e i dati andranno persi. Inoltre, quando si aggiorna la raccolta, le VM esistenti vengono sostituite con un nuovo set di VM, pertanto i dati archiviati sulla stessa VM andranno persi. È consigliabile archiviare i dati nell'UPD, in un servizio di archiviazione condivisa come File di Azure, in un file server all'interno di una rete virtuale o nel cloud con un sistema di archiviazione cloud come DropBox.
+## <a name="can-i-store-data-on-hello-vm-locally"></a>È possibile archiviare dati nel hello macchina virtuale in locale?
+NO, dati archiviati in un punto qualsiasi in hello VM diverso in hello UPD andranno persi. È un utente di hello elevata probabilità non sarà possibile ricevere hello hello VM stesso successivo che eseguono l'accesso in Azure RemoteApp. Persistenza utente-VM, non è mantenuto in modo utente hello non accederanno a hello stessa macchina virtuale e hello dati andranno perduti. Inoltre, quando si aggiorna la raccolta hello, le macchine virtuali esistenti vengono sostituite con un nuovo set di macchine virtuali, che significa che i dati archiviati in una macchina virtuale stessa hello hello viene perso. si consiglia Hello di dati toostore hello UPD, archiviazione condivisa come file di Azure, un file server all'interno di una rete virtuale o nel cloud hello usando un sistema di archiviazione cloud come DropBox.
 
 ## <a name="how-do-i-mount-an-azure-file-share-on-a-vm-using-powershell"></a>Come montare una condivisione di File di Azure in una VM, tramite PowerShell
-È possibile utilizzare il cmdlet di Net-PSDrive per montare l'unità, come indicato di seguito:
+È possibile utilizzare hello unità hello toomount di Net-PSDrive cmdlet, come indicato di seguito:
 
     New-PSDrive -Name <drive-name> -PSProvider FileSystem -Root \\<storage-account-name>.file.core.windows.net\<share-name> -Credential :<storage-account-name>
 
 
-È inoltre possibile salvare le credenziali eseguendo le operazioni seguenti:
+È inoltre possibile salvare le credenziali eseguendo hello:
 
     cmdkey /add:<storage-account-name>.file.core.windows.net /user:<storage-account-name> /pass:<storage-account-key>
 
 
-In questo modo è possibile ignorare il parametro - Credential nel cmdlet New-PSDrive.
+Che consente di ignorare hello - parametro delle credenziali nel cmdlet New-PSDrive hello.
 

@@ -1,6 +1,6 @@
 ---
-title: Procedure consigliate per la sicurezza delle macchine virtuali di Azure | Documentazione Microsoft
-description: Questo articolo riporta varie procedure consigliate per la sicurezza da usare per le macchine virtuali di Azure.
+title: procedure ottimali di protezione macchina virtuale aaaAzure | Documenti Microsoft
+description: Questo articolo fornisce un'ampia gamma di protezione ottimali consigliate toobe utilizzati in macchine virtuali in Azure.
 services: security
 documentationcenter: na
 author: YuriDio
@@ -14,29 +14,29 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/19/2017
 ms.author: yurid
-ms.openlocfilehash: c8a920a0523cb4737e6bbca7e49d0b9e2c942565
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: b03bcc75fde6d49897f9a7f6f15aec87456edd0a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="best-practices-for-azure-vm-security"></a>Procedure consigliate per la sicurezza delle VM di Azure
 
-Nella maggior parte degli scenari Infrastructure as a Service (IaaS) le [macchine virtuali (VM) di Azure](https://docs.microsoft.com/en-us/azure/virtual-machines/) rappresentano il carico di lavoro principale per le organizzazioni che usano il cloud computing. Questo è particolarmente evidente negli [scenari ibridi](https://social.technet.microsoft.com/wiki/contents/articles/18120.hybrid-cloud-infrastructure-design-considerations.aspx) in cui le organizzazioni vogliono eseguire lentamente la migrazione dei carichi di lavoro nel cloud. In questi scenari seguire la [considerazioni generali sulla sicurezza per IaaS](https://social.technet.microsoft.com/wiki/contents/articles/3808.security-considerations-for-infrastructure-as-a-service-iaas.aspx) e applicare le procedure consigliate di sicurezza a tutte le VM.
+Nella maggior parte dei scenari di servizio (IaaS), infrastruttura [macchine virtuali di Azure (VM)](https://docs.microsoft.com/en-us/azure/virtual-machines/) è carico di lavoro principale hello per le organizzazioni che utilizzano cloud computing. Ciò è particolarmente evidente in [scenari ibridi](https://social.technet.microsoft.com/wiki/contents/articles/18120.hybrid-cloud-infrastructure-design-considerations.aspx) in tooslowly di organizzazioni si desidera eseguire la migrazione cloud toohello i carichi di lavoro. In questi scenari, seguire hello [considerazioni generali sulla sicurezza per IaaS](https://social.technet.microsoft.com/wiki/contents/articles/3808.security-considerations-for-infrastructure-as-a-service-iaas.aspx)e applicare security best practices tooall le macchine virtuali.
 
 Questo articolo tratta varie procedure consigliate di sicurezza per le VM derivate da esperienze dei nostri clienti e nostre esperienze dirette con le VM stesse.
 
-Le procedure consigliate si basano su opinioni concordanti e funzionino con le caratteristiche e le capacità correnti della piattaforma Azure. Poiché le opinioni e le tecnologie possono cambiare nel tempo, questo articolo verrà aggiornato regolarmente per riflettere tali variazioni.
+Hello procedure consigliate si basano su un consenso parere e lavorare con funzionalità della piattaforma Azure corrente e set di funzionalità. Poiché opinioni e le tecnologie possono cambiare nel tempo, contiamo tooupdate in questo articolo regolarmente tooreflect tali modifiche.
 
-Per ciascuna procedura consigliata l'articolo spiega:
+Per ogni procedura consigliata, hello spiegato:
 
-* In cosa consiste la procedura consigliata.
-* Perché è preferibile abilitarla.
-* Come imparare ad abilitarla.
-* Cosa potrebbe succedere se non la si abilita.
-* Possibili alternative alla procedura consigliata.
+* Quali consigliata hello è.
+* Perché è una buona idea tooenable è.
+* Come è possibile ottenere informazioni di tooenable è.
+* Ciò che accadrebbe se non si riesce tooenable è.
+* Alternative possibili toohello consigliata.
 
-L'articolo esamina le seguenti procedure consigliate di sicurezza per le VM:
+articolo Hello esamina hello seguenti procedure ottimali di protezione VM:
 
 * Autenticazione e controllo di accesso della VM
 * Disponibilità e accesso alla rete della VM
@@ -47,61 +47,61 @@ L'articolo esamina le seguenti procedure consigliate di sicurezza per le VM:
 
 ## <a name="vm-authentication-and-access-control"></a>Autenticazione e controllo di accesso della VM
 
-Il primo passo per proteggere la VM è garantire che solo gli utenti autorizzati possano configurare la VM. È possibile usare [i criteri di Azure Resource Manager](../azure-resource-manager/resource-manager-policy.md) per definire le convenzioni per le risorse nell'organizzazione, creare criteri personalizzati e applicare questi criteri alle risorse, ad esempio [gruppi di risorse](../azure-resource-manager/resource-group-overview.md).
+Hello primo passaggio per proteggere la macchina virtuale è tooensure che solo gli utenti autorizzati siano in grado di tooset di nuove macchine virtuali. È possibile utilizzare [criteri di gestione risorse di Azure](../azure-resource-manager/resource-manager-policy.md) tooestablish convenzioni per le risorse dell'organizzazione, creare criteri personalizzati e applicare tooresources questi criteri, ad esempio [gruppi di risorse](../azure-resource-manager/resource-group-overview.md).
 
-Le VM che appartengono a un gruppo di risorse ereditano naturalmente i suoi criteri. Sebbene questo approccio alla gestione delle VM sia consigliabile, è possibile controllare l'accesso ai singoli criteri della MV usando il [controllo degli accessi in base al ruolo (RBAC)](../active-directory/role-based-access-control-configure.md).
+Macchine virtuali che appartengono naturalmente il gruppo di risorse tooa ereditano i criteri. Sebbene questo approccio è consigliato toomanaging VM, è possibile anche i criteri di controllo accesso tooindividual VM utilizzando [il controllo di accesso basato sui ruoli (RBAC)](../active-directory/role-based-access-control-configure.md).
 
-Quando si abilitano i criteri di Resource Manager e controllo degli accessi in base al ruolo per controllare l'accesso alla VM, si migliora la sicurezza complessiva della VM. Si consiglia di consolidare le VM con lo stesso ciclo di vita nello stesso gruppo di risorse. Usando i gruppi di risorse è possibile distribuire, monitorare ed eseguire il rollup dei costi di fatturazione per le risorse. Per consentire agli utenti di accedere e configurare le VM, usare un [approccio con privilegi minimi](https://technet.microsoft.com/en-us/windows-server-docs/identity/ad-ds/plan/security-best-practices/implementing-least-privilege-administrative-models). E quando si assegnano privilegi agli utenti prevedere di usare i seguenti ruoli predefiniti di Azure:
+Quando si abilita criteri di gestione risorse e l'accesso VM toocontrol RBAC, consente di migliorare la sicurezza complessiva di macchina virtuale. Si consiglia di consolidare le macchine virtuali con hello del ciclo di vita stesso in hello stesso gruppo di risorse. Usando i gruppi di risorse è possibile distribuire, monitorare ed eseguire il rollup dei costi di fatturazione per le risorse. tooenable utenti tooaccess e configurare le macchine virtuali, utilizzare un [approccio con privilegi minimi](https://technet.microsoft.com/en-us/windows-server-docs/identity/ad-ds/plan/security-best-practices/implementing-least-privilege-administrative-models). E quando si assegna privilegi toousers, pianificare hello toouse seguenti ruoli predefiniti di Azure:
 
-- [Collaboratore Macchina virtuale](../active-directory/role-based-access-built-in-roles.md#virtual-machine-contributor): può gestire le VM, ma non la rete virtuale o l'account di archiviazione a cui sono connesse.
-- [Collaboratore Macchina virtuale classica](../active-directory/role-based-access-built-in-roles.md#classic-virtual-machine-contributor): può gestire le VM create usando il modello di distribuzione classico ma non la rete virtuale o l'account di archiviazione a cui le VM sono connesse.
+- [Macchina virtuale collaboratore](../active-directory/role-based-access-built-in-roles.md#virtual-machine-contributor): può gestire le macchine virtuali, ma non hello virtuale toowhich account di rete o di archiviazione sono connessi.
+- [Collaboratore alla macchina virtuale classica](../active-directory/role-based-access-built-in-roles.md#classic-virtual-machine-contributor): può gestire macchine virtuali create utilizzando il modello di distribuzione classica hello, ma non hello virtuale rete o archiviazione account toowhich hello sono connesse le macchine virtuali.
 - [Gestore sicurezza](../active-directory/role-based-access-built-in-roles.md#security-manager): può gestire i componenti di sicurezza, i criteri di sicurezza e le VM.
 - [Utente DevTest Labs](../active-directory/role-based-access-built-in-roles.md#devtest-labs-user): può visualizzare tutti gli elementi e connettere, avviare, riavviare e arrestare le VM.
 
-Non condividere account e password tra gli amministratori e non riutilizzare le password per più account utente o servizi, in particolare quelle dei social media o di altre attività non amministrative. Si consiglia di usare i modelli di [Azure Resource Manager](../azure-resource-manager/resource-group-authoring-templates.md) per configurare in sicurezza le VM. Usando questo approccio è possibile rafforzare le opzioni di distribuzione e applicare le impostazioni di sicurezza per la distribuzione.
+Non condividere account e password tra gli amministratori e non riutilizzare le password per più account utente o servizi, in particolare quelle dei social media o di altre attività non amministrative. Idealmente, è consigliabile usare [Azure Resource Manager](../azure-resource-manager/resource-group-authoring-templates.md) tooset di modelli di macchine virtuali in modo sicuro. Usando questo approccio, è possibile potenziare le scelte di distribuzione e applicare le impostazioni di sicurezza per la distribuzione di hello.
 
-Le organizzazioni che non applicano il controllo di accesso ai dati sfruttando funzionalità come il controllo degli accessi in base al ruolo potrebbero concedere più privilegi del necessario agli utenti. L'accesso utente inappropriato ad alcuni dati può compromettere direttamente i dati.
+Le organizzazioni che non applicano il controllo di accesso ai dati sfruttando funzionalità come il controllo degli accessi in base al ruolo potrebbero concedere più privilegi del necessario agli utenti. Dati toocertain di accesso utente appropriato direttamente possono compromettere i dati.
 
 ## <a name="vm-availability-and-network-access"></a>Disponibilità e accesso alla rete della VM
 
-Se la VM esegue applicazioni critiche che richiedono un'elevata disponibilità, è consigliabile usare più VM. Per una maggiore disponibilità, creare almeno due macchine virtuali nel [set di disponibilità](../virtual-machines/windows/tutorial-availability-sets.md).
+Se la macchina virtuale esegue applicazioni critiche che richiedono la disponibilità elevata toohave, si consiglia di utilizzare più macchine virtuali. Per una migliore disponibilità, creare almeno due macchine virtuali in hello [set di disponibilità](../virtual-machines/windows/tutorial-availability-sets.md).
 
-[Azure Load Balancer](../load-balancer/load-balancer-overview.md) richiede inoltre che le VM con carico bilanciato appartengano allo stesso set di disponibilità. Se per queste VM è necessario eseguire l'accesso da Internet, si dovrà configurare un [servizio di bilanciamento del carico con connessione Internet](../load-balancer/load-balancer-internet-overview.md).
+[Bilanciamento del carico di Azure](../load-balancer/load-balancer-overview.md) richiede inoltre che macchine virtuali con carico bilanciato appartengono toohello stesso set di disponibilità. Se queste macchine virtuali devono essere accessibile da Internet hello, è necessario configurare un [bilanciamento del carico con connessione Internet](../load-balancer/load-balancer-internet-overview.md).
 
-Quando le VM sono esposte a Internet, è importante [controllare il flusso del traffico di rete con gruppi di sicurezza di rete (NSG)](../virtual-network/virtual-networks-nsg.md). Poiché i gruppi di sicurezza di rete possono essere applicati alle subnet, è possibile ridurre al minimo il numero di gruppi di sicurezza di rete raggruppando le risorse per subnet e poi applicando i gruppi di sicurezza di rete alle subnet. Lo scopo è quello di creare un livello di isolamento della rete, che si può ottenere configurando correttamente le capacità di [sicurezza di rete](../best-practices-network-security.md) in Azure.
+Quando le macchine virtuali sono esposto toohello Internet, è importante che si [controllo di flusso del traffico di rete con rete sicurezza gruppi](../virtual-network/virtual-networks-nsg.md). Poiché NSGs possono essere applicati toosubnets, è possibile ridurre il numero di hello di NSGs raggruppando le risorse in base alla subnet e quindi l'applicazione NSGs toohello subnet. scopo di Hello è un livello di isolamento rete, che è possibile effettuare correttamente la configurazione di hello toocreate [sicurezza di rete](../best-practices-network-security.md) funzionalità in Azure.
 
-È inoltre possibile usare la funzionalità di accesso alle VM just in time dal Centro sicurezza di Azure per controllare chi può accedere da remoto a una VM specifica e per quanto tempo.
+È inoltre possibile utilizzare funzionalità di accesso alla VM (JIT) hello-in-time dal Centro sicurezza di Azure toocontrol che dispone di accesso remoto tooa macchina virtuale specifica e la durata.
 
-Le organizzazioni che non applicano restrizioni di accesso alle VM connesse a Internet sono esposte a rischi di sicurezza, ad esempio attacco di forza bruta Remote Desktop Protocol (RDP).
+Le organizzazioni che non applicano restrizioni di accesso alla rete VM con connessione tooInternet sono esposti a rischi toosecurity, ad esempio un attacco di forza bruta Remote Desktop Protocol (RDP).
 
 ## <a name="protect-data-at-rest-in-your-vms-by-enforcing-encryption"></a>Protezione dei dati inattivi nelle VM di Azure tramite l'applicazione della crittografia
 
-[La crittografia dei dati inattivi](https://blogs.microsoft.com/cybertrust/2015/09/10/cloud-security-controls-series-encrypting-data-at-rest/) è un passaggio obbligatorio per assicurare la privacy, la conformità e la sovranità dei dati. [Azure Disk Encryption](../security/azure-security-disk-encryption.md) consente agli amministratori IT di crittografare i dischi delle VM IaaS Windows e Linux. Crittografia dischi combina la funzionalità standard di settore BitLocker di Windows e la funzionalità dm-crypt di Linux per fornire la crittografia del volume per i dischi del sistema operativo e dei dati.
+[La crittografia dei dati inattivi](https://blogs.microsoft.com/cybertrust/2015/09/10/cloud-security-controls-series-encrypting-data-at-rest/) è un passaggio obbligatorio per assicurare la privacy, la conformità e la sovranità dei dati. [Crittografia disco Azure](../security/azure-security-disk-encryption.md) consente tooencrypt gli amministratori IT Windows e i dischi di macchina virtuale IaaS di Linux. Crittografia disco combina le funzionalità di BitLocker di Windows hello standard del settore e hello Linux dm crypt funzionalità tooprovide crittografia del volume per hello del sistema operativo e i dischi dati hello.
 
-È possibile applicare Crittografia dischi per contribuire alla protezione dei dati in modo da rispettare i requisiti dell'organizzazione in merito a sicurezza e conformità. La crittografia permette anche all'organizzazione di ridurre i rischi correlati all'accesso non autorizzato ai dati. È consigliabile anche crittografare le unità prima di scrivere dati sensibili.
+È possibile applicare la crittografia del disco toohelp salvaguardare la toomeet dati i requisiti di sicurezza e conformità dell'organizzazione. L'organizzazione deve considerare usando la crittografia toohelp attenuare i rischi correlati toounauthorized l'accesso ai dati. Si consiglia inoltre di crittografare l'unità prima di scrivere i dati sensibili toothem.
 
-Assicurarsi di crittografare i volumi di dati della VM per proteggerli nello stato inattivo nell'account di archiviazione di Azure. Proteggere le chiavi di crittografia e la chiave privata con [Azure Key Vault](https://azure.microsoft.com/en-us/documentation/articles/key-vault-whatis/).
+Essere tooencrypt che il tooprotect di volumi di dati macchina virtuale all'indirizzo rest nell'account di archiviazione di Azure. Proteggere le chiavi di crittografia hello e il segreto tramite [insieme credenziali chiavi Azure](https://azure.microsoft.com/en-us/documentation/articles/key-vault-whatis/).
 
-Le organizzazioni che non applicano la crittografia dei dati sono più esposte a problemi di integrità dei dati. Gli utenti non autorizzati, ad esempio, potrebbero rubare dati negli account compromessi o ottenere l'accesso non autorizzato ai dati codificati in ClearFormat. Oltre a correre questi rischi, per la conformità alle normative di settore, le aziende devono dimostrare di operare con diligenza e di usare controlli di sicurezza appropriati per migliorare la sicurezza dei dati.
+Le organizzazioni che non impongono la crittografia dei dati sono altri problemi di integrità toodata esposto. Ad esempio, gli utenti non autorizzati o non autorizzati potrebbero intercettare i dati negli account compromesso o ottenere l'accesso non autorizzato toodata codificata in ClearFormat. Oltre a portare in tali rischi, toocomply con dei regolamenti del settore, le aziende devono dimostrare che si stanno esercitando molta attenzione e utilizzando la protezione corretta controlla tooenhance la protezione dati.
 
-Per altre informazioni su Crittografia dischi, vedere [Azure Disk Encryption per le macchine virtuali IaaS Windows e Linux](azure-security-disk-encryption.md).
+toolearn ulteriori informazioni su crittografia del disco, vedere [Azure crittografia disco per Windows e le macchine virtuali IaaS Linux](azure-security-disk-encryption.md).
 
 
 ## <a name="manage-your-vm-updates"></a>Gestire gli aggiornamenti della VM
 
-Poiché le VM di Azure, come tutte le VM locali, dovranno essere gestite dall'utente, Azure non applica gli aggiornamenti di Windows a queste. Tuttavia si consiglia di lasciare abilitata l'impostazione automatica di Windows Update. Un'altra opzione consiste nel distribuire [Windows Server Update Services (WSUS)](https://technet.microsoft.com/windowsserver/bb332157.aspx) o un altro prodotto appropriato di gestione degli aggiornamenti in un'altra VM o in locale. Sia WSUS che Windows Update mantengono aggiornate le VM. Si consiglia anche di usare un prodotto di analisi per verificare che tutte le VM IaaS siano aggiornate.
+Perché macchine virtuali di Azure, come tutti in locale le macchine virtuali, sono previsti toobe gestita dall'utente, Azure non push toothem gli aggiornamenti di Windows. Tuttavia sono incoraggiati tooleave hello impostazione automatica di Windows Update abilitato. Un'altra opzione consiste toodeploy [Windows Server Update Services (WSUS)](https://technet.microsoft.com/windowsserver/bb332157.aspx) o un altro prodotto di gestione degli aggiornamenti adatto su un'altra macchina virtuale o locale. Sia WSUS che Windows Update mantengono aggiornate le VM. È inoltre consigliabile utilizzare una scansione tooverify prodotto che tutte le macchine virtuali IaaS sono backup toodate.
 
-Le immagini di archivio fornite da Azure vengono regolarmente aggiornate per includere i più recenti aggiornamenti di Windows. Tuttavia non vi è alcuna garanzia che le immagini saranno aggiornate in fase di distribuzione. Sono possibili leggeri ritardi (di non più di alcune settimane) dopo i rilasci. Controllare e installare tutti gli aggiornamenti di Windows deve essere il primo passo di ogni distribuzione. Questa misura è particolarmente importante da applicare quando si distribuiscono immagini proprie o provenienti dalla propria libreria. Le immagini che vengono fornite come parte di Azure Marketplace vengono aggiornate automaticamente per impostazione predefinita.
+Le immagini predefinite fornite da Azure sono hello tooinclude regolarmente aggiornata più recente di arrotondamento degli aggiornamenti di Windows. Tuttavia, non è garantito che le immagini di hello saranno aggiornate in fase di distribuzione. Sono possibili leggeri ritardi (di non più di alcune settimane) dopo i rilasci. Cercare e installare tutti gli aggiornamenti di Windows deve essere innanzitutto hello di ogni distribuzione. Questa misura è tooapply particolarmente importante quando si distribuiscono le immagini che derivano dall'utente o la propria libreria. Le immagini sono fornite come parte di hello Azure Marketplace vengono aggiornate automaticamente per impostazione predefinita.
 
-Le organizzazioni che non applicano criteri di aggiornamento del software sono più esposte a minacce che sfruttano vulnerabilità note e corrette in precedenza. Oltre al rischio rappresentato da queste minacce, per la conformità con le normative di settore le aziende devono dimostrare di operare con diligenza e di usare controlli di sicurezza appropriati per garantire la sicurezza dei carichi di lavoro che si trovano nel cloud.
+Le organizzazioni che non applicano i criteri di aggiornamento software sono più toothreats esposto che sfruttano le vulnerabilità noto in precedenza predefinite. Oltre ai rischi di tali rischi, toocomply con dei regolamenti del settore, le aziende devono dimostrare che si stanno esercitando molta attenzione e utilizzando toohelp controlli di sicurezza corrette garantire la sicurezza hello del relativo carico di lavoro si trova nel cloud hello.
 
-È importante sottolineare che le procedure consigliate di aggiornamento del software per i data center tradizionali e IaaS di Azure presentano molte analogie. Si consiglia perciò di valutare i criteri di aggiornamento del software correnti per includere le VM.
+È importante tooemphasize che le procedure consigliate per Data Center tradizionali di aggiornamento software e IaaS di Azure presentano molte analogie. È pertanto consigliabile valutare il tooinclude macchine virtuali criteri aggiornamento corrente di software.
 
 ## <a name="manage-your-vm-security-posture"></a>Gestire le condizioni di sicurezza della VM
 
-Le minacce informatiche si evolvono e per proteggere le VM è necessaria una capacità di monitoraggio completa che possa rilevare rapidamente le minacce, impedire l'accesso non autorizzato alle risorse, attivare gli avvisi e ridurre i falsi positivi. Le condizioni di sicurezza per un carico di lavoro di questo tipo includono tutti gli aspetti della sicurezza della VM, dalla gestione degli aggiornamenti all'accesso sicuro alla rete.
+Minacce Cyber si evolvono e proteggere le macchine virtuali richiede potente funzionalità di monitoraggio che possono rapidamente rilevare le minacce, impedire l'accesso non autorizzato alle risorse di tooyour, gli avvisi vengono generati e ridurre i falsi positivi. condizioni di sicurezza Hello per un carico di lavoro è costituito da tutti gli aspetti di sicurezza di hello macchina virtuale, da accesso rete toosecure di gestione per l'aggiornamento.
 
-Per monitorare le condizioni di sicurezza delle [VM Windows](../security-center/security-center-virtual-machine.md) e [Linux](../security-center/security-center-linux-virtual-machine.md), usare [Centro sicurezza di Azure](../security-center/security-center-intro.md). In Centro sicurezza di Azure proteggere le VM sfruttando le seguenti capacità:
+condizioni di sicurezza toomonitor hello del [Windows](../security-center/security-center-virtual-machine.md) e [le macchine virtuali Linux](../security-center/security-center-linux-virtual-machine.md), utilizzare [Centro sicurezza di Azure](../security-center/security-center-intro.md). Nel Centro protezione di Azure, proteggere le macchine virtuali sfruttando hello seguenti funzionalità:
 
 * Applicare le impostazioni di sicurezza del sistema operativo con le regole di configurazione consigliate
 * Identificare e scaricare gli aggiornamenti critici e di sicurezza del sistema che potrebbero mancare
@@ -112,18 +112,18 @@ Per monitorare le condizioni di sicurezza delle [VM Windows](../security-center/
 
 Il Centro sicurezza può monitorare attivamente le minacce e le minacce potenziali sono esposte in **Avvisi sicurezza**. Le minacce correlate sono aggregate in un'unica visualizzazione denominata **Evento imprevisto della sicurezza**.
 
-Per comprendere come il Centro sicurezza consenta di identificare le potenziali minacce nelle VM all'interno di Azure, guardare il video seguente:
+toounderstand come centro di sicurezza consentono di identificare le potenziali minacce in macchine virtuali all'interno di Azure, guardare hello video seguente:
 
 <iframe src="https://channel9.msdn.com/Blogs/Azure-Security-Videos/Azure-Security-Center-in-Incident-Response/player" width="960" height="540" allowFullScreen frameBorder="0"></iframe>
 
-Le organizzazioni che non applicano condizioni di sicurezza avanzate per le proprie VM rimangono all'oscuro della presenza di potenziali tentativi da parte di utenti non autorizzati di aggirare i controlli di sicurezza stabiliti.
+Le organizzazioni che non applicano una condizione di protezione elevata per le proprie macchine virtuali continuino di potenziali tentativi dai controlli di sicurezza stabilito toocircumvent utenti non autorizzati.
 
 ## <a name="monitor-vm-performance"></a>Monitorare le prestazioni della VM
 
-L'uso improprio delle risorse può essere un problema quando i processi della VM utilizzano più risorse di quanto dovrebbero. I problemi di prestazioni di una VM possono causare interruzioni del servizio, il che viola il principio di disponibilità della sicurezza. Per questo motivo è fondamentale monitorare l'accesso alla VM non solo in modo reattivo (mentre un problema si sta verificando) ma anche in modo proattivo, rispetto alle prestazioni misurate durante il periodo di normale funzionamento.
+L'uso improprio delle risorse può essere un problema quando i processi della VM utilizzano più risorse di quanto dovrebbero. Problemi di prestazioni con una macchina virtuale possono provocare interruzioni tooservice, che viola il principio di sicurezza hello di disponibilità. Per questo motivo, è accesso VM toomonitor imperativo non solo obbligatoriamente, mentre si sta verificando un problema, ma anche in modo proattivo, rispetto alle prestazioni di base come misurati durante il normale funzionamento.
 
-Analizzando [i file di log di diagnostica di Azure](https://azure.microsoft.com/en-us/blog/windows-azure-virtual-machine-monitoring-with-wad-extension/), è possibile monitorare le risorse della VM e identificare i potenziali problemi che potrebbero compromettere le prestazioni e la disponibilità. L'estensione Diagnostica di Azure offre funzionalità di monitoraggio e diagnostica nelle VM Windows. È possibile abilitare queste funzionalità includendo l'estensione come parte del [modello di Azure Resource Manager](../virtual-machines/windows/extensions-diagnostics-template.md).
+Analizzando [i file di log di diagnostica di Azure](https://azure.microsoft.com/en-us/blog/windows-azure-virtual-machine-monitoring-with-wad-extension/), è possibile monitorare le risorse della VM e identificare i potenziali problemi che potrebbero compromettere le prestazioni e la disponibilità. Hello estensione diagnostica di Azure fornisce funzionalità di monitoraggio e diagnostica nelle macchine virtuali basate su Windows. È possibile abilitare queste funzionalità, includendo l'estensione hello come parte di hello [modello di Azure Resource Manager](../virtual-machines/windows/extensions-diagnostics-template.md).
 
-È possibile usare [Monitoraggio di Azure](../monitoring-and-diagnostics/monitoring-overview-metrics.md) per ottenere visibilità sull'integrità della risorsa.
+È inoltre possibile utilizzare [Monitor Azure](../monitoring-and-diagnostics/monitoring-overview-metrics.md) toogain visibilità dello stato della risorsa.
 
-Le organizzazioni che non monitorano le prestazioni della VM non sono in grado di capire se determinate modifiche nei modelli di prestazioni sono normali o anomale. Se la VM consuma più risorse del normale, una tale anomalia potrebbe indicare un potenziale attacco proveniente da una risorsa esterna o un processo compromesso in esecuzione nella VM.
+Le organizzazioni che non eseguono il monitoraggio delle prestazioni delle macchine Virtuali sono toodetermine non è possibile sia determinate modifiche nei modelli di prestazioni normali o anomali. Se hello VM che utilizza più risorse rispetto al normale, un'anomalia di questo tipo potrebbe indicare un potenziale attacco da una risorsa esterna o compromesso in esecuzione un processo in hello macchina virtuale.

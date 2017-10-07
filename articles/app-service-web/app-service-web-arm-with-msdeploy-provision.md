@@ -1,6 +1,6 @@
 ---
-title: Distribuire un'app Web usando MSDeploy con il nome host personalizzato e il certificato SSL
-description: Usare un modello di Gestione risorse di Azure per distribuire un'app Web usando MSDeploy e configurando il nome host personalizzato e un certificato SSL
+title: aaaDeploy un'app web utilizzando MSDeploy con certificato ssl e nome host
+description: Usare un'app web con MSDeploy e la configurazione di nome host personalizzato e un certificato SSL di un toodeploy modello di gestione risorse di Azure
 services: app-service\web
 manager: erikre
 documentationcenter: 
@@ -13,30 +13,30 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/31/2016
 ms.author: jodehavi
-ms.openlocfilehash: a0e944d0d74ecb72a919538d54db330cbbdeef64
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: ac13f4a7d14ae182e8e7ced5adff30491422d1e4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="deploy-a-web-app-with-msdeploy-custom-hostname-and-ssl-certificate"></a>Distribuire un'app Web con MSDeploy, il nome host personalizzato e il certificato SSL
-Questa guida illustra la creazione di una distribuzione end-to-end per un'app Web di Azure, usando MSDeploy e aggiungendo un nome host personalizzato e un certificato SSL al modello di Gestione risorse di Azure.
+Questa guida vengono illustrati la creazione di una distribuzione end-to-end per un'App Web di Azure, sfruttando MSDeploy nonché di aggiunta di un nome host personalizzato e un modello ARM toohello certificato SSL.
 
 Per altre informazioni sulla creazione dei modelli, vedere [Creazione di modelli di Gestione risorse di Azure](../azure-resource-manager/resource-group-authoring-templates.md).
 
 ### <a name="create-sample-application"></a>Creare l'applicazione di esempio
-Si distribuirà un'applicazione Web ASP.NET. Il primo passaggio prevede la creazione di una semplice applicazione Web. Se invece si sceglie di usarne una esistente, è possibile saltare questo passaggio.
+Si distribuirà un'applicazione Web ASP.NET. toocreate una semplice applicazione web, è innanzitutto Hello (o è possibile scegliere toouse uno esistente, nel qual caso è possibile ignorare questo passaggio).
 
-Aprire Visual Studio 2015 e scegliere File > Nuovo progetto. Nella finestra di dialogo visualizzata scegliere Web > Applicazione Web ASP.NET. In Modelli scegliere Web e quindi il modello MVC. Impostare *Change authentication type* (Cambia tipo di autenticazione) su *Nessuna autenticazione*. In questo modo l'applicazione di esempio sarà il più semplice possibile.
+Aprire Visual Studio 2015 e scegliere File > Nuovo progetto. Nella finestra di dialogo hello visualizzata scegliere Web > applicazione Web ASP.NET. Nel riquadro Modelli scegliere Web e scegliere il modello MVC hello. Selezionare *Cambia tipo di autenticazione* troppo*Nessuna autenticazione*. Si tratta semplicemente toomake hello applicazione di esempio più semplice possibile.
 
-A questo punto si avrà un'app Web ASP.Net di base da usare durante il processo di distribuzione.
+A questo punto si avrà una base toouse pronto di ASP.Net web app come parte del processo di distribuzione.
 
 ### <a name="create-msdeploy-package"></a>Creare il pacchetto MSDeploy
-Il prossimo passaggio prevede la creazione del pacchetto per distribuire l'app Web in Azure. A questo scopo, salvare il progetto e quindi eseguire quanto segue dalla riga di comando:
+Passaggio successivo è toocreate hello pacchetto toodeploy hello web app tooAzure. toodo, salvare il progetto e quindi eseguire l'esempio hello dalla riga di comando hello:
 
     msbuild yourwebapp.csproj /t:Package /p:PackageLocation="path\to\package.zip"
 
-Verrà creato un pacchetto compresso nella cartella PackageLocation. L'applicazione ora è pronta per la distribuzione che è possibile eseguire compilando un modello di Gestione risorse di Azure.
+Verrà creato un pacchetto compresso nella cartella PackageLocation hello. Hello applicazione è ora pronto toobe distribuito, che è possibile ora creare un toodo modello di gestione risorse di Azure che.
 
 ### <a name="create-arm-template"></a>Creare il modello di Gestione risorse di Azure
 Iniziare con un modello di Gestione risorse di Azure di base che creerà un'applicazione Web e un piano di hosting. Si noti che i parametri e le variabili non vengono visualizzati per brevità.
@@ -75,7 +75,7 @@ Iniziare con un modello di Gestione risorse di Azure di base che creerà un'appl
         }
     }
 
-Sarà quindi necessario modificare la risorsa app Web per poter accettare una risorsa MSDeploy annidata. Questo consentirà di fare riferimento al pacchetto creato in precedenza e di indicare a Gestione risorse di Azure di usare MSDeploy per distribuire il pacchetto nell'app Web di Azure. Il codice seguente mostra la risorsa Microsoft.Web/sites con la risorsa MSDeploy annidata:
+Successivamente, sarà necessario toomodify hello web app risorsa tootake una risorsa di MSDeploy annidata. Verrà consentire si tooreference hello pacchetto creato in precedenza e indicare a Gestione risorse di Azure toouse MSDeploy toodeploy hello pacchetto toohello WebApp di Azure. Hello seguente risorsa Microsoft.Web/sites hello risorsa di MSDeploy hello annidato:
 
     {
         "name": "[variables('webAppName')]",
@@ -117,13 +117,13 @@ Sarà quindi necessario modificare la risorsa app Web per poter accettare una ri
         ]
     }
 
-Si noterà ora che la risorsa MSDeploy include una proprietà **packageUri** definita come segue:
+Ora si noterà che hello MSDeploy risorsa accetta un **packageUri** proprietà che viene definito come segue:
 
     "packageUri": "[concat(parameters('_artifactsLocation'), '/', parameters('webDeployPackageFolder'), '/', parameters('webDeployPackageFileName'), parameters('_artifactsLocationSasToken'))]"
 
-Questo **packageUri** include l'URI dell'account di archiviazione che punta all'account di archiviazione in cui si caricherà il file zip del pacchetto. Gestione risorse di Azure userà le [firme di accesso condiviso](../storage/common/storage-dotnet-shared-access-signature-part-1.md) per effettuare il pull del pacchetto in locale verso il basso dall'account di archiviazione quando si distribuisce il modello. Questo processo verrà automatizzato con uno script PowerShell che caricherà il pacchetto e chiamerà l'API Gestione di Azure per creare le chiavi necessarie e passarle nel modello come parametri (*_artifactsLocation* e *_artifactsLocationSasToken*). Sarà necessario definire i parametri per la cartella e il nome file in cui il pacchetto viene caricato nel contenitore di archiviazione.
+Questo **packageUri** accetta hello uri di account di archiviazione che fa riferimento toohello account di archiviazione in cui verrà caricato il codice postale pacchetto a. Hello Azure Resource Manager userà [firme di accesso condiviso](../storage/common/storage-dotnet-shared-access-signature-part-1.md) toopull un pacchetto di hello verso il basso in locale dall'account di archiviazione hello quando si distribuisce il modello di hello. Questo processo sarà automatizzato tramite uno script di PowerShell che verrà caricare il pacchetto di hello e chiamare le chiavi hello toocreate API di gestione di Azure hello necessarie e quelli nel modello hello passare come parametri (*_artifactsLocation* e *_artifactsLocationSasToken*). Sarà necessario toodefine parametri per la cartella hello e nome file pacchetto hello è contenitore di archiviazione hello toounder caricato.
 
-Ora è necessario aggiungere un'altra risorsa annidata per configurare le associazioni nome host per sfruttare un dominio personalizzato. Sarà prima di tutto necessario assicurarsi di essere proprietari del nome host e configurarlo in modo che Azure ne verifichi il proprietario. Vedere [Configurare un nome di dominio personalizzato nel servizio app di Azure](app-service-web-tutorial-custom-domain.md). A questo punto è possibile aggiungere il codice seguente al modello nella sezione della risorsa Microsoft.Web/sites:
+È quindi necessario tooadd in un'altra risorsa annidata toosetup hello hostname associazioni tooleverage un dominio personalizzato. Sarà prima necessario tooensure, che proprietario hostname hello e configurarlo toobe verificato da Azure che si è proprietari, vedere [configurare un nome di dominio personalizzato in Azure App Service](app-service-web-tutorial-custom-domain.md). Al termine dell'operazione è possibile aggiungere hello seguente modello tooyour nella sezione delle risorse Microsoft.Web/sites hello:
 
     {
         "apiVersion": "2015-08-01",
@@ -139,7 +139,7 @@ Ora è necessario aggiungere un'altra risorsa annidata per configurare le associ
         }
     }
 
-Infine è necessario aggiungere un'altra risorsa di primo livello, Microsoft.Web/certificates. Questa risorsa conterrà il certificato SSL ed esisterà nello stesso livello dell'app Web e del piano di hosting.
+Infine è necessario tooadd un'altra risorsa di primo livello, Microsoft.Web/certificates. Questa risorsa conterrà il certificato SSL e sarà presenti allo stesso livello dell'App web e hosting pianificare hello.
 
     {
         "name": "[parameters('certificateName')]",
@@ -152,25 +152,25 @@ Infine è necessario aggiungere un'altra risorsa di primo livello, Microsoft.Web
         }
     }
 
-Per configurare questa risorsa, sarà necessario un certificato SSL valido. Una volta disponibile il certificato valido, è necessario estrarre i byte pfx come stringa base64. Per estrarli, è possibile usare il comando PowerShell seguente:
+È necessario un certificato SSL valido nell'ordine tooset questa risorsa toohave. Dopo aver tale certificato è necessario byte di pfx hello tooextract sotto forma di stringa base64. Un'opzione tooextract tratta hello toouse comando PowerShell seguente:
 
     $fileContentBytes = get-content 'C:\path\to\cert.pfx' -Encoding Byte
 
     [System.Convert]::ToBase64String($fileContentBytes) | Out-File 'pfx-bytes.txt'
 
-È quindi possibile passarli come parametro al modello di distribuzione di Gestione risorse di Azure.
+È quindi possibile passare questo come un modello di distribuzione di parametro tooyour ARM.
 
-A questo punto il modello di Gestione risorse di Azure è pronto.
+A questo punto il modello ARM hello è pronto.
 
 ### <a name="deploy-template"></a>Modello di distribuzione
-I passaggi finali consentono di realizzare una distribuzione end-to-end completa. Per semplificare la distribuzione, è possibile sfruttare lo script PowerShell **Deploy-AzureResourceGroup.ps1** aggiunto quando si crea un progetto gruppo di risorse di Azure in Visual Studio per rendere più facile il caricamento degli elementi necessari nel modello. È necessario creare in anticipo l'account di archiviazione che si vuole usare. Per questo esempio, è stato creato un account di archiviazione condiviso per il file package.zip da caricare. Lo script userà AzCopy per caricare il pacchetto nell'account di archiviazione. Passando il percorso della cartella degli elementi, lo script caricherà automaticamente tutti i file di tale directory nel contenitore di archiviazione denominato. Dopo avere chiamato Deploy-AzureResourceGroup.ps1, è necessario aggiornare le associazioni SSL per eseguire il mapping del nome host personalizzato al certificato SSL.
+Hello passaggi finali sono toopiece questo tutti insieme in una distribuzione completa end-to-end. distribuzione toomake più semplice è possibile sfruttare hello **deploy-azureresourcegroup.ps1** script di PowerShell che viene aggiunto quando si crea un progetto di gruppo di risorse di Azure in Visual Studio toohelp con il caricamento di tutti gli elementi necessari nel modello di Hello. È necessario toohave creato un account di archiviazione toouse anticipatamente. Per questo esempio, creato un account di archiviazione condivisa per hello package.zip toobe caricato. script Hello userà l'account di archiviazione toohello AzCopy tooupload hello pacchetto. Si passa il percorso della cartella dell'elemento e script hello vengono caricati automaticamente tutti i file all'interno di tale toohello directory denominato contenitore di archiviazione. Dopo aver chiamato deploy-azureresourcegroup.ps1 è toothen aggiornamento hello SSL associazioni toomap hello nome host personalizzato con il certificato SSL.
 
-Lo script PowerShell seguente illustra la distribuzione completa chiamando Deploy-AzureResourceGroup.ps1:
+Hello seguente mostra PowerShell hello hello chiamante distribuzione completa Distribuisci-AzureResourceGroup.ps1:
 
     #Set resource group name
     $rgName = "Name-of-resource-group"
 
-    #call deploy-azureresourcegroup script to deploy web app
+    #call deploy-azureresourcegroup script toodeploy web app
 
     .\Deploy-AzureResourceGroup.ps1 -ResourceGroupLocation "East US" `
                                     -ResourceGroupName $rgName `
@@ -181,7 +181,7 @@ Lo script PowerShell seguente illustra la distribuzione completa chiamando Deplo
                                     -TemplateParametersFile "web-app-deploy-parameters.json" `
                                     -ArtifactStagingDirectory "C:\path\to\packagefolder\"
 
-    #update web app to bind ssl certificate to hostname. This has to be done after creation above.
+    #update web app toobind ssl certificate toohostname. This has toobe done after creation above.
 
     $cert = Get-PfxCertificate -FilePath C:\path\to\certificate.pfx
 
@@ -195,5 +195,5 @@ Lo script PowerShell seguente illustra la distribuzione completa chiamando Deplo
 
     Set-AzureRmResource -ApiVersion 2014-11-01 -Name nameofwebsite -ResourceGroupName $rgName -ResourceType Microsoft.Web/sites -PropertyObject $props
 
-A questo punto l'applicazione è stata distribuita ed è possibile accedervi tramite https://www.yourcustomdomain.com
+A questo punto l'applicazione è necessario aver distribuito e dovrebbe essere in grado di toobrowse tooit tramite https://www.yourcustomdomain.com
 

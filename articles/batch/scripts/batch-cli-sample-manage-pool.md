@@ -1,5 +1,5 @@
 ---
-title: Esempio di script dell'interfaccia della riga di comando di Azure - Gestione dei pool in Batch | Microsoft Docs
+title: aaaAzure CLI Script di esempio - Gestione pool in Batch | Documenti Microsoft
 description: Esempio di script dell'interfaccia della riga di comando di Azure - Gestione dei pool in Batch
 services: batch
 documentationcenter: 
@@ -14,38 +14,38 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 05/02/2017
 ms.author: antisch
-ms.openlocfilehash: 2556b02459886390b803407c5cb828687229a44e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6c9ca9515565aff42752231a080943be8e4c810b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="managing-azure-batch-pools-with-azure-cli"></a>Gestione dei pool di Azure Batch con l'interfaccia della riga di comando di Azure
 
-Questi script illustrano alcuni degli strumenti disponibili nell'interfaccia della riga di comando di Azure per creare e gestire pool di nodi di calcolo nel servizio Azure Batch.
+Questi script vengono illustrate alcune delle strumenti hello disponibili in hello Azure CLI toocreate e gestire pool di nodi di calcolo nel servizio Azure Batch hello.
 
 > [!NOTE]
-> I comandi in questo esempio creano macchine virtuali di Azure. L'esecuzione di macchine virtuali comporterà addebiti all'account. Per ridurre al minimo tali addebiti, eliminare le macchine virtuali dopo aver eseguito l'esempio. Vedere [Eseguire la pulizia dei pool](#clean-up-pools).
+> i comandi di Hello in questo esempio creano macchine virtuali di Azure. Macchine virtuali in esecuzione trarrà account tooyour addebiti. toominimize questi addebiti, eliminare le macchine virtuali hello dopo averli: esempio hello in esecuzione. Vedere [Eseguire la pulizia dei pool](#clean-up-pools).
 
-È possibile configurare i pool di Batch in due modi: con una configurazione Servizi cloud (solo Windows) o con una configurazoine Macchina virtuale (Windows e Linux). Gli script di esempio seguenti mostrano come creare pool con entrambe le configurazioni.
+È possibile configurare i pool di Batch in due modi: con una configurazione Servizi cloud (solo Windows) o con una configurazoine Macchina virtuale (Windows e Linux). script di esempio Hello seguenti mostrano come toocreate pool con entrambe le configurazioni.
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-- Installare l'interfaccia della riga di comando di Azure usando le istruzioni presenti nella [Guida all'installazione dell'interfaccia della riga di comando di Azure](https://docs.microsoft.com/cli/azure/install-azure-cli), se questa operazione non è stata ancora eseguita.
-- Creare un account Batch, se non è già disponibile. Vedere [Creare un account Batch con l'interfaccia della riga di comando di Azure](https://docs.microsoft.com/azure/batch/scripts/batch-cli-sample-create-account) per uno script di esempio che crea un account.
-- Se questa operazione non è stata già eseguita, configurare un'applicazione in modo che venga eseguita da un'attività di avvio. Vedere [Aggiunta di applicazioni ad Azure Batch con l'interfaccia della riga di comando di Azure](https://docs.microsoft.com/azure/batch/scripts/batch-cli-sample-add-application) per uno script di esempio che crea un'applicazione e carica un pacchetto dell'applicazione in Azure.
+- Installazione hello CLI di Azure utilizzando istruzioni hello fornite nella hello [Guida all'installazione di Azure CLI](https://docs.microsoft.com/cli/azure/install-azure-cli), se non è già stato fatto.
+- Creare un account Batch, se non è già disponibile. Vedere [creare un account Batch con hello Azure CLI](https://docs.microsoft.com/azure/batch/scripts/batch-cli-sample-create-account) per uno script di esempio che crea un account.
+- Se non è ancora fatto, configurare un'applicazione toorun da un'attività di avvio. Vedere [aggiunta applicazioni tooAzure Batch con Azure CLI](https://docs.microsoft.com/azure/batch/scripts/batch-cli-sample-add-application) per uno script di esempio che crea un'applicazione e carica un tooAzure pacchetto di applicazione.
 
 ## <a name="pool-with-cloud-service-configuration-sample-script"></a>Script di esempio per un pool con configurazione Servizi cloud
 
-[!code-azurecli[principale](../../../cli_scripts/batch/manage-pool/manage-pool-windows.sh "Gestire pool con Servizi cloud")]
+[!code-azurecli[main](../../../cli_scripts/batch/manage-pool/manage-pool-windows.sh "Manage Cloud Services Pools")]
 
 ## <a name="pool-with-virtual-machine-configuration-sample-script"></a>Script di esempio per un pool con configurazione Macchina virtuale
 
-[!code-azurecli[principale](../../../cli_scripts/batch/manage-pool/manage-pool-linux.sh "Gestire pool con Macchina virtuale")]
+[!code-azurecli[main](../../../cli_scripts/batch/manage-pool/manage-pool-linux.sh "Manage Virtual Machine Pools")]
 
 ## <a name="clean-up-pools"></a>Eseguire la pulizia dei pool
 
-Dopo aver eseguito lo script di esempio precedente, eseguire il comando seguente per eliminare i pool.
+Dopo aver eseguito hello di sopra di script di esempio, eseguire hello seguente pool hello toodelete di comando.
 ```azurecli
 az batch pool delete --pool-id mypool-windows
 az batch pool delete --pool-id mypool-linux
@@ -53,28 +53,28 @@ az batch pool delete --pool-id mypool-linux
 
 ## <a name="script-explanation"></a>Spiegazione dello script
 
-Questo script usa i comandi seguenti per creare e manipolare pool Batch.
-Ogni comando della tabella include collegamenti alla documentazione specifica del comando.
+Questo script utilizza i seguenti comandi toocreate hello e modificare i pool di Batch.
+Ogni comando nella documentazione di hello tabella collegamenti toocommand specifica.
 
 | Comando | Note |
 |---|---|
 | [az batch account login](https://docs.microsoft.com/cli/azure/batch/account#login) | Eseguire l'autenticazione con un account Batch.  |
-| [az batch application summary list](https://docs.microsoft.com/cli/azure/batch/application/summary#list) | Elencare le applicazioni disponibili nell'account Batch.  |
+| [az batch application summary list](https://docs.microsoft.com/cli/azure/batch/application/summary#list) | Elencare le applicazioni disponibili hello in hello account Batch.  |
 | [az batch pool create](https://docs.microsoft.com/cli/azure/batch/pool#create) | Creare un pool di macchine virtuali.  |
 | [az batch pool set](https://docs.microsoft.com/cli/azure/batch/pool#set) | Aggiornare le proprietà di un pool.  |
 | [az batch pool node-agent-skus list](https://docs.microsoft.com/cli/azure/batch/pool/node-agent-skus#list) | Elencare gli SKU agente nodo disponibili e le informazioni dell'immagine.  |
-| [az batch pool resize](https://docs.microsoft.com/cli/azure/batch/pool#resize) | Ridimensionare il numero di macchine virtuali in esecuzione nel pool specificato.  |
-| [az batch pool show](https://docs.microsoft.com/cli/azure/batch/pool#show) | Visualizzare le proprietà di un pool.  |
-| [az batch pool delete](https://docs.microsoft.com/cli/azure/batch/pool#delete) | Eliminare il pool specificato.  |
+| [az batch pool resize](https://docs.microsoft.com/cli/azure/batch/pool#resize) | Numero di hello di ridimensionamento di macchine virtuali in esecuzione in hello specificato pool.  |
+| [az batch pool show](https://docs.microsoft.com/cli/azure/batch/pool#show) | Visualizzare le proprietà di hello di un pool.  |
+| [az batch pool delete](https://docs.microsoft.com/cli/azure/batch/pool#delete) | Eliminare hello specificato pool.  |
 | [az batch pool autoscale enable](https://docs.microsoft.com/cli/azure/batch/pool/autoscale#enable) | Abilitare la scalabilità automatica in un pool e applicare una formula.  |
 | [az batch pool autoscale disable](https://docs.microsoft.com/cli/azure/batch/pool/autoscale#disable) | Disabilitare la scalabilità automatica in un pool.  |
-| [az batch node list](https://docs.microsoft.com/cli/azure/batch/node#list) | Elencare tutti i nodi di calcolo nel pool specificato.  |
-| [az batch node reboot](https://docs.microsoft.com/cli/azure/batch/node#reboot) | Riavviare il nodo di calcolo specificato.  |
-| [az batch node delete](https://docs.microsoft.com/cli/azure/batch/node#delete) | Eliminare i nodi elencati dal pool specificato.  |
+| [az batch node list](https://docs.microsoft.com/cli/azure/batch/node#list) | Elencare tutti il nodo di calcolo hello in hello specificato pool.  |
+| [az batch node reboot](https://docs.microsoft.com/cli/azure/batch/node#reboot) | Riavviare il nodo di calcolo specificata di hello.  |
+| [az batch node delete](https://docs.microsoft.com/cli/azure/batch/node#delete) | I nodi di hello elencato Delete da hello specificati pool.  |
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Per altre informazioni sull'interfaccia della riga di comando di Azure, vedere la [documentazione sull'interfaccia della riga di comando di Azure](https://docs.microsoft.com/cli/azure/overview).
+Per ulteriori informazioni su hello CLI di Azure, vedere [documentazione CLI di Azure](https://docs.microsoft.com/cli/azure/overview).
 
-Altri esempi di script dell'interfaccia della riga di comando di Batch sono disponibili nella [documentazione dell'interfaccia della riga di comando di Azure Batch](../batch-cli-samples.md).
+Ulteriori esempi di script Batch CLI sono reperibile in hello [documentazione CLI di Azure Batch](../batch-cli-samples.md).
 

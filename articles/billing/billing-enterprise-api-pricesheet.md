@@ -1,6 +1,6 @@
 ---
-title: API per clienti Enterprise per la fatturazione di Azure - Elenco prezzi | Microsoft Docs
-description: Informazioni sulle API di creazione di report che consentono ai clienti Enterprise di Azure di estrarre i dati sull'uso a livello di codice.
+title: aaaAzure fatturazione API Enterprise - PriceSheet | Documenti Microsoft
+description: Informazioni sulle API di creazione di report che consentono di dati relativi al consumo toopull clienti Azure Enterprise a livello di codice hello.
 services: 
 documentationcenter: 
 author: aedwin
@@ -15,18 +15,18 @@ ms.tgt_pltfrm: na
 ms.workload: billing
 ms.date: 04/25/2017
 ms.author: aedwin
-ms.openlocfilehash: 2e7d6e883abe4cee13bc5f684baf2a1ea9c6c397
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 4cfe694c63fba266d117054b046d9caacb3b7197
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="reporting-apis-for-enterprise-customers---price-sheet"></a>API di creazione di report per clienti Enterprise - Elenco prezzi
 
-L'API elenco prezzi offre la tariffa applicabile per ogni contatore per la registrazione e il periodo di fatturazione specificati.
+Hello prezzo foglio API fornisce tasso hello per ogni misuratore di hello dato periodo di fatturazione e di registrazione.
 
 ##<a name="request"></a>Richiesta
-Le proprietà di intestazione comuni che devono essere aggiunte vengono specificate [qui](billing-enterprise-api.md). Se non viene specificato alcun periodo di fatturazione, vengono restituiti i dati per il periodo di fatturazione corrente.
+Sono specificate proprietà di intestazione comuni che richiedono toobe aggiunto [qui](billing-enterprise-api.md). Se non viene specificato un periodo di fatturazione, dati di fatturazione corrente hello periodo viene quindi restituiti.
 
 |Metodo | URI della richiesta|
 |-|-|
@@ -34,7 +34,7 @@ Le proprietà di intestazione comuni che devono essere aggiunte vengono specific
 |GET|https://consumption.azure.com/v2/enrollments/{enrollmentNumber}/billingPeriods/{billingPeriod}/pricesheet|
 
 > [!Note]
-> Per usare la versione di anteprima dell'API, sostituire v2 con v1 nell'URL precedente.
+> versione di anteprima hello toouse dell'API, sostituire v2 con v1 in hello sopra URL.
 >
 
 ## <a name="response"></a>Response
@@ -68,22 +68,22 @@ Le proprietà di intestazione comuni che devono essere aggiunte vengono specific
     
 
 > [!Note]
->Se si usa la versione di anteprima dell'API, il campo meterId non è disponibile.
+>Se si utilizza hello anteprima API, il campo ID misuratore non è disponibile.
 >
 
 **Definizioni delle proprietà di risposta**
 
 |Nome proprietà| Tipo| Descrizione
 |-|-|-|
-|id| string| ID univoco che rappresenta un particolare elemento PriceSheet (contatore per periodo di fatturazione)|
-|billingPeriodId| string| ID univoco che rappresenta un determinato periodo di fatturazione|
-|meterId| string| Identificatore del contatore. Può essere mappato al campo meterId.|
-|meterName| string| Nome del contatore|
-|unitOfMeasure| string| Unità di misura per misurare il servizio|
+|id| string| Hello Id univoco che rappresenta un particolare elemento PriceSheet (misuratore dal periodo di fatturazione)|
+|billingPeriodId| string| Hello Id univoco che rappresenta un determinato periodo di fatturazione|
+|meterId| string| Identificatore Hello misuratore hello. Può essere mappato toohello ID misuratore di utilizzo.|
+|meterName| string| nome del misuratore Hello|
+|unitOfMeasure| string| Hello unità di misura per la misurazione servizio hello|
 |includedQuantity| decimal| Quantità inclusa |
-|partNumber| string| Numero di parte associato al contatore|
-|unitPrice| decimal| Prezzo unitario per il contatore|
-|currencyCode| string| Codice della valuta per l'elemento unitPrice|
+|partNumber| string| numero di parte Hello associato hello misuratore|
+|unitPrice| decimal| prezzo unitario Hello per metro hello|
+|currencyCode| string| codice di valuta Hello per unitPrice hello|
 <br/>
 ## <a name="see-also"></a>Vedere anche
 

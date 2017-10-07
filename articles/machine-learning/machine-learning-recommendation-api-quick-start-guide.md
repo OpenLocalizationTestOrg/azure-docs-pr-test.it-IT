@@ -16,64 +16,64 @@ ms.date: 03/31/2017
 ms.author: luisca
 ROBOTS: NOINDEX
 redirect_url: machine-learning-datamarket-deprecation
-redirect_document_id: TRUE
-ms.openlocfilehash: 0a9d0b6aa1ef734a857ecc16777ba6250909b38d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+redirect_document_id: True
+ms.openlocfilehash: d8f98e85f723a1104cb169b26d797934140979f1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="quick-start-guide-for-the-machine-learning-recommendations-api-version-1"></a>Guida introduttiva per l'API Recommendations di Machine Learning (versione 1)
+# <a name="quick-start-guide-for-hello-machine-learning-recommendations-api-version-1"></a>Guida introduttiva per hello Machine Learning indicazioni API (versione 1)
 
 > [!NOTE]
-> È consigliabile iniziare usando l'[API Recommendations dei servizi cognitivi](https://www.microsoft.com/cognitive-services/recommendations-api) invece di questa versione. Il Servizio cognitivo di Recommendations sostituirà questo servizio e verranno sviluppate nuove funzionalità. Il servizio include nuove funzionalità come il supporto in batch, una migliore funzione di Esplora API, una superficie API più pulita, un'esperienza più coerente in termini di iscrizione e fatturazione e così via.
+> È consigliabile iniziare a utilizzare hello [servizio di suggerimenti API cognitivi](https://www.microsoft.com/cognitive-services/recommendations-api) anziché questa versione. Hello servizio cognitivi indicazioni andrà a sostituire questo servizio e tutte le nuove funzionalità hello verranno sviluppate non esiste. Il servizio include nuove funzionalità come il supporto in batch, una migliore funzione di Esplora API, una superficie API più pulita, un'esperienza più coerente in termini di iscrizione e fatturazione e così via.
 >
-> Per altre informazioni, vedere [Migrating to the new Cognitive Service](http://aka.ms/recomigrate) (Migrazione al nuovo Servizio cognitivo).
+> Altre informazioni, vedere [toohello migrazione nuovo servizio cognitivi](http://aka.ms/recomigrate).
 > 
 > 
 
-Questo documento descrive come configurare il servizio o l'applicazione per l'uso di Recommendations di Microsoft Azure Machine Learning. È possibile trovare ulteriori informazioni sull'API Recommendations in [Cortana Intelligence Gallery](https://gallery.cortanaintelligence.com/MachineLearningAPIs/Recommendations-2).
+Questo documento descrive come tooonboard il toouse servizi o applicazioni di Microsoft Azure Machine Learning indicazioni. È possibile trovare ulteriori informazioni sul Ciao indicazioni API hello [Cortana Intelligence Gallery](https://gallery.cortanaintelligence.com/MachineLearningAPIs/Recommendations-2).
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
 ## <a name="general-overview"></a>Panoramica generale
-Per usare Recommendations di Azure Machine Learning, è necessario eseguire le operazioni seguenti:
+toouse indicazioni di Azure Machine Learning, è necessario hello tootake alla procedura seguente:
 
-* Creare un modello: un modello è un contenitore per dati di utilizzo, dati del catalogo e modello di raccomandazione.
-* Importare dati del catalogo: un catalogo contiene informazioni sui metadati relativi agli elementi. 
+* Creare un modello, un modello è un contenitore di dati di utilizzo e dati del catalogo, il modello di raccomandazione hello.
+* Importazione dei dati del catalogo: un catalogo contiene informazioni sui metadati per gli elementi di hello. 
 * Importare i dati di utilizzo: i dati di utilizzo possono essere caricati usando uno o entrambi i modi seguenti.
-  * Caricando un file contenente i dati di utilizzo.
+  * Caricando un file che contiene i dati di utilizzo hello.
   * Inviando eventi di acquisizione dei dati.
-    In genere, si carica un file dei dati di utilizzo per poter creare un modello di raccomandazione iniziale (bootstrap) e usarlo finché il sistema non raccoglie abbastanza dati usando il formato di acquisizione dei dati.
-* Compilare un modello di raccomandazione: si tratta di un'operazione asincrona in cui il sistema di raccomandazione accetta tutti i dati di utilizzo e crea un modello di raccomandazione. Questa operazione può richiedere diversi minuti o diverse ore a seconda delle dimensioni dei dati e dei parametri di configurazione della build. Quando si attiva la compilazione, si ottiene un ID compilazione. Usarlo per verificare se il processo di compilazione è terminato prima di iniziare a usare raccomandazioni.
+    In genere si carica un file di utilizzo in ordine toobe in grado di toocreate un modello di raccomandazione iniziale (bootstrap) e utilizzarla fino a quando il sistema hello raccoglie dati sufficienti con formato di acquisizione dati hello.
+* Compilare un modello di raccomandazione: si tratta di un'operazione asincrona, in cui hello sistema di raccomandazione accetta tutti i dati di utilizzo di hello e crea un modello di raccomandazione. Questa operazione può richiedere alcuni minuti o alcune ore a seconda di hello dimensione dei dati di hello e hello compilare i parametri di configurazione. Al momento della generazione compilazione hello, si otterrà un ID di generazione. Utilizzarla toocheck quando il processo di compilazione hello è terminata prima di avviare tooconsume indicazioni.
 * Utilizzare le raccomandazioni: ottenere raccomandazioni per un elemento o un elenco di elementi specifico.
 
-Tutti i passaggi precedenti vengono eseguiti tramite l'API Recommendations di Machine Learning.  È possibile scaricare un'applicazione di esempio che implementa anche ognuna delle seguenti operazioni dalla [raccolta](http://1drv.ms/1xeO2F3)
+Tutti i passaggi di hello precedenti vengono eseguiti tramite API di Azure Machine Learning indicazioni hello.  È possibile scaricare un'applicazione di esempio che implementa ognuno di questi passaggi da hello [nonché il gallery.](http://1drv.ms/1xeO2F3)
 
 ## <a name="limitations"></a>Limitazioni
-* Il numero massimo di modelli per ogni sottoscrizione è 10.
-* Il numero massimo di elementi che possono essere inclusi nel catalogo è 100.000.
-* Il numero massimo di punti di utilizzo mantenuti è ~5.000.000. I meno recenti saranno eliminati se ne vengono caricati o segnalati di nuovi.
-* La dimensione massima dei dati che è possibile inviare in POST, ad esempio l'importazione dei dati di catalogo o dei dati di utilizzo, è 200 MB.
-* Il numero di transazioni al secondo per la compilazione di un modello di raccomandazione non attivo è di ~2 TPS. Un modello di raccomandazione attivo può includere un massimo di 20 TPS.
+* numero massimo di Hello di modelli per ogni sottoscrizione è 10.
+* numero massimo di Hello di elementi che può contenere un catalogo è 100.000.
+* numero massimo di Hello di punti di utilizzo che vengono conservati è ~ 5.000.000. Hello meno recente verrà eliminato verranno caricati o segnalati nuovi.
+* dimensione massima di Hello di dati che possono essere inviati in POST (ad esempio, Importa dati del catalogo, importazione dati di utilizzo) è pari a 200MB.
+* Hello numero di transazioni al secondo per una compilazione del modello di raccomandazione che non è attiva è ~ 2TPS. Una build di modello di raccomandazione attivo può contenere fino too20TPS.
 
 ## <a name="integration"></a>Integrazione
 ### <a name="authentication"></a>Autenticazione
-Microsoft Azure Marketplace supporta il metodo di autenticazione di base o OAuth. È possibile trovare facilmente le chiavi dell'account, passando alle chiavi nel marketplace in [Impostazioni account](https://datamarket.azure.com/account/keys). 
+Microsoft Azure Marketplace supporta un metodo di autenticazione di base o OAuth hello. È possibile trovare facilmente hello chiavi dell'account passando chiavi toohello nel marketplace hello in [le impostazioni dell'account](https://datamarket.azure.com/account/keys). 
 
 #### <a name="basic-authentication"></a>Autenticazione di base
-Aggiungere l'intestazione dell'autorizzazione:
+Aggiungere un'intestazione Authorization hello:
 
     Authorization: Basic <creds>
 
     Where <creds> = ConvertToBase64("AccountKey:" + yourAccountKey);  
 
-Convertire in Base64 (C#)
+Convertire tooBase64 (c#)
 
     var bytes = Encoding.UTF8.GetBytes("AccountKey:" + yourAccountKey);
     var creds = Convert.ToBase64String(bytes);
 
-Convertire in Base64 (JavaScript)
+Convertire tooBase64 (JavaScript)
 
     var creds = window.btoa("AccountKey" + ":" + yourAccountKey);
 
@@ -81,15 +81,15 @@ Convertire in Base64 (JavaScript)
 
 
 ### <a name="service-uri"></a>URI del servizio
-L'URI radice del servizio per ogni API Recommendations di Azure Machine Learning è disponibile [qui](https://api.datamarket.azure.com/amla/recommendations/v2/)
+Hello URI radice del servizio per le API di Azure Machine Learning indicazioni hello è [qui.](https://api.datamarket.azure.com/amla/recommendations/v2/)
 
-L'URI del servizio completo è espresso usando elementi della specifica OData.
+URI del servizio completo Hello viene espresso utilizzando gli elementi della specifica OData hello.
 
 ### <a name="api-version"></a>Versione dell'API
-Ogni chiamata API terminerà con un parametro di query denominato apiVersion che dovrà essere impostato su "1.0".
+Ogni chiamata API avrà, alla fine di hello, un parametro di query denominato apiVersion che deve essere impostata troppo "1.0".
 
 ### <a name="ids-are-case-sensitive"></a>Distinzione tra maiuscole e minuscole negli ID
-Gli ID restituiti da una delle API fanno distinzione tra maiuscole e minuscole e devono essere usati esattamente come sono, quando vengono passati come parametri nelle chiamate API successive. Anche gli ID modello e gli ID catalogo, ad esempio, fanno distinzione tra maiuscole e minuscole.
+Gli ID, restituiti da una delle API, hello tra maiuscole e minuscole e devono essere usati come tali, quando viene passato come parametro nelle chiamate API successive. Anche gli ID modello e gli ID catalogo, ad esempio, fanno distinzione tra maiuscole e minuscole.
 
 ### <a name="create-a-model"></a>Creare il modello
 Creazione di una richiesta "crea modello":
@@ -109,8 +109,8 @@ Creazione di una richiesta "crea modello":
 
 Codice stato HTTP: 200
 
-* `feed/entry/content/properties/id` : contiene l'ID modello.
-  Si noti che l'ID modello fa distinzione tra maiuscole e minuscole.
+* `feed/entry/content/properties/id`-Contiene l'ID del modello hello.
+  Si noti che ID modello hello tra maiuscole e minuscole.
 
 XML OData
 
@@ -144,7 +144,7 @@ XML OData
 
 
 ### <a name="import-catalog-data"></a>Importare i dati del catalogo
-Se si caricano diversi file del catalogo nello stesso modello con diverse chiamate, verranno inseriti solo i nuovi elementi del catalogo. Gli elementi esistenti manterranno i valori originali.
+Se si carica più catalogo file toohello stesso modello con più chiamate, si verranno inserire hello solo nuovi elementi di catalogo. Gli elementi esistenti verranno mantenuti con i valori originali di hello.
 
 | Metodo HTTP | URI |
 |:--- |:--- |
@@ -152,18 +152,18 @@ Se si caricano diversi file del catalogo nello stesso modello con diverse chiama
 
 | Nome parametro | Valori validi |
 |:--- |:--- |
-| modelId |Identificatore univoco del modello con distinzione tra maiuscole e minuscole |
-| filename |Identificatore testuale del catalogo.<br>Sono consentiti solo lettere (A-Z, a-z), numeri (0-9), trattini (-) e caratteri di sottolineatura (_).<br>Lunghezza massima: 50 |
+| modelId |Identificatore univoco del modello di hello (maiuscole/minuscole) |
+| filename |Identificatore testuale del catalogo hello.<br>Sono consentiti solo lettere (A-Z, a-z), numeri (0-9), trattini (-) e caratteri di sottolineatura (_).<br>Lunghezza massima: 50 |
 | apiVersion |1.0 |
 |  | |
-| Corpo della richiesta |Dati del catalogo. Formato:<br>`<Item Id>,<Item Name>,<Item Category>[,<description>]`<br><br><table><tr><th>Nome</th><th>Mandatory</th><th>Tipo</th><th>Description</th></tr><tr><td>Item Id</td><td>Sì</td><td>Alfanumerico, lunghezza massima: 50 caratteri</td><td>Identificatore univoco di un elemento</td></tr><tr><td>Item Name</td><td>Sì</td><td>Alfanumerico, lunghezza massima: 255 caratteri</td><td>Nome dell'elemento</td></tr><tr><td>Item Category</td><td>Sì</td><td>Alfanumerico, lunghezza massima: 255 caratteri</td><td>Categoria alla quale appartiene l'elemento, ad esempio libri di cucina, letteratura e così via</td></tr><tr><td>Descrizione</td><td>No</td><td>Alfanumerico, lunghezza massima: 4000 caratteri</td><td>Descrizione dell'elemento</td></tr></table><br>La dimensione massima del file è di 200 MB.<br><br>Esempio:<br><code>2406e770-769c-4189-89de-1c9283f93a96,Clara Callan,Book<br>21bf8088-b6c0-4509-870c-e1c7ac78304a,The Forgetting Room: A Fiction (Byzantium Book),Book<br>3bb5cb44-d143-4bdd-a55c-443964bf4b23,Spadework,Book<br>552a1940-21e4-4399-82bb-594b46d7ed54,Restraint of Beasts,Book</code> |
+| Corpo della richiesta |Dati del catalogo. Formato:<br>`<Item Id>,<Item Name>,<Item Category>[,<description>]`<br><br><table><tr><th>Nome</th><th>Mandatory</th><th>Tipo</th><th>Description</th></tr><tr><td>Item Id</td><td>Sì</td><td>Alfanumerico, lunghezza massima: 50 caratteri</td><td>Identificatore univoco di un elemento</td></tr><tr><td>Item Name</td><td>Sì</td><td>Alfanumerico, lunghezza massima: 255 caratteri</td><td>Nome dell'elemento</td></tr><tr><td>Item Category</td><td>Sì</td><td>Alfanumerico, lunghezza massima: 255 caratteri</td><td>Categoria toowhich che questo elemento appartiene (ad esempio, documentazione, cucina serie...)</td></tr><tr><td>Descrizione</td><td>No</td><td>Alfanumerico, lunghezza massima: 4000 caratteri</td><td>Descrizione dell'elemento</td></tr></table><br>La dimensione massima del file è di 200 MB.<br><br>Esempio:<br><code>2406e770-769c-4189-89de-1c9283f93a96,Clara Callan,Book<br>21bf8088-b6c0-4509-870c-e1c7ac78304a,hello Forgetting Room: A Fiction (Byzantium Book),Book<br>3bb5cb44-d143-4bdd-a55c-443964bf4b23,Spadework,Book<br>552a1940-21e4-4399-82bb-594b46d7ed54,Restraint of Beasts,Book</code> |
 
 **Risposta**:
 
 Codice stato HTTP: 200
 
 * `Feed\entry\content\properties\LineCount` : numero di righe accettate.
-* `Feed\entry\content\properties\ErrorCount` : numero di righe non inserite a causa di un errore.
+* `Feed\entry\content\properties\ErrorCount`-Numero di righe che non sono state inserite a causa di errore tooan.
 
 XML OData
 
@@ -191,7 +191,7 @@ XML OData
 
 ### <a name="import-usage-data"></a>Importare i dati di utilizzo
 #### <a name="uploading-a-file"></a>Caricamento di un file
-Queste sezioni mostrano come caricare i dati di utilizzo tramite un file. È possibile chiamare l'API più volte con i dati di utilizzo. Tutti i dati di utilizzo verranno salvati per tutte le chiamate.
+Questa sezione viene illustrato come dati di utilizzo tooupload utilizzando un file. È possibile chiamare l'API più volte con i dati di utilizzo. Tutti i dati di utilizzo verranno salvati per tutte le chiamate.
 
 | Metodo HTTP | URI |
 |:--- |:--- |
@@ -199,18 +199,18 @@ Queste sezioni mostrano come caricare i dati di utilizzo tramite un file. È pos
 
 | Nome parametro | Valori validi |
 |:--- |:--- |
-| modelId |Identificatore univoco del modello con distinzione tra maiuscole e minuscole |
-| filename |Identificatore testuale del catalogo.<br>Sono consentiti solo lettere (A-Z, a-z), numeri (0-9), trattini (-) e caratteri di sottolineatura (_).<br>Lunghezza massima: 50 |
+| modelId |Identificatore univoco del modello di hello (maiuscole/minuscole) |
+| filename |Identificatore testuale del catalogo hello.<br>Sono consentiti solo lettere (A-Z, a-z), numeri (0-9), trattini (-) e caratteri di sottolineatura (_).<br>Lunghezza massima: 50 |
 | apiVersion |1.0 |
 |  | |
-| Corpo della richiesta |Dati di utilizzo. Formato:<br>`<User Id>,<Item Id>[,<Time>,<Event>]`<br><br><table><tr><th>Nome</th><th>Mandatory</th><th>Tipo</th><th>Descrizione</th></tr><tr><td>User Id</td><td>Sì</td><td>Alfanumerico</td><td>Identificatore univoco di un utente</td></tr><tr><td>Item Id</td><td>Sì</td><td>Alfanumerico, lunghezza massima: 50 caratteri</td><td>Identificatore univoco di un elemento</td></tr><tr><td>Time</td><td>No</td><td>Data in formato: AAAA/MM/GGTHH:MM:SS (ad esempio 2013/06/20T10:00:00)</td><td>Ora dei dati</td></tr><tr><td>Evento</td><td>No, se fornito deve essere inserita anche la data</td><td>Uno dei seguenti:<br>• Click<br>• RecommendationClick<br>•    AddShopCart<br>• RemoveShopCart<br>• Acquisto</td><td></td></tr></table><br>La dimensione massima del file è di 200 MB.<br><br>Esempio:<br><pre>149452,1b3d95e2-84e4-414c-bb38-be9cf461c347<br>6360,1b3d95e2-84e4-414c-bb38-be9cf461c347<br>50321,1b3d95e2-84e4-414c-bb38-be9cf461c347<br>71285,1b3d95e2-84e4-414c-bb38-be9cf461c347<br>224450,1b3d95e2-84e4-414c-bb38-be9cf461c347<br>236645,1b3d95e2-84e4-414c-bb38-be9cf461c347<br>107951,1b3d95e2-84e4-414c-bb38-be9cf461c347</pre> |
+| Corpo della richiesta |Dati di utilizzo. Formato:<br>`<User Id>,<Item Id>[,<Time>,<Event>]`<br><br><table><tr><th>Nome</th><th>Mandatory</th><th>Tipo</th><th>Descrizione</th></tr><tr><td>User Id</td><td>Sì</td><td>Alfanumerico</td><td>Identificatore univoco di un utente</td></tr><tr><td>Item Id</td><td>Sì</td><td>Alfanumerico, lunghezza massima: 50 caratteri</td><td>Identificatore univoco di un elemento</td></tr><tr><td>Time</td><td>No</td><td>Data in formato: AAAA/MM/GGTHH:MM:SS (ad esempio 2013/06/20T10:00:00)</td><td>Ora dei dati</td></tr><tr><td>Evento</td><td>No, se fornito deve essere inserita anche la data</td><td>Uno dei seguenti hello:<br>• Click<br>• RecommendationClick<br>•    AddShopCart<br>• RemoveShopCart<br>• Acquisto</td><td></td></tr></table><br>La dimensione massima del file è di 200 MB.<br><br>Esempio:<br><pre>149452,1b3d95e2-84e4-414c-bb38-be9cf461c347<br>6360,1b3d95e2-84e4-414c-bb38-be9cf461c347<br>50321,1b3d95e2-84e4-414c-bb38-be9cf461c347<br>71285,1b3d95e2-84e4-414c-bb38-be9cf461c347<br>224450,1b3d95e2-84e4-414c-bb38-be9cf461c347<br>236645,1b3d95e2-84e4-414c-bb38-be9cf461c347<br>107951,1b3d95e2-84e4-414c-bb38-be9cf461c347</pre> |
 
 **Risposta**:
 
 Codice stato HTTP: 200
 
 * `Feed\entry\content\properties\LineCount` : numero di righe accettate.
-* `Feed\entry\content\properties\ErrorCount` : numero di righe non inserite a causa di un errore.
+* `Feed\entry\content\properties\ErrorCount`-Numero di righe che non sono state inserite a causa di errore tooan.
 * `Feed\entry\content\properties\FileId` : identificatore del file.
 
 XML OData
@@ -239,7 +239,7 @@ XML OData
 
 
 #### <a name="using-data-acquisition"></a>Uso dell'acquisizione dei dati
-Questa sezione illustra come inviare eventi in tempo reale a Recommendations di Azure Machine Learning, in genere dal sito Web.
+In questa sezione viene illustrato come gli eventi toosend reale ora tooAzure Machine Learning indicazioni, in genere il sito Web.
 
 | Metodo HTTP | URI |
 |:--- |:--- |
@@ -249,7 +249,7 @@ Questa sezione illustra come inviare eventi in tempo reale a Recommendations di 
 |:--- |:--- |
 | apiVersion |1.0 |
 |  | |
-| Corpo della richiesta |Immissione di dati evento per ogni evento da inviare. Per lo stesso utente o la stessa sessione del browser si dovrà inviare lo stesso ID nel campo SessionId. Vedere l'esempio di corpo dell'evento di seguito. |
+| Corpo della richiesta |Immissione di dati di evento per ogni evento desiderato toosend. È necessario inviare per stessa sessione utente o un browser hello hello stesso ID nel campo SessionId hello. Vedere l'esempio di corpo dell'evento di seguito. |
 
 * Esempio di evento "Click":
   
@@ -345,8 +345,8 @@ Questa sezione illustra come inviare eventi in tempo reale a Recommendations di 
 
 | Nome parametro | Valori validi |
 |:--- |:--- |
-| modelId |Identificatore univoco del modello con distinzione tra maiuscole e minuscole |
-| userDescription |Identificatore testuale del catalogo. Tenere presente che, se si usano degli spazi, è necessario codificarli con il simbolo %20. Vedere l'esempio precedente.<br>Lunghezza massima: 50 |
+| modelId |Identificatore univoco del modello di hello (maiuscole/minuscole) |
+| userDescription |Identificatore testuale del catalogo hello. Tenere presente che, se si usano degli spazi, è necessario codificarli con il simbolo %20. Vedere l'esempio precedente.<br>Lunghezza massima: 50 |
 | apiVersion |1.0 |
 |  | |
 | Corpo della richiesta |Nessuno |
@@ -355,9 +355,9 @@ Questa sezione illustra come inviare eventi in tempo reale a Recommendations di 
 
 Codice stato HTTP: 200
 
-Questa è un'API asincrona. Come risposta si otterrà un ID compilazione. Per sapere quando termina l'esecuzione della compilazione, è necessario chiamare l'API "Get Builds Status of a Model" e individuare l'ID compilazione nella risposta. Tenere presente che una compilazione può richiedere minuti o ore, a seconda delle dimensioni dei dati.
+Questa è un'API asincrona. Come risposta si otterrà un ID compilazione. tooknow al termine di generazione di hello, è necessario chiamare API "Ottenere compilazioni lo stato di un modello di" hello e individuare questo ID di generazione in risposta hello. Si noti che una compilazione può richiedere da toohours minuti a seconda delle dimensioni di hello dei dati di hello.
 
-Non è possibile usare raccomandazioni finché la compilazione non viene completata.
+Impossibile consumare indicazioni finché non termina di compilazione hello.
 
 Stati di compilazione validi:
 
@@ -369,7 +369,7 @@ Stati di compilazione validi:
 * Canceled: la compilazione è stata annullata.
 * Canceling: è in corso l'annullamento della compilazione.
 
-È possibile trovare l'ID compilazione nel percorso seguente: `Feed\entry\content\properties\Id`
+Si noti che compilazione hello che ID è reperibile nella hello seguente percorso:`Feed\entry\content\properties\Id`
 
 XML OData
 
@@ -417,29 +417,29 @@ XML OData
 
 | Nome parametro | Valori validi |
 |:--- |:--- |
-| modelId |Identificatore univoco del modello (con distinzione tra maiuscole e minuscole) |
-| onlyLastBuild |Indica se restituire l'intera cronologia di compilazioni del modello o solo lo stato della compilazione più recente. |
+| modelId |Identificatore univoco del modello di hello (maiuscole/minuscole) |
+| onlyLastBuild |Indica se tutti hello tooreturn compilare solo stato hello di compilazione più recente di hello o cronologia del modello di hello. |
 | apiVersion |1.0 |
 
 **Risposta**:
 
 Codice stato HTTP: 200
 
-La risposta include una voce per ogni compilazione. Ogni voce include i dati seguenti:
+risposta Hello include una voce per ogni compilazione. Ogni voce include hello dati seguenti:
 
-* `feed/entry/content/properties/UserName` : nome dell'utente.
-* `feed/entry/content/properties/ModelName` : nome del modello.
+* `feed/entry/content/properties/UserName`– Nome dell'utente di hello.
+* `feed/entry/content/properties/ModelName`– Nome del modello di hello.
 * `feed/entry/content/properties/ModelId` : identificatore univoco del modello.
-* `feed/entry/content/properties/IsDeployed`: indica se la compilazione viene distribuita, anche detta compilazione attiva.
+* `feed/entry/content/properties/IsDeployed`– Se hello build è stata distribuita (anche noto come compilazione attiva).
 * `feed/entry/content/properties/BuildId` : identificatore univoco della compilazione.
-* `feed/entry/content/properties/BuildType` : tipo della compilazione.
-* `feed/entry/content/properties/Status` : stato della compilazione. I valori possibili sono: Error, Building, Queued, Cancelling, Cancelled, Success.
-* `feed/entry/content/properties/StatusMessage` : messaggio di stato dettagliato (si applica solo a stati specifici).
+* `feed/entry/content/properties/BuildType`-Tipo di compilazione hello.
+* `feed/entry/content/properties/Status` : stato della compilazione. Può essere uno dei seguenti hello: errore, compilazione, in coda, l'annullamento, annullato, operazione riuscita
+* `feed/entry/content/properties/StatusMessage`: Messaggio di stato dettagliate (si applica solo a toospecific stati).
 * `feed/entry/content/properties/Progress` : stato di avanzamento della compilazione (%).
 * `feed/entry/content/properties/StartTime` : ora di inizio della compilazione.
 * `feed/entry/content/properties/EndTime` : ora di fine della compilazione.
 * `feed/entry/content/properties/ExecutionTime` : durata della compilazione.
-* `feed/entry/content/properties/ProgressStep` : dettagli relativi alla fase corrente di una compilazione in corso.
+* `feed/entry/content/properties/ProgressStep`: Informazioni dettagliate sulla fase corrente di hello che è in una compilazione in corso.
 
 Stati di compilazione validi:
 
@@ -453,7 +453,7 @@ Stati di compilazione validi:
 
 Valori validi per il tipo di compilazione:
 
-* Rank: compilazione della classifica. Per informazioni dettagliate sulla compilazione della classifica, fare riferimento al documento "Documentazione relativa all'API Recommendations di Azure Machine Learning".
+* Rank: compilazione della classifica. (Per rango di compilazione dettagli, consultare il documento di "Documentazione di Machine Learning raccomandazione API" toohello).
 * Recommendation: compilazione di raccomandazioni.
 * Fbt: compilazione Frequently Bought Together.
 
@@ -500,8 +500,8 @@ XML OData
 
 | Nome parametro | Valori validi |
 |:--- |:--- |
-| modelId |Identificatore univoco del modello con distinzione tra maiuscole e minuscole |
-| itemIds |Elenco con valori delimitati da virgole degli elementi per i quali aggiungere raccomandazioni.<br>Lunghezza massima: 1024 |
+| modelId |Identificatore univoco del modello di hello (maiuscole/minuscole) |
+| itemIds |Elenco delimitato da virgole di hello elementi toorecommend per.<br>Lunghezza massima: 1024 |
 | numberOfResults |Numero di risultati richiesti  |
 | includeMetatadata |Uso futuro, sempre false. |
 | apiVersion |1.0 |
@@ -510,16 +510,16 @@ XML OData
 
 Codice stato HTTP: 200
 
-La risposta include una voce per ogni elemento raccomandato. Ogni voce include i dati seguenti:
+risposta Hello include una voce per ogni elemento consigliato. Ogni voce include hello dati seguenti:
 
 * `Feed\entry\content\properties\Id` : ID elemento consigliato.
-* `Feed\entry\content\properties\Name` : nome dell'elemento.
-* `Feed\entry\content\properties\Rating` : classificazione della raccomandazione; un numero più alto significa maggiore confidenza.
+* `Feed\entry\content\properties\Name`-Nome dell'elemento di hello.
+* `Feed\entry\content\properties\Rating`-Classificazione della raccomandazione hello; numero più alto, maggiore affidabilità.
 * `Feed\entry\content\properties\Reasoning`: motivazione della raccomandazione, ad esempio una spiegazione della raccomandazione.
 
 XML OData
 
-La risposta di esempio seguente include 10 elementi consigliati:
+risposta di esempio Hello riportata di seguito include 10 elementi consigliati:
 
     <feed xmlns:base="https://api.datamarket.azure.com/Data.ashx/amla/recommendations/v2/ItemRecommend" xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns="http://www.w3.org/2005/Atom">
       <title type="text" />
@@ -671,10 +671,10 @@ La risposta di esempio seguente include 10 elementi consigliati:
     </feed>
 
 ### <a name="update-model"></a>Aggiornare il modello
-È possibile aggiornare la descrizione del modello o l'ID compilazione attivo.
-*ID compilazione attiva* : ogni compilazione per ogni modello ha un ID compilazione. Con il termine ID compilazione attiva si identifica la prima compilazione riuscita di ogni nuovo modello. Se dopo avere ottenuto un ID compilazione attiva si eseguono altre compilazioni per lo stesso modello, è necessario impostarlo in modo esplicito come ID compilazione predefinito. Quando si usano raccomandazioni, se non si specifica l'ID compilazione da usare, verrà usato automaticamente quello predefinito.
+È possibile aggiornare la descrizione del modello hello o hello ID di generazione attivo.
+*ID compilazione attiva* : ogni compilazione per ogni modello ha un ID compilazione. ID compilazione attiva Hello è hello prima corretta compilazione di ogni nuovo modello. Quando si ha un ID compilazione attiva e si compilazioni aggiuntive per hello stesso modello, è necessario tooexplicitly impostarlo come hello predefinito ID compilazione se si desidera. Quando si utilizzano indicazioni, se non si specifica l'ID compilazione hello che si desidera toouse, predefinito hello uno verrà utilizzato automaticamente.
 
-Dopo avere implementato un modello di raccomandazione nell'ambiente di produzione, questo meccanismo consente di compilare nuovi modelli e testarli prima di alzarli di livello e passarli in produzione.
+Questo meccanismo consente - dopo aver un modello di raccomandazione nella produzione - toobuild nuovi modelli e testarli prima si innalza di livello li tooproduction.
 
 | Metodo HTTP | URI |
 |:--- |:--- |
@@ -682,10 +682,10 @@ Dopo avere implementato un modello di raccomandazione nell'ambiente di produzion
 
 | Nome parametro | Valori validi |
 |:--- |:--- |
-| id |Identificatore univoco del modello con distinzione tra maiuscole e minuscole |
+| id |Identificatore univoco del modello di hello (maiuscole/minuscole) |
 | apiVersion |1.0 |
 |  | |
-| Request Body |`<ModelUpdateParams xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">`<br>`   <Description>New Description</Description>`<br>`          <ActiveBuildId>-1</ActiveBuildId>`<br>`</ModelUpdateParams>`<br><br>Si noti che i tag XML Description e ActiveBuildId sono facoltativi. Se non si vuole impostare Description o ActiveBuildId, rimuovere l'intero tag. |
+| Request Body |`<ModelUpdateParams xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">`<br>`   <Description>New Description</Description>`<br>`          <ActiveBuildId>-1</ActiveBuildId>`<br>`</ModelUpdateParams>`<br><br>Si noti che hello XML tag descrizione ActiveBuildId sono facoltativi. Se non si desidera tooset descrizione o ActiveBuildId, rimuovere i tag intero hello. |
 
 **Risposta**:
 
@@ -703,5 +703,5 @@ XML OData
     </feed>
 
 ## <a name="legal"></a>Note legali
-Questo documento viene fornito "così com'è". Le informazioni e le indicazioni riportate nel presente documento, inclusi URL e altri riferimenti a siti Internet, sono soggette a modifica senza preavviso. Alcuni esempi usati in questo documento vengono forniti a scopo puramente illustrativo e sono fittizi. Nessuna associazione reale o connessione è intenzionale o può essere desunta. Il presente documento non fornisce all'utente alcun diritto legale rispetto a qualsiasi proprietà intellettuale in qualsiasi prodotto Microsoft. È possibile copiare e usare il presente documento per scopi interni e di riferimento. © 2014 Microsoft. Tutti i diritti sono riservati. 
+Questo documento viene fornito "così com'è". Le informazioni e le indicazioni riportate nel presente documento, inclusi URL e altri riferimenti a siti Internet, sono soggette a modifica senza preavviso. Alcuni esempi usati in questo documento vengono forniti a scopo puramente illustrativo e sono fittizi. Nessuna associazione reale o connessione è intenzionale o può essere desunta. Questo documento non offrono alcun diritto legale tooany proprietà intellettuale in qualsiasi prodotto Microsoft. È possibile copiare e usare il presente documento per scopi interni e di riferimento. © 2014 Microsoft. Tutti i diritti sono riservati. 
 

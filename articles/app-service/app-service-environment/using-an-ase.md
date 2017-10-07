@@ -1,6 +1,6 @@
 ---
-title: Usare un ambiente del servizio app di Azure
-description: Come creare, pubblicare e ridimensionare le app in un ambiente del servizio app di Azure
+title: aaaUse un ambiente del servizio App di Azure
+description: Come toocreate, pubblicare e ridimensionare l'App in un ambiente di servizio App di Azure
 services: app-service
 documentationcenter: na
 author: ccompy
@@ -13,11 +13,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/13/2017
 ms.author: ccompy
-ms.openlocfilehash: 279951d40b7780120d0b94e183f06e00ccece016
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 30c89e384efc07c560254856c0ca7d4eb4b1f010
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="use-an-app-service-environment"></a>Usare un ambiente del servizio app #
 
@@ -25,46 +25,46 @@ ms.lasthandoff: 08/29/2017
 
 Ambiente del servizio app di Azure è una distribuzione di Servizio app di Azure in una subnet nella rete virtuale di Azure. È costituita da:
 
-- **Front-end**: i front-end rappresentano il punto in cui HTTP/HTTPS termina in un ambiente del servizio app (ASE).
-- **Ruoli di lavoro**: risorse che ospitano le app.
-- **Database**: contiene le informazioni che definiscono l'ambiente.
-- **Archiviazione**: usata per ospitare le app pubblicate dal cliente.
+- **Front-end**: front-end hello sono in HTTP/HTTPS termina in un ambiente del servizio App (ASE).
+- **Thread di lavoro**: lavoratori hello sono risorse hello che ospitano le applicazioni.
+- **Database**: database hello contiene informazioni che definiscono l'ambiente hello.
+- **Archiviazione**: hello trovi toohost utilizzati hello pubblicati cliente app.
 
 > [!NOTE]
-> Esistono due versioni dell'ambiente del servizio app: ASEv1 e ASEv2. In ASEv1 è necessario gestire le risorse prima di poterle usare. Per informazioni su come configurare e gestire ASEv1, vedere [Configurare un ambiente del servizio app v1][ConfigureASEv1]. Il resto di questo articolo è incentrato su ASEv2.
+> Esistono due versioni dell'ambiente del servizio app: ASEv1 e ASEv2. In ASEv1, è necessario gestire le risorse di hello prima di utilizzarli. toolearn come tooconfigure e gestire ASEv1, vedere [configurare un v1 di ambiente del servizio App][ConfigureASEv1]. rest Hello di questo articolo è incentrato sui ASEv2.
 >
 >
 
-È possibile distribuire un ambiente del servizio app (sia ASEv1 che ASEv2) con un indirizzo VIP esterno o interno per l'accesso app. La distribuzione con un indirizzo VIP esterno viene comunemente definita come un ambiente del servizio app esterno. La versione interna viene chiamata ambiente del servizio app ILB, poiché usa un servizio di bilanciamento del carico interno (ILB). Per altre informazioni sull'ambiente del servizio app con bilanciamento del carico interno, vedere [Creazione e uso di un servizio di bilanciamento del carico interno con un ambiente del servizio app][MakeILBASE].
+È possibile distribuire un ambiente del servizio app (sia ASEv1 che ASEv2) con un indirizzo VIP esterno o interno per l'accesso app. distribuzione Hello con un indirizzo VIP esterno viene comunemente definita un ASE esterno. versione interna Hello viene chiamato hello ASE ILB perché utilizza un servizio di bilanciamento del carico interno (ILB). toolearn ulteriori informazioni su hello ASE di bilanciamento del carico interno, vedere [creare e usare un ASE ILB][MakeILBASE].
 
 ## <a name="create-a-web-app-in-an-ase"></a>Creare un'app Web in un ambiente del servizio app ##
 
-Per creare un'app web in un ambiente del servizio app, procedere come si procederebbe normalmente ma con alcune piccole differenze. Quando si crea un nuovo piano di servizio app:
+un'app web in un ASE toocreate, utilizzare hello stessa procedura quando si crea, in genere, ma con alcune piccole differenze. Quando si crea un nuovo piano di servizio app:
 
-- Invece di selezionare una località geografica per distribuire l'app, selezionare un ambiente del servizio app come posizione.
+- Anziché scegliere una posizione geografica in cui toodeploy l'app, un ASE è scegliere come posizione di.
 - Tutti i piani di servizio app creati in un ambiente del servizio app devono essere in un piano tariffario isolato.
 
-Se non si ha un ambiente del servizio app, è possibile crearne uno seguendo le istruzioni in [Creare un ambiente del servizio app][MakeExternalASE].
+Se non si dispone di un tipo di base, è possibile creare una seguendo le istruzioni hello [creare un ambiente del servizio App][MakeExternalASE].
 
-Per creare un'app Web in un ambiente del servizio app:
+un'app web in un ASE toocreate:
 
 1. Selezionare **Nuovo** > **Web e dispositivi mobili** > **App Web**.
 
-2. Immettere un nome per l'app Web. Se si è già selezionato un piano di servizio app in un ambiente del servizio app, il nome di dominio dell'app rispecchierà il nome di dominio dell'ambiente del servizio app.
+2. Immettere un nome per l'app web hello. Se è già stato selezionato un piano di servizio App in un tipo di base, il nome di dominio hello per app hello riflette il nome di dominio hello di hello ASE.
 
     ![Selezione del nome per l'app Web][1]
 
 3. Selezionare una sottoscrizione.
 
-4. Immettere un nome per un nuovo gruppo di risorse, oppure fare clic su **Usa esistente** e selezionarne uno dall'elenco a discesa.
+4. Selezionare o immettere un nome per un nuovo gruppo di risorse **utilizzare esistente** e selezionarne uno dall'elenco a discesa hello.
 
 5. Selezionare un piano di servizio app esistente nell'ambiente del servizio app o crearne uno nuovo con la procedura seguente:
 
     a. Selezionare **Crea nuovo**.
 
-    b. Immettere un nome per il piano di servizio app.
+    b. Immettere il nome di hello per il piano di servizio App.
 
-    c. Selezionare l'ambiente del servizio app nel menu a discesa **Località**.
+    c. Selezionare il ASE hello **percorso** elenco a discesa.
 
     d. Selezionare un piano tariffario **Isolato**. Scegliere **Seleziona**.
 
@@ -76,81 +76,81 @@ Per creare un'app Web in un ambiente del servizio app:
 
 ## <a name="how-scale-works"></a>Come funziona il ridimensionamento ##
 
-Ogni app del servizio app viene eseguita in un piano di servizio app. Il modello di contenitore è: gli ambienti contengono i piani di servizio app e i piani di servizio app contengono le app. Quando si ridimensiona un'app, si ridimensiona il piano di servizio app e quindi si ridimensionano tutte le app nello stesso piano.
+Ogni app del servizio app viene eseguita in un piano di servizio app. modello di contenitore Hello è ambienti contengono i piani di servizio App e i piani di servizio App contengono le app. Quando si scala un'app, si scala hello piano di servizio App e quindi ridimensionare tutte le app hello in hello stesso piano.
 
-In ASEv2, quando si ridimensiona un piano di servizio app, viene automaticamente aggiunta l'infrastruttura necessaria. Si verifica un ritardo nelle operazioni di ridimensionamento mentre viene aggiunta l'infrastruttura. In ASEv1 l'infrastruttura necessaria deve essere aggiunta prima di poter creare il piano di servizio app o di aumentarne il numero di istanze. 
+In ASEv2, quando si ridimensiona un piano di servizio App, viene aggiunto automaticamente infrastruttura hello necessita. Si verifica un ritardo di tempo tooscale operazioni durante l'aggiunta di infrastruttura hello. In ASEv1, è necessario aggiungere infrastruttura hello necessita prima di poter creare o scalabilità al piano di servizio App. 
 
-Nel servizio app multi-tenant il ridimensionamento è in genere immediato perché è già disponibile un pool di risorse che lo supporta. In un ambiente del servizio app tale buffer non è disponibile e le risorse vengono allocate quando se ne presenta la necessità.
+In multitenant hello servizio App, il ridimensionamento è in genere immediato perché un pool di risorse è immediatamente disponibile toosupport è. In un ambiente del servizio app tale buffer non è disponibile e le risorse vengono allocate quando se ne presenta la necessità.
 
-In un ambiente del servizio app è possibile ridimensionare fino a 100 istanze. Queste 100 istanze possono essere tutte in un solo piano di servizio app o distribuite in più piani di servizio app.
+In un tipo di base, è possibile ridimensionare le istanze di too100. Queste 100 istanze possono essere tutte in un solo piano di servizio app o distribuite in più piani di servizio app.
 
 ## <a name="ip-addresses"></a>Indirizzi IP ##
 
-Il servizio app ha la possibilità di allocare un indirizzo IP dedicato a un'app. Questa capacità è disponibile configurando un certificato SSL basato su IP, come illustrato in [Associare un certificato SSL personalizzato esistente ad app Web di Azure][ConfigureSSL]. Tuttavia, in un ambiente del servizio app vi è un'eccezione. Non è possibile aggiungere altri indirizzi IP da usare per un certificato SSL basato su IP in un ambiente del servizio app con bilanciamento del carico interno.
+Servizio app deve hello possibilità tooallocate un'app tooan di indirizzo IP dedicata. Questa funzionalità è disponibile dopo la configurazione SSL basato su IP, come descritto in [associare un esistente SSL certificato tooAzure web App personalizzate][ConfigureSSL]. Tuttavia, in un ambiente del servizio app vi è un'eccezione. Non è possibile aggiungere ulteriori IP indirizzi toobe utilizzato per SSL basato su IP in una base di bilanciamento del carico interno.
 
-In ASEv1 è necessario allocare gli indirizzi IP come risorse prima di poterli usare. In ASEv2 è possibile usarli dall'app proprio come nel servizio app multi-tenant. In ASEv2 è sempre presente un indirizzo di riserva fino a 30 indirizzi IP. Ogni volta che se ne usa uno, ne viene aggiunto un altro, in modo che sia sempre disponibile un indirizzo da usare. Si verifica un ritardo, necessario per allocare un altro indirizzo IP, che impedisce di aggiungere gli indirizzi IP in rapida successione.
+In ASEv1, è necessario gli indirizzi IP di hello tooallocate come risorse prima di utilizzarli. In ASEv2, utilizzarli dall'app, come avviene in multitenant hello servizio App. È sempre un indirizzo riserva ASEv2 degli indirizzi IP too30. Ogni volta che se ne usa uno, ne viene aggiunto un altro, in modo che sia sempre disponibile un indirizzo da usare. Un tempo di ritardo è necessario tooallocate un altro indirizzo IP, che impedisce l'aggiunta di IP indirizzi in rapida successione.
 
 ## <a name="front-end-scaling"></a>Scalabilità front-end ##
 
-In ASEv2, quando si aumenta il numero di istanze dei piani di servizio app, i ruoli di lavoro vengono automaticamente aggiunti per supportarli. Ogni ambiente del servizio app viene creato con due front-end. Inoltre, il front-end scala automaticamente in orizzontale a una velocità di un front-end per tutte le 15 istanze nei piani di servizio App. Se ad esempio si hanno 15 istanze, si hanno tre front-end. Se si passa a 30 istanze, si avranno quattro front-end e così via.
+In ASEv2, quando scala in orizzontale i piani di servizio App, thread di lavoro vengono automaticamente aggiunti toosupport li. Ogni ambiente del servizio app viene creato con due front-end. Inoltre, front-end hello automaticamente scalabilità orizzontale a una velocità di un front-end per tutte le istanze del 15 nei piani di servizio App. Se ad esempio si hanno 15 istanze, si hanno tre front-end. Se si ridimensiona too30 istanze, è necessario quattro front-end e così via.
 
-Questo numero di front-end deve essere più che sufficiente per la maggior parte degli scenari. Tuttavia, è possibile scalare orizzontalmente a una maggiore velocità. È possibile modificare il rapporto minimo a un front-end per ogni cinque istanze. Per modificare il rapporto è previsto un addebito. Per altre informazioni, vedere [Prezzi del Servizio app di Azure][Pricing].
+Questo numero di front-end deve essere più che sufficiente per la maggior parte degli scenari. Tuttavia, è possibile scalare orizzontalmente a una maggiore velocità. È possibile modificare il rapporto di hello tooas bassa come un front-end per ogni cinque istanze. È un addebito per la modifica delle proporzioni hello. Per altre informazioni, vedere [Prezzi del Servizio app di Azure][Pricing].
 
-Le risorse front-end sono gli endpoint HTTP/HTTPS per l'ambiente del servizio app. Con la configurazione front-end predefinita, l'uso della memoria per ogni front-end è di circa il 60%. I carichi di lavoro del cliente non vengono eseguiti in un front-end. Il fattore chiave per un front-end dal punto di vista del ridimensionamento è la CPU, che dipende principalmente dal traffico HTTPS.
+Risorse front-end sono endpoint HTTP/HTTPS hello per hello ASE. Con la configurazione front-end predefinita hello, utilizzo della memoria per front-end è costantemente circa 60%. I carichi di lavoro del cliente non vengono eseguiti in un front-end. Hello fattore chiave per un front-end con tooscale riguardo è CPU hello, che si basa principalmente sul traffico HTTPS.
 
 ## <a name="app-access"></a>Accesso all'app ##
 
-In un ambiente del servizio app esterno, il dominio usato per creare le app è diverso dal servizio app multi-tenant. Include il nome dell'ambiente del servizio app. Per altre informazioni sulla creazione di un ambiente del servizio app esterno, vedere [Creazione di un ambiente del servizio app][MakeExternalASE]. Il nome di dominio in un ambiente del servizio app esterno è simile a *.&lt;nomeambientedelservizioapp&gt;.p.azurewebsites.net*. Ad esempio, se l'ambiente del servizio app è denominato _external-ase_ e si ospita un'app denominata _contoso_ in tale ambiente del servizio app, sarà possibile raggiungerlo agli URL seguenti:
+In un ASE esterno, dominio hello utilizzato durante la creazione di applicazioni è diversa da multi-tenant hello servizio App. Include il nome di hello di hello ASE. Per ulteriori informazioni su come toocreate un ASE esterni, vedere [creare un ambiente del servizio App][MakeExternalASE]. nome di dominio Hello in un ASE esterno è simile a *.&lt; asename&gt;. p.azurewebsites.net*. Ad esempio, se il tipo di base è denominato _esterno ase_ e ospitare un'applicazione denominata _contoso_ in tale ASE, verrà visualizzata in hello URL seguenti:
 
 - contoso.external-ase.p.azurewebsites.net
 - contoso.scm.external-ase.p.azurewebsites.net
 
-L'URL contoso.scm.external-ase.p.azurewebsites.net viene usato per accedere alla console Kudu o per pubblicare l'app usando la distribuzione Web. Per informazioni sulla console Kudu, vedere [Kudu console for Azure App Service][Kudu] (Console Kudu per il servizio app di Azure). La console Kudu offre un'interfaccia utente Web per il debug, il caricamento di file, la modifica di file e altro ancora.
+Hello URL contoso.scm.external-ase.p.azurewebsites.net è console Kudu di hello tooaccess utilizzati o per la pubblicazione distribuire l'app usando web. Per informazioni sulla console Kudu hello, vedere [console Kudu per il servizio App di Azure][Kudu]. Hello Kudu console offre un'interfaccia utente web per il debug, caricamento di file, la modifica di file e molto altro ancora.
 
-In un ambiente del servizio app con bilanciamento del carico interno si determina il dominio in fase di distribuzione. Per informazioni su come creare un ambiente del servizio app con bilanciamento del carico interno, vedere [Creazione e uso di un servizio di bilanciamento del carico interno con un ambiente del servizio app][MakeILBASE]. Se si specifica il nome di dominio _ilb-ase.info_, le app in tale ambiente del servizio app usano questo dominio durante la creazione delle app. Per l'app denominata _contoso_, gli URL saranno:
+In una base di bilanciamento del carico interno, dominio hello viene determinato in fase di distribuzione. Per ulteriori informazioni su come toocreate un bilanciamento del carico interno ASE, vedere [creare e usare un ASE ILB][MakeILBASE]. Se si specifica il nome di dominio hello _ilb ase.info_, hello App ASE utilizzare tale dominio durante la creazione di app. Per l'applicazione hello denominata _contoso_, hello URL sono:
 
 - contoso.ilb-ase.info
 - contoso.scm.ilb-ase.info
 
 ## <a name="publishing"></a>Pubblicazione ##
 
-Come nel servizio app multi-tenant, in un ambiente del servizio app è possibile pubblicare con:
+Come con multi-tenant hello servizio App, in un ASE è possibile pubblicare con:
 
 - Distribuzione Web.
 - FTP.
 - Integrazione continua.
-- Trascinamento della selezione nella console Kudu.
+- Trascinare e rilasciare nella console Kudu hello.
 - Un ambiente di sviluppo integrato, ad esempio Visual Studio, Eclipse o Intellij IDEA.
 
-Con un ambiente del servizio app esterno, queste opzioni di pubblicazione hanno lo stesso comportamento. Per altre informazioni, vedere [Distribuzione nel servizio app di Azure][AppDeploy]. 
+Con un ASE esterno, queste opzioni di pubblicazione che si comportano tutti hello stesso. Per altre informazioni, vedere [Distribuzione nel servizio app di Azure][AppDeploy]. 
 
-La grande differenza dal punto di vista della pubblicazione è negli ambienti del servizio app con bilanciamento del carico interno. Con un ambiente del servizio app con bilanciamento del carico interno gli endpoint di pubblicazione sono tutti disponibili solo tramite il servizio di bilanciamento del carico interno. Il servizio di bilanciamento del carico interno è in un IP privato nella subnet dell'ambiente del servizio app nella rete virtuale. Se non si ha accesso di rete al servizio di bilanciamento del carico interno, non è possibile pubblicare app in tale ambiente del servizio app. Come indicato in [Create and use an ILB ASE][MakeILBASE] (Creare e usare un ambiente del servizio app con bilanciamento del carico interno), è necessario configurare DNS per le app nel sistema, incluso l'endpoint Gestione controllo servizi. Se non definiti correttamente, non è possibile pubblicarli. Gli ambienti di sviluppo integrato devono anche avere accesso di rete al servizio di bilanciamento del carico interno per potervi eseguire direttamente la pubblicazione.
+differenza Hello con la pubblicazione è con tooan riguardo ASE di bilanciamento del carico interno. Con ASE un bilanciamento del carico interno, gli endpoint di pubblicazione di hello sono tutti disponibili solo tramite hello bilanciamento del carico interno. Hello bilanciamento del carico interno è un indirizzo IP privato nella subnet ASE hello nella rete virtuale hello. Se non si dispone di accesso di rete toohello ILB, è possibile pubblicare le applicazioni nella tale ASE. Come indicato nella [creare e usare un ASE ILB][MakeILBASE], è necessario tooconfigure DNS per le app hello nel sistema hello. Che include endpoint SCM hello. Se non definiti correttamente, non è possibile pubblicarli. L'IDE è inoltre necessitano toohave rete accesso toohello ILB in ordine toopublish tooit direttamente.
 
-I sistemi di integrazione continua basati su Internet, ad esempio GitHub e VSTS, non funzionano con un ambiente del servizio app con bilanciamento del carico interno perché l'endpoint di pubblicazione non è accessibile tramite Internet. È invece necessario usare un sistema di integrazione continua che usa un modello pull, ad esempio Dropbox.
+Poiché l'endpoint di pubblicazione hello non è possibile accedere a Internet, sistemi CI basato su Internet, ad esempio GitHub e Visual Studio Team Services, non funzionano con ASE un bilanciamento del carico interno. In alternativa, è necessario toouse un sistema di elemento di configurazione che utilizza un modello di pull, ad esempio Dropbox.
 
-Gli endpoint di pubblicazione per le app in un ambiente del servizio app con bilanciamento del carico interno usano il dominio con cui l'ambiente del servizio app con bilanciamento del carico interno è stato creato, che può essere visualizzato nel profilo di pubblicazione dell'app e nel pannello del portale dell'app (in **Panoramica** > **Informazioni di base** e anche in **Proprietà**). 
+pubblicazione di endpoint Hello per le App in un bilanciamento del carico interno di ASE utilizzare dominio hello che hello che ase di bilanciamento del carico interno è stato creato con. È possibile visualizzarlo nel profilo di pubblicazione dell'applicazione hello e nel pannello del portale dell'applicazione hello (in **Panoramica** > **Essentials** e anche in **proprietà**). 
 
 ## <a name="pricing"></a>Prezzi ##
 
-Lo SKU di prezzi chiamato **Isolato** è stato creato solo per l'uso con ASEv2. Tutti i piani di servizio app ospitati in ASEv2 fanno parte dello SKU di prezzi Isolato. I costi del piano di servizio app Isolato possono variare in base all'area. 
+Hello prezzi SKU chiamato **Isolated** è stato creato per l'uso solo con ASEv2. In tutti i piani di servizio App che sono ospitati in ASEv2 hello Isolated prezzi SKU. I costi del piano di servizio app Isolato possono variare in base all'area. 
 
-Oltre al prezzo dei piani di servizio app, è disponibile una tariffa fissa solo per l'ambiente del servizio app. Questa tariffa fissa non cambia in base alle dimensioni dell'ambiente del servizio app e si applica all'infrastruttura dell'ambiente del servizio app a un rapporto di ridimensionamento predefinito di un front-end aggiuntivo per ogni 15 istanze del piano di servizio app.  
+Inoltre i piani di prezzo toohello per il servizio App, quindi su una tariffa per ASE stesso. non vengono modificati con dimensione hello del ASE Hello fisse e paga per infrastruttura di hello ASE predefinito scala pari a 1 aggiuntive front-end per tutte le 15 istanze piano di servizio App.  
 
-Se il rapporto predefinito di un front-end per ogni 15 istanze del piano di servizio app non è sufficientemente veloce, è possibile modificarlo in base ai front-end aggiunti o alle dimensioni dei front-end.  Quando si modificano il rapporto o le dimensioni, si paga per i core front-end che non verrebbero aggiunti per impostazione predefinita.  
+Se hello predefinito scala pari a 1 front-end per tutte le 15 istanze piano di servizio App non sono sufficientemente veloce, è possibile modificare il rapporto tra hello in cui vengono aggiunti front-end o hello dimensioni di hello front-end.  Quando si modifica il rapporto di hello o dimensioni, si paga per core hello front-end non verrebbero aggiunta per impostazione predefinita.  
 
-Se ad esempio si imposta la proporzione di ridimensionamento su 10, verrà aggiunto un front-end ogni 10 istanze nei piani di servizio app. La tariffa fissa copre una proporzione di ridimensionamento pari a un front-end ogni 15 istanze. Con una proporzione di ridimensionamento di 10, il costo verrà addebitato al terzo front-end aggiunto per le 10 istanze del piano di servizio app. Non è necessario pagare quando si raggiungono le 15 istanze, perché il front-end è stato aggiunto automaticamente.
+Ad esempio, se si modifica hello scala rapporto too10, viene aggiunto un front-end per ogni 10 istanze nei piani di servizio App. tariffa flat Hello viene illustrata una frequenza di scala di un front-end per tutte le istanze del 15. Con un rapporto di scala di 10, addebitato il hello terzo front-end che è aggiunto per hello 10 istanze di piano di servizio App. Non è necessario toopay perché quando si raggiungono le 15 istanze perché è stato aggiunto automaticamente.
 
-Se si modificano le dimensioni dei front-end in base a due core, ma non si modifica il rapporto, si paga per i core aggiuntivi.  Poiché viene creato un ambiente del servizio app con due front-end, anche al di sotto della soglia di ridimensionamento automatica si paga per due core aggiuntivi se le dimensioni sono state aumentate a due core front-end.
+Se si dimensioni hello di core too2 front-end di hello regolate ma non modificare il rapporto hello e si paga per hello core aggiuntivi.  Un tipo di base viene creato con 2 server front-end, pertanto anche soglia hello automatico scala che si paga per 2 core aggiuntivi se è stato aumentato hello dimensioni too2 core front-end.
 
 Per altre informazioni, vedere [Prezzi del Servizio app di Azure][Pricing].
 
 ## <a name="delete-an-ase"></a>Eliminare un ambiente del servizio app ##
 
-Per eliminare un ambiente del servizio app: 
+toodelete un ASE: 
 
-1. Usare **Elimina** nella parte superiore del pannello **Ambiente del servizio app**. 
+1. Utilizzare **eliminare** nella parte superiore di hello di hello **ambiente del servizio App** blade. 
 
-2. Immettere il nome dell'ambiente del servizio app per confermare l'eliminazione. Quando si elimina un ambiente del servizio app, viene eliminato anche tutto il relativo contenuto. 
+2. Immettere il nome di hello del tooconfirm ASE che si desidera toodelete è. Quando si elimina un ASE, eliminare tutte hello contenuti all'interno di esso. 
 
     ![Eliminazione dell'ambiente del servizio app][3]
 

@@ -1,6 +1,6 @@
 ---
-title: Procedure consigliate e guida alla risoluzione dei problemi per le applicazioni Node in App Web di Azure
-description: Informazioni sulle procedure consigliate e sulle procedure per la risoluzione dei problemi delle applicazioni Node in App Web di Azure.
+title: procedure consigliate aaaBest e Guida alla risoluzione dei problemi per le applicazioni di nodo per le app Web di Azure
+description: Altre procedure consigliate hello e procedure di risoluzione dei problemi per le applicazioni di nodo per le app Web di Azure.
 services: app-service\web
 documentationcenter: nodejs
 author: ranjithr
@@ -14,52 +14,52 @@ ms.devlang: nodejs
 ms.topic: article
 ms.date: 06/06/2016
 ms.author: ranjithr
-ms.openlocfilehash: d820ef3438e13332657641b06b57fa277e79f811
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 975898142a224f14df1091a46d16e9074d9e2831
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="best-practices-and-troubleshooting-guide-for-node-applications-on-azure-web-apps"></a>Procedure consigliate e guida alla risoluzione dei problemi per le applicazioni Node in App Web di Azure
 [!INCLUDE [tabs](../../includes/app-service-web-get-started-nav-tabs.md)]
 
-In questo articolo verranno illustrate le procedure consigliate e le procedure di risoluzione dei problemi per le [applicazioni Node](app-service-web-get-started-nodejs.md) in esecuzione in App Web di Azure con [iisnode](https://github.com/azure/iisnode).
+In questo articolo verranno illustrate le procedure consigliate di hello e procedure di risoluzione dei problemi per [applicazioni nodo](app-service-web-get-started-nodejs.md) in esecuzione in Azure WebApp (con [iisnode](https://github.com/azure/iisnode)).
 
 > [!WARNING]
-> Prestare attenzione durante l'uso delle procedure di risoluzione dei problemi nel sito di produzione. È consigliabile risolvere i problemi dell'app in una configurazione non di produzione, ad esempio nello slot di staging, e dopo la risoluzione del problema scambiare lo slot di staging con lo slot di produzione.
+> Prestare attenzione durante l'uso delle procedure di risoluzione dei problemi nel sito di produzione. Si consiglia di tootroubleshoot l'app in una non di produzione del programma di installazione, ad esempio slot di gestione temporanea e quando non è stato risolto il problema di hello, scambio di slot di gestione temporanea con slot di produzione.
 > 
 > 
 
 ## <a name="iisnode-configuration"></a>Configurazione IISNODE
-Questo [file di schema](https://github.com/Azure/iisnode/blob/master/src/config/iisnode_schema_x64.xml) mostra tutte le impostazioni che possono essere configurate per iisnode. Ecco alcune impostazioni utili per l'applicazione:
+Questo [file di schema](https://github.com/Azure/iisnode/blob/master/src/config/iisnode_schema_x64.xml) Mostra tutte le impostazioni di hello che possono essere configurate per iisnode. Alcune impostazioni che si riveleranno utili per l'applicazione hello sono:
 
 * nodeProcessCountPerApplication
   
-    Questa impostazione controlla il numero di processi del nodo avviati per ogni applicazione IIS. Il valore predefinito è 1. Se si specifica 0 per questa impostazione, è possibile avviare un numero di file node.exe uguale al numero di core della macchina virtuale. Il valore consigliato è 0 per la maggior parte delle applicazioni, per consentire di utilizzare tutti i core disponibili nella macchina virtuale. Node.exe è un file a thread singolo, quindi un file node.exe utilizzerà al massimo 1 core. Per ottenere le prestazioni più elevate dall'applicazione Node, è consigliabile utilizzare tutti i core.
+    Questa impostazione controlla il numero di hello di processi di nodo che vengono avviate per ogni applicazione IIS. Il valore predefinito è 1. È possibile avviare tante node.exe come il numero di core VM impostando questo too0. Valore consigliato è 0 per la maggior parte delle applicazioni in modo è possibile utilizzare tutti i core hello nel computer. Node.exe è singolo thread in modo uno node.exe utilizzerà un massimo di 1 core e tooget le massime prestazioni dall'applicazione nodo si tooutilize tutti i core.
 * nodeProcessCommandLine
   
-    Questa impostazione controlla il percorso del file node.exe. È possibile impostare questo valore in modo che faccia riferimento alla versione specifica del file node.exe.
+    Questa impostazione Controlla hello percorso toohello node.exe. È possibile impostare questa versione di node.exe tooyour toopoint valore.
 * maxConcurrentRequestsPerProcess
   
-    Questa impostazione controlla il numero massimo di richieste concorrenti inviate da iisnode a ogni node.exe. In App Web di Azure il valore predefinito per questa impostazione è Infinite. Non sarà necessario preoccuparsi di questa impostazione. All'esterno di App Web di Azure il valore predefinito è 1024. Potrebbe essere necessario configurare questa impostazione in base al numero di richieste ricevute dall'applicazione e dalla velocità di elaborazione di ogni richiesta da parte dell'applicazione.
+    Questa impostazione Controlla numero massimo di hello di richieste simultanee inviato da iisnode tooeach node.exe. In azure WebApp, valore predefinito hello è infinito. Non è tooworry su questa impostazione. All'esterno di azure WebApp, valore predefinito di hello è 1024. È possibile tooconfigure a seconda di quanti richiede l'applicazione ottiene e la velocità con cui l'applicazione elabora ogni richiesta.
 * maxNamedPipeConnectionRetry
   
-    Questa impostazione controlla il numero massimo di tentativi di connessione da parte di iisnode alla named pipe per inviare la richiesta a node.exe. Questa impostazione, insieme a namedPipeConnectionRetryDelay, determina il timeout totale di ogni richiesta in iisnode. Il valore predefinito è 200 in App Web di Azure. Timeout totale in secondi = (maxNamedPipeConnectionRetry \* namedPipeConnectionRetryDelay) / 1000
+    Questa impostazione Controlla hello numero massimo iisnode ritenterà la connessione su hello denominato richiesta hello di pipe toosend su toonode.exe. Questa impostazione in combinazione con namedPipeConnectionRetryDelay determina hello timeout totale di ogni richiesta all'interno di iisnode. Il valore predefinito è 200 in App Web di Azure. Timeout totale in secondi = (maxNamedPipeConnectionRetry \* namedPipeConnectionRetryDelay) / 1000
 * namedPipeConnectionRetryDelay
   
-    Questa impostazione controlla la quantità di tempo (in ms) di attesa da parte di iisnode prima di ripetere il tentativo di invio di richieste a node.exe tramite la named pipe. Il valore predefinito è 250 ms.
+    Questa quantità di hello impostazione controlli di tempo (in ms) iisnode dovrà attendere tra ogni tentativo toosend richiesta toonode.exe su hello denominato pipe. Il valore predefinito è 250 ms.
     Timeout totale in secondi = (maxNamedPipeConnectionRetry \* namedPipeConnectionRetryDelay) / 1000
   
-    Per impostazione predefinita, il timeout totale in iisnode in App Web di Azure è 200 \* 250ms = 50 seconds.
+    Per impostazione predefinita il timeout totale di hello in iisnode in azure WebApp è 200 \* 250ms = 50 secondi.
 * logDirectory
   
-    Questa impostazione controlla la directory in cui iisnode registrerà stdout/stderr. Il valore predefinito è iisnode, ovvero un valore relativo alla directory di script principale (directory in cui si trova server.js)
+    Questa impostazione Controlla directory hello in iisnode registrerà stdout/stderr. Il valore predefinito è iisnode ovvero directory script principale relativo toohello (directory in cui è presente server.js principale)
 * debuggerExtensionDll
   
-    Questa impostazione controlla la versione di node-inspector verrà usata da iisnode durante il debug dell'applicazione Node. iisnode-inspector-0.7.3.dll e iisnode-inspector.dll sono attualmente gli unici due valori validi per questa impostazione. Il valore predefinito è iisnode-inspector-0.7.3.dll. La versione iisnode-inspector-0.7.3.dll usa node-inspector-0.7.3 e usa WebSocket. Sarà quindi necessario abilitare i protocolli WebSocket in App Web di Azure per usare questa versione. Per altre informazioni sulla configurazione di iisnode per l'uso di node-inspector, vedere <http://www.ranjithr.com/?p=98>.
+    Questa impostazione controlla la versione di node-inspector verrà usata da iisnode durante il debug dell'applicazione Node. Attualmente iisnode-controllo-0.7.3.dll e iisnode inspector.dll hello solo 2 valori sono validi per questa impostazione. Il valore predefinito è iisnode-inspector-0.7.3.dll. versione di iisnode-controllo-0.7.3.dll Usa nodo-controllo-0.7.3 e WebSocket, pertanto sarà necessario tooenable WebSocket in toouse l'App Web di azure questa versione. Vedere <http://www.ranjithr.com/?p=98> per ulteriori informazioni su come tooconfigure iisnode toouse hello nuovo nodo-controllo.
 * flushResponse
   
-    Il comportamento predefinito di IIS prevede il buffering di un massimo di 4 MB di dati di risposta prima dello scaricamento oppure fino alla fine della risposta, a seconda di quale si verifica per primo. iisnode offre un'impostazione di configurazione per eseguire l'override di questo comportamento: per scaricare un frammento del corpo dell'entità della risposta non appena iisnode lo riceve da node.exe, è necessario impostare l'attributo iisnode/@flushResponse in web.config su 'true':
+    comportamento predefinito di Hello di IIS è che memorizza nel buffer dei dati di risposta di too4MB prima di scaricare o fino al termine di hello di risposta hello, verifica per primo. iisnode offre un'impostazione di questo comportamento toooverride di configurazione: tooflush un frammento del corpo entità della risposta hello appena iisnode riceve da node.exe, è necessario tooset hello iisnode/@flushResponse attributo nel file Web. config too'true':
   
     ```
     <configuration>    
@@ -70,9 +70,9 @@ Questo [file di schema](https://github.com/Azure/iisnode/blob/master/src/config/
     </configuration>
     ```
   
-    L'abilitazione dello scaricamento di ogni frammento del corpo dell'entità della risposta aggiunge un sovraccarico delle prestazioni, che riduce la velocità effettiva del sistema del 5% circa (a partire dalla versione 0.1.13). È quindi consigliabile limitare l'ambito di questa impostazione solo agli endpoint che richiedono lo streaming delle risposte, ad esempio usando l'elemento <location> nel file web.config.
+    L'abilitazione lo scaricamento di ogni frammento del corpo entità della risposta hello aggiunge overhead delle prestazioni che consente di ridurre la velocità effettiva hello del sistema hello del 5% (a partire da v0.1.13), pertanto è ottimale tooscope questo tooendpoints unica impostazione che richiedono il flusso di risposta (ad esempio utilizzando hello <location> elemento hello di Web. config)
   
-    Per lo streaming di applicazioni sarà inoltre necessario impostare il valore responseBufferLimit del gestore di iisnode su 0.
+    In aggiunta toothis, per lo streaming di applicazioni, sarà necessario tooalso set responseBufferLimit del too0 gestore iisnode.
   
     ```
     <handlers>    
@@ -81,37 +81,37 @@ Questo [file di schema](https://github.com/Azure/iisnode/blob/master/src/config/
     ```
 * watchedFiles
   
-    Si tratta di un elenco di file separato da punti e virgola che sarà controllato per rilevare le modifiche. Una modifica a un file provoca il riciclo da parte dell'applicazione. Ogni voce è costituita da un nome di directory facoltativo e un nome di file obbligatorio, relativi alla directory in cui si trova il punto di ingresso principale dell'applicazione. I caratteri jolly sono consentiti solo nella parte relativa al nome di file. Il valore predefinito è "\*.js;web.config"
+    Si tratta di un elenco di file separato da punti e virgola che sarà controllato per rilevare le modifiche. Un file tooa modifica comporta toorecycle applicazione hello. Ogni voce è costituito da un nome di directory facoltativo più di un nome file richiesto che sono directory toohello relativo punto di ingresso principale dell'applicazione hello in cui si trova. I caratteri jolly sono consentiti nelle solo parte del nome file hello. Il valore predefinito è "\*.js;web.config"
 * recycleSignalEnabled
   
-    Il valore predefinito è False. Se questa funzionalità è abilitata, l'applicazione Node si può connettere a una named pipe (variabile di ambiente IISNODE\_CONTROL\_PIPE) e può inviare un messaggio di "riciclo". In questo modo w3wp verrà riciclato correttamente.
+    Il valore predefinito è False. Se abilitata, l'applicazione del nodo può connettersi tooa denominato pipe (variabile di ambiente IISNODE\_controllo\_PIPE) e inviare un messaggio "riciclo". In questo modo hello w3wp toorecycle normalmente.
 * idlePageOutTimePeriod
   
-    Il valore predefinito è 0, ovvero questa funzionalità è disabilitata. Se si specifica un valore maggiore di 0, iisnode eseguirà il paging di tutti i rispettivi processi figlio ogni 'idlePageOutTimePeriod' millisecondi. Per informazioni sul paging, vedere questa [documentazione](https://msdn.microsoft.com/library/windows/desktop/ms682606.aspx). Questa impostazione sarà utile per le applicazioni che utilizzano una quantità elevata di memoria e vogliono eseguire occasionalmente il paging della memoria sul disco per liberare RAM.
+    Il valore predefinito è 0, ovvero questa funzionalità è disabilitata. Quando set toosome valore maggiore di 0, iisnode effettua il paging tutti i relativi elementi figlio elabora ogni millisecondi 'idlePageOutTimePeriod'. cosa significa che, paging toounderstand consultare toothis [documentazione](https://msdn.microsoft.com/library/windows/desktop/ms682606.aspx). Questa impostazione sarà utile per le applicazioni che utilizzano una grande quantità di memoria e si desidera toopageout memoria toodisk occasionalmente toofree backup parte della RAM.
 
 > [!WARNING]
-> Prestare attenzione quando si abilitano le impostazioni di configurazione seguenti nelle applicazioni di produzione. È consigliabile non abilitarle nelle applicazioni di produzione live.
+> Prestare attenzione quando si abilita hello seguire le impostazioni di configurazione di applicazioni di produzione. Toonot si consiglia di attivare l'applicazioni di produzione in tempo reale.
 > 
 > 
 
 * debugHeaderEnabled
   
-    Il valore predefinito è False. Se questa opzione è impostata su True, iisnode aggiungerà un'intestazione di risposta HTTP di tipo iisnode-debug a ogni risposta HTTP inviata. Il valore di intestazione di tipo iisnode-debug è un URL. I singoli elementi delle informazioni di diagnostica possono essere dedotti esaminando il frammento di URL, ma per ottenere una visualizzazione migliore è possibile aprire l'URL nel browser.
+    valore predefinito di Hello è false. Se impostato, tootrue iisnode aggiungerà una risposta HTTP risposta intestazione iisnode debug tooevery HTTP invia il valore dell'intestazione di debug iisnode hello è un URL. Esaminando il frammento di URL hello possono potranno singole parti di informazioni diagnostiche, ma viene ottenuta una migliore visualizzazione aprendo hello URL nel browser hello.
 * loggingEnabled
   
-    Questa impostazione controlla la registrazione di stdout e stderr da parte di iisnode. Iisnode acquisirà i valori di stdout/stderr dai processi di nodo avviati e li scriverà nella directory specificata nell'impostazione 'logDirectory'. Se si abilita questa impostazione, l'applicazione scriverà log nel file system e ciò potrebbe provocare problemi di prestazioni, in base alla quantità di registrazione eseguita dall'applicazione.
+    Questa impostazione controlla la registrazione di hello di stdout e stderr da iisnode. Iisnode verrà acquisire stdout/stderr dai processi di nodo che viene avviato e scrittura directory toohello specificato nell'impostazione di 'logDirectory' hello. Dopo aver attivato attiva, l'applicazione verrà scritta registri toohello file system e a seconda della quantità di hello di registrazione eseguita dall'applicazione hello, potrebbe essere implicazioni sulle prestazioni.
 * devErrorsEnabled
   
-    Il valore predefinito è False. Se questo valore è impostato su True, iisnode visualizzerà il codice di stato HTTP e il codice errore Win32 nel browser. Il codice win32 sarà utile per il debug di determinati tipi di problemi.
+    Il valore predefinito è False. Se impostato, tootrue iisnode verrà visualizzato il codice di stato HTTP hello e codice di errore Win32 nel browser. codice win32 Hello possono risultare utile per determinati tipi di problemi di debug.
 * debuggingEnabled (non abilitare questa impostazione nel sito di produzione live)
   
-    Questa impostazione controlla la funzionalità di debug. Iisnode è integrato con node-inspector. Abilitando questa impostazione, si abilita il debug dell'applicazione Node. Dopo l'abilitazione di questa impostazione, iisnode presenterà i file di node-inspector necessari nella directory 'debuggerVirtualDir' alla prima richiesta di debug per l'applicazione Node. È possibile caricare node-inspector inviando una richiesta a http://yoursite/server.js/debug. È possibile controllare il segmento dell'URL di debug con l'impostazione 'debuggerPathSegment'. Per impostazione predefinita, debuggerPathSegment='debug'. È possibile impostare questo valore su un GUID, ad esempio, in modo che non possa essere individuato facilmente da altri utenti.
+    Questa impostazione controlla la funzionalità di debug. Iisnode è integrato con node-inspector. Abilitando questa impostazione, si abilita il debug dell'applicazione Node. Dopo aver abilitata questa impostazione, iisnode verrà layout hello necessarie nodo-controllo file nella directory 'debuggerVirtualDir' nel primo debug richiesta tooyour nodo un'applicazione hello. È possibile caricare hello nodo-controllo inviando una richiesta toohttp://yoursite/server.js/debug. Segmento di URL hello debug è possibile controllare con l'impostazione 'debuggerPathSegment'. Per impostazione predefinita, debuggerPathSegment='debug'. È possibile impostare questo GUID tooa ad esempio, in modo che sia più difficile toobe individuati da altri utenti.
   
     Per altre informazioni sul debug, vedere questo [collegamento](https://tomasz.janczuk.org/2011/11/debug-nodejs-applications-on-windows.html) .
 
 ## <a name="scenarios-and-recommendationstroubleshooting"></a>Scenari e indicazioni/risoluzione dei problemi
 ### <a name="my-node-application-is-making-too-many-outbound-calls"></a>L'applicazione Node effettua un numero eccessivo di chiamate in uscita.
-Il funzionamento normale di molte applicazioni prevede l'esecuzione di connessioni in uscita. Quando si riceve una richiesta, ad esempio, l'app Node deve contattare un'API REST in una posizione diversa e ottenere informazioni per elaborare la richiesta. È consigliabile usare un agente keep-alive durante l'esecuzione di chiamate HTTP o HTTPS. È ad esempio possibile usare il modulo agentkeepalive come agente keep-alive durante le chiamate in uscita, per assicurare che i socket vengano riutilizzati nella macchina virtuale di App Web di Azure e ridurre il sovraccarico per la creazione di nuovi socket per ogni richiesta in uscita. Ciò consente anche di assicurare che si stia usando un numero minore di socket per effettuare molte richieste in uscita e che quindi non venga superato il valore maxSockets allocato per la macchina virtuale. In App Web di Azure è consigliabile impostare il valore maxSockets per agentKeepAlive su un totale di 160 socket per ogni macchina virtuale. Se quindi sono presenti quattro node.exe in esecuzione nella macchina virtuale, è consigliabile impostare il valore maxSockets per agentKeepAlive su 40 per ogni file node.exe, ovvero 160 in totale per ogni macchina virtuale.
+Molte applicazioni opportuno che le connessioni in uscita toomake come parte del relativo funzionamento regolare. Ad esempio, quando arriva una richiesta, l'app nodo sarebbe desidera toocontact altrove un'API REST e ottenere una richiesta di informazioni tooprocess hello. Quando si effettuano chiamate http o https, è opportuno toouse un agente di keep alive. Ad esempio, è possibile utilizzare il modulo di agentkeepalive hello come l'agente di keep-alive quando si eseguono queste chiamate in uscita. Ciò assicura che i socket hello vengono riutilizzati sul webapp azure VM e riduzione di overhead hello di creazione di nuovi socket per ogni richiesta in uscita. Inoltre, in tal modo che si sta utilizzando un minor numero di socket toomake che molte richieste in uscita e pertanto non superare maxSockets hello allocati per ogni macchina virtuale. Indicazione su Azure WebApp sarebbe tooset hello agentKeepAlive maxSockets valore totale tooa di 160 socket per ogni macchina virtuale. Ciò significa che se si dispone di 4 node.exe in esecuzione su hello VM, desiderata tooset hello agentKeepAlive maxSockets too40 per node.exe ovvero 160 totale per ogni macchina virtuale.
 
 Configurazione di esempio per [agentKeepALive](https://www.npmjs.com/package/agentkeepalive):
 
@@ -124,15 +124,15 @@ var keepaliveAgent = new Agent({
 });
 ```
 
-Questo esempio presuppone che siano presenti quattro file node.exe in esecuzione nella VM. Se nella macchina virtuale è presente un numero diverso di node.exe in esecuzione, sarà necessario modificare di conseguenza l'impostazione maxSockets.
+Questo esempio presuppone che siano presenti quattro file node.exe in esecuzione nella VM. Se si dispone di un numero diverso di node.exe in esecuzione su hello VM, sarà necessario toomodify hello maxSockets impostare di conseguenza.
 
 ### <a name="my-node-application-is-consuming-too-much-cpu"></a>L'applicazione Node utilizza una quantità eccessiva di CPU.
-È probabile che si riceva una raccomandazione relativa all'utilizzo elevato di CPU da App Web di Azure nel portale. È anche possibile configurare monitoraggi per il controllo di determinate [metriche](web-sites-monitor.md). Quando si verifica l'utilizzo della CPU nel [dashboard del portale di Azure](../application-insights/app-insights-web-monitor-performance.md), controllare i valori MAX per la CPU, in modo da non perdere i valori di picco.
-Se si ritiene che l'applicazione utilizzi una quantità eccessiva di CPU senza spiegazioni plausibili, sarà necessario profilare l'applicazione Node.
+È probabile che si riceva una raccomandazione relativa all'utilizzo elevato di CPU da App Web di Azure nel portale. È anche possibile toowatch monitoraggi il programma di installazione per determinati [metriche](web-sites-monitor.md). Durante il controllo dell'utilizzo della CPU hello nel hello [Dashboard portale Azure](../application-insights/app-insights-web-monitor-performance.md), verificare i valori massimo hello per CPU, per perdere neanche i valori di picco hello.
+Nei casi in cui si ritiene che l'applicazione utilizza una quantità eccessiva della CPU e si non può spiegare il motivo, è necessario tooprofile l'applicazione del nodo.
 
 ### 
 #### <a name="profiling-your-node-application-on-azure-webapps-with-v8-profiler"></a>Profilatura dell'applicazione Node in App Web di Azure con V8-Profiler
-Si supponga, ad esempio, che sia disponibile un'app hello world da profilare come illustrato di seguito:
+Ad esempio, consente ad esempio si dispone di un'app di hello world che si desidera tooprofile come illustrato di seguito:
 
 ```
 var http = require('http');    
@@ -153,16 +153,16 @@ http.createServer(function (req, res) {
 }).listen(process.env.PORT);
 ```
 
-Passare al sito scm all'indirizzo https://yoursite.scm.azurewebsites.net/DebugConsole
+Passare tooyour scm sito https://yoursite.scm.azurewebsites.net/DebugConsole
 
 Verrà visualizzato un prompt dei comandi, come illustrato di seguito. Passare al sito/directory wwwroot.
 
 ![](./media/app-service-web-nodejs-best-practices-and-troubleshoot-guide/scm_install_v8.png)
 
-Eseguire il comando "npm install v8-profiler".
+Eseguire il comando hello "npm install v8 profiler"
 
 Nella directory node\_modules dovrebbe essere eseguita l'installazione di v8-profiler e di tutte le rispettive dipendenze.
-Modificare il file server.js per profilare l'applicazione.
+A questo punto, modificare il tooprofile server.js l'applicazione.
 
 ```
 var http = require('http');    
@@ -188,74 +188,74 @@ http.createServer(function (req, res) {
 }).listen(process.env.PORT);
 ```
 
-Le modifiche precedenti eseguiranno la profilatura della funzione WriteConsoleLog e quindi scriveranno l'output della profilatura nel file 'profile.cpuprofile' in wwwroot del sito. Inviare una richiesta all'applicazione. Verrà visualizzato un file 'profile.cpuprofile' creato in wwwroot del sito.
+Hello sopra le modifiche verrà funzione WriteConsoleLog hello del profilo e quindi scrivere hello profilo output too'profile.cpuprofile' file in wwwroot del sito. Invio di un'applicazione tooyour richiesta. Verrà visualizzato un file 'profile.cpuprofile' creato in wwwroot del sito.
 
 ![](./media/app-service-web-nodejs-best-practices-and-troubleshoot-guide/scm_profile.cpuprofile.png)
 
-Scaricare questo file. Sarà necessario aprire il file con gli strumenti F12 di Chrome. Premere F12 in Chrome, quindi fare clic sulla scheda "Profiles" (Profili). Fare clic sul pulsante "Load" (Carica). Selezionare il file profile.cpuprofile appena scaricato. Fare clic sul profilo appena caricato.
+Scaricare questo file e sarà necessario tooopen questo file con strumenti F12 Chrome. Premere F12 in chrome, quindi fare clic su hello "Nella scheda Profili". Fare clic sul pulsante "Load" (Carica). Selezionare il file profile.cpuprofile appena scaricato. Fare clic sul profilo hello che appena caricato.
 
 ![](./media/app-service-web-nodejs-best-practices-and-troubleshoot-guide/chrome_tools_view.png)
 
-Come si può notare, il 95% del tempo è stato utilizzato dalla funzione WriteConsoleLog, come illustrato di seguito. Vengono anche mostrati i numeri di riga esatti e i file di origine che provocano questo problema.
+Si noterà che 95% di tempo hello utilizzato dalla funzione WriteConsoleLog come illustrato di seguito. Ciò illustra anche i numeri di riga esatta hello e i file di origine che causano il problema di hello.
 
 ### <a name="my-node-application-is-consuming-too-much-memory"></a>L'applicazione Node utilizza una quantità eccessiva di memoria.
-È probabile che si riceva da App Web di Azure nel portale una raccomandazione relativa all'utilizzo elevato di memoria. È anche possibile configurare monitoraggi per il controllo di determinate [metriche](web-sites-monitor.md). Quando si verifica l'utilizzo della memoria nel [dashboard del portale di Azure](../application-insights/app-insights-web-monitor-performance.md), controllare i valori MAX per la memoria, in modo da non perdere i valori di picco.
+È probabile che si riceva da App Web di Azure nel portale una raccomandazione relativa all'utilizzo elevato di memoria. È anche possibile toowatch monitoraggi il programma di installazione per determinati [metriche](web-sites-monitor.md). Durante il controllo dell'utilizzo della memoria hello in hello [Dashboard portale Azure](../application-insights/app-insights-web-monitor-performance.md), verificare i valori massimo hello per la memoria per perdere neanche i valori di picco hello.
 
 #### <a name="leak-detection-and-heap-diffing-for-nodejs"></a>Rilevamento della perdita di risorse e delle differenze tra heap per node.js
-È possibile usare [node-memwatch](https://github.com/lloyd/node-memwatch) per semplificare l'identificazione delle perdite di memoria.
-È possibile installare memwatch con la stessa procedura usata per v8-profiler e modificare il codice per acquisire gli heap e rilevarne le differenze per identificare le perdite di memoria nell'applicazione.
+È possibile utilizzare [nodo memwatch](https://github.com/lloyd/node-memwatch) perdite toohelp identificare la memoria.
+È possibile installare memwatch come v8 profiler e modificare che il codice toocapture e diff heap tooidentify hello le perdite di memoria nell'applicazione.
 
 ### <a name="my-nodeexes-are-getting-killed-randomly"></a>I file node.exe vengono terminati in modo casuale
 Questo problema può avere alcune cause:
 
-1. L'applicazione genera eccezioni non rilevate. Cercare nel file d:\\home\\LogFiles\\Application\\logging-errors.txt i dettagli nell'eccezione generata. Questo file include l'analisi dello stack, quindi è possibile risolvere i problemi dell'applicazione in base a tali informazioni.
-2. L'applicazione utilizza una quantità troppo elevata di memoria e ciò impedisce l'avvio di altri processi. Se il totale della memoria della macchina virtuale si avvicina al 100%, è possibile che il file node.exe venga terminato da gestione processi per consentire ad altri processi di eseguire alcune operazioni. Per risolvere questo problema, assicurarsi che l'applicazione non perda memoria OPPURE, se l'applicazione deve effettivamente usare una quantità elevata di memoria, selezionare dimensioni maggiori per la macchina virtuale, in modo da ottenere molta più RAM.
+1. L'applicazione sta generando eccezioni non rilevate – d: controllo Please\\home\\LogFiles\\applicazione\\file di registrazione-Errors. txt per i dettagli di hello eccezione hello generata. Questo file contiene l'analisi dello stack hello per risolverli in base a questa applicazione.
+2. L'applicazione utilizza una quantità troppo elevata di memoria e ciò impedisce l'avvio di altri processi. Se memoria della macchina virtuale hello totale è % too100 Chiudi, potrebbe essere terminato il node.exe hello processo manager toolet altri processi di ottengono un toodo possibilità alcune operazioni. toofix, assicurarsi che l'applicazione non dispone di memoria o se l'applicazione deve toouse una grande quantità di memoria, per applicare la scalabilità verticale tooa VM più grande con una grande quantità di RAM.
 
 ### <a name="my-node-application-does-not-start"></a>Non è possibile avviare l'applicazione Node
 Se l'applicazione restituisce errori di tipo 500 all'avvio, è possibile che si siano verificati i problemi seguenti:
 
-1. Node.exe non è presente nella posizione corretta. Verificare l'impostazione nodeProcessCommandLine.
-2. Il file di script principale non è presente nella posizione corretta. Controllare il file web.config e assicurarsi che il nome del file di script principale nella sezione dei gestori corrisponda al file di script principale.
-3. La configurazione di Web.config non è corretta. Controllare i nomi/valori delle impostazioni.
-4. Avvio a freddo: l'avvio dell'applicazione richiede troppo tempo. Se l'avvio dell'applicazione richiede più di (maxNamedPipeConnectionRetry \* namedPipeConnectionRetryDelay) / 1000 secondi, iisnode restituirà un errore di tipo 500. Incrementare i valori di queste impostazioni, in modo che corrispondano al tempo di avvio dell'applicazione, per impedire il timeout di iisnode e la restituzione dell'errore di tipo 500.
+1. Node.exe non è presente nella posizione corretta hello. Verificare l'impostazione nodeProcessCommandLine.
+2. File di script principale non è presente nella posizione corretta hello. Verificare i file Web. config e verificare nome hello hello principale del file di script nella sezione gestori hello corrisponde al file script principale di hello.
+3. Configurazione Web. config non è corretta – controllare le impostazioni di hello nomi/valori.
+4. Avvio a freddo: l'applicazione richiede toostartup troppo lungo. Se l'avvio dell'applicazione richiede più di (maxNamedPipeConnectionRetry \* namedPipeConnectionRetryDelay) / 1000 secondi, iisnode restituirà un errore di tipo 500. Aumentare i valori hello di toomatch queste impostazioni applicazione avviare ora tooprevent iisnode da scadere e restituire l'errore hello 500.
 
 ### <a name="my-node-application-crashed"></a>Si è verificato l'arresto anomalo dell'applicazione Node
-L'applicazione genera eccezioni non rilevate. Cercare nel file d:\\home\\LogFiles\\Application\\logging-errors.txt i dettagli nell'eccezione generata. Questo file include l'analisi dello stack, quindi è possibile risolvere i problemi dell'applicazione in base a tali informazioni.
+L'applicazione sta generando eccezioni non rilevate – d: controllo Please\\home\\LogFiles\\applicazione\\file di registrazione-Errors. txt per i dettagli di hello eccezione hello generata. Questo file contiene l'analisi dello stack hello per risolverli in base a questa applicazione.
 
-### <a name="my-node-application-takes-too-much-time-to-startup-cold-start"></a>L'avvio dell'applicazione Node richiede troppo tempo (avvio a freddo)
-La causa più comune di questo problema deriva dalla presenza di un numero elevato di file dell'applicazione in node\_modules e dal tentativo dell'applicazione di caricare la maggior parte di questi file durante l'avvio. Per impostazione predefinita, poiché i file si trovano nella condivisione di rete in App Web di Azure, il caricamento di un numero così elevato di file può richiedere molto tempo.
-Ecco alcune soluzione per ridurre i tempi di avvio:
+### <a name="my-node-application-takes-too-much-time-toostartup-cold-start"></a>Applicazione nodo accetta toostartup troppo tempo (avvio freddo)
+Motivo più comune è che un'applicazione hello dispone di molti file nel nodo hello\_moduli e tooload tentativi di applicazione hello la maggior parte di questi file durante l'avvio. Per impostazione predefinita, poiché si trovano i file nella condivisione di rete hello in WebApp di Azure, il caricamento di molti file può richiedere del tempo.
+Alcune soluzioni toomake più velocemente in questo sono:
 
-1. Assicurarsi che sia disponibile una struttura di dipendenze semplice, senza dipendenze duplicate, usando npm3 per installare i moduli.
-2. Provare a eseguire il caricamento lazy di node\_modules e non caricare tutti i moduli all'avvio. La chiamata a require('module') deve essere quindi effettuata quando effettivamente necessario, all'interno della funzione in cui si prova a usare il modulo.
-3. App Web di Azure offre una funzionalità definita cache locale. Questa funzionalità copia il contenuto dalla condivisione di rete nel disco locale sulla macchina virtuale. Poiché i file sono locali, il tempo di caricamento di node\_modules risulta molto più veloce. Per informazioni dettagliate su come usare, la cache locale, vedere questa [documentazione](../app-service/app-service-local-cache.md) .
+1. Accertarsi di avere una struttura flat dipendenza e senza dipendenze duplicate utilizzando npm3 tooinstall dei moduli.
+2. Provare a carico toolazy il nodo\_moduli e caricare tutti i moduli di hello all'avvio. Ciò significa che toorequire('module') chiamata hello deve essere eseguita quando è effettivamente necessario all'interno di funzione hello si tenta di modulo hello toouse.
+3. App Web di Azure offre una funzionalità definita cache locale. Questa funzione Copia il contenuto da hello rete condivisione toohello disco locale nel hello macchina virtuale. Poiché i file hello sono locali, hello tempo di caricamento della nodo\_moduli è molto più veloce. -Questo [documentazione](../app-service/app-service-local-cache.md) spiega come toouse Cache locale in ulteriori dettagli.
 
 ## <a name="iisnode-http-status-and-substatus"></a>Stato e stato secondario HTTP di IISNODE
-Questo [file di origine](https://github.com/Azure/iisnode/blob/master/src/iisnode/cnodeconstants.h) elenca tutte le combinazioni possibili di stato/stato secondario che iisnode può restituire in caso di errore.
+Questo [file di origine](https://github.com/Azure/iisnode/blob/master/src/iisnode/cnodeconstants.h) elenchi tutti iisnode di combinazione di stato possibili dello stato secondario hello può restituire in caso di errore.
 
-Abilitare FREB per l'applicazione per visualizzare il codice errore win32. Assicurarsi di abilitare FREB solo in siti non di produzione, per motivi di prestazioni.
+Abilita FREB per il codice di errore applicazione toosee hello win32 (. Assicurarsi di abilitare FREB solo nei siti non di produzione per motivi di prestazioni).
 
 | Stato HTTP | Stato secondario HTTP | Possibile motivo |
 | --- | --- | --- |
-| 500 |1000 |Si è verificato un problema durante l'invio della richiesta a IISNODE. Verificare se node.exe è stato avviato. È possibile che si sia verificato l'arresto anomalo di Node.exe all'avvio. Cercare eventuali errori nella configurazione del file web.config. |
-| 500 |1001 |- Win32Error 0x2: l'app non risponde all'URL. Controllare le regole di riscrittura dell'URL o verificare se sono state definite le route corrette per l'app Express. - Win32Error 0x6d: la named pipe è occupata. Node.exe non accetta le richieste perché la pipe è occupata. Controllare se l'utilizzo della CPU è elevato. - Altri errori: controllare se si è verificato l'arresto anomalo di node.exe. |
+| 500 |1000 |Si è verificato un problema di invio hello richiesta tooIISNODE: controllare se node.exe è stato avviato. È possibile che si sia verificato l'arresto anomalo di Node.exe all'avvio. Cercare eventuali errori nella configurazione del file web.config. |
+| 500 |1001 |-0x2 - App Win32Error toohello URL non risponde. Le regole o se l'applicazione express ha definita la route corretto hello riscrittura dell'URL di controllo. -Win32Error 0x6d – named pipe è occupato: Node.exe non accetta richieste pipe hello è occupata. Controllare se l'utilizzo della CPU è elevato. - Altri errori: controllare se si è verificato l'arresto anomalo di node.exe. |
 | 500 |1002 |Si è verificato l'arresto anomalo di Node.exe: verificare se nel file d:\\home\\LogFiles\\logging-errors.txt è disponibile l'analisi dello stack. |
-| 500 |1003 |Problema di configurazione della pipe: questo errore non dovrebbe essere mai visualizzato. Se viene visualizzato, la configurazione della named pipe non è corretta. |
-| 500 |1004-1018 |Si è verificato un errore durante l'invio della richiesta o l'elaborazione della risposta verso/da node.exe. Controllare se si è verificato l'arresto anomalo di node.exe. Verificare se nel file d:\\home\\LogFiles\\logging-errors.txt è disponibile l'analisi dello stack. |
-| 503 |1000 |La memoria non è sufficiente per allocare altre connessioni a named pipe. Verificare i motivi per cui l'app utilizza una quantità così elevata di memoria. Controllare il valore dell'impostazione maxConcurrentRequestsPerProcess. Se non è impostata su Infinite e il numero di richieste è elevato, incrementare il valore per evitare questo errore. |
-| 503 |1001 |Non è stato possibile inviare la richiesta a node.exe perché l'applicazione è in fase di riciclo. Dopo il riciclo dell'applicazione, le richieste dovrebbero essere gestite normalmente. |
-| 503 |1002 |Cercare il motivo effettivo nel codice errore win32. Non è stato possibile inviare la richiesta a node.exe. |
+| 500 |1003 |Problema di configurazione di pipe non dovrebbe mai visibile, ma in caso contrario, hello denominato configurazione pipe non è corretto. |
+| 500 |1004-1018 |Si è verificato un errore durante l'invio di risposta di hello di richiesta o elaborazione hello in/da node.exe. Controllare se si è verificato l'arresto anomalo di node.exe. Verificare se nel file d:\\home\\LogFiles\\logging-errors.txt è disponibile l'analisi dello stack. |
+| 503 |1000 |Non è sufficiente memoria tooallocate più connessioni named pipe. Verificare i motivi per cui l'app utilizza una quantità così elevata di memoria. Controllare il valore dell'impostazione maxConcurrentRequestsPerProcess. Se non infinito e si dispone di un numero elevato di richieste, aumentare questo valore tooprevent questo errore. |
+| 503 |1001 |Richiesta non è stato inviato toonode.exe perché il riciclo dell'applicazione hello. Dopo l'applicazione hello è stato riciclato, le richieste di effettiva necessità di servire normalmente. |
+| 503 |1002 |Codice di errore win32 di controllo per il motivo effettivo: richiesta non è stato inviato tooa node.exe. |
 | 503 |1003 |La named pipe è troppo occupata. Controllare se il nodo utilizza una quantità elevata di CPU. |
 
-NODE.exe include un'impostazione definita NODE\_PENDING\_PIPE\_INSTANCES. Per impostazione predefinita, all'esterno di App Web di Azure questo valore è 4. Node.exe può quindi accettare quattro richieste alla volta nella named pipe. In App Web di Azure questo valore è impostato su 5000 e questo valore dovrebbe essere appropriato per la maggior parte delle applicazioni in esecuzione in App Web di Azure. L'errore 503.1003 non dovrebbe essere visualizzato in App Web di Azure perché è stato impostato un valore elevato per NODE\_PENDING\_PIPE\_INSTANCES.  |
+NODE.exe include un'impostazione definita NODE\_PENDING\_PIPE\_INSTANCES. Per impostazione predefinita, all'esterno di App Web di Azure questo valore è 4. Ciò significa che node.exe può accettare solo 4 richieste contemporaneamente nella hello denominato pipe. In Azure WebApp, questo valore è impostato too5000 e questo valore deve essere adeguato per la maggior parte delle applicazioni in esecuzione in azure WebApp nodo. Non dovrebbe essere visualizzato 503.1003 in azure WebApp poiché è un valore elevato per hello nodo\_PENDING\_PIPE\_istanze.  |
 
 ## <a name="more-resources"></a>Altre risorse
-Per altre informazioni sulle applicazioni node.js nel servizio app di Azure, selezionare questi collegamenti.
+Seguire questi toolearn collegamenti ulteriori informazioni sulle applicazioni node.js in Azure App Service.
 
 * [Introduzione alle app Web Node.js nel servizio app di Azure](app-service-web-get-started-nodejs.md)
-* [Come eseguire il debug di un'app Web Node.js nel servizio app di Azure](web-sites-nodejs-debug.md)
+* [Come toodebug un Node.js web app in Azure App Service](web-sites-nodejs-debug.md)
 * [Utilizzo di moduli Node.js con le applicazioni Azure](../nodejs-use-node-modules-azure-apps.md)
 * [Blog sulle app Web del servizio app di Azure: Node.js](https://blogs.msdn.microsoft.com/silverlining/2012/06/14/windows-azure-websites-node-js/)
 * [Centro per sviluppatori di Node. js](../nodejs-use-node-modules-azure-apps.md)
-* [Exploring the Super Secret Kudu Debug Console (Esplorazione della console segreta di debug di Kudu)](https://azure.microsoft.com/documentation/videos/super-secret-kudu-debug-console-for-azure-web-sites/)
+* [Esplorazione hello Super segreto Kudu Debug Console](https://azure.microsoft.com/documentation/videos/super-secret-kudu-debug-console-for-azure-web-sites/)
 

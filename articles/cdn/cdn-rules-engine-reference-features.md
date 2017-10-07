@@ -1,5 +1,5 @@
 ---
-title: "Funzionalità del motore regole della rete CDN di Azure | Documentazione Microsoft"
+title: "funzionalità del motore regole di aaaAzure CDN | Documenti Microsoft"
 description: "Documentazione di riferimento per le funzionalità e condizioni di corrispondenza del motore regole della rete CDN di Azure."
 services: cdn
 documentationcenter: 
@@ -14,80 +14,80 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: rli
-ms.openlocfilehash: 6703247aa8b4a6d53ff22ea2d4f22eb4a746e370
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c10b8ef58e3d209b12fbb0ac2173e1ca51ff7538
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-cdn-rules-engine-features"></a>Funzionalità del motore regole della rete CDN di Azure
-Questo argomento offre descrizioni dettagliate delle funzionalità disponibili per il [motore regole](cdn-rules-engine.md) della rete per la distribuzione di contenuti (CDN, Content Delivery Network) di Azure.
+In questo argomento elenca le descrizioni dettagliate delle funzionalità disponibili hello per Azure rete CDN (Content Delivery) [motore regole di business](cdn-rules-engine.md).
 
-La terza parte di una regola è la funzionalità. Una funzionalità definisce il tipo di azione che verrà applicato al tipo di richiesta identificata da un set di condizioni di corrispondenza.
+Hello terza parte di una regola è funzionalità hello. Una funzionalità definisce il tipo di hello di azione che verrà applicato il tipo di toohello di richiesta identificato da un set di condizioni di corrispondenza.
 
 ## <a name="access"></a>Accesso
 
-Queste funzionalità sono progettate per controllare l'accesso al contenuto.
+Queste funzionalità sono progettate toocontrol toocontent di accesso.
 
 
 Nome | Scopo
 -----|--------
 Nega l'accesso | Determina se tutte le richieste vengono rifiutate con una risposta 403 Accesso negato.
-Autenticazione token | Determina se l'autenticazione basata su token verrà applicata a una richiesta.
-Codice rifiuto autenticazione token | Determina il tipo di risposta che verrà restituito a un utente quando una richiesta viene rifiutata a causa dell'autenticazione basata su token.
+Autenticazione token | Determina se l'autenticazione basata su Token sarà applicato tooa richiesta.
+Codice rifiuto autenticazione token | Determina il tipo di hello di risposta che verrà restituito tooa utente durante una richiesta viene negata a causa dell'autenticazione basata su tooToken.
 Maiuscole/minuscole URL autenticazione token | Determina se verrà applicata la distinzione tra maiuscole e minuscole nei confronti di URL eseguiti dall'autenticazione basata su token.
-Parametro autenticazione token | Determina se il parametro della stringa di query dell'autenticazione basata su token deve essere rinominato.
+Parametro autenticazione token | Determina se il parametro della stringa query di hello l'autenticazione basata su Token deve essere rinominato.
 
 ### <a name="deny-access"></a>Nega l'accesso
 **Scopo**: determina se tutte le richieste vengono rifiutate con una risposta 403 - Accesso negato.
 
 Valore | Risultato
 ------|-------
-Enabled| Fa sì che tutte le richieste che soddisfano i criteri di corrispondenza vengano respinte con una risposta 403 - Accesso negato.
-Disabled| Ripristina il comportamento predefinito. Il comportamento predefinito prevede di consentire al server di origine di determinare il tipo di risposta da restituire.
+Enabled| Fa sì che tutte le richieste che soddisfano hello corrispondenti criteri toobe rifiutata con risposta 403 accesso negato.
+Disabled| Ripristina impostazioni predefinite hello. comportamento predefinito di Hello è tooallow hello origine server toodetermine hello risposta che verrà restituito.
 
 **Comportamento predefinito**: Disabled
 
 > [!TIP]
-   > Un possibile uso di questa funzionalità è quello di associarla a una condizione di corrispondenza Request Header (Intestazione di richiesta) per bloccare l'accesso a riferimenti HTTP che usano collegamenti inline ai contenuti.
+   > Un possibile utilizzo di questa funzionalità è tooassociate con un'intestazione di richiesta corrisponde la riferimenti condizione tooblock accesso tooHTTP che utilizzano il contenuto tooyour collegamenti in linea.
 
 ### <a name="token-auth"></a>Autenticazione token
-**Scopo:** determina se l'autenticazione basata su token verrà applicata a una richiesta.
+**Scopo:** determina se l'autenticazione basata su Token sarà applicato tooa richiesta.
 
-Se l'autenticazione basata su token è abilitata, verranno soddisfatte solo le richieste che forniscono un token crittografato e sono conformi ai requisiti specificati dal token.
+Se è abilitata l'autenticazione basata su Token, verranno rispettate solo le richieste che forniscono un token crittografato e soddisfare i requisiti toohello specificati da tale token.
 
-La chiave di crittografia usata per crittografare e decrittografare i valori dei token viene determinata dalle opzioni relative alla chiave primaria e alla chiave di backup disponibili nella pagina di autenticazione del token. Tenere presente che le chiavi di crittografia sono specifiche della piattaforma.
+chiave di crittografia Hello che sarà utilizzati valori tooencrypt e di decrittografia token è la chiave primaria e le opzioni di Backup della chiave nella pagina autenticazione Token. Tenere presente che le chiavi di crittografia sono specifiche della piattaforma.
 
 Valore | Risultato
 ------|---------
-Enabled | Protegge i contenuti richiesti con l'autenticazione basata su token. Verranno soddisfatte solo le richieste provenienti da client che forniscono un token valido e ne soddisfano i requisiti. Dall'autenticazione basata su token sono escluse le transazioni FTP.
-Disabled| Ripristina il comportamento predefinito. Il comportamento predefinito prevede di consentire alla configurazione dell'autenticazione basata su token di determinare se una richiesta deve essere protetta.
+Enabled | Consente di proteggere hello richiesto contenuto con l'autenticazione basata su Token. Verranno soddisfatte solo le richieste provenienti da client che forniscono un token valido e ne soddisfano i requisiti. Dall'autenticazione basata su token sono escluse le transazioni FTP.
+Disabled| Ripristina impostazioni predefinite hello. comportamento predefinito di Hello è tooallow il toodetermine configurazione basata su Token di autenticazione se una richiesta da proteggere.
 
 **Comportamento predefinito:** Disabled.
 
 ###<a name="token-auth-denial-code"></a>Codice rifiuto autenticazione token
-**Scopo:** determina il tipo di risposta che verrà restituita a un utente quando una richiesta viene rifiutata a causa dell'autenticazione basata su token.
+**Scopo:** determina il tipo di hello di risposta che verrà restituito tooa utente durante una richiesta viene negata a causa dell'autenticazione basata su tooToken.
 
-Di seguito sono elencati i codici di risposta disponibili.
+codici di risposta disponibile Hello sono elencati di seguito.
 
 Codice risposta|Nome risposta|Descrizione
 ----------------|-----------|--------
-301|Spostato in modo permanente|Questo codice di stato reindirizza gli utenti non autorizzati all'URL specificato nell'intestazione Location (Percorso).
-302|Trovato|Questo codice di stato reindirizza gli utenti non autorizzati all'URL specificato nell'intestazione Location (Percorso). Questo codice di stato costituisce il metodo standard per eseguire un'operazione di reindirizzamento.
-307|Reindirizzamento temporaneo|Questo codice di stato reindirizza gli utenti non autorizzati all'URL specificato nell'intestazione Location (Percorso).
-401|Non autorizzata|La combinazione di questo codice di stato con l'intestazione di risposta WWW-Authenticate consente di richiedere a un utente di eseguire l'autenticazione.
-403|Accesso negato|Messaggio di stato standard 403 - Accesso negato che viene visualizzato quando un utente non autorizzato prova ad accedere a contenuti protetti.
-404|File non trovato|Questo codice di stato indica che il client HTTP è riuscito a comunicare con il server, ma i contenuti richiesti non sono stati trovati.
+301|Spostato in modo permanente|Questo codice di stato reindirizza gli utenti non autorizzati toohello URL specificato nell'intestazione Location.
+302|Trovato|Questo codice di stato reindirizza gli utenti non autorizzati toohello URL specificato nell'intestazione Location. Questo codice di stato è hello metodo standard dell'esecuzione di un reindirizzamento.
+307|Reindirizzamento temporaneo|Questo codice di stato reindirizza gli utenti non autorizzati toohello URL specificato nell'intestazione Location.
+401|Non autorizzata|Combinazione di questo codice di stato con l'intestazione della risposta WWW-Authenticate consente tooprompt un utente per l'autenticazione.
+403|Accesso negato|Si tratta di hello standard 403 accesso negato messaggio di stato che un utente non autorizzato verrà visualizzato quando si tenta di tooaccess contenuto protetto.
+404|File non trovato|Questo codice di stato indica che client HTTP hello è stato in grado di toocommunicate con server hello, ma hello richiesto non è stato trovato il contenuto.
 
 #### <a name="url-redirection"></a>Reindirizzamento URL
 
-Questa funzionalità supporta il reindirizzamento dell'URL a un URL definito dall'utente, se configurato per restituire un codice di stato 3xx. Per specificare l'URL definito dall'utente, seguire questa procedura:
+Questa funzionalità supporta URL reindirizzamento tooa definito dall'utente URL quando è configurato tooreturn un codice di stato 3xx. È possibile specificare l'URL definito dall'utente eseguendo hello alla procedura seguente:
 
-1. Selezionare un codice di risposta 3xx per la funzionalità Token Auth Denial Code (Codice rifiuto autenticazione token).
+1. Selezionare un codice di risposta 3xx per funzionalità Token Auth Denial codice hello.
 2. Per l'opzione Optional Header Name (Nome intestazione facoltativo) selezionare "Location".
-3. Impostare l'opzione Optional Header Value (Valore intestazione facoltativo) sull'URL desiderato.
+3. Impostare il valore dell'intestazione facoltativa option (URL) toohello desiderato.
 
-Se un URL non è definito per un codice di stato 3xx, all'utente verrà restituita la pagina di risposta standard per un codice di stato 3xx.
+Se un URL non è definito per un codice di stato 3xx, hello pagina di risposta standard per un codice di stato 3xx verrà restituito toohello utente.
 
 Il reindirizzamento degli URL può essere usato solo per i codici di risposta 3xx.
 
@@ -95,20 +95,20 @@ L'opzione Optional Header Value (Valore intestazione facoltativo) supporta carat
 
 #### <a name="authentication"></a>Autenticazione
 
-Questa funzionalità prevede la possibilità di includere l'intestazione WWW-Authenticate quando si risponde a una richiesta non autorizzata di contenuti protetti con l'autenticazione basata su token. Se nella configurazione l'intestazione WWW-Authenticate è stata impostata su "basic", all'utente non autorizzato verrà richiesto di specificare le credenziali dell'account.
+Questa funzionalità supporta l'intestazione WWW-Authenticate tooinclude di hello funzionalità quando si risponde tooan richiesta non autorizzata per il contenuto protetto con l'autenticazione basata su Token. Se è stata impostata l'intestazione WWW-Authenticate troppo "base" in configurazione, verranno richiesto di utenti non autorizzati hello le credenziali dell'account.
 
-La configurazione precedente può essere ottenuta seguendo questa procedura:
+Hello di sopra di configurazione può essere ottenuto eseguendo hello alla procedura seguente:
 
-1. Selezionare "401" come codice di risposta per la funzionalità Token Auth Denial Code (Codice rifiuto autenticazione token).
+1. Selezionare "401" come codice di risposta hello per funzionalità Token Auth Denial codice hello.
 2. Per l'opzione Optional Header Name (Nome intestazione facoltativo) selezionare "WWW-Authenticate".
-3. Impostare l'opzione Optional Header Value (Valore intestazione facoltativo) su "basic".
+3. Impostare l'opzione di valore dell'intestazione facoltativa troppo "base".
 
 L'intestazione WWW-Authenticate può essere usata solo per i codici di risposta 401.
 
 ### <a name="token-auth-ignore-url-case"></a>Maiuscole/minuscole URL autenticazione token
 **Scopo:** determina se durante i confronti di URL eseguiti dall'autenticazione basata su token deve essere applicata la distinzione tra maiuscole e minuscole.
 
-I parametri interessati da questa funzionalità sono:
+parametri di Hello interessati da questa funzionalità sono:
 
 - ec_url_allow
 - ec_ref_allow
@@ -118,90 +118,90 @@ I valori validi sono:
 
 Valore|Risultato
 ---|----
-Enabled|Fa sì che il server perimetrale non applichi la distinzione tra maiuscole e minuscole quando confronta gli URL in base ai parametri dell'autenticazione basata su token.
-Disabled|Ripristina il comportamento predefinito. Il comportamento predefinito prevede di applicare la distinzioni tra maiuscole e minuscole durante i confronti di URL per l'autenticazione basata su token.
+Enabled|Fa sì che il server perimetrale tooignore caso quando si confrontano gli URL per i parametri di autenticazione basata su Token.
+Disabled|Ripristina impostazioni predefinite hello. comportamento predefinito di Hello è per i confronti di URL per l'autenticazione con Token toobe tra maiuscole e minuscole.
 
 **Comportamento predefinito:** Disabled.
  
 ### <a name="token-auth-parameter"></a>Parametro autenticazione token
-**Scopo:** determina se il parametro della stringa di query dell'autenticazione basata su token deve essere rinominato.
+**Scopo:** determina se il parametro della stringa query di hello l'autenticazione basata su Token deve essere rinominato.
 
 Informazioni chiave:
 
-- L'opzione Valore definisce il nome del parametro della stringa di query tramite il quale è possibile specificare un token.
-- L'opzione Valore non può essere impostata su "ec_token".
-- Assicurarsi che il nome definito nell'opzione Valore 
+- L'opzione valore definisce hello stringa nome del parametro query tramite cui è possibile specificare un token.
+- Impossibile impostare l'opzione valore troppo "ec_token".
+- Verificare che tale nome hello definita solo l'opzione valore 
 - contenga solo caratteri URL validi.
 
 Valore|Risultato
 ----|----
-Enabled|L'opzione Valore definisce il nome del parametro della stringa di query tramite il quale devono essere definiti i token.
-Disabled|Un token può essere specificato come un parametro non definito della stringa di query nell'URL della richiesta.
+Enabled|L'opzione valore definisce hello stringa nome del parametro query tramite cui i token devono essere definiti.
+Disabled|Un token può essere specificato come parametro di stringa di query non definito nell'URL di richiesta hello.
 
-**Comportamento predefinito:** Disabled. Un token può essere specificato come un parametro non definito della stringa di query nell'URL della richiesta.
+**Comportamento predefinito:** Disabled. Un token può essere specificato come parametro di stringa di query non definito nell'URL di richiesta hello.
 
 ## <a name="caching"></a>Memorizzazione nella cache
 
-Queste funzionalità sono progettate per personalizzare come e quando il contenuto viene memorizzato nella cache.
+Queste funzionalità sono progettate toocustomize quando e come verrà memorizzati nella cache il contenuto.
 
 Nome | Scopo
 -----|--------
 Parametri larghezza di banda | Determina se i parametri di limitazione della larghezza di banda (ad esempio, ec_rate ed ec_prebuf) saranno attivi.
-Limitazione larghezza di banda | Limita la larghezza di banda per la risposta fornita dai server perimetrali.
-Ignora cache | Determina se la richiesta può sfruttare la tecnologia di memorizzazione nella cache.
-Gestione intestazione Cache-Control | Controlla la generazione delle intestazioni Cache-Control dal server perimetrale quando la funzionalità Max-Age esterna è attiva.
-Stringa di query chiave cache | Determina se la chiave della cache includerà o escluderà i parametri della stringa di query associati a una richiesta.
-Riscrittura chiave cache | Riscrive la chiave della cache associata a una richiesta.
+Limitazione larghezza di banda | Limita larghezza di banda di hello per risposta hello fornito dai nostri server edge.
+Ignora cache | Determina se la richiesta hello può sfruttare la tecnologia di memorizzazione nella cache.
+Gestione intestazione Cache-Control | Controlli hello generazione delle intestazioni Cache-Control da server perimetrale hello quando è attiva la funzionalità esterne Max-Age.
+Stringa di query chiave cache | Determina se includere o escludere i parametri di stringa di query associati a una richiesta di chiave di cache di hello.
+Riscrittura chiave cache | Riscrive hello-chiave di cache associata a una richiesta.
 Completa riempimento cache | Determina ciò che accade quando una richiesta determina un mancato riscontro nella cache parziale in un server perimetrale.
-Comprimi tipi di file | Definisce i formati di file che verranno compressi nel server.
-Max-Age interno predefinito | Determina l'intervallo Max-Age predefinito per la riconvalida della cache dal server perimetrale al server di origine.
-Gestione intestazione Expires | Controlla la generazione delle intestazioni Expires da un server perimetrale quando la funzionalità Max-Age esterna è attiva.
-Max-Age esterno | Determina l'intervallo Max-Age per la riconvalida della cache dal browser al server perimetrale.
-Forza Max-Age interno | Determina l'intervallo Max-Age per la riconvalida della cache dal server perimetrale al server di origine.
-Supporto H.264 (download progressivo HTTP) | Determina i tipi di formati di file H.264 che possono essere usati per lo streaming di contenuti.
-Rispetta richiesta No-Cache | Determina se le richieste no-cache di un client HTTP verranno inoltrate al server di origine.
+Comprimi tipi di file | Definisce i formati di file hello che verranno compresse nel server di hello.
+Max-Age interno predefinito | Determina l'intervallo di validità massima hello predefinito per la riconvalida della cache lato server tooorigin server.
+Gestione intestazione Expires | Controlli hello generazione delle intestazioni Expires da un server perimetrale quando è attiva la funzionalità esterne Max-Age hello.
+Max-Age esterno | Determina l'intervallo max-age hello di riconvalida della cache del browser tooedge server.
+Forza Max-Age interno | Determina l'intervallo max-age "hello" per la riconvalida della cache lato server tooorigin server.
+Supporto H.264 (download progressivo HTTP) | Determina i tipi di hello di h. 264 formati di file che possono essere utilizzati toostream contenuto.
+Rispetta richiesta No-Cache | Determina se le richieste no-cache del client HTTP deve essere inoltrate toohello server di origine.
 Ignora origine No-Cache | Determina se la rete CDN ignorerà alcune direttive servite da un server di origine.
-Ignora gli intervalli che non è possibile soddisfare | Determina la risposta che verrà restituita ai client quando una richiesta genera un codice di stato 416 Impossibile attenersi all'intervallo richiesto.
-Max-Stale interno | Controlla per quanto tempo dopo la normale scadenza un asset memorizzato nella cache può essere servito da un server perimetrale quando il server perimetrale non è in grado di riconvalidare l'asset memorizzato nella cache con il server di origine.
+Ignora gli intervalli che non è possibile soddisfare | Determina risposta hello che verrà restituito tooclients quando una richiesta genera un codice di stato 416 richiesto non Impossibile attenersi all'intervallo.
+Max-Stale interno | Controlla il tempo trascorso il tempo di scadenza normale hello un asset memorizzati nella cache può essere servito da un server perimetrale quando server perimetrale hello è toorevalidate Impossibile hello asset memorizzati nella cache con il server di origine hello.
 Condivisione cache parziale | Determina se una richiesta può generare contenuto parzialmente memorizzato nella cache.
 Preconvalida contenuto memorizzato nella cache | Determina se il contenuto memorizzato nella cache sarà idoneo per la riconvalida anticipata prima della scadenza della durata (TTL).
 Aggiorna i file della cache con zero byte | Determina come viene gestita dai server perimetrali una richiesta di un client HTTP di un asset della cache con 0 byte.
-Imposta codici di stato inseribile nella cache | Definisce il set di codici di stato che possono generare contenuto memorizzato nella cache.
-Distribuzione di contenuto non aggiornato in caso di errore | Determina se il contenuto scaduto memorizzato nella cache verrà distribuito quando si verifica un errore durante la riconvalida della cache o quando si recupera il contenuto richiesto dal server di origine del cliente.
-Client non aggiornato durante la riconvalida | Migliora le prestazioni consentendo ai server perimetrali di servire un client non aggiornato al richiedente mentre avviene la riconvalida.
-Commento | La funzionalità Commento consente di aggiungere una nota all'interno di una regola.
+Imposta codici di stato inseribile nella cache | Definisce il set di hello dei codici di stato che possono comportare contenuto memorizzato nella cache.
+Distribuzione di contenuto non aggiornato in caso di errore | Determina se scaduto, verrà recapitato contenuto memorizzato nella cache quando si verifica un errore durante la riconvalida della cache o quando hello durante il recupero delle richieste di contenuto dal server di origine cliente hello.
+Client non aggiornato durante la riconvalida | Migliora le prestazioni poiché consente i nostri server edge richiedente toohello di tooserve client non aggiornato durante la riconvalida.
+Commento | funzionalità di commento Hello consente un toobe nota aggiunta all'interno di una regola.
 
 ###<a name="bandwidth-parameters"></a>Parametri larghezza di banda
 **Scopo:** determina se i parametri di limitazione della larghezza di banda (ad esempio ec_rate ed ec_prebuf) saranno attivi.
 
-I parametri di limitazione della larghezza di banda determinano se la velocità di trasferimento dati per una richiesta del client sarà limitata a un valore prestabilito.
+I parametri di limitazione della larghezza di banda stabilire se hello velocità di trasferimento di dati per una richiesta del client sarà limitato tooa personalizzato frequenza.
 
 Valore|Risultato
 --|--
-Enabled|Consente ai server perimetrali di soddisfare richieste di limitazione della larghezza di banda.
-Disabled|Fa sì che i server perimetrali ignorino i parametri di limitazione della larghezza di banda. I contenuti richiesti verranno serviti normalmente (senza limitazione della larghezza di banda).
+Enabled|Larghezza di banda che i nostri server edge toohonor la limitazione delle richieste.
+Disabled|Fa sì che i nostri server edge parametri di limitazione larghezza di banda tooignore. Hello richiesto verrà utilizzato in genere contenuto (ad esempio, senza la limitazione della larghezza di banda).
 
 **Comportamento predefinito:** Enabled.
 
 ###<a name="bandwidth-throttling"></a>Limitazione larghezza di banda
-**Scopo:** limita la larghezza di banda per la risposta fornita dai server perimetrali.
+**Scopo:** le limitazioni della larghezza di banda per la risposta hello fornito dai nostri server perimetrale di hello.
 
-Per impostare correttamente la limitazione della larghezza di banda è necessario che siano definite entrambe le opzioni seguenti.
+Entrambe le opzioni seguenti hello deve essere definito tooproperly configurare la limitazione della larghezza di banda.
 
 Opzione|Descrizione
 --|--
-Kbytes per second (KB al secondo)|Impostare questa opzione sulla larghezza di banda massima (KB al secondo) che è possibile usare per inviare la risposta.
-Prebuf seconds (Secondi prebuf)|Impostare questa opzione sul numero di secondi di attesa da parte dei server perimetrali prima di attivare la limitazione della larghezza di banda. Lo scopo di questo intervallo di tempo di larghezza di banda senza restrizioni è quello di impedire a un lettore multimediale di riscontrare problemi di stuttering o buffering a causa della limitazione della larghezza di banda.
+Kbytes per second (KB al secondo)|Impostare questa opzione toohello larghezza di banda massima (Kb al secondo) che può essere utilizzati toodeliver hello risposta.
+Prebuf seconds (Secondi prebuf)|Impostare questa opzione toohello quanti secondi che i nostri server edge attenderà limitazione della larghezza di banda. scopo di Hello di questo periodo di tempo della larghezza di banda senza restrizioni è tooprevent un lettore multimediale da verifica stuttering o problemi dovuti toobandwidth la limitazione delle richieste di memorizzazione nel buffer.
 
 **Comportamento predefinito:** Disabled.
 
 ###<a name="bypass-cache"></a>Ignora cache
-**Scopo:** determina se la richiesta può sfruttare la tecnologia di memorizzazione nella cache.
+**Scopo:** determina se la richiesta hello può sfruttare la tecnologia di memorizzazione nella cache.
 
 Valore|Risultato
 --|--
-Enabled|Fa sì che tutte le richieste giungano al server di origine, anche se i contenuti sono stati precedentemente memorizzati nella cache dei server perimetrali.
-Disabled|Fa sì che i server perimetrali memorizzino gli asset nella cache in base ai criteri della cache definiti nelle relative intestazioni di risposta.
+Enabled|Fa sì che tutte le richieste toofall attraverso il server di origine toohello, anche se il contenuto di hello è stata precedentemente memorizzati nella cache server edge.
+Disabled|Fa sì che i server edge toocache asset in base a criteri di cache toohello definiti nelle intestazioni di risposta.
 
 **Comportamento predefinito:**
 
@@ -212,16 +212,16 @@ Disabled|Fa sì che i server perimetrali memorizzino gli asset nella cache in ba
 --->
 
 ###<a name="cache-control-header-treatment"></a>Cache Control Header Treatment (Gestione intestazioni Cache-Control)
-**Scopo:** controlla la generazione delle intestazioni Cache-Control da parte del server perimetrale quando è attiva la funzionalità External Max-Age (Validità massima esterna).
+**Scopo:** controlla la generazione di hello delle intestazioni Cache-Control da server perimetrale hello quando è attiva la funzionalità Max-Age esterna.
 
-Il modo più semplice per ottenere questo tipo di configurazione è inserire le funzionalità External Max-Age (Validità massima esterna) e Cache-Control Header Treatment (Gestione intestazioni Cache-Control) nella stessa istruzione.
+Hello tooachieve di modo più semplice questo tipo di configurazione è tooplace hello Max-Age esterno e le funzionalità di gestione intestazione Cache-Control hello hello stessa istruzione.
 
 Valore|Risultato
 --|--
-Overwrite|Garantisce che vengano eseguite le azioni seguenti:<br/> - Sovrascrivere l'intestazione Cache-Control generata dal server di origine. <br/>- Aggiungere alla risposta l'intestazione Cache-Control prodotta dalla funzionalità External Max-Age (Validità massima esterna)
-Pass-through|Assicura che l'intestazione Cache-Control prodotta dalla funzionalità External Max-Age (Validità massima esterna) non venga mai aggiunta alla risposta. <br/> Se il server di origine produce un'intestazione Cache-Control, ne verrà eseguito il pass-through all'utente finale. <br/> Se il server di origine non produce un'intestazione Cache-Control, è possibile che, a causa di questa opzione, l'intestazione della risposta non contenga un'intestazione Cache-Control.
-Add if Missing (Aggiungi se mancante)|Se un'intestazione Cache-Control non è stata ricevuta dal server di origine, questa opzione aggiunge l'intestazione Cache-Control prodotta dalla funzionalità External Max-Age (Validità massima esterna). Assicura quindi che a tutti gli asset venga assegnata un'intestazione Cache-Control.
-Rimuovere| Questa opzione assicura che con la risposta di intestazione non sia inclusa un'intestazione Cache-Control. Se è già stata assegnata un'intestazione Cache-Control, verrà rimossa dalla risposta di intestazione.
+Overwrite|Garantisce avverrà tale hello seguenti azioni:<br/> -Sovrascrive l'intestazione Cache-Control generato dal server di origine hello. <br/>-Aggiunge un'intestazione Cache-Control prodotta da hello risposta toohello di funzionalità esterni Max-Age.
+Pass-through|Assicura che l'intestazione Cache-Control generato dalla funzionalità esterne Max-Age hello non verrà mai inserito toohello risposta. <br/> Se il server di origine hello produce un'intestazione Cache-Control, passerà toohello dati gestito dall'utente. <br/> Se il server di origine hello non produce un'intestazione Cache-Control, quindi questa opzione causa hello risposta intestazione toonot può contenere un'intestazione Cache-Control.
+Add if Missing (Aggiungi se mancante)|Se un'intestazione Cache-Control non è stata ricevuta dal server di origine hello, questa opzione aggiunge l'intestazione Cache-Control generato dalla funzionalità esterne Max-Age hello. Assicura quindi che a tutti gli asset venga assegnata un'intestazione Cache-Control.
+Rimuovere| Questa opzione assicura che un'intestazione Cache-Control non è inclusa con la risposta di intestazione hello. Se è già stata assegnata un'intestazione Cache-Control, verrà rimossa dalla risposta di intestazione hello.
 
 **Comportamento predefinito:** Overwrite.
 
@@ -231,22 +231,22 @@ Rimuovere| Questa opzione assicura che con la risposta di intestazione non sia i
 Informazioni chiave:
 
 - Specificare uno o più nomi di parametri della stringa di query. Ogni nome di parametro deve essere delimitato da uno spazio singolo.
-- Questa funzionalità determina se nella chiave di cache i parametri della stringa di query verranno inclusi o esclusi. Di seguito vengono fornite informazioni aggiuntive per ogni opzione seguente.
+- Questa funzionalità determina se i parametri di stringa di query verranno inclusi o esclusi dalla chiave di cache di hello. Di seguito vengono fornite informazioni aggiuntive per ogni opzione seguente.
 
 Tipo|Descrizione
 --|--
- Includi|  Indica che nella chiave di cache deve essere incluso ogni parametro specificato. Verrà generata una chiave di cache univoca per ogni richiesta in cui sia contenuto un valore univoco per un parametro della stringa di query definito in questa funzionalità. 
- Includi tutto  |Indica che verrà creata una chiave di cache univoca per ogni richiesta a un asset contenente una stringa di query univoca. Questo tipo di configurazione, in genere, non è consigliato poiché può comportare una piccola percentuale di riscontri nella cache e un conseguente aumento del carico sul server di origine, che dovrà gestire un maggior numero di richieste. Questa configurazione consente di duplicare il comportamento di memorizzazione nella cache noto come "unique-cache" nella pagina di memorizzazione nella cache della stringa di query. 
- Escludi | Indica che verranno esclusi dalla chiave di cache solo i parametri specificati. Verranno inclusi invece tutti gli altri parametri della stringa di query. 
- Escludi tutto  |Indica che verranno esclusi dalla chiave di cache tutti i parametri della stringa di query. Questa configurazione consente di duplicare il comportamento di memorizzazione nella cache predefinito, noto come "standard-cache", nella pagina di memorizzazione nella cache della stringa di query. 
+ Includi|  Indica che ogni parametro specificato deve essere incluso nella chiave di cache di hello. Verrà generata una chiave di cache univoca per ogni richiesta in cui sia contenuto un valore univoco per un parametro della stringa di query definito in questa funzionalità. 
+ Includi tutto  |Indica che una chiave di cache univoca verrà creata per ogni asset tooan richiesta che include una stringa di query univoco. Questo tipo di configurazione non è in genere consigliato perché potrebbe risultare tooa una piccola percentuale di riscontri nella cache. Ciò aumenta il carico di hello sul server di origine hello, dal momento che verrà tooserve più richieste. Questa configurazione duplicati hello comportamento noto come "univoco-cache" nella pagina di memorizzazione nella cache della stringa di Query di memorizzazione nella cache. 
+ Escludi | Indica che solo hello specificato parametri verranno esclusi dalla chiave di cache di hello. Nella chiave di cache di hello verranno inclusi tutti gli altri parametri di stringa di query. 
+ Escludi tutto  |Indica che tutti i parametri di stringa di query verranno esclusi dalla chiave di cache di hello. Questa configurazione duplicati hello comportamento predefinito della cache, che è noto come "standard-cache" nella pagina di memorizzazione nella cache della stringa di Query. 
 
-Le funzionalità del motore regole HTTP consente di personalizzare il modo in cui viene implementata la memorizzazione nella cache della stringa di query. È possibile specificare, ad esempio, che la memorizzazione nella cache della stringa di query può essere eseguita solo su determinate posizioni o tipi di file.
+potenza Hello del motore regole di HTTP consente modo hello toocustomize in cui viene implementata la memorizzazione nella cache stringa di query. È possibile specificare, ad esempio, che la memorizzazione nella cache della stringa di query può essere eseguita solo su determinate posizioni o tipi di file.
 
-Se nella pagina di memorizzazione nella cache della stringa di query si vuole duplicare il comportamento di memorizzazione nella cache della stringa di query noto come "no-cache", sarà necessario creare una regola contenente una condizione di corrispondenza URL Query Wildcard (Carattere jolly query URL) e una funzionalità Bypass Cache (Ignora cache). La condizione di corrispondenza URL Query Wildcard (Carattere jolly query URL) deve essere impostata su un asterisco (*).
+Se si desidera stringa di query hello tooduplicate la memorizzazione nella cache comportamento noto come "no-cache" nella pagina di memorizzazione nella cache della stringa di Query, è necessario toocreate una regola che contiene una condizione di corrispondenza con caratteri jolly Query URL e una funzionalità di ignorare la Cache. condizione di corrispondenza con caratteri jolly Query URL Hello deve essere impostato tooan asterisco (*).
 
 #### <a name="sample-scenarios"></a>Scenari di esempio
 
-Di seguito è riportato un uso di esempio di questa funzionalità e, in particolare, una richiesta di esempio e la chiave di cache predefinita.
+Di seguito è riportato un uso di esempio di questa funzionalità Un esempio di richiesta e hello predefinito della chiave di cache vengono fornite di seguito.
 
 - **Richiesta di esempio:** http://wpc.0001.&lt;Domain&gt;/800001/Origin/folder/asset.htm?sessionid=1234&language=EN&userid=01
 - **Chiave di cache predefinita:** /800001/Origin/folder/asset.htm
@@ -258,7 +258,7 @@ Configurazione di esempio:
 - **Tipo:** Includi
 - **Parametri:** language
 
-Questo tipo di configurazione genera la chiave di cache del parametro della stringa di query seguente:
+Questo tipo di configurazione generano hello seguente parametro stringa di query cache-chiave:
 
     /800001/Origin/folder/asset.htm?language=EN
 
@@ -268,7 +268,7 @@ Configurazione di esempio:
 
 - **Tipo:** Includi tutto
 
-Questo tipo di configurazione genera la chiave di cache del parametro della stringa di query seguente:
+Questo tipo di configurazione generano hello seguente parametro stringa di query cache-chiave:
 
     /800001/Origin/folder/asset.htm?sessionid=1234&language=EN&userid=01
 
@@ -279,7 +279,7 @@ Configurazione di esempio:
 - **Tipo:** Escludi
 - **Parametri:** sessionid userid
 
-Questo tipo di configurazione genera la chiave di cache del parametro della stringa di query seguente:
+Questo tipo di configurazione generano hello seguente parametro stringa di query cache-chiave:
 
     /800001/Origin/folder/asset.htm?language=EN
 
@@ -289,47 +289,47 @@ Configurazione di esempio:
 
 - **Tipo:** Escludi tutto
 
-Questo tipo di configurazione genera la chiave di cache del parametro della stringa di query seguente:
+Questo tipo di configurazione generano hello seguente parametro stringa di query cache-chiave:
 
     /800001/Origin/folder/asset.htm
 
 ###<a name="cache-key-rewrite"></a>Riscrittura chiave cache
-**Scopo:** riscrive la chiave di cache associata a una richiesta.
+**Scopo:** riscritture hello chiave di cache associata a una richiesta.
 
-Una chiave di cache è il percorso relativo che identifica un asset ai fini della memorizzazione nella cache. In altre parole, i server cercano una versione memorizzata nella cache di un asset in base al relativo percorso, così come definito dalla chiave di cache.
+Una chiave di cache è relativo hello che identifica un asset per scopi di hello della memorizzazione nella cache. In altre parole, i nostri server controllerà per una versione memorizzata nella cache di un asset in base percorso tooits come definito in base alla chiave di cache.
 
-Per configurare questa funzionalità è necessario definire entrambe le opzioni seguenti:
+Questa funzionalità può essere configurata mediante la definizione di entrambi hello le opzioni seguenti:
 
 Opzione|Descrizione
 --|--
-Percorso originale| Consente di definire il percorso relativo dei tipi di richieste di cui verrà riscritta la chiave di cache. Un percorso relativo può essere definito selezionando un percorso di origine di base e quindi definendo un modello di espressione regolare.
-Nuovo percorso|Consente di definire il percorso relativo della nuova chiave di cache. Un percorso relativo può essere definito selezionando un percorso di origine di base e quindi definendo un modello di espressione regolare. Questo percorso relativo può essere creato dinamicamente tramite l'uso di variabili HTTP
-**Comportamento predefinito:** la chiave di cache di una richiesta è determinata dall'URI della richiesta.
+Percorso originale| Definire tipi di toohello hello percorso relativo di richieste la cui chiave di cache verrà riscritto. Un percorso relativo può essere definito selezionando un percorso di origine di base e quindi definendo un modello di espressione regolare.
+Nuovo percorso|Definire il percorso relativo di hello hello nuova cache-chiave. Un percorso relativo può essere definito selezionando un percorso di origine di base e quindi definendo un modello di espressione regolare. Questo percorso può essere costruito in modo dinamico tramite l'utilizzo di hello delle variabili di HTTP
+**Comportamento predefinito:** chiave della richiesta è una di cache è determinata dall'URI della richiesta hello.
 
 ###<a name="complete-cache-fill"></a>Completa riempimento cache
 **Scopo:** determina ciò che accade quando una richiesta genera un mancato riscontro nella cache parziale in un server perimetrale.
 
-Un mancato riscontro nella cache parziale descrive lo stato della cache relativo a un asset non completamente scaricato in un server perimetrale. Se un asset è stato solo parzialmente memorizzato nella cache di un server perimetrale, la richiesta successiva dell'asset verrà nuovamente inoltrata al server di origine.
+Accesso alla cache parziale descrive lo stato della cache di hello per un asset che non era server perimetrale tooan completamente scaricato. Se un asset è solo parzialmente memorizzata nella cache in un server perimetrale, quindi hello successiva richiesta dell'asset verrà inoltrato nuovamente toohello server di origine.
 <!---
-This feature is not available for the ADN platform. The typical traffic on this platform consists of relatively small assets. The size of the assets served through these platforms helps mitigate the effects of partial cache misses, since the next request will typically result in the asset being cached on that POP.
+This feature is not available for hello ADN platform. hello typical traffic on this platform consists of relatively small assets. hello size of hello assets served through these platforms helps mitigate hello effects of partial cache misses, since hello next request will typically result in hello asset being cached on that POP.
 --->
-In genere, un mancato riscontro nella cache parziale si verifica dopo che un utente interrompe un download o in caso di asset che vengono richiesti esclusivamente tramite richieste di intervallo HTTP. Questa funzionalità è particolarmente utile per gli asset di grandi dimensioni che gli utenti in genere non scaricano per intero (ad esempio i video). Ecco perché questa funzionalità è abilitata per impostazione predefinita nella piattaforma HTTP Large ed è disabilitata in tutte le altre piattaforme.
+In genere, un mancato riscontro nella cache parziale si verifica dopo che un utente interrompe un download o in caso di asset che vengono richiesti esclusivamente tramite richieste di intervallo HTTP. Questa funzionalità è particolarmente utile per gli asset di grandi dimensioni in cui gli utenti non in genere li scaricheranno dall'inizio toofinish (ad esempio, video). Di conseguenza, questa funzionalità è abilitata per impostazione predefinita nella piattaforma di grandi dimensioni HTTP hello. ed è disabilitata in tutte le altre piattaforme.
 
-È consigliabile lasciare la configurazione predefinita per la piattaforma HTTP Large, poiché riduce il carico sul server di origine del cliente e aumenta la velocità con cui i clienti possono scaricare i contenuti.
+Configurazione predefinita di hello tooleave per piattaforma di grandi dimensioni HTTP hello, è consigliabile in quanto ridurre il carico di hello del server di origine cliente e aumentare la velocità di hello in corrispondenza del quale i clienti scaricare il contenuto.
 
-In base al modo in cui vengono monitorate le impostazioni della cache, è possibile che questa funzionalità non possa essere associata alle seguenti condizioni di corrispondenza: Edge, Cname, Request Header Literal (Valore letterale intestazione richiesta), Request Header Wildcard (Carattere jolly intestazione richiesta), URL Query Literal (Valore letterale query URL) e URL Query Wildcard (Carattere jolly query URL).
+Scadenza toohello modo nella cui cache vengono rilevate le impostazioni, questa funzionalità non può essere associata seguendo le condizioni di corrispondenza hello: bordo Cname, valore letterale intestazione richiesta, con caratteri jolly dell'intestazione di richiesta, valore letterale di Query di URL e jolly Query URL.
 
 Valore|Risultato
 --|--
-Enabled|Ripristina il comportamento predefinito. Il comportamento predefinito prevede di obbligare il server periferico a inizializzare il recupero in background dell'asset dal server di origine. Al termine di questa operazione, l'asset si trova nella cache locale del server perimetrale.
-Disabled|Impedisce a un server perimetrale di eseguire il recupero in background dell'asset. In questo modo, alla successiva richiesta dell'asset dalla stessa area, il server perimetrale ne eseguirà la richiesta dal server di origine del cliente.
+Enabled|Ripristina impostazioni predefinite hello. comportamento predefinito di Hello è tooforce hello edge server tooinitiate un recupero in background dell'asset hello dal server di origine hello. Dopodiché sarà asset hello nella cache locale del server perimetrale hello.
+Disabled|Impedisce a un server perimetrale di eseguire un recupero in background per asset hello. Ciò significa che la richiesta successiva hello per l'asset di tale regione causerà un toorequest server edge dal server di origine cliente hello.
 
 **Comportamento predefinito:** Enabled.
 
 ###<a name="compress-file-types"></a>Comprimi tipi di file
-**Scopo:** definisce i formati di file che verranno compressi nel server.
+**Scopo:** definisce i formati di file hello che verranno compresse nel server di hello.
 
-Un formato di file può essere specificato usando il rispettivo tipo di elemento multimediale Internet (ad esempio, Content-Type). Il tipo di elemento multimediale Internet è costituito dai metadati indipendenti dalla piattaforma che consentono ai server di identificare il formato di file di un asset specifico. Di seguito è riportato un elenco dei tipi di elementi multimediali Internet.
+Un formato di file può essere specificato usando il rispettivo tipo di elemento multimediale Internet (ad esempio, Content-Type). Tipo di supporto Internet è indipendente dalla piattaforma metadati che consente il formato di file server hello tooidentify di una particolare attività. Di seguito è riportato un elenco dei tipi di elementi multimediali Internet.
 
 Tipo di elemento multimediale Internet|Descrizione
 --|--
@@ -344,23 +344,23 @@ Informazioni chiave:
 - Questa funzionalità comprimerà solo asset con dimensioni inferiori a 1 MB. Gli asset con dimensioni superiori non verranno compressi dai server.
 - Alcuni tipi di contenuti, come le immagini e i contenuti multimediali audio e video (ad esempio JPG, MP3, MP4 e così via), sono già compressi. Un ulteriore compressione di questi tipi di asset, pertanto, non ne diminuirebbe in modo significativo le dimensioni. È consigliabile quindi non abilitare la compressione su questi tipi di asset.
 - Non sono supportati i caratteri jolly come gli asterischi.
-- Prima di aggiungere questa funzionalità a una regola, assicurarsi di impostare l'opzione di compressione disabilitata nella pagina di compressione relativa alla piattaforma su cui verrà applicata la regola.
+- Prima di aggiungere questa regola tooa funzionalità, assicurarsi che tooset l'opzione di compressione disabilitato nella pagina di compressione per hello piattaforma toowhich che verrà applicata questa regola.
 
 ###<a name="default-internal-max-age"></a>Max-Age interno predefinito
-**Scopo:** determina l'intervallo di validità massima predefinita per la riconvalida della cache dal server perimetrale al server di origine. In altre parole, la quantità di tempo che deve trascorrere prima che un server perimetrale verifichi se un asset memorizzato nella cache corrisponde all'asset archiviato sul server di origine.
+**Scopo:** intervallo max-age di determina hello predefinito per la riconvalida della cache lato server tooorigin server. In altre parole, hello periodo di tempo che passa prima di un server perimetrale controllerà se asset hello archiviati sul server di origine hello corrisponde a un asset memorizzati nella cache.
 
 Informazioni chiave:
 
 - Questa azione viene eseguita solo per le risposte generate da un server di origine che non ha assegnato un'indicazione di validità massima nell'intestazione Cache-Control o Expires.
 - Questa azione non viene eseguita per gli asset che non sono considerati memorizzabili nella cache.
-- Questa azione non riguarda le riconvalide della cache dal browser al server perimetrale. Questi tipi di riconvalida, infatti, vengono determinati dalle intestazioni Cache-Control o Expires inviate al browser, che possono essere personalizzate con la funzionalità External Max-Age (Validità massima esterna).
-- I risultati di questa azione non producono alcun effetto osservabile sulle intestazioni di risposta e sui contenuti restituiti dai server periferici, ma possono influire sulla quantità di traffico di riconvalida inviato dai server periferici al server di origine.
+- Questa operazione non influenza riconvalide cache server tooedge di browser. Questi tipi di riconvalide dipendono dalle Cache-Control o Expires intestazioni inviate toohello browser, che può essere personalizzato con la funzione Max-Age esterno.
+- risultati Hello di questa azione non dispone di un effetto osservabile alle intestazioni di risposta hello e contenuto hello restituito dal server di bordo per il contenuto, ma può avere un effetto sulla quantità di hello di riconvalida il traffico inviato dal server di origine tooyour server perimetrale.
 - Per configurare questa funzionalità:
-    - Selezionare il codice di stato per il quale può essere applicata una validità massima interna predefinita.
-    - Specificare un valore intero e quindi selezionare l'unità di tempo desiderata (ad esempio secondi, minuti, ore e così via). Questo valore definisce l'intervallo di validità massima interna predefinita.
+    - Se si seleziona il codice di stato hello per i quali può essere applicate max-age predefinita interno.
+    - Specificando un valore integer e quindi selezionando hello unità di tempo desiderato (ad esempio secondi, minuti, ore e così via). Questo valore definisce l'intervallo hello predefinito interno max-age.
 
-- Impostare l'unità di tempo su "Off" per assegnare un intervallo di validità massima interna predefinita di 7 giorni alle richieste a cui non è stata assegnata un'indicazione di validità massima nella rispettiva intestazione Cache-Control o Expires.
-- In base al modo in cui vengono monitorate le impostazioni della cache, è possibile che questa funzionalità non possa essere associata alle seguenti condizioni di corrispondenza: 
+- Unità di tempo hello impostazione troppo "Off" verrà assegnato un intervallo di validità massima interno predefinito di 7 giorni per le richieste che non è state assegnate un'indicazione max-age Cache-Control o Expires intestazione.
+- Scadenza toohello modo nella cui cache vengono rilevate le impostazioni, questa funzionalità non può essere associata seguendo le condizioni di corrispondenza hello: 
     - Edge 
     - CNAME
     - Valore letterale intestazione richiesta
@@ -372,47 +372,47 @@ Informazioni chiave:
 **Valore predefinito:** 7 giorni
 
 ###<a name="expires-header-treatment"></a>Gestione intestazione Expires
-**Scopo:** controlla la generazione delle intestazioni Expires da un server perimetrale quando è attiva la funzionalità External Max-Age (Validità massima esterna).
+**Scopo:** controlla la generazione di hello delle intestazioni Expires da un server perimetrale quando è attiva la funzionalità esterne Max-Age.
 
-Il modo più semplice per ottenere questo tipo di configurazione è inserire le funzionalità External Max-Age (Validità massima esterna) e Expires Header Treatment (Gestione intestazioni Expires) nella stessa istruzione.
+Hello tooachieve di modo più semplice questo tipo di configurazione è hello tooplace Max-Age esterne e le funzionalità di scadenza trattamento intestazione hello hello stessa istruzione.
 
 Valore|Risultato
 --|--
-Overwrite|Garantisce che vengano eseguite le azioni seguenti:<br/>- Sovrascrivere l'intestazione Expires generata dal server di origine.<br/>- Aggiungere alla risposta l'intestazione Expires prodotta dalla funzionalità External Max-Age (Validità massima esterna).
-Pass-through|Assicura che l'intestazione Expires prodotta dalla funzionalità External Max-Age (Validità massima esterna) non venga mai aggiunta alla risposta. <br/> Se il server di origine produce un'intestazione Expires, ne verrà eseguito il pass-through all'utente finale. <br/>Se il server di origine non produce un'intestazione Expires, è possibile che, a causa di questa opzione, l'intestazione della risposta non contenga un'intestazione Expires.
-Add if Missing (Aggiungi se mancante)| Se un'intestazione Expires non è stata ricevuta dal server di origine, questa opzione aggiunge l'intestazione Expires prodotta dalla funzionalità External Max-Age (Validità massima esterna). Assicura quindi che a tutti gli asset venga assegnata un'intestazione Expires.
-Rimuovere| Assicura che con la risposta di intestazione non sia inclusa un'intestazione Expires. Se è già stata assegnata un'intestazione Expires, verrà rimossa dalla risposta di intestazione.
+Overwrite|Garantisce avverrà tale hello seguenti azioni:<br/>-Sovrascrive l'intestazione Expires generato dal server di origine hello.<br/>-Aggiunge un'intestazione Expires prodotto dalla risposta toohello funzionalità di hello Max-Age esterno.
+Pass-through|Assicura che l'intestazione Expires generato dalla funzionalità esterne Max-Age hello non verrà mai inserito toohello risposta. <br/> Se il server di origine hello produce un'intestazione Expires, passerà toohello dati gestito dall'utente. <br/>Se il server di origine hello non produce un'intestazione Expires, quindi questa opzione causa hello risposta intestazione toonot può contenere un'intestazione Expires.
+Add if Missing (Aggiungi se mancante)| Se un'intestazione Expires non è stata ricevuta dal server di origine hello, questa opzione aggiunge l'intestazione Expires generato dalla funzionalità esterne Max-Age hello. Assicura quindi che a tutti gli asset venga assegnata un'intestazione Expires.
+Rimuovere| Assicura che un'intestazione Expires non viene fornita con la risposta di intestazione hello. Se è già stata assegnata un'intestazione Expires, verrà rimossa dalla risposta di intestazione hello.
 
 **Comportamento predefinito:** Overwrite
 
 ###<a name="external-max-age"></a>Max-Age esterno
-**Scopo:** determina l'intervallo di validità massima per la riconvalida della cache dal browser al server perimetrale. In altre parole, la quantità di tempo che deve trascorrere prima che un browser cerchi una nuova versione di un asset da un server periferico.
+**Scopo:** intervallo max-age "hello" determina di riconvalida della cache del browser tooedge server. In altre parole, hello periodo di tempo che passa prima di un browser può essere cercati una nuova versione di un asset da un server perimetrale.
 
-Abilitando questa funzionalità, dai server periferici verranno generate le intestazioni Cache-Control:max-age e Expires e verranno inviate al client HTTP. Per impostazione predefinita, queste intestazioni sovrascriveranno quelle create dal server di origine. Per modificare questo comportamento, tuttavia, è possibile usare le funzionalità Cache-Control Header Treatment (Gestione intestazioni Cache-Control) e Expires Header Treatment (Gestione intestazioni Expires).
+Abilitazione di questa funzionalità genera Cache-controllo: max-age e scade intestazioni dai nostri server edge e inviarli toohello HTTP client. Per impostazione predefinita, queste intestazioni sovrascriverà quelli creati dal server di origine hello. Tuttavia, la modalità di gestione di intestazione Cache-Control e le funzionalità di scadenza trattamento intestazione possono essere utilizzato tooalter questo comportamento.
 
 Informazioni chiave:
 
-- Questa azione non riguarda le riconvalide della cache dal server periferico al server di origine. Questi tipi di riconvalida, infatti, vengono determinati dalle intestazioni Cache-controllo/Expires ricevute dal server di origine e possono essere personalizzati con le funzionalità Default Internal Max-Age (Validità massima interna predefinita) e Force Internal Max-Age (Forza validità massima interna).
-- Configurare questa funzionalità specificando un valore intero e selezionando l'unità di tempo desiderata (ad esempio secondi, minuti, ore e così via).
-- Se si imposta questa funzionalità su un valore negativo, il server periferico invia una direttiva Cache-Control:no-cache e un valore temporale Expires impostato nel passato con ogni risposta inviata al browser. Anche nel caso in cui un client HTTP non memorizzi nella cache la risposta, questa impostazione non influisce sulla capacità dei server periferici di memorizzare nella cache la risposta ottenuta dal server di origine.
-- Impostando l'unità di tempo su "Off", questa funzionalità viene disabilitata. Delle intestazioni Cache-Control/Expires memorizzate nella cache con la risposta del server di origine viene eseguito il pass-through al browser.
+- Questa azione non influenza la riconvalide cache lato server tooorigin server. Questi tipi di riconvalide sono determinati dalle intestazioni Cache-controllo/Expires ricevute dal server di origine hello e possono essere personalizzati con il predefinito interno Max-Age e le funzionalità interne Force Max-Age.
+- Questa funzionalità può essere configurata specificando un valore integer e selezionando l'unità di tempo desiderato hello (ad esempio secondi, minuti, ore e così via).
+- Se questa funzionalità tooa negativo, i nostri toosend server edge una Cache-Control: no-cache e un'ora di scadenza impostata nel hello passato con ogni browser toohello di risposta. Anche se un client HTTP non verrà memorizzati nella cache la risposta hello, questa impostazione non influirà possibilità toocache hello risposta il server perimetrale hello origine server.
+- Unità di tempo hello impostazione troppo "Off" verrà disabilitare questa funzionalità. Le intestazioni Cache-controllo/Expires memorizzata nella cache con risposta hello del server di origine hello passerà toohello browser.
 
 **Comportamento predefinito:** Off
 
 ###<a name="force-internal-max-age"></a>Forza Max-Age interno
-**Scopo:** determina l'intervallo di validità massima per la riconvalida della cache dal server perimetrale al server di origine. In altre parole, la quantità di tempo che deve trascorrere prima che un server perimetrale verifichi se un asset memorizzato nella cache corrisponde all'asset archiviato sul server di origine.
+**Scopo:** intervallo max-age "hello" determina per la riconvalida della cache lato server tooorigin server. In altre parole, quantità di hello di tempo che devono trascorrere prima che un server perimetrale può controllare se un asset memorizzati nella cache corrisponde a asset hello archiviati sul server di origine hello.
 
 Informazioni chiave:
 
-- Questa funzionalità sostituirà l'intervallo di validità massima definito nelle intestazioni Cache-Control o Expires generate da un server di origine.
-- Questa funzionalità non riguarda le riconvalide della cache dal browser al server perimetrale. Questi tipi di riconvalida, infatti, vengono determinati dalle intestazioni Cache-Control o Expires inviate al browser.
-- Questa funzionalità non produce alcun effetto osservabile sulla risposta fornita da un server perimetrale al richiedente. Può tuttavia influire sulla quantità di traffico di riconvalida inviato dai server perimetrali al server di origine.
+- Questa funzionalità sostituisce intervallo max-age hello definito nella Cache-Control o Expires intestazioni generate da un server di origine.
+- Questa funzionalità non influisce sul riconvalide cache server tooedge di browser. Questi tipi di riconvalide dipendono dalle Cache-Control o Expires intestazioni inviate toohello browser.
+- Questa funzionalità non ha un effetto osservabile sulla risposta hello recapitato a un richiedente di toohello lato server. Tuttavia, è un effetto sulla quantità di hello di riconvalida il traffico inviato dal server di origine lato server toohello.
 - Per configurare questa funzionalità:
-    - Selezionare il codice di stato per il quale verrà applicato un intervallo di validità massima interna.
-    - Specificare un valore intero e selezionare l'unità di tempo desiderata (ad esempio secondi, minuti, ore e così via). Questo valore definisce l'intervallo di validità massima della richiesta.
+    - Se si seleziona il codice di stato hello per il quale verrà applicato un interno max-age.
+    - Specifica un valore integer e selezione di hello unità di tempo desiderato (ad esempio secondi, minuti, ore e così via). Questo valore definisce l'intervallo di durata massima della richiesta di hello.
 
-- Impostando l'unità di tempo su "Off", questa funzionalità viene disabilitata e agli asset non verrà assegnato un intervallo di validità massima interna. Se nell'intestazione originale non sono contenute istruzioni di memorizzazione nella cache, l'asset verrà memorizzato nella cache in base all'impostazione attiva nella funzionalità Default Internal Max-Age (Validità massima interna predefinita).
-- In base al modo in cui vengono monitorate le impostazioni della cache, è possibile che questa funzionalità non possa essere associata alle seguenti condizioni di corrispondenza: 
+- Unità di tempo hello impostazione troppo "Off" Disabilita questa funzionalità. Non verrà assegnato un intervallo max-age interno toorequested asset. Se l'intestazione originale hello non contiene istruzioni di memorizzazione nella cache, asset hello verranno memorizzate in base toohello impostazione attiva la caratteristica predefinita Max-Age interno.
+- Scadenza toohello modo nella cui cache vengono rilevate le impostazioni, questa funzionalità non può essere associata seguendo le condizioni di corrispondenza hello: 
     - Edge 
     - CNAME
     - Valore letterale intestazione richiesta
@@ -424,33 +424,33 @@ Informazioni chiave:
 **Comportamento predefinito:** Off
 
 ###<a name="h264-support-http-progressive-download"></a>Supporto H.264 (download progressivo HTTP)
-**Scopo:** determina i tipi di formati di file H.264 che possono essere usati per lo streaming di contenuti.
+**Scopo:** determina i tipi di hello di h. 264 formati di file che possono essere utilizzati toostream contenuto.
 
 Informazioni chiave:
 
-- Nell'opzione Estensioni file definire un set delimitato da spazi di estensioni di file H.264 consentite. L'opzione Estensioni file sostituirà il comportamento predefinito. Garantire il supporto di file MP4 e F4V includendo queste estensioni durante la configurazione dell'opzione. 
-- Assicurarsi di includere un punto per ogni estensione di file aggiunta (ad esempio, .mp4 .f4v).
+- Nell'opzione Estensioni file definire un set delimitato da spazi di estensioni di file H.264 consentite. L'opzione di estensioni di File sostituirà il comportamento predefinito di hello. Garantire il supporto di file MP4 e F4V includendo queste estensioni durante la configurazione dell'opzione. 
+- Verificare che tooinclude un punto quando si specifica ogni estensione del nome file (ad esempio,. mp4 F4V).
 
 **Comportamento predefinito:** il download progressivo HTTP supporta file multimediali MP4 e F4V per impostazione predefinita.
 
 ###<a name="honor-no-cache-request"></a>Rispetta richiesta no-cache
-**Scopo:**: determina se le richieste no-cache di un client HTTP verranno inoltrate al server di origine.
+**Scopo:** determina se le richieste no-cache del client HTTP deve essere inoltrate toohello server di origine.
 
-Una richiesta no-cache si verifica quando il client HTTP invia un'intestazione Cache-Control:no-cache e/o Pragma:no-cache nella richiesta HTTP.
+Una richiesta di no-cache si verifica quando il client di hello HTTP invia una Cache-Control: no-cache e/o pragma: No-intestazione della cache nella richiesta HTTP hello.
 
 Valore|Risultato
 --|--
-Enabled|Consente alle richieste no-cache di un client HTTP di essere inoltrate al server di origine e al server di origine di restituire al client HTTP le intestazioni di risposta e il corpo tramite il server periferico.
-Disabled|Ripristina il comportamento predefinito. Il comportamento predefinito prevede di impedire alle richieste no-cache di essere inoltrate al server di origine.
+Enabled|Consente di no-cache del client HTTP richiede toobe toohello inoltrato server di origine e il server di origine hello restituirà le intestazioni di risposta hello e corpo hello tramite server perimetrale hello toohello indietro HTTP client.
+Disabled|Ripristina impostazioni predefinite hello. comportamento predefinito di Hello è richieste no-cache tooprevent dal server di origine toohello inoltrati.
 
-Per tutto il traffico di produzione, è consigliabile lasciare questa funzionalità nello stato disabilitato predefinito. In caso contrario, i server di origine non risulteranno protetti da eventuali utenti finali che attivino inavvertitamente molte richieste no-cache durante l'aggiornamento di pagine Web o dai numerosi lettori multimediali di uso comune codificati per inviare un'intestazione no-cache con ogni richiesta video. Se applicata a determinate directory di staging o testing non di produzione, tuttavia, questa funzionalità consente di effettuare il pull on-demand di contenuti aggiornati dal server di origine.
+Per tutto il traffico di produzione, è altamente consigliabile tooleave questa funzionalità nello stato disabilitato predefinito. In caso contrario, i server di origine verranno non protetti dagli utenti finali che potrebbero inavvertitamente generare molte richieste no-cache durante l'aggiornamento di pagine web o da hello lettore multimediale comuni che vengono codificati toosend un'intestazione no-cache con ogni richiesta video. Tuttavia, questa funzionalità può essere di gestione temporanea non di produzione di toocertain tooapply utile o directory, il test in toobe contenuto aggiornato di ordine tooallow pull su richiesta dal server di origine hello.
 
-Lo stato della cache visualizzato per una richiesta che può essere inoltrata a un server di origine grazie a questa funzionalità è: TCP_Client_Refresh_Miss. Il report sugli stati della cache, disponibile nel modulo di report principale, fornisce informazioni statistiche in base allo stato della cache. Consente quindi di monitorare il numero e la percentuale di richieste inoltrate a un server di origine a causa di questa funzionalità.
+stato della cache di Hello che verrà segnalato per una richiesta che è un server di origine tooan toobe inoltrato a causa di funzionalità toothis è TCP_Client_Refresh_Miss. Il report, gli stati di Cache che è disponibile nel modulo dei report Core hello, fornisce informazioni statistiche in base allo stato della cache. In questo modo si tootrack hello numero e percentuale di richieste che vengono inoltrati tooan server di origine a causa di funzionalità toothis.
 
 **Comportamento predefinito:** Disabled.
 
 ###<a name="ignore-origin-no-cache"></a>Ignore Origin no-cache (Ignora origine No-Cache)
-**Scopo:** determina se la rete CDN ignorerà le seguenti direttive gestite da un server di origine.
+**Scopo:** determina se la rete CDN ignorerà hello seguenti direttive servite da un server di origine:
 
 - Cache-Control: private
 - Cache-Control: no-store
@@ -459,10 +459,10 @@ Lo stato della cache visualizzato per una richiesta che può essere inoltrata a 
 
 Informazioni chiave:
 
-- Configurare questa funzionalità definendo un elenco delimitato da spazi di codici di stato per i quali dovranno essere ignorate le direttive sopra riportate.
-- I codici di stato validi per questa funzionalità sono: 200, 203, 300, 301, 302, 305, 307, 400, 401, 402, 403, 404, 405, 406, 407, 408, 409, 410, 411, 412, 413, 414, 415, 416, 417, 500, 501, 502, 503, 504 e 505.
-- Disabilitare questa funzionalità impostandola su un valore vuoto.
-- In base al modo in cui vengono monitorate le impostazioni della cache, è possibile che questa funzionalità non possa essere associata alle seguenti condizioni di corrispondenza: 
+- Questa funzionalità può essere configurata mediante la definizione di un elenco delimitato da virgole dei codici di stato per il quale hello sopra direttive verrà ignorato.
+- Hello set di codici di stato valido per questa funzionalità è: 200, 203, 300, 301, 302, 305, 307, 400, 401, 402, 403, 404, 405, 406, 407, 408, 409, 410, 411, 412, 413, 414, 415, 416, 417, 500, 501, 502, 503, 504 e 505.
+- Disabilitare questa funzionalità impostando il valore vuoto tooa.
+- Scadenza toohello modo nella cui cache vengono rilevate le impostazioni, questa funzionalità non può essere associata seguendo le condizioni di corrispondenza hello: 
     - Edge 
     - CNAME
     - Valore letterale intestazione richiesta
@@ -471,39 +471,39 @@ Informazioni chiave:
     - Valore letterale query URL
     - Carattere jolly query URL
 
-**Comportamento predefinito:** il comportamento prevede di rispettare le direttive sopra riportate.
+**Comportamento predefinito:** il comportamento predefinito prevede hello toohonor sopra direttive.
 
 ###<a name="ignore-unsatisfiable-ranges"></a>Ignora gli intervalli che non è possibile soddisfare 
-**Scopo:** determina la risposta che verrà restituita ai client quando una richiesta genera un codice di stato 416 Impossibile attenersi all'intervallo richiesto.
+**Scopo:** determina risposta hello che verrà restituito tooclients quando una richiesta genera un codice di stato 416 richiesto non Impossibile attenersi all'intervallo.
 
-Per impostazione predefinita, questo codice di stato viene restituito quando la richiesta di intervallo di byte specificata non può essere soddisfatta da un server periferico e non è stato specificato un campo di intestazione di richiesta If-Range.
+Per impostazione predefinita, questo codice di stato viene restituito quando hello specificato non è possibile soddisfare la richiesta di intervallo di byte da un server perimetrale e non è stato specificato un campo di intestazione di richiesta If-Range.
 
 Valore|Risultato
 -|-
-Enabled|Impedisce ai server periferici di rispondere a una richiesta di intervallo di byte non valida con un codice di stato 416 - Impossibile attenersi all'intervallo richiesto. I server forniranno invece l'asset richiesto e restituiranno al client il codice 200 - OK.
-Disabled|Ripristina il comportamento predefinito. Il comportamento predefinito prevede di rispettare il codice di stato 416 - Impossibile attenersi all'intervallo richiesto.
+Enabled|Impedisce che i nostri server edge dalla richiesta di intervallo di byte non validi tooan risponde con un codice di stato 416 richiesto non Impossibile attenersi all'intervallo. I nostri server verranno invece trasmettere l'asset richiesto hello e restituire un messaggio 200 OK hello client.
+Disabled|Ripristina impostazioni predefinite hello. comportamento predefinito di Hello è toohonor il codice di stato 416 richiesto non Impossibile attenersi all'intervallo.
 
 **Comportamento predefinito:** Disabled.
 
 ###<a name="internal-max-stale"></a>Max-Stale interno
-**Scopo:** controlla per quanto tempo, dopo la normale scadenza, un asset memorizzato nella cache può essere servito da un server perimetrale quando il server perimetrale non è in grado di riconvalidare l'asset memorizzato nella cache con il server di origine.
+**Scopo:** controlla la durata di memorizzazione asset con il server di origine hello ultimi hello normale scadenza un asset memorizzati nella cache può essere servito da un server perimetrale quando server perimetrale hello è Impossibile toorevalidate hello.
 
-In genere, quando l'intervallo di validità massima di un asset scade, il server periferico invia una richiesta di riconvalida al server di origine. Il server di origine risponde quindi con un codice di stato 304 - Non modificato per fornire al server periferico un lease aggiornato sull'asset memorizzato nella cache o con un codice 200 - OK per fornire al server periferico una versione aggiornata dell'asset memorizzato nella cache.
+In genere, quando una risorsa max-age dell'orario, server perimetrale hello invierà un server di origine toohello richiesta la riconvalida. Hello server di origine verranno quindi rispondere con un 304 non modificato per fornire server perimetrale hello un nuovo lease asset memorizzati nella cache di hello, oppure con 200 OK per fornire il server perimetrale hello con una versione aggiornata dell'asset memorizzati nella cache di hello.
 
-Se il server periferico non è in grado di stabilire una connessione con il server di origine durante il tentativo di riconvalida, la funzionalità Internal Max-Stale (Tempo di non aggiornamento massimo interno) controlla se e per quanto tempo il server periferico può continuare a servire l'asset non aggiornato.
+Se server perimetrale hello è Impossibile tooestablish una connessione con il server di origine hello durante il tentativo di questo tipo una riconvalida, questa funzionalità aggiornata Max interno controlla se e per quanto tempo, hello server perimetrale potrebbe continuare asset di tooserve hello ora aggiornata.
 
-Questo intervallo di tempo inizia nel momento in cui scade la validità massima dell'asset, non quando la riconvalida ha esito negativo. Il periodo massimo durante il quale un asset può essere servito senza riconvalida corrisponde quindi alla quantità di tempo determinata dalla combinazione dei valori Max-Age (Validità massima) e Max-Stale (Tempo di non aggiornamento massimo). Se, ad esempio, un asset è stato memorizzato nella cache alle 9.00 con una validità massima di 30 minuti e un tempo di non aggiornamento massimo di 15 minuti, in caso di tentativo di riconvalida non riuscito alle 9.44 un utente finale riceverebbe l'asset memorizzato nella cache non aggiornato, mentre in caso di tentativo di riconvalida non riuscito alle 9.46 l'utente finale riceverebbe un codice di stato 504 - Timeout gateway.
+Si noti che questo intervallo di tempo inizia quando scade la durata massima dell'asset hello, non quando hello riconvalida si verifica. Pertanto, il periodo massimo di hello durante il quale un asset può essere soddisfatta senza riconvalida è intervallo hello di tempo specificato da una combinazione di hello max-age più aggiornata di max. Ad esempio, se un asset è stato memorizzato nella cache alle 9:00 con una durata massima di 30 minuti e aggiornata un numero massimo di 15 minuti, quindi tentare una riconvalida non riuscita a 9:44 comporta un utente finale ricevente hello non aggiornati memorizzati nella cache asset, durante un tentativo non riuscito riconvalida 9:46 darà origine a ricezione di un Timeout del Gateway 504 all'utente finale Hello.
 
-Qualsiasi valore configurato per questa funzionalità viene sostituito dall'intestazione Cache-Control:must-revalidate o Cache-Control:proxy-revalidate ricevuta dal server di origine. Se una di queste intestazioni viene ricevuta dal server di origine all'inizio della procedura di memorizzazione dell'asset nella cache, il server periferico non servirà un asset memorizzato nella cache non aggiornato. In questo caso, se il server periferico non è in grado di eseguire la riconvalida con il server di origine alla scadenza dell'intervallo di validità massima dell'asset, il server periferico restituirà un codice di stato 504 - Timeout gateway.
+Qualsiasi valore configurato per questa funzionalità è stata sostituita dalla Cache-controllo: deve-riconvalidare oppure memorizzare nella Cache-controllo: proxy-revalidate intestazioni ricevute dal server di origine hello. Se uno di tali intestazioni viene ricevuto dal server di origine hello quando viene inizialmente memorizzato nella cache un asset, server perimetrale hello non soddisferà un asset memorizzati nella cache non aggiornato. In tal caso, se hello bordo è un server non è possibile toorevalidate con origine hello intervallo max-age dell'asset hello è scaduto, quindi server perimetrale hello restituirà un 504 Timeout del Gateway.
 
 Informazioni chiave:
 
 - Per configurare questa funzionalità:
-    - Selezionare il codice di stato in base al quale verrà applicato il tempo di non aggiornamento massimo.
-    - Specificare un valore intero e quindi selezionare l'unità di tempo desiderata (ad esempio secondi, minuti, ore e così via). Questo valore definisce il tempo di non aggiornamento massimo interno che verrà applicato.
+    - Se si seleziona il codice di stato hello per il quale verrà applicato un max aggiornata.
+    - Specificando un valore integer e quindi selezionando hello unità di tempo desiderato (ad esempio secondi, minuti, ore e così via). Questo valore definisce hello interno max aggiornata che verrà applicata.
 
-- Impostando l'unità di tempo su "Off", questa funzionalità viene disabilitata. Un asset memorizzato nella cache non verrà servito dopo la normale scadenza.
-- In base al modo in cui vengono monitorate le impostazioni della cache, è possibile che questa funzionalità non possa essere associata alle seguenti condizioni di corrispondenza: 
+- Unità di tempo hello impostazione troppo "Off" verrà disabilitare questa funzionalità. Un asset memorizzato nella cache non verrà servito dopo la normale scadenza.
+- Scadenza toohello modo nella cui cache vengono rilevate le impostazioni, questa funzionalità non può essere associata seguendo le condizioni di corrispondenza hello: 
     - Edge 
     - CNAME
     - Valore letterale intestazione richiesta
@@ -517,25 +517,25 @@ Informazioni chiave:
 ###<a name="partial-cache-sharing"></a>Condivisione cache parziale
 **Scopo:** determina se una richiesta può generare contenuti parzialmente memorizzati nella cache.
 
-Questa cache parziale può essere quindi usata per soddisfare nuove richieste dei contenuti desiderati fino a quando non risultano completamente memorizzati nella cache.
+Successivamente, la cache parziale potrebbe essere utilizzati toofulfill nuove richieste per il contenuto finché non viene richiesto di hello contenuto completamente memorizzato nella cache.
 
 Valore|Risultato
 -|-
 Enabled|Le richieste possono generare contenuti parzialmente memorizzati nella cache.
-Disabled|Le richieste possono generare solo una versione completamente memorizzata nella cache dei contenuti richiesti.
+Disabled|Le richieste è possibile generare solo un oggetto completamente nella cache il contenuto di richiesta la versione di hello.
 
 **Comportamento predefinito:** Disabled.
 
 ###<a name="prevalidate-cached-content"></a>Preconvalida contenuto memorizzato nella cache
 **Scopo:** determina se i contenuti memorizzati nella cache saranno idonei per la riconvalida anticipata prima della scadenza della durata (TTL).
 
-Definire l'intervallo di tempo prima della scadenza della durata dei contenuti richiesti durante il quale i contenuti saranno idonei per la riconvalida anticipata.
+Definire la quantità hello tempo di scadenza precedenti toohello di hello richiesto durata (TTL) del contenuto durante i quali sarà idoneo per la riconvalida anticipata.
 
 Informazioni chiave:
 
-- Se si imposta l'unità di tempo su "Off", la riconvalida dovrà essere eseguita dopo la scadenza della durata dei contenuti memorizzati nella cache. Non è necessario specificare alcun valore di tempo, poiché verrebbe ignorato.
+- Selezione di "Off" come unità di tempo hello richiede sul posto tootake riconvalida dopo la durata (TTL) del contenuto memorizzato nella cache di hello è scaduto. Non è necessario specificare alcun valore di tempo, poiché verrebbe ignorato.
 
-**Comportamento predefinito:** Off. La riconvalida può aver luogo solo dopo la scadenza della durata dei contenuti memorizzati nella cache.
+**Comportamento predefinito:** Off. La riconvalida può essere eseguita solo dopo hello durata (TTL) del contenuto memorizzato nella cache è scaduto.
 
 ###<a name="refresh-zero-byte-cache-files"></a>Aggiorna i file della cache con zero byte
 **Scopo:** determina come viene gestita dai server perimetrali una richiesta da parte di un client HTTP di un asset della cache con 0 byte.
@@ -544,93 +544,93 @@ I valori validi sono:
 
 Valore|Risultato
 --|--
-Enabled|Fa sì che il server periferico recuperi nuovamente l'asset dal server di origine.
-Disabled|Ripristina il comportamento predefinito. Il comportamento predefinito prevede di rendere disponibili asset di cache validi su richiesta.
-Questa funzionalità non è necessaria per eseguire correttamente operazioni di memorizzazione nella cache o distribuzione di contenuti, ma può essere utile come soluzione alternativa. I generatori di contenuti dinamici nei server di origine, ad esempio, possono determinare inavvertitamente l'invio di risposte con 0 byte ai server periferici. Questi tipi di risposte, in genere, vengono memorizzati nella cache dai server periferici. Presupponendo che una risposta con 0 byte non sia mai una risposta valida 
+Enabled|Determina l'asset di hello edge server toore-fetch dal server di origine hello.
+Disabled|Ripristina impostazioni predefinite hello. comportamento predefinito di Hello è tooserve le risorse di cache valido su richiesta.
+Questa funzionalità non è necessaria per eseguire correttamente operazioni di memorizzazione nella cache o distribuzione di contenuti, ma può essere utile come soluzione alternativa. Ad esempio, i generatori di contenuto dinamici nei server di origine possono causare inavvertitamente le risposte di 0 byte inviate server edge toohello. Questi tipi di risposte, in genere, vengono memorizzati nella cache dai server periferici. Presupponendo che una risposta con 0 byte non sia mai una risposta valida 
 
-per questo tipo di contenuti, questa funzionalità può impedire che ai client vengano serviti questi tipi di asset.
+Per questo tipo di contenuto, quindi questa funzionalità può impedire questi tipi di risorse servito tooyour client.
 
 **Comportamento predefinito:** Disabled.
 
 ###<a name="set-cacheable-status-codes"></a>Imposta codici di stato inseribile nella cache
-**Scopo:** definisce il set di codici di stato che possono generare contenuti memorizzati nella cache.
+**Scopo:** definisce il set di hello dei codici di stato che possono comportare contenuto memorizzato nella cache.
 
 Per impostazione predefinita, la memorizzazione nella cache è abilitata solo per le risposte 200 - OK.
 
-Definire un set delimitato da spazi dei codici di stato desiderati.
+Definire un set delimitato da spazi hello desiderato dei codici di stato.
 
 Informazioni chiave:
 
 - Abilitare anche la funzionalità Ignore Origin No-Cache (Ignora origine No-Cache). In caso contrario, è possibile che le risposte diverse da 200 - OK non vengano memorizzate nella cache.
-- I codici di stato validi per questa funzionalità sono: 203, 300, 301, 302, 305, 307, 400, 401, 402, 403, 404, 405, 406, 407, 408, 409, 410, 411, 412, 413, 414, 415, 416, 417, 500, 501, 502, 503, 504 e 505.
-- Questa funzionalità non può essere usata per disabilitare la memorizzazione nella cache delle risposte che generano un codice di stato 200 - OK.
+- Hello set di codici di stato valido per questa funzionalità è: 203, 300, 301, 302, 305, 307, 400, 401, 402, 403, 404, 405, 406, 407, 408, 409, 410, 411, 412, 413, 414, 415, 416, 417, 500, 501, 502, 503, 504 e 505.
+- Questa funzionalità non può essere utilizzato toodisable la memorizzazione nella cache per le risposte che generano un codice di stato OK 200.
 
 **Comportamento predefinito:** la memorizzazione nella cache è abilitata solo per le risposte che generano un codice di stato 200 - OK.
 ###<a name="stale-content-delivery-on-error"></a>Distribuzione di contenuto non aggiornato in caso di errore
 **Scopo:** 
 
-Determina se il contenuto scaduto memorizzato nella cache verrà distribuito quando si verifica un errore durante la riconvalida della cache o quando si recupera il contenuto richiesto dal server di origine del cliente.
+Determina se scaduto, verrà recapitato contenuto memorizzato nella cache quando si verifica un errore durante la riconvalida della cache o quando hello durante il recupero delle richieste di contenuto dal server di origine cliente hello.
 
 Valore|Risultato
 -|-
-Enabled|Se si verifica un errore durante una connessione a un server di origine, al richiedente vengono serviti contenuti non aggiornati.
-Disabled|L'errore del server di origine viene inoltrato al richiedente.
+Enabled|Contenuto aggiornato verrà utilizzato toohello richiedente quando si verifica un errore durante un server di origine tooan di connessione.
+Disabled|Errore del server di origine Hello verrà inoltrati toohello richiedente.
 
 **Comportamento predefinito:** Disabled
 
 ###<a name="stale-while-revalidate"></a>Client non aggiornato durante la riconvalida
-**Scopo:** migliora le prestazioni consentendo ai server perimetrali di servire contenuti non aggiornati al richiedente mentre è in corso la riconvalida.
+**Scopo:** migliora le prestazioni, consentendo il nostro server edge tooserve toohello contenuto aggiornato richiedente durante la riconvalida.
 
 Informazioni chiave:
 
-- Il comportamento di questa funzionalità varia in base all'unità di tempo selezionata.
-    - **Unità di tempo:** specificare un intervallo di tempo e selezionare un'unità di tempo (ad esempio secondi, minuti, ore e così via) per consentire la distribuzione di contenuti non aggiornati. Questo tipo di configurazione consente alla rete CDN di estendere l'intervallo di tempo durante il quale può distribuire contenuti prima di richiedere la convalida in base alla formula seguente: **Durata** + **Stale While Revalidate Time** (Client non aggiornato durante la riconvalida) 
-    - **Off:** selezionare "Off" per richiedere la riconvalida prima che possa essere servita una richiesta di contenuti non aggiornati.
+- comportamento di Hello di questa funzionalità varia secondo unità di tempo selezionato toohello.
+    - **Unità di tempo:** specificare un periodo di tempo e selezionare un tempo unità (ad esempio secondi, minuti, ore, e così via) tooallow obsoleti contenuti. Questo tipo di programma di installazione consente hello CDN tooextend hello durata di tempo può distribuire il contenuto prima di richiedere la convalida in base toohello formula seguente:**TTL** + **mentre riconvalidare ritardo** 
+    - **OFF:** selezionare "Off" riconvalida toorequire prima di una richiesta per il contenuto non aggiornato può essere servito.
         - Non specificare un intervallo di tempo poiché non è applicabile e verrebbe ignorato.
 
-**Comportamento predefinito:** Off. La riconvalida deve aver luogo prima che possano essere serviti i contenuti richiesti.
+**Comportamento predefinito:** Off. La riconvalida deve essere effettuata prima hello richiesto contenuto possa essere utilizzato.
 
 ###<a name="comment"></a>Commento
-**Scopo:** consente di aggiungere una nota all'interno di una regola.
+**Scopo:** consente un toobe nota aggiunta all'interno di una regola.
 
-Uno dei possibili usi di questa funzionalità è quello di fornire informazioni aggiuntive sullo scopo generale di una regola o sui motivi per cui alla regola è stata aggiunta una determinata funzionalità o condizione di corrispondenza.
+È possibile utilizzare questa funzionalità è tooprovide ulteriori informazioni sull'utilizzo generico di hello di una regola o perché corrispondono a una particolare condizione o una funzionalità è stata aggiunta la regola toohello.
 
 Informazioni chiave:
 
 - Non possono essere specificati più di 150 caratteri.
-- Assicurarsi di usare solo caratteri alfanumerici.
-- Questa funzionalità non influisce sul comportamento della regola. È stata concepita al solo scopo di mettere a disposizione un'area in cui poter fornire informazioni da usare come riferimento futuro o per risolvere un problema relativo alla regola.
+- Verificare che tooonly utilizzare caratteri alfanumerici.
+- Questa funzionalità non influisce sul comportamento hello della regola di hello. Si tratta semplicemente tooprovide un'area in cui è possibile fornire informazioni per riferimento futuro o che possono essere utili durante la risoluzione dei problemi regola hello.
  
-## <a name="headers"></a>headers
+## <a name="headers"></a>Headers
 
-Queste funzionalità sono progettate per aggiungere, modificare o eliminare le intestazioni dalla richiesta o dalla risposta.
+Queste funzionalità sono progettate tooadd, modificare o eliminare le intestazioni da hello richiesta o risposta.
 
 Nome | Scopo
 -----|--------
-Intestazione di risposta Age | Determina se un'intestazione di risposta Age verrà inclusa nella risposta inviata al richiedente.
-Intestazioni di risposta di debug per la cache | Determina se una risposta può includere l'intestazione di risposta X-EC-Debug che fornisce informazioni sul criterio di cache per l'asset richiesto.
+Intestazione di risposta Age | Determina se un'intestazione di risposta Age verrà incluso nella risposta di hello inviata toohello richiedente.
+Intestazioni di risposta di debug per la cache | Determina se una risposta può includere l'intestazione della risposta X-EC-Debug hello che fornisce informazioni su criteri di cache di hello per hello richiesto asset.
 Modifica intestazione richiesta client | Sovrascrive, aggiunge o elimina un'intestazione da una richiesta.
 Modificare intestazione risposta client | Sovrascrive, aggiunge o elimina un'intestazione da una risposta.
-Imposta intestazione personalizzata IP client | Consente di aggiungere l'indirizzo IP del client richiedente alla richiesta come un'intestazione personalizzata.
+Imposta intestazione personalizzata IP client | Consente l'indirizzo IP hello del client richiedente hello toobe toohello aggiunto richiesta come un'intestazione personalizzata.
 
 ###<a name="age-response-header"></a>Intestazione di risposta Age
-**Scopo**: determina se un'intestazione di risposta Age verrà inclusa nella risposta inviata al richiedente.
+**Scopo**: determina se debba essere inclusa un'intestazione di risposta Age in hello risposta inviata toohello richiedente.
 Valore|Risultato
 --|--
-Enabled | L'intestazione di risposta Age verrà inclusa nella risposta inviata al richiedente.
-Disabled | L'intestazione di risposta Age verrà esclusa dalla risposta inviata al richiedente.
+Enabled | intestazione della risposta Age Hello verrà inclusi nella risposta di hello inviata toohello richiedente.
+Disabled | intestazione della risposta Age Hello verrà esclusi dalla risposta hello inviato toohello richiedente.
 
 **Comportamento predefinito:**: Disabled.
 
 ###<a name="debug-cache-response-headers"></a>Intestazioni di risposta di debug per la cache
-**Scopo:** determina se una risposta può includere l'intestazione di risposta X-EC-Debug che fornisce informazioni sui criteri di cache per l'asset richiesto.
+**Scopo:** determina se una risposta può includere l'intestazione della risposta X-EC-Debug che fornisce informazioni su criteri di cache di hello per hello richiesto asset.
 
-Le intestazioni di risposta di debug per la cache vengono incluse nella risposta quando sono soddisfatte entrambe le condizioni seguenti:
+Eseguire il debug di risposta della cache intestazioni verranno inclusi nella risposta hello quando entrambe operazioni hello seguenti sono vere:
 
-- Nella richiesta desiderata è stata abilitata la funzionalità relativa alle intestazioni di risposta di debug per la cache.
-- La richiesta precedente definisce il set di intestazioni di risposta di debug per la cache incluso nella risposta.
+- eseguire il Debug di funzionalità di intestazioni di risposta della Cache di Hello è stata abilitata nella richiesta di hello desiderato.
+- Hello sopra richiesta definisce il set di hello di intestazioni di risposta della cache di debug che verranno inclusi nella risposta hello.
 
-Le intestazioni di risposta di debug per la cache possono essere richieste includendo nella richiesta l'intestazione seguente e le direttive desiderate:
+Eseguire il debug di risposta della cache, le intestazioni possono essere richiesti includendo la seguente intestazione hello e hello direttive desiderate nella richiesta di hello:
 
 X-EC-Debug: _Direttiva1_,_Direttiva2_,_DirettivaN_
 
@@ -641,36 +641,36 @@ X-EC-Debug: x-ec-cache,x-ec-check-cacheable,x-ec-cache-key,x-ec-cache-state
 Valore|Risultato
 -|-
 Enabled|Le richieste di intestazioni di risposta di debug per la cache restituiranno una risposta che include l'intestazione X-EC-Debug.
-Disabled|L'intestazione di risposta X-EC-Debug verrà esclusa dalla risposta.
+Disabled|L'intestazione della risposta X-EC-Debug verrà esclusi dalla risposta hello.
 
 **Comportamento predefinito:** Disabled.
 
 ###<a name="modify-client-response-header"></a>Modificare intestazione risposta client
 **Scopo:** ogni richiesta contiene un set di [intestazioni di richiesta]() che la descrivono. Questa funzionalità può:
 
-- Aggiungere o sovrascrivere il valore assegnato a un'intestazione di richiesta. Se l'intestazione di richiesta specificata non esiste, questa funzionalità la aggiungerà alla richiesta.
-- Eliminare dalla richiesta un'intestazione di richiesta.
+- Aggiungere o sovrascrivere il valore di hello assegnato tooa intestazione della richiesta. Se l'intestazione della richiesta specificato hello non esiste, quindi questa funzionalità verrà aggiunte toohello richiesta.
+- Eliminare un'intestazione di richiesta dalla richiesta hello.
 
-Le richieste inoltrate a un server di origine rifletteranno le modifiche apportate da questa funzionalità.
+Le richieste vengono inoltrate a server di origine tooan rifletteranno hello apportate da questa funzionalità.
 
-Su un'intestazione di richiesta è possibile eseguire una delle azioni seguenti:
+Una delle seguenti azioni hello può essere eseguita su un'intestazione della richiesta:
 
 Opzione|Descrizione|Esempio
 -|-|-
-Append|Il valore specificato verrà aggiunto alla fine del valore dell'intestazione di richiesta esistente.|**Valore intestazione richiesta (Client):**Value1 <br/> **Valore intestazione richiesta (Motore regole HTTP):** Value2 <br/>**Valore nuova intestazione di richiesta:** Value1Value2
-Overwrite|Il valore dell'intestazione di richiesta verrà impostato sul valore specificato.|**Valore intestazione richiesta (Client):**Value1 <br/>**Valore intestazione richiesta (Motore regole HTTP):** Value2 <br/>**Valore nuova intestazione richiesta:** Value2 <br/>
-Elimina|Elimina l'intestazione di richiesta specificata.|**Valore intestazione richiesta (Client):**Value1 <br/> **Configurazione Modify Client Request Header (Modifica intestazione richiesta client):** elimina l'intestazione di richiesta in questione. <br/>**Risultato:** l'intestazione di richiesta specificata non verrà inoltrata al server di origine.
+Append|Hello specificato verrà aggiunto valore toend del valore dell'intestazione di richiesta esistente hello.|**Valore intestazione richiesta (Client):**Value1 <br/> **Valore intestazione richiesta (Motore regole HTTP):** Value2 <br/>**Valore nuova intestazione di richiesta:** Value1Value2
+Overwrite|valore dell'intestazione sarà set toohello richiesta di Hello valore specificato.|**Valore intestazione richiesta (Client):**Value1 <br/>**Valore intestazione richiesta (Motore regole HTTP):** Value2 <br/>**Valore nuova intestazione richiesta:** Value2 <br/>
+Elimina|Elimina l'intestazione della richiesta specificato hello.|**Valore intestazione richiesta (Client):**Value1 <br/> **Modificare la configurazione di intestazione della richiesta Client:** intestazione richiesta Delete hello in questione. <br/>**Risultato:** hello specificato l'intestazione della richiesta non verrà inoltrato al server di origine toohello.
 
 Informazioni chiave:
 
-- Assicurarsi che il valore specificato nell'opzione Nome corrisponda esattamente all'intestazione di richiesta desiderata.
-- Ai fini dell'identificazione di un'intestazione non viene fatta distinzione tra maiuscole e minuscole. Per identificare l'intestazione Cache-Control, ad esempio, è possibile usare una delle varianti di nome seguenti:
+- Assicurarsi che il valore di hello specificato nell'opzione Name è una corrispondenza esatta per l'intestazione della richiesta desiderato hello.
+- Caso non viene preso in considerazione per scopo hello di identificazione di un'intestazione. Ad esempio, uno dei seguenti varianti del nome di intestazione Cache-Control hello può essere utilizzato tooidentify è:
     - cache-control
     - CACHE-CONTROL
     - cachE-Control
-- Assicurarsi di usare solo caratteri alfanumerici, trattini o caratteri di sottolineatura quando si specifica un nome di intestazione.
-- L'eliminazione di un'intestazione impedisce che venga inoltrata a un server di origine dai server perimetrali.
-- Le intestazioni seguenti sono riservate e non possono essere modificate da questa funzionalità:
+- Verificare che tooonly utilizzare caratteri alfanumerici, trattini o caratteri di sottolineatura quando si specifica un nome di intestazione.
+- L'eliminazione di un'intestazione ne impedirà inoltrati server di origine tooan nostri server edge.
+- Hello intestazioni seguenti sono riservate e non possono essere modificate da questa funzionalità:
     - forwarded
     - host
     - via
@@ -681,28 +681,28 @@ Informazioni chiave:
 ###<a name="modify-client-response-header"></a>Modificare intestazione risposta client
 Ogni risposta contiene un set di [intestazioni di risposta]() che la descrivono. Questa funzionalità può:
 
-- Aggiungere o sovrascrivere il valore assegnato a un'intestazione di risposta. Se l'intestazione di richiesta specificata non esiste, questa funzionalità la aggiungerà alla risposta.
-- Eliminare dalla risposta un'intestazione di risposta.
+- Aggiungere o sovrascrivere il valore di hello assegnato tooa intestazione della risposta. Se l'intestazione della richiesta specificato hello non esiste, quindi questa funzionalità verrà aggiunte toohello risposta.
+- Eliminare un'intestazione di risposta dalla risposta hello.
 
 Per impostazione predefinita, i valori delle intestazioni di risposta vengono definiti da un server di origine e dai server periferici.
 
-Su un'intestazione di risposta è possibile eseguire una delle azioni seguenti:
+Una delle seguenti azioni hello può essere eseguita su un'intestazione di risposta:
 
 Opzione|Descrizione|Esempio
 -|-|-
-Append|Il valore specificato verrà aggiunto alla fine del valore dell'intestazione di richiesta esistente.|**Valore intestazione risposta (Client):**Value1 <br/> **Valore intestazione risposta (Motore regole HTTP):** Value2 <br/>**Valore nuova intestazione risposta:** Value1Value2
-Overwrite|Il valore dell'intestazione di richiesta verrà impostato sul valore specificato.|**Valore intestazione risposta (Client):**Value1 <br/>**Valore intestazione risposta (Motore regole HTTP):** Value2 <br/>**Valore nuova intestazione risposta:** Value2 <br/>
-Elimina|Elimina l'intestazione di richiesta specificata.|**Valore intestazione richiesta (Client):**Value1 <br/> **Configurazione Modify Client Request Header (Modifica intestazione richiesta client):** elimina l'intestazione di risposta in questione. <br/>**Risultato:** l'intestazione di risposta specificata non verrà inoltrata al richiedente.
+Append|Hello specificato verrà aggiunto valore toend del valore dell'intestazione di richiesta esistente hello.|**Valore intestazione risposta (Client):**Value1 <br/> **Valore intestazione risposta (Motore regole HTTP):** Value2 <br/>**Valore nuova intestazione risposta:** Value1Value2
+Overwrite|valore dell'intestazione sarà set toohello richiesta di Hello valore specificato.|**Valore intestazione risposta (Client):**Value1 <br/>**Valore intestazione risposta (Motore regole HTTP):** Value2 <br/>**Valore nuova intestazione risposta:** Value2 <br/>
+Elimina|Elimina l'intestazione della richiesta specificato hello.|**Valore intestazione richiesta (Client):**Value1 <br/> **Modificare la configurazione di intestazione della richiesta Client:** intestazione della risposta hello Delete in questione. <br/>**Risultato:** hello specificato l'intestazione della risposta non verrà inoltrata toohello richiedente.
 
 Informazioni chiave:
 
-- Assicurarsi che il valore specificato nell'opzione Nome corrisponda esattamente all'intestazione di risposta desiderata. 
-- Ai fini dell'identificazione di un'intestazione non viene fatta distinzione tra maiuscole e minuscole. Per identificare l'intestazione Cache-Control, ad esempio, è possibile usare una delle varianti di nome seguenti:
+- Assicurarsi che il valore di hello specificato nell'opzione Name è una corrispondenza esatta per l'intestazione della risposta desiderato hello. 
+- Caso non viene preso in considerazione per scopo hello di identificazione di un'intestazione. Ad esempio, uno dei seguenti varianti del nome di intestazione Cache-Control hello può essere utilizzato tooidentify è:
     - cache-control
     - CACHE-CONTROL
     - cachE-Control
-- L'eliminazione di un'intestazione impedisce che venga inoltrata al richiedente.
-- Le intestazioni seguenti sono riservate e non possono essere modificate da questa funzionalità:
+- L'eliminazione di un'intestazione ne impedirà inoltrati toohello richiedente.
+- Hello intestazioni seguenti sono riservate e non possono essere modificate da questa funzionalità:
     - accept-encoding
     - age
     - connection
@@ -720,13 +720,13 @@ Informazioni chiave:
     - Tutti i nomi di intestazione che iniziano con "x-ec" sono riservati.
 
 ###<a name="set-client-ip-custom-header"></a>Imposta intestazione personalizzata IP client
-**Scopo:** aggiunge un'intestazione personalizzata che identifica il client richiedente in base all'indirizzo IP della richiesta.
+**Scopo:** aggiunge un'intestazione personalizzata che identifica i client richiedente hello tramite una richiesta di toohello indirizzo IP.
 
-L'opzione Nome intestazione definisce il nome dell'intestazione di richiesta personalizzata in cui verrà archiviato l'indirizzo IP del client.
+L'opzione Nome intestazione definisce il nome di hello dell'intestazione della richiesta personalizzata hello in cui verrà archiviato hello indirizzo IP del client.
 
-Questa funzionalità consente a un server di origine del cliente di trovare gli indirizzi IP dei client tramite un'intestazione di richiesta personalizzata. Se la richiesta viene gestita dalla cache, al server di origine non verrà comunicato l'indirizzo IP del client. È consigliabile quindi usare questa funzionalità con reti ADN e asset che non verranno memorizzati nella cache.
+Questa funzionalità consente a un cliente toofind server di origine gli indirizzi IP client tramite un'intestazione personalizzata. Se la richiesta hello viene servita dalla cache, il server di origine hello non venire informato di indirizzo IP hello del client. È consigliabile quindi usare questa funzionalità con reti ADN e asset che non verranno memorizzati nella cache.
 
-Assicurarsi che il nome di intestazione specificato non coincida con nessuno dei nomi seguenti:
+Verificare che il nome dell'intestazione specificato hello non corrisponde a hello seguenti:
 
 - Nomi di intestazioni di richiesta standard. L'elenco dei nomi di intestazioni standard è disponibile in [RFC 2616](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html).
 - Nomi di intestazioni riservate:
@@ -740,21 +740,21 @@ Assicurarsi che il nome di intestazione specificato non coincida con nessuno dei
  
 ## <a name="logs"></a>Log
 
-Queste funzionalità sono progettate per personalizzare i dati archiviati nei file di log non elaborati.
+Queste funzionalità sono dati hello toocustomize progettato archiviati nei file di registro non elaborati.
 
 Nome | Scopo
 -----|--------
-Campo 1 log personalizzato | Determina il formato e il contenuto che verranno assegnati al campo di log personalizzato in un file di log non elaborato.
-Stringa di query log | Determina se una stringa di query verrà archiviata insieme all'URL nei log di accesso.
+Campo 1 log personalizzato | Determina il formato di hello e il contenuto di hello che verrà assegnato toohello campo di log personalizzato in un file di registro non elaborati.
+Stringa di query log | Determina se una stringa di query verrà memorizzata con URL hello nei registri di accesso.
 
 ###<a name="custom-log-field-1"></a>Campo 1 log personalizzato
-**Scopo:** determina il formato e i contenuti che verranno assegnati al campo di log personalizzato in un file di log non elaborato.
+**Scopo:** determina il formato di hello e il contenuto di hello che verrà assegnato toohello campo di log personalizzato in un file di registro non elaborati.
 
-Lo scopo principale di questo campo personalizzato è quello di consentire all'utente di determinare i valori delle intestazioni di richiesta e di risposta che verranno archiviati nei file di log.
+scopo principale di Hello dietro il campo personalizzato è tooallow toodetermine verranno archiviati i valori di intestazione di richiesta e risposta nei file di registro.
 
-Per impostazione predefinita, il campo del log personalizzato è denominato "x-ec_custom-1". Questo nome, tuttavia, può essere personalizzato dalla pagina delle [impostazioni del file di log non elaborato]().
+Per impostazione predefinita, il campo di log personalizzato hello viene chiamato "x-ec_custom-1". Tuttavia, il nome di hello di questo campo può essere personalizzato il [pagina Impostazioni di registro non elaborati]().
 
-Di seguito è definita la formattazione da usare per specificare le intestazioni di richiesta e di risposta.
+la formattazione che è necessario utilizzare le intestazioni di richiesta e risposta toospecify Hello è definito di seguito.
 
 Tipo di intestazione|Format|Esempi
 -|-|-
@@ -764,98 +764,98 @@ Intestazione di risposta|%{[ResponseHeader]()}[o]()| %{Age}o <br/> %{Content-Typ
 Informazioni chiave:
 
 - Un campo di log personalizzato può contenere qualsiasi combinazione di campi di intestazione e testo normale.
-- I caratteri validi per questo campo comprendono: caratteri alfanumerici (ad esempio 0-9, a-z e A-Z), trattini, due punti, punti e virgola, apostrofi, virgole, punti, caratteri di sottolineatura, segni di uguale, parentesi, parentesi quadre e spazi. Il simbolo di percentuale e le parentesi graffe sono consentiti solo se vengono usati per specificare un campo di intestazione.
-- L'ortografia di ogni campo di intestazione specificato deve corrispondere esattamente al nome di intestazione di richiesta/risposta desiderato.
-- Se si vuole specificare più intestazioni, è consigliabile usare un separatore per indicare ogni intestazione. Per ogni intestazione, ad esempio, è possibile usare un'abbreviazione. Di seguito è riportata una sintassi di esempio.
+- I caratteri validi per questo campo includono seguente hello: alfanumerici (ad esempio, 0-9, a-z e A-Z), trattini, i due punti, punti e virgola, apostrofi, virgole, punti, caratteri di sottolineatura, segni di uguale, tra parentesi, parentesi quadre e spazi. Hello simbolo di percentuale e parentesi graffe sono consentite solo quando utilizzato toospecify un campo di intestazione.
+- ortografia Hello per ogni campo di intestazione specificato deve corrispondere a nome di intestazione di richiesta/risposta desiderato hello.
+- Se si desidera toospecify più intestazioni, quindi, è consigliabile usare un separatore tooindicate ogni intestazione. Per ogni intestazione, ad esempio, è possibile usare un'abbreviazione. Di seguito è riportata una sintassi di esempio.
     - AE: %{Accept-Encoding}i A: %{Authorization}i CT: %{Content-Type}o 
 
 **Valore predefinito:** -
 
 ###<a name="log-query-string"></a>Stringa di query log
-**Scopo:** determina se una stringa di query verrà archiviata insieme all'URL nei log di accesso.
+**Scopo:** determina se una stringa di query verrà memorizzata con URL hello nei registri di accesso.
 
 Valore|Risultato
 -|-
-Enabled|Consente l'archiviazione di stringhe di query durante la registrazione degli URL in un log di accesso. Se un URL non contiene una stringa di query, questa opzione non produrrà alcun effetto.
-Disabled|Ripristina il comportamento predefinito. Il comportamento predefinito prevede di ignorare le stringhe di query durante la registrazione degli URL in un log di accesso.
+Enabled|Consente l'archiviazione di hello di stringhe di query durante la registrazione URL in un log di accesso. Se un URL non contiene una stringa di query, questa opzione non produrrà alcun effetto.
+Disabled|Ripristina impostazioni predefinite hello. comportamento predefinito di Hello è tooignore le stringhe di query durante la registrazione URL in un log di accesso.
 
 **Comportamento predefinito:** Disabled.
 
 <!---
 ## Optimize
 
-These features determine whether a request will undergo the optimizations provided by Edge Optimizer.
+These features determine whether a request will undergo hello optimizations provided by Edge Optimizer.
 
 Name | Purpose
 -----|--------
-Edge Optimizer | Determines whether Edge Optimizer can be applied to a request.
-Edge Optimizer – Instantiate Configuration | Instantiates or activates the Edge Optimizer configuration associated with a site.
+Edge Optimizer | Determines whether Edge Optimizer can be applied tooa request.
+Edge Optimizer – Instantiate Configuration | Instantiates or activates hello Edge Optimizer configuration associated with a site.
 
 ###Edge Optimizer
-**Purpose:** Determines whether Edge Optimizer can be applied to a request.
+**Purpose:** Determines whether Edge Optimizer can be applied tooa request.
 
-If this feature has been enabled, then the following criteria must also be met before the request will be processed by Edge Optimizer:
+If this feature has been enabled, then hello following criteria must also be met before hello request will be processed by Edge Optimizer:
 
-- The requested content must use an edge CNAME URL.
-- The edge CNAME referenced in the URL must correspond to a site whose configuration has been activated in a rule.
+- hello requested content must use an edge CNAME URL.
+- hello edge CNAME referenced in hello URL must correspond tooa site whose configuration has been activated in a rule.
 
-This feature requires the ADN platform and the Edge Optimizer feature.
+This feature requires the ADN platform and hello Edge Optimizer feature.
 
 Value|Result
 -|-
-Enabled|Indicates that the request is eligible for Edge Optimizer processing.
-Disabled|Restores the default behavior. The default behavior is to deliver content over the ADN platform without any additional processing.
+Enabled|Indicates that hello request is eligible for Edge Optimizer processing.
+Disabled|Restores hello default behavior. hello default behavior is toodeliver content over the ADN platform without any additional processing.
 
 **Default Behavior:** Disabled
  
 
 ###Edge Optimizer - Instantiate Configuration
-**Purpose:** Instantiates or activates the Edge Optimizer configuration associated with a site.
+**Purpose:** Instantiates or activates hello Edge Optimizer configuration associated with a site.
 
-This feature requires the ADN platform and the Edge Optimizer feature.
+This feature requires the ADN platform and hello Edge Optimizer feature.
 
 Key information:
 
-- Instantiation of a site configuration is required before requests to the corresponding edge CNAME can be processed by Edge Optimizer.
-- This instantiation only needs to be performed a single time per site configuration. A site configuration that has been instantiated will remain in that state until the Edge Optimizer – Instantiate Configuration feature that references it is removed from the rule.
-- The instantiation of a site configuration does not mean that all requests to the corresponding edge CNAME will automatically be processed by Edge Optimizer. The Edge Optimizer feature determines whether an individual request will be processed.
+- Instantiation of a site configuration is required before requests toohello corresponding edge CNAME can be processed by Edge Optimizer.
+- This instantiation only needs toobe performed a single time per site configuration. A site configuration that has been instantiated will remain in that state until hello Edge Optimizer – Instantiate Configuration feature that references it is removed from hello rule.
+- hello instantiation of a site configuration does not mean that all requests toohello corresponding edge CNAME will automatically be processed by Edge Optimizer. The Edge Optimizer feature determines whether an individual request will be processed.
 
-If the desired site does not appear in the list, then you should edit its configuration and verify that the Active option has been marked.
+If hello desired site does not appear in hello list, then you should edit its configuration and verify that the Active option has been marked.
 
 **Default Behavior:** Site configurations are inactive by default.
 --->
 
 ## <a name="origin"></a>Origine
 
-Queste funzionalità sono progettate per controllare in che modo la rete CDN comunica con un server di origine.
+Queste funzionalità sono progettate toocontrol come hello CDN comunica con un server di origine.
 
 Nome | Scopo
 -----|--------
-Numero massimo di richieste Keep-Alive | Definisce il numero massimo di richieste per una connessione Keep-Alive prima della chiusura.
-Intestazioni speciali proxy | Definisce il set di intestazioni di richiesta specifiche della rete CDN che verranno inoltrate da un server perimetrale a un server di origine.
+Numero massimo di richieste Keep-Alive | Definisce il numero massimo di hello di richieste per una connessione Keep-Alive prima che venga chiuso.
+Intestazioni speciali proxy | Definisce il set di hello specifiche della rete CDN di intestazioni di richiesta che verrà inoltrato da un server di origine tooan server perimetrale.
 
 
 ###<a name="maximum-keep-alive-requests"></a>Numero massimo di richieste Keep-Alive
-**Scopo:** definisce il numero massimo di richieste per una connessione Keep-Alive prima della chiusura.
+**Scopo:** consente di definire hello il numero massimo di richieste per una connessione Keep-Alive prima che venga chiuso.
 
-L'impostazione del numero massimo di richieste su un valore basso è fortemente sconsigliata e può influire negativamente sulle prestazioni.
+L'impostazione di hello massimo valore del numero di richieste tooa bassa è fortemente sconsigliata e può comportare un calo delle prestazioni.
 
 Informazioni chiave:
 
 - Specificare questo valore come un numero intero.
-- Non includere virgole o punti nel valore specificato.
+- Non includere virgole o punti in hello specificato valore.
 
 **Valore predefinito:** 10.000 richieste
 
 ###<a name="proxy-special-headers"></a>Intestazioni speciali proxy
-**Scopo:** definisce il set di [intestazioni di richiesta specifiche della rete CDN]() che verranno inoltrate da un server perimetrale a un server di origine.
+**Scopo:** definisce il set di hello di [intestazioni di richiesta specifici della rete CDN]() che verranno inoltrati da un server di origine tooan server perimetrale.
 
 Informazioni chiave:
 
-- Ogni intestazione di richiesta specifica della rete CDN definita nell'ambito di questa funzionalità verrà inoltrata a un server di origine.
-- Impedire che un'intestazione di richiesta specifica della rete CDN venga inviata a un server di origine rimuovendola dall'elenco.
+- Ogni intestazione di richiesta specifici della rete CDN definito in questa funzionalità verrà inoltrato tooan server di origine.
+- Evitare un'intestazione di richiesta specifici della rete CDN viene inoltrato al server di origine tooan rimuovendolo dall'elenco.
 
-**Comportamento predefinito:** tutte le [intestazioni di richiesta specifiche della rete CDN]() verranno inoltrate al server di origine.
+**Comportamento predefinito:** tutti [intestazioni di richiesta specifici della rete CDN]() verranno inoltrati toohello server di origine.
 
 ## <a name="specialty"></a>Funzionalità specializzate
 
@@ -863,30 +863,30 @@ Queste funzionalità offrono caratteristiche avanzate che devono essere usate so
 
 Nome | Scopo
 -----|--------
-Metodi HTTP inseribile nella cache | Determina il set di metodi HTTP aggiuntivi che possono essere memorizzati nella cache nella rete.
-Dimensioni corpo richiesta inseribile nella cache | Definisce la soglia per determinare se una risposta POST può essere memorizzata nella cache.
+Metodi HTTP inseribile nella cache | Determina il set di hello di metodi HTTP aggiuntivi che possono essere memorizzati nella cache nella rete.
+Dimensioni corpo richiesta inseribile nella cache | Definisce una soglia di hello per determinare se una risposta POST può essere memorizzati nella cache.
 
 ###<a name="cacheable-http-methods"></a>Metodi HTTP inseribile nella cache
-**Scopo:** determina il set di metodi HTTP aggiuntivi che possono essere memorizzati nella cache nella rete.
+**Scopo:** determina hello set di metodi HTTP aggiuntivi che possono essere memorizzati nella cache nella rete.
 
 Informazioni chiave:
 
-- Questa funzionalità presuppone che le risposte GET vengano sempre memorizzate nella cache. Di conseguenza, è opportuno non includere il metodo GET HTTP quando si imposta questa funzionalità.
-- Questa funzionalità supporta solo il metodo POST HTTP. Per abilitare la memorizzazione nella cache della risposta POST, impostare questa funzionalità su POST. 
-- Per impostazione predefinita, vengono memorizzate nella cache solo le richieste con un corpo di dimensioni inferiori a 14 Kb. Usare la funzionalità Cacheable Request Body Size (Dimensioni corpo richiesta inseribile nella cache) per impostare le dimensioni massime del corpo della richiesta.
+- Questa funzionalità presuppone che le risposte GET vengano sempre memorizzate nella cache. Di conseguenza, il metodo HTTP GET hello non deve essere inclusa durante l'impostazione di questa funzionalità.
+- Questa funzionalità supporta solo il metodo HTTP POST hello. Per abilitare la memorizzazione nella cache della risposta POST, impostare questa funzionalità su POST. 
+- Per impostazione predefinita, vengono memorizzate nella cache solo le richieste con un corpo di dimensioni inferiori a 14 Kb. Utilizzare la funzionalità di dimensioni di corpo della richiesta memorizzabile nella cache per impostare hello dimensione massima del corpo della richiesta.
 
 **Comportamento predefinito:** vengono memorizzate nella cache solo le risposte GET.
 
 ###<a name="cacheable-request-body-size"></a>Dimensioni corpo richiesta inseribile nella cache
 
-**Scopo:** definisce la soglia per determinare se una risposta POST può essere memorizzata nella cache.
+**Scopo:** soglia hello definisce per determinare se una risposta POST può essere memorizzati nella cache.
 
 Questa soglia viene determinata specificando la dimensione massima del corpo della richiesta. Non verranno memorizzate nella cache le richieste il cui corpo supera le dimensioni specificate.
 
 Informazioni chiave:
 
-- Questa funzionalità è applicabile solo se le risposte POST sono idonee per la memorizzazione nella cache. Usare la funzionalità Cacheable HTTP Methods (Metodi HTTP inseribili nella cache) per abilitare la memorizzazione nella cache di richieste POST.
-- Il corpo della richiesta viene preso in considerazione per:
+- Questa funzionalità è applicabile solo se le risposte POST sono idonee per la memorizzazione nella cache. Utilizzare funzionalità di metodi HTTP memorizzabile nella cache di hello per abilitare la memorizzazione nella cache di richiesta POST.
+- corpo della richiesta Hello viene preso in considerazione per:
     - Valori x-www-form-urlencoded
     - Garantire una chiave di cache univoca
 - La definizione di un valore molto alto per le dimensioni massime del corpo della richiesta può rallentare le prestazioni in fase di distribuzione dei contenuti.
@@ -897,20 +897,20 @@ Informazioni chiave:
  
 ## <a name="url"></a>URL
 
-Queste funzionalità consentono il reindirizzamento o la riscrittura di una richiesta in un URL diverso.
+Queste funzionalità consentono un toobe richiesta reindirizzato o riscrivere tooa altro URL.
 
 Nome | Scopo
 -----|--------
-Segui reindirizzamenti | Determina se le richieste possono essere reindirizzate al nome host definito nell'intestazione Location restituita da un server di origine del cliente.
-Reindirizzamento URL | Reindirizza le richieste tramite l'intestazione Location.
-Riscrittura URL  | Riscrive l'URL della richiesta.
+Segui reindirizzamenti | Determina se le richieste possono essere reindirizzato toohello hostname definito nell'intestazione Location hello restituito da un server di origine del cliente.
+Reindirizzamento URL | Reindirizza le richieste tramite intestazione Location hello.
+Riscrittura URL  | Riscrive l'URL della richiesta hello.
 
 ###<a name="follow-redirects"></a>Segui reindirizzamenti
-**Scopo:** determina se le richieste possono essere reindirizzate al nome host definito nell'intestazione Location restituita da un server di origine del cliente.
+**Scopo:** determina se le richieste possono essere reindirizzato toohello hostname definito nell'intestazione della posizione restituita da un server di origine del cliente.
 
 Informazioni chiave:
 
-- Le richieste possono essere reindirizzate solo ai CNAME periferici che corrispondono alla stessa piattaforma.
+- Le richieste possono essere solo CNAME tooedge reindirizzato corrispondenti toohello stessa piattaforma.
 
 Valore|Risultato
 -|-
@@ -921,27 +921,27 @@ Disabled|Le richieste non verranno reindirizzate.
 ###<a name="url-redirect"></a>Reindirizzamento URL
 **Scopo:** reindirizza le richieste tramite l'intestazione Location.
 
-Per configurare questa funzionalità è necessario impostare le opzioni seguenti:
+configurazione di Hello di questa funzionalità richiede l'impostazione hello le opzioni seguenti:
 
 Opzione|Descrizione
 -|-
-Codice|Selezionare il codice di risposta che verrà restituito al richiedente.
-Source & Pattern (Origine e modello)| Queste impostazioni definiscono un modello di URI di richiesta che identifica il tipo di richieste che possono essere reindirizzate. Verranno reindirizzate solo le richieste il cui URL soddisfa entrambi i criteri seguenti: <br/> <br/> **Origine** (o un punto di accesso dei contenuti): selezionare un percorso relativo che identifica un server di origine. È costituito dalla sezione "/XXXX/" e dal nome dell'endpoint. <br/> **Origine (modello):** deve essere definito un modello che identifica le richieste in base al percorso relativo. Questo modello di espressione regolare deve definire un percorso che inizia immediatamente dopo il punto di accesso dei contenuti selezionato in precedenza (vedere sopra). <br/> - Assicurarsi che i criteri dell'URI di richiesta (ad esempio origine e modello) definiti in precedenza non entrino in conflitto con le condizioni di corrispondenza definite per questa funzionalità. <br/> - Assicurarsi di specificare un modello. Se si usa un valore vuoto come modello, la corrispondenza si verificherà solo con le richieste inviate alla cartella radice del server di origine selezionato (ad esempio, http://cdn.mydomain.com/).
-Destination| Definire l'URL a cui verranno reindirizzate le richieste precedenti. <br/> Costruire l'URL in modo dinamico usando: <br/> - Un modello di espressione regolare <br/>- Variabili HTTP <br/> Sostituire i valori acquisiti nel modello di origine nello schema di destinazione usando $ _n_  in  _n_  identifica un valore in base all'ordine in cui è stato acquisito. Ad esempio, $1 rappresenta il primo valore acquisito nel modello di origine e $2 rappresenta il secondo valore. <br/> 
-È consigliabile usare un URL assoluto, poiché l'uso di un URL relativo può reindirizzare gli URL CDN su un percorso non valido.
+Codice|Selezionare il codice di risposta hello che verrà restituito toohello richiedente.
+Source & Pattern (Origine e modello)| Queste impostazioni definiscono un modello di URI di richiesta che identifica il tipo di hello di richieste che può essere reindirizzato. Verranno reindirizzate solo le richieste con URL soddisfa entrambe hello seguenti criteri: <br/> <br/> **Origine** (o un punto di accesso dei contenuti): selezionare un percorso relativo che identifica un server di origine. Si tratta di sezione "/XXXX/" hello e il nome dell'endpoint. <br/> **Origine (modello):** deve essere definito un modello che identifica le richieste in base al percorso relativo. Questo modello di espressione regolare è necessario definire un percorso che inizia direttamente dopo hello selezionati in precedenza, il punto di accesso al contenuto (vedere sopra). <br/> -Verificare che Criteri di URI di richiesta di hello (ad esempio, origine e modello) definiti in precedenza non sia in conflitto con le condizioni di corrispondenza definite per questa funzionalità. <br/> -Verificare che toospecify un modello. Utilizzo di un valore vuoto come modello hello corrisponderà solo a cartella radice di toohello le richieste del server di origine selezionato hello (ad esempio, http://cdn.mydomain.com/).
+Destination| Definire l'URL di hello hello toowhich sopra le richieste verrà reindirizzata. <br/> Costruire l'URL in modo dinamico usando: <br/> - Un modello di espressione regolare <br/>- Variabili HTTP <br/> Sostituire i valori hello acquisiti nel modello di origine hello nello schema di destinazione hello usando $ _n_  in  _n_  identifica un valore dall'ordine hello in cui è stato acquisito. Ad esempio, $1 rappresenta primo valore hello acquisiti nel modello di origine hello, mentre $2 rappresenta hello secondo valore. <br/> 
+È altamente consigliabile toouse un URL assoluto. utilizzo di Hello di un URL relativo può reindirizzare percorso di rete CDN URL tooan non valido.
 
 **Scenario di esempio**
 
-In questo esempio viene descritto come reindirizzare un URL CNAME periferico che viene risolto in questo URL CDN di base: http://marketing.azureedge.net/brochures
+In questo esempio verrà illustrato come un bordo URL CNAME che risolve toothis tooredirect CDN URL di base: http://marketing.azureedge.net/brochures
 
-Le richieste idonee verranno reindirizzate a questo URL CNAME periferico di base: http://cdn.mydomain.com/resources
+Qualificazione richiede sarà reindirizzato toothis edge base URL CNAME: http://cdn.mydomain.com/resources
 
-Questo reindirizzamento URL può essere ottenuto tramite la configurazione seguente: ![](./media/cdn-rules-engine-reference/cdn-rules-engine-redirect.png)
+Il reindirizzamento URL può essere ottenuto tramite hello seguente configurazione:![](./media/cdn-rules-engine-reference/cdn-rules-engine-redirect.png)
 
 **Punti principali:**
 
-- La funzionalità Reindirizzamento URL definisce gli URL di richiesta che verranno reindirizzati. Non sono quindi necessarie condizioni di corrispondenza aggiuntive. Anche se la condizione di corrispondenza è stata definita come "Always" (Sempre), verranno reindirizzate solo le richieste che puntano alla cartella "brochures" nell'origine cliente "marketing". 
-- Tutte le richieste corrispondenti verranno reindirizzate all'URL CNAME periferico definito nell'opzione Destinazione. 
+- funzionalità di reindirizzamento URL Hello definisce hello URL a cui verrà reindirizzato richiesta. Non sono quindi necessarie condizioni di corrispondenza aggiuntive. Anche se la condizione di corrispondenza hello è stata definita come "Sempre", solo le richieste che toohello punto "brochure" cartella di origine cliente "marketing" hello verrà reindirizzata. 
+- Tutte le richieste corrispondente sarà reindirizzato toohello bordo che CNAME URL definito nell'opzione di destinazione. 
     - Scenario di esempio #1: 
         - Richiesta di esempio (URL CDN): http://marketing.azureedge.net/brochures/widgets.pdf 
         - URL richiesta (dopo il reindirizzamento): http://cdn.mydomain.com/resources/widgets.pdf  
@@ -951,48 +951,48 @@ Questo reindirizzamento URL può essere ottenuto tramite la configurazione segue
     - Scenario di esempio #3: 
         - Richiesta di esempio (URL CNAME periferico): http://brochures.mydomain.com/campaignA/final/productC.ppt 
         - URL richiesta (dopo il reindirizzamento): http://cdn.mydomain.com/resources/campaignA/final/productC.ppt  
-- Nell'opzione Destinazione è stata usata la variabile Request Scheme (Schema richiesta) (%{scheme}) in modo che lo schema della richiesta rimanga invariato dopo il reindirizzamento.
-- I segmenti di URL acquisiti dalla richiesta vengono aggiunti al nuovo URL tramite "$1."
+- variabile di Hello schema richiesta (% {schema}) è stato sfruttato nell'opzione di destinazione. In questo modo che lo schema della richiesta che hello rimane invariato dopo il reindirizzamento.
+- i segmenti di URL Hello che sono stati acquisiti dalla richiesta di hello vengono accodati toohello nuovo URL tramite "$1".
  
 ###<a name="url-rewrite"></a>Riscrittura URL
-**Scopo:** riscrive l'URL della richiesta.
+**Scopo:** riscrive l'URL della richiesta hello.
 
 Informazioni chiave:
 
-- Per configurare questa funzionalità è necessario impostare le opzioni seguenti:
+- configurazione di Hello di questa funzionalità richiede l'impostazione hello le opzioni seguenti:
 
 Opzione|Descrizione
 -|-
- Source & Pattern (Origine e modello) | Queste impostazioni definiscono un modello di URI di richiesta che identifica il tipo di richieste che possono essere riscritte. Verranno riscritte solo le richieste il cui URL soddisfa entrambi i criteri seguenti: <br/>     - **Origine (o un punto di accesso dei contenuti):** selezionare un percorso relativo che identifica un server di origine. È costituito dalla sezione "/XXXX/" e dal nome dell'endpoint. <br/> - **Origine (modello):** deve essere definito un modello che identifica le richieste in base al percorso relativo. Questo modello di espressione regolare deve definire un percorso che inizia immediatamente dopo il punto di accesso dei contenuti selezionato in precedenza (vedere sopra). <br/> Assicurarsi che i criteri dell'URI di richiesta (ad esempio origine e modello) definiti in precedenza non entrino in conflitto con le condizioni di corrispondenza definite per questa funzionalità. Assicurarsi di specificare un modello. Se si usa un valore vuoto come modello, la corrispondenza si verificherà solo con le richieste inviate alla cartella radice del server di origine selezionato (ad esempio, http://cdn.mydomain.com/). 
- Destination  |Definire l'URL relativo in cui verranno riscritte le richieste precedenti: <br/>    1. Selezionando un punto di accesso dei contenuti che identifichi un server di origine. <br/>    2. Definendo di un percorso tramite: <br/>        - Un modello di espressione regolare <br/>        - Variabili HTTP <br/> <br/> Sostituire i valori acquisiti nel modello di origine nello schema di destinazione usando $ _n_  in  _n_  identifica un valore in base all'ordine in cui è stato acquisito. Ad esempio, $1 rappresenta il primo valore acquisito nel modello di origine e $2 rappresenta il secondo valore. 
- Questa funzionalità consente ai server periferici di riscrivere l'URL senza eseguire un reindirizzamento tradizionale. In questo modo, il richiedente riceverà lo stesso codice di risposta come se fosse stato richiesto l'URL riscritto.
+ Source & Pattern (Origine e modello) | Queste impostazioni definiscono un modello di URI di richiesta che identifica il tipo di hello di richieste che può essere riscritto. Verranno riscritto solo le richieste con URL soddisfa entrambe hello seguenti criteri: <br/>     - **Origine (o un punto di accesso dei contenuti):** selezionare un percorso relativo che identifica un server di origine. Si tratta di sezione "/XXXX/" hello e il nome dell'endpoint. <br/> - **Origine (modello):** deve essere definito un modello che identifica le richieste in base al percorso relativo. Questo modello di espressione regolare è necessario definire un percorso che inizia direttamente dopo hello selezionati in precedenza, il punto di accesso al contenuto (vedere sopra). <br/> Assicurarsi che non siano in conflitto con una delle condizioni di corrispondenza hello è definite per questa funzionalità hello richiesta URI criteri (ad esempio, origine e modello) definiti in precedenza. Verificare che toospecify un modello. Utilizzo di un valore vuoto come modello hello corrisponderà solo a cartella radice di toohello le richieste del server di origine selezionato hello (ad esempio, http://cdn.mydomain.com/). 
+ Destination  |Definire un URL relativo hello hello toowhich sopra richieste verrà riscritto da: <br/>    1. Selezionando un punto di accesso dei contenuti che identifichi un server di origine. <br/>    2. Definendo di un percorso tramite: <br/>        - Un modello di espressione regolare <br/>        - Variabili HTTP <br/> <br/> Sostituire i valori hello acquisiti nel modello di origine hello nello schema di destinazione hello usando $ _n_  in  _n_  identifica un valore dall'ordine hello in cui è stato acquisito. Ad esempio, $1 rappresenta primo valore hello acquisiti nel modello di origine hello, mentre $2 rappresenta hello secondo valore. 
+ Questa funzionalità consente che i nostri server edge toorewrite hello URL senza eseguire un reindirizzamento tradizionale. Ciò significa che richiedente hello riceverà hello risposta entro lo stesso codice come se venisse richiesta URL hello riscritto.
 
 **Scenario di esempio 1**
 
-Questo esempio dimostra come reindirizzare un URL CNAME periferico che viene risolto in questo URL CDN di base: http://marketing.azureedge.net/brochures/
+In questo esempio verrà illustrato come un bordo URL CNAME che risolve toothis tooredirect CDN URL di base: http://marketing.azureedge.net/brochures/
 
-Le richieste idonee verranno reindirizzate a questo URL CNAME periferico di base: http://MyOrigin.azureedge.net/resources/
+Qualificazione richiede sarà reindirizzato toothis edge base URL CNAME: http://MyOrigin.azureedge.net/resources/
 
-Questo reindirizzamento URL può essere ottenuto tramite la configurazione seguente: ![](./media/cdn-rules-engine-reference/cdn-rules-engine-rewrite.png)
+Il reindirizzamento URL può essere ottenuto tramite hello seguente configurazione:![](./media/cdn-rules-engine-reference/cdn-rules-engine-rewrite.png)
 
 **Scenario di esempio 2**
 
-Questo esempio dimostra come reindirizzare un URL CNAME periferico da MAIUSCOLO a minuscolo mediante espressioni regolari.
+In questo esempio verrà illustrato come tooredirect un URL CNAME bordo da MAIUSCOLI toolowercase tramite espressioni regolari.
 
-Questo reindirizzamento URL può essere ottenuto tramite la configurazione seguente: ![](./media/cdn-rules-engine-reference/cdn-rules-engine-to-lowercase.png)
+Il reindirizzamento URL può essere ottenuto tramite hello seguente configurazione:![](./media/cdn-rules-engine-reference/cdn-rules-engine-to-lowercase.png)
 
 
 **Punti principali:**
 
-- La funzionalità di riscrittura URL definisce gli URL di richiesta che verranno riscritti. Non sono quindi necessarie condizioni di corrispondenza aggiuntive. Anche se la condizione di corrispondenza è stata definita come "Always" (Sempre), verranno riscritte solo le richieste che puntano alla cartella "brochures" nell'origine cliente "marketing".
+- funzionalità di riscrittura URL Hello definisce hello URL che verrà riscritto richiesta. Non sono quindi necessarie condizioni di corrispondenza aggiuntive. Anche se la condizione di corrispondenza hello è stata definita come "Sempre", solo le richieste che toohello punto "brochure" cartella di origine cliente "marketing" hello verrà riscritto.
 
-- I segmenti di URL acquisiti dalla richiesta vengono aggiunti al nuovo URL tramite "$1."
+- i segmenti di URL Hello che sono stati acquisiti dalla richiesta di hello vengono accodati toohello nuovo URL tramite "$1".
 
 
 
 ###<a name="compatibility"></a>Compatibilità
 
-Questa funzionalità include i criteri di corrispondenza che devono essere soddisfatti affinché possa essere applicata a una richiesta. Per evitare conflitti tra i criteri di corrispondenza impostati, questa funzionalità non è compatibile con le seguenti condizioni di corrispondenza:
+Questa funzionalità include corrispondenti ai criteri che devono essere soddisfatte prima di poter essere applicati tooa richiesta. In ordine tooprevent impostazione in conflitto i criteri di corrispondenza, questa funzionalità è incompatibile con hello seguendo le condizioni di corrispondenza:
 
 - Numero AS
 - Origine CDN
@@ -1015,5 +1015,5 @@ Questa funzionalità include i criteri di corrispondenza che devono essere soddi
 * [Informazioni di riferimento sul motore regole](cdn-rules-engine-reference.md)
 * [Espressioni condizionali del motore regole](cdn-rules-engine-reference-conditional-expressions.md)
 * [Condizioni di corrispondenza del motore regole](cdn-rules-engine-reference-match-conditions.md)
-* [Override del comportamento HTTP predefinito mediante il motore di regole](cdn-rules-engine.md)
+* [Override del comportamento HTTP predefinito utilizzando il motore regole di hello](cdn-rules-engine.md)
 * [Panoramica della rete CDN di Azure](cdn-overview.md)

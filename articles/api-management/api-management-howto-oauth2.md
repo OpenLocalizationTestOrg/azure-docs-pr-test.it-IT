@@ -1,6 +1,6 @@
 ---
-title: Autorizzare gli account per sviluppatori utilizzando OAuth 2.0 in Gestione API di Azure | Documentazione Microsoft
-description: Informazioni su come autorizzare gli utenti tramite OAuth 2.0 in Gestione API.
+title: gli account sviluppatore aaaAuthorize mediante OAuth 2.0 in Gestione API di Azure | Documenti Microsoft
+description: Informazioni su come gli utenti tooauthorize mediante OAuth 2.0 in Gestione API.
 services: api-management
 documentationcenter: 
 author: steved0x
@@ -14,126 +14,126 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: apimpm
-ms.openlocfilehash: a19c453bb3271374b587f3d0b35adad55863b490
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 934901dd6df399470a3257bf7a3a9b9fb5f40d5e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-authorize-developer-accounts-using-oauth-20-in-azure-api-management"></a>Come autorizzare gli account per sviluppatori utilizzando OAuth 2.0 in Gestione API di Azure
-Molte API supportano [OAuth 2.0](http://oauth.net/2/) per proteggere l'API e assicurare che solo gli utenti validi siano autorizzati all'accesso e che possano accedere solo alle risorse a cui hanno diritto. Per usare la console per sviluppatori interattiva di Gestione API di Azure con queste API, il servizio permette di configurare l'istanza del servizio per l'uso delle API abilitate per OAuth 2.0.
+# <a name="how-tooauthorize-developer-accounts-using-oauth-20-in-azure-api-management"></a>La modalità sviluppatore tooauthorize degli account con OAuth 2.0 in Gestione API di Azure
+Supportano molte API [OAuth 2.0](http://oauth.net/2/) toosecure hello API e garantire che solo gli utenti validi hanno accesso, e possono accedere solo alle risorse toowhich hanno diritto. Nella Console per sviluppatori di interattiva della gestione degli ordini toouse Azure API con tali API servizio hello consente tooconfigure toowork di istanza del servizio con il OAuth 2.0 abilitato API.
 
-## <a name="prerequisites"> </a>Prerequisiti
-Questa guida illustra come configurare un'istanza del servizio Gestione API per l'uso dell'autorizzazione OAuth 2.0 per gli account per sviluppatori, ma non viene spiegato come configurare un provider OAuth 2.0. La configurazione cambia in base al provider OAuth 2.0, sebbene le procedure siano simili e le informazioni necessarie usate per la configurazione di OAuth 2.0 nell'istanza del servizio Gestione API siano le stesse. Questo argomento mostra degli esempi di utilizzo di Azure Active Directory come provider OAuth 2.0.
+## <a name="prerequisites"></a>Prerequisiti
+Questa guida viene spiegato come tooconfigure toouse di istanza del servizio Gestione API autorizzazione OAuth 2.0 per sviluppatori di account, ma non verrà visualizzato come provider tooconfigure un OAuth 2.0. configurazione di Hello per ogni provider è diverso, sebbene hello passaggi sono simili e hello necessarie le informazioni utilizzate nella configurazione di OAuth 2.0 in all'istanza del servizio Gestione API sono di OAuth 2.0 hello stesso. Questo argomento mostra degli esempi di utilizzo di Azure Active Directory come provider OAuth 2.0.
 
 > [!NOTE]
-> Per altre informazioni sulla configurazione di OAuth 2.0 mediante Azure Active Directory, vedere l'esempio [WebApp-GraphAPI-DotNet][WebApp-GraphAPI-DotNet].
+> Per ulteriori informazioni sulla configurazione di OAuth 2.0 tramite Azure Active Directory, vedere hello [WebApp-GraphAPI-DotNet] [ WebApp-GraphAPI-DotNet] esempio.
 > 
 > 
 
 ## <a name="step1"> </a>Configurare un server autorizzazione OAuth 2.0 in Gestione API
-Per iniziare, fare clic sul **portale di pubblicazione** nel Portale di Azure relativo al servizio Gestione API.
+tooget avviato, fare clic su **portale di pubblicazione** in hello portale di Azure per il servizio Gestione API.
 
 ![Portale di pubblicazione][api-management-management-console]
 
 > [!NOTE]
-> Se non è stata creata un'istanza del servizio Gestione API, vedere [Creare un'istanza di Gestione API][Create an API Management service instance] nell'esercitazione [Introduzione a Gestione API di Azure][Get started with Azure API Management].
+> Se non è ancora stato creato un'istanza del servizio Gestione API, vedere [creare un'istanza del servizio Gestione API] [ Create an API Management service instance] in hello [Introduzione a gestione API di Azure] [ Get started with Azure API Management] esercitazione.
 > 
 > 
 
-Fare clic su **Sicurezza** dal menu **Gestione API** a sinistra, scegliere **OAuth 2.0** e fare clic su **Add authorization server**.
+Fare clic su **sicurezza** da hello **gestione API** menu a sinistra fare clic su di hello **OAuth 2.0**, quindi fare clic su **Aggiungi server di autorizzazione**.
 
 ![OAuth 2.0][api-management-oauth2]
 
-Dopo aver fatto clic su **Add authorization server**, viene visualizzato il modulo per il nuovo server autorizzazione.
+Dopo aver fatto clic **Aggiungi server di autorizzazione**, hello nuova autorizzazione server form viene visualizzato.
 
 ![Nuovo server][api-management-oauth2-server-1]
 
-Immettere un nome ed eventualmente una descrizione nei campi **Nome** e **Descrizione**. 
+Immettere un nome e una descrizione facoltativa in hello **nome** e **descrizione** campi. 
 
 > [!NOTE]
-> Questi campi vengono usati per identificare il server autorizzazione OAuth 2.0 all'interno dell'istanza del servizio Gestione API corrente e i loro valori non provengono dal server OAuth 2.0.
+> Questi campi sono server di autorizzazione OAuth 2.0 hello tooidentify utilizzati nell'istanza di servizio Gestione API corrente hello e i relativi valori non vengono forniti dal server hello OAuth 2.0.
 > 
 > 
 
-Immettere il **Client registration page URL**. In questa pagina gli utenti possono creare e gestire i loro account e il suo contenuto varia in base al provider OAuth 2.0 usato. **Client registration page URL** fa riferimento alla pagina che gli utenti possono usare per creare e configurare i propri account per i provider OAuth 2.0 che supportano la gestione degli account da parte degli utenti. Alcune organizzazioni non configurano o usano questa funzionalità, anche se è supportata dal provider OAuth 2.0. Se nel provider OAuth 2.0 non è stata configurata la gestione degli account da parte degli utenti, immettere qui un URL segnaposto, ad esempio l'URL della propria azienda, oppure un URL analogo a `https://placeholder.contoso.com`.
+Immettere hello **URL pagina di registrazione Client**. Questa pagina è in cui gli utenti possono creare e gestire gli account e varia a seconda hello OAuth 2.0 provider utilizzato. Hello **URL pagina di registrazione Client** punti toohello pagina che gli utenti possono utilizzare toocreate e configurare i propri account per i provider di OAuth 2.0 che supportano la gestione degli account utente. Alcune organizzazioni non configurare o utilizzare questa funzionalità, anche se il provider di hello OAuth 2.0 supporta. Se il provider OAuth 2.0 non dispone di gestione di utenti di account configurati, immettere un URL segnaposto, ad esempio hello URL dell'azienda o un URL, ad esempio `https://placeholder.contoso.com`.
 
-La sezione successiva del modulo contiene le impostazioni relative a **Authorization code grant types**, **Authorization endpoint URL** e **Authorization request method**.
+sezione successiva di Hello del modulo hello contiene hello **tipi di concessione del codice di autorizzazione**, **autorizzazione URL dell'endpoint**, e **il metodo di richiesta di autorizzazione** impostazioni.
 
 ![Nuovo server][api-management-oauth2-server-2]
 
-Selezionare i tipi desiderati in **Authorization code grant types** . **Authorization code** è specificato per impostazione predefinita.
+Specificare hello **tipi di concessione del codice di autorizzazione** dal controllo dei tipi di hello desiderato. **Authorization code** è specificato per impostazione predefinita.
 
-Immettere il valore relativo a **Authorization endpoint URL**. Per Azure Active Directory, questo URL sarà simile all'URL seguente, dove `<client_id>` viene sostituito dall'ID client che identifica l'applicazione in uso nel server OAuth 2.0.
+Immettere hello **URL di endpoint di autorizzazione**. Per Azure Active Directory, questo URL sarà simile toohello seguente URL, in cui `<client_id>` viene sostituito con l'id client hello che identifica il server di applicazioni toohello OAuth 2.0.
 
 `https://login.microsoftonline.com/<client_id>/oauth2/authorize`
 
-L'impostazione **Authorization request method** specifica la modalità di invio della richiesta di autorizzazione al server OAuth 2.0. Il valore selezionato per impostazione predefinita è **GET** .
+Hello **il metodo di richiesta di autorizzazione** specifica la modalità di invio richiesta di autorizzazione hello server toohello OAuth 2.0. Il valore selezionato per impostazione predefinita è **GET** .
 
-Nella sezione successiva vengono specificate le impostazioni **Token endpoint URL**, **Client authentication methods**, **Access token sending method** e **Ambito predefinito**.
+Nella sezione successiva Hello è dove hello **URL dell'endpoint del Token**, **metodi di autenticazione Client**, **token di accesso, l'invio di metodo**, e **ambitopredefinito** specificati.
 
 ![Nuovo server][api-management-oauth2-server-3]
 
-Per un server OAuth 2.0 di Azure Active Directory, il **Token endpoint URL** avrà il seguente formato, dove `<APPID>` avrà il formato `yourapp.onmicrosoft.com`.
+Per un server di Azure Active Directory OAuth 2.0, hello **URL dell'endpoint del Token** avrà hello seguente formato, in cui `<APPID>` ha il formato di hello di `yourapp.onmicrosoft.com`.
 
 `https://login.microsoftonline.com/<APPID>/oauth2/token`
 
-L'impostazione predefinita di **Client authentication methods** è **Basic**, mentre quella di **Access token sending method** è **Authorization header**. Questi valori vengono configurati in questa sezione del modulo, insieme a **Default scope**.
+Hello l'impostazione predefinita per **metodi di autenticazione Client** è **base**, e **token di accesso, l'invio di metodo** è **intestazione Authorization**. Questi valori configurati in questa sezione del modulo di hello, insieme a hello **ambito predefinito**.
 
-La sezione **Credenziali client** contiene l'**ID client** e il **Segreto client**, che vengono ricavati durante il processo di creazione e configurazione del server OAuth 2.0. Una volta specificati l'**ID client** e il **Segreto client**, viene generato il **redirect_uri** per il **codice autorizzazione**. Questo URI viene usato per configurare l'URL di risposta nella configurazione del server OAuth 2.0.
+Hello **credenziali Client** sezione contiene hello **ID Client** e **segreto Client**, che vengono ottenuti durante il processo di creazione e configurazione hello del OAuth 2.0 Server. Una volta hello **ID Client** e **segreto Client** vengono specificati, hello **redirect_uri** per hello **codice di autorizzazione** viene generato. Questo URI è l'URL di risposta hello tooconfigure utilizzati nella configurazione del server OAuth 2.0.
 
 ![Nuovo server][api-management-oauth2-server-4]
 
-Se **Authorization code grant types** è impostato su **Resource owner password**, la sezione **Resource owner password credentials** viene usata per specificare le credenziali; in caso contrario è possibile lasciarla vuota.
+Se **tipi di concessione del codice di autorizzazione** è troppo**password del proprietario della risorsa**, hello **credenziali del proprietario risorsa** sezione è toospecify usate quelle credenziali; in caso contrario è possibile lasciare vuoto.
 
 ![Nuovo server][api-management-oauth2-server-5]
 
-Dopo aver completato il modulo, fare clic su **Salva** per salvare la configurazione del server autorizzazione OAuth 2.0 di Gestione API. Dopo aver salvato la configurazione del server, è possibile configurare le API in modo che usino questa configurazione, come illustrato nella sezione successiva.
+Una volta completato il modulo di hello, fare clic su **salvare** configurazione del server autorizzazione toosave hello API Gestione OAuth 2.0. Dopo aver salvato la configurazione del server hello, è possibile configurare le API toouse questa configurazione, come illustrato nella sezione successiva hello.
 
-## <a name="step2"> </a>Configurare un'API per l'uso di un'autorizzazione utente OAuth 2.0
-Fare clic su **API** dal menu **Gestione API** a sinistra, fare clic sul nome dell'API desiderata, scegliere **Sicurezza**, quindi selezionare la casella relativa a **OAuth 2.0**.
+## <a name="step2"></a>Configurare un toouse API l'autorizzazione utente OAuth 2.0
+Fare clic su **API** da hello **gestione API** hello menu a sinistra, fare clic sul nome hello dell'API di hello desiderato, fare clic su **sicurezza**, quindi selezionare la casella hello per **OAuth 2.0**.
 
 ![Autorizzazione utente][api-management-user-authorization]
 
-Selezionare il **server autorizzazione** desiderato dall'elenco a discesa e fare clic su **Salva**.
+Seleziona hello desiderato **server autorizzazione** dall'elenco a discesa hello, fare clic su **salvare**.
 
 ![Autorizzazione utente][api-management-user-authorization-save]
 
-## <a name="step3"> </a>Test dell'autorizzazione utente OAuth 2.0 nel Portale per sviluppatori
-Dopo aver configurato il server autorizzazione OAuth 2.0 e l'API per l'uso di tale server, è possibile testarlo andando al portale per sviluppatori e chiamando un'API.  Fare clic su **Developer portal** nel menu in alto a destra.
+## <a name="step3"></a>Testare l'autorizzazione utente hello OAuth 2.0 in hello portale per sviluppatori
+Dopo aver configurato il server di autorizzazione OAuth 2.0 e configurato toouse l'API del server, è possibile eseguirne il test selezionando toohello portale per sviluppatori e chiama un'API.  Fare clic su **portale per sviluppatori** nel menu in alto destra hello.
 
 ![Portale per sviluppatori][api-management-developer-portal-menu]
 
-Fare clic su **API** nel menu superiore e scegliere **API Echo**.
+Fare clic su **API** nel menu in alto hello e scegliere **API Echo**.
 
 ![API Echo][api-management-apis-echo-api]
 
 > [!NOTE]
-> Se è stata configurata una sola API o se ne è visibile solo una per l'account, facendo clic sulle API vengono visualizzate le operazioni per l'API.
+> Se si dispone di un solo API configurata o account tooyour visibile, quindi fare clic su API consente di passare direttamente toohello operazioni dell'API.
 > 
 > 
 
-Selezionare l'operazione **GET su risorsa**, fare clic su **Apri console**, quindi selezionare **codice di autorizzazione** dal menu a discesa.
+Seleziona hello **ottenere risorse** operazione, fare clic su **aprire la Console di**, quindi selezionare **codice di autorizzazione** dall'elenco a discesa hello.
 
 ![Open console][api-management-open-console]
 
-Quando **Authorization code** è selezionato, viene visualizzata una finestra popup con il modulo di accesso del provider OAuth 2.0. In questo esempio il modulo di accesso viene fornito da Azure Active Directory.
+Quando **codice di autorizzazione** è selezionata, viene visualizzata una finestra popup con hello sign-in forma di provider hello OAuth 2.0. In questo esempio modulo di accesso hello viene fornito da Azure Active Directory.
 
 > [!NOTE]
-> Se i popup sono stati disattivati, verrà richiesto di attivarli tramite il browser. Dopo averli attivati, selezionare di nuovo **Authorization code** per visualizzare il modulo di accesso.
+> Se si dispone di popup disabilitato, sarà richiesto tooenable dai browser hello. Dopo aver abilitato la loro, selezionare **codice di autorizzazione** hello e nuovo verrà visualizzato il modulo di accesso.
 > 
 > 
 
 ![pagina di accesso][api-management-oauth2-signin]
 
-Dopo aver effettuato l'accesso, le **intestazioni della richiesta** vengono compilate con un'intestazione `Authorization : Bearer` che autorizza la richiesta.
+Dopo aver effettuato l'accesso, hello **le intestazioni di richiesta** vengono popolati con un `Authorization : Bearer` intestazione che autorizza la richiesta di hello.
 
 ![Token di intestazione della richiesta][api-management-request-header-token]
 
-A questo punto è possibile configurare i valori desiderati per i restanti parametri e inviare la richiesta. 
+A questo punto è possibile configurare i valori hello desiderato per i parametri rimanenti hello e inviare la richiesta di hello. 
 
 ## <a name="next-steps"></a>Passaggi successivi
-Per altre informazioni sull'uso di OAuth 2.0 e di Gestione API, vedere il video seguente e l’ [articolo](api-management-howto-protect-backend-with-aad.md)correlato.
+Per ulteriori informazioni sull'utilizzo di OAuth 2.0 e gestione API, vedere hello seguente video e accompagnamento [articolo](api-management-howto-protect-backend-with-aad.md).
 
 > [!VIDEO https://channel9.msdn.com/Blogs/AzureApiMgmt/Protecting-Web-API-Backend-with-Azure-Active-Directory-and-API-Management/player]
 > 
@@ -155,10 +155,10 @@ Per altre informazioni sull'uso di OAuth 2.0 e di Gestione API, vedere il video 
 [api-management-apis-echo-api]: ./media/api-management-howto-oauth2/api-management-apis-echo-api.png
 
 
-[How to add operations to an API]: api-management-howto-add-operations.md
-[How to add and publish a product]: api-management-howto-add-products.md
+[How tooadd operations tooan API]: api-management-howto-add-operations.md
+[How tooadd and publish a product]: api-management-howto-add-products.md
 [Monitoring and analytics]: api-management-monitoring.md
-[Add APIs to a product]: api-management-howto-add-products.md#add-apis
+[Add APIs tooa product]: api-management-howto-add-products.md#add-apis
 [Publish a product]: api-management-howto-add-products.md#publish-product
 [Get started with Azure API Management]: api-management-get-started.md
 [API Management policy reference]: api-management-policy-reference.md
@@ -170,7 +170,7 @@ Per altre informazioni sull'uso di OAuth 2.0 e di Gestione API, vedere il video 
 
 [Prerequisites]: #prerequisites
 [Configure an OAuth 2.0 authorization server in API Management]: #step1
-[Configure an API to use OAuth 2.0 user authorization]: #step2
-[Test the OAuth 2.0 user authorization in the Developer Portal]: #step3
+[Configure an API toouse OAuth 2.0 user authorization]: #step2
+[Test hello OAuth 2.0 user authorization in hello Developer Portal]: #step3
 [Next steps]: #next-steps
 

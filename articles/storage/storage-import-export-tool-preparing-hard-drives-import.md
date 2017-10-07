@@ -1,6 +1,6 @@
 ---
-title: Preparazione dei dischi rigidi per un processo di importazione di Importazione/Esportazione di Azure | Documentazione Microsoft
-description: Informazioni su come preparare i dischi rigidi usando lo strumento WAImportExport per creare un processo di importazione per il servizio Importazione/Esportazione di Azure.
+title: "processo di importazione aaaPreparing unità disco rigido per un'importazione/esportazione di Azure | Documenti Microsoft"
+description: "Informazioni su come tooprepare unità disco rigido utilizzando hello toocreate strumento WAImportExport un processo di importazione per hello servizio importazione/esportazione di Azure."
 author: muralikk
 manager: syadav
 editor: tysonn
@@ -14,15 +14,15 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/29/2017
 ms.author: muralikk
-ms.openlocfilehash: 5b894dac8fdc26999b6f3cbffaf7e6a98e68d000
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3f247a9efee29da2d18140353edc9dd7103a0761
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="preparing-hard-drives-for-an-import-job"></a>Preparazione dei dischi rigidi per un processo di importazione
 
-WAImportExport è lo strumento di preparazione e ripristino delle unità che è possibile usare con il [servizio Importazione/Esportazione di Microsoft Azure](storage-import-export-service.md). Questo strumento consente di copiare dati nei dischi rigidi da spedire a un data center di Azure. Al termine di un processo di importazione, è possibile usare lo strumento per ripristinare gli eventuali BLOB danneggiati, mancanti o in conflitto con altri BLOB. Dopo aver ricevuto le unità da un processo di esportazione completato, lo strumento consente di ripristinare gli eventuali file danneggiati o mancanti nelle unità. In questo articolo viene esaminato il funzionamento di questo strumento.
+Hello strumento WAImportExport è hello unità strumento di preparazione e che è possibile utilizzare con hello [servizio di importazione/esportazione di Microsoft Azure](storage-import-export-service.md). È possibile utilizzare questo strumento toocopy dati toohello unità disco rigido verrà tooship tooan Data Center di Azure. Al termine di un processo di importazione, è possibile utilizzare questo toorepair strumento tutti i blob che sono stati danneggiati, mancano o in conflitto con altri BLOB. Dopo aver ricevuto hello unità da un processo di esportazione completato, è possibile utilizzare questo strumento toorepair tutti i file danneggiati o mancanti nelle unità hello. In questo articolo, passiamo rispetto all'utilizzo di questo strumento hello.
 
 ## <a name="prerequisites"></a>Prerequisiti
 
@@ -30,14 +30,14 @@ WAImportExport è lo strumento di preparazione e ripristino delle unità che è 
 
 - **Configurazione del computer**
   - Windows 7, Windows Server 2008 R2 o un sistema operativo Windows più recente
-  - Deve essere installato .NET Framework 4. Vedere le [domande frequenti](#faq) per informazioni su come verificare se .Net Framework è installato nel computer.
-- **Chiave dell'account di archiviazione:** è necessaria almeno una delle chiavi dell'account di archiviazione.
+  - Deve essere installato .NET Framework 4. Vedere [domande frequenti su](#faq) sulla toocheck se .net Framework è installata nel computer di hello.
+- **Chiave dell'account di archiviazione** -è necessario almeno una delle chiavi dell'account hello hello account di archiviazione.
 
 ### <a name="preparing-disk-for-import-job"></a>Preparazione del disco per il processo di importazione
 
-- **BitLocker:** BitLocker deve essere abilitato nel computer che esegue lo strumento WAImportExport. Vedere le [domande frequenti](#faq) per informazioni su come abilitare BitLocker.
+- **BitLocker:** BitLocker è necessario attivare lo strumento WAImportExport hello macchina in esecuzione hello. Vedere hello [domande frequenti su](#faq) come tooenable BitLocker.
 - **Dischi:** accessibili dal computer in cui viene eseguito lo strumento WAImportExport. Vedere le [domande frequenti](#faq) per le specifiche del disco.
-- **File di origine:** i file che si intende importare devono essere accessibili dal computer di copia, a prescindere dal fatto che si trovino in una condivisione di rete o in un disco rigido locale.
+- **File di origine** -file hello Prevedi tooimport devono essere accessibili dal computer di copia hello, che si trovino in una condivisione di rete o un disco rigido locale.
 
 ### <a name="repairing-a-partially-failed-import-job"></a>Ripristino di un processo di importazione parzialmente non riuscito
 
@@ -50,19 +50,19 @@ WAImportExport è lo strumento di preparazione e ripristino delle unità che è 
 
 ## <a name="download-and-install-waimportexport"></a>Scaricare e installare WAImportExport
 
-Scaricare la [versione più recente di WAImportExport.exe](https://www.microsoft.com/download/details.aspx?id=55280). Estrarre il contenuto compresso in una directory del computer.
+Scaricare hello [versione più recente di WAImportExport.exe](https://www.microsoft.com/download/details.aspx?id=55280). Estrarre directory tooa contenuto compresso hello nel computer in uso.
 
-L'attività successiva consiste nel creare i file CSV.
+L'attività successiva è toocreate i file CSV.
 
-## <a name="prepare-the-dataset-csv-file"></a>Preparare il file CSV dataset
+## <a name="prepare-hello-dataset-csv-file"></a>Preparare i file CSV di hello set di dati
 
 ### <a name="what-is-dataset-csv"></a>Definizione del file CSV dataset
 
-Il file CSV dataset, che corrisponde al valore del flag /dataset, è un file CSV che contiene un elenco di directory e/o un elenco di file da copiare nelle unità di destinazione. Il primo passaggio per la creazione di un processo di importazione è determinare le directory e i file da importare. Può trattarsi di un elenco di directory, di un elenco di file univoci o di una combinazione di entrambi gli elementi. Quando viene inclusa una directory, tutti i file presenti nella directory e nelle relative sottodirectory fanno parte del processo di importazione.
+File CSV DataSet è il valore di hello del flag /dataset è un file CSV che contiene un elenco di directory e/o di un elenco di file copiati toobe tootarget unità. è toodetermine quali directory Hello primo passaggio toocreating un processo di importazione e file si stanno tooimport. Può trattarsi di un elenco di directory, di un elenco di file univoci o di una combinazione di entrambi gli elementi. Quando viene inclusa una directory, tutti i file nella directory hello e nelle relative sottodirectory faranno parte del processo di importazione hello.
 
-Per ogni directory o file da importare, è necessario identificare un BLOB o una directory virtuale di destinazione nel servizio BLOB di Azure. Queste destinazioni vengono successivamente usate come input per lo strumento WAImportExport. Le directory devono essere delimitate con il carattere barra "/".
+Per ogni file o directory toobe importato, è necessario identificare una directory virtuale di destinazione o di un blob nel servizio Blob di Azure hello. Si utilizzerà queste destinazioni come strumento di WAImportExport toohello di input. Directory devono essere delimitate con il carattere di barra rovesciata hello "/".
 
-La tabella seguente mostra alcuni esempi di destinazioni BLOB:
+Hello nella tabella seguente vengono illustrati alcuni esempi di destinazioni blob:
 
 | File o directory di origine | BLOB o directory virtuale di destinazione |
 | --- | --- |
@@ -83,24 +83,24 @@ BasePath,DstBlobPathOrPrefix,BlobType,Disposition,MetadataFile,PropertiesFile
 
 | Campo | Descrizione |
 | --- | --- |
-| BasePath | **[Obbligatorio]**<br/>Il valore di questo parametro rappresenta l'origine in cui si trovano i dati da importare. Lo strumento copierà in modo ricorsivo tutti i dati che si trovano in questo percorso.<br><br/>**Valori consentiti:** deve essere un percorso valido nel computer locale o un percorso di condivisione valido e deve essere accessibile dall'utente. Il percorso di directory deve essere un percorso assoluto, non un percorso relativo. Se il percorso termina con "\\" rappresenta una directory, mentre se termina senza "\\" rappresenta un file.<br/>In questo campo non sono consentiti regex. Se il percorso contiene spazi, racchiuderlo tra "".<br><br/>**Esempio**: "c:\Directory\c\Directory\File.txt"<br>"\\\\FBaseFilesharePath.domain.net\nomecondivisione\directory\"  |
-| DstBlobPathOrPrefix | **[Obbligatorio]**<br/> Percorso della directory virtuale di destinazione nell'account di archiviazione di Windows Azure. La directory virtuale può essere già esistente. Se non esiste, il servizio Importazione/Esportazione ne crea una.<br/><br/>Assicurarsi di usare nomi di contenitore validi quando si specificano BLOB o directory virtuali di destinazione. Tenere presente che i nomi di contenitore devono essere costituiti da lettere minuscole. Per le regole sulla denominazione dei contenitori, vedere [Naming and Referencing Containers, Blobs, and Metadata](/rest/api/storageservices/naming-and-referencing-containers--blobs--and-metadata) (Assegnazione di nome e riferimento a contenitori, BLOB e metadati). Se è specificata solo la radice, la struttura di directory dell'origine viene replicata nel contenitore BLOB di destinazione. Se si vuole una struttura di directory diversa da quella dell'origine, sono necessarie più righe di mapping nel file CSV<br/><br/>È possibile specificare un contenitore o un prefisso di BLOB come music/70s/. La directory di destinazione deve iniziare con il nome del contenitore, seguito da una barra "/" e facoltativamente può includere una directory BLOB virtuale che termina con "/".<br/><br/>Quando la destinazione è il contenitore radice, è necessario specificarlo in modo esplicito, compresa la barra, con $root/. Poiché i BLOB nel contenitore radice non possono includere "/" nel nome, quando la directory di destinazione è il contenitore radice le sottodirectory della directory di origine non vengono copiate.<br/><br/>**Esempio**<br/>Se il percorso BLOB di destinazione è https://mystorageaccount.blob.core.windows.net/video, il valore di questo campo può essere video/  |
-| BlobType | **[Facoltativo]**  block &#124; page<br/>Attualmente il servizio Importazione/Esportazione supporta 2 tipi di BLOB. di pagine e in blocchi. Per impostazione predefinita, tutti i file vengono importati come BLOB in blocchi. I file con estensione \*.vhd e \*.vhdx vengono importati come BLOB di pagine. La dimensione dei BLOB in blocchi e di pagine non può superare il valore massimo consentito. Per altre informazioni, vedere [Obiettivi di scalabilità per BLOB, code, tabelle e file](storage-scalability-targets.md#scalability-targets-for-blobs-queues-tables-and-files).  |
-| Disposition | **[Facoltativo]** rename &#124; no-overwrite &#124; overwrite <br/> Questo campo specifica il comportamento di copia durante l'importazione, ovvero quando i dati vengono caricati nell'account di archiviazione dal disco. Le opzioni disponibili sono: rename&#124;overwite&#124;no-overwrite. Se non è specificato alcun valore, viene utilizzata l'opzione predefinita "rename". <br/><br/>**Rename**: se è presente un oggetto con lo stesso nome, viene creata una copia nella destinazione.<br/>Overwrite: il file viene sovrascritto con un file più recente. Prevale il file modificato per ultimo.<br/>**No-overwrite**: se il file è già presente, non viene scritto.|
-| MetadataFile | **[Facoltativo]** <br/>Il valore per questo campo è il file di metadati che può essere specificato se è necessario mantenere i metadati degli oggetti o specificare metadati personalizzati. Percorso del file di metadati per i BLOB di destinazione. Per altre informazioni, vedere [Import/Export service Metadata and Properties File Format](storage-import-export-file-format-metadata-and-properties.md) (Formato dei file di metadati e delle proprietà del servizio Importazione/Esportazione) |
-| PropertiesFile | **[Facoltativo]** <br/>Percorso del file delle proprietà per i BLOB di destinazione. Per altre informazioni, vedere [Import/Export service Metadata and Properties File Format](storage-import-export-file-format-metadata-and-properties.md) (Formato dei file di metadati e delle proprietà del servizio Importazione/Esportazione). |
+| BasePath | **[Obbligatorio]**<br/>il valore di Hello di questo parametro rappresenta l'origine hello hello toobe di dati importati in cui si trova. strumento Hello verrà copia in modo ricorsivo tutti i dati che si trovano in questo percorso.<br><br/>**Valori consentiti**: questo è toobe un percorso valido nel computer locale o un percorso di condivisione valido e deve essere accessibile dall'utente hello. percorso della directory Hello deve essere un percorso assoluto (non un percorso relativo). Se il percorso di hello termina con "\\", che rappresenta una directory else un percorso che terminano senza"\\" rappresenta un file.<br/>In questo campo non sono consentiti regex. Se hello percorso contiene spazi, inserirlo in "".<br><br/>**Esempio**: "c:\Directory\c\Directory\File.txt"<br>"\\\\FBaseFilesharePath.domain.net\nomecondivisione\directory\"  |
+| DstBlobPathOrPrefix | **[Obbligatorio]**<br/> Hello percorso toohello directory virtuale di destinazione nell'account di archiviazione Windows Azure. la directory virtuale Hello può o non esiste già. Se non esiste, il servizio Importazione/Esportazione ne crea una.<br/><br/>Essere toouse che i nomi di contenitore valido quando si specificano BLOB o directory virtuale di destinazione. Tenere presente che i nomi di contenitore devono essere costituiti da lettere minuscole. Per le regole sulla denominazione dei contenitori, vedere [Naming and Referencing Containers, Blobs, and Metadata](/rest/api/storageservices/naming-and-referencing-containers--blobs--and-metadata) (Assegnazione di nome e riferimento a contenitori, BLOB e metadati). Se viene specificata radice, solo la struttura di directory hello dell'origine hello viene replicata nel contenitore blob di destinazione hello. Se si desidera una struttura di directory diversi rispetto a hello uno nell'origine, più righe di mapping nel file CSV<br/><br/>È possibile specificare un contenitore o un prefisso di BLOB come music/70s/. Hello directory di destinazione deve iniziare con il nome di contenitore hello, seguito da una barra rovesciata "/" e può includere una directory di blob virtuale che termina con "/".<br/><br/>Quando il contenitore di destinazione di hello è contenitore radice hello, è necessario specificare in modo esplicito il contenitore di radice hello, inclusa la barra hello, come $root /. Poiché i BLOB nel contenitore radice hello non può includere "/" nei relativi nomi, le eventuali sottodirectory nella directory di origine hello non verrà copiata quando directory di destinazione hello contenitore radice hello.<br/><br/>**Esempio**<br/>Se il percorso blob di destinazione hello è https://mystorageaccount.blob.core.windows.net/video, il valore di hello di questo campo può essere video /  |
+| BlobType | **[Facoltativo]**  block &amp;#124; page<br/>Attualmente il servizio Importazione/Esportazione supporta 2 tipi di BLOB. di pagine e in blocchi. Per impostazione predefinita, tutti i file vengono importati come BLOB in blocchi. E \*con estensione vhd e \*vhdx verranno importati come Page BlobsThere è un limite per hello-blob in blocchi e blob di pagine dimensioni consentite. Per altre informazioni, vedere [Obiettivi di scalabilità per BLOB, code, tabelle e file](storage-scalability-targets.md#scalability-targets-for-blobs-queues-tables-and-files).  |
+| Disposition | **[Facoltativo]** rename &#124; no-overwrite &#124; overwrite <br/> Questo campo specifica il meccanismo di copia hello durante l'importazione ovvero Quando i dati vengono caricati toohello account di archiviazione dal disco hello. Le opzioni disponibili sono: ridenominazione &#124; sovrascriverla &#124; no-overwrite. Impostazioni predefinite troppo "rename" Se non specificato. <br/><br/>**Rename**: se è presente un oggetto con lo stesso nome, viene creata una copia nella destinazione.<br/>Sovrascrittura: sovrascrive file hello con file più recente. file Hello con wins ultima modifica.<br/>**No-overwrite**: scrittura hello Ignora file se è già presente.|
+| MetadataFile | **[Facoltativo]** <br/>Hello valore toothis campo è di tipo file di metadati hello che può essere fornito se hello uno deve toopreserve hello metadati degli oggetti hello o fornisce metadati personalizzati. Percorso file di metadati toohello dei blob di destinazione hello. Per altre informazioni, vedere [Import/Export service Metadata and Properties File Format](storage-import-export-file-format-metadata-and-properties.md) (Formato dei file di metadati e delle proprietà del servizio Importazione/Esportazione) |
+| PropertiesFile | **[Facoltativo]** <br/>Percorso file di proprietà toohello per i BLOB di destinazione hello. Per altre informazioni, vedere [Import/Export service Metadata and Properties File Format](storage-import-export-file-format-metadata-and-properties.md) (Formato dei file di metadati e delle proprietà del servizio Importazione/Esportazione). |
 
 ## <a name="prepare-initialdriveset-or-additionaldriveset-csv-file"></a>Preparare il file CSV InitialDriveSet o AdditionalDriveSet
 
 ### <a name="what-is-driveset-csv"></a>Definizione del file CSV driveset
 
-Il valore del flag /InitialDriveSet o /AdditionalDriveSet è un file CSV che contiene l'elenco dei dischi in cui vengono mappate le lettere di unità in modo che lo strumento possa rilevare correttamente l'elenco dei dischi da preparare. Se le dimensioni dei dati sono superiori alla dimensione di un singolo disco, lo strumento WAImportExport opera una distribuzione ottimizzata dei dati tra i diversi dischi elencati nel file CSV.
+Hello valore del flag di /InitialDriveSet o /AdditionalDriveSet hello è un file CSV che contiene l'elenco hello di dischi lettere di unità hello toowhich vengono mappate in modo che hello strumento possibile correttamente hello un elenco di selezione dei dischi toobe preparato. Se la dimensione dei dati hello è maggiore di dimensioni di un singolo disco, lo strumento WAImportExport hello distribuirà dati hello tra più dischi elencati in questo file CSV in modo ottimizzato.
 
-Non esiste alcun limite al numero di dischi in cui è possibile scrivere i dati in un'unica sessione. Lo strumento distribuisce i dati in base alle dimensioni del disco e della cartella, selezionando il disco che risulta maggiormente ottimizzato per le dimensioni dell'oggetto. Dopo che i dati sono stati caricati nell'account di archiviazione, ne viene eseguita la convergenza nella struttura di directory specificata nel file dataset. Per creare un file CSV driveset, attenersi alla procedura seguente.
+Vi è alcun limite per il numero di hello dei dati di hello dischi non può essere scritti tooin una singola sessione. strumento Hello distribuisce i dati in base alle dimensioni del disco e le dimensioni della cartella. Selezionerà disco hello più hello oggetto-dimensioni ottimizzate. Hello dati si caricano toohello account di archiviazione sarà convergente toohello back-struttura di directory che è stato specificato nel file di set di dati. In ordine toocreate un driveset CSV, procedura hello riportata di seguito.
 
 ### <a name="create-basic-volume-and-assign-drive-letter"></a>Creare un volume di base e assegnare una lettera di unità
 
-Per creare un volume di base e assegnare una lettera di unità, seguire le istruzioni per la creazione semplificata di partizioni disponibile in [Overview of Disk Management](https://technet.microsoft.com/library/cc754936.aspx) (Panoramica di Gestione disco).
+In ordine toocreate un volume di base e assegnare una lettera di unità, seguendo le istruzioni di hello per "Più semplice la creazione della partizione" assegnato al [Panoramica di Gestione disco](https://technet.microsoft.com/library/cc754936.aspx).
 
 ### <a name="sample-initialdriveset-and-additionaldriveset-csv-file"></a>File CSV InitialDriveSet e AdditionalDriveSet di esempio
 
@@ -114,19 +114,19 @@ H,Format,SilentMode,Encrypt,
 
 | Fields | Valore |
 | --- | --- |
-| DriveLetter | **[Obbligatorio]**<br/> Ogni unità fornita allo strumento come destinazione deve includere un volume NTFS semplice e deve avere una lettera di unità assegnata.<br/> <br/>**Esempio**: R o r |
-| FormatOption | **[Obbligatorio]** Format &#124; AlreadyFormatted<br/><br/> **Format**: se si specifica questo valore, tutti i dati sul disco vengono formattati. <br/>**AlreadyFormatted**: quando viene specificato questo valore, lo strumento ignora la formattazione. |
-| SilentOrPromptOnFormat | **[Obbligatorio]** SilentMode &#124; PromptOnFormat<br/><br/>**SilentMode**: se si specifica questo valore, l'utente può eseguire lo strumento in modalità non interattiva. <br/>**PromptOnFormat**: lo strumento richiede all'utente di confermare se l'azione è veramente prevista per tutti i formati.<br/><br/>Se il valore non è impostato, il comando viene interrotto e viene visualizzato il messaggio di errore "Incorrect value for SilentOrPromptOnFormat: none" (Valore non corretto per SilentOrPromptOnFormat: none) |
-| Crittografia | **[Obbligatorio]** Encrypt &#124; AlreadyEncrypted<br/> Il valore di questo campo indica quale disco crittografare. <br/><br/>**Encrypt**: lo strumento formatta l'unità. Se il campo "FormatOption" è impostato su "Format", il valore di questo campo deve essere "Encrypt". Se in questo caso viene specificato"AlreadyEncrypted", viene restituito l'errore seguente: "When Format is specified, Encrypt must also be specified" (Quando viene specificato Format, è necessario specificare anche Encrypt).<br/>**AlreadyEncrypted**: lo strumento decrittografa l'unità usando la chiave BitLocker specificata nel campo "ExistingBitLockerKey". Se il valore del campo "FormatOption" è "AlreadyFormatted", il valore di questo campo può essere "Encrypt" o "AlreadyEncrypted". |
-| ExistingBitLockerKey | **[Obbligatorio]** Se il valore del campo "Encryption" è "AlreadyEncrypted",<br/> il valore di questo campo corrisponde alla chiave BitLocker associata al disco specifico. <br/><br/>Se il valore del campo "Encryption" è "Encrypt", questo campo deve essere lasciato vuoto.  Se in questo caso è specificata una chiave BitLocker, viene restituito l'errore seguente: "Bitlocker Key should not be specified" (Non specificare la chiave BitLocker).<br/>  **Esempio**: 060456-014509-132033-080300-252615-584177-672089-411631|
+| DriveLetter | **[Obbligatorio]**<br/> Ogni unità che viene fornito lo strumento toohello come destinazione hello deve disporre di un volume NTFS semplice su di esso e una lettera di unità assegnata tooit.<br/> <br/>**Esempio**: R o r |
+| FormatOption | **[Obbligatorio]** Format &amp;#124; AlreadyFormatted<br/><br/> **Formato**: specificare questo formatterà tutti i dati su disco hello hello. <br/>**AlreadyFormatted**: strumento di hello ignorerà la formattazione quando il valore specificato. |
+| SilentOrPromptOnFormat | **[Obbligatorio]** SilentMode &#124; PromptOnFormat<br/><br/>**SilentMode**: specificare questo valore verrà abilitata strumento hello toorun di utente in modalità invisibile all'utente. <br/>**PromptOnFormat**: strumento di hello richiederà hello utente tooconfirm se azione hello effettivamente è destinato a tutti i formati.<br/><br/>Se il valore non è impostato, il comando viene interrotto e viene visualizzato il messaggio di errore "Incorrect value for SilentOrPromptOnFormat: none" (Valore non corretto per SilentOrPromptOnFormat: none) |
+| Crittografia | **[Obbligatorio]** Encrypt &#124; AlreadyEncrypted<br/> valore di Hello di questo campo decide quali tooencrypt disco e che non a. <br/><br/>**Crittografare**: strumento formatterà unità hello. Se il valore del campo "FormatOption" è "Format" questo valore è obbligatorio toobe "Encrypt". Se in questo caso viene specificato"AlreadyEncrypted", viene restituito l'errore seguente: "When Format is specified, Encrypt must also be specified" (Quando viene specificato Format, è necessario specificare anche Encrypt).<br/>**AlreadyEncrypted**: strumento per decrittografare l'unità hello utilizzando BitLockerKey fornito nel campo "ExistingBitLockerKey" hello. Se il valore del campo "FormatOption" è "AlreadyFormatted", il valore di questo campo può essere "Encrypt" o "AlreadyEncrypted". |
+| ExistingBitLockerKey | **[Obbligatorio]** Se il valore del campo "Encryption" è "AlreadyEncrypted",<br/> il valore di Hello di questo campo è di tipo chiave BitLocker hello associato al disco particolare hello. <br/><br/>Questo campo deve essere lasciato vuoto se il valore di hello del campo "Crittografia" è "Encrypt".  Se in questo caso è specificata una chiave BitLocker, viene restituito l'errore seguente: "Bitlocker Key should not be specified" (Non specificare la chiave BitLocker).<br/>  **Esempio**: 060456-014509-132033-080300-252615-584177-672089-411631|
 
 ##  <a name="preparing-disk-for-import-job"></a>Preparazione del disco per il processo di importazione
 
-Per preparare le unità per il processo di importazione, chiamare lo strumento WAImportExport con il comando **PrepImport**. I parametri da includere dipendono dal fatto che si tratti della prima sessione di copia o di una sessione di copia successiva.
+unità tooprepare per un processo di importazione, chiamare lo strumento WAImportExport hello con hello **PrepImport** comando. I parametri da includere varia a seconda se questo è hello prima sessione di copia o di una sessione di copia successive.
 
 ### <a name="first-session"></a>Prima sessione
 
-Prima sessione di copia di una directory singola o multipla in un disco singolo o multiplo, a seconda di quanto specificato nel file CSV - Comando PrepImport dello strumento WAImportExport per la prima sessione di copia di directory e/o file con una nuova sessione di copia:
+Prima sessione di copia tooCopy uno strumento di WAImportExport disco (a seconda di quello specificato nel file CSV) singolo o multiplo tooa Single/Multiple Directory comando PrepImport per hello innanzitutto copiare le directory di sessione toocopy e/o file con una nuova sessione di copia:
 
 ```
 WAImportExport.exe PrepImport /j:<JournalFile> /id:<SessionId> [/logdir:<LogDirectory>] [/sk:<StorageAccountKey>] [/silentmode] [/InitialDriveSet:<driveset.csv>] DataSet:<dataset.csv>
@@ -140,7 +140,7 @@ WAImportExport.exe PrepImport /j:JournalTest.jrn /id:session#1  /sk:\*\*\*\*\*\*
 
 ### <a name="add-data-in-subsequent-session"></a>Aggiungere dati in una sessione successiva
 
-Nelle sessioni di copia successive non è necessario specificare i parametri iniziali. È necessario usare lo stesso file journal per consentire allo strumento di riprendere dal punto in cui l'operazione è stata sospesa nella sessione precedente. Lo stato della sessione di copia viene scritto nel file journal. Di seguito è riportata la sintassi relativa a una sessione successiva per la copia di directory e/o file aggiuntivi:
+Nelle sessioni di copia successive, non è necessario toospecify parametri iniziali di hello. È necessario toouse hello stesso file di registro affinché hello strumento tooremember punto in cui era in hello sessione precedente. stato di Hello della sessione di copia hello viene scritto il file di registro toohello. Di seguito è hello sintassi per una copia successive directory di sessione toocopy aggiuntive e o file:
 
 ```
 WAImportExport.exe PrepImport /j:<SameJournalFile> /id:<DifferentSessionId>  [DataSet:<differentdataset.csv>]
@@ -152,12 +152,12 @@ WAImportExport.exe PrepImport /j:<SameJournalFile> /id:<DifferentSessionId>  [Da
 WAImportExport.exe PrepImport /j:JournalTest.jrn /id:session#2  /DataSet:dataset-2.csv
 ```
 
-### <a name="add-drives-to-latest-session"></a>Aggiungere unità all'ultima sessione
+### <a name="add-drives-toolatest-session"></a>Aggiungere unità toolatest sessione
 
-Se le unità specificate in InitialDriveset non sono sufficienti per i dati, è possibile usare lo strumento per aggiungere altre unità alla stessa sessione di copia. 
+Se non è contenuto nell'unità specificate in InitialDriveset dati hello, possono essere utilizzati sessione di copia toosame hello strumento tooadd unità aggiuntive. 
 
 >[!NOTE] 
->L'ID sessione deve corrispondere all'ID della sessione precedente. Il file journal deve corrispondere a quello specificato nella sessione precedente.
+>id di sessione Hello deve corrispondere l'id di sessione precedente hello. File journal deve corrispondere hello quella specificata nella sessione precedente.
 >
 ```
 WAImportExport.exe PrepImport /j:<SameJournalFile> /id:<SameSessionId> /AdditionalDriveSet:<newdriveset.csv>
@@ -169,9 +169,9 @@ WAImportExport.exe PrepImport /j:<SameJournalFile> /id:<SameSessionId> /Addition
 WAImportExport.exe PrepImport /j:SameJournalTest.jrn /id:session#2  /AdditionalDriveSet:driveset-2.csv
 ```
 
-### <a name="abort-the-latest-session"></a>Interrompere l'ultima sessione
+### <a name="abort-hello-latest-session"></a>Interrompere hello sessione più recente:
 
-Se una sessione di copia si blocca e non è possibile riprenderla, ad esempio perché una directory di origine risulta inaccessibile, è necessario interrompere la sessione corrente in modo da poter eseguire il rollback e avviare nuove sessioni di copia:
+Se una sessione di copia viene interrotta e non è possibile tooresume (ad esempio, se una directory di origine e inaccessibile), è necessario terminare hello sessione corrente in modo che è possibile eseguire il rollback precedente e le nuove sessioni di copia possono essere avviate:
 
 ```
 WAImportExport.exe PrepImport /j:<SameJournalFile> /id:<SameSessionId> /AbortSession
@@ -183,11 +183,11 @@ WAImportExport.exe PrepImport /j:<SameJournalFile> /id:<SameSessionId> /AbortSes
 WAImportExport.exe PrepImport /j:JournalTest.jrn /id:session#2  /AbortSession
 ```
 
-È possibile interrompere solo l'ultima sessione di copia, se terminata in modo anomalo. Si noti che, per un'unità, non è possibile interrompere la prima sessione di copia. È invece necessario riavviarla con un nuovo file journal.
+Hello solo ultima sessione di copia, se è stato terminato in modo anomalo, può essere interrotta. Si noti che non è possibile terminare hello prima sessione di copia per un'unità. È invece necessario riavviare la sessione di copia hello con un nuovo file journal.
 
 ### <a name="resume-a-latest-interrupted-session"></a>Riprendere l'ultima sessione interrotta
 
-Se una sessione di copia viene interrotta per qualsiasi motivo, è possibile riprenderla eseguendo lo strumento e specificando solo il file journal:
+Se una sessione di copia viene interrotta per qualsiasi motivo, è possibile ripristinarla eseguendo lo strumento hello con solo i file journal hello specificato:
 
 ```
 WAImportExport.exe PrepImport /j:<SameJournalFile> /id:<SameSessionId> /ResumeSession
@@ -200,30 +200,30 @@ WAImportExport.exe PrepImport /j:JournalTest.jrn /id:session#2 /ResumeSession
 ```
 
 > [!IMPORTANT] 
-> Quando si riprende una sessione di copia, non modificare le directory e i file dei dati di origine aggiungendo o rimuovendo file.
+> Quando si riprende una sessione di copia, non modificare le directory e file di dati di origine hello aggiungendo o rimuovendo i file.
 
 ## <a name="waimportexport-parameters"></a>Parametri di WAImportExport
 
 | Parametri | Descrizione |
 | --- | --- |
-|     /j:&lt;FileJournal&gt;  | **Obbligatorio**<br/> Percorso del file journal. Un file journal tiene traccia di un set di unità e registra lo stato di avanzamento della preparazione di queste unità. È sempre necessario specificare il file journal.  |
-|     /logdir:&lt;DirectoryLog&gt;  | **Facoltativo**. Directory dei log.<br/> In questa directory vengono registrati i file di log dettagliati e alcuni file temporanei. Se questo parametro non è specificato, come directory dei log viene usata la directory corrente. La directory dei log può essere specificata una sola volta per lo stesso file journal.  |
-|     /id:&lt;IdSessione&gt;  | **Obbligatorio**<br/> L'ID sessione consente di identificare una sessione di copia. Viene usato per garantire il recupero accurato di una sessione di copia interrotta.  |
-|     /ResumeSession  | Facoltativa. Se l'ultima sessione di copia è terminata in modo anomalo, è possibile specificare questo parametro per riprenderla.   |
-|     /AbortSession  | Facoltativa. Se l'ultima sessione di copia è terminata in modo anomalo, è possibile specificare questo parametro per interromperla.  |
-|     /sn:&lt;NomeAccountArchiviazione&gt;  | **Obbligatorio**<br/> Applicabile solo per RepairImport e RepairExport. Nome dell'account di archiviazione.  |
-|     /sk:&lt;ChiaveAccountArchiviazione&gt;  | **Obbligatorio**<br/> Chiave dell'account di archiviazione. |
-|     /InitialDriveSet:&lt;driveset.csv&gt;  | **Obbligatorio** Quando si esegue la prima sessione di copia<br/> File CSV che contiene un elenco di unità da preparare.  |
-|     /AdditionalDriveSet:&lt;driveset.csv&gt; | **Obbligatoria**. Usato per l'aggiunta di unità alla sessione di copia corrente. <br/> File CSV che contiene un elenco di unità da aggiungere.  |
-|      /r:&lt;FileRipristino&gt; | **Obbligatorio** Applicabile solo per RepairImport e RepairExport.<br/> Percorso del file per tenere traccia dello stato di avanzamento del ripristino. Ogni unità deve contenere un solo file di ripristino.  |
-|     /d:&lt;DirectoryDestinazione&gt; | **Obbligatoria**. Applicabile solo per RepairImport e RepairExport. Per RepairImport, una o più directory da ripristinare separate da punto e virgola; per RepairExport, una sola directory da ripristinare, ad esempio la radice dell'unità.  |
-|     /CopyLogFile:&lt;FileLogCopiaUnità&gt; | **Obbligatorio** Applicabile solo per RepairImport e RepairExport. Percorso del file di log di copia dell'unità (file dettagliato o file di errore).  |
-|     /ManifestFile:&lt;FileManifestoUnità&gt; | **Obbligatorio** Applicabile solo per RepairImport e RepairExport.<br/> Percorso del file manifesto dell'unità.  |
-|     /PathMapFile:&lt;FileMappingPercorsoUnità&gt; | **Facoltativo**. Applicabile solo per RepairImport.<br/> Percorso del file contenente i mapping dei percorsi di file relativi alla radice dell'unità ai percorsi dei file effettivi (delimitati da tabulazione). Quando questo parametro viene specificato per la prima volta, viene popolato con percorsi di file con destinazioni vuote, perché si tratta di file non trovati in TargetDirectories, con accesso negato, con nome non valido o esistenti in più directory. Il file di mapping può essere modificato manualmente includendo i percorsi di destinazione corretti e può essere specificato nuovamente in modo da consentire allo strumento di risolvere i percorsi dei file in modo corretto.  |
-|     /ExportBlobListFile:&lt;FileElencoBlobEsportazione&gt; | **Obbligatoria**. Applicabile solo per PreviewExport.<br/> Percorso del file XML contenente l'elenco dei percorsi o dei prefissi dei percorsi BLOB per i BLOB da esportare. Il formato del file è lo stesso usato dall'elenco dei BLOB nell'operazione Put Job dell'API REST del servizio Importazione/Esportazione.  |
-|     /DriveSize:&lt;DimensioneUnità&gt; | **Obbligatoria**. Applicabile solo per PreviewExport.<br/>  Dimensioni delle unità da usare per l'esportazione, Ad esempio: 500 GB, 1,5 TB. Nota: 1 GB = 1.000.000.000 di byte, 1 TB = 1.000.000.000.000 di byte  |
-|     /DataSet:&lt;dataset.csv&gt; | **Obbligatorio**<br/> File CSV che contiene un elenco di directory e/o un elenco di file da copiare nelle unità di destinazione.  |
-|     /silentmode  | **Facoltativo**.<br/> Se questo parametro non è specificato, viene visualizzato un messaggio con i requisiti delle unità e sarà necessaria la conferma dell'utente per continuare.  |
+|     /j:&lt;FileJournal&gt;  | **Obbligatorio**<br/> Percorso file journal di toohello. Un file journal tiene traccia di un set di unità e record hello lo stato di avanzamento preparazione queste unità. file journal Hello deve sempre essere specificato.  |
+|     /logdir:&lt;DirectoryLog&gt;  | **Facoltativo**. directory dei log Hello.<br/> File di log dettagliati, nonché alcuni file temporanei saranno scritti toothis directory. Se non specificato directory corrente verrà utilizzato come directory dei log hello. Hello directory log può essere specificata solo una volta per hello stesso file journal.  |
+|     /id:&lt;IdSessione&gt;  | **Obbligatorio**<br/> Hello Id di sessione utilizzato tooidentify una sessione di copia. È utilizzato tooensure accurata del recupero di una sessione di copia interrotta.  |
+|     /ResumeSession  | Facoltativo. Se hello ultima sessione di copia è stata terminata in modo anomalo, questo parametro può essere specificato tooresume hello sessione.   |
+|     /AbortSession  | Facoltativo. Se hello ultima sessione di copia è stata terminata in modo anomalo, questo parametro può essere specificato tooabort hello sessione.  |
+|     /sn:&lt;NomeAccountArchiviazione&gt;  | **Obbligatorio**<br/> Applicabile solo per RepairImport e RepairExport. nome Hello hello dell'account di archiviazione.  |
+|     /sk:&lt;ChiaveAccountArchiviazione&gt;  | **Obbligatorio**<br/> chiave di Hello hello dell'account di archiviazione. |
+|     /InitialDriveSet:&lt;driveset.csv&gt;  | **Richiesto** quando si esegue hello prima sessione di copia<br/> Un file CSV che contiene un elenco di unità tooprepare.  |
+|     /AdditionalDriveSet:&lt;driveset.csv&gt; | **Obbligatoria**. Quando si aggiungono unità toocurrent sessione di copia. <br/> Un file CSV che contiene un elenco di unità aggiuntive toobe aggiunto.  |
+|      /r:&lt;FileRipristino&gt; | **Obbligatorio** Applicabile solo per RepairImport e RepairExport.<br/> Percorso file toohello per tenere traccia dello stato di ripristino. Ogni unità deve contenere un solo file di ripristino.  |
+|     /d:&lt;DirectoryDestinazione&gt; | **Obbligatoria**. Applicabile solo per RepairImport e RepairExport. Per RepairImport, uno o più toorepair directory delimitato da punto e virgola; Per RepairExport, toorepair una directory, ad esempio, la directory radice dell'unità di hello.  |
+|     /CopyLogFile:&lt;FileLogCopiaUnità&gt; | **Obbligatorio** Applicabile solo per RepairImport e RepairExport. File di log Copia percorso toohello unità (dettagliato o errore).  |
+|     /ManifestFile:&lt;FileManifestoUnità&gt; | **Obbligatorio** Applicabile solo per RepairImport e RepairExport.<br/> File manifesto dell'unità toohello percorso.  |
+|     /PathMapFile:&lt;FileMappingPercorsoUnità&gt; | **Facoltativo**. Applicabile solo per RepairImport.<br/> Percorso file toohello contenente i mapping di toolocations file percorsi toohello relativo unità radice del file effettivi (delimitato da tabulazione). Quando questo parametro viene specificato per la prima volta, viene popolato con percorsi di file con destinazioni vuote, perché si tratta di file non trovati in TargetDirectories, con accesso negato, con nome non valido o esistenti in più directory. file di mapping di percorso Hello può essere modificate manualmente tooinclude i percorsi di destinazione corretto hello e specifica nuovamente per i percorsi dei file hello hello strumento tooresolve correttamente.  |
+|     /ExportBlobListFile:&lt;FileElencoBlobEsportazione&gt; | **Obbligatoria**. Applicabile solo per PreviewExport.<br/> Toohello percorso XML del file contenente l'elenco dei percorsi blob o prefissi di percorso per toobe BLOB hello esportata blob. formato del file Hello è hello stesso formato hello blob elenco blob in hello operazione Put Job del servizio di importazione/esportazione hello API REST.  |
+|     /DriveSize:&lt;DimensioneUnità&gt; | **Obbligatoria**. Applicabile solo per PreviewExport.<br/>  Dimensione dell'unità toobe usato per l'esportazione. Ad esempio: 500 GB, 1,5 TB. Nota: 1 GB = 1.000.000.000 di byte, 1 TB = 1.000.000.000.000 di byte  |
+|     /DataSet:&lt;dataset.csv&gt; | **Obbligatorio**<br/> Un file CSV che contiene un elenco di directory e/o di un elenco di file toobe copiati tootarget unità.  |
+|     /silentmode  | **Facoltativo**.<br/> Se non è specificato verrà visualizzato un promemoria si hello requisito delle unità ed è necessario toocontinue la conferma.  |
 
 ## <a name="tool-output"></a>Output dello strumento
 
@@ -238,7 +238,7 @@ WAImportExport.exe PrepImport /j:JournalTest.jrn /id:session#2 /ResumeSession
       <ClientCreator>client-creator</ClientCreator>
       <!-- First Blob List -->
       <BlobList Id="session#1-0">
-         <!-- Global properties and metadata that applies to all blobs -->
+         <!-- Global properties and metadata that applies tooall blobs -->
          <MetadataPath Hash="md5-hash">global-metadata-file-path</MetadataPath>
          <PropertiesPath Hash="md5-hash">global-properties-file-path</PropertiesPath>
          <!-- First Blob -->
@@ -284,7 +284,7 @@ SaveCommandOutput: Completed
 [EndUpdateRecord]
 ```
 
-### <a name="sample-journal-file-jrn-for-session-that-records-the-trail-of-sessions"></a>Esempio di file journal con estensione jrn che tiene traccia della successione delle sessioni
+### <a name="sample-journal-file-jrn-for-session-that-records-hello-trail-of-sessions"></a>File journal di esempio (JRN) per sessione che registra il riepilogo di hello di sessioni
 
 ```
 [BeginUpdateRecord][2016/11/02 18:24:14.735][Type:NewJournalFile]
@@ -300,29 +300,29 @@ StorageAccountKey: *******
 [EndUpdateRecord]
 ```
 
-## <a name="faq"></a>Domande frequenti
+## <a name="faq"></a>domande frequenti
 
 ### <a name="general"></a>Generale
 
 #### <a name="what-is-waimportexport-tool"></a>Che cos'è lo strumento WAImportExport?
 
-WAImportExport è lo strumento di preparazione e ripristino delle unità che è possibile usare con il servizio Importazione/Esportazione di Microsoft Azure. Questo strumento consente di copiare dati nei dischi rigidi da spedire a un data center di Azure. Al termine di un processo di importazione, è possibile usare lo strumento per ripristinare gli eventuali BLOB danneggiati, mancanti o in conflitto con altri BLOB. Dopo aver ricevuto le unità da un processo di esportazione completato, lo strumento consente di ripristinare gli eventuali file danneggiati o mancanti nelle unità.
+lo strumento WAImportExport Hello è hello unità strumento di preparazione e che è possibile utilizzare con il servizio di importazione/esportazione di Microsoft Azure hello. È possibile utilizzare questo strumento toocopy dati toohello unità disco rigido verrà tooship tooan data center di Azure. Al termine di un processo di importazione, è possibile utilizzare questo toorepair strumento tutti i blob che sono stati danneggiati, mancano o in conflitto con altri BLOB. Dopo aver ricevuto hello unità da un processo di esportazione completato, è possibile utilizzare questo strumento toorepair tutti i file danneggiati o mancanti nelle unità hello.
 
-#### <a name="how-does-the-waimportexport-tool-work-on-multiple-source-dir-and-disks"></a>Come funziona lo strumento WAImportExport con più dischi e directory di origine?
+#### <a name="how-does-hello-waimportexport-tool-work-on-multiple-source-dir-and-disks"></a>Funzionamento fa hello strumento WAImportExport in più directory di origine e i dischi?
 
-Se le dimensioni dei dati sono superiori alla dimensione del disco, lo strumento WAImportExport opera una distribuzione ottimizzata dei dati tra i diversi dischi. La copia dei dati in più dischi può essere eseguita in parallelo o in sequenza. Non esiste alcun limite al numero di dischi in cui è possibile scrivere i dati contemporaneamente. Lo strumento distribuisce i dati in base alle dimensioni del disco e della cartella, selezionando il disco che risulta maggiormente ottimizzato per le dimensioni dell'oggetto. Dopo che i dati sono stati caricati nell'account di archiviazione, ne viene eseguita la convergenza nella struttura di directory specificata.
+Se la dimensione dei dati hello è maggiore di dimensioni del disco hello, lo strumento WAImportExport hello distribuirà dati hello nei dischi hello in modo ottimizzato. toomultiple di copiare i dati Hello dischi può essere eseguite in parallelo o in sequenza. Vi è alcun limite per il numero di hello dei dati di hello dischi non può essere scritti toosimultaneously. strumento Hello distribuisce i dati in base alle dimensioni del disco e le dimensioni della cartella. Selezionerà disco hello più hello oggetto-dimensioni ottimizzate. Hello dati si caricano toohello account di archiviazione verrà essere convergente nuovamente toohello specificato struttura di directory.
 
 #### <a name="where-can-i-find-previous-version-of-waimportexport-tool"></a>Dove è reperibile la versione precedente dello strumento WAImportExport?
 
-WAImportExport include tutte le funzionalità dello strumento WAImportExport V1. Consente agli utenti di specificare più origini e scrivere in più unità. È inoltre possibile gestire con facilità più percorsi di origine da cui copiare i dati in un singolo file CSV. Tuttavia, se è necessario il supporto SAS o se si vuole copiare una singola origine in un solo disco, è possibile [scaricare lo strumento WAImportExport V1] (http://go.microsoft.com/fwlink/?LinkID=301900&amp;clcid=0x409) e vedere [WAImportExport V1 Reference](storage-import-export-tool-how-to-v1.md) (Informazioni di riferimento su WAImportExport V1) per indicazioni sull'utilizzo di questo strumento.
+WAImportExport include tutte le funzionalità dello strumento WAImportExport V1. Strumento WAImportExport consente agli utenti toospecify più origini e le unità toomultiple scrittura. Uno è inoltre possibile gestire con facilità più percorsi di origine da cui i dati di hello devono toobe copiati in un singolo file CSV. Tuttavia, nel caso è necessario SAS supporta o desidera toocopy unica origine toosingle su disco, è possibile [scaricare lo strumento di WAImportExport V1] (http://go.microsoft.com/fwlink/? LinkID = 301900&amp;clcid = 0x409) e fare riferimento troppo[WAImportExport V1 riferimento](storage-import-export-tool-how-to-v1.md) per informazioni sull'utilizzo di WAImportExport V1.
 
 #### <a name="what-is-a-session-id"></a>Che cos'è l'ID sessione?
 
-Se si intende distribuire i dati in più dischi, lo strumento prevede che venga usato lo stesso parametro della sessione di copia (/id). Mantenendo lo stesso nome della sessione di copia, è possibile copiare i dati da una o più posizioni di origine in uno o più dischi o directory di destinazione. Con lo stesso ID sessione, lo strumento può riprendere la copia dei file dal punto in cui è stata sospesa l'ultima volta.
+Hello è prevista la sessione di copia hello (o id) toobe parametro hello stesso se finalità hello toospread hello dati tra più dischi. Gestione di hello stesso nome di sessione di copia hello consentirà di dati toocopy utente da uno o più percorsi di origine in una o più dischi/directory di destinazione. Mantenendo lo stesso id di sessione consente hello strumento toopick copia hello dei file dal punto in cui è stato hello ora dell'ultimo backup.
 
-Tuttavia, la stessa sessione di copia non può essere usata per importare i dati in account di archiviazione diversi.
+Tuttavia, stessa sessione di copia non può essere account di archiviazione utilizzato tooimport dati toodifferent.
 
-Quando il nome della sessione di copia è lo stesso in più esecuzioni dello strumento, anche il file di log (/logdir) e la chiave dell'account di archiviazione (/sk) devono essere gli stessi.
+Quando il nome di sessione di copia sia uguale in più esecuzioni dello strumento hello, hello del file di registro (/ logdir) e chiave dell'account di archiviazione (o sk) è inoltre previsto toobe hello stesso.
 
 L'ID sessione può essere costituito da lettere, numeri da 0 a 9, caratteri di sottolineatura (\_), trattini (-) o hash (#) e la relativa lunghezza deve essere compresa tra 3 e 30 caratteri.
 
@@ -330,52 +330,52 @@ Esempio: session-1 oppure session#1 oppure session\_1
 
 #### <a name="what-is-a-journal-file"></a>Che cos'è un file journal?
 
-Ogni volta che si esegue WAImportExport per copiare file nel disco rigido, lo strumento crea una sessione di copia. Lo stato della sessione di copia viene scritto nel file journal. Se una sessione di copia viene interrotta, ad esempio a causa di un'interruzione dell'alimentazione del sistema, può essere ripresa eseguendo nuovamente lo strumento e specificando il file journal alla riga di comando.
+Ogni volta che si esegue WAImportExport strumento toocopy file toohello unità disco rigido, hello strumento hello crea una sessione di copia. stato di Hello della sessione di copia hello viene scritto il file di registro toohello. Se una sessione di copia viene interrotta (ad esempio, a causa di interruzione dell'alimentazione del sistema tooa), può essere ripreso eseguire di nuovo lo strumento hello e specificando il file journal hello nella riga di comando hello.
 
-Per ogni disco rigido preparato con lo strumento Importazione/Esportazione di Azure, viene creato un singolo file journal denominato "&lt;IDUnità&gt;.xml", dove l'ID corrisponde al numero di serie associato all'unità che lo strumento legge dal disco. Per creare il processo di importazione sono necessari i file journal di tutte le unità. Il file journal può essere usato anche per riprendere la preparazione delle unità nel caso in cui lo strumento venga interrotto.
+Per ogni disco rigido preparato con lo strumento di importazione/esportazione di Azure hello, hello creerà un singolo file journal con nome "&lt;IDUnità&gt;. XML" in cui l'Id dell'unità è il numero di serie hello associato unità toohello hello strumento legge da disco Hello. Sono necessari file journal hello da tutto il processo di importazione hello toocreate unità. file journal Hello può essere utilizzato tooresume preparazione dell'unità se lo strumento hello viene interrotta.
 
 #### <a name="what-is-a-log-directory"></a>Che cos'è una directory dei log?
 
-La directory dei log è una directory da usare per archiviare log dettagliati e file manifesto temporanei. Se non è specificata, come directory dei log viene usata la directory corrente. I log sono di tipo dettagliato.
+directory log Hello specifica che una directory toobe utilizzato log dettagliati toostore, nonché i file manifesti temporanei. Se non specificato, la directory corrente hello da utilizzare come directory dei log hello. i registri di Hello sono log dettagliati.
 
 ### <a name="prerequisites"></a>Prerequisiti
 
-#### <a name="what-are-the-specifications-of-my-disk"></a>Quali sono le specifiche dei dischi?
+#### <a name="what-are-hello-specifications-of-my-disk"></a>Quali sono specifiche di hello del mio disco?
 
-Sono necessari uno o più dischi rigidi SATA II, III o SSD vuoti da 2,5 o 3,5 pollici, collegati al computer di copia.
+Uno o più SATAII 2,5 o 3,5 vuoto o III o disco SSD unità connessa toohello computer di copia.
 
 #### <a name="how-can-i-enable-bitlocker-on-my-machine"></a>Come è possibile abilitare BitLocker nel computer?
 
-Un modo semplice per effettuare una verifica è fare clic con il pulsante destro del mouse sull'unità di sistema. Se la funzionalità è attivata, vengono visualizzate le opzioni per BitLocker. Se è disattivata, le opzioni non sono visibili.
+In modo semplice toocheck è facendo clic sull'unità di sistema. Verrà visualizzate opzioni per Bitlocker se è attivata la funzionalità di hello. Se è disattivata, le opzioni non sono visibili.
 
 ![Verificare BitLocker](./media/storage-import-export-tool-preparing-hard-drives-import/BitLocker.png)
 
-È disponibile un articolo con informazioni su [come abilitare BitLocker](https://technet.microsoft.com/library/cc766295.aspx).
+Questo è un articolo su [come tooenable BitLocker](https://technet.microsoft.com/library/cc766295.aspx)
 
-È possibile che nel computer non sia presente un chip TPM. Se non si ottiene output tramite tpm.msc, vedere la prossima domanda.
+È possibile che nel computer non sia presente un chip TPM. Se non viene visualizzato un output mediante tpm.msc, esaminare hello domande frequenti.
 
-#### <a name="how-to-disable-trusted-platform-module-tpm-in-bitlocker"></a>Come è possibile disabilitare Trusted Platform Module (TPM) in BitLocker?
+#### <a name="how-toodisable-trusted-platform-module-tpm-in-bitlocker"></a>Come toodisable Trusted Platform Module (TPM) di BitLocker?
 > [!NOTE]
-> È necessario disabilitare i criteri TPM solo se non è presente alcun modulo TPM nei server. Se è presente un modulo TPM attendibile nel server dell'utente, non è necessario disabilitare TPM. 
+> Solo se non è disponibile alcun TPM nei server in uso, è necessario criteri TPM toodisable. Non è necessario toodisable TPM se è presente un TPM attendibile nel server dell'utente. 
 > 
 
-Per disabilitare TPM in BitLocker, attenersi alla procedura seguente:<br/>
-1. Avviare **Group Policy Editor** (Editor Criteri di gruppo) digitando gpedit.msc in un prompt dei comandi. Se **Group Policy Editor** (Editor Criteri di gruppo) non è disponibile, per abilitare prima BitLocker vedere la domanda precedente.
+In ordine toodisable TPM di BitLocker, esaminate hello alla procedura seguente:<br/>
+1. Avviare **Group Policy Editor** (Editor Criteri di gruppo) digitando gpedit.msc in un prompt dei comandi. Se **Editor criteri di gruppo** toobe non è disponibile, per attivare BitLocker prima. vedere la domanda precedente.
 2. Aprire **Criteri del computer locale &gt; Configurazione computer &gt; Modelli amministrativi &gt; Componenti di Windows&gt; Crittografia unità BitLocker &gt; Unità del sistema operativo**.
 3. Modificare il criterio **Richiedi autenticazione aggiuntiva all'avvio**.
-4. Impostare il criterio su **Abilitato** e assicurarsi che l'opzione **Consenti BitLocker senza un TPM compatibile** sia selezionata.
+4. Impostare i criteri di hello troppo**abilitato** e assicurarsi che **Consenti BitLocker senza un TPM compatibile** è selezionata.
 
-####  <a name="how-to-check-if-net-4-or-higher-version-is-installed-on-my-machine"></a>Come è possibile verificare se nel computer in uso è installato .NET 4 o una versione successiva?
+####  <a name="how-toocheck-if-net-4-or-higher-version-is-installed-on-my-machine"></a>Come toocheck se .NET 4 o versione successiva è installata nel computer?
 
 Tutte le versioni di Microsoft .NET Framework sono installate nella directory seguente: %windir%\Microsoft.NET\Framework\
 
-Selezionare la directory del computer di destinazione citata in precedenza in cui deve essere eseguito lo strumento. Cercare il nome di cartella che inizia con "v4". Se non è presente una directory di questo tipo, .NET 4 non è installato nel computer in uso. È possibile scaricare .Net 4 nel computer dalla pagina [Microsoft .NET Framework 4 (programma di installazione Web)](https://www.microsoft.com/download/details.aspx?id=17851).
+Passare toohello sopra menzionate parte nel computer di destinazione in cui lo strumento hello deve toorun. Cercare il nome di cartella che inizia con "v4". Se non è presente una directory di questo tipo, .NET 4 non è installato nel computer in uso. È possibile scaricare .Net 4 nel computer dalla pagina [Microsoft .NET Framework 4 (programma di installazione Web)](https://www.microsoft.com/download/details.aspx?id=17851).
 
 ### <a name="limits"></a>Limiti
 
-#### <a name="how-many-drives-can-i-preparesend-at-the-same-time"></a>Quante unità è possibile preparare o inviare contemporaneamente?
+#### <a name="how-many-drives-can-i-preparesend-at-hello-same-time"></a>Il numero di unità è preparare/invio hello contemporaneamente?
 
-Non esistono limiti al numero di dischi che lo strumento è in grado di preparare. Tuttavia, poiché lo strumento prevede l'input delle lettere di unità, non è possibile preparare più di 25 dischi simultaneamente. Un singolo processo può gestire al massimo 10 dischi alla volta. Se si preparano più di 10 dischi che hanno come destinazione lo stesso account di archiviazione, i dischi possono essere distribuiti in più processi.
+È non possibile preparare alcun limite per il numero di hello di dischi che hello dello strumento. Tuttavia, lo strumento hello prevede le lettere di unità come input. Che limita la preparazione di disco simultanei too25. Un singolo processo può gestire al massimo 10 dischi alla volta. Quando si preparano i dischi da più di 10 come destinazione hello stesso account di archiviazione, i dischi hello possono essere distribuiti tra più processi.
 
 #### <a name="can-i-target-more-than-one-storage-account"></a>È possibile impostare più account di archiviazione come destinazione?
 
@@ -387,33 +387,33 @@ Non esistono limiti al numero di dischi che lo strumento è in grado di preparar
 
 Sì. La crittografia di BitLocker è abilitata ed è obbligatoria per questo processo.
 
-#### <a name="what-will-be-the-hierarchy-of-my-data-when-it-appears-in-the-storage-account"></a>Qual è la gerarchia dei dati quando vengono visualizzati nell'account di archiviazione?
+#### <a name="what-will-be-hello-hierarchy-of-my-data-when-it-appears-in-hello-storage-account"></a>Che cosa saranno gerarchia hello i dati quando viene visualizzato nell'account di archiviazione hello?
 
-Anche se i dati vengono distribuiti in più dischi, dopo che sono stati caricati nell'account di archiviazione ne viene eseguita la convergenza nella struttura di directory specificata nel file CSV dataset.
+Anche se i dati vengono distribuiti nei dischi, hello al caricamento di dati verrà eseguito la convergenza di account di archiviazione toohello toohello struttura di directory specificato nel file CSV di hello set di dati.
 
-#### <a name="how-many-of-the-input-disks-will-have-active-io-in-parallel-when-copy-is-in-progress"></a>Quanti sono i dischi di input con I/O attivo in parallelo quando è in corso la copia?
+#### <a name="how-many-of-hello-input-disks-will-have-active-io-in-parallel-when-copy-is-in-progress"></a>Il numero di hello input dischi avrà IO active in parallelo, quando si copia è in corso?
 
-Lo strumento distribuisce i dati tra i dischi di input in base alla dimensione dei file di input. In ogni caso, il numero di dischi attivi in parallelo dipende totalmente dalla natura dei dati di input. A seconda delle dimensioni dei singoli file nel set di dati di input, l'I/O può essere attivo in parallelo in uno o più dischi. Per informazioni più dettagliate, vedere la prossima domanda.
+strumento Hello distribuisce i dati in dischi di input hello in base alle dimensioni di hello hello dei file di input. Ciò premesso, il numero di hello di attivi dischi in parallelo delends completamente natura hello hello di dati di input. A seconda delle dimensioni di hello dei singoli file nel set di dati input hello, uno o più dischi potrebbero mostrare IO active in parallelo. Per informazioni più dettagliate, vedere la prossima domanda.
 
-#### <a name="how-does-the-tool-distribute-the-files-across-the-disks"></a>Come avviene la distribuzione dei file nei dischi?
+#### <a name="how-does-hello-tool-distribute-hello-files-across-hello-disks"></a>Come strumento hello distribuire file hello nei dischi hello?
 
-Lo strumento WAImportExport legge e scrive i file un batch alla volta e un batch contiene al massimo 100.000 file. È pertanto possibile scrivere al massimo 100.000 file in parallelo. Se i 100.000 file vengono distribuiti in più unità, la scrittura viene eseguita contemporaneamente in più dischi. Tuttavia, il fatto che lo strumento scriva in un solo disco o in più dischi simultaneamente dipende dalle dimensioni complessive del batch. Ad esempio, nel caso di file di dimensioni ridotte, se tutti i 100.000 file entrano in una singola unità, lo strumento li scrive in un solo disco durante l'elaborazione del batch.
+Lo strumento WAImportExport legge e scrive i file un batch alla volta e un batch contiene al massimo 100.000 file. È pertanto possibile scrivere al massimo 100.000 file in parallelo. Vengono scritte più dischi toosimultaneously se questi 100000 file sono distribuiti toomulti unità. Tuttavia se lo strumento hello scrive toomultiple dischi contemporaneamente o un singolo disco dipende dalla dimensione cumulativa di hello del batch di hello. Ad esempio, in caso di file più piccoli, se tutti i file 10,0000 sono in grado di toofit in una singola unità, lo strumento scriverà disco tooonly uno durante l'elaborazione di hello del batch.
 
 ### <a name="waimportexport-output"></a>Output di WAImportExport
 
-#### <a name="there-are-two-journal-files-which-one-should-i-upload-to-azure-portal"></a>Sono disponibili due file journal, quale deve essere caricato nel portale di Azure?
+#### <a name="there-are-two-journal-files-which-one-should-i-upload-tooazure-portal"></a>Sono disponibili due file journal, quale deve caricare tooAzure portale?
 
-**.xml**: per ogni disco rigido preparato con lo strumento WAImportExport, viene creato un singolo file journal denominato `<DriveID>.xml`, dove l'IDUnità corrisponde al numero di serie associato all'unità che lo strumento legge dal disco. Per creare il processo di importazione nel portale di Azure sono necessari i file journal di tutte le unità. Il file journal può essere usato anche per riprendere la preparazione delle unità nel caso in cui lo strumento venga interrotto.
+**file con estensione XML** -per ciascuna unità disco rigido preparato con lo strumento WAImportExport hello, hello creerà un singolo file journal con nome `<DriveID>.xml` dove IDUnità è il numero di serie hello associato unità toohello hello strumento legge dal disco hello. Sono necessari file journal hello da tutto il processo di importazione unità toocreate hello in hello portale di Azure. Questo file journal essere preparazione dell'unità tooresume utilizzati anche se lo strumento hello viene interrotta.
 
-**.jrn**: il file journal con suffisso `.jrn` contiene lo stato di tutte le sessioni di copia di un disco rigido. Include inoltre le informazioni necessarie per creare il processo di importazione. Quando si esegue lo strumento WAImportExport, è sempre necessario specificare un file journal, nonché l'ID della sessione di copia.
+**.jrn** -file journal hello con suffisso `.jrn` contiene lo stato di hello per tutte le sessioni di copia per un disco rigido. Sono inoltre contenute informazioni di hello necessari toocreate hello importare il processo. È sempre necessario specificare un file journal quando lo strumento di WAImportExport hello in esecuzione, nonché una sessione di copia ID.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-* [Configurazione dello strumento Importazione/Esportazione di Azure](storage-import-export-tool-setup.md)
-* [Impostazione di proprietà e metadati durante il processo di importazione](storage-import-export-tool-setting-properties-metadata-import.md)
-* [Sample workflow to prepare hard drives for an import job](storage-import-export-tool-sample-preparing-hard-drives-import-job-workflow.md) (Flusso di lavoro campione per preparare i dischi rigidi per un processo di importazione)
+* [Impostazione hello strumento di importazione/esportazione di Azure](storage-import-export-tool-setup.md)
+* [Impostazione delle proprietà e metadati hello durante il processo di importazione](storage-import-export-tool-setting-properties-metadata-import.md)
+* [Unità disco rigido tooprepare del flusso di lavoro di esempio per un processo di importazione](storage-import-export-tool-sample-preparing-hard-drives-import-job-workflow.md)
 * [Quick reference for frequently used commands](storage-import-export-tool-quick-reference.md) (Riferimento rapido per i comandi usati più di frequente) 
 * [Reviewing job status with copy log files](storage-import-export-tool-reviewing-job-status-v1.md) (Revisione dello stato dei processi con i file di log di copia)
 * [Riparazione di un processo di importazione](storage-import-export-tool-repairing-an-import-job-v1.md)
 * [Repairing an export job](storage-import-export-tool-repairing-an-export-job-v1.md) (Riparazione di un processo di esportazione)
-* [Risoluzione dei problemi relativi allo strumento Importazione/Esportazione di Azure](storage-import-export-tool-troubleshooting-v1.md)
+* [Risoluzione dei problemi hello strumento di importazione/esportazione di Azure](storage-import-export-tool-troubleshooting-v1.md)

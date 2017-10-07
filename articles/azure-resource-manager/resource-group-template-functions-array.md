@@ -1,6 +1,6 @@
 ---
-title: Funzioni del modello di Azure Resource Manager - matrici e oggetti | Microsoft Docs
-description: Descrive le funzioni da usare in un modello di Azure Resource Manager per l'uso di matrici e oggetti.
+title: 'modello di gestione risorse aaaAzure funzioni: le matrici e oggetti | Documenti Microsoft'
+description: Viene descritto toouse funzioni hello in un modello di gestione risorse di Azure per l'utilizzo di matrici e oggetti.
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/12/2017
 ms.author: tomfitz
-ms.openlocfilehash: 0bd9ec41761c9ce575f3bcf4d1f8e8578b83e01c
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: e5f1a9b2a71039562eae7e48c2474a1fa59a7bea
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="array-and-object-functions-for-azure-resource-manager-templates"></a>Funzioni di matrice e oggetto per i modelli di Azure Resource Manager 
 
@@ -42,20 +42,20 @@ Resource Manager offre diverse funzioni per l'uso di matrici e oggetti.
 * [take](#take)
 * [union](#union)
 
-Per ottenere una matrice di valori stringa delimitata da un valore, vedere [split](resource-group-template-functions-string.md#split).
+tooget una matrice di valori di stringa delimitata da un valore, vedere [dividere](resource-group-template-functions-string.md#split).
 
 <a id="array" />
 
 ## <a name="array"></a>array
 `array(convertToArray)`
 
-Converte il valore in matrice.
+Converte una matrice di tooan valori hello.
 
-### <a name="parameters"></a>Parametri
+### <a name="parameters"></a>parameters
 
 | Parametro | Obbligatorio | Tipo | Descrizione |
 |:--- |:--- |:--- |:--- |
-| convertToArray |Sì |numero intero, stringa, matrice o oggetto |Valore da convertire in matrice. |
+| convertToArray |Sì |int, stringa, matrice o oggetto |Matrice di tooan tooconvert valori Hello. |
 
 ### <a name="return-value"></a>Valore restituito
 
@@ -63,7 +63,7 @@ Una matrice.
 
 ### <a name="example"></a>Esempio
 
-L'esempio seguente mostra come usare la funzione matrice con tipi diversi.
+Hello esempio seguente viene illustrato come toouse hello funzione matrice con tipi diversi.
 
 ```json
 {
@@ -102,7 +102,7 @@ L'esempio seguente mostra come usare la funzione matrice con tipi diversi.
 }
 ```
 
-L'output dell'esempio precedente con i valori predefiniti è il seguente:
+Hello output di hello precedente esempio con i valori predefiniti di hello è:
 
 | Nome | Tipo | Valore |
 | ---- | ---- | ----- |
@@ -115,22 +115,22 @@ L'output dell'esempio precedente con i valori predefiniti è il seguente:
 ## <a name="coalesce"></a>coalesce
 `coalesce(arg1, arg2, arg3, ...)`
 
-Restituisce il primo valore non null dai parametri. Stringhe vuote, matrici vuote e oggetti vuoti sono non null.
+Restituisce i valori non null prima dai parametri hello. Stringhe vuote, matrici vuote e oggetti vuoti sono non null.
 
 ### <a name="parameters"></a>Parametri
 
 | Parametro | Obbligatorio | Tipo | Descrizione |
 |:--- |:--- |:--- |:--- |
-| arg1 |Sì |numero intero, stringa, matrice o oggetto |Il primo valore da controllare per verificare se è null. |
-| argomenti aggiuntivi |No |numero intero, stringa, matrice o oggetto |Valori aggiuntivi da controllare per verificare se sono null. |
+| arg1 |Sì |int, stringa, matrice o oggetto |Hello tootest prima di valore per i valori null. |
+| argomenti aggiuntivi |No |int, stringa, matrice o oggetto |Tootest valori aggiuntivi per i valori null. |
 
 ### <a name="return-value"></a>Valore restituito
 
-Valore dei primi parametri non null, che può essere una stringa, un numero intero, una matrice o un oggetto. Null se tutti i parametri sono null. 
+valore di Hello dei parametri non null prima hello, che può essere una stringa, int, una matrice o un oggetto. Null se tutti i parametri sono null. 
 
 ### <a name="example"></a>Esempio
 
-L'esempio seguente illustra l'output per diversi usi di coalesce.
+Hello seguente esempio Mostra output di hello da diversi utilizzi di coalesce.
 
 ```json
 {
@@ -176,7 +176,7 @@ L'esempio seguente illustra l'output per diversi usi di coalesce.
 }
 ```
 
-L'output dell'esempio precedente con i valori predefiniti è il seguente:
+Hello output di hello precedente esempio con i valori predefiniti di hello è:
 
 | Nome | Tipo | Valore |
 | ---- | ---- | ----- |
@@ -191,23 +191,23 @@ L'output dell'esempio precedente con i valori predefiniti è il seguente:
 ## <a name="concat"></a>concat
 `concat(arg1, arg2, arg3, ...)`
 
-Combina più matrici e restituisce la matrice concatenata oppure combina più valori di stringa e restituisce la stringa concatenata. 
+Combina più matrici e restituisce una matrice, hello concatenato o combina più valori di stringa e restituisce la stringa hello concatenato. 
 
-### <a name="parameters"></a>Parametri
+### <a name="parameters"></a>parameters
 
 | Parametro | Obbligatorio | Tipo | Descrizione |
 |:--- |:--- |:--- |:--- |
-| arg1 |Sì |stringa o matrice |La prima matrice o stringa per la concatenazione. |
+| arg1 |Sì |stringa o matrice |Hello prima matrice o stringa per la concatenazione. |
 | argomenti aggiuntivi |No |stringa o matrice |Matrici o stringhe aggiuntive in ordine sequenziale per la concatenazione. |
 
-Questa funzione può accettare qualsiasi numero di argomenti e può accettare stringhe o matrici per i parametri.
+Questa funzione può accettare un numero qualsiasi di argomenti e può accettare stringhe o matrici per i parametri di hello.
 
 ### <a name="return-value"></a>Valore restituito
 Stringa o matrice di valori concatenati.
 
 ### <a name="example"></a>Esempio
 
-L'esempio seguente illustra come combinare due matrici.
+Hello di esempio seguente viene illustrato come toocombine due matrici.
 
 ```json
 {
@@ -242,13 +242,13 @@ L'esempio seguente illustra come combinare due matrici.
 }
 ```
 
-L'output dell'esempio precedente con i valori predefiniti è il seguente:
+Hello output di hello precedente esempio con i valori predefiniti di hello è:
 
 | Nome | Tipo | Valore |
 | ---- | ---- | ----- |
 | return | Array | ["1-1", "1-2", "1-3", "2-1", "2-2", "2-3"] |
 
-L'esempio seguente illustra come combinare due valori stringa e restituisce una stringa concatenata.
+Hello di esempio seguente viene illustrato come toocombine due valori stringa e restituire una stringa concatenata.
 
 ```json
 {
@@ -270,7 +270,7 @@ L'esempio seguente illustra come combinare due valori stringa e restituisce una 
 }
 ```
 
-L'output dell'esempio precedente con i valori predefiniti è il seguente:
+Hello output di hello precedente esempio con i valori predefiniti di hello è:
 
 | Nome | Tipo | Valore |
 | ---- | ---- | ----- |
@@ -287,16 +287,16 @@ Verifica se una matrice contiene un valore, se un oggetto contiene una chiave o 
 
 | Parametro | Obbligatorio | Tipo | Descrizione |
 |:--- |:--- |:--- |:--- |
-| Contenitore |Sì |matrice, oggetto o stringa |Valore che contiene il valore da trovare. |
-| itemToFind |Sì |stringa o numero intero |Valore da trovare. |
+| Contenitore |Sì |matrice, oggetto o stringa |valore di Hello contenente toofind valore hello. |
+| itemToFind |Sì |stringa o numero intero |toofind valore Hello. |
 
 ### <a name="return-value"></a>Valore restituito
 
-**True** se l'elemento viene individuato; in caso contrario, restituisce **False**.
+**True** se l'elemento hello è stato trovato; in caso contrario, **False**.
 
 ### <a name="example"></a>Esempio
 
-L'esempio seguente mostra come usare la funzione contains con tipi diversi:
+Hello esempio seguente viene illustrato come toouse contiene con tipi diversi:
 
 ```json
 {
@@ -347,7 +347,7 @@ L'esempio seguente mostra come usare la funzione contains con tipi diversi:
 }
 ```
 
-L'output dell'esempio precedente con i valori predefiniti è il seguente:
+Hello output di hello precedente esempio con i valori predefiniti di hello è:
 
 | Nome | Tipo | Valore |
 | ---- | ---- | ----- |
@@ -363,14 +363,14 @@ L'output dell'esempio precedente con i valori predefiniti è il seguente:
 ## <a name="createarray"></a>createarray
 `createArray (arg1, arg2, arg3, ...)`
 
-Crea una matrice dai parametri.
+Crea una matrice di parametri di hello.
 
-### <a name="parameters"></a>Parametri
+### <a name="parameters"></a>parameters
 
 | Parametro | Obbligatorio | Tipo | Descrizione |
 |:--- |:--- |:--- |:--- |
-| arg1 |Sì |Stringa, numero intero, matrice o oggetto |Primo valore della matrice. |
-| argomenti aggiuntivi |No |Stringa, numero intero, matrice o oggetto |Altri valori della matrice. |
+| arg1 |Sì |Stringa, numero intero, matrice o oggetto |primo valore Hello nella matrice hello. |
+| argomenti aggiuntivi |No |Stringa, numero intero, matrice o oggetto |Valori aggiuntivi nella matrice hello. |
 
 ### <a name="return-value"></a>Valore restituito
 
@@ -378,7 +378,7 @@ Una matrice.
 
 ### <a name="example"></a>Esempio
 
-L'esempio seguente mostra come usare la funzione createArray con tipi diversi:
+Hello seguente esempio viene illustrato come createArray toouse con tipi diversi:
 
 ```json
 {
@@ -417,7 +417,7 @@ L'esempio seguente mostra come usare la funzione createArray con tipi diversi:
 }
 ```
 
-L'output dell'esempio precedente con i valori predefiniti è il seguente:
+Hello output di hello precedente esempio con i valori predefiniti di hello è:
 
 | Nome | Tipo | Valore |
 | ---- | ---- | ----- |
@@ -438,15 +438,15 @@ Determina se una matrice, un oggetto o una stringa sono vuoti.
 
 | Parametro | Obbligatorio | Tipo | Descrizione |
 |:--- |:--- |:--- |:--- |
-| itemToTest |Sì |matrice, oggetto o stringa |Valore da controllare per verificare se è vuoto. |
+| itemToTest |Sì |matrice, oggetto o stringa |Hello toocheck valore se è vuota. |
 
 ### <a name="return-value"></a>Valore restituito
 
-**True** se il valore è vuoto; in caso contrario, restituisce **False**.
+Restituisce **True** se il valore di hello è vuota; in caso contrario, **False**.
 
 ### <a name="example"></a>Esempio
 
-L'esempio seguente controlla se una matrice, un oggetto e una stringa sono vuoti.
+Hello di esempio seguente controlla se una matrice, un oggetto e una stringa sono vuote.
 
 ```json
 {
@@ -485,7 +485,7 @@ L'esempio seguente controlla se una matrice, un oggetto e una stringa sono vuoti
 }
 ```
 
-L'output dell'esempio precedente con i valori predefiniti è il seguente:
+Hello output di hello precedente esempio con i valori predefiniti di hello è:
 
 | Nome | Tipo | Valore |
 | ---- | ---- | ----- |
@@ -498,21 +498,21 @@ L'output dell'esempio precedente con i valori predefiniti è il seguente:
 ## <a name="first"></a>first
 `first(arg1)`
 
-Restituisce il primo elemento della matrice o il primo carattere della stringa.
+Restituisce hello primo elemento della matrice hello o primo carattere della stringa hello.
 
-### <a name="parameters"></a>Parametri
+### <a name="parameters"></a>parameters
 
 | Parametro | Obbligatorio | Tipo | Descrizione |
 |:--- |:--- |:--- |:--- |
-| arg1 |Sì |stringa o matrice |Valore per recuperare il primo elemento o carattere. |
+| arg1 |Sì |stringa o matrice |carattere o Hello valore tooretrieve hello primo elemento. |
 
 ### <a name="return-value"></a>Valore restituito
 
-Il tipo (string, int, array o object) del primo elemento di una matrice o il primo carattere di una stringa.
+tipo (string, int, matrice o oggetto) del primo elemento di hello in una matrice di Hello o hello primo carattere della stringa.
 
 ### <a name="example"></a>Esempio
 
-L'esempio seguente mostra come usare la prima funzione con una matrice e una stringa.
+Hello esempio seguente viene illustrato come toouse hello prima funzione con una matrice e una stringa.
 
 ```json
 {
@@ -539,7 +539,7 @@ L'esempio seguente mostra come usare la prima funzione con una matrice e una str
 }
 ```
 
-L'output dell'esempio precedente con i valori predefiniti è il seguente:
+Hello output di hello precedente esempio con i valori predefiniti di hello è:
 
 | Nome | Tipo | Valore |
 | ---- | ---- | ----- |
@@ -551,23 +551,23 @@ L'output dell'esempio precedente con i valori predefiniti è il seguente:
 ## <a name="intersection"></a>intersezione
 `intersection(arg1, arg2, arg3, ...)`
 
-Restituisce una matrice o un oggetto singoli con gli elementi comuni dei parametri.
+Restituisce una matrice o un oggetto con elementi comuni hello dai parametri hello.
 
-### <a name="parameters"></a>Parametri
+### <a name="parameters"></a>parameters
 
 | Parametro | Obbligatorio | Tipo | Descrizione |
 |:--- |:--- |:--- |:--- |
-| arg1 |Sì |matrice o oggetto |Primo valore da usare per cercare elementi comuni. |
-| arg2 |Sì |matrice o oggetto |Secondo valore da usare per cercare elementi comuni. |
-| argomenti aggiuntivi |No |matrice o oggetto |Valori aggiuntivi da usare per cercare elementi comuni. |
+| arg1 |Sì |matrice o oggetto |Hello toouse prima di valore per la ricerca di elementi comuni. |
+| arg2 |Sì |matrice o oggetto |Hello secondo valore toouse per la ricerca di elementi comuni. |
+| argomenti aggiuntivi |No |matrice o oggetto |Toouse valori aggiuntivi per la ricerca di elementi comuni. |
 
 ### <a name="return-value"></a>Valore restituito
 
-Una matrice o un oggetto con elementi comuni.
+Una matrice o un oggetto con elementi comuni hello.
 
 ### <a name="example"></a>Esempio
 
-L'esempio seguente mostra come usare l'intersezione con matrici e oggetti:
+Hello esempio viene illustrato come toouse intersezione con matrici e gli oggetti seguenti:
 
 ```json
 {
@@ -606,7 +606,7 @@ L'esempio seguente mostra come usare l'intersezione con matrici e oggetti:
 }
 ```
 
-L'output dell'esempio precedente con i valori predefiniti è il seguente:
+Hello output di hello precedente esempio con i valori predefiniti di hello è:
 
 | Nome | Tipo | Valore |
 | ---- | ---- | ----- |
@@ -623,16 +623,16 @@ Restituisce un oggetto JSON.
 
 | Parametro | Obbligatorio | Tipo | Descrizione |
 |:--- |:--- |:--- |:--- |
-| arg1 |Sì |string |Valore da convertire in JSON. |
+| arg1 |Sì |string |Hello valore tooconvert tooJSON. |
 
 
 ### <a name="return-value"></a>Valore restituito
 
-Oggetto JSON dalla stringa specificata o un oggetto vuoto quando viene specificato **null**.
+oggetto JSON Hello hello specificato stringa o un oggetto vuoto quando **null** specificato.
 
 ### <a name="example"></a>Esempio
 
-L'esempio seguente mostra come usare l'intersezione con matrici e oggetti:
+Hello esempio viene illustrato come toouse intersezione con matrici e gli oggetti seguenti:
 
 ```json
 {
@@ -653,7 +653,7 @@ L'esempio seguente mostra come usare l'intersezione con matrici e oggetti:
 }
 ```
 
-L'output dell'esempio precedente con i valori predefiniti è il seguente:
+Hello output di hello precedente esempio con i valori predefiniti di hello è:
 
 | Nome | Tipo | Valore |
 | ---- | ---- | ----- |
@@ -665,21 +665,21 @@ L'output dell'esempio precedente con i valori predefiniti è il seguente:
 ## <a name="last"></a>last
 `last (arg1)`
 
-Restituisce l'ultimo elemento della matrice o l'ultimo carattere della stringa.
+Restituisce hello l'ultimo elemento della matrice hello o ultimo carattere della stringa hello.
 
-### <a name="parameters"></a>Parametri
+### <a name="parameters"></a>parameters
 
 | Parametro | Obbligatorio | Tipo | Descrizione |
 |:--- |:--- |:--- |:--- |
-| arg1 |Sì |stringa o matrice |Valore per recuperare l'ultimo elemento o carattere. |
+| arg1 |Sì |stringa o matrice |carattere o Hello valore tooretrieve hello ultimo elemento. |
 
 ### <a name="return-value"></a>Valore restituito
 
-Il tipo (string, int, array o object) dell'ultimo elemento di una matrice o l'ultimo carattere di una stringa.
+tipo di Hello (string, int, matrice o oggetto) dell'ultimo elemento di hello in una matrice o ultimo carattere di hello di una stringa.
 
 ### <a name="example"></a>Esempio
 
-L'esempio seguente mostra come usare l'ultima funzione con una matrice e una stringa.
+Hello esempio seguente viene illustrato come toouse hello ultima funzione con una matrice e una stringa.
 
 ```json
 {
@@ -706,7 +706,7 @@ L'esempio seguente mostra come usare l'ultima funzione con una matrice e una str
 }
 ```
 
-L'output dell'esempio precedente con i valori predefiniti è il seguente:
+Hello output di hello precedente esempio con i valori predefiniti di hello è:
 
 | Nome | Tipo | Valore |
 | ---- | ---- | ----- |
@@ -718,13 +718,13 @@ L'output dell'esempio precedente con i valori predefiniti è il seguente:
 ## <a name="length"></a>length
 `length(arg1)`
 
-Restituisce il numero di elementi in una matrice o di caratteri in una stringa.
+Restituisce il numero di hello di elementi in una matrice o in una stringa di caratteri.
 
-### <a name="parameters"></a>Parametri
+### <a name="parameters"></a>parameters
 
 | Parametro | Obbligatorio | Tipo | Descrizione |
 |:--- |:--- |:--- |:--- |
-| arg1 |Sì |stringa o matrice |Matrice da usare per ottenere il numero di elementi oppure stringa da usare per ottenere il numero di caratteri. |
+| arg1 |Sì |stringa o matrice |Hello toouse matrice per ottenere il numero di hello di elementi o hello toouse stringa per ottenere il numero di hello di caratteri. |
 
 ### <a name="return-value"></a>Valore restituito
 
@@ -732,7 +732,7 @@ Numero intero
 
 ### <a name="example"></a>Esempio
 
-L'esempio seguente mostra come usare la funzione length con una matrice e una stringa:
+Hello seguente esempio viene illustrato come lunghezza toouse con una matrice e la stringa:
 
 ```json
 {
@@ -766,14 +766,14 @@ L'esempio seguente mostra come usare la funzione length con una matrice e una st
 }
 ```
 
-L'output dell'esempio precedente con i valori predefiniti è il seguente:
+Hello output di hello precedente esempio con i valori predefiniti di hello è:
 
 | Nome | Tipo | Valore |
 | ---- | ---- | ----- |
 | arrayLength | int | 3 |
 | stringLength | int | 13 |
 
-È possibile usare questa funzione con una matrice per specificare il numero di iterazioni durante la creazione di risorse. Nell'esempio seguente, il parametro **siteNames** fa riferimento a una matrice di nomi da usare durante la creazione di siti Web.
+È possibile utilizzare questa funzione con un numero di hello matrice toospecify di iterazioni quando si creano risorse. Nell'esempio seguente di hello, hello parametro **siteNames** tooan matrice di nomi toouse riferimento durante la creazione di siti web hello.
 
 ```json
 "copy": {
@@ -789,21 +789,21 @@ Per altre informazioni sull'uso di questa funzione con una matrice, vedere [Crea
 ## <a name="min"></a>Min
 `min(arg1)`
 
-Restituisce il valore minimo di una matrice di numeri interi o di un elenco di numeri interi delimitato da virgole.
+Restituisce hello valore minimo da una matrice di interi o un elenco delimitato da virgole di numeri interi.
 
-### <a name="parameters"></a>Parametri
+### <a name="parameters"></a>parameters
 
 | Parametro | Obbligatorio | Tipo | Descrizione |
 |:--- |:--- |:--- |:--- |
-| arg1 |Sì |matrice di numeri interi o elenco di numeri interi delimitato da virgole |La raccolta per ottenere il valore minimo. |
+| arg1 |Sì |matrice di numeri interi o elenco di numeri interi delimitato da virgole |Hello raccolta tooget hello valore minimo. |
 
 ### <a name="return-value"></a>Valore restituito
 
-Numero intero che rappresenta il valore minimo.
+Un integer che rappresenta il valore minimo di hello.
 
 ### <a name="example"></a>Esempio
 
-L'esempio seguente mostra come usare la funzione min con una matrice e un elenco di numeri interi:
+Hello seguente esempio viene illustrato come toouse min con una matrice e un elenco di numeri interi:
 
 ```json
 {
@@ -829,7 +829,7 @@ L'esempio seguente mostra come usare la funzione min con una matrice e un elenco
 }
 ```
 
-L'output dell'esempio precedente con i valori predefiniti è il seguente:
+Hello output di hello precedente esempio con i valori predefiniti di hello è:
 
 | Nome | Tipo | Valore |
 | ---- | ---- | ----- |
@@ -841,21 +841,21 @@ L'output dell'esempio precedente con i valori predefiniti è il seguente:
 ## <a name="max"></a>max
 `max(arg1)`
 
-Restituisce il valore massimo da una matrice di numeri interi o da un elenco di numeri interi delimitato da virgole.
+Restituisce hello valore massimo da una matrice di interi o un elenco delimitato da virgole di numeri interi.
 
-### <a name="parameters"></a>Parametri
+### <a name="parameters"></a>parameters
 
 | Parametro | Obbligatorio | Tipo | Descrizione |
 |:--- |:--- |:--- |:--- |
-| arg1 |Sì |matrice di numeri interi o elenco di numeri interi delimitato da virgole |La raccolta per ottenere il valore massimo. |
+| arg1 |Sì |matrice di numeri interi o elenco di numeri interi delimitato da virgole |Hello raccolta tooget hello valore massimo. |
 
 ### <a name="return-value"></a>Valore restituito
 
-Numero intero che rappresenta il valore massimo.
+Un integer che rappresenta il valore massimo di hello.
 
 ### <a name="example"></a>Esempio
 
-L'esempio seguente mostra come usare la funzione max con una matrice e un elenco di numeri interi:
+Hello seguente esempio viene illustrato come toouse max a una matrice e un elenco di numeri interi:
 
 ```json
 {
@@ -881,7 +881,7 @@ L'esempio seguente mostra come usare la funzione max con una matrice e un elenco
 }
 ```
 
-L'output dell'esempio precedente con i valori predefiniti è il seguente:
+Hello output di hello precedente esempio con i valori predefiniti di hello è:
 
 | Nome | Tipo | Valore |
 | ---- | ---- | ----- |
@@ -899,8 +899,8 @@ Crea una matrice di numeri interi da un numero intero iniziale, contenente un da
 
 | Parametro | Obbligatorio | Tipo | Descrizione |
 |:--- |:--- |:--- |:--- |
-| startingInteger |Sì |int |Primo numero intero nella matrice. |
-| numberofElements |Sì |int |Numero di valori interi della matrice. |
+| startingInteger |Sì |int |Hello primo intero hello matrice. |
+| numberofElements |Sì |int |numero di Hello dei numeri interi nella matrice hello. |
 
 ### <a name="return-value"></a>Valore restituito
 
@@ -908,7 +908,7 @@ Matrice di numeri interi.
 
 ### <a name="example"></a>Esempio
 
-L'esempio seguente mostra come usare la funzione range:
+Hello di esempio seguente viene illustrato come toouse hello funzione intervallo:
 
 ```json
 {
@@ -934,7 +934,7 @@ L'esempio seguente mostra come usare la funzione range:
 }
 ```
 
-L'output dell'esempio precedente con i valori predefiniti è il seguente:
+Hello output di hello precedente esempio con i valori predefiniti di hello è:
 
 | Nome | Tipo | Valore |
 | ---- | ---- | ----- |
@@ -945,14 +945,14 @@ L'output dell'esempio precedente con i valori predefiniti è il seguente:
 ## <a name="skip"></a>skip
 `skip(originalValue, numberToSkip)`
 
-Restituisce una matrice con tutti gli elementi dopo il numero specificato nella matrice stessa o una stringa con tutti i caratteri dopo il numero specificato nella stringa stessa.
+Restituisce una matrice con tutti gli elementi di hello dopo il numero specificato nella matrice hello hello o restituisce una stringa con tutti i caratteri di hello dopo hello numero specificato nella stringa hello.
 
-### <a name="parameters"></a>Parametri
+### <a name="parameters"></a>parameters
 
 | Parametro | Obbligatorio | Tipo | Descrizione |
 |:--- |:--- |:--- |:--- |
-| originalValue |Sì |stringa o matrice |Stringa o matrice da usare per i valori da ignorare. |
-| numberToSkip |Sì |int |Numero di elementi o caratteri da ignorare. Se il valore è minore o uguale a 0, vengono restituiti tutti gli elementi o i caratteri nel valore. Se il valore è maggiore della lunghezza della stringa o della matrice, viene restituita una stringa o una matrice vuota. |
+| originalValue |Sì |stringa o matrice |Hello toouse matrice o stringa per l'omissione. |
+| numberToSkip |Sì |int |numero di Hello di tooskip elementi o i caratteri. Se questo valore è 0 o meno, tutti gli elementi di hello o vengono restituiti i caratteri nel valore hello. Se è maggiore della lunghezza della stringa o matrice hello hello, viene restituita una matrice vuota o una stringa. |
 
 ### <a name="return-value"></a>Valore restituito
 
@@ -960,7 +960,7 @@ Stringa o matrice.
 
 ### <a name="example"></a>Esempio
 
-L'esempio seguente ignora il numero di elementi specificato nella matrice e il numero di caratteri specificato in una stringa.
+Hello seguente esempio Ignora hello numero specificato di elementi nella matrice hello e hello numero specificato di caratteri in una stringa.
 
 ```json
 {
@@ -1002,7 +1002,7 @@ L'esempio seguente ignora il numero di elementi specificato nella matrice e il n
 }
 ```
 
-L'output dell'esempio precedente con i valori predefiniti è il seguente:
+Hello output di hello precedente esempio con i valori predefiniti di hello è:
 
 | Nome | Tipo | Valore |
 | ---- | ---- | ----- |
@@ -1014,14 +1014,14 @@ L'output dell'esempio precedente con i valori predefiniti è il seguente:
 ## <a name="take"></a>take
 `take(originalValue, numberToTake)`
 
-Restituisce una matrice con il numero specificato di elementi dall'inizio della matrice, o una stringa con il numero specificato di caratteri dall'inizio della stringa.
+Restituisce una matrice con hello specificato numero di elementi dall'inizio della matrice hello di hello o una stringa con hello numero specificato di caratteri dall'inizio di hello della stringa hello.
 
-### <a name="parameters"></a>Parametri
+### <a name="parameters"></a>parameters
 
 | Parametro | Obbligatorio | Tipo | Descrizione |
 |:--- |:--- |:--- |:--- |
-| originalValue |Sì |stringa o matrice |Stringa o matrice da cui prendere gli elementi. |
-| numberToTake |Sì |int |Numero di elementi o caratteri da prendere. Se il valore è minore o uguale a 0, viene restituita una stringa o un matrice vuota. Se il valore è maggiore della lunghezza della stringa o matrice specificata, vengono restituiti tutti gli elementi nella stringa o nella matrice. |
+| originalValue |Sì |stringa o matrice |Hello stringa o matrice di elementi di hello tootake da. |
+| numberToTake |Sì |int |numero di Hello di tootake elementi o i caratteri. Se il valore è minore o uguale a 0, viene restituita una stringa o un matrice vuota. Se è maggiore della lunghezza di hello di hello matrice o stringa specificato, vengono restituiti tutti gli elementi hello hello matrice o stringa. |
 
 ### <a name="return-value"></a>Valore restituito
 
@@ -1029,7 +1029,7 @@ Stringa o matrice.
 
 ### <a name="example"></a>Esempio
 
-L'esempio seguente prende il numero specificato di elementi dalla matrice e di caratteri dalla stringa.
+Hello seguente esempio accetta hello numero specificato di elementi dalla matrice hello e i caratteri di una stringa.
 
 ```json
 {
@@ -1071,7 +1071,7 @@ L'esempio seguente prende il numero specificato di elementi dalla matrice e di c
 }
 ```
 
-L'output dell'esempio precedente con i valori predefiniti è il seguente:
+Hello output di hello precedente esempio con i valori predefiniti di hello è:
 
 | Nome | Tipo | Valore |
 | ---- | ---- | ----- |
@@ -1083,15 +1083,15 @@ L'output dell'esempio precedente con i valori predefiniti è il seguente:
 ## <a name="union"></a>union
 `union(arg1, arg2, arg3, ...)`
 
-Restituisce una matrice o un oggetto singoli con tutti gli elementi dei parametri. Valori e chiavi duplicati sono inclusi una sola volta.
+Restituisce una matrice o un oggetto con tutti gli elementi dai parametri hello. Valori e chiavi duplicati sono inclusi una sola volta.
 
 ### <a name="parameters"></a>Parametri
 
 | Parametro | Obbligatorio | Tipo | Descrizione |
 |:--- |:--- |:--- |:--- |
-| arg1 |Sì |matrice o oggetto |Primo valore da usare per l'aggiunta di elementi. |
-| arg2 |Sì |matrice o oggetto |Secondo valore da usare per l'aggiunta di elementi. |
-| argomenti aggiuntivi |No |matrice o oggetto |Valori aggiuntivi da usare per l'aggiunta di elementi. |
+| arg1 |Sì |matrice o oggetto |Hello toouse prima di valore per l'aggiunta di elementi. |
+| arg2 |Sì |matrice o oggetto |Hello secondo valore toouse per l'aggiunta di elementi. |
+| argomenti aggiuntivi |No |matrice o oggetto |Toouse valori aggiuntivi per l'aggiunta di elementi. |
 
 ### <a name="return-value"></a>Valore restituito
 
@@ -1099,7 +1099,7 @@ Una matrice o un oggetto.
 
 ### <a name="example"></a>Esempio
 
-L'esempio seguente mostra come usare l'unione con matrici e oggetti:
+Hello esempio viene illustrato come unione toouse con matrici e gli oggetti seguenti:
 
 ```json
 {
@@ -1138,7 +1138,7 @@ L'esempio seguente mostra come usare l'unione con matrici e oggetti:
 }
 ```
 
-L'output dell'esempio precedente con i valori predefiniti è il seguente:
+Hello output di hello precedente esempio con i valori predefiniti di hello è:
 
 | Nome | Tipo | Valore |
 | ---- | ---- | ----- |
@@ -1146,8 +1146,8 @@ L'output dell'esempio precedente con i valori predefiniti è il seguente:
 | arrayOutput | Array | ["one", "two", "three", "four"] |
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Per una descrizione delle sezioni in un modello di Azure Resource Manager, vedere [Creazione di modelli di Azure Resource Manager](resource-group-authoring-templates.md).
-* Per unire più modelli, vedere [Uso di modelli collegati con Azure Resource Manager](resource-group-linked-templates.md).
-* Per eseguire un'iterazione di un numero di volte specificato durante la creazione di un tipo di risorsa, vedere [Creare più istanze di risorse in Gestione risorse di Azure](resource-group-create-multiple.md).
-* Per informazioni su come distribuire il modello che è stato creato, vedere [Distribuire un'applicazione con un modello di Azure Resource Manager](resource-group-template-deploy.md).
+* Per una descrizione delle sezioni hello in un modello di gestione risorse di Azure, vedere [modelli Authoring Azure Resource Manager](resource-group-authoring-templates.md).
+* toomerge più modelli, vedere [con modelli collegati con Azure Resource Manager](resource-group-linked-templates.md).
+* tooiterate un numero specificato di volte durante la creazione di un tipo di risorsa, vedere [creare più istanze delle risorse in Azure Resource Manager](resource-group-create-multiple.md).
+* toosee come modello hello toodeploy è stato creato, vedere [distribuire un'applicazione con il modello di gestione risorse di Azure](resource-group-template-deploy.md).
 

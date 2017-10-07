@@ -1,6 +1,6 @@
 ---
-title: Caso di utilizzo - Profilo clienti
-description: "Informazioni su come utilizzare Data Factory di Azure per creare un flusso di lavoro basato sui dati (pipeline) per analizzare il profilo dei clienti di società di giochi."
+title: aaaUse Case - cliente di profilatura
+description: Informazioni su come Data Factory di Azure viene utilizzato toocreate basati sui dati del flusso di lavoro (pipeline) tooprofile giochi clienti.
 services: data-factory
 documentationcenter: 
 author: sharonlo101
@@ -14,57 +14,57 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/14/2017
 ms.author: shlo
-ms.openlocfilehash: 4ee4c3a979a3cdd7ec793d12f812e5b126a2ce94
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 47f5e77242366c80cce2a2db65e3c696505b3e1c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="use-case---customer-profiling"></a>Caso di utilizzo - Profilo clienti
-Azure Data Factory è uno dei numerosi servizi usati per implementare i Solution Accelerator di Cortana Intelligence Suite.  Per ulteriori informazioni su Cortana Intelligence, vedere [Cortana Intelligence Suite](http://www.microsoft.com/cortanaanalytics). In questo documento viene descritto un caso di semplice utilizzo che consente di iniziare a capire come Data Factory di Azure può risolvere problemi comuni di analisi.
+Data Factory di Azure è uno dei molti servizi utilizzati tooimplement hello Cortana Intelligence Suite di acceleratori.  Per ulteriori informazioni su Cortana Intelligence, vedere [Cortana Intelligence Suite](http://www.microsoft.com/cortanaanalytics). In questo documento viene descritto un toohelp case semplice utilizzo di iniziare a utilizzare la comprensione di come Data Factory di Azure può risolvere i problemi comuni analitica.
 
 ## <a name="scenario"></a>Scenario
-Contoso è una società di giochi online che crea giochi per più piattaforme: console di gioco, dispositivi palmari e personal computer (PC). Quando gli utenti giocano a questi giochi, vengono prodotti grandi volumi di dati di registro che tengono traccia dei modelli di uso, dello stile di gioco e delle preferenze dell'utente.  Se vengono combinati con dati demografici, regionali e del prodotto, Contoso può eseguire l'analisi per migliorare l'esperienza dei giocatori e indirizzarli ad aggiornamenti e acquisti utili al gioco. 
+Contoso è una società di giochi online che crea giochi per più piattaforme: console di gioco, dispositivi palmari e personal computer (PC). Come i lettori riprodurre questi giochi, viene prodotta volume elevato di dati di log che tiene traccia hello modelli di utilizzo, stile di gioco e le preferenze dell'utente hello.  In combinazione con dati demografici, internazionali, e dati del prodotto può eseguire tooguide analitica loro sull'esperienza tooenhance giocatori e usarli come destinazione per gli aggiornamenti e di gioco Contoso acquisti. 
 
-L'obiettivo di Contoso consiste nell'identificare opportunità di up-selling o cross-selling basate sulla cronologia dei giochi degli utenti e aggiungere nuove funzionalità interessanti per promuovere la crescita del business e fornire un'esperienza migliore ai clienti. In questo caso, usiamo una società di giochi come esempio di società. La società desidera ottimizzare i giochi in base al comportamento dei giocatori. Questi principi si applicano a qualsiasi società che desideri coinvolgere i clienti nei suoi beni e servizi e migliorare la loro esperienza.
+Obiettivo di Contoso è tooidentify up-vendere/cross-selling in base alla cronologia di gioco hello del relativo lettori e aggiungere di crescita aziendale toodrive funzionalità interessanti e fornire una migliore toocustomers esperienza. In questo caso, usiamo una società di giochi come esempio di società. società Hello vuole toooptimize relativo giochi basati sul comportamento dei lettori. Questi principi applicano business tooany che desidera tooengage intorno propri prodotti e servizi clienti e migliorano l'esperienza dei clienti.
 
-In questa soluzione Contoso desidera valutare l'efficacia di una campagna di marketing lanciata di recente. I registri di gioco, inizialmente non elaborati, vengono successivamente elaborati con dati di georilevazione e di riferimento pubblicitario e infine vengono copiati in un database SQL di Azure per analizzare l'impatto della campagna.
+In questa soluzione, poiché Contoso desidera efficacia hello tooevaluate di una campagna di marketing che recente è avviato. È iniziare con i log di hello giochi non elaborati, processo e li arricchire i dati di georilevazione join ai dati di riferimento di annuncio e infine copiare i file in impatto della campagna un Database SQL di Azure tooanalyze hello.
 
 ## <a name="deploy-solution"></a>Distribuire la soluzione
-Per accedere a questo semplice caso d'uso e per provarlo, è sufficiente disporre di una [sottoscrizione di Azure](https://azure.microsoft.com/pricing/free-trial/), di un [account di archiviazione BLOB di Azure](../storage/common/storage-create-storage-account.md#create-a-storage-account) e di una [database SQL di Azure](../sql-database/sql-database-get-started.md). Distribuire la pipeline di profilatura dei clienti dal riquadro **Pipeline di esempio** nella home page della data factory.
+Tutto è necessario tooaccess e provare questo caso di utilizzo semplice un [sottoscrizione di Azure](https://azure.microsoft.com/pricing/free-trial/), un [account di archiviazione Blob di Azure](../storage/common/storage-create-storage-account.md#create-a-storage-account)e un [Database SQL di Azure](../sql-database/sql-database-get-started.md). Distribuire cliente hello profilatura pipeline dall'hello **pipeline di esempio** riquadro hello home page della data factory.
 
-1. Creare una data factory o aprire una data factory esistente. Per la procedura di creazione di una data factory, vedere [Copiare dati da un archivio BLOB al database SQL usando Data Factory](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md).
-2. Nel pannello **DATA FACTORY** per la data factory, fare clic sul riquadro **Pipeline di esempio**.
+1. Creare una data factory o aprire una data factory esistente. Vedere [copiare i dati da archiviazione Blob tooSQL Database tramite Data Factory](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) per passaggi toocreate una data factory.
+2. In hello **DATA FACTORY** pannello per data factory di hello, fare clic su hello **pipeline di esempio** riquadro.
 
     ![Riquadro Pipeline di esempio](./media/data-factory-samples/SamplePipelinesTile.png)
-3. Nel pannello **Pipeline di esempio** fare clic sulla **profilatura dei clienti** da distribuire.
+3. In hello **pipeline di esempio** pannello, fare clic su hello **profilo clienti** che si desidera toodeploy.
 
     ![Pannello Pipeline di esempio](./media/data-factory-samples/SampleTile.png)
-4. Specificare le impostazioni di configurazione per l'esempio, ad esempio il nome e la chiave dell'account di archiviazione di Azure, il nome del server di Azure SQL, il database, l'ID utente e la password.
+4. Specificare le impostazioni di configurazione per l'esempio hello. ad esempio il nome e la chiave dell'account di archiviazione di Azure, il nome del server di Azure SQL, il database, l'ID utente e la password.
 
     ![Pannello Esempio](./media/data-factory-samples/SampleBlade.png)
-5. Dopo avere specificato le impostazioni di configurazione, fare clic su **Crea** per creare/distribuire le pipeline di esempio e i servizi collegati o le tabelle usati dalle pipeline.
-6. Lo stato della distribuzione sarà visualizzato sul riquadro dell'esempio selezionato in precedenza nel pannello **Pipeline di esempio** .
+5. Dopo avere completato con impostazioni di configurazione hello, fare clic su **crea** toocreate/distribuire hello pipeline di esempio e servizi/tabelle collegate utilizzate dalle pipeline hello.
+6. Viene visualizzato lo stato di hello di distribuzione nel riquadro di esempio hello selezionato in precedenza hello **pipeline di esempio** blade.
 
-    ![Deployment Status](./media/data-factory-samples/DeploymentStatus.png)
-7. Quando viene visualizzato il messaggio **Distribuzione riuscita** nel riquadro relativo all'esempio, chiudere il pannello **Pipeline di esempio**.  
-8. Nel pannello **DATA FACTORY** si potrà notare che i servizi collegati, i set di dati e le pipeline vengono aggiunti alla data factory.  
+    ![Stato della distribuzione](./media/data-factory-samples/DeploymentStatus.png)
+7. Quando viene visualizzato hello **distribuzione ha avuto esito positivo** messaggio nel riquadro hello per esempio hello, chiude hello **pipeline di esempio** blade.  
+8. In **DATA FACTORY** pannello vedere che i servizi collegati, set di dati e pipeline vengono aggiunti tooyour data factory di.  
 
     ![Pannello Data factory](./media/data-factory-samples/DataFactoryBladeAfter.png)
 
 ## <a name="solution-overview"></a>Panoramica della soluzione
-Questo semplice caso di utilizzo esemplifica la modalità di utilizzo di Azure Data Factory per inserire, preparare, trasformare, analizzare e pubblicare i dati.
+In questo caso di utilizzo semplice utilizzabile come esempio di come è possibile utilizzare tooingest Data Factory di Azure, preparare, trasformare, analizzare e pubblicare i dati.
 
 ![Flusso di lavoro end-to-end](./media/data-factory-customer-profiling-usecase/EndToEndWorkflow.png)
 
-Questa figura illustra come vengono visualizzate le pipeline di dati nel portale di Azure dopo la distribuzione.
+Questa figura viene illustrato come pipeline di dati hello vengono visualizzati in hello portale di Azure dopo la distribuzione.
 
-1. **PartitionGameLogsPipeline** legge gli eventi del gioco non elaborati da una risorsa di archiviazione BLOB e crea partizioni basate su anno, mese e giorno.
-2. **EnrichGameLogsPipeline** unisce gli eventi di giochi partizionati con dati di riferimento del codice geografico e arricchisce i dati eseguendo il mapping di indirizzi IP per le aree geografiche corrispondenti.
-3. La pipeline **AnalyzeMarketingCampaignPipeline** usa i dati migliorati e li elabora con i dati pubblicitari per creare l'output finale contenente l'efficacia della campagna di marketing.
+1. Hello **PartitionGameLogsPipeline** legge gli eventi di gioco raw hello dall'archiviazione blob e crea partizioni basate su anno, mese e giorno.
+2. Hello **EnrichGameLogsPipeline** unisce gli eventi di giochi partizionati con dati di riferimento codice di area geografica e arricchisce dati hello eseguendo il mapping IP indirizzi toohello corrispondente posizioni geografiche.
+3. Hello **AnalyzeMarketingCampaignPipeline** pipeline utilizza i dati sono stato arricchito hello e lo elabora con hello pubblicità toocreate hello finale output dei dati che contiene dell'efficacia della campagna di marketing.
 
-In questo esempio Data Factory viene usato per gestire le attività che copiano i dati di input, trasformare ed elaborare i dati e produrre i dati finali per un database SQL di Azure.  È anche possibile visualizzare la rete di pipeline di dati, gestirli e monitorarne lo stato dall'interfaccia utente.
+In questo esempio, Data Factory è tooorchestrate usate attività che copia i dati di input, trasformazione e hello elaborare i dati e di output hello dati finali tooan Database SQL di Azure.  È anche possibile visualizzare rete hello della pipeline di dati, gestirli e monitorarne lo stato da hello dell'interfaccia utente.
 
 ## <a name="benefits"></a>Vantaggi
-Per ottimizzare l'analisi del profilo dell'utente e allinearla agli obiettivi aziendali, le società di giochi online sono in grado di raccogliere rapidamente modelli di uso e analizzare l'efficacia delle campagne pubblicitarie.
+Ottimizzazione loro analitica del profilo utente e allinearla agli obiettivi aziendali, società giochi è tooquickly in grado di raccogliere utilizzo modelli e analizzare l'efficacia di hello relativo campagne di marketing.
 

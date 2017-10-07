@@ -1,6 +1,6 @@
 ---
-title: Gateway di gestione dati per Data Factory | Microsoft Docs
-description: Configurare un gateway dati per spostare dati tra origini locali e il cloud. Usare Gateway di gestione dati in Azure Data Factory per spostare dati.
+title: Gateway di gestione per Data Factory aaaData | Documenti Microsoft
+description: Impostare un data gateway toomove di dati tra sedi locali e hello cloud. Usare Gateway di gestione dati in Azure Data Factory toomove i dati.
 services: data-factory
 documentationcenter: 
 author: nabhishek
@@ -14,124 +14,124 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/27/2017
 ms.author: abnarain
-ms.openlocfilehash: 9e40eba285aeb1cce6b77311d1b69a6b96967a0b
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 6f523891a6230cbc7b407f46f4b02d91dfd2cf46
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="data-management-gateway"></a>Gateway di gestione dati
-Il gateway di gestione dati è un agente client che deve essere installato nell'ambiente locale per copiare i dati tra archivi dati cloud e locali. Gli archivi dati locali supportati da Data Factory sono disponibili nella sezione [Archivi dati e formati supportati](data-factory-data-movement-activities.md#supported-data-stores-and-formats) .
+gateway di gestione dati Hello è un agente client che è necessario installare nei dati on-premise ambiente toocopy tra archivi dati locali e cloud. Hello dati locali supportati da Data Factory di archivi sono disponibili in hello [origini dati supportate](data-factory-data-movement-activities.md#supported-data-stores-and-formats) sezione.
 
-Questo articolo completa la procedura dettagliata descritta in [Spostare dati tra origini locali e il cloud con Gateway di gestione dati](data-factory-move-data-between-onprem-and-cloud.md) . In questa procedura dettagliata viene creata una pipeline che usa il gateway per spostare i dati da un database di SQL Server locale a un BLOB di Azure. Questo articolo offre informazioni approfondite sul gateway di gestione dati. 
+In questo articolo si integra con questa procedura dettagliata hello in hello [spostare i dati tra sedi locali e cloud archivi dati](data-factory-move-data-between-onprem-and-cloud.md) articolo. In questa procedura dettagliata hello, creare una pipeline che utilizza hello gateway toomove dati da un tooan di database di SQL Server on-premise blob di Azure. Questo articolo fornisce informazioni dettagliate sul gateway di gestione dati hello. 
 
-È possibile aumentare il numero di istanze di un gateway di gestione dati associando più computer locali al gateway. È possibile aumentare le prestazioni aumentando il numero di processi di spostamento di dati eseguibili contemporaneamente in un nodo. Questa funzionalità è disponibile anche per un gateway logico con un singolo nodo. Per informazioni dettagliate, vedere l'articolo [Ridimensionamento del gateway di gestione dati in Azure Data Factory](data-factory-data-management-gateway-high-availability-scalability.md).
+È possibile scalare orizzontalmente un gateway di gestione di dati mediante l'associazione di più computer locali con gateway hello. È possibile aumentare le prestazioni aumentando il numero di processi di spostamento di dati eseguibili contemporaneamente in un nodo. Questa funzionalità è disponibile anche per un gateway logico con un singolo nodo. Per informazioni dettagliate, vedere l'articolo [Scaling data management gateway in Azure Data Factory](data-factory-data-management-gateway-high-availability-scalability.md) (Gateway di gestione dati - Disponibilità elevata e scalabilità (anteprima).
 
 > [!NOTE]
-> Attualmente il gateway supporta solo l'attività di copia e l'attività di stored procedure in Data Factory. Non è possibile usare il gateway da un'attività personalizzata per accedere alle origini dati locali.      
+> Gateway supporta attualmente solo attività di copia hello e attività di stored procedure in Data Factory. Non è il gateway hello toouse possibili origini dati locali di tooaccess un'attività personalizzata.      
 
 ## <a name="overview"></a>Panoramica
 ### <a name="capabilities-of-data-management-gateway"></a>Funzionalità del gateway di gestione dati
-Il gateway di gestione dati offre le funzionalità seguenti:
+Gateway di gestione dati fornisce hello seguenti funzionalità:
 
-* Consente di modellare le origini dati locali e le origini dati nel cloud all'interno di un'unica istanza di Data Factory e di spostare i dati al suo interno.
-* Consente di monitorare e gestire lo stato del gateway in un'unica schermata dalla pagina di Data Factory.
-* Consente di gestire in modo sicuro l'accesso alle origini dati locali.
-  * Non è richiesta alcuna modifica del firewall aziendale. Il gateway stabilisce soltanto connessioni basate su HTTP in uscita per accedere a Internet.
+* Modello le origini dati e origini dati cloud interno hello stessa data factory e spostano i dati.
+* Disporre di un unico riquadro per il monitoraggio e gestione con visibilità lo stato del gateway dalla pagina di hello Data Factory.
+* Gestire origini dati di accesso tooon locali in modo sicuro.
+  * Firewall toocorporate è necessaria alcuna modifica. Gateway consente solo le connessioni basate su HTTP in uscita tooopen internet.
   * È possibile crittografare le informazioni sulle credenziali per gli archivi dati locali usando il proprio certificato.
-* Consente di spostare i dati in modo efficace: i dati vengono trasferiti in parallelo e sono resilienti ai problemi di rete intermittente grazie alla logica di ripetizione dei tentativi automatica.
+* Spostare i dati in modo efficiente, i dati vengono trasferiti in parallelo, resilienti toointermittent problemi di rete con la logica di ripetizione automatica.
 
 ### <a name="command-flow-and-data-flow"></a>Flusso dei comandi e flusso di dati
-Quando si usa un'attività di copia per copiare dati tra ambiente cloud e locale, l'attività sfrutta un gateway per trasferire i dati dall'origine dati locale al cloud e viceversa.
+Quando si usa un copia attività toocopy di dati tra sedi locali e cloud, attività hello Usa un gateway tootransfer di dati da toocloud di origine dati locale e viceversa.
 
-Di seguito sono riportati un flusso di dati generale e un riepilogo dei passaggi per la copia con il gateway dati: ![Flusso di dati mediante gateway](./media/data-factory-data-management-gateway/data-flow-using-gateway.png)
+Ecco il flusso di dati di alto livello hello per e un riepilogo dei passaggi per la copia con gateway dati: ![flusso di dati utilizzando gateway](./media/data-factory-data-management-gateway/data-flow-using-gateway.png)
 
-1. Lo sviluppatore di dati crea un gateway per un'istanza di Azure Data Factory usando il [portale di Azure](https://portal.azure.com) oppure un [cmdlet di PowerShell](https://msdn.microsoft.com/library/dn820234.aspx).
-2. Viene creato un servizio collegato per un archivio dati locale specificando il gateway. Una parte della configurazione del servizio collegato consiste nell'uso dell'applicazione Impostazione credenziali per specificare i tipi di autenticazione e le credenziali.  La finestra di dialogo dell'applicazione Impostazione credenziali comunica con l'archivio dati per eseguire il test della connessione e con il gateway per salvare le credenziali.
-3. Il gateway crittografa le credenziali tramite il certificato associato al gateway (fornito dallo sviluppatore) prima di salvare le credenziali nel cloud.
-4. Il servizio Data Factory comunica con il gateway per la pianificazione e la gestione dei processi tramite un canale di controllo che usa una coda condivisa del bus di servizio di Azure. Quando occorre avviare il processo di attività di copia, Data Factory accoda la richiesta insieme alle informazioni sulle credenziali. Il gateway avvia il processo dopo avere eseguito il polling della coda.
-5. Il gateway decrittografa le credenziali tramite lo stesso certificato e quindi si connette all'archivio dati locale con il tipo di autenticazione appropriato e le credenziali.
-6. Il gateway copia i dati dall'archivio locale in una risorsa di archiviazione cloud o viceversa in base alla configurazione dell'attività di copia nella pipeline di dati. Per questo passaggio il gateway comunica direttamente con i servizi di archiviazione basati sul cloud, ad esempio BLOB di Azure su un canale protetto (HTTPS).
+1. Sviluppatori di dati crea un gateway per una Data Factory di Azure utilizzando entrambi hello [portale di Azure](https://portal.azure.com) o [PowerShell Cmdlet](https://msdn.microsoft.com/library/dn820234.aspx).
+2. Sviluppatori di dati consente di creare un servizio collegato per un archivio dati locale specificando gateway hello. Come servizio collegato da parte dell'impostazione hello, sviluppatori di dati utilizzano le credenziali e i tipi di autenticazione toospecify applicazione hello impostazione delle credenziali.  finestra di dialogo applicazione comunica con i dati di hello Hello impostare credenziali archiviate tootest credenziali toosave gateway hello e di connessione.
+3. Gateway crittografa le credenziali di hello con hello certificato associata gateway hello (fornito dallo sviluppatore di dati), prima di salvare le credenziali di hello in cloud hello.
+4. Servizio Data Factory comunica con il gateway hello per la pianificazione e gestione dei processi tramite un canale di controllo che utilizza una coda del bus di servizio condiviso di Azure. Quando un processo di attività di copia deve toobe avviata, in Data Factory coda richiesta hello insieme a informazioni sulle credenziali. Gateway verrà avviato il processo di hello dopo il polling della coda di hello.
+5. gateway Hello decrittografa le credenziali di hello con hello stesso certificato e quindi si connette toohello archivio di dati locale con le credenziali e il tipo di autenticazione appropriato.
+6. gateway Hello copia dati da un archivio di cloud tooa archivio locale o, viceversa, a seconda della configurazione in pipeline di dati hello hello attività di copia. Per questo passaggio, gateway hello comunica direttamente con i servizi di archiviazione basata su cloud, ad esempio l'archiviazione Blob di Azure tramite un canale di sicuro (HTTPS).
 
 ### <a name="considerations-for-using-gateway"></a>Considerazioni sull'uso del gateway
-* Una singola istanza del gateway di gestione dati può essere usata per più origini dati locali. Tuttavia, **una singola istanza del gateway viene associata a un solo Data Factory di Azure** e non può essere condivisa con un altro Data Factory.
-* In un computer può essere installata **una sola istanza del gateway di gestione dati**. Si supponga di avere due istanze di Data Factory che richiedono l'accesso alle origini dati locali: è necessario installare i gateway nei due computer locali. In altre parole, ogni gateway viene associato a un'istanza specifica di Data Factory.
-* Il **gateway non deve trovarsi sullo stesso computer dell'origine dati**. Tuttavia, se i gateway sono posizionati in prossimità dell'origine dati, il tempo di connessione del gateway all'origine dati si riduce. Si consiglia di installare il gateway in un computer diverso da quello che ospita l'origine dati locale. Quando il gateway e l'origine dati si trovano in computer diversi non si contendono le risorse.
-* È possibile disporre di **più gateway su diversi computer che si connettono alla stessa origine dati locale**. Ad esempio, potrebbero essere disponibili due gateway che servono due data factory, ma la stessa origine dati locale viene registrata con entrambe le data factory.
+* Una singola istanza del gateway di gestione dati può essere usata per più origini dati locali. Tuttavia, **una singola istanza del gateway è abbinato tooonly una data factory di Azure** e non può essere condivisa con data factory di un altro.
+* In un computer può essere installata **una sola istanza del gateway di gestione dati**. Si supponga che si dispone di due data factory necessarie tooaccess origini di dati locali, è necessario gateway tooinstall sul computer due locale. In altre parole, un gateway è abbinato tooa data factory specificata
+* Hello **gateway non è necessario toobe su hello stesso computer come origine dati hello**. Tuttavia, con l'origine dati toohello più vicino di gateway riduce il tempo di hello per origine dati di hello gateway tooconnect toohello. Si consiglia di installare gateway hello in un computer diverso da hello uno quell'origine dati host locale. Quando hello gateway e l'origine dati si trovano in computer diversi, gateway hello non si contendono le risorse con l'origine dati.
+* È possibile avere **più gateway in computer diversi, la connessione toohello stessa origine dati locale**. Ad esempio, si dispone di due gateway gestisce due data factory ma hello stessa origine dati locale è registrato con entrambe le data factory hello.
 * Se un gateway è già installato nel computer per uno scenario **Power BI**, installare un **gateway separato per Azure Data Factory** in un altro computer.
 * È necessario usare il gateway anche quando si usa **ExpressRoute**.
-* Considerare l'origine dati come origine dati locale, ovvero protetta da firewall, anche quando si usa **ExpressRoute**. Usare il gateway per stabilire la connettività tra il servizio e l'origine dati.
-* È necessario **usare il gateway** anche se l'archivio dati è nel cloud in una **VM IaaS di Azure**.
+* Considerare l'origine dati come origine dati locale, ovvero protetta da firewall, anche quando si usa **ExpressRoute**. Usare la connettività di tooestablish hello gateway tra il servizio di hello e origine dati hello.
+* È necessario **usare gateway hello** anche se l'archivio dati hello è nel cloud hello in un **VM IaaS di Azure**.
 
 ## <a name="installation"></a>Installazione
 ### <a name="prerequisites"></a>Prerequisiti
-* Sono supportati i **sistemi operativi** Windows 7, Windows 8/8.1, Windows 10, Windows Server 2008 R2, Windows Server 2012 e Windows Server 2012 R2. L'installazione del gateway di gestione dati nel controller di dominio al momento non è supportata.
+* Hello supportato **del sistema operativo** versioni sono Windows 7, Windows 8/8.1, Windows 10, Windows Server 2008 R2, Windows Server 2012, Windows Server 2012 R2. Installazione di gateway di gestione dati hello in un controller di dominio non è attualmente supportata.
 * È necessario .NET Framework 4.5.1 o versioni successive. Se si installa il gateway in un computer Windows 7, installare .NET Framework 4.5 o versioni successive. Per informazioni dettagliate, vedere [Requisiti di sistema di .NET Framework](https://msdn.microsoft.com/library/8z6watww.aspx) .
-* La **configurazione** consigliata per il computer gateway è di almeno 2 GHz, 4 core, 8 GB di RAM e un disco da 80 GB.
-* Se il computer host entra in stato di ibernazione, il gateway non risponde alle richieste di dati. Pertanto, configurare una **combinazione per il risparmio di energia** appropriata nel computer prima di installare il gateway. Se il computer è configurato per l'ibernazione, l'installazione del gateway invia un messaggio.
-* È necessario essere un amministratore del computer per installare e configurare correttamente il gateway di gestione dati. È possibile aggiungere altri utenti al gruppo di Windows locale **Data Management Gateway Users**. I membri di questo gruppo possono usare lo strumento **Gestione configurazione di Gateway di gestione dati** per configurare il gateway.
+* Hello consigliato **configurazione** per il computer gateway hello è di almeno 2 GHz, 4 core, 8 GB di RAM e disco 80 GB.
+* Se il computer host hello entra in sospensione, gateway hello non risponde toodata richieste. Pertanto, configurare un'apposita **risparmio di energia** computer hello prima di installare gateway hello. Se configurato toohibernate macchina hello, installazione del gateway hello richiede un messaggio.
+* È necessario essere un amministratore tooinstall macchina hello e configurare il gateway di gestione dati hello correttamente. È possibile aggiungere altri utenti toohello **gateway di gestione dati utenti** gruppo locale di Windows. i membri di Hello di questo gruppo sono in grado di toouse hello **Gestione configurazione di Gateway di gestione di dati** gateway hello tooconfigure di strumento.
 
-Dato che le esecuzioni dell'attività di copia seguono una frequenza specifica, l'utilizzo delle risorse, ovvero CPU e memoria, nel computer segue lo stesso ciclo costituito da periodi di picco alternati a periodi di inattività. L'utilizzo delle risorse dipende molto anche dalla quantità di dati da spostare. Quando sono in corso più processi di copia, l'utilizzo delle risorse aumenta durante i periodi di picco.
+Come copiare verificarsi esecuzioni di attività in una frequenza specifica, hello utilizzo delle risorse (CPU, memoria) nel computer di hello anche segue hello stesso modello con ore di punta e periodi di inattività. Utilizzo delle risorse anche dipende molto quantità hello di spostamento dei dati. Quando sono in corso più processi di copia, l'utilizzo delle risorse aumenta durante i periodi di picco.
 
 ### <a name="installation-options"></a>Opzioni di installazione
-Il gateway di gestione dati può essere installato nei seguenti modi:
+È possibile installare il gateway di gestione di dati in hello seguenti modi:
 
-* Scaricando un pacchetto di installazione MSI dall' [Area download Microsoft](https://www.microsoft.com/download/details.aspx?id=39717).  Il pacchetto MSI può anche essere usato per aggiornare il gateway di gestione dati esistente alla versione più recente mantenendo tutte le impostazioni.
-* Facendo clic sul collegamento **Scaricare e installare il gateway dati** in INSTALLAZIONE MANUALE o **Installa direttamente in questo computer** in INSTALLAZIONE RAPIDA. Vedere l'articolo [Spostare dati tra origini locali e il cloud mediante il Gateway di gestione dati](data-factory-move-data-between-onprem-and-cloud.md) per le istruzioni dettagliate sull'installazione rapida. Il passaggio manuale consente di accedere all'area download.  Le istruzioni per scaricare e installare il gateway dall'area download sono disponibili nella sezione successiva.
+* Mediante il download di un pacchetto di installazione MSI dal hello [Microsoft Download Center](https://www.microsoft.com/download/details.aspx?id=39717).  Hello MSI può anche essere utilizzati tooupgrade esistente dati Gestione gateway toohello versione più recente, con tutte le impostazioni mantenute.
+* Facendo clic sul collegamento **Scaricare e installare il gateway dati** in INSTALLAZIONE MANUALE o **Installa direttamente in questo computer** in INSTALLAZIONE RAPIDA. Vedere l'articolo [Spostare dati tra origini locali e il cloud mediante il Gateway di gestione dati](data-factory-move-data-between-onprem-and-cloud.md) per le istruzioni dettagliate sull'installazione rapida. passaggio manuale Hello consente toohello download center.  istruzioni di Hello per scaricare e installare il gateway hello dall'area download sono riportate nella sezione successiva hello.
 
 ### <a name="installation-best-practices"></a>Procedure consigliate per l'installazione:
-1. Configurare la combinazione per il risparmio di energia nel computer host del gateway in modo che il computer non entri in stato di ibernazione. Se il computer host entra in stato di ibernazione, il gateway non risponde alle richieste di dati.
-2. Eseguire il backup del certificato associato al gateway.
+1. Configurare risparmio di energia sul computer host hello per gateway hello in modo che hello macchina non lo stato di ibernazione. Se il computer host hello entra in sospensione, gateway hello non risponde toodata richieste.
+2. Eseguire il backup hello certificato associata hello gateway.
 
-### <a name="install-the-gateway-from-download-center"></a>Installare il gateway dall'Area download
-1. Andare alla [pagina di download del Gateway di gestione dati di Microsoft](https://www.microsoft.com/download/details.aspx?id=39717).
-2. Fare clic su **Scarica**, selezionare la versione appropriata (**a 32 bit** o **a 64 bit**) e fare clic su **Avanti**.
-3. Eseguire direttamente il file **MSI** oppure salvarlo sul disco rigido ed eseguirlo.
-4. Nella pagina di **benvenuto** selezionare una **lingua** e fare clic su **Avanti**.
-5. **Accettare** il contratto di licenza e fare clic su **Avanti**.
-6. Selezionare la **cartella** per installare il gateway e fare clic su **Avanti**.
-7. Nella pagina **Pronto per l'installazione** fare clic su **Installa**.
-8. Fare clic su **Fine** per completare l'installazione.
-9. Ottenere la chiave dal portale di Azure. Vedere la sezione successiva per le istruzioni dettagliate.
-10. Nella pagina **Registra gateway** di **Gestione configurazione di Gateway di gestione dati** in esecuzione sul computer in uso attenersi alla procedura seguente:
-    1. Incollare la chiave nel testo.
-    2. Facoltativamente, fare clic su **Mo_stra chiave del gateway** per visualizzare il testo della chiave.
+### <a name="install-hello-gateway-from-download-center"></a>Installare il gateway hello dall'area download
+1. Passare troppo[pagina di download di Gateway di gestione dati Microsoft](https://www.microsoft.com/download/details.aspx?id=39717).
+2. Fare clic su **scaricare**, selezionare la versione appropriata di hello (**32-bit** Visual Studio. **a 64 bit**) e fare clic su **Avanti**.
+3. Eseguire hello **MSI** direttamente o salvarlo tooyour disco ed eseguire.
+4. In hello **iniziale** pagina, selezionare un **language** fare clic su **Avanti**.
+5. **Accettare** hello contratto di licenza e fare clic su **Avanti**.
+6. Selezionare **cartella** tooinstall hello gateway e fare clic su **Avanti**.
+7. In hello **tooinstall pronto** pagina, fare clic su **installare**.
+8. Fare clic su **fine** toocomplete installazione.
+9. Ottenere la chiave di hello dal portale di Azure hello. Sezione successiva di hello per le istruzioni dettagliate, vedere.
+10. In hello **registro gateway** pagina di **Gestione configurazione di Gateway di gestione di dati** in esecuzione nel computer, hello i passaggi seguenti:
+    1. Incollare la chiave hello testo hello.
+    2. Facoltativamente, fare clic su **chiave del gateway Mostra** toosee testo del tasto hello.
     3. Fare clic su **Register**.
 
 ### <a name="register-gateway-using-key"></a>Registrare il gateway con la chiave
-#### <a name="if-you-havent-already-created-a-logical-gateway-in-the-portal"></a>Se non è ancora stato creato un gateway logico nel portale
-Per creare un gateway nel portale e ottenere la chiave dalla pagina **Configura**, seguire i passaggi della procedura dettagliata dell'articolo [Spostare dati tra origini locali e il cloud con Gateway di gestione dati](data-factory-move-data-between-onprem-and-cloud.md).    
+#### <a name="if-you-havent-already-created-a-logical-gateway-in-hello-portal"></a>Se è ancora stato creato un gateway logico nel portale di hello
+un gateway nella chiave di hello hello portal e ottenere da hello toocreate **configura** pagina, eseguire i passaggi della procedura dettagliata in hello [spostare i dati tra sedi locali e cloud](data-factory-move-data-between-onprem-and-cloud.md) articolo.    
 
-#### <a name="if-you-have-already-created-the-logical-gateway-in-the-portal"></a>Se è già stato creato un gateway logico nel portale
-1. Nel portale di Azure passare alla pagina **Data factory** e fare clic sul riquadro **Servizi collegati**.
+#### <a name="if-you-have-already-created-hello-logical-gateway-in-hello-portal"></a>Se il gateway logico hello è già stato creato nel portale di hello
+1. Nel portale di Azure passare toohello **Data Factory** pagina e fare clic su **servizi collegati** riquadro.
 
     ![Pagina Data factory](media/data-factory-data-management-gateway/data-factory-blade.png)
-2. Nella pagina **Servizi collegati** selezionare il **gateway** logico creato nel portale.
+2. In hello **servizi collegati** pagina, seleziona hello logico **gateway** creato nel portale di hello.
 
     ![gateway logico](media/data-factory-data-management-gateway/data-factory-select-gateway.png)  
-3. Nella pagina **Gateway dati** fare clic su **Scaricare e installare il gateway dati**.
+3. In hello **Gateway dati** pagina, fare clic su **scaricare e installare il gateway dati**.
 
-    ![Link di download nel portale](media/data-factory-data-management-gateway/download-and-install-link-on-portal.png)   
-4. Nella pagina **Configura** fare clic su **Ricrea chiave**. Fare clic su Sì nel messaggio di avviso dopo averlo letto con attenzione.
+    ![Collegamento nel portale di hello per il download](media/data-factory-data-management-gateway/download-and-install-link-on-portal.png)   
+4. In hello **configura** pagina, fare clic su **chiave ricreare**. Fare clic su Sì nella finestra di messaggio hello dopo la lettura con attenzione.
 
     ![Ricrea chiave](media/data-factory-data-management-gateway/recreate-key-button.png)
-5. Fare clic su pulsante Copia accanto alla chiave. La chiave viene copiata negli Appunti.
+5. Fare clic sulla chiave di toohello copia pulsante Avanti. chiave di Hello è Appunti toohello copiato.
 
     ![Copiare la chiave](media/data-factory-data-management-gateway/copy-gateway-key.png)
 
 ### <a name="system-tray-icons-notifications"></a>Notifiche/icone nell'area di notifica
-L'immagine seguente mostra alcune delle icone visualizzate nell'area di notifica.
+Hello immagine seguente vengono illustrate alcune hello cassetto icone presenti.
 
 ![icone dell'area di notifica](./media/data-factory-data-management-gateway/gateway-tray-icons.png)
 
-Spostando il cursore sul messaggio di notifica o sull'icona nell'area di notifica, vengono visualizzati i dettagli relativi allo stato del gateway o dell'operazione di aggiornamento in una finestra popup.
+Se il cursore si sposta sul messaggio di icona/notifica hello sistema barra delle applicazioni, vedrai i dettagli sullo stato di hello dell'operazione di aggiornamento del gateway/hello in una finestra popup.
 
 ### <a name="ports-and-firewall"></a>Porte e firewall
-È necessario considerare due firewall, ovvero il **firewall aziendale** in esecuzione nel router centrale dell'organizzazione e **Windows firewall**, configurato come servizio daemon nel computer locale in cui è installato il gateway.  
+Sono disponibili due firewall, è necessario tooconsider: **firewall aziendale** in esecuzione sul router centrale di hello dell'organizzazione di hello, e **Windows firewall** configurato come un daemon sul computer locale hello dove hello gateway è installato.  
 
 ![firewall](./media/data-factory-data-management-gateway/firewalls2.png)
 
-A livello di firewall aziendale è necessario configurare le porte in uscita e i domini seguenti:
+A livello di firewall aziendale, è necessario configurare seguente hello domini e le porte in uscita:
 
 | Nomi di dominio | Porte | Descrizione |
 | --- | --- | --- |
@@ -140,73 +140,73 @@ A livello di firewall aziendale è necessario configurare le porte in uscita e i
 | *.frontend.clouddatahub.net |443 |Utilizzato per la comunicazione con il backend Data Movement Service |
 
 
-A livello di Windows Firewall queste porte in uscita sono generalmente abilitate. In caso contrario, è possibile configurare le porte e i domini nel modo appropriato nel computer gateway.
+A livello di Windows Firewall queste porte in uscita sono generalmente abilitate. Se non è possibile configurare le porte e domini hello conseguenza nel computer gateway.
 
 > [!NOTE]
-> 1. In base all'origine o ai sink, potrebbe essere necessario consentire altri domini e porte in uscita nel firewall aziendale o in Windows Firewall.
-> 2. Per alcuni database cloud (ad esempio, [Database SQL di Azure](https://docs.microsoft.com/azure/sql-database/sql-database-configure-firewall-settings), [Azure Data Lake](https://docs.microsoft.com/azure/data-lake-store/data-lake-store-secure-data#set-ip-address-range-for-data-access) e così via), potrebbe essere necessario consentire l'indirizzo IP del computer gateway nella configurazione del firewall.
+> 1. In base all'origine / sink, è possibile toowhitelist altri domini e le porte in uscita in aziendali/Windows firewall.
+> 2. Per alcuni database Cloud (ad esempio: [Database SQL di Azure](https://docs.microsoft.com/azure/sql-database/sql-database-configure-firewall-settings), [Azure Data Lake](https://docs.microsoft.com/azure/data-lake-store/data-lake-store-secure-data#set-ip-address-range-for-data-access)e così via), potrebbe essere necessario toowhitelist di indirizzo IP del Gateway per la configurazione di firewall.
 >
 >
 
 
-#### <a name="copy-data-from-a-source-data-store-to-a-sink-data-store"></a>Copiare dati da un archivio dati di origine a un archivio dati sink
-Verificare che le regole del firewall siano abilitate correttamente sul firewall aziendale, su Windows Firewall nel computer del gateway e sull'archivio dati stesso, in modo da consentire al gateway di connettersi all'origine e al sink. Abilitare le regole per ogni archivio dati interessato dall'operazione di copia.
+#### <a name="copy-data-from-a-source-data-store-tooa-sink-data-store"></a>Copiare i dati da un archivio dati di origine dati archivio tooa sink
+Verificare che le regole del firewall hello sono attivate correttamente sul firewall aziendale hello, Windows firewall nel computer gateway hello, e dati hello archiviano stesso. L'abilitazione di queste regole consente hello origine tooboth tooconnect di gateway e sink correttamente. Abilitare le regole per ogni archivio dati coinvolto nell'operazione di copia hello.
 
-Ad esempio, per eseguire la copia da **un archivio dati locale a un sink di Database SQL di Azure o a un sink di SQL Data Warehouse di Azure**, attenersi alla procedura seguente:
+Ad esempio, toocopy da **un sink di Database SQL di Azure locale dati archivio tooan o un sink di Azure SQL Data Warehouse**, hello i passaggi seguenti:
 
 * Consentire comunicazioni **TCP** in uscita sulla porta **1433** per Windows Firewall e il firewall aziendale.
-* Configurare le impostazioni del firewall del server SQL di Azure aggiungendo l'indirizzo IP relativo al computer del gateway all'elenco degli indirizzi IP consentiti.
+* Configurare le impostazioni di firewall hello di SQL Azure tooadd hello indirizzo IP del server dell'elenco di hello gateway macchina toohello di indirizzi IP consentiti.
 
 > [!NOTE]
-> Se il firewall non consente la porta in uscita 1433, il gateway non riesce ad accedere direttamente ad Azure SQL. In questo caso, è possibile usare la [copia di staging](https://docs.microsoft.com/azure/data-factory/data-factory-copy-activity-performance#staged-copy) sul database SQL di Azure o SQL Azure DW. In questo scenario è necessario solo HTTPS (porta 443) per lo spostamento dei dati.
+> Se il firewall non consente la porta in uscita 1433, il gateway non riesce ad accedere direttamente ad Azure SQL. In questo caso, è possibile utilizzare [staging copia](https://docs.microsoft.com/azure/data-factory/data-factory-copy-activity-performance#staged-copy) tooSQL Database Azure / Azure SQL DW. In questo scenario, richiederebbe solo HTTPS (porta 443) per lo spostamento dei dati di hello.
 >
 >
 
 
 ### <a name="proxy-server-considerations"></a>Considerazioni sui server proxy
-Se l'ambiente di rete aziendale usa un server proxy per accedere a Internet, configurare il gateway di gestione dati per l'uso delle impostazioni proxy appropriate. È possibile impostare il proxy durante la fase di registrazione iniziale.
+Se nell'ambiente di rete aziendale utilizza un proxy server tooaccess hello internet, configurare le impostazioni proxy appropriati toouse di dati Gestione gateway. È possibile impostare il proxy di hello durante la fase di registrazione iniziale hello.
 
 ![Impostare il proxy durante la registrazione](media/data-factory-data-management-gateway/SetProxyDuringRegistration.png)
 
-Il gateway usa il server proxy per connettersi al servizio cloud. Fare clic sul collegamento **Modifica** durante la configurazione iniziale. Viene visualizzata la finestra di dialogo **impostazione proxy** .
+Gateway utilizza il servizio cloud toohello tooconnect di hello proxy server. Fare clic sul collegamento **Modifica** durante la configurazione iniziale. Vedrai hello **impostazione proxy** finestra di dialogo.
 
 ![Impostare il proxy tramite Gestione configurazione](media/data-factory-data-management-gateway/SetProxySettings.png)
 
 Sono disponibili tre opzioni di configurazione:
 
-* **Non utilizzare proxy**: il gateway non usa in modo esplicito i proxy per connettersi ai servizi cloud.
-* **Usa il proxy di sistema**: il gateway usa l'impostazione del proxy configurata in diahost.exe.config e diawp.exe.config.  Se non è stato configurato alcun proxy in diahost.exe.config e diawp.exe.config, il gateway si connette al servizio cloud direttamente senza passare attraverso il proxy.
-* **Usa proxy personalizzato**: configurare le impostazioni del proxy HTTP che il gateway deve usare al posto delle configurazioni in diahost.exe.config e diawp.exe.config.  L'indirizzo e la porta sono valori obbligatori.  Nome utente e password sono facoltativi a seconda dell'impostazione di autenticazione del proxy.  Tutte le impostazioni vengono crittografate con il certificato delle credenziali del gateway e archiviate localmente nel computer che ospita il gateway.
+* **Non usare il proxy**: Gateway non utilizza i servizi di toocloud tooconnect proxy in modo esplicito.
+* **Utilizzare il proxy di sistema**: il Gateway utilizza proxy hello impostazione configurata in diahost.exe.config e diawp.exe.config.  Se è configurato alcun proxy diahost.exe.config e diawp.exe.config, gateway si connette toocloud servizio direttamente senza dover passare attraverso proxy.
+* **Utilizzare il proxy personalizzato**: configurare hello HTTP proxy impostazione toouse per il gateway, invece di usare le configurazioni in diahost.exe.config e diawp.exe.config.  L'indirizzo e la porta sono valori obbligatori.  Nome utente e password sono facoltativi a seconda dell'impostazione di autenticazione del proxy.  Tutte le impostazioni vengono crittografate con il certificato delle credenziali hello del gateway hello e archiviate in locale nel computer host di gateway hello.
 
-Il servizio host del gateway di gestione dati viene riavviato automaticamente dopo avere salvato le impostazioni proxy aggiornate.
+Servizio Host di gateway di gestione dati Hello viene riavviata automaticamente dopo aver salvato le impostazioni del proxy hello aggiornato.
 
-Dopo aver registrato correttamente il gateway, se si desidera visualizzare o aggiornare le impostazioni proxy, usare Gestione configurazione di Gateway di gestione dati.
+Dopo che gateway è stato registrato correttamente, se si desidera tooview o aggiornare le impostazioni proxy, utilizzare Gestione configurazione di Gateway di gestione di dati.
 
 1. Avviare **Gestione configurazione di Gateway di gestione dati**.
-2. Passare alla scheda **Impostazioni** .
-3. Fare clic sul collegamento **Cambia** nella sezione **Proxy HTTP** per avviare la finestra di dialogo **Imposta proxy HTTP**.  
-4. Dopo aver selezionato il pulsante **Avanti** , una finestra di dialogo di avviso richiede l'autorizzazione per salvare le impostazioni del proxy e riavviare il servizio che ospita il gateway.
+2. Passare toohello **impostazioni** scheda.
+3. Fare clic su **modifica** collegamento **HTTP Proxy** hello toolaunch sezione **Set Proxy HTTP** finestra di dialogo.  
+4. Dopo aver fatto clic hello **Avanti** pulsante, viene visualizzato un messaggio di avviso che chiede di per l'impostazione proxy di autorizzazione toosave hello e riavviare il servizio Host di Gateway di hello.
 
 È possibile visualizzare e aggiornare il proxy HTTP tramite lo strumento Gestione configurazione.
 
 ![Impostare il proxy tramite Gestione configurazione](media/data-factory-data-management-gateway/SetProxyConfigManager.png)
 
 > [!NOTE]
-> Se si configura un server proxy con autenticazione NTLM, il servizio che ospita il gateway viene eseguito nell'account di dominio. Se in un secondo momento si modifica la password per l'account di dominio, ricordarsi di aggiornare le impostazioni di configurazione per il servizio e riavviarlo. Per questo requisito, si consiglia di usare un account di dominio dedicato per accedere al server proxy che non richieda l'aggiornamento frequente della password.
+> Se si configura un server proxy con l'autenticazione NTLM, account di dominio hello viene eseguito il servizio Host di Gateway. Se si modifica la password di hello per l'account di dominio hello in un secondo momento, ricordare tooupdate le impostazioni di configurazione per il servizio hello e riavviarlo di conseguenza. A causa di toothis requisito, si consiglia di che utilizzare un dominio dedicato account tooaccess hello server proxy che non richiede la password di hello tooupdate frequentemente.
 >
 >
 
 ### <a name="configure-proxy-server-settings"></a>Configurare le impostazioni del server proxy
-Se si seleziona l'impostazione **Usa il proxy di sistema** per il proxy HTTP, il gateway usa l'impostazione proxy contenuta in diahost.exe.config e diawp.exe.config.  Se non è stato specificato alcun proxy in diahost.exe.config e diawp.exe.config, il gateway si connette al servizio cloud direttamente senza passare attraverso il proxy. La procedura seguente fornisce istruzioni per l'aggiornamento del file diahost.exe.config.  
+Se si seleziona **Usa il proxy di sistema** impostazione per il proxy HTTP di hello, gateway Usa impostazione diahost.exe.config e diawp.exe.config proxy hello.  Se viene specificato alcun proxy in diahost.exe.config e diawp.exe.config, gateway si connette toocloud servizio direttamente senza dover passare attraverso proxy. Hello procedura riportata di seguito vengono fornite istruzioni per l'aggiornamento dei file diahost.exe.config hello.  
 
-1. In Esplora file creare una copia sicura di C:\Program Files\Microsoft Data Management Gateway\2.0\Shared\diahost.exe.config per eseguire il backup del file originale.
-2. Avviare Notepad.exe come amministratore e aprire il file di testo "C:\Program Files\Microsoft Data Management Gateway\2.0\Shared\diahost.exe.config". Il tag predefinito per system.net viene trovato come indicato nel codice seguente:
+1. In Esplora File, file originale hello costituiscono una copia di C:\Program Files\Microsoft Data Management Gateway\2.0\Shared\diahost.exe.config tooback-safe.
+2. Avviare Notepad.exe come amministratore e aprire il file di testo "C:\Program Files\Microsoft Data Management Gateway\2.0\Shared\diahost.exe.config". Trovare un tag predefinito hello per system.net come illustrato nel seguente codice hello:
 
          <system.net>
              <defaultProxy useDefaultCredentials="true" />
          </system.net>    
 
-   È quindi possibile aggiungere i dettagli del server proxy, come illustrato nell'esempio seguente:
+   È quindi possibile aggiungere i dettagli del server proxy come illustrato nell'esempio seguente hello:
 
          <system.net>
                <defaultProxy enabled="true">
@@ -214,233 +214,233 @@ Se si seleziona l'impostazione **Usa il proxy di sistema** per il proxy HTTP, il
                </defaultProxy>
          </system.net>
 
-   È possibile aggiungere altre proprietà all'interno del tag del proxy per specificare le impostazioni obbligatorie, ad esempio scriptLocation. Per informazioni sulla sintassi, vedere [Elemento proxy (Impostazioni di rete)](https://msdn.microsoft.com/library/sa91de1e.aspx) .
+   Proprietà aggiuntive sono consentite all'interno di hello proxy tag toospecify hello necessarie impostazioni come scriptLocation. Fare riferimento troppo[proxy Element (Network Settings)](https://msdn.microsoft.com/library/sa91de1e.aspx) sulla sintassi.
 
          <proxy autoDetect="true|false|unspecified" bypassonlocal="true|false|unspecified" proxyaddress="uriString" scriptLocation="uriString" usesystemdefault="true|false|unspecified "/>
-3. Salvare il file di configurazione nel percorso originale, quindi riavviare il servizio che ospita il gateway di gestione dati per rilevare le modifiche. Per riavviare il servizio: con l'applet dei servizi dal Pannello di controllo o da **Gestione configurazione di Gateway di gestione dati** > fare clic sul pulsante **Arresta servizio** quindi su **Avvia servizio**. Se il servizio non viene avviato, è probabile che una sintassi non corretta del tag XML sia stata aggiunta al file di configurazione dell'applicazione modificato.
+3. Salvare il file di configurazione di hello nel percorso originale di hello, quindi riavviare il servizio Host di Gateway di gestione dati, che preleva modifiche hello hello. servizio hello toorestart: utilizzare l'applet Servizi dal Pannello di controllo hello o da hello **Gestione configurazione di Gateway di gestione di dati** > fare clic su hello **Arresta servizio** , quindi fare clic su hello **Avviare servizio**. Se non viene avviato il servizio di hello, è probabile che sia stato aggiunto una sintassi non corretta di tag XML nel file di configurazione dell'applicazione hello che è stato modificato.
 
 > [!IMPORTANT]
-> Non dimenticare di aggiornare **entrambi i file**: diahost.exe.config e diawp.exe.config.  
+> Non dimenticare tooupdate **entrambi** diahost.exe.config e diawp.exe.config.  
 
 
-Oltre ai punti precedenti, è necessario assicurarsi anche Microsoft Azure sia stato aggiunto all'elenco aziendale degli elementi consentiti. È possibile scaricare l'elenco di indirizzi IP validi per Microsoft Azure dall' [Area download Microsoft](https://www.microsoft.com/download/details.aspx?id=41653).
+Inoltre punti toothese, è inoltre necessario che Microsoft Azure sia nell'elenco elementi consentiti dell'azienda toomake. elenco di Hello di indirizzi IP di Microsoft Azure può essere scaricato da hello [Microsoft Download Center](https://www.microsoft.com/download/details.aspx?id=41653).
 
 #### <a name="possible-symptoms-for-firewall-and-proxy-server-related-issues"></a>Possibili sintomi di problemi correlati al firewall e al server proxy
-Se si verificano errori simili ai seguenti, è possibile che siano dovuti a una configurazione non corretta del firewall o del server proxy, che impedisce al gateway di connettersi a Data Factory per l'autenticazione. Per assicurarsi che la configurazione del firewall e del server proxy sia corretta, vedere la sezione precedente.
+Se si verifica errori toohello simile dopo quelli, è probabile causa configurazione tooimproper di hello server proxy o firewall, che blocca i gateway di connessione tooauthenticate di Factory tooData stesso. Fare riferimento tooprevious sezione tooensure il server proxy e firewall siano configurate correttamente.
 
-1. Quando si tenta di registrare il gateway, viene visualizzato l'errore seguente: "Impossibile registrare la chiave del gateway. Prima di provare di nuovo a registrare la chiave del gateway, verificare che lo stato di Gateway di gestione dati sia Connesso e che il servizio host di Gateway di gestione dati sia avviato".
-2. Quando si apre Gestione configurazione, lo stato del gateway visualizzato può essere "Disconnesso" o "Connessione". Quando si visualizzano i registri eventi di Windows, in "Visualizzatore eventi" > "Registri applicazioni e servizi" > "Gateway di gestione dati", vengono visualizzati messaggi di errore simili al seguente: `Unable to connect to the remote server`
+1. Quando si tenta di gateway hello tooregister, viene visualizzato il seguente errore hello: "chiave del gateway hello tooregister non riuscito. Prima di tentare nuovamente la chiave del gateway hello tooregister, verificare che sia stato avviato hello gateway di gestione dati è in uno stato di connessione e hello servizio Host di Gateway di gestione di dati."
+2. Quando si apre Gestione configurazione, lo stato del gateway visualizzato può essere "Disconnesso" o "Connessione". Quando si visualizzano i registri eventi di Windows, in "Visualizzatore eventi" > "Registri applicazioni e servizi" > "Gateway di gestione dati" vedere i messaggi di errore, ad esempio hello errore seguente:`Unable tooconnect toohello remote server`
    `A component of Data Management Gateway has become unresponsive and restarts automatically. Component name: Gateway.`
 
 ### <a name="open-port-8050-for-credential-encryption"></a>Aprire la porta 8050 per la crittografia delle credenziali
-L'applicazione **Impostazione credenziali** usa la porta in ingresso **8050** per inoltrare le credenziali al gateway quando si configura un servizio collegato locale nel portale di Azure. Durante la configurazione del gateway, l'installazione del gateway apre la porta nel computer gateway per impostazione predefinita.
+Hello **impostazione delle credenziali** utilizzi dell'applicazione hello porta in ingresso **8050** toorelay gateway toohello di credenziali quando si configura una locale il servizio nel portale di Azure hello collegato. Durante l'installazione di gateway, per impostazione predefinita, installazione del gateway hello verrà aperto nel computer gateway hello.
 
-Se si usa un firewall di terze parti, è possibile aprire manualmente la porta 8050. In caso di problemi del firewall durante la configurazione del gateway, è possibile provare a usare il comando seguente per installare il gateway senza configurare il firewall.
+Se si utilizza un firewall di terze parti, è possibile aprire manualmente la porta hello 8050. In caso di problema di firewall durante l'installazione di gateway, è possibile provare a usare hello seguenti gateway hello tooinstall di comando senza configurare il firewall hello.
 
     msiexec /q /i DataManagementGateway.msi NOFIREWALL=1
 
-Se si sceglie di non aprire la porta 8050 nel computer gateway, usare meccanismi diversi dall'uso dell'applicazione **Impostazione credenziali** per configurare le credenziali dell'archivio dati. È ad esempio possibile usare il cmdlet di PowerShell [New-AzureRmDataFactoryEncryptValue](https://msdn.microsoft.com/library/mt603802.aspx) . Per informazioni su come impostare le credenziali dell'archivio dati, vedere la sezione [Impostare le credenziali e la sicurezza](#set-credentials-and-securityy) .
+Se si sceglie di non tooopen porta hello 8050 nel computer gateway hello, utilizzare meccanismi diversi dalla hello **impostazione delle credenziali** dati dell'applicazione tooconfigure archiviano le credenziali. È ad esempio possibile usare il cmdlet di PowerShell [New-AzureRmDataFactoryEncryptValue](https://msdn.microsoft.com/library/mt603802.aspx) . Per informazioni su come impostare le credenziali dell'archivio dati, vedere la sezione [Impostare le credenziali e la sicurezza](#set-credentials-and-securityy) .
 
 ## <a name="update"></a>Aggiornare
-Per impostazione predefinita, il gateway di gestione dati viene aggiornato automaticamente quando è disponibile una versione più recente del gateway. Il gateway non viene aggiornato finché non vengono eseguite tutte le operazioni pianificate. Nessun'altra attività viene elaborata dal gateway fino al completamento dell'operazione di aggiornamento. Se l'aggiornamento non riesce, viene eseguito il rollback del gateway alla versione precedente.
+Per impostazione predefinita, il gateway di gestione di dati viene automaticamente aggiornato quando è disponibile una versione più recente del gateway hello. gateway Hello non viene aggiornata fino a quando non vengono eseguite tutte le attività pianificata hello. Nessuna ulteriore attività viene elaborata dal gateway hello fino a quando non viene completata l'operazione di aggiornamento hello. Se hello aggiornamento non riesce, gateway viene eseguito il rollback toohello vecchia versione.
 
-L'ora dell'aggiornamento pianificato viene visualizzata nelle posizioni seguenti:
+Viene visualizzato l'ora dell'aggiornamento pianificato hello in hello seguenti posizioni:
 
-* Pagina delle proprietà del gateway nel portale di Azure.
-* Home page di Gestione configurazione di Gateway di gestione dati
+* pagina delle proprietà di gateway Hello in hello portale di Azure.
+* Home page di hello Gestione configurazione di Gateway di gestione dati
 * Messaggi di notifica dell'aria di notifica
 
-La scheda Home di Gestione configurazione di Gateway di gestione dati mostra la pianificazione dell'aggiornamento, nonché la data e l'ora dell'ultima installazione o dell'ultimo aggiornamento del gateway.
+scheda Home di Hello di hello Gestione configurazione di Gateway di gestione di dati consente di visualizzare la pianificazione di aggiornamento hello e hello ultimo tempo hello gateway non ha installato o aggiornato.
 
 ![Pianificare gli aggiornamenti](media/data-factory-data-management-gateway/UpdateSection.png)
 
-È possibile installare l'aggiornamento immediatamente o attendere che il gateway venga aggiornato automaticamente all'ora pianificata. Ad esempio, l'immagine seguente mostra il messaggio di notifica in Gestione configurazione del gateway con il pulsante Aggiorna su cui è possibile fare clic per avviare immediatamente l'installazione.
+È possibile installare update hello immediatamente o attendere hello gateway toobe aggiornati automaticamente in fase di hello pianificata. Ad esempio, hello seguente immagine Mostra hello messaggio di notifica nell'hello Gateway Configuration Manager con il pulsante di aggiornamento hello che è possibile fare clic su tooinstall viene immediatamente.
 
 ![Aggiorna in Gestione configurazione di Gateway di gestione dati](./media/data-factory-data-management-gateway/gateway-auto-update-config-manager.png)
 
-Il messaggio di notifica nell'area di notifica sarà simile all'immagine seguente:
+messaggio di notifica Hello nella barra delle applicazioni hello sarebbe come illustrato nella seguente immagine hello:
 
 ![Messaggio nell'area di notifica](./media/data-factory-data-management-gateway/gateway-auto-update-tray-message.png)
 
-Lo stato dell'operazione di aggiornamento, manuale o automatica, viene visualizzato nell'area di notifica. Alla successiva apertura di Gestione configurazione del gateway verrà visualizzato un messaggio sulla barra di notifica per indicare che il gateway è stato aggiornato, insieme a un collegamento [all'argomento Novità](data-factory-gateway-release-notes.md).
+Viene visualizzato lo stato di hello dell'operazione di aggiornamento (manuale o automatica) nella barra delle applicazioni hello. Quando si avvia Gestione configurazione di Gateway successivo, viene visualizzato un messaggio per la notifica di hello barra gateway hello è stato aggiornato insieme a un collegamento troppo[novità nuovo argomento](data-factory-gateway-release-notes.md).
 
-### <a name="to-disableenable-auto-update-feature"></a>Per abilitare o disabilitare la funzionalità di aggiornamento automatico
-È possibile abilitare/disabilitare la funzionalità di aggiornamento automatico con la procedura seguente:
+### <a name="toodisableenable-auto-update-feature"></a>funzionalità di aggiornamento automatico toodisable/attiva
+È possibile Abilita/disabilita la funzionalità di aggiornamento automatico hello effettuando hello alla procedura seguente:
 
 [Per gateway a nodo singolo]
-1. Avviare Windows PowerShell nel computer gateway.
-2. Passare alla cartella C:\Program Files\Microsoft Data Management Gateway\2.0\PowerShellScript.
-3. Eseguire il comando seguente per disattivare (disabilitare) la funzionalità di aggiornamento automatico.   
+1. Avviare Windows PowerShell nel computer gateway hello.
+2. Passa a cartella C:\Program Files\Microsoft Data Management Gateway\2.0\PowerShellScript toohello.
+3. Esecuzione hello successivo comando tooturn hello l'aggiornamento automatico delle funzionalità di disattivare.   
 
     ```PowerShell
     .\GatewayAutoUpdateToggle.ps1  -off
     ```
-4. Per riattivarla:
+4. tooturn nuovamente in:
 
     ```PowerShell
     .\GatewayAutoUpdateToggle.ps1  -on  
     ```
 [[Per gateway a più nodi a disponibilità e scalabilità elevate (anteprima)](data-factory-data-management-gateway-high-availability-scalability.md)]
-1. Avviare Windows PowerShell nel computer gateway.
-2. Passare alla cartella C:\Program Files\Microsoft Data Management Gateway\2.0\PowerShellScript.
-3. Eseguire il comando seguente per disattivare (disabilitare) la funzionalità di aggiornamento automatico.   
+1. Avviare Windows PowerShell nel computer gateway hello.
+2. Passa a cartella C:\Program Files\Microsoft Data Management Gateway\2.0\PowerShellScript toohello.
+3. Esecuzione hello successivo comando tooturn hello l'aggiornamento automatico delle funzionalità di disattivare.   
 
     Per il gateway con funzionalità di disponibilità elevata (anteprima), è necessario un parametro di AuthKey aggiuntivo.
     ```PowerShell
     .\GatewayAutoUpdateToggle.ps1  -off -AuthKey <your auth key>
     ```
-4. Per riattivarla:
+4. tooturn nuovamente in:
 
     ```PowerShell
     .\GatewayAutoUpdateToggle.ps1  -on -AuthKey <your auth key> 
 
 
 ## Configuration Manager
-Once you install the gateway, you can launch Data Management Gateway Configuration Manager in one of the following ways:
+Once you install hello gateway, you can launch Data Management Gateway Configuration Manager in one of hello following ways:
 
-1. In the **Search** window, type **Data Management Gateway** to access this utility.
-2. Run the executable **ConfigManager.exe** in the folder: **C:\Program Files\Microsoft Data Management Gateway\2.0\Shared**
+1. In hello **Search** window, type **Data Management Gateway** tooaccess this utility.
+2. Run hello executable **ConfigManager.exe** in hello folder: **C:\Program Files\Microsoft Data Management Gateway\2.0\Shared**
 
 ### Home page
-The Home page allows you to do the following actions:
+hello Home page allows you toodo hello following actions:
 
-* View status of the gateway (connected to the cloud service etc.).
-* **Register** using a key from the portal.
-* **Stop** and start the **Data Management Gateway Host service** on the gateway machine.
-* **Schedule updates** at a specific time of the days.
-* View the date when the gateway was **last updated**.
+* View status of hello gateway (connected toohello cloud service etc.).
+* **Register** using a key from hello portal.
+* **Stop** and start hello **Data Management Gateway Host service** on hello gateway machine.
+* **Schedule updates** at a specific time of hello days.
+* View hello date when hello gateway was **last updated**.
 
 ### Settings page
-The Settings page allows you to do the following actions:
+hello Settings page allows you toodo hello following actions:
 
-* View, change, and export **certificate** used by the gateway. This certificate is used to encrypt data source credentials.
-* Change **HTTPS port** for the endpoint. The gateway opens a port for setting the data source credentials.
-* **Status** of the endpoint
-* View **SSL certificate** is used for SSL communication between portal and the gateway to set credentials for data sources.  
+* View, change, and export **certificate** used by hello gateway. This certificate is used tooencrypt data source credentials.
+* Change **HTTPS port** for hello endpoint. hello gateway opens a port for setting hello data source credentials.
+* **Status** of hello endpoint
+* View **SSL certificate** is used for SSL communication between portal and hello gateway tooset credentials for data sources.  
 
 ### Diagnostics page
-The Diagnostics page allows you to do the following actions:
+hello Diagnostics page allows you toodo hello following actions:
 
-* Enable verbose **logging**, view logs in event viewer, and send logs to Microsoft if there was a failure.
-* **Test connection** to a data source.  
+* Enable verbose **logging**, view logs in event viewer, and send logs tooMicrosoft if there was a failure.
+* **Test connection** tooa data source.  
 
 ### Help page
-The Help page displays the following information:  
+hello Help page displays hello following information:  
 
-* Brief description of the gateway
+* Brief description of hello gateway
 * Version number
-* Links to online help, privacy statement, and license agreement.  
+* Links tooonline help, privacy statement, and license agreement.  
 
-## Monitor gateway in the portal
-In the Azure portal, you can view near-real time snapshot of resource utilization (CPU, memory, network(in/out), etc.) on a gateway machine.  
+## Monitor gateway in hello portal
+In hello Azure portal, you can view near-real time snapshot of resource utilization (CPU, memory, network(in/out), etc.) on a gateway machine.  
 
-1. In Azure portal, navigate to the home page for your data factory, and click **Linked services** tile. 
+1. In Azure portal, navigate toohello home page for your data factory, and click **Linked services** tile. 
 
     ![Data factory home page](./media/data-factory-data-management-gateway/monitor-data-factory-home-page.png) 
-2. Select the **gateway** in the **Linked services** page.
+2. Select hello **gateway** in hello **Linked services** page.
 
     ![Linked services page](./media/data-factory-data-management-gateway/monitor-linked-services-blade.png)
-3. In the **Gateway** page, you can see the memory and CPU usage of the gateway.
+3. In hello **Gateway** page, you can see hello memory and CPU usage of hello gateway.
 
     ![CPU and memory usage of gateway](./media/data-factory-data-management-gateway/gateway-simple-monitoring.png) 
-4. Enable **Advanced settings** to see more details such as network usage.
+4. Enable **Advanced settings** toosee more details such as network usage.
     
     ![Advanced monitoring of gateway](./media/data-factory-data-management-gateway/gateway-advanced-monitoring.png)
 
-The following table provides descriptions of columns in the **Gateway Nodes** list:  
+hello following table provides descriptions of columns in hello **Gateway Nodes** list:  
 
 Monitoring Property | Description
 :------------------ | :---------- 
-Name | Name of the logical gateway and nodes associated with the gateway. Node is an on-premises Windows machine that has the gateway installed on it. For information on having more than one node (up to four nodes) in a single logical gateway, see [Data Management Gateway - high availability and scalability](data-factory-data-management-gateway-high-availability-scalability.md).    
-Status | Status of the logical gateway and the gateway nodes. Example: Online/Offline/Limited/etc. For information about these statuses, See [Gateway status](#gateway-status) section. 
-Version | Shows the version of the logical gateway and each gateway node. The version of the logical gateway is determined based on version of majority of nodes in the group. If there are nodes with different versions in the logical gateway setup, only the nodes with the same version number as the logical gateway function properly. Others are in the limited mode and need to be manually updated (only in case auto-update fails). 
+Name | Name of hello logical gateway and nodes associated with hello gateway. Node is an on-premises Windows machine that has hello gateway installed on it. For information on having more than one node (up toofour nodes) in a single logical gateway, see [Data Management Gateway - high availability and scalability](data-factory-data-management-gateway-high-availability-scalability.md).    
+Status | Status of hello logical gateway and hello gateway nodes. Example: Online/Offline/Limited/etc. For information about these statuses, See [Gateway status](#gateway-status) section. 
+Version | Shows hello version of hello logical gateway and each gateway node. hello version of hello logical gateway is determined based on version of majority of nodes in hello group. If there are nodes with different versions in hello logical gateway setup, only hello nodes with hello same version number as hello logical gateway function properly. Others are in hello limited mode and need toobe manually updated (only in case auto-update fails). 
 Available memory | Available memory on a gateway node. This value is a near real-time snapshot. 
 CPU utilization | CPU utilization of a gateway node. This value is a near real-time snapshot. 
 Networking (In/Out) | Network utilization of a gateway node. This value is a near real-time snapshot. 
-Concurrent Jobs (Running/ Limit) | Number of jobs or tasks running on each node. This value is a near real-time snapshot. Limit signifies the maximum concurrent jobs for each node. This value is defined based on the machine size. You can increase the limit to scale up concurrent job execution in advanced scenarios, where CPU/memory/network is under-utilized, but activities are timing out. This capability is also available with a single-node gateway (even when the scalability and availability feature is not enabled).  
-Role | There are two types of roles in a multi-node gateway – Dispatcher and worker. All nodes are workers, which means they can all be used to execute jobs. There is only one dispatcher node, which is used to pull tasks/jobs from cloud services and dispatch them to different worker nodes (including itself).
+Concurrent Jobs (Running/ Limit) | Number of jobs or tasks running on each node. This value is a near real-time snapshot. Limit signifies hello maximum concurrent jobs for each node. This value is defined based on hello machine size. You can increase hello limit tooscale up concurrent job execution in advanced scenarios, where CPU/memory/network is under-utilized, but activities are timing out. This capability is also available with a single-node gateway (even when hello scalability and availability feature is not enabled).  
+Role | There are two types of roles in a multi-node gateway – Dispatcher and worker. All nodes are workers, which means they can all be used tooexecute jobs. There is only one dispatcher node, which is used toopull tasks/jobs from cloud services and dispatch them toodifferent worker nodes (including itself).
 
-In this page, you see some settings that make more sense when there are two or more nodes (scale out scenario) in the gateway. See [Data Management Gateway - high availability and scalability](data-factory-data-management-gateway-high-availability-scalability.md) for details about setting up a multi-node gateway.
+In this page, you see some settings that make more sense when there are two or more nodes (scale out scenario) in hello gateway. See [Data Management Gateway - high availability and scalability](data-factory-data-management-gateway-high-availability-scalability.md) for details about setting up a multi-node gateway.
 
 ### Gateway status
-The following table provides possible statuses of a **gateway node**: 
+hello following table provides possible statuses of a **gateway node**: 
 
 Status  | Comments/Scenarios
 :------- | :------------------
-Online | Node connected to Data Factory service.
+Online | Node connected tooData Factory service.
 Offline | Node is offline.
-Upgrading | The node is being auto-updated.
-Limited | Due to Connectivity issue. May be due to HTTP port 8050 issue, service bus connectivity issue, or credential sync issue. 
-Inactive | Node is in a configuration different from the configuration of other majority nodes.<br/><br/> A node can be inactive when it cannot connect to other nodes. 
+Upgrading | hello node is being auto-updated.
+Limited | Due tooConnectivity issue. May be due tooHTTP port 8050 issue, service bus connectivity issue, or credential sync issue. 
+Inactive | Node is in a configuration different from hello configuration of other majority nodes.<br/><br/> A node can be inactive when it cannot connect tooother nodes. 
 
 
-The following table provides possible statuses of a **logical gateway**. The gateway status depends on statuses of the gateway nodes. 
+hello following table provides possible statuses of a **logical gateway**. hello gateway status depends on statuses of hello gateway nodes. 
 
 Status | Comments
 :----- | :-------
-Needs Registration | No node is yet registered to this logical gateway
+Needs Registration | No node is yet registered toothis logical gateway
 Online | Gateway Nodes are online
 Offline | No node in online status.
-Limited | Not all nodes in this gateway are in healthy state. This status is a warning that some node might be down! <br/><br/>Could be due to credential sync issue on dispatcher/worker node. 
+Limited | Not all nodes in this gateway are in healthy state. This status is a warning that some node might be down! <br/><br/>Could be due toocredential sync issue on dispatcher/worker node. 
 
 ## Scale up gateway
-You can configure the number of **concurrent data movement jobs** that can run on a node to scale up the capability of moving data between on-premises and cloud data stores. 
+You can configure hello number of **concurrent data movement jobs** that can run on a node tooscale up hello capability of moving data between on-premises and cloud data stores. 
 
-When the available memory and CPU are not utilized well, but the idle capacity is 0, you should scale up by increasing the number of concurrent jobs that can run on a node. You may also want to scale up when activities are timing out because the gateway is overloaded. In the advanced settings of a gateway node, you can increase the maximum capacity for a node. 
+When hello available memory and CPU are not utilized well, but hello idle capacity is 0, you should scale up by increasing hello number of concurrent jobs that can run on a node. You may also want tooscale up when activities are timing out because hello gateway is overloaded. In hello advanced settings of a gateway node, you can increase hello maximum capacity for a node. 
   
 
 ## Troubleshooting gateway issues
-See [Troubleshooting gateway issues](data-factory-troubleshoot-gateway-issues.md) article for information/tips for troubleshooting issues with using the data management gateway.  
+See [Troubleshooting gateway issues](data-factory-troubleshoot-gateway-issues.md) article for information/tips for troubleshooting issues with using hello data management gateway.  
 
-## Move gateway from one machine to another
-This section provides steps for moving gateway client from one machine to another machine.
+## Move gateway from one machine tooanother
+This section provides steps for moving gateway client from one machine tooanother machine.
 
-1. In the portal, navigate to the **Data Factory home page**, and click the **Linked Services** tile.
+1. In hello portal, navigate toohello **Data Factory home page**, and click hello **Linked Services** tile.
 
     ![Data Gateways Link](./media/data-factory-data-management-gateway/DataGatewaysLink.png)
-2. Select your gateway in the **DATA GATEWAYS** section of the **Linked Services** page.
+2. Select your gateway in hello **DATA GATEWAYS** section of hello **Linked Services** page.
 
     ![Linked Services page with gateway selected](./media/data-factory-data-management-gateway/LinkedServiceBladeWithGateway.png)
-3. In the **Data gateway** page, click **Download and install data gateway**.
+3. In hello **Data gateway** page, click **Download and install data gateway**.
 
     ![Download gateway link](./media/data-factory-data-management-gateway/DownloadGatewayLink.png)
-4. In the **Configure** page, click **Download and install data gateway**, and follow instructions to install the data gateway on the machine.
+4. In hello **Configure** page, click **Download and install data gateway**, and follow instructions tooinstall hello data gateway on hello machine.
 
     ![Configure page](./media/data-factory-data-management-gateway/ConfigureBlade.png)
-5. Keep the **Microsoft Data Management Gateway Configuration Manager** open.
+5. Keep hello **Microsoft Data Management Gateway Configuration Manager** open.
 
     ![Configuration Manager](./media/data-factory-data-management-gateway/ConfigurationManager.png)    
-6. In the **Configure** page in the portal, click **Recreate key** on the command bar, and click **Yes** for the warning message. Click **copy button** next to key text that copies the key to the clipboard. The gateway on the old machine stops functioning as soon you recreate the key.  
+6. In hello **Configure** page in hello portal, click **Recreate key** on hello command bar, and click **Yes** for hello warning message. Click **copy button** next tookey text that copies hello key toohello clipboard. hello gateway on hello old machine stops functioning as soon you recreate hello key.  
 
     ![Recreate key](./media/data-factory-data-management-gateway/RecreateKey.png)
-7. Paste the **key** into text box in the **Register Gateway** page of the **Data Management Gateway Configuration Manager** on your machine. (optional) Click **Show gateway key** check box to see the key text.
+7. Paste hello **key** into text box in hello **Register Gateway** page of hello **Data Management Gateway Configuration Manager** on your machine. (optional) Click **Show gateway key** check box toosee hello key text.
 
     ![Copy key and Register](./media/data-factory-data-management-gateway/CopyKeyAndRegister.png)
-8. Click **Register** to register the gateway with the cloud service.
-9. On the **Settings** tab, click **Change** to select the same certificate that was used with the old gateway, enter the **password**, and click **Finish**.
+8. Click **Register** tooregister hello gateway with hello cloud service.
+9. On hello **Settings** tab, click **Change** tooselect hello same certificate that was used with hello old gateway, enter hello **password**, and click **Finish**.
 
    ![Specify Certificate](./media/data-factory-data-management-gateway/SpecifyCertificate.png)
 
-   You can export a certificate from the old gateway by doing the following steps: launch Data Management Gateway Configuration Manager on the old machine, switch to the **Certificate** tab, click **Export** button and follow the instructions.
-10. After successful registration of the gateway, you should see the **Registration** set to **Registered** and **Status** set to **Started** on the Home page of the Gateway Configuration Manager.
+   You can export a certificate from hello old gateway by doing hello following steps: launch Data Management Gateway Configuration Manager on hello old machine, switch toohello **Certificate** tab, click **Export** button and follow hello instructions.
+10. After successful registration of hello gateway, you should see hello **Registration** set too**Registered** and **Status** set too**Started** on hello Home page of hello Gateway Configuration Manager.
 
 ## Encrypting credentials
-To encrypt credentials in the Data Factory Editor, do the following steps:
+tooencrypt credentials in hello Data Factory Editor, do hello following steps:
 
-1. Launch web browser on the **gateway machine**, navigate to [Azure portal](http://portal.azure.com). Search for your data factory if needed, open data factory in the **DATA FACTORY** page and then click **Author & Deploy** to launch Data Factory Editor.   
-2. Click an existing **linked service** in the tree view to see its JSON definition or create a linked service that requires a data management gateway (for example: SQL Server or Oracle).
-3. In the JSON editor, for the **gatewayName** property, enter the name of the gateway.
-4. Enter server name for the **Data Source** property in the **connectionString**.
-5. Enter database name for the **Initial Catalog** property in the **connectionString**.    
-6. Click **Encrypt** button on the command bar that launches the click-once **Credential Manager** application. You should see the **Setting Credentials** dialog box.
+1. Launch web browser on hello **gateway machine**, navigate too[Azure portal](http://portal.azure.com). Search for your data factory if needed, open data factory in hello **DATA FACTORY** page and then click **Author & Deploy** toolaunch Data Factory Editor.   
+2. Click an existing **linked service** in hello tree view toosee its JSON definition or create a linked service that requires a data management gateway (for example: SQL Server or Oracle).
+3. In hello JSON editor, for hello **gatewayName** property, enter hello name of hello gateway.
+4. Enter server name for hello **Data Source** property in hello **connectionString**.
+5. Enter database name for hello **Initial Catalog** property in hello **connectionString**.    
+6. Click **Encrypt** button on hello command bar that launches hello click-once **Credential Manager** application. You should see hello **Setting Credentials** dialog box.
 
     ![Setting credentials dialog](./media/data-factory-data-management-gateway/setting-credentials-dialog.png)
-7. In the **Setting Credentials** dialog box, do the following steps:
-   1. Select **authentication** that you want the Data Factory service to use to connect to the database.
-   2. Enter name of the user who has access to the database for the **USERNAME** setting.
-   3. Enter password for the user for the **PASSWORD** setting.  
-   4. Click **OK** to encrypt credentials and close the dialog box.
-8. You should see a **encryptedCredential** property in the **connectionString** now.
+7. In hello **Setting Credentials** dialog box, do hello following steps:
+   1. Select **authentication** that you want hello Data Factory service toouse tooconnect toohello database.
+   2. Enter name of hello user who has access toohello database for hello **USERNAME** setting.
+   3. Enter password for hello user for hello **PASSWORD** setting.  
+   4. Click **OK** tooencrypt credentials and close hello dialog box.
+8. You should see a **encryptedCredential** property in hello **connectionString** now.
 
     ```JSON
     {
@@ -455,28 +455,28 @@ To encrypt credentials in the Data Factory Editor, do the following steps:
         }
     }
     ```
-Se si accede al portale da un computer diverso dal computer del gateway, è necessario assicurarsi che l'applicazione di gestione credenziali possa connettersi al computer del gateway. Se l'applicazione non riesce a raggiungere il computer gateway, non è possibile impostare le credenziali per l'origine dati e testare la connessione all'origine dati.  
+Se si accede portale hello da un computer diverso dal computer del gateway hello, è necessario assicurarsi che un'applicazione hello Gestione credenziali può connettersi toohello computer del gateway. Se un'applicazione hello non può raggiungere i computer del gateway hello, quindi non consente tooset le credenziali per l'origine dati hello e tootest connessione toohello dati.  
 
-Quando si usa l'applicazione di **Impostazione credenziali**, il portale crittografa le credenziali usando il certificato specificato nella scheda **Certificato** di **Gestione configurazione di Gateway** del computer gateway.
+Quando si utilizza hello **impostazione delle credenziali** applicazione portale hello consente di crittografare credenziali hello con certificato hello specificato in hello **certificato** scheda di hello **Gateway Configuration Manager** nel computer gateway hello.
 
-Se si vuole un approccio basato su API per crittografare le credenziali, è possibile usare il cmdlet di PowerShell [New-AzureRmDataFactoryEncryptValue](https://msdn.microsoft.com/library/mt603802.aspx) . Questo cmdlet consente di crittografare le credenziali mediante il certificato usato dal gateway. Aggiungere le credenziali crittografate all'elemento **EncryptedCredential** di **connectionString** nell'oggetto JSON. Usare l'oggetto JSON con il cmdlet [New AzureRmDataFactoryLinkedService](https://msdn.microsoft.com/library/mt603647.aspx) o nell'editor di Data Factory.
+Se si sta cercando un approccio basato su API per la crittografia delle credenziali hello, è possibile utilizzare hello [New AzureRmDataFactoryEncryptValue](https://msdn.microsoft.com/library/mt603802.aspx) credenziali tooencrypt cmdlet di PowerShell. cmdlet di Hello Usa certificato hello che tale gateway è configurato toouse tooencrypt hello credenziali. Aggiungere le credenziali crittografate toohello **EncryptedCredential** elemento di hello **connectionString** in hello JSON. Per utilizzare JSON hello hello [New AzureRmDataFactoryLinkedService](https://msdn.microsoft.com/library/mt603647.aspx) cmdlet o nell'Editor delle Data Factory hello.
 
 ```JSON
 "connectionString": "Data Source=<servername>;Initial Catalog=<databasename>;Integrated Security=True;EncryptedCredential=<encrypted credential>",
 ```
 
-Esiste un altro approccio per impostare le credenziali usando l'editor delle data factory. Se si crea un servizio collegato di SQL Server usando l'editor e si immettono le credenziali in testo normale, le credenziali vengono crittografate tramite un certificato che appartiene al servizio Data Factory, NON tramite il certificato usato dal gateway. Anche se questo approccio può apparire leggermente più veloce, in alcuni casi risulta meno sicuro. È pertanto consigliabile seguire questo approccio solo per scopi di sviluppo o di test.
+Esiste un altro approccio per impostare le credenziali usando l'editor delle data factory. Se si crea un SQL Server collegato usando hello editor e immettere le credenziali in testo normale, le credenziali di hello vengono crittografate utilizzando un certificato a cui appartiene il servizio di Data Factory hello. Non utilizza il certificato di hello che tale gateway è configurato toouse. Anche se questo approccio può apparire leggermente più veloce, in alcuni casi risulta meno sicuro. È pertanto consigliabile seguire questo approccio solo per scopi di sviluppo o di test.
 
 ## <a name="powershell-cmdlets"></a>Cmdlet PowerShell
-Questa sezione descrive come creare e registrare un gateway con i cmdlet di Azure PowerShell.
+Questa sezione viene descritto come toocreate e registrare un gateway con i cmdlet PowerShell di Azure.
 
 1. Avviare **Azure PowerShell** in modalità di amministrazione.
-2. Accedere all'account Azure eseguendo il comando seguente e immettendo le credenziali di Azure.
+2. Accedi tooyour account Azure eseguendo hello comando seguente e immettere le credenziali di Azure.
 
     ```PowerShell
     Login-AzureRmAccount
     ```
-3. Usare il cmdlet **New-AzureRmDataFactoryGateway** per creare un gateway logico come illustrato di seguito:
+3. Hello utilizzare **New AzureRmDataFactoryGateway** toocreate cmdlet un gateway logico come indicato di seguito:
 
     ```PowerShell
     $MyDMG = New-AzureRmDataFactoryGateway -Name <gatewayName> -DataFactoryName <dataFactoryName> -ResourceGroupName ADF –Description <desc>
@@ -499,7 +499,7 @@ Questa sezione descrive come creare e registrare un gateway con i cmdlet di Azur
     Key               : ADF#00000000-0000-4fb8-a867-947877aef6cb@fda06d87-f446-43b1-9485-78af26b8bab0@4707262b-dc25-4fe5-881c-c8a7c3c569fe@wu#nfU4aBlq/heRyYFZ2Xt/CD+7i73PEO521Sj2AFOCmiI
     ```
 
-1. In Azure PowerShell, passare alla cartella: **C:\Program Files\Microsoft Data Management Gateway\2.0\PowerShellScript\**. Eseguire **RegisterGateway.ps1** associato alla variabile locale **$Key** come illustrato nel comando seguente. Lo script registra l'agente client installato nel computer con il gateway logico creato in precedenza.
+1. In Azure PowerShell, passare cartella toohello: **C:\Program Files\Microsoft Data Management Gateway\2.0\PowerShellScript\**. Eseguire **RegisterGateway.ps1** associata alla variabile locale hello **$Key** come illustrato nel comando seguente hello. Questo script registra l'agente client hello installato nel computer con gateway di hello logico creato in precedenza.
 
     ```PowerShell
     PS C:\> .\RegisterGateway.ps1 $MyDMG.Key
@@ -507,17 +507,17 @@ Questa sezione descrive come creare e registrare un gateway con i cmdlet di Azur
     ```
     Agent registration is successful!
     ```
-    È possibile registrare il gateway in un computer remoto usando il parametro IsRegisterOnRemoteMachine. Esempio:
+    È possibile registrare il gateway hello in un computer remoto utilizzando il parametro IsRegisterOnRemoteMachine hello. Esempio:
 
     ```PowerShell
     .\RegisterGateway.ps1 $MyDMG.Key -IsRegisterOnRemoteMachine true
     ```
-2. È possibile usare il cmdlet **Get-AzureRmDataFactoryGateway** per ottenere l'elenco di gateway nell'istanza di Data factory. Quando lo **stato** è **online**, il gateway è pronto per essere usato.
+2. È possibile utilizzare hello **Get AzureRmDataFactoryGateway** elenco hello tooget di cmdlet di gateway nella data factory. Quando hello **stato** Mostra **online**, significa che il gateway è toouse pronto.
 
     ```PowerShell        
     Get-AzureRmDataFactoryGateway -DataFactoryName <dataFactoryName> -ResourceGroupName ADF
     ```
-È possibile rimuovere un gateway con il cmdlet **Remove-AzureRmDataFactoryGateway** e aggiornare la descrizione per un gateway usando i cmdlet **Set-AzureRmDataFactoryGateway**. Per la sintassi e altri dettagli relativi a questi cmdlet, vedere Riferimento ai cmdlet di Data Factory.  
+È possibile rimuovere un gateway tramite hello **Remove AzureRmDataFactoryGateway** descrizione cmdlet e aggiornamento per un gateway tramite hello **Set AzureRmDataFactoryGateway** cmdlet. Per la sintassi e altri dettagli relativi a questi cmdlet, vedere Riferimento ai cmdlet di Data Factory.  
 
 ### <a name="list-gateways-using-powershell"></a>Elencare i gateway usando PowerShell
 
@@ -533,4 +533,4 @@ Remove-AzureRmDataFactoryGateway -Name JasonHDMG_byPSRemote -ResourceGroupName A
 
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Vedere l'articolo [Spostare dati tra archivi dati locali e cloud](data-factory-move-data-between-onprem-and-cloud.md) . In questa procedura dettagliata viene creata una pipeline che usa il gateway per spostare i dati da un database di SQL Server locale a un BLOB di Azure.  
+* Vedere l'articolo [Spostare dati tra archivi dati locali e cloud](data-factory-move-data-between-onprem-and-cloud.md) . In questa procedura dettagliata hello, creare una pipeline che utilizza hello gateway toomove dati da un tooan di database di SQL Server on-premise blob di Azure.  

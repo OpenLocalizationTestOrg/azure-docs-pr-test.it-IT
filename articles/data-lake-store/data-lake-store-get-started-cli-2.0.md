@@ -1,6 +1,6 @@
 ---
-title: Usare l'interfaccia della riga di comando di Azure 2.0 per iniziare a usare Azure Data Lake Store | Microsoft Docs
-description: Usare la riga di comando multipiattaforma di Azure 2.0 per creare un account di Data Lake Store ed eseguire operazioni di base
+title: tooget interfaccia aaaUse Azure 2.0 da riga di comando avviato con l'archivio Azure Data Lake | Documenti Microsoft
+description: Utilizzare una riga di comando multipiattaforma di Azure 2.0 toocreate un account archivio Data Lake ed eseguire operazioni di base
 services: data-lake-store
 documentationcenter: 
 author: nitinme
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 06/29/2017
 ms.author: nitinme
-ms.openlocfilehash: ed78d25f2bac0a9996f1796ee503f31a36940977
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 374dcd6cdbc13ad19f6c65502329986ecae60ef2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-with-azure-data-lake-store-using-azure-cli-20"></a>Introduzione ad Azure Data Lake Store con l'interfaccia della riga di comando di Azure 2.0
 > [!div class="op_single_selector"]
@@ -33,13 +33,13 @@ ms.lasthandoff: 07/11/2017
 >
 >
 
-Informazioni su come usare l'interfaccia della riga di comando di Azure 2.0 per creare un account di Azure Data Lake Store ed eseguire operazioni di base, ad esempio creare cartelle, caricare e scaricare i file di dati, eliminare l'account e così via. Per altre informazioni su Data Lake Store, vedere [Panoramica di Data Lake Store](data-lake-store-overview.md).
+Informazioni sulla modalità di memorizzazione una Data Lake di Azure di toocreate toouse CLI di Azure 2.0 account e di eseguire operazioni di base, ad esempio creare cartelle, caricare e scaricare file di dati, eliminare l'account, e così via. Per altre informazioni su Data Lake Store, vedere [Panoramica di Data Lake Store](data-lake-store-overview.md).
 
-L'interfaccia della riga di comando di Azure 2.0 è la nuova esperienza della riga di comando di Azure per gestire le risorse di Azure. Può essere usata in macOS, Linux e Windows. Per altre informazioni, vedere [Overview of Azure CLI 2.0](https://docs.microsoft.com/cli/azure/overview) (Panoramica dell'interfaccia della riga di comando di Azure 2.0). Per un elenco completo di comandi e per la sintassi, è anche possibile vedere le [informazioni di riferimento sull'interfaccia della riga di comando di Azure Data Lake Store 2.0](https://docs.microsoft.com/cli/azure/dls).
+Hello Azure CLI 2.0 è una nuova esperienza della riga di comando di Azure per la gestione delle risorse di Azure. Può essere usata in macOS, Linux e Windows. Per altre informazioni, vedere [Overview of Azure CLI 2.0](https://docs.microsoft.com/cli/azure/overview) (Panoramica dell'interfaccia della riga di comando di Azure 2.0). È anche possibile esaminare hello [riferimento di Azure Data Lake archivio CLI 2.0](https://docs.microsoft.com/cli/azure/dls) per un elenco completo di comandi e sintassi.
 
 
 ## <a name="prerequisites"></a>Prerequisiti
-Per eseguire le procedure descritte nell'articolo è necessario:
+Prima di iniziare questo articolo, è necessario disporre delle seguenti hello:
 
 * **Una sottoscrizione di Azure**. Vedere [Ottenere una versione di valutazione gratuita di Azure](https://azure.microsoft.com/pricing/free-trial/).
 
@@ -47,10 +47,10 @@ Per eseguire le procedure descritte nell'articolo è necessario:
 
 ## <a name="authentication"></a>Autenticazione
 
-Questo articolo usa un approccio di autenticazione più semplice con Data Lake Store in cui si accede come utente finale. Il livello di accesso al file system e all'account Data Lake Store viene quindi regolato dal livello di accesso dell'utente connesso. Esistono tuttavia altri approcci oltre all'autenticazione con Data Lake Store, ad esempio l'**autenticazione dell'utente finale** o l'**autenticazione da servizio a servizio**. Per altre informazioni e istruzioni su come eseguire l'autenticazione, vedere [Autenticazione dell'utente finale](data-lake-store-end-user-authenticate-using-active-directory.md) o [Autenticazione da servizio a servizio](data-lake-store-authenticate-using-active-directory.md).
+Questo articolo usa un approccio di autenticazione più semplice con Data Lake Store in cui si accede come utente finale. Hello accesso livello tooData Lake archivio account file system e quindi è disciplinato dal livello di accesso hello di hello utente connesso. Tuttavia, esistono altri approcci come ben tooauthenticate con archivio Data Lake, che sono **autenticazione dell'utente finale** o **authentication service to service**. Per istruzioni e ulteriori informazioni su come tooauthenticate, vedere [autenticazione dell'utente finale](data-lake-store-end-user-authenticate-using-active-directory.md) o [authentication Service to service](data-lake-store-authenticate-using-active-directory.md).
 
 
-## <a name="log-in-to-your-azure-subscription"></a>Accedere alla sottoscrizione di Azure
+## <a name="log-in-tooyour-azure-subscription"></a>Accedi tooyour sottoscrizione di Azure
 
 1. Accedere alla propria sottoscrizione di Azure.
 
@@ -58,9 +58,9 @@ Questo articolo usa un approccio di autenticazione più semplice con Data Lake S
     az login
     ```
 
-    Si ottiene un codice da usare nel passaggio successivo. Usare un Web browser per aprire la pagina https://aka.ms/devicelogin e immettere il codice per l'autenticazione. Verrà chiesto di accedere usando le proprie credenziali.
+    Si ottiene un codice toouse nel passaggio successivo hello. Utilizzare un web browser tooopen hello pagina https://aka.ms/devicelogin e immettere tooauthenticate codice hello. Si è toolog richiesta utilizzando le credenziali.
 
-2. Dopo l'accesso, la finestra elenca tutte le sottoscrizioni di Azure associate all'account. Usare il comando seguente per usare una sottoscrizione specifica.
+2. Quando si accede, tutti gli elenchi di finestra hello hello sottoscrizioni Azure in cui sono associate all'account. Utilizzare hello successivo comando toouse una sottoscrizione specifica.
    
     ```azurecli
     az account set --subscription <subscription id> 
@@ -68,13 +68,13 @@ Questo articolo usa un approccio di autenticazione più semplice con Data Lake S
 
 ## <a name="create-an-azure-data-lake-store-account"></a>Creare un account di Azure Data Lake Store
 
-1. Creare un nuovo gruppo di risorse. Nel comando seguente, fornire i valori dei parametri da utilizzare. Se il nome del percorso contiene spazi, racchiuderlo tra virgolette doppie, Ad esempio "Stati Uniti orientali 2". 
+1. Creare un nuovo gruppo di risorse. Nel comando seguente di hello, fornire hello valori di parametro che si desidera toouse. Se il nome di percorso hello contiene spazi, è necessario inserirlo tra virgolette. Ad esempio "Stati Uniti orientali 2". 
    
     ```azurecli
     az group create --location "East US 2" --name myresourcegroup
     ```
 
-2. Creare un account Data Lake Store di Azure.
+2. Creare account archivio Data Lake hello.
    
     ```azurecli
     az dls account create --account mydatalakestore --resource-group myresourcegroup
@@ -82,42 +82,42 @@ Questo articolo usa un approccio di autenticazione più semplice con Data Lake S
 
 ## <a name="create-folders-in-a-data-lake-store-account"></a>Creare delle cartelle in un account Archivio Data Lake
 
-È possibile creare delle cartelle con il proprio account di Azure Data Lake Store per gestire e archiviare i dati. Usare il comando seguente per creare una cartella denominata **mynewfolder** nella directory radice di Data Lake Store.
+È possibile creare cartelle sotto la toomanage account archivio Azure Data Lake e archiviare i dati. Hello utilizzo successivo comando toocreate una cartella denominata **mynewfolder** radice hello hello archivio Data Lake.
 
 ```azurecli
 az dls fs create --account mydatalakestore --path /mynewfolder --folder
 ```
 
 > [!NOTE]
-> Il parametro `--folder` assicura che il comando crei una cartella. Se questo parametro non è presente, il comando crea un file vuoto denominato mynewfolder nella radice dell'account Data Lake Store.
+> Hello `--folder` parametro assicura che il comando hello crea una cartella. Se questo parametro non è presente, il comando di hello crea un file vuoto denominato mynewfolder radice hello hello account archivio Data Lake.
 > 
 >
 
-## <a name="upload-data-to-a-data-lake-store-account"></a>Caricare dati in un account Data Lake Store
+## <a name="upload-data-tooa-data-lake-store-account"></a>Caricamento account archivio Data Lake tooa di dati
 
-È possibile caricare dati in Data Lake Store direttamente a livello di radice o in una cartella creata nell'account. I frammenti di codice riportati di seguito illustrano come caricare alcuni dati di esempio nella cartella (**mynewdirectory**) creata nella sezione precedente.
+È possibile caricare l'archivio del data Lake tooData direttamente in hello livello o tooa cartella radice che è stato creato all'interno di account hello. Hello i frammenti di codice riportato di seguito viene illustrato come tooupload cartella toohello alcuni dati di esempio (**mynewfolder**) creata nella sezione precedente hello.
 
-Se si stanno cercando dati di esempio da caricare, è possibile ottenere la cartella **Ambulance Data** dal [Repository GitHub per Azure Data Lake](https://github.com/MicrosoftBigData/usql/tree/master/Examples/Samples/Data/AmbulanceData). Scaricare il file e archiviarlo in una directory locale nel computer, ad esempio C:\sampledata\.
+Se si sta cercando alcuni tooupload di dati di esempio, è possibile ottenere hello **dati ambulanza** cartella hello [Git Repository di Azure Data Lake](https://github.com/MicrosoftBigData/usql/tree/master/Examples/Samples/Data/AmbulanceData). Scaricare il file hello e archiviarlo in una directory locale nel computer in uso, ad esempio C:\sampledata\.
 
 ```azurecli
 az dls fs upload --account mydatalakestore --source-path "C:\SampleData\AmbulanceData\vehicle1_09142014.csv" --destination-path "/mynewfolder/vehicle1_09142014.csv"
 ```
 
 > [!NOTE]
-> Per la destinazione, è necessario specificare il percorso completo, incluso il nome file.
+> Per la destinazione di hello, è necessario specificare percorso completo di hello compreso il nome del file hello.
 > 
 >
 
 
 ## <a name="list-files-in-a-data-lake-store-account"></a>Elencare i file in un account Data Lake Store
 
-Usare il comando seguente per elencare i file nell'account di Data Lake Store.
+Utilizzare i seguenti comandi toolist hello file in un account archivio Data Lake hello.
 
 ```azurecli
 az dls fs list --account mydatalakestore --path /mynewfolder
 ```
 
-L'output di questo comando dovrebbe essere simile al seguente:
+output di Hello di questo oggetto deve essere simile toohello seguenti:
 
     [
         {
@@ -139,30 +139,30 @@ L'output di questo comando dovrebbe essere simile al seguente:
 
 ## <a name="rename-download-and-delete-data-from-a-data-lake-store-account"></a>Rinominare, scaricare ed eliminare i dati da un account Data Lake Store 
 
-* **Per rinominare un file**, usare il comando seguente:
+* **un file toorename**, utilizzare hello comando seguente:
   
     ```azurecli
     az dls fs move --account mydatalakestore --source-path /mynewfolder/vehicle1_09142014.csv --destination-path /mynewfolder/vehicle1_09142014_copy.csv
     ```
 
-* **Per scaricare un file**, usare il comando seguente. Assicurarsi che il percorso di destinazione specificato esista già.
+* **un file toodownload**, utilizzare hello comando seguente. Verificare che il percorso di destinazione hello specificato già esiste.
   
     ```azurecli     
     az dls fs download --account mydatalakestore --source-path /mynewfolder/vehicle1_09142014_copy.csv --destination-path "C:\mysampledata\vehicle1_09142014_copy.csv"
     ```
 
     > [!NOTE]
-    > Il comando crea la cartella di destinazione se non esiste.
+    > comando Hello Crea cartella di destinazione hello se non esiste.
     > 
     >
 
-* **Per eliminare un file**, usare il comando seguente:
+* **un file toodelete**, utilizzare hello comando seguente:
   
     ```azurecli
     az dls fs delete --account mydatalakestore --path /mynewfolder/vehicle1_09142014_copy.csv
     ```
 
-    Per eliminare la cartella **mynewfolder** e il file **vehicle1_09142014_copy.csv** con un unico comando, usare il parametro --recurse.
+    Se si desidera toodelete hello cartella **mynewfolder** e file hello **vehicle1_09142014_copy.csv** insieme in un comando, utilizzare hello - recurse parametro
 
     ```azurecli
     az dls fs delete --account mydatalakestore --path /mynewfolder --recurse
@@ -170,27 +170,27 @@ L'output di questo comando dovrebbe essere simile al seguente:
 
 ## <a name="work-with-permissions-and-acls-for-a-data-lake-store-account"></a>Utilizzare autorizzazioni ed elenchi di controllo di accesso per un account Data Lake Store
 
-Questa sezione illustra come gestire elenchi di controllo di accesso e autorizzazioni usando l'interfaccia della riga di comando di Azure 2.0. Per una spiegazione dettagliata di come vengono implementati gli elenchi di controllo di accesso in Azure Data Lake Store, vedere [Controllo di accesso in Azure Data Lake Store](data-lake-store-access-control.md).
+In questa sezione informazioni su come toomanage ACL e autorizzazioni mediante Azure CLI 2.0. Per una spiegazione dettagliata di come vengono implementati gli elenchi di controllo di accesso in Azure Data Lake Store, vedere [Controllo di accesso in Azure Data Lake Store](data-lake-store-access-control.md).
 
-* **Per aggiornare il proprietario di un file o di una cartella**, usare il comando seguente:
+* **proprietario hello tooupdate di una file o alla cartella**, utilizzare hello comando seguente:
 
     ```azurecli
     az dls fs access set-owner --account mydatalakestore --path /mynewfolder/vehicle1_09142014.csv --group 80a3ed5f-959e-4696-ba3c-d3c8b2db6766 --owner 6361e05d-c381-4275-a932-5535806bb323
     ```
 
-* **Per aggiornare le autorizzazioni per un file o per una cartella**, usare il comando seguente:
+* **le autorizzazioni di hello tooupdate per una file o alla cartella**, utilizzare hello comando seguente:
 
     ```azurecli
     az dls fs access set-permission --account mydatalakestore --path /mynewfolder/vehicle1_09142014.csv --permission 777
     ```
     
-* **Per ottenere gli elenchi di controllo di accesso per un determinato percorso**, usare il comando seguente:
+* **tooget hello ACL per un determinato percorso**, utilizzare hello comando seguente:
 
     ```azurecli
     az dls fs access show --account mydatalakestore --path /mynewfolder/vehicle1_09142014.csv
     ```
 
-    L'output dovrebbe essere simile al seguente:
+    output di Hello deve essere simile toohello seguenti:
 
         {
             "entries": [
@@ -204,38 +204,38 @@ Questa sezione illustra come gestire elenchi di controllo di accesso e autorizza
           "stickyBit": false
         }
 
-* **Per impostare una voce per un elenco di controllo di accesso**, usare il comando seguente:
+* **una voce per un ACL tooset**, utilizzare hello comando seguente:
 
     ```azurecli
     az dls fs access set-entry --account mydatalakestore --path /mynewfolder --acl-spec user:6360e05d-c381-4275-a932-5535806bb323:-w-
     ```
 
-* **Per rimuovere una voce per un elenco di controllo di accesso**, usare il comando seguente:
+* **una voce per un ACL tooremove**, utilizzare hello comando seguente:
 
     ```azurecli
     az dls fs access remove-entry --account mydatalakestore --path /mynewfolder --acl-spec user:6360e05d-c381-4275-a932-5535806bb323
     ```
 
-* **Per rimuovere un intero elenco di controllo di accesso predefinito**, usare il comando seguente:
+* **un ACL predefinito intero tooremove**, utilizzare hello comando seguente:
 
     ```azurecli
     az dls fs access remove-all --account mydatalakestore --path /mynewfolder --default-acl
     ```
 
-* **Per rimuovere un intero elenco di controllo di accesso non predefinito**, usare il comando seguente:
+* **un ACL non predefinito intero tooremove**, utilizzare hello comando seguente:
 
     ```azurecli
     az dls fs access remove-all --account mydatalakestore --path /mynewfolder
     ```
     
 ## <a name="delete-a-data-lake-store-account"></a>Eliminare un account Archivio Data Lake
-Usare il comando seguente per eliminare l'account di Data Lake Store.
+Utilizzare hello successivo comando toodelete un account archivio Data Lake.
 
 ```azurecli
 az dls account delete --account mydatalakestore
 ```
 
-Quando viene richiesto, immettere **Y** per eliminare l'account.
+Quando richiesto, immettere **Y** account hello toodelete.
 
 ## <a name="next-steps"></a>Passaggi successivi
 

@@ -1,6 +1,6 @@
 ---
-title: Interfaccia utente di Azure Mobile Engagement - Impostazioni
-description: Informazioni su come gestire le impostazioni globali dell'applicazione usando Azure Mobile Engagement
+title: aaaAzure interfaccia utente di Mobile Engagement - impostazioni
+description: Informazioni su come toomanage hello impostazioni globali dell'applicazione con Azure Mobile Engagement
 services: mobile-engagement
 documentationcenter: 
 author: piyushjo
@@ -14,73 +14,73 @@ ms.tgt_pltfrm: mobile-multiple
 ms.workload: mobile
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: af5c81df2b9f288161b38625d3ac2adde8fb195d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 02d4a36c591fc5e097410b7e931d1c9ce81d68d5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-manage-the-global-settings-of-your-application"></a>Come gestire le impostazioni globali dell'applicazione
-Le opzioni del menu **Impostazioni** disponibili per un'applicazione variano a seconda della piattaforma dell'applicazione e delle autorizzazioni di cui si dispone per l'applicazione. Sono disponibili le impostazioni seguenti: Dettagli, Progetti, Push nativo, Velocità push, Tag (info app) e Pressione commerciale. L'opzione di menu Tag (info app) della sezione Impostazioni può essere gestita dall'applicazione (utilizzando l’SDK) o dal back-end (utilizzando l'API dispositivo). 
+# <a name="how-toomanage-hello-global-settings-of-your-application"></a>Come toomanage hello impostazioni globali dell'applicazione
+Hello **impostazioni** opzioni disponibili per una variabile di applicazione, a seconda della piattaforma hello di un'applicazione hello e autorizzazioni di hello è stato concesso per un'applicazione hello. Le impostazioni includono i seguenti hello: dettagli, progetti, Push nativo, la velocità di Push, il Tag (app info) e della pressione commerciale. opzione di menu (info app) di Tag della sezione Impostazioni hello Hello può essere gestito dall'applicazione (tramite hello SDK) o dal back-end (tramite hello API dispositivo). 
 
 > [!NOTE]
-> Molte sezioni dell'interfaccia utente del portale **Mobile Engagement** contengono il pulsante **MOSTRA GUIDA**. Premere questo pulsante per ottenere ulteriori informazioni contestuali su una sezione.
+> Numero di sezioni di hello **Mobile Engagement** interfaccia utente del portale contengono hello **Mostra Guida** pulsante. Premere tooget questo pulsante più informazioni contestuali su una sezione.
 > 
 > 
 
 ## <a name="details"></a>Dettagli
-Consente di modificare il nome e la descrizione dell'applicazione e di visualizzare il proprietario dell'applicazione e le autorizzazioni del ruolo. 
+Consente di toochange hello nome e una descrizione del proprietario della vista hello dell'applicazione e le autorizzazioni del ruolo applicazione. 
 
-La configurazione di Analytics consente di visualizzare o modificare il giorno da cui iniziano le settimane e il tempo di conservazione in giorni.
+Configurazione Analitica consente hello e tooview o modifica giorno hello settimane avviare nel periodo di conservazione in giorni.
 
   ![settings1][46]
 
 ## <a name="projects"></a>Progetti
-Consente di selezionare tutti i progetti in cui deve essere visualizzata l'applicazione. 
+Consente di tooselect tutti i progetti da tooappear l'applicazione. 
 
-È inoltre possibile eseguire la ricerca di un progetto e visualizzare il nome, la descrizione, il proprietario e le autorizzazioni del ruolo di qualsiasi progetto di cui l'applicazione fa parte.
+È inoltre possibile cercare un progetto e visualizza il nome hello, descrizione, proprietario e le autorizzazioni di un progetto dell'applicazione fa parte di.
 
 Per altre informazioni, vedere: [Documentazione UI - Home][Link 13]
 
   ![settings3][48]
 
 ## <a name="native-push"></a>Push nativo
-Consente di registrare un nuovo certificato o di eliminare un certificato esistente per l'utilizzo con push nativo. Il push nativo consente a Azure Mobile Engagement di effettuare il push all'applicazione in qualsiasi momento, anche quando non è in esecuzione. 
+Consente di tooregister un nuovo certificato o l'eliminazione e certificato esistente per utilizzare con push nativo. Push nativo consente Azure Mobile Engagement toopush tooyour in qualsiasi momento, anche quando non è in esecuzione. 
 
-Dopo aver fornito le credenziali o i certificati per almeno un servizio di push nativo, è possibile selezionare "In qualsiasi momento" in fase di creazione di campagne Reach, nonché usare il parametro "notifier" nell'API PUSH.
+Dopo aver fornito le credenziali o i certificati per almeno un servizio Push nativo, è possibile selezionare "In qualsiasi momento" durante la creazione di campagne Reach, nonché utilizzare hello "notifica" parametro in hello API PUSH.
 
 ### <a name="apple-push-notification-service-apns"></a>Apple Push Notification Service (APNS)
-Per abilitare il push nativo tramite Apple Push Notification Service è necessario registrare il certificato. Occorre specificare il tipo di certificato: sviluppo (DEV) o produzione (PROD) e quindi caricare il certificato e la password.
+tooenable Push nativo con Apple Push Notification Service hello sarà necessario tooregister il certificato. Sarà necessario tipo hello toospecify del certificato come sviluppo (DEV) o produzione (produzione). Sarà quindi necessario caricare la password del certificato e hello.
 
-Per altre informazioni, vedere: [Documentazione SDK - iOS - Come preparare l'applicazione per le notifiche push Apple][Link 5]
+Per ulteriori informazioni, vedere: [documentazione SDK - iOS - come tooPrepare l'applicazione per le notifiche Push di Apple][Link 5]
 
 ![settings4][49]
 
 ### <a name="windows-push-notification-service-wpns"></a>Servizio notifica Push Windows (WPNS)
-Per abilitare il push nativo tramite il Servizio notifica Push Windows, è necessario fornire le credenziali dell'applicazione. Sono necessari l'identificatore di sicurezza del pacchetto (SID) e la chiave segreta.
+tooenable Push nativo con il servizio di notifica Windows, è necessario fornire le credenziali dell'applicazione. Sono necessari l'identificatore di sicurezza del pacchetto (SID) e la chiave segreta.
 
 ![settings5][50]
 
 ### <a name="google-cloud-messaging-for-android-gcm"></a>Google Cloud Messaging per Android (GCM)
-Per abilitare il push nativo tramite GCM, è necessario seguire le istruzioni fornite da Google. È necessario, quindi, incollare una chiave API semplice del server, configurata senza restrizioni IP. Richiede l'integrazione con SDK per Android v1.12.0+.
+tooenable Push nativo con GCM, è necessario istruzioni hello toofollow da Google. È necessario, quindi, incollare una chiave API semplice del server, configurata senza restrizioni IP. Richiede l'integrazione con hello SDK per Android 1.12.0 e versioni successive.
 
 Per altre informazioni, vedere: 
 
-* [Documentazione SDK - Android - Come integrare GCM][Link 5]
+* [SDK documentazione Android come tooIntegrate GCM][Link 5]
 * [Guida GCM di Google per sviluppatori](http://developer.android.com/guide/google/gcm/gs.html)
 
 ### <a name="amazon-device-messaging-for-android-adm"></a>Amazon Device Messaging for Android (ADM)
-Per abilitare il push nativo mediante ADM, è necessario specificare le <OAuth credentials> Amazon costituite da ID e segreto client (è necessaria l'integrazione con l'SDK per Android v2.1.0+).
+tooenable nativo Push con ADM, è necessario fornire Amazon <OAuth credentials> costituito da un ID Client e il segreto Client (richiede l'integrazione con il SDK per Android 2.1.0 e versioni successive).
 
 Per altre informazioni, vedere: 
 
-* [Documentazione SDK - Android - Come integrare ADM][Link 5]
+* [SDK documentazione Android come tooIntegrate ADM][Link 5]
 * [Documentazione ADM di Amazon per sviluppatori](https://developer.amazon.com/sdk/adm/credentials.html#Getting)
 
 ![settings6][51]
 
 ## <a name="push-speed"></a>Velocità di push
-Mostra la velocità di push corrente dell'applicazione e consente di definire la velocità di push dell'applicazione.
+Mostra velocità di push dell'applicazione corrente hello e consente una velocità di push hello toodefine dell'applicazione.
 
   ![settings7][52]
 

@@ -1,6 +1,6 @@
 ---
-title: Modelli e scenari per Azure Service Fabric | Documentazione Microsoft
-description: Informazioni sulle procedure consigliate e collaudate, sui modelli riutilizzabili per progettare, sviluppare e gestire i microservizi in Service Fabric.
+title: aaaAzure Service Fabric modelli e gli scenari | Documenti Microsoft
+description: Informazioni sulle procedure consigliate e dimostrato, toodesign modelli riutilizzabili, sviluppare e utilizzare il microservizi nell'infrastruttura del servizio.
 services: service-fabric
 documentationcenter: .net
 author: rwike77
@@ -14,24 +14,24 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/16/2017
 ms.author: ryanwi
-ms.openlocfilehash: fb2fa495758433e357722427b1c162420935955d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3811420eb53d9a49e490dd2e2e5319d8dea5629c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="service-fabric-patterns-and-scenarios"></a>Modelli e scenari per Service Fabric
-Se si vogliono sviluppare microservizi su larga scala con Azure Service Fabric, può essere utile imparare dagli esperti che hanno progettato questa piattaforma distribuita come servizio (PaaS, Platform as a Service). Per iniziare occorre scegliere l'architettura appropriata, per poi imparare le procedure per ottimizzare le risorse per l'applicazione. Il corso [Service Fabric Patterns and Practices](https://mva.microsoft.com/en-US/training-courses/service-fabric-patterns-and-practices-16925?l=mudwqISGD_6005167344) (Modelli e procedure consigliate per Service Fabric) offre le risposte alle domande più frequenti dei clienti reali sugli scenari di utilizzo e le aree applicative di Service Fabric.
+Se si sta consultando la creazione di microservizi su larga scala utilizzando Azure Service Fabric, imparare da hello esperti progettato e costruito questa piattaforma come servizio (PaaS). Introduzione a architettura corretta e poi Scopri come toooptimize risorse per l'applicazione. Hello [servizio Fabric Patterns and Practices](https://mva.microsoft.com/en-US/training-courses/service-fabric-patterns-and-practices-16925?l=mudwqISGD_6005167344) corso risposte hello domande spesso i clienti del mondo reale sugli scenari di Service Fabric e aree dell'applicazione.
  
-È possibile scoprire come progettare, sviluppare e gestire i microservizi in Service Fabric usando procedure consigliate e modelli collaudati riutilizzabili. Si può iniziare da una panoramica di Service Fabric per poi procedere con vari argomenti di approfondimento come l'ottimizzazione e la sicurezza del cluster, la migrazione di applicazioni legacy, IoT su vasta scala, l'hosting di motori di gioco e altro ancora. Sono anche disponibili informazioni su come controllare il recapito continuo per diversi carichi di lavoro e dettagli sul supporto di Linux e i contenitori. 
+Scoprire come toodesign, sviluppare e utilizzare il microservizi nell'infrastruttura del servizio utilizza le procedure consigliate e modelli e riutilizzabili. Si può iniziare da una panoramica di Service Fabric per poi procedere con vari argomenti di approfondimento come l'ottimizzazione e la sicurezza del cluster, la migrazione di applicazioni legacy, IoT su vasta scala, l'hosting di motori di gioco e altro ancora. Esaminare la distribuzione continua per diversi carichi di lavoro e anche ottenere dettagli hello sul supporto di Linux e i contenitori. 
 
 ## <a name="introduction"></a>Introduzione
-Esplorare le procedure consigliate e raccogliere informazioni per la scelta di una piattaforma distribuita come servizio (PaaS, Platform as a Service) o un'infrastruttura distribuita come servizio (IaaS, Infrastructure as a Service). Informazioni dettagliate sui principi di progettazione delle applicazioni collaudati.
+Esplorare le procedure consigliate e raccogliere informazioni per la scelta di una piattaforma distribuita come servizio (PaaS, Platform as a Service) o un'infrastruttura distribuita come servizio (IaaS, Infrastructure as a Service). Recuperare i dettagli di hello sui principi di progettazione dell'applicazione si basa sulla collaudata seguenti.
 
 <table><tr><th>Video</th><th>Presentazione di PowerPoint</th></tr>
 <tr><td><a target="_blank" href="https://mva.microsoft.com/en-US/training-courses/service-fabric-patterns-and-practices-16925?l=N2KwbbSGD_6405167344">
 <img src="./media/service-fabric-patterns-and-scenarios/intro.png" WIDTH="360" HEIGHT="244">
-</a></td><td><a target="_blank" href="https://mva.microsoft.com/en-US/training-courses/service-fabric-patterns-and-practices-16925?l=mudwqISGD_6005167344">Introduzione a Service Fabric</a></td></tr>
+</a></td><td><a target="_blank" href="https://mva.microsoft.com/en-US/training-courses/service-fabric-patterns-and-practices-16925?l=mudwqISGD_6005167344">Introduzione tooService dell'infrastruttura</a></td></tr>
 </table>
 
 ## <a name="cluster-planning-and-management"></a>Pianificazione e gestione del cluster
@@ -53,7 +53,7 @@ Una presentazione dei concetti relativi al Web con iperscalabilità, incluse dis
 </table>
 
 ## <a name="iot"></a>IoT
-Esplorare Internet delle cose (IoT) nel contesto di Azure Service Fabric, inclusi pipeline IoT di Azure, multitenancy e IoT su vasta scala.
+Esplorare hello Internet delle cose (IoT) nel contesto di hello di Azure Service Fabric, tra cui hello Azure IoT pipeline, multi-tenancy e IoT su larga scala.
 
 <table><tr><th>Video</th><th>Presentazione di PowerPoint</th></tr>
 <tr><td><a target="_blank" href="https://mva.microsoft.com/en-US/training-courses/service-fabric-patterns-and-practices-16925?l=naFUVeSGD_1505167344">
@@ -80,7 +80,7 @@ Presentazione dei concetti, tra i quali integrazione continua/recapito continuo 
 </table>
 
 ## <a name="migration"></a>Migrazione
-Informazioni sulla migrazione da un servizio cloud, oltre alla migrazione di app legacy.
+Informazioni sulla migrazione da un servizio cloud, inoltre toomigration delle applicazioni legacy.
 
 <table><tr><th>Video</th><th>Presentazione di PowerPoint</th></tr>
 <tr><td><a target="_blank" href="https://mva.microsoft.com/en-US/training-courses/service-fabric-patterns-and-practices-16925?l=hd1cMgSGD_5605167344">
@@ -89,7 +89,7 @@ Informazioni sulla migrazione da un servizio cloud, oltre alla migrazione di app
 </table>
 
 ## <a name="containers-and-linux-support"></a>Contenitori e supporto di Linux
-Ottenere la risposta alla domanda "Perché usare i contenitori?" Informazioni sull'anteprima per i contenitori di Windows, il supporto di Linux e l'orchestrazione dei contenitori Linux. Sono disponibili anche indicazioni pratiche per la migrazione di app .NET Core a Linux.
+Ottenere una domanda a toohello risposta hello, "perché contenitori?" Informazioni sull'anteprima hello per i contenitori di Windows, Linux supporta e orchestrazione di contenitori di Linux. Inoltre, scoprire come toomigrate .NET Core App tooLinux.
 
 <table><tr><th>Video</th><th>Presentazione di PowerPoint</th></tr>
 <tr><td><a target="_blank" href="https://mva.microsoft.com/en-US/training-courses/service-fabric-patterns-and-practices-16925?l=V1ERJhSGD_305167344">
@@ -98,4 +98,4 @@ Ottenere la risposta alla domanda "Perché usare i contenitori?" Informazioni su
 </table>
 
 ## <a name="next-steps"></a>Passaggi successivi
-Dopo aver raccolto informazioni dettagliate sui modelli e gli scenari di utilizzo di Service Fabric, è possibile procedere con la lettura e scoprire come [creare e gestire i cluster](service-fabric-deploy-anywhere.md), [eseguire la migrazione delle app di Servizi cloud a Service Fabric](service-fabric-cloud-services-migration-worker-role-stateless-service.md), [configurare il recapito continuo](service-fabric-set-up-continuous-integration.md) e [distribuire i contenitori](service-fabric-containers-overview.md).
+Ora che è stato sui modelli di Service Fabric e scenari, ulteriori informazioni su come troppo[creare e gestire cluster](service-fabric-deploy-anywhere.md), [eseguire la migrazione di servizi Cloud App tooService infrastruttura](service-fabric-cloud-services-migration-worker-role-stateless-service.md), [impostare il recapito continuo](service-fabric-set-up-continuous-integration.md), e [distribuire contenitori](service-fabric-containers-overview.md).

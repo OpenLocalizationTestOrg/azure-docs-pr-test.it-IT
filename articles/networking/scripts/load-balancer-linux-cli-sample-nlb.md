@@ -1,6 +1,6 @@
 ---
-title: "Esempio di script dell'interfaccia della riga di comando di Azure - Eseguire il bilanciamento del carico per il traffico verso le macchine virtuali per la disponibilità elevata | Microsoft Docs"
-description: "Esempio di script dell'interfaccia della riga di comando di Azure - Eseguire il bilanciamento del carico per il traffico verso le macchine virtuali per la disponibilità elevata"
+title: "Esempio di Script CLI - tooVMs traffico bilanciamento di carico per la disponibilità elevata aaaAzure | Documenti Microsoft"
+description: "Esempio di Script Azure CLI - tooVMs traffico bilanciamento di carico per la disponibilità elevata"
 services: load-balancer
 documentationcenter: load-balancer
 author: KumudD
@@ -15,15 +15,15 @@ ms.tgt_pltfrm:
 ms.workload: infrastructure
 ms.date: 07/07/2017
 ms.author: kumud
-ms.openlocfilehash: 69a7753cc75b028e2bf093053d9a5fc0890562e8
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0954b5c261512724dfb9c6e7be123c9d45624f4d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="load-balance-traffic-to-vms-for-high-availability"></a>Eseguire il bilanciamento del carico per il traffico verso le macchine virtuali per la disponibilità elevata
+# <a name="load-balance-traffic-toovms-for-high-availability"></a>Caricare tooVMs di bilanciare il traffico per la disponibilità elevata
 
-Questo script di esempio crea tutti gli elementi necessari per eseguire più macchine virtuali Ubuntu configurate in una configurazione a disponibilità elevata e con bilanciamento del carico. Dopo aver eseguito lo script, si disporrà di tre macchine virtuali, aggiunte a un set di disponibilità di Azure e accessibili tramite Azure Load Balancer. 
+In questo esempio di script crea tutti gli elementi necessari toorun diverse macchine virtuali Ubuntu configurati a disponibilità elevata e carico bilanciato di configurazione. Tre macchine virtuali, tooan aggiunti a un Set di disponibilità di Azure, sarà necessario dopo l'esecuzione dello script, hello e accessibile tramite un servizio di bilanciamento del carico di Azure. 
 
 [!INCLUDE [sample-cli-install](../../../includes/sample-cli-install.md)]
 
@@ -31,11 +31,11 @@ Questo script di esempio crea tutti gli elementi necessari per eseguire più mac
 
 ## <a name="sample-script"></a>Script di esempio
 
-[!code-azurecli-interactive[main](../../../cli_scripts/virtual-machine/create-vm-nlb/create-vm-nlb.sh "Creazione rapida della macchina virtuale")]
+[!code-azurecli-interactive[main](../../../cli_scripts/virtual-machine/create-vm-nlb/create-vm-nlb.sh "Quick Create VM")]
 
 ## <a name="clean-up-deployment"></a>Pulire la distribuzione 
 
-Eseguire questo comando per rimuovere il gruppo di risorse, la macchina virtuale e tutte le risorse correlate.
+Comando che segue hello esecuzione gruppo di risorse tooremove hello, macchina virtuale e tutte le relative risorse.
 
 ```azurecli
 az group delete --name myResourceGroup
@@ -43,7 +43,7 @@ az group delete --name myResourceGroup
 
 ## <a name="script-explanation"></a>Spiegazione dello script
 
-Questo script usa i comandi seguenti per creare un gruppo di risorse, la macchina virtuale, il set di disponibilità, il bilanciamento del carico e tutte le risorse correlate. Ogni comando della tabella include collegamenti alla documentazione specifica del comando.
+Questo script utilizza hello seguenti comandi toocreate un gruppo di risorse, macchina virtuale, set di disponibilità, bilanciamento del carico e tutte le relative risorse. Ogni comando in documentazione specifica toocommand hello tabella collegamenti.
 
 | Comando | Note |
 |---|---|
@@ -51,18 +51,18 @@ Questo script usa i comandi seguenti per creare un gruppo di risorse, la macchin
 | [az network vnet create](https://docs.microsoft.com/cli/azure/network/vnet#create) | Consente di creare una rete virtuale e una subnet di Azure. |
 | [az network public-ip create](https://docs.microsoft.com/cli/azure/network/public-ip#create) | Consente di creare un indirizzo IP pubblico con un indirizzo IP statico e un nome DNS associato. |
 | [az network lb create](https://docs.microsoft.com/cli/azure/network/lb#create) | Crea un servizio di bilanciamento del carico di Azure. |
-| [az network lb probe create](https://docs.microsoft.com/cli/azure/network/lb/probe#create) | Crea un probe di bilanciamento del carico. Il probe di bilanciamento del carico viene usato per monitorare tutte le macchine virtuali nel set di bilanciamento del carico. Se una macchina virtuale diventa inaccessibile, il traffico non viene indirizzato sulla macchina virtuale. |
-| [az network lb rule create](https://docs.microsoft.com/cli/azure/network/lb/rule#create) | Crea una regola di bilanciamento del carico. In questo esempio viene creata una regola per la porta 80. Poiché il traffico HTTP arriva al bilanciamento del carico, viene indirizzato sulla porta 80 di una delle macchine virtuali presenti nel set di bilanciamento del carico. |
-| [az network lb inbound-nat-rule create](https://docs.microsoft.com/cli/azure/network/lb/inbound-nat-rule#create) | Crea una regola Network Address Translation (NAT) di bilanciamento del carico.  Le regole NAT mappano una porta del bilanciamento del carico su una porta in una macchina virtuale. In questo esempio viene creata una regola NAT per il traffico SSH in ogni macchina virtuale disponibile nel set di bilanciamento del carico.  |
-| [az network nsg create](https://docs.microsoft.com/cli/azure/network/nsg#create) | Consente di creare un gruppo di sicurezza di rete, ovvero un confine di sicurezza tra Internet e la macchina virtuale. |
-| [az network nsg rule create](https://docs.microsoft.com/cli/azure/network/nsg/rule#create) | Consente di creare una regola NSG per consentire il traffico in ingresso. In questo esempio, la porta 22 è aperta al traffico SSH. |
-| [az network nic create](https://docs.microsoft.com/cli/azure/network/nic#create) | Consente di creare una scheda di rete virtuale e la collega alla rete virtuale, alla subnet e al gruppo di sicurezza di rete. |
-| [az vm availability-set create](https://docs.microsoft.com/cli/azure/network/lb/rule#create) | Consente di creare un set di disponibilità. I set di disponibilità garantiscono il tempo di attività dell'applicazione suddividendo le macchine virtuali in risorse fisiche in modo tale che, in caso di errore, non venga interessato l'intero set. |
-| [az vm create](/cli/azure/vm#create) | Consente di creare la macchina virtuale e la connette alla scheda di rete, alla rete virtuale, alla subnet e al gruppo di sicurezza di rete. Questo comando specifica anche l'immagine della macchina virtuale da usare e le credenziali di amministrazione.  |
+| [az network lb probe create](https://docs.microsoft.com/cli/azure/network/lb/probe#create) | Crea un probe di bilanciamento del carico. Un probe di bilanciamento del carico è toomonitor usato ogni macchina virtuale nel set di bilanciamento carico di hello. Se qualsiasi macchina virtuale non è accessibile, il traffico non è indirizzato toohello macchina virtuale. |
+| [az network lb rule create](https://docs.microsoft.com/cli/azure/network/lb/rule#create) | Crea una regola di bilanciamento del carico. In questo esempio viene creata una regola per la porta 80. Come il traffico HTTP arriva al servizio di bilanciamento del carico hello, è indirizzato tooport 80 una delle macchine virtuali di hello nel set LB hello. |
+| [az network lb inbound-nat-rule create](https://docs.microsoft.com/cli/azure/network/lb/inbound-nat-rule#create) | Crea una regola Network Address Translation (NAT) di bilanciamento del carico.  Le regole NAT mapping di una porta della porta di tooa del bilanciamento del carico hello in una macchina virtuale. In questo esempio, viene creata una regola NAT per il traffico SSH tooeach macchina virtuale nel set di bilanciamento carico di hello.  |
+| [az network nsg create](https://docs.microsoft.com/cli/azure/network/nsg#create) | Crea un gruppo di sicurezza di rete (gruppo), ovvero un limite di sicurezza tra le macchine virtuali internet e hello hello. |
+| [az network nsg rule create](https://docs.microsoft.com/cli/azure/network/nsg/rule#create) | Crea un tooallow regola NSG il traffico in ingresso. In questo esempio, la porta 22 è aperta al traffico SSH. |
+| [az network nic create](https://docs.microsoft.com/cli/azure/network/nic#create) | Crea una scheda di rete virtuale e la collega toohello di rete virtuale, subnet e gruppo. |
+| [az vm availability-set create](https://docs.microsoft.com/cli/azure/network/lb/rule#create) | Consente di creare un set di disponibilità. Set di disponibilità la distribuzione di macchine virtuali hello tra risorse fisiche in modo che se si verifica l'errore, non è stato eseguito alcun set intero di hello assicurare la disponibilità dell'applicazione. |
+| [az vm create](/cli/azure/vm#create) | Crea macchina virtuale hello e lo connette la scheda di rete toohello, rete virtuale, subnet e gruppo. Questo comando specifica inoltre toobe immagine di macchina virtuale hello usato e le credenziali amministrative.  |
 | [az group delete](https://docs.microsoft.com/cli/azure/vm/extension#set) | Consente di eliminare un gruppo di risorse incluse tutte le risorse annidate. |
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Per altre informazioni sull'interfaccia della riga di comando di Azure, vedere la [documentazione sull'interfaccia della riga di comando di Azure](https://docs.microsoft.com/cli/azure/overview).
+Per ulteriori informazioni su hello CLI di Azure, vedere [documentazione CLI di Azure](https://docs.microsoft.com/cli/azure/overview).
 
-Altri esempi di script dell'interfaccia della riga di comando per la rete di Azure sono disponibili nella [documentazione con la panoramica delle reti di Azure](../cli-samples.md).
+Esempi di script aggiuntivi CLI di rete di Azure sono reperibile in hello [rete Azure documentazione](../cli-samples.md).

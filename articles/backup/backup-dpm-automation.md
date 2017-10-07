@@ -1,6 +1,6 @@
 ---
-title: Backup di Azure - Utilizzo di PowerShell per eseguire il backup dei carichi di lavoro DPM | Documentazione Microsoft
-description: Informazioni su come distribuire e gestire Backup di Azure per Data Protection Manager (DPM) usando PowerShell
+title: Backup - utilizzo di PowerShell tooback dei carichi di lavoro DPM aaaAzure | Documenti Microsoft
+description: Informazioni su come toodeploy e gestire il Backup di Azure per Data Protection Manager (DPM) tramite PowerShell
 services: backup
 documentationcenter: 
 author: NKolli1
@@ -14,30 +14,30 @@ ms.devlang: na
 ms.topic: article
 ms.date: 1/23/2017
 ms.author: adigan;anuragm;trinadhk;markgal
-ms.openlocfilehash: 2e3b4a094511a59cfa02917efc2e3e053840af0c
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 27d2b4b3127b68c9da564697eb61dc3ccbc34b3d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="deploy-and-manage-backup-to-azure-for-data-protection-manager-dpm-servers-using-powershell"></a>Distribuire e gestire il backup in Azure per server Data Protection Manager (DPM) mediante PowerShell
+# <a name="deploy-and-manage-backup-tooazure-for-data-protection-manager-dpm-servers-using-powershell"></a>Distribuire e gestire backup tooAzure per i server di Data Protection Manager (DPM) mediante PowerShell
 > [!div class="op_single_selector"]
 > * [ARM](backup-dpm-automation.md)
 > * [Classico](backup-dpm-automation-classic.md)
 >
 >
 
-Questo articolo illustra come usare PowerShell per configurare Backup di Azure in un server DPM, e per gestire le operazioni di backup e ripristino.
+In questo articolo illustra come toosetup PowerShell toouse Backup di Azure in un server DPM e toomanage backup e ripristino.
 
-## <a name="setting-up-the-powershell-environment"></a>Configurazione dell'ambiente di PowerShell
+## <a name="setting-up-hello-powershell-environment"></a>Impostazione di ambiente PowerShell hello
 [!INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-include.md)]
 
-Prima di poter usare PowerShell per gestire i backup da Data Protection Manager ad Azure, è necessario avere l'ambiente appropriato in PowerShell. All'inizio della sessione di PowerShell, assicurarsi di eseguire il comando seguente per importare i moduli appropriati e fare riferimento correttamente ai cmdlet DPM:
+Prima di poter utilizzare PowerShell toomanage backup da Data Protection Manager tooAzure, è necessario toohave hello destra ambiente PowerShell. All'inizio di hello della sessione di PowerShell hello, assicurarsi di eseguire hello seguenti moduli destra di comando tooimport hello e consentono di determinare i cmdlet DPM toocorrectly riferimento hello:
 
 ```
 PS C:> & "C:\Program Files\Microsoft System Center 2012 R2\DPM\DPM\bin\DpmCliInitScript.ps1"
 
-Welcome to the DPM Management Shell!
+Welcome toohello DPM Management Shell!
 
 Full list of cmdlets: Get-Command
 Only DPM cmdlets: Get-DPMCommand
@@ -48,45 +48,45 @@ Sample DPM scripts: Get-DPMSampleScript
 ```
 
 ## <a name="setup-and-registration"></a>Installazione e registrazione
-Per iniziare:
+toobegin:
 
 1. [Scaricare la versione più recente di PowerShell](https://github.com/Azure/azure-powershell/releases) (versione minima richiesta: 1.0.0)
-2. Per iniziare, abilitare i cmdlet del servizio Backup di Azure passando alla modalità *AzureResourceManager* usando il cmdlet **Switch-AzureMode** :
+2. Abilitare i commandlet del Backup di Azure hello passando troppo*AzureResourceManager* modalità tramite hello **Switch-AzureMode** cmdlet:
 
 ```
 PS C:\> Switch-AzureMode AzureResourceManager
 ```
 
-Le attività di installazione e registrazione seguenti possono essere automatizzate tramite PowerShell:
+Hello seguente programma di installazione e le attività di registrazione può essere automatizzata con PowerShell:
 
 * Creare un insieme di credenziali di Servizi di ripristino
-* Installazione dell'agente di Backup di Azure
-* Registrazione del servizio Backup di Azure
+* Installare hello Azure Backup agent
+* Registrazione con hello servizio Azure Backup
 * Impostazioni di rete
 * Impostazioni crittografia
 
 ## <a name="create-a-recovery-services-vault"></a>Creare un insieme di credenziali di Servizi di ripristino
-Nei passaggi seguenti viene descritto come creare un insieme di credenziali dei servizi di ripristino. Un insieme di credenziali dei servizi di ripristino è diverso da un insieme di credenziali di backup.
+Hello alla procedura seguente per facilitare la creazione di un insieme di credenziali di servizi di ripristino. Un insieme di credenziali dei servizi di ripristino è diverso da un insieme di credenziali di backup.
 
-1. Se si sta usando Backup di Azure per la prima volta, è necessario usare il cmdlet **Register-AzureRMResourceProvider** per registrare il provider di Servizi di ripristino di Azure con la propria sottoscrizione.
+1. Se si utilizza Azure Backup per hello prima volta, è necessario utilizzare hello **registro AzureRMResourceProvider** provider di servizi di ripristino di Azure di cmdlet tooregister hello con la sottoscrizione.
 
     ```
     PS C:\> Register-AzureRmResourceProvider -ProviderNamespace "Microsoft.RecoveryServices"
     ```
-2. L'insieme di credenziali dei servizi di ripristino è una risorsa ARM, pertanto è necessario inserirlo all'interno di un gruppo di risorse. È possibile usare un gruppo di risorse esistente o crearne uno nuovo. Quando si crea un nuovo gruppo di risorse, è necessario specificare il nome e percorso per il gruppo di risorse.  
+2. Hello insieme di credenziali di servizi di ripristino è una risorsa ARM, pertanto è necessario tooplace all'interno di un gruppo di risorse. È possibile usare un gruppo di risorse esistente o crearne uno nuovo. Quando si crea un nuovo gruppo di risorse, specificare il nome di hello e il percorso per il gruppo di risorse hello.  
 
     ```
     PS C:\> New-AzureRmResourceGroup –Name "test-rg" –Location "West US"
     ```
-3. Usare il cmdlet **New-AzureRmRecoveryServicesVault** per creare un nuovo insieme di credenziali. Assicurarsi di specificare per l'insieme di credenziali lo stesso percorso usato per il gruppo di risorse.
+3. Hello utilizzare **New AzureRmRecoveryServicesVault** toocreate cmdlet un nuovo insieme di credenziali. Assicurarsi che toospecify hello stesso percorso per l'insieme di credenziali hello utilizzata per il gruppo di risorse hello.
 
     ```
     PS C:\> New-AzureRmRecoveryServicesVault -Name "testvault" -ResourceGroupName " test-rg" -Location "West US"
     ```
-4. Specificare il tipo di ridondanza di archiviazione da usare, ad esempio [archiviazione con ridondanza locale (LRS)](../storage/common/storage-redundancy.md#locally-redundant-storage) o [archiviazione con ridondanza geografica (GRS)](../storage/common/storage-redundancy.md#geo-redundant-storage). Nell'esempio seguente l'opzione BackupStorageRedundancy per testVault è impostata su GeoRedundant.
+4. Specificare il tipo di hello di toouse di ridondanza di archiviazione; è possibile utilizzare [archiviazione con ridondanza locale (LRS)](../storage/common/storage-redundancy.md#locally-redundant-storage) o [archiviazione con ridondanza geografica (GRS)](../storage/common/storage-redundancy.md#geo-redundant-storage). Hello riportato di seguito hello - BackupStorageRedundancy per testVault impostazione tooGeoRedundant.
 
    > [!TIP]
-   > Molti cmdlet di Backup di Azure richiedono l'oggetto dell'insieme di credenziali dei servizi di ripristino come input. Per questo motivo, è utile archiviare l'oggetto dell'insieme di credenziali dei servizi di ripristino di Backup in una variabile.
+   > Molti cmdlet di Azure Backup richiede l'oggetto insieme di credenziali di servizi di ripristino hello come input. Per questo motivo, è utile toostore hello servizi di ripristino di Backup dell'insieme di credenziali oggetto in una variabile.
    >
    >
 
@@ -95,10 +95,10 @@ Nei passaggi seguenti viene descritto come creare un insieme di credenziali dei 
     PS C:\> Set-AzureRmRecoveryServicesBackupProperties  -vault $vault1 -BackupStorageRedundancy GeoRedundant
     ```
 
-## <a name="view-the-vaults-in-a-subscription"></a>Visualizzare gli insiemi di credenziali in un abbonamento
-Usare **Get-AzureRmRecoveryServicesVault** per visualizzare l'elenco di tutti gli insiemi di credenziali della sottoscrizione corrente. È possibile usare questo comando per verificare che sia stato creato un nuovo insieme di credenziali o per vedere quali insiemi di credenziali sono disponibili nell'abbonamento.
+## <a name="view-hello-vaults-in-a-subscription"></a>Visualizza gli insiemi di credenziali hello in una sottoscrizione
+Utilizzare **Get AzureRmRecoveryServicesVault** elenco hello tooview di tutti gli insiemi di credenziali nella sottoscrizione corrente hello. È possibile utilizzare questo toocheck di comando che è stato creato un nuovo insieme di credenziali o toosee quali insiemi di credenziali sono disponibili nella sottoscrizione hello.
 
-L'esecuzione del comando Get-AzureRmRecoveryServicesVault visualizza tutti gli insiemi di credenziali disponibili nell'abbonamento.
+Comando hello, Get-AzureRmRecoveryServicesVault, e sono elencati tutti gli insiemi di credenziali di sottoscrizione hello.
 
 ```
 PS C:\> Get-AzureRmRecoveryServicesVault
@@ -112,36 +112,36 @@ Properties        : Microsoft.Azure.Commands.RecoveryServices.ARSVaultProperties
 ```
 
 
-## <a name="installing-the-azure-backup-agent-on-a-dpm-server"></a>Installazione dell'agente di Backup di Azure in un server DPM
-Per installare l'agente di Backup di Azure, è necessario aver scaricato il programma di installazione nel server Windows. È possibile ottenere la versione più recente del programma di installazione dall' [Area download Microsoft](http://aka.ms/azurebackup_agent) o dalla pagina Dashboard dell'insieme di credenziali dei servizi di ripristino. Salvare il programma di installazione in un percorso facilmente accessibile come *C:\Downloads\*.
+## <a name="installing-hello-azure-backup-agent-on-a-dpm-server"></a>Installazione agente Azure Backup hello in un Server DPM
+Prima di installare l'agente Azure Backup hello, è necessario il programma di installazione di toohave hello scaricato e presenti sul Server di Windows hello. È possibile ottenere una versione più recente di hello del programma di installazione hello da hello [Microsoft Download Center](http://aka.ms/azurebackup_agent) o dalla pagina Dashboard dell'insieme di credenziali hello servizi di ripristino. Salvare installer hello tooan posizione facilmente accessibile, ad esempio * C:\Downloads\*.
 
-Per installare l'agente, eseguire il comando seguente in una console di PowerShell con privilegi elevati **nel server DPM**:
+esecuzione comando in una console di PowerShell con privilegi elevata seguente hello tooinstall agente hello **nel server DPM hello**:
 
 ```
 PS C:\> MARSAgentInstaller.exe /q
 ```
 
-L'agente verrà installato con tutte le opzioni predefinite. L'installazione richiede alcuni minuti in background. Se non si specifica l'opzione */nu* , al termine dell'installazione verrà aperta la finestra **Windows Update** per verificare la presenza di eventuali aggiornamenti.
+Consente di installare agente hello con tutte le opzioni predefinite di hello. installazione di Hello richiede alcuni minuti in background hello. Se non si specifica hello */nu* hello opzione **Windows Update** verrà visualizzata la finestra alla fine hello hello toocheck di installazione per tutti gli aggiornamenti.
 
-L'agente verrà visualizzato nell'elenco dei programmi installati. Per visualizzare l'elenco dei programmi installati, passare a **Pannello di controllo** > **Programmi** > **Programmi e funzionalità**.
+agente Hello viene visualizzato nell'elenco di hello dei programmi installati. elenco di hello toosee dei programmi installati, andare troppo**Pannello di controllo** > **programmi** > **programmi e funzionalità**.
 
 ![Agente installato](./media/backup-dpm-automation/installed-agent-listing.png)
 
 ### <a name="installation-options"></a>Opzioni di installazione
-Per visualizzare tutte le opzioni disponibili tramite la riga di comando, usare il comando seguente:
+toosee tutte le opzioni di hello disponibile tramite hello della riga di comando, utilizzare hello seguente comando:
 
 ```
 PS C:\> MARSAgentInstaller.exe /?
 ```
 
-Le opzioni disponibili includono:
+Hello le opzioni disponibili includono:
 
 | Opzione | Dettagli | Default |
 | --- | --- | --- |
 | /q |Installazione non interattiva |- |
-| /p:"location" |Percorso della cartella di installazione per l'agente di Backup di Azure. |C:\Programmi\Agente di Servizi di ripristino di Microsoft Azure |
-| /s:"location" |Percorso della cartella della cache per l'agente di Backup di Azure. |C:\Programmi\Agente di Servizi di ripristino di Microsoft Azure\Scratch |
-| /m |Consenso esplicito a Microsoft Update |- |
+| /p:"location" |Cartella di installazione toohello percorso per l'agente Azure Backup hello. |C:\Programmi\Agente di Servizi di ripristino di Microsoft Azure |
+| /s:"location" |Cartella cache toohello percorso per l'agente Azure Backup hello. |C:\Programmi\Agente di Servizi di ripristino di Microsoft Azure\Scratch |
+| /m |Consenso esplicito tooMicrosoft aggiornamento |- |
 | /nu |Al termine dell'installazione non vengono cercati gli aggiornamenti |- |
 | /d |Disinstalla l'agente di Servizi di ripristino di Microsoft Azure |- |
 | /ph |Indirizzo host proxy |- |
@@ -149,8 +149,8 @@ Le opzioni disponibili includono:
 | /pu |Nome utente host proxy |- |
 | /pw |Password proxy |- |
 
-## <a name="registering-dpm-to-a-recovery-services-vault"></a>Registrazione di Data Protection Manager (DPM) con l'insieme di credenziali dei servizi di ripristino
-Dopo aver creato l'insieme di credenziali dei servizi di ripristino, scaricare l'ultimo agente e le credenziali dell'insieme di credenziali e archiviarli in un percorso semplice da ricordare, ad esempio C:\Downloads.
+## <a name="registering-dpm-tooa-recovery-services-vault"></a>Registrazione di Data Protection Manager tooa insieme di credenziali di servizi di ripristino
+Dopo la creazione di credenziali di servizi di ripristino hello, scaricare l'ultima versione dell'agente hello e l'insieme di credenziali hello e archiviarlo in una posizione comoda come C:\Downloads.
 
 ```
 PS C:\> $credspath = "C:\downloads"
@@ -159,7 +159,7 @@ PS C:\> $credsfilename
 C:\downloads\testvault\_Sun Apr 10 2016.VaultCredentials
 ```
 
-Eseguire il cmdlet [Start-OBRegistration](https://technet.microsoft.com/library/hh770398%28v=wps.630%29.aspx) nel server DPM per registrare il computer con l'insieme di credenziali.
+Nel server DPM hello eseguire hello [Start-OBRegistration](https://technet.microsoft.com/library/hh770398%28v=wps.630%29.aspx) macchina di hello tooregister cmdlet con insieme di credenziali hello.
 
 ```
 PS C:\> $cred = $credspath + $credsfilename
@@ -172,44 +172,44 @@ Machine registration succeeded.
 ```
 
 ### <a name="initial-configuration-settings"></a>Impostazioni di configurazione iniziali
-Dopo la registrazione con l'insieme di credenziali dei servizi di ripristino, il server DPM verrà avviato con le impostazioni di sottoscrizione predefinite. Tali impostazioni includono rete, crittografia e area di staging. Per modificare le impostazioni di sottoscrizione, è prima necessario ottenere un handle sulle impostazioni (predefinite) esistenti usando il cmdlet [Get-DPMCloudSubscriptionSetting](https://technet.microsoft.com/library/jj612793) :
+Una volta registrato con hello hello Server DPM l'insieme di credenziali di servizi di ripristino, viene avviato con le impostazioni di sottoscrizione predefinite. Queste impostazioni di sottoscrizione includono funzionalità di rete, la crittografia e hello area di gestione temporanea. le impostazioni di sottoscrizione toochange necessari toofirst ottenere un handle su hello (predefinito) le impostazioni esistenti utilizzando hello [Get DPMCloudSubscriptionSetting](https://technet.microsoft.com/library/jj612793) cmdlet:
 
 ```
 $setting = Get-DPMCloudSubscriptionSetting -DPMServerName "TestingServer"
 ```
 
-Tutte le modifiche vengono apportate a questo oggetto locale PowerShell ```$setting``` e poi viene eseguito il commit dell'oggetto completo in DPM e in Backup di Azure eseguendo il salvataggio mediante il cmdlet [Set-DPMCloudSubscriptionSetting](https://technet.microsoft.com/library/jj612791). È necessario usare il flag ```–Commit``` per garantire che le modifiche vengano mantenute. Le impostazioni vengono applicate e usate da Backup di Azure solo dopo il commit.
+Tutte le modifiche vengono apportate toothis locale PowerShell oggetto ```$setting``` e quindi completa dell'oggetto hello è tooDPM eseguito il commit e Backup di Azure toosave loro utilizzando hello [Set DPMCloudSubscriptionSetting](https://technet.microsoft.com/library/jj612791) cmdlet. È necessario hello toouse ```–Commit``` tooensure di flag che hello le modifiche vengono mantenute. le impostazioni di Hello saranno non applicate e utilizzate dal Backup di Azure, a meno che il commit.
 
 ```
 PS C:\> Set-DPMCloudSubscriptionSetting -DPMServerName "TestingServer" -SubscriptionSetting $setting -Commit
 ```
 
 ## <a name="networking"></a>Rete
-Se per la connettività del computer DPM al servizio Backup di Azure in Internet viene usato un server proxy, per consentire la corretta esecuzione dei backup è necessario specificare le impostazioni del server proxy. A tale scopo, usare i parametri ```-ProxyServer```, ```-ProxyPort```, ```-ProxyUsername``` e ```ProxyPassword``` con il cmdlet [Set-DPMCloudSubscriptionSetting](https://technet.microsoft.com/library/jj612791). In questo esempio non esiste alcun server proxy, pertanto sono state eliminate tutte le informazioni relative al proxy.
+Se la connettività di hello di hello DPM macchina toohello servizio di Backup di Azure su hello internet è tramite un server proxy, impostazioni del server proxy hello devono essere fornite per i backup riusciti. Questa operazione viene eseguita tramite hello ```-ProxyServer```e ```-ProxyPort```, ```-ProxyUsername``` hello e ```ProxyPassword``` parametri con hello [Set DPMCloudSubscriptionSetting](https://technet.microsoft.com/library/jj612791) cmdlet. In questo esempio non esiste alcun server proxy, pertanto sono state eliminate tutte le informazioni relative al proxy.
 
 ```
 PS C:\> Set-DPMCloudSubscriptionSetting -DPMServerName "TestingServer" -SubscriptionSetting $setting -NoProxy
 ```
 
-È anche possibile controllare l'utilizzo della larghezza di banda con le opzioni ```-WorkHourBandwidth``` e ```-NonWorkHourBandwidth``` per un determinato set di giorni della settimana. In questo esempio non viene impostata alcuna limitazione.
+Utilizzo della larghezza di banda può essere controllata anche con le opzioni di ```-WorkHourBandwidth``` e ```-NonWorkHourBandwidth``` per un set specificato di giorni della settimana hello. In questo esempio non viene impostata alcuna limitazione.
 
 ```
 PS C:\> Set-DPMCloudSubscriptionSetting -DPMServerName "TestingServer" -SubscriptionSetting $setting -NoThrottle
 ```
 
-## <a name="configuring-the-staging-area"></a>Configurazione dell'area di gestione temporanea
-L'agente del servizio Backup di Azure in esecuzione nel server DPM deve disporre di archiviazione temporanea per i dati ripristinati dal cloud (area di staging locale). Configurare l'area di gestione temporanea usando il cmdlet [Set-DPMCloudSubscriptionSetting](https://technet.microsoft.com/library/jj612791) e il parametro ```-StagingAreaPath```.
+## <a name="configuring-hello-staging-area"></a>Configurare l'Area di gestione temporanea hello
+Hello Azure Backup agent in esecuzione nel server DPM hello deve archiviazione temporanea per i dati ripristinati dal cloud hello (area di gestione temporanea). Configurare l'area di gestione temporanea hello utilizzando hello [Set DPMCloudSubscriptionSetting](https://technet.microsoft.com/library/jj612791) cmdlet e hello ```-StagingAreaPath``` parametro.
 
 ```
 PS C:\> Set-DPMCloudSubscriptionSetting -DPMServerName "TestingServer" -SubscriptionSetting $setting -StagingAreaPath "C:\StagingArea"
 ```
 
-Nell'esempio precedente, l'area di gestione temporanea verrà impostata su *C:\StagingArea* nell'oggetto di PowerShell ```$setting```. Assicurarsi che la cartella specificata esista già, altrimenti il commit finale delle impostazioni di sottoscrizione avrà esito negativo.
+Nell'esempio hello sopra, hello area di gestione temporanea verrà impostata troppo*C:\StagingArea* nell'oggetto PowerShell hello ```$setting```. Verificare che hello specificato esiste già, altrimenti il commit finale hello delle impostazioni di sottoscrizione hello avrà esito negativo.
 
 ### <a name="encryption-settings"></a>Impostazioni crittografia
-I dati di backup inviati a Backup di Azure vengono crittografati per proteggere la riservatezza dei dati. La passphrase di crittografia è la "password" per decrittografare i dati in fase di ripristino. È importante conservarla al sicuro e proteggerla dopo averla impostata.
+backup di dati inviati di Hello tooAzure Backup è tooprotect crittografato hello riservatezza dei dati di hello. la passphrase di crittografia Hello è dati hello toodecrypt di password"hello" in fase di hello del ripristino. È importante tookeep sicuro le informazioni e secure dopo che è stata impostata.
 
-Nel seguente esempio, il primo comando consente di convertire la passphrase della stringa ```passphrase123456789``` in una stringa sicura; inoltre, consente di assegnare la stringa sicura alla variabile denominata ```$Passphrase```. Il secondo comando imposta la stringa sicura in ```$Passphrase``` come password per la crittografia dei backup.
+Nel seguente esempio hello primo comando hello Converte la stringa hello ```passphrase123456789``` tooa sicura stringa e assegna hello stringa sicura toohello variabile denominata ```$Passphrase```. Hello secondo comando imposta la stringa sicura hello in ```$Passphrase``` come password hello per la crittografia dei backup.
 
 ```
 PS C:\> $Passphrase = ConvertTo-SecureString -string "passphrase123456789" -AsPlainText -Force
@@ -218,52 +218,52 @@ PS C:\> Set-DPMCloudSubscriptionSetting -DPMServerName "TestingServer" -Subscrip
 ```
 
 > [!IMPORTANT]
-> Dopo l'impostazione, conservare le informazioni sulla passphrase al sicuro. Non sarà possibile ripristinare i dati da Azure senza la passphrase.
+> Mantenere informazioni passphrase hello sicuro e dopo che è stata impostata. Non sarà in grado di toorestore dati da Azure senza questa passphrase.
 >
 >
 
-A questo punto, sono state apportate tutte le modifiche necessarie all'oggetto ```$setting``` . Ricordarsi di eseguire il commit delle modifiche:
+A questo punto, avrebbe dovuto effettuare tutti hello necessarie modifiche toohello ```$setting``` oggetto. Tenere presente che le modifiche di hello toocommit.
 
 ```
 PS C:\> Set-DPMCloudSubscriptionSetting -DPMServerName "TestingServer" -SubscriptionSetting $setting -Commit
 ```
 
-## <a name="protect-data-to-azure-backup"></a>Proteggere i dati in Backup di Azure
-In questa sezione verrà aggiunto un server di produzione a DPM e i dati verranno protetti nell'archivio DPM locale e quindi in Backup di Azure. Negli esempi verrà descritto come eseguire il backup di file e cartelle. È possibile estendere in modo semplice la logica al fine di eseguire il backup di qualsiasi origine dati supportata da DPM. Tutti i backup DPM sono regolati da un gruppo protezione dati costituito da quattro parti:
+## <a name="protect-data-tooazure-backup"></a>Proteggere dati tooAzure Backup
+In questa sezione verrà aggiunta una tooDPM di server di produzione e quindi proteggere l'archiviazione di DPM toolocal dati hello e quindi tooAzure Backup. Negli esempi di hello, verrà illustrato come tooback backup di file e cartelle. Hello logica può facilmente essere estesa toobackup qualsiasi origine dati con supporto di DPM. Tutti i backup DPM sono regolati da un gruppo protezione dati costituito da quattro parti:
 
-1. **Membri del gruppo** : elenco di tutti gli oggetti che è possibile proteggere (anche detti *origini dati* in DPM) e che si desidera proteggere nello stesso gruppo protezione dati. Ad esempio, è possibile proteggere le macchine virtuali di produzione in un gruppo protezione dati e i database di SQL Server in un altro gruppo, in quanto potrebbero avere requisiti di backup diversi. Prima di eseguire il backup di qualsiasi origine dati in un server di produzione, è necessario assicurarsi che l'agente DPM sia installato nel server e gestito da DPM. Seguire la procedura di [installazione dell'agente DPM](https://technet.microsoft.com/library/bb870935.aspx) e collegamento dell'agente al server DPM appropriato.
-2. **Metodo di protezione dati** : specifica le posizioni di destinazione dei backup, ad esempio nastro, disco e cloud. In questo esempio i dati verranno protetti nel disco locale e nel cloud.
-3. **Pianificazione dei backup** : specifica quando devono essere eseguiti i backup e con quale frequenza i dati devono essere sincronizzati tra il server DPM e il server di produzione.
-4. Una **pianificazione di conservazione** che indica per quanto tempo è necessario conservare i punti di ripristino in Azure.
+1. **I membri del gruppo** è un elenco di tutti gli oggetti da proteggere con hello (noto anche come *origini dati* in Data Protection Manager) che si desidera tooprotect in hello stesso gruppo protezione dati. Ad esempio, è consigliabile tooprotect produzione, le macchine virtuali in un gruppo protezione dati e i database di SQL Server in un altro gruppo protezione dati come presentare requisiti diversi per il backup. Prima di eseguire il backup di qualsiasi origine dati in un server di produzione è necessario toomake hello che agente Data Protection Manager è installato nel server di hello ed è gestito da DPM. Seguire i passaggi di hello per [installazione hello agente DPM](https://technet.microsoft.com/library/bb870935.aspx) e il relativo collegamento toohello appropriati Server DPM.
+2. **Metodo protezione dati** specifica hello backup i percorsi di destinazione - nastro, disco e cloud. In questo esempio è proteggerà dati toohello locale su disco e toohello nel cloud.
+3. Oggetto **pianificazione del backup** che specifica quando i backup necessitano toobe eseguito e la frequenza con cui hello di sincronizzazione dei dati tra hello Server DPM e il server di produzione hello.
+4. Oggetto **pianificazione della conservazione** che specifica quanto tempo i punti di ripristino hello tooretain in Azure.
 
 ### <a name="creating-a-protection-group"></a>Creazione di un gruppo di protezione
-Creare innanzitutto un nuovo gruppo protezione dati usando il cmdlet [New-DPMProtectionGroup](https://technet.microsoft.com/library/hh881722) .
+Iniziare creando un nuovo gruppo di protezione utilizzando hello [New DPMProtectionGroup](https://technet.microsoft.com/library/hh881722) cmdlet.
 
 ```
 PS C:\> $PG = New-DPMProtectionGroup -DPMServerName " TestingServer " -Name "ProtectGroup01"
 ```
 
-Il cmdlet precedente creerà un gruppo protezione dati denominato *ProtectGroup01*. Un gruppo protezione dati esistente può anche essere modificato in seguito per aggiungere il backup nel cloud Azure. Tuttavia, per apportare modifiche al gruppo protezione dati, nuovo o esistente, è necessario ottenere un handle su un oggetto *modificabile* usando il cmdlet [Get-DPMModifiableProtectionGroup](https://technet.microsoft.com/library/hh881713) .
+Hello sopra cmdlet verrà creato un gruppo di protezione denominato *ProtectGroup01*. Inoltre possibile modificare un gruppo protezione dati successiva tooadd toohello backup cloud di Azure. Tuttavia, toomake modifiche toohello gruppo protezione dati - nuovo o esistente, è necessario tooget un handle in un *modificabile* oggetto utilizzando hello [Get DPMModifiableProtectionGroup](https://technet.microsoft.com/library/hh881713) cmdlet.
 
 ```
 PS C:\> $MPG = Get-ModifiableProtectionGroup $PG
 ```
 
-### <a name="adding-group-members-to-the-protection-group"></a>Aggiunta di membri al gruppo protezione dati
-Ogni agente DPM conosce l'elenco di origini dati nel server in cui è installato. Per aggiungere un'origine dati al gruppo protezione dati, l'agente DPM deve innanzitutto inviare un elenco delle origini dati al server DPM. Vengono quindi selezionate una o più origini dati, che vengono aggiunte al gruppo protezione dati. La procedura di PowerShell da eseguire a questo scopo è la seguente:
+### <a name="adding-group-members-toohello-protection-group"></a>Aggiunta di membri di gruppo toohello gruppo protezione dati
+Ogni agente DPM SA elenco hello di origini dati nel server di hello cui è installato. tooadd toohello un'origine dati gruppo protezione dati, hello agente DPM esigenze toofirst invia un elenco di server DPM toohello indietro di hello origini dati. Uno o più origini dati vengono quindi selezionate e aggiunte toohello gruppo protezione dati. i passaggi di PowerShell Hello necessarie tooachieve questo sono:
 
-1. Recuperare un elenco di tutti i server gestiti da DPM tramite l'agente DPM.
+1. Recuperare un elenco di tutti i server gestiti da DPM tramite hello agente DPM.
 2. Scegliere un server specifico.
-3. Recuperare un elenco di tutte le origini dati nel server.
-4. Scegliere una o più origini dati e aggiungerle al gruppo protezione dati.
+3. Recuperare un elenco di tutte le origini dati nel server di hello.
+4. Scegliere uno o più origini dati e aggiungerli toohello gruppo protezione dati
 
-È possibile acquisire l'elenco di tutti i server in cui è installato l'agente DPM e che sono gestiti dal server DPM tramite il cmdlet [Get-DPMProductionServer](https://technet.microsoft.com/library/hh881600) . In questo esempio verrà applicato un filtro e per il backup verrà configurato solo il server di produzione denominato *productionserver01* .
+elenco di Hello del server in cui hello agente Data Protection Manager è installato e viene gestito dal Server DPM hello viene acquisito con hello [Get DPMProductionServer](https://technet.microsoft.com/library/hh881600) cmdlet. In questo esempio verrà applicato un filtro e per il backup verrà configurato solo il server di produzione denominato *productionserver01* .
 
 ```
 PS C:\> $server = Get-ProductionServer -DPMServerName "TestingServer" | where {($_.servername) –contains “productionserver01”
 ```
 
-Recuperare quindi l'elenco di origini dati in ```$server``` usando il cmdlet [Get-DPMDatasource](https://technet.microsoft.com/library/hh881605). In questo esempio viene filtrato il volume *D:\*, da configurare per il backup. L'origine dati viene quindi aggiunta al gruppo protezione dati usando il cmdlet [Add-DPMChildDatasource](https://technet.microsoft.com/library/hh881732). Ricordarsi di usare l'oggetto gruppo protezione dati *modificabile* ```$MPG``` per effettuare le aggiunte.
+Ora recuperare elenco hello di origini dati in ```$server``` utilizzando hello [Get DPMDatasource](https://technet.microsoft.com/library/hh881605) cmdlet. In questo esempio si Filtra per volume hello * unità d:\* che tooconfigure per il backup. L'origine dati viene quindi aggiunto toohello gruppo protezione dati utilizzando hello [Aggiungi DPMChildDatasource](https://technet.microsoft.com/library/hh881732) cmdlet. Ricordare hello toouse *modificabile* oggetto gruppo protezione dati ```$MPG``` aggiunte hello toomake.
 
 ```
 PS C:\> $DS = Get-Datasource -ProductionServer $server -Inquire | where { $_.Name -contains “D:\” }
@@ -271,26 +271,26 @@ PS C:\> $DS = Get-Datasource -ProductionServer $server -Inquire | where { $_.Nam
 PS C:\> Add-DPMChildDatasource -ProtectionGroup $MPG -ChildDatasource $DS
 ```
 
-Ripetere questo passaggio il numero di volte necessario per aggiungere tutte le origini dati scelte al gruppo protezione dati. È anche possibile iniziare con una sola origine dati e completare il flusso di lavoro per la creazione del gruppo protezione dati, quindi, in un secondo momento, aggiungere altre origini dati al gruppo protezione dati.
+Ripetere questo passaggio il numero di volte in base alle esigenze fino a quando non sono stati aggiunti tutti hello gruppo protezione dati di origini dati toohello scelto. È possibile iniziare con una sola origine dati e del flusso di lavoro hello completo per la creazione di hello gruppo protezione dati e successivamente aggiungere altre origini dati toohello gruppo protezione dati.
 
-### <a name="selecting-the-data-protection-method"></a>Selezione del metodo di protezione dati
-Una volta aggiunte le origini dati al gruppo protezione dati, il passaggio successivo consiste nello specificare il metodo di protezione usando il cmdlet [Set-DPMProtectionType](https://technet.microsoft.com/library/hh881725) . In questo esempio, il gruppo protezione dati viene configurato per il backup su disco locale e nel cloud. È inoltre necessario specificare l'origine dati che si desidera proteggere per il cloud utilizzando il cmdlet [Aggiungi DPMChildDatasource](https://technet.microsoft.com/library/hh881732.aspx) con -flag Online.
+### <a name="selecting-hello-data-protection-method"></a>Selezione metodo protezione dati di hello
+Dopo aver aggiunto le origini dati hello toohello gruppo protezione dati, passaggio successivo hello è metodo di protezione hello toospecify utilizzando hello [Set DPMProtectionType](https://technet.microsoft.com/library/hh881725) cmdlet. In questo esempio hello gruppo protezione dati è configurato per il disco locale e il backup nel cloud. È inoltre necessario toospecify hello datasource che si desidera toocloud tooprotect utilizzando hello [Aggiungi DPMChildDatasource](https://technet.microsoft.com/library/hh881732.aspx) cmdlet con - flag Online.
 
 ```
 PS C:\> Set-DPMProtectionType -ProtectionGroup $MPG -ShortTerm Disk –LongTerm Online
 PS C:\> Add-DPMChildDatasource -ProtectionGroup $MPG -ChildDatasource $DS –Online
 ```
 
-### <a name="setting-the-retention-range"></a>Impostazione del periodo di mantenimento dati
-Impostare il periodo di conservazione per i punti di backup usando il cmdlet [Set-DPMPolicyObjective](https://technet.microsoft.com/library/hh881762) . Anche se può sembrare strano impostare il periodo di conservazione prima di definire la pianificazione dei backup, usando il cmdlet ```Set-DPMPolicyObjective``` viene automaticamente impostata una pianificazione dei backup predefinita che può quindi essere modificata. È sempre possibile impostare prima la pianificazione dei backup e successivamente i criteri di conservazione.
+### <a name="setting-hello-retention-range"></a>Impostazione di un intervallo di conservazione hello
+Impostare il mantenimento dati hello per i punti di backup hello utilizzando hello [Set DPMPolicyObjective](https://technet.microsoft.com/library/hh881762) cmdlet. Anche se potrebbe sembrare memorizzazione hello tooset dispari prima di pianificazione del backup hello è stato definito utilizzando hello ```Set-DPMPolicyObjective``` imposta automaticamente una pianificazione di backup predefinito che può quindi essere modificata. È sempre possibile tooset pianificazione del backup hello innanzitutto e hello criteri di conservazione dopo.
 
-Nell'esempio seguente il cmdlet imposta i parametri di conservazione per i backup su disco. I backup verranno conservati per 10 giorni e i dati verranno sincronizzati ogni 6 ore tra il server di produzione e il server DPM. ```SynchronizationFrequencyMinutes``` non definisce la frequenza di creazione di un punto di backup, ma la frequenza con cui i dati vengono copiati nel server DPM.  Questa impostazione impedisce che i backup diventino di dimensioni eccessive.
+Nel seguente esempio hello hello imposta i parametri di memorizzazione hello per i backup su disco. Questo verrà conservazione dei backup per 10 giorni e sincronizzare i dati ogni 6 ore tra il server di produzione hello e hello Data Protection Manager. Hello ```SynchronizationFrequencyMinutes``` non definisce la frequenza con cui un punto di ripristino viene creato, ma come spesso dati sono il server DPM toohello copiato.  Questa impostazione impedisce che i backup diventino di dimensioni eccessive.
 
 ```
 PS C:\> Set-DPMPolicyObjective –ProtectionGroup $MPG -RetentionRangeInDays 10 -SynchronizationFrequencyMinutes 360
 ```
 
-Per i backup destinati ad Azure (indicati in DPM come backup online), è possibile configurare i periodi di mantenimento dati per la [conservazione a lungo termine con uno schema GFS (Grandfather-Father-Son)](backup-azure-backup-cloud-as-tape.md). Ciò significa che è possibile definire un criterio di conservazione combinato che includa criteri giornalieri, settimanali, mensili e annuali. In questo esempio viene creata una matrice che rappresenta lo schema di conservazione complesso desiderato e quindi viene configurato il periodo di mantenimento dati usando il cmdlet [Set-DPMPolicyObjective](https://technet.microsoft.com/library/hh881762) .
+Per i backup verranno tooAzure (Data Protection Manager si riferisce toothem come backup in linea) periodi di mantenimento hello possono essere configurati per [utilizzando uno schema nonno-padre-figlio (condivisione file di Groove) di memorizzazione a lungo termine](backup-azure-backup-cloud-as-tape.md). Ciò significa che è possibile definire un criterio di conservazione combinato che includa criteri giornalieri, settimanali, mensili e annuali. In questo esempio è una matrice che rappresenta lo schema di memorizzazione complesso hello che si desidera creare e quindi configurare l'intervallo di conservazione hello utilizzando hello [Set DPMPolicyObjective](https://technet.microsoft.com/library/hh881762) cmdlet.
 
 ```
 PS C:\> $RRlist = @()
@@ -301,8 +301,8 @@ PS C:\> $RRList += (New-Object -TypeName Microsoft.Internal.EnterpriseStorage.Dl
 PS C:\> Set-DPMPolicyObjective –ProtectionGroup $MPG -OnlineRetentionRangeList $RRlist
 ```
 
-### <a name="set-the-backup-schedule"></a>Impostare la pianificazione dei backup
-Se si specifica l'obiettivo di protezione usando il cmdlet ```Set-DPMPolicyObjective``` , DPM imposta automaticamente una pianificazione dei backup predefinita. Per modificare le pianificazioni predefinite, usare il cmdlet [Get DPMPolicySchedule](https://technet.microsoft.com/library/hh881749), seguito da quello [Set DPMPolicySchedule](https://technet.microsoft.com/library/hh881723).
+### <a name="set-hello-backup-schedule"></a>Pianificazione del backup hello set
+DPM imposta automaticamente una pianificazione di backup predefinito se si specifica l'obiettivo di protezione di hello utilizzando hello ```Set-DPMPolicyObjective``` cmdlet. le pianificazioni predefinite hello toochange, utilizzare hello [Get DPMPolicySchedule](https://technet.microsoft.com/library/hh881749) cmdlet seguito da hello [Set DPMPolicySchedule](https://technet.microsoft.com/library/hh881723) cmdlet.
 
 ```
 PS C:\> $onlineSch = Get-DPMPolicySchedule -ProtectionGroup $mpg -LongTerm Online
@@ -313,36 +313,36 @@ PS C:\> Set-DPMPolicySchedule -ProtectionGroup $MPG -Schedule $onlineSch[3] -Tim
 PS C:\> Set-DPMProtectionGroup -ProtectionGroup $MPG
 ```
 
-Nell'esempio precedente, ```$onlineSch``` è una matrice con quattro elementi che contiene la pianificazione della protezione online esistente per il gruppo protezione dati nello schema GFS:
+In hello sopra riportato, ```$onlineSch``` è una matrice con quattro elementi che contiene pianificazione protezione dati online esistente hello per hello gruppo protezione dati nello schema di condivisione file di Groove hello:
 
-1. ```$onlineSch[0]``` contiene la pianificazione giornaliera
-2. ```$onlineSch[1]``` contiene la pianificazione settimanale
-3. ```$onlineSch[2]``` contiene la pianificazione mensile
-4. ```$onlineSch[3]``` contiene la pianificazione annuale
+1. ```$onlineSch[0]```contiene una pianificazione giornaliera hello
+2. ```$onlineSch[1]```contiene una pianificazione settimanale hello
+3. ```$onlineSch[2]```contiene la pianificazione mensile hello
+4. ```$onlineSch[3]```contiene pianificazione annuale hello
 
-Se pertanto è necessario modificare la pianificazione settimanale, è necessario fare riferimento a ```$onlineSch[1]```.
+Pertanto se è necessaria una pianificazione settimanale di hello toomodify, è necessario toorefer toohello ```$onlineSch[1]```.
 
 ### <a name="initial-backup"></a>Backup iniziale
-Quando si esegue il backup di un'origine dati per la prima volta, DPM deve creare una replica iniziale con cui viene creata una copia completa dell'origine dati da proteggere nel volume di replica DPM. È possibile pianificare questa attività a un orario specifico oppure attivarla manualmente, usando il cmdlet [Set-DPMReplicaCreationMethod](https://technet.microsoft.com/library/hh881715) con il parametro ```-NOW```.
+Quando backup di un'origine dati per hello prima volta, DPM deve creare la replica iniziale che crea una copia completa di hello datasource toobe protetti nel volume di replica DPM. Questa attività possono essere pianificata per un momento specifico o può essere attivata manualmente, utilizzando hello [Set DPMReplicaCreationMethod](https://technet.microsoft.com/library/hh881715) cmdlet con il parametro hello ```-NOW```.
 
 ```
 PS C:\> Set-DPMReplicaCreationMethod -ProtectionGroup $MPG -NOW
 ```
-### <a name="changing-the-size-of-dpm-replica--recovery-point-volume"></a>Modifica delle dimensioni della replica DPM e volume del punto di ripristino
-È anche possibile modificare le dimensioni del volume di replica DPM e del volume della copia shadow usando il cmdlet [Set-DPMDatasourceDiskAllocation](https://technet.microsoft.com/library/hh881618.aspx) come nell'esempio seguente: Get-DatasourceDiskAllocation -Datasource $DS Set-DatasourceDiskAllocation -Datasource $DS -ProtectionGroup $MPG -manual -ReplicaArea (2gb) -ShadowCopyArea (2gb)
+### <a name="changing-hello-size-of-dpm-replica--recovery-point-volume"></a>Modifica delle dimensioni di hello di Replica DPM & volume del punto di ripristino
+È possibile inoltre modificare hello dimensioni del volume di Replica di DPM e l'utilizzo di copia Shadow volume [Set DPMDatasourceDiskAllocation](https://technet.microsoft.com/library/hh881618.aspx) cmdlet come hello di esempio seguente: Get-DatasourceDiskAllocation - Datasource $DS Set-DatasourceDiskAllocation - Datasource $DS - ProtectionGroup $MPG-manuale - ReplicaArea (2 gb) - ShadowCopyArea (2 gb)
 
-### <a name="committing-the-changes-to-the-protection-group"></a>Commit delle modifiche nel gruppo protezione dati
-Infine, è necessario eseguire il commit delle modifiche affinché DPM possa eseguire il backup in base alla nuova configurazione del gruppo protezione dati. A tale scopo, usare il cmdlet [Set-DPMProtectionGroup](https://technet.microsoft.com/library/hh881758) .
+### <a name="committing-hello-changes-toohello-protection-group"></a>Il commit hello modifiche toohello gruppo protezione dati
+Infine, le modifiche di hello necessario toobe eseguito il commit prima che DPM può eseguire il backup di hello in base alla configurazione di hello nuovo gruppo protezione dati. Ciò può essere ottenuto utilizzando hello [Set DPMProtectionGroup](https://technet.microsoft.com/library/hh881758) cmdlet.
 
 ```
 PS C:\> Set-DPMProtectionGroup -ProtectionGroup $MPG
 ```
-## <a name="view-the-backup-points"></a>Visualizzare i punti di backup
-È possibile usare il cmdlet [Get-DPMRecoveryPoint](https://technet.microsoft.com/library/hh881746) per ottenere un elenco di tutti i punti di ripristino per un'origine dati. Nell'esempio seguente, vengono:
+## <a name="view-hello-backup-points"></a>Visualizzare i punti di backup hello
+È possibile utilizzare hello [Get DPMRecoveryPoint](https://technet.microsoft.com/library/hh881746) tooget cmdlet un elenco di tutti i punti di ripristino per un'origine dati. Nell'esempio seguente, vengono:
 
-* recuperati tutti i gruppi protezione dati (PG) nel server DPM con archiviazione in una matrice ```$PG```
-* ottenuti le origini dati corrispondenti alla matrice ```$PG[0]```
-* ottenuti tutti i punti di ripristino per un'origine dati.
+* FETCH tutti hello PGs nel server DPM hello e archiviati in una matrice```$PG```
+* ottenere toohello corrispondente di hello origini dati```$PG[0]```
+* ottenere tutti i punti di ripristino hello per un'origine dati.
 
 ```
 PS C:\> $PG = Get-DPMProtectionGroup –DPMServerName "TestingServer"
@@ -351,13 +351,13 @@ PS C:\> $RecoveryPoints = Get-DPMRecoverypoint -Datasource $DS[0] -Online
 ```
 
 ## <a name="restore-data-protected-on-azure"></a>Ripristino dei dati protetti su Azure
-Il ripristino dei dati è una combinazione tra un oggetto ```RecoverableItem``` e un oggetto ```RecoveryOption```. Nella sezione precedente è stato ottenuto un elenco dei punti di backup per un'origine dati.
+Il ripristino dei dati è una combinazione tra un oggetto ```RecoverableItem``` e un oggetto ```RecoveryOption```. Nella sezione precedente hello, abbiamo un elenco di punti di backup hello per un'origine dati.
 
-Nell'esempio seguente viene illustrato come ripristinare una macchina virtuale Hyper-V da Backup di Azure mediante la combinazione di punti di backup con la destinazione per il ripristino. L'esempio include quanto segue:
+Nell'esempio hello riportato di seguito viene illustrato come macchina virtuale di Hyper-V toorestore da Azure Backup dai punti di backup in combinazione con hello destinazione per il ripristino. L'esempio include quanto segue:
 
-* Creazione di un'opzione di ripristino usando il cmdlet [New-DPMRecoveryOption](https://technet.microsoft.com/library/hh881592).
-* Recupero della matrice di punti di backup usando il cmdlet ```Get-DPMRecoveryPoint``` .
-* Scelta di un punto di backup da cui eseguire il ripristino.
+* Creazione di un'opzione di ripristino utilizzando hello [New DPMRecoveryOption](https://technet.microsoft.com/library/hh881592) cmdlet.
+* Matrice di hello recupero dei punti di backup utilizzando hello ```Get-DPMRecoveryPoint``` cmdlet.
+* Scelta di un backup toorestore punto da.
 
 ```
 PS C:\> $RecoveryOption = New-DPMRecoveryOption -HyperVDatasource -TargetServer "HVDCenter02" -RecoveryLocation AlternateHyperVServer -RecoveryType Recover -TargetLocation “C:\VMRecovery”
@@ -369,7 +369,7 @@ PS C:\> $RecoveryPoints = Get-DPMRecoverypoint -Datasource $DS[0] -Online
 PS C:\> Restore-DPMRecoverableItem -RecoverableItem $RecoveryPoints[0] -RecoveryOption $RecoveryOption
 ```
 
-I comandi possono essere facilmente estesi per qualsiasi tipo di origine dati.
+i comandi di Hello possono essere facilmente esteso per qualsiasi tipo di origine dati.
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Per altre informazioni su DPM e Backup di Azure, vedere [Preparazione del backup dei carichi di lavoro in Azure con DPM](backup-azure-dpm-introduction.md)
+* Per altre informazioni su DPM vedere Backup tooAzure [tooDPM introduzione Backup](backup-azure-dpm-introduction.md)

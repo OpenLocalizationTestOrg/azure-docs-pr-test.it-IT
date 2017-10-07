@@ -1,6 +1,6 @@
 ---
-title: Introduzione alla risoluzione dei problemi delle risorse in Azure Network Watcher | Microsoft Docs
-description: "Questa pagina fornisce una panoramica delle funzionalità di risoluzione dei problemi delle risorse di Network Watcher"
+title: tooresource aaaIntroduction risoluzione dei problemi in Watcher di rete di Azure | Documenti Microsoft
+description: "Questa pagina fornisce una panoramica delle funzionalità di risoluzione dei problemi di hello Watcher di rete risorsa"
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -14,37 +14,37 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 06/19/2017
 ms.author: gwallace
-ms.openlocfilehash: 0d5091b682d1b25c47b224394bcc2c46366eeb2a
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: ccbe4c1c2364473aba06e709460d67c773cf25ae
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="introduction-to-resource-troubleshooting-in-azure-network-watcher"></a>Introduzione alla risoluzione dei problemi delle risorse in Azure Network Watcher
+# <a name="introduction-tooresource-troubleshooting-in-azure-network-watcher"></a>Introduzione tooresource risoluzione dei problemi in Watcher di rete di Azure
 
-I gateway di rete virtuale forniscono la connettività tra le risorse locali e altre reti virtuali in Azure. Il monitoraggio di questi gateway e delle rispettive connessioni è essenziale per assicurare che le comunicazioni non siano interrotte. Network Watcher consente di risolvere i problemi dei gateway di rete virtuale e delle connessioni. Questo può essere chiamato dal portale, da PowerShell, dall'interfaccia della riga di comando o dall'API REST. Quando viene chiamato, Network Watcher esegue la diagnostica dell'integrità del gateway di rete virtuale o della connessione e restituisce i risultati appropriati. Questa richiesta è una transazione a esecuzione prolungata e i risultati vengono restituiti al termine della diagnosi.
+I gateway di rete virtuale forniscono la connettività tra le risorse locali e altre reti virtuali in Azure. Monitoraggio di questi gateway e le relative connessioni è fondamentale tooensuring comunicazione non viene interrotta. Watcher di rete fornisce hello funzionalità tootroubleshoot gateway di rete virtuale e le connessioni. Questo può essere chiamato tramite il portale di hello, PowerShell, CLI o API REST. Quando viene chiamato, Watcher di rete individua integrità hello di gateway di rete virtuale hello o connessione e risultati appropriati hello restituito. Questa richiesta è una transazione con esecuzione prolungata, vengono restituiti risultati hello una volta completata la diagnosi di hello.
 
 ![portal][2]
 
 ## <a name="results"></a>Risultati
 
-I risultati preliminari restituiti offrono un quadro complessivo dell'integrità della risorsa. È possibile ottenere informazioni più approfondite per le risorse, come illustrato nella sezione seguente:
+Hello preliminare risultati assegnano un'immagine complessiva dell'integrità di hello della risorsa hello. È possibile fornire informazioni più approfondite per le risorse come illustrato nella seguente sezione hello:
 
-L'elenco seguente include i valori restituiti con l'API di risoluzione dei problemi:
+Hello elenco seguente include i valori hello restituiti con hello risolvere API:
 
-* **startTime**: questo valore indica l'ora di inizio della chiamata all'API di risoluzione dei problemi.
-* **endTime**: questo valore indica l'ora di fine della risoluzione dei problemi.
+* **startTime** -questo valore è ora hello hello risolvere chiamata API avviato.
+* **endTime** -questo valore è ora hello quando la risoluzione dei problemi di hello è terminata.
 * **code**: questo valore è UnHealthy in caso di singolo errore di diagnosi.
-* **results**: indica una raccolta di risultati restituiti relativi alla connessione o al gateway di rete virtuale.
-    * **id**: questo valore è il tipo di errore.
-    * **summary**: questo valore è un riepilogo dell'errore.
-    * **detailed**: questo valore fornisce una descrizione dettagliata dell'errore.
-    * **recommendedActions**: questa proprietà è una raccolta di azioni consigliate da eseguire.
-      * **actionText**: questo valore contiene il testo che descrive l'azione da eseguire.
-      * **actionUri**: questo valore fornisce l'URI per la documentazione relativa all'azione da eseguire.
-      * **actionUriText**: questo valore è una breve descrizione del testo dell'azione.
+* **risultati** -risultati è una raccolta di risultati restituito nel gateway di rete virtuale di connessione o hello hello.
+    * **ID** -questo valore è il tipo di errore hello.
+    * **riepilogo** -questo valore è riportato un riepilogo dell'errore hello.
+    * **dettagliate** -questo valore fornisce una descrizione dettagliata dell'errore hello.
+    * **recommendedActions** -questa proprietà è una raccolta di tootake le azioni consigliate.
+      * **actionText** -questo valore contiene testo hello che descrive quale tootake di azione.
+      * **actionUri** -questo valore fornisce hello URI toodocumentation sulla tooact.
+      * **actionUriText** -questo valore è una breve descrizione di testo dell'azione hello.
 
-Le tabelle seguenti illustrano i diversi tipi di errore (ID relativi ai risultati dell'elenco precedente) disponibili e indicano se l'errore crea log.
+Hello seguenti tabelle Mostra hello diversi tipi di errore (id in risultati da hello precede elenco) che sono disponibili e, se l'errore hello Crea registri.
 
 ### <a name="gateway"></a>Gateway
 
@@ -54,12 +54,12 @@ Le tabelle seguenti illustrano i diversi tipi di errore (ID relativi ai risultat
 | GatewayNotFound | Non è possibile trovare il gateway o il gateway non è stato sottoposto a provisioning. |No|
 | PlannedMaintenance |  L'istanza del gateway è in fase di manutenzione.  |No|
 | UserDrivenUpdate | È in corso l'aggiornamento utente. Potrebbe trattarsi di un'operazione di ridimensionamento. | No |
-| VipUnResponsive | Non è possibile raggiungere l'istanza primaria del gateway. Ciò si verifica in caso di errore del probe di integrità. | No |
-| PlatformInActive | Si è verificato un errore con la piattaforma. | No|
-| ServiceNotRunning | Il servizio sottostante non è in esecuzione. | No|
-| NoConnectionsFoundForGateway | Non esistono connessioni sul gateway. Questo è solo un avviso.| No|
+| VipUnResponsive | Impossibile raggiungere l'istanza primaria di hello di hello Gateway. Ciò accade quando hello probe di integrità non riesce. | No |
+| PlatformInActive | Si verifica un problema con la piattaforma di hello. | No|
+| ServiceNotRunning | servizio di Hello sottostante non è in esecuzione. | No|
+| NoConnectionsFoundForGateway | Nessuna connessione esista nel gateway hello. Questo è solo un avviso.| No|
 | ConnectionsNotConnected | Le connessioni non sono connesse. Questo è solo un avviso.| Sì|
-| GatewayCPUUsageExceeded | L'utilizzo della CPU del gateway corrente è > 95%. | Sì |
+| GatewayCPUUsageExceeded | utilizzo della CPU Gateway corrente Hello è > 95%. | Sì |
 
 ### <a name="connection"></a>Connessione
 
@@ -69,19 +69,19 @@ Le tabelle seguenti illustrano i diversi tipi di errore (ID relativi ai risultat
 | GatewayNotFound | Non è possibile trovare il gateway o il gateway non è stato sottoposto a provisioning. |No|
 | PlannedMaintenance | L'istanza del gateway è in fase di manutenzione.  |No|
 | UserDrivenUpdate | È in corso l'aggiornamento utente. Potrebbe trattarsi di un'operazione di ridimensionamento.  | No |
-| VipUnResponsive | Non è possibile raggiungere l'istanza primaria del gateway. Ciò si verifica in caso di errore del probe di integrità. | No |
+| VipUnResponsive | Impossibile raggiungere l'istanza primaria di hello di hello Gateway. Verifica quando hello probe di integrità non riesce. | No |
 | ConnectionEntityNotFound | La configurazione della connessione non è presente. | No |
-| ConnectionIsMarkedDisconnected | La connessione viene contrassegnata come "disconnected". |No|
-| ConnectionNotConfiguredOnGateway | La connessione per il servizio sottostante non è stata configurata. | Sì |
-| ConnectionMarkedStandy | Il servizio sottostante viene contrassegnato come "standby".| Sì|
+| ConnectionIsMarkedDisconnected | Connessione Hello è contrassegnato come "disconnessa". |No|
+| ConnectionNotConfiguredOnGateway | servizio sottostante Hello non dispone di hello che connessione configurata. | Sì |
+| ConnectionMarkedStandy | Hello servizio sottostante viene contrassegnato come standby.| Sì|
 | Autenticazione | Mancata corrispondenza della chiave precondivisa. | Sì|
-| PeerReachability | Il gateway peer non è raggiungibile. | Sì|
-| IkePolicyMismatch | Il gateway peer ha criteri IKE non supportati da Azure. | Sì|
-| WfpParse Error | Si è verificato un errore durante l'analisi del log WFP. |Sì|
+| PeerReachability | gateway di Hello peer non è raggiungibile. | Sì|
+| IkePolicyMismatch | gateway peer Hello dispone di criteri di IKE che non sono supportati da Azure. | Sì|
+| WfpParse Error | Errore durante l'analisi dei log di piattaforma filtro Windows hello. |Sì|
 
 ## <a name="supported-gateway-types"></a>Tipi di gateway supportati
 
-L'elenco seguente mostra i gateway e le connessioni supportate con la risoluzione dei problemi di Network Watcher.
+Hello elenco riportato di seguito viene illustrato il supporto di hello Mostra quali i gateway e le connessioni sono supportate con la risoluzione dei problemi di controllo di rete.
 |  |  |
 |---------|---------|
 |**Tipi di gateway**   |         |
@@ -100,23 +100,23 @@ L'elenco seguente mostra i gateway e le connessioni supportate con la risoluzion
 
 ## <a name="log-files"></a>File di log
 
-I file di log della risoluzione dei problemi delle risorse vengono archiviati in un account di archiviazione al termine della risoluzione dei problemi delle risorse. L'immagine seguente mostra i contenuti di esempio di una chiamata che ha generato un errore.
+file di log sulla risoluzione dei problemi di Hello risorse vengono archiviati in un account di archiviazione dopo la risoluzione dei problemi di risorse completata. Hello immagine seguente mostra contenuto di esempio hello di una chiamata che ha restituito un errore.
 
 ![File ZIP][1]
 
 > [!NOTE]
-> In alcuni casi, solo un sottoinsieme di file di log viene scritto nella risorsa di archiviazione.
+> In alcuni casi, solo un subset hello di file di log viene scritto toostorage.
 
-Per istruzioni sul download di file dall'account di archiviazione di Azure, vedere [Introduzione all'archivio BLOB di Azure con .NET](../storage/blobs/storage-dotnet-how-to-use-blobs.md). Un altro strumento che può essere usato è Storage Explorer. Altre informazioni su Storage Explorer sono reperibili facendo clic sul collegamento seguente: [Storage Explorer](http://storageexplorer.com/).
+Per istruzioni sul download di file dall'account di archiviazione di azure, consultare troppo[Introduzione all'archiviazione Blob di Azure usando .NET](../storage/blobs/storage-dotnet-how-to-use-blobs.md). Un altro strumento che può essere usato è Storage Explorer. Ulteriori informazioni su soluzioni di archiviazione sono reperibile qui in hello seguente collegamento: [Esplora archivi](http://storageexplorer.com/)
 
 ### <a name="connectionstatstxt"></a>ConnectionStats.txt
 
-Il file **ConnectionStats.txt** contiene lo stato complessivo della connessione, inclusi i byte in ingresso e in uscita e l'ora in cui è stata stabilita la connessione.
+Hello **ConnectionStats.txt** file contiene statistiche generali di hello connessione, inclusi i byte in ingresso e in uscita, lo stato di connessione e hello ora hello è stata stabilita una connessione.
 
 > [!NOTE]
-> Se la chiamata all'API di risoluzione dei problemi restituisce uno stato integro, l'unico elemento restituito nel file ZIP è un file **ConnectionStats.txt**.
+> Se hello chiamata toohello risoluzione dei problemi di API restituisce integro, unica hello restituito nel file zip hello è un **ConnectionStats.txt** file.
 
-I contenuti di questo file sono simili all'esempio seguente:
+contenuto Hello di questo file è simile toohello esempio seguente:
 
 ```
 Connectivity State : Connected
@@ -128,7 +128,7 @@ Connected Since : 2/1/2017 8:22:06 PM
 
 ### <a name="cpustatstxt"></a>CPUStats.txt
 
-Il file **CPUStats.txt** contiene l'utilizzo della CPU e la memoria disponibile in fase di test.  I contenuti di questo file sono simili all'esempio seguente:
+Hello **CPUStats.txt** file contiene l'utilizzo della CPU e memoria disponibile in fase di hello del test.  contenuto Hello di questo file è simile toohello esempio seguente:
 
 ```
 Current CPU Usage : 0 % Current Memory Available : 641 MBs
@@ -136,9 +136,9 @@ Current CPU Usage : 0 % Current Memory Available : 641 MBs
 
 ### <a name="ikeerrorstxt"></a>IKEErrors.txt
 
-Il file **IKEErrors.txt** contiene eventuali errori IKE trovati durante il monitoraggio.
+Hello **IKEErrors.txt** file contiene gli eventuali errori di IKE che sono stati trovati durante il monitoraggio.
 
-L'esempio seguente mostra i contenuti di un file IKEErrors.txt. È possibile che gli errori visualizzati siano diversi, in base al problema specifico.
+Hello esempio seguente viene illustrato il contenuto di hello di un file IKEErrors.txt. Gli errori potrebbero essere diversi in base al problema hello.
 
 ```
 Error: Authentication failed. Check shared key. Check crypto. Check lifetimes. 
@@ -149,13 +149,13 @@ Error: On-prem device sent invalid payload.
 
 ### <a name="scrubbed-wfpdiagtxt"></a>Scrubbed-wfpdiag.txt
 
-Il file di log **Scrubbed-wfpdiag.txt** contiene il log WFP. Questo log contiene la registrazione del pacchetto ignorato e degli errori IKE/AuthIP.
+Hello **Scrubbed wfpdiag.txt** file di log contiene il log di piattaforma filtro Windows hello. Questo log contiene la registrazione del pacchetto ignorato e degli errori IKE/AuthIP.
 
-L'esempio seguente mostra i contenuti del file Scrubbed-wfpdiag.txt. In questo esempio la chiave condivisa di una connessione non è valida, come illustrato dalla terza riga dal basso. L'esempio seguente è solo un frammento di codice dell'intero log, ma il log può essere lungo, a seconda del problema specifico.
+Hello esempio seguente viene illustrato il contenuto di hello del file di Scrubbed wfpdiag.txt hello. In questo esempio, hello la chiave condivisa di una connessione non è corretta come si può notare dalla riga di 3 hello dal basso hello. Hello di esempio seguente è semplicemente un frammento di codice dell'intero log hello, come log hello può risultare lungo in base al problema hello.
 
 ```
 ...
-[0]0368.03A4::02/02/2017-17:36:01.496 [ikeext] 3038|52.161.24.36|Deleted ICookie from the high priority thread pool list
+[0]0368.03A4::02/02/2017-17:36:01.496 [ikeext] 3038|52.161.24.36|Deleted ICookie from hello high priority thread pool list
 [0]0368.03A4::02/02/2017-17:36:01.496 [ikeext] 3038|52.161.24.36|IKE diagnostic event:
 [0]0368.03A4::02/02/2017-17:36:01.496 [ikeext] 3038|52.161.24.36|Event Header:
 [0]0368.03A4::02/02/2017-17:36:01.496 [ikeext] 3038|52.161.24.36|  Timestamp: 1601-01-01T00:00:00.000Z
@@ -182,9 +182,9 @@ L'esempio seguente mostra i contenuti del file Scrubbed-wfpdiag.txt. In questo e
 
 ### <a name="wfpdiagtxtsum"></a>wfpdiag.txt.sum
 
-Il file **wfpdiag.txt.sum** è un log che mostra i buffer e gli eventi elaborati.
+Hello **wfpdiag.txt.sum** file è un registro contenente i buffer hello e gli eventi elaborati.
 
-L'esempio seguente illustra i contenuti di un file wfpdiag.txt.sum.
+Hello esempio seguente è contenuto hello di un file di wfpdiag.txt.sum.
 ```
 Files Processed:
     C:\Resources\directory\924336c47dd045d5a246c349b8ae57f2.GatewayTenantWorker.DiagnosticsStorage\2017-02-02T17-34-23\wfpdiag.etl
@@ -212,7 +212,7 @@ Elapsed Time            330 sec
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Per informazioni sulla diagnosi dei gateway VPN e delle connessioni con il portale, vedere [Risoluzione dei problemi del gateway - Portale di Azure](network-watcher-troubleshoot-manage-portal.md).
+Informazioni su come gateway VPN toodiagnose e le connessioni tramite hello portale visitando [risoluzione dei problemi Gateway - portale di Azure](network-watcher-troubleshoot-manage-portal.md).
 <!--Image references-->
 
 [1]: ./media/network-watcher-troubleshoot-overview/GatewayTenantWorkerLogs.png

@@ -1,6 +1,6 @@
 ---
-title: Soluzioni specifiche del settore di Cortana Intelligence Gallery | Documentazione Microsoft
-description: Scoprire soluzioni di settore in Cortana Intelligence Gallery.
+title: aaaCortana specifici del settore Intelligence raccolta soluzioni | Documenti Microsoft
+description: Consente di individuare soluzioni in hello Cortana Intelligence Gallery.
 services: machine-learning
 documentationcenter: 
 author: garyericson
@@ -14,39 +14,39 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/31/2017
 ms.author: roopalik;garye
-ms.openlocfilehash: 34fe6e3f29529a51a73a2f44f06e0cfe02f505ea
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: dc85190012121d072938008acfba5fff5595b507
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="discover-industry-specific-solutions-in-the-cortana-intelligence-gallery"></a>Scoprire soluzioni specifiche del settore in Cortana Intelligence Gallery
+# <a name="discover-industry-specific-solutions-in-hello-cortana-intelligence-gallery"></a>Individuare soluzioni specifici del settore in hello Cortana Intelligence Gallery
 [!INCLUDE [machine-learning-gallery-item-selector](../../includes/machine-learning-gallery-item-selector.md)]
 
 ## <a name="industry-specific-cortana-intelligence-solutions"></a>Soluzioni specifiche del settore di Cortana Intelligence
-La sezione **[Industries](https://gallery.cortanaintelligence.com/industries)** (Settori) di Gallery riunisce risorse specifiche di vari settori, tra cui:
+Il  **[settori](https://gallery.cortanaintelligence.com/industries)**  sezione della raccolta hello riunisce varie risorse che sono specifici toosuch settori come
 
 * [Retail](https://gallery.cortanaintelligence-int.com/industries/retail) (Vendita al dettaglio): consente di trovare soluzioni specifiche per il settore della vendita al dettaglio, ad esempio per creare previsioni di vendita, stimare la varianza dei clienti o sviluppare modelli di prezzo.
 * [Manufacturing](https://gallery.cortanaintelligence-int.com/industries/manufacturing) (Produzione): consente di trovare soluzione specifiche per il settore della produzione, ad esempio per prevedere le esigenze di manutenzione dei macchinari o stimare i prezzi dell'energia.
 * [Banking](https://gallery.cortanaintelligence-int.com/industries/banking) (Settore bancario): consente di trovare soluzioni specifiche per il settore bancario, ad esempio per prevedere il rischio di credito o monitorare le frodi online.
 * [Healthcare](https://gallery.cortanaintelligence-int.com/industries/healthcare) (Sanità): consente di trovare soluzione specifiche per il settore sanitario, ad esempio per rilevare malattie o prevedere riammissioni ospedaliere.
 
-Queste risorse includono esperimenti, moduli personalizzati, API, raccolte e qualsiasi altro elemento di Gallery utile a sviluppare soluzioni specifiche per il proprio settore professionale.
+Queste risorse includono gli esperimenti, moduli personalizzati, API, raccolte e qualsiasi raccolta di elementi che consentono di sviluppano settore specifico toohello soluzioni in uso.
 
 ## <a name="discover"></a>Scoprire
- Per cercare le soluzioni specifiche del settore disponibili in Gallery, aprire [Gallery](http://gallery.cortanaintelligence.com), posizionare il puntatore del mouse su **Industries** (Settori) nella parte alta della home page di Gallery e selezionare uno specifico segmento industriale oppure selezionare **View All** (Visualizza tutto) per aprire una pagina di panoramica con i settori industriali disponibili.
+ toobrowse tramite soluzioni specifici del settore hello nella raccolta, aprire hello hello [raccolta](http://gallery.cortanaintelligence.com), il puntatore del mouse in **settori** nella parte superiore di hello della home page di hello raccolta, selezionare un segmento di settore specifico, oppure selezionare **Visualizza tutto** toosee una pagina di panoramica per tutti i settori.
 
- Per ogni settore è dedicata una pagina in cui è presente un elenco degli elementi di Gallery più visualizzati relativamente a quel settore.
-Fare clic su **See all** (Visualizza tutto) per visualizzare tutte le risorse specifiche del settore presenti in Gallery.
-In questa pagina è possibile eseguire la ricerca di tutte le risorse presenti nella raccolta. È anche possibile eseguire la ricerca selezionando i criteri di filtro a sinistra della pagina e immettendo i termini di ricerca nella parte superiore.
+ Ogni pagina di settore Visualizza un elenco di elementi della raccolta più diffusi hello associata a tale settore.
+Fare clic su **tutti** tooview tutti hello risorse specifici del settore in hello raccolta.
+In questa pagina, è possibile esplorare tutte le risorse di hello in hello raccolta. È anche possibile effettuare la ricerca selezionando i criteri di filtro a sinistra di hello della pagina hello e immettere i termini di ricerca all'inizio di hello.
 
 ![Condividere l'elemento con amici](media/machine-learning-gallery-how-to-use-contribute-publish/share-links.png)
 
 ![Aggiungere un commento](media/machine-learning-gallery-how-to-use-contribute-publish/comments.png)
 
- Fare clic su un qualsiasi elemento di Gallery per aprirne la pagina dei dettagli e visualizzare maggiori informazioni.
+ Fare clic sulla pagina dei dettagli dell'elemento qualsiasi raccolta elemento tooopen hello per altre informazioni.
 
-**[VAI A GALLERY >>](http://gallery.cortanaintelligence.com)**
+**[RICHIEDERE ME toohello Raccolta >>](http://gallery.cortanaintelligence.com)**
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 

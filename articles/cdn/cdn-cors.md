@@ -1,6 +1,6 @@
 ---
-title: Uso della rete CDN di Azure con CORS | Documentazione Microsoft
-description: Informazioni su come usare la rete per la distribuzione di contenuti (rete CDN) di Azure con CORS (Cross-Origin Resource Sharing).
+title: rete CDN di Azure con CORS aaaUsing | Documenti Microsoft
+description: Informazioni su come toouse hello Azure rete CDN (Content Delivery) toowith condivisione delle risorse Multiorigine (CORS).
 services: cdn
 documentationcenter: 
 author: zhangmanling
@@ -14,32 +14,32 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: mazha
-ms.openlocfilehash: 7070397f6e69b21add75bad8220f0b8ebe36d266
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6c743b56c32a2d3aacc9a77094cb87d61b95d2f7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="using-azure-cdn-with-cors"></a>Uso della rete CDN di Azure con CORS
 ## <a name="what-is-cors"></a>Informazioni su CORS
-CORS (Cross Origin Resource Sharing) è una funzionalità HTTP che consente a un'applicazione Web in esecuzione in un dominio di accedere alle risorse in un altro dominio. Per ridurre il rischio di attacchi tramite script da altri siti, tutti i Web browser moderni implementano una restrizione di sicurezza nota come [regola della stessa origine](http://www.w3.org/Security/wiki/Same_Origin_Policy).  Questo impedisce a una pagina Web di chiamare le API in un dominio diverso.  CORS offre un modo sicuro per consentire a una origine, ovvero il dominio di origine, di chiamare le API in un'altra origine.
+CORS (Cross Origin Resource Sharing) è una funzionalità HTTP che consente a un'applicazione web in esecuzione risorse di tooaccess in un dominio in un altro dominio. In ordine tooreduce hello possibilità di attacchi di script, tutti i browser moderni implementano una restrizione di sicurezza nota come [criteri stessa origine](http://www.w3.org/Security/wiki/Same_Origin_Policy).  Questo impedisce a una pagina Web di chiamare le API in un dominio diverso.  Condivisione CORS offre una sezione relativa al toocall dei (dominio di origine hello) di un'origine di in modo sicuro tooallow in un'altra origine API.
 
 ## <a name="how-it-works"></a>Funzionamento
 Esistono due tipi di richieste CORS, le *richieste semplici* e le *richieste complesse*.
 
 ### <a name="for-simple-requests"></a>Per le richieste semplici:
 
-1. Il browser invia la richiesta CORS con un'ulteriore intestazione della richiesta HTTP **Origin**. Il valore di questa intestazione è l'origine che ha gestito la pagina padre, definita come la combinazione di *protocollo*, *dominio* e *porta*.  Quando una pagina prova ad accedere da https://www.contoso.com ai dati di un utente nell'origine fabrikam.com, a tale sito viene inviata l'intestazione di richiesta seguente:
+1. browser Hello Invia richiesta CORS hello con un'ulteriore **origine** intestazione della richiesta HTTP. il valore di Hello di questa intestazione è origine hello resi hello padre pagina nella quale è definito come combinazione di hello di *protocollo,* *dominio* e *porta.*  Quando una pagina da https://www.contoso.com tenta tooaccess dati di un utente in origine fabrikam.com hello, hello dopo l'intestazione della richiesta verrà inviata toofabrikam.com:
 
    `Origin: https://www.contoso.com`
 
-2. Il server può rispondere con uno degli elementi seguenti:
+2. server Hello può rispondere con hello seguenti:
 
    * Un'intestazione **Access-Control-Allow-Origin** presente nella risposta, per indicare il sito di origine consentito. ad esempio:
 
      `Access-Control-Allow-Origin: https://www.contoso.com`
 
-   * Un codice di errore HTTP, ad esempio 403, se il server non consente la richiesta multiorigine dopo il controllo dell'intestazione Origin.
+   * Codice di errore HTTP, ad esempio 403 se hello server non consente la richiesta multiorigine hello dopo il controllo intestazione Origin hello
 
    * Un'intestazione **Access-Control-Allow-Origin** con un carattere jolly che consente tutte le origini:
 
@@ -47,52 +47,52 @@ Esistono due tipi di richieste CORS, le *richieste semplici* e le *richieste com
 
 ### <a name="for-complex-requests"></a>Per le richieste complesse:
 
-Una richiesta complessa è una richiesta CORS in cui il browser deve inviare una *richiesta preliminare*, ovvero un probe preliminare, prima di inviare la richiesta CORS effettiva. La richiesta preliminare chiede l'autorizzazione del server perché la richiesta CORS originale possa procedere e si tratta di una richiesta `OPTIONS` allo stesso URL.
+Una richiesta complessa è una richiesta CORS in browser hello toosend richiesto un *richiesta preliminare* (vale a dire una verifica preliminare) prima di inviare una richiesta CORS effettiva hello. Hello richiesta preliminare richiede autorizzazione server hello se richiesta CORS originale hello può proseguire e un `OPTIONS` richiesta toohello stesso URL.
 
 > [!TIP]
-> Per altre informazioni sui flussi CORS e i problemi comuni, vedere [Guide to CORS for REST APIs](https://www.moesif.com/blog/technical/cors/Authoritative-Guide-to-CORS-Cross-Origin-Resource-Sharing-for-REST-APIs/) (Guida di CORS per le API REST).
+> Per ulteriori informazioni su CORS flussi e i problemi comuni, visualizzare hello [tooCORS della Guida per le API REST](https://www.moesif.com/blog/technical/cors/Authoritative-Guide-to-CORS-Cross-Origin-Resource-Sharing-for-REST-APIs/).
 >
 >
 
 ## <a name="wildcard-or-single-origin-scenarios"></a>Scenari con caratteri jolly o singola origine
-La condivisione CORS sulla rete CDN di Azure funzionerà automaticamente senza operazioni di configurazione aggiuntive quando l'intestazione **Access-Control-Allow-Origin** è impostata sul carattere jolly asterisco (*) o su una singola origine.  La rete CDN memorizzerà nella cache la prima risposta e le richieste successive useranno la stessa intestazione.
+CORS nella rete CDN di Azure funzioneranno automaticamente senza alcuna configurazione aggiuntiva quando hello **Access-Control-Allow-Origin** intestazione è impostata toowildcard (*) o una singola origine.  Hello CDN verrà memorizzati nella cache prima risposta hello e le richieste successive utilizzeranno hello stessa intestazione.
 
-Se sono state inviate richieste alla rete CDN prima che la condivisione CORS venisse impostata nell'origine, sarà necessario eliminare il contenuto sull'endpoint e ricaricarlo con l'intestazione **Access-Control-Allow-Origin** .
+Se le richieste sono state apportate toohello CDN tooCORS precedente viene impostata su hello all'origine, sarà necessario toopurge contenuto nel hello tooreload contenuto endpoint contenuto con hello **Access-Control-Allow-Origin** intestazione.
 
 ## <a name="multiple-origin-scenarios"></a>Scenari con più origini
-Se si desidera autorizzare per CORS uno specifico elenco di origini, le operazioni da eseguire sono più complesse. Il problema si verifica quando la rete CDN memorizza nella cache l'intestazione **Access-Control-Allow-Origin** per la prima origine CORS.  Quando un'origine CORS differente effettua una richiesta successiva, la rete CDN gestisce l'intestazione **Access-Control-Allow-Origin** memorizzata nella cache, che però non corrisponde.  Esistono diversi modi per risolvere il problema.
+Se è necessario un elenco specifico di toobe le origini consentite per CORS tooallow, operazioni get leggermente più complesse. Hello problema si verifica quando hello rete CDN memorizza nella cache di hello **Access-Control-Allow-Origin** intestazione per l'origine CORS prima hello.  Quando una diversa origine CORS effettua una richiesta successiva, hello CDN servirà memorizzati nella cache di hello **Access-Control-Allow-Origin** intestazione, che non corrisponda.  Esistono diversi modi toocorrect questo.
 
 ### <a name="azure-cdn-premium-from-verizon"></a>Rete CDN Premium di Azure fornita da Verizon
-Il modo migliore per abilitare questa rete consiste nell'usare la **rete CDN Premium di Azure fornita da Verizon**, in cui sono disponibili alcune funzionalità avanzate. 
+Hello tooenable modo migliore tratta toouse **Premium rete CDN di Azure da Verizon**, che espongono alcune funzionalità avanzate. 
 
-È necessario [creare una regola](cdn-rules-engine.md) per verificare l'intestazione **Origin** nella richiesta.  Se l'origine è valida, la regola imposterà l'intestazione **Access-Control-Allow-Origin** sull'origine indicata nella richiesta.  Se l'origine specificata nell'intestazione **Origin** non è consentita, la regola dovrà omettere l'intestazione **Access-Control-Allow-Origin**, che causerà il rifiuto della richiesta da parte del browser. 
+È necessario troppo[creare una regola](cdn-rules-engine.md) toocheck hello **origine** intestazione nella richiesta di hello.  Se si tratta di un'origine valida, la regola verrà impostata hello **Access-Control-Allow-Origin** intestazione con origine hello fornito nella richiesta di hello.  Se l'origine hello specificato in hello **origine** intestazione non è consentita, la regola non deve eseguire hello **Access-Control-Allow-Origin** intestazione che può causare errori hello tooreject hello nei browser. 
 
-Per eseguire questa operazione è possibile procedere in due modi usando il motore regole:  In entrambi i casi, l'intestazione **Access-Control-Allow-Origin** proveniente dal server di origine del file viene completamente ignorata e il motore regole della rete CDN gestisce interamente le origini CORS consentite.
+Esistono due modi toodo questo con hello motore regole di business.  In entrambi i casi, hello **Access-Control-Allow-Origin** intestazione dal server di origine del file hello viene ignorato completamente, motore regole di business del hello CDN gestisce completamente hello consentito origini CORS.
 
 #### <a name="one-regular-expression-with-all-valid-origins"></a>Un'espressione regolare con tutte le origini valide
-In questo caso verrà creata un'espressione regolare che include tutte le origini che si desidera consentire: 
+In questo caso, si creerà un'espressione regolare che include tutte le origini di hello desiderato tooallow: 
 
     https?:\/\/(www\.contoso\.com|contoso\.com|www\.microsoft\.com|microsoft.com\.com)$
 
 > [!TIP]
-> La **rete CDN di Azure fornita da Verizon** usa la libreria [PCRE (Perl Compatible Regular Expressions)](http://pcre.org/) come motore per le espressioni regolari.  Per convalidare le espressioni regolari, è possibile usare uno strumento come [Regular Expressions 101](https://regex101.com/).  Si noti che il carattere "/" è valido nelle espressioni regolari e non deve essere preceduto da un carattere di escape. Tuttavia, l'inserimento di un carattere di escape prima di "/" è considerato una procedura consigliata ed è previsto da alcuni strumenti di convalida delle espressioni regolari.
+> La **rete CDN di Azure fornita da Verizon** usa la libreria [PCRE (Perl Compatible Regular Expressions)](http://pcre.org/) come motore per le espressioni regolari.  È possibile utilizzare uno strumento come [101 di espressioni regolari](https://regex101.com/) toovalidate l'espressione regolare.  Si noti che hello "/" caratteri nelle espressioni regolari valido e non deve necessariamente toobe caratteri di escape, tuttavia, tale carattere di escape è considerata buona norma e prevede un validator di espressione regolare.
 > 
 > 
 
-Se l'espressione regolare corrisponde, la regola specificata sostituirà l'intestazione **Access-Control-Allow-Origin** (se presente) proveniente dall'origine con l'origine che ha inviato la richiesta.  È inoltre possibile aggiungere altre intestazioni CORS, ad esempio **Access-Control-Allow-Methods**.
+Se l'espressione regolare hello corrisponde, la regola sostituirà hello **Access-Control-Allow-Origin** intestazione (se presente) dall'origine hello con origine hello che ha inviato la richiesta di hello.  È inoltre possibile aggiungere altre intestazioni CORS, ad esempio **Access-Control-Allow-Methods**.
 
 ![Esempio di regole con espressione regolare](./media/cdn-cors/cdn-cors-regex.png)
 
 #### <a name="request-header-rule-for-each-origin"></a>Regola intestazione richiesta per ciascuna origine.
-Anziché usare espressioni regolari, è possibile creare una regola separata per ogni origine che si vuole consentire usando la [condizione di corrispondenza](https://msdn.microsoft.com/library/mt757336.aspx#Anchor_1) **Request Header Wildcard** (Carattere jolly intestazione richiesta). Come per il metodo delle espressioni regolari, il motore regole imposta le intestazioni CORS. 
+Invece di espressioni regolari, è possibile creare un apposito regola per ogni origine desiderato utilizzando hello tooallow **richiesta jolly intestazione** [corrispondono alla condizione](https://msdn.microsoft.com/library/mt757336.aspx#Anchor_1). Come con il metodo di espressione regolare hello, hello motore regole intestazioni da solo con set hello CORS. 
 
 ![Esempio di regole senza espressione regolare](./media/cdn-cors/cdn-cors-no-regex.png)
 
 > [!TIP]
-> Nell'esempio precedente l'uso del carattere jolly asterisco (*) indica al motore regole di mettere in corrispondenza sia HTTP che HTTPS.
+> Nell'esempio hello sopra, hello l'utilizzo del carattere jolly hello * indica toomatch del motore regole di hello HTTP e HTTPS.
 > 
 > 
 
 ### <a name="azure-cdn-standard"></a>Rete CDN Standard di Azure
-Nei profili della rete CDN Standard di Azure, l'unico meccanismo per consentire più origini senza l'uso dell'origine con caratteri jolly consiste nella [memorizzazione della stringa di query nella cache](cdn-query-string.md).  È necessario abilitare l'impostazione della stringa di query per l'endpoint della rete CDN e usare quindi una stringa di query univoca per le richieste provenienti da ciascun dominio consentito. Con questa operazione la rete CDN memorizzerà nella cache un oggetto separato per ciascuna stringa di query univoca. Questo approccio tuttavia non rappresenta la soluzione ideale, poiché avrà come risultato la memorizzazione nella cache di più copie dello stesso file nella rete CDN.  
+Nei profili di rete CDN di Azure Standard, hello solo tooallow meccanismo per più origini senza utilizzare hello di origine con caratteri jolly hello è toouse [la memorizzazione nella cache di stringa di query](cdn-query-string.md).  È necessario tooenable impostazione della stringa di query per l'endpoint rete CDN hello e quindi utilizzare una stringa di query univoci per le richieste da ogni dominio consentito. Questa operazione comporterà hello CDN la memorizzazione nella cache un oggetto separato per ogni stringa di query univoco. Questo approccio non è ideale, tuttavia, in quanto comporta in più copie di hello lo stesso file hello memorizzati nella cache nella rete CDN.  
 

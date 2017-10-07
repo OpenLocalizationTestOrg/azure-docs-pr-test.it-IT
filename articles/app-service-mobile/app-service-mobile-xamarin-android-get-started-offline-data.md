@@ -1,6 +1,6 @@
 ---
-title: Abilitare la sincronizzazione offline per l'app per dispositivi mobili di Azure (Xamarin Android)
-description: Informazioni su come usare l'app per dispositivi mobili del servizio app per memorizzare nella cache e sincronizzare offline i dati in un'applicazione Xamarin Android
+title: aaaEnable sincronizzazione offline per l'App Mobile di Azure (Android di Xamarin)
+description: Informazioni su come toouse App del servizio Mobile App toocache e sincronizzazione dati offline nell'applicazione Android di Xamarin
 documentationcenter: xamarin
 author: ggailey777
 manager: syntaxc4
@@ -14,65 +14,65 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 10/01/2016
 ms.author: glenga
-ms.openlocfilehash: 471433c7ef2f6f128210ed145f685b42b44eea92
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 216ba76ae49f583273cc61b63114a415eca2477b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="enable-offline-sync-for-your-xamarinandroid-mobile-app"></a>Abilitare la sincronizzazione offline per l'app per dispositivi mobili Xamarin.Android
 [!INCLUDE [app-service-mobile-selector-offline](../../includes/app-service-mobile-selector-offline.md)]
 
 ## <a name="overview"></a>Panoramica
-Questa esercitazione descrive la funzionalità di sincronizzazione offline di App per dispositivi mobili di Azure per Xamarin.Android. La sincronizzazione offline consente agli utenti finali di interagire con un'app, visualizzando, aggiungendo e modificando i dati, anche se non è disponibile una connessione di rete. Le modifiche vengono archiviate in un database locale.
-Quando il dispositivo torna online, vengono sincronizzate con il servizio remoto.
+In questa esercitazione introduce funzionalità di sincronizzazione non in linea hello di App mobili di Azure per xamarin. Sincronizzazione non in linea consente toointeract gli utenti finali con un'app per dispositivi mobili, visualizzazione, aggiunta o modifica dei dati, anche quando è presente alcuna connessione di rete. Le modifiche vengono archiviate in un database locale.
+Una volta dispositivo hello è tornata in linea, queste modifiche vengono sincronizzate con servizio remoto hello.
 
-In questa esercitazione viene aggiornato il progetto client creato nell'esercitazione [Creare un'app per Xamarin.Android] per supportare le funzionalità offline di App per dispositivi mobili di Azure. Se non si usa il progetto server di avvio rapido scaricato, è necessario aggiungere al progetto il pacchetto di estensione per l'accesso ai dati. Per altre informazioni sui pacchetti di estensione server, vedere l'articolo relativo all' [utilizzo dell'SDK del server back-end .NET per app per dispositivi mobili di Azure](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md).
+In questa esercitazione, si aggiorna il progetto client hello dall'esercitazione hello [creare un'app Android di Xamarin] toosupport hello funzionalità offline di App mobili di Azure. Se non si utilizza hello scaricato il progetto server di avvio rapido, è necessario aggiungere hello dati estensione pacchetti tooyour di Microsoft Access. Per ulteriori informazioni sui pacchetti di estensione di server, vedere [funziona con server di back-end .NET hello SDK per App mobili di Azure](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md).
 
-Per altre informazioni sulla funzionalità di sincronizzazione offline, vedere l'argomento [Sincronizzazione di dati offline nelle app per dispositivi mobili di Azure].
+toolearn sulle funzionalità di sincronizzazione non in linea hello, vedere l'argomento hello [sincronizzazione dati Offline nelle App mobili di Azure].
 
-## <a name="update-the-client-app-to-support-offline-features"></a>Aggiornare l'app client per supportare le funzionalità offline
-Le funzionalità offline delle app per dispositivi mobili di Azure consentono di interagire con un database locale in uno scenario offline. Per usare queste funzionalità nell'app, inizializzare [SyncContext] in un archivio locale. Quindi, fare riferimento alla tabella tramite l'interfaccia di [IMobileServiceSyncTable][IMobileServiceSyncTable]. SQLite viene usato come archivio locale nel dispositivo.
+## <a name="update-hello-client-app-toosupport-offline-features"></a>Aggiornamento funzionalità offline toosupport hello client dell'applicazione
+Le funzionalità non in linea di App Mobile Azure consentono di toointeract con un database locale quando si è in uno scenario non in linea. toouse queste funzionalità nell'applicazione, si inizializza un [SyncContext] tooa di archivio locale. Fare riferimento la tabella tramite hello [IMobileServiceSyncTable] [IMobileServiceSyncTable] interfaccia. SQLite viene utilizzato come archivio locale hello dispositivo hello.
 
-1. In Visual Studio aprire Gestione pacchetti NuGet nel progetto completato nell'esercitazione [Creare un'app per Xamarin.Android].  Cercare e installare il pacchetto NuGet **Microsoft.Azure.Mobile.Client.SQLiteStore**.
-2. Aprire il file ToDoActivity.cs e rimuovere i simboli di commendo dalla definizione `#define OFFLINE_SYNC_ENABLED`.
-3. In Visual Studio premere **F5** per ricompilare ed eseguire l'app client. L'app funziona esattamente come prima di attivare la sincronizzazione offline. Tuttavia, il database locale è ora popolato con dati che possono essere usati in uno scenario offline.
+1. In Visual Studio, aprire Gestione pacchetti NuGet di hello nel progetto hello completato nelle hello [creare un'app Android di Xamarin] esercitazione.  Cercare e installare hello **Microsoft.Azure.Mobile.Client.SQLiteStore** pacchetto NuGet.
+2. Aprire il file ToDoActivity.cs hello e rimuovere il commento hello `#define OFFLINE_SYNC_ENABLED` definizione.
+3. In Visual Studio, premere hello **F5** chiave toorebuild e app client hello esecuzione. app Hello funziona esattamente come prima di attivare la sincronizzazione non in linea hello. Tuttavia, database locale hello viene popolato con dati che possono essere utilizzati in uno scenario non in linea.
 
-## <a name="update-sync"></a>Aggiornare l'app per disconnetterla dal back-end
-In questa sezione verrà interrotta la connessione al back-end dell'app per dispositivi mobili per simulare una situazione offline. Quando si aggiungono elementi di dati, il gestore di eccezioni informa che l'app è in modalità offline. In questo stato, nuovi elementi vengono aggiunti all'archivio locale e vengono sincronizzati con il back-end dell'app per dispositivi mobili la prima volta che viene eseguita un'operazione di push in presenza di uno stato di connessione.
+## <a name="update-sync"></a>Aggiornare hello app toodisconnect dal back-end hello
+In questa sezione si interrompe hello connessione tooyour App Mobile back-end toosimulate una situazione non in linea. Quando si aggiungono elementi di dati, il gestore di eccezioni indica che app hello è in modalità offline. In questo stato, nuovi elementi aggiunti in locale hello archiviano e sincronizzati in back-end dell'app mobile hello quando viene eseguito un push in uno stato connesso.
 
-1. Modificare il file ToDoActivity.cs nel progetto condiviso. Modificare il valore **applicationURL** in modo che faccia riferimento a un URL non valido:
+1. Modifica ToDoActivity.cs nel progetto condiviso hello. Hello modifica **applicationURL** URL non valido di toopoint tooan:
 
          const string applicationURL = @"https://your-service.azurewebsites.fail";
 
-    È anche possibile illustrare il comportamento offline disabilitando le reti Wi-Fi e cellulare sul dispositivo o impostando la modalità aereo.
-2. Premere **F5** per compilare ed eseguire l'app. Si noti l'errore di sincronizzazione al momento dell'aggiornamento quando l'app viene avviata.
-3. Immettere nuovi elementi. Si noti che il push ha esito negativo con stato [CancelledByNetworkError] ogni volta che si fa clic su **Salva**. I nuovi elementi todo, tuttavia, sono presenti nell'archivio locale fino a quando non è possibile effettuarne il push al back-end dell'app per dispositivi mobili.  In un'app di produzione, se si eliminano queste eccezioni, l'app client si comporta come se fosse ancora connessa al back-end dell'app per dispositivi mobili.
-4. Chiudere l'app e riavviarla per verificare che i nuovi elementi creati siano salvati in modo permanente nell'archivio locale.
-5. (Facoltativo) In Visual Studio aprire **Esplora server**. Passare al database in **Azure**->**Database SQL**. Fare clic con il pulsante destro del mouse sul database e scegliere **Apri in Esplora oggetti di SQL Server**. È ora possibile passare alla tabella di database SQL e al relativo contenuto. Verificare che i dati nel database back-end non siano stati modificati.
-6. (Facoltativo) Usare uno strumento REST come Fiddler o Postman per eseguire una query sul back-end mobile, usando una query GET nel formato `https://<your-mobile-app-backend-name>.azurewebsites.net/tables/TodoItem`.
+    Disabilitazione Wi-Fi e reti cellulari sul dispositivo hello o utilizzando modalità aereo, è anche possibile illustrare il comportamento non in linea.
+2. Premere **F5** toobuild ed eseguire app hello. Si noti la sincronizzazione non riuscita in aggiornamento quando hello app avviata.
+3. Immettere nuovi elementi. Si noti che il push ha esito negativo con stato [CancelledByNetworkError] ogni volta che si fa clic su **Salva**. Tuttavia, nuovi elementi di attività hello esistono nell'archivio locale hello fino a quando non può essere di back-end dell'app mobile toohello inseriti.  In un ambiente di produzione app, se si eliminano queste eccezioni hello client app si comporta come se fosse ancora connessa back-end dell'app mobile toohello.
+4. Chiudere l'applicazione hello e riavviarlo tooverify che è stato creato in base ai nuovi elementi hello siano archivio locale toohello persistente.
+5. (Facoltativo) In Visual Studio aprire **Esplora server**. Esplorare database tooyour **Azure**->**database SQL**. Fare clic con il pulsante destro del mouse sul database e scegliere **Apri in Esplora oggetti di SQL Server**. È possibile cercare tooyour tabella di database SQL e il relativo contenuto. Verificare che i dati di hello nel database back-end hello non sono stato modificato.
+6. (Facoltativo) Utilizzare uno strumento REST come Fiddler o Postman tooquery back-end mobile, utilizzando una query GET nel formato `https://<your-mobile-app-backend-name>.azurewebsites.net/tables/TodoItem`.
 
-## <a name="update-online-app"></a>Aggiornare l'app per la riconnessione al back-end dell'app per dispositivi mobili
-In questa sezione viene effettuata la riconnessione dell'app al back-end dell'app per dispositivi mobili. Alla prima esecuzione dell'applicazione, il gestore eventi `OnCreate` chiama `OnRefreshItemsSelected`. Questo metodo chiama `SyncAsync` per sincronizzare l'archivio locale con il database back-end.
+## <a name="update-online-app"></a>Aggiornare hello app tooreconnect back-end App per dispositivi mobili
+In questa sezione, ristabilire la connessione back-end di hello app toohello app per dispositivi mobili. Quando si esegue innanzitutto un'applicazione hello, hello `OnCreate` chiamate del gestore dell'evento `OnRefreshItemsSelected`. Questo metodo chiama `SyncAsync` toosync archivio locale con database back-end hello.
 
-1. Aprire il file ToDoActivity.cs nel progetto condiviso e annullare la modifica della proprietà **applicationURL**.
-2. Premere **F5** per ricompilare ed eseguire l'app. L'app sincronizza le modifiche locali con il back-end dell'app per dispositivi mobili di Azure usando operazioni push e pull quando viene eseguito il metodo `OnRefreshItemsSelected`.
-3. (Facoltativo) Visualizzare i dati aggiornati usando Esplora oggetti di SQL Server o uno strumento REST come Fiddler. Si noti che i dati sono stati sincronizzati tra il database back-end dell'app per dispositivi mobili di Azure e l'archivio locale.
-4. Nell'app fare clic sulla casella di controllo accanto ad alcuni elementi da completare nell'archivio locale.
+1. Aprire ToDoActivity.cs nel progetto condiviso hello e annullare la modifica di hello **applicationURL** proprietà.
+2. Hello premere **F5** chiave toorebuild e app hello esecuzione. Hello app esegue la sincronizzazione le modifiche locali con back-end App Mobile Azure hello utilizzando operazioni push e pull quando hello `OnRefreshItemsSelected` esecuzione del metodo.
+3. (Facoltativo) Hello visualizzazione aggiornata dei dati utilizzando Esplora oggetti di SQL Server o uno strumento REST come Fiddler. Si noti hello dati sono stati sincronizzati tra database back-end di hello App per dispositivi mobili di Azure e l'archivio locale hello.
+4. Nell'app hello, fare clic su verifica hello casella accanto a pochi elementi toocomplete li nell'archivio locale hello.
 
-   `CheckItem` chiama `SyncAsync` per sincronizzare ogni elemento completato con il back-end dell'app per dispositivi mobili. `SyncAsync` chiama operazioni sia push che pull. **Ogni volta che si esegue il pull su una tabella a cui il client ha apportato modifiche, viene sempre effettuato automaticamente il push**. Ciò assicura che tutte le tabelle nell'archivio locale e le relazioni restino coerenti e può determinare un'operazione push non prevista. Per altre informazioni su questo comportamento, vedere [Sincronizzazione di dati offline nelle app per dispositivi mobili di Azure].
+   `CheckItem`chiamate `SyncAsync` elemento toosync ogni completato con back-end di hello App per dispositivi mobili. `SyncAsync` chiama operazioni sia push che pull. **Ogni volta che si esegue un'operazione di pull in una tabella che il client hello è stato modificato da, un push viene sempre eseguito automaticamente**. Ciò assicura che tutte le tabelle nell'archivio locale e le relazioni restino coerenti e può determinare un'operazione push non prevista. Per altre informazioni su questo comportamento, vedere [sincronizzazione dati Offline nelle App mobili di Azure].
 
-## <a name="review-the-client-sync-code"></a>Verificare il codice di sincronizzazione del client
-Il progetto client Xamarin scaricato dopo aver completato l'esercitazione [Creare un'app per Xamarin.Android] contiene già il codice che supporta la sincronizzazione offline mediante un database SQLite locale. Ecco un breve riepilogo degli elementi già inclusi nel codice dell'esercitazione. Per una panoramica concettuale della funzionalità, vedere [Sincronizzazione di dati offline nelle app per dispositivi mobili di Azure].
+## <a name="review-hello-client-sync-code"></a>Esaminare il codice di sincronizzazione client hello
+progetto di client Xamarin Hello scaricato dopo avere completato l'esercitazione hello [creare un'app Android di Xamarin] già contiene il codice che supporta la sincronizzazione non in linea utilizzando un database locale di SQLite. Di seguito è riportata una breve panoramica degli elementi già inclusi nel codice dell'esercitazione hello. Per informazioni generali sulla funzionalità hello, vedere [sincronizzazione dati Offline nelle App mobili di Azure].
 
-* Prima di poter eseguire qualsiasi operazione su tabella, è necessario inizializzare l'archivio locale. Il database di archiviazione locale viene inizializzato quando `ToDoActivity.OnCreate()` esegue `ToDoActivity.InitLocalStoreAsync()`. Questo metodo comporta la creazione di un database SQLite locale usando la classe `MobileServiceSQLiteStore` fornita dall'SDK del client delle app per dispositivi mobili di Azure.
+* Prima di possono eseguire qualsiasi operazione di tabella, è necessario inizializzare l'archivio locale hello. Hello database dell'archivio locale viene inizializzato quando `ToDoActivity.OnCreate()` esegue `ToDoActivity.InitLocalStoreAsync()`. Questo metodo crea un database locale di SQLite utilizzando hello `MobileServiceSQLiteStore` classe fornita dai client di hello App mobili di Azure SDK.
 
-    Il metodo `DefineTable` crea nell'archivio locale una tabella corrispondente ai campi del tipo specificato, `ToDoItem` in questo caso. Il tipo non deve necessariamente includere tutte le colonne presenti nel database remoto. È possibile archiviare solo un subset di colonne.
+    Hello `DefineTable` metodo crea una tabella nell'archivio locale hello corrispondente hello campi tipo hello fornito, `ToDoItem` in questo caso. tipo di Hello privo di tooinclude tutte le colonne di hello presenti nel database remoto hello. È possibile toostore solo un subset di colonne.
 
         // ToDoActivity.cs
         private async Task InitLocalStoreAsync()
         {
-            // new code to initialize the SQLite store
+            // new code tooinitialize hello SQLite store
             string path = Path.Combine(System.Environment
                 .GetFolderPath(System.Environment.SpecialFolder.Personal), localDbFilename);
 
@@ -84,18 +84,18 @@ Il progetto client Xamarin scaricato dopo aver completato l'esercitazione [Crear
             var store = new MobileServiceSQLiteStore(path);
             store.DefineTable<ToDoItem>();
 
-            // Uses the default conflict handler, which fails on conflict
-            // To use a different conflict handler, pass a parameter to InitializeAsync.
+            // Uses hello default conflict handler, which fails on conflict
+            // toouse a different conflict handler, pass a parameter tooInitializeAsync.
             // For more details, see http://go.microsoft.com/fwlink/?LinkId=521416.
             await client.SyncContext.InitializeAsync(store);
         }
-* Il membro `toDoTable` di `ToDoActivity` è di tipo `IMobileServiceSyncTable` invece che `IMobileServiceTable`. IMobileServiceSyncTable indirizza tutte le operazioni di creazione, lettura, aggiornamento ed eliminazione (CRUD, Create, Read, Update, Delete) sulle tabelle al database di archiviazione locale.
+* Hello `toDoTable` membro di `ToDoActivity` di hello `IMobileServiceSyncTable` digitare anziché `IMobileServiceTable`. Hello IMobileServiceSyncTable indirizza tutti creare, leggere, aggiornare ed eliminare database dell'archivio locale toohello operazioni tabella (CRUD).
 
-    Decidere quando viene eseguito il push delle modifiche al back-end delle app per dispositivi mobili di Azure chiamando `IMobileServiceSyncContext.PushAsync()`. Il contesto di sincronizzazione aiuta a mantenere le relazioni tra tabelle rilevando le modifiche apportate da un'app client in tutte le tabelle ed eseguendone il push quando viene chiamato `PushAsync` .
+    Si decide quando le modifiche vengono inserite back-end App Mobile Azure toohello chiamando `IMobileServiceSyncContext.PushAsync()`. Hello contesto di sincronizzazione consente di mantenere le relazioni tra tabelle e di rilevamento e il push delle modifiche in tutte le tabelle modificato quando un'app client `PushAsync` viene chiamato.
 
-    Il codice fornito chiama `ToDoActivity.SyncAsync()` per eseguire la sincronizzazione ogni volta che l'elenco todoitem viene aggiornato o un oggetto todoitem viene aggiunto o completato. Il codice viene sincronizzato dopo ogni modifica locale.
+    chiamate di codice Hello fornito `ToDoActivity.SyncAsync()` toosync ogni volta che viene aggiornato l'elenco todoitem hello o un oggetto todoitem viene aggiunto o completato. Hello codice esegue la sincronizzazione dopo ogni modifica locale.
 
-    Nel codice fornito viene eseguita una query su tutti i record presenti nella tabella `TodoItem` remota, ma è anche possibile filtrare i record passando un ID di query e una query a `PushAsync`. Per altre informazioni, vedere la sezione *Sincronizzazione incrementale* in [Sincronizzazione di dati offline nelle app per dispositivi mobili di Azure].
+    Nel codice hello fornito, tutti i record in remoto hello `TodoItem` vengono eseguite query sulle tabella, ma è anche possibile toofilter record passando un id di query e una query troppo`PushAsync`. Per ulteriori informazioni, vedere la sezione hello *sincronizzazione incrementale* in [sincronizzazione dati Offline nelle App mobili di Azure].
 
         // ToDoActivity.cs
         private async Task SyncAsync()
@@ -104,19 +104,19 @@ Il progetto client Xamarin scaricato dopo aver completato l'esercitazione [Crear
                 await client.SyncContext.PushAsync();
                 await toDoTable.PullAsync("allTodoItems", toDoTable.CreateQuery()); // query ID is used for incremental sync
             } catch (Java.Net.MalformedURLException) {
-                CreateAndShowDialog (new Exception ("There was an error creating the Mobile Service. Verify the URL"), "Error");
+                CreateAndShowDialog (new Exception ("There was an error creating hello Mobile Service. Verify hello URL"), "Error");
             } catch (Exception e) {
                 CreateAndShowDialog (e, "Error");
             }
         }
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
-* [Sincronizzazione di dati offline nelle app per dispositivi mobili di Azure]
+* [sincronizzazione dati Offline nelle App mobili di Azure]
 * [Procedura per .NET SDK di App per dispositivi mobili di Azure][8]
 
 <!-- URLs. -->
-[Creare un'app per Xamarin.Android]: ../app-service-mobile-xamarin-android-get-started.md
-[Sincronizzazione di dati offline nelle app per dispositivi mobili di Azure]: ../app-service-mobile-offline-data-sync.md
+[creare un'app Android di Xamarin]: ../app-service-mobile-xamarin-android-get-started.md
+[sincronizzazione dati Offline nelle App mobili di Azure]: ../app-service-mobile-offline-data-sync.md
 
 <!-- Images -->
 

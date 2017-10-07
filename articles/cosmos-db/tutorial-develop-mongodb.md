@@ -1,6 +1,6 @@
 ---
-title: Usare l'API di Azure Cosmos DB per MongoDB per creare un'app Web | Microsoft Docs
-description: Esercitazione di Azure Cosmos DB per creare un'app Web di database online usando l'API per MongoDB.
+title: API del database di aaaUse Azure Cosmos per MongoDB toobuild un'app web | Documenti Microsoft
+description: Un'esercitazione DB Cosmos Azure che crea un'app web di database online tramite API di hello per MongoDB.
 keywords: esempi di mongodb
 services: cosmos-db
 author: AndrewHoh
@@ -16,19 +16,19 @@ ms.topic: article
 ms.date: 05/10/2017
 ms.author: anhoh
 ms.custom: mvc
-ms.openlocfilehash: ff277c7f88359cd977424f2e0958c69e2547a2af
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 6dfa7fef49fc53ea2fcfcfbad3b3fcf97ac18e94
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-cosmos-db-connect-to-a-mongodb-app-using-net"></a>Azure Cosmos DB: Connettersi a un'app MongoDB usando .NET
+# <a name="azure-cosmos-db-connect-tooa-mongodb-app-using-net"></a>Azure Cosmos DB: Connettersi tooa MongoDB app con .NET
 
-Azure Cosmos DB è il servizio di database di Microsoft multimodello distribuito a livello globale. È possibile creare ed eseguire rapidamente query su database di documenti, coppie chiave-valore e grafi, sfruttando in ognuno dei casi i vantaggi offerti dalle funzionalità di scalabilità orizzontale e distribuzione globale alla base di Azure Cosmos DB. 
+Azure Cosmos DB è il servizio di database multimodello distribuito a livello globale di Microsoft. Creare rapidamente e query chiave/valore, il documento e database grafico, ognuno dei quali trarre vantaggio dalla distribuzione globale hello e funzionalità di scalabilità orizzontale di base di Azure Cosmos DB hello. 
 
-Questa esercitazione illustra come creare un account Azure Cosmos DB usando il portale di Azure e come creare un database e una raccolta per l'archiviazione di dati usando l'[API per MongoDB](mongodb-introduction.md). 
+Questa esercitazione viene illustrato come toocreate un account Azure Cosmos DB usando hello portale di Azure e come toocreate un database e dati toostore insieme utilizzando hello [MongoDB API](mongodb-introduction.md). 
 
-Questa esercitazione illustra le attività seguenti:
+Questa esercitazione sono trattati hello seguenti attività:
 
 > [!div class="checklist"]
 > * Creare un account Azure Cosmos DB 
@@ -38,12 +38,12 @@ Questa esercitazione illustra le attività seguenti:
 
 ## <a name="create-a-database-account"></a>Creare un account di database
 
-Si inizia creando un account Azure Cosmos DB nel portale di Azure.  
+Iniziamo mediante la creazione di un account Azure Cosmos DB in hello portale di Azure.  
 
 > [!TIP]
-> * È stato già creato un account Azure Cosmos DB? In questo caso passare a [Configurare la soluzione di Visual Studio](#SetupVS)
-> * Si dispone di un account Azure DocumentDB? In questo caso l'account è ora un account Azure Cosmos DB ed è possibile passare a [Configurare la soluzione di Visual Studio](#SetupVS).  
-> * Se si usa l'emulatore Azure Cosmos DB, seguire i passaggi descritti nell'articolo [Azure Cosmos DB Emulator](local-emulator.md) (Emulatore Azure Cosmos DB) per configurare l'emulatore e proseguire con il passaggio [Configurare la soluzione di Visual Studio](#SetupVS). 
+> * È stato già creato un account Azure Cosmos DB? In caso affermativo, andare troppo[configurazione della soluzione di Visual Studio](#SetupVS)
+> * Si dispone di un account Azure DocumentDB? Se in tal caso, l'account è un account Azure Cosmos DB ed è possibile andare troppo[configurazione della soluzione di Visual Studio](#SetupVS).  
+> * Se si utilizza hello Azure Cosmos DB emulatore, eseguire le operazioni di hello in [emulatore di Azure Cosmos DB](local-emulator.md) toosetup hello emulatore e andare troppo[configurare la soluzione di Visual Studio](#SetupVS). 
 >
 >
 
@@ -51,16 +51,16 @@ Si inizia creando un account Azure Cosmos DB nel portale di Azure.
 
 ## <a name="update-your-connection-string"></a>Aggiornare la stringa di connessione
 
-1. Nella pagina **Azure Cosmos DB** del portale di Azure selezionare l'account dell'API per MongoDB. 
-2. Nella barra a sinistra del pannello Account fare clic su **Avvio rapido**. 
+1. Nel portale di Azure in hello hello **Azure Cosmos DB** selezionare hello API per conto di MongoDB. 
+2. Nella barra sinistra di hello del Pannello di hello account, fare clic su **avvio rapido**. 
 3. Scegliere la piattaforma (*driver .NET*, *driver Node.js*, *MongoDB Shell*, *driver Java*, *driver Python*). Se il driver o lo strumento non è visualizzato nell'elenco, tenere presente che altri frammenti di codice di connessione vengono continuamente documentati. 
-4. Copiare e incollare il frammento di codice nell'app MongoDB per iniziare.
+4. Copiare e incollare il frammento di codice hello app MongoDB, e si è pronto toogo.
 
 ## <a name="set-up-your-mongodb-app"></a>Configurare l'app MongoDB
 
-È possibile usare l'esercitazione [Creare un'app Web di Azure che si connette a MongoDB in esecuzione su una macchina virtuale](../app-service-web/web-sites-dotnet-store-data-mongodb-vm.md), con modifiche minime, per configurare rapidamente un'applicazione MongoDB, in locale o pubblicata in un'app Web di Azure, che si connette a un account dell'API per MongoDB.  
+È possibile utilizzare hello [creare un'app web in Azure che si connette in esecuzione in una macchina virtuale tooMongoDB](../app-service-web/web-sites-dotnet-store-data-mongodb-vm.md) dell'esercitazione, con modifiche minime, tooquickly programma di installazione di un'applicazione di MongoDB (sia localmente o un'app web di Azure pubblicata tooan) che si connette tooan API per conto di MongoDB.  
 
-1. Seguire l'esercitazione, con una modifica.  Sostituire il codice del file Dal.cs con il codice seguente:
+1. Seguire l'esercitazione di hello, con una modifica.  Sostituire il codice di Dal.cs hello con questo:
 
     ```csharp   
     using System;
@@ -80,7 +80,7 @@ Si inizia creando un account Azure Cosmos DB nel portale di Azure.
             //private MongoServer mongoServer = null;
             private bool disposed = false;
    
-            // To do: update the connection string with the DNS name
+            // toodo: update hello connection string with hello DNS name
             // or IP address of your server. 
             //For example, "mongodb://testlinux.cloudapp.net
             private string connectionString = "mongodb://localhost:27017";
@@ -89,7 +89,7 @@ Si inizia creando un account Azure Cosmos DB nel portale di Azure.
             private string password = "<your password>";
    
             // This sample uses a database named "Tasks" and a 
-            //collection named "TasksList".  The database and collection 
+            //collection named "TasksList".  hello database and collection 
             //will be automatically created if they don't already exist.
             private string dbName = "Tasks";
             private string collectionName = "TasksList";
@@ -99,7 +99,7 @@ Si inizia creando un account Azure Cosmos DB nel portale di Azure.
             {
             }
    
-            // Gets all Task items from the MongoDB server.        
+            // Gets all Task items from hello MongoDB server.        
             public List<MyTask> GetAllTasks()
             {
                 try
@@ -113,7 +113,7 @@ Si inizia creando un account Azure Cosmos DB nel portale di Azure.
                 }
             }
    
-            // Creates a Task and inserts it into the collection in MongoDB.
+            // Creates a Task and inserts it into hello collection in MongoDB.
             public void CreateTask(MyTask task)
             {
                 var collection = GetTasksCollectionForEdit();
@@ -195,7 +195,7 @@ Si inizia creando un account Azure Cosmos DB nel portale di Azure.
     }
     ```
 
-2. Modificare le variabili seguenti nel file Dal.cs in base alle impostazioni dell'account nella pagina Chiavi del portale di Azure:
+2. Modificare hello seguendo le variabili nel file Dal.cs hello per le impostazioni dell'account dalla pagina chiavi hello hello portale di Azure:
 
     ```csharp   
     private string userName = "<your user name>";
@@ -203,25 +203,25 @@ Si inizia creando un account Azure Cosmos DB nel portale di Azure.
     private string password = "<your password>";
     ```
 
-3. Usare l'app.
+3. Utilizzare l'applicazione hello!
 
 ## <a name="clean-up-resources"></a>Pulire le risorse
 
-Se non si prevede di continuare a usare questa app, seguire questa procedura per eliminare tutte le risorse create da questa esercitazione nel portale di Azure. 
+Se non si ha intenzione toocontinue toouse questa app, utilizzare hello seguendo i passaggi toodelete tutte le risorse create da questa esercitazione in hello portale di Azure. 
 
-1. Scegliere **Gruppi di risorse** dal menu a sinistra del portale di Azure e quindi fare clic sul nome della risorsa creata. 
-2. Nella pagina del gruppo di risorse fare clic su **Elimina**, digitare il nome della risorsa da eliminare nella casella di testo e quindi fare clic su **Elimina**.
+1. Dal menu a sinistra di hello in hello portale di Azure, fare clic su **gruppi di risorse** e quindi fare clic su nome hello della risorsa di hello è stato creato. 
+2. Nella pagina di gruppo di risorse, fare clic su **eliminare**, digitare il nome di hello di hello risorsa toodelete nella casella di testo hello e quindi fare clic su **eliminare**.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-In questa esercitazione sono state eseguite le operazioni seguenti:
+In questa esercitazione, effettuata seguente hello:
 
 > [!div class="checklist"]
 > * Creare un account Azure Cosmos DB 
 > * Aggiornare la stringa di connessione
 > * Creare un'app MongoDB in una macchina virtuale
 
-È possibile passare all'esercitazione successiva e importare i dati di MongoDB in Azure Cosmos DB.  
+È possibile continuare l'esercitazione successiva toohello e importare il tooAzure dati MongoDB DB Cosmos.  
 
 > [!div class="nextstepaction"]
 > [Importare i dati di MongoDB in Azure Cosmos DB](mongodb-migrate.md)

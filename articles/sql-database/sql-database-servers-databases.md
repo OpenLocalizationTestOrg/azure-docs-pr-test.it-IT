@@ -1,6 +1,6 @@
 ---
-title: Creare e gestire server e database SQL di Azure | Microsoft Docs
-description: Informazioni sui concetti relativi ai server e ai database SQL di Azure e sulla creazione e gestione di server e database con il portale di Azure, PowerShell, l'interfaccia della riga di comando di Azure, Transact-SQL e l'API REST.
+title: aaaCreate & gestire il server SQL Azure & database | Documenti Microsoft
+description: Informazioni sui concetti di database e server di Database SQL di Azure e sulla creazione e la gestione di server e database che utilizzano hello portale di Azure PowerShell, hello CLI di Azure, Transact-SQL e hello API REST.
 services: sql-database
 documentationcenter: na
 author: CarlRabeler
@@ -15,11 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: data-management
 ms.date: 07/05/2017
 ms.author: carlrab
-ms.openlocfilehash: ef61aa610957024d85f4231d957869858fd545c5
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 0f526e388a5a620349f5a14e8d57a8355ac451ee
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-and-manage-azure-sql-database-servers-and-databases"></a>Creare e gestire server e database del database SQL di Azure
 
@@ -38,20 +38,20 @@ Un database SQL di Azure può essere:
 > Per i nomi di database validi, vedere [Database Identifiers](https://docs.microsoft.com/en-us/sql/relational-databases/databases/database-identifiers) (Identificatori di database). 
 >
  
-- La regola di confronto del database predefinito usato dal database SQL di Microsoft Azure è **SQL_LATIN1_GENERAL_CP1_CI_AS**, in cui **LATIN1_GENERAL** indica la lingua inglese (Stati Uniti), **CP1** la pagina del codice 1252, **CI** l'assenza di distinzione tra maiuscole e minuscole e **AS** l'assenza di distinzione tra caratteri accentati e non accentati. Per altre informazioni su come impostare le regole di confronto, vedere [COLLATE (Transact-SQL)](https://msdn.microsoft.com/library/ms184391.aspx).
+- Hello database regole di confronto predefinite utilizzate dal Database SQL di Microsoft Azure è **SQL_LATIN1_GENERAL_CP1_CI_AS**, dove **LATIN1_GENERAL** inglese (Stati Uniti), **CP1** è una tabella codici 1252, **CI** è tra maiuscole e minuscole, e **AS** accentati. Per ulteriori informazioni su come tooset hello regole di confronto, vedere [COLLATE (Transact-SQL)](https://msdn.microsoft.com/library/ms184391.aspx).
 - Il database SQL di Microsoft Azure supporta la versione client 7.3 o successiva del protocollo TDS (Tabular Data Stream).
 - Sono consentite solo connessioni TCP/IP.
 
 ## <a name="what-is-an-azure-sql-logical-server"></a>Che cos'è un server logico SQL di Azure?
 
-Un server logico funge da punto amministrativo centrale per più database, inclusi [pool elastici SQL](sql-database-elastic-pool.md), [account di accesso](sql-database-manage-logins.md), [regole del firewall](sql-database-firewall-configure.md), [regole di controllo](sql-database-auditing.md), [criteri di rilevamento delle minacce](sql-database-threat-detection.md) e [gruppi di failover](sql-database-geo-replication-overview.md). Un server logico può trovarsi in un'area diversa rispetto al relativo gruppo di risorse. Il server logico deve esistere prima di poter creare il database SQL di Azure. Tutti i database in un server vengono creati nella stessa area del server logico. 
+Un server logico funge da punto amministrativo centrale per più database, inclusi [pool elastici SQL](sql-database-elastic-pool.md), [account di accesso](sql-database-manage-logins.md), [regole del firewall](sql-database-firewall-configure.md), [regole di controllo](sql-database-auditing.md), [criteri di rilevamento delle minacce](sql-database-threat-detection.md) e [gruppi di failover](sql-database-geo-replication-overview.md). Un server logico può trovarsi in un'area diversa rispetto al relativo gruppo di risorse. Hello del server logico deve esistere prima di poter creare database SQL di Azure hello. Tutti i database in un server vengono creati all'interno di hello stesso server logico hello area. 
 
 
 > [!IMPORTANT]
-> Nel database SQL un server è un costrutto logico diverso da un'istanza di SQL Server, familiare al mondo locale. In particolare, il servizio del database SQL non fornisce alcuna garanzia sulla posizione dei database in relazione ai server logici collegati e non espone funzionalità o accessi a livello di istanza.
+> Nel Database SQL di un server è un costrutto logico che è diverso da quello di un'istanza di SQL Server che potrebbero avere familiarità con in HelloWorld locale. In particolare, hello servizio Database SQL offre alcuna garanzia sulla posizione del database hello in relazione server logici tootheir ed non espone alcun accesso a livello di istanza o le funzionalità.
 > 
 
-Quando si crea un server logico, è necessario specificare un account di accesso server e relativa password con diritti amministrativi per il database master in tale server e per tutti i database creati in tale server. Questo account iniziale è un account di accesso SQL. Il database SQL di Azure supporta l'autenticazione SQL e l'autenticazione di Azure Active Directory. Per informazioni su account di accesso e autenticazione, vedere [Gestione di database e account di accesso nel database SQL di Azure](sql-database-manage-logins.md). L'autenticazione Windows non è supportata. 
+Quando si crea un server logico, immettere un server di account di accesso e una password che dispone di diritti amministrativi toohello il database master nel server e tutti i database creati in tale server. Questo account iniziale è un account di accesso SQL. Il database SQL di Azure supporta l'autenticazione SQL e l'autenticazione di Azure Active Directory. Per informazioni su account di accesso e autenticazione, vedere [Gestione di database e account di accesso nel database SQL di Azure](sql-database-manage-logins.md). L'autenticazione Windows non è supportata. 
 
 > [!TIP]
 > Per i nomi di gruppi di risorse e server validi, vedere [Regole di denominazione e restrizioni](https://docs.microsoft.com/azure/architecture/best-practices/naming-conventions).
@@ -59,68 +59,68 @@ Quando si crea un server logico, è necessario specificare un account di accesso
 
 Un server logico del database di Azure:
 
-- Viene creato all'interno di una sottoscrizione di Azure, ma può essere spostato con le risorse contenute in un'altra sottoscrizione
-- È la risorsa padre per database, pool elastici e data warehouse
+- Viene creato all'interno di una sottoscrizione di Azure, ma possono essere spostati con la sottoscrizione di risorse indipendente tooanother
+- Risorsa padre hello per database, il pool elastico e data warehouse
 - Fornisce uno spazio dei nomi per database, pool elastici e data warehouse
-- È un contenitore logico con semantica rigida per la durata: l'eliminazione di un server comporta l'eliminazione di database, pool elastici e data warehouse in esso contenuti
-- Partecipa al [controllo degli accessi in base al ruolo (RBAC) di Azure](/active-directory/role-based-access-control-what-is): i database, i pool elastici e i data warehouse all'interno di un server ereditano i diritti di accesso dal server
-- È un elemento di ordine superiore dell'identità di database, pool elastici e data warehouse ai finiti della gestione delle risorse di Azure (vedere lo schema dell'URL per database e pool)
+- È un contenitore logico con la semantica di durata sicuro - Elimina un server e Elimina hello database indipendenti, il pool elastico e data warehouse
+- Partecipa [il controllo di accesso di Azure basata sui ruoli (RBAC)](/active-directory/role-based-access-control-what-is) -database, il pool elastico e data warehouse in un server ereditano i diritti di accesso dal server di hello
+- È un elemento di ordine superiore dell'identità hello del database, il pool elastico e data warehouse per la risorsa di Azure a scopo di gestione (vedere URL hello schema per i database e i pool)
 - Colloca risorse in un'area
 - Fornisce un endpoint di connessione per l'accesso ai database (<serverName>.database.windows.net)
-- Fornisce accesso ai metadati riguardanti le risorse contenute tramite DMV, connettendosi a un database master 
-- Fornisce l'ambito per i criteri di gestione che si applicano ai database: account di accesso, firewall, controllo, rilevamento minacce e così via 
-- È limitato da una quota nella sottoscrizione padre: sei server per sottoscrizione per impostazione predefinita - [vedere i limiti relativi alle sottoscrizioni qui](../azure-subscription-service-limits.md)
-- Fornisce l'ambito per la quota database e la quota DTU per le risorse in esso contenute, ad esempio 45.000 DTU
-- Rappresenta l'ambito di controllo delle versioni per le funzionalità abilitate sulle risorse contenute 
+- Fornisce accesso toometadata riguardanti tramite DMV le risorse indipendenti dal database master di connessione tooa 
+- Fornisce l'ambito di hello per criteri di gestione che si applicano tooits database - account di accesso, firewall, controllo, minaccia di rilevamento e così via. 
+- È limitato da una quota nella sottoscrizione padre hello (sei server per ogni sottoscrizione per impostazione predefinita - [vedere sottoscrizione limita qui](../azure-subscription-service-limits.md))
+- Fornisce l'ambito di hello per la quota di database e la quota DTU per le risorse di hello che contiene (ad esempio 45.000 DTU)
+- Ambito di controllo delle versioni hello per funzionalità abilitate sulle risorse indipendenti 
 - Gli account di accesso all'entità a livello di server possono gestire tutti i database in un server
-- Può contenere account di accesso simili a quelli delle istanze di SQL Server in locale che dispongono dell'accesso a uno o più database nel server ed è possibile concedere diritti amministrativi limitati. Per altre informazioni, vedere [Autenticazione e autorizzazione per database SQL: concessione dell'accesso](sql-database-manage-logins.md).
+- Può contenere gli account di accesso simile toothose nelle istanze di SQL Server on-premise che dispongono di accesso tooone o più database nel server di hello e possono essere concessi i diritti amministrativi limitati. Per altre informazioni, vedere [Autenticazione e autorizzazione per database SQL: concessione dell'accesso](sql-database-manage-logins.md).
 
 ## <a name="azure-sql-databases-protected-by-sql-database-firewall"></a>I database SQL di Azure sono protetti dal firewall del database SQL
 
-Per proteggere i dati, un [firewall del database SQL](sql-database-firewall-configure.md) impedisce qualsiasi accesso al server di database o ai propri database dall'esterno della connessione al server direttamente tramite la connessione della sottoscrizione di Azure. Per abilitare altre connessioni, è necessario [creare una o più regole del firewall](sql-database-firewall-configure.md#creating-and-managing-firewall-rules). Per creare e gestire i pool elastici SQL, vedere [Pool elastici](sql-database-elastic-pool.md).
+toohelp proteggere i dati, un [firewall del Database SQL](sql-database-firewall-configure.md) impedisce a tutti i server di database di access tooyour o i relativi database di fuori del server di toohello connessione direttamente tramite la connessione di sottoscrizione di Azure. connettività aggiuntive tooenable, è necessario [creare uno o più regole firewall](sql-database-firewall-configure.md#creating-and-managing-firewall-rules). Per creare e gestire i pool elastici SQL, vedere [Pool elastici](sql-database-elastic-pool.md).
 
-## <a name="manage-azure-sql-servers-databases-and-firewalls-using-the-azure-portal"></a>Gestire server, database e firewall SQL di Azure con il portale di Azure
+## <a name="manage-azure-sql-servers-databases-and-firewalls-using-hello-azure-portal"></a>Gestire i server SQL Azure, database e i firewall mediante hello portale di Azure
 
-È possibile creare il gruppo di risorse del database SQL di Azure in anticipo oppure durante la creazione del server stesso. Esistono diversi metodi per accedere al modulo per la creazione di un nuovo server SQL Server, creando un nuovo server SQL Server o nell'ambito della procedura per creare un nuovo database. 
+È possibile creare gruppo di risorse del database SQL di Azure hello anticipatamente o durante la creazione di server hello stesso. Sono disponibili più metodi per ottenere tooa nuovo modulo server SQL, creando un nuovo server SQL o come parte della creazione di un nuovo database. 
 
 ### <a name="create-a-blank-sql-server-logical-server"></a>Creare un server SQL Server vuoto (server logico)
 
-Per creare un server di database SQL di Azure (senza un database) tramite il [portale di Azure](https://portal.azure.com), passare al modulo per un server SQL Server vuoto (server logico). Lo screenshot seguente mostra un metodo per l'apertura di un modulo per creare un server SQL Server logico vuoto. 
+un server (senza un database) di Database SQL di Azure utilizzando toocreate hello [portale di Azure](https://portal.azure.com), passare a un modulo vuoto SQL server (server logico) tooa. Hello schermata riportata di seguito viene illustrato un metodo per l'apertura di un modulo toocreate un server SQL logico vuoto. 
 
    ![modulo di creazione del server logico completato](./media/sql-database-migrate-your-sql-server-database/logical-server-create-completed.png)
 
-Se si accede a questo modulo con un altro metodo, le informazioni nel modulo sono identiche.
+Se viene visualizzato il modulo toothis utilizzando un altro metodo, informazioni hello in form di hello sono identiche.
 
 ### <a name="create-a-blank-or-sample-sql-database"></a>Creare un database SQL vuoto o di esempio
 
-Per creare un database SQL di Azure tramite il [portale di Azure](https://portal.azure.com), passare a un modulo per database SQL vuoto e specificare le informazioni richieste. È possibile creare il gruppo di risorse e il server logico del database SQL di Azure anticipatamente o durante la creazione del database stesso. È possibile creare un database vuoto o creare un database di esempio basato su Adventure Works LT. 
+un database SQL di Azure utilizzando toocreate hello [portale di Azure](https://portal.azure.com), passare a un modulo del Database SQL vuoto tooa e fornire hello ha chiesto informazioni. È possibile creare il gruppo di risorse del database SQL di Azure hello e server logico anticipatamente o durante la creazione di database hello stesso. È possibile creare un database vuoto o creare un database di esempio basato su Adventure Works LT. 
 
   ![Creare il database 1](./media/sql-database-get-started-portal/create-database-1.png)
 
-> [IMPORTANTE] Per informazioni sulla selezione del piano tariffario per il database, vedere [Livelli di servizio](sql-database-service-tiers.md).
+> [IMPORTANTE] Per informazioni sulla selezione di hello piano tariffario per il database, vedere [livelli di servizio](sql-database-service-tiers.md).
 >
 
 ### <a name="manage-an-existing-sql-server"></a>Gestire un server SQL Server esistente
 
-Per gestire un server esistente, passare al server usando uno dei vari metodi disponibili, ad esempio dalla pagina specifica del database SQL, dalla pagina **SQL Server** o dalla pagina **Tutte le risorse**. Lo screenshot seguente mostra come iniziare a impostare un firewall a livello di server dalla pagina **Informazioni generali** per un server. 
+toomanage un server esistente, passare toohello server utilizzando un numero di metodi, ad esempio a causa di una pagina di database SQL specifico, hello **istanze di SQL Server** pagina o hello **tutte le risorse** pagina. Hello seguente schermata mostra come l'impostazione di un firewall a livello di server da hello toobegin **Panoramica** pagina per un server. 
 
    ![panoramica del server logico](./media/sql-database-migrate-your-sql-server-database/logical-server-overview.png)
 
-Per gestire un database esistente, passare alla pagina **Database SQL** e fare clic sul database che si desidera gestire. Lo screenshot seguente mostra come iniziare a impostare un firewall di livello server per un database dalla pagina **Informazioni generali** per un database. 
+toomanage un database esistente, passare toohello **database SQL** pagina e fare clic su database hello desiderato toomanage. Hello seguente schermata mostra come l'impostazione di un firewall di livello server per un database da hello toobegin **Panoramica** pagina di un database. 
 
    ![Regola del firewall del server](./media/sql-database-get-started-portal/server-firewall-rule.png) 
 
 > [!IMPORTANT]
-> Per configurare le proprietà delle prestazioni per un database, vedere [Livelli di servizio](sql-database-service-tiers.md).
+> proprietà tooconfigure delle prestazioni per un database, vedere [livelli di servizio](sql-database-service-tiers.md).
 >
 
 > [!TIP]
-> Per un'esercitazione introduttiva sul portale di Azure, vedere [Creare un database SQL di Azure nel portale di Azure](sql-database-get-started-portal.md).
+> Per un'esercitazione introduttiva del portale Azure, vedere [creare un database SQL di Azure nel portale di Azure hello](sql-database-get-started-portal.md).
 >
 
 ## <a name="manage-azure-sql-servers-databases-and-firewalls-using-powershell"></a>Gestire server, database e firewall SQL di Azure con PowerShell
 
-Per creare e gestire server, database e firewall SQL di Azure con Azure PowerShell, usare i cmdlet di PowerShell seguenti. Se è necessario installare o aggiornare PowerShell, vedere [Installare il modulo Azure PowerShell](/powershell/azure/install-azurerm-ps). Per creare e gestire i pool elastici SQL, vedere [Pool elastici](sql-database-elastic-pool.md).
+toocreate e gestire server SQL di Azure, database e i firewall con Azure PowerShell, usare i cmdlet di PowerShell seguente hello. Se è necessario tooinstall o l'aggiornamento di PowerShell, vedere [modulo installare Azure PowerShell](/powershell/azure/install-azurerm-ps). Per creare e gestire i pool elastici SQL, vedere [Pool elastici](sql-database-elastic-pool.md).
 
 | Cmdlet | Descrizione |
 | --- | --- |
@@ -139,12 +139,12 @@ Per creare e gestire server, database e firewall SQL di Azure con Azure PowerShe
 |[Remove-AzureRmSqlServerFirewallRule](/powershell/module/azurerm.sql/remove-azurermsqlserverfirewallrule)|Elimina una regola del firewall da un server|
 
 > [!TIP]
-> Per un'esercitazione introduttiva su PowerShell, vedere [Creare un singolo database SQL di Azure usando PowerShell](sql-database-get-started-portal.md). Per gli script di esempio di PowerShell, vedere [Usare PowerShell per creare un singolo database SQL di Azure e configurare una regola del firewall](scripts/sql-database-create-and-configure-database-powershell.md) e [Monitorare e ridimensionare un database SQL singolo usando PowerShell](scripts/sql-database-monitor-and-scale-database-powershell.md).
+> Per un'esercitazione introduttiva su PowerShell, vedere [Creare un singolo database SQL di Azure usando PowerShell](sql-database-get-started-portal.md). Per gli script di esempio di PowerShell, vedere [toocreate PowerShell di usare un singolo SQL Azure database e configurare una regola del firewall](scripts/sql-database-create-and-configure-database-powershell.md) e [monitoraggio e la scala di un singolo SQL del database tramite PowerShell](scripts/sql-database-monitor-and-scale-database-powershell.md).
 >
 
-## <a name="manage-azure-sql-servers-databases-and-firewalls-using-the-azure-cli"></a>Gestire server, database e firewall SQL di Azure con l'interfaccia della riga di comando di Azure
+## <a name="manage-azure-sql-servers-databases-and-firewalls-using-hello-azure-cli"></a>Gestire i server SQL Azure, database e i firewall mediante hello CLI di Azure
 
-Per creare e gestire server, database e firewall SQL di Azure con l'[interfaccia della riga di comando di Azure](/cli/azure/overview), usare i comandi seguenti dell'[interfaccia della riga di comando di Azure per il database SQL](/cli/azure/sql/db). Usare [Cloud Shell](/azure/cloud-shell/overview) per eseguire l'interfaccia della riga di comando nel browser o [installarla](/cli/azure/install-azure-cli) in macOS, Linux o Windows. Per creare e gestire pool elastici SQL, vedere l'articolo relativo ai [pool elastici](sql-database-elastic-pool.md).
+toocreate e gestire i server SQL Azure, database e i firewall con hello [CLI di Azure](/cli/azure/overview), utilizzare la seguente hello [Database SQL di Azure CLI](/cli/azure/sql/db) comandi. Hello utilizzare [Shell Cloud](/azure/cloud-shell/overview) toorun hello CLI nel browser o [installare](/cli/azure/install-azure-cli) sul macOS, Linux o Windows. Per creare e gestire i pool elastici SQL, vedere [Pool elastici](sql-database-elastic-pool.md).
 
 | Cmdlet | Descrizione |
 | --- | --- |
@@ -163,18 +163,18 @@ Per creare e gestire server, database e firewall SQL di Azure con l'[interfaccia
 |[az sql server update](/cli/azure/sql/server#update)|Aggiorna un server|
 |[az sql server delete](/cli/azure/sql/server#delete)|Consente di eliminare un server|
 |[az sql server firewall-rule create](/cli/azure/sql/server/firewall-rule#create)|Crea una regola del firewall del server|
-|[az sql server firewall-rule list](/cli/azure/sql/server/firewall-rule#list)|Elenca le regole del firewall in un server|
-|[az sql server firewall-rule show](/cli/azure/sql/server/firewall-rule#show)|Mostra i dettagli di una regola del firewall|
+|[az sql server firewall-rule list](/cli/azure/sql/server/firewall-rule#list)|Elenca le regole firewall hello in un server|
+|[az sql server firewall-rule show](/cli/azure/sql/server/firewall-rule#show)|Mostra il dettaglio hello di una regola del firewall|
 |[az sql server firewall-rule update](/cli/azure/sql/server/firewall-rule#update)|Aggiorna una regola del firewall|
 |[az sql server firewall-rule delete](/cli/azure/sql/server/firewall-rule#delete)|Elimina una regola del firewall|
 
 > [!TIP]
-> Per un'esercitazione introduttiva sull'interfaccia della riga di comando di Azure, vedere [Creare un singolo database SQL di Azure usando l'interfaccia della riga di comando di Azure](sql-database-get-started-cli.md). Per gli script di esempio dell'interfaccia della riga di comando di Azure, vedere [Usare l'interfaccia della riga di comando per creare un singolo database SQL di Azure e configurare una regola del firewall](scripts/sql-database-create-and-configure-database-cli.md) e [Usare l'interfaccia della riga di comando per monitorare e ridimensionare un singolo database SQL](scripts/sql-database-monitor-and-scale-database-cli.md).
+> Per un'esercitazione introduttiva di Azure CLI, vedere [creare un singolo database di SQL Azure mediante Azure CLI hello](sql-database-get-started-cli.md). Per gli script di esempio CLI di Azure, vedere [toocreate CLI di utilizzare un singolo SQL Azure database e configurare una regola del firewall](scripts/sql-database-create-and-configure-database-cli.md) e [toomonitor CLI di utilizzo e la scala di un singolo database SQL](scripts/sql-database-monitor-and-scale-database-cli.md).
 >
 
 ## <a name="manage-azure-sql-servers-databases-and-firewalls-using-transact-sql"></a>Gestire server, database e firewall SQL di Azure con Transact-SQL
 
-Per creare e gestire server, database e firewall SQL di Azure con Transact-SQL, usare i comandi T-SQL seguenti. È possibile eseguire questi comandi usando il portale di Azure, [SQL Server Management Studio](/sql/ssms/use-sql-server-management-studio), [Visual Studio Code](https://code.visualstudio.com/docs) o qualsiasi altro programma che può connettersi a un server di database SQL di Azure e passare comandi Transact-SQL. Per la gestione dei pool elastici SQL, vedere [Pool elastici](sql-database-elastic-pool.md).
+toocreate e gestire server SQL di Azure, database e i firewall con Transact-SQL, utilizzare i comandi T-SQL seguente hello. È possibile eseguire questi comandi utilizzando il portale di Azure, hello [SQL Server Management Studio](/sql/ssms/use-sql-server-management-studio), [codice di Visual Studio](https://code.visualstudio.com/docs), o qualsiasi altro programma che è possibile connettere il server di Database SQL di Azure tooan e passare a Transact-SQL comandi. Per la gestione dei pool elastici SQL, vedere [Pool elastici](sql-database-elastic-pool.md).
 
 > [!IMPORTANT]
 > Non è possibile creare o eliminare un server con Transact-SQL.
@@ -182,33 +182,33 @@ Per creare e gestire server, database e firewall SQL di Azure con Transact-SQL, 
 
 | Comando | Descrizione |
 | --- | --- |
-|[CREATE DATABASE (database SQL di Azure)](/sql/t-sql/statements/create-database-azure-sql-database)|Crea un nuovo database. Per creare un nuovo database è necessario essere connessi al database master.|
+|[CREATE DATABASE (database SQL di Azure)](/sql/t-sql/statements/create-database-azure-sql-database)|Crea un nuovo database. È necessario essere connessi toohello database master toocreate un nuovo database.|
 | [ALTER DATABASE (database SQL di Azure)](/sql/t-sql/statements/alter-database-azure-sql-database) |Modifica un database SQL di Azure. |
 |[ALTER DATABASE (Azure SQL Data Warehouse)](/sql/t-sql/statements/alter-database-azure-sql-data-warehouse)|Modifica un Azure SQL Data Warehouse.|
 |[DROP DATABASE (Transact-SQL)](/sql/t-sql/statements/drop-database-transact-sql)|Questo comando elimina un database.|
-|[sys.database_service_objectives (database SQL di Azure)](/sql/relational-databases/system-catalog-views/sys-database-service-objectives-azure-sql-database)|Restituisce l'edizione (livello di servizio), l'obiettivo di servizio (piano tariffario) e il nome del pool elastico, se presente, di un database SQL di Azure o un'istanza di Azure SQL Data Warehouse. Se si è connessi al database master in un server di database SQL di Azure, restituisce informazioni su tutti i database. Per Azure SQL Data Warehouse, è necessario essere connessi al database master.|
-|[sys.dm_db_resource_stats (database SQL di Azure)](/sql/relational-databases/system-dynamic-management-views/sys-dm-db-resource-stats-azure-sql-database)| Restituisce il consumo di CPU, I/O e memoria per un database SQL di Azure. È presente una riga ogni 15 secondi, anche se non c'è attività di database.|
-|[sys.resource_stats (database SQL di Azure)](/sql/relational-databases/system-catalog-views/sys-resource-stats-azure-sql-database)|Restituisce i dati di archiviazione e di uso della CPU per un database SQL di Azure. I dati vengono raccolti e aggregati per intervalli di cinque minuti.|
+|[sys.database_service_objectives (database SQL di Azure)](/sql/relational-databases/system-catalog-views/sys-database-service-objectives-azure-sql-database)|Restituisce hello edizione (livello di servizio), l'obiettivo di servizio (livello di prezzo) e nome del pool elastico, se presente, per un database SQL di Azure o un Data Warehouse di SQL Azure. Se connesso al database master di toohello in un server di Database SQL di Azure, restituisce informazioni su tutti i database. Per Azure SQL Data Warehouse, è necessario essere connessi toohello database master.|
+|[sys.dm_db_resource_stats (database SQL di Azure)](/sql/relational-databases/system-dynamic-management-views/sys-dm-db-resource-stats-azure-sql-database)| Restituisce il consumo di CPU, I/O e memoria per un database SQL di Azure. È presente una riga per ogni 15 secondi, anche se è presente alcuna attività nel database di hello.|
+|[sys.resource_stats (database SQL di Azure)](/sql/relational-databases/system-catalog-views/sys-resource-stats-azure-sql-database)|Restituisce i dati di archiviazione e di uso della CPU per un database SQL di Azure. dati Hello vengono raccolti e aggregati in intervalli di cinque minuti.|
 |[sys.database_connection_stats (database SQL di Azure)](/sql/relational-databases/system-catalog-views/sys-database-connection-stats-azure-sql-database)|Contiene le statistiche per gli eventi di connettività di database del database SQL fornendo una panoramica delle connessioni di database riuscite e non riuscite. |
-|[sys.event_log (database SQL di Azure)](/sql/relational-databases/system-catalog-views/sys-event-log-azure-sql-database)|Restituisce le connessioni del database SQL di Azure che hanno esito positivo, quelle che hanno esito negativo e i deadlock. È possibile usare queste informazioni per rilevare o risolvere i problemi dell'attività del database SQL.|
-|[sp_set_firewall_rule (database SQL di Azure)](/sql/relational-databases/system-stored-procedures/sp-set-firewall-rule-azure-sql-database)|Crea o aggiorna le impostazioni del firewall a livello di server per il server di database SQL. Questa stored procedure è disponibile solo nel database master per l'account di accesso dell'entità di livello server. Una regola del firewall a livello di server può essere creata tramite Transact-SQL solo dopo la creazione della prima regola del firewall a livello di server da parte di un utente con autorizzazioni a livello di Azure|
-|[sys.firewall_rules (database SQL di Azure)](/sql/relational-databases/system-catalog-views/sys-firewall-rules-azure-sql-database)|Restituisce informazioni sulle impostazioni del firewall a livello di server associate al database SQL di Microsoft Azure.|
-|[sp_delete_firewall_rule (database SQL di Azure)](/sql/relational-databases/system-stored-procedures/sp-delete-firewall-rule-azure-sql-database)|Rimuove le impostazioni del firewall a livello di server dal server di database SQL. Questa stored procedure è disponibile solo nel database master per l'account di accesso dell'entità di livello server.|
-|[sp_set_database_firewall_rule (database SQL di Azure)](/sql/relational-databases/system-stored-procedures/sp-set-database-firewall-rule-azure-sql-database)|Crea o aggiorna le regole del firewall a livello di database per il database SQL di Azure o per SQL Data Warehouse. Le regole firewall del database possono essere configurate per il database master e per i database utente nel database SQL. Le regole del firewall del database sono utili quando si usano utenti di database indipendenti. |
-|[sys.database_firewall_rules (database SQL di Azure)](/sql/relational-databases/system-catalog-views/sys-database-firewall-rules-azure-sql-database)|Restituisce informazioni sulle impostazioni del firewall a livello di database associate al database SQL di Microsoft Azure. |
+|[sys.event_log (database SQL di Azure)](/sql/relational-databases/system-catalog-views/sys-event-log-azure-sql-database)|Restituisce le connessioni del database SQL di Azure che hanno esito positivo, quelle che hanno esito negativo e i deadlock. È possibile utilizzare questo tootrack informazioni o risolvere i problemi dell'attività del database con il Database SQL.|
+|[sp_set_firewall_rule (database SQL di Azure)](/sql/relational-databases/system-stored-procedures/sp-set-firewall-rule-azure-sql-database)|Crea o aggiorna le impostazioni firewall di livello server hello del server di Database SQL. Questa stored procedure è disponibile solo con account di accesso dell'entità a livello di server di hello toohello database master. Una regola del firewall a livello di server può essere creata solo tramite Transact-SQL dopo la prima regola del firewall di livello server hello è stato creato da un utente con autorizzazioni a livello di Azure|
+|[sys.firewall_rules (database SQL di Azure)](/sql/relational-databases/system-catalog-views/sys-firewall-rules-azure-sql-database)|Restituisce informazioni sulle impostazioni del firewall a livello di server hello associata con il Database SQL di Microsoft Azure.|
+|[sp_delete_firewall_rule (database SQL di Azure)](/sql/relational-databases/system-stored-procedures/sp-delete-firewall-rule-azure-sql-database)|Rimuove le impostazioni del firewall a livello di server dal server di database SQL. Questa stored procedure è disponibile solo con account di accesso dell'entità a livello di server di hello toohello database master.|
+|[sp_set_database_firewall_rule (database SQL di Azure)](/sql/relational-databases/system-stored-procedures/sp-set-database-firewall-rule-azure-sql-database)|Crea o aggiorna regole firewall di livello database hello per il Database SQL di Azure o SQL Data Warehouse. Configurare le regole firewall del database per database master hello e per i database utente nel Database SQL. Le regole del firewall del database sono utili quando si usano utenti di database indipendenti. |
+|[sys.database_firewall_rules (database SQL di Azure)](/sql/relational-databases/system-catalog-views/sys-database-firewall-rules-azure-sql-database)|Restituisce informazioni sulle impostazioni del firewall a livello di database hello associata con il Database SQL di Microsoft Azure. |
 |[sp_delete_database_firewall_rule (database SQL di Azure)](/sql/relational-databases/system-stored-procedures/sp-delete-database-firewall-rule-azure-sql-database)|Rimuove l'impostazione del firewall a livello di database dal database SQL di Azure o da SQL Data Warehouse. |
 
 
 > [!TIP]
-> Per un'esercitazione introduttiva sull'uso di SQL Server Management Studio in Microsoft Windows, vedere [Database SQL di Azure: usare SQL Server Management Studio per connettersi ed eseguire query sui dati](sql-database-connect-query-ssms.md). Per un'esercitazione introduttiva sull'uso di Visual Studio Code in macOS, Linux o Windows, vedere [Database SQL di Azure: Usare Visual Studio Code per connettersi ai dati ed eseguire query](sql-database-connect-query-vscode.md).
+> Per l'esercitazione introduttiva utilizzando SQL Server Management Studio per Microsoft Windows, vedere [Database SQL di Azure: dati tooconnect e query di utilizzare SQL Server Management Studio](sql-database-connect-query-ssms.md). Per un'esercitazione di avvio rapido con codice di Visual Studio in macOS hello, Linux o Windows, vedere [Database SQL di Azure: dati tooconnect e query di utilizzare Visual Studio Code](sql-database-connect-query-vscode.md).
 
-## <a name="manage-azure-sql-servers-databases-and-firewalls-using-the-rest-api"></a>Gestire server, database e firewall SQL di Azure con l'API REST
+## <a name="manage-azure-sql-servers-databases-and-firewalls-using-hello-rest-api"></a>Gestire i server SQL Azure, database e i firewall mediante l'API REST hello
 
-Per creare e gestire server, database e firewall SQL di Azure con l'API REST, vedere [Azure SQL Database REST API](/rest/api/sql/) (API REST del database SQL di Azure).
+toocreate e gestire i server SQL di Azure, database e i firewall mediante hello API REST, vedere [API REST di Azure SQL Database](/rest/api/sql/).
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-- Per informazioni sulla creazione di pool di database con i pool elastici SQL, vedere [Pool elastici](sql-database-elastic-pool.md).
-- Per informazioni sul servizio database SQL di Azure, vedere [Informazioni sul database SQL](sql-database-technical-overview.md).
-- Per altre informazioni sulla migrazione di un database SQL Server in Azure, vedere [Migrazione al database SQL di Azure](sql-database-cloud-migrate.md).
+- toolearn sui pool di database con i pool elastici SQL, vedere [pool elastici](sql-database-elastic-pool.md).
+- Per informazioni su hello servizio Database SQL di Azure, vedere [che cos'è il Database SQL?](sql-database-technical-overview.md).
+- toolearn sulla migrazione tooAzure un database di SQL Server, vedere [eseguire la migrazione di Database SQL tooAzure](sql-database-cloud-migrate.md).
 - Per informazioni sulle funzionalità supportate, vedere [Azure SQL Database features](sql-database-features.md) (Funzioni del database SQL di Azure).

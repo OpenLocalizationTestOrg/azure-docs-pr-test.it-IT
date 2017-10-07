@@ -1,6 +1,6 @@
 ---
-title: Aggiornare Servizi multimediali dopo il rollover delle chiavi di accesso alle risorse di archiviazione | Microsoft Docs
-description: "Questo articolo fornisce informazioni sulle modalità per aggiornare Servizi multimediali dopo aver eseguito il rollover delle chiavi di accesso alle risorse di archiviazione."
+title: le chiavi di accesso ai servizi multimediali aaaUpdate dopo l'operazione di archiviazione | Documenti Microsoft
+description: In questo articolo offrono indicazioni su come le chiavi di accesso tooupdate Media Services dopo l'operazione di archiviazione.
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,47 +14,47 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/09/2017
 ms.author: milanga;cenkdin;juliako
-ms.openlocfilehash: 304e72e0d2d4a7e95df513e6d5481def9eae3f68
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 26fa7a75a73397842aaebda59516a00f68ab97f4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="update-media-services-after-rolling-storage-access-keys"></a>Aggiornare Servizi multimediali dopo il rollover delle chiavi di accesso alle risorse di archiviazione
 
-Quando si crea un nuovo account di Servizi multimediali di Azure (AMS), viene chiesto di selezionare anche un account di archiviazione di Azure da usare per l'archiviazione dei contenuti multimediali. È possibile aggiungere più di un account di archiviazione all'account di Servizi multimediali. In questo argomento viene illustrato come far ruotare le chiavi di archiviazione. Viene inoltre illustrato come aggiungere gli account di archiviazione a un account multimediale. 
+Quando si crea un nuovo account di servizi multimediali di Azure (AMS), verrà anche chiesto tooselect account di archiviazione di Azure che è utilizzato toostore i contenuti multimediali. È possibile aggiungere tooyour gli account di archiviazione più di un account di servizi multimediali. Questo argomento viene illustrato come chiavi per l'archiviazione toorotate. Viene inoltre illustrato come archiviazione tooadd account tooa account di supporto. 
 
-Per eseguire le operazioni descritte in questo argomento, è necessario utilizzare le [API ARM](https://docs.microsoft.com/rest/api/media/mediaservice) e [Powershell](https://docs.microsoft.com/powershell/resourcemanager/azurerm.media/v0.3.2/azurerm.media).  Per ulteriori informazioni, vedere [Gestire le risorse di Azure con PowerShell e Resource Manager](../azure-resource-manager/powershell-azure-resource-manager.md).
+azioni di hello tooperform descritte in questo argomento, è consigliabile usare [API ARM](https://docs.microsoft.com/rest/api/media/mediaservice) e [Powershell](https://docs.microsoft.com/powershell/resourcemanager/azurerm.media/v0.3.2/azurerm.media).  Per ulteriori informazioni, vedere [come toomanage Azure risorse con PowerShell e Gestione risorse](../azure-resource-manager/powershell-azure-resource-manager.md).
 
 ## <a name="overview"></a>Panoramica
 
-Quando viene creato un nuovo account di archiviazione, Azure genera due chiavi di accesso a 512 bit alle risorse di archiviazione, che consentono di autenticare l'accesso all'account di archiviazione. Per mantenere le connessioni di archiviazione più sicure, si consiglia di rigenerare e far ruotare periodicamente la chiave di accesso alle risorse di archiviazione. Per non perdere mai la connessione all'account di archiviazione, vengono fornite due chiavi di accesso (primaria e secondaria), in modo da poter usare la prima mentre si rigenera la seconda. Questa procedura viene anche denominata "rollover delle chiavi di accesso".
+Quando viene creato un nuovo account di archiviazione, Azure genera due chiavi di accesso archiviazione a 512 bit, che sono utilizzati tooauthenticate accedere tooyour account di archiviazione. tookeep le connessioni di archiviazione più sicure, che è consigliabile tooperiodically rigenerano e ruotare la chiave di accesso di archiviazione. Due chiavi di accesso (primari e secondari) vengono forniti in ordine tooenable toomaintain connessioni toohello account di archiviazione utilizzando uno tasto mentre si rigenera hello altre chiavi di accesso. Questa procedura viene anche denominata "rollover delle chiavi di accesso".
 
-Servizi multimediali dipende da una chiave di archiviazione fornita. In particolare, i localizzatori che sono usati per trasmettere in streaming o scaricare gli asset dipendono dalla chiave di accesso alle risorse di archiviazione specificata. Quando viene creato un account AMS, esso assume una dipendenza dalla chiave di accesso alle risorse di archiviazione primaria per impostazione predefinita, ma l’utente può aggiornare la chiave di archiviazione di Servizi multimediali di Azure. È necessario comunicare a Servizi multimediali la chiave da usare, seguendo i passaggi descritti in questo argomento.  
+Servizi multimediali dipende da una chiave di archiviazione fornita tooit. In particolare, i localizzatori hello toostream usato o scaricare gli asset dipendono dalla chiave di accesso di archiviazione specificato hello. Quando viene creato un account di sistema AMS assume una dipendenza di chiave di accesso di archiviazione primaria hello per impostazione predefinita, ma come un utente è possibile aggiornare una chiave di archiviazione hello AMS con. È necessario assicurarsi di servizi multimediali toolet sapere quale chiave toouse seguendo i passaggi descritti in questo argomento.  
 
 >[!NOTE]
-> Se si dispone di più account di archiviazione, è necessario eseguire questa procedura per ogni account di archiviazione. L'ordine in cui ruotare le chiavi di archiviazione non è prefissato. È possibile ruotare prima la chiave secondaria e quindi quella principale o viceversa.
+> Se si dispone di più account di archiviazione, è necessario eseguire questa procedura per ogni account di archiviazione. ordine di Hello in cui si ruotare le chiavi di archiviazione non è fisso. È possibile ruotare la chiave secondaria hello prima e quindi hello principale viceversa chiave o viceversa.
 >
-> Prima di eseguire la procedura descritta in questo argomento su un account di produzione, effettuarne il test in un account di pre-produzione.
+> Prima di eseguire i passaggi descritti in questo argomento in un account di produzione, assicurarsi che tootest loro un account di pre-produzione.
 >
 
-## <a name="steps-to-rotate-storage-keys"></a>Passaggi per ruotare le chiavi di archiviazione 
+## <a name="steps-toorotate-storage-keys"></a>Chiavi per l'archiviazione toorotate passaggi 
  
- 1. Modificare la chiave primaria dell'account di archiviazione tramite il cmdlet PowerShell o il portale di [Azure](https://portal.azure.com/).
- 2. Chiamare il cmdlet Sync-AzureRmMediaServiceStorageKeys con i parametri appropriati per forzare l'account multimediale a prendere le chiavi dell'account di archiviazione
+ 1. Modifica hello chiave account di archiviazione primario tramite il cmdlet powershell hello o [Azure](https://portal.azure.com/) portale.
+ 2. Chiamare il cmdlet AzureRmMediaServiceStorageKeys di sincronizzazione con i parametri appropriati tooforce supporti account toopick le chiavi di account di archiviazione
  
-    Nell'esempio seguente viene illustrato come sincronizzare le chiavi con gli account di archiviazione.
+    Hello di esempio seguente viene illustrato come toosync chiavi account toostorage.
   
          Sync-AzureRmMediaServiceStorageKeys -ResourceGroupName $resourceGroupName -AccountName $mediaAccountName -StorageAccountId $storageAccountId
   
- 3. Attendere circa un'ora. Verificare che gli scenari di streaming funzionino.
- 4. Modificare la chiave secondaria dell'account di archiviazione tramite il cmdlet PowerShell o il portale di Azure.
- 5. Chiamare il cmdlet PowerShell Sync-AzureRmMediaServiceStorageKeys con i parametri appropriati per forzare l'account multimediale a prendere le nuove chiavi dell'account di archiviazione. 
- 6. Attendere circa un'ora. Verificare che gli scenari di streaming funzionino.
+ 3. Attendere circa un'ora. Verificare gli scenari di streaming hello funzionino.
+ 4. Modifica chiave account di archiviazione secondario tramite i cmdlet di powershell hello o il portale di Azure.
+ 5. Chiamare powershell AzureRmMediaServiceStorageKeys di sincronizzazione con i parametri appropriati tooforce supporti account toopick di nuove chiavi dell'account di archiviazione. 
+ 6. Attendere circa un'ora. Verificare gli scenari di streaming hello funzionino.
  
 ### <a name="a-powershell-cmdlet-example"></a>Esempio di cmdlet PowerShell 
 
-Nell'esempio seguente viene illustrato come ottenere l'account di archiviazione e sincronizzarlo con l'account AMS.
+Hello esempio seguente viene illustrato come tooget hello account di archiviazione e sincronizzarlo con account hello AMS.
 
     $regionName = "West US"
     $resourceGroupName = "SkyMedia-USWest-App"
@@ -65,9 +65,9 @@ Nell'esempio seguente viene illustrato come ottenere l'account di archiviazione 
     Sync-AzureRmMediaServiceStorageKeys -ResourceGroupName $resourceGroupName -AccountName $mediaAccountName -StorageAccountId $storageAccountId
 
  
-## <a name="steps-to-add-storage-accounts-to-your-ams-account"></a>Passaggi per aggiungere gli account di archiviazione all'account AMS
+## <a name="steps-tooadd-storage-accounts-tooyour-ams-account"></a>Account di sistema AMS tooyour gli account di archiviazione di tooadd passaggi
 
-L'argomento seguente illustra come aggiungere gli account di archiviazione all'account AMS: [Collegare più account di archiviazione a un account di Servizi multimediali](meda-services-managing-multiple-storage-accounts.md).
+Hello argomento seguente viene illustrato come archiviazione tooadd account account tooyour AMS: [allegare tooa gli account di archiviazione più account di servizi multimediali](meda-services-managing-multiple-storage-accounts.md).
 
 ## <a name="media-services-learning-paths"></a>Percorsi di apprendimento di Servizi multimediali
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
@@ -76,4 +76,4 @@ L'argomento seguente illustra come aggiungere gli account di archiviazione all'a
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
 ### <a name="acknowledgments"></a>Ringraziamenti
-Siamo lieti di conferire un riconoscimento alle seguenti persone che hanno contribuito alla realizzazione di questo documento: Cenk Dingiloglu, Gada Milano, Seva Titov.
+Desideriamo hello tooacknowledge seguente persone che hanno contribuito per la creazione di questo documento: Cenk Dingiloglu, Milano Gada, Seva Titov.

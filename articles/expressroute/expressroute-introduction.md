@@ -1,6 +1,6 @@
 ---
-title: 'Panoramica di ExpressRoute: estendere la rete locale in Azure tramite una connessione privata | Microsoft Docs'
-description: Questa panoramica tecnica di ExpressRoute illustra il funzionamento di una connessione ExpressRoute per l'estensione della rete locale in Azure tramite una connessione privata.
+title: 'Panoramica di ExpressRoute: Estendere la tooAzure di rete locale tramite una connessione privata | Documenti Microsoft'
+description: Questa panoramica tecnica di ExpressRoute viene illustrata una connessione ExpressRoute tooextend il tooAzure di rete locale tramite una connessione privata.
 documentationcenter: na
 services: expressroute
 author: cherylmc
@@ -14,66 +14,66 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 08/03/2017
 ms.author: cherylmc
-ms.openlocfilehash: 7390462d79506e63989baadac2b2cee00eef325d
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 01301e1205c12ecdab34dc9d9b92bc7489e7826c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="expressroute-overview"></a>Panoramica di ExpressRoute
-Microsoft Azure ExpressRoute consente di estendere le reti locali nel cloud Microsoft tramite una connessione privata fornita da un provider di connettività. Con ExpressRoute è possibile stabilire connessioni ai servizi cloud Microsoft, come Microsoft Azure, Office 365 e Dynamics 365.
+Microsoft Azure ExpressRoute consente di estendere le reti locali nel cloud di Microsoft hello tramite una connessione privata mediante un provider di connettività. Con ExpressRoute, è possibile stabilire i servizi cloud di tooMicrosoft connessioni, come Microsoft Azure, Office 365 e Dynamics 365.
 
-La connettività può essere stabilita da una rete (IP VPN) any-to-any, da una rete Ethernet punto a punto o da una Cross Connection virtuale tramite un provider di connettività presso una struttura di condivisione del percorso. Le connessioni ExpressRoute non sfruttano la rete Internet pubblica. In questo modo possono offrire un livello di sicurezza superiore, maggiore affidabilità, velocità più elevate e minori latenze rispetto alle connessioni Internet tradizionali. Per informazioni sulla procedura di connessione della rete a Microsoft tramite ExpressRoute, vedere [Modelli di connettività di ExpressRoute](expressroute-connectivity-models.md).
+La connettività può essere stabilita da una rete (IP VPN) any-to-any, da una rete Ethernet punto a punto o da una Cross Connection virtuale tramite un provider di connettività presso una struttura di condivisione del percorso. Le connessioni ExpressRoute non sfruttano hello rete Internet pubblica. In questo modo toooffer connessioni ExpressRoute più affidabilità, velocità più elevate, minori latenze e una maggiore sicurezza rispetto alle connessioni tramite hello Internet. Per informazioni su come tooconnect tooMicrosoft la rete tramite ExpressRoute, vedere [modelli di connettività di ExpressRoute](expressroute-connectivity-models.md).
 
 ![](./media/expressroute-introduction/expressroute-connection-overview.png)
 
 ## <a name="key-benefits"></a>Vantaggi principali
 
-* Connettività di livello 3 tra la rete locale e il cloud Microsoft tramite un provider di connettività. La connettività può essere stabilita da una rete (IPVPN) any-to-any, da una connessione Ethernet punto a punto o con una Cross Connection virtuale tramite scambio Ethernet.
-* Connettività ai servizi cloud Microsoft in tutte le aree all'interno dell'area geopolitica.
-* Connettività globale ai servizi Microsoft di tutte le aree con il componente aggiuntivo ExpressRoute Premium.
+* Connettività Layer 3 tra la rete locale e hello Cloud Microsoft tramite un provider di connettività. La connettività può essere stabilita da una rete (IPVPN) any-to-any, da una connessione Ethernet punto a punto o con una Cross Connection virtuale tramite scambio Ethernet.
+* Servizi cloud di connettività tooMicrosoft di tutte le aree nell'area di natura geopolitica hello.
+* Servizi di connettività globale tooMicrosoft tutte le regioni con il componente aggiuntivo premium ExpressRoute.
 * Routing dinamico tra la rete e Microsoft con protocolli standard del settore (BGP).
 * Ridondanza incorporata in ogni località di peering per una maggiore affidabilità.
 * [Contratto di servizio](https://azure.microsoft.com/support/legal/sla/)per i tempi di attività delle connessioni.
 * Supporto QoS per Skype for Business.
 
-Per altre informazioni, vedere [Domande frequenti su ExpressRoute](expressroute-faqs.md).
+Per ulteriori informazioni, vedere hello [domande frequenti su ExpressRoute](expressroute-faqs.md).
 
 ## <a name="features"></a>Funzionalità
 
 ### <a name="layer-3-connectivity"></a>Connettività di livello 3
-Microsoft usa il protocollo di routing dinamico di standard del settore (BGP) per lo scambio di route tra la rete locale, le istanze in Azure e gli indirizzi pubblici Microsoft.  Vengono stabilite più sessioni BGP con la rete per profili di traffico diversi. Per altre informazioni, vedere l'articolo relativo [al circuito e ai domini di routing ExpressRoute](expressroute-circuit-peerings.md) .
+Microsoft utilizza settore standard dinamica routing protocol (BGP) tooexchange instrada tra la rete locale, le istanze in Azure e Microsoft indirizzi pubblici.  Vengono stabilite più sessioni BGP con la rete per profili di traffico diversi. Ulteriori informazioni, vedere hello [ExpressRoute circuiti e domini di routing](expressroute-circuit-peerings.md) articolo.
 
 ### <a name="redundancy"></a>Ridondanza
-Ogni circuito ExpressRoute è costituito da due connessioni a due router perimetrali Microsoft Enterprise (MSEE) dal provider di connettività o dal perimetro della rete. Microsoft richiede una connessione BGP doppia dal provider di connettività/lato dell'utente, una per ogni MSEE. È possibile scegliere di non distribuire dispositivi ridondanti/circuiti Ethernet sul lato dell'utente. I provider di connettività tuttavia usano dispositivi ridondanti per garantire che le connessioni vengono passate a Microsoft in modo ridondante. Una connettività di livello 3 ridondante è un requisito per la validità del [contratto di servizio](https://azure.microsoft.com/support/legal/sla/) .
+Ogni circuito ExpressRoute è costituito da due connessioni tootwo Microsoft Enterprise edge router (MSEEs) dal provider di connettività hello / la rete perimetrale. Microsoft richiede una connessione BGP doppia dal provider di connettività hello o il lato – uno tooeach MSEE. È possibile scegliere i dispositivi di archiviazione con ridondanza non toodeploy / Ethernet circuiti l'estremità. Tuttavia, i provider di connettività utilizzano dispositivi ridondanti tooensure che le connessioni vengono passate tooMicrosoft in modo ridondante. Una configurazione della connettività Layer 3 ridondante è un requisito per il nostro [SLA](https://azure.microsoft.com/support/legal/sla/) toobe valido.
 
-### <a name="connectivity-to-microsoft-cloud-services"></a>Connettività ai servizi cloud Microsoft
+### <a name="connectivity-toomicrosoft-cloud-services"></a>Servizi cloud tooMicrosoft di connettività
 [!INCLUDE [expressroute-office365-include](../../includes/expressroute-office365-include.md)]
 
-Le connessioni ExpressRoute abilitano l'accesso ai servizi seguenti:
+Le connessioni ExpressRoute abilitare accesso toohello seguenti servizi:
 
 * Servizi di Microsoft Azure
 * Servizi di Microsoft Office 365
 * Microsoft Dynamics 365
 
-Per un elenco dettagliato dei servizi supportati per ExpressRoute, visitare la pagina [Domande frequenti su ExpressRoute](expressroute-faqs.md) .
+È possibile visitare hello [domande frequenti su ExpressRoute](expressroute-faqs.md) pagina per un elenco dettagliato dei servizi supportati tramite ExpressRoute.
 
-### <a name="connectivity-to-all-regions-within-a-geopolitical-region"></a>Connettività a tutte le aree all'interno di un'area geopolitica
-È possibile connettersi a Microsoft in una delle [località di peering](expressroute-locations.md) e accedere a tutte le aree all'interno dell'area geopolitica. 
+### <a name="connectivity-tooall-regions-within-a-geopolitical-region"></a>Aree di tooall connettività all'interno di un'area di natura geopolitica
+È possibile connettersi tooMicrosoft in uno dei nostri [percorsi peering](expressroute-locations.md) e tooall di accedere alle aree all'interno di area geopolitici hello. 
 
-Se ad esempio si esegue la connessione a Microsoft ad Amsterdam tramite ExpressRoute, sarà possibile accedere a tutti i servizi Microsoft Cloud ospitati nell'Europa settentrionale e occidentale. Per una panoramica delle aree geopolitiche, delle aree cloud Microsoft associate e delle località di peering ExpressRoute corrispondenti, vedere l'articolo [Partner e località di peering per Azure ExpressRoute](expressroute-locations.md) .
+Ad esempio, se si è connessi tramite ExpressRoute tooMicrosoft Amsterdam, è necessario servizi di accesso tooall Microsoft cloud ospitati in Nord Europa e dell'Europa occidentale. Vedere hello [ExpressRoute partner e località di peering](expressroute-locations.md) articolo per una panoramica delle aree geopolitici hello associati regioni cloud di Microsoft e percorsi peering ExpressRoute corrispondenti.
 
 ### <a name="global-connectivity-with-expressroute-premium-add-on"></a>Connettività globale con il componente aggiuntivo ExpressRoute Premium
-È possibile abilitare la funzionalità componente aggiuntivo ExpressRoute Premium per estendere la connettività tra confini geopolitici. Se ad esempio si esegue la connessione a Microsoft da Amsterdam tramite ExpressRoute, sarà possibile accedere a tutti i servizi cloud Microsoft ospitati in tutte le aree del mondo (cloud nazionali esclusi). È possibile accedere ai servizi distribuiti nell'America del Sud o in Australia nello stesso modo in cui si accede alle aree dell'Europa settentrionale e occidentale.
+È possibile abilitare la connettività tooextend funzionalità dei componenti aggiuntivi di hello ExpressRoute premium attraverso i limiti di natura geopolitici. Ad esempio, se si è connessi tooMicrosoft Amsterdam attraverso ExpressRoute, si avrà accesso tooall Microsoft cloud i servizi ospitati in tutte le aree del mondo hello (national cloud sono esclusi). È possibile accedere a servizi distribuiti in Sud America o Australia hello stessa modalità di accesso hello Nord e aree Europa occidentale.
 
 ### <a name="rich-connectivity-partner-ecosystem"></a>Ecosistema di partner di connettività avanzata
-ExpressRoute presenta un ecosistema di partner di connettività e SI in continua crescita. Per le informazioni più aggiornate, vedere l'articolo [Partner e località di peering per Azure ExpressRoute](expressroute-locations.md) .
+ExpressRoute presenta un ecosistema di partner di connettività e SI in continua crescita. È possibile fare riferimento toohello [ExpressRoute provider e i percorsi](expressroute-locations.md) articolo per informazioni più recenti di hello.
 
-### <a name="connectivity-to-national-clouds"></a>Connettività a cloud nazionali
-Microsoft gestisce ambienti cloud isolati per aree geopolitiche speciali e segmenti di clienti. Per un elenco dei cloud nazionali e dei provider, vedere l'articolo [Partner e località di peering per Azure ExpressRoute](expressroute-locations.md) .
+### <a name="connectivity-toonational-clouds"></a>Cloud toonational connettività
+Microsoft gestisce ambienti cloud isolati per aree geopolitiche speciali e segmenti di clienti. Fare riferimento toohello [ExpressRoute provider e i percorsi](expressroute-locations.md) pagina per un elenco di cloud nazionale e provider.
 
 ### <a name="bandwidth-options"></a>Opzioni di larghezza di banda
-È possibile acquistare circuiti ExpressRoute per un'ampia gamma di larghezze di banda. Le larghezze di banda supportate sono elencate di seguito. Controllare presso il provider di connettività l'elenco delle larghezze di banda supportate fornite.
+È possibile acquistare circuiti ExpressRoute per un'ampia gamma di larghezze di banda. Le larghezze di banda supportate sono elencate di seguito. Essere toocheck verificare con l'elenco di hello connettività provider toodetermine di larghezze di banda supportate che forniscono.
 
 * 50 Mbps
 * 100 Mbps
@@ -85,21 +85,21 @@ Microsoft gestisce ambienti cloud isolati per aree geopolitiche speciali e segme
 * 10 Gbps
 
 ### <a name="dynamic-scaling-of-bandwidth"></a>Scalabilità dinamica della larghezza di banda
-È possibile aumentare la larghezza di banda del circuito ExpressRoute (in base ad approssimazioni ottimali) senza dover chiudere le connessioni. 
+È possibile aumentare hello ExpressRoute circuito della larghezza di banda (in base ad approssimazioni ottimali) senza tootear verso il basso le connessioni. 
 
 ### <a name="flexible-billing-models"></a>Modelli di fatturazione flessibili
-È possibile selezionare il modello di fatturazione più adatto per le proprie esigenze. Scegliere tra i modelli di fatturazione elencati di seguito. Per altre informazioni, vedere [Domande frequenti su ExpressRoute](expressroute-faqs.md).
+È possibile selezionare il modello di fatturazione più adatto per le proprie esigenze. Scegliere tra i modelli di fatturazione hello elencati di seguito. Per ulteriori informazioni, vedere hello [domande frequenti su ExpressRoute](expressroute-faqs.md).
 
-* **Dati illimitati**. Il circuito ExpressRoute viene addebitato in base a una tariffa mensile che include il trasferimento di tutti i dati in entrata e in uscita. 
-* **Dati a consumo**. Il circuito ExpressRoute viene addebitato in base a una tariffa mensile. Nella tariffa è incluso il trasferimento di tutti i dati in entrata. Il trasferimento dei dati in uscita invece viene addebitato per GB di dati trasferiti. Le tariffe per il trasferimento dei dati variano in base all'area.
-* **Componente aggiuntivo ExpressRoute Premium**. ExpressRoute Premium è un componente aggiuntivo per il circuito ExpressRoute. Offre le funzionalità seguenti: 
-  * Estensione dei limiti di route per i peering pubblico e privato di Azure da 4.000 a 10.000 route.
-  * Connettività globale per i servizi. Un circuito ExpressRoute creato in un'area qualsiasi (esclusi i cloud nazionali) potrà accedere alle risorse di tutte le altre aree del mondo. Ad esempio, una rete virtuale creata nell'Europa occidentale è accessibile attraverso un circuito ExpressRoute fornito nella Silicon Valley.
-  * Aumento del numero di collegamenti di reti virtuali consentiti per circuito ExpressRoute da 10 a un numero superiore, a seconda della larghezza di banda del circuito.
+* **Dati illimitati**. circuito ExpressRoute Hello viene addebitato in base a una tariffa mensile e trasferimento di tutti i dati in entrata e in uscita viene aggiunto a titolo gratuito. 
+* **Dati a consumo**. circuito ExpressRoute Hello viene addebitato in base a una tariffa mensile. Nella tariffa è incluso il trasferimento di tutti i dati in entrata. Il trasferimento dei dati in uscita invece viene addebitato per GB di dati trasferiti. Le tariffe per il trasferimento dei dati variano in base all'area.
+* **Componente aggiuntivo ExpressRoute Premium**. premium ExpressRoute Hello è un componente aggiuntivo su hello circuito ExpressRoute. componente aggiuntivo di Hello ExpressRoute premium fornisce hello seguenti funzionalità: 
+  * Limiti di route maggiore per pubblici e Azure peering privato di Azure da too10 di 4.000 route, le route 000.
+  * Connettività globale per i servizi. Un circuito ExpressRoute creato in qualsiasi area (esclusi i cloud nazionale) avranno accesso tooresources in qualsiasi altra area in HelloWorld. Ad esempio, una rete virtuale creata nell'Europa occidentale è accessibile attraverso un circuito ExpressRoute fornito nella Silicon Valley.
+  * Maggior numero di collegamenti di rete virtuale per il circuito ExpressRoute da limite di dimensioni maggiori tooa 10, a seconda della larghezza di banda hello del circuito hello.
 
-## <a name="faq"></a>Domande frequenti
+## <a name="faq"></a>domande frequenti
 
-Per le domande frequenti su ExpressRoute, vedere [Domande frequenti su ExpressRoute](expressroute-faqs.md).
+Per domande frequenti su ExpressRoute, vedere hello [domande frequenti su ExpressRoute](expressroute-faqs.md).
 
 ## <a name="next-steps"></a>Passaggi successivi
 
@@ -107,9 +107,9 @@ Per le domande frequenti su ExpressRoute, vedere [Domande frequenti su ExpressRo
 * Informazioni sulle connessioni e i domini di routing ExpressRoute. Vedere [Circuiti e domini di routing ExpressRoute](expressroute-circuit-peerings.md).
 * Trovare un provider di servizi. Vedere [Partner e località di peering per Azure ExpressRoute](expressroute-locations.md).
 * Verificare che vengano soddisfatti tutti i prerequisiti. Vedere [Prerequisiti per ExpressRoute](expressroute-prerequisites.md).
-* Vedere i requisiti per [Routing](expressroute-routing.md), [NAT](expressroute-nat.md) e [QoS](expressroute-qos.md).
+* Consultare i requisiti di toohello per [Routing](expressroute-routing.md), [NAT](expressroute-nat.md), e [QoS](expressroute-qos.md).
 * Configurare la connessione ExpressRoute.
   * [Creare un circuito ExpressRoute](expressroute-howto-circuit-portal-resource-manager.md)
   * [Configurare il peering per un circuito ExpressRoute](expressroute-howto-routing-portal-resource-manager.md)
-  * [Connettere una rete virtuale a un circuito ExpressRoute](expressroute-howto-linkvnet-portal-resource-manager.md)
-* Informazioni su alcune altre [funzionalità di rete](../networking/networking-overview.md) chiave di Azure.
+  * [Connettersi a un circuito ExpressRoute di tooan rete virtuale](expressroute-howto-linkvnet-portal-resource-manager.md)
+* Informazioni su alcune delle hello altre chiavi [funzionalità di rete](../networking/networking-overview.md) di Azure.

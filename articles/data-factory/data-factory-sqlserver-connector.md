@@ -1,6 +1,6 @@
 ---
-title: Spostare i dati da e verso SQL Server | Microsoft Docs
-description: Informazioni su come spostare i dati da/verso il database di SQL Server locale o in una VM di Azure utilizzando Data factory di Azure.
+title: aaaMove tooand di dati da SQL Server | Documenti Microsoft
+description: "Informazioni su come dati toomove a/da SQL Server database che è locale o in una macchina virtuale di Azure usando Azure Data Factory."
 services: data-factory
 documentationcenter: 
 author: linda33wj
@@ -14,66 +14,66 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/09/2017
 ms.author: jingwang
-ms.openlocfilehash: 9cd2077d897631457925cda5ef5e6df3c0c33177
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: f0cccf56a670e62ec893d75052a81eb26d562050
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="move-data-to-and-from-sql-server-on-premises-or-on-iaas-azure-vm-using-azure-data-factory"></a>Spostare i dati da e verso SQL Server locale o in IaaS (VM di Azure) utilizzando Data factory di Azure
-Questo articolo illustra come usare l'attività di copia in Azure Data Factory per spostare i dati da e verso un database SQL Server locale. Si basa sull'articolo relativo alle [attività di spostamento dei dati](data-factory-data-movement-activities.md), che offre una panoramica generale dello spostamento dei dati con l'attività di copia. 
+# <a name="move-data-tooand-from-sql-server-on-premises-or-on-iaas-azure-vm-using-azure-data-factory"></a>Spostare dati tooand da SQL Server locale o in IaaS (VM di Azure) usando Azure Data Factory
+Questo articolo spiega come toouse hello attività di copia nei dati di Azure Data Factory toomove a/da un database di SQL Server locale. È basato su hello [attività lo spostamento dei dati](data-factory-data-movement-activities.md) articolo, che presenta una panoramica generale di spostamento dei dati con attività di copia hello. 
 
 ## <a name="supported-scenarios"></a>Scenari supportati
-È possibile copiare i dati **da un database SQL Server** negli archivi di dati seguenti:
+È possibile copiare dati **da un database di SQL Server** toohello archivi dati seguenti:
 
 [!INCLUDE [data-factory-supported-sink](../../includes/data-factory-supported-sinks.md)]
 
-È possibile copiare i dati dagli archivi dati seguenti **a un database SQL Server**:
+È possibile copiare dati da archivi dati seguenti hello **database di SQL Server tooa**:
 
 [!INCLUDE [data-factory-supported-sources](../../includes/data-factory-supported-sources.md)]
 
 ## <a name="supported-sql-server-versions"></a>Versioni di SQL Server supportate
-Questo connettore di SQL Server supporta la copia dei dati da e verso le seguenti versioni dell'istanza ospitate in locale o in IaaS di Azure tramite l'autenticazione SQL e l'autenticazione Windows: SQL Server 2016, SQL Server 2014, SQL Server 2012, SQL Server 2008 R2, SQL Server 2008, SQL Server 2005
+Copia di dati da questo supporto di connettore SQL Server / toohello seguenti versioni di istanza ospitata in locale o in Azure IaaS tramite l'autenticazione di Windows e autenticazione di SQL Server: SQL Server 2016, SQL Server 2014, SQL Server 2012, SQL Server 2008 R2, SQL Server 2008, SQL Server 2005
 
 ## <a name="enabling-connectivity"></a>Abilitazione della connettività
-I concetti e i passaggi necessari per la connessione con SQL Server ospitato in locale o in macchine virtuali di Azure IaaS (Infrastructure-as-a-Service) sono gli stessi. In entrambi i casi, è necessario usare il Gateway di gestione dati per la connettività.
+concetti di Hello e i passaggi necessari per la connessione con SQL Server ospitato in locale o in Azure IaaS (Infrastructure-as-a-Service) VM sono hello stesso. In entrambi i casi, è necessario toouse Gateway di gestione dati per la connettività.
 
-Vedere l'articolo sullo [spostamento di dati tra sedi locali e cloud](data-factory-move-data-between-onprem-and-cloud.md) per informazioni sul Gateway di gestione dati e per istruzioni dettagliate sulla configurazione del gateway. L'impostazione di un'istanza del gateway è un prerequisito per la connessione con SQL Server.
+Vedere [lo spostamento dei dati tra le sedi locali e cloud](data-factory-move-data-between-onprem-and-cloud.md) toolearn articolo sul Gateway di gestione dati e istruzioni dettagliate su come configurare il gateway hello. L'impostazione di un'istanza del gateway è un prerequisito per la connessione con SQL Server.
 
-Sebbene sia possibile installare il gateway nello stesso computer locale o istanza cloud della macchina virtuale come SQL Server per migliorare le prestazioni, si consiglia di installarli in computer separati, per evitare che il gateway e il server SQL entrino in conflitto sulle risorse.
+Sebbene sia possibile installare gateway su hello stesso locali istanza macchina o di cloud della macchina virtuale come hello di SQL Server per ottenere prestazioni migliori, è consigliabile installarli in computer separati. Con gateway hello e SQL Server in computer separati riduce la contesa di risorse.
 
-## <a name="getting-started"></a>Introduzione
+## <a name="getting-started"></a>introduttiva
 È possibile creare una pipeline con l'attività di copia che sposta i dati da e verso un SQL Server locale usando diversi strumenti/API.
 
-Il modo più semplice per creare una pipeline è usare la **Copia guidata**. Vedere [Esercitazione: Creare una pipeline usando la Copia guidata](data-factory-copy-data-wizard-tutorial.md) per la procedura dettagliata sulla creazione di una pipeline attenendosi alla procedura guidata per copiare i dati.
+toocreate modo più semplice di Hello una pipeline è hello toouse **Copia guidata**. Vedere [esercitazione: creare una pipeline mediante Copia guidata](data-factory-copy-data-wizard-tutorial.md) per un'esercitazione rapida sulla creazione di una pipeline mediante Creazione guidata di hello copia dati.
 
-È possibile anche usare gli strumenti seguenti per creare una pipeline: **portale di Azure**, **Visual Studio**, **Azure PowerShell**, **modello di Azure Resource Manager**, **API .NET** e **API REST**. Vedere l'[esercitazione sull'attività di copia](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) per le istruzioni dettagliate sulla creazione di una pipeline con un'attività di copia. 
+È inoltre possibile utilizzare i seguenti strumenti toocreate una pipeline hello: **portale di Azure**, **Visual Studio**, **Azure PowerShell**, **modello di gestione risorse di Azure** , **API .NET**, e **API REST**. Vedere [esercitazione attività Copia](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) per istruzioni dettagliate toocreate una pipeline con attività di copia. 
 
-Se si usano gli strumenti o le API, eseguire la procedura seguente per creare una pipeline che sposta i dati da un archivio dati di origine a un archivio dati sink: 
+Se si utilizza hello o le API, è eseguire hello passaggi toocreate una pipeline che consente di spostare dati da un'origine tooa archiviano dati sink seguenti: 
 
 1. Creare una **data factory**. Una data factory può contenere una o più pipeline. 
-2. Creare i **servizi collegati** per collegare gli archivi di dati di input e output alla data factory. Ad esempio, se si copiano i dati da un database SQL Server in un'archiviazione BLOB di Azure, si creano due servizi collegati per collegare il database SQL Server e l'account di archiviazione di Azure alla data factory. Per le proprietà del servizio collegato specifiche per il database SQL Server, vedere la sezione sulle [proprietà del servizio collegato](#linked-service-properties). 
-3. Creare i **set di dati** per rappresentare i dati di input e di output per le operazioni di copia. Nell'esempio citato nel passaggio precedente, si crea un set di dati per specificare la tabella nel database SQL Server che contiene i dati di input. Si crea anche un altro set di dati per specificare il contenitore BLOB e la cartella che contiene i dati copiati dal database SQL Server. Per le proprietà del set di dati specifiche per il database SQL Server, vedere la sezione sulle [proprietà del set di dati](#dataset-properties).
-4. Creare una **pipeline** con un'attività di copia che accetti un set di dati come input e un set di dati come output. Nell'esempio indicato in precedenza si usa SqlSource come origine e BlobSink come sink per l'attività di copia. Analogamente, se si effettua la copia dall'archiviazione BLOB di Azure al database SQL Server, usare BlobSource e SqlSink nell'attività di copia. Per le proprietà dell'attività di copia specifiche per il database SQL Server, vedere la sezione sulle [proprietà dell'attività di copia](#copy-activity-properties). Per informazioni dettagliate su come usare un archivio dati come origine o come sink, fare clic sul collegamento nella sezione precedente per l'archivio dati. 
+2. Creare **servizi collegati** toolink dati di input e output archivi tooyour data factory. Ad esempio, se si copiano dati da un tooan di database di SQL Server archiviazione blob di Azure, è creare due servizi collegati toolink il database di SQL Server e l'archiviazione di Azure account tooyour data factory. Per le proprietà di servizio collegato che sono specifici tooSQL database del Server, vedere [servizio proprietà collegate](#linked-service-properties) sezione. 
+3. Creare **set di dati** toorepresent di input e output dell'operazione di copia di dati per hello. Nell'esempio hello indicato nell'ultimo passaggio hello, crei una tabella SQL hello toospecify set di dati nel database di SQL Server che contiene i dati di input hello. E, per creare un altro set di dati toospecify hello blob contenitore e cartella hello contenente hello dati copiati dal hello database di SQL Server. Per le proprietà di set di dati che sono specifici tooSQL database del Server, vedere [proprietà set di dati](#dataset-properties) sezione.
+4. Creare una **pipeline** con un'attività di copia che accetti un set di dati come input e un set di dati come output. Nell'esempio hello indicato in precedenza, si usa SqlSource come un'origine e BlobSink come sink per attività di copia hello. Analogamente, se si sta copiando l'archiviazione Blob di Azure tooSQL Database del Server, utilizzare BlobSource e SqlSink nell'attività di copia hello. Per le proprietà di attività di copia che sono specifici tooSQL Database del Server, vedere [copiare le proprietà dell'attività](#copy-activity-properties) sezione. Per informazioni dettagliate su come toouse un archivio dati come origine o un sink, fare clic sul collegamento di hello nella sezione precedente di hello per l'archivio dati. 
 
-Quando si usa la procedura guidata, le definizioni JSON per queste entità di data factory (servizi, set di dati e pipeline collegati) vengono create automaticamente. Quando si usano gli strumenti o le API, ad eccezione delle API .NET, usare il formato JSON per definire le entità di Data Factory.  Per esempi con definizioni JSON per le entità di Data Factory che vengono usate per copiare dati da e verso un database SQL Server locale, vedere la sezione degli [esempi JSON](#json-examples-for-copying-data-from-and-to-sql-server) in questo articolo. 
+Quando si utilizza la procedura guidata hello, le definizioni di JSON per queste entità Data Factory (servizi collegati, i set di dati e della pipeline hello) vengono create automaticamente per l'utente. Quando si utilizzano strumenti o le API (ad eccezione delle API .NET), utilizzando il formato JSON hello è definire queste entità Data Factory.  Per esempi con definizioni di JSON per le entità Data Factory toocopy utilizzati i dati in o da un database di SQL Server locale, vedere [esempi JSON](#json-examples-for-copying-data-from-and-to-sql-server) sezione di questo articolo. 
 
-Nelle sezioni seguenti sono disponibili le informazioni dettagliate sulle proprietà JSON che vengono usate per definire entità della Data Factory specifiche di SQL Server: 
+Hello le sezioni seguenti fornisce dettagli sulle proprietà JSON che vengono utilizzati toodefine Data Factory entità specifiche tooSQL Server: 
 
 ## <a name="linked-service-properties"></a>Proprietà del servizio collegato
-Viene creato un servizio collegato di tipo **OnPremisesSqlServer** per collegare un database di SQL Server locale a una data factory. La tabella seguente contiene le descrizioni degli elementi JSON specifici per il servizio collegato di SQL Server locale.
+Creare un servizio collegato di tipo **OnPremisesSqlServer** toolink una data factory tooa di on-premise SQL Server database. Hello nella tabella seguente fornisce una descrizione del servizio collegato SQL Server locale tooon specifici elementi JSON.
 
-La tabella seguente contiene le descrizioni degli elementi JSON specifici del servizio collegato SQL Server.
+Hello nella tabella seguente fornisce una descrizione JSON elementi specifici tooSQL servizio del Server collegato.
 
 | Proprietà | Descrizione | Obbligatorio |
 | --- | --- | --- |
-| type |La proprietà type deve essere impostata su **OnPremisesSqlServer**. |Sì |
-| connectionString |Specificare le informazioni di connectionString necessarie per connettersi al database di SQL Server locale usando l'autenticazione di SQL o Windows. |Sì |
-| gatewayName |Nome del gateway che il servizio Data factory deve usare per connettersi al database di SQL Server locale. |Sì |
+| type |proprietà di tipo Hello deve essere impostata su: **OnPremisesSqlServer**. |Sì |
+| connectionString |Specificare le informazioni connectionString necessarie tooconnect database di SQL Server on-premise toohello utilizzando l'autenticazione di SQL Server o l'autenticazione di Windows. |Sì |
+| gatewayName |Nome del gateway hello hello servizio Data Factory deve utilizzare i database di SQL Server on-premise toohello tooconnect. |Sì |
 | username |Specificare il nome utente se si usa l'autenticazione Windows. Esempio: **nomedominio\\nomeutente**. |No |
-| password |Specificare la password per l'account utente specificato per il nome utente. |No |
+| password |Specificare la password per account utente di hello specificato per il nome utente hello. |No |
 
-È possibile crittografare le credenziali usando il cmdlet **New-AzureRmDataFactoryEncryptValue** e usarle nella stringa di connessione, come illustrato nell'esempio seguente (proprietà **EncryptedCredential**):  
+È possibile crittografare le credenziali utilizzando hello **New AzureRmDataFactoryEncryptValue** cmdlet e utilizzarli nella stringa di connessione hello, come illustrato nell'esempio seguente hello (**EncryptedCredential** proprietà):  
 
 ```JSON
 "connectionString": "Data Source=<servername>;Initial Catalog=<databasename>;Integrated Security=True;EncryptedCredential=<encrypted credential>",
@@ -97,7 +97,7 @@ La tabella seguente contiene le descrizioni degli elementi JSON specifici del se
 ```
 **JSON per l'uso dell'Autenticazione Windows**
 
-Gateway di gestione dati rappresenta l'account utente specificato per la connessione al database SQL Server locale. 
+Gateway di gestione dati rappresenterà hello specificato database di SQL Server on-premise toohello tooconnect account utente. 
 
 ```json
 {
@@ -116,73 +116,73 @@ Gateway di gestione dati rappresenta l'account utente specificato per la conness
 ```
 
 ## <a name="dataset-properties"></a>Proprietà dei set di dati
-Negli esempi si è usato un set di dati di tipo **SqlServerTable** per rappresentare una tabella in un database di SQL Server.  
+Negli esempi di hello è stato utilizzato un set di dati di tipo **SqlServerTable** toorepresent una tabella in un database di SQL Server.  
 
-Per un elenco completo delle sezioni e delle proprietà disponibili per la definizione di set di dati, vedere l'articolo sulla [creazione di set di dati](data-factory-create-datasets.md). Le sezioni come struttura, disponibilità e criteri di un set di dati JSON sono simili per tutti i tipi di set di dati (SQL Server, BLOB di Azure, tabelle di Azure e così via).
+Per un elenco completo delle proprietà disponibili per la definizione di set di dati e sezioni, vedere hello [creazione dei DataSet](data-factory-create-datasets.md) articolo. Le sezioni come struttura, disponibilità e criteri di un set di dati JSON sono simili per tutti i tipi di set di dati (SQL Server, BLOB di Azure, tabelle di Azure e così via).
 
-La sezione typeProperties è diversa per ogni tipo di set di dati e contiene informazioni sulla posizione dei dati nell'archivio dati. La sezione **typeProperties** per il set di dati di tipo **SqlServerTable** presenta le proprietà seguenti:
+sezione typeProperties Hello è diverso per ogni tipo di set di dati e fornisce informazioni sulla posizione hello dei dati di hello nell'archivio dati hello. Hello **typeProperties** sezione per hello set di dati di tipo **SqlServerTable** è hello le proprietà seguenti:
 
 | Proprietà | Descrizione | Obbligatorio |
 | --- | --- | --- |
-| tableName |Nome della tabella o vista nell'istanza del database di SQL Server a cui fa riferimento il servizio collegato. |Sì |
+| tableName |Nome della tabella hello o della vista nell'istanza di Database di SQL Server hello che il servizio collegato fa riferimento a. |Sì |
 
 ## <a name="copy-activity-properties"></a>Proprietà dell'attività di copia
-Se si effettua il trasferimento dei dati da un database di SQL Server, impostare il tipo di origine nell'attività di copia su **SqlSource**. Analogamente, se si effettua il trasferimento dei dati in un database di SQL Server, impostare il tipo di sink nell'attività di copia su **SqlSink**. Questa sezione presenta un elenco delle proprietà supportate da SqlSource e SqlSink.
+Se si stanno spostando i dati da un database di SQL Server, impostare il tipo di origine hello nell'attività di copia hello troppo**SqlSource**. Analogamente, se si stanno spostando i database di SQL Server tooa di dati, impostare il tipo di sink hello nell'attività di copia hello troppo**SqlSink**. Questa sezione presenta un elenco delle proprietà supportate da SqlSource e SqlSink.
 
-Per un elenco completo delle sezioni e delle proprietà disponibili per la definizione delle attività, fare riferimento all'articolo [Creazione di pipeline](data-factory-create-pipelines.md). Per tutti i tipi di attività sono disponibili proprietà come nome, descrizione, tabelle di input e output e criteri.
+Per un elenco completo delle proprietà disponibili per la definizione delle attività e delle sezioni, vedere hello [la creazione di pipeline](data-factory-create-pipelines.md) articolo. Per tutti i tipi di attività sono disponibili proprietà come nome, descrizione, tabelle di input e output e criteri.
 
 > [!NOTE]
-> L'attività di copia accetta solo un input e produce solo un output.
+> Hello attività di copia accetta un solo input e produce un solo output.
 
-Le proprietà disponibili nella sezione typeProperties dell'attività variano invece in base al tipo di attività. Per l'attività di copia variano in base ai tipi di origine e sink.
+Mentre le proprietà disponibili nella sezione typeProperties hello dell'attività hello variano in base a ogni tipo di attività. Per attività di copia, variano a seconda dei tipi di hello di origini e sink.
 
 ### <a name="sqlsource"></a>SqlSource
-Se in un'attività di copia l'origine è di tipo **SqlSource**, nella sezione **typeProperties** sono disponibili le proprietà seguenti:
+Quando l'origine in un'attività di copia è di tipo **SqlSource**, hello le proprietà seguenti sono disponibile in **typeProperties** sezione:
 
 | Proprietà | Descrizione | Valori consentiti | Obbligatorio |
 | --- | --- | --- | --- |
-| SqlReaderQuery |Usare la query personalizzata per leggere i dati. |Stringa di query SQL. Ad esempio: selezionare * da MyTable. Può fare riferimento a più tabelle del database a cui fa riferimento il set di dati di input. Se non specificato, l'istruzione SQL eseguita: selezionare da MyTable. |No |
-| sqlReaderStoredProcedureName |Nome della stored procedure che legge i dati dalla tabella di origine. |Nome della stored procedure. L'ultima istruzione SQL deve essere un'istruzione SELECT nella stored procedure. |No |
-| storedProcedureParameters |Parametri per la stored procedure. |Coppie nome/valore. I nomi e le maiuscole e minuscole dei parametri devono corrispondere ai nomi e alle maiuscole e minuscole dei parametri della stored procedure. |No |
+| SqlReaderQuery |Utilizzare i dati di tooread hello query personalizzata. |Stringa di query SQL. Ad esempio: selezionare * da MyTable. Può fare riferimento a più tabelle dal database hello hello di un set di dati dell'input a cui fa riferimento. Se non specificato, hello istruzione SQL eseguita: select from MyTable. |No |
+| sqlReaderStoredProcedureName |Nome di hello stored procedure che legge i dati dalla tabella di origine hello. |Nome di hello stored procedure. ultima istruzione SQL di Hello deve essere un'istruzione SELECT nella procedura hello archiviato. |No |
+| storedProcedureParameters |I parametri per hello stored procedure. |Coppie nome/valore. Nomi e le maiuscole e minuscole dei parametri devono corrispondere i nomi di hello e maiuscole e minuscole di parametri di hello stored procedure. |No |
 
-Se la proprietà **sqlReaderQuery** è specificata per SqlSource, l'attività di copia esegue questa query nell'origine del database del server di SQL per ottenere i dati.
+Se hello **sqlReaderQuery** specificato per hello SqlSource, hello attività di copia viene eseguita questa query hello Database di SQL Server tooget hello dati.
 
-In alternativa, è possibile specificare una stored procedure indicando i parametri **sqlReaderStoredProcedureName** e **storedProcedureParameters** (se la stored procedure accetta parametri).
+In alternativa, è possibile specificare una stored procedure specificando hello **sqlReaderStoredProcedureName** e **storedProcedureParameters** (se hello stored procedure accetta parametri).
 
-Se non si specifica il parametro sqlReaderQuery o sqlReaderStoredProcedureName, le colonne definite nella sezione della struttura vengono usate per compilare una query da eseguire nel database del server di SQL. Se la definizione del set di dati non dispone della struttura, vengono selezionate tutte le colonne della tabella.
+Se non si specifica sqlReaderQuery o sqlReaderStoredProcedureName, le colonne di hello definite nella sezione di struttura hello sono utilizzati toobuild toorun una query select su hello Database di SQL Server. Se non dispone di definizione del set di dati hello struttura hello, vengono selezionate tutte le colonne dalla tabella hello.
 
 > [!NOTE]
-> Quando si usa **sqlReaderStoredProcedureName** è necessario specificare un valore per la proprietà **tableName** nel set di dati JSON. Non sono disponibili convalide eseguite su questa tabella.
+> Quando si utilizza **sqlReaderStoredProcedureName**, è comunque necessario toospecify un valore per hello **tableName** proprietà hello set di dati JSON. Non sono disponibili convalide eseguite su questa tabella.
 
 ### <a name="sqlsink"></a>SqlSink
-**SqlSink** supporta le proprietà seguenti:
+**SqlSink** supporta hello le proprietà seguenti:
 
 | Proprietà | Descrizione | Valori consentiti | Obbligatorio |
 | --- | --- | --- | --- |
-| writeBatchTimeout |Tempo di attesa per l'operazione di inserimento batch da completare prima del timeout. |Intervallo di tempo<br/><br/> Ad esempio: "00:30:00" (30 minuti). |No |
-| writeBatchSize |Inserisce dati nella tabella SQL quando la dimensione del buffer raggiunge writeBatchSize. |Numero intero (numero di righe) |No (valore predefinito: 10000) |
-| sqlWriterCleanupScript |Specificare la query per l'attività di copia da eseguire in modo che i dati di una sezione specifica vengano eliminati. Per altre informazioni, vedere la sezione [Copia ripetibile](#repeatable-copy). |Istruzione di query. |No |
-| sliceIdentifierColumnName |Specificare il nome della colonna per l'attività di copia da riempire con l'identificatore di sezione generato automaticamente, che viene usato per eliminare i dati di una sezione specifica quando viene nuovamente eseguita. Per altre informazioni, vedere la sezione [Copia ripetibile](#repeatable-copy). |Nome di colonna di una colonna con tipo di dati binario (32). |No |
-| sqlWriterStoredProcedureName |Nome della stored procedure che esegue l'upsert (aggiornamenti/inserimenti) nella tabella di destinazione. |Nome della stored procedure. |No |
-| storedProcedureParameters |Parametri per la stored procedure. |Coppie nome/valore. I nomi e le maiuscole e minuscole dei parametri devono corrispondere ai nomi e alle maiuscole e minuscole dei parametri della stored procedure. |No |
-| sqlWriterTableType |Specificare il tipo di tabella da usare nella stored procedure. L'attività di copia rende i dati spostati disponibili in una tabella temporanea con questo tipo di tabella. Il codice della stored procedure può quindi unire i dati copiati con i dati esistenti. |Nome del tipo di tabella. |No |
+| writeBatchTimeout |Tempo di attesa per hello batch insert operazione toocomplete prima del timeout. |Intervallo di tempo<br/><br/> Ad esempio: "00:30:00" (30 minuti). |No |
+| writeBatchSize |Inserisce dati in una tabella SQL hello quando viene raggiunto writeBatchSize raggiungerà le dimensioni di buffer hello. |Numero intero (numero di righe) |No (valore predefinito: 10000) |
+| sqlWriterCleanupScript |Specificare query per l'attività di copia tooexecute modo che la pulitura dei dati di una sezione specifica. Per altre informazioni, vedere la sezione [Copia ripetibile](#repeatable-copy). |Istruzione di query. |No |
+| sliceIdentifierColumnName |Specificare il nome di colonna per attività di copia toofill con identificatore di sezione generati automaticamente, che è usato tooclean dei dati di una sezione specifica quando eseguire di nuovo. Per altre informazioni, vedere la sezione [Copia ripetibile](#repeatable-copy). |Nome di colonna di una colonna con tipo di dati binario (32). |No |
+| sqlWriterStoredProcedureName |Nome della hello stored procedure che upserts (aggiornamenti/inserimenti) i dati nella tabella di destinazione hello. |Nome di hello stored procedure. |No |
+| storedProcedureParameters |I parametri per hello stored procedure. |Coppie nome/valore. Nomi e le maiuscole e minuscole dei parametri devono corrispondere i nomi di hello e maiuscole e minuscole di parametri di hello stored procedure. |No |
+| sqlWriterTableType |Specificare toobe nome tipo di tabella utilizzati in hello stored procedure. Attività di copia rende disponibili in una tabella temporanea con questo tipo di tabella dati di hello viene spostati. Codice della stored procedure può unire dati hello copiati con i dati esistenti. |Nome del tipo di tabella. |No |
 
 
-## <a name="json-examples-for-copying-data-from-and-to-sql-server"></a>Esempi JSON per la copia dei dati da e a SQL Server
-Gli esempi seguenti forniscono le definizioni JSON di esempio da usare per creare una pipeline con il [portale di Azure](data-factory-copy-activity-tutorial-using-azure-portal.md), [Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md) o [Azure PowerShell](data-factory-copy-activity-tutorial-using-powershell.md). Gli esempi seguenti mostrano come copiare dati da e verso SQL Server e l'archivio BLOB di Azure. Tuttavia, i dati possono essere copiati **direttamente** da una delle origini in qualsiasi sink dichiarato [qui](data-factory-data-movement-activities.md#supported-data-stores-and-formats) usando l'attività di copia in Data factory di Azure.     
+## <a name="json-examples-for-copying-data-from-and-toosql-server"></a>Esempi JSON per la copia dei dati da e tooSQL Server
+Negli esempi seguenti Hello forniscono definizioni JSON di esempio che è possibile utilizzare una pipeline toocreate utilizzando [portale di Azure](data-factory-copy-activity-tutorial-using-azure-portal.md) o [Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md) o [Azure PowerShell](data-factory-copy-activity-tutorial-using-powershell.md). Hello seguente mostra esempi come toocopy tooand di dati da SQL Server e archiviazione Blob di Azure. Tuttavia, i dati possono essere copiati **direttamente** da una qualsiasi delle origini tooany di sink hello indicato [qui](data-factory-data-movement-activities.md#supported-data-stores-and-formats) utilizzando hello attività di copia in Azure Data Factory.     
 
-## <a name="example-copy-data-from-sql-server-to-azure-blob"></a>Esempio: Copiare i dati da SQL Server al BLOB di Azure
-L'esempio seguente mostra:
+## <a name="example-copy-data-from-sql-server-tooazure-blob"></a>Esempio: Copiare i dati da SQL Server tooAzure Blob
+Hello nel seguente esempio viene illustrato:
 
 1. Un servizio collegato di tipo [OnPremisesSqlServer](#linked-service-properties).
 2. Un servizio collegato di tipo [AzureStorage](data-factory-azure-blob-connector.md#linked-service-properties).
 3. Un [set di dati](data-factory-create-datasets.md) di tipo [SqlServerTable](#dataset-properties).
 4. Un [set di dati](data-factory-create-datasets.md) di output di tipo [AzureBlob](data-factory-azure-blob-connector.md#dataset-properties).
-5. La [pipeline](data-factory-create-pipelines.md) con attività di copia che usa [SqlSource](#copy-activity-properties) e [BlobSink](data-factory-azure-blob-connector.md#copy-activity-properties).
+5. Hello [pipeline](data-factory-create-pipelines.md) con attività di copia che utilizza [SqlSource](#copy-activity-properties) e [BlobSink](data-factory-azure-blob-connector.md#copy-activity-properties).
 
-L'esempio copia i dati di una serie temporale dalla tabella del server SQL in un archivio BLOB di Azure ogni ora. Le proprietà JSON usate in questi esempi sono descritte nelle sezioni riportate dopo gli esempi.
+esempio Hello copia dati delle serie temporali da un tooan tabella di SQL Server blob di Azure ogni ora. proprietà JSON Hello usata in questi esempi sono descritti nelle sezioni riportate di seguito esempi di hello.
 
-Come primo passaggio, impostare il Gateway di gestione dati. Le istruzioni sono disponibili nell'articolo [Spostare dati tra origini locali e il cloud con Gateway di gestione dati](data-factory-move-data-between-onprem-and-cloud.md) .
+Come primo passaggio, configurare il gateway di gestione dati hello. istruzioni di Hello presenti hello [lo spostamento dei dati tra le sedi locali e cloud](data-factory-move-data-between-onprem-and-cloud.md) articolo.
 
 **Servizio collegato di SQL Server**
 ```json
@@ -212,9 +212,9 @@ Come primo passaggio, impostare il Gateway di gestione dati. Le istruzioni sono 
 ```
 **Set di dati input di SQL Server**
 
-L'esempio presuppone che sia stata creata una tabella "MyTable" in SQL Server e che contenga una colonna denominata "timestampcolumn" per i dati di una serie temporale. È possibile eseguire query su più tabelle all'interno dello stesso database usando un singolo set di dati, ma come typeProperty tableName del set di dati deve essere usata una sola tabella.
+esempio Hello presuppone di aver creato una tabella "MyTable" in SQL Server e contiene una colonna denominata "timestampcolumn" per i dati della serie temporale. È possibile eseguire query su più tabelle all'interno di hello stesso database con un singolo set di dati, ma una singola tabella deve essere utilizzato per typeProperty tableName hello del dataset.
 
-Impostando "external" su "true" si comunica al servizio Data Factory che il set di dati è esterno a Data Factory e non è prodotto da un'attività al suo interno.
+L'impostazione "external": "true" informa il servizio Data Factory hello set di dati è esterna toohello data factory e non viene generato da un'attività nella data factory di hello.
 
 ```json
 {
@@ -242,7 +242,7 @@ Impostando "external" su "true" si comunica al servizio Data Factory che il set 
 ```
 **Set di dati di output del BLOB di Azure**
 
-I dati vengono scritti in un nuovo BLOB ogni ora (frequenza: ora, intervallo: 1). Il percorso della cartella per il BLOB viene valutato dinamicamente in base all'ora di inizio della sezione in fase di elaborazione. Il percorso della cartella usa le parti anno, mese, giorno e ora dell'ora di inizio.
+I dati vengono scritti tooa nuovo blob ogni ora (frequenza: ora, intervallo: 1). percorso della cartella Hello per blob hello viene valutato dinamicamente in base a ora di inizio hello della sezione hello che viene elaborato. percorso della cartella Hello Usa le parti di anno, mese, giorno e ore dell'ora di inizio hello.
 
 ```json
 {
@@ -301,7 +301,7 @@ I dati vengono scritti in un nuovo BLOB ogni ora (frequenza: ora, intervallo: 1)
 ```
 **Pipeline con attività di copia**
 
-La pipeline contiene un'attività di copia configurata per usare i set di dati di input e output ed è programmata per essere eseguita ogni ora. Nella definizione JSON della pipeline, il tipo **source** è impostato su **SqlSource** e il tipo **sink** è impostato su **BlobSink**. La query SQL specificata per la proprietà **SqlReaderQuery** consente di selezionare i dati da copiare nell'ultima ora.
+pipeline di Hello contiene un'attività di copia che è configurato toouse questi set di dati di input e output e toorun pianificato ogni ora. Nella pipeline hello definizione JSON, hello **origine** tipo è stato impostato troppo**SqlSource** e **sink** tipo è stato impostato troppo**BlobSink**. query SQL Hello specificata per hello **SqlReaderQuery** proprietà consente di selezionare dati hello hello oltre toocopy ora.
 
 ```json
 {  
@@ -349,22 +349,22 @@ La pipeline contiene un'attività di copia configurata per usare i set di dati d
    }
 }
 ```
-In questo esempio la proprietà **sqlReaderQuery** è specificata per SqlSource. L'attività di copia esegue questa query nell'origine del database del server SQL per ottenere i dati. In alternativa, è possibile specificare una stored procedure indicando i parametri **sqlReaderStoredProcedureName** e **storedProcedureParameters** (se la stored procedure accetta parametri). La proprietà sqlReaderQuery può fare riferimento a più tabelle nel database a cui fa riferimento il set di dati di input. Non è limitato solo alla tabella impostata come typeProperty tableName del set di dati.
+In questo esempio, **sqlReaderQuery** specificato per hello SqlSource. Attività di copia Hello consente di eseguire questa query hello dati hello tooget origine di Database di SQL Server. In alternativa, è possibile specificare una stored procedure specificando hello **sqlReaderStoredProcedureName** e **storedProcedureParameters** (se hello stored procedure accetta parametri). Hello sqlReaderQuery può fare riferimento a più tabelle all'interno del database hello hello di un set di dati dell'input a cui fa riferimento. Non è limitato tooonly hello tabella impostata come hello typeProperty tableName del set di dati.
 
-Se non si specifica il parametro sqlReaderQuery o sqlReaderStoredProcedureName, le colonne definite nella sezione della struttura vengono usate per compilare una query di selezione da eseguire nel database del server di SQL. Se la definizione del set di dati non dispone della struttura, vengono selezionate tutte le colonne della tabella.
+Se non si specifica sqlReaderQuery o sqlReaderStoredProcedureName, le colonne di hello definite nella sezione di struttura hello sono utilizzati toobuild toorun una query select su hello Database di SQL Server. Se non dispone di definizione del set di dati hello struttura hello, vengono selezionate tutte le colonne dalla tabella hello.
 
-Vedere la sezione [SqlSource](#sqlsource) e [BlobSink](data-factory-azure-blob-connector.md#copy-activity-properties) per l'elenco delle proprietà supportate da SqlSource e BlobSink.
+Vedere hello [origine Sql](#sqlsource) sezione e [BlobSink](data-factory-azure-blob-connector.md#copy-activity-properties) per elenco hello delle proprietà supportate da SqlSource e BlobSink.
 
-## <a name="example-copy-data-from-azure-blob-to-sql-server"></a>Esempio: Copiare i dati dal BLOB di Azure in SQL Server
-L'esempio seguente mostra:
+## <a name="example-copy-data-from-azure-blob-toosql-server"></a>Esempio: Copiare i dati da Blob di Azure tooSQL Server
+Hello nel seguente esempio viene illustrato:
 
-1. Il servizio collegato di tipo [OnPremisesSqlServer](#linked-service-properties).
-2. Il servizio collegato di tipo [AzureStorage](data-factory-azure-blob-connector.md#linked-service-properties).
+1. servizio del tipo di Hello collegato [OnPremisesSqlServer](#linked-service-properties).
+2. servizio del tipo di Hello collegato [AzureStorage](data-factory-azure-blob-connector.md#linked-service-properties).
 3. Un [set di dati](data-factory-create-datasets.md) di input di tipo [AzureBlob](data-factory-azure-blob-connector.md#dataset-properties).
 4. Un [set di dati](data-factory-create-datasets.md) di output di tipo [SqlServerTable](data-factory-sqlserver-connector.md#dataset-properties).
-5. La [pipeline](data-factory-create-pipelines.md) con attività di copia che usa [BlobSource](data-factory-azure-blob-connector.md#copy-activity-properties) e [SqlSink](#sql-server-copy-activity-type-properties).
+5. Hello [pipeline](data-factory-create-pipelines.md) con attività di copia che utilizza [BlobSource](data-factory-azure-blob-connector.md#copy-activity-properties) e [SqlSink](#sql-server-copy-activity-type-properties).
 
-L'esempio copia i dati di una serie temporale da un archivio BLOB di Azure a una tabella del server SQL ogni ora. Le proprietà JSON usate in questi esempi sono descritte nelle sezioni riportate dopo gli esempi.
+esempio Hello copia dati delle serie temporali da una tabella di SQL Server tooa blob di Azure ogni ora. proprietà JSON Hello usata in questi esempi sono descritti nelle sezioni riportate di seguito esempi di hello.
 
 **Servizio collegato di SQL Server**
 
@@ -395,7 +395,7 @@ L'esempio copia i dati di una serie temporale da un archivio BLOB di Azure a una
 ```
 **Set di dati di input del BLOB di Azure**
 
-I dati vengono prelevati da un nuovo BLOB ogni ora (frequenza: ora, intervallo: 1). Il percorso della cartella e il nome del file per il BLOB vengono valutati dinamicamente in base all'ora di inizio della sezione in fase di elaborazione. Il percorso della cartella usa le parti anno, mese, e giorno dell'ora di inizio e il nome del file usa la parte dell'ora di inizio relativa all'ora. L'impostazione di "external" su "true" comunica al servizio Data Factory che il set di dati è esterno a Data Factory e non è prodotto da un'attività al suo interno.
+I dati vengono prelevati da un nuovo BLOB ogni ora (frequenza: ora, intervallo: 1). Hello percorso e il nome della cartella per il blob hello vengono valutate in modo dinamico in base a ora di inizio hello della sezione hello che viene elaborato. percorso della cartella Hello utilizza year, month e parte del giorno dell'ora di inizio hello e nome del file utilizza parte ora hello hello ora di inizio. "external": "true" impostazione informa il servizio di Data Factory hello hello set di dati è esterna toohello data factory e non viene generato da un'attività nella data factory di hello.
 
 ```json
 {
@@ -463,7 +463,7 @@ I dati vengono prelevati da un nuovo BLOB ogni ora (frequenza: ora, intervallo: 
 ```
 **Set di dati output di SQL Server**
 
-L'esempio copia i dati in una tabella denominata "MyTable" in SQL Server. Creare la tabella in SQL Server con lo stesso numero di colonne di quelle contenute nel file con estensione csv del BLOB. Alla tabella vengono aggiunte nuove righe ogni ora.
+esempio Hello copia tabella tooa dati denominata "MyTable" in SQL Server. Creare la tabella hello in SQL Server con hello stesso numero di colonne nel modo previsto toocontain di file CSV Blob hello. Aggiunta di nuove righe nella tabella toohello ogni ora.
 
 ```json
 {
@@ -483,7 +483,7 @@ L'esempio copia i dati in una tabella denominata "MyTable" in SQL Server. Creare
 ```
 **Pipeline con attività di copia**
 
-La pipeline contiene un'attività di copia configurata per usare i set di dati di input e output ed è programmata per essere eseguita ogni ora. Nella definizione JSON della pipeline, il tipo di **origine** è impostato su **BlobSource** e il tipo **sink** è impostato su **SqlSink**.
+pipeline di Hello contiene un'attività di copia che è configurato toouse questi set di dati di input e output e toorun pianificato ogni ora. Nella pipeline hello definizione JSON, hello **origine** tipo è stato impostato troppo**BlobSource** e **sink** tipo è stato impostato troppo**SqlSink**.
 
 ```json
 {  
@@ -533,32 +533,32 @@ La pipeline contiene un'attività di copia configurata per usare i set di dati d
 ```
 
 ## <a name="troubleshooting-connection-issues"></a>Risoluzione dei problemi di connessione
-1. Configurare SQL Server per accettare le connessioni remote. Avviare **SQL Server Management Studio**, fare clic con il pulsante destro del mouse su **server** e selezionare **Properties**. Scegliere **Connessioni** dall'elenco e selezionare **Consenti connessioni remote al server**.
+1. Configurare le connessioni remote tooaccept di SQL Server. Avviare **SQL Server Management Studio**, fare clic con il pulsante destro del mouse su **server** e selezionare **Properties**. Selezionare **connessioni** dall'elenco di hello e controllo **server toohello di Consenti connessioni remote**.
 
     ![Abilitare le connessioni remote](./media/data-factory-sqlserver-connector/AllowRemoteConnections.png)
 
-    Per una procedura dettagliata, vedere [Configurare l'opzione di configurazione del server remote access](https://msdn.microsoft.com/library/ms191464.aspx) .
-2. Avviare **Gestione configurazione SQL Server**. Espandere **Configurazione di rete SQL Server** per l'istanza prevista e selezionare **Protocolli per MSSQLSERVER**. I protocolli sono visualizzati nel riquadro di destra. Abilitare il protocollo TCP/IP facendo clic con il pulsante destro del mouse su **TCP/IP** e selezionando **Abilita**.
+    Vedere [configurare accesso remoto hello opzione di configurazione del Server](https://msdn.microsoft.com/library/ms191464.aspx) per i passaggi dettagliati.
+2. Avviare **Gestione configurazione SQL Server**. Espandere **configurazione di rete SQL Server** per hello istanza che si desidera, quindi selezionare **protocolli per MSSQLSERVER**. Verrà visualizzato protocolli nel riquadro di destra hello. Abilitare il protocollo TCP/IP facendo clic con il pulsante destro del mouse su **TCP/IP** e selezionando **Abilita**.
 
     ![Abilitare TCP/IP](./media/data-factory-sqlserver-connector/EnableTCPProptocol.png)
 
     Per informazioni dettagliate e modalità alternative di abilitazione del protocollo TCP/IP, vedere [Abilitare o disabilitare un protocollo di rete del server](https://msdn.microsoft.com/library/ms191294.aspx).
-3. Nella stessa finestra fare doppio clic su **TCP/IP** per aprire la finestra **Proprietà TCP/IP**.
-4. Passare alla scheda **Indirizzi IP** . Scorrere verso il basso per vedere la sezione **IPAll** . Annotare la **Porta TCP**: il valore predefinito è **1433**.
-5. Creare una **regola per Windows Firewall** nel computer per consentire il traffico in ingresso attraverso questa porta.  
-6. **Verificare la connessione**: per connettersi al server SQL con un nome completo, usare SQL Server Management Studio da un computer diverso. Ad esempio: "<machine><domain>.corp<company>.com,1433."
+3. Nella stessa finestra hello fare doppio clic su **TCP/IP** toolaunch **proprietà TCP/IP** finestra.
+4. Passare toohello **gli indirizzi IP** scheda. Scorrere verso il basso toosee **IPAll** sezione. Annotare hello * * la porta TCP * * (valore predefinito è **1433**).
+5. Creare un **regola per il Firewall di Windows hello** hello macchina tooallow il traffico in ingresso tramite questa porta.  
+6. **Verifica connessione**: tooconnect toohello SQL Server utilizzando il nome completo, utilizzare SQL Server Management Studio da un computer diverso. Ad esempio: "<machine><domain>.corp<company>.com,1433."
 
    > [!IMPORTANT]
 
-   > Per informazioni dettagliate, vedere [Spostare dati tra origini locali e il cloud con Gateway di gestione dati](data-factory-move-data-between-onprem-and-cloud.md).
+   > Vedere [spostare dati tra origini locali e cloud hello con Gateway di gestione dati](data-factory-move-data-between-onprem-and-cloud.md) per informazioni dettagliate.
    >
    > Per suggerimenti sulla risoluzione di problemi correlati alla connessione o al gateway, vedere [Risoluzione dei problemi del gateway](data-factory-data-management-gateway.md#troubleshooting-gateway-issues) .
    >
    >
 
 
-## <a name="identity-columns-in-the-target-database"></a>Colonne Identity nel database di destinazione
-Questa sezione fornisce un esempio per la copia di dati da una tabella di origine senza una colonna identity in una tabella di destinazione con una colonna identity.
+## <a name="identity-columns-in-hello-target-database"></a>Colonne Identity nel database di destinazione hello
+In questa sezione viene fornito un esempio che copia i dati da una tabella di origine con alcuna tabella di destinazione tooa colonna identity con una colonna identity.
 
 **Tabella di origine:**
 
@@ -580,7 +580,7 @@ create table dbo.TargetTbl
 )
 ```
 
-Si noti che la tabella di destinazione contiene una colonna identity.
+Si noti che la tabella di destinazione hello include una colonna identity.
 
 **Definizione JSON del set di dati di origine**
 
@@ -629,20 +629,20 @@ Si noti che la tabella di destinazione contiene una colonna identity.
 }
 ```
 
-Si noti che la tabella di origine e la tabella di destinazione hanno schemi diversi (la destinazione include una colonna aggiuntiva identity). In questo scenario è necessario specificare la proprietà **structure** nella definizione del set di dati di destinazione che non include la colonna identity.
+Si noti che la tabella di origine e la tabella di destinazione hanno schemi diversi (la destinazione include una colonna aggiuntiva identity). In questo scenario, è necessario toospecify **struttura** proprietà nella definizione di set di dati destinazione hello, che non include una colonna identity hello.
 
 ## <a name="invoke-stored-procedure-from-sql-sink"></a>Chiamare una stored procedure da un sink SQL
 Per un esempio di come chiamare una stored procedure da un sink SQL in un'attività di copia di una pipeline, vedere l'articolo su come [richiamare una stored procedure per il sink SQL nell'attività di copia](data-factory-invoke-stored-procedure-from-copy-activity.md).
 
 ## <a name="type-mapping-for-sql-server"></a>Mapping dei tipi per SQL Server
-Come accennato nell'articolo [Attività di spostamento dei dati](data-factory-data-movement-activities.md) , l'attività di copia esegue conversioni di tipi automatiche da tipi di origine a tipi di sink con l'approccio seguente in 2 passaggi:
+Come accennato in hello [attività lo spostamento dei dati](data-factory-data-movement-activities.md) articolo hello attività di copia esegue le conversioni dai tipi di origine tipi toosink automatico con hello approccio passaggio 2:
 
-1. Conversione dai tipi di origine nativi al tipo .NET
-2. Conversione dal tipo .NET al tipo di sink nativo
+1. Conversione dal tipo di origine nativa tipi too.NET
+2. Eseguire la conversione da tipo di sink toonative tipo .NET
 
-Quando si spostano dati da e verso SQL Server, vengono usati i mapping seguenti dal tipo SQL al tipo .NET e viceversa.
+Quando lo spostamento dei dati troppo & da SQL server, hello mapping seguenti vengono utilizzate dal tipo too.NET di tipo SQL e viceversa.
 
-Il mapping è uguale al mapping del tipo di dati di SQL Server per ADO.NET.
+mapping di Hello è identico a hello mapping dei tipi di dati di SQL Server per ADO.NET.
 
 | Tipo di motore di database di SQL Server | Tipo di .NET Framework |
 | --- | --- |
@@ -679,13 +679,13 @@ Il mapping è uguale al mapping del tipo di dati di SQL Server per ADO.NET.
 | varchar |String, Char[] |
 | xml |xml |
 
-## <a name="mapping-source-to-sink-columns"></a>Eseguire il mapping delle colonne dell'origine alle colonne del sink
-Per eseguire il mapping dal set di dati di origine alle colonne del set di dati sink, vedere [Mapping delle colonne del set di dati in Azure Data Factory](data-factory-map-columns.md).
+## <a name="mapping-source-toosink-columns"></a>Mapping di colonne di origine toosink
+colonne toomap toocolumns set di dati di origine dal sink set di dati, vedere [mapping tra colonne del set di dati in Azure Data Factory](data-factory-map-columns.md).
 
 ## <a name="repeatable-copy"></a>Copia ripetibile
-Quando si copiano dati in un database SQL Server, per impostazione predefinita l'attività di copia accoda i dati alla tabella di sink. Per eseguire invece un UPSERT, vedere l'articolo [Scrittura ripetibile in SqlSink](data-factory-repeatable-copy.md#repeatable-write-to-sqlsink). 
+Quando si copiano dati tooSQL Database del Server, attività di copia hello Accoda tabella di dati toohello sink per impostazione predefinita. Vedere invece tooperform UPSERT [tooSqlSink scrittura Repeatable](data-factory-repeatable-copy.md#repeatable-write-to-sqlsink) articolo. 
 
-Quando si copiano dati da archivi dati relazionali, è necessario tenere presente la ripetibilità per evitare risultati imprevisti. In Azure Data Factory è possibile rieseguire una sezione manualmente. È anche possibile configurare i criteri di ripetizione per un set di dati in modo da rieseguire una sezione in caso di errore. Quando una sezione viene rieseguita in uno dei due modi, è necessario assicurarsi che non vengano letti gli stessi dati, indipendentemente da quante volte viene eseguita la sezione. Vedere [Lettura ripetibile da origini relazionali](data-factory-repeatable-copy.md#repeatable-read-from-relational-sources).
+Quando si copiano dati da archivi dati relazionali, tenere ripetibilità presente tooavoid risultati imprevisti. In Azure Data Factory è possibile rieseguire una sezione manualmente. È anche possibile configurare i criteri di ripetizione per un set di dati in modo da rieseguire una sezione in caso di errore. Quando viene eseguito di nuovo una sezione in entrambi i casi, è necessario toomake assicurarsi che hello stessi dati non viene letto alcun altro aspetto come viene eseguita più volte una sezione. Vedere [Lettura ripetibile da origini relazionali](data-factory-repeatable-copy.md#repeatable-read-from-relational-sources).
 
 ## <a name="performance-and-tuning"></a>Ottimizzazione delle prestazioni
-Per informazioni sui fattori chiave che influiscono sulle prestazioni dello spostamento dei dati, ovvero dell'attività di copia, in Azure Data Factory e sui vari modi per ottimizzare tali prestazioni, vedere la [Guida alle prestazioni delle attività di copia e all'ottimizzazione](data-factory-copy-activity-performance.md).
+Vedere [prestazioni attività di copia di & ottimizzazione Guida](data-factory-copy-activity-performance.md) toolearn sulla chiave di fattori che influiscono sulle prestazioni di spostamento dei dati (attività di copia) in Azure Data Factory e i vari modi toooptimize è.

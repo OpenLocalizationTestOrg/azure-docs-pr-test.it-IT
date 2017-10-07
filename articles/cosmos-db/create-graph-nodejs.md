@@ -1,6 +1,6 @@
 ---
-title: Creare un'applicazione Node.js Azure Cosmos DB tramite l'API Graph | Microsoft Docs
-description: Presenta un esempio di codice Node.js che permette di connettersi ad Azure Cosmos DB ed eseguire query sul servizio
+title: un'applicazione Azure Cosmos DB Node.js tramite l'API Graph aaaBuild | Documenti Microsoft
+description: "Visualizza un esempio di codice Node.js è possibile utilizzare tooconnect tooand query Azure Cosmos DB"
 services: cosmos-db
 documentationcenter: 
 author: dennyglee
@@ -15,25 +15,25 @@ ms.devlang: dotnet
 ms.topic: hero-article
 ms.date: 07/14/2017
 ms.author: denlee
-ms.openlocfilehash: 6d14719938af0ce825955389824441e111024869
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 1445755842bc4e4a84ca2b2f789aadde8467e190
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-cosmos-db-build-a-nodejs-application-by-using-graph-api"></a>Azure Cosmos DB: Creare un'applicazione Node.js tramite l'API Graph
 
-Azure Cosmos DB è il servizio di database multimodello distribuito a livello globale di Microsoft. È possibile creare ed eseguire rapidamente query su database di documenti, coppie chiave/valore e grafi, sfruttando in ognuno dei casi i vantaggi offerti dalle funzionalità di scalabilità orizzontale e distribuzione globale alla base di Azure Cosmos DB. 
+Azure DB Cosmos è servizio di database più modelli hello globale distribuito da Microsoft. Creare rapidamente e query chiave/valore, il documento e database grafico, ognuno dei quali trarre vantaggio dalla distribuzione globale hello e funzionalità di scalabilità orizzontale di base di Azure Cosmos DB hello. 
 
-Questa guida introduttiva mostra come creare un account Azure Cosmos DB per l'API Graph (anteprima), un database e un grafo tramite il portale di Azure. Si creerà ed eseguirà quindi un'app console usando il driver open source [Gremlin Node.js](https://www.npmjs.com/package/gremlin-secure).  
+In questo articolo Guida introduttiva viene illustrato come un database di Azure Cosmos toocreate account per l'API Graph (anteprima), database e grafico tramite hello portale di Azure. Quindi compilazione e l'esecuzione di un'applicazione console tramite hello open source [Gremlin Node.js](https://www.npmjs.com/package/gremlin-secure) driver.  
 
 > [!NOTE]
-> Il modulo npm `gremlin-secure` è una versione modificata del modulo `gremlin`, con il supporto per SSL e SASL necessario per la connessione con Azure Cosmos DB. Il codice sorgente è disponibile su [Github](https://github.com/CosmosDB/gremlin-javascript).
+> modulo npm Hello `gremlin-secure` è una versione modificata di `gremlin` modulo, con supporto per SSL e SASL necessari per la connessione con Azure Cosmos DB. Il codice sorgente è disponibile su [Github](https://github.com/CosmosDB/gremlin-javascript).
 >
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-Prima di poter eseguire questo esempio, è necessario soddisfare i prerequisiti seguenti:
+Prima di poter eseguire questo esempio, è necessario disporre di hello seguenti prerequisiti:
 * [Node.js](https://nodejs.org/en/) versione v0.10.29 o versioni successive
 * [Git](http://git-scm.com/)
 
@@ -47,25 +47,25 @@ Prima di poter eseguire questo esempio, è necessario soddisfare i prerequisiti 
 
 [!INCLUDE [cosmos-db-create-graph](../../includes/cosmos-db-create-graph.md)]
 
-## <a name="clone-the-sample-application"></a>Clonare l'applicazione di esempio
+## <a name="clone-hello-sample-application"></a>Applicazione di esempio hello clonare
 
-Clonare ora un'app per le API Graph da GitHub, impostare la stringa di connessione ed eseguirla. Come si noterà, è facile usare i dati a livello di codice. 
+Ora si app clone un'API Graph da GitHub, impostare la stringa di connessione hello ed eseguirlo. Si noterà quanto sia facile toowork con i dati a livello di codice. 
 
-1. Aprire una finestra del terminale Git, ad esempio Git Bash, e usare il comando `cd` per passare a una directory di lavoro.  
+1. Aprire una finestra terminale Git, ad esempio Git Bash e modificare (tramite `cd` comando) tooa directory di lavoro.  
 
-2. Eseguire il comando seguente per clonare l'archivio di esempio. 
+2. Eseguire hello seguenti repository di esempio di comando tooclone hello. 
 
     ```bash
     git clone https://github.com/Azure-Samples/azure-cosmos-db-graph-nodejs-getting-started.git
     ```
 
-3. Aprire il file della soluzione in Visual Studio. 
+3. Aprire il file di soluzione hello in Visual Studio. 
 
-## <a name="review-the-code"></a>Esaminare il codice
+## <a name="review-hello-code"></a>Esaminare il codice hello
 
-Ecco una breve analisi di ciò che accade nell'app. Aprire il file `app.js`. Si vedranno le righe di codice seguenti. 
+Questo punto, eseguire una rapida panoramica delle operazioni eseguite nell'applicazione hello. Aprire hello `app.js` file ed è possibile trovare hello righe di codice seguente. 
 
-* Viene creato il client di Gremlin.
+* Hello Gremlin client è stato creato.
 
     ```nodejs
     const client = Gremlin.createClient(
@@ -79,9 +79,9 @@ Ecco una breve analisi di ciò che accade nell'app. Aprire il file `app.js`. Si 
         });
     ```
 
-  Le configurazioni sono tutte incluse in `config.js`, che verrà modificato nella sezione seguente.
+  salve le configurazioni sono tutti in `config.js`, che le modifiche apportate nella seguente sezione hello.
 
-* Viene eseguita una serie di passaggi di Gremlin con il metodo `client.execute`.
+* Una serie di passaggi Gremlin vengono eseguiti con hello `client.execute` metodo.
 
     ```nodejs
     console.log('Running Count'); 
@@ -94,32 +94,32 @@ Ecco una breve analisi di ciò che accade nell'app. Aprire il file `app.js`. Si 
 
 ## <a name="update-your-connection-string"></a>Aggiornare la stringa di connessione
 
-1. Aprire il file config.js. 
+1. File config.js hello aperto. 
 
-2. In config.js compilare la chiave config.endpoint con il valore **URI Gremlin** disponibile nella pagina **Panoramica** del portale di Azure. 
+2. Nella config.js, inserire nella chiave config.endpoint hello con hello **Gremlin URI** valore hello **Panoramica** pagina del portale di Azure hello. 
 
     `config.endpoint = "GRAPHENDPOINT";`
 
-    ![Visualizzazione e copia di una chiave di accesso nel portale di Azure, pannello Chiavi](./media/create-graph-nodejs/gremlin-uri.png)
+    ![Visualizzare e copiare una chiave di accesso nel portale di Azure hello, pannello di chiavi](./media/create-graph-nodejs/gremlin-uri.png)
 
-   Se il valore **URI Gremlin** è vuoto, è possibile generare il valore dalla pagina **Chiavi** del portale, usando il valore **URI**, rimuovendo https:// e sostituendo documents con graphs.
+   Se hello **Gremlin URI** valore è vuoto, è possibile generare il valore di hello da hello **chiavi** pagina nel portale di hello utilizzando hello **URI** valore, rimozione https:// e la modifica toographs documenti.
 
-   L'endpoint Gremlin deve essere solo il nome host senza protocollo/numero di porta, ad esempio `mygraphdb.graphs.azure.com` (non `https://mygraphdb.graphs.azure.com` o `mygraphdb.graphs.azure.com:433`).
+   endpoint Gremlin Hello deve essere solo nome host di hello senza un numero di porta o protocollo hello, ad esempio `mygraphdb.graphs.azure.com` (non `https://mygraphdb.graphs.azure.com` o `mygraphdb.graphs.azure.com:433`).
 
-3. In config.js compilare il valore di config.primaryKey con il valore **Chiave primaria** disponibile nella pagina **Chiavi** del portale di Azure. 
+3. Nella config.js, inserire il valore config.primaryKey hello con hello **chiave primaria** valore hello **chiavi** pagina del portale di Azure hello. 
 
     `config.primaryKey = "PRIMARYKEY";`
 
-   ![Pannello Chiavi del portale di Azure](./media/create-graph-nodejs/keys.png)
+   ![Hello Azure-blade chiavi portale](./media/create-graph-nodejs/keys.png)
 
-4. Immettere il nome del database e il nome del grafo (contenitore) per il valore di config.database e config.collection. 
+4. Immettere il nome di database hello e nome del grafico (contenitore) per il valore di hello di config.database e config.collection. 
 
 Ecco un esempio dell'aspetto che dovrebbe avere il file config.js completato:
 
 ```nodejs
 var config = {}
 
-// Note that this must not have HTTPS or the port number
+// Note that this must not have HTTPS or hello port number
 config.endpoint = "testgraphacct.graphs.azure.com";
 config.primaryKey = "Pams6e7LEUS7LJ2Qk0fjZf3eGo65JdMWHmyn65i52w8ozPX2oxY3iP0yu05t9v1WymAHNcMwPIqNAEv3XDFsEg==";
 config.database = "graphdb"
@@ -128,38 +128,38 @@ config.collection = "Persons"
 module.exports = config;
 ```
 
-## <a name="run-the-console-app"></a>Eseguire l'app console
+## <a name="run-hello-console-app"></a>Eseguire app console hello
 
-1. Aprire una finestra del terminale e usare il comando `cd` per passare alla directory di installazione del file package.json incluso nel progetto.  
+1. Aprire una finestra terminale e modificare (tramite `cd` comando) toohello directory di installazione per il file package. JSON hello incluso nel progetto hello.  
 
-2. Eseguire `npm install` per installare i moduli npm necessari, tra cui `gremlin-secure`.
+2. Eseguire `npm install` tooinstall hello necessari moduli npm, inclusi `gremlin-secure`.
 
-3. Eseguire `node app.js` in un terminale per avviare l'applicazione Node.js.
+3. Eseguire `node app.js` in un terminal toostart l'applicazione del nodo.
 
 ## <a name="browse-with-data-explorer"></a>Esplorare con Esplora dati
 
-È ora possibile tornare a Esplora dati nel portale di Azure per visualizzare, modificare e usare i nuovi dati del grafo ed eseguire query su di essi.
+È ora possibile tornare tooData Esplora in hello tooview portale Azure, eseguire query, modificare e lavorare con i nuovi dati del grafico.
 
-In Esplora dati il nuovo database viene visualizzato nel riquadro **Graph**. Espandere il database e la raccolta, quindi fare clic su **Grafico**.
+In Esplora dati hello nuovo database verrà visualizzato in hello **grafici** riquadro. Espandere database hello, seguito da una raccolta di hello, quindi fare clic su **grafico**.
 
-I dati generati dall'app di esempio vengono visualizzati nel riquadro successivo nella scheda **Grafico** quando si fa clic su **Applica filtro**.
+dati Hello generati dall'applicazione di esempio hello viene visualizzati nel riquadro successivo di hello all'interno di hello **grafico** scheda quando si fa clic **Applica filtro**.
 
-Provare a completare `g.V()` con `.has('firstName', 'Thomas')` per testare il filtro. Si noti che il valore distingue tra maiuscole e minuscole.
+Provare a completare `g.V()` con `.has('firstName', 'Thomas')` filtro hello tootest. Si noti che il valore di hello tra maiuscole e minuscole.
 
-## <a name="review-slas-in-the-azure-portal"></a>Esaminare i contratti di servizio nel portale di Azure
+## <a name="review-slas-in-hello-azure-portal"></a>Esaminare i contratti di servizio nel portale di Azure hello
 
 [!INCLUDE [cosmosdb-tutorial-review-slas](../../includes/cosmos-db-tutorial-review-slas.md)]
 
 ## <a name="clean-up-your-resources"></a>Pulire le risorse
 
-Se non si prevede di continuare a usare questa app, eliminare tutte le risorse create in questo articolo eseguendo la procedura illustrata di seguito: 
+Se non si prevede toocontinue utilizzando questa app, eliminare tutte le risorse che è stato creato in questo articolo eseguendo hello seguenti: 
 
-1. Nel menu di spostamento a sinistra nel portale di Azure fare clic su **Gruppi di risorse** e quindi sul nome della risorsa creata. 
-2. Nella pagina del gruppo di risorse fare clic su **Elimina**, digitare il nome della risorsa da eliminare e quindi fare clic su **Elimina**.
+1. Nel portale di Azure, nel menu di navigazione sinistro hello, hello fare clic su **gruppi di risorse**, quindi fare clic su nome hello della risorsa di hello creato. 
+2. Nella pagina di gruppo di risorse, fare clic su **eliminare**, digitare il nome di hello di hello risorsa toobe eliminato e quindi fare clic su **eliminare**.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-In questo articolo si è appreso come creare un account Azure Cosmos DB, come creare un grafo con Esplora dati e come eseguire un'app. È ora possibile creare query più complesse e implementare la potente logica di attraversamento dei grafi usando Gremlin. 
+In questo articolo, si è appreso come creare un grafico utilizzando Esplora dati, un account Azure Cosmos DB, toocreate ed eseguire un'app. È ora possibile creare query più complesse e implementare la potente logica di attraversamento dei grafi usando Gremlin. 
 
 > [!div class="nextstepaction"]
 > [Eseguire query con Gremlin](tutorial-query-graph.md)

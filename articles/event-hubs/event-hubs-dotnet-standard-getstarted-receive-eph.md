@@ -1,6 +1,6 @@
 ---
-title: Ricevere eventi a Hub eventi di Azure usando .NET Standard | Microsoft Docs
-description: Guida introduttiva alla ricezione di messaggi con EventProcessorHost in .NET Standard
+title: eventi aaaReceive dall'hub di eventi di Azure usando .NET Standard | Documenti Microsoft
+description: Introduzione alla ricezione di messaggi con hello EventProcessorHost in .NET Standard
 services: event-hubs
 documentationcenter: na
 author: sethmanheim
@@ -14,22 +14,22 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/27/2017
 ms.author: sethm
-ms.openlocfilehash: cc62792dad0284f9514664795fdfb32e94a85943
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c3983f2668ac8f65522e44a1609dfd2eed31b7d6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-receiving-messages-with-the-event-processor-host-in-net-standard"></a>Guida introduttiva alla ricezione di messaggi con Event Processor Host in .NET Standard
+# <a name="get-started-receiving-messages-with-hello-event-processor-host-in-net-standard"></a>Introduzione alla ricezione di messaggi con hello Host processore di eventi in .NET Standard
 
 > [!NOTE]
 > Questo esempio è disponibile in [GitHub](https://github.com/Azure/azure-event-hubs/tree/master/samples/DotNet/Microsoft.Azure.EventHubs/SampleEphReceiver).
 
-In questa esercitazione viene illustrata la procedura per scrivere un'applicazione console .NET Core per ricevere messaggi da un hub eventi usando **EventProcessorHost**. È possibile eseguire la soluzione [GitHub](https://github.com/Azure/azure-event-hubs/tree/master/samples/DotNet/Microsoft.Azure.EventHubs/SampleEphReceiver) così com'è, sostituendo le stringhe con i valori dell'hub eventi e dell'account di archiviazione. In alternativa, è possibile seguire la procedura illustrata in questa esercitazione per creare una soluzione propria.
+Questa esercitazione viene illustrato come un .NET Core toowrite console applicazione che riceve i messaggi da un hub eventi tramite **EventProcessorHost**. È possibile eseguire hello [GitHub](https://github.com/Azure/azure-event-hubs/tree/master/samples/DotNet/Microsoft.Azure.EventHubs/SampleEphReceiver) soluzione come-la sostituzione, le stringhe di hello con i valori di account hub e di archiviazione di eventi. Oppure è possibile seguire hello i passaggi in questa esercitazione toocreate personalizzati.
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-* [Microsoft Visual Studio 2015 o 2017](http://www.visualstudio.com). Gli esempi inclusi nell'esercitazione usano Visual Studio 2017, ma è supportato anche Visual Studio 2015.
+* [Microsoft Visual Studio 2015 o 2017](http://www.visualstudio.com). esempi di Hello in questa esercitazione usare Visual Studio 2017, ma Visual Studio 2015 è anche supportato.
 * [Strumenti di Visual Studio 2015 o 2017 per .NET Core](http://www.microsoft.com/net/core).
 * Una sottoscrizione di Azure.
 * Uno spazio dei nomi di Hub eventi in Azure.
@@ -37,38 +37,38 @@ In questa esercitazione viene illustrata la procedura per scrivere un'applicazio
 
 ## <a name="create-an-event-hubs-namespace-and-an-event-hub"></a>Creare uno spazio dei nomi di Hub eventi e un hub eventi  
 
-Il primo passaggio consiste nell'usare il [portale di Azure](https://portal.azure.com) per creare uno spazio dei nomi per il tipo Hub eventi e ottenere le credenziali di gestione richieste dall'applicazione per comunicare con l'hub eventi. Per creare uno spazio dei nomi e un hub eventi, seguire la procedura descritta in [questo articolo](event-hubs-create.md) e procedere con i passaggi seguenti.  
+primo passaggio Hello è hello toouse [portale di Azure](https://portal.azure.com) toocreate uno spazio dei nomi per gli hub di eventi hello digitare e ottenere le credenziali di gestione che l'applicazione deve toocommunicate con hub eventi hello di hello. toocreate uno spazio dei nomi e hub eventi, attenersi alla procedura hello in [questo articolo](event-hubs-create.md)e quindi procedere con hello alla procedura seguente.  
 
 ## <a name="create-an-azure-storage-account"></a>Creare un account di archiviazione di Azure  
 
-1. Accedere al [portale di Azure](https://portal.azure.com).  
-2. Nel riquadro di spostamento sinistro del portale fare clic su **Nuovo**, quindi su **Archiviazione** e quindi su **Account di archiviazione**.  
-3. Completare i campi nel pannello dell'account di archiviazione e quindi fare clic su **Crea**.
+1. Accedi toohello [portale di Azure](https://portal.azure.com).  
+2. Nel riquadro di spostamento a sinistra di hello del portale di hello, fare clic su **New**, fare clic su **archiviazione**, quindi fare clic su **Account di archiviazione**.  
+3. Completare i campi di hello nel Pannello di account di archiviazione hello e quindi fare clic su **crea**.
 
     ![Crea account di archiviazione][1]
 
-4. Dopo aver visualizzato il messaggio **Le distribuzioni sono riuscite**, fare clic sul nome del nuovo account di archiviazione. Nel pannello **Informazioni di base** fare clic su **BLOB**. Quando si apre il pannello **Servizio BLOB**, fare clic su **+ Contenitore** in alto. Assegnare un nome al contenitore, quindi chiudere il pannello **Servizio BLOB**.  
-5. Fare clic su **Chiavi di accesso** nel pannello a sinistra e copiare il nome del contenitore di archiviazione, dell'account di archiviazione e il valore **key1**. Salvare questi valori nel Blocco note o in un'altra posizione temporanea.  
+4. Dopo aver visualizzato hello **ha avuto esito positivo di distribuzioni** del messaggio, fare clic sul nome del nuovo account di archiviazione hello hello. In hello **Essentials** pannello, fare clic su **BLOB**. Quando hello **servizio Blob** fare clic su pannello **+ contenitore** nella parte superiore di hello. Assegnare un nome di contenitore hello e quindi chiudere hello **servizio Blob** blade.  
+5. Fare clic su **le chiavi di accesso** hello sinistro blade e copia hello un nome di contenitore di archiviazione hello, account di archiviazione hello e valore hello **key1**. Salvare queste tooNotepad valori o un'altra posizione temporanea.  
 
 ## <a name="create-a-console-application"></a>Creare un'applicazione console
 
-Avviare Visual Studio. Scegliere **Nuovo** dal menu **File** e quindi fare clic su **Progetto**. Creare un'applicazione console di .NET Core.
+Avviare Visual Studio. Da hello **File** menu, fare clic su **New**, quindi fare clic su **progetto**. Creare un'applicazione console di .NET Core.
 
 ![Nuovo progetto][2]
 
-## <a name="add-the-event-hubs-nuget-package"></a>Aggiungere il pacchetto NuGet di Hub eventi
+## <a name="add-hello-event-hubs-nuget-package"></a>Aggiungere il pacchetto NuGet di hub eventi hello
 
-Aggiungere i pacchetti NuGet della raccolta .NET standard [`Microsoft.Azure.EventHubs`](https://www.nuget.org/packages/Microsoft.Azure.EventHubs/) e [`Microsoft.Azure.EventHubs.Processor`](https://www.nuget.org/packages/Microsoft.Azure.EventHubs.Processor/) al progetto eseguendo i passaggi descritti di seguito: 
+Aggiungere hello [ `Microsoft.Azure.EventHubs` ](https://www.nuget.org/packages/Microsoft.Azure.EventHubs/) e [ `Microsoft.Azure.EventHubs.Processor` ](https://www.nuget.org/packages/Microsoft.Azure.EventHubs.Processor/) .NET Standard NuGet pacchetti tooyour progetto di libreria attenendosi alla procedura seguente: 
 
-1. Fare clic con il pulsante destro del mouse sul progetto appena creato e scegliere **Gestisci pacchetti NuGet**.
-2. Fare clic sulla scheda **Sfoglia**, quindi cercare "Microsoft.Azure.EventHubs" e selezionare il pacchetto **Microsoft.Azure.EventHubs**. Fare clic su **Installa** per completare l'installazione, quindi chiudere questa finestra di dialogo.
-3. Ripetere i passaggi 1 e 2 e installare il pacchetto **Microsoft.Azure.EventHubs.Processor**.
+1. Fare clic sul progetto hello appena creato e selezionare **Gestisci pacchetti NuGet**.
+2. Fare clic su hello **Sfoglia** scheda, quindi cercare "Microsoft.Azure.EventHubs" e seleziona hello **Microsoft.Azure.EventHubs** pacchetto. Fare clic su **installare** toocomplete hello installazione, quindi chiudere questa finestra di dialogo.
+3. Ripetere i passaggi 1 e 2 e installare hello **Microsoft.Azure.EventHubs.Processor** pacchetto.
 
-## <a name="implement-the-ieventprocessor-interface"></a>Implementare l'interfaccia IEventProcessor
+## <a name="implement-hello-ieventprocessor-interface"></a>Implementare l'interfaccia IEventProcessor hello
 
-1. In Esplora soluzioni fare clic con il pulsante destro del mouse sul progetto, quindi scegliere **Aggiungi** e fare clic su **Classe**. Assegnare il nome **SimpleEventProcessor** alla nuova classe.
+1. In Esplora soluzioni, progetti hello pulsante destro del mouse, fare clic su **Aggiungi**, quindi fare clic su **classe**. Nome nuova classe hello **SimpleEventProcessor**.
 
-2. Aprire il file SimpleEventProcessor.cs e aggiungere le istruzioni `using` seguenti all'inizio del file.
+2. Aprire il file SimpleEventProcessor.cs hello e aggiungere il seguente hello `using` top toohello istruzioni del file hello.
 
     ```csharp
     using Microsoft.Azure.EventHubs;
@@ -76,7 +76,7 @@ Aggiungere i pacchetti NuGet della raccolta .NET standard [`Microsoft.Azure.Even
     using System.Threading.Tasks;
     ```
 
-3. Implementare l'interfaccia `IEventProcessor`. Sostituire l'intero contenuto della classe `SimpleEventProcessor` con il codice seguente:
+3. Hello implementare `IEventProcessor` interfaccia. Sostituire l'intero contenuto di hello di hello `SimpleEventProcessor` classe con hello seguente codice:
 
     ```csharp
     public class SimpleEventProcessor : IEventProcessor
@@ -112,9 +112,9 @@ Aggiungere i pacchetti NuGet della raccolta .NET standard [`Microsoft.Azure.Even
     }
     ```
 
-## <a name="write-a-main-console-method-that-uses-the-simpleeventprocessor-class-to-receive-messages"></a>Scrivere un metodo console principale che usi la classe SimpleEventProcessor per ricevere i messaggi
+## <a name="write-a-main-console-method-that-uses-hello-simpleeventprocessor-class-tooreceive-messages"></a>Scrivere un metodo di console principale che utilizza i messaggi hello SimpleEventProcessor classe tooreceive
 
-1. Aggiungere le istruzioni `using` seguenti all'inizio del file Program.cs.
+1. Aggiungere il seguente hello `using` top toohello istruzioni del file Program.cs hello.
 
     ```csharp
     using Microsoft.Azure.EventHubs;
@@ -122,7 +122,7 @@ Aggiungere i pacchetti NuGet della raccolta .NET standard [`Microsoft.Azure.Even
     using System.Threading.Tasks;
     ```
 
-2. Aggiungere le costanti alla classe `Program` per la stringa di connessione dell'hub eventi, il nome dell'hub, il nome del contenitore dell'account di archiviazione, il nome dell'account di archiviazione e la chiave dell'account di archiviazione. Aggiungere il codice seguente, sostituendo i segnaposto con i relativi valori.
+2. Aggiungere le costanti toohello `Program` classe per la stringa di connessione hub eventi hello, nome hub eventi, il nome di contenitore account di archiviazione, nome account di archiviazione e chiave dell'account di archiviazione. Aggiungere hello nel codice seguente, sostituendo i segnaposto hello con i relativi valori.
 
     ```csharp
     private const string EhConnectionString = "{Event Hubs connection string}";
@@ -134,7 +134,7 @@ Aggiungere i pacchetti NuGet della raccolta .NET standard [`Microsoft.Azure.Even
     private static readonly string StorageConnectionString = string.Format("DefaultEndpointsProtocol=https;AccountName={0};AccountKey={1}", StorageAccountName, StorageAccountKey);
     ```   
 
-3. Aggiungere alla classe `Program` un nuovo metodo denominato `MainAsync` come da esempio seguente:
+3. Aggiungere un nuovo metodo denominato `MainAsync` toohello `Program` classe, come indicato di seguito:
 
     ```csharp
     private static async Task MainAsync(string[] args)
@@ -148,18 +148,18 @@ Aggiungere i pacchetti NuGet della raccolta .NET standard [`Microsoft.Azure.Even
             StorageConnectionString,
             StorageContainerName);
 
-        // Registers the Event Processor Host and starts receiving messages
+        // Registers hello Event Processor Host and starts receiving messages
         await eventProcessorHost.RegisterEventProcessorAsync<SimpleEventProcessor>();
 
-        Console.WriteLine("Receiving. Press ENTER to stop worker.");
+        Console.WriteLine("Receiving. Press ENTER toostop worker.");
         Console.ReadLine();
 
-        // Disposes of the Event Processor Host
+        // Disposes of hello Event Processor Host
         await eventProcessorHost.UnregisterEventProcessorAsync();
     }
     ```
 
-3. Aggiungere la riga di codice seguente al metodo `Main`:
+3. Aggiungere hello successiva riga di codice toohello `Main` metodo:
 
     ```csharp
     MainAsync(args).GetAwaiter().GetResult();
@@ -197,25 +197,25 @@ Aggiungere i pacchetti NuGet della raccolta .NET standard [`Microsoft.Azure.Even
                     StorageConnectionString,
                     StorageContainerName);
 
-                // Registers the Event Processor Host and starts receiving messages
+                // Registers hello Event Processor Host and starts receiving messages
                 await eventProcessorHost.RegisterEventProcessorAsync<SimpleEventProcessor>();
 
-                Console.WriteLine("Receiving. Press ENTER to stop worker.");
+                Console.WriteLine("Receiving. Press ENTER toostop worker.");
                 Console.ReadLine();
 
-                // Disposes of the Event Processor Host
+                // Disposes of hello Event Processor Host
                 await eventProcessorHost.UnregisterEventProcessorAsync();
             }
         }
     }
     ```
 
-4. Eseguire il programma e assicurarsi che non siano presenti errori.
+4. Eseguire il programma hello e assicurarsi che non siano presenti errori.
 
-Congratulazioni. Sono stati appena ricevuti dei messaggi da un hub eventi usando l'host del processore di eventi.
+Congratulazioni. Ora ricevuti messaggi da un hub eventi tramite hello Host processore di eventi.
 
 ## <a name="next-steps"></a>Passaggi successivi
-Per ulteriori informazioni su Hub eventi visitare i collegamenti seguenti:
+Sono disponibili ulteriori informazioni sugli hub di eventi visitando hello seguenti collegamenti:
 
 * [Panoramica di Hub eventi](event-hubs-what-is-event-hubs.md)
 * [Creare un hub eventi](event-hubs-create.md)

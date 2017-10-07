@@ -1,5 +1,5 @@
 ---
-title: "Spostare dati con l'attività di copia | Microsoft Docs"
+title: "dati aaaMove tramite attività di copia | Documenti Microsoft"
 description: "Informazioni sullo spostamento di dati in pipeline di Data Factory: migrazione di dati tra archivi cloud e tra archivi locali e cloud. Usare l'attività di copia."
 keywords: copiare dati, spostamento di dati, migrazione di dati, trasferire dati
 services: data-factory
@@ -15,15 +15,15 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/19/2017
 ms.author: jingwang
-ms.openlocfilehash: 0cefbe1303de1cfa46cc4b771c0cd3aa7819597c
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 29b74154b9006795ead3b0ee9638a3dbf2c5d831
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="move-data-by-using-copy-activity"></a>Spostare dati con l'attività di copia
 ## <a name="overview"></a>Panoramica
-In Azure Data Factory è possibile usare l'attività di copia per copiare i dati da archivi dati locali e cloud. Dopo la copia, è possibile trasformare o analizzare ulteriormente i dati. L'attività di copia può essere usata anche per pubblicare risultati di trasformazione e analisi per Business Intelligence (BI) e l'uso delle applicazioni.
+In Data Factory di Azure, è possibile utilizzare dati di attività di copia toocopy tra sedi locali e cloud archivi dati. Dopo aver copiato i dati di hello, può essere ulteriormente trasformato e analizzato. È anche possibile utilizzare trasformazione toopublish attività di copia e i risultati dell'analisi per business intelligence (BI) e il consumo di applicazione.
 
 ![Ruolo dell'attività di copia](media/data-factory-data-movement-activities/copy-activity.png)
 
@@ -32,62 +32,62 @@ L'attività di copia è un servizio [disponibile a livello globale](#global)sicu
 Prima di tutto, verrà illustrato come avviene la migrazione dei dati tra due archivi dati cloud e tra un archivio dati locale e un archivio dati cloud.
 
 > [!NOTE]
-> Per informazioni sulle attività in generale, vedere l'articolo [Pipeline e attività in Azure Data Factory](data-factory-create-pipelines.md).
+> in generale, vedere toolearn sulle attività [informazioni sulle pipeline e attività](data-factory-create-pipelines.md).
 >
 >
 
 ### <a name="copy-data-between-two-cloud-data-stores"></a>Copiare dati tra due archivi dati cloud
-Nei casi in cui sia l'archivio dati di origine che l'archivio dati sink si trovano nel cloud, l'attività di copia viene sottoposta alle fasi seguenti per copiare i dati dall'origine al sink. Il servizio su cui si basa l'attività di copia:
+Quando gli archivi di dati di origine e sink sono nel cloud hello, attività di copia passa attraverso hello seguente dati toocopy fasi dal sink di toohello origine hello. servizio Hello che consente di creare attività di copia:
 
-1. Legge i dati dall'archivio dati di origine.
-2. Esegue la serializzazione/deserializzazione, compressione/decompressione, il mapping di colonne e la conversione dei tipi. Esegue tali operazioni sulla base delle configurazioni del set di dati di input, del set di dati di output e dell'attività di copia.
-3. Scrive i dati nell'archivio dati di destinazione.
+1. Legge i dati dall'archivio dati di origine hello.
+2. Esegue la serializzazione/deserializzazione, compressione/decompressione, il mapping di colonne e la conversione dei tipi. Esegue queste operazioni in base alle configurazioni di hello del set di dati input hello, set di dati di output e attività di copia.
+3. Scrive l'archivio dati di destinazione toohello di dati.
 
-Il servizio sceglie automaticamente l'area ottimale per eseguire lo spostamento dei dati. Questa area è in genere quella più vicino all'archivio dati sink.
+servizio Hello sceglie automaticamente lo spostamento dei dati di hello area ottimale tooperform hello. Quest'area è in genere hello uno più vicino toohello sink archivio dati.
 
 ![Copia da cloud a cloud](./media/data-factory-data-movement-activities/cloud-to-cloud.png)
 
 ### <a name="copy-data-between-an-on-premises-data-store-and-a-cloud-data-store"></a>Copiare dati tra un archivio dati locale e un archivio dati cloud
-Per spostare in modo sicuro i dati tra gli archivi dati locali e un archivio dati cloud, è necessario installare il gateway di gestione dati sul computer locale. Il Gateway di gestione dati è un agente che consente lo spostamento e l'elaborazione ibridi dei dati. Il Gateway di gestione dati può essere installato sullo stesso computer dell'archivio dati o su un computer separato che è in grado di accedere all'archivio dati.
+toosecurely spostare i dati tra un archivio dati locale e un archivio dati cloud, installare il Gateway di gestione dati nel computer locale. Il Gateway di gestione dati è un agente che consente lo spostamento e l'elaborazione ibridi dei dati. È possibile installarlo in hello stesso computer come archiviano i dati hello stesso o in un computer separato che dispone di accesso ai dati toohello archivio.
 
-In questo scenario, il Gateway di gestione dati esegue la serializzazione/deserializzazione, la compressione/decompressione, il mapping di colonne e la conversione del tipo. I dati non transitano attraverso il servizio Data Factory di Azure. Gateway di gestione dati scrive direttamente i dati nell'archivio di destinazione.
+In questo scenario, il Gateway di gestione di dati esegue hello. serializzazione/deserializzazione, compressione/decompressione, mapping colonne e conversione di tipi. Dati non transita attraverso hello servizio Azure Data Factory. In alternativa, Gateway di gestione dati scrive direttamente hello dati toohello destinazione archivio.
 
 ![Copia da locale a cloud](./media/data-factory-data-movement-activities/onprem-to-cloud.png)
 
 Per un'introduzione e una procedura dettagliata, vedere [Spostare dati tra origini locali e il cloud con Gateway di gestione dati](data-factory-move-data-between-onprem-and-cloud.md) . Per informazioni dettagliate sull'agente, vedere [Gateway di gestione dati](data-factory-data-management-gateway.md) .
 
-È anche possibile spostare dati da/da archivi dati supportati ospitati su macchine virtuali IaaS di Azure tramite il Gateway di gestione dati. In questo caso, è possibile installare il Gateway di gestione dati sulla stessa macchina virtuale dell'archivio dati o su una macchina virtuale separata con accesso all'archivio dati.
+È inoltre possibile spostare i dati da / toosupported gli archivi dati di cui sono ospitati nelle macchine virtuali IaaS di Azure (VM) tramite il Gateway di gestione di dati. In questo caso, è possibile installare il Gateway di gestione di dati in hello stessa macchina virtuale come archiviano i dati hello stesso o in una macchina virtuale separata che dispone di accesso ai dati toohello archivio.
 
 ## <a name="supported-data-stores-and-formats"></a>Archivi dati e formati supportati
-L'attività di copia in Data Factory esegue la copia dei dati da un archivio dati di origine a un archivio dati sink. Data Factory supporta gli archivi dati seguenti. I dati da qualsiasi origine possono essere scritti in qualsiasi sink. Fare clic su un archivio dati per informazioni su come copiare dati da e verso tale archivio.
+Attività di copia in Data Factory copia dati da un archivio dati di origine dati archivio tooa sink. Data Factory supporta hello seguenti archivi dati. È possibile scrivere dati da qualsiasi origine tooany sink. Fare clic su un toolearn archivio dati come toocopy tooand di dati dall'archivio.
 
 > [!NOTE] 
-> Per spostare dati da e verso un archivio dati che non è supportato dall'attività di copia, usare l' **attività personalizzata** in Data Factory con la logica personalizzata per copiare o spostare i dati. Per i dettagli sulla creazione e l'uso di un'attività personalizzata, vedere l'articolo [Usare attività personalizzate in una pipeline di Azure Data Factory](data-factory-use-custom-activities.md).
+> Se è necessario toomove i dati in o da un archivio dati che non supporta attività di copia, utilizzare un **attività personalizzata** in Data Factory con la logica personalizzata per la copia o spostamento di dati. Per i dettagli sulla creazione e l'uso di un'attività personalizzata, vedere l'articolo [Usare attività personalizzate in una pipeline di Azure Data Factory](data-factory-use-custom-activities.md).
 
 [!INCLUDE [data-factory-supported-data-stores](../../includes/data-factory-supported-data-stores.md)]
 
 > [!NOTE]
-> Gli archivi dati contrassegnati da un asterisco (*) possono essere locali o in IaaS di Azure e richiederanno l'installazione del [Gateway di gestione dati](data-factory-data-management-gateway.md) in un computer IaaS locale o in Azure.
+> Archivia i dati con * può essere locale o in Azure IaaS e richiedono tooinstall [Gateway di gestione dati](data-factory-data-management-gateway.md) in un computer di IaaS in locale o Azure.
 
 ### <a name="supported-file-formats"></a>Formati di file supportati
-È possibile usare l'attività di copia per **copiare i file così come sono** tra due archivi di dati basati su file ed è possibile saltare la [sezione formato](data-factory-create-datasets.md) sia nella definizione del set di dati di input che in quello di output. I dati vengono copiati in modo efficiente senza serializzazione/deserializzazione.
+È possibile utilizzare anche attività di copia**copiare i file come-è** tra archivi due dati basati su file, è possibile ignorare hello [formattare sezione](data-factory-create-datasets.md) in hello input sia le definizioni di set di dati di output. dati Hello viene copiati in modo efficiente senza qualsiasi serializzazione/deserializzazione.
 
-L'attività di copia esegue anche operazioni di lettura e scrittura in formati specifici, ovvero **Text, JSON, Avro, ORC e Parquet** e sono supportati i codec di compressione **GZip, Deflate, BZip2 e ZipDeflate**. Vedere [Formati di compressione e file supportati](data-factory-supported-file-and-compression-formats.md) per i dettagli.
+Attività di copia inoltre legge e scrive toofiles in formati specificati: **JSON, testo, Avro, ORC e Parquet**e codec di compressione **GZip, Deflate, BZip2 e ZipDeflate** sono supportati. Vedere [Formati di compressione e file supportati](data-factory-supported-file-and-compression-formats.md) per i dettagli.
 
-È possibile ad esempio eseguire queste attività di copia:
+Ad esempio, è possibile eseguire seguente hello Copia attività:
 
-* Copiare i dati nell'istanza locale di SQL Server e scrivere in Azure Data Lake Store nel formato ORC.
-* Copiare i file in formato testo (CSV) dal file system locale e scrivere nel BLOB di Azure nel formato Avro.
-* Copiare i file compressi dal file system locale e decomprimerli in Azure Data Lake Store.
-* Copiare i dati in formato testo (CSV) con compressione GZip dal BLOB di Azure e scrivere nel database SQL Azure.
+* Copiare i dati nel Server SQL locale e scrivere archivio Data Lake di tooAzure nel formato ORC.
+* Copia i file in formato testo (CSV) dal File System di on-premise e scrivere tooAzure Blob nel formato Avro.
+* Copiare i file compressi dal File System di on-premise e decomprimere quindi inserite archivio tooAzure Data Lake.
+* Copiare i dati in formato testo compresso (CSV) GZip da Blob di Azure e scrivere tooAzure Database SQL.
 
 ## <a name="global"></a>Spostamento dei dati disponibile a livello globale
-Azure Data Factory è disponibile solo nelle seguenti aree: Stati Uniti occidentali, Stati Uniti orientali ed Europa settentrionale. Tuttavia, il servizio alla base dell'attività di copia è disponibile a livello globale nelle aree geografiche seguenti. La topologia disponibile a livello globale garantisce uno spostamento di dati efficiente e di solito consente di evitare passaggi tra diverse aree. Per la disponibilità del servizio Data Factory e lo spostamento dei dati in un'area, vedere [Servizi in base all'area](https://azure.microsoft.com/regions/#services) .
+Data Factory di Azure è disponibile solo in aree di Stati Uniti occidentali, Stati Uniti orientali ed Europa settentrionale hello. Tuttavia, hello servizio che consente di creare attività di copia è disponibile a livello globale in hello seguendo le aree e aree geografiche. topologia disponibili globalmente Hello garantisce lo spostamento dei dati efficiente che consente di evitare in genere hop tra aree. Per la disponibilità del servizio Data Factory e lo spostamento dei dati in un'area, vedere [Servizi in base all'area](https://azure.microsoft.com/regions/#services) .
 
 ### <a name="copy-data-between-cloud-data-stores"></a>Copiare dati tra archivi dati cloud
-Quando sia gli archivi dati di origine che gli archivi dati sink risiedono nel cloud, Data Factory usa una distribuzione del servizio nell'area più vicina al sink nella stessa area geografica per spostare i dati. Consultare la tabella seguente per il mapping:
+Quando gli archivi di dati di origine e sink sono nel cloud hello, Data Factory utilizza una distribuzione del servizio nell'area di hello sink toohello più vicino in hello stessi dati di hello toomove geography. Fare riferimento toohello per il mapping nella tabella seguente:
 
-| Geografia degli archivi dati di destinazione | Area dell'archivio dati di destinazione | Area usata per lo spostamento dei dati |
+| Geography di archivi dati di destinazione hello | Area dell'archivio dati di destinazione hello | Area usata per lo spostamento dei dati |
 |:--- |:--- |:--- |
 | Stati Uniti | Stati Uniti orientali | Stati Uniti orientali |
 | &nbsp; | Stati Uniti orientali 2 | Stati Uniti orientali 2 |
@@ -114,27 +114,27 @@ Quando sia gli archivi dati di origine che gli archivi dati sink risiedono nel c
 | &nbsp; | India occidentale | India centrale |
 | &nbsp; | India meridionale | India centrale |
 
-In alternativa, è possibile indicare esplicitamente l'area del servizio Data Factory da usare per eseguire la copia specificando la proprietà `executionLocation` in `typeProperties` nell'attività di copia. I valori supportati per questa proprietà sono elencati nella colonna **Area usata per lo spostamento dei dati** precedente. Si noti che i dati vengono trasferiti in rete attraverso tale area durante la copia. Ad esempio, per eseguire la copia tra archivi di Azure in Corea è possibile specificare `"executionLocation": "Japan East"` per instradare i dati tramite l'area del Giappone (vedere l'[esempio JSON](#by-using-json-scripts) come riferimento).
+In alternativa, è possibile indicare in modo esplicito area hello della Data Factory servizio toobe utilizzati tooperform hello copia specificando `executionLocation` proprietà nelle attività di copia `typeProperties`. I valori supportati per questa proprietà sono elencati nella colonna **Area usata per lo spostamento dei dati** precedente. Si noti come che i dati passa attraverso tale area nel transito hello durante la copia. Ad esempio, toocopy tra Azure archivia in Corea, è possibile specificare `"executionLocation": "Japan East"` tooroute tramite area Giappone (vedere [JSON di esempio](#by-using-json-scripts) come riferimento).
 
 > [!NOTE]
-> Se l'area dell'archivio dati di destinazione non è nell'elenco precedente o non è rilevabile, per impostazione predefinita l'attività di copia non viene completata invece di passare attraverso un'area alternativa, a meno che non sia specificato `executionLocation`. L'elenco di aree supportate verrà ampliato nel tempo.
+> Se l'area hello di hello archivio dati di destinazione non è presente nell'elenco precedente o non rilevabili, per impostazione predefinita attività di copia ha esito negativo anziché passare attraverso un'area alternativa, a meno che non `executionLocation` specificato. verrà espanso l'elenco di regioni Hello è supportato nel tempo.
 >
 
 ### <a name="copy-data-between-an-on-premises-data-store-and-a-cloud-data-store"></a>Copiare dati tra un archivio dati locale e un archivio dati cloud
-Quando i dati vengono copiati da archivi locali (o macchina virtuale Azure/IaaS) ad archivi cloud, lo spostamento dei dati viene eseguito dal [Gateway di gestione dati](data-factory-data-management-gateway.md) su un computer locale o una macchina virtuale. I dati non passano attraverso il servizio nel cloud, a meno che non si usi la funzionalità di [Copia di staging](data-factory-copy-activity-performance.md#staged-copy) . In questo caso, i dati passano attraverso l'archiviazione BLOB di Azure temporanea prima che vengano scritto nell'archivio dati sink.
+Quando i dati vengono copiati da archivi locali (o macchina virtuale Azure/IaaS) ad archivi cloud, lo spostamento dei dati viene eseguito dal [Gateway di gestione dati](data-factory-data-management-gateway.md) su un computer locale o una macchina virtuale. Hello non del flusso di dati tramite il servizio di hello in cloud hello, a meno che non si utilizza hello [staging copia](data-factory-copy-activity-performance.md#staged-copy) funzionalità. In questo caso, i dati passano attraverso hello archiviazione Blob di Azure di gestione temporanea prima che vengano scritti nell'archivio dati di hello sink.
 
 ## <a name="create-a-pipeline-with-copy-activity"></a>Creare una pipeline con attività di copia
 È possibile creare una pipeline con l'attività di copia in alcuni modi:
 
-### <a name="by-using-the-copy-wizard"></a>Con la copia guidata
-La copia guidata di Data Factory aiuta a creare una pipeline con l'attività di copia. Questa pipeline consente di copiare dati dalle origini supportate nelle destinazioni *senza scrivere definizioni JSON* per i servizi collegati, i set di dati e le pipeline. Per informazioni dettagliate sulla procedura guidata, vedere [Copia guidata di Data Factory](data-factory-copy-wizard.md) .  
+### <a name="by-using-hello-copy-wizard"></a>Tramite Copia guidata hello
+Hello Data Factory Copia guidata consente di toocreate una pipeline con attività di copia. Questa pipeline consente toocopy dati da origini supportate toodestinations *senza scrivere JSON* le definizioni per i servizi collegati, i set di dati e pipeline. Vedere [Data Factory Copia guidata](data-factory-copy-wizard.md) per informazioni dettagliate sulla procedura guidata hello.  
 
 ### <a name="by-using-json-scripts"></a>Con gli script JSON
-È possibile usare l'Editor di Data Factory nel portale di Azure, in Visual Studio o in Azure PowerShell per creare una definizione JSON per una pipeline con l'attività di copia. A questo punto, è possibile eseguire la distribuzione in modo da creare la pipeline in Data Factory. Per un'esercitazione con istruzioni dettagliate, vedere [Esercitazione: Copiare dati da un archivio BLOB al database SQL usando Data Factory](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) .    
+È possibile utilizzare Editor delle Data Factory in hello portale di Azure, Visual Studio o Azure PowerShell toocreate una definizione JSON per una pipeline (utilizzando l'attività di copia). Quindi, è possibile distribuire la pipeline hello toocreate in Data Factory. Per un'esercitazione con istruzioni dettagliate, vedere [Esercitazione: Copiare dati da un archivio BLOB al database SQL usando Data Factory](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) .    
 
-Per tutti i tipi di attività sono disponibili proprietà JSON come nome, descrizione, tabelle di input e output e criteri. Le proprietà disponibili nella sezione `typeProperties` dell'attività variano per ogni tipo di attività.
+Per tutti i tipi di attività sono disponibili proprietà JSON come nome, descrizione, tabelle di input e output e criteri. Le proprietà disponibili in hello `typeProperties` sezione dell'attività hello variano in base a ogni tipo di attività.
 
-Per l'attività di copia, la sezione `typeProperties` varia a seconda dei tipi di origine e sink. Fare clic su un'origine o un sink nella sezione relativa [alle origini e ai sink supportati](#supported-data-stores-and-formats) per informazioni sulle proprietà supportate dall'attività di copia per l'archivio dati.
+Per attività di copia, hello `typeProperties` sezione varia a seconda dei tipi di hello delle origini e sink. Fare clic su un'origine/sink di hello [origini e sink supportati](#supported-data-stores-and-formats) toolearn sezione sulle proprietà del tipo che supporta attività di copia per l'archivio dati.
 
 Di seguito è riportata una definizione JSON di esempio:
 
@@ -142,7 +142,7 @@ Di seguito è riportata una definizione JSON di esempio:
 {
   "name": "ADFTutorialPipeline",
   "properties": {
-    "description": "Copy data from Azure blob to Azure SQL table",
+    "description": "Copy data from Azure blob tooAzure SQL table",
     "activities": [
       {
         "name": "CopyFromBlobToSQL",
@@ -179,30 +179,30 @@ Di seguito è riportata una definizione JSON di esempio:
   }
 }
 ```
-La pianificazione definita nel set di dati di output determina quando viene eseguita l'attività (ad esempio **daily**: frequency: **day** e interval: **1**). L'attività esegue la copia dei dati da un set di dati di input (**origine**) in un set di dati di output (**sink**).
+pianificazione Hello è definito in hello output di set di dati determina l'esecuzione di attività hello (ad esempio: **giornaliero**, frequenza come **giorno**e l'intervallo come **1**). Hello attività Copia i dati da un set di dati di input (**origine**) set di dati di output tooan (**sink**).
 
-È possibile specificare più di un set di dati di input per l'attività di copia. Vengono usati per verificare le dipendenze prima dell'esecuzione dell'attività. Tuttavia, vengono copiati solo i dati dal primo set di dati al set di dati di destinazione. Per altre informazioni, vedere [Pianificazione ed esecuzione](data-factory-scheduling-and-execution.md).  
+È possibile specificare più di un set di dati input tooCopy attività. Sono utilizzati tooverify hello dipendenze prima di eseguire attività hello. Tuttavia, solo i dati di hello dal primo set di dati hello sono copiato toohello dataset di destinazione. Per altre informazioni, vedere [Pianificazione ed esecuzione](data-factory-scheduling-and-execution.md).  
 
 ## <a name="performance-and-tuning"></a>Prestazioni e ottimizzazione
-Vedere l'articolo [Guida alle prestazioni delle attività di copia e all'ottimizzazione](data-factory-copy-activity-performance.md), che descrive i fattori chiave che influiscono sulle prestazioni di spostamento dei dati (attività di copia) in Data Factory di Azure. Vengono anche elencate le prestazioni osservate durante il test interni e vengono descritti i modi per ottimizzare le prestazioni dell'attività di copia.
+Vedere hello [ottimizzazione Guida e alle prestazioni di attività di copia](data-factory-copy-activity-performance.md), che descrive i fattori principali che influiscono sulle prestazioni di hello spostamento dei dati (attività di copia) in Azure Data Factory. Inoltre, elenca hello osservata le prestazioni durante il test interno e vengono illustrati vari modi toooptimize hello rendimento attività di copia.
 
 ## <a name="fault-tolerance"></a>Tolleranza di errore
-Per impostazione predefinita, l'attività di copia interromperà la copia dei dati e restituirà un errore quando rileva dati incompatibili tra l'origine e il sink; è possibile chiedere in modo esplicito di ignorare e registrare le righe incompatibili, quindi copiare solo i dati compatibili perché la copia abbia esito positivo. Per altri dettagli, vedere la [Tolleranza di errore dell'attività di copia: ignorare le righe incompatibili](data-factory-copy-activity-fault-tolerance.md).
+Per impostazione predefinita, l'attività di copia verrà interrotta la copia di dati e restituire un errore quando rilevano dati incompatibili tra origine e sink; Sebbene sia possibile configurare in modo esplicito tooskip e le righe non compatibile di log hello e copia solo tali copia di dati compatibili toomake hello ha avuto esito positivo. Vedere hello [tolleranza di errore delle attività di copia](data-factory-copy-activity-fault-tolerance.md) ulteriori dettagli.
 
 ## <a name="security-considerations"></a>Considerazioni relative alla sicurezza
-Vedere [Azure Data Factory: considerazioni sulla sicurezza dello spostamento dei dati](data-factory-data-movement-security-considerations.md) che descrive l'infrastruttura di sicurezza usata dai servizi di spostamento dei dati in Azure Data Factory per proteggere i dati.
+Vedere hello [considerazioni sulla sicurezza](data-factory-data-movement-security-considerations.md), che descrive l'infrastruttura di sicurezza che i servizi lo spostamento dei dati in Azure Data Factory utilizzare toosecure i dati.
 
 ## <a name="scheduling-and-sequential-copy"></a>Pianificazione e copia sequenziale
-Vedere [Pianificazione ed esecuzione con Data Factory](data-factory-scheduling-and-execution.md) per informazioni dettagliate sul funzionamento della pianificazione e dell'esecuzione in Data Factory. È possibile eseguire più operazioni di copia l'una dopo l'altra in modo sequenziale o ordinato. Vedere la sezione [Copiare in sequenza](data-factory-scheduling-and-execution.md#multiple-activities-in-a-pipeline).
+Vedere [Pianificazione ed esecuzione con Data Factory](data-factory-scheduling-and-execution.md) per informazioni dettagliate sul funzionamento della pianificazione e dell'esecuzione in Data Factory. È possibile toorun più operazioni di copia uno dopo l'altro in modo sequenziale o ordinato. Vedere hello [copiare in sequenza](data-factory-scheduling-and-execution.md#multiple-activities-in-a-pipeline) sezione.
 
 ## <a name="type-conversions"></a>Conversioni di tipi
-Gli archivi dati provengono tutti da uno specifico sistema di tipi nativo. L'attività di copia esegue automaticamente la conversione dai tipi di origine ai tipi sink con il metodo seguente in due passaggi:
+Gli archivi dati provengono tutti da uno specifico sistema di tipi nativo. Attività di copia esegue le conversioni dai tipi di origine tipi toosink automatico con hello approccio in due passaggi:
 
-1. Conversione dai tipi di origine nativi al tipo .NET.
-2. Conversione dal tipo .NET al tipo di sink nativo.
+1. Convertire dal tipo .NET tooa tipi di origine nativa.
+2. Convertire un tipo di sink native tooa tipo .NET.
 
-Il mapping da un sistema di tipo nativo a un tipo .NET per un archivio dati è disponibile nell'articolo corrispondente sull'archivio dati. Fare clic sul link specifico della [Archivi dati e formati supportati](#supported-data-stores) . È possibile usare tali mapping per determinare i tipi appropriati durante la creazione di tabelle, in modo che durante l'attività di copia vengano eseguite le conversioni corrette.
+mapping di Hello da un tipo .NET di tipo nativo del sistema tooa per un archivio dati è hello rispettivi dati archivio dell'articolo. (Fare clic sul collegamento di specifiche hello in hello [supportati archivi dati](#supported-data-stores) tabella). È possibile utilizzare questi tipi di mapping toodetermine appropriato durante la creazione delle tabelle, in modo che l'attività di copia esegue conversioni di destra hello.
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Per ulteriori informazioni sull'attività di copia, vedere [Copiare i dati dall'archiviazione BLOB di Azure al database SQL di Azure](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md).
-* Per informazioni sullo spostamento dei dati da un archivio di dati locale a un archivio di dati cloud, vedere l'articolo [Spostare dati tra origini locali e il cloud con Gateway di gestione dati](data-factory-move-data-between-onprem-and-cloud.md).
+* vedere toolearn sulle attività di copia più, hello [copiare i dati da tooAzure di archiviazione Blob di Azure SQL Database](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md).
+* toolearn sullo spostamento dei dati da un locale archivio tooa cloud dati archivio dati, vedere [spostare i dati da archivi di dati locali toocloud](data-factory-move-data-between-onprem-and-cloud.md).

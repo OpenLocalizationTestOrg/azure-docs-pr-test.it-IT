@@ -1,6 +1,6 @@
 ---
-title: Eseguire il backup di server VMware con il server di Backup di Azure | Microsoft Docs
-description: Usare il server di Backup di Azure per eseguire il backup di server VMware vCenter/ESXi in Azure o su disco. Questo articolo offre istruzioni dettagliate per il backup o la protezione dei carichi di lavoro VMware.
+title: aaaBack dei server VMware con Server di Backup di Azure | Documenti Microsoft
+description: Utilizzare Server di Backup di Azure tooback backup un disco o VMware server vCenter/ESXi tooAzure. Questo articolo offre istruzioni dettagliate per il backup o la protezione dei carichi di lavoro VMware.
 services: backup
 documentationcenter: 
 author: markgalioto
@@ -13,106 +13,106 @@ ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
 ms.date: 07/24/2017
 ms.author: markgal;
-ms.openlocfilehash: ad331dffb7c31d12290f4223967c568e4535fe3c
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 3edb6880a526ed0b18605fee0fac27196a608e7a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="back-up-a-vmware-server-to-azure"></a>Eseguire il backup di un server VMware in Azure
+# <a name="back-up-a-vmware-server-tooazure"></a>Eseguire il backup di un tooAzure server VMware
 
-In questo articolo viene illustrato come configurare il server di Backup di Azure per proteggere i carichi di lavoro dei server VMware. In questo articolo si presuppone che sia stato già installato il server di Backup di Azure. Se il server di Backup di Azure non è installato, vedere [Preparazione del backup dei carichi di lavoro con il server di Backup di Azure](backup-azure-microsoft-azure-backup.md).
+Questo articolo viene illustrato come proteggere i carichi di lavoro server VMware tooconfigure toohelp di Server di Backup di Azure. In questo articolo si presuppone che sia stato già installato il server di Backup di Azure. Se non è installato Azure Backup Server, vedere [preparare tooback dei carichi di lavoro tramite il Server di Backup di Azure](backup-azure-microsoft-azure-backup.md).
 
 Il server di Backup di Azure può eseguire il backup o assicurare la protezione di server VMware vCenter versione 6.5, 6.0 e 5.5.
 
 
-## <a name="create-a-secure-connection-to-the-vcenter-server"></a>Creazione di una connessione protetta al server vCenter
+## <a name="create-a-secure-connection-toohello-vcenter-server"></a>Creare una connessione sicura toohello vCenter Server
 
-Per impostazione predefinita, il server di Backup di Azure comunica con ognuno dei server vCenter tramite un canale HTTPS. Per attivare la comunicazione protetta, è consigliabile installare il certificato dell'autorità di certificazione (CA, Certificate Authority) di VMware nel server di Backup di Azure. Se la comunicazione protetta non è necessaria e si preferisce disabilitare il requisito HTTPS, vedere [Disabilitazione del protocollo di comunicazione sicura](backup-azure-backup-server-vmware.md#disable-secure-communication-protocol). Per creare una connessione sicura tra il server di Backup di Azure e il server vCenter, importare il certificato trusted nel server di Backup di Azure.
+Per impostazione predefinita, il server di Backup di Azure comunica con ognuno dei server vCenter tramite un canale HTTPS. tooturn sulla comunicazione sicura hello, è consigliabile installare hello VMware autorità di certificazione certificato nel Server di Backup di Azure. Se si non richieda una comunicazione protetta e si preferisce requisito di toodisable hello HTTPS, vedere [protocollo di comunicazione protetta Disable](backup-azure-backup-server-vmware.md#disable-secure-communication-protocol). toocreate una connessione sicura tra il Server di Backup di Azure e hello vCenter Server, importarlo hello attendibile nel Server di Backup di Azure.
 
-Di solito, per connettersi al server vCenter tramite client Web vSphere si usa un browser nel computer server di Backup di Azure. La prima volta che si usa il browser del server di Backup di Azure per connettersi al server vCenter, la connessione non è protetta. L'immagine seguente mostra la connessione non protetta.
+In genere, si utilizza un browser hello Azure Backup Server macchina tooconnect toohello Server vCenter tramite vSphere hello Client Web. Hello prima volta che si utilizza hello Azure Backup Server browser tooconnect toohello vCenter Server, hello connessione non protetta. Hello seguente immagine Mostra connessione hello non protetta.
 
-![Esempio di connessione non protetta al server VMware](./media/backup-azure-backup-server-vmware/unsecure-url.png)
+![Esempio di connessione non protetta tooVMware server](./media/backup-azure-backup-server-vmware/unsecure-url.png)
 
-Per risolvere il problema e creare una connessione protetta, scaricare i certificati CA radice attendibili.
+toofix questo problema, creare una connessione sicura e scaricare i certificati CA radice attendibile hello.
 
-1. Nel browser del server di Backup di Azure immettere l'URL del client Web vSphere. Viene visualizzata la pagina di accesso del client Web vSphere.
+1. Nel browser hello nel Server di Backup di Azure, immettere hello URL toohello vSphere Client Web. verrà visualizzata la pagina di accesso di Hello vSphere Client Web.
 
     ![Client Web vSphere](./media/backup-azure-backup-server-vmware/vsphere-web-client.png)
 
-    Nella parte inferiore delle informazioni per amministratori e sviluppatori individuare il collegamento **Download trusted root CA certificates** (Scarica certificati CA radice trusted).
+    Nella parte inferiore di hello informazioni hello ad amministratori e sviluppatori, individuare hello **Download attendibili i certificati CA radice** collegamento.
 
-    ![Collegamento al download dei certificati CA radice trusted](./media/backup-azure-backup-server-vmware/vmware-download-ca-cert-prompt.png)
+    ![Certificati CA radice attendibile hello toodownload di collegamento](./media/backup-azure-backup-server-vmware/vmware-download-ca-cert-prompt.png)
 
-  Qualora fosse impossibile trovare la pagina di accesso del client Web vSphere, controllare le impostazioni del proxy del browser.
+  Se non viene visualizzato nella pagina account di accesso Client di Web vSphere hello, controllare le impostazioni proxy del browser.
 
 2. Fare clic su **Scarica certificati CA radice attendibili**.
 
-    Il server vCenter scarica un file nel computer locale. Il nome del file è **download**. A seconda del browser, viene visualizzato un messaggio che chiede se aprire o salvare il file.
+    Server vCenter Hello scarica un computer locale tooyour di file. Hello nome del file è denominato **scaricare**. A seconda del browser, viene visualizzato un messaggio che chiede se tooopen o salvare il file hello.
 
     ![messaggio di download quando vengono scaricati i certificati](./media/backup-azure-backup-server-vmware/download-certs.png)
 
-3. Salvare il file in un percorso nel server di Backup di Azure. Quando si salva il file, aggiungere l'estensione zip al nome del file.
+3. Hello file tooa percorso di salvataggio nel Server di Backup di Azure. Quando si salva il file hello, aggiungere l'estensione di file con estensione zip hello.
 
-    Il file è un file con estensione .zip che contiene le informazioni sui certificati. L'estensione zip consente di usare gli strumenti di estrazione.
+    file Hello è un file con estensione zip che contiene informazioni di hello sui certificati hello. Con estensione zip hello, è possibile utilizzare gli strumenti di estrazione hello.
 
-4. Fare clic con il pulsante destro del mouse su **download.zip** e quindi selezionare **Estrai tutto** per estrarre i contenuti.
+4. Fare doppio clic su **download.zip**, quindi selezionare **Estrai tutto** contenuto hello tooextract.
 
-    I contenuti del file con estensione zip vengono estratti in una cartella denominata **certs**. Nella cartella certs sono visualizzati due tipi di file. L'estensione del file del certificato radice inizia con una sequenza numerata, ad esempio .0 e .1.
+    file con estensione zip Hello estrae il relativo contenuto tooa cartella **certificati**. Due tipi di file vengono visualizzati nella cartella certificati hello. file del certificato radice Hello ha un'estensione che inizia con una sequenza numerata come,0 e. 1.
     
-    L'estensione del file CRL inizia con una sequenza simile a .r0 o .r1. Il file CRL è associato a un certificato.
+    file CRL Hello ha un'estensione che inizia con una sequenza come .r0 o .r1. file CRL Hello è associata a un certificato.
 
     ![File di download estratto localmente ](./media/backup-azure-backup-server-vmware/extracted-files-in-certs-folder.png)
 
-5. Nella cartella **certs** fare clic con il pulsante destro del mouse sul file del certificato radice e quindi fare clic su **Rinomina**.
+5. In hello **certificati** cartella, fare clic sul file di certificato radice hello e quindi fare clic su **rinominare**.
 
     ![Ridenominazione del certificato radice ](./media/backup-azure-backup-server-vmware/rename-cert.png)
 
-    Modificare l'estensione del certificato radice in .crt. Quando viene richiesta la conferma della modifica dell'estensione, fare clic su **Sì** o **OK**. In caso contrario, è possibile modificare manualmente la funzione del file prevista. L'icona del file si trasforma nell'icona che rappresenta i certificati radice.
+    Modifica estensione too.crt del certificato radice hello. Quando viene richiesto se si è certi che si desidera toochange hello estensione, fare clic su **Sì** o **OK**. In caso contrario, modificare la funzione prevista del file hello. icona di Hello per hello file modifiche tooan icona rappresenta un certificato radice.
 
-6. Fare clic con il pulsante destro del mouse sul certificato radice e nel menu a comparsa, selezionare **Installa certificato**.
+6. Fare doppio clic su certificato radice hello e scegliere dal menu a comparsa hello **Installa certificato**.
 
-    Viene visualizzata la finestra di dialogo **Importazione guidata certificati**.
+    Hello **importazione guidata certificati** viene visualizzata la finestra di dialogo.
 
-7. Nella finestra di dialogo **Importazione guidata certificati** selezionare **Computer locale** come destinazione del certificato e quindi fare clic su **Avanti** per continuare.
+7. In hello **importazione guidata certificati** nella finestra di dialogo **computer locale** come destinazione di hello per hello certificato e quindi fare clic su **Avanti** toocontinue.
 
     ![Opzioni di destinazione di archiviazione del certificato ](./media/backup-azure-backup-server-vmware/certificate-import-wizard1.png)
 
-    Se viene visualizzata la richiesta di conferma delle modifiche al computer, fare clic su **Sì** o **OK** per tutte le modifiche.
+    Se viene chiesto se si desidera di tooallow modifiche toohello computer, fare clic su **Sì** o **OK**, le modifiche di hello tooall.
 
-8. Nella pagina **Archivio certificati** selezionare **Colloca tutti i certificati nel seguente archivio** e quindi fare clic su **Sfoglia**per scegliere l'archivio certificati.
+8. In hello **archivio certificati** selezionare **colloca tutti i certificati nel seguente archivio hello**, quindi fare clic su **Sfoglia** archivio certificati di hello toochoose.
 
     ![Inserire i certificati in un punto di archiviazione specifico](./media/backup-azure-backup-server-vmware/cert-import-wizard-local-store.png)
 
-    Verrà visualizzata la finestra di dialogo **Selezione archivio certificati**.
+    Hello **Selezione archivio certificati** viene visualizzata la finestra di dialogo.
 
     ![Gerarchia di cartelle di archiviazione di certificati](./media/backup-azure-backup-server-vmware/cert-store.png)
 
-9. Selezionare **Autorità di certificazione radice attendibili** come cartella di destinazione per i certificati e quindi fare clic su **OK**.
+9. Selezionare **autorità di certificazione radice attendibili** come cartella di destinazione hello per certificati hello e quindi fare clic su **OK**.
 
     ![Cartella di destinazione dei certificati](./media/backup-azure-backup-server-vmware/certificate-store-selected.png)
 
-    La cartella **Autorità di certificazione radice attendibili** verrà confermata come archivio certificati. Fare clic su **Avanti**.
+    Hello **autorità di certificazione radice attendibili** cartella viene confermata come archivio di certificati hello. Fare clic su **Avanti**.
 
     ![Cartella archivio certificati](./media/backup-azure-backup-server-vmware/certificate-import-wizard2.png)
 
-10. Nella pagina **Completamento dell'Importazione guidata certificati** verificare che il certificato si trovi nella cartella desiderata e quindi fare clic su **Fine**.
+10. In hello **hello Completamento importazione guidata certificati** pagina, verificare che il certificato hello nella cartella desiderata hello e quindi fare clic su **fine**.
 
-    ![Verificare che i certificati si trovino nella cartella corretta](./media/backup-azure-backup-server-vmware/cert-wizard-final-screen.png)
+    ![Verificare i certificati si trova nella cartella corretta di hello](./media/backup-azure-backup-server-vmware/cert-wizard-final-screen.png)
 
-    Viene visualizzata una finestra di dialogo con la conferma dell'esito positivo dell'importazione del certificato.
+    Viene visualizzata una finestra di dialogo, viene confermata l'importazione del certificato ha esito positivo hello.
 
-11. Accedere al server vCenter per verificare che la connessione sia sicura.
+11. Accedi toohello vCenter Server tooconfirm che la connessione è protetta.
 
-  Se l'importazione del certificato ha esito negativo e non è possibile stabilire una connessione sicura, consultare la documentazione di VMware vSphere relativa a [come ottenere certificati server](http://pubs.vmware.com/vsphere-60/index.jsp#com.vmware.wssdk.dsg.doc/sdk_sg_server_certificate_Appendixes.6.4.html).
+  Importazione certificati hello non ha esito positivo, se non è possibile stabilire una connessione sicura, consultare la documentazione di vSphere VMware hello in [richiesta di certificati server](http://pubs.vmware.com/vsphere-60/index.jsp#com.vmware.wssdk.dsg.doc/sdk_sg_server_certificate_Appendixes.6.4.html).
 
-  Se sono previsti limiti di protezione all'interno dell'organizzazione e non si vuole attivare il protocollo HTTPS, eseguire la procedura seguente per disabilitare le comunicazioni sicure.
+  Se si hanno limiti protetti all'interno dell'organizzazione e non desidera tooturn su hello il protocollo HTTPS, è possibile utilizzare hello seguendo procedure toodisable hello proteggere le comunicazioni.
 
 ### <a name="disable-secure-communication-protocol"></a>Disabilitazione del protocollo di comunicazione sicura
 
-Se l'organizzazione non richiede il protocollo HTTPS, eseguire la procedura seguente per disabilitare questo protocollo. Per disabilitare il comportamento predefinito, creare una chiave di registro che ignori il comportamento predefinito.
+Se l'organizzazione non richiede il protocollo HTTPS hello, utilizzare hello seguendo i passaggi toodisable HTTPS. toodisable hello comportamento predefinito, creare una chiave del Registro di sistema che ignora il comportamento predefinito di hello.
 
-1. Copiare e incollare il seguente testo in un file .txt.
+1. Copiare e incollare hello dopo il testo in un file con estensione txt.
 
   ```
   Windows Registry Editor Version 5.00
@@ -120,40 +120,40 @@ Se l'organizzazione non richiede il protocollo HTTPS, eseguire la procedura segu
   "IgnoreCertificateValidation"=dword:00000001
   ```
 
-2. Salvare il file nel computer del server di Backup di Azure. Come nome del file usare DisableSecureAuthentication.reg.
+2. Salvare i computer del Server di Backup di Azure tooyour file hello. Utilizzare DisableSecureAuthentication.reg per nome file hello.
 
-3. Fare doppio clic sul file per attivare la voce del registro.
+3. Fare doppio clic sulla voce del Registro di sistema hello tooactivate file hello.
 
 
-## <a name="create-a-role-and-user-account-on-the-vcenter-server"></a>Creare un ruolo e un account utente sul server vCenter
+## <a name="create-a-role-and-user-account-on-hello-vcenter-server"></a>Creare un account utente e ruoli Server vCenter hello
 
-Sul server vCenter, un ruolo è un set predefinito di privilegi. I ruoli vengono creati da un amministratore del server vCenter. Per assegnare le autorizzazioni, l'amministratore associa ogni account utente a un ruolo. Per definire le credenziali utente necessarie per eseguire il backup del computer del server vCenter, creare un ruolo con privilegi specifici e quindi associare l'account utente al ruolo.
+Hello vCenter Server, un ruolo è un set predefinito di privilegi. Un amministratore del Server vCenter Crea ruoli hello. autorizzazioni tooassign, amministratore hello coppie gli account utente con un ruolo. tooestablish hello utente necessari credenziali tooback dei computer del Server vCenter hello, creare un ruolo con privilegi specifici e quindi associare account utente di hello hello ruolo.
 
-Per l'autenticazione con il server vCenter, il server di Backup di Azure usa un nome utente e una password. Il server di Backup di Azure sfrutta tali credenziali come autenticazione per ogni operazione di backup.
+Server di Backup di Azure Usa tooauthenticate un nome utente e password con hello vCenter Server. Il server di Backup di Azure sfrutta tali credenziali come autenticazione per ogni operazione di backup.
 
-Per aggiungere un ruolo del server vCenter e i relativi privilegi per un amministratore del backup:
+tooadd un ruolo del Server vCenter e i relativi privilegi di amministratore di backup:
 
-1. Accedere al server vCenter e quindi nel pannello **Navigator** (Strumento di navigazione) del server vCenter fare clic su **Administration** (Amministrazione).
+1. Eseguire l'accesso in toohello vCenter Server e quindi nel Server vCenter hello **Navigator** pannello, fare clic su **amministrazione**.
 
     ![Opzione Administration (Amministrazione) nel pannello Navigator (Strumento di navigazione) del server vCenter](./media/backup-azure-backup-server-vmware/vmware-navigator-panel.png)
 
-2. In **Administration** (Amministrazione) selezionare **Roles** (Ruoli) e quindi nel pannello **Roles** (Ruoli) fare clic sull'icona Aggiungi ruolo (il simbolo +).
+2. In **amministrazione** selezionare **ruoli**e quindi in hello **ruoli** fare clic su Pannello hello aggiungere l'icona del ruolo (simbolo + hello).
 
     ![Aggiungi ruolo](./media/backup-azure-backup-server-vmware/vmware-define-new-role.png)
 
-    Verrà visualizzata la finestra di dialogo **Create Role** (Crea ruolo).
+    Hello **Create Role** viene visualizzata la finestra di dialogo.
 
     ![Create role (Crea ruolo)](./media/backup-azure-backup-server-vmware/vmware-define-new-role-priv.png)
 
-3. Nella finestra di dialogo **Create Role** (Crea ruolo), nella casella **Role name** (Nome ruolo) immettere *BackupAdminRole*. È possibile scegliere un nome qualsiasi, ma deve essere riconoscibile per lo scopo del ruolo.
+3. In hello **Create Role** della finestra di dialogo hello **nome ruolo** immettere *BackupAdminRole*. nome del ruolo Hello può essere scelto liberamente, ma deve essere riconoscibile per scopo del ruolo hello.
 
-4. Selezionare i privilegi per la versione appropriata di vCenter e quindi fare clic su **OK**. La tabella seguente identifica i privilegi obbligatori per vCenter 6.0 e vCenter 5.5.
+4. Selezionare hello privilegi per la versione appropriata di hello di vCenter e quindi fare clic su **OK**. Hello nella tabella seguente identifica i privilegi necessario hello per vCenter 6.0 e vCenter 5.5.
 
-  Quando si selezionano i privilegi, fare clic sull'icona accanto all'etichetta padre per espandere l'elemento padre e visualizzare i privilegi figlio. Per selezionare i privilegi VirtualMachine, è necessario scendere di diversi livelli nella gerarchia padre-figlio. Non è necessario selezionare tutti i privilegi figlio all'interno di un privilegio padre.
+  Quando si selezionano privilegi hello, fare clic su hello icona Avanti toohello padre etichetta tooexpand hello padre vista hello figlio privilegi di amministratore. privilegi di VirtualMachine tooselect hello, è necessario toogo vari livelli in hello relazione gerarchica. Non è necessario tooselect tutti i privilegi figlio all'interno di un privilegio padre.
 
   ![Gerarchia di privilegi padre-figlio](./media/backup-azure-backup-server-vmware/cert-add-privilege-expand.png)
 
-  Fare clic su **OK**. Il nuovo ruolo verrà visualizzato nell'elenco del pannello Roles (Ruoli).
+  Dopo aver fatto clic **OK**, hello nuovo ruolo viene visualizzato nell'elenco di hello sul pannello ruoli hello.
 
 |Privilegi per vCenter 6.0| Privilegi per vCenter 5.5|
 |--------------------------|---------------------------|
@@ -181,206 +181,206 @@ Per aggiungere un ruolo del server vCenter e i relativi privilegi per un amminis
 
 ## <a name="create-a-vcenter-server-user-account-and-permissions"></a>Creare un account utente del server vCenter e le relative autorizzazioni
 
-Dopo aver configurato il ruolo con privilegi, creare un account utente. L'account utente è dotato di un nome utente e di una password, che rappresentano le credenziali usate per l'autenticazione.
+Una volta hello ruolo con privilegi è configurato, creare un account utente. account utente di Hello ha un nome e una password, che fornisce le credenziali hello vengono utilizzate per l'autenticazione.
 
-1. Per creare un account utente, nel pannello **Navigator** (Strumento di navigazione) del server vCenter fare clic su **Users and Groups** (Utenti e gruppi).
+1. un account utente, nel Server vCenter hello toocreate **Navigator** pannello, fare clic su **utenti e gruppi**.
 
     ![Opzione Users and Groups (Utenti e gruppi)](./media/backup-azure-backup-server-vmware/vmware-userandgroup-panel.png)
 
-    Verrà visualizzato il pannello **vCenter Users and Groups** (Utenti e gruppi di vCenter).
+    Hello **vCenter utenti e gruppi** pannello viene visualizzato.
 
     ![Pannello vCenter Users and Groups (Utenti e gruppi di vCenter)](./media/backup-azure-backup-server-vmware/usersandgroups.png)
 
-2. Nel pannello **vCenter Users and Groups** (Utenti e gruppi di vCenter) selezionare la scheda **Users** (Utenti) e quindi fare clic sull'icona Aggiungi utenti (il simbolo +).
+2. In hello **vCenter utenti e gruppi** pannello, seleziona hello **utenti** scheda e quindi fare clic su hello aggiungere utenti icona (simbolo + hello).
 
-    Verrà visualizzata la finestra di dialogo **New User** (Nuovo utente).
+    Hello **nuovo utente** viene visualizzata la finestra di dialogo.
 
-3. Nella finestra di dialogo **New User** (Nuovo utente) aggiungere le informazioni dell'utente e quindi fare clic su **OK**. In questa procedura il nome utente è BackupAdmin.
+3. In hello **nuovo utente** finestra di dialogo, aggiungere le informazioni dell'utente hello e quindi scegliere **OK**. In questa procedura, nome utente di hello è BackupAdmin.
 
     ![Finestra di dialogo New User (Nuovo utente)](./media/backup-azure-backup-server-vmware/vmware-new-user-account.png)
 
-    Il nuovo account utente viene visualizzato nell'elenco.
+    nuovo account utente di Hello viene visualizzato nell'elenco di hello.
 
-4. Per associare l'account utente al ruolo, nel pannello **Navigator** (Strumento di navigazione) fare clic su **Global Permissions** (Autorizzazioni globali). Nel pannello **Global Permissions** (Autorizzazioni globali) selezionare la scheda **Manage** (Gestisci) e quindi fare clic sull'icona Aggiungi (il simbolo +).
+4. account utente di hello tooassociate con ruolo hello in hello **Navigator** pannello, fare clic su **autorizzazioni globali**. In hello **autorizzazioni globali** pannello, seleziona hello **Gestisci** scheda e quindi fare clic su hello aggiungere icona (simbolo + hello).
 
     ![Pannello Global Permissions (Autorizzazioni globali)](./media/backup-azure-backup-server-vmware/vmware-add-new-perms.png)
 
-    Verrà visualizzata la finestra di dialogo **Global Permissions Root - Add Permission** (Radice autorizzazioni globali - Aggiungi autorizzazione).
+    Hello **globale autorizzazioni Root - Aggiungi autorizzazione** viene visualizzata la finestra di dialogo.
 
-5. Nella finestra di dialogo **Global Permission Root - Add Permission** (Radice autorizzazioni globali - Aggiungi autorizzazione) fare clic su **Add** (Aggiungi) per scegliere l'utente o il gruppo.
+5. In hello **radice autorizzazione globale - Aggiungi autorizzazione** la finestra di dialogo, fare clic su **Aggiungi** toochoose hello utente o gruppo.
 
     ![Scegliere un utente o un gruppo](./media/backup-azure-backup-server-vmware/vmware-add-new-global-perm.png)
 
-    Verrà visualizzata la finestra di dialogo **Select Users/Groups** (Seleziona utenti/gruppi).
+    Hello **selezionare utenti/gruppi** viene visualizzata la finestra di dialogo.
 
-6. Nella finestra di dialogo **Select Users/Groups** (Seleziona utenti/gruppi) scegliere **BackupAdmin** e fare clic su **Add** (Aggiungi).
+6. In hello **selezionare utenti/gruppi** finestra di dialogo scegliere **BackupAdmin** e quindi fare clic su **Aggiungi**.
 
-    In **Users** (Utenti) per l'account utente viene usato il formato *dominio\nomeutente*. Per usare un dominio diverso, sceglierlo dall'elenco **Domain** (Domini).
+    In **utenti**, hello *dominio omeutente* formato viene utilizzato per l'account utente di hello. Se si desidera toouse un dominio diverso, sceglierlo dall'hello **dominio** elenco.
 
     ![Aggiungere l'utente BackupAdmin](./media/backup-azure-backup-server-vmware/vmware-assign-account-to-role.png)
 
-    Fare clic su **OK** per aggiungere gli utenti selezionati alla finestra di dialogo **Add Permission** (Aggiungi autorizzazione).
+    Fare clic su **OK** tooadd hello selezionato utenti toohello **Aggiungi autorizzazione** la finestra di dialogo.
 
-7. Dopo avere identificato l'utente, assegnare l'utente al ruolo. In **Assigned Role** (Ruolo assegnato) selezionare **BackupAdminRole** nell'elenco e quindi fare clic su **OK**.
+7. Dopo aver identificato utente hello, assegnazione del ruolo di toohello utente hello. In **ruolo assegnato**, dall'elenco a discesa hello, selezionare **BackupAdminRole**, quindi fare clic su **OK**.
 
-    ![Assegnare l'utente a un ruolo](./media/backup-azure-backup-server-vmware/vmware-choose-role.png)
+    ![Assegnare l'utente toorole](./media/backup-azure-backup-server-vmware/vmware-choose-role.png)
 
-  Il nuovo account utente e il ruolo associato vengono visualizzati nell'elenco nella scheda **Manage** (Gestisci) del pannello **Global Permissions** (Autorizzazioni globali).
+  In hello **Gestisci** scheda hello **autorizzazioni globali** pannello, nuovo account utente di hello e ruolo hello associato vengono visualizzati nell'elenco di hello.
 
 
 ## <a name="establish-vcenter-server-credentials-on-azure-backup-server"></a>Definizione di credenziali del server vCenter sul server di Backup di Azure
 
-Prima di aggiungere il server VMware al server di Backup di Azure, installare l'[aggiornamento 1 per il server di Backup di Azure](https://support.microsoft.com/help/3175529/update-1-for-microsoft-azure-backup-server).
+Prima di aggiungere hello VMware server tooAzure Backup Server, installare [Update 1 per il Server di Backup di Azure](https://support.microsoft.com/help/3175529/update-1-for-microsoft-azure-backup-server).
 
-1. Per aprire il server di Backup di Azure, fare doppio clic sull'icona sul desktop del server di Backup di Azure.
+1. tooopen Server di Backup di Azure, fare doppio clic hello sul desktop del Server di Backup di Azure hello.
 
     ![Icona del server di Backup di Azure](./media/backup-azure-backup-server-vmware/mabs-icon.png)
 
-    Se l'icona non è presente sul desktop, aprire il server di Backup di Azure nell'elenco delle app installate. Il nome dell'app del server di Backup di Azure è Backup di Microsoft Azure.
+    Se non si trova sull'icona di hello sul desktop di hello, aprire il Server di Backup di Azure dall'elenco di hello delle App installate. nome dell'app Azure Backup Server Hello viene chiamato Backup di Microsoft Azure.
 
-2. Nella console del server di Backup di Azure fare clic su **Gestione**, su **Server di produzione** e quindi sulla barra multifunzione fare clic su **Gestisci VMware**.
+2. Nella console di Server di Backup di Azure hello, fare clic su **Management**, fare clic su **server di produzione**e quindi fare clic sulla barra multifunzione dello strumento di hello, **gestire VMware**.
 
     ![Console del server di Backup di Azure](./media/backup-azure-backup-server-vmware/add-vmware-credentials.png)
 
-    Verrà visualizzata la finestra di dialogo **Gestisci credenziali**.
+    Hello **Gestisci credenziali** viene visualizzata la finestra di dialogo.
 
     ![Finestra di dialogo Gestisci credenziali del server di Backup di Azure](./media/backup-azure-backup-server-vmware/mabs-manage-credentials-dialog.png)
 
-3. Nella finestra di dialogo **Gestisci credenziali** fare clic su **Aggiungi** per aprire la finestra di dialogo **Aggiungi credenziali**.
+3. In hello **Gestisci credenziali** la finestra di dialogo, fare clic su **Aggiungi** tooopen hello **Add Credential** la finestra di dialogo.
 
-4. Nella finestra di dialogo **Aggiungi credenziali** immettere il nome e la descrizione delle nuove credenziali. e quindi specificare il nome utente e la password. Il nome *Contoso Vcenter credential*, verrà usato per identificare le credenziali nella procedura successiva. Usare lo stesso nome utente e la stessa password usati per il server vCenter. Se il server vCenter e il server di Backup di Azure non sono nello stesso dominio, specificare il dominio in **Nome utente**.
+4. In hello **Add Credential** finestra di dialogo immettere un nome e una descrizione per le nuove credenziali di hello. Specificare quindi hello username e password. nome Hello, *credential Contoso Vcenter* utilizzato credenziali hello tooidentify hello procedura descritta di seguito. Utilizzare hello stesso nome utente e la password utilizzata per hello vCenter Server. Se il Server vCenter hello e Server di Backup di Azure non sono in hello nello stesso dominio, in **nome utente**, specificare il dominio hello.
 
     ![Finestra di dialogo Aggiungi credenziali del server di Backup di Azure](./media/backup-azure-backup-server-vmware/mabs-add-credential-dialog2.png)
 
-    Fare clic su **Aggiungi** per aggiungere le nuove credenziali al server di Backup di Azure. Le nuove credenziali vengono visualizzate nell'elenco della finestra di dialogo **Gestisci credenziali**.
+    Fare clic su **Aggiungi** tooadd hello nuova credenziale tooAzure Backup Server. nuove credenziali Hello verrà visualizzato nell'elenco hello hello **Gestisci credenziali** la finestra di dialogo.
     
     ![Finestra di dialogo Gestisci credenziali del server di Backup di Azure](./media/backup-azure-backup-server-vmware/new-list-of-mabs-creds.png)
 
-5. Per chiudere la finestra di dialogo **Gestisci credenziali**, fare clic sulla **X** nell'angolo superiore destro.
+5. hello tooclose **Gestisci credenziali** finestra di dialogo fare clic su hello **X** nell'angolo superiore destro di hello.
 
 
-## <a name="add-the-vcenter-server-to-azure-backup-server"></a>Aggiunta del server VMware al server di Backup di Azure
+## <a name="add-hello-vcenter-server-tooazure-backup-server"></a>Aggiungere hello vCenter Server tooAzure Backup Server
 
-Per aggiungere il server vCenter al server di Backup di Azure, si usa l'Aggiunta guidata server di produzione.
+Creazione guidata Aggiunta Server di produzione è usato tooadd hello vCenter Server tooAzure Backup Server.
 
-Per aprire l'Aggiunta guidata server di produzione, completare la procedura seguente:
+tooopen guidata di aggiunta Server di produzione, hello completo seguente procedura:
 
-1. Nella console del server di Backup di Azure fare clic su **Gestione**, su **Server di produzione** e quindi su **Aggiungi**.
+1. Nella console di Server di Backup di Azure hello, fare clic su **Management**, fare clic su **server di produzione**, quindi fare clic su **Aggiungi**.
 
     ![Aprire l'Aggiunta guidata server di produzione](./media/backup-azure-backup-server-vmware/add-vcenter-to-mabs.png)
 
-    Verrà visualizzata la finestra di dialogo **Aggiunta guidata server di produzione**.
+    Hello **guidata Aggiunta Server di produzione** viene visualizzata la finestra di dialogo.
 
     ![Aggiunta guidata server di produzione](./media/backup-azure-backup-server-vmware/production-server-add-wizard.png)
 
-2. Nella pagina **Selezionare il tipo di server di produzione** selezionare **Server VMware** e quindi fare clic su **Avanti**.
+2. In hello **tipo selezionare Server di produzione** selezionare **server VMware**e quindi fare clic su **Avanti**.
 
-3. In **Nome del server/Indirizzo IP** specificare il nome di dominio completo (FQDN, Fully Qualified Domain Name) o l'indirizzo IP del server VMware. Se tutti i server ESXi sono gestiti dallo stesso vCenter, è possibile usare il nome vCenter.
+3. In **nome Server o indirizzo IP**, specificare il nome di dominio completo hello (FQDN) o indirizzo IP del server VMware hello. Se tutti i server ESXi hello gestiti da hello vCenter stesso, è possibile utilizzare il nome di vCenter hello.
 
     ![Specificare l'FQDN o l'indirizzo IP del server VMware](./media/backup-azure-backup-server-vmware/add-vmware-server-provide-server-name.png)
 
-4. In **Porta SSL** immettere la porta usata per comunicare con il server VMware. Usare la porta 443, ovvero la porta predefinita, a meno che non sia necessaria una porta diversa.
+4. In **porta SSL**, immettere una porta di hello toocommunicate utilizzato con server VMware hello. Utilizzare la porta 443, che è la porta predefinita hello, a meno che non si sa che una porta diversa è obbligatoria.
 
-5. In **Specifica credenziale** selezionare le credenziali create in precedenza.
+5. In **specificare le credenziali**, selezionare hello credenziali creato in precedenza.
 
     ![Specifica credenziale](./media/backup-azure-backup-server-vmware/identify-creds.png)
 
-6. Fare clic su **Aggiungi** per aggiungere il server VMware all'elenco **Server VMware aggiunti** e quindi fare clic su **Avanti** per passare alla pagina successiva della procedura guidata.
+6. Fare clic su **Aggiungi** tooadd hello VMware server toohello elenco **aggiunto i server VMware**, quindi fare clic su **Avanti** toomove toohello pagina successiva procedura guidata hello.
 
     ![Aggiungere il server VMware e le credenziali](./media/backup-azure-backup-server-vmware/add-vmware-server-credentials.png)
 
-7. Nella pagina **Riepilogo** fare clic su **Aggiungi** per aggiungere il server VMware specificato al server di Backup di Azure.
+7. In hello **riepilogo** pagina, fare clic su **Aggiungi** tooadd hello specificato tooAzure server VMware Server Backup.
 
-    ![Aggiungere il server VMware al server di Backup di Azure](./media/backup-azure-backup-server-vmware/tasks-screen.png)
+    ![Aggiungi VMware server tooAzure Backup Server](./media/backup-azure-backup-server-vmware/tasks-screen.png)
 
-  Il backup del server VMware è un backup senza agente. Il nuovo server viene quindi aggiunto immediatamente. Nella pagina **Fine** vengono visualizzati i risultati.
+  Hello VMware server backup è un backup senza agente e hello nuovo server viene aggiunto immediatamente. Hello **fine** pagina vengono visualizzati hello risultati.
 
   ![Pagina Fine](./media/backup-azure-backup-server-vmware/summary-screen.png)
 
-  Per aggiungere più istanze del server vCenter al server di Backup di Azure, ripetere la procedura riportata in precedenza in questa sezione.
+  tooadd più istanze di tooAzure Server vCenter Server Backup, ripetere l'operazione hello precedente i passaggi in questa sezione.
 
-Dopo avere aggiunto un server vCenter al server di Backup di Azure, il passaggio successivo consiste nel creare un gruppo protezione dati. Il gruppo protezione dati specifica i vari dettagli per la conservazione a lungo o a breve termine e consente di definire e applicare i criteri di backup. I criteri di backup corrispondono alla pianificazione del momento in cui vengono eseguiti i backup e a ciò di cui viene eseguito il backup.
+Dopo aver aggiunto hello vCenter Server tooAzure Backup Server, hello è toocreate un gruppo protezione dati. gruppo protezione dati Hello specifica hello vari dettagli per la conservazione a breve o lungo termine in modo in cui si definisce e applicare i criteri di backup hello. criterio di backup Hello è pianificazione hello per quando si verificano i backup, e ciò che viene eseguito il backup.
 
 
 ## <a name="configure-a-protection-group"></a>Configurazione di un gruppo protezione dati
 
-Se non si è mai usato System Center Data Protection Manager o il server di Backup di Azure, vedere [Pianificare i backup su disco](https://technet.microsoft.com/library/hh758026.aspx) per preparare l'ambiente hardware. Dopo avere verificato la disponibilità di una risorsa di archiviazione appropriata, eseguire la procedura guidata Crea nuovo gruppo protezione dati per aggiungere macchine virtuali VMware.
+Se si utilizza System Center Data Protection Manager o Server di Backup di Azure prima di, vedere [pianificare i backup su disco](https://technet.microsoft.com/library/hh758026.aspx) tooprepare l'ambiente hardware. Dopo che si verifica di avere un'adeguata archiviazione, utilizzare hello Crea nuovo gruppo protezione dati guidata tooadd le macchine virtuali VMware.
 
-1. Nella console del server di Backup di Azure fare clic su **Protezione** e quindi fare clic su **Nuovo** nella barra multifunzione per aprire la procedura guidata Crea nuovo gruppo protezione dati.
+1. Nella console di Server di Backup di Azure hello, fare clic su **protezione**, nella barra multifunzione dello strumento di hello, fare clic su **New** procedura guidata Crea nuovo gruppo protezione dati di tooopen hello.
 
-    ![Aprire la procedura guidata Crea nuovo gruppo protezione dati](./media/backup-azure-backup-server-vmware/open-protection-wizard.png)
+    ![Procedura guidata Crea nuovo gruppo protezione dati hello aperto](./media/backup-azure-backup-server-vmware/open-protection-wizard.png)
 
-    Verrà visualizzata la finestra di dialogo della procedura guidata **Crea nuovo gruppo protezione dati**.
+    Hello **Crea nuovo gruppo protezione dati** viene visualizzata la finestra di dialogo Creazione guidata.
 
     ![Finestra di dialogo della procedura guidata Crea nuovo gruppo protezione dati](./media/backup-azure-backup-server-vmware/protection-wizard.png)
 
-    Fare clic su **Avanti** per passare alla pagina **Selezione tipo di gruppo protezione dati**.
+    Fare clic su **Avanti** tooadvance toohello **Seleziona tipo di gruppo protezione dati** pagina.
 
-2. Nella pagina **Selezione tipo di gruppo protezione dati** selezionare **Server** e quindi fare clic su **Avanti**. Verrà visualizzata la pagina **Selezione membri del gruppo**.
+2. In hello **il tipo di gruppo protezione dati selezionare** selezionare **server** e quindi fare clic su **Avanti**. Hello **Seleziona membri del gruppo** verrà visualizzata la pagina.
 
-3. Nella pagina **Selezione membri del gruppo** sono visualizzati i membri disponibili e quelli selezionati. Selezionare i membri da proteggere e quindi fare clic su **Avanti**.
+3. In hello **Seleziona membri del gruppo** pagina, i membri disponibili hello e membri hello selezionato vengono visualizzati. Selezionare i membri di hello che desidera tooprotect e quindi fare clic su **Avanti**.
 
     ![Seleziona membri del gruppo](./media/backup-azure-backup-server-vmware/server-add-selected-members.png)
 
-    Quando si seleziona un membro, se si seleziona una cartella che contiene altre cartelle o macchine virtuali, vengono selezionate anche le cartelle e le macchine virtuali contenute. L'inclusione di cartelle e VM nella cartella padre è denominata protezione a livello di cartella. Per rimuovere una cartella o una macchina virtuale, deselezionare la casella di controllo corrispondente.
+    Quando si seleziona un membro, se si seleziona una cartella che contiene altre cartelle o macchine virtuali, vengono selezionate anche le cartelle e le macchine virtuali contenute. inclusione di Hello di cartelle di hello e macchine virtuali nella cartella padre hello viene chiamata la protezione a livello di cartella. tooremove una cartella o nella macchina virtuale, la casella di controllo crittografato hello.
 
-    Se una VM o una cartella che contiene una VM, è già protetta in Azure, non è possibile selezionarla di nuovo. In altre parole, se una macchina virtuale è protetta in Azure, non è possibile applicare di nuovo la protezione per evitare di creare punti di recupero duplicati per la macchina virtuale stessa. Se si vuole visualizzare l'istanza del server di Backup di Azure che protegge già un membro, posizionare il mouse sopra il membro per visualizzare il nome del server di protezione.
+    Se una macchina virtuale o in una cartella che contiene una macchina virtuale, è già protetto tooAzure, è possibile selezionare nuovamente tale macchina virtuale. Vale a dire, dopo aver protetto tooAzure una macchina virtuale, non può essere protetto anche punti di ripristino duplicati che impedisce la creazione di una macchina virtuale. Se si desidera toosee quale istanza del Server di Backup di Azure protegge già un membro, il punto toohello toosee hello Nome membro hello protezione del server.
 
-4. Nella pagina **Seleziona metodo protezione dati** immettere un nome per il gruppo protezione dati. Sono selezionate la protezione a breve termine (su disco) e la protezione online. Per utilizzare la protezione online (su Azure), è necessario utilizzare la protezione a breve termine su disco. Fare clic su **Avanti** per procedere con l'intervallo di protezione a breve termine.
+4. In hello **Selezione metodo protezione dati** pagina, immettere un nome per il gruppo di protezione dati hello. Protezione a breve termine (toodisk) e online sono selezionati. Se si desidera la protezione online toouse (tooAzure), è necessario utilizzare toodisk protezione a breve termine. Fare clic su **Avanti** intervallo di protezione tooproceed toohello a breve termine.
 
     ![Seleziona metodo protezione dati](./media/backup-azure-backup-server-vmware/name-protection-group.png)
 
-5. Nella pagina **Specifica obiettivi a breve termine** per **Intervallo di conservazione** specificare il numero di giorni per cui si vogliono mantenere i punti di recupero *archiviati su disco*. Se si vuole modificare l'ora e i giorni in cui vengono eseguiti i punti di recupero, fare clic su **Modifica**. I punti di recupero a breve termine sono backup completi e non backup incrementali. Quando si è soddisfatti degli obiettivi a breve termine, fare clic su **Avanti**.
+5. In hello **Specifica obiettivi a breve termine** pagina per **mantenimento**, specificare hello numero di giorni per cui si desidera che i punti di ripristino di tooretain *archiviati toodisk*. Se si desidera ora hello toochange e giorni quando vengono eseguiti i punti di ripristino, fare clic su **modifica**. punti di ripristino a breve termine Hello sono backup completi. e non backup incrementali. Quando si è soddisfatti gli obiettivi a breve termine hello, fare clic su **Avanti**.
 
     ![Specifica obiettivi a breve termine](./media/backup-azure-backup-server-vmware/short-term-goals.png)
 
-6. Nella pagina **Verifica allocazione dischi** esaminare e, se necessario, modificare lo spazio su disco per le macchine virtuali. Le allocazioni dischi consigliate sono basate sul periodo di mantenimento dati specificato nella pagina **Specifica obiettivi a breve termine**, sul tipo di carico di lavoro e sulle dimensioni dei dati protetti (identificati nel passaggio 3).  
+6. In hello **Verifica allocazione dischi** pagina, esaminare e se necessario, modificare lo spazio su disco hello per le macchine virtuali hello. Hello consigliati allocazioni dei dischi sono in base hello periodo di mantenimento specificato in hello **Specifica obiettivi a breve termine** pagina hello tipo di carico di lavoro e dimensioni di hello di hello i dati protetti (identificati nel passaggio 3).  
 
-  - **Dimensione dati:** la dimensione dei dati nel gruppo protezione dati.
-  - **Spazio su disco:** la quantità di spazio su disco consigliata per il gruppo protezione dati. Se si vuole modificare questa impostazione, è consigliabile allocare uno spazio totale leggermente superiore rispetto alla quantità stimata per la crescita di ogni origine dati.
-  - **Condividi percorso dati:** se si attiva la condivisione del percorso dati, è possibile eseguire il mapping di più origini dati nella protezione a un'unica replica e a un unico volume del punto di recupero. La condivisione del percorso non è supportata per tutti i carichi di lavoro.
-  - **Aumenta automaticamente:** se si attiva questa impostazione e i dati del gruppo protezione superano l'allocazione iniziale, System Center Data Protection Manager tenta di aumentare le dimensioni del disco del 25%.
-  - **Dettagli pool di archiviazione:** visualizza lo stato del pool di archiviazione, incluse dimensione totale e dimensione rimanente dei dischi.
+  - **Dimensioni dei dati:** dimensioni dei dati di hello nel gruppo protezione dati hello.
+  - **Spazio su disco:** hello quantità di spazio su disco per il gruppo di protezione dati hello consigliata. Se si desidera toomodify questa impostazione, è consigliabile allocare uno spazio totale leggermente superiore rispetto a quanto hello che si prevede di che aumento delle dimensioni di ogni origine dati.
+  - **Condividi percorso dati:** se si attiva la condivisione del percorso, più origini dati nella protezione hello possono mappare tooa singola replica e volume del punto di ripristino. La condivisione del percorso non è supportata per tutti i carichi di lavoro.
+  - **Aumento automatico delle dimensioni:** se si abilita questa impostazione, se i dati nel gruppo protetto hello superano l'allocazione iniziale di hello, System Center Data Protection Manager tenta di dimensioni del disco tooincrease hello del 25%.
+  - **Dettagli pool di archiviazione:** Mostra stato hello hello del pool di archiviazione, inclusi totale e residua dimensioni del disco.
 
     ![Rivedere l'allocazione dei dischi](./media/backup-azure-backup-server-vmware/review-disk-allocation.png)
 
-    Una volta ottenuta l’allocazione di spazio adeguata, fare clic su **Avanti**.
+    Quando si è soddisfatti di allocazione dello spazio di hello, fare clic su **Avanti**.
 
-7. Nella pagina **Scelta del metodo per la creazione della replica** specificare come si vuole generare la copia iniziale, o la replica, dei dati protetti nel server di Backup di Azure.
+7. In hello **Scegli metodo di creazione della Replica** pagina, specificare come copia iniziale di toogenerate hello o replica, dei dati di hello protetto nel Server di Backup di Azure.
 
-    Il valore predefinito è **Automaticamente tramite rete** e **Ora**. Se si usa il valore predefinito, è consigliabile specificare un'ora non di punta. Scegliere **In seguito** e specificare un giorno e un'ora.
+    valore predefinito di Hello è **automaticamente tramite rete hello** e **ora**. Se si utilizza l'impostazione di hello, si consiglia di specificare un orario. Scegliere **In seguito** e specificare un giorno e un'ora.
 
-    Per grandi quantità di dati o condizioni della rete non ottimali, tenere in considerazione la replica dei dati offline tramite supporti di memorizzazione rimovibili.
+    Per grandi quantità di dati o condizioni della rete-ottimale, prendere in considerazione la replica dei dati hello offline usando supporti rimovibili.
 
     Dopo avere effettuato le scelte, fare clic su **Avanti**.
 
     ![Scelta del metodo per la creazione della replica](./media/backup-azure-backup-server-vmware/replica-creation.png)
 
-8. Nella pagina **Opzioni di verifica coerenza** selezionare come e quando automatizzare le verifiche della coerenza. È possibile eseguire verifiche della coerenza quando i dati di replica diventano incoerenti o in base a una pianificazione impostata.
+8. In hello **opzioni di verifica coerenza** pagina, selezionare come e quando le verifiche della coerenza hello tooautomate. È possibile eseguire verifiche della coerenza quando i dati di replica diventano incoerenti o in base a una pianificazione impostata.
 
-    Per non configurare la verifica automatica della coerenza, è possibile eseguire una verifica manuale. Nell'area di protezione della console del server di Backup di Azure fare clic con il pulsante destro del mouse sul gruppo protezione dati e quindi selezionare **Esegui verifica coerenza**.
+    Se non si desidera tooconfigure le verifiche di coerenza automatica, è possibile eseguire una verifica manuale. Nell'area di protezione hello hello Azure Backup della console di Server, gruppo di protezione dati hello e quindi scegliere **Esegui verifica coerenza**.
 
-    Fare clic su **Avanti** per passare alla pagina successiva.
+    Fare clic su **Avanti** toomove toohello prossima pagina.
 
-9. Nella pagina **Specifica i dati da proteggere online** selezionare una o più origini dati da proteggere. È possibile selezionare i membri singolarmente o fare clic su **Seleziona tutto** per scegliere tutti i membri. Dopo avere scelto i membri, fare clic su **Avanti**.
+9. In hello **specificare dati da proteggere Online** pagina, selezionare uno o più origini dati che si desidera tooprotect. È possibile selezionare i membri di hello singolarmente o fare clic su **Seleziona tutto** toochoose tutti i membri. Dopo aver scelto i membri di hello, fare clic su **Avanti**.
 
     ![Specifica i dati da proteggere online](./media/backup-azure-backup-server-vmware/select-data-to-protect.png)
 
-10. Nella pagina **Specificare la pianificazione dei backup online** specificare la pianificazione per la generazione di punti di recupero dal backup del disco. Dopo la generazione, il punto di recupero viene trasferito nell'insieme di credenziali di Servizi di ripristino di Azure. Quando si è soddisfatti della pianificazione del backup online, fare clic su **Avanti**.
+10. In hello **pianificazione dei Backup Online specificare** specificare toogenerate i punti di ripristino da backup su disco hello hello pianificazione. Dopo la generazione di un punto di ripristino hello, è l'insieme di credenziali di servizi di ripristino toohello trasferiti in Azure. Quando si è soddisfatti di pianificazione dei backup online hello, fare clic su **Avanti**.
 
     ![Specificare la pianificazione dei backup online](./media/backup-azure-backup-server-vmware/online-backup-schedule.png)
 
-11. Nella pagina **Specificare i criteri di conservazione online** indicare per quanto tempo si vogliono mantenere i dati di backup in Azure. Dopo aver definito i criteri, fare clic su **Avanti**.
+11. In hello **specificare criteri di conservazione Online** pagina, specificare quanto tempo si desidera tooretain dati di backup hello in Azure. Dopo aver definito i criteri di hello, fare clic su **Avanti**.
 
     ![Specificare i criteri di mantenimento online](./media/backup-azure-backup-server-vmware/retention-policy.png)
 
-    Non esiste un limite di tempo per la conservazione dei dati in Azure. Quando si archiviano dati di punti di recupero in Azure, l'unico limite è un massimo di 9999 punti di recupero per ogni istanza protetta. In questo esempio l'istanza protetta è il server VMware.
+    Non esiste un limite di tempo per la conservazione dei dati in Azure. Quando si archiviano i dati relativi al punto di ripristino in Azure, hello solo limite è che non è possibile avere più di 9999 punti di ripristino per ogni istanza protetta. In questo esempio, istanza protetta hello è server VMware hello.
 
-12. Nella pagina **Riepilogo** rivedere i dettagli relativi ai membri e alle impostazioni del gruppo protezione dati e quindi fare clic su **Crea gruppo**.
+12. In hello **riepilogo** pagina, esaminare i dettagli di hello per le impostazioni e i membri del gruppo protezione dati e quindi fare clic su **Crea gruppo**.
 
     ![Riepilogo delle impostazioni e dei membri del gruppo protezione dati](./media/backup-azure-backup-server-vmware/protection-group-summary.png)
 
 ## <a name="next-steps"></a>Passaggi successivi
-Se si usa il server di Backup di Azure per proteggere i carichi di lavoro VMware, può essere utile usare il server di Backup di Azure per proteggere [server Microsoft Exchange](./backup-azure-exchange-mabs.md), [farm Microsoft SharePoint](./backup-azure-backup-sharepoint-mabs.md) o [database SQL Server](./backup-azure-sql-mabs.md).
+Se si utilizzano i carichi di lavoro di Azure Backup Server tooprotect VMware, potrebbe essere interessati all'uso di Server di Backup di Azure toohelp proteggere un [Microsoft Exchange server](./backup-azure-exchange-mabs.md), [farm Microsoft SharePoint](./backup-azure-backup-sharepoint-mabs.md), o un [Database di SQL Server](./backup-azure-sql-mabs.md).
 
-Per informazioni sui problemi relativi alla registrazione dell'agente, alla configurazione del gruppo protezione dati e al backup dei processi, vedere [Risolvere i problemi del server di Backup di Azure](./backup-azure-mabs-troubleshoot.md) .
+Per informazioni sui problemi con la registrazione dell'agente di hello, configurare il gruppo di protezione dati hello o il backup dei processi, vedere [risoluzione dei problemi dei Server di Backup Azure](./backup-azure-mabs-troubleshoot.md).

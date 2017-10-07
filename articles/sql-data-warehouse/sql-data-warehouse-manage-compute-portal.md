@@ -1,6 +1,6 @@
 ---
-title: Gestire la potenza di calcolo in Azure SQL Data Warehouse (Portale di Azure) | Microsoft Docs
-description: "Attività del portale di Azure per la gestione della potenza di calcolo. Ridimensionare le risorse di calcolo cambiando il numero di DWU. In alternativa, sospendere e riprendere le risorse di calcolo per ridurre i costi."
+title: aaaManage calcolo power in Azure SQL Data Warehouse (portale di Azure) | Documenti Microsoft
+description: "Attività del portale Azure toomanage potenza di calcolo. Ridimensionare le risorse di calcolo cambiando il numero di DWU. In alternativa, è possibile sospendere e riprendere toosave costi delle risorse di calcolo."
 services: sql-data-warehouse
 documentationcenter: NA
 author: hirokib
@@ -15,11 +15,11 @@ ms.workload: data-services
 ms.custom: manage
 ms.date: 10/31/2016
 ms.author: elbutter;barbkess
-ms.openlocfilehash: 63888d5dd103b585cf18e4787d3e779810163e3d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b2e84b3763e97ce88c190eecfb64b2d06f727229
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="manage-compute-power-in-azure-sql-data-warehouse-azure-portal"></a>Gestire la potenza di calcolo in Azure SQL Data Warehouse (portale di Azure)
 > [!div class="op_single_selector"]
@@ -35,33 +35,33 @@ ms.lasthandoff: 07/11/2017
 ## <a name="scale-compute-power"></a>Ridimensionare la potenza di calcolo
 [!INCLUDE [SQL Data Warehouse scale DWUs description](../../includes/sql-data-warehouse-scale-dwus-description.md)]
 
-Per modificare le risorse di calcolo:
+risorse di calcolo toochange:
 
-1. Aprire il [portale di Azure][Azure portal] e quindi il database e fare clic su **Ridimensiona**.
+1. Aprire hello [portale di Azure][Azure portal], aprire il database e fare clic su **scala**.
 
     ![Fare clici su Ridimensiona][1]
-2. Nel pannello Scala, spostare il dispositivo di scorrimento a sinistra o a destra per modificare l'impostazione delle DWU.
+2. Nel Pannello di scala hello, hello scorrimento sinistro o destro del mouse all'impostazione DWU toochange hello.
 
     ![Spostare il dispositivo di scorrimento][2]
-3. Fare clic su **Save**. Viene visualizzato un messaggio di conferma. Fare clic su **Sì** per confermare o su **No** per annullare.
+3. Fare clic su **Save**. Viene visualizzato un messaggio di conferma. Fare clic su **Sì** tooconfirm o **non** toocancel.
 
     ![Fare clic su Salva.][3]
 
 <a name="pause-compute-bk"></a>
 
-## <a name="pause-compute"></a>Sospendere il calcolo
+## <a name="pause-compute"></a>Sospendere le risorse di calcolo
 [!INCLUDE [SQL Data Warehouse pause description](../../includes/sql-data-warehouse-pause-description.md)]
 
-Per sospende un database:
+toopause un database:
 
-1. Aprire il [portale di Azure][Azure portal] e quindi il database. Osservare che lo stato è **Online**.
+1. Aprire hello [portale di Azure] [ Azure portal] e aprire il database. Si noti che lo stato è di hello **Online**.
 
     ![Stato online][6]
-2. Per sospendere il calcolo e le risorse di memoria, fare clic su **Sospendi**. Viene visualizzato un messaggio di conferma. Fare clic su **Sì** per confermare o su **No** per annullare.
+2. Fare clic su risorse di calcolo e memoria toosuspend, **pausa**, e quindi viene visualizzato un messaggio di conferma. Fare clic su **Sì** tooconfirm o **non** toocancel.
 
     ![Conferma sospensione][7]
-3. Durante l'avvio di SQL Data Warehouse lo stato del database è **Sospensione in corso**.
-4. Quando lo stato diventa **Sospeso**, l'operazione di sospensione è completa e le DWU non vengono più addebitate.
+3. Durante l'avvio di SQL Data Warehouse database hello, lo stato di hello è **sospensione**.
+4. Quando lo stato di hello è **pausa**, viene eseguita l'operazione di sospensione hello e non siano state addebitate per Dwu.
 
     ![Stato di sospensione][4]
 
@@ -70,16 +70,16 @@ Per sospende un database:
 ## <a name="resume-compute"></a>Riavviare le risorse di calcolo
 [!INCLUDE [SQL Data Warehouse resume description](../../includes/sql-data-warehouse-resume-description.md)]
 
-Per riattivare un database:
+tooresume un database:
 
-1. Aprire il [portale di Azure][Azure portal] e quindi il database. Osservare che lo stato è **Sospeso**.
+1. Aprire hello [portale di Azure] [ Azure portal] e aprire il database. Si noti che lo stato è di hello **pausa**.
 
     ![Database in pausa][4]
-2. Per riattivare il database fare clic su **Avvia**. Viene visualizzato un messaggio di conferma. Fare clic su **Sì** per confermare o su **No** per annullare.
+2. Fare clic su database di hello tooresume **avviare**, e quindi viene visualizzato un messaggio di conferma. Fare clic su **Sì** tooconfirm o **non** toocancel.
 
     ![Conferma riattivazione][5]
-3. Durante l'avvio di SQL Data Warehouse lo stato del database è "Sospensione in corso".
-4. Quando lo stato diventa **Online**il database è pronto.
+3. Durante l'avvio di SQL Data Warehouse database hello, lo stato di hello è "Fase di ripresa".
+4. Quando lo stato di hello è **online**, hello database è pronto.
 
     ![Stato online][6]
 

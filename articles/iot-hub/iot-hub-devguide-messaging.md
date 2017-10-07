@@ -1,5 +1,5 @@
 ---
-title: Informazioni sulla messaggistica hub IoT di Azure | Microsoft Docs
+title: messaggistica di Azure IoT Hub aaaUnderstand | Documenti Microsoft
 description: Guida per gli sviluppatori - Messaggistica da dispositivo a cloud e da cloud a dispositivo con l'hub IoT. Include informazioni sui formati dei messaggi e sui protocolli di comunicazione supportati.
 services: iot-hub
 documentationcenter: .net
@@ -14,29 +14,29 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/25/2017
 ms.author: dobett
-ms.openlocfilehash: f54398d7ac46bf178d2bb603669b399d25370736
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a610741e23e243f392f1c042f9ab4a00d42f734f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="device-to-cloud-and-cloud-to-device-messaging-with-iot-hub"></a>Messaggistica da dispositivo a cloud e da cloud a dispositivo con l'hub IoT
 
-Usare la messaggistica dell'hub IoT per comunicare con i dispositivi:
+Usare l'IoT Hub messaggistica toocommunicate con i dispositivi da:
 
-* inviando messaggi [da dispositivo a cloud][lnk-d2c] dai dispositivi per il back-end della soluzione;
-* inviando messaggi [da cloud a dispositivo][lnk-c2d] dal back-end della soluzione ai dispositivi.
+* L'invio di [da dispositivo a cloud] [ lnk-d2c] messaggi dalla soluzione tooyour dispositivi back-end.
+* L'invio di [cloud a dispositivo] [ lnk-c2d] i messaggi dalla soluzione hello nuovamente terminare tooyour dispositivi.
 
-Le proprietà di base della funzionalità di messaggistica dell'hub IoT sono l'affidabilità e la durabilità dei messaggi. Queste proprietà consentono la resilienza in caso di connettività intermittente sul lato dispositivo e picchi di carico durante l'elaborazione degli eventi sul lato cloud. L'hub IoT implementa *almeno una volta* le garanzie di recapito per la messaggistica da dispositivo a cloud e da cloud a dispositivo.
+Proprietà principali di funzionalità di messaggistica IoT Hub sono hello e affidabilità dei messaggi. Queste proprietà consentono la connettività di resilienza toointermittent sul lato dispositivo hello e tooload picchi in elaborazione sul lato cloud hello di eventi. L'hub IoT implementa *almeno una volta* le garanzie di recapito per la messaggistica da dispositivo a cloud e da cloud a dispositivo.
 
-Per un'introduzione alle funzionalità dell'hub IoT, vedere gli articoli [Azure e Internet delle cose][lnk-azure-iot] e [Panoramica del servizio hub IoT di Azure][lnk-iot-hub-overview].
+Per le funzionalità di toohello un'introduzione di IoT Hub, vedere gli articoli di hello [Azure e Internet of Things] [ lnk-azure-iot] e [Panoramica del servizio dell'IoT Hub Azure hello] [lnk-iot-hub-overview].
 
-## <a name="when-to-use-iot-hub-messaging"></a>Quando usare la messaggistica dell'hub IoT
+## <a name="when-toouse-iot-hub-messaging"></a>Quando toouse Hub IoT messaggistica
 
-Usare i messaggi da dispositivo a cloud per inviare la telemetria relativa alle serie temporali e gli avvisi dall'app del dispositivo e i messaggi da cloud a dispositivo per notifiche unidirezionali all'app del dispositivo.
+Utilizzare i messaggi da dispositivo a cloud per l'invio di avvisi e i dati di telemetria serie ora dall'app del dispositivo e cloud a dispositivo per app per dispositivi tooyour notifiche unidirezionale.
 
-* Vedere [Indicazioni sulle comunicazioni da dispositivo a cloud][lnk-d2c-guidance] in caso di dubbi tra l'uso delle proprietà segnalate, dei messaggi da dispositivo a cloud o del caricamento di file.
-* Vedere [Indicazioni sulle comunicazioni da cloud a dispositivo][lnk-c2d-guidance] in caso di dubbi tra l'uso delle proprietà desiderate, dei metodi diretti o dei messaggi da cloud a dispositivo.
+* Fare riferimento troppo[materiale sussidiario per la comunicazione da dispositivo a cloud] [ lnk-d2c-guidance] se in dubbio tra l'utilizzo di messaggi da dispositivo a cloud, proprietà segnalata o caricamento del file.
+* Fare riferimento troppo[indicazioni di comunicazione Cloud a dispositivo] [ lnk-c2d-guidance] se in dubbio tra l'utilizzo di messaggi da cloud a dispositivo, le proprietà desiderate o metodi diretti.
 
 ## <a name="next-steps"></a>Passaggi successivi
 

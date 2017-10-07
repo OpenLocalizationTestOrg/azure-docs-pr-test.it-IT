@@ -1,6 +1,6 @@
 ---
-title: Monitorare lo stato del processo di codifica con il portale di Azure
-description: Questa esercitazione illustra i passaggi necessari per monitorare lo stato del processo nel portale di Azure.
+title: aaaMonitor codifica lo stato del processo con hello portale di Azure
+description: In questa esercitazione vengono illustrati i passaggi hello di monitoraggio dello stato del processo utilizzando hello portale di Azure.
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,13 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/20/2017
 ms.author: juliako
-ms.openlocfilehash: 571d222068e92a45b0e37bec298bab7a6825f731
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 4282553d5dbed65ea6427bcd6de778795f1ff9ed
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="monitor-encoding-job-progress-with-the-azure-portal"></a>Monitorare lo stato del processo di codifica con il portale di Azure
+# <a name="monitor-encoding-job-progress-with-hello-azure-portal"></a>Monitorare lo stato del processo codifica con hello portale di Azure
 > [!div class="op_single_selector"]
 > * [Portale](media-services-portal-check-job-progress.md)
 > * [.NET](media-services-check-job-progress.md)
@@ -30,17 +30,17 @@ ms.lasthandoff: 08/29/2017
 
 ## <a name="overview"></a>Panoramica
 > [!NOTE]
-> Per completare l'esercitazione, è necessario un account Azure. Per informazioni dettagliate, vedere la pagina relativa alla [versione di valutazione gratuita di Azure](https://azure.microsoft.com/pricing/free-trial/). 
+> toocomplete questa esercitazione, è necessario un account di Azure. Per informazioni dettagliate, vedere la pagina relativa alla [versione di valutazione gratuita di Azure](https://azure.microsoft.com/pricing/free-trial/). 
 > 
 > 
 
-Quando si esegue un processo, spesso è necessario monitorarne l'avanzamento. 
+Quando si eseguono i processi, spesso richiedono un avanzamento del processo tootrack modo. 
 
-Per monitorare l'avanzamento del processo di codifica, fare clic su **Impostazioni** nella parte superiore della pagina e selezionare **Processi**.
+lo stato di avanzamento di toomonitor hello di hello codifica processo, fare clic su **impostazioni** (in alto hello hello pagina) e quindi selezionare **processi**.
 
 ![Processi](./media/media-services-portal-vod-get-started/media-services-jobs.png)
 
-È possibile fare clic sul processo per visualizzare altri dettagli.
+È possibile fare clic hello processo toosee ulteriori dettagli.
 
 ![Processi](./media/media-services-portal-vod-get-started/media-services-job-progress2.png)
 

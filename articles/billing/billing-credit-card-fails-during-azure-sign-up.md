@@ -1,6 +1,6 @@
 ---
-title: Carta di credito rifiutata al momento dell'iscrizione ad Azure | Documentazione Microsoft
-description: Informazioni su come risolvere i problemi relativi alla carta di credito o di debito quando viene rifiutata al momento dell'iscrizione ad Azure.
+title: scheda aaaCredit rifiutato chiocciola Azure backup | Documenti Microsoft
+description: Informazioni su come tooresolve viene generato quando la carta di credito viene rifiutato quando si tenta di toosign iscrizione a Azure.
 services: 
 documentationcenter: 
 author: JiangChen79
@@ -16,28 +16,28 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/13/2017
 ms.author: cjiang
-ms.openlocfilehash: bad37f2447ac8de727326914b611f81effc9cf3f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a246f443638b10693b1a3d3335cc56ed24dddb5c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="your-debit-card-or-credit-card-is-declined-at-azure-sign-up"></a>La carta di debito o credito viene rifiutata al momento dell'iscrizione ad Azure
-Se la carta di debito o credito viene rifiutata o non accettata al momento dell'iscrizione ad Azure, è possibile che si riscontri uno dei problemi seguenti:
+Se la carta di credito o la carta di debito è rifiutato o non accettato quando effettua l'iscrizione per Azure, si potrebbe essere rivolta a uno dei seguenti problemi hello:
 
-* **Il provider della carta di credito o debito non è accettato nel proprio paese.** Quando si sceglie la carta, è possibile visualizzare solo le opzioni valide nel paese selezionato. Contattare la banca o l'autorità emittente della carta per verificare che la carta di credito sia abilitata per le transazioni internazionali. Vedere l'elenco di paesi e valute supportati in [Domande frequenti relative agli acquisti di Azure](https://azure.microsoft.com/pricing/faq/).
-* **Le informazioni sulla carta di credito o debito sono errate o incomplete**. Il nome, l'indirizzo e il codice CVV immessi devono corrispondere esattamente a quanto riportato sulla carta.
+* **provider della carta di credito o di debito di Hello non è accettato per il proprio paese.** Quando si sceglie una scheda, visualizzare solo le opzioni hello valide nel paese di hello selezionato. Contattare il tooconfirm dell'autorità di certificazione di carta di carta di credito abilitato per le transazioni internazionali. Vedere l'elenco di paesi e valute supportati in [Domande frequenti relative agli acquisti di Azure](https://azure.microsoft.com/pricing/faq/).
+* **Le informazioni sulla carta di credito o debito sono errate o incomplete**. Hello nome, indirizzo e il codice CVV che immesso deve corrispondere esattamente ciò che viene visualizzato nella scheda hello.
 * **Si sta usando una carta prepagata o virtuale.** Le carte di credito o debito virtuali o prepagate non sono accettate come opzione di pagamento per l'iscrizione ad Azure.
-* **La carta è inattiva o bloccata.** Contattare la banca per verificare che la carta sia attiva.
-* **Potrebbero verificarsi altri problemi relativi all'iscrizione.** Come [risolvere i problemi relativi all'iscrizione ad Azure](billing-troubleshoot-azure-sign-up-issues.md).
+* **scheda Hello è inattivo o bloccato.** Contattare il tooensure bank è attiva la scheda.
+* **Possono verificarsi altri problemi relativi alla sottoscrizione** estrarre come troppo[risolvere i problemi di iscrizione Azure](billing-troubleshoot-azure-sign-up-issues.md).
 
 Dopo aver aggiornato le informazioni di pagamento, provare a eseguire nuovamente l'iscrizione.
 
-## <a name="representing-a-business-that-doesnt-want-to-pay-by-card-set-up-invoicing"></a>L'utente rappresenta un'azienda che non desidera pagare con carta? Impostare la fatturazione
-Se l'utente rappresenta un'azienda, è possibile pagare la sottoscrizione di Azure con metodi di pagamento della fattura, ad esempio assegni, assegni con pagamento in 24 ore e bonifici. Una volta selezionato il metodo di pagamento tramite fattura, non è più possibile modificare la scelta. Per pagare tramite fattura, vedere [Fatturazione di Azure](https://azure.microsoft.com/pricing/invoicing/).
+## <a name="representing-a-business-that-doesnt-want-toopay-by-card-set-up-invoicing"></a>Che rappresenta un'azienda che non desidera toopay tramite carta? Impostare la fatturazione
+Se l'utente rappresenta un'azienda, è possibile pagare la sottoscrizione di Azure con metodi di pagamento della fattura, ad esempio assegni, assegni con pagamento in 24 ore e bonifici. È possibile modificare l'opzione di pagamento tooanother dopo toopay da fattura è impostato. toopay da fattura, vedere [fatturazione di Azure - come tooinvoice](https://azure.microsoft.com/pricing/invoicing/).
 
 ## <a name="update-your-credit-card-or-debit-card-information"></a>Aggiornare le informazioni sulla carta di credito o debito
-Dopo l'iscrizione, [gestire le informazioni di pagamento](billing-how-to-change-credit-card.md) per modificare o rimuovere una carta.
+Dopo l'iscrizione, [gestire le informazioni di pagamento](billing-how-to-change-credit-card.md) toochange o rimuovere una scheda.
 
 ## <a name="need-more-help-contact-support"></a>Ulteriore assistenza Contattare il supporto tecnico.
-Se si necessita ancora di assistenza, [contattare il supporto tecnico](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade) per ottenere una rapida risoluzione del problema.
+Se è ancora necessario della Guida, [contattare il supporto tecnico](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade) tooget risolta il problema.

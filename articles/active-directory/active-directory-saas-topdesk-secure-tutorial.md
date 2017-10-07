@@ -1,6 +1,6 @@
 ---
 title: 'Esercitazione: Integrazione di Azure Active Directory con TOPdesk - Secure | Documentazione Microsoft'
-description: Informazioni su come usare TOPdesk - Secure con Azure Active Directory per abilitare l'accesso Single Sign-On, il provisioning automatizzato e altro ancora.
+description: Informazioni su come toouse TOPdesk - Secure con Azure Active Directory tooenable single sign-on, il provisioning automatizzato e altro ancora!.
 services: active-directory
 author: jeevansd
 documentationcenter: na
@@ -13,67 +13,67 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 02/22/2017
 ms.author: jeedes
-ms.openlocfilehash: 28f0542dbe87bb34c83a7852db7c3a9fef055ce9
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 10fe420d1691c2845b89c779486ffd6fcd736432
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-topdesk---secure"></a>Esercitazione: Integrazione di Azure Active Directory con TOPdesk - Secure
-Questa esercitazione descrive l'integrazione di Azure e TOPdesk - Secure.  
-Per lo scenario descritto in questa esercitazione si presuppone che l'utente disponga di quanto segue:
+obiettivo di Hello di questa esercitazione è l'integrazione di hello tooshow di Azure e TOPdesk - Secure.  
+scenario Hello descritto in questa esercitazione si presuppone che si disponga già di hello seguenti elementi:
 
 * Sottoscrizione di Azure valida
 * Sottoscrizione di TOPdesk - Secure abilitata per l'accesso Single Sign-On
 
-Al termine dell'esercitazione, gli utenti di Azure AD assegnati a TOPdesk - Secure potranno accedere all'applicazione tramite il sito aziendale di TOPdesk - Secure (accesso avviato dal provider di servizi) o seguendo le istruzioni riportate in [Introduzione al pannello di accesso](active-directory-saas-access-panel-introduction.md).
+Dopo aver completato questa esercitazione, gli utenti di hello Azure AD assegnati tooTOPdesk - verrà protetto è in grado di toosingle sign in un'applicazione hello in TOPdesk - sito aziendale protetta (accesso avviato dal provider di servizi su) oppure utilizza hello [introduzione Pannello di accesso toohello](active-directory-saas-access-panel-introduction.md).
 
-Lo scenario descritto in questa esercitazione include i blocchi predefiniti seguenti:
+scenario di Hello descritto in questa esercitazione è costituito da hello seguenti blocchi predefiniti:
 
-1. Abilitazione dell'integrazione dell'applicazione TOPdesk - Secure
+1. Abilitare l'integrazione dell'applicazione hello per TOPdesk - Secure
 2. Configurazione dell'accesso Single Sign-On
 3. Configurazione del provisioning utente
 4. Assegnazione degli utenti
 
 ![Scenario](./media/active-directory-saas-topdesk-secure-tutorial/IC790596.png "Scenario")
 
-## <a name="enabling-the-application-integration-for-topdesk---secure"></a>Abilitazione dell'integrazione dell'applicazione TOPdesk - Secure
-Questa sezione descrive come abilitare l'integrazione dell'applicazione per TOPdesk - Secure.
+## <a name="enabling-hello-application-integration-for-topdesk---secure"></a>Abilitare l'integrazione dell'applicazione hello per TOPdesk - Secure
+obiettivo di Hello di questa sezione è toooutline come integrazione dell'applicazione hello tooenable per TOPdesk - Secure.
 
-### <a name="to-enable-the-application-integration-for-topdesk---secure-perform-the-following-steps"></a>Per abilitare l'integrazione dell'applicazione per TOPdesk - Secure, seguire questa procedura:
-1. Nel portale di Azure classico fare clic su **Active Directory**nel riquadro di spostamento sinistro.
+### <a name="tooenable-hello-application-integration-for-topdesk---secure-perform-hello-following-steps"></a>integrazione dell'applicazione hello tooenable per TOPdesk - Secure, eseguire hello alla procedura seguente:
+1. Nel portale di Azure classico, nel riquadro di spostamento sinistro hello hello fare clic su **Active Directory**.
    
     ![Active Directory](./media/active-directory-saas-topdesk-secure-tutorial/IC700993.png "Active Directory")
 
-2. Nell'elenco **Directory** selezionare la directory per la quale si desidera abilitare l'integrazione delle directory.
+2. Da hello **Directory** elenco, directory hello selezionare per il quale si desidera l'integrazione di directory tooenable.
 
-3. Per aprire la visualizzazione applicazioni, nella visualizzazione directory fare clic su **Applications** nel menu superiore.
+3. visualizzazione di applicazioni hello tooopen, nella visualizzazione directory hello, fare clic su **applicazioni** nel menu superiore hello.
    
     ![Applicazioni](./media/active-directory-saas-topdesk-secure-tutorial/IC700994.png "Applicazioni")
 
-4. Fare clic su **Add** nella parte inferiore della pagina.
+4. Fare clic su **Aggiungi** nella parte inferiore di hello della pagina hello.
    
     ![Aggiungere un'applicazione](./media/active-directory-saas-topdesk-secure-tutorial/IC749321.png "Aggiungere un'applicazione")
 
-5. Nella finestra di dialogo **Come procedere** fare clic su **Aggiungere un'applicazione dalla raccolta**.
+5. In hello **cosa si desidera toodo** finestra di dialogo, fare clic su **aggiungere un'applicazione dalla raccolta di hello**.
    
     ![Aggiungere un'applicazione dalla raccolta](./media/active-directory-saas-topdesk-secure-tutorial/IC749322.png "Aggiungere un'applicazione dalla raccolta")
 
-6. Nella **casella di ricerca** digitare **TOPdesk - Secure**.
+6. In hello **casella di ricerca**, tipo **TOPdesk - Secure**.
    
     ![Raccolta di applicazioni](./media/active-directory-saas-topdesk-secure-tutorial/IC790597.png "Raccolta di applicazioni")
 
-7. Nel riquadro dei risultati selezionare **TOPdesk - Secure** e quindi fare clic su **Completa** per aggiungere l'applicazione.
+7. Nel riquadro risultati hello selezionare **TOPdesk - Secure**, quindi fare clic su **completa** tooadd un'applicazione hello.
    
     ![TOPdesk - Secure](./media/active-directory-saas-topdesk-secure-tutorial/IC791933.png "TOPdesk - Secure")
 
 ## <a name="configuring-single-sign-on"></a>Configurazione dell'accesso Single Sign-On
-Questa sezione descrive come consentire agli utenti di eseguire l'autenticazione a TOPdesk - Secure tramite il proprio account in Azure AD usando la federazione basata sul protocollo SAML.  
-La configurazione dell'accesso Single Sign-On per TOPdesk - Secure richiede il caricamento di un file con l'icona del logo. Per ottenere il file con l'icona, contattare il team di supporto di TOPdesk.
+obiettivo di Hello di questa sezione è toooutline come tooenable utenti tooauthenticate tooTOPdesk - Secure con il proprio account in Azure AD usando la federazione basata sul protocollo SAML hello.  
+Configurazione single sign-on per TOPdesk - Secure richiede tooupload un file icona del logo. file dell'icona hello tooget, team di supporto di TOPdesk hello contatto.
 
-### <a name="to-configure-single-sign-on-perform-the-following-steps"></a>Per configurare l'accesso Single Sign-On, seguire questa procedura:
-1. Accedere al sito aziendale di **TOPdesk - Secure** come un amministratore.
-2. Nel menu **TOPdesk** fare clic su **Settings** (Impostazioni).
+### <a name="tooconfigure-single-sign-on-perform-hello-following-steps"></a>tooconfigure accesso single sign-on, eseguire hello alla procedura seguente:
+1. Accesso tooyour **TOPdesk - Secure** sito aziendale come amministratore.
+2. In hello **TOPdesk** menu, fare clic su **impostazioni**.
    
     ![Impostazioni](./media/active-directory-saas-topdesk-secure-tutorial/IC790598.png "Impostazioni")
 
@@ -81,61 +81,61 @@ La configurazione dell'accesso Single Sign-On per TOPdesk - Secure richiede il c
    
     ![Login Settings](./media/active-directory-saas-topdesk-secure-tutorial/IC790599.png "Login Settings")
 
-4. Espandere il menu **Login Settings** (Impostazioni accesso) e quindi fare clic su **General** (Generale).
+4. Espandere hello **impostazioni di accesso** menu e quindi fare clic su **generale**.
    
     ![General](./media/active-directory-saas-topdesk-secure-tutorial/IC790600.png "General")
 
-5. Nell'area **Secure** (Sicura) della sezione di configurazione **SAML login** (Accesso SAML) seguire questa procedura:
+5. In hello **sicura** sezione di hello **SAML login** configurazione seguire hello alla procedura seguente:
    
     ![Technical Settings](./media/active-directory-saas-topdesk-secure-tutorial/IC790855.png "Technical Settings")
    
-    a. Fare clic su **Download** per scaricare il file di metadati pubblici e quindi salvarlo in locale nel computer.
+    a. Fare clic su **scaricare** toodownload hello file di metadati pubblici e quindi salvarlo in locale nel computer in uso.
    
-    b. Aprire il file dei metadati e quindi individuare il nodo **AssertionConsumerService** .
+    b. Aprire il file di metadati hello e individuare hello **AssertionConsumerService** nodo.
     
     ![Assertion Consumer Service](./media/active-directory-saas-topdesk-secure-tutorial/IC790856.png "Assertion Consumer Service")
    
-    c. Copiare il valore di **AssertionConsumerService** .  
+    c. Hello copia **AssertionConsumerService** valore.  
       
     > [!NOTE]
-    > Questo valore sarà necessario nella sezione **Configure App URL** più avanti in questa esercitazione.
+    > Si sarà necessario hello valore hello **Configura URL App** sezione più avanti in questa esercitazione.
     > 
     > 
 
 6. In un'altra finestra del Web browser accedere al portale di **portale di Azure classico** come amministratore.
 
-7. Nel **TOPdesk - Secure** pagina di integrazione dell'applicazione, fare clic su **configurare single sign-on** per aprire il * * configurare Single Sign-On * * finestra di dialogo.
+7. In hello **TOPdesk - Secure** pagina di integrazione dell'applicazione, fare clic su **configurare single sign-on** hello tooopen * * configurare Single Sign-On * * finestra di dialogo.
    
     ![Configurare l'accesso Single Sign-On](./media/active-directory-saas-topdesk-secure-tutorial/IC790602.png "Configurare l'accesso Single Sign-On")
 
-8. Nella pagina **Stabilire come si desidera che gli utenti accedano a TOPdesk - Secure** selezionare **Single Sign-On di Microsoft Azure AD** e quindi fare clic su **Avanti**.
+8. In hello **come verrebbe come utenti toosign su tooTOPdesk - Secure** selezionare **Microsoft Azure AD Single Sign-On**e quindi fare clic su **Avanti**.
    
     ![Configurare l'accesso Single Sign-On](./media/active-directory-saas-topdesk-secure-tutorial/IC790603.png "Configurare l'accesso Single Sign-On")
 
-9. Nella pagina **Configura URL app** seguire questa procedura:
+9. In hello **Configura URL App** eseguire hello alla procedura seguente:
    
     ![Configurare l'URL dell'app](./media/active-directory-saas-topdesk-secure-tutorial/IC790604.png "Configurare l'URL dell'app")
    
-    a. Nella casella di testo **URL di accesso TOPdesk - Secure** digitare l'URL usato dagli utenti per accedere all'applicazione TOPdesk - Secure, ad esempio "*https://qssolutions.topdesk.net*".
+    a. In hello **TOPdesk - Secure URL di accesso** casella di testo, digitare l'URL hello usato dal toosign gli utenti nell'applicazione TOPdesk - Secure (ad esempio: "*https://qssolutions.topdesk.net*").
    
-    b. Nella casella di testo **URL di risposta TOPdesk - Secure** incollare il valore dell'URL **AssertionConsumerService di TOPdesk - Secure**, ad esempio "*https://qssolutions.topdesk.net/tas/public/login/saml*"
+    b. In hello **TOPdesk-URL di risposta pubblica** casella di testo, incollare hello **TOPdesk - Secure AssertionConsumerService URL** (ad esempio: "*https://qssolutions.topdesk.net/tas/public/login/saml*")
    
     c. Fare clic su **Avanti**.
 
-10. Nella pagina **Configura accesso Single Sign-On in TOPdesk - Secure** fare clic su **Scarica metadati** per scaricare il file dei metadati e quindi salvarlo in locale nel computer.
+10. In hello **Configura accesso single sign-on in TOPdesk - Secure** pagina, toodownload il file di metadati, fare clic su **Scarica metadati**e quindi salvare il file hello in locale nel computer.
     
     ![Configurare l'accesso Single Sign-On](./media/active-directory-saas-topdesk-secure-tutorial/IC790605.png "Configurare l'accesso Single Sign-On")
 
-11. Per creare un file del certificato, seguire questa procedura:
+11. toocreate un file di certificato, eseguire hello alla procedura seguente:
     
     ![Certificate](./media/active-directory-saas-topdesk-secure-tutorial/IC790606.png "Certificate")
     
-    a. Aprire il file dei metadati scaricato.
-    b. Espandere il nodo **RoleDescriptor** con **xsi:type** corrispondente a **fed:ApplicationServiceType**.
-    c. Copiare il valore del nodo **X509Certificate** .
-    d. Salvare il valore copiato di **X509Certificate** in un file locale nel computer.
+    a. File di metadati scaricato hello aperto.
+    b. Espandere hello **RoleDescriptor** nodo che dispone di un **xsi: Type** di **fed: ApplicationServiceType**.
+    c. Copiare il valore di hello di hello **X509Certificate** nodo.
+    d. Salva hello copiato **X509Certificate** valore in locale nel computer in un file.
 
-12. Nel sito aziendale di TOPdesk - Secure scegliere **Settings** (Impostazioni) dal menu **TOPdesk**.
+12. In TOPdesk - Secure hello del sito della società **TOPdesk** menu, fare clic su **impostazioni**.
     
     ![Impostazioni](./media/active-directory-saas-topdesk-secure-tutorial/IC790598.png "Impostazioni")
 
@@ -143,75 +143,75 @@ La configurazione dell'accesso Single Sign-On per TOPdesk - Secure richiede il c
     
     ![Login Settings](./media/active-directory-saas-topdesk-secure-tutorial/IC790599.png "Login Settings")
 
-14. Espandere il menu **Login Settings** (Impostazioni accesso) e quindi fare clic su **General** (Generale).
+14. Espandere hello **impostazioni di accesso** menu e quindi fare clic su **generale**.
     
     ![General](./media/active-directory-saas-topdesk-secure-tutorial/IC790600.png "General")
 
-15. Nell'area **Public** (Pubblica) fare clic su **Add** (Aggiungi).
+15. In hello **pubblica** fare clic su **Aggiungi**.
     
-    ![Add](./media/active-directory-saas-topdesk-secure-tutorial/IC790607.png "Add")
+    ![Aggiungi](./media/active-directory-saas-topdesk-secure-tutorial/IC790607.png "Aggiungi")
 
-16. Nella pagina **SAML configuration assistant** seguire questa procedura:
+16. In hello **Assistente configurazione SAML** finestra di dialogo eseguire hello alla procedura seguente:
     
     ![SAML Configuration Assistant](./media/active-directory-saas-topdesk-secure-tutorial/IC790608.png "SAML Configuration Assistant")
     
-    a. Per caricare il file di metadati scaricato, in **Federation Metadata** (Metadati configurazione) fare clic su **Browse** (Sfoglia).
+    a. tooupload file i metadati scaricati, in **i metadati della federazione**, fare clic su **Sfoglia**.
 
-    b. Per caricare il file del certificato, in **Certificate (RSA)** (Certificato RSA) fare clic su **Browse** (Sfoglia).
+    b. file del certificato, in tooupload **Certificate (RSA)**, fare clic su **Sfoglia**.
 
-    c. Per caricare il file del logo ottenuto dal team di supporto del team di TOPdesk, in **Logo icon** (Icona logo) fare clic su **Browse** (Sfoglia).
+    c. file del logo hello tooupload ottenuto dal team di supporto di TOPdesk hello, in **icona del Logo**, fare clic su **Sfoglia**.
 
-    d. Nella casella di testo **User name attribute** (Attributo nome utente) digitare **http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress**.
+    d. In hello **attributo nome utente** casella tipo **http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress**.
 
-    e. Nella casella di testo **Display name** digitare un nome per la configurazione.
+    e. In hello **nome visualizzato** casella di testo, digitare un nome per la configurazione.
 
-    f. Fare clic su **Save**.
+    f. Fare clic su **Salva**.
 
-17. Nel portale di Azure classico selezionare la conferma della configurazione dell'accesso Single Sign-On e quindi fare clic su **Complete** per chiudere la finestra di dialogo **Configura accesso Single Sign-On**.
+17. Nel portale di Azure classico hello, selezionare hello conferma della configurazione di single sign-on e quindi fare clic su **completa** tooclose hello **configurare Single Sign-On** finestra di dialogo.
     
     ![Configurare l'accesso Single Sign-On](./media/active-directory-saas-topdesk-secure-tutorial/IC790609.png "Configurare l'accesso Single Sign-On")
 
 ## <a name="configuring-user-provisioning"></a>Configurazione del provisioning utente
-Per consentire agli utenti di Azure AD di accedere a TOPdesk - Secure, è necessario eseguirne il provisioning in TOPdesk - Secure.  
-Nel caso di TOPdesk - Secure, il provisioning è un'attività manuale.
+In ordine tooenable Azure AD utenti toolog TopDesk - Secure, è necessario eseguirne il provisioning in TOPdesk - Secure.  
+Nel caso di hello di TOPdesk - Secure, il provisioning è un'attività manuale.
 
-### <a name="to-configure-user-provisioning-perform-the-following-steps"></a>Per configurare il provisioning utente, seguire questa procedura:
-1. Accedere al sito aziendale di **TOPdesk - Secure** come amministratore.
-2. Nel menu in alto fare clic su **TOPdesk \> New (Nuovo) \> Support Files (File di supporto) \> Operator (Operatore)**.
+### <a name="tooconfigure-user-provisioning-perform-hello-following-steps"></a>tooconfigure provisioning degli utenti, eseguire hello alla procedura seguente:
+1. Accesso tooyour **TOPdesk - Secure** sito aziendale come amministratore.
+2. Scegliere dal menu hello in primo piano hello **TOPdesk \> New \> i file di supporto \> operatore**.
    
     ![Operator](./media/active-directory-saas-topdesk-secure-tutorial/IC790610.png "Operator")
 
-3. Nella finestra di dialogo **New Operator** seguire questa procedura:
+3. In hello **nuovo operatore** finestra di dialogo, eseguire hello alla procedura seguente:
    
     ![New Operator](./media/active-directory-saas-topdesk-secure-tutorial/IC790611.png "New Operator")
    
-    a. Fare clic sulla scheda General.
+    a. Fare clic sulla scheda Generale hello.
    
-    b. Nella casella di testo **Surname** (Cognome) della sezione **General** (Generale) digitare il cognome di un account di Azure Active Directory valido di cui si vuole eseguire il provisioning.
+    b. In hello **Surname** casella di testo di hello **generale** sezione, digitare hello cognome di un account Azure Active Directory valido, si desidera tooprovision.
    
-    c. Nella sezione **Location** (Località) selezionare un sito dalla casella **Site** (Sito).
+    c. Selezionare un **sito** per conto di hello in hello **percorso** sezione.
    
-    d. Nella casella di testo **Login Name** (Nome di accesso) della sezione **TOPdesk Login** (Accesso TOPdesk) digitare un nome di accesso per l'utente.
+    d. In hello **nome account di accesso** casella di testo di hello **TOPdesk Login** , immettere un nome di account di accesso per l'utente.
    
-    e. Fare clic su **Save**.
+    e. Fare clic su **Salva**.
 
 > [!NOTE]
-> È possibile usare qualsiasi altro strumento o API di creazione di account utente fornita da TOPdesk - Secure per eseguire il provisioning degli account utente Azure AD.
+> È possibile usare qualsiasi altro - account utente sicura di creazione o le API fornite da TOPdesk - Secure tooprovision account utente di AAD.
 > 
 > 
 
 ## <a name="assigning-users"></a>Assegnazione degli utenti
-Per testare la configurazione, è necessario concedere l'accesso all'applicazione agli utenti di Azure AD a cui si vuole consentirne l'uso, assegnando tali utenti all'applicazione.
+tootest della configurazione, è necessario toogrant hello Azure AD utenti tooallow utilizzando il tooit di accesso dell'applicazione tramite l'assegnazione.
 
-### <a name="to-assign-users-to-topdesk---secure-perform-the-following-steps"></a>Per assegnare gli utenti a TOPdesk - Secure, seguire questa procedura:
-1. Nel portale di Azure classico creare un account di test.
-2. Nel * * TOPdesk - Secure * * pagina di integrazione dell'applicazione, fare clic su **assegnare gli utenti**.
+### <a name="tooassign-users-tootopdesk---secure-perform-hello-following-steps"></a>tooassign utenti tooTOPdesk - Secure, eseguire hello alla procedura seguente:
+1. Nel portale di Azure classico hello, creare un account di prova.
+2. In hello * * TOPdesk - Secure * * pagina di integrazione dell'applicazione, fare clic su **assegnare gli utenti**.
    
     ![Assegnare utenti](./media/active-directory-saas-topdesk-secure-tutorial/IC790612.png "Assegnare utenti")
 
-3. Selezionare l'utente di test, fare clic su **Assegna** e quindi su **Sì** per confermare l'assegnazione.
+3. Selezionare l'utente test, fare clic su **assegnare**, quindi fare clic su **Sì** tooconfirm l'assegnazione.
    
     ![Sì](./media/active-directory-saas-topdesk-secure-tutorial/IC767830.png "Sì")
 
-Per testare le impostazioni di Single Sign-On, aprire il pannello di accesso. Per altre informazioni sul pannello di accesso, vedere [Introduzione al Pannello di accesso](active-directory-saas-access-panel-introduction.md).
+Se si desiderano tootest le impostazioni di single sign-on, aprire Pannello di accesso hello. Per ulteriori dettagli su hello Pannello di accesso, vedere [introduzione toohello Pannello di accesso](active-directory-saas-access-panel-introduction.md).
 

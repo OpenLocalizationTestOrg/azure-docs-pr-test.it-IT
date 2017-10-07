@@ -1,6 +1,6 @@
 ---
-title: Uso delle raccomandazioni del Centro sicurezza di Azure per migliorare la sicurezza | Microsoft Docs
-description: " Imparare a usare i criteri di sicurezza e le raccomandazioni nel Centro sicurezza di Azure per attenuare un attacco alla sicurezza. "
+title: aaaUse sicurezza tooenhance indicazioni di Centro sicurezza di Azure | Documenti Microsoft
+description: " Informazioni su come criteri di sicurezza toouse e suggerimenti in Centro sicurezza di Azure toohelp attenuare un attacco alla sicurezza. "
 services: security-center
 documentationcenter: na
 author: TerryLanfear
@@ -14,93 +14,93 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/08/2017
 ms.author: terrylan
-ms.openlocfilehash: cb4a7db5666242576bf83abbf10682cc6f53ba69
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: bd314350a5abfceea3e171f2e1b55afe4549c1b1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-azure-security-center-recommendations-to-enhance-security"></a>Uso delle raccomandazioni del Centro sicurezza di Azure per migliorare la sicurezza
-Configurando i criteri di sicurezza e implementando le raccomandazioni offerte dal Centro sicurezza di Azure, è possibile ridurre le probabilità di un importante evento di sicurezza. Questo articolo illustra come usare i criteri di sicurezza e le raccomandazioni nel Centro sicurezza di Azure per attenuare un attacco alla sicurezza.
+# <a name="use-azure-security-center-recommendations-tooenhance-security"></a>Sicurezza di utilizzare il Centro protezione Azure indicazioni tooenhance
+Configurare i criteri di sicurezza e quindi implementando consigli hello forniti dal Centro sicurezza di Azure, è possibile ridurre il possibilità di hello di un evento di protezione. Questo articolo illustra come criteri di sicurezza toouse e suggerimenti in Centro sicurezza PC toohelp attenuare un attacco alla sicurezza.
 
 > [!NOTE]
-> Questo articolo si basa sui ruoli e i concetti introdotti nella [guida alla pianificazione e gestione](security-center-planning-and-operations-guide.md) del Centro sicurezza. Prima di continuare è consigliabile esaminare la guida alla pianificazione.
+> Questo articolo si basa su ruoli di hello e i concetti introdotti in Centro sicurezza PC hello [Guida alla pianificazione e le operazioni](security-center-planning-and-operations-guide.md). È una buona idea tooreview hello Guida alla pianificazione al prima di continuare.
 >
 >
 
 ## <a name="managing-security-recommendations"></a>Gestione delle raccomandazioni sulla sicurezza
-I criteri di sicurezza definiscono il set di controlli consigliati per le risorse nell'ambito della sottoscrizione o del gruppo di risorse specificato. Nel Centro sicurezza è possibile definire i criteri in base ai requisiti di sicurezza della società. Per altre informazioni, vedere [Impostare i criteri di sicurezza nel Centro sicurezza di Azure](security-center-policies.md).
+Un criterio di sicurezza definisce il set di hello di controlli che sono consigliati per le risorse nel gruppo di risorse o di sottoscrizione specificato hello. Centro sicurezza PC, definire i criteri in base a requisiti di sicurezza della società tooyour. vedere, più toolearn [impostare criteri di sicurezza del Centro sicurezza PC](security-center-policies.md).
 
-I criteri di sicurezza per i gruppi di risorse vengono ereditati dal livello della sottoscrizione.
+Criteri di sicurezza per i gruppi di risorse vengono ereditati dal livello di sottoscrizione hello.
 
 ![Ereditarietà dei criteri di sicurezza][1]
 
-Se sono necessari criteri personalizzati in gruppi di risorse specifici, è possibile disabilitare l'ereditarietà nel gruppo di risorse. Per disabilitare, impostare Ereditarietà su Univoca nel pannello di criteri di sicurezza e personalizzare i controlli per cui il Centro sicurezza mostra le raccomandazioni.
+Se è necessario criteri personalizzati in gruppi di risorse specifico, è possibile disabilitare l'ereditarietà nel gruppo di risorse hello. toodisable, impostare l'ereditarietà tooUnique nel pannello dei criteri sicurezza hello e personalizzare i controlli di hello che Centro sicurezza di seguito vengono fornite indicazioni per.
 
-Ad esempio, se alcuni carichi di lavoro non richiedono il criterio Transparent Data Encryption (TDE) del database SQL, occorre disabilitarlo al livello di sottoscrizione e abilitarlo solo nei gruppi di risorse in cui è richiesto.
+Ad esempio, nel caso di carichi di lavoro che non richiedono criteri di hello SQL Database Transparent Data Encryption (TDE), disattivare hello criteri a livello di sottoscrizione hello e abilitarlo solo nei gruppi di risorse hello in cui è necessario SQL TDE.
 
 > [!NOTE]
-> In caso di conflitto tra criteri definiti a livello di sottoscrizione e quelli a livello di gruppo di risorse, i criteri a livello di gruppo di risorse avranno la precedenza.
+> Se si verifica un conflitto tra criteri a livello di sottoscrizione e il criterio a livello di gruppo risorse, il criterio a livello di gruppo risorse hello ha la precedenza.
 >
 >
 
-Il Centro sicurezza analizza lo stato di sicurezza delle risorse di Azure. Quando il Centro sicurezza identifica potenziali vulnerabilità della sicurezza, crea raccomandazioni in base ai controlli impostati nel criterio di sicurezza. Queste raccomandazioni illustrano in dettaglio il processo di configurazione dei controlli di sicurezza necessari.
+Centro sicurezza PC analizza lo stato di sicurezza hello delle risorse di Azure. Quando il Centro sicurezza PC identifica potenziali vulnerabilità di sicurezza, viene creato basate sui controlli hello impostati nei criteri di sicurezza hello. indicazioni Hello consentono di eseguire il processo di hello di configurazione dei controlli di sicurezza hello necessita.
 
-Le raccomandazioni correnti dei criteri nel Centro sicurezza sono incentrate sugli aggiornamenti di sistema, sulla configurazione del sistema operativo, sui gruppi di sicurezza di rete su subnet e sulle macchine virtuali (VM), sul controllo del Database SQL, sul criterio TDE del Database SQL e sui firewall dell'applicazione web. Per informazioni più aggiornate sulle raccomandazioni del Centro sicurezza, vedere [Gestione delle raccomandazioni di sicurezza nel Centro sicurezza di Azure](security-center-recommendations.md).
+Le raccomandazioni correnti dei criteri nel Centro sicurezza sono incentrate sugli aggiornamenti di sistema, sulla configurazione del sistema operativo, sui gruppi di sicurezza di rete su subnet e sulle macchine virtuali (VM), sul controllo del Database SQL, sul criterio TDE del Database SQL e sui firewall dell'applicazione web. Per una descrizione più aggiornate di hello delle indicazioni di centro di sicurezza, vedere [gestione consigli relativi alla sicurezza del Centro sicurezza PC](security-center-recommendations.md).
 
 ## <a name="scenario"></a>Scenario
-In questo scenario viene illustrato come utilizzare il Centro sicurezza per ridurre il rischio di importanti problemi di sicurezza monitorando e intervenendo sulle raccomandazioni del Centro sicurezza. Si fa riferimento a una società fittizia, Contoso, e ai ruoli presentati nella [guida alla pianificazione e gestione](security-center-planning-and-operations-guide.md#security-roles-and-access-controls) del Centro sicurezza. I ruoli rappresentano singoli utenti e gruppi che usano il Centro sicurezza per eseguire diverse attività correlate alla sicurezza. I ruoli sono:
+Questo scenario viene illustrato come toouse Centro sicurezza PC toohelp ridurre il possibilità di hello di problemi di sicurezza significativi Centro sicurezza PC consigli di monitoraggio ed eseguendo l'azione. scenario Hello Usa hello società fittizia Contoso, e presentati in hello Centro sicurezza PC [Guida alla pianificazione e le operazioni](security-center-planning-and-operations-guide.md#security-roles-and-access-controls). i ruoli di Hello rappresentano singoli utenti e gruppi che possono utilizzare attività Centro sicurezza PC tooperform diverse relative alla sicurezza. Hello ruoli sono:
 
 ![Ruoli dello scenario][2]
 
-Contoso di recente ha eseguito la migrazione di alcune delle proprie risorse locali in Azure. Contoso desidera implementare e applicare protezioni che riducano le vulnerabilità dell'azienda in caso di un attacco alle proprie risorse nel cloud.
+Contoso recentemente eseguita la migrazione alcune delle loro tooAzure risorse locali. Contoso desidera tooimplement e mantenere le protezioni che riducono le attacco alla sicurezza delle vulnerabilità tooa delle risorse nel cloud hello.
 
 ## <a name="recommended-solution"></a>Soluzione consigliata
-Una soluzione consiste nell'utilizzare il Centro sicurezza per prevenire e rilevare vulnerabilità della sicurezza. Contoso ha accesso al Centro sicurezza grazie alla sottoscrizione di Azure. In tutte le sottoscrizioni di Azure viene abilitato automaticamente il [livello gratuito](security-center-pricing.md) del Centro sicurezza e su tutte le macchine virtuali della propria sottoscrizione viene abilitata la raccolta dei dati.
+Una soluzione è toouse Centro sicurezza PC tooprevent e rilevare vulnerabilità di sicurezza. Contoso dispone di accesso tooSecurity Center tramite la sottoscrizione di Azure. Hello [livello gratuito](security-center-pricing.md) del Centro sicurezza PC viene abilitato automaticamente in tutte le sottoscrizioni di Azure e la raccolta dei dati è abilitata in tutte le macchine virtuali nella propria sottoscrizione.
 
-David, del reparto di sicurezza informatica di Contoso, configura i **criteri di sicurezza** con il Centro sicurezza. Il Centro sicurezza analizza lo stato di sicurezza delle risorse di Azure di Contoso. Quando il Centro sicurezza identifica potenziali vulnerabilità della sicurezza, crea **raccomandazioni** in base ai controlli impostati nel criterio di sicurezza.
+David, del reparto di sicurezza informatica di Contoso, configura i **criteri di sicurezza** con il Centro sicurezza. Centro sicurezza PC analizza lo stato di sicurezza hello delle Contoso risorse di Azure. Quando il Centro sicurezza PC identifica potenziali vulnerabilità di sicurezza, viene creato **indicazioni** basata sui controlli hello impostati nei criteri di sicurezza hello.
 
-Jeff, un proprietario del carico di lavoro su cloud, è responsabile delle attività di implementazione e gestione della protezione secondo i criteri di sicurezza di Contoso. Jeff può monitorare le raccomandazioni create dal Centro sicurezza per applicare le protezioni. Queste raccomandazioni guidano Jeff nel processo di configurazione dei controlli di sicurezza necessari.
+Jeff, un proprietario del carico di lavoro su cloud, è responsabile delle attività di implementazione e gestione della protezione secondo i criteri di sicurezza di Contoso. Jeff può monitorare indicazioni hello creati protezioni tooapply Centro sicurezza PC. indicazioni Hello in modo semplificato Jeff processo hello di configurazione dei controlli di sicurezza hello necessita.
 
-Affinché Jeff implementi e gestisca le protezioni ed elimini le vulnerabilità di sicurezza, deve:
+In ordine per Jeff tooimplement e mantenere le protezioni ed eliminare le vulnerabilità di sicurezza, egli deve:
 
 - monitorare le raccomandazioni di sicurezza presenti nel Centro sicurezza
 - valutare le raccomandazioni sulla sicurezza e decidere se applicarle o ignorarle
 - applicare le raccomandazioni sulla sicurezza
 
-Seguiamo la procedura di Jeff per vedere come usa le raccomandazioni del Centro sicurezza per configurare i controlli al fine di eliminare le vulnerabilità della sicurezza.
+Seguito toosee passaggi Jeff come utilizza Centro sicurezza PC indicazioni tooguide quest'ultimo processo hello di vulnerabilità nella sicurezza tooeliminate controlli di configurazione.
 
-## <a name="how-to-implement-this-solution"></a>Come implementare questa soluzione
-Jeff effettua l'accesso al [Portale di Azure](https://azure.microsoft.com/features/azure-portal/) e apre la console del Centro sicurezza. Come parte delle sue attività di monitoraggio giornaliere, controlla se ci sono raccomandazioni sulla sicurezza eseguendo la procedura seguente:
+## <a name="how-tooimplement-this-solution"></a>Come tooimplement questa soluzione
+Jeff accede troppo[portale di Azure](https://azure.microsoft.com/features/azure-portal/) e apre hello console Centro sicurezza PC. Come parte del suo giornaliera monitoraggio delle attività, la archivia toosee se sono presenti indicazioni relative alla sicurezza eseguendo hello alla procedura seguente:
 
-1. Jeff seleziona il riquadro **Raccomandazioni** per aprire il pannello **Raccomandazioni**.
-   ![Selezionare il riquadro Raccomandazioni][3]
-2. Jeff esamina l'elenco delle raccomandazioni. Nota che il Centro sicurezza presenta l'elenco delle raccomandazioni in ordine di priorità, dalla priorità più alta a quella più bassa. Decide di risolvere una raccomandazioni con priorità elevata nell'elenco. Nel pannello **Raccomandazioni** seleziona **Installa Endpoint Protection**.
-3. Viene visualizzato il pannello **Installa Endpoint Protection** che mostra un elenco di macchine virtuali per cui non è abilitato l'antimalware. Jeff controlla l'elenco delle macchine virtuali, seleziona tutte le macchine virtuali e quindi seleziona **Installa nelle VM 3**.
+1. Jeff seleziona hello **indicazioni** riquadro tooopen hello **indicazioni** blade.
+   ![Selezionare hello indicazioni riquadro][3]
+2. Jeff esamina hello elenco di suggerimenti. Vede che hello elenco di suggerimenti ordinato in ordine di priorità, dalla priorità toolowest di priorità più alta è fornito da Centro sicurezza PC. Peter decide tooaddress un'indicazione di priorità alta nell'elenco di hello. Seleziona **installa Endpoint Protection** su hello **indicazioni** blade.
+3. Hello **installa Endpoint Protection** pannello verrà aperto un elenco di macchine virtuali senza antimalware abilitato. Jeff esamina l'elenco di hello delle macchine virtuali, seleziona tutte le macchine virtuali e quindi seleziona **installare nelle macchine 3 virtuali**.
    ![Installare Endpoint Protection][4]
-4. Viene visualizzato il pannello **Select Endpoint Protection** (Seleziona Endpoint Protection) che offre a Jeff due soluzioni antimalware. Jeff seleziona la soluzione **Microsoft Antimalware**.
-5. Vengono visualizzate altre informazioni sulla soluzione antimalware selezionata. Jeff seleziona **Crea**.
+4. Hello **selezionare Endpoint Protection** pannello apre Jeff fornito con due soluzioni antimalware. Jeff seleziona hello **Microsoft Antimalware** soluzione.
+5. Ulteriori informazioni sulla soluzione antimalware hello viene visualizzate. Jeff seleziona **Crea**.
    ![Microsoft antimalware][5]
-6. Jeff inserisce le impostazioni di configurazione richieste nel pannello **Installazione** e seleziona **OK**.
+6. Jeff immette le impostazioni di configurazione necessarie hello sulla hello **installare** blade e seleziona **OK**.
 
-[Microsoft Antimalware](../security/azure-security-antimalware.md) è ora attivo nelle VM selezionate.
+[Microsoft Antimalware](../security/azure-security-antimalware.md) è ora attivo in hello selezionate le macchine virtuali.
 
-Jeff continua sfoglia le raccomandazioni con priorità alta e media, decidendo di volta in volta sull'implementazione. Jeff fa riferimento all'articolo sulla [gestione delle raccomandazioni sulla sicurezza](security-center-recommendations.md) per capire cosa sono le raccomandazioni e la funzione di ognuna di esse se applicate.
+Jeff continua toomove a priorità alta hello e consigli di priorità Media, per prendere decisioni sull'implementazione. Jeff fa riferimento a hello [gestione consigli sulla sicurezza](security-center-recommendations.md) indicazioni hello toounderstand e ognuna delle quali esegue se si applica l'articolo.
 
-Jeff scopre che il [Microsoft Security Response Center (MSRC)](../security/azure-security-response-center.md) esegue il monitoraggio selettivo della sicurezza della rete e dell'infrastruttura di Azure e riceve informazioni su minacce e segnalazioni di violazioni da terzi. Se Jeff inserisce il contatto per la sicurezza di Contoso per la sottoscrizione di Azure, Microsoft contatta Contoso se MSRC rileva che i dati dei clienti di Contoso sono stati violati da altri utenti non autorizzati in modo illegale. Vediamo come Jeff applica la raccomandazione **Provide security contact details** (Inserisci i dettagli dei contatti per la sicurezza) (una raccomandazione con livello di gravità medio nell'elenco delle raccomandazioni sopra indicato).
+Jeff apprende che [Microsoft Security Response Center (MSRC)](../security/azure-security-response-center.md) esegue un monitoraggio seleziona sicurezza di rete di Azure hello e dell'infrastruttura e riceve threat intelligence ed evitare eventuali abusi reclamo di terze parti. Se Jeff fornisce i dettagli di contatto di sicurezza per la sottoscrizione di Azure di Contoso, i contatti di Microsoft Contoso se hello MSRC consente di individuare i dati dei clienti che Contoso ha avuto accesso da un'entità non autorizzata o illegale. Si applica quindi hello seguire Jeff **fornire dettagli di contatto sicurezza** indicazione (una raccomandazione con livello di gravità di supporto nell'elenco di hello di raccomandazioni descritte in precedenza).
 
-1. Jeff seleziona **Provide security contact details** (Inserisci i dettagli dei contatti per la sicurezza) nel pannello **Raccomandazioni**, che consente di aprire il pannello **Provide security contact details** (Inserisci i dettagli dei contatti per la sicurezza).
-2. Jeff seleziona la sottoscrizione di Azure per cui specifica le informazioni di contatto. Viene visualizzato un altro pannello **Specificare i dettagli dei contatti di sicurezza** .
+1. Seleziona Jeff **fornire dettagli di contatto sicurezza** su hello **indicazioni** pannello, che consente di aprire hello **fornire dettagli di contatto di sicurezza** blade.
+2. Jeff seleziona informazioni di contatto tooprovide hello sottoscrizione di Azure in. Viene visualizzato un altro pannello **Specificare i dettagli dei contatti di sicurezza** .
    ![Dettagli del contatto per la sicurezza][6]
-3. Nel secondo pannello **Provide security contact details** (Inserisci i dettagli dei contatti per la sicurezza), Jeff inserisce:
+3. In hello secondo **fornire dettagli di contatto sicurezza** pannello Jeff immette:
 
-  - gli indirizzi di posta elettronica dei contatti per la sicurezza separati da virgole (non c'è un limite al numero di indirizzi di posta elettronica che è possibile inserire)
+  - indirizzi di posta elettronica di contatto sicurezza Hello separati da virgole (non è presente una limitazione del numero di indirizzi di posta elettronica che è possibile immettere toohello)
   - un numero di telefono del contatto per la sicurezza
 
-4. Per ricevere messaggi di posta elettronica relativi agli avvisi di elevata gravità, Jeff inoltre attiva l'opzione **Send me emails about alerts**(Invia messaggi di posta elettronica relativi agli avvisi).
-5. Jeff seleziona **OK** per applicare le informazioni di contatto di sicurezza alla sottoscrizione di Contoso.
+4. Jeff inoltre consente di attivare l'opzione hello **invia messaggi di posta elettronica relative agli avvisi** tooreceive messaggi di posta elettronica relative agli avvisi di livello di gravità elevato.
+5. Seleziona Jeff **OK** sicurezza hello tooapply contattare sottoscrizione del tooContoso informazioni.
 
-Infine, Jeff esamina le raccomandazioni con priorità bassa **Remediate OS vulnerabilities** (Correggi le vulnerabilità del sistema operativo) e decide che questa raccomandazione non è applicabile. Vuole ignorare la raccomandazione. Jeff seleziona i tre puntini che appaiono a destra, quindi seleziona **Ignora**.
+Infine, Davide esamina raccomandazione per priorità bassa hello **vulnerabilità monitora e aggiorna sistema operativo** e determina che questa raccomandazione non è applicabile. Indicazione di hello toodismiss desidera. Jeff Seleziona punti di hello tre visualizzati toohello destra, quindi seleziona **Dismiss**.
    ![Ignorare la raccomandazione][7]
 
 ## <a name="conclusion"></a>Conclusione

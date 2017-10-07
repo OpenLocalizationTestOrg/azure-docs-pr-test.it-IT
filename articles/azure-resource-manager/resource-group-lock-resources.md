@@ -1,5 +1,5 @@
 ---
-title: Bloccare le risorse di Azure per impedire modifiche | Microsoft Docs
+title: modifiche di tooprevent aaaLock risorse di Azure | Documenti Microsoft
 description: Impedire agli utenti di aggiornare o eliminare le risorse critiche di Azure applicando un blocco per tutti gli utenti e i ruoli.
 services: azure-resource-manager
 documentationcenter: 
@@ -14,38 +14,38 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/27/2017
 ms.author: tomfitz
-ms.openlocfilehash: 44c87b00f4fc63dbfd45a07d9a8cddc5eaf1a65c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1f0d8911b2b129069bd2f01a9a4ec0a3cf700118
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="lock-resources-to-prevent-unexpected-changes"></a>Bloccare le risorse per impedire modifiche impreviste 
-L'amministratore può avere la necessità di bloccare una sottoscrizione, una risorsa o un gruppo di risorse per impedire che altri utenti nell'organizzazione modifichino o eliminino accidentalmente risorse strategiche. È possibile impostare il livello di blocco **CanNotDelete** o **ReadOnly**. 
+# <a name="lock-resources-tooprevent-unexpected-changes"></a>Bloccare le risorse tooprevent modifiche impreviste 
+Come amministratore, potrebbe essere necessario toolock una sottoscrizione, gruppo di risorse o tooprevent risorse ad altri utenti nell'organizzazione da un'accidentale eliminazione o modifica di risorse critiche. È possibile impostare il livello di blocco hello troppo**CanNotDelete** o **ReadOnly**. 
 
-* **CanNotDelete** significa che gli utenti autorizzati possono leggere e modificare una risorsa, ma non eliminarla. 
-* **ReadOnly** significa che gli utenti autorizzati possono leggere una risorsa, ma non eliminarla o aggiornarla. L'applicazione di questo blocco è simile alla concessione a tutti gli utenti autorizzati solo le autorizzazioni concesse dal ruolo **Lettore**. 
+* **CanNotDelete** significa che gli utenti autorizzati possano comunque leggere e modificare una risorsa, ma non eliminare la risorsa hello. 
+* **ReadOnly** significa che gli utenti autorizzati possono leggere una risorsa, ma non possono eliminare o aggiornare la risorsa hello. L'applicazione di questo blocco è simile toorestricting tutti autorizzato agli utenti toohello le autorizzazioni concesse da hello **lettore** ruolo. 
 
 ## <a name="how-locks-are-applied"></a>Come vengono applicati i blocchi
 
-Quando si applica un blocco in un ambito padre, tutte le risorse in tale ambito ereditano lo stesso blocco. Anche le risorse aggiunte successivamente ereditano il blocco dal padre. Il blocco più restrittivo nell'ereditarietà ha la precedenza.
+Quando si applica un blocco a un ambito padre, tutte le risorse in tale ambito ereditano hello stesso blocco. Anche le risorse in seguito si aggiungono ereditano blocco hello dall'elemento padre di hello. blocco di più restrittivo Hello nell'ereditarietà hello ha la precedenza.
 
-Diversamente dal controllo degli accessi in base al ruolo, i blocchi di gestione consentono di applicare una restrizione a tutti gli utenti e i ruoli. Per informazioni sull'impostazione delle autorizzazioni per utenti e ruoli, vedere [Controllo degli accessi in base al ruolo nel Portale di Azure](../active-directory/role-based-access-control-configure.md).
+A differenza di controllo di accesso basato sui ruoli, si utilizza Gestione blocchi tooapply una restrizione in tutti gli utenti e ruoli. toolearn sull'impostazione delle autorizzazioni per utenti e ruoli, vedere [Azure Role-based Access Control](../active-directory/role-based-access-control-configure.md).
 
-I blocchi di Resource Manager si applicano solo alle operazioni che si verificano nel piano di gestione, costituito da operazioni inviate a `https://management.azure.com`. I blocchi non limitano il modo in cui le risorse eseguono le proprie funzioni. Vengono limitate le modifiche alle risorse, ma non le operazioni delle risorse. Un blocco di sola lettura in un database SQL impedisce ad esempio l'eliminazione o la modifica del database, ma non impedisce la creazione, l'aggiornamento o l'eliminazione dei dati nel database. Le transazioni di dati sono consentite in quanto tali operazioni non vengono inviate a `https://management.azure.com`.
+Blocchi di gestione risorse di si applicano solo toooperations che si verificano nel piano di gestione di hello, che include le operazioni inviate troppo`https://management.azure.com`. blocchi di Hello non limitano come risorse di eseguono le proprie funzioni. Vengono limitate le modifiche alle risorse, ma non le operazioni delle risorse. Ad esempio, un blocco di sola lettura su un Database SQL impedisce l'eliminazione o Modifica database hello, ma non impedisce la creazione, aggiornamento o eliminazione di dati nel database di hello. Le transazioni di dati sono consentite perché queste operazioni non vengono inviate troppo`https://management.azure.com`.
 
-L'applicazione di **ReadOnly** può causare risultati imprevisti, perché alcune operazioni che sembrano operazioni di lettura richiedono in effetti azioni aggiuntive. Ad esempio, l'inserimento di un blocco **ReadOnly** in un account di archiviazione impedisce a tutti gli utenti di ottenere un elenco delle chiavi. L'operazione di elenco delle chiavi viene gestita tramite una richiesta POST, perché le chiavi restituite sono disponibili per operazioni di scrittura. Per fare un altro esempio, l'inserimento di un blocco **ReadOnly** in una risorsa del servizio app impedisce a Esplora Server di Visual Studio di visualizzare i file relativi alla risorsa, perché tale interazione richiede l'accesso in scrittura.
+L'applicazione **ReadOnly** può generare risultati toounexpected perché alcune operazioni che sembrano leggere operazioni effettivamente richiedono ulteriori azioni. Ad esempio, inserire un **ReadOnly** blocco su un account di archiviazione impedisce l'elenco di chiavi hello tutti gli utenti. elenco di Hello operazione delle chiavi viene gestita tramite una richiesta POST hello ha restituito le chiavi sono disponibili per le operazioni di scrittura. Per un altro esempio, inserire un **ReadOnly** blocco su una risorsa di servizio App che impedisce la visualizzazione di file per la risorsa hello perché tale interazione richiede l'accesso in scrittura di Esplora Server Visual Studio.
 
 ## <a name="who-can-create-or-delete-locks-in-your-organization"></a>Chi può creare o eliminare i blocchi nell'organizzazione
-Per creare o eliminare i blocchi di gestione, è necessario avere accesso alle azioni `Microsoft.Authorization/*` o `Microsoft.Authorization/locks/*`. Dei ruoli predefiniti, solo **Proprietario** e **Amministratore Accesso utenti** garantiscono tali azioni.
+i blocchi di gestione toocreate o delete, è necessario avere accesso troppo`Microsoft.Authorization/*` o `Microsoft.Authorization/locks/*` azioni. Di hello ruoli predefiniti, solo **proprietario** e **amministratore di accesso utente** vengono concesse tali azioni.
 
 ## <a name="portal"></a>di Microsoft Azure
 [!INCLUDE [resource-manager-lock-resources](../../includes/resource-manager-lock-resources.md)]
 
 ## <a name="template"></a>Modello
-L'esempio seguente mostra un modello che crea un blocco in un account di archiviazione. L'account di archiviazione a cui applicare il blocco viene specificato come parametro. Il nome del blocco viene creato concatenando il nome della risorsa con **/Microsoft.Authorization/** e il nome del blocco stesso, in questo caso **myLock**.
+Hello esempio seguente viene illustrato un modello che crea un blocco su un account di archiviazione. account di archiviazione Hello su quali tooapply blocco hello viene fornito come parametro. Hello nome del blocco hello viene creato concatenando il nome di risorsa hello con **/Microsoft.Authorization/** e hello nome del blocco di hello, in questo caso **myLock**.
 
-Il tipo fornito è specifico del tipo di risorsa. Per l'archiviazione, impostare il tipo su "Microsoft.Storage/storageaccounts/providers/locks".
+tipo di Hello fornito è il tipo di risorsa specifico toohello. Per l'archiviazione, impostare too"Microsoft.Storage/storageaccounts/providers/locks tipo hello".
 
     {
       "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
@@ -68,9 +68,9 @@ Il tipo fornito è specifico del tipo di risorsa. Per l'archiviazione, impostare
     }
 
 ## <a name="powershell"></a>PowerShell
-Per bloccare le risorse distribuite con Azure PowerShell, usare il comando [New-AzureRmResourceLock](/powershell/module/azurerm.resources/new-azurermresourcelock).
+Blocco è distribuita risorse con Azure PowerShell con hello [New AzureRmResourceLock](/powershell/module/azurerm.resources/new-azurermresourcelock) comando.
 
-Per bloccare una risorsa, specificare il nome, il tipo e il gruppo di risorse della risorsa.
+toolock una risorsa, specificare il nome di hello della risorsa hello, il tipo di risorsa e il nome del gruppo di risorse.
 
 ```powershell
 New-AzureRmResourceLock -LockLevel CanNotDelete -LockName LockSite `
@@ -78,39 +78,39 @@ New-AzureRmResourceLock -LockLevel CanNotDelete -LockName LockSite `
   -ResourceGroupName exampleresourcegroup
 ```
 
-Per bloccare un gruppo di risorse, specificare il nome del gruppo di risorse.
+toolock un gruppo di risorse, fornire il nome di hello hello del gruppo di risorse.
 
 ```powershell
 New-AzureRmResourceLock -LockName LockGroup -LockLevel CanNotDelete `
   -ResourceGroupName exampleresourcegroup
 ```
 
-Per ottenere informazioni su un blocco, usare [Get-AzureRmResourceLock](/powershell/module/azurerm.resources/get-azurermresourcelock). Per ottenere tutti i blocchi nella sottoscrizione, usare:
+un blocco, l'utilizzo di informazioni tooget [Get AzureRmResourceLock](/powershell/module/azurerm.resources/get-azurermresourcelock). tooget tutti i blocchi di hello nella sottoscrizione, utilizzare:
 
 ```powershell
 Get-AzureRmResourceLock
 ```
 
-Per ottenere tutti i blocchi per una risorsa, usare:
+tooget tutti i blocchi per una risorsa, utilizzare:
 
 ```powershell
 Get-AzureRmResourceLock -ResourceName examplesite -ResourceType Microsoft.Web/sites `
   -ResourceGroupName exampleresourcegroup
 ```
 
-Per ottenere tutti i blocchi per un gruppo di risorse, usare:
+tooget tutti i blocchi per un gruppo di risorse, utilizzare:
 
 ```powershell
 Get-AzureRmResourceLock -ResourceGroupName exampleresourcegroup
 ```
 
-Azure PowerShell fornisce altri comandi per la gestione dei blocchi, ad esempio [Set-AzureRmResourceLock](/powershell/module/azurerm.resources/set-azurermresourcelock) per aggiornare un blocco e [Remove-AzureRmResourceLock](/powershell/module/azurerm.resources/remove-azurermresourcelock) per eliminarlo.
+Azure PowerShell fornisce altri comandi per i blocchi di lavoro, ad esempio [Set AzureRmResourceLock](/powershell/module/azurerm.resources/set-azurermresourcelock) tooupdate un blocco, e [Remove AzureRmResourceLock](/powershell/module/azurerm.resources/remove-azurermresourcelock) toodelete un blocco.
 
 ## <a name="azure-cli"></a>Interfaccia della riga di comando di Azure
 
-Per bloccare le risorse distribuite con l'interfaccia della riga di comando di Azure, usare il comando [az lock create](/cli/azure/lock#create).
+Si blocca distribuiti risorse con CLI di Azure tramite hello [blocco az creare](/cli/azure/lock#create) comando.
 
-Per bloccare una risorsa, specificare il nome, il tipo e il gruppo di risorse della risorsa.
+toolock una risorsa, specificare il nome di hello della risorsa hello, il tipo di risorsa e il nome del gruppo di risorse.
 
 ```azurecli
 az lock create --name LockSite --lock-type CanNotDelete \
@@ -118,44 +118,44 @@ az lock create --name LockSite --lock-type CanNotDelete \
   --resource-type Microsoft.Web/sites
 ```
 
-Per bloccare un gruppo di risorse, specificare il nome del gruppo di risorse.
+toolock un gruppo di risorse, fornire il nome di hello hello del gruppo di risorse.
 
 ```azurecli
 az lock create --name LockGroup --lock-type CanNotDelete \
   --resource-group exampleresourcegroup
 ```
 
-Per ottenere informazioni su un blocco, usare [az lock list](/cli/azure/lock#list). Per ottenere tutti i blocchi nella sottoscrizione, usare:
+un blocco, l'utilizzo di informazioni tooget [elenco blocchi az](/cli/azure/lock#list). tooget tutti i blocchi di hello nella sottoscrizione, utilizzare:
 
 ```azurecli
 az lock list
 ```
 
-Per ottenere tutti i blocchi per una risorsa, usare:
+tooget tutti i blocchi per una risorsa, utilizzare:
 
 ```azurecli
 az lock list --resource-group exampleresourcegroup --resource-name examplesite \
   --namespace Microsoft.Web --resource-type sites --parent ""
 ```
 
-Per ottenere tutti i blocchi per un gruppo di risorse, usare:
+tooget tutti i blocchi per un gruppo di risorse, utilizzare:
 
 ```azurecli
 az lock list --resource-group exampleresourcegroup
 ```
 
-L'interfaccia della riga di comando di Azure fornisce altri comandi per i blocchi funzionanti, ad esempio [az lock update](/cli/azure/lock#update) per aggiornare un blocco e [az lock delete](/cli/azure/lock#delete) per eliminare un blocco.
+CLI di Azure fornisce altri comandi per i blocchi di lavoro, ad esempio [aggiornamento blocco az](/cli/azure/lock#update) tooupdate un blocco, e [blocco az eliminare](/cli/azure/lock#delete) toodelete un blocco.
 
 ## <a name="rest-api"></a>API REST
-È possibile bloccare le risorse distribuite tramite l'[API REST per i blocchi di gestione](https://docs.microsoft.com/rest/api/resources/managementlocks). L'API REST consente di creare ed eliminare i blocchi e recuperare informazioni sui blocchi esistenti.
+È possibile bloccare le risorse distribuite con hello [API REST per blocchi di gestione](https://docs.microsoft.com/rest/api/resources/managementlocks). API REST Hello consente toocreate Elimina i blocchi e recuperare informazioni sui blocchi esistenti.
 
-Per creare un blocco, eseguire:
+toocreate un blocco, eseguire:
 
     PUT https://management.azure.com/{scope}/providers/Microsoft.Authorization/locks/{lock-name}?api-version={api-version}
 
-L'ambito può essere una sottoscrizione, un gruppo di risorse o una risorsa. Lock-name indica il nome che si desidera assegnare al blocco. Per api-version, usare **2015-01-01**.
+Hello ambito può essere una sottoscrizione, un gruppo di risorse o una risorsa. Hello-nome del blocco è qualsiasi blocco hello toocall. Per api-version, usare **2015-01-01**.
 
-Nella richiesta includere un oggetto JSON che specifica le proprietà per il blocco.
+Nella richiesta di hello, includere un oggetto JSON che specifica le proprietà di hello blocco hello.
 
     {
       "properties": {
@@ -166,8 +166,8 @@ Nella richiesta includere un oggetto JSON che specifica le proprietà per il blo
 
 ## <a name="next-steps"></a>Passaggi successivi
 * Per altre informazioni sull'uso dei blocchi di risorse, vedere [Blocco delle risorse di Azure](http://blogs.msdn.com/b/cloud_solution_architect/archive/2015/06/18/lock-down-your-azure-resources.aspx)
-* Per informazioni sull'organizzazione logica delle risorse, vedere [Uso dei tag per organizzare le risorse](resource-group-using-tags.md)
-* Per modificare il gruppo di risorse in cui si trova una risorsa, vedere [Spostamento delle risorse in un nuovo gruppo di risorse](resource-group-move-resources.md)
-* È possibile applicare restrizioni e convenzioni all’interno della sottoscrizione con criteri personalizzati. Per altre informazioni, vedere [Usare i criteri per gestire le risorse e controllare l'accesso](resource-manager-policy.md).
-* Per indicazioni su come le aziende possono usare Resource Manager per gestire efficacemente le sottoscrizioni, vedere [Azure enterprise scaffold - prescriptive subscription governance](resource-manager-subscription-governance.md) (Scaffolding aziendale Azure - Governance prescrittiva per le sottoscrizioni).
+* toolearn sull'organizzazione in modo logico le risorse, vedere [tramite tag tooorganize le risorse](resource-group-using-tags.md)
+* vedere toochange quale gruppo di risorse una risorsa in cui risiede [spostamento risorse toonew risorse del gruppo](resource-group-move-resources.md)
+* È possibile applicare restrizioni e convenzioni all’interno della sottoscrizione con criteri personalizzati. Per ulteriori informazioni, vedere [risorse toomanage criteri di utilizzo e controllare l'accesso](resource-manager-policy.md).
+* Per istruzioni su come le aziende possono usare tooeffectively Gestione risorse di gestione di sottoscrizioni, vedere [lo scaffolding di Azure enterprise - governance sottoscrizione rigorosa](resource-manager-subscription-governance.md).
 

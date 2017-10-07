@@ -1,6 +1,6 @@
 ---
-title: Distribuire un'app Web con un modello - Azure Cosmos DB | Microsoft Docs
-description: Informazioni su come distribuire un account Azure Cosmos DB, app Web del servizio app di Azure e un'applicazione Web di esempio usando un modello di Azure Resource Manager.
+title: un'app web con un modello - DB Cosmos Azure aaaDeploy | Documenti Microsoft
+description: Informazioni su come toodeploy un account Azure Cosmos DB App Web di servizio App di Azure e un esempio di utilizzo di un modello di gestione risorse di Azure di applicazioni web.
 services: cosmos-db, app-service\web
 author: mimig1
 manager: jhubbard
@@ -14,131 +14,131 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/08/2016
 ms.author: mimig
-ms.openlocfilehash: 633b88761de4d2c99cfd196cfac8e664fc83c546
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b2bdde9279aad570606d7bf06dfc710f564b4d0c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="deploy-azure-cosmos-db-and-azure-app-service-web-apps-using-an-azure-resource-manager-template"></a>Distribuire Azure Cosmos DB e app Web del servizio app di Azure tramite un modello di Azure Resource Manager
-Questa esercitazione illustra come usare un modello di Azure Resource Manager per distribuire e integrare [Microsoft Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/), un'app Web del [servizio app di Azure](http://go.microsoft.com/fwlink/?LinkId=529714) e un'applicazione Web di esempio.
+In questa esercitazione illustra come toouse un toodeploy modello di gestione risorse di Azure e integrare [DB di Microsoft Azure Cosmos](https://azure.microsoft.com/services/cosmos-db/), un [Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714) app web e un'applicazione web di esempio.
 
-Con il modello di Azure Resource Manager è possibile automatizzare facilmente la distribuzione e la configurazione delle risorse di Azure.  Questa esercitazione illustra come distribuire un'applicazione Web e configurare automaticamente le informazioni relative alla connessione dell'account Azure Cosmos DB.
+Utilizzo di modelli di gestione risorse di Azure, è possibile automatizzare facilmente hello distribuzione e configurazione delle risorse di Azure.  Questa esercitazione viene illustrato come toodeploy un'applicazione web e configurare automaticamente le informazioni di connessione di account Azure Cosmos DB.
 
-Dopo aver completato questa esercitazione, si potrà rispondere alle domande seguenti:  
+Dopo aver completato questa esercitazione, sarà in grado di tooanswer hello seguenti domande:  
 
-* Come è possibile usare un modello di Azure Resource Manager per distribuire e integrare un account Azure Cosmos DB e un'app Web nel servizio app di Azure?
-* Come si usa un modello di Azure Resource Manager per distribuire e integrare un account Azure Cosmos DB, un'app Web del servizio app e un'applicazione WebDeploy?
+* Come è possibile utilizzare un toodeploy modello di gestione risorse di Azure e integrazione di un account Azure Cosmos DB e un'app web nel servizio App di Azure?
+* Come è possibile utilizzare un toodeploy modello di gestione risorse di Azure e integrare un'applicazione Webdeploy, un'app web nel servizio App dell'App Web e un account Azure Cosmos DB?
 
 <a id="Prerequisites"></a>
 
 ## <a name="prerequisites"></a>Prerequisiti
 > [!TIP]
-> Sebbene questa esercitazione non presupponga alcuna esperienza nell'uso dei modelli o JSON di Azure Resource Manager, se si desidera modificare i modelli o le opzioni di distribuzione cui viene fatto riferimento, è necessario conoscere ciascuna di tali aree.
+> Durante questa esercitazione si presume precedente esperienza con i modelli di gestione risorse di Azure o JSON, si desidera hello toomodify fa riferimento a modelli o le opzioni di distribuzione, quindi sarà necessaria una conoscenza di ognuna di queste aree.
 > 
 > 
 
-Prima di seguire le istruzioni di questa esercitazione, verificare che siano disponibili gli elementi seguenti:
+Prima di seguire le istruzioni di hello in questa esercitazione, assicurarsi di aver seguito hello:
 
 * Una sottoscrizione di Azure. Azure è una piattaforma basata su sottoscrizione.  Per altre informazioni su come ottenere una sottoscrizione, vedere [Opzioni di acquisto](https://azure.microsoft.com/pricing/purchase-options/), [Offerte per i membri](https://azure.microsoft.com/pricing/member-offers/) oppure [Versione di valutazione gratuita](https://azure.microsoft.com/pricing/free-trial/).
 
-## <a id="CreateDB"></a>Passaggio 1: Scaricare i file del modello
-Per iniziare, scaricare i file del modello da usare in questa esercitazione.
+## <a id="CreateDB"></a>Passaggio 1: Scaricare file di modello hello
+Per iniziare, scaricare il file di modello hello che verrà utilizzato in questa esercitazione.
 
-1. Scaricare il modello di [esempio per creare un account Azure Cosmos DB, app Web e per distribuire un'applicazione demo](https://portalcontent.blob.core.windows.net/samples/DocDBWebsiteTodo.json) in una cartella locale, ad esempio C:\Azure Cosmos DBTemplates. Questo modello distribuirà un account Azure Cosmos DB, un'app Web del servizio app e un'applicazione Web.  L'applicazione Web verrà anche configurata automaticamente per connettersi all'account Azure Cosmos DB.
-2. Scaricare il modello di [esempio per creare un account Azure Cosmos DB e app Web](https://portalcontent.blob.core.windows.net/samples/DocDBWebSite.json) in una cartella locale, ad esempio C:\Azure Cosmos DBTemplates. Questo modello distribuirà un account Azure Cosmos DB, un'app Web del servizio app e modificherà le impostazioni dell'applicazione del sito per rilevare in modo semplice le informazioni relative alla connessione di Azure Cosmos DB. Non è tuttavia inclusa alcuna applicazione Web.  
+1. Scaricare hello [creare un account Azure Cosmos DB, le applicazioni Web e distribuire un esempio di applicazione demo](https://portalcontent.blob.core.windows.net/samples/DocDBWebsiteTodo.json) cartella locale tooa modello (ad esempio C:\Azure Cosmos DBTemplates). Questo modello distribuirà un account Azure Cosmos DB, un'app Web del servizio app e un'applicazione Web.  Verrà configurato automaticamente anche account Azure Cosmos DB toohello tooconnect dell'applicazione web di hello.
+2. Scaricare hello [creare un account Azure Cosmos DB e un esempio di App Web](https://portalcontent.blob.core.windows.net/samples/DocDBWebSite.json) cartella locale tooa modello (ad esempio C:\Azure Cosmos DBTemplates). Questo modello verrà distribuito a un account Azure Cosmos DB, un'app web di servizio App e verrà modificato applicazione impostazioni tooeasily area Azure Cosmos DB informazioni di connessione del sito hello, ma non include un'applicazione web.  
 
 <a id="Build"></a>
 
-## <a name="step-2-deploy-the-azure-cosmos-db-account-app-service-web-app-and-demo-application-sample"></a>Passaggio 2: Distribuire l'account Azure Cosmos DB, l'app Web del servizio app e l'applicazione demo di esempio
+## <a name="step-2-deploy-hello-azure-cosmos-db-account-app-service-web-app-and-demo-application-sample"></a>Passaggio 2: Distribuire l'account di Azure Cosmos DB hello, servizio App web app e demo di esempio di applicazione
 Si procederà a questo punto alla distribuzione del primo modello.
 
 > [!TIP]
-> Il modello non verifica che il nome dell'app Web e il nome dell'account Azure Cosmos DB siano validi e disponibili.  È consigliabile verificare la disponibilità dei nomi che si intende fornire prima della distribuzione.
+> modello di Hello non convalidare hello nome dell'applicazione web e il nome di account Azure Cosmos DB immesso di sotto) valido e b) disponibile.  Si consiglia di verificare la disponibilità di hello di hello Nome pianificare la distribuzione di hello toosupply toosubmitting precedente.
 > 
 > 
 
-1. Accedere al [portale di Azure](https://portal.azure.com), fare clic su Nuovo e ricercare "Distribuzione modello".
-    ![Screenshot dell'interfaccia utente della distribuzione del modello](./media/create-website/TemplateDeployment1.png)
-2. Selezionare la voce Distribuzione modello e fare clic su **Crea** ![Screenshot dell'interfaccia utente della distribuzione del modello](./media/create-website/TemplateDeployment2.png).
-3. Fare clic su **Modifica modello**, incollare il contenuto del file del modello DocDBWebsiteTodo.json e fare clic su **Salva**.
-   ![Screenshot dell'interfaccia utente della distribuzione del modello](./media/create-website/TemplateDeployment3.png)
-4. Fare clic su **Modifica parametri**, specificare i valori per ogni parametro obbligatorio e fare clic su **OK**.  I parametri sono i seguenti:
+1. Account di accesso toohello [portale Azure](https://portal.azure.com), fare clic su Nuovo e cercare "Distribuzione del modello".
+    ![Schermata di distribuzione del modello hello dell'interfaccia utente](./media/create-website/TemplateDeployment1.png)
+2. Selezionare l'elemento di distribuzione modello hello e fare clic su **crea** ![schermata della distribuzione del modello hello dell'interfaccia utente](./media/create-website/TemplateDeployment2.png)
+3. Fare clic su **modifica modelli**, incollare il contenuto di hello hello DocDBWebsiteTodo.json del file di modello e fare clic su **salvare**.
+   ![Schermata di distribuzione del modello hello dell'interfaccia utente](./media/create-website/TemplateDeployment3.png)
+4. Fare clic su **modificare parametri**, fornire i valori per ognuno dei parametri obbligatori hello e fare clic su **OK**.  come indicato di seguito sono riportati i parametri di Hello:
    
-   1. SITENAME: specifica il nome dell'app Web del servizio app e viene usato per creare l'URL che consentirà di accedere all'app Web. Ad esempio, se si specifica "mydemodocdbwebapp", l'URL usato per accedere all'app Web sarà mydemodocdbwebapp.azurewebsites.net.
-   2. HOSTINGPLANNAME: specifica il nome del piano di hosting del servizio app da creare.
-   3. LOCATION: specifica la posizione di Azure in cui creare le risorse di Azure Cosmos DB e dell'app Web.
-   4. DATABASEACCOUNTNAME: specifica il nome dell'account Azure Cosmos DB da creare.   
+   1. Nome sito: Specifica hello Nome applicazione di servizio App web ed è utilizzato tooconstruct hello URL che si utilizzerà tooaccess hello web app (ad esempio, se si specifica "mydemodocdbwebapp", quindi sarà hello URL da cui si accederà hello web app mydemodocdbwebapp.azurewebsites.NET).
+   2. HOSTINGPLANNAME: Specifica il nome di hello del servizio App toocreate piano di hosting.
+   3. PERCORSO: Specifica hello Azure posizione in cui toocreate hello Azure Cosmos DB e app risorse web.
+   4. DATABASEACCOUNTNAME: Specifica il nome di hello di hello Azure Cosmos DB account toocreate.   
       
-      ![Screenshot dell'interfaccia utente della distribuzione del modello](./media/create-website/TemplateDeployment4.png)
-5. Scegliere un gruppo di risorse esistente o fornire un nome per creare un nuovo gruppo di risorse, quindi selezionare la relativa posizione.
+      ![Schermata di distribuzione del modello hello dell'interfaccia utente](./media/create-website/TemplateDeployment4.png)
+5. Scegliere un gruppo di risorse esistente o fornire un nome toomake un nuovo gruppo di risorse e scegliere un percorso per il gruppo di risorse hello.
 
-    ![Screenshot dell'interfaccia utente della distribuzione del modello](./media/create-website/TemplateDeployment5.png)
-6. Fare clic su **Rivedere le note legali**, **Acquista**, quindi su **Crea** per iniziare la distribuzione.  Selezionare **Aggiungi al dashboard** per rendere facilmente visibile la distribuzione ottenuta nella home page del portale di Azure.
-   ![Screenshot dell'interfaccia utente della distribuzione del modello](./media/create-website/TemplateDeployment6.png)
-7. Al termine della distribuzione, verrà aperto il pannello del gruppo di risorse.
-   ![Screenshot del pannello del gruppo di risorse](./media/create-website/TemplateDeployment7.png)  
-8. Per usare l'applicazione, passare semplicemente all'URL dell'App Web, nell'esempio precedente l'URL sarà http://mydemodocdbwebapp.azurewebsites.net.  Verrà visualizzata l'applicazione Web seguente:
+    ![Schermata di distribuzione del modello hello dell'interfaccia utente](./media/create-website/TemplateDeployment5.png)
+6. Fare clic su **esaminare le note legali**, **acquisto**, quindi fare clic su **crea** distribuzione hello toobegin.  Selezionare **toodashboard Pin** distribuzione risultante hello è facilmente visibile nella pagina Home page del portale Azure.
+   ![Schermata di distribuzione del modello hello dell'interfaccia utente](./media/create-website/TemplateDeployment6.png)
+7. Al termine della distribuzione di hello, si aprirà pannello della risorsa gruppo hello.
+   ![Schermata del Pannello di gruppo di risorse hello](./media/create-website/TemplateDeployment7.png)  
+8. toouse hello applicazione, passare semplicemente l'URL dell'app web toohello (nell'esempio hello sopra, hello URL sarebbe http://mydemodocdbwebapp.azurewebsites.net).  Si noterà hello dopo l'applicazione web:
    
    ![Applicazione di esempio](./media/create-website/image2.png)
-9. Proseguire e creare un paio di attività nell'app Web, quindi tornare al pannello del gruppo di risorse nel portale di Azure. Fare clic sulla risorsa dell'account Azure Cosmos DB nell'elenco delle risorse, quindi su **Esplora query**.
-    ![Screenshot della sezione di riepilogo in cui è evidenziata l'app Web](./media/create-website/TemplateDeployment8.png)  
-10. Eseguire la query predefinita "SELECT * FROM c" ed esaminarne i risultati.  Si noti che la query ha recuperato la rappresentazione JSON delle attività create nel passaggio 7 precedente.  È possibile sperimentare con le query. Provare ad esempio a eseguire SELECT * FROM c WHERE c.isComplete = true per restituire tutti gli elementi todo che sono stati contrassegnati come completati.
+9. Vado avanti e creare un paio di attività in hello web app e quindi tornare toohello pannello gruppo della risorsa nel portale di Azure hello. Fare clic sulla risorsa di account Azure Cosmos DB hello nell'elenco di risorse hello e quindi fare clic su **Esplora Query**.
+    ![Schermata di hello riepilogo obiettivo con app web hello evidenziato](./media/create-website/TemplateDeployment8.png)  
+10. Eseguire una query predefinita hello, "selezionare * da c" ed esaminare i risultati di hello.  Si noti che eseguono query hello ha recuperato una rappresentazione JSON hello delle attività hello creato nel passaggio 7 precedente.  È gratuito tooexperiment con query. ad esempio, provare a eseguire SELECT * FROM c WHERE c.isComplete = true tooreturn tutti gli elementi di attività che sono stati contrassegnati come completati.
     
-    ![Schermata dei pannelli Esplora query e Risultati con i risultati delle query](./media/create-website/image5.png)
-11. È possibile verificare la funzionalità del portale di Azure Cosmos DB o modificare l'applicazione Todo di esempio.  A questo punto si è pronti per distribuire un altro modello.
+    ![Schermata dei pannelli Esplora Query e i risultati mostrano i risultati di query hello, hello](./media/create-website/image5.png)
+11. È gratuita tooexplore hello esperienza del portale Azure Cosmos DB o modificare un'applicazione Todo esempio hello.  A questo punto si è pronti per distribuire un altro modello.
 
 <a id="Build"></a> 
 
-## <a name="step-3-deploy-the-document-account-and-web-app-sample"></a>Passaggio 3: Distribuire l'esempio relativo ad account DocumentDB e app Web
-Si procederà ora alla distribuzione del secondo modello.  Questo modello è utile per mostrare come inserire le informazioni relative alla connessione di Azure Cosmos DB, ad esempio l'endpoint dell'account e la chiave master in un'app Web come impostazioni dell'applicazione o come stringa di connessione personalizzata. Si supponga ad esempio di avere un'applicazione Web che si intende distribuire con un account Azure Cosmos DB e con informazioni relative alla connessione popolate automaticamente durante la distribuzione.
+## <a name="step-3-deploy-hello-document-account-and-web-app-sample"></a>Passaggio 3: Distribuire hello account documento e l'esempio di app web
+Si procederà ora alla distribuzione del secondo modello.  Questo modello è utile tooshow come è possibile inserire informazioni di connessione di database di Azure Cosmos quali endpoint dell'account e la chiave master in un'app web, come le impostazioni dell'applicazione o come una stringa di connessione personalizzata. Ad esempio, potrebbe essere la propria applicazione web che desideri toodeploy con un account Azure Cosmos DB e le informazioni di connessione hello popolato automaticamente durante la distribuzione.
 
 > [!TIP]
-> Il modello non verifica che il nome dell'app Web e il nome dell'account Azure Cosmos DB siano validi e disponibili.  È consigliabile verificare la disponibilità dei nomi che si intende fornire prima della distribuzione.
+> modello di Hello non convalidare hello nome dell'applicazione web e il nome di account Azure Cosmos DB immesso di sotto) valido e b) disponibile.  Si consiglia di verificare la disponibilità di hello di hello Nome pianificare la distribuzione di hello toosupply toosubmitting precedente.
 > 
 > 
 
-1. Nel [portale di Azure](https://portal.azure.com), fare clic su Nuovo e ricercare "Distribuzione modello".
-    ![Screenshot dell'interfaccia utente della distribuzione del modello](./media/create-website/TemplateDeployment1.png)
-2. Selezionare la voce Distribuzione modello e fare clic su **Crea** ![Screenshot dell'interfaccia utente della distribuzione del modello](./media/create-website/TemplateDeployment2.png).
-3. Fare clic su **Modifica modello**, incollare il contenuto del file del modello DocDBWebSite.json e fare clic su **Salva**.
-   ![Screenshot dell'interfaccia utente della distribuzione del modello](./media/create-website/TemplateDeployment3.png)
-4. Fare clic su **Modifica parametri**, specificare i valori per ogni parametro obbligatorio e fare clic su **OK**.  I parametri sono i seguenti:
+1. In hello [portale Azure](https://portal.azure.com), fare clic su Nuovo e cercare "Distribuzione del modello".
+    ![Schermata di distribuzione del modello hello dell'interfaccia utente](./media/create-website/TemplateDeployment1.png)
+2. Selezionare l'elemento di distribuzione modello hello e fare clic su **crea** ![schermata della distribuzione del modello hello dell'interfaccia utente](./media/create-website/TemplateDeployment2.png)
+3. Fare clic su **modifica modelli**, incollare il contenuto di hello hello DocDBWebSite.json del file di modello e fare clic su **salvare**.
+   ![Schermata di distribuzione del modello hello dell'interfaccia utente](./media/create-website/TemplateDeployment3.png)
+4. Fare clic su **modificare parametri**, fornire i valori per ognuno dei parametri obbligatori hello e fare clic su **OK**.  come indicato di seguito sono riportati i parametri di Hello:
    
-   1. SITENAME: specifica il nome dell'app Web del servizio app e viene usato per creare l'URL che consentirà di accedere all'app Web. Ad esempio, se si specifica "mydemodocdbwebapp", l'URL usato per accedere all'app Web sarà mydemodocdbwebapp.azurewebsites.net.
-   2. HOSTINGPLANNAME: specifica il nome del piano di hosting del servizio app da creare.
-   3. LOCATION: specifica la posizione di Azure in cui creare le risorse di Azure Cosmos DB e dell'app Web.
-   4. DATABASEACCOUNTNAME: specifica il nome dell'account Azure Cosmos DB da creare.   
+   1. Nome sito: Specifica hello Nome applicazione di servizio App web ed è utilizzato tooconstruct hello URL che si utilizzerà tooaccess hello web app (ad esempio, se si specifica "mydemodocdbwebapp", quindi sarà hello URL da cui si accederà hello web app mydemodocdbwebapp.azurewebsites.NET).
+   2. HOSTINGPLANNAME: Specifica il nome di hello del servizio App toocreate piano di hosting.
+   3. PERCORSO: Specifica hello Azure posizione in cui toocreate hello Azure Cosmos DB e app risorse web.
+   4. DATABASEACCOUNTNAME: Specifica il nome di hello di hello Azure Cosmos DB account toocreate.   
       
-      ![Screenshot dell'interfaccia utente della distribuzione del modello](./media/create-website/TemplateDeployment4.png)
-5. Scegliere un gruppo di risorse esistente o fornire un nome per creare un nuovo gruppo di risorse, quindi selezionare la relativa posizione.
+      ![Schermata di distribuzione del modello hello dell'interfaccia utente](./media/create-website/TemplateDeployment4.png)
+5. Scegliere un gruppo di risorse esistente o fornire un nome toomake un nuovo gruppo di risorse e scegliere un percorso per il gruppo di risorse hello.
 
-    ![Screenshot dell'interfaccia utente della distribuzione del modello](./media/create-website/TemplateDeployment5.png)
-6. Fare clic su **Rivedere le note legali**, **Acquista**, quindi su **Crea** per iniziare la distribuzione.  Selezionare **Aggiungi al dashboard** per rendere facilmente visibile la distribuzione ottenuta nella home page del portale di Azure.
-   ![Screenshot dell'interfaccia utente della distribuzione del modello](./media/create-website/TemplateDeployment6.png)
-7. Al termine della distribuzione, verrà aperto il pannello del gruppo di risorse.
-   ![Screenshot del pannello del gruppo di risorse](./media/create-website/TemplateDeployment7.png)  
-8. Fare clic sulla risorsa dell'App Web nell'elenco delle risorse, quindi fare clic su **Impostazioni applicazione** ![Screenshot del gruppo di risorse](./media/create-website/TemplateDeployment9.png).  
-9. Si noti la presenza di impostazioni dell'applicazione per l'endpoint di Azure Cosmos DB e per ognuna delle relative chiavi master.
+    ![Schermata di distribuzione del modello hello dell'interfaccia utente](./media/create-website/TemplateDeployment5.png)
+6. Fare clic su **esaminare le note legali**, **acquisto**, quindi fare clic su **crea** distribuzione hello toobegin.  Selezionare **toodashboard Pin** distribuzione risultante hello è facilmente visibile nella pagina Home page del portale Azure.
+   ![Schermata di distribuzione del modello hello dell'interfaccia utente](./media/create-website/TemplateDeployment6.png)
+7. Al termine della distribuzione di hello, si aprirà pannello della risorsa gruppo hello.
+   ![Schermata del Pannello di gruppo di risorse hello](./media/create-website/TemplateDeployment7.png)  
+8. Fare clic sulla risorsa App Web hello nell'elenco di risorse hello e quindi fare clic su **le impostazioni dell'applicazione** ![schermata hello del gruppo di risorse](./media/create-website/TemplateDeployment9.png)  
+9. Si noti sono presenti per l'endpoint di Azure Cosmos DB hello e ognuna delle chiavi master di database di Azure Cosmos hello le impostazioni dell'applicazione.
 
     ![Screenshot delle impostazioni dell'applicazione](./media/create-website/TemplateDeployment10.png)  
-10. È possibile continuare a esplorare il portale di Azure o seguire uno degli [esempi](http://go.microsoft.com/fwlink/?LinkID=402386) di Azure Cosmos DB per creare la propria applicazione Azure Cosmos DB.
+10. È gratuito toocontinue esplorazione hello portale di Azure o seguire uno dei nostri DB Cosmos Azure [esempi](http://go.microsoft.com/fwlink/?LinkID=402386) toocreate un'applicazione Azure Cosmos DB.
 
 <a name="NextSteps"></a>
 
 ## <a name="next-steps"></a>Passaggi successivi
 Congratulazioni. È stata completata la distribuzione di Azure Cosmos DB, di un'app Web del servizio app e di un'applicazione Web di esempio usando i modelli di Azure Resource Manager.
 
-* Per altre informazioni su Azure Cosmos DB, fare clic [qui](http://azure.com/docdb).
-* Per altre informazioni sulle app Web del servizio app di Azure, vedere [qui](http://go.microsoft.com/fwlink/?LinkId=325362).
-* Per altre informazioni sui modelli di Gestione risorse di Azure, vedere [qui](https://msdn.microsoft.com/library/azure/dn790549.aspx).
+* Fare clic su toolearn ulteriori informazioni su Azure Cosmos DB, [qui](http://azure.com/docdb).
+* toolearn ulteriori informazioni sull'App Web di servizio App di Azure, fare clic su [qui](http://go.microsoft.com/fwlink/?LinkId=325362).
+* toolearn più sui modelli di gestione risorse di Azure, fare clic su [qui](https://msdn.microsoft.com/library/azure/dn790549.aspx).
 
 ## <a name="whats-changed"></a>Modifiche apportate
-* Per una Guida per la modifica di siti Web al servizio App vedere: [servizio App Azure e il relativo impatto sui servizi di Azure esistente](http://go.microsoft.com/fwlink/?LinkId=529714)
-* Per una guida relativa al passaggio dal portale precedente al nuovo portale vedere: [Informazioni di riferimento per l'esplorazione del portale di Azure classico](http://go.microsoft.com/fwlink/?LinkId=529715)
+* Per una Guida toohello modifica da siti Web tooApp servizio vedere: [relativo impatto sui servizi di Azure esistente e servizio App di Azure](http://go.microsoft.com/fwlink/?LinkId=529714)
+* Per una Guida toohello change hello vecchio portale toohello nuovo portale, vedere: [riferimento per la navigazione hello portale classico di Azure](http://go.microsoft.com/fwlink/?LinkId=529715)
 
 > [!NOTE]
-> Per iniziare a usare il servizio app di Azure prima di registrarsi per ottenere un account Azure, andare a [Prova il servizio app](http://go.microsoft.com/fwlink/?LinkId=523751), dove è possibile creare un'app Web iniziale temporanea nel servizio app. Non è necessario fornire una carta di credito né impegnarsi in alcun modo.
+> Se si desidera tooget avviato con il servizio App di Azure prima di effettuare l'iscrizione per un account Azure, andare troppo[tenta di servizio App](http://go.microsoft.com/fwlink/?LinkId=523751), in cui è possibile creare subito un'app web di breve durata starter nel servizio App. Non è necessario fornire una carta di credito né impegnarsi in alcun modo.
 > 
 > 
 

@@ -1,6 +1,6 @@
 ---
-title: Conversione di dati nel gateway IoT con Azure IoT Edge | Microsoft Docs
-description: Usare il gateway IoT per convertire il formato dei dati del sensore tramite un modulo personalizzato di Azure IoT Edge.
+title: conversione di aaaData nel gateway IoT con bordo IoT di Azure | Documenti Microsoft
+description: Utilizzare IoT gateway tooconvert hello il formato di dati del sensore tramite un modulo personalizzato dal bordo IoT di Azure.
 services: iot-hub
 documentationcenter: 
 author: shizn
@@ -15,88 +15,88 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/25/2017
 ms.author: xshi
-ms.openlocfilehash: d5c735a4adbc59e9526ec4fd40720c5ec136d63d
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: ae94b1f96f36dfcb4f77fadc0ece3cff3d0bba91
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="use-iot-gateway-for-sensor-data-transformation-with-azure-iot-edge"></a>Usare il gateway IoT per la trasformazione dei dati del sensore con Azure IoT Edge
 
 > [!NOTE]
-> Prima di iniziare questa esercitazione, assicurarsi di aver completato le lezioni seguenti in sequenza:
+> Prima di iniziare questa esercitazione, assicurarsi di che aver completato hello seguente lezioni in sequenza:
 > * [Configurare Intel NUC come gateway IoT](iot-hub-gateway-kit-c-lesson1-set-up-nuc.md)
-> * [Use IoT gateway to connect things to the cloud - SensorTag to Azure IoT Hub](iot-hub-gateway-kit-c-iot-gateway-connect-device-to-cloud.md) (Usare il gateway IoT per connettere oggetti al cloud - SensorTag ad Azure IoT Hub)
+> * [Utilizzare il cloud IoT gateway tooconnect operazioni toohello - SensorTag tooAzure IoT Hub](iot-hub-gateway-kit-c-iot-gateway-connect-device-to-cloud.md)
 
-Uno degli scopi di un gateway IoT consiste nell'elaborare i dati raccolti prima di inviarli al cloud. Azure IoT Edge introduce una serie di moduli che possono essere creati e assemblati per formare il flusso di lavoro dell'elaborazione dei dati. Un modulo riceve un messaggio, esegue un'azione su di esso e quindi lo passa ad altri moduli per l'elaborazione.
+Un solo scopo di un gateway Iot è tooprocess raccolti dati prima di inviarlo toohello cloud. Azure IoT Edge introduce i moduli che possono essere flusso di lavoro creati e assemblati tooform hello l'elaborazione dei dati. Un modulo riceve un messaggio, esegue un'azione su di esso e quindi spostarla per tooprocess altri moduli.
 
 ## <a name="what-you-learn"></a>Contenuto dell'esercitazione
 
-Informazioni su come creare un modulo per convertire i messaggi del SensorTag in un formato diverso.
+Viene illustrato come i messaggi toocreate tooconvert un modulo da hello SensorTag in un formato diverso.
 
 ## <a name="what-you-do"></a>Operazioni da fare
 
-* Creare un modulo per convertire nel formato JSON un messaggio ricevuto.
-* Compilare il modulo.
-* Aggiungere il modulo all'applicazione di esempio BLE da Azure IoT Edge.
-* Eseguire l'applicazione di esempio.
+* Creare un modulo tooconvert un messaggio ricevuto in formato JSON hello.
+* Compilare il modulo di hello.
+* Aggiungere l'applicazione di esempio hello modulo toohello BILITA dal bordo IoT di Azure.
+* Eseguire l'applicazione di esempio hello.
 
 ## <a name="what-you-need"></a>Elementi necessari
 
-* Le esercitazioni seguenti completate in sequenza:
+* Hello seguenti esercitazioni completate in sequenza:
   * [Configurare Intel NUC come gateway IoT](iot-hub-gateway-kit-c-lesson1-set-up-nuc.md)
-  * [Use IoT gateway to connect things to the cloud - SensorTag to Azure IoT Hub](iot-hub-gateway-kit-c-iot-gateway-connect-device-to-cloud.md) (Usare il gateway IoT per connettere oggetti al cloud - SensorTag ad Azure IoT Hub)
+  * [Utilizzare il cloud IoT gateway tooconnect operazioni toohello - SensorTag tooAzure IoT Hub](iot-hub-gateway-kit-c-iot-gateway-connect-device-to-cloud.md)
 * Un client SSH in esecuzione nel computer host. Si consiglia l'uso di PuTTY in Windows. Linux e macOS sono già dotati di un client SSH.
-* L'indirizzo IP, il nome utente e la password per accedere al gateway dal client SSH.
+* indirizzo IP Hello e hello nome utente e password tooaccess hello gateway dal client SSH hello.
 * Una connessione Internet.
 
 ## <a name="create-a-module"></a>Creare un modulo
 
-1. Nel computer host eseguire il client SSH e connettersi al gateway IoT.
-1. Clonare i file di origine del modulo di conversione da GitHub nella home directory del gateway IoT eseguendo i comandi seguenti:
+1. Nel computer host hello, eseguire client SSH hello e toohello IoT gateway di connessione.
+1. Clonare il file di origine hello del modulo di conversione hello da GitHub toohello home directory di gateway IoT hello eseguendo hello seguenti comandi:
 
    ```bash
    cd ~
    git clone https://github.com/Azure-Samples/iot-hub-c-intel-nuc-gateway-customized-module.git
    ```
 
-   Questo è un modulo di Azure Edge nativo scritto nel linguaggio di programmazione C. Il modulo converte il formato dei messaggi ricevuti nel formato seguente:
+   Si tratta di un modulo di Azure Edge nativo scritto in linguaggio di programmazione C hello. modulo Hello converte formato hello di messaggi ricevuti in hello uno seguenti:
 
    ```json
    {"deviceId": "Intel NUC Gateway", "messageId": 0, "temperature": 0.0}
    ```
 
-## <a name="compile-the-module"></a>Compilare il modulo
+## <a name="compile-hello-module"></a>Compilare il modulo hello
 
-Per compilare il modulo, eseguire i comandi seguenti:
+modulo hello toocompile, eseguire hello seguenti comandi:
 
 ```bash
 cd iot-hub-c-intel-nuc-gateway-customized-module/my_module
-# change the build script runnable
+# change hello build script runnable
 chmod 777 build.sh
-# remove the invalid windows character
+# remove hello invalid windows character
 sed -i -e "s/\r$//" build.sh
-# run the build shell script
+# run hello build shell script
 ./build.sh
 ```
 
-Al termine della compilazione, viene creato un file `libmy_module.so`. Prendere nota del percorso assoluto del file.
+Ottenere un `libmy_module.so` file dopo aver completata la compilazione hello. Prendere nota del percorso assoluto di hello di questo file.
 
-## <a name="add-the-module-to-the-ble-sample-application"></a>Aggiungere il modulo all'applicazione di esempio BLE
+## <a name="add-hello-module-toohello-ble-sample-application"></a>Aggiungere l'applicazione di esempio BILITA toohello hello modulo
 
-1. Passare alla cartella degli esempi usando il comando seguente:
+1. Cartella di esempi di passare toohello eseguendo hello comando seguente:
 
    ```bash
    cd /usr/share/azureiotgatewaysdk/samples
    ```
 
-1. Aprire il file di configurazione usando il comando seguente:
+1. Aprire il file di configurazione di hello eseguendo hello comando seguente:
 
    ```bash
    vi ble_gateway.json
    ```
 
-1. Aggiungere un modulo inserendo il codice seguente nella sezione `modules`.
+1. Aggiungere un modulo inserendo hello seguente codice toohello `modules` sezione.
 
    ```json
    {
@@ -111,8 +111,8 @@ Al termine della compilazione, viene creato un file `libmy_module.so`. Prendere 
     },
     ```
 
-1. Sostituire `[Your libmy_module.so path]` nel codice con il percorso assoluto del file libmy_module.so.
-1. Sostituire il codice nella sezione `links` con il codice seguente:
+1. Sostituire `[Your libmy_module.so path]` nel codice hello con percorso assoluto di hello del libmy_module.so hello' file.
+1. Sostituire il codice hello in hello `links` sezione con hello uno seguenti:
 
    ```json
    {
@@ -125,18 +125,18 @@ Al termine della compilazione, viene creato un file `libmy_module.so`. Prendere 
    }
    ```
 
-1. Premere `ESC` e quindi digitare `:wq` per salvare il file.
+1. Premere `ESC`, quindi digitare `:wq` file hello toosave.
 
-## <a name="run-the-sample-application"></a>Eseguire l'applicazione di esempio
+## <a name="run-hello-sample-application"></a>Eseguire l'applicazione di esempio hello
 
-1. Accendere il SensorTag.
-1. Impostare la variabile di ambiente SSL_CERT_FILE usando il comando seguente:
+1. Accensione hello SensorTag.
+1. Impostare una variabile di ambiente SSL_CERT_FILE hello eseguendo hello comando seguente:
 
    ```bash
    export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
    ```
 
-1. Eseguire l'applicazione di esempio con il modulo aggiunto usando il comando seguente:
+1. Eseguire l'applicazione di esempio hello con modulo aggiunto hello eseguendo hello comando seguente:
 
    ```bash
    ./ble_gateway ble_gateway.json
@@ -144,6 +144,6 @@ Al termine della compilazione, viene creato un file `libmy_module.so`. Prendere 
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-È stato usato il gateway IoT per convertire il messaggio dal SensorTag nel formato JSON.
+Hai correttamente utilizzare hello IoT gateway tooconvert messaggio hello da SensorTag in formato JSON hello.
 
 [!INCLUDE [iot-hub-get-started-next-steps](../../includes/iot-hub-get-started-next-steps.md)]

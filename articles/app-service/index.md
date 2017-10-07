@@ -1,6 +1,6 @@
 ---
-title: Documentazione del servizio app di Azure - Esercitazioni e informazioni di riferimento sulle API | Documentazione Microsoft
-description: Informazioni su come usare il servizio app per creare app web e per dispositivi mobili, per tutte le piattaforme e tutti i dispositivi, con esercitazioni, video, informazioni di riferimento sulle API e altri documenti.
+title: aaaAzure documentazione del servizio App - esercitazioni, riferimenti alle API | Documenti Microsoft
+description: Informazioni su come toouse web toocreate di servizio App e App per dispositivi mobili per qualsiasi piattaforma o dispositivo con le esercitazioni, video, riferimenti ad API e altra documentazione.
 services: app-service
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: a9b7cb3492fa71b33c4aa6b2c0ecda9eaac9ea4b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1d4ec0970232d2a12065a05d2f0211f7aae16d3f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 #<a name="app-service-documentation"></a>Documentazione del servizio app
 
-Informazioni su come usare il servizio app per sviluppare e ospitare app web e per dispositivi mobili, per tutte le piattaforme e tutti i dispositivi, con esercitazioni, video, informazioni di riferimento sulle API e altri documenti. Informazioni su come integrare le app con soluzioni SaaS, connettersi con applicazioni locali e automatizzare i processi aziendali.
+Informazioni su come toouse web toodevelop e host di servizio App e App per dispositivi mobili per qualsiasi piattaforma o dispositivo con le esercitazioni, video, riferimenti ad API e altra documentazione. Informazioni su app toointegrate con le soluzioni SaaS, come connettersi con applicazioni locali e automatizzare i processi aziendali.
 
 <ul class="panelContent cardsFTitle">
     <li>

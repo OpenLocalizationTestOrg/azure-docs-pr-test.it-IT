@@ -1,5 +1,5 @@
 ---
-title: Panoramica di App Web | Documentazione Microsoft
+title: Panoramica di App aaaWeb | Documenti Microsoft
 description: Informazioni sul modo in cui il Servizio app di Azure semplifica lo sviluppo e l'hosting di applicazioni Web
 services: app-service\web
 documentationcenter: 
@@ -15,16 +15,16 @@ ms.topic: overview
 ms.date: 01/04/2017
 ms.author: cephalin
 ms.custom: mvc
-ms.openlocfilehash: 3db15e9dcdd510481f4982198da5ac950f2c7e4f
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: ce27519bddd62a7fca6ba1fb23c763d0fc378c2a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="web-apps-overview"></a>Panoramica di App Web
-*App Web del servizio app* è una piattaforma di calcolo completamente gestita, ottimizzata per l'hosting di siti Web e applicazioni Web. Questa offerta [PaaS (Platform As a Service)](https://en.wikipedia.org/wiki/Platform_as_a_service) di Microsoft Azure consente di concentrarsi sulla logica di business, mentre Azure gestisce l'infrastruttura per l'esecuzione e il ridimensionamento delle app.
+*App Web del servizio app* è una piattaforma di calcolo completamente gestita, ottimizzata per l'hosting di siti Web e applicazioni Web. Questo [platform-as-a-service](https://en.wikipedia.org/wiki/Platform_as_a_service) offerta (PaaS) di Microsoft Azure consente di concentrarsi sulla logica di business, mentre Azure si occupa di hello infrastruttura toorun e ridimensionare le app.
 
-Il video di 5 minuti disponibile di seguito illustra App Web del servizio app di Azure.
+Dopo 5 minuti video Hello introduce App Web di servizio App di Azure.
 
 >[!VIDEO https://channel9.msdn.com/Shows/Azure-Friday/Azure-App-Service-Web-Apps-with-Yochay-Kiriaty/player]
 >
@@ -35,43 +35,43 @@ Il video di 5 minuti disponibile di seguito illustra App Web del servizio app di
 > 
 
 ## <a name="what-is-a-web-app-in-app-service"></a>Informazioni sull'app Web in un servizio app
-Un' *app Web* del servizio app è una risorsa di calcolo offerta da Azure per l'hosting di un sito Web o di un'applicazione Web.  
+Nel servizio App, un *app web* è hello risorse di calcolo forniti da Azure per ospitare una sito o applicazione web.  
 
-Le risorse di calcolo possono trovarsi in macchine virtuali condivise o dedicate, in base al piano tariffario scelto. Il codice dell'applicazione viene eseguito in una VM gestita, isolata da altri clienti.
+risorse di calcolo Hello potrebbero essere in condivise o dedicate macchine virtuali (VM), a seconda di hello tariffario scelto. Il codice dell'applicazione viene eseguito in una VM gestita, isolata da altri clienti.
 
 È possibile usare per il codice qualsiasi linguaggio o framework supportato dal [Servizio app di Azure](../app-service/app-service-value-prop-what-is.md), ad esempio ASP.NET, Node.js, Java, PHP o Python. È anche possibile eseguire script che usano [PowerShell e altri linguaggi di scripting](web-sites-create-web-jobs.md#acceptablefiles) in un'app Web.
 
-Per esempi di scenari di applicazione tipici per cui è possibile usare App Web, vedere la pagina relativa agli [scenari con app Web](https://azure.microsoft.com/documentation/scenarios/web-app/) e la sezione **Scenari e indicazioni** dell'articolo [Confronto tra Servizio app di Azure, Macchine virtuali, Service Fabric e Servizi cloud](choose-web-site-cloud-service-vm.md#scenarios).
+Per esempi di scenari di applicazione tipici che è possibile utilizzare le applicazioni Web per, vedere [scenari di app Web](https://azure.microsoft.com/documentation/scenarios/web-app/) hello e **scenari e i consigli** sezione [servizio App di Azure, Virtual Confronto tra le macchine, Service Fabric e servizi Cloud](choose-web-site-cloud-service-vm.md#scenarios).
 
 ## <a name="why-use-web-apps"></a>Vantaggi dell'uso di app Web
-Ecco alcune delle funzionalità principali del servizio app applicabili ad App Web.
+Ecco alcune delle funzionalità principali di servizio App che si applicano tooWeb App:
 
 * **Più linguaggi e framework** : il servizio app offre un supporto ottimale per ASP.NET, Node.js, Java, PHP e Python. È anche possibile eseguire [PowerShell e altri script o eseguibili](web-sites-create-web-jobs.md) in VM del servizio app.
-* **Ottimizzazione della metodologia DevOps**: è possibile configurare [l'integrazione e la distribuzione continua](app-service-continuous-deployment.md) con Visual Studio Team Services, GitHub o BitBucket, alzare di livello gli aggiornamenti tramite [ambienti di testing e di staging](web-sites-staged-publishing.md), eseguire [test A/B](app-service-web-test-in-production-get-start.md) e gestire le app nel servizio app con [Azure PowerShell](/powershell/azureps-cmdlets-docs) o l'[interfaccia della riga di comando multipiattaforma](../cli-install-nodejs.md).
-* **Scalabilità globale con disponibilità elevata**: è possibile [aumentare le prestazioni](web-sites-scale.md) o il [numero di istanze](../monitoring-and-diagnostics/insights-how-to-scale.md) manualmente o automaticamente. Le app possono essere ospitate ovunque nell'infrastruttura globale di data center Microsoft e il [contratto di servizio](https://azure.microsoft.com/support/legal/sla/app-service/) per il servizio app assicura disponibilità elevata.
-* **Connessioni a piattaforme SaaS e dati locali**: è possibile scegliere tra oltre 50 [connettori](../connectors/apis-list.md) per sistemi aziendali (come SAP, Siebel e Oracle), servizi SaaS (come Salesforce e Office 365) e servizi Internet (come Facebook e Twitter), nonché accedere ai dati locali con [connessioni ibride](../biztalk-services/integration-hybrid-connection-overview.md) e [reti virtuali di Azure](web-sites-integrate-with-vnet.md).
+* **Ottimizzazione della metodologia DevOps**: è possibile configurare [l'integrazione e la distribuzione continua](app-service-continuous-deployment.md) con Visual Studio Team Services, GitHub o BitBucket, alzare di livello gli aggiornamenti tramite [ambienti di testing e di staging](web-sites-staged-publishing.md), eseguire [test A/B](app-service-web-test-in-production-get-start.md) Gestire le app nel servizio App tramite [Azure PowerShell](/powershell/azureps-cmdlets-docs) o hello [interfaccia della riga di comando multipiattaforma (CLI)](../cli-install-nodejs.md).
+* **Scalabilità globale con disponibilità elevata**: è possibile [aumentare le prestazioni](web-sites-scale.md) o il [numero di istanze](../monitoring-and-diagnostics/insights-how-to-scale.md) manualmente o automaticamente. Consente di ospitare l'App in un punto qualsiasi nell'infrastruttura di Data Center globali di Microsoft e hello servizio App [contratto di servizio](https://azure.microsoft.com/support/legal/sla/app-service/) promesse la disponibilità elevata.
+* **Dati locali e le piattaforme di tooSaaS connessioni** -scegliere da più di 50 [connettori](../connectors/apis-list.md) per i sistemi aziendali (ad esempio SAP, Siebel e Oracle), servizi SaaS (ad esempio, Salesforce e Office 365) e internet servizi (ad esempio Facebook e Twitter). nonché accedere ai dati locali con [connessioni ibride](../biztalk-services/integration-hybrid-connection-overview.md) e [reti virtuali di Azure](web-sites-integrate-with-vnet.md).
 * **Sicurezza e conformità** : il servizio app è [conforme a ISO, SOC e PCI](https://www.microsoft.com/TrustCenter/).
-* **Modelli di applicazione** : in [Azure Marketplace](https://azure.microsoft.com/marketplace/) è possibile scegliere da un esteso elenco di modelli di applicazione che consentono di usare una procedura guidata per installare software open source comune come WordPress, Joomla e Drupal.
-* **Integrazione con Visual Studio** : gli strumenti dedicati di Visual Studio semplificano il processo di creazione, distribuzione e debug.
+* **Modelli di applicazione** -scegliere da un elenco completo di modelli delle applicazioni in hello [Azure Marketplace](https://azure.microsoft.com/marketplace/) che consentono di utilizzare un software di open source più diffusi guidata tooinstall, ad esempio WordPress, Joomla e Drupal.
+* **Integrazione di Visual Studio** -strumenti dedicati in Visual Studio semplificano il lavoro hello di creazione, distribuzione e debug.
 
 Un'app Web può anche sfruttare le funzionalità offerte dalle [app per le API](../app-service-api/app-service-api-apps-why-best-platform.md), ad esempio il supporto di CORS, e dalle [app per dispositivi mobili](../app-service-mobile/app-service-mobile-value-prop.md), ad esempio le notifiche push. Per altre informazioni sui tipi di app nel servizio app, vedere [Informazioni sul servizio app di Azure](../app-service/app-service-value-prop-what-is.md).
 
-Oltre ad App Web nel servizio app, Azure offre altri servizi che possono essere usati per l'hosting di siti e applicazioni Web. Per la maggior parte degli scenari App Web è la scelta migliore.  Per un'architettura di microservizi, prendere in considerazione [Service Fabric](https://azure.microsoft.com/documentation/services/service-fabric). Se è necessario maggiore controllo sulle VM in cui viene eseguito il codice, prendere in considerazione [Macchine virtuali di Azure](https://azure.microsoft.com/documentation/services/virtual-machines/). Per altre informazioni su come scegliere uno di questi servizi di Azure, vedere [Confronto tra Servizio app di Azure, Macchine virtuali, Service Fabric e Servizi cloud](choose-web-site-cloud-service-vm.md).
+Oltre ad App Web nel servizio app, Azure offre altri servizi che possono essere usati per l'hosting di siti e applicazioni Web. Per la maggior parte degli scenari, le app Web è migliore di hello.  Per architettura microservizio, prendere in considerazione [Service Fabric](https://azure.microsoft.com/documentation/services/service-fabric)e se è necessario maggiore controllo sulla hello il codice viene eseguito su macchine virtuali, è consigliabile [macchine virtuali di Azure](https://azure.microsoft.com/documentation/services/virtual-machines/). Per ulteriori informazioni su come toochoose tra questi servizi di Azure, vedere [confronto servizi Cloud, macchine virtuali, Service Fabric e Azure App Service](choose-web-site-cloud-service-vm.md).
 
 ## <a name="getting-started"></a>introduttiva
-Per iniziare a distribuire codice di esempio in una nuova app Web nel servizio app, usare una delle esercitazioni nella casella di riepilogo a discesa seguente. Sarà necessario un account Azure gratuito.
+tooget avviato tramite la distribuzione di esempio codice tooa nuova app web nel servizio App, seguire una delle esercitazioni di hello in hello seguente nella casella a discesa. Sarà necessario un account Azure gratuito.
 
 > [!div class="op_single_selector"]
-> * [Distribuire la prima app Web ASP.NET in Azure in 5 minuti](app-service-web-get-started-dotnet.md)
-> * [Distribuire la prima app Web PHP in Azure in 5 minuti](app-service-web-get-started-php.md)
-> * [Distribuire la prima app Web Node.js in Azure in 5 minuti](app-service-web-get-started-nodejs.md)
-> * [Distribuire la prima app Web Java in Azure in 5 minuti](app-service-web-get-started-java.md)
-> * [Distribuire la prima app Web Python in Azure in 5 minuti](app-service-web-get-started-python.md)
-> * [Distribuire il primo sito HTML in Azure in 5 minuti](app-service-web-get-started-html.md)
+> * [Distribuire il primo tooAzure di app web ASP.NET 5 minuti](app-service-web-get-started-dotnet.md)
+> * [Distribuire il primo tooAzure app web PHP 5 minuti](app-service-web-get-started-php.md)
+> * [Distribuire il primo tooAzure di app web Node. js in 5 minuti](app-service-web-get-started-nodejs.md)
+> * [Distribuire il primo tooAzure di app web Java in 5 minuti](app-service-web-get-started-java.md)
+> * [Distribuire il primo tooAzure di app web Python in 5 minuti](app-service-web-get-started-python.md)
+> * [Distribuire il primo tooAzure sito HTML 5 minuti](app-service-web-get-started-html.md)
 > 
 > 
 
 > [!NOTE]
-> È possibile [provare il servizio app](https://azure.microsoft.com/try/app-service/) senza avere un account Azure. Creare un'app iniziale e provarla per un'ora, senza impegno e senza dover usare la carta di credito.
+> È possibile [provare il servizio app](https://azure.microsoft.com/try/app-service/) senza avere un account Azure. Creare un'app di avvio e riprodurre per tooan orari, è richiesto alcun carta di credito, nessun impegni.
 > 
 > 

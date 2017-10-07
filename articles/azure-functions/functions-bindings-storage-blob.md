@@ -1,6 +1,6 @@
 ---
-title: Associazioni dell'archiviazione BLOB di Funzioni di Azure | Microsoft Docs
-description: Informazioni su come usare trigger e associazioni di Archiviazione di Azure in Funzioni di Azure.
+title: associazioni di funzioni di archiviazione Blob aaaAzure | Documenti Microsoft
+description: Comprendere come toouse di archiviazione di Azure attiva e le associazioni in funzioni di Azure.
 services: functions
 documentationcenter: na
 author: lindydonna
@@ -16,16 +16,16 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 05/25/2017
 ms.author: glenga
-ms.openlocfilehash: 8d8f510ec906c0e0420ec48d45d88b93c144658a
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: cef44bd2154d0b97cca9220b6c5024a5b620c80d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-functions-blob-storage-bindings"></a>Binding dell'archiviazione BLOB di Funzioni di Azure
 [!INCLUDE [functions-selector-bindings](../../includes/functions-selector-bindings.md)]
 
-Questo articolo illustra come configurare e operare con le associazioni dell'archiviazione BLOB in Funzioni di Azure. Funzioni di Azure supporta trigger, associazioni di input e di output per l'archiviazione BLOB di Azure. Per le funzionalità disponibili in tutte le associazioni, vedere [Concetti di Trigger e associazioni di Funzioni di Azure](functions-triggers-bindings.md).
+Questo articolo viene illustrato come tooconfigure e di lavoro con le associazioni di archiviazione Blob di Azure in funzioni di Azure. Funzioni di Azure supporta i trigger e le associazioni di input e di output per l'archiviazione BLOB di Azure. Per le funzionalità disponibili in tutte le associazioni, vedere [Concetti di Trigger e associazioni di Funzioni di Azure](functions-triggers-bindings.md).
 
 [!INCLUDE [intro](../../includes/functions-bindings-intro.md)]
 
@@ -37,25 +37,25 @@ Questo articolo illustra come configurare e operare con le associazioni dell'arc
 <a name="storage-blob-trigger"></a>
 ## <a name="blob-storage-triggers-and-bindings"></a>Trigger e associazioni do archiviazione BLOB
 
-Con l'uso del trigger di archiviazione BLOB di Azure, il codice della funzione viene chiamato quando viene rilevato un BLOB nuovo o aggiornato. I contenuti del BLOB vengono dati come input alla funzione.
+Utilizzo di trigger di archiviazione Blob di Azure hello, il codice della funzione viene chiamato quando viene rilevato un blob nuovo o aggiornato. contenuto del blob Hello viene forniti come input toohello funzione.
 
-Definire un'archiviazione BLOB usando la scheda **Integrazione** nel portale Funzioni. Il portale crea la definizione seguente nella sezione **associazioni** di *function.json*:
+Definire un trigger di archiviazione blob utilizzando hello **integrazione** scheda nel portale le funzioni hello. portale Hello crea hello seguente definizione di hello **associazioni** sezione *function.json*:
 
 ```json
 {
-    "name": "<The name used to identify the trigger data in your code>",
+    "name": "<hello name used tooidentify hello trigger data in your code>",
     "type": "blobTrigger",
     "direction": "in",
-    "path": "<container to monitor, and optionally a blob name pattern - see below>",
+    "path": "<container toomonitor, and optionally a blob name pattern - see below>",
     "connection": "<Name of app setting - see below>"
 }
 ```
 
-Le associazioni di input e output BLOB vengono definite usando `blob` come tipo di associazione:
+BLOB di input e output associazioni vengono definite utilizzando `blob` come tipo di associazione hello:
 
 ```json
 {
-  "name": "<The name used to identify the blob input in your code>",
+  "name": "<hello name used tooidentify hello blob input in your code>",
   "type": "blob",
   "direction": "in", // other supported directions are "inout" and "out"
   "path": "<Path of input blob - see below>",
@@ -63,38 +63,38 @@ Le associazioni di input e output BLOB vengono definite usando `blob` come tipo 
 },
 ```
 
-* La proprietà `path` supporta le espressioni di associazione e parametri di filtro. Vedere [Modelli di nome](#pattern).
-* La proprietà `connection` deve contenere il nome di un'impostazione app che contiene una stringa di connessione alla risorsa di archiviazione. Nel portale di Azure l'editor standard disponibile nella scheda **Integrazione** configura questa impostazione app quando si sceglie un account di archiviazione.
+* Hello `path` proprietà supporta l'associazione di espressioni e parametri di filtro. Vedere [Modelli di nome](#pattern).
+* Hello `connection` proprietà deve contenere il nome di hello di un'impostazione di app che contiene una stringa di connessione di archiviazione. Nel portale di Azure hello, hello editor standard di hello **integrazione** scheda configura questa impostazione di app per l'utente quando si seleziona un account di archiviazione.
 
 > [!NOTE]
-> Quando si usa un trigger di tipo BLOB in un piano a consumo, è possibile che si verifichi un ritardo di un massimo di 10 minuti per l'elaborazione di nuovi BLOB in caso di inattività di un'app per le funzioni. Quando l'app per le funzioni è in esecuzione, i BLOB vengono elaborati immediatamente. Per evitare questo ritardo iniziale, prendere in considerazione una delle opzioni seguenti:
+> Quando si utilizza un trigger di blob in un piano di utilizzo, in può essere presente di ritardo di 10 minuti tooa l'elaborazione di nuovi BLOB dopo che un'app di funzione è diventato inattiva. Dopo l'applicazione di funzione hello è in esecuzione, i BLOB vengono elaborati immediatamente. tooavoid iniziale di questo ritardo, considerare una delle seguenti opzioni hello:
 > - Usare un piano di servizio app con l'opzione Always On abilitata.
-> - Usare un altro meccanismo per attivare l'elaborazione dei BLOB, ad esempio un messaggio della coda che contiene il nome del BLOB. Per un esempio, vedere il [Queue trigger with blob input binding](#input-sample) (Trigger della coda con associazione di input del BLOB).
+> - Utilizzare un altro blob di hello tootrigger meccanismo di elaborazione, ad esempio un messaggio nella coda che contiene il nome di blob hello. Per un esempio, vedere il [Queue trigger with blob input binding](#input-sample) (Trigger della coda con associazione di input del BLOB).
 
 <a name="pattern"></a>
 
 ### <a name="name-patterns"></a>Modelli di nome
-È possibile specificare un modello di nome del BLOB nella proprietà `path`, che può essere un'espressione di filtro o di associazione. Vedere [Modelli ed espressioni di associazione](functions-triggers-bindings.md#binding-expressions-and-patterns).
+È possibile specificare un modello di nome di blob in hello `path` proprietà, che può essere un'espressione di filtro o di associazione. Vedere [Modelli ed espressioni di associazione](functions-triggers-bindings.md#binding-expressions-and-patterns).
 
-Ad esempio, per filtrare i BLOB che iniziano con la stringa "original", usare la definizione seguente. Questo percorso troverà un BLOB denominato *original-Blob1.txt* nel contenitore *input* e il valore della variabile `name` nel codice della funzione sarà `Blob1`.
+Tooblobs toofilter che iniziano con una stringa hello "originale", ad esempio, utilizzare hello seguente definizione. Questo percorso consente di individuare un blob denominato *originale Blob1.txt* in hello *input* contenitore e il valore di hello di hello `name` variabile nel codice della funzione è `Blob1`.
 
 ```json
 "path": "input/original-{name}",
 ```
 
-Per associare il nome del file BLOB e l'estensione separatamente, usare due modelli. Anche questo percorso troverà un BLOB denominato *original-Blob1.txt* e i valori delle variabili `blobname` e `blobextension` nel codice della funzione saranno *original-Blob1* e *txt*.
+estensione e il nome di file blob toohello toobind separatamente, usare due modelli. Questo percorso consente anche di trovare un blob denominato *originale Blob1.txt*e il valore di hello di hello `blobname` e `blobextension` variabili nel codice della funzione vengono *originale Blob1* e *txt*.
 
 ```json
 "path": "input/{blobname}.{blobextension}",
 ```
 
-È possibile limitare il tipo di file dei BLOB usando un valore fisso per l'estensione del file. Ad esempio, per attivare solo i file con estensione PNG, usare il modello seguente:
+È possibile limitare il tipo di file hello del BLOB utilizzando un valore fisso per l'estensione del file hello. Ad esempio, tootrigger solo per i file con estensione png, utilizzare hello seguente modello:
 
 ```json
 "path": "samples/{name}.png",
 ```
 
-Le parentesi graffe sono caratteri speciali nei modelli di nome. Per specificare i nomi di BLOB con parentesi graffe nel nome, raddoppiare le parentesi graffe. L'esempio seguente troverà un BLOB denominato *{20140101}-soundfile.mp3* nel contenitore *images* e il valore della variabile `name` nel codice della funzione sarà *soundfile.mp3*. 
+Le parentesi graffe sono caratteri speciali nei modelli di nome. i nomi di blob toospecify con parentesi graffe nel nome di hello, fare in modo che le parentesi graffe hello utilizzando due parentesi graffe. esempio Hello trova un blob denominato *{20140101}-soundfile.mp3* in hello *immagini* contenitore e hello `name` valore della variabile nel codice della funzione hello è  *soundfile.mp3*. 
 
 ```json
 "path": "images/{{20140101}}-{name}",
@@ -102,50 +102,50 @@ Le parentesi graffe sono caratteri speciali nei modelli di nome. Per specificare
 
 ### <a name="trigger-metadata"></a>Metadati del trigger
 
-Il trigger del BLOB contiene diverse proprietà di metadati. Queste proprietà possono essere usate come parte delle espressioni di associazione in altre associazioni o come parametri nel codice. Questi valori hanno la stessa semantica di [CloudBlob](https://docs.microsoft.com/en-us/dotnet/api/microsoft.windowsazure.storage.blob.cloudblob?view=azure-dotnet).
+i trigger di blob Hello fornisce diverse proprietà di metadati. Queste proprietà possono essere usate come parte delle espressioni di associazione in altre associazioni o come parametri nel codice. Questi valori hanno hello stessa semantica [CloudBlob](https://docs.microsoft.com/en-us/dotnet/api/microsoft.windowsazure.storage.blob.cloudblob?view=azure-dotnet).
 
-- **BlobTrigger**. Digitare `string`. Il percorso del BLOB trigger
-- **Uri**. Digitare `System.Uri`. L'URI del BLOB per la posizione primaria.
-- **Properties**. Digitare `Microsoft.WindowsAzure.Storage.Blob.BlobProperties`. Le proprietà di sistema del BLOB.
-- **Metadata**. Digitare `IDictionary<string,string>`. I metadati definiti dall'utente per il BLOB.
+- **BlobTrigger**. Digitare `string`. percorso blob attivazione Hello
+- **Uri**. Digitare `System.Uri`. URI del blob Hello posizione primaria hello.
+- **Properties**. Digitare `Microsoft.WindowsAzure.Storage.Blob.BlobProperties`. salve le proprietà di sistema del blob.
+- **Metadata**. Digitare `IDictionary<string,string>`. Hello metadati definiti dall'utente per il blob hello.
 
 <a name="receipts"></a>
 
 ### <a name="blob-receipts"></a>Conferme di BLOB
-Il runtime di Funzioni di Azure verifica che nessuna funzione trigger di BLOB venga chiamata più volte per lo stesso BLOB nuovo o aggiornato. Gestisce *conferme di BLOB* per determinare se una versione di BLOB specifica è stata elaborata.
+Funzioni di Azure Hello runtime garantisce che nessuna funzione trigger blob viene chiamata più volte per hello nello stesso blob nuovo o aggiornato. toodetermine se è stata elaborata una versione di blob specificato, viene mantenuta *blob conferme di recapito*.
 
-Funzioni di Azure archivia le conferme di BLOB in un contenitore denominato *azure-webjobs-hosts* nell'account di archiviazione di Azure per l'app per le funzioni, specificato dall'impostazione app `AzureWebJobsStorage`. Una conferma di BLOB contiene le seguenti informazioni:
+Blob di Azure archivi funzioni conferme di recapito in un contenitore denominato *ospita-processi Web di azure* nell'account di archiviazione di Azure per l'app di funzione hello (definito dall'impostazione di app hello `AzureWebJobsStorage`). Un carico di blob è hello le seguenti informazioni:
 
-* La funzione attivata, ovvero "*&lt;nome dell'app per le funzioni>*.Functions.*&lt;nome della funzione>*", ad esempio: "MyFunctionApp.Functions.CopyBlob"
-* Il nome del contenitore
-* Il tipo di BLOB ("BlockBlob" o "PageBlob")
-* Il nome del BLOB
-* Il valore ETag (identificatore di versione del BLOB, ad esempio: "0x8D1DC6E70A277EF")
+* Hello attivato funzione ("*&lt;nome della funzione app >*. Funzioni.  *&lt;nome funzione >*", ad esempio:"MyFunctionApp.Functions.CopyBlob")
+* nome del contenitore Hello
+* tipo di blob Hello ("BlockBlob" o "PageBlob")
+* nome del blob Hello
+* Hello ETag (un identificatore di versione del blob, ad esempio: "0x8D1DC6E70A277EF")
 
-Per forzare la rielaborazione di un BLOB è possibile eliminare manualmente la conferma del BLOB dal contenitore *azure-webjobs-hosts*.
+conferma di blob hello per tale blob tooforce rielaborazione di un blob, eliminare hello *ospita-processi Web di azure* contenitore manualmente.
 
 <a name="poison"></a>
 
 ### <a name="handling-poison-blobs"></a>Gestione di BLOB non elaborabili
 Se una funzione di trigger del BLOB ha esito negativo per un determinato BLOB, per impostazione predefinita Funzioni di Azure ritenta l'esecuzione fino a 5 volte. 
 
-Se tutti i 5 tentativi non riescono, Funzioni di Azure aggiunge un messaggio a una coda di archiviazione denominata *webjobs-blobtrigger-poison*. Il messaggio di coda per i BLOB non elaborabili è un oggetto JSON che contiene le seguenti proprietà:
+Se non tutti i tentativi di 5, le funzioni di Azure consente di aggiungere una coda di archiviazione tooa messaggio denominata *non elaborabili processi Web-blobtrigger*. messaggio della coda Hello per i BLOB non elaborabile è un oggetto JSON contenente hello le proprietà seguenti:
 
-* FunctionId (nel formato *&lt;nome dell'app per le funzioni>*.Functions.*&lt;nome della funzione>*)
+* FunctionId (in formato hello  *&lt;nome della funzione app >*. Funzioni.  *&lt;nome funzione >*)
 * BlobType ("BlockBlob" o "PageBlob")
 * ContainerName
 * BlobName
 * ETag (identificatore di versione del BLOB, ad esempio: "0x8D1DC6E70A277EF")
 
 ### <a name="blob-polling-for-large-containers"></a>Polling dei BLOB per contenitori di grandi dimensioni
-Se il contenitore BLOB monitorato contiene più di 10.000 BLOB, il runtime di Funzioni analizza i file di log per cercare i BLOB nuovi o modificati. Questo processo non avviene in tempo reale. È possibile quindi che una funzione non venga attivata per diversi minuti o più dopo la creazione del BLOB. Per di più [i log di archiviazione vengono creati in base al principio del "massimo sforzo"](/rest/api/storageservices/About-Storage-Analytics-Logging). Non è garantito che tutti gli eventi vengano acquisiti. In alcune condizioni, l'acquisizione dei log può non riuscire. Se è necessaria un'elaborazione dei BLOB più veloce o affidabile, valutare la possibilità di creare un [messaggio della coda](../storage/queues/storage-dotnet-how-to-use-queues.md) quando si crea il BLOB. Usare quindi un [trigger di coda](functions-bindings-storage-queue.md) invece di un trigger di BLOB per elaborare il BLOB.
+Se il contenitore di blob hello monitorato contiene più di 10.000 BLOB, hello toowatch funzioni runtime analisi log file per i BLOB nuovo o modificato. Questo processo non avviene in tempo reale. Una funzione potrebbe non viene generata finché diversi minuti o più dopo aver creato il blob hello. Per di più [i log di archiviazione vengono creati in base al principio del "massimo sforzo"](/rest/api/storageservices/About-Storage-Analytics-Logging). Non è garantito che tutti gli eventi vengano acquisiti. In alcune condizioni, l'acquisizione dei log può non riuscire. Se è necessaria un'elaborazione di blob più veloce o più affidabile, è consigliabile creare un [messaggio della coda](../storage/queues/storage-dotnet-how-to-use-queues.md) quando si crea il blob hello. Quindi, usare un [trigger coda](functions-bindings-storage-queue.md) invece di un blob di hello tooprocess trigger blob.
 
 <a name="triggerusage"></a>
 
 ## <a name="using-a-blob-trigger-and-input-binding"></a>Uso di un trigger di BLOB e dell'associazione di input
-Nelle funzioni .NET è possibile accedere ai dati del BLOB con un parametro del metodo, ad esempio `Stream paramName`. In questo caso, `paramName` è il valore specificato nella [configurazione del trigger](#trigger). Nelle funzioni Node.js si accede a dati del BLOB di input usando `context.bindings.<name>`.
+Nelle funzioni .NET, accedere ai dati di blob hello utilizzando un parametro di metodo, ad esempio `Stream paramName`. In questo caso, `paramName` hello valore specificato in hello [configurazione trigger](#trigger). Nelle funzioni di Node.js, hello accesso input di dati blob utilizzando `context.bindings.<name>`.
 
-In .NET è possibile eseguire l'associazione a uno tipo qualsiasi nell'elenco riportato di seguito. Se usati come associazione di input, alcuni di questi tipi richiedono una direzione di associazione `inout` in *function.json*. Questa direzione non è supportata dall'editor standard, pertanto è necessario usare l'editor avanzato.
+In .NET, è possibile associare tooany dei tipi di hello in hello in basso. Se usati come associazione di input, alcuni di questi tipi richiedono una direzione di associazione `inout` in *function.json*. Questa direzione non è supportata dall'editor standard hello, pertanto è necessario utilizzare hello editor avanzato.
 
 * `TextReader`
 * `Stream`
@@ -154,10 +154,10 @@ In .NET è possibile eseguire l'associazione a uno tipo qualsiasi nell'elenco ri
 * `CloudPageBlob`, è necessaria la direzione di associazione "inout"
 * `CloudAppendBlob`, è necessaria la direzione di associazione "inout"
 
-Se sono previsti BLOB di testo, è anche possibile eseguire l'associazione a un tipo `string` .NET. È consigliabile solo se le dimensioni del BLOB sono ridotte, in quanto l'intero contenuto del BLOB viene caricato in memoria. In genere, è preferibile usare un tipo `Stream` o `CloudBlockBlob`.
+Se si prevede che il BLOB di testo, è anche possibile associare .NET tooa `string` tipo. È consigliato solo se dimensioni blob hello sono ridotto, in quanto hello intero contenuto del blob viene caricati in memoria. In genere, è preferibile toouse un `Stream` o `CloudBlockBlob` tipo.
 
 ## <a name="trigger-sample"></a>Esempio di trigger
-Si supponga di avere function.json seguente, che definisce un trigger di archiviazione del BLOB:
+Si supponga di che avere hello function.json che definisce un trigger di archiviazione blob di seguito:
 
 ```json
 {
@@ -174,7 +174,7 @@ Si supponga di avere function.json seguente, che definisce un trigger di archivi
 }
 ```
 
-Vedere l'esempio specifico del linguaggio che registra i contenuti di ogni BLOB aggiunto al contenitore monitorato.
+Vedere l'esempio specifico del linguaggio hello che registra il contenuto di hello di ogni blob che viene aggiunto toohello monitorato contenitore.
 
 * [C#](#triggercsharp)
 * [Node.js](#triggernodejs)
@@ -192,7 +192,7 @@ public static void Run(Stream myBlob, TraceWriter log)
 ```
 
 ```cs
-// Blob trigger binding to a CloudBlockBlob
+// Blob trigger binding tooa CloudBlockBlob
 #r "Microsoft.WindowsAzure.Storage"
 
 using Microsoft.WindowsAzure.Storage.Blob;
@@ -218,9 +218,9 @@ module.exports = function(context) {
 
 ## <a name="using-a-blob-output-binding"></a>Uso dell'associazione di output nel BLOB
 
-Nelle funzioni .NET, è necessario usare un parametro `out string` nella firma della funzione o uno dei tipi nell'elenco seguente. Nelle funzioni Node.js si accede al BLOB di output usando `context.bindings.<name>`.
+Nelle funzioni .NET, è necessario utilizzare un `out string` parametro la firma della funzione o utilizzare uno dei tipi di hello in hello seguente elenco. Nelle funzioni di Node.js, accedere hello output blob utilizzando `context.bindings.<name>`.
 
-Nelle funzioni .NET è possibile eseguire l'output in uno dei tipi seguenti:
+Nelle funzioni .NET è possibile output tooany di hello seguenti tipi:
 
 * `out string`
 * `TextWriter`
@@ -233,7 +233,7 @@ Nelle funzioni .NET è possibile eseguire l'output in uno dei tipi seguenti:
 <a name="input-sample"></a>
 
 ## <a name="queue-trigger-with-blob-input-and-output-sample"></a>Trigger di coda con esempio di input e output del BLOB
-Si supponga di avere function.json seguente, che definisce un [trigger di archiviazione della coda](functions-bindings-storage-queue.md), un input di archiviazione del BLOB e un output di archiviazione del BLOB. Si noti l'uso della proprietà dei metadati `queueTrigger` nelle proprietà `path` di input e output del BLOB:
+Si supponga di avere seguito function.json hello, che definisce un [trigger di archiviazione delle code](functions-bindings-storage-queue.md), un'archiviazione blob di input e output di un'archiviazione blob. Utilizzo di hello preavviso di hello `queueTrigger` proprietà dei metadati. hello BLOB di input e output `path` proprietà:
 
 ```json
 {
@@ -264,7 +264,7 @@ Si supponga di avere function.json seguente, che definisce un [trigger di archiv
 }
 ``` 
 
-Vedere l'esempio specifico del linguaggio che copia il BLOB di input nel BLOB di output.
+Vedere l'esempio specifico del linguaggio hello che copia hello blob di input toohello output blob.
 
 * [C#](#incsharp)
 * [Node.js](#innodejs)
@@ -274,7 +274,7 @@ Vedere l'esempio specifico del linguaggio che copia il BLOB di input nel BLOB di
 ### <a name="blob-binding-example-in-c"></a>Esempio di associazione del BLOB in C# #
 
 ```cs
-// Copy blob from input to output, based on a queue trigger
+// Copy blob from input toooutput, based on a queue trigger
 public static void Run(string myQueueItem, Stream myInputBlob, out string myOutputBlob, TraceWriter log)
 {
     log.Info($"C# Queue trigger function processed: {myQueueItem}");
@@ -287,7 +287,7 @@ public static void Run(string myQueueItem, Stream myInputBlob, out string myOutp
 ### <a name="blob-binding-example-in-nodejs"></a>Esempio di associazione del BLOB in Node.js
 
 ```javascript
-// Copy blob from input to output, based on a queue trigger
+// Copy blob from input toooutput, based on a queue trigger
 module.exports = function(context) {
     context.log('Node.js Queue trigger function processed', context.bindings.myQueueItem);
     context.bindings.myOutputBlob = context.bindings.myInputBlob;

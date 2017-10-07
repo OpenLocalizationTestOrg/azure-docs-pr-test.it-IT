@@ -1,6 +1,6 @@
 ---
 title: 'Analisi scientifica dei dati scalabile in Azure Data Lake: procedura dettagliata end-to-end | Documentazione Microsoft'
-description: "Come usare Azure Data Lake per eseguire attività di esplorazione di dati e di classificazione binaria su un set di dati."
+description: "Modalità toouse Azure Data Lake toodo l'esplorazione e binario classificazione dei dati di attività da un set di dati."
 services: machine-learning
 documentationcenter: 
 author: bradsev
@@ -14,48 +14,48 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/30/2017
 ms.author: bradsev;weig
-ms.openlocfilehash: 34fbe99572b4a6cee73de6ae5412a0ec09dd1ccc
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 8b05457ae7045a7aaed350a7502469f2247161e0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="scalable-data-science-with-azure-data-lake-an-end-to-end-walkthrough"></a>Analisi scientifica dei dati scalabile in Azure Data Lake: procedura dettagliata end-to-end
-Questa procedura dettagliata end-to-end illustra come usare Azure Data Lake per eseguire attività di esplorazione dei dati e di classificazione binaria su un campione del set di dati relativo alle corse e alle tariffe dei taxi di NYC, in modo da prevedere se un passeggero pagherà la mancia. Vengono esaminati i passaggi del [processo di analisi scientifica dei dati del team](http://aka.ms/datascienceprocess), end-to-end, dall'acquisizione dei dati al training modello e quindi alla distribuzione di un servizio Web che pubblica il modello.
+Questa procedura dettagliata illustra come toouse Azure Data Lake toodo l'esplorazione dei dati e le attività di classificazione binaria a un campione di hello NYC taxi di andata e ritorno e tariffa toopredict set di dati da una tariffa verrà corrisposto un suggerimento o meno. Contiene passaggi hello di hello [processo di analisi scientifica dei dati di Team](http://aka.ms/datascienceprocess), end-to-end, dalla formazione toomodel acquisizione di dati, quindi toohello distribuzione di un servizio web che pubblica il modello di hello.
 
 ### <a name="azure-data-lake-analytics"></a>Azure Data Lake Analytics.
-[Microsoft Azure Data Lake](https://azure.microsoft.com/solutions/data-lake/) include tutte le funzionalità che consentono ai data scientist di archiviare con facilità dati di qualsiasi dimensione, forma e velocità e di eseguire attività di elaborazione di dati, analisi avanzate e modellazione di Machine Learning con scalabilità elevata e costi contenuti.   Il pagamento viene effettuato per i singoli processi, solo quando i dati vengono effettivamente elaborati. Analisi Azure Data Lake include U-SQL, un linguaggio che unisce la natura dichiarativa di SQL all'efficacia espressiva di C# per offrire funzionalità di query distribuite e scalabili. Consente di elaborare dati non strutturati applicando lo schema in fase di lettura, nonché di inserire logica e funzioni UDF personalizzate e aggiungere estensibilità per permettere il controllo granulare sulle modalità di esecuzione in scala. Per altre informazioni sulla filosofia di progettazione alla base di U-SQL, vedere questo [post di blog su Visual Studio](https://blogs.msdn.microsoft.com/visualstudio/2015/09/28/introducing-u-sql-a-language-that-makes-big-data-processing-easy/).
+Hello [Microsoft Azure Data Lake](https://azure.microsoft.com/solutions/data-lake/) ha tutti toomake necessarie di funzionalità hello è più facile per i dati toostore gli esperti di dati di qualsiasi dimensione, forma e velocità e tooconduct elaborazione dei dati avanzate analitica e modellazione di machine learning con elevata scalabilità in un modo economico.   Il pagamento viene effettuato per i singoli processi, solo quando i dati vengono effettivamente elaborati. Azure Data Lake Analitica include U-SQL, un linguaggio che blend hello natura dichiarativa di SQL con la potenza espressiva hello di c# tooprovide scalabile distributed funzionalità di query. Abilita tooprocess dati non strutturati tramite l'applicazione dello schema in lettura, inserire la logica personalizzata e definiti dall'utente (UDF) funzioni e include estendibilità tooenable con granularità fine un controllo accurato sul modo in tooexecute su larga scala. toolearn ulteriori informazioni su filosofia di progettazione hello U-SQL, vedere [post di blog di Visual Studio](https://blogs.msdn.microsoft.com/visualstudio/2015/09/28/introducing-u-sql-a-language-that-makes-big-data-processing-easy/).
 
 Analisi Data Lake è anche un componente chiave di Cortana Analytics Suite e si integra con Azure SQL Data Warehouse, Power BI e Data Factory, per offrire una piattaforma completa per Big Data sul cloud e per le analisi avanzate.
 
-Questa procedura dettagliata descrive prima di tutto i prerequisiti e le risorse necessari per completare le attività con Analisi Data Lake che costituiscono i processi di analisi scientifica dei dati e illustra come installarli. Delinea quindi i passaggi di elaborazione dei dati da eseguire con U-SQL e conclude illustrando come usare Python e Hive con Azure Machine Learning Studio per creare e distribuire modelli predittivi. 
+Questa procedura dettagliata inizia con la descrizione hello prerequisiti e risorse che sono necessari toocomplete hello attività con Data Lake Analitica che formano processo di analisi scientifica dei dati hello e come tooinstall li. Quindi vengono delineati i passaggi di elaborazione dei dati hello utilizzando U-SQL e si conclude con la visualizzazione come toouse Python e Hive con Azure Machine Learning Studio toobuild e distribuire modelli predittivi hello. 
 
 ### <a name="u-sql-and-visual-studio"></a>U-SQL e Visual Studio
-Questa procedura dettagliata consiglia l'uso di Visual Studio per modificare gli script U-SQL ed elaborare il set di dati. Gli script U-SQL sono illustrati in questo articolo e sono disponibili in un file separato. Il processo include l'inserimento, l'esplorazione e il campionamento dei dati. Viene quindi illustrato come eseguire un processo U-SQL con script dal portale di Azure. Le tabelle Hive vengono create per i dati in un cluster HDInsight associato per semplificare la compilazione e la distribuzione di un modello di classificazione binario in Azure Machine Learning Studio.  
+Questa procedura dettagliata consiglia l'utilizzo di set di dati di Visual Studio tooedit U-SQL script tooprocess hello. script U-SQL Hello sono descritti di seguito e fornite in un file separato. il processo di Hello include l'inserimento di esplorazione e il campionamento dei dati di hello. Viene inoltre illustrato come toorun U-SQL nello script di processo da hello portale di Azure. Hive tabelle vengono create per i dati di hello in una compilazione associata dell'hello toofacilitate del cluster HDInsight e la distribuzione di un modello di classificazione binaria in Azure Machine Learning Studio.  
 
 ### <a name="python"></a>Python
-Questa procedura dettagliata contiene anche una sezione in cui si descrive come creare e distribuire un modello predittivo usando Python con Azure Machine Learning Studio.  Per questa parte del processo viene fornito un notebook di Jupyter con gli script Python. Il notebook include codice per alcuni passaggi di progettazione di funzionalità aggiuntive e per la creazione di modelli come la classificazione multiclasse o la creazione di modelli di regressione, oltre al modello di classificazione binaria illustrato in questo articolo. L'attività di regressione consente di prevedere l'importo della mancia in base ad altre funzionalità relative alle mance. 
+Questa procedura dettagliata contiene inoltre una sezione che illustra come toobuild e distribuire un modello predittivo tramite Python con Azure Machine Learning Studio.  Viene fornito un server Jupyter notebook con script Python hello per questi passaggi del processo. blocco appunti Hello includono il codice per alcuni passaggi di progettazione di funzionalità aggiuntive e la costruzione di modelli, ad esempio multiclasse classificazione e regressione modellazione inoltre il modello di classificazione binaria toohello descritto di seguito. attività di regressione Hello è toopredict hello suggerimento hello in base alle altre funzionalità di suggerimento. 
 
 ### <a name="azure-machine-learning"></a>Azure Machine Learning
-Azure Machine Learning Studio consente di creare e distribuire modelli predittivi. Queste operazioni possono essere eseguite adottando un duplice approccio: prima con gli script Python e quindi con le tabelle Hive in un cluster HDInsight (Hadoop).
+Azure Machine Learning Studio è toobuild utilizzato e distribuire modelli predittivi hello. Queste operazioni possono essere eseguite adottando un duplice approccio: prima con gli script Python e quindi con le tabelle Hive in un cluster HDInsight (Hadoop).
 
 ### <a name="scripts"></a>Script
-In questa procedura dettagliata sono illustrati solo i passaggi principali. È possibile scaricare lo **script U-SQL** completo e il **notebook di Jupyter** da [GitHub](https://github.com/Azure/Azure-MachineLearning-DataScience/tree/master/Misc/AzureDataLakeWalkthrough).
+Solo i passaggi principali hello sono descritte in questa procedura dettagliata. È possibile scaricare hello completo **script U-SQL** e **server Jupyter Notebook** da [GitHub](https://github.com/Azure/Azure-MachineLearning-DataScience/tree/master/Misc/AzureDataLakeWalkthrough).
 
 ## <a name="prerequisites"></a>Prerequisiti
-Per eseguire le procedure descritte nell'articolo è necessario:
+Prima di iniziare a questi argomenti, è necessario disporre delle seguenti hello:
 
 * Una sottoscrizione di Azure. Se non è già disponibile, vedere l'articolo che illustra [come ottenere una versione di valutazione gratuita di Azure](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/).
 * [Consigliato] Visual Studio 2013 o versione successiva. Se non è già installata una di queste versioni, è possibile scaricare una versione Community gratuita da [Visual Studio Community](https://www.visualstudio.com/vs/community/).
 
 > [!NOTE]
-> Invece di Visual Studio, è possibile usare anche il portale di Azure per inviare query di Azure Data Lake. Le istruzioni per eseguire queste operazioni con Visual Studio e con il portale sono disponibili nella sezione intitolata **Elaborare i dati con U-SQL**. 
+> Invece di Visual Studio, è possibile utilizzare anche le query di Azure Data Lake toosubmit di hello portale di Azure. È verranno fornite istruzioni su come toodo così con Visual Studio e nel portale di hello nella sezione hello intitolata **elaborano i dati con U-SQL**. 
 > 
 > 
 
 
 ## <a name="prepare-data-science-environment-for-azure-data-lake"></a>Preparare un ambiente di analisi scientifica dei dati per Azure Data Lake
-Per preparare l'ambiente di analisi scientifica dei dati per questa procedura guidata, creare le risorse seguenti:
+ambiente di analisi scientifica dei dati hello tooprepare per questa procedura dettagliata, creare hello seguenti risorse:
 
 * Archivio Azure Data Lake (ADLS) 
 * Analisi Azure Data Lake (ADLA)
@@ -63,47 +63,47 @@ Per preparare l'ambiente di analisi scientifica dei dati per questa procedura gu
 * Account di Azure Machine Learning Studio
 * Azure Data Lake Tools per Visual Studio (consigliato)
 
-Questa sezione fornisce istruzioni per la creazione di tutte queste risorse. Se si sceglie di usare tabelle Hive con Azure Machine Learning, anziché Python, per creare un modello è necessario anche effettuare il provisioning di un cluster HDInsight (Hadoop). Questa procedura alternativa viene descritta in un'apposita sezione riportata di seguito.
+In questa sezione vengono fornite istruzioni su come toocreate di queste risorse. Se si scelgono toouse tabelle Hive con Azure Machine Learning, invece di Python, toobuild un modello, è necessario anche tooprovision un cluster HDInsight (Hadoop). In questa procedura alternativa descritta nella sezione appropriata a hello riportato di seguito.
 
 
 > [!NOTE]
-> **Azure Data Lake Store** può essere creato separatamente oppure quando si crea **Azure Data Lake Analytics** come archiviazione predefinita. Le istruzioni per la creazione di ognuna delle risorse sono fornite separatamente più avanti, ma l'account di archiviazione di Data Lake non deve essere creato in modo separato.
+> Hello **archivio Azure Data Lake** è possibile creare separatamente o quando si crea hello **Azure Data Lake Analitica** come spazio di archiviazione predefinito hello. Le istruzioni fanno riferimento per la creazione di ciascuna di queste risorse separatamente di seguito, ma hello account archivio Data Lake non è necessario crearli separatamente.
 >
 > 
 
 ### <a name="create-an-azure-data-lake-store"></a>Creare un Archivio Azure Data Lake
 
 
-Creare un Archivio Azure Data Lake dal [portale di Azure](http://portal.azure.com). Per informazioni dettagliate, vedere [Creare un cluster HDInsight con Archivio Data Lake tramite il portale di Azure](../data-lake-store/data-lake-store-hdinsight-hadoop-use-portal.md). Assicurarsi di configurare l'identità di AAD del cluster nel pannello **Origine dati** del pannello **Configurazione facoltativa** come illustrato in questo articolo. 
+Creare un ADLS da hello [portale Azure](http://portal.azure.com). Per informazioni dettagliate, vedere [Creare un cluster HDInsight con Archivio Data Lake tramite il portale di Azure](../data-lake-store/data-lake-store-hdinsight-hadoop-use-portal.md). Essere tooset che di identità AAD Cluster Ciao hello **DataSource** blade di hello **configurazione facoltativa** pannello descritto non esiste. 
 
  ![3](./media/machine-learning-data-science-process-data-lake-walkthrough/3-create-ADLS.PNG)
 
 ### <a name="create-an-azure-data-lake-analytics-account"></a>Creare un account di Analisi Azure Data Lake
-Creare un account di Analisi Azure Data Lake dal [portale di Azure](http://portal.azure.com). Per informazioni dettagliate, vedere [Esercitazione: Introduzione ad Analisi Azure Data Lake con il portale di Azure](../data-lake-analytics/data-lake-analytics-get-started-portal.md). 
+Creare un account ADLA da hello [portale Azure](http://portal.azure.com). Per informazioni dettagliate, vedere [Esercitazione: Introduzione ad Analisi Azure Data Lake con il portale di Azure](../data-lake-analytics/data-lake-analytics-get-started-portal.md). 
 
  ![4](./media/machine-learning-data-science-process-data-lake-walkthrough/4-create-ADLA-new.PNG)
 
 ### <a name="create-an-azure-blob-storage-account"></a>Creare un account di archiviazione BLOB di Azure
-Creare un account di archiviazione BLOB di Azure dal [portale di Azure](http://portal.azure.com). Per informazioni dettagliate, vedere la sezione Creare un account di archiviazione in [Informazioni sugli account di archiviazione di Azure](../storage/common/storage-create-storage-account.md).
+Creare un account di archiviazione Blob di Azure da hello [portale Azure](http://portal.azure.com). Per informazioni dettagliate, vedere hello crea un account di archiviazione sezione [gli account di archiviazione di Azure su](../storage/common/storage-create-storage-account.md).
 
  ![5](./media/machine-learning-data-science-process-data-lake-walkthrough/5-Create-Azure-Blob.PNG)
 
 ### <a name="set-up-an-azure-machine-learning-studio-account"></a>Configurare un account di Azure Machine Learning Studio
-Iscriversi o accedere ad Azure Machine Learning Studio dalla pagina [Azure Machine Learning](https://azure.microsoft.com/services/machine-learning/) . Fare clic sul pulsante **Per iniziare** e quindi scegliere l'opzione per "area di lavoro gratuita" o "area di lavoro standard". Dopo questa operazione sarà possibile creare esperimenti in Azure Machine Learning Studio.  
+Accedere in Azure Machine Learning Studio da hello [Azure Machine Learning](https://azure.microsoft.com/services/machine-learning/) pagina. Fare clic su hello **iniziare** pulsante e quindi scegliere un' "Area di lavoro disponibile" o "Area di lavoro Standard". In seguito sarà in grado di toocreate esperimenti in Azure Machine Learning Studio.  
 
 ### <a name="install-azure-data-lake-tools-recommended"></a>Installare Azure Data Lake Tools [consigliato]
 Installare Azure Data Lake Tools per la versione di Visual Studio in uso da [Azure Data Lake Tools per Visual Studio](https://www.microsoft.com/download/details.aspx?id=49504).
 
  ![6](./media/machine-learning-data-science-process-data-lake-walkthrough/6-install-ADL-tools-VS.PNG)
 
-Al termine dell'installazione, aprire Visual Studio. L'opzione Data Lake dovrebbe essere disponibile nel menu in alto. Le risorse di Azure dovrebbero essere visualizzate nel pannello sinistro quando si accede all'account di Azure.
+Dopo l'installazione di hello viene completata correttamente, aprire Visual Studio. Verrà visualizzato hello Data Lake scheda hello menu nella parte superiore di hello. Quando si accede all'account Azure, le risorse di Azure dovrebbero essere visualizzato nel riquadro sinistro di hello.
 
  ![7](./media/machine-learning-data-science-process-data-lake-walkthrough/7-install-ADL-tools-VS-done.PNG)
 
-## <a name="the-nyc-taxi-trips-dataset"></a>Set di dati NYC Taxi Trip
-Il set di dati usato in questo articolo è disponibile pubblicamente, ovvero il [set di dati NYC Taxi Trip](http://www.andresmh.com/nyctaxitrips/). I dati di NYC Taxi Trip sono costituiti da circa 20 GB di file CSV compressi (circa 48 GB non compressi) e registrano oltre 173 milioni di corse singole nonché le tariffe pagate per ogni corsa. Il record di ogni corsa include le località e gli orari di partenza e di arrivo, il numero di patente anonimo (del tassista) e il numero di licenza (ID univoco del taxi). I dati sono relativi a tutte le corse per l'anno 2013 e vengono forniti nei due set di dati seguenti per ciascun mese:
+## <a name="hello-nyc-taxi-trips-dataset"></a>set di dati NYC Taxi trip Hello
+Hello set di dati è utilizzati qui è un set di dati disponibile pubblicamente, hello [NYC Taxi trip dataset](http://www.andresmh.com/nyctaxitrips/). dati di andata e ritorno Taxi NYC Hello è costituita da circa 20GB di file CSV compressi (~ 48GB non compressi), registrazione 173 milioni hello e singoli trip tariffe a pagamento per ogni itinerario. Ogni record di andata e ritorno include percorsi di ritiro e deposito hello e volte, resi anonimi hack numero di patente) (e hello numero medallion (id univoco del taxi). dati Hello copre tutti i percorsi nell'anno hello 2013 e viene forniti in hello dopo i due set di dati per ogni mese:
 
-* Il file CSV 'trip_data' contiene i dettagli delle corse, ad esempio il numero dei passeggeri, i punti partenza e arrivo, la durata e la lunghezza della corsa. Di seguito vengono forniti alcuni record di esempio:
+* Hello 'trip_data' CSV contiene i dettagli di andata e ritorno, ad esempio il numero di passeggeri, prelievo e dropoff punti, la durata del viaggio e lunghezza di andata e ritorno. Di seguito vengono forniti alcuni record di esempio:
   
        medallion,hack_license,vendor_id,rate_code,store_and_fwd_flag,pickup_datetime,dropoff_datetime,passenger_count, trip_time_in_secs,trip_distance,pickup_longitude,pickup_latitude,dropoff_longitude,dropoff_latitude
        89D227B655E5C82AECF13C3F540D4CF4,BA96DE419E711691B9445D6A6307C170,CMT,1,N,2013-01-01 15:11:48,2013-01-01 15:18:10,4,382,1.00,-73.978165,40.757977,-73.989838,40.751171
@@ -111,7 +111,7 @@ Il set di dati usato in questo articolo è disponibile pubblicamente, ovvero il 
        0BD7C8F5BA12B88E0B67BED28BEA73D8,9FD8F69F0804BDB5549F40E9DA1BE472,CMT,1,N,2013-01-05 18:49:41,2013-01-05 18:54:23,1,282,1.10,-74.004707,40.73777,-74.009834,40.726002
        DFD2202EE08F7A8DC9A57B02ACB81FE2,51EE87E3205C985EF8431D850C786310,CMT,1,N,2013-01-07 23:54:15,2013-01-07 23:58:20,2,244,.70,-73.974602,40.759945,-73.984734,40.759388
        DFD2202EE08F7A8DC9A57B02ACB81FE2,51EE87E3205C985EF8431D850C786310,CMT,1,N,2013-01-07 23:25:03,2013-01-07 23:34:24,1,560,2.10,-73.97625,40.748528,-74.002586,40.747868
-* Il file CSV 'trip_fare' contiene i dettagli della tariffa pagata per ciascuna corsa, ad esempio tipo di pagamento, importo, soprattassa e tasse, mance e pedaggi e l'importo totale pagato. Di seguito vengono forniti alcuni record di esempio:
+* Hello 'trip_fare' CSV contiene i dettagli della tariffa di hello pagata per ogni itinerario, ad esempio il tipo di pagamento, quantità tariffa, supplemento e le imposte, suggerimenti e pedaggio e hello totale pagato. Di seguito vengono forniti alcuni record di esempio:
   
        medallion, hack_license, vendor_id, pickup_datetime, payment_type, fare_amount, surcharge, mta_tax, tip_amount, tolls_amount, total_amount
        89D227B655E5C82AECF13C3F540D4CF4,BA96DE419E711691B9445D6A6307C170,CMT,2013-01-01 15:11:48,CSH,6.5,0,0.5,0,0,7
@@ -120,10 +120,10 @@ Il set di dati usato in questo articolo è disponibile pubblicamente, ovvero il 
        DFD2202EE08F7A8DC9A57B02ACB81FE2,51EE87E3205C985EF8431D850C786310,CMT,2013-01-07 23:54:15,CSH,5,0.5,0.5,0,0,6
        DFD2202EE08F7A8DC9A57B02ACB81FE2,51EE87E3205C985EF8431D850C786310,CMT,2013-01-07 23:25:03,CSH,9.5,0.5,0.5,0,0,10.5
 
-La chiave univoca che consente di unire trip\_data e trip\_fare è composta da tre campi: medallion, hack\_licence e pickup\_datetime. È possibile accedere ai file CSV non elaborati da un BLOB di archiviazione di Azure pubblico. Lo script U-SQL per questo join è disponibile nella sezione [Unire le tabelle relative a corse e tariffe](#join) .
+viaggi toojoin chiave univoca Hello\_dati e andata e ritorno\_tariffa è costituito da tre campi seguenti hello: medallion, le maggiori\_licenza e prelievo\_datetime. il file CSV non elaborati di Hello sono accessibili da un blob di archiviazione di Azure pubblico. Hello script U-SQL per il join è in hello [Join di tabelle di andata e ritorno e tariffa](#join) sezione.
 
 ## <a name="process-data-with-u-sql"></a>Elaborare i dati con U-SQL
-Le attività di elaborazione dei dati illustrate in questa sezione includono l'inserimento, il controllo della qualità, l'esplorazione e il campionamento dei dati. Viene illustrato anche come unire le tabelle relative a corse e tariffe. La sezione finale illustra l'esecuzione di un processo U-SQL con script dal portale di Azure. Ecco i collegamenti per ogni sottosezione:
+le attività di elaborazione dei dati Hello illustrate in questa sezione includono l'inserimento, controllo della qualità, esplorazione e il campionamento dei dati di hello. Vengono inoltre illustrati come tabelle di andata e ritorno e tariffa toojoin. la sezione finale Hello Mostra esecuzione un processo con script U-SQL da hello portale di Azure. Di seguito sono riportati collegamenti sottosezione tooeach:
 
 * [Inserimento di dati: leggere dati dal BLOB pubblico](#ingest)
 * [Controlli della qualità dei dati](#quality)
@@ -132,21 +132,21 @@ Le attività di elaborazione dei dati illustrate in questa sezione includono l'i
 * [Campionamento dei dati](#sample)
 * [Eseguire processi U-SQL](#run)
 
-Gli script U-SQL sono illustrati in questo articolo e sono disponibili in un file separato. È possibile scaricare gli **script U-SQL** completi da [GitHub](https://github.com/Azure/Azure-MachineLearning-DataScience/tree/master/Misc/AzureDataLakeWalkthrough).
+script U-SQL Hello sono descritti di seguito e fornite in un file separato. È possibile scaricare hello completo **script U-SQL** da [GitHub](https://github.com/Azure/Azure-MachineLearning-DataScience/tree/master/Misc/AzureDataLakeWalkthrough).
 
-Per eseguire U-SQL, aprire Visual Studio, fare clic su **File --> Nuovo --> Progetto**, scegliere **Progetto U-SQL**, specificare un nome e salvare il progetto in una cartella.
+tooexecute U-SQL, aprire Visual Studio, fare clic su **File--> Nuovo--> progetto**, scegliere **progetto U-SQL**, denominare e salvare la cartella tooa.
 
 ![8](./media/machine-learning-data-science-process-data-lake-walkthrough/8-create-USQL-project.PNG)
 
 > [!NOTE]
-> Per eseguire U-SQL è possibile usare il portale di Azure anziché Visual Studio. In questo caso, è possibile passare alla risorsa Analisi Azure Data Lake nel portale e inviare direttamente le query come illustrato nella figura seguente.
+> È possibile toouse hello Azure Portal tooexecute U-SQL anziché Visual Studio. È possibile esplorare risorse di Azure Data Lake Analitica toohello nel portale di hello e inviare query direttamente come illustrato nella seguente illustrazione hello.
 > 
 > 
 
 ![9](./media/machine-learning-data-science-process-data-lake-walkthrough/9-portal-submit-job.PNG)
 
 ### <a name="ingest"></a>Inserimento di dati: leggere dati dal BLOB pubblico
-La posizione dei dati nel BLOB di Azure viene indicata come **wasb://container_name@blob_storage_account_name.blob.core.windows.net/blob_name** e può essere estratta tramite **Extractors.Csv()**. Sostituire il nome del contenitore e il nome dell'account di archiviazione personali negli script seguenti per container_name@blob_storage_account_name nell'indirizzo wasb. Poiché i nomi di file hanno lo stesso formato, è possibile usare **trip\_data_{\*\}.csv** per leggere tutti i 12 file delle corse. 
+percorso Hello dati hello in hello blob di Azure viene fatto riferimento come  **wasb://container_name@blob_storage_account_name.blob.core.windows.net/blob_name**  e possono essere estratte con **Extractors.Csv()**. Sostituire il nome di contenitore e il nome di account di archiviazione negli script seguenti per container_name@blob_storage_account_name indirizzo wasb hello. Poiché i nomi di file hello sono nello stesso formato, è possibile utilizzare **viaggi\_data_ {\*\}CSV** tooread in tutti i file di andata e ritorno 12. 
 
     ///Read in Trip data
     @trip0 =
@@ -169,7 +169,7 @@ La posizione dei dati nel BLOB di Azure viene indicata come **wasb://container_n
     FROM "wasb://container_name@blob_storage_account_name.blob.core.windows.net/nyctaxitrip/trip_data_{*}.csv"
     USING Extractors.Csv();
 
-Poiché la prima riga include intestazioni, è necessario rimuovere le intestazioni e cambiare i tipi di colonna specificando i tipi appropriati. È possibile salvare i dati elaborati nell'archiviazione di Azure Data Lake usando **swebhdfs://data_lake_storage_name.azuredatalakestorage.net/nome_cartella/nome_file**_ o nell'account di archiviazione BLOB di Azure usando **wasb://container_name@blob_storage_account_name.blob.core.windows.net/blob_name**. 
+Poiché sono presenti intestazioni nella prima riga hello, è necessario intestazioni hello tooremove e modificare i tipi di colonna in quelli appropriati. È possibile salvare hello elaborato dati tooAzure Data Lake di archiviazione usando **swebhdfs://data_lake_storage_name.azuredatalakestorage.net/folder_name/file_name**account tramite l'archiviazione Blob _ o tooAzure  **wasb://container_name@blob_storage_account_name.blob.core.windows.net/blob_name** . 
 
     // change data types
     @trip =
@@ -191,28 +191,28 @@ Poiché la prima riga include intestazioni, è necessario rimuovere le intestazi
     FROM @trip0
     WHERE medallion != "medallion";
 
-    ////output data to ADL
+    ////output data tooADL
     OUTPUT @trip   
-    TO "swebhdfs://data_lake_storage_name.azuredatalakestore.net/nyctaxi_folder/demo_trip.csv"
+    too"swebhdfs://data_lake_storage_name.azuredatalakestore.net/nyctaxi_folder/demo_trip.csv"
     USING Outputters.Csv(); 
 
-    ////Output data to blob
+    ////Output data tooblob
     OUTPUT @trip   
-    TO "wasb://container_name@blob_storage_account_name.blob.core.windows.net/demo_trip.csv"
+    too"wasb://container_name@blob_storage_account_name.blob.core.windows.net/demo_trip.csv"
     USING Outputters.Csv();  
 
-Analogamente, è possibile leggere nei set di dati relativi alle tariffe. Fare clic con il pulsante destro del mouse su Azure Data Lake Store. È possibile scegliere di esaminare i dati in **Portale di Azure --> Esplora dati** o **Esplora file** in Visual Studio. 
+Analogamente è possibile leggere hello tariffa ai set di dati. Fare clic con il pulsante destro archivio Azure Data Lake, è possibile scegliere toolook i dati in **portale di Azure--> Esplora dati** o **Esplora File** all'interno di Visual Studio. 
 
  ![10](./media/machine-learning-data-science-process-data-lake-walkthrough/10-data-in-ADL-VS.PNG)
 
  ![11](./media/machine-learning-data-science-process-data-lake-walkthrough/11-data-in-ADL.PNG)
 
 ### <a name="quality"></a>Controlli della qualità dei dati
-Dopo la lettura delle tabelle relative a corse e tariffe, è possibile eseguire controlli della qualità dei dati nel modo seguente. I file CSV risultati possono essere restituiti all'archivio BLOB di Azure o all'Archivio Azure Data Lake. 
+Dopo che è stato letto di andata e ritorno e tariffa tabelle, i controlli di qualità dei dati possono essere eseguiti nel seguente modo hello. Hello file CSV risultante può essere archiviazione Blob di output tooAzure o archivio Azure Data Lake. 
 
-È possibile trovare il numero di licenze e il numero univoco delle licenze:
+Trovare il numero di hello di medallions e un numero univoco di medallions:
 
-    ///check the number of medallions and unique number of medallions
+    ///check hello number of medallions and unique number of medallions
     @trip2 =
         SELECT
         medallion,
@@ -228,7 +228,7 @@ Dopo la lettura delle tabelle relative a corse e tariffe, è possibile eseguire 
         FROM @trip2
         GROUP BY pickup_month;
         OUTPUT @ex_1   
-    TO "wasb://container_name@blob_storage_account_name.blob.core.windows.net/demo_ex_1.csv"
+    too"wasb://container_name@blob_storage_account_name.blob.core.windows.net/demo_ex_1.csv"
     USING Outputters.Csv(); 
 
 È possibile trovare le licenze associate a più di 100 corse:
@@ -242,7 +242,7 @@ Dopo la lettura delle tabelle relative a corse e tariffe, è possibile eseguire 
         GROUP BY medallion
         HAVING COUNT(medallion) > 100;
         OUTPUT @ex_2   
-    TO "wasb://container_name@blob_storage_account_name.blob.core.windows.net/demo_ex_2.csv"
+    too"wasb://container_name@blob_storage_account_name.blob.core.windows.net/demo_ex_2.csv"
     USING Outputters.Csv(); 
 
 È possibile trovare i record non validi a livello di valore pickup_longitude:
@@ -254,7 +254,7 @@ Dopo la lettura delle tabelle relative a corse e tariffe, è possibile eseguire 
         WHERE
         pickup_longitude <- 90 OR pickup_longitude > 90;
         OUTPUT @ex_3   
-    TO "wasb://container_name@blob_storage_account_name.blob.core.windows.net/demo_ex_3.csv"
+    too"wasb://container_name@blob_storage_account_name.blob.core.windows.net/demo_ex_3.csv"
     USING Outputters.Csv(); 
 
 È possibile trovare i valori mancanti per alcune variabili:
@@ -274,15 +274,15 @@ Dopo la lettura delle tabelle relative a corse e tariffe, è possibile eseguire 
         FROM @res
         GROUP BY vendor_id;
     OUTPUT @trip_summary6
-    TO "wasb://container_name@blob_storage_account_name.blob.core.windows.net/demo_ex_16.csv"
+    too"wasb://container_name@blob_storage_account_name.blob.core.windows.net/demo_ex_16.csv"
     USING Outputters.Csv();
 
 
 
 ### <a name="explore"></a>Esplorazione dei dati
-È possibile esplorare i dati per ottenere una migliore comprensione dei dati stessi.
+È possibile eseguire alcune tooget l'esplorazione dei dati come una migliore comprensione dei dati di hello.
 
-È possibile trovare la distribuzione di corse associate o non associate alla mancia:
+Trovare la distribuzione hello di trip inclinato e non inclinato:
 
     ///tipped vs. not tipped distribution
     @tip_or_not =
@@ -296,10 +296,10 @@ Dopo la lettura delle tabelle relative a corse e tariffe, è possibile eseguire 
         FROM @tip_or_not
         GROUP BY tipped;
         OUTPUT @ex_4   
-    TO "wasb://container_name@blob_storage_account_name.blob.core.windows.net/demo_ex_4.csv"
+    too"wasb://container_name@blob_storage_account_name.blob.core.windows.net/demo_ex_4.csv"
     USING Outputters.Csv(); 
 
-È possibile trovare la distribuzione dell'importo della mancia con valori limite compresi tra 0, 5, 10 e 20 dollari.
+Trovare la distribuzione hello della quantità di suggerimento con valori di taglio: 0,5,10 e 20 dollari.
 
     //tip class/range distribution
     @tip_class =
@@ -312,7 +312,7 @@ Dopo la lettura delle tabelle relative a corse e tariffe, è possibile eseguire 
         FROM @tip_class
         GROUP BY tip_class;
         OUTPUT @ex_5   
-    TO "wasb://container_name@blob_storage_account_name.blob.core.windows.net/demo_ex_5.csv"
+    too"wasb://container_name@blob_storage_account_name.blob.core.windows.net/demo_ex_5.csv"
     USING Outputters.Csv(); 
 
 È possibile trovare le statistiche di base relative alla distanza della corsa:
@@ -328,10 +328,10 @@ Dopo la lettura delle tabelle relative a corse e tariffe, è possibile eseguire 
         FROM @trip
         GROUP BY vendor_id;
     OUTPUT @trip_summary4
-    TO "wasb://container_name@blob_storage_account_name.blob.core.windows.net/demo_ex_14.csv"
+    too"wasb://container_name@blob_storage_account_name.blob.core.windows.net/demo_ex_14.csv"
     USING Outputters.Csv();
 
-È possibile trovare i valori percentile relativi alla distanza della corsa:
+Trovare i percentili hello della distanza di andata e ritorno:
 
     // find percentiles of trip_distance
     @trip_summary3 =
@@ -342,7 +342,7 @@ Dopo la lettura delle tabelle relative a corse e tariffe, è possibile eseguire 
         FROM @trip;
        // group by vendor_id;
     OUTPUT @trip_summary3
-    TO "wasb://container_name@blob_storage_account_name.blob.core.windows.net/demo_ex_13.csv"
+    too"wasb://container_name@blob_storage_account_name.blob.core.windows.net/demo_ex_13.csv"
     USING Outputters.Csv(); 
 
 
@@ -360,18 +360,18 @@ Le tabelle relative alle corse e alle tariffe possono essere unite in base ai va
     ON   (t.medallion == f.medallion AND t.hack_license == f.hack_license AND t.pickup_datetime == f.pickup_datetime)
     WHERE   (pickup_longitude != 0 AND dropoff_longitude != 0 );
 
-    //// output to blob
+    //// output tooblob
     OUTPUT @model_data_full   
-    TO "wasb://container_name@blob_storage_account_name.blob.core.windows.net/demo_ex_7_full_data.csv"
+    too"wasb://container_name@blob_storage_account_name.blob.core.windows.net/demo_ex_7_full_data.csv"
     USING Outputters.Csv(); 
 
-    ////output data to ADL
+    ////output data tooADL
     OUTPUT @model_data_full   
-    TO "swebhdfs://data_lake_storage_name.azuredatalakestore.net/nyctaxi_folder/demo_ex_7_full_data.csv"
+    too"swebhdfs://data_lake_storage_name.azuredatalakestore.net/nyctaxi_folder/demo_ex_7_full_data.csv"
     USING Outputters.Csv(); 
 
 
-Per ogni livello di conteggio di passeggeri, è possibile calcolare il numero di record, l'importo medio della mancia, la varianza dell'importo della mancia e la percentuale di corse con mancia.
+Per ogni livello del conteggio di passeggeri, calcolare il numero di hello di record, quantità media di suggerimento, la varianza della quantità di suggerimento, percentuale di viaggi inclinati.
 
     // contigency table
     @trip_summary8 =
@@ -384,12 +384,12 @@ Per ogni livello di conteggio di passeggeri, è possibile calcolare il numero di
         FROM @model_data_full
         GROUP BY passenger_count;
         OUTPUT @trip_summary8
-    TO "wasb://container_name@blob_storage_account_name.blob.core.windows.net/demo_ex_17.csv"
+    too"wasb://container_name@blob_storage_account_name.blob.core.windows.net/demo_ex_17.csv"
     USING Outputters.Csv();
 
 
 ### <a name="sample"></a>Campionamento dei dati
-Selezionare in modo casuale lo 0,1% dei dati dalla tabella unita:
+È in modo casuale selezionare innanzitutto 0,1% dei dati hello tabella unita in join hello:
 
     //random select 1/1000 data for modeling purpose
     @addrownumberres_randomsample =
@@ -403,7 +403,7 @@ Selezionare in modo casuale lo 0,1% dei dati dalla tabella unita:
     WHERE rownum % 1000 == 0;
 
     OUTPUT @model_data_random_sample_1_1000   
-    TO "wasb://container_name@blob_storage_account_name.blob.core.windows.net/demo_ex_7_random_1_1000.csv"
+    too"wasb://container_name@blob_storage_account_name.blob.core.windows.net/demo_ex_7_random_1_1000.csv"
     USING Outputters.Csv(); 
 
 Eseguire quindi un campionamento stratificato in base alla variabile binaria tip_class:
@@ -418,44 +418,44 @@ Eseguire quindi un campionamento stratificato in base alla variabile binaria tip
     SELECT *
     FROM @addrownumberres_stratifiedsample
     WHERE rownum % 1000 == 0;
-    //// output to blob
+    //// output tooblob
     OUTPUT @model_data_stratified_sample_1_1000   
-    TO "wasb://container_name@blob_storage_account_name.blob.core.windows.net/demo_ex_9_stratified_1_1000.csv"
+    too"wasb://container_name@blob_storage_account_name.blob.core.windows.net/demo_ex_9_stratified_1_1000.csv"
     USING Outputters.Csv(); 
-    ////output data to ADL
+    ////output data tooADL
     OUTPUT @model_data_stratified_sample_1_1000   
-    TO "swebhdfs://data_lake_storage_name.azuredatalakestore.net/nyctaxi_folder/demo_ex_9_stratified_1_1000.csv"
+    too"swebhdfs://data_lake_storage_name.azuredatalakestore.net/nyctaxi_folder/demo_ex_9_stratified_1_1000.csv"
     USING Outputters.Csv(); 
 
 
 ### <a name="run"></a>Eseguire processi U-SQL
-Al termine della modifica degli script U-SQL, è possibile inviarli al server usando il proprio account Analisi Azure Data Lake. Fare clic su **Data Lake**, **Invia processo**, selezionare il proprio **account Analisi**, scegliere **Parallelismo** e fare clic sul pulsante **Invia**.  
+Al termine della modifica di script U-SQL, è possibile inviarli toohello server con l'account di Azure Data Lake Analitica. Fare clic su **Data Lake**, **Invia processo**, selezionare il proprio **account Analisi**, scegliere **Parallelismo** e fare clic sul pulsante **Invia**.  
 
  ![12](./media/machine-learning-data-science-process-data-lake-walkthrough/12-submit-USQL.PNG)
 
-Al termine del processo, lo stato del processo verrà visualizzato in Visual Studio per il monitoraggio. Al termine dell'esecuzione del processo, è anche possibile ripetere il processo di esecuzione del processo e individuare i passaggi collo di bottiglia per migliorare l'efficienza del processo. È anche possibile passare al portale di Azure per verificare lo stato dei processi U-SQL.
+Quando processo hello è compilato correttamente, in Visual Studio verrà visualizzato lo stato di hello del processo per il monitoraggio. Al termine dell'esecuzione processo hello, è possibile anche riproduzione hello esecuzione processo e scoprire hello creare colli di bottiglia passaggi tooimprove l'efficienza del processo. È anche possibile passare tooAzure portale toocheck hello stato dei processi di U-SQL.
 
  ![13](./media/machine-learning-data-science-process-data-lake-walkthrough/13-USQL-running-v2.PNG)
 
  ![14](./media/machine-learning-data-science-process-data-lake-walkthrough/14-USQL-jobs-portal.PNG)
 
-È ora possibile controllare i file di output nell'archivio BLOB di Azure o nel portale di Azure. Nel passaggio successivo verranno usati i dati del campione stratificato per la modellazione.
+Ora è possibile controllare i file di output di hello in archiviazione Blob di Azure o il portale di Azure. Si utilizzerà i dati di esempio hello stratificato per la modellazione nel passaggio successivo hello.
 
  ![15](./media/machine-learning-data-science-process-data-lake-walkthrough/15-U-SQL-output-csv.PNG)
 
  ![16](./media/machine-learning-data-science-process-data-lake-walkthrough/16-U-SQL-output-csv-portal.PNG)
 
 ## <a name="build-and-deploy-models-in-azure-machine-learning"></a>Compilare e distribuire modelli in Azure Machine Learning
-In questa sezione vengono illustrate le due opzioni disponibili per eseguire il pull dei dati in Azure Machine Learning. 
+Viene descritto come due opzioni disponibili per i dati toopull in Azure Machine Learning toobuild e 
 
-* Nella prima opzione vengono usati i dati campionati scritti in un BLOB di Azure (nel passaggio **Campionamento dei dati** precedente), quindi viene usato Python per creare e distribuire modelli in Azure Machine Learning. 
-* Nella seconda opzione è possibile eseguire query sui dati direttamente in Azure Data Lake mediante una query Hive. Questa opzione richiede la creazione di un nuovo cluster HDInsight o l'uso di un cluster HDInsight esistente in cui le tabelle Hive facciano riferimento ai dati relativi alle corse dei taxi di New York in Archivio Azure Data Lake.  Entrambe le opzioni sono illustrate di seguito. 
+* Nella prima opzione hello, utilizzare i dati campionato hello che sono stato scritto tooan Blob di Azure (in hello **campionamento dei dati** passaggio precedente) e utilizzare toobuild Python e distribuire modelli da Azure Machine Learning. 
+* Nella seconda opzione hello, viene eseguita una query hello in Azure Data Lake direttamente tramite una query Hive. Questa opzione richiede di creare un nuovo cluster di HDInsight o utilizzare un cluster HDInsight esistente in cui hello Hive tabelle dati NY Taxi toohello punto di archiviazione di Azure Data Lake.  Entrambe le opzioni sono illustrate di seguito. 
 
-## <a name="option-1-use-python-to-build-and-deploy-machine-learning-models"></a>Opzione 1: Usare Python per compilare e distribuire modelli di Machine Learning
-Per creare e distribuire modelli di Machine Learning tramite Python, creare un notebook di Jupyter sul computer locale o in Azure Machine Learning Studio. Il notebook di Jupyter disponibile in [GitHub](https://github.com/Azure/Azure-MachineLearning-DataScience/tree/master/Misc/AzureDataLakeWalkthrough) include il codice completo per esplorare e visualizzare i dati, progettare funzionalità, creare modelli ed eseguire la distribuzione. Questo articolo illustra solo i passaggi relativi alla modellazione e alla distribuzione. 
+## <a name="option-1-use-python-toobuild-and-deploy-machine-learning-models"></a>Opzione 1: Usare Python toobuild e distribuire modelli di machine learning
+toobuild e distribuire i modelli di machine learning Usa Python, creare un server Jupyter Notebook nel computer locale o in Azure Machine Learning Studio. Hello Server Jupyter Notebook fornito in [GitHub](https://github.com/Azure/Azure-MachineLearning-DataScience/tree/master/Misc/AzureDataLakeWalkthrough) contiene hello tooexplore di codice completo, visualizzare i dati, progettazione di funzionalità, modellazione e distribuzione. In questo articolo viene illustrata solo modellazione hello e la distribuzione. 
 
 ### <a name="import-python-libraries"></a>Importare librerie Python
-Per eseguire il notebook di Jupyter di esempio o il file di script Python, sono necessari i pacchetti di Python seguenti. Se si usa il servizio Notebook di Azure Machine Learning, questi pacchetti sono stati preinstallati.
+In hello toorun ordine esempio server Jupyter Notebook o file di script Python hello, hello pacchetti Python seguenti sono necessari. Se si utilizza il servizio di Azure ml Notebook hello, questi pacchetti sono stati preinstallati.
 
     import pandas as pd
     from pandas import Series, DataFrame
@@ -478,7 +478,7 @@ Per eseguire il notebook di Jupyter di esempio o il file di script Python, sono 
     from azureml import services
 
 
-### <a name="read-in-the-data-from-blob"></a>Leggere i dati dal BLOB
+### <a name="read-in-hello-data-from-blob"></a>Leggere dati hello dal blob
 * Connection String   
   
         CONTAINERNAME = 'test1'
@@ -491,7 +491,7 @@ Per eseguire il notebook di Jupyter di esempio o il file di script Python, sono 
         t1 = time.time()
         data = blob_service.get_blob_to_text(CONTAINERNAME,BLOBNAME).split("\n")
         t2 = time.time()
-        print(("It takes %s seconds to read in "+BLOBNAME) % (t2 - t1))
+        print(("It takes %s seconds tooread in "+BLOBNAME) % (t2 - t1))
   
   ![17](./media/machine-learning-data-science-process-data-lake-walkthrough/17-python_readin_csv.PNG)    
 * Aggiungere i nomi di colonna e separare le colonne
@@ -500,7 +500,7 @@ Per eseguire il notebook di Jupyter di esempio o il file di script Python, sono 
         'passenger_count','trip_time_in_secs','trip_distance','pickup_longitude','pickup_latitude','dropoff_longitude','dropoff_latitude',
         'payment_type', 'fare_amount', 'surcharge', 'mta_tax', 'tolls_amount',  'total_amount', 'tip_amount', 'tipped', 'tip_class', 'rownum']
         df1 = pd.DataFrame([sub.split(",") for sub in data], columns = colnames)
-* Impostare alcune colonne su numeriche
+* Modificare toonumeric alcune colonne
   
         cols_2_float = ['trip_time_in_secs','pickup_longitude','pickup_latitude','dropoff_longitude','dropoff_latitude',
         'fare_amount', 'surcharge','mta_tax','tolls_amount','total_amount','tip_amount', 'passenger_count','trip_distance'
@@ -509,13 +509,13 @@ Per eseguire il notebook di Jupyter di esempio o il file di script Python, sono 
             df1[col] = df1[col].astype(float)
 
 ### <a name="build-machine-learning-models"></a>Compilare modelli di Machine Learning
-In questo passaggio viene creato un modello di classificazione binaria per prevedere se una corsa è associata a una mancia o no. Nel notebook di Jupyter è possibile trovare altri due modelli, ovvero la classificazione multiclasse e i modelli di regressione.
+Abbiamo creato un toopredict modello di classificazione binaria se un trip è inclinato o non. Nel server Jupyter Notebook hello è possibile trovare altri due modelli: classificazione multiclasse e i modelli di regressione.
 
-* È prima di tutto necessario creare variabili fittizie che possono essere usate in modelli scikit-learn
+* È prima necessario variabili fittizio toocreate che possono essere usate in scikit-informazioni su modelli
   
         df1_payment_type_dummy = pd.get_dummies(df1['payment_type'], prefix='payment_type_dummy')
         df1_vendor_id_dummy = pd.get_dummies(df1['vendor_id'], prefix='vendor_id_dummy')
-* Creare il frame di dati per la modellazione
+* Creare frame di dati per la modellazione hello
   
         cols_to_keep = ['tipped', 'trip_distance', 'passenger_count']
         data = df1[cols_to_keep].join([df1_payment_type_dummy,df1_vendor_id_dummy])
@@ -555,7 +555,7 @@ In questo passaggio viene creato un modello di classificazione binaria per preve
        ![c2](./media/machine-learning-data-science-process-data-lake-walkthrough/c2-py-logit-evaluation.PNG)
 
 ### <a name="build-web-service-api-and-consume-it-in-python"></a>Compilare l'API del servizio Web e utilizzarla in Python
-Si vuole rendere operativo il modello di Machine Learning dopo la compilazione. In questa sezione viene usato come esempio il modello logistico binario. Assicurarsi che la versione di scikit-learn nel computer locale sia 0.15.1. Non è necessario preoccuparsi della versione se si usa il servizio Azure Machine Learning Studio.
+Vogliamo toooperationalize hello modello di machine learning dopo che è stata creata. Qui è usare modello logistica binario hello come esempio. Verificare che scikit hello-informazioni su versione nel computer locale è 0.15.1. Se si utilizza servizio di Azure ML studio, non è più necessario tooworry su questo argomento.
 
 * Trovare le credenziali dell'area di lavoro dalle impostazioni di Azure Machine Learning Studio. In Azure Machine Learning Studio fare clic su **Impostazioni** --> **Nome** --> **Token di autorizzazione**. 
   
@@ -585,32 +585,32 @@ Si vuole rendere operativo il modello di Machine Learning dopo la compilazione. 
         @services.returns(float)
         def NYCTAXIPredictor(trip_distance, passenger_count, payment_type_dummy_CRD, payment_type_dummy_CSH,payment_type_dummy_DIS, payment_type_dummy_NOC, payment_type_dummy_UNK, vendor_id_dummy_CMT, vendor_id_dummy_VTS ):
             pass
-* Chiamare un'API del servizio Web. È necessario attendere 5-10 secondi dopo il passaggio precedente.
+* Chiamare un'API del servizio Web. È necessario toowait 5-10 secondi dopo il passaggio precedente hello.
   
         NYCTAXIPredictor(1,2,1,0,0,0,0,0,1)
   
        ![c4](./media/machine-learning-data-science-process-data-lake-walkthrough/c4-call-API.PNG)
 
 ## <a name="option-2-create-and-deploy-models-directly-in-azure-machine-learning"></a>Opzione 2: Creare e distribuire modelli direttamente in Azure Machine Learning
-Azure Machine Learning Studio può leggere i dati direttamente da Archivio Azure Data Lake e usarli quindi per creare e distribuire modelli. Questo approccio usa una tabella Hive che fa riferimento ad Archivio Azure Data Lake. In questo caso, tuttavia, è necessario eseguire il provisioning di un cluster Azure HDInsight separato in cui verrà creata la tabella Hive. Le sezioni seguenti mostrano come eseguire questa operazione. 
+Azure Machine Learning Studio può leggere i dati direttamente dall'archivio Azure Data Lake e quindi essere toocreate utilizzato e distribuire modelli. Questo approccio utilizza una tabella Hive che punta al hello archivio Azure Data Lake. Questa operazione richiede che un cluster Azure HDInsight separato eseguirne il provisioning, in cui hello Hive viene creata nella tabella. Hello seguente mostra sezioni come toodo questo. 
 
 ### <a name="create-an-hdinsight-linux-cluster"></a>Creare un cluster HDInsight Linux
-Creare un cluster HDInsight (Linux) dal [portale di Azure](http://portal.azure.com). Per informazioni dettagliate, vedere la sezione **Creare un cluster Azure HDInsight con accesso a Azure Data Lake Store** in [Creare un cluster HDInsight con Data Lake Store tramite il portale di Azure](../data-lake-store/data-lake-store-hdinsight-hadoop-use-portal.md).
+Creare un HDInsight Cluster (Linux) da hello [portale Azure](http://portal.azure.com). Per informazioni dettagliate, vedere hello **creare un cluster HDInsight con accesso tooAzure archivio Data Lake** sezione [creare un cluster HDInsight con archivio Data Lake tramite il portale di Azure](../data-lake-store/data-lake-store-hdinsight-hadoop-use-portal.md).
 
  ![18](./media/machine-learning-data-science-process-data-lake-walkthrough/18-create_HDI_cluster.PNG)
 
 ### <a name="create-hive-table-in-hdinsight"></a>Creare una tabella Hive in HDInsight
-È ora possibile creare in un cluster HDInsight le tabelle Hive da usare in Azure Machine Learning Studio usando i dati archiviati in Archivio Azure Data Lake nel passaggio precedente. Passare al cluster HDInsight appena creato. Fare clic su **Impostazioni** --> **Proprietà** --> **Identità AAD del cluster** --> **Accesso a ADLS** e assicurarsi che l'account Azure Data Lake Store sia aggiunto all'elenco con diritti di lettura, scrittura ed esecuzione. 
+È ora possibile creare toobe tabelle Hive usate in Azure Machine Learning Studio in cluster di HDInsight hello usando i dati di hello archiviati nell'archivio Azure Data Lake nel passaggio precedente hello. Passare toohello cluster HDInsight appena creato. Fare clic su **impostazioni** --> **proprietà** --> **Cluster identità AAD** --> **ADLS accesso**, Verificare che l'account archivio Azure Data Lake viene aggiunto nell'elenco di hello con lettura, scrittura e diritti di esecuzione. 
 
  ![19](./media/machine-learning-data-science-process-data-lake-walkthrough/19-HDI-cluster-add-ADLS.PNG)
 
-Fare quindi clic su **Dashboard** accanto al pulsante **Impostazioni**. Verrà visualizzata una finestra. Fare clic su **Vista Hive** nell'angolo superiore destro della pagina. Verrà visualizzato l'**Editor di query**.
+Quindi fare clic su **Dashboard** toohello Avanti **impostazioni** pulsante e una finestra viene visualizzata. Fare clic su **visualizzazione Hive** hello angolo superiore destro della pagina hello e si visualizzeranno hello **Editor di Query**.
 
  ![20](./media/machine-learning-data-science-process-data-lake-walkthrough/20-HDI-dashboard.PNG)
 
  ![21](./media/machine-learning-data-science-process-data-lake-walkthrough/21-Hive-Query-Editor-v2.PNG)
 
-Incollare gli script Hive seguenti per creare una tabella. Il percorso dell'origine dati è nella Guida di riferimento di Azure Data Lake Store: **adl://data_lake_store_name.azuredatalakestore.net:443/folder_name/file_name**.
+Incolla in seguito hello Hive toocreate gli script di una tabella. Hello dell'origine dati si trova nella Guida di riferimento in questo modo archivio Azure Data Lake: **adl://data_lake_store_name.azuredatalakestore.net:443 nome_cartella/file_name**.
 
     CREATE EXTERNAL TABLE nyc_stratified_sample
     (
@@ -643,46 +643,46 @@ Incollare gli script Hive seguenti per creare una tabella. Il percorso dell'orig
     LOCATION 'adl://data_lake_storage_name.azuredatalakestore.net:443/nyctaxi_folder/demo_ex_9_stratified_1_1000_copy.csv';
 
 
-Al termine dell'esecuzione della query, i risultati verranno visualizzati in modo analogo al seguente:
+Al termine dell'esecuzione query hello, vengono visualizzati risultati hello simile al seguente:
 
  ![22](./media/machine-learning-data-science-process-data-lake-walkthrough/22-Hive-Query-results.PNG)
 
 ### <a name="build-and-deploy-models-in-azure-machine-learning-studio"></a>Compilare e distribuire modelli in Azure Machine Learning Studio
-È ora possibile creare e distribuire un modello in grado di stabilire se sia stata lasciata o meno una mancia mediante Azure Machine Learning. I dati di esempio stratificati sono pronti per essere usati in questo problema di classificazione binaria (mancia o no). Con Azure Machine Learning Studio è possibile anche creare e distribuire modelli predittivi che usano la classificazione multiclasse (tip_class) e la regressione (tip_amount), ma in questo caso ci si limiterà a illustrare come gestire il caso usando il modello di classificazione binaria.
+Ci sono ora pronti toobuild e distribuire un modello che stima o meno un suggerimento viene pagato con Azure Machine Learning. dati di esempio stratificato Hello sono pronto toobe utilizzati in questa classificazione binaria (suggerimento o non) problema. Hello modelli predittivi con classificazione multiclasse (tip_class) e regressione (tip_amount) può anche essere compilata e distribuita con Azure Machine Learning Studio, ma qui solo illustrare come toohandle hello maiuscole con hello modello di classificazione binaria.
 
-1. Inserire i dati in Azure ML tramite il modulo **Import Data** (Importa dati), disponibile nella sezione **Input e output dei dati**. Per altre informazioni, vedere la pagina di riferimento sul [modulo Import Data](https://msdn.microsoft.com/library/azure/4e1b0fe6-aded-4b3f-a36f-39b8862b9004/) (Importa dati).
-2. Selezionare **Query Hive** come **origine dati** nel pannello delle **proprietà**.
-3. Incollare lo script Hive seguente nell'editor **Hive database query** (Query di database Hive)
+1. Ottenere dati hello in Azure ML utilizzando hello **l'importazione dei dati** modulo, disponibile in hello **dati di Input e Output** sezione. Per ulteriori informazioni, vedere hello [modulo Importa dati](https://msdn.microsoft.com/library/azure/4e1b0fe6-aded-4b3f-a36f-39b8862b9004/) pagina di riferimento.
+2. Selezionare **Query Hive** come hello **origine dati** in hello **proprietà** pannello.
+3. Hello incollare lo script Hive in hello seguente **query database Hive** editor
    
         select * from nyc_stratified_sample;
-4. Immettere l'URI del cluster HDInsight (disponibile nel portale di Azure), le credenziali di Hadoop, la posizione dei dati di output e il nome dell'account di archiviazione di Azure/la chiave/il nome di contenitore.
+4. Immettere il cluster di URI di HDInsight hello (questo è reperibile nel portale di Azure), le credenziali di Hadoop, posizione dei dati di output e il nome di contenitore/nome/chiave account di archiviazione di Azure.
    
    ![23](./media/machine-learning-data-science-process-data-lake-walkthrough/23-reader-module-v3.PNG)  
 
-Un esempio relativo a un esperimento di classificazione binaria per la lettura di dati dalla tabella Hive è disponibile nella figura seguente.
+Un esempio di lettura dei dati dalla tabella Hive un esperimento di classificazione binaria è illustrato nella figura hello riportato di seguito.
 
  ![24](./media/machine-learning-data-science-process-data-lake-walkthrough/24-AML-exp.PNG)
 
-Dopo la creazione dell'esperimento, fare clic su **Set Up Web Service** --> **Predictive Web Service** (Imposta servizio Web - Servizio Web predittivo)
+Dopo aver creato l'esperimento hello, fare clic su **di servizio Web** --> **predittiva servizio Web**
 
  ![25](./media/machine-learning-data-science-process-data-lake-walkthrough/25-AML-exp-deploy.PNG)
 
-Eseguire l'esperimento di assegnazione dei punteggi creato automaticamente e al termine, fare clic su **Deploy Web Service** (Distribuisci servizio Web)
+Assegnazione dei punteggi esperimento, al termine, fare clic su esecuzione hello creato automaticamente **distribuzione servizio Web**
 
  ![26](./media/machine-learning-data-science-process-data-lake-walkthrough/26-AML-exp-deploy-web.PNG)
 
-Il dashboard del servizio Web verrà visualizzato a breve:
+verrà visualizzato a breve dashboard del servizio web Hello:
 
  ![27](./media/machine-learning-data-science-process-data-lake-walkthrough/27-AML-web-api.PNG)
 
 ## <a name="summary"></a>Riepilogo
-Seguendo questa procedura dettagliata è stato creato un ambiente di analisi scientifica dei dati per la creazione di soluzioni end-to-end scalabili in Azure Data Lake. Questo ambiente è stato quindi usato per analizzare un set di dati pubblico di grandi dimensioni, sottoposto ai passaggi del processo di analisi scientifica dei dati: dall'acquisizione dei dati al training del modello, fino alla distribuzione del modello come servizio Web. Per elaborare, esplorare e campionare i dati è stato usato U-SQL, mentre per creare e distribuire i modelli predittivi sono stati usati Python e Hive con Azure Machine Learning Studio.
+Seguendo questa procedura dettagliata è stato creato un ambiente di analisi scientifica dei dati per la creazione di soluzioni end-to-end scalabili in Azure Data Lake. Questo ambiente è stato utilizzato tooanalyze un ampio set di dati pubblici, portarlo passaggi canonico hello hello il processo di analisi scientifica dei dati, dall'acquisizione dati training del modello, e quindi distribuzione toohello di hello del modello come un servizio web. U-SQL è stato utilizzato tooprocess, esplorare e hello dati di esempio. Python e Hive venivano utilizzati con Azure Machine Learning Studio toobuild e distribuire modelli predittivi.
 
 ## <a name="whats-next"></a>Passaggi successivi
-Nel percorso di apprendimento relativo al [Processo di analisi scientifica dei dati per i team (TDSP)](http://aka.ms/datascienceprocess) sono inclusi alcuni collegamenti ad argomenti che descrivono ogni passaggio del processo di analisi avanzata. È disponibile una serie di procedure dettagliate collegate alla pagina [Processo di analisi scientifica dei dati per i team](data-science-process-walkthroughs.md) che illustrano come usare risorse e servizi nei vari scenari di analisi predittiva:
+percorso di apprendimento Hello il [Team Data Science processo (TDSP)](http://aka.ms/datascienceprocess) fornisce collegamenti tootopics che descrivono ogni passaggio nel hello avanzate processo analitica. Esistono una serie di procedure dettagliate dettagliate su hello [procedure dettagliate di processo di analisi scientifica dei dati di Team](data-science-process-walkthroughs.md) pagina come tale showcase toouse risorse e i servizi in vari scenari analitica predittiva:
 
-* [Processo di analisi scientifica dei dati per i team in azione: uso di SQL Data Warehouse](machine-learning-data-science-process-sqldw-walkthrough.md)
-* [Processo di analisi scientifica dei dati per i team in azione: uso dei cluster Hadoop di HDInsight](machine-learning-data-science-process-hive-walkthrough.md)
-* [Processo di analisi scientifica dei dati per i team: uso di SQL Sever](machine-learning-data-science-process-sql-walkthrough.md)
-* [Panoramica del Processo di analisi scientifica dei dati con Spark in Azure HDInsight](machine-learning-data-science-spark-overview.md)
+* [Processo di analisi scientifica dei dati del Team di Hello in azione: utilizzo di SQL Data Warehouse](machine-learning-data-science-process-sqldw-walkthrough.md)
+* [Processo di analisi scientifica dei dati del Team di Hello in azione: utilizzo dei cluster HDInsight Hadoop](machine-learning-data-science-process-hive-walkthrough.md)
+* [Processo di analisi scientifica dei dati di Team Hello: utilizzo di SQL Server](machine-learning-data-science-process-sql-walkthrough.md)
+* [Panoramica dell'utilizzo di processo di analisi scientifica dei dati hello nascita in Azure HDInsight](machine-learning-data-science-spark-overview.md)
 

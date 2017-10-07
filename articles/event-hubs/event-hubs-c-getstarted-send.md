@@ -1,6 +1,6 @@
 ---
-title: Inviare eventi a Hub eventi di Azure usando C | Microsoft Docs
-description: Inviare eventi a Hub di eventi di Azure usando C
+title: aaaSend eventi tooAzure hub eventi utilizzando C | Documenti Microsoft
+description: Inviare gli eventi di hub di eventi tooAzure utilizzando C
 services: event-hubs
 documentationcenter: 
 author: sethmanheim
@@ -14,37 +14,37 @@ ms.devlang: csharp
 ms.topic: article
 ms.date: 08/15/2017
 ms.author: sethm
-ms.openlocfilehash: a615ee39b6c3731cc7df366e9fabeed5219a71b4
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: bb53300c070debb4a3658a38df9d3966f08e81ae
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="send-events-to-azure-event-hubs-using-c"></a>Inviare eventi a Hub di eventi di Azure usando C
+# <a name="send-events-tooazure-event-hubs-using-c"></a>Inviare gli eventi di hub di eventi tooAzure utilizzando C
 
 ## <a name="introduction"></a>Introduzione
-Hub eventi è un sistema di inserimento a scalabilità elevata, in grado di inserire milioni di eventi al secondo, che permette a un'applicazione di elaborare e analizzare le elevate quantità di dati prodotti dalle applicazioni e dai dispositivi connessi. Dopo la raccolta in un hub eventi, è possibile trasformare e archiviare i dati usando qualsiasi provider di analisi in tempo reale o un cluster di archiviazione.
+Hub eventi è un sistema di inserimento estremamente scalabile in grado di milioni di eventi al secondo, abilitazione tooprocess un'applicazione di inserimento e analizzare hello enormi quantità di dati generati per i dispositivi connessi e le applicazioni. Dopo la raccolta in un hub eventi, è possibile trasformare e archiviare i dati usando qualsiasi provider di analisi in tempo reale o un cluster di archiviazione.
 
-Per altre informazioni, vedere [Panoramica di Hub eventi][Panoramica di Hub eventi].
+Per ulteriori informazioni, vedere hello [Panoramica di hub eventi] [Panoramica di hub eventi].
 
-In questa esercitazione si apprenderà come inviare eventi a un hub eventi usando un'applicazione console in C. Per ricevere gli eventi, fare clic sulla lingua di destinazione appropriata nel sommario a sinistra.
+In questa esercitazione si apprenderà come hub eventi tooan eventi toosend usando un'applicazione console in c. tooreceive eventi, fare clic su lingua ricevente hello appropriata nella tabella a sinistra di hello del contenuto.
 
-Per completare questa esercitazione, sono necessari gli elementi seguenti:
+toocomplete questa esercitazione, è necessario hello seguenti:
 
-* Ambiente di sviluppo in C. Per questa esercitazione si presuppone l'uso di uno stack gcc in una VM Linux in Azure con Ubuntu 14.04.
+* Ambiente di sviluppo in C. Per questa esercitazione, si suppone stack gcc hello in una macchina virtuale Linux di Azure con Ubuntu 14.04.
 * [Microsoft Visual Studio](https://www.visualstudio.com/).
 * Un account Azure attivo. Se non si dispone di un account, è possibile creare un account di valutazione gratuita in pochi minuti. Per informazioni dettagliate, vedere la pagina relativa alla [versione di valutazione gratuita di Azure](https://azure.microsoft.com/pricing/free-trial/).
 
-## <a name="send-messages-to-event-hubs"></a>Inviare messaggi all'hub eventi
-In questa sezione si scrive un'app C per inviare eventi all'hub eventi. Il codice usa la libreria Proton AMQP dal [progetto Apache Qpid](http://qpid.apache.org/). Il procedimento è simile a quello adottato per l'uso da C di code e argomenti del bus di servizio con AMQP, come illustrato [qui](https://code.msdn.microsoft.com/Using-Apache-Qpid-Proton-C-afd76504). Per altre informazioni, vedere la [documentazione di Qpid Proton](http://qpid.apache.org/proton/index.html).
+## <a name="send-messages-tooevent-hubs"></a>Invio di messaggi tooEvent hub
+In questa sezione è scrivere un hub di eventi tooyour C app toosend eventi. codice Hello Usa libreria Proton AMQP hello da hello [progetto Apache Qpid](http://qpid.apache.org/). Questo è analoga toousing code del Bus di servizio e gli argomenti con AMQP da C, come illustrato [qui](https://code.msdn.microsoft.com/Using-Apache-Qpid-Proton-C-afd76504). Per altre informazioni, vedere la [documentazione di Qpid Proton](http://qpid.apache.org/proton/index.html).
 
-1. Dalla [pagina di Qpid AMQP Messenger](https://qpid.apache.org/proton/messenger.html) seguire le istruzioni per l'installazione di Qpid Proton a seconda dell'ambiente corrente.
-2. Per compilare la libreria Proton, installare i seguenti pacchetti:
+1. Da hello [pagina Messenger AMQP Qpid](https://qpid.apache.org/proton/messenger.html), seguire le istruzioni di hello tooinstall Qpid Proton, a seconda dell'ambiente.
+2. toocompile hello libreria Proton, installare i seguenti pacchetti hello:
    
     ```shell
     sudo apt-get install build-essential cmake uuid-dev openssl libssl-dev
     ```
-3. Scaricare la [libreria Qpid Proton](http://qpid.apache.org/proton/index.html) e quindi estrarla, ad esempio:
+3. Scaricare hello [libreria Qpid Proton](http://qpid.apache.org/proton/index.html)ed estrarre i file, ad esempio:
    
     ```shell
     wget http://archive.apache.org/dist/qpid/proton/0.7/qpid-proton-0.7.tar.gz
@@ -59,7 +59,7 @@ In questa sezione si scrive un'app C per inviare eventi all'hub eventi. Il codic
     cmake -DCMAKE_INSTALL_PREFIX=/usr ..
     sudo make install
     ```
-5. Nella directory di lavoro creare un nuovo file denominato **sender.c** con il codice seguente. Ricordare di sostituire i valori del nome dell'hub eventi e del nome dello spazio dei nomi. È anche necessario sostituire una versione codificata con URL della chiave per l'elemento **SendRule** creato in precedenza. È possibile creare la versione codificata con URL [qui](http://www.w3schools.com/tags/ref_urlencode.asp).
+5. Nella directory di lavoro, creare un nuovo file denominato **sender.c** con hello seguente codice. Tenere presente il valore hello toosubstitute per il nome dell'hub eventi e il nome dello spazio dei nomi. È inoltre necessario sostituire una versione con codifica URL della chiave di hello per hello **SendRule** creato in precedenza. È possibile creare la versione codificata con URL [qui](http://www.w3schools.com/tags/ref_urlencode.asp).
    
     ```c
     #include "proton/message.h"
@@ -121,7 +121,7 @@ In questa sezione si scrive un'app C per inviare eventi all'hub eventi. Il codic
     }
    
     int main(int argc, char** argv) {
-        printf("Press Ctrl-C to stop the sender process\n");
+        printf("Press Ctrl-C toostop hello sender process\n");
    
         pn_messenger_t *messenger = pn_messenger(NULL);
         pn_messenger_set_outgoing_window(messenger, 1);
@@ -140,18 +140,18 @@ In questa sezione si scrive un'app C per inviare eventi all'hub eventi. Il codic
         return 0;
     }
     ```
-6. Compilare il file (si presuppone **gcc**):
+6. Compilare il file hello, presupponendo che **gcc**:
    
     ```
     gcc sender.c -o sender -lqpid-proton
     ```
 
     > [!NOTE]
-    > In questo codice viene usata una finestra in uscita pari a 1 per imporre un invio dei messaggi il più rapido possibile. In generale l'applicazione dovrebbe cercare di riunire i messaggi in batch per migliorare la velocità effettiva. Vedere la [pagina di Qpid AMQP Messenger](https://qpid.apache.org/proton/messenger.html) per informazioni sull'uso della libreria Qpid Proton in questo e in altri ambienti e anche nelle piattaforme per le quali sono disponibili associazioni, al momento Perl, PHP, Python e Ruby.
+    > In questo codice, si usa una finestra in uscita dei messaggi di hello tooforce 1 out appena possibile. In generale, l'applicazione deve tentare di velocità effettiva di tooincrease messaggi toobatch. Vedere hello [pagina Messenger AMQP Qpid](https://qpid.apache.org/proton/messenger.html) per informazioni su come toouse hello libreria Qpid Proton in questo e altri ambienti e da piattaforme per il quale vengono fornite le associazioni (attualmente Perl, PHP, Python e Ruby).
 
 
 ## <a name="next-steps"></a>Passaggi successivi
-Per ulteriori informazioni su Hub eventi visitare i collegamenti seguenti:
+Sono disponibili ulteriori informazioni sugli hub di eventi visitando hello seguenti collegamenti:
 
 * [Panoramica di Hub eventi](event-hubs-what-is-event-hubs.md
 )

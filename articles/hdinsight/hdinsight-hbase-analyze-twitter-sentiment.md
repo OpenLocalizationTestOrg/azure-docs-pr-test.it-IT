@@ -1,6 +1,6 @@
 ---
-title: Analizzare i sentiment di Twitter in tempo reale con HBase - Azure | Microsoft Docs
-description: Istruzioni per l'esecuzione dell'analisi dei sentimenti dei Big Data in tempo reale da Twitter con HBase in un cluster HDInsight (Hadoop).
+title: aaaAnalyze in tempo reale Twitter sentiment con HBase - Azure | Documenti Microsoft
+description: Informazioni su come toodo analisi di valutazione in tempo reale di dati da Twitter usando HBase in un cluster HDInsight (Hadoop).
 services: hdinsight
 documentationcenter: 
 author: mumian
@@ -15,76 +15,76 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/24/2017
 ms.author: jgao
-ms.openlocfilehash: 4d5bb90c0e7573afb75282810c9ba58e7163e127
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 87e5c0c0a90d222a3f0bc3c3f3fce1e938320480
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="analyze-real-time-twitter-sentiment-with-hbase-in-hdinsight"></a>Analisi dei sentimenti Twitter in tempo reale con HBase in HDInsight
-Informazioni su come eseguire l'[analisi del sentiment](http://en.wikipedia.org/wiki/Sentiment_analysis) di Big Data in tempo reale da Twitter usando un cluster HBase in HDInsight.
+Informazioni su come toodo in tempo reale [analisi del sentiment](http://en.wikipedia.org/wiki/Sentiment_analysis) di dati da Twitter usando un cluster HBase in HDInsight.
 
-I siti Web di social networking rappresentano una delle principali forze trainanti per l'adozione di Big Data. Le API pubbliche offerte da siti quali Twitter costituiscono un'utile origine di dati per l'analisi e la comprensione delle tendenze più popolari. In questa esercitazione viene spiegato come sviluppare un'applicazione di servizio per lo streaming su console e un'applicazione Web ASP.NET al fine di:
+Siti Web sociali sono uno dei hello principali le forze per l'adozione dei dati. Le API pubbliche offerte da siti quali Twitter costituiscono un'utile origine di dati per l'analisi e la comprensione delle tendenze più popolari. In questa esercitazione, si sviluppa una console di flusso dell'applicazione di servizio e un'applicazione segue hello tooperform ASP.NET web:
 
 ![Analisi del sentiment di Twitter con HBase in HDInsight][img-app-arch]
 
-* Applicazione di streaming
+* Hello streaming dell'applicazione
 
-  * ottenere tweet geotaggati in tempo reale usando l'API di streaming di Twitter
-  * valutare i sentimenti di tali tweet
-  * memorizzare i dati sui sentimenti in HBase usando la SDK di Microsoft HBase
-* Applicazione Siti Web di Azure
+  * ottenere il tag geografica TWEET in tempo reale tramite Twitter hello streaming API
+  * valutare sentiment hello di questi TWEET
+  * archiviare le informazioni in HBase tramite hello Microsoft HBase SDK sentiment di hello
+* Hello applicazione siti Web di Azure
 
-  * tracciare i dati statistici in tempo reale sulle mappe Bing usando un'applicazione Web ASP.NET. Una visualizzazione dei tweet è simile alla schermata seguente:
+  * tracciato hello in tempo reale statistica dei risultati in Bing maps tramite un'applicazione web ASP.NET. Una visualizzazione di tweet hello è simile toohello seguente schermata:
 
     ![hdinsight.hbase.twitter.sentiment.bing.map][img-bing-map]
 
-    È possibile effettuare query sui tweet usando specifiche parole chiave per determinare se l'opinione espressa nei tweet è positiva, negativa o neutrale.
+    Se, è in grado di tooquery tweet con tooget determinate parole chiave senso di parere hello espresso in TWEET hello è positivo, negativo o neutro.
 
 Un esempio di soluzione completa di Visual Studio è disponibile su GitHub, ovvero l' [app di analisi dei sentimenti dei social media in tempo reale](https://github.com/maxluk/tweet-sentiment).
 
 ### <a name="prerequisites"></a>Prerequisiti
-Prima di iniziare questa esercitazione, è necessario disporre di quanto segue:
+Prima di iniziare questa esercitazione, è necessario disporre delle seguenti hello:
 
 * **Un cluster HBase in HDInsight**. Per istruzioni sulla creazione di cluster, vedere l'[introduzione all'uso di HBase con Hadoop in HDInsight][hbase-get-started]. 
 
 * **Una workstation** in cui sia installato Visual Studio 2013/2015/2017. Per le istruzioni, vedere [Installazione di Visual Studio](http://msdn.microsoft.com/library/e2h7fzkw.aspx).
 
 ## <a name="create-a-twitter-application-id-and-secrets"></a>Creazione dell'ID e dei segreti di un'applicazione Twitter
-Le API di streaming di Twitter usano [OAuth](http://oauth.net/) per l'autorizzazione delle richieste. Il primo passaggio da seguire per usare OAuth consiste nel creare una nuova applicazione sul sito Twitter Developers.
+Hello Twitter utilizzano API di flusso [OAuth](http://oauth.net/) tooauthorize richieste. Hello primo passaggio toouse OAuth è toocreate una nuova applicazione nel sito per sviluppatori di hello Twitter.
 
-**Per creare l'ID e i segreti di un'applicazione Twitter**
+**ID dell'applicazione Twitter toocreate e segreti**
 
-1. Accedere a [Twitter Apps](https://apps.twitter.com/). Se non si dispone di un account Twitter, fare clic sul collegamento **Sign up now** .
+1. Accedi troppo[Twitter app](https://apps.twitter.com/). Fare clic su hello **Iscriviti ora** collegare se non si dispone di un account Twitter.
 2. Fare clic su **Create New App**.
-3. Compilare i campi **Name** (Nome), **Description** (Descrizione) e **Website** (Sito Web). Il nome dell'applicazione Twitter deve essere univoco. Il campo Website non viene realmente usato. Non è necessario inserire un URL valido.
+3. Compilare i campi **Name** (Nome), **Description** (Descrizione) e **Website** (Sito Web). nome dell'applicazione Hello Twitter deve essere un nome univoco. campo Website Hello non viene effettivamente utilizzato. Non deve toobe un URL valido.
 4. Fare clic su **Yes, I agree** e su **Create your Twitter application**.
-5. Fare clic sulla scheda **Permissions** (Autorizzazioni) e quindi su **Read only** (Sola lettura). L'autorizzazione di sola lettura è sufficiente ai fini di questa esercitazione.
-6. Fare clic sulla scheda **Keys and Access Tokens** .
-7. Fare clic su **Create my access token** (Crea il mio token di accesso) nella parte inferiore della pagina.
-9. Copiare i valori dei campi **Consumer Key (API Key)** (Chiave utente - Chiave API), **Consumer Secret (API Secret)** (Segreto utente - Segreto API), **Access token** (Token di accesso) e **Access token secret** (Segreto token di accesso). Sarà necessario usare questi valori più avanti nell'esercitazione.
+5. Fare clic su hello **autorizzazioni** scheda e quindi fare clic su **di sola lettura**. autorizzazione di sola lettura Hello è sufficiente per questa esercitazione.
+6. Fare clic su hello **chiavi e i token di accesso** scheda.
+7. Fare clic su **creare il token di accesso** nella parte inferiore di hello della pagina hello.
+9. Hello copia **Consumer tasto (API)**, **segreto del cliente (chiave privata API)**, **token di accesso**, e **segreto del token di accesso** valori. Questi valori è necessario più avanti nell'esercitazione di hello.
 
-    > ![NOTA] Il pulsante Test OAuth non funziona più.
+    > ! Pulsante Test OAuth di hello [Nota] non funzioneranno più.
 
 ## <a name="create-twitter-streaming-service"></a>Creare un servizio di streaming di Twitter
-È necessario creare un'applicazione per ricevere i tweet, calcolare i punteggi dei sentimenti dei tweet e inviare i termini dei tweet elaborati a HBase.
+È necessario toocreate tweets tooget un'applicazione, calcolare il punteggio di sentiment tweet e inviare hello elaborato tweet parole tooHBase.
 
-**Per creare l'applicazione di streaming**
+**hello toocreate lo streaming dell'applicazione**
 
 1. Aprire **Visual Studio** e creare un'applicazione console Visual C# denominata **TweetSentimentStreaming**.
-2. Nella finestra **Console di Gestione pacchetti**eseguire i comandi seguenti:
+2. Da **Package Manager Console**eseguire hello seguenti comandi:
 
         Install-Package Microsoft.HBase.Client -version 0.4.2.0
         Install-Package TweetinviAPI -version 1.0.0.0
 
-    I comandi seguenti permettono di installare il pacchetto [HBase .NET SDK](https://www.nuget.org/packages/Microsoft.HBase.Client/), ovvero la libreria client che consente di accedere al cluster HBase, e il pacchetto [Tweetinvi API](https://www.nuget.org/packages/TweetinviAPI/), usato per accedere all'API Twitter.
+    Questi comandi installano hello [HBase .NET SDK](https://www.nuget.org/packages/Microsoft.HBase.Client/) pacchetto, ovvero cluster HBase di hello client libreria tooaccess hello e hello [Tweetinvi API](https://www.nuget.org/packages/TweetinviAPI/) del pacchetto, ovvero tooaccess utilizzati hello API Twitter.
 
    > [!NOTE]
-   > L'esempio usato in questo articolo è stato testato con la versione specificata in precedenza.  È possibile rimuovere la versione per installare la più recente.
+   > esempio Hello usato in questo articolo è stato testato con versione di hello specificata in precedenza.  È possibile rimuovere hello - versione più recente di versione commutatore tooinstall hello.
    >
    >
-3. In **Esplora soluzioni** aggiungere **System.Configuration** al riferimento.
-4. Aggiungere un nuovo file di classe al progetto denominato **HBaseWriter.cs**e quindi sostituire il codice con quanto segue:
+3. Da **Esplora**, aggiungere **Configuration** toohello riferimento.
+4. Aggiungere un nuovo progetto toohello file di classe denominato **HBaseWriter.cs**e quindi sostituire il codice hello con hello seguente:
 
         using System;
         using System.Collections.Generic;
@@ -103,8 +103,8 @@ Le API di streaming di Twitter usano [OAuth](http://oauth.net/) per l'autorizzaz
             {
                 // HDinsight HBase cluster and HBase table information
                 const string CLUSTERNAME = "https://<Enter Your Cluster Name>.azurehdinsight.net/";
-                const string HADOOPUSERNAME = "admin"; //the default name is "admin"
-                const string HADOOPUSERPASSWORD = "<Enter the Hadoop User Password>";
+                const string HADOOPUSERNAME = "admin"; //hello default name is "admin"
+                const string HADOOPUSERPASSWORD = "<Enter hello Hadoop User Password>";
 
                 const string HBASETABLENAME = "tweets_by_words";
                 const string COUNT_ROW_KEY = "~ROWCOUNT";
@@ -112,13 +112,13 @@ Le API di streaming di Twitter usano [OAuth](http://oauth.net/) per l'autorizzaz
 
                 long rowCount = 0;
 
-                // Sentiment dictionary file and the punctuation characters
+                // Sentiment dictionary file and hello punctuation characters
                 const string DICTIONARYFILENAME = @"..\..\dictionary.tsv";
                 private static char[] _punctuationChars = new[] {
             ' ', '!', '\"', '#', '$', '%', '&', '\'', '(', ')', '*', '+', ',', '-', '.', '/',   //ascii 23--47
             ':', ';', '<', '=', '>', '?', '@', '[', ']', '^', '_', '`', '{', '|', '}', '~' };   //ascii 58--64 + misc.
 
-                // For writting to HBase
+                // For writting tooHBase
                 HBaseClient client;
 
                 // a sentiment dictionary for estimate sentiment. It is loaded from a physical file.
@@ -129,13 +129,13 @@ Le API di streaming di Twitter usano [OAuth](http://oauth.net/) per l'autorizzaz
                 Queue<ITweet> queue = new Queue<ITweet>();
                 bool threadRunning = true;
 
-                // This function connects to HBase, loads the sentiment dictionary, and starts the thread for writting.
+                // This function connects tooHBase, loads hello sentiment dictionary, and starts hello thread for writting.
                 public HBaseWriter()
                 {
                     ClusterCredentials credentials = new ClusterCredentials(new Uri(CLUSTERNAME), HADOOPUSERNAME, HADOOPUSERPASSWORD);
                     client = new HBaseClient(credentials);
 
-                    // create the HBase table if it doesn't exist
+                    // create hello HBase table if it doesn't exist
                     if (!client.ListTablesAsync().Result.name.Contains(HBASETABLENAME))
                     {
                         TableSchema tableSchema = new TableSchema();
@@ -151,7 +151,7 @@ Le API di streaming di Twitter usano [OAuth](http://oauth.net/) per l'autorizzaz
                     // Load sentiment dictionary from a file
                     LoadDictionary();
 
-                    // Start a thread for writting to HBase
+                    // Start a thread for writting tooHBase
                     writerThread = new Thread(new ThreadStart(WriterThreadFunction));
                     writerThread.Start();
                 }
@@ -179,7 +179,7 @@ Le API di streaming di Twitter usano [OAuth](http://oauth.net/) per l'autorizzaz
                     }
                     catch(Exception ex)
                     {
-                        if (ex.InnerException.Message.Equals("The remote server returned an error: (404) Not Found.", StringComparison.OrdinalIgnoreCase))
+                        if (ex.InnerException.Message.Equals("hello remote server returned an error: (404) Not Found.", StringComparison.OrdinalIgnoreCase))
                         {
                             return 0;
                         }
@@ -193,7 +193,7 @@ Le API di streaming di Twitter usano [OAuth](http://oauth.net/) per l'autorizzaz
                     return 0;
                 }
 
-                // Enqueue the Tweets received
+                // Enqueue hello Tweets received
                 public void WriteTweet(ITweet tweet)
                 {
                     lock (queue)
@@ -260,19 +260,19 @@ Le API di streaming di Twitter usano [OAuth](http://oauth.net/) per l'autorizzaz
                     }
                 }
 
-                // Popular a CellSet object to be written into HBase
+                // Popular a CellSet object toobe written into HBase
                 private void CreateTweetByWordsCells(CellSet set, ITweet tweet)
                 {
-                    // Split the Tweet into words
+                    // Split hello Tweet into words
                     string[] words = tweet.Text.ToLower().Split(_punctuationChars);
 
-                    // Calculate sentiment score base on the words
+                    // Calculate sentiment score base on hello words
                     int sentimentScore = CalcSentimentScore(words);
                     var word_pairs = words.Take(words.Length - 1)
                                         .Select((word, idx) => string.Format("{0} {1}", word, words[idx + 1]));
                     var all_words = words.Concat(word_pairs).ToList();
 
-                    // For each word in the Tweet add a row to the HBase table
+                    // For each word in hello Tweet add a row toohello HBase table
                     foreach (string word in all_words)
                     {
                         string time_index = (ulong.MaxValue - (ulong)tweet.CreatedAt.ToBinary()).ToString().PadLeft(20) + tweet.IdStr;
@@ -281,7 +281,7 @@ Le API di streaming di Twitter usano [OAuth](http://oauth.net/) per l'autorizzaz
                         // Create a row
                         var row = new CellSet.Row { key = Encoding.UTF8.GetBytes(key) };
 
-                        // Add columns to the row, including Tweet identifier, language, coordinator(if available), and sentiment
+                        // Add columns toohello row, including Tweet identifier, language, coordinator(if available), and sentiment
                         var value = new Cell { column = Encoding.UTF8.GetBytes("d:id_str"), data = Encoding.UTF8.GetBytes(tweet.IdStr) };
                         row.values.Add(value);
 
@@ -302,7 +302,7 @@ Le API di streaming di Twitter usano [OAuth](http://oauth.net/) per l'autorizzaz
                     }
                 }
 
-                // Write a Tweet (CellSet) to HBase
+                // Write a Tweet (CellSet) tooHBase
                 public void WriterThreadFunction()
                 {
                     try
@@ -321,7 +321,7 @@ Le API di streaming di Twitter usano [OAuth](http://oauth.net/) per l'autorizzaz
                                     } while (queue.Count > 0);
                                 }
 
-                                // Write the Tweet by words cell set to the HBase table
+                                // Write hello Tweet by words cell set toohello HBase table
                                 client.StoreCellsAsync(HBASETABLENAME, set).Wait();
                                 Console.WriteLine("\tRows written: {0}", set.rows.Count);
                             }
@@ -344,8 +344,8 @@ Le API di streaming di Twitter usano [OAuth](http://oauth.net/) per l'autorizzaz
                 public string Polarity { get; set; }
             }
         }
-5. Impostare le costanti nel codice precedente, incluse **CLUSTERNAME**, **HADOOPUSERNAME**, **HADOOPUSERPASSWORD** e DICTIONARYFILENAME. DICTIONARYFILENAME è il nome e il percorso del file direction.tsv.  Il file può essere scaricato da **https://hditutorialdata.blob.core.windows.net/twittersentiment/dictionary.tsv**. Per cambiare il nome della tabella HBase, è necessario modificare il nome della tabella nell'applicazione Web di conseguenza.
-6. Aprire **Program.cs**e sostituire il codice con quello seguente:
+5. Set di costanti hello nel codice precedente hello, tra cui **CLUSTERNAME**, **HADOOPUSERNAME**, **HADOOPUSERPASSWORD**e DICTIONARYFILENAME. Hello DICTIONARYFILENAME è hello nome e il percorso di hello di hello direction.tsv.  può essere scaricato dal file Hello **https://hditutorialdata.blob.core.windows.net/twittersentiment/dictionary.tsv**. Se si desidera toochange nome della tabella HBase hello, è necessario modificare il nome di tabella hello in un'applicazione web hello di conseguenza.
+6. Aprire **Program.cs**e sostituire il codice hello con hello seguente:
 
         using System;
         using System.Diagnostics;
@@ -386,7 +386,7 @@ Le API di streaming di Twitter usano [OAuth](http://oauth.net/) per l'autorizzaz
                                 tweetCount++;
                                 var tweet = args.Tweet;
 
-                                // Write Tweets to HBase
+                                // Write Tweets tooHBase
                                 hbase.WriteTweet(tweet);
 
                                 if (timer.ElapsedMilliseconds > 1000)
@@ -416,22 +416,22 @@ Le API di streaming di Twitter usano [OAuth](http://oauth.net/) per l'autorizzaz
 
             }
         }
-7. Impostare le costanti, incluse **TWITTERAPPACCESSTOKEN**, **TWITTERAPPACCESSTOKENSECRET**, **TWITTERAPPAPIKEY** e **TWITTERAPPAPISECRET**.
+7. Set di costanti hello inclusi **TWITTERAPPACCESSTOKEN**, **TWITTERAPPACCESSTOKENSECRET**, **TWITTERAPPAPIKEY** e **TWITTERAPPAPISECRET**.
 
-Per eseguire il servizio di streaming, premere **F5**. Di seguito è riportata una schermata dell'applicazione console:
+hello toorun streaming servizio, premere **F5**. Hello di seguito è riportata una schermata dell'applicazione console hello:
 
 ![hdinsight.hbase.twitter.sentiment.streaming.service][img-streaming-service]
 
-Lasciare l'applicazione console di streaming in esecuzione durante lo sviluppo dell'applicazione Web, al fine di disporre di una maggiore quantità di dati. Per esaminare i dati inseriti nella tabella, è possibile usare la shell HBase. Vedere [Introduzione a HBase in HDInsight](hdinsight-hbase-tutorial-get-started-linux.md#create-tables-and-insert-data).
+Mantenere hello applicazione console in esecuzione durante lo sviluppo di un'applicazione web hello, in modo che sia più toouse di dati di streaming. dati hello tooexamine inseriti nella tabella hello, è possibile utilizzare la Shell di HBase. Vedere [Introduzione a HBase in HDInsight](hdinsight-hbase-tutorial-get-started-linux.md#create-tables-and-insert-data).
 
 ## <a name="visualize-real-time-sentiment"></a>Visualizzare i sentimenti in tempo reale
-In questa sezione si creerà un'applicazione Web ASP.NET MVC per leggere i dati dei sentimenti in tempo reale su HBase e tracciare i dati sulle mappe Bing.
+In questa sezione è creare un ASP.NET MVC tooread hello sentiment in tempo reale dati dell'applicazione web dai dati di hello HBase ed eseguire il tracciato su Bing maps.
 
-**Per creare un'applicazione Web ASP.NET MVC**
+**toocreate un'applicazione Web MVC ASP.NET**
 
 1. Aprire Visual Studio.
 2. Fare clic su **File**, **Nuovo** e quindi su **Progetto**.
-3. Immettere le seguenti informazioni:
+3. Immettere hello le seguenti informazioni:
 
    * Categoria modello: **Visual C#/Web**
    * Modello: **Applicazione Web ASP.NET**
@@ -441,25 +441,25 @@ In questa sezione si creerà un'applicazione Web ASP.NET MVC per leggere i dati 
 5. In **Seleziona un modello** fare clic su **MVC**.
 6. In **Microsoft Azure** fare clic su **Gestisci sottoscrizioni**.
 7. In **Gestisci sottoscrizioni di Microsoft Azure** fare clic su **Accedi**.
-8. Immettere le credenziali di Azure. Le informazioni relative alla sottoscrizione di Azure vengono visualizzate nella scheda **Account**.
-9. Fare clic su **Chiudi** per chiudere la finestra **Gestisci sottoscrizioni di Microsoft Azure**.
+8. Immettere le credenziali di Azure. Le informazioni sulla sottoscrizione di Azure viene visualizzati sulla hello **account** scheda.
+9. Fare clic su **Chiudi** tooclose hello **Gestione sottoscrizioni Microsoft Azure** finestra.
 10. In **Nuovo progetto ASP.NET - TweetSentimentWeb** fare clic su **OK**.
-11. In **Configura impostazioni sito Web di Microsoft Azure** selezionare l'area geografica più vicina nel campo **Area geografica**. Non è necessario specificare un server database.
+11. Da **configurare le impostazioni di sito di Microsoft Azure**selezionare hello **area** ovvero tooyou più vicino. Non è necessario toospecify un server di database.
 12. Fare clic su **OK**.
 
-**Per installare i pacchetti NuGet**
+**pacchetti di NuGet tooinstall**
 
-1. Dal menu **Strumenti** fare clic su **Gestione pacchetti NuGet**, quindi su **Console di Gestione pacchetti**. Il pannello della console viene visualizzato nella parte inferiore della pagina.
-2. Usare il comando seguente per installare il pacchetto [HBase .NET SDK](https://www.nuget.org/packages/Microsoft.HBase.Client/) , ovvero la libreria client che consente di accedere al cluster HBase:
+1. Da hello **strumenti** menu, fare clic su **Gestione pacchetti Nuget**, quindi fare clic su **Package Manager Console**. Pannello console Hello viene aperto nella parte inferiore di hello della pagina hello.
+2. Comando che segue di hello utilizzare hello tooinstall [HBase .NET SDK](https://www.nuget.org/packages/Microsoft.HBase.Client/) pacchetto, ovvero hello client libreria tooaccess cluster HBase:
 
         Install-Package Microsoft.HBase.Client
 
-**Per aggiungere una classe HBaseReader**
+**classe HBaseReader tooadd**
 
 1. In **Esplora soluzioni** espandere **TweetSentiment**.
 2. Fare clic con il pulsante destro del mouse su **Modelli**, fare clic su **Aggiungi**, quindi su **Classe**.
-3. Nel campo **Nome** digitare **HBaseReader.cs** e fare clic su **Aggiungi**.
-4. Sostituire il codice con il codice seguente:
+3. In hello **nome** digitare **HBaseReader.cs**, quindi fare clic su **Aggiungi**.
+4. Sostituire il codice hello con codice hello seguente:
 
         using System;
         using System.Collections.Generic;
@@ -485,7 +485,7 @@ In questa sezione si creerà un'applicazione Web ASP.NET MVC per leggere i dati 
                 const string HADOOPUSERPASSWORD = "<HBaseCluserUserPassword>";
                 const string HBASETABLENAME = "tweets_by_words";
 
-                // The constructor
+                // hello constructor
                 public HBaseReader()
                 {
                     ClusterCredentials creds = new ClusterCredentials(
@@ -495,12 +495,12 @@ In questa sezione si creerà un'applicazione Web ASP.NET MVC per leggere i dati 
                     client = new HBaseClient(creds);
                 }
 
-                // Query Tweets sentiment data from the HBase table asynchronously
+                // Query Tweets sentiment data from hello HBase table asynchronously
                 public async Task<IEnumerable<Tweet>> QueryTweetsByKeywordAsync(string keyword)
                 {
                     List<Tweet> list = new List<Tweet>();
 
-                    // Demonstrate Filtering the data from the past 6 hours the row key
+                    // Demonstrate Filtering hello data from hello past 6 hours hello row key
                     string timeIndex = (ulong.MaxValue -
                         (ulong)DateTime.UtcNow.Subtract(new TimeSpan(6, 0, 0)).ToBinary()).ToString().PadLeft(20);
                     string startRow = keyword + "_" + timeIndex;
@@ -522,7 +522,7 @@ In questa sezione si creerà un'applicazione Web ASP.NET MVC per leggere i dati 
                     {
                         foreach (CellSet.Row row in next.rows)
                         {
-                            // find the cell with string pattern "d:coor"
+                            // find hello cell with string pattern "d:coor"
                             var coordinates =
                                 row.values.Find(c => Encoding.UTF8.GetString(c.column) == "d:coor");
 
@@ -567,23 +567,23 @@ In questa sezione si creerà un'applicazione Web ASP.NET MVC per leggere i dati 
                 public int Sentiment { get; set; }
             }
         }
-5. Nella classe **HBaseReader** modificare i valori costanti, come indicato di seguito:
+5. Inside hello **HBaseReader** classe, modificare i valori costanti hello come segue:
 
-   * **CLUSTERNAME**: nome del cluster HBase, ad esempio *https://<HBaseClusterName>.azurehdinsight.net/*.
-   * **HADOOPUSERNAME**: nome utente del cluster HBase (Hadoop). Il nome predefinito è *admin*.
-   * **HADOOPUSERPASSWORD**: password utente del cluster HBase (Hadoop).
+   * **CLUSTERNAME**: hello HBase nome del cluster, ad esempio, *https://<HBaseClusterName>.azurehdinsight.net/*.
+   * **HADOOPUSERNAME**: hello HBase cluster Hadoop nome utente. nome predefinito Hello è *admin*.
+   * **HADOOPUSERPASSWORD**: la password utente hello HBase cluster Hadoop.
    * **HBASETABLENAME** = "tweets_by_words";
 
-     Il nome della tabella HBase è **"tweets_by_words"**. Per consentire all'applicazione Web di leggere i dati dalla stessa tabella HBase, i valori devono corrispondere a quelli inviati nel servizio streaming.
+     nome della tabella HBase Hello **"tweets_by_words";**. i valori Hello devono corrispondere ai valori hello è stata inviata in streaming di servizio, hello in modo che un'applicazione web hello legge i dati di hello da hello stessa tabella HBase.
 
-**Per aggiungere il controller TweetsController**
+**tooadd TweetsController controller**
 
 1. In **Esplora soluzioni** espandere **TweetSentimentWeb**.
 2. Fare clic con il pulsante destro del mouse su **Controller**, quindi scegliere **Aggiungi** e infine fare clic su **Controller**.
 3. Fare clic su **Web API 2 Controller - Empty** e scegliere **Aggiungi**.
-4. Nel campo **Nome controller** digitare **TweetsController**, quindi fare clic su **Aggiungi**.
-5. In **Esplora soluzioni**fare doppio clic su TweetsController.cs per aprire il file.
-6. Modificare il file come segue:
+4. In hello **nome Controller** digitare **TweetsController**, quindi fare clic su **Aggiungi**.
+5. Da **Esplora**, fare doppio clic sul file di hello tooopen TweetsController.cs.
+6. Modificare il file di hello, in modo che rispecchi hello seguente:
 
         using System;
         using System.Collections.Generic;
@@ -608,12 +608,12 @@ In questa sezione si creerà un'applicazione Web ASP.NET MVC per leggere i dati 
             }
         }
 
-**Per aggiungere heatmap.js**
+**tooadd heatmap.js**
 
 1. In **Esplora soluzioni** espandere **TweetSentimentWeb**.
 2. Fare clic con il pulsante destro del mouse su **Script**, quindi scegliere **Aggiungi** e infine fare clic su **File JavaScript**.
-3. Nel campo **Nome elemento** digitare **heatmap.js**.
-4. Incollare il seguente codice nel file. Il codice è stato scritto da Alastair Alastair Aitchison. Per altre informazioni, vedere la [libreria HeatMap di Bing Maps AJAX v7](http://alastaira.wordpress.com/2011/04/15/bing-maps-ajax-v7-heatmap-library/).
+3. In hello **nome elemento** digitare **heatmap.js**.
+4. Incollare hello seguente codice nel file hello. codice Hello è stato scritto dal Alastair Aitchison. Per altre informazioni, vedere la [libreria HeatMap di Bing Maps AJAX v7](http://alastaira.wordpress.com/2011/04/15/bing-maps-ajax-v7-heatmap-library/).
 
         /*******************************************************************************
         * Author: Alastair Aitchison
@@ -621,22 +621,22 @@ In questa sezione si creerà un'applicazione Web ASP.NET MVC per leggere i dati 
         * Date: 15th April 2011
         *
         * Description:
-        * This JavaScript file provides an algorithm that can be used to add a heatmap
-        * overlay on a Bing Maps v7 control. The intensity and temperature palette
-        * of the heatmap are designed to be easily customisable.
+        * This JavaScript file provides an algorithm that can be used tooadd a heatmap
+        * overlay on a Bing Maps v7 control. hello intensity and temperature palette
+        * of hello heatmap are designed toobe easily customisable.
         *
         * Requirements:
-        * The heatmap layer itself is created dynamically on the client-side using
-        * the HTML5 &lt;canvas> element, and therefore requires a browser that supports
+        * hello heatmap layer itself is created dynamically on hello client-side using
+        * hello HTML5 &lt;canvas> element, and therefore requires a browser that supports
         * this element. It has been tested on IE9, Firefox 3.6/4 and
         * Chrome 10 browsers. If you can confirm whether it works on other browsers or
-        * not, I'd love to hear from you!
+        * not, I'd love toohear from you!
         *
         * Usage:
-        * The HeatMapLayer constructor requires:
-        * - A reference to a map object
+        * hello HeatMapLayer constructor requires:
+        * - A reference tooa map object
         * - An array or Microsoft.Maps.Location items
-        * - Optional parameters to customise the appearance of the layer
+        * - Optional parameters toocustomise hello appearance of hello layer
         *  (Radius,, Unit, Intensity, and ColourGradient), and a callback function
         */
 
@@ -652,16 +652,16 @@ In questa sezione si creerà un'applicazione Web ASP.NET MVC per leggere i dati 
 
             // Set default options
             var _options = {
-                // Opacity at the centre of each heat point
+                // Opacity at hello centre of each heat point
                 intensity: 0.5,
 
                 // Affected radius of each heat point
                 radius: 1000,
 
-                // Whether the radius is an absolute pixel value or meters
+                // Whether hello radius is an absolute pixel value or meters
                 unit: 'meters',
 
-                // Colour temperature gradient of the map
+                // Colour temperature gradient of hello map
                 colourgradient: {
                     "0.00": 'rgba(255,0,255,20)',  // Magenta
                     "0.25": 'rgba(0,0,255,40)',    // Blue
@@ -670,7 +670,7 @@ In questa sezione si creerà un'applicazione Web ASP.NET MVC per leggere i dati 
                     "1.00": 'rgba(255,0,0,150)'    // Red
                 },
 
-                // Callback function to be fired after heatmap layer has been redrawn
+                // Callback function toobe fired after heatmap layer has been redrawn
                 callback: null
             };
 
@@ -679,7 +679,7 @@ In questa sezione si creerà un'applicazione Web ASP.NET MVC per leggere i dati 
                 var _mapDiv = _map.getRootElement();
 
                 if (_mapDiv.childNodes.length >= 3 && _mapDiv.childNodes[2].childNodes.length >= 2) {
-                    // Create the canvas element
+                    // Create hello canvas element
                     _canvas = document.createElement('canvas');
                     _canvas.style.position = 'relative';
 
@@ -691,16 +691,16 @@ In questa sezione si creerà un'applicazione Web ASP.NET MVC per leggere i dati 
 
                     _mapDiv.childNodes[2].childNodes[1].appendChild(container);
 
-                    // Override defaults with any options passed in the constructor
+                    // Override defaults with any options passed in hello constructor
                     _setOptions(options);
 
                     // Load array of location data
                     _setPoints(locations);
 
-                    // Create a colour gradient from the suppied colourstops
+                    // Create a colour gradient from hello suppied colourstops
                     _temperaturemap = _createColourGradient(_options.colourgradient);
 
-                    // Wire up the event handler to redraw heatmap canvas
+                    // Wire up hello event handler tooredraw heatmap canvas
                     _viewchangestarthandler = Microsoft.Maps.Events.addHandler(_map, 'viewchangestart', _clearHeatMap);
                     _viewchangeendhandler = Microsoft.Maps.Events.addHandler(_map, 'viewchangeend', _createHeatMap);
 
@@ -712,7 +712,7 @@ In questa sezione si creerà un'applicazione Web ASP.NET MVC per leggere i dati 
                 }
             }
 
-            // Resets the heat map
+            // Resets hello heat map
             function _clearHeatMap() {
                 var ctx = _canvas.getContext("2d");
                 ctx.clearRect(0, 0, _canvas.width, _canvas.height);
@@ -730,19 +730,19 @@ In questa sezione si creerà un'applicazione Web ASP.NET MVC per leggere i dati 
                 return ctx.getImageData(0, 0, 256, 1).data;
             }
 
-            // Applies a colour gradient to the intensity map
+            // Applies a colour gradient toohello intensity map
             function _colouriseHeatMap() {
                 var ctx = _canvas.getContext("2d");
                 var dat = ctx.getImageData(0, 0, _canvas.width, _canvas.height);
                 var pix = dat.data; // pix is a CanvasPixelArray containing height x width x 4 bytes of data (RGBA)
                 for (var p = 0, len = pix.length; p < len;) {
-                    var a = pix[p + 3] * 4; // get the alpha of this pixel
-                    if (a != 0) { // If there is any data to plot
-                        pix[p] = _temperaturemap[a]; // set the red value of the gradient that corresponds to this alpha
-                        pix[p + 1] = _temperaturemap[a + 1]; //set the green value based on alpha
-                        pix[p + 2] = _temperaturemap[a + 2]; //set the blue value based on alpha
+                    var a = pix[p + 3] * 4; // get hello alpha of this pixel
+                    if (a != 0) { // If there is any data tooplot
+                        pix[p] = _temperaturemap[a]; // set hello red value of hello gradient that corresponds toothis alpha
+                        pix[p + 1] = _temperaturemap[a + 1]; //set hello green value based on alpha
+                        pix[p + 2] = _temperaturemap[a + 2]; //set hello blue value based on alpha
                     }
-                    p += 4; // Move on to the next pixel
+                    p += 4; // Move on toohello next pixel
                 }
                 ctx.putImageData(dat, 0, 0);
             }
@@ -754,22 +754,22 @@ In questa sezione si creerà un'applicazione Web ASP.NET MVC per leggere i dati 
                 }
             }
 
-            // Sets the heatmap points from an array of Microsoft.Maps.Locations  
+            // Sets hello heatmap points from an array of Microsoft.Maps.Locations  
             function _setPoints(locations) {
                 _locations = locations;
             }
 
-            // Main method to draw the heatmap
+            // Main method toodraw hello heatmap
             function _createHeatMap() {
-                // Ensure the canvas matches the current dimensions of the map
-                // This also has the effect of resetting the canvas
+                // Ensure hello canvas matches hello current dimensions of hello map
+                // This also has hello effect of resetting hello canvas
                 _canvas.height = _map.getHeight();
                 _canvas.width = _map.getWidth();
 
                 _canvas.style.top = -_canvas.height / 2 + 'px';
                 _canvas.style.left = -_canvas.width / 2 + 'px';
 
-                // Calculate the pixel radius of each heatpoint at the current map zoom
+                // Calculate hello pixel radius of each heatpoint at hello current map zoom
                 if (_options.unit == "pixels") {
                     radiusInPixel = _options.radius;
                 } else {
@@ -778,12 +778,12 @@ In questa sezione si creerà un'applicazione Web ASP.NET MVC per leggere i dati 
 
                 var ctx = _canvas.getContext("2d");
 
-                // Convert lat/long to pixel location
+                // Convert lat/long toopixel location
                 var pixlocs = _map.tryLocationToPixel(_locations, Microsoft.Maps.PixelReference.control);
                 var shadow = 'rgba(0, 0, 0, ' + _options.intensity + ')';
                 var mapWidth = 256 * Math.pow(2, _map.getZoom());
 
-                // Create the Intensity Map by looping through each location
+                // Create hello Intensity Map by looping through each location
                 for (var i = 0, len = pixlocs.length; i < len; i++) {
                     var x = pixlocs[i].x;
                     var y = pixlocs[i].y;
@@ -797,15 +797,15 @@ In questa sezione si creerà un'applicazione Web ASP.NET MVC per leggere i dati 
                     grd.addColorStop(0.0, shadow);
                     grd.addColorStop(1.0, 'transparent');
 
-                    // Draw the heatpoint onto the canvas
+                    // Draw hello heatpoint onto hello canvas
                     ctx.fillStyle = grd;
                     ctx.fillRect(x - radiusInPixel, y - radiusInPixel, 2 * radiusInPixel, 2 * radiusInPixel);
                 }
 
-                // Apply the specified colour gradient to the intensity map
+                // Apply hello specified colour gradient toohello intensity map
                 _colouriseHeatMap();
 
-                // Call the callback function, if specified
+                // Call hello callback function, if specified
                 if (_options.callback) {
                     _options.callback();
                 }
@@ -830,17 +830,17 @@ In questa sezione si creerà un'applicazione Web ASP.NET MVC per leggere i dati 
                 _setOptions(options);
             }
 
-            // Sets an array of Microsoft.Maps.Locations from which the heatmap is created
+            // Sets an array of Microsoft.Maps.Locations from which hello heatmap is created
             this.SetPoints = function (locations) {
-                // Reset the existing heatmap layer
+                // Reset hello existing heatmap layer
                 _clearHeatMap();
-                // Pass in the new set of locations
+                // Pass in hello new set of locations
                 _setPoints(locations);
-                // Recreate the layer
+                // Recreate hello layer
                 _createHeatMap();
             }
 
-            // Removes the heatmap layer from the DOM
+            // Removes hello heatmap layer from hello DOM
             this.Remove = function () {
                 _canvas.parentNode.parentNode.removeChild(_canvas.parentNode);
 
@@ -855,19 +855,19 @@ In questa sezione si creerà un'applicazione Web ASP.NET MVC per leggere i dati 
                 _viewchangeendhandler = null;
             }
 
-            // Call the initialisation routine
+            // Call hello initialisation routine
             _init();
         };
 
-        // Call the Module Loaded method
+        // Call hello Module Loaded method
         Microsoft.Maps.moduleLoaded('HeatMapModule');
 
-**Per aggiungere twitterStream.js**
+**tooadd twitterStream.js**
 
 1. In **Esplora soluzioni** espandere **TweetSentimentWeb**.
 2. Fare clic con il pulsante destro del mouse su **Script**, quindi scegliere **Aggiungi** e infine fare clic su **File JavaScript**.
-3. Nel campo **Nome elemento** digitare **twitterStream.js**.
-4. Copiare e incollare il seguente codice nel file:
+3. In hello **nome elemento** digitare**twitterStream.js**.
+4. Copiare e incollare hello seguente codice nel file hello:
 
         var liveTweetsPos = [];
         var liveTweets = [];
@@ -878,7 +878,7 @@ In questa sezione si creerà un'applicazione Web ASP.NET MVC per leggere i dati 
         var heatmapPos;
 
         function initialize() {
-            // Initialize the map
+            // Initialize hello map
             var options = {
                 credentials: "AvFJTZPZv8l3gF8VC3Y7BPBd0r7LKo8dqKG02EAlqg9WAi0M7la6zSIT-HwkMQbx",
                 center: new Microsoft.Maps.Location(23.0, 8.0),
@@ -891,24 +891,24 @@ In questa sezione si creerà un'applicazione Web ASP.NET MVC per leggere i dati 
             // Heatmap options for positive, neutral and negative layers
 
             var heatmapOptions = {
-                // Opacity at the centre of each heat point
+                // Opacity at hello centre of each heat point
                 intensity: 0.5,
 
                 // Affected radius of each heat point
                 radius: 15,
 
-                // Whether the radius is an absolute pixel value or meters
+                // Whether hello radius is an absolute pixel value or meters
                 unit: 'pixels'
             };
 
             var heatmapPosOptions = {
-                // Opacity at the centre of each heat point
+                // Opacity at hello centre of each heat point
                 intensity: 0.5,
 
                 // Affected radius of each heat point
                 radius: 15,
 
-                // Whether the radius is an absolute pixel value or meters
+                // Whether hello radius is an absolute pixel value or meters
                 unit: 'pixels',
 
                 colourgradient: {
@@ -926,13 +926,13 @@ In questa sezione si creerà un'applicazione Web ASP.NET MVC per leggere i dati 
             };
 
             var heatmapNegOptions = {
-                // Opacity at the centre of each heat point
+                // Opacity at hello centre of each heat point
                 intensity: 0.5,
 
                 // Affected radius of each heat point
                 radius: 15,
 
-                // Whether the radius is an absolute pixel value or meters
+                // Whether hello radius is an absolute pixel value or meters
                 unit: 'pixels',
 
                 colourgradient: {
@@ -949,7 +949,7 @@ In questa sezione si creerà un'applicazione Web ASP.NET MVC per leggere i dati 
                 }
             };
 
-            // Register and load the Client Side HeatMap Module
+            // Register and load hello Client Side HeatMap Module
             Microsoft.Maps.registerModule("HeatMapModule", "scripts/heatmap.js");
             Microsoft.Maps.loadModule("HeatMapModule", {
                 callback: function () {
@@ -993,7 +993,7 @@ In questa sezione si creerà un'applicazione Web ASP.NET MVC per leggere i dati 
         }
 
         function addTweet(item) {
-            //Add tweet to the heat map arrays.
+            //Add tweet toohello heat map arrays.
             var tweetLocation = new Microsoft.Maps.Location(item.Latitude, item.Longtitude);
             if (item.Sentiment > 0) {
                 liveTweetsPos.push(tweetLocation);
@@ -1063,10 +1063,10 @@ In questa sezione si creerà un'applicazione Web ASP.NET MVC per leggere i dati 
             }
         }
 
-**Per modificare layout.cshtml**
+**toomodify hello cshtml**
 
 1. In **Esplora soluzioni**, espandere **TweetSentimentWeb**, espandere **Viste**, espandere **Condivise** e fare doppio clic su _**Layout.cshtml**.
-2. Sostituire il contenuto con i contenuti seguenti:
+2. Sostituire il contenuto di hello con hello seguente:
 
         <!DOCTYPE html>
         <html>
@@ -1126,10 +1126,10 @@ In questa sezione si creerà un'applicazione Web ASP.NET MVC per leggere i dati 
         </body>
         </html>
 
-**Per modificare Index.cshtml**
+**hello toomodify cshtml**
 
 1. In **Esplora soluzioni**, espandere **TweetSentimentWeb**, espandere **Viste**, espandere **Home** e fare doppio clic su _**Index.cshtml**.
-2. Sostituire il contenuto con i contenuti seguenti:
+2. Sostituire il contenuto di hello con hello seguente:
 
         @{
             ViewBag.Title = "Tweet Sentiment";
@@ -1139,10 +1139,10 @@ In questa sezione si creerà un'applicazione Web ASP.NET MVC per leggere i dati 
             <div id="map_canvas"/>
         </div>
 
-**Per modificare il file site.css**
+**file site.css di hello toomodify**
 
 1. In **Esplora soluzioni**, espandere **TweetSentimentWeb**, espandere **Contenuto** e fare doppio clic su _**Site.css**.
-2. Aggiungere il seguente codice al file:
+2. Aggiungere i seguenti file di codice toohello hello:
 
         /* make container, and thus map, 100% width */
         .map_container {
@@ -1162,33 +1162,33 @@ In questa sezione si creerà un'applicazione Web ASP.NET MVC per leggere i dati 
           font-size: 30px;
         }
 
-**Per modificare il file global.asax**
+**Global. asax hello toomodify**
 
 1. In **Esplora soluzioni**, espandere **TweetSentimentWeb** e fare doppio clic su _**Global.asax**.
-2. Aggiungere l'istruzione **using** seguente:
+2. Aggiungere il seguente hello **utilizzando** istruzione:
 
         using System.Web.Http;
-3. Aggiungere le seguenti righe all'interno della funzione **Application_Start()**:
+3. Aggiungere hello seguenti righe all'interno di hello **Application_Start ()** funzione:
 
         // Register API routes
         GlobalConfiguration.Configure(WebApiConfig.Register);
 
-    Modificare la registrazione delle route API per consentire il funzionamento del controller API Web all'interno dell'applicazione MVC.
+    Modificare la registrazione di hello di hello API route toomake hello API Web controller lavoro all'interno di un'applicazione MVC hello.
 
-**Per eseguire l'applicazione Web**
+**applicazione web hello toorun**
 
-1. Accertarsi che l'applicazione console di streaming sia ancora in esecuzione, in modo tale da visualizzare le modifiche in tempo reale.
-2. Premere **F5** per eseguire l'applicazione Web:
+1. Verificare che hello applicazione console del servizio di streaming è ancora in esecuzione in modo da visualizzare le modifiche in tempo reale di hello.
+2. Premere **F5** toorun un'applicazione web hello:
 
     ![hdinsight.hbase.twitter.sentiment.bing.map][img-bing-map]
-3. Immettere una parola chiave nella casella di testo, quindi fare clic su **Go**.  A seconda dei dati prelevati dalla tabella HBase, alcune parole chiave potrebbero non essere rilevate. Provare con parole chiavi comuni come "amore", xbox" e "playstation".
-4. Selezionare **Positive** (Positivo), **Neutral** (Neutro) e **Negative** (Negativo) per confrontare i sentimenti sull'argomento.
-5. Lasciare il servizio streaming in esecuzione per un'altra ora, quindi cercare le stesse parole chiave e confrontare i risultati.
+3. Nella casella di testo hello, immettere una parola chiave e quindi fare clic su **passare**.  A seconda dei dati di hello raccolti nella tabella HBase hello, potrebbero non essere presenti alcune parole chiave. Provare con parole chiavi comuni come "amore", xbox" e "playstation".
+4. Attivare o disattivare tra **positivo**, **Neutral**, e **negativo** sentiment toocompare oggetto hello.
+5. Consentire hello servizio flusso di esecuzione per un'altra ora, e quindi eseguire una ricerca hello stesse parole chiave e confrontare i risultati di hello.
 
-In alternativa, è possibile distribuire l'applicazione in Siti Web di Azure. Per le istruzioni vedere l'[introduzione ai siti Web di Azure e ASP.NET][website-get-started].
+Facoltativamente, è possibile distribuire tooAzure applicazione hello siti Web. Per le istruzioni vedere l'[introduzione ai siti Web di Azure e ASP.NET][website-get-started].
 
 ## <a name="next-steps"></a>Passaggi successivi
-In questa esercitazione si è appreso come ricevere tweet, analizzare i sentimenti dei tweet, salvare i dati sui sentimenti su HBase e presentare i dati sui sentimenti di Twitter in tempo reale sulle mappe Bing. Per altre informazioni, vedere:
+In questa esercitazione, si è appreso come tooget TWEET, analizzare sentiment hello di tweet, salvare hello sentiment dati tooHBase e presente hello in tempo reale Twitter sentiment tooBing mapping dei dati. toolearn informazioni, vedere:
 
 * [Introduzione a HDInsight][hdinsight-get-started]
 * [Configurare la replica di HBase in HDInsight](hdinsight-hbase-replication.md)

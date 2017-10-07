@@ -1,6 +1,6 @@
 ---
-title: Installare Jupyter localmente e connetterlo a un cluster Azure HDInsight Spark | Microsoft Docs
-description: Informazioni su come installare il notebook di Jupyter in locale nel computer e su come connetterlo a un cluster Apache Spark in Azure HDInsight.
+title: aaaInstall Jupyter localmente & connettere il cluster di Azure HDInsight Spark tooan | Documenti Microsoft
+description: Informazioni su come tooinstall server Jupyter notebook in locale nel computer e connetterla tooan cluster Apache Spark in HDInsight di Azure.
 services: hdinsight
 documentationcenter: 
 author: nitinme
@@ -16,66 +16,66 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/10/2017
 ms.author: nitinme
-ms.openlocfilehash: fe9dcdb643aa6a8ee5d55738b7a446e4b0153986
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 95c052110b84b677fd23048597af9511365cacfc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="install-jupyter-notebook-on-your-computer-and-connect-to-apache-spark-on-hdinsight"></a>Installare un notebook di Jupyter in locale e connetterlo ad Apache Spark in HDInsight
+# <a name="install-jupyter-notebook-on-your-computer-and-connect-tooapache-spark-on-hdinsight"></a>Installare server Jupyter notebook nel computer e connettere tooApache Spark in HDInsight
 
-Questo articolo illustra come installare Jupyter Notebook, insieme ai kernel personalizzati PySpark (per Python) e Spark (per Scala) e al magic Spark, e come connettere l'applicazione a un cluster HDInsight. L'installazione di Jupyter nel computer locale può essere dettata da molti motivi e può anche presentare alcuni problemi. Per altre informazioni, vedere la sezione [Perché installare Jupyter nel computer locale](#why-should-i-install-jupyter-on-my-computer) alla fine di questo articolo.
+In questo articolo viene illustrato come tooinstall server Jupyter notebook, hello PySpark personalizzato (per Python) e kernel Spark (per la Scala) con nascita magic e connettere i cluster di HDInsight tooan notebook hello. Può esistere un numero di motivi tooinstall Jupyter sul computer locale e possono essere presenti anche alcune problematiche. Per ulteriori informazioni, vedere la sezione hello [perché è consigliabile installare Jupyter computer](#why-should-i-install-jupyter-on-my-computer) alla fine di hello di questo articolo.
 
-L'installazione di Jupyter e del magic Spark nel computer si articola in tre passaggi chiave.
+Sono disponibili tre passaggi chiavi per l'installazione di server Jupyter e hello magic Spark nel computer.
 
 * Installare Jupyter Notebook
-* Installare i kernel PySpark e Spark con il magic Spark
-* Configurare il magic Spark per l'accesso al cluster Spark in HDInsight
+* Installare hello PySpark e directcompute Spark con hello magic Spark
+* Configurare Spark magic tooaccess cluster Spark in HDInsight
 
-Per altre informazioni sui kernel personalizzati e su Spark magic disponibili per Jupyter Notebook con il cluster HDInsight, vedere [Kernel disponibili per Jupyter Notebook con cluster HDInsight Spark Linux su HDInsight](hdinsight-apache-spark-jupyter-notebook-kernels.md).
+Per ulteriori informazioni su kernel personalizzata hello e magic Spark hello disponibili per notebook Jupyter con cluster HDInsight, vedere [kernel disponibile per i server Jupyter notebook con Apache Spark Linux cluster HDInsight](hdinsight-apache-spark-jupyter-notebook-kernels.md).
 
 ## <a name="prerequisites"></a>Prerequisiti
-I prerequisiti elencati di seguito non riguardano l'installazione di Jupyter. Riguardano invece la connessione di Jupyter Notebook a un cluster HDInsight dopo l'installazione.
+prerequisiti di Hello elencati di seguito non sono presenti per l'installazione Jupyter. Si tratta per il cluster HDInsight connessione hello Jupyter notebook tooan dopo aver installato notebook hello.
 
 * Una sottoscrizione di Azure. Vedere [Ottenere una versione di valutazione gratuita di Azure](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/).
 * Un cluster Apache Spark in HDInsight. Per istruzioni, vedere l'articolo relativo alla [creazione di cluster Apache Spark in Azure HDInsight](hdinsight-apache-spark-jupyter-spark-sql.md).
 
 ## <a name="install-jupyter-notebook-on-your-computer"></a>Installare Jupyter Notebook nel computer
 
-Prima di installare i notebook Jupyter è necessario installare Python. Sia Python che Jupyter sono disponibili come parte della [distribuzione Anaconda](https://www.continuum.io/downloads). Quando si installa Anaconda, viene installata una distribuzione di Python. Dopo aver installato Anaconda, aggiungere l'installazione di Jupyter mediante l'esecuzione dei comandi appropriati.
+Prima di installare i notebook Jupyter è necessario installare Python. Python e Jupyter sono entrambe disponibili come parte di hello [distribuzione Anaconda](https://www.continuum.io/downloads). Quando si installa Anaconda, viene installata una distribuzione di Python. Una volta installato Anaconda, aggiungere installazione Jupyter hello eseguendo i comandi appropriati.
 
-1. Scaricare il [programma di installazione di Anaconda](https://www.continuum.io/downloads) per la piattaforma in uso ed eseguirlo. Quando si esegue l'installazione guidata, assicurarsi di selezionare l'opzione per l'aggiunta di Anaconda alla variabile PATH.
-2. Eseguire il comando seguente per installare Jupyter.
+1. Scaricare hello [installer Anaconda](https://www.continuum.io/downloads) per la piattaforma e il programma di installazione di hello esecuzione. Durante l'installazione guidata in esecuzione hello, assicurarsi di selezionare variabile PATH di hello opzione tooadd Anaconda tooyour.
+2. Comando che segue di esecuzione hello tooinstall Jupyter.
 
         conda install jupyter
 
     Per altre informazioni sull'installazione di Jupyter, vedere l'argomento relativo all' [installazione di Jupyter mediante Anaconda](http://jupyter.readthedocs.io/en/latest/install.html).
 
-## <a name="install-the-kernels-and-spark-magic"></a>Installare i kernel e il magic Spark
+## <a name="install-hello-kernels-and-spark-magic"></a>Installare kernel hello e magic Spark
 
-Per le istruzioni su come installare il magic Spark, i kernel Spark e PySpark, seguire le istruzioni di installazione nella [documentazione sparkmagic](https://github.com/jupyter-incubator/sparkmagic#installation) su GitHub. Il primo passaggio nella documentazione relativa al magic Spark richiede di installarlo. Sostituire il primo passaggio nel collegamento con i comandi seguenti, a seconda della versione del cluster HDInsight a cui ci si connetterà. Seguire quindi i passaggi rimanenti nella documentazione relativa al magic Spark. Se si intende installare i diversi kernel, è necessario eseguire il passaggio 3 nella sezione delle istruzioni di installazione del magic Spark.
+Per istruzioni su come magic di Spark hello tooinstall, hello PySpark e kernel Spark, seguire le istruzioni di installazione hello in hello [sparkmagic documentazione](https://github.com/jupyter-incubator/sparkmagic#installation) su GitHub. Hello primo passaggio nella documentazione di magic Spark hello chiesto magic Spark tooinstall. Sostituire il primo passaggio nel collegamento hello con hello seguenti comandi, a seconda della versione di hello del cluster HDInsight hello che ci si connetterà. Successivamente, seguire hello rimanenti passaggi nella documentazione di magic Spark hello. Se si desidera kernel di tooinstall hello differenti, è necessario eseguire il passaggio 3 nella sezione di istruzioni di installazione magic Spark hello.
 
 * Per i cluster v3.4, installare sparkmagic 0.2.3 eseguendo `pip install sparkmagic==0.2.3`
 
 * Per i cluster v3.5 e v3.6, installare sparkmagic 0.11.2 eseguendo `pip install sparkmagic==0.11.2`
 
-## <a name="configure-spark-magic-to-connect-to-hdinsight-spark-cluster"></a>Configurare il magic Spark per la connessione al cluster HDInsight Spark
+## <a name="configure-spark-magic-tooconnect-toohdinsight-spark-cluster"></a>Configurare cluster di Spark tooHDInsight tooconnect magic Spark
 
-Questa sezione illustra come configurare il magic Spark installato in precedenza per la connessone a un cluster Apache Spark. È necessario che tale cluster sia già stato creato in Azure HDInsight.
+In questa sezione è configurare magic Spark hello installato cluster Apache Spark tooan precedenti tooconnect che è necessario avere già creato in Azure HDInsight.
 
-1. Le informazioni di configurazione di Jupyter sono in genere archiviate nella home directory dell'utente. Per individuare la home directory su una qualsiasi piattaforma del sistema operativo, digitare i comandi seguenti.
+1. informazioni di configurazione Jupyter Hello è in genere archiviato nella home directory di hello gli utenti. toolocate comandi della home directory in qualsiasi piattaforma del sistema operativo, hello tipo seguente.
 
-    Avviare la shell di Python. In una finestra di comando digitare quanto segue:
+    Avviare shell di Python hello. In una finestra di comando digitare seguente hello:
 
         python
 
-    Nella shell di Python immettere il comando seguente per individuare la home directory.
+    Nella shell di Python hello, immettere hello successivo comando toofind home directory di hello.
 
         import os
         print(os.path.expanduser('~'))
 
-2. Passare alla home directory e, se non esiste già, creare una cartella denominata **.sparkmagic** .
-3. All'interno della cartella creare un file denominato **config.json** e aggiungere a quest'ultimo il frammento di codice JSON seguente.
+2. Passare toohello home directory e creare una cartella denominata **.sparkmagic** se non esiste già.
+3. Nella cartella hello, creare un file denominato **config. JSON** e aggiungere hello seguente frammento di codice JSON all'interno.
 
         {
           "kernel_python_credentials" : {
@@ -90,9 +90,9 @@ Questa sezione illustra come configurare il magic Spark installato in precedenza
           }
         }
 
-4. Sostituire **{USERNAME}**, **{CLUSTERDNSNAME}** e **{BASE64ENCODEDPASSWORD}** con i valori appropriati. È possibile usare diverse utilità del linguaggio di programmazione preferito o uno strumento online per convertire la password corrente in una password con codifica Base64.
+4. Sostituire **{USERNAME}**, **{CLUSTERDNSNAME}** e **{BASE64ENCODEDPASSWORD}** con i valori appropriati. È possibile utilizzare un numero di utilità il linguaggio di programmazione preferito o la password con codifica base64 di toogenerate online per la password effettiva.
 
-5. Configurare le impostazioni di heartbeat corrette in `config.json`. Queste impostazioni devono essere aggiunte allo stesso livello dei frammenti `kernel_python_credentials` e `kernel_scala_credentials` aggiunti in precedenza. Per un esempio di come e dove aggiungere le impostazioni di heartbeat, vedere questo [file config.json di esempio](https://github.com/jupyter-incubator/sparkmagic/blob/master/sparkmagic/example_config.json).
+5. Configurare impostazioni Heartbeat corrette hello in `config.json`. È necessario aggiungere queste impostazioni in hello stesso livello come hello `kernel_python_credentials` e `kernel_scala_credentials` frammenti di codice le aggiunte in precedenza. Per un esempio di come e dove tooadd hello le impostazioni di heartbeat, vedere questo [config. JSON di esempio](https://github.com/jupyter-incubator/sparkmagic/blob/master/sparkmagic/example_config.json).
 
     * Per `sparkmagic 0.2.3` (cluster v3.4), includere:
 
@@ -107,39 +107,39 @@ Questa sezione illustra come configurare il magic Spark installato in precedenza
             "heartbeat_retry_seconds": 1
 
     >[!TIP]
-    >Gli heartbeat vengono inviati per assicurare che le sessioni non vengano perse. Quando un computer va in sospensione o viene arrestato, l'heartbeat non verrà inviato e la sessione verrà quindi eliminata. Per disabilitare questo comportamento per i cluster v3.4, è possibile impostare la configurazione di Livy `livy.server.interactive.heartbeat.timeout` su `0` dall'interfaccia utente di Ambari. Per i cluster v3.5, se non si imposta la configurazione 3.5 precedente, la sessione non verrà eliminata.
+    >Tooensure che le sessioni non vengono comunicate vengono inviati heartbeat. Quando un computer passa toosleep o è stato arrestato, non vengono inviati heartbeat hello, risultante in corso di sessione hello puliti. Per i cluster v3.4, se si desidera toodisable questo comportamento, è possibile impostare hello configurazione inserire il `livy.server.interactive.heartbeat.timeout` troppo`0` da hello Ambari UI. Per la versione 3.5 di cluster, se non si imposta configurazione hello 3.5 precedente, la sessione hello non verrà eliminata.
 
-6. Avviare Jupyter. Usare il comando seguente dal prompt dei comandi.
+6. Avviare Jupyter. Utilizzare hello comando seguente dal prompt dei comandi di hello.
 
         jupyter notebook
 
-7. Verificare che sia possibile connettersi al cluster mediante Jupyter Notebook e usare il magic Spark disponibile con i kernel. Eseguire i passaggi seguenti.
+7. Verificare che sia possibile connettersi toohello cluster utilizzando notebook Jupyter hello e che è possibile utilizzare magic Spark hello disponibile con il kernel hello. Eseguire hello alla procedura seguente.
 
-    a. Creare un nuovo notebook. Nell'angolo a destra fare clic su **Nuovo**. Verranno visualizzati il kernel predefinito **Python2** e i due nuovi kernel installati, **PySpark** e **Spark**. Fare clic su **PySpark**.
+    a. Creare un nuovo notebook. Nell'angolo destro hello, fare clic su **New**. Dovrebbe essere kernel predefinito hello **Python2** e hello due directcompute nuova che si installano, **PySpark** e **Spark**. Fare clic su **PySpark**.
 
     ![Kernel nel notebook di Jupyter](./media/hdinsight-apache-spark-jupyter-notebook-install-locally/jupyter-kernels.png "Kernel nel notebook di Jupyter")
 
-    b. Eseguire il frammento di codice seguente.
+    b. Eseguire hello seguente frammento di codice.
 
         %%sql
         SELECT * FROM hivesampletable LIMIT 5
 
-    Se è stato possibile recuperare l'output, viene verificata la connessione al cluster HDInsight.
+    Se è possibile recuperare correttamente l'output di hello, viene verificato il cluster HDInsight toohello di connessione.
 
     >[!TIP]
-    >Se si desidera aggiornare la configurazione del notebook per connettersi a un cluster differente, aggiornare il file config.json con un nuovo set di valori come illustrato nel Passaggio 3.
+    >Se si desidera tooupdate hello notebook configurazione tooconnect tooa diverso del cluster, aggiornare config. JSON hello con nuovo set di hello di valori, come illustrato nel passaggio 3 precedente.
 
 ## <a name="why-should-i-install-jupyter-on-my-computer"></a>Perché installare Jupyter nel computer locale
-Può esistere una serie di motivi per cui è consigliabile installare Jupyter nel computer in uso e quindi connetterlo a un cluster Spark in HDInsight.
+Può essere un numero di motivi per cui si tooinstall Jupyter nel computer in uso e quindi connetterlo del cluster tooa Spark in HDInsight.
 
-* Anche se i notebook Jupyter sono già disponibili nel cluster Spark in Azure HDInsight, l'installazione di Jupyter nel computer offre la possibilità di creare i notebook in locale, testare l'applicazione con un cluster in esecuzione e quindi caricare i notebook nel cluster. È possibile caricare i notebook nel cluster usando Jupyter Notebook già in esecuzione sul cluster oppure salvare i notebook nella cartella /HdiNotebooks nell'account di archiviazione associato al cluster. Per altre informazioni sul modo in cui i notebook vengono archiviati nel cluster, vedere la sezione [Dove sono archiviati i notebook?](hdinsight-apache-spark-jupyter-notebook-kernels.md#where-are-the-notebooks-stored)
-* Con i notebook disponibili in locale è possibile connettersi a cluster Spark diversi in base alle esigenze dell'applicazione.
-* È possibile usare GitHub per implementare un sistema di controllo del codice sorgente e usare il controllo della versione per il notebook. È anche possibile avere a disposizione un ambiente di collaborazione in cui più utenti possono lavorare allo stesso notebook.
-* È possibile lavorare con i notebook in locale anche senza avere un cluster. È necessario avere un cluster solo per eseguire i test dei notebook, non per gestire manualmente i notebook o un ambiente di sviluppo.
-* Può essere più semplice configurare il proprio ambiente di sviluppo locale che configurare l'installazione di Jupyter nel cluster.  È possibile sfruttare tutto il software installato localmente senza configurare uno o più cluster remoti.
+* Anche se Jupyter notebook sono già disponibili nel cluster di hello Spark in HDInsight di Azure, installare Jupyter computer fornisce hello toocreate opzione notebook localmente, testare l'applicazione rispetto a un cluster in esecuzione e quindi caricare hello cluster toohello notebook. cluster di toohello notebook hello tooupload, è possibile caricare tali utilizzando server Jupyter notebook hello che è in esecuzione o hello cluster oppure salvarle toohello /HdiNotebooks cartella nell'account di archiviazione hello associato hello cluster. Per ulteriori informazioni sulla modalità di archiviazione in cluster hello notebook, vedere [in cui sono archiviati i notebook Jupyter](hdinsight-apache-spark-jupyter-notebook-kernels.md#where-are-the-notebooks-stored)?
+* Con notebook hello disponibili in locale, è possibile connettere il cluster di Spark toodifferent in base alle esigenze dell'applicazione.
+* È possibile usare GitHub tooimplement un sistema di controllo del codice sorgente e controllo della versione per notebook hello. È inoltre possibile impostare un ambiente di collaborazione in cui più utenti lavorino con hello stesso blocco note.
+* È possibile lavorare con i notebook in locale anche senza avere un cluster. È sufficiente un tootest cluster i blocchi appunti di base, non toomanually gestire i blocchi appunti o un ambiente di sviluppo.
+* Può essere tooconfigure più semplice ambiente di sviluppo locale che non l'installazione di server Jupyter tooconfigure hello in cluster hello.  È possibile sfruttare tutti i software hello installato localmente senza configurare uno o più cluster remoto.
 
 > [!WARNING]
-> Con Jupyter installato nel computer locale più utenti possono eseguire contemporaneamente lo stesso notebook nello stesso cluster Spark. In questo caso, vengono create più sessioni di Livy. Se si verifica un problema e si vuole eseguire il debug, tenere traccia della sessione di Livy che appartiene l'utente sarà un'attività complessa.
+> Con Jupyter installato nel computer locale, più utenti possono eseguire hello stesso blocco appunti sul cluster Spark stesso in hello hello contemporaneamente. In questo caso, vengono create più sessioni di Livy. Se si verifica un problema e si desidera che sarà tootrack un'attività complessa la sessione di inserire il cui appartiene l'utente toowhich toodebug.
 >
 >
 
@@ -149,7 +149,7 @@ Può esistere una serie di motivi per cui è consigliabile installare Jupyter ne
 ### <a name="scenarios"></a>Scenari
 * [Spark con Business Intelligence: eseguire l'analisi interattiva dei dati con strumenti di Business Intelligence mediante Spark in HDInsight](hdinsight-apache-spark-use-bi-tools.md)
 * [Spark con Machine Learning: utilizzare Spark in HDInsight per l'analisi della temperatura di compilazione utilizzando dati HVAC](hdinsight-apache-spark-ipython-notebook-machine-learning.md)
-* [Spark con Machine Learning: usare Spark in HDInsight per prevedere i risultati del controllo degli alimenti](hdinsight-apache-spark-machine-learning-mllib-ipython.md)
+* [Spark con Machine Learning: usare Spark in HDInsight risultati dell'ispezione alimentare toopredict](hdinsight-apache-spark-machine-learning-mllib-ipython.md)
 * [Streaming Spark: usare Spark in HDInsight per la creazione di applicazioni di streaming in tempo reale](hdinsight-apache-spark-eventhub-streaming.md)
 * [Analisi dei log del sito Web mediante Spark in HDInsight](hdinsight-apache-spark-custom-library-website-log-analysis.md)
 
@@ -158,12 +158,12 @@ Può esistere una serie di motivi per cui è consigliabile installare Jupyter ne
 * [Eseguire processi in modalità remota in un cluster Spark usando Livy](hdinsight-apache-spark-livy-rest-interface.md)
 
 ### <a name="tools-and-extensions"></a>Strumenti ed estensioni
-* [Usare il plug-in degli strumenti HDInsight per IntelliJ IDEA per creare e inviare applicazioni Spark Scala](hdinsight-apache-spark-intellij-tool-plugin.md)
-* [Use HDInsight Tools Plugin for IntelliJ IDEA to debug Spark applications remotely (Usare il plug-in Strumenti HDInsight per IntelliJ IDEA per eseguire il debug di applicazioni Spark in remoto)](hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely.md)
+* [Utilizzare i plug-in strumenti di HDInsight per toocreate IntelliJ IDEA e inviare applicazioni Spark Scala](hdinsight-apache-spark-intellij-tool-plugin.md)
+* [Utilizzare i plug-in strumenti di HDInsight per le applicazioni di Spark toodebug IntelliJ IDEA in modalità remota](hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely.md)
 * [Usare i notebook di Zeppelin con un cluster Spark in HDInsight](hdinsight-apache-spark-zeppelin-notebook.md)
 * [Kernel disponibili per notebook di Jupyter nel cluster Spark per HDInsight](hdinsight-apache-spark-jupyter-notebook-kernels.md)
 * [Usare pacchetti esterni con i notebook Jupyter](hdinsight-apache-spark-jupyter-notebook-use-external-packages.md)
 
 ### <a name="manage-resources"></a>Gestire risorse
-* [Gestire le risorse del cluster Apache Spark in Azure HDInsight](hdinsight-apache-spark-resource-manager.md)
+* [Gestire le risorse di cluster di hello Apache Spark in HDInsight di Azure](hdinsight-apache-spark-resource-manager.md)
 * [Tenere traccia ed eseguire il debug di processi in esecuzione nel cluster Apache Spark in Azure HDInsight](hdinsight-apache-spark-job-debugging.md)

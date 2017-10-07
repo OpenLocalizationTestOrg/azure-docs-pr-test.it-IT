@@ -1,6 +1,6 @@
 ---
-title: Panoramica delle applicazioni gestite di Azure | Microsoft Docs
-description: Illustra i concetti relativi alle applicazioni gestite di Azure
+title: applicazioni gestite aaaOverview di Azure | Documenti Microsoft
+description: Vengono descritti i concetti di hello per Azure applicazioni gestite
 services: azure-resource-manager
 author: ravbhatnagar
 manager: rjmax
@@ -10,32 +10,32 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.date: 07/09/2017
 ms.author: gauravbh; tomfitz
-ms.openlocfilehash: 7ace8e1ea8038e0748bfed00c0cc0a4fa340588b
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 2fd1844a442515f4492c890c9798073475a66f88
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-managed-applications-overview"></a>Panoramica delle applicazioni gestite di Azure
 
-I fornitori che usano Azure possono offrire soluzioni ai clienti di tutto il mondo. Azure Marketplace è una raccolta di centinaia di modelli complessi e a più risorse, da fornitori proprietari e di terze parti. I clienti possono distribuire e iniziare a usare in pochi minuti le applicazioni piattaforma come servizio (PaaS) e software come servizio (SaaS). 
+I fornitori che utilizzano Azure possono offrire soluzioni toocustomers tutto il mondo hello. Azure Marketplace è una raccolta di centinaia di modelli complessi e a più risorse, da fornitori proprietari e di terze parti. I clienti possono distribuire e iniziare a usare in pochi minuti le applicazioni piattaforma come servizio (PaaS) e software come servizio (SaaS). 
 
-Anche se Marketplace offre un approccio ottimale ai clienti per distribuire rapidamente un'offerta, la gestione e l'aggiornamento della soluzione rimane comunque a carico del cliente. I fornitori non possono addebitare ai clienti l'uso di un'applicazione oltre a quanto specificato nella fattura per l'immagine della macchina virtuale. I fornitori, inoltre, non possono in alcun modo impedire ai clienti di modificare risorse cruciali delle applicazioni e bloccare l'accesso alla proprietà intellettuale che costituisce un'applicazione. Le applicazioni gestite di Azure offrono soluzioni per questi problemi. 
+Sebbene hello Marketplace fornisce un modo eccellente per i clienti tooquickly distribuire un'offerta, hello cliente è responsabile per la gestione e l'aggiornamento delle soluzioni hello. Oltre fatturazione immagine di macchina virtuale hello, fornitori non applicano un addebito ai clienti per l'utilizzo di hello di un'applicazione. I fornitori, inoltre, non possono in alcun modo impedire ai clienti di modificare risorse cruciali delle applicazioni I fornitori, inoltre, non è possibile bloccare proprietà toointellectual di accesso che costituiscono un'applicazione. Le applicazioni gestite di Azure offrono soluzioni per questi problemi. 
 
-Un'applicazione gestita è simile a un modello di soluzione del Marketplace, con una differenza essenziale. In un'applicazione gestita le risorse vengono sottoposte a provisioning in un gruppo di risorse gestito dal fornitore. Il gruppo di risorse è presente nella sottoscrizione del cliente, ma un'identità del tenant del fornitore ha accesso al gruppo di risorse.
+Un'applicazione gestita è modello di soluzione tooa simili in hello Marketplace, con una differenza fondamentale. In un'applicazione gestita, le risorse di hello sono gruppo di risorse di provisioning tooa gestito dal fornitore hello. gruppo di risorse Hello è presente nella sottoscrizione del cliente hello, ma dispone di un'identità nel tenant del fornitore hello gruppo di risorse toohello di accesso.
 
 ## <a name="advantages-of-managed-applications"></a>Vantaggi delle applicazioni gestite
 
-Le applicazioni gestite consentono ai provider di servizi gestiti, ai fornitori di software indipendenti e ai team IT centrali aziendali di offrire soluzioni attraverso il Marketplace o il catalogo di servizi. Sebbene i clienti distribuiscano le applicazioni gestite nelle proprie sottoscrizioni, non devono occuparsi della gestione, degli aggiornamenti o della manutenzione. Poiché i fornitori gestiscono e supportano queste applicazioni, i clienti non devono sviluppare una conoscenza approfondita delle caratteristiche delle applicazioni per gestirle. I clienti possono acquisire automaticamente gli aggiornamenti delle applicazioni senza doversi preoccupare di individuare, diagnosticare e risolvere eventuali problemi.
+Gestito servizio (msp), fornitori di software indipendenti, e utilizzare soluzioni toodeliver applicazioni gestite tramite hello Marketplace o hello catalogo di servizi aziendali team IT centrale. Sebbene i clienti di distribuire tali applicazioni gestite le sottoscrizioni, che non dispongono di toomaintain, aggiornare o gestirle. Poiché i fornitori di gestire e supportano le applicazioni di hello, i clienti non sono toodevelop dominio specifico dell'applicazione knowledge toomanage queste applicazioni. I clienti possono acquisire automaticamente gli aggiornamenti dell'applicazione senza hello necessità tooworry sulla risoluzione dei problemi e la diagnosi di problemi con applicazioni hello.
 
-Per i fornitori e i provider, le applicazioni gestite creano un canale non solo per vendere infrastrutture e software attraverso il Marketplace, ma anche per offrire servizi e supporto operativo ai clienti di Azure. I fornitori addebitano i costi ai clienti usando il sistema di fatturazione di Azure. Usano i modelli per gestire il ciclo di vita delle applicazioni distribuite. Queste soluzioni sono indipendenti e "sigillate" per il cliente, quindi i fornitori possono offrire un servizio di qualità elevata. Questo approccio presenta vantaggi non solo per i fornitori di soluzioni PaaS e SaaS, ma anche per i team delle piattaforme centrali aziendali e gli integratori di sistemi che vogliono creare pacchetti delle proprie soluzioni e rivenderle.
+Per i fornitori e i provider, le applicazioni gestite creano un'infrastruttura toosell del canale e il software tramite hello Marketplace. Applicazioni gestite forniscono anche un modo tooattach servizi e i clienti tooAzure supporto operativo. I fornitori di fatturare ai clienti tramite hello Azure sistema di fatturazione. È possibile utilizzare modelli toomanage hello vita delle applicazioni distribuite. Queste soluzioni sono cliente toohello indipendente e sealed, pertanto i fornitori possono offrire l'alta qualità del servizio. Questo approccio presenta vantaggi non solo per i fornitori di soluzioni PaaS e SaaS, Consente inoltre ai team di piattaforma centrale aziendale e integratori di sistema (SIs) chi desidera toopackage e rivendere le relative soluzioni.
 
 ## <a name="managed-application-types"></a>Tipi di applicazioni gestite
 Sono disponibili due tipi di applicazioni gestite di Azure: catalogo di servizi e Marketplace.
  
 ### <a name="service-catalog"></a>Catalogo di servizi  
 
-Con il catalogo di servizi i clienti possono creare per gli utenti nell'organizzazione un catalogo di soluzioni approvate per Azure. Gestire un catalogo di soluzioni di questo tipo è utile per i team IT centrali delle aziende. Il catalogo può essere usato per garantire la conformità con determinati standard aziendali e offrire al contempo soluzioni ottimali per l'organizzazione. I team sono in grado di controllare, aggiornare e gestire le applicazioni. I dipendenti possono individuare facilmente la vasta gamma di applicazioni consigliate e approvate dal reparto IT. I clienti vedono solo le applicazioni gestite del catalogo di servizi che hanno creato o che altri utenti dell'organizzazione hanno condiviso con loro.
+Con hello catalogo servizi, ai clienti di creare un catalogo di soluzioni approvate per Azure toobe utilizzato dagli utenti nella propria organizzazione. Gestire un catalogo di soluzioni di questo tipo è utile per i team IT centrali delle aziende. Mentre forniscono soluzioni per le organizzazioni possono usare hello catalogo tooensure osservanza determinati standard aziendali. I team sono in grado di controllare, aggiornare e gestire le applicazioni. I dipendenti possono usare hello catalogo tooeasily individuare ricca hello di applicazioni che sono consigliati e approvata da reparti IT. I clienti Vedere applicazioni di catalogo di servizi gestiti di hello che hanno creato. È inoltre possibile visualizzare hello ad altri utenti nella loro condivisione dell'organizzazione con le applicazioni gestite.
  
 Per informazioni sulla pubblicazione di un'applicazione gestita del catalogo di servizi, vedere [Creare e pubblicare un'applicazione gestita del catalogo di servizi](managed-application-publishing.md).
  
@@ -43,39 +43,39 @@ Per informazioni sull'uso delle applicazioni gestite del catalogo di servizi, ve
  
 ### <a name="marketplace"></a>Marketplace
 
-Le applicazioni gestite sono disponibili attraverso il Marketplace nel portale di Azure. Dopo essere state pubblicate dal fornitore, queste applicazioni sono disponibili per tutti gli utenti interni o esterni all'organizzazione. Con questo approccio i provider di servizi gestiti, i fornitori di software indipendenti e gli integratori di sistemi possono offrire le proprie soluzioni a tutti i clienti di Azure. I clienti hanno la possibilità di usare soluzioni complesse senza dover investire nella comprensione e gestione delle soluzioni. 
+Applicazioni gestite sono disponibili tramite hello Marketplace in hello portale di Azure. Dopo che il fornitore hello pubblica queste applicazioni, ma sono disponibili per tutti gli utenti all'interno o all'esterno di un'organizzazione tooconsume. Con questo approccio, file msp, ISV e SIs può offrire loro tooall soluzioni ai clienti di Azure. I clienti ottenere hello vantaggio derivante dall'utilizzo queste soluzioni complesse senza tooinvest necessità hello nella comprensione e gestione di soluzioni di hello. 
 
-Attualmente gli editori possono rendere disponibile l'offerta come applicazione gestita o come modello di soluzione non gestito. I componenti principali della pubblicazione di un'applicazione gestita includono i file modello e il file di definizione dell'interfaccia utente. Il file modello descrive le risorse di cui si effettua il provisioning. Il file di definizione dell'interfaccia utente descrive la modalità di visualizzazione nel portale degli input richiesti per il provisioning di queste risorse. I file necessari sono contenuti in un file ZIP e vengono caricati attraverso il portale di pubblicazione.
+Attualmente gli editori possono rendere disponibile l'offerta come applicazione gestita o come modello di soluzione non gestito. componenti principali di Hello della pubblicazione di un'applicazione gestita includono i file di modello hello e file di definizione dell'interfaccia utente di hello. file di modello Hello descritte risorse hello vengono effettuato il provisioning. file di definizione dell'interfaccia utente di Hello viene descritto come hello necessari gli input per il provisioning di queste risorse vengono visualizzati nel portale di hello. Hello file necessari vengono compresso in un file con estensione zip e caricati tramite il portale di pubblicazione hello.
  
-Per informazioni sulla pubblicazione di un'applicazione gestita nel Marketplace, vedere [Applicazioni gestite di Azure Marketplace](managed-application-author-marketplace.md).
+Per informazioni sulla pubblicazione di un Marketplace di toohello applicazione gestita, vedere [gestito di Azure le applicazioni in hello Marketplace](managed-application-author-marketplace.md).
 
-Per informazioni sull'uso di un'applicazione gestita dal Marketplace, vedere [Consume Azure managed applications in the Marketplace](managed-application-consume-marketplace.md) (Uso delle applicazioni gestite di Azure nel Marketplace).
+Per informazioni sull'utilizzo di un'applicazione gestita da hello Marketplace, vedere [utilizzare Azure gestite le applicazioni in hello Marketplace](managed-application-consume-marketplace.md).
 
 ## <a name="key-concepts"></a>Concetti chiave
 
 ### <a name="managed-resource-group"></a>Gruppo di risorse gestite
-Il gruppo di risorse gestite è il gruppo in cui vengono create tutte le risorse di Azure sottoposte a provisioning nel modello. Se, ad esempio, l'appliance viene usata per creare un account di archiviazione, questo gruppo di risorse contiene la risorsa dell'account di archiviazione. Non contiene la risorsa dell'appliance.
+Hello gruppo di risorse gestite è dove tutti hello Azure vengono create le risorse che vengono effettuato il provisioning nel modello di hello. Ad esempio, se accessorio hello è toocreate utilizzato un account di archiviazione, il gruppo di risorse contiene risorse di account di archiviazione hello. Non contiene risorse accessorio hello.
 
 ### <a name="appliance-package"></a>Pacchetto dell'appliance
-L'autore crea un pacchetto che contiene i file del modello e il file createUIDefinition. In particolare, contiene i file seguenti:
+server di pubblicazione Hello crea un pacchetto che contiene i file di modello hello e file createUIDefinition hello. In particolare, include i seguenti file hello:
 
-- **applianceMainTemplate.json**: file modello che definisce tutte le risorse sottoposte a provisioning dall'appliance. Questo file è un file di modello normale usato per creare le risorse.
+- **applianceMainTemplate.json**: questo file di modello definisce tutte le risorse di hello sono a provisioning dal dispositivo hello. Questo file è un file di modello regolare utilizzati toocreate risorse.
 
-- **MainTemplate.json**: file modello che definisce la risorsa dell'appliance (Microsoft.Solutions/appliances). Una proprietà chiave definita in questa risorsa è ManagedResourceGroupId. Questa proprietà indica il gruppo di risorse usato per l'hosting delle risorse effettive definite in applianceMainTemplate.json.
+- **MainTemplate.json**: questo file di modello definisce risorse accessorio hello (Microsoft.Solutions/appliances). Una proprietà chiave definita in questa risorsa è ManagedResourceGroupId. Questa proprietà indica quale gruppo di risorse viene utilizzato toohost hello risorse effettive definite in applianceMainTemplate.json.
 
-- **applianceCreateUIDefinition.json**: questo file illustra la modalità di rendering dell'interfaccia utente per i parametri definiti nel modello.
+- **applianceCreateUIDefinition.json**: questo file descrive la modalità di rendering dell'interfaccia utente necessaria per i parametri di hello definiti nel modello hello hello.
 
 ### <a name="authorization"></a>Authorization
-L'editore deve specificare le autorizzazioni richieste dal fornitore per gestire le risorse per conto del cliente. Questa autorizzazione è applicabile al gruppo di risorse gestite. Impostare i valori seguenti:
+server di pubblicazione Hello è necessario specificare autorizzazioni hello necessarie risorse di hello hello fornitore toomanage per conto cliente hello. Gruppo di risorse gestite toohello si applica l'autorizzazione. Impostare hello seguenti valori:
 
-- **PrincipalID**: identificatore di Azure Active Directory (Azure AD) per l'utente, il gruppo o l'applicazione da usare per concedere l'accesso al gruppo di risorse gestite. Questo identificatore appartiene al tenant dell'autore.
+- **PrincipalID**: identificatore di Azure Active Directory (Azure AD) dell'utente di hello, gruppo o applicazione che utilizza gruppo di risorse gestite toogrant accesso toohello hello. Questo identificatore appartiene tenant toohello publisher.
 
-- **RoleDefinitionID**: identificatore di Azure AD per il ruolo assegnato all'ID entità di sicurezza precedente. Può essere uno dei ruoli del controllo degli accessi in base al ruolo predefiniti disponibili nel tenant dell'editore. Per altre informazioni, vedere [Ruoli predefiniti per il controllo degli accessi in base al ruolo di Azure](../active-directory/role-based-access-built-in-roles.md).
+- **RoleDefinitionID**: hello identificatore di Azure AD di hello ruolo assegnato toohello precedente ID entità. Può essere uno dei ruoli di controllo di accesso basato sui ruoli predefiniti di hello nel tenant del server di pubblicazione di hello. Per altre informazioni, vedere [Ruoli predefiniti per il controllo degli accessi in base al ruolo di Azure](../active-directory/role-based-access-built-in-roles.md).
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-* Per informazioni sulla pubblicazione di applicazioni gestite nel Marketplace, vedere [Applicazioni gestite di Azure nel Marketplace](managed-application-author-marketplace.md).
-* Per informazioni sull'uso di un'applicazione gestita dal Marketplace, vedere [Consume Azure managed applications in the Marketplace](managed-application-consume-marketplace.md) (Uso delle applicazioni gestite di Azure nel Marketplace).
+* Per informazioni sulla pubblicazione applicazioni gestite toohello Marketplace, vedere [gestito di Azure le applicazioni in hello Marketplace](managed-application-author-marketplace.md).
+* Per informazioni sull'utilizzo di un'applicazione gestita da hello Marketplace, vedere [utilizzare Azure gestite le applicazioni in hello Marketplace](managed-application-consume-marketplace.md).
 * Per informazioni sulla pubblicazione di un'applicazione gestita del catalogo di servizi, vedere [Creare e pubblicare un'applicazione gestita del catalogo di servizi](managed-application-publishing.md).
 * Per informazioni sull'uso delle applicazioni gestite del catalogo di servizi, vedere [Utilizzare un'applicazione gestita di Azure](managed-application-consumption.md).
-* Per creare un file di definizione dell'interfaccia utente, vedere [Introduzione a CreateUiDefinition](managed-application-createuidefinition-overview.md).
+* toocreate un file di definizione dell'interfaccia utente, vedere [introduzione CreateUiDefinition](managed-application-createuidefinition-overview.md).

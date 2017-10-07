@@ -1,6 +1,6 @@
 ---
-title: Come usare le code del bus di servizio in Node.js | Microsoft Docs
-description: Informazioni su come usare le code del bus di servizio in Azure da un'app Node.js.
+title: le code di aaaHow toouse Bus di servizio in Node.js | Documenti Microsoft
+description: Informazioni su come code toouse Bus di servizio in Azure da un'app Node.js.
 services: service-bus-messaging
 documentationcenter: nodejs
 author: sethmanheim
@@ -14,31 +14,31 @@ ms.devlang: nodejs
 ms.topic: article
 ms.date: 08/10/2017
 ms.author: sethm
-ms.openlocfilehash: fe2c02534996d99c190593a419a4823888f03d31
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: c55354b2061c41aba1093cc3f12ce2a1bc37a3cc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-service-bus-queues-with-nodejs"></a>Come usare le code del bus di servizio con Node.js
+# <a name="how-toouse-service-bus-queues-with-nodejs"></a>La modalità di code toouse Bus di servizio con Node.js
 
 [!INCLUDE [service-bus-selector-queues](../../includes/service-bus-selector-queues.md)]
 
-Questo articolo illustra come usare le code del bus di servizio con Node.js. Gli esempi sono scritti in JavaScript e utilizzano il modulo Node.js di Azure. Gli scenari presentati includono la **creazione di code**, l'**invio e la ricezione di messaggi** e l'**eliminazione di code**. Per altre informazioni sulle code, vedere la sezione [Passaggi successivi](#next-steps) .
+In questo articolo viene descritto come toouse Bus di servizio code con Node.js. esempi di Hello scritte in JavaScript e usare il modulo di Node.js Azure hello. Hello scenari trattati includono **la creazione delle code**, **inviando e ricevendo messaggi**, e **l'eliminazione di code**. Per ulteriori informazioni sulle code, vedere hello [passaggi successivi](#next-steps) sezione.
 
 [!INCLUDE [howto-service-bus-queues](../../includes/howto-service-bus-queues.md)]
 
 [!INCLUDE [service-bus-create-namespace-portal](../../includes/service-bus-create-namespace-portal.md)]
 
 ## <a name="create-a-nodejs-application"></a>Creare un'applicazione Node.js
-Creare un'applicazione Node.js vuota. Per istruzioni su come creare un'applicazione Node.js, vedere [Creare un'app Web Node.js nel servizio app di Azure][Create and deploy a Node.js application to an Azure Website] oppure [Creazione e distribuzione di un'applicazione Node.js a un servizio cloud di Azure][Node.js Cloud Service] con Windows PowerShell.
+Creare un'applicazione Node.js vuota. Per istruzioni su come toocreate un'applicazione Node.js, vedere [creare e distribuire un tooan di applicazione del sito Web di Azure Node.js][Create and deploy a Node.js application tooan Azure Website], o [servizio Cloud Node.js] [ Node.js Cloud Service] tramite Windows PowerShell.
 
-## <a name="configure-your-application-to-use-service-bus"></a>Configurare l'applicazione per l'uso del bus di servizio
-Per usare il bus di servizio di Azure, scaricare e usare il pacchetto Azure Node.js che include un set di librerie di riferimento che comunicano con i servizi REST del bus di servizio.
+## <a name="configure-your-application-toouse-service-bus"></a>Configurare il toouse applicazione Bus di servizio
+toouse Service Bus di Azure, scaricare e usare il pacchetto di Node.js Azure hello. Il pacchetto include un set di librerie che comunicano con servizi di Service Bus REST hello.
 
-### <a name="use-node-package-manager-npm-to-obtain-the-package"></a>Usare Node Package Manager (NPM) per ottenere il pacchetto
-1. Usare la finestra di comando **Windows PowerShell per Node.js** per passare alla cartella **c:\\node\\sbqueues\\WebRole1** in cui è stata creata l'applicazione di esempio.
-2. Digitare **npm install azure** nella finestra di comando, che dovrebbe restituire un output simile al seguente:
+### <a name="use-node-package-manager-npm-tooobtain-hello-package"></a>Utilizzare un pacchetto di hello tooobtain nodo Package Manager (NPM)
+1. Hello utilizzare **Windows PowerShell per Node.js** toohello toonavigate finestra di comando **c:\\nodo\\sbqueues\\WebRole1** cartella in cui è stato creato il applicazione di esempio.
+2. Tipo **npm installare azure** nella finestra di comando hello, che dovrebbe restituire seguente toohello simili di output:
 
     ```
     azure@0.7.5 node_modules\azure
@@ -53,30 +53,30 @@ Per usare il bus di servizio di Azure, scaricare e usare il pacchetto Azure Node
         ├── xml2js@0.2.7 (sax@0.5.2)
         └── request@2.21.0 (json-stringify-safe@4.0.0, forever-agent@0.5.0, aws-sign@0.3.0, tunnel-agent@0.3.0, oauth-sign@0.3.0, qs@0.6.5, cookie-jar@0.3.0, node-uuid@1.4.0, http-signature@0.9.11, form-data@0.0.8, hawk@0.13.1)
     ```
-3. È possibile eseguire manualmente il comando **ls** per verificare che sia stata creata una cartella **node_modules**. All'interno di tale cartella individuare il pacchetto **azure**, che contiene le librerie necessarie per accedere alle code del bus di servizio.
+3. È possibile eseguire manualmente hello **ls** comando tooverify che un **node_modules** cartella è stata creata. All'interno di tale hello Trova cartella **azure** pacchetto che contiene le librerie di hello necessarie tooaccess code del Bus di servizio.
 
-### <a name="import-the-module"></a>Importare il modulo
-Usando il Blocco note o un altro editor di testo, aggiungere quanto segue alla parte superiore del file **server.js** dell'applicazione:
+### <a name="import-hello-module"></a>Modulo di importazione hello
+Utilizzando blocco note o un altro editor di testo, aggiungere hello seguente toohello cima hello **server.js** file dell'applicazione hello:
 
 ```javascript
 var azure = require('azure');
 ```
 
 ### <a name="set-up-an-azure-service-bus-connection"></a>Configurare una connessione del bus di servizio di Azure
-Il modulo di Azure legge la variabile di ambiente `AZURE_SERVICEBUS_CONNECTION_STRING` per ottenere le informazioni necessarie per la connessione al bus di servizio. Se questa variabile di ambiente non è impostata, è necessario specificare le informazioni relative all'account durante la chiamata di `createServiceBusService`.
+modulo di Azure Hello legge la variabile di ambiente hello `AZURE_SERVICEBUS_CONNECTION_STRING` tooobtain informazioni necessarie tooconnect tooService Bus. Se questa variabile di ambiente non è impostata, è necessario specificare le informazioni sull'account hello quando si chiama `createServiceBusService`.
 
-Per un esempio di impostazione delle variabili di ambiente in un file di configurazione per un servizio cloud di Azure, vedere [Creazione di un'applicazione Web Node.js con Archiviazione][Node.js Cloud Service with Storage].
+Per un esempio di impostazione delle variabili di ambiente di hello in un file di configurazione per un servizio Cloud di Azure, vedere [servizio Cloud Node.js con archiviazione][Node.js Cloud Service with Storage].
 
-Per un esempio di impostazione delle variabili di ambiente nel [portale di Azure][Azure portal] per un sito Web di Azure, vedere [Node.js Web Application with Storage][Node.js Web Application with Storage] (Applicazione Web Node.js con Archiviazione di Azure).
+Per un esempio di impostazione delle variabili di ambiente hello in hello [portale di Azure] [ Azure portal] per un sito Web di Azure, vedere [applicazione Web Node.js con archiviazione] [ Node.js Web Application with Storage].
 
 ## <a name="create-a-queue"></a>Creare una coda
-L'oggetto **ServiceBusService** consente di usare le code del bus di servizio. Il codice seguente consente di creare un oggetto **ServiceBusService**. Aggiungerlo nella parte superiore del file **server.js** dopo l'istruzione per importare il modulo Azure:
+Hello **ServiceBusService** consente toowork con le code del Bus di servizio. Hello codice seguente viene creata una **ServiceBusService** oggetto. Aggiungerlo parte superiore di hello di hello **server.js** file hello tooimport di istruzione hello modulo di Azure:
 
 ```javascript
 var serviceBusService = azure.createServiceBusService();
 ```
 
-Chiamando `createQueueIfNotExists` nell'oggetto **ServiceBusService**, viene restituita la coda specificata, se esistente, oppure viene creata una nuova coda con il nome specificato. Il codice seguente usa `createQueueIfNotExists` per connettersi alla coda denominata `myqueue` o crearla:
+Chiamando `createQueueIfNotExists` su hello **ServiceBusService** oggetto, viene creata una nuova coda con il nome specificato hello o hello specificato coda viene restituita (se presente). codice Hello seguente usa `createQueueIfNotExists` toocreate o connettersi coda toohello denominata `myqueue`:
 
 ```javascript
 serviceBusService.createQueueIfNotExists('myqueue', function(error){
@@ -86,7 +86,7 @@ serviceBusService.createQueueIfNotExists('myqueue', function(error){
 });
 ```
 
-Il metodo `createServiceBusService` supporta anche opzioni aggiuntive che consentono di eseguire l'override delle impostazioni predefinite delle code, come la durata (TTL) dei messaggi o le dimensioni massime della coda. Il seguente esempio illustra come impostare la dimensione massima della coda su 5 GB e una durata (TTL) di 1 minuto:
+Hello `createServiceBusService` metodo supporta inoltre opzioni aggiuntive, che consentono di impostazioni di coda toooverride predefinite, ad esempio dimensioni toolive o massimo in una coda in fase di messaggio. Hello esempio seguente imposta GB too5 dimensioni massime della coda di hello e un valore di (durata TTL) toolive ora di 1 minuto:
 
 ```javascript
 var queueOptions = {
@@ -102,31 +102,31 @@ serviceBusService.createQueueIfNotExists('myqueue', queueOptions, function(error
 ```
 
 ### <a name="filters"></a>Filtri
-Le operazioni di filtro facoltative possono essere applicate alle operazioni eseguite usando **ServiceBusService**. Le operazioni di filtro possono includere la registrazione, la ripetizione automatica dei tentativi e così via. I filtri sono oggetti che implementano un metodo con la firma:
+Operazioni di filtro facoltative possono essere applicato toooperations eseguita utilizzando **ServiceBusService**. Le operazioni di filtro possono includere la registrazione, la ripetizione automatica dei tentativi e così via. I filtri sono oggetti che implementano un metodo con firma hello:
 
 ```javascript
 function handle (requestOptions, next)
 ```
 
-Dopo avere eseguito la pre-elaborazione sulle opzioni della richiesta, il metodo deve chiamare `next` passando un callback con la seguente firma:
+Dopo aver eseguito il pre-elaborazione sulle opzioni di richiesta di hello, è necessario chiamare il metodo hello `next`, passando un callback con hello seguente firma:
 
 ```javascript
 function (returnObject, finalCallback, next)
 ```
 
-Dopo l'elaborazione di `returnObject` (ossia della risposta della richiesta al server), questo callback deve richiamare `next`, se esistente, per continuare a elaborare altri filtri oppure richiamare semplicemente `finalCallback` per terminare la chiamata al servizio.
+In questo callback e dopo l'elaborazione hello `returnObject` (hello risposta dal server di hello richiesta toohello), deve richiamare il callback di hello `next` se esiste toocontinue l'elaborazione di altri filtri, o semplicemente richiamare `finalCallback`, che termina chiamata del servizio Hello.
 
-In Azure SDK per Node.js sono inclusi due filtri che implementano la logica di ripetizione dei tentativi, `ExponentialRetryPolicyFilter` e `LinearRetryPolicyFilter`. Il codice seguente crea un oggetto `ServiceBusService` che usa `ExponentialRetryPolicyFilter`:
+Due filtri, che implementano la logica di ripetizione sono inclusi in Azure SDK per Node.js, hello `ExponentialRetryPolicyFilter` e `LinearRetryPolicyFilter`. Hello codice seguente viene creata una `ServiceBusService` oggetto che utilizza hello `ExponentialRetryPolicyFilter`:
 
 ```javascript
 var retryOperations = new azure.ExponentialRetryPolicyFilter();
 var serviceBusService = azure.createServiceBusService().withFilter(retryOperations);
 ```
 
-## <a name="send-messages-to-a-queue"></a>Inviare messaggi a una coda
-Per inviare un messaggio a una coda del bus di servizio, l'applicazione chiama il metodo `sendQueueMessage` per l'oggetto **ServiceBusService**. I messaggi inviati e ricevuti dalle code del bus di servizio sono oggetti **BrokeredMessage** e includono un set di proprietà standard, ad esempio **Label** e **TimeToLive**, un dizionario usato per contenere le proprietà personalizzate specifiche dell'applicazione e un corpo di dati arbitrari dell'applicazione. Un'applicazione può impostare il corpo del messaggio passando una stringa come messaggio. Le proprietà standard necessarie vengono popolate con i valori predefiniti.
+## <a name="send-messages-tooa-queue"></a>Messaggi tooa coda di invio
+una coda di Service Bus di messaggi tooa toosend, l'applicazione chiama hello `sendQueueMessage` metodo hello **ServiceBusService** oggetto. I messaggi inviati troppo (e ricevuti da) Bus di servizio, le code sono **BrokeredMessage** oggetti e di disporre di un set di proprietà standard (ad esempio **etichetta** e **TimeToLive**), dizionario di proprietà specifiche dell'applicazione personalizzate usate toohold e un corpo di dati applicazione arbitrari. Un'applicazione può impostare il corpo di hello del messaggio hello passando una stringa come messaggio hello. Le proprietà standard necessarie vengono popolate con i valori predefiniti.
 
-L'esempio seguente illustra come inviare un messaggio di prova alla coda denominata `myqueue` usando `sendQueueMessage`:
+Hello esempio seguente viene illustrato come toosend una coda toohello test denominati `myqueue` utilizzando `sendQueueMessage`:
 
 ```javascript
 var message = {
@@ -141,16 +141,16 @@ serviceBusService.sendQueueMessage('myqueue', message, function(error){
 });
 ```
 
-Le code del bus di servizio supportano messaggi di dimensioni fino a 256 KB nel [livello Standard](service-bus-premium-messaging.md) e fino a 1 MB nel [livello Premium](service-bus-premium-messaging.md). Le dimensioni massime dell'intestazione, che include le proprietà standard e personalizzate dell'applicazione, non possono superare 64 KB. Non esiste alcun limite al numero di messaggi mantenuti in una coda, mentre è prevista una limitazione alla dimensione totale dei messaggi di una coda. Questa dimensione della coda viene definita al momento della creazione, con un limite massimo di 5 GB. Per altre informazioni sulle quote, vedere [Quote del bus di servizio][Service Bus quotas].
+Le code del Bus di servizio supportano una dimensione massima di 256 KB in hello [livello Standard](service-bus-premium-messaging.md) hello a 1 MB e [livello Premium](service-bus-premium-messaging.md). intestazione Hello, che include standard hello e le proprietà personalizzate dell'applicazione, può avere una dimensione massima di 64 KB. Non è previsto alcun limite per il numero di hello di messaggi contenuti in una coda, ma è un limite alla dimensione totale di hello di messaggi hello mantenuto da una coda. Questa dimensione della coda viene definita al momento della creazione, con un limite massimo di 5 GB. Per altre informazioni sulle quote, vedere [Quote del bus di servizio][Service Bus quotas].
 
 ## <a name="receive-messages-from-a-queue"></a>Ricevere messaggi da una coda
-I messaggi vengono ricevuti da una coda usando il metodo `receiveQueueMessage` nell'oggetto **ServiceBusService**. Per impostazione predefinita, i messaggi vengono eliminati dalla coda non appena vengono letti. È tuttavia possibile leggere (visualizzare) e bloccare il messaggio senza eliminarlo dalla coda impostando il parametro facoltativo `isPeekLock` su **true**.
+I messaggi vengono ricevuti da una coda utilizzando hello `receiveQueueMessage` metodo hello **ServiceBusService** oggetto. Per impostazione predefinita, i messaggi vengono eliminati dalla coda di hello quando vengono letti; Tuttavia, è possibile leggere (anteprima) e bloccare il messaggio hello senza eliminarla dalla coda hello dal parametro facoltativo hello impostazione `isPeekLock` troppo**true**.
 
-Il comportamento predefinito di lettura ed eliminazione del messaggio nell'ambito dell'operazione di ricezione costituisce il modello più semplice ed è adatto per scenari in cui un'applicazione può tollerare la mancata elaborazione di un messaggio in caso di errore. Per comprendere meglio questo meccanismo, si consideri uno scenario in cui il consumer invia la richiesta di ricezione e viene arrestato in modo anomalo prima dell'elaborazione. Poiché il bus di servizio contrassegna il messaggio come utilizzato, quando l'applicazione viene riavviata e inizia a utilizzare nuovamente i messaggi, il messaggio utilizzato prima dell'arresto anomalo risulterà perso.
+Hello il comportamento predefinito di lettura e l'eliminazione del messaggio hello come parte di hello l'operazione di ricezione è il modello più semplice di hello e adatto per scenari in cui un'applicazione in grado di tollerare non elabora un messaggio di evento hello di un errore. toounderstand, si consideri uno scenario in cui problemi relativi ai consumer hello hello di ricezione richiesta e quindi si blocca prima dell'elaborazione. Poiché verrà contrassegnato messaggio come usato, quindi quando un'applicazione hello viene riavviata e inizia a usare nuovamente i messaggi hello del Bus di servizio, risulterà perso messaggio hello che è stato consumato toohello precedente arresto anomalo del sistema.
 
-Se il parametro `isPeekLock` è impostato su **true**, l'operazione di ricezione viene suddivisa in due fasi, in modo da consentire il supporto di applicazioni che non possono tollerare messaggi mancanti. Quando il bus di servizio riceve una richiesta, individua il messaggio successivo da usare, lo blocca per impedirne la ricezione da parte di altri consumer e quindi lo restituisce all'applicazione. Dopo aver elaborato il messaggio o averlo archiviato in modo affidabile per una successiva elaborazione, l'applicazione esegue la seconda fase del processo di ricezione chiamando il metodo `deleteMessage` e specificando il messaggio da eliminare come parametro. Il metodo `deleteMessage` contrassegna il messaggio come utilizzato e lo rimuove dalla coda.
+Se hello `isPeekLock` parametro è impostato troppo**true**, hello ricezione diventa un'operazione in due fasi, che rende possibile toosupport applicazioni che non sono in grado di tollerare messaggi mancanti. Quando il Bus di servizio riceve una richiesta, individua hello successivo messaggio toobe utilizzati Blocca tooprevent altri consumer di ricezione e lo restituisce quindi toohello applicazione. Dopo l'applicazione hello completa l'elaborazione messaggio hello o archiviarlo in modo affidabile per l'elaborazione futura, completa hello seconda fase di hello ricevere processo chiamando `deleteMessage` (metodo) e fornendo toobe messaggio hello eliminato come parametro. Hello `deleteMessage` metodo contrassegna il messaggio hello come usato e la rimuove dalla coda hello.
 
-L'esempio seguente illustra come ricevere ed elaborare messaggi usando `receiveQueueMessage`. L'esempio prima di tutto riceve ed elimina un messaggio, quindi riceve un messaggio con `isPeekLock` impostato su **true** e infine elimina il messaggio con `deleteMessage`:
+Hello esempio seguente viene illustrato come tooreceive ed elaborare messaggi utilizzando `receiveQueueMessage`. Hello esempio riceve un messaggio viene eliminato e quindi riceve un messaggio utilizzando `isPeekLock` impostare troppo**true**, quindi Elimina hello messaggio utilizzando `deleteMessage`:
 
 ```javascript
 serviceBusService.receiveQueueMessage('myqueue', function(error, receivedMessage){
@@ -170,15 +170,15 @@ serviceBusService.receiveQueueMessage('myqueue', { isPeekLock: true }, function(
 });
 ```
 
-## <a name="how-to-handle-application-crashes-and-unreadable-messages"></a>Come gestire arresti anomali e messaggi illeggibili dell'applicazione
-Il bus di servizio fornisce funzionalità per il ripristino gestito automaticamente in caso di errori nell'applicazione o di problemi di elaborazione di un messaggio. Se un'applicazione ricevente non riesce a elaborare il messaggio per qualsiasi motivo, può chiamare il metodo `unlockMessage` nell'oggetto **ServiceBusService**. In questo modo, il bus di servizio sbloccherà il messaggio nella coda rendendolo nuovamente disponibile per la ricezione da parte della stessa o da un'altra applicazione consumer.
+## <a name="how-toohandle-application-crashes-and-unreadable-messages"></a>Come si blocca toohandle applicazione e i messaggi illeggibili
+Bus di servizio offre funzionalità toohelp che normalmente possibile correggere gli errori nell'applicazione o problemi di elaborazione di un messaggio. Se un'applicazione ricevente è in grado di tooprocess hello messaggio per qualche motivo, quindi è possibile chiamare hello `unlockMessage` metodo hello **ServiceBusService** oggetto. Ciò causerà Bus di servizio toounlock il messaggio nella coda di hello e renderlo disponibile toobe nuovamente ricevuto, sia da hello stesso consumo dell'applicazione o da un'altra applicazione consumer.
 
-Al messaggio bloccato nella coda è inoltre associato un timeout. Se l'applicazione non riesce a elaborare il messaggio prima della scadenza del timeout, ad esempio a causa di un arresto anomalo, il bus di servizio sbloccherà automaticamente il messaggio rendendolo nuovamente disponibile per la ricezione.
+È inoltre disponibile un timeout associato a un messaggio bloccato all'interno di coda hello e se hello ha esito negativo dell'applicazione hello tooprocess hello messaggio prima della scadenza del timeout (ad esempio, se si blocca l'applicazione hello), quindi il Bus di servizio sbloccherà il messaggio hello e renderlo disponibile toobe nuovamente ricevuto.
 
-In caso di arresto anomalo dell'applicazione dopo l'elaborazione del messaggio ma prima della chiamata del metodo `deleteMessage`, il messaggio verrà nuovamente recapitato all'applicazione al riavvio. Questo processo di elaborazione viene spesso definito di tipo *At-Least-Once*, per indicare che ogni messaggio verrà elaborato almeno una volta ma che in determinate situazioni potrà essere recapitato una seconda volta. Se lo scenario non tollera la doppia elaborazione, gli sviluppatori dovranno aggiungere logica aggiuntiva all'applicazione per gestire il secondo recapito del messaggio. A tale scopo viene spesso usata la proprietà **MessageId** del messaggio, che rimane costante in tutti i tentativi di recapito.
+In hello evento hello applicazione si blocca dopo l'elaborazione messaggio hello ma prima di hello `deleteMessage` metodo viene chiamato, quindi il messaggio hello sarà applicazione toohello consegnati nuovamente quando si riavvia. Spesso si tratta di *almeno una volta elaborazione*, vale a dire, ogni messaggio verrà elaborato almeno una volta ma in hello determinate situazioni potrebbe essere recapitato nuovamente stesso messaggio. Se hello scenario non tollera la doppia elaborazione, gli sviluppatori di applicazioni devono aggiungere logica aggiuntiva tootheir applicazione toohandle duplicato il recapito dei messaggi. Questa operazione viene spesso eseguita utilizzando hello **MessageId** proprietà di messaggio hello che rimangono costante tra i tentativi di recapito.
 
 ## <a name="next-steps"></a>Passaggi successivi
-Per altre informazioni sulle code, vedere le risorse seguenti.
+toolearn più sulle code, vedere hello seguenti risorse.
 
 * [Code, argomenti e sottoscrizioni del bus di servizio][Queues, topics, and subscriptions]
 * Repository [Azure SDK per Node][Azure SDK for Node] su GitHub
@@ -189,7 +189,7 @@ Per altre informazioni sulle code, vedere le risorse seguenti.
 
 [Node.js Cloud Service]: ../cloud-services/cloud-services-nodejs-develop-deploy-app.md
 [Queues, topics, and subscriptions]: service-bus-queues-topics-subscriptions.md
-[Create and deploy a Node.js application to an Azure Website]: ../app-service-web/app-service-web-get-started-nodejs.md
+[Create and deploy a Node.js application tooan Azure Website]: ../app-service-web/app-service-web-get-started-nodejs.md
 [Node.js Cloud Service with Storage]:../cosmos-db/table-storage-cloud-service-nodejs.md
 [Node.js Web Application with Storage]:../cosmos-db/table-storage-how-to-use-nodejs.md
 [Service Bus quotas]: service-bus-quotas.md

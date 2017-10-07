@@ -1,6 +1,6 @@
 ---
-title: Connettere un gateway ad Azure IoT Suite con un Intel NUC | Microsoft Docs
-description: Usare il kit gateway commerciale di Microsoft IoT e la soluzione di monitoraggio remoto preconfigurato. Usare il gateway Azure IoT Edge per connettersi alla soluzione di monitoraggio remoto, inviare dati di telemetria simulati al cloud e rispondere ai metodi richiamati dal dashboard della soluzione.
+title: aaaConnect tooAzure un gateway IoT Suite utilizzando un NUC Intel | Documenti Microsoft
+description: Utilizzare hello Microsoft IoT commerciale Gateway Kit e hello preconfigurato soluzione di monitoraggio remoto. Hello utilizzare Azure IoT Edge gateway tooconnect toohello soluzione di monitoraggio remoto, inviare i dati di telemetria simulato toohello cloud e rispondere toomethods richiamato dal dashboard di soluzione hello.
 services: 
 suite: iot-suite
 documentationcenter: 
@@ -14,56 +14,56 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/25/2017
 ms.author: dobett
-ms.openlocfilehash: 9ed57d3c23e2adbd42c054f33c8ed46e3d6c9792
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 46b545fc21b054191c8f78ace20fc628f839a819
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="connect-your-azure-iot-edge-gateway-to-the-remote-monitoring-preconfigured-solution-and-send-simulated-telemetry"></a>Collegare il gateway Azure IoT Edge alla soluzione preconfigurata di monitoraggio remoto e inviare dati di telemetria simulati
+# <a name="connect-your-azure-iot-edge-gateway-toohello-remote-monitoring-preconfigured-solution-and-send-simulated-telemetry"></a>Connettere il preconfigurati soluzione di monitoraggio remoto di Azure IoT Edge gateway toohello e inviare dati di telemetria simulata
 
 [!INCLUDE [iot-suite-gateway-kit-selector](../../includes/iot-suite-gateway-kit-selector.md)]
 
-In questa esercitazione viene illustrato come usare Azure IoT Edge per simulare dati relativi alla temperatura e all'umidità da inviare alla soluzione preconfigurata di monitoraggio remoto. L'esercitazione usa:
+Questa esercitazione viene illustrato come toouse Azure IoT Edge toosimulate temperatura e l'umidità dati toosend toohello monitoraggio remoto preconfigurato soluzione. esercitazione Hello utilizza:
 
-- Azure IoT Edge per implementare un gateway di esempio.
-- La soluzione preconfigurata di monitoraggio remoto IoT Suite come back-end basato su cloud.
+- Azure IoT Edge tooimplement un gateway di esempio.
+- monitoraggio remoto IoT Suite Hello preconfigurato soluzione come hello basato su cloud back-end.
 
 ## <a name="overview"></a>Panoramica
 
-In questa esercitazione si completa la procedura seguente:
+In questa esercitazione è completare hello alla procedura seguente:
 
-- Distribuire un'istanza della soluzione preconfigurata di monitoraggio remoto nella sottoscrizione di Azure. Questo passaggio distribuisce e configura automaticamente più servizi di Azure.
-- Configurare il dispositivo di gateway Intel NUC per la comunicazione con il computer e la soluzione di monitoraggio remoto.
-- Configurare il gateway IoT Edge per inviare dati di telemetria simulati che è possibile visualizzare nel dashboard della soluzione.
+- Distribuire un'istanza di hello remoto monitoraggio soluzione preconfigurata tooyour sottoscrizione di Azure. Questo passaggio distribuisce e configura automaticamente più servizi di Azure.
+- Consente di impostare il toocommunicate dispositivo gateway di Intel NUC con il computer e una soluzione di monitoraggio remoto hello.
+- Configurare hello IoT Edge gateway toosend simulato telemetria che è possibile visualizzare nel dashboard di soluzione hello.
 
 [!INCLUDE [iot-suite-gateway-kit-prerequisites](../../includes/iot-suite-gateway-kit-prerequisites.md)]
 
 [!INCLUDE [iot-suite-provision-remote-monitoring](../../includes/iot-suite-provision-remote-monitoring.md)]
 
 > [!WARNING]
-> La soluzione di monitoraggio remoto esegue il provisioning di un set di servizi di Azure nella sottoscrizione di Azure. La distribuzione riflette un'architettura enterprise reale. Per evitare costi di consumo di Azure non necessari, eliminare l'istanza della soluzione preconfigurata in azureiotsuite.com al completamento. Se la soluzione preconfigurata occorre nuovamente, è possibile ricrearla facilmente. Per altre informazioni sulla riduzione del consumo durante l'esecuzione della soluzione di monitoraggio remoto, vedere [Configuring Azure IoT Suite preconfigured solutions for demo purposes][lnk-demo-config] (Configurazione di soluzioni preconfigurate di Azure IoT Suite per scopi dimostrativi).
+> Hello remoto disposizioni soluzione monitoraggio di un set di servizi di Azure nella sottoscrizione di Azure. distribuzione di Hello riflette un'architettura aziendale reale. tooavoid addebiti di consumo di Azure, eliminare l'istanza di soluzione hello preconfigurato azureiotsuite.com dopo aver con esso. Se è necessario hello nuovamente la soluzione preconfigurata, è possibile ricrearla facilmente. Per ulteriori informazioni sulla riduzione del consumo durante l'esecuzione di soluzioni di monitoraggio remoto hello, vedere [configurazione Azure IoT Suite preconfigurato soluzioni per scopi dimostrativi][lnk-demo-config].
 
 [!INCLUDE [iot-suite-gateway-kit-view-solution](../../includes/iot-suite-gateway-kit-view-solution.md)]
 
-Ripetere i passaggi precedenti per aggiungere un secondo dispositivo tramite un ID di dispositivo, ad esempio **device02**. Nell'esempio vengono inviati dati da due dispositivi simulati nel gateway alla soluzione di monitoraggio remoto.
+Ripetere hello precedenti passaggi tooadd un secondo dispositivo con un ID di dispositivo, ad esempio **device02**. esempio Hello invia dati da due dispositivi simulati in hello gateway toohello soluzione di monitoraggio remoto.
 
 [!INCLUDE [iot-suite-gateway-kit-prepare-nuc-connectivity](../../includes/iot-suite-gateway-kit-prepare-nuc-connectivity.md)]
 
 [!INCLUDE [iot-suite-gateway-kit-prepare-nuc-software](../../includes/iot-suite-gateway-kit-prepare-nuc-software.md)]
 
-## <a name="build-the-custom-iot-edge-module"></a>Compilare il modulo IoT Edge personalizzato
+## <a name="build-hello-custom-iot-edge-module"></a>Compilazione del modulo IoT bordo personalizzato hello
 
-È ora possibile compilare il modulo IoT Edge personalizzato che consente al gateway di inviare messaggi alla soluzione di monitoraggio remoto. Per altre informazioni sulla configurazione di un gateway e sui moduli IoT Edge, vedere [Concetti di Azure IoT Edge][lnk-gateway-concepts].
+È ora possibile compilare moduli IoT Edge personalizzata hello che consente di hello gateway toosend messaggi toohello soluzione di monitoraggio remoto. Per altre informazioni sulla configurazione di un gateway e sui moduli IoT Edge, vedere [Concetti di Azure IoT Edge][lnk-gateway-concepts].
 
-Scaricare il codice sorgente per i moduli personalizzati di IoT Edge da GitHub tramite i comandi seguenti:
+Scaricare il codice sorgente di hello per i moduli di IoT bordo personalizzati hello da GitHub utilizzando hello seguenti comandi:
 
 ```bash
 cd ~
 git clone https://github.com/Azure-Samples/iot-remote-monitoring-c-intel-nuc-gateway-getting-started.git
 ```
 
-Compilare il modulo personalizzato IoT Edge tramite i comandi seguenti:
+Compilazione del modulo IoT bordo personalizzato hello utilizzando hello seguenti comandi:
 
 ```bash
 cd ~/iot-remote-monitoring-c-intel-nuc-gateway-getting-started/simulator
@@ -72,22 +72,22 @@ sed -i -e 's/\r$//' build.sh
 ./build.sh
 ```
 
-Lo script di compilazione inserisce il modulo di IoT Edge libsimulator.so personalizzato nella cartella di compilazione.
+script di compilazione Hello inserisce modulo IoT Edge di hello libsimulator.so personalizzato nella cartella di compilazione hello.
 
-## <a name="configure-and-run-the-iot-edge-gateway"></a>Configurare ed eseguire il gateway IoT Edge
+## <a name="configure-and-run-hello-iot-edge-gateway"></a>Configurare ed eseguire hello gateway perimetrale IoT
 
-È ora possibile configurare il gateway IoT Edge per inviare dati di telemetria simulati al dashboard di monitoraggio remoto. Per altre informazioni sulla configurazione di un gateway e sui moduli IoT Edge, vedere [Concetti di Azure IoT Edge][lnk-gateway-concepts].
+È ora possibile configurare hello IoT Edge gateway toosend telemetria simulato tooyour remoto dashboard di monitoraggio. Per altre informazioni sulla configurazione di un gateway e sui moduli IoT Edge, vedere [Concetti di Azure IoT Edge][lnk-gateway-concepts].
 
 > [!TIP]
-> In questa esercitazione, si usa l'editor di testo standard `vi` in Intel NUC. Se non è stato usato `vi` in precedenza, è necessario completare un'esercitazione introduttiva, ad esempio [Unix - The vi Editor Tutorial][lnk-vi-tutorial] per familiarizzare con questo editor. In alternativa, è possibile installare l'editor [nano](https://www.nano-editor.org/) più semplice tramite il comando `smart install nano -y`.
+> In questa esercitazione è utilizzare standard di hello `vi` editor di testo in hello NUC Intel. Se non è stato utilizzato `vi` prima, si consiglia di completare un'esercitazione introduttiva, ad esempio [Unix - hello vi Editor esercitazione] [ lnk-vi-tutorial] toofamiliarize familiarità con questo editor. In alternativa, è possibile installare più semplice hello [nano](https://www.nano-editor.org/) editor utilizzando il comando hello `smart install nano -y`.
 
-Aprire il file di configurazione di esempio nell'editor **vi** usando il comando seguente:
+File di configurazione di esempio hello Open in hello **vi** editor utilizzando hello comando seguente:
 
 ```bash
 vi ~/iot-remote-monitoring-c-intel-nuc-gateway-getting-started/simulator/remote_monitoring.json
 ```
 
-Individuare le righe seguenti nella configurazione per il modulo IoTHub:
+Individuare hello seguendo le linee nella configurazione di hello per il modulo di hub IOT hello:
 
 ```json
 "args": {
@@ -97,9 +97,9 @@ Individuare le righe seguenti nella configurazione per il modulo IoTHub:
 }
 ```
 
-Sostituire i valori segnaposto con le informazioni dell'hub IoT create e salvate all'inizio di questa esercitazione. Il valore per IoTHubName è simile a **yourrmsolution37e08** e il valore per IoTSuffix è in genere **azure-devices.net**.
+Sostituire i segnaposto hello valori con informazioni di IoT Hub è stato creato e salvato in hello hello inizino di questa esercitazione. il valore di Hello per IoTHubName simile **yourrmsolution37e08**, e il valore di hello per IoTSuffix è in genere **azure devices.net**.
 
-Individuare le righe seguenti nella configurazione per il modulo di mapping:
+Individuare hello seguendo le linee nella configurazione di hello per il modulo di mapping hello:
 
 ```json
 args": [
@@ -116,39 +116,39 @@ args": [
 ]
 ```
 
-Sostituire i segnaposti **deviceID** e **deviceKey** con gli ID e le chiavi per i due dispositivi creati in precedenza nella soluzione di monitoraggio remoto.
+Sostituire hello **deviceID** e **deviceKey** segnaposto con ID hello e le chiavi per i dispositivi hello due creato in precedenza nella soluzione di monitoraggio remoto hello.
 
 Salvare le modifiche.
 
-Ora è possibile eseguire il gateway IoT Edge usando i comandi seguenti:
+È ora possibile eseguire hello gateway IoT Edge utilizzando hello seguenti comandi:
 
 ```bash
 cd ~/iot-remote-monitoring-c-intel-nuc-gateway-getting-started/simulator
 /usr/share/azureiotgatewaysdk/samples/simulated_device_cloud_upload/simulated_device_cloud_upload remote_monitoring.json
 ```
 
-Il gateway avvia Intel NUC e invia i dati di telemetria simulati alla soluzione di monitoraggio remoto:
+gateway Hello inizia hello NUC Intel e invia una soluzione di monitoraggio remoto toohello telemetria simulato:
 
 ![Il gateway IoT Edge genera dati di telemetria simulati][img-simulated telemetry]
 
-Premere **CTRL-C** per uscire dal programma in qualsiasi momento.
+Premere **Ctrl-C** programma hello tooexit in qualsiasi momento.
 
-## <a name="view-the-telemetry"></a>Visualizzare i dati di telemetria
+## <a name="view-hello-telemetry"></a>Visualizzazione hello telemetria
 
-Il gateway IoT Edge ora invia dati di telemetria simulati alla soluzione di monitoraggio remota. È possibile visualizzare i dati di telemetria nel dashboard della soluzione.
+soluzione di monitoraggio remoto di telemetria simulato toohello ora invia Hello gateway perimetrale IoT. È possibile visualizzare i dati di telemetria hello nel dashboard di soluzione hello.
 
-- Passare al dashboard della soluzione.
-- Selezionare uno dei due dispositivi configurati nel gateway nell'elenco a discesa **Dispositivo da visualizzare**.
-- I dati di telemetria dai dispositivi di gateway vengono visualizzati nel dashboard.
+- Passare il dashboard di soluzione toohello.
+- Selezionare uno dei dispositivi hello due configurato nel gateway hello in hello **tooView dispositivo** elenco a discesa.
+- Consente di visualizzare dati di telemetria Hello dai dispositivi gateway hello nel dashboard di hello.
 
-![Visualizzare i dati di telemetria dai dispositivi di gateway simulati][img-telemetry-display]
+![Visualizzare i dati di telemetria dai dispositivi gateway hello simulata][img-telemetry-display]
 
 > [!WARNING]
-> Se si lascia la soluzione di monitoraggio remoto in esecuzione nell'account Azure, verrà addebitato il tempo dell'esecuzione. Per altre informazioni sulla riduzione del consumo durante l'esecuzione della soluzione di monitoraggio remoto, vedere [Configuring Azure IoT Suite preconfigured solutions for demo purposes][lnk-demo-config] (Configurazione di soluzioni preconfigurate di Azure IoT Suite per scopi dimostrativi). Al termine, eliminare la soluzione preconfigurata dall'account Azure.
+> Se si lascia in esecuzione nell'account di Azure di soluzione di monitoraggio remoto hello, verrà addebitato per volta hello che è in esecuzione. Per ulteriori informazioni sulla riduzione del consumo durante l'esecuzione di soluzioni di monitoraggio remoto hello, vedere [configurazione Azure IoT Suite preconfigurato soluzioni per scopi dimostrativi][lnk-demo-config]. Eliminare la soluzione hello preconfigurato dall'account di Azure al termine dell'utilizzo.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Visitare il [Centro per sviluppatori Azure IoT](https://azure.microsoft.com/develop/iot/) per altri esempi e documentazione su Azure IoT.
+Visitare hello [Centro per sviluppatori Azure IoT](https://azure.microsoft.com/develop/iot/) per ulteriori esempi e documentazione su Azure IoT.
 
 [img-simulated telemetry]: ./media/iot-suite-gateway-kit-get-started-simulator/appoutput.png
 

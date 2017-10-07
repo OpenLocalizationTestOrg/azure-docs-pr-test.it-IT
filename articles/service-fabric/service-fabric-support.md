@@ -1,6 +1,6 @@
 ---
-title: Informazioni sulle opzioni di supporto di Azure Service Fabric | Documentazione Microsoft
-description: Versioni dei cluster di Azure Service Fabric supportate e link ai ticket di supporto
+title: aaaLearn sulle opzioni di supporto dell'infrastruttura del servizio di Azure | Documenti Microsoft
+description: Versioni di Azure Service Fabric cluster supportato e collega i ticket di supporto toofile
 services: service-fabric
 documentationcenter: .net
 author: pkc
@@ -14,15 +14,15 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/15/2017
 ms.author: pkc
-ms.openlocfilehash: 78e68cff3a757cbbcd8dc6f53120e6a4af54591a
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 42394e2cd9dad2040d37d3a2ff3600ee040d8720
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-service-fabric-support-options"></a>Opzioni di supporto di Azure Service Fabric
 
-Per fornire il supporto appropriato per i cluster di Service Fabric in cui vengono eseguiti i carichi di lavoro delle applicazioni, sono disponibili diverse opzioni. A seconda del livello di supporto richiesto e della gravità del problema, è possibile selezionare le opzioni corrette. 
+il supporto appropriato toodeliver hello per i cluster di Service Fabric che si esegue il lavoro dell'applicazione viene caricato su, e abbiamo impostato varie opzioni per l'utente. Variano a seconda di hello livello di supporto e gravità hello del problema hello, ottenere toopick opzioni corrette hello. 
 
 
 <a id="getlivesitesupportonazure"></a>
@@ -50,46 +50,46 @@ Altre informazioni su:
 
 <a id="getsupportonissues"></a>
 ## <a name="report-azure-service-fabric-issues"></a>Segnalare problemi di Azure Service Fabric 
-È disponibile un archivio GitHub per la segnalazione dei problemi relativi a Service Fabric.  Vengono inoltre monitorati attivamente i seguenti forum.
+È disponibile un archivio GitHub per la segnalazione dei problemi relativi a Service Fabric.  Si sta monitorando anche attivamente hello seguenti forum.
 
 ### <a name="github-repo"></a>Archivio GitHub 
-Segnalare i problemi di Azure Service Fabric nell'[archivio Git dei problemi relativi a Service Fabric](https://github.com/Azure/service-fabric-issues). Questo archivio è destinato alla segnalazione e al rilevamento dei problemi di Azure Service Fabric e all'invio di richieste di funzionalità minori. **Non usarlo per segnalare problemi del sito live**.
+Segnalare i problemi di Azure Service Fabric nell'[archivio Git dei problemi relativi a Service Fabric](https://github.com/Azure/service-fabric-issues). Questo archivio è destinato alla segnalazione e al rilevamento dei problemi di Azure Service Fabric e all'invio di richieste di funzionalità minori. **Non utilizzare questo sito in tempo reale tooreport problemi**.
 
 ### <a name="stackoverflow-and-msdn-forums"></a>Forum StackOverflow e MSDN
 
-Il [tag Service Fabric su StackOverflow][stackoverflow] e il [forum di Service Fabric su MSDN][msdn-forum] vengono usati per inoltrare domande sul funzionamento della piattaforma e sull'esecuzione di specifiche operazioni.
+Hello [tag Service Fabric su StackOverflow] [ stackoverflow] hello e [forum di Service Fabric su MSDN] [ msdn-forum] migliore vengono utilizzati per porre domande sulle come funziona la piattaforma hello e illustrato come effettuare alcune attività con esso.
 
 ### <a name="azure-feedback-forum"></a>Forum di commenti e suggerimenti su Azure
 
-Il [forum di commenti e suggerimenti su Azure per Service Fabric][uservoice-forum] è il modo migliore per inoltrare i propri suggerimenti su funzionalità di rilievo del prodotto, dal momento che le richieste più diffuse vengono prese in considerazione nella pianificazione a medio-lungo termine di Microsoft. Gli utenti sono incoraggiati a cercare sostegno per i suggerimenti presentati all'interno della community.
+Hello [Forum di commenti e suggerimenti di Azure per Service Fabric] [ uservoice-forum] è hello migliore per l'invio di idee big funzionalità è necessario per il prodotto hello come esaminando le richieste più diffusi hello fanno parte del nostro medio termine toolong la pianificazione. Si consiglia di supporto toorally i suggerimenti all'interno della community di hello.
 
 
 <a id="releasesuport"></a>
 ## <a name="supported-service-fabric-versions"></a>Versioni di Service Fabric supportate
 
-Verificare che il cluster esegua sempre una versione di Service Fabric supportata. Quando viene annunciato il rilascio di una nuova versione di Service Fabric, viene segnalato il termine del periodo di supporto per la versione precedente dopo un minimo di 60 giorni da tale data. Le nuove versioni vengono annunciate nel [blog del team di Service Fabric](https://blogs.msdn.microsoft.com/azureservicefabric/).
+Verificare che il cluster esegua sempre una versione di Service Fabric supportata. Come e quando è annunciare il rilascio di hello di una nuova versione di Service Fabric, la versione precedente di hello è contrassegnata per la fine del supporto dopo un minimo di 60 giorni dalla data. Hello nuovi rilasci vengono annunciate [sul blog del team di Service Fabric hello](https://blogs.msdn.microsoft.com/azureservicefabric/).
 
-Fare riferimento ai documenti seguenti per informazioni dettagliate su come assicurarsi che il cluster esegua una versione di Service Fabric supportata.
+Fare riferimento toohello seguito documenti sulle informazioni dettagliate su come tookeep il cluster che esegue una versione supportata di Service Fabric.
 
 - [Aggiornare un cluster di Azure Service Fabric ](service-fabric-cluster-upgrade.md)
 - [Aggiornare il cluster autonomo di Service Fabric in Windows Server ](service-fabric-cluster-upgrade-windows-server.md)
  
-Di seguito è riportato un elenco delle versioni di Service Fabric supportate con le relative date di fine supporto.
+Ecco l'elenco hello delle versioni di Service Fabric hello supportati e la data di fine di supporto.
 
 | **Cluster runtime di Service Fabric** | **Versioni di SDK / pacchetto NuGet compatibili** | **Data di fine supporto** |
 | --- | --- | --- |
-| Tutte le versioni di cluster precedenti alla 5.3.121 |Versione 2.3 o precedente |20 gennaio 2017 |
-| 5.3.* |Versione 2.3 o precedente |24 febbraio 2017 |
-| 5.4.* |Versione 2.4 o precedente |10 maggio 2017     |
-| 5.5.* |Versione 2.5 o precedente |10 agosto 2017    |
-| 5.6.* |Versione 2.6 o precedente |13 ottobre 2017    |
-| 5.7.* |Versione 2.7 o precedente |Versione corrente, nessuna data di fine supporto
+| Tutti i cluster too5.3.121 di versioni precedenti |Minore o uguale tooversion 2.3 |20 gennaio 2017 |
+| 5.3.* |Minore o uguale tooversion 2.3 |24 febbraio 2017 |
+| 5.4.* |Minore o uguale tooversion 2.4 |10 maggio 2017     |
+| 5.5.* |Minore o uguale tooversion 2.5 |10 agosto 2017    |
+| 5.6.* |Minore o uguale tooversion 2.6 |13 ottobre 2017    |
+| 5.7.* |Minore o uguale tooversion 2.7 |Versione corrente, nessuna data di fine supporto
 
 <a id="previewversion"></a>
 ## <a name="service-fabric-preview-versions---unsupported-for-production-use"></a>Versioni di anteprima di Service Fabric non supportate per l'uso in produzione
-Periodicamente vengono rilasciate in anteprima versioni che includono funzionalità significative per cui è richiesto il feedback degli utenti. Queste versioni di anteprima devono essere usate solo a scopo di test. In un cluster di produzione deve essere sempre in esecuzione una versione di Service Fabric supportata e stabile. Una versione di anteprima inizia sempre con un numero di versione principale e secondario uguale a 255. Ad esempio, la versione di Service Fabric 255.255.5703.949 è una versione di anteprima e dovrà essere usata solo in cluster di test. Queste versioni di anteprima vengono annunciate anche nel [blog del team di Service Fabric](https://blogs.msdn.microsoft.com/azureservicefabric) e includono informazioni dettagliate sulle funzionalità incluse.
+Da ora tootime, abbiamo versione versioni che dispongono di funzionalità significative che vogliamo commenti e suggerimenti, vengono rilasciate come anteprime. Queste versioni di anteprima devono essere usate solo a scopo di test. In un cluster di produzione deve essere sempre in esecuzione una versione di Service Fabric supportata e stabile. Una versione di anteprima inizia sempre con un numero di versione principale e secondario uguale a 255. Ad esempio, se viene visualizzato un esempio di Service Fabric versione 255.255.5703.949, tale versione è utilizzato in cluster di test e toobe solo in anteprima. Queste versioni di anteprima vengono annunciate anche sulla hello [blog del team di Service Fabric](https://blogs.msdn.microsoft.com/azureservicefabric) e dispone di informazioni sulle funzionalità di hello inclusione.
 
-Non esiste alcuna opzione di supporto a pagamento per queste versioni di anteprima. Usare una delle opzioni elencate in [Segnalare problemi di Azure Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-support#report-azure-service-fabric-issues) per eventuali domande o commenti.
+Non esiste alcuna opzione di supporto a pagamento per queste versioni di anteprima. Utilizzare una delle opzioni di hello sotto [genera Report Azure Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-support#report-azure-service-fabric-issues) tooask domande o fornire commenti e suggerimenti.
 
 ## <a name="next-steps"></a>Passaggi successivi
 

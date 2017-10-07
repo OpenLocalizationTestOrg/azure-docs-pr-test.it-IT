@@ -1,6 +1,6 @@
 ---
-title: Integrazione di Reach SDK per app universali di Windows
-description: Come integrare il servizio di copertura di Azure Mobile Engagement con le app universali di Windows
+title: Integrazione di SDK a raggiungere Universal App aaaWindows
+description: Come tooIntegrate Azure Mobile Engagement raggiunge con App universali di Windows
 services: mobile-engagement
 documentationcenter: mobile
 author: piyushjo
@@ -14,32 +14,32 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: 9311e998e67d8d0d56da68fc9460df32ce7ce5a9
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: af311c65940014083333853875a00173b8d6783e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="windows-universal-apps-reach-sdk-integration"></a>Integrazione di Reach SDK per app universali di Windows
-Prima di usare questa guida, è necessario eseguire la procedura di integrazione descritta nel documento [Integrazione di Mobile Engagement SDK per app di Windows universali](mobile-engagement-windows-store-integrate-engagement.md) .
+Attenersi alla procedura di integrazione hello descritta in hello [integrazione di Windows universale Engagement SDK](mobile-engagement-windows-store-integrate-engagement.md) prima di seguire questa Guida.
 
-## <a name="embed-the-engagement-reach-sdk-into-your-windows-universal-project"></a>Incorporare Engagement Reach SDK nel progetto di app universali di Windows
-Nessun elemento da aggiungere. `EngagementReach` sono già presenti nel progetto.
+## <a name="embed-hello-engagement-reach-sdk-into-your-windows-universal-project"></a>Incorporare hello Engagement Reach SDK nel progetto Windows universale
+Non è un valore tooadd. `EngagementReach` sono già presenti nel progetto.
 
 > [!TIP]
-> È possibile personalizzare le immagini incluse nella cartella `Resources` del progetto, soprattutto l'icona del marchio, che per impostazione predefinita è l'icona di Engagement. Nelle app universali è inoltre possibile spostare la cartella `Resources` del progetto condiviso per condividere il contenuto tra app, ma è necessario mantenere il file `Resources\EngagementConfiguration.xml` nel percorso predefinito poiché è dipendente dalla piattaforma.
+> È possibile personalizzare le immagini si trova in hello `Resources` cartella del progetto, in particolare hello marchio icona (tale impostazione predefinita toohello Engagement). Per le app universali è inoltre possibile spostare hello `Resources` cartella tooshare del progetto condiviso il contenuto tra le app, ma si disporrà di hello tookeep `Resources\EngagementConfiguration.xml` di file nel percorso predefinito è dipendente dalla piattaforma.
 > 
 > 
 
-## <a name="enable-the-windows-notification-service"></a>Abilitare Servizi notifica Push Windows
+## <a name="enable-hello-windows-notification-service"></a>Abilitare il servizio di notifica di Windows hello
 ### <a name="windows-8x-and-windows-phone-81-only"></a>Solo Windows 8.x e Windows Phone 8.1
-Per usare **Servizi notifica Push Windows** (indicati come WNS) nel file `Package.appxmanifest` su `Application UI` fare clic su `All Image Assets` nella casella a sinistra. A destra della casella in `Notifications`, modificare il valore di `toast capable` da `(not set)` a `(Yes)`.
+In hello toouse ordine **servizio di notifica Windows** (definito WNS) nei `Package.appxmanifest` file nel `Application UI` fare clic su `All Image Assets` nella casella a sinistra bot hello. In hello destra della casella hello `Notifications`, modificare `toast capable` da `(not set)` troppo`(Yes)`.
 
 ### <a name="all-platforms"></a>Tutte le piattaforme
-È necessario sincronizzare l'app con il proprio account Microsoft e con la piattaforma di Engagement. A questo scopo, è necessario creare un account o accedere al [Windows Dev Center](https://dev.windows.com). Creare quindi una nuova applicazione e individuare il SID e la chiave privata. Nel front-end di Engagement passare all'impostazione dell'app in `native push` e incollare le credenziali. Dopo questa operazione, fare clic sul progetto, selezionare `store` e `Associate App with the Store...`. Per sincronizzare l'applicazione creata in precedenza, è sufficiente selezionarla.
+È necessario toosynchronize dell'app tooyour Microsoft account e toohello engagement della piattaforma. Per questo è necessario un account toocreate o accedere [Centro sviluppatori windows](https://dev.windows.com). Dopo la creazione di una nuova applicazione e trovare hello SID e una chiave privata. Nel server front-end engagement hello, passare l'impostazione di app in `native push` e incollare le credenziali. Dopo questa operazione, fare clic sul progetto, selezionare `store` e `Associate App with hello Store...`. È sufficiente un'applicazione hello tooselect hanno creata prima toosynchronize.
 
-## <a name="initialize-the-engagement-reach-sdk"></a>Inizializzare Engagement Reach SDK
-Modificare il file `App.xaml.cs`:
+## <a name="initialize-hello-engagement-reach-sdk"></a>Inizializzare hello Engagement Reach SDK
+Modificare hello `App.xaml.cs`:
 
 * Inserire `EngagementReach.Instance.Init` subito dopo `EngagementAgent.Instance.Init` nel metodo `InitEngagement`:
   
@@ -49,27 +49,27 @@ Modificare il file `App.xaml.cs`:
         EngagementReach.Instance.Init(e);
       }
   
-  `EngagementReach.Instance.Init` viene eseguito in un thread dedicato. Non è necessario eseguirlo manualmente.
+  Hello `EngagementReach.Instance.Init` viene eseguito in un thread dedicato. Non è toodo è manualmente.
 
 > [!NOTE]
-> Se si usano notifiche push in altre sezioni dell'applicazione, è necessario [condividere il canale di push](#push-channel-sharing) con Engagement Reach.
+> Se si usano le notifiche push in un' posizione nell'applicazione, è troppo[condividono il canale di push](#push-channel-sharing) con copertura di Engagement.
 > 
 > 
 
 ## <a name="integration"></a>Integrazione
-Engagement offre due modi per aggiungere i banner in-app, le visualizzazioni intermedie di annunci e i sondaggi Reach all'applicazione: l'integrazione di una sovrimpressione e l'integrazione manuale di visualizzazioni Web. È consigliabile non combinare entrambe le soluzioni nella stessa pagina.
+Engagement fornisce il banner in-app copertura di due modi tooadd hello e visualizzazioni intermedi per sondaggi nell'applicazione e gli annunci: hello sovrapporre di integrazione e l'integrazione di hello web viste manuale. È consigliabile non combinare entrambe approccio hello stessa pagina.
 
-La scelta tra uno dei due tipi d'integrazione può essere riassunta nel modo seguente:
+scelta di Hello tra integrazione due hello può essere riepilogata in questo modo:
 
-* Se le pagine ereditano già dall'agente `EngagementPage`, è consigliabile scegliere l'integrazione di una sovrimpressione. È sufficiente sostituire `EngagementPage` con `EngagementPageOverlay` e `xmlns:engagement="using:Microsoft.Azure.Engagement"` con `xmlns:engagement="using:Microsoft.Azure.Engagement.Overlay"` nelle pagine.
-* È possibile scegliere l'integrazione manuale di visualizzazioni Web se si vuole inserire l'interfaccia utente di Reach in un punto preciso nelle pagine oppure se non si vuole aggiungere un altro livello di ereditarietà alle pagine. 
+* È possibile scegliere di integrazione di sovrapposizione hello se le pagine eredita già da hello agente `EngagementPage`, è sufficiente sostituire `EngagementPage` da `EngagementPageOverlay` e `xmlns:engagement="using:Microsoft.Azure.Engagement"` da `xmlns:engagement="using:Microsoft.Azure.Engagement.Overlay"` nelle pagine.
+* È possibile scegliere integrazione manuale di hello web viste se si desidera tooprecisely sul posto hello raggiungere dell'interfaccia utente all'interno di pagine o se non si desidera tooadd pagine di livello tooyour ereditarietà un'altra. 
 
 ### <a name="overlay-integration"></a>Integrazione di una sovrimpressione
-La sovrimpressione di Engagement aggiunge in modo dinamico gli elementi dell'interfaccia utente utilizzati per visualizzare le campagne Reach nella pagina. Se la sovrimpressione non è adatta al layout, considerare invece l'integrazione manuale delle visualizzazioni Web.
+sovrapposizione di Engagement Hello aggiunge in modo dinamico gli elementi dell'interfaccia utente di hello utilizzati campagne Reach toodisplay nella pagina. Se hello sovrapposizione non soddisfa il layout è consigliabile visualizzazioni web hello integrazione manuale invece.
 
-Nel file con estensione xaml modificare il riferimento `EngagementPage` in `EngagementPageOverlay`
+Modifica file con estensione XAML `EngagementPage` riferimento troppo`EngagementPageOverlay`
 
-* Aggiungere le dichiarazioni di spazi dei nomi:
+* Aggiungere le dichiarazioni di spazi dei nomi tooyour:
   
       xmlns:engagement="using:Microsoft.Azure.Engagement.Overlay"
 * Sostituire `engagement:EngagementPage` con `engagement:EngagementPageOverlay`:
@@ -121,12 +121,12 @@ Quindi, nel file con estensione cs contrassegnare la pagina in `EngagementPageOv
             }
 
 
-La sovrimpressione di Engagement aggiunge un elemento `Grid` in alto alla pagina che è costituita dal layout e dai due elementi `WebView`, uno per il banner e l'altro per la visualizzazione intermedia.
+Aggiunge Hello sovrapposizione Engagement un `Grid` elemento nella parte superiore della pagina è composto di layout e hello due `WebView` elementi uno per hello banner e hello altra visualizzazione hello intermedi.
 
-È possibile personalizzare gli elementi della sovrimpressione direttamente nel file `EngagementPageOverlay.cs`.
+È possibile personalizzare elementi di sovrapposizione hello direttamente in hello `EngagementPageOverlay.cs` file.
 
 ### <a name="web-views-manual-integration"></a>Integrazione manuale delle visualizzazioni Web
-Reach cerca nelle pagine i due elementi `WebView` che determinano la visualizzazione del banner e della visualizzazione intermedia. L'unica cosa necessaria da fare è aggiungere quei due elementi `WebView` in un punto qualsiasi delle pagine. Ecco un esempio:
+Copertura verrà eseguita la ricerca delle pagine per hello due `WebView` elementi responsabili della visualizzazione messaggio hello e visualizzazione intermedi hello. Hello solo cosa toodo è tooadd questi due `WebView` elementi in un punto qualsiasi delle pagine, di seguito è riportato un esempio:
 
     <Grid x:Name="engagementGrid">
 
@@ -137,17 +137,17 @@ Reach cerca nelle pagine i due elementi `WebView` che determinano la visualizzaz
     </Grid>
 
 
-In questo esempio gli elementi `WebView` vengono allungati per adattarsi al contenitore che automaticamente li ridimensiona nel caso in cui lo schermo viene ruotato o la dimensione della pagina cambia.
+In questo hello esempio `WebView` elementi sono toofit estesa relativo contenitore che automaticamente ridimensionato nuovamente tali in caso di modifica delle dimensioni dello schermo rotazione o la finestra.
 
 > [!WARNING]
-> È importante che gli elementi `WebView` mantengano la stessa denominazione `engagement_notification_content` e `engagement_announcement_content`, poiché Reach li identifica dal nome. 
+> È importante tookeep hello stessa denominazione `engagement_notification_content` e `engagement_announcement_content` per hello `WebView` elementi. Reach li identifica dal nome. 
 > 
 > 
 
 ## <a name="handle-datapush-optional"></a>Gestire il push di dati (facoltativo)
-Se si desidera che l'applicazione sia in grado di ricevere push di dati Reach, è necessario implementare due eventi della classe EngagementReach:
+Se si desidera il push di dati applicazione toobe tooreceive in grado di raggiungere, è necessario tooimplement due eventi di classe EngagementReach hello:
 
-In App.xaml.cs nel costruttore App () aggiungere:
+In App.xaml.cs nel costruttore App() hello aggiungere:
 
             EngagementReach.Instance.DataPushStringReceived += (body) =>
             {
@@ -162,18 +162,18 @@ In App.xaml.cs nel costruttore App () aggiungere:
               return true;
             };
 
-È possibile notare che il callback di ogni metodo restituisce un valore booleano. Engagement invia un feedback per il back-end dopo l'invio del push di dati. Se il callback restituisce false, verrà inviato il feedback `exit` . In caso contrario, il feedback sarà `action`. Se non è impostato alcun callback per gli eventi, il feedback `drop` verrà restituito a Engagement.
+È possibile visualizzare il callback di hello di ogni metodo restituisce un valore booleano. Engagement invia un feedback tooits back-end dopo l'invio di push di dati hello. Se il callback di hello restituisce false, hello `exit` feedback verrà inviato. In caso contrario, il feedback sarà `action`. Se il callback non è impostato per gli eventi di hello, hello `drop` commenti e suggerimenti verranno restituiti tooEngagement.
 
 > [!WARNING]
-> Engagement non è in grado di ricevere più feedback per un push di dati. Se si prevede di impostare diversi gestori su un evento, tenere presente che il feedback corrisponderà all'ultimo inviato. In questo caso, è consigliabile restituire sempre lo stesso valore per evitare confusione di feedback sul front-end.
+> Engagement non è in grado di tooreceive feedback multipli per il push di dati. Se si intende tooset diversi gestori di un evento, tenere presente che il feedback hello corrisponderà toohello ultimo quello inviato. In questo caso, è consigliabile tooalways restituisce hello stesso tooavoid valore determinato confusione commenti e suggerimenti su hello front-end.
 > 
 > 
 
 ## <a name="customize-ui-optional"></a>Personalizzare l'interfaccia utente (facoltativo)
 ### <a name="first-step"></a>Primo passaggio
-È possibile personalizzare l'interfaccia utente di Reach.
+Abbiamo consentono di raggiungere hello toocustomize dell'interfaccia utente.
 
-A tale scopo, è necessario creare una sottoclasse della classe `EngagementReachHandler` .
+toodo, è necessario toocreate una sottoclasse di hello `EngagementReachHandler` classe.
 
 **Codice di esempio:**
 
@@ -187,7 +187,7 @@ A tale scopo, è necessario creare una sottoclasse della classe `EngagementReach
               }
             }
 
-Impostare quindi il contenuto del campo `EngagementReach.Instance.Handler` con l'oggetto personalizzato nella classe `App.xaml.cs` all'interno del metodo `App()`.
+Quindi, impostare il contenuto di hello di hello `EngagementReach.Instance.Handler` campo con l'oggetto personalizzato nel `App.xaml.cs` classe all'interno di hello `App()` metodo.
 
 **Codice di esempio:**
 
@@ -200,18 +200,18 @@ Impostare quindi il contenuto del campo `EngagementReach.Instance.Handler` con l
 
 > [!NOTE]
 > Per impostazione predefinita, Engagement usa una specifica implementazione di `EngagementReachHandler`.
-> Non è necessario crearne di proprie e, se ne viene creata una, non è necessario eseguire l'override di ogni metodo. Il comportamento predefinito consiste nel selezionare l'oggetto di base di Engagement.
+> Non è toocreate personalizzata, e se in tal caso, non è necessario toooverride ogni metodo. comportamento predefinito di Hello è oggetto di base di tooselect hello Engagement.
 > 
 > 
 
 ### <a name="web-view"></a>Visualizzazione Web
-Per impostazione predefinita, Reach userà le risorse incorporate della DLL per visualizzare le pagine e le notifiche.
+Per impostazione predefinita, Reach utilizzerà hello incorporato di risorse di notifiche di hello DLL toodisplay hello e pagine.
 
-Per fornire possibilità di personalizzazione completa è utilizzata solo la visualizzazione Web. Se si vuole personalizzare i layout, eseguire direttamente l'override dei file di risorse `EngagementAnnouncement.html` e `EngagementNotification.html`. Engagement richiede tutto il codice in `<body></body>` per un'esecuzione corretta, ma è possibile aggiungere tag esterni a `engagement_webview_area`.
+una procedura completa di tooprovide il possibilità di personalizzazione si utilizza solo la visualizzazione web. Se si desidera toocustomize layout, eseguire l'override direttamente i file di risorse hello `EngagementAnnouncement.html` e `EngagementNotification.html`. Engagement deve tutto il codice in `<body></body>` toorun correttamente. ma è possibile aggiungere tag esterni a `engagement_webview_area`.
 
-È tuttavia possibile usare le proprie risorse.
+Tuttavia, è possibile decidere toouse le risorse.
 
-È possibile eseguire l'override dei metodi `EngagementReachHandler` in una sottoclasse per indicare a Engagement di usare i layout, ma fare attenzione al meccanismo di Engagement incorporato:
+È possibile eseguire l'override `EngagementReachHandler` i metodi toouse di Engagement tootell la sottoclasse i layout, ma utilizzare meccanismo engagement di attenzione tooembedded hello:
 
 **Codice di esempio:**
 
@@ -235,56 +235,56 @@ Per fornire possibilità di personalizzazione completa è utilizzata solo la vis
             }
 
 
-Per impostazione predefinita, AnnouncementHTML è `ms-appx-web:///Resources/EngagementAnnouncement.html`. Rappresenta il file html per il progetto del contenuto di un messaggio push (annuncio di testo, annuncio Web e annuncio di sondaggio). AnnouncementName è `engagement_announcement_content`. È il nome del progetto webview nella pagina xaml.
+Per impostazione predefinita, AnnouncementHTML è `ms-appx-web:///Resources/EngagementAnnouncement.html`. Rappresenta i file html hello che progettazione hello contenuto di un messaggio push (annuncio di testo, anoucement Web e di annuncio di polling). AnnouncementName è `engagement_announcement_content`. È il nome di hello della progettazione di webview hello nella pagina xaml.
 
-NotificationHTML è `ms-appx-web:///Resources/EngagementNotification.html`. Rappresenta il file html per il progetto la notifica di un messaggio di push. NotificationName è `engagement_notification_content`. È il nome del progetto webview nella pagina xaml.
+NotificationHTML è `ms-appx-web:///Resources/EngagementNotification.html`. Rappresenta i file html hello che progettare hello notifica di un messaggio di push. NotificationName è `engagement_notification_content`. È il nome di hello della progettazione di webview hello nella pagina xaml.
 
 ### <a name="customization"></a>Personalizzazione
-È possibile personalizzare la visualizzazione Web di notifiche e annunci nel modo desiderato se si mantiene l'oggetto Engagement. Tenere presente che l'oggetto webview è descritto tre volte. La prima volta in xaml, la seconda nel file cs nel metodo "setwebview()" e la terza nel file html.
+È possibile personalizzare la visualizzazione Web di notifiche e annunci nel modo desiderato se si mantiene l'oggetto Engagement. Fare attenzione che oggetto webview descritto tre volte - hello prima volta in xaml, secondo periodo di tempo in file con estensione cs nel metodo "setwebview()" hello e infine ora nel file html hello.
 
-* Nel file xaml si descrive il componente di webview del layout grafico corrente.
-* Nel file cs è possibile definire "setwebview()" in cui è possibile impostare la dimensione delle due webview (notifica, annuncio). Questa operazione è molto efficace per il ridimensionamento dell'applicazione.
-* Nel file html di Engagement viene descritto il contenuto della visualizzazione Web, il progetto e le posizioni degli elementi.
+* In xaml è descrivere il componente corrente layout grafico webview hello.
+* Nel file con estensione cs è possibile definire "setwebview()" in cui si imposta la dimensione hello di hello webview due (notifica, annuncio). È molto utile durante il ridimensionamento di un'applicazione hello.
+* Nel file html di Engagement hello è descrivere hello webview contenuto, progettazione e hello posizioni di elementi tra loro.
 
 ### <a name="launch-message"></a>Messaggio di avvio
-Quando un utente fa clic su una notifica del sistema (avviso popup), Engagement avvia l'applicazione, carica il contenuto dei messaggi di push e visualizza la pagina per la campagna corrispondente.
+Quando un utente fa clic su una notifica di sistema (un tipo di avviso popup), Engagement avvia un'applicazione hello, carico hello contenuto di hello il push dei messaggi e visualizzare la pagina hello campagna corrispondente hello.
 
-Tra l'avvio dell'applicazione e la visualizzazione della pagina si verifica un ritardo (a seconda della velocità della rete).
+Si verifica un ritardo tra l'avvio di hello del display di applicazione e hello hello della pagina hello (a seconda della velocità di hello della rete).
 
-Per indicare all'utente che è in corso un caricamento, è necessario fornire un'indicazione visiva, ad esempio una barra o un indicatore di avanzamento. Engagement non è in grado di gestire questa situazione, ma fornisce alcuni gestori.
+utente di toohello tooindicate che si sta caricando, è necessario fornire un informazioni visive, ad esempio una barra di stato o un indicatore di stato. Engagement non è in grado di gestire questa situazione, ma fornisce alcuni gestori.
 
-Per implementare il callback, in App.xaml.cs in "Public App(){}" aggiungere:
+aggiungere i callback di hello tooimplement, in App.xaml.cs "Pubblica App() {}":
 
-            /* The application has launched and the content is loading.
+            /* hello application has launched and hello content is loading.
              * You should display an indicator here.
              */
             EngagementReach.Instance.RetrieveLaunchMessageStarted += () => { [...] };
 
-            /* The application has finished loading the content and the page
-             * is about to be displayed.
-             * You should hide the indicator here.
+            /* hello application has finished loading hello content and hello page
+             * is about toobe displayed.
+             * You should hide hello indicator here.
              */
             EngagementReach.Instance.RetrieveLaunchMessageCompleted += () => { [...] };
 
-            /* The content has been loaded, but an error has occurred.
-             * You can provide an information to the user.
-             * You should hide the indicator here.
+            /* hello content has been loaded, but an error has occurred.
+             * You can provide an information toohello user.
+             * You should hide hello indicator here.
              */
             EngagementReach.Instance.RetrieveLaunchMessageFailed += () => { [...] };
 
-È possibile impostare il callback nel metodo "Public App(){}" del file `App.xaml.cs`, preferibilmente prima della chiamata `EngagementReach.Instance.Init()`.
+È possibile impostare il callback di hello nel metodo "Public App() {}" con il `App.xaml.cs` file, preferibilmente prima hello `EngagementReach.Instance.Init()` chiamare.
 
 > [!TIP]
-> Ogni gestore viene chiamato dal thread dell'interfaccia utente. Non è necessario preoccuparsi quando si utilizza MessageBox o un elemento correlato all'interfaccia utente.
+> Ogni gestore viene chiamato dal Thread UI hello. Non si dispone tooworry quando si utilizza un MessageBox o qualcosa correlate all'interfaccia utente.
 > 
 > 
 
 ## <a id="push-channel-sharing"></a> Condivisione del canale push
-Se si usano notifiche push per altri scopi all'interno dell'applicazione, è necessario usare la funzione di condivisone del canale push di Engagement SDK, in modo da evitare la perdita di notifiche push.
+Se si utilizza le notifiche push per uno scopo diverso nell'applicazione è necessario canale di push hello toouse funzionalità di hello Engagement SDK per la condivisione. Si tratta di push tooavoid mancante.
 
-* È possibile specificare il canale push desiderato durante la procedura di inizializzazione di Engagement Reach. In questo modo, l'SDK userà il canale specificato anziché richiederne uno nuovo.
+* È possibile fornire la propria inizializzazione di copertura di Engagement toohello push del canale. Hello SDK utilizzeranno anziché richiedere uno nuovo.
 
-Aggiornare l'inizializzazione di Engagement Reach con il canale push nel metodo `InitEngagement` ottenuto dal file `App.xaml.cs`:
+Aggiornare l'inizializzazione di copertura di Engagement hello con il canale di push in hello `InitEngagement` metodo hello `App.xaml.cs` file:
 
     /* Your own push channel logic... */
     var pushChannel = await PushNotificationChannelManager.CreatePushNotificationChannelForApplicationAsync();
@@ -293,14 +293,14 @@ Aggiornare l'inizializzazione di Engagement Reach con il canale push nel metodo 
     EngagementAgent.Instance.Init(e);
     EngagementReach.Instance.Init(e,pushChannel);
 
-* In alternativa, se si decide di usare il canale push dopo l'inizializzazione di Reach, è possibile impostare un callback su Engagement Reach per ottenere il canale push creato dall'SDK.
+* In alternativa, se si desidera tooconsume hello push canale dopo l'inizializzazione di copertura hello è possibile impostare un callback sul canale di copertura di Engagement tooget hello push dopo averla creata da hello SDK.
 
-Impostare il callback in un momento qualsiasi **dopo** l'inizializzazione di Reach:
+Impostare il callback nel punto in cui **dopo** hello Reach inizializzazione:
 
-    /* Set action on the SDK push channel. */
+    /* Set action on hello SDK push channel. */
     EngagementReach.Instance.SetActionOnPushChannel((PushNotificationChannel channel) => 
     {
-      /* The forwarded channel can be null if its creation fails for any reason. */
+      /* hello forwarded channel can be null if its creation fails for any reason. */
       if (channel != null)
       {
         /* Your own push channel logic... */
@@ -308,11 +308,11 @@ Impostare il callback in un momento qualsiasi **dopo** l'inizializzazione di Rea
     }
 
 ## <a name="custom-scheme-tip"></a>Suggerimento per lo schema
-È possibile utilizzare uno schema personalizzato. È possibile inviare un tipo diverso di URI dal front-end di Engagement da utilizzare nell'applicazione Engagement. Lo schema predefinito come `http, ftp, ...` è gestito da Windows. Una finestra chiederà se nel dispositivo sono installate applicazioni predefinite. È possibile anche creare uno schema personalizzato per l'applicazione.
+È possibile utilizzare uno schema personalizzato. È possibile inviare un tipo diverso di URI da engagement front-end toobe utilizzato nell'applicazione engagement. Lo schema predefinito come `http, ftp, ...` è gestito da Windows. Una finestra chiederà se nel dispositivo sono installate applicazioni predefinite. È possibile anche creare uno schema personalizzato per l'applicazione.
 
-Il metodo semplice per impostare uno schema personalizzato nell'applicazione consiste nell'aprire `Package.appxmanifest` e andare nel pannello `Declarations`. Selezionare `Protocol` nella casella di scorrimento Dichiarazioni disponibili e aggiungerlo. Modificare il campo `Name` con il nuovo nome desiderato per il protocollo.
+Hello semplice tooset uno schema personalizzato nell'applicazione è tooopen il `Package.appxmanifest` andare in `Declarations` pannello. Selezionare `Protocol` in hello dichiarazioni disponibili scorrere casella e aggiungerlo. Modifica hello `Name` campo con il protocollo di nuovo il nome desiderato.
 
-Per usare questo protocollo modificare `App.xaml.cs` con il metodo `OnActivated` e non dimenticare di inizializzare Engagement anche qui:
+Ora toouse questo protocollo, modificare il `App.xaml.cs` con hello `OnActivated` (metodo) e non dimenticare di engagement tooinitialize qui anche:
 
             /// <summary>
             /// Enter point when app his called by another way than user click
@@ -324,7 +324,7 @@ Per usare questo protocollo modificare `App.xaml.cs` con il metodo `OnActivated`
               EngagementAgent.Instance.Init(args);
               EngagementReach.Instance.Init(args);
 
-              //TODO design action to do when app is launch
+              //TODO design action toodo when app is launch
 
               #region Custom scheme use
               if (args.Kind == ActivationKind.Protocol)

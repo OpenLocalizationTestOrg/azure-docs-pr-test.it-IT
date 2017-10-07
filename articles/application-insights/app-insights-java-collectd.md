@@ -1,6 +1,6 @@
 ---
-title: 'Monitorare le prestazioni delle app Web in Linux: Azure | Documentazione Microsoft'
-description: Monitoraggio esteso delle prestazioni delle applicazioni del sito Web Java con il plug-in CollectD per Application Insights.
+title: prestazioni dell'applicazione web Java su Linux - Azure aaaMonitor | Documenti Microsoft
+description: Estendere l'applicazione monitoraggio delle prestazioni del sito Web Java con hello CollectD plug-in per Application Insights.
 services: application-insights
 documentationcenter: java
 author: harelbr
@@ -13,39 +13,39 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/24/2016
 ms.author: bwren
-ms.openlocfilehash: 4ea917b068e0242bfb88d7357eca032607a43a3f
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: f783e8607a83b2b43f67d3a2fc20f100aa2f75ec
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="collectd-linux-performance-metrics-in-application-insights"></a>collectd: metriche delle prestazioni Linux in Application Insights
 
 
-Per esplorare le metriche delle prestazioni del sistema Linux in [Application Insights](app-insights-overview.md), installare [collectd](http://collectd.org/) insieme al rispettivo plug-in di Application Insights. Questa soluzione open source raccoglie diverse che relative al sistema e alla rete.
+tooexplore le metriche delle prestazioni di sistema di Linux in [Application Insights](app-insights-overview.md), installare [collectd](http://collectd.org/), insieme con il plug-in Application Insights. Questa soluzione open source raccoglie diverse che relative al sistema e alla rete.
 
-In genere, si usa collectd se è già stato [instrumentato il servizio Web Java con Application Insights][java]. Fornisce una maggiore quantità di dati che consentono di migliorare le prestazioni dell'app o diagnosticare i problemi. 
+In genere, si usa collectd se è già stato [instrumentato il servizio Web Java con Application Insights][java]. Consente di definire ulteriori dati toohelp si tooenhance le prestazioni dell'app o diagnosticare problemi. 
 
 ![Grafici di esempio](./media/app-insights-java-collectd/sample.png)
 
 ## <a name="get-your-instrumentation-key"></a>Ottenere la chiave di strumentazione
-Nel [Portale di Microsoft Azure](https://portal.azure.com) aprire la risorsa [Application Insights](app-insights-overview.md) in cui devono essere visualizzati i dati. In alternativa, [creare una nuova risorsa](app-insights-create-new-resource.md).
+In hello [portale Microsoft Azure](https://portal.azure.com)aprire hello [Application Insights](app-insights-overview.md) risorsa in cui si desidera tooappear dati hello. In alternativa, [creare una nuova risorsa](app-insights-create-new-resource.md).
 
-Copiare la chiave di strumentazione, che identifica la risorsa.
+Eseguire una copia della chiave di strumentazione hello, che identifica una risorsa hello.
 
-![Visualizzare tutto, aprire la risorsa e quindi nell'elenco a discesa Informazioni di base selezionare e copiare la chiave di strumentazione](./media/app-insights-java-collectd/02-props.png)
+![Sfoglia tutto, aprire la risorsa e quindi nell'elenco a discesa Essentials hello, selezionare e copiare hello chiave di strumentazione](./media/app-insights-java-collectd/02-props.png)
 
-## <a name="install-collectd-and-the-plug-in"></a>Installare collectd e il plug-in
+## <a name="install-collectd-and-hello-plug-in"></a>Installare collectd e hello plug-in
 Nei computer server Linux:
 
 1. Installare [collectd](http://collectd.org/) versione 5.4.0 o successive.
-2. Scaricare il [plug-in di scrittura collectd di Application Insights](https://aka.ms/aijavasdk). Annotare il numero di versione.
-3. Copiare il file JAR del plug-in in `/usr/share/collectd/java`.
+2. Scaricare hello [plug-in Application Insights collectd writer](https://aka.ms/aijavasdk). Si noti il numero di versione di hello.
+3. Copiare i plug-in di hello JAR in `/usr/share/collectd/java`.
 4. Modificare `/etc/collectd/collectd.conf`:
-   * Assicurarsi che il [plug-in Java](https://collectd.org/wiki/index.php/Plugin:Java) sia abilitato.
-   * Aggiornare JVMArg per java.class.path in modo da includere il file JAR seguente. Aggiornare il numero di versione in modo che corrisponda a quello scaricato:
+   * Verificare che [hello plug-in Java](https://collectd.org/wiki/index.php/Plugin:Java) è abilitata.
+   * Aggiornare hello JVMArg per hello di tooinclude java.class.path hello JAR seguenti. Aggiornare hello versione numero toomatch hello che uno è stato scaricato:
    * `/usr/share/collectd/java/applicationinsights-collectd-1.0.5.jar`
-   * Aggiungere questo frammento di codice usando la chiave di strumentazione dalla risorsa:
+   * Aggiungere questo frammento di codice, con chiave di strumentazione di hello dalla risorsa:
 
 ```XML
 
@@ -90,47 +90,47 @@ Di seguito è riportata una parte di un file di configurazione di esempio:
 
 Configurare altri [plug-in collectd](https://collectd.org/wiki/index.php/Table_of_Plugins), che possono raccogliere diversi dati da origini diverse.
 
-Riavviare collectd, come indicato nel rispettivo [manuale](https://collectd.org/wiki/index.php/First_steps).
+Riavviare in base tooits collectd [manuale](https://collectd.org/wiki/index.php/First_steps).
 
-## <a name="view-the-data-in-application-insights"></a>Visualizzare i dati in Application Insights
-Nella risorsa di Application Insights aprire [Esplora metriche e aggiungere grafici][metrics], selezionando le metriche da visualizzare dalla categoria personalizzata.
+## <a name="view-hello-data-in-application-insights"></a>Visualizzare i dati di hello in Application Insights
+Nella risorsa di Application Insights, aprire [Esplora metriche e aggiungere grafici][metrics], selezione metriche hello da toosee dalla categoria personalizzata hello.
 
 ![](./media/app-insights-java-collectd/result.png)
 
-Per impostazione predefinita, le metriche vengono aggregate per tutti i computer host da cui vengono raccolte le metriche. Per visualizzare le metriche dei singoli host, nel pannello di dettagli del grafico attivare l'opzione Raggruppamento e quindi scegliere di eseguire il raggruppamento in base a CollectD-Host.
+Per impostazione predefinita, le metriche hello vengono aggregate in tutti i computer host da cui sono state raccolte le metriche di hello. le metriche di hello tooview per ogni host, nel pannello dettagli grafico di hello, attivare il raggruppamento e quindi scegliere toogroup CollectD host.
 
-## <a name="to-exclude-upload-of-specific-statistics"></a>Per escludere il caricamento di statistiche specifiche
-Per impostazione predefinita, il plug-in di Application Insights invia tutti i dati raccolti da tutti i plug-in di tipo 'read' di collectd. 
+## <a name="tooexclude-upload-of-specific-statistics"></a>caricamento di tooexclude di statistiche specifiche
+Per impostazione predefinita, i plug-in Application Insights hello invia tutti i dati di hello raccolti da tutti hello abilitato collectd 'read' plug-in. 
 
-Per escludere dati da plug-in specifici oppure origini dati specifiche:
+tooexclude dati da origini dati o i plug-in specifici:
 
-* Modificare il file di configurazione. 
+* Modificare il file di configurazione di hello. 
 * In `<Plugin ApplicationInsightsWriter>`aggiungere righe di direttive analoghe alle seguenti:
 
 | Direttiva | Effetto |
 | --- | --- |
-| `Exclude disk` |Esclusione di tutti i dati raccolti dal plug-in `disk` . |
-| `Exclude disk:read,write` |Esclusione delle origini denominate `read` e `write` dal plug-in `disk`. |
+| `Exclude disk` |Escludere tutti i dati raccolti da hello `disk` plug-in |
+| `Exclude disk:read,write` |Esclusione di origini di hello denominate `read` e `write` da hello `disk` plug-in. |
 
 Separare le direttive con un valore NewLine.
 
 ## <a name="problems"></a>Problemi?
-*I dati non vengono visualizzati nel portale*
+*Non è possibile visualizzare dati nel portale di hello*
 
-* Aprire [Cerca][diagnostic] per verificare se gli eventi non elaborati sono stati ricevuti. In alcuni casi necessitano di più tempo per la visualizzazione in Esplora metriche.
-* Potrebbe essere necessario [impostare le eccezioni del firewall per i dati in uscita](app-insights-ip-addresses.md)
-* Abilitare la traccia nel plug-in di Application Insights. Aggiungere questa riga in `<Plugin ApplicationInsightsWriter>`:
+* Aprire [ricerca] [ diagnostic] toosee se sono arrivato eventi non elaborati hello. In alcuni casi hanno più tooappear in Esplora metriche.
+* Potrebbe essere troppo[impostare le eccezioni del firewall per i dati in uscita](app-insights-ip-addresses.md)
+* Abilitare la traccia nel plug-in Application Insights hello. Aggiungere questa riga in `<Plugin ApplicationInsightsWriter>`:
   * `SDKLogger true`
-* Aprire un terminale e avviare collectd in modalità dettagliata, per visualizzare eventuali problemi segnalati:
+* Aprire un terminale e avviare collectd in modalità dettagliata, toosee eventuali problemi che sta inviando report:
   * `sudo collectd -f`
 
 ## <a name="known-issue"></a>Problema noto
 
-Il plug-in di scrittura di Application Insights non è compatibile con alcuni plug-in di lettura. Alcuni plug-in a volte inviano un errore "non un numero" quando il plug-in di Application Insights prevede un numero a virgola mobile.
+Hello Application Insights scrivere plug-in non è compatibile con alcuni plug-in lettura. Alcuni plug-in di trasmissione talvolta "NaN" a cui i plug-in Application Insights hello prevede un numero a virgola mobile.
 
-Sintomo: Il log di collectd visualizza errori che includono "AI:... SyntaxError: N token non previsto".
+Sintomo: log collectd hello Mostra gli errori che includono "AI:... SyntaxError: N token non previsto".
 
-Soluzione alternativa: escludere i dati raccolti dal plug-in di scrittura che causa il problema. 
+Soluzione alternativa: Escludere i dati raccolti dai plug-in di hello problema scrittura. 
 
 <!--Link references-->
 

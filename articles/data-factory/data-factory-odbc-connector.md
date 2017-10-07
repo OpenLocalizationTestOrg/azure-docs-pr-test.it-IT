@@ -1,6 +1,6 @@
 ---
-title: Spostare dati da archivi dati ODBC | Documentazione Microsoft
-description: Informazioni su come spostare dati da archivi dati ODBC con Azure Data Factory.
+title: aaaMove dati dagli archivi di dati ODBC | Documenti Microsoft
+description: "Informazioni sulle modalità di archiviazione usando Azure Data Factory toomove dati da ODBC."
 services: data-factory
 documentationcenter: 
 author: linda33wj
@@ -14,23 +14,23 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/16/2017
 ms.author: jingwang
-ms.openlocfilehash: 269d9802ca4a6a16dbf9021929fe21104cb431f7
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: bf96e71da449313b6144bb194205c572d2ca2030
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="move-data-from-odbc-data-stores-using-azure-data-factory"></a>Spostare dati da archivi dati ODBC con Azure Data Factory
-Questo articolo illustra come usare l'attività di copia in Azure Data Factory per spostare i dati da un archivio dati ODBC locale. Si basa sull'articolo relativo alle [attività di spostamento dei dati](data-factory-data-movement-activities.md), che offre una panoramica generale dello spostamento dei dati con l'attività di copia.
+Questo articolo illustra in che modo toouse hello attività di copia nei dati di toomove Azure Data Factory di un dati ODBC locali archiviate. È basato su hello [attività lo spostamento dei dati](data-factory-data-movement-activities.md) articolo, che presenta una panoramica generale di spostamento dei dati con attività di copia hello.
 
-È possibile copiare dati da un archivio dati ODBC a qualsiasi archivio dati di sink supportato. Per un elenco degli archivi dati supportati come sink dall'attività di copia, vedere la tabella relativa agli [archivi dati supportati](data-factory-data-movement-activities.md#supported-data-stores-and-formats). Data Factory supporta attualmente solo lo spostamento dei dati da un archivio dati ODBC ad altri archivi dati, ma non da altri archivi dati a un archivio dati ODBC. 
+È possibile copiare dati da un archivio di dati ODBC dati archivio tooany supportati sink. Per un elenco di dati supportati archivi come sink dall'attività di copia hello, vedere hello [supportati archivi dati](data-factory-data-movement-activities.md#supported-data-stores-and-formats) tabella. Data factory di attualmente supporta solo lo spostamento di dati da un ODBC archiviano tooother archivi di dati, ma non per lo spostamento dei dati da altro archivio dati ODBC tooan di archivi di dati. 
 
 ## <a name="enabling-connectivity"></a>Abilitazione della connettività
-Il servizio Data Factory supporta la connessione a origini ODBC locali tramite il Gateway di gestione dati. Vedere l'articolo sullo [spostamento di dati tra sedi locali e cloud](data-factory-move-data-between-onprem-and-cloud.md) per informazioni sul Gateway di gestione dati e per istruzioni dettagliate sulla configurazione del gateway. Usare il gateway per connettersi a un archivio dati ODBC anche se è ospitato in una macchina virtuale IaaS di Azure.
+Servizio Data Factory supporta la connessione delle origini ODBC tooon locale utilizzando hello Gateway di gestione dati. Vedere [lo spostamento dei dati tra le sedi locali e cloud](data-factory-move-data-between-onprem-and-cloud.md) toolearn articolo sul Gateway di gestione dati e istruzioni dettagliate su come configurare il gateway hello. Utilizzare l'archivio di dati ODBC hello gateway tooconnect tooan anche se è ospitato in una macchina virtuale IaaS di Azure.
 
-È possibile installare il gateway nello stesso computer locale o macchina virtuale di Azure come archivio dati ODBC. Tuttavia, è consigliabile installare il gateway in un computer/macchina virtuale Iaas di Azure separati per evitare conflitti tra le risorse e ottenere prestazioni migliori. Quando si installa il gateway in un computer separato, questo deve poter accedere al computer l'archivio dati ODBC.
+È possibile installare il gateway di hello in hello locale stesso computer o macchina virtuale di Azure come archivio di dati ODBC hello hello. Tuttavia, si consiglia di installare gateway hello in un separato macchina/Azure VM IaaS tooavoid contesa delle risorse e per ottenere prestazioni migliori. Quando si installa il gateway hello in un computer separato, macchina hello deve essere in grado di tooaccess macchina di hello con archivio di dati ODBC hello.
 
-Oltre a Gateway di gestione dati, è necessario installare anche il driver ODBC per l'archivio dati nel computer del gateway.
+Oltre a hello Gateway di gestione dati, è necessario anche driver ODBC di hello tooinstall per archivio dati hello nel computer gateway hello.
 
 > [!NOTE]
 > Per suggerimenti sulla risoluzione di problemi correlati alla connessione o al gateway, vedere [Risoluzione dei problemi del gateway](data-factory-data-management-gateway.md#troubleshooting-gateway-issues) .
@@ -38,32 +38,32 @@ Oltre a Gateway di gestione dati, è necessario installare anche il driver ODBC 
 ## <a name="getting-started"></a>Introduzione
 È possibile creare una pipeline con l'attività di copia che sposta i dati da un archivio dati ODBC usando diversi strumenti/API.
 
-Il modo più semplice per creare una pipeline è usare la **Copia guidata**. Vedere [Esercitazione: Creare una pipeline usando la Copia guidata](data-factory-copy-data-wizard-tutorial.md) per la procedura dettagliata sulla creazione di una pipeline attenendosi alla procedura guidata per copiare i dati.
+toocreate modo più semplice di Hello una pipeline è hello toouse **Copia guidata**. Vedere [esercitazione: creare una pipeline mediante Copia guidata](data-factory-copy-data-wizard-tutorial.md) per un'esercitazione rapida sulla creazione di una pipeline mediante Creazione guidata di hello copia dati.
 
-È possibile anche usare gli strumenti seguenti per creare una pipeline: **portale di Azure**, **Visual Studio**, **Azure PowerShell**, **modello di Azure Resource Manager**, **API .NET** e **API REST**. Vedere l'[esercitazione sull'attività di copia](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) per le istruzioni dettagliate sulla creazione di una pipeline con un'attività di copia. 
+È inoltre possibile utilizzare i seguenti strumenti toocreate una pipeline hello: **portale di Azure**, **Visual Studio**, **Azure PowerShell**, **modello di gestione risorse di Azure** , **API .NET**, e **API REST**. Vedere [esercitazione attività Copia](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) per istruzioni dettagliate toocreate una pipeline con attività di copia. 
 
-Se si usano gli strumenti o le API, eseguire la procedura seguente per creare una pipeline che sposta i dati da un archivio dati di origine a un archivio dati sink: 
+Se si utilizza hello o le API, è eseguire hello passaggi toocreate una pipeline che consente di spostare dati da un'origine tooa archiviano dati sink seguenti: 
 
-1. Creare i **servizi collegati** per collegare gli archivi di dati di input e output alla data factory.
-2. Creare i **set di dati** per rappresentare i dati di input e di output per le operazioni di copia. 
+1. Creare **servizi collegati** toolink dati di input e output archivi tooyour data factory.
+2. Creare **set di dati** toorepresent di input e output dell'operazione di copia di dati per hello. 
 3. Creare una **pipeline** con un'attività di copia che accetti un set di dati come input e un set di dati come output. 
 
-Quando si usa la procedura guidata, le definizioni JSON per queste entità di data factory (servizi, set di dati e pipeline collegati) vengono create automaticamente. Quando si usano gli strumenti o le API, ad eccezione delle API .NET, usare il formato JSON per definire le entità di data factory.  Per un esempio con definizioni JSON per entità di data factory utilizzate per copiare dati da un archivio dati ODBC, vedere la sezione [Esempio JSON: Copiare dati da un archivio dati ODBC al BLOB di Azure](#json-example-copy-data-from-odbc-data-store-to-azure-blob) di questo articolo. 
+Quando si utilizza la procedura guidata hello, le definizioni di JSON per queste entità Data Factory (servizi collegati, i set di dati e della pipeline hello) vengono create automaticamente per l'utente. Quando si utilizzano strumenti o le API (ad eccezione delle API .NET), utilizzando il formato JSON hello è definire queste entità Data Factory.  Per un esempio con le definizioni di JSON per le entità Data Factory dati toocopy utilizzato da un archivio di dati ODBC, vedere [esempio JSON: tooAzure Blob di archiviazione dei dati di copia dei dati ODBC](#json-example-copy-data-from-odbc-data-store-to-azure-blob) sezione di questo articolo. 
 
-Nelle sezioni seguenti sono riportate le informazioni dettagliate sulle proprietà JSON che vengono usate per definire entità di data factory specifiche di un archivio dati ODBC:
+Hello le sezioni seguenti fornisce dettagli sulle proprietà JSON che sono l'archivio di dati utilizzati toodefine Data Factory entità tooODBC specifico:
 
 ## <a name="linked-service-properties"></a>Proprietà del servizio collegato
-La tabella seguente contiene le descrizioni degli elementi JSON specifici del servizio collegato ODBC.
+Hello nella tabella seguente fornisce una descrizione del servizio specifico tooODBC collegati gli elementi JSON.
 
 | Proprietà | Descrizione | Obbligatorio |
 | --- | --- | --- |
-| type |La proprietà type deve essere impostata su: **OnPremisesOdbc** |Sì |
-| connectionString |La parte delle credenziali non di accesso della stringa di connessione e una credenziale crittografata facoltativa. Vedere gli esempi nelle sezioni seguenti. |Sì |
-| credential |La parte delle credenziali di accesso della stringa di connessione specificata nel formato di valore della proprietà specifico del driver. Esempio: "Uid=<user ID>;Pwd=<password>;RefreshToken=<secret refresh token>;". |No |
-| authenticationType |Tipo di autenticazione usato per connettersi all'archivio dati ODBC. I valori possibili sono: anonima e di base. |Sì |
+| type |proprietà di tipo Hello deve essere impostata su: **OnPremisesOdbc** |Sì |
+| connectionString |credenziale è crittografata da parte di credenziali di accesso non Hello di stringa di connessione hello e un parametro facoltativo. Vedere esempi in hello le sezioni seguenti. |Sì |
+| credential |parte delle credenziali di accesso Hello hello della stringa di connessione specificato nel formato valore della proprietà specifiche del driver. Esempio: "Uid=<user ID>;Pwd=<password>;RefreshToken=<secret refresh token>;". |No |
+| authenticationType |Tipo di autenticazione utilizzato l'archivio di dati ODBC toohello tooconnect. I valori possibili sono: anonima e di base. |Sì |
 | username |Specificare il nome utente se si usa l'autenticazione di base. |No |
-| password |Specificare la password per l'account utente specificato per il nome utente. |No |
-| gatewayName |Nome del gateway che il servizio Data Factory deve usare per connettersi all'archivio dati ODBC. |Sì |
+| password |Specificare la password per account utente di hello specificato per il nome utente hello. |No |
+| gatewayName |Nome del gateway hello hello servizio Data Factory deve utilizzare l'archivio di dati ODBC toohello tooconnect. |Sì |
 
 ### <a name="using-basic-authentication"></a>Uso dell'autenticazione di base
 
@@ -85,7 +85,7 @@ La tabella seguente contiene le descrizioni degli elementi JSON specifici del se
 }
 ```
 ### <a name="using-basic-authentication-with-encrypted-credentials"></a>Uso dell'autenticazione di base con credenziali crittografate
-È possibile crittografare le credenziali usando il cmdlet [New-AzureRMDataFactoryEncryptValue](https://msdn.microsoft.com/library/mt603802.aspx), in Azure PowerShell versione 1.0, oppure [New-AzureDataFactoryEncryptValue](https://msdn.microsoft.com/library/dn834940.aspx), in Azure PowerShell versione 0.9 o precedente.  
+È possibile crittografare le credenziali di hello utilizzando hello [New AzureRMDataFactoryEncryptValue](https://msdn.microsoft.com/library/mt603802.aspx) cmdlet (1.0 versione di Azure PowerShell) o [New-AzureDataFactoryEncryptValue](https://msdn.microsoft.com/library/dn834940.aspx) (0,9 o versioni precedenti di hello Azure PowerShell).  
 
 ```json
 {
@@ -124,30 +124,30 @@ La tabella seguente contiene le descrizioni degli elementi JSON specifici del se
 
 
 ## <a name="dataset-properties"></a>Proprietà dei set di dati
-Per un elenco completo delle sezioni e delle proprietà disponibili per la definizione di set di dati, vedere l'articolo sulla [creazione di set di dati](data-factory-create-datasets.md). Le sezioni come struttura, disponibilità e criteri di un set di dati JSON sono simili per tutti i tipi di set di dati, ad esempio Azure SQL, BLOB di Azure, tabelle di Azure e così via.
+Per un elenco completo delle proprietà disponibili per la definizione di set di dati e sezioni, vedere hello [creazione dei DataSet](data-factory-create-datasets.md) articolo. Le sezioni come struttura, disponibilità e criteri di un set di dati JSON sono simili per tutti i tipi di set di dati, ad esempio Azure SQL, BLOB di Azure, tabelle di Azure e così via.
 
-La sezione **typeProperties** è diversa per ogni tipo di set di dati e contiene informazioni sulla posizione dei dati nell'archivio dati. La sezione typeProperties per il set di dati di tipo **RelationalTable** , che include il set di dati ODBC, presenta le proprietà seguenti
+Hello **typeProperties** sezione è diverso per ogni tipo di set di dati e fornisce informazioni sulla posizione hello dei dati di hello nell'archivio dati hello. sezione Hello typeProperties per set di dati di tipo **RelationalTable** (che include set di dati ODBC) ha le proprietà seguenti hello
 
 | Proprietà | Descrizione | Obbligatorio |
 | --- | --- | --- |
-| tableName |Nome della tabella nell'archivio dati ODBC. |Sì |
+| tableName |Nome della tabella hello nell'archivio di dati ODBC hello. |Sì |
 
 ## <a name="copy-activity-properties"></a>Proprietà dell'attività di copia
-Per un elenco completo delle sezioni e delle proprietà disponibili per la definizione delle attività, fare riferimento all'articolo [Creazione di pipeline](data-factory-create-pipelines.md). Per tutti i tipi di attività sono disponibili proprietà come nome, descrizione, tabelle di input e output e criteri.
+Per un elenco completo delle proprietà disponibili per la definizione delle attività e delle sezioni, vedere hello [la creazione di pipeline](data-factory-create-pipelines.md) articolo. Per tutti i tipi di attività sono disponibili proprietà come nome, descrizione, tabelle di input e output e criteri.
 
-D'altra parte, le proprietà disponibili nella sezione **typeProperties** dell'attività variano in base al tipo di attività. Per l'attività di copia variano in base ai tipi di origine e sink.
+Le proprietà disponibili nella hello **typeProperties** sezione di attività hello hello invece variano in base a ogni tipo di attività. Per attività di copia, variano a seconda dei tipi di hello di origini e sink.
 
-Nell'attività di copia con origine di tipo **RelationalSource** , incluso ODBC, sono disponibili le proprietà seguenti nella sezione typeProperties:
+Nell'attività di copia, l'origine è di tipo **RelationalSource** (che include ODBC), hello le proprietà seguenti sono disponibile nella sezione typeProperties:
 
 | Proprietà | Descrizione | Valori consentiti | Obbligatorio |
 | --- | --- | --- | --- |
-| query |Usare la query personalizzata per leggere i dati. |Stringa di query SQL. Ad esempio: selezionare * da MyTable. |Sì |
+| query |Utilizzare i dati di tooread hello query personalizzata. |Stringa di query SQL. Ad esempio: selezionare * da MyTable. |Sì |
 
 
-## <a name="json-example-copy-data-from-odbc-data-store-to-azure-blob"></a>Esempio JSON: Copiare dati da un archivio dati ODBC al BLOB di Azure
-Questo esempio fornisce le definizioni JSON da usare per creare una pipeline con il [Portale di Azure](data-factory-copy-activity-tutorial-using-azure-portal.md), [Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md) o [Azure PowerShell](data-factory-copy-activity-tutorial-using-powershell.md). Illustra come copiare dati da un'origine ODBC in un archivio BLOB di Azure. Tuttavia, i dati possono essere copiati in qualsiasi sink dichiarato [qui](data-factory-data-movement-activities.md#supported-data-stores-and-formats) usando l'attività di copia in Azure Data Factory.
+## <a name="json-example-copy-data-from-odbc-data-store-tooazure-blob"></a>Esempio JSON: tooAzure Blob di archiviazione dei dati di copia dei dati ODBC
+In questo esempio vengono fornite le definizioni di JSON che è possibile utilizzare una pipeline toocreate utilizzando [portale di Azure](data-factory-copy-activity-tutorial-using-azure-portal.md) o [Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md) o [Azure PowerShell](data-factory-copy-activity-tutorial-using-powershell.md). Viene illustrato come origine dei dati di toocopy da un database ODBC tooan archiviazione Blob di Azure. Tuttavia, i dati possono essere copiati tooany di sink hello indicato [qui](data-factory-data-movement-activities.md#supported-data-stores-and-formats) utilizzando hello attività di copia in Azure Data Factory.
 
-L'esempio include le entità di Data factory seguenti:
+esempio Hello è hello entità factory di dati seguenti:
 
 1. Un servizio collegato di tipo [OnPremisesOdbc](#linked-service-properties).
 2. Un servizio collegato di tipo [AzureStorage](data-factory-azure-blob-connector.md#linked-service-properties).
@@ -155,11 +155,11 @@ L'esempio include le entità di Data factory seguenti:
 4. Un [set di dati](data-factory-create-datasets.md) di output di tipo [AzureBlob](data-factory-azure-blob-connector.md#dataset-properties).
 5. Una [pipeline](data-factory-create-pipelines.md) con attività di copia che usa [RelationalSource](#copy-activity-properties) e [BlobSink](data-factory-azure-blob-connector.md#copy-activity-properties).
 
-L'esempio copia i dati dai risultati della query in un archivio dati ODBC a un BLOB ogni ora. Le proprietà JSON usate in questi esempi sono descritte nelle sezioni riportate dopo gli esempi.
+esempio Hello copia dati da un risultato di query in un blob di tooa ODBC archivio dati ogni ora. proprietà JSON Hello usata in questi esempi sono descritti nelle sezioni riportate di seguito esempi di hello.
 
-Come primo passaggio, impostare il gateway di gestione dati. Le istruzioni sono disponibili nell'articolo [Spostare dati tra origini locali e il cloud con Gateway di gestione dati](data-factory-move-data-between-onprem-and-cloud.md) .
+Innanzitutto, configurare il gateway di gestione dati hello. istruzioni di Hello presenti hello [lo spostamento dei dati tra le sedi locali e cloud](data-factory-move-data-between-onprem-and-cloud.md) articolo.
 
-**Servizio collegato ODBC** : questo esempio usa l'autenticazione di base. Per i diversi tipi di autenticazione disponibili, vedere la sezione [Servizio collegato ODBC](#linked-service-properties) .
+**Servizio collegato ODBC** in questo esempio viene utilizzata l'autenticazione di base di hello. Per i diversi tipi di autenticazione disponibili, vedere la sezione [Servizio collegato ODBC](#linked-service-properties) .
 
 ```json
 {
@@ -195,9 +195,9 @@ Come primo passaggio, impostare il gateway di gestione dati. Le istruzioni sono 
 
 **Set di dati di input ODBC**
 
-L'esempio presuppone che sia stata creata una tabella "MyTable" in un archivio dati ODBC e che contenga una colonna denominata "timestampcolumn" per i dati di una serie temporale.
+esempio Hello presuppone una tabella "MyTable" è stato creato in un database ODBC e contiene una colonna denominata "timestampcolumn" per i dati della serie temporale.
 
-Impostando "external" su "true" si comunica al servizio Data Factory che il set di dati è esterno alla data factory e non è prodotto da un'attività al suo interno.
+L'impostazione "external": "true" informa il servizio di Data Factory hello hello set di dati è esterna toohello data factory e non viene generato da un'attività nella data factory di hello.
 
 ```json
 {
@@ -225,7 +225,7 @@ Impostando "external" su "true" si comunica al servizio Data Factory che il set 
 
 **Set di dati di output del BLOB di Azure**
 
-I dati vengono scritti in un nuovo BLOB ogni ora (frequenza: ora, intervallo: 1). Il percorso della cartella per il BLOB viene valutato dinamicamente in base all'ora di inizio della sezione in fase di elaborazione. Il percorso della cartella usa le parti anno, mese, giorno e ora dell'ora di inizio.
+I dati vengono scritti tooa nuovo blob ogni ora (frequenza: ora, intervallo: 1). percorso della cartella Hello per blob hello viene valutato dinamicamente in base a ora di inizio hello della sezione hello che viene elaborato. percorso della cartella Hello Usa le parti di anno, mese, giorno e ore dell'ora di inizio hello.
 
 ```json
 {
@@ -286,7 +286,7 @@ I dati vengono scritti in un nuovo BLOB ogni ora (frequenza: ora, intervallo: 1)
 
 **Attività di copia in una pipeline con origine ODBC (RelationalSource) e sink BLOB (BlobSink)**
 
-La pipeline contiene un'attività di copia configurata per usare i set di dati di input e output ed è programmata per essere eseguita ogni ora. Nella definizione JSON della pipeline, il tipo di **origine** è impostato su **RelationalSource** e il tipo di **sink** è impostato su **BlobSink**. La query SQL specificata per la proprietà **query** consente di selezionare i dati da copiare nell'ultima ora.
+pipeline di Hello contiene un'attività di copia che è configurato toouse questi set di dati di input e output e toorun pianificato ogni ora. Nella pipeline hello definizione JSON, hello **origine** tipo è stato impostato troppo**RelationalSource** e **sink** tipo è stato impostato troppo**BlobSink**. query SQL Hello specificata per hello **query** proprietà consente di selezionare dati hello hello oltre toocopy ora.
 
 ```json
 {
@@ -334,21 +334,21 @@ La pipeline contiene un'attività di copia configurata per usare i set di dati d
 }
 ```
 ### <a name="type-mapping-for-odbc"></a>Mapping dei tipi per ODBC
-Come accennato nell'articolo [Attività di spostamento dei dati](data-factory-data-movement-activities.md) , l'attività di copia esegue conversioni di tipi automatiche da tipi di origine a tipi di sink con l'approccio seguente in due passaggi:
+Come accennato in hello [attività lo spostamento dei dati](data-factory-data-movement-activities.md) articolo, attività di copia esegue le conversioni dai tipi di origine tipi toosink automatico con hello approccio in due passaggi:
 
-1. Conversione dai tipi di origine nativi al tipo .NET
-2. Conversione dal tipo .NET al tipo di sink nativo
+1. Conversione dal tipo di origine nativa tipi too.NET
+2. Eseguire la conversione da tipo di sink toonative tipo .NET
 
-Quando si spostano dati da archivi dati ODBC, viene eseguito il mapping dei tipi di dati ODBC ai tipi .NET, come riportato nell'argomento [Mapping dei tipi di dati ODBC](https://msdn.microsoft.com/library/cc668763.aspx) .
+Quando si spostano dati da archivi dati ODBC, tipi di dati ODBC sono tipi di too.NET mappato come indicato in hello [mapping dei tipi di dati ODBC](https://msdn.microsoft.com/library/cc668763.aspx) argomento.
 
-## <a name="map-source-to-sink-columns"></a>Eseguire il mapping delle colonne dell'origine alle colonne del sink
-Per informazioni sul mapping delle colonne del set di dati di origine alle colonne del set di dati del sink, vedere [Mapping delle colonne del set di dati in Azure Data Factory](data-factory-map-columns.md).
+## <a name="map-source-toosink-columns"></a>Eseguire il mapping di colonne di origine toosink
+toolearn sui mapping delle colonne in toocolumns di set di dati di origine nel sink set di dati, vedere [mapping tra colonne del set di dati in Azure Data Factory](data-factory-map-columns.md).
 
 ## <a name="repeatable-read-from-relational-sources"></a>Lettura ripetibile da origini relazionali
-Quando si copiano dati da archivi dati relazionali, è necessario tenere presente la ripetibilità per evitare risultati imprevisti. In Azure Data Factory è possibile rieseguire una sezione manualmente. È anche possibile configurare i criteri di ripetizione per un set di dati in modo da rieseguire una sezione in caso di errore. Quando una sezione viene rieseguita in uno dei due modi, è necessario assicurarsi che non vengano letti gli stessi dati, indipendentemente da quante volte viene eseguita la sezione. Vedere [Lettura ripetibile da origini relazionali](data-factory-repeatable-copy.md#repeatable-read-from-relational-sources).
+Quando si copiano dati da archivi dati relazionali, tenere ripetibilità presente tooavoid risultati imprevisti. In Azure Data Factory è possibile rieseguire una sezione manualmente. È anche possibile configurare i criteri di ripetizione per un set di dati in modo da rieseguire una sezione in caso di errore. Quando viene eseguito di nuovo una sezione in entrambi i casi, è necessario toomake assicurarsi che hello stessi dati non viene letto alcun altro aspetto come viene eseguita più volte una sezione. Vedere [Lettura ripetibile da origini relazionali](data-factory-repeatable-copy.md#repeatable-read-from-relational-sources).
 
 ## <a name="ge-historian-store"></a>Archivio GE Historian
-Creare un servizio collegato ODBC per collegare un archivio dati [GE Proficy Historian (ora GE Historian)](http://www.geautomation.com/products/proficy-historian) a un'istanza di Azure Data Factory, come illustrato nell'esempio seguente:
+Si crea un toolink servizio ODBC collegato un [consumo Proficy GE (ora consumo GE)](http://www.geautomation.com/products/proficy-historian) dati archiviano tooan data factory di Azure, come mostrato nel seguente esempio hello:
 
 ```json
 {
@@ -358,7 +358,7 @@ Creare un servizio collegato ODBC per collegare un archivio dati [GE Proficy His
         "type": "OnPremisesOdbc",
         "typeProperties":
         {
-            "connectionString": "DSN=<name of the GE Historian store>",
+            "connectionString": "DSN=<name of hello GE Historian store>",
             "gatewayName": "<gateway name>",
             "authenticationType": "Basic",
             "userName": "<user name>",
@@ -368,24 +368,24 @@ Creare un servizio collegato ODBC per collegare un archivio dati [GE Proficy His
 }
 ```
 
-Installare il Gateway di gestione dati in un computer locale e registrare il gateway con il portale. Il gateway installato nel computer locale usa il driver ODBC per GE Historian per la connessione all'archivio dati GE Historian. Installare quindi il driver se non è già installato nel computer del gateway. Per i dettagli, vedere [Abilitazione della connettività](#enabling-connectivity) .
+Installare il Gateway di gestione di dati in un computer locale e registrare il gateway hello hello portale. gateway di Hello installato nel computer locale utilizza il driver ODBC hello per consumo GE tooconnect toohello archivio dati di consumo GE. Pertanto, installare i driver di hello se non è già installato nel computer gateway hello. Per i dettagli, vedere [Abilitazione della connettività](#enabling-connectivity) .
 
-Prima di usare l'archivio GE Historian in una soluzione Data Factory, verificare se il gateway è in grado di connettersi all'archivio dati usando le istruzioni indicate nella sezione successiva.
+Prima di utilizzare hello GE consumo archiviare in una soluzione di Data Factory, verificare se il gateway hello può connettersi archivio dati toohello seguendo le istruzioni nella sezione successiva hello.
 
-Leggere l'articolo dall'inizio per una panoramica dettagliata dell'uso degli archivi dati ODBC come archivi dati di origine in un'operazione di copia.  
+Leggere l'articolo hello dall'inizio di hello per una panoramica dettagliata dell'utilizzo di dati ODBC vengono archiviate come archivi dati di origine in un'operazione di copia.  
 
 ## <a name="troubleshoot-connectivity-issues"></a>Risoluzione dei problemi di connettività
-Per risolvere i problemi di connessione, usare la scheda **Diagnostica** di **Gestione configurazione di Gateway di gestione dati**.
+problemi di connessione tootroubleshoot utilizzare hello **diagnostica** scheda **Gestione configurazione di Gateway di gestione di dati**.
 
-1. Avviare **Gestione configurazione di Gateway di gestione dati**. È possibile eseguire direttamente "C:\Programmi\Microsoft Data Management Gateway\1.0\Shared\ConfigManager.exe" o eseguire una ricerca di **Gateway** per trovare un collegamento all'applicazione **Gateway di gestione dati di Microsoft**, come mostrato nell'immagine seguente.
+1. Avviare **Gestione configurazione di Gateway di gestione dati**. È possibile eseguire "C:\Program Files\Microsoft Data Management Gateway\1.0\Shared\ConfigManager.exe" direttamente (o) ricerca per **Gateway** toofind un collegamento troppo**Gateway di gestione dati Microsoft** applicazione come mostrato nella seguente immagine hello.
 
     ![Ricerca nel gateway](./media/data-factory-odbc-connector/search-gateway.png)
-2. Passare alla scheda **Diagnostica** .
+2. Passare toohello **diagnostica** scheda.
 
     ![Diagnostica del gateway](./media/data-factory-odbc-connector/data-factory-gateway-diagnostics.png)
-3. Selezionare il **tipo** di dati archiviati (servizio collegato).
-4. Specificare l'**autenticazione** e immettere le **credenziali** o la **stringa di connessione** usati per la connessione all'archivio dati.
-5. Fare clic su **Test connessione** per testare la connessione all'archivio dati.
+3. Seleziona hello **tipo** dati di archivio (servizio collegato).
+4. Specificare **autenticazione** e immettere **credenziali** (o) immettere **stringa di connessione** che viene utilizzato tooconnect toohello dati archivio.
+5. Fare clic su **Test della connessione** tootest hello connessione toohello dati archivio.
 
 ## <a name="performance-and-tuning"></a>Ottimizzazione delle prestazioni
-Per informazioni sui fattori chiave che influiscono sulle prestazioni dello spostamento dei dati, ovvero dell'attività di copia, in Azure Data Factory e sui vari modi per ottimizzare tali prestazioni, vedere la [Guida alle prestazioni delle attività di copia e all'ottimizzazione](data-factory-copy-activity-performance.md).
+Vedere [prestazioni attività di copia di & ottimizzazione Guida](data-factory-copy-activity-performance.md) toolearn sulla chiave di fattori che influiscono sulle prestazioni di spostamento dei dati (attività di copia) in Azure Data Factory e i vari modi toooptimize è.

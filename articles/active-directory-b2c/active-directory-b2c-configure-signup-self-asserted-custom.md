@@ -1,6 +1,6 @@
 ---
 title: 'Azure Active Directory B2C: modificare l''iscrizione nei criteri personalizzati e configurare il provider di autocertificazione'
-description: Procedura dettagliata relativa all'aggiunta di attestazioni all'iscrizione e alla configurazione dell'input utente
+description: Una procedura dettagliata sull'aggiunta di attestazioni toosign backup e configurare l'input dell'utente hello
 services: active-directory-b2c
 documentationcenter: 
 author: rojasja
@@ -14,30 +14,30 @@ ms.topic: article
 ms.devlang: na
 ms.date: 04/29/2017
 ms.author: joroja
-ms.openlocfilehash: 64b9d904d7d070052e125b479f4719d208c9ff85
-ms.sourcegitcommit: b0af2a2cf44101a1b1ff41bd2ad795eaef29612a
+ms.openlocfilehash: c31d737263fef3e771bdf451b809b0ca522c8fe0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/28/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-active-directory-b2c-modify-sign-up-to-add-new-claims-and-configure-user-input"></a>Azure Active Directory B2C: modificare l'iscrizione per aggiungere nuove attestazioni e configurare l'input utente.
+# <a name="azure-active-directory-b2c-modify-sign-up-tooadd-new-claims-and-configure-user-input"></a>Azure Active B2C di Directory: Modificare l'iscrizione tooadd nuove attestazioni e configurare l'input dell'utente.
 
 [!INCLUDE [active-directory-b2c-advanced-audience-warning](../../includes/active-directory-b2c-advanced-audience-warning.md)]
 
-Questo articolo illustra come aggiungere una nuova voce specificata dall'utente, un'attestazione, al percorso utente di iscrizione.  La voce verrà configurata come elenco a discesa e verrà indicato se è obbligatoria.
+In questo articolo, si aggiungerà un utente viaggio nuovo fornito dall'utente (un'attestazione) voce tooyour iscrizione.  Verrà configurare voce hello come un elenco a discesa e definire se necessario.
 
-Modificato da Sipi per attivare la consegna di test.
+Modificato da Sipi tootrigger test uniforme.
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-* Completare la procedura descritta nell'articolo [Introduzione ai criteri personalizzati](active-directory-b2c-get-started-custom.md).  Prima di procedere, testare il percorso utente di iscrizione/accesso per l'iscrizione di un nuovo account locale.
+* Hello completato i passaggi nell'articolo hello [Guida introduttiva a criteri personalizzati](active-directory-b2c-get-started-custom.md).  Test hello iscrizione/signin utente viaggio toosignup un nuovo account locale prima di procedere.
 
 
-La raccolta dei dati iniziali dagli utenti avviene mediante l'iscrizione/accesso.  In un secondo momento è possibile raccogliere attestazioni aggiuntive tramite i percorsi utente di modifica del profilo. Ogni volta che Azure AD B2C raccoglie informazioni direttamente dall'utente in modo interattivo, il framework dell'esperienza di gestione delle identità usa il relativo `selfasserted provider`. I passaggi seguenti si applicano ogni volta che tale provider viene usato.
+La raccolta dei dati iniziali dagli utenti avviene mediante l'iscrizione/accesso.  In un secondo momento è possibile raccogliere attestazioni aggiuntive tramite i percorsi utente di modifica del profilo. Ogni volta che Azure Active Directory B2C raccoglie le informazioni direttamente dai utente hello in modo interattivo, hello Usa identità esperienza Framework relativi `selfasserted provider`. passaggi di Hello riportati di seguito si applicano ogni volta che questo provider viene utilizzato.
 
 
-## <a name="define-the-claim-its-display-name-and-the-user-input-type"></a>Definire l'attestazione, il nome visualizzato e il tipo di input utente
-Per chiedere all'utente di indicare la propria città,  aggiungere l'elemento seguente all'elemento `<ClaimsSchema>` nel file dei criteri TrustFrameWorkExtensions:
+## <a name="define-hello-claim-its-display-name-and-hello-user-input-type"></a>Definire hello attestazione, il relativo nome visualizzato e hello il tipo di input dell'utente
+Consente di chiedere utente hello per le città.  Aggiungere hello seguente elemento toohello `<ClaimsSchema>` elemento nel file di criteri TrustFrameWorkExtensions hello:
 
 ```xml
 <ClaimType Id="city">
@@ -47,13 +47,13 @@ Per chiedere all'utente di indicare la propria città,  aggiungere l'elemento se
   <UserInputType>TextBox</UserInputType>
 </ClaimType>
 ```
-Sono disponibili opzioni aggiuntive che è possibile definire qui per personalizzare l'attestazione.  Per uno schema completo, vedere il documento **Identity Experience Framework Technical Reference Guide** (Guida di riferimento tecnico al framework dell'esperienza di gestione delle identità),  che verrà presto pubblicata nella sezione dei riferimenti.
+Sono disponibili opzioni aggiuntive, che è possibile apportare qui toocustomize hello attestazione.  Per uno schema completo, vedere toohello **identità esperienza Framework Guida di riferimento tecnico**.  Questa Guida verrà pubblicata non appena nella sezione di riferimento hello.
 
-* `<DisplayName>` è una stringa che definisce l'*etichetta* destinata all'utente.
+* `<DisplayName>`è una stringa che definisce rivolta all'utente di hello *etichetta*
 
-* `<UserHelpText>` consente all'utente di identificare i requisiti.
+* `<UserHelpText>`Consente di comprendere i requisiti utente hello
 
-* `<UserInputType>` include le quattro opzioni evidenziate di seguito.
+* `<UserInputType>`è stato hello seguenti quattro opzioni evidenziato di seguito:
     * `TextBox`
 ```xml
 <ClaimType Id="city">
@@ -78,7 +78,7 @@ Sono disponibili opzioni aggiuntive che è possibile definire qui per personaliz
 </ClaimType>
 ```
 
-    * `DropdownSingleSelect` consente di selezionare solo valori validi.
+    * `DropdownSingleSelect`-Consente di selezionare hello unico valore valido.
 
 ![Screenshot dell'opzione nell'elenco a discesa](./media/active-directory-b2c-configure-signup-self-asserted-custom/dropdown-menu-example.png)
 
@@ -97,7 +97,7 @@ Sono disponibili opzioni aggiuntive che è possibile definire qui per personaliz
 ```
 
 
-* `CheckboxMultiSelect` consente di selezionare uno o più valori.
+* `CheckboxMultiSelect`Consente la selezione di hello di uno o più valori.
 
 ![Screenshot dell'opzione di selezione multipla](./media/active-directory-b2c-configure-signup-self-asserted-custom/multiselect-menu-example.png)
 
@@ -115,9 +115,9 @@ Sono disponibili opzioni aggiuntive che è possibile definire qui per personaliz
 </ClaimType>
 ```
 
-## <a name="add-the-claim-to-the-sign-upsign-in-user-journey"></a>Aggiungere l'attestazione al percorso utente di iscrizione/accesso
+## <a name="add-hello-claim-toohello-sign-upsign-in-user-journey"></a>Aggiungere hello attestazione toohello sign up/sign in viaggio utente
 
-1. Aggiungere l'attestazione come `<OutputClaim ClaimTypeReferenceId="city"/>` all'oggetto TechnicalProfile `LocalAccountSignUpWithLogonEmail` incluso nel file dei criteri TrustFrameworkBase.  Si noti che TechnicalProfile qui usa SelfAssertedAttributeProvider.
+1. Attestazione hello come aggiungere un `<OutputClaim ClaimTypeReferenceId="city"/>` toohello TechnicalProfile `LocalAccountSignUpWithLogonEmail` (trovato nel file di criteri TrustFrameworkBase hello).  Si noti che il TechnicalProfile utilizza hello SelfAssertedAttributeProvider.
 
   ```xml
   <TechnicalProfile Id="LocalAccountSignUpWithLogonEmail">
@@ -142,7 +142,7 @@ Sono disponibili opzioni aggiuntive che è possibile definire qui per personaliz
       <OutputClaim ClaimTypeReferenceId="executed-SelfAsserted-Input" DefaultValue="true" />
       <OutputClaim ClaimTypeReferenceId="authenticationSource" />
       <OutputClaim ClaimTypeReferenceId="newUser" />
-      <!-- Optional claims, to be collected from the user -->
+      <!-- Optional claims, toobe collected from hello user -->
       <OutputClaim ClaimTypeReferenceId="givenName" />
       <OutputClaim ClaimTypeReferenceId="surName" />
       <OutputClaim ClaimTypeReferenceId="city"/>
@@ -154,7 +154,7 @@ Sono disponibili opzioni aggiuntive che è possibile definire qui per personaliz
   </TechnicalProfile>
   ```
 
-2. Aggiungere l'attestazione ad AAD-UserWriteUsingLogonEmail come `<PersistedClaim ClaimTypeReferenceId="city" />` per scrivere l'attestazione nella directory di AAD dopo averla raccolta dall'utente. Se non si vuole mantenere l'attestazione nella directory per un uso futuro, è possibile ignorare questo passaggio.
+2. Aggiungere hello attestazione toohello AAD UserWriteUsingLogonEmail come un `<PersistedClaim ClaimTypeReferenceId="city" />` directory AAD toohello toowrite hello attestazione dopo la raccolta utente hello. È possibile saltare questo passaggio se si preferisce non toopersist hello attestazione nella directory hello per utilizzi futuri.
 
   ```xml
   <!-- Technical profiles for local accounts -->
@@ -190,14 +190,14 @@ Sono disponibili opzioni aggiuntive che è possibile definire qui per personaliz
   </TechnicalProfile>
   ```
 
-3. Aggiungere l'attestazione all'oggetto TechnicalProfile che legge dalla directory quando un utente esegue l'accesso come `<OutputClaim ClaimTypeReferenceId="city" />`.
+3. Aggiungere hello attestazione toohello TechnicalProfile che legge dalla directory hello quando un utente effettua l'accesso come un`<OutputClaim ClaimTypeReferenceId="city" />`
 
   ```xml
   <TechnicalProfile Id="AAD-UserReadUsingEmailAddress">
     <Metadata>
       <Item Key="Operation">Read</Item>
       <Item Key="RaiseErrorIfClaimsPrincipalDoesNotExist">true</Item>
-      <Item Key="UserMessageIfClaimsPrincipalDoesNotExist">An account could not be found for the provided user ID.</Item>
+      <Item Key="UserMessageIfClaimsPrincipalDoesNotExist">An account could not be found for hello provided user ID.</Item>
     </Metadata>
     <IncludeInSso>false</IncludeInSso>
     <InputClaims>
@@ -218,7 +218,7 @@ Sono disponibili opzioni aggiuntive che è possibile definire qui per personaliz
   </TechnicalProfile>
   ```
 
-4. Aggiungere `<OutputClaim ClaimTypeReferenceId="city" />` al file dei criteri relying party SignUporSignIn.xml in modo che l'attestazione venga inviata all'applicazione nel token quando il percorso utente ha esito positivo.
+4. Aggiungere hello `<OutputClaim ClaimTypeReferenceId="city" />` file dei criteri RP toohello SignUporSignIn.xml questa attestazione viene inviato l'applicazione toohello token hello dopo viaggio un utente ha esito positivo.
 
   ```xml
   <RelyingParty>
@@ -240,17 +240,17 @@ Sono disponibili opzioni aggiuntive che è possibile definire qui per personaliz
   </RelyingParty>
   ```
 
-## <a name="test-the-custom-policy-using-run-now"></a>Testare i criteri personalizzati tramite "Esegui adesso"
+## <a name="test-hello-custom-policy-using-run-now"></a>Criterio personalizzato di test hello tramite "Esegui"
 
-1. Aprire il pannello **Azure AD B2C** e passare a **Framework dell'esperienza di gestione delle identità > Criteri personalizzati**.
-2. Selezionare il criterio personalizzato che è stato caricato e fare clic sul pulsante **Esegui adesso**.
-3. Dovrebbe essere possibile iscriversi usando un indirizzo di posta elettronica.
+1. Aprire hello **Pannello di Azure Active Directory B2C** e passare troppo**identità esperienza Framework > criteri personalizzati**.
+2. Selezionare i criteri personalizzati hello caricato, quindi scegliere hello **Esegui ora** pulsante.
+3. È necessario essere in grado di toosign utilizzando un indirizzo di posta elettronica.
 
-La schermata di iscrizione in modalità di test avrà un aspetto simile al seguente:
+schermata di iscrizione Hello in modalità test dovrebbe essere simile toothis:
 
 ![Screenshot dell'opzione di iscrizione modificata](./media/active-directory-b2c-configure-signup-self-asserted-custom/signup-with-city-claim-dropdown-example.png)
 
-  Il token restituito all'applicazione ora include l'attestazione `city`, come illustrato di seguito.
+  Hello token tooyour indietro applicazione includeranno ora hello `city` attestazione come illustrato di seguito
 ```json
 {
   "exp": 1493596822,
@@ -273,16 +273,16 @@ La schermata di iscrizione in modalità di test avrà un aspetto simile al segue
 
 ## <a name="optional-remove-email-verification-from-signup-journey"></a>Facoltativo: Rimuovere la verifica di posta elettronica dal percorso di iscrizione
 
-Per ignorare la verifica di posta elettronica, l'autore dei criteri può scegliere di rimuovere `PartnerClaimType="Verified.Email"`. L'indirizzo di posta elettronica verrà richiesto ma non verificato, a meno che "Required" = true non venga rimosso.  Valutare attentamente se questa opzione è adatta ai casi d'uso.
+verifica della posta elettronica tooskip, l'autore dei criteri hello possibile tooremove `PartnerClaimType="Verified.Email"`. Hello indirizzo di posta elettronica verrà richiesto ma non verificato, a meno che non "Obbligatorio" = true viene rimosso.  Valutare attentamente se questa opzione è adatta ai casi d'uso.
 
-La verifica di posta elettronica è abilitata per impostazione predefinita in `<TechnicalProfile Id="LocalAccountSignUpWithLogonEmail">` nel file dei criteri TrustFrameworkBase nel pacchetto iniziale:
+Verifica posta elettronica è abilitata per impostazione predefinita in hello `<TechnicalProfile Id="LocalAccountSignUpWithLogonEmail">` nel file di criteri hello TrustFrameworkBase nel pacchetto hello:
 ```xml
 <OutputClaim ClaimTypeReferenceId="email" PartnerClaimType="Verified.Email" Required="true" />
 ```
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Aggiungere la nuova attestazione ai flussi per gli accessi con account di social networking modificando gli elementi TechnicalProfile elencati di seguito. Questi vengono usati per gli accessi con account di social networking/federati per scrivere e leggere i dati utente usando alternativeSecurityId come localizzatore.
+Aggiungere hello nuova attestazione toohello flussi per gli account di accesso account social modificando hello TechnicalProfiles elencati di seguito. Questi sono utilizzati toowrite gli account di accesso account sociale o federata e leggere i dati utente hello utilizzando alternativeSecurityId hello come hello localizzatore.
 ```xml
 <TechnicalProfile Id="AAD-UserWriteUsingAlternativeSecurityId">
 <TechnicalProfile Id="AAD-UserReadUsingAlternativeSecurityId">

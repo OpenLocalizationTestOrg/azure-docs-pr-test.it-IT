@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 07/10/2017
 ms.author: spelluru
-ms.openlocfilehash: 30c7cd1ba455d7b1bc93d76e7ee79455bb52aae9
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 52f72da54cdd80691e09d7453bf6730454c4089e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-create-a-pipeline-with-copy-activity-using-net-api"></a>Esercitazione: Creare una pipeline con l'attività di copia usando l'API .NET
 > [!div class="op_single_selector"]
@@ -31,104 +31,104 @@ ms.lasthandoff: 08/03/2017
 > * [API REST](data-factory-copy-activity-tutorial-using-rest-api.md)
 > * [API .NET](data-factory-copy-activity-tutorial-using-dotnet-api.md)
 
-Questo articolo illustra l'uso dell'[API .NET](https://portal.azure.com) per creare una data factory con una pipeline che copia i dati da un archivio BLOB di Azure a un database SQL di Azure. Se non si ha familiarità con Azure Data Factory, prima di eseguire questa esercitazione vedere l'articolo [Introduzione ad Azure Data Factory](data-factory-introduction.md).   
+In questo articolo viene illustrato come toouse [API .NET](https://portal.azure.com) toocreate una data factory con una pipeline che copia i dati da un database di SQL Azure tooan di archiviazione blob di Azure. Se si tooAzure nuova Data Factory, leggere hello [tooAzure introduzione Data Factory](data-factory-introduction.md) articolo prima di eseguire questa esercitazione.   
 
-In questa esercitazione si crea una pipeline contenente una sola attività: un'attività di copia che copia i dati da un archivio dati supportato a un archivio dati sink supportato. Per un elenco degli archivi dati supportati come origini e sink, vedere gli [archivi dati supportati](data-factory-data-movement-activities.md#supported-data-stores-and-formats). e si basa su un servizio disponibile a livello globale che può copiare dati tra diversi archivi dati in modo sicuro, affidabile e scalabile. Per altre informazioni sull'attività di copia, vedere le [attività di spostamento dei dati](data-factory-data-movement-activities.md).
+In questa esercitazione si crea una pipeline contenente una sola attività: un'attività di copia attività di copia Hello copia dati da un archivio dati di sink supportati tooa di archivio di dati supportati. Per un elenco degli archivi dati supportati come origini e sink, vedere gli [archivi dati supportati](data-factory-data-movement-activities.md#supported-data-stores-and-formats). attività Hello è alimentato da un servizio disponibile a livello globale che è possibile copiare dati tra diversi archivi dati in modo sicuro, affidabile e scalabile. Per ulteriori informazioni sulle attività di copia hello, vedere [attività lo spostamento dei dati](data-factory-data-movement-activities.md).
 
-Una pipeline può includere più attività ed è possibile concatenarne due, ovvero eseguire un'attività dopo l'altra, impostando il set di dati di output di un'attività come set di dati di input dell'altra. Per altre informazioni, vedere [Attività multiple in una pipeline](data-factory-scheduling-and-execution.md#multiple-activities-in-a-pipeline). 
+Una pipeline può includere più attività Inoltre, è possibile concatenare le due attività (eseguire un'attività dopo l'altro) mediante l'impostazione di set di dati di hello output di un'attività come hello input set di dati di hello altre attività. Per altre informazioni, vedere [Attività multiple in una pipeline](data-factory-scheduling-and-execution.md#multiple-activities-in-a-pipeline). 
 
 > [!NOTE] 
 > Per la documentazione completa sull'API .NET per Data Factory, vedere le [informazioni di riferimento sull'API NET di Data Factory](/dotnet/api/index?view=azuremgmtdatafactories-4.12.1).
 > 
-> La pipeline di dati in questa esercitazione copia i dati da un archivio dati di origine a un archivio dati di destinazione. Per un'esercitazione su come trasformare i dati usando Azure Data Factory, vedere [Esercitazione: Creare una pipeline per trasformare i dati usando un cluster Hadoop](data-factory-build-your-first-pipeline.md).
+> pipeline di dati Hello in questa esercitazione consente di copiare dati da un archivio dati di origine dati archivio tooa destinazione. Per un'esercitazione su come dati di tootransform tramite Data Factory di Azure, vedere [esercitazione: creare una pipeline di dati tootransform utilizzando cluster Hadoop](data-factory-build-your-first-pipeline.md).
 
 ## <a name="prerequisites"></a>Prerequisiti
-* Per una panoramica dell'esercitazione e per eseguire i passaggi relativi ai [prerequisiti](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) , vedere **Panoramica e prerequisiti** .
+* Seguire i passaggi [esercitazione panoramica e prerequisiti](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) tooget una panoramica di esercitazione hello e hello completo **prerequisito** passaggi.
 * Visual Studio 2012 o 2013 o 2015
 * Scaricare e installare [.NET SDK di Azure](http://azure.microsoft.com/downloads/)
-* Azure PowerShell. Seguire le istruzioni disponibili nell'articolo [Come installare e configurare Azure PowerShell](../powershell-install-configure.md) per installare la versione più recente di Azure PowerShell nel computer. Azure PowerShell verrà usato per creare un'applicazione Azure Active Directory.
+* Azure PowerShell. Seguire le istruzioni [come tooinstall e configurare Azure PowerShell](../powershell-install-configure.md) articolo tooinstall Azure PowerShell nel computer in uso. Usare Azure PowerShell toocreate un'applicazione Azure Active Directory.
 
 ### <a name="create-an-application-in-azure-active-directory"></a>Creare un'applicazione in Azure Active Directory
-Creare l'applicazione Azure Active Directory, creare un'entità servizio per l'applicazione e assegnarla al ruolo **Collaboratore Data Factory** .
+Creare un'applicazione Azure Active Directory, creare un'entità servizio per un'applicazione hello e assegnarlo toohello **Data Factory collaboratore** ruolo.
 
 1. Avviare **PowerShell**.
-2. Eseguire il comando seguente e immettere il nome utente e la password usati per accedere al portale di Azure.
+2. Eseguire hello comando seguente e immettere nome utente hello e la password usati toosign in toohello portale di Azure.
 
     ```PowerShell
     Login-AzureRmAccount
     ```
-3. Eseguire il comando seguente per visualizzare tutte le sottoscrizioni per l'account.
+3. Eseguire hello successivo comando tooview tutte le sottoscrizioni di hello per questo account.
 
     ```PowerShell
     Get-AzureRmSubscription
     ```
-4. Eseguire il comando seguente per selezionare la sottoscrizione da usare. Sostituire **&lt;NameOfAzureSubscription**&gt; con il nome della sottoscrizione di Azure.
+4. Sottoscrizione hello tooselect da toowork con il comando seguente hello esecuzione. Sostituire  **&lt;NameOfAzureSubscription** &gt; con nome hello della sottoscrizione Azure.
 
     ```PowerShell
     Get-AzureRmSubscription -SubscriptionName <NameOfAzureSubscription> | Set-AzureRmContext
     ```
 
    > [!IMPORTANT]
-   > Dall'output del comando prendere nota dei valori di **SubscriptionId** e **TenantId**.
+   > Prendere nota delle **SubscriptionId** e **TenantId** dall'output di hello del comando.
 
-5. Creare un gruppo di risorse di Azure denominato **ADFTutorialResourceGroup** eseguendo il comando seguente in PowerShell.
+5. Creare un gruppo di risorse di Azure denominato **ADFTutorialResourceGroup** eseguendo hello comando in hello PowerShell seguente.
 
     ```PowerShell
     New-AzureRmResourceGroup -Name ADFTutorialResourceGroup  -Location "West US"
     ```
 
-    Se il gruppo di risorse esiste già, specificare se deve essere aggiornato (Y) o mantenuto invariato (N).
+    Se il gruppo di risorse hello esiste già, specificare se tooupdate è (Y) o mantenerlo come (N).
 
-    Se si usa un gruppo di risorse diverso, è necessario usare il nome del gruppo di risorse invece di ADFTutorialResourceGroup in questa esercitazione.
+    Se si utilizza un gruppo di risorse diverso, è necessario il nome hello toouse del gruppo di risorse al posto di ADFTutorialResourceGroup in questa esercitazione.
 6. Creare un'applicazione Azure Active Directory.
 
     ```PowerShell
     $azureAdApplication = New-AzureRmADApplication -DisplayName "ADFCopyTutotiralApp" -HomePage "https://www.contoso.org" -IdentifierUris "https://www.adfcopytutorialapp.org/example" -Password "Pass@word1"
     ```
 
-    Se viene visualizzato l'errore seguente, specificare un URL diverso ed eseguire di nuovo il comando.
+    Se viene visualizzato il seguente errore hello, specificare un URL diverso ed eseguire nuovamente il comando di hello.
     
     ```PowerShell
-    Another object with the same value for property identifierUris already exists.
+    Another object with hello same value for property identifierUris already exists.
     ```
-7. Creare l'entità servizio di AD.
+7. Creare hello dell'entità servizio Active Directory.
 
     ```PowerShell
     New-AzureRmADServicePrincipal -ApplicationId $azureAdApplication.ApplicationId
     ```
-8. Aggiungere l'entità servizio al ruolo **Collaboratore Data Factory** .
+8. Aggiungere servizio principale toohello **Data Factory collaboratore** ruolo.
 
     ```PowerShell
     New-AzureRmRoleAssignment -RoleDefinitionName "Data Factory Contributor" -ServicePrincipalName $azureAdApplication.ApplicationId.Guid
     ```
-9. Ottenere l'ID applicazione.
+9. Ottieni ID applicazione hello
 
     ```PowerShell
     $azureAdApplication 
     ```
-    Annotare l'ID applicazione (applicationID) dall'output.
+    Annotare l'ID dell'applicazione hello (applicationID) dall'output di hello.
 
 Da questi passaggi si avranno i quattro valori seguenti:
 
 * ID tenant
 * ID sottoscrizione
 * ID applicazione
-* Password (specificata nel primo comando)
+* Password (specificata nel primo comando hello)
 
 ## <a name="walkthrough"></a>Procedura dettagliata
 1. Creare un'applicazione console .NET in C# con Visual Studio 2012, 2013 o 2015.
    1. Avviare **Visual Studio** 2012, 2013 o 2015.
-   2. Fare clic su **File**, scegliere **Nuovo** e quindi fare clic su **Progetto**.
+   2. Fare clic su **File**, punto troppo**New**, fare clic su **progetto**.
    3. Espandere **Modelli** e quindi selezionare **Visual C#**. In questa procedura dettagliata viene usato C#, ma è possibile usare qualsiasi linguaggio .NET.
-   4. Selezionare **Applicazione console** dall'elenco dei tipi di progetto a destra.
-   5. Immettere **DataFactoryAPITestApp** per Nome.
-   6. Selezionare **C:\ADFGetStarted** come percorso.
-   7. Fare clic su **OK** per creare il progetto.
-2. Fare clic su **Strumenti**, scegliere **Gestione pacchetti NuGet** e quindi fare clic su **Console di Gestione pacchetti**.
-3. Nella finestra **Console di Gestione pacchetti** seguire questa procedura:
-   1. Eseguire questo comando per installare il pacchetto di Data factory: `Install-Package Microsoft.Azure.Management.DataFactories`
-   2. Eseguire questo comando per installare il pacchetto di Azure Active Directory. Nel codice viene usata l'API di Active Directory: `Install-Package Microsoft.IdentityModel.Clients.ActiveDirectory -Version 2.19.208020213`
-4. Aggiungere la sezione **appSettings** seguente al file **App.config**. Queste impostazioni sono usate dal metodo helper **GetAuthorizationHeader**.
+   4. Selezionare **applicazione Console** dall'elenco di hello dei tipi di progetto su hello destra.
+   5. Immettere **DataFactoryAPITestApp** per hello Name.
+   6. Selezionare **C:\ADFGetStarted** per hello percorso.
+   7. Fare clic su **OK** progetto hello toocreate.
+2. Fare clic su **strumenti**, punto troppo**Gestione pacchetti NuGet**, fare clic su **Package Manager Console**.
+3. In hello **Package Manager Console**, hello i passaggi seguenti:
+   1. Eseguire hello pacchetto Data Factory tooinstall di comando seguente:`Install-Package Microsoft.Azure.Management.DataFactories`
+   2. Eseguire hello seguente pacchetto di Azure Active Directory tooinstall comando (utilizzare API di Active Directory nel codice hello):`Install-Package Microsoft.IdentityModel.Clients.ActiveDirectory -Version 2.19.208020213`
+4. Aggiungere il seguente hello **appSetttings** sezione toohello **app** file. Queste impostazioni vengono utilizzate dal metodo di supporto hello: **GetAuthorizationHeader**.
 
     Sostituire i valori di **&lt;Application ID&gt;**, **&lt;Password&gt;**, **&lt;Subscription ID&gt;** e **&lt;tenant ID&gt;** con i propri valori.
 
@@ -141,14 +141,14 @@ Da questi passaggi si avranno i quattro valori seguenti:
             <add key="WindowsManagementUri" value="https://management.core.windows.net/" />
 
             <add key="ApplicationId" value="your application ID" />
-            <add key="Password" value="Password you used while creating the AAD application" />
+            <add key="Password" value="Password you used while creating hello AAD application" />
             <add key="SubscriptionId" value= "Subscription ID" />
             <add key="ActiveDirectoryTenantId" value="Tenant ID" />
         </appSettings>
     </configuration>
     ```
 
-5. Aggiungere le istruzioni **using** seguenti al file di origine (Program.cs) nel progetto.
+5. Aggiungere il seguente hello **utilizzando** istruzioni toohello file di origine (Program.cs) nel progetto hello.
 
     ```csharp
     using System.Configuration;
@@ -165,7 +165,7 @@ Da questi passaggi si avranno i quattro valori seguenti:
 
     ```
 
-6. Aggiungere al metodo **Main** il codice seguente che crea un'istanza della classe **DataPipelineManagementClient**. Si userà questo oggetto per creare una data factory, un servizio collegato, i set di dati di input e output e una pipeline. Questo oggetto viene usato anche per monitorare le sezioni di un set di dati in fase di esecuzione.
+6. Aggiungere hello dopo il codice che crea un'istanza di **DataPipelineManagementClient** classe toohello **Main** metodo. Utilizzare questo toocreate oggetto una data factory, un servizio collegato, i set di dati di input e output e una pipeline. È inoltre possibile utilizzare le sezioni di toomonitor questo oggetto di un set di dati in fase di esecuzione.
 
     ```csharp
     // create data factory management client
@@ -182,11 +182,11 @@ Da questi passaggi si avranno i quattro valori seguenti:
     ```
 
    > [!IMPORTANT]
-   > Sostituire il valore di **resourceGroupName** con il nome del gruppo di risorse di Azure.
+   > Sostituire il valore di hello di **resourceGroupName** con il nome di hello del gruppo di risorse di Azure.
    >
-   > Aggiornare il nome della data factory (dataFactoryName) in modo che sia univoco. Il nome della data factory deve essere globalmente univoco. Per informazioni sulle regole di denominazione per gli elementi di Data factory, vedere l'argomento relativo alle [regole di denominazione di Data factory](data-factory-naming-rules.md) .
+   > Aggiorna nome di hello toobe factory (dataFactoryName) di dati univoco. Nome della data factory di hello deve essere globalmente univoco. Per informazioni sulle regole di denominazione per gli elementi di Data factory, vedere l'argomento relativo alle [regole di denominazione di Data factory](data-factory-naming-rules.md) .
 
-7. Aggiungere al metodo **Main** il codice seguente che crea una **data factory**.
+7. Aggiungere hello dopo il codice che crea un **data factory di** toohello **Main** metodo.
 
     ```csharp
     // create a data factory
@@ -204,8 +204,8 @@ Da questi passaggi si avranno i quattro valori seguenti:
     );
     ```
 
-    Una data factory può comprendere una o più pipeline. Una pipeline può comprendere una o più attività. Ad esempio, un'attività di copia per copiare dati da un archivio dati di origine a uno di destinazione e un'attività Hive HDInsight per eseguire uno script Hive e trasformare i dati di input in dati di output di prodotto. In questo passaggio iniziale viene creata la data factory.
-8. Aggiungere al metodo **Main** il codice seguente che crea un **servizio collegato di Archiviazione di Azure**.
+    Una data factory può comprendere una o più pipeline. Una pipeline può comprendere una o più attività. Ad esempio, una data toocopy attività di copia da un archivio dati di origine tooa destinazione e un toorun attività Hive di HDInsight un tootransform script Hive i dati di output tooproduct dati di input. Iniziamo con la creazione di data factory di hello in questo passaggio.
+8. Aggiungere hello dopo il codice che crea un **servizio collegato di archiviazione di Azure** toohello **Main** metodo.
 
    > [!IMPORTANT]
    > Sostituire **storageaccountname** e **accountkey** con il nome e la chiave dell'account di archiviazione di Azure.
@@ -228,12 +228,12 @@ Da questi passaggi si avranno i quattro valori seguenti:
     );
     ```
 
-    Si creano servizi collegati in una data factory per collegare gli archivi dati e i servizi di calcolo alla data factory. In questa esercitazione non si usano servizi di calcolo come Azure HDInsight o Azure Data Lake Analytics, ma due archivi dati di tipo Archiviazione di Azure (origine) e database SQL di Azure (destinazione). 
+    Creare servizi collegati in un toolink factory dati i dati vengono archiviati e toohello data factory di servizi di calcolo. In questa esercitazione non si usano servizi di calcolo come Azure HDInsight o Azure Data Lake Analytics, ma due archivi dati di tipo Archiviazione di Azure (origine) e database SQL di Azure (destinazione). 
 
     Si creano quindi due servizi collegati denominati AzureStorageLinkedService e AzureSqlLinkedService di tipo AzureStorage e AzureSqlDatabase.  
 
-    AzureStorageLinkedService collega l'account di archiviazione di Azure alla data factory. L'account di archiviazione è quello in cui, come parte dei [prerequisiti](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md), è stato creato un contenitore e sono stati caricati i dati.
-9. Aggiungere al metodo **Main** il codice seguente che crea un **servizio collegato di Azure SQL**.
+    Hello AzureStorageLinkedService collega la data factory toohello account di archiviazione di Azure. Questo account di archiviazione è hello uno in cui è stato creato un contenitore e caricato dati hello come parte del [prerequisiti](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md).
+9. Aggiungere hello dopo il codice che crea un **servizio collegato SQL Azure** toohello **Main** metodo.
 
    > [!IMPORTANT]
    > Sostituire **servername**, **databasename**, **username** e **password** con i nomi del server, del database, dell'utente e della password di Azure SQL.
@@ -256,8 +256,8 @@ Da questi passaggi si avranno i quattro valori seguenti:
     );
     ```
 
-    AzureSqlLinkedService collega il database SQL di Azure alla data factory. I dati copiati dall'archivio BLOB vengono archiviati in questo database. Come parte dei [prerequisiti](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) è stata creata la tabella emp in questo database.
-10. Aggiungere al metodo **Main** il codice seguente che crea **set di dati di input e output**.
+    AzureSqlLinkedService collega il toohello data factory di Azure SQL database. dati Hello che viene copiati dall'archiviazione blob hello vengono archiviati nel database. Tabella emp hello è stato creato in questo database come parte di [prerequisiti](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md).
+10. Aggiungere hello dopo il codice che crea **set di dati di input e output** toohello **Main** metodo.
 
     ```csharp
     // create input and output datasets
@@ -333,16 +333,16 @@ Da questi passaggi si avranno i quattro valori seguenti:
         });
     ```
     
-    Nel passaggio precedente sono stati creati servizi collegati per collegare l'account di archiviazione di Azure e un database SQL di Azure alla data factory. In questo passaggio vengono definiti due set di dati denominati InputDataset e OutputDataset, che rappresentano i dati di input e di output memorizzati negli archivi dati a cui fanno riferimento rispettivamente AzureStorageLinkedService e AzureSqlLinkedService.
+    Nel passaggio precedente hello, servizi collegati toolink è creato l'account di archiviazione di Azure e la data factory di Azure SQL database tooyour. In questo passaggio si definiscono due set di dati denominati InputDataset e OutputDataset che rappresentano l'input e output i dati archiviati in archivi dati hello a cui fa riferimento AzureStorageLinkedService e AzureSqlLinkedService rispettivamente.
 
-    Il servizio collegato Archiviazione di Azure specifica la stringa di connessione usata dal servizio Data Factory in fase di esecuzione per connettersi all'account di archiviazione di Azure. Il set di dati del BLOB di input (InputDataset) specifica il contenitore e la cartella che contiene i dati di input.  
+    il servizio di archiviazione di Azure collegati Hello specifica hello stringa di connessione del servizio Data Factory utilizzata in fase di esecuzione tooconnect tooyour account di archiviazione di Azure. E, set di dati blob di input hello (InputDataset) specifica il contenitore di hello e la cartella di hello che contiene i dati di input hello.  
 
-    Analogamente, il servizio collegato per il database SQL di Azure specifica la stringa di connessione usata dal servizio Data Factory in fase di esecuzione per connettersi al database SQL di Azure e il set di dati della tabella SQL di output (OututDataset) specifica la tabella del database in cui vengono copiati i dati dell'archivio BLOB.
+    Analogamente, hello servizio Database SQL di Azure collegati specifica hello stringa di connessione del servizio Data Factory utilizzata nel database di SQL Azure tooyour tooconnect fase di esecuzione. E, di output di hello set di dati nella tabella SQL (OututDataset) specifica la tabella hello in hello di toowhich hello database vengono copiati dati dall'archiviazione blob hello.
 
-    In questo passaggio viene creato un set di dati denominato InputDataset che punta a un file BLOB (emp.txt) nella cartella radice di un contenitore BLOB (adftutorial) nella risorsa di archiviazione di Azure rappresentata dal servizio collegato AzureStorageLinkedService. Se non si specifica un valore per fileName (o lo si ignora), i dati di tutti i BLOB della cartella di input vengono copiati nella destinazione. In questa esercitazione si specifica un valore per fileName.    
+    In questo passaggio, creare un set di dati denominato InputDataset che punta il file di blob tooa (emp.txt) nella cartella radice hello di un contenitore di blob (adftutorial) in hello rappresentato da hello AzureStorageLinkedService collegato servizio di archiviazione di Azure. Se non specifica un valore per il nome file hello (o ignorarlo), i dati da tutti i BLOB nella cartella input hello sono copiati toohello destinazione. In questa esercitazione, si specifica un valore per il nome file hello.    
 
-    In questo passaggio si crea un set di dati di output denominato **OutputDataset**. Questo set di dati punta a una tabella SQL nel database SQL di Azure rappresentato da **AzureSqlLinkedService**.
-11. Aggiungere al metodo **Main** il codice seguente che **crea e attiva una pipeline**. In questo passaggio viene creata una pipeline con un'**attività di copia** che usa **InputDataset** come input e **OutputDataset** come output.
+    In questo passaggio si crea un set di dati di output denominato **OutputDataset**. Questo set di dati fa riferimento nella tabella SQL tooa nel database di SQL Azure hello rappresentato da **AzureSqlLinkedService**.
+11. Aggiunta di codice seguente hello che **viene creato e attivato una pipeline** toohello **Main** metodo. In questo passaggio viene creata una pipeline con un'**attività di copia** che usa **InputDataset** come input e **OutputDataset** come output.
 
     ```csharp
     // create a pipeline
@@ -361,7 +361,7 @@ Da questi passaggi si avranno i quattro valori seguenti:
                 {
                     Description = "Demo Pipeline for data transfer between blobs",
 
-                    // Initial value for pipeline's active period. With this, you won't need to set slice status
+                    // Initial value for pipeline's active period. With this, you won't need tooset slice status
                     Start = PipelineActivePeriodStartTime,
                     End = PipelineActivePeriodEndTime,
 
@@ -399,14 +399,14 @@ Da questi passaggi si avranno i quattro valori seguenti:
         });
     ```
 
-    Tenere presente quanto segue:
+    Si noti hello seguenti punti:
    
-    - Nella sezione delle attività esiste una sola attività con l'oggetto **type** impostato su **Copy**. Per altre informazioni sull'attività di copia, vedere le [attività di spostamento dei dati](data-factory-data-movement-activities.md). Nelle soluzioni Data Factory è anche possibile usare le [attività di trasformazione dei dati](data-factory-data-transformation-activities.md).
-    - L'input per l'attività è impostato su **InputDataset** e l'output è impostato su **OutputDataset**. 
-    - Nella sezione **typeProperties** vengono specificati **BlobSource** come tipo di origine e **SqlSink** come tipo di sink. Per un elenco completo degli archivi dati supportati dall'attività di copia come origini e sink, vedere gli [archivi dati supportati](data-factory-data-movement-activities.md#supported-data-stores-and-formats). Per informazioni su come usare uno specifico archivio dati supportato come origine/sink, fare clic sul collegamento nella tabella.  
+    - Nella sezione attività hello, è presente una sola attività il cui **tipo** è troppo**copia**. Per ulteriori informazioni sulle attività di copia hello, vedere [attività lo spostamento dei dati](data-factory-data-movement-activities.md). Nelle soluzioni Data Factory è anche possibile usare le [attività di trasformazione dei dati](data-factory-data-transformation-activities.md).
+    - Input per attività hello è troppo**InputDataset** e di output per attività hello è troppo**OutputDataset**. 
+    - In hello **typeProperties** sezione **BlobSource** è specificato come tipo di origine hello e **SqlSink** è specificato come tipo di sink hello. Per un elenco completo degli archivi di dati supportati dall'attività di copia hello come origini e sink, vedere [supportati archivi dati](data-factory-data-movement-activities.md#supported-data-stores-and-formats). toolearn sulla modalità di memorizzazione toouse dati specifici supportati come origine/sink, fare clic su collegamento hello nella tabella hello.  
    
-    Attualmente, è il set di dati di output a determinare la pianificazione. In questa esercitazione il set di dati di output viene configurato per generare una sezione una volta ogni ora. La pipeline ha un'ora di inizio e un'ora di fine intervallate da un giorno, ovvero 24 ore. Vengono quindi generate dalla pipeline 24 sezioni di set di dati di output.
-12. Aggiungere al metodo **Main** il codice seguente per ottenere lo stato di una sezione di dati del set di dati di output. In questo esempio è prevista solo una sezione.
+    Set di dati di output è attualmente, quali unità hello pianificazione. In questa esercitazione, set di dati di output è tooproduce configurato una sezione di una volta all'ora. pipeline Hello dispone ora di inizio e ora di fine di un giorno separato, ovvero 24 ore. Pertanto, 24 sezioni del set di dati di output vengono generate dalla pipeline hello.
+12. Aggiungere i seguenti toohello codice hello **Main** metodo tooget hello stato una sezione di dati di hello set di dati di output. In questo esempio è prevista solo una sezione.
 
     ```csharp
     // Pulling status within a timeout threshold
@@ -415,8 +415,8 @@ Da questi passaggi si avranno i quattro valori seguenti:
 
     while (DateTime.Now - start < TimeSpan.FromMinutes(5) && !done)
     {
-        Console.WriteLine("Pulling the slice status");        
-        // wait before the next status check
+        Console.WriteLine("Pulling hello slice status");        
+        // wait before hello next status check
         Thread.Sleep(1000 * 12);
 
         var datalistResponse = client.DataSlices.List(resourceGroupName, dataFactoryName, Dataset_Destination,
@@ -442,13 +442,13 @@ Da questi passaggi si avranno i quattro valori seguenti:
     }
     ```
 
-13. Aggiungere al metodo **Main** il codice seguente per ottenere i dettagli di esecuzione di una sezione dati.
+13. Aggiungere i seguenti dettagli tooget eseguire codice per un toohello sezione dati hello **Main** metodo.
 
     ```csharp
     Console.WriteLine("Getting run details of a data slice");
 
-    // give it a few minutes for the output slice to be ready
-    Console.WriteLine("\nGive it a few minutes for the output slice to be ready and press any key.");
+    // give it a few minutes for hello output slice toobe ready
+    Console.WriteLine("\nGive it a few minutes for hello output slice toobe ready and press any key.");
     Console.ReadKey();
 
     var datasliceRunListResponse = client.DataSliceRuns.List(
@@ -472,14 +472,14 @@ Da questi passaggi si avranno i quattro valori seguenti:
         Console.WriteLine("ErrorMessage: \t{0}", run.ErrorMessage);
     }
 
-    Console.WriteLine("\nPress any key to exit.");
+    Console.WriteLine("\nPress any key tooexit.");
     Console.ReadKey();
     ```
 
-14. Aggiungere alla classe **Program** il metodo helper seguente usato per il metodo **Main**.
+14. Aggiungere hello seguente metodo helper utilizzato dal hello **Main** metodo toohello **programma** classe.
 
     > [!NOTE] 
-    > Quando si copia e incolla il codice seguente, assicurarsi che il codice copiato si trovi allo stesso livello del metodo Main.
+    > Quando si copia e Incolla hello seguente di codice, assicurarsi che tale hello codice copiato è hello stesso livello come hello metodo Main.
 
     ```csharp
     public static async Task<string> GetAuthorizationHeader()
@@ -495,31 +495,31 @@ Da questi passaggi si avranno i quattro valori seguenti:
         if (result != null)
             return result.AccessToken;
 
-        throw new InvalidOperationException("Failed to acquire token");
+        throw new InvalidOperationException("Failed tooacquire token");
     }
     ```
 
-15. In Esplora soluzioni espandere il progetto (DataFactoryAPITestApp), fare clic con il pulsante destro del mouse su **Riferimenti** e scegliere **Aggiungi riferimento**. Selezionare la casella di controllo per l'assembly **System.Configuration** e fare clic su **OK**.
-16. Compilare l'applicazione console. Scegliere **Compila** dal menu e fare clic su **Compila soluzione**.
-17. Verificare che esista almeno un file nel contenitore **adftutorial** nell'archivio BLOB di Azure. In caso contrario, creare il file **Emp.txt** nel Blocco note con il contenuto seguente e caricarlo nel contenitore adftutorial.
+15. In hello Esplora soluzioni, espandere il progetto di hello (DataFactoryAPITestApp), fare doppio clic su **riferimenti**, fare clic su **Aggiungi riferimento**. Selezionare la casella di controllo per l'assembly **System.Configuration** e fare clic su **OK**.
+16. Compilare un'applicazione console hello. Fare clic su **compilare** menu hello e fare clic su **Compila soluzione**.
+17. Verificare che esista almeno un file in hello **adftutorial** contenitore nell'archiviazione blob di Azure. In caso contrario, creare **Emp.txt** con hello seguente contenuto del file nel blocco note e caricarlo toohello adftutorial contenitore.
 
     ```
     John, Doe
     Jane, Doe
     ```
-18. Eseguire l'esempio scegliendo **Debug** -> **Avvia debug** dal menu. Quando viene visualizzato un messaggio simile ad **Acquisizione dettagli dell'esecuzione di una sezione di dati**, attendere qualche minuto e premere **INVIO**.
-19. Usare il portale di Azure per verificare che la data factory **APITutorialFactory** venga creata con gli elementi seguenti:
+18. Eseguire l'esempio hello facendo **Debug** -> **Avvia debug** menu hello. Quando viene visualizzato hello **dettagli di una sezione di dati di esecuzione**, attendere qualche minuto e premere **invio**.
+19. Utilizzare hello tooverify portale Azure data factory di tale hello **APITutorialFactory** viene creato con hello seguenti elementi:
    * Servizio collegato: **LinkedService_AzureStorage**.
    * Set di dati: **InputDataset** e **OutputDataset**.
    * Pipeline: **PipelineBlobSample**
-20. Verificare che i due record dipendente vengano creati nella tabella **emp** del database SQL di Azure specificato.
+20. Verificare che i record dipendente hello due vengono creati in hello **emp** tabella hello specificato database SQL di Azure.
 
 ## <a name="next-steps"></a>Passaggi successivi
 Per la documentazione completa sull'API .NET per Data Factory, vedere le [informazioni di riferimento sull'API NET di Data Factory](/dotnet/api/index?view=azuremgmtdatafactories-4.12.1).
 
-In questa esercitazione sono stati usati l'archivio BLOB di Azure come archivio dati di origine e un database SQL di Azure come archivio dati di destinazione in un'operazione di copia. La tabella seguente contiene un elenco degli archivi dati supportati come origini e come destinazioni dall'attività di copia: 
+In questa esercitazione sono stati usati l'archivio BLOB di Azure come archivio dati di origine e un database SQL di Azure come archivio dati di destinazione in un'operazione di copia. Hello nella tabella seguente fornisce un elenco di archivi di dati supportato come origini e destinazioni da attività di copia hello: 
 
 [!INCLUDE [data-factory-supported-data-stores](../../includes/data-factory-supported-data-stores.md)]
 
-Per informazioni su come copiare dati da/in un archivio dati, fare clic sul collegamento relativo all'archivio dati nella tabella.
+toolearn su come archiviano dati toocopy da e verso un tipo di dati, fare clic su collegamento hello per hello archivio di dati nella tabella hello.
 

@@ -1,6 +1,6 @@
 ---
-title: Backup di Azure SQL Data Warehouse - Snapshot e ridondanza geografica | Documentazione Microsoft
-description: Informazioni sui backup dei database predefiniti di SQL Data Warehouse che consentono di ripristinare SQL Data Warehouse di Azure in un punto di ripristino o in un'area geografica diversa.
+title: backup di SQL Data Warehouse aaaAzure - gli snapshot, con ridondanza geografica | Documenti Microsoft
+description: Per informazioni sui backup di database predefiniti SQL Data Warehouse che consentono di toorestore un punto di ripristino di Azure SQL Data Warehouse tooa oppure un'area geografica diversa.
 services: sql-data-warehouse
 documentationcenter: 
 author: Lakshmi1812
@@ -15,42 +15,42 @@ ms.workload: NA
 ms.custom: backup-restore
 ms.date: 10/31/2016
 ms.author: lakshmir;barbkess
-ms.openlocfilehash: 54c0149a769e654139bbdf709802d49127f041ac
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 34659480485246f54a1490e185fc1b903fb2520d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="sql-data-warehouse-backups"></a>Backup di SQL Data Warehouse
-SQL Data Warehouse offre il backup sia locale che geografico come parte delle sue funzionalità di backup del data warehouse. Queste includono gli snapshot dei BLOB di Archiviazione di Azure e l'archiviazione con ridondanza geografica. È possibile i backup del dati warehouse per ripristinare il data warehouse a un punto di ripristino nell'area primaria o per ripristinarlo a un'area geografica diversa. Questo articolo illustra le specifiche dei backup in SQL Data Warehouse.
+SQL Data Warehouse offre il backup sia locale che geografico come parte delle sue funzionalità di backup del data warehouse. Queste includono gli snapshot dei BLOB di Archiviazione di Azure e l'archiviazione con ridondanza geografica. Utilizzare dati warehouse backup toorestore il ripristino di data warehouse tooa punto nell'area primaria hello o ripristinare l'area geografica diversa tooa. Questo articolo illustra le specifiche di hello di backup in SQL Data Warehouse.
 
 ## <a name="what-is-a-data-warehouse-backup"></a>Cos'è un backup di data warehouse?
-Un backup di data warehouse è costituito dai dati che è possibile usare per ripristinare un data warehouse a un momento specifico.  Poiché SQL Data Warehouse è un sistema distribuito, un backup di data warehouse è costituito da molti file archiviati in BLOB di Azure. 
+Un backup dei dati del warehouse è dati hello che è possibile utilizzare toorestore un'ora specifica di data warehouse tooa.  Poiché SQL Data Warehouse è un sistema distribuito, un backup di data warehouse è costituito da molti file archiviati in BLOB di Azure. 
 
 I backup dei database sono una parte essenziale di qualsiasi strategia di continuità aziendale e ripristino di emergenza, perché proteggono i dati dal danneggiamento o dall'eliminazione accidentale. Per altre informazioni, vedere [Panoramica sulla continuità aziendale](../sql-database/sql-database-business-continuity.md).
 
 ## <a name="data-redundancy"></a>Ridondanza dei dati
-SQL Data Warehouse protegge i dati archiviandoli in Archiviazione Premium di Azure con ridondanza locale. Questa funzionalità di Archiviazione di Azure archivia più copie sincrone dei dati nel data center locale per garantire una protezione trasparente degli stessi in caso di problemi localizzati. La ridondanza dei dati garantisce che i dati non subiscano l'impatto di problemi dell'infrastruttura, ad esempio errori del disco. La ridondanza dei dati assicura la continuità aziendale con un'infrastruttura a tolleranza di errore e disponibilità elevata.
+SQL Data Warehouse protegge i dati archiviandoli in Archiviazione Premium di Azure con ridondanza locale. Questa funzionalità di archiviazione di Azure archivia sincrone copie dei dati hello nella protezione dei dati trasparenti tooguarantee centro dati locale hello se sono presenti errori localizzati. La ridondanza dei dati garantisce che i dati non subiscano l'impatto di problemi dell'infrastruttura, ad esempio errori del disco. La ridondanza dei dati assicura la continuità aziendale con un'infrastruttura a tolleranza di errore e disponibilità elevata.
 
-Per altre informazioni su:
+toolearn ulteriori informazioni:
 
-* Archiviazione Premium di Azure, vedere [Introduzione ad Archiviazione Premium di Azure](../storage/common/storage-premium-storage.md).
+* Archiviazione Premium di Azure, vedere [tooAzure introduzione archiviazione Premium](../storage/common/storage-premium-storage.md).
 * Archiviazione con ridondanza locale, vedere [Replica di Archiviazione di Azure](../storage/common/storage-redundancy.md#locally-redundant-storage).
 
 ## <a name="azure-storage-blob-snapshots"></a>Snapshot dei BLOB di Archiviazione di Azure
-Come vantaggio dell'uso di Archiviazione Premium di Azure, SQL Data Warehouse usa gli snapshot dei BLOB di Archiviazione di Azure per eseguire il backup del data warehouse in locale. È possibile ripristinare un data warehouse a un punto di ripristino di uno snapshot. Gli snapshot vengono eseguiti come minimo ogni quattro-otto ore e sono disponibili per sette giorni.  
+Il vantaggio dell'utilizzo di archiviazione Premium di Azure SQL Data Warehouse utilizza localmente il Blob di archiviazione di Azure snapshot toobackup hello data warehouse. È possibile ripristinare un punto di ripristino dati warehouse tooa dello snapshot. Gli snapshot vengono eseguiti come minimo ogni quattro-otto ore e sono disponibili per sette giorni.  
 
-Per altre informazioni su:
+toolearn ulteriori informazioni:
 
 * Snapshot BLOB di Azure, vedere [Creare uno snapshot BLOB](../storage/blobs/storage-blob-snapshots.md).
 
 ## <a name="geo-redundant-backups"></a>Backup con ridondanza geografica
-Ogni 24 ore SQL Data Warehouse archivia il data warehouse completo nella risorsa di archiviazione standard. Il data warehouse completo viene creato in base all'ora dell'ultimo snapshot. La risorsa di archiviazione standard appartiene a un account di archiviazione con ridondanza geografica con accesso in lettura (RA-GRS). La funzionalità Archiviazione con ridondanza geografica e accesso in lettura di Archiviazione di Azure replica i file di backup in un [data center associato](../best-practices-availability-paired-regions.md). La replica geografica assicura la possibilità di ripristinare un data warehouse nel caso in cui non si possa accedere agli snapshot nell'area primaria. 
+Ogni 24 ore, SQL Data Warehouse archivia hello completa del data warehouse nel servizio di archiviazione Standard. Hello completo data warehouse viene creato toomatch hello ora dell'ultimo snapshot hello. archiviazione standard Hello appartiene tooa account di archiviazione con ridondanza geografica con accesso in lettura (RA-GRS). funzionalità di archiviazione di Azure RA-GRS Hello replica hello i file di backup tooa [centro dati associato](../best-practices-availability-paired-regions.md). Questa replica geografica assicura che nel caso in cui non è possibile accedere snapshot hello nell'area primaria, è possibile ripristinare del data warehouse. 
 
-Questa funzionalità è attivata per impostazione predefinita. Se non si desidera usare backup con ridondanza geografica, è possibile [rifiutare esplicitamente] (https://docs.microsoft.com/powershell/resourcemanager/Azurerm.sql/v2.1.0/Set-AzureRmSqlDatabaseGeoBackupPolicy?redirectedfrom=msdn). 
+Questa funzionalità è attivata per impostazione predefinita. Se non si desidera toouse backup con ridondanza geografica, è possibile [rifiutare esplicitamente] (https://docs.microsoft.com/powershell/resourcemanager/Azurerm.sql/v2.1.0/Set-AzureRmSqlDatabaseGeoBackupPolicy?redirectedfrom=msdn). 
 
 > [!NOTE]
-> In Archiviazione di Azure il termine *replica* fa riferimento alla copia dei file da una località a un'altra. La *replica di database* di SQL fa riferimento a più database secondari sincronizzati con un database primario. 
+> Nell'archiviazione di Azure, il termine hello *replica* fa riferimento il file toocopying da tooanother un'unica posizione. SQL *replica di database* fa riferimento a database secondari toomultiple tookeeping sincronizzati con un database primario. 
 > 
 > 
 
@@ -59,15 +59,15 @@ Questa funzionalità è attivata per impostazione predefinita. Se non si desider
 >
 > 
 
-Per altre informazioni su:
+toolearn ulteriori informazioni:
 
 * Archiviazione con ridondanza geografica, vedere [Replica di Archiviazione di Azure](../storage/common/storage-redundancy.md).
 * Archiviazione con ridondanza geografica e accesso in lettura, vedere [Archiviazione con ridondanza geografica e accesso in lettura](../storage/common/storage-redundancy.md#read-access-geo-redundant-storage).
 
 ## <a name="data-warehouse-backup-schedule-and-retention-period"></a>Pianificazione dei backup del data warehouse e periodo di conservazione
-SQL Data Warehouse crea snapshot nei data warehouse online ogni quattro-otto ore e mantiene ogni snapshot per sette giorni. È possibile ripristinare il database online a uno dei punti di ripristino degli ultimi sette giorni. 
+SQL Data Warehouse Crea snapshot nel warehouse dati online ogni quattro ore tooeight e mantenere ogni snapshot per sette giorni. È possibile ripristinare il tooone database online hello dei punti di ripristino in hello ultimi sette giorni. 
 
-Per vedere quando è stato eseguito l'ultimo snapshot, eseguire questa query su SQL Data Warehouse online. 
+toosee all'avvio dell'ultimo snapshot hello, eseguire questa query per la versione online di SQL Data Warehouse. 
 
 ```sql
 select top 1 *
@@ -75,39 +75,39 @@ from sys.pdw_loader_backup_runs
 order by run_id desc;
 ```
 
-Se si desidera mantenere uno snapshot per più di sette giorni, è possibile ripristinare un punto di ripristino come nuovo data warehouse. Dopo aver completato il ripristino, SQL Data Warehouse avvia la creazione di snapshot nel nuovo data warehouse. Se non si apportano modifiche al nuovo data warehouse, gli snapshot rimangono vuoti e pertanto il costo dello snapshot è minimo. È anche possibile mettere in pausa il database per impedire a SQL Data Warehouse di creare snapshot.
+Se è necessario tooretain uno snapshot per più di sette giorni, è possibile ripristinare un ripristino punto tooa nuovo data warehouse. Al termine, il ripristino di hello SQL Data Warehouse avvia la creazione di snapshot nel nuovo data warehouse di hello. Se non si apporta modifiche toohello nuovo data warehouse, gli snapshot hello rimangono vuoti e pertanto hello snapshot costo minimo. È anche possibile sospendere hello database tookeep SQL Data Warehouse dalla creazione di snapshot.
 
-### <a name="what-happens-to-my-backup-retention-while-my-data-warehouse-is-paused"></a>Cosa accade alla conservazione dei backup mentre il data warehouse è in pausa?
-Mentre un data warehouse è in pausa SQL Data Warehouse non crea snapshot e non fa scadere gli snapshot. L'età degli snapshot non cambia mentre il data warehouse è in pausa. La conservazione degli snapshot è basata sul numero di giorni in cui il data warehouse rimane in linea e non sui giorni di calendario.
+### <a name="what-happens-toomy-backup-retention-while-my-data-warehouse-is-paused"></a>Conservazione dei backup toomy cosa accade quando viene sospeso il personale del data warehouse?
+Mentre un data warehouse è in pausa SQL Data Warehouse non crea snapshot e non fa scadere gli snapshot. età di Hello snapshot non cambia quando viene sospeso il data warehouse di hello. Memorizzazione degli snapshot in base hello numero di giorni hello data warehouse è online, non i giorni di calendario.
 
-Ad esempio se uno snapshot viene avviato il 1° ottobre alle 16.00 e il data warehouse viene messo in pausa il 3 ottobre alle 16.00, lo snapshot ha due giorni. In qualsiasi momento il data warehouse ritorni in linea, lo snapshot avrà due giorni. Se il data warehouse torna in linea il 5 ottobre alle 16.00, in quel momento lo snapshot avrà due giorni e gli rimarranno cinque giorni.
+Ad esempio, se uno snapshot inizia il 1 ottobre PM 4 e data warehouse di hello è in pausa il 3 ottobre 4 ore, hello è due giorni. Ogni volta che viene riportato online data warehouse di hello snapshot hello da due giorni. Se data warehouse di hello online ottobre 5 4 ore, snapshot hello da due giorni e rimane per cinque giorni.
 
-Quando il data warehouse ritorna in linea, SQL Data Warehouse avvia nuovi snapshot e fa scadere gli snapshot quando superano i sette giorni di dati.
+Quando il data warehouse di hello torna online, SQL Data Warehouse riprende nuovi snapshot e scade snapshot quando dispongono di più di sette giorni di dati.
 
-### <a name="how-long-is-the-retention-period-for-a-dropped-data-warehouse"></a>Quanto dura il periodo di conservazione di un data warehouse rimosso?
-Quando un data warehouse viene eliminato, il data warehouse e gli snapshot vengono conservati per sette giorni e poi vengono rimossi. È possibile ripristinare il data warehouse a qualsiasi punto di ripristino salvato.
+### <a name="how-long-is-hello-retention-period-for-a-dropped-data-warehouse"></a>Quanto tempo è il periodo di memorizzazione hello per rilasciarlo data warehouse?
+Quando viene eliminato un data warehouse, data warehouse di hello e gli snapshot hello vengono salvati per sette giorni e quindi rimosso. È possibile ripristinare hello dati warehouse tooany hello salvato dei punti di ripristino.
 
 > [!IMPORTANT]
-> Se si elimina un'istanza logica del server SQL, vengono eliminati anche tutti i database appartenenti all'istanza e non sarà possibile recuperarli. Non è possibile ripristinare un server eliminato.
+> Se si elimina un'istanza SQL server logica, tutti i database appartenenti a toohello istanza vengono inoltre eliminati e non possono essere recuperati. Non è possibile ripristinare un server eliminato.
 > 
 > 
 
 ## <a name="data-warehouse-backup-costs"></a>Costi di backup del data warehouse
-Il costo totale per il data warehouse primario e sette giorni di snapshot BLOB di Azure viene arrotondato al TB più vicino. Ad esempio, se il data warehouse è 1,5 TB e gli snapshot usano 100 GB, verranno fatturati 2 TB di dati in base alle tariffe di archiviazione Premium di Azure. 
+Hello totale costi per il warehouse di dati primario e sette giorni di snapshot di Blob di Azure è arrotondato toohello più vicino TB. Ad esempio, se il data warehouse è 1,5 TB e snapshot hello utilizzare 100 GB, vengono fatturati per 2 TB di dati in base alle tariffe di archiviazione Premium di Azure. 
 
 > [!NOTE]
-> Ogni snapshot è inizialmente vuoto e aumenta di dimensione quando si apportano modifiche al data warehouse primario. Tutti gli snapshot aumentano di dimensione quando il data warehouse cambia. Perciò i costi di archiviazione per gli snapshot aumentano in base alla frequenza di modifica.
+> Ogni snapshot è inizialmente vuota e aumenta man mano che si apportata warehouse di dati primario toohello le modifiche. Tutti gli snapshot di aumentano delle dimensioni come modifiche di hello data warehouse. Di conseguenza, i costi di archiviazione hello per gli snapshot aumentano secondo toohello tasso di variazione.
 > 
 > 
 
-Se si usa l'archiviazione con ridondanza geografica, sarà addebitato un costo di archiviazione separato. L'archiviazione con ridondanza geografica è fatturata in base alla tariffa Standard per l'Archiviazione con ridondanza geografica e accesso in lettura.
+Se si usa l'archiviazione con ridondanza geografica, sarà addebitato un costo di archiviazione separato. archiviazione con ridondanza geografica Hello viene fatturato alla tariffa di archiviazione accesso in lettura geograficamente ridondante (RA-GRS) standard hello.
 
 Per altre informazioni sui prezzi di SQL Data Warehouse, vedere [Prezzi di SQL Data Warehouse](https://azure.microsoft.com/pricing/details/sql-data-warehouse/).
 
 ## <a name="using-database-backups"></a>Uso dei backup di database
-Il principale utilizzo per i backup di SQL Data Warehouse è il ripristino del data warehouse a uno dei punti di ripristino entro il periodo di conservazione.  
+uso principale di Hello per i backup SQL data warehouse è toorestore hello dati warehouse tooone hello dei punti di ripristino entro il periodo di memorizzazione hello.  
 
-* Per ripristinare un SQL Data Warehouse, vedere [Ripristinare un SQL Data Warehouse](sql-data-warehouse-restore-database-overview.md).
+* toorestore un SQL data warehouse, vedere [ripristino configurazione di un data warehouse SQL](sql-data-warehouse-restore-database-overview.md).
 
 ## <a name="related-topics"></a>Argomenti correlati
 ### <a name="scenarios"></a>Scenari
@@ -115,7 +115,7 @@ Il principale utilizzo per i backup di SQL Data Warehouse è il ripristino del d
 
 <!-- ### Tasks -->
 
-* Per ripristinare un data warehouse, vedere [Ripristinare un SQL Data Warehouse](sql-data-warehouse-restore-database-overview.md)
+* toorestore un data warehouse, vedere [ripristinare un SQL data warehouse](sql-data-warehouse-restore-database-overview.md)
 
 <!-- ### Tutorials -->
 

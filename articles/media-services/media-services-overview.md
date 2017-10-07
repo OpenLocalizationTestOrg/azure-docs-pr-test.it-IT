@@ -1,5 +1,5 @@
 ---
-title: Panoramica di Servizi multimediali di Azure | Microsoft Docs
+title: Panoramica di servizi multimediali aaaAzure | Documenti Microsoft
 description: Questo argomento fornisce informazioni generali su Servizi multimediali di Azure
 services: media-services
 documentationcenter: 
@@ -14,19 +14,19 @@ ms.devlang: na
 ms.topic: hero-article
 ms.date: 07/04/2017
 ms.author: juliako;anilmur
-ms.openlocfilehash: 2a175aed40b9775d9a4de6877eb3467b43819568
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 81f9f4d9ff75effea30c10fd09449e9d2025f377
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-media-services-overview"></a>Panoramica di Servizi multimediali di Azure 
 
-Servizi multimediali di Microsoft Azure costituisce una piattaforma estensibile basata sul cloud che consente agli sviluppatori di creare applicazioni di distribuzione e gestione di contenuti multimediali altamente scalabili. Servizi multimediali si basa su API REST che consentono di caricare, archiviare e codificare contenuti video o audio in modo sicuro, nonché creare pacchetti di tali contenuti per la distribuzione in streaming live e on demand a vari client (ad esempio, TV, PC e dispositivi mobili).
+Servizi multimediali di Microsoft Azure è una piattaforma estendibile basato su cloud che consente agli sviluppatori toobuild contenuti multimediali altamente scalabili distribuzione e gestione delle applicazioni. Servizi multimediali è basato sulle API REST che consentono di caricamento toosecurely, archiviare, codificare e creare il pacchetto di contenuto video o audio per su richiesta e live streaming toovarious client di recapito (ad esempio, TV, PC e dispositivi mobili).
 
-È possibile creare flussi di lavoro end-to-end usando unicamente Servizi multimediali. È anche possibile usare componenti di terze parti per alcune parti del flusso di lavoro, ad esempio, la codifica con un codificatore di terze parti. Inoltre, sono possibili operazioni di caricamento, protezione, creazione di pacchetti e invio tramite Servizi multimediali.
+È possibile creare flussi di lavoro end-to-end usando unicamente Servizi multimediali. È anche possibile scegliere toouse componenti di terze parti per alcune parti del flusso di lavoro. ad esempio, la codifica con un codificatore di terze parti. Inoltre, sono possibili operazioni di caricamento, protezione, creazione di pacchetti e invio tramite Servizi multimediali.
 
-È possibile optare per lo streaming dei contenuti live o on demand. L'argomento contiene inoltre collegamenti ad altri argomenti rilevanti.
+È possibile scegliere toostream il contenuto in tempo reale o fornire contenuto su richiesta. argomento Hello è anche possibile collegare tooother relativi argomenti.
 
 ## <a name="media-services-learning-paths"></a>Percorsi di apprendimento di Servizi multimediali
 È possibile visualizzare i percorsi di apprendimento AMS qui:
@@ -36,25 +36,25 @@ Servizi multimediali di Microsoft Azure costituisce una piattaforma estensibile 
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-Per iniziare a utilizzare Servizi multimediali di Azure, è necessario disporre di quanto segue:
+toostart tramite servizi multimediali di Azure, è necessario seguente hello:
 
 * Un account Azure. Se non si dispone di un account, è possibile creare un account di valutazione gratuita in pochi minuti. Per informazioni dettagliate, vedere la pagina relativa alla [versione di valutazione gratuita di Azure](https://azure.microsoft.com).
 * Un account di Servizi multimediali di Azure. Per altre informazioni, vedere [Creare un account](media-services-portal-create-account.md).
 * (Facoltativo) Configurare l'ambiente di sviluppo. Scegliere .NET o API REST per l'ambiente di sviluppo. Per altre informazioni, vedere [Configurare l'ambiente](media-services-dotnet-how-to-use.md).
 
-    Sono anche disponibili informazioni su come [connettersi all'API AMS a livello di codice](media-services-use-aad-auth-to-access-ams-api.md).
+    Inoltre, informazioni su come troppo[connettersi a livello di programmazione tooAMS API](media-services-use-aad-auth-to-access-ams-api.md).
 * Un endpoint di streaming Standard o Premium con stato avviato.  Per altre informazioni, vedere [Gestione degli endpoint di streaming](media-services-portal-manage-streaming-endpoints.md).
 
 ## <a name="sdks-and-tools"></a>SDK e strumenti
 
-Per creare soluzioni di Servizi multimediali, è possibile usare:
+soluzioni di servizi multimediali toobuild, è possibile utilizzare:
 
 * [API REST di Servizi multimediali](https://docs.microsoft.com/rest/api/media/operations/azure-media-services-rest-api-reference)
-* Uno dei client SDK disponibili:
+* Uno dei client disponibili hello SDK:
     * [Azure Media Services SDK per .NET](https://github.com/Azure/azure-sdk-for-media-services)
     * [Azure SDK per Java](https://github.com/Azure/azure-sdk-for-java),
     * [Azure PHP SDK](https://github.com/Azure/azure-sdk-for-php),
-    * [Servizi multimediali di Azure per Node.js](https://github.com/michelle-becker/node-ams-sdk/blob/master/lib/request.js). Questa è una versione non Microsoft di Node.js SDK. È gestita da una community e attualmente non copre al 100% le API AMS.
+    * [Servizi multimediali di Azure per Node.js](https://github.com/michelle-becker/node-ams-sdk/blob/master/lib/request.js). Questa è una versione non Microsoft di Node.js SDK. Viene mantenuto da una community e non sono attualmente una copertura del 100% di hello AMS APIs).
 * Strumenti esistenti:
     * [Portale di Azure](https://portal.azure.com/)
     * [Azure-Media-Services-Explorer](https://github.com/Azure/Azure-Media-Services-Explorer) (Azure Media Services Explorer (AMSE) è un'applicazione Winforms/C# per Windows)
@@ -62,7 +62,7 @@ Per creare soluzioni di Servizi multimediali, è possibile usare:
 ## <a name="concepts-and-overview"></a>Panoramica e concetti
 Per i concetti relativi ai Servizi multimediali di Azure, vedere [Concetti su Servizi multimediali di Azure](media-services-concepts.md).
 
-Per una serie di procedure che illustra tutti i componenti principali di Servizi multimediali di Azure, vedere la pagina relativa alle [esercitazioni dettagliate sui Servizi multimediali di Azure](https://docs.com/fukushima-shigeyuki/3439/english-azure-media-services-step-by-step-series). Questa serie offre un'ottima panoramica dei concetti e usa lo strumento AMSE per illustrare le attività AMS. AMSE è uno strumento Windows. Supporta la maggior parte delle attività che è possibile eseguire a livello di codice con [AMS SDK per .NET](https://github.com/Azure/azure-sdk-for-media-services), [Azure SDK per Java](https://github.com/Azure/azure-sdk-for-java) o [Azure PHP SDK](https://github.com/Azure/azure-sdk-for-php).
+Per una procedura-tooseries che presentano le componenti principali di hello tooall di servizi multimediali di Azure, vedere [esercitazioni di Azure Media Services dettagliata](https://docs.com/fukushima-shigeyuki/3439/english-azure-media-services-step-by-step-series). Questa serie contiene una panoramica dei concetti e utilizza le attività di hello AMSE strumento toodemonstrate AMS. AMSE è uno strumento Windows. Questo strumento supporta la maggior parte delle attività hello è possibile ottenere a livello di codice con [AMS SDK per .NET](https://github.com/Azure/azure-sdk-for-media-services), [Azure SDK per Java](https://github.com/Azure/azure-sdk-for-java), o [Azure PHP SDK](https://github.com/Azure/azure-sdk-for-php).
 
 ## <a name="supported-scenarios-and-availability-of-media-services-across-data-centers"></a>Scenari supportati e disponibilità di Servizi multimediali nei data center
 
@@ -72,13 +72,13 @@ Per informazioni dettagliate, vedere [Scenari supportati e disponibilità di Ser
 
 * Per il servizio di codifica di Servizi multimediali, è garantita una disponibilità al 99,9% delle transazioni delle API REST.
 * Con l'acquisto di un endpoint di streaming Standard o Premium, per il servizio di streaming, è garantita una disponibilità al 99,9% per i contenuti multimediali esistenti.
-* Per i canali live, è garantito che i canali in esecuzione avranno connettività esterna per almeno il 99,9% del tempo.
-* Per la protezione del contenuto, è garantita l'evasione delle richieste di chiavi per almeno il 99,9% del tempo.
-* Per l'indicizzatore, è garantito che verranno soddisfatte le richieste di attività dell'indicizzatore elaborate con un'unità riservata di codifica per il 99,9% del tempo.
+* Per i canali Live, si garantisce che l'esecuzione di canali connettività esterna almeno il 99,9% del tempo di hello.
+* Per la protezione del contenuto, è garantito che è verrà correttamente soddisfare richieste di chiavi almeno il 99,9% del tempo di hello.
+* Per un indicizzatore, è, il servizio indicizzatore attività elaborata con una codifica di riservato unità 99,9% del tempo di hello.
 
 Per altre informazioni, vedere [Contratto di servizio di Microsoft Azure](https://azure.microsoft.com/support/legal/sla/).
 
-Per informazioni sulla disponibilità nei data center, vedere la sezione relativa alla [disponibilità](scenarios-and-availability.md#availability).
+Per informazioni sulla disponibilità in Data Center, vedere hello [Avaiability](scenarios-and-availability.md#availability) sezione.
 
 ## <a name="support"></a>Supporto
 

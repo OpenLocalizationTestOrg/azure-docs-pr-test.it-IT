@@ -1,6 +1,6 @@
 ---
-title: "Proprietà del progetto di Azure"
-description: "Descrive le impostazioni delle proprietà del progetto di Azure in Toolkit di Azure per Eclipse."
+title: "aaaAzure le proprietà del progetto"
+description: "Descrive le impostazioni delle proprietà del progetto Azure hello in hello Azure Toolkit per Eclipse."
 services: 
 documentationcenter: java
 author: rmcmurray
@@ -14,30 +14,30 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 04/14/2017
 ms.author: robmcm
-ms.openlocfilehash: 9d9eb695b63c2f4efa3ebea97ddb2f2780180bca
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6d8993ca38e7e03a8c7ebe96d174594aa0ff78e2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-project-properties"></a>Proprietà del progetto di Azure
-Nel Toolkit di Azure per Eclipse, è possibile configurare varie impostazioni per il progetto di Azure.
+All'interno di hello Azure Toolkit per Eclipse, è possono impostare varie impostazioni per il progetto Azure.
 
 ## <a name="configuring-azure-project-properties"></a>Configurazione delle proprietà del progetto di Azure
-La configurazione delle proprietà del progetto di Azure viene eseguita tramite le finestre di dialogo delle proprietà per il progetto di Azure. Fare clic con il pulsante destro del mouse sul progetto nel riquadro (Esplora progetti) di Eclipse, scegliere **Properties** (Proprietà) e infine selezionare il sottomenu **Azure**.
+Configurazione delle proprietà del progetto Azure viene eseguita tramite le finestre di dialogo di hello proprietà per il progetto Azure. Fare clic sul progetto hello nel riquadro Project Explorer di Eclipse, fare clic su **proprietà**, quindi selezionare hello **Azure** sottomenu.
 
 ![][ic719480]
 
-Nella pagina delle proprietà, è possibile modificare gli elementi seguenti: 
+Nella pagina delle proprietà, è possibile modificare hello seguenti elementi: 
 
-* **Nome del servizio:** il nome per il progetto di Azure.
-* **Compilare per:** indica se il progetto è impostato per la compilazione nell'emulatore di calcolo o per la distribuzione in Azure.
-* **Sistema operativo di destinazione:** il sistema operativo da utilizzare quando il progetto viene distribuito in Azure.
+* **Nome del servizio:** nome hello per il progetto Azure.
+* **Compilazione per:** se il progetto hello è impostato per la compilazione di tooAzure di distribuzione o l'emulatore di calcolo toohello.
+* **Sistema operativo di destinazione:** hello toouse del sistema operativo quando il progetto è distribuito tooAzure.
 
 ## <a name="see-also"></a>Vedere anche
 [Azure Toolkit for Eclipse][Azure Toolkit for Eclipse]
 
-[Installazione di Azure Toolkit for Eclipse][Installing the Azure Toolkit for Eclipse] 
+[L'installazione di hello Azure Toolkit per Eclipse][Installing hello Azure Toolkit for Eclipse] 
 
 [Creare un'applicazione Hello World per Azure in Eclipse][Creating a Hello World Application for Azure in Eclipse]
 
@@ -45,7 +45,7 @@ Nella pagina delle proprietà, è possibile modificare gli elementi seguenti:
 
 [Elenco di account di archiviazione di Azure][Azure Storage Account List]
 
-Per altre informazioni su come usare Azure con Java, vedere il [Centro per sviluppatori Java di Azure][Azure Java Developer Center].
+Per ulteriori informazioni sull'uso di Azure con Java, vedere hello [Centro per sviluppatori Java di Azure][Azure Java Developer Center].
 
 <!-- URL List -->
 
@@ -54,7 +54,7 @@ Per altre informazioni su come usare Azure con Java, vedere il [Centro per svilu
 [Azure Role Properties]: http://go.microsoft.com/fwlink/?LinkID=699525
 [Azure Storage Account List]: http://go.microsoft.com/fwlink/?LinkID=699528
 [Creating a Hello World Application for Azure in Eclipse]: http://go.microsoft.com/fwlink/?LinkID=699533
-[Installing the Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkId=699546
+[Installing hello Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkId=699546
 
 <!-- IMG List -->
 

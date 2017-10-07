@@ -1,6 +1,6 @@
 ---
-title: "Guida per più aree geografiche | Documentazione Microsoft"
-description: Informazioni su come creare un'area di lavoro e pubblicare un servizio web in un'area di Azure diversa da quella degli Stati Uniti centro meridionali (SCUS).
+title: documentazione della Guida aaaMulti geografica | Documenti Microsoft
+description: Informazioni su come toocreate un'area di lavoro e pubblicare un servizio web in un'area di Azure diversa da hello meridionale centrale United States (SCUS) regione di Azure.
 services: machine-learning
 documentationcenter: 
 author: tedway
@@ -15,43 +15,43 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 4/6/2017
 ms.author: tedway; neerajkh
-ms.openlocfilehash: 32f80863308c00c32b1496bb92d39a7ae7d0cc6f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 77b055950ebfe329131b40e5f0a2f6be1e33c51e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="multi-geo-help-documentation"></a>Guida per più aree geografiche
-Questo articolo illustra come creare un'area di lavoro e pubblicare un servizio Web in altre aree geografiche di Azure.  La [pagina sui prodotti Azure per area geografica](https://azure.microsoft.com/en-us/regions/services/) fornisce un elenco delle aree in cui Azure Machine Learning è disponibile.
+Questo articolo illustra come creare un'area di lavoro e pubblicare un servizio Web in altre aree geografiche di Azure.  Hello [prodotti Azure dalla pagina area](https://azure.microsoft.com/en-us/regions/services/) sono elencate le aree in cui Azure Machine Learning è disponibile.
 
 ## <a name="create-a-workspace"></a>Creare un'area di lavoro
-1. Accedere al portale di Microsoft Azure classico.
+1. Accedi toohello portale classico di Azure.
 2. Fare clic su **+ NUOVO** > **SERVIZI DATI** > **MACHINE LEARNING** > **CREAZIONE RAPIDA**.  In **INDIRIZZO** selezionare un'altra area, ad esempio **Asia sud-orientale**.
    ![Guida per più aree geografiche immagine 1][1]
-3. Selezionare l'area di lavoro, quindi fare clic su **Accedi a ML Studio**.
+3. Selezionare l'area di lavoro hello e quindi fare clic su **Accedi tooML Studio**.
    ![Guida per più aree geografiche immagine 2][2]
-4. Ora si dispone di un'area di lavoro in un'altra area geografica che può essere utilizzata come qualsiasi altra area di lavoro. Per passare da un’area di lavoro ad un’altra, cercare in alto a destra dello schermo. Fare clic sul menu a discesa, selezionare l'area geografica e quindi selezionare l'area di lavoro. Tutto è locale rispetto all'area geografica dell'area di lavoro.  Ad esempio, tutti i servizi Web creati da un'area di lavoro saranno nella stessa area geografica in cui si trova l'area di lavoro.
+4. Ora si dispone di un'area di lavoro in un'altra area geografica che può essere utilizzata come qualsiasi altra area di lavoro. tooswitch tra le aree di lavoro, aspetto toohello superiore destro dello schermo. Fare clic su elenco a discesa hello, hello selezionare area e area di lavoro selezionare hello. Tutti gli elementi è l'area dell'area di lavoro locale toohello.  Ad esempio, i servizi web creati da un'area di lavoro si trovano nella stessa area di lavoro area hello hello.
    ![Guida per più aree geografiche immagine 3][3]
 
 ## <a name="open-an-experiment-from-gallery"></a>Aprire un esperimento dalla raccolta
-Se si apre un esperimento dalla raccolta, è inoltre possibile selezionare in quale area geografica si desidera copiare l’esperimento.
+Se si apre un esperimento dalla raccolta, è possibile selezionare l'area da toocopy hello esperimento.
 
 ![Guida per più aree geografiche immagine 4][4a]
 
 ## <a name="web-service-management"></a>Gestione del servizio Web
-Per gestire a livello di programmazione i servizi web, ad esempio per la ripetizione della formazione, usare l'indirizzo specifico dell'area geografica:
+tooprogrammatically gestire servizi web, ad esempio per la ripetizione di training, Usa hello specifiche indirizzo:
 
 * https://asiasoutheast.management.azureml.net
 * https://europewest.management.azureml.net
 
-### <a name="things-to-note"></a>Punti da notare
-1. In questo modo è possibile copiare solo esperimenti tra aree di lavoro che appartengono alla stessa area geografica. Se è necessario copiare un esperimento fra aree di lavoro che appartengono ad aree diverse, è possibile usare il commandlet di [PowerShell](http://aka.ms/amlps) [*Copy-AmlExperiment*](https://github.com/hning86/azuremlps/blob/master/README.md#copy-amlexperiment). Un'altra soluzione alternativa consiste nel pubblicare l'esperimento nella raccolta in modalità non in elenco, quindi aprirlo nell'area di lavoro dall'altra area.
-2. Il selettore dell’area visualizzerà solo le aree di lavoro di una determinata area geografica alla volta.  
+### <a name="things-toonote"></a>Operazioni toonote
+1. È possibile copiare solo esperimenti tra aree di lavoro che appartengono toohello stessa area in questo modo. Se è necessario toocopy esperimento nelle aree di lavoro in aree diverse, è possibile utilizzare hello [PowerShell](http://aka.ms/amlps) cmdlet [ *copia AmlExperiment* ](https://github.com/hning86/azuremlps/blob/master/README.md#copy-amlexperiment) tooaccomplish che. Un'altra soluzione alternativa è toopublish hello esperimento nella raccolta in modalità non in elenco, quindi aprirlo nell'area di lavoro hello hello altre aree.
+2. selettore di Hello area verrà visualizzate solo le aree di lavoro per un'area alla volta.  
 3. Un’area di lavoro con accesso libero o Guest (anonimo) verrà creata e ospitata in Stati Uniti centro-meridionali.  
 4. I servizi Web distribuiti da un'area di lavoro nell’Asia sudorientale verranno anche ospitati in Asia sudorientale.  
 
 ## <a name="more-information"></a>Altre informazioni
-Aggiungere una domanda sul [forum di Azure Machine Learning](https://social.msdn.microsoft.com/Forums/azure/home?forum=MachineLearning).
+Porre una domanda su hello [forum di Azure Machine Learning](https://social.msdn.microsoft.com/Forums/azure/home?forum=MachineLearning).
 
 <!--Image references-->
 [1]: ./media/machine-learning-multi-geo/multi-geo_1.png

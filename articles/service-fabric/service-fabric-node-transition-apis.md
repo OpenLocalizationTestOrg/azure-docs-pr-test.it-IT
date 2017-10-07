@@ -1,6 +1,6 @@
 ---
-title: Avviare e arrestare nodi di cluster per testare microservizi di Azure | Documentazione Microsoft
-description: Informazioni su come usare la tecnologia fault injection per testare un'applicazione di Service Fabric avviando e arrestando nodi di cluster.
+title: aaaStart e arrestare tootest di nodi di cluster Azure microservizi | Documenti Microsoft
+description: Informazioni su come toouse fault tootest attacco intrusivo nel codice un'applicazione di Service Fabric per avvio e arresto di nodi del cluster.
 services: service-fabric
 documentationcenter: .net
 author: LMWF
@@ -14,57 +14,57 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 6/12/2017
 ms.author: lemai
-ms.openlocfilehash: 850fbc0c74811ec942292da64064dec867cd1b9e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 7d3f5147328e6233a67533fbfb2a525aa5fc060e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="replacing-the-start-node-and-stop-node-apis-with-the-node-transition-api"></a>Sostituzione dell'API di avvio del nodo e dell'API di arresto del nodo con l'API di transizione del nodo
+# <a name="replacing-hello-start-node-and-stop-node-apis-with-hello-node-transition-api"></a>Sostituendo hello nodo avvio e arresto nodo API con hello nodo transizione API
 
-## <a name="what-do-the-stop-node-and-start-node-apis-do"></a>Come funzionano le API di avvio del nodo e di arresto del nodo?
+## <a name="what-do-hello-stop-node-and-start-node-apis-do"></a>Cosa hello nodo arrestare e avviare le API nodo?
 
-L'API di avvio del nodo (gestita: [StopNodeAsync()][stopnode], PowerShell: [Stop-ServiceFabricNode][stopnodeps]) arresta un nodo di Service Fabric.  Un nodo di Service Fabric è un processo, non una VM o macchina; la VM o la macchina sarà comunque in esecuzione.  Nel resto del documento, "nodo" indica il nodo di Service Fabric.  L'arresto di un nodo inserisce il nodo in uno stato *arrestato*, in cui non è un membro del cluster e non può ospitare servizi, simulando in questo modo un nodo *inattivo*.  Questa condizione è utile per l'inserimento di errori nel sistema per testare l'applicazione.  L'API di avvio del nodo (gestita: [StartNodeAsync()][startnode], PowerShell: [Start-ServiceFabricNode][startnodeps]]) inverte l'API di arresto del nodo riportando il nodo a uno stato normale.
+Arresta nodo API Hello (gestito: [StopNodeAsync()][stopnode], PowerShell: [Stop ServiceFabricNode][stopnodeps]) si arresta un nodo di Service Fabric.  Un nodo di Service Fabric è processo, non una macchina virtuale o macchina: hello VM o computer verranno ancora essere in esecuzione.  Per rest hello del documento hello "nodo" implica il nodo di Service Fabric.  L'arresto di un nodo inserisce in un *arrestato* stato in cui non è un membro del cluster hello e non è possibile ospitare servizi, simulando in questo modo un *verso il basso* nodo.  Ciò è utile per l'inserimento di errori in hello sistema tootest l'applicazione.  Avvia nodo API Hello (gestito: [StartNodeAsync()][startnode], PowerShell: [inizio ServiceFabricNode][startnodeps]]) Inverte hello arresta nodo API,  che visualizza lo stato normale hello nodo tooa indietro.
 
 ## <a name="why-are-we-replacing-these"></a>Perché si sta procedendo alla relativa sostituzione?
 
-Come descritto in precedenza, un nodo *arrestato* di Service Fabric è un nodo di destinazione scelto intenzionalmente usando l'API di arresto del nodo.  Un nodo *inattivo* è un nodo che non è attivo per qualsiasi altro motivo, ad esempio, la VM o la macchina è disattivata.  Con l'API di arresto del nodo, il sistema non espone le informazioni per distinguere i nodi *arrestati* e i nodi *inattivi*.
+Come descritto in precedenza, un *arrestato* nodo Service Fabric è un nodo intenzionalmente utilizzando hello arrestare API nodo di destinazione.  Oggetto *verso il basso* nodo è un nodo verso il basso per qualsiasi motivo (ad esempio hello VM o computer è disattivato).  Con hello arresta nodo API, sistema hello non espone informazioni toodifferentiate tra *arrestato* nodi e *verso il basso* nodi.
 
-Inoltre, alcuni errori restituiti da queste API non offrono il massimo livello di dettaglio possibile.  Ad esempio, se si chiama l'API di arresto del nodo su un nodo già *arrestato* verrà restituito l'errore *InvalidAddress*.  Questa esperienza poteva essere migliorata.
+Inoltre, alcuni errori restituiti da queste API non offrono il massimo livello di dettaglio possibile.  Ad esempio, richiamare hello arresta nodo API in un oggetto già *arrestato* nodo verrà restituito l'errore hello *InvalidAddress*.  Questa esperienza poteva essere migliorata.
 
-Inoltre, la durata per cui un nodo viene arrestato è "infinita" finché non viene richiamata l'API di avvio del nodo.  Questa condizione può causare problemi ed essere soggetta a errori.  Ad esempio, si sono verificati problemi in cui un utente ha richiama l'API di avvio del nodo su un nodo e successivamente ha dimenticato di avere eseguito questa operazione.  In seguito non è stato chiaro se il nodo era *inattivo* o *arrestato*.
+Inoltre, un nodo è stato arrestato per la durata di hello è "infinita" finché non viene richiamato avviare API nodo hello.  Questa condizione può causare problemi ed essere soggetta a errori.  Ad esempio, abbiamo visto problemi in cui un utente viene richiamato hello arrestare API nodo in un nodo e quindi dimenticato.  In un secondo momento, è poco chiaro se è stato nodo hello *verso il basso* o *arrestato*.
 
 
-## <a name="introducing-the-node-transition-apis"></a>Introduzione alle API di transizione del nodo
+## <a name="introducing-hello-node-transition-apis"></a>Introduzione a hello nodo transizione API
 
-Questi problemi sono stati risolti in un nuovo set di API.  La nuova API di transizione del nodo (gestito: [StartNodeTransitionAsync()][snt]) può essere usata per la transizione di un nodo di Service Fabric a uno stato *arrestato* o per eseguire la transizione da uno stato *arrestato* a uno stato attivo normale.  Si noti che "Start" nel nome dell'API non fa riferimento all'avvio di un nodo.  Fa riferimento all'avvio di un'operazione asincrona che verrà eseguita dal sistema per la transizione del nodo nello stato *arrestato* o avviato.
+Questi problemi sono stati risolti in un nuovo set di API.  Hello nuova transizione nodo API (gestito: [StartNodeTransitionAsync()][snt]) può essere utilizzato tootransition un tooa nodo Service Fabric *arrestato* stato o tootransition, da un *arrestato* tooa stato normale backup dello stato.  Si noti che hello "Start" nel nome hello di hello API toostarting un nodo non fa riferimento.  Fa riferimento a un'operazione asincrona che sistema hello eseguirà tootransition hello nodo tooeither toobeginning *arrestato* o è stato avviato.
 
 **Utilizzo**
 
-Se l'API di transizione del nodo non genera un'eccezione quando viene richiamata, il sistema ha accettato l'operazione asincrona e la eseguirà.  Una chiamata eseguita correttamente non implica che l'operazione sia stata completata.  Per ottenere informazioni sullo stato corrente dell'operazione, chiamare l'API di avanzamento della transizione del nodo (gestito: [GetNodeTransitionProgressAsync()][gntp]) con il GUID usato per chiamare l'API di transizione di nodo per questa operazione.  L'API di avanzamento della transizione del nodo restituisce un oggetto NodeTransitionProgress.  La proprietà State dell'oggetto specifica lo stato corrente dell'operazione.  Se lo stato è "in esecuzione", l'operazione è in corso.  Se lo stato è completato, l'operazione è stata completata senza errori.  Se lo stato indica un errore, si è verificato un problema in fase di esecuzione.  La proprietà Exception della proprietà Result indicherà il problema riscontrato.  Per altre informazioni sulla proprietà State e la sezione "Esempio di utilizzo" per esempi di codice, vedere https://docs.microsoft.com/dotnet/api/system.fabric.testcommandprogressstate.
+Se hello nodo transizione API non genera un'eccezione quando viene richiamato, sistema hello ha accettato l'operazione asincrona di hello e verrà eseguirlo.  Una chiamata non implica l'operazione di hello è ancora stato completato.  tooget informazioni sullo stato corrente di hello dell'operazione di hello, hello chiamata API di stato di transizione nodo (gestito: [GetNodeTransitionProgressAsync()][gntp]) con il guid di hello utilizzato durante la chiamata di nodo API di transizione per questa operazione.  Hello nodo transizione di stato di avanzamento API restituisce un oggetto NodeTransitionProgress.  La proprietà dell'oggetto stato specifica lo stato corrente di hello dell'operazione di hello.  Se lo stato di hello è "Running" operazione di hello è in esecuzione.  Se viene completata, l'operazione di hello completata senza errori.  Se si è verificato un errore, si è verificato un problema durante l'esecuzione di operazione hello.  stato di eccezione della proprietà di Hello risultato proprietà indicherà quali hello emettere.  Vedere https://docs.microsoft.com/dotnet/api/system.fabric.testcommandprogressstate per ulteriori informazioni sulla proprietà State hello e hello "Esempio di utilizzo" sotto per esempi di codice.
 
 
-**Differenze tra un nodo arrestato e un nodo inattivo** Se un nodo è stato *arrestato* usando l'API di transizione del nodo, l'output di una query del nodo (gestito: [GetNodeListAsync()][nodequery], PowerShell: [Get-ServiceFabricNode][nodequeryps]) indicherà il valore true della proprietà *IsStopped* per questo nodo.  Si noti che questo valore è diverso dal valore della proprietà *NodeStatus* che indicherà lo stato *inattivo*.  Se la proprietà *NodeStatus* ha il valore *inattivo*, ma *IsStopped* restituisce false, il nodo non è stato arrestato usando l'API di transizione del nodo ed è *inattivo* per un altro motivo.  Se il valore della proprietà *IsStopped* è true e la proprietà *NodeStatus* indica lo stato *inattivo*, il nodo è stato arrestato usando l'API di transizione del nodo.
+**Fatta distinzione tra un nodo arrestato e un nodo verso il basso** se è un nodo *arrestato* utilizzando hello nodo transizione API, output di hello di una query di nodo (gestito: [GetNodeListAsync()] [ nodequery], PowerShell: [Get ServiceFabricNode][nodequeryps]) indicherà che il nodo presenta un *IsStopped* ha valore true.  Questo è diverso dal valore hello hello *NodeStatus* proprietà, che indicherà *verso il basso*.  Se hello *NodeStatus* proprietà ha un valore *verso il basso*, ma *IsStopped* è false, quindi il nodo hello non è stato arrestato utilizzando l'API di transizione nodo hello ed è  *Verso il basso* a causa di un altro motivo.  Se hello *IsStopped* proprietà è true e hello *NodeStatus* proprietà *verso il basso*, quindi è stato arrestato utilizzando hello nodo transizione API.
 
-L'avvio di un nodo *arrestato* usando l'API di transizione del nodo ne ripristina il funzionamento come membro normale del cluster.  L'output dell'API di query del nodo indicherà *IsStopped* come false e *NodeStatus* indicherà un valore che non è inattivo, ad esempio, attivo.
+Avvio di un *arrestato* nodo utilizzando hello nodo transizione API restituirà, toofunction come membro del cluster hello normale nuovamente.  Hello output di hello nodo query API mostrerà *IsStopped* false, e *NodeStatus* come qualcosa che non è attivo (ad esempio, in alto).
 
 
-**Durata limitata** quando si usa l'API di transizione di nodo per arrestare un nodo, uno dei parametri obbligatori, *stopNodeDurationInSeconds*, rappresenta il tempo in secondi per cui il nodo viene mantenuto *arrestato*.  Questo valore deve essere compreso nell'intervallo consentito, che include un minimo di 600 secondi e un massimo di 14.400 secondi.  Al termine di questo periodo, il nodo verrà riavviato automaticamente in uno stato attivo.  Fare riferimento all'esempio 1 di seguito per un esempio di utilizzo.
-
-> [!WARNING]
-> Non combinare le API di transizione del nodo e le API di avvio del nodo e di arresto del nodo.  È consigliabile usare solo l'API di transizione del nodo.  Se un nodo è già stato arrestato usando l'API di arresto del nodo, è necessario avviarlo usando l'API di avvio del nodo prima di usare le API di transizioni del nodo.
+**Durata limitata** quando si utilizza hello nodo transizione API toostop un nodo, uno di hello parametri obbligatori, *stopNodeDurationInSeconds*, rappresenta hello quantità di tempo nel nodo di hello tookeep secondi  *arrestato*.  Questo valore deve essere nell'intervallo, con un minimo di 600 e un massimo di 14400 consentito hello.  Trascorso questo tempo, nodo hello verrà riavviato automaticamente nel backup dello stato automaticamente.  Per un esempio di utilizzo, vedere tooSample 1 di seguito.
 
 > [!WARNING]
-> Non è possibile eseguire più chiamate API di transizione del nodo in parallelo nello stesso nodo.  In questo caso, l'API di transizione del nodo  genererà un FabricException con un valore NodeTransitionInProgress della proprietà ErrorCode.  Dopo avere avviato una transizione del nodo in un nodo specifico, è necessario attendere fino a quando l'operazione raggiunge uno stato finale (completato, con errore e annullamento forzato) prima di avviare una nuova transizione nello stesso nodo.  Sono consentite chiamate a transizioni del nodo in parallelo su nodi diversi.
+> Evitare di utilizzare le API di transizione di nodo e hello nodo arrestare e avviare le API di nodo.  Hello si consiglia di utilizzare troppo hello nodo transizione API.  > Se un nodo è già stato arrestato utilizzando hello arresta nodo API, deve essere avviato prima tramite hello avviare API nodo prima di utilizzare hello > nodo transizione API.
+
+> [!WARNING]
+> Non è possibile effettuare chiamate in numerose API di transizione nodo hello stesso nodo in parallelo.  In questo caso, verrà hello nodo transizione API > generare una FabricException con un valore della proprietà ErrorCode di NodeTransitionInProgress.  In presenza di una transizione di nodo in un nodo specifico > stato avviato, è necessario attendere fino a quando l'operazione di hello raggiunge uno stato finale (Completed, Faulted o ForceCancelled) prima di avviare un > nuova transizione su hello stesso nodo.  Sono consentite chiamate a transizioni del nodo in parallelo su nodi diversi.
 
 
 #### <a name="sample-usage"></a>Esempio di utilizzo
 
 
-**Esempio 1**: l'esempio seguente usa l'API di transizione del nodo per arrestare un nodo.
+**Esempio 1** -hello seguendo l'esempio utilizza hello nodo transizione API toostop un nodo.
 
 ```csharp
-        // Helper function to get information about a node
+        // Helper function tooget information about a node
         static Node GetNodeInfo(FabricClient fc, string node)
         {
             NodeList n = null;
@@ -105,7 +105,7 @@ L'avvio di un nodo *arrestato* usando l'API di transizione del nodo ne ripristin
 
                     if (progress.State == TestCommandProgressState.Faulted)
                     {
-                        // Inspect the progress object's Result.Exception.HResult to get the error code.
+                        // Inspect hello progress object's Result.Exception.HResult tooget hello error code.
                         Console.WriteLine("'{0}' failed with: {1}, HResult: {2}", operationId, progress.Result.Exception, progress.Result.Exception.HResult);
 
                         // ...additional logic as required
@@ -125,7 +125,7 @@ L'avvio di un nodo *arrestato* usando l'API di transizione del nodo ne ripristin
 
         static async Task StopNodeAsync(FabricClient fc, string nodeName, int durationInSeconds)
         {
-            // Uses the GetNodeListAsync() API to get information about the target node
+            // Uses hello GetNodeListAsync() API tooget information about hello target node
             Node n = GetNodeInfo(fc, nodeName);
 
             // Create a Guid
@@ -140,7 +140,7 @@ L'avvio di un nodo *arrestato* usando l'API di transizione del nodo ne ripristin
             {
                 try
                 {
-                    // Invoke StartNodeTransitionAsync with the NodeStopDescription from above, which will stop the target node.  Retry transient errors.
+                    // Invoke StartNodeTransitionAsync with hello NodeStopDescription from above, which will stop hello target node.  Retry transient errors.
                     await fc.TestManager.StartNodeTransitionAsync(description, TimeSpan.FromMinutes(1), CancellationToken.None).ConfigureAwait(false);
                     wasSuccessful = true;
                 }
@@ -163,12 +163,12 @@ L'avvio di un nodo *arrestato* usando l'API di transizione del nodo ne ripristin
         }
 ```
 
-**Esempio 2**: l'esempio seguente avvia un nodo *arrestato*.  Vengono usati alcuni metodi di supporto dal primo esempio.
+**Esempio 2** : hello seguente esempio avvia un *arrestato* nodo.  Usa alcuni metodi di supporto dal primo esempio hello.
 
 ```csharp
         static async Task StartNodeAsync(FabricClient fc, string nodeName)
         {
-            // Uses the GetNodeListAsync() API to get information about the target node
+            // Uses hello GetNodeListAsync() API tooget information about hello target node
             Node n = GetNodeInfo(fc, nodeName);
 
             Guid guid = Guid.NewGuid();
@@ -183,7 +183,7 @@ L'avvio di un nodo *arrestato* usando l'API di transizione del nodo ne ripristin
             {
                 try
                 {
-                    // Invoke StartNodeTransitionAsync with the NodeStartDescription from above, which will start the target stopped node.  Retry transient errors.
+                    // Invoke StartNodeTransitionAsync with hello NodeStartDescription from above, which will start hello target stopped node.  Retry transient errors.
                     await fc.TestManager.StartNodeTransitionAsync(description, TimeSpan.FromMinutes(1), CancellationToken.None).ConfigureAwait(false);
                     wasSuccessful = true;
                 }
@@ -206,7 +206,7 @@ L'avvio di un nodo *arrestato* usando l'API di transizione del nodo ne ripristin
         }
 ```
 
-**Esempio 3**: l'esempio seguente illustra un uso non corretto.  Questo uso non è corretto perché il valore *stopDurationInSeconds* fornito è maggiore dell'intervallo consentito.  Poiché StartNodeTransitionAsync() genererà un errore irreversibile, l'operazione non è stata accettata e l'API di avanzamento non deve essere chiamata.  Questo esempio usa alcuni metodi di supporto dal primo esempio.
+**Esempio 3** : hello esempio seguente viene illustrato l'utilizzo non corretto.  Questo utilizzo non è corretto perché hello *stopDurationInSeconds* fornisce è maggiore di hello nell'intervallo consentito.  Poiché StartNodeTransitionAsync() avrà esito negativo con un errore irreversibile, non è stato accettato l'operazione di hello e API di stato di avanzamento hello non deve essere chiamato.  Questo esempio utilizza alcuni metodi di supporto dal primo esempio hello.
 
 ```csharp
         static async Task StopNodeWithOutOfRangeDurationAsync(FabricClient fc, string nodeName)
@@ -215,7 +215,7 @@ L'avvio di un nodo *arrestato* usando l'API di transizione del nodo ne ripristin
 
             Guid guid = Guid.NewGuid();
 
-            // Use an out of range value for stopDurationInSeconds to demonstrate error
+            // Use an out of range value for stopDurationInSeconds toodemonstrate error
             NodeStopDescription description = new NodeStopDescription(guid, n.NodeName, n.NodeInstanceId, 99999);
 
             try
@@ -237,7 +237,7 @@ L'avvio di un nodo *arrestato* usando l'API di transizione del nodo ne ripristin
         }
 ```
 
-**Esempio 4**: l'esempio seguente mostra le informazioni sull'errore che verranno restituite dall'API di avanzamento della transizione del nodo quando l'operazione avviata dall'API di transizione del nodo viene accettata, ma si verifica un errore successivamente in fase di esecuzione.  In questo caso l'errore si verifica perché l'API di transizione del nodo tenta di avviare un nodo che non esiste.  Questo esempio usa alcuni metodi di supporto dal primo esempio.
+**Esempio 4** : hello esempio seguente mostra informazioni sull'errore hello che verrà restituiti da hello nodo transizione di stato di avanzamento API quando l'operazione di hello iniziata dal nodo transizione API hello viene accettata, ma non riesce in un secondo momento durante l'esecuzione.  In caso di hello, operazione non riesce perché tenta di hello nodo transizione API toostart un nodo che non esiste.  Questo esempio utilizza alcuni metodi di supporto dal primo esempio hello.
 
 ```csharp
         static async Task StartNodeWithNonexistentNodeAsync(FabricClient fc)
@@ -254,7 +254,7 @@ L'avvio di un nodo *arrestato* usando l'API di transizione del nodo ne ripristin
             {
                 try
                 {
-                    // Invoke StartNodeTransitionAsync with the NodeStartDescription from above, which will start the target stopped node.  Retry transient errors.
+                    // Invoke StartNodeTransitionAsync with hello NodeStartDescription from above, which will start hello target stopped node.  Retry transient errors.
                     await fc.TestManager.StartNodeTransitionAsync(description, TimeSpan.FromMinutes(1), CancellationToken.None).ConfigureAwait(false);
                     wasSuccessful = true;
                 }
@@ -272,8 +272,8 @@ L'avvio di un nodo *arrestato* usando l'API di transizione del nodo ne ripristin
             }
             while (!wasSuccessful);
 
-            // Now call StartNodeTransitionProgressAsync() until the desired state is reached.  In this case, it will end up in the Faulted state since the node does not exist.
-            // When StartNodeTransitionProgressAsync()'s returned progress object has a State if Faulted, inspect the progress object's Result.Exception.HResult to get the error code.
+            // Now call StartNodeTransitionProgressAsync() until hello desired state is reached.  In this case, it will end up in hello Faulted state since hello node does not exist.
+            // When StartNodeTransitionProgressAsync()'s returned progress object has a State if Faulted, inspect hello progress object's Result.Exception.HResult tooget hello error code.
             // In this case, it will be NodeNotFound.
             await WaitForStateAsync(fc, guid, TestCommandProgressState.Faulted).ConfigureAwait(false);
         }

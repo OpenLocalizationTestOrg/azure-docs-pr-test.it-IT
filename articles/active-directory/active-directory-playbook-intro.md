@@ -1,5 +1,5 @@
 ---
-title: Introduzione al playbook PoC di Azure Active Directory | Microsoft Docs
+title: Introduzione di Active Directory PoC Playbook aaaAzure | Documenti Microsoft
 description: "Esplorare e implementare rapidamente gli scenari di Gestione delle identità e degli accessi"
 services: active-directory
 keywords: azure active directory, playbook, modello di verifica, PoC
@@ -14,28 +14,28 @@ ms.devlang: na
 ms.topic: article
 ms.date: 4/12/2017
 ms.author: dstefan
-ms.openlocfilehash: 567f3373594bc53435e8c0bd0a3445dd318af1cd
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 655524e9692de46e831fc68e1636e6c20d41958f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-active-directory-proof-of-concept-playbook-introduction"></a>Playbook dei modelli di verifica di Azure Active Directory: introduzione
 
-In questo articolo vengono fornite linee guida per l'esplorazione di diverse funzionalità di Azure AD in un Proof of Concept (PoC). I destinatari di questo documento sono gli architetti di identità, i professionisti IT e gli integratori di sistemi
+In questo articolo vengono fornite linee guida tooexplore Azure AD diverse funzionalità in un modello di verifica (PoC). Hello destinato a destinatari di questo documento sono gli architetti di identità, i professionisti IT e integratori di sistemi
 
-## <a name="how-to-use-this-playbook"></a>Come usare questo playbook
+## <a name="how-toouse-this-playbook"></a>Come toouse questo Playbook
 
-1. Usare la sezione [Tema](active-directory-playbook-ingredients.md#theme) e selezionare le aree di interesse in base alle esigenze.  
-2. Definire l'ambito del PoC scegliendo gli scenari in linea con gli obiettivi aziendali. L'ambito deve essere il più ristretto possibile. Si consiglia di definire un ambito il più breve e conciso possibile in modo da veicolarne il valore alle parti interessate, riducendone al minimo la complessità di realizzazione.  
-3. Usare la sezione [Implementazione](active-directory-playbook-implementation.md) per comprendere gli scenari e il relativo significato per l'ambiente. In ogni scenario viene descritto come eseguire la configurazione (i cosiddetti [blocchi predefiniti](active-directory-playbook-building-blocks.md)) e come passare da uno scenario all'altro. 
-4. In ogni blocco predefinito vengono illustrati i prerequisiti necessari, nonché il tempo approssimativo necessario per il completamento. Ciò costituisce un valido supporto durante il processo di pianificazione. 
-5. In base ai passaggi da 1 a 3 sopra riportati, definire l'[ambiente](active-directory-playbook-ingredients.md#environment) in cui si desidera eseguire le operazioni. Si consiglia di creare un ambiente di produzione che offra la migliore esperienza possibile per gli utenti. 
+1. Hello utilizzare [tema](active-directory-playbook-ingredients.md#theme) sezione e selezionare hello aree di interesse in base alle proprie esigenze.  
+2. Definire l'ambito hello PoC scegliendo scenari hello allineati con gli obiettivi aziendali. hello più breve Hello migliorato. Si consiglia di eseguire l'operazione come short e conciso come valore di hello tooconvey possibili le parti interessate toohello riducendo al contempo hello toorealize complessità è.  
+3. Hello utilizzare [implementazione](active-directory-playbook-implementation.md) sezione toounderstand hello scenari e verrà loro significato per l'ambiente. In ogni scenario viene descritto come tooset, configurarlo (la cosiddetta [blocchi](active-directory-playbook-building-blocks.md)), e come toonavigate hello scenari. 
+4. Ogni blocco viene prerequisiti hello necessari, nonché un toocomplete approssimativamente il tempo previsto. Questo può aiutare a durante il processo di pianificazione hello. 
+5. In base 1 a 3 sopra riportati, definire hello [ambiente](active-directory-playbook-ingredients.md#environment) in cui tooexecute. Che incoraggia la collaborazione toostrive per un tooget ambiente di produzione una buona sensazione di esperienza hello per gli utenti. 
 6. In presenza di requisiti in conflitto, utilizzare questa utile matrice per trovare un compromesso 
    * Visualizzazione incentrata sul tema del valore  
-   * Precisione nella preparazione, configurazione ed esecuzione degli scenari 
-   * Tempo minimo richiesto per eseguire gli scenari di destinazione 
-   * Esecuzione in linea il più possibile alla produzione all'interno dei vincoli 
+   * Scenari di hello tooprepare tooset backup e tooexecute Smoothness 
+   * Scenari di destinazione in tempi minimi tooexecute hello 
+   * Come chiudere tooproduction come fattibile all'interno i vincoli 
 
 >[!NOTE]
 > In questo articolo, verranno mostrate alcune applicazioni e prodotti di terze parti specifici citati a titolo esemplificativo per comodità. Azure AD supporta migliaia di applicazioni incluse nella [raccolta delle applicazioni](https://azuremarketplace.microsoft.com/marketplace/apps/category/azure-active-directory-apps) che è possibile utilizzare in base alle esigenze e all'ambiente. 

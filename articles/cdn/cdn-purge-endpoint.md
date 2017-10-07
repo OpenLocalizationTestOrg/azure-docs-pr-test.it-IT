@@ -1,6 +1,6 @@
 ---
-title: Ripulire un endpoint della rete CDN di Azure | Microsoft Docs
-description: Informazioni su come ripulire tutto il contenuto memorizzato nella cache da un endpoint della rete CDN di Azure.
+title: aaaPurge un endpoint rete CDN di Azure | Documenti Microsoft
+description: Informazioni su come toopurge tutti memorizzato nella cache contenuto da un endpoint rete CDN di Azure.
 services: cdn
 documentationcenter: 
 author: zhangmanling
@@ -14,61 +14,61 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: mazha
-ms.openlocfilehash: b035c232bb58d653960190d4974cc3789d55a51d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a09f4a49aa1e2d7655ecae44b5126c11c28fd599
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="purge-an-azure-cdn-endpoint"></a>Ripulire un endpoint della rete CDN di Azure
 ## <a name="overview"></a>Panoramica
-I nodi perimetrali della rete CDN di Azure memorizzeranno nella cache gli asset fino alla scadenza della durata TTL dell'asset.  Dopo la scadenza della durata TTL dell'asset, quando un client richiede l'asset dal nodo periodico, questo recupera una nuova copia aggiornata dell'asset per soddisfare la richiesta del client e aggiornare la cache.
+Nodi di bordo della rete CDN Azure vengono memorizzati nella cache di asset fino alla scadenza time-to-live (TTL) dell'asset hello.  Alla scadenza durata (TTL) dell'asset hello, quando un client richiede asset hello dal nodo edge hello, nodo edge hello recupererà una nuova copia aggiornata della richiesta client di hello asset tooserve hello e archiviare l'aggiornamento della cache di hello.
 
-La procedura consigliata per assicurarsi che gli utenti ottengano sempre la copia più recente degli asset consiste nel versioning di questi ultimi per ogni aggiornamento e nella relativa pubblicazione come nuovi URL.  La rete CDN recupera immediatamente i nuovi asset per le richieste client successive.  A volte si desidera ripulire il contenuto memorizzato nella cache da tutti i nodi periodici e forzare il recupero dei nuovi asset aggiornati.  Ciò potrebbe essere dovuto agli aggiornamenti all'applicazione Web o a un aggiornamento rapido di asset che contengono informazioni non corrette.
+Hello best practice toomake che gli utenti ottengono sempre una copia più recente di hello delle risorse è tooversion le risorse per ogni aggiornamento e pubblicano come nuovi URL.  Rete CDN recupera immediatamente nuove risorse di hello per le richieste client successive hello.  In alcuni casi è preferibile toopurge memorizzati nella cache il contenuto di tutti i nodi del bordo e forzarne tutte le risorse aggiornate nuovo tooretrieve.  Potrebbe trattarsi di scadenza dell'applicazione web di tooupdates tooyour o tooquickly aggiornamento asset che contenga informazioni non corrette.
 
 > [!TIP]
-> Solo la cancellazione svuota il contenuto della cache sui server perimetrali della rete CDN.  Tutte le cache downstream, ad esempio le cache dei server proxy e del browser locale, possono comunque mantenere una copia del file nella cache.  È importante tenerlo presente quando si imposta la durata di un file.  È possibile forzare un client downstream per richiedere la versione più recente del file assegnandogli un nome univoco ogni volta che viene aggiornato o sfruttando la [memorizzazione nella cache delle stringhe di query](cdn-query-string.md).  
+> Si noti che solo eliminazione Cancella hello memorizzati nella cache contenuto nel server perimetrale della rete CDN di hello.  Tutte le cache downstream, ad esempio i server proxy e cache locale del browser, possono comunque contenere una copia memorizzata nella cache del file hello.  È importante tooremember questo quando si imposta un file time-to-live.  È possibile forzare una versione più recente di hello toorequest client downstream del file, assegnargli un nome univoco che ogni volta che si aggiornarlo o sfruttando [la memorizzazione nella cache di stringa di query](cdn-query-string.md).  
 > 
 > 
 
 Questa esercitazione illustra l'eliminazione dagli asset di tutti i nodi periodici di un endpoint.
 
 ## <a name="walkthrough"></a>Procedura dettagliata
-1. Nel [portale di Azure](https://portal.azure.com)passare al profilo di rete CDN contenente l'endpoint che si desidera ripulire.
-2. Nel pannello relativo al profilo di rete CDN fare clic sul pulsante di eliminazione.
+1. In hello [portale Azure](https://portal.azure.com), selezionare il profilo CDN toohello contenente hello endpoint desiderato toopurge.
+2. Dal Pannello di profilo CDN hello, fare clic sul pulsante di eliminazione hello di seguito.
    
     ![Pannello del profilo di rete CDN](./media/cdn-purge-endpoint/cdn-profile-blade.png)
    
-    Viene visualizzato il pannello di eliminazione.
+    verrà visualizzata la finestra di blade Purge Hello.
    
     ![Pannello di eliminazione della rete CDN](./media/cdn-purge-endpoint/cdn-purge-blade.png)
-3. Nel pannello di eliminazione selezionare l'indirizzo del servizio che si desidera ripulire dall'elenco a discesa degli URL.
+3. In hello ripulire pannello, selezionare l'indirizzo del servizio hello desiderato toopurge dall'elenco a discesa URL hello.
    
     ![Maschera di eliminazione](./media/cdn-purge-endpoint/cdn-purge-form.png)
    
    > [!NOTE]
-   > È possibile visualizzare il pannello di eliminazione anche facendo clic sul pulsante **Elimina** nel pannello dell'endpoint della rete CDN.  In tal caso, il campo **URL** sarà prepopolato con l'indirizzo del servizio dell'endpoint specifico.
+   > È inoltre possibile ottenere toohello eliminazione pannello facendo hello **ripulire** pulsante sul pannello endpoint rete CDN di hello.  In tal caso, hello **URL** campo sarà già popolato con l'indirizzo del servizio hello di quell'endpoint specifico.
    > 
    > 
-4. Selezionare gli asset che si desidera ripulire dai nodi periferici.  Se si desidera ripulire tutti gli asset, fare clic sulla casella di controllo **Elimina tutto** .  In alternativa digitare il percorso di ogni asset che si vuole eliminare nella casella di testo **Percorso**. I formati seguenti sono supportati nel percorso.
-    1. **Single URL purge**: (Eliminazione di un URL singolo) eliminazione di un singolo asset specificando l'URL completo, con o senza l'estensione di file, ad esempio `/pictures/strasbourg.png`; `/pictures/strasbourg`
-    2. **Wildcard purge**: (Eliminazione dei caratteri jolly) l'asterisco (\*) può essere usato come carattere jolly. Consente di eliminare tutte le cartelle, le sottocartelle e i file in un endpoint inserendo `/*` nel percorso o di eliminare tutte le sottocartelle e i file in una determinata cartella specificando la cartella seguita da `/*`, ad esempio `/pictures/*`.  Si noti che l'eliminazione dei caratteri jolly non è attualmente supportata dalla rete CDN di Azure fornita da Akamai. 
-    3. **Root domain purge**: (Eliminazione del dominio radice) consente di eliminare la radice dell'endpoint inserendo "/" nel percorso.
+4. Selezionare le risorse desiderate toopurge da hello nodi periferici.  Se si desiderano tooclear tutte le risorse, fare clic su hello **Ripulisci** casella di controllo.  In caso contrario, tipo hello percorso di ogni asset da cui toopurge in hello **percorso** casella di testo. Formati di seguito sono supportate nel percorso di hello.
+    1. **Eliminazione di URL singolo**: Elimina una singola risorsa specificando l'URL completo di hello, con o senza estensione file hello, ad esempio,`/pictures/strasbourg.png`;`/pictures/strasbourg`
+    2. **Wildcard purge**: (Eliminazione dei caratteri jolly) l'asterisco (\*) può essere usato come carattere jolly. Eliminare tutte le cartelle, sottocartelle e file in un endpoint con `/*` hello percorso oppure eliminare tutte le sottocartelle e file in una cartella specifica specificando cartella hello seguita da `/*`, ad esempio,`/pictures/*`.  Si noti che l'eliminazione dei caratteri jolly non è attualmente supportata dalla rete CDN di Azure fornita da Akamai. 
+    3. **Eliminazione di dominio radice**: radice hello di eliminazione dell'endpoint hello con "/" nel percorso di hello.
    
    > [!TIP]
-   > Per l'eliminazione, è necessario che i percorsi vengano specificati e che siano un URL relativo che soddisfi l'[espressione regolare](https://msdn.microsoft.com/library/az24scfc.aspx) seguente. Le funzioni **Elimina tutti** e **Wildcard purge** (Eliminazione dei caratteri jolly) non sono attualmente supportate con la **rete CDN di Azure fornita da Akamai**.
+   > I percorsi devono essere specificati per l'eliminazione e deve essere un URL relativo che rientrano seguente hello [espressione regolare](https://msdn.microsoft.com/library/az24scfc.aspx). Le funzioni **Elimina tutti** e **Wildcard purge** (Eliminazione dei caratteri jolly) non sono attualmente supportate con la **rete CDN di Azure fornita da Akamai**.
    > > Single URL purge (Eliminazione di un URL singolo) `@"^\/(?>(?:[a-zA-Z0-9-_.%=\(\)\u0020]+\/?)*)$";`  
    > > Stringa di query `@"^(?:\?[-\@_a-zA-Z0-9\/%:;=!,.\+'&\(\)\u0020]*)?$";`  
    > > Wildcard purge (Eliminazione dei caratteri jolly) `@"^\/(?:[a-zA-Z0-9-_.%=\(\)\u0020]+\/)*\*$";`. 
    > 
-   > Dopo l'immissione di testo verranno visualizzate altre caselle di testo **Percorso** che consentono di compilare un elenco di più asset.  È possibile eliminare gli asset dall'elenco facendo clic sul pulsante con i puntini di sospensione (...).
+   > Ulteriori **percorso** nelle caselle di testo verrà visualizzato dopo l'immissione di testo tooallow si toobuild un elenco di più risorse.  È possibile eliminare l'asset dall'elenco hello facendo clic sul pulsante con puntini di sospensione (…) hello.
    > 
-5. Fare clic sul pulsante **Elimina** .
+5. Fare clic su hello **ripulire** pulsante.
    
     ![Pulsante di eliminazione](./media/cdn-purge-endpoint/cdn-purge-button.png)
 
 > [!IMPORTANT]
-> L'elaborazione delle richieste di eliminazione dura circa 2-3 minuti per l'elaborazione con la **rete CDN di Azure fornita da Verizon** (Standard e Premium) e circa 7 minuti con la **rete CDN di Azure fornita da Akamai**.  La rete CDN di Azure ha un limite di 50 richieste di eliminazione simultanee in qualsiasi momento. 
+> Eliminare le richieste richiedere circa 2-3 minuti tooprocess con **rete CDN di Azure da Verizon** (Standard e Premium) e circa 7 minuti con **rete CDN di Azure da Akamai**.  La rete CDN di Azure ha un limite di 50 richieste di eliminazione simultanee in qualsiasi momento. 
 > 
 > 
 

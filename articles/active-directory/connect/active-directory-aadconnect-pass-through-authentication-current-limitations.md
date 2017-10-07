@@ -1,6 +1,6 @@
 ---
 title: 'Azure AD Connect: Autenticazione pass-through - Limitazioni correnti | Microsoft Docs'
-description: Questo articolo descrive le limitazioni correnti dell'autenticazione pass-through di Azure Active Directory (Azure AD).
+description: Questo articolo descrive le limitazioni correnti hello di autenticazione pass-through di Azure Active Directory (Azure AD).
 services: active-directory
 keywords: Autenticazione pass-through di Azure AD Connect, installare Active Directory, componenti necessari per Azure AD, SSO, Single Sign-On
 documentationcenter: 
@@ -14,20 +14,20 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/03/2017
 ms.author: billmath
-ms.openlocfilehash: 37c0ea094d02208f2516a4a040f75894e046c670
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 2933745d071aae205c44659e6ea92697f390effb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-active-directory-pass-through-authentication-current-limitations"></a>Autenticazione pass-through di Azure Active Directory - Limitazioni correnti
 
 >[!IMPORTANT]
->L'autenticazione pass-through di Azure AD è attualmente in fase di anteprima. È una funzionalità gratuita e non serve alcuna delle edizioni a pagamento di Azure AD per utilizzarla. L'autenticazione pass-through è disponibile solo nell'istanza di Azure AD a livello mondiale, non in [Microsoft Cloud per la Germania](http://www.microsoft.de/cloud-deutschland) o nel [cloud di Microsoft Azure per enti pubblici](https://azure.microsoft.com/features/gov/).
+>L'autenticazione pass-through di Azure AD è attualmente in fase di anteprima. È una funzionalità disponibile gratuitamente e non è necessario qualsiasi edizione a pagamento di Azure AD toouse è. L'autenticazione pass-through è disponibile solo in hello world wide istanza Azure Active Directory e non su [Microsoft Cloud Germania](http://www.microsoft.de/cloud-deutschland) e [Cloud di Microsoft Azure per enti pubblici](https://azure.microsoft.com/features/gov/).
 
 ## <a name="supported-scenarios"></a>Scenari supportati
 
-Gli scenari seguenti sono completamente supportati in fase di anteprima:
+Hello seguenti scenari è completamente supportato durante l'anteprima:
 
 - L'utente accede a tutte le applicazioni basate su Web browser.
 - L'utente accede ad applicazioni client di Office 365 che supportano l'[autenticazione moderna](https://aka.ms/modernauthga).
@@ -36,19 +36,19 @@ Gli scenari seguenti sono completamente supportati in fase di anteprima:
 
 ## <a name="unsupported-scenarios"></a>Scenari non supportati
 
-Gli scenari seguenti _non_ sono supportati in fase di anteprima:
+Hello negli scenari seguenti vengono _non_ supportata durante l'anteprima:
 
-- Accesso degli utenti ad applicazioni client legacy di Office (Office 2013 o versioni precedenti). Le organizzazioni sono incoraggiate a passare all'autenticazione moderna, se possibile. L'autenticazione moderna permette di supportare l'autenticazione pass-through e contribuisce anche a proteggere gli account utente tramite le funzionalità di [accesso condizionale](../active-directory-conditional-access.md), come l'autenticazione a più fattori.
+- Accesso degli utenti ad applicazioni client legacy di Office (Office 2013 o versioni precedenti). Le organizzazioni sono invitati tooswitch toomodern autenticazione, se possibile. L'autenticazione moderna permette di supportare l'autenticazione pass-through e contribuisce anche a proteggere gli account utente tramite le funzionalità di [accesso condizionale](../active-directory-conditional-access.md), come l'autenticazione a più fattori.
 - Accesso degli utenti ad applicazioni client Skype for Business, incluso Skype for Business 2016.
 - L'utente accede a PowerShell v 1.0. È consigliabile tuttavia usare PowerShell 2.0.
 
 >[!IMPORTANT]
->Come soluzione alternativa per gli scenari non supportati, abilitare la sincronizzazione dell'hash della password nella pagina [Funzionalità facoltative](active-directory-aadconnect-get-started-custom.md#optional-features) della procedura guidata di Azure AD Connect. La sincronizzazione dell'hash della password funziona come fallback _solo_ per gli scenari precedenti (e _non_ come fallback generico per l'autenticazione pass-through). Se questi scenari non sono necessari, disabilitare la sincronizzazione dell'hash della password.
+>Come soluzione alternativa per scenari non supportati, attivare la sincronizzazione dell'Hash Password hello [funzionalità facoltative](active-directory-aadconnect-get-started-custom.md#optional-features) pagina nella procedura guidata Connetti hello Azure AD. Sincronizzazione dell'Hash password agisce come fallback per hello precedenti scenari _solo_ (e _non_ come un generico tooPass-tramite l'autenticazione di fallback). Se questi scenari non sono necessari, disabilitare la sincronizzazione dell'hash della password.
 
 ## <a name="next-steps"></a>Passaggi successivi
 - [**Guida introduttiva**](active-directory-aadconnect-pass-through-authentication-quick-start.md): avvio ed esecuzione dell'autenticazione pass-through di Azure AD.
 - [**Approfondimento tecnico**](active-directory-aadconnect-pass-through-authentication-how-it-works.md): informazioni sul funzionamento di questa funzionalità.
-- [**Domande frequenti**](active-directory-aadconnect-pass-through-authentication-faq.md): risposte alle domande più frequenti.
-- [**Risoluzione dei problemi**](active-directory-aadconnect-troubleshoot-pass-through-authentication.md): informazioni su come risolvere i problemi comuni relativi a questa funzionalità.
+- [**Domande frequenti su** ](active-directory-aadconnect-pass-through-authentication-faq.md) -risposte toofrequently domande frequenti.
+- [**Risoluzione dei problemi** ](active-directory-aadconnect-troubleshoot-pass-through-authentication.md) -informazioni su come le problematiche comuni tooresolve con funzionalità hello.
 - [**Seamless Single Sign-On di Azure AD**](active-directory-aadconnect-sso.md): altre informazioni su questa funzionalità complementare.
 - [**UserVoice**](https://feedback.azure.com/forums/169401-azure-active-directory/category/160611-directory-synchronization-aad-connect): per l'invio di richieste di nuove funzionalità.

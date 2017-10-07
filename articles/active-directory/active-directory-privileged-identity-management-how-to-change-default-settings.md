@@ -1,6 +1,6 @@
 ---
-title: Come gestire le impostazioni di attivazione del ruolo | Microsoft Docs
-description: "Informazioni su come modificare le impostazioni predefinite per identità con privilegi con l'estensione Azure Active Directory Privileged Identity Management."
+title: impostazioni di attivazione ruolo toomanage aaaHow | Documenti Microsoft
+description: "Informazioni su come toochange hello le impostazioni predefinite per le identità con privilegi con hello estensione di Azure Active Directory Privileged Identity Management."
 services: active-directory
 documentationcenter: 
 author: billmath
@@ -15,31 +15,31 @@ ms.workload: identity
 ms.date: 06/06/2017
 ms.author: billmath
 ms.custom: pim
-ms.openlocfilehash: 23605e89cd1846d2e06e48cb5d3e0191cb9e9b4a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 453bb6f8f8e0fd2598cb073ef86c1dd55458dc72
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-manage-role-activation-settings-in-azure-ad-privileged-identity-management"></a>Come gestire le impostazioni di attivazione del ruolo in Azure AD Privileged Identity Management
-Un amministratore dei ruoli con privilegi può personalizzare Azure AD Privileged Identity Management (PIM) nell'organizzazione, ad esempio modificando l'esperienza di un utente che attiva l'assegnazione di idoneo al ruolo.
+# <a name="how-toomanage-role-activation-settings-in-azure-ad-privileged-identity-management"></a>Come impostazioni di attivazione toomanage ruolo in Azure AD Privileged Identity Management
+Un amministratore con privilegi di ruolo è possibile personalizzare Azure AD Privileged Identity Management (PIM) nella propria organizzazione, inclusa la modifica esperienza hello per un utente che è l'attivazione di un'assegnazione di ruolo idoneo.
 
-## <a name="manage-the-role-activation-settings"></a>Gestire le impostazioni di attivazione del ruolo
-1. Accedere al [portale di Azure](https://portal.azure.com) e selezionare l'app **Azure AD Privileged Identity Management** dal dashboard.
+## <a name="manage-hello-role-activation-settings"></a>Gestire le impostazioni di attivazione di hello ruolo
+1. Passare toohello [portale di Azure](https://portal.azure.com) e seleziona hello **Azure AD Privileged Identity Management** app dal dashboard hello.
 2. Selezionare **Gestione dei ruoli con privilegi** > **Impostazioni** > **Ruoli con privilegi**.
-3. Selezionare il ruolo del quale gestire le impostazioni.
+3. Scegliere il ruolo di hello le cui impostazioni si desidera toomanage.
 
-La pagina Impostazioni per ogni ruolo contiene numerose impostazioni che è possibile configurare. Queste impostazioni incidono solo sugli utenti che sono amministratori idonei, non sugli amministratori permanenti.
+Nella pagina Impostazioni di hello per ogni ruolo, esistono una serie di impostazioni che è possibile configurare. Queste impostazioni incidono solo sugli utenti che sono amministratori idonei, non sugli amministratori permanenti.
 
-**Attivazioni**: tempo in ore per cui un ruolo rimane attivo prima della scadenza. Questo valore può essere compreso tra 1 e 72 ore.
+**Le attivazioni**: tempo hello, espresso in ore, per cui un ruolo rimane attivo prima che scada. Questo valore può essere compreso tra 1 e 72 ore.
 
-**Notifiche**: è possibile scegliere se il sistema invia messaggi di posta elettronica agli amministratori per confermare che hanno attivato un ruolo. Questa opzione può essere utile per il rilevamento di attivazioni non autorizzate o dannose.
+**Le notifiche**: È possibile scegliere se consentire o meno inviato dal sistema di hello tooadmins messaggi di posta elettronica conferma che è stato attivato un ruolo. Questa opzione può essere utile per il rilevamento di attivazioni non autorizzate o dannose.
 
-**Ticket di evento imprevisto/richiesta**: è possibile scegliere se si vuole richiedere che gli amministratori idonei includano un numero di ticket quando attivano il proprio ruolo. Questa opzione può essere utile quando si eseguono i controlli di accesso dei ruoli.
+**Evento imprevisto/richiesta Ticket**: È possibile scegliere se toorequire admins idonei tooinclude un ticket numero quando si attiva il proprio ruolo. Questa opzione può essere utile quando si eseguono i controlli di accesso dei ruoli.
 
-**Multi-Factor Authentication**: è possibile scegliere se richiedere agli utenti di verificare la propria identità con MFA prima di attivare i ruoli. La verifica è necessaria solo una volta per ogni sessione, non ogni volta che si attiva un ruolo. Tenere presente due suggerimenti quando si abilita l'autenticazione MFA:
+**Multi-Factor Authentication**: È possibile o meno toorequire utenti tooverify la propria identità con autenticazione a più fattori prima di poter attivare i relativi ruoli. Hanno solo una volta per ogni sessione, non ogni volta che si attiva un ruolo tooverify. Esistono due suggerimenti tookeep presente quando si abilita l'autenticazione a più fattori:
 
-* Gli utenti che dispongono di account Microsoft per gli indirizzi di posta elettronica (in genere @outlook.com, ma non sempre) non è possibile registrare per Azure MFA. Se si vuole assegnare ruoli agli utenti con account Microsoft, renderli amministratori permanenti o disabilitare l'autenticazione MFA per il ruolo.
+* Gli utenti che dispongono di account Microsoft per gli indirizzi di posta elettronica (in genere @outlook.com, ma non sempre) non è possibile registrare per Azure MFA. Se si desidera tooassign ruoli toousers con account Microsoft, si deve renderli amministratori permanenti o disabilitare l'autenticazione a più fattori per tale ruolo.
 * Non è possibile disabilitare l'autenticazione MFA per i ruoli con privilegi elevati per Azure AD e Office365. Si tratta di una funzionalità di sicurezza poiché è necessaria una protezione elevata per questi ruoli:  
   
   * Amministratore di applicazioni
@@ -61,11 +61,11 @@ La pagina Impostazioni per ogni ruolo contiene numerose impostazioni che è poss
   * Amministratore di Skype for Business  
   * Amministratore account utente  
 
-Per ulteriori informazioni sull'utilizzo dell’MFA con PIM, vedere [Come richiedere l’MFA](active-directory-privileged-identity-management-how-to-require-mfa.md).
+Per ulteriori informazioni sull'utilizzo di autenticazione a più fattori con PIM vedere [come autenticazione a più fattori tooRequire](active-directory-privileged-identity-management-how-to-require-mfa.md).
 
-<!--PLACEHOLDER: Need an explanation of what the temporary Global Administrator setting is for.-->
+<!--PLACEHOLDER: Need an explanation of what hello temporary Global Administrator setting is for.-->
 
-<!--Every topic should have next steps and links to the next logical set of content to keep the customer engaged-->
+<!--Every topic should have next steps and links toohello next logical set of content tookeep hello customer engaged-->
 ## <a name="next-steps"></a>Passaggi successivi
 [!INCLUDE [active-directory-privileged-identity-management-toc](../../includes/active-directory-privileged-identity-management-toc.md)]
 

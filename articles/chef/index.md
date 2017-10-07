@@ -1,5 +1,5 @@
 ---
-title: Chef in Azure
+title: aaa Chef su Azure
 description: Distribuire e integrare Chef in Azure
 services: multiple
 author: mlearned
@@ -11,29 +11,29 @@ ms.devlang: devops
 ms.topic: landing-page
 ms.date: 04/25/2017
 ms.author: mlearned
-ms.openlocfilehash: 1ed0790f0df205ee08f5596e771f635fc875ccd7
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: cf81485dce4995809bb78f851b5dd35da9f4a78f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 <div class="content">
    <h1>Chef in Azure</h1>
     <div class="introHolder" style="justify-content: space-between;">
         <div class="intro" style="min-width: 200px">
-        <img src="media/chef.png" alt="Chef Logo" align="right"> Chef è una piattaforma di automazione DevOps per Linux e Windows che consente la gestione di configurazioni di server fisici e virtuali. Informazioni su come usare Chef per automatizzare le configurazioni dell'infrastruttura come codice (IaC) e per gestire e distribuire macchine virtuali in Azure grazie a esercitazioni e guide introduttive.          
+        <img src="media/chef.png" alt="Chef Logo" align="right">Chef è una piattaforma di automazione DevOps per Linux e Windows che consente la gestione di hello di entrambe le configurazioni di server fisici e virtuali. Informazioni su come toouse infrastruttura Chef tooautomate come soluzioni di codice (IaC) e gestire e distribuire le macchine virtuali in Azure con le esercitazioni e Guide rapide.          
         </div>
         </div>
 <h2>Guide introduttive di 5 minuti</h2>
-<p>Informazioni su come distribuire Chef in Azure:</p> 
+<p>Informazioni su come toodeploy Chef su Azure:</p> 
   <a href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps/chef-software.chef-automate?tab=Overview">Distribuire Chef Automate in Azure</a><br/>
 <h2>Esercitazioni dettagliate</h2>
-<p>Informazioni su come integrare Chef con gli strumenti e i servizi di Azure:</p> 
+<p>Informazioni su come toointegrate Chef con Azure strumenti e servizi:</p> 
 <ol>
 <li><a href="/azure/virtual-machines/windows/chef-automation">Automatizzare la distribuzione di macchine virtuali di Azure con Chef</a></li>
 </ol>
 <h2>Risorse</h2>
-<p>Per ottenere altri materiali di riferimento e strumenti per l'uso di Chef in Azure, vedere i collegamenti seguenti.</p>
+<p>Vedere i seguenti collegamenti per il materiale di riferimento aggiuntive e strumenti per l'uso di Chef su Azure hello.</p>
 <a href="https://docs.microsoft.com/en-us/powershell/module/azure/get-azurevmchefextension?view=azuresmps-4.0.0">Informazioni di riferimento su Chef per PowerShell</a><br/>
 <a href="https://github.com/chef-partners/vsts-chef/wiki/Getting-Started">Introduzione a Chef e VSTS</a><br/>
 Video: <a href="https://channel9.msdn.com/Events/TechDaysOnline/UK-TechDays-Online-2016/Release-Management-with-VSTS--integration-with-Azure--Chef-Deployment">Release Management with VSTS, Chef, and Octopus Deploy (Release Management con VSTS, Chef e Octopus Deploy)</a><br/>

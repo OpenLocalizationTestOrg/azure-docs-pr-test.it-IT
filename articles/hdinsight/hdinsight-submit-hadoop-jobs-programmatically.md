@@ -1,6 +1,6 @@
 ---
-title: Inviare processi Hadoop in HDInsight | Documentazione Microsoft
-description: Informazioni su come inviare processi Hadoop ad Azure HDInsight Hadoop.
+title: i processi di aaaSubmit Hadoop in HDInsight | Documenti Microsoft
+description: Informazioni su come i processi di Hadoop toosubmit tooAzure HDInsight Hadoop.
 editor: cgronlun
 manager: jhubbard
 services: hdinsight
@@ -16,11 +16,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/25/2017
 ms.author: jgao
-ms.openlocfilehash: 6829ff82afc7fcea9e027ad14ec7ed0c8015a5fe
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6c3acde744e8e384088a6cd56e4273c001c0c9fb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="submit-hadoop-jobs-in-hdinsight"></a>Inviare processi Hadoop in HDInsight
 
@@ -30,7 +30,7 @@ ms.lasthandoff: 07/11/2017
 
   - [Creare applicazioni .NET di autenticazione non interattive](hdinsight-create-non-interactive-authentication-dotnet-applications.md)
   - [Eseguire query Hive con HDInsight .NET SDK](hdinsight-hadoop-use-hive-dotnet-sdk.md)
-  - [Esecuzione di processi Pig con .NET SDK per Hadoop in HDInsight](hdinsight-hadoop-use-pig-dotnet-sdk.md)
+  - [Eseguire i processi Pig utilizzando hello .NET SDK per Hadoop in HDInsight](hdinsight-hadoop-use-pig-dotnet-sdk.md)
   - [Eseguire processi Sqoop con .NET SDK per Hadoop in HDInsight](hdinsight-hadoop-use-sqoop-dotnet-sdk.md)
   - [Eseguire processi MapReduce con HDInsight .NET SDK](hdinsight-hadoop-use-mapreduce-dotnet-sdk.md)
 

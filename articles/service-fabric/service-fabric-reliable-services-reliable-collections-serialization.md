@@ -1,5 +1,5 @@
 ---
-title: Serializzazione di un oggetto Reliable Collections in Azure Service Fabric | Microsoft Docs
+title: serializzazione di oggetti raccolta in Azure Service Fabric aaaReliable | Documenti Microsoft
 description: Serializzazione di un oggetto Reliable Collections di Azure Service Fabric
 services: service-fabric
 documentationcenter: .net
@@ -14,23 +14,23 @@ ms.tgt_pltfrm: na
 ms.workload: required
 ms.date: 5/8/2017
 ms.author: mcoskun
-ms.openlocfilehash: c14794b71ce7340d9e90a56d781c712e247ded06
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 248defbe0ae6f65b4ac5dc7c74e80d8f1152ce94
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="reliable-collection-object-serialization-in-azure-service-fabric"></a>Serializzazione di un oggetto Reliable Collections in Azure Service Fabric
-Le raccolte Reliable Collections replicano e mantengono i propri elementi per garantirne la persistenza anche in caso di errori del computer o interruzioni dell'alimentazione.
-Per replicare e rendere persistenti gli elementi, le raccolte Reliable Collections devono serializzarli.
+Affidabile raccolte vengono replicate e rendere persistenti le toomake elementi siano durevoli tra gli errori di computer e interruzioni dell'alimentazione.
+Elementi tooreplicate sia toopersist, tooserialize necessità affidabile raccolte li.
 
-Le raccolte Reliable Collections ottengono il serializzatore appropriato per un determinato tipo da Reliable State Manager.
-Reliable State Manager contiene serializzatori predefiniti e consente la registrazione di serializzatori personalizzati per un determinato tipo.
+Affidabile raccolte ottenere serializzatore appropriato hello per un determinato tipo dal gestore degli stati affidabile.
+Gestore degli stati affidabile contiene i serializzatori incorporati e consente di serializzatori personalizzati toobe registrato per un determinato tipo.
 
 ## <a name="built-in-serializers"></a>Serializzatori predefiniti
 
-Reliable State Manager include serializzatori predefiniti per alcuni tipi comuni, così da consentirne una serializzazione efficiente per impostazione predefinita. Per altri tipi, Reliable State Manager esegue il fallback per l'uso di [DataContractSerializer](https://msdn.microsoft.com/library/system.runtime.serialization.datacontractserializer(v=vs.110).aspx).
-I serializzatori predefiniti risultano più efficienti perché sanno che i loro tipi non possono essere modificati e non hanno bisogno di includere informazioni sul tipo quali il nome.
+Reliable State Manager include serializzatori predefiniti per alcuni tipi comuni, così da consentirne una serializzazione efficiente per impostazione predefinita. Per altri tipi di gestore degli stati affidabile il fallback hello toouse [DataContractSerializer](https://msdn.microsoft.com/library/system.runtime.serialization.datacontractserializer(v=vs.110).aspx).
+Serializzatori incorporati risultano più efficienti perché sappiano che non è possibile modificare i relativi tipi e non devono tooinclude informazioni sul tipo di hello come il nome del tipo.
 
 Reliable State Manager dispone di un serializzatore predefinito per i tipi seguenti: 
 - Guid
@@ -52,9 +52,9 @@ Reliable State Manager dispone di un serializzatore predefinito per i tipi segue
 
 ## <a name="custom-serialization"></a>Serializzazione personalizzata
 
-I serializzatori personalizzati vengono comunemente usati per migliorare le prestazioni o per crittografare i dati in rete e su disco. Tra le altre ragioni, i serializzatori personalizzati sono in genere più efficienti dei serializzatori generici poiché questi non devono serializzare le informazioni sul tipo. 
+Serializzatori personalizzati sono dati di hello di prestazioni o tooencrypt tooincrease comunemente utilizzati durante la trasmissione hello e su disco. Uno dei motivi, serializzatori personalizzati sono in genere più efficienti serializzatore generico poiché non è necessario tooserialize informazioni sul tipo hello. 
 
-[IReliableStateManager.TryAddStateSerializer<T>](https://docs.microsoft.com/dotnet/api/microsoft.servicefabric.data.ireliablestatemanager.tryaddstateserializer--1?Microsoft_ServiceFabric_Data_IReliableStateManager_TryAddStateSerializer__1_Microsoft_ServiceFabric_Data_IStateSerializer___0__) viene usato per registrare un serializzatore personalizzato per un tipo T specificato. Questa registrazione deve avvenire durante la costruzione di StatefulServiceBase per assicurare che, prima dell'avvio del ripristino, tutte le raccolte Reliable Collections abbiano accesso al serializzatore pertinente per leggere i dati resi persistenti.
+[IReliableStateManager.TryAddStateSerializer<T> ](https://docs.microsoft.com/dotnet/api/microsoft.servicefabric.data.ireliablestatemanager.tryaddstateserializer--1?Microsoft_ServiceFabric_Data_IReliableStateManager_TryAddStateSerializer__1_Microsoft_ServiceFabric_Data_IStateSerializer___0__) è tooregister usato un serializzatore personalizzato per hello dato di tipo T. La registrazione deve essere eseguito nel costruzione hello di hello StatefulServiceBase tooensure prima di avvio del recupero, tutte le raccolte affidabile necessario accedere ai dati persistenti in toohello serializzatore rilevanti tooread.
 
 ```C#
 public StatefulBackendService(StatefulServiceContext context)
@@ -62,17 +62,17 @@ public StatefulBackendService(StatefulServiceContext context)
   {
     if (!this.StateManager.TryAddStateSerializer(new OrderKeySerializer()))
     {
-      throw new InvalidOperationException("Failed to set OrderKey custom serializer");
+      throw new InvalidOperationException("Failed tooset OrderKey custom serializer");
     }
   }
 ```
 
 > [!NOTE]
-> I serializzatori personalizzati hanno la precedenza su quelli predefiniti. Ad esempio, quando viene registrato un serializzatore personalizzato per int, tale serializzatore viene usato per serializzare i valori integer al posto del serializzatore predefinito per int.
+> I serializzatori personalizzati hanno la precedenza su quelli predefiniti. Ad esempio, quando viene registrato un serializzatore personalizzato per int, viene utilizzato tooserialize interi anziché serializzatore incorporato di hello per int.
 
-### <a name="how-to-implement-a-custom-serializer"></a>Come implementare un serializzatore personalizzato
+### <a name="how-tooimplement-a-custom-serializer"></a>Come tooimplement un serializzatore personalizzato
 
-Un serializzatore personalizzato deve implementare l'interfaccia [IStateSerializer<T>](https://docs.microsoft.com/dotnet/api/microsoft.servicefabric.data.istateserializer-1).
+Un serializzatore personalizzato deve hello tooimplement [IStateSerializer<T> ](https://docs.microsoft.com/dotnet/api/microsoft.servicefabric.data.istateserializer-1) interfaccia.
 
 > [!NOTE]
 > IStateSerializer<T> include un overload per Write e Read che accetta un T aggiuntivo chiamato valore di base. Questa API è per la serializzazione differenziale. Attualmente la funzionalità di serializzazione differenziale non è esposta. Di conseguenza, questi due overload non vengono chiamati fino a quando la serializzazione differenziale non è esposta e abilitata.
@@ -135,17 +135,17 @@ public class OrderKeySerializer : IStateSerializer<OrderKey>
 ```
 
 ## <a name="upgradability"></a>Aggiornamento
-In un [aggiornamento in sequenza di un'applicazione](service-fabric-application-upgrade.md)l'aggiornamento viene applicato a un subset di nodi, procedendo con un dominio di aggiornamento per volta. Durante questo processo, alcuni domini di aggiornamento si troveranno con la versione dell'applicazione più recente e altri con quella meno recente. Nella fase di distribuzione, la versione dell'applicazione più recente deve essere in grado di leggere la versione dei dati meno recente e viceversa. Se il formato dei dati non è compatibile con le versioni successive e precedenti, è possibile che l'aggiornamento abbia esito negativo o, peggio ancora, che i dati vengano persi o danneggiati.
+In un [aggiornamento in sequenza](service-fabric-application-upgrade.md), hello aggiornamento è stato applicato tooa sottoinsieme di nodi, un dominio di aggiornamento alla volta. Durante questo processo, alcuni domini di aggiornamento sarà nella versione più recente di hello dell'applicazione, e alcuni domini di aggiornamento sarà in una versione precedente dell'applicazione hello. Durante l'implementazione di hello, hello nuova versione dell'applicazione deve essere in grado di tooread hello precedente dei dati e hello precedente versione dell'applicazione deve essere in grado di tooread hello nuova dei dati. Se formato dati hello non avanti e indietro aggiornamento hello compatibile, potrebbero non viene eseguito o, ancora peggio, dati potrebbe essere perso o danneggiato.
 
-Se si usano serializzatori predefiniti, non esistono problemi di compatibilità.
-Tuttavia, se si usa un serializzatore personalizzato o DataContractSerializer, i dati devono essere compatibili all'infinito con le versioni precedenti e successive.
-In altri termini, ogni versione del serializzatore deve essere in grado di serializzare e deserializzare qualsiasi versione del tipo.
+Se si utilizza il serializzatore predefinito, tooworry sulla compatibilità non si dispone.
+Tuttavia, se si utilizza un serializzatore personalizzato o hello DataContractSerializer, dati hello hanno toobe all'infinito con le versioni precedenti e inoltra compatibili.
+In altre parole, ogni versione del serializzatore deve tooserialize in grado di toobe e deserializzare qualsiasi versione di hello tipo.
 
-Gli utenti del contratto di dati devono seguire regole ben definite di controllo delle versioni per l'aggiunta, la rimozione e la modifica di campi. Il contratto di dati supporta inoltre l'eredità delle classi, la gestione dei campi sconosciuti e l'uso di hook nel processo di serializzazione e deserializzazione. Per altre informazioni, vedere [Utilizzo di contratti dati](https://msdn.microsoft.com/library/ms733127.aspx).
+Gli utenti di contratto dati devono seguire le regole di controllo delle versioni ben definito di hello per l'aggiunta, rimozione e modifica dei campi. Contratto dati è inoltre supportata per la gestione con campi sconosciuti, associazione nel processo di serializzazione e deserializzazione hello e gestiscono l'ereditarietà della classe. Per altre informazioni, vedere [Utilizzo di contratti dati](https://msdn.microsoft.com/library/ms733127.aspx).
 
-Gli utenti di serializzatori personalizzati devono seguire le linee guida del serializzatore in uso per verificarne la compatibilità con le versioni precedenti e successive.
-Un modo comune per supportare tutte le versioni consiste nell'aggiungere le informazioni sulle dimensioni all'inizio e nell'aggiungere soltanto proprietà facoltative.
-In questo modo ogni versione può leggere tutto quanto è in grado di leggere, saltando la rimanente parte del flusso.
+Gli utenti di serializzatore personalizzato devono rispettare le linee guida toohello del serializzatore hello che usano toomake sia con le versioni precedenti e successive.
+Un modo comune di supportare tutte le versioni aggiunge informazioni sulle dimensioni all'inizio di hello e solo l'aggiunta di proprietà facoltative.
+In questo modo ogni versione è possibile leggere la maggior parte può e consente di passare parte rimanente di hello del flusso di hello.
 
 ## <a name="next-steps"></a>Passaggi successivi
   * [Serializzazione e aggiornamento](service-fabric-application-upgrade-data-serialization.md)
@@ -153,5 +153,5 @@ In questo modo ogni versione può leggere tutto quanto è in grado di leggere, s
   * [Esercitazione sull'aggiornamento di un'applicazione di Service Fabric tramite Visual Studio](service-fabric-application-upgrade-tutorial.md) descrive la procedura di aggiornamento di un'applicazione con Visual Studio.
   * [Aggiornamento di un'applicazione di Service Fabric mediante PowerShell](service-fabric-application-upgrade-tutorial-powershell.md) descrive la procedura di aggiornamento di un'applicazione tramite PowerShell.
   * Controllare l’aggiornamento dell'applicazione tramite [Parametri di aggiornamento](service-fabric-application-upgrade-parameters.md).
-  * Per informazioni su come usare funzionalità avanzate durante l'aggiornamento dell'applicazione, vedere [Argomenti avanzati](service-fabric-application-upgrade-advanced.md).
-  * Per informazioni su come risolvere problemi comuni negli aggiornamenti dell'applicazione, vedere i passaggi indicati in [Risoluzione dei problemi relativi agli aggiornamenti dell'applicazione](service-fabric-application-upgrade-troubleshooting.md).
+  * Informazioni su come toouse funzionalità avanzate durante l'aggiornamento dell'applicazione riferendosi troppo[argomenti avanzati](service-fabric-application-upgrade-advanced.md).
+  * Risolvere i problemi comuni negli aggiornamenti dell'applicazione riferendosi passaggi toohello [risoluzione dei problemi gli aggiornamenti dell'applicazione](service-fabric-application-upgrade-troubleshooting.md).

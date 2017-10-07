@@ -1,6 +1,6 @@
 ---
-title: "Cosa è successo a un progetto di servizi di cloud? | Microsoft Docs"
-description: 'Viene descritto cosa succede in un progetto di servizi di cloud dopo la connessione a un account di archiviazione di Azure utilizzando i servizi connessi a Visual Studio '
+title: progetto di servizio cloud toomy aaaWhat disponibile | Microsoft Docs
+description: Viene descritto cosa accade in un progetto di servizi cloud, dopo la connessione di account di archiviazione di Azure utilizzando Visual Studio tooan servizi connessi
 services: storage
 documentationcenter: 
 author: TomArcher
@@ -14,16 +14,16 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/02/2016
 ms.author: tarcher
-ms.openlocfilehash: 4e0d4864c2fad624fbde39080146dc62ebebff09
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 65662dde45dd75bca1b57022283f76305f95e94a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="what-happened-to-my-cloud-services-project-visual-studio-azure-storage-connected-service"></a>Cosa è successo a un progetto di servizi di cloud (servizio connesso a Visual Studio Archiviazione di Azure)?
+# <a name="what-happened-toomy-cloud-services-project-visual-studio-azure-storage-connected-service"></a>I servizi cloud toomy verificato anomalo progetti (Visual Studio connesso servizio di archiviazione Azure)?
 ## <a name="references-added"></a>Aggiunta di riferimenti
-Il pacchetto NuGet per l'Archiviazione di Azure è stato aggiunto al progetto di Visual Studio.  
-Il pacchetto aggiunge i riferimenti a .NET seguenti:
+pacchetto NuGet di archiviazione di Azure Hello è stato aggiunto il progetto di Visual Studio tooyour.  
+Questo pacchetto aggiunge hello segue i riferimenti .NET:
 
 * **Microsoft.Data.Edm**
 * **Microsoft.Data.OData**
@@ -35,7 +35,7 @@ Il pacchetto aggiunge i riferimenti a .NET seguenti:
 * **System.Spatial**
 
 ## <a name="connection-string-for-azure-storage-added"></a>Aggiunta di stringa di connessione per l'Archiviazione di Azure
-Sono stati creati elementi con la stringa di connessione e la chiave dell'account di archiviazione selezionato. Sono state apportate modifiche ai file seguenti:
+Gli elementi sono stati creati con stringa di connessione e la chiave dell'account di archiviazione hello selezionato. Toohello i seguenti file sono state apportate modifiche:
 
 * **ServiceDefinition.csdef**
 * **ServiceConfiguration.Cloud.cscfg**

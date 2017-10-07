@@ -1,6 +1,6 @@
 ---
-title: Esempi dell'interfaccia della riga di comando di Azure per scalare un database di Azure per il server MySQL | Documentazione Microsoft
-description: Questo esempio di script dell'interfaccia della riga di comando di Azure scala un database di Azure per il MySQL a un diverso livello di prestazioni dopo le query sulle metriche.
+title: esempi di aaaAzure CLI tooscale un Database di Azure per il server MySQL | Documenti Microsoft
+description: Questo script di esempio CLI Ridimensiona i Database di Azure a livello di prestazioni diverse tooa di MySQL server dopo l'esecuzione di query metriche hello.
 services: mysql
 author: v-chenyh
 ms.author: v-chenyh
@@ -11,38 +11,37 @@ ms.devlang: azure-cli
 ms.topic: sample
 ms.custom: mvc
 ms.date: 05/31/2017
-ms.openlocfilehash: 33316ff3db382d25a444d55772c6ee4d7b7ac418
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 721ef9db35a5f3be7a38438c1abb724187b18b75
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="monitor-and-scale-an-azure-database-for-mysql-server-using-azure-cli"></a>Monitorare a scalare un database di Azure per il server MySQL usando l'interfaccia della riga di comando di Azure
-Questo esempio di script dell'interfaccia della riga di comando di Azure scala un singolo database di Azure per il server MySQL a un diverso livello di prestazioni dopo le query sulle metriche.
+Questo script di esempio CLI ridimensiona un singolo Database di Azure a livello di prestazioni diverse tooa di MySQL server dopo l'esecuzione di query metriche hello.
 
 [!INCLUDE [cloud-shell-try-it](../../../includes/cloud-shell-try-it.md)]
 
-Se si sceglie di installare e usare l'interfaccia della riga di comando in locale, per questo argomento è necessario eseguire la versione 2.0 o successiva dell'interfaccia della riga di comando di Azure. Eseguire `az --version` per trovare la versione. Se è necessario eseguire l'installazione o l'aggiornamento, vedere [Installare l'interfaccia della riga di comando di Azure 2.0]( /cli/azure/install-azure-cli). 
+Se si sceglie tooinstall e utilizza hello CLI in locale, in questo argomento è necessario che si esegue hello Azure CLI versione 2.0 o versione successiva. Eseguire `az --version` versione hello toofind. Se è necessario tooinstall o l'aggiornamento, vedere [installare Azure CLI 2.0]( /cli/azure/install-azure-cli). 
 
 ## <a name="sample-script"></a>Script di esempio
-In questo script di esempio modificare le righe evidenziate per personalizzare nome utente e password amministratore. Sostituire l'ID sottoscrizione utilizzato nei comandi di monitoraggio az con il proprio ID sottoscrizione.
-[!code-azurecli-interactive[main](../../../cli_scripts/mysql/scale-mysql-server/scale-mysql-server.sh?highlight=15-16 "Creare e scalare il database di Azure per MySQL.")]
+In questo esempio, modificare hello evidenziato righe toocustomize hello admin username e password. Sostituire l'id sottoscrizione hello utilizzato nei comandi di monitoraggio az hello con il proprio id sottoscrizione.[!code-azurecli-interactive[main](../../../cli_scripts/mysql/scale-mysql-server/scale-mysql-server.sh?highlight=15-16 "Create and scale Azure Database for MySQL.")]
 
 ## <a name="clean-up-deployment"></a>Pulire la distribuzione
-Dopo l'esecuzione dello script di esempio, è possibile usare il comando seguente per rimuovere il gruppo di risorse e tutte le risorse ad esso associate.
-[!code-azurecli-interactive[main](../../../cli_scripts/mysql/scale-mysql-server/delete-mysql.sh  "Eliminare il gruppo di risorse.")]
+Dopo l'esecuzione di script di esempio hello, hello comando seguente può essere utilizzato tooremove gruppo di risorse hello e tutte le risorse associate.
+[!code-azurecli-interactive[main](../../../cli_scripts/mysql/scale-mysql-server/delete-mysql.sh  "Delete hello resource group.")]
 
 ## <a name="script-explanation"></a>Spiegazione dello script
-Questo script usa i comandi seguenti. Ogni comando della tabella include collegamenti alla documentazione specifica del comando.
+Questo script utilizza hello i comandi seguenti. Ogni comando in documentazione specifica toocommand hello tabella collegamenti.
 
 | **Comando** | **Note** |
 |---|---|
 | [az group create](/cli/azure/group#create) | Consente di creare un gruppo di risorse in cui sono archiviate tutte le risorse. |
-| [az mysql server create](/cli/azure/mysql/server#create) | Crea un server MySQL che ospita i database. |
-| [az monitor metrics list](/cli/azure/monitor/metrics#list) | Elencare il valore metrico per le risorse. |
+| [az mysql server create](/cli/azure/mysql/server#create) | Crea un server di MySQL che ospita i database hello. |
+| [az monitor metrics list](/cli/azure/monitor/metrics#list) | Elenco hello valore metrico per le risorse di hello. |
 | [az group delete](/cli/azure/group#delete) | Consente di eliminare un gruppo di risorse incluse tutte le risorse annidate. |
 
 ## <a name="next-steps"></a>Passaggi successivi
-- Altre informazioni sull'interfaccia della riga di comando di Azure: [documentazione sull'interfaccia della riga di comando di Azure](/cli/azure/overview).
+- Altre informazioni su hello CLI di Azure: [documentazione CLI di Azure](/cli/azure/overview).
 - Provare a eseguire altri script: [esempi dell'interfaccia della riga di comando di Azure per il database di Azure per MySQL](../sample-scripts-azure-cli.md)
 - Per altre informazioni sul ridimensionamento, vedere [Livelli di servizio](../concepts-service-tiers.md) e [Unità di calcolo e unità di archiviazione](../concepts-compute-unit-and-storage.md).

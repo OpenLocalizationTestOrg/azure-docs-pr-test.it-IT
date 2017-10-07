@@ -1,5 +1,5 @@
 ---
-title: Configurare l'accesso LDAP sicuro (LDAPS) in Azure Active Directory Domain Services | Microsoft Docs
+title: aaaConfigure Secure LDAP (LDAPS) in servizi di dominio Active Directory di Azure | Documenti Microsoft
 description: Configurare l'accesso LDAP sicuro (LDAPS) per un dominio gestito di Servizi di dominio Azure AD
 services: active-directory-ds
 documentationcenter: 
@@ -14,99 +14,99 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/14/2017
 ms.author: maheshu
-ms.openlocfilehash: 3b19f078b0d6dc3e02d951014056406fd1b099a8
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 8781285cd02d690788056b985b017efd7e4d6b3f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="configure-secure-ldap-ldaps-for-an-azure-ad-domain-services-managed-domain"></a>Configurare l'accesso LDAP sicuro (LDAPS) per un dominio gestito di Azure AD Domain Services
 
 ## <a name="before-you-begin"></a>Prima di iniziare
-Assicurarsi di aver completato l'[Attività 2: Esportare il certificato LDAP sicuro in un file PFX](active-directory-ds-admin-guide-configure-secure-ldap-export-pfx.md).
+Assicurarsi di aver completato [attività 2 - esportazione hello sicura LDAP certificato tooa. Il file PFX](active-directory-ds-admin-guide-configure-secure-ldap-export-pfx.md).
 
-Scegliere se usare l'esperienza di anteprima del portale di Azure o il portale di Azure classico per completare questa attività.
+Scegliere se toouse hello anteprima esperienza del portale Azure oppure hello Azure toocomplete portale classico di questa attività.
 > [!div class="op_single_selector"]
-> * **Portale di Azure (anteprima)**: [Abilitare l'accesso LDAP sicuro tramite il portale di Azure](active-directory-ds-admin-guide-configure-secure-ldap-enable-ldaps.md)
-> * **Portale di Azure classico**: [Abilitare l'accesso LDAP sicuro usando il portale di Azure classico](active-directory-ds-admin-guide-configure-secure-ldap-enable-ldaps-classic.md)
+> * **Il portale di Azure (anteprima)**: [Enable secure LDAP utilizzando hello portale di Azure](active-directory-ds-admin-guide-configure-secure-ldap-enable-ldaps.md)
+> * **Portale di Azure classico**: [Enable secure LDAP utilizzando il portale di Azure classico di hello](active-directory-ds-admin-guide-configure-secure-ldap-enable-ldaps-classic.md)
 >
 >
 
 
-## <a name="task-3---enable-secure-ldap-for-the-managed-domain-using-the-azure-portal-preview"></a>Attività 3: Abilitare l'accesso LDAP sicuro per il dominio gestito usando il portale di Azure (anteprima)
-Per abilitare l'accesso LDAP sicuro, seguire questa procedura di configurazione:
+## <a name="task-3---enable-secure-ldap-for-hello-managed-domain-using-hello-azure-portal-preview"></a>Attività 3: abilitare l'accesso LDAP sicuro per hello dominio gestito utilizzando hello del portale di Azure (anteprima)
+tooenable secure LDAP, eseguire hello seguendo i passaggi di configurazione:
 
-1. Passare al **[portale di Azure](https://portal.azure.com)**.
+1. Passare toohello  **[portale di Azure](https://portal.azure.com)**.
 
-2. Cercare "servizi di dominio" nella casella di ricerca **Cerca risorse**. Selezionare **Azure AD Domain Services** dai risultati della ricerca. Nel pannello **Azure AD Domain Services** è indicato il dominio gestito.
+2. Ricerca di "servizi di dominio' in hello **individuare risorse** casella di ricerca. Selezionare **servizi di dominio Active Directory di Azure** dai risultati di ricerca hello. Hello **servizi di dominio Active Directory di Azure** pannello elenca il dominio gestito.
 
     ![Trovare il dominio gestito di cui viene effettuato il provisioning](./media/getting-started/domain-services-provisioning-state-find-resource.png)
 
-2. Fare clic sul nome del dominio gestito (ad esempio, "contoso100.com") per visualizzare altre informazioni sul dominio.
+2. Fare clic su nome hello di hello gestito dominio (ad esempio, ' contoso100.com') toosee ulteriori dettagli su dominio hello.
 
     ![Domain Services - Stato del provisioning](./media/getting-started/domain-services-provisioning-state.png)
 
-3. Fare clic su **LDAP sicuro** nel riquadro di spostamento.
+3. Fare clic su **Secure LDAP** nel riquadro di spostamento hello.
 
     ![Domain Services - Pannello LDAP sicuro](./media/active-directory-domain-services-admin-guide/secure-ldap-blade.png)
 
-4. Per impostazione predefinita, l'accesso LDAP sicuro al dominio gestito è disabilitato. Impostare **LDAP sicuro** su **Abilita**.
+4. Per impostazione predefinita, l'accesso LDAP sicuro tooyour una dominio gestito è disabilitata. Attiva/disattiva **Secure LDAP** troppo**abilitare**.
 
     ![Abilitare LDAP sicuro](./media/active-directory-domain-services-admin-guide/secure-ldap-blade-configure.png)
-5. Per impostazione predefinita, l'accesso LDAP sicuro al dominio gestito su Internet è disabilitato. Impostare **Abilita accesso LDAP sicuro tramite Internet** su **Abilita**, se necessario. 
+5. Per impostazione predefinita, tooyour di accesso LDAP sicuro gestiti dominio tramite hello che Internet è disabilitato. Attiva/disattiva **Consenti l'accesso LDAP sicuro su internet di hello** troppo**abilitare**, se necessario. 
 
-6. Fare clic sull'icona della cartella accanto a **File PFX con certificato LDAP sicuro**. Specificare il percorso del file PFX con il certificato per l'accesso LDAP sicuro al dominio gestito.
+6. Fare clic su seguenti sull'icona di cartella hello **. Il file PFX con certificato LDAP sicuro**. Specificare file PFX di hello percorso toohello con certificato hello per accesso LDAP sicuro toohello una dominio gestita.
 
-7. Specificare la **password per decrittografare il file PFX**. Indicare la stessa password usata per l'esportazione del certificato nel file PFX.
+7. Specificare hello **toodecrypt Password. Il file PFX**. Fornire hello stessa password usata per l'esportazione di file PFX del certificato toohello hello.
 
-8. Al termine, fare clic sul pulsante **Salva** .
+8. Al termine, fare clic su hello **salvare** pulsante.
 
-9. Viene visualizzata una notifica che informa che è in corso la configurazione dell'accesso LDAP sicuro per il dominio gestito. Finché questa operazione non viene completata, non è possibile modificare altre impostazioni per il dominio.
+9. Viene visualizzata una notifica che informa l'utente che viene configurato per il dominio gestito hello LDAP sicuro. Fino a quando questa operazione è stata completata, è possibile modificare altre impostazioni per il dominio hello.
 
-    ![Configurazione dell'accesso LDAP sicuro per il dominio gestito](./media/active-directory-domain-services-admin-guide/secure-ldap-blade-configuring.png)
+    ![Configurare il protocollo LDAP sicuro per il dominio gestito hello](./media/active-directory-domain-services-admin-guide/secure-ldap-blade-configuring.png)
 
 > [!NOTE]
-> Per abilitare l'accesso LDAP sicuro per il dominio gestito saranno necessari circa 10-15 minuti. Se il certificato LDAP sicuro fornito non soddisfa i criteri necessari, l'accesso LDAP sicuro non viene abilitato per la directory e viene visualizzato un errore. Ad esempio, il nome di dominio non è corretto, il certificato è già scaduto o scadrà presto. In questo caso, riprovare con un certificato valido.
+> Sono necessari circa 10 minuti too15 tooenable LDAP sicuro per il dominio gestito. Se hello fornito certificato LDAP sicuro non corrisponde a hello richiesto criteri, accesso LDAP sicuro non è abilitato per la directory e viene visualizzato un errore. Ad esempio, il nome di dominio hello non è corretto, certificato hello è già scaduto o scadrà a breve. In questo caso, riprovare con un certificato valido.
 >
 >
 
 <br>
 
-## <a name="task-4---configure-dns-to-access-the-managed-domain-from-the-internet"></a>Attività 4: Configurare DNS per l'accesso al dominio gestito da Internet
+## <a name="task-4---configure-dns-tooaccess-hello-managed-domain-from-hello-internet"></a>Attività 4: configurare DNS tooaccess hello dominio gestito da hello internet
 > [!NOTE]
-> **Attività facoltativa** : ignorare questa attività di configurazione se non si intende accedere al dominio gestito usando l'accesso LDAP sicuro tramite Internet.
+> **Attività facoltative** : se non si prevede tooaccess hello dominio gestito utilizza LDAPS oltre hello internet, ignorare questa attività di configurazione.
 >
 >
 
-Prima di iniziare questa attività, assicurarsi di aver completato la procedura descritta nell' [attività 3](#task-3---enable-secure-ldap-for-the-managed-domain-using-the-azure-portal-preview).
+Prima di iniziare questa attività, assicurarsi di aver completato i passaggi di hello descritti in [attività 3](#task-3---enable-secure-ldap-for-the-managed-domain-using-the-azure-portal-preview).
 
-Dopo aver attivato l'accesso LDAP sicuro tramite Internet al dominio gestito, è necessario aggiornare il server DNS in modo che i computer client possano trovare il dominio gestito. Al termine dell'attività 3, nel campo **INDIRIZZO IP ESTERNO PER L'ACCESSO LDAPS** del pannello **Proprietà** viene visualizzato un indirizzo IP esterno.
+Dopo aver abilitato l'accesso LDAP sicuro tramite hello internet per il dominio gestito, è necessario tooupdate DNS in modo che i computer client possano trovare il dominio gestito. Alla fine di hello di attività 3, viene visualizzato un indirizzo IP esterno in hello **proprietà** pannello in **IP indirizzo per LDAPS accesso esterno**.
 
-Configurare il provider DNS esterno in modo che il nome DNS del dominio gestito, ad esempio "ldaps.contoso100.com", punti a questo indirizzo IP esterno. Nell'esempio è necessario creare la voce DNS seguente:
+Configurare il provider DNS esterno in modo che il nome DNS di hello del hello gestiti dominio (ad esempio, ' ldaps.contoso100.com') toothis punti l'indirizzo IP esterno. In questo esempio, è necessario hello toocreate voce DNS seguenti:
 
     ldaps.contoso100.com  -> 52.165.38.113
 
-La procedura è terminata ed è possibile connettersi al dominio gestito usando l'accesso LDAP sicuro tramite Internet.
+La procedura è: si è ora pronto tooconnect toohello gestito hello di dominio utilizzando LDAP sicuro tramite internet.
 
 > [!WARNING]
-> Tenere presente che i computer client devono considerare attendibile l'autorità emittente del certificato LDAPS per potersi connettere al dominio gestito tramite LDAPS. Se si usa un'autorità di certificazione pubblicamente attendibile, non sarà necessario eseguire alcuna operazione perché queste autorità sono considerate attendibili dai computer client. Se si usa un certificato autofirmato, installare la parte pubblica del certificato autofirmato nell'archivio certificati attendibili del computer client.
+> Tenere presente che i computer client devono considerare attendibile correttamente autorità emittente hello di hello LDAPS certificato toobe in grado di tooconnect toohello gestiti dominio utilizzando LDAP. Se si utilizza un'autorità di certificazione attendibile pubblicamente, non è necessario toodo alcuna operazione poiché i computer client attendibile queste autorità di certificazione. Se si utilizza un certificato autofirmato, è possibile installare parte pubblica di hello del certificato autofirmato hello nell'archivio certificati attendibili hello in computer client hello.
 >
 >
 
 
-## <a name="task-5---lock-down-ldaps-access-to-your-managed-domain-over-the-internet"></a>Attività 5: Bloccare l'accesso LDAPS al dominio gestito su Internet
+## <a name="task-5---lock-down-ldaps-access-tooyour-managed-domain-over-hello-internet"></a>Attività 5 - blocco LDAPS accesso tooyour gestiti hello di dominio tramite internet
 > [!NOTE]
-> **Attività facoltativa**: ignorare questa attività di configurazione se non è stato abilitato l'accesso LDAPS al dominio gestito su Internet.
+> **Attività facoltative** : se non è stato abilitato LDAPS accesso toohello gestito dominio oltre hello internet, ignorare questa attività di configurazione.
 >
 >
 
-Prima di iniziare questa attività, assicurarsi di aver completato la procedura descritta nell' [attività 3](#task-3---enable-secure-ldap-for-the-managed-domain-using-the-azure-portal-preview).
+Prima di iniziare questa attività, assicurarsi di aver completato i passaggi di hello descritti in [attività 3](#task-3---enable-secure-ldap-for-the-managed-domain-using-the-azure-portal-preview).
 
-L'esposizione del dominio gestito per l'accesso LDAPS su Internet rappresenta una minaccia alla sicurezza. Il dominio gestito è raggiungibile da Internet presso la porta usata per l'accesso LDAP sicuro, ovvero la porta 636. Di conseguenza, è possibile scegliere di limitare l'accesso al dominio gestito a determinati indirizzi IP noti. Per migliorare la sicurezza, creare un gruppo di sicurezza di rete (NSG) e associarlo alla subnet in cui è stato abilitato Azure AD Domain Services.
+Esporre il dominio gestito per l'accesso LDAPS su hello internet rappresenta una minaccia alla sicurezza. Hello dominio gestito è raggiungibile da hello internet hello porta utilizzata per l'accesso LDAP sicuro (ovvero, la porta 636). Pertanto, è possibile scegliere toorestrict accesso toohello gestito dominio toospecific noti gli indirizzi IP. Per migliorare la sicurezza, creare un gruppo di sicurezza di rete (gruppo) e associarlo a subnet hello in cui sono abilitati i servizi di dominio Active Directory di Azure.
 
-La tabella seguente illustra un esempio di gruppo di sicurezza di rete che è possibile configurare per bloccare l'accesso LDAP sicuro su Internet. Il gruppo di sicurezza di rete contiene alcune regole che consentono l'accesso LDAPS in ingresso sulla porta TCP 636 solo da un set specificato di indirizzi IP. La regola predefinita "DenyAll" si applica a tutto il traffico in ingresso da Internet. La regola del gruppo di sicurezza di rete per consentire l'accesso LDAPS su Internet da indirizzi IP specificati ha una priorità superiore rispetto alla regola DenyAll del gruppo di sicurezza di rete.
+Hello tabella seguente viene illustrato un esempio di gruppo è possibile configurare, toolock verso il basso l'accesso LDAP sicuro tramite hello internet. Hello gruppo contiene un set di regole che consentono l'accesso LDAPS in ingresso sulla porta TCP 636 solo da un set specificato di indirizzi IP. Hello predefinito 'DenyAll' regola verrà applicata tooall il traffico in ingresso di hello internet. Hello NSG regola tooallow LDAPS tramite hello internet da indirizzi IP specificati ha una priorità maggiore hello regola DenyAll NSG.
 
-![Gruppo di sicurezza di rete di esempio per proteggere l'accesso LDAPS su Internet](./media/active-directory-domain-services-admin-guide/secure-ldap-sample-nsg.png)
+![Esempio NSG toosecure LDAPS tramite hello internet](./media/active-directory-domain-services-admin-guide/secure-ldap-sample-nsg.png)
 
 **Altre informazioni** - [Gruppi di sicurezza di rete](../virtual-network/virtual-networks-nsg.md)
 

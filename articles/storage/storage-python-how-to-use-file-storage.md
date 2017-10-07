@@ -1,6 +1,6 @@
 ---
-title: Eseguire lo sviluppo per Archiviazione file di Azure con Python | Microsoft Docs
-description: Informazioni su come sviluppare applicazioni e servizi Python che usano Archiviazione file di Azure per archiviare i dati dei file.
+title: aaaDevelop per l'archiviazione di File di Azure con Python | Documenti Microsoft
+description: Informazioni su come toodevelop Python applicazioni e servizi che utilizzano i File di Azure storage toostore dati dei file.
 services: storage
 documentationcenter: python
 author: robinsh
@@ -14,11 +14,11 @@ ms.devlang: python
 ms.topic: article
 ms.date: 12/08/2016
 ms.author: robinsh
-ms.openlocfilehash: a1a37266908277b54e7b42d85b9b4873af77e622
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 45623e6dbec6f140cedc4e58e56a93fb4af9054e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="develop-for-azure-file-storage-with-python"></a>Eseguire lo sviluppo per Archiviazione file di Azure con Python
 [!INCLUDE [storage-selector-file-include](../../includes/storage-selector-file-include.md)]
@@ -26,7 +26,7 @@ ms.lasthandoff: 08/03/2017
 [!INCLUDE [storage-try-azure-tools-files](../../includes/storage-try-azure-tools-files.md)]
 
 ## <a name="about-this-tutorial"></a>Informazioni sull'esercitazione
-Questa esercitazione illustra le nozioni base per l'uso di Python per sviluppare applicazioni o servizi che usano Archiviazione file di Azure per archiviare i dati dei file. In questa esercitazione verrà creata una semplice applicazione console e verrà mostrato come eseguire le azioni di base con Python e Archiviazione file di Azure:
+Questa esercitazione verrà illustrato l'utilizzo di Python toodevelop applicazioni o servizi che utilizzano i File di Azure storage toostore file dati di base di hello. In questa esercitazione verrà creata una semplice applicazione console e Mostra come tooperform azioni di base con l'archiviazione di Python e File di Azure:
 
 * Creare condivisioni file di Azure
 * Creare directory
@@ -34,38 +34,38 @@ Questa esercitazione illustra le nozioni base per l'uso di Python per sviluppare
 * Caricare, scaricare ed eliminare un file
 
 > [!Note]  
-> Poiché Archiviazione file di Azure è accessibile tramite SMB, è possibile scrivere semplici applicazioni che accedono alla condivisione file di Azure usando le classi e le funzioni standard I/O di Python. Questo articolo descrive come scrivere applicazioni che usano Azure Storage Python SDK, che usa l'[API REST di archiviazione file Azure](https://docs.microsoft.com/en-us/rest/api/storageservices/fileservices/file-service-rest-api) per comunicare con Archiviazione file di Azure.
+> Poiché la memorizzazione dei File di Azure sono accessibili tramite SMB, è possibile toowrite semplici applicazioni che accedono a condivisione di File di Azure hello utilizzando le funzioni e classi dei / o Python standard hello. In questo articolo descrive come le applicazioni che usano toowrite hello Python Azure Storage SDK, che usa hello [API REST di archiviazione di File di Azure](https://docs.microsoft.com/en-us/rest/api/storageservices/fileservices/file-service-rest-api) tootalk tooAzure archiviazione File.
 
-### <a name="set-up-your-application-to-use-azure-file-storage"></a>Configurare l'applicazione per usare Archiviazione file di Azure
-Aggiungere il codice seguente vicino all'inizio del file di origine Python da cui si desidera accedere all'archiviazione di Azure a livello di codice.
+### <a name="set-up-your-application-toouse-azure-file-storage"></a>Configurare l'archiviazione di File di Azure di toouse applicazione
+Aggiungere il seguente hello superiore hello di qualsiasi file di origine di Python in cui si desidera tooprogrammatically accesso di archiviazione di Azure.
 
 ```python
 from azure.storage.file import FileService
 ```
 
-### <a name="set-up-a-connection-to-azure-file-storage"></a>Configurare una connessione all'archiviazione file di Azure 
-L'oggetto `FileService` consente di usare condivisioni, directory e file. Il codice seguente crea un oggetto `FileService` usando il nome e la chiave dell'account di archiviazione. Sostituire `<myaccount>` e `<mykey>` con il nome e la chiave dell'account.
+### <a name="set-up-a-connection-tooazure-file-storage"></a>Impostare un tooAzure connessione archiviazione File 
+Hello `FileService` oggetto consente di lavorare con file, directory e condivisioni. Hello codice seguente viene creata una `FileService` oggetto utilizzando hello chiave account di archiviazione nome e all'account. Sostituire `<myaccount>` e `<mykey>` con il nome e la chiave dell'account.
 
 ```python
 file_service = FileService(account_name='myaccount', account_key='mykey')
 ```
 
 ### <a name="create-an-azure-file-share"></a>Creare una condivisione file di Azure
-Nell'esempio di codice seguente, è possibile usare un oggetto `FileService` per creare la condivisione, se non esiste.
+Nell'esempio di codice seguente di hello, è possibile utilizzare un `FileService` condivisione di hello toocreate oggetto se non esiste.
 
 ```python
 file_service.create_share('myshare')
 ```
 
 ### <a name="create-a-directory"></a>Creare una directory
-È inoltre possibile organizzare l'archiviazione inserendo i file all'interno di sottodirectory anziché inserirli tutti nella directory radice. L'archiviazione file di Azure permette di creare tutte le directory consentite dall'account. Il codice riportato di seguito creerà una sottodirectory denominata **sampledir** nella directory radice.
+È anche possibile organizzare archiviazione inserendo i file all'interno di sottodirectory, anziché tutti gli elementi nella directory radice hello. Archiviazione di File di Azure consente toocreate come consentire molte directory come l'account. codice Hello seguente verrà creata una sottodirectory denominata **sampledir** nella directory radice hello.
 
 ```python
 file_service.create_directory('myshare', 'sampledir')
 ```
 
 ### <a name="enumerate-files-and-directories-in-an-azure-file-share"></a>Enumerare file e directory in una condivisione file di Azure
-Per elencare i file e le directory di una condivisione, usare il metodo **list\_directories\_and\_files**. Questo metodo restituisce un generatore. Il codice seguente consente di inviare alla console il valore **name** di ogni file e directory in una condivisione.
+toolist hello file e directory in una condivisione, utilizzare hello **elenco\_directory\_e\_file** metodo. Questo metodo restituisce un generatore. il codice seguente Hello restituisce hello **nome** di ogni file e directory in una console toohello condivisione.
 
 ```python
 generator = file_service.list_directories_and_files('myshare')
@@ -74,42 +74,42 @@ for file_or_dir in generator:
 ```
 
 ### <a name="upload-a-file"></a>Caricare un file 
-Una condivisione file di Azure contiene almeno una directory radice in cui possono risiedere i file. In questa sezione verrà illustrato come caricare un file dall'archiviazione locale nella directory radice di una condivisione.
+File di Azure condivisione contiene in hello molto meno, una directory radice in cui i file possono trovarsi. In questa sezione si apprenderà come tooupload un file dall'archiviazione locale su hello radice della directory di una condivisione.
 
-Per creare un file e caricare dati, usare i metodi `create_file_from_path`, `create_file_from_stream`, `create_file_from_bytes` o `create_file_from_text`. Questi sono metodi di carattere generale che eseguono il blocco dei dati necessario quando le dimensioni superano i 64 MB.
+toocreate un file e caricare i dati, utilizzare hello `create_file_from_path`, `create_file_from_stream`, `create_file_from_bytes` o `create_file_from_text` metodi. Sono metodi di alto livello che eseguono hello necessarie suddivisione in blocchi quando hello hello dati superano di 64 MB.
 
-`create_file_from_path` carica i contenuti di un file dal percorso specificato, mentre `create_file_from_stream` carica i contenuti da un file/flusso già aperto. `create_file_from_bytes` carica un array di byte, mentre `create_file_from_text` carica il valore di testo specificato usando la codifica specificata (l'impostazione predefinita è UTF-8).
+`create_file_from_path`caricamenti hello contenuto di un file dal percorso specificato hello, e `create_file_from_stream` caricamenti hello contenuto dal flusso file già aperto. `create_file_from_bytes`Carica una matrice di byte, e `create_file_from_text` caricamenti hello specificato il valore di testo utilizzando hello codifica (impostazioni predefinite tooUTF-8).
 
-Nell'esempio seguente viene caricato il contenuto del file **sunset.png** nel file **myfile**.
+esempio Hello carica il contenuto di hello di hello **sunset.png** file hello **myfile** file.
 
 ```python
 from azure.storage.file import ContentSettings
 file_service.create_file_from_path(
     'myshare',
-    None, # We want to create this blob in the root directory, so we specify None for the directory_name
+    None, # We want toocreate this blob in hello root directory, so we specify None for hello directory_name
     'myfile',
     'sunset.png',
     content_settings=ContentSettings(content_type='image/png'))
 ```
 
 ### <a name="download-a-file"></a>Scaricare un file
-Per scaricare i dati da un file, usare `get_file_to_path`, `get_file_to_stream`, `get_file_to_bytes` o `get_file_to_text`. Questi sono metodi di carattere generale che eseguono il blocco dei dati necessario quando le dimensioni superano i 64 MB.
+toodownload dati da un file, utilizzare `get_file_to_path`, `get_file_to_stream`, `get_file_to_bytes`, o `get_file_to_text`. Sono metodi di alto livello che eseguono hello necessarie suddivisione in blocchi quando hello hello dati superano di 64 MB.
 
-Nell'esempio seguente viene illustrato l'uso di `get_file_to_path` per scaricare il contenuto del file **myfile** e archiviarlo nel file **out-sunset.png**.
+Hello seguente viene illustrato l'utilizzo `get_file_to_path` contenuto hello toodownload di hello **myfile** file e archiviarlo toohello **out sunset.png** file.
 
 ```python
 file_service.get_file_to_path('myshare', None, 'myfile', 'out-sunset.png')
 ```
 
 ### <a name="delete-a-file"></a>Eliminare un file
-Per eliminare un file, infine, chiamare `delete_file`.
+Chiamare infine toodelete un file, `delete_file`.
 
 ```python
 file_service.delete_file('myshare', None, 'myfile')
 ```
 
 ## <a name="next-steps"></a>Passaggi successivi
-Dopo aver appreso come interagire con l'archiviazione di File di Azure con Python, seguire i collegamenti seguenti per ulteriori informazioni.
+Ora che si è appreso come toomanipulate archiviazione di File di Azure con Python, seguire questi ulteriori toolearn di collegamenti.
 
 * [Centro per sviluppatori di Python](/develop/python/)
 * [API REST dei servizi di archiviazione di Azure](http://msdn.microsoft.com/library/azure/dd179355)

@@ -1,6 +1,6 @@
 ---
-title: Aggiungere Microsoft Translator nelle app per la logica | Documentazione Microsoft
-description: Panoramica del connettore Microsoft Translator con i parametri dell'API REST.
+title: aaaAdd hello Microsoft Translator in App per la logica | Documenti Microsoft
+description: Panoramica del connettore Microsoft Translator hello con i parametri di API REST
 services: 
 suite: 
 documentationcenter: 
@@ -16,28 +16,28 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 11/07/2016
 ms.author: mandia; ladocs
-ms.openlocfilehash: f36cd801a0572d671977e2e48a7f1e743e38e768
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 598405dfbc13b340f34923157dfb967da5e7d55a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-with-the-microsoft-translator-connector"></a>Introduzione al connettore Microsoft Translator
-Connettersi a Microsoft Translator per tradurre il testo, individuare una lingua e così via. Con Microsoft Translator è possibile: 
+# <a name="get-started-with-hello-microsoft-translator-connector"></a>Introduzione a connettore Microsoft Translator hello
+Testo di tootranslate traduttore tooMicrosoft di connessione, rilevare una lingua e altro ancora. Con Microsoft Translator è possibile: 
 
-* Creare il flusso aziendale in base ai dati ottenuti da Microsoft Translator. 
-* Usare le azioni per tradurre il testo, individuare una lingua e così via. Queste azioni ottengono una risposta e quindi rendono l'output disponibile per altre azioni. Ad esempio, quando viene creato un nuovo file in Dropbox, è possibile tradurre il testo nel file in un'altra lingua tramite Microsoft Translator.
+* Compilare il flusso di business in base ai dati hello che è ottenere da Microsoft Translator. 
+* Usare testo tootranslate azioni, rilevare una lingua e altro ancora. Tali azioni ottengono una risposta e quindi apportare output di hello per le altre azioni. Ad esempio, quando viene creato un nuovo file in Dropbox, è possibile tradurre il testo hello nella lingua di tooanother file hello utilizzando Microsoft Translator.
 
 Per iniziare subito a creare un'app per la logica, vedere [Creare un'app per la logica](../logic-apps/logic-apps-create-a-logic-app.md).
 
-## <a name="create-a-connection-to-microsoft-translator"></a>Creare una connessione a Microsoft Translator
-> [!INCLUDE [Steps to create a connection to Microsoft Translator](../../includes/connectors-create-api-microsofttranslator.md)]
+## <a name="create-a-connection-toomicrosoft-translator"></a>Creare una funzione di conversione di tooMicrosoft connessione
+> [!INCLUDE [Steps toocreate a connection tooMicrosoft Translator](../../includes/connectors-create-api-microsofttranslator.md)]
 > 
 > 
 
 ## <a name="connector-specific-details"></a>Dettagli specifici del connettore
 
-Per visualizzare eventuali azioni e trigger definiti in Swagger ed eventuali limiti, vedere i [dettagli del connettore](/connectors/microsofttranslator/).
+Visualizzare tutti i trigger e azioni definite in swagger hello e anche eventuali limiti di hello [dettagli connettore](/connectors/microsofttranslator/).
 
 ## <a name="more-connectors"></a>Altri connettori
-Tornare all' [elenco di API](apis-list.md).
+Tornare indietro toohello [elenco API](apis-list.md).

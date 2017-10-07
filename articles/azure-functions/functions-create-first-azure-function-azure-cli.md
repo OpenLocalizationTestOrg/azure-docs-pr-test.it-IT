@@ -1,6 +1,6 @@
 ---
-title: Creare la prima funzione dall'interfaccia della riga di comando di Azure| Microsoft Docs
-description: Informazioni su come creare la prima funzione di Azure per l'esecuzione senza server tramite l'interfaccia della riga di comando di Azure.
+title: la prima funzione hello Azure CLI aaaCreate | Documenti Microsoft
+description: Informazioni su come toocreate di Azure prima funzione per l'esecuzione senza tramite hello CLI di Azure.
 services: functions
 keywords: 
 author: ggailey777
@@ -12,21 +12,21 @@ ms.service: functions
 ms.custom: mvc
 ms.devlang: azure-cli
 manager: erikre
-ms.openlocfilehash: 8bd3e4bb7423db44c48b04f25edcf1074e6ea0bd
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 5feed0045d4998b88b0e1bb50996cb7bb42b0822
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-your-first-function-using-the-azure-cli"></a>Creare la prima funzione usando l'interfaccia della riga di comando di Azure
+# <a name="create-your-first-function-using-hello-azure-cli"></a>Creare la prima funzione utilizzando hello CLI di Azure
 
-Questa esercitazione di avvio rapido illustra come usare Funzioni di Azure per creare la prima funzione. Si userà l'interfaccia della riga di comando di Azure per creare un'app per le funzioni, ovvero l'infrastruttura senza server che ospita la funzione. Il codice della funzione viene distribuito da un repository GitHub di esempio.    
+In questa esercitazione Guida introduttiva illustra in dettaglio come toouse Azure funzioni toocreate la prima funzione. Utilizzare hello Azure CLI toocreate un'app di funzione, ovvero infrastruttura senza hello che ospita la funzione. Hello codice della funzione viene distribuito da un repository GitHub degli esempi.    
 
-È possibile eseguire queste procedure con un computer Mac, Windows o Linux. 
+È possibile eseguire operazioni di hello seguenti utilizza un computer Mac, Windows o Linux. 
 
 ## <a name="prerequisites"></a>Prerequisiti 
 
-Prima di eseguire questo esempio, è necessario disporre di quanto segue:
+Prima di eseguire questo esempio, è necessario disporre delle seguenti hello:
 
 + Un account [GitHub](https://github.com) attivo. 
 + Una sottoscrizione di Azure attiva.
@@ -35,14 +35,14 @@ Prima di eseguire questo esempio, è necessario disporre di quanto segue:
 
 [!INCLUDE [cloud-shell-try-it.md](../../includes/cloud-shell-try-it.md)]
 
-Se si sceglie di installare e usare l'interfaccia della riga di comando in locale, per questo argomento è necessario eseguire la versione 2.0 o successiva dell'interfaccia della riga di comando di Azure. Eseguire `az --version` per trovare la versione. Se è necessario eseguire l'installazione o l'aggiornamento, vedere [Installare l'interfaccia della riga di comando di Azure 2.0]( /cli/azure/install-azure-cli). 
+Se si sceglie tooinstall e utilizza hello CLI in locale, in questo argomento è necessario che si esegue hello Azure CLI versione 2.0 o versione successiva. Eseguire `az --version` versione hello toofind. Se è necessario tooinstall o l'aggiornamento, vedere [installare Azure CLI 2.0]( /cli/azure/install-azure-cli). 
 
 
 ## <a name="create-a-resource-group"></a>Creare un gruppo di risorse
 
-Creare un gruppo di risorse con [az group create](/cli/azure/group#create). Un gruppo di risorse di Azure è un contenitore logico in cui vengono distribuite e gestite risorse di Azure come app per le funzioni, database e account di archiviazione.
+Creare un gruppo di risorse con hello [gruppo az creare](/cli/azure/group#create). Un gruppo di risorse di Azure è un contenitore logico in cui vengono distribuite e gestite risorse di Azure come app per le funzioni, database e account di archiviazione.
 
-Nell'esempio seguente viene creato il gruppo di risorse denominato `myResourceGroup`.  
+esempio Hello crea un gruppo di risorse denominato `myResourceGroup`.  
 Se non si usa Cloud Shell, prima è necessario accedere usando `az login`.
 
 ```azurecli-interactive
@@ -52,15 +52,15 @@ az group create --name myResourceGroup --location westeurope
 
 ## <a name="create-an-azure-storage-account"></a>Creare un account di Archiviazione di Azure
 
-Funzioni usa un account di archiviazione di Azure per gestire lo stato e altre informazioni sulle funzioni. Creare un account di archiviazione nel gruppo di risorse creato usando il comando [az storage account create](/cli/azure/storage/account#create).
+Funzioni utilizza uno stato toomaintain account di archiviazione di Azure e altre informazioni sulle funzioni. Creare un account di archiviazione nel gruppo di risorse hello creato utilizzando hello [creare account di archiviazione az](/cli/azure/storage/account#create) comando.
 
-Nel comando seguente sostituire il segnaposto `<storage_name>` con il nome globalmente univoco dell'account di archiviazione. I nomi degli account di archiviazione devono avere una lunghezza compresa tra 3 e 24 caratteri e possono contenere solo numeri e lettere minuscole.
+In hello seguente comando, sostituire il proprio nome di account di archiviazione univoco globale in cui si vedere hello `<storage_name>` segnaposto. I nomi degli account di archiviazione devono avere una lunghezza compresa tra 3 e 24 caratteri e possono contenere solo numeri e lettere minuscole.
 
 ```azurecli-interactive
 az storage account create --name <storage_name> --location westeurope --resource-group myResourceGroup --sku Standard_LRS
 ```
 
-Al termine della creazione dell'account di archiviazione, l'interfaccia della riga di comando di Azure visualizza informazioni simili all'esempio seguente:
+Dopo aver creato l'account di archiviazione hello, hello CLI di Azure Mostra toohello di informazioni simili esempio seguente:
 
 ```json
 {
@@ -82,17 +82,17 @@ Al termine della creazione dell'account di archiviazione, l'interfaccia della ri
 
 ## <a name="create-a-function-app"></a>Creare un'app per le funzioni
 
-Per ospitare l'esecuzione delle funzioni è necessaria un'app per le funzioni. L'app per le funzioni offre un ambiente per l'esecuzione senza server del codice di funzione. Consente di raggruppare le funzioni come un'unità logica per semplificare la gestione, la distribuzione e la condivisione delle risorse. Creare un'app per le funzioni usando il comando [az functionapp create](/cli/azure/functionapp#create). 
+È necessario disporre di un'esecuzione di hello toohost app funzione delle funzioni. app di funzione Hello offre un ambiente per l'esecuzione del codice di funzione senza server. Consente di raggruppare le funzioni come un'unità logica per semplificare la gestione, la distribuzione e la condivisione delle risorse. Creare un'app di funzione tramite hello [functionapp az creare](/cli/azure/functionapp#create) comando. 
 
-Nel comando seguente sostituire il segnaposto `<app_name>` con il nome univoco dell'app per le funzioni e il nome dell'account di archiviazione con `<storage_name>`. Dato che verrà usato come dominio DNS predefinito per l'app per le funzioni, è necessario che `<app_name>` sia univoco tra tutte le app in Azure. 
+In hello seguente comando, sostituire il proprio nome di app di funzione univoco in cui si vedere hello `<app_name>` segnaposto e hello Nome account di archiviazione per `<storage_name>`. Hello `<app_name>` viene utilizzato come dominio DNS predefinito di hello per app di funzione hello e nome hello in questo caso è necessario toobe univoco tra tutte le App in Azure. 
 
 ```azurecli-interactive
 az functionapp create --name <app_name> --storage-account  <storage_name>  --resource-group myResourceGroup \
 --consumption-plan-location westeurope
 ```
-Per impostazione predefinita, viene creata un'app per le funzioni con il piano di hosting a consumo, in base al quale le risorse vengono aggiunte dinamicamente in base alle esigenze delle funzioni e si paga solo quando le funzioni sono in esecuzione. Per altre informazioni, vedere [Scegliere il piano di hosting corretto](functions-scale.md). 
+Per impostazione predefinita, un'app di funzione viene creata con hello consumo piano di hosting, che significa che le risorse vengono aggiunte in modo dinamico come richiesto dalle funzioni e si paga solo quando le funzioni sono in esecuzione. Per ulteriori informazioni, vedere [piano di hosting corretto hello scegliere](functions-scale.md). 
 
-Al termine della creazione dell'app per le funzioni, l'interfaccia della riga di comando di Azure visualizza informazioni simili all'esempio seguente:
+Dopo aver hello funzione app è stata creata, hello CLI di Azure Mostra toohello di informazioni simili esempio seguente:
 
 ```json
 {
@@ -112,18 +112,18 @@ Al termine della creazione dell'app per le funzioni, l'interfaccia della riga di
 }
 ```
 
-Dopo aver creato l'app per le funzioni, è possibile ora distribuire il codice di funzione effettivo dal repository GitHub di esempio.
+Dopo aver creato un'app di funzione, è possibile distribuire il codice della funzione hello dal repository di esempio hello GitHub.
 
 ## <a name="deploy-your-function-code"></a>Distribuire il codice di funzione  
 
-Esistono diversi modi per creare il codice di funzione nella nuova app per le funzioni. In questo argomento viene effettuata la connessione a un repository di esempio in GitHub. Come in precedenza, nel codice seguente sostituire il segnaposto `<app_name>` con il nome dell'app per le funzioni creata. 
+Esistono diversi modi toocreate il codice di funzione nell'app nuova funzione. In questo argomento si connette tooa repository di esempio in GitHub. Come in precedenza, hello seguente di codice sostituire hello `<app_name>` con nome hello dell'app di funzione hello è stato creato. 
 
 ```azurecli-interactive
 az functionapp deployment source config --name <app_name> --resource-group myResourceGroup --branch master \
 --repo-url https://github.com/Azure-Samples/functions-quickstart \
 --manual-integration 
 ```
-Dopo aver impostato l'origine di distribuzione, l'interfaccia della riga di comando di Azure visualizza informazioni simili all'esempio seguente (i valori null sono stati rimossi per una migliore leggibilità):
+Dopo la distribuzione di hello impostazione di origine, hello CLI di Azure Mostra toohello simile di informazioni (i valori null rimossi per leggibilità) di esempio seguente:
 
 ```json
 {
@@ -140,9 +140,9 @@ Dopo aver impostato l'origine di distribuzione, l'interfaccia della riga di coma
 }
 ```
 
-## <a name="test-the-function"></a>Testare la funzione
+## <a name="test-hello-function"></a>Funzione hello test
 
-Usare cURL per testare la funzione distribuita in un computer Mac o Linux oppure usando Bash per Windows. Eseguire il comando cURL seguente, sostituendo il segnaposto `<app_name>` con il nome dell'app per le funzioni. Aggiungere la stringa di query `&name=<yourname>` all'URL.
+Funzione cURL tootest hello distribuito in un computer Mac o Linux o con Bash in Windows. Eseguire hello cURL comando, sostituendo hello seguente `<app_name>` segnaposto con il nome di hello dell'app in funzione. Aggiungere la stringa di query hello `&name=<yourname>` toohello URL.
 
 ```bash
 curl http://<app_name>.azurewebsites.net/api/HttpTriggerJS1?name=<yourname>
@@ -150,7 +150,7 @@ curl http://<app_name>.azurewebsites.net/api/HttpTriggerJS1?name=<yourname>
 
 ![Risposta della funzione visualizzata in un browser.](./media/functions-create-first-azure-function-azure-cli/functions-azure-cli-function-test-curl.png)  
 
-Se nella riga di comando non è disponibile un cURL, immettere lo stesso URL nella barra degli indirizzi del browser Web. Sostituire il segnaposto `<app_name>` con il nome dell'app per le funzioni, aggiungere la stringa di query `&name=<yourname>` all'URL ed eseguire la richiesta. 
+Se non è disponibile nella riga di comando cURL, immettere hello stesso URL nell'indirizzo hello del web browser. Nuovamente, sostituire hello `<app_name>` segnaposto con il nome di hello dell'app in funzione e aggiungere la stringa di query hello `&name=<yourname>` toohello URL ed eseguire la richiesta hello. 
 
     http://<app_name>.azurewebsites.net/api/HttpTriggerJS1?name=<yourname>
    
@@ -158,7 +158,7 @@ Se nella riga di comando non è disponibile un cURL, immettere lo stesso URL nel
 
 ## <a name="clean-up-resources"></a>Pulire le risorse
 
-Altre guide di avvio rapido di questa raccolta si basano sulla presente guida di avvio rapido. Se si prevede di continuare a usare le guide di avvio rapido successive o le esercitazioni, non pulire le risorse create in questa guida di avvio rapido. Se non si prevede di continuare, usare il comando seguente per eliminare tutte le risorse create da questa guida di avvio rapido:
+Altre guide di avvio rapido di questa raccolta si basano sulla presente guida di avvio rapido. Se si intende toocontinue toowork nelle successive Guide rapide o con le esercitazioni di hello, pulire le risorse di hello create in questa Guida rapida. Se non si prevede toocontinue, utilizzare tutte le risorse create da questa Guida rapida hello toodelete di comando seguente:
 
 ```azurecli-interactive
 az group delete --name myResourceGroup

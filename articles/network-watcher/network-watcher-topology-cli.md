@@ -1,6 +1,6 @@
 ---
-title: Visualizzare la topologia con Network Watcher di Azure - Interfaccia della riga di comando di Azure | Documentazione Microsoft
-description: Questo articolo descrive come usare l'interfaccia della riga di comando di Azure per eseguire una query relativa alla topologia di rete.
+title: topologia Watcher di rete di Azure aaaView - CLI di Azure | Documenti Microsoft
+description: "In questo articolo descriverà come toouse CLI di Azure tooquery la topologia di rete."
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
-ms.openlocfilehash: 5be8e103f9a1f32117a4ed3be73bff021db1186d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: afa7e7dd844ecb2ab4c616ba99fa0a433f1e4ade
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="view-network-watcher-topology-with-azure-cli"></a>Visualizzare la topologia di Network Watcher con l'interfaccia della riga di comando di Azure
 
@@ -28,39 +28,39 @@ ms.lasthandoff: 07/11/2017
 > - [Interfaccia della riga di comando 2.0](network-watcher-topology-cli.md)
 > - [API REST](network-watcher-topology-rest.md)
 
-La funzionalità per la visualizzazione della topologia di Network Watcher offre una rappresentazione visiva delle risorse di rete in una sottoscrizione. Nel portale, questa visualizzazione è automatica. È possibile recuperare le informazioni sottostanti alla visualizzazione della topologia nel portale usando PowerShell.
-Questa funzionalità rende le informazioni sulla topologia più versatili, poiché i dati possono essere usati anche da altri strumenti per compilare la visualizzazione.
+funzionalità di topologia Hello del controllo di rete fornisce una rappresentazione visiva delle risorse di rete hello in una sottoscrizione. Nel portale di hello, questa visualizzazione viene presentata tooyou automaticamente. informazioni Hello dietro vista della topologia hello nel portale di hello è possibile recuperare tramite PowerShell.
+Questa funzionalità rende più versatile come hello dati possono essere utilizzati da altri strumenti toobuild out visualizzazione hello informazioni sulla topologia di hello.
 
 Questo articolo usa l'interfaccia della riga di comando di Azure 1.0 multipiattaforma, disponibile per Windows, Mac e Linux. Network Watcher usa attualmente l'interfaccia della riga di comando di Azure 1.0 per il supporto dell'interfaccia della riga di comando.
 
-L'interconnessione è modellata in due relazioni.
+interconnessione Hello viene modellata in due relazioni.
 
 - **Contenimento** - Esempio: la rete virtuale contiene una subnet che contiene una scheda NIC
 - **Associazione** - Esempio: la scheda NIC è associata a una macchina virtuale
 
-L'elenco include le proprietà restituite quando si esegue una query all'API REST della topologia.
+Hello seguito sono le proprietà restituite quando si eseguono query hello API REST di topologia.
 
-* **name** - Il nome della risorsa.
-* **id** - L'URI della risorsa.
-* **location** - La località in cui si risiede la risorsa.
-* **associations** - Un elenco di associazioni all'oggetto di riferimento.
-    * **name** - Il nome della risorsa di riferimento.
-    * **resourceId** - ResourceId è l'URI della risorsa di riferimento nell'associazione.
-    * **associationType** - Il valore fa riferimento alla relazione tra l'oggetto figlio e l'oggetto padre. I valori validi sono **Contains** o **Associated**.
+* **nome** : hello nome della risorsa hello
+* **ID** -hello uri della risorsa hello.
+* **percorso** -hello percorso in cui risiede la risorsa hello.
+* **le associazioni** -un elenco di associazioni toohello fa riferimento a oggetto.
+    * **nome** -nome hello di hello risorsa a cui viene fatto riferimento.
+    * **resourceId** -resourceId hello è hello uri della risorsa hello a cui fa riferimento nell'associazione hello.
+    * **associationType** -relazione hello tra l'oggetto figlio hello e padre hello fa riferimento a questo valore. I valori validi sono **Contains** o **Associated**.
 
 ## <a name="before-you-begin"></a>Prima di iniziare
 
-In questo scenario, il cmdlet `network watcher topology` viene usato per recuperare le informazioni sulla topologia. È anche disponibile un articolo che illustra come [recuperare una topologia di rete con l'API REST](network-watcher-topology-rest.md).
+In questo scenario, si usa hello `network watcher topology` informazioni sulla topologia di cmdlet tooretrieve hello. È inoltre disponibile un articolo su come troppo[recuperare la topologia di rete con l'API REST](network-watcher-topology-rest.md).
 
-Questo scenario presuppone il completamento dei passaggi descritti in [Creare un servizio Network Watcher](network-watcher-create.md) per creare un servizio Network Watcher.
+Questo scenario si presuppone che si sono già stati seguiti i passaggi di hello in [creare un controllo di rete](network-watcher-create.md) toocreate Watcher di rete.
 
 ## <a name="scenario"></a>Scenario
 
-Lo scenario illustrato in questo articolo consente di recuperare la risposta relativa alla topologia per un gruppo di risorse specificato.
+scenario di Hello illustrato in questo articolo recupera risposta topologia hello per un gruppo di risorse specificato.
 
 ## <a name="retrieve-topology"></a>Recuperare una topologia
 
-Il cmdlet `network watcher topology` recupera la topologia per un gruppo di risorse specificato. Aggiungere l'argomento "-json" per visualizzare l'output in formato JSON.
+Hello `network watcher topology` cmdlet recupera la topologia di hello per un gruppo di risorse specificato. Aggiunto argomento hello "--json" tooview hello oput in formato json
 
 ```azurecli
 azure network watcher topology -g resourceGroupName -n networkWatcherName -r topologyResourceGroupName --json
@@ -68,7 +68,7 @@ azure network watcher topology -g resourceGroupName -n networkWatcherName -r top
 
 ## <a name="results"></a>Risultati
 
-I risultati restituiti hanno il nome proprietà "Resources", che contiene il corpo della risposta in formato JSON per il cmdlet `network watcher topology`.  La risposta contiene le risorse nel gruppo di sicurezza di rete e le relative associazioni (vale a dire, Contains, Associated).
+Hello risultati restituiti hanno una proprietà nome "Resources", che contiene corpo della risposta json hello per hello `network watcher topology` cmdlet.  risposta Hello contiene risorse hello hello il gruppo di sicurezza di rete e le relative associazioni (vale a dire, Contains, associate).
 
 ```json
 {
@@ -113,4 +113,4 @@ I risultati restituiti hanno il nome proprietà "Resources", che contiene il cor
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Per altre informazioni sulle regole di sicurezza applicate alle risorse di rete, leggere la [panoramica sulla visualizzazione di gruppo di sicurezza](network-watcher-security-group-view-overview.md).
+Ulteriori informazioni sulle regole di sicurezza hello che sono risorse di rete applicati tooyour visitando [Visualizza panoramica gruppo di sicurezza](network-watcher-security-group-view-overview.md)

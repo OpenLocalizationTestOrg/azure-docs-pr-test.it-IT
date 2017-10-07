@@ -1,5 +1,5 @@
 ---
-title: Criteri delle risorse di Azure per i tag| Documentazione Microsoft
+title: criteri per i tag delle risorse aaaAzure | Documenti Microsoft
 description: Fornisce esempi di criteri delle risorse per la gestione dei tag delle risorse
 services: azure-resource-manager
 documentationcenter: na
@@ -14,35 +14,35 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/24/2017
 ms.author: tomfitz
-ms.openlocfilehash: 469bd8d637337e5900ea84c6bfaf88064695fb7e
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 5a5b3d5ed52b47544b397694b9da0070f61b1faf
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="apply-resource-policies-for-tags"></a>Applicare criteri delle risorse per i tag
 
-Questo argomento fornisce regole di criterio comuni che è possibile applicare per garantire l'uso coerente dei tag delle risorse.
+In questo argomento sono disponibili regole di criteri comuni che è possibile applicare tooensure l'utilizzo coerente di tag alle risorse.
 
-Applicando un criterio di tag a un gruppo di risorse o a una sottoscrizione con risorse esistenti non si applica retroattivamente il criterio a tali risorse. Per applicare i criteri a queste risorse, avviare l'aggiornamento delle risorse esistenti. Questo articolo include un esempio di PowerShell per l'attivazione di un aggiornamento.
+L'applicazione di una sottoscrizione con le risorse esistenti o un gruppo di risorse tooa criteri tag non è applicabile modo retroattivo risorse toothose di hello criteri. criteri di hello tooenforce su tali risorse, attivare un toohello aggiornamento risorse esistenti. Questo articolo include un esempio di PowerShell per l'attivazione di un aggiornamento.
 
 ## <a name="ensure-all-resources-in-a-resource-group-have-a-tagvalue"></a>Assicurarsi che tutte le risorse di un gruppo di risorse abbiano un tag/valore
 
-Un requisito comune è che tutte le risorse di un gruppo di risorse abbiano un determinato tag e valore. Questo requisito è spesso necessario per tenere traccia dei costi per reparto. Le condizioni seguenti devono essere soddisfatte:
+Un requisito comune è che tutte le risorse di un gruppo di risorse abbiano un determinato tag e valore. Questo requisito è spesso necessario tootrack costi dal reparto. è necessario soddisfare Hello seguenti condizioni:
 
-* Il tag richiesto e il relativo valore vengono accodati alle risorse nuove e aggiornate che non hanno il tag.
-* Non è possibile rimuovere il tag richiesto e il relativo valore da eventuali risorse esistenti.
+* Hello richiesto tag e il valore vengono aggiunti toonew e risorse che non contengono tag hello aggiornate.
+* Hello necessario tag e valore non può essere rimosso da tutte le risorse esistenti.
 
-È possibile soddisfare questo requisito applicando due criteri predefiniti a un gruppo di risorse.
+Questo requisito è stato possibile mediante l'applicazione di gruppo di risorse di due criteri predefiniti tooa.
 
 | ID | Descrizione |
 | ---- | ---- |
-| 2a0e14a6-b0a6-4fab-991a-187a4f81c498 | Applica un tag obbligatorio e il relativo valore predefinito quando non viene specificato dall'utente. |
+| 2a0e14a6-b0a6-4fab-991a-187a4f81c498 | Si applica un tag obbligatorio e il relativo valore predefinito quando non viene specificato dall'utente hello. |
 | 1e30110a-5ceb-460c-a204-c1c3969c6d62 | Applica un tag obbligatorio e il relativo valore. |
 
 ### <a name="powershell"></a>PowerShell
 
-Lo script di PowerShell seguente assegna le due definizioni di criteri predefiniti a un gruppo di risorse. Prima di eseguire lo script, assegnare tutti i tag richiesti al gruppo di risorse. Ogni tag nel gruppo di risorse è richiesto per le risorse nel gruppo. Per eseguire l'assegnazione a tutti i gruppi di risorse nella sottoscrizione, non fornire il parametro `-Name` quando si recuperano i gruppi di risorse.
+lo script di PowerShell seguente Hello assegna gruppo di risorse tooa definizioni hello due criteri predefiniti. Prima di eseguire script hello, assegnare il gruppo di risorse di tutti i tag richiesti toohello. È richiesto per le risorse nel gruppo hello hello ogni tag per il gruppo di risorse hello. gruppi di risorse tooall tooassign nella sottoscrizione, non forniscono hello `-Name` parametro durante il recupero di gruppi di risorse hello.
 
 ```powershell
 $appendpolicy = Get-AzureRmPolicyDefinition | Where-Object {$_.Name -eq '2a0e14a6-b0a6-4fab-991a-187a4f81c498'}
@@ -62,7 +62,7 @@ foreach($rg in $rgs)
 }
 ```
 
-Dopo aver assegnato i criteri, è possibile attivare l'aggiornamento di tutte le risorse esistenti per applicare i criteri dei tag aggiunti. Lo script seguente consente di mantenere gli altri tag presenti nelle risorse:
+Dopo l'assegnazione di criteri di hello, è possibile attivare un tooall di aggiornamento esistente risorse tooenforce hello tag i criteri che sono stati aggiunti. Hello lo script seguente consente di mantenere qualsiasi altro tag già presente nel risorse hello:
 
 ```powershell
 $group = Get-AzureRmResourceGroup -Name "ExampleGroup" 
@@ -81,7 +81,7 @@ foreach($r in $resources)
 ```
 
 ## <a name="require-tags-for-a-resource-type"></a>Richiedere tag per un tipo di rosorsa
-L'esempio seguente illustra come nidificare gli operatori logici per richiedere un tag dell'applicazione solo per un determinato tipo di risorsa (in questo caso gli account di archiviazione).
+Hello di esempio seguente viene illustrato come gli operatori logici di toonest toorequire un'applicazione tag per un solo tipo di risorsa specificata (in questo caso, gli account di archiviazione).
 
 ```json
 {
@@ -106,7 +106,7 @@ L'esempio seguente illustra come nidificare gli operatori logici per richiedere 
 ```
 
 ## <a name="require-tag"></a>Tag richiesto
-Il criterio seguente nega le richieste senza un tag con la chiave "costCenter" (è possibile applicare qualsiasi valore):
+Hello seguente criterio Nega le richieste che non dispongono di un tag che contiene "costCenter" chiave (qualsiasi valore può essere applicato):
 
 ```json
 {
@@ -123,7 +123,7 @@ Il criterio seguente nega le richieste senza un tag con la chiave "costCenter" (
 ```
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Dopo aver definito una regola di criterio, come mostrato negli esempi precedenti, è necessario creare la definizione di criterio e assegnarla a un ambito. L'ambito può essere una sottoscrizione, un gruppo di risorse o una risorsa. Per assegnare i criteri tramite il portale, vedere [Use Azure portal to assign and manage resource policies](resource-manager-policy-portal.md) (Usare il portale di Azure per assegnare e gestire i criteri delle risorse). Per assegnare i criteri tramite l'API REST, PowerShell o l'interfaccia della riga di comando di Azure, vedere [Assegnare e gestire i criteri tramite script](resource-manager-policy-create-assign.md).
-* Per un'introduzione ai criteri delle risorse, vedere [Usare i criteri per gestire le risorse e controllare l'accesso](resource-manager-policy.md).
-* Per indicazioni su come le aziende possono usare Resource Manager per gestire efficacemente le sottoscrizioni, vedere [Azure enterprise scaffold - prescriptive subscription governance](resource-manager-subscription-governance.md) (Scaffolding aziendale Azure - Governance prescrittiva per le sottoscrizioni).
+* Dopo aver definito una regola dei criteri (come illustrato in hello precedenti esempi), è necessario toocreate definizione dei criteri hello e assegnarlo tooa ambito. Hello ambito può essere una sottoscrizione, un gruppo di risorse o una risorsa. criteri tooassign tramite il portale di hello, vedere [tooassign portale utilizzare Azure e gestire i criteri di risorse](resource-manager-policy-portal.md). criteri di tooassign tramite l'API REST, PowerShell o l'interfaccia CLI di Azure, vedere [assegnare e gestire i criteri tramite script](resource-manager-policy-create-assign.md).
+* Per i criteri di tooresource un'introduzione, vedere [Panoramica criteri delle risorse](resource-manager-policy.md).
+* Per istruzioni su come le aziende possono usare tooeffectively Gestione risorse di gestione di sottoscrizioni, vedere [lo scaffolding di Azure enterprise - governance sottoscrizione rigorosa](resource-manager-subscription-governance.md).
 

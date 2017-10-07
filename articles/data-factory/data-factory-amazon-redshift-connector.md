@@ -1,6 +1,6 @@
 ---
-title: Spostare i dati da Amazon Redshift usando Data Factory | Documentazione Microsoft
-description: Informazioni su come spostare i dati da origini Amazon Redshift usando Azure Data Factory.
+title: dati aaaMove da Amazon Redshift utilizzando Data Factory | Documenti Microsoft
+description: Informazioni su come dati toomove da Amazon Redshift usando Azure Data Factory.
 services: data-factory
 documentationcenter: 
 author: linda33wj
@@ -14,74 +14,74 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/27/2017
 ms.author: jingwang
-ms.openlocfilehash: bccb941363952bb2251629240a88148a6527d62e
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 2a097320734ebdd57282d250f7fdba35741777f5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="move-data-from-amazon-redshift-using-azure-data-factory"></a>Spostare i dati da Amazon Redshift usando Azure Data Factory
-Questo articolo illustra come usare l'attività di copia in Azure Data Factory per spostare i dati da Amazon Redshift. Si basa sull'articolo relativo alle [attività di spostamento dei dati](data-factory-data-movement-activities.md), che offre una panoramica generale dello spostamento dei dati con l'attività di copia. 
+Questo articolo spiega come toouse hello attività di copia dei dati di Azure Data Factory toomove da Amazon Redshift. articolo Hello si basa sulle hello [attività lo spostamento dei dati](data-factory-data-movement-activities.md) articolo, che presenta una panoramica generale di spostamento dei dati con attività di copia hello. 
 
-È possibile copiare dati da Amazon Redshift a qualsiasi archivio dati di sink supportato. Per un elenco degli archivi dati supportati come sink dall'attività di copia, vedere gli [archivi dati supportati](data-factory-data-movement-activities.md#supported-data-stores-and-formats). Data Factory supporta attualmente lo spostamento di dati da Amazon Redshift ad altri archivi dati, non da altri archivi dati ad Amazon Redshift.
+È possibile copiare i dati dall'archivio dati di Amazon Redshift tooany supportati sink. Per un elenco di archivi dati come sink è supportato dall'attività di copia hello, vedere [supportati archivi dati](data-factory-data-movement-activities.md#supported-data-stores-and-formats). Data factory di supporta attualmente lo spostamento dei dati dagli archivi dati di Amazon Redshift tooother, ma non per lo spostamento dei dati da altri tooAmazon di archivi dati Redshift.
 
 ## <a name="prerequisites"></a>Prerequisiti
-* Se si spostano i dati in un archivio dati locale, installare il [gateway di gestione dati](data-factory-data-management-gateway.md) su un computer locale. Quindi concedere al gateway di gestione dati (usa l'indirizzo IP della macchina) l'accesso al cluster Amazon Redshift. Vedere [Autorizzare l'accesso al cluster](http://docs.aws.amazon.com/redshift/latest/gsg/rs-gsg-authorize-cluster-access.html) per le istruzioni.
-* Se si spostano dati in un archivio dati di Azure, vedere [Azure Data Center IP Ranges](https://www.microsoft.com/download/details.aspx?id=41653) (Intervalli IP del centro dati di Azure) per gli intervalli di indirizzi IP ed SQL di calcolo usati dai data center di Azure.
+* Se si stanno spostando i dati di archivio tooan locale, installare [Gateway di gestione dati](data-factory-data-management-gateway.md) in un computer locale. Quindi, Gateway di gestione dati Grant (utilizzare l'indirizzo IP del computer hello) hello tooAmazon Redshift cluster di accesso. Vedere [cluster toohello di accesso autorizza](http://docs.aws.amazon.com/redshift/latest/gsg/rs-gsg-authorize-cluster-access.html) per le istruzioni.
+* Se si stanno spostando l'archivio dati di Azure tooan di dati, vedere [gli intervalli IP di Azure Data Center](https://www.microsoft.com/download/details.aspx?id=41653) per indirizzo IP di calcolo hello e gli intervalli SQL utilizzati da hello data center di Azure.
 
-## <a name="getting-started"></a>Introduzione
+## <a name="getting-started"></a>introduttiva
 È possibile creare una pipeline con l'attività di copia che sposta i dati da un'origine Amazon Redshift usando diversi strumenti/API.
 
-Il modo più semplice per creare una pipeline è usare la **Copia guidata**. Vedere [Esercitazione: Creare una pipeline usando la Copia guidata](data-factory-copy-data-wizard-tutorial.md) per la procedura dettagliata sulla creazione di una pipeline attenendosi alla procedura guidata per copiare i dati.
+toocreate modo più semplice di Hello una pipeline è hello toouse **Copia guidata**. Vedere [esercitazione: creare una pipeline mediante Copia guidata](data-factory-copy-data-wizard-tutorial.md) per un'esercitazione rapida sulla creazione di una pipeline mediante Creazione guidata di hello copia dati.
 
-È possibile anche usare gli strumenti seguenti per creare una pipeline: **portale di Azure**, **Visual Studio**, **Azure PowerShell**, **modello di Azure Resource Manager**, **API .NET** e **API REST**. Vedere l'[esercitazione sull'attività di copia](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) per le istruzioni dettagliate sulla creazione di una pipeline con un'attività di copia. 
+È inoltre possibile utilizzare i seguenti strumenti toocreate una pipeline hello: **portale di Azure**, **Visual Studio**, **Azure PowerShell**, **modello di gestione risorse di Azure** , **API .NET**, e **API REST**. Vedere [esercitazione attività Copia](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) per istruzioni dettagliate toocreate una pipeline con attività di copia. 
 
-Se si usano gli strumenti o le API, eseguire la procedura seguente per creare una pipeline che sposta i dati da un archivio dati di origine a un archivio dati sink: 
+Se si utilizza hello o le API, è eseguire hello passaggi toocreate una pipeline che consente di spostare dati da un'origine tooa archiviano dati sink seguenti: 
 
-1. Creare i **servizi collegati** per collegare gli archivi di dati di input e output alla data factory.
-2. Creare i **set di dati** per rappresentare i dati di input e di output per le operazioni di copia. 
+1. Creare **servizi collegati** toolink dati di input e output archivi tooyour data factory.
+2. Creare **set di dati** toorepresent di input e output dell'operazione di copia di dati per hello. 
 3. Creare una **pipeline** con un'attività di copia che accetti un set di dati come input e un set di dati come output. 
 
-Quando si usa la procedura guidata, le definizioni JSON per queste entità di data factory (servizi, set di dati e pipeline collegati) vengono create automaticamente. Quando si usano gli strumenti o le API, ad eccezione delle API .NET, usare il formato JSON per definire le entità di data factory.  Per un esempio con definizioni JSON per entità di data factory utilizzate per copiare dati da un archivio dati Amazon Redshift, vedere la sezione [Esempio JSON: Copiare dati da Amazon Redshift al BLOB di Azure](#json-example-copy-data-from-amazon-redshift-to-azure-blob) di questo articolo. 
+Quando si utilizza la procedura guidata hello, le definizioni di JSON per queste entità Data Factory (servizi collegati, i set di dati e della pipeline hello) vengono create automaticamente per l'utente. Quando si utilizzano strumenti o le API (ad eccezione delle API .NET), utilizzando il formato JSON hello è definire queste entità Data Factory.  Per un esempio con le definizioni per le entità Data Factory dati toocopy utilizzato da un archivio dati Amazon Redshift JSON, vedere [esempio JSON: copiare i dati da Amazon Redshift tooAzure Blob](#json-example-copy-data-from-amazon-redshift-to-azure-blob) sezione di questo articolo. 
 
-Le sezioni seguenti riportano informazioni dettagliate sulle proprietà JSON che vengono usate per definire entità di data factory specifiche di Amazon Redshift: 
+Hello le sezioni seguenti fornisce dettagli sulle proprietà JSON che vengono utilizzati toodefine Data Factory entità specifiche tooAmazon Redshift: 
 
 ## <a name="linked-service-properties"></a>Proprietà del servizio collegato
-La tabella seguente fornisce la descrizione degli elementi JSON specifici del servizio collegato Amazon Redshift.
+Hello nella tabella seguente fornisce una descrizione JSON elementi specifici tooAmazon servizio Redshift collegato.
 
 | Proprietà | Descrizione | Obbligatorio |
 | --- | --- | --- |
-| type |La proprietà type deve essere impostata su: **Amazon Redshift**. |Sì |
-| server |Indirizzo IP o nome host del server Amazon Redshift. |Sì |
-| port |Il numero della porta TCP che il server Amazon Redshift usa per ascoltare le connessioni client. |No, valore predefinito: 5439 |
-| database |Nome del database Amazon Redshift. |Sì |
-| Nome utente |Nome dell'utente che ha accesso al database. |Sì |
-| password |La password per l'account utente. |Sì |
+| type |proprietà di tipo Hello deve essere impostata su: **AmazonRedshift**. |Sì |
+| server |IP il nome host o indirizzo del server di Amazon Redshift hello. |Sì |
+| port |numero di Hello di porta TCP hello hello server Amazon Redshift utilizza toolisten per le connessioni client. |No, valore predefinito: 5439 |
+| database |Nome del database Amazon Redshift hello. |Sì |
+| username |Nome dell'utente che dispone di accesso toohello database. |Sì |
+| password |Password dell'account utente di hello. |Sì |
 
 ## <a name="dataset-properties"></a>Proprietà dei set di dati
-Per un elenco completo delle sezioni e delle proprietà disponibili per la definizione di set di dati, vedere l'articolo sulla [creazione di set di dati](data-factory-create-datasets.md). Le sezioni come struttura, disponibilità e criteri sono simili per tutti i tipi di set di dati, ad esempio Azure SQL, BLOB di Azure, tabelle di Azure e così via.
+Per un elenco completo delle proprietà disponibili per la definizione di set di dati e sezioni, vedere hello [creazione dei DataSet](data-factory-create-datasets.md) articolo. Le sezioni come struttura, disponibilità e criteri sono simili per tutti i tipi di set di dati, ad esempio Azure SQL, BLOB di Azure, tabelle di Azure e così via.
 
-La sezione **typeProperties** è diversa per ogni tipo di set di dati. Offre informazioni sul percorso dei dati nell'archivio dati. La sezione typeProperties per il set di dati di tipo **RelationalTable** (che comprende il set di dati Amazon Redshift) presenta le proprietà seguenti
+Hello **typeProperties** sezione è diverso per ogni tipo di set di dati. Fornisce informazioni sul percorso hello hello dati nell'archivio dati hello. sezione Hello typeProperties per set di dati di tipo **RelationalTable** (che include set di dati di Amazon Redshift) ha le proprietà seguenti hello
 
 | Proprietà | Descrizione | Obbligatorio |
 | --- | --- | --- |
-| tableName |Nome della tabella nel database Amazon Redshift a cui fa riferimento il servizio collegato. |No (se la **query** di **RelationalSource** è specificata) |
+| tableName |Nome della tabella hello hello Amazon Redshift in database in cui il servizio collegato fa riferimento a. |No (se la **query** di **RelationalSource** è specificata) |
 
 ## <a name="copy-activity-properties"></a>Proprietà dell'attività di copia
-Per un elenco completo delle sezioni e delle proprietà disponibili per la definizione delle attività, fare riferimento all'articolo [Creazione di pipeline](data-factory-create-pipelines.md). Per tutti i tipi di attività sono disponibili proprietà come nome, descrizione, tabelle di input e output e criteri.
+Per un elenco completo delle proprietà disponibili per la definizione delle attività e delle sezioni, vedere hello [la creazione di pipeline](data-factory-create-pipelines.md) articolo. Per tutti i tipi di attività sono disponibili proprietà come nome, descrizione, tabelle di input e output e criteri.
 
-Le proprietà disponibili nella sezione **typeProperties** dell'attività variano invece in base al tipo di attività. Per l'attività di copia variano in base ai tipi di origine e sink.
+Mentre le proprietà disponibili nella hello **typeProperties** sezione dell'attività hello variano in base a ogni tipo di attività. Per attività di copia, variano a seconda dei tipi di hello di origini e sink.
 
-Quando l'origine dell'attività di copia è di tipo **RelationalSource** (che include Amazon Redshift), nella sezione typeProperties sono disponibili le proprietà seguenti:
+Quando l'origine dell'attività di copia è di tipo **RelationalSource** (che include Amazon Redshift), hello le proprietà seguenti sono disponibile nella sezione typeProperties:
 
 | Proprietà | Descrizione | Valori consentiti | Obbligatorio |
 | --- | --- | --- | --- |
-| query |Usare la query personalizzata per leggere i dati. |Stringa di query SQL. Ad esempio: selezionare * da MyTable. |No (se **tableName** di **set di dati** è specificato) |
+| query |Utilizzare i dati di tooread hello query personalizzata. |Stringa di query SQL. Ad esempio: selezionare * da MyTable. |No (se **tableName** di **set di dati** è specificato) |
 
-## <a name="json-example-copy-data-from-amazon-redshift-to-azure-blob"></a>Esempio JSON: Copiare dati da Amazon Redshift al BLOB di Azure
-Questo esempio illustra come copiare dati da un database Amazon Redshift a un archivio BLOB di Azure. Tuttavia, i dati possono essere copiati **direttamente** in qualsiasi sink dichiarato [qui](data-factory-data-movement-activities.md#supported-data-stores-and-formats) usando l'attività di copia in Azure Data Factory.  
+## <a name="json-example-copy-data-from-amazon-redshift-tooazure-blob"></a>Esempio JSON: copiare i dati da Amazon Redshift tooAzure Blob
+Questo esempio viene illustrato come toocopy dati da un Amazon Redshift database tooan archiviazione Blob di Azure. Tuttavia, i dati possono essere copiati **direttamente** tooany di sink hello indicato [qui](data-factory-data-movement-activities.md#supported-data-stores-and-formats) utilizzando hello attività di copia in Azure Data Factory.  
 
-L'esempio include le entità di Data Factory seguenti:
+esempio Hello è hello entità factory di dati seguenti:
 
 * Un servizio collegato di tipo [AmazonRedshift](#linked-service-properties).
 * Un servizio collegato di tipo [AzureStorage](data-factory-azure-blob-connector.md#linked-service-properties).
@@ -89,7 +89,7 @@ L'esempio include le entità di Data Factory seguenti:
 * Un [set di dati](data-factory-create-datasets.md) di output di tipo [AzureBlob](data-factory-azure-blob-connector.md#dataset-properties).
 * Una [pipeline](data-factory-create-pipelines.md) con attività di copia che usa [RelationalSource](#copy-activity-properties) e [BlobSink](data-factory-azure-blob-connector.md##copy-activity-properties).
 
-L'esempio copia i dati dai risultati della query in Amazon Redshift in un BLOB ogni ora. Le proprietà JSON usate in questi esempi sono descritte nelle sezioni riportate dopo gli esempi.
+esempio Hello copia dati da un risultato della query nel blob tooa Amazon Redshift ogni ora. proprietà JSON Hello usata in questi esempi sono descritti nelle sezioni riportate di seguito esempi di hello.
 
 **Servizio collegato Amazon Redshift:**
 
@@ -101,9 +101,9 @@ L'esempio copia i dati dai risultati della query in Amazon Redshift in un BLOB o
         "type": "AmazonRedshift",
         "typeProperties":
         {
-            "server": "< The IP address or host name of the Amazon Redshift server >",
-            "port": <The number of the TCP port that the Amazon Redshift server uses to listen for client connections.>,
-            "database": "<The database name of the Amazon Redshift database>",
+            "server": "< hello IP address or host name of hello Amazon Redshift server >",
+            "port": <hello number of hello TCP port that hello Amazon Redshift server uses toolisten for client connections.>,
+            "database": "<hello database name of hello Amazon Redshift database>",
             "username": "<username>",
             "password": "<password>"
         }
@@ -126,7 +126,7 @@ L'esempio copia i dati dai risultati della query in Amazon Redshift in un BLOB o
 ```
 **Set di dati di input Redshift Amazon:**
 
-L'impostazione `"external": true` comunica al servizio Data Factory che il set di dati è esterno alla data factory e non è generato da un'attività al suo interno. Impostare questa proprietà su true in un set di dati di input non generato da un'attività nella pipeline.
+Impostazione `"external": true` informa il servizio di Data Factory hello hello set di dati è esterna toohello data factory e non viene generato da un'attività nella data factory di hello. Impostare tootrue questa proprietà su un set di dati di input che non è stato generato da un'attività nella pipeline hello.
 
 ```json
 {
@@ -148,7 +148,7 @@ L'impostazione `"external": true` comunica al servizio Data Factory che il set d
 
 **Set di dati di output del BLOB di Azure:**
 
-I dati vengono scritti in un nuovo BLOB ogni ora (frequenza: ora, intervallo: 1). Il percorso della cartella per il BLOB viene valutato dinamicamente in base all'ora di inizio della sezione in fase di elaborazione. Il percorso della cartella usa le parti anno, mese, giorno e ora dell'ora di inizio.
+I dati vengono scritti tooa nuovo blob ogni ora (frequenza: ora, intervallo: 1). percorso della cartella Hello per blob hello viene valutato dinamicamente in base a ora di inizio hello della sezione hello che viene elaborato. percorso della cartella Hello Usa le parti di anno, mese, giorno e ore dell'ora di inizio hello.
 
 ```json
 {
@@ -208,7 +208,7 @@ I dati vengono scritti in un nuovo BLOB ogni ora (frequenza: ora, intervallo: 1)
 
 **Attività di copia in una pipeline con origine Amazon Redshift (RelationalSource) e sink BLOB.**
 
-La pipeline contiene un'attività di copia configurata per usare i set di dati di input e output ed è programmata per essere eseguita ogni ora. Nella definizione JSON della pipeline, il tipo di **origine** è impostato su **RelationalSource** e il tipo di **sink** è impostato su **BlobSink**. La query SQL specificata per la proprietà **query** consente di selezionare i dati da copiare nell'ultima ora.
+pipeline Hello contiene un'attività di copia che è configurato toouse hello set di dati di input e output e viene pianificata toorun ogni ora. Nella pipeline hello definizione JSON, hello **origine** tipo è stato impostato troppo**RelationalSource** e **sink** tipo è stato impostato troppo**BlobSink**. query SQL Hello specificata per hello **query** proprietà consente di selezionare dati hello hello oltre toocopy ora.
 
 ```json
 {
@@ -256,12 +256,12 @@ La pipeline contiene un'attività di copia configurata per usare i set di dati d
 }
 ```
 ### <a name="type-mapping-for-amazon-redshift"></a>Tipo di mappatura di Amazon Redshift
-Come accennato nell'articolo [Attività di spostamento dei dati](data-factory-data-movement-activities.md) , l'attività di copia esegue conversioni di tipi automatiche da tipi di origine a tipi di sink con l'approccio seguente in due passaggi:
+Come accennato in hello [attività lo spostamento dei dati](data-factory-data-movement-activities.md) articolo, attività di copia esegue le conversioni dai tipi di origine tipi toosink automatico con hello approccio in due passaggi:
 
-1. Conversione dai tipi di origine nativi al tipo .NET
-2. Conversione dal tipo .NET al tipo di sink nativo
+1. Conversione dal tipo di origine nativa tipi too.NET
+2. Eseguire la conversione da tipo di sink toonative tipo .NET
 
-Quando si spostano i dati in Amazon Redshift, vengono usati i mapping seguenti dai tipi di Amazon Redshift ai tipi .NET.
+Quando si spostano dati tooAmazon Redshift, hello seguendo i mapping viene utilizzato da Amazon Redshift tipi too.NET tipi.
 
 | Tipo di Amazon Redshift | Tipo basato su .Net |
 | --- | --- |
@@ -278,16 +278,16 @@ Quando si spostano i dati in Amazon Redshift, vengono usati i mapping seguenti d
 | TIMESTAMP |DateTime |
 | TEXT |String |
 
-## <a name="map-source-to-sink-columns"></a>Eseguire il mapping delle colonne dell'origine alle colonne del sink
-Per informazioni sul mapping delle colonne del set di dati di origine alle colonne del set di dati del sink, vedere [Mapping delle colonne del set di dati in Azure Data Factory](data-factory-map-columns.md).
+## <a name="map-source-toosink-columns"></a>Eseguire il mapping di colonne di origine toosink
+toolearn sui mapping delle colonne in toocolumns di set di dati di origine nel sink set di dati, vedere [mapping tra colonne del set di dati in Azure Data Factory](data-factory-map-columns.md).
 
 ## <a name="repeatable-read-from-relational-sources"></a>Lettura ripetibile da origini relazionali
-Quando si copiano dati da archivi dati relazionali, è necessario tenere presente la ripetibilità per evitare risultati imprevisti. In Azure Data Factory è possibile rieseguire una sezione manualmente. È anche possibile configurare i criteri di ripetizione per un set di dati in modo da rieseguire una sezione in caso di errore. Quando una sezione viene rieseguita in uno dei due modi, è necessario assicurarsi che non vengano letti gli stessi dati, indipendentemente da quante volte viene eseguita la sezione. Vedere [Lettura ripetibile da origini relazionali](data-factory-repeatable-copy.md#repeatable-read-from-relational-sources)
+Quando si copiano dati da archivi dati relazionali, tenere ripetibilità presente tooavoid risultati imprevisti. In Azure Data Factory è possibile rieseguire una sezione manualmente. È anche possibile configurare i criteri di ripetizione per un set di dati in modo da rieseguire una sezione in caso di errore. Quando viene eseguito di nuovo una sezione in entrambi i casi, è necessario toomake assicurarsi che hello stessi dati non viene letto alcun altro aspetto come viene eseguita più volte una sezione. Vedere [Lettura ripetibile da origini relazionali](data-factory-repeatable-copy.md#repeatable-read-from-relational-sources)
 
 ## <a name="performance-and-tuning"></a>Ottimizzazione delle prestazioni
-Per informazioni sui fattori chiave che influiscono sulle prestazioni dello spostamento dei dati, ovvero dell'attività di copia, in Azure Data Factory e sui vari modi per ottimizzare tali prestazioni, vedere la [Guida alle prestazioni delle attività di copia e all'ottimizzazione](data-factory-copy-activity-performance.md).
+Vedere [prestazioni attività di copia di & ottimizzazione Guida](data-factory-copy-activity-performance.md) toolearn sulla chiave di fattori che influiscono sulle prestazioni di spostamento dei dati (attività di copia) in Azure Data Factory e i vari modi toooptimize è.
 
 ## <a name="next-steps"></a>Passaggi successivi
-Vedere gli articoli seguenti:
+Vedere hello seguenti articoli:
 
 * [Esercitazione dell'attività di copia](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) per le istruzioni dettagliate della creazione di una pipeline con un'attività di copia.

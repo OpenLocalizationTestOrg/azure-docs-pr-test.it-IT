@@ -1,6 +1,6 @@
 ---
-title: Configurazione dello strumento Importazione/Esportazione di Azure | Documentazione Microsoft
-description: "Informazioni su come configurare lo strumento di preparazione e ripristino delle unità per il servizio Importazione/Esportazione di Azure."
+title: aaaSetting backup hello strumento di importazione/esportazione di Azure | Documenti Microsoft
+description: "Informazioni su come tooset backup hello unità strumento di preparazione e per il servizio di importazione/esportazione di Azure hello."
 author: muralikk
 manager: syadav
 editor: tysonn
@@ -14,49 +14,49 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/29/2017
 ms.author: muralikk
-ms.openlocfilehash: d39ec89b4877e2fca01b68b30bb287a120f2eb71
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ee5bb99bd84ea5ee2f6b6e99c5a375b215e94ea8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="setting-up-the-azure-importexport-tool"></a>Configurazione dello strumento Importazione/Esportazione di Azure
+# <a name="setting-up-hello-azure-importexport-tool"></a>Impostazione di hello strumento di importazione/esportazione di Azure
 
-Lo strumento Importazione/Esportazione di Microsoft Azure è lo strumento di preparazione e ripristino delle unità che è possibile usare con il servizio Importazione/Esportazione di Microsoft Azure. È possibile usare lo strumento per svolgere le funzioni seguenti:
+Strumento di importazione/esportazione di Microsoft Azure Hello è hello unità strumento di preparazione e che è possibile utilizzare con il servizio di importazione/esportazione di Microsoft Azure hello. È possibile utilizzare lo strumento hello per hello seguenti funzioni:
 
-* Prima di creare un processo di importazione, è possibile usare questo strumento per copiare i dati nei dischi rigidi che si intende spedire a un data center di Azure.
-* Al termine di un processo di importazione, è possibile usare questo strumento per ripristinare eventuali BLOB danneggiati, mancanti o in conflitto con altri BLOB.
-* Dopo aver ricevuto le unità da un processo di esportazione completato, è possibile usare questo strumento per recuperare eventuali file danneggiati o mancanti nelle unità.
+* Prima di creare un processo di importazione, è possibile utilizzare questo strumento toocopy dati toohello unità disco rigido verrà tooship tooan data center di Azure.
+* Al termine di un processo di importazione, è possibile utilizzare questo toorepair strumento tutti i blob che sono stati danneggiati, mancano o in conflitto con altri BLOB.
+* Dopo aver ricevuto hello unità da un processo di esportazione completato, è possibile utilizzare questo strumento toorepair tutti i file danneggiati o mancanti nelle unità hello.
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-Se si intende **preparare le unità** per un processo di importazione, è necessario soddisfare i prerequisiti seguenti:
+Se si è **preparazione delle unità** per un processo di importazione, deve essere soddisfatti i seguenti prerequisiti hello:
 
 * È necessario disporre di una sottoscrizione di Azure attiva.
-* La sottoscrizione deve includere un account di archiviazione con spazio disponibile sufficiente per archiviare i file che si intende importare.
-* È necessaria almeno una delle chiavi di accesso dell'account di archiviazione.
-* È necessario un computer ("computer di copia") in cui sia installato Windows 7, Windows Server 2008 R2 o un sistema operativo Windows più recente.
-* Nel computer di copia deve essere installato .NET Framework 4.
-* Nel computer di copia deve essere abilitato BitLocker.
-* Sono necessari uno o più dischi rigidi SATA da 3,5 pollici vuoti connessi al computer di copia.
-* I file che si intende importare devono essere accessibili dal computer di copia, che si trovino in una condivisione di rete o in un disco rigido locale.
+* La sottoscrizione deve includere un account di archiviazione con numero di file hello toostore sufficiente spazio disponibile sarà tooimport.
+* È necessario almeno una delle chiavi di accesso di account di archiviazione hello.
+* È necessario un computer ("computer di copia" hello) con Windows 7, Windows Server 2008 R2 o installato un sistema operativo Windows più recente.
+* Hello .NET Framework 4 deve essere installato nel computer di copia hello.
+* BitLocker deve essere abilitato nel computer di copia hello.
+* È necessario uno o più vuoto da 3,5 pollici dischi rigidi SATA connesso il computer di copia toohello.
+* file Hello Prevedi tooimport devono essere accessibili dal computer di copia hello, che si trovino in una condivisione di rete o un disco rigido locale.
 
-Se si tenta di **recuperare un'importazione** parzialmente non riuscita, è necessario disporre dei seguenti elementi:
+Se si sta tentando di troppo**recuperare un'importazione** che parzialmente non riuscita, è necessario:
 
-* I file di log di copia
-* La chiave dell'account di archiviazione
+* file di log di copia Hello
+* chiave dell'account di archiviazione Hello
 
-Se si tenta di **recuperare un'esportazione** parzialmente non riuscita, è necessario disporre dei seguenti elementi:
+Se si sta tentando di troppo**recuperare un'esportazione** che parzialmente non riuscita, è necessario:
 
-* I file di log di copia
-* I file manifesto (facoltativi)
-* La chiave dell'account di archiviazione
+* file di log di copia Hello
+* file manifesto Hello (facoltativi)
+* chiave dell'account di archiviazione Hello
 
-## <a name="installing-the-azure-importexport-tool"></a>Installazione dello strumento di importazione/esportazione di Azure
+## <a name="installing-hello-azure-importexport-tool"></a>Hello installazione dello strumento di importazione/esportazione di Azure
 
-Prima di tutto [scaricare lo strumento Importazione/Esportazione di Azure](https://www.microsoft.com/download/details.aspx?id=55280) ed estrarlo in una directory nel computer in uso, ad esempio `c:\WAImportExport`.
+Prima di tutto, [scaricare lo strumento di importazione/esportazione di Azure hello](https://www.microsoft.com/download/details.aspx?id=55280) ed estrarre i file tooa directory sul computer, ad esempio `c:\WAImportExport`.
 
-Lo strumento Importazione/Esportazione di Azure è costituito dai file indicati di seguito:
+Hello strumento di importazione/esportazione di Azure è costituita da hello i seguenti file:
 
 * dataset.csv
 * driveset.csv
@@ -73,9 +73,9 @@ Lo strumento Importazione/Esportazione di Azure è costituito dai file indicati 
 * WAImportExportRepair.dll
 * WAImportExportRepair.pdb
 
-Aprire quindi una finestra del prompt dei comandi in **modalità amministratore** e passare alla directory contenente i file estratti.
+Successivamente, aprire una finestra del prompt dei comandi in **modalità amministratore**, e modifiche nella directory hello hello contenente i file estratti.
 
-Per visualizzare la Guida per il comando, eseguire lo strumento (`WAImportExport.exe`) senza parametri:
+Guida di toooutput per comando hello, eseguire lo strumento di hello (`WAImportExport.exe`) senza parametri:
 
 ```
 WAImportExport, a client tool for Windows Azure Import/Export Service. Microsoft (c) 2013
@@ -118,79 +118,79 @@ Preview an Export Job:
 Parameters:
 
     /j:<JournalFile>
-        - Required. Path to the journal file. A journal file tracks a set of drives and
-          records the progress in preparing these drives. The journal file must always
+        - Required. Path toohello journal file. A journal file tracks a set of drives and
+          records hello progress in preparing these drives. hello journal file must always
           be specified.
     /logdir:<LogDirectory>
-        - Optional. The log directory. Verbose log files as well as some temporary
-          files will be written to this directory. If not specified, current directory
-          will be used as the log directory. The log directory can be specified only
-          once for the same journal file.
+        - Optional. hello log directory. Verbose log files as well as some temporary
+          files will be written toothis directory. If not specified, current directory
+          will be used as hello log directory. hello log directory can be specified only
+          once for hello same journal file.
     /id:<SessionId>
-        - Optional. The session Id is used to identify a copy session. It is used to
+        - Optional. hello session Id is used tooidentify a copy session. It is used to
           ensure accurate recovery of an interrupted copy session.
     /ResumeSession
-        - Optional. If the last copy session was terminated abnormally, this parameter
-          can be specified to resume the session.
+        - Optional. If hello last copy session was terminated abnormally, this parameter
+          can be specified tooresume hello session.
     /AbortSession
-        - Optional. If the last copy session was terminated abnormally, this parameter
-          can be specified to abort the session.
+        - Optional. If hello last copy session was terminated abnormally, this parameter
+          can be specified tooabort hello session.
     /sn:<StorageAccountName>
-        - Required. Only applicable for RepairImport and RepairExport. The name of
-          the storage account.
+        - Required. Only applicable for RepairImport and RepairExport. hello name of
+          hello storage account.
     /sk:<StorageAccountKey>
-        - Required. The key of the storage account.
+        - Required. hello key of hello storage account.
     /InitialDriveSet:<driveset.csv>
-        - Required. A .csv file that contains a list of drives to prepare.
+        - Required. A .csv file that contains a list of drives tooprepare.
     /AdditionalDriveSet:<driveset.csv>
-        - Required. A .csv file that contains a list of additional drives to be added.
+        - Required. A .csv file that contains a list of additional drives toobe added.
     /r:<RepairFile>
         - Required. Only applicable for RepairImport and RepairExport.
-          Path to the file for tracking repair progress. Each drive must have one
+          Path toohello file for tracking repair progress. Each drive must have one
           and only one repair file.
     /d:<TargetDirectories>
         - Required. Only applicable for RepairImport and RepairExport.
-          For RepairImport, one or more semicolon-separated directories to repair;
-          For RepairExport, one directory to repair, e.g. root directory of the drive.
+          For RepairImport, one or more semicolon-separated directories toorepair;
+          For RepairExport, one directory toorepair, e.g. root directory of hello drive.
     /CopyLogFile:<DriveCopyLogFile>
-        - Required. Only applicable for RepairImport and RepairExport. Path to the
+        - Required. Only applicable for RepairImport and RepairExport. Path toothe
           drive copy log file (verbose or error).
     /ManifestFile:<DriveManifestFile>
-        - Required. Only applicable for RepairExport. Path to the drive manifest file.
+        - Required. Only applicable for RepairExport. Path toohello drive manifest file.
     /PathMapFile:<DrivePathMapFile>
-        - Optional. Only applicable for RepairImport. Path to the file containing
-          mappings of file paths relative to the drive root to locations of actual files
+        - Optional. Only applicable for RepairImport. Path toohello file containing
+          mappings of file paths relative toohello drive root toolocations of actual files
           (tab-delimited). When first specified, it will be populated with file paths
           with empty targets, which means either they are not found in TargetDirectories,
           access denied, with invalid name, or they exist in multiple directories. The
-          path map file can be manually edited to include the correct target paths and
-          specified again for the tool to resolve the file paths correctly.
+          path map file can be manually edited tooinclude hello correct target paths and
+          specified again for hello tool tooresolve hello file paths correctly.
     /ExportBlobListFile:<ExportBlobListFile>
-        - Required. Path to the XML file containing list of blob paths or blob path
-          prefixes for the blobs to be exported. The file format is the same as the
-          blob list blob format in the Put Job operation of the Import/Export Service
+        - Required. Path toohello XML file containing list of blob paths or blob path
+          prefixes for hello blobs toobe exported. hello file format is hello same as the
+          blob list blob format in hello Put Job operation of hello Import/Export Service
           REST API.
     /DriveSize:<DriveSize>
-        - Required. Size of drives to be used for export. For example, 500GB, 1.5TB.
+        - Required. Size of drives toobe used for export. For example, 500GB, 1.5TB.
           Note: 1 GB = 1,000,000,000 bytes
                 1 TB = 1,000,000,000,000 bytes
     /DataSet:<dataset.csv>
         - Required. A .csv file that contains a list of directories and/or a list files
-          to be copied to target drives.
+          toobe copied tootarget drives.
 
     /silentmode
-        - Optional. If not specified, it will remind you the requirement of drives and
-          need your confirmation to continue.
+        - Optional. If not specified, it will remind you hello requirement of drives and
+          need your confirmation toocontinue.
 
 Examples:
 
-    Copy a data set to a drive:
+    Copy a data set tooa drive:
     WAImportExport.exe PrepImport
         /j:9WM35C2V.jrn /id:session#1 /sk:VkGbrUqBWLYJ6zg1m29VOTrxpBgdNOlp+kp0C9MEdx3GEL
         xmBw4hK94f7KysbbeKLDksg7VoN1W/a5UuM2zNgQ== /InitialDriveSet:driveset1.csv
         /DataSet:data.csv
 
-    Copy another dataset to the same drive following the above command:
+    Copy another dataset toohello same drive following hello above command:
     WAImportExport.exe PrepImport /j:9WM35C2V.jrn /id:session#2 /DataSet:dataset2.csv
 
     Preview how many 1.5 TB drives are needed for an export job:
@@ -210,7 +210,7 @@ Examples:
 
 * [Preparing hard drives for an import job](storage-import-export-tool-preparing-hard-drives-import.md) (Preparazione dei dischi rigidi per un processo di importazione)
 * [Previewing drive usage for an export job](storage-import-export-tool-previewing-drive-usage-export-v1.md) (Anteprima dell'uso del disco per un processo di esportazione)
-* [Revisione dello stato dei processi con i file di log di copia](storage-import-export-tool-reviewing-job-status-v1.md)
+* [Reviewing job status with copy log files](storage-import-export-tool-reviewing-job-status-v1.md) (Revisione dello stato dei processi con i file di log di copia)
 * [Riparazione di un processo di importazione](storage-import-export-tool-repairing-an-import-job-v1.md)
 * [Repairing an export job](storage-import-export-tool-repairing-an-export-job-v1.md) (Riparazione di un processo di esportazione)
-* [Risoluzione dei problemi relativi allo strumento Importazione/Esportazione di Azure](storage-import-export-tool-troubleshooting-v1.md)
+* [Risoluzione dei problemi hello strumento di importazione/esportazione di Azure](storage-import-export-tool-troubleshooting-v1.md)

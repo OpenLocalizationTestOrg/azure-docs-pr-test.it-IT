@@ -1,6 +1,6 @@
 ---
-title: Creare o aggiornare un gateway applicazione di Azure con il web application firewall | Microsoft Docs
-description: Informazioni su come creare un gateway applicazione con il firewall applicazione Web tramite il portale
+title: aaaCreate o aggiornare un Gateway applicazione Azure con firewall applicazione web | Documenti Microsoft
+description: Informazioni su come toocreate con firewall applicazione web tramite un Gateway di applicazione hello portale
 services: application-gateway
 documentationcenter: na
 author: georgewallace
@@ -15,67 +15,67 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 05/03/2017
 ms.author: gwallace
-ms.openlocfilehash: 650f26d19615d27a94f3947aad7b7904b6c1fabc
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 68d140fef14499da654ea251d1208e6a800f55a9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-an-application-gateway-with-web-application-firewall-by-using-the-portal"></a>Creare un gateway applicazione con il firewall applicazione Web tramite il portale
+# <a name="create-an-application-gateway-with-web-application-firewall-by-using-hello-portal"></a>Creare un gateway applicazione con firewall applicazione web tramite il portale di hello
 
 > [!div class="op_single_selector"]
 > * [Portale di Azure](application-gateway-web-application-firewall-portal.md)
 > * [PowerShell](application-gateway-web-application-firewall-powershell.md)
 > * [Interfaccia della riga di comando di Azure](application-gateway-web-application-firewall-cli.md)
 
-Informazioni su come creare un gateway applicazione con firewall applicazione Web abilitato.
+Informazioni su come toocreate un firewall applicazione web abilitata gateway applicazione.
 
-Il firewall applicazione Web (WAF) nel gateway applicazione di Azure protegge le applicazioni Web dai comuni attacchi basati sul Web, come ad esempio gli attacchi SQL injection, gli attacchi di scripting intersito e il controllo delle sessioni. L'applicazione Web protegge da molte delle 10 vulnerabilità Web OWASP più diffuse.
+firewall applicazione web di Hello (WAF) nel Gateway di applicazione di Azure consente di proteggere le applicazioni web da attacchi basati sul web comuni quali attacchi SQL injection, attacchi di script e assume il controllo di sessione. Applicazione Web consente di proteggere molti hello OWASP top 10 web vulnerabilità comuni.
 
 ## <a name="scenarios"></a>Scenari
 
 Questo articolo presenta due scenari:
 
-Nel primo scenario si apprenderà come [creare un gateway applicazione con il firewall applicazione Web](#create-an-application-gateway-with-web-application-firewall)
+Nel primo scenario hello, si apprenderà troppo[creare un gateway applicazione con firewall applicazione web](#create-an-application-gateway-with-web-application-firewall)
 
-Nel secondo scenario si apprenderà come [aggiungere un firewall applicazione Web a un gateway applicazione esistente](#add-web-application-firewall-to-an-existing-application-gateway).
+Nel secondo scenario hello, si apprenderà troppo[aggiungere web application firewall tooan esistente gateway applicazione](#add-web-application-firewall-to-an-existing-application-gateway).
 
 ![Esempio dello scenario][scenario]
 
 > [!NOTE]
-> La configurazione aggiuntiva del gateway applicazione, che include i probe di integrità personalizzati, gli indirizzi del pool back-end e le regole aggiuntive, viene definita dopo la configurazione del gateway applicazione e non durante la distribuzione iniziale.
+> Le ricerche di configurazione aggiuntiva di gateway applicazione hello, inclusi stato personalizzato, gli indirizzi del pool back-end e regole aggiuntive vengono configurati dopo la configurazione di gateway applicazione hello e non durante la distribuzione iniziale.
 
 ## <a name="before-you-begin"></a>Prima di iniziare
 
-Il gateway applicazione di Azure richiede una propria subnet. Quando si crea una rete virtuale, assicurarsi di lasciare uno spazio indirizzi sufficiente per più subnet. Dopo che un gateway applicazione è stato distribuito in una subnet, alla subnet possono essere aggiunti solo altri gateway applicazione.
+Il gateway applicazione di Azure richiede una propria subnet. Quando si crea una rete virtuale, assicurarsi di lasciare sufficiente toohave spazio di indirizzi più subnet. Dopo aver distribuito una subnet tooa di gateway applicazione, gateway di applicazione solo aggiuntive sono in grado di toobe aggiunto toohello subnet.
 
-##<a name="add-web-application-firewall-to-an-existing-application-gateway"></a> Aggiungere un firewall applicazione Web a un gateway applicazione esistente
+##<a name="add-web-application-firewall-to-an-existing-application-gateway"></a>Aggiungere web application firewall tooan esistente gateway applicazione
 
-Questo esempio aggiorna un gateway applicazione esistente per supportare il firewall applicazione Web in modalità di prevenzione.
+In questo esempio aggiorna un'applicazione gateway toosupport web application firewall esistente in modalità di prevenzione.
 
-1. Nel riquadro **Preferiti** del portale di Azure fare clic su **Tutte le risorse**. Fare clic sul gateway applicazione esistente nel pannello **Tutte le risorse**. Se nella sottoscrizione selezionata sono già presenti delle risorse, è possibile immettere il nome nella casella **Filtra per nome** per accedere facilmente alla zona DNS.
+1. Nel portale di Azure hello **Preferiti** riquadro, fare clic su **tutte le risorse**. Fare clic su hello Gateway applicazione esistente in hello **tutte le risorse** blade. Se sottoscrizione hello selezionati sono già dispone di numerose risorse in essa contenuti, è possibile immettere il nome di hello in hello **filtrare in base al nome...** zona DNS hello accesso tooeasily casella.
 
    ![Creazione di un gateway applicazione][1]
 
-1. Fare clic su **Firewall applicazione Web** e aggiornare le impostazioni del gateway applicazione. Al termine, fare clic su **Salva**
+1. Fare clic su **firewall applicazione Web** e aggiornare le impostazioni di gateway applicazione hello. Al termine, fare clic su **Salva**
 
-    Di seguito vengono elencate le impostazioni per aggiornare un gateway applicazione esistente per supportare il firewall applicazione Web:
+    le impostazioni di Hello tooupdate un firewall di applicazione web esistente del toosupport gateway applicazione sono:
 
    | **Impostazione** | **Valore** | **Dettagli**
    |---|---|---|
-   |**Eseguire l'aggiornamento al livello WAF**| Selezionato | Il livello del gateway applicazione viene impostato al livello WAF.|
-   |**Stato del firewall**| Enabled | Questa impostazione abilita il firewall su WAF.|
-   |**Modalità firewall** | Prevenzione | Questa impostazione riguarda la modalità di gestione del traffico dannoso da parte del firewall applicazione Web. La modalità **Rilevamento** registra solo gli eventi. La modalità **Prevenzione** registra gli eventi e blocca il traffico dannoso.|
-   |**Set di regole**|3.0|Questa impostazione determina il [set di regole di base](application-gateway-web-application-firewall-overview.md#core-rule-sets) usato per proteggere i membri del pool back-end.|
-   |**Configurare regole disabilitate**|variabile|Per impedire possibili falsi positivi, questa impostazione consente di disabilitare alcune [regole e gruppi di regole](application-gateway-crs-rulegroups-rules.md).|
+   |**Aggiornamento tooWAF livello**| Selezionato | Consente di impostare il livello di hello del livello di WAF toohello gateway applicazione hello.|
+   |**Stato del firewall**| Enabled | Questa impostazione abilita il firewall di hello nei hello WAF.|
+   |**Modalità firewall** | Prevenzione | Questa impostazione riguarda la modalità di gestione del traffico dannoso da parte del firewall applicazione Web. **Rilevamento** modalità registra solo gli eventi di hello, in cui **prevenzione** modalità registra gli eventi di hello e arresta hello traffico dannoso.|
+   |**Set di regole**|3.0|Questa impostazione determina hello [set di regole di base](application-gateway-web-application-firewall-overview.md#core-rule-sets) membri del pool che è usato tooprotect hello back-end.|
+   |**Configurare regole disabilitate**|variabile|tooprevent possibili falsi positivi, questa impostazione consente toodisable determinati [regole e gruppi di regole](application-gateway-crs-rulegroups-rules.md).|
 
     >[!NOTE]
-    > Quando si aggiorna un gateway applicazione esistente per lo SKU WAF, le dimensioni dello SKU cambiano in **medie**. L'impostazione può essere riconfigurata al termine della configurazione.
+    > Quando si aggiorna un toohello di gateway applicazione esistente WAF SKU, hello SKU dimensioni troppo modifiche**Media**. L'impostazione può essere riconfigurata al termine della configurazione.
 
     ![Pannello con impostazioni di base][2-1]
 
     > [!NOTE]
-    > Per visualizzare i log del firewall applicazione Web, è necessario abilitare la diagnostica e selezionare ApplicationGatewayFirewallLog. A scopo di test si può scegliere 1 come numero di istanze. È importante sapere che un numero di istanze inferiore a due non è coperto dal contratto di servizio e non è quindi consigliabile. Con il firewall applicazione Web non è possibile usare gateway di piccole dimensioni.
+    > log di firewall applicazione web tooview, diagnostica deve essere abilitato e ApplicationGatewayFirewallLog selezionato. A scopo di test si può scegliere 1 come numero di istanze. È importante che tutte le istanze in due istanze di contare tooknow non coperto da hello contratto di servizio e pertanto non sono consigliati. Con il firewall applicazione Web non è possibile usare gateway di piccole dimensioni.
 
 ## <a name="create-an-application-gateway-with-web-application-firewall"></a>creare un gateway applicazione con il firewall applicazione Web
 
@@ -86,78 +86,78 @@ Questo scenario illustrerà come:
 * Creare una subnet denominata Appgatewaysubnet che usa 10.0.0.0/28 come blocco CIDR.
 * Configurare un certificato per l'offload SSL.
 
-1. Accedere al [Portale di Azure](https://portal.azure.com). Se non si dispone già di un account, è possibile iscriversi per ottenere una [versione di valutazione gratuita della durata di un mese](https://azure.microsoft.com/free)
-1. Nel riquadro Preferiti del portale fare clic su **Nuovo**
-1. Nel pannello **Nuovo** fare clic su **Rete**. Nel pannello **Rete** fare clic su **Gateway applicazione**, come mostrato nell'immagine seguente:
-1. Passare al portale di Azure e fare clic su **Nuovo** > **Rete** > **Gateway applicazione**
+1. Accedi toohello [portale di Azure](https://portal.azure.com). Se non si dispone già di un account, è possibile iscriversi per ottenere una [versione di valutazione gratuita della durata di un mese](https://azure.microsoft.com/free)
+1. Nel riquadro di Preferiti hello del portale di hello, fare clic su **New**
+1. In hello **New** pannello, fare clic su **rete**. In hello **rete** pannello, fare clic su **Gateway applicazione**, come illustrato nella seguente immagine hello:
+1. Passare toohello portale di Azure, fare clic su **New** > **rete** > **Gateway applicazione**
 
     ![Creazione di un gateway applicazione][1]
 
-1. Nel pannello **Informazioni di base** visualizzato immettere i valori seguenti e quindi fare clic su **OK**:
+1. In hello **nozioni di base** blade che viene visualizzata, immettere i seguenti valori hello, quindi fare clic su **OK**:
 
    | **Impostazione** | **Valore** | **Dettagli**
    |---|---|---|
-   |**Nome**|AdatumAppGateway|Il nome del gateway applicazione|
-   |**Livello**|WAF|I valori disponibili sono Standard e WAF. Per altre informazioni su WAF, visitare [firewall applicazione Web](application-gateway-web-application-firewall-overview.md).|
+   |**Nome**|AdatumAppGateway|nome Hello del gateway applicazione hello|
+   |**Livello**|WAF|I valori disponibili sono Standard e WAF. Visitare [firewall applicazione web](application-gateway-web-application-firewall-overview.md) toolearn ulteriori informazioni sulla WAF.|
    |**Dimensioni SKU**|Media|Opzioni disponibili quando si sceglie il livello Standard: Small, Medium e Large. Quando si sceglie il livello WAF, le opzioni sono solo Medium e Large.|
-   |**Numero di istanze**|2|Numero di istanze del gateway applicazione per la disponibilità elevata. I numeri di istanze di 1 devono essere usati solo a scopo di test.|
-   |**Sottoscrizione**|[Sottoscrizione]|Selezionare una sottoscrizione in cui creare il gateway applicazione.|
-   |**Gruppo di risorse**|**Crea nuovo:** AdatumAppGatewayRG|Creare un gruppo di risorse. Il nome del gruppo di risorse deve essere univoco all'interno della sottoscrizione selezionata. Per altre informazioni sui gruppi di risorse, vedere l'articolo [Panoramica di Resource Manager](../azure-resource-manager/resource-group-overview.md?toc=%2fazure%2fapplication-gateway%2ftoc.json#resource-groups).|
+   |**Numero di istanze**|2|Numero di istanze del gateway applicazione hello per la disponibilità elevata. I numeri di istanze di 1 devono essere usati solo a scopo di test.|
+   |**Sottoscrizione**|[Sottoscrizione]|Selezionare un gateway applicazione di sottoscrizione toocreate hello in.|
+   |**Gruppo di risorse**|**Crea nuovo:** AdatumAppGatewayRG|Creare un gruppo di risorse. nome del gruppo di risorse Hello deve essere univoco all'interno di sottoscrizione hello selezionata. ulteriori informazioni sui gruppi di risorse, leggere hello toolearn [Gestione risorse](../azure-resource-manager/resource-group-overview.md?toc=%2fazure%2fapplication-gateway%2ftoc.json#resource-groups) articolo introduttivo.|
    |**Posizione**|Stati Uniti occidentali||
 
    ![Pannello con impostazioni di base][2-2]
 
-1. Nel pannello **Impostazioni** che viene visualizzato in **Rete virtuale**, fare clic su **Scegliere una rete virtuale**. Questo passaggio apre il pannello **Scegli rete virtuale**.  Fare clic su **Crea nuovo** per aprire il pannello **Crea rete virtuale**.
+1. In hello **impostazioni** pannello visualizzato sotto **rete virtuale**, fare clic su **scegliere una rete virtuale**. Questo passaggio viene visualizzata immettere hello **rete virtuale scegliere** blade.  Fare clic su **Crea nuovo** tooopen hello **crea rete virtuale** blade.
 
    ![scegliere una rete virtuale][2]
 
-1. Nel pannello **Crea rete virtuale** immettere i valori seguenti e quindi fare clic su **OK**. Questo passaggio chiude i pannelli **Crea rete virtuale** e **Scegli rete virtuale**. Con questa operazione il campo **Subnet** nel pannello **Impostazioni** viene popolato con la subnet selezionata.
+1. In hello **blade di rete virtuale crea** immettere i seguenti valori hello, quindi fare clic su **OK**. Questo passaggio consente di chiudere hello **crea rete virtuale** e **rete virtuale scegliere** pannelli. Questo compilerà hello **Subnet** campo hello **impostazioni** pannello con subnet hello scelto.
 
    |**Impostazione** | **Valore** | **Dettagli** |
    |---|---|---|
-   |**Nome**|AdatumAppGatewayVNET|Nome del gateway applicazione|
-   |**Spazio di indirizzi:**|10.0.0.0/16| È lo spazio degli indirizzi per la rete virtuale|
-   |**Nome della subnet**|AppGatewaySubnet|Nome della subnet per il gateway applicazione|
-   |**Intervallo di indirizzi subnet**|10.0.0.0/28 | Questa subnet consente subnet aggiuntive nella rete virtuale per i membri del pool back-end|
+   |**Nome**|AdatumAppGatewayVNET|Nome del gateway applicazione hello|
+   |**Spazio di indirizzi:**|10.0.0.0/16| Questo valore è lo spazio di indirizzo hello per la rete virtuale hello|
+   |**Nome della subnet**|AppGatewaySubnet|Nome della subnet di hello per il gateway applicazione hello|
+   |**Intervallo di indirizzi subnet**|10.0.0.0/28 | Questa subnet consente ulteriori altre subnet nella rete virtuale hello per i membri del pool back-end|
 
-1. Nel pannello **Impostazioni** in **Configurazione IP front-end** scegliere **Pubblico** in **Tipo di indirizzo IP**
+1. In hello **impostazioni** pannello **configurazione IP Frontend**, scegliere **pubblica** come hello **tipo di indirizzo IP**
 
-1. Nel pannello **Impostazioni** in **Indirizzo IP pubblico** fare clic su **Scegliere un indirizzo IP pubblico**. Nel pannello **Scegliere un indirizzo IP pubblico** visualizzato fare clic su **Crea nuovo**.
+1. In hello **impostazioni** pannello **indirizzo IP pubblico**, fare clic su **scegliere un indirizzo IP pubblico**, questo passaggio apre hello **scegliere l'indirizzo IP pubblico**pannello, fare clic su **Crea nuovo**.
 
    ![scegliere un indirizzo IP pubblico][3]
 
-1. Nel pannello **Crea indirizzo IP pubblico** accettare il valore predefinito e fare clic su **OK**. Questo passaggio chiude i pannelli **Scegliere un indirizzo IP pubblico** e **Crea indirizzo IP pubblico** e inserisce nel campo **Indirizzo IP pubblico** l'indirizzo IP pubblico selezionato.
+1. In hello **creare l'indirizzo IP pubblico** pannello, accettare il valore di predefinito hello e fare clic su **OK**. Questo passaggio consente di chiudere hello **scegliere l'indirizzo IP pubblico** blade, hello **creare l'indirizzo IP pubblico** pannello e popolare **indirizzo IP pubblico** con indirizzo IP pubblico hello scelto.
 
-1. Nel pannello **Impostazioni** in **Configurazione listener** fare clic su **HTTP** in **Protocollo**. Per usare **HTTPS**è necessario un certificato. Poiché è necessaria la chiave privata del certificato, si devono specificare un file di esportazione con estensione pfx del certificato e la password per il file.
+1. In hello **impostazioni** pannello **configurazione Listener**, fare clic su **HTTP** in **protocollo**. toouse **https**, è necessario un certificato. chiave privata di Hello del certificato di hello è necessario pertanto un'esportazione con estensione pfx del certificato hello deve toobe fornito e hello password per il file hello.
 
-1. Configurare le impostazioni specifiche del **WAF** .
+1. Configurare hello **WAF** impostazioni specifiche.
 
    |**Impostazione** | **Valore** | **Dettagli** |
    |---|---|---|
    |**Stato del firewall**| Enabled| Questa impostazione attiva o disattiva il WAF.|
-   |**Modalità firewall** | Prevenzione| Questa impostazione determina le misure che WAF adotta contro il traffico dannoso. Se viene scelta l'opzione **Rilevamento** , il traffico sarà solo registrato.  Se viene scelta l'opzione **Prevenzione**, il traffico viene registrato e interrotto con una risposta 403 di accesso non autorizzato.|
+   |**Modalità firewall** | Prevenzione| Questa impostazione determina le azioni di hello che WAF accetta traffico dannoso. Se viene scelta l'opzione **Rilevamento** , il traffico sarà solo registrato.  Se viene scelta l'opzione **Prevenzione**, il traffico viene registrato e interrotto con una risposta 403 di accesso non autorizzato.|
 
 
-1. Esaminare la pagina di riepilogo e fare clic su **OK**.  Il gateway applicazione verrà inserito in coda e creato.
+1. Esaminare la pagina Riepilogo hello e fare clic su **OK**.  Gateway applicazione hello ora viene messo in coda e creato.
 
-1. Al termine della creazione del gateway applicazione, passare al gateway applicazione nel portale per proseguirne la configurazione.
+1. Dopo aver creato il gateway di applicazione hello, passare in Configurazione portale toocontinue hello del gateway applicazione hello tooit.
 
     ![Visualizzazione della risorsa del gateway applicazione][10]
 
-Questi passaggi creano un gateway applicazione di base con le impostazioni predefinite per il listener, il pool back-end, le impostazioni HTTP back-end e le regole. Queste impostazioni possono essere modificate in base alla propria distribuzione dopo che è stato completato il provisioning.
+Questi passaggi creano un gateway applicazione basic con le impostazioni predefinite per il listener hello, pool back-end, le impostazioni http back-end e regole. È possibile modificare questi toosuit impostazioni la distribuzione di una volta hello provisioning ha esito positivo
 
 > [!NOTE]
-> I gateway applicazione creati con la configurazione di base del web application firewall sono configurati con CRS 3.0 per la protezione.
+> Gateway applicazione creati con configurazione del firewall applicazione web di base hello sono configurati con CRS 3.0 per la protezione.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Successivamente, è possibile imparare a configurare un alias di dominio personalizzato per l'[indirizzo IP pubblico](../dns/dns-custom-domain.md#public-ip-address) tramite DNS di Azure o un altro provider DNS.
+Successivamente, è possibile ottenere informazioni come un alias di dominio personalizzato per hello tooconfigure [indirizzo IP pubblico](../dns/dns-custom-domain.md#public-ip-address) tramite DNS di Azure o un altro provider DNS.
 
-Per informazioni su come configurare la registrazione diagnostica, per registrare gli eventi che vengono rilevati o bloccati con il web application firewall, visitare [Registrazione diagnostica per il gateway applicazione](application-gateway-diagnostics.md)
+Informazioni su come la registrazione diagnostica tooconfigure, toolog hello gli eventi rilevati o prevenire firewall applicazione web, visitare il sito [diagnostica del Gateway applicazione](application-gateway-diagnostics.md)
 
-Per informazioni su come creare probe di integrità personalizzati, vedere [Creare un probe personalizzato per un gateway applicazione con il portale](application-gateway-create-probe-portal.md)
+Informazioni su come probe di integrità personalizzato toocreate visitando [per creare un probe di integrità personalizzato](application-gateway-create-probe-portal.md)
 
-Per informazioni su come configurare l'offload SSL ed evitare costose attività di decrittografia SSL nei server Web, vedere [Configurare un gateway applicazione per l'offload SSL con Azure Resource Manager](application-gateway-ssl-portal.md)
+Informazioni su come tooconfigure offload SSL e la decrittografia SSL costosa di intraprendere hello off i server web, visitare il sito [configurare Offload SSL](application-gateway-ssl-portal.md)
 
 <!--Image references-->
 [1]: ./media/application-gateway-web-application-firewall-portal/figure1.png

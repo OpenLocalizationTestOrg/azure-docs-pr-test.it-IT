@@ -1,6 +1,6 @@
 ---
-title: Visualizzare i dati di analisi di App Web di Azure | Microsoft Docs
-description: "È possibile usare la soluzione Analisi app Web di Azure per ottenere informazioni dettagliate su App Web di Azure, raccogliendo metriche diverse in tutte le risorse app Web di Azure."
+title: aaaView dati analitici di App Web di Azure | Documenti Microsoft
+description: "È possibile utilizzare informazioni dettagliate di hello Azure Web App Analitica soluzione toogain sull'App Web di Azure raccogliendo metriche tra tutte le risorse di App Web di Azure."
 services: log-analytics
 documentationcenter: 
 author: bandersmsft
@@ -14,20 +14,20 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/11/2017
 ms.author: banders
-ms.openlocfilehash: f480188c46f16473bf294c857cd07e3cec5dc0ba
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 7e9725f95c9faf01da89184975ad5444dd19ff95
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="view-analytic-data-for-metrics-across-all-your-azure-web-app-resources"></a>Visualizzare i dati di analisi per le metriche di tutte le risorse app Web di Azure
 
 ![Simbolo di App Web](./media/log-analytics-azure-web-apps-analytics/azure-web-apps-analytics-symbol.png)  
-La soluzione Analisi app Web di Azure (anteprima) fornisce informazioni dettagliate su [App Web di Azure](../app-service-web/app-service-web-overview.md), raccogliendo metriche diverse in tutte le risorse app Web di Azure. Con questa soluzione, è possibile analizzare e cercare i dati relativi alle metriche delle risorse app Web.
+Hello soluzione Analitica di App Web di Azure (anteprima) offre informazioni approfondite del [App Web di Azure](../app-service-web/app-service-web-overview.md) raccogliendo metriche tra tutte le risorse di App Web di Azure. Con la soluzione hello, è possibile analizzare e cercare i dati di metrica risorsa app web.
 
-La soluzione consente di visualizzare:
+Utilizza soluzione hello, è possibile visualizzare il:
 
-- Principali app Web con tempi di risposta più alti
+- App Web principale con tempo di risposta massimo hello
 - Numero di richieste tra le app Web, incluse le richieste riuscite e non riuscite
 - Principali app Web con il maggior traffico in ingresso e in uscita
 - Principali piani di servizio con utilizzo elevato di memoria e CPU
@@ -35,27 +35,27 @@ La soluzione consente di visualizzare:
 
 ## <a name="connected-sources"></a>Origini connesse
 
-A differenza della maggior parte delle altre soluzioni di Log Analytics, i dati per App Web di Azure non vengono raccolti dagli agenti. Tutti i dati usati dalla soluzione provengono direttamente da Azure.
+A differenza della maggior parte delle altre soluzioni di Log Analytics, i dati per App Web di Azure non vengono raccolti dagli agenti. Tutti i dati utilizzati dalla soluzione hello proviene direttamente da Azure.
 
 | Origine connessa | Supportato | Descrizione |
 | --- | --- | --- |
-| [Agenti di Windows](log-analytics-windows-agents.md) | No | La soluzione non raccoglie le informazioni dagli agenti di Windows. |
-| [Agenti Linux](log-analytics-linux-agents.md) | No | La soluzione non raccoglie le informazioni dagli agenti di Linux. |
-| [Gruppo di gestione SCOM](log-analytics-om-agents.md) | No | La soluzione non raccoglie le informazioni dagli agenti in un gruppo di gestione SCOM connesso. |
-| [Account di archiviazione di Azure](log-analytics-azure-storage.md) | No | La soluzione non raccoglie le informazioni da Archiviazione di Azure. |
+| [Agenti di Windows](log-analytics-windows-agents.md) | No | soluzione Hello non raccoglie informazioni dagli agenti di Windows. |
+| [Agenti Linux](log-analytics-linux-agents.md) | No | soluzione Hello non raccoglie informazioni dagli agenti Linux. |
+| [Gruppo di gestione SCOM](log-analytics-om-agents.md) | No | soluzione Hello non raccoglie informazioni dagli agenti in un gruppo di gestione SCOM connesso. |
+| [Account di archiviazione di Azure](log-analytics-azure-storage.md) | No | soluzione di Hello non non informazioni sulla raccolta dall'archiviazione di Azure. |
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-- Per accedere alle informazioni relative alle metriche delle risorse app Web di Azure, è necessaria una sottoscrizione di Azure.
+- tooaccess informazioni sulle metriche di risorsa App Web di Azure, è necessario disporre di una sottoscrizione di Azure.
 
 ## <a name="configuration"></a>Configurazione
 
-Seguire questa procedura per configurare la soluzione Analisi app Web di Azure per le aree di lavoro.
+Eseguire hello seguente soluzione Azure Web App Analitica di passaggi tooconfigure hello per le aree di lavoro.
 
-1. Abilitare la soluzione Analisi app Web di Azure da [Azure Marketplace](https://azuremarketplace.microsoft.com/marketplace/apps/Microsoft.AzureWebAppsAnalyticsOMS?tab=Overview) o seguendo la procedura illustrata in [Aggiungere soluzioni di gestione di Log Analytics di Azure all'area di lavoro](log-analytics-add-solutions.md).
-2. [Abilitare la registrazione delle metriche delle risorse di Azure in OMS tramite PowerShell](https://blogs.technet.microsoft.com/msoms/2017/01/17/enable-azure-resource-metrics-logging-using-powershell).
+1. Abilitare soluzioni Azure Web App Analitica hello [Azure marketplace](https://azuremarketplace.microsoft.com/marketplace/apps/Microsoft.AzureWebAppsAnalyticsOMS?tab=Overview) o tramite il processo di hello descritto in [soluzioni aggiungere Log Analitica da hello Solutions Gallery](log-analytics-add-solutions.md).
+2. [Abilitare tooOMS registrazione metriche di risorse di Azure con PowerShell](https://blogs.technet.microsoft.com/msoms/2017/01/17/enable-azure-resource-metrics-logging-using-powershell).
 
-La soluzione Analisi app Web di Azure raccoglie due set di metriche da Azure:
+soluzione Azure Web App Analitica Hello raccoglie due set di metriche da Azure:
 
 - Metriche di App Web di Azure
   - Working set della memoria medio
@@ -72,59 +72,59 @@ La soluzione Analisi app Web di Azure raccoglie due set di metriche da Azure:
   - Lunghezza coda HTTP
   - Percentuale memoria
 
-Le metriche del piano di servizio app vengono raccolte solo se si usa un piano di servizio dedicato. Ciò non si applica ai piani di servizio app gratuiti o condivisi.
+Le metriche del piano di servizio app vengono raccolte solo se si usa un piano di servizio dedicato. Questo non si applica toofree o piani di servizio App condiviso.
 
-Se si aggiunge la soluzione usando il portale di OMS, verrà visualizzato il riquadro seguente. È necessario [abilitare la registrazione delle metriche delle risorse di Azure in OMS tramite PowerShell](https://blogs.technet.microsoft.com/msoms/2017/01/17/enable-azure-resource-metrics-logging-using-powershell).
+Se si aggiunge una soluzione di hello tramite il portale di OMS hello, si noterà hello seguente riquadro. È necessario troppo[abilitare tooOMS registrazione metriche di risorse di Azure con PowerShell](https://blogs.technet.microsoft.com/msoms/2017/01/17/enable-azure-resource-metrics-logging-using-powershell).
 
 ![Notifica di esecuzione della valutazione](./media/log-analytics-azure-web-apps-analytics/performing-assessment.png)
 
-Dopo aver configurato la soluzione, il flusso di dati nell'area di lavoro deve iniziare entro 15 minuti.
+Dopo aver configurato la soluzione hello, dati devono avviare il flusso dell'area di lavoro tooyour entro 15 minuti.
 
-## <a name="using-the-solution"></a>Uso della soluzione
+## <a name="using-hello-solution"></a>Utilizzo di soluzione hello
 
-Quando si aggiunge la soluzione Analisi app Web di Azure all'area di lavoro, il riquadro **Analisi app Web di Azure** viene aggiunto al dashboard Panoramica. Questo riquadro mostra il numero di app Web di Azure a cui la soluzione ha accesso nella sottoscrizione di Azure.
+Quando si aggiunge l'area di lavoro tooyour soluzione Azure Web App Analitica hello, hello **Azure Web App Analitica** riquadro viene aggiunto il dashboard di panoramica tooyour. Questo riquadro Visualizza un conteggio del numero di hello di App Web di Azure che soluzione hello disponga di accesso tooin la sottoscrizione di Azure.
 
 ![Riquadro di Analisi app Web di Azure](./media/log-analytics-azure-web-apps-analytics/azure-web-apps-analytics-tile.png)
 
 ### <a name="view-azure-web-apps-analytics-information"></a>Visualizzare le informazioni di Analisi app Web di Azure
 
-Fare clic sul riquadro **Analisi app Web di Azure** per aprire il dashboard di **Analisi app Web di Azure**. Il dashboard include i pannelli nella tabella seguente. Ogni panello elenca fino a dieci elementi corrispondenti ai criteri del pannello per l'ambito e l'intervallo di tempo specificati. È possibile eseguire una ricerca log per ottenere tutti i record facendo clic su **Vedi tutto** nella parte inferiore del pannello o facendo clic sull'intestazione del pannello.
+Fare clic su hello **Azure Web App Analitica** riquadro tooopen hello **Azure Web App Analitica** dashboard. dashboard Hello include pannelli hello in hello nella tabella seguente. Ogni pannello elenca backup tooten elementi corrispondenti ai criteri del pannello per hello specificato intervallo di ambito e tempo. È possibile eseguire una ricerca di log che restituisce tutti i record facendo **tutti** nella parte inferiore di hello del pannello hello oppure facendo clic sull'intestazione di blade hello.
 
 [!include[log-analytics-log-search-nextgeneration](../../includes/log-analytics-log-search-nextgeneration.md)]
 
 | Colonna | Descrizione |
 | --- | --- |
 | App Web di Azure |   |
-| Tendenze richieste app Web | Mostra un grafico a linee relativo alla tendenza delle richieste delle app Web per l'intervallo di date selezionato e un elenco delle prime dieci richieste Web. Fare clic sul grafico a linee per eseguire una ricerca log per <code>Type=AzureMetrics ResourceId=*"/MICROSOFT.WEB/SITES/"* (MetricName=Requests OR MetricName=Http*) &#124; measure avg(Average) by MetricName interval 1HOUR</code> <br>Fare clic su una voce di richiesta Web per eseguire una ricerca log per la tendenza delle metriche per la richiesta Web. |
-| Tempo di risposta app Web | Mostra un grafico a linee relativo al tempo di risposta delle app Web per l'intervallo di date selezionato. Mostra anche un elenco dei primi dieci tempi di risposta delle app Web. Fare clic sul grafico per eseguire una ricerca log di <code>Type:AzureMetrics ResourceId=*"/MICROSOFT.WEB/SITES/"* MetricName="AverageResponseTime" &#124; measure avg(Average) by Resource interval 1HOUR</code><br> Fare clic su un'app Web per eseguire una ricerca log che restituisce i tempi di risposta per l'app Web. |
-| Traffico app Web | Mostra un grafico a linee relativo al traffico delle app Web, in MB, ed elenca le app Web con più traffico. Fare clic sul grafico per eseguire una ricerca log di <code>Type:AzureMetrics ResourceId=*"/MICROSOFT.WEB/SITES/"*  MetricName=BytesSent OR BytesReceived &#124; measure sum(Average) by Resource interval 1HOUR</code><br> Mostra tutte le app Web con traffico nell'ultimo minuto. Fare clic su un'app Web per eseguire una ricerca log che mostra i byte ricevuti e inviati per l'app Web. |
+| Tendenze richieste app Web | Mostra un grafico a linee di tendenza di richiesta Web App per l'intervallo di date hello selezionato hello e Mostra un elenco di richieste web dieci superiore hello. Fare clic su una ricerca di log per hello riga grafico toorun<code>Type=AzureMetrics ResourceId=*"/MICROSOFT.WEB/SITES/"* (MetricName=Requests OR MetricName=Http*) &#124; measure avg(Average) by MetricName interval 1HOUR</code> <br>Fare clic su un toorun di elemento di richiesta web, una ricerca di log per la tendenza di metrica richiesta di web hello che lo richiedono. |
+| Tempo di risposta app Web | Mostra un grafico a linee hello App Web del tempo di risposta per l'intervallo di date hello selezionato. Inoltre visualizza un elenco di hello prime dieci Web risposta App volte. Fare clic su una ricerca di log per hello grafico toorun<code>Type:AzureMetrics ResourceId=*"/MICROSOFT.WEB/SITES/"* MetricName="AverageResponseTime" &#124; measure avg(Average) by Resource interval 1HOUR</code><br> Fare clic su un toorun App Web di una ricerca log restituzione tempi di risposta per hello App Web. |
+| Traffico app Web | Viene illustrato un grafico a linee per il traffico Web Apps, in MB ed elenca inizio hello traffico Web App. Fare clic su una ricerca di log per hello grafico toorun<code>Type:AzureMetrics ResourceId=*"/MICROSOFT.WEB/SITES/"*  MetricName=BytesSent OR BytesReceived &#124; measure sum(Average) by Resource interval 1HOUR</code><br> Mostra tutte le app Web con traffico per hello ultimo minuto. Fare clic su un toorun App Web, una ricerca di log che mostra byte ricevuti e inviati per hello App Web. |
 | Piani di servizio app di Azure |   |
-| Piani di servizio app con utilizzo della CPU &gt; 80% | Mostra il numero totale di piani di servizio app che presentano un utilizzo della CPU superiore all'80% ed elenca i primi dieci piani di servizio app in base all'utilizzo della CPU. Fare clic sull'area del totale per eseguire una ricerca log per <code>Type=AzureMetrics ResourceId=*"/MICROSOFT.WEB/SERVERFARMS/"* MetricName=CpuPercentage &#124; measure Avg(Average) by Resource</code><br> Mostra un elenco dei piani di servizio app con l'utilizzo medio della CPU. Fare clic su un piano di servizio app per eseguire una ricerca log che mostra il relativo utilizzo medio della CPU. |
-| Piani di servizio app con utilizzo della memoria &gt; 80% | Mostra il numero totale di piani di servizio app che presentano un utilizzo della memoria superiore all'80% ed elenca i primi dieci piani di servizio app in base all'utilizzo della memoria. Fare clic sull'area del totale per eseguire una ricerca log per <code>Type=AzureMetrics ResourceId=*"/MICROSOFT.WEB/SERVERFARMS/"* MetricName=MemoryPercentage &#124; measure Avg(Average) by Resource</code><br> Mostra un elenco dei piani di servizio app con l'utilizzo medio della memoria. Fare clic su un piano di servizio app per eseguire una ricerca log che mostra il relativo utilizzo medio della memoria. |
+| Piani di servizio app con utilizzo della CPU &gt; 80% | Mostra hello totale App piani di servizio con l'utilizzo della CPU maggiore di 80% e gli elenchi hello piani di servizio App primi 10 per l'utilizzo della CPU. Fare clic su una ricerca di log per hello area totale toorun<code>Type=AzureMetrics ResourceId=*"/MICROSOFT.WEB/SERVERFARMS/"* MetricName=CpuPercentage &#124; measure Avg(Average) by Resource</code><br> Mostra un elenco dei piani di servizio app con l'utilizzo medio della CPU. Fare clic su un piano di servizio App toorun una ricerca di log con il relativo utilizzo medio della CPU. |
+| Piani di servizio app con utilizzo della memoria &gt; 80% | Mostra hello totale App piani di servizio con utilizzo di memoria maggiore di 80% e gli elenchi hello piani di servizio App primi 10 per l'utilizzo della memoria. Fare clic su una ricerca di log per hello area totale toorun<code>Type=AzureMetrics ResourceId=*"/MICROSOFT.WEB/SERVERFARMS/"* MetricName=MemoryPercentage &#124; measure Avg(Average) by Resource</code><br> Mostra un elenco dei piani di servizio app con l'utilizzo medio della memoria. Fare clic su un piano di servizio App toorun una ricerca di log con il relativo utilizzo medio della memoria. |
 | Log attività di App Web di Azure |   |
-| Audit attività di App Web di Azure | Indica il numero totale di app Web con [log attività](log-analytics-activity.md) ed elenca le prime dieci operazioni del log attività. Fare clic sull'area del totale per eseguire una ricerca log per <code>Type=AzureActivity ResourceProvider= "Azure Web Sites" &#124; measure count() by OperationName</code><br> Mostra un elenco di operazioni del log attività. Fare clic su un'operazione del log attività per eseguire una ricerca log che elenca i record per l'operazione. |
+| Audit attività di App Web di Azure | Mostra il numero totale di App Web con di hello [log attività](log-analytics-activity.md) e gli elenchi di hello operazioni del log attività primi 10. Fare clic su una ricerca di log per hello area totale toorun<code>Type=AzureActivity ResourceProvider= "Azure Web Sites" &#124; measure count() by OperationName</code><br> Mostra un elenco di hello operazioni del log attività. Fare clic su un toorun di operazione log attività una ricerca di log che elenca i record di hello per operazione hello. |
 
 
 
 ### <a name="azure-web-apps"></a>App Web di Azure 
 
-Nel dashboard è possibile eseguire il drill-down per ottenere informazioni più dettagliate sulle metriche delle app Web. Il primo set di pannelli mostra la tendenza delle richieste delle app Web, il numero di errori (ad esempio, HTTP404), il traffico e il tempo di risposta medio nel tempo. Mostra anche una suddivisione delle metriche per le diverse app Web.
+Nel dashboard di hello, è possibile drill-down tooget più approfondita delle metriche di App Web. Il primo set di pannelli Mostra tendenza hello delle richieste di applicazioni Web hello, numero di errori (ad esempio, HTTP404), il traffico e tempo medio di risposta nel tempo. Mostra anche una suddivisione delle metriche per le diverse app Web.
 
 ![v (App Web di Azure)](./media/log-analytics-azure-web-apps-analytics/web-apps-dash01.png)
 
-Un motivo importante per visualizzare i dati è la possibilità di identificare un'app Web con tempi di risposta elevati, per poterla analizzare e individuare la causa principale. Viene applicato anche un limite di soglia per aiutare a identificare più facilmente i casi problematici.
+Un motivo principale per visualizzare i dati è in modo che sia possibile identificare un'App Web con il tempo di risposta e ricercare causa principale di toofind hello. Un limite di soglia viene inoltre toohelp applicate per che identificare più facilmente hello quelli con problemi.
 
 - Le app Web in rosso hanno tempi di risposta superiori a 1 secondo.
 - Le app Web in arancione hanno tempi di risposta superiori a 0,7 secondi e inferiori a 1 secondo.
 - Le app Web in verde hanno tempi di risposta inferiori a 0,7 secondi.
 
-Nell'immagine di esempio di ricerca log seguente è possibile vedere che l'app Web *anugup3* ha un tempo di risposta molto più elevato rispetto alle altre app Web.
+In hello dopo l'immagine del log di esempio ricerca, è possibile vedere che hello *anugup3* app web è un tempo di risposta molto più elevato rispetto a hello altre App web.
 
 ![Esempio di ricerca log](./media/log-analytics-azure-web-apps-analytics/web-app-search-example.png)
 
 ### <a name="app-service-plans"></a>Piani di servizio app
 
-Se si usano piani di servizio dedicati, è anche possibile raccogliere le metriche per i piani di servizio app. Questa vista mostra i piani di servizio app con utilizzo elevato di memoria o CPU (&gt; 80%). Mostra anche i principali servizi app con utilizzo elevato di memoria o CPU. Analogamente, viene applicato un limite di soglia per aiutare a identificare più facilmente i casi problematici.
+Se si usano piani di servizio dedicati, è anche possibile raccogliere le metriche per i piani di servizio app. Questa vista mostra i piani di servizio app con utilizzo elevato di memoria o CPU (&gt; 80%). Viene inoltre hello servizi App superiore con utilizzo elevato di memoria o CPU. Analogamente, un limite di soglia è toohelp applicate per che identificare più facilmente hello quelli con problemi.
 
 - I piani di servizio app in rosso hanno un utilizzo di CPU/memoria superiore all'80%.
 - I piani di servizio app in arancione hanno un utilizzo di CPU/memoria superiore al 60% e inferiore all'80%.
@@ -134,11 +134,11 @@ Se si usano piani di servizio dedicati, è anche possibile raccogliere le metric
 
 ## <a name="azure-web-apps-log-searches"></a>Ricerche log di App Web di Azure
 
-L'**elenco delle query di ricerca più comuni di App Web di Azure** mostra tutti i log attività correlati per le app Web, con informazioni dettagliate sulle operazioni eseguite sulle risorse app Web. Elenca anche tutte le operazioni correlate e il numero di volte in cui sono state eseguite.
+Hello **query di elenco di ricerca più diffusi Azure Web App** Mostra hello tutti i relativi log attività per le app Web, che offre informazioni approfondite operazioni hello che sono state eseguite in risorse di applicazioni Web. Inoltre, Elenca tutti hello relativi a operazioni e il numero di hello di volte in cui si sono verificate.
 
-Usando una query di ricerca log come punto di partenza, è possibile creare facilmente un avviso. È ad esempio possibile creare un avviso per quando il tempo di risposta medio di una metrica è superiore a un secondo.
+Utilizzo delle query di ricerca log hello come punto di partenza, è possibile creare un avviso. Ad esempio, è necessario toocreate un avviso quando il tempo di risposta medio della metrica è maggiore di 1 ogni secondo.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
 - Creare un [avviso](log-analytics-alerts-creating.md) per una metrica specifica.
-- Usare [Ricerca Log](log-analytics-log-searches.md) per visualizzare le informazioni dettagliate dai log attività.
+- Utilizzare [ricerca nei Log](log-analytics-log-searches.md) tooview informazioni dai registri attività.

@@ -1,6 +1,6 @@
 ---
-title: "Usare attività a istanze multiple per eseguire applicazioni MPI: Azure Batch | Documentazione Microsoft"
-description: "Informazioni su come eseguire applicazioni MPI (Message Passing Interface) usando il tipo di attività a istanze multiple in Azure Batch."
+title: "multi-istanza aaaUse attività applicazioni MPI toorun - Azure Batch | Documenti Microsoft"
+description: "Informazioni su come le applicazioni di interfaccia MPI (Message Passing) tooexecute utilizzando hello multi-istanza attività digitano in Batch di Azure."
 services: batch
 documentationcenter: .net
 author: tamram
@@ -14,43 +14,43 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: 5/22/2017
 ms.author: tamram
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 77d12d6d48b22dfb3e7f09f273dffc11401bb15f
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: b0e3295a6aeb76267c26d5504bcff59de3dc5e22
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-multi-instance-tasks-to-run-message-passing-interface-mpi-applications-in-batch"></a>Usare le attività a istanze multiple per eseguire applicazioni MPI (Message Passing Interface) in Batch
+# <a name="use-multi-instance-tasks-toorun-message-passing-interface-mpi-applications-in-batch"></a>Utilizzare le applicazioni multi-istanza attività toorun interfaccia MPI (Message Passing) in Batch
 
-Le attività a istanze multiple permettono di eseguire un'attività di Azure Batch in più nodi di calcolo contemporaneamente e di abilitare scenari high performance computing, ad esempio le applicazioni MPI (Message Passing Interface) in Batch. Questo articolo illustra come eseguire attività a istanze multiple usando la libreria [Batch .NET][api_net].
+Attività di multi-istanza consentono toorun un'attività di Azure Batch in più nodi di calcolo contemporaneamente. e di abilitare scenari high performance computing, ad esempio le applicazioni MPI (Message Passing Interface) in Batch. In questo articolo viene illustrato come attività di multi-istanza tooexecute utilizzando hello [.NET per Batch] [ api_net] libreria.
 
 > [!NOTE]
-> Gli esempi in questo articolo sono incentrati sui nodi di calcolo Batch .NET, MS-MPI e Windows, mentre i concetti relativi alle attività a istanze multiple illustrati di seguito sono applicabili ad altre piattaforme e tecnologie, ad esempio Python e Intel MPI sui nodi Linux.
+> Mentre hello esempi in questo articolo illustrano .NET per Batch, MS-MPI, nodi di calcolo di Windows, concetti di attività di multi-istanza hello descritti di seguito sono applicabili tooother piattaforme e tecnologie (Python e Intel MPI in nodi di Linux, ad esempio).
 >
 >
 
 ## <a name="multi-instance-task-overview"></a>Panoramica sulle attività a istanze multiple
-In Batch ogni attività viene in genere eseguita in un singolo nodo di calcolo, si inviano più attività a un processo e il servizio Batch pianifica l'esecuzione di ogni attività in un nodo. Tuttavia, configurando le **impostazioni per istanze multiple**, si indica a Batch invece di creare un'attività primaria e svariate sottoattività per che quindi sono eseguite su più nodi.
+Nel Batch, ogni attività sono in genere eseguita in un singolo nodo di calcolo, si invia più attività tooa processo e hello servizio Batch Pianifica ogni attività per l'esecuzione in un nodo. Tuttavia, tramite la configurazione di un'attività **le impostazioni di multi-istanza**, richiedere a Batch tooinstead creare un'attività principale e diverse sottoattività che vengono quindi eseguite su più nodi.
 
 ![Panoramica sulle attività a istanze multiple][1]
 
-Quando si invia a un processo un'attività con impostazioni per istanze multiple, Batch esegue diversi passaggi relativi esclusivamente alle attività a istanze multiple:
+Quando si invia un'attività con il processo di multi-istanza impostazioni tooa, Batch vengono eseguite diverse attività toomulti-istanza univoca di passaggi:
 
-1. Il servizio Batch crea un'attività **primaria** e diverse **sottoattività** in base alle impostazioni multi-istanza. Il numero totale di attività, ovvero quella primaria e tutte le sottoattività, corrisponde al numero di **istanze** (nodi di calcolo) specificato nelle impostazioni per istanze multiple.
-2. Il servizio Batch definisce uno dei nodi di calcolo come **master** e pianifica l'attività primaria da eseguire sul master. Pianifica le sottoattività da eseguire sugli altri nodi di calcolo allocati all'attività a istanze multiple, una sottoattività per ogni nodo.
-3. L'attività primaria e tutte le sottoattività scaricano gli eventuali **file di risorse comuni** specificati nelle impostazioni per istanze multiple.
-4. Dopo aver scaricato i file di risorse comuni, l'attività primaria e le sottoattività eseguono il **comando di coordinamento** specificato nelle impostazioni per istanze multiple. Il comando di coordinamento viene usato in genere per preparare i nodi per l'esecuzione dell'attività. Un esempio è l'avvio di servizi in background, come `smpd.exe` di [Microsoft MPI][msmpi_msdn], e la verifica che i nodi siano pronti per elaborare messaggi tra i nodi.
-5. L'attività primaria esegue il **comando applicazione** sul nodo master *dopo* il completamento del comando di coordinamento da parte dell'attività primaria e di tutte le sottoattività. Il comando applicazione, vale a dire la riga di comando dell'attività a istanze multiple stessa, viene eseguito solo dall'attività primaria. In una soluzione basata su [MS-MPI][msmpi_msdn], qui viene eseguita l'applicazione abilitata per MPI tramite `mpiexec.exe`.
+1. Hello servizio Batch crea uno **primario** e diversi **sottoattività** in base alle impostazioni di multi-istanza hello. numero totale di Hello di attività (primaria e tutte le sottoattività) corrisponde a svariati hello **istanze** (nodi di calcolo) specificato nelle impostazioni di multi-istanza hello.
+2. Batch consente di definire uno dei hello nodi di calcolo come hello **master**, e le pianificazioni hello tooexecute attività principale sul master hello. Consente di pianificare hello sottoattività tooexecute nel resto di hello dell'attività multi-istanza toohello allocato di nodi di calcolo di hello, uno sottoattività per ogni nodo.
+3. scaricare Hello primaria e tutte le attività **file di risorse comuni** specificati nelle impostazioni di multi-istanza hello.
+4. Dopo aver scaricato il file di risorse comuni hello, hello primaria e le sottoattività eseguire hello **comando coordinamento** specificati nelle impostazioni di multi-istanza hello. comando di coordinamento Hello è nodi tooprepare in genere utilizzate per l'esecuzione di attività hello. Può trattarsi di avvio di servizi in background (ad esempio [Microsoft MPI][msmpi_msdn]del `smpd.exe`) e verificare che i nodi di hello siano pronti tooprocess i messaggi tra i nodi.
+5. attività principale Hello esegue hello **comando applicazione** sul nodo principale hello *dopo* comando coordinamento hello è stata completata correttamente hello primaria e tutte le sottoattività. comando applicazione Hello è hello riga di comando hello multi-istanza attività stessa e viene eseguito solo da attività principale hello. In una soluzione basata su [MS-MPI][msmpi_msdn], qui viene eseguita l'applicazione abilitata per MPI tramite `mpiexec.exe`.
 
 > [!NOTE]
-> Anche se distinta a livello funzionale, l'attività a istanze multiple non è un tipo di attività univoco come ad esempio [StartTask][net_starttask] o [JobPreparationTask][net_jobprep]. Si tratta semplicemente di un'attività Batch standard, [CloudTask][net_task] in Batch .NET, per cui sono state configurate le impostazioni per istanze multiple. In questo articolo viene definita **attività a istanze multiple**.
+> Se è funzionalmente distinto, hello "attività di multi-istanza" non è un tipo di attività univoco come hello [StartTask] [ net_starttask] o [JobPreparationTask] [ net_jobprep]. attività di multi-istanza Hello è semplicemente un'attività di Batch standard ([CloudTask] [ net_task] in .NET per Batch) sono state configurate le cui impostazioni di multi-istanza. In questo articolo verrà fatto riferimento toothis come hello **attività multi-istanza**.
 >
 >
 
 ## <a name="requirements-for-multi-instance-tasks"></a>Requisiti delle attività a istanze multiple
-Per le attività a istanze multiple è necessario un pool in cui sia **abilitata la comunicazione tra i nodi** e **disabilitata l'esecuzione di attività simultanee**. Per disabilitare l'esecuzione di attività simultanee, impostare la proprietà [CloudPool.MaxTasksPerComputeNode](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.cloudpool#Microsoft_Azure_Batch_CloudPool_MaxTasksPerComputeNode) su 1.
+Per le attività a istanze multiple è necessario un pool in cui sia **abilitata la comunicazione tra i nodi** e **disabilitata l'esecuzione di attività simultanee**. esecuzione di attività simultanee toodisable, hello set [CloudPool.MaxTasksPerComputeNode](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.cloudpool#Microsoft_Azure_Batch_CloudPool_MaxTasksPerComputeNode) too1 di proprietà.
 
-Questo frammento di codice illustra come creare un pool per le attività a istanze multiple usando la libreria Batch .NET.
+Questo frammento di codice viene illustrato come le attività utilizzando una libreria .NET di Batch di hello toocreate un pool per multi-istanza.
 
 ```csharp
 CloudPool myCloudPool =
@@ -67,18 +67,18 @@ myCloudPool.MaxTasksPerComputeNode = 1;
 ```
 
 > [!NOTE]
-> Se si prova a eseguire un'attività a istanze multiple in un pool con la comunicazione tra i nodi disabilitata o con un valore *maxTasksPerNode* maggiore di 1, l'attività non viene pianificata e rimane nello stato "attivo" per un periodo illimitato. 
+> Se si tenta di toorun disabilitata un'attività a più istanze in un pool con le comunicazioni, o con un *maxTasksPerNode* valore maggiore di 1, l'attività hello non è pianificata come mai - all'infinito rimane nello stato "attivo" hello. 
 >
 > Le attività a istanze multiple possono essere eseguite solo in nodi di pool creati dopo il 14 dicembre 2015.
 >
 >
 
-### <a name="use-a-starttask-to-install-mpi"></a>Utilizzare uno StartTask per installare MPI
-Per eseguire applicazioni MPI con un'attività a più istanze, è necessario innanzitutto installare un'implementazione MPI (MS-MPI o Intel MPI, ad esempio) sui nodi di calcolo nel pool. Questo è il momento giusto per usare un oggetto [StartTask][net_starttask], che viene eseguito ogni volta che un nodo viene aggiunto a un pool o viene riavviato. Questo frammento di codice crea un oggetto StartTask che specifica il pacchetto di installazione di MS-MPI come [file di risorse][net_resourcefile]. La riga di comando dell'attività di avvio viene eseguita dopo avere scaricato il file di risorse sul nodo. In questo caso, la riga di comando esegue un'installazione automatica di MS-MPI.
+### <a name="use-a-starttask-tooinstall-mpi"></a>Utilizzare un tooinstall StartTask MPI
+toorun di applicazioni MPI con un'attività a più istanze, è necessario innanzitutto tooinstall un'implementazione MPI (MS-MPI o MPI Intel, ad esempio) sui nodi di calcolo hello nel pool di hello. Si tratta di un toouse tempestivamente un [StartTask][net_starttask], che viene eseguito ogni volta che un nodo viene aggiunto un pool o viene riavviato. Questo frammento di codice crea un StartTask che specifica il pacchetto di installazione hello MS-MPI come un [file di risorse][net_resourcefile]. riga di comando dell'attività di avvio Hello viene eseguita dopo che il file di risorse di hello è scaricato toohello nodo. In questo caso, la riga di comando hello esegue un'installazione automatica di MS-MPI.
 
 ```csharp
-// Create a StartTask for the pool which we use for installing MS-MPI on
-// the nodes as they join the pool (or when they are restarted).
+// Create a StartTask for hello pool which we use for installing MS-MPI on
+// hello nodes as they join hello pool (or when they are restarted).
 StartTask startTask = new StartTask
 {
     CommandLine = "cmd /c MSMpiSetup.exe -unattend -force",
@@ -88,15 +88,15 @@ StartTask startTask = new StartTask
 };
 myCloudPool.StartTask = startTask;
 
-// Commit the fully configured pool to the Batch service to actually create
-// the pool and its compute nodes.
+// Commit hello fully configured pool toohello Batch service tooactually create
+// hello pool and its compute nodes.
 await myCloudPool.CommitAsync();
 ```
 
 ### <a name="remote-direct-memory-access-rdma"></a>Accesso diretto a memoria remota (RDMA)
-Quando si sceglie [una dimensione che supporta RDMA](../virtual-machines/windows/sizes-hpc.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) come ad esempio A9 per i nodi di calcolo nel pool Batch, l'applicazione MPI può sfruttare i vantaggi legati alle prestazioni elevate e alla latenza ridotta della rete con Accesso diretto a memoria remota (RDMA) di Azure.
+Quando si sceglie un [dimensioni che supportano RDMA](../virtual-machines/windows/sizes-hpc.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) , ad esempio A9 per hello nodi di calcolo nel pool di Batch, l'applicazione MPI può usufruire di prestazioni elevate, bassa latenza diretto a memoria remota (RDMA) di accesso di rete di Azure.
 
-Cercare le dimensioni specificate come "Co supporto di RDMA" nei seguenti articoli:
+Cercare le dimensioni di hello specificate come "Che supporta RDMA" in hello seguenti articoli:
 
 * Pool **CloudServiceConfiguration**
 
@@ -107,22 +107,22 @@ Cercare le dimensioni specificate come "Co supporto di RDMA" nei seguenti artico
   * [Dimensioni delle macchine virtuali in Azure](../virtual-machines/windows/sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) (Windows)
 
 > [!NOTE]
-> Per sfruttare i RDMA in [nodi di calcolo Linux](batch-linux-nodes.md), è necessario utilizzare **Intel MPI** sui nodi. Per ulteriori informazioni sui pool CloudServiceConfiguration e VirtualMachineConfiguration, vedere la sezione Pool di [Cenni preliminari sulla funzionalità di Batch](batch-api-basics.md).
+> vantaggio tootake RDMA in [nodi di calcolo Linux](batch-linux-nodes.md), è necessario utilizzare **Intel MPI** nei nodi hello. Per ulteriori informazioni sui pool CloudServiceConfiguration e VirtualMachineConfiguration, vedere la sezione Pool di hello hello [Cenni preliminari sulle funzionalità di Batch](batch-api-basics.md).
 >
 >
 
 ## <a name="create-a-multi-instance-task-with-batch-net"></a>Creare un'attività a istanze multiple con Batch .NET
-Ora che sono stati illustrati i requisiti del pool e l'installazione del pacchetto MPI, è possibile passare alla creazione dell'attività a istanze multiple. In questo frammento di codice viene creato un oggetto [CloudTask][net_task] standard e viene quindi configurata la relativa proprietà [MultiInstanceSettings][net_multiinstance_prop]. Come specificato in precedenza, l'attività a istanze multiple non è un tipo di attività distinto ma un'attività Batch Standard configurata con impostazioni per istanze multiple.
+Ora che abbiamo trattato requisiti pool hello e installazione del pacchetto MPI, creare attività di multi-istanza hello. In questo frammento di codice viene creato un oggetto [CloudTask][net_task] standard e viene quindi configurata la relativa proprietà [MultiInstanceSettings][net_multiinstance_prop]. Come accennato in precedenza, hello multi-istanza attività non è un tipo di attività distinto, ma un'attività Batch standard configurato con le impostazioni di multi-istanza.
 
 ```csharp
-// Create the multi-instance task. Its command line is the "application command"
-// and will be executed *only* by the primary, and only after the primary and
-// subtasks execute the CoordinationCommandLine.
+// Create hello multi-instance task. Its command line is hello "application command"
+// and will be executed *only* by hello primary, and only after hello primary and
+// subtasks execute hello CoordinationCommandLine.
 CloudTask myMultiInstanceTask = new CloudTask(id: "mymultiinstancetask",
     commandline: "cmd /c mpiexec.exe -wdir %AZ_BATCH_TASK_SHARED_DIR% MyMPIApplication.exe");
 
-// Configure the task's MultiInstanceSettings. The CoordinationCommandLine will be executed by
-// the primary and all subtasks.
+// Configure hello task's MultiInstanceSettings. hello CoordinationCommandLine will be executed by
+// hello primary and all subtasks.
 myMultiInstanceTask.MultiInstanceSettings =
     new MultiInstanceSettings(numberOfNodes) {
     CoordinationCommandLine = @"cmd /c start cmd /c ""%MSMPI_BIN%\smpd.exe"" -d",
@@ -132,15 +132,15 @@ myMultiInstanceTask.MultiInstanceSettings =
     }
 };
 
-// Submit the task to the job. Batch will take care of splitting it into subtasks and
-// scheduling them for execution on the nodes.
+// Submit hello task toohello job. Batch will take care of splitting it into subtasks and
+// scheduling them for execution on hello nodes.
 await myBatchClient.JobOperations.AddTaskAsync("mybatchjob", myMultiInstanceTask);
 ```
 
 ## <a name="primary-task-and-subtasks"></a>Attività primaria e sottoattività
-Quando si creano le impostazioni per istanze multiple per un'attività, è necessario specificare il numero di nodi di calcolo che devono eseguire l'attività. Quando si invia l'attività a un processo, il servizio Batch crea un'attività **primaria** e un numero sufficiente di **sottoattività** che, insieme, corrispondono al numero di nodi specificato.
+Quando si crea hello le impostazioni di multi-istanza per un'attività, viene specificato il numero di hello dei nodi di calcolo che sono attività hello tooexecute. Quando si inviano processi di tooa attività hello, hello servizio Batch crea uno **primario** attività e sufficiente **sottoattività** che insieme corrispondente hello al numero di nodi specificato.
 
-Alle attività viene assegnato un ID intero compreso tra 0 e *numberOfInstances* -1. L'attività con ID 0 è quella primaria, tutti gli altri ID corrispondono a sottoattività. Ad esempio, se si creano le impostazioni per istanze multiple seguenti per un'attività, l'attività primaria avrà l'ID 0 e le sottoattività avranno un ID compreso tra 1 e 9.
+Queste attività vengono assegnate un id di tipo integer nell'intervallo di hello 0 troppo*numberOfInstances* - 1. Hello attività con id 0 è hello primario e tutti gli altri ID sono sottoattività. Ad esempio, se si crea hello seguendo le impostazioni di multi-istanza per un'attività, attività principale hello avrebbe un id pari a 0 e hello sottoattività avrebbe ID 1 a 9.
 
 ```csharp
 int numberOfNodes = 10;
@@ -148,37 +148,37 @@ myMultiInstanceTask.MultiInstanceSettings = new MultiInstanceSettings(numberOfNo
 ```
 
 ### <a name="master-node"></a>Nodo master
-Quando si invia un'attività a istanze multiple, il servizio Batch definisce uno dei nodi di calcolo come nodo "master" e pianifica l'attività primaria da eseguire sul nodo master. Le sottoattività vengono pianificate da eseguire sugli altri nodi allocati all'attività a istanze multiple.
+Quando si invia un'attività a più istanze, hello servizio Batch ne definisce uno di hello nodi di calcolo come nodo "master" hello e pianificazioni hello tooexecute attività principale nel nodo principale hello. Hello sottoattività sono pianificati tooexecute nel resto di hello dei nodi di hello allocata toohello attività di multi-istanza.
 
 ## <a name="coordination-command"></a>comando di coordinamento
-Il **comando di coordinamento** viene eseguita sia dall'attività primaria che dalle sottoattività.
+Hello **comando coordinamento** viene eseguito sia hello primaria e le sottoattività.
 
-La chiamata del comando di coordinamento blocca l'esecuzione del comando applicazione da parte del servizio Batch fino a quando il comando di coordinamento non viene restituito per tutte le sottoattività. Il comando di coordinamento deve quindi avviare eventuali servizi in background necessari, verificare che siano pronti per l'uso e chiudersi. Ad esempio, questo comando di coordinamento per una soluzione con MS-MPI versione 7 avvia il servizio SMPD nel nodo e quindi viene chiuso:
+chiamata di Hello del comando di coordinamento hello sta bloccando - Batch non viene eseguito il comando dell'applicazione hello fino a quando il comando di coordinamento hello ha restituito correttamente per tutte le sottoattività. comando coordinamento Hello deve pertanto avviare tutti i servizi in background necessarie, verificare che siano pronti per l'utilizzo e uscire. Questo comando di coordinamento per una soluzione utilizzando la versione 7 MS-MPI, ad esempio, avvia il servizio SMPD hello nel nodo di hello, quindi viene chiuso:
 
 ```
 cmd /c start cmd /c ""%MSMPI_BIN%\smpd.exe"" -d
 ```
 
-Si noti che l'uso di `start` in questo comando di coordinamento è necessario perché l'applicazione `smpd.exe` non viene restituita immediatamente dopo l'esecuzione. Senza l'uso del comando [start][cmd_start], questo comando di coordinamento non verrebbe restituito e bloccherebbe l'esecuzione del comando applicazione.
+Si noti hello utilizzo di `start` in questo comando di coordinamento. Questa operazione è necessaria perché hello `smpd.exe` applicazione non viene restituito immediatamente dopo l'esecuzione. Senza usare hello hello [avviare] [ cmd_start] dei comandi, non verrà restituito da questo comando di coordinamento e pertanto bloccano hello applicazione esecuzione comando.
 
 ## <a name="application-command"></a>Comando applicazione
-Al termine dell'esecuzione del comando di coordinamento da parte dell'attività primaria e di tutte le sottoattività, la riga di comando dell'attività a istanze multiple viene eseguita *solo*dall'attività primaria. La riga di comando viene definita **comando applicazione** per distinguerla dal comando di coordinamento.
+Una volta attività principale hello e tutte le attività terminata l'esecuzione di comandi di coordinamento hello, riga di comando dell'attività di hello multi-istanza viene eseguita dall'attività primaria hello *solo*. Viene chiamato questo hello **comando applicazione** toodistinguish dal comando di coordinamento hello.
 
-Per le applicazioni di MS-MPI, usare il comando applicazione per eseguire l'applicazione abilitata per MPI con `mpiexec.exe`. Di seguito è riportato, a titolo di esempio, il comando applicazione per una soluzione con MS-MPI versione 7:
+Per le applicazioni di MS-MPI, utilizzare hello tooexecute comando applicazione dell'applicazione abilitata MPI con `mpiexec.exe`. Di seguito è riportato, a titolo di esempio, il comando applicazione per una soluzione con MS-MPI versione 7:
 
 ```
 cmd /c ""%MSMPI_BIN%\mpiexec.exe"" -c 1 -wdir %AZ_BATCH_TASK_SHARED_DIR% MyMPIApplication.exe
 ```
 
 > [!NOTE]
-> Dato che `mpiexec.exe` in MS-MPI usa la variabile `CCP_NODES` per impostazione predefinita, come illustrato nella sezione [Variabili di ambiente](#environment-variables), questa viene esclusa dalla riga di comando del comando applicazione di esempio precedente.
+> Poiché MS-MPI `mpiexec.exe` utilizza hello `CCP_NODES` variabile per impostazione predefinita (vedere [le variabili di ambiente](#environment-variables)) esempio hello esclusa applicazione riga di comando riportata in precedenza.
 >
 >
 
 ## <a name="environment-variables"></a>Variabili di ambiente
-Batch crea più [variabili di ambiente][msdn_env_var] specifiche delle attività a istanze multiple sui nodi di calcolo allocati a un'attività a istanze multiple. Le righe dei comandi applicazione e di coordinamento possono fare riferimento a queste variabili di ambiente, come agli script e ai programmi che eseguono.
+Crea più batch [le variabili di ambiente] [ msdn_env_var] attività istanza toomulti specifica hello nodi allocata tooa attività di più istanze di calcolo. Le righe di comando di coordinamento e l'applicazione può fare riferimento a queste variabili di ambiente, possono hello script e programmi che vengono eseguiti.
 
-Le variabili di ambiente seguenti vengono create dal servizio Batch per l'uso da parte di attività a istanze multiple:
+Hello seguenti variabili di ambiente vengono create dal servizio Batch hello per l'utilizzo dalle attività di multi-istanza:
 
 * `CCP_NODES`
 * `AZ_BATCH_NODE_LIST`
@@ -187,56 +187,56 @@ Le variabili di ambiente seguenti vengono create dal servizio Batch per l'uso da
 * `AZ_BATCH_TASK_SHARED_DIR`
 * `AZ_BATCH_IS_CURRENT_NODE_MASTER`
 
-Per informazioni dettagliate su queste e altre variabili di ambiente dei nodi di calcolo, inclusi i contenuti e la visibilità, vedere l'argomento relativo alle [variabili di ambiente dei nodi di calcolo][msdn_env_var].
+Per i dettagli completi su questi e hello altri Batch calcolo nodo variabili di ambiente, inclusi i contenuti e la visibilità, vedere [le variabili di ambiente nodo di calcolo][msdn_env_var].
 
 > [!TIP]
-> L'esempio di codice MPI per Linux su Batch contiene un esempio d'uso di alcune di queste variabili di ambiente. Lo script Bash [coordination-cmd][coord_cmd_example] scarica l'applicazione comune e i file di input da Archiviazione di Azure, consente una condivisione Network File System (NFS) sul nodo master e configura gli altri nodi allocati all'attività a istanze multiple come client NFS.
+> Nell'esempio di codice Hello MPI Linux Batch contiene un esempio di come è possibile usare alcune di queste variabili di ambiente. Hello [coordinamento cmd] [ coord_cmd_example] Bash script Scarica i file di input e di applicazione comune da archiviazione di Azure, consente a una condivisione di File System NFS (Network) nel nodo principale hello e configura hello altri nodi allocato attività multi-istanza toohello come i client NFS.
 >
 >
 
 ## <a name="resource-files"></a>File di risorse
-Sono disponibili due set di file di risorse da prendere in considerazione per le attività a istanze multiple: **file di risorse comuni**, scaricati da *tutte* le attività, sia da quella primaria che dalle sottoattività, e **file di risorse** specifici per la stessa attività a istanze multiple, scaricati *solo dall'attività primaria*.
+Esistono due set di tooconsider i file di risorse per le attività di multi-istanza: **file di risorse comuni** che *tutti* attività scaricare (principali e sottoattività), hello e **ifiledirisorse** specificato per hello multi-istanza dell'attività stessa, che *solo hello primario* attività di download.
 
-È possibile specificare uno o più **file di risorse comuni** nelle impostazioni per istanze multiple relative a un'attività. Questi file di risorse comuni vengono scaricati da [Archiviazione di Azure](../storage/common/storage-introduction.md) dall'attività primaria e da tutte le sottoattività nella **directory condivisa dell'attività** di ogni nodo. È possibile accedere alla directory condivisa dell'attività dalle righe del comando applicazione e del comando di coordinamento usando la variabile di ambiente `AZ_BATCH_TASK_SHARED_DIR` . Il percorso `AZ_BATCH_TASK_SHARED_DIR` è identico in ogni nodo allocato all'attività a istanze multiple ed è quindi possibile condividere un singolo comando di coordinamento tra l'attività primaria e tutte le sottoattività. Il servizio Batch non "condivide" la directory nel senso di consentire un accesso remoto, ma è possibile usarla come punto di montaggio o condivisione, come indicato in precedenza nel suggerimento sulle variabili di ambiente.
+È possibile specificare uno o più **file di risorse comuni** nelle impostazioni di multi-istanza hello per un'attività. Questi file di risorse comuni vengono scaricati da [di archiviazione di Azure](../storage/common/storage-introduction.md) in ogni nodo **directory condivisa attività** hello primaria e tutte le sottoattività. È possibile accedere directory condivisa di hello attività dalle righe di comando dell'applicazione e coordinamento tramite hello `AZ_BATCH_TASK_SHARED_DIR` variabile di ambiente. Hello `AZ_BATCH_TASK_SHARED_DIR` percorso è identico in ogni attività di multi-istanza nodo toohello allocato, pertanto è possibile condividere un comando singolo coordinamento tra hello primaria e tutte le attività. Batch "condividono" hello directory in senso di accesso remoto, ma è possibile utilizzarlo come un montaggio o punto come indicato in precedenza in suggerimento hello sulle variabili di ambiente di condivisione.
 
-I file di risorse specificati per l'attività a istanze multiple stessa vengono scaricati nella directory di lavoro dell'attività, `AZ_BATCH_TASK_WORKING_DIR`, per impostazione predefinita. Come accennato, a differenza dei file di risorse comuni, solo l'attività primaria scarica i file di risorse specificati per l'attività a istanze multiple stessa.
+File di risorse che specificano per hello attività multi-istanza stessa directory di lavoro dell'attività toohello scaricato, `AZ_BATCH_TASK_WORKING_DIR`, per impostazione predefinita. Come accennato, invece toocommon file di risorse, unica attività primaria hello Scarica i file di risorse specificati per l'attività di hello multi-istanza stessa.
 
 > [!IMPORTANT]
-> Usare sempre le variabili di ambiente `AZ_BATCH_TASK_SHARED_DIR` e `AZ_BATCH_TASK_WORKING_DIR` per fare riferimento a tali directory nelle righe di comando. Evitare di provare a costruire i percorsi manualmente.
+> Utilizzare sempre le variabili di ambiente hello `AZ_BATCH_TASK_SHARED_DIR` e `AZ_BATCH_TASK_WORKING_DIR` directory toothese toorefer le righe di comando. Non tentare percorsi hello tooconstruct manualmente.
 >
 >
 
 ## <a name="task-lifetime"></a>Durata dell'attività
-Dalla durata dell'attività principale dipende la durata dell'intera attività a istanze multiple. Quando viene chiusa l'attività primaria, vengono terminate tutte le sottoattività. Il codice di uscita dell'attività primaria è il codice di uscita dell'attività e viene quindi usato per determinare l'esito positivo o negativo dell'attività per la ripetizione dei tentativi.
+durata Hello di hello attività principale controlli hello intera durata di hello multi-istanza intera attività. Quando si chiude hello primario, vengono terminate tutte hello sottoattività. codice di uscita Hello di hello primario è il codice di uscita hello dell'attività hello, pertanto riuscita di hello toodetermine utilizzato o meno delle attività hello per scopi di tentativi.
 
-Se una delle sottoattività ha esito negativo e viene chiusa con un codice restituito diverso da zero, ad esempio, l'intera attività a istanze multiple ha esito negativo. L'attività a istanze multiple viene quindi terminata e la sua esecuzione verrà ripetuta fino a raggiungere il limite di tentativi.
+Se una delle sottoattività hello hanno esito negativo, chiusura con codice restituito diverso da zero, ad esempio, hello multi-istanza intera attività ha esito negativo. attività di multi-istanza Hello viene quindi terminata e ritentata, backup tooits limite di tentativi.
 
-Quando si elimina un'attività a istanze multiple, il servizio Batch elimina anche l'attività primaria e tutte le sottoattività. Dai nodi di calcolo vengono eliminate tutte le directory delle sottoattività e i relativi file, come avviene per un'attività standard.
+Quando si elimina un'attività a più istanze, hello primaria e tutte le attività vengono eliminate anche dal servizio Batch hello. Tutti sottoattività directory e i relativi file vengono eliminati dai nodi di calcolo hello, come per un'attività standard.
 
-Le proprietà [TaskConstraints][net_taskconstraints] per un'attività a istanze multiple, ad esempio [MaxTaskRetryCount][net_taskconstraint_maxretry], [MaxWallClockTime][net_taskconstraint_maxwallclock] e [RetentionTime][net_taskconstraint_retention], vengono rispettate come avviene per un'attività standard e si applicano all'attività primaria e a tutte le sottoattività. Tuttavia, se si modifica la proprietà [RetentionTime][net_taskconstraint_retention] dopo aver aggiunto l'attività a istanze multiple al processo, la modifica viene applicata solo all'attività primaria. Tutte le sottoattività continuano a usare la proprietà [RetentionTime][net_taskconstraint_retention] originale.
+[TaskConstraints] [ net_taskconstraints] per un'attività di multi-istanza, ad esempio hello [MaxTaskRetryCount][net_taskconstraint_maxretry], [MaxWallClockTime] [ net_taskconstraint_maxwallclock], e [RetentionTime] [ net_taskconstraint_retention] vengono rispettate le proprietà, in quanto sono per un'attività standard e applicare toohello primario e tutte le sottoattività. Tuttavia, se si modifica hello [RetentionTime] [ net_taskconstraint_retention] proprietà dopo l'aggiunta di hello multi-istanza attività toohello processo, questa modifica è l'attività principale toohello solo applicato. Tutte le sottoattività hello continuare toouse hello originale [RetentionTime][net_taskconstraint_retention].
 
-Se l'attività recente faceva parte di un'attività a istanze multiple, nell'elenco delle attività recenti di un nodo di calcolo è incluso l'ID di una sottoattività.
+Elenco attività recenti del nodo di calcolo riflette id hello di una sottoattività se attività recente hello faceva parte di un'attività di multi-istanza.
 
 ## <a name="obtain-information-about-subtasks"></a>Ottenere informazioni sulle sottoattività
-Per ottenere informazioni sulle sottoattività usando la libreria Batch .NET, chiamare il metodo [CloudTask.ListSubtasks][net_task_listsubtasks]. Questo metodo restituisce informazioni su tutte le sottoattività e sul nodo di calcolo che ha eseguito le attività. Queste informazioni permettono di determinare la directory radice di ogni sottoattività, l'ID del pool, lo stato corrente, il codice di uscita e altro ancora. È possibile usare queste informazioni in combinazione con il metodo [PoolOperations.GetNodeFile][poolops_getnodefile] per ottenere i file della sottoattività. Si noti che questo metodo non restituisce informazioni per l'attività primaria, con ID 0.
+informazioni tooobtain su sottoattività tramite la libreria .NET di Batch di hello, chiamata hello [CloudTask.ListSubtasks] [ net_task_listsubtasks] metodo. Questo metodo restituisce informazioni su tutte le attività e informazioni su hello calcolo nodo hello attività eseguite. Tali informazioni, è possibile determinare directory radice del ciascuna sottoattività id del pool di hello, lo stato corrente, codice di uscita e più. È possibile utilizzare queste informazioni in combinazione con hello [PoolOperations.GetNodeFile] [ poolops_getnodefile] i file della sottoattività di metodo tooobtain hello. Si noti che questo metodo non restituisce informazioni per l'attività principale hello (id 0).
 
 > [!NOTE]
-> Se non diversamente specificato, i metodi Batch .NET che operano sull'attività a istanze multiple [CloudTask][net_task] stessa si applicano *solo* all'attività primaria. Ad esempio, quando si chiama il metodo [CloudTask.ListNodeFiles][net_task_listnodefiles] in un'attività a istanze multiple, vengono restituiti solo i file dell'attività primaria.
+> Se non diversamente specificato, i metodi .NET per Batch che operano su hello multi-istanza [CloudTask] [ net_task] stesso applicare *solo* toohello di attività principale. Ad esempio, quando si chiama hello [CloudTask.ListNodeFiles] [ net_task_listnodefiles] metodo su un'attività a più istanze, vengono restituiti solo i file dell'attività di hello primario.
 >
 >
 
-Il frammento di codice seguente illustra come ottenere informazioni sulle sottoattività e come richiedere il contenuto dei file dai nodi in cui vengono eseguiti.
+Hello frammento di codice seguente viene illustrato come tooobtain sottoattività informazioni e come richiedere il contenuto del file da nodi hello in cui è stato eseguito.
 
 ```csharp
-// Obtain the job and the multi-instance task from the Batch service
+// Obtain hello job and hello multi-instance task from hello Batch service
 CloudJob boundJob = batchClient.JobOperations.GetJob("mybatchjob");
 CloudTask myMultiInstanceTask = boundJob.GetTask("mymultiinstancetask");
 
-// Now obtain the list of subtasks for the task
+// Now obtain hello list of subtasks for hello task
 IPagedEnumerable<SubtaskInformation> subtasks = myMultiInstanceTask.ListSubtasks();
 
-// Asynchronously iterate over the subtasks and print their stdout and stderr
-// output if the subtask has completed
+// Asynchronously iterate over hello subtasks and print their stdout and stderr
+// output if hello subtask has completed
 await subtasks.ForEachAsync(async (subtask) =>
 {
     Console.WriteLine("subtask: {0}", subtask.Id);
@@ -265,39 +265,39 @@ await subtasks.ForEachAsync(async (subtask) =>
 ```
 
 ## <a name="code-sample"></a>Esempio di codice
-Il codice di esempio [MultiInstanceTasks][github_mpi] su GitHub illustra come usare un'attività a più istanze per eseguire un'applicazione [MS-MPI][msmpi_msdn] nei nodi di calcolo di Batch. Seguire i passaggi in [Preparazione](#preparation) e [esecuzione](#execution) per eseguire l'esempio.
+Hello [MultiInstanceTasks] [ github_mpi] nell'esempio di codice su GitHub viene illustrato come una multi-istanza toouse attività toorun un [MS-MPI] [ msmpi_msdn] applicazione sui nodi di calcolo di Batch. Seguire i passaggi di hello in [preparazione](#preparation) e [esecuzione](#execution) toorun: esempio hello.
 
 ### <a name="preparation"></a>Operazioni preliminari
-1. Seguire i primi due passaggi in [How to compile and run a simple MS-MPI program][msmpi_howto] (Come compilare ed eseguire un semplice programma MS-MPI). In tal modo sono soddisfatti i prerequisiti per il passaggio seguente.
-2. Compilare una versione *Release* del programma MPI di esempio [MPIHelloWorld][helloworld_proj]. Questo è il programma che verrà eseguito sui nodi di calcolo dall'attività a più istanze.
-3. Creare un file zip contenente `MPIHelloWorld.exe` (compilato per il passaggio 2) e `MSMpiSetup.exe` (scaricato al passaggio 1). Il file zip verrà caricato come un pacchetto dell'applicazione nel passaggio successivo.
-4. Usare il [portale di Azure][portal] per creare un'[applicazione](batch-application-packages.md) Batch chiamata "MPIHelloWorld" e specificare il file zip creato nel passaggio precedente come versione "1.0" del pacchetto dell'applicazione. Vedere [Caricare e gestire le applicazioni](batch-application-packages.md#upload-and-manage-applications) per maggiori informazioni.
+1. Seguire i primi due passaggi di hello in [come toocompile ed eseguire un semplice programma MS-MPI][msmpi_howto]. Questo soddisfa prerequesites hello per hello seguente passaggio.
+2. Compilare un *versione* versione di hello [MPIHelloWorld] [ helloworld_proj] programma di esempio MPI. Si tratta di programma hello che verrà eseguita dall'attività di multi-istanza hello sui nodi di calcolo.
+3. Creare un file zip contenente `MPIHelloWorld.exe` (compilato per il passaggio 2) e `MSMpiSetup.exe` (scaricato al passaggio 1). Carica il file zip come un pacchetto di applicazione nel passaggio successivo hello.
+4. Hello utilizzare [portale di Azure] [ portal] toocreate un Batch [applicazione](batch-application-packages.md) chiamato "MPIHelloWorld" e specificare i file zip hello creato nel passaggio precedente hello come la versione "1.0" pacchetto di applicazione Hello. Vedere [Caricare e gestire le applicazioni](batch-application-packages.md#upload-and-manage-applications) per maggiori informazioni.
 
 > [!TIP]
-> Compilare una versione *Release* di `MPIHelloWorld.exe` in modo che non sia necessario includere dipendenze aggiuntive (ad esempio, `msvcp140d.dll` o `vcruntime140d.dll`) nel pacchetto dell'applicazione.
+> Compilare un *versione* versione `MPIHelloWorld.exe` in modo che non è tooinclude eventuali dipendenze aggiuntive (ad esempio, `msvcp140d.dll` o `vcruntime140d.dll`) nel pacchetto dell'applicazione.
 >
 >
 
 ### <a name="execution"></a>Esecuzione
-1. Scaricare [azure-batch-samples][github_samples_zip] da GitHub.
-2. Aprire la **soluzione** MultiInstanceTasks in Visual Studio 2015 o versione più recente. Il `MultiInstanceTasks.sln` file della soluzione si trova:
+1. Scaricare hello [esempi di azure batch] [ github_samples_zip] da GitHub.
+2. Aprire hello MultiInstanceTasks **soluzione** in Visual Studio 2015 o versione successiva. Hello `MultiInstanceTasks.sln` file della soluzione si trova:
 
     `azure-batch-samples\CSharp\ArticleProjects\MultiInstanceTasks\`
-3. Immettere le credenziali dell'account di archiviazione e Batch in `AccountSettings.settings` nel progetto **Microsoft.Azure.Batch.Samples.Common**.
-4. **Compilare ed eseguire** la soluzione MultiInstanceTasks per eseguire l'applicazione di esempio MPI sui nodi di calcolo in un pool di Batch.
-5. *Facoltativo*: usare il [portale di Azure][portal] o [Batch Explorer][batch_explorer] per esaminare il pool di esempio, il processo e l'attività ("MultiInstanceSamplePool", "MultiInstanceSampleJob", "MultiInstanceSampleTask") prima di eliminare le risorse.
+3. Immettere le credenziali dell'account Batch e l'archiviazione in `AccountSettings.settings` in hello **Microsoft.Azure.Batch.Samples.Common** progetto.
+4. **Compilare ed eseguire** hello MultiInstanceTasks soluzione tooexecute hello esempio applicazione MPI in nodi di calcolo in un pool di Batch.
+5. *Facoltativo*: hello utilizzare [portale di Azure] [ portal] o hello [Explorer Batch] [ batch_explorer] tooexamine pool esempio hello, processi, e attività ("MultiInstanceSamplePool", "MultiInstanceSampleJob", "MultiInstanceSampleTask") prima di eliminare le risorse di hello.
 
 > [!TIP]
 > È possibile scaricare [Visual Studio Community][visual_studio] gratuitamente se non si dispone di Visual Studio.
 >
 >
 
-L'output di `MultiInstanceTasks.exe`è simile al seguente:
+L'output di `MultiInstanceTasks.exe` è simile toohello seguente:
 
 ```
 Creating pool [MultiInstanceSamplePool]...
 Creating job [MultiInstanceSampleJob]...
-Adding task [MultiInstanceSampleTask] to job [MultiInstanceSampleJob]...
+Adding task [MultiInstanceSampleTask] toojob [MultiInstanceSampleJob]...
 Awaiting task completion, timeout in 00:30:00...
 
 Main task [MultiInstanceSampleTask] is in state [Completed] and ran on compute node [tvm-1219235766_1-20161017t162002z]:
@@ -307,7 +307,7 @@ Rank 1 received string "Hello world" from Rank 0
 
 ---- stderr.txt ----
 
-Main task completed, waiting 00:00:10 for subtasks to complete...
+Main task completed, waiting 00:00:10 for subtasks toocomplete...
 
 ---- Subtask information ----
 subtask: 1
@@ -324,12 +324,12 @@ subtask: 2
 Delete job? [yes] no: yes
 Delete pool? [yes] no: yes
 
-Sample complete, hit ENTER to exit...
+Sample complete, hit ENTER tooexit...
 ```
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Il blog del Team di Batch di Azure e Microsoft HPC descrive il [supporto MPI per Linux in Azure Batch][blog_mpi_linux] e include informazioni sull'uso di [OpenFOAM][openfoam] con Batch. È possibile trovare esempi di codice Python per l'[esempio OpenFOAM su GitHub][github_mpi].
-* Leggere le informazioni su come [creare pool di nodi di calcolo Linux](batch-linux-nodes.md) per utilizzarle con le soluzioni Azure Batch MPI.
+* blog del Team di Batch di Azure e Microsoft HPC Hello illustra [MPI il supporto per Linux su Azure Batch][blog_mpi_linux]e include informazioni sull'uso [OpenFOAM] [ openfoam] con Batch. È possibile trovare esempi di codice Python per hello [esempio OpenFOAM su GitHub][github_mpi].
+* Informazioni su come troppo[creare pool di nodi di calcolo Linux](batch-linux-nodes.md) per utilizzare nelle soluzioni di Azure Batch MPI.
 
 [helloworld_proj]: https://github.com/Azure/azure-batch-samples/tree/master/CSharp/ArticleProjects/MultiInstanceTasks/MPIHelloWorld
 

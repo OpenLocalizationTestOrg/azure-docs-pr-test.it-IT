@@ -1,6 +1,6 @@
 ---
-title: Origini dati supportate in Azure Data Catalog | Microsoft Docs
-description: Questo articolo elenca le specifiche delle origini dati attualmente supportate.
+title: origini dei dati in Azure Data Catalog aaaSupported | Documenti Microsoft
+description: In questo articolo vengono elencate le specifiche di origini dati hello attualmente supportato.
 services: data-catalog
 documentationcenter: 
 author: steelanddata
@@ -15,15 +15,15 @@ ms.tgt_pltfrm: NA
 ms.workload: data-catalog
 ms.date: 08/15/2017
 ms.author: maroche
-ms.openlocfilehash: d6867c73bc6ea3c238cceef8a68466d451f3365c
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 4bfcabf31bf9fd781c939a5026abc42a5407df32
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="supported-data-sources-in-azure-data-catalog"></a>Origini dati supportate in Azure Data Catalog
 
-È possibile pubblicare metadati usando un'API pubblica o uno strumento di registrazione di tipo ClickOnce oppure immettendo manualmente le informazioni direttamente nel portale Web di Azure Data Catalog. La tabella seguente fornisce un riepilogo di tutte le origini dati supportate attualmente dal catalogo e delle relative funzionalità di pubblicazione. Sono anche elencati gli strumenti dati esterni che ogni origine dati può avviare dal portale. La seconda tabella contiene una specifica più tecnica della proprietà di connessione delle singole origini dati.
+È possibile pubblicare metadati tramite un'API pubblica o un clic-strumento di registrazione una volta, o immettendo manualmente le informazioni direttamente toohello Azure Data Catalog portale web. Hello nella tabella seguente sono riepilogate tutte le origini dati che sono attualmente supportate dal catalogo hello e hello funzionalità di pubblicazione per ogni. È inoltre elencati hello strumenti dati esterni che ogni origine dati può essere avviato dalla nostra esperienza del portale "open-in". Hello seconda tabella contiene una specifica più tecnica di ogni proprietà di connessione dell'origine dati.
 
 
 ## <a name="list-of-supported-data-sources"></a>Elenco di origini dati supportate
@@ -443,12 +443,12 @@ ms.lasthandoff: 08/18/2017
     </tr>
 </table>
 
-Per il supporto di altre origini, inviare una richiesta di funzionalità al [forum di Azure Data Catalog](http://go.microsoft.com/fwlink/?LinkID=616424&clcid=0x409).
+Se è necessario il supporto per le origini aggiuntive, inviare un toohello richiesta funzionalità [forum di Azure Data Catalog](http://go.microsoft.com/fwlink/?LinkID=616424&clcid=0x409).
 
 
 ## <a name="data-source-reference-specification"></a>Specifica di riferimento per l'origine dati
 > [!NOTE]
-> La colonna **Struttura DSL** nella tabella seguente elenca solo le proprietà di connessione per il contenitore di proprietà "indirizzo" usate da Azure Data Catalog. Ovvero, l'elenco di proprietà "indirizzo" può contenere altre proprietà di connessione dell'origine dati che Azure Data Catalog mantiene ma non usa.
+> Hello **struttura DSL** colonna hello nella tabella seguente sono elencati solo hello proprietà "address" contenitore delle proprietà di connessione utilizzate da Azure Data Catalog. Vale a dire, elenco di proprietà "address" può contenere altre proprietà di connessione dell'origine dati hello Azure Data Catalog persiste, ma non utilizza.
 
 <table>
     <tr>
@@ -970,7 +970,7 @@ Per il supporto di altre origini, inviare una richiesta di funzionalità al [for
       </td>
     </tr>
     <tr>
-      <td>Altro (nessuna delle opzioni precedenti)</td>
+      <td>Altro (nessuno di hello precedente)</td>
       <td>\*</td>
       <td>\*</td>
       <td>

@@ -1,6 +1,6 @@
 ---
-title: Impostare i criteri di sicurezza nel Centro sicurezza di Azure | Documentazione Microsoft
-description: Questo documento consente di configurare i criteri di sicurezza nel Centro sicurezza di Azure.
+title: criteri di sicurezza aaaSet Centro sicurezza di Azure | Documenti Microsoft
+description: Questo documento consente di criteri di sicurezza tooconfigure Centro sicurezza di Azure.
 services: security-center
 documentationcenter: na
 author: YuriDio
@@ -14,72 +14,72 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/27/2017
 ms.author: yurid
-ms.openlocfilehash: f4e3f74ce3f342eecf633cd748e2b7b21b2ccdd2
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 59226dd84a1c66a2d8367417060ab10a1ff73848
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="set-security-policies-in-azure-security-center"></a>Impostare i criteri di sicurezza nel Centro sicurezza di Azure
-Questo documento consente di configurare i criteri di sicurezza nel Centro sicurezza mostrando i passaggi necessari per eseguire questa attività.
+Questo documento consente di criteri di sicurezza tooconfigure in Centro sicurezza PC mostrando hello necessarie tooperform questa attività.
 
 >[!NOTE] 
->A partire dall'inizio di giugno 2017, il Centro sicurezza usa Microsoft Monitoring Agent per raccogliere e archiviare i dati. Per altre informazioni, vedere [Migrazione della piattaforma del Centro sicurezza di Azure](security-center-platform-migration.md). Le informazioni contenute in questo articolo si riferiscono alle funzionalità del Centro sicurezza dopo la transizione a Microsoft Monitoring Agent.
+>A partire da anticipata giugno 2017, il Centro sicurezza PC utilizza toocollect e l'archivio dati di Microsoft Monitoring Agent di hello. Vedere [migrazione della piattaforma Azure sicurezza Center](security-center-platform-migration.md) toolearn altre. informazioni di Hello in questo articolo rappresentano funzionalità Centro sicurezza dopo la transizione toohello Microsoft Monitoring Agent.
 >
 
 ## <a name="what-are-security-policies"></a>Informazioni sui criteri di sicurezza
-I criteri di sicurezza definiscono il set di controlli consigliati per le risorse all'interno della sottoscrizione specificata. Nel Centro sicurezza è possibile definire i criteri per le sottoscrizioni di Azure in base alle esigenze di sicurezza della società e al tipo di applicazioni o al livello di riservatezza dei dati di ogni sottoscrizione.
+Un criterio di sicurezza definisce il set di hello dei controlli, sono consigliate per le risorse all'interno di hello specificato sottoscrizione. Centro sicurezza PC, definire i criteri per le sottoscrizioni di Azure in base alle esigenze di sicurezza aziendale tooyour e tipo hello delle applicazioni o riservatezza dei dati di hello in ogni sottoscrizione.
 
-Ad esempio, le risorse usate per lo sviluppo o il test possono avere requisiti di sicurezza diversi da quelli delle risorse usate per le applicazioni di produzione. In modo analogo, le applicazioni che usano dati regolamentati come le informazioni personali possono richiedere un maggiore livello di sicurezza. I criteri di protezione abilitati nel Centro sicurezza di Azure determinano i suggerimenti per la sicurezza e il monitoraggio per identificare le potenziali vulnerabilità e attenuare le minacce. Per altre informazioni su come determinare l'opzione più appropriata, vedere [Guida alla pianificazione e alla gestione del Centro sicurezza di Azure](security-center-planning-and-operations-guide.md) .
+Ad esempio, le risorse usate per lo sviluppo o il test possono avere requisiti di sicurezza diversi da quelli delle risorse usate per le applicazioni di produzione. In modo analogo, le applicazioni che usano dati regolamentati come le informazioni personali possono richiedere un maggiore livello di sicurezza. Criteri di sicurezza che sono abilitati nel monitoraggio toohelp è identificare potenziali vulnerabilità e ridurre i rischi e consigli sulla protezione di unità di Centro sicurezza di Azure. Lettura [Guida alle operazioni e la pianificazione del Centro protezione Azure](security-center-planning-and-operations-guide.md) per ulteriori informazioni su come opzione toodetermine hello sono appropriate.
 
 ## <a name="set-security-policies"></a>Impostare i criteri di sicurezza
-È possibile configurare criteri di sicurezza per ogni sottoscrizione. Per modificare i criteri di sicurezza, è necessario essere proprietario o collaboratore di tale sottoscrizione. Accedere al portale di Azure e seguire questa procedura per configurare i criteri di sicurezza nel Centro sicurezza di Azure:
+È possibile configurare criteri di sicurezza per ogni sottoscrizione. toomodify un criterio di sicurezza, è necessario essere un proprietario o collaboratore della sottoscrizione. Accedi al portale di Azure toohello e seguire hello successivi passaggi dei criteri di protezione tooconfigure in Centro sicurezza:
 
-1. Fare clic sul riquadro **Criteri** nel dashboard del Centro sicurezza.
-2. Nel pannello Criteri di sicurezza che viene visualizzato selezionare la sottoscrizione in cui abilitare i criteri di sicurezza.
+1. Fare clic su hello **criteri** riquadro nel dashboard di hello Centro sicurezza PC.
+2. Nel pannello dei criteri di sicurezza hello visualizzata, selezionare sottoscrizione hello in cui si desidera che Criteri di sicurezza tooenable hello.
 
     ![Definizione dei criteri](./media/security-center-policies/security-center-policies-fig1-ga.png)
-3. Il pannello **Criteri di sicurezza** per la sottoscrizione selezionata viene aperto con un set di opzioni. Le opzioni disponibili in questo pannello sono:
+3. Hello **criteri di sicurezza** pannello per sottoscrizione hello selezionata verrà visualizzata con un set di opzioni. Hello opzioni disponibili in questo pannello sono:
 
-   * **Criteri di prevenzione**: usare questa opzione per configurare criteri per ogni sottoscrizione.  
-   * **Notifica di posta elettronica**: usare questa opzione per configurare una notifica di posta elettronica che viene inviata alla prima occorrenza giornaliera di un avviso e per gli avvisi di elevata gravità. Le preferenze di posta elettronica possono essere configurate solo per i criteri della sottoscrizione. Per altre informazioni su come configurare una notifica di posta elettronica, vedere [Specificare i dettagli dei contatti di sicurezza nel Centro sicurezza di Azure](security-center-provide-security-contact-details.md) .
-   * **Piano tariffario**: usare questa opzione per aggiornare il piano tariffario selezionato. Per altre informazioni sui prezzi, vedere [Centro sicurezza Prezzi](security-center-pricing.md).
-4. Verificare che l'opzione **Raccogli dati dalle macchine virtuali** sia **Sì**. Questa opzione abilita la raccolta automatica dei log per le risorse nuove ed esistenti tramite Microsoft Monitoring Agent, lo stesso agente usato da Operations Management Suite e dal servizio Log Analytics. I dati raccolti dall'agente vengono archiviati in una o più aree di lavoro di Log Analytics esistenti associate alla sottoscrizione di Azure o in una o più aree di lavoro nuove, a seconda dell'area geografica della macchina virtuale.
+   * **Criteri di prevenzione**: usare i criteri di tooconfigure questa opzione per ogni sottoscrizione.  
+   * **Notifica tramite posta elettronica**: utilizzare questo tooconfigure opzione una notifica di posta elettronica viene inviata su hello prima giornaliero occorrenza di un avviso e per gli avvisi di livello di gravità elevato. Le preferenze di posta elettronica possono essere configurate solo per i criteri della sottoscrizione. Lettura [fornire dettagli di contatto di sicurezza nel Centro protezione Azure](security-center-provide-security-contact-details.md) per ulteriori informazioni su come tooconfigure notifiche di posta elettronica.
+   * **Livello di prezzo**: utilizzare questo hello tooupgrade opzione dei prezzi di selezione. Vedere [Centro sicurezza PC prezzi](security-center-pricing.md) toolearn più sui prezzi di opzioni.
+4. Verificare che l'opzione **Raccogli dati dalle macchine virtuali** sia **Sì**. Questa opzione Abilita la raccolta automatica dei registri per le risorse nuove ed esistenti utilizzando Microsoft Monitoring Agent hello: si tratta dello stesso agente usato dal servizio di Operations Management Suite e Log Analitica hello hello. Dati raccolti dall'agente sono archiviati in un workspace Analitica Log esistenti associati alla sottoscrizione di Azure o in un nuovo aree di lavoro, tenendo geography hello account di hello macchina virtuale.
 
-5. Nel pannello **Criteri di sicurezza** fare clic su **Criteri di prevenzione** per visualizzare le opzioni disponibili. Fare clic su **Sì** per abilitare le raccomandazioni sulla sicurezza da usare per la sottoscrizione.
+5. In hello **criteri di sicurezza** pannello, fare clic su **criteri di prevenzione** toosee hello opzioni disponibili. Fare clic su **su** tooenable hello consigli relativi alla sicurezza sono rilevanti per questa sottoscrizione.
 
-    ![Selezione dei criteri di sicurezza](./media/security-center-policies/security-center-policies-fig7.png)
+    ![Selezionare i criteri di sicurezza hello](./media/security-center-policies/security-center-policies-fig7.png)
 
-Usare la tabella seguente come riferimento per comprendere ogni opzione:
+Ogni opzione hello come toounderstand un riferimento nella tabella seguente:
 
 | Criteri | Quando lo stato è Sì |
 | --- | --- |
-| Aggiornamenti del sistema |Recupera un elenco giornaliero degli aggiornamenti della sicurezza e critici da Windows Update o da Windows Server Update Services. L'elenco recuperato dipende dal servizio configurato per tale macchina virtuale e consiglia di applicare gli aggiornamenti mancanti. Per i sistemi Linux, il criterio usa il sistema di gestione pacchetti fornito dalla distribuzione per determinare per quali pacchetti sono disponibili aggiornamenti. Controlla anche la presenza di aggiornamenti critici e della sicurezza dalle macchine virtuali di [Servizi cloud di Azure](../cloud-services/cloud-services-how-to-configure.md). |
-| Vulnerabilità del sistema operativo |Analizza giornalmente le configurazioni del sistema operativo per determinare i problemi che potrebbero rendere vulnerabile agli attacchi la macchina virtuale. Il criterio consiglia anche le modifiche alla configurazione necessarie per risolvere queste vulnerabilità. Vedere l' [elenco delle baseline consigliate](https://gallery.technet.microsoft.com/Azure-Security-Center-a789e335) per altre informazioni sulle configurazioni specifiche monitorate. (Al momento, Windows Server 2016 non è completamente supportato.) |
-| Endpoint Protection |Suggerisce l'Endpoint Protection di cui eseguire il provisioning per tutte le macchine virtuali di Windows, per identificare e rimuovere virus, spyware e altro software dannoso. |
-| Crittografia del disco |Suggerisce di abilitare la crittografia dischi in tutte le macchine virtuali per migliorare la protezione dei dati inattivi. |
-| Gruppi di sicurezza di rete |Consiglia di configurare [gruppi di sicurezza di rete](../virtual-network/virtual-networks-nsg.md) per controllare il traffico in ingresso e in uscita nelle VM che hanno endpoint pubblici. I gruppi di sicurezza di rete configurati per una subnet vengono ereditati da tutte le interfacce di rete della macchina virtuale se non diversamente specificato. Oltre a controllare che sia stato configurato un gruppo di sicurezza di rete, questo criterio valuta le regole di sicurezza in ingresso per identificare le regole che consentono il traffico in ingresso. |
-| Web application firewall |Consiglia di effettuare il provisioning di un Web application firewall nelle macchine virtuali quando una delle due affermazioni seguenti è vera: </br></br>Viene usato l'[IP pubblico a livello di istanza](../virtual-network/virtual-networks-instance-level-public-ip.md) (ILPIP) e le regole di sicurezza in ingresso per il gruppo di sicurezza di rete associato vengono configurate in modo da consentire l'accesso alla porta 80/443.</br></br>IP con carico bilanciato e le regole NAT (Network Address Translation) in ingresso e di bilanciamento del carico associate sono configurate per consentire l'accesso alla porta 80/443. Per altre informazioni, vedere [Supporto di Azure Resource Manager per il servizio di bilanciamento del carico](../load-balancer/load-balancer-arm.md). |
-| Firewall di nuova generazione |Estende le protezioni di rete oltre i gruppi di sicurezza di rete predefiniti di Azure. Il Centro sicurezza troverà le distribuzioni per cui è consigliabile un firewall di nuova generazione e consentirà di effettuare il provisioning di un'appliance virtuale. |
-| Servizio di controllo SQL e rilevamento delle minacce |Consiglia l'abilitazione del controllo dell'accesso al database di Azure per la conformità e il rilevamento avanzato delle minacce, per scopi di analisi. |
+| Aggiornamenti del sistema |Recupera un elenco giornaliero degli aggiornamenti della sicurezza e critici da Windows Update o da Windows Server Update Services. elenco recuperato Hello dipende dal servizio di hello è configurato per tale macchina virtuale e si consiglia di applicare gli aggiornamenti mancanti hello. Per i sistemi Linux, il criterio di hello utilizza hello pacchetti forniti distro gestione sistema toodetermine pacchetti con aggiornamenti disponibili. Controlla anche la presenza di aggiornamenti critici e della sicurezza dalle macchine virtuali di [Servizi cloud di Azure](../cloud-services/cloud-services-how-to-configure.md). |
+| Vulnerabilità del sistema operativo |Analizza le configurazioni giornaliero toodetermine problemi del sistema operativo che potrebbe rendere vulnerabile tooattack di hello macchina virtuale. criteri Hello consiglia anche tooaddress modifiche di configurazione di queste vulnerabilità. Vedere hello [elenco delle linee di base consigliati](https://gallery.technet.microsoft.com/Azure-Security-Center-a789e335) per ulteriori informazioni sulle configurazioni specifiche hello che vengono monitorati. (Al momento, Windows Server 2016 non è completamente supportato.) |
+| Endpoint Protection |Si consiglia di endpoint protection toobe effettuato il provisioning per tutte le macchine virtuali Windows toohelp identificare e rimuovere i virus, spyware e altro software dannoso. |
+| Crittografia del disco |Si consiglia l'abilitazione della crittografia del disco in tutte le macchine virtuali tooenhance la protezione dei dati inattivi. |
+| Gruppi di sicurezza di rete |Consiglia [gruppi di sicurezza di rete](../virtual-network/virtual-networks-nsg.md) essere toocontrol configurata in ingresso e in uscita traffico tooVMs con gli endpoint pubblici. I gruppi di sicurezza di rete configurati per una subnet vengono ereditati da tutte le interfacce di rete della macchina virtuale se non diversamente specificato. Inoltre toochecking che sia stato configurato un gruppo di sicurezza di rete, questo criterio consente di valutare la sicurezza in ingresso tooidentify regole che consentano il traffico in ingresso. |
+| Web application firewall |Si consiglia che un firewall applicazione web eseguirne il provisioning nelle macchine virtuali quando viene soddisfatta una delle seguenti hello: </br></br>[Indirizzo IP pubblico a livello di istanza](../virtual-network/virtual-networks-instance-level-public-ip.md) (ILPIP) viene usato e le regole di sicurezza in ingresso per gruppo di sicurezza di rete associato hello hello sono configurati tooallow accesso tooport 80/443.</br></br>IP con bilanciamento del carico viene utilizzato e hello associata a bilanciamento del carico e regole di rete in ingresso address translation (NAT) sono configurati tooallow accesso tooport 80/443. Per altre informazioni, vedere [Supporto di Azure Resource Manager per il servizio di bilanciamento del carico](../load-balancer/load-balancer-arm.md). |
+| Firewall di nuova generazione |Estende le protezioni di rete oltre i gruppi di sicurezza di rete predefiniti di Azure. Centro sicurezza PC consente di individuare le distribuzioni per il quale un firewall generazione successivo, è consigliabile e abilitare si tooprovision appliance virtuale. |
+| Servizio di controllo SQL e rilevamento delle minacce |Si consiglia che il controllo di accesso tooAzure Database abilitato per la conformità e anche avanzato di rilevamento minacce, per motivi di indagine. |
 | Crittografia SQL |Consiglia l'abilitazione della crittografia dati inattivi per il database SQL di Azure, i backup associati e file di log delle transazioni. Anche se i dati vengono violati, non saranno leggibili. |
 | Valutazione della vulnerabilità |Consiglia di installare una soluzione di valutazione della vulnerabilità nella VM. |
 | Crittografia di archiviazione |Questa funzionalità è attualmente disponibile per BLOB di Azure e File di Azure. Dopo l'abilitazione della Crittografia del servizio di archiviazione verranno crittografati solo i nuovi dati, mentre i file già esistenti nell'account di archiviazione rimarranno non crittografati. |
-| Accesso alla rete JIT |Quando è abilitata la funzionalità Just-in-Time, Centro sicurezza protegge il traffico in ingresso alle macchine virtuali di Azure creando una regola del gruppo di sicurezza di rete. Selezionare le porte nella macchina virtuale per cui bloccare il traffico in ingresso. Per altre informazioni, vedere [Gestire l'accesso alle macchine virtuali con la funzionalità JIT (Just-in-Time)](https://docs.microsoft.com/azure/security-center/security-center-just-in-time). |
+| Accesso alla rete JIT |Quando è abilitata in-time, il Centro sicurezza PC protegge il traffico in entrata tooyour macchine virtuali di Azure tramite la creazione di una regola di gruppo. Selezionare le porte hello su hello VM toowhich deve essere bloccato il traffico in ingresso verso il basso. Per altre informazioni, vedere [Gestire l'accesso alle macchine virtuali con la funzionalità JIT (Just-in-Time)](https://docs.microsoft.com/azure/security-center/security-center-just-in-time). |
 
-Dopo avere configurato tutte le opzioni, fare clic su **OK** nel pannello **Criteri di sicurezza** contenente le raccomandazioni e quindi su **Salva** nel pannello **Criteri di sicurezza** contenente le impostazioni iniziali.
+Dopo aver configurato tutte le opzioni, fare clic su **OK** in hello **criteri di sicurezza** pannello in cui sono presenti indicazioni hello e quindi fare clic su **salvare** in hello **sicurezza Criteri** pannello contenente le impostazioni iniziali hello.
 
 > [!NOTE]
-> Il piano tariffario è ancora applicabile per il livello di gruppo di risorse. Per altre informazioni, visitare la pagina [Prezzi](https://azure.microsoft.com/pricing/details/security-center/).
+> livello di prezzo Hello è ancora applicabile per livello di gruppo di risorse hello. Per ulteriori informazioni, visitare hello [prezzi](https://azure.microsoft.com/pricing/details/security-center/) pagina.
 >
 >
 
 ## <a name="see-also"></a>Vedere anche
-In questo documento è stato descritto come configurare i criteri di sicurezza nel Centro sicurezza di Azure. Per ulteriori informazioni sul Centro sicurezza di Azure, vedere gli argomenti seguenti:
+In questo documento, si è appreso come criteri di sicurezza tooconfigure Centro sicurezza di Azure. toolearn ulteriori informazioni su Centro sicurezza di Azure, vedere l'esempio hello:
 
-* [Guida alla pianificazione e alla gestione del Centro sicurezza di Azure](security-center-planning-and-operations-guide.md). Informazioni sulla pianificazione e considerazioni di progettazione per l'adozione del Centro sicurezza di Azure.
-* [Monitoraggio dell'integrità della sicurezza nel Centro sicurezza di Azure](security-center-monitoring.md). Informazioni su come monitorare l'integrità delle risorse di Azure.
-* [Gestione e risposta agli avvisi di sicurezza nel Centro sicurezza di Azure](security-center-managing-and-responding-alerts.md). Informazioni su come gestire e rispondere agli avvisi di sicurezza.
-* [Monitoraggio delle soluzioni dei partner con il Centro sicurezza di Azure](security-center-partner-solutions.md). Informazioni su come monitorare lo stato integrità delle soluzioni dei partner.
-* [Domande frequenti sul Centro sicurezza di Azure](security-center-faq.md). Domande frequenti sull'uso del servizio.
+* [Guida alla pianificazione e alla gestione del Centro sicurezza di Azure](security-center-planning-and-operations-guide.md). Informazioni su come tooplan e comprendere considerazioni sulla progettazione hello tooadopt Centro sicurezza di Azure.
+* [Monitoraggio dell'integrità della sicurezza nel Centro sicurezza di Azure](security-center-monitoring.md). Informazioni su come toomonitor hello integrità delle risorse di Azure.
+* [La gestione e risponde toosecurity gli avvisi in Centro sicurezza di Azure](security-center-managing-and-responding-alerts.md). Informazioni su come avvisi toosecurity toomanage e rispondere.
+* [Monitoraggio delle soluzioni dei partner con il Centro sicurezza di Azure](security-center-partner-solutions.md). Informazioni su come toomonitor hello lo stato di integrità delle soluzioni di partner.
+* [Domande frequenti sul Centro sicurezza di Azure](security-center-faq.md). Trovare le domande frequenti sull'utilizzo del servizio hello.
 * [Blog sulla sicurezza di Azure](http://blogs.msdn.com/b/azuresecurity/). Post di blog sulla sicurezza e sulla conformità di Azure.

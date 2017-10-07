@@ -1,6 +1,6 @@
 ---
-title: Uso della crittografia dinamica AES-128 e del servizio di distribuzione delle chiavi | Microsoft Docs
-description: Servizi multimediali di Microsoft Azure consente di distribuire contenuti crittografati con AES mediante chiavi di crittografia a 128 bit. Servizi multimediali fornisce anche il servizio di distribuzione chiavi che distribuisce chiavi di crittografia agli utenti autorizzati. In questo argomento viene illustrato come crittografare con AES-128 e utilizzare il servizio di distribuzione delle chiavi in modo dinamico.
+title: dinamica AES-128 aaaUsing crittografia e la chiave di servizio di recapito | Documenti Microsoft
+description: Servizi multimediali di Microsoft Azure consente di toodeliver il contenuto crittografato con chiavi di crittografia AES a 128 bit. Servizi multimediali fornisce anche i servizi di distribuzione delle chiavi hello che offre agli utenti di tooauthorized le chiavi di crittografia. Questo argomento viene illustrato come toodynamically crittografare con AES-128 e utilizzare il servizio di distribuzione delle chiavi di hello.
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/25/2017
 ms.author: juliako
-ms.openlocfilehash: ae1b36c26e688e74eb8fcc1a4cdbd3be0c014c08
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: cb1b413ec2ba79f7437464099cf72236ab93f312
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="using-aes-128-dynamic-encryption-and-key-delivery-service"></a>Uso della crittografia dinamica AES-128 e del servizio di distribuzione delle chiavi
 > [!div class="op_single_selector"]
@@ -28,114 +28,114 @@ ms.lasthandoff: 08/29/2017
 > 
 > 
 
-## <a name="overview"></a>Overview
+## <a name="overview"></a>Panoramica
 > [!NOTE]
-> Vedere [questo](https://channel9.msdn.com/Shows/Azure-Friday/Azure-Media-Services-Protecting-your-Media-Content-with-AES-Encryption) video per una panoramica di come proteggere il contenuto multimediale con la crittografia AES.
+> Vedere [questo](https://channel9.msdn.com/Shows/Azure-Friday/Azure-Media-Services-Protecting-your-Media-Content-with-AES-Encryption) video per una panoramica delle modalità tooprotect il supporto del contenuto con crittografia AES.
 > 
 > 
 
-Servizi multimediali di Microsoft Azure consente di distribuire Http-Live-Streaming (HLS) e Smooth Streams crittografati con AES (Advanced Encryption Standard) mediante chiavi di crittografia a 128 bit. Servizi multimediali fornisce anche il servizio di distribuzione chiavi che distribuisce chiavi di crittografia agli utenti autorizzati. Per consentire a Servizi multimediali di crittografare un asset, è necessario associare una chiave di crittografia all'asset e configurare anche i criteri di autorizzazione per la chiave. Quando un flusso viene richiesto da un lettore, Servizi multimediali usa la chiave specificata per crittografare dinamicamente i contenuti mediante AES. Per decrittografare il flusso, il lettore richiederà la chiave dal servizio di distribuzione delle chiavi. Per decidere se l'utente è autorizzato a ottenere la chiave, il servizio valuta i criteri di autorizzazione specificati.
+Servizi multimediali di Microsoft Azure consente toodeliver Http Live Streaming (HLS) e Smooth Streams crittografato con Advanced Encryption Standard (AES) (utilizzando le chiavi di crittografia a 128 bit). Servizi multimediali fornisce anche i servizi di distribuzione delle chiavi hello che offre agli utenti di tooauthorized le chiavi di crittografia. Se si desidera per servizi multimediali tooencrypt un asset, è necessario tooassociate una chiave di crittografia con asset hello e inoltre configurare criteri di autorizzazione per la chiave di hello. Quando un flusso è richiesto da un lettore, servizi multimediali Usa hello specificato toodynamically chiave crittografare il contenuto usando la crittografia AES. flusso di hello toodecrypt, hello lettore richiederà chiave hello dal servizio di distribuzione delle chiavi hello. Se è o meno utente hello toodecide autorizzato chiave hello tooget, servizio hello valuta i criteri di autorizzazione hello specificato per la chiave di hello.
 
-Servizi multimediali supporta più modalità di autenticazione degli utenti che eseguono richieste di chiavi. I criteri di autorizzazione delle chiavi simmetriche possono avere una o più restrizioni di tipo Open o Token. I criteri con restrizione Token devono essere accompagnati da un token rilasciato da un servizio STS (Secure Token Service, servizio token di sicurezza). Servizi multimediali supporta i token nei formati [Simple Web Tokens](https://msdn.microsoft.com/library/gg185950.aspx#BKMK_2) (SWT) e [JSON Web Token](https://msdn.microsoft.com/library/gg185950.aspx#BKMK_3) (JWT). Per altre informazioni, vedere l'argomento [Configurare i criteri di autorizzazione della chiave simmetrica](media-services-protect-with-aes128.md#configure_key_auth_policy).
+Servizi multimediali supporta più modalità di autenticazione degli utenti che eseguono richieste di chiavi. Hello criteri di autorizzazione chiave contenuto potrebbero avere una o più restrizioni di autorizzazione: apertura o la limitazione del token. criteri con restrizione token Hello devono essere accompagnato da un token rilasciato da un servizio (token di sicurezza). Servizi multimediali supporta i token in hello [token Web semplici](https://msdn.microsoft.com/library/gg185950.aspx#BKMK_2) formato (SWT) e [Token Web JSON](https://msdn.microsoft.com/library/gg185950.aspx#BKMK_3) formato (JWT). Per ulteriori informazioni, vedere [configurare criteri di autorizzazione della chiave simmetrica hello](media-services-protect-with-aes128.md#configure_key_auth_policy).
 
-Per sfruttare la crittografia dinamica, è necessario disporre di un asset che contenga un set di file MP4 con velocità in bit multipla o di file di origine Smooth Streaming con velocità in bit multipla. È inoltre necessario configurare i criteri di distribuzione dell'asset (descritti più avanti in questo argomento). Quindi, in base al formato specificato nell'URL del flusso, il server di streaming on demand garantirà che il flusso sia distribuito nel protocollo scelto. Di conseguenza, si archiviano e si pagano solo i file in un singolo formato di archiviazione e il servizio Servizi multimediali crea e fornisce la risposta appropriata in base alle richieste di un client.
+Il vantaggio di tootake di crittografia dinamica, è necessario toohave un asset che contiene un set di file MP4 a più velocità in bit o file di origine Smooth Streaming con più velocità in bit. È inoltre necessario criteri di distribuzione hello tooconfigure per asset hello (descritta più avanti in questo argomento). Quindi, basato sul formato di hello specificato nell'URL di streaming hello, il server di Streaming On Demand hello garantisce che tale flusso hello venga distribuito nel protocollo hello scelto. Di conseguenza, è necessario solo toostore e pagare per i file hello in unico formato di archiviazione e servizi multimediali creerà e fornirà hello risposta appropriata in base alle richieste da un client.
 
-Questo argomento potrebbe essere utile per gli sviluppatori che utilizzano applicazioni che forniscono contenuti protetti. L'argomento illustra come configurare il servizio di distribuzione delle chiavi con criteri di autorizzazione, in modo che solo i client autorizzati possano ricevere le chiavi di crittografia. Viene inoltre illustrato come utilizzare la crittografia dinamica.
+In questo argomento sarebbe utile toodevelopers di applicazioni che distribuiscono contenuti multimediali protetti. Hello argomento viene illustrato come tooconfigure hello del servizio di distribuzione delle chiavi con criteri di autorizzazione in modo che solo i client autorizzati potrebbero ricevere le chiavi di crittografia hello. Viene inoltre illustrato come la crittografia dinamica toouse.
 
 
 ## <a name="aes-128-dynamic-encryption-and-key-delivery-service-workflow"></a>Flusso di lavoro della crittografia dinamica AES-128 e servizio di distribuzione delle chiavi
 
-Di seguito sono indicati i passaggi generali da eseguire quando si esegue la crittografia degli asset con AES, tramite il servizio di distribuzione delle chiavi di Servizi multimediali e tramite la crittografia dinamica.
+di seguito Hello sono passaggi generali che è necessario tooperform per crittografare gli asset con AES, tramite servizio di distribuzione delle chiavi di servizi multimediali hello e anche utilizzando la crittografia dinamica.
 
-1. [Creare un asset e caricare file nell'asset](media-services-protect-with-aes128.md#create_asset).
-2. [Codificare l'asset contenente il file per il set di file MP4 con velocità in bit adattiva](media-services-protect-with-aes128.md#encode_asset).
-3. [Creare una chiave simmetrica e associarla all'asset codificato](media-services-protect-with-aes128.md#create_contentkey). In Servizi multimediali, la chiave simmetrica contiene la chiave di crittografia dell'asset.
-4. [Configurare i criteri di autorizzazione della chiave simmetrica](media-services-protect-with-aes128.md#configure_key_auth_policy). I criteri di autorizzazione della chiave simmetrica devono essere configurati dall'utente e soddisfatti dal client affinché la chiave simmetrica possa essere distribuita al client.
-5. [Configurare i criteri di distribuzione di un asset](media-services-protect-with-aes128.md#configure_asset_delivery_policy). La configurazione dei criteri di distribuzione include: l'URL di acquisizione della chiave e il vettore di inizializzazione, AES 128 richiede che venga fornito lo stesso vettore di inizializzazione per la crittografia e la decrittografia; il protocollo di recapito, ad esempio MPEG-DASH, HLS, Smooth Streaming o tutti; il tipo di crittografia dinamica, ad esempio envelope o nessuna crittografia dinamica.
+1. [Creare un asset e caricare i file nell'asset hello](media-services-protect-with-aes128.md#create_asset).
+2. [Codificare asset hello contenente hello file toohello adaptive bitrate MP4 set](media-services-protect-with-aes128.md#encode_asset).
+3. [Creare una chiave simmetrica e associarlo all'asset codificato hello](media-services-protect-with-aes128.md#create_contentkey). In servizi multimediali, la chiave simmetrica hello contiene la chiave di crittografia dell'asset hello.
+4. [Configurare i criteri di autorizzazione della chiave simmetrica hello](media-services-protect-with-aes128.md#configure_key_auth_policy). criteri di autorizzazione chiave del contenuto Hello devono essere configurato dall'utente e soddisfatti dal client hello affinché hello contenuto toobe chiave toohello recapitato client.
+5. [Configurare i criteri di distribuzione hello per un asset](media-services-protect-with-aes128.md#configure_asset_delivery_policy). configurazione dei criteri recapito Hello include: chiave URL di acquisizione e il vettore di inizializzazione (IV) (AES 128 richiede hello stesso vettore di Inizializzazione toobe fornito durante la crittografia e decrittografia), il protocollo di recapito (ad esempio, MPEG DASH, HLS, Smooth Streaming o tutti), hello tipo di crittografia dinamica (ad esempio, envelope o Nessuna crittografia dinamica).
 
-    È possibile applicare criteri diversi per ogni protocollo allo stesso asset. Ad esempio, è possibile applicare la crittografia PlayReady a Smooth/DASH e AES Envelope ad HLS. Gli eventuali protocolli non definiti nei criteri di distribuzione (ad esempio quando si aggiunge un singolo criterio che specifica soltanto HLS come protocollo) verranno esclusi dallo streaming. Questo comportamento non si verifica quando non è presente alcun criterio di distribuzione degli asset. In tal caso, sono consentiti tutti i protocolli in chiaro.
+    È possibile applicare protocollo tooeach criteri diversi in hello stesso asset. Ad esempio, è possibile applicare PlayReady crittografia tooSmooth/DASH e tooHLS Envelope AES. Tutti i protocolli che non sono definiti in un criterio di recapito (ad esempio, aggiungere un singolo criterio che specifica solo HLS come protocollo di hello) verrà impedito lo streaming. toothis eccezione Hello è se non sono presenti criteri di recapito di asset definito in alcun modo. Quindi, saranno possibile tutti i protocolli in crittografato hello.
 
-6. [Creare un localizzatore OnDemand](media-services-protect-with-aes128.md#create_locator) per ottenere un URL di streaming.
+6. [Creare un localizzatore OnDemand](media-services-protect-with-aes128.md#create_locator) in ordine tooget un URL di streaming.
 
-L’argomento inoltre indica [come un'applicazione client può richiedere una chiave dal servizio di distribuzione delle chiavi](media-services-protect-with-aes128.md#client_request).
+argomento Hello viene inoltre illustrato [come un'applicazione client può richiedere una chiave dal servizio di distribuzione delle chiavi hello](media-services-protect-with-aes128.md#client_request).
 
-Si noterà un [esempio](media-services-protect-with-aes128.md#example) .NET completo alla fine dell'argomento.
+Si noterà .NET completo [esempio](media-services-protect-with-aes128.md#example) alla fine di hello di hello argomento.
 
-Nell'immagine seguente viene illustrato il flusso di lavoro descritto in precedenza. Di seguito viene utilizzato il token per l'autenticazione.
+Hello seguente immagine illustra del flusso di lavoro hello descritto in precedenza. Token hello qui viene utilizzato per l'autenticazione.
 
 ![Proteggere con AES-128](./media/media-services-content-protection-overview/media-services-content-protection-with-aes.png)
 
-Nella parte rimanente di questo argomento vengono fornite spiegazioni dettagliate, esempi di codice e collegamenti ad argomenti che illustrano come eseguire le attività descritte in precedenza.
+rest Hello di questo argomento fornisce spiegazioni dettagliate, esempi di codice e collegamenti tootopics che mostrano come tooachieve hello attività descritte in precedenza.
 
 ## <a name="current-limitations"></a>Limitazioni correnti
 Se si aggiungono o si aggiornano i criteri di distribuzione dell'asset, è necessario eliminare l'eventuale localizzatore esistente e creare un nuovo localizzatore.
 
-## <a id="create_asset"></a>Creare un asset e caricare file nell'asset
-Per gestire, codificare e trasmettere i video, è innanzitutto necessario caricare il contenuto in Servizi multimediali di Microsoft Azure. Dopo aver caricato i file, i contenuti vengono archiviati in modo sicuro nel cloud per altre operazioni di elaborazione e streaming. 
+## <a id="create_asset"></a>Creare un asset e caricare i file nell'asset hello
+In ordine toomanage, codificare e trasmettere in flusso i video, è innanzitutto necessario caricare il contenuto in servizi multimediali di Microsoft Azure. Una volta caricato, il contenuto è archiviato in modo sicuro nel cloud hello per un'ulteriore elaborazione e il flusso. 
 
 Per informazioni dettagliate, vedere [Carica file in un account di servizi multimediali](media-services-dotnet-upload-files.md).
 
-## <a id="encode_asset"></a>Codificare l'asset contenente il file per il set di file MP4 con velocità in bit adattiva
-Con la crittografia dinamica, è necessario solamente creare un asset che contenga un set di file MP4 con velocità in bit multipla o di file di origine Smooth Streaming con velocità in bit multipla. In base al formato specificato nella richiesta del manifesto o del frammento, il server di streaming on demand garantirà che il flusso sia ricevuto nel protocollo scelto. Di conseguenza, si archiviano e si pagano solo i file in un singolo formato di archiviazione e il servizio Servizi multimediali crea e fornisce la risposta appropriata in base alle richieste di un client. Per altre informazioni, vedere l'argomento [Creazione dinamica dei pacchetti](media-services-dynamic-packaging-overview.md) .
+## <a id="encode_asset"></a>Codificare hello asset contenente hello file toohello velocità in bit adattiva che set MP4
+Con la crittografia dinamica è sufficiente toocreate un asset che contiene un set di file MP4 a più velocità in bit o file di origine Smooth Streaming con più velocità in bit. Quindi, base hello formato specificato nel manifesto hello o frammentare la richiesta, hello server ti garantisce che il flusso di hello nel protocollo hello che si è scelto di Streaming On Demand. Di conseguenza, è necessario solo toostore e pagare per i file hello in unico formato di archiviazione e servizi multimediali creerà e fornirà hello risposta appropriata in base alle richieste da un client. Per ulteriori informazioni, vedere hello [Panoramica della creazione di pacchetti dinamica](media-services-dynamic-packaging-overview.md) argomento.
 
 >[!NOTE]
->Quando l'account AMS viene creato, un endpoint di streaming **predefinito** viene aggiunto all'account con stato **Arrestato**. Per avviare lo streaming del contenuto e sfruttare i vantaggi della creazione dinamica dei pacchetti e della crittografia dinamica, l'endpoint di streaming da cui si vuole trasmettere il contenuto deve essere nello stato **In esecuzione**. 
+>Quando viene creato l'account di sistema AMS un **predefinito** endpoint di streaming viene aggiunto l'account tooyour in hello **arrestato** stato. lo streaming del contenuto e intraprendere sfruttare creazione dinamica dei pacchetti e la crittografia dinamica, toostart hello endpoint di streaming da cui si desidera in hello del contenuto toostream è toobe **esecuzione** stato. 
 >
->Per usare la creazione dinamica dei pacchetti e la crittografia dinamica, l'asset deve contenere un set di file MP4 o Smooth Streaming a velocità in bit adattiva.
+>Inoltre, toobe toouse in grado di creazione dinamica dei pacchetti e la crittografia dinamica dell'asset deve contenere un set di velocità in bit adattiva MP4s o file Smooth Streaming a velocità in bit adattiva.
 
-Per istruzioni su come eseguire la codifica, vedere [Come codificare un asset mediante Media Encoder Standard](media-services-dotnet-encode-with-media-encoder-standard.md).
+Per istruzioni su come tooencode, vedere [come tooencode un asset con Media Encoder Standard](media-services-dotnet-encode-with-media-encoder-standard.md).
 
-## <a id="create_contentkey"></a>Creare una chiave simmetrica e associarla all'asset codificato
-In Servizi multimediali, la chiave simmetrica contiene la chiave con cui si desidera crittografare un asset.
+## <a id="create_contentkey"></a>Creare una chiave simmetrica e associarlo all'asset codificato hello
+In servizi multimediali, la chiave simmetrica hello contiene chiave hello che si desidera tooencrypt un asset con.
 
 Per informazioni dettagliate, vedere [Creare una chiave simmetrica](media-services-dotnet-create-contentkey.md).
 
-## <a id="configure_key_auth_policy"></a>Configurare i criteri di autorizzazione della chiave simmetrica.
-Servizi multimediali supporta più modalità di autenticazione degli utenti che eseguono richieste di chiavi. I criteri di autorizzazione della chiave simmetrica devono essere configurati dall'utente e soddisfatti dal client (lettore) affinché la chiave possa essere distribuita al client. I criteri di autorizzazione delle chiavi simmetriche possono avere una o più restrizioni di tipo Open, Token o IP.
+## <a id="configure_key_auth_policy"></a>Configurare i criteri di autorizzazione della chiave simmetrica hello
+Servizi multimediali supporta più modalità di autenticazione degli utenti che eseguono richieste di chiavi. criteri di autorizzazione chiave del contenuto Hello devono essere configurato dall'utente e soddisfatti dal client hello (lettore) affinché toobe chiave di hello recapitati toohello client. Hello criteri di autorizzazione chiave contenuto potrebbero avere una o più restrizioni di autorizzazione: aprire, token o restrizioni IP.
 
 Per informazioni dettagliate, vedere l'argomento [Configurare i criteri di autorizzazione della chiave simmetrica](media-services-dotnet-configure-content-key-auth-policy.md).
 
 ## <a id="configure_asset_delivery_policy"></a>Configurare i criteri di distribuzione dell'asset
-Configurare i criteri di distribuzione dell'asset. Alcuni aspetti inclusi nella configurazione dei criteri di distribuzione dell’asset:
+Configurare i criteri di distribuzione hello dell'asset. Le operazioni che hello configurazione dei criteri di recapito di asset include:
 
-* URL di acquisizione della chiave. 
-* Vettore di inizializzazione (IV) da utilizzare per la crittografia envelope. AES 128 richiede che venga fornito lo stesso IV per la crittografia e la decrittografia. 
-* Il protocollo di recapito dell'asset (ad esempio, MPEG DASH, HLS, Smooth Streaming o tutti).
-* Il tipo di crittografia dinamica (ad esempio, envelope AES) o nessuna crittografia dinamica. 
+* URL di acquisizione chiave Hello. 
+* Hello toouse il vettore di inizializzazione (IV) per la crittografia envelope hello. AES 128 richiede hello stesso vettore di Inizializzazione toobe fornito per la crittografia e decrittografia. 
+* Hello asset protocollo di recapito (ad esempio, MPEG DASH, HLS, Smooth Streaming o tutti).
+* tipo di Hello di crittografia dinamica (ad esempio, envelope AES) o Nessuna crittografia dinamica. 
 
 Per informazioni dettagliate, vedere [Configurare i criteri di distribuzione degli asset ](media-services-rest-configure-asset-delivery-policy.md).
 
-## <a id="create_locator"></a>Creare un localizzatore di streaming on demand per ottenere un URL di streaming
-È necessario fornire all'utente l'URL del flusso per Smooth, DASH o HLS.
+## <a id="create_locator"></a>Creare un OnDemand streaming locator in ordine tooget un URL di streaming
+Sarà necessario tooprovide l'utente con hello streaming URL per Smooth, DASH o HLS.
 
 > [!NOTE]
 > Se si aggiungono o si aggiornano i criteri di distribuzione dell'asset, è necessario eliminare l'eventuale localizzatore esistente e creare un nuovo localizzatore.
 > 
 > 
 
-Per istruzioni su come pubblicare un asset e creare un URL di streaming, vedere la sezione [Creare URL di streaming](media-services-deliver-streaming-content.md).
+Per istruzioni su come toopublish un asset e compilare un URL di streaming, vedere [compilare un URL di streaming](media-services-deliver-streaming-content.md).
 
 ## <a name="get-a-test-token"></a>Ottenere un token di test
-Ottenere un token di test basato sulla restrizione Token usata per i criteri di autorizzazione della chiave.
+Ottenere un token di test in base a una restrizione token hello che è stata utilizzata per i criteri di autorizzazione chiave hello.
 
     // Deserializes a string containing an Xml representation of a TokenRestrictionTemplate
     // back into a TokenRestrictionTemplate class instance.
     TokenRestrictionTemplate tokenTemplate = 
         TokenRestrictionTemplateSerializer.Deserialize(tokenTemplateString);
 
-    // Generate a test token based on the data in the given TokenRestrictionTemplate.
-    //The GenerateTestToken method returns the token without the word “Bearer” in front
-    //so you have to add it in front of the token string. 
+    // Generate a test token based on hello data in hello given TokenRestrictionTemplate.
+    //hello GenerateTestToken method returns hello token without hello word “Bearer” in front
+    //so you have tooadd it in front of hello token string. 
     string testToken = TokenRestrictionTemplateSerializer.GenerateTestToken(tokenTemplate);
-    Console.WriteLine("The authorization token is:\nBearer {0}", testToken);
+    Console.WriteLine("hello authorization token is:\nBearer {0}", testToken);
 
-È possibile utilizzare il [lettore AMS](http://amsplayer.azurewebsites.net/azuremediaplayer.html) per testare il flusso.
+È possibile utilizzare hello [Player AMS](http://amsplayer.azurewebsites.net/azuremediaplayer.html) tootest il flusso.
 
-## <a id="client_request"></a>In che modo il client può richiedere una chiave dal servizio di distribuzione delle chiavi?
-Nel passaggio precedente, è stato realizzato l'URL che punta a un file manifesto. Il client deve estrarre le informazioni necessarie dai file manifesto del flusso per effettuare una richiesta al servizio di distribuzione delle chiavi.
+## <a id="client_request"></a>Come il client può richiedere una chiave dal servizio di distribuzione delle chiavi hello?
+Nel passaggio precedente hello, è costruito hello URL che punta a file manifesto tooa. Il client deve tooextract hello le informazioni necessarie dal flusso dei file manifesti in ordine toomake un servizio di distribuzione delle chiavi toohello richiesta hello.
 
 ### <a name="manifest-files"></a>File manifesto
-Il client deve estrarre il valore URL (che contiene anche l’ID della chiave simmetrica (kid)) dal file manifesto. Il client tenterà quindi di ottenere la chiave di crittografia dal servizio di distribuzione delle chiavi. Inoltre, il client deve estrarre il valore IV e utilizzarlo per decrittografare il flusso. Il frammento di codice seguente illustra l’elemento <Protection> del manifesto Smooth Streaming.
+client di Hello deve tooextract hello URL (che contiene anche la chiave simmetrica (kid) Id) del valore dal file manifesto hello. client Hello tenterà quindi chiave di crittografia tooget hello dal servizio di distribuzione delle chiavi hello. Hello client deve inoltre tooextract valore di hello IV e usarlo per decrittografare stream.hello hello seguente frammento di codice mostra hello <Protection> elemento del manifesto Smooth Streaming hello.
 
     <Protection>
       <ProtectionHeader SystemID="B47B251A-2409-4B42-958E-08DBAE7B4EE9">
@@ -149,9 +149,9 @@ Il client deve estrarre il valore URL (che contiene anche l’ID della chiave si
       </ProtectionHeader>
     </Protection>
 
-Nel caso di HLS, il manifesto radice viene suddiviso in file di segmento. 
+Nel caso di hello di HLS, manifesto radice hello viene suddiviso in file di segmenti. 
 
-Ad esempio, il manifesto radice è: http://test001.origin.mediaservices.windows.net/8bfe7d6f-34e3-4d1a-b289-3e48a8762490/BigBuckBunny.ism/manifest(format=m3u8-aapl) e contiene un elenco di nomi di file di segmento.
+Ad esempio, manifesto radice hello è: http://test001.origin.mediaservices.windows.net/8bfe7d6f-34e3-4d1a-b289-3e48a8762490/BigBuckBunny.ism/manifest(format=m3u8-aapl) e contiene un elenco di nomi di file di segmento.
 
     . . . 
     #EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=630133,RESOLUTION=424x240,CODECS="avc1.4d4015,mp4a.40.2",AUDIO="audio"
@@ -160,7 +160,7 @@ Ad esempio, il manifesto radice è: http://test001.origin.mediaservices.windows.
     QualityLevels(842459)/Manifest(video,format=m3u8-aapl)
     …
 
-Se si apre uno dei file del segmento nell'editor di testo (ad esempio, http://test001.origin.mediaservices.windows.net/8bfe7d6f-34e3-4d1a-b289-3e48a8762490/BigBuckBunny.ism/QualityLevels(514369)/Manifest(video,format=m3u8-aapl), deve essere presente #EXT-X-KEY che indica che il file è crittografato.
+Se si apre uno dei file di segmento hello nell'editor di testo (ad esempio, http://test001.origin.mediaservices.windows.net/8bfe7d6f-34e3-4d1a-b289-3e48a8762490/BigBuckBunny.ism/QualityLevels(514369)/Manifest(video,format=m3u8-aapl), it should contenere #EXT-X-KEY, che indica che file hello è crittografato.
 
     #EXTM3U
     #EXT-X-VERSION:4
@@ -177,11 +177,11 @@ Se si apre uno dei file del segmento nell'editor di testo (ad esempio, http://te
     #EXT-X-ENDLIST
 
 >[!NOTE] 
->Se si prevede di eseguire un flusso HLS crittografato con AES in Safari, vedere [questo blog](https://azure.microsoft.com/blog/how-to-make-token-authorized-aes-encrypted-hls-stream-working-in-safari/).
+>Se si intende tooplay un AES crittografata HLS in Safari, vedere [questo blog](https://azure.microsoft.com/blog/how-to-make-token-authorized-aes-encrypted-hls-stream-working-in-safari/).
 
-### <a name="request-the-key-from-the-key-delivery-service"></a>Richiedere la chiave dal servizio di distribuzione delle chiavi
+### <a name="request-hello-key-from-hello-key-delivery-service"></a>Richiedi chiave di hello dal servizio di distribuzione delle chiavi hello
 
-Il codice seguente indica come inviare una richiesta al servizio di distribuzione delle chiavi di Servizi multimediali utilizzando un Uri di distribuzione della chiave (che è stato estratto dal manifesto) e un token (in questo argomento non viene discusso come ottenere token Web semplici da un servizio Secure Token).
+Hello codice seguente viene illustrato come toosend toohello una richiesta di servizi multimediali della chiave del servizio di recapito utilizzando un Uri (che è stato estratto dal manifesto hello) di recapito e un token (in questo argomento non è descritto come tooget token Web semplice da un servizio Token di sicurezza).
 
     private byte[] GetDeliveryKey(Uri keyDeliveryUri, string token)
     {
@@ -227,20 +227,20 @@ Il codice seguente indica come inviare una richiesta al servizio di distribuzion
 
 ### <a name="create-and-configure-a-visual-studio-project"></a>Creare e configurare un progetto di Visual Studio
 
-1. Configurare l'ambiente di sviluppo e popolare il file app.config con le informazioni di connessione, come descritto in [Sviluppo di applicazioni di Servizi multimediali con .NET](media-services-dotnet-how-to-use.md). 
-2. Aggiungere i seguenti elementi alla sezione **appSettings** definita nel file app.config:
+1. Configurare l'ambiente di sviluppo e di popolare il file app. config hello con informazioni di connessione, come descritto in [lo sviluppo di servizi multimediali con .NET](media-services-dotnet-how-to-use.md). 
+2. Aggiungere i seguenti elementi troppo hello**appSettings** definiti nel file app. config:
 
         <add key="Issuer" value="http://testacs.com"/>
         <add key="Audience" value="urn:test"/>
 
 ### <a id="example"></a>Esempio
 
-Sovrascrivere il codice nel file Program.cs con il codice riportato in questa sezione.
+Sovrascrivere il codice hello nel file Program.cs con il codice di hello illustrato in questa sezione.
  
 >[!NOTE]
->È previsto un limite di 1.000.000 di criteri per i diversi criteri AMS (ad esempio per i criteri Locator o ContentKeyAuthorizationPolicy). Usare lo stesso ID criterio se si usano sempre gli stessi giorni/autorizzazioni di accesso, come nel cado di criteri per i localizzatori che devono rimanere attivi per molto tempo (criteri di non caricamento). Per altre informazioni, vedere [questo](media-services-dotnet-manage-entities.md#limit-access-policies) argomento.
+>È previsto un limite di 1.000.000 di criteri per i diversi criteri AMS (ad esempio per i criteri Locator o ContentKeyAuthorizationPolicy). È consigliabile utilizzare hello stesso ID di criteri, se si utilizza sempre hello stesso giorni accesso le autorizzazioni, ad esempio, i criteri per i localizzatori che sono previsti tooremain sul posto per un lungo periodo (non-caricamento criteri). Per altre informazioni, vedere [questo](media-services-dotnet-manage-entities.md#limit-access-policies) argomento.
 
-Assicurarsi di aggiornare le variabili in modo da puntare alle cartelle in cui si trovano i file di input.
+Rendere le variabili tooupdate che toopoint toofolders in cui si trovano i file di input.
 
     using System;
     using System.Collections.Generic;
@@ -257,18 +257,18 @@ Assicurarsi di aggiornare le variabili in modo da puntare alle cartelle in cui s
     {
         class Program
         {
-        // Read values from the App.config file.
+        // Read values from hello App.config file.
         private static readonly string _AADTenantDomain =
         ConfigurationManager.AppSettings["AADTenantDomain"];
         private static readonly string _RESTAPIEndpoint =
         ConfigurationManager.AppSettings["MediaServiceRESTAPIEndpoint"];
 
-        // A Uri describing the issuer of the token.  
-        // Must match the value in the token for the token to be considered valid.
+        // A Uri describing hello issuer of hello token.  
+        // Must match hello value in hello token for hello token toobe considered valid.
         private static readonly Uri _sampleIssuer =
             new Uri(ConfigurationManager.AppSettings["Issuer"]);
-        // The Audience or Scope of the token.  
-        // Must match the value in the token for the token to be considered valid.
+        // hello Audience or Scope of hello token.  
+        // Must match hello value in hello token for hello token toobe considered valid.
         private static readonly Uri _sampleAudience =
             new Uri(ConfigurationManager.AppSettings["Audience"]);
 
@@ -298,7 +298,7 @@ Assicurarsi di aggiornare le variabili in modo da puntare alle cartelle in cui s
             Console.WriteLine("Encoded asset: {0}", encodedAsset.Id);
 
             IContentKey key = CreateEnvelopeTypeContentKey(encodedAsset);
-            Console.WriteLine("Created key {0} for the asset {1} ", key.Id, encodedAsset.Id);
+            Console.WriteLine("Created key {0} for hello asset {1} ", key.Id, encodedAsset.Id);
             Console.WriteLine();
 
             if (tokenRestriction)
@@ -320,21 +320,21 @@ Assicurarsi di aggiornare le variabili in modo da puntare alle cartelle in cui s
             TokenRestrictionTemplate tokenTemplate =
                 TokenRestrictionTemplateSerializer.Deserialize(tokenTemplateString);
 
-            // Generate a test token based on the data in the given TokenRestrictionTemplate.
-            // Note, you need to pass the key id Guid because we specified 
-            // TokenClaim.ContentKeyIdentifierClaim in during the creation of TokenRestrictionTemplate.
+            // Generate a test token based on hello data in hello given TokenRestrictionTemplate.
+            // Note, you need toopass hello key id Guid because we specified 
+            // TokenClaim.ContentKeyIdentifierClaim in during hello creation of TokenRestrictionTemplate.
             Guid rawkey = EncryptionUtils.GetKeyIdAsGuid(key.Id);
 
-            //The GenerateTestToken method returns the token without the word “Bearer” in front
-            //so you have to add it in front of the token string. 
+            //hello GenerateTestToken method returns hello token without hello word “Bearer” in front
+            //so you have tooadd it in front of hello token string. 
             string testToken = TokenRestrictionTemplateSerializer.GenerateTestToken(tokenTemplate, null, rawkey);
-            Console.WriteLine("The authorization token is:\nBearer {0}", testToken);
+            Console.WriteLine("hello authorization token is:\nBearer {0}", testToken);
             Console.WriteLine();
             }
 
-            // You can use the bit.ly/aesplayer Flash player to test the URL 
+            // You can use hello bit.ly/aesplayer Flash player tootest hello URL 
             // (with open authorization policy). 
-            // Paste the URL and click the Update button to play the video. 
+            // Paste hello URL and click hello Update button tooplay hello video. 
             //
             string URL = GetStreamingOriginLocator(encodedAsset);
             Console.WriteLine("Smooth Streaming Url: {0}/manifest", URL);
@@ -373,22 +373,22 @@ Assicurarsi di aggiornare le variabili in modo da puntare alle cartelle in cui s
         {
             // Declare a new job.
             IJob job = _context.Jobs.Create("Media Encoder Standard Job");
-            // Get a media processor reference, and pass to it the name of the 
-            // processor to use for the specific task.
+            // Get a media processor reference, and pass tooit hello name of hello 
+            // processor toouse for hello specific task.
             IMediaProcessor processor = GetLatestMediaProcessorByName("Media Encoder Standard");
 
-            // Create a task with the encoding details, using a string preset.
+            // Create a task with hello encoding details, using a string preset.
             // In this case "Adaptive Streaming" preset is used.
             ITask task = job.Tasks.AddNew("My encoding task",
             processor,
             "Adaptive Streaming",
             TaskOptions.None);
 
-            // Specify the input asset to be encoded.
+            // Specify hello input asset toobe encoded.
             task.InputAssets.Add(asset);
-            // Add an output asset to contain the results of the job. 
+            // Add an output asset toocontain hello results of hello job. 
             // This output is specified as AssetCreationOptions.None, which 
-            // means the output asset is not encrypted. 
+            // means hello output asset is not encrypted. 
             task.OutputAssets.AddNew("Output asset",
             AssetCreationOptions.StorageEncrypted);
 
@@ -422,7 +422,7 @@ Assicurarsi di aggiornare le variabili in modo da puntare alle cartelle in cui s
                 "ContentKey",
                 ContentKeyType.EnvelopeEncryption);
 
-            // Associate the key with the asset.
+            // Associate hello key with hello asset.
             asset.ContentKeys.Add(key);
 
             return key;
@@ -458,10 +458,10 @@ Assicurarsi di aggiornare le variabili in modo da puntare alle cartelle in cui s
 
             policy.Options.Add(policyOption);
 
-            // Add ContentKeyAutorizationPolicy to ContentKey
+            // Add ContentKeyAutorizationPolicy tooContentKey
             contentKey.AuthorizationPolicyId = policy.Id;
             IContentKey updatedKey = contentKey.UpdateAsync().Result;
-            Console.WriteLine("Adding Key to Asset: Key ID is " + updatedKey.Id);
+            Console.WriteLine("Adding Key tooAsset: Key ID is " + updatedKey.Id);
         }
 
         public static string AddTokenRestrictedAuthorizationPolicy(IContentKey contentKey)
@@ -496,10 +496,10 @@ Assicurarsi di aggiornare le variabili in modo da puntare alle cartelle in cui s
 
             policy.Options.Add(policyOption);
 
-            // Add ContentKeyAutorizationPolicy to ContentKey
+            // Add ContentKeyAutorizationPolicy tooContentKey
             contentKey.AuthorizationPolicyId = policy.Id;
             IContentKey updatedKey = contentKey.UpdateAsync().Result;
-            Console.WriteLine("Adding Key to Asset: Key ID is " + updatedKey.Id);
+            Console.WriteLine("Adding Key tooAsset: Key ID is " + updatedKey.Id);
 
             return tokenTemplateString;
         }
@@ -510,17 +510,17 @@ Assicurarsi di aggiornare le variabili in modo da puntare alle cartelle in cui s
 
             string envelopeEncryptionIV = Convert.ToBase64String(GetRandomBuffer(16));
 
-            // When configuring delivery policy, you can choose to associate it
+            // When configuring delivery policy, you can choose tooassociate it
             // with a key acquisition URL that has a KID appended or
             // or a key acquisition URL that does not have a KID appended  
             // in which case a content key can be reused. 
 
-            // EnvelopeKeyAcquisitionUrl:  contains a key ID in the key URL.
-            // EnvelopeBaseKeyAcquisitionUrl:  the URL does not contains a key ID
+            // EnvelopeKeyAcquisitionUrl:  contains a key ID in hello key URL.
+            // EnvelopeBaseKeyAcquisitionUrl:  hello URL does not contains a key ID
 
-            // The following policy configuration specifies: 
-            // key url that will have KID=<Guid> appended to the envelope and
-            // the Initialization Vector (IV) to use for the envelope encryption.
+            // hello following policy configuration specifies: 
+            // key url that will have KID=<Guid> appended toohello envelope and
+            // hello Initialization Vector (IV) toouse for hello envelope encryption.
 
             Dictionary<AssetDeliveryPolicyConfigurationKey, string> assetDeliveryPolicyConfiguration =
             new Dictionary<AssetDeliveryPolicyConfigurationKey, string>
@@ -535,7 +535,7 @@ Assicurarsi di aggiornare le variabili in modo da puntare alle cartelle in cui s
                 AssetDeliveryProtocol.SmoothStreaming | AssetDeliveryProtocol.HLS | AssetDeliveryProtocol.Dash,
                 assetDeliveryPolicyConfiguration);
 
-            // Add AssetDelivery Policy to the asset
+            // Add AssetDelivery Policy toohello asset
             asset.DeliveryPolicies.Add(assetDeliveryPolicy);
             Console.WriteLine();
             Console.WriteLine("Adding Asset Delivery Policy: " +
@@ -545,8 +545,8 @@ Assicurarsi di aggiornare le variabili in modo da puntare alle cartelle in cui s
         static public string GetStreamingOriginLocator(IAsset asset)
         {
 
-            // Get a reference to the streaming manifest file from the  
-            // collection of files in the asset. 
+            // Get a reference toohello streaming manifest file from hello  
+            // collection of files in hello asset. 
 
             var assetFile = asset.AssetFiles.Where(f => f.Name.ToLower().
                 EndsWith(".ism")).
@@ -558,12 +558,12 @@ Assicurarsi di aggiornare le variabili in modo da puntare alle cartelle in cui s
             TimeSpan.FromDays(30),
             AccessPermissions.Read);
 
-            // Create a locator to the streaming content on an origin. 
+            // Create a locator toohello streaming content on an origin. 
             ILocator originLocator = _context.Locators.CreateLocator(LocatorType.OnDemandOrigin, asset,
             policy,
             DateTime.UtcNow.AddMinutes(-5));
 
-            // Create a URL to the manifest file. 
+            // Create a URL toohello manifest file. 
             return originLocator.Path + assetFile.Name;
         }
 

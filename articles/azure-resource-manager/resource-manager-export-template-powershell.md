@@ -1,6 +1,6 @@
 ---
-title: Esportare un modello di Resource Manager con Azure PowerShell | Documentazione Microsoft
-description: Usare Azure Resource Manager e Azure PowerShell per esportare un modello da un gruppo di risorse.
+title: modello di gestione risorse aaaExport con Azure PowerShell | Documenti Microsoft
+description: Utilizzare Gestione risorse di Azure e Azure PowerShell tooexport un modello da un gruppo di risorse.
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -13,26 +13,26 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/01/2017
 ms.author: tomfitz
-ms.openlocfilehash: 7543811eb9448222b6e7c266756e68debc7d54be
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 9a239b7bce8209326c0e267a4d3d69f7014bdaed
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="export-azure-resource-manager-templates-with-powershell"></a>Esportare modelli di Azure Resource Manager con PowerShell
 
-Resource Manager consente di esportare un modello di Resource Manager dalle risorse esistenti nella sottoscrizione. Il modello generato può essere usato per ottenere informazioni sulla sintassi del modello o per automatizzare la ridistribuzione della soluzione in base alle esigenze.
+Gestione risorse consente tooexport un modello di gestione risorse da risorse esistenti nella sottoscrizione. È possibile utilizzare tale toolearn modello generato su hello modello tooautomate o la sintassi di hello ridistribuzione della soluzione in base alle esigenze.
 
-È importante notare che è possibile esportare un modello in due modi diversi:
+È importante toonote che non esistono due modi diversi tooexport un modello:
 
-* È possibile esportare il modello vero e proprio usato per una distribuzione. Il modello esportato include tutti i parametri e le variabili uguali a quelli visualizzati nel modello originale. Questo approccio è utile quando si vuole recuperare un modello.
-* È possibile esportare un modello che rappresenta lo stato attuale del gruppo di risorse. Il modello esportato non si basa su un modello qualsiasi usato per la distribuzione, ma crea un modello che è uno snapshot del gruppo di risorse. Il modello esportato ha diversi valori hardcoded e probabilmente meno parametri di quelli che si definiscono in genere. Questo approccio è utile quando si modifica il gruppo di risorse e in seguito è necessario acquisire il gruppo di risorse come modello.
+* È possibile esportare modello hello effettivo utilizzato per una distribuzione. modello esportato Hello include tutti i parametri di hello e variabili, esattamente come appaiono nel modello originale hello. Questo approccio è utile quando è necessario tooretrieve un modello.
+* È possibile esportare un modello che rappresenta lo stato corrente di hello hello del gruppo di risorse. modello esportato Hello non è basato su qualsiasi modello utilizzato per la distribuzione. Al contrario, viene creato un modello che è uno snapshot hello del gruppo di risorse. modello esportato Hello molti valori hardcoded e probabilmente non tutti i parametri in genere è possibile definire. Questo approccio è utile quando è stato modificato il gruppo di risorse hello. A questo punto, è necessario gruppo di risorse hello toocapture come modello.
 
 Questo argomento illustra entrambi gli approcci.
 
 ## <a name="deploy-a-solution"></a>Distribuire una soluzione
 
-Per illustrare entrambi gli approcci per l'esportazione di un modello, si inizia con la distribuzione di una soluzione nella sottoscrizione in uso. Se si dispone già di un gruppo di risorse nella sottoscrizione che si vuole esportare, non è necessario distribuire la soluzione. Il resto dell'articolo si riferisce tuttavia al modello per questa soluzione. Lo script di esempio distribuisce un account di archiviazione.
+Per iniziare la distribuzione di una sottoscrizione di tooyour soluzione tooillustrate entrambi approcci per l'esportazione di un modello. Se si dispone già di un gruppo di risorse nella sottoscrizione che si desidera tooexport, non si dispone toodeploy questa soluzione. Tuttavia, il resto di hello di questo articolo si riferisce toohello modello per questa soluzione. lo script di esempio Hello distribuisce un account di archiviazione.
 
 ```powershell
 New-AzureRmResourceGroup -Name ExampleGroup -Location "South Central US"
@@ -41,15 +41,15 @@ New-AzureRmResourceGroupDeployment -ResourceGroupName ExampleGroup `
   -TemplateUri https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-storage-account-create/azuredeploy.json
 ```  
 
-## <a name="save-template-from-deployment-history"></a>Salvare il modello dalla cronologia di distribuzione
+## <a name="save-template-from-deployment-history"></a>Salvare un modello dalla cronologia di distribuzione
 
-È possibile recuperare un modello dalla cronologia della distribuzione usando il comando [Save-AzureRmResourceGroupDeploymentTemplate](/powershell/module/azurerm.resources/save-azurermresourcegroupdeploymenttemplate). L'esempio seguente illustra come salvare il modello distribuito in precedenza:
+È possibile recuperare un modello dalla cronologia distribuzione tramite hello [Salva AzureRmResourceGroupDeploymentTemplate](/powershell/module/azurerm.resources/save-azurermresourcegroupdeploymenttemplate) comando. Hello dopo esempio Salva hello template che si distribuisce in precedenza:
 
 ```powershell
 Save-AzureRmResourceGroupDeploymentTemplate -ResourceGroupName ExampleGroup -DeploymentName NewStorage
 ```
 
-Restituisce il percorso del modello.
+Restituisce il percorso di hello del modello di hello.
 
 ```powershell
 Path
@@ -57,17 +57,17 @@ Path
 C:\Users\exampleuser\NewStorage.json
 ```
 
-Aprendo il file si nota che si tratta dello stesso modello usato per la distribuzione. I parametri e le variabili corrispondono al modello di GitHub. È possibile ridistribuire il modello.
+Aprire il file hello e si noti che modello di esatta hello che è utilizzato per la distribuzione. variabili e parametri hello corrispondano il modello di hello da GitHub. È possibile ridistribuire il modello.
 
-## <a name="export-resource-group-as-template"></a>Esportare il gruppo di risorse come modello
+## <a name="export-resource-group-as-template"></a>Esportare un gruppo di risorse come modello
 
-Invece di recuperare un modello dalla cronologia di distribuzione, è possibile recuperarne uno che rappresenta lo stato attuale di un gruppo di risorse usando il comando [Export-AzureRmResourceGroup](/powershell/module/azurerm.resources/export-azurermresourcegroup). Il comando è utile quando sono state apportate numerose modifiche al gruppo di risorse e nessun modello esistente è in grado di rappresentarle tutte.
+Invece di recuperare un modello dalla cronologia della distribuzione di hello, è possibile recuperare un modello che rappresenta lo stato corrente di hello di un gruppo di risorse utilizzando hello [esportazione AzureRmResourceGroup](/powershell/module/azurerm.resources/export-azurermresourcegroup) comando. Utilizzare questo comando quando sono state apportate molte gruppo di risorse tooyour modifiche e nessun modello esistente rappresenta tutte le modifiche di hello.
 
 ```powershell
 Export-AzureRmResourceGroup -ResourceGroupName ExampleGroup
 ```
 
-Restituisce il percorso del modello.
+Restituisce il percorso di hello del modello di hello.
 
 ```powershell
 Path
@@ -75,7 +75,7 @@ Path
 C:\Users\exampleuser\ExampleGroup.json
 ```
 
-Aprendo il file si nota che è diverso rispetto al modello di GitHub. Contiene parametri diversi e non include variabili. I valori dello SKU e della posizione della risorsa di archiviazione sono impostati come hardcoded. L'esempio seguente mostra il modello esportato, ma il modello in uso presenta un nome di parametro leggermente diverso:
+Aprire il file hello e si noti che è diverso dal modello hello in GitHub. Contiene parametri diversi e non include variabili. archiviazione Hello SKU e la posizione sono hardcoded toovalues. Hello esempio seguente viene illustrato il modello esportato di hello, ma per il modello è un nome di parametro leggermente diverso:
 
 ```json
 {
@@ -107,7 +107,7 @@ Aprendo il file si nota che è diverso rispetto al modello di GitHub. Contiene p
 }
 ```
 
-È possibile ridistribuire questo modello, ma è necessario individuare un nome univoco per l'account di archiviazione. Il nome del parametro è leggermente diverso.
+È possibile ridistribuire il modello, ma richiede l'individuazione di un nome univoco per l'account di archiviazione hello. nome Hello del parametro è leggermente diversa.
 
 ```powershell
 New-AzureRmResourceGroupDeployment -ResourceGroupName ExampleGroup `
@@ -117,13 +117,13 @@ New-AzureRmResourceGroupDeployment -ResourceGroupName ExampleGroup `
 
 ## <a name="customize-exported-template"></a>Personalizzare il modello esportato
 
-È possibile modificare questo modello per renderlo più flessibile e facile da usare. Per consentire più posizioni, modificare la proprietà location affinché usi la stessa posizione del gruppo di risorse:
+È possibile modificare questo modello toomake è toouse più semplice e più flessibile. tooallow per più percorsi, modifica hello percorso proprietà toouse hello stesso percorso del gruppo di risorse hello:
 
 ```json
 "location": "[resourceGroup().location]",
 ```
 
-Per evitare di dover individuare un nome univoco per l'account di archiviazione, rimuovere il parametro per il nome dell'account di archiviazione. Aggiungere un parametro per il suffisso del nome di archiviazione e uno SKU di archiviazione:
+tooavoid con tooguess nome univoche per l'account di archiviazione, il parametro hello remove per il nome di account di archiviazione hello. Aggiungere un parametro per il suffisso del nome di archiviazione e uno SKU di archiviazione:
 
 ```json
 "parameters": {
@@ -146,7 +146,7 @@ Per evitare di dover individuare un nome univoco per l'account di archiviazione,
 },
 ```
 
-Aggiungere una variabile che costruisce il nome dell'account di archiviazione con la funzione uniqueString:
+Aggiungere una variabile che costruisce nome account di archiviazione hello con funzione uniqueString hello:
 
 ```json
 "variables": {
@@ -154,13 +154,13 @@ Aggiungere una variabile che costruisce il nome dell'account di archiviazione co
   },
 ```
 
-Impostare il nome dell'account di archiviazione sulla variabile:
+Impostare il nome di hello della variabile toohello account di archiviazione hello:
 
 ```json
 "name": "[variables('storageAccountName')]",
 ```
 
-Impostare lo SKU sul parametro:
+Impostare hello SKU toohello parametro:
 
 ```json
 "sku": {
@@ -215,9 +215,9 @@ Il modello si presenta ora come segue:
 }
 ```
 
-Ridistribuire il modello modificato.
+Ridistribuire modello modificato hello.
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Per altre informazioni sull'uso del portale per esportare un modello, vedere [Esportare un modello di Azure Resource Manager da risorse esistenti](resource-manager-export-template.md).
-* Per definire i parametri nel modello, vedere [Creazione di modelli](resource-group-authoring-templates.md#parameters).
+* Per informazioni sull'utilizzo di hello portale tooexport un modello, vedere [esportare un modello di gestione risorse di Azure da risorse esistenti](resource-manager-export-template.md).
+* toodefine i parametri di modello, vedere [creazione di modelli](resource-group-authoring-templates.md#parameters).
 * Per suggerimenti su come risolvere i comuni errori di distribuzione, vedere [Risolvere errori comuni durante la distribuzione di risorse in Azure con Azure Resource Manager](resource-manager-common-deployment-errors.md).

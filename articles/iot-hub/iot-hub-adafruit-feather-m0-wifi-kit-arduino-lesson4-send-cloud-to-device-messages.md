@@ -1,6 +1,6 @@
 ---
-title: 'Connettere Arduino (C) ad Azure IoT: lezione 4: da cloud a dispositivo | Microsoft Docs'
-description: "Un'applicazione di esempio viene eseguita nel dispositivo Adafruit Feather M0 WiFi e monitora i messaggi in ingresso dall'hub IoT. Una nuova attività gulp invia messaggi al dispositivo Adafruit Feather M0 WiFi dall'hub IoT per far lampeggiare il LED."
+title: 'Connect Arduino (C) tooAzure IoT - lezione 4: Cloud a dispositivo | Documenti Microsoft'
+description: "Un'applicazione di esempio viene eseguita nel dispositivo Adafruit Feather M0 WiFi e monitora i messaggi in ingresso dall'hub IoT. Una nuova attività gulp invia messaggi tooAdafruit Wi-Fi M0 sfumatura da hello di tooblink l'hub IoT LED."
 services: iot-hub
 documentationcenter: 
 author: shizn
@@ -17,57 +17,57 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 3/21/2017
 ms.author: xshi
-ms.openlocfilehash: b4f4c1d86b10b64c104ac812d1f650d723322be8
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: dcddd61ff684f49436103675938d719cb227c409
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="run-a-sample-application-to-receive-cloud-to-device-messages"></a>Eseguire un'applicazione di esempio per ricevere messaggi da cloud a dispositivo
+# <a name="run-a-sample-application-tooreceive-cloud-to-device-messages"></a>Eseguire un tooreceive di applicazione di esempio i messaggi da cloud a dispositivo
 In questo articolo si distribuisce un'applicazione di esempio nella scheda Arduino Adafruit Feather M0 WiFi.
 
-L'applicazione di esempio monitora i messaggi in ingresso provenienti dall'hub IoT. Per inviare messaggi dall'hub IoT alla scheda Arduino è anche possibile eseguire un'attività gulp nel computer. Alla ricezione dei messaggi, l'applicazione di esempio fa lampeggiare il LED. In caso di problemi, cercare le soluzioni nella [pagina sulla risoluzione dei problemi][troubleshooting].
+applicazione di esempio Hello controlla i messaggi in ingresso dall'hub IoT. Inoltre si esegue un'attività gulp su tooyour di messaggi del toosend computer Arduino Lavagna dall'hub IoT. Quando l'applicazione di esempio hello riceve messaggi hello, lampeggia hello LED. Se si verificano problemi, cercare soluzioni in hello [risoluzione dei problemi di pagina][troubleshooting].
 
 ## <a name="what-you-will-do"></a>Contenuto dell'esercitazione
-* Connettere l'applicazione di esempio all'hub IoT.
-* Distribuire ed eseguire l'applicazione di esempio.
-* Inviare messaggi dall'hub IoT alla scheda Arduino per far lampeggiare il LED.
+* Connettere l'hub IoT hello esempio applicazione tooyour.
+* Distribuire ed eseguire l'applicazione di esempio hello.
+* Invio di messaggi dal hello della tooblink Lavagna di IoT hub tooyour Arduino LED.
 
 ## <a name="what-you-will-learn"></a>Contenuto dell'esercitazione
 Contenuto dell'articolo:
-* Come monitorare i messaggi in ingresso dall'hub IoT.
-* Come inviare i messaggi da cloud a dispositivo dall'hub IoT alla scheda Arduino.
+* La modalità in ingresso toomonitor dei messaggi dall'hub IoT.
+* La modalità toosend cloud a dispositivo dei messaggi dal tooyour hub IoT Arduino Lavagna.
 
 ## <a name="what-you-need"></a>Elementi necessari
-* La scheda Arduino pronta all'uso. Per informazioni su come impostare la scheda Arduino, vedere [Configurare il dispositivo][configure-your-device].
-* Un hub IoT creato nella propria sottoscrizione di Azure. Per informazioni sulla creazione dell'hub IoT, vedere l'articolo su come [creare l'hub IoT di Azure][create-your-azure-iot-hub].
+* La scheda Arduino pronta all'uso. toolearn tooset la tavola da Arduino, vedere [configurare il dispositivo][configure-your-device].
+* Un hub IoT creato nella propria sottoscrizione di Azure. toolearn come toocreate l'hub IoT, vedere [creare l'IoT Hub Azure][create-your-azure-iot-hub].
 
-## <a name="connect-the-sample-application-to-your-iot-hub"></a>Connettere l'applicazione di esempio all'hub IoT
+## <a name="connect-hello-sample-application-tooyour-iot-hub"></a>Collegare hello esempio applicazione tooyour IoT hub
 
-1. Assicurarsi che sia aperta la cartella `iot-hub-c-feather-m0-getting-started` del repository.
+1. Assicurarsi che si è nella cartella repository hello `iot-hub-c-feather-m0-getting-started`.
 
-   Aprire l'applicazione di esempio in Visual Studio Code usando i comandi seguenti:
+   Aprire l'applicazione di esempio hello in Visual Studio Code eseguendo hello seguenti comandi:
 
    ```bash
    cd Lesson4
    code .
    ```
 
-   Si noti il file `app.ino` nella sottocartella `app`. `app.ino` è il file di origine chiave che contiene il codice per il monitoraggio dei messaggi in ingresso dall'hub IoT. La funzione `blinkLED` fa lampeggiare il LED.
+   Hello preavviso `app.ino` file hello `app` sottocartella. Hello `app.ino` è hello i file di origine della chiave che contiene i messaggi in ingresso hello codice toomonitor dall'hub IoT hello. Hello `blinkLED` funzione lampeggia hello LED.
 
-   ![Struttura del repository nell'applicazione di esempio][repo-structure]
+   ![Struttura repository nell'applicazione di esempio hello][repo-structure]
 
-2. Ottenere la porta seriale del dispositivo usando l'interfaccia della riga di comando per l'individuazione del dispositivo:
+2. Ottenere della porta seriale del dispositivo hello con hello dispositivo individuazione cli hello:
 
    ```bash
    devdisco list --usb
    ```
 
-   Verrà visualizzato un output simile al seguente e sarà rilevata la porta COM USB per la scheda Arduino:
+   Si dovrebbe vedere un output simile toohello seguente e trovare hello usb porta COM per la scheda Arduino:
 
    ![Individuazione del dispositivo][device-discovery]
 
-3. Aprire il file `config.json` nella cartella della lezione e aggiungere il valore del numero della porta COM trovato:
+3. File aperti hello `config.json` hello lezione cartella e il valore di input hello di trovare il numero di porta COM hello:
 
    ```json
    {
@@ -78,9 +78,9 @@ Contenuto dell'articolo:
    ![config.json][config-json]
 
    > [!NOTE]
-   > Per la porta COM, nella piattaforma Windows il formato è `COM1, COM2, ...`. In macOS o Ubuntu inizia con `/dev/`.
+   > Per la porta COM hello, sulla piattaforma Windows, ha il formato di hello di `COM1, COM2, ...`. In macOS o Ubuntu inizia con `/dev/`.
 
-4. Inizializzare il file di configurazione usando i comandi seguenti:
+4. Inizializzare i file di configurazione hello eseguendo hello seguenti comandi:
 
    ```bash
    # For Windows command prompt
@@ -89,42 +89,42 @@ Contenuto dell'articolo:
    gulp install-tools
    ```
 
-5. Sostituire i valori seguenti nel file `config-arduino.json`:
+5. Rendere hello seguenti sostituzioni hello `config-arduino.json` file:
 
-   Se la procedura descritta in [Creare un'app per le funzioni di Azure e un account di archiviazione][create-an-azure-function-app-and-storage-account] è stata completata nello stesso computer, tutte le configurazioni vengono ereditate. È quindi possibile passare direttamente all'attività di distribuzione ed esecuzione dell'applicazione di esempio. Se la procedura descritta in [Creare un'app per le funzioni di Azure e un account di archiviazione][create-an-azure-function-app-and-storage-account] è stata completata in un computer diverso, è necessario sostituire i segnaposto nel file `config-arduino.json`. Il file `config-arduino.json` si trova nella sottocartella della cartella principale.
+   Se è stato completato i passaggi di hello in [creare un account di archiviazione e l'app Azure funzione] [ create-an-azure-function-app-and-storage-account] su questo computer, tutte le configurazioni di hello vengono ereditate, pertanto è possibile ignorare hello passaggio toohello attività di distribuzione e in esecuzione l'applicazione di esempio hello. Se è stato completato i passaggi di hello in [creare un account di archiviazione e l'app Azure funzione] [ create-an-azure-function-app-and-storage-account] in un computer diverso, è necessario segnaposto hello tooreplace hello `config-arduino.json` file. Hello `config-arduino.json` file si trova nella sottocartella hello della cartella principale.
 
-   ![Contenuto del file config-arduino.json][config-arduino-json]
+   ![Contenuto del file di configurazione arduino.json hello][config-arduino-json]
 
-   * Sostituire **[Wi-Fi SSID]** con il codice SSID Wi-Fi che ha eseguito la connessione a Internet.
-   * Sostituire **[Wi-Fi password]** con la password Wi-Fi. Rimuovere la stringa se il Wi-Fi non richiede la password.
-   * Sostituire **[IoT device connection string]** con la stringa di connessione del dispositivo che si ottiene eseguendo il comando `az iot device show-connection-string --hub-name {my hub name} --device-id {device id}`.
-   * Sostituire **[IoT hub connection string]** con la stringa di connessione dell'hub IoT che si ottiene eseguendo il comando `az iot hub show-connection-string --name {my hub name}`.
+   * Sostituire **[Wi-Fi SSID]** con il SSID Wi-Fi che è connesso a Internet toohello.
+   * Sostituire **[Wi-Fi password]** con la password Wi-Fi. Rimuovere la stringa hello se il Wi-Fi non richiede una password.
+   * Sostituire **[stringa di connessione dispositivo IoT]** con stringa di connessione hello dispositivo che si ottiene eseguendo hello `az iot device show-connection-string --hub-name {my hub name} --device-id {device id}` comando.
+   * Sostituire **[stringa di connessione hub IoT]** con stringa di connessione hub IoT che si ottiene eseguendo hello hello `az iot hub show-connection-string --name {my hub name}` comando.
 
-## <a name="deploy-and-run-the-sample-application"></a>Distribuire ed eseguire l'applicazione di esempio
-Distribuire ed eseguire l'applicazione di esempio nella scheda Arduino usando i comandi seguenti:
+## <a name="deploy-and-run-hello-sample-application"></a>Distribuire ed eseguire l'applicazione di esempio hello
+Distribuire ed eseguire l'applicazione di esempio hello sulla Lavagna Arduino eseguendo hello seguenti comandi:
 
 ```bash
 gulp run
-# You can monitor the serial port by running listen task:
+# You can monitor hello serial port by running listen task:
 gulp listen
 
 # Or you can combine above two gulp tasks into one:
 gulp run --listen
 ```
 
-Il comando gulp distribuisce l'applicazione di esempio nella scheda Arduino. Quindi, esegue l'applicazione sulla scheda Arduino e un'attività separata sul computer host per l'invio di 20 messaggi di lampeggiamento dall'hub IoT alla scheda Arduino.
+comando gulp Hello distribuisce la Lavagna Arduino hello esempio applicazione tooyour. Quindi viene eseguita un'applicazione hello la Lavagna Arduino e un'attività separata nell'host della Lavagna di Arduino tooyour messaggi blink toosend 20 computer dall'hub IoT.
 
-Non appena viene eseguita, l'applicazione di esempio rimane in ascolto di messaggi provenienti dall'hub IoT. Nel frattempo, l'attività gulp invia vari messaggi di lampeggiamento dall'hub IoT alla scheda Arduino. Per ogni messaggio di lampeggiamento ricevuto dalla scheda, l'applicazione di esempio chiama la funzione `blinkLED` per far lampeggiare il LED.
+Quando si esegue l'applicazione di esempio hello, avvia l'ascolto toomessages dall'hub IoT. Nel frattempo, attività gulp hello invia messaggi di "blink" diversi dai tooyour hub IoT Arduino Lavagna. Per ogni messaggio blink hello Lavagna riceve, applicazione di esempio hello chiama hello `blinkLED` hello tooblink funzione LED.
 
-Durante l'invio dei 20 messaggi dall'hub IoT alla scheda Arduino da parte dell'attività gulp, il LED dovrebbe lampeggiare ogni due secondi. L'ultimo è un messaggio "stop" che arresta l'esecuzione dell'applicazione.
+Dovrebbe essere hello LED blink ogni due secondi, come attività gulp hello invia 20 messaggi dal tooyour hub IoT Arduino Lavagna. Hello ultimo uno è un messaggio "stop" che interrompe l'esecuzione di un'applicazione hello.
 
 ![Applicazione di esempio con comando gulp e messaggi di lampeggiamento][sample-application]
 
 ## <a name="summary"></a>Riepilogo
-Sono stati inviati messaggi dall'hub IoT alla scheda Arduino per far lampeggiare il LED. L'attività successiva è facoltativa: modificare il comportamento di accensione e spegnimento del LED.
+I messaggi inviati correttamente dal hello della tooblink Lavagna di IoT hub tooyour Arduino LED. attività successiva Hello è facoltativo: modificare hello e disattivare il comportamento di hello LED.
 
 ## <a name="next-steps"></a>Passaggi successivi
-[Modificare il comportamento di accensione e spegnimento del LED][change-the-on-and-off-led-behavior]
+[Modificare hello e disattivare il comportamento di hello LED][change-the-on-and-off-led-behavior]
 
 
 <!-- Images and links -->

@@ -1,6 +1,6 @@
 ---
-title: Pubblicare contenuti di Servizi multimediali di Azure mediante REST
-description: Informazioni su come creare un localizzatore da usare per un URL di streaming. Nel codice viene usata l'API REST.
+title: contenuto di servizi multimediali di Azure aaaPublish tramite REST
+description: Informazioni su come toocreate un indicatore di posizione toobuild usato un URL di streaming. codice Hello viene utilizzata l'API REST.
 author: Juliako
 manager: cfowler
 editor: 
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/09/2017
 ms.author: juliako
-ms.openlocfilehash: d1e0a112040f6aa4cfa9e8c323507b1c0a223f3e
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: f849e21b3103b9b33bc652e886b2016ea495b19a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="publish-azure-media-services-content-using-rest"></a>Pubblicare contenuti di Servizi multimediali di Azure mediante REST
 > [!div class="op_single_selector"]
@@ -29,40 +29,40 @@ ms.lasthandoff: 08/29/2017
 > 
 
 ## <a name="overview"></a>Overview
-È possibile trasmettere in streaming un set MP4 a velocità in bit adattiva creando un localizzatore di streaming OnDemand e un URL di streaming. L'argomento relativo alla [codifica di un asset](media-services-rest-encode-asset.md) illustra come codificare un asset in un set MP4 a bitrate adattivo. Se il contenuto è crittografato, configurare i criteri di distribuzione degli asset (come descritto in [questo](media-services-rest-configure-asset-delivery-policy.md) argomento) prima di creare un localizzatore. 
+È possibile trasmettere in streaming un set MP4 a velocità in bit adattiva creando un localizzatore di streaming OnDemand e un URL di streaming. Hello [codifica un asset](media-services-rest-encode-asset.md) argomento viene illustrato come imposta di tooencode in un file MP4 a velocità in bit adattiva. Se il contenuto è crittografato, configurare i criteri di distribuzione degli asset (come descritto in [questo](media-services-rest-configure-asset-delivery-policy.md) argomento) prima di creare un localizzatore. 
 
-È inoltre possibile usare un localizzatore di streaming OnDemand per creare URL che puntano a file MP4 scaricabili in modo progressivo.  
+È possibile utilizzare anche un OnDemand localizzatore toobuild URL tooMP4 punto che i file che possono essere scaricati progressivamente di streaming.  
 
-Questo argomento illustra come creare un localizzatore di streaming OnDemand, per pubblicare l'asset e creare URL di streaming Smooth, MPEG DASH e HLS, e come creare URL di download progressivo.
+In questo argomento viene illustrato toocreate un localizzatore di streaming OnDemand in ordine toopublish l'asset e creare un formato Smooth Streaming, MPEG DASH e HLS gli URL di streaming. Viene inoltre gli URL di download progressivo toobuild a caldo.
 
-La sezione [seguente](#types) mostra i tipi enum i cui valori vengono usati nelle chiamate REST.   
+Hello [seguente](#types) sezione Mostra hello tipi enum i cui valori vengono utilizzati nelle chiamate REST hello.   
 
 > [!NOTE]
 > Quando si accede alle entità in Servizi multimediali, è necessario impostare valori e campi di intestazione specifici nelle richieste HTTP. Per altre informazioni, vedere [Panoramica dell'API REST di Servizi multimediali](media-services-rest-how-to-use.md).
 > 
 
-## <a name="connect-to-media-services"></a>Connettersi a Servizi multimediali
+## <a name="connect-toomedia-services"></a>Connessione dei servizi tooMedia
 
-Per informazioni su come connettersi all'API AMS, vedere [Accedere all'API di Servizi multimediali di Azure con l'autenticazione di Azure AD](media-services-use-aad-auth-to-access-ams-api.md). 
+Per informazioni su come tooconnect toohello AMS API, vedere [hello accesso API di servizi multimediali di Azure con autenticazione di Azure AD](media-services-use-aad-auth-to-access-ams-api.md). 
 
 >[!NOTE]
->Dopo avere stabilito la connessione a https://media.windows.net, si riceverà un reindirizzamento 301 che indica un altro URI di Servizi multimediali. Le chiamate successive dovranno essere effettuate al nuovo URI.
+>Dopo avere stabilito la connessione toohttps://media.windows.net, si riceverà un reindirizzamento 301 specificando un altro URI di servizi multimediali. È necessario effettuare le chiamate successive toohello nuovo URI.
 
 ## <a name="create-an-ondemand-streaming-locator"></a>Creare un localizzatore di streaming OnDemand
-Per creare un localizzatore di streaming OnDemand e ottenere gli URL, è necessario effettuare le seguenti operazioni:
+toocreate hello localizzatore di streaming OnDemand e ottenere l'URL è necessario hello toodo seguenti:
 
-1. Se il contenuto viene crittografato, definire i criteri di accesso.
+1. Hello contenuto crittografato, è possibile definire un criterio di accesso.
 2. Creare un localizzatore di streaming OnDemand.
-3. Se si pianifica lo streaming, ottenere il file manifesto di streaming (.ism) nell'asset. 
+3. Se si prevede di toostream, ottenere il flusso di file manifesto (ISM) nel asset hello hello. 
    
-   Se si pianifica il download progressivo, ottenere i nomi dei file MP4 nell'asset. 
-4. Creare URL che puntano al file manifesto o ai file MP4. 
+   Se si prevede di download tooprogressively, ottenere i nomi di hello di file MP4 in asset hello. 
+4. Compilare i file MP4 o file di manifesto toohello URL. 
 5. Si noti che non è possibile creare un localizzatore di streaming utilizzando un criterio di accesso che include autorizzazioni alla scrittura o all’eliminazione.
 
 ### <a name="create-an-access-policy"></a>Creare i criteri di accesso
 
 >[!NOTE]
->È previsto un limite di 1.000.000 di criteri per i diversi criteri AMS (ad esempio per i criteri Locator o ContentKeyAuthorizationPolicy). Usare lo stesso ID criterio se si usano sempre gli stessi giorni/autorizzazioni di accesso, come nel cado di criteri per i localizzatori che devono rimanere attivi per molto tempo (criteri di non caricamento). Per altre informazioni, vedere [questo](media-services-dotnet-manage-entities.md#limit-access-policies) argomento.
+>È previsto un limite di 1.000.000 di criteri per i diversi criteri AMS (ad esempio per i criteri Locator o ContentKeyAuthorizationPolicy). È consigliabile utilizzare hello stesso ID di criteri, se si utilizza sempre hello stesso giorni accesso le autorizzazioni, ad esempio, i criteri per i localizzatori che sono previsti tooremain sul posto per un lungo periodo (non-caricamento criteri). Per altre informazioni, vedere [questo](media-services-dotnet-manage-entities.md#limit-access-policies) argomento.
 
 Richiesta:
 
@@ -100,7 +100,7 @@ Risposta:
     {"odata.metadata":"https://media.windows.net/api/$metadata#AccessPolicies/@Element","Id":"nb:pid:UUID:69c80d98-7830-407f-a9af-e25f4b0d3e5f","Created":"2015-02-18T06:52:09.8862191Z","LastModified":"2015-02-18T06:52:09.8862191Z","Name":"access policy","DurationInMinutes":43200.0,"Permissions":1}
 
 ### <a name="create-an-ondemand-streaming-locator"></a>Creare un localizzatore di streaming OnDemand
-Creare il localizzatore per l'asset specificato e i relativi criteri.
+Creazione localizzatore hello per asset specificato hello e criteri di asset.
 
 Richiesta:
 
@@ -138,7 +138,7 @@ Risposta:
     {"odata.metadata":"https://media.windows.net/api/$metadata#Locators/@Element","Id":"nb:lid:UUID:be245661-2bbd-4fc6-b14f-9cf9a1492e5e","ExpirationDateTime":"2015-03-20T06:34:47.267872+00:00","Type":2,"Path":"http://amstest1.streaming.mediaservices.windows.net/be245661-2bbd-4fc6-b14f-9cf9a1492e5e/","BaseUri":"http://amstest1.streaming.mediaservices.windows.net","ContentAccessComponent":"be245661-2bbd-4fc6-b14f-9cf9a1492e5e","AccessPolicyId":"nb:pid:UUID:1480030d-c481-430a-9687-535c6a5cb272","AssetId":"nb:cid:UUID:cc1e445d-1500-80bd-538e-f1e4b71b465e","StartTime":"2015-02-18T06:34:47.267872+00:00","Name":null}
 
 ### <a name="build-streaming-urls"></a>Creare URL di streaming
-Usare il valore **Path** restituito dopo la creazione del localizzatore per creare gli URL Smooth, HLS e MPEG DASH. 
+Hello utilizzare **percorso** valore restituito dopo la creazione di hello di hello toobuild di hello localizzatore URL di MPEG DASH, HLS e Smooth Streaming. 
 
 Smooth Streaming: **Path** + nome file manifesto + "/manifest"
 
@@ -161,7 +161,7 @@ esempio:
 
 
 ### <a name="build-progressive-download-urls"></a>Creare URL di download progressivo
-Usare il valore **Path** restituito dopo la creazione del localizzatore per creare l'URL di download progressivo.   
+Hello utilizzare **percorso** valore restituito dopo la creazione di hello dell'URL di download progressivo hello toobuild locator hello.   
 
 URL: **Path** + nome file mp4 asset
 

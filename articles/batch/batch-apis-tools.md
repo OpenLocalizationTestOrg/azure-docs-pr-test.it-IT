@@ -1,6 +1,6 @@
 ---
-title: Usare strumenti e API di Azure Batch e per sviluppare soluzioni di elaborazione parallela su larga scala | Microsoft Docs
-description: Informazioni sulle API e gli strumenti disponibili per lo sviluppo di soluzioni con il servizio Azure Batch.
+title: soluzioni aaaUse strumenti e le API di Azure Batch toodevelop su larga scala l'elaborazione parallela | Documenti Microsoft
+description: Informazioni sulle API hello e gli strumenti disponibili per lo sviluppo di soluzioni con il servizio di Azure Batch hello.
 services: batch
 author: tamram
 manager: timlt
@@ -8,33 +8,33 @@ ms.service: batch
 ms.topic: get-started-article
 ms.date: 03/08/2017
 ms.author: tamram
-ms.openlocfilehash: c8c76944f4a95d3c8181454a7103ea0a3022189a
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: ca75a1a63b3e7e6b0805e79a63685bc49aaaca8f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="overview-of-batch-apis-and-tools"></a>Panoramica delle API e degli strumenti di Batch
 
-L'elaborazione dei carichi di lavoro paralleli con Azure Batch è in genere eseguita a livello di codice usando una delle [API Batch](#batch-development-apis). L'applicazione o il servizio client può usare le API Batch per comunicare con il servizio Batch. Con le API Batch, è possibile creare e gestire pool di nodi di calcolo, che siano macchine virtuali o servizi cloud. È quindi possibile programmare processi e attività da eseguire in tali nodi. 
+L'elaborazione dei carichi di lavoro paralleli con Azure Batch è in genere eseguita a livello di programmazione utilizzando uno dei hello [API Batch](#batch-development-apis). L'applicazione client o il servizio è possibile utilizzare hello API Batch toocommunicate con hello servizio Batch. Con hello API Batch, è possibile creare e gestire i pool di nodi di calcolo, le macchine virtuali o i servizi cloud. È quindi possibile pianificare processi e attività toorun tali nodi. 
 
-È possibile elaborare in modo efficiente carichi di lavoro su larga scala per l'organizzazione oppure offrire ai clienti un front-end di servizio perché possano eseguire processi e attività, su richiesta o in base a una pianificazione, in uno, centinaia o anche migliaia di nodi. È anche possibile usare il servizio Azure Batch nell'ambito di un flusso di lavoro più ampio, gestito da strumenti come [Azure Data Factory](../data-factory/data-factory-data-processing-using-batch.md?toc=%2fazure%2fbatch%2ftoc.json).
+È possibile in modo efficiente di elaborare carichi di lavoro su larga scala per l'organizzazione, o fornire un front-end del servizio clienti tooyour in modo che possano eseguire processi e attività, su richiesta o in una pianificazione, in uno, centinaia o migliaia di nodi. È anche possibile usare il servizio Azure Batch nell'ambito di un flusso di lavoro più ampio, gestito da strumenti come [Azure Data Factory](../data-factory/data-factory-data-processing-using-batch.md?toc=%2fazure%2fbatch%2ftoc.json).
 
 > [!TIP]
-> Per approfondire l'API Batch e le relative funzionalità, vedere [Panoramica delle funzionalità di Batch per sviluppatori](batch-api-basics.md).
+> Quando si è pronti toodig in toohello API Batch per una conoscenza più approfondita di hello caratteristiche disponibili, estrarre hello [Cenni preliminari sulla funzionalità di Batch per gli sviluppatori](batch-api-basics.md).
 > 
 > 
 
 ## <a name="azure-accounts-for-batch-development"></a>Account Azure per lo sviluppo Batch
-Di seguito sono riportati gli account da usare in Microsoft Azure per lo sviluppo di soluzioni Batch.
+Quando si sviluppano soluzioni di Batch, si userà hello seguendo gli account in Microsoft Azure.
 
 * **Account e sottoscrizione di Azure**: se non si ha già una sottoscrizione di Azure, è possibile attivare i [vantaggi dell'abbonamento a MSDN][msdn_benefits] oppure iscriversi per ottenere un [account Azure gratuito][free_account]. Quando si crea un account, viene creata una sottoscrizione predefinita.
-* **Account Batch**: le risorse di Azure Batch, inclusi pool, nodi di calcolo, processi e attività, sono associate a un account Azure Batch. Quando l'applicazione esegue una richiesta sul servizio Batch, autentica la richiesta usando il nome dell'account Azure Batch, l'URL dell'account e la chiave di accesso. È possibile [creare un account Batch](batch-account-create-portal.md) nel portale di Azure.
-* **Account di archiviazione**: Batch include il supporto predefinito per l'uso di file in [Archiviazione di Azure][azure_storage]. Quasi tutti gli scenari di Batch usano l'archivio BLOB di Azure per lo staging dei programmi eseguiti e dei dati elaborati dalle attività e per l'archiviazione dei dati di output generati. Per creare un account di archiviazione, vedere [Informazioni sugli account di archiviazione di Azure](../storage/common/storage-create-storage-account.md).
+* **Account Batch**: le risorse di Azure Batch, inclusi pool, nodi di calcolo, processi e attività, sono associate a un account Azure Batch. Quando l'applicazione esegue una richiesta nel servizio Batch hello, consente l'autenticazione richiesta hello utilizzando nome dell'account Azure Batch hello, hello URL dell'account hello e una chiave di accesso. È possibile [creare l'account Batch](batch-account-create-portal.md) in hello portale di Azure.
+* **Account di archiviazione**: Batch include il supporto predefinito per l'uso di file in [Archiviazione di Azure][azure_storage]. Quasi ogni scenario di Batch utilizza l'archiviazione Blob di Azure per dati di hello che elaborano e programmi hello che eseguono le attività di gestione temporanea e per l'archiviazione dei dati di output che generano hello. toocreate un account di archiviazione, vedere [gli account di archiviazione di Azure su](../storage/common/storage-create-storage-account.md).
 
 ## <a name="batch-service-apis"></a>API di servizio Batch
 
-Le applicazioni e i servizi possono rilasciare chiamate API REST dirette o usare una o più delle librerie client seguenti per eseguire e gestire i carichi di lavoro di Azure Batch.
+Le applicazioni e servizi possono rilasciare dirette chiamate all'API REST o utilizzare uno o più dei seguenti toorun librerie client hello e gestire i carichi di lavoro di Azure Batch.
 
 | API | Informazioni di riferimento sulle API | Scaricare | Esercitazione | Esempi di codice | Altre informazioni |
 | --- | --- | --- | --- | --- | --- |
@@ -46,7 +46,7 @@ Le applicazioni e i servizi possono rilasciare chiamate API REST dirette o usare
 
 ## <a name="batch-management-apis"></a>API per la gestione di Batch
 
-Le API di Azure Resource Manager per Batch forniscono l'accesso a livello di codice agli account Batch. Usando queste API, è possibile gestire a livello di codice gli account Batch, le quote e i pacchetti dell'applicazione.  
+API di gestione risorse di Azure per Batch Hello forniscono l'accesso a livello di codice tooBatch account. Usando queste API, è possibile gestire a livello di codice gli account Batch, le quote e i pacchetti dell'applicazione.  
 
 | API | Informazioni di riferimento sulle API | Scaricare | Esercitazione | Esempi di codice |
 | --- | --- | --- | --- | --- |
@@ -55,30 +55,30 @@ Le API di Azure Resource Manager per Batch forniscono l'accesso a livello di cod
 
 ## <a name="batch-command-line-tools"></a>Strumenti da riga di comando di Batch
 
-Questi strumenti da riga di comando forniscono le stesse funzionalità delle API del servizio Batch e di gestione di Batch: 
+Questi strumenti da riga di comando offrono hello stessa funzionalità come hello API di gestione di Batch e il servizio Batch: 
 
-* [Cmdlet di PowerShell per Batch][batch_ps]: i cmdlet di Azure Batch nel modulo di [Azure PowerShell](/powershell/azure/overview) consentono di gestire le risorse Batch con PowerShell.
-* [Interfaccia della riga di comando di Azure](/cli/azure/overview): l'interfaccia della riga di comando di Azure è un set di strumenti multipiattaforma che offre comandi della shell per l'interazione con molti servizi di Azure, inclusi il servizio Batch e il servizio di gestione di Batch. Per altre informazioni sull'uso dell'interfaccia della riga di comando di Azure con Batch, vedere [Gestire le risorse di Batch con l'interfaccia della riga di comando di Azure](batch-cli-get-started.md).
+* [I cmdlet di PowerShell batch][batch_ps]: hello cmdlet di Azure Batch in hello [Azure PowerShell](/powershell/azure/overview) modulo consentono risorse Batch toomanage con PowerShell.
+* [CLI di Azure](/cli/azure/overview): hello interfaccia della riga di comando di Azure (Azure CLI) è un set di strumenti multipiattaforma che fornisce i comandi della shell per interagire con molti servizi di Azure, inclusi il servizio di Batch hello e servizio di gestione dei Batch. Vedere [risorse gestire Batch con Azure CLI](batch-cli-get-started.md) per ulteriori informazioni sull'utilizzo di hello CLI di Azure batch.
 
 ## <a name="other-tools-for-application-development"></a>Altri strumenti per lo sviluppo di applicazioni
 
 Di seguito sono riportati alcuni strumenti aggiuntivi che possono risultare utili per la compilazione e il debug di applicazioni e servizi Batch:
 
-* [Portale di Azure][portal]: nei pannelli per Batch del portale di Azure si possono creare, monitorare ed eliminare pool, processi e attività di Batch. È possibile visualizzare informazioni sullo stato di queste e altre risorse mentre si eseguono i processi, nonché scaricare file dai nodi di calcolo dei pool. È ad esempio possibile scaricare il file `stderr.txt` di un'attività non riuscita durante la risoluzione dei problemi. Si possono anche scaricare i file desktop remoto (RDP) che possono essere usati per accedere ai nodi di calcolo.
-* [Azure Batch Explorer][batch_explorer]: Batch Explorer offre funzionalità per la gestione delle risorse di Batch simili al portale di Azure, ma in un'applicazione client WPF (Windows Presentation Foundation) autonoma. È una delle applicazioni Batch .NET di esempio disponibili in [GitHub][github_samples] e può essere compilata con Visual Studio 2015 o versioni successive ed essere usata per esplorare e gestire le risorse nell'account Batch durante lo sviluppo e il debug delle soluzioni Batch. È possibile visualizzare i dettagli di attività, pool e processi, scaricare file dai nodi di calcolo e connettersi in remoto ai nodi usando i file desktop remoto (RDP) scaricabili con Batch Explorer.
-* [Microsoft Azure Storage Explorer][storage_explorer]: anche se non è uno strumento di Azure Batch in senso stretto, Storage Explorer è un altro strumento utile per lo sviluppo e il debug delle soluzioni Batch.
+* [Portale di Azure][portal]: si può creare, monitorare ed eliminare pool, processi e attività in hello Azure Batch pannelli Batch del portale. È possibile visualizzare le informazioni sullo stato di hello per queste e altre risorse mentre si eseguono i processi e anche scaricare i file dei nodi di calcolo hello nei pool. È ad esempio possibile scaricare il file `stderr.txt` di un'attività non riuscita durante la risoluzione dei problemi. È inoltre possibile scaricare i file Desktop remoto (RDP) che è possibile utilizzare toolog toocompute nodi.
+* [Azure Batch Esplora][batch_explorer]: Esplora Batch offre funzionalità di gestione risorse di Batch simili come hello portale di Azure, ma in un'applicazione client Windows Presentation Foundation (WPF) autonoma. Una delle applicazioni di esempio .NET per Batch hello disponibile in [GitHub][github_samples], è possibile compilare con Visual Studio 2015 o versione successiva e usarlo toobrowse e gestire risorse hello nell'account di Batch durante lo sviluppo e debug delle soluzioni di Batch. Visualizza processo, i pool e i dettagli delle attività, scaricano file da nodi di calcolo e connettono in remoto toonodes utilizzando Esplora Batch è possibile scaricare i file di Desktop remoto (RDP).
+* [Microsoft Azure Storage Explorer][storage_explorer]: sebbene non sia strettamente uno strumento di Azure Batch, hello Esplora archivi è un altro strumento prezioso toohave durante lo sviluppo e debug delle soluzioni di Batch.
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
-- Per informazioni sulla registrazione di eventi dall'applicazione Batch, vedere [Registrare gli eventi per la diagnostica e il monitoraggio delle soluzioni Batch](batch-diagnostics.md). Per informazioni dettagliate sugli eventi generati dal servizio Batch, vedere [Analisi Batch](batch-analytics.md).
+- toolearn sugli eventi di registrazione dall'applicazione di Batch, vedere [registrare gli eventi per una valutazione diagnostica e monitoraggio di soluzioni di Batch](batch-diagnostics.md). Per informazioni di riferimento sugli eventi generati dal servizio Batch hello, vedere [Analitica Batch](batch-analytics.md).
 - Per informazioni sulle variabili di ambiente per i nodi di calcolo, vedere [Variabili di ambiente per i nodi di calcolo di Azure Batch](batch-compute-node-environment-variables.md).
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-* Vedere [Panoramica sulle funzionalità di Batch per sviluppatori](batch-api-basics.md)per informazioni essenziali per chiunque si prepari all'uso di Batch. L'articolo contiene informazioni più dettagliate sulle risorse del servizio Batch, ad esempio pool, nodi, processi e attività, e sulle numerose funzionalità delle API che è possibile usare durante la compilazione dell'applicazione Batch.
-* [Introduzione alla libreria di Azure Batch per .NET](batch-dotnet-get-started.md) . È consigliabile leggere questo articolo nelle prime fasi dell'apprendimento dell'uso del servizio Batch. È anche disponibile una [versione Python](batch-python-tutorial.md) dell'esercitazione.
-* Scaricare gli [esempi di codice in GitHub][github_samples] per vedere come C# e Python possono interfacciarsi con Batch per pianificare ed elaborare carichi di lavoro di esempio.
-* Per conoscere le risorse disponibili per imparare a usare Batch, vedere il [percorso di apprendimento per Batch][learning_path].
+* Hello lettura [Cenni preliminari sulla funzionalità di Batch per gli sviluppatori](batch-api-basics.md), informazioni essenziale per chiunque preparazione toouse Batch. articolo Hello contiene informazioni più dettagliate sulle risorse del servizio Batch come pool di nodi, processi e attività e hello molte funzionalità dell'API che è possibile utilizzare durante la compilazione dell'applicazione di Batch.
+* [Introduzione alla libreria di Azure Batch hello per .NET](batch-dotnet-get-started.md) toolearn come toouse c# e hello tooexecute libreria .NET di Batch di un carico di lavoro semplice utilizzando un flusso di lavoro comune di Batch. In questo articolo deve essere il primo viene arrestata quando si impara come toouse hello servizio Batch. È inoltre disponibile un [versione di Python](batch-python-tutorial.md) di esercitazione hello.
+* Scaricare hello [esempi su GitHub di codice] [ github_samples] toosee come c# e Python può interfacciarsi con Batch tooschedule e processo di esempio carichi di lavoro.
+* Estrarre hello [il percorso di apprendimento Batch] [ learning_path] tooget un'idea di tooyou disponibili risorse di hello come è illustrato toowork con Batch.
 
 
 [azure_storage]: https://azure.microsoft.com/services/storage/

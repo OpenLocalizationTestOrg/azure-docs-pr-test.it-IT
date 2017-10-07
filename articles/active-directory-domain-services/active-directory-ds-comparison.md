@@ -1,6 +1,6 @@
 ---
-title: 'Azure Active Directory Domain Services: confronto tra Azure Active Directory Domain Services e controller di dominio fai da te | Documentazione Microsoft'
-description: Confronto tra Servizi di dominio Azure AD e controller di dominio fai da te
+title: 'Servizi di dominio AD Azure: I controller di dominio servizi di dominio Active Directory di Azure confrontare tooDIY | Documenti Microsoft'
+description: Confronto tra i controller di dominio di Azure Active Directory Domain Services tooDIY
 services: active-directory-ds
 documentationcenter: 
 author: mahesh-unnikrishnan
@@ -14,106 +14,106 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/07/2017
 ms.author: maheshu
-ms.openlocfilehash: 09a68c7f4e7169a6ca02e33e89e0f048155fa88c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 5e384f6a676e76e4f22ff62d4aeb578bc8481ef7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-decide-if-azure-ad-domain-services-is-right-for-your-use-case"></a>Come decidere Servizi di dominio Azure AD è adatto alle esigenze del caso di utilizzo
-Con Azure Active Directory Domain Services è possibile distribuire i carichi di lavoro nei servizi di infrastruttura di Azure senza preoccuparsi di mantenere l'infrastruttura di identità in Azure. Questo servizio gestito è diverso da una tipica distribuzione di Windows Server Active Directory che viene distribuita e amministrata in modo autonomo. Il servizio è facile da distribuire e offre il monitoraggio e la correzione dell'integrità automatizzati. Il servizio è in continua evoluzione per l'aggiunta del supporto di scenari di distribuzione comuni.
+# <a name="how-toodecide-if-azure-ad-domain-services-is-right-for-your-use-case"></a>Come toodecide se servizi di dominio Active Directory di Azure è adatta per il caso di utilizzo
+Con servizi di dominio Active Directory di Azure è possibile distribuire i carichi di lavoro nei servizi infrastruttura di Azure, senza dovere tooworry sulla gestione dell'infrastruttura di identità in Azure. Questo servizio gestito è diverso da una tipica distribuzione di Windows Server Active Directory che viene distribuita e amministrata in modo autonomo. servizio di Hello è toodeploy semplice e offre il monitoraggio dello stato automatizzato e monitoraggio e aggiornamento. Ci stiamo in continua evoluzione tooadd assistenza hello per scenari di distribuzione comuni.
 
-Per decidere se usare Azure AD Domain Services, si consiglia la lettura della seguente documentazione:
+toodecide se toouse di servizi di dominio di Active Directory di Azure, è consigliabile hello seguente documentazione:
 
-* Vedere l'elenco delle [funzionalità offerte da Servizi di dominio Azure AD](active-directory-ds-features.md).
+* Vedere l'elenco di hello di [funzionalità offerte dai servizi di dominio Active Directory di Azure](active-directory-ds-features.md).
 * Esaminare comuni [scenari di distribuzione per Servizi di dominio Azure Active Directory](active-directory-ds-scenarios.md).
-* Infine [confrontare Servizi di dominio AZURE AD con un'opzione AD fai da te](active-directory-ds-comparison.md#compare-azure-ad-domain-services-to-diy-ad-domain-in-azure).
+* Infine, [confrontare l'opzione di servizi di dominio Active Directory di Azure AD fai da te tooa](active-directory-ds-comparison.md#compare-azure-ad-domain-services-to-diy-ad-domain-in-azure).
 
-## <a name="compare-azure-ad-domain-services-to-diy-ad-domain-in-azure"></a>Confrontare Servizi di dominio Azure AD con un dominio AD fai da te in Azure
-La tabella seguente riporta informazioni utili per scegliere se usare Servizi di dominio Azure AD o gestire una propria infrastruttura di AD in Azure.
+## <a name="compare-azure-ad-domain-services-toodiy-ad-domain-in-azure"></a>Confrontare dominio tooDIY Active Directory di servizi di dominio Active Directory di Azure in Azure
+Hello nella tabella seguente contribuisce di stabilire tra l'utilizzo di servizi di dominio Active Directory di Azure e gestire la propria infrastruttura di Active Directory in Azure.
 
 | **Funzionalità** | **Servizi di dominio Azure Active Directory** | **AD "fai da te" in VM di Azure** |
 | --- |:---:|:---:|
-| [**Servizi gestiti**](active-directory-ds-comparison.md#managed-service) |**&#x2713;** |**&#x2715;** |
-| [**Distribuzioni sicure**](active-directory-ds-comparison.md#secure-deployments) |**&#x2713;** |L'amministratore deve proteggere la distribuzione. |
+| [**Servizi gestiti**](active-directory-ds-comparison.md#managed-service) |**&#x2713;** |**&amp;#x2715;** |
+| [**Distribuzioni sicure**](active-directory-ds-comparison.md#secure-deployments) |**&amp;#x2713;** |L'amministratore deve distribuzione hello toosecure. |
 | [**Server DNS**](active-directory-ds-comparison.md#dns-server) |**&#x2713;** (servizio gestito) |**&#x2713;** |
-| [**Domain or Enterprise administrator privileges**](active-directory-ds-comparison.md#domain-or-enterprise-administrator-privileges) |**&#x2715;** |**&#x2713;** |
-| [**Aggiunta a un dominio**](active-directory-ds-comparison.md#domain-join) |**&#x2713;** |**&#x2713;** |
-| [**Autenticazione di dominio tramite NTLM e Kerberos**](active-directory-ds-comparison.md#domain-authentication-using-ntlm-and-kerberos) |**&#x2713;** |**&#x2713;** |
+| [**Domain or Enterprise administrator privileges**](active-directory-ds-comparison.md#domain-or-enterprise-administrator-privileges) |**&#x2715;** |**&amp;#x2713;** |
+| [**Aggiunta a un dominio**](active-directory-ds-comparison.md#domain-join) |**&amp;#x2713;** |**&amp;#x2713;** |
+| [**Autenticazione di dominio tramite NTLM e Kerberos**](active-directory-ds-comparison.md#domain-authentication-using-ntlm-and-kerberos) |**&amp;#x2713;** |**&amp;#x2713;** |
 | [**Delega vincolata Kerberos**](active-directory-ds-comparison.md#kerberos-constrained-delegation)|basata sulle risorse|basata sulle risorse e basata su account|
-| [**Struttura personalizzata per le unità organizzative**](active-directory-ds-comparison.md#custom-ou-structure) |**&#x2713;** |**&#x2713;** |
-| [**Estensioni dello schema**](active-directory-ds-comparison.md#schema-extensions) |**&#x2715;** |**&#x2713;** |
-| [**Relazioni di trust di dominio/foresta di AD**](active-directory-ds-comparison.md#ad-domain-or-forest-trusts) |**&#x2715;** |**&#x2713;** |
+| [**Struttura personalizzata per le unità organizzative**](active-directory-ds-comparison.md#custom-ou-structure) |**&amp;#x2713;** |**&amp;#x2713;** |
+| [**Estensioni dello schema**](active-directory-ds-comparison.md#schema-extensions) |**&#x2715;** |**&amp;#x2713;** |
+| [**Relazioni di trust di dominio/foresta di AD**](active-directory-ds-comparison.md#ad-domain-or-forest-trusts) |**&#x2715;** |**&amp;#x2713;** |
 | [**LDAP read**](active-directory-ds-comparison.md#ldap-read) |**&#x2713;** |**&#x2713;** |
-| [**LDAP sicuro (LDAPS)**](active-directory-ds-comparison.md#secure-ldap) |**&#x2713;** |**&#x2713;** |
-| [**LDAP write**](active-directory-ds-comparison.md#ldap-write) |**&#x2715;** |**&#x2713;** |
-| [**Group Policy**](active-directory-ds-comparison.md#group-policy) |**&#x2713;** |**&#x2713;** |
-| [**Distribuzione in diverse aree geografiche**](active-directory-ds-comparison.md#geo-dispersed-deployments) |**&#x2715;** |**&#x2713;** |
+| [**LDAP sicuro (LDAPS)**](active-directory-ds-comparison.md#secure-ldap) |**&amp;#x2713;** |**&amp;#x2713;** |
+| [**LDAP write**](active-directory-ds-comparison.md#ldap-write) |**&amp;#x2715;** |**&amp;#x2713;** |
+| [**Group Policy**](active-directory-ds-comparison.md#group-policy) |**&amp;#x2713;** |**&#x2713;** |
+| [**Distribuzione in diverse aree geografiche**](active-directory-ds-comparison.md#geo-dispersed-deployments) |**&amp;#x2715;** |**&amp;#x2713;** |
 
 #### <a name="managed-service"></a>Servizi gestiti
-Servizi di dominio Azure AD è gestito da Microsoft. Non è necessario preoccuparsi di patch, aggiornamenti, monitoraggio, backup e di garantire la disponibilità del dominio. Queste attività di gestione sono disponibili come servizio di Microsoft Azure per i domini gestiti.
+Servizi di dominio Azure AD è gestito da Microsoft. Non si dispone di tooworry sull'applicazione di patch, aggiornamenti, il monitoraggio, backup e garantire la disponibilità del dominio. Queste attività di gestione sono disponibili come servizio di Microsoft Azure per i domini gestiti.
 
 #### <a name="secure-deployments"></a>Distribuzioni sicure
-Il dominio gestito è bloccato in modo sicuro in base alle raccomandazioni sulla sicurezza di Microsoft per le distribuzioni di AD. Queste raccomandazioni derivano dell'esperienza nella progettazione e nel supporto delle distribuzioni di Active Directory maturata in vari decenni dal team del prodotto AD. Per le distribuzioni fai da te è necessario eseguire passaggi di distribuzione specifici per bloccare/proteggere la distribuzione.
+dominio gestito Hello è bloccato in modo sicuro in base alle raccomandazione di sicurezza di Microsoft per le distribuzioni di Active Directory. Questi suggerimenti derivano dalla decenni del team del prodotto AD hello dell'esperienza di progettazione e il supporto di distribuzioni di Active Directory. Per le distribuzioni fai da te, è necessario distribuzione specifica tootake passaggi toolock giù/proteggere la distribuzione.
 
 #### <a name="dns-server"></a>Server DNS
-Un dominio gestito da Servizi di dominio Azure AD include servizi DNS gestiti. I membri del gruppo "AAD DC Administrators" possono gestire il DNS sul dominio gestito. Ai membri di questo gruppo sono concessi privilegi di amministrazione DNS completi per il dominio gestito. La gestione del DNS può essere eseguita mediante la console di amministrazione DNS inclusa nel pacchetto degli Strumenti di amministrazione remota del server.
+Un dominio gestito da Servizi di dominio Azure AD include servizi DNS gestiti. I membri del gruppo 'Administrators di controller di dominio di AAD' hello possono gestire DNS nel dominio hello gestito. Membri di questo gruppo hanno tutti i privilegi di amministrazione DNS per il dominio gestito hello. Gestione di DNS può essere eseguita mediante hello 'Console di amministrazione DNS' incluso nel pacchetto di strumenti di amministrazione remota Server (RSAT) hello.
 [Altre informazioni](active-directory-ds-admin-guide-administer-dns.md)
 
 #### <a name="domain-or-enterprise-administrator-privileges"></a>Privilegi amministrativi per il dominio o per l'organizzazione
-Questi privilegi elevati non sono disponibili in un dominio gestito di Servizi di dominio Azure AD. Le applicazioni che richiedono questi privilegi elevati non possono essere distribuite nei domini gestiti di AAD-DS. Un sottoinsieme più piccolo di privilegi amministrativi è disponibile per i membri del gruppo di amministrazione delegato chiamato "AAD DC Administrators". Tali privilegi comprendono privilegi per configurare il server DNS, configurare i criteri di gruppo, ottenere privilegi amministrativi sui computer appartenenti a un dominio e così via.
+Questi privilegi elevati non sono disponibili in un dominio gestito di Servizi di dominio Azure AD. Le applicazioni che richiedono questi privilegi elevati non possono essere distribuite nei domini gestiti di AAD-DS. Un subset ridotto di privilegi amministrativi è toomembers disponibile del gruppo di amministrazione delegata hello chiamato 'amministratori dei controller di dominio AAD '. Questi privilegi includono privilegi tooconfigure DNS, configurare criteri di gruppo, ottengono i privilegi di amministratore sul computer di dominio e così via.
 
 #### <a name="domain-join"></a>Aggiunta a un dominio
-È possibile aggiungere macchine virtuali al dominio gestito analogamente a come si aggiungono computer a un dominio AD.
+È possibile aggiungere macchine virtuali toohello gestiti toohow simile a dominio dominio di computer tooan Active Directory.
 
 #### <a name="domain-authentication-using-ntlm-and-kerberos"></a>Autenticazione di dominio tramite NTLM e Kerberos
-Con Servizi di dominio Azure AD è possibile usare le credenziali aziendali per l'autenticazione con il dominio gestito. Le credenziali vengono mantenute sincronizzate con il tenant di Azure AD. Per i tenant sincronizzati, Azure AD Connect garantisce che le modifiche apportate alle credenziali in locale siano sincronizzate con Azure AD. Con una configurazione di dominio fai da te, potrebbe essere necessario impostare un trust di dominio AD con l'AD locale per l'autenticazione degli utenti con le proprie credenziali aziendali. In alternativa potrebbe essere necessario impostare la replica di AD per assicurarsi che le password utente siano sincronizzate con le macchine virtuali controller di dominio di Azure.
+Con i servizi di dominio Active Directory di Azure, è possibile utilizzare tooauthenticate le credenziali aziendali con il dominio gestito hello. Le credenziali vengono mantenute sincronizzate con il tenant di Azure AD. Per i tenant sincronizzati, Azure AD Connect garantisce che le modifiche apportate toocredentials locale sincronizzati tooAzure AD. Potrebbe essere necessario tooset di un dominio di Active Directory con l'installazione di un dominio fai da te, relazione di trust con locale AD tooauthenticate gli utenti con le proprie credenziali aziendali. In alternativa, potrebbe essere necessario tooset backup tooensure di replica di Active Directory che le password degli utenti sincronizzati macchine virtuali controller di dominio di Azure tooyour.
 
 #### <a name="kerberos-constrained-delegation"></a>Delega vincolata Kerberos
-Non si dispone dei privilegi di "Domain Admin" in un dominio gestito Active Directory Domain Services. Pertanto non è possibile configurare la delega vincolata Kerberos basata su account (tradizionale). Si può comunque configurare la più sicura delega vincolata basata sulle risorse.
+Non si dispone dei privilegi di "Domain Admin" in un dominio gestito Active Directory Domain Services. Pertanto non è possibile configurare la delega vincolata Kerberos basata su account (tradizionale). Tuttavia, è possibile configurare più sicuro hello basata sulle risorse per la delega vincolata.
 [Altre informazioni](active-directory-ds-enable-kcd.md)
 
 #### <a name="custom-ou-structure"></a>Struttura personalizzata per le unità organizzative
-I membri del gruppo "AAD DC Administrators" possono creare unità organizzative nel dominio gestito. Agli utenti che creano unità organizzative personalizzate vengono concessi privilegi amministrativi completi per l'unità organizzativa.
+I membri del gruppo 'Administrators di controller di dominio di AAD' hello è possono creare unità organizzative personalizzate hello gestito dominio. Gli utenti che creare unità organizzative personalizzate vengono concessi privilegi amministrativi completi su hello unità Organizzativa.
 [Altre informazioni](active-directory-ds-admin-guide-create-ou.md)
 
 #### <a name="schema-extensions"></a>Estensioni dello schema
-Non è possibile estendere lo schema di base di un dominio gestito di Servizi di dominio Azure AD. Di conseguenza le applicazioni che fanno affidamento sulle estensioni allo schema di AD (ad esempio nuovi attributi nell'oggetto utente) non possono essere elevate e spostate su domini di Servizi di dominio Azure AD.
+È possibile estendere allo schema di base hello di un dominio gestito di servizi di dominio Active Directory di Azure. Pertanto, le applicazioni basate su schema tooAD delle estensioni (ad esempio, nuovi attributi nell'oggetto utente hello) non possono essere elevate e spostata domini tooAAD di dominio Active Directory.
 
 #### <a name="ad-domain-or-forest-trusts"></a>Relazioni di trust di dominio o foresta di AD
-Non è possibile configurare i domini gestiti per impostare relazioni di trust (in ingresso/in uscita) con altri domini. Pertanto, gli scenari di distribuzione della foresta di risorse non possono usare Azure AD Domain Services. Analogamente, le distribuzioni in cui non si desidera sincronizzare le password in Azure AD non possono usare Azure AD Domain Services.
+Domini gestiti non possono essere configurato tooset relazioni di trust (in ingresso/in uscita) con altri domini. Pertanto, gli scenari di distribuzione della foresta di risorse non possono usare Azure AD Domain Services. Analogamente, le distribuzioni in cui si preferisce non toosynchronize password tooAzure AD non è possibile utilizzare servizi di dominio Active Directory di Azure.
 
 #### <a name="ldap-read"></a>Lettura LDAP
-Il dominio gestito supporta i carichi di lavoro di lettura LDAP. Pertanto è possibile distribuire applicazioni che eseguono operazioni di lettura LDAP nel dominio gestito.
+Hello gestiti dominio supporta LDAP letture i carichi di lavoro. È quindi possibile distribuire le applicazioni che eseguono operazioni con dominio gestito hello di lettura LDAP.
 
 #### <a name="secure-ldap"></a>LDAP sicuro
-È possibile configurare Servizi di dominio Azure AD in modo da fornire l'accesso LDAP sicuro al dominio gestito anche su Internet.
+È possibile configurare servizi di dominio Active Directory di Azure tooprovide sicura LDAP accesso tooyour gestiti hello di dominio, inclusi su internet.
 [Altre informazioni](active-directory-ds-admin-guide-configure-secure-ldap.md)
 
 #### <a name="ldap-write"></a>Scrittura LDAP
-Il dominio gestito è di sola lettura per gli oggetti utente. Di conseguenza, le applicazioni che eseguono operazioni di scrittura LDAP su attributi dell'oggetto utente non funzionano in un dominio gestito. Inoltre, le password utente non possono essere modificate dall'interno del dominio gestito. Un altro esempio sarebbe la modifica dell'appartenenza ai gruppi o degli attributi di gruppo all'interno del dominio gestito, che non è consentita. Tuttavia, le modifiche agli attributi o alle password utente apportate in Azure AD (tramite PowerShell o il portale di Azure) o in AD locale vengono sincronizzate con il dominio gestito di Servizi di dominio Azure AD.
+dominio gestito Hello è di sola lettura per gli oggetti utente. Pertanto, le applicazioni che eseguono operazioni di scrittura LDAP per gli attributi dell'oggetto utente hello non funzionano in un dominio gestito. Inoltre, le password degli utenti non possono essere modificate in dominio gestito hello. Un altro esempio sarebbe la modifica di appartenenza a gruppi o gli attributi di gruppo all'interno di dominio gestiti hello, che non è consentito. Tuttavia, qualsiasi modifica toouser attributi o le password apportate in Azure Active Directory (tramite PowerShell/portale) locale o Active Directory vengono sincronizzati toohello AAD di dominio Active Directory gestito dominio.
 
 #### <a name="group-policy"></a>Criteri di gruppo
-Esiste un oggetto Criteri di gruppo integrato per il contenitore "AADDC Computers" e uno per il contenitore "AADDC Users". È possibile personalizzare questi oggetti Criteri di gruppo predefiniti per configurare Criteri di gruppo. I membri del gruppo "AAD DC Administrators" possono anche creare oggetti criterio di gruppo personalizzati e collegarli a unità organizzative esistenti (incluse le unità organizzative personalizzate).
+Non vi è un incorporato oggetto Criteri di gruppo ogni per i contenitori di "AADDC utenti" e "Computer AADDC" hello. È possibile personalizzare questi criteri di gruppo tooconfigure oggetti Criteri di gruppo predefiniti. I membri del gruppo 'Administrators di controller di dominio di AAD' hello possono anche creare oggetti Criteri di gruppo personalizzate e le collegano le unità organizzative tooexisting (incluse le unità organizzative personalizzate).
 [Altre informazioni](active-directory-ds-admin-guide-administer-group-policy.md)
 
 #### <a name="geo-dispersed-deployments"></a>Distribuzioni geograficamente sparse
-I domini gestiti di Servizi di dominio Azure AD sono disponibili in una singola rete virtuale in Azure. Per scenari che richiedono controller di dominio disponibili in più aree di Azure in tutto il mondo, l'impostazione di controller di dominio in VM IaaS di Azure potrebbe essere l'alternativa migliore.
+I domini gestiti di Servizi di dominio Azure AD sono disponibili in una singola rete virtuale in Azure. Per gli scenari che richiedono toobe controller dominio disponibile in più aree di Azure tra HelloWorld, l'impostazione di controller di dominio in macchine virtuali IaaS di Azure potrebbe essere alternativa migliore hello.
 
 
 ## <a name="do-it-yourself-diy-ad-deployment-options"></a>Opzioni di distribuzione AD "fai da te"
-Possono esistere situazioni di distribuzione in cui sono necessarie alcune delle funzionalità offerte da un'installazione Active Directory di Windows Server. In questi casi è possibile prendere in considerazione una delle seguenti opzioni fai da te:
+È possibile casi d'uso di distribuzione in cui è necessario alcune delle funzionalità di hello offerte da un'installazione di Windows Server Active Directory. In questi casi, considerare una delle seguenti opzioni (DIY) fai da te hello:
 
-* **Dominio cloud autonomo:** è possibile configurare un "dominio cloud" autonomo usando macchine virtuali Azure che sono state configurate come controller di dominio. Questa infrastruttura non si integra con l'ambiente Active Directory locale. Questa opzione richiede un insieme diverso di "credenziali del cloud" per l'accesso e l'amministrazione delle VM nel cloud.
-* **Distribuzione di foreste di risorse:** è possibile configurare un dominio nella topologia delle foreste di risorse usando macchine virtuali Azure configurate come controller di dominio. Quindi si può impostare una relazione di trust di Active Directory con l'ambiente Active Directory locale. È possibile aggiungere computer (VM Azure) al dominio in questa foresta di risorse nel cloud. L'autenticazione utente avviene tramite una connessione VPN o ExpressRoute alla directory locale.
-* **Estendere il dominio locale in Azure:** è possibile connettere una rete virtuale di Azure alla rete locale tramite una connessione VPN o ExpressRoute. Questa impostazione consente di aggiungere le macchine virtuali di Azure all'AD locale. Un'alternativa è alzare di livello dei controller di dominio di replica del dominio locale in Azure portandoli al livello di VM. È possibile configurare il sistema in modo che la replica sia eseguita tramite una connessione VPN o ExpressRoute alla directory locale. Questa modalità di distribuzione estende efficacemente il dominio locale in Azure.
+* **Dominio cloud autonomo:** è possibile configurare un "dominio cloud" autonomo usando macchine virtuali Azure che sono state configurate come controller di dominio. Questa infrastruttura non si integra con l'ambiente Active Directory locale. Questa opzione richiederebbe un set diverso di 'cloud credenziali' toologin o gestire le macchine virtuali nel cloud hello.
+* **Distribuzione di foresta di risorse:** è possibile impostare un dominio nella topologia della foresta risorse hello, utilizzando macchine virtuali di Azure configurate come controller di dominio. Quindi si può impostare una relazione di trust di Active Directory con l'ambiente Active Directory locale. È possibile foresta delle risorse toothis computer (macchine virtuali di Azure) aggiunta al dominio nel cloud hello. Autenticazione utente avviene su sia una directory di on-premise tooyour connessione VPN/ExpressRoute.
+* **Estendere la tooAzure di dominio locale:** è possibile connettere una rete locale tooyour di rete virtuale di Azure tramite una connessione VPN/ExpressRoute. Questa impostazione consente di macchine virtuali di Azure toobe tooyour collegati AD locale. In alternativa è toopromote il controller di dominio di replica del dominio locale in Azure come macchina virtuale. È possibile quindi configurarlo tooreplicate su una directory di on-premise tooyour connessione VPN/ExpressRoute. Questa modalità di distribuzione si estende in modo efficace il tooAzure di dominio locale.
 
 > [!NOTE]
-> Un'opzione fai da te potrebbe essere più adatta per determinate situazioni di distribuzione. [Condividendo i loro commenti](active-directory-ds-contact-us.md) gli utenti ci aiuteranno a comprendere quali funzionalità potrebbero far ricadere la loro scelta in futuro su Servizi di dominio Azure AD. Questi commenti e suggerimenti ci consentiranno di migliorare il servizio in modo da adattarlo ad altre esigenze di distribuzione e casi di utilizzo.
+> Un'opzione fai da te potrebbe essere più adatta per determinate situazioni di distribuzione. Prendere in considerazione [condividere commenti](active-directory-ds-contact-us.md) toohelp ci comprendere quali funzionalità facilitare si è scelto di servizi di dominio Active Directory di Azure in futuro hello. Questi commenti e suggerimenti utili per sviluppare seme di toobetter servizio hello che esigenze di implementazione e casi d'uso.
 >
 >
 
-Microsoft ha pubblicato alcune [linee guida per la distribuzione di Active Directory di Windows Server nelle macchine virtuali Azure](https://msdn.microsoft.com/library/azure/jj156090.aspx) come aiuto per l'installazione.
+Microsoft ha pubblicato [linee guida per la distribuzione di Windows Server Active Directory in macchine virtuali di Azure](https://msdn.microsoft.com/library/azure/jj156090.aspx) toohelp rendere più semplice eseguire installazioni.
 
 ## <a name="related-content"></a>Contenuti correlati
 * [Funzionalità - Servizi di dominio Azure AD](active-directory-ds-features.md)

@@ -1,6 +1,6 @@
 ---
-title: Guida alla risoluzione dei problemi del Centro sicurezza di Azure | Documentazione Microsoft
-description: Questo documento facilita la risoluzione dei problemi nel Centro sicurezza di Azure.
+title: Guida alla risoluzione dei problemi di sicurezza Center aaaAzure | Documenti Microsoft
+description: Questo documento consente tootroubleshoot problemi nel Centro protezione di Azure.
 services: security-center
 documentationcenter: na
 author: YuriDio
@@ -14,62 +14,62 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/11/2017
 ms.author: yurid
-ms.openlocfilehash: 0e0a0ce5c0795cec0e47cd5f729099f4762381a2
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 78b3c49eb66fe3a4f80efbba3a47a87b039c07ac
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-security-center-troubleshooting-guide"></a>Guida alla risoluzione dei problemi del Centro sicurezza di Azure
-Questa guida è destinata a professionisti IT, analisti della sicurezza delle informazioni e amministratori cloud le cui organizzazioni usano il Centro sicurezza di Azure e devono risolvere i problemi correlati.
+Questa guida è per professionisti information technology (IT), gli analisti della sicurezza di informazioni e gli amministratori cloud cui le organizzazioni usano Centro sicurezza di Azure ed è necessario che il centro di sicurezza tootroubleshoot problemi correlati.
 
 >[!NOTE] 
->A partire dall'inizio di giugno 2017, il Centro sicurezza usa Microsoft Monitoring Agent per raccogliere e archiviare i dati. Per altre informazioni, vedere [Migrazione della piattaforma del Centro sicurezza di Azure](security-center-platform-migration.md). Le informazioni contenute in questo articolo si riferiscono alle funzionalità del Centro sicurezza dopo la transizione a Microsoft Monitoring Agent.
+>A partire da anticipata giugno 2017, il Centro sicurezza PC utilizza toocollect e l'archivio dati di Microsoft Monitoring Agent di hello. Vedere [migrazione della piattaforma Azure sicurezza Center](security-center-platform-migration.md) toolearn altre. informazioni di Hello in questo articolo rappresentano funzionalità Centro sicurezza dopo la transizione toohello Microsoft Monitoring Agent.
 >
 
 ## <a name="troubleshooting-guide"></a>Guida per la risoluzione dei problemi
-Questa guida illustra come risolvere i problemi correlati al Centro sicurezza. La maggior parte delle attività di risoluzione dei problemi nel Centro sicurezza di Azure viene eseguita osservando prima di tutto i record del [log di controllo](https://azure.microsoft.com/updates/audit-logs-in-azure-preview-portal/) del componente in cui si è verificato il problema. Tramite i log di controllo, è possibile determinare:
+Questa guida illustra come centro di sicurezza tootroubleshoot problemi correlati. La maggior parte di risoluzione dei problemi di hello eseguita nel Centro sicurezza PC viene eseguita da un primo sguardo hello [Log di controllo](https://azure.microsoft.com/updates/audit-logs-in-azure-preview-portal/) record per hello Impossibile componente. Tramite i log di controllo, è possibile determinare:
 
 * Quali operazioni sono state eseguite.
-* Chi ha avviato l'operazione.
-* Quando si è verificata l'operazione.
-* Lo stato dell'operazione.
-* I valori di altre proprietà che possono essere utili per ricerche sull'operazione.
+* Che ha avviato l'operazione di hello
+* Quando si è verificato il funzionamento di hello
+* stato Hello dell'operazione di hello
+* i valori Hello altre proprietà che potrebbero facilitare la ricerca operazione hello
 
-Il log di controllo contiene tutte le operazioni di scrittura (PUT, POST, DELETE) eseguite sulle risorse, ma non include quelle di lettura (GET).
+Registro di controllo di Hello contiene tutte le operazioni di scrittura (PUT, POST, DELETE) eseguite su risorse, ma non include le operazioni di lettura (GET).
 
 ## <a name="microsoft-monitoring-agent"></a>Microsoft Monitoring Agent
-Il Centro sicurezza usa Microsoft Monitoring Agent, lo stesso agente usato da Operations Management Suite e dal servizio Log Analytics, per raccogliere dati di protezione dalle macchine virtuali di Azure. Dopo avere abilitato la raccolta dei dati e installato correttamente l'agente nel computer di destinazione, sarà in esecuzione il processo seguente:
+Centro sicurezza PC utilizza Microsoft Monitoring Agent hello: si tratta di hello stesso agente usato da hello Operations Management Suite e il servizio Registro Analitica – toocollect i dati di protezione da macchine virtuali di Azure. Dopo la raccolta dati è abilitata e agente hello sia installato correttamente nel computer di destinazione hello, procedura hello seguente deve essere in esecuzione:
 
 * HealthService.exe
 
-Se si apre la console di gestione dei servizi (services.msc), verrà visualizzato anche il servizio Microsoft Monitoring Agent in esecuzione come illustrato di seguito:
+Se si apre una console di gestione di hello servizi (services.msc), si verifica anche servizio in esecuzione Microsoft Monitoring Agent hello come illustrato di seguito:
 
 ![Services](./media/security-center-troubleshooting-guide/security-center-troubleshooting-guide-fig5.png)
 
-Per visualizzare la versione dell'agente di cui si dispone, aprire **Gestione attività**, nella scheda **Processi** individuare il **Servizio Microsoft Monitoring Agent**, fare doppio clic su di esso e fare clic su **Proprietà**. Nella scheda **Dettagli** cercare la versione del file, come illustrato di seguito:
+Aprire la versione dell'agente di hello si dispone, toosee **Task Manager**, in hello **processi** scheda individuare hello **servizio Microsoft Monitoring Agent**, fare doppio clic su di esso e Fare clic su **proprietà**. In hello **dettagli** scheda, cercare la versione del file hello, come illustrato di seguito:
 
 ![File](./media/security-center-troubleshooting-guide/security-center-troubleshooting-guide-fig6.png)
    
 
 ## <a name="microsoft-monitoring-agent-installation-scenarios"></a>Scenari di installazione di Microsoft Monitoring Agent
-Esistono due scenari di installazione che possono produrre risultati diversi quando si installa Microsoft Monitoring Agent nel computer in uso. Gli scenari supportati sono:
+Esistono due scenari di installazione che possono produrre risultati diversi quando si installa Microsoft Monitoring Agent hello nel computer in uso. gli scenari di Hello supportato sono:
 
-* **Agente installato automaticamente tramite il Centro sicurezza**: in questo scenario sarà possibile visualizzare gli avvisi sia con il Centro sicurezza che tramite la ricerca log. Si riceveranno notifiche tramite posta elettronica all'indirizzo e-mail configurato nei criteri di sicurezza per la sottoscrizione a cui appartiene la risorsa.
+* **Agente installato automaticamente tramite il Centro sicurezza PC**: in questo scenario sarà tooview in grado di avvisi di hello sia percorsi, Centro sicurezza PC e ricerca nei Log. Viene visualizzato l'indirizzo di posta elettronica con i toohello le notifiche tramite posta elettronica configurati nei criteri di sicurezza hello per hello sottoscrizione hello risorsa appartiene a.
 .
-* **Agente installato manualmente in una macchina virtuale situata in Azure**: in questo scenario, se si usano agenti scaricati e installati manualmente prima di febbraio 2017, sarà possibile visualizzare gli avvisi nel portale del Centro sicurezza solo se si filtra in base alla sottoscrizione a cui appartiene l'area di lavoro. Nel caso in cui si filtri in base alla sottoscrizione a cui che appartiene la risorsa, non sarà possibile visualizzare gli avvisi. Si riceveranno notifiche tramite posta elettronica all'indirizzo e-mail configurato nei criteri di sicurezza per la sottoscrizione a cui appartiene l'area di lavoro.
+* **Agente installato manualmente su una macchina virtuale si trova in Azure**: in questo scenario, se si usano agenti scaricato e installato manualmente precedente tooFebruary 2017, sarà avvisi hello in grado di tooview nel portale di Centro sicurezza PC hello solo se si filtra su hello area di lavoro hello sottoscrizione a cui appartiene. In caso di filtro sulla risorsa di hello sottoscrizione hello appartiene, si sarà toosee in grado di tutti gli avvisi. Viene visualizzato l'indirizzo di posta elettronica con i toohello le notifiche tramite posta elettronica configurati nei criteri di sicurezza hello per l'area di lavoro hello hello sottoscrizione appartiene.
 
 >[!NOTE]
-> Per evitare il comportamento descritto nel secondo caso, assicurarsi di scaricare la versione più recente dell'agente.
+> il comportamento di hello tooavoid illustrato in hello in secondo luogo, verificare di scaricare più recente dell'agente di hello hello.
 > 
 
 ## <a name="troubleshooting-monitoring-agent-network-requirements"></a>Risoluzione dei problemi di rete di Microsoft Monitoring Agent
-Per far sì che gli agenti si connettano e si registrino con il Centro sicurezza, devono avere accesso alle risorse di rete, compresi gli URL di dominio e i numeri di porta.
+È necessario che gli agenti tooconnect tooand register con Centro sicurezza PC, accedere alle risorse di toonetwork, inclusi i numeri di porta hello e gli URL di dominio.
 
-- Per i server proxy, è necessario assicurarsi che le risorse del server proxy appropriate siano configurate nelle impostazioni dell'agente. Leggere questo articolo per altre informazioni su [come modificare le impostazioni del proxy](https://docs.microsoft.com/en-us/azure/log-analytics/log-analytics-windows-agents#configure-proxy-settings).
-- Per i firewall che limitano l'accesso a Internet, è necessario configurare il firewall per consentire l'accesso a OMS. Non è necessaria alcuna azione sulle impostazioni dell'agente.
+- Per i server proxy, è necessario tooensure che hello server proxy corretto le risorse vengono configurate nelle impostazioni dell'agente. Leggere questo articolo per ulteriori informazioni su [come toochange hello le impostazioni del proxy](https://docs.microsoft.com/en-us/azure/log-analytics/log-analytics-windows-agents#configure-proxy-settings).
+- Per i firewall che limitano l'accesso toohello Internet, è necessario tooconfigure tooOMS di accesso toopermit il firewall. Non è necessaria alcuna azione sulle impostazioni dell'agente.
 
-Nella tabella seguente vengono visualizzate le risorse necessarie per la comunicazione.
+Hello nella tabella seguente mostra le risorse necessarie per la comunicazione.
 
 | Risorsa agente | Porte | Ignorare l'analisi HTTPS |
 |---|---|---|
@@ -78,40 +78,40 @@ Nella tabella seguente vengono visualizzate le risorse necessarie per la comunic
 | *.blob.core.windows.net | 443 | Sì |
 | *.azure-automation.net | 443 | Sì |
 
-Se si verificano problemi di caricamento con l'agente, assicurarsi di leggere l'articolo [Risoluzione dei problemi di integrazione di Operations Management Suite](https://support.microsoft.com/en-us/help/3126513/how-to-troubleshoot-operations-management-suite-onboarding-issues).
+Se si verificano problemi di caricamento con agente hello, assicurarsi che articolo di hello tooread [come problemi di integrazione di Operations Management Suite tootroubleshoot](https://support.microsoft.com/en-us/help/3126513/how-to-troubleshoot-operations-management-suite-onboarding-issues).
 
 
 ## <a name="troubleshooting-endpoint-protection-not-working-properly"></a>Risoluzione dei problemi relativi al mancato funzionamento della protezione degli endpoint
 
-L'agente guest è il processo padre di tutte le operazioni eseguite dall'estensione [Microsoft Antimalware](../security/azure-security-antimalware.md). Quando il processo dell'agente guest non riesce, anche Microsoft Antimalware che viene eseguito come processo figlio dell'agente guest potrebbe non riuscire.  In scenari come questi è consigliabile verificare le opzioni seguenti:
+l'agente guest Hello è il processo padre hello di qualsiasi elemento hello [Microsoft Antimalware](../security/azure-security-antimalware.md) estensione. Quando si verifica un errore di processo dell'agente guest hello, hello Microsoft Antimalware che viene eseguito come processo dell'agente guest hello figlio potrebbe non riuscire anche.  In scenari come quello è consigliato tooverify hello le opzioni seguenti:
 
-- Che la macchina virtuale di destinazione sia un'immagine personalizzata e che l'autore della macchina virtuale non abbia mai installato l'agente guest.
-- Che la destinazione sia una VM di Linux e non una VM di Windows per cui l'installazione della versione di Windows dell'estensione antimalware su una VM Linux avrebbe esito negativo. L'agente guest Linux presenta requisiti specifici per quanto riguarda la versione del sistema operativo e i pacchetti necessari e se questi requisiti non vengono soddisfatti l'agente della VM non funzionerà. 
-- Che la VM sia stata creata con una versione precedente dell'agente guest. In questo caso è necessario tenere presente che alcuni agenti precedenti potrebbero non aggiornarsi automaticamente alla versione più recente e questo potrebbe causare il problema. Usare sempre la versione più recente dell'agente guest quando si creano le immagini personali.
-- Alcuni software di amministrazione di terze parti possono disabilitare l'agente guest o bloccare l'accesso a determinati percorsi di file. Se sulla VM sono installati software terzi, assicurarsi che l'agente si trovi nell'elenco di esclusione.
-- Alcune impostazioni del firewall o il gruppo di sicurezza di rete (NSG) potrebbero bloccare il traffico di rete da e verso l'agente guest.
+- Se la destinazione hello VM è un'immagine personalizzata e creatore hello di hello VM è mai stato installato l'agente guest.
+- Se una VM Linux invece di una macchina virtuale Windows, quindi installare la versione di Windows hello dell'estensione antimalware hello in una VM Linux di destinazione hello avrà esito negativo. l'agente guest Linux Hello presenta requisiti specifici in termini di versione del sistema operativo e i pacchetti necessari, e se tali requisiti non vengono soddisfatte agente VM hello non funzionerà vi sia. 
+- Se hello VM è stato creato con una versione precedente dell'agente guest. Se è stato, è necessario tenere presente che alcuni agenti precedente potrebbero non l'aggiornamento automatico stessa versione più recente toohello e questo potrebbe causare il problema toothis. Utilizzare sempre il più recente dell'agente guest hello se la creazione di immagini personalizzate.
+- Alcuni software di terze parti amministrazione può disabilitare l'agente guest hello o bloccare l'accesso toocertain percorsi dei file. Se si dispone di terze parti installata nella macchina virtuale, assicurarsi che l'agente di hello è nell'elenco di esclusione hello.
+- Alcune impostazioni del firewall o un gruppo di sicurezza (rete) può bloccare tooand il traffico di rete da agente guest.
 - Determinati elenchi di controllo di accesso (ACL) potrebbero impedire l'accesso al disco.
-- La mancanza di spazio su disco può bloccare il corretto funzionamento dell'agente guest. 
+- Mancanza di spazio su disco può bloccare l'agente guest hello funzionerà correttamente. 
 
-Per impostazione predefinita l'interfaccia utente di Microsoft Antimalware è disabilitata, leggere [Enabling Microsoft Antimalware User Interface on Azure Resource Manager VMs Post Deployment](https://blogs.msdn.microsoft.com/azuresecurity/2016/03/09/enabling-microsoft-antimalware-user-interface-post-deployment/) (Abilitazione dell'interfaccia utente di Microsoft Antimalware in seguito alla distribuzione delle VM in Azure Resource Manager) per ulteriori informazioni su come abilitarla in caso di necessità.
+Per hello predefinita dell'interfaccia utente Microsoft Antimalware è disabilitato, lettura [l'abilitazione di interfaccia utente di Microsoft Antimalware in macchine virtuali di post-distribuzione di Azure Resource Manager](https://blogs.msdn.microsoft.com/azuresecurity/2016/03/09/enabling-microsoft-antimalware-user-interface-post-deployment/) per ulteriori informazioni su come tooenable se è necessario.
 
-## <a name="troubleshooting-problems-loading-the-dashboard"></a>Risoluzione dei problemi di caricamento del dashboard
+## <a name="troubleshooting-problems-loading-hello-dashboard"></a>Risoluzione dei problemi durante il caricamento del dashboard hello
 
-In caso di problemi di caricamento del dashboard del Centro sicurezza, assicurarsi che l'utente che registra la sottoscrizione al Centro sicurezza, vale a dire il primo utente che apre il Centro sicurezza con la sottoscrizione, e l'utente che vuole abilitare la raccolta dei dati siano *Proprietario* o *Collaboratore* nella sottoscrizione. A partire da quel momento, anche gli utenti con il ruolo *Lettore* nella sottoscrizione possono visualizzare i dashboard, gli avvisi, le raccomandazioni e i criteri.
+Se si verificano problemi durante il caricamento del dashboard di hello Centro sicurezza PC, assicurarsi che l'utente hello registra hello sottoscrizione tooSecurity Center (vale a dire hello prima utente un utente che ha aperto il Centro sicurezza PC con sottoscrizione hello) e gli utenti hello desiderano tooturn in raccolta di dati deve essere *proprietario* o *collaboratore* sottoscrizione hello. Da quel momento anche gli utenti con *lettore* su hello sottoscrizione è possibile visualizzare dashboard hello/avvisi/raccomandazione/criteri.
 
 ## <a name="contacting-microsoft-support"></a>Contattare il supporto tecnico Microsoft
-Alcuni problemi possono essere identificati usando le linee guida contenute in questo articolo, altri sono documentati nel [forum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureSecurityCenter)pubblico del Centro sicurezza. Tuttavia, se è necessario un altro tipo di risoluzione dei problemi, è possibile aprire una nuova richiesta di supporto tramite il **portale di Azure**, come illustrato di seguito: 
+Alcuni problemi possono essere identificati utilizzando linee guida hello fornite in questo articolo, altri sono disponibili anche documentato all'hello Centro sicurezza PC pubblico [Forum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureSecurityCenter). Tuttavia, se è necessario un altro tipo di risoluzione dei problemi, è possibile aprire una nuova richiesta di supporto tramite il **portale di Azure**, come illustrato di seguito: 
 
 ![Supporto tecnico Microsoft](./media/security-center-troubleshooting-guide/security-center-troubleshooting-guide-fig2.png)
 
 
 ## <a name="see-also"></a>Vedere anche
-In questo documento è stato descritto come configurare i criteri di sicurezza nel Centro sicurezza di Azure. Per ulteriori informazioni sul Centro sicurezza di Azure, vedere gli argomenti seguenti:
+In questo documento, si è appreso come criteri di sicurezza tooconfigure Centro sicurezza di Azure. toolearn ulteriori informazioni su Centro sicurezza di Azure, vedere l'esempio hello:
 
-* [Guida alla pianificazione e alla gestione del Centro sicurezza di Azure](security-center-planning-and-operations-guide.md) : informazioni sulla pianificazione e considerazioni di progettazione per l'adozione del Centro sicurezza di Azure.
-* [Monitoraggio dell'integrità della sicurezza nel Centro sicurezza di Azure](security-center-monitoring.md) : informazioni su come monitorare l'integrità delle risorse di Azure
-* [Gestione e risposta agli avvisi di sicurezza nel Centro sicurezza di Azure](security-center-managing-and-responding-alerts.md) : informazioni su come gestire e rispondere agli avvisi di sicurezza
-* [Monitoraggio delle soluzioni dei partner con il Centro sicurezza di Azure](security-center-partner-solutions.md) : informazioni su come monitorare l'integrità delle soluzioni dei partner.
-* [Domande frequenti sul Centro sicurezza di Azure](security-center-faq.md) : domande frequenti sull'uso del servizio
+* [Centro sicurezza di Azure Guida alla pianificazione e le operazioni](security-center-planning-and-operations-guide.md) , informazioni come tooplan e comprendere considerazioni sulla progettazione hello tooadopt Centro sicurezza di Azure.
+* [Il monitoraggio dello stato di sicurezza nel Centro protezione Azure](security-center-monitoring.md) : informazioni su come toomonitor hello integrità delle risorse di Azure
+* [La gestione e risponde toosecurity gli avvisi in Centro sicurezza di Azure](security-center-managing-and-responding-alerts.md) , informazioni come avvisi toosecurity toomanage e rispondere
+* [Monitoraggio di soluzioni dei partner con Centro sicurezza di Azure](security-center-partner-solutions.md) : informazioni su come toomonitor hello lo stato di integrità delle soluzioni di partner.
+* [Domande frequenti su Centro sicurezza di Azure](security-center-faq.md) : domande frequenti sull'utilizzo di hello servizio di ricerca
 * [Blog sulla sicurezza di Azure](http://blogs.msdn.com/b/azuresecurity/) : post di blog sulla sicurezza e sulla conformità di Azure
 

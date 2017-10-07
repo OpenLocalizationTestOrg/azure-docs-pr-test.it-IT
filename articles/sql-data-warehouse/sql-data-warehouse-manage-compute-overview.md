@@ -1,6 +1,6 @@
 ---
-title: Gestire la potenza di calcolo in Azure SQL Data Warehouse (Panoramica) | Documentazione Microsoft
-description: "Funzionalità relative alla scalabilità orizzontale delle prestazioni in Azure SQL Data Warehouse. Eseguire il ridimensionamento modificando le impostazioni DWU o sospendendo e riavviando le risorse di calcolo per ridurre i costi."
+title: aaaManage calcolo power in Azure SQL Data Warehouse (panoramica) | Documenti Microsoft
+description: "Funzionalità relative alla scalabilità orizzontale delle prestazioni in Azure SQL Data Warehouse. Scalabilità orizzontale grazie alla regolazione Dwu o sospendere e riprendere toosave risorse di calcolo dei costi."
 services: sql-data-warehouse
 documentationcenter: NA
 author: hirokib
@@ -15,11 +15,11 @@ ms.workload: data-services
 ms.custom: manage
 ms.date: 03/22/2017
 ms.author: elbutter
-ms.openlocfilehash: abe22f542a79714f6e894870872ee6b76ffe7633
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1ffbe8d694ac181eaeb6f585a2cee87a570ed7d5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="manage-compute-power-in-azure-sql-data-warehouse-overview"></a>Gestire la potenza di calcolo in Azure SQL Data Warehouse (Panoramica)
 > [!div class="op_single_selector"]
@@ -31,16 +31,16 @@ ms.lasthandoff: 07/11/2017
 >
 >
 
-L'architettura di SQL Data Warehouse separa le risorse di archiviazione e calcolo consentendo a entrambe di eseguire il ridimensionamento in modo indipendente. Pertanto, è possibile ridimensionare il calcolo per soddisfare le richieste di prestazioni, a prescindere dalla quantità di dati. Come conseguenza logica di questa architettura, la [fatturazione][billed] è separata per calcolo e archiviazione. 
+architettura di SQL Data Warehouse di Hello separa l'archiviazione e calcolo, consentendo di ogni tooscale in modo indipendente. Di conseguenza, calcolo può essere scalato toomeet prestazioni richieste indipendente della quantità di hello di dati. Come conseguenza logica di questa architettura, la [fatturazione][billed] è separata per calcolo e archiviazione. 
 
-Questa panoramica descrive il funzionamento della scalabilità orizzontale con SQL Data Warehouse e come usare le funzionalità di sospensione, ripresa e ridimensionamento di SQL Data Warehouse. Vedere la pagina sulle [Unità Data Warehouse (DWU)][data warehouse units (DWUs)] per altre informazioni sulla correlazione tra DWU e prestazioni. 
+Questa panoramica descrive la scalabilità orizzontale con SQL Data Warehouse e come tooutilize hello sospendere, riprendere e funzionalità di scalabilità di SQL Data Warehouse. Consultare hello [del data warehouse di unità (Dwu)] [ data warehouse units (DWUs)] toolearn pagina correlazione Dwu e prestazioni. 
 
 ## <a name="how-compute-management-operations-work-in-sql-data-warehouse"></a>Funzionamento delle operazioni di gestione del calcolo in SQL Data Warehouse
-L'architettura di SQL Data Warehouse consiste in un nodo di controllo, nodi di calcolo e di un livello di archiviazione suddiviso in 60 distribuzioni. 
+architettura di Hello per SQL Data Warehouse è costituita da un nodo del controllo, nodi di calcolo e hello a livello di archiviazione distribuiti tra le distribuzioni di 60. 
 
-Durante una normale sessione attiva in SQL Data Warehouse, il nodo head del sistema gestisce i metadati e contiene l'ottimizzazione delle query distribuite. Al di sotto del nodo head si trovano i nodi di calcolo e il livello di archiviazione. Considerando 400 DWU, il sistema dispone di un nodo head, di quattro nodi di calcolo e del livello di archiviazione, per 60 distribuzioni. 
+Durante una sessione attiva normale in SQL Data Warehouse, nodo head del sistema gestisce i metadati di hello e contiene query optimizer di hello distribuita. Al di sotto del nodo head si trovano i nodi di calcolo e il livello di archiviazione. Per un numero di DWU di 400, il sistema dispone di un nodo head, quattro nodi di calcolo e il livello di archiviazione hello, composta da 60 distribuzioni. 
 
-Quando si eseguono operazioni di ridimensionamento o sospensione, il sistema termina innanzitutto le query in entrata, quindi esegue il rollback delle transazioni per garantire la coerenza. Per le operazioni di scalabilità, quest'ultima si verificherà solamente al completamento del rollback di transazione. Per le operazioni di scalabilità verticale con aumento di prestazioni, il sistema esegue il provisioning del numero di nodi di calcolo aggiuntivi desiderati, quindi inizia a ricollegare i nodi di calcolo al livello di archiviazione. Per un'operazione di scalabilità verticale con diminuzione delle prestazioni, i nodi non più necessari vengono rilasciati e quelli rimanenti si ricollegano al numero appropriato di distribuzioni. Per un'operazione di sospensione, vengono rilasciati tutti i nodi di calcolo e nel sistema vengono eseguite varie operazioni di metadati per lasciarlo in uno stato stabile.
+Quando si essere sottoposto a una scala o sospesa l'operazione, sistema hello innanzitutto termina tutte le query in ingresso e quindi eseguire il rollback delle transazioni tooensure uno stato coerente. Per le operazioni di scalabilità, quest'ultima si verificherà solamente al completamento del rollback di transazione. Per un'operazione di scalabilità verticale, disposizioni sistema hello hello numero di nodi di calcolo molto desiderato e quindi inizia a livello di archiviazione toohello nodi calcolo hello ricollegamento. Per un'operazione di scalabilità orizzontale, hello nodi non necessari vengono rilasciati e nodi di calcolo rimanenti hello ricollegare stessi toohello numero appropriato di distribuzioni. Per un'operazione di sospensione, tutte di calcolo vengono rilasciati i nodi e il sistema verrà sottoposta ad un'ampia gamma di metadati operazioni tooleave sistema finale in uno stato stabile.
 
 | DWU  | \# di nodi di calcolo | \# di distribuzioni per nodo |
 | ---- | ------------------ | ---------------------------- |
@@ -57,15 +57,15 @@ Quando si eseguono operazioni di ridimensionamento o sospensione, il sistema ter
 | 3000 | 30                 | 2                            |
 | 6000 | 60                 | 1                            |
 
-Le tre funzioni principali per la gestione del calcolo sono:
+sono tre funzioni principali di Hello per la gestione di calcolo:
 
 1. Sospendi
 2. Riprendi
 3. Scalabilità
 
-Ciascuna di queste operazioni può richiedere alcuni minuti. In caso di operazioni automatiche di ridimensionamento/sospensione/ripresa, si potrebbe voler implementare la logica per assicurare il completamento di determinate operazioni prima di procedere con altre. 
+Ognuna di queste operazioni potrebbe richiedere diversi minuti toocomplete. Se si scala, sospensione/ripresa automaticamente, è consigliabile tooimplement logica tooensure determinate operazioni completate prima di procedere con un'altra azione. 
 
-Verificando lo stato del database in vari endpoint sarà possibile implementare correttamente l'automazione di tali operazioni. Il portale invierà notifiche una volta completata un'operazione e indicherà lo stato corrente del database. Tuttavia non è possibile verificare lo stato in maniera programmatica. 
+Verifica dello stato del database hello tramite vari endpoint consentirà toocorrectly implementare automazione di tali operazioni. portale Hello invierà una notifica al completamento di un'operazione e hello database corrente dello stato, ma non per il controllo a livello di codice di stato. 
 
 >  [!NOTE]
 >
@@ -86,12 +86,12 @@ Verificando lo stato del database in vari endpoint sarà possibile implementare 
 
 ## <a name="scale-compute"></a>Ridimensionare le risorse di calcolo
 
-Le prestazioni in SQL Data Warehouse vengono misurate in [Unità Data Warehouse (DWU)][data warehouse units (DWUs)], una misura astratta delle risorse di calcolo come CPU, memoria e larghezza di banda I/O. Un utente che desidera aumentare le prestazioni del sistema può farlo in vari modi, ad esempio tramite il portale, T-SQL e le API REST. 
+Le prestazioni in SQL Data Warehouse vengono misurate in [Unità Data Warehouse (DWU)][data warehouse units (DWUs)], una misura astratta delle risorse di calcolo come CPU, memoria e larghezza di banda I/O. Un utente che desidera tooscale le prestazioni del sistema relativi a tale scopo in vari modi, ad esempio tramite il portale di hello, T-SQL e le API REST. 
 
 ### <a name="how-do-i-scale-compute"></a>In che modo è possibile ridimensionare le risorse di calcolo?
-La potenza di calcolo è gestita da SQL Data Warehouse modificando l'impostazione DWU. Le prestazioni aumentano in modo [lineare][linearly] man mano che si aggiungono più DWU per determinate operazioni.  Esistono varie offerte di DWU per assicurare un cambiamento netto delle prestazioni durante il ridimensionamento verticale del sistema. 
+Potenza di calcolo viene gestita SQL Data Warehouse modificando l'impostazione DWU hello. Le prestazioni aumentano in modo [lineare][linearly] man mano che si aggiungono più DWU per determinate operazioni.  Esistono varie offerte di DWU per assicurare un cambiamento netto delle prestazioni durante il ridimensionamento verticale del sistema. 
 
-Per modificare le DWU, è possibile usare uno di questi metodi singoli.
+tooadjust Dwu, è possibile utilizzare uno di questi singoli metodi.
 
 * [Ridimensionare la potenza di calcolo con il portale di Azure][Scale compute power with Azure portal]
 * [Ridimensionare la potenza di calcolo con PowerShell][Scale compute power with PowerShell]
@@ -100,41 +100,41 @@ Per modificare le DWU, è possibile usare uno di questi metodi singoli.
 
 ### <a name="how-many-dwus-should-i-use"></a>Quante DWU è consigliabile usare?
 
-Per comprendere il valore di DWU ideale, provare ad aumentarlo e diminuirlo ed eseguire alcune query dopo il caricamento dei dati. Poiché il ridimensionamento è rapido, è possibile provare diversi livelli di prestazioni in un'ora o meno. 
+toounderstand è il valore DWU ideale, provare a scalabilità verticale e l'esecuzione di alcune query dopo il caricamento dei dati. Poiché il ridimensionamento è rapido, è possibile provare diversi livelli di prestazioni in un'ora o meno. 
 
 > [!Note] 
-> SQL Data Warehouse è progettato per elaborare grandi quantità di dati. Per constatarne le reali funzionalità di ridimensionamento, specialmente per DWU di dimensioni maggiori, si consiglia di usare un set di dati di grandi dimensioni, possibilmente 1 TB o più.
+> SQL Data Warehouse è progettata tooprocess grandi quantità di dati. toosee capacità true per la scalabilità, soprattutto in più grande Dwu, si desidera toouse grandi set di dati che si avvicina o supera 1 TB.
 
-Raccomandazioni per individuare l'impostazione DWU più adatta al proprio carico di lavoro:
+Indicazioni per la ricerca hello DWU migliore per il carico di lavoro:
 
 1. Per un data warehouse in sviluppo, iniziare con un numero più limitato di prestazioni DWU.  Un buon punto di partenza è DW400 o DW200.
-2. Monitorare le prestazioni dell'applicazione, osservare che il numero di DWUs selezionato in relazione alle prestazioni che si osservano.
-3. Determinare di quanto si vogliono aumentare o ridurre le prestazioni per raggiungere il livello ottimale per i propri requisiti presupponendo una scalabilità lineare.
-4. Aumentare o diminuire il numero di DWU proporzionalmente alla velocità desiderata per le prestazioni del proprio carico di lavoro. 
+2. Monitorare le prestazioni dell'applicazione, osservare il numero di hello di Dwu selezionato confrontato prestazioni toohello che è osservare.
+3. Determinare la quantità delle prestazioni di velocità superiore o inferiore devono essere per si tooreach hello ottimale livello di prestazioni per le proprie esigenze, presupponendo una scala lineare.
+4. Aumentare o diminuire il numero di hello di Dwu in proporzione toohow molto più veloce o lenta desiderato tooperform il carico di lavoro. 
 5. Continuare ad apportare modifiche finché non si raggiunge un livello di prestazioni ottimale per i propri requisiti aziendali.
 
 > [!NOTE]
 >
-> Le prestazioni delle query aumentano con maggiore parallelizzazione solo se il lavoro può essere suddivise tra i nodi di calcolo. Se si ritiene che la scalabilità non stia modificando le prestazioni, si consiglia di leggere gli articoli sull'ottimizzazione di queste ultime per verificare qualora i dati siano distribuiti in modo ineguale o se si stiano introducendo grandi quantità di movimenti di dati. 
+> Le prestazioni delle query aumentano solo con la parallelizzazione ulteriori se lavoro hello può essere suddivise tra nodi di calcolo. Se si ritiene che il ridimensionamento non sta cambiando le prestazioni, estrarre il nostro toocheck articoli se i dati non viene distribuiti o se si stanno introducendo una grande quantità di spostamento dei dati di ottimizzazione delle prestazioni. 
 
 ### <a name="when-should-i-scale-dwus"></a>Quando è necessario ridimensionare le DWU?
-Il ridimensionamento delle DWU modifica i seguenti scenari importanti:
+Scalabilità Dwu modifica hello scenari importanti seguenti:
 
-1. Modifica lineare delle prestazioni del sistema per le analisi, l'aggregazione e le istruzioni CTAS
-2. Aumento del numero di lettori e writer durante il caricamento con PolyBase
+1. Modifica in modo lineare delle prestazioni del sistema hello per le analisi, le aggregazioni e un'istruzione CTAS istruzioni
+2. Aumentare il numero di hello di reader e writer durante il caricamento con PolyBase
 3. Numero massimo di query simultanee e slot di concorrenza
 
-Raccomandazioni sul momento più indicato per il ridimensionamento delle DWU:
+Indicazioni relative al tooscale Dwu:
 
 1. Prima di eseguire un'operazione di caricamento o trasformazione di quantità di dati elevate, ridimensionare le DWU in modo che i dati siano disponibili più rapidamente.
-2. Durante le ore lavorative più intense, eseguire il ridimensionamento per poter ricevere un numero maggiori di query simultanee. 
+2. Durante le ore, la scalabilità tooaccommodate un numero maggiore di query simultanee. 
 
 <a name="pause-compute-bk"></a>
 
-## <a name="pause-compute"></a>Sospendere il calcolo
+## <a name="pause-compute"></a>Sospendere le risorse di calcolo
 [!INCLUDE [SQL Data Warehouse pause description](../../includes/sql-data-warehouse-pause-description.md)]
 
-Per sospendere un database, usare uno di questi metodi singoli.
+toopause un database, utilizzare uno di questi singoli metodi.
 
 * [Sospendere le risorse di calcolo con il portale di Azure][Pause compute with Azure portal]
 * [Sospendere le risorse di calcolo con PowerShell][Pause compute with PowerShell]
@@ -145,7 +145,7 @@ Per sospendere un database, usare uno di questi metodi singoli.
 ## <a name="resume-compute"></a>Riavviare le risorse di calcolo
 [!INCLUDE [SQL Data Warehouse resume description](../../includes/sql-data-warehouse-resume-description.md)]
 
-Per riavviare un database, usare uno di questi metodi singoli.
+tooresume un database, utilizzare uno di questi singoli metodi.
 
 * [Riavviare le risorse di calcolo con il portale di Azure][Resume compute with Azure portal]
 * [Riavviare le risorse di calcolo con PowerShell][Resume compute with PowerShell]
@@ -155,20 +155,20 @@ Per riavviare un database, usare uno di questi metodi singoli.
 
 ## <a name="check-database-state"></a>Controllare lo stato del database 
 
-Per riavviare un database, usare uno di questi metodi singoli.
+tooresume un database, utilizzare uno di questi singoli metodi.
 
 - [Controllare lo stato del database con T-SQL][Check database state with T-SQL]
 - [Controllare lo stato del database con PowerShell][Check database state with PowerShell]
 - [Controllare lo stato del database con le API REST][Check database state with REST APIs]
 
-## <a name="permissions"></a>autorizzazioni
+## <a name="permissions"></a>Autorizzazioni
 
-Il ridimensionamento del database richiede le autorizzazioni descritte in [ALTER DATABASE][ALTER DATABASE].  La sospensione e la ripresa richiedono l'autorizzazione [Collaboratore Database SQL][SQL DB Contributor], in particolare Microsoft.Sql/servers/databases/action.
+Scala database hello richiede autorizzazioni hello descritte in [ALTER DATABASE][ALTER DATABASE].  Sospendere e riprendere richiedono hello [collaboratore DB SQL] [ SQL DB Contributor] autorizzazione, in particolare Microsoft.Sql/servers/databases/action.
 
 <a name="next-steps-bk"></a>
 
 ## <a name="next-steps"></a>Passaggi successivi
-Per comprendere più facilmente altri concetti importanti sulle prestazioni, vedere gli articoli seguenti:
+Fare riferimento toohello toohelp articoli è comprendere alcuni concetti di prestazioni chiave aggiuntive seguenti:
 
 * [Gestione della concorrenza e del carico di lavoro][Workload and concurrency management]
 * [Panoramica delle tabelle][Table design overview]

@@ -1,5 +1,5 @@
 ---
-title: Pianificazione ed esecuzione con Data Factory | Documentazione Microsoft
+title: aaaScheduling e l'esecuzione con Data Factory | Documenti Microsoft
 description: Informazioni sugli aspetti di pianificazione ed esecuzione del modello applicativo di Azure Data Factory.
 services: data-factory
 documentationcenter: 
@@ -14,21 +14,21 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/10/2017
 ms.author: spelluru
-ms.openlocfilehash: e6fd92cde91ae5f171c855c07fa8974a19703b41
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 6114dd4896f5537c789c3b632fb90e501b694285
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="data-factory-scheduling-and-execution"></a>Pianificazione ed esecuzione con Data Factory
-Questo articolo descrive gli aspetti di pianificazione ed esecuzione del modello applicativo Azure Data Factory. L'articolo presuppone la conoscenza dei concetti di base del modello applicativo di Data Factory: attività, pipeline, servizi collegati e set di dati. Per i concetti di base di Data Factory di Azure, vedere gli articoli seguenti:
+Questo articolo illustra gli aspetti hello di pianificazione e l'esecuzione del modello di applicazione di hello Azure Data Factory. L'articolo presuppone la conoscenza dei concetti di base del modello applicativo di Data Factory: attività, pipeline, servizi collegati e set di dati. Per concetti di base di Azure Data Factory, vedere hello seguenti articoli:
 
-* [Introduzione al servizio Data factory](data-factory-introduction.md)
+* [Introduzione tooData Factory](data-factory-introduction.md)
 * [Pipeline](data-factory-create-pipelines.md)
 * [Set di dati](data-factory-create-datasets.md) 
 
 ## <a name="start-and-end-times-of-pipeline"></a>Ora di inizio e ora di fine della pipeline
-Una pipeline è attiva solo tra l'ora di **inizio** e l'ora di **fine**. Non viene eseguita prima dell'ora di inizio o dopo l'ora di fine. Se messa in pausa, la pipeline non viene eseguita, indipendentemente dall'ora di inizio e di fine. Per essere eseguita, una pipeline non deve essere in pausa. Queste impostazioni (inizio, fine, in pausa) sono disponibili nella definizione di pipeline: 
+Una pipeline è attiva solo tra l'ora di **inizio** e l'ora di **fine**. Non viene eseguita prima dell'ora di inizio hello o dopo l'ora di fine hello. Se la pipeline di hello è sospesa, non viene eseguito indipendentemente dal relativo ora di inizio e fine. Per toorun una pipeline, consigliabile non sospesa. Queste impostazioni (inizio, fine, in pausa) disponibili nella definizione di pipeline hello: 
 
 ```json
 "start": "2017-04-01T08:00:00Z",
@@ -40,7 +40,7 @@ Per altre informazioni su queste proprietà, vedere l'articolo [Creare pipeline]
 
 
 ## <a name="specify-schedule-for-an-activity"></a>Pianificare l'esecuzione di un'attività
-Non è la pipeline a essere eseguita, ma sono le attività della pipeline a essere eseguite nel contesto generale della pipeline. La sezione **Utilità di pianificazione** del file JSON dell'attività consente di specificare una pianificazione ricorrente per l'attività. Ad esempio, è possibile pianificare l'attività perché venga eseguita a cadenza oraria, come riportato di seguito:  
+Non è pipeline hello che viene eseguita. Si tratta di attività hello nella pipeline hello che vengono eseguite in hello contesto complessivo della pipeline hello. È possibile specificare una pianificazione ricorrente per un'attività tramite hello **dell'utilità di pianificazione** sezione del formato JSON dell'attività. Ad esempio, è possibile pianificare un toorun attività ogni ora come indicato di seguito:  
 
 ```json
 "scheduler": {
@@ -49,18 +49,18 @@ Non è la pipeline a essere eseguita, ma sono le attività della pipeline a esse
 },
 ```
 
-Come illustrato nel diagramma seguente, pianificando un'attività si crea una serie di finestre a cascata con l'ora di inizio e di fine della pipeline. Le finestre a cascata sono costituite da una serie di intervalli temporali di dimensioni fisse, contigui e non sovrapposti. Queste finestre logiche a cascata per un'attività vengono denominate **finestre attività**.
+Come illustrato nel seguente diagramma hello, che specifica che una pianificazione per un'attività crea una serie di finestre a cascata con in hello della pipeline di inizio e di fine. Le finestre a cascata sono costituite da una serie di intervalli temporali di dimensioni fisse, contigui e non sovrapposti. Queste finestre logiche a cascata per un'attività vengono denominate **finestre attività**.
 
 ![Esempio di utilità di pianificazione delle attività](media/data-factory-scheduling-and-execution/scheduler-example.png)
 
-La proprietà **scheduler** per un'attività è facoltativa. Se specificata, questa proprietà deve corrispondere alla cadenza indicata nella definizione del set di dati di output per l'attività. Attualmente, è il set di dati di output a determinare la pianificazione. Pertanto, anche se l'attività non genera alcun output, è necessario specificare un set di dati di output. 
+Hello **dell'utilità di pianificazione** proprietà per un'attività è facoltativa. Se si specifica questa proprietà, deve corrispondere a cadenza hello specificate nella definizione di hello del set di dati di output per l'attività hello. Set di dati di output è attualmente, quali unità hello pianificazione. Pertanto, è necessario creare un set di dati di output, anche se l'attività hello non genera alcun output. 
 
 ## <a name="specify-schedule-for-a-dataset"></a>Specificare una pianificazione per un set di dati
-Un'attività in una pipeline di Data Factory può non avere alcun **set di dati** di input o può averne più di uno e generare uno o più set di dati di output. Per un'attività è possibile specificare la cadenza con cui sono resi disponibili i dati di input o sono generati i dati di output usando la sezione **availability** nelle definizioni dei set di dati. 
+Un'attività in una pipeline di Data Factory può non avere alcun **set di dati** di input o può averne più di uno e generare uno o più set di dati di output. Per un'attività, è possibile specificare una frequenza di hello quali hello dati di input sono disponibili o dati di output di hello viene generati utilizzando hello **disponibilità** sezione nelle definizioni di set di dati hello. 
 
-La proprietà **frequency** nella sezione **availability** specifica l'unità di tempo. I valori consentiti per la frequenza sono: Minute, Hour, Day, Week, e Month (minuto, ora, giorno, settimana e mese). La proprietà **interval** nella sezione availability consente di specificare un moltiplicatore di frequenza. Ad esempio: se la frequenza è impostata su Day e interval è impostato su 1 per un set di dati di output, questi saranno prodotti con cadenza giornaliera. Se si specifica frequency come Minute, è consigliabile impostare interval su un valore non inferiore a 15. 
+**Frequenza** in hello **disponibilità** sezione specifica di unità di tempo hello. Hello i valori consentiti per la frequenza sono: minuto, ora, giorno, settimana e mese. Hello **intervallo** proprietà nella sezione di disponibilità hello consente di specificare un moltiplicatore di frequenza. Ad esempio: se la frequenza di hello è impostata tooDay e l'intervallo è impostato too1 per un set di dati di output, i dati di output di hello viene prodotta ogni giorno. Se si specifica la frequenza di hello minuto, è consigliabile impostare hello intervallo toono inferiore a 15. 
 
-Nell'esempio seguente, i dati di input sono disponibili ogni ora e i dati di output sono generati con cadenza oraria (`"frequency": "Hour", "interval": 1`). 
+Nell'esempio seguente di hello, dati di input hello sono disponibili ogni ora e dati di output di hello viene generati ogni ora (`"frequency": "Hour", "interval": 1`). 
 
 **Set di dati di input:** 
 
@@ -114,9 +114,9 @@ Nell'esempio seguente, i dati di input sono disponibili ogni ora e i dati di out
 }
 ```
 
-Attualmente, **è il set di dati di output a determinare la pianificazione**. In altre parole, la pianificazione specificata per il set di dati di output viene usata per eseguire un'attività in fase di runtime. Pertanto, anche se l'attività non genera alcun output, è necessario specificare un set di dati di output. Se l'attività non richiede input, è possibile ignorare la creazione del set di dati di input. 
+Attualmente, **pianificazione hello unità set di dati di output**. In altre parole, pianificazione hello specificata per il set di dati di hello output è toorun usato un'attività in fase di esecuzione. Pertanto, è necessario creare un set di dati di output, anche se l'attività hello non genera alcun output. Se l'attività hello non accetta alcun input, è possibile ignorare i set di dati input hello creazione. 
 
-Nella definizione di pipeline seguente, la proprietà **scheduler** viene usata per specificare una pianificazione per l'attività. Questa proprietà è facoltativa. Attualmente, la pianificazione dell'attività deve corrispondere alla pianificazione specificata per il set di dati di output.
+In seguito hello pipeline definizione, hello **dell'utilità di pianificazione** proprietà è pianificazione toospecify utilizzati per attività hello. Questa proprietà è facoltativa. Attualmente, pianificazione hello per attività hello deve corrispondere pianificazione hello specificata per il set di dati di hello output.
  
 ```json
 {
@@ -161,36 +161,36 @@ Nella definizione di pipeline seguente, la proprietà **scheduler** viene usata 
 }
 ```
 
-In questo esempio, l'attività viene eseguita ogni ora tra l'ora di inizio e quella di fine della pipeline. I dati di output sono prodotti con cadenza oraria per finestre di tre ore (08:00 - 09:00, 09:00 - 10:00 e 10:00 - 11:00). 
+In questo esempio viene eseguito ogni ora di hello attività tra hello inizio e di fine della pipeline hello. per windows a tre ore (8 AM - 09 AM, 09: 00:10:00 e AM 10-11 AM), dati di output di Hello viene prodotta ogni ora. 
 
-Ogni unità di dati usata o prodotta da un'esecuzione di attività prende il nome di **sezione di dati**. Nel diagramma seguente viene illustrato un esempio di attività con un set di dati di input e un set di dati di output: 
+Ogni unità di dati usata o prodotta da un'esecuzione di attività prende il nome di **sezione di dati**. Hello seguente diagramma viene illustrato un esempio di un'attività con un set di dati di input e un set di dati di output: 
 
 ![Utilità di pianificazione della disponibilità](./media/data-factory-scheduling-and-execution/availability-scheduler.png)
 
-Il diagramma illustra le sezioni di dati orarie per i set di dati di input e di output. Il diagramma mostra tre sezioni di input che sono pronte per l'elaborazione. L'attività 10-11 AM è in corso e produce la sezione di output 10-11 AM. 
+diagramma di Hello Mostra hello ogni ora per hello sezioni di dati di input e output di set di dati. diagramma di Hello mostra tre intervalli di input che sono pronti per l'elaborazione. attività 10: 11 AM Hello è in corso, producendo una sezione di output di hello 10 11 AM. 
 
-È possibile accedere all'intervallo di tempo associato alla sezione corrente nel set di dati JSON usando le variabili [SliceStart](data-factory-functions-variables.md#data-factory-system-variables) e [SliceEnd](data-factory-functions-variables.md#data-factory-system-variables). Allo stesso modo, è possibile accedere all'intervallo di tempo associato a una finestra di attività usando WindowStart e WindowEnd. La pianificazione di un'attività deve corrispondere alla pianificazione del set di dati di output per l'attività stessa. Di conseguenza, i valori SliceStart e SliceEnd sono rispettivamente uguali ai valori WindowStart e WindowEnd. Per altre informazioni su queste variabili, vedere gli articoli [Funzioni e variabili di sistema di Data Factory](data-factory-functions-variables.md#data-factory-system-variables).  
+È possibile accedere a intervallo di tempo hello associata utilizzando variabili di intervallo corrente di hello hello set di dati JSON: [SliceStart](data-factory-functions-variables.md#data-factory-system-variables) e [SliceEnd](data-factory-functions-variables.md#data-factory-system-variables). Analogamente, è possibile accedere intervallo di tempo hello associata a una finestra attività utilizzando hello WindowStart e WindowEnd. pianificazione di Hello di un'attività deve corrispondere pianificazione hello del set di dati per l'attività hello output di hello. Pertanto, hello SliceStart e SliceEnd valori sono hello stesso come valori WindowStart e WindowEnd rispettivamente. Per altre informazioni su queste variabili, vedere gli articoli [Funzioni e variabili di sistema di Data Factory](data-factory-functions-variables.md#data-factory-system-variables).  
 
-È possibile usare queste variabili per scopi diversi nel file JSON dell'attività. Ad esempio, è possibile usarle per selezionare i dati dai set di dati di input e output che rappresentano i dati della serie temporale (ad esempio, dalle 08:00 alle 09:00). L'esempio usa anche **WindowStart** e **WindowEnd** per selezionare i dati pertinenti per l'esecuzione di un'attività e copiarli in un BLOB con un elemento **folderPath** appropriato. All'oggetto **folderPath** sono applicati parametri per avere una cartella separata per ogni ora.  
+È possibile usare queste variabili per scopi diversi nel file JSON dell'attività. Ad esempio, è possibile utilizzare tali dati tooselect di input e output set di dati che rappresenta dati della serie temporale (ad esempio: 8 AM too9 AM). Questo esempio Usa anche **WindowStart** e **WindowEnd** tooselect dati rilevanti per un'attività Esegui e copiarlo tooa blob con hello appropriato **folderPath**. Hello **folderPath** è toohave con parametri di una cartella separata per ogni ora.  
 
-Nell'esempio precedente, la pianificazione specificata per i set di dati di input e di output è la stessa (cadenza oraria). Se il set di dati di input per l'attività è disponibile con una frequenza diversa, ad esempio ogni 15 minuti, l'attività che genera il set di dati di output viene eseguita ancora una volta con cadenza oraria, poiché è il set di dati di output a impostare la pianificazione dell'attività. Per altre informazioni, vedere [Modellare i set di dati con frequenze diverse](#model-datasets-with-different-frequencies).
+In hello sopra riportato, pianificazione hello specificata per il set di dati di input e output è hello stesso (ogni ora). Se il set di dati input hello per attività hello è disponibile una frequenza diversa, ad esempio ogni 15 minuti, attività hello che produce questo set di dati di output esegue ancora una volta all'ora come set di dati output hello quali unità hello pianificazione dell'attività. Per altre informazioni, vedere [Modellare i set di dati con frequenze diverse](#model-datasets-with-different-frequencies).
 
 ## <a name="dataset-availability-and-policies"></a>Disponibilità e criteri dei set di dati
-È stato illustrato l'uso delle proprietà frequency e interval nella sezione availability della definizione di set di dati. Esistono alcune altre proprietà che influiscono sulla pianificazione e l'esecuzione di un'attività. 
+È stato illustrato l'utilizzo di hello di frequenza e l'intervallo di proprietà nella sezione di disponibilità hello della definizione di set di dati. Esistono alcune altre proprietà che influiscono sulla pianificazione hello e l'esecuzione di un'attività. 
 
 ### <a name="dataset-availability"></a>Disponibilità dei set di dati 
-La tabella seguente descrive le proprietà che è possibile usare nella sezione **availability**:
+Hello nella tabella seguente vengono descritte le proprietà è possibile utilizzare in hello **disponibilità** sezione:
 
 | Proprietà | Descrizione | Obbligatorio | Default |
 | --- | --- | --- | --- |
-| frequency |Specifica l'unità di tempo per la produzione di sezioni di set di dati.<br/><br/><b>Frequenza supportata</b>: minuto, ora, giorno, settimana, mese |Sì |ND |
-| interval |Specifica un moltiplicatore per la frequenza.<br/><br/>"Intervallo di frequenza x" determina la frequenza con cui viene generata la sezione.<br/><br/>Se è necessario suddividere il set di dati su base oraria, impostare l'opzione <b>Frequenza</b> su <b>Ora</b> e <b>Intervallo</b> su <b>1</b>.<br/><br/><b>Nota</b> : se si specifica frequency come Minute, è consigliabile impostare interval su un valore non inferiore a 15 |Sì |ND |
-| style |Specifica se la sezione deve essere generata all'inizio o alla fine dell'intervallo.<ul><li>StartOfInterval</li><li>EndOfInterval</li></ul><br/><br/>Se frequency è impostato su Month e style è impostato su EndOfInterval, la sezione viene generata l'ultimo giorno del mese. Se style è impostato su StartOfInterval, la sezione viene generata il primo giorno del mese.<br/><br/>Se l'opzione Frequnza è impostata su Mese e l'opzione Stile è impostata su EndOfInterval, la sezione viene generata l'ultima ora del giorno.<br/><br/>Se frequency è impostato su Hour e style è impostato su EndOfInterval, la sezione viene generata alla fine dell'ora. Ad esempio, una sezione per il periodo 13.00 - 14.00 viene generata alle 14.00. |No |EndOfInterval |
-| anchorDateTime |Definisce la posizione assoluta nel tempo usata dall'utilità di pianificazione per calcolare i limiti della sezione del set di dati. <br/><br/><b>Nota:</b> se AnchorDateTime include parti della data più granulari rispetto alla frequenza, le parti più granulari vengono ignorate. <br/><br/>Ad esempio, se l'<b>intervallo</b> è <b>orario</b> (ovvero frequenza: ora e intervallo: 1) e <b>AnchorDateTime</b> contiene <b>minuti e secondi</b>, le parti <b>minuti e secondi</b> di AnchorDateTime vengono ignorate. |No |01/01/0001 |
-| offset |Intervallo di tempo in base al quale l'inizio e la fine di tutte le sezioni dei set di dati vengono spostate. <br/><br/><b>Nota:</b> se vengono specificati sia anchorDateTime che offset, il risultato sarà lo spostamento combinato. |No |ND |
+| frequency |Specifica l'unità di tempo hello per la produzione di sezione set di dati.<br/><br/><b>Frequenza supportata</b>: minuto, ora, giorno, settimana, mese |Sì |ND |
+| interval |Specifica un moltiplicatore per la frequenza.<br/><br/>"Intervallo di frequenza x" determina la frequenza con cui hello sezione viene prodotta.<br/><br/>Se è necessario hello toobe dataset sezionati su base oraria, impostare <b>frequenza</b> troppo<b>ora</b>, e <b>intervallo</b> troppo<b>1</b>.<br/><br/><b>Nota</b>: se si specifica Frequency come Minute, si consiglia di impostare hello intervallo toono inferiore a 15 |Sì |ND |
+| style |Specifica se la sezione hello deve essere prodotta all'hello inizio/fine dell'intervallo "hello".<ul><li>StartOfInterval</li><li>EndOfInterval</li></ul><br/><br/>Se Frequency è impostato tooMonth e style è impostato tooEndOfInterval, hello sezione viene prodotta hello ultimo giorno del mese. Se lo stile di hello è impostato tooStartOfInterval, hello sezione viene prodotta hello primo giorno del mese.<br/><br/>Se Frequency è impostato tooDay e style è impostato tooEndOfInterval, sezione hello viene prodotta nell'ultima ora del giorno hello hello.<br/><br/>Se Frequency è impostato tooHour e style è impostato tooEndOfInterval, sezione hello viene prodotta alla fine hello ora hello. Ad esempio, per una sezione per periodo 1 PM – 2 PM, sezione di hello viene prodotta alle 14.00. |No |EndOfInterval |
+| anchorDateTime |Definisce una posizione assoluta di hello in utilizzata dai limiti di sezione dell'utilità di pianificazione toocompute set di dati. <br/><br/><b>Nota</b>: se hello AnchorDateTime ha parti di date più granulari frequenza hello in hello parti più granulari verranno ignorate. <br/><br/>Ad esempio, se hello <b>intervallo</b> è <b>oraria</b> (frequenza: ora e intervallo: 1) e hello <b>AnchorDateTime</b> contiene <b>minuti e secondi</b>, quindi hello <b>minuti e secondi</b> parti di hello AnchorDateTime verranno ignorate. |No |01/01/0001 |
+| offset |Intervallo di tempo da cui hello iniziale e finale di tutte le sezioni di set di dati vengono spostati. <br/><br/><b>Nota</b>: se vengono specificati sia anchorDateTime che offset, il risultato di hello è MAIUSC hello combinato. |No |ND |
 
 ### <a name="offset-example"></a>Esempio di offset
-Per impostazione predefinita, le sezioni giornaliere (`"frequency": "Day", "interval": 1`) iniziano alle 00:00, mezzanotte, ora UTC. Se, invece, si desidera impostare l'ora di inizio alle 06:00 UTC, impostare l'offset come illustrato nel frammento riportato di seguito: 
+Per impostazione predefinita, le sezioni giornaliere (`"frequency": "Day", "interval": 1`) iniziano alle 00:00, mezzanotte, ora UTC. Se si desidera hello inizio ora toobe 6: 00 UTC ora invece, impostare hello offset come illustrato nel seguente frammento di codice hello: 
 
 ```json
 "availability":
@@ -201,7 +201,7 @@ Per impostazione predefinita, le sezioni giornaliere (`"frequency": "Day", "inte
 }
 ```
 ### <a name="anchordatetime-example"></a>Esempio di anchorDateTime
-Nell'esempio seguente, il set di dati viene prodotto ogni 23 ore. La prima sezione inizia all'ora specificata da anchorDateTime, che è impostato su `2017-04-19T08:00:00` (ora UTC).
+Nell'esempio seguente di hello, hello set di dati viene prodotta una volta ogni 23 ore. Hello prima sezione viene avviata in fase di hello specificato da anchorDateTime hello, che è stato impostato troppo`2017-04-19T08:00:00` (ora UTC).
 
 ```json
 "availability":    
@@ -213,7 +213,7 @@ Nell'esempio seguente, il set di dati viene prodotto ogni 23 ore. La prima sezio
 ```
 
 ### <a name="offsetstyle-example"></a>Esempio di offset/style
-Il seguente set di dati è un set di dati mensile e viene generato il 3 di ogni mese alle ore 08:00 (`3.08:00:00`):
+è un set di dati mensili Hello seguente set di dati e viene prodotta 3 ° di ogni mese alle ore 8:00 (`3.08:00:00`):
 
 ```json
 "availability": {
@@ -225,14 +225,14 @@ Il seguente set di dati è un set di dati mensile e viene generato il 3 di ogni 
 ```
 
 ### <a name="dataset-policy"></a>Criteri di set di dati
-Per un set di dati è possibile definire anche un criterio di convalida che specifica in che modo i dati generati dall'esecuzione di una sezione possono essere convalidati prima che siano pronti per l'uso. In questi casi, al termine del processo di esecuzione, lo stato della sezione di output viene impostato su **In attesa** con lo stato secondario impostato su **Convalida**. Al termine della convalida, lo stato viene impostato invece su **Pronto**. Se una sezione di dati è stata correttamente generata ma non ha superato il processo di convalida, le esecuzioni di attività per le sezioni a valle dipendenti da questa sezione non vengono elaborate. [Monitorare e gestire le pipeline](data-factory-monitor-manage-pipelines.md) vengono descritti i vari stati disponibili per le sezioni di dati di Data Factory.
+Un set di dati è stato definito un criterio di convalida che specifica come dati hello generati dall'esecuzione di una sezione possono essere convalidati prima che sia pronto per l'utilizzo. In questi casi, al termine dell'esecuzione, sezione hello hello output sezione stato viene modificato troppo**in attesa** con uno stato secondario di **convalida**. Una volta convalidate sezioni hello, lo stato della sezione hello modificato anche**pronto**. Se una sezione di dati è stato prodotto ma non ha superato la convalida di hello, esecuzioni di attività per sezioni downstream che dipendono da questa sezione non vengono elaborati. [Monitorare e gestire le pipeline](data-factory-monitor-manage-pipelines.md) copre hello vari stati di sezioni di dati in Data Factory.
 
-La sezione **policy** nella definizione del set di dati stabilisce i criteri o la condizione che le sezioni del set di dati devono soddisfare. La tabella seguente descrive le proprietà che è possibile usare nella sezione **policy**:
+Hello **criteri** sezione nella definizione di set di dati definisce i criteri di hello o condizione hello hello sezioni di set di dati è necessario soddisfare. Hello nella tabella seguente vengono descritte le proprietà è possibile utilizzare in hello **criteri** sezione:
 
-| Nome criterio | Descrizione | Applicato a | Obbligatorio | Default |
+| Nome criterio | Descrizione | Troppo applicato| Obbligatorio | Default |
 | --- | --- | --- | --- | --- |
-| minimumSizeMB | Verifica che i dati in un **BLOB di Azure** soddisfino i requisiti relativi alle dimensioni minime (in megabyte). |BLOB di Azure |No |ND |
-| minimumRows | Verifica che i dati in un **database SQL di Azure** o in una **tabella di Azure** contengano il numero minimo di righe. |<ul><li>Database SQL di Azure</li><li>tabella di Azure</li></ul> |No |ND |
+| minimumSizeMB | Convalida i dati di hello un **blob di Azure** hello di soddisfa i requisiti di dimensioni minime (in megabyte). |BLOB Azure |No |ND |
+| minimumRows | Convalida i dati di hello un **database SQL di Azure** o **tabella Azure** contiene hello numero minimo di righe. |<ul><li>Database SQL di Azure</li><li>tabella di Azure</li></ul> |No |ND |
 
 #### <a name="examples"></a>esempi
 **minimumSizeMB:**
@@ -263,73 +263,73 @@ La sezione **policy** nella definizione del set di dati stabilisce i criteri o l
 Per altre informazioni sulle proprietà e gli esempi precedenti, vedere l'articolo [Creare i set di dati](data-factory-create-datasets.md). 
 
 ## <a name="activity-policies"></a>Criteri di attività
-I criteri influiscono sul comportamento in fase di esecuzione di un'attività, in particolare quando viene elaborata la sezione di una tabella. La tabella seguente fornisce informazioni dettagliate.
+Criteri influiscono sul comportamento di hello in fase di esecuzione di un'attività, in particolare quando viene elaborata la sezione hello di una tabella. Hello nella tabella seguente fornisce dettagli hello.
 
 | Proprietà | Valori consentiti | Valore predefinito | Descrizione |
 | --- | --- | --- | --- |
-| Concorrenza |Integer  <br/><br/>Valore massimo: 10 |1 |Numero di esecuzioni simultanee dell'attività.<br/><br/>Determina il numero di esecuzioni di attività parallele che possono verificarsi in sezioni diverse. Ad esempio, se un'attività deve passare attraverso grandi set di dati disponibili, con un valore di concorrenza maggiore che consente di velocizzare l'elaborazione dei dati. |
-| executionPriorityOrder |NewestFirst<br/><br/>OldestFirst |OldestFirst |Determina l'ordine delle sezioni di dati che vengono elaborate.<br/><br/>Ad esempio nel caso in cui si abbiano 2 sezioni, una alle 16.00 e l'altra alle 17.00, ed entrambe siano in attesa di esecuzione. Se si imposta executionPriorityOrder su NewestFirst, viene elaborata per prima la sezione delle 17:00. Allo stesso modo, se si imposta executionPriorityORder su OldestFIrst, verrà elaborata per prima la sezione delle 16:00. |
-| retry |Integer <br/><br/>Valore massimo: 10 |0 |Numero di tentativi prima che l'elaborazione dei dati per la sezione sia contrassegnata come errore. L'esecuzione dell’attività per una sezione di dati viene ritentata fino al numero di tentativi specificato. Il tentativo viene eseguito appena possibile dopo l'errore. |
-| timeout |TimeSpan |00:00:00 |Timeout per l'attività. Esempio: 00:10:00 (implica un timeout di 10 minuti)<br/><br/>Se un valore non è specificato o è 0, il timeout è infinito.<br/><br/>Se il tempo di elaborazione dei dati in una sezione supera il valore di timeout, viene annullato e il sistema prova a ripetere l'elaborazione. Il numero di tentativi dipende dalla proprietà retry. Quando si verifica il timeout, lo stato viene impostato su TimedOut. |
-| delay |TimeSpan |00:00:00 |Specificare il ritardo prima che abbia inizio l'elaborazione dei dati della sezione.<br/><br/>L'esecuzione dell'attività per una sezione di dati viene avviata non appena il ritardo supera il tempo di esecuzione previsto.<br/><br/>Esempio: 00:10:00 (implica un ritardo di 10 minuti) |
-| longRetry |Integer <br/><br/>Valore massimo: 10 |1 |Numero di tentativi estesi prima che l'esecuzione della sezione dia esito negativo.<br/><br/>I tentativi longRetry sono distanziati da longRetryInterval. Pertanto, se è necessario specificare un tempo tra i tentativi, utilizzare longRetry. Se si specificano sia Retry che longRetry, ogni tentativo longRetry include tentativi Retry e il numero massimo di tentativi corrisponde a Retry * longRetry.<br/><br/>Ad esempio, se si hanno le seguenti impostazioni nel criterio attività:<br/>Retry: 3<br/>longRetry: 2<br/>longRetryInterval: 01:00:00<br/><br/>si presume che la sezione da eseguire sia solo una, con stato Waiting, e che l'esecuzione dell'attività abbia ogni volta esito negativo. All’inizio vi saranno tre tentativi di esecuzione consecutivi. Dopo ogni tentativo, lo stato della sezione sarà Retry. Una volta terminati i 3 tentativi sulla sezione, lo stato sarà LongRetry.<br/><br/>Dopo un'ora (vale a dire il valore di longRetryInteval), verrà eseguita un'altra serie di 3 tentativi di esecuzione consecutivi. Al termine, lo stato della sezione sarà Failed e non verranno eseguiti altri tentativi. Quindi, sono stati eseguiti 6 tentativi.<br/><br/>Se un'esecuzione ha esito positivo, lo stato della sezione sarà Ready e non saranno ripetuti altri tentativi.<br/><br/>longRetry può essere usato nelle situazioni in cui i dati dipendenti arrivano in orari non deterministici o l'ambiente complessivo in cui si verifica l'elaborazione dei dati è debole. In tali casi, l'esecuzione di tentativi consecutivi potrebbe non essere utile, mentre l'applicazione di un intervallo consente di ottenere il risultato voluto.<br/><br/>Attenzione: non impostare valori elevati per longRetry o longRetryInterval. In genere, valori più elevati comportano altri problemi sistemici. |
-| longRetryInterval |TimeSpan |00:00:00 |Il ritardo tra tentativi longRetry |
+| Concorrenza |Integer  <br/><br/>Valore massimo: 10 |1 |Numero di esecuzioni simultanee dell'attività hello.<br/><br/>Determina il numero di hello di esecuzioni di attività parallele che possono verificarsi in sezioni diverse. Ad esempio, se un'attività deve toogo tramite un ampio set di dati disponibili, un valore maggiore di concorrenza di velocizzare l'elaborazione dati hello. |
+| executionPriorityOrder |NewestFirst<br/><br/>OldestFirst |OldestFirst |Determina hello ordinamento delle sezioni di dati che vengono elaborate.<br/><br/>Ad esempio nel caso in cui si abbiano 2 sezioni, una alle 16.00 e l'altra alle 17.00, ed entrambe siano in attesa di esecuzione. Se si imposta executionPriorityOrder di hello toobe NewestFirst, slice hello 17: 00 viene elaborata per prima. Allo stesso modo se si imposta executionPriorityORder di hello toobe OldestFIrst, viene elaborato sezione hello 4 ore. |
+| retry |Integer <br/><br/>Valore massimo: 10 |0 |Numero di tentativi prima dell'elaborazione dei dati di hello per sezione hello è contrassegnato come errore. Esecuzione di attività per una sezione di dati viene ripetuta backup toohello specificato numero di tentativi. Riprova Hello viene eseguito appena possibile dopo l'errore hello. |
+| timeout |TimeSpan |00:00:00 |Timeout per l'attività hello. Esempio: 00:10:00 (implica un timeout di 10 minuti)<br/><br/>Se un valore viene omesso o è 0, hello timeout è infinito.<br/><br/>Se il tempo di elaborazione di dati hello in una sezione supera il valore di timeout di hello, viene annullata e sistema hello tenta l'elaborazione di hello tooretry. numero di tentativi di Hello dipende dalla proprietà retry hello. Quando si verifica il timeout, hello stato tooTimedOut. |
+| delay |TimeSpan |00:00:00 |Specificare il ritardo di hello prima dell'elaborazione di dati di hello sezione inizia.<br/><br/>esecuzione di Hello dell'attività per una sezione di dati viene avviata dopo hello ritardo passato hello previsto tempo di esecuzione.<br/><br/>Esempio: 00:10:00 (implica un ritardo di 10 minuti) |
+| longRetry |Integer <br/><br/>Valore massimo: 10 |1 |numero di Hello di long tentativi prima dell'esecuzione della sezione hello è non è riuscito.<br/><br/>I tentativi longRetry sono distanziati da longRetryInterval. Pertanto, se è necessario toospecify un intervallo tra tentativi, usare quindi longRetry. Se vengono specificati Retry e longRetry, ogni tentativo longRetry include nuovi tentativi e numero massimo di tentativi di hello è Riprova * longRetry.<br/><br/>Ad esempio, se si dispone delle seguenti impostazioni in criteri attività hello hello:<br/>Retry: 3<br/>longRetry: 2<br/>longRetryInterval: 01:00:00<br/><br/>Si supponga che sia presente solo una sezione tooexecute (lo stato è in attesa) e l'esecuzione dell'attività hello ha esito negativo di ogni volta. All’inizio vi saranno tre tentativi di esecuzione consecutivi. Dopo ogni tentativo, lo stato della sezione hello sarà Retry. Dopo aver innanzitutto 3 tentativi di failover, lo stato della sezione hello sarebbe LongRetry.<br/><br/>Dopo un'ora (vale a dire il valore di longRetryInteval), verrà eseguita un'altra serie di 3 tentativi di esecuzione consecutivi. Successivamente, lo stato della sezione hello sarà Failed e non più necessario tentativi. Quindi, sono stati eseguiti 6 tentativi.<br/><br/>Se qualsiasi esecuzione ha esito positivo, lo stato della sezione hello sarà Ready e non più tentativi.<br/><br/>longRetry possono essere utilizzati in situazioni in cui dipendenti dati arrivano a volte non deterministica o hello ambiente generale non è affidabile in cui l'elaborazione dei dati si verifica. In questi casi, potrebbe non aiutare eseguire tentativi uno dopo l'altro e in questo modo, dopo un intervallo di risultati in fase di hello desiderato output.<br/><br/>Attenzione: non impostare valori elevati per longRetry o longRetryInterval. In genere, valori più elevati comportano altri problemi sistemici. |
+| longRetryInterval |TimeSpan |00:00:00 |ritardo Hello tra nuovi tentativi lunghi |
 
 Per altre informazioni, vedere l'articolo [Pipeline](data-factory-create-pipelines.md). 
 
 ## <a name="parallel-processing-of-data-slices"></a>Elaborazione parallela delle sezioni di dati
-È possibile impostare la data di inizio della pipeline nel passato. Così facendo, Data Factory calcolerà automaticamente tutte le sezioni di dati nel passato recuperando le informazioni e ne avvierà l'elaborazione. Ad esempio: si crea una pipeline con data di inizio 01.04.2017 e la data corrente è 10.04.2017. Se il set di dati di output ha cadenza giornaliera, Data Factory inizierà immediatamente l'elaborazione di tutte le sezioni dal 01.04.2017 al 09.04.2017 perché la data di inizio è nel passato. La sezione dal 10.04.2017 non verrà ancora elaborata perché il valore della proprietà di stile nella sezione availability è EndOfInterval per impostazione predefinita. La sezione meno recente verrà elaborata per prima perché il valore predefinito di executionPriorityOrder è OldestFirst. Per una descrizione della proprietà style, vedere la sezione [disponibilità dei set di dati](#dataset-availability). Per una descrizione della sezione executionPriorityOrder, vedere la sezione [criteri di attività](#activity-policies). 
+È possibile impostare la data di inizio hello per pipeline hello in hello precedente. Quando si esegue questa operazione, Data Factory Calcola (riempimenti indietro) tutte le sezioni di dati in hello ultimi automaticamente e inizia l'elaborazione. Ad esempio: se si crea una pipeline con data di inizio 2017-04-01 e hello data corrente è 2017-04-10. Se l'output ritmo hello di hello set di dati è ogni giorno, Data Factory avvia l'elaborazione di tutte le sezioni di hello da 2017-04-01 too2017-04-09 immediatamente perché hello data di inizio è hello precedente. Hello sezione da 2017-04-10 non viene elaborata ancora perché il valore di hello della proprietà di stile nella sezione di disponibilità hello EndOfInterval per impostazione predefinita. Hello sezione meno recente viene elaborato per primo come valore predefinito di hello valore executionPriorityOrder è OldestFirst. Per una descrizione della proprietà di stile hello, vedere [disponibilità dataset](#dataset-availability) sezione. Per una descrizione della sezione executionPriorityOrder hello, vedere hello [criteri attività](#activity-policies) sezione. 
 
-È possibile configurare le sezioni di dati recuperati perché siano eseguite in parallelo, impostando la proprietà **concurrency** nella sezione **policy** dell'attività JSON. Questa proprietà determina il numero di esecuzioni di attività parallele che possono verificarsi in sezioni diverse. Il valore predefinito per questa proprietà è 1. Pertanto, per impostazione predefinita viene elaborata una sola sezione alla volta. Il valore massimo è 10. Se una pipeline deve passare attraverso grandi set di dati disponibili, con un valore di concorrenza maggiore che consente di velocizzare l'elaborazione dei dati. 
+È possibile configurare toobe sezioni di dati riempito back elaborati in parallelo da hello impostazione **concorrenza** proprietà hello **criteri** sezione del formato JSON dell'attività hello. Questa proprietà determina il numero di hello di esecuzioni di attività parallele che possono verificarsi in sezioni diverse. il valore predefinito Hello per la proprietà di concorrenza hello è 1. Pertanto, per impostazione predefinita viene elaborata una sola sezione alla volta. valore massimo Hello è 10. Quando una pipeline deve toogo tramite un ampio set di dati disponibili, un valore maggiore di concorrenza di velocizzare l'elaborazione dati hello. 
 
 ## <a name="rerun-a-failed-data-slice"></a>Nuova esecuzione di una sezione di dati non riuscita
-Quando si verifica un errore durante l'elaborazione di una sezione di dati, è possibile scoprire perché l'elaborazione di una sezione non è riuscita tramite i pannelli del portale di Azure o l'App Monitoraggio e gestione. Per informazioni dettagliate, vedere [Monitorare e gestire le pipeline con i pannelli del portale di Azure](data-factory-monitor-manage-pipelines.md) o [App di monitoraggio e gestione](data-factory-monitor-manage-app.md).
+Quando si verifica un errore durante l'elaborazione di una sezione di dati, è possibile scoprire perché non è riuscita l'elaborazione di hello di una sezione utilizzando pannelli portali Azure o i Monitor e gestire App. Per informazioni dettagliate, vedere [Monitorare e gestire le pipeline con i pannelli del portale di Azure](data-factory-monitor-manage-pipelines.md) o [App di monitoraggio e gestione](data-factory-monitor-manage-app.md).
 
-Si consideri l'esempio seguente che descrive due attività. Activity1 e Activity 2. Activity1 usa una sezione di Dataset1 e genera una sezione di Dataset2, che viene usata come input da Activity2 per produrre una sezione del set di dati finale.
+Prendere in considerazione hello seguente esempio, due attività. Activity1 e Activity 2. Activity1 utilizza una sezione di Dataset1 e produce una sezione del set di dati 2, che viene utilizzata come input dal Activity2 tooproduce una sezione di hello set di dati finale.
 
 ![Sezione non riuscita](./media/data-factory-scheduling-and-execution/failed-slice.png)
 
-Il diagramma illustra che in una delle tre sezioni recenti si è verificato un errore durante la produzione della sezione 9-10 AM per Dataset2. Data Factory tiene automaticamente traccia della dipendenza per il set di dati della serie temporale. Di conseguenza, non viene avviata l'esecuzione dell'attività per la sezione di downstream 9-10 AM.
+Hello diagramma viene mostrato che da tre sezioni di recente, si è verificato una sezione di 9 10 AM errore produzione hello per Dataset2. Data Factory rileva automaticamente le dipendenze per set di dati serie hello ora. Di conseguenza, non viene avviato per intervallo di hello AM 9-10 a valle di esecuzione dell'attività hello.
 
-Gli strumenti di monitoraggio e gestione di Data Factory consentono inoltre di analizzare i log di diagnostica relativi alla sezione con esito negativo e individuare facilmente la causa principale del problema per permetterne la risoluzione. Dopo aver risolto il problema, è possibile avviare facilmente l'esecuzione di attività per generare la sezione non riuscita. Per altre informazioni su come riavviare le esecuzioni o per comprendere le transizioni di stato per le sezioni di dati, vedere [Monitorare e gestire le pipeline con i pannelli del portale di Azure](data-factory-monitor-manage-pipelines.md) o [App di monitoraggio e gestione](data-factory-monitor-manage-app.md).
+Strumenti di gestione e monitoraggio di Factory dati consentono di organizzare toodrill in log di diagnostica hello per la radice hello hello sezione tooeasily trova causare per problema hello e risolvere il problema. Dopo avere risolto il problema di hello, è possibile avviare facilmente attività hello eseguire tooproduce hello sezione. Per ulteriori informazioni su come toorerun e comprendere le transizioni di stato per le sezioni di dati, vedere [monitoraggio e gestione delle pipeline utilizzando pannelli portali Azure](data-factory-monitor-manage-pipelines.md) o [monitoraggio e gestione di app](data-factory-monitor-manage-app.md).
 
-Dopo che la sezione 9-10 AM di **Dataset2**è stata eseguita nuovamente, Data Factory avvia l'esecuzione della sezione dipendente 9-10 AM nel set di dati finale.
+Dopo che si esegue nuovamente hello 9 10 AM sezionare per **Dataset2**, Data Factory avvia hello eseguita per sezione di hello AM 9 10 dipendenti hello set di dati finale.
 
 ![Nuova esecuzione di una sezione non riuscita](./media/data-factory-scheduling-and-execution/rerun-failed-slice.png)
 
 ## <a name="multiple-activities-in-a-pipeline"></a>Attività multiple in una pipeline
-È possibile avere più di un'attività in una pipeline. Se si hanno più attività in una pipeline e l'output di un'attività non è l'input di un'altra attività, le attività possono essere eseguite in parallelo se le sezioni di dati di input per le attività sono pronte.
+È possibile avere più di un'attività in una pipeline. Se si dispone di più attività in una pipeline e output di hello di un'attività non è un input di un'altra attività, le attività di hello possono essere eseguite in parallelo se gli intervalli di dati di input per le attività di hello pronti.
 
-È possibile concatenare due attività, ovvero eseguire un'attività dopo l'altra, impostando il set di dati di output di un'attività come set di dati di input di altre attività. Le attività possono essere nella stessa pipeline o in pipeline diverse. La seconda attività viene eseguita solo quando la prima viene completata correttamente.
+È possibile concatenare le due attività (eseguire un'attività dopo l'altro) mediante l'impostazione di set di dati di hello output di un'attività come hello input set di dati di hello altre attività. è possibile l'attività di Hello in hello stessa pipeline o in una pipeline diverse. seconda attività Hello viene eseguita solo quando hello prima uno completata correttamente.
 
-Ad esempio, si consideri il caso seguente in cui una pipeline ha due attività:
+Si consideri ad esempio hello caso in cui una pipeline ha due attività seguenti:
 
 1. L'attività A1, che richiede il set di dati di input esterno D1 e produce il set di dati di output D2.
 2. L'attività A2, che richiede l'input del set di dati D2 e produce il set di dati di output D3.
 
-In questo scenario, le attività A1 e A2 si trovano nella stessa pipeline. L'attività A1 viene eseguita quando i dati esterni sono disponibili e viene raggiunta la frequenza di disponibilità pianificata. L'attività A2 viene eseguita quando le sezioni pianificate di D2 diventano disponibili e viene raggiunta la frequenza di disponibilità pianificata. Se è presente un errore in una delle sezioni del set di dati D2, A2 non verrà eseguita per tale sezione fino a quando non diventa disponibile.
+In questo scenario, l'attività A1 e A2 sono in hello stessa pipeline. attività Hello che a1 viene eseguito quando sono disponibili dati esterni hello e frequenza disponibilità hello pianificata viene raggiunto. Hello attività A2 viene eseguito quando hello intervalli pianificati da D2 diventano disponibili e hello frequenza disponibilità pianificata viene raggiunto. Se si verifica un errore in uno degli intervalli di hello nel set di dati D2, A2 non viene eseguito per tale sezione finché diventa disponibile.
 
-La visualizzazione diagramma con entrambe le attività nella stessa pipeline sarebbe simile al diagramma seguente:
+Hello vista diagramma con entrambe le attività in hello stessa pipeline avrà un aspetto analogo hello seguente diagramma:
 
-![Concatenamento di attività nella stessa pipeline](./media/data-factory-scheduling-and-execution/chaining-one-pipeline.png)
+![Concatenamento di attività in hello stessa pipeline](./media/data-factory-scheduling-and-execution/chaining-one-pipeline.png)
 
-Come accennato in precedenza, le attività possono trovarsi in pipeline diverse. In questo caso, la visualizzazione diagramma sarebbe simile al diagramma seguente:
+Come accennato in precedenza, potrebbe essere attività hello nella pipeline diverse. In tale scenario, vista diagramma hello sarebbe simile hello seguente diagramma:
 
 ![Concatenamento di attività in due pipeline](./media/data-factory-scheduling-and-execution/chaining-two-pipelines.png)
 
-Per un esempio, vedere la sezione [copiare in sequenza](#copy-sequentially) nell'appendice.
+Vedere hello [copiare in sequenza](#copy-sequentially) sezione Appendice hello per un esempio.
 
 ## <a name="model-datasets-with-different-frequencies"></a>Modellare i set di dati con frequenze diverse
-Negli esempi, la finestra di pianificazione dell'attività e le frequenze relative ai set di dati di input e di output erano identiche. Alcuni scenari richiedono tuttavia la possibilità di generare output a una frequenza diversa da quella degli input. Data Factory supporta la modellazione di questi scenari.
+Negli esempi di hello, le frequenze di hello per input e output set di dati e hello attività periodi pianificati sono stati hello stesso. Alcuni scenari richiedono l'output di tooproduce hello possibilità a una frequenza diversa da frequenze hello di uno o più input. Data Factory supporta la modellazione di questi scenari.
 
 ### <a name="sample-1-produce-a-daily-output-report-for-input-data-that-is-available-every-hour"></a>Esempio 1: Generazione di un report di output giornaliero per i dati di input, disponibile ogni ora
-Si consideri uno scenario in cui i dati delle misurazioni di input dei sensori sono disponibili ogni ora nell'archiviazione BLOB di Azure. Si intende generare un report aggregato giornaliero con statistiche, ad esempio media, max e min, per il giorno con [attività Hive di Data Factory](data-factory-hive-activity.md).
+Si consideri uno scenario in cui i dati delle misurazioni di input dei sensori sono disponibili ogni ora nell'archiviazione BLOB di Azure. Si desidera tooproduce un report giornaliero di aggregazione con statistiche, ad esempio Media, massimo e minimo per il giorno hello con [attività hive di Data Factory](data-factory-hive-activity.md).
 
 Ecco come modellare questo scenario con Data Factory:
 
 **Set di dati di input**
 
-I file di input vengono rilasciati ogni ora nella cartella relativa al giorno specificato. Il valore di disponibilità per l'input è impostato su **Hour** (frequency: Hour, interval: 1).
+Hello input ogni ora vengono eliminati i file nella cartella hello hello giorno specificato. Il valore di disponibilità per l'input è impostato su **Hour** (frequency: Hour, interval: 1).
 
 ```json
 {
@@ -358,7 +358,7 @@ I file di input vengono rilasciati ogni ora nella cartella relativa al giorno sp
 ```
 **Set di dati di output**
 
-Un file di output viene creato ogni giorno nella cartella relativa al giorno corrispondente. Il valore di disponibilità per l'output è impostato su **Day** (frequency: Day, interval: 1).
+Viene creato ogni giorno di un file di output nella cartella hello del giorno. Il valore di disponibilità per l'output è impostato su **Day** (frequency: Day, interval: 1).
 
 ```json
 {
@@ -387,7 +387,7 @@ Un file di output viene creato ogni giorno nella cartella relativa al giorno cor
 
 **Attività: attività Hive in una pipeline**
 
-Lo script Hive riceve le informazioni *DateTime* appropriate sotto forma di parametri che usano la variabile **WindowStart** , come illustrato nel frammento seguente. Lo script Hive usa quindi questa variabile per caricare i dati dall'apposita cartella relativa al giorno ed eseguire l'aggregazione per generare l'output.
+script hive Hello riceve hello appropriato *DateTime* informazioni come parametri che utilizzano hello **WindowStart** variabile, come illustrato nel seguente frammento di codice hello. script hive Hello utilizza questi dati di hello tooload variabile dalla cartella corretta hello per giorno hello ed eseguire l'output di hello aggregazione toogenerate hello.
 
 ```json
 {  
@@ -436,22 +436,22 @@ Lo script Hive riceve le informazioni *DateTime* appropriate sotto forma di para
 }
 ```
 
-Il diagramma seguente illustra lo scenario dal punto di vista della dipendenza dei dati.
+Hello diagramma seguente illustra uno scenario di hello da un punto di vista di dipendenza dei dati.
 
 ![Dipendenza dei dati](./media/data-factory-scheduling-and-execution/data-dependency.png)
 
-Per ogni giorno, la sezione di output dipende dalle 24 sezioni orarie ottenute dal set di dati di input. Data Factory calcola automaticamente queste dipendenze prevedendo le sezioni di dati di input che rientrano nello stesso periodo di tempo della sezione di output da produrre. Se una delle 24 sezioni di input non è disponibile, Data Factory attenderà che la sezione di input sia pronta prima di avviare l'esecuzione dell'attività giornaliera.
+sezione di output di Hello per ogni giorno dipende da 24 orarie sezioni da un set di dati di input. Data Factory calcola queste dipendenze automaticamente, immaginando hello porzioni di dati di input che rientrano in hello stesso periodo di tempo come hello toobe sezione output generato. Se una delle sezioni di input hello 24 non è disponibile, Data Factory attende hello sezione input toobe pronto prima di avviare l'esecuzione dell'attività giornaliera hello.
 
 ### <a name="sample-2-specify-dependency-with-expressions-and-data-factory-functions"></a>Esempio 2: Definizione di una dipendenza con espressioni e funzioni di Data Factory
-Si consideri ora un altro scenario Si supponga di avere un'attività Hive che elabora i due set di dati di input. Uno di questi dispone di nuovi dati ogni giorno, mentre l'altro li riceve ogni settimana. Si supponga inoltre di voler eseguire un join tra i due input e produrre un output ogni giorno.
+Si consideri ora un altro scenario Si supponga di avere un'attività Hive che elabora i due set di dati di input. Uno di questi dispone di nuovi dati ogni giorno, mentre l'altro li riceve ogni settimana. Si supponga che si desiderava toodo un join tra due input hello e produrre un output di ogni giorno.
 
-L'approccio semplice, in cui Data Factory determina automaticamente le sezioni di input da elaborare tramite l'allineamento con il periodo di tempo della sezione dei dati di output, non funziona.
+un approccio di Hello in cui Data Factory automaticamente fascicolazione input di destra hello seziona tooprocess allineando output toohello periodo tempo della sezione di dati non funziona.
 
-È necessario definire un nuovo approccio per ogni esecuzione di attività in cui Data Factory possa usare la sezione di dati dell'ultima settimana per il set di dati di input settimanale. Per implementare questo comportamento, è possibile usare le funzioni di Azure Data Factory, come illustrato nel frammento seguente.
+È necessario specificare che per ogni esecuzione dell'attività, hello Data Factory deve usare la sezione di dati della settimana scorsa per hello settimanale input set di dati. Si utilizzano funzioni di Data Factory di Azure, come illustrato nel seguente frammento di codice tooimplement hello questo comportamento.
 
 **Input1: BLOB di Azure**
 
-Il primo input è il BLOB di Azure aggiornato ogni giorno.
+Hello primo input del blob di Azure hello viene aggiornata ogni giorno.
 
 ```json
 {
@@ -481,7 +481,7 @@ Il primo input è il BLOB di Azure aggiornato ogni giorno.
 
 **Input2: BLOB di Azure**
 
-Input2 è il BLOB di Azure aggiornato ogni settimana.
+Input2 è hello blob di Azure viene aggiornato settimanalmente.
 
 ```json
 {
@@ -511,7 +511,7 @@ Input2 è il BLOB di Azure aggiornato ogni settimana.
 
 **Output: BLOB di Azure**
 
-Un file di output viene creato ogni giorno nella cartella relativa al giorno corrispondente. Il valore di disponibilità per l'output è impostato su **day** (frequency: Day, interval: 1).
+Ogni giorno viene creato un file di output nella cartella hello per giorno hello. Disponibilità di output è troppo**giorno** (frequenza: Day, intervallo: 1).
 
 ```json
 {
@@ -540,7 +540,7 @@ Un file di output viene creato ogni giorno nella cartella relativa al giorno cor
 
 **Attività: attività Hive in una pipeline**
 
-L'attività Hive usa i due input e genera una sezione di output giornaliera. È possibile specificare che la sezione di output giornaliera dipenda dalla sezione di input della settimana precedente per l'input settimanale procedendo come indicato di seguito.
+attività hive Hello accetta hello due input e produce una sezione di output ogni giorno. È possibile specificare toodepend sezione output di ogni giorno in hello porzione di input della settimana precedente per l'input settimanale, come indicato di seguito.
 
 ```json
 {  
@@ -599,7 +599,7 @@ Per un elenco di funzioni e variabili di sistema supportate da Data Factory, ved
 ## <a name="appendix"></a>Appendice
 
 ### <a name="example-copy-sequentially"></a>Esempio: copiare in sequenza
-È possibile eseguire più operazioni di copia l'una dopo l'altra in modo sequenziale o ordinato. Ad esempio, si supponga di avere due attività di copia in una pipeline (CopyActivity1 e CopyActivity2) con i set di dati di input e output seguenti:   
+È possibile toorun più operazioni di copia uno dopo l'altro in modo sequenziale o ordinato. Ad esempio, potrebbe essere due copia le attività di input in una pipeline (CopyActivity1 e CopyActivity2) con hello seguente dati output set di dati:   
 
 CopyActivity1
 
@@ -609,9 +609,9 @@ CopyActivity2
 
 Input: Dataset2.  Output: Dataset3.
 
-CopyActivity2 viene eseguita solo se l'esecuzione di CopyActivity1 è riuscita e Dataset2 è disponibile.
+CopyActivity2 viene eseguito solo se è stata eseguita correttamente hello CopyActivity1 e Dataset2 è disponibile.
 
-Ecco la pipeline JSON di esempio:
+Di seguito è riportata la pipeline di esempio hello JSON:
 
 ```json
 {
@@ -650,7 +650,7 @@ Ecco la pipeline JSON di esempio:
                     "interval": 1
                 },
                 "name": "CopyFromBlob1ToBlob2",
-                "description": "Copy data from a blob to another"
+                "description": "Copy data from a blob tooanother"
             },
             {
                 "type": "Copy",
@@ -682,7 +682,7 @@ Ecco la pipeline JSON di esempio:
                     "interval": 1
                 },
                 "name": "CopyFromBlob2ToBlob3",
-                "description": "Copy data from a blob to another"
+                "description": "Copy data from a blob tooanother"
             }
         ],
         "start": "2016-08-25T01:00:00Z",
@@ -692,9 +692,9 @@ Ecco la pipeline JSON di esempio:
 }
 ```
 
-Si noti che nell'esempio, il set di dati di output della prima attività di copia (Dataset2) è specificato come input per la seconda attività. La seconda attività viene quindi eseguita solo quando è pronto il set di dati di output dalla prima attività.  
+Si noti che nell'esempio hello, il set di dati di hello output di hello prima attività di copia (Dataset2) è specificato come input per la seconda attività hello. Pertanto, hello seconda attività viene eseguita solo quando il set di dati di hello output dalla prima attività hello è pronto.  
 
-Nell'esempio, CopyActivity2 può avere un input diverso, ad esempio Dataset3, ma è necessario specificare Dataset2 anche come input per CopyActivity2, in modo che l'attività non venga eseguita fino a quando CopyActivity1 non è stata completata. Ad esempio:
+Nell'esempio hello CopyActivity2 può avere un input diverso, ad esempio Dataset3, ma è specificare Dataset2 come un input tooCopyActivity2, in modo attività hello non viene eseguito fino al completamento CopyActivity1. ad esempio:
 
 CopyActivity1
 
@@ -741,7 +741,7 @@ Input: Dataset3, Dataset2. Output: Dataset4.
                     "interval": 1
                 },
                 "name": "CopyFromBlobToBlob",
-                "description": "Copy data from a blob to another"
+                "description": "Copy data from a blob tooanother"
             },
             {
                 "type": "Copy",
@@ -776,7 +776,7 @@ Input: Dataset3, Dataset2. Output: Dataset4.
                     "interval": 1
                 },
                 "name": "CopyFromBlob3ToBlob4",
-                "description": "Copy data from a blob to another"
+                "description": "Copy data from a blob tooanother"
             }
         ],
         "start": "2017-04-25T01:00:00Z",
@@ -786,7 +786,7 @@ Input: Dataset3, Dataset2. Output: Dataset4.
 }
 ```
 
-Si noti che nell'esempio vengono specificati due set di dati di input per la seconda attività di copia. Quando si specificano più input, solo il primo set di dati di input viene usato per la copia dei dati e gli altri set di dati vengono usati come dipendenze. L'esecuzione di CopyActivity2 si avvia solo dopo che le seguenti condizioni sono soddisfatte:
+Si noti che nell'esempio hello, due set di dati di input specificati per attività di copia secondo hello. Quando vengono specificate più input, viene utilizzato solo hello primo input set di dati per la copia dei dati, ma altri set di dati vengono utilizzati come dipendenze. CopyActivity2 inizi solo dopo hello seguenti condizioni:
 
-* L’esecuzione di CopyActivity1 è riuscita e Dataset2 è disponibile. Questo set di dati non viene usato per la copia dei dati in Dataset4. La sua funzione è semplicemente quella di pianificare la dipendenza per CopyActivity2.   
-* Dataset3 è disponibile. Questo set di dati rappresenta i dati che vengono copiati nella destinazione. 
+* L’esecuzione di CopyActivity1 è riuscita e Dataset2 è disponibile. Questo set di dati non viene utilizzato quando si copiano dati tooDataset4. La sua funzione è semplicemente quella di pianificare la dipendenza per CopyActivity2.   
+* Dataset3 è disponibile. Questo set di dati rappresenta dati hello destinazione toohello copiato. 

@@ -1,6 +1,6 @@
 ---
-title: Distribuire il servizio Gestione dispositivi StorSimple in Azure | Microsoft Docs
-description: Descrive le procedure per creare ed eliminare il servizio Gestione dispositivi StorSimple nel portale di Azure e per gestire la chiave di registrazione del servizio.
+title: hello aaaDeploy servizio di gestione di dispositivi StorSimple in Azure | Documenti Microsoft
+description: Viene illustrato come toocreate e delete hello del servizio di gestione di dispositivi StorSimple nel portale di Azure hello e descrive come toomanage hello chiave di registrazione del servizio.
 services: storsimple
 documentationcenter: 
 author: alkohli
@@ -14,101 +14,101 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/13/2017
 ms.author: alkohli
-ms.openlocfilehash: 22bb4a32f006d7e49356743c2a87eb622a61d18e
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: b84a907d6b735c8fee7bdc51f9c0074857297d2a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="deploy-the-storsimple-device-manager-service-for-storsimple-8000-series-devices"></a>Distribuire il servizio Gestione dispositivi StorSimple per i dispositivi StorSimple serie 8000
+# <a name="deploy-hello-storsimple-device-manager-service-for-storsimple-8000-series-devices"></a>Distribuire il servizio di gestione di dispositivi StorSimple hello per dispositivi della serie StorSimple 8000
 
 ## <a name="overview"></a>Panoramica
 
-Il servizio Gestione dispositivi StorSimple viene eseguito in Microsoft Azure e si connette a più dispositivi StorSimple. Dopo aver creato il servizio, è possibile usarlo per gestire tutti i dispositivi connessi al servizio Gestione dispositivi StorSimple da un'unica posizione centrale, con una conseguente riduzione del carico amministrativo.
+servizio di gestione di dispositivi StorSimple Hello in esecuzione in Microsoft Azure e si connette dispositivi StorSimple toomultiple. Dopo aver creato il servizio di hello, è possibile utilizzare il toomanage tutti i dispositivi che sono connesso toohello dispositivo StorSimple Manager hello del servizio da un'unica posizione centrale, riducendo così al minimo carico amministrativo.
 
-In questa esercitazione vengono descritti i passaggi necessari per la creazione, l'eliminazione, la migrazione del servizio e la gestione della chiave di registrazione del servizio. Le informazioni contenute in questo articolo si applicano solo ai dispositivi StorSimple serie 8000. Per altre informazioni sugli array virtuali StorSimple, vedere le informazioni su come [distribuire un servizio Gestione dispositivi StorSimple per l'array virtuale StorSimple](storsimple-virtual-array-manage-service.md).
+Questa esercitazione vengono descritti i passaggi di hello necessari per hello creazione, eliminazione, la migrazione del servizio hello e la gestione di hello hello servizio chiave di registrazione. informazioni di Hello contenute in questo articolo sono applicabile solo dispositivi della serie 8000 tooStorSimple. Per ulteriori informazioni su StorSimple Virtual Array, andare troppo[distribuire un servizio di gestione di dispositivi StorSimple per l'Array virtuale StorSimple](storsimple-virtual-array-manage-service.md).
 
 ## <a name="create-a-service"></a>Creare un servizio
-Per creare un servizio Gestione dispositivi StorSimple, è necessario disporre di:
+toocreate un servizio di gestione di dispositivi StorSimple, è necessario toohave:
 
 * Una sottoscrizione con un contratto Enterprise Agreement
 * Un account di archiviazione di Microsoft Azure attivo
-* Le informazioni di fatturazione usate per la gestione degli accessi
+* le informazioni di fatturazione che viene utilizzate per la gestione accessi Hello
 
-Sono consentite solo le sottoscrizioni con un contratto Enterprise Agreement. Le sottoscrizioni Microsoft Sponsorship che erano consentite nel portale di Azure classico non sono supportate nel portale di Azure. Se si usa una sottoscrizione non supportata, verrà visualizzato il messaggio seguente:
+Sono consentite solo le sottoscrizioni di hello con un contratto Enterprise Agreement. Le sottoscrizioni di Microsoft Sponsorship che sono state consentite nel portale di Azure classico hello non sono supportate nel portale di Azure hello. Verrà visualizzato hello segue messaggio quando si utilizza una sottoscrizione non supportata:
 
 ![Sottoscrizione non valida](./media/storsimple-8000-manage-service/subscription-not-valid.jpg)
 
-È inoltre possibile scegliere di generare un account di archiviazione predefinito al momento della creazione del servizio.
+È inoltre possibile toogenerate un account di archiviazione predefinito quando si crea il servizio di hello.
 
-Un singolo servizio può gestire più dispositivi, ma un dispositivo non può estendersi a più servizi. Una grande impresa può avere più istanze del servizio per lavorare con diverse sottoscrizioni, organizzazioni o anche percorsi di distribuzione. 
+Un singolo servizio può gestire più dispositivi, ma un dispositivo non può estendersi a più servizi. Una grande organizzazione può avere più toowork di istanze di servizio con diverse sottoscrizioni, organizzazioni o anche percorsi di distribuzione. 
 
 > [!NOTE]
-> Per gestire dispositivi StorSimple serie 8000 e array virtuali StorSimple sono necessarie istanze separate del servizio Gestione dispositivi StorSimple.
+> È necessario istanze separate di dispositivi della serie StorSimple 8000 toomanage servizio StorSimple Manager di dispositivi e le matrici virtuale StorSimple.
 
-Per creare un servizio, attenersi alla procedura seguente.
+Eseguire hello seguendo i passaggi toocreate un servizio.
 
 [!INCLUDE [storsimple-create-new-service](../../includes/storsimple-8000-create-new-service.md)]
 
 
-Per ogni servizio Gestione dispositivi StorSimple, sono disponibili gli attributi seguenti:
+Per ogni servizio di gestione di dispositivi StorSimple, presenti hello gli attributi seguenti:
 
-* **Nome**: nome assegnato al servizio Gestione dispositivi StorSimple al momento della creazione. **Il nome non può essere modificato dopo la creazione del servizio. Questo vale anche per altre entità, ad esempio dispositivi, volumi, contenitori dei volumi e criteri di backup che non è possibile rinominare nel portale di Azure.**
-* **Stato**: stato del servizio, che può essere **Attivo**, **Creazione in corso** oppure **Online**.
-* **Posizione** : posizione geografica in cui verrà distribuito il dispositivo StorSimple.
-* **Sottoscrizione** : sottoscrizione di fatturazione associata al servizio.
+* **Nome** – nome hello assegnato al servizio di gestione di dispositivi StorSimple tooyour quando è stata creata. **Impossibile modificare il nome del servizio Hello dopo aver creato il servizio di hello. Questo vale anche per altre entità, ad esempio i dispositivi, volumi, contenitori di volumi e criteri di backup che non possono essere rinominati in hello portale di Azure.**
+* **Stato** : hello lo stato del servizio di hello, che può essere **Active**, **creazione**, o **Online**.
+* **Percorso** : hello posizione geografica in cui hello StorSimple dispositivo verrà distribuito.
+* **Sottoscrizione** : hello sottoscrizione a cui è associato al servizio di fatturazione.
 
-## <a name="move-a-service-to-azure-portal"></a>Spostare un servizio nel portale di Azure
-Ora è possibile gestire i dispositivi StorSimple serie 8000 nel portale di Azure. Se si dispone di un servizio esistente per gestire i dispositivi StorSimple, è consigliabile spostare il servizio nel portale di Azure. Il portale di Azure classico per il servizio StorSimple Manager non è disponibile dopo il 30 settembre 2017.
+## <a name="move-a-service-tooazure-portal"></a>Spostare un portale del servizio tooAzure
+StorSimple serie 8000 possono essere ora gestiti in hello portale di Azure. Se si dispone di un dispositivi StorSimple hello toomanage servizio esistente, è consigliabile spostare i toohello servizio portale di Azure. Dopo il 30 settembre 2017 Hello portale di Azure classico per hello servizio StorSimple Manager non è disponibile.
 
-L'opzione per eseguire la migrazione al portale di Azure è disponibile in fasi. Se non viene visualizzata un'opzione per eseguire la migrazione al portale di Azure ma si vuole spostare ed esaminare l'impatto della migrazione, come documentato in [Considerazioni per la transizione](#considerations-for-transition), è possibile [inviare una richiesta](https://aka.ms/ss8000-cx-signup).
+Hello opzione toomigrate toohello portale di Azure è disponibile in fasi. Se non viene visualizzato un portale di tooAzure toomigrate opzione ma si desidera toomove e aver esaminato impatto hello della migrazione, come documentato in hello [considerazioni per la transizione](#considerations-for-transition), è possibile [inviare una richiesta](https://aka.ms/ss8000-cx-signup).
 
 ### <a name="considerations-for-transition"></a>Considerazioni per la transizione
 
-Esaminare l'impatto della migrazione al nuovo portale di Azure prima di spostare il servizio.
+Esaminare l'impatto di hello della migrazione toohello nuovo portale di Azure prima di spostare il servizio di hello.
 
 #### <a name="before-you-transition"></a>Prima di eseguire la transizione
 
-* Nel dispositivo è installato l'aggiornamento 3.0 o versione successiva. Se nel dispositivo è in esecuzione una versione precedente, installare gli aggiornamenti più recenti. Per altre informazioni, vedere [Installare l'aggiornamento 4](storsimple-8000-install-update-4.md). Se si usa un'appliance cloud StorSimple (8010/8020), creare una nuova appliance cloud con l'aggiornamento 4.0. 
+* Nel dispositivo è installato l'aggiornamento 3.0 o versione successiva. Se il dispositivo è in esecuzione una versione precedente, installare gli aggiornamenti più recenti di hello. Per ulteriori informazioni, visitare troppo[installare l'aggiornamento 4](storsimple-8000-install-update-4.md). Se si usa un'appliance cloud StorSimple (8010/8020), creare una nuova appliance cloud con l'aggiornamento 4.0. 
 
-* Dopo aver eseguito la transizione al nuovo portale di Azure, non è possibile usare il portale di Azure classico per gestire il dispositivo StorSimple.
+* Dopo avere passato toohello nuovo portale di Azure, è possibile utilizzare il dispositivo StorSimple hello Azure toomanage portale classico.
 
-* La transizione non comporta interruzioni e tempi di inattività per il dispositivo.
+* transizione Hello è non comportano interruzioni del servizio e nessun tempo di inattività per il dispositivo hello.
 
-* Viene eseguita la transizione di tutte le istanze di Gestione dispositivi StorSimple per la sottoscrizione specificata.
+* Tutti i gestori di dispositivo StorSimple hello in hello specificato sottoscrizione viene eseguita la transizione.
 
-#### <a name="during-the-transition"></a>Durante la transizione
+#### <a name="during-hello-transition"></a>Durante la transizione hello
 
-* Non è possibile gestire il dispositivo dal portale.
-* Operazioni quali la suddivisione in livelli e i backup pianificati continuano a essere eseguite.
-* Non eliminare le istanze di Gestione dispositivi StorSimple precedenti mentre la transizione è in corso.
+* È possibile gestire il dispositivo dal portale hello.
+* Operazioni quali backup pianificati e suddivisione in livelli continuano toooccur.
+* Non eliminare hello precedente StorSimple Device Managers mentre è in corso una transizione hello.
 
-#### <a name="after-the-transition"></a>Dopo la transizione
+#### <a name="after-hello-transition"></a>Dopo la transizione hello
 
-* Non è più possibile gestire i dispositivi dal portale classico.
+* Non è più, è possibile gestire i dispositivi dal portale classico hello.
 
-* I cmdlet PowerShell esistenti di gestione dei servizi di Azure non sono supportati. Aggiornare gli script per gestire i dispositivi tramite Azure Resource Manager.
+* cmdlet PowerShell di Azure Service Management (ASM) di Hello esistenti non sono supportati. Aggiornare hello script toomanage i dispositivi tramite hello Azure Resource Manager.
 
-* La configurazione di servizi e dispositivi viene mantenuta. Viene anche eseguita la transizione al portale di Azure di tutti i volumi e i backup.
+* La configurazione di servizi e dispositivi viene mantenuta. Tutti i volumi e i backup sono anche toohello transizione portale di Azure.
 
 ### <a name="begin-transition"></a>Iniziare la transizione
 
-Eseguire la procedura seguente per effettuare la transizione del servizio al portale di Azure.
+Eseguire hello seguendo i passaggi tootransition il toohello servizio portale di Azure.
 
-1. Passare al servizio StorSimple Manager esistente nel portale classico.
+1. Passare tooyour del servizio StorSimple Manager esistenti nel portale classico hello.
 
-2. Viene visualizzata una notifica che segnala che il servizio Gestione dispositivi StorSimple è ora disponibile nel portale di Azure. Si noti che nel portale di Azure il servizio è denominato Gestione dispositivi StorSimple.
+2. Viene visualizzata una notifica che informa che il servizio di gestione di dispositivi StorSimple hello è ora disponibile nel portale di Azure hello. Si noti che in hello portale di Azure, servizio hello tooas di cui si fa riferimento il servizio di gestione di dispositivi StorSimple.
 
     ![Notifica della migrazione](./media/storsimple-8000-manage-service/service-transition1.jpg)
 
-    1. Assicurarsi di aver esaminato l'impatto complessivo della migrazione.
-    2. Esaminare l'elenco delle istanze di Gestione dispositivi StorSimple che verranno spostate dal portale classico.
+    1. Assicurarsi di aver esaminato hello dettagliate sull'effettivo impatto della migrazione.
+    2. Esaminare l'elenco di hello di StorSimple Manager di dispositivi che verranno spostati dal portale classico hello.
 
-3. Fare clic su **Esegui la migrazione**. Verrà avviato il processo di transizione, il cui completamento richiede alcuni minuti.
+3. Fare clic su **Esegui la migrazione**. transizione Hello viene avviata e richiede pochi minuti toocomplete.
 
-Al termine della transizione, è possibile gestire i dispositivi tramite il servizio Gestione dispositivi StorSimple nel portale di Azure.
+Una volta completata la transizione hello, è possibile gestire i dispositivi tramite il servizio di gestione di dispositivi StorSimple nel portale di Azure hello hello.
 
-Nel portale di Azure sono supportati solo i dispositivi StorSimple che eseguono l'aggiornamento 3.0 e versioni successive. I dispositivi che eseguono versioni precedenti hanno un supporto limitato. Nella tabella seguente sono riepilogate le operazioni supportate per i dispositivi con versioni precedenti all'aggiornamento 3.0 dopo la migrazione dal portale classico al portale di Azure.
+Nel portale di Azure hello, hello solo i dispositivi StorSimple esegue Update 3.0 e versioni successive sono supportati. i dispositivi di Hello che eseguono versioni meno recenti hanno un supporto limitato. Hello nella seguente tabella summrizes quali operazioni sono supportate nel dispositivo hello in esecuzione versios precedente tooUpdate 3.0, dopo che sono stati migrati da hello classic toohello portale di Azure.
 
 | Operazione                                                                                                                       | Supportato      |
 |---------------------------------------------------------------------------------------------------------------------------------|----------------|
@@ -123,10 +123,10 @@ Nel portale di Azure sono supportati solo i dispositivi StorSimple che eseguono 
 | Creazione di un backup manuale                                                                                                            | No             |
 | Eseguire un backup pianificato                                                                                                         | Non applicabile |
 | Eseguire il ripristino da un set di backup                                                                                                        | No             |
-| Eseguire la clonazione in un dispositivo che esegue l'aggiornamento 3.0 e versioni successive <br> Il dispositivo di origine esegue una versione precedente all'aggiornamento 3.0.                                | Sì            |
-| Eseguire la clonazione in un dispositivo che esegue una versione precedente all'aggiornamento 3.0.                                                                          | No             |
-| Eseguire il failover del dispositivo di origine <br> (da un dispositivo con una versione precedente all'aggiornamento 3.0 a un dispositivo con l'aggiornamento 3.0 e versioni successive)                                                               | Sì            |
-| Eseguire il failover del dispositivo di destinazione <br> (a un dispositivo che esegue una versione software precedente all'aggiornamento 3.0)                                                                                   | No             |
+| Dispositivo tooa clone esecuzione Update 3.0 e versioni successive <br> dispositivo di origine Hello è in esecuzione tooUpdate precedente versione 3.0.                                | Sì            |
+| Clonare tooa dispositivi che eseguono versioni precedenti tooUpdate 3.0                                                                          | No             |
+| Eseguire il failover del dispositivo di origine <br> (da un dispositivo esegue versione preliminare tooUpdate 3.0 tooa dispositivo che esegue Update 3.0 e versioni successive)                                                               | Sì            |
+| Eseguire il failover del dispositivo di destinazione <br> (tooa dispositivo che esegue software tooUpdate precedente di versione 3.0)                                                                                   | No             |
 | Cancellare un avviso                                                                                                                  | Sì            |
 | Visualizzare criteri di backup, catalogo di backup, volumi, contenitori di volumi, grafici di monitoraggio, processi e avvisi creati nel portale classico | Sì            |
 | Attivare e disattivare i controller dei dispositivi                                                                                              | Sì            |
@@ -134,53 +134,53 @@ Nel portale di Azure sono supportati solo i dispositivi StorSimple che eseguono 
 
 ## <a name="delete-a-service"></a>Eliminare un servizio
 
-Prima di eliminare un servizio, verificare che non sia usato da dispositivi connessi. Se il servizio è in uso, disattivare i dispositivi connessi. L'operazione di disattivazione interromperà la connessione tra il dispositivo e il servizio mantenendo i dati del dispositivo nel cloud.
+Prima di eliminare un servizio, verificare che non sia usato da dispositivi connessi. Se il servizio di hello è in uso, disattivare i dispositivi connesso hello. operazione di disattivazione Hello dividere hello connessione tra il dispositivo di hello e servizio hello, ma conservare i dati del dispositivo hello nel cloud hello.
 
 > [!IMPORTANT]
-> Dopo che un servizio è stato eliminato, l'operazione non può essere annullata. Sarà necessario ripristinare le impostazioni predefinite di ogni dispositivo che usava il servizio prima che il dispositivo possa essere usato con un altro servizio. In questo scenario, i dati locali sul dispositivo e la configurazione vanno persi.
+> Dopo l'eliminazione di un servizio, operazione hello non può essere annullata. Qualsiasi dispositivo che utilizza il servizio hello deve toobe reimpostazione toofactory predefiniti prima di poter essere utilizzato con un altro servizio. In questo scenario, i dati locali di hello sul dispositivo hello, nonché la configurazione di hello, viene persa.
 
-Per eliminare un servizio, attenersi alla procedura seguente.
+Eseguire hello seguendo i passaggi toodelete un servizio.
 
-### <a name="to-delete-a-service"></a>Per eliminare un servizio
+### <a name="toodelete-a-service"></a>toodelete un servizio
 
-1. Cercare il servizio da eliminare. Fare clic sull'icona **Risorse** e quindi immettere i termini appropriati per la ricerca. Nei risultati della ricerca selezionare il servizio da eliminare.
+1. Ricerca per servizio hello desiderato toodelete. Fare clic su **risorse** icona e quindi input hello toosearch termini appropriati. Nei risultati della ricerca hello, fare clic su servizio hello da toodelete.
 
-    ![Cercare il servizio da eliminare](./media/storsimple-8000-manage-service/deletessdevman1.png)
+    ![Ricerca servizio toodelete](./media/storsimple-8000-manage-service/deletessdevman1.png)
 
-2. Verrà visualizzato il pannello del servizio Gestione dispositivi StorSimple. Fare clic su **Elimina**.
+2. Consente di procedere pannello servizio di gestione di dispositivi StorSimple toohello. Fare clic su **Elimina**.
 
     ![Delete service](./media/storsimple-8000-manage-service/deletessdevman2.png)
 
-3. Nel messaggio di richiesta di conferma fare clic su **Sì** . L'eliminazione del servizio può richiedere alcuni minuti.
+3. Fare clic su **Sì** nella notifica di conferma hello. Potrebbe richiedere alcuni minuti per hello servizio toobe eliminato.
 
     ![Confermare l'eliminazione](./media/storsimple-8000-manage-service/deletessdevman3.png)
 
-## <a name="get-the-service-registration-key"></a>Ottenere la chiave di registrazione del servizio
+## <a name="get-hello-service-registration-key"></a>Ottenere una chiave di registrazione del servizio hello
 
-Dopo aver creato un servizio, è necessario registrare il dispositivo StorSimple. Per registrare il primo dispositivo StorSimple, è necessaria la chiave di registrazione del servizio. Per registrare altri dispositivi con un servizio StorSimple esistente, sono necessarie la chiave di registrazione e la chiave DEK del servizio (che viene generata durante la registrazione sul primo dispositivo). Per altre informazioni sulla chiave DEK del servizio, vedere [Sicurezza in StorSimple](storsimple-8000-security.md). È possibile ottenere la chiave di registrazione accedendo a **Chiavi** nel pannello Gestione dispositivi StorSimple.
+Dopo avere creato un servizio, è necessario tooregister dispositivo StorSimple con servizio hello. tooregister del primo dispositivo StorSimple, si sarà necessario hello chiave di registrazione del servizio. tooregister ulteriori dispositivi con un servizio StorSimple esistente, è necessario che sia la chiave di registrazione hello e hello chiave DEK del servizio (che viene generato nel primo dispositivo hello durante la registrazione). Per ulteriori informazioni sulla chiave di crittografia di hello servizio dati, vedere [sicurezza in StorSimple](storsimple-8000-security.md). È possibile ottenere la chiave di registrazione hello accedendo **chiavi** nel pannello del dispositivo StorSimple Manager.
 
-Per ottenere la chiave di registrazione del servizio, attenersi alla procedura seguente.
+Eseguire hello seguendo i passaggi tooget hello chiave di registrazione.
 
 [!INCLUDE [storsimple-8000-get-service-registration-key](../../includes/storsimple-8000-get-service-registration-key.md)]
 
-Conservare la chiave di registrazione del servizio in una posizione sicura. Questa chiave e la chiave DEK del servizio saranno necessarie per registrare altri dispositivi con il servizio. Dopo aver ottenuto la chiave di registrazione del servizio, è necessario configurare il dispositivo tramite l'interfaccia di Windows PowerShell per StorSimple.
+Mantenere una chiave di registrazione del servizio hello in un luogo sicuro. Sarà necessario questa chiave, nonché hello chiave DEK del servizio, tooregister ulteriori dispositivi con questo servizio. Dopo aver ottenuto una chiave di registrazione del servizio hello, è necessario configurare il dispositivo tramite hello Windows PowerShell per StorSimple interfaccia.
 
-Per informazioni dettagliate sull'uso della chiave di registrazione, vedere [Passaggio 3: Configurare e registrare il dispositivo tramite Windows PowerShell per StorSimple](storsimple-8000-deployment-walkthrough-u2.md#step-3-configure-and-register-the-device-through-windows-powershell-for-storsimple).
+Per informazioni dettagliate su come toouse questa chiave, vedere registrazione [passaggio 3: configurare e registrare il dispositivo hello tramite Windows PowerShell per StorSimple](storsimple-8000-deployment-walkthrough-u2.md#step-3-configure-and-register-the-device-through-windows-powershell-for-storsimple).
 
-## <a name="regenerate-the-service-registration-key"></a>Rigenerare la chiave di registrazione del servizio
-La rigenerazione di una chiave di registrazione del servizio deve essere effettuata quando è necessario eseguire la rotazione delle chiavi o se l'elenco di amministratori del servizio è stato modificato. Quando si rigenera la chiave, quest'ultima viene usata solo per registrare dispositivi successivi. I dispositivi già registrati non sono interessati da questo processo.
+## <a name="regenerate-hello-service-registration-key"></a>Rigenerare la chiave di registrazione del servizio hello
+Se si è obbligatorio tooperform rotazione delle chiavi o se l'elenco di hello degli amministratori del servizio è stato modificato, è necessario tooregenerate una chiave di registrazione del servizio. Quando si rigenera la chiave hello, nuova chiave hello viene utilizzato solo per registrare i dispositivi successivi. i dispositivi Hello già registrati sono interessati da questo processo.
 
-Per rigenerare una chiave di registrazione del servizio, attenersi alla procedura seguente.
+Eseguire hello seguendo i passaggi tooregenerate una chiave di registrazione del servizio.
 
-### <a name="to-regenerate-the-service-registration-key"></a>Per rigenerare la chiave di registrazione del servizio
-1. In **Gestione dispositivi StorSimple** passare a **Gestione&gt;** **Chiavi**.
+### <a name="tooregenerate-hello-service-registration-key"></a>chiave di registrazione del servizio hello tooregenerate
+1. In hello **Gestione dispositivi StorSimple** pannello andare troppo**Management &gt;**  **chiavi**.
     
     ![Pannello Chiavi](./media/storsimple-8000-manage-service/regenregkey2.png)
 
-2. Nel pannello **Chiavi** fare clic su **Rigenera**.
+2. In hello **chiavi** pannello, fare clic su **rigenerare**.
 
     ![Fare clic su Rigenera](./media/storsimple-8000-manage-service/regenregkey3.png)
-3. Nel pannello **Rigenera la chiave di registrazione del servizio** esaminare l'azione necessaria quando le chiavi vengono rigenerate. Tutti i dispositivi successivi registrati con questo servizio useranno la nuova chiave di registrazione. Fare clic su **Rigenera** per confermare. Al termine della rigenerazione, si riceverà una notifica.
+3. In hello **Rigenera chiave di registrazione** pannello revisione hello azione necessaria per la hello chiavi vengono rigenerate. Tutti i dispositivi successivi hello che sono registrati con questo servizio utilizzano nuova chiave di registrazione hello. Fare clic su **rigenerare** tooconfirm. Ricevono una notifica al termine della rigenerazione hello.
 
     ![Confermare la rigenerazione](./media/storsimple-8000-manage-service/regenregkey4.png)
 
@@ -190,71 +190,71 @@ Per rigenerare una chiave di registrazione del servizio, attenersi alla procedur
 
 
 
-## <a name="change-the-service-data-encryption-key"></a>Modificare la chiave DEK del servizio
-Le chiavi DEK del servizio vengono utilizzate per crittografare dati riservati dei clienti, ad esempio credenziali di account di archiviazione, che vengono inviate dal servizio StorSimple Manager al dispositivo StorSimple. Occorre modificare queste chiavi periodicamente, se l'organizzazione IT dispone di un criterio di rotazione delle chiavi nei dispositivi di archiviazione. Il processo di modifica della chiave può essere leggermente diverso a seconda che ci sia una o più dispositivi gestiti dal servizio StorSimple Manager. Per altre informazioni, vedere [Sicurezza e protezione dei dati di StorSimple](storsimple-8000-security.md).
+## <a name="change-hello-service-data-encryption-key"></a>Modifica chiave DEK del servizio hello
+Le chiavi DEK del servizio sono utilizzati tooencrypt dati confidenziali, ad esempio credenziali dell'account di archiviazione, che vengono inviati dal dispositivo StorSimple toohello servizio StorSimple Manager. Sarà necessario toochange queste chiavi periodicamente se l'organizzazione IT con un criterio di rotazione delle chiavi su dispositivi di archiviazione hello. Hello il processo di modifica può essere variare leggermente a seconda se sussiste una o più dispositivi gestiti dal servizio StorSimple Manager hello. Per ulteriori informazioni, visitare troppo[StorSimple sicurezza e protezione dei dati](storsimple-8000-security.md).
 
-La modifica della chiave DEK del servizio è un processo che prevede 3 fasi:
+Modifica hello chiave DEK del servizio sono un processo passaggio 3:
 
-1. Usando gli script di Windows PowerShell per Azure Resource Manager, autorizzare un dispositivo a modificare la chiave DEK del servizio.
-2. Mediante Windows PowerShell per StorSimple, si consente di avviare la modifica della chiave DEK del servizio.
-3. Se si dispone di più di un dispositivo StorSimple, è necessario aggiornare la chiave DEK del servizio in altri dispositivi.
+1. Utilizza script di Windows PowerShell per Gestione risorse di Azure, autorizzare una dispositivo toochange hello chiave DEK del servizio.
+2. Utilizzo di Windows PowerShell per StorSimple, avviare hello servizio modifica della chiave DEK.
+3. Se si dispone di più di un dispositivo StorSimple, hello chiave DEK del servizio su hello aggiornare altri dispositivi.
 
-### <a name="step-1-use-windows-powershell-script-to-authorize-a-device-to-change-the-service-data-encryption-key"></a>Passaggio 1: Usare uno script di Windows PowerShell per autorizzare un dispositivo a modificare la chiave DEK del servizio
-In genere, l'amministratore dei dispositivi richiede all'amministratore del servizio di autorizzare un dispositivo a modificare le chiavi DEK del servizio. L'amministratore del servizio autorizza quindi il dispositivo a modificare la chiave.
+### <a name="step-1-use-windows-powershell-script-tooauthorize-a-device-toochange-hello-service-data-encryption-key"></a>Passaggio 1: Utilizzo di Windows PowerShell script tooAuthorize una dispositivo toochange hello chiave DEK del servizio
+Amministratore del dispositivo hello richiede in genere, tale amministratore del servizio hello autorizzare un dispositivo toochange crittografia le chiavi del servizio. amministratore del servizio Hello autorizza quindi chiave hello toochange del dispositivo hello.
 
-Questo passaggio viene eseguito usando lo script basato su Azure Resource Manager. L'amministratore del servizio può selezionare un dispositivo idoneo per l'autorizzazione. Il dispositivo viene quindi autorizzato ad avviare il processo di modifica della chiave DEK del servizio. 
+Questo passaggio viene eseguito tramite script di gestione risorse di Azure basato su hello. amministratore del servizio Hello è possibile selezionare un dispositivo idoneo toobe autorizzato. dispositivo di Hello è quindi il processo di modifica della chiave DEK del servizio autorizzato toostart hello. 
 
-Per altre informazioni sull'uso dello script, vedere [Authorize-ServiceEncryptionRollover.ps1](https://github.com/anoobbacker/storsimpledevicemgmttools/blob/master/Authorize-ServiceEncryptionRollover.ps1)
+Per ulteriori informazioni sull'utilizzo di script hello, andare troppo[Authorize ServiceEncryptionRollover.ps1](https://github.com/anoobbacker/storsimpledevicemgmttools/blob/master/Authorize-ServiceEncryptionRollover.ps1)
 
-#### <a name="which-devices-can-be-authorized-to-change-service-data-encryption-keys"></a>Quali dispositivi possono essere autorizzati a modificare le chiavi DEK del servizio?
-Per essere autorizzato ad avviare le modifiche alla chiave DEK del servizio, un dispositivo deve soddisfare i criteri seguenti:
+#### <a name="which-devices-can-be-authorized-toochange-service-data-encryption-keys"></a>Quali dispositivi possono essere autorizzate toochange chiavi DEK del servizio?
+Un dispositivo deve soddisfare i seguenti criteri prima di poter essere autorizzato tooinitiate servizio modifica della chiave DEK hello:
 
-* Il dispositivo deve essere online per essere idoneo per l'autorizzazione di modifica della chiave DEK del servizio.
-* È possibile autorizzare di nuovo lo stesso dispositivo dopo 30 minuti se la modifica della chiave non è stata avviata.
-* È possibile autorizzare un dispositivo diverso, purché la modifica della chiave non sia stata avviata dal dispositivo autorizzato in precedenza. Dopo che il nuovo dispositivo è stato autorizzato, il dispositivo precedente non può avviare la modifica.
-* Non è possibile autorizzare un dispositivo mentre è in corso il rollover della chiave DEK del servizio.
-* È possibile autorizzare un dispositivo quando alcuni dei dispositivi registrati con il servizio hanno eseguito il rollover della crittografia mentre altri no. 
+* dispositivo di Hello deve essere online toobe idonei per l'autorizzazione di modifica della chiave di servizio dati crittografia.
+* È possibile autorizzare hello stesso dispositivo nuovamente dopo 30 minuti se la chiave hello modifica non è stato avviato.
+* È possibile autorizzare un dispositivo diverso, purché modifica della chiave hello non è stata avviata dal dispositivo autorizzato in precedenza hello. Dopo che è stato autorizzato alla nuova periferica hello, dispositivo precedente hello Impossibile iniziare la modifica di hello.
+* Non è possibile autorizzare un dispositivo mentre è in corso hello rollover della chiave DEK del servizio hello.
+* È possibile autorizzare un dispositivo quando alcuni dispositivi hello registrati con il servizio hello hanno eseguito il rollover crittografia hello ma non per altri utenti. 
 
-### <a name="step-2-use-windows-powershell-for-storsimple-to-initiate-the-service-data-encryption-key-change"></a>Passaggio 2: Usare Windows PowerShell per StorSimple per avviare la modifica della chiave DEK del servizio
-Questo passaggio viene eseguito nell'interfaccia di Windows PowerShell per StorSimple nel dispositivo StorSimple autorizzato.
+### <a name="step-2-use-windows-powershell-for-storsimple-tooinitiate-hello-service-data-encryption-key-change"></a>Passaggio 2: Utilizzo di Windows PowerShell per StorSimple tooinitiate hello servizio modifica della chiave DEK
+Questo passaggio viene eseguito in hello Windows PowerShell per StorSimple interfaccia hello autorizzato dispositivo StorSimple.
 
 > [!NOTE]
-> Non è possibile eseguire operazioni nel portale di Azure del servizio StorSimple Manager fino a quando il rollover della chiave non viene completato.
+> Alcun operazioni non possono essere eseguite nel portale di Azure del servizio StorSimple Manager hello fino al completamento di rollover della chiave hello.
 > 
 > 
 
-Se si usa la console seriale del dispositivo per la connessione all'interfaccia di Windows PowerShell,seguire questa procedura.
+Se si utilizza l'interfaccia di Windows PowerShell toohello hello dispositivo console seriale tooconnect, eseguire hello alla procedura seguente.
 
-#### <a name="to-initiate-the-service-data-encryption-key-change"></a>Per avviare la modifica della chiave DEK del servizio
-1. Selezionare l'opzione 1 per eseguire l'accesso completo.
-2. Al prompt dei comandi digitare:
+#### <a name="tooinitiate-hello-service-data-encryption-key-change"></a>modifica della chiave DEK del servizio tooinitiate hello
+1. Selezionare l'opzione 1 toolog nella con accesso completo.
+2. Al prompt dei comandi di hello, digitare:
    
      `Invoke-HcsmServiceDataEncryptionKeyChange`
-3. Dopo che il cmdlet è stato completato, si otterrà una nuova chiave DEK del servizio. Copiare e salvare la chiave per l'uso nel passaggio 3 di questo processo. Questa chiave verrà usata per aggiornare tutti i dispositivi rimanenti registrati con il servizio StorSimple Manager.
+3. Al termine hello cmdlet, si otterrà una nuova chiave DEK del servizio. Copiare e salvare la chiave per l'uso nel passaggio 3 di questo processo. Questa chiave verrà usata tooupdate hello tutti i dispositivi registrati con il servizio StorSimple Manager hello rimanenti.
    
    > [!NOTE]
    > Questo processo deve essere avviato entro quattro ore dall'autorizzazione di un dispositivo StorSimple.
    > 
    > 
    
-   La nuova chiave viene quindi inviata al servizio affinché ne venga effettuato il push a tutti i dispositivi registrati con il servizio. Nel dashboard del servizio verrà visualizzato un avviso. Il servizio disabiliterà tutte le operazioni nei dispositivi registrati e l'amministratore dei dispositivi dovrà quindi aggiornare la chiave DEK del servizio negli altri dispositivi. Tuttavia, i flussi di I/O (invio di dati dagli host al cloud) non verranno interrotti.
+   La nuova chiave viene quindi inviata toohello servizio toobe inserito tooall hello di dispositivi registrati con il servizio di hello. Un avviso verrà quindi visualizzati nel dashboard del servizio hello. servizio Hello disabiliterà tutte le operazioni di hello nei dispositivi registrato hello e amministratore del dispositivo hello sarà quindi necessario tooupdate hello chiave DEK del servizio su hello altri dispositivi. Tuttavia, hello i/o (host di invio di dati nel cloud toohello) non verranno compromesse.
    
-   Se nel servizio è registrato un unico dispositivo, il processo di rollover è completo ed è possibile ignorare il passaggio successivo. Se nel servizio sono registrati più dispositivi, andare al passaggio 3.
+   Se dispone di un singolo dispositivo registrato tooyour servizio, il processo di rollover hello è stato completato ed è possibile ignorare il passaggio di hello. Se si dispone di più dispositivi registrati tooyour servizio, procedere toostep 3.
 
-### <a name="step-3-update-the-service-data-encryption-key-on-other-storsimple-devices"></a>Passaggio 3: Aggiornare la chiave DEK del servizio in altri dispositivi StorSimple
-Questa procedura deve essere eseguita nell'interfaccia di Windows PowerShell del dispositivo StorSimple se vi sono più dispositivi registrati per il servizio StorSimple Manager. La chiave ottenuta nel passaggio 2 deve essere usata per aggiornare tutti i dispositivi StorSimple rimanenti registrati con il servizio StorSimple Manager.
+### <a name="step-3-update-hello-service-data-encryption-key-on-other-storsimple-devices"></a>Passaggio 3: Aggiornare hello chiave DEK del servizio su altri dispositivi StorSimple
+Se si dispone di più dispositivi registrati tooyour StorSimple Manager servizio, è necessario effettuare questi passaggi nell'interfaccia di Windows PowerShell hello del dispositivo StorSimple. chiave di Hello ottenuto nel passaggio 2 deve essere utilizzato tooupdate tutti hello rimanenti dispositivo StorSimple registrato con hello servizio StorSimple Manager.
 
-Eseguire i passaggi seguenti per aggiornare la chiave DEK del servizio nel dispositivo.
+Eseguire hello dopo la crittografia dei dati di passaggi tooupdate hello servizio nel dispositivo.
 
-#### <a name="to-update-the-service-data-encryption-key"></a>Per aggiornare la chiave DEK del servizio
-1. Usare Windows PowerShell per StorSimple per connettersi alla console. Selezionare l'opzione 1 per eseguire l'accesso completo.
-2. Al prompt dei comandi digitare:
+#### <a name="tooupdate-hello-service-data-encryption-key"></a>chiave di crittografia tooupdate hello servizio dati
+1. Usare Windows PowerShell per StorSimple tooconnect toohello console. Selezionare l'opzione 1 toolog nella con accesso completo.
+2. Al prompt dei comandi di hello, digitare:
    
     `Invoke-HcsmServiceDataEncryptionKeyChange – ServiceDataEncryptionKey`
-3. Specificare la chiave DEK ottenuta nel [Passaggio 2: Usare Windows PowerShell per StorSimple per avviare la modifica della chiave DEK del servizio](#to-initiate-the-service-data-encryption-key-change).
+3. Fornire hello chiave DEK del servizio ottenuta nel [passaggio 2: utilizzo di Windows PowerShell per StorSimple tooinitiate hello servizio modifica della chiave DEK](#to-initiate-the-service-data-encryption-key-change).
 
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Ulteriori informazioni sul [processo di distribuzione di StorSimple](storsimple-8000-deployment-walkthrough-u2.md).
+* Altre informazioni su hello [il processo di distribuzione di StorSimple](storsimple-8000-deployment-walkthrough-u2.md).
 * Ulteriori informazioni sulla [gestione dell'account di archiviazione di StorSimple](storsimple-8000-manage-storage-accounts.md).
-* Altre informazioni su come [usare il servizio Gestione dispositivi StorSimple per amministrare un dispositivo StorSimple](storsimple-8000-manager-service-administration.md).
+* Per ulteriori informazioni su troppo[utilizzare hello tooadminister servizio di gestione di dispositivi StorSimple dispositivo StorSimple](storsimple-8000-manager-service-administration.md).

@@ -1,6 +1,6 @@
 ---
-title: Il server di Backup di Azure protegge lo stato del sistema ed esegue il ripristino bare metal | Microsoft Docs
-description: Utilizzare il server di Backup di Azure per eseguire il backup dello stato del sistema e fornire la protezione del ripristino bare metal.
+title: aaaAzure Backup Server protegge lo stato del sistema e ripristini metal toobare | Documenti Microsoft
+description: Utilizzare il Server di Backup di Azure tooback dello stato del sistema e fornire protezione del ripristino bare metal (BMR).
 services: backup
 documentationcenter: 
 author: markgalioto
@@ -14,24 +14,24 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/15/2017
 ms.author: markgal,masaran
-ms.openlocfilehash: 30f70a702d7d9a3e1196c04096708c035e406607
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d34c8bbdc7cc24c905f81ceaf199698c1ee923db
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="back-up-system-state-and-restore-to-bare-metal-with-azure-backup-server"></a>Eseguire il backup dello stato del sistema e il ripristino bare metal con il server di Backup di Azure
+# <a name="back-up-system-state-and-restore-toobare-metal-with-azure-backup-server"></a>Eseguire il backup dello stato del sistema e il ripristino metal toobare con Server di Backup di Azure
 
 Il server di Backup di Azure esegue il backup dello stato del sistema e offre la protezione del ripristino bare metal.
 
-*   **Backup dello stato del sistema**: viene eseguito il backup dei file del sistema operativo, in modo da consentire il ripristino quando un computer viene avviato, ma i file di sistema e il registro vengono persi. Un backup dello stato del sistema include:
+*   **Backup dello stato del sistema**: il backup dei file del sistema operativo, pertanto è possibile ripristinare quando un computer viene avviato, ma il file system e Registro di sistema di hello vanno perdute. Un backup dello stato del sistema include:
     * Membro di dominio: file di avvio, database di registrazione della classe COM+, registro
     * Controller di dominio: file di avvio di Windows Server Active Directory (NTDS), database di registrazione della classe COM+, registro, volume di sistema (SYSVOL)
     * Computer che esegue servizi cluster: metadati del server di cluster
     * Computer che esegue servizi certificati: dati del certificato
-* **Backup bare metal**: esegue il backup dei file del sistema operativo e di tutti i dati su volumi critici (tranne i dati utente). Per definizione, un backup bare metal include un backup dello stato del sistema. Fornisce protezione quando un computer non si avvia ed è necessario ripristinare tutto.
+* **Backup bare metal**: esegue il backup dei file del sistema operativo e di tutti i dati su volumi critici (tranne i dati utente). Per definizione, un backup bare metal include un backup dello stato del sistema. Fornisce una protezione quando non si avvia un computer e si dispone di toorecover tutto.
 
-Nella tabella seguente sono riepilogati gli elementi di cui è possibile eseguire il backup e il ripristino. Per informazioni dettagliate sulle versioni delle app che è possibile proteggere con il ripristino dello stato del sistema e bare metal, vedere [Di quali elemento esegue il backup il server di Backup di Azure?](backup-mabs-protection-matrix.md).
+Hello nella tabella seguente sono riepilogati i quali è possibile eseguire il backup e ripristino. Per informazioni dettagliate sulle versioni delle app che è possibile proteggere con il ripristino dello stato del sistema e bare metal, vedere [Di quali elemento esegue il backup il server di Backup di Azure?](backup-mabs-protection-matrix.md).
 
 |Backup|Problema|Ripristino dal backup del server di Backup di Azure|Ripristino dal backup dello stato del sistema|Ripristino bare metal|
 |----------|---------|---------------------------|------------------------------------|-------|
@@ -53,50 +53,50 @@ Nella tabella seguente sono riepilogati gli elementi di cui è possibile eseguir
 
 ## <a name="how-system-state-backup-works"></a>Funzionamento del backup dello stato del sistema
 
-Quando viene eseguito un backup dello stato del sistema, il server di Backup comunica con Windows Server Backup per richiedere un backup dello stato del sistema del server. Per impostazione predefinita, il server di Backup e Windows Server Backup utilizzano l'unità con più spazio libero. Le informazioni su questa unità vengono salvate nel file PSDataSourceConfig.xml. Si tratta dell'unità utilizzata da Windows Server Backup per i backup.
+Quando viene eseguito un backup dello stato del sistema, Backup Server comunica con Windows Server Backup toorequest un backup dello stato del sistema del server hello. Per impostazione predefinita, Backup di Server e Windows Server Backup utilizzare unità hello con hello più spazio libero. Informazioni su questa unità viene salvate nel file PSDataSourceConfig.xml hello. Questo è l'unità di hello che utilizza Windows Server Backup per i backup.
 
-È possibile personalizzare l'unità usata dal server di Backup per il backup dello stato del sistema. Nel server protetto, andare a C:\Programmi\Microsoft Data Protection Manager\MABS\Datasources. Aprire il file PSDataSourceConfig.xml per la modifica. Modificare il valore \<FilesToProtect\> per la lettera dell'unità. Salvare e chiudere il file. Se un gruppo protezione dati è impostato per proteggere lo stato del sistema del computer, eseguire una verifica di coerenza. Se viene generato un avviso, selezionare **Modifica gruppo protezione dati** nell'avviso, quindi completare la procedura guidata. Eseguire quindi un'altra verifica di coerenza.
+È possibile personalizzare l'unità di hello utilizzata dal Server di Backup per backup dello stato del sistema hello. Nel server di hello protetto, passare tooC:\Program Files\Microsoft Manager\MABS\Datasources di protezione dati. Aprire il file PSDataSourceConfig.xml hello per la modifica. Hello modifica \<FilesToProtect\> valore per la lettera di unità hello. Salvare e chiudere il file hello. Se è presente che un gruppo protezione dati set tooprotect hello stato del sistema hello computer, eseguire una verifica coerenza. Se viene generato un avviso, selezionare **Modifica gruppo protezione dati** avviso hello e guidata hello quindi completato. Eseguire quindi un'altra verifica di coerenza.
 
-Si noti che se il server di protezione è in un cluster, è possibile che un'unità cluster venga selezionata come unità con più spazio libero. Se la proprietà di tale unità è passata a un altro nodo e si esegue il backup dello stato di sistema, l'unità non è disponibile e il backup ha esito negativo. In questo scenario, modificare PSDataSourceConfig.xml in modo che punti a un'unità locale.
+Si noti che se il server di protezione hello in un cluster, è possibile che un'unità cluster venga selezionata come unità hello con hello maggiore spazio libero. Se la proprietà di tale unità sono stati disattivati tooanother nodo ed esegue un backup dello stato del sistema, non è disponibile unità hello e hello backup non riesce. In questo scenario, modificare l'unità di PSDataSourceConfig.xml toopoint tooa locale.
 
-Successivamente, Windows Server Backup crea una cartella denominata WindowsImageBackup nella radice della cartella di ripristino. Mentre Windows Server Backup crea il backup, tutti i dati vengono posizionati in questa cartella. Al termine del backup, il file viene trasferito nel computer del server di Backup. Tenere presente quanto segue:
+Successivamente, Windows Server Backup crea una cartella denominata WindowsImageBackup nella radice di hello della cartella di ripristino hello. Come Windows Server Backup crea backup hello, tutti i dati di hello viene inserito in questa cartella. Al termine dell'operazione backup hello, file hello è toohello trasferiti Backup Server. Si noti hello le seguenti informazioni:
 
-* Questa cartella e il relativo contenuto non vengono eliminati al termine del backup o del trasferimento. Per comprendere questa condizione, pensare che lo spazio viene riservato per il completamento del backup successivo.
-* La cartella viene creata ogni volta che viene eseguito un backup. L'indicatore di data e ora riflette l'ora dell'ultimo backup dello stato del sistema.
+* Questa cartella e il relativo contenuto non viene eliminati al termine di hello backup o il trasferimento. Hello toothink di modo migliore di ciò è che hello spazio viene riservato per hello successivo che viene completato un backup.
+* Hello cartella viene creata ogni volta che viene eseguito un backup. Hello data e l'ora di riflettere hello ora dell'ultimo backup dello stato del sistema.
 
 ## <a name="bmr-backup"></a>Backup bare metal
 
-Per il ripristino bare metal (che include un backup dello stato del sistema), il processo di backup viene salvato direttamente in una condivisione nel computer del server di Backup. Non viene salvato in una cartella nel server protetto.
+Per il ripristino bare metal (incluso un backup dello stato del sistema), processo di backup hello verrà salvato direttamente tooa condivisione nel computer Server di Backup hello. Cartella tooa non viene salvata nel server protetto hello.
 
-Il server di backup chiama Windows Server Backup e condivide il volume di replica per il backup bare metal. In questo caso, non indica a Windows Server Backup di usare l'unità con più spazio libero. Utilizza invece la condivisione creata per il processo.
+Server di backup chiama Windows Server Backup e condivide il volume di replica hello relativo al backup del ripristino bare metal. In questo caso, non indica a Windows Server Backup toouse hello unità con hello più spazio. Utilizza invece condivisione hello che è stato creato per il processo di hello.
 
-Al termine del backup, il file viene trasferito nel computer del server di Backup. I log vengono archiviati in C:\Windows\Logs\WindowsServerBackup.
+Al termine dell'operazione backup hello, file hello è toohello trasferiti Backup Server. I log vengono archiviati in C:\Windows\Logs\WindowsServerBackup.
 
 ## <a name="prerequisites-and-limitations"></a>Prerequisiti e limitazioni
 
 -   Il ripristino bare metal non è supportato per i computer con Windows Server 2003 o che eseguono un sistema operativo client.
 
--   Non è possibile proteggere il ripristino bare metal e lo stato del sistema per lo stesso computer in diversi gruppi protezione dati.
+-   Non è possibile proteggere il ripristino bare metal e stato di sistema per hello stesso computer in diversi gruppi protezione dati.
 
 -   Un computer server di Backup non può proteggere sé stesso per il ripristino bare metal.
 
--   La protezione a breve termine su nastro (da disco a nastro o D2T) non è supportata per il ripristino bare metal. È supportata l'archiviazione a lungo termine su nastro (da disco a disco a nastro o D2D2T).
+-   Tootape di protezione a breve termine (disco-a-nastro o D2T) non è supportata per il ripristino bare metal. A lungo termine tootape di archiviazione (disco-a-disco-a-nastro o D2D2T) è supportata.
 
--   Per la protezione del ripristino bare metal, Windows Server Backup deve essere installato nel computer protetto.
+-   Per la protezione ripristino bare metal, Windows Server Backup deve essere installato hello protetto.
 
--   Per la protezione del ripristino bare metal, a differenza della protezione dello stato del sistema, il server di Backup non ha requisiti di spazio nel computer protetto. Windows Server Backup trasferisce direttamente i backup nel computer del server di Backup. Il processo di trasferimento del backup non viene visualizzato nella vista **Processi** del server di Backup.
+-   Per la protezione ripristino bare metal, a differenza di per la protezione stato del sistema, Backup Server non ha requisiti di spazio sul computer protetto hello. Windows Server Backup trasferisce direttamente i computer del Server di Backup toohello backup. il processo di trasferimento di backup di Hello non viene visualizzato nel Server di Backup hello **processi** visualizzazione.
 
--   Il server di Backup riserva 30 GB di spazio nel volume di replica per il ripristino bare metal. È possibile modificare questo valore nella pagina **Allocazione dischi** della procedura guidata Modifica gruppo protezione dati o tramite i cmdlet di PowerShell Get-DatasourceDiskAllocation e Set-DatasourceDiskAllocation. Nel volume del punto di ripristino, la protezione del ripristino bare metal richiede circa 6 GB per una conservazione di cinque giorni.
-    * Si noti che è possibile ridurre le dimensioni del volume di replica a meno di 15 GB.
-    * Il server di backup non calcola le dimensioni dell'origine dati del ripristino bare metal. Presume 30 GB per tutti i server. Modificare il valore in base alle dimensioni dei backup bare metal previsti nell'ambiente in uso. Le dimensioni di un backup bare metal possono essere calcolate approssimativamente come la somma dello spazio utilizzato in tutti i volumi critici. Volumi critici = volume di avvio + volume di sistema + volume che ospita i dati dello stato del sistema, ad esempio Active Directory.
+-   Backup Server riserva 30 GB di spazio sul volume di replica hello per il ripristino bare metal. È possibile modificare questo valore su hello **allocazione dei dischi** pagina nella procedura guidata Modifica gruppo protezione dati hello o utilizzando i cmdlet Get-DatasourceDiskAllocation e Set-DatasourceDiskAllocation PowerShell hello. Nel volume del punto di ripristino hello, protezione BMR richiede circa 6 GB per una conservazione di cinque giorni.
+    * Si noti che non è possibile ridurre tooless di hello replica volume dimensione superiore a 15 GB.
+    * Server di backup non Calcola dimensioni hello dell'origine dati di ripristino bare metal hello. Presume 30 GB per tutti i server. Modificare il valore di hello in base alle dimensioni di hello dei backup BMR previsti nell'ambiente in uso. dimensioni di Hello di un backup bare metal possono essere calcolata approssimativamente come somma hello di spazio utilizzato in tutti i volumi critici. Volumi critici = volume di avvio + volume di sistema + volume che ospita i dati dello stato del sistema, ad esempio Active Directory.
 
--   Se si passa dalla protezione dello stato del sistema alla protezione del ripristino bare metal, quest'ultima richiede meno spazio sul *volume del punto di ripristino*. Tuttavia, lo spazio aggiuntivo sul volume non viene recuperato. È possibile ridurre manualmente le dimensioni del volume nella pagina **Modifica allocazione dischi** della procedura guidata Modifica gruppo protezione dati o tramite i cmdlet di PowerShell Get-DatasourceDiskAllocation e Set-DatasourceDiskAllocation.
+-   Se si modifica da protezione tooBMR protezione stato del sistema, protezione BMR richiede meno spazio sul hello *volume del punto di ripristino*. Tuttavia, hello spazio aggiuntivo sul volume hello non viene recuperato. È possibile compattare manualmente la dimensione del volume hello in hello **modifica allocazione dischi** pagina della procedura guidata Modifica gruppo protezione dati hello o utilizzando i cmdlet Get-DatasourceDiskAllocation e Set-DatasourceDiskAllocation PowerShell hello.
 
-    Se si passa dalla protezione dello stato del sistema alla protezione del ripristino bare metal, quest'ultima richiede più spazio sul *volume di replica*. Il volume viene esteso automaticamente. Se si desidera modificare le allocazioni di spazio predefinite, usare il cmdlet PowerShell Modify-DiskAllocation.
+    Se si modifica da protezione tooBMR protezione stato del sistema, protezione BMR richiede più spazio sul hello *volume di replica*. volume Hello viene estesa automaticamente. Se si desidera allocazioni di spazio predefinite hello toochange, utilizzare i cmdlet di PowerShell Modify-DiskAllocation hello.
 
--   Se si passa dalla protezione del ripristino bare metal alla protezione dello stato del sistema, è necessario più spazio sul volume del punto di ripristino. È possibile che il server di Backup tenti di aumentare automaticamente il volume. Se lo spazio nel pool di archiviazione è insufficiente, si verifica un errore.
+-   Se si modifica dalla protezione dello stato di ripristino bare metal protezione toosystem, è necessario più spazio sul volume del punto di ripristino hello. Backup Server potrebbe provare tooautomatically aumentare il volume di hello. Se è presente spazio insufficiente nel pool di archiviazione hello, si verifica un errore.
 
-    Se si passa dalla protezione del ripristino bare metal alla protezione dello stato del sistema, è necessario spazio sul computer protetto. Ciò si deve al fatto che la protezione dello stato del sistema scrive la replica nel computer locale, quindi la trasferisce nel computer del server di Backup.
+    Se si modifica dalla protezione dello stato di ripristino bare metal protezione toosystem, è necessario spazio sul computer protetto hello. In questo modo scrive innanzitutto computer locale di hello replica toohello protezione stato del sistema e quindi lo trasferisce toohello computer del Server di Backup.
 
 ## <a name="before-you-begin"></a>Prima di iniziare
 
@@ -104,125 +104,125 @@ Al termine del backup, il file viene trasferito nel computer del server di Backu
     * [Requisiti di sistema per il server di Backup di Azure](http://docs.microsoft.com/system-center/dpm/install-dpm#setup-prerequisites)
     * [Matrice di protezione del server di Backup](backup-mabs-protection-matrix.md)
 
-2.  **Configurare l'archiviazione**. È possibile archiviare i dati di backup su disco, su nastro e nel cloud con Azure. Per altre informazioni, vedere [Preparare l'archiviazione dei dati](https://docs.microsoft.com/system-center/dpm/plan-long-and-short-term-data-storage).
+2.  **Configurare l'archiviazione**. È possibile archiviare i dati di backup su disco, su nastro e nel cloud hello con Azure. Per altre informazioni, vedere [Preparare l'archiviazione dei dati](https://docs.microsoft.com/system-center/dpm/plan-long-and-short-term-data-storage).
 
-3.  **Configurare l'agente protezione**. Installare l'agente protezione nel computer di cui eseguire il backup. Per altre informazioni, vedere [Distribuire l'agente protezione DPM](http://docs.microsoft.com/system-center/dpm/deploy-dpm-protection-agent).
+3.  **Configurare l'agente protezione hello**. Installare l'agente protezione hello computer che si desidera ripristinare tooback hello. Per ulteriori informazioni, vedere [agente protezione DPM di hello Distribuisci](http://docs.microsoft.com/system-center/dpm/deploy-dpm-protection-agent).
 
 ## <a name="back-up-system-state-and-bare-metal"></a>Backup dello stato del sistema e bare metal
-Configurare un gruppo protezione dati come descritto in [Distribuire gruppi protezione dati](http://docs.microsoft.com/system-center/dpm/create-dpm-protection-groups). Si noti che non è possibile proteggere il ripristino bare metal e lo stato del sistema per lo stesso computer in gruppi diversi. Inoltre, quando si seleziona il ripristino bare metal, lo stato del sistema viene abilitato automaticamente.
+Configurare un gruppo protezione dati come descritto in [Distribuire gruppi protezione dati](http://docs.microsoft.com/system-center/dpm/create-dpm-protection-groups). Si noti che non è possibile proteggere il ripristino bare metal e stato di sistema per hello stesso computer in gruppi diversi. Inoltre, quando si seleziona il ripristino bare metal, lo stato del sistema viene abilitato automaticamente.
 
 
-1.  Per aprire la procedura guidata Crea nuovo gruppo protezione dati nella Console di amministrazione del server di Backup, selezionare **Protezione** > **Azioni** > **Crea gruppo protezione dati**.
+1.  le procedura guidata Crea nuovo gruppo protezione dati nella Console di amministrazione di Server di Backup, selezionare hello tooopen hello **protezione** > **azioni** > **Crea gruppo protezione dati Gruppo**.
 
-2.  Nella pagina **Selezione tipo di gruppo protezione dati** selezionare **Server**, quindi **Avanti**.
+2.  In hello **Selezione tipo di gruppo protezione dati** selezionare **server**e quindi selezionare **Avanti**.
 
-3.  Nella pagina **Selezione membri del gruppo** espandere il computer, quindi selezionare **Ripristino bare metal** o **Stato del sistema**.
+3.  In hello **Seleziona membri del gruppo** pagina espandere hello computer e quindi selezionare **il ripristino bare metal** o **dello stato del sistema**.
 
-    Si noti che non è possibile proteggere il ripristino bare metal e lo stato del sistema per lo stesso computer in gruppi diversi. Inoltre, quando si seleziona il ripristino bare metal, lo stato del sistema viene abilitato automaticamente. Per altre informazioni, vedere [Distribuire gruppi di protezione](http://docs.microsoft.com/system-center/dpm/create-dpm-protection-groups).
+    Tenere presente che non è possibile proteggere lo stato di ripristino bare metal e di sistema per hello stesso computer in gruppi diversi. Inoltre, quando si seleziona il ripristino bare metal, lo stato del sistema viene abilitato automaticamente. Per altre informazioni, vedere [Distribuire gruppi di protezione](http://docs.microsoft.com/system-center/dpm/create-dpm-protection-groups).
 
-4.  Nella pagina **Seleziona metodo protezione dati** selezionare come gestire i backup a breve e a lungo termine. Il backup a breve termine viene sempre eseguito prima su disco, con l'opzione di eseguire il backup dal disco nel cloud di Azure utilizzando Backup di Azure (a breve o a lungo termine). Un'alternativa al backup a lungo termine nel cloud consiste nella configurazione del backup a lungo termine su un dispositivo a nastro o una libreria di nastri autonoma connessa al server di Backup.
+4.  In hello **Selezione metodo protezione dati** pagina, selezionare la modalità di backup a breve termine e a lungo termine di toohandle. Backup a breve termine è sempre toodisk prima, con l'opzione hello di backup da disco di hello toohello Azure cloud con Azure Backup (a breve termine o a lungo termine). Un cloud di backup toohello termine toolong alternativo è tooset backup a lungo termine tooa backup autonomo dispositivo o un nastro libreria di nastri che è connesso tooBackup Server.
 
-5.  Nella pagina **Selezione obiettivi a breve termine** selezionare come si desidera eseguire il backup per l'archiviazione a breve termine su disco:
-    1. Per **Intervallo conservazione** selezionare per quanto tempo si desidera conservare i dati su disco. 
-    2. Per **Frequenza di sincronizzazione** selezionare la frequenza con cui eseguire un backup incrementale su disco. Se non si desidera impostare un intervallo di backup, selezionare l'opzione **Immediatamente prima di un punto di ripristino**. Il server di backup eseguirà un backup completo rapido appena prima di ogni punto di ripristino pianificato.
+5.  In hello **Seleziona obiettivi a breve termine** pagina, selezionare la modalità tooback spazio di archiviazione tooshort termine su disco:
+    1. Per **mantenimento**, selezionare la durata desiderata dati hello tookeep sul disco. 
+    2. Per **frequenza di sincronizzazione**, selezionare la frequenza con cui si desidera toorun un toodisk backup incrementale. Se non si desidera tooset un intervallo di backup, è possibile controllare hello **immediatamente prima di un punto di ripristino** opzione. Il server di backup eseguirà un backup completo rapido appena prima di ogni punto di ripristino pianificato.
 
-6.  Se si desidera archiviare i dati su nastro per l'archiviazione a lungo termine, nella pagina **Specifica obiettivi a lungo termine** selezionare per quanto tempo si desidera conservare i dati su nastro (1-99 anni). 
-    1. Per **Frequenza di backup** selezionare la frequenza con cui eseguire il backup su nastro. La frequenza è basata sull'intervallo di conservazione selezionato:
-        * Quando l'intervallo di conservazione è 1-99 anni, è possibile selezionare l'esecuzione di backup giornaliera, settimanale, bisettimanale, mensile, trimestrale, semestrale o annuale.
-        * Quando l'intervallo di conservazione è 1-11 mesi, è possibile selezionare l'esecuzione di backup giornaliera, settimanale, bisettimanale o mensile.
-        * Quando l'intervallo di conservazione è 1-4 settimane, è possibile selezionare l'esecuzione di backup giornaliera o settimanale.
+6.  Se si desidera toostore dati su nastro per l'archiviazione a lungo termine su hello **Specifica obiettivi a lungo termine** pagina, selezionare quanto tempo i dati del nastro tookeep (1-99 anni). 
+    1. Per **frequenza di backup**, selezionare la frequenza di backup tootape deve essere eseguito. frequenza di Hello è basata sull'intervallo di conservazione hello selezionata:
+        * Quando il periodo di conservazione hello è 1-99 anni, è possibile selezionare toooccur di backup giornaliera, settimanale, bisettimanale, mensile, trimestrale, semestrale o annuale.
+        * Quando il periodo di conservazione hello è 1-11 mesi, è possibile selezionare toooccur di backup giornaliera, settimanale, bisettimanale o mensile.
+        * Quando il periodo di conservazione hello è 1-4 settimane, è possibile selezionare toooccur di backup giornaliera o settimanale.
 
-    2. Nella pagina **Selezione dettagli nastro e libreria** selezionare il nastro e la libreria da utilizzare e se comprimere e crittografare i dati.
+    2. In hello **selezione dettagli libreria e nastro** pagina, selezionare hello toouse libreria e nastro, e se i dati devono essere compressi e crittografati.
 
-7.  Nella pagina **Verifica allocazione dischi** esaminare lo spazio su disco del pool di archiviazione allocato per il gruppo protezione dati.
+7.  In hello **Verifica allocazione dischi** verificare spazio su disco del pool di archiviazione hello allocata per il gruppo di protezione dati hello.
 
-    1. Il valore **Dimensioni totali dei dati** è la dimensione dei dati di cui eseguire il backup.
-    2. Il valore **Spazio su disco per il provisioning nel server di Backup di Azure** è lo spazio consigliato dal server di Backup per il gruppo protezione dati. Il server di Backup sceglie il volume di backup in base alle impostazioni. Tuttavia, è possibile modificare le opzioni del volume di backup in **Dettagli allocazione del disco**. 
-    3. Per i carichi di lavoro, nel menu a discesa selezionare l'archiviazione preferita. Le modifiche modificano i valori per **Totale spazio di archiviazione** e **Spazio libero di archiviazione** nel riquadro **Spazio di archiviazione su disco disponibile**. Per spazio con provisioning insufficiente si intende la quantità di spazio di archiviazione che il server di Backup consiglia di aggiungere al volume per garantire backup uniformi.
+    1. **Totale dimensioni dati** hello dimensioni di dati di hello tooback da backup.
+    2. **Toobe spazio su disco nel Server di Backup di Azure eseguito il provisioning** spazio hello del Server di Backup consigliata per gruppo protezione dati hello. Backup Server sceglie hello ideale volume di backup in base alle impostazioni di hello. Tuttavia, è possibile modificare le opzioni relative al volume di backup hello di **dettagli di allocazione del disco**. 
+    3. Per i carichi di lavoro, nel menu a discesa hello, selezionare l'archiviazione hello preferito. Le modifiche modificano i valori di hello per **spazio di archiviazione totale** e **spazio di archiviazione** in hello **archiviazione su disco disponibile** riquadro. Lo spazio underprovisioned è quantità hello di archiviazione che il Server di Backup suggerisce che aggiungere volume toohello, tooensure smooth backup.
 
-8.  Nella pagina **Scelta del metodo per la creazione della replica** selezionare come gestire la replica dei dati completa iniziale. Se si sceglie di eseguire la replica in rete, è consigliabile scegliere un orario di scarso traffico. Per grandi quantità di dati o condizioni di rete non ottimali, tenere in considerazione la replica dei dati offline mediante supporti rimovibili.
+8.  In hello **Scegli metodo di creazione della Replica** pagina, selezionare la modalità di replica iniziale dei dati completo di toohandle hello. Se si sceglie tooreplicate rete hello, è consigliabile scegliere un orario. Per grandi quantità di dati o per le condizioni della rete che sono ottimali, prendere in considerazione la replica dei dati hello offline usando supporti rimovibili.
 
-9. Nella pagina **Scelta opzioni di verifica coerenza** selezionare come automatizzare le verifiche della coerenza. È possibile scegliere di eseguire una verifica solo quando i dati di replica diventano incoerenti o in base a una pianificazione. Per non configurare verifiche della coerenza automatiche, è possibile eseguire una verifica manuale in qualsiasi momento. Per eseguire una verifica manuale, nell'area **Protezione** della console di amministrazione del server di Backup fare clic con il pulsante destro del mouse sul gruppo protezione dati e quindi selezionare **Esegui verifica coerenza**.
+9. In hello **scegliere Opzioni di verifica coerenza** pagina, selezionare la modalità di tooautomate le verifiche di coerenza. È possibile scegliere un controllo toorun solo quando i dati di replica diventano incoerenti o in una pianificazione. Se non si desidera tooconfigure verifica di coerenza automatica, è possibile eseguire una verifica manuale in qualsiasi momento. una verifica manuale, in hello toorun **protezione** area di hello Console di amministrazione di Server di Backup, fare doppio clic su protezione hello gruppo e quindi seleziona **Esegui verifica coerenza**.
 
-10. Se si è scelto di eseguire il backup nel cloud con Backup di Azure, nella pagina **Specifica i dati da proteggere online** verificare di selezionare i carichi di lavoro di cui eseguire il backup in Azure.
+10. Se è stata selezionata tooback backup cloud toohello da Backup di Azure, in hello **specificare dati da proteggere Online** pagina, assicurarsi di selezionare i carichi di lavoro hello desiderato tooback backup tooAzure.
 
-11. Nella pagina **Specificare la pianificazione dei backup online** selezionare la frequenza con cui eseguire i backup incrementali in Azure. È possibile pianificare l'esecuzione di backup giornalieri, settimanali, mensili e annuali e selezionare la data e l'ora in cui eseguirli. È possibile eseguire i backup fino a due volte al giorno. Ogni volta che viene eseguito un backup, viene creato un punto di ripristino dei dati in Azure dalla copia dei dati di backup archiviati nel disco del server di Backup.
+11. In hello **specificare la pianificazione dei Backup Online** pagina, selezionare la frequenza con cui incrementali tooAzure si verificherà. È possibile pianificare i backup toorun ogni giorno, settimana, mese e anno e selezionare Data e ora hello in corrispondenza del quale deve essere eseguito. I backup possono verificarsi backup tootwice al giorno. Ogni volta che viene eseguito un backup, un punto di ripristino di dati viene creato in Azure da copia hello hello dei dati di backup archiviati su disco di Backup Server hello.
 
-12. Nella pagina **Specificare i criteri di conservazione online** selezionare la modalità di conservazione in Azure dei punti di ripristino creati dai backup giornalieri, settimanali, mensili e annuali.
+12. In hello **specificare criteri di conservazione Online** selezionare come punti di ripristino hello che vengono creati dal backup giornaliero, settimanale, mensile e annuale di hello vengono mantenuti in Azure.
 
-13. Nella pagina **Scegliere la replica online** selezionare la modalità di esecuzione della replica completa iniziale dei dati. È possibile eseguire la replica in rete o eseguire un backup offline (seeding offline). Il backup offline utilizza la funzionalità di importazione di Azure. Per altre informazioni, vedere [Flusso di lavoro del backup offline in Backup di Azure](backup-azure-backup-import-export.md).
+13. In hello **Scegli replica Online** selezionare modalità hello iniziale completa dei dati di replica. È possibile replicare in rete hello o eseguire un backup (seeding non in linea). Backup offline Usa funzionalità di importazione di Azure hello. Per altre informazioni, vedere [Flusso di lavoro del backup offline in Backup di Azure](backup-azure-backup-import-export.md).
 
-14. Nella pagina **Riepilogo** esaminare le impostazioni. Dopo aver selezionato **Crea gruppo**, viene eseguita la replica iniziale dei dati. Al termine della replica dei dati, nella pagina **Stato** lo stato del gruppo protezione dati è **OK**. Viene quindi eseguito il backup in base alle impostazioni del gruppo protezione dati.
+14. In hello **riepilogo** pagina, rivedere le impostazioni. Dopo aver selezionato **Crea gruppo**, viene eseguita la replica iniziale dei dati di hello. Quando viene completata la replica dei dati, in hello **stato** pagina stato del gruppo protezione dati hello è **OK**. Il backup viene eseguito per la protezione hello quindi le impostazioni di gruppo.
 
 ## <a name="recover-system-state-or-bmr"></a>Ripristino dello stato del sistema o bare metal
-È possibile eseguire il ripristino dello stato del sistema o bare metal in un percorso di rete. Se è stato eseguito un backup bare metal, utilizzare Ambiente ripristino Windows (WinRE) per l'avvio del sistema e la connessione alla rete. Utilizzare quindi Windows Server Backup per eseguire il ripristino dal percorso di rete. Se è stato eseguito un backup dello stato del sistema, utilizzare solo Windows Server Backup per eseguire il ripristino dal percorso di rete.
+È possibile ripristinare percorso di rete tooa lo stato del sistema o del ripristino bare metal. Se hai eseguito un backup bare metal, utilizzare il sistema di toostart ambiente ripristino Windows (WinRE) e connetterla toohello rete. Quindi, è possibile utilizzare Windows Server Backup toorecover dal percorso di rete hello. Se hai eseguito un backup dello stato del sistema, è sufficiente utilizzare Windows Server Backup toorecover dal percorso di rete hello.
 
 ### <a name="restore-bmr"></a>Ripristino bare metal
-Eseguire il ripristino nel computer del server di Backup:
+Eseguire il ripristino nel computer del Server di Backup hello:
 
-1.  Nel riquadro **Ripristino** trovare il computer da ripristinare e quindi selezionare **Ripristino bare metal**.
+1.  In hello **ripristino** riquadro, individuare i computer di hello toorecover desiderato e quindi selezionare **ripristino Bare Metal**.
 
-2.  I punti di ripristino disponibili sono indicati in grassetto nel calendario. Selezionare la data e l'ora del punto di ripristino da utilizzare.
+2.  Punti di ripristino disponibili sono indicati in grassetto nel calendario hello. Hello selezionare Data e ora per il punto di ripristino hello che si desidera toouse.
 
-3.  Nella pagina **Selezione tipo di ripristino** selezionare **Copia in una cartella di rete**.
+3.  In hello **Selezione tipo di ripristino** selezionare **copia tooa cartella di rete.**
 
-4.  Nella pagina **Specifica destinazione** selezionare il percorso in cui copiare i dati. Si ricordi che la destinazione selezionata deve disporre di spazio sufficiente. È consigliabile creare una nuova cartella.
+4.  In hello **specifica destinazione** pagina, selezionare in cui si desidera toocopy hello dati. Tenere presente che la destinazione selezionata hello deve toohave spazio sufficiente. È consigliabile creare una nuova cartella.
 
-5.  Nella pagina **Specifica opzioni di ripristino** selezionare le impostazioni di sicurezza da applicare. Selezionare quindi se si desidera utilizzare snapshot dell'hardware basati su una rete di archiviazione (SAN), per un ripristino più veloce. Questa opzione è valida solo se si dispone di una SAN con questa funzionalità disponibile e la possibilità di creare e suddividere un clone per renderlo scrivibile. Inoltre, il computer protetto e il computer del server di Backup devono essere connessi alla stessa rete.
+5.  In hello **Specifica opzioni di ripristino** pagina, tooapply le impostazioni di sicurezza selezionare hello. Quindi, selezionare se si desidera rete di toouse archiviazione (SAN)-basato su snapshot dell'hardware, per un ripristino più veloce. (Si tratta di un'opzione solo se si dispone di una SAN con questa funzionalità è disponibile e hello toocreate possibilità e divisa toomake un clone è accessibile in scrittura. Inoltre, hello computer protetto e il computer Server di Backup deve essere connesso toohello stessa rete.)
 
-6.  Configurare le opzioni di notifica. Nella pagina **Conferma** selezionare **Ripristina**.
+6.  Configurare le opzioni di notifica. In hello **conferma** selezionare **ripristinare**.
 
-Configurare il percorso di condivisione:
+Impostare il percorso della condivisione hello:
 
-1.  Nel percorso di ripristino passare alla cartella contenente il backup.
+1.  Nel percorso di ripristino hello, andare toohello cartella il cui backup hello.
 
-2.  Condividere la cartella di un livello superiore a WindowsImageBackup in modo che la radice della cartella condivisa sia la cartella WindowsImageBackup. Se non si esegue questa operazione, il ripristino non trova il backup. Per la connessione tramite Ambiente ripristino Windows (WinRE), è necessaria una condivisione accessibile in WinRE con l'indirizzo IP e le credenziali corretti.
+2.  Condivisione cartella hello in un livello superiore rispetto a WindowsImageBackup in modo da radice della cartella condivisa hello hello è cartella WindowsImageBackup hello. Se non si esegue questa operazione, ripristino non trovare backup hello. tooconnect tramite ambiente ripristino Windows (WinRE), è necessario una condivisione accessibile in ambiente ripristino Windows con le credenziali e l'indirizzo IP corretto hello.
 
-Ripristinare il sistema:
+Ripristinare il sistema di hello:
 
-1.  Avviare il computer in cui ripristinare l'immagine usando il DVD di Windows per il sistema da ripristinare.
+1.  Avviare il computer di hello in cui si desidera che toorestore hello immagine usando il DVD di Windows hello per sistema hello da ripristinare.
 
-2.  Nella prima pagina verificare la lingua e le impostazioni locali. Nella pagina **Installa** selezionare **Ripristina il computer**.
+2.  Sulla prima pagina hello, verificare le impostazioni di lingua e delle impostazioni locali. In hello **installare** selezionare **Ripristina il computer**.
 
-3.  Nella pagina **Opzioni ripristino di sistema** selezionare **Ripristinare il computer utilizzando un'immagine del sistema creata in precedenza**.
+3.  In hello **Opzioni ripristino di sistema** selezionare **ripristinare il computer utilizzando un'immagine del sistema creato in precedenza**.
 
-4.  Nella pagina **Selezionare un backup dell'immagine del sistema** selezionare **Seziona un'immagine del sistema** > **Avanzate** > **Cerca immagine del sistema in rete**. Se viene visualizzato un avviso, selezionare **Sì**. Passare al percorso della condivisione, immettere le credenziali e quindi selezionare il punto di ripristino. Viene avviata la ricerca di backup specifici disponibili nel punto di ripristino. Selezionare il punto di ripristino da utilizzare.
+4.  In hello **selezionare un backup dell'immagine del sistema** selezionare **selezionare un'immagine del sistema** > **avanzate** > **ricerca per un sistema immagine di rete hello**. Se viene visualizzato un avviso, selezionare **Sì**. Passare il percorso di condivisione toohello, immettere le credenziali di hello e quindi selezionare il punto di ripristino di hello. Viene avviata la ricerca di backup specifici disponibili nel punto di ripristino. Selezionare il punto di ripristino hello che si desidera toouse.
 
-5.  Nella pagina **Scegliere la modalità di ripristino del backup** selezionare **Formatta e partiziona i dischi**. Nella pagina successiva verificare le impostazioni. 
+5.  In hello **scegliere come toorestore hello backup** selezionare **formatta e partiziona i dischi**. Nella pagina successiva di hello, verificare le impostazioni. 
 
-6.  Per iniziare il ripristino selezionare **Fine**. È necessario un riavvio.
+6.  ripristino di hello toobegin, seleziona **fine**. È necessario un riavvio.
 
 ### <a name="restore-system-state"></a>Ripristino dello stato del sistema
 
 Eseguire il ripristino nel server di Backup:
 
-1.  Nel riquadro **Ripristino** trovare il computer da ripristinare e quindi selezionare **Ripristino bare metal**.
+1.  In hello **ripristino** riquadro Trova hello computer che desidera toorecover e quindi selezionare **ripristino Bare Metal**.
 
-2.  I punti di ripristino disponibili sono indicati in grassetto nel calendario. Selezionare la data e l'ora del punto di ripristino da utilizzare.
+2.  Punti di ripristino disponibili sono indicati in grassetto nel calendario hello. Hello selezionare Data e ora per il punto di ripristino hello che si desidera toouse.
 
-3.  Nella pagina **Selezione tipo di ripristino** selezionare **Copia in una cartella di rete**.
+3.  In hello **Selezione tipo di ripristino** selezionare **cartella di rete copia tooa**.
 
-4.  Nella pagina **Specifica destinazione** selezionare il percorso in cui copiare i dati. Si ricordi che la destinazione selezionata deve disporre di spazio sufficiente. È consigliabile creare una nuova cartella.
+4.  In hello **specifica destinazione** pagina, selezionare il percorso dati hello toocopy. Tenere presente che la destinazione selezionata hello è necessario spazio sufficiente. È consigliabile creare una nuova cartella.
 
-5.  Nella pagina **Specifica opzioni di ripristino** selezionare le impostazioni di sicurezza da applicare. Selezionare quindi se si desidera utilizzare snapshot dell'hardware basati su SAN, per un ripristino più veloce. Questa opzione è valida solo se si dispone di una SAN con questa funzionalità disponibile e la possibilità di creare e suddividere un clone per renderlo scrivibile. Inoltre, il computer protetto e il computer del server di Backup devono essere connessi alla stessa rete.
+5.  In hello **Specifica opzioni di ripristino** pagina, tooapply le impostazioni di sicurezza selezionare hello. Selezionare quindi se si desidera che gli snapshot hardware basati su SAN toouse per un ripristino più veloce. (Si tratta di un'opzione solo se si dispone di una SAN con questa funzionalità e capacità toocreate hello e divisa toomake un clone è accessibile in scrittura. Inoltre, hello computer protetto e il Server di Backup deve essere connesso toohello stessa rete.)
 
-6.  Configurare le opzioni di notifica. Nella pagina **Conferma** selezionare **Ripristina**.
+6.  Configurare le opzioni di notifica. In hello **conferma** selezionare **ripristinare**.
 
 Eseguire Windows Server Backup:
 
 1.  Selezionare **Azioni** > **Ripristina** > **Questo server** > **Avanti**.
 
-2.  Selezionare **Un altro server**, selezionare la pagina **Impostazione tipo di percorso** e quindi selezionare **Cartella condivisa remota**. Immettere il percorso della cartella che contiene il punto di ripristino.
+2.  Selezionare **un altro Server**selezionare hello **impostazione tipo di percorso** pagina e quindi selezionare **cartella condivisa remota**. Immettere hello toohello cartella che contiene il punto di ripristino hello.
 
-3.  Nella pagina **Selezione tipo di ripristino** selezionare **Stato del sistema**. 
+3.  In hello **Selezione tipo di ripristino** selezionare **dello stato del sistema**. 
 
-4. Nella pagina **Selezione percorso per il ripristino dello stato del sistema** selezionare **Percorso originale**.
+4. In hello **Selezione percorso per il ripristino dello stato del sistema** selezionare **nel percorso originale**.
 
-5.  Nella pagina **Conferma** selezionare **Ripristina**. Dopo il ripristino, riavviare il server.
+5.  In hello **conferma** selezionare **ripristinare**. Dopo il ripristino di hello, riavviare il server di hello.
 
-6.  È anche possibile eseguire il ripristino dello stato del sistema a un prompt dei comandi. A tale scopo, avviare Windows Server Backup nel computer da ripristinare. Per ottenere l'identificatore di versione, a un prompt dei comandi immettere: ```wbadmin get versions -backuptarget \<servername\sharename\>```
+6.  È anche possibile eseguire hello ripristino dello stato del sistema a un prompt dei comandi. toodo, Windows Server Backup di start computer hello desiderato toorecover. Identificatore di versione hello tooget, al prompt dei comandi, immettere:```wbadmin get versions -backuptarget \<servername\sharename\>```
 
-    Utilizzare l'identificatore di versione per avviare il ripristino dello stato del sistema. Al prompt dei comandi immettere: ```wbadmin start systemstaterecovery -version:<versionidentified> -backuptarget:<servername\sharename>```
+    Utilizzare hello versione identificatore toostart hello ripristino del sistema. Al prompt dei comandi di hello, immettere:```wbadmin start systemstaterecovery -version:<versionidentified> -backuptarget:<servername\sharename>```
 
-    Confermare che si desidera avviare il ripristino. È possibile visualizzare il processo nella finestra del prompt dei comandi. Viene creato un registro di ripristino. Dopo il ripristino, riavviare il server.
+    Confermare che si desidera ripristino hello toostart. È possibile visualizzare il processo di hello nella finestra del prompt dei comandi hello. Viene creato un registro di ripristino. Dopo il ripristino di hello, riavviare il server di hello.
 

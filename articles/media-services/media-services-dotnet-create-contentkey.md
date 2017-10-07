@@ -1,6 +1,6 @@
 ---
-title: "Creare entità ContentKey mediante .NET"
-description: Informazioni su come creare chiavi simmetriche che forniscono l'accesso sicuro agli asset.
+title: aaaCreate ContentKeys con .NET
+description: Informazioni su come accedono a tooAssets chiavi simmetriche toocreate che forniscono protezione.
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/20/2017
 ms.author: juliako
-ms.openlocfilehash: 3280a6fcde59bae360da7cb9fea4bb649f984e43
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 35909c64e8393e228be75c464a034ffc40122952
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-contentkeys-with-net"></a>Creare entità ContentKey mediante .NET
 > [!div class="op_single_selector"]
@@ -27,28 +27,28 @@ ms.lasthandoff: 08/29/2017
 > 
 > 
 
-Servizi multimediali consente di creare asset crittografati e distribuirli. Un'entità **ContentKey** consente l'accesso sicuro alle entità **Asset**. 
+Servizi multimediali consente toocreate e recapitare gli asset crittografati. Oggetto **ContentKey** fornisce l'accesso sicuro tooyour **Asset**s. 
 
-Quando si crea un nuovo asset, ad esempio prima di [caricare file](media-services-dotnet-upload-files.md), è possibile specificare le seguenti opzioni di crittografia: **StorageEncrypted**, **CommonEncryptionProtected** o **EnvelopeEncryptionProtected**. 
+Quando si crea un nuovo asset (ad esempio, prima di [caricare file](media-services-dotnet-upload-files.md)), è possibile specificare le opzioni di crittografia seguenti hello: **StorageEncrypted**, **CommonEncryptionProtected**, o **EnvelopeEncryptionProtected**. 
 
-Quando si distribuiscono asset ai client, è possibile [configurarli per la crittografia dinamica](media-services-dotnet-configure-asset-delivery-policy.md) con una delle due seguenti opzioni: **DynamicEnvelopeEncryption** o **DynamicCommonEncryption**.
+Quando si consegna asset tooyour client, è possibile [configurare per toobe asset crittografati in modo dinamico](media-services-dotnet-configure-asset-delivery-policy.md) con uno dei seguenti due crittografie hello: **DynamicEnvelopeEncryption** o  **DynamicCommonEncryption**.
 
-Gli asset crittografati devono essere associati alle entità **ContentKey**. Questo articolo descrive come creare una chiave simmetrica.
+Gli asset crittografati sono associati toobe **ContentKey**s. Questo articolo viene descritto come toocreate una chiave simmetrica.
 
 > [!NOTE]
-> Quando si crea un nuovo asset **StorageEncrypted** mediante Media Services .NET SDK, l'entità **ContentKey** viene creata automaticamente e collegata all'asset.
+> Quando si crea un nuovo **StorageEncrypted** utilizzando asset hello Media Services .NET SDK, hello **ContentKey** viene automaticamente creato e collegato con asset hello.
 > 
 > 
 
 ## <a name="contentkeytype"></a>ContentKeyType
-Uno dei valori che è necessario impostare quando si crea una chiave simmetrica è quello relativo al tipo. È possibile scegliere uno dei seguenti valori. 
+Uno dei valori hello che è necessario impostare quando creare un tipo di contenuto chiave è di tipo di chiave simmetrica hello. Scegliere uno dei seguenti valori hello. 
 
     public enum ContentKeyType
     {
         /// <summary>
         /// Specifies a content key for common encryption.
         /// </summary>
-        /// <remarks>This is the default value.</remarks>
+        /// <remarks>This is hello default value.</remarks>
         CommonEncryption = 0,
 
         /// <summary>
@@ -68,7 +68,7 @@ Uno dei valori che è necessario impostare quando si crea una chiave simmetrica 
     }
 
 ## <a id="envelope_contentkey"></a>Creare un'entità ContentKey di tipo envelope
-Il seguente frammento di codice crea una chiave simmetrica con tipo di crittografia envelope. Associa quindi la chiave all'asset specificato.
+Hello frammento di codice seguente crea una chiave simmetrica hello busta del tipo di crittografia. Quindi associa la chiave hello asset specificato hello.
 
     static public IContentKey CreateEnvelopeTypeContentKey(IAsset asset)
     {
@@ -105,7 +105,7 @@ chiamare
 
 
 ## <a id="common_contentkey"></a>Creare un'entità ContentKey di tipo common
-Il seguente frammento di codice crea una chiave simmetrica con tipo di crittografia common. Associa quindi la chiave all'asset specificato.
+Hello frammento di codice seguente crea una chiave simmetrica hello comuni del tipo di crittografia. Quindi associa la chiave hello asset specificato hello.
 
     static public IContentKey CreateCommonTypeContentKey(IAsset asset)
     {
@@ -119,7 +119,7 @@ Il seguente frammento di codice crea una chiave simmetrica con tipo di crittogra
                                 "ContentKey",
                                 ContentKeyType.CommonEncryption);
 
-        // Associate the key with the asset.
+        // Associate hello key with hello asset.
         asset.ContentKeys.Add(key);
 
         return key;

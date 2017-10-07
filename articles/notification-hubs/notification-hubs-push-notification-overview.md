@@ -1,6 +1,6 @@
 ---
-title: Hub di notifica di Azure
-description: "Informazioni su come aggiungere le funzionalità di notifica push con Hub di notifica di Azure."
+title: aaaAzure gli hub di notifica
+description: "Informazioni su come tooadd push con hub di notifica di Azure, le funzionalità di notifica."
 author: ysxu
 manager: erikre
 editor: 
@@ -14,29 +14,29 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 1/17/2017
 ms.author: yuaxu
-ms.openlocfilehash: a1be0b13cd1feb582a23965df142e44d90ac6851
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 78ce34b6b094b560c8002ab9652f7ba4563c5c74
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-notification-hubs"></a>Hub di notifica di Azure
 ## <a name="overview"></a>Panoramica
-Hub di notifica di Azure offre un motore di push di facile uso, multipiattaforma e con scalabilità orizzontale. Con una sola chiamata all'API multipiattaforma, è possibile inviare facilmente notifiche push mirate e personalizzate a qualsiasi piattaforma mobile da qualsiasi cloud o back-end locale.
+Hub di notifica di Azure offre un motore di push di facile uso, multipiattaforma e con scalabilità orizzontale. Con una chiamata all'API multipiattaforma singolo, è possibile inviare facilmente piattaforma mobile tooany di notifiche push personalizzate e di destinazione da qualsiasi back-end cloud o locale.
 
 Hub di notifica funziona perfettamente per scenari aziendali e di consumo. Di seguito sono riportati alcuni esempi degli usi di Hub di notifica fatti dai clienti:
 
-* Invio di notifiche sulle ultime notizie a milioni di utenti con bassa latenza.
-* Invio di coupon in base alla posizione a segmenti di utenti interessati.
-* Invio di notifiche sugli eventi a utenti o gruppi per applicazioni di media, sport, finanza e gioco.
-* Contenuti push promozionali per le app per coinvolgere e offrire prodotti ai clienti.
+* Inviare ultime notizie notifiche toomillions con bassa latenza.
+* Inviare coupon basati sulla posizione segmenti utente toointerested.
+* Inviare notifiche relative a eventi toousers o gruppi per le applicazioni di supporto/sportive/finance/giochi.
+* Push contenuto promozionale tooapps tooengage e mercato toocustomers.
 * Notifiche agli utenti su eventi aziendali, come nuovi messaggi ed elementi di lavoro.
 * Invio di codici per l'autenticazione a più fattori.
 
 ## <a name="what-are-push-notifications"></a>Cosa sono le notifiche push?
-Le notifiche push sono una forma di comunicazione tra l'app e l'utente in cui gli utenti delle app per dispositivi mobili vengono informati di determinate notizie desiderate, in genere con una finestra popup o con una finestra di dialogo. Gli utenti in genere possono scegliere di visualizzare o chiudere il messaggio, la prima opzione consente di aprire l'app per dispositivi mobili che ha comunicato la notifica.
+Le notifiche push sono una forma di comunicazione tra l'app e l'utente in cui gli utenti delle app per dispositivi mobili vengono informati di determinate notizie desiderate, in genere con una finestra popup o con una finestra di dialogo. Gli utenti possono in genere scegliere tooview o chiudere il messaggio hello e scegliendo ex hello verrà aperto l'app per dispositivi mobili hello che comunicata notifica hello.
 
-Le notifiche push sono fondamentali per le app di consumo perché aumentano l'interesse e l'uso delle app, mentre per le app aziendali favoriscono la comunicazione di informazioni aziendali aggiornate. Sono la migliore forma di comunicazione tra app e utente perché consentono un notevole risparmio energetico per i dispositivi mobili, sono flessibili per i mittenti di notifiche e disponibili anche quando le app corrispondenti non sono attive.
+Le notifiche push sono fondamentali per le app di consumo perché aumentano l'interesse e l'uso delle app, mentre per le app aziendali favoriscono la comunicazione di informazioni aziendali aggiornate. È la comunicazione di app-utente migliore hello perché è più efficiente per i dispositivi mobili, flessibili per i mittenti notifiche hello e disponibili mentre le applicazioni corrispondenti non sono attive.
 
 Maggiori informazioni sulle notifiche push per alcune piattaforme più comuni:
 * [iOS](https://developer.apple.com/notifications/)
@@ -44,44 +44,44 @@ Maggiori informazioni sulle notifiche push per alcune piattaforme più comuni:
 * [Windows](http://msdn.microsoft.com/library/windows/apps/hh779725.aspx)
 
 ## <a name="how-push-notifications-work"></a>Funzionamento delle notifiche push
-Le notifiche push vengono recapitate attraverso infrastrutture specifiche della piattaforma denominate *Platform Notification System* (PNS). Offrono funzionalità push essenziali per il recapito di un messaggio a un dispositivo con handle e un'interfaccia non comune. Per inviare una notifica a tutti i clienti delle versioni di un'app per Windows, iOS e Android, lo sviluppatore deve usare il servizio APNS (Apple Push Notification Service), il servizio FCM (Firebase Cloud Messaging) e con il servizio WNS (Servizio di notifica di Windows Notification), durante l'invio in batch.
+Le notifiche push vengono recapitate attraverso infrastrutture specifiche della piattaforma denominate *Platform Notification System* (PNS). Offrono le funzionalità di push barebone dispositivo di tooa toodelivery messaggio con un oggetto fornito la gestione e non hanno nessuna interfaccia comune. una notifica toosend tooall clienti attraverso hello iOS, Android e Windows versioni di un'app, sviluppatore hello deve funzionare con APNS (Apple Push Notification Service), FCM (messaggistica Cloud Firebase) e WNS (Windows Notification Service), durante l'invio in batch Invia Hello.
 
 In particolare, ecco come funziona un push:
 
-1. L'app client deve ricevere le notifiche push pertanto contatta il PNS corrispondente per recuperare l'handle di push univoco e temporaneo. Il tipo di handle dipende dal sistema (ad esempio, per WNS c'è URI mentre per il servizio APN ci sono i token).
-2. L'app client archivia l'handle nel provder o nel back-end dell'app.
-3. Per inviare una notifica push, il back-end dell'app contatta il PNS usando l'handle per individuare una specifica app client.
-4. Il PNS inoltra quindi la notifica al dispositivo specificato dall'handle.
+1. app client Hello decide che desidera tooreceive effettua il push pertanto hello contatti PNS tooretrieve corrispondente al relativo handle push univoco e temporanei. tipo di handle Hello dipende dal sistema hello (ad esempio, WNS ha URI mentre APN ha token).
+2. app client Hello archivia l'handle nel back-end app hello o provider.
+3. toosend una notifica push, hello app back-end contatta hello PNS usando hello handle tootarget un'app client specifico.
+4. Hello PNS inoltra dispositivo toohello di notifica hello specificato dall'handle hello.
 
 ![][0]
 
-## <a name="the-challenges-of-push-notifications"></a>Difficoltà associate alle notifiche push
-Seppur molto potenti, i PNS richiedono un grande impegno da parte degli sviluppatori di app per implementare anche i più comuni scenari di notifica push, come la trasmissione o l'invio di notifiche push a utenti segmentati.
+## <a name="hello-challenges-of-push-notifications"></a>Hello sfide di notifiche Push
+Mentre PNSes sono potenti, lasciano lo sviluppatore di app di lavoro toohello in ordine tooimplement anche push notifica scenari comuni, ad esempio la trasmissione o l'invio di utenti toosegmented le notifiche push.
 
-Il push è una delle funzionalità più richieste nei servizi cloud per dispositivi mobili, perché il relativo uso richiede infrastrutture complesse che non sono correlate alla logica di business principale dell'app. Di seguito sono riportate alcune delle difficoltà infrastrutturali:
+Push è uno dei hello richiesto più funzionalità di servizi cloud per dispositivi mobili, perché il relativo utilizzo richiede infrastrutture complesse di logica di business principale dell'applicazione di toohello non correlati. Alcune delle problematiche infrastrutturali hello sono:
 
 * **Dipendenza dalla piattaforma**: 
 
-  * Il back-end deve avere una logica dipendente dalla piattaforma complessa e difficile da gestire per inviare notifiche a dispositivi su diverse piattaforme perché i PNS non sono unificati.
+  * back-end Hello deve toohave complesse e disco rigido per gestire la logica dipendente dalla piattaforma toosend notifiche toodevices su varie piattaforme come PNSes non vengono unificati.
 * **Scalabilità**:
 
-  * In base alle linee guida dei sistemi PNS,è necessario aggiornare i token di dispositivo a ogni avvio dell'app. Ciò significa che il back-end si occupa di una grande quantità di traffico e dell'accesso al database solo per mantenere aggiornati i token. Se il numero di dispositivi cresce fino a raggiungere centinaia o milioni di unità, i costi per la creazione e la gestione dell'infrastruttura diventano significativi.
-  * La maggior parte dei sistemi PNS non supporta la trasmissione a più dispositivi. Ciò significa che una semplice trasmissione a milioni di dispositivi causa un milione di chiamate ai PNS. La scalabilità di questa quantità di traffico con latenza minima è molto complessa.
+  * In base alle linee guida dei sistemi PNS,è necessario aggiornare i token di dispositivo a ogni avvio dell'app. Ciò significa back-end hello riguarda una grande quantità di traffico e database appena tookeep hello i token di accesso aggiornati. Quando il numero di hello di dispositivi cresce toohundreds e migliaia di milioni, costo hello della creazione e gestione dell'infrastruttura è notevole.
+  * PNSes la maggior parte delle non supportano i dispositivi toomultiple broadcast. Ciò significa un semplice tooa broadcast risultati di milioni di dispositivi in chiamate di un milione toohello PNSes. La scalabilità di questa quantità di traffico con latenza minima è molto complessa.
 * **Routing**:
   
-  * Benché i PNS siano un modo per inviare messaggi ai dispositivi, la maggior parte delle notifiche app sono destinate a utenti o a gruppi di interesse. Ciò significa che il back-end deve mantenere un registro di sistema per associare i dispositivi ai gruppi, agli utenti, alle proprietà e così via. Questo aumento del carico di lavoro contribuisce inevitabilmente ad aumentare i tempi di produzione e i costi di manutenzione di un'app.
+  * Se PNSes garantiscono un toodevices di messaggi toosend modo, la maggior parte delle notifiche di App sono destinate a utenti o gruppi di interesse. Ciò significa back-end hello deve gestire i dispositivi di tooassociate un registro di sistema con gruppi di interesse, gli utenti, le proprietà e così via. Questo sovraccarico contribuisce toohello ora toomarket costi di manutenzione e di un'app.
 
 ## <a name="why-use-notification-hubs"></a>Perché usare gli Hub di notifica?
-Hub di notifica elimina tutte le complessità associate all'abilitazione autonoma del push. L'infrastruttura di notifiche push multipiattaforma e con scalabilità orizzontale riduce i codici dei push e semplifica il back-end. Con Hub di notifica, i dispositivi devono eseguire soltanto la registrazione dei propri handle PNS su un hub, mentre il back-end è responsabile dell'invio di messaggi a utenti o gruppi di interesse, come mostrato nella figura seguente:
+Hub di notifica elimina tutte le complessità associate all'abilitazione autonoma del push. L'infrastruttura di notifiche push multipiattaforma e con scalabilità orizzontale riduce i codici dei push e semplifica il back-end. Con gli hub di notifica, i dispositivi sono semplicemente responsabili della registrazione i relativi handle PNS con un hub, mentre il back-end hello invia messaggi toousers o gruppi di interesse, come illustrato nella seguente illustrazione hello:
 
 ![][1]
 
-Hub di notifica è un motore di push pronto all'uso e presenta i vantaggi seguenti:
+Gli hub di notifica è il motore di push pronto all'uso con hello seguenti vantaggi:
 
 * **Multipiattaforma**
 
   * Supporta tutte le principali piattaforme push tra cui iOS, Android, Window, Kindle e Baidu.
-  * È dotato di un'interfaccia comune per effettuare il push a tutte le piattaforme in formati specifici o indipendenti dalla piattaforma senza un processo specifico per la piattaforma.
+  * Una comune interfaccia toopush tooall piattaforme in formati specifici della piattaforma o indipendente dalla piattaforma senza lavoro specifico della piattaforma.
   * Consente di gestire l'handle di dispositivo in un solo posto.
 * **Multi back-end**
   
@@ -89,46 +89,46 @@ Hub di notifica è un motore di push pronto all'uso e presenta i vantaggi seguen
   * .NET, Node. js, Java e così via.
 * **Insieme completo di modelli di recapito**:
 
-  * *Trasmissione a una o più piattaforme*: è possibile trasmettere immediatamente a milioni di dispositivi su piattaforme con una singola chiamata API.
-  * *Push al dispositivo*: è possibile impostare le notifiche per i singoli dispositivi.
-  * *Push a utente*: le funzioni tag e modelli consentono di raggiungere tutti i dispositivi multipiattaforma di un utente.
-  * *Push a segmenti con tag dinamico*: la funzione tag consente di segmentare i dispositivi e di inviarvi push in base alle esigenze, che si stia inviando a un segmento o a un'espressione di segmenti (ad esempio AND attivo vive a Seattle NON è un nuovo utente). Anziché essere limitati a pubblicazione-sottoscrizione, è possibile aggiornare i tag del dispositivo ovunque e in qualsiasi momento.
+  * *Trasmissione tooone o più piattaforme*: È possibile trasmettere immediatamente toomillions dei dispositivi tra le piattaforme con una singola chiamata API.
+  * *Push toodevice*: È possibile fare riferimento ai dispositivi tooindividual di notifiche.
+  * *Push toouser*: tag e i modelli che consentono di raggiungere tutti i dispositivi multipiattaforma di un utente.
+  * *Push toosegment con tag dinamico*: funzione tag consente di segmentare i dispositivi e push toothem in base alle esigenze tooyour, se si inviano tooone segmento o un'espressione di segmenti (ad esempio active AND risiede in Seattle non nuovo utente). Anziché essere limitati toopub-sub, è possibile aggiornare i tag in un punto qualsiasi del dispositivo e in qualsiasi momento.
   * *Push localizzato*: la funzione modelli consente di ottenere la localizzazione senza influire sul codice di back-end.
-  * *Push silent*: consente di abilitare il modello push di pull inviando le notifiche silent ai dispositivi, attivandoli in modo da completare determinati pull o azioni.
-  * *Push pianificato*: è possibile pianificare l'invio delle notifiche in qualsiasi momento.
-  * *Push diretto*: è possibile ignorare la registrazione dei dispositivi sul servizio e creare direttamente batch di push per un elenco di handle di dispositivo.
+  * *Push invisibile all'utente*: È possibile consente modello push-a-pull hello mediante l'invio di notifiche invisibile all'utente toodevices e attivazione di toocomplete determinati pull o azioni.
+  * *Push pianificate*: È possibile pianificare toosend notifiche in qualsiasi momento.
+  * *Indirizzare push*: È possibile ignorare la registrazione dispositivi con i servizi ed elenco tooa push di batch di handle di dispositivo direttamente.
   * *Push personalizzati*: le variabili push del dispositivo consentono di inviare notifiche push personalizzate specifiche per il dispositivo con coppie chiave-valore personalizzate.
 * **Telemetria avanzata**
   
-  * Nel Portale di Azure e a livello di programmazione è disponibile la telemetria generale di push, dispositivo, errore e operazione.
-  * La Telemetria per messaggio registra ogni push dalla chiamata della richiesta iniziale al corretto invio di push da parte del servizio.
-  * Platform Notification System comunica tutti i commenti di Platform Notification System per facilitare il debug.
+  * Dati di telemetria push, dispositivo, errore e operazione generale è disponibile nel portale di Azure hello e a livello di codice.
+  * Per ogni messaggio telemetria tracce ogni push dal servizio tooour chiamata richiesta iniziale correttamente l'invio in batch hello effettuato il push.
+  * Commenti e suggerimenti del sistema di notifica piattaforma comunica i feedback dei sistemi di notifica Platform tooassist eseguire il debug.
 * **Scalabilità** 
   
-  * Invia messaggi veloci a milioni di dispositivi senza riprogettazione o partizionamento orizzontale del dispositivo.
+  * Inviare messaggi veloce toomillions dei dispositivi senza partizionamento orizzontale riprogettazione o dispositivo.
 * **Sicurezza**
 
   * Firma di accesso condiviso (SAS) o autenticazione federata.
 
 ## <a name="integration-with-app-service-mobile-apps"></a>Integrazione con le app per dispositivi mobili del servizio app
-Per favorire un'esperienza lineare e uniforme nei servizi di Azure, le [app per dispositivi mobili del servizio app] comprendono il supporto predefinito per le notifiche push mediante Hub di notifica. [app per dispositivi mobili del servizio app] offrono una piattaforma di sviluppo di applicazioni mobili estremamente scalabile e disponibile a livello globale per sviluppatori aziendali e integratori di sistemi, che fornisce un set completo di funzionalità per gli sviluppatori di soluzioni per dispositivi mobili.
+un'esperienza trasparente e unificata in servizi di Azure, toofacilitate [App per dispositivi mobili del servizio App] include il supporto incorporato per le notifiche push tramite hub di notifica. [App per dispositivi mobili del servizio App] offre una piattaforma di sviluppo di applicazioni per dispositivi mobili altamente scalabili e disponibili a livello globale per gli sviluppatori aziendali e integratori di sistemi che offre una vasta gamma di funzionalità agli sviluppatori di toomobile.
 
-Gli sviluppatori di app per dispositivi mobili possono usare gli hub di notifica con il seguente flusso di lavoro:
+Gli sviluppatori di applicazioni per dispositivi mobili è possono utilizzare gli hub di notifica con hello del flusso di lavoro seguente:
 
 1. Recuperare la gestione del dispositivo PNS
 2. Registrare il dispositivo con gli Hub di notifica mediante il pratico API Register SDK client delle app per dispositivi mobili
-   * Si noti che le app per dispositivi mobili consentono di eliminare tutti i tag nelle registrazioni per motivi di sicurezza. Usare le hub di notifica dal back-end direttamente per associare tag ai dispositivi.
+   * Si noti che le app per dispositivi mobili consentono di eliminare tutti i tag nelle registrazioni per motivi di sicurezza. Lavorare con gli hub di notifica dal back-end direttamente tooassociate tag con i dispositivi.
 3. Invio di notifiche dal back-end dell'app con hub di notifica
 
-Ecco alcuni vantaggi per gli sviluppatori inclusi in questa integrazione:
+Ecco alcuni vantaggi portati toodevelopers con questa integrazione:
 
-* **SDK client per app per dispositivi mobili**: questi SDK multipiattaforma forniscono API semplici per la registrazione e per comunicare automaticamente con l'Hub di notifica collegato all'app per dispositivi mobili. Gli sviluppatori non hanno bisogno di cercare tra le credenziali di Hub di notifica e lavorare con un servizio aggiuntivo.
+* **SDK Client di App mobile**: questi SDK di multi-piattaforma fornisce API semplice per la registrazione e comunicare con hub di notifica toohello collegato con app per dispositivi mobili hello automaticamente. Gli sviluppatori non necessarie toodig tramite le credenziali di hub di notifica e lavorare con un servizio aggiuntivo.
 
-  * *Push all'utente*: gli SDK assegnano automaticamente tag al dispositivo specificato con l'ID utente autenticato di App per dispositivi mobili per abilitare il push all'utente.
-  * *Push al dispositivo*: l'ID di installazione di App per dispositivi mobili viene usato automaticamente dagli SDK come GUID per la registrazione in Hub di notifica. In questo modo gli sviluppatori non sono costretti a mantenere più GUID di servizio.
-* **Modello di installazione**: le app per dispositivi mobili funzionano con il modello di push più recente degli Hub di notifica per rappresentare tutte le proprietà di push associate a un dispositivo in un'installazione JSON che sia in linea con i servizi di notifica push e che sia facile da usare.
-* **Flessibilità**: gli sviluppatori possono scegliere di usare direttamente Hub di notifica in qualsiasi momento, anche dopo l'integrazione.
-* **Esperienza integrata nel [Portale di Azure]**: il push come funzionalità è rappresentato visivamente nelle app per dispositivi mobili e gli sviluppatori possono utilizzare facilmente l'Hub di notifica associato tramite le App per dispositivi mobili.
+  * *Push toouser*: hello SDK automaticamente tag hello dispositivo con App per dispositivi mobili autenticati ID utente tooenable push toouser scenario specificato.
+  * *Push toodevice*: hello SDK utilizzare automaticamente hello ID di installazione di App Mobile come GUID tooregister con gli hub di notifica, risparmiando agli sviluppatori di problemi di hello di gestione di più GUID di servizio.
+* **Modello di installazione**: App per dispositivi mobili funziona con più recenti push modello toorepresent gli hub di notifica tutte le proprietà associate a un dispositivo in un'installazione di JSON in linea con servizi notifica Push che è facile toouse di push.
+* **Flessibilità**: gli sviluppatori possono scegliere sempre toowork con gli hub di notifica direttamente anche con l'integrazione di hello sul posto.
+* **Esperienza integrata [portale di Azure]**: Push come una funzionalità di rappresentazione visiva di App per dispositivi mobili e gli sviluppatori possono operare con facilità con hub di notifica associato hello tramite App per dispositivi mobili.
 
 ## <a name="next-steps"></a>Passaggi successivi
 Nei seguenti argomenti sono disponibili altre informazioni su Hub di notifica:
@@ -150,7 +150,7 @@ Nei seguenti argomenti sono disponibili altre informazioni su Hub di notifica:
 [Xamarin.Android]: http://azure.microsoft.com/documentation/articles/partner-xamarin-notification-hubs-android-get-started
 [Microsoft.WindowsAzure.Messaging.NotificationHub]: http://msdn.microsoft.com/library/microsoft.windowsazure.messaging.notificationhub.aspx
 [Microsoft.ServiceBus.Notifications]: http://msdn.microsoft.com/library/microsoft.servicebus.notifications.aspx
-[app per dispositivi mobili del servizio app]: https://azure.microsoft.com/en-us/documentation/articles/app-service-mobile-value-prop/
+[App per dispositivi mobili del servizio App]: https://azure.microsoft.com/en-us/documentation/articles/app-service-mobile-value-prop/
 [templates]: notification-hubs-templates-cross-platform-push-messages.md
-[Portale di Azure]: https://portal.azure.com
+[portale di Azure]: https://portal.azure.com
 [tags]: (http://msdn.microsoft.com/library/azure/dn530749.aspx)

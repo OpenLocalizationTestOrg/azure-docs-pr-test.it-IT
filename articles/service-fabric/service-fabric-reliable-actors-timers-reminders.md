@@ -1,6 +1,6 @@
 ---
-title: Timer e promemoria di Reliable Actors | Microsoft Docs
-description: Introduzione a timer e promemoria per Reliable Actors di Service Fabric
+title: aaaReliable attori timer e promemoria | Documenti Microsoft
+description: Introduzione tootimers e promemoria per attori affidabile di servizio dell'infrastruttura.
 services: service-fabric
 documentationcenter: .net
 author: vturecek
@@ -14,19 +14,19 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/29/2017
 ms.author: vturecek
-ms.openlocfilehash: 06b026ce06e0f16a77ac238de0af2263f272933c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c5116ec1923014e131130b9f4e86dd1e133bbf7e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="actor-timers-and-reminders"></a>Timer e promemoria degli attori
-Gli attori possono pianificare il relativo lavoro periodico registrando timer o promemoria. Questo articolo illustra come usare timer e promemoria e ne spiega le differenze.
+Gli attori possono pianificare il relativo lavoro periodico registrando timer o promemoria. Questo articolo viene illustrato come toouse timer e i promemoria e vengono illustrate le differenze di hello tra di essi.
 
 ## <a name="actor-timers"></a>Timer degli attori
-I timer degli attori forniscono un wrapper semplice intorno al timer .NET o Java per garantire che i metodi di callback rispettino le garanzie di concorrenza basata su turni offerte dal runtime di Actors.
+Timer attore forniscono un semplice wrapper tooensure un timer .NET o Java che i metodi di callback hello rispettino hello basato su concorrenza garantisce hello attori runtime fornisce.
 
-Per eseguire e annullare la registrazione dei timer, gli attori possono usare i metodi `RegisterTimer`(C#) o `registerTimer`(Java) e `UnregisterTimer`(C#) o `unregisterTimer`(Java) nella propria classe base. L'esempio seguente illustra l'uso delle API di timer, che sono molto simili al timer .NET o al timer Java. In questo esempio, quando il timer è in scadenza, il runtime di Actors chiama il metodo `MoveObject`(C#) o `moveObject`(Java). Si garantisce che il metodo rispetti la concorrenza basata su turni. Ciò significa che nessun altro metodo di attori o callback di timer/promemoria sarà in azione fino al completamento dell'esecuzione del callback.
+Gli attori possono utilizzare hello `RegisterTimer`(c#) o `registerTimer`(linguaggio) e `UnregisterTimer`(c#) o `unregisterTimer`metodi (linguaggio) la base della classe tooregister e annullare la registrazione i timer. esempio Hello seguente di seguito viene illustrato l'utilizzo di hello del timer delle API. Hello API sono molto simili timer .NET di toohello o timer Java. In questo esempio, alla scadenza, timer hello hello attori runtime chiamerà hello `MoveObject`(c#) o `moveObject`(metodo) (linguaggio). metodo Hello è garantita la concorrenza toorespect hello basato su. Ciò significa che nessun altro metodo di attori o callback di timer/promemoria sarà in azione fino al completamento dell'esecuzione del callback.
 
 ```csharp
 class VisualObjectActor : Actor, IVisualObject
@@ -44,9 +44,9 @@ class VisualObjectActor : Actor, IVisualObject
 
         _updateTimer = RegisterTimer(
             MoveObject,                     // Callback method
-            null,                           // Parameter to pass to the callback method
-            TimeSpan.FromMilliseconds(15),  // Amount of time to delay before the callback is invoked
-            TimeSpan.FromMilliseconds(15)); // Time interval between invocations of the callback method
+            null,                           // Parameter toopass toohello callback method
+            TimeSpan.FromMilliseconds(15),  // Amount of time toodelay before hello callback is invoked
+            TimeSpan.FromMilliseconds(15)); // Time interval between invocations of hello callback method
 
         return base.OnActivateAsync();
     }
@@ -93,9 +93,9 @@ public class VisualObjectActorImpl extends FabricActor implements VisualObjectAc
                     this.registerTimer(
                             (o) -> this.moveObject(o),                        // Callback method
                             "moveObject",
-                            null,                                             // Parameter to pass to the callback method
-                            Duration.ofMillis(10),                            // Amount of time to delay before the callback is invoked
-                            Duration.ofMillis(timerIntervalInMilliSeconds));  // Time interval between invocations of the callback method
+                            null,                                             // Parameter toopass toohello callback method
+                            Duration.ofMillis(10),                            // Amount of time toodelay before hello callback is invoked
+                            Duration.ofMillis(timerIntervalInMilliSeconds));  // Time interval between invocations of hello callback method
                     return null;
                 });
     }
@@ -126,16 +126,16 @@ public class VisualObjectActorImpl extends FabricActor implements VisualObjectAc
 }
 ```
 
-Il periodo successivo del timer inizia dopo il completamento del callback. Pertanto, il timer viene arrestato mentre il callback è in esecuzione e viene avviato quando il callback è completato.
+Hello successivo periodo di timer hello viene avviata dopo il callback di hello completa l'esecuzione. Ciò implica che timer hello viene arrestato mentre è in esecuzione e viene avviata al termine di callback hello di callback hello.
 
-Il runtime di Actors salva le modifiche apportate alla gestione stati dell'attore al termine del callback. Se si verifica un errore durante il salvataggio dello stato, viene disattivato l'oggetto attore e viene attivata una nuova istanza.
+runtime di attori Hello Salva le modifiche apportate gestore degli Stati dell'attore toohello al termine di callback hello. Se si verifica un errore durante il salvataggio dello stato di hello, tale oggetto attore verrà disattivato e verrà attivata una nuova istanza.
 
-Tutti i timer vengono arrestati quando l'attore viene disattivato come parte di garbage collection. In seguito, non viene richiamato nessun callback di timer. Inoltre, il runtime di Actors non mantiene alcuna informazione sui timer in esecuzione prima della disattivazione. È responsabilità dell'attore registrare gli eventuali timer che saranno necessari quando verrà riattivato in futuro. Per ulteriori informazioni, vedere la sezione sulla [garbage collection degli attori](service-fabric-reliable-actors-lifecycle.md).
+Quando viene disattivata attore hello come parte di garbage collection, vengono arrestati tutti i timer. In seguito, non viene richiamato nessun callback di timer. Inoltre, il runtime di attori hello mantengono le informazioni sui timer hello che erano in esecuzione prima della disattivazione. È attivo toohello attore tooregister qualsiasi timer necessari quando viene riattivato in hello future. Per ulteriori informazioni, vedere la sezione hello in [di garbage collection attore](service-fabric-reliable-actors-lifecycle.md).
 
 ## <a name="actor-reminders"></a>Promemoria degli attori
-I promemoria sono un meccanismo per attivare i callback persistenti su un attore in base a orari specificati. La loro funzionalità è simile a quella dei timer. Tuttavia, a differenza dei timer, i promemoria vengono attivati in qualsiasi circostanza finché l'attore non ne annulla la registrazione in modo esplicito o finché l'attore non viene eliminato in modo esplicito. In particolare, i promemoria vengono attivati anche in caso di failover e disattivazione dell'attore perché il runtime di Actors rende persistenti le informazioni sui promemoria dell'attore.
+Promemoria sono un meccanismo tootrigger callback persistente in un attore in momenti specifici. La funzionalità è tootimers simile. Tuttavia, a differenza di timer, promemoria vengono attivati in tutte le circostanze fino a quando non in modo esplicito Annulla attore hello o attore hello viene eliminato in modo esplicito. In particolare, promemoria vengono attivati attraverso i failover e disattivazioni attore perché hello attori runtime mantiene le informazioni sui promemoria hello actor.
 
-Per registrare un promemoria, un attore chiama il metodo `RegisterReminderAsync` fornito nella classe base, come illustrato nell'esempio seguente.
+tooregister un promemoria, un attore chiama hello `RegisterReminderAsync` metodo fornito nella classe base hello, come illustrato nell'esempio seguente hello:
 
 ```csharp
 protected override async Task OnActivateAsync()
@@ -161,14 +161,14 @@ protected CompletableFuture onActivateAsync()
     ActorReminder reminderRegistration = this.registerReminderAsync(
             reminderName,
             state,
-            dueTime,    //The amount of time to delay before firing the reminder
-            period);    //The time interval between firing of reminders
+            dueTime,    //hello amount of time toodelay before firing hello reminder
+            period);    //hello time interval between firing of reminders
 }
 ```
 
-In questo esempio `"Pay cell phone bill"` è il nome del promemoria. Questa è una stringa usata dall'attore per identificare in modo univoco un promemoria. `BitConverter.GetBytes(amountInDollars)`(C#) è il contesto associato al promemoria. Questo contesto verrà passato all'attore come argomento per il callback di promemoria, ad esempio `IRemindable.ReceiveReminderAsync`(C#) o `Remindable.receiveReminderAsync`(Java).
+In questo esempio, `"Pay cell phone bill"` è il nome di promemoria hello. Questa è una stringa che utilizza attore hello toouniquely identificare un promemoria. `BitConverter.GetBytes(amountInDollars)`(C#) è il contesto hello associato promemoria hello. Verrà passato toohello indietro attore come un callback di promemoria toohello argomento, vale a dire `IRemindable.ReceiveReminderAsync`(c#) o `Remindable.receiveReminderAsync`(linguaggio).
 
-Gli attori che usano i promemoria devono implementare l'interfaccia `IRemindable` , come illustrato nell'esempio seguente.
+Gli attori che utilizzano promemoria devono implementare hello `IRemindable` interfaccia, come illustrato nell'esempio hello riportato di seguito.
 
 ```csharp
 public class ToDoListActor : Actor, IToDoListActor, IRemindable
@@ -209,11 +209,11 @@ public class ToDoListActorImpl extends FabricActor implements ToDoListActor, Rem
 
 ```
 
-Quando viene attivato un promemoria, il runtime di Reliable Actors richiama il metodo `ReceiveReminderAsync`(C#) o `receiveReminderAsync`(Java) sull'Actor. Un attore può registrare più promemoria e il metodo `ReceiveReminderAsync`(C#) o `receiveReminderAsync`(Java) viene richiamato ogni volta che tali promemoria vengono attivati. L'attore può usare il nome del promemoria che viene passato al metodo `ReceiveReminderAsync`(C#) o `receiveReminderAsync`(Java) per identificare il promemoria attivato.
+Quando viene attivato un promemoria, hello Reliable Actors runtime richiamerà hello `ReceiveReminderAsync`(c#) o `receiveReminderAsync`metodo hello attore (linguaggio). Un attore può registrare più promemoria e hello `ReceiveReminderAsync`(c#) o `receiveReminderAsync`(linguaggio) metodo viene richiamato uno qualsiasi di tali promemoria quando viene attivato. attore Hello può utilizzare hello promemoria nome è passato in toohello `ReceiveReminderAsync`(c#) o `receiveReminderAsync`(linguaggio) metodo toofigure out che è stata attivata promemoria.
 
-Il runtime di Actors salva lo stato dell'attore al termine della chiamata a `ReceiveReminderAsync`(C#) o `receiveReminderAsync`(Java). Se si verifica un errore durante il salvataggio dello stato, viene disattivato l'oggetto attore e viene attivata una nuova istanza.
+runtime attori Hello Salva lo stato dell'actor hello quando hello `ReceiveReminderAsync`(c#) o `receiveReminderAsync`al completamento della chiamata (linguaggio). Se si verifica un errore durante il salvataggio dello stato di hello, tale oggetto attore verrà disattivato e verrà attivata una nuova istanza.
 
-Per annullare la registrazione di un promemoria, un attore chiama il metodo `UnregisterReminderAsync`(C#) o `unregisterReminderAsync`(Java), come illustrato nell'esempio seguente.
+toounregister un promemoria, un attore chiama hello `UnregisterReminderAsync`(c#) o `unregisterReminderAsync`metodo (linguaggio), come illustrato nell'esempio hello riportato di seguito.
 
 ```csharp
 IActorReminder reminder = GetReminder("Pay cell phone bill");
@@ -224,7 +224,7 @@ ActorReminder reminder = getReminder("Pay cell phone bill");
 CompletableFuture reminderUnregistration = unregisterReminderAsync(reminder);
 ```
 
-Come mostrato in precedenza, il metodo `UnregisterReminderAsync`(C#) o `unregisterReminderAsync`(Java) accetta un'interfaccia `IActorReminder`(C#) o `ActorReminder`(Java). La classe base dell'attore supporta un metodo `GetReminder`(C#) o `getReminder`(Java) che può essere usato per recuperare l'interfaccia `IActorReminder`(C#) o `ActorReminder`(Java) passando il nome del promemoria. Questo metodo è utile perché l'attore non deve rendere persistente l'interfaccia `IActorReminder`(C#) o `ActorReminder`(Java) restituita dalla chiamata al metodo `RegisterReminder`(C#) o `registerReminder`(Java).
+Come illustrato in precedenza, hello `UnregisterReminderAsync`(c#) o `unregisterReminderAsync`(linguaggio) metodo accetta un `IActorReminder`(c#) o `ActorReminder`interfaccia (linguaggio). Hello attore classe di base supporta un `GetReminder`(c#) o `getReminder`metodo (linguaggio) che può essere utilizzati tooretrieve hello `IActorReminder`(c#) o `ActorReminder`interfaccia (linguaggio) passando il nome di promemoria hello. Questa operazione è utile perché non è necessario toopersist hello attore hello `IActorReminder`(c#) o `ActorReminder`interfaccia (linguaggio) che è stato restituito da hello `RegisterReminder`(c#) o `registerReminder`chiamata al metodo (linguaggio).
 
 ## <a name="next-steps"></a>Passaggi successivi
 Acquisire informazioni sugli eventi e sulla rientranza di Reliable Actor:

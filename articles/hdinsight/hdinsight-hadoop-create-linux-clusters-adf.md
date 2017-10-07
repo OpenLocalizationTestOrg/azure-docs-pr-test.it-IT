@@ -1,6 +1,6 @@
 ---
-title: Creare cluster Hadoop on demand con Data Factory - Azure HDInsight | Microsoft Docs
-description: Informazioni su come creare cluster Hadoop on demand in HDInsight con Azure Data Factory.
+title: cluster di Hadoop su richiesta utilizzando Data Factory - Azure HDInsight aaaCreate | Documenti Microsoft
+description: Informazioni su come toocreate cluster su richiesta Hadoop in HDInsight mediante la Data Factory di Azure.
 services: hdinsight
 documentationcenter: 
 tags: azure-portal
@@ -16,36 +16,36 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 07/20/2017
 ms.author: spelluru
-ms.openlocfilehash: e68f1d72965d9516e0552c84d03d234c21739390
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: c869776ac270e37dec710b5fc8d2a792d9263129
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-on-demand-hadoop-clusters-in-hdinsight-using-azure-data-factory"></a>Creare cluster Hadoop on demand in HDInsight con Azure Data Factory
 [!INCLUDE [selector](../../includes/hdinsight-create-linux-cluster-selector.md)]
 
-[Azure Data Factory](../data-factory/data-factory-introduction.md) è un servizio di integrazione delle informazioni basato sul cloud che consente di automatizzare lo spostamento e la trasformazione dei dati. È possibile creare un cluster Hadoop di HDInsight JIT per elaborare una sezione dati di input ed eliminare il cluster al termine dell'elaborazione. Ecco alcuni dei vantaggi offerti dall'uso di un cluster Hadoop di HDInsight su richiesta:
+[Azure Data Factory](../data-factory/data-factory-introduction.md) è un servizio di integrazione di dati basato su cloud che Orchestra e automatizza lo spostamento di hello e trasformazione dei dati. È possibile creare un tooprocess just-in-time di cluster HDInsight Hadoop una sezione di dati di input ed eliminare cluster hello termine dell'elaborazione hello. Alcuni dei vantaggi di hello dell'utilizzo di un cluster HDInsight Hadoop su richiesta sono:
 
-- Si paga solo per il tempo in cui il processo è in esecuzione nel cluster Hadoop di HDInsight, più un breve tempo di inattività configurabile. La fatturazione dei cluster HDInsight viene calcolata al minuto, indipendentemente dal fatto che siano in uso o meno. Quando si usa un servizio collegato HDInsight su richiesta in Data Factory, i cluster vengono creati su richiesta. I cluster vengono eliminati automaticamente quando i processi vengono completati. Di conseguenza, si paga solo per il tempo di esecuzione del processo e il breve tempo di inattività (impostazione timeToLive).
-- È possibile creare un flusso di lavoro usando una pipeline di Data Factory. Ad esempio, è possibile usare la pipeline per copiare dati da un'istanza locale di SQL Server a un archivio BLOB di Azure, elaborare i dati eseguendo uno script Hive e uno script Pig in un cluster Hadoop di HDInsight su richiesta e quindi copiare i dati dei risultati in Azure SQL Data Warehouse perché vengano utilizzati da applicazioni di business intelligence.
-- È possibile pianificare l'esecuzione periodica (oraria, giornaliera, settimanale, mensile e così via) del flusso di lavoro.
+- Si pagare solo per il processo ora hello è in esecuzione hello del cluster HDInsight Hadoop (più un tempo di inattività configurabile breve). la fatturazione per i cluster HDInsight Hello è proporzionale al minuto, sia che si utilizzi o non. Quando si utilizza un servizio collegato di HDInsight su richiesta in Data Factory, i cluster hello vengono creati su richiesta. E i cluster hello vengono eliminati automaticamente quando vengono completati i processi di hello. Pertanto, si paga solo per il processo di hello esegue ora e tempo di inattività breve hello (impostazione di time-to-live).
+- È possibile creare un flusso di lavoro usando una pipeline di Data Factory. Ad esempio, è possibile disporre hello pipeline toocopy di dati da un tooan di SQL Server on-premise archiviazione blob di Azure, dati hello processo eseguendo uno script Hive e uno script Pig in un cluster HDInsight Hadoop su richiesta. Copiare quindi hello risultato dati tooan Azure SQL Data Warehouse per tooconsume applicazioni di Business Intelligence.
+- È possibile pianificare hello del flusso di lavoro toorun periodicamente (oraria, giornaliera, settimanale, mensile, ecc.).
 
-In Azure Data Factory, una data factory può includere una o più pipeline di dati. Una pipeline di dati include una o più attività. Esistono due tipi di attività: [attività di spostamento dei dati](../data-factory/data-factory-data-movement-activities.md) e [attività di trasformazione dei dati](../data-factory/data-factory-data-transformation-activities.md). Le attività di spostamento dei dati (che attualmente includono solo l'attività di copia) vengono usate per spostare dati da un archivio dati di origine a un archivio dati di destinazione. Le attività di trasformazione dei dati vengono usate per trasformare/elaborare i dati. L'attività Hive di HDInsight è una delle attività di trasformazione supportate da Data Factory. L'attività di trasformazione Hive verrà usata in questa esercitazione.
+In Azure Data Factory, una data factory può includere una o più pipeline di dati. Una pipeline di dati include una o più attività. Esistono due tipi di attività: [attività di spostamento dei dati](../data-factory/data-factory-data-movement-activities.md) e [attività di trasformazione dei dati](../data-factory/data-factory-data-transformation-activities.md). Utilizzare dati toomove di attività (attualmente solo attività di copia) lo spostamento di dati da un archivio dati di origine dati archivio tooa destinazione. Utilizzare i dati o il processo tootransform attività di trasformazione dati. Attività Hive di HDInsight è una delle attività di trasformazione hello è supportata da Data Factory. Utilizzare l'attività di trasformazione Hive hello in questa esercitazione.
 
-È possibile configurare un'attività Hive in modo da usare il cluster Hadoop di HDInsight dell'utente oppure un cluster Hadoop di HDInsight su richiesta. In questa esercitazione, l'attività Hive nella pipeline della data factory viene configurata per usare un cluster HDInsight su richiesta. Ecco quindi cosa accade quando l'attività viene eseguita per elaborare una sezione dati:
+È possibile configurare un toouse attività hive cluster HDInsight Hadoop personale o un cluster HDInsight Hadoop su richiesta. In questa esercitazione, hello attività Hive nella pipeline di hello data factory è toouse configurato un cluster di HDInsight su richiesta. Pertanto, quando viene eseguita attività hello tooprocess una sezione di dati, ecco cosa succede:
 
-1. Viene creato automaticamente un cluster Hadoop di HDInsight JIT per elaborare la sezione.  
-2. I dati di input vengono elaborati eseguendo uno script HiveQL nel cluster.
-3. Il cluster Hadoop di HDInsight viene eliminato al termine dell'elaborazione ed è inattivo per l'intervallo di tempo configurato (impostazione timeToLive). Se la sezione dati successiva è disponibile per l'elaborazione entro il tempo di inattività di timeToLive, per l'elaborazione della sezione viene usato lo stesso cluster.  
+1. -In-time tooprocess hello suddividere viene creato automaticamente un cluster HDInsight Hadoop.  
+2. dati di input Hello viene elaborati eseguendo uno script HiveQL nel cluster hello.
+3. cluster HDInsight Hadoop Hello viene eliminato dopo l'elaborazione di hello e cluster hello è inattivo per hello configurato di tempo (impostazione timeToLive). Se è disponibile per l'elaborazione con il tempo di inattività timeToLive sezione di dati successiva hello, hello dello stesso cluster è sezione hello tooprocess utilizzato.  
 
-In questa esercitazione, lo script HiveQL associato all'attività Hive esegue queste azioni:
+In questa esercitazione, hello script HiveQL associato all'attività hive hello esegue hello seguenti azioni:
 
-1. Crea una tabella esterna che fa riferimento ai dati di blog non elaborati contenuti in un archivio BLOB di Azure.
-2. Partiziona i dati non elaborati per anno e per mese.
-3. Archivia i dati partizionati nell'archivio BLOB di Azure.
+1. Crea una tabella esterna che riferimenti hello dati di log web non elaborato archiviati in una risorsa di archiviazione Blob di Azure.
+2. Dati non elaborati hello di partizioni per anno e mese.
+3. Archivi hello dati partizionati in hello archiviazione blob di Azure.
 
-In questa esercitazione, lo script HiveQL associato all'attività Hive crea una tabella esterna che fa riferimento ai dati di blog non elaborati contenuti nell'archivio BLOB di Azure. Ecco le righe di esempio per ogni mese nel file di input.
+In questa esercitazione, hello script HiveQL associato all'attività hive hello crea una tabella esterna che riferimenti hello dati di registro non elaborati web archiviati in hello archiviazione Blob di Azure. Di seguito sono le righe di esempio hello per ogni mese nel file di input hello.
 
 ```
 2014-01-01,02:01:09,SAMPLEWEBSITE,GET,/blogposts/mvc4/step2.png,X-ARR-LOG-ID=2ec4b8ad-3cf0-4442-93ab-837317ece6a1,80,-,1.54.23.196,Mozilla/5.0+(Windows+NT+6.3;+WOW64)+AppleWebKit/537.36+(KHTML,+like+Gecko)+Chrome/31.0.1650.63+Safari/537.36,-,http://weblogs.asp.net/sample/archive/2007/12/09/asp-net-mvc-framework-part-4-handling-form-edit-and-post-scenarios.aspx,\N,200,0,0,53175,871
@@ -53,7 +53,7 @@ In questa esercitazione, lo script HiveQL associato all'attività Hive crea una 
 2014-03-01,02:01:10,SAMPLEWEBSITE,GET,/blogposts/mvc4/step7.png,X-ARR-LOG-ID=d7472a26-431a-4a4d-99eb-c7b4fda2cf4c,80,-,1.54.23.196,Mozilla/5.0+(Windows+NT+6.3;+WOW64)+AppleWebKit/537.36+(KHTML,+like+Gecko)+Chrome/31.0.1650.63+Safari/537.36,-,http://weblogs.asp.net/sample/archive/2007/12/09/asp-net-mvc-framework-part-4-handling-form-edit-and-post-scenarios.aspx,\N,200,0,0,30184,871
 ```
 
-Lo script HiveQL partiziona i dati non elaborati per anno e per mese e crea tre cartelle di output in base all'input precedente. Ogni cartella contiene un file con le voci di ogni mese.
+le partizioni di script HiveQL Hello hello dati non elaborati per anno e mese. Vengono create tre cartelle di output in base all'input precedente hello. Ogni cartella contiene un file con le voci di ogni mese.
 
 ```
 adfgetstarted/partitioneddata/year=2014/month=1/000000_0
@@ -61,13 +61,13 @@ adfgetstarted/partitioneddata/year=2014/month=2/000000_0
 adfgetstarted/partitioneddata/year=2014/month=3/000000_0
 ```
 
-Per vedere un elenco delle attività di trasformazione dei dati di Data Factory oltre alle attività Hive, vedere [Trasformazione e analisi tramite Data Factory di Azure](../data-factory/data-factory-data-transformation-activities.md).
+Per un elenco delle attività di trasformazione di dati di Data Factory in attività tooHive aggiunta, vedere [trasformare e analizzare l'utilizzo di Azure Data Factory](../data-factory/data-factory-data-transformation-activities.md).
 
 > [!NOTE]
 > Attualmente, da Azure Data Factory è possibile creare solo cluster HDInsight versione 3.2.
 
 ## <a name="prerequisites"></a>Prerequisiti
-Per poter eseguire le istruzioni descritte nell'articolo è necessario disporre dei seguenti elementi:
+Prima di iniziare hello istruzioni in questo articolo, è necessario disporre di hello seguenti elementi:
 
 * [Sottoscrizione di Azure](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/).
 * Azure PowerShell.
@@ -75,19 +75,19 @@ Per poter eseguire le istruzioni descritte nell'articolo è necessario disporre 
 [!INCLUDE [use-latest-version](../../includes/hdinsight-use-latest-powershell.md)]
 
 ### <a name="prepare-storage-account"></a>Preparare un account di archiviazione
-In questo scenario, è possibile usare fino a tre account di archiviazione:
+È possibile utilizzare gli account di archiviazione toothree in questo scenario:
 
-- account di archiviazione predefinito per il cluster HDInsight
-- account di archiviazione per i dati di input
-- account di archiviazione per i dati di output
+- account di archiviazione predefinito per il cluster HDInsight hello
+- account di archiviazione per i dati di input hello
+- account di archiviazione per i dati di output di hello
 
-Per semplificare l'esercitazione, si usa un solo account di archiviazione per tutti e tre gli scopi. Lo script di esempio di Azure PowerShell di questa sezione consente di eseguire queste operazioni:
+esercitazione di hello toosimplify, utilizzare un account tooserve hello tre scopi di archiviazione. script di esempio Hello Azure PowerShell riportati in questa sezione vengono eseguite hello seguenti attività:
 
-1. Accedere ad Azure.
+1. Accedi tooAzure.
 2. Creare un gruppo di risorse di Azure.
 3. Creare un account di archiviazione di Azure.
-4. Creare un contenitore BLOB nell'account di archiviazione.
-5. Copiare i due file seguenti nel contenitore BLOB:
+4. Creare un contenitore Blob nell'account di archiviazione hello
+5. Copiare hello contenitore Blob di due file toohello seguenti:
 
    * File di dati di input: [https://hditutorialdata.blob.core.windows.net/adfhiveactivity/inputdata/input.log](https://hditutorialdata.blob.core.windows.net/adfhiveactivity/inputdata/input.log)
    * Script HiveQL: [https://hditutorialdata.blob.core.windows.net/adfhiveactivity/script/partitionweblogs.hql](https://hditutorialdata.blob.core.windows.net/adfhiveactivity/script/partitionweblogs.hql)
@@ -95,10 +95,10 @@ Per semplificare l'esercitazione, si usa un solo account di archiviazione per tu
      Entrambi i file vengono archiviati in un contenitore BLOB pubblico.
 
 
-**Per preparare l'archiviazione e copiare i file con Azure PowerShell:**
+**tooprepare hello archiviazione e copiare hello file tramite Azure PowerShell:**
 > [!IMPORTANT]
-> Specificare i nomi del gruppo di risorse di Azure e dell'account di archiviazione di Azure che verranno creati dallo script.
-> Prendere nota del **nome del gruppo di risorse**, del **nome dell'account di archiviazione** e della **chiave dell'account di archiviazione** restituiti dallo script. Saranno necessari nella sezione successiva.
+> Specificare i nomi per il gruppo di risorse di Azure hello e hello account di archiviazione Azure che verrà creato dallo script hello.
+> Annotare **nome gruppo di risorse**, **nome account di archiviazione**, e **chiave account di archiviazione** restituite dallo script hello. È necessario nella sezione successiva hello.
 
 ```powershell
 $resourceGroupName = "<Azure Resource Group Name>"
@@ -112,10 +112,10 @@ $destStorageAccountName = $storageAccountName
 $destContainerName = "adfgetstarted" # don't change this value.
 
 ####################################
-# Connect to Azure
+# Connect tooAzure
 ####################################
-#region - Connect to Azure subscription
-Write-Host "`nConnecting to your Azure subscription ..." -ForegroundColor Green
+#region - Connect tooAzure subscription
+Write-Host "`nConnecting tooyour Azure subscription ..." -ForegroundColor Green
 try{Get-AzureRmContext}
 catch{Login-AzureRmAccount}
 #endregion
@@ -166,7 +166,7 @@ Write-Host "`nCopied files ..." -ForegroundColor Green
 Get-AzureStorageBlob -Context $destContext -Container $destContainerName
 #endregion
 
-Write-host "`nYou will use the following values:" -ForegroundColor Green
+Write-host "`nYou will use hello following values:" -ForegroundColor Green
 write-host "`nResource group name: $resourceGroupName"
 Write-host "Storage Account Name: $destStorageAccountName"
 write-host "Storage Account Key: $destStorageAccountKey"
@@ -174,59 +174,59 @@ write-host "Storage Account Key: $destStorageAccountKey"
 Write-host "`nScript completed" -ForegroundColor Green
 ```
 
-Per altre informazioni sullo script di PowerShell, vedere [Uso di Azure PowerShell con Archiviazione di Azure](../storage/common/storage-powershell-guide-full.md). Se invece si vuole usare l'interfaccia della riga di comando di Azure, vedere lo script corrispondente nella sezione [Appendice](#appendix).
+Per assistenza con script di PowerShell hello, vedere [hello tramite Azure PowerShell con l'archiviazione di Azure](../storage/common/storage-powershell-guide-full.md). Se si desidera toouse CLI di Azure, vedere hello [appendice](#appendix) sezione per hello script CLI di Azure.
 
-**Per esaminare l'account di archiviazione e il suo contenuto**
+**tooexamine hello storage account e hello contenuto**
 
-1. Accedere al [portale di Azure](https://portal.azure.com).
-2. Fare clic su **Gruppi di risorse** nel pannello di sinistra.
-3. Fare doppio clic sul nome del gruppo di risorse creato con lo script di PowerShell. Se sono presenti troppi gruppi di risorse elencati, usare il filtro.
-4. Nel riquadro **Risorse** dovrebbe essere elencata una sola risorsa, a meno che il gruppo di risorse non sia condiviso con altri progetti. Tale risorsa è l'account di archiviazione con il nome specificato in precedenza. Fare clic sul nome dell'account di archiviazione.
-5. Fare clic sui riquadri **BLOB** .
-6. Fare clic sul contenitore **adfgetstarted** . Vengono visualizzate due cartelle: **inputdata** e **script**.
-7. Aprire le cartelle e controllare i file al loro interno. La cartella inputdata contiene il file input.log con i dati di input, mentre la cartella script contiene il file di script HiveQL.
+1. Accesso toohello [portale di Azure](https://portal.azure.com).
+2. Fare clic su **gruppi di risorse** hello riquadro a sinistra.
+3. Fare doppio clic sul nome del gruppo di risorse hello che è stato creato nello script di PowerShell. Se si dispone di un numero eccessivo di gruppi di risorse elencati, utilizzare il filtro di hello.
+4. In hello **risorse** riquadro, si deve essere presente una risorsa elencata, a meno che il gruppo di risorse hello è condividere con altri progetti. Questa risorsa è l'account di archiviazione hello con nome hello specificato in precedenza. Fare clic su nome account di archiviazione hello.
+5. Fare clic su hello **BLOB** riquadri.
+6. Fare clic su hello **adfgetstarted** contenitore. Vengono visualizzate due cartelle: **inputdata** e **script**.
+7. Aprire la cartella hello e controllare i file nelle cartelle hello hello. cartella script hello contiene file di script HiveQL hello inputdata Hello contiene file input.log hello con dati di input.
 
 ## <a name="create-a-data-factory-using-resource-manager-template"></a>Creare una data factory usando un modello di Resource Manager
-Con l'account di archiviazione, i dati di input e lo script HiveQL preparato, si è pronti per creare un'istanza di Azure Data Factory. Esistono diversi metodi per creare un'istanza di Data Factory. In questa esercitazione si crea una data factory distribuendo un modello di Azure Resource Manager con il portale di Azure. È possibile distribuire un modello di Resource Manager anche con l'[interfaccia della riga di comando di Azure](../azure-resource-manager/resource-group-template-deploy-cli.md) e [Azure PowerShell](../azure-resource-manager/resource-group-template-deploy.md#deploy-local-template). Per altri metodi di creazione di un'istanza di Data Factory, vedere [l'esercitazione per creare la prima istanza di Data Factory](../data-factory/data-factory-build-your-first-pipeline.md).
+Con account di archiviazione hello, dati di input hello e hello script HiveQL preparato, si è pronti toocreate una data factory di Azure. Esistono diversi metodi per creare un'istanza di Data Factory. In questa esercitazione creerai una data factory tramite la distribuzione di un modello di gestione risorse di Azure tramite hello portale di Azure. È possibile distribuire un modello di Resource Manager anche con l'[interfaccia della riga di comando di Azure](../azure-resource-manager/resource-group-template-deploy-cli.md) e [Azure PowerShell](../azure-resource-manager/resource-group-template-deploy.md#deploy-local-template). Per altri metodi di creazione di un'istanza di Data Factory, vedere [l'esercitazione per creare la prima istanza di Data Factory](../data-factory/data-factory-build-your-first-pipeline.md).
 
-1. Fare clic sull'immagine seguente per accedere ad Azure e aprire il modello di Resource Manager nel portale di Azure. Il modello si trova all'indirizzo https://hditutorialdata.blob.core.windows.net/adfhiveactivity/data-factory-hdinsight-on-demand.json. Per informazioni dettagliate sulle entità definite nel modello, vedere la sezione [Entità di Data Factory nel modello](#data-factory-entities-in-the-template). 
+1. Fare clic su hello seguente immagine toosign in tooAzure e il modello di gestione risorse hello Apri nel portale di Azure hello. modello Hello si trova in https://hditutorialdata.blob.core.windows.net/adfhiveactivity/data-factory-hdinsight-on-demand.json. Vedere hello [entità Data Factory nel modello hello](#data-factory-entities-in-the-template) sezione per informazioni dettagliate sulle entità definite nel modello di hello. 
 
-    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fhditutorialdata.blob.core.windows.net%2Fadfhiveactivity%2Fdata-factory-hdinsight-on-demand.json" target="_blank"><img src="./media/hdinsight-hadoop-create-linux-clusters-adf/deploy-to-azure.png" alt="Deploy to Azure"></a>
-2. Selezionare l'opzione **Usa esistente** per l'impostazione **Gruppo di risorse** e quindi selezionare il nome del gruppo di risorse creato nel passaggio precedente (con lo script di PowerShell).
-3. Immettere un nome per la data factory in **Nome data factory**. Il nome deve essere univoco a livello globale.
-4. Immettere il **nome dell'account di archiviazione** e la **chiave dell'account di archiviazione** di cui si è preso nota nel passaggio precedente.
-5. Dopo aver letto le **condizioni**, selezionare **Accetto le condizioni riportate sopra**.
-6. Selezionare l'opzione **Aggiungi al dashboard**.
-6. Fare clic su **Acquista/Crea**. Nel Dashboard è presente il riquadro **Distribuzione modello**. Attendere che venga visualizzato il pannello **Gruppo di risorse** per il gruppo di risorse. Per aprire il pannello del gruppo di risorse è anche possibile fare clic sul riquadro con il nome del gruppo di risorse come titolo.
-6. Se il pannello del gruppo di risorse non è visualizzato, fare clic sul riquadro per aprire il gruppo di risorse. Ora sarà visibile un'altra risorsa Data Factory oltre alla risorsa dell'account di archiviazione.
-7. Fare clic sul nome della data factory, ossia sul valore specificato per il parametro **Nome data factory**.
-8. Nel pannello Data Factory fare clic sul riquadro **Diagramma**. Il diagramma mostra un'attività con un set di dati di input e un set di dati di output:
+    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fhditutorialdata.blob.core.windows.net%2Fadfhiveactivity%2Fdata-factory-hdinsight-on-demand.json" target="_blank"><img src="./media/hdinsight-hadoop-create-linux-clusters-adf/deploy-to-azure.png" alt="Deploy tooAzure"></a>
+2. Selezionare **Usa esistente** opzione per hello **gruppo di risorse** , impostazione e il nome di hello selezionare hello del gruppo di risorse creato nel passaggio precedente di hello (tramite script di PowerShell).
+3. Immettere un nome per data factory di hello (**nome della Data Factory**). Il nome deve essere univoco a livello globale.
+4. Immettere hello **nome account di archiviazione** e **chiave account di archiviazione** annotate nel passaggio precedente hello.
+5. Selezionare **accetto le condizioni toohello** indicati sopra la a **termini e condizioni**.
+6. Selezionare **toodashboard Pin** opzione.
+6. Fare clic su **Acquista/Crea**. Viene visualizzato un riquadro nel Dashboard chiamato hello **distribuzione del modello di distribuzione**. Attendere hello **gruppo di risorse** apre pannello per il gruppo di risorse. È anche possibile fare clic su riquadro hello denominato come il pannello di gruppo di risorse gruppo nome tooopen hello risorsa.
+6. Fare clic su gruppo di risorse di hello riquadro tooopen hello pannello della risorsa gruppo hello non è già aperto. Ora verrà visualizzata una risorsa di ulteriori dati factory inoltre toohello archiviazione account risorsa indicata.
+7. Fare clic sul nome di una factory di dati hello (valore specificato per hello **nome della Data Factory** parametro).
+8. Nel Pannello di Data Factory hello, fare clic su hello **diagramma** riquadro. Hello è illustrata un'attività con un set di dati di input e un set di dati di output:
 
     ![Diagramma della pipeline attività Hive di HDInsight on demand in Azure Data Factory](./media/hdinsight-hadoop-create-linux-clusters-adf/hdinsight-adf-pipeline-diagram.png)
 
-    I nomi sono definiti nel modello di Resource Manager.
+    i nomi di Hello vengono definiti nel modello di gestione risorse di hello.
 9. Fare doppio clic su **AzureBlobOutput**.
-10. Tra le **sezioni aggiornate di recente**verrà visualizzata una sezione. Se lo stato è **In corso**, attendere finché non diventa **Pronto**. Per creare un cluster HDInsight sono in genere necessari circa **20 minuti**.
+10. In hello **recenti aggiornato sezioni**, verrà visualizzata un'unica sezione. Se è stato hello **In corso**, attendere fino a quando non è stato modificato anche**pronto**. In genere richiede circa **20 minuti** toocreate un cluster HDInsight.
 
-### <a name="check-the-data-factory-output"></a>Controllare l'output della data factory
+### <a name="check-hello-data-factory-output"></a>Controllare l'output di hello data factory
 
-1. Per controllare il contenuto dei contenitori adfgetstarted, usare la stessa procedura dell'ultima sessione. Oltre a **adfgetsarted**sono disponibili due nuovi contenitori:
+1. Utilizzare hello stessa procedura in hello ultima sessione toocheck hello contenitori del contenitore adfgetstarted hello. Esistono due nuovi contenitori inoltre troppo**adfgetsarted**:
 
-   * Un contenitore il cui nome segue il modello `adf<yourdatafactoryname>-linkedservicename-datetimestamp` e che è il contenitore predefinito per il cluster HDInsight.
-   * adfjobs, il contenitore per i log dei processi di Azure Data Factory.
+   * Un contenitore con nome che segue il modello di hello: `adf<yourdatafactoryname>-linkedservicename-datetimestamp`. Questo contenitore è il contenitore predefinito hello per il cluster HDInsight hello.
+   * adfjobs: questo contenitore è il contenitore di hello hello ADF dei log dei processi.
 
-     L'output della data factory viene archiviato in **adfgetstarted**, in base alla configurazione definita nel modello di Resource Manager.
+     output di Hello data factory viene archiviato **afgetstarted** come configurato nel modello di gestione risorse di hello.
 2. Fare clic su **adfgetstarted**.
-3. Fare doppio clic su **partitioneddata**. Verrà visualizzata una cartella **year=2014** perché tutti i blog sono datati 2014.
+3. Fare doppio clic su **partitioneddata**. Viene visualizzato un **anno = 2014** cartella perché tutti i log web hello data nell'anno 2014.
 
     ![Output della pipeline attività Hive di HDInsight on demand in Azure Data Factory](./media/hdinsight-hadoop-create-linux-clusters-adf/hdinsight-adf-output-year.png)
 
-    Eseguendo il drill-down dell'elenco si vedranno tre cartelle relative a gennaio, febbraio e marzo. È presente un log per ogni mese.
+    Se il drill-down elenco hello, verrà visualizzato tre cartelle relativi a gennaio, febbraio e marzo. È presente un log per ogni mese.
 
     ![Output della pipeline attività Hive di HDInsight on demand in Azure Data Factory](./media/hdinsight-hadoop-create-linux-clusters-adf/hdinsight-adf-output-month.png)
 
-## <a name="data-factory-entities-in-the-template"></a>Entità di Data Factory nel modello
-Il modello di Resource Manager di livello principale per una data factory si presenta come segue:
+## <a name="data-factory-entities-in-hello-template"></a>Entità di modello hello Factory di dati
+Ecco come modello di gestione risorse per una data factory di primo livello hello simile:
 
 ```json
 {
@@ -254,7 +254,7 @@ Il modello di Resource Manager di livello principale per una data factory si pre
 ```
 
 ### <a name="define-data-factory"></a>Definire una data factory
-È possibile definire una data factory nel modello di Resource Manager come illustrato nell'esempio seguente:  
+È consigliabile definire una data factory nel modello di gestione risorse di hello come illustrato nel seguente esempio hello:  
 
 ```json
 "resources": [
@@ -265,10 +265,10 @@ Il modello di Resource Manager di livello principale per una data factory si pre
     "location": "westus",
 }
 ```
-dataFactoryName è il nome della data factory specificato quando si distribuisce il modello. Il servizio Data Factory è attualmente supportato solo negli Stati Uniti occidentali, negli Stati Uniti orientali e in Europa settentrionale.
+dataFactoryName Hello è il nome di hello di hello data factory che è specificare quando si distribuisce il modello di hello. Factory di dati è attualmente supportata solo in aree geografiche di Stati Uniti orientali, Stati Uniti occidentali e Nord Europa hello.
 
-### <a name="defining-entities-within-the-data-factory"></a>Definizione delle entità nella data factory
-Le entità di Data Factory seguenti vengono definite nel modello JSON:
+### <a name="defining-entities-within-hello-data-factory"></a>Definizione di entità all'interno di data factory di hello
+Hello entità Data Factory seguenti vengono definite nel modello JSON hello:
 
 * [Servizio collegato Archiviazione di Azure](#azure-storage-linked-service)
 * [Servizio collegato su richiesta HDInsight](#hdinsight-on-demand-linked-service)
@@ -277,7 +277,7 @@ Le entità di Data Factory seguenti vengono definite nel modello JSON:
 * [Pipeline di dati con un'attività di copia](#data-pipeline)
 
 #### <a name="azure-storage-linked-service"></a>Servizio collegato Archiviazione di Azure
-Il servizio collegato Archiviazione di Azure collega l'account di archiviazione di Azure alla data factory. In questa esercitazione lo stesso account di archiviazione viene usato come account di Archiviazione HDInsight predefinito, come archivio dati di input e come archivio dati di output. Di conseguenza, si definisce un solo servizio collegato Archiviazione di Azure. Nella definizione del servizio collegato si specificano il nome e la chiave dell'account di archiviazione di Azure. Per informazioni dettagliate sulle proprietà JSON usate per definire un servizio collegato di Archiviazione di Azure, vedere [Servizio collegato Archiviazione di Azure](../data-factory/data-factory-azure-blob-connector.md#azure-storage-linked-service).
+Archiviazione di Azure Hello collegato collegamenti al servizio la data factory toohello account di archiviazione di Azure. In questa esercitazione, hello stesso account di archiviazione viene utilizzato come account di archiviazione di hello predefinito HDInsight, archiviazione di dati di input e archiviazione dei dati di output. Di conseguenza, si definisce un solo servizio collegato Archiviazione di Azure. Nella definizione di servizio collegato hello, specificare il nome di hello e chiave dell'account di archiviazione di Azure. Vedere [servizio collegato di archiviazione di Azure](../data-factory/data-factory-azure-blob-connector.md#azure-storage-linked-service) per informazioni dettagliate su JSON proprietà utilizzate toodefine servizio collegato di archiviazione di Azure.
 
 ```json
 {
@@ -293,10 +293,10 @@ Il servizio collegato Archiviazione di Azure collega l'account di archiviazione 
     }
 }
 ```
-**connectionString** usa i parametri storageAccountName e storageAccountKey. I valori per questi parametri vengono specificati durante la distribuzione del modello.  
+Hello **connectionString** utilizza hello parametri storageAccountName e storageAccountKey. Si specificano valori per questi parametri durante la distribuzione del modello di hello.  
 
 #### <a name="hdinsight-on-demand-linked-service"></a>Servizio collegato su richiesta HDInsight
-Nella definizione del servizio collegato HDInsight su richiesta si specificano i valori per i parametri di configurazione usati dal servizio Data Factory per creare un cluster Hadoop di HDInsight in fase di esecuzione. Per informazioni dettagliate sulle proprietà JSON usate per definire un servizio collegato su richiesta HDInsight, vedere [Servizi collegati di calcolo](../data-factory/data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service).  
+In hello HDInsight su richiesta collegato definizione del servizio, si specificano valori per parametri di configurazione che vengono utilizzati da toocreate servizio Data Factory di hello un HDInsight Hadoop cluster in fase di esecuzione. Vedere [servizi collegati di calcolo](../data-factory/data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service) articolo per informazioni dettagliate su JSON proprietà utilizzate toodefine un servizio collegato di HDInsight su richiesta.  
 
 ```json
 
@@ -322,20 +322,20 @@ Nella definizione del servizio collegato HDInsight su richiesta si specificano i
     }
 }
 ```
-Tenere presente quanto segue:
+Si noti hello seguenti punti:
 
-* Data Factory crea automaticamente un cluster HDInsight **basato su Linux**.
-* Il cluster Hadoop di HDInsight viene creato nella stessa area dell'account di archiviazione.
-* Si noti l'impostazione di *timeToLive* . Data Factory elimina automaticamente il cluster dopo un periodo di inattività di 30 minuti.
-* Il cluster HDInsight crea un **contenitore predefinito** nell'archivio BLOB specificato nel file JSON (**linkedServiceName**). HDInsight non elimina il contenitore quando viene eliminato il cluster. Questo comportamento dipende dalla progettazione. Con il servizio collegato HDInsight su richiesta, viene creato un cluster HDInsight ogni volta che è necessario elaborare una sezione, a meno che non esista un cluster attivo (**timeToLive**) che viene eliminato al termine dell'elaborazione.
+* Hello Data Factory viene creata una **basati su Linux** cluster HDInsight per l'utente.
+* Hello cluster HDInsight Hadoop viene creato in hello stessa regione dell'account di archiviazione hello.
+* Hello preavviso *timeToLive* impostazione. data factory di Hello Elimina automaticamente i cluster hello dopo cluster hello è un periodo di inattività per 30 minuti.
+* Crea cluster HDInsight Hello un **contenitore predefinito** nell'archiviazione blob hello specificato in JSON hello (**linkedServiceName**). HDInsight non eliminare questo contenitore quando viene eliminato il cluster hello. Questo comportamento dipende dalla progettazione. Con il servizio collegato di HDInsight su richiesta, un cluster HDInsight viene creato ogni volta che una sezione deve toobe elaborati a meno che non vi è un cluster esistente in tempo reale (**timeToLive**) e viene eliminata quando viene eseguita un'elaborazione hello.
 
 Per i dettagli, vedere [Servizio collegato Azure HDInsight su richiesta](../data-factory/data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service) .
 
 > [!IMPORTANT]
-> Man mano che vengono elaborate più sezioni, vengono visualizzati numerosi contenitori nell'archivio BLOB di Azure. Se non sono necessari per risolvere i problemi relativi ai processi, è possibile eliminarli per ridurre i costi di archiviazione. I nomi dei contenitori seguono questo schema: "adf**yourdatafactoryname**-**linkedservicename**-datetimestamp". Per eliminare i contenitori nell'archivio BLOB di Azure, usare strumenti come [Microsoft Azure Storage Explorer](http://storageexplorer.com/) .
+> Man mano che vengono elaborate più sezioni, vengono visualizzati numerosi contenitori nell'archivio BLOB di Azure. Se non li necessario per la risoluzione dei problemi dei processi di hello, è opportuno toodelete li tooreduce hello il costo di archiviazione. i nomi di Hello di questi contenitori seguono un modello: "adf**yourdatafactoryname**-**linkedservicename**- datetimestamp". Utilizzare strumenti come [Esplora archivi Microsoft](http://storageexplorer.com/) toodelete contenitori di Azure nell'archiviazione blob.
 
 #### <a name="azure-blob-input-dataset"></a>Set di dati di input del BLOB di Azure
-Nella definizione del set di dati di input si specificano i nomi del contenitore BLOB, della cartella e del file contenente i dati di input. Per informazioni dettagliate sulle proprietà JSON usate per definire un set di dati del BLOB di Azure, vedere [Proprietà del set di dati del BLOB di Azure](../data-factory/data-factory-azure-blob-connector.md#dataset-properties).
+Nella definizione di set di dati input hello, specificare nomi di hello del contenitore blob, cartelle e file che contiene i dati di input hello. Vedere [proprietà set di dati Blob di Azure](../data-factory/data-factory-azure-blob-connector.md#dataset-properties) per informazioni dettagliate su JSON proprietà utilizzate toodefine un set di dati Blob di Azure.
 
 ```json
 
@@ -369,7 +369,7 @@ Nella definizione del set di dati di input si specificano i nomi del contenitore
 
 ```
 
-Nella definizione JSON, si notino le impostazioni specifiche seguenti:
+Si noti hello impostazioni specifiche nella definizione JSON hello seguenti:
 
 ```json
 "fileName": "input.log",
@@ -377,7 +377,7 @@ Nella definizione JSON, si notino le impostazioni specifiche seguenti:
 ```
 
 #### <a name="azure-blob-output-dataset"></a>Set di dati di output del BLOB di Azure
-Nella definizione del set di dati di output si specificano i nomi del contenitore BLOB e della cartella contenente i dati di output. Per informazioni dettagliate sulle proprietà JSON usate per definire un set di dati del BLOB di Azure, vedere [Proprietà del set di dati del BLOB di Azure](../data-factory/data-factory-azure-blob-connector.md#dataset-properties).  
+Nella definizione di set di dati di output hello, specificare nomi hello del contenitore blob e di cartella che contiene i dati di output di hello. Vedere [proprietà set di dati Blob di Azure](../data-factory/data-factory-azure-blob-connector.md#dataset-properties) per informazioni dettagliate su JSON proprietà utilizzate toodefine un set di dati Blob di Azure.  
 
 ```json
 
@@ -408,13 +408,13 @@ Nella definizione del set di dati di output si specificano i nomi del contenitor
 }
 ```
 
-folderPath specifica il percorso della cartella contenente i dati di output:
+folderPath Hello specifica hello toohello cartella che contiene i dati di output di hello:
 
 ```json
 "folderPath": "adfgetstarted/partitioneddata",
 ```
 
-L'impostazione [disponibilità dei set di dati](../data-factory/data-factory-create-datasets.md#dataset-availability) è la seguente:
+Hello [disponibilità dataset](../data-factory/data-factory-create-datasets.md#dataset-availability) impostazione è come segue:
 
 ```json
 "availability": {
@@ -424,10 +424,10 @@ L'impostazione [disponibilità dei set di dati](../data-factory/data-factory-cre
 },
 ```
 
-In Azure Data Factory, la disponibilità dei set di dati di output attiva la pipeline. In questo esempio, la sezione viene prodotta mensilmente l'ultimo giorno del mese (EndOfInterval). Per altre informazioni, vedere [Pianificazione ed esecuzione con Data factory](../data-factory/data-factory-scheduling-and-execution.md).
+In Data Factory di Azure, l'output della pipeline di set di dati disponibilità unità hello. In questo esempio hello sezione viene prodotta mensile hello ultimo giorno del mese (EndOfInterval). Per altre informazioni, vedere [Pianificazione ed esecuzione con Data factory](../data-factory/data-factory-scheduling-and-execution.md).
 
 #### <a name="data-pipeline"></a>Data Pipeline
-Viene definita una pipeline che trasforma i dati eseguendo lo script Hive in un cluster HDInsight di Azure su richiesta. Per le descrizioni degli elementi JSON usati per definire una pipeline in questo esempio, vedere [Pipeline JSON](../data-factory/data-factory-create-pipelines.md#pipeline-json).
+Viene definita una pipeline che trasforma i dati eseguendo lo script Hive in un cluster HDInsight di Azure su richiesta. Vedere [JSON di Pipeline](../data-factory/data-factory-create-pipelines.md#pipeline-json) per le descrizioni degli elementi usati di JSON toodefine una pipeline in questo esempio.
 
 ```json
 {
@@ -479,28 +479,28 @@ Viene definita una pipeline che trasforma i dati eseguendo lo script Hive in un 
 }
 ```
 
-La pipeline contiene un'attività, HDInsightHive. Poiché sia la data di inizio che la data di fine sono nel mese di gennaio 2016, vengono elaboratori i dati per un solo mese (una sezione). Le date di *inizio* e di *fine* dell'attività sono entrambe già passate, quindi Data Factory elabora i dati del mese immediatamente. Se la data finale è futura, Data Factory crea un'altra sezione a tempo debito. Per altre informazioni, vedere [Pianificazione ed esecuzione con Data factory](../data-factory/data-factory-scheduling-and-execution.md).
+pipeline di Hello contiene un'attività, attività HDInsightHive. Poiché sia la data di inizio che la data di fine sono nel mese di gennaio 2016, vengono elaboratori i dati per un solo mese (una sezione). Entrambi *avviare* e *fine* dell'attività hello presentano una data già trascorsa, pertanto hello Data Factory elabora i dati per mese hello immediatamente. Se una data futura fine hello è data factory di hello crea un'altra sezione al momento di hello. Per altre informazioni, vedere [Pianificazione ed esecuzione con Data factory](../data-factory/data-factory-scheduling-and-execution.md).
 
-## <a name="clean-up-the-tutorial"></a>Eseguire la pulizia dell'esercitazione
+## <a name="clean-up-hello-tutorial"></a>Pulire esercitazione hello
 
-### <a name="delete-the-blob-containers-created-by-on-demand-hdinsight-cluster"></a>Eliminare i contenitori BLOB creati dal cluster HDInsight su richiesta
-Con il servizio collegato HDInsight on demand viene creato un cluster HDInsight ogni volta che è necessario elaborare una sezione, a meno che non esista un cluster attivo, timeToLive, che viene eliminato al termine dell'elaborazione. Per ogni cluster, Azure Data Factory crea un contenitore BLOB nell'archivio BLOB di Azure usato come account di archiviazione predefinito per il cluster. Anche se il cluster HDInsight viene eliminato, il contenitore di archiviazione BLOB predefinito e l'account di archiviazione associato non vengono eliminati. Questo comportamento dipende dalla progettazione. Man mano che vengono elaborate più sezioni, vengono visualizzati numerosi contenitori nell'archivio BLOB di Azure. Se non sono necessari per risolvere i problemi relativi ai processi, è possibile eliminarli per ridurre i costi di archiviazione. I nomi dei contenitori seguono il modello `adfyourdatafactoryname-linkedservicename-datetimestamp`.
+### <a name="delete-hello-blob-containers-created-by-on-demand-hdinsight-cluster"></a>Eliminare i contenitori di blob hello creati dal cluster HDInsight su richiesta
+Con il servizio collegato di HDInsight su richiesta, viene creato un cluster HDInsight ogni volta che una sezione deve toobe elaborati a meno che non vi è un cluster in tempo reale esistente (timeToLive); e hello cluster viene eliminato quando viene eseguita l'elaborazione di hello. Per ogni cluster, Azure Data Factory crea un contenitore blob nell'archiviazione blob di Azure utilizzato come account di archiviazione predefinito hello per cluster hello hello. Anche se il cluster HDInsight è stato eliminato, contenitore di archiviazione blob di hello predefinito e account di archiviazione hello associato non vengono eliminati. Questo comportamento dipende dalla progettazione. Man mano che vengono elaborate più sezioni, vengono visualizzati numerosi contenitori nell'archivio BLOB di Azure. Se non li necessario per la risoluzione dei problemi dei processi di hello, è opportuno toodelete li tooreduce hello il costo di archiviazione. i nomi di Hello di questi contenitori seguono un modello: `adfyourdatafactoryname-linkedservicename-datetimestamp`.
 
-Eliminare le cartelle **adfjobs** e **adfyourdatafactoryname-linkedservicename-datetimestamp**. Il contenitore adfjobs contiene i log dei processi di Azure Data Factory.
+Eliminare hello **adfjobs** e **adfyourdatafactoryname-linkedservicename-datetimestamp** cartelle. contenitore adfjobs Hello contiene i registri dei processi da Azure Data Factory.
 
-### <a name="delete-the-resource-group"></a>Eliminare il gruppo di risorse.
-[Azure Resource Manager](../azure-resource-manager/resource-group-overview.md) viene usato per distribuire, gestire e monitorare la soluzione come gruppo.  Eliminando un gruppo di risorse vengono eliminati tutti i componenti all'interno del gruppo.  
+### <a name="delete-hello-resource-group"></a>Eliminare il gruppo di risorse hello
+[Gestione risorse di Azure](../azure-resource-manager/resource-group-overview.md) è usato toodeploy, gestire e monitorare la soluzione come gruppo.  Se si elimina un gruppo di risorse, tutti i componenti di hello all'interno di hello gruppo.  
 
-1. Accedere al [portale di Azure](https://portal.azure.com).
-2. Fare clic su **Gruppi di risorse** nel pannello di sinistra.
-3. Fare clic sul nome del gruppo di risorse creato con lo script di PowerShell. Se sono presenti troppi gruppi di risorse elencati, usare il filtro. Viene aperto il gruppo di risorse in un nuovo pannello.
-4. Nel riquadro **Risorse** dovrebbe essere indicato l'account di archiviazione predefinito e l'istanza Data Factory, a meno che il gruppo di risorse non sia condiviso con altri progetti.
-5. Fare clic su **Elimina** nella parte superiore del pannello. In questo modo si eliminano l'account di archiviazione e i dati in esso archiviati.
-6. Immettere il nome del gruppo di risorse per confermare l'eliminazione e quindi fare clic su **Elimina**.
+1. Accesso toohello [portale di Azure](https://portal.azure.com).
+2. Fare clic su **gruppi di risorse** hello riquadro a sinistra.
+3. Fare clic su nome gruppo di risorse hello che è stato creato nello script di PowerShell. Se si dispone di un numero eccessivo di gruppi di risorse elencati, utilizzare il filtro di hello. Gruppo di risorse hello viene aperto in un nuovo pannello.
+4. In hello **risorse** riquadro, si hanno account di archiviazione predefinito hello e hello data factory elencati, a meno che il gruppo di risorse hello è condividere con altri progetti.
+5. Fare clic su **eliminare** nella parte superiore di hello del pannello hello. In questo modo Elimina l'account di archiviazione hello e dati hello archiviati nell'account di archiviazione hello.
+6. Immettere l'eliminazione del tooconfirm nome gruppo di risorse hello e quindi fare clic su **eliminare**.
 
-Se non si vuole eliminare l'account di archiviazione quando si elimina il gruppo di risorse, prendere in considerazione l'architettura seguente in modo da separare i dati aziendali dall'account di archiviazione predefinito. In questo caso, si ha un gruppo di risorse per l'account di archiviazione con i dati aziendali e un secondo gruppo di risorse per l'account di archiviazione predefinito per il servizio collegato HDInsight e la data factory. L'eliminazione del secondo gruppo di risorse non influisce sull'account di archiviazione dei dati aziendali. A tale scopo, procedere come segue:
+Nel caso in cui non si desidera account di archiviazione hello toodelete quando si elimina il gruppo di risorse hello, prendere in considerazione hello seguente architettura separando i dati di business hello dall'account di archiviazione predefinito hello. In questo caso, si dispone di un gruppo di risorse per account di archiviazione hello con i dati aziendali hello e hello altro gruppo di risorse per account di archiviazione predefinito hello HDInsight collegato hello e servizio data factory. Quando si elimina il gruppo di risorse secondo hello, non influisce sulla account di archiviazione di dati business hello. toodo in modo:
 
-* Aggiungere quanto segue al gruppo di risorse di livello principale insieme alla risorsa Microsoft.DataFactory/datafactories nel modello di Resource Manager. Viene creato un account di archiviazione:
+* Aggiungere hello seguente gruppo di risorse di primo livello toohello insieme hello Microsoft.DataFactory/datafactories risorse nel modello di gestione risorse. Viene creato un account di archiviazione:
 
     ```json
     {
@@ -517,7 +517,7 @@ Se non si vuole eliminare l'account di archiviazione quando si elimina il gruppo
         }
     },
     ```
-* Aggiungere un nuovo punto di servizio collegato al nuovo account di archiviazione:
+* Aggiungere un nuovo servizio collegato punto toohello nuovo account di archiviazione:
 
     ```json
     {
@@ -533,7 +533,7 @@ Se non si vuole eliminare l'account di archiviazione quando si elimina il gruppo
         }
     },
     ```
-* Configurare il servizio collegato HDInsight on demand con un dependsOn e un additionalLinkedServiceNames aggiuntivi:
+* Configurare il servizio ondemand collegato di HDInsight hello con un dependsOn aggiuntive e un additionalLinkedServiceNames:
 
     ```json
     {
@@ -562,7 +562,7 @@ Se non si vuole eliminare l'account di archiviazione quando si elimina il gruppo
     },            
     ```
 ## <a name="next-steps"></a>Passaggi successivi
-Questo articolo ha descritto come usare Azure Data Factory per creare il cluster HDInsight on demand per l'elaborazione dei processi Hive. Altre informazioni:
+In questo articolo, si è appreso come toouse su richiesta toocreate Data Factory di Azure HDInsight cluster tooprocess processi Hive. tooread più:
 
 * [Esercitazione di Hadoop: Introduzione all'uso di Hadoop basato su Linux in HDInsight](hdinsight-hadoop-linux-tutorial-get-started.md)
 * [Creare cluster Hadoop basati su Linux in HDInsight](hdinsight-hadoop-provision-linux-clusters.md)
@@ -572,11 +572,11 @@ Questo articolo ha descritto come usare Azure Data Factory per creare il cluster
 ## <a name="appendix"></a>Appendice
 
 ### <a name="azure-cli-script"></a>Script dell'interfaccia della riga di comando di Azure
-Per eseguire l'esercitazione è possibile usare l'interfaccia della riga di comando di Azure anziché Azure PowerShell. Per usare l'interfaccia della riga di comando di Azure, per prima cosa installarla seguendo queste istruzioni:
+È possibile utilizzare l'interfaccia CLI di Azure anziché utilizzare l'esercitazione di Azure PowerShell toodo hello. toouse CLI di Azure, installare innanzitutto CLI di Azure in base alle hello attenendosi alle istruzioni:
 
 [!INCLUDE [use-latest-version](../../includes/hdinsight-use-latest-cli.md)]
 
-#### <a name="use-azure-cli-to-prepare-the-storage-and-copy-the-files"></a>Usare l'interfaccia della riga di comando di Azure per preparare l'archiviazione e copiare i file
+#### <a name="use-azure-cli-tooprepare-hello-storage-and-copy-hello-files"></a>Utilizzare l'archiviazione di Azure CLI tooprepare hello e copiare i file hello
 
 ```
 azure login
@@ -594,4 +594,4 @@ azure storage blob copy start "https://hditutorialdata.blob.core.windows.net/adf
 azure storage blob copy start "https://hditutorialdata.blob.core.windows.net/adfhiveactivity/script/partitionweblogs.hql" --dest-account-name "<Azure Storage Account Name>" --dest-account-key "<Azure Storage Account Key>" --dest-container "adfgetstarted"
 ```
 
-Il nome del contenitore è *adfgetstarted*. Mantenerlo invariato, altrimenti sarebbe necessario aggiornare il modello di modello di Resource Manager. Se occorre assistenza per questo script dell'interfaccia della riga di comando, vedere [Utilizzo dell'interfaccia della riga di comando di Azure con archiviazione di Azure](../storage/common/storage-azure-cli.md).
+nome di contenitore Hello *adfgetstarted*. Mantenerlo invariato, In caso contrario è necessario un modello di gestione risorse di tooupdate hello. Per assistenza con questo script CLI, vedere [Using hello CLI di Azure con l'archiviazione di Azure](../storage/common/storage-azure-cli.md).

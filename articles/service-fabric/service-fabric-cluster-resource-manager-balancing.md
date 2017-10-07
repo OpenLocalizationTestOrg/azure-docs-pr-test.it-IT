@@ -1,6 +1,6 @@
 ---
-title: Bilanciare il carico del cluster di Azure Service Fabric | Documentazione Microsoft
-description: Introduzione al bilanciamento del carico del cluster con Cluster Resource Manager di Service Fabric.
+title: aaaBalance il cluster di Azure Service Fabric | Documenti Microsoft
+description: Toobalancing un'introduzione del cluster con hello servizio di gestione delle risorse Cluster dell'infrastruttura.
 services: service-fabric
 documentationcenter: .net
 author: masnider
@@ -14,32 +14,32 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 08/18/2017
 ms.author: masnider
-ms.openlocfilehash: 34eacb29f324025c1d2803c9690600227d3ec457
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 5f7ad2f5cf4cfb3751a860f5293b03d2d5266d99
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="balancing-your-service-fabric-cluster"></a>Bilanciamento del carico nel cluster di Service Fabric
-Cluster Resource Manager di Service Fabric supporta le modifiche al carico dinamico, reagisce all'aggiunta o alla rimozione di nodi o servizi. Corregge anche automaticamente le violazioni dei vincoli ed esegue in modo proattivo il ribilanciamento del cluster. Ma con quale frequenza vengono eseguite queste azioni, e che cosa le attiva?
+Hello gestione delle risorse Cluster di Service Fabric supporta modifiche al caricamento dinamico, reazione tooadditions o la rimozione di nodi o servizi. Corregge automaticamente anche le violazioni dei vincoli ed eseguito in modo proattivo il ribilanciamento cluster hello. Ma con quale frequenza vengono eseguite queste azioni, e che cosa le attiva?
 
-Sono disponibili tre diverse categorie di lavoro eseguite da Cluster. Resource Manager. Sono:
+Sono disponibili tre diverse categorie di lavoro che hello esegue Gestione risorse di Cluster. Sono:
 
 1. Posizionamento: questa fase riguarda l'inserimento di repliche con stato o istanze senza stato mancanti. Il posizionamento include sia i nuovi servizi sia la gestione di repliche con stato o istanze senza stato non riuscite. In questa fase viene gestita l'eliminazione di istanze e repliche.
-2. Verifiche dei vincoli: in questa fase vengono controllate e corrette le violazioni dei vincoli (regole) di posizionamento all'interno del sistema. Le regole servono, ad esempio, per controllare che i nodi non superino la capacità o che i vincoli di posizionamento di un servizio vengano rispettati.
-3. Bilanciamento del carico: in questa fase viene verificata la necessità di applicare il ribilanciamento sulla base del livello di bilanciamento configurato per le diverse metriche. In tal caso, viene eseguito il tentativo di trovare una disposizione più bilanciata nel cluster.
+2. Vincolo di verifica: questa fase controllate e corrette le violazioni dei vincoli di posizionamento diverse hello (regole) all'interno del sistema hello. Le regole servono, ad esempio, per controllare che i nodi non superino la capacità o che i vincoli di posizionamento di un servizio vengano rispettati.
+3. Bilanciamento del carico: questa fase controlla toosee se ribilanciamento è necessario in base a hello configurato desiderato a livello di bilanciamento per metriche. In tal caso tenta toofind una disposizione in hello del cluster che è più bilanciato.
 
 ## <a name="configuring-cluster-resource-manager-timers"></a>Configurazione dei timer di Cluster Resource Manager
-Il primo set di controlli sul bilanciamento del carico sono un set di timer. Questi timer controllano la frequenza con cui Cluster Resource Manager esamina il cluster e intraprende le azioni correttive.
+Hello primi dei controlli intorno a bilanciamento del carico sono un set di timer. Questi timer determinano la frequenza con cui hello gestione delle risorse Cluster esamina cluster hello e accetta le azioni correttive.
 
-Ognuno dei tipi diversi di correzioni che Cluster Resource Manager può apportare è controllato da un timer diverso che ne determina la frequenza. Quando viene attivato ogni timer, l'attività viene pianificata. Per impostazione predefinita, Resource Manager:
+Ognuno di questi tipi diversi di hello correzioni consentono di gestione delle risorse Cluster è controllato da un diverso timer che determina la frequenza. Quando viene generato ogni timer, i hello è pianificata. Per impostazione predefinita hello Gestione risorse:
 
 * Analizza lo stato e applica gli aggiornamenti, ad esempio la registrazione di un nodo inattivo, ogni decimo di secondo.
-* imposta il flag di controllo di selezione 
-* imposta il flag di controllo del vincolo ogni secondo
-* Imposta il flag di bilanciamento ogni cinque secondi.
+* Imposta flag di controllo di selezione host hello 
+* Imposta flag di controllo di vincolo hello ogni secondo
+* Imposta hello bilanciamento del carico flag ogni cinque secondi.
 
-Di seguito sono riportati alcuni esempi di configurazione che controllano i timer:
+Di seguito sono riportati esempi di configurazione di hello che governano questi timer:
 
 ClusterManifest.xml:
 
@@ -80,16 +80,16 @@ mediante ClusterConfig.json per le distribuzioni autonome o Template.json per i 
 ]
 ```
 
-Oggi Cluster Resource Manager esegue solo una di queste azioni alla volta, in sequenza. Questo è il motivo per cui si fa riferimento a questi timer come "intervalli minimi" e le azioni che vengono eseguite quando il timer viene spente come "flag di impostazione". Ad esempio, Cluster Resource Manager si occupa delle richieste di creazione di servizi in sospeso prima di bilanciare il carico del cluster. Come si nota dagli intervalli di tempo predefiniti specificati, Cluster Resource Manager analizza di frequente tutte le attività. In genere, ciò significa che il set di modifiche apportate durante ogni passaggio è piccolo. Le modifiche piccole e frequenti consentono a Cluster Resource Manager di essere sensibile quando ciò si verifica nel cluster. I timer predefiniti eseguono una sorta di divisione in batch, dato che molti degli eventi dello stesso tipo tendono a verificarsi simultaneamente. 
+Oggi hello gestione delle risorse Cluster esegue solo una di queste azioni contemporaneamente, in modo sequenziale. È per questo motivo è vedere timer toothese come "intervalli minimi" e hello azioni eseguite quando il timer di hello si trovi in come "impostazione flag" ottengano. Hello occupa gestione delle risorse Cluster in sospeso, ad esempio, richiede i servizi di toocreate prima hello cluster di bilanciamento. Come si può notare da intervalli di tempo predefinito hello specificati, hello gestione delle risorse Cluster per qualsiasi elemento viene analizzato toodo esigenze di frequente. In genere, ciò significa che il set di hello delle modifiche apportate durante ogni passaggio è piccolo. Apportare piccole modifiche spesso consente hello toobe di gestione delle risorse Cluster risponde quando si verificano eventi in cluster hello. Hello timer predefiniti forniscono alcuni batch poiché molte delle hello stessi tipi di eventi tendono toooccur contemporaneamente. 
 
-Ad esempio, quando i nodi presentano errori possono procedere con interi domini di errore alla volta. Tutti questi errori vengono acquisiti durante il successivo aggiornamento dopo il *PLBRefreshGap*. Le correzioni vengono determinate durante il posizionamento seguente del controllo del vincolo, e bilanciamento del carico viene eseguito. Per impostazione predefinita, Cluster Resource Manager non analizza ore di modifiche nel cluster e non tenta di risolvere tutte le modifiche in una sola volta. Questo potrebbe generare burst di varianza.
+Ad esempio, quando i nodi presentano errori possono procedere con interi domini di errore alla volta. Tutti questi errori vengono acquisiti durante il successivo stato hello aggiornamento dopo hello *PLBRefreshGap*. correzioni di Hello vengono determinate durante hello dopo la selezione, controllo del vincolo e bilanciamento del carico viene eseguito. Per hello predefinito gestione delle risorse Cluster è non l'analisi di ore di modifiche in cluster hello e tentativo tooaddress tutte le modifiche in una sola volta. In questo modo potrebbe causare toobursts di varianza.
 
-Cluster Resource Manager necessita di informazioni aggiuntive per determinare se il cluster è sbilanciato. Per gestire questi aspetti sono disponibili due controlli di configurazione: le *soglie di bilanciamento* e le *soglie di attività*.
+Gestione delle risorse Cluster Hello deve inoltre toodetermine alcune informazioni aggiuntive se hello cluster sbilanciata. Per gestire questi aspetti sono disponibili due controlli di configurazione: le *soglie di bilanciamento* e le *soglie di attività*.
 
 ## <a name="balancing-thresholds"></a>Soglie di bilanciamento del carico
-Una soglia di bilanciamento del carico è il controllo principale per attivare il ribilanciamento. La soglia di bilanciamento del carico per una metrica è espressa con un _rapporto_. Se il volume di carico sul nodo più carico diviso per il volume di carico sul nodo meno carico supera il *BalancingThreshold*della metrica, il cluster viene considerato sbilanciato. In tal caso, al successivo controllo di Cluster Resource Manager viene attivato il bilanciamento del carico. Il timer *MinLoadBalancingInterval* definisce la frequenza dei controlli eseguiti da Cluster Resource Manager se è necessario il ribilanciamento. Controllare non comporta che venga eseguita un'operazione. 
+Una soglia di bilanciamento del carico è controllo principale di hello per l'attivazione di ribilanciamento. Hello bilanciamento del carico di soglia per una metrica è un _rapporto_. Se il carico hello per una misurazione in hello caricato più nodo divisa per la quantità di hello di carico nel minor caricata hello nodo supera tale metrica *BalancingThreshold*, quindi cluster hello è bilanciato. Di conseguenza bilanciamento del carico è hello ora successiva hello trigger Controlla gestione delle risorse Cluster. Hello *MinLoadBalancingInterval* timer definisce con quale frequenza hello gestione delle risorse Cluster deve verificare se il ribilanciamento è necessario. Controllare non comporta che venga eseguita un'operazione. 
 
-Le soglie di bilanciamento del carico sono definite sulla base delle singole metriche nell'ambito della definizione del cluster. Per altre informazioni sulle metriche, vedere [questo articolo](service-fabric-cluster-resource-manager-metrics.md).
+Soglie di bilanciamento del carico sono definite con cadenza per metriche come parte della definizione di cluster hello. Per altre informazioni sulle metriche, vedere [questo articolo](service-fabric-cluster-resource-manager-metrics.md).
 
 ClusterManifest.xml
 
@@ -124,30 +124,30 @@ mediante ClusterConfig.json per le distribuzioni autonome o Template.json per i 
 ![Esempio di soglia di bilanciamento][Image1]
 </center>
 
-In questo esempio ogni servizio usa una unità di una metrica. Nell'esempio in alto il carico massimo su un nodo è cinque e il carico minimo è due. Si supponga che la soglia di bilanciamento del carico per questa metrica sia tre. Dato che il rapporto nel cluster è 5/2 = 2,5 e che tale cifra è inferiore al valore tre della soglia di bilanciamento, il cluster è bilanciato. In tal caso, al successivo controllo di Cluster Resource Manager non viene attivato alcun bilanciamento del carico.
+In questo esempio ogni servizio usa una unità di una metrica. Nell'esempio hello superiore hello del carico massimo in un nodo è cinque e minimo hello è due. Si supponga che hello bilanciamento del carico di soglia per questa metrica è tre. Poiché il rapporto di hello cluster hello è 5/2 = 2.5 e che è inferiore a quello hello specificato soglia del cluster di tre, hello di bilanciamento del carico viene bilanciato. Nessun bilanciamento del carico viene attivata quando verifica la gestione delle risorse Cluster hello.
 
-Nell'esempio in basso il carico massimo su un nodo è 10, mentre il carico minimo è due. Il rapporto è quindi pari a cinque. Cinque è superiore alla soglia di bilanciamento del carico designata di tre per tale metrica. Di conseguenza, all'attivazione successiva del timer di bilanciamento del carico verrà pianificato un ribilanciamento. In una situazione come questa, parte del carico viene in genere distribuito nel nodo 3. Poiché Cluster Resource Manager di Service Fabric non usa un approccio greedy, parte del carico potrebbe essere distribuita anche nel nodo 2. 
+Nell'esempio hello basso carico massimo di hello in un nodo è 10, mentre hello minimo è due, risultante in un rapporto di cinque. Cinque è maggiore del valore soglia di bilanciamento del carico designato hello di tre per tale metrica. Di conseguenza, esecuzione di un ribilanciamento sarà pianificato hello ora successiva bilanciamento del carico generato timer. In una situazione simile al seguente parte del carico è in genere distribuite tooNode3. Perché hello servizio di gestione delle risorse Cluster dell'infrastruttura non utilizza un approccio greedy, potrebbe essere anche un carico tooNode2 distribuita. 
 
 <center>
 ![Azioni sull'esempio di soglia di bilanciamento][Image2]
 </center>
 
 > [!NOTE]
-> Il "Bilanciamento" gestisce due diverse strategie per gestire il carico nel cluster. La strategia predefinita usata da Cluster Resource Manager consiste nel distribuire il carico tra i nodi del cluster. L'altra strategia è la [deframmentazione](service-fabric-cluster-resource-manager-defragmentation-metrics.md). La deframmentazione viene eseguita durante l'esecuzione dello stesso bilanciamento. Le strategie di bilanciamento e deframmentazione possono essere usate per metriche diverse all'interno dello stesso cluster. Un servizio può disporre di metriche di bilanciamento e di deframmentazione. Per la metrica di deframmentazione, il rapporto dei carichi nel cluster attiva in questo caso il ribilanciamento quando è _al di sotto_ della soglia di bilanciamento. 
+> Il "Bilanciamento" gestisce due diverse strategie per gestire il carico nel cluster. strategia predefinita Hello hello Usa Gestione risorse di Cluster è toodistribute carico tra i nodi del cluster hello hello. Hello altri strategia è [deframmentazione](service-fabric-cluster-resource-manager-defragmentation-metrics.md). La deframmentazione viene eseguita durante hello stesso bilanciamento del carico di esecuzione. Hello strategie di bilanciamento del carico e deframmentazione in linea possono essere utilizzate per le metriche diversi all'interno di hello dello stesso cluster. Un servizio può disporre di metriche di bilanciamento e di deframmentazione. Per la metrica di deframmentazione in linea, rapporto hello di hello carica nei trigger cluster hello in questo caso il ribilanciamento _seguito_ hello soglia di bilanciamento del carico. 
 >
 
-Rimanere sotto la soglia di bilanciamento del carico non è un obiettivo esplicito. Le soglie di bilanciamento sono semplicemente un *trigger*. Quando viene eseguito il bilanciamento, Cluster Resource Manager determina quali miglioramenti può apportare, se ve ne sono. Il fatto che venga avviata una ricerca di bilanciamento non significa che vengano spostati degli elementi. A volte il cluster non è bilanciato ma è troppo limitato per essere corretto. In alternativa, i miglioramenti richiedono dei movimenti che sono troppo [costosi](service-fabric-cluster-resource-manager-movement-cost.md)).
+Recupero seguito hello soglia di bilanciamento del carico non è un obiettivo esplicito. Le soglie di bilanciamento sono semplicemente un *trigger*. Quando Bilanciamento del carico viene eseguito, hello gestione delle risorse Cluster determina quali miglioramenti rendere, se presente. Il fatto che venga avviata una ricerca di bilanciamento non significa che vengano spostati degli elementi. A volte hello cluster è toocorrect sbilanciata ma troppo limitata. In alternativa, miglioramenti di hello richiedono i movimenti che sono troppo [costosi](service-fabric-cluster-resource-manager-movement-cost.md)).
 
 ## <a name="activity-thresholds"></a>soglie di attività
-A volte, sebbene i nodi siano relativamente sbilanciati, la quantità *totale* di carico nel cluster è bassa. La mancanza di carico può essere dovuta a un calo temporaneo o al fatto che il cluster è nuovo ed è stato avviato da poco. In entrambi i casi non è consigliabile perdere tempo con il bilanciamento del carico del cluster perché i risultati non sarebbero soddisfacenti. Se il carico del cluster è stato bilanciato, si perderebbero risorse di rete e di calcolo per spostamenti che *non* farebbero grandi differenze. Per evitare movimenti non necessari, è disponibile un altro controllo noto come Soglie di attività. Le soglie di attività consentono di specificare un limite inferiore assoluto per l'attività. Se nessun nodo supera tale soglia, il bilanciamento del carico non viene attivato neanche se viene raggiunta la soglia di bilanciamento.
+In alcuni casi, anche se i nodi sono relativamente sbilanciati, hello *totale* quantità di carico nel cluster hello è bassa. mancanza di Hello di carico può essere un dip temporaneo o perché cluster hello è nuovo e recupero appena avviato automaticamente. In entrambi i casi, è opportuno non ora toospend hello cluster di bilanciamento perché è poco toobe acquisita. Se il cluster hello sottoposti a bilanciamento del carico, si sarebbe spesa rete e risorse toomove diversi elementi di calcolo senza apportare qualsiasi grande *assoluto* differenza. Sposta tooavoid non necessari, è noto come soglie di attività di un altro controllo. Soglie di attività consente toospecify limite alcuni inferiore assoluto per l'attività. Se nessun nodo oltre questa soglia, bilanciamento del carico non viene attivato anche se hello bilanciamento del carico viene raggiunta la soglia.
 
-Si supponga che abbiamo mantenuto la soglia di bilanciamento su tre per questa metrica. Si supponga anche che sia disponibile una Soglia di attività di 1536. Nel primo caso il cluster è sbilanciato in base alla soglia di bilanciamento, ma nessun nodo raggiunge la soglia di attività, quindi non viene eseguita alcuna azione. Nell'esempio in basso il nodo 1 supera la Soglia di attività. Dato che vengono superate sia la soglia di bilanciamento che la soglia di attività per la metrica, viene pianificato un bilanciamento del carico. Ad esempio, si veda il diagramma seguente: 
+Si supponga che abbiamo mantenuto la soglia di bilanciamento su tre per questa metrica. Si supponga anche che sia disponibile una Soglia di attività di 1536. Nel primo caso hello, mentre il cluster hello è bilanciato per hello bilanciamento del carico di soglia sono soddisfa alcun nodo tale soglia di attività è avviene quindi alcuna operazione. Nell'esempio hello inferiore Node1 è su hello soglia di attività. Poiché entrambi hello soglia di bilanciamento del carico e hello soglia di attività per la metrica hello vengono superate, bilanciamento del carico è pianificata. Ad esempio, si esaminerà hello seguente diagramma: 
 
 <center>
 ![Esempio di soglia di attività][Image3]
 </center>
 
-Proprio come le soglie di bilanciamento del carico, le soglie di attività sono definite sulla base di singoli metriche tramite la definizione del cluster:
+Analogamente alle soglie di bilanciamento del carico, le soglie di attività sono definiti per ogni metrica tramite la definizione del cluster di hello:
 
 ClusterManifest.xml
 
@@ -157,7 +157,7 @@ ClusterManifest.xml
     </Section>
 ```
 
-Tramite ClusterConfig.json per le distribuzioni autonome o Template.json per cluster ospitati in Azure:
+mediante ClusterConfig.json per le distribuzioni autonome o Template.json per i cluster ospitati in Azure:
 
 ```json
 "fabricSettings": [
@@ -173,12 +173,12 @@ Tramite ClusterConfig.json per le distribuzioni autonome o Template.json per clu
 ]
 ```
 
-Si noti che le soglie di bilanciamento e di attività sono entrambe legate a una metrica specifica. Il bilanciamento del carico viene attivato solo se vengono superate entrambe le soglie di bilanciamento e di attività per la stessa metrica.
+Soglie di bilanciamento carico di rete e attività sono entrambi legati tooa metrica specifica - bilanciamento del carico viene generato solo se entrambi hello soglia di bilanciamento del carico e viene superata la soglia di attività per hello stessa metrica.
 
 ## <a name="balancing-services-together"></a>Bilanciamento composto dei servizi
-Che il cluster sia bilanciato o no è una decisione a livello di cluster. Viene, tuttavia, corretto spostando le singole repliche e le istanze dei servizi. Questo approccio ha senso, giusto? Uno stack di memoria in un nodo può ricevere contributi da più repliche o istanze. Per correggere lo sbilanciamento potrebbe essere necessario spostare una delle repliche con stato o delle istanze senza stato che usano la metrica sbilanciata.
+Se non è bilanciato cluster hello o non è una decisione a livello di cluster. È tuttavia modo hello passiamo su correggerlo lo spostamento repliche singolo servizio e le istanze. Questo approccio ha senso, giusto? Se aggiunti allo stack memoria in un nodo, più repliche o istanze potrebbero contribuire tooit. Correzione sbilanciamento hello potrebbe richiedere lo spostamento di una delle repliche con stato hello o istanze senza state che utilizzano metrica sbilanciata hello.
 
-In alcuni casi però viene spostato un servizio che non era sbilanciato (ricordare la discussione precedente relativa ai pesi locali e globali). Per quale motivo si dovrebbe spostare un servizio quando tutte le metriche di quel servizio sono state bilanciate? Di seguito viene illustrato un esempio:
+In alcuni casi però viene spostato un servizio che non era stesso sbilanciata (a questo proposito hello locale e globale pesi in precedenza). Per quale motivo si dovrebbe spostare un servizio quando tutte le metriche di quel servizio sono state bilanciate? Di seguito viene illustrato un esempio:
 
 - Si supponga di avere quattro servizi: Service1, Service2, Service3 e Service4. 
 - Service1 riporta le metriche Metric1 e Metric2. 
@@ -192,18 +192,18 @@ Sicuramente è già possibile intravedere una spiegazione: la catena. Non ci son
 ![Bilanciamento composto dei servizi][Image4]
 </center>
 
-A causa di questa catena, è possibile che uno squilibrio nelle metriche 1-4 provochi lo spostamento di repliche o istanze appartenenti ai servizi 1-3. Sappiamo anche che uno sbilanciamento delle metriche 1, 2 o 3 non può comportare movimenti in Service4. Non sarebbero di alcuna utilità, dato che lo spostamento di repliche o istanze appartenenti a Service4 non influirebbe in alcun modo sul bilanciamento delle metriche 1-3.
+A causa di questa catena, è possibile che uno squilibrio nelle metriche 1-4 può causare le repliche o le istanze appartenenti tooservices 1-3 toomove intorno. Sappiamo anche che uno sbilanciamento delle metriche 1, 2 o 3 non può comportare movimenti in Service4. Non vi sarà alcun punto dopo lo spostamento le repliche hello o le istanze appartenenti tooService4 intorno può assolutamente nessun saldo hello tooimpact delle metriche 1-3.
 
-Cluster Resource Manager determina automaticamente i servizi correlati. Aggiungere, rimuovere o modificare le metriche per i servizi può influire sulle relative relazioni. Ad esempio, tra due esecuzioni di bilanciamento del carico, Service2 potrebbe essere stato aggiornato per rimuovere Metric2. Questa operazione interrompe la catena tra Service1 e Service2. Ora, invece di due gruppi di servizi correlati ce ne sono tre:
+Hello gestione delle risorse Cluster determina automaticamente i servizi correlati. Aggiunta, rimozione o modifica le metriche di hello per i servizi possono influire sulle relative relazioni. Ad esempio, tra due esecuzioni del bilanciamento del carico Service2 potrebbe essere stato aggiornato tooremove Metric2. Viene interrotta la catena di hello tra Service1 e Service2. Ora, invece di due gruppi di servizi correlati ce ne sono tre:
 
 <center>
 ![Bilanciamento composto dei servizi][Image5]
 </center>
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Le metriche determinano il modo in cui Cluster Resource Manger di Service Fabric gestisce il consumo e la capacità del cluster. Per altre informazioni sulle metriche e su come configurarle, vedere [questo articolo](service-fabric-cluster-resource-manager-metrics.md)
-* Il costo dello spostamento è un modo per segnalare a Cluster Resource Manager che alcuni servizi sono più costosi da spostare rispetto ad altri. Per altre informazioni sui costi di spostamento, vedere [questo articolo](service-fabric-cluster-resource-manager-movement-cost.md).
-* Cluster Resource Manager dispone di diverse limitazioni da configurare per rallentare la varianza del cluster. Queste limitazioni non sono in genere necessarie, ma sono eventualmente disponibili altre informazioni [qui](service-fabric-cluster-resource-manager-advanced-throttling.md)
+* Le metriche sono la modalità di gestione di consumo e la capacità in cluster hello in hello gestore di risorse Cluster dell'infrastruttura del servizio. ulteriori informazioni sulle metriche toolearn come tooconfigure, archiviazione ed estrazione [in questo articolo](service-fabric-cluster-resource-manager-metrics.md)
+* Il costo dello spostamento è un modo di segnalazione toohello gestione delle risorse Cluster che alcuni servizi siano toomove più costosi rispetto ad altri. Per ulteriori informazioni sul costo di spostamento, fare riferimento troppo[in questo articolo](service-fabric-cluster-resource-manager-movement-cost.md)
+* Hello gestione delle risorse Cluster ha le limitazioni diversi che è possibile configurare tooslow verso il basso la varianza del cluster di hello. Queste limitazioni non sono in genere necessarie, ma sono eventualmente disponibili altre informazioni [qui](service-fabric-cluster-resource-manager-advanced-throttling.md)
 
 [Image1]:./media/service-fabric-cluster-resource-manager-balancing/cluster-resrouce-manager-balancing-thresholds.png
 [Image2]:./media/service-fabric-cluster-resource-manager-balancing/cluster-resource-manager-balancing-threshold-triggered-results.png

@@ -1,6 +1,6 @@
 ---
-title: "Distribuire più istanze delle risorse di Azure | Documentazione Microsoft"
-description: "Usare l'operazione di copia e le matrici in un modello di Gestione risorse di Azure per eseguire più iterazioni durante la distribuzione delle risorse."
+title: "aaaDeploy più istanze delle risorse di Azure | Documenti Microsoft"
+description: "Utilizzare matrici in un tooiterate modello di gestione risorse di Azure e l'operazione di copia più volte durante la distribuzione di risorse."
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -14,21 +14,21 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/26/2017
 ms.author: tomfitz
-ms.openlocfilehash: ed8e3081d2b2e07938d7cf3aa5f95f6dde81bc66
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a3bd42f694053317c30b639c33dc4efae41a9a9b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="deploy-multiple-instances-of-a-resource-or-property-in-azure-resource-manager-templates"></a>Distribuire più istanze di una risorsa o di una proprietà nei modelli di Azure Resource Manager
-Questo argomento illustra come eseguire un'iterazione del modello di Azure Resource Manager per creare più istanze di una risorsa o più istanze di una proprietà in una risorsa.
+In questo argomento illustra come tooiterate nel toocreate modello di gestione risorse di Azure più istanze di una risorsa o più istanze di una proprietà su una risorsa.
 
-Se è necessario aggiungere una logica al modello per poter specificare se una risorsa è stata distribuita, vedere [Distribuire una risorsa in modo condizionale](#conditionally-deploy-resource).
+Se è necessario tooadd logica tooyour modello che consente di toospecify se una risorsa è distribuita, vedere [distribuire in modo condizionale risorsa](#conditionally-deploy-resource).
 
 ## <a name="resource-iteration"></a>Iterazione delle risorse
-Per creare più istanze di un tipo di risorsa, aggiungere un elemento `copy` al tipo di risorsa. Nell'elemento copy si specifica il numero di iterazioni e un nome per questo ciclo. Il valore del conteggio deve essere un numero intero positivo e non può essere maggiore di 800. Resource Manager crea le risorse in parallelo. Pertanto l'ordine di creazione non è garantito. Per creare risorse iterate in sequenza, vedere [Copia seriale](#serial-copy). 
+aggiungere più istanze di un tipo di risorsa, toocreate un `copy` tipo di risorsa toohello elemento. Nell'elemento copy hello, specificare il numero di hello di iterazioni e un nome per il ciclo. valore del conteggio Hello deve essere un numero intero positivo e non può superare 800. Gestione risorse consente di creare risorse hello in parallelo. Pertanto, non è garantito ordine di hello in cui sono stati creati. risorse toocreate scorsi in sequenza, vedere [copia seriale](#serial-copy). 
 
-La risorsa da ricreare più volte assume il formato seguente:
+Hello risorsa toocreate più volte accetta hello seguente formato:
 
 ```json
 {
@@ -55,7 +55,7 @@ La risorsa da ricreare più volte assume il formato seguente:
 }
 ```
 
-Si noti che il nome di ogni risorsa include la funzione `copyIndex()` che restituisce l'iterazione corrente nel ciclo. `copyIndex()` è in base zero. Quindi l'esempio seguente:
+Si noti che hello nome di ogni risorsa include hello `copyIndex()` funzione, che restituisce l'iterazione corrente hello in ciclo hello. `copyIndex()` è in base zero. In questo caso, hello di esempio seguente:
 
 ```json
 "name": "[concat('storage', copyIndex())]",
@@ -67,7 +67,7 @@ Crea questi nomi:
 * storage1
 * storage2
 
-Per eseguire l'offset del valore di indice, è possibile passare un valore nella funzione copyIndex(). Il numero di iterazioni da eseguire viene comunque specificato nell'elemento copia, ma il valore di copyIndex è compensato dal valore specificato. Quindi l'esempio seguente:
+valore di indice toooffset hello, è possibile passare un valore nella funzione copyIndex() hello. Hello numero di iterazioni tooperform è ancora specificata nell'elemento copy hello, ma il valore di hello di copyIndex offset in base a hello specificato valore. In questo caso, hello di esempio seguente:
 
 ```json
 "name": "[concat('storage', copyIndex(1))]",
@@ -79,7 +79,7 @@ Crea questi nomi:
 * storage2
 * storage3
 
-L'operazione di copia è utile quando si lavora con le matrici in quanto è possibile iterare ogni elemento della matrice. Usare la funzione `length` nella matrice per specificare il conteggio per le iterazioni e `copyIndex` per recuperare l'indice corrente nella matrice. Quindi l'esempio seguente:
+operazione di copia Hello è utile quando si utilizzano matrici in quanto è possibile scorrere ogni elemento nella matrice hello. Hello utilizzare `length` funzione attivazioni hello matrice toospecify hello per le iterazioni, e `copyIndex` tooretrieve hello corrente indice hello matrice. In questo caso, hello di esempio seguente:
 
 ```json
 "parameters": { 
@@ -112,9 +112,9 @@ Crea questi nomi:
 
 ## <a name="serial-copy"></a>Copia seriale
 
-Quando si usa l'elemento di copia per creare più istanze di un tipo di risorsa, Resource Manager distribuisce queste istanze in parallelo per impostazione predefinita. Tuttavia è consigliabile specificare che le risorse vengano distribuite in sequenza. Ad esempio, quando si aggiorna un ambiente di produzione, è consigliabile sfalsare gli aggiornamenti per aggiornarne solo un determinato numero in un dato momento.
+Quando si utilizza hello Copia elemento toocreate più istanze di un tipo di risorsa, Gestione risorse, per impostazione predefinita, distribuisce tali istanze in parallelo. Tuttavia, è consigliabile toospecify tale hello risorse distribuite in sequenza. Quando si aggiorna un ambiente di produzione, ad esempio, si consiglia di hello toostagger Aggiorna in modo che solo un determinato numero vengono aggiornate in qualsiasi momento.
 
-Resource Manager fornisce proprietà sull'elemento di copia che consentono di distribuire più istanze in modo seriale. Nell'elemento di copia impostare `mode` su **serial** e `batchSize` sul numero di istanze da distribuire contemporaneamente. Con la modalità seriale, Resource Manager crea una dipendenza da istanze precedenti nel ciclo in modo un batch venga avviato solo dopo il completamento del batch precedente.
+Gestione risorse fornisce le proprietà sull'elemento copia hello che consentono di tooserially distribuiscono più istanze. Nell'elemento copy hello, impostare `mode` troppo**seriale** e `batchSize` toohello numero di istanze toodeploy alla volta. In modalità seriale Resource Manager crea una dipendenza su istanze precedenti nel ciclo di hello, in modo non si avvia un batch fino al completamento di batch precedente hello.
 
 ```json
 "copy": {
@@ -125,9 +125,9 @@ Resource Manager fornisce proprietà sull'elemento di copia che consentono di di
 },
 ```
 
-La proprietà mode accetta anche **parallel**, che è il valore predefinito.
+Hello proprietà mode accetta inoltre **parallela**, ovvero il valore di predefinito hello.
 
-Per testare la copia seriale senza creare risorse effettive, usare il modello seguente che distribuisce i modelli annidati vuoti:
+tootest seriale copia senza creare risorse effettive, utilizzare hello seguente modello di distribuzione di modelli annidati vuoti:
 
 ```json
 {
@@ -170,11 +170,11 @@ Per testare la copia seriale senza creare risorse effettive, usare il modello se
 }
 ```
 
-Nella cronologia di distribuzione notare che le distribuzioni annidate vengono elaborate in sequenza.
+Nella cronologia della distribuzione di hello, si noti che hello distribuzioni annidate vengono elaborate in sequenza.
 
 ![distribuzione seriale](./media/resource-group-create-multiple/serial-copy.png)
 
-Per uno scenario più realistico, l'esempio seguente consente di distribuire due istanze alla volta di una VM Linux da un modello annidato:
+Per uno scenario più realistico, hello di esempio seguente consente di distribuire due istanze in un momento di una VM Linux da un modello annidato:
 
 ```json
 {
@@ -184,19 +184,19 @@ Per uno scenario più realistico, l'esempio seguente consente di distribuire due
         "adminUsername": {
             "type": "string",
             "metadata": {
-                "description": "User name for the Virtual Machine."
+                "description": "User name for hello Virtual Machine."
             }
         },
         "adminPassword": {
             "type": "securestring",
             "metadata": {
-                "description": "Password for the Virtual Machine."
+                "description": "Password for hello Virtual Machine."
             }
         },
         "dnsLabelPrefix": {
             "type": "string",
             "metadata": {
-                "description": "Unique DNS Name for the Public IP used to access the Virtual Machine."
+                "description": "Unique DNS Name for hello Public IP used tooaccess hello Virtual Machine."
             }
         },
         "ubuntuOSVersion": {
@@ -209,7 +209,7 @@ Per uno scenario più realistico, l'esempio seguente consente di distribuire due
                 "16.04.0-LTS"
             ],
             "metadata": {
-                "description": "The Ubuntu version for the VM. This will pick a fully patched image of this given Ubuntu version."
+                "description": "hello Ubuntu version for hello VM. This will pick a fully patched image of this given Ubuntu version."
             }
         }
     },
@@ -258,13 +258,13 @@ Per uno scenario più realistico, l'esempio seguente consente di distribuire due
 
 ## <a name="property-iteration"></a>Iterazione delle proprietà
 
-Per creare più valori per una proprietà in una risorsa, aggiungere una matrice `copy` nell'elemento properties. Questa matrice contiene oggetti ai quali sono associate le proprietà riportate di seguito.
+aggiungere più valori per una proprietà su una risorsa, toocreate un `copy` matrice nell'elemento proprietà hello. Questa matrice contiene gli oggetti e ogni oggetto dispone di hello le proprietà seguenti:
 
-* name: il nome della proprietà per la quale creare più valori
-* count: il numero di valori da creare
-* input: un oggetto che contiene i valori da assegnare alla proprietà  
+* name - nome hello di hello proprietà toocreate più valori per
+* Count - il numero di hello di valori toocreate
+* input: un oggetto contenente proprietà di toohello tooassign valori hello  
 
-Nell'esempio seguente viene illustrato come applicare `copy` alla proprietà dataDisks in una macchina virtuale:
+Hello seguente esempio viene illustrato come tooapply `copy` toohello dataDisks proprietà in una macchina virtuale:
 
 ```json
 {
@@ -285,9 +285,9 @@ Nell'esempio seguente viene illustrato come applicare `copy` alla proprietà dat
       ...
 ```
 
-Si noti che quando si usa `copyIndex` all'interno di un'iterazione di proprietà, è necessario specificare il nome dell'iterazione. Non è necessario specificarlo quando l'elemento viene usato con un'iterazione di risorse.
+Si noti che quando si utilizza `copyIndex` all'interno di un'iterazione di proprietà, è necessario specificare il nome di hello di iterazione hello. Nome di hello tooprovide se utilizzata con l'iterazione di risorse insufficienti.
 
-Resource Manager espande la matrice `copy` durante la distribuzione. Il nome della matrice diventa il nome della proprietà. I valori di input diventano le proprietà dell'oggetto. Il modello distribuito diventa:
+Gestione risorse espande hello `copy` matrice durante la distribuzione. nome di Hello della matrice hello diventa il nome di hello della proprietà hello. i valori di input Hello diventano le proprietà dell'oggetto hello. modello Hello distribuito diventa:
 
 ```json
 {
@@ -316,7 +316,7 @@ Resource Manager espande la matrice `copy` durante la distribuzione. Il nome del
       ...
 ```
 
-È possibile usare l'iterazione di risorse e di proprietà contemporaneamente. Fare riferimento all'iterazione di proprietà con il nome.
+È possibile usare l'iterazione di risorse e di proprietà contemporaneamente. Riferimento hello proprietà l'iterazione in base al nome.
 
 ```json
 {
@@ -350,7 +350,7 @@ Resource Manager espande la matrice `copy` durante la distribuzione. Il nome del
 }
 ```
 
-Per ogni risorsa è possibile includere nelle proprietà un solo elemento copy. Per specificare un ciclo di iterazione per più proprietà, definire più oggetti nella matrice di copia. Ogni oggetto viene iterato separatamente. Ad esempio, per creare più istanze di entrambe le proprietà `frontendIPConfigurations` e `loadBalancingRules` in un bilanciamento del carico, definire entrambi gli oggetti in un singolo elemento copy: 
+È possibile includere un elemento di copia solo nelle proprietà hello per ogni risorsa. toospecify un ciclo di iterazione per più di una proprietà, definire più oggetti nella matrice copia hello. Ogni oggetto viene iterato separatamente. Ad esempio, toocreate più istanze di entrambi hello `frontendIPConfigurations` proprietà e hello `loadBalancingRules` proprietà in un bilanciamento del carico, definire entrambi gli oggetti in un elemento di sola copia: 
 
 ```json
 {
@@ -398,7 +398,7 @@ Per ogni risorsa è possibile includere nelle proprietà un solo elemento copy. 
 ```
 
 ## <a name="depend-on-resources-in-a-loop"></a>In base alle risorse in un ciclo
-L'elemento `dependsOn` consente di specificare che una risorsa sia distribuita dopo un'altra. Per distribuire una risorsa che dipende dalla raccolta di risorse in un ciclo, usare il nome del ciclo di copia nell'elemento dependsOn. L'esempio seguente illustra come distribuire tre account di archiviazione prima di distribuire la macchina virtuale. La definizione completa di macchina virtuale non viene visualizzata. Si noti che la copia ha la proprietà name impostata su `storagecopy` e l'elemento dependsOn per le macchine virtuali impostato su `storagecopy`.
+Specificare che una risorsa è distribuita dopo un'altra risorsa con hello `dependsOn` elemento. toodeploy una risorsa che dipende dalla raccolta hello delle risorse in un ciclo, specificare il nome di hello del ciclo di copia hello nell'elemento dependsOn hello. Hello di esempio seguente viene illustrato come account di archiviazione prima di distribuire tre toodeploy hello macchina virtuale. definizione di Hello completa macchina virtuale non viene visualizzata. Si noti che dispone di tale elemento copia hello nome impostato troppo`storagecopy` e l'elemento dependsOn hello per le macchine virtuali hello è impostato troppo`storagecopy`.
 
 ```json
 {
@@ -434,7 +434,7 @@ L'elemento `dependsOn` consente di specificare che una risorsa sia distribuita d
 ```
 
 ## <a name="create-multiple-instances-of-a-child-resource"></a>Creare più istanze di una risorsa figlio
-Non è possibile usare un ciclo di copia per una risorsa figlio. Per creare più istanze di una risorsa cosiddetta "annidata" all'interno di un'altra risorsa, è invece necessario creare tale risorsa come una risorsa di livello superiore. La relazione con la risorsa padre si definisce con le proprietà type e name.
+Non è possibile usare un ciclo di copia per una risorsa figlio. toocreate più istanze di una risorsa che definita in genere come annidate all'interno di un'altra risorsa, è invece necessario creare tale risorsa come una risorsa di primo livello. Definire la relazione hello con risorsa padre hello tramite le proprietà di tipo e il nome di hello.
 
 Si supponga, ad esempio, di definire in genere un set di dati come una risorsa figlio all'interno di una data factory.
 
@@ -456,11 +456,11 @@ Si supponga, ad esempio, di definire in genere un set di dati come una risorsa f
 }]
 ```
 
-Per creare più istanze di un set di dati, spostarlo all'esterno della data factory. Il set di dati deve essere sullo stesso livello della data factory, di cui è comunque una risorsa figlio. La relazione fra set di dati e data factory viene mantenuta con le proprietà type e name. Poiché non è possibile dedurre il tipo dalla sua posizione nel modello, è necessario specificarne il nome completo nel formato: `{resource-provider-namespace}/{parent-resource-type}/{child-resource-type}`.
+toocreate più istanze di set di dati, spostarla all'esterno di data factory di hello. Hello set di dati deve essere uguale a livello di data factory di hello hello, ma è comunque una risorsa figlio della data factory di hello. Consente di mantenere la relazione hello tra set di dati e data factory tramite le proprietà di tipo e il nome di hello. Poiché il tipo non può essere dedotto dalla relativa posizione nel modello di hello, è necessario fornire il tipo di hello completo in formato hello: `{resource-provider-namespace}/{parent-resource-type}/{child-resource-type}`.
 
-Per stabilire una relazione padre/figlio con un'istanza della data factory, specificare il nome del set di dati che include il nome della risorsa padre. Usare il formato: `{parent-resource-name}/{child-resource-name}`.  
+tooestablish una relazione padre/figlio con un'istanza di data factory di hello, specificare un nome per i set di dati hello che include il nome di risorsa del hello padre. Utilizzare il formato hello: `{parent-resource-name}/{child-resource-name}`.  
 
-Nell'esempio seguente viene descritta l'implementazione:
+Hello riportato di seguito implementazione hello:
 
 ```json
 "resources": [
@@ -485,7 +485,7 @@ Nell'esempio seguente viene descritta l'implementazione:
 
 ## <a name="conditionally-deploy-resource"></a>Distribuire una risorsa in modo condizionale
 
-Per specificare se una risorsa è stata distribuita, usare l'elemento `condition`. Il valore di questo elemento restituisce true o false. Quando il valore è true, la risorsa viene distribuita. Quando il valore è false, la risorsa non viene distribuita. Per indicare, ad esempio, se viene distribuito un nuovo account di archiviazione o se ne viene usato uno esistente, specificare:
+toospecify se una risorsa è stata distribuita, utilizzare hello `condition` elemento. un valore per questo elemento Hello risolve tootrue o false. Quando il valore di hello è true, la risorsa hello viene distribuita. Quando il valore di hello è false, la risorsa hello non verrà distribuita. Ad esempio, toospecify se è stato distribuito un nuovo account di archiviazione o viene utilizzato un account di archiviazione esistente, utilizzare:
 
 ```json
 {
@@ -504,9 +504,9 @@ Per specificare se una risorsa è stata distribuita, usare l'elemento `condition
 
 Per un esempio di utilizzo di una risorsa nuova o esistente, vedere [Modello di condizione nuovo o esistente](https://github.com/rjmax/Build2017/blob/master/Act1.TemplateEnhancements/Chapter05.ConditionalResources.NewOrExisting.json).
 
-Per un esempio di utilizzo di una password o di una chiave SSH per la distribuzione di una macchina virtuale, vedere [Modello di condizione basato su nome utente o SSH](https://github.com/rjmax/Build2017/blob/master/Act1.TemplateEnhancements/Chapter05.ConditionalResourcesUsernameOrSsh.json).
+Per un esempio di utilizzo di una password o una macchina virtuale di toodeploy chiave SSH, vedere [nome utente o SSH modello condizione](https://github.com/rjmax/Build2017/blob/master/Act1.TemplateEnhancements/Chapter05.ConditionalResourcesUsernameOrSsh.json).
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Per altre informazioni sulle sezioni di un modello, vedere [Authoring Azure Resource Manager Templates](resource-group-authoring-templates.md) (Creazione di modelli di Azure Resource Manager).
-* Per altre informazioni sulla distribuzione di modelli, vedere [Distribuire un'applicazione con il modello di Gestione risorse di Azure](resource-group-template-deploy.md).
+* Se si desidera toolearn sulle sezioni hello di un modello, vedere [la creazione di modelli di gestione risorse di Azure](resource-group-authoring-templates.md).
+* toolearn come toodeploy il modello, vedere [distribuire un'applicazione con il modello di gestione risorse di Azure](resource-group-template-deploy.md).
 

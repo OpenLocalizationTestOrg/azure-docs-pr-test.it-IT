@@ -1,6 +1,6 @@
 ---
-title: Configurare un cluster autonomo di Azure Service Fabric | Microsoft Docs
-description: Informazioni su come configurare un cluster di Service Fabric autonomo o privato.
+title: aaaConfigure il cluster di Azure Service Fabric autonomo | Documenti Microsoft
+description: Informazioni su come tooconfigure autonomo o un cluster di Service Fabric privato.
 services: service-fabric
 documentationcenter: .net
 author: dkkapur
@@ -14,36 +14,36 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/02/2017
 ms.author: dekapur
-ms.openlocfilehash: 9885dce18dabac4a945dafd219e3ae190e34a83b
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: ce2ad387162a05668bbd3a271c754776fe471850
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="configuration-settings-for-standalone-windows-cluster"></a>Impostazioni di configurazione per un cluster autonomo in Windows
-Questo articolo descrive come configurare un cluster di Service Fabric autonomo usando il file ***ClusterConfig.JSON***. Questo file può essere usato per specificare informazioni quali i nodi di Service Fabric e i relativi indirizzi IP, i vari tipi di nodi nel cluster, le configurazioni di sicurezza e la topologia di rete in termini di domini di errore/aggiornamento per il cluster autonomo.
+In questo articolo viene descritto come un cluster di Service Fabric autonomo tramite tooconfigure hello ***Clusterconfig*** file. È possibile utilizzare queste informazioni toospecify file, ad esempio nodi di Service Fabric hello e i relativi indirizzi IP, i diversi tipi di nodi nel cluster hello, configurazioni di sicurezza hello, nonché la topologia di rete hello in termini di domini di errore, aggiornamento, l'autonomo cluster.
 
-Quando si [scarica un pacchetto autonomo di Service Fabric](service-fabric-cluster-creation-for-windows-server.md#downloadpackage), alcuni campioni del file ClusterConfig.JSON vengono scaricati sul computer in uso. I campioni i cui nomi contengono *DevCluster* aiuteranno a creare un cluster con tutti e tre i nodi nello stesso computer, ad esempio nodi logici. Almeno uno di questi nodi deve essere contrassegnato come primario. Questo cluster è utile per un ambiente di sviluppo o test e non è supportato come cluster di produzione. I campioni i cui nomi contengono *MultiMachine* aiuteranno a creare un cluster di qualità di produzione, in cui ogni nodo si trova in un computer separato.
+Quando si [download del pacchetto Service Fabric autonomo hello](service-fabric-cluster-creation-for-windows-server.md#downloadpackage), alcuni esempi di file Clusterconfig hello sono computer di lavoro tooyour scaricato. esempi di Hello con *DevCluster* nei relativi nomi consente di creare un cluster con tutti i tre nodi hello stesso computer, ad esempio nodi logici. Almeno uno di questi nodi deve essere contrassegnato come primario. Questo cluster è utile per un ambiente di sviluppo o test e non è supportato come cluster di produzione. esempi di Hello con *MultiMachine* nei relativi nomi, consente di creare un cluster di qualità di produzione, con ogni nodo in un computer separato.
 
-1. *ClusterConfig.Unsecure.DevCluster.JSON* e *ClusterConfig.Unsecure.MultiMachine.JSON* mostrano rispettivamente come creare cluster senza protezione per test e produzione. 
-2. *ClusterConfig.Windows.DevCluster.JSON* e *ClusterConfig.Windows.MultiMachine.JSON* mostrano come creare cluster di test o produzione protetti tramite [protezione di Windows](service-fabric-windows-cluster-windows-security.md).
-3. *ClusterConfig.X509.DevCluster.JSON* e *ClusterConfig.X509.MultiMachine.JSON* mostrano come creare cluster di test o produzione protetti tramite [protezione basata su certificato X509](service-fabric-windows-cluster-x509-security.md). 
+1. *ClusterConfig.Unsecure.DevCluster.JSON* e *ClusterConfig.Unsecure.MultiMachine.JSON* Mostra come toocreate un test non protetto o produzione cluster rispettivamente. 
+2. *ClusterConfig.Windows.DevCluster.JSON* e *ClusterConfig.Windows.MultiMachine.JSON* Mostra come cluster di test o produzione toocreate, protetti tramite [la sicurezza di Windows](service-fabric-windows-cluster-windows-security.md).
+3. *ClusterConfig.X509.DevCluster.JSON* e *ClusterConfig.X509.MultiMachine.JSON* Mostra come cluster di test o produzione toocreate, protetti tramite [X509 sicurezza basata sui certificati](service-fabric-windows-cluster-x509-security.md). 
 
-Verranno esaminate ora le diverse sezioni di un file ***ClusterConfig.JSON***, come indicato di seguito.
+Ora verrà esaminata hello diverse sezioni di un ***Clusterconfig*** file come indicato di seguito.
 
 ## <a name="general-cluster-configurations"></a>Configurazioni generali del cluster
-Questa sezione tratta in modo ampio le configurazioni specifiche dei cluster, come illustrato nel frammento di codice JSON seguente.
+Questo articolo descrive hello ampie specifiche configurazioni dei cluster, come illustrato nel frammento di codice JSON hello riportato di seguito.
 
     "name": "SampleCluster",
     "clusterConfigurationVersion": "1.0.0",
     "apiVersion": "01-2017",
 
-È possibile attribuire qualsiasi nome descrittivo al cluster di Service Fabric assegnandolo alla variabile **name**. **clusterConfigurationVersion** rappresenta il numero di versione del cluster; è possibile aggiornarlo ogni volta che si aggiorna il cluster di Service Fabric. Tuttavia, è necessario mantenere il valore predefinito per **apiVersion**.
+È possibile assegnare i cluster di Service Fabric tooyour qualsiasi nome descrittivo assegnandole toohello **nome** variabile. Hello **clusterConfigurationVersion** è il numero di versione hello del cluster; è necessario aumentare ogni volta che si esegue l'aggiornamento del cluster di Service Fabric. È tuttavia consigliabile lasciare hello **apiVersion** toohello predefinita.
 
 <a id="clusternodes"></a>
 
-## <a name="nodes-on-the-cluster"></a>Nodi del cluster
-È possibile configurare i nodi nel cluster di Service Fabric tramite la sezione **nodes** , come illustrato nel frammento seguente.
+## <a name="nodes-on-hello-cluster"></a>Nodi cluster hello
+È possibile configurare i nodi di hello nel cluster di Service Fabric utilizzando hello **nodi** sezione come hello seguente mostra.
 
     "nodes": [{
         "nodeName": "vm0",
@@ -65,39 +65,39 @@ Questa sezione tratta in modo ampio le configurazioni specifiche dei cluster, co
         "upgradeDomain": "UD2"
     }],
 
-Un cluster Service Fabric deve contenere almeno 3 nodi. È possibile aggiungere più nodi a questa sezione in base alla configurazione. La tabella seguente illustra le impostazioni di configurazione per ogni nodo.
+Un cluster Service Fabric deve contenere almeno 3 nodi. È possibile aggiungere una sezione di toothis più nodi in base all'impostazione. Hello nella tabella seguente vengono illustrate le impostazioni di configurazione hello per ogni nodo.
 
 | **Configurazione nodo** | **Descrizione** |
 | --- | --- |
-| nodeName |È possibile assegnare qualsiasi nome descrittivo al nodo. |
-| iPAddress |Trovare l'indirizzo IP del nodo aprendo una finestra di comando e digitando `ipconfig`. Prendere nota dell'indirizzo IPV4 e assegnarlo alla variabile **iPAddress** . |
-| nodeTypeRef |È possibile assegnare un tipo diverso a ogni nodo. I [tipi di nodo](#nodetypes) sono definiti nella sezione seguente. |
-| faultDomain |I domini di errore consentono agli amministratori del cluster di definire i nodi fisici su cui è probabile che si verifichino contemporaneamente degli errori a causa di dipendenze fisiche condivise. |
-| upgradeDomain |I domini di aggiornamento descrivono set di nodi che vengono arrestati per gli aggiornamenti di Service Fabric quasi contemporaneamente. È possibile scegliere i nodi da assegnare a determinati domini di aggiornamento perché non sono limitati da eventuali requisiti fisici. |
+| nodeName |È possibile assegnare qualsiasi nodo toohello nome descrittivo. |
+| iPAddress |Trovare l'indirizzo IP di hello del nodo, aprire una finestra di comando e digitare `ipconfig`. Prendere nota di indirizzo IPV4 hello e assegnarlo toohello **iPAddress** variabile. |
+| nodeTypeRef |È possibile assegnare un tipo diverso a ogni nodo. Hello [tipi di nodo](#nodetypes) definiti nella sezione hello riportato di seguito. |
+| faultDomain |Errore domini Abilita amministratori toodefine hello fisici nodi del cluster che potrebbero non riuscire in hello stesso tempo a causa di dipendenze fisico tooshared. |
+| upgradeDomain |Domini di aggiornamento vengono descritti i set di nodi che vengono arrestati per Service Fabric aggiornato su hello stesso tempo. È possibile scegliere quali toowhich tooassign nodi domini di aggiornamento, poiché non sono limitate dalle eventuali requisiti fisici. |
 
 ## <a name="cluster-properties"></a>Proprietà del cluster
-La sezione **properties** in ClusterConfig.JSON viene usata per configurare il cluster come indicato di seguito.
+Hello **proprietà** sezione hello Clusterconfig è cluster hello tooconfigure usati come indicato di seguito.
 
 <a id="reliability"></a>
 
 ### <a name="reliability"></a>Affidabilità
-Il concetto di **reliabilityLevel** definisce il numero di repliche o istanze dei servizi di sistema di Service Fabric eseguibili nei nodi primari del cluster. Determina l'affidabilità di questi servizi e quindi del cluster. Il valore viene calcolato dal sistema in fase di creazione e di aggiornamento del cluster.
+il concetto di Hello di **reliabilityLevel** definisce il numero di hello di repliche o istanze di servizi di sistema di Service Fabric hello che è possono eseguire sui nodi primari di hello del cluster di hello. Determina l'affidabilità di hello di questi servizi e pertanto hello cluster. il valore di Hello è calcolata dal sistema hello in fase di creazione e l'aggiornamento del cluster.
 
 ### <a name="diagnostics"></a>Diagnostica
-La sezione **diagnosticsStore** consente di configurare i parametri per consentire la diagnostica e la risoluzione degli errori di nodi o cluster, come illustrato nel frammento riportato di seguito. 
+Hello **diagnosticsStore** sezione consente di diagnostica di tooenable parametri tooconfigure e nodo di risoluzione dei problemi o errori del cluster, come illustrato nel seguente frammento di codice hello. 
 
     "diagnosticsStore": {
-        "metadata":  "Please replace the diagnostics store with an actual file share accessible from all cluster machines.",
+        "metadata":  "Please replace hello diagnostics store with an actual file share accessible from all cluster machines.",
         "dataDeletionAgeInDays": "7",
         "storeType": "FileShare",
         "IsEncrypted": "false",
         "connectionstring": "c:\\ProgramData\\SF\\DiagnosticsStore"
     }
 
-**metadata** descrive la diagnostica del cluster e può essere impostata in base alla configurazione in uso. Queste variabili consentono di raccogliere log di traccia ETW, dump di arresto anomalo e contatori delle prestazioni. Per altre informazioni sui log di traccia ETW, leggere gli articoli [Tracelog](https://msdn.microsoft.com/library/windows/hardware/ff552994.aspx) e [Traccia ETW](https://msdn.microsoft.com/library/ms751538.aspx). Tutti i log che includono [dump di arresto anomalo del sistema](https://blogs.technet.microsoft.com/askperf/2008/01/08/understanding-crash-dump-files/) e [contatori delle prestazioni](https://msdn.microsoft.com/library/windows/desktop/aa373083.aspx) possono essere indirizzati alla cartella **connectionString** nel computer. È anche possibile usare *AzureStorage* per l'archiviazione della diagnostica. Per un frammento di esempio, vedere di seguito.
+Hello **metadati** è una descrizione di diagnostica del cluster e può essere impostata in base all'impostazione. Queste variabili consentono di raccogliere log di traccia ETW, dump di arresto anomalo e contatori delle prestazioni. Per altre informazioni sui log di traccia ETW, leggere gli articoli [Tracelog](https://msdn.microsoft.com/library/windows/hardware/ff552994.aspx) e [Traccia ETW](https://msdn.microsoft.com/library/ms751538.aspx). Tutti i log inclusi [dump di arresto anomalo](https://blogs.technet.microsoft.com/askperf/2008/01/08/understanding-crash-dump-files/) e [i contatori delle prestazioni](https://msdn.microsoft.com/library/windows/desktop/aa373083.aspx) può essere indirizzato toohello **connectionString** cartella nel computer. È anche possibile usare *AzureStorage* per l'archiviazione della diagnostica. Per un frammento di esempio, vedere di seguito.
 
     "diagnosticsStore": {
-        "metadata":  "Please replace the diagnostics store with an actual file share accessible from all cluster machines.",
+        "metadata":  "Please replace hello diagnostics store with an actual file share accessible from all cluster machines.",
         "dataDeletionAgeInDays": "7",
         "storeType": "AzureStorage",
         "IsEncrypted": "false",
@@ -105,7 +105,7 @@ La sezione **diagnosticsStore** consente di configurare i parametri per consenti
     }
 
 ### <a name="security"></a>Sicurezza
-La sezione **security** è necessaria per la protezione di un cluster di Service Fabric autonomo. Il frammento seguente mostra una parte di questa sezione.
+Hello **sicurezza** sezione è necessaria per un cluster di Service Fabric autonomo sicura. Hello frammento di codice seguente viene illustrata una parte di questa sezione.
 
     "security": {
         "metadata": "This cluster is secured using X509 certificates.",
@@ -114,12 +114,12 @@ La sezione **security** è necessaria per la protezione di un cluster di Service
         . . .
     }
 
-**metadata** descrive il cluster protetto e può essere impostata in base alla configurazione in uso. **ClusterCredentialType** e **ServerCredentialType** determinano il tipo di protezione che verrà implementata dal cluster e dai nodi. È possibile impostarle su *X509* per una protezione basata su certificato o su *Windows* per una protezione basata su Azure Active Directory. Il resto della sezione **security** sarà basato sul tipo di protezione. Leggere l'articolo [Proteggere il cluster Windows autonomo con i certificati](service-fabric-windows-cluster-x509-security.md) o [Proteggere un cluster autonomo in Windows tramite la funzionalità di sicurezza di Windows](service-fabric-windows-cluster-windows-security.md) per informazioni su come compilare il resto della sezione **security**.
+Hello **metadati** è una descrizione del cluster protetto e può essere impostata in base all'impostazione. Hello **ClusterCredentialType** e **ServerCredentialType** determinare il tipo di hello di sicurezza che consente di implementare cluster hello e nodi hello. Possono essere impostati tooeither *X509* per una sicurezza basata sui certificati o *Windows* per una protezione basata su Azure Active Directory. Hello rest di hello **sicurezza** sezione si baserà sul tipo hello di sicurezza hello. Lettura [sicurezza basata sui certificati in un cluster autonomo](service-fabric-windows-cluster-x509-security.md) o [la sicurezza di Windows in un cluster autonomo](service-fabric-windows-cluster-windows-security.md) per informazioni su come toofill out hello rest di hello **sicurezza**sezione.
 
 <a id="nodetypes"></a>
 
 ### <a name="node-types"></a>Tipi di nodi
-La sezione **nodeTypes** descrive il tipo dei nodi del cluster. Per ogni cluster deve essere specificato almeno un tipo di nodo, come illustrato nel frammento riportato di seguito. 
+Hello **nodeTypes** sezione descrive il tipo di hello dei nodi di hello con il cluster. Come illustrato nel seguente frammento di hello, è necessario specificare il tipo di almeno un nodo per un cluster. 
 
     "nodeTypes": [{
         "name": "NodeType0",
@@ -140,20 +140,20 @@ La sezione **nodeTypes** descrive il tipo dei nodi del cluster. Per ogni cluster
         "isPrimary": true
     }]
 
-**name** è il nome descrittivo per questo tipo di nodo particolare. Per creare un nodo di questo tipo, assegnare il nome descrittivo alla variabile **nodeTypeRef** per tale nodo, come indicato [sopra](#clusternodes). Per ogni tipo di nodo, definire gli endpoint di connessione che verranno usati. È possibile scegliere qualsiasi numero di porta per gli endpoint di connessione, purché non entrino in conflitto con altri endpoint in questo cluster. In un cluster multinodo saranno presenti uno o più nodi primari (ad esempio **isPrimary** impostato su *true*), in base a [**reliabilityLevel**](#reliability). Per informazioni su **nodeTypes** e **reliabilityLevel** e per sapere quali sono i tipi di nodo primari e non primari, vedere [Considerazioni sulla pianificazione della capacità del cluster Service Fabric](service-fabric-cluster-capacity.md). 
+Hello **nome** hello nome descrittivo per questo tipo di nodo specifico. toocreate un nodo di questo tipo di nodo, assegnare il nome descrittivo di toohello **proprietà nodeTypeRef** variabile per il nodo, come indicato in [sopra](#clusternodes). Per ogni tipo di nodo, definire l'endpoint della connessione hello che verrà utilizzato. È possibile scegliere qualsiasi numero di porta per gli endpoint di connessione, purché non entrino in conflitto con altri endpoint in questo cluster. In un cluster a più nodi, saranno presenti uno o più nodi principali (ad esempio **isPrimary** impostare troppo*true*), a seconda di hello [ **reliabilityLevel** ](#reliability). Lettura [considerazioni sulla pianificazione della capacità di Service Fabric cluster](service-fabric-cluster-capacity.md) per informazioni su **nodeTypes** e **reliabilityLevel**, tooknow le primario e hello e tipi di nodo non primario. 
 
-#### <a name="endpoints-used-to-configure-the-node-types"></a>Endpoint usati per configurare i tipi di nodi
-* *clientConnectionEndpointPort* è la porta usata dal client per connettersi al cluster quando si usano le API del client. 
-* *clusterConnectionEndpointPort* è la porta in cui i nodi di comunicano tra loro.
-* *leaseDriverEndpointPort* è la porta usata dal driver di lease del cluster per scoprire se i nodi sono ancora attivi. 
-* *serviceConnectionEndpointPort* è la porta usata da applicazioni e servizi distribuiti in un nodo, per comunicare con il client di Service Fabric in quel determinato nodo.
-* *httpGatewayEndpointPort* è la porta usata da Service Fabric Explorer per connettersi al cluster.
-* Le porte *ephemeralPorts* eseguono l'override delle [porte dinamiche usate dal sistema operativo](https://support.microsoft.com/kb/929851). Service Fabric userà una parte di queste porte dell'applicazione, mentre le rimanenti saranno a disposizione del sistema operativo. Inoltre eseguirà il mapping di questo intervallo nell'intervallo presente nel sistema operativo, quindi per tutti gli scopi è possibile usare gli intervalli forniti nei file JSON campione. È necessario assicurarsi che la differenza tra la porta iniziale e la porta finale sia almeno 255. Questo intervallo è condiviso con il sistema operativo e possono quindi verificarsi dei conflitti se la differenza è troppo bassa. Per visualizzare l'intervallo di porte dinamiche configurato, eseguire il comando `netsh int ipv4 show dynamicport tcp`.
-* *applicationPorts* sono le porte che verranno usate dalle applicazioni di Service Fabric. L'intervallo di porte dell'applicazione deve essere abbastanza grande da soddisfare il requisito di endpoint delle applicazioni. Questo intervallo deve essere esclusivo dall'intervallo di porte dinamico del computer, ad esempio l'intervallo *ephemeralPorts* impostato nella configurazione.  Service Fabric le userà tutte le volte che servono nuove porte, inoltre si occuperà di aprire i relativi firewall. 
+#### <a name="endpoints-used-tooconfigure-hello-node-types"></a>Gli endpoint utilizzati tipi di nodo hello tooconfigure
+* *clientConnectionEndpointPort* hello porta utilizzato dal cluster toohello tooconnect di hello client, quando si utilizza l'API client hello. 
+* *clusterConnectionEndpointPort* hello porta in cui i nodi di hello comunicano tra loro.
+* *leaseDriverEndpointPort* hello porta utilizzata dal hello cluster lease driver toofind out se i nodi di hello sono ancora attivi. 
+* *serviceConnectionEndpointPort* è porta hello utilizzata dalle applicazioni hello e i servizi distribuiti in un nodo, toocommunicate con client di Service Fabric hello in quel determinato nodo.
+* *httpGatewayEndpointPort* hello porta utilizzato dal cluster toohello tooconnect di hello Service Fabric Explorer.
+* *ephemeralPorts* override hello [porte dinamiche utilizzate dal sistema operativo hello](https://support.microsoft.com/kb/929851). Service Fabric utilizzerà una parte di queste porte dell'applicazione e hello rimanenti saranno disponibili per hello del sistema operativo. Presente nel sistema operativo, hello questo intervallo toohello esistente intervallo eseguirà il mapping anche per tutti gli scopi, è possibile utilizzare intervalli hello dati nei file JSON di esempio hello. È necessario che la differenza hello tra inizio hello e porte finali hello sia almeno 255 toomake. Se questa differenza è troppo bassa, poiché questo intervallo è condiviso con sistema operativo hello, che potrebbero verificarsi conflitti. Visualizzare l'intervallo di porte dinamiche hello configurato eseguendo `netsh int ipv4 show dynamicport tcp`.
+* *applicationPorts* sono porte hello che verranno utilizzate dalle applicazioni di Service Fabric hello. intervallo di porte applicazione Hello deve essere sufficientemente grande toocover requisito di endpoint hello delle applicazioni. Questo intervallo deve essere esclusivo dall'intervallo di porte dinamiche hello computer hello, vale a dire hello *ephemeralPorts* intervallo come set di configurazione di hello.  Service Fabric utilizzeranno queste ogni volta che nuove porte sono necessari, nonché occuperà di apertura firewall hello per queste porte. 
 * *reverseProxyEndpointPort* è un endpoint proxy inverso facoltativo. Per altri dettagli vedere [Proxy inverso di Service Fabric](service-fabric-reverseproxy.md). 
 
 ### <a name="log-settings"></a>Impostazioni log
-La sezione **fabricSettings** consente di impostare le directory radice per i log e i dati di Service Fabric. È possibile personalizzarle solo durante la creazione del cluster iniziale. Per un frammento di esempio di questa sezione, vedere di seguito.
+Hello **fabricSettings** sezione consente di directory radice di hello tooset per dati di Service Fabric hello e di log. È possibile personalizzare queste solo durante la creazione iniziale del cluster hello. Per un frammento di esempio di questa sezione, vedere di seguito.
 
     "fabricSettings": [{
         "name": "Setup",
@@ -165,11 +165,11 @@ La sezione **fabricSettings** consente di impostare le directory radice per i lo
             "value": "C:\\ProgramData\\SF\\Log"
     }]
 
-Si consiglia di usare un'unità non del sistema operativo come FabricDataRoot e FabricLogRoot, poiché risulta più affidabile in caso di arresto anomalo del sistema operativo. Si noti che se si personalizza solo la radice dei dati, la radice del log verrà inserita un livello sotto la radice dei dati.
+È consigliabile usare un'unità non del sistema operativo come hello FabricDataRoot e FabricLogRoot poiché fornisce maggiore affidabilità rispetto degli arresti anomali del sistema operativo. Si noti che se si personalizza solo radice dei dati di hello, quindi radice log hello verrà inserito un livello inferiore radice dei dati hello.
 
 ### <a name="stateful-reliable-service-settings"></a>Impostazioni di Reliable Services con stato
-La sezione **KtlLogger** consente di impostare le impostazioni di configurazione globali per Reliable Services. Per altre informazioni su queste impostazioni leggere [Configurazione dei servizi Reliable Services con stato](service-fabric-reliable-services-configuration.md).
-L'esempio seguente illustra come modificare il log delle transazioni condiviso creato per eseguire il backup di eventuali raccolte affidabili per i servizi con stato.
+Hello **KtlLogger** sezione consente di impostazioni di configurazione globali hello tooset per servizi affidabili. Per altre informazioni su queste impostazioni leggere [Configurazione dei servizi Reliable Services con stato](service-fabric-reliable-services-configuration.md).
+esempio Hello riportato di seguito viene illustrata la toochange hello hello condiviso log delle transazioni che ottiene creazione tooback raccolte affidabile per i servizi con stati.
 
     "fabricSettings": [{
         "name": "KtlLogger",
@@ -180,7 +180,7 @@ L'esempio seguente illustra come modificare il log delle transazioni condiviso c
     }]
 
 ### <a name="add-on-features"></a>Funzionalità aggiuntive
-Per configurare le funzioni aggiuntive l'impostazione di apiVersion deve essere '04-2017' o versione successiva ed è necessario configurare addonFeatures:
+le funzioni aggiuntive tooconfigure, hello apiVersion deve essere configurato come ' 04-2017' o versione successiva e addonFeatures deve toobe configurato:
 
     "apiVersion": "04-2017",
     "properties": {
@@ -191,9 +191,9 @@ Per configurare le funzioni aggiuntive l'impostazione di apiVersion deve essere 
     }
 
 ### <a name="container-support"></a>Supporto dei contenitori
-Per abilitare il supporto dei contenitori sia per il contenitore di Windows Server che per il contenitore di Hyper-V per i cluster autonomi, deve essere attivata la funzionalità aggiuntiva 'DnsService'.
+supporto del contenitore tooenable per contenitore di windows server e il contenitore di hyper-v per i cluster autonomo, funzionalità di componente aggiuntivo 'DnsService' hello deve toobe abilitato.
 
 
 ## <a name="next-steps"></a>Passaggi successivi
-Dopo aver completato la configurazione di un file ClusterConfig.JSON in base alla configurazione del cluster autonomo, è possibile distribuire il cluster seguendo l'articolo [Creare un cluster di Service Fabric autonomo](service-fabric-cluster-creation-for-windows-server.md) e quindi proseguire per la [Visualizzazione del cluster con Service Fabric Explorer](service-fabric-visualizing-your-cluster.md).
+Dopo aver creato un file Clusterconfig completo configurato per l'installazione del cluster autonomo, è possibile distribuire il cluster dal seguente hello [creare un cluster di Service Fabric autonomo](service-fabric-cluster-creation-for-windows-server.md) e quindi procedere troppo[visualizzazione cluster con Service Fabric Explorer](service-fabric-visualizing-your-cluster.md).
 

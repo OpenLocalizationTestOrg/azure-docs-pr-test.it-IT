@@ -1,6 +1,6 @@
 ---
-title: Scollegare l'account di Automazione di Azure da Log Analytics | Documentazione Microsoft
-description: Questo articolo offre una panoramica su come scollegare l'account di Automazione di Azure da un'area di lavoro di OMS.
+title: account di automazione di Azure dal Log Analitica aaaUnlink | Documenti Microsoft
+description: In questo articolo viene fornita una panoramica di come toounlink account di automazione di Azure da un'area di lavoro OMS.
 services: automation
 documentationcenter: 
 author: mgoedtel
@@ -14,37 +14,37 @@ ms.devlang: na
 ms.topic: how-to-article
 ms.date: 02/07/2017
 ms.author: magoedte
-ms.openlocfilehash: 56b09c2cfc14813b5efcb364c580787fec1bf639
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3ec0745673f6a872538d33023a7a1d2bb1d18ec3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-unlink-your-automation-account-from-a-log-analytics-workspace"></a>Come scollegare l'account di automazione da un'area di lavoro di Log Analytics
+# <a name="how-toounlink-your-automation-account-from-a-log-analytics-workspace"></a>Come toounlink l'automazione dell'account da un'area di lavoro Log Analitica
 
-Automazione di Azure si integra con Log Analytics non solo per supportare il monitoraggio proattivo dei processi di runbook in tutti gli account di Automazione, ma l'integrazione è necessaria anche quando si importano le soluzioni seguenti che dipendono da Log Analytics:
+Automazione di Azure si integra con Log Analitica toonot solo supporto il monitoraggio proattivo dei processi di runbook in tutti gli account di automazione, ma è necessario anche quando si importa hello soluzioni che dipendono da Analitica Log seguenti:
 
 * [Gestione degli aggiornamenti](../operations-management-suite/oms-solution-update-management.md)
 * [Rilevamento delle modifiche](../log-analytics/log-analytics-change-tracking.md)
 * [Avviare/arrestare le VM durante gli orari di minore attività](automation-solution-vm-management.md)
  
-Se si decide che non si vuole più integrare l'account di Automazione con Log Analytics, è possibile scollegare l'account direttamente dal portale di Azure.  Prima di procedere, è necessario rimuovere le soluzioni menzionate in precedenza; in caso contrario non sarà possibile continuare con il processo.  Esaminare l'argomento relativo alla soluzione specifica importata per comprendere i passaggi necessari per la rimozione.  
+Se si decide di che non si desidera più toointegrate l'account di automazione con Log Analitica, è possibile scollegare l'account direttamente dal portale di Azure hello.  Prima di procedere, è necessario innanzitutto soluzioni hello tooremove indicate in precedenza, in caso contrario questo processo verrà impedito procedere.  Argomento hello revisione per una particolare soluzione hello sono stati importati i passaggi di hello toounderstand necessari tooremove è.  
 
-Dopo la rimozione di queste soluzioni è possibile eseguire i passaggi seguenti per scollegare l'account di automazione.
+Dopo la rimozione di queste soluzioni è possibile eseguire hello seguendo i passaggi toounlink l'account di automazione.
 
 ## <a name="unlink-workspace"></a>Unlink workspace (Scollega area di lavoro)
 
-1. Nel portale di Azure aprire l'account di Automazione e nel pannello Account di automazione selezionare **Unlink workspace** (Scollega area di lavoro) nel pannello dell'account.<br><br> ![Opzione Unlink workspace (Scollega area di lavoro)](media/automation-unlink-from-log-analytics/automation-unlink-workspace-option.png)<br><br>  
-2. Nel pannello Unlink workspace (Scollega area di lavoro) fare clic su **Unlink workspace (Scollega area di lavoro)**.<br><br> ![Pannello Unlink workspace (Scollega area di lavoro)](media/automation-unlink-from-log-analytics/automation-unlink-workspace-blade.png).<br><br>  Verrà richiesto di confermare l'operazione.<br><br>
-3. Mentre Automazione di Azure tenta di scollegare l'account dall'area di lavoro di Log Analytics, è possibile tenere traccia dello stato di avanzamento in **Notifiche** dal menu.
+1. Dal portale di Azure hello, aprire l'account di automazione e nel pannello account di automazione hello, nel Pannello di account hello, selezionare **scollegare l'area di lavoro**.<br><br> ![Opzione Unlink workspace (Scollega area di lavoro)](media/automation-unlink-from-log-analytics/automation-unlink-workspace-option.png)<br><br>  
+2. Nel pannello dell'area di lavoro di hello Scollega, fare clic su **scollegare l'area di lavoro di**.<br><br> ![Pannello Unlink workspace (Scollega area di lavoro)](media/automation-unlink-from-log-analytics/automation-unlink-workspace-blade.png).<br><br>  Si riceverà una richiesta di verifica per determinare se che si desidera tooproceed.<br><br>
+3. Durante l'automazione di Azure tenta account hello toounlink l'area di lavoro Log Analitica, è possibile monitorare lo stato di avanzamento hello in **notifiche** dal menu di hello.
 
-Se è stata usata la soluzione di gestione degli aggiornamenti, facoltativamente è consigliabile rimuovere gli elementi seguenti che non sono più necessari dopo la rimozione della soluzione.
+Se si utilizza di soluzione di gestione degli aggiornamenti di hello, facoltativamente, è consigliabile hello tooremove elementi che non sono più necessarie dopo la rimozione di soluzioni di hello.
 
-* Aggiornare le pianificazioni.  Ogni elemento avrà un nome corrispondente alle distribuzioni di aggiornamenti create.
+* Aggiornare le pianificazioni.  Ogni avranno nomi che corrispondono a distribuzioni di aggiornamenti hello creato)
 
-* Gruppi di ruoli di lavoro ibridi creati per la soluzione.  Ogni elemento verrà denominato in modo analogo a machine1.contoso.com_9ceb8108-26c9-4051-b6b3-227600d715c8.
+* Gruppi di lavoro ibridi creati per la soluzione hello.  Ogni verrà denominato in modo analogo troppo machine1.contoso.com_9ceb8108 - 26 c 9-4051-b6b3-227600d715c8).
 
-Se è stata usata la soluzione per avviare/arrestare VM durante gli orari di minore attività, facoltativamente è consigliabile rimuovere gli elementi seguenti che non sono più necessari dopo la rimozione della soluzione.
+Se è stata utilizzata durante la soluzione di orario di lavoro macchine virtuali di avvio/arresto hello, facoltativamente è hello tooremove elementi che non sono più necessarie dopo la rimozione di soluzioni di hello.
 
 * Avviare e arrestare le pianificazioni di runbook delle VM 
 * Avviare e arrestare i runbook delle VM
@@ -52,4 +52,4 @@ Se è stata usata la soluzione per avviare/arrestare VM durante gli orari di min
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Per riconfigurare l'account di Automazione per l'integrazione con Log Analytics di OMS, vedere [Inoltrare lo stato e i flussi del processo da Automazione a Log Analytics (OMS)](automation-manage-send-joblogs-log-analytics.md). 
+vedere il toointegrate di account di automazione con OMS Log Analitica, tooreconfigure [inoltra lo stato del processo e i flussi di lavoro da automazione tooLog Analitica (OMS)](automation-manage-send-joblogs-log-analytics.md). 

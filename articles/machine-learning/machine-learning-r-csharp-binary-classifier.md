@@ -1,5 +1,5 @@
 ---
-title: (Deprecato) Classificatore binario - Azure | Documentazione Microsoft
+title: AAA(deprecated) classificatore binario - Azure | Documenti Microsoft
 description: (Deprecato) Classificatore binario
 services: machine-learning
 documentationcenter: 
@@ -16,42 +16,42 @@ ms.date: 01/06/2017
 ms.author: jaymathe
 ROBOTS: NOINDEX
 redirect_url: https://gallery.cortanaintelligence.com/
-redirect_document_id: TRUE
-ms.openlocfilehash: 1a83392f90bb5a9fb183334c03ccec20dd3f3520
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+redirect_document_id: True
+ms.openlocfilehash: 0496fcec9952ca243270caf67f55fe191b2dc9f8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="deprecated-binary-classifier"></a>(Deprecato) Classificatore binario
 
 > [!NOTE]
-> Microsoft DataMarket è in fase di ritiro e questa API è stata deprecata. 
+> è stata ritirata Hello Microsoft DataMarket e questa API è stata deprecata. 
 > 
-> Numerose API e molti esperimenti utili di esempio sono disponibili in [Cortana Intelligence Gallery](http://gallery.cortanaintelligence.com). Per altre informazioni sulla raccolta, vedere [Condividere e scoprire risorse in Cortana Intelligence Gallery](machine-learning-gallery-how-to-use-contribute-publish.md).
+> Sono disponibili molte esperimenti di esempio utile e API hello [Cortana Intelligence Gallery](http://gallery.cortanaintelligence.com). Per ulteriori informazioni sulla raccolta hello, vedere [condivisione e individuare le risorse in Cortana Intelligence Gallery hello](machine-learning-gallery-how-to-use-contribute-publish.md).
 
-Si supponga che sia disponibile un set di dati e che si voglia prevedere una variabile dipendente binaria sulla base delle variabili indipendenti. La 'regressione logistica' è una tecnica statistica molto usata per queste previsioni. In questo caso la variabile dipendente è binaria o dicotomica e p è la probabilità della presenza della caratteristica di interesse. 
+Si supponga che si dispone di un set di dati e si desidera toopredict una binaria variabile dipendente in base alle variabili indipendenti hello. La 'regressione logistica' è una tecnica statistica molto usata per queste previsioni. Ecco variabile dipendente hello binario o dicotomiche e p è hello probabilità della presenza della caratteristica hello di interesse. 
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
-Un semplice scenario potrebbe essere costituito, ad esempio, da una situazione in cui il ricercatore tenta di prevedere la probabilità di accettazione dell'offerta di ammissione a un'università da parte di un potenziale studente sulla base delle informazioni disponibili (voti ottenuti durante il liceo, reddito familiare, residenza, genere). L'esito previsto corrisponde alla probabilità di accettazione dell'offerta di ammissione da parte di un potenziale studente. Questo [servizio Web](https://datamarket.azure.com/dataset/aml_labs/log_regression) è adatto al modello di regressione logistica per i dati e fornisce come output il valore di probabilità (y) di ogni osservazione nei dati.  
+Potrebbe essere un semplice scenario in cui ricercatori cercando toopredict se uno studente potenziale è probabilmente tooaccept un'università di tooa ammissione offerta in base alle informazioni (GPA scuole, reddito familiare, lo stato di residenza, sesso). risultato stimato Hello è probabilità hello studente hello potenziali accettazione hello ammissione offerta. Questo [servizio web](https://datamarket.azure.com/dataset/aml_labs/log_regression) adatto hello dati toohello del modello di regressione logistica e di output hello il valore di probabilità (y) per ognuna delle osservazioni hello nei dati hello.  
 
-> Questo servizio Web può essere utilizzato dagli utenti: potenzialmente tramite un'app mobile, un sito Web o anche in un computer locale, ad esempio. Ma lo scopo del servizio Web è anche fornire un esempio di come è possibile utilizzare Azure Machine Learning per creare servizi Web in codice R. Con poche righe di codice R e la selezione di alcuni pulsanti in Azure Machine Learning Studio è possibile creare un esperimento con codice R e pubblicarlo come servizio Web. Il servizio Web può essere quindi pubblicato in Azure Marketplace e può essere usato da utenti e dispositivi in tutto il mondo, senza che l'autore del servizio Web debba configurare alcuna infrastruttura.  
+> Questo servizio Web può essere utilizzato dagli utenti: potenzialmente tramite un'app mobile, un sito Web o anche in un computer locale, ad esempio. Ma scopo hello del servizio web hello anche tooserve come esempio di come Azure Machine Learning è possibile servizi web utilizzati toocreate su codice R. Con poche righe di codice R e la selezione di alcuni pulsanti in Azure Machine Learning Studio è possibile creare un esperimento con codice R e pubblicarlo come servizio Web. servizio web Hello può quindi essere pubblicata toohello Azure Marketplace e utilizzato da utenti e dispositivi attraverso HelloWorld con alcuna installazione dell'infrastruttura dall'autore hello del servizio web hello.  
 > 
 > 
 
 ## <a name="consumption-of-web-service"></a>Uso del servizio Web
-Questo servizio Web fornisce i valori previsti della variabile dipendente sulla base delle variabili indipendenti per tutte le osservazioni. Il servizio Web richiede che l'utente finale immetta i dati come una stringa in cui le righe sono separate da virgola (,) e le colonne sono separate da punto e virgola (;). Il servizio Web richiede una riga alla volta e che la prima colonna corrisponda alla variabile dipendente. Un set di dati di esempio può avere un aspetto analogo al seguente:
+I valori di variabile dipendente hello in base alle variabili indipendenti hello per tutte le osservazioni hello è stato stimato questo hello consente di servizio web. servizio web Hello dati tooinput utente finale di hello previsto è una stringa in cui le righe sono separate da virgola (,) e le colonne sono separate da punto e virgola (;). servizio web Hello prevista 1 riga alla volta e non prevede hello prima colonna toobe hello variabile dipendente. Un set di dati di esempio può avere un aspetto analogo al seguente:
 
 ![Dati di esempio][1]
 
-Osservazioni senza una variabile dipendente devono essere immesse come "NA" per l'asse y. L'input di dati per il set di dati precedente sarebbe analogo alla seguente stringa: “1;5;2,1;1;6,0;5.3;2.1,0;5;5,0;3;4,1;2;1,NA;3;4”. L'output è il valore previsto per ogni riga sulla base delle variabili indipendenti. 
+Osservazioni senza una variabile dipendente devono essere immesse come "NA" per l'asse y. Hello dati di input per hello di sopra di set di dati potrebbe essere hello seguente stringa: "1; 5; 2,1; 1; 6,0; 5.3; 2.1,0; 5; 5,0; 3; 4,1; 2, 1, NA; 3; 4". output di Hello hello valore stimato per ognuna delle righe hello si basa su variabili indipendenti hello. 
 
-> Questo servizio, come ospitato in Azure Marketplace, è un servizio OData ed è possibile utilizzare i metodi POST o GET per effettuare le chiamate. 
+> Questo servizio, ospitato in Azure Marketplace, hello è un servizio OData. questi può essere chiamati tramite i metodi POST o GET. 
 > 
 > 
 
-Sono disponibili molte opzioni per l'uso del servizio in modalità automatica. Per un'app di esempio, vedere [qui](http://microsoftazuremachinelearning.azurewebsites.net/BinaryClassifier.aspx).
+Esistono diversi modi di utilizzo di servizio hello in modo automatico (è un'app di esempio [qui](http://microsoftazuremachinelearning.azurewebsites.net/BinaryClassifier.aspx)).
 
 ### <a name="starting-c-code-for-web-service-consumption"></a>Codice C# iniziale per l'uso del servizio Web:
     public class Input
@@ -82,11 +82,11 @@ Sono disponibili molte opzioni per l'uso del servizio in modalità automatica. P
 
 
 ## <a name="creation-of-web-service"></a>Creazione del servizio Web
-> Questo servizio Web è stato creato tramite Azure Machine Learning. Per una versione di prova gratuita e per video introduttivi sulla creazione di esperimenti e sulla [pubblicazione di servizi Web](machine-learning-publish-a-machine-learning-web-service.md), vedere [azure.com/ml](http://azure.com/ml). La schermata seguente mostra un esperimento per la creazione del servizio Web e codice di esempio per ogni modulo incluso nell'esperimento.
+> Questo servizio Web è stato creato tramite Azure Machine Learning. Per una versione di prova gratuita e per video introduttivi sulla creazione di esperimenti e sulla [pubblicazione di servizi Web](machine-learning-publish-a-machine-learning-web-service.md), vedere [azure.com/ml](http://azure.com/ml). Di seguito è riportata una schermata dell'esperimento hello creato codice di esempio e servizio web hello per ciascuno dei moduli di hello all'interno di sperimentazione hello.
 > 
 > 
 
-In Azure Machine Learning è stato creato un nuovo esperimento vuoto e due moduli [Execute R Script][execute-r-script] sono stati inseriti nell'area di lavoro. Questo servizio Web esegue un esperimento di Azure Machine Learning con lo script R sottostante. Esistono 2 parti di questo esperimento: la definizione dello schema e il modello di training + punteggio. Il primo modulo definisce la struttura prevista del set di dati di input in cui la prima variabile è dipendente e le variabili rimanenti sono indipendenti. Il secondo modulo è appropriato per un modello di regressione logistica generico per i dati di input.    
+Da Azure Machine Learning, all'interno di un esperimento vuoto nuovo è stato creato e due [Execute R Script] [ execute-r-script] moduli estratta nell'area di lavoro hello. Questo servizio Web esegue un esperimento di Azure Machine Learning con lo script R sottostante. Esistono sperimentare toothis 2 part: definizione di schema e di training del modello di + punteggio. primo modulo Hello definisce struttura hello previsto di hello input set di dati, in cui hello prima variabile è variabile dipendente hello e variabili rimanenti hello sono indipendenti. secondo modulo Hello adatta un modello di regressione logistica generico per i dati di input hello.    
 
 ![Flusso dell'esperimento][2]
 
@@ -120,10 +120,10 @@ In Azure Machine Learning è stato creato un nuovo esperimento vuoto e due modul
 
 
 ## <a name="limitations"></a>Limitazioni
-Questo è un esempio molto semplice del servizio Web per la classificazione binaria. Come si può notare nell'esempio di codice precedente, il rilevamento degli errori non è implementato e il servizio presuppone che qualsiasi elemento sia una variabile binaria/continua (non sono consentite funzionalità categoriche), poiché il servizio immette come input solo valori numerici al momento della creazione del servizio Web. Il servizio, inoltre, gestisce attualmente dimensioni limitate di dati a causa della natura di richiesta/risposta della chiamata del servizio Web e del fatto che il modello viene definito ogni volta che il servizio Web viene chiamato. 
+Questo è un esempio molto semplice del servizio Web per la classificazione binaria. Nessun rilevamento di errori viene implementato come possono essere visualizzati dal codice di esempio hello sopra riportato, e servizio hello presuppone che tutto ciò che è una variabile continua o binary (nessuna funzionalità categorica consentita), come hello servizio solo input valori numerici in fase di hello della creazione di hello di questo servizio Web. Inoltre, hello servizio gestisce attualmente le dimensioni dei dati limitato, a causa di natura di richiesta/risposta toohello del servizio web hello si adatta chiamata e hello delle tabelle dei fatti che hello modello ogni volta che viene chiamato servizio web hello. 
 
-## <a name="faq"></a>Domande frequenti
-Per le domande frequenti relative all'uso del servizio Web o alla pubblicazione in Azure Marketplace, vedere [qui](machine-learning-marketplace-faq.md).
+## <a name="faq"></a>domande frequenti
+Per domande frequenti sull'utilizzo del servizio web hello o pubblicazione toohello Azure Marketplace, vedere [qui](machine-learning-marketplace-faq.md).
 
 [1]: ./media/machine-learning-r-csharp-binary-classifier/binary1.png
 [2]: ./media/machine-learning-r-csharp-binary-classifier/binary2.png

@@ -1,6 +1,6 @@
 ---
-title: Gestire le risorse con l'interfaccia della riga di comando di Azure | Documentazione Microsoft
-description: Usare l'interfaccia della riga di comando di Azure per gestire le risorse e i gruppi di Azure
+title: risorse aaaManage con hello CLI di Azure | Documenti Microsoft
+description: Utilizzare hello Azure interfaccia della riga di comando (CLI) toomanage Azure risorse e dei gruppi
 editor: 
 manager: timlt
 documentationcenter: 
@@ -14,13 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/22/2016
 ms.author: tomfitz
-ms.openlocfilehash: 3ad4e68b90979fd7f9d3ddf5278e65e19cb07152
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3df70e123d14d3bbf2648c71970bac1db4afc025
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-the-azure-cli-to-manage-azure-resources-and-resource-groups"></a>Usare l'interfaccia della riga di comando di Azure per gestire risorse e gruppi di risorse
+# <a name="use-hello-azure-cli-toomanage-azure-resources-and-resource-groups"></a>Utilizzare toomanage CLI di Azure hello Azure le risorse e gruppi di risorse
 > [!div class="op_single_selector"]
 > * [Portale](resource-group-portal.md) 
 > * [Interfaccia della riga di comando di Azure](xplat-cli-azure-resource-manager.md)
@@ -29,42 +29,42 @@ ms.lasthandoff: 07/11/2017
 > 
 > 
 
-L'interfaccia della riga di comando di Azure è uno degli strumenti che è possibile usare per distribuire e gestire le risorse con Resource Manager. Questo articolo illustra i metodi comuni per gestire risorse e gruppi di risorse di Azure usando l'interfaccia della riga di comando di Azure in modalità Resource Manager. Per informazioni sull'uso dell'interfaccia della riga di comando per distribuire le risorse, vedere [Distribuire le risorse con i modelli di Azure Resource Manager e l'interfaccia della riga di comando di Azure](resource-group-template-deploy-cli.md). Per informazioni sulle risorse di Azure e su Resource Manager, vedere [Panoramica di Azure Resource Manager](resource-group-overview.md).
+Hello interfaccia della riga di comando di Azure (Azure CLI) è uno dei vari strumenti è possibile utilizzare toodeploy e gestire le risorse con Gestione risorse. Questo articolo descrive toomanage modi comuni Azure le risorse e gruppi di risorse utilizzando hello CLI di Azure in modalità di gestione risorse. Per informazioni sull'utilizzo delle risorse di toodeploy hello CLI, vedere [distribuire le risorse con i modelli di gestione risorse e CLI di Azure](resource-group-template-deploy-cli.md). Per informazioni generali sulle risorse di Azure e Gestione risorse, visitare hello [Panoramica di gestione risorse di Azure](resource-group-overview.md).
 
 > [!NOTE]
-> Per gestire le risorse di Azure con l'interfaccia della riga di comando di Azure, è necessario [installare l'interfaccia della riga di comando di Azure](../cli-install-nodejs.md) e [accedere ad Azure](../xplat-cli-connect.md) usando il comando `azure login`. Verificare che l'interfaccia della riga di comando sia in modalità Resource Manager eseguendo `azure config mode arm`. Se queste operazioni sono già state eseguite, si è pronti per proseguire.
+> toomanage Azure le risorse con hello CLI di Azure, è necessario troppo[installare hello Azure CLI](../cli-install-nodejs.md), e [Accedi tooAzure](../xplat-cli-connect.md) utilizzando hello `azure login` comando. Assicurarsi hello che CLI è in modalità di gestione risorse (eseguire `azure config mode arm`). Se aver eseguito queste operazioni, è possibile toogo pronto.
 > 
 > 
 
 ## <a name="get-resource-groups-and-resources"></a>Ottenere le risorse e i gruppi di risorse
 ### <a name="resource-groups"></a>Gruppi di risorse
-Per ottenere un elenco di tutti i gruppi di risorse della sottoscrizione e delle rispettive posizioni, eseguire questo comando.
+tooget un elenco di tutti i gruppi di risorse nella sottoscrizione e i relativi percorsi, eseguire questo comando.
 
     azure group list
 
 
 ### <a name="resources"></a>Risorse
- Per elencare tutte le risorse in un gruppo, ad esempio nel gruppo con nome *testRG*, usare il comando seguente:
+ nome di tutte le risorse in un gruppo, ad esempio un oggetto con toolist *testRG*, utilizzare hello comando seguente:
 
     azure resource list testRG
 
-Per visualizzare una singola risorsa nel gruppo, ad esempio una VM denominata *MyUbuntuVM*, usare un comando come il seguente:
+una singola risorsa all'interno di un gruppo di hello, ad esempio una macchina virtuale denominata tooview *MyUbuntuVM*, utilizzare un comando simile hello seguente:
 
     azure resource show testRG MyUbuntuVM Microsoft.Compute/virtualMachines -o "2015-06-15"
 
-Notare il parametro **Microsoft.Compute/virtualMachines**. Questo parametro indica il tipo di risorsa per il quale si stanno richiedendo informazioni.
+Hello preavviso **Microsoft.Compute/virtualMachines** parametro. Questo parametro indica il tipo di hello della risorsa hello su che si siano richiedendo informazioni.
 
 > [!NOTE]
-> Quando si usano i comandi **azure resource**, a eccezione di **list**, è necessario specificare la versione dell'API della risorsa con il parametro **-o**. Se non si è certi della versione dell'API, consultare il file modello e trovare il campo apiVersion relativo alla risorsa. Per altre informazioni sulle versioni dell'API in Resource Manager, vedere [Provider e tipi di risorse](resource-manager-supported-services.md).
+> Quando si utilizza hello **risorse di azure** comandi diversi dai hello **elenco** comando, è necessario specificare una versione di hello API di risorsa hello con hello **-o** parametro. In caso di dubbi sulla versione di hello API, consultare il file di modello hello e trovare il campo apiVersion hello per risorse hello. Per altre informazioni sulle versioni dell'API in Resource Manager, vedere [Provider e tipi di risorse](resource-manager-supported-services.md).
 > 
 > 
 
-Quando si visualizzano i dettagli su una risorsa, è spesso utile utilizzare il parametro`--json`. Questo parametro rende l'output più leggibile perché alcuni valori sono strutture annidate o raccolte. L'esempio seguente illustra come restituire i risultati del comando **show** come un documento JSON.
+Quando si visualizzano i dettagli su una risorsa, è spesso utile toouse hello `--json` parametro. Questo parametro consente di hello output più leggibile, perché alcuni valori sono strutture annidate o raccolte. esempio Hello illustra la restituzione di risultati hello di hello **Mostra** comando come un documento JSON.
 
     azure resource show testRG MyUbuntuVM Microsoft.Compute/virtualMachines -o "2015-06-15" --json
 
 > [!NOTE]
-> Se necessario, salvare i dati JSON nel file usando il carattere &gt; per indirizzare l'output a un file. Ad esempio:
+> Se si desidera, salvare hello JSON dati toofile tramite hello &gt; tooa di output di caratteri toodirect hello. ad esempio:
 > 
 > `azure resource show testRG MyUbuntuVM Microsoft.Compute/virtualMachines -o "2015-06-15" --json > myfile.json`
 > 
@@ -74,24 +74,24 @@ Quando si visualizzano i dettagli su una risorsa, è spesso utile utilizzare il 
 [!INCLUDE [resource-manager-tag-resources-cli](../../includes/resource-manager-tag-resources-cli.md)]
 
 ## <a name="manage-resources"></a>Gestire risorse
-Per aggiungere una risorsa, ad esempio un account di archiviazione, a un gruppo di risorse, eseguire un comando simile a:
+tooadd una risorsa, ad esempio un gruppo di risorse tooa account di archiviazione, eseguire un comando simile a:
 
     azure resource create testRG MyStorageAccount "Microsoft.Storage/storageAccounts" "westus" -o "2015-06-15" -p "{\"accountType\": \"Standard_LRS\"}"
 
-Oltre a specificare la versione dell'API della risorsa con il parametro **-o**, usare il parametro **-p** per passare una stringa in formato JSON con le proprietà obbligatorie o aggiuntive.
+Inoltre toospecifying hello versione dell'API di risorsa hello con hello **-o** parametro, utilizzare hello **-p** toopass JSON in formato stringa del parametro con le necessarie o proprietà aggiuntive.
 
-Per eliminare una risorsa esistente, ad esempio una macchina virtuale, usare un comando simile al seguente:
+toodelete una risorsa esistente, ad esempio una risorsa di macchina virtuale, utilizzare un comando simile hello seguente:
 
     azure resource delete testRG MyUbuntuVM Microsoft.Compute/virtualMachines -o "2015-06-15"
 
-Per spostare le risorse esistenti in un gruppo di risorse o una sottoscrizione diversa, usare il comando **azure resource move** . Il seguente esempio illustra come spostare una cache Redis in un nuovo gruppo di risorse. Nel parametro **-i** , fornire un elenco delimitato da virgole di id di risorsa da spostare.
+esistente toomove gruppo di risorse tooanother risorse o una sottoscrizione, utilizzare hello **dello spostamento delle risorse azure** comando. Hello seguente esempio viene illustrato come toomove Cache Redis tooa nuovo gruppo di risorse. In hello **-i** parametro, fornire un elenco delimitato da virgole di toomove dell'id di risorsa hello.
 
     azure resource move -i "/subscriptions/{guid}/resourceGroups/OldRG/providers/Microsoft.Cache/Redis/examplecache" -d "NewRG"
 
-## <a name="control-access-to-resources"></a>Controllare l'accesso alle risorse
-È possibile usare l'interfaccia della riga di comando di Azure per creare e gestire i criteri per controllare l'accesso alle risorse di Azure. Per informazioni sulle definizioni dei criteri e sull'assegnazione di criteri alle risorse, vedere [Usare i criteri per gestire le risorse e controllare l'accesso](resource-manager-policy.md).
+## <a name="control-access-tooresources"></a>Controllo accesso tooresources
+È possibile utilizzare hello Azure CLI toocreate e gestire criteri toocontrol accedere tooAzure alle risorse. Per informazioni generali sulle definizioni dei criteri e tooresources l'assegnazione di criteri, vedere [utilizzare criteri toomanage risorse e controllare l'accesso](resource-manager-policy.md).
 
-Ad esempio, definire i criteri seguenti per rifiutare tutte le richieste in cui la località non è Stati Uniti occidentali o Stati Uniti centro-settentrionali e salvarli nel file di definizione dei criteri policy.json:
+Ad esempio, definire hello seguente criteri toodeny tutte le richieste in cui si non trova Stati Uniti occidentali o North Central US e salvarlo toohello criteri definizione file policy.json:
 
     {
     "if" : {
@@ -105,50 +105,50 @@ Ad esempio, definire i criteri seguenti per rifiutare tutte le richieste in cui 
     }
     }
 
-Eseguire quindi il comando **policy definition create**:
+Eseguire quindi hello **creare una definizione di criteri** comando:
 
     azure policy definition create MyPolicy -p c:\temp\policy.json
 
-Questo comando ha un output simile al seguente:
+Questo comando Mostra il seguente toohello simili di output:
 
     + Creating policy definition MyPolicy data:    PolicyName:             MyPolicy data:    PolicyDefinitionId:     /subscriptions/########-####-####-####-############/providers/Microsoft.Authorization/policyDefinitions/MyPolicy
 
     data:    PolicyType:             Custom data:    DisplayName:            undefined data:    Description:            undefined data:    PolicyRule:             field=location, in=[westus, northcentralus], effect=deny
 
- Per assegnare un criterio nell'ambito desiderato, usare il valore di **PolicyDefinitionId** restituito dal comando precedente. Nell'esempio seguente, questo ambito è la sottoscrizione, ma è possibile impostare come ambito gruppi di risorse o singole risorse:
+ un criterio nell'ambito di hello desiderato, utilizzare hello tooassign **PolicyDefinitionId** restituito dal comando precedente hello. Nell'esempio seguente di hello, questo ambito è sottoscrizione hello, ma è possibile definire l'ambito tooresource gruppi o singole risorse:
 
     azure policy assignment create MyPolicyAssignment -p /subscriptions/########-####-####-####-############/providers/Microsoft.Authorization/policyDefinitions/MyPolicy -s /subscriptions/########-####-####-####-############/
 
-È possibile ottenere, modificare o rimuovere le definizioni dei criteri usando i comandi **policy definition show**, **policy definition set** e **policy definition delete**.
+È possibile ottenere, modificare o rimuovere le definizioni dei criteri utilizzando hello **Mostra definizione criteri**, **set di definizione dei criteri**, e **definizione dei criteri di eliminazione** comandi.
 
-Analogamente, è possibile ottenere, modificare o rimuovere le assegnazioni dei criteri usando i comandi **policy assignment show**, **policy assignment set** e **policy assignment delete**.
+Allo stesso modo, è possibile ottenere, modificare o rimuovere le assegnazioni di criteri con hello **Mostra assegnazione criteri**, **set assegnazione criteri**, e **eliminare l'assegnazione dei criteri** comandi .
 
 ## <a name="export-a-resource-group-as-a-template"></a>Esportare un gruppo di risorse come modello
-È possibile visualizzare il modello di Resource Manager per un gruppo di risorse esistente. L'esportazione del modello offre due vantaggi:
+Per un gruppo di risorse esistente, è possibile visualizzare il modello di gestione risorse hello per il gruppo di risorse hello. Esportazione modello hello offre due vantaggi:
 
-1. È possibile automatizzare le distribuzioni future della soluzione, perché tutti gli elementi dell'infrastruttura sono definiti nel modello.
-2. Per acquisire familiarità con la sintassi del modello, esaminare il codice JSON che rappresenta la soluzione.
+1. È possibile automatizzare facilmente le distribuzioni future di soluzione hello perché tutta l'infrastruttura hello è definito nel modello di hello.
+2. È possibile acquisire familiarità con la sintassi dei modelli esaminando hello JSON che rappresenta la soluzione.
 
-Usando l'interfaccia della riga di comando di Azure, è possibile esportare un modello che rappresenta lo stato corrente del gruppo di risorse oppure scaricare il modello usato per una distribuzione specifica.
+Utilizza hello CLI di Azure, è possibile esportare un modello che rappresenta lo stato corrente di hello del gruppo di risorse, o scaricare il modello di hello che è stato utilizzato per una particolare distribuzione.
 
-* **Esportare il modello per un gruppo di risorse**: questa operazione è utile quando sono state apportate modifiche a un gruppo di risorse ed è necessario recuperare la rappresentazione JSON del rispettivo stato corrente. Il modello generato, tuttavia, contiene solo un numero minimo di parametri e nessuna variabile. La maggior parte dei valori del modello è hardcoded. Prima di distribuire il modello generato, è possibile che si voglia convertire altri valori in parametri, per potere personalizzare la distribuzione per diversi ambienti.
+* **Esportare il modello di hello per un gruppo di risorse** -ciò risulta utile quando il gruppo di risorse tooa le modifiche apportate e necessario tooretrieve hello rappresentazione JSON del relativo stato corrente. Modello generato hello contiene tuttavia solo un numero minimo di parametri e non variabili. La maggior parte dei valori hello hello modello sono hardcoded. Prima di distribuire il modello di hello generato, è preferibile tooconvert più valori hello nei parametri in modo da personalizzare la distribuzione di hello per ambienti diversi.
   
-    Per esportare il modello per un gruppo di risorse in una directory locale, eseguire il comando `azure group export`, come illustrato nell'esempio seguente. Usare una directory locale appropriata per l'ambiente del sistema operativo in uso.
+    modello di hello tooexport per una risorsa gruppo tooa directory locale, eseguire hello `azure group export` comando come illustrato nell'esempio seguente hello. Usare una directory locale appropriata per l'ambiente del sistema operativo in uso.
   
         azure group export testRG ~/azure/templates/
-* **Scaricare il modello per una distribuzione specifica**: questa operazione è utile quando è necessario visualizzare il modello effettivo usato per distribuire le risorse. Il modello include tutte le variabili e tutti i parametri definiti per la distribuzione originale. Se, tuttavia, un utente dell'organizzazione ha modificato il gruppo di risorse in modo diverso dalla definizione nel modello, questo modello non rappresenta lo stato corrente del gruppo di risorse.
+* **Scaricare il modello di hello per una particolare distribuzione** -questo è utile quando è necessario tooview hello modello effettivo che è stato utilizzato toodeploy risorse. modello di Hello include tutti i parametri e variabili definite per la distribuzione originale hello. Tuttavia, se un utente nell'organizzazione apportate gruppo di risorse toohello le modifiche apportate all'esterno di definizione hello nel modello di hello, questo modello non rappresenta lo stato corrente di hello hello del gruppo di risorse.
   
-    Per scaricare in una directory locale il modello usato per una distribuzione specifica, eseguire il comando `azure group deployment template download`. ad esempio:
+    modello di hello toodownload utilizzato per una particolare tooa locale directory di distribuzione, eseguire hello `azure group deployment template download` comando. ad esempio:
   
         azure group deployment template download TestRG testRGDeploy ~/azure/templates/downloads/
 
 > [!NOTE]
-> La funzionalità di esportazione del modello è disponibile in anteprima e non tutti i tipi di risorse supportano attualmente l'esportazione di un modello. Quando si prova a esportare un modello, è possibile che venga visualizzato un errore che indica che alcune risorse non sono state esportate. Se necessario, definire manualmente queste risorse nel modello dopo averlo scaricato.
+> La funzionalità di esportazione del modello è disponibile in anteprima e non tutti i tipi di risorse supportano attualmente l'esportazione di un modello. Durante il tentativo di tooexport un modello, si verifichi un errore che indica che alcune risorse non sono state esportate. Se necessario, definire manualmente queste risorse nel modello dopo averlo scaricato.
 > 
 > 
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Per ottenere i dettagli delle operazioni di distribuzione e risolvere i problemi relativi agli errori di distribuzione con l'interfaccia della riga di comando di Azure, vedere [View deployment operations](resource-manager-deployment-operations.md) (Visualizzare le operazioni di distribuzione).
-* Per usare l'interfaccia della riga di comando per configurare un'applicazione o uno script per accedere alle risorse, vedere [Usare l'interfaccia della riga di comando di Azure per creare un'entità servizio per accedere alle risorse](resource-group-authenticate-service-principal-cli.md).
-* Per indicazioni su come le aziende possono usare Resource Manager per gestire efficacemente le sottoscrizioni, vedere [Azure enterprise scaffold - prescriptive subscription governance](resource-manager-subscription-governance.md) (Scaffolding aziendale Azure - Governance prescrittiva per le sottoscrizioni).
+* Dettagli tooget delle operazioni di distribuzione e risolvere gli errori di distribuzione con hello CLI di Azure, vedere [per visualizzare le operazioni di distribuzione](resource-manager-deployment-operations.md).
+* Se si desidera toouse hello CLI tooset risorse tooaccess script o da un'applicazione, vedere [toocreate CLI di Azure di utilizzare un'entità servizio tooaccess risorse](resource-group-authenticate-service-principal-cli.md).
+* Per istruzioni su come le aziende possono usare tooeffectively Gestione risorse di gestione di sottoscrizioni, vedere [lo scaffolding di Azure enterprise - governance sottoscrizione rigorosa](resource-manager-subscription-governance.md).
 

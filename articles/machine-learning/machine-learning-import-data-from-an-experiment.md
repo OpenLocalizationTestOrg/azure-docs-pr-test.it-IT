@@ -1,6 +1,6 @@
 ---
-title: Importare i dati in Azure Machine Learning Studio da un altro esperimento | Microsoft Docs
-description: Come salvare i dati di training in Azure Machine Learning Studio e utilizzarli in un altro esperimento.
+title: aaaImport dati da un altro esperimento di Machine Learning Studio | Documenti Microsoft
+description: Come dati di training toosave in Azure Machine Learning Studio e utilizzarlo in un altro esperimento.
 keywords: dati di importazione, dati,origini dati,dati di training
 services: machine-learning
 documentationcenter: 
@@ -15,21 +15,21 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/20/2017
 ms.author: garye;bradsev
-ms.openlocfilehash: ecfa2110d0d51511ceb5bd07b730732ecfa2e9e0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ca085149ed23c219a791ce09ac48dafeb807cb88
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="import-your-data-into-azure-machine-learning-studio-from-another-experiment"></a>Importare i dati in Azure Machine Learning Studio da un altro esperimento
 [!INCLUDE [import-data-into-aml-studio-selector](../../includes/machine-learning-import-data-into-aml-studio.md)]
 
-Talvolta si vuole ottenere un risultato intermedio da un esperimento e usare tale risultato come parte di un altro esperimento. A tale scopo, si salva il modulo come un set di dati:
+Verrà ora si sarà desidera tootake un risultato intermedio da un esperimento e utilizzarlo come parte di un altro esperimento. toodo, si salva il modulo hello come un set di dati:
 
-1. Fare clic sull'output del modulo da salvare come set di dati.
+1. Fare clic su output di hello del modulo hello che si desidera toosave come set di dati.
 2. Fare clic su **Salva come set di dati**.
-3. Quando richiesto, immettere un nome e una descrizione che consentiranno di identificare facilmente il set di dati.
-4. Fare clic sul segno di spunta **OK** .
+3. Quando richiesto, immettere un nome e una descrizione che consenta di tooidentify hello set di dati con facilità.
+4. Fare clic su hello **OK** segno di spunta.
 
-Al termine del salvataggio, il set di dati sarà disponibile per l'uso in qualsiasi esperimento dell'area di lavoro. È possibile individuarlo nell’elenco **Set di dati salvati** nella tavolozza dei moduli.
+Quando hello Salva al termine, hello set di dati saranno disponibili per l'utilizzo all'interno di un esperimento nell'area di lavoro. È possibile trovarlo in hello **Saved Datasets** elenco tavolozza modulo hello.
 

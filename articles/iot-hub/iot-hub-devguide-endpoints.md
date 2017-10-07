@@ -1,5 +1,5 @@
 ---
-title: Conoscere gli endpoint di Azure IoT Hub | Documentazione Microsoft
+title: gli endpoint IoT Hub Azure aaaUnderstand | Documenti Microsoft
 description: 'Guida per gli sviluppatori: informazioni di riferimento sugli endpoint dell''hub IoT per dispositivi e per servizi.'
 services: iot-hub
 documentationcenter: .net
@@ -14,80 +14,80 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/08/2017
 ms.author: dobett
-ms.openlocfilehash: 93ada731fe70cf7d294537241f8104c0b89940ed
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 8647f15d2f2a050ad5799ea82f4d2d46db0dbec1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="reference---iot-hub-endpoints"></a>Informazioni di riferimento - Endpoint dell'hub IoT
 
 ## <a name="iot-hub-names"></a>Nomi dell'hub IoT
 
-È possibile trovare il nome dell'hub IoT che ospita gli endpoint nel portale sul pannello **Panoramica**. Per impostazione predefinita, il nome DNS di un hub IoT è simile al seguente: `{your iot hub name}.azure-devices.net`.
+È possibile trovare il nome di hello dell'hub IoT hello che ospita l'endpoint nel portale di hello su hello **Panoramica** blade. Per impostazione predefinita, il nome DNS hello di un hub IoT è simile: `{your iot hub name}.azure-devices.net`.
 
-È possibile usare il DNS di Azure per creare un nome DNS personalizzato per l'hub IoT. Per altre informazioni, vedere [Usare il servizio DNS di Azure per specificare impostazioni di dominio personalizzate per un servizio di Azure](../dns/dns-custom-domain.md#azure-iot).
+È possibile usare DNS di Azure toocreate un nome DNS personalizzato per l'hub IoT. Per ulteriori informazioni, vedere [le impostazioni di DNS di Azure usare tooprovide dominio personalizzato per un servizio di Azure](../dns/dns-custom-domain.md#azure-iot).
 
 ## <a name="list-of-built-in-iot-hub-endpoints"></a>Elenco di endpoint dell'hub IoT incorporati
 
-L'hub IoT di Azure è un servizio multi-tenant che espone le proprie funzionalità a diversi attori. Il diagramma seguente mostra i vari endpoint esposti dall'hub IoT.
+IoT Hub Azure è un servizio multi-tenant che espone gli attori toovarious relative funzionalità. Hello diagramma seguente mostra hello vari endpoint che espone l'IoT Hub.
 
 ![Endpoint hub IoT][img-endpoints]
 
-L'elenco seguente offre una descrizione degli endpoint:
+Hello seguente elenco descrive gli endpoint hello:
 
-* **Provider di risorse**. Il provider di risorse dell'hub IoT espone un'interfaccia [Azure Resource Manager][lnk-arm]. Questa interfaccia consente ai proprietari della sottoscrizione di Azure di creare ed eliminare gli hub IoT, nonché di aggiornare le proprietà degli hub IoT. Le proprietà dell'hub IoT disciplinano i [criteri di sicurezza a livello di hub][lnk-accesscontrol], in contrasto con il controllo di accesso a livello di dispositivo, e le opzioni funzionali per la messaggistica da cloud a dispositivo e da dispositivo a cloud. Il provider di risorse dell'hub IoT consente anche di [esportare le identità dei dispositivi][lnk-importexport].
-* **Gestione delle identità dei dispositivi**. Ogni hub IoT espone un set di endpoint REST HTTP per gestire le identità dei dispositivi (per operazioni di creazione, recupero, aggiornamento ed eliminazione). Le [identità dei dispositivi][lnk-device-identities] vengono usate per l'autenticazione dei dispositivi e il controllo di accesso.
-* **Gestione dei dispositivi gemelli**. Ogni hub IoT espone un set di endpoint HTTP REST orientati ai servizi per eseguire query e aggiornare [dispositivi gemelli][lnk-twins] (aggiornare tag e proprietà).
-* **Gestione dei processi**. Ogni hub IoT espone un set di endpoint HTTP REST orientati ai servizi per eseguire query e gestire i [processi][lnk-jobs].
-* **Endpoint del dispositivo**. Per ogni dispositivo nel registro delle identità, l'hub IoT espone un set di endpoint:
+* **Provider di risorse**. espone Hello provider di risorse IoT Hub un [Azure Resource Manager] [ lnk-arm] interfaccia. Questa interfaccia consente toocreate proprietari di sottoscrizione di Azure ed eliminare hub IoT e le proprietà di hub IoT tooupdate. Proprietà IoT Hub regolano [criteri di sicurezza a livello di hub][lnk-accesscontrol], anziché il controllo di accesso a livello di toodevice e funzionale opzioni per la messaggistica cloud a dispositivo e da dispositivo a cloud. Hello provider di risorse IoT Hub consente inoltre troppo[esportare le identità del dispositivo][lnk-importexport].
+* **Gestione delle identità dei dispositivi**. Ogni hub IoT espone un set di identità di dispositivi toomanage endpoint HTTP REST (creare, recuperare, aggiornare ed eliminare). Le [identità dei dispositivi][lnk-device-identities] vengono usate per l'autenticazione dei dispositivi e il controllo di accesso.
+* **Gestione dei dispositivi gemelli**. Ogni hub IoT espone un set di servizi orientati tooquery endpoint HTTP REST e aggiornamento [gemelli dispositivo] [ lnk-twins] (aggiornamento proprietà e i tag).
+* **Gestione dei processi**. Ogni hub IoT espone un set di tooquery di endpoint HTTP REST orientati ai servizi e gestire [processi][lnk-jobs].
+* **Endpoint del dispositivo**. Per ogni dispositivo nel Registro di sistema di hello identità, l'IoT Hub espone un set di endpoint:
 
-  * *Invio di messaggi da dispositivo a cloud*. Un dispositivo uso questo endpoint per [inviare messaggi da dispositivo a cloud][lnk-d2c].
-  * *Ricezione di messaggi da cloud a dispositivo*. Il dispositivo usa questo endpoint per ricevere [messaggi da cloud a dispositivo][lnk-c2d] specifici.
-  * *Avvio di caricamenti di file*. Il dispositivo usa questo endpoint per ricevere un URI di firma di accesso condiviso di Archiviazione di Azure dall'hub IoT per il [caricamento di un file][lnk-upload].
-  * *Recuperare e aggiornare le proprietà dei dispositivi gemelli*. Un dispositivo usa questo endpoint per accedere alle relative proprietà del [dispositivo gemello][lnk-twins].
-  * *Ricezione di richieste di metodi diretti*. Un dispositivo usa questo endpoint per ascoltare le richieste di [metodi diretti][lnk-methods].
+  * *Invio di messaggi da dispositivo a cloud*. Un dispositivo utilizza questo endpoint troppo[inviare messaggi da dispositivo a cloud][lnk-d2c].
+  * *Ricezione di messaggi da cloud a dispositivo*. Un dispositivo Usa questo tooreceive endpoint di destinazione [messaggi da cloud a dispositivo][lnk-c2d].
+  * *Avvio di caricamenti di file*. Un dispositivo Usa questo tooreceive endpoint un URI di firma di accesso condiviso di archiviazione di Azure dall'IoT Hub troppo[caricare un file][lnk-upload].
+  * *Recuperare e aggiornare le proprietà dei dispositivi gemelli*. Un dispositivo Usa questo tooaccess endpoint relativo [doppi dispositivo][lnk-twins]della proprietà.
+  * *Ricezione di richieste di metodi diretti*. Un dispositivo Usa questo toolisten endpoint per [metodo diretto][lnk-methods]di richieste.
 
     Questi endpoint vengono esposti con i protocolli [MQTT v3.1.1][lnk-mqtt], HTTP 1.1 e [AMQP 1.0][lnk-amqp]. AMQP è disponibile anche su [WebSocket][lnk-websockets] sulla porta 443.
 
-    Gli endpoint di dispositivi gemelli e metodi sono disponibili solo quando si usa il protocollo [MQTT v3.1.1][lnk-mqtt].
+    Hello dispositivo gemelli e i metodi sono disponibili endpoint solo quando si utilizza hello [MQTT v3.1.1] [ lnk-mqtt] protocollo.
 
-* **Endpoint di servizio**. Ogni hub IoT espone un set di endpoint per il back-end della soluzione per comunicare con i dispositivi. Con una eccezione, questi endpoint sono esposti solo tramite il protocollo [AMQP][lnk-amqp]. Tramite il protocollo HTTP viene esposto l'endpoint di chiamata del metodo.
+* **Endpoint di servizio**. Ogni hub IoT espone un set di endpoint per il toocommunicate back-end di soluzioni con i dispositivi. Con un'unica eccezione, gli endpoint esposti solo utilizzando hello [AMQP] [ lnk-amqp] protocollo. endpoint di chiamata di metodo Hello viene esposto su hello protocollo HTTP.
   
-  * *Ricezione di messaggi da dispositivo a cloud*. Questo endpoint è compatibile con [Hub eventi di Azure][lnk-event-hubs] e può essere usato da un servizio back-end per leggere i [messaggi da dispositivo a cloud][lnk-d2c] inviati dai dispositivi. Oltre a questo endpoint predefinito, è possibile creare endpoint personalizzati sull'hub IoT.
-  * *Invio di messaggi da cloud a dispositivo e ricezione di acknowledgement di recapito*. Questi endpoint consentono al back-end della soluzione di inviare [messaggi da cloud a dispositivo][lnk-c2d] affidabili e di ricevere gli acknowledgment di recapito o di scadenza corrispondenti.
-  * *Ricezione di notifiche relative ai file*. Questo endpoint di messaggistica consente di ricevere notifiche quando i dispositivi completano il caricamento di un file. 
-  * *Chiamata diretta al metodo*. Questo endpoint consente a un servizio back-end di richiamare un [metodo diretto][lnk-methods] in un dispositivo.
-  * *Ricezione di eventi di monitoraggio delle operazioni*. Questo endpoint consente di ricevere gli eventi di monitoraggio delle operazioni, se l'hub IoT è stato configurato per generarli. Per altre informazioni, vedere [Monitoraggio delle operazioni dell'hub IoT][lnk-operations-mon].
+  * *Ricezione di messaggi da dispositivo a cloud*. Questo endpoint è compatibile con [Hub eventi di Azure][lnk-event-hubs] Un servizio back-end può utilizzarlo hello tooread [messaggi da dispositivo a cloud] [ lnk-d2c] inviati dai dispositivi. È possibile creare endpoint personalizzati l'hub IoT in endpoint predefinito toothis di addizione.
+  * *Invio di messaggi da cloud a dispositivo e ricezione di acknowledgement di recapito*. Questi endpoint consentono il toosend di back-end soluzione affidabile [messaggi da cloud a dispositivo][lnk-c2d], e tooreceive hello riconoscimenti corrispondenti di recapito o la scadenza.
+  * *Ricezione di notifiche relative ai file*. Questo endpoint di messaggistica consente tooreceive di notifica quando i dispositivi correttamente carica un file. 
+  * *Chiamata diretta al metodo*. Questo endpoint consente a un servizio back-end di tooinvoke un [metodo diretto] [ lnk-methods] in un dispositivo.
+  * *Ricezione di eventi di monitoraggio delle operazioni*. Questo endpoint consente le operazioni di tooreceive il monitoraggio degli eventi, se il IoT hub è stato configurato tooemit li. Per altre informazioni, vedere [Monitoraggio delle operazioni dell'hub IoT][lnk-operations-mon].
 
-L'articolo [Azure IoT SDKs][lnk-sdks] (SDK di IoT di Azure) descrive le varie modalità di accesso a questi endpoint.
+Hello [Azure IoT SDK] [ lnk-sdks] descritti hello vari modi tooaccess questi endpoint.
 
-Tutti gli endpoint dell'hub IoT usano il protocollo [TLS][lnk-tls] e non vengono mai esposti su canali non crittografati o non protetti.
+Tutti gli endpoint IoT Hub utilizzano hello [TLS] [ lnk-tls] protocollo e nessun endpoint è esposto mai sui canali decrittografati/non protette.
 
 ## <a name="custom-endpoints"></a>Endpoint personalizzati
 
-È possibile collegare i servizi di Azure esistenti nella sottoscrizione all'hub IoT che agiranno come endpoint per il routing dei messaggi. Questi endpoint agiscono come endpoint di servizio e vengono usati come sink per il ruoting dei messaggi. I dispositivi non possono scrivere direttamente sugli endpoint aggiuntivi. Per ulteriori informazioni sul routing dei messaggi, vedere la voce della guida per gli sviluppatori relativa a [invio e ricezione di messaggi con hub IoT][lnk-devguide-messaging].
+È possibile collegare il tooact di hub IoT tooyour sottoscrizione esistente dei servizi Azure come endpoint per il routing dei messaggi. Questi endpoint agiscono come endpoint di servizio e vengono usati come sink per il ruoting dei messaggi. Dispositivi non possono scrivere direttamente toohello altri endpoint. toolearn ulteriori informazioni su route dei messaggi, vedere l'intervento di Guida per sviluppatori di hello sul [inviando e ricevendo messaggi con l'hub IoT][lnk-devguide-messaging].
 
-Hub IoT supporta attualmente i servizi di Azure seguenti come endpoint aggiuntivi:
+IoT Hub supporta attualmente hello servizi di Azure come endpoint aggiuntivi seguenti:
 
 * Hub eventi
 * Code del bus di servizio
 * Argomenti del bus di servizio
 
-Hub IoT richiede l'accesso in scrittura a questi endpoint di servizio affinché il routing dei messaggi funzioni correttamente. Se si configurano gli endpoint tramite il Portale di Azure, verranno aggiunte le autorizzazioni necessarie. Accertarsi di configurare i servizi per supportare la velocità effettiva prevista. Durante la prima configurazione della soluzione IoT, potrebbe essere necessario monitorare gli endpoint aggiuntivi e quindi apportare le modifiche necessarie per il carico effettivo.
+IoT Hub sono necessari gli endpoint di servizio di accesso in scrittura toothese per toowork di routing di messaggi. Se si configurano gli endpoint tramite hello portale di Azure, vengono aggiunte delle autorizzazioni necessarie hello. Assicurarsi di configurare la velocità effettiva di servizi toosupport hello previsto. Quando si configura prima soluzione IoT, è possibile necessario toomonitor gli altri endpoint e apportare le modifiche necessarie per il carico effettivo hello.
 
-Se un messaggio corrisponde a più percorsi che puntano allo stesso endpoint, hub IoT invia il messaggio a questo endpoint una sola volta. Pertanto, non è necessario configurare la deduplicazione nella coda o nell'argomento del bus di servizio. Nelle code partizionate, l'affinità della partizione garantisce l'ordinamento dei messaggi.
+Se un messaggio corrisponde a più route che tutti scegliere toohello stesso endpoint, l'IoT Hub offre endpoint toothat messaggio una sola volta. Pertanto, si necessità la deduplicazione tooconfigure sul argomento o coda di Service Bus. Nelle code partizionate, l'affinità della partizione garantisce l'ordinamento dei messaggi.
 
 > [!NOTE]
-> Nelle code e negli argomenti del bus di servizio usati come endpoint dell'hub IoT non devono essere abilitati le **sessioni** e il **rilevamento duplicati**. Se una di queste opzioni è abilitata, l'endpoint risulta **non raggiungibile** nel portale di Azure.
+> Nelle code e negli argomenti del bus di servizio usati come endpoint dell'hub IoT non devono essere abilitati le **sessioni** e il **rilevamento duplicati**. Se una di queste opzioni sono abilitata, l'endpoint di hello viene visualizzato come **non raggiungibile** in hello portale di Azure.
 
-Per i limiti sul numero di endpoint che è possibile aggiungere, vedere [Quotas and throttling][lnk-devguide-quotas] (Quote e limitazioni).
+Per i limiti di hello numero hello di è possibile aggiungere endpoint, vedere [quote e limitazioni][lnk-devguide-quotas].
 
 ## <a name="field-gateways"></a>Gateway sul campo
 
-In una soluzione IoT un *gateway sul campo* è posizionato tra i dispositivi e l'hub IoT e in genere si trova vicino ai dispositivi. I dispositivi comunicano direttamente con il gateway sul campo tramite un protocollo supportato dai dispositivi. Il gateway sul campo si connette a un endpoint dell'hub IoT usando un protocollo supportato dall'hub IoT. Un gateway sul campo potrebbe essere un dispositivo hardware dedicato o un computer a bassa potenza che esegue il software del gateway personalizzato.
+In una soluzione IoT un *gateway sul campo* è posizionato tra i dispositivi e l'hub IoT È in genere si trova tooyour Chiudi dispositivi. I dispositivi comunicano direttamente con gateway campo hello utilizzando un protocollo supportato dai dispositivi hello. gateway campo Hello connette tooan endpoint IoT Hub tramite un protocollo supportato da IoT Hub. Un gateway sul campo potrebbe essere un dispositivo hardware dedicato o un computer a bassa potenza che esegue il software del gateway personalizzato.
 
-È possibile usare [Azure IoT Edge][lnk-iot-edge] per implementare un gateway sul campo. IoT Edge offre funzionalità come il multiplex delle comunicazioni da più dispositivi sulla stessa connessione dell'hub IoT.
+È possibile utilizzare [Azure IoT Edge] [ lnk-iot-edge] tooimplement un gateway di campo. Bordo IoT offre funzionalità, ad esempio le comunicazioni da più dispositivi in hello il demultiplexing stessa connessione IoT Hub.
 
 ## <a name="next-steps"></a>Passaggi successivi
 

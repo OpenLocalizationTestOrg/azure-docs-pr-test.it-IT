@@ -1,6 +1,6 @@
 ---
-title: Distribuire un servizio cloud in un ambiente di gestione temporanea (Node.js) | Documentazione Microsoft
-description: Informazioni su come distribuire l'applicazione di Azure prima in un ambiente di gestione temporanea e quindi in un ambiente di produzione tramite uno scambio di IP virtuali (VIP, Virtual IP).
+title: una distribuzione del servizio cloud (Node.js) aaaStage | Documenti Microsoft
+description: Informazioni su come toodeploy tooa l'applicazione Azure gestione temporanea di ambiente, quindi distribuire tooa ambiente di produzione tramite scambio IP virtuale (VIP).
 services: cloud-services
 documentationcenter: nodejs
 author: TomArcher
@@ -14,62 +14,62 @@ ms.devlang: nodejs
 ms.topic: article
 ms.date: 08/17/2017
 ms.author: tarcher
-ms.openlocfilehash: b3000ed769e8c60eccb21e26f53ce7ccb7e68d7f
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 0656c84ac444a10f152f441265f85141347bf1fb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="staging-an-application-in-azure"></a>Gestione temporanea di un'applicazione in Azure
-È possibile distribuire nell'ambiente di gestione temporanea di Azure un'applicazione inclusa in un pacchetto per la verifica prima dello spostamento nell'ambiente di produzione in cui l'applicazione risulterà accessibile su Internet. L'ambiente di gestione temporanea è identico all'ambiente di produzione, ma è possibile accedere all'applicazione di gestione temporanea solo tramite un URL offuscato generato da Azure. Dopo la verifica del funzionamento corretto dell'applicazione, sarà possibile distribuirla nell'ambiente di produzione, tramite uno scambio di indirizzi IP virtuali (VIP, Virtual IP).
+Un pacchetto dell'applicazione può essere distribuito toohello in Azure toobe testata prima di spostarla produzione toohello ambiente di gestione temporanea ambiente nel quale hello è accessibile su Internet hello applicazione. Ambiente di gestione temporanea è esattamente come ambiente di produzione hello, ad eccezione del fatto che è possibile solo hello di accesso di gestione temporanea dell'applicazione con un URL offuscato che viene generato da Azure. Dopo aver verificato che l'applicazione funzioni correttamente, può essere distribuito toohello ambiente di produzione mediante l'esecuzione di uno scambio di IP virtuale (VIP).
 
 > [!NOTE]
-> I passaggi illustrati in questo articolo riguardano esclusivamente le applicazioni Node ospitate come Servizio cloud di Azure.
+> Hello passaggi in questo articolo si applicano solo applicazioni toonode ospitate come servizio Cloud Azure.
 > 
 > 
 
 ## <a name="step-1-stage-an-application"></a>Passaggio 1: Gestire un'applicazione in modo temporaneo
-In questa attività viene illustrato come gestire un'applicazione in modo temporaneo usando **Microsoft Azure PowerShell**.
+Questa attività illustra come un'applicazione utilizzando toostage hello **Microsoft Azure PowerShell**.
 
-1. Quando si pubblica un servizio, è sufficiente passare il parametro **-Slot** al cmdlet **Publish-AzureServiceProject**.
+1. Quando si pubblica un servizio, è sufficiente passare hello **-Slot** parametro hello **pubblica AzureServiceProject** cmdlet.
    
    ```powershell
    Publish-AzureServiceProject -Slot staging
    ```
-2. Accedere al [portale di Azure classico] e selezionare **Servizi cloud**. Dopo la creazione del servizio cloud e l'aggiornamento dello stato della colonna **Staging** a **In esecuzione**, fare clic sul nome del servizio.
+2. Accesso toohello [portale di Azure classico] e selezionare **servizi Cloud**. Dopo il servizio cloud hello viene creato e hello **gestione temporanea** stato della colonna è stato aggiornato troppo**esecuzione**, fare clic sul nome del servizio hello.
    
    ![Portale con servizio in esecuzione][cloud-service]
-3. Selezionare **Dashboard** e quindi **Staging**.
+3. Seleziona hello **Dashboard**, quindi selezionare **gestione temporanea**.
    
    ![Dashboard del servizio cloud][cloud-service-dashboard]
-4. Si noti il valore nella voce **Site URL** a destra. Il nome DNS è un ID interno offuscato generato da Azure.
+4. Si noti il valore di hello in hello **URL del sito** destra toohello voce. nome DNS Hello è un ID interno offuscato generato Azure.
    
     ![Site URL][cloud-service-staging-url]
 
-È ora possibile verificare il corretto funzionamento dell'applicazione nell'ambiente di gestione temporanea, usando l'URL del sito di gestione temporanea.
+È ora possibile verificare che un'applicazione hello funzioni correttamente nell'ambiente di gestione temporanea usando l'URL del sito di gestione temporanea hello hello.
 
 ## <a name="step-2-upgrade-an-application-in-production-by-swapping-vips"></a>Passaggio 2: Aggiornare un'applicazione in produzione tramite lo scambio di indirizzi VIP
-Dopo la verifica della versione aggiornata di un'applicazione nell'ambiente di gestione temporanea, sarà possibile renderla rapidamente disponibile in produzione tramite lo scambio degli indirizzi IP virtuali (VIP, Virtual IP) degli ambienti di gestione temporanea e di produzione.
+Dopo aver verificato hello versione aggiornata di un'applicazione nell'ambiente di gestione temporanea, è possibile impostarlo disponibili nell'ambiente di produzione scambiando gli indirizzi IP virtuale (VIP) degli ambienti di gestione temporanea e produzione hello hello.
 
 > [!NOTE]
-> In questo passaggio si presuppone che un'applicazione sia già stata distribuita in produzione e che sia già stata eseguita la gestione temporanea della versione aggiornata dell'applicazione.
+> Questo passaggio si presuppone di aver già distribuito tooproduction un'applicazione e hello versione aggiornata dell'applicazione di gestione temporanea.
 > 
 > 
 
-1. Accedere al [portale di Azure classico], fare clic su **Servizi Cloud** e quindi selezionare il nome del servizio.
-2. In **Dashboard** selezionare **Staging** e quindi fare clic su **Scambia** nella parte inferiore della pagina. Verrà aperta la finestra di dialogo VIP Swap.
+1. Accedere al hello [portale di Azure classico], fare clic su **servizi Cloud** , quindi selezionare il nome di servizio hello.
+2. Da hello **Dashboard**selezionare **gestione temporanea**, quindi fare clic su **scambiare** nella parte inferiore di hello della pagina hello. Si aprirà hello finestra di dialogo di scambio VIP.
    
    ![Finestra di dialogo VIP Swap][vip-swap-dialog]
-3. Verificare le informazioni e quindi fare clic su **OK**. Verrà avviato l'aggiornamento delle due distribuzioni, mentre la distribuzione di gestione temporanea passa in produzione e la distribuzione di produzione passa in gestione temporanea.
+3. Esaminare le informazioni di hello e quindi fare clic su **OK**. due distribuzioni Hello iniziano l'aggiornamento come hello distribuzione commutatori tooproduction e hello produzione distribuzione commutatori toostaging di gestione temporanea.
 
-La gestione temporanea di una distribuzione e l'aggiornamento di una distribuzione di produzione sono stati eseguiti correttamente tramite lo scambio di indirizzi IP virtuali con la distribuzione in gestione temporanea.
+Scalare una distribuzione e aggiornamento di una distribuzione di produzione scambiando gli indirizzi VIP con la distribuzione di hello in gestione temporanea completata.
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
-* [Come distribuire un aggiornamento del servizio in produzione mediante lo scambio di indirizzi VIP in Azure]
+* [Come tooDeploy un tooProduction l'aggiornamento del servizio tramite lo scambio VIP in Azure]
 
 [portale di Azure classico]: http://manage.windowsazure.com
 [cloud-service]: ./media/cloud-services-nodejs-stage-application/staging-cloud-service-running.png
 [cloud-service-dashboard]: ./media/cloud-services-nodejs-stage-application/cloud-service-dashboard-staging.png
 [cloud-service-staging-url]: ./media/cloud-services-nodejs-stage-application/cloud-service-staging-url.png
 [vip-swap-dialog]: ./media/cloud-services-nodejs-stage-application/vip-swap-dialog.png
-[Come distribuire un aggiornamento del servizio in produzione mediante lo scambio di indirizzi VIP in Azure]: cloud-services-how-to-manage.md#how-to-swap-deployments-to-promote-a-staged-deployment-to-production
+[Come tooDeploy un tooProduction l'aggiornamento del servizio tramite lo scambio VIP in Azure]: cloud-services-how-to-manage.md#how-to-swap-deployments-to-promote-a-staged-deployment-to-production

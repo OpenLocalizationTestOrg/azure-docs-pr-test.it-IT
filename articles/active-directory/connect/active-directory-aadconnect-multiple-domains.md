@@ -1,5 +1,5 @@
 ---
-title: Domini multipli di Azure AD Connect
+title: "aaaAzure AD connettersi più domini"
 description: "Questo documento descrive l'impostazione e la configurazione di più domini di primo livello con Office 365 e Azure AD."
 services: active-directory
 documentationcenter: 
@@ -14,144 +14,144 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/12/2017
 ms.author: billmath
-ms.openlocfilehash: 8e3f496c2868cc3430e0efd47805aec2205168aa
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 91d87875ceacee4e34f132938e4bb0294fb954e1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="multiple-domain-support-for-federating-with-azure-ad"></a>Supporto di più domini per la federazione con Azure AD
-La documentazione seguente fornisce indicazioni su come usare più domini di primo livello e sottodomini durante la federazione con domini di Office 365 o Azure AD.
+Hello documentazione riportata di seguito vengono fornite indicazioni su come toouse più domini di primo livello e i sottodomini quando la federazione con Office 365 o Azure AD domini.
 
 ## <a name="multiple-top-level-domain-support"></a>Supporto di più domini di primo livello
 Per la federazione di più domini di primo livello con Azure AD sono necessarie alcune operazioni di configurazione aggiuntive che non sono obbligatorie per la federazione con un dominio di primo livello.
 
-Quando un dominio è federato con Azure AD, alcune proprietà vengono impostate nel dominio in Azure.  Una proprietà importante è IssuerUri.  Si tratta di un URI usato da Azure AD per identificare il dominio a cui è associato il token.  Non è necessario che l'URI venga risolto, ma deve essere un URI valido.  Per impostazione predefinita, Azure AD lo imposta sul valore dell'identificatore del servizio federativo nella configurazione locale di AD FS.
+Quando un dominio è federato con Azure AD, vengono impostate diverse proprietà dominio hello in Azure.  Una proprietà importante è IssuerUri.  Si tratta di un URI che viene usato in Azure AD tooidentify dominio hello hello token è associato.  Hello URI non è necessario tooresolve tooanything ma deve essere un URI valido.  Per impostazione predefinita, Azure AD questo valore viene impostato toohello dell'identificatore del servizio federativo hello in locale ADFS configurazione.
 
 > [!NOTE]
-> L'identificatore del servizio federativo è un URI che identifica in modo univoco un servizio federativo.  Il servizio federativo è un'istanza di AD FS che funge da servizio token di sicurezza. 
+> Identificatore del servizio federativo Hello è un URI che identifica in modo univoco un servizio federativo.  servizio federativo Hello è un'istanza di AD FS che funziona come servizio token di sicurezza hello. 
 > 
 > 
 
-È possibile visualizzare IssuerUri usando il comando `Get-MsolDomainFederationSettings -DomainName <your domain>`di PowerShell.
+È possibile visualizzare IssuerUri usando il comando di PowerShell hello `Get-MsolDomainFederationSettings -DomainName <your domain>`.
 
 ![Get-MsolDomainFederationSettings](./media/active-directory-multiple-domains/MsolDomainFederationSettings.png)
 
-Si verifica un problema quando si vogliono aggiungere più domini di primo livello.  Ad esempio, si supponga di avere configurato la federazione tra Azure AD e l'ambiente locale.  Per questo documento si usa bmcontoso.com.  Viene quindi aggiunto un secondo dominio di primo livello, bmfabrikam.com.
+Si verifica un problema quando si desidera tooadd più di un dominio di primo livello.  Ad esempio, si supponga di avere configurato la federazione tra Azure AD e l'ambiente locale.  Per questo documento si usa bmcontoso.com.  Viene quindi aggiunto un secondo dominio di primo livello, bmfabrikam.com.
 
 ![Domini](./media/active-directory-multiple-domains/domains.png)
 
-Quando si prova a convertire il dominio bmfabrikam.com in modo che sia federato, viene visualizzato un errore.  La causa dell'errore è un vincolo di Azure AD che non consente alla proprietà IssuerUri di avere lo stesso valore per più di un dominio.  
+Quando si tenta di tooconvert nostri toobe dominio bmfabrikam.com federata, è visualizzato un errore.  Hello questo accade, Azure AD con un vincolo che non consente hello hello toohave di proprietà IssuerUri stesso valore per più di un dominio.  
 
 ![Errore della federazione](./media/active-directory-multiple-domains/error.png)
 
 ### <a name="supportmultipledomain-parameter"></a>Parametro SupportMultipleDomain
-Per risolvere il problema, è necessario aggiungere una proprietà IssuerUri diversa, usando il parametro `-SupportMultipleDomain` .  Questo parametro viene usato con i cmdlet seguenti:
+tooworkaround, è necessario un IssuerUri diversi che possono essere eseguiti utilizzando hello tooadd `-SupportMultipleDomain` parametro.  Questo parametro viene utilizzato con hello seguente cmdlet:
 
 * `New-MsolFederatedDomain`
 * `Convert-MsolDomaintoFederated`
 * `Update-MsolFederatedDomain`
 
-Questo parametro consente ad Azure AD di configurare IssuerUri in modo che sia basata sul nome del dominio.  Questo valore sarà univoco nelle directory di Azure AD.  L'uso del parametro consente il completamento corretto del comando di PowerShell.
+Questo parametro consente AD Azure configurare hello IssuerUri in modo che è basato su nome hello del dominio di hello.  Questo valore sarà univoco nelle directory di Azure AD.  Utilizzando il parametro hello consente hello PowerShell comando toocomplete correttamente.
 
 ![Errore della federazione](./media/active-directory-multiple-domains/convert.png)
 
-Se si esaminano le impostazioni del nuovo dominio bmfabrikam.com, si può notare quanto segue:
+Esaminano impostazioni hello del nuovo dominio bmfabrikam.com si può vedere seguente hello:
 
 ![Errore della federazione](./media/active-directory-multiple-domains/settings.png)
 
-Si noti che `-SupportMultipleDomain` non modifica gli altri endpoint, che sono ancora configurati in modo da fare riferimento al servizio federativo su adfs.bmcontoso.com.
+Si noti che `-SupportMultipleDomain` invariato di hello altri endpoint che sono ancora configurate servizio federativo di toopoint tooour nella adfs.bmcontoso.com.
 
-`-SupportMultipleDomain` consente anche di assicurare che il sistema AD FS includa il valore Issuer appropriato nei token emessi per Azure AD, selezionando la porzione relativa al dominio del valore UPN degli utenti e impostandola come dominio in IssuerUri, ovvero https://{upn suffix}/adfs/services/trust. 
+Un altro aspetto che `-SupportMultipleDomain` does che assicura che sistema di hello AD FS include il valore dell'autorità di certificazione corretta di hello nel token rilasciato per Azure AD. A tale scopo eseguire parte di utenti hello UPN di dominio hello e questa impostazione come dominio hello in hello IssuerUri, vale a dire https://{upn suffisso} / adfs/services/trust. 
 
-In questo modo durante l'autenticazione in Azure AD oppure Office 365 l'elemento IssuerUri nel token dell'utente viene usato per individuare il dominio in Azure AD.  Se non viene rilevata una corrispondenza, l'autenticazione non riuscirà. 
+In questo modo durante l'autenticazione tooAzure AD o Office 365, hello IssuerUri elemento token dell'utente hello è dominio hello toolocate usato in Azure AD.  Se non è possibile trovare una corrispondenza hello autenticazione avrà esito negativo. 
 
-Ad esempio, se un utente UPN è bsimon@bmcontoso.com, l'elemento IssuerUri i problemi di token AD FS verrà impostato su http://bmcontoso.com/adfs/services/trust. Se questo corrisponde alla configurazione di Azure AD, l'autenticazione avrà esito positivo.
+Ad esempio, se un utente UPN è bsimon@bmcontoso.com, elemento IssuerUri hello in problemi relativi AD ADFS token hello imposterà toohttp://bmcontoso.com/adfs/services/trust. La configurazione di Azure AD hello verrà trovata corrispondenza e l'autenticazione avrà esito positivo.
 
-Di seguito è riportata la regola attestazioni personalizzata che implementa questa logica:
+di seguito Hello è regola attestazione personalizzata hello che implementa questa logica:
 
     c:[Type == "http://schemas.xmlsoap.org/claims/UPN"] => issue(Type = "http://schemas.microsoft.com/ws/2008/06/identity/claims/issuerid", Value = regexreplace(c.Value, ".+@(?<domain>.+)", "http://${domain}/adfs/services/trust/"));
 
 
 > [!IMPORTANT]
-> Per usare l'opzione -SupportMultipleDomain quando si prova ad aggiungere o convertire domini già aggiunti, è necessario che il trust federativo sia stato configurato per supportarli in origine.  
+> In ordine toouse hello - SupportMultipleDomain passare quando si tenta di nuovo tooadd o convertire già aggiunti domini, è necessario toohave toosupport la relazione di trust federativa del programma di installazione li originariamente.  
 > 
 > 
 
-## <a name="how-to-update-the-trust-between-ad-fs-and-azure-ad"></a>Come aggiornare il trust tra AD FS e Azure AD
-Se il trust federativo non è stato configurato tra AD FS e l'istanza di Azure AD, potrebbe essere necessario crearlo di nuovo,  perché, quando viene configurato in origine senza il parametro `-SupportMultipleDomain`, il valore IssuerUri viene impostato con il valore predefinito.  Nella schermata seguente è possibile vedere che IssuerUri è impostato su https://adfs.bmcontoso.com/adfs/services/trust.
+## <a name="how-tooupdate-hello-trust-between-ad-fs-and-azure-ad"></a>Come tooupdate hello trust tra ADFS e Azure AD
+Se hello federata trust tra ADFS e l'istanza di Azure AD non è stata configurata, potrebbe essere necessario toore-creare il trust.  Questo avviene perché, quando è originariamente il programma di installazione senza hello `-SupportMultipleDomain` parametro hello IssuerUri è impostato con il valore predefinito di hello.  In hello schermata seguente è possibile visualizzare hello IssuerUri impostata toohttps://adfs.bmcontoso.com/adfs/services/trust.
 
-Se un nuovo dominio è stato aggiunto correttamente al portale di Azure AD e si prova a convertirlo usando `Convert-MsolDomaintoFederated -DomainName <your domain>`, verrà visualizzato l'errore seguente.
+In questo momento, se è stato aggiunto correttamente un nuovo dominio nel portale di Azure AD hello e quindi tentare tooconvert utilizzando `Convert-MsolDomaintoFederated -DomainName <your domain>`, si ottiene hello errore seguente.
 
 ![Errore della federazione](./media/active-directory-multiple-domains/trust1.png)
 
-Se si prova ad aggiungere l'opzione `-SupportMultipleDomain` , verrà visualizzato l'errore seguente:
+Se si tenta di hello tooadd `-SupportMultipleDomain` commutatore verranno inviati hello errore seguente:
 
 ![Errore della federazione](./media/active-directory-multiple-domains/trust2.png)
 
-Se si prova semplicemente a eseguire `Update-MsolFederatedDomain -DomainName <your domain> -SupportMultipleDomain` nel dominio originale, verrà visualizzato un errore.
+Durante il tentativo semplicemente toorun `Update-MsolFederatedDomain -DomainName <your domain> -SupportMultipleDomain` su hello dominio originale inoltre genererà un errore.
 
 ![Errore della federazione](./media/active-directory-multiple-domains/trust3.png)
 
-Usare la procedura seguente per aggiungere un dominio di primo livello aggiuntivo.  Se è già stato aggiunto un dominio e non è stato usato il parametro `-SupportMultipleDomain` , iniziare dalla procedura per la rimozione e l'aggiornamento del dominio originale.  Se il dominio di primo livello non è stato ancora aggiunto, è possibile iniziare dalla procedura per l'aggiunta di un dominio usando comandi PowerShell di Azure AD Connect.
+Attenersi alla procedura hello sotto tooadd un dominio di primo livello aggiuntivo.  Se si dispone già aggiunto un dominio e non è stata utilizzata hello `-SupportMultipleDomain` parametro start con passaggi hello per eliminare e aggiornare il dominio originale.  Se non è stato aggiunto un dominio di primo livello ancora è possibile iniziare con la procedura di hello per aggiungere un dominio con PowerShell di Azure AD Connect.
 
-Usare la procedura seguente per rimuovere il trust di Microsoft Online e aggiornare il dominio originale.
+Utilizzare hello seguendo i passaggi tooremove hello Microsoft Online trust e aggiornare il dominio originale.
 
 1. Nel server federativo di AD FS aprire **Gestione AD FS** 
-2. Sulla sinistra espandere **Relazioni di attendibilità** e **Attendibilità componente**
-3. Sulla destra eliminare la voce **Piattaforma delle identità di Microsoft Office 365** .
+2. A sinistra di hello, espandere **relazioni di Trust** e **Relying Party Trusts**
+3. In hello destra, l'eliminazione di hello **piattaforma delle identità di Microsoft Office 365** voce.
    ![Rimozione di Microsoft Online](./media/active-directory-multiple-domains/trust4.png)
-4. Nel computer in cui è installato il [Modulo di Microsoft Azure Active Directory per Windows PowerShell](https://msdn.microsoft.com/library/azure/jj151815.aspx) eseguire il comando seguente: `$cred=Get-Credential`.  
-5. Immettere il nome utente e la password di un amministratore globale di Azure AD con cui si esegue la federazione.
+4. In un computer dotato di [modulo di Azure Active Directory per Windows PowerShell](https://msdn.microsoft.com/library/azure/jj151815.aspx) installato eseguire hello seguente: `$cred=Get-Credential`.  
+5. Immettere hello username e password di un amministratore globale per il dominio di Azure AD hello che con federazione
 6. In PowerShell immettere `Connect-MsolService -Credential $cred`
-7. In PowerShell immettere `Update-MSOLFederatedDomain -DomainName <Federated Domain Name> -SupportMultipleDomain`.  Questa impostazione è relativa al dominio originale.  Usando i domini precedenti, si ottiene quindi: `Update-MsolFederatedDomain -DomainName bmcontoso.com -SupportMultipleDomain`
+7. In PowerShell immettere `Update-MSOLFederatedDomain -DomainName <Federated Domain Name> -SupportMultipleDomain`.  Si tratta di dominio originale hello.  Quindi l'uso di hello precedente domini che sarebbe:`Update-MsolFederatedDomain -DomainName bmcontoso.com -SupportMultipleDomain`
 
-Usare la procedura seguente per aggiungere il nuovo dominio di primo livello tramite PowerShell
+Utilizzare hello seguendo i passaggi tooadd hello nuovo dominio di primo livello con PowerShell
 
-1. Nel computer in cui è installato il [Modulo di Microsoft Azure Active Directory per Windows PowerShell](https://msdn.microsoft.com/library/azure/jj151815.aspx) eseguire il comando seguente: `$cred=Get-Credential`.  
-2. Immettere il nome utente e la password di un amministratore globale di Azure AD con cui si esegue la federazione.
+1. In un computer dotato di [modulo di Azure Active Directory per Windows PowerShell](https://msdn.microsoft.com/library/azure/jj151815.aspx) installato eseguire hello seguente: `$cred=Get-Credential`.  
+2. Immettere hello username e password di un amministratore globale per il dominio di Azure AD hello che con federazione
 3. In PowerShell immettere `Connect-MsolService -Credential $cred`
 4. In PowerShell immettere `New-MsolFederatedDomain –SupportMultipleDomain –DomainName`
 
-Usare la procedura seguente per aggiungere il nuovo dominio di primo livello tramite Azure AD Connect.
+Utilizzare hello seguendo i passaggi tooadd hello nuovo dominio di primo livello con Azure AD Connect.
 
-1. Avviare Azure AD Connect dal desktop o dal menu Start.
+1. Avvio di Azure AD Connect, da desktop hello o menu start
 2. Scegliere "Aggiunta di un altro dominio di Azure AD" ![Aggiunta di un altro dominio di Azure AD](./media/active-directory-multiple-domains/add1.png)
 3. Immettere le credenziali di Azure AD e Active Directory.
-4. Selezionare il secondo dominio da configurare per la federazione.
+4. Selezionare il dominio di secondo hello desiderato tooconfigure per la federazione.
    ![Aggiunta di un altro dominio di Azure AD](./media/active-directory-multiple-domains/add2.png)
 5. Fare clic su Installa.
 
-### <a name="verify-the-new-top-level-domain"></a>Verificare il nuovo dominio di primo livello
-Usando il comando `Get-MsolDomainFederationSettings -DomainName <your domain>`di PowerShell, è possibile visualizzare la proprietà IssuerUri aggiornata.  La schermata seguente mostra le impostazioni di federazione aggiornate sul dominio originale http://bmcontoso.com/adfs/services/trust
+### <a name="verify-hello-new-top-level-domain"></a>Verificare il dominio di primo livello nuovo hello
+Tramite il comando di PowerShell hello `Get-MsolDomainFederationSettings -DomainName <your domain>`è possibile visualizzare hello aggiornato IssuerUri.  Hello schermata riportata di seguito viene illustrato l'aggiornamento delle impostazioni di federazione hello nel nostro http://bmcontoso.com/adfs/services/trust dominio originale
 
 ![Get-MsolDomainFederationSettings](./media/active-directory-multiple-domains/MsolDomainFederationSettings.png)
 
-E IssuerUri sul nuovo dominio è stato impostato su https://bmfabrikam.com/adfs/services/trust
+E hello IssuerUri nel nuovo dominio è stato impostato toohttps://bmfabrikam.com/adfs/services/trust
 
 ![Get-MsolDomainFederationSettings](./media/active-directory-multiple-domains/settings2.png)
 
 ## <a name="support-for-sub-domains"></a>Supporto per sottodomini
-A causa della modalità di gestione dei domini in Azure AD, eventuali sottodomini aggiunti erediteranno le impostazioni del dominio padre.  La proprietà IssuerUri deve quindi corrispondere a quella degli elementi padre.
+Quando si aggiunge un sottodominio, a causa di hello modo Azure AD gestite domini, erediterà le impostazioni di hello del padre hello.  Ciò significa che hello IssuerUri deve padri hello toomatch.
 
-Si supponga ad esempio che sia presente il dominio bmcontoso.com e che quindi si aggiunga corp.bmcontoso.com.  Ciò significa che IssuerUri per un utente di corp.bmcontoso.com dovrà essere **http://bmcontoso.com/adfs/services/trust.**  Tuttavia la regola standard implementata sopra per Azure AD genererà un token con un emittente come **http://corp.bmcontoso.com/adfs/services/trust.** che non corrisponderà al valore di dominio obbligatorio e l'autenticazione avrà esito negativo.
+Si supponga ad esempio che sia presente il dominio bmcontoso.com e che quindi si aggiunga corp.bmcontoso.com.  Ciò significa che hello IssuerUri per un utente da corp.bmcontoso.com necessario toobe **http://bmcontoso.com/adfs/services/trust.**  Tuttavia la regola standard hello implementato sopra per Azure AD, verrà generato un token con un emittente come **http://corp.bmcontoso.com/adfs/services/trust.** valore obbligatorio del dominio hello che non corrispondono e l'autenticazione avrà esito negativo.
 
-### <a name="how-to-enable-support-for-sub-domains"></a>Come abilitare il supporto per sottodomini
-Per risolvere questo problema, è necessario che il trust della relying party di AD FS per Microsoft Online venga aggiornato.  Per eseguire questa operazione, è necessario configurare una regola attestazioni personalizzata, in modo che vengano rimossi tutti i sottodomini dal suffisso UPN di un utente durante la creazione del valore Issuer personalizzato. 
+### <a name="how-tooenable-support-for-sub-domains"></a>La modalità di supporto tooenable per i sottodomini
+In ordine toowork attorno a questa hello ADFS trust della relying party per Microsoft Online deve toobe aggiornato.  toodo, è necessario configurare una regola attestazioni personalizzata in modo che rimuove tutti i sottodomini dal suffisso UPN dell'utente hello durante la costruzione di valore dell'autorità di certificazione personalizzato hello. 
 
-L'attestazione seguente consente di eseguire questa operazione:
+Hello seguente attestazione eseguirà questo:
 
     c:[Type == "http://schemas.xmlsoap.org/claims/UPN"] => issue(Type = "http://schemas.microsoft.com/ws/2008/06/identity/claims/issuerid", Value = regexreplace(c.Value, "^.*@([^.]+\.)*?(?<domain>([^.]+\.?){2})$", "http://${domain}/adfs/services/trust/"));
 
 [!NOTE]
-L'ultimo numero dell'espressione regolare imposta il numero di domini padre presente nel dominio radice. In bmcontoso.com sono necessari due domini padre. Se fossero necessari tre domini padre (ad esempio: corp.bmcontoso.com), il numero sarebbe tre. È possibile indicare un intervallo, la corrispondenza sarà sempre in base al massimo dei domini. "{2,3}" corrisponde a due o tre domini (ad esempio: bmfabrikam.com e corp.bmcontoso.com).
+ultimo numero di Hello nell'espressione regolare hello imposta hello il numero di domini padre è presente nel dominio radice. In bmcontoso.com sono necessari due domini padre. Se tre padre domini sono stati mantenuti toobe (ad esempio: corp.bmcontoso.com), quindi il numero di hello sarebbe stata tre. Eventualy un intervallo possono essere indicati, corrispondenza hello verrà sempre effettuato massimo hello toomatch dei domini. "{2,3}", verranno restituiti due domini toothree (ad esempio: bmfabrikam.com e corp.bmcontoso.com).
 
-Usare la procedura seguente per aggiungere un'attestazione personalizzata per il supporto dei sottodomini.
+Questa procedura hello utilizzare tooadd un'attestazione personalizzata toosupport i sottodomini.
 
 1. Aprire Gestione AD FS.
-2. Fare clic con il pulsante destro del mouse sul trust della relying party di Microsoft Online RP quindi scegliere Modifica regole attestazione.
-3. Selezionare la terza regola attestazioni e sostituire ![Modifica dell'attestazione](./media/active-directory-multiple-domains/sub1.png)
-4. Sostituire l'attestazione corrente:
+2. Fare clic con il pulsante destro trust relying Party Online Microsoft hello e scegliere regole attestazione di modifica
+3. Selezionare una regola attestazioni terzo hello e sostituire ![richiesta di modifica](./media/active-directory-multiple-domains/sub1.png)
+4. Sostituire attestazioni corrente hello:
    
         c:[Type == "http://schemas.xmlsoap.org/claims/UPN"] => issue(Type = "http://schemas.microsoft.com/ws/2008/06/identity/claims/issuerid", Value = regexreplace(c.Value, ".+@(?<domain>.+)","http://${domain}/adfs/services/trust/"));
    

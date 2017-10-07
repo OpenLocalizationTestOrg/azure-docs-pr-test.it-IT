@@ -1,6 +1,6 @@
 ---
-title: "Usare i server di Server dei criteri di rete esistenti per offrire le funzionalità MFA di Azure | Microsoft Docs"
-description: "L'estensione di Server dei criteri di rete per Multi-Factor Authentication di Azure è una soluzione semplice per aggiungere le funzionalità di verifica in due passaggi basata sul cloud nell'infrastruttura di autenticazione esistente."
+title: "funzionalità di aaaUse esistenti dei criteri di rete server tooprovide Azure MFA | Documenti Microsoft"
+description: "Hello estensione Server dei criteri di rete per Azure multi-Factor Authentication è una semplice soluzione tooadd basato su cloud in due passaggi vericiation funzionalità tooyour autenticazione infrastruttura esistente."
 services: multi-factor-authentication
 documentationcenter: 
 author: kgremban
@@ -15,44 +15,44 @@ ms.date: 08/14/2017
 ms.author: kgremban
 ms.reviewer: yossib
 ms.custom: H1Hack27Feb2017; it-pro
-ms.openlocfilehash: fa125292ee85bd9b5329cffeff7f076d3002cbf3
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: e9fc495b06873d45f06233f1aa618db9d94f8bd9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="integrate-your-existing-nps-infrastructure-with-azure-multi-factor-authentication"></a>Integrare l'infrastruttura NPS esistente con Azure Multi-Factor Authentication
 
-L'estensione di Server dei criteri di rete (NPS) per Azure MFA aggiunge funzionalità MFA basate su cloud per l'infrastruttura di autenticazione usando i server esistenti. Con l'estensione di Server dei criteri di rete, è possibile aggiungere la verifica con telefonata, messaggio di testo o app telefonica al flusso di autenticazione esistente senza dover installare, configurare e gestire nuovi server. 
+estensione dei criteri di rete Server () per Azure MFA Hello aggiunge basato su cloud MFA funzionalità tooyour infrastruttura di autenticazione con i server esistenti. Con hello estensione dei criteri di rete, è possibile aggiungere una telefonata, SMS o telefono app verifica tooyour esistente flusso di autenticazione senza tooinstall, configurare e gestire nuovi server. 
 
-Questa estensione è stata creata per le organizzazioni che vogliono proteggere le connessioni VPN senza distribuire Azure MFA Server. L'estensione del server dei criteri di rete funge da adattatore tra RADIUS e Azure MFA basato su cloud per fornire un secondo fattore di autenticazione per utenti federati o sincronizzati.
+Questa estensione è stata creata per le organizzazioni che vogliono le connessioni VPN tooprotect senza hello Azure MFA Server di distribuzione. Hello estensione dei criteri di rete opera come un adapter tra RADIUS e basato su cloud Azure MFA tooprovide secondo fattore di autenticazione per gli utenti federati o sincronizzati.
 
-Quando si usa l'estensione dei criteri di rete per di Azure MFA, il flusso di autenticazione include i componenti seguenti: 
+Quando si utilizza l'estensione dei criteri di rete hello per Azure MFA, il flusso di autenticazione hello include hello seguenti componenti: 
 
-1. Il **Server NAS/VPN** riceve le richieste dei client VPN e le converte in richieste RADIUS per il Server dei criteri di rete. 
-2. Il **Server dei criteri di rete** si connette ad Active Directory per eseguire l'autenticazione principale per le richieste RADIUS e, al completamento dell'operazione, passa la richiesta alle estensioni installate.  
-3. L'**estensione di Server dei criteri di rete** attiva una richiesta di autenticazione secondaria per Azure MFA. Dopo che l'estensione riceve la risposta e se la richiesta di verifica MFA ha esito positivo, la richiesta di autenticazione viene completata, fornendo al server di Server dei criteri di rete i token di sicurezza che includono un'attestazione MFA, emessa dal servizio token di sicurezza di Azure.  
-4. **Azure MFA** comunica con Azure Active Directory per recuperare i dettagli dell'utente ed esegue l'autenticazione secondaria grazie al metodo di verifica configurato per l'utente.
+1. **Server NAS/VPN** riceve le richieste dei client VPN e li converte in server tooNPS di richieste RADIUS. 
+2. **Server dei criteri di rete** si connette tooActive Directory tooperform hello l'autenticazione principale per hello RADIUS richiede e, al completamento dell'operazione, passa le estensioni di hello richiesta tooany installato.  
+3. **Estensione dei criteri di rete** attiva un tooAzure richiesta autenticazione a più fattori per l'autenticazione secondaria hello. Una volta estensione hello riceve risposta hello e se la richiesta di autenticazione a più fattori hello ha esito positivo, viene completata la richiesta di autenticazione hello fornendo server NPS hello con i token di sicurezza che includono un'attestazione di autenticazione a più fattori, emesso dal servizio token di Azure.  
+4. **Azure MFA** comunica con i dettagli dell'utente di Azure Active Directory tooretrieve hello ed esegue l'autenticazione secondaria hello in qualità di utente toohello verifica metodo configurato.
 
-Il diagramma seguente illustra questo flusso di richiesta di autenticazione ad alto livello: 
+Hello seguente diagramma viene illustrato questo flusso di richiesta di autenticazione di alto livello: 
 
 ![Diagramma del flusso di autenticazione](./media/multi-factor-authentication-nps-extension/auth-flow.png)
 
 ## <a name="plan-your-deployment"></a>Pianificare la distribuzione
 
-L'estensione di Server dei criteri di rete gestisce automaticamente la ridondanza, pertanto non è necessaria una configurazione speciale.
+Hello estensione dei criteri di rete gestisce automaticamente la ridondanza, pertanto non è necessario una configurazione speciale.
 
 È possibile creare un qualsiasi numero di Server dei criteri di rete abilitati per Azure MFA. Se si installano più server, è consigliabile usare un certificato client di differenza per ciascuno. La creazione di un certificato per ogni server significa che è possibile aggiornare singolarmente ogni certificato senza doversi preoccupare dei tempi di inattività in tutti i server.
 
-I server VPN indirizzano le richieste di autenticazione, quindi è necessario essere a conoscenza dei nuovi Server dei criteri di rete abilitati per Azure MFA.
+Server VPN di instradare le richieste di autenticazione, pertanto è necessario conoscere i server dei criteri di rete abilitati per Azure MFA nuovo hello toobe.
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-L'estensione di Server dei criteri di rete è progettata per funzionare con l'infrastruttura esistente. Prima di iniziare, verificare che i prerequisiti seguenti siano disponibili.
+Hello estensione dei criteri di rete deve essere toowork con l'infrastruttura esistente. Assicurarsi di avere hello seguenti prerequisiti prima di iniziare.
 
 ### <a name="licenses"></a>Licenze
 
-L'estensione di Server dei criteri di rete per Azure MFA è disponibile per i clienti dotati di [licenze per Multi-Factor Authentication di Azure](multi-factor-authentication.md) (tra cui una sottoscrizione con Azure AD Premium, EMS o MFA).
+Hello estensione dei criteri di rete per l'autenticazione a più fattori di Azure è disponibile toocustomers con [licenze per Azure multi-Factor Authentication](multi-factor-authentication.md) (incluso in una sottoscrizione di autenticazione a più fattori, Azure AD Premium o EMS).
 
 ### <a name="software"></a>Software
 
@@ -60,111 +60,111 @@ Windows Server 2008 R2 SP1 o versione successiva.
 
 ### <a name="libraries"></a>Librerie
 
-Queste librerie vengono installate automaticamente con l'estensione.
+Queste librerie vengono installate automaticamente con l'estensione hello.
 -   [Visual C++ Redistributable Packages per Visual Studio 2013 (X64)](https://www.microsoft.com/download/details.aspx?id=40784)
 -   [Modulo di Microsoft Azure Active Directory per Windows PowerShell versione 1.1.166.0](https://connect.microsoft.com/site1164/Downloads/DownloadDetails.aspx?DownloadID=59185)
 
 ### <a name="azure-active-directory"></a>Azure Active Directory
 
-Gli utenti che usano l'estensione di Server dei criteri di rete devono essere sincronizzati con Azure Active Directory tramite Azure AD Connect ed essere registrati a MFA.
+Gli utenti che utilizzano l'estensione dei criteri di rete hello devono essere sincronizzati tooAzure Active Directory con Azure AD Connect e deve essere registrato per l'autenticazione a più fattori.
 
-Quando si installa l'estensione, per il tenant di Azure AD sono necessarie le credenziali di amministrazione e l'ID della directory. L'ID della directory si trova nel [Portale di Azure](https://portal.azure.com). Accedere come amministratore, selezionare l'icona di **Azure Active Directory** sulla sinistra, quindi selezionare **Proprietà**. Copiare il GUID nella casella **ID directory** e salvare. Questo GUID verrà usato come ID tenant quando si installerà l'estensione di Server dei criteri di rete.
+Quando si installa l'estensione di hello, credenziali admin e ID di directory hello è necessario per il tenant di Azure AD. È possibile trovare l'ID di directory in hello [portale di Azure](https://portal.azure.com). Accedere come amministratore, seleziona hello **Azure Active Directory** icona a sinistra di hello, quindi selezionare **proprietà**. Ciao copia GUID hello **ID Directory** casella e salvarlo. Utilizzare questo GUID come ID tenant hello quando si installa hello estensione dei criteri di rete.
 
 ![L'ID directory si trova nelle proprietà di Azure Active Directory](./media/multi-factor-authentication-nps-extension/find-directory-id.png)
 
 ## <a name="prepare-your-environment"></a>Preparare l'ambiente
 
-Prima di installare l'estensione di Server dei criteri di rete, è necessario preparare l'ambiente per gestire il traffico di autenticazione.
+Prima di installare l'estensione dei criteri di rete hello, si desidera tooprepare si ambiente toohandle hello il traffico di autenticazione.
 
-### <a name="enable-the-nps-role-on-a-domain-joined-server"></a>Abilitare il ruolo del Server dei criteri di rete in un server appartenente a un dominio
+### <a name="enable-hello-nps-role-on-a-domain-joined-server"></a>Abilitare il ruolo dei criteri di rete hello in un server di dominio
 
-Il Server dei criteri di rete si connette ad Azure Active Directory e autentica le richieste di MFA. Scegliere un server per questo ruolo. Si consiglia di scegliere un server che non gestisce le richieste provenienti da altri servizi, poiché l'estensione di Server dei criteri di rete genera errori per qualsiasi richiesta non RADIUS.
+server dei criteri di rete Hello si connette tooAzure Active Directory e consente di autenticare le richieste di autenticazione a più fattori hello. Scegliere un server per questo ruolo. Si consiglia di scegliere un server che non gestiva le richieste provenienti da altri servizi, poiché hello estensione dei criteri di rete genera errori per tutte le richieste che non sono RADIUS.
 
-1. Sul server avviare l'**aggiunta guidata ruoli e funzionalità** dal menu Avvio rapido di Server Manager.
+1. Nel server, aprire hello **Aggiunta guidata ruoli e funzionalità** dal menu di Server Manager Quickstart hello.
 2. Come tipo di installazione scegliere **Installazione basata su ruoli o basata su funzionalità**.
-3. Selezionare il ruolo del server **Servizi di accesso e criteri di rete**. Potrebbe essere visualizzata una finestra per informare l'utente riguardo alle funzionalità necessarie per eseguire questo ruolo.
-4. Continuare la procedura guidata fino alla pagina di conferma. Selezionare **Installa**.
+3. Seleziona hello **servizi di accesso e criteri di rete** ruolo del server. Una finestra può popup tooinform di funzionalità necessarie toorun questo ruolo.
+4. Continuare con la procedura guidata hello fino a quando la pagina di conferma hello. Selezionare **Installa**.
 
-Ora che si dispone di un server designato come Server dei criteri di rete, è inoltre necessario configurarlo per gestire le richieste RADIUS in ingresso dalla soluzione VPN.
+Ora che si dispone di un server designato per criteri di rete, è inoltre necessario configurare questo toohandle server richieste RADIUS da hello soluzione VPN.
 
-### <a name="configure-your-vpn-solution-to-communicate-with-the-nps-server"></a>Configurare la soluzione VPN in modo che comunichi con il Server dei criteri di rete
+### <a name="configure-your-vpn-solution-toocommunicate-with-hello-nps-server"></a>Configurare il toocommunicate soluzione VPN con server dei criteri di rete hello
 
-La procedura per configurare i criteri di autenticazione RADIUS può variare a seconda della soluzione VPN in uso. Configurare i criteri in modo che la soluzione punti al Server dei criteri di rete RADIUS.
+A seconda di quale soluzione VPN utilizzata, hello tooconfigure passaggi variare i criteri di autenticazione RADIUS. Configurare il server di criteri toopoint tooyour RADIUS dei criteri di rete.
 
-### <a name="sync-domain-users-to-the-cloud"></a>Sincronizzare gli utenti del dominio con il cloud
+### <a name="sync-domain-users-toohello-cloud"></a>Sincronizzazione dominio utenti toohello cloud
 
-Questo passaggio potrebbe essere già completato nel tenant, tuttavia è consigliabile verificare che Azure AD Connect abbia sincronizzato i database di recente.
+Questo passaggio potrebbe essere già completo per il tenant, ma è buona controllo toodouble che Azure AD Connect sia sincronizzato i database di recente.
 
-1. Accedere al [portale di Azure](https://portal.azure.com) come amministratore.
+1. Accedi toohello [portale di Azure](https://portal.azure.com) come amministratore.
 2. Selezionare **Azure Active Directory** > **Azure AD Connect**
 3. Verificare che lo stato della sincronizzazione sia **Abilitata** e che l'ultima sincronizzazione sia stata eseguita da meno di un'ora.
 
-Se si desidera avviare un nuovo ciclo di sincronizzazione, usare istruzioni presenti in [Servizio di sincronizzazione Azure AD Connect: utilità di pianificazione](../active-directory/connect/active-directory-aadconnectsync-feature-scheduler.md#start-the-scheduler).
+Se è necessario tookick disattivare un nuovo ciclo di sincronizzazione, ci hello istruzioni [sincronizzazione di Azure AD Connect: utilità di pianificazione](../active-directory/connect/active-directory-aadconnectsync-feature-scheduler.md#start-the-scheduler).
 
 ### <a name="determine-which-authentication-methods-your-users-can-use"></a>Determinare i metodi di autenticazione che è possibile usare
 
 Sono due i fattori che determinano i metodi di autenticazione disponibili con una distribuzione dell'estensione di Server dei criteri di rete:
 
-1. L'algoritmo di crittografia della password usato tra il client RADIUS (VPN, server Netscaler o altri) e i Server dei criteri di rete.
-   - **PAP** supporta tutti i metodi di autenticazione di Azure MFA nel cloud: chiamata telefonica, SMS unidirezionale, notifica dell'app per dispositivi mobili e codice di verifica dell'app per dispositivi mobili.
+1. algoritmo di crittografia password Hello utilizzato tra client RADIUS hello (VPN, server Netscaler, o altri) e server NPS hello.
+   - **PAP** supporta tutti i metodi di autenticazione di hello di Azure MFA nel cloud hello: telefonata, SMS unidirezionali, notifica dell'app mobile e il codice di verifica app per dispositivi mobili.
    - **CHAPV2** e **EAP** supportano la chiamata telefonica e la notifica dell'app per dispositivi mobili.
-2. I metodi di input che l'applicazione client (VPN, server Netscaler o altra) può gestire. Ad esempio, gli strumenti usati dal client VPN per consentire all'utente di digitare un codice di verifica da un testo o da un'app per dispositivi mobili.
+2. Hello input metodi hello applicazione client (VPN, server Netscaler, o altri) in grado di gestire. Ad esempio, il client VPN hello dispone in modo tooallow hello utente tootype in un codice di verifica da un testo o app per dispositivi mobili?
 
-Quando si distribuisce l'estensione di Server dei criteri di rete, usare questi fattori per valutare i metodi disponibili per gli utenti. Se il client RADIUS supporta PAP, ma nel client non esistono campi di input per un codice di verifica, la chiamata telefonica e la notifica dell'app per dispositivi mobili sono le due opzioni supportate.
+Quando si distribuisce l'estensione dei criteri di rete hello, utilizzare tooevaluate questi fattori quali metodi sono disponibili per gli utenti. Se il client RADIUS supporta PAP, ma il client di hello UX privo di campi di input per un codice di verifica, quindi telefonata e notifica dell'app mobile sono disponibili due opzioni supportate hello.
 
 È possibile [disabilitare i metodi di autenticazione non supportati](multi-factor-authentication-whats-next.md#selectable-verification-methods) in Azure.
 
 ### <a name="enable-users-for-mfa"></a>Abilitare gli utenti per l'MFA
 
-Prima di distribuire l'estensione completa di Server dei criteri di rete, è necessario abilitare l'MFA per gli utenti su cui si desidera eseguire la verifica in due passaggi. Per testare l'estensione in modo più immediato mentre viene distribuita, è necessario almeno un account di test completamente registrato per l'MFA.
+Prima di distribuire l'estensione dei criteri di rete completo hello, è necessario tooenable autenticazione a più fattori per hello gli utenti che si verifica in due passaggi tooperform. Più immediatamente, estensione hello tootest durante la distribuzione, è necessario almeno un test account che è completamente registrato per l'autenticazione a più fattori.
 
-Seguire questa procedura per avviare un account di test:
-1. Accedere a [https://aka.ms/mfasetup](https://aka.ms/mfasetup) con un account di test. 
-2. Seguire le richieste per configurare un metodo di verifica.
-3. Creare un criterio di accesso condizionale o [modificare lo stato dell'utente](multi-factor-authentication-get-started-user-states.md) per richiedere la verifica in due passaggi per l'account di test. 
+Utilizzare questi passaggi tooget avvio di un account di prova:
+1. Accedi troppo[https://aka.ms/mfasetup](https://aka.ms/mfasetup) con un account di prova. 
+2. Seguire hello tooset di richieste di un metodo di verifica.
+3. Creare un criterio di accesso condizionale o [modificare lo stato utente hello](multi-factor-authentication-get-started-user-states.md) toorequire di verifica in due passaggi per l'account di prova hello. 
 
-Gli utenti devono inoltre eseguire la procedura per la registrazione prima di potersi autenticare con l'estensione del server dei criteri di rete.
+Gli utenti devono inoltre toofollow tooenroll questi passaggi prima che questi possono autenticarsi con l'estensione dei criteri di rete hello.
 
-## <a name="install-the-nps-extension"></a>Installare l'estensione di Server dei criteri di rete
+## <a name="install-hello-nps-extension"></a>Installare l'estensione dei criteri di rete hello
 
 > [!IMPORTANT]
-> Installare l'estensione di Server dei criteri di rete in un server diverso rispetto al punto di accesso della VPN.
+> Installare l'estensione dei criteri di rete hello in un server diverso rispetto al punto di accesso VPN hello.
 
-### <a name="download-and-install-the-nps-extension-for-azure-mfa"></a>Scaricare e installare l'estensione di Server dei criteri di rete per Azure MFA
+### <a name="download-and-install-hello-nps-extension-for-azure-mfa"></a>Scaricare e installare l'estensione dei criteri di rete hello per Azure MFA
 
-1.  [Scaricare l'estensione di Server dei criteri di rete](https://aka.ms/npsmfa) dall'Area download di Microsoft.
-2.  Copiare il file binario nel Server dei criteri di rete da configurare.
-3.  Eseguire *setup.exe* e seguire le istruzioni di installazione. Se si verificano errori, controllare che le due librerie indicate nella sezione sui prerequisiti siano state installate correttamente.
+1.  [Scaricare l'estensione dei criteri di rete hello](https://aka.ms/npsmfa) da hello Microsoft Download Center.
+2.  Copiare toohello binario hello desiderato tooconfigure Server dei criteri di rete.
+3.  Eseguire *setup.exe* e seguire le istruzioni di installazione di hello. Se si verificano errori, verificare che hello due librerie dalla sezione dei prerequisiti hello sono state installate correttamente.
 
-### <a name="run-the-powershell-script"></a>Eseguire lo script di PowerShell
+### <a name="run-hello-powershell-script"></a>Eseguire script PowerShell hello
 
-Il programma di installazione crea uno script di PowerShell in questa posizione: `C:\Program Files\Microsoft\AzureMfa\Config` (dove C:\ è l'unità di installazione). Lo script di PowerShell esegue le azioni seguenti:
+programma di installazione di Hello crea uno script di PowerShell in questa posizione: `C:\Program Files\Microsoft\AzureMfa\Config` (dove C:\ rappresenta l'unità di installazione). Questo script di PowerShell esegue hello seguenti azioni:
 
 -   Creare un certificato autofirmato.
--   Associare la chiave pubblica del certificato all'entità servizio su Azure AD.
--   Archiviare il certificato nell'archivio certificati del computer locale.
--   Concedere l'accesso alla chiave privata del certificato all'utente di rete.
--   Riavviare il Server dei criteri di rete.
+-   Associare una chiave pubblica di hello di hello certificato toohello entità servizio in Azure AD.
+-   Archivio hello certificato nell'archivio certificati computer locale di hello.
+-   Privato chiave tooNetwork concedere accesso toohello certificato utente.
+-   Riavviare hello dei criteri di rete.
 
-A meno che non si desideri utilizzare i propri certificati (invece dei certificati autofirmati generati dallo script di PowerShell), eseguire lo script di PowerShell per completare l'installazione. Se si installa l'estensione su più server, ciascun server dovrebbe avere il proprio certificato.
+Se non si desidera toouse propri certificati (anziché hello certificati autofirmati che hello genera script di PowerShell), installazione hello Script di PowerShell toocomplete hello. Se si installa l'estensione hello in più server, ciascuna di esse deve avere il proprio certificato.
 
 1. Eseguire Windows PowerShell come amministratore.
 2. Cambiare le directory.
 
    `cd "C:\Program Files\Microsoft\AzureMfa\Config"`
 
-3. Eseguire lo script di PowerShell creato dal programma di installazione.
+3. Eseguire uno script di PowerShell hello creato dal programma di installazione hello.
 
    `.\AzureMfaNpsExtnConfigSetup.ps1`
 
-4. Prompt di PowerShell per l'ID tenant. Usare il GUID dell'ID directory copiato dal portale di Azure nella sezione relativa ai prerequisiti.
-5. Accedere ad Azure AD come amministratore.
-6. Al termine dello script, PowerShell mostra un messaggio di conferma.  
+4. Prompt di PowerShell per l'ID tenant. Utilizzare Directory ID GUID copiata dal portale di Azure nella sezione Prerequisiti hello hello hello.
+5. Accedi tooAzure AD un amministratore.
+6. PowerShell Visualizza un messaggio di conferma al termine dello script hello.  
 
-Ripetere questi passaggi per tutti i server dei criteri di rete aggiuntivi che si intende configurare per il bilanciamento del carico.
+Ripetere questi passaggi in altri server dei criteri di rete che si desidera tooset per il bilanciamento del carico.
 
 >[!NOTE]
->Se si usano i propri certificati invece di generare certificati con lo script di PowerShell, verificare che rispettino la convenzione di denominazione di Server dei criteri di rete. Il nome oggetto deve essere **CN=\<TenantID\>,OU=Estensione di Server dei criteri di rete Microsoft**. 
+>Se si utilizzano certificati personalizzati invece di generare i certificati con hello script di PowerShell, assicurarsi che queste si allinea toohello convenzione di denominazione dei criteri di rete. deve essere il nome di soggetto Hello **CN =\<TenantID\>, OU = estensione dei criteri di rete Microsoft**. 
 
 ## <a name="configure-your-nps-extension"></a>Configurare l'estensione di Server dei criteri di rete
 
@@ -172,39 +172,39 @@ In questa sezione sono disponibili considerazioni e suggerimenti sulla progettaz
 
 ### <a name="configuration-limitations"></a>Limitazioni di configurazione
 
-- L'estensione di Server dei criteri di rete per Azure MFA non include strumenti per la migrazione degli utenti e impostazioni dal Server MFA al cloud. Per questo motivo, è consigliabile usare l'estensione per le distribuzioni nuove piuttosto che per quelle esistenti. Se si usano le estensioni in una distribuzione esistente, gli utenti dovranno ripetere il processo di registrazione per popolare i dettagli di Azure MFA nel cloud.  
-- L'estensione di Server dei criteri di rete usa UPN dell'Active Directory locale per identificare l'utente in Azure MFA che deve eseguire l'autenticazione secondaria. L'estensione può essere configurata per usare un identificatore differente come ID di accesso alternativo o campo Active Directory personalizzato diverso dall'UPN. Per altre informazioni, vedere [Opzioni di configurazione avanzate per l'estensione NPS per Multi-Factor Authentication](multi-factor-authentication-advanced-vpn-configurations.md).
+- estensione dei criteri di rete per Azure MFA Hello non include strumenti toomigrate utenti e le impostazioni dal cloud toohello Server MFA. Per questo motivo, è consigliabile utilizzare estensione hello per nuove distribuzioni, anziché di distribuzione esistente. Se si utilizza l'estensione hello in una distribuzione esistente, gli utenti dispongono di backup tooperform prova nuovamente toopopulate dettagli loro MFA nel cloud hello.  
+- Hello estensione dei criteri di rete utilizza hello UPN da hello locale utente Active directory tooidentify hello su Azure MFA per l'esecuzione di estensione di hello hello autenticazione secondaria può essere configurato toouse un identificatore diverso come account di accesso alternativo ID o personalizzato di Active Directory campo diverso da UPN. Vedere [configurazione opzioni avanzate per hello estensione dei criteri di rete multi-Factor Authentication](multi-factor-authentication-advanced-vpn-configurations.md) per ulteriori informazioni.
 - Non tutti i protocolli di crittografia supportano tutti i metodi di verifica.
    - **PAP** supporta la chiamata telefonica, gli SMS unidirezionali, la notifica dell'app per dispositivi mobili e il codice di verifica app per dispositivi mobili
    - **CHAPV2** e **EAP** supportano la chiamata telefonica e la notifica dell'app per dispositivi mobili
 
 ### <a name="control-radius-clients-that-require-mfa"></a>Client RADIUS di controllo che richiedono MFA
 
-Dopo aver abilitato MFA per un client RADIUS utilizzando l'estensione di Server dei criteri di rete, tutte le autenticazioni per questo client devono eseguire MFA. Se si desidera abilitare MFA solo per alcuni client RADIUS, è possibile configurare due server di Server dei criteri di rete e installare l'estensione solo su uno di questi. Configurare i client RADIUS per cui si vuole fare in modo che MFA invii richieste al server di Server dei criteri di rete configurato con l'estensione e gli altri client RADIUS al server di Server dei criteri di rete senza configurazione per l'estensione.
+Dopo aver abilitato l'autenticazione a più fattori per un client RADIUS utilizzando hello estensione dei criteri di rete, tutte le autenticazioni riuscite per questo client sono necessari tooperform autenticazione a più fattori. Se si desidera tooenable autenticazione a più fattori per alcuni client RADIUS, ma non altri, è possibile configurare due server dei criteri di rete e installare l'estensione hello in uno solo di essi. Configurare i client RADIUS che si desidera toorequire toosend richieste toohello dei criteri di rete server MFA configurato con estensione hello e altro server RADIUS client toohello dei criteri di rete non è configurato con estensione hello.
 
 ### <a name="prepare-for-users-that-arent-enrolled-for-mfa"></a>Impostazioni per gli utenti che non sono registrati per MFA
 
-Se sono presenti utenti che non sono registrati per MFA, è possibile stabilire cosa succede quando questi tentano di eseguire l'autenticazione. Usare l'impostazione del registro di sistema *REQUIRE_USER_MATCH* nel percorso del registro di sistema *HKLM\Software\Microsoft\AzureMFA* per controllare il comportamento della funzionalità. Questa impostazione non ha un'unica opzione di configurazione:
+Se sono presenti utenti che non sono registrati per l'autenticazione a più fattori, è possibile determinare che cosa avviene quando si tenta di tooauthenticate. Utilizzare l'impostazione del Registro di sistema hello *REQUIRE_USER_MATCH* nel percorso del Registro di sistema hello *HKLM\Software\Microsoft\AzureMFA* toocontrol comportamento della caratteristica hello. Questa impostazione non ha un'unica opzione di configurazione:
 
 | Chiave | Valore | Default |
 | --- | ----- | ------- |
-| REQUIRE_USER_MATCH | VERO/FALSO | Non impostato (equivalente a VERO) |
+| REQUIRE_USER_MATCH | VERO/FALSO | Non è impostato (tooTRUE equivalente) |
 
-Lo scopo di questa impostazione è stabilire cosa fare quando un utente non è registrato per MFA. Quando la chiave non esiste, non è impostata o è impostata su VERO e l'utente non è registrato, allora l'estensione non esegue correttamente la richiesta di verifica MFA. Quando la chiave è impostata su FALSO e l'utente non è registrato, l'autenticazione procede senza eseguire MFA.
+Salve a scopo di questa impostazione è toodetermine quali toodo quando un utente non è registrato per l'autenticazione a più fattori. Quando non esiste, non è impostata o è impostata, tooTRUE chiave hello hello utente non è registrato, quindi estensione hello si verifica un errore di richiesta di autenticazione a più fattori hello. Quando la chiave hello viene impostata tooFALSE e hello utente non è registrato, l'autenticazione procede senza eseguire l'autenticazione a più fattori.
 
-È possibile scegliere di creare questa chiave e impostarla su FALSE, durante il caricamento degli utenti che potrebbero non essere ancora registrati per Azure MFA. Poiché l'impostazione della chiave consente agli utenti che non sono registrati all'MFA di accedere, è necessario rimuovere la chiave prima di passare all'ambiente di produzione.
+È possibile scegliere toocreate questa chiave e impostare tooFALSE mentre gli utenti sono caricamento potrebbe non essere registrati per Azure MFA ancora. Tuttavia, poiché l'impostazione chiave hello consente agli utenti che non sono registrati per l'autenticazione a più fattori toosign in, è consigliabile rimuovere questa chiave prima di passare tooproduction.
 
 ## <a name="troubleshooting"></a>Risoluzione dei problemi
 
-### <a name="how-do-i-verify-that-the-client-cert-is-installed-as-expected"></a>Come verificare che il certificato client sia installato come previsto?
+### <a name="how-do-i-verify-that-hello-client-cert-is-installed-as-expected"></a>Come verificare che il certificato client hello viene installato come previsto?
 
-Cercare il certificato autofirmato creato dal programma di installazione nell'archivio dei certificati e verificare che la chiave privata disponga delle autorizzazioni concesse all'utente **Servizio di rete**. Il certificato ha come nome oggetto **CN \<tenantid\>, OU = Estensione di Server dei criteri di rete Microsoft**
+Cercare hello autofirmato creato dal programma di installazione di hello nell'archivio certificati hello e verificare che la chiave privata di hello dispone delle autorizzazioni concesse toouser **servizio di rete**. è un nome soggetto di Hello **CN \<tenantid\>, OU = estensione dei criteri di rete Microsoft**
 
 -------------------------------------------------------------
 
-### <a name="how-can-i-verify-that-my-client-cert-is-associated-to-my-tenant-in-azure-active-directory"></a>Come verificare che il certificato client sia associato al tenant in Azure Active Directory?
+### <a name="how-can-i-verify-that-my-client-cert-is-associated-toomy-tenant-in-azure-active-directory"></a>Come è possibile verificare che il certificato client è associato toomy tenant in Azure Active Directory?
 
-Aprire il prompt dei comandi di PowerShell ed eseguire i comandi seguenti:
+Aprire un prompt dei comandi di PowerShell e hello eseguire i comandi seguenti:
 
 ```
 import-module MSOnline
@@ -212,36 +212,36 @@ Connect-MsolService
 Get-MsolServicePrincipalCredential -AppPrincipalId "981f26a1-7f43-403b-a875-f8b09b8cd720" -ReturnKeyValues 1 
 ```
 
-Questi comandi consentono di stampare tutti i certificati associando il tenant con l'istanza dell'estensione di Server dei criteri di rete nella sessione di PowerShell. Cercare il certificato esportando il certificato client come file "Codificato Base 64 X.509 (.CER)" senza la chiave privata e confrontarlo con l'elenco di PowerShell.
+Questi comandi stampano tutti i certificati di hello associazione tenant con l'istanza di hello estensione dei criteri di rete nella sessione di PowerShell. Cercare il certificato da esportare il certificato client come file con "X.509(.cer) con codifica Base-64" senza chiave privata hello e confrontarlo con l'elenco di hello da PowerShell.
 
-I timbri data/ora Valido-dal e Valido-fino al, che sono in formato leggibile, possono essere usati per filtrare i risultati errati se il comando restituisce più di un certificato.
+Valido-da e valido-fino a quando i timestamp, che sono in formato leggibile, possono essere utilizzato toofilter out misfits evidente se hello restituito più di un certificato.
 
 -------------------------------------------------------------
 
 ### <a name="why-are-my-requests-failing-with-adal-token-error"></a>Perché le richieste hanno esito negativo con errore di token ADAL?
 
-Questo errore potrebbe essere dovuto a diverse ragioni. Usare la procedura seguente per la risoluzione:
+Questo errore potrebbe essere stato causato tooone diversi motivi. Utilizzare la procedura di risoluzione dei problemi toohelp:
 
 1. Riavviare il server di Server dei criteri di rete.
 2. Verificare che il certificato client sia installato come previsto.
-3. Verificare che il certificato sia associato al tenant in Azure AD.
-4. Verificare che https://login.microsoftonline.com/ sia accessibile dal server che esegue l'estensione.
+3. Verificare che il certificato hello è associato a tenant di Windows Azure.
+4. Verificare che https://login.microsoftonline.com/ sia accessibile dal server di hello che esegue estensione hello.
 
 -------------------------------------------------------------
 
-### <a name="why-does-authentication-fail-with-an-error-in-http-logs-stating-that-the-user-is-not-found"></a>Perché l'autenticazione ha esito negativo e restituisce un errore nei log HTTP che indica che l'utente non è stato trovato?
+### <a name="why-does-authentication-fail-with-an-error-in-http-logs-stating-that-hello-user-is-not-found"></a>Motivo per cui l'autenticazione esito negativo con un errore nel log HTTP che informa che l'utente hello non è stato trovato?
 
-Verificare che AD Connect sia in esecuzione e che l'utente sia presente sia in Active Directory di Windows sia in Azure Active Directory.
+Verificare che Active Directory Connect è in esecuzione e che l'utente hello è presente in Active Directory di Windows e Azure Active Directory.
 
 ------------------------------------------------------------
 
 ### <a name="why-do-i-see-http-connect-errors-in-logs-with-all-my-authentications-failing"></a>Perché vengono visualizzati errori di connessione HTTP nei log che contengono le autenticazioni non riuscite?
 
-Verificare che https://adnotifications.windowsazure.com sia raggiungibile dal server che esegue l'estensione di Server dei criteri di rete.
+Verificare che https://adnotifications.windowsazure.com sia raggiungibile dal server hello esegue hello estensione di criteri di rete.
 
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-- Configurare gli ID alternativi per l'accesso o impostare un elenco di eccezioni per gli indirizzi IP che non devono eseguire la verifica in due passaggi in [Advanced configuration options for the NPS extension for Multi-Factor Authentication](nps-extension-advanced-configuration.md) (Opzioni di configurazione avanzate per l'estensione del server dei criteri di rete per Multi-Factor Authentication).
+- Configurare gli ID alternativi per l'account di accesso o impostare un elenco di eccezioni per gli indirizzi IP che non devono eseguire la verifica in due fasi in [configurazione opzioni avanzate per hello estensione dei criteri di rete multi-Factor Authentication](nps-extension-advanced-configuration.md)
 
-- [Risolvere i messaggi di errore dall'estensione del Server dei criteri di rete per Azure Multi-Factor Authentication](multi-factor-authentication-nps-errors.md)
+- [Risolvere i messaggi di errore di hello estensione dei criteri di rete per Azure multi-Factor Authentication](multi-factor-authentication-nps-errors.md)

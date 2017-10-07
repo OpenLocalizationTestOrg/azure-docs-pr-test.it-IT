@@ -1,5 +1,5 @@
 ---
-title: "Eseguire attività con account utente in Azure Batch | Microsoft Docs"
+title: "attività aaaRun con account utente di Azure Batch | Documenti Microsoft"
 description: "Configurare gli account utente per l'esecuzione di attività in Azure Batch"
 services: batch
 author: tamram
@@ -14,85 +14,85 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: big-compute
 ms.date: 05/22/2017
 ms.author: tamram
-ms.openlocfilehash: d408c0565c0ed81fc97cc2b3976a4fc233e31302
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 13d7d76451d89a3cca090c4ef24ed0ed781bbf09
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="run-tasks-under-user-accounts-in-batch"></a>Eseguire attività con account utente in Batch
 
-In Azure Batch un'attività viene sempre eseguita con un account utente. Per impostazione predefinita, le attività vengono eseguite con account utente standard, senza le autorizzazioni di amministratore perché le impostazioni predefinite dell'account utente in genere sono sufficienti. Per determinati scenari, tuttavia, è utile essere in grado di configurare l'account utente con cui si intende eseguire un'attività. Questo articolo illustra i tipi di account utente e il modo in cui è possibile configurarli per lo scenario in uso.
+In Azure Batch un'attività viene sempre eseguita con un account utente. Per impostazione predefinita, le attività vengono eseguite con account utente standard, senza le autorizzazioni di amministratore perché le impostazioni predefinite dell'account utente in genere sono sufficienti. Per alcuni scenari, tuttavia, è account utente di toobe utile tooconfigure in grado di hello in cui si desidera un toorun di attività. In questo articolo vengono descritti tipi di hello degli account utente e come è possibile configurare per il proprio scenario.
 
 ## <a name="types-of-user-accounts"></a>Tipi di account utente
 
 Azure Batch offre due tipi di account utente per l'esecuzione di attività:
 
-- **Account utente automatici.** Gli account utente automatici sono predefiniti e vengono creati automaticamente dal servizio Batch. Per impostazione predefinita, le attività vengono eseguite con un account utente automatico. È possibile configurare la specifica di utente automatico per un'attività per indicare con quale account utente automatico l'attività deve essere eseguita. La specifica di utente automatico consente di specificare il livello di elevazione dei privilegi e l'ambito dell'account utente automatico con cui verrà eseguita l'attività. 
+- **Account utente automatici.** Gli account utente di auto sono account utente predefiniti che vengono creati automaticamente dal servizio Batch hello. Per impostazione predefinita, le attività vengono eseguite con un account utente automatico. È possibile configurare una specifica di auto-utente hello per tooindicate un'attività in cui auto-l'utente deve essere eseguito account un'attività. Specifica di auto-utente Hello permette di livello l'elevazione dei privilegi di toospecify hello e l'ambito dell'account utente automatica hello che verrà eseguita l'attività hello. 
 
-- **Account utente non anonimi.** È possibile specificare uno o più account utente non anonimi per un pool al momento della creazione del pool stesso. Ogni account utente viene creato in ogni nodo del pool. Oltre al nome, specificare la password dell'account utente, il livello di elevazione dei privilegi e, per i pool Linux, la chiave privata SSH. Quando si aggiunge un'attività, è possibile specificare l'account utente non anonimo con cui eseguirla.
+- **Account utente non anonimi.** Quando si crea il pool di hello, è possibile specificare uno o più account utente denominato per un pool. Ogni account utente viene creato in ogni nodo del pool di hello. Toohello inoltre il nome account, specificare password dell'account utente hello, elevazione livello e, per il pool di Linux, la chiave privata SSH hello. Quando si aggiunge un'attività, è possibile specificare l'account utente in cui eseguire l'attività denominata hello.
 
 > [!IMPORTANT] 
-> Nella versione 2017-01-01.4.0 del servizio Batch è stata introdotta una modifica significativa che richiede l'aggiornamento del codice per chiamare tale versione. Se si esegue la migrazione di codice da una versione precedente di Batch, si noti che la proprietà **runElevated** non è più supportata nelle librerie client API REST o Batch. Per specificare il livello di elevazione dei privilegi, usare la nuova proprietà **userIdentity** di un'attività. Per linee guida rapide sull'aggiornamento del codice Batch se si usa una delle librerie client, vedere la sezione [Aggiornare il codice alla libreria client Batch più recente](#update-your-code-to-the-latest-batch-client-library).
+> versione del servizio Batch Hello 2017-01-01.4.0 introduce una modifica che è necessario aggiornare il codice toocall tale versione. Nel caso di migrazione del codice da una versione precedente di Batch, si noti che hello **runElevated** proprietà non è più supportata nelle librerie client API REST o un Batch di hello. Hello utilizzare nuovo **userIdentity** proprietà di un livello di attività toospecify l'elevazione dei privilegi. Vedere hello sezione [aggiornare la libreria client di Batch della versione più recente di codice toohello](#update-your-code-to-the-latest-batch-client-library) per le linee guida rapide per l'aggiornamento del codice Batch se si utilizza una delle librerie client hello.
 >
 >
 
 > [!NOTE] 
-> Per motivi di sicurezza, gli account utente descritti in questo articolo non supportano i protocolli RDP (Remote Desktop Protocol) o SSH (Secure Shell). 
+> gli account utente di Hello descritti in questo articolo supporta Remote Desktop Protocol (RDP) o Secure Shell (SSH), per motivi di sicurezza. 
 >
-> Per connettersi a un nodo che esegue la configurazione della macchina virtuale Linux tramite SSH, vedere [Installare e configurare Desktop remoto per connettersi a una VM Linux di Azure](../virtual-machines/virtual-machines-linux-use-remote-desktop.md). Per connettersi ai nodi che eseguono Windows tramite RDP, vedere [Come connettersi e accedere a una macchina virtuale di Azure che esegue Windows](../virtual-machines/windows/connect-logon.md).<br /><br />
-> Per connettersi a un nodo che esegue la configurazione del servizio cloud tramite RDP, vedere [Impostare una connessione Desktop remoto per un ruolo nei servizi cloud di Azure](../cloud-services/cloud-services-role-enable-remote-desktop-new-portal.md).
+> tooconnect tooa nodo in esecuzione hello Linux configurazione della macchina virtuale tramite SSH, vedere [tooa utilizzo remoto del Desktop Linux VM in Azure](../virtual-machines/virtual-machines-linux-use-remote-desktop.md). toonodes tooconnect che esegue Windows tramite RDP, vedere [connessione macchina virtuale Windows Server tooa](../virtual-machines/windows/connect-logon.md).<br /><br />
+> tooconnect tooa nodo in esecuzione hello configurazione del servizio cloud tramite RDP, vedere [abilitare connessione Desktop remoto per un ruolo in servizi Cloud di Azure](../cloud-services/cloud-services-role-enable-remote-desktop-new-portal.md).
 >
 >
 
-## <a name="user-account-access-to-files-and-directories"></a>Accesso degli account utente a file e directory
+## <a name="user-account-access-toofiles-and-directories"></a>Directory e toofiles di accesso di account utente
 
-Un account utente automatico e un account utente non anonimo hanno entrambi accesso in lettura e scrittura alla directory di lavoro dell'attività, alla directory condivisa e alla directory di attività a istanze multiple. Entrambi i tipi di account hanno anche accesso in lettura alle directory di avvio e a quelle di preparazione dei processi.
+Un account utente di auto sia un account utente denominato avere la directory di lavoro dell'attività di lettura/scrittura accesso toohello directory condivisa e directory di multi-istanza attività. Entrambi i tipi di account dispone di accesso in lettura toohello avvio e processo di preparazione directory.
 
-Se un'attività viene eseguita con lo stesso account usato per l'esecuzione di un'attività di avvio, tale attività ha accesso in lettura e scrittura alla directory dell'attività di avvio. In modo analogo, se un'attività viene eseguita con lo stesso account usato per l'esecuzione di un'attività di preparazione dei processi, tale attività ha accesso in lettura e scrittura anche alla directory dell'attività di preparazione dei processi. Se un'attività viene eseguita con un account diverso rispetto a quello usato per l'attività di avvio o per quella di preparazione dei processi, tale attività ha solo accesso in lettura alla directory corrispondente.
+Se un'attività viene eseguito con hello stesso account utilizzato per l'esecuzione di un'attività di avvio, l'attività hello ha accesso in lettura-scrittura toohello inizio attività directory. Analogamente, se un'attività viene eseguito con hello stesso account utilizzato per l'esecuzione di un'attività di preparazione del processo, l'attività hello è directory attività di accesso in lettura-scrittura toohello processo preparazione. Se un'attività viene eseguito con un account diverso di attività di avvio hello o attività di preparazione del processo, attività hello è solo l'accesso in lettura toohello rispettive directory.
 
 Per altre informazioni sull'accesso a file e directory da parte un'attività, vedere [Sviluppare soluzioni di calcolo parallele su larga scala con Batch](batch-api-basics.md#files-and-directories).
 
 ## <a name="elevated-access-for-tasks"></a>Accesso con privilegi elevati per le attività 
 
-Il livello di elevazione dei privilegi dell'account utente indica se un'attività viene eseguita con privilegi elevati. Un account utente automatico e un account utente non anonimo consentono entrambi l'accesso con privilegi elevati. Le due opzioni per il livello di elevazione dei privilegi sono le seguenti:
+livello di elevazione dei privilegi dell'account utente di Hello indica se un'attività viene eseguito l'accesso con privilegi elevato. Un account utente automatico e un account utente non anonimo consentono entrambi l'accesso con privilegi elevati. sono Hello due opzioni per il livello di elevazione dei privilegi:
 
-- **NonAdmin** (Non amministratore): l'attività viene eseguita come utente standard senza accesso con privilegi elevati. Il livello di elevazione dei privilegi predefinito per un account utente Batch è sempre **NonAdmin**.
-- **Admin** (Amministratore): l'attività viene eseguita come utente con accesso con privilegi elevati e opera con le autorizzazioni di amministratore complete. 
+- **NonAdmin:** hello attività viene eseguita come utente standard senza accesso con privilegi elevati. livello di elevazione Hello predefinito per un account utente di Batch è sempre **NonAdmin**.
+- **Amministratore:** hello attività in esecuzione come utente con accesso con privilegi elevati e funziona con le autorizzazioni di amministratore complete. 
 
 ## <a name="auto-user-accounts"></a>Account utente automatici
 
-Per impostazione predefinita, in Batch le attività vengono eseguite con un account utente automatico, come utente standard senza accesso con privilegi elevati e con un ambito di attività. Quando per l'ambito di attività è configurata la specifica di utente automatico, il servizio Batch crea un account utente di questo tipo solo per l'attività.
+Per impostazione predefinita, in Batch le attività vengono eseguite con un account utente automatico, come utente standard senza accesso con privilegi elevati e con un ambito di attività. Quando si specifica auto utente hello è configurato per l'ambito di attività, il servizio di Batch hello crea un account utente automatica per l'attività solo.
 
-L'alternativa all'ambito di attività è l'ambito di pool. Quando per l'ambito di pool è configurata la specifica di utente automatico, l'attività viene eseguita con un account di questo tipo disponibile per qualsiasi attività nel pool. Per altre informazioni sull'ambito di pool, vedere la sezione [Eseguire un'attività con l'account utente automatico con ambito di pool](#run-a-task-as-the-autouser-with-pool-scope).   
+ambito tootask alternativo Hello è ambito pool. Quando si specifica auto utente hello per un'attività è configurata per l'ambito di pool, attività hello viene eseguito con un account utente automaticamente attività tooany disponibile nel pool di hello. Per ulteriori informazioni sull'ambito di pool, vedere sezione hello [eseguire un'attività come hello auto-utente con ambito pool](#run-a-task-as-the-autouser-with-pool-scope).   
 
-L'ambito predefinito è diverso in nodi Windows e Linux:
+ambito predefinito Hello è diversa per i nodi Windows e Linux:
 
 - Nei nodi Windows le attività vengono eseguite nell'ambito di attività per impostazione predefinita.
 - I nodi Linux vengono sempre eseguiti nell'ambito di pool.
 
-Esistono quattro possibili configurazioni per la specifica di utente automatico, ognuna delle quali corrisponde a un account utente automatico univoco:
+Esistono quattro possibili configurazioni per la specifica di auto-utente hello, ognuno dei quali corrisponde account utente univoco automatica tooa:
 
-- Accesso senza privilegi di amministratore con ambito di attività (specifica di utente automatico predefinito)
+- Accesso senza privilegi di amministratore con ambito di attività (specifica di auto-utente hello predefinita)
 - Accesso con privilegi di amministratore (elevati) con ambito di attività
 - Accesso senza privilegi di amministratore con ambito di pool
 - Accesso con privilegi di amministratore con ambito di pool
 
 > [!IMPORTANT] 
-> Le attività in esecuzione nell'ambito di attività non dispongono dell'accesso standard ad altre attività in un nodo. Un utente malintenzionato con accesso all'account, tuttavia, potrebbe aggirare questa restrizione inviando un'attività che viene eseguita con privilegi di amministratore e che può accedere alle directory di altre attività. Un utente malintenzionato potrebbe anche usare il protocollo RDP o SSH per connettersi a un nodo. È importante pertanto proteggere l'accesso alle chiavi dell'account Batch per impedire che si verifichi uno scenario di questo tipo. Se si sospetta che l'account sia stato compromesso, assicurarsi di rigenerare le chiavi.
+> Attività in esecuzione nell'ambito di attività non è di fatto accesso tooother attività in un nodo. Tuttavia, un utente malintenzionato con account di accesso toohello potrebbe aggirare questa restrizione inviando un'attività che viene eseguito con privilegi di amministratore e accede alle altre directory di attività. Un utente malintenzionato può anche usare RDP o SSH nodo tooa tooconnect. È importante tooprotect accesso tooyour Batch account chiavi tooprevent tale scenario. Se si ritiene che l'account sia stato compromesso, essere tooregenerate che le chiavi.
 >
 >
 
 ### <a name="run-a-task-as-an-auto-user-with-elevated-access"></a>Eseguire un'attività come utente automatico con accesso con privilegi elevati
 
-Quando è necessario eseguire un'attività con accesso con privilegi elevati, è possibile configurare la specifica di utente automatico per i privilegi di amministratore. A un'attività di avvio, ad esempio, potrebbe essere necessario l'accesso con privilegi elevati per installare il software nel nodo.
+Quando è necessario toorun un'attività con accesso con privilegi elevati, è possibile configurare specifica di auto-utente hello per i privilegi di amministratore. Ad esempio, un'attività di avvio potrebbe essere necessario software tooinstall di accesso con privilegi elevati nel nodo hello.
 
 > [!NOTE] 
-> In generale, è consigliabile usare l'accesso con privilegi elevati solo quando è necessario e concedere esclusivamente i privilegi minimi necessari per ottenere il risultato desiderato. Se ad esempio un'attività di avvio consente di installare software per l'utente corrente, anziché per tutti gli utenti, è possibile evitare di concedere l'accesso con privilegi elevati alle attività. È possibile configurare la specifica di utente automatico per l'ambito di pool e senza privilegi di amministratore per tutte le attività che devono essere eseguite con lo stesso account, tra cui l'attività di avvio. 
+> In generale, è consigliabile toouse solo quando è necessario l'accesso con privilegi elevati. È consigliabile concedere hello con privilegi minimi necessari tooachieve hello il risultato desiderato. Ad esempio, se un'attività di avvio consente di installare software per l'utente corrente di hello, anziché per tutti gli utenti, potrebbe essere in grado di tooavoid concessione dell'accesso con privilegi elevati tootasks. È possibile configurare una specifica di auto-utente hello per l'accesso di ambito e l'utente non amministratore pool per tutte le attività che è necessario toorun in hello stesso account, inclusi hello attività di avvio. 
 >
 >
 
-I frammenti di codice seguente illustrano come configurare la specifica di utente automatico. Gli esempi impostano il livello di elevazione dei privilegi su `Admin` e su `Task`. L'ambito di attività è l'impostazione predefinita, ma in questo caso viene inclusa a scopo di esempio.
+Hello frammenti di codice seguente mostra come tooconfigure hello specifica auto-utente. esempi di Hello impostano il livello di elevazione hello troppo`Admin` e hello ambito troppo`Task`. Ambito di attività è l'impostazione predefinita di hello, ma è incluso qui per i migliori risultati hello di esempio.
 
 #### <a name="batch-net"></a>Batch .NET
 
@@ -126,22 +126,22 @@ batch_client.task.add(job_id=jobid, task=task)
 
 ### <a name="run-a-task-as-an-auto-user-with-pool-scope"></a>Eseguire un'attività come utente automatico con ambito di pool
 
-Quando viene eseguito il provisioning di un nodo, a livello di pool vengono creati due account utente automatici per ogni nodo del pool, uno con accesso con privilegi elevati e uno senza accesso con privilegi elevati. Se si imposta l'ambito dell'utente automatico sull'ambito di pool per una determinata attività, questa verrà eseguita con uno di tali due account a livello di pool. 
+Quando viene eseguito il provisioning di un nodo, vengono creati due pool a livello di auto-account di ogni nodo nel pool di hello, con accesso con privilegi elevati e senza l'accesso con privilegi elevati. L'impostazione di ambito di toopool ambito hello automatica dell'utente per una determinata attività esegue l'attività di hello in uno di questi due pool a livello di auto-account. 
 
-Quando si specifica l'ambito di pool per l'utente automatico, tutte le attività eseguite con privilegi di amministratore vengono eseguite con lo stesso account utente automatico a livello di pool. In modo analogo, le attività eseguite senza privilegi di amministratore vengono eseguite anche con un unico account utente automatico a livello di pool. 
+Quando si specifica l'ambito di pool per hello. auto-utente, tutte le attività eseguite con privilegi di amministratore eseguiti hello stesso account utente con livello di pool automatico. In modo analogo, le attività eseguite senza privilegi di amministratore vengono eseguite anche con un unico account utente automatico a livello di pool. 
 
 > [!NOTE] 
-> I due account utente automatici a livello di pool sono account separati. Le attività in esecuzione con l'account amministrativo a livello di pool non possono condividere dati con quelle in esecuzione con l'account standard e viceversa. 
+> Hello due pool a livello di auto-account sono account distinti. Attività in esecuzione con account di amministrazione a livello di pool di hello non possono condividere dati con attività in esecuzione con account standard hello e viceversa. 
 >
 >
 
-Il vantaggio di eseguire attività con lo stesso account utente automatico consiste nel fatto che le attività sono in grado di condividere dati con altre attività in esecuzione nello stesso nodo.
+Hello toorunning vantaggio in hello stesso account utente di auto è che le attività sono in grado di tooshare dati con altre attività in esecuzione su hello stesso nodo.
 
-La condivisione di segreti tra le attività è uno scenario in cui l'esecuzione di attività con uno dei due account utente automatici a livello di pool è particolarmente utile. Si supponga ad esempio che un'attività di avvio richieda il provisioning di un segreto sul nodo che può essere usato da altre attività. È possibile usare l'API di protezione dati di Windows (DPAPI), ma in questo caso sono necessari anche i privilegi di amministratore. In alternativa, è possibile proteggere il segreto a livello di utente. Le attività in esecuzione con lo stesso account utente possono accedere al segreto senza accesso con privilegi elevati.
+La condivisione di informazioni riservate tra le attività è uno scenario in cui è utile l'esecuzione di attività con uno degli account utente a livello di pool automatico hello due. Si supponga, ad esempio, che un'attività di avvio deve tooprovision una chiave privata nel nodo hello che è possibile utilizzare altre attività. È possibile utilizzare Data Protection API (DPAPI) di Windows hello, ma richiede privilegi di amministratore. In alternativa, è possibile proteggere segreto hello a livello di utente hello. Attività in esecuzione in hello stesso account utente potrà accedere hello segreto senza accesso con privilegi elevati.
 
-Un altro scenario in cui può essere opportuno eseguire attività con un account utente automatico con ambito di pool è la condivisione di file di tipo MPI (Message Passing Interface). Una condivisione di file MPI è utile quando i nodi nell'attività MPI devono usare gli stessi dati di file. Il nodo head crea una condivisione di file cui i nodi figlio possono accedere se sono in esecuzione con lo stesso account utente automatico. 
+Condividere un altro scenario in cui può essere toorun attività con un account utente automatica con ambito di pool è un file di interfaccia MPI (Message Passing). Una condivisione di file MPI è utile quando i nodi hello hello MPI attività necessità toowork su hello stessi dati di file. nodo head Hello crea una condivisione file che i nodi figlio di hello possono accedere se sono in esecuzione con hello stesso account utente di auto. 
 
-Il frammento di codice seguente imposta l'ambito dell'utente automatico sull'ambito di pool per un'attività in Batch .NET. Il livello di elevazione dei privilegi viene omesso, in modo che l'attività venga eseguita con l'account utente automatico standard a livello di pool.
+Hello seguente frammento di codice imposta ambito di toopool ambito hello automatica dell'utente per un'attività in .NET per Batch. livello di elevazione Hello viene omesso, viene eseguito attività hello hello standard a livello di pool di auto-account di.
 
 ```csharp
 task.UserIdentity = new UserIdentity(new AutoUserSpecification(scope: AutoUserScope.Pool));
@@ -149,19 +149,19 @@ task.UserIdentity = new UserIdentity(new AutoUserSpecification(scope: AutoUserSc
 
 ## <a name="named-user-accounts"></a>Account utente non anonimi
 
-Quando si crea un pool, è possibile definire gli account utente non anonimi. A un account utente non anonimo sono associati un nome e una password definiti dall'utente. Per un account utente non anonimo, è possibile specificare il livello di elevazione dei privilegi. Per i nodi Linux, è anche possibile specificare una chiave privata SSH.
+Quando si crea un pool, è possibile definire gli account utente non anonimi. A un account utente non anonimo sono associati un nome e una password definiti dall'utente. È possibile specificare il livello di elevazione hello per un account utente denominato. Per i nodi Linux, è anche possibile specificare una chiave privata SSH.
 
-Un account utente non anonimo è presente in tutti i nodi del pool ed è disponibile per tutte le attività in esecuzione su tali nodi. In un pool è possibile definire un numero qualsiasi di utenti non anonimi. Quando si aggiunge un'attività o una raccolta di attività, è possibile specificare che l'attività venga eseguita con uno degli account utente non anonimi definiti nel pool.
+Esiste un account utente denominato su tutti i nodi nel pool di hello e tooall disponibili attività è in esecuzione su tali nodi. In un pool è possibile definire un numero qualsiasi di utenti non anonimi. Quando si aggiunge un'attività o un insieme di attività, è possibile specificare che tale attività hello viene eseguito con uno degli account utente definito nel pool di hello denominato hello.
 
-Un account utente non anonimo è utile quando si vuole che tutte le attività in un processo vengano eseguite con lo stesso account utente, ma si vuole anche isolarle dalle attività in esecuzione contemporaneamente in altri processi. È possibile ad esempio creare un utente non anonimo per ogni processo ed eseguire le attività di ogni processo con tale account. Ogni processo può condividere un segreto con le proprie attività, ma non con attività in esecuzione in altri processi.
+Un account utente denominato è utile quando si desidera toorun tutte le attività in un processo in hello stesso account utente isolandoli l'uno dall'attività in esecuzione in altri processi in hello contemporaneamente. È possibile ad esempio creare un utente non anonimo per ogni processo ed eseguire le attività di ogni processo con tale account. Ogni processo può condividere un segreto con le proprie attività, ma non con attività in esecuzione in altri processi.
 
-È anche possibile usare un account utente non anonimo per eseguire un'attività che imposta le autorizzazioni in risorse esterne, ad esempio in condivisioni di file. Con un account utente non anonimo è possibile controllare l'identità dell'utente e usare tale identità per impostare le autorizzazioni.  
+È anche possibile utilizzare un toorun di account utente non anonimo un'attività che imposta le autorizzazioni per le risorse esterne, ad esempio condivisioni file. Con un account utente non anonimo, controllare l'identità utente hello si può utilizzare tale autorizzazioni tooset di identità utente.  
 
-Gli account utente non anonimi consentono di abilitare il protocollo SSH senza password tra i nodi Linux. È possibile usare un account utente non anonimo con nodi Linux per cui è necessario eseguire attività a istanze multiple. Ogni nodo nel pool può eseguire attività con un account utente definito nell'intero pool. Per altre informazioni sulle attività a istanze multiple, vedere [Usare le attività a istanze multiple per eseguire applicazioni MPI (Message Passing Interface) in Batch](batch-mpi.md).
+Gli account utente non anonimi consentono di abilitare il protocollo SSH senza password tra i nodi Linux. È possibile utilizzare un account utente denominato con nodi di Linux che richiedono attività di multi-istanza toorun. Ogni nodo nel pool di hello può eseguire attività con un account utente definito nel pool intero hello. Per ulteriori informazioni sulle attività di più istanze, vedere [utilizzare più\-istanza attività applicazioni MPI toorun](batch-mpi.md).
 
 ### <a name="create-named-user-accounts"></a>Creare account utente non anonimi
 
-Per creare account utente non anonimi in Batch, aggiungere una raccolta di account utente al pool. I frammenti di codice seguenti illustrano come creare account utente non anonimi in .NET, Java e Python in un pool, sia con privilegi di amministratore che senza. Gli esempi creano pool usando la configurazione del servizio cloud, ma si usa lo stesso approccio quando si crea un pool di Windows o Linux tramite la configurazione della macchina virtuale.
+toocreate denominato gli account utente in Batch, aggiungere una raccolta di pool di toohello gli account utente. Hello frammenti di codice seguenti mostrano come toocreate denominati account utente in .NET, Java e Python. Questi codice frammenti di codice mostra come toocreate sia e gli account in un pool denominato non amministratore. esempi di Hello creano pool utilizzando hello configurazione del servizio cloud, ma è utilizzare hello stesso approccio quando si crea un pool di Windows o Linux utilizzando la configurazione della macchina virtuale hello.
 
 #### <a name="batch-net-example-windows"></a>Esempio per Batch .NET (Windows)
 
@@ -169,7 +169,7 @@ Per creare account utente non anonimi in Batch, aggiungere una raccolta di accou
 CloudPool pool = null;
 Console.WriteLine("Creating pool [{0}]...", poolId);
 
-// Create a pool using the cloud service configuration.
+// Create a pool using hello cloud service configuration.
 pool = batchClient.PoolOperations.CreatePool(
     poolId: poolId,
     targetDedicatedComputeNodes: 3,                                                         
@@ -183,7 +183,7 @@ pool.UserAccounts = new List<UserAccount>
     new UserAccount("nonAdminUser", "123xyz", ElevationLevel.NonAdmin),
 };
 
-// Commit the pool.
+// Commit hello pool.
 await pool.CommitAsync();
 ```
 
@@ -196,13 +196,13 @@ CloudPool pool = null;
 List<NodeAgentSku> nodeAgentSkus =
     batchClient.PoolOperations.ListNodeAgentSkus().ToList();
 
-// Define a delegate specifying properties of the VM image to use.
+// Define a delegate specifying properties of hello VM image toouse.
 Func<ImageReference, bool> isUbuntu1404 = imageRef =>
     imageRef.Publisher == "Canonical" &&
     imageRef.Offer == "UbuntuServer" &&
     imageRef.Sku.Contains("14.04");
 
-// Obtain the first node agent SKU in the collection that matches
+// Obtain hello first node agent SKU in hello collection that matches
 // Ubuntu Server 14.04. 
 NodeAgentSku ubuntuAgentSku = nodeAgentSkus.First(sku =>
     sku.VerifiedImageReferences.Any(isUbuntu1404));
@@ -211,13 +211,13 @@ NodeAgentSku ubuntuAgentSku = nodeAgentSkus.First(sku =>
 ImageReference imageReference =
     ubuntuAgentSku.VerifiedImageReferences.First(isUbuntu1404);
 
-// Create the virtual machine configuration to use to create the pool.
+// Create hello virtual machine configuration toouse toocreate hello pool.
 VirtualMachineConfiguration virtualMachineConfiguration =
     new VirtualMachineConfiguration(imageReference, ubuntuAgentSku.Id);
 
 Console.WriteLine("Creating pool [{0}]...", poolId);
 
-// Create the unbound pool.
+// Create hello unbound pool.
 pool = batchClient.PoolOperations.CreatePool(
     poolId: poolId,
     targetDedicatedComputeNodes: 3,                                             
@@ -247,7 +247,7 @@ pool.UserAccounts = new List<UserAccount>
             )),
 };
 
-// Commit the pool.
+// Commit hello pool.
 await pool.CommitAsync();
 ```
 
@@ -293,18 +293,18 @@ batch_client.pool.add(pool)
 
 ### <a name="run-a-task-under-a-named-user-account-with-elevated-access"></a>Eseguire un'attività con un account utente non anonimo con accesso con privilegi elevati
 
-Per eseguire un'attività come utente con privilegi elevati, impostarne la proprietà **UserIdentity** su un account utente non anonimo creato con la proprietà **ElevationLevel** impostata su `Admin`.
+toorun un'attività come del utente con privilegi elevati, set di attività di hello **UserIdentity** tooa proprietà denominato account utente che è stato creato con il relativo **ElevationLevel** impostata troppo`Admin`.
 
-Questo frammento di codice specifica che l'attività deve essere eseguita con un account utente non anonimo. Tale account utente è stato definito nel pool al momento della relativa creazione. In questo caso l'account utente non anonimo è stato creato con le autorizzazioni di amministratore:
+Questo frammento di codice specifica che attività hello deve essere eseguito con un account utente non anonimo. Questo account utente non anonimo è stato definito nel pool di hello quando è stato creato il pool di hello. In questo caso, hello denominato account utente è stato creato con le autorizzazioni di amministratore:
 
 ```csharp
 CloudTask task = new CloudTask("1", "cmd.exe /c echo 1");
 task.UserIdentity = new UserIdentity(AdminUserAccountName);
 ```
 
-## <a name="update-your-code-to-the-latest-batch-client-library"></a>Aggiornare il codice in base alla libreria client Batch più recente
+## <a name="update-your-code-toohello-latest-batch-client-library"></a>Aggiornare la libreria client di Batch della versione più recente di codice toohello
 
-Nella versione 2017-01-01.4.0 del servizio Batch è stata introdotta una modifica significativa, ovvero la proprietà **runElevated** disponibile nelle versioni precedenti è stata sostituita con la proprietà **userIdentity**. Le tabelle seguenti illustrano una semplice corrispondenza che consente di aggiornare il codice dalle versioni precedenti delle librerie client.
+versione del servizio Batch Hello 2017-01-01.4.0 introduce una modifica di rilievo, sostituendo hello **runElevated** proprietà disponibili nelle versioni precedenti con hello **userIdentity** proprietà. Hello le tabelle seguenti fornisce una semplice mapping che è possibile utilizzare tooupdate il codice da versioni precedenti di librerie client hello.
 
 ### <a name="batch-net"></a>Batch .NET
 
@@ -335,4 +335,4 @@ Nella versione 2017-01-01.4.0 del servizio Batch è stata introdotta una modific
 
 ### <a name="batch-forum"></a>Forum di Batch
 
-Il [forum di Azure Batch](https://social.msdn.microsoft.com/forums/azure/home?forum=azurebatch) su MSDN consente di seguire discussioni su Batch e di inviare domande sul servizio. Leggere i post aggiunti e inviare domande durante le procedure di sviluppo delle soluzioni Batch.
+Hello [Forum di Azure Batch](https://social.msdn.microsoft.com/forums/azure/home?forum=azurebatch) su MSDN è un ottimo posizionare toodiscuss Batch e porre domande sul servizio hello. Leggere i post aggiunti e inviare domande durante le procedure di sviluppo delle soluzioni Batch.

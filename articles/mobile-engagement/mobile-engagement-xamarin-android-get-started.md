@@ -1,6 +1,6 @@
 ---
-title: Introduzione ad Azure Mobile Engagement per Xamarin.Android
-description: "Informazioni sull'uso di Azure Mobile Engagement con funzionalità di analisi e notifiche push per le app Xamarin.Android."
+title: aaaGet avviato con Azure Mobile Engagement per xamarin
+description: Informazioni su come toouse Azure Mobile Engagement con Analitica e le notifiche Push per le app xamarin.
 services: mobile-engagement
 documentationcenter: xamarin
 author: piyushjo
@@ -14,75 +14,75 @@ ms.devlang: dotnet
 ms.topic: hero-article
 ms.date: 06/16/2016
 ms.author: piyushjo
-ms.openlocfilehash: 7b3d01b32c2d5a40448fc22861cd45f612238f2f
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 9d584fea8e8153d511258cf9b6f87f31dac6aeca
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-with-azure-mobile-engagement-for-xamarinandroid-apps"></a>Introduzione ad Azure Mobile Engagement per app Xamarin.Android
 [!INCLUDE [Hero tutorial switcher](../../includes/mobile-engagement-hero-tutorial-switcher.md)]
 
-Questo argomento descrive come usare Azure Mobile Engagement per ottenere informazioni sull'uso dell'app e sull'invio di notifiche push a utenti segmentati di un'applicazione Xamarin.Android.
-Questa esercitazione illustra uno scenario di trasmissione semplice tramite Mobile Engagement. Verrà creata un'app Xamarin.Android vuota che raccoglie dati di base e riceve notifiche push tramite il servizio Google Cloud Messaging (GCM).
+In questo argomento illustra come toouse Azure Mobile Engagement toounderstand sull'utilizzo delle app e come toosend push agli utenti di toosegmented notifiche di un'applicazione di xamarin.
+Questa esercitazione illustra hello broadcast uno scenario semplice utilizzando Mobile Engagement. Verrà creata un'app Xamarin.Android vuota che raccoglie dati di base e riceve notifiche push tramite il servizio Google Cloud Messaging (GCM).
 
 > [!NOTE]
-> Il servizio Azure Mobile Engagement verrà ritirato a marzo 2018 ed è attualmente disponibile solo per i clienti esistenti. Per altre informazioni, vedere [Mobile Engagement](https://azure.microsoft.com/en-us/services/mobile-engagement/).
+> servizio di Azure Mobile Engagement di Hello verrà ritirata 2018 marzo ed è attualmente tooexisting disponibili solo i clienti. Per altre informazioni, vedere [Mobile Engagement](https://azure.microsoft.com/en-us/services/mobile-engagement/).
 
-Per completare questa esercitazione, è necessario disporre di:
+Questa esercitazione richiede il seguente hello:
 
 * [Xamarin Studio](http://xamarin.com/studio). È anche possibile usare Visual Studio con Xamarin ma questa esercitazione usa Xamarin Studio. Per istruzioni di installazione, vedere [Configurazione e installazione per Visual Studio e Xamarin](https://msdn.microsoft.com/library/mt613162.aspx).
 * [Mobile Engagement Xamarin SDK](https://www.nuget.org/packages/Microsoft.Azure.Engagement.Xamarin/)
 
 > [!NOTE]
-> Per completare l'esercitazione, è necessario disporre di un account Azure attivo. Se non si dispone di un account, è possibile creare un account di valutazione gratuita in pochi minuti. Per informazioni dettagliate, vedere la pagina relativa alla [versione di valutazione gratuita di Azure](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A0E0E5C02&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fen-us%2Fdocumentation%2Farticles%2Fmobile-engagement-xamarin-android-get-started).
+> toocomplete questa esercitazione, è necessario disporre di un account di Azure attivo. Se non si dispone di un account, è possibile creare un account di valutazione gratuita in pochi minuti. Per informazioni dettagliate, vedere la pagina relativa alla [versione di valutazione gratuita di Azure](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A0E0E5C02&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fen-us%2Fdocumentation%2Farticles%2Fmobile-engagement-xamarin-android-get-started).
 > 
 > 
 
 ## <a id="setup-azme"></a>Configurare Mobile Engagement per l'app Android
 [!INCLUDE [Create Mobile Engagement App in Portal](../../includes/mobile-engagement-create-app-in-portal-new.md)]
 
-## <a id="connecting-app"></a>Connettere l'app al back-end di Mobile Engagement
-Questa esercitazione presenta una "integrazione di base", che è la configurazione minima necessaria per raccogliere i dati e inviare una notifica push. 
+## <a id="connecting-app"></a>La connessione back-end Mobile Engagement toohello app
+Questa esercitazione viene illustrato una "integrazione di base", che viene hello minima set di dati obbligatorio toocollect e invia una notifica push. 
 
-Verrà creata un'app di base con Xamarin Studio per illustrare l'integrazione.
+Verrà creata un'applicazione di base con l'integrazione di hello toodemonstrate Xamarin Studio.
 
 ### <a name="create-a-new-xamarinandroid-project"></a>Creare un nuovo progetto Xamarin.Android
-1. Avviare **Xamarin Studio** e passare a **File** -> **New** ->  (Nuovo) **Solution** (Soluzione) 
+1. Avviare **Xamarin Studio** andare troppo**File** -> **New** -> **soluzione** 
    
     ![][1]
-2. Selezionare **Android App** (App Android), assicurarsi che il linguaggio selezionato sia **C#** e quindi fare clic su **Next** (Avanti).
+2. Selezionare **App Android** assicurarsi lingua hello selezionata è **c#** e fare clic su **Avanti**.
    
     ![][2]
-3. Specificare le informazioni richieste nei campi **App Name** (Nome app) e **Organization Identifier** (Identificatore organizzazione). Assicurarsi di selezionare **Google Play Services** con un segno di spunta e quindi fare clic su **Next** (Avanti). 
+3. Compilare hello **nome App** hello e **identificatore organizzazione**. Verificare che toocheckmark **Google Play Services** e quindi fare clic su **Avanti**. 
    
     ![][3]
-4. Aggiornare i campi **Project Name** (Nome progetto), **Solution Name** (Nome soluzione) e **Location** (Posizione), se necessario, e fare clic su **Create** (Crea).
+4. Hello aggiornamento **nome progetto**, **Nome soluzione** e **percorso** se necessario, fare clic su **crea**.
    
     ![][4]
 
-Xamarin Studio creerà l'app in cui verrà integrato Mobile Engagement. 
+Xamarin Studio consente di creare app di hello in cui integrare Mobile Engagement. 
 
-### <a name="connect-your-app-to-mobile-engagement-backend"></a>Connettere l'app al back-end di Mobile Engagement
-1. Fare clic con il pulsante destro del mouse sulla cartella **Packages** (Pacchetti) nelle finestre della soluzione, quindi scegliere **Add Packages...** (Aggiungi pacchetti)
+### <a name="connect-your-app-toomobile-engagement-backend"></a>La connessione back-end Engagement tooMobile app
+1. Fare clic con il pulsante destro hello **pacchetti** cartella windows soluzione hello e selezionare **Aggiungi pacchetti...**
    
     ![][5]
-2. Cercare **Microsoft Azure Mobile Engagement Xamarin SDK** e aggiungerlo alla soluzione.  
+2. Ricerca di hello **Xamarin SDK di Microsoft Azure Mobile Engagement** e aggiungerlo tooyour soluzione.  
    
     ![][6]
-3. Aprire **MainActivity.cs** e aggiungere le istruzioni using seguenti:
+3. Aprire **Mainactivity** e aggiungere hello seguenti istruzioni using:
    
         using Microsoft.Azure.Engagement;
         using Microsoft.Azure.Engagement.Activity;
-4. Nel metodo `OnCreate` aggiungere quanto segue per inizializzare la connessione con il back-end di Mobile Engagement. Assicurarsi di aggiungere **ConnectionString**. 
+4. In hello `OnCreate` metodo, aggiungere hello seguente connessione di hello tooinitialize con back-end Mobile Engagement. Verificare che tooadd il **ConnectionString**. 
    
         EngagementConfiguration engagementConfiguration = new EngagementConfiguration();
         engagementConfiguration.ConnectionString = "YourConnectionStringFromAzurePortal";
         EngagementAgent.Init(engagementConfiguration);
 
 ### <a name="add-permissions-and-a-service-declaration"></a>Aggiungere le autorizzazioni e una dichiarazione del servizio
-1. Aprire il file **Manifest.xml** nella cartella Properties. Selezionare la scheda Source per aggiornare direttamente l'origine XML.
-2. Aggiungere queste autorizzazioni al file Manifest.xml, nella cartella **Properties** del progetto, immediatamente prima o dopo il tag `<application>`:
+1. Aprire la console di hello **Manifest.xml** file nella cartella proprietà hello. Selezionare la scheda origine in modo da aggiornare direttamente l'origine XML hello.
+2. Aggiungere questi toohello autorizzazioni manifest (che è possibile trovare in hello **proprietà** cartella) del progetto, immediatamente prima o dopo hello `<application>` tag:
    
         <uses-permission android:name="android.permission.INTERNET"/>
         <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
@@ -90,17 +90,17 @@ Xamarin Studio creerà l'app in cui verrà integrato Mobile Engagement.
         <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
         <uses-permission android:name="android.permission.VIBRATE" />
         <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION"/>
-3. Aggiungere quanto indicato sotto tra i tag `<application>` e `</application>` per dichiarare il servizio agente:
+3. Aggiungere il seguente hello tra hello `<application>` e `</application>` tag servizio agente di hello toodeclare:
    
         <service
              android:name="com.microsoft.azure.engagement.service.EngagementService"
              android:exported="false"
              android:label="<Your application name>"
              android:process=":Engagement"/>
-4. Nel codice appena incollato sostituire `"<Your application name>"` nell'etichetta. Questo è il valore visualizzato nel menu **Impostazioni** , che mostra all'utente i servizi in esecuzione nel dispositivo. È possibile aggiungere la parola "Service" all'etichetta, ad esempio.
+4. Nel codice hello appena incollati, sostituire `"<Your application name>"` nell'etichetta hello. Viene visualizzato in hello **impostazioni** menu in cui gli utenti possono visualizzare i servizi in esecuzione sul dispositivo hello. È possibile aggiungere, ad esempio la parola hello "Servizio" in tale etichetta.
 
-### <a name="send-a-screen-to-mobile-engagement"></a>Inviare una schermata a Mobile Engagement
-Per iniziare a inviare dati e assicurarsi che gli utenti siano attivi, è necessario inviare almeno una schermata al back-end di Mobile Engagement. Per eseguire questa operazione, assicurarsi che `MainActivity` erediti da `EngagementActivity` anziché da `Activity`.
+### <a name="send-a-screen-toomobile-engagement"></a>Inviare un tooMobile schermata Engagement
+In ordine toostart l'invio dei dati e garantire agli utenti di hello sono attivi, è necessario inviare almeno un back-end Mobile Engagement delle toohello dello schermo. Per eseguire questa operazione-verificare che hello `MainActivity` eredita da `EngagementActivity` anziché `Activity`.
 
     public class MainActivity : EngagementActivity
 
@@ -122,8 +122,8 @@ In alternativa, se non è possibile ereditare da `EngagementActivity` è necessa
 [!INCLUDE [Connect app with real-time monitoring](../../includes/mobile-engagement-connect-app-with-monitor.md)]
 
 ## <a id="integrate-push"></a>Abilitare le notifiche push e la messaggistica in-app
-Mobile Engagement consente di interagire con gli utenti e COINVOLGERLI tramite notifiche push e messaggistica in-app nel contesto di campagne. Questo modulo è denominato REACH nel portale di Mobile Engagement.
-Le sezioni seguenti consentono di configurare l'app per la ricezione.
+Engagement mobile permette toointeract con e raggiungere gli utenti con le notifiche push e nel contesto di hello delle campagne di messaggistica in-app. Questo modulo viene chiamato REACH nel portale Mobile Engagement hello.
+Hello le sezioni seguenti viene impostato il tooreceive app li.
 
 [!INCLUDE [Enable Google Cloud Messaging](../../includes/mobile-engagement-enable-google-cloud-messaging.md)]
 

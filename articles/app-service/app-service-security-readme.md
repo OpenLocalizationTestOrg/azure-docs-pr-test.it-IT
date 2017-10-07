@@ -1,6 +1,6 @@
 ---
-title: Sicurezza del servizio app di Azure
-description: "Informazioni sulla scalabilità delle app Web, per dispositivi mobili, per le API e per la logica nel servizio app di Azure."
+title: aaaAzure sicurezza del servizio App
+description: Informazioni su come App Web, dispositivi mobili, API e la logica di toosecure nel servizio App di Azure.
 services: app-service
 documentationcenter: 
 author: naziml
@@ -14,16 +14,16 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/16/2015
 ms.author: naziml
-ms.openlocfilehash: 7d26d52ad04bd4158a1450ae0f49fc7c1f8a04e8
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8a0bff7d9665abadd70c1cfd07dca265ea057596
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-app-service-security"></a>Sicurezza del servizio app di Azure
-Servizi app di Azure è conforme ai principali standard di settore per sicurezza e affidabilità, per offrire ai clienti una piattaforma sicura. Sono disponibili diverse funzionalità facili da usare che consentono di proteggere il traffico in ingresso e in uscita per l'app. I clienti possono anche proteggere il codice delle proprie applicazioni grazie alla disponibilità di funzionalità esterne per eseguire per l'analisi dell'applicazione Web e individuare eventuali vulnerabilità.
+Servizi App di Azure è conforme a standard di settore chiave hello per la protezione e affidabilità tooprovide clienti una piattaforma sicura. Sono disponibili diverse funzionalità di semplice utilizzo toohelp proteggere il traffico in ingresso e in uscita per l'app. È inoltre aiutare i clienti a protetta di codice dell'applicazione fornendo esternamente fornito tooscan funzionalità dell'applicazione web per le vulnerabilità.
 
 [!INCLUDE [app-service-blueprint-security](../../includes/app-service-blueprint-security.md)]
 
-Il servizio app di Azure offre la stessa soluzione Antimalware usata da Servizi cloud e Macchine virtuali di Azure. Per altre informazioni, vedere la [documentazione di Antimalware](../security/azure-security-antimalware.md). 
+Azure App Service utilizza hello stessa soluzione Antimalware utilizzata da servizi Cloud di Azure e macchine virtuali. toolearn informazioni fare riferimento tooour [documentazione Antimalware](../security/azure-security-antimalware.md). 
 

@@ -1,6 +1,6 @@
 ---
 title: 'Azure Active Directory B2C: introduzione ai criteri personalizzati | Microsoft Docs'
-description: Come iniziare a usare i criteri personalizzati di Azure Active Directory B2C
+description: "La modalità di avvio tooget con i criteri personalizzati di Azure Active Directory B2C"
 services: active-directory-b2c
 documentationcenter: 
 author: rojasja
@@ -14,79 +14,79 @@ ms.topic: article
 ms.devlang: na
 ms.date: 08/04/2017
 ms.author: joroja;parahk;gsacavdm
-ms.openlocfilehash: 4f14dbf4b66f10290cd4f98d56a005f97cc6a207
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 5ee133806395cddf18682769a6cad149889d82d1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-active-directory-b2c-get-started-with-custom-policies"></a>Azure Active Directory B2C: introduzione ai criteri personalizzati
 
 [!INCLUDE [active-directory-b2c-advanced-audience-warning](../../includes/active-directory-b2c-advanced-audience-warning.md)]
 
-Dopo avere completato i passaggi descritti in questo articolo, il criterio personalizzato supporterà l'iscrizione o l'accesso all'"account locale" tramite un indirizzo di posta elettronica e una password. Si preparerà anche l'ambiente per l'aggiunta di provider di identità (ad esempio Facebook o Azure Active Directory). È consigliabile completare questi passaggi prima di leggere informazioni su altri usi del Framework dell'esperienza di gestione delle identità di Azure Active Directory B2C (Azure AD B2C).
+Dopo aver completato i passaggi di hello in questo articolo, il criterio personalizzato supporterà "LocalAccount" iscrizione o accesso tramite un indirizzo di posta elettronica e una password. Si preparerà anche l'ambiente per l'aggiunta di provider di identità (ad esempio Facebook o Azure Active Directory). Si consiglia di toocomplete questi passaggi prima della lettura su altri utilizzi di hello Azure Active Directory (Azure AD) B2C identità esperienza Framework.
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-Prima di procedere, assicurarsi di disporre di un tenant di Azure AD B2C, che è un contenitore per tutti gli utenti, le app, i criteri e altro ancora. In assenza di un tenant, è necessario [creare un tenant di Azure AD B2C](active-directory-b2c-get-started.md). Prima di procedere, è consigliabile che tutti gli sviluppatori completino le procedure dettagliate relative ai criteri predefiniti di Azure AD B2C e configurino la propria applicazione con i criteri predefiniti. Le applicazioni useranno entrambi i tipi di criteri con una semplice modifica del nome dei criteri per richiamare i criteri personalizzati.
+Prima di procedere, assicurarsi di disporre di un tenant di Azure AD B2C, che è un contenitore per tutti gli utenti, le app, i criteri e altro ancora. Se si non è ancora disponibile, è necessario troppo[creare un tenant di Azure Active Directory B2C](active-directory-b2c-get-started.md). È fortemente incoraggiare tutti gli sviluppatori toocomplete hello procedure dettagliate di Azure Active Directory B2C criteri predefiniti e configurare le applicazioni con i criteri predefiniti prima di procedere. Le applicazioni funziona con entrambi i tipi di criteri di una volta apportata un modifica secondaria toohello criteri nome tooinvoke hello criteri personalizzati.
 
 >[!NOTE]
->Per accedere alla funzionalità di modifica dei criteri personalizzati è necessaria una sottoscrizione di Azure valida collegata al tenant. Se il [tenant di Azure AD B2C non è collegato a una sottoscrizione di Azure](active-directory-b2c-how-to-enable-billing.md) oppure la sottoscrizione di Azure è disabilitata, il pulsante Framework dell'esperienza di gestione delle identità non è disponibile.
+>tooaccess Modifica criterio personalizzato, è necessario un tenant tooyour collegato la sottoscrizione di Azure valida. Se non hai [collegato il tooan tenant di Azure Active Directory B2C sottoscrizione di Azure](active-directory-b2c-how-to-enable-billing.md) o la sottoscrizione di Azure è disabilitata, hello identità esperienza Framework pulsante non sarà disponibile.
 
-## <a name="add-signing-and-encryption-keys-to-your-b2c-tenant-for-use-by-custom-policies"></a>Aggiungere chiavi di crittografia e di firma al tenant di B2C per l'uso da parte dei criteri personalizzati
+## <a name="add-signing-and-encryption-keys-tooyour-b2c-tenant-for-use-by-custom-policies"></a>Aggiungere la firma e crittografia tenant tooyour B2C chiavi per l'utilizzo mediante criteri personalizzati
 
-1. Aprire il pannello **Framework dell'esperienza di gestione delle identità** nelle impostazioni del tenant di Azure AD B2C.
-2. Selezionare **Chiavi dei criteri** per visualizzare le chiavi disponibili nel tenant.
+1. Aprire hello **identità esperienza Framework** pannello nelle impostazioni del tenant di Azure Active Directory B2C.
+2. Selezionare **chiavi dei criteri** chiavi hello tooview disponibili nel tenant.
 3. Se non esiste, creare B2C_1A_TokenSigningKeyContainer:<br>
     a. Selezionare **Aggiungi**. <br>
     b. Selezionare **Genera**.<br>
     c. Per **Nome** usare `TokenSigningKeyContainer`. <br> 
-    È possibile che il prefisso `B2C_1A_` venga aggiunto automaticamente.<br>
+    prefisso Hello `B2C_1A_` potrebbero essere aggiunti automaticamente.<br>
     d. For **Tipo di chiave** usare **RSA**.<br>
-    e. Per **Date** usare le impostazioni predefinite. <br>
+    e. Per **date**, utilizzare quelli predefiniti hello. <br>
     f. Per **Uso chiave** usare **Firma**.<br>
     g. Selezionare **Crea**.<br>
 4. Se non esiste, creare B2C_1A_TokenEncryptionKeyContainer:<br>
  a. Selezionare **Aggiungi**.<br>
  b. Selezionare **Genera**.<br>
  c. Per **Nome** usare `TokenEncryptionKeyContainer`. <br>
-   È possibile che il prefisso `B2C_1A`_ venga aggiunto automaticamente.<br>
+   prefisso Hello `B2C_1A`_ potrebbero essere aggiunti automaticamente.<br>
  d. For **Tipo di chiave** usare **RSA**.<br>
- e. Per **Date** usare le impostazioni predefinite.<br>
+ e. Per **date**, utilizzare quelli predefiniti hello.<br>
  f. Per **Uso chiave** usare **Crittografia**.<br>
  g. Selezionare **Crea**.<br>
 5. Creare B2C_1A_FacebookSecret. <br>
-Se si ha già un segreto dell'applicazione Facebook, aggiungerlo come chiave dei criteri nel tenant. In caso contrario, è necessario creare la chiave con un valore segnaposto affinché i criteri superino la convalida.<br>
+Se si dispone già di un segreto dell'applicazione Facebook, aggiungerlo come tenant tooyour chiave dei criteri. In caso contrario, è necessario creare chiave hello con un valore segnaposto, in modo che i criteri di convalida.<br>
  a. Selezionare **Aggiungi**.<br>
  b. Per **Opzioni** usare **Manuale**.<br>
  c. Per **Nome** usare `FacebookSecret`. <br>
- È possibile che il prefisso `B2C_1A_` venga aggiunto automaticamente.<br>
- d. Nella casella **Segreto** immettere il FacebookSecret disponibile in developers.facebook.com oppure `0` come segnaposto. *Non si tratta dell'ID dell'app Facebook*. <br>
+ prefisso Hello `B2C_1A_` potrebbero essere aggiunti automaticamente.<br>
+ d. In hello **Secret** , immettere il FacebookSecret da developers.facebook.com o `0` come segnaposto. *Non si tratta dell'ID dell'app Facebook*. <br>
  e. Per **Uso chiave** usare **Firma**. <br>
  f. Selezionare **Crea** e confermare la creazione.
 
 ## <a name="register-identity-experience-framework-applications"></a>Registrare le applicazioni del framework dell'esperienza di gestione delle identità
 
-Azure AD B2C richiede di registrare due applicazioni aggiuntive che vengono usate dal motore per registrare e far accedere gli utenti.
+Azure Active Directory B2C richiede tooregister due applicazioni aggiuntive che vengono utilizzate da hello motore toosign backup ed eseguire l'accesso agli utenti.
 
 >[!NOTE]
->È necessario creare due applicazioni per abilitare l'accesso con account locali: l'app Web IdentityExperienceFramework e l'app nativa ProxyIdentityExperienceFramework, con autorizzazione delegata dall'app IdentityExperienceFramework. Gli account locali esistono solo nel tenant. Per accedere alle applicazioni registrate nel tenant, gli utenti si iscrivono con una combinazione univoca di indirizzo di posta elettronica e password.
+>È necessario creare due applicazioni che abilita Accedi con account locali: IdentityExperienceFramework (un'app web) e ProxyIdentityExperienceFramework (un'applicazione nativa) con delega autorizzazioni app IdentityExperienceFramework hello. Gli account locali esistono solo nel tenant. Gli utenti iscriversi con un tooaccess combinazione/password dell'indirizzo di posta elettronica univoco applicazioni tenant registrato.
 
-### <a name="create-the-identityexperienceframework-application"></a>Creare l'applicazione IdentityExperienceFramework
+### <a name="create-hello-identityexperienceframework-application"></a>Creare un'applicazione hello IdentityExperienceFramework
 
-1. Nel [portale di Azure](https://portal.azure.com) passare al [contesto del tenant di Azure AD B2C](active-directory-b2c-navigate-to-b2c-context.md).
-2. Aprire il pannello **Azure Active Directory** (non il pannello **Azure AD B2C**). Potrebbe essere necessario selezionare **Altri servizi** per individuarlo.
+1. In hello [portale di Azure](https://portal.azure.com), passare in hello [contesto del tenant di Azure Active Directory B2C](active-directory-b2c-navigate-to-b2c-context.md).
+2. Aprire hello **Azure Active Directory** blade (non hello **Azure Active Directory B2C** pannello). Potrebbe essere necessario tooselect **più servizi** toofind è.
 3. Selezionare **Registrazioni per l'app**.
 4. Selezionare **Registrazione nuova applicazione**.
    * Per **Nome** usare `IdentityExperienceFramework`.
    * Per **Tipo di applicazione** usare **App Web/API**.
    * Per **URL di accesso** usare `https://login.microsoftonline.com/yourtenant.onmicrosoft.com`, dove `yourtenant` è il nome del dominio del tenant di Azure AD B2C.
 5. Selezionare **Crea**.
-6. Dopo avere completato la creazione, selezionare l'applicazione appena creata **IdentityExperienceFramework**.<br>
+6. Una volta creato, selezionare un'applicazione hello appena creato **IdentityExperienceFramework**.<br>
    * Selezionare **Proprietà**.<br>
-   * Copiare l'ID dell'applicazione e salvarlo per un uso successivo.
+   * Copiare l'ID dell'applicazione hello e salvarlo per un momento successivo.
 
-### <a name="create-the-proxyidentityexperienceframework-application"></a>Creare l'applicazione ProxyIdentityExperienceFramework
+### <a name="create-hello-proxyidentityexperienceframework-application"></a>Creare un'applicazione hello ProxyIdentityExperienceFramework
 
 1. Selezionare **Registrazioni per l'app**.
 1. Selezionare **Registrazione nuova applicazione**.
@@ -94,44 +94,44 @@ Azure AD B2C richiede di registrare due applicazioni aggiuntive che vengono usat
    * Per **Tipo di applicazione** usare **Nativo**.
    * Per **URI di reindirizzamento** usare `https://login.microsoftonline.com/yourtenant.onmicrosoft.com`, dove `yourtenant` è il tenant di Azure AD B2C.
 1. Selezionare **Crea**.
-1. Dopo avere completato la creazione, selezionare l'applicazione **ProxyIdentityExperienceFramework**.<br>
+1. Dopo che è stato creato, selezionare un'applicazione hello **ProxyIdentityExperienceFramework**.<br>
    * Selezionare **Proprietà**. <br>
-   * Copiare l'ID dell'applicazione e salvarlo per un uso successivo.
+   * Copiare l'ID dell'applicazione hello e salvarlo per un momento successivo.
 1. Selezionare **Autorizzazioni necessarie**.
 1. Selezionare **Aggiungi**.
 1. Fare clic su **Selezionare un'API**.
-1. Cercare il nome IdentityExperienceFramework. Selezionare **IdentityExperienceFramework** nei risultati e quindi fare clic su **Seleziona**.
-1. Selezionare la casella di controllo accanto a **Accesso a IdentityExperienceFramework** e quindi fare clic su **Seleziona**.
+1. Ricerca per nome hello IdentityExperienceFramework. Selezionare **IdentityExperienceFramework** in hello risultati e quindi fare clic su **selezionare**.
+1. Selezionare la casella di controllo hello troppo Avanti**accesso IdentityExperienceFramework**, quindi fare clic su **selezionare**.
 1. Selezionare **Operazione completata**.
 1. Selezionare **Concedi autorizzazioni** e quindi confermare selezionando **Sì**.
 
 ## <a name="download-starter-pack-and-modify-policies"></a>Scaricare lo starter pack e modificare i criteri
 
-I criteri personalizzati sono un set di file XML che devono essere caricati nel tenant di Azure AD B2C. Gli starter pack vengono forniti per consentire agli utenti di diventare rapidamente operativi. Ogni pacchetto Starter nell'elenco seguente contiene il più piccolo numero di profili di tecnici e i percorsi utente necessari per raggiungere gli scenari descritti:
- * LocalAccounts. Consente l'uso solo di account locali.
- * SocialAccounts. Consente l'uso solo di account di social networking (o federati).
- * **SocialAndLocalAccounts**. Si userà questo file per la procedura dettagliata.
+Criteri personalizzati sono un set di file XML che è necessario tenant di Azure Active Directory B2C tooyour toobe caricato. Offriamo starter Pack tooget si lavorare rapidamente. Ogni pacchetto nel seguente elenco hello contiene hello più piccolo numero di profili di tecnici e i percorsi utente necessari scenari hello tooachieve descritti:
+ * LocalAccounts. Consente l'utilizzo di hello di solo gli account locali.
+ * SocialAccounts. Consente l'utilizzo di hello dei conti social (o federazione).
+ * **SocialAndLocalAccounts**. Questo file è usato per questa procedura dettagliata hello.
  * SocialAndLocalAccountsWithMFA. Qui sono incluse le opzioni social, locale e Multi-Factor Authentication.
 
 Ogni pacchetto Starter contiene:
 
-* Il [file base](active-directory-b2c-overview-custom.md#policy-files) dei criteri. Alcune modifiche sono necessarie per la base.
-* Il [file di estensione](active-directory-b2c-overview-custom.md#policy-files) dei criteri.  Questo file è quello in cui viene eseguita la maggior parte delle modifiche di configurazione.
+* Hello [file base](active-directory-b2c-overview-custom.md#policy-files) dei criteri di hello. Alcune modifiche sono necessari toohello base.
+* Hello [file di estensione](active-directory-b2c-overview-custom.md#policy-files) dei criteri di hello.  Questo file è quello in cui viene eseguita la maggior parte delle modifiche di configurazione.
 * I [file relying party](active-directory-b2c-overview-custom.md#policy-files) sono file specifici delle attività chiamati dall'applicazione.
 
 >[!NOTE]
->Se l'editor XML supporta la convalida, convalidare i file rispetto allo schema XML TrustFrameworkPolicy_0.3.0.0.xsd che si trova nella directory radice del pacchetto Starter. La convalida dello schema XML identifica gli errori prima del caricamento.
+>Se l'editor XML supporta la convalida, convalidare file hello rispetto allo schema XML TrustFrameworkPolicy_0.3.0.0.xsd hello che si trova nella directory radice di hello del pacchetto hello. La convalida dello schema XML identifica gli errori prima del caricamento.
 
  Di seguito sono riportati i requisiti iniziali:
 
-1. Scaricare active-directory-b2c-custom-policy-starterpack da GitHub. [Scaricare il file con estensione zip](https://github.com/Azure-Samples/active-directory-b2c-custom-policy-starterpack/archive/master.zip) o eseguire
+1. Scaricare active-directory-b2c-custom-policy-starterpack da GitHub. [Scaricare i file con estensione zip hello](https://github.com/Azure-Samples/active-directory-b2c-custom-policy-starterpack/archive/master.zip) o eseguire
 
     ```console
     git clone https://github.com/Azure-Samples/active-directory-b2c-custom-policy-starterpack
     ```
-2. Aprire la cartella SocialAndLocalAccounts.  Il file di base (TrustFrameworkBase.xml) in questa cartella include il contenuto necessario agli account locali, aziendali e di social networking. Il contenuto sociale non interferisce con la procedura per creare ed eseguire gli account locali.
+2. Apri cartella SocialAndLocalAccounts hello.  file base Hello (TrustFrameworkBase.xml) in questa cartella contiene contenuto necessario per gli account locali e sociale/aziendale. contenuto social Hello non interferisce con i passaggi di hello per gli account locali di installare e in esecuzione.
 3. Aprire TrustFrameworkBase.xml. Se occorre un editor XML, provare [Visual Studio Code](https://code.visualstudio.com/download), un editor multipiattaforma leggero.
-4. Nell'elemento `TrustFrameworkPolicy` radice aggiornare gli attributi `TenantId` e `PublicPolicyUri` sostituendo `yourtenant.onmicrosoft.com` con il nome di dominio del tenant di Azure AD B2C:
+4. Nella radice di hello `TrustFrameworkPolicy` elemento, hello aggiornamento `TenantId` e `PublicPolicyUri` gli attributi, sostituendo `yourtenant.onmicrosoft.com` con il nome di dominio hello del tenant di Azure Active Directory B2C:
    ```xml
     <TrustFrameworkPolicy
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -143,54 +143,54 @@ Ogni pacchetto Starter contiene:
     PublicPolicyUri="http://yourtenant.onmicrosoft.com">
     ```
    >[!NOTE]
-   >`PolicyId` è il nome dei criteri visualizzato nel portale e il nome con cui gli altri file dei criteri fanno riferimento ad esso.
+   >`PolicyId`è nome criterio hello che viene visualizzato nel portale di hello e nome hello mediante il quale il file di criteri viene fatto riferimento da altri file di criteri.
 
-5. Salvare il file.
-6. Aprire TrustFrameworkExtensions.xml. Apportare le stesse due modifiche sostituendo `yourtenant.onmicrosoft.com` con il tenant di Azure AD B2C. Eseguire la stessa sostituzione nell'elemento `<TenantId>`, effettuando così in totale di tre modifiche. Salvare il file.
-7. Aprire SignUpOrSignIn.xml. Apportare le stesse modifiche sostituendo `yourtenant.onmicrosoft.com` con il tenant di Azure AD B2C in tre posizioni. Salvare il file.
-8. Aprire i file di modifica del profilo e di reimpostazione delle password. Apportare le stesse modifiche sostituendo `yourtenant.onmicrosoft.com` con il tenant di Azure AD B2C in tre posizioni in ogni file. Salvare i file.
+5. Salvare il file hello.
+6. Aprire TrustFrameworkExtensions.xml. Modificare hello stesso due sostituendo `yourtenant.onmicrosoft.com` con il tenant di Azure Active Directory B2C. Rendere hello stesso sostituzione in hello `<TenantId>` elemento per un totale di tre modifiche. Salvare il file hello.
+7. Aprire SignUpOrSignIn.xml. Modificare hello stesso sostituendo `yourtenant.onmicrosoft.com` con il tenant di Azure Active Directory B2C in tre posizioni. Salvare il file hello.
+8. La reimpostazione della password hello aprire e modificare i file di profilo. Modificare hello stesso sostituendo `yourtenant.onmicrosoft.com` con il tenant di Azure Active Directory B2C nei tre punti in ogni file. Salvare i file hello.
 
-### <a name="add-the-application-ids-to-your-custom-policy"></a>Aggiungere le ID dell'applicazione al criterio personalizzato
-Aggiungere gli ID applicazione al file di estensione (`TrustFrameworkExtensions.xml`):
+### <a name="add-hello-application-ids-tooyour-custom-policy"></a>Aggiungere criteri personalizzati tooyour ID applicazione hello
+Aggiungere file estensioni toohello ID dell'applicazione hello (`TrustFrameworkExtensions.xml`):
 
-1. Nel file di estensione (TrustFrameworkExtensions.xml) trovare l'elemento `<TechnicalProfile Id="login-NonInteractive">`.
-2. Sostituire entrambe le istanze di `IdentityExperienceFrameworkAppId` con l'ID dell'applicazione del framework dell'esperienza di gestione delle identità creata in precedenza. Di seguito è fornito un esempio:
+1. Nel file estensioni hello (TrustFrameworkExtensions.xml), trovare l'elemento hello `<TechnicalProfile Id="login-NonInteractive">`.
+2. Sostituire le istanze di `IdentityExperienceFrameworkAppId` con ID applicazione hello hello applicazione identità esperienza Framework creato in precedenza. Di seguito è fornito un esempio:
 
    ```xml
    <Item Key="client_id">8322dedc-cbf4-43bc-8bb6-141d16f0f489</Item>
    ```
-3. Sostituire entrambe le istanze di `ProxyIdentityExperienceFrameworkAppId` con l'ID dell'applicazione proxy del framework dell'esperienza di gestione delle identità creata in precedenza.
+3. Sostituire le istanze di `ProxyIdentityExperienceFrameworkAppId` con ID applicazione hello hello applicazione Proxy identità esperienza Framework creato in precedenza.
 4. Salvare il file delle estensioni.
 
-## <a name="upload-the-policies-to-your-tenant"></a>Caricare i criteri nel tenant
+## <a name="upload-hello-policies-tooyour-tenant"></a>Caricare tenant tooyour di hello criteri
 
-1. Nel [portale di Azure](https://portal.azure.com) passare al [contesto del tenant di Azure AD B2C](active-directory-b2c-navigate-to-b2c-context.md) e aprire il pannello **Azure AD B2C**.
+1. In hello [portale di Azure](https://portal.azure.com), passare in hello [contesto del tenant di Azure Active Directory B2C](active-directory-b2c-navigate-to-b2c-context.md), aprire hello e **Azure Active Directory B2C** blade.
 2. Fare clic su **Framework dell'esperienza di gestione delle identità**.
 3. Selezionare **Carica criteri**.
 
     >[!WARNING]
-    >I file dei criteri personalizzati devono essere caricati nell'ordine seguente:
+    >file di criteri personalizzati Hello devono essere caricati in hello seguente ordine:
 
 1. Caricare TrustFrameworkBase.xml.
 2. Caricare TrustFrameworkExtensions.xml.
 3. Caricare SignUpOrSignin.xml.
 4. Caricare gli altri file dei criteri.
 
-Quando viene caricato un file dei criteri, all'inizio del nome viene aggiunto `B2C_1A_`.
+Quando viene caricato un file, il nome di hello del file di criteri hello è preceduto da `B2C_1A_`.
 
-## <a name="test-the-custom-policy-by-using-run-now"></a>Testare i criteri personalizzati tramite Esegui adesso
+## <a name="test-hello-custom-policy-by-using-run-now"></a>Test dei criteri personalizzati di hello tramite Esegui
 
-1. Aprire **Impostazioni di Azure AD B2C** e passare a **Framework dell'esperienza di gestione delle identità**.
+1. Aprire **le impostazioni di Azure Active Directory B2C** e andare troppo**identità esperienza Framework**.
 
    >[!NOTE]
-   >Il comando **Esegui adesso** richiede che nel tenant sia preregistrata almeno un'applicazione. Le applicazioni devono essere registrate nel tenant di B2C usando l'opzione di menu **Applicazioni** in Azure AD B2C o usando il Framework dell'esperienza di gestione delle identità per richiamare i criteri sia predefiniti che personalizzati. È necessaria una sola registrazione per applicazione.<br><br>
-   Per informazioni su come registrare le applicazioni, vedere l'articolo di [introduzione](active-directory-b2c-get-started.md) ad Azure AD B2C o l'articolo relativo alla [registrazione delle applicazioni](active-directory-b2c-app-registration.md).  
+   >**Esegui ora** richiede almeno un'applicazione toobe preregistrate tenant hello. Le applicazioni devono essere registrate nel tenant di hello B2C utilizzando hello **applicazioni** selezione dei menu in Azure Active Directory B2C o mediante hello identità esperienza Framework tooinvoke criteri incorporati e personalizzati. È necessaria una sola registrazione per applicazione.<br><br>
+   toolearn tooregister applicazioni, vedere hello Azure Active Directory B2C [iniziare](active-directory-b2c-get-started.md) articolo o hello [registrazione dell'applicazione](active-directory-b2c-app-registration.md) articolo.  
 
-2. Aprire B2C_1A_signup_signin, i criteri personalizzati dalla relying party (RP) caricati in precedenza. Selezionare **Esegui adesso**.
+2. Aprire B2C_1A_signup_signin, hello criteri personalizzati di relying party (RP) che è stata caricata. Selezionare **Esegui adesso**.
 
-3. Dovrebbe essere possibile iscriversi usando un indirizzo di posta elettronica.
+3. È necessario essere in grado di toosign utilizzando un indirizzo di posta elettronica.
 
-4. Accedere con lo stesso account per verificare che la configurazione sia corretta.
+4. Accedere con hello stesso account tooconfirm che è necessario hello configurazione corretta.
 
 >[!NOTE]
 >Una causa comune degli errori di accesso è la configurazione non corretta dell'app IdentityExperienceFramework.
@@ -199,21 +199,21 @@ Quando viene caricato un file dei criteri, all'inizio del nome viene aggiunto `B
 ## <a name="next-steps"></a>Passaggi successivi
 
 ### <a name="add-facebook-as-an-identity-provider"></a>Aggiungere Facebook come provider di identità
-Per configurare Facebook:
+tooset di Facebook:
 1. [Configurare un'applicazione Facebook in developers.facebook.com](active-directory-b2c-setup-fb-app.md).
-2. [Aggiungere il segreto dell'applicazione Facebook al tenant di Azure AD B2C](#add-signing-and-encryption-keys-to-your-b2c-tenant-for-use-by-custom-policies).
-3. Nel file dei criteri TrustFrameworkExtensions sostituire il valore di `client_id` con l'ID dell'applicazione Facebook:
+2. [Aggiunta di un tenant di tooyour secret Azure Active Directory B2C applicazione Facebook hello](#add-signing-and-encryption-keys-to-your-b2c-tenant-for-use-by-custom-policies).
+3. Nel file di criteri TrustFrameworkExtensions hello, sostituire il valore di hello di `client_id` con l'ID dell'applicazione Facebook hello:
 
    ```xml
    <TechnicalProfile Id="Facebook-OAUTH">
      <Metadata>
-     <!--Replace the value of client_id in this technical profile with the Facebook app ID"-->
+     <!--Replace hello value of client_id in this technical profile with hello Facebook app ID"-->
        <Item Key="client_id">00000000000000</Item>
    ```
-4. Caricare il file dei criteri TrustFrameworkExtensions.xml nel tenant.
-5. Eseguire i test usando **Esegui adesso** oppure richiamando i criteri direttamente dall'applicazione registrata.
+4. Caricare tenant tooyour di hello TrustFrameworkExtensions.xml criteri file.
+5. Test utilizzando **Esegui ora** oppure richiamando criteri hello direttamente dall'applicazione registrata.
 
 ### <a name="add-azure-active-directory-as-an-identity-provider"></a>Aggiungere Azure Active Directory come provider di identità
-Il file di base che è stato usato in questa Guida introduttiva contiene già parte del contenuto che è necessario per l'aggiunta di altri provider di identità. Per informazioni sull'impostazione degli accessi, vedere l'articolo [Azure Active Directory B2C: accesso con account di Azure AD](active-directory-b2c-setup-aad-custom.md).
+file di base Hello già utilizzato in questa Guida introduttiva contiene alcuni dei contenuti di hello che è necessario per l'aggiunta di altri provider di identità. Per informazioni sull'impostazione di accessi, vedere hello [Azure Active Directory B2C: l'accesso con account di Azure AD](active-directory-b2c-setup-aad-custom.md) articolo.
 
-Per una panoramica dei criteri personalizzati di Azure AD B2C che usano il Framework dell'esperienza di gestione delle identità, vedere l'articolo [Azure Active Directory B2C: criteri personalizzati](active-directory-b2c-overview-custom.md). 
+Per una panoramica di criteri personalizzati di Azure Active Directory B2C che utilizzano hello identità esperienza Framework, vedere hello [Azure Active Directory B2C: i criteri personalizzati](active-directory-b2c-overview-custom.md) articolo. 

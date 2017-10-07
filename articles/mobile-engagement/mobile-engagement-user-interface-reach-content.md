@@ -1,6 +1,6 @@
 ---
-title: Interfaccia utente di Azure Mobile Engagement - Contenuti di Reach
-description: Informazioni su come gestire il contenuto univoco dei diversi tipi di campagne di notifica push in Azure Mobile Engagement
+title: aaaAzure interfaccia utente di Engagement Mobile - raggiungere contenuto
+description: Informazioni su come contenuto di univoco hello toomanage di tipi diversi di hello di notifica push campagne in Azure Mobile Engagement
 services: mobile-engagement
 documentationcenter: 
 author: piyushjo
@@ -14,14 +14,14 @@ ms.tgt_pltfrm: mobile-multiple
 ms.workload: mobile
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: 3741a43b74af5846e95e42d8a7b533621e780f2d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: de389eb4368d986ef00135036c26e26a2464663e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-manage-the-unique-content-of-the-different-types-of-push-notification-campaigns"></a>Come gestire il contenuto univoco dei diversi tipi di campagne di notifica push
-È possibile usare la sezione Contenuto di una nuova campagna di copertura per modificare il contenuto di annunci, sondaggi, push di dati e riquadri (solo per Windows Phone). L'impostazione del contenuto delle campagne di push è specifico per il tipo di campagna. 
+# <a name="how-toomanage-hello-unique-content-of-hello-different-types-of-push-notification-campaigns"></a>Come toomanage hello contenuto univoco di tipi diversi di hello delle campagne di notifica push
+È possibile utilizzare una sezione di contenuto di un nuovo contenuto hello toomodify di campagne reach di annunci, viene eseguito il polling, effettua il push dei dati e riquadri (solo Windows Phone) hello. impostazione del contenuto delle campagne Push Hello è toohello specifico tipo di campagna. 
 
 ### <a name="content-types"></a>Tipi di contenuti:
 * Annunci
@@ -32,26 +32,26 @@ ms.lasthandoff: 07/11/2017
 ## <a name="content-of-announcements"></a>Contenuto degli annunci
  ![Reach-Content1][30] 
 
-### <a name="choose-the-type-of-your-announcement"></a>Scegliere il tipo di annuncio:
-* Solo notifica: una semplice notifica standard. Vale a dire che se un utente fa clic, non apparirà alcuna ulteriore visualizzazione, ma si verificherà semplicemente l'azione associata.
-* Annuncio di testo: una notifica che invita l'utente a esaminare una visualizzazione testo.
-* Annuncio Web: una notifica che incoraggia l'utente a esaminare una visualizzazione Web.
+### <a name="choose-hello-type-of-your-announcement"></a>Scegliere il tipo di hello dell'annuncio:
+* Solo notifica: una semplice notifica standard. Vale a dire che se un utente fa clic su di esso, non verranno visualizzato visualizzazioni aggiuntive, ma solo l'azione di hello associata tooit si verificherà.
+* Annuncio di testo: si tratta di una notifica che coinvolge hello utente toohave un'occhiata a una visualizzazione di testo.
+* Annuncio Web: si tratta di una notifica che coinvolge hello utente toohave un'occhiata a una visualizzazione web.
 
 ### <a name="see-also"></a>Vedere anche
 * [Reach - Procedure - Annunci][Link 3] 
 
 ### <a name="about-web-view-announcements"></a>Informazioni sugli annunci di visualizzazione Web:
-Le ricorrenze del modello "{deviceid}" nel codice HTML o nel codice JavaScript fornito in questa sezione verranno automaticamente sostituite dall'identificatore del dispositivo che visualizza l'annuncio. Si tratta di un metodo semplice per recuperare gli identificatori dei dispositivi di Azure Mobile Engagement in un servizio Web esterno ospitato sul back-office.
-Se si desidera creare una visualizzazione Web a schermo intero (senza i pulsanti di azione e uscita predefiniti forniti), è possibile usare le funzioni seguenti dal codice JavaScript dell'annuncio di visualizzazione Web: 
+Occorrenze del criterio di hello "{deviceid}" nel codice hello HTML o JavaScript fornito qui verranno sostituite automaticamente con l'identificatore hello del dispositivo hello visualizzazione annuncio hello. Si tratta di un modo semplice tooretrieve Azure Mobile Engagement gli identificatori dei dispositivi in esterno ospitato nel back-office servizio web.
+Se si desidera toocreate una procedura completa di schermata di visualizzazione web (senza hello predefinito azione e uscita pulsanti forniti da Microsoft) è possibile utilizzare hello seguente di funzioni dal codice JavaScript dell'annuncio di visualizzazione web: 
 
-* Per eseguire l'azione di annuncio: ReachContent.actionContent()
-* Per uscire dall'annuncio: ReachContent.exitContent()
+* eseguire l'azione dell'annuncio hello: ReachContent.actionContent()
+* uscire dall'annuncio hello: ReachContent.exitContent()
 
 ### <a name="choose-your-action"></a>Scegliere l'azione:
 ### <a name="about-action-urls"></a>Informazioni sugli URL di azione:
 qualsiasi URL che può essere interpretato dal sistema operativo di un dispositivo di destinazione può essere usato come un URL di azione.
-Qualsiasi URL dedicato che potrebbe essere supportato dall'applicazione (ad esempio per far sì che gli utenti passino a una schermata specifica) può essere usato anche come URL di azione.
-Ogni ricorrenza del modello {deviceid} verrà automaticamente sostituita dall'identificatore del dispositivo che esegue l'azione. Questo metodo consente di recuperare facilmente gli identificatori dei dispositivi di Azure Mobile Engagement tramite un servizio Web esterno ospitato sul back-office.
+Qualsiasi URL che l'applicazione potrebbe dedicato supporto (ad esempio, gli utenti toomake passare tooa particolare schermata) può essere utilizzato anche come URL di azione.
+Ogni occorrenza di pattern hello {deviceid} viene sostituita automaticamente dall'identificatore hello del dispositivo hello operazione hello. Può essere utilizzato tooeasily recuperare Azure Mobile Engagement gli identificatori dei dispositivi tramite un servizio web esterno ospitato nel back-office.
 
 * **Azioni di Android e iOS**
   * Aprire una pagina Web
@@ -67,14 +67,14 @@ Ogni ricorrenza del modello {deviceid} verrà automaticamente sostituita dall'id
   * tel:\[numero-telefonico\] 
   * Esempio:tel:2125551212
 * **Azioni solo di Android**
-  * Scaricare un'applicazione in Play Store
+  * Scarica un'applicazione in Play Store hello
   * market://details?id=\[pacchetto app\] 
   * Esempio:market://details?id=com.microsoft.office.word
   * Avviare una ricerca di localizzazione geografica
   * geo:0,0?q=\[query di ricerca\] 
   * Esempio:geo:0,0?q=starbucks,paris
 * **Azioni solo di iOS**
-  * Scaricare un'applicazione in App Store
+  * Scarica un'applicazione in App Store hello
   * http://itunes.apple.com/[paese]/app/[nome app]/id[ID app]?mt=8 
   * Esempio: http://itunes.apple.com/fr/app/briquet-virtuel/id430154748?mt=8
   * Azioni di Windows
@@ -90,7 +90,7 @@ Ogni ricorrenza del modello {deviceid} verrà automaticamente sostituita dall'id
   * Comporre un numero di telefono (è necessario Skype Store App)
   * tel:\[numero-telefonico\] 
   * Esempio:tel:2125551212
-  * Scaricare un'applicazione in Play Store
+  * Scarica un'applicazione in Play Store hello
   * ms-windows-store:PDP?PFN=\[ID pacchetto app\] 
   * Esempio:ms-windows-store:PDP?PFN=4d91298a-07cb-40fb-aecc-4cb5615d53c1
   * Avviare una ricerca in Bing Mappe
@@ -104,10 +104,10 @@ Ogni ricorrenza del modello {deviceid} verrà automaticamente sostituita dall'id
   * Esempio:myfolderdata.txt
 
 ### <a name="build-a-tracking-url"></a>Creare un URL di rilevamento:
-* Per istruzioni sulla creazione di un URL di rilevamento che consente agli utenti di scaricare una delle altre applicazioni, vedere la sezione "Impostazioni" della <UI Documentation>.
+* Vedere la sezione "Impostazioni" di hello hello <UI Documentation> per istruzioni sulla creazione di un URL di verifica consentirà toodownload agli utenti una delle altre applicazioni.
 
-### <a name="define-the-texts-of-your-announcement"></a>Definire il testo dell'annuncio
-Compilare il titolo, il contenuto e il testo dei pulsanti dell'annuncio. È possibile definire i destinatari di una campagna futura in base al feedback di copertura sulla risposta degli utenti alla campagna corrente. È possibile definire i destinatari a seconda che la campagna sia stata solo oggetto di push, che gli utenti abbiano risposto, abbiano eseguito un'azione o si siano scollegati.
+### <a name="define-hello-texts-of-your-announcement"></a>Definire i testi hello dell'annuncio
+Compilare hello titolo, contenuto e testi pulsante dell'annuncio. È possibile assegnare un gruppo di destinatari di una campagna futura in base ai suggerimenti reach hello di come gli utenti hanno risposto toothis campagna. Destinatari possono essere basata su commenti e suggerimenti hello di indica se la campagna è stata appena inserita, risposta, azioni o chiusi.
 
 ### <a name="see-also"></a>Vedere anche
 * [Documentazione dell'interfaccia utente - Reach - Nuovi criteri di push][Link 28]
@@ -115,8 +115,8 @@ Compilare il titolo, il contenuto e il testo dei pulsanti dell'annuncio. È poss
 ## <a name="content-of-polls"></a>Contenuto dei sondaggi
 ![Reach-Content2][31] 
 
-Compilare il titolo, la descrizione e il testo dei pulsanti dell'annuncio. Aggiungere quindi domande e opzioni per le risposte alle domande.
-È possibile definire i destinatari di una campagna futura in base al feedback di copertura sulla risposta degli utenti alla campagna corrente. È possibile definire i destinatari a seconda che la campagna sia stata solo oggetto di push, che gli utenti abbiano risposto, eseguito un'azione o si siano scollegati. La definizione dei destinatari può essere basata anche sul feedback di risposta ai sondaggi, dove domande e opzioni di risposta vengono usate come criteri.
+Compilare hello titolo, descrizione e testi pulsante dell'annuncio. Quindi, aggiungere domande e scelte per hello risposte tooyour domande.
+È possibile assegnare un gruppo di destinatari di una campagna futura in base ai suggerimenti reach hello di come gli utenti hanno risposto toothis campagna. È possibile definire i destinatari a seconda che la campagna sia stata solo oggetto di push, che gli utenti abbiano risposto, eseguito un'azione o si siano scollegati. Destinatari possono anche essere basata su commenti e suggerimenti risposte di polling, in cui scelta di domande e risposte hello vengono utilizzate come criteri.
 
 ### <a name="see-also"></a>Vedere anche
 * [Documentazione dell'interfaccia utente - Reach - Nuovi criteri di push][Link 28]
@@ -124,15 +124,15 @@ Compilare il titolo, la descrizione e il testo dei pulsanti dell'annuncio. Aggiu
 ## <a name="content-of-data-pushes"></a>Contenuto dei push di dati
 ![Reach-Content3][32] 
 
-### <a name="choose-the-type-of-your-data"></a>Scegliere il tipo di testo dei dati:
+### <a name="choose-hello-type-of-your-data"></a>Scegliere il tipo di hello dei dati:
 * Text
 * Dati binari
 * Dati Base64
 
-### <a name="define-the-content-of-your-data"></a>Definire il contenuto dei dati
-* Se si seleziona il push dei dati di testo, copiare e incollare il testo nella casella "contenuto".
-* Se si seleziona il push dei dati binari o base64, usare il pulsante "carica il file" per caricare il file.
-* È possibile definire i destinatari di una campagna futura in base al feedback di copertura sulla risposta degli utenti alla campagna corrente. È possibile definire i destinatari a seconda che la campagna sia stata solo oggetto di push, che gli utenti abbiano risposto, eseguito un'azione o si siano scollegati.
+### <a name="define-hello-content-of-your-data"></a>Definire il contenuto di hello dei dati
+* Se si selezionano i dati di testo toopush, copiare e incollare testo hello nella casella "contenuto" hello.
+* Se si seleziona toopush dati binary o base64, utilizzare tooupload pulsante di "caricare il file" hello il file.
+* È possibile assegnare un gruppo di destinatari di una campagna futura in base ai suggerimenti reach hello di come gli utenti hanno risposto toothis campagna. È possibile definire i destinatari a seconda che la campagna sia stata solo oggetto di push, che gli utenti abbiano risposto, eseguito un'azione o si siano scollegati.
 
 ### <a name="see-also"></a>Vedere anche
 * [Documentazione dell'interfaccia utente - Reach - Nuovi criteri di push][Link 28]
@@ -140,9 +140,9 @@ Compilare il titolo, la descrizione e il testo dei pulsanti dell'annuncio. Aggiu
 ## <a name="content-of-tiles-windows-phone-only"></a>Contenuto dei riquadri (solo per Windows Phone)
 ![Reach-Content4][33]
 
-### <a name="define-the-content-of-your-tile"></a>Definire il contenuto del riquadro
-Il payload dei riquadri è il testo da visualizzare nel riquadro dell'app sui dispositivi Windows Phone.
-Un push di riquadri è la versione Servizio di notifica Push di Microsoft (MPNS) di un push nativo per Windows Phone. Il tipo di push di riquadri è l'unico tipo di push che non ha risposta e pertanto non è possibile creare i destinatari delle campagne future in base ai risultati di una campagna di push di riquadri. 
+### <a name="define-hello-content-of-your-tile"></a>Definire il contenuto di hello del riquadro
+il payload di riquadro Hello è toobe testo hello visualizzati nel riquadro di hello dell'app in dispositivi Windows Phone.
+Un riquadro push è hello Microsoft Push Notification Service (MPNS) versione un push nativo per Windows Phone. Hello riquadro push type è hello solo push tipo che non dispone di una risposta e pertanto non è possibile compilare destinatari hello di campagne future risultati hello di una campagna push di riquadro. 
 
 ### <a name="see-also"></a>Vedere anche
 * [Documentazione dell'API - API Reach - Push nativo][Link 4]

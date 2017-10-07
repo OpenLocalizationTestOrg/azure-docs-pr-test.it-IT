@@ -1,6 +1,6 @@
 ---
-title: Integrazione dei partner nel Centro sicurezza di Azure | Microsoft Docs
-description: Informazioni sull'integrazione del Centro sicurezza di Azure con i partner per una migliore sicurezza complessiva delle risorse di Azure.
+title: integrazione di aaaPartner in Centro sicurezza di Azure | Documenti Microsoft
+description: Informazioni su come Centro sicurezza di Azure si integra con i partner tooenhance sicurezza complessiva delle risorse di Azure.
 services: security-center
 documentationcenter: na
 author: YuriDio
@@ -14,28 +14,28 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/18/2017
 ms.author: yurid
-ms.openlocfilehash: 44beafeff5cbe58ac8ca37632879f6ffc2b67e53
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 3621335730a076721cb3c23788a47be50aa8fc73
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="partner-integration-in-azure-security-center"></a>Integrazione dei partner nel Centro sicurezza di Azure
 
-Questo articolo descrive l'integrazione del Centro sicurezza di Azure con i partner per una migliore sicurezza complessiva. Il Centro sicurezza di Azure offre un'esperienza integrata in Azure e sfrutta Azure Marketplace per la fatturazione e la certificazione dei partner.
+In questo articolo viene descritto come Centro sicurezza di Azure si integra con i partner toohelp è migliorare la sicurezza complessiva. Centro sicurezza offre un'esperienza integrata in Azure e sfrutta hello Azure Marketplace per partner certificazione e fatturazione.
 
 > [!NOTE] 
-> A partire da giugno 2017, il Centro sicurezza usa Microsoft Monitoring Agent per raccogliere e archiviare i dati. Per altre informazioni, vedere [Migrazione della piattaforma del Centro sicurezza di Azure](security-center-platform-migration.md). Le informazioni contenute in questo articolo si riferiscono alle funzionalità del Centro sicurezza dopo la transizione a Microsoft Monitoring Agent.
+> A partire da giugno 2017, centro di sicurezza Usa toocollect e l'archivio dati di Microsoft Monitoring Agent di hello. Per altre informazioni, vedere [Migrazione della piattaforma del Centro sicurezza di Azure](security-center-platform-migration.md). informazioni di Hello in questo articolo rappresentano funzionalità Centro sicurezza dopo la transizione toohello Microsoft Monitoring Agent.
 >
 
 ## <a name="why-deploy-partner-solutions-from-security-center"></a>Perché distribuire soluzioni partner dal Centro sicurezza
 
-I quattro motivi principali per sfruttare l'integrazione dei partner nel Centro sicurezza sono i seguenti:
+Integrazione con partner tooleverage motivi principali quattro in Centro sicurezza PC sono:
 
-- **Facilità di distribuzione**. Distribuire una soluzione partner seguendo le raccomandazioni del Centro sicurezza è molto più semplice. Il processo di distribuzione può essere completamente automatizzato usando una configurazione e una topologia di rete predefinite. In alternativa, i clienti possono scegliere un'opzione semi-automatizzata per ottenere un livello superiore di flessibilità e personalizzazione.
-- **Rilevamenti integrati**. Gli eventi di sicurezza delle soluzioni partner vengono raccolti, aggregati e visualizzati automaticamente nell'ambito degli avvisi e degli eventi imprevisti del Centro sicurezza. Questi eventi vengono anche combinati con i rilevamenti di altre origini per offrire funzionalità avanzate di rilevamento delle minacce.
-- **Gestione e monitoraggio dell'integrità unificati**. I clienti possono usare gli eventi di integrità integrati per monitorare in modo immediato tutte le soluzioni partner. Sono disponibili funzionalità di gestione di base, con un facile accesso alla configurazione avanzata con la soluzione partner.
-- **Esportazione in SIEM**. I clienti possono esportare tutti gli avvisi in formato CEF (Common Event Format) del Centro sicurezza e dei partner in sistemi SIEM (Security Information and Event Management) locali usando l'integrazione dei log di Azure (anteprima).
+- **Facilità di distribuzione**. La distribuzione di una soluzione di partner dal seguente hello raccomandazione Centro sicurezza PC è molto più semplice. il processo di distribuzione Hello è possibile automatizzare completamente con una topologia di rete e il programma di installazione predefinito. In alternativa, i clienti possono scegliere un'opzione semi-automatizzata per ottenere un livello superiore di flessibilità e personalizzazione.
+- **Rilevamenti integrati**. Gli eventi di sicurezza delle soluzioni partner vengono raccolti, aggregati e visualizzati automaticamente nell'ambito degli avvisi e degli eventi imprevisti del Centro sicurezza. Questi eventi vengono inoltre fusibile con rilevamenti da altre origini di tooprovide avanzate funzionalità di rilevamento minacce.
+- **Gestione e monitoraggio dell'integrità unificati**. I clienti possono utilizzare toomonitor gli eventi di integrità integrata tutte le soluzioni di partner a colpo d'occhio. Gestione di base è disponibile, con il programma di installazione di un accesso semplice tooadvanced utilizzando hello partner soluzione.
+- **Esportare tooSIEM**. I clienti possono esportare tutti Centro sicurezza PC e partner genera avvisi in comune sistemi di informazioni di sicurezza e gestione di eventi (SIEM) tooon locali evento formato (CEF) tramite l'integrazione di log di Azure (anteprima).
 
 
 ## <a name="partners-that-integrate-with-security-center"></a>Partner integrati con il Centro sicurezza
@@ -47,11 +47,11 @@ Il Centro sicurezza offre attualmente l'integrazione con le soluzioni seguenti:
 - Firewall di nuova generazione ([Check Point](https://www.checkpoint.com/products/vsec-microsoft-azure/), [Barracuda](https://campus.barracuda.com/product/nextgenfirewallf/article/NGF/AzureDeployment/), [Fortinet](http://docs.fortinet.com/d/fortigate-fortios-handbook-the-complete-guide-to-fortios-5.2) e [Cisco](http://www.cisco.com/c/en/us/td/docs/security/firepower/quick_start/azure/ftdv-azure-qsg.html)) 
 - Valutazione della vulnerabilità ([Qualys](https://www.qualys.com/public-clouds/microsoft-azure/))  
 
-Nel corso del tempo, il Centro sicurezza estenderà il numero di partner all'interno di queste categorie e aggiungerà nuove categorie. 
+Nel corso del tempo, il Centro sicurezza PC espandere numero hello di partner all'interno di queste categorie e aggiungere nuove categorie. 
 
 ## <a name="deploy-a-partner-solution"></a>Distribuire una soluzione partner
 
-In base alla configurazione dell'ambiente Azure e ai criteri di sicurezza definiti, il Centro sicurezza potrebbe raccomandare la distribuzione di una soluzione partner. La raccomandazione del Centro sicurezza descrive il processo di selezione e installazione di una soluzione partner. L'esperienza complessiva di distribuzione può variare a seconda del tipo di partner e di soluzione in uso. Per altre informazioni, vedere gli articoli seguenti:
+Il programma di installazione di hello dell'ambiente Azure e i criteri di sicurezza hello che è definito, il Centro sicurezza PC potrebbe consigliare che si distribuisce una soluzione di partner. Hello raccomandazione Centro sicurezza PC in modo semplificato il processo di hello di selezione e l'installazione di una soluzione di partner. Hello generale dell'esperienza di distribuzione potrebbe variare, in base al tipo hello della soluzione e i partner che si utilizza. Per ulteriori informazioni, vedere hello seguenti articoli:
 
 - [Installare Endpoint Protection](security-center-install-endpoint-protection.md)
 - [Aggiungere un Web Application Firewall](security-center-add-web-application-firewall.md)
@@ -60,22 +60,22 @@ In base alla configurazione dell'ambiente Azure e ai criteri di sicurezza defini
 
 ## <a name="manage-partner-solutions"></a>Gestire le soluzioni partner
 
-Dopo la distribuzione, per visualizzare informazioni sull'integrità della soluzione ed eseguire attività di gestione di base selezionare l'opzione **Soluzioni partner** nel pannello **Centro sicurezza**. Per altre informazioni sulla gestione delle soluzioni partner nel Centro sicurezza, leggere [Monitoraggio delle soluzioni dei partner con il Centro sicurezza di Azure](security-center-partner-solutions.md).
+Dopo la distribuzione, tooview informazioni sulle hello integrità della soluzione hello e attività di gestione di base, sull'hello **Centro sicurezza PC** blade, seleziona hello **soluzioni Partner** opzione. Per altre informazioni sulla gestione delle soluzioni partner nel Centro sicurezza, leggere [Monitoraggio delle soluzioni dei partner con il Centro sicurezza di Azure](security-center-partner-solutions.md).
 
 ![Integrazione dei partner](./media/security-center-partner-integration/security-center-partner-integration-fig1-new2.png)
 
 > [!NOTE]
-> Il supporto per Symantec Endpoint Protection è limitato all'individuazione. Non sono disponibili avvisi sull'integrità.
+> Il supporto di Symantec endpoint protection è toodiscovery limitato. Non sono disponibili avvisi sull'integrità.
 >
 
 ## <a name="see-also"></a>Vedere anche
 
-In questo articolo è stato illustrato come integrare soluzioni partner nel Centro sicurezza di Azure. Per altre informazioni sul Centro sicurezza, vedere gli articoli seguenti:
+In questo articolo è stato descritto come toointegrate partner soluzioni in Centro sicurezza di Azure. toolearn ulteriori informazioni su Centro di sicurezza, vedere hello seguenti articoli:
 
 * [Guida alla pianificazione e alla gestione del Centro sicurezza di Azure](security-center-planning-and-operations-guide.md)
-* [Gestire e rispondere agli avvisi di sicurezza in Centro sicurezza](security-center-managing-and-responding-alerts.md)
+* [Gestire e rispondere toosecurity avvisi del Centro sicurezza PC](security-center-managing-and-responding-alerts.md)
 * [Avvisi di sicurezza per tipo nel Centro sicurezza di Azure](security-center-alerts-type.md)
-* [Monitoraggio dell'integrità della sicurezza nel Centro sicurezza di Azure](security-center-monitoring.md). Informazioni su come monitorare l'integrità delle risorse di Azure.
-* [Monitoraggio delle soluzioni dei partner con il Centro sicurezza di Azure](security-center-partner-solutions.md). Informazioni su come monitorare lo stato integrità delle soluzioni dei partner.
-* [Domande frequenti sul Centro sicurezza di Azure](security-center-faq.md). Risposte alle domande frequenti sull'uso del servizio.
+* [Monitoraggio dell'integrità della sicurezza nel Centro sicurezza di Azure](security-center-monitoring.md). Informazioni su come toomonitor hello integrità delle risorse di Azure.
+* [Monitoraggio delle soluzioni dei partner con il Centro sicurezza di Azure](security-center-partner-solutions.md). Informazioni su come toomonitor hello lo stato di integrità delle soluzioni di partner.
+* [Domande frequenti sul Centro sicurezza di Azure](security-center-faq.md). Ottenere risposte toofrequently domande frequenti sull'utilizzo del servizio hello.
 * [Blog sulla sicurezza di Azure](http://blogs.msdn.com/b/azuresecurity/). Post di blog sulla sicurezza e sulla conformità di Azure.

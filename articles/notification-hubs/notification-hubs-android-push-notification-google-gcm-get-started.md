@@ -1,6 +1,6 @@
 ---
-title: Invio di notifiche push ad Android con Hub di notifica di Azure | Documentazione di Microsoft
-description: "In questa esercitazione, si apprenderà come usare Hub di notifica di Azure per inviare notifiche push a dispositivi Android."
+title: tooAndroid di notifiche push aaaSending con gli hub di notifica di Azure | Documenti Microsoft
+description: "In questa esercitazione, è illustrato come i dispositivi tooAndroid toouse gli hub di notifica di Azure toopush notifiche."
 services: notification-hubs
 documentationcenter: android
 keywords: notifiche push, notifica push, notifiche push per android
@@ -15,35 +15,35 @@ ms.devlang: java
 ms.topic: hero-article
 ms.date: 07/05/2016
 ms.author: yuaxu
-ms.openlocfilehash: 808fc10ef1ebb3288facbdf2e9e817b27d4fc6bc
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6b15a477d86cf1e6efffb21c5bcef0de7761af79
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="sending-push-notifications-to-android-with-azure-notification-hubs"></a>Invio di notifiche push ad Android con Hub di notifica di Azure
+# <a name="sending-push-notifications-tooandroid-with-azure-notification-hubs"></a>TooAndroid l'invio di notifiche push con hub di notifica di Azure
 [!INCLUDE [notification-hubs-selector-get-started](../../includes/notification-hubs-selector-get-started.md)]
 
-## <a name="overview"></a>Overview
+## <a name="overview"></a>Panoramica
 > [!IMPORTANT]
-> Questo argomento illustra le notifiche push con Google Cloud Messaging (GCM). Se si sta ancora usando Google Firebase Messaging (FCM), vedere [Invio di notifiche push ad Android con Hub di notifica di Azure e Firebase Cloud Messaging](notification-hubs-android-push-notification-google-fcm-get-started.md).
+> Questo argomento illustra le notifiche push con Google Cloud Messaging (GCM). Se si utilizza Google Firebase Cloud Messaging (FCM), vedere [tooAndroid le notifiche push di invio con gli hub di notifica di Azure e FCM](notification-hubs-android-push-notification-google-fcm-get-started.md).
 > 
 > 
 
-Questa esercitazione illustra come usare Hub di notifica di Azure per inviare notifiche push a un'applicazione per Android.
+Questa esercitazione illustra come applicazione Android tooan di notifiche push toouse toosend di hub di notifica di Azure.
 In questa esercitazione verrà creata un'app Android vuota che riceve notifiche push usando il servizio Google Cloud Messaging (GCM).
 
 [!INCLUDE [notification-hubs-hero-slug](../../includes/notification-hubs-hero-slug.md)]
 
-Il codice completo per questa esercitazione può essere scaricato da GitHub [qui](https://github.com/Azure/azure-notificationhubs-samples/tree/master/Android/GetStarted).
+codice Hello completata per questa esercitazione può essere scaricato da GitHub [qui](https://github.com/Azure/azure-notificationhubs-samples/tree/master/Android/GetStarted).
 
 ## <a name="prerequisites"></a>Prerequisiti
 > [!IMPORTANT]
-> Per completare l'esercitazione, è necessario disporre di un account Azure attivo. Se non si dispone di un account, è possibile creare un account di valutazione gratuita in pochi minuti. Per informazioni dettagliate, vedere la pagina relativa alla [versione di valutazione gratuita di Azure](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A643EE910&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fen-us%2Fdocumentation%2Farticles%2Fnotification-hubs-android-get-started).
+> toocomplete questa esercitazione, è necessario disporre di un account di Azure attivo. Se non si dispone di un account, è possibile creare un account di valutazione gratuita in pochi minuti. Per informazioni dettagliate, vedere la pagina relativa alla [versione di valutazione gratuita di Azure](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A643EE910&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fen-us%2Fdocumentation%2Farticles%2Fnotification-hubs-android-get-started).
 > 
 > 
 
-Oltre a un account Azure attivo come indicato sopra, questa esercitazione richiede solo la versione più recente di [Android Studio](http://go.microsoft.com/fwlink/?LinkId=389797).
+Inoltre account Azure active tooan indicati sopra, in questa esercitazione richiede solo una versione più recente di hello di [Android Studio](http://go.microsoft.com/fwlink/?LinkId=389797).
 
 Il completamento di questa esercitazione costituisce un prerequisito per tutte le altre esercitazioni di Hub di notifica relative ad app Android.
 
@@ -53,31 +53,31 @@ Il completamento di questa esercitazione costituisce un prerequisito per tutte l
 ## <a name="configure-a-new-notification-hub"></a>Configurare un nuovo hub di notifica
 [!INCLUDE [notification-hubs-portal-create-new-hub](../../includes/notification-hubs-portal-create-new-hub.md)]
 
-&emsp;&emsp;6.   Nel pannello **Impostazioni** selezionare **Servizi di notifica**, quindi **Google (GCM)**. Immettere la chiave API e fare clic su **Salva**.
+&emsp;&emsp;6.   In hello **impostazioni** pannello seleziona **Notification Services** e quindi **Google (GCM)**. Immettere la chiave API hello e fare clic su **salvare**.
 
 &emsp;&emsp;![Hub di notifica di Azure - Google (GCM)](./media/notification-hubs-android-get-started/notification-hubs-gcm-api.png)
 
-A questo punto, l'hub di notifica è configurato per l'uso con GCM e sono disponibili le stringhe di connessione per registrare l'app per l'invio e la ricezione di notifiche push.
+Hub di notifica è ora configurato toowork con GCM, e si dispone di tooboth stringhe di connessione hello registrare tooreceive l'app e inviare notifiche push.
 
-## <a id="connecting-app"></a>Connettere l'app all'hub di notifica
+## <a id="connecting-app"></a>Connettere l'hub di notifica toohello app
 ### <a name="create-a-new-android-project"></a>Creare un nuovo progetto Android
 1. In Android Studio avviare un nuovo progetto Android Studio.
    
    ![Android Studio: nuovo progetto][13]
-2. Scegliere il fattore di forma **Phone and Tablet** (Telefono e tablet) e la versione **Minimum SDK** (SDK minimo) che si vuole supportare. Quindi fare clic su **Next**.
+2. Scegliere hello **Tablet e telefoni** form factor e hello **minimo SDK** che si desidera toosupport. Quindi fare clic su **Next**.
    
    ![Android Studio: flusso di lavoro di creazione del progetto][14]
-3. Scegliere **Empty Activity** (Attività vuota) per l'attività principale, fare clic su **Avanti**, quindi su **Fine**.
+3. Scegliere **attività vuota** per l'attività principale hello, fare clic su **Avanti**, quindi fare clic su **fine**.
 
-### <a name="add-google-play-services-to-the-project"></a>Aggiungere Google Play Services al progetto
+### <a name="add-google-play-services-toohello-project"></a>Aggiungi progetto toohello di Google Play services
 [!INCLUDE [Add Play Services](../../includes/notification-hubs-android-studio-add-google-play-services.md)]
 
 ### <a name="adding-azure-notification-hubs-libraries"></a>Aggiunta di librerie dell'Hub di notifica di Azure
-1. Nel file `Build.Gradle` relativo all'**app** aggiungere le righe seguenti alla sezione delle **dipendenze**.
+1. In hello `Build.Gradle` file per hello **app**, aggiungere hello seguenti righe hello **dipendenze** sezione.
    
         compile 'com.microsoft.azure:notification-hubs-android-sdk:0.4@aar'
         compile 'com.microsoft.azure:azure-notifications-handler:1.0.1@aar'
-2. Aggiungere l'archivio seguente dopo la sezione **dependencies** .
+2. Aggiungere hello seguenti repository dopo hello **dipendenze** sezione.
    
         repositories {
             maven {
@@ -85,25 +85,25 @@ A questo punto, l'hub di notifica è configurato per l'uso con GCM e sono dispon
             }
         }
 
-### <a name="updating-the-androidmanifestxml"></a>Aggiornamento del file AndroidManifest.xml
-1. Per supportare GCM è necessario implementare un servizio listener Instance ID nel codice, che consente di [ottenere token di registrazione](https://developers.google.com/cloud-messaging/android/client#sample-register) usando l'[API Instance ID di Google](https://developers.google.com/instance-id/). In questa esercitazione verrà assegnato il nome `MyInstanceIDService`alla classe. 
+### <a name="updating-hello-androidmanifestxml"></a>Aggiornamento hello androidmanifest. Xml.
+1. toosupport GCM, è necessario implementare un servizio di listener di ID istanza nel codice viene utilizzato troppo[ottenere i token di registrazione](https://developers.google.com/cloud-messaging/android/client#sample-register) utilizzando [Google API dell'ID istanza](https://developers.google.com/instance-id/). In questa esercitazione verrà assegnato un nome classe hello `MyInstanceIDService`. 
    
-    Aggiungere la definizione del servizio seguente al file AndroidManifest.xml, all'interno del tag `<application>` . Sostituire il segnaposto `<your package>` con il nome effettivo del pacchetto visualizzato all'inizio del file `AndroidManifest.xml`.
+    Aggiungere hello seguente toohello AndroidManifest.xml file di definizione servizio all'interno di hello `<application>` tag. Sostituire hello `<your package>` hello di segnaposto con il nome del pacchetto effettivo visualizzato nella parte superiore di hello di hello `AndroidManifest.xml` file.
    
         <service android:name="<your package>.MyInstanceIDService" android:exported="false">
             <intent-filter>
                 <action android:name="com.google.android.gms.iid.InstanceID"/>
             </intent-filter>
         </service>
-2. Dopo la ricezione del token di registrazione di GCM dall'API Instance ID, lo si userà per la [registrazione con Hub di notifica di Azure](notification-hubs-push-notification-registration-management.md). La registrazione verrà supportata in background mediante un `IntentService` denominato `RegistrationIntentService`. Il servizio sarà anche responsabile dell' [aggiornamento del token di registrazione di GCM](https://developers.google.com/instance-id/guides/android-implementation#refresh_tokens).
+2. Una volta che è stato ricevuto il token di registrazione GCM da hello API dell'ID istanza, verrà usato troppo[registrare con l'Hub di notifica di Azure hello](notification-hubs-push-notification-registration-management.md). Saranno supportati la registrazione in background hello utilizzando un `IntentService` denominato `RegistrationIntentService`. Il servizio sarà anche responsabile dell' [aggiornamento del token di registrazione di GCM](https://developers.google.com/instance-id/guides/android-implementation#refresh_tokens).
    
-    Aggiungere la definizione del servizio seguente al file AndroidManifest.xml, all'interno del tag `<application>` . Sostituire il segnaposto `<your package>` con il nome effettivo del pacchetto visualizzato all'inizio del file `AndroidManifest.xml`. 
+    Aggiungere hello seguente toohello AndroidManifest.xml file di definizione servizio all'interno di hello `<application>` tag. Sostituire hello `<your package>` hello di segnaposto con il nome del pacchetto effettivo visualizzato nella parte superiore di hello di hello `AndroidManifest.xml` file. 
    
         <service
             android:name="<your package>.RegistrationIntentService"
             android:exported="false">
         </service>
-3. Verrà definito anche un ricevitore per la ricezione di notifiche. Aggiungere la definizione del ricevitore seguente al file AndroidManifest.xml, nel tag `<application>` . Sostituire il segnaposto `<your package>` con il nome effettivo del pacchetto visualizzato all'inizio del file `AndroidManifest.xml`.
+3. Verrà inoltre definito un notifiche tooreceive ricevitore. Aggiungere hello seguente ricevitore toohello AndroidManifest.xml file di definizione, all'interno di hello `<application>` tag. Sostituire hello `<your package>` hello di segnaposto con il nome del pacchetto effettivo visualizzato nella parte superiore di hello di hello `AndroidManifest.xml` file.
    
         <receiver android:name="com.microsoft.windowsazure.notifications.NotificationsBroadcastReceiver"
             android:permission="com.google.android.c2dm.permission.SEND">
@@ -112,7 +112,7 @@ A questo punto, l'hub di notifica è configurato per l'uso con GCM e sono dispon
                 <category android:name="<your package name>" />
             </intent-filter>
         </receiver>
-4. Aggiungere le necessarie autorizzazioni correlate a GCM riportate di seguito sotto il tag `</application>`. Sostituire `<your package>` con il nome del pacchetto visualizzato all'inizio del file `AndroidManifest.xml`.
+4. Aggiungere hello seguente GCM necessarie relative autorizzazioni seguito hello `</application>` tag. Verificare che tooreplace `<your package>` con il nome di pacchetto hello visualizzato nella parte superiore di hello di hello `AndroidManifest.xml` file.
    
     Per altre informazioni su queste autorizzazioni, vedere [Setup a GCM Client app for Android](https://developers.google.com/cloud-messaging/android/client#manifest)(Configurare un'app client di GCM per Android).
    
@@ -125,15 +125,15 @@ A questo punto, l'hub di notifica è configurato per l'uso con GCM e sono dispon
         <uses-permission android:name="<your package>.permission.C2D_MESSAGE"/>
 
 ### <a name="adding-code"></a>Aggiunta di codice
-1. Nella visualizzazione del progetto espandere **app** > **src** > **main** > **java**. Fare clic con il pulsante destro del mouse sulla cartella del pacchetto in **java**, scegliere **Nuovo**, quindi selezionare **Java Class** (Classe Java). Aggiungere una nuova classe denominata `NotificationSettings`. 
+1. Nella visualizzazione progetto hello, espandere **app** > **src** > **principale** > **java**. Fare clic con il pulsante destro del mouse sulla cartella del pacchetto in **java**, scegliere **Nuovo**, quindi selezionare **Java Class** (Classe Java). Aggiungere una nuova classe denominata `NotificationSettings`. 
    
     ![Android Studio: nuova classe Java][6]
    
-    Aggiornare questi tre segnaposto nel codice seguente per la classe `NotificationSettings` :
+    Assicurarsi che questi tre segnaposto nel seguente codice per hello hello di hello tooupdate `NotificationSettings` classe:
    
-   * **SenderId**: numero di progetto ottenuto in precedenza in [Google Cloud Console](http://cloud.google.com/console)(Console Cloud di Google).
-   * **HubListenConnectionString**: stringa di connessione **DefaultListenAccessSignature** per l'hub. È possibile copiare la stringa di connessione facendo clic su **Criteri di accesso** nel pannello **Impostazioni** dell'hub nel [portale di Azure].
-   * **HubName**: usare il nome dell'Hub di notifica visualizzato nel pannello dell'hub nel [portale di Azure].
+   * **ID mittente**: hello numero progetto ottenuto in precedenza in hello [Google Cloud Console](http://cloud.google.com/console).
+   * **HubListenConnectionString**: hello **DefaultListenAccessSignature** stringa di connessione per l'hub. È possibile copiare la stringa di connessione, fare clic su **criteri di accesso** su hello **impostazioni** blade di hub di su hello [portale Azure].
+   * **HubName**: utilizza il nome dell'hub di notifica che viene visualizzato nel Pannello di hub hello in hello hello [portale Azure].
      
      `NotificationSettings` :
      
@@ -143,9 +143,9 @@ A questo punto, l'hub di notifica è configurato per l'uso con GCM e sono dispon
            public static String HubName = "<Your HubName>";
            public static String HubListenConnectionString = "<Your default listen connection string>";
        }
-2. Usando la procedura precedente, aggiungere un'altra nuova classe denominata `MyInstanceIDService`. Questa sarà l'implementazione del servizio listener Instance ID.
+2. Seguendo i passaggi di hello sopra riportati, aggiungere un'altra nuova classe denominata `MyInstanceIDService`. Questa sarà l'implementazione del servizio listener Instance ID.
    
-    Il codice per questa classe chiamerà `IntentService` per [aggiornare il token di GCM](https://developers.google.com/instance-id/guides/android-implementation#refresh_tokens) in background.
+    codice Hello per questa classe chiamerà il nostro `IntentService` troppo[token di aggiornamento hello GCM](https://developers.google.com/instance-id/guides/android-implementation#refresh_tokens) in background hello.
    
         import android.content.Intent;
         import android.util.Log;
@@ -166,9 +166,9 @@ A questo punto, l'hub di notifica è configurato per l'uso con GCM e sono dispon
         };
 
 
-1. Aggiungere al progetto un'altra nuova classe denominata `RegistrationIntentService`. Questa sarà l'implementazione di `IntentService` che gestirà l'[aggiornamento del token di GCM](https://developers.google.com/instance-id/guides/android-implementation#refresh_tokens) e la [registrazione nell'hub di notifica](notification-hubs-push-notification-registration-management.md).
+1. Aggiungere un altro nuovo progetto tooyour di classe denominato, `RegistrationIntentService`. Questo sarà l'implementazione di hello per il nostro `IntentService` che gestirà [aggiornati i token GCM hello](https://developers.google.com/instance-id/guides/android-implementation#refresh_tokens) e [registrazione con hub di notifica hello](notification-hubs-push-notification-registration-management.md).
    
-    Usare il codice seguente per la classe.
+    Utilizzare hello seguente codice per questa classe.
    
         import android.app.IntentService;
         import android.content.Intent;
@@ -202,18 +202,18 @@ A questo punto, l'hub di notifica è configurato per l'uso con GCM e sono dispon
                             GoogleCloudMessaging.INSTANCE_ID_SCOPE);        
                     Log.i(TAG, "Got GCM Registration Token: " + token);
    
-                    // Storing the registration id that indicates whether the generated token has been
-                    // sent to your server. If it is not stored, send the token to your server,
-                    // otherwise your server should have already received the token.
+                    // Storing hello registration id that indicates whether hello generated token has been
+                    // sent tooyour server. If it is not stored, send hello token tooyour server,
+                    // otherwise your server should have already received hello token.
                     if ((regID=sharedPreferences.getString("registrationID", null)) == null) {        
                         NotificationHub hub = new NotificationHub(NotificationSettings.HubName,
                                 NotificationSettings.HubListenConnectionString, this);
-                        Log.i(TAG, "Attempting to register with NH using token : " + token);
+                        Log.i(TAG, "Attempting tooregister with NH using token : " + token);
    
                         regID = hub.register(token).getRegistrationId();
    
-                        // If you want to use tags...
-                        // Refer to : https://azure.microsoft.com/en-us/documentation/articles/notification-hubs-routing-tag-expressions/
+                        // If you want toouse tags...
+                        // Refer too: https://azure.microsoft.com/en-us/documentation/articles/notification-hubs-routing-tag-expressions/
                         // regID = hub.register(token, "tag1", "tag2").getRegistrationId();
    
                         resultString = "Registered Successfully - RegId : " + regID;
@@ -223,9 +223,9 @@ A questo punto, l'hub di notifica è configurato per l'uso con GCM e sono dispon
                         resultString = "Previously Registered Successfully - RegId : " + regID;
                     }
                 } catch (Exception e) {
-                    Log.e(TAG, resultString="Failed to complete token refresh", e);
-                    // If an exception happens while fetching the new token or updating our registration data
-                    // on a third-party server, this ensures that we'll attempt the update at a later time.
+                    Log.e(TAG, resultString="Failed toocomplete token refresh", e);
+                    // If an exception happens while fetching hello new token or updating our registration data
+                    // on a third-party server, this ensures that we'll attempt hello update at a later time.
                 }
    
                 // Notify UI that registration has completed.
@@ -234,7 +234,7 @@ A questo punto, l'hub di notifica è configurato per l'uso con GCM e sono dispon
                 }
             }
         }
-2. Nella classe `MainActivity` aggiungere le istruzioni `import` seguenti sopra la dichiarazione della classe.
+2. Nel `MainActivity` classe, aggiungere il seguente hello `import` istruzioni sopra hello dichiarazione di classe.
    
         import com.google.android.gms.common.ConnectionResult;
         import com.google.android.gms.common.GoogleApiAvailability;
@@ -243,18 +243,18 @@ A questo punto, l'hub di notifica è configurato per l'uso con GCM e sono dispon
         import android.util.Log;
         import android.widget.TextView;
         import android.widget.Toast;
-3. Aggiungere i seguenti membri privati nella parte superiore della classe. Verranno usati per [verificare la disponibilità di Google Play Services come consigliato da Google](https://developers.google.com/android/guides/setup#ensure_devices_have_the_google_play_services_apk).
+3. Aggiungere i seguenti membri privati della classe hello lato superiore hello hello. Si utilizzerà questi [verificare la disponibilità di hello di Google Play Services come consigliato da Google](https://developers.google.com/android/guides/setup#ensure_devices_have_the_google_play_services_apk).
    
         public static MainActivity mainActivity;
         public static Boolean isVisible = false;    
         private GoogleCloudMessaging gcm;
         private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
-4. Nella classe `MainActivity` aggiungere il metodo seguente alla disponibilità di Google Play Services. 
+4. Nel `MainActivity` classe, aggiungere hello successivi la disponibilità di toohello metodo di Google Play Services. 
    
         /**
-         * Check the device to make sure it has the Google Play Services APK. If
-         * it doesn't, display a dialog that allows users to download the APK from
-         * the Google Play Store or enable it in the device's system settings.
+         * Check hello device toomake sure it has hello Google Play Services APK. If
+         * it doesn't, display a dialog that allows users toodownload hello APK from
+         * hello Google Play Store or enable it in hello device's system settings.
          */
         private boolean checkPlayServices() {
             GoogleApiAvailability apiAvailability = GoogleApiAvailability.getInstance();
@@ -272,19 +272,19 @@ A questo punto, l'hub di notifica è configurato per l'uso con GCM e sono dispon
             }
             return true;
         }
-5. Nella classe `MainActivity` aggiungere il codice seguente che cercherà Google Play Services prima di chiamare `IntentService` per ottenere il token di registrazione di GCM e registrarlo nell'hub di notifica.
+5. Nel `MainActivity` classe, aggiungere hello seguente di codice che verrà archiviata per Google Play Services prima di chiamare il `IntentService` tooget il token di registrazione GCM e la registrazione con l'hub di notifica.
    
         public void registerWithNotificationHubs()
         {
             Log.i(TAG, " Registering with Notification Hubs");
    
             if (checkPlayServices()) {
-                // Start IntentService to register this application with GCM.
+                // Start IntentService tooregister this application with GCM.
                 Intent intent = new Intent(this, RegistrationIntentService.class);
                 startService(intent);
             }
         }
-6. Nel metodo `OnCreate` della classe `MainActivity` aggiungere il codice seguente per avviare il processo di registrazione quando viene creata l'attività.
+6. In hello `OnCreate` metodo hello `MainActivity` classe, aggiungere hello successivo processo di registrazione hello toostart codice quando viene creato l'attività.
    
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -295,7 +295,7 @@ A questo punto, l'hub di notifica è configurato per l'uso con GCM e sono dispon
             NotificationsManager.handleNotifications(this, NotificationSettings.SenderId, MyHandler.class);
             registerWithNotificationHubs();
         }
-7. Aggiungere questi altri metodi a `MainActivity` per verificare lo stato dell'app e segnalare lo stato nell'app.
+7. Aggiungere questi altri metodi toohello `MainActivity` tooverify app lo stato e segnalare lo stato dell'app.
    
         @Override
         protected void onStart() {
@@ -331,11 +331,11 @@ A questo punto, l'hub di notifica è configurato per l'uso con GCM e sono dispon
                 }
             });
         }
-8. Il metodo `ToastNotify` usa il controllo *"Hello World"* `TextView` per segnalare lo stato e le notifiche in modo permanente nell'app. Nel layout di activity_main.xml aggiungere l'ID seguente per il controllo.
+8. Hello `ToastNotify` metodo utilizza hello *"Hello World"* `TextView` controllare lo stato di tooreport e notifiche in modo permanente in app hello. Nel layout activity_main.xml, aggiungere hello seguente id per tale controllo.
    
        android:id="@+id/text_hello"
-9. Verrà quindi aggiunta una sottoclasse per il ricevitore definita nel file AndroidManifest.xml. Aggiungere al progetto un'altra nuova classe denominata `MyHandler`.
-10. Aggiungere le istruzioni import seguenti all'inizio di `MyHandler.java`:
+9. Successivamente sarà necessario aggiungere una sottoclasse per il ricevitore che è stato definito in hello androidmanifest. Xml. Aggiungere un altro nuovo progetto tooyour di classe denominato `MyHandler`.
+10. Aggiungere hello seguendo le istruzioni import in cima hello `MyHandler.java`:
     
         import android.app.NotificationManager;
         import android.app.PendingIntent;
@@ -344,9 +344,9 @@ A questo punto, l'hub di notifica è configurato per l'uso con GCM e sono dispon
         import android.os.Bundle;
         import android.support.v4.app.NotificationCompat;
         import com.microsoft.windowsazure.notifications.NotificationsHandler;
-11. Aggiungere il codice seguente per la classe `MyHandler` impostandola come sottoclasse di `com.microsoft.windowsazure.notifications.NotificationsHandler`.
+11. Aggiungere hello seguente codice per hello `MyHandler` rendendola una sottoclasse della classe `com.microsoft.windowsazure.notifications.NotificationsHandler`.
     
-    Questo codice ignora il metodo `OnReceive` , in modo che il gestore segnali le notifiche ricevute. Il gestore invia anche la notifica push al gestore delle notifiche di Android usando il metodo `sendNotification()` . Il metodo `sendNotification()` deve essere eseguito quando l'app non è in esecuzione e si riceve una notifica.
+    Questo codice esegue l'override di hello `OnReceive` metodo, pertanto il gestore di hello indicheranno le notifiche ricevute. gestore Hello invia anche di gestione delle notifiche Android hello push notifica toohello utilizzando hello `sendNotification()` metodo. Hello `sendNotification()` (metodo) deve essere eseguito quando l'applicazione hello non è in esecuzione e viene ricevuta una notifica.
     
         public class MyHandler extends NotificationsHandler {
             public static final int NOTIFICATION_ID = 1;
@@ -389,19 +389,19 @@ A questo punto, l'hub di notifica è configurato per l'uso con GCM e sono dispon
                 mNotificationManager.notify(NOTIFICATION_ID, mBuilder.build());
             }
         }
-12. Sulla barra dei menu in Android Studio fare clic su **Compila** > **Ricompila il progetto** per assicurarsi che non ci siano errori nel codice.
+12. In Android Studio hello barra dei menu, fare clic su **compilare** > **ricompilare progetto** toomake assicurarsi che non sono presenti errori nel codice.
 
 ## <a name="sending-push-notifications"></a>Invio di notifiche push
-È possibile testare la ricezione delle notifiche push nell'app inviandole tramite il [portale di Azure]; cercare la sezione **Risoluzione dei problemi** nel pannello dell'hub, come illustrato di seguito.
+È possibile verificare la ricezione di notifiche push nell'app inviando tramite hello [portale Azure] -cercare hello **Troubleshooting** sezione nel Pannello di hub hello, come illustrato di seguito.
 
 ![Hub di notifica di Azure: test dell'invio](./media/notification-hubs-android-get-started/notification-hubs-test-send.png)
 
 [!INCLUDE [notification-hubs-sending-notifications-from-the-portal](../../includes/notification-hubs-sending-notifications-from-the-portal.md)]
 
-## <a name="optional-send-push-notifications-directly-from-the-app"></a>(Facoltativo) Inviare notifiche push direttamente dall'app
-In genere, le notifiche vengono inviate tramite un server back-end. In alcuni casi può essere necessario inviare notifiche push direttamente dall'applicazione client. Questa sezione illustra come inviare notifiche dal client usando l' [API REST dell'Hub di notifica di Azure](https://msdn.microsoft.com/library/azure/dn223264.aspx).
+## <a name="optional-send-push-notifications-directly-from-hello-app"></a>(Facoltativo) Inviare notifiche push direttamente dall'app hello
+In genere, le notifiche vengono inviate tramite un server back-end. In alcuni casi, potrebbe essere toobe in grado di toosend le notifiche push direttamente da un'applicazione hello client. Questa sezione viene illustrato come le notifiche di toosend da client hello utilizzando hello [API REST di Hub di notifica di Azure](https://msdn.microsoft.com/library/azure/dn223264.aspx).
 
-1. Nella visualizzazione del progetto in Android Studio espandere **App** > **src** > **main** > **res** > **layout**. Aprire il file di layout `activity_main.xml` e fare clic sulla scheda **Text** (Testo) per aggiornare il contenuto di testo del file. Aggiornarlo con il codice seguente che aggiunge i nuovi controlli `Button` e `EditText` per l'invio di messaggi di notifica push all'hub di notifica. Aggiungere questo codice alla fine, subito prima di `</RelativeLayout>`.
+1. Nella visualizzazione del progetto in Android Studio espandere **App** > **src** > **main** > **res** > **layout**. Aprire hello `activity_main.xml` layout di file e fare clic su hello **testo** scheda contenuto di testo hello tooupdate del file hello. Aggiornarlo con codice hello seguente, che aggiunge nuove `Button` e `EditText` controlli per l'invio di push hub di notifica toohello i messaggi di notifica. Aggiungere questo codice nella parte inferiore di hello, subito prima `</RelativeLayout>`.
    
         <Button
         android:layout_width="wrap_content"
@@ -420,16 +420,16 @@ In genere, le notifiche vengono inviate tramite un server back-end. In alcuni ca
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="42dp"
         android:hint="@string/notification_message_hint" />
-2. Nella visualizzazione del progetto in Android Studio espandere **App** > **src** > **main** > **res** > **values**. Aprire il file `strings.xml` e aggiungere i valori di stringa a cui fanno riferimento i nuovi controlli `Button` e `EditText`. Aggiungerli alla fine del file, subito prima di `</resources>`.
+2. Nella visualizzazione del progetto in Android Studio espandere **App** > **src** > **main** > **res** > **values**. Aprire hello `strings.xml` file e aggiungere i valori stringa hello che fanno riferimento hello nuovo `Button` e `EditText` controlli. Aggiungi queste nella parte inferiore di hello del file hello, appena prima `</resources>`.
    
         <string name="send_button">Send Notification</string>
         <string name="notification_message_hint">Enter notification message text</string>
-3. Nel file `NotificationSetting.java` aggiungere l'impostazione seguente alla classe `NotificationSettings`.
+3. Nel `NotificationSetting.java` file, aggiungere hello seguente impostazione toohello `NotificationSettings` classe.
    
-    Aggiornare `HubFullAccess` con la stringa di connessione **DefaultFullSharedAccessSignature** per l'hub. Questa stringa di connessione può essere copiata dal [portale di Azure] facendo clic su **Criteri di accesso** nel pannello **Impostazioni** dell'hub di notifica.
+    Aggiornamento `HubFullAccess` con hello **DefaultFullSharedAccessSignature** stringa di connessione per l'hub. La stringa di connessione può essere copiata da hello [portale Azure] facendo **criteri di accesso** su hello **impostazioni** pannello per l'hub di notifica.
    
         public static String HubFullAccess = "<Enter Your DefaultFullSharedAccess Connection string>";
-4. Nel file `MainActivity.java` aggiungere le istruzioni `import` seguenti sopra la classe `MainActivity`.
+4. Nel `MainActivity.java` file, aggiungere il seguente hello `import` istruzioni sopra hello `MainActivity` classe.
    
         import java.io.BufferedOutputStream;
         import java.io.BufferedReader;
@@ -443,21 +443,21 @@ In genere, le notifiche vengono inviate tramite un server back-end. In alcuni ca
         import android.util.Base64;
         import android.view.View;
         import android.widget.EditText;
-5. Nel file `MainActivity.java` aggiungere i membri seguenti all'inizio della classe `MainActivity`.    
+5. Nel `MainActivity.java` file, aggiungere i seguenti membri nella parte superiore di hello di hello hello `MainActivity` classe.    
    
         private String HubEndpoint = null;
         private String HubSasKeyName = null;
         private String HubSasKeyValue = null;
-6. È necessario creare un token SaS (Software Access Signature) per autenticare una richiesta POST per l'invio di messaggi all'hub di notifica. Per eseguire questa operazione, analizzare i dati della chiave dalla stringa di connessione e quindi creare il token di firma di accesso condiviso come indicato in [Concetti comuni](http://msdn.microsoft.com/library/azure/dn495627.aspx) nelle informazioni di riferimento sull'API REST. Il codice seguente è un esempio di implementazione.
+6. Creare un hub di notifica POST richiesta toosend messaggi tooyour un tooauthenticate token di firma di accesso di Software (SaS). Questa operazione viene eseguita mediante l'analisi di dati della chiave hello dalla stringa di connessione hello e quindi creare hello token SaS, come indicato in hello [concetti comuni](http://msdn.microsoft.com/library/azure/dn495627.aspx) riferimento all'API REST. Hello seguente di codice è un'implementazione di esempio.
    
-    In `MainActivity.java` aggiungere il metodo seguente alla classe `MainActivity` per analizzare la stringa di connessione.
+    In `MainActivity.java`, aggiungere hello seguente metodo toohello `MainActivity` classe tooparse la stringa di connessione.
    
         /**
          * Example code from http://msdn.microsoft.com/library/azure/dn495627.aspx
-         * to parse the connection string so a SaS authentication token can be
+         * tooparse hello connection string so a SaS authentication token can be
          * constructed.
          *
-         * @param connectionString This must be the DefaultFullSharedAccess connection
+         * @param connectionString This must be hello DefaultFullSharedAccess connection
          *                         string for this example.
          */
         private void ParseConnectionString(String connectionString)
@@ -477,14 +477,14 @@ In genere, le notifiche vengono inviate tramite un server back-end. In alcuni ca
                 }
             }
         }
-7. In `MainActivity.java` aggiungere il metodo seguente alla classe `MainActivity` per creare un token di autenticazione di firma di accesso condiviso.
+7. In `MainActivity.java`, aggiungere hello seguente metodo toohello `MainActivity` toocreate classe un token di autenticazione della firma di accesso condiviso.
    
         /**
          * Example code from http://msdn.microsoft.com/library/azure/dn495627.aspx to
-         * construct a SaS token from the access key to authenticate a request.
+         * construct a SaS token from hello access key tooauthenticate a request.
          *
-         * @param uri The unencoded resource URI string for this operation. The resource
-         *            URI is the full URI of the Service Bus resource to which access is
+         * @param uri hello unencoded resource URI string for this operation. hello resource
+         *            URI is hello full URI of hello Service Bus resource toowhich access is
          *            claimed. For example,
          *            "http://<namespace>.servicebus.windows.net/<hubName>"
          */
@@ -503,15 +503,15 @@ In genere, le notifiche vengono inviate tramite un server back-end. In alcuni ca
                 long expires = expiresOnDate / 1000;
                 String toSign = targetUri + "\n" + expires;
    
-                // Get an hmac_sha1 key from the raw key bytes
+                // Get an hmac_sha1 key from hello raw key bytes
                 byte[] keyBytes = HubSasKeyValue.getBytes("UTF-8");
                 SecretKeySpec signingKey = new SecretKeySpec(keyBytes, "HmacSHA256");
    
-                // Get an hmac_sha1 Mac instance and initialize with the signing key
+                // Get an hmac_sha1 Mac instance and initialize with hello signing key
                 Mac mac = Mac.getInstance("HmacSHA256");
                 mac.init(signingKey);
    
-                // Compute the hmac on input data bytes
+                // Compute hello hmac on input data bytes
                 byte[] rawHmac = mac.doFinal(toSign.getBytes("UTF-8"));
    
                 // Using android.util.Base64 for Android Studio instead of
@@ -530,14 +530,14 @@ In genere, le notifiche vengono inviate tramite un server back-end. In alcuni ca
    
             return token;
         }
-8. In `MainActivity.java` aggiungere il metodo seguente alla classe `MainActivity` per gestire il clic del pulsante **Invia notifica** e inviare il messaggio di notifica push all'hub usando l'API REST predefinita.
+8. In `MainActivity.java`, aggiungere hello seguente metodo toohello `MainActivity` hello toohandle classe **invia una notifica** fare clic su pulsante e inviare la notifica push hello hub toohello messaggio utilizzando hello incorporato API REST.
    
         /**
          * Send Notification button click handler. This method parses the
          * DefaultFullSharedAccess connection string and generates a SaS token. The
-         * token is added to the Authorization header on the POST request to the
-         * notification hub. The text in the editTextNotificationMessage control
-         * is added as the JSON body for the request to add a GCM message to the hub.
+         * token is added toohello Authorization header on hello POST request toothe
+         * notification hub. hello text in hello editTextNotificationMessage control
+         * is added as hello JSON body for hello request tooadd a GCM message toohello hub.
          *
          * @param v
          */
@@ -563,7 +563,7 @@ In genere, le notifiche vengono inviate tramite un server back-end. In alcuni ca
                             // POST request
                             urlConnection.setDoOutput(true);
    
-                            // Authenticate the POST request with the SaS token
+                            // Authenticate hello POST request with hello SaS token
                             urlConnection.setRequestProperty("Authorization", 
                                 generateSasToken(url.toString()));
    
@@ -572,7 +572,7 @@ In genere, le notifiche vengono inviate tramite un server back-end. In alcuni ca
    
                             // Include any tags
                             // Example below targets 3 specific tags
-                            // Refer to : https://azure.microsoft.com/en-us/documentation/articles/notification-hubs-routing-tag-expressions/
+                            // Refer too: https://azure.microsoft.com/en-us/documentation/articles/notification-hubs-routing-tag-expressions/
                             // urlConnection.setRequestProperty("ServiceBusNotification-Tags", 
                             //        "tag1 || tag2 || tag3");
    
@@ -611,29 +611,29 @@ In genere, le notifiche vengono inviate tramite un server back-end. In alcuni ca
         }
 
 ## <a name="testing-your-app"></a>Testare l'app
-#### <a name="push-notifications-in-the-emulator"></a>Notifiche push nell'emulatore
-Per testare le notifiche push all'interno dell'emulatore, assicurarsi che l'immagine dell'emulatore supporti il livello Google API scelto per l'app. Se l'immagine non supporta le API di Google in modalità nativa verrà generata l'eccezione **SERVICE\_NOT\_AVAILABLE**.
+#### <a name="push-notifications-in-hello-emulator"></a>Le notifiche push nell'emulatore hello
+Se si desidera tootest le notifiche push all'interno di un emulatore, assicurarsi che l'immagine dell'emulatore supporta livello API Google hello scelto per l'app. Se l'immagine non supporta native Google APIs, si finirà con hello **servizio\_non\_disponibile** eccezione.
 
-Verificare anche di avere aggiunto l'account Google all'emulatore in esecuzione in **Impostazioni** > **Account**. In caso contrario, i tentativi di registrazione con GCM potrebbero generare l'eccezione **AUTHENTICATION\_FAILED**.
+Inoltre toohello precedente, assicurarsi di aver aggiunto il tooyour account Google emulatore in esecuzione **impostazioni** > **account**. In caso contrario, i tentativi tooregister con GCM può comportare hello **autenticazione\_FAILED** eccezione.
 
-#### <a name="running-the-application"></a>Esecuzione dell'applicazione
-1. Eseguire l'app e notare l'ID registrazione segnalato per una registrazione riuscita.
+#### <a name="running-hello-application"></a>Esecuzione di un'applicazione hello
+1. Eseguire app hello e notare che l'ID registrazione hello viene segnalato per la registrazione ha esito positivo.
    
       ![Test in Android: registrazione di canali][18]
-2. Immettere un messaggio di notifica da inviare a tutti i dispositivi Android registrati con l'hub.
+2. Immettere un toobe messaggio di notifica inviati tooall i dispositivi Android registrati con hub hello.
    
       ![Test in Android: invio di un messaggio][19]
 
-3. Premere **Send Notification**. Su tutti i dispositivi che eseguono l'app verrà visualizzata un'istanza di `AlertDialog` con il messaggio di notifica push. I dispositivi che non eseguono l'app, ma che sono stati registrati in precedenza per le notifiche push, riceveranno una notifica in Android Notification Manager. Per visualizzarle, scorrere verso il basso dall'angolo superiore sinistro.
+3. Premere **Send Notification**. Verranno visualizzati tutti i dispositivi che sono in esecuzione app hello un `AlertDialog` istanza con un messaggio di notifica push di hello. I dispositivi che non sono in esecuzione app hello ma sono stati registrati in precedenza per le notifiche push riceverà una notifica in hello Android Notification Manager. Quelli visualizzabili scorrendo verso il basso nell'angolo superiore sinistro hello.
    
       ![Test in Android: notifiche][21]
 
 ## <a name="next-steps"></a>Passaggi successivi
-Come passaggio successivo, è consigliabile vedere l'esercitazione [Uso di Hub di notifica di Azure per inviare notifiche agli utenti] . Verrà illustrato come inviare notifiche da un back-end ASP.NET destinate a utenti specifici.
+Si consiglia di hello [toousers le notifiche di utilizzare gli hub di notifica toopush] esercitazione come passaggio successivo hello. Verrà descritto come toosend notifiche da un back-end ASP.NET usando tag tootarget specifici utenti.
 
-Per segmentare gli utenti in base ai gruppi di interesse, vedere l'esercitazione [Usare Hub di notifica per inviare le ultime notizie] .
+Se si desidera che gli utenti dai gruppi di interesse toosegment, estrarre hello [toosend gli hub di notifica di utilizzare le ultime notizie] esercitazione.
 
-Per altre informazioni generali sull'uso di Hub di notifica, vedere [Hub di notifica di Azure].
+toolearn informazioni generali sull'hub di notifica, vedere il nostro [materiale sussidiario per gli hub di notifica].
 
 <!-- Images. -->
 [6]: ./media/notification-hubs-android-get-started/notification-hub-android-new-class.png
@@ -665,7 +665,7 @@ Per altre informazioni generali sull'uso di Hub di notifica, vedere [Hub di noti
 [Mobile Services Android SDK]: https://go.microsoft.com/fwLink/?LinkID=280126&clcid=0x409
 [Referencing a library project]: http://go.microsoft.com/fwlink/?LinkId=389800
 [Azure Classic Portal]: https://manage.windowsazure.com/
-[Hub di notifica di Azure]: http://msdn.microsoft.com/library/jj927170.aspx
-[Uso di Hub di notifica di Azure per inviare notifiche agli utenti]: notification-hubs-aspnet-backend-gcm-android-push-to-user-google-notification.md
-[Usare Hub di notifica per inviare le ultime notizie]: notification-hubs-aspnet-backend-android-xplat-segmented-gcm-push-notification.md
-[portale di Azure]: https://portal.azure.com
+[materiale sussidiario per gli hub di notifica]: http://msdn.microsoft.com/library/jj927170.aspx
+[toousers le notifiche di utilizzare gli hub di notifica toopush]: notification-hubs-aspnet-backend-gcm-android-push-to-user-google-notification.md
+[toosend gli hub di notifica di utilizzare le ultime notizie]: notification-hubs-aspnet-backend-android-xplat-segmented-gcm-push-notification.md
+[portale Azure]: https://portal.azure.com

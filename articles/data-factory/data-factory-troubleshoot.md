@@ -1,6 +1,6 @@
 ---
-title: Risolvere i problemi di Data factory di Azure
-description: Informazioni su come risolvere i problemi relativi all'uso di Data factory di Azure.
+title: problemi di Azure Data Factory aaaTroubleshoot
+description: Informazioni su come tootroubleshoot problemi con Data Factory di Azure.
 services: data-factory
 documentationcenter: 
 author: spelluru
@@ -14,55 +14,55 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/14/2017
 ms.author: spelluru
-ms.openlocfilehash: 953a2703db7c8991f580a7c963d6cbd94265c213
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: cf65bcf3e1c3f061d3ac1dbf32e99cc7b014f9dc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="troubleshoot-data-factory-issues"></a>Risolvere i problemi di Data factory
-Questo articolo contiene suggerimenti per la risoluzione dei problemi correlati all'uso di Azure Data Factory. L'articolo non elenca tutti i problemi che si possono verificare usando il servizio, ma suggerisce come individuare e risolvere alcuni di essi.   
+Questo articolo contiene suggerimenti per la risoluzione dei problemi correlati all'uso di Azure Data Factory. In questo articolo non sono elencati tutti i possibili problemi di hello quando si utilizza servizio hello, ma comprende alcuni problemi e suggerimenti sulla risoluzione dei problemi generali.   
 
 ## <a name="troubleshooting-tips"></a>Suggerimenti per la risoluzione dei problemi
-### <a name="error-the-subscription-is-not-registered-to-use-namespace-microsoftdatafactory"></a>Errore: La sottoscrizione non è registrata per l'uso dello spazio dei nomi 'Microsoft.DataFactory'
-Se viene visualizzato questo errore, il provider di risorse di Azure Data Factory non è stato registrato nel computer in uso. Eseguire le operazioni seguenti:
+### <a name="error-hello-subscription-is-not-registered-toouse-namespace-microsoftdatafactory"></a>Errore: hello sottoscrizione non è registrato toouse dello spazio dei nomi 'Microsoft. DataFactory'
+Se si riceve questo errore, provider di risorse hello Azure Data Factory non è stato registrato nel computer. Hello seguenti:
 
 1. Avviare Azure PowerShell.
-2. Accedere al proprio account di Azure usando il comando seguente.
+2. Accedi tooyour account Azure tramite hello comando seguente.
 
     ```powershell
     Login-AzureRmAccount
     ```
-3. Eseguire il comando seguente per registrare il provider di Azure Data Factory.
+3. Eseguire i seguenti provider di Azure Data Factory di comandi tooregister hello hello.
 
     ```powershell        
     Register-AzureRmResourceProvider -ProviderNamespace Microsoft.DataFactory
     ```
 
 ### <a name="problem-unauthorized-error-when-running-a-data-factory-cmdlet"></a>Problema: errore di mancata autorizzazione quando si esegue un cmdlet di Data factory
-È probabile che non si stia usando l'account o la sottoscrizione di Azure corretta con Azure PowerShell. Usare i cmdlet seguenti per selezionare l'account e la sottoscrizione di Azure corretti per Azure PowerShell.
+Probabilmente non utilizza destra hello account Azure o una sottoscrizione con hello Azure PowerShell. Utilizzare hello cmdlet tooselect hello destra toouse di account e la sottoscrizione Azure con hello Azure PowerShell seguente.
 
-1. Login-AzureRmAccount: usare l'ID utente e la password corretti
-2. Get-AzureRmSubscription: visualizza tutte le sottoscrizioni per l'account.
-3. Select-AzureRmSubscription &lt;nome della sottoscrizione&gt;: selezionare la sottoscrizione corretta. Usare la stessa sottoscrizione selezionata per creare un Data Factory nel portale di Azure.
+1. Account di accesso-AzureRmAccount - ID utente di utilizzare hello e una password
+2. Get-AzureRmSubscription - Visualizza tutte le sottoscrizioni per account hello di hello.
+3. Selezionare AzureRmSubscription &lt;nome sottoscrizione&gt; -selezionare hello destra sottoscrizione. Utilizzare hello stesso che si utilizza una data factory toocreate su hello portale di Azure.
 
-### <a name="problem-fail-to-launch-data-management-gateway-express-setup-from-azure-portal"></a>Problema: impossibile avviare l'installazione rapida del Gateway di gestione dati dal portale di Azure
-L'installazione rapida del Gateway di gestione dati richiede Internet Explorer o un Web browser compatibile con Microsoft ClickOnce. Se non è possibile avviare l'installazione rapida, eseguire una di queste operazioni:
+### <a name="problem-fail-toolaunch-data-management-gateway-express-setup-from-azure-portal"></a>Problema: Non toolaunch installazione di Express Data Management Gateway dal portale di Azure
+installazione di Express Hello per Gateway di gestione dati hello richiede Internet Explorer o un browser compatibile Microsoft ClickOnce. Se l'installazione di Express hello ha esito negativo toostart, effettuare uno dei seguenti hello:
 
 * Usare Internet Explorer o un Web browser compatibile con Microsoft ClickOnce.
 
-    Se si usa Chrome, accedere al [Chrome Web Store](https://chrome.google.com/webstore/), eseguire una ricerca con la parola chiave "ClickOnce", scegliere una delle estensioni ClickOnce e installarla.
+    Se si utilizza Chrome, andare toohello [archivio web Chrome](https://chrome.google.com/webstore/), eseguire la ricerca con la parola chiave "ClickOnce", scegliere una delle estensioni di ClickOnce hello e installarlo.
 
-    Seguire la stessa procedura per Firefox (installazione di un componente aggiuntivo). Fare clic sul pulsante Apri menu sulla barra degli strumenti (tre righe orizzontali nell'angolo superiore destro), fare clic su Componenti aggiuntivi, eseguire una ricerca con la parola chiave "ClickOnce", scegliere una delle estensioni ClickOnce e installarla.
-* Usare il collegamento all' **installazione manuale** visualizzato sullo stesso pannello nel portale. Adottare questo approccio per scaricare il file di installazione ed eseguirlo manualmente. Al termine dell'installazione viene visualizzata la finestra di configurazione di Gateway di gestione dati. Copiare la **chiave** dalla schermata del portale e usarla in Gestione configurazione per registrare manualmente il gateway con il servizio.  
+    Hello stesso per Firefox (Installa componente aggiuntivo). Fare clic sul pulsante Apri Menu sulla barra degli strumenti hello (tre linee orizzontali nell'angolo superiore destro hello), fare clic su componenti aggiuntivi, eseguire la ricerca con la parola chiave "ClickOnce", scegliere una delle estensioni di ClickOnce hello e installarlo.
+* Hello utilizzare **l'installazione manuale** collegamento visualizzato in hello stesso pannello nel portale di hello. Utilizzare questo file di installazione toodownload approccio ed eseguirlo manualmente. Dopo l'installazione di hello ha esito positivo, vengono visualizzati la finestra di dialogo di configurazione di Gateway di gestione dati hello. Hello copia **chiave** dalla schermata di portale hello e utilizzare in hello configuration manager toomanually registrare gateway hello hello servizio.  
 
-### <a name="problem-fail-to-connect-to-on-premises-sql-server"></a>Problema: impossibile connettersi all'istanza di SQL Server locale
-Avviare **Gestione configurazione di Gateway di gestione dati** nel computer gateway e usare la scheda **Risoluzione dei problemi** per testare la connessione a SQL Server dal computer gateway. Per suggerimenti sulla risoluzione di problemi correlati alla connessione o al gateway, vedere [Risoluzione dei problemi del gateway](data-factory-data-management-gateway.md#troubleshooting-gateway-issues) .   
+### <a name="problem-fail-tooconnect-tooon-premises-sql-server"></a>Problema: Non tooconnect tooon locale SQL Server
+Avviare **Gestione configurazione di Gateway di gestione di dati** hello computer gateway e utilizzare hello **Troubleshooting** scheda tootest hello connessione tooSQL Server dal computer del gateway hello. Per suggerimenti sulla risoluzione di problemi correlati alla connessione o al gateway, vedere [Risoluzione dei problemi del gateway](data-factory-data-management-gateway.md#troubleshooting-gateway-issues) .   
 
 ### <a name="problem-input-slices-are-in-waiting-state-for-ever"></a>Problema: le sezioni di input rimangono nello stato Waiting
-Le sezioni potrebbero essere **In attesa** per diversi motivi. Uno dei motivi più comuni è che la proprietà **external** non è impostata su **true**. Eventuali set di dati prodotti all'esterno dell'ambito di Azure Data Factory devono essere contrassegnati con la proprietà **external** . Questa proprietà indica che i dati sono esterni e non sono supportati da alcuna pipeline nel Data Factory. Le sezioni di dati vengono contrassegnate con **Pronto** quando i dati sono disponibili nel rispettivo archivio.
+le sezioni Hello potrebbe essere in **in attesa** dello stato a causa di motivi toovarious. Uno dei motivi comuni hello è tale hello **esterno** non è impostata troppo**true**. Qualsiasi set di dati che è l'ambito di prodotti hello all'esterno di Azure Data Factory deve essere contrassegnato con **esterno** proprietà. Questa proprietà indica che i dati di hello esterni e non è supportato da qualsiasi pipeline all'interno di data factory di hello. le sezioni di dati Hello sono contrassegnate come **pronto** quando dati hello sono disponibili nell'archivio rispettivi hello.
 
-Per l'uso della proprietà **external** , vedere l'esempio seguente. È possibile specificare facoltativamente **externalData*** quando si imposta la proprietà external su true.
+Vedere l'esempio per l'utilizzo di hello di hello seguente hello **esterno** proprietà. È possibile specificare facoltativamente **externalData*** quando si imposta tootrue esterno.
 
 Per altre informazioni su questa proprietà, vedere [Set di dati in Azure Data Factory](data-factory-create-datasets.md) .
 
@@ -92,34 +92,34 @@ Per altre informazioni su questa proprietà, vedere [Set di dati in Azure Data F
 }
 ```
 
-Per risolvere l'errore, aggiungere la proprietà **external** e la sezione **externalData** facoltativa alla definizione JSON della tabella di input e ricreare la tabella.
+tooresolve hello errore, aggiungere hello **esterno** proprietà e hello facoltativo **externalData** sezione Definizione JSON toohello della tabella di input hello e ricreare la tabella hello.
 
 ### <a name="problem-hybrid-copy-operation-fails"></a>Problema: l'operazione di copia ibrida non riesce
-Per le procedure di risoluzione dei problemi relativi alla copia da e verso un archivio dati locale usando il gateway di gestione dati, vedere [Risoluzione dei problemi del gateway](data-factory-data-management-gateway.md#troubleshooting-gateway-issues).
+Vedere [risolvere i problemi del gateway](data-factory-data-management-gateway.md#troubleshooting-gateway-issues) per passaggi tootroubleshoot problemi con la copia da e verso un dati locali archiviano utilizzando hello Gateway di gestione dati.
 
 ### <a name="problem-on-demand-hdinsight-provisioning-fails"></a>Problema: non è possibile eseguire il provisioning di HDInsight su richiesta
-Quando si usa un servizio collegato di tipo HDInsightOnDemand, è necessario specificare un linkedServiceName che punta a un archivio BLOB di Azure. Il servizio Data Factory usa questa risorsa di archiviazione per archiviare Questo account di archiviazione verrà usato per copiare i log e i file di supporto per il cluster HDInsight su richiesta.  In alcuni casi il provisioning di un cluster HDInsight su richiesta ha esito negativo con l'errore seguente:
+Quando si utilizza un servizio collegato di tipo HDInsightOnDemand, è necessario toospecify un linkedServiceName che punta tooan archiviazione Blob di Azure. Servizio Data Factory viene utilizzata questa archiviazione toostore registri e i file di supporto per il cluster HDInsight su richiesta.  In alcuni casi il provisioning di un cluster di HDInsight su richiesta non riesce con hello errore seguente:
 
 ```
-Failed to create cluster. Exception: Unable to complete the cluster create operation. Operation failed with code '400'. Cluster left behind state: 'Error'. Message: 'StorageAccountNotColocated'.
+Failed toocreate cluster. Exception: Unable toocomplete hello cluster create operation. Operation failed with code '400'. Cluster left behind state: 'Error'. Message: 'StorageAccountNotColocated'.
 ```
 
-Questo errore di solito indica che il percorso dell'account di archiviazione specificato nel linkedServiceName non si trova nella stessa posizione del data center in cui viene eseguito il provisioning di HDInsight. Esempio: se il Data Factory si trova negli Stati Uniti occidentali e l'archiviazione di Azure è negli Stati Uniti orientali, il provisioning su richiesta ha esito negativo negli Stati Uniti occidentali.
+Questo errore indica generalmente che il percorso di hello hello dell'account di archiviazione specificato in linkedServiceName hello non hello posizione in cui avviene il provisioning di HDInsight hello stesso data center. Esempio: se la data factory negli Stati Uniti occidentali e hello archiviazione di Azure in Stati Uniti orientali, hello su richiesta ha esito negativo provisioning negli Stati Uniti occidentali.
 
-È anche disponibile una seconda proprietà JSON additionalLinkedServiceNames in cui è possibile specificare account di archiviazione aggiuntivi in HDInsight su richiesta. Gli account di archiviazione aggiuntivi collegati devono trovarsi nello stesso percorso del cluster HDInsight oppure avranno esito negativo, producendo lo stesso errore.
+È anche disponibile una seconda proprietà JSON additionalLinkedServiceNames in cui è possibile specificare account di archiviazione aggiuntivi in HDInsight su richiesta. Tali account di archiviazione collegato aggiuntivi hello stessa località del cluster HDInsight hello o ha esito negativo con hello deve essere lo stesso errore.
 
 ### <a name="problem-custom-net-activity-fails"></a>Problema: l'attività .NET personalizzata non riesce
 Per una procedura dettagliata, vedere la sezione [Eseguire il debug della pipeline](data-factory-use-custom-activities.md#troubleshoot-failures) .
 
-## <a name="use-azure-portal-to-troubleshoot"></a>Usare il portale di Azure per la risoluzione dei problemi
+## <a name="use-azure-portal-tootroubleshoot"></a>Utilizzare tootroubleshoot portale di Azure
 ### <a name="using-portal-blades"></a>Uso dei pannelli del portale
 Per una procedura dettagliata, vedere la sezione [Monitorare la pipeline](data-factory-build-your-first-pipeline-using-editor.md#monitor-pipeline) .
 
 ### <a name="using-monitor-and-manage-app"></a>Uso dell'app di monitoraggio e gestione
 Per informazioni dettagliate, vedere [Monitorare e gestire le pipeline di Azure Data Factory con la nuova app di monitoraggio e gestione](data-factory-monitor-manage-app.md) .
 
-## <a name="use-azure-powershell-to-troubleshoot"></a>Usare Azure PowerShell per la risoluzione dei problemi
-### <a name="use-azure-powershell-to-troubleshoot-an-error"></a>Usare Azure PowerShell per risolvere un errore
+## <a name="use-azure-powershell-tootroubleshoot"></a>Usare Azure PowerShell tootroubleshoot
+### <a name="use-azure-powershell-tootroubleshoot-an-error"></a>Usare Azure PowerShell tootroubleshoot un errore
 Per informazioni su come monitorare le pipeline di Data Factory con Azure PowerShell, vedere la sezione [Monitorare la pipeline](data-factory-build-your-first-pipeline-using-powershell.md#monitor-pipeline) .
 
 [adfgetstarted]: data-factory-copy-data-from-azure-blob-storage-to-sql-database.md

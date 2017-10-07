@@ -1,12 +1,12 @@
 ---
-title: 'Connettere Arduino (C) ad Azure IoT: lezione 1: Configurare il dispositivo | Documentazione Microsoft'
+title: 'Connect Arduino (C) tooAzure IoT - lezione 1: configurare i dispositivi | Documenti Microsoft'
 description: Configurare Adafruit Feather M0 WiFi per il primo utilizzo.
 services: iot-hub
 documentationcenter: 
 author: shizn
 manager: timtl
 tags: 
-keywords: configurazione di arduino, connessione di arduino al pc, impostazione di arduino, scheda arduino
+keywords: arduino impostato, connettersi arduino toopc, il programma di installazione arduino, arduino Lavagna
 ROBOTS: NOINDEX
 redirect_url: /azure/iot-hub/iot-hub-adafruit-feather-m0-wifi-kit-arduino-get-started
 ms.assetid: f5b334f0-a148-41aa-b374-ce7b9f5b305a
@@ -17,49 +17,49 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 3/21/2017
 ms.author: xshi
-ms.openlocfilehash: 9e319292e5d30dea7e45857e435825861aad1c84
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 30b764e8ff6221995456283a226e79f064b2d74e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="configure-your-device"></a>Configurare il dispositivo
 ## <a name="what-you-will-do"></a>Contenuto dell'esercitazione
-Configurare la scheda Arduino Adafruit Feather M0 WiFi per il primo utilizzo assemblando la scheda e fornendo l'alimentazione. In caso di problemi, cercare le soluzioni nella pagina sulla [risoluzione dei problemi](iot-hub-adafruit-feather-m0-wifi-kit-arduino-troubleshooting.md).
+Configurare la Lavagna Adafruit sfumatura M0 Wi-Fi Arduino per primo utilizzo assemblando Lavagna hello, l'accensione. Se si verificano problemi, cercare soluzioni in hello [risoluzione dei problemi di pagina](iot-hub-adafruit-feather-m0-wifi-kit-arduino-troubleshooting.md).
 
 ## <a name="what-you-need"></a>Elementi necessari
-Per completare questa operazione, tenere a portata di mano i componenti seguenti inclusi nello starter kit di Adafruit Feather M0 WiFi:
+toocomplete questa operazione, è necessario hello seguenti parti per lo Starter Kit Adafruit sfumatura M0 Wi-Fi:
 
-* Scheda Adafruit Feather M0 WiFi
-* Cavo USB Micro B/tipo A
+* Hello Adafruit sfumatura M0 WiFi Lavagna
+* Un cavo USB A di tooType Micro B
 
 ![kit][kit]
 
 Altri elementi necessari:
 
 * Computer Windows, Mac o Linux.
-* Connessione wireless a cui connettere la scheda Arduino.
-* Connessione Internet per scaricare lo strumento di configurazione.
+* Una connessione wireless per i tooconnect Lavagna Arduino per.
+* Strumento di configurazione toodownload connessione Internet.
 
 ## <a name="what-you-will-learn"></a>Contenuto dell'esercitazione
 Contenuto dell'articolo:
 
-* Come assemblare la scheda Arduino e fornire l'alimentazione per le lezioni successive.
-* Come aggiungere autorizzazioni per la porta seriale in Ubuntu.
+* Come tooassemble la Lavagna Arduino e potenza, per hello seguenti lezioni.
+* Come le autorizzazioni di porta seriale tooadd per Ubuntu.
 
-## <a name="connect-your-arduino-board-to-your-computer"></a>Connettere la scheda Arduino al computer
+## <a name="connect-your-arduino-board-tooyour-computer"></a>Connettere il computer di tooyour Arduino Lavagna
 
-1. Collegare il cavo micro-USB alla porta micro-USB superiore.
+1. Collegare il cavo USB micro di hello superiore porta USB micro hello.
 
    ![Porta micro-USB superiore][top-micro-usb-port]
 
-2. Collegare l'altra estremità del cavo USB al computer.
+2. Plug hello altra estremità del cavo USB nel computer.
 
    ![USB computer][computer-usb]
 
 ## <a name="add-serial-port-permissions-on-ubuntu"></a>Aggiungere autorizzazioni per la porta seriale in Ubuntu
 
-Se si usa Windows o macOS, è possibile ignorare questa sezione. Per Ubuntu, è necessario attenersi alla seguente procedura per assicurarsi che il normale utente Linux disponga delle autorizzazioni per operare sulla porta USB della scheda Arduino.
+Se si usa Windows o macOS, è possibile ignorare questa sezione. Per Ubuntu, è necessario hello seguendo i passaggi toomake hello linux normale utente che disponga hello autorizzazioni toooperate sulla porta USB hello la Lavagna Arduino.
 
 1. Come utente normale dal terminale:
 
@@ -77,25 +77,25 @@ Se si usa Windows o macOS, è possibile ignorare questa sezione. Per Ubuntu, è 
    crw-rw---- 1 root dialout 188, 0 5 apr 23.01 ttyACM0
    ```
 
-   Il valore "0" potrebbe essere un numero diverso o potrebbero essere restituite più voci. Nel primo caso i dati necessari sono `uucp`, nel secondo `dialout`, che è il proprietario del gruppo del file.
+   Hello "0" potrebbe essere un numero diverso oppure potrebbero essere restituite più voci. In dati hello case primo hello dobbiamo `uucp`, hello in secondo luogo è `dialout`, che è proprietario del gruppo di hello del file hello.
 
-2. Aggiungere l'utente al gruppo:
+2. Aggiungi utente toohello toohello gruppo:
 
    ```bash
    sudo usermod -a -G group-name username
    ```
 
-   Dove `group-name` indica i dati trovati nel primo passaggio e `username` è il nome utente Linux.
+   Dove `group-name` dati hello trovato nel primo passaggio hello e `username` è il nome utente di linux.
 
-3. È necessario eseguire la disconnessione e accedere nuovamente perché questa modifica abbia effetto e per completare la configurazione.
+3. È necessario toolog e nuovamente per questo effetto tootake modifica e l'installazione completa di hello.
 
 ## <a name="summary"></a>Riepilogo
-In questo articolo si è appreso come configurare la scheda Arduino. L'attività successiva consiste nell'installazione del software e degli strumenti necessari per preparare l'esecuzione di un'applicazione di esempio nella scheda Arduino.
+In questo articolo, si è appreso come tooconfigure la Lavagna Arduino. attività successiva Hello è software in preparazione per l'esecuzione di un'applicazione di esempio sulla Lavagna Arduino e gli strumenti necessari di tooinstall hello.
 
 ![L'hardware è pronto][hardware-is-ready]
 
 ## <a name="next-steps"></a>Passaggi successivi
-[Ottenere gli strumenti][get-the-tools]
+[Ottenere strumenti hello][get-the-tools]
 <!-- Images and links -->
 
 [kit]: media/iot-hub-adafruit-feather-m0-wifi-lessons/lesson1/kit.png

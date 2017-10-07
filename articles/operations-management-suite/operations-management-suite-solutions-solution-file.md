@@ -1,6 +1,6 @@
 ---
-title: Creazione di soluzioni di gestione in Operations Management Suite (OMS) | Documentazione Microsoft
-description: "Le soluzioni di gestione estendono la funzionalità di Operations Management Suite (OMS) offrendo scenari di gestione in pacchetto che i clienti possono aggiungere all'area di lavoro OMS.  In questo articolo vengono fornite informazioni dettagliate su come creare soluzioni di gestione da usare nel proprio ambiente o da rendere disponibili per i propri clienti."
+title: soluzioni di gestione aaaCreating Operations Management Suite (OMS) | Documenti Microsoft
+description: "Soluzioni di gestione estendono le funzionalità di hello di Operations Management Suite (OMS), fornendo gli scenari di gestione di pacchetti che è possibile aggiungere l'area di lavoro OMS tootheir.  Questo articolo fornisce informazioni dettagliate su come creare toobe di soluzioni di gestione utilizzato nel proprio ambiente o resi disponibili tooyour clienti."
 services: operations-management-suite
 documentationcenter: 
 author: bwren
@@ -15,22 +15,22 @@ ms.workload: infrastructure-services
 ms.date: 04/30/2017
 ms.author: bwren
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: ee3462c13101d18921dc488b08c79e1e4e02ff3a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: f408df1b21f519fd1eb2cbeb19cca18f6c4161f5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="creating-a-management-solution-file-in-operations-management-suite-oms-preview"></a>Creazione di una soluzione di gestione in Operations Management Suite (OMS) (anteprima)
 > [!NOTE]
-> Questa è una documentazione preliminare per la creazione di soluzioni di gestione in OMS attualmente disponibili in versione di anteprima. Qualsiasi schema descritto di seguito è soggetto a modifiche.  
+> Questa è una documentazione preliminare per la creazione di soluzioni di gestione in OMS attualmente disponibili in versione di anteprima. Qualsiasi schema descritto di seguito è soggetto toochange.  
 
-Le soluzioni di gestione in Operations Management Suite (OMS) vengono implementate come [modelli di Resource Manager](../azure-resource-manager/resource-manager-template-walkthrough.md).  L'attività principale della creazione di soluzioni di gestione consiste nel [creare un modello](../azure-resource-manager/resource-group-authoring-templates.md).  Questo articolo fornisce informazioni dettagliate sui modelli usati per le soluzioni e illustra come configurare le risorse tipiche di una soluzione.
+Le soluzioni di gestione in Operations Management Suite (OMS) vengono implementate come [modelli di Resource Manager](../azure-resource-manager/resource-manager-template-walkthrough.md).  attività principali Hello per apprendere come tooauthor soluzioni di gestione, è fondamentale comprendere come troppo[creare un modello](../azure-resource-manager/resource-group-authoring-templates.md).  Questo articolo fornisce informazioni dettagliate univoci dei modelli utilizzati per le soluzioni e come risorse tipica soluzione tooconfigure.
 
 
 ## <a name="tools"></a>Strumenti
 
-È possibile usare qualsiasi editor di testo per interagire con i file della soluzione, ma si consiglia di avvalersi delle funzionalità disponibili in Visual Studio o Visual Studio Code, come descritto negli articoli seguenti.
+È possibile utilizzare qualsiasi toowork editor di testo con i file di soluzione, ma è consigliabile l'utilizzo delle funzionalità di hello fornite in Visual Studio o codice di Visual Studio, come descritto in hello seguenti articoli.
 
 - [Creazione e distribuzione di gruppi di risorse di Azure tramite Visual Studio](../azure-resource-manager/vs-azure-tools-resource-groups-deployment-projects-create-deploy.md)
 - [Utilizzo dei modelli di Azure Resource Manager nel codice di Visual Studio](../azure-resource-manager/resource-manager-vs-code.md)
@@ -39,7 +39,7 @@ Le soluzioni di gestione in Operations Management Suite (OMS) vengono implementa
 
 
 ## <a name="structure"></a>Structure
-La struttura di base di un file di una soluzione di gestione corrisponde a quella di un [modello di Resource Manager](../azure-resource-manager/resource-group-authoring-templates.md#template-format), come descritto di seguito.  Ognuna delle sezioni seguenti descrive gli elementi principali di una soluzione e i relativi contenuti.  
+struttura di base di un file di soluzione di gestione Hello è hello stesso come un [modello di gestione risorse](../azure-resource-manager/resource-group-authoring-templates.md#template-format) cui è indicato di seguito.  Hello sezioni seguenti vengono descritti gli elementi di livello superiore di hello ed e il relativo contenuto in una soluzione.  
 
     {
        "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
@@ -50,12 +50,12 @@ La struttura di base di un file di una soluzione di gestione corrisponde a quell
        "outputs": {  }
     }
 
-## <a name="parameters"></a>Parametri
-I [parametri](../azure-resource-manager/resource-group-authoring-templates.md#parameters) sono valori richiesti all'utente al momento dell'installazione della soluzione di gestione.  Ci sono parametri standard comuni a tutte le soluzioni ed è possibile aggiungere altri parametri in base a quanto necessario per la soluzione specifica.  Il modo in cui gli utenti forniranno i valori dei parametri quando installano la soluzione dipende dal parametro specifico e dalla modalità di installazione della soluzione.
+## <a name="parameters"></a>parameters
+[I parametri](../azure-resource-manager/resource-group-authoring-templates.md#parameters) sono valori richiesti dall'utente hello quando installano la soluzione di gestione hello.  Ci sono parametri standard comuni a tutte le soluzioni ed è possibile aggiungere altri parametri in base a quanto necessario per la soluzione specifica.  Modo gli utenti forniscono i valori dei parametri quando si installa la soluzione dipenderà determinato parametro hello e la modalità di installazione soluzione hello.
 
-Quando un utente installa la soluzione di gestione tramite [Azure Marketplace](operations-management-suite-solutions.md#finding-and-installing-management-solutions) o i [modelli di avvio rapido di Azure](operations-management-suite-solutions.md#finding-and-installing-management-solutions), viene chiesto di selezionare un'[area di lavoro OMS e un account di Automazione](operations-management-suite-solutions.md#oms-workspace-and-automation-account).  Questi elementi vengono usati per popolare i valori di ognuno dei parametri standard.  All'utente non viene chiesto di fornire direttamente i valori per i parametri standard, ma viene chiesto di fornire i valori per eventuali parametri aggiuntivi.
+Quando un utente installa la soluzione di gestione tramite hello [Azure Marketplace](operations-management-suite-solutions.md#finding-and-installing-management-solutions) o [modelli di avvio rapido di Azure](operations-management-suite-solutions.md#finding-and-installing-management-solutions) sono tooselect richiesta un [OMS dell'area di lavoro e account di automazione ](operations-management-suite-solutions.md#oms-workspace-and-automation-account).  Questi sono valori hello toopopulate utilizzato di ciascun parametro hello standard.  Hello utente non vengono richieste toodirectly fornire valori per parametri standard hello, ma sono valori tooprovide richiesta per i parametri aggiuntivi.
 
-Quando l'utente installa la soluzione con un [altro metodo](operations-management-suite-solutions.md#finding-and-installing-management-solutions), deve specificare un valore per tutti i parametri standard e tutti i parametri aggiuntivi.
+Quando utente hello installa la soluzione [un altro metodo](operations-management-suite-solutions.md#finding-and-installing-management-solutions), devono specificare un valore per tutti i parametri standard e tutti i parametri aggiuntivi.
 
 Di seguito è illustrato un parametro di esempio.  
 
@@ -67,34 +67,34 @@ Di seguito è illustrato un parametro di esempio.
             "category": "Schedule"
         }
 
-La tabella seguente descrive gli attributi di un parametro.
+Hello nella tabella seguente vengono descritti gli attributi di hello di un parametro.
 
 | Attributo | Descrizione |
 |:--- |:--- |
-| type |Tipo di dati per il parametro. Il controllo di input visualizzato per l'utente dipende dal tipo di dati.<br><br>bool - Casella di riepilogo a discesa<br>string - Casella di testo<br>int - Casella di testo<br>securestring - Campo della password<br> |
-| category |Categoria facoltativa per il parametro.  I parametri della stessa categoria vengono raggruppati insieme. |
-| control |Funzionalità aggiuntiva per i parametri di stringa.<br><br>datetime - Viene visualizzato un controllo Datetime.<br>guid - Il valore Guid viene generato automaticamente e il parametro non viene visualizzato. |
-| description |Descrizione facoltativa del parametro.  Viene visualizzata in un fumetto di informazioni accanto al parametro. |
+| type |Tipo di dati per il parametro hello. controllo di input Hello visualizzato per l'utente hello dipende dal tipo di dati hello.<br><br>bool - Casella di riepilogo a discesa<br>string - Casella di testo<br>int - Casella di testo<br>securestring - Campo della password<br> |
+| category |Categoria facoltativo per il parametro hello.  Parametri in hello stessa categoria vengono raggruppati insieme. |
+| control |Funzionalità aggiuntiva per i parametri di stringa.<br><br>datetime - Viene visualizzato un controllo Datetime.<br>GUID - valore Guid viene generato automaticamente e non viene visualizzato il parametro hello. |
+| description |Descrizione facoltativa per il parametro hello.  Visualizzato in un parametro di toohello informazioni successivo fumetto. |
 
 ### <a name="standard-parameters"></a>Parametri standard
-La tabella seguente elenca i parametri standard per tutte le soluzioni di gestione.  Quando la soluzione viene installata da Azure Marketplace o dai modelli di avvio rapido, questi valori vengono popolati automaticamente per l'utente senza che venga chiesto di immetterli.  L'utente deve fornire i valori se la soluzione viene installata con un altro metodo.
+Hello nella tabella seguente elenca hello parametri standard per tutte le soluzioni di gestione.  Questi valori vengono popolati per utente hello anziché richiedere il loro quando la soluzione viene installata dal hello Azure Marketplace o Guida rapida di modelli.  utente Hello deve fornire valori per tali se soluzione hello viene installato con un altro metodo.
 
 > [!NOTE]
-> L'interfaccia utente in Azure Marketplace e nei modelli di avvio rapido prevede i nomi di parametro indicati nella tabella.  Se si usano nomi di parametro diversi, all'utente verrà chiesto di specificarli e non verranno popolati automaticamente.
+> interfaccia utente di Hello nei modelli di Azure Marketplace e Guida introduttiva hello prevede che i nomi di parametro hello nella tabella hello.  Se si utilizzano nomi di parametro diversi quindi verrà richiesto all'utente hello e non viene automaticamente popolate.
 >
 >
 
-| Parametro | Tipo | Descrizione |
+| . | Tipo | Descrizione |
 |:--- |:--- |:--- |
 | accountName |string |Nome dell'account di Automazione di Azure. |
 | pricingTier |string |Piano tariffario dell'area di lavoro di Log Analytics e dell'account di Automazione di Azure. |
-| regionId |string |Area dell'account di Automazione di Azure. |
-| solutionName |string |Nome della soluzione.  Se si distribuisce la soluzione tramite modelli di avvio rapido, è necessario definire solutionName come un parametro, in modo da poter definire una stringa anziché richiedere all'utente di specificarne una. |
+| regionId |string |Area di hello account di automazione di Azure. |
+| solutionName |string |Nome della soluzione hello.  Se si distribuisce la soluzione tramite i modelli di avvio rapido, è necessario definire solutionName come un parametro che consente di definire una stringa invece richiedere hello utente toospecify uno. |
 | workspaceName |string |Nome dell'area di lavoro di Log Analytics. |
-| workspaceRegionId |string |Area dell'area di lavoro di Log Analytics. |
+| workspaceRegionId |string |Area dell'area di lavoro Log Analitica hello. |
 
 
-Di seguito viene mostrata la struttura dei parametri standard, che è possibile copiare e incollare nel file della soluzione.  
+Di seguito è la struttura hello parametri hello standard che è possibile copiare e incollare il file di soluzione.  
 
     "parameters": {
         "workspaceName": {
@@ -112,13 +112,13 @@ Di seguito viene mostrata la struttura dei parametri standard, che è possibile 
         "workspaceRegionId": {
                "type": "string",
                "metadata": {
-                   "description": "Region of the Log Analytics workspace"
+                   "description": "Region of hello Log Analytics workspace"
             }
         },
         "regionId": {
             "type": "string",
             "metadata": {
-                "description": "Region of the Azure Automation account"
+                "description": "Region of hello Azure Automation account"
             }
         },
         "pricingTier": {
@@ -130,10 +130,10 @@ Di seguito viene mostrata la struttura dei parametri standard, che è possibile 
     }
 
 
-Per fare riferimento ai valori di parametro negli altri elementi della soluzione si usa la sintassi **parameters('nome parametro')**.  Per accedere, ad esempio, al nome dell'area di lavoro, usare **parameters('workspaceName')**
+Si fa riferimento a valori tooparameter in altri elementi di soluzione hello con sintassi hello **parametri ('parameter name')**.  Ad esempio, tooaccess hello Nome area di lavoro, si utilizzerebbe **parameters('workspaceName')**
 
-## <a name="variables"></a>Variabili
-Le [variabili](../azure-resource-manager/resource-group-authoring-templates.md#variables) sono valori che verranno usati nella parte rimanente della soluzione di gestione.  Questi valori non sono esposti all'utente che esegue l'installazione della soluzione.  La loro funzione è quella di offrire all'autore un'unica posizione in cui gestire i valori che possono essere usati più volte all'interno della soluzione. È consigliabile inserire eventuali valori specifici della soluzione in variabili anziché impostarli come hardcoded nell'elemento **resources**.  In questo modo, il codice risulta più leggibile ed è possibile modificare facilmente questi valori nelle versioni successive.
+## <a name="variables"></a>variables
+[Le variabili](../azure-resource-manager/resource-group-authoring-templates.md#variables) sono valori che verrà utilizzato nel resto di hello della soluzione di gestione di hello.  Questi valori non sono esposti toohello utente installa la soluzione hello.  Si tratta di autore hello tooprovide prevista con un'unica posizione in cui è possibile gestire i valori che possono essere utilizzati più volte nella soluzione hello. È necessario inserire qualsiasi soluzione tooyour specifico di valori nelle variabili come toohard anziché la codifica hello **risorse** elemento.  Questo rende più leggibile il codice hello e consente tooeasily modificare questi valori nelle versioni successive.
 
 Di seguito è riportato un esempio di elemento **variables** con i parametri tipici usati nelle soluzioni.
 
@@ -145,9 +145,9 @@ Di seguito è riportato un esempio di elemento **variables** con i parametri tip
         "AutomationApiVersion": "2015-10-31"
     },
 
-Per fare riferimento ai valori di variabile all'interno della soluzione si usa la sintassi **variables('nome variabile')**.  Per accedere, ad esempio, alla variabile SolutionName, usare **variables('SolutionName')**.
+Si fa riferimento a valori toovariable tramite la soluzione hello con sintassi hello **variabili ('variable name')**.  Ad esempio, tooaccess hello variabile SolutionName, si utilizzerebbe **variables('SolutionName')**.
 
-È possibile anche definire variabili complesse che moltiplicano set di valori;  risultano particolarmente utili nelle soluzioni di gestione in cui si definiscono più proprietà per diversi tipi di risorse.  È possibile, ad esempio, ristrutturare come indicato di seguito le variabili di soluzione illustrate in precedenza.
+È possibile anche definire variabili complesse che moltiplicano set di valori;  risultano particolarmente utili nelle soluzioni di gestione in cui si definiscono più proprietà per diversi tipi di risorse.  Ad esempio, è Impossibile ristrutturare le variabili della soluzione hello illustrate in precedenza toohello seguente.
 
     "variables": {
         "Solution": {
@@ -159,20 +159,20 @@ Per fare riferimento ai valori di variabile all'interno della soluzione si usa l
         "AutomationApiVersion": "2015-10-31"
     },
 
-In questo caso, per fare riferimento ai valori di variabile all'interno della soluzione è possibile usare la sintassi **variables('nome variabile').proprietà**.  Per accedere, ad esempio, alla variabile SolutionName, è necessario usare **variables('Solution').Name**.
+In questo caso, si fa riferimento toovariable valori tramite la soluzione hello con sintassi hello **variables('variable name').property**.  Ad esempio, tooaccess hello variabile nome di soluzione, si utilizzerebbe **variables('Solution'). Nome**.
 
 ## <a name="resources"></a>Risorse
-Le [risorse](../azure-resource-manager/resource-group-authoring-templates.md#resources) definiscono i vari tipi di risorse che la soluzione di gestione installerà e configurerà.  Si tratta della parte più estesa e complessa del modello.  È possibile ottenere informazioni sulla struttura e una descrizione completa degli elementi di risorsa in [Creazione di modelli di Azure Resource Manager](../azure-resource-manager/resource-group-authoring-templates.md#resources).  In altri articoli di questa documentazione sono descritti i tipi di risorse definiti più comunemente. 
+[Risorse](../azure-resource-manager/resource-group-authoring-templates.md#resources) definire hello diverse risorse che installerà e configurerà la soluzione di gestione.  Questo sarà hello più grande e la parte più complesse del modello di hello.  È possibile ottenere struttura hello e una descrizione completa degli elementi di risorsa in [modelli Authoring Azure Resource Manager](../azure-resource-manager/resource-group-authoring-templates.md#resources).  In altri articoli di questa documentazione sono descritti i tipi di risorse definiti più comunemente. 
 
 
 ### <a name="dependencies"></a>Dipendenze
-L'elemento **dependsOn** specifica una [dipendenza](../azure-resource-manager/resource-group-define-dependencies.md) da un'altra risorsa.  Quando si installa la soluzione, una risorsa viene creata solo dopo che sono state create tutte le relative dipendenze.  La soluzione potrebbe ad esempio [avviare un runbook](operations-management-suite-solutions-resources-automation.md#runbooks) quando viene installata usando una [risorsa processo](operations-management-suite-solutions-resources-automation.md#automation-jobs).  La risorsa processo dipenderà dalla risorsa runbook, per assicurarsi che il runbook venga creato prima del processo.
+Hello **dependsOn** elementi specifica un [dipendenza](../azure-resource-manager/resource-group-define-dependencies.md) in un'altra risorsa.  Quando si installa la soluzione hello, non viene creata una risorsa fino a quando tutte le relative dipendenze sono state create.  La soluzione potrebbe ad esempio [avviare un runbook](operations-management-suite-solutions-resources-automation.md#runbooks) quando viene installata usando una [risorsa processo](operations-management-suite-solutions-resources-automation.md#automation-jobs).  risorsa di processo Hello sarebbe dipende hello runbook risorsa toomake runbook hello sia stata creata prima che venga creato il processo di hello.
 
 ### <a name="oms-workspace-and-automation-account"></a>Area di lavoro OMS e account di Automazione
-Le soluzioni di gestione richiedono un'[area di lavoro OMS](../log-analytics/log-analytics-manage-access.md) per contenere le viste e un [account di Automazione](../automation/automation-security-overview.md#automation-account-overview) per contenere i runbook e le risorse correlate.  Questi elementi devono essere disponibili prima della creazione delle risorse nella soluzione e non devono essere definiti nella soluzione stessa.  L'utente [specificherà un'area di lavoro e un account](operations-management-suite-solutions.md#oms-workspace-and-automation-account) quando distribuisce la soluzione, ma l'autore della soluzione deve tenere presente quanto segue.
+Soluzioni di gestione richiedono un [area di lavoro OMS](../log-analytics/log-analytics-manage-access.md) toocontain visualizzazioni e un [account di automazione](../automation/automation-security-overview.md#automation-account-overview) toocontain runbook e le relative risorse.  Questi devono essere disponibili prima hello risorse nella soluzione hello vengono create e non devono essere definite nella soluzione hello stessa.  utente Hello verrà [specificare un account e l'area di lavoro](operations-management-suite-solutions.md#oms-workspace-and-automation-account) quando si distribuisce la soluzione, ma come autore hello è necessario considerare hello seguenti punti.
 
 ## <a name="solution-resource"></a>Risorse della soluzione
-Per ogni soluzione è necessario specificare una risorsa nell'elemento **resources** che definisce la soluzione stessa.  La risorsa sarà di tipo **Microsoft.OperationsManagement/solutions** e avrà la struttura seguente. Sono inclusi i [parametri standard](#parameters) e le [variabili](#variables) generalmente usati per definire le proprietà della soluzione.
+Ogni soluzione richiede una voce di risorsa in hello **risorse** elemento che definisce una soluzione di hello stessa.  Ciò avrà un tipo di **Microsoft.OperationsManagement/solutions** e hello seguente struttura. Ciò include [parametri standard](#parameters) e [variabili](#variables) che sono di proprietà in genere utilizzate toodefine della soluzione hello.
 
 
     {
@@ -206,41 +206,41 @@ Per ogni soluzione è necessario specificare una risorsa nell'elemento **resourc
 
 
 ### <a name="dependencies"></a>Dipendenze
-La risorsa soluzione deve avere una [dipendenza](../azure-resource-manager/resource-group-define-dependencies.md) da ogni altra risorsa nella soluzione, perché ogni risorsa deve esistere affinché la soluzione possa essere creata.  A tale scopo, aggiungere una voce per ogni risorsa nell'elemento **dependsOn**.
+Hello soluzione risorsa deve avere un [dipendenza](../azure-resource-manager/resource-group-define-dependencies.md) in tutte le altre risorse nella soluzione hello poiché devono tooexist prima di creare soluzioni hello.  Questo scopo, aggiungere una voce per ogni risorsa in hello **dependsOn** elemento.
 
 ### <a name="properties"></a>Proprietà
-La risorsa della soluzione ha le proprietà descritte nella tabella seguente.  Sono incluse le risorse cui viene fatto riferimento dalla soluzione e incluse nella soluzione che definisce come viene gestita la risorsa dopo l'installazione della soluzione.  Ogni risorsa nella soluzione deve essere presente nella proprietà **referencedResources** o **containedResources**.
+Hello soluzione hello alcune proprietà della risorsa in hello nella tabella seguente.  Sono incluse risorse hello a cui fa riferimento e contenuti da soluzione hello che definisce la modalità di gestione risorse di hello dopo l'installazione della soluzione hello.  Ogni risorsa nella soluzione hello dovrebbe essere elencato in entrambi hello **referencedResources** o hello **containedResources** proprietà.
 
 | Proprietà | Description |
 |:--- |:--- |
-| workspaceResourceId |ID dell'area di lavoro Log Analytics nel formato *<Resource Group ID>/providers/Microsoft.OperationalInsights/workspaces/\<Nome area di lavoro\>*. |
-| referencedResources |Elenco delle risorse nella soluzione che non devono essere rimosse quando la soluzione viene rimossa. |
-| containedResources |Elenco delle risorse nella soluzione che devono essere rimosse quando la soluzione viene rimossa. |
+| workspaceResourceId |ID dell'area di lavoro di Log Analitica hello in forma di hello  *<Resource Group ID>/providers/Microsoft.OperationalInsights/workspaces/\<nome area di lavoro\>*. |
+| referencedResources |Elenco delle risorse nella soluzione hello che non devono essere rimossi quando la soluzione hello viene rimossa. |
+| containedResources |Elenco delle risorse nella soluzione hello che devono essere rimossi quando la soluzione hello viene rimossa. |
 
-L'esempio precedente si riferisce a una soluzione con un runbook, una pianificazione e una vista.  Poiché sono presenti *riferimenti* ad essi nell'elemento **properties**, la pianificazione e il runbook non vengono rimossi quando la soluzione viene rimossa.  La vista che è invece *contenuta* viene rimossa quando la soluzione viene rimossa.
+esempio Hello precedente è una soluzione con un runbook, a una pianificazione e visualizzazione.  pianificazione di Hello e runbook sono *riferimento* in hello **proprietà** elemento in modo non vengono rimossi quando la soluzione hello viene rimosso.  visualizzazione di Hello è *contenuti* viene rimosso quando viene rimossa la soluzione hello.
 
 ### <a name="plan"></a>Pianificazione
-L'entità **plan** della risorsa soluzione ha le proprietà descritte nella tabella seguente.
+Hello **piano** entità della risorsa di soluzione hello dispone di proprietà hello in hello nella tabella seguente.
 
 | Proprietà | Descrizione |
 |:--- |:--- |
-| name |Nome della soluzione. |
-| version |Versione della soluzione determinata dall'autore. |
-| product |Stringa univoca che identifica la soluzione. |
-| publisher |Autore della soluzione. |
+| name |Nome della soluzione hello. |
+| version |Versione della soluzione hello, come determinato dall'autore hello. |
+| product |Soluzione di hello tooidentify stringa univoca. |
+| publisher |Server di pubblicazione della soluzione hello. |
 
 
 
 ## <a name="sample"></a>Esempio
-Esempi di file di soluzioni con una risorsa "soluzione" sono disponibili negli articoli seguenti.
+È possibile visualizzare esempi di file della soluzione con una risorsa di soluzione in hello posizioni seguenti.
 
 - [Risorse di Automazione](operations-management-suite-solutions-resources-automation.md#sample)
 - [Risorse di ricerca e di avviso](operations-management-suite-solutions-resources-searches-alerts.md#sample)
 
 
 ## <a name="next-steps"></a>Passaggi successivi
-* [Aggiungere ricerche salvate e avvisi](operations-management-suite-solutions-resources-searches-alerts.md) alla soluzione di gestione.
-* [Aggiungere viste](operations-management-suite-solutions-resources-views.md) alla soluzione di gestione.
-* [Aggiungere runbook e altre risorse di automazione](operations-management-suite-solutions-resources-automation.md) alla soluzione di gestione.
-* Informazioni dettagliate sulla [Creazione di modelli di Azure Resource Manager](../azure-resource-manager/resource-group-authoring-templates.md).
+* [Aggiungere avvisi e le ricerche salvate](operations-management-suite-solutions-resources-searches-alerts.md) tooyour soluzione di gestione.
+* [Aggiungere visualizzazioni](operations-management-suite-solutions-resources-views.md) tooyour soluzione di gestione.
+* [Aggiungere i runbook e altre risorse di automazione](operations-management-suite-solutions-resources-automation.md) tooyour soluzione di gestione.
+* Informazioni sul supporto di hello [modelli Authoring Azure Resource Manager](../azure-resource-manager/resource-group-authoring-templates.md).
 * Cercare i [modelli di avvio rapido di Azure](https://azure.microsoft.com/documentation/templates) per esempi di modelli di Resource Manager.

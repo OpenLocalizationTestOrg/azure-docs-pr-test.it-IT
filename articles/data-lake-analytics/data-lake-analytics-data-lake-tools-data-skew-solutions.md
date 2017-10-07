@@ -1,5 +1,5 @@
 ---
-title: Risolvere i problemi di asimmetria dei dati tramite Strumenti Azure Data Lake per Visual Studio | Documentazione Microsoft
+title: problemi di dati inclinazione aaaResolve usando Azure Data Lake Tools per Visual Studio | Documenti Microsoft
 description: Potenziali risoluzioni dei problemi di asimmetria dei dati tramite Strumenti Azure Data Lake per Visual Studio.
 services: data-lake-analytics
 documentationcenter: 
@@ -14,65 +14,65 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 12/16/2016
 ms.author: yanacai
-ms.openlocfilehash: 9b284ef33be4b935569fc368d81ddf040b2c2b7d
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 3909fbd89eb40f061268cb7128f7fa84a3c33de7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="resolve-data-skew-problems-by-using-azure-data-lake-tools-for-visual-studio"></a>Risolvere i problemi di asimmetria dei dati tramite Strumenti Azure Data Lake per Visual Studio
 
 ## <a name="what-is-data-skew"></a>Informazioni sull'asimmetria dei dati
 
-In poche parole, un'asimmetria dei dati si verifica quando un valore è rappresentato in modo eccessivo. Si supponga di avere incaricato 50 esaminatori di imposte per controllare le dichiarazioni dei redditi, un esaminatore per ogni stato degli Stati Uniti. L'esaminatore del Wyoming, che ha una popolazione ridotta, ha poco da fare. In California, invece, l'esaminatore è molto indaffarato a causa della popolazione di notevole entità.
+In poche parole, un'asimmetria dei dati si verifica quando un valore è rappresentato in modo eccessivo. Si supponga di avere assegnato 50 esaminatori tax tooaudit redditi, uno esaminatore per ogni stato degli Stati Uniti. Esaminatore Wyoming Hello, poiché sono popolamento hello è ridotto, ha toodo minimo. California, tuttavia, Esaminatore hello viene conservata occupati a causa della popolazione di grandi dimensioni hello dello stato.
     ![Esempio di un problema di asimmetria dei dati](./media/data-lake-analytics-data-lake-tools-data-skew-solutions/data-skew-problem.png)
 
-In questo scenario, i dati sono distribuiti in modo non uniforme tra tutti gli esaminatori di imposta, il che significa che alcuni esaminatori lavorano di più rispetto ad altri. Nell'attività personale, non di rado si verificano situazioni simili allo scenario degli esaminatori di imposta qui presentato. In termini più tecnici, un vertice ottiene molti più dati rispetto agli altri elementi, una situazione che costringe il vertice a lavorare di più rispetto agli altri e che, di conseguenza, rallenta l'intero processo. Ancor peggio, il processo potrebbe avere esito negativo in quanto i vertici potrebbero presentare, ad esempio, un limite di runtime di 5 ore e un limite della memoria pari a 6 GB.
+In questo scenario, dati hello non viene distribuiti tra esaminatori tax tutti, il che significa che alcune esaminatori devono funzionare più rispetto ad altri. Nel processo, spesso si verificano situazioni di questo esempio imposta examiner hello. In termini più tecnici, un vertice Ottiene molti più dati rispetto agli altri elementi, una situazione che rende il vertice hello più hello altri e che infine rallenta un intero processo di lavoro. Che cos'è peggiore, il processo di hello potrebbe non riuscire, poiché potrebbero avere vertici, ad esempio, un limite di 5 ore runtime e un limite di 6 GB di memoria.
 
 ## <a name="resolving-data-skew-problems"></a>Risoluzione dei problemi di asimmetria dei dati
 
-Gli Strumenti Azure Data Lake per Visual Studio consentono di rilevare eventuali problemi di asimmetria dei dati all'interno dei processi. Se si verifica un problema, è possibile risolverlo tramite le soluzioni presentate in questa sezione.
+Gli Strumenti Azure Data Lake per Visual Studio consentono di rilevare eventuali problemi di asimmetria dei dati all'interno dei processi. Se esiste un problema, è possibile risolverlo provando soluzioni hello in questa sezione.
 
 ## <a name="solution-1-improve-table-partitioning"></a>Soluzione 1. Migliorare il partizionamento delle tabelle
 
-### <a name="option-1-filter-the-skewed-key-value-in-advance"></a>Opzione 1. Filtrare in anticipo un valore chiave differente
+### <a name="option-1-filter-hello-skewed-key-value-in-advance"></a>Opzione 1: Hello filtro inclinata valore della chiave in anticipo
 
-Se ciò non influisce sulla logica di business, è possibile filtrare in anticipo i valori a frequenza più elevata. Ad esempio, se sono presenti molti 000-000-000 nella colonna GUID, l'utente potrebbe scegliere di non aggregare tale valore. Prima di eseguire l'aggregazione, è possibile scrivere "WHERE GUID != "000-000-000"" per filtrare il valore ad alta frequenza.
+Se non si applica la logica di business, è possibile filtrare i valori di una frequenza maggiore hello in anticipo. Ad esempio, se sono presenti molti 000 000 000 nella colonna GUID, non è tooaggregate tale valore. Prima di aggregazione, è possibile scrivere "dove GUID!"000 000-000"=" valore di toofilter hello ad alta frequenza.
 
 ### <a name="option-2-pick-a-different-partition-or-distribution-key"></a>Opzione 2. Selezionare una chiave di partizione o distribuzione differente
 
-Nell'esempio precedente, se si desidera solo verificare il carico di lavoro della verifica fiscale in tutto il paese, è possibile migliorare la distribuzione dei dati selezionando il numero ID come chiave. La scelta di una chiave di partizione o distribuzione differente consente talvolta di distribuire i dati in modo più uniforme, ma è necessario verificare che la scelta non abbia impatto sulla logica di business. Ad esempio, per calcolare l'importo dell'imposta per ogni stato, è consigliabile specificare _Stato_ come chiave di partizione. Se il problema persiste, provare con l'opzione 3.
+In hello sopra riportato, se si desidera che il carico di lavoro di solo toocheck hello verifica fiscale tutti su hello paese, è possibile migliorare la distribuzione dei dati hello selezionando il numero di ID hello come chiave. Selezione di una partizione diversa o una chiave di distribuzione può talvolta distribuire dati hello più uniforme, ma è necessario assicurarsi che questa opzione non influisce sulla logica di business toomake. Ad esempio, somma di imposte hello toocalculate per ogni stato, è opportuno toodesignate _stato_ come chiave di partizione hello. Se si continua tooexperience questo problema, provare a utilizzare l'opzione 3.
 
 ### <a name="option-3-add-more-partition-or-distribution-keys"></a>Opzione 3. Aggiungere più chiavi di partizione o distribuzione
 
-Invece di usare solo _Stato_ come chiave di partizione, è possibile impiegare più di una chiave per il partizionamento. Ad esempio, è consigliabile aggiungere un _CAP_ come chiave di partizione aggiuntiva per ridurre le dimensioni della partizione dei dati e distribuire i dati in modo più uniforme.
+Invece di usare solo _Stato_ come chiave di partizione, è possibile impiegare più di una chiave per il partizionamento. Ad esempio, si consiglia di aggiungere _CAP_ come una partizione aggiuntiva chiave tooreduce-partizione di dati di dimensioni e distribuire dati hello più uniforme.
 
 ### <a name="option-4-use-round-robin-distribution"></a>Opzione 4. Usare la distribuzione round robin
 
-Qualora non sia possibile trovare una chiave adeguata per la partizione e la distribuzione, si può usare la distribuzione round robin. La distribuzione round robin considera tutte le righe in modo uguale e le inserisce in modo casuale nei bucket corrispondenti. I dati vengono distribuiti uniformemente ma si perdono le informazioni sulla località, uno svantaggio che riduce anche le prestazioni del processo rispetto ad alcune operazioni. In aggiunta, se si sta eseguendo un'aggregazione per risolvere un problema di chiave differente, il problema dell'asimmetria dei dati non verrà risolto. Per altre informazioni sulla distribuzione round robin, vedere la sezione U-SQL Table Distributions (Distribuzioni di tabelle U-SQL) in [CREATE TABLE (U-SQL): Creating a Table with Schema](https://msdn.microsoft.com/en-us/library/mt706196.aspx#dis_sch) (CREATE TABLE (U-SQL): creazione di una tabella con Schema).
+Se è possibile trovare una chiave appropriata per la partizione e la distribuzione, è possibile provare distribuzione round-robin toouse. La distribuzione round robin considera tutte le righe in modo uguale e le inserisce in modo casuale nei bucket corrispondenti. dati di Hello Ottiene distribuiti uniformemente, ma perde le informazioni di località, uno svantaggio che consente inoltre di ridurre le prestazioni per alcune operazioni. Inoltre, se si esegue l'aggregazione per la chiave asimmetrica hello comunque, problema dati inclinazione hello verrà mantenute. toolearn ulteriori informazioni su distribuzione round-robin, vedere le distribuzioni di tabella U-SQL hello sezione [CREATE TABLE (U-SQL): creazione di una tabella con Schema](https://msdn.microsoft.com/en-us/library/mt706196.aspx#dis_sch).
 
-## <a name="solution-2-improve-the-query-plan"></a>Soluzione 2. Migliorare il piano di query
+## <a name="solution-2-improve-hello-query-plan"></a>Soluzione 2: Migliorare il piano di query di hello
 
-### <a name="option-1-use-the-create-statistics-statement"></a>Opzione 1. Usare l'istruzione CREATE STATISTICS
+### <a name="option-1-use-hello-create-statistics-statement"></a>Opzione 1: Utilizzare l'istruzione CREATE STATISTICS hello
 
-U-SQL fornisce l'istruzione CREATE STATISTICS nelle tabelle. Questa istruzione offre al Query Optimizer altre informazioni relative alle caratteristiche dei dati, ad esempio la distribuzione dei valori, archiviati in una tabella. Per la maggior parte delle query, il Query Optimizer genera già le statistiche necessarie per un piano di query di elevata qualità. In alcuni casi, potrebbe essere necessario migliorare le prestazioni delle query creando statistiche aggiuntive con CREATE STATISTICS o modificando la struttura delle query. Per altre informazioni, vedere la pagina [CREATE STATISTICS (U-SQL)](https://msdn.microsoft.com/en-us/library/azure/mt771898.aspx) (CREATE STATISTICS (U-SQL)).
+U-SQL fornisce l'istruzione CREATE STATISTICS hello nelle tabelle. Questa istruzione offre toohello query optimizer di ulteriori informazioni sulle hello dati caratteristiche, ad esempio la distribuzione di valore, che sono archiviati in una tabella. Per la maggior parte delle query, hello query optimizer genera già le statistiche necessarie per un piano di query di alta qualità hello. In alcuni casi, potrebbe essere necessario tooimprove le prestazioni delle query creando statistiche aggiuntive con CREATE STATISTICS o modificando la progettazione di query hello. Per ulteriori informazioni, vedere hello [CREATE STATISTICS (U-SQL)](https://msdn.microsoft.com/en-us/library/azure/mt771898.aspx) pagina.
 
 Esempio di codice:
 
     CREATE STATISTICS IF NOT EXISTS stats_SampleTable_date ON SampleDB.dbo.SampleTable(date) WITH FULLSCAN;
 
 >[!NOTE]
->Le informazioni statistiche non vengono aggiornate in automatico. Se si aggiornano i dati in una tabella senza generare nuovamente le statistiche, le prestazioni delle query potrebbero risultare ridotte.
+>Le informazioni statistiche non vengono aggiornate in automatico. Se si aggiornano dati hello in una tabella senza ricreare le statistiche di hello, causare un peggioramento delle prestazioni delle query hello.
 
 ### <a name="option-2-use-skewfactor"></a>Opzione 2. Utilizzo di SKEWFACTOR
 
-Se si desidera sommare le imposte per ogni stato, è necessario usare lo stato GROUP BY, un approccio che non evita il problema dell'asimmetria dei dati. Tuttavia, è possibile inserire un suggerimento dati nella query per identificare le asimmetrie dei dati nelle chiavi, in modo da preparare un piano di esecuzione personale.
+Se si desidera tax hello toosum per ogni stato, è necessario utilizzare GROUP BY stato, un approccio che non evita il problema di dati inclinazione hello. Tuttavia, è possibile fornire un suggerimento dati in tooidentify le query dati comportare un'asimmetria nelle chiavi in modo che query optimizer hello è possibile usare preparare un piano di esecuzione.
 
-In genere, è possibile impostare il parametro su 0,5 e 1, laddove 0,5 indica un'asimmetria non netta, mentre 1 indica un'asimmetria marcata. Dal momento che il suggerimento ha un impatto sull'ottimizzazione del piano di esecuzione per l'istruzione corrente e per tutte quelle successive, è quindi necessario assicurarsi di aggiungerlo prima della potenziale aggregazione a livello della chiave con asimmetria.
+In genere, è possibile impostare il parametro hello come 0,5 e 1, con 0,5, ovvero non molto inclinazione pesante significato inclinazione e 1. Poiché hint hello influisce sull'ottimizzazione del piano di esecuzione per l'istruzione corrente hello e tutte le istruzioni a valle, essere hint di hello tooadd assicurarsi prima di hello potenziali inclinata key-wise aggregazione.
 
     SKEWFACTOR (columns) = x
 
-    Provides a hint that the given columns have a skew factor x from 0 (no skew) through 1 (very heavy skew).
+    Provides a hint that hello given columns have a skew factor x from 0 (no skew) through 1 (very heavy skew).
 
 Esempio di codice:
 
@@ -103,7 +103,7 @@ Esempio di codice:
         ;   
 
 ### <a name="option-3-use-rowcount"></a>Opzione 3: Usare ROWCOUNT  
-Oltre a SKEWFACTOR, per casi specifici di unioni di chiavi asimmetriche, se si sa che gli altri set di righe unite sono ridotti, è possibile indicarlo all'Optimizer tramite l'aggiunta di un suggerimento ROWCOUNT nell'istruzione U-SQL prima di JOIN. In questo modo, l'Optimizer può scegliere una strategia di aggregazione della trasmissione per migliorare le prestazioni. Tenere presente che ROWCOUNT non risolve il problema dell'asimmetria dei dati, ma può offrire aiuto aggiuntivo.
+Inoltre, tooSKEWFACTOR per inclinare chiave specifica join casi, se si conosce tale hello altri set di righe unite in join è piccolo, è possibile che query optimizer hello aggiungendo un hint di conteggio delle righe nell'istruzione di hello U-SQL prima di JOIN. In questo modo, query optimizer può scegliere un toohelp strategia di join di broadcast di migliorare le prestazioni. Tenere presente che ROWCOUNT non risolto hello inclinazione di dati, ma può offrire alcune informazioni aggiuntive.
 
     OPTION(ROWCOUNT = n)
 
@@ -122,22 +122,22 @@ Esempio di codice:
                 OPTION(ROWCOUNT=500)
                 ;
 
-    //Result (not enough information to determine simple broadcast JOIN)
+    //Result (not enough information toodetermine simple broadcast JOIN)
     @Remove = SELECT * FROM Bing.Sessions
                 INNER JOIN @Small ON Sessions.Client == @Small.Client
                 ;
 
-## <a name="solution-3-improve-the-user-defined-reducer-and-combiner"></a>Soluzione 3. Migliorare il riduttore e il combinatore definiti dall'utente
+## <a name="solution-3-improve-hello-user-defined-reducer-and-combiner"></a>Soluzione 3: Migliorare la funzione di combinazione e riduttore di hello definito dall'utente
 
-A volte per gestire una logica di processo complessa viene usato un operatore definito dall'utente; in alcuni casi, un riduttore e un combinatore ben scritti possono ridurre il problema dell'asimmetria dei dati.
+In alcuni casi è possibile scrivere toodeal un operatore definito dall'utente con la logica di complessità del processo e un riduttore ben scritta e una funzione di combinazione potrebbe attenuare un problema di inclinazione di dati in alcuni casi.
 
 ### <a name="option-1-use-a-recursive-reducer-if-possible"></a>Opzione 1. Usare un riduttore ricorsivo se possibile
 
-Per impostazione predefinita, un riduttore definito dall'utente viene eseguito in modalità non ricorsiva, ovvero il lavoro di riduzione per una chiave verrà distribuito su un unico vertice. In caso di asimmetria dei dati, i set di dati di grandi dimensioni potrebbero essere elaborati in un unico vertice e richiedere un tempo di esecuzione lungo.
+Per impostazione predefinita, un riduttore definito dall'utente viene eseguito in modalità non ricorsiva, ovvero il lavoro di riduzione per una chiave verrà distribuito su un unico vertice. Ma se i dati sono distorti, hello set di dati di grandi dimensioni potrebbero essere elaborati in un singolo vertice ed eseguire per un lungo periodo.
 
-Per migliorare le prestazioni, è possibile aggiungere un attributo nel codice per definire l'esecuzione del riduttore in modalità ricorsiva. A questo punto, i set di dati di grandi dimensioni possono essere distribuiti su più vertici ed eseguiti in parallelo, al fine di velocizzare il processo.
+tooimprove prestazioni, è possibile aggiungere un attributo in toorun di riduttore toodefine il codice in modalità ricorsiva. Set di dati di grandi dimensioni hello possono quindi essere vertici toomultiple distribuita e in parallelo, che consente di velocizzare il processo.
 
-Per trasformare un riduttore non ricorsivo in ricorsivo è necessario assicurarsi che l'algoritmo sia associativo. Ad esempio, la somma è associativa mentre la media non lo è. È necessario anche verificare che l'input e output per il riduttore rispettino lo stesso schema.
+toochange un toorecursive riduttore non ricorsiva, è necessario assicurarsi che l'algoritmo è associativa toomake. Ad esempio, somma hello è associativa e mediana hello non. È inoltre necessario assicurarsi che hello di input e output per riduttore mantenere hello toomake stesso schema.
 
 Attributo del riduttore ricorsivo:
 
@@ -157,26 +157,26 @@ Esempio di codice:
 
 ### <a name="option-2-use-row-level-combiner-mode-if-possible"></a>Opzione 2. Usare la modalità di combinazione a livello di riga, se possibile
 
-Analogamente al suggerimento ROWCOUNT per specifici casi di unioni di chiavi asimmetriche, la modalità del combinatore tenta di distribuire set di valori di chiavi asimmetriche su più vertici, in modo da ottenere un'esecuzione simultanea. La modalità del combinatore non può risolvere il problema dell'asimmetria dei dati, ma può offrire un aiuto aggiuntivo per set di valori di chiavi asimmetriche di grandi dimensioni.
+Modalità funzione di combinazione di hint ROWCOUNT toohello simile per i casi specifici join chiave asimmetrica, tenta di toodistribute valore chiave asimmetrica set toomultiple vertici in modo che il lavoro hello può essere eseguito contemporaneamente. La modalità del combinatore non può risolvere il problema dell'asimmetria dei dati, ma può offrire un aiuto aggiuntivo per set di valori di chiavi asimmetriche di grandi dimensioni.
 
-Per impostazione predefinita, la modalità del combinatore è Full, ovvero il set di righe a sinistra e il set di righe a destra non possono essere separati. L'impostazione della modalità su Left/Right/Inner consente l'unione a livello di riga. Il sistema separa il set di righe corrispondente e le distribuisce in più vertici che vengono eseguiti in parallelo. Prima di configurare la modalità del combinatore, tuttavia, assicurarsi che sia possibile separare i set di righe corrispondente.
+Per impostazione predefinita, in modalità funzione di combinazione di hello è completo, ovvero hello lasciato set di righe e non possono essere separate set di righe di destra. Impostazione della modalità di hello come sinistra/destra/interna consente il join a livello di riga. sistema Hello separa i set di righe corrispondente hello e li distribuisce in più vertici eseguiti in parallelo. Tuttavia, prima di configurare la modalità di combinazione canali hello, prestare attenzione tooensure che hello corrispondente set di righe può essere separati.
 
-L'esempio seguente illustra un set di righe sinistro separato. Ogni riga di output dipende da una singola riga di input a sinistra e potenzialmente da tutte le righe a destra con lo stesso valore chiave. Se si imposta la modalità del combinatore su Left, il sistema separa il grande set di righe a sinistra in set più piccoli e li assegna a più vertici.
+Hello di esempio che segue viene illustrato un set di righe sinistro separati. Ogni riga di output dipende da una singola riga di input da sinistra hello e potenzialmente dipende tutte le righe da hello destra con hello stesso valore della chiave. Se si imposta la modalità di combinazione canali hello come left, il sistema di hello separa hello enorme sinistra-set di righe in più piccole e li assegna toomultiple vertici.
 
 ![Illustrazione della modalità del combinatore](./media/data-lake-analytics-data-lake-tools-data-skew-solutions/combiner-mode-illustration.png)
 
 >[!NOTE]
->Se si imposta la modalità del combinatore errata, la combinazione è meno efficiente e i risultati potrebbero essere errati.
+>Se si imposta la modalità di combinazione canali errato hello, combinazione di hello è meno efficiente e risultati hello potrebbero essere errati.
 
 Attributi della modalità del combinatore:
 
-- [SqlUserDefinedCombiner(Mode=CombinerMode.Full)]: Every output row potentially depends on all the input rows from left and right with the same key value.
+- [SqlUserDefinedCombiner(Mode=CombinerMode.Full)]: Every output row potentially depends on all hello input rows from left and right with hello same key value.
 
-- SqlUserDefinedCombiner(Mode=CombinerMode.Left): ogni riga di output dipende da una singola riga di input a sinistra e potenzialmente da tutte le righe a destra con lo stesso valore chiave.
+- SqlUserDefinedCombiner(Mode=CombinerMode.Left): Ogni riga di output dipende da una singola riga di input da sinistra hello (e potenzialmente tutte le righe da hello destra con hello stesso valore della chiave).
 
-- SqlUserDefinedCombiner(Mode=CombinerMode.Right): ogni riga di output dipende da una singola riga di input a destra e potenzialmente da tutte le righe a sinistra con lo stesso valore chiave.
+- qlUserDefinedCombiner(Mode=CombinerMode.Right): ogni riga di output dipende da una singola riga di input da hello destra (e potenzialmente tutte le righe da sinistra hello con hello stesso valore della chiave).
 
-- SqlUserDefinedCombiner(Mode=CombinerMode.Inner): ogni riga di output dipende da una sola riga di input a sinistra e a destra con lo stesso valore.
+- SqlUserDefinedCombiner(Mode=CombinerMode.Inner): Ogni riga di output dipende da una singola riga di input da sinistra hello e hello destra con hello stesso valore.
 
 Esempio di codice:
 

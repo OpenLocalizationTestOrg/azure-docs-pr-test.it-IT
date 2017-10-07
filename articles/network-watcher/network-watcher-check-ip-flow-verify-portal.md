@@ -1,6 +1,6 @@
 ---
-title: Verificare il traffico con la verifica del flusso IP di Network Watcher di Azure - Portale di Azure | Documentazione Microsoft
-description: "Questo articolo descrive come verificare se il traffico da o verso una macchina virtuale è consentito o negato"
+title: Verificare il traffico aaaVerify con flusso di controllo indirizzo IP rete di Azure - portale di Azure | Documenti Microsoft
+description: "Questo articolo viene descritto come toocheck se tooor il traffico da una macchina virtuale è consentito o negato"
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -14,13 +14,13 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
-ms.openlocfilehash: 7db29c186cf6e6f3b40a680ab76f1d2763f806ba
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: abf639f36d32f3416dd927e66b635267b746e62f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="check-if-traffic-is-allowed-or-denied-to-or-from-a-vm-with-ip-flow-verify-a-component-of-azure-network-watcher"></a>Controllare se il traffico da o verso una macchina virtuale è consentito o negato con la verifica del flusso IP, una funzionalità di Network Watcher di Azure
+# <a name="check-if-traffic-is-allowed-or-denied-tooor-from-a-vm-with-ip-flow-verify-a-component-of-azure-network-watcher"></a>Verifica se il traffico non è consentito o negato tooor da una macchina virtuale con IP flusso verificare un componente del controllo di rete di Azure
 
 > [!div class="op_single_selector"]
 > - [Portale di Azure](network-watcher-check-ip-flow-verify-portal.md)
@@ -30,36 +30,36 @@ ms.lasthandoff: 07/11/2017
 > - [API REST di Azure](network-watcher-check-ip-flow-verify-rest.md)
 
 
-La verifica del flusso IP è una funzionalità di Network Watcher che consente di verificare se il traffico da o verso una macchina virtuale è consentito o negato. La convalida può essere eseguita per il traffico in ingresso o in uscita. Questo scenario è utile per stabilire se una macchina virtuale può comunicare con una risorsa esterna o un'altra risorsa. La funzionalità può essere usata per verificare se le regole del gruppo di sicurezza di rete sono configurate correttamente e per risolvere i problemi dei flussi bloccati da tali regole. La verifica del flusso IP consente inoltre di verificare che il traffico che si vuole bloccare sia correttamente bloccato dal gruppo di sicurezza di rete.
+Verificare di flusso IP è una funzionalità di controllo di rete che consente tooverify se il traffico consentito tooor da una macchina virtuale. è possibile eseguire la convalida di Hello per il traffico in ingresso o in uscita. Questo scenario è utile tooget uno stato corrente di fatto una macchina virtuale possono comunicare con la risorsa esterna tooan o un'altra risorsa. Verificare di flusso IP può essere utilizzato tooverify se le regole di sicurezza gruppo (rete) sono configurate correttamente e risolvere i problemi di flussi che sono bloccati dalle regole di gruppo. Un altro motivo per l'uso di IP flusso verificare tooensure che si desidera bloccare il traffico viene bloccato correttamente dal gruppo hello.
 
 ## <a name="before-you-begin"></a>Prima di iniziare
 
-Questo scenario presuppone il completamento dei passaggi descritti in [Creare un servizio Network Watcher](network-watcher-create.md) per creare un servizio Network Watcher o aprire un'istanza esistente di Network Watcher. Lo scenario presuppone inoltre che esista e possa essere usato un gruppo di risorse con una macchina virtuale valida.
+Questo scenario si presuppone che si sono già stati seguiti i passaggi di hello in [creare un controllo di rete](network-watcher-create.md) toocreate Watcher di rete o dispone di un'istanza esistente del controllo di rete. scenario di Hello si suppone inoltre che un gruppo di risorse con una macchina virtuale valida toobe utilizzato.
 
 ## <a name="scenario"></a>Scenario
 
-Questo scenario usa la verifica del flusso IP per verificare se una macchina virtuale può comunicare con un altro computer sulla porta 443. Se il traffico viene negato, restituisce la regola di sicurezza che nega il traffico. Per altre informazioni sulla verifica del flusso IP, leggere la [panoramica sulla verifica del flusso IP](network-watcher-ip-flow-verify-overview.md)
+Questo scenario Usa tooverify IP flusso verificare se una macchina virtuale possono comunicare con computer tooanother sulla porta 443. Regola di sicurezza hello che nega il traffico viene restituito se il traffico hello viene negato. toolearn ulteriori informazioni su IP flusso verificare, visitare [IP Flow verificare Overview](network-watcher-ip-flow-verify-overview.md)
 
 ### <a name="run-ip-flow-verify"></a>Eseguire la verifica del flusso IP
 
-Passare a Network Watcher e fare clic su **Verifica del flusso IP**. Selezionare la macchina virtuale e l'interfaccia di rete da cui si desidera verificare il traffico. Immettere le eventuali informazioni di filtro aggiuntive e fare clic su **Controlla**.
+Passare tooyour Watcher di rete e fare clic su **flusso IP verificare**. Selezionare macchina virtuale hello e interfaccia di rete tooverify traffico da. Immettere le eventuali informazioni di filtro aggiuntive e fare clic su **Controlla**.
 
-Dopo avere fatto clic **Controlla**, viene controllato il flusso in base ai criteri forniti. Il risultato è **Accesso consentito** o **Accesso negato**. Se l'accesso è negato, vengono forniti il gruppo di sicurezza di rete (NSG) e la regola di sicurezza che bloccano il traffico. Se il comportamento atteso era la negazione del traffico, la regola ha funzionato.
+Quando si fa clic su **controllare**, flusso hello in base ai criteri di hello immessa è selezionato. risultato Hello è **accesso consentito** o **accesso negato**. Se l'accesso è negato, hello gruppo di sicurezza (rete) e regola di sicurezza che bloccano il traffico è disponibile. Se un attacco denial hello del traffico è il comportamento previsto, la regola hello è riuscita.
 
 > [!NOTE]
-> La verifica del flusso IP richiede che la risorsa VM sia allocata.
+> Flusso IP verificare richiede che venga allocata risorsa macchina virtuale hello.
 
-Come si può notare dalla figura seguente, il traffico HTTPS in uscita era consentito.
+Come si può vedere dal hello seguente immagine, è consentito il traffico HTTPS in uscita hello.
 
 ![Panoramica della verifica del flusso IP][1]
 
-Come illustrato nella figura seguente, il traffico diventa in ingresso e la porta di ingresso a la 123. Il traffico ora è negato, viene fornito il messaggio "Accesso negato" insieme al gruppo di sicurezza di rete e alla regola di sicurezza che negano il traffico.
+Come mostrato nella seguente immagine hello, viene modificato il traffico tooinbound e hello in entrata too123 porta modificata. Traffico ora viene negato, il messaggio hello "Accesso negato" viene fornito insieme hello rete gruppo e sicurezza regola di sicurezza negare il traffico di hello.
 
 ![Risultati del flusso di IP][2]
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Se il traffico risulta bloccato e non dovrebbe esserlo, vedere [Gestire i gruppi di sicurezza di rete](../virtual-network/virtual-network-manage-nsg-arm-portal.md) per individuare il gruppo di sicurezza di rete e le relative regole di sicurezza definite.
+Se il traffico viene bloccato e non può essere, vedere [gestire gruppi di sicurezza di rete](../virtual-network/virtual-network-manage-nsg-arm-portal.md) tootrack verso il basso hello rete sicurezza e gruppo di regole di sicurezza definiti.
 
 [1]: ./media/network-watcher-check-ip-flow-verify-portal/figure1.png
 [2]: ./media/network-watcher-check-ip-flow-verify-portal/figure2.png

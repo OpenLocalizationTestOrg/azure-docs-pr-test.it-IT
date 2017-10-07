@@ -1,6 +1,6 @@
 ---
-title: Connettersi a Database di Azure per PostgreSQL usando PHP | Microsoft Docs
-description: "Questa guida introduttiva fornisce un esempio di codice PHP che è possibile usare per connettersi ai dati ed eseguire query da Database di Azure per PostgreSQL."
+title: aaaConnect tooAzure Database PostgreSQL tramite PHP | Documenti Microsoft
+description: "Questa Guida rapida fornisce un esempio di codice PHP, è possibile utilizzare tooconnect e cercare i dati dal Database di Azure PostgreSQL."
 services: postgresql
 author: jasonwhowell
 ms.author: jasonh
@@ -11,17 +11,17 @@ ms.custom: mvc
 ms.devlang: php
 ms.topic: quickstart
 ms.date: 06/29/2017
-ms.openlocfilehash: ed7c92e0689bca4056401d562271e3b6b7144dcf
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 008505e837e37cb8c7fea3fc164b3446c3580e46
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-database-for-postgresql-use-php-to-connect-and-query-data"></a>Database di Azure per PostgreSQL: usare PHP per connettersi ai dati ed eseguire query
-Questa guida introduttiva illustra come connettersi a un database di Azure per PostgreSQL usando un'applicazione [PHP](http://php.net/manual/intro-whatis.php). Spiega come usare le istruzioni SQL per eseguire query, inserire, aggiornare ed eliminare dati nel database. Questo articolo presuppone che si abbia familiarità con lo sviluppo con PHP, ma non con Database di Azure per PostgreSQL.
+# <a name="azure-database-for-postgresql-use-php-tooconnect-and-query-data"></a>Il Database di Azure per PostgreSQL: dati di utilizzo PHP tooconnect e query
+Questa Guida introduttiva illustra come tooconnect tooan Database di Azure per l'utilizzo di PostgreSQL un [PHP](http://php.net/manual/intro-whatis.php) dell'applicazione. Viene illustrato come toouse tooquery di istruzioni SQL, inserire, aggiornare ed eliminare dati nel database di hello. In questo articolo si presuppone che si ha familiarità con lo sviluppo tramite PHP, ma che sono tooworking nuovo con il Database di Azure per PostgreSQL.
 
 ## <a name="prerequisites"></a>Prerequisiti
-Questa guida introduttiva usa le risorse create in una delle guide seguenti come punto di partenza:
+Questa Guida rapida utilizza risorse di hello create in una di queste guide come punto di partenza:
 - [Creare un database: portale](quickstart-create-server-database-portal.md)
 - [Creare un database: interfaccia della riga di comando di Azure](quickstart-create-server-database-azure-cli.md)
 
@@ -30,36 +30,36 @@ Installare PHP nel server o creare un'[app Web](https://docs.microsoft.com/en-us
 
 ### <a name="windows"></a>Windows
 - Scaricare [PHP versione 7.1.4 non thread-safe (x64)](http://windows.php.net/download#php-7.1)
-- Installare PHP e vedere il [manuale di PHP](http://php.net/manual/install.windows.php) per le altre opzioni di configurazione
-- Il codice usa la classe **pgsql** (ext/php_pgsql.dll) inclusa nell'installazione di PHP. 
-- Abilitare l'estensione **pgsql** modificando il file di configurazione php.ini, che in genere si trova in `C:\Program Files\PHP\v7.1\php.ini`. Il file di configurazione dovrebbe contenere una riga con il testo `extension=php_pgsql.so`. Se non è visualizzata, aggiungere il testo e salvare il file. Se il testo è presente, ma commentato con un punto e virgola come prefisso, rimuovere il commento dal testo rimuovendo il punto e virgola.
+- Installare PHP e fare riferimento toohello [manuale PHP](http://php.net/manual/install.windows.php) per un'ulteriore configurazione
+- codice Hello utilizza hello **pgsql** classe (ext/php_pgsql.dll) che è incluso nell'installazione di PHP hello. 
+- Hello abilitato **pgsql** estensione modificando i file di configurazione PHP hello, in genere si trova in `C:\Program Files\PHP\v7.1\php.ini`. file di configurazione Hello deve contenere una riga con testo hello `extension=php_pgsql.so`. Se non è visualizzata, aggiungere testo hello e salvare file hello. Se è presente, il testo hello commentato ma con un prefisso di un punto e virgola, rimuovere il commento testo hello rimuovendo punto e virgola hello.
 
 ### <a name="linux-ubuntu"></a>Linux (Ubuntu)
 - Scaricare [PHP versione 7.1.4 non thread-safe (x64)](http://php.net/downloads.php) 
-- Installare PHP e vedere il [manuale di PHP](http://php.net/manual/install.unix.php) per le altre opzioni di configurazione
-- Il codice usa la classe **pgsql** class (php_pgsql.so). Installarla eseguendo `sudo apt-get install php-pgsql`.
-- Abilitare l'estensione **pgsql** modificando il file di configurazione `/etc/php/7.0/mods-available/pgsql.ini`. Il file di configurazione dovrebbe contenere una riga con il testo `extension=php_pgsql.so`. Se non è visualizzata, aggiungere il testo e salvare il file. Se il testo è presente, ma commentato con un punto e virgola come prefisso, rimuovere il commento dal testo rimuovendo il punto e virgola.
+- Installare PHP e fare riferimento toohello [manuale PHP](http://php.net/manual/install.unix.php) per un'ulteriore configurazione
+- codice Hello utilizza hello **pgsql** classe (php_pgsql.so). Installarla eseguendo `sudo apt-get install php-pgsql`.
+- Hello abilitato **pgsql** estensione modificando hello `/etc/php/7.0/mods-available/pgsql.ini` file di configurazione. file di configurazione Hello deve contenere una riga con testo hello `extension=php_pgsql.so`. Se non è visualizzata, aggiungere testo hello e salvare file hello. Se è presente, il testo hello commentato ma con un prefisso di un punto e virgola, rimuovere il commento testo hello rimuovendo punto e virgola hello.
 
 ### <a name="macos"></a>MacOS
 - Scaricare [PHP versione 7.1.4](http://php.net/downloads.php)
-- Installare PHP e vedere il [manuale di PHP](http://php.net/manual/install.macosx.php) per le altre opzioni di configurazione
+- Installare PHP e fare riferimento toohello [manuale PHP](http://php.net/manual/install.macosx.php) per un'ulteriore configurazione
 
 ## <a name="get-connection-information"></a>Ottenere informazioni di connessione
-Ottenere le informazioni di connessione necessarie per connettersi al database di Azure per PostgreSQL. Sono necessari il nome del server completo e le credenziali di accesso.
+Ottenere hello connessione le informazioni necessarie tooconnect toohello Database di Azure per PostgreSQL. È necessario hello le credenziali di nome e l'account di accesso completo del server.
 
-1. Accedere al [Portale di Azure](https://portal.azure.com/).
-2. Nel menu a sinistra nel portale di Azure fare clic su **Tutte le risorse** e cercare il server creato, ad esempio **mypgserver-20170401**.
-3. Fare clic sul nome del server **mypgserver-20170401**.
-4. Selezionare la pagina **Panoramica** del server. Annotare il **Nome server** e il **nome di accesso dell'amministratore del server**.
+1. Accedi toohello [portale di Azure](https://portal.azure.com/).
+2. Dal menu a sinistra di hello nel portale di Azure, fare clic su **tutte le risorse** e Cerca server hello sia stato creato, ad esempio **mypgserver 20170401**.
+3. Fare clic sul nome di server hello **mypgserver 20170401**.
+4. Server di selezionare hello **Panoramica** pagina. Prendere nota di hello **nome Server** e **nome account di accesso di amministratore Server**.
  ![Database di Azure per PostgreSQL - Accesso dell'amministratore del server](./media/connect-php/1-connection-string.png)
-5. Se si dimenticano le informazioni di accesso per il server, passare alla pagina **Panoramica** per visualizzare il nome di accesso dell'amministratore del server e, se necessario, reimpostare la password.
+5. Se si dimenticano le informazioni di accesso del server, passare toohello **Panoramica** pagina nome account di accesso amministratore di tooview hello Server e, se necessario, reimpostare la password di hello.
 
 ## <a name="connect-and-create-a-table"></a>Connettersi e creare una tabella
-Usare il codice seguente per connettersi e creare una tabella usando l'istruzione SQL **CREATE TABLE**, seguita dalle istruzioni SQL **INSERT INTO** per aggiungere righe nella tabella.
+Seguente hello utilizzare codice tooconnect e crea una tabella utilizzando **CREATE TABLE** istruzione SQL, seguita da **INSERT INTO** righe tooadd di istruzioni SQL in tabella hello.
 
-Il codice chiama il metodo [pg_connect()](http://php.net/manual/en/function.pg-connect.php) per connettersi a Database di Azure per PostgreSQL. Chiama quindi il metodo [pg_query()](http://php.net/manual/en/function.pg-query.php) più volte per eseguire diversi comandi e [pg_last_error()](http://php.net/manual/en/function.pg-last-error.php) ogni volta per controllare i dettagli se si è verificato un errore. Chiama infine il metodo [pg_close()](http://php.net/manual/en/function.pg-close.php) per chiudere la connessione.
+il metodo di chiamata di codice Hello [pg_connect()](http://php.net/manual/en/function.pg-connect.php) tooconnect tooAzure Database PostgreSQL. Viene quindi chiamato metodo [pg_query()](http://php.net/manual/en/function.pg-query.php) toorun più volte, alcuni comandi e [pg_last_error()](http://php.net/manual/en/function.pg-last-error.php) toocheck hello illustra in dettaglio se ogni volta che si è verificato un errore. Viene quindi chiamato metodo [pg_close()](http://php.net/manual/en/function.pg-close.php) connessione hello tooclose.
 
-Sostituire i parametri `$host`, `$database`, `$user` e `$password` con valori personalizzati. 
+Sostituire hello `$host`, `$database`, `$user`, e `$password` parametri con valori personalizzati. 
 
 ```php
 <?php
@@ -71,8 +71,8 @@ Sostituire i parametri `$host`, `$database`, `$user` e `$password` con valori pe
 
     // Initialize connection object.
     $connection = pg_connect("host=$host dbname=$database user=$user password=$password") 
-        or die("Failed to create connection to database: ". pg_last_error(). "<br/>");
-    print "Successfully created connection to database.<br/>";
+        or die("Failed toocreate connection toodatabase: ". pg_last_error(). "<br/>");
+    print "Successfully created connection toodatabase.<br/>";
 
     // Drop previous table of same name if one exists.
     $query = "DROP TABLE IF EXISTS inventory;";
@@ -113,11 +113,11 @@ Sostituire i parametri `$host`, `$database`, `$user` e `$password` con valori pe
 ```
 
 ## <a name="read-data"></a>Leggere i dati
-Usare il codice seguente per connettersi e leggere i dati usando un'istruzione SQL **SELECT**. 
+Seguente hello utilizzare codice tooconnect e leggere hello dati utilizzando un **selezionare** istruzione SQL. 
 
- Il codice chiama il metodo [pg_connect()](http://php.net/manual/en/function.pg-connect.php) per connettersi a Database di Azure per PostgreSQL. Chiama quindi il metodo [pg_query()](http://php.net/manual/en/function.pg-query.php) per eseguire il comando SELECT, mantenendo i risultati in un set di risultati, e [pg_last_error()](http://php.net/manual/en/function.pg-last-error.php) per controllare i dettagli se si è verificato un errore.  Per leggere il set di risultati, viene chiamato il metodo [pg_fetch_row()](http://php.net/manual/en/function.pg-fetch-row.php) in un ciclo, una volta per riga, e i dati della riga vengono recuperati in una matrice `$row`, con un valore di dati per colonna in ogni posizione della matrice.  Per liberare il set di risultati, viene chiamato il metodo [pg_free_result()](http://php.net/manual/en/function.pg-free-result.php). Chiama infine il metodo [pg_close()](http://php.net/manual/en/function.pg-close.php) per chiudere la connessione.
+ il metodo di chiamata di codice Hello [pg_connect()](http://php.net/manual/en/function.pg-connect.php) tooconnect tooAzure Database PostgreSQL. Viene quindi chiamato metodo [pg_query()](http://php.net/manual/en/function.pg-query.php) toorun hello comando SELECT, mantenendo i risultati di hello in un set di risultati, e [pg_last_error()](http://php.net/manual/en/function.pg-last-error.php) toocheck hello illustra in dettaglio se si è verificato un errore.  set di risultati hello tooread, metodo [pg_fetch_row()](http://php.net/manual/en/function.pg-fetch-row.php) viene chiamato in un ciclo, una volta per ogni riga e la riga hello i dati vengono recuperati in una matrice `$row`, con il valore di dati per ogni colonna in ogni posizione della matrice.  set di risultati hello toofree, metodo [pg_free_result()](http://php.net/manual/en/function.pg-free-result.php) viene chiamato. Viene quindi chiamato metodo [pg_close()](http://php.net/manual/en/function.pg-close.php) connessione hello tooclose.
 
-Sostituire i parametri `$host`, `$database`, `$user` e `$password` con valori personalizzati. 
+Sostituire hello `$host`, `$database`, `$user`, e `$password` parametri con valori personalizzati. 
 
 ```php
 <?php
@@ -129,11 +129,11 @@ Sostituire i parametri `$host`, `$database`, `$user` e `$password` con valori pe
     
     // Initialize connection object.
     $connection = pg_connect("host=$host dbname=$database user=$user password=$password")
-                or die("Failed to create connection to database: ". pg_last_error(). "<br/>");
+                or die("Failed toocreate connection toodatabase: ". pg_last_error(). "<br/>");
 
-    print "Successfully created connection to database. <br/>";
+    print "Successfully created connection toodatabase. <br/>";
 
-    // Perform some SQL queries over the connection.
+    // Perform some SQL queries over hello connection.
     $query = "SELECT * from inventory";
     $result_set = pg_query($connection, $query) 
         or die("Encountered an error when executing given sql statement: ". pg_last_error(). "<br/>");
@@ -151,11 +151,11 @@ Sostituire i parametri `$host`, `$database`, `$user` e `$password` con valori pe
 ```
 
 ## <a name="update-data"></a>Aggiornare i dati
-Usare il codice seguente per connettersi e aggiornare i dati usando un'istruzione SQL **UPDATE**.
+Seguente hello utilizzare tooconnect del codice e aggiornare hello dati utilizzando un **aggiornare** istruzione SQL.
 
-Il codice chiama il metodo [pg_connect()](http://php.net/manual/en/function.pg-connect.php) per connettersi a Database di Azure per PostgreSQL. Chiama quindi il metodo [pg_query()](http://php.net/manual/en/function.pg-query.php) per eseguire un comando e [pg_last_error()](http://php.net/manual/en/function.pg-last-error.php) per controllare i dettagli se si è verificato un errore. Chiama infine il metodo [pg_close()](http://php.net/manual/en/function.pg-close.php) per chiudere la connessione.
+il metodo di chiamata di codice Hello [pg_connect()](http://php.net/manual/en/function.pg-connect.php) tooconnect tooAzure Database PostgreSQL. Viene quindi chiamato metodo [pg_query()](http://php.net/manual/en/function.pg-query.php) toorun un comando, e [pg_last_error()](http://php.net/manual/en/function.pg-last-error.php) toocheck hello illustra in dettaglio se si è verificato un errore. Viene quindi chiamato metodo [pg_close()](http://php.net/manual/en/function.pg-close.php) connessione hello tooclose.
 
-Sostituire i parametri `$host`, `$database`, `$user` e `$password` con valori personalizzati. 
+Sostituire hello `$host`, `$database`, `$user`, e `$password` parametri con valori personalizzati. 
 
 ```php
 <?php
@@ -167,9 +167,9 @@ Sostituire i parametri `$host`, `$database`, `$user` e `$password` con valori pe
 
     // Initialize connection object.
     $connection = pg_connect("host=$host dbname=$database user=$user password=$password")
-                or die("Failed to create connection to database: ". pg_last_error(). ".<br/>");
+                or die("Failed toocreate connection toodatabase: ". pg_last_error(). ".<br/>");
 
-    print "Successfully created connection to database. <br/>";
+    print "Successfully created connection toodatabase. <br/>";
 
     // Modify some data in table.
     $new_quantity = 200;
@@ -186,11 +186,11 @@ Sostituire i parametri `$host`, `$database`, `$user` e `$password` con valori pe
 
 
 ## <a name="delete-data"></a>Eliminare i dati
-Usare il codice seguente per connettersi e leggere i dati usando un'istruzione SQL **DELETE**. 
+Seguente hello utilizzare codice tooconnect e leggere hello dati utilizzando un **eliminare** istruzione SQL. 
 
- Il codice chiama il metodo [pg_connect()](http://php.net/manual/en/function.pg-connect.php) per connettersi a Database di Azure per PostgreSQL. Chiama quindi il metodo [pg_query()](http://php.net/manual/en/function.pg-query.php) per eseguire un comando e [pg_last_error()](http://php.net/manual/en/function.pg-last-error.php) per controllare i dettagli se si è verificato un errore. Chiama infine il metodo [pg_close()](http://php.net/manual/en/function.pg-close.php) per chiudere la connessione.
+ il metodo di chiamata di codice Hello [pg_connect()](http://php.net/manual/en/function.pg-connect.php) tooconnect troppo Azure Database PostgreSQL. Viene quindi chiamato metodo [pg_query()](http://php.net/manual/en/function.pg-query.php) toorun un comando, e [pg_last_error()](http://php.net/manual/en/function.pg-last-error.php) toocheck hello illustra in dettaglio se si è verificato un errore. Viene quindi chiamato metodo [pg_close()](http://php.net/manual/en/function.pg-close.php) connessione hello tooclose.
 
-Sostituire i parametri `$host`, `$database`, `$user` e `$password` con valori personalizzati. 
+Sostituire hello `$host`, `$database`, `$user`, e `$password` parametri con valori personalizzati. 
 
 ```php
 <?php
@@ -202,9 +202,9 @@ Sostituire i parametri `$host`, `$database`, `$user` e `$password` con valori pe
 
     // Initialize connection object.
     $connection = pg_connect("host=$host dbname=$database user=$user password=$password")
-            or die("Failed to create connection to database: ". pg_last_error(). ". </br>");
+            or die("Failed toocreate connection toodatabase: ". pg_last_error(). ". </br>");
 
-    print "Successfully created connection to database. <br/>";
+    print "Successfully created connection toodatabase. <br/>";
 
     // Delete some data from table.
     $name = '\'orange\'';

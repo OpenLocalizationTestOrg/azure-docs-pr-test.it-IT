@@ -1,5 +1,5 @@
 ---
-title: "Pianificazione della capacità del cluster di Service Fabric | Documentazione Microsoft"
+title: "hello aaaPlanning capacità di cluster di Service Fabric | Documenti Microsoft"
 description: "Considerazioni sulla pianificazione della capacità del cluster Service Fabric. Nodetypes, livelli di affidabilità e durata"
 services: service-fabric
 documentationcenter: .net
@@ -14,128 +14,128 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/24/2017
 ms.author: chackdan
-ms.openlocfilehash: 36b96360fabdcc64ffd2356540c580594637d48e
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 83272ce7fefe698eef755cf66493c2874cc3b120
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="service-fabric-cluster-capacity-planning-considerations"></a>Considerazioni sulla pianificazione della capacità del cluster Service Fabric
-La pianificazione della capacità è un passaggio importante per qualsiasi distribuzione di produzione. Ecco alcuni aspetti da considerare nell'ambito di tale processo.
+La pianificazione della capacità è un passaggio importante per qualsiasi distribuzione di produzione. Ecco alcuni degli elementi di hello di aver tooconsider come parte del processo.
 
-* Numero di tipi di nodo con cui il cluster deve iniziare
-* Proprietà di ciascun tipo di nodo (dimensione, primario, per Internet, numero di VM e così via)
-* Caratteristiche di affidabilità e durabilità del cluster
+* numero di Hello del nodo tipi toostart di esigenze del cluster out con
+* proprietà Hello di ogni tipo di nodo (dimensioni, primario e per internet, numero di macchine virtuali e così via).
+* Hello e affidabilità caratteristiche del cluster di hello
 
 Ogni aspetto verrà ora esaminato brevemente.
 
-## <a name="the-number-of-node-types-your-cluster-needs-to-start-out-with"></a>Numero di tipi di nodo con cui il cluster deve iniziare
-Prima di tutto è necessario stabilire per che cosa verrà usato il cluster che si sta creando e quali tipologie di applicazioni si intende distribuire nel cluster. Se lo scopo del cluster non è chiaro, è molto probabile che non si sia ancora pronti per iniziare il processo di pianificazione della capacità.
+## <a name="hello-number-of-node-types-your-cluster-needs-toostart-out-with"></a>numero di Hello del nodo tipi toostart di esigenze del cluster out con
+È innanzitutto necessario toofigure quali cluster hello si sta creando verrà utilizzato per toobe e quali tipi di applicazioni si intende toodeploy in questo cluster. Se non si cancella dal scopo hello del cluster di hello, probabilmente non ancora pronti tooenter hello pianificazione processo.
 
-Stabilire il numero di tipi di nodo con cui il cluster deve iniziare.  Di ogni tipo di nodo viene eseguito il mapping a un set di scalabilità di macchine virtuali. Ogni tipo di nodo può quindi essere aumentato o ridotto in modo indipendente, avere diversi set di porte aperte e avere metriche per la capacità diverse. Quindi la decisione relativa al numero di tipi di nodo si basa essenzialmente sulle considerazioni seguenti:
+Stabilire il numero di hello di tipi di nodo che del cluster deve toostart out con.  Ogni tipo di nodo è mappato tooa Set di scalabilità della macchina virtuale. Ogni tipo di nodo può quindi essere aumentato o ridotto in modo indipendente, avere diversi set di porte aperte e avere metriche per la capacità diverse. Pertanto la decisione hello del numero di hello di tipi di nodo essenzialmente un po' toohello seguenti considerazioni:
 
-* L'applicazione ha più servizi, alcuni dei quali devono essere pubblici o per Internet? Le applicazioni tipiche contengono un servizio gateway front-end che riceve l'input da un client e uno o più servizi back-end che comunicano con i servizi front-end. In questo caso quindi si finirà per avere almeno due tipi di nodi.
-* I servizi (che costituiscono l'applicazione) hanno esigenze diverse per l'infrastruttura, ad esempio cicli di CPU più elevati o una quantità maggiore di RAM? Ad esempio, si supponga che l'applicazione che si vuole distribuire contenga un servizio front-end e un servizio back-end. Il servizio front-end può essere eseguito in VM più piccole (ad esempio, di dimensioni D2), con porte aperte a Internet,  Il servizio back-end è invece a elevato utilizzo di calcolo e deve essere eseguito in VM più grandi (ad esempio di dimensione D4, D6, D15) senza connessione a Internet.
+* L'applicazione dispone di più servizi e uno di essi necessario toobe pubblico o con connessione internet? Le applicazioni tipiche contengono un servizio gateway front-end che riceve l'input da un client e uno o più servizi back-end che comunicano con i servizi front-end hello. In questo caso quindi si finirà per avere almeno due tipi di nodi.
+* I servizi (che costituiscono l'applicazione) hanno esigenze diverse per l'infrastruttura, ad esempio cicli di CPU più elevati o una quantità maggiore di RAM? Ad esempio, supponiamo che un'applicazione hello che si desidera toodeploy contiene un servizio front-end e un servizio back-end. Hello front-end servizio può essere eseguito in più piccole macchine virtuali (dimensioni di macchina virtuale come D2) che dispongono delle porte aperte toohello internet.  servizio back-end Hello, tuttavia, è toorun esigenze e richiedono un utilizzo intensivo di calcolo in macchine virtuali di dimensioni maggiori (con dimensioni di macchina virtuale come D4, D6, D15) che non sono internet affiancate.
   
-  In questo esempio, anche se è possibile decidere di inserire tutti i servizi in un unico tipo di nodo, è consigliabile inserirli in un cluster con due tipi di nodo,  perché in questo modo ogni tipo di nodo può avere proprietà distinte, ad esempio la connettività Internet o le dimensioni delle VM. Il numero di VM può essere ridimensionato anche in modo indipendente.  
-* Poiché non è possibile prevedere cosa accadrà in futuro, è importante basarsi sulle condizioni attuali per decidere il numero di tipi di nodo necessari alle applicazioni per iniziare. Sarà sempre possibile aggiungere o rimuovere i tipi di nodi in seguito. Un cluster di Service Fabric deve avere almeno un tipo di nodo.
+  In questo esempio, anche se è possibile decidere tooput tutti hello servizi nei tipi di nodo, è consigliabile che vengono inseriti in un cluster con due tipi di nodo.  In questo modo per ogni proprietà distinct toohave del tipo di nodo, ad esempio la connessione a internet o di dimensioni della macchina virtuale. numero di Hello di macchine virtuali può essere ridimensionata in modo indipendente, nonché.  
+* Poiché non è possibile prevedere hello futuro, passare con fatti che si conoscono e decidere il numero di hello di tipi di nodo che le applicazioni devono toostart con. Sarà sempre possibile aggiungere o rimuovere i tipi di nodi in seguito. Un cluster di Service Fabric deve avere almeno un tipo di nodo.
 
-## <a name="the-properties-of-each-node-type"></a>Proprietà di ogni tipo di nodo
-I **tipi di nodo** possono essere paragonati ai ruoli in Servizi cloud, poiché definiscono le dimensioni delle VM, il numero di VM e le relative proprietà. Ogni tipo di nodo definito in un cluster di Service Fabric viene configurato come set di scalabilità di macchine virtuali distinto. Un set di scalabilità di macchine virtuali è una risorsa di calcolo di Azure che è possibile usare per distribuire e gestire una raccolta di macchine virtuali come set. Essendo definito come set di scalabilità di macchine virtuali distinto, ogni tipo di nodo può essere aumentato o ridotto in modo indipendente, avere diversi set di porte aperte e avere metriche per la capacità diverse.
+## <a name="hello-properties-of-each-node-type"></a>proprietà Hello di ogni tipo di nodo
+Hello **tipo di nodo** può essere considerata tooroles equivalente in servizi Cloud. Tipi di nodo definiscono dimensioni di macchina virtuale hello, hello numero di macchine virtuali e le relative proprietà. Ogni tipo di nodo definito in un cluster di Service Fabric viene configurato come set di scalabilità di macchine virtuali distinto. Set di scalabilità della macchina virtuale è una risorsa di calcolo di Azure, è possibile utilizzare toodeploy e gestire una raccolta di macchine virtuali come un set. Essendo definito come set di scalabilità di macchine virtuali distinto, ogni tipo di nodo può essere aumentato o ridotto in modo indipendente, avere diversi set di porte aperte e avere metriche per la capacità diverse.
 
-Vedere [questo documento](service-fabric-cluster-nodetypes.md) per altri dettagli sulla relazione dei tipi di nodo con il set di scalabilità di macchine virtuali, su come connettersi a una delle istanze tramite RDP, aprire nuove porte e così via.
+Lettura [questo documento](service-fabric-cluster-nodetypes.md) per ulteriori informazioni sulla relazione hello del set di scalabilità della macchina toovirtual Nodetypes, come tooRDP in una delle istanze di hello, aprire nuove porte e così via.
 
-Il cluster può avere più di un tipo di nodo, ma il tipo di nodo primario, ovvero il primo che si definisce nel portale, deve essere costituito da almeno cinque macchine virtuali per i cluster usati per i carichi di lavoro di produzione (o da almeno tre VM per i cluster di test). Se si sta creando il cluster con un modello di Resource Manager, cercare l'attributo **Primario** nella definizione del tipo di nodo. Nel tipo di nodo primario vengono inseriti i servizi di sistema di Service Fabric.  
+Il cluster può avere più di un tipo di nodo, ma il tipo di nodo primario hello (primo definiti nel portale di hello hello) deve avere almeno cinque macchine virtuali per cluster utilizzati per i carichi di lavoro (o almeno tre macchine virtuali per i cluster di test). Se si sta creando un modello di gestione delle risorse cluster di hello, quindi cercare **è primario** attributo nella definizione di tipo di nodo hello. tipo di nodo primario Hello è il tipo di nodo hello in cui vengono collocati i servizi di sistema di Service Fabric.  
 
 ### <a name="primary-node-type"></a>Tipo di nodo primario
-Nel caso di un cluster con più tipi di nodo, è necessario sceglierne uno come primario. Ecco le caratteristiche di un tipo di nodo primario:
+Per un cluster con più tipi di nodo, è necessario toochoose uno di essi toobe primario. Ecco le caratteristiche di hello di un tipo di nodo primario:
 
-* Le **dimensioni minime delle macchine virtuali** per il tipo di nodo primario sono determinate dal **livello di durabilità** scelto. Il valore predefinito per il livello di durabilità è Bronze. Per sapere che cos'è il livello di durabilità e su quali valori può essere impostato, scorrere verso il basso.  
-* Il **numero minimo delle macchine virtuali** per il tipo di nodo primario è determinato dal **livello di affidabilità** scelto. Il valore predefinito per il livello di affidabilità è Silver. Per sapere che cos'è il livello di affidabilità e su quali valori può essere impostato, scorrere verso il basso. 
+* Hello **dimensioni minime delle macchine virtuali** per il tipo di nodo primario hello è determinato da hello **il livello di durabilità** prescelto. valore predefinito di Hello per il livello di durabilità hello è Bronzo. Per informazioni dettagliate su quale livello di durabilità hello e hello valori che possono essere necessari, scorrere verso il basso.  
+* Hello **numero minimo di macchine virtuali** per il tipo di nodo primario hello è determinato da hello **livello di affidabilità** prescelto. valore predefinito di Hello per il livello di affidabilità hello è Silver. Per informazioni dettagliate su quale livello di affidabilità hello e hello valori che possono essere necessari, scorrere verso il basso. 
 
 
-* I servizi di sistema di Service Fabric (ad esempio, il servizio Cluster Manager o il servizio Image Store) vengono inseriti nel tipo di nodo primario e quindi l'affidabilità e la durabilità del cluster vengono determinate dal valore del livello di affidabilità e dal valore del livello di durabilità selezionato per il tipo di nodo primario.
+* servizi di sistema di Service Fabric Hello (ad esempio, il servizio di gestione Cluster hello o il servizio di archiviazione di immagini) vengono inseriti nel tipo di nodo primario hello e l'affidabilità di hello in tal caso e durabilità dei cluster hello è determinata dal hello livello valore e durabilità livello di affidabilità valore selezionato per il tipo di nodo primario hello.
 
 ![Screenshot di un cluster con due tipi di nodo ][SystemServices]
 
 ### <a name="non-primary-node-type"></a>Tipo di nodo non primario
-Per un cluster con più tipi di nodo, è presente un tipo di nodo primario, mentre gli altri saranno non primari. Ecco le caratteristiche di un tipo di nodo non primario:
+Per un cluster con più tipi di nodo, vi è un tipo di nodo primario e li hello restanti sono non primario. Ecco le caratteristiche di hello di un tipo di nodo non primario:
 
-* Le dimensioni minime delle macchine virtuali per questo tipo di nodo sono determinate dal livello di durabilità scelto. Il valore predefinito per il livello di durabilità è Bronze. Per sapere che cos'è il livello di durabilità e su quali valori può essere impostato, scorrere verso il basso.  
-* Il numero minimo di VM per questo tipo di nodo può essere uno. È tuttavia consigliabile scegliere questo numero in base al numero di repliche dell'applicazione o dei servizi che si vuole eseguire in questo tipo di nodo. Il numero di VM in un tipo di nodo può essere aumentato dopo avere distribuito il cluster.
+* dimensioni minime Hello di macchine virtuali per questo tipo di nodo sono determinata dal livello di durabilità hello che prescelto. valore predefinito di Hello per il livello di durabilità hello è Bronzo. Per informazioni dettagliate su quale livello di durabilità hello e hello valori che possono essere necessari, scorrere verso il basso.  
+* numero minimo Hello di macchine virtuali per questo tipo di nodo può essere uno. Tuttavia è consigliabile scegliere questo numero in base al numero di hello delle repliche di hello applicazioni e servizi che si desidera toorun in questo tipo di nodo. numero di Hello di macchine virtuali in un tipo di nodo può essere aumentato dopo aver distribuito il cluster hello.
 
-## <a name="the-durability-characteristics-of-the-cluster"></a>Caratteristiche di durabilità del cluster
-Il livello di durabilità viene usato per indicare al sistema i privilegi delle VM rispetto all'infrastruttura di Azure sottostante. Nel tipo di nodo primario questo privilegio consente a Service Fabric di sospendere le richieste di infrastruttura a livello di VM (ad esempio il riavvio di una VM, il re-imaging di una VM o la migrazione di una VM) che hanno effetto sui requisiti relativi al quorum per i servizi di sistema e i servizi con stato. Nei tipi di nodo non primari questo privilegio consente a Service Fabric di sospendere le richieste di infrastruttura a livello di macchina virtuale (ad esempio il riavvio di una VM, il re-imaging di una VM, la migrazione di una VM e così via) che hanno effetto sui requisiti relativi al quorum per i servizi con stato in esecuzione.
+## <a name="hello-durability-characteristics-of-hello-cluster"></a>caratteristiche di durabilità Hello del cluster di hello
+il livello di durabilità Hello è usato tooindicate toohello hello privilegi contenenti le macchine virtuali con l'infrastruttura di Azure sottostante hello. Nel tipo di nodo primario hello, questo privilegio consente a Service Fabric toopause qualsiasi richiesta infrastruttura livello macchina virtuale (ad esempio, un riavvio della VM, ricreare l'immagine macchina virtuale o migrazione della macchina virtuale) che influire sui requisiti di quorum hello per servizi di sistema hello e i servizi con stati. Nei tipi di nodo non primario hello, questo privilegio consente a Service Fabric toopause delle richieste di infrastruttura livello macchina virtuale come riavvio della VM, ricreare l'immagine VM, migrazione della macchina virtuale e così via, influire sui requisiti di quorum hello per i servizi con stati in esecuzione.
 
-Questo privilegio viene espresso con i valori seguenti:
+Questo privilegio è espresso nell'hello seguenti valori:
 
-* Gold: i processi dell'infrastruttura possono essere sospesi per una durata di due ore per ogni dominio di aggiornamento. La durata Gold può essere abilitata solo per gli SKU VM con tutti i nodi come D15_V2, G5 e così via.
-* Silver: i processi dell'infrastruttura possono essere sospesi per una durata di 10 minuti per ogni dominio di aggiornamento. È disponibile per tutte le VM standard a core singolo e superiori.
-* Bronze: nessun privilegio. Questa è la modalità predefinita. Usare solo questo livello di durabilità per i tipi di nodi che eseguono _solo_ carichi di lavoro senza stato. 
+* Oro - infrastruttura hello processi possono essere sospeso per una durata di due ore per UD. La durata Gold può essere abilitata solo per gli SKU VM con tutti i nodi come D15_V2, G5 e così via.
+* Argento - hello i processi di infrastruttura può essere sospeso per una durata di 10 minuti per UD ed è disponibili in tutte le macchine virtuali standard del singolo core e versioni successive.
+* Bronze: nessun privilegio. Questa è l'impostazione predefinita di hello. Usare solo questo livello di durabilità per i tipi di nodi che eseguono _solo_ carichi di lavoro senza stato. 
 
 > [!WARNING]
 > NodeTypes in esecuzione con durabilità Bronze _senza privilegi_. Ciò significa che i processi di infrastruttura che influiscono sui carichi di lavoro senza stato non verranno interrotti o posticipati. È possibile che tali processi possano ancora influire sui carichi di lavoro, provocando un tempo di inattività o altri problemi. Per qualsiasi tipo di carico di lavoro di produzione, è consigliata almeno l'esecuzione con Silver. 
 > 
 
-È necessario scegliere il livello di durabilità per ogni tipo di nodo. Si può scegliere un livello di durabilità Gold o Silver per un tipo di nodo e il livello Bronze per un altro nello stesso cluster. **È necessario mantenere un conteggio minimo di 5 nodi per qualsiasi tipo di nodo con durabilità Gold o Silver**. 
+Si ottiene il livello di durabilità toochoose per ognuno dei tipi di nodo. È possibile scegliere un tipo di nodo toohave un livello di durabilità oro o argento e hello altri presenti hello bronzo dello stesso cluster. **è necessario mantenere un numero minimo di 5 nodi per qualsiasi tipo di nodo che ha una durata di oro o silver**. 
 
 **Vantaggi dell'uso di livelli di durabilità Silver o Gold**
  
-1. Riducono il numero dei passaggi necessari in un'operazione di riduzione del numero di istanze. La disattivazione del nodo e Remove-ServiceFabricNodeState vengono chiamati automaticamente.
-2. Riducono il rischio di perdita di dati a causa di un'operazione di modifica sul posto dello SKU di VM avviata dal cliente o di operazioni sull'infrastruttura di Azure.
+1. Riduce il numero di hello di passaggi necessari in un'operazione di scala (ovvero, la disattivazione del nodo e Remove-ServiceFabricNodeState viene chiamato automaticamente)
+2. Riduce il rischio di hello di perdita di dati a causa di operazioni di infrastruttura di Azure o tooa avviato dall'utente sul posto VM SKU operazione di modifica.
      
 **Svantaggi dell'uso di livelli di durabilità Silver o Gold**
  
-1. Le distribuzioni nel set di scalabilità di macchine virtuali e in altre risorse di Azure correlate possono subire ritardi o timeout oppure essere interamente bloccate da problemi nel cluster o a livello di infrastruttura. 
-2. Le disattivazioni automatizzate dei nodi durante le operazioni sull'infrastruttura di Azure aumentano il numero di [eventi del ciclo di vita della replica](service-fabric-reliable-services-advanced-usage.md#stateful-service-replica-lifecycle ), ad esempio di scambi di nodi primari.
+1. Le distribuzioni tooyour Set di scalabilità della macchina virtuale e altre risorse di Azure correlate) possono essere ritardati, il timeout o possono essere bloccati interamente da problemi del cluster o a livello di infrastruttura hello. 
+2. Aumenta hello numero di [gli eventi del ciclo di vita di replica](service-fabric-reliable-services-advanced-usage.md#stateful-service-replica-lifecycle ) (ad esempio, lo scambio primario) a causa di disattivazioni nodo tooautomated durante le operazioni dell'infrastruttura di Azure.
 
-### <a name="recommendations-on-when-to-use-silver-or-gold-durability-levels"></a>Raccomandazioni su quando usare livelli di durabilità Silver o Gold
+### <a name="recommendations-on-when-toouse-silver-or-gold-durability-levels"></a>Indicazioni su quando i livelli durabilità argento o oro toouse
 
-Usare la durabilità Silver o Gold per tutti i tipi di nodo che ospitano servizi con stato di cui si prevede di ridurre frequentemente il numero di istanze di VM, quando si preferisce ritardare le operazioni di distribuzione in favore di una semplificazione di tali operazioni di riduzione del numero di istanze. Gli scenari di aumento del numero di istanze di VM non influiscono sulla scelta del livello di durabilità. Solo la riduzione del numero di istanze ha un impatto su tale scelta.
+Durabilità utilizzare argento o oro per i tipi di tutti i nodi con stato di tale host dei servizi è prevede tooscale (riduce il numero di istanze VM) di frequente, e si preferisce che le operazioni di distribuzione deve essere ritardata a favore di semplificare queste operazioni di scala. scenari di scalabilità orizzontale Hello (aggiunta di istanze di macchine virtuali) non vengono riprodotti nella scelta del livello di durabilità hello, solo scala aggiuntivo.
 
-### <a name="operational-recommendations-for-the-node-type-that-you-have-set-to-silver-or-gold-durability-level"></a>Raccomandazioni operative per il tipo di nodo impostato sul livello di durabilità Silver o Gold
+### <a name="operational-recommendations-for-hello-node-type-that-you-have-set-toosilver-or-gold-durability-level"></a>Indicazioni operative per il nodo hello digitare di aver impostato la durabilità toosilver o oro livello.
 
-1. Mantenere sempre integri il cluster e le applicazioni e verificare che le applicazioni rispondano in modo tempestivo a tutti gli [eventi del ciclo di vita della replica del servizio](service-fabric-reliable-services-advanced-usage.md#stateful-service-replica-lifecycle), ad esempio al blocco della replica in compilazione.
-2. Adottare modi più sicuri per eseguire una modifica di uno SKU di VM (aumento/riduzione delle prestazioni): la modifica dello SKU di VM di un set di scalabilità di macchine virtuali è un'operazione intrinsecamente non sicura, pertanto dovrebbe essere evitata, se possibile. Di seguito è illustrato il processo che è possibile seguire per evitare i problemi comuni.
-    - **Per i tipi di nodo non primari:** è consigliabile creare un nuovo set di scalabilità di macchine virtuali, modificare il vincolo di posizionamento del servizio per poter includere il nuovo tipo di nodo/set di scalabilità di macchine virtuali e quindi ridurre il numero di istanze del set di scalabilità di macchine virtuali precedente a 0, un nodo alla volta (perché la rimozione dei nodi non influisca sull'affidabilità del cluster).
-    - **Per il tipo di nodo primario:** è consigliabile non modificare il relativo SKU di VM. Se lo scopo del nuovo SKU è la capacità, è consigliabile aggiungere altre istanze o, se possibile, creare un nuovo cluster. Se non sono disponibili alternative, apportare modifiche alla definizione del modello del set di scalabilità di macchine virtuali in modo che rifletta il nuovo SKU. Se il cluster include un solo tipo di nodo, verificare che tutte le applicazioni con stato rispondano in modo tempestivo a tutti gli [eventi del ciclo di vita della replica del servizio](service-fabric-reliable-services-advanced-usage.md#stateful-service-replica-lifecycle), ad esempio al blocco della replica in compilazione, e che la durata della ricompilazione della replica del servizio sia inferiore a cinque minuti (per il livello di durabilità Silver). 
+1. Mantenere integri i cluster e le applicazioni in qualsiasi momento e assicurarsi che le applicazioni rispondano tooall [eventi del ciclo di vita di replica del servizio](service-fabric-reliable-services-advanced-usage.md#stateful-service-replica-lifecycle) (ad esempio, replica di compilazione è bloccato) in modo tempestivo.
+2. Adottare toomake modalità più sicura una modifica della SKU VM (scalabilità verso l'alto o verso il basso): la modifica di hello SKU VM di un Set di scalabilità della macchina virtuale è di per sé un'operazione non affidabile e pertanto deve essere evitati se possibile. Ecco il processo di hello è possibile seguire i problemi comuni tooavoid.
+    - **Per non primario nodetypes:** è consigliabile creare Set di scalabilità a nuova macchina virtuale, modificare hello posizionamento vincolo tooinclude hello nuovo Set di scalabilità della macchina virtuale/nodo tipo di servizio e quindi lo riducono hello Set di scalabilità della macchina virtuale precedente istanza conteggio too0, un nodo alla volta (è assicurarsi che la rimozione di nodi di hello non influiscono sull'affidabilità di hello del cluster hello toomake).
+    - **Per tipo di nodo primario hello:** si consiglia di non modificare SKU VM di tipo di nodo primario hello. Se hello motivo per il nuovo SKU hello è la capacità, si consiglia di aggiungere più istanze o, se possibile, creare un nuovo cluster. Se è possibile scegliere, quindi apportare modifiche toohello impostare modello di macchina virtuale scala definizione tooreflect hello SKU di nuovo. Se il cluster con un solo tipo di nodo, quindi assicurarsi che tutte le applicazioni con state rispondano tooall [eventi del ciclo di vita di replica del servizio](service-fabric-reliable-services-advanced-usage.md#stateful-service-replica-lifecycle) (ad esempio, replica di compilazione è bloccato) in modo tempestivo e che la replica del servizio ricompilare durata è inferiore a cinque minuti (livello di durabilità Silver). 
 
 
 > [!WARNING]
-> Non è consigliata la modifica delle dimensioni della SKU della macchina virtuale per i set di scalabilità di macchine virtuali in una durabilità che sia almeno Silver. La modifica delle dimensioni della SKU della macchina virtuale è un'operazione dell'infrastruttura sul posto distruttiva per i dati. Senza almeno la capacità di ritardare o monitorare questa modifica, è possibile che l'operazione possa causare una perdita di dati per i servizi con stato o provocare altri problemi operativi non previsti, anche per i carichi di lavoro senza stato. 
+> Hello la modifica delle dimensioni per il set di scalabilità di macchine Virtuali non è in esecuzione almeno argento durabilità SKU della macchina virtuale non è consigliata. La modifica delle dimensioni della SKU della macchina virtuale è un'operazione dell'infrastruttura sul posto distruttiva per i dati. Senza almeno alcuni monitor o il possibilità toodelay questa modifica, è possibile che operazione hello può causare dataloss per i servizi con stati o altri problemi operativi unforseen, anche per i carichi di lavoro senza stati. 
 > 
     
 3. Mantenere un numero minimo di cinque nodi per tutti i set di scalabilità di macchine virtuali con ruolo di gestione abilitato.
-4. Non eliminare istanze di VM casuali. Usare sempre la funzionalità di riduzione delle prestazioni del set di scalabilità di macchine virtuali. L'eliminazione di istanze di VM causali può creare squilibri nella distribuzione delle istanze di VM tra domini di aggiornamento e domini di errore. Tale squilibrio potrebbe influire negativamente sulla capacità del sistema di bilanciare correttamente il carico tra istanze dei servizi e repliche dei servizi.
-6. Se si usa la scalabilità automatica, impostare le regole in modo che la riduzione del numero di istanze (ossia la rimozione di istanze di VM) venga eseguita un solo nodo alla volta. La riduzione delle prestazioni di più di un'istanza per volta non è sicura.
-7. Se si riducono le prestazioni di un tipo di nodo primario, è consigliabile non ridurle mai più di quanto consentito dal livello di affidabilità.
+4. Non eliminare istanze di VM casuali. Usare sempre la funzionalità di riduzione delle prestazioni del set di scalabilità di macchine virtuali. l'eliminazione di Hello casuale istanze di macchina virtuale ha un potenziale creazione mettendolo in hello istanza delle macchine Virtuali distribuite in UD e FD. Questo squilibrio potrebbe influire negativamente sulle hello sistemi possibilità tooproperly bilanciamento del carico tra le repliche di hello servizio o le istanze del servizio.
+6. Se utilizza la scalabilità automatica, quindi impostare le regole di hello in modo che la scala (rimozione di istanze di macchine Virtuali) vengono eseguite solo un nodo alla volta. La riduzione delle prestazioni di più di un'istanza per volta non è sicura.
+7. Se la scalabilità verso il basso un tipo di nodo primario, non dovrebbe essere scalato mai superiore a quale livello di affidabilità hello consente verso il basso.
 
 
-## <a name="the-reliability-characteristics-of-the-cluster"></a>Caratteristiche di affidabilità del cluster
-Il livello di affidabilità viene usato per impostare il numero di repliche dei servizi di sistema che si vuole eseguire in questo cluster nel tipo di nodo primario. I servizi di sistema nel cluster sono tanto più affidabili quanto più elevato è il numero di repliche.  
+## <a name="hello-reliability-characteristics-of-hello-cluster"></a>caratteristiche di affidabilità Hello del cluster di hello
+Hello livello di affidabilità viene utilizzato il numero hello tooset delle repliche hello dei servizi di sistema che si desidera toorun in questo cluster sul tipo di nodo primario hello. Hello numero maggiore di hello delle repliche, hello più affidabili servizi di sistema hello del cluster.  
 
-Il livello di affidabilità può avere i valori seguenti:
+livello di affidabilità Hello può assumere hello seguenti valori:
 
-* Platinum: esegue i servizi di sistema con un totale di set di repliche di destinazione pari a 9
-* Gold: esegue i servizi di sistema con un totale di set di repliche di destinazione pari a 7
-* Silver: esegue i servizi di sistema con un totale di set di repliche di destinazione pari a 5 
-* Bronze: esegue i servizi di sistema con un totale di set di repliche di destinazione pari a 3
+* Platinum - esecuzione hello di servizi di sistema con un conteggio di set di replica di destinazione di 9
+* Oro - esecuzione hello di servizi di sistema con un numero di set di replica di destinazione di 7
+* Argento - esecuzione hello di servizi di sistema con un conteggio di set di replica di destinazione di 5 
+* Bronzo, servizi di sistema hello esecuzione con un numero di set di replica di destinazione di 3
 
 > [!NOTE]
-> Il livello di affidabilità scelto determina il numero minimo di nodi che deve avere il tipo di nodo primario. 
+> livello di affidabilità Hello che scelto determina numero minimo di hello dei nodi che deve avere il tipo di nodo primario. 
 > 
 > 
 
 
-### <a name="recommendations-for-the-reliability-tier"></a>Raccomandazioni per il livello di affidabilità.
+### <a name="recommendations-for-hello-reliability-tier"></a>Suggerimenti per il livello di affidabilità hello.
 
- Quando si aumentano o riducono le dimensioni del cluster (la somma delle istanze di VM in tutti i tipi di nodi), è necessario aggiornare l'affidabilità del cluster da un livello a un altro. Così facendo si attivano gli aggiornamenti del cluster necessari per modificare il totale di set di repliche dei servizi di sistema. Attendere che l'aggiornamento in corso venga completato prima di apportare altre modifiche al cluster, come l'aggiunta di nodi.  È possibile monitorare lo stato di avanzamento dell'aggiornamento in Service Fabric Explorer oppure eseguendo [Get-ServiceFabricClusterUpgrade](/powershell/module/servicefabric/get-servicefabricclusterupgrade?view=azureservicefabricps).
+ Quando si aumenta o diminuisce hello delle dimensioni del cluster (somma hello delle istanze di macchina virtuale in tutti i tipi di nodo), è necessario aggiornare l'affidabilità di hello del cluster da un livello tooanother. Questa operazione attiva hello gli aggiornamenti necessari toochange hello sistema Servizi replica set numero dei cluster. Attendere l'aggiornamento di hello in corso toocomplete prima di apportare qualsiasi cluster di toohello altre modifiche, ad esempio l'aggiunta di nodi.  È possibile monitorare lo stato di avanzamento hello di Service Fabric Explorer o eseguendo l'aggiornamento di hello [Get ServiceFabricClusterUpgrade](/powershell/module/servicefabric/get-servicefabricclusterupgrade?view=azureservicefabricps)
 
-Ecco la raccomandazione per la scelta del livello di affidabilità.
+Ecco la raccomandazione hello sulla scelta a livello di affidabilità hello.
 
 | **Dimensione del cluster** | **Livello di affidabilità** |
 | --- | --- |
-| 1 |Non specificare il parametro Livello di affidabilità perché viene calcolato automaticamente dal sistema |
+| 1 |Non specificare hello parametro livello di affidabilità, verrà calcolata sistema hello |
 | 3 |Bronze |
 | 5 o 6|Silver |
 | 7 o 8 |Gold |
@@ -146,72 +146,72 @@ Ecco la raccomandazione per la scelta del livello di affidabilità.
 
 ## <a name="primary-node-type---capacity-guidance"></a>Tipo di nodo primario: guida alla capacità
 
-Ecco le indicazioni per pianificare la capacità del tipo di nodo primario
+Sezione vengono fornite indicazioni hello per la pianificazione della capacità di tipo di nodo primario hello
 
-1. **Numero di istanze delle VM per eseguire qualsiasi carico di lavoro di produzione in Azure:** è necessario specificare una dimensione minima del tipo di nodo primario pari a 5. 
-2. **Numero di istanze delle VM per eseguire carichi di lavoro di test in Azure:** è possibile specificare una dimensione minima del tipo di nodo primario pari a 1 o 3. Il cluster a un nodo viene eseguito con una configurazione speciale, pertanto la scalabilità orizzontale di tale cluster non è supportata. Il cluster a un nodo non ha alcun livello di affidabilità, di conseguenza nel modello di Resource Manager è necessario rimuovere/non specificare tale configurazione (non è sufficiente non impostare il valore di configurazione). Se si configura il cluster a un nodo tramite il portale, la configurazione viene gestita automaticamente. I cluster a uno e tre nodi non sono supportati per l'esecuzione di carichi di lavoro di produzione. 
-3. **SKU di VM:** nel tipo di nodo primario vengono eseguiti i servizi di sistema, quindi lo SKU della VM scelto deve tenere in considerazione il carico massimo totale che si prevede di inserire nel cluster. Per comprendere questo concetto, si pensi all'analogia seguente: il tipo di nodo primario è come i polmoni che forniscono ossigeno al cervello e quindi, se il cervello non riceve abbastanza ossigeno, il corpo ne risente. 
+1. **Numero di VM istanze toorun qualsiasi carico di lavoro di produzione in Azure:** è necessario specificare una dimensione di tipo di nodo primario minima di 5. 
+2. **Numero di VM istanze toorun test dei carichi di lavoro in Azure** è possibile specificare una dimensione di tipo nodo primario minimo di 1 o 3. Hello un cluster di nodi, viene eseguito con una configurazione speciale e pertanto, la scalabilità all'esterno di tale cluster non è supportata. un nodo cluster, Hello non ha affidabilità e nel modello di gestione delle risorse, è necessario tooremove/non specificare che la configurazione (non impostando il valore di configurazione di hello non è sufficiente). Se si configura il cluster di un nodo hello impostati mediante portale, quindi configurazione hello viene automaticamente preso in considerazione. I cluster a uno e tre nodi non sono supportati per l'esecuzione di carichi di lavoro di produzione. 
+3. **VM SKU:** tipo di nodo primario è in esecuzione servizi di sistema hello, hello SKU VM prescelto, deve tengono in hello account complessiva picco di carico è pianificare tooplace in cluster hello. Ecco un tooillustrate analogia cosa si intende qui - ritiene del tipo di nodo primario hello come i "polmoni" cosa offre cervello tooyour ossigeno, e pertanto se cervello hello non ottiene sufficiente ossigeno, il corpo subisce. 
 
-Poiché le esigenze in termini di capacità di un cluster dipendono dal carico di lavoro che si prevede di eseguire nel cluster, non è possibile offrire una guida valida per un carico di lavoro specifico. Di seguito sono tuttavia riportate indicazioni generali per poter iniziare.
+Esigenze di capacità hello di un cluster è determinato dal carico di lavoro si prevede di toorun cluster hello, è possibile fornire con qualitativa si basa sulle linee guida per il carico di lavoro specifico, tuttavia qui hello indicazioni generali toohelp iniziare
 
 Per i carichi di lavoro di produzione 
 
 
-- Lo SKU per le VM consigliato è Standard D3 o Standard D3_V2 o equivalente con un'unità SSD locale di almeno 14 GB.
-- La versione minima supportata dello SKU per le VM è Standard D1 o Standard D1_V2 o equivalente con un'unità SSD locale di almeno 14 GB. 
+- Hello consiglia VM SKU Standard D3 o D3_V2 Standard o con un minimo di 14 GB di unità SSD locale.
+- utilizzo di Hello minima supportata VM SKU è D1 Standard o D1_V2 Standard o con un minimo di 14 GB di unità SSD locale. 
 - Gli SKU per VM con core parziali, ad esempio Standard A0, non sono supportati per i carichi di lavoro di produzione.
 - Lo SKU Standard A1 non è supportato per i carichi di lavoro di produzione per motivi di prestazioni.
 
 
 ## <a name="non-primary-node-type---capacity-guidance-for-stateful-workloads"></a>Tipo di nodo non primario: guida alla capacità per carichi di lavoro con stato
 
-Queste linee guida sono relative ai carichi di lavoro con stato che usano [Reliable Collections o Reliable Actors](service-fabric-choose-framework.md) di Service Fabric in esecuzione nel tipo di nodo non primario.
+Questa guida è per i carichi di lavoro con utilizzo di Service fabric [raccolte affidabile o reliable Actors](service-fabric-choose-framework.md) in esecuzione nel tipo di nodo non primario hello.
 
 
-**Numero di istanze delle VM:** è consigliabile eseguire i carichi di lavoro di produzione con stato con un numero di repliche di destinazione di almeno 5 istanze. Nello stato stabile viene quindi creata una replica (da un set di repliche) in ogni dominio di errore e in ogni dominio di aggiornamento. L'intero concetto di livello di affidabilità per il tipo di nodo primario è un modo per specificare questa impostazione per i servizi di sistema. La stessa considerazione è quindi valida anche per i servizi con stato.
+**Numero di istanze delle VM:** è consigliabile eseguire i carichi di lavoro di produzione con stato con un numero di repliche di destinazione di almeno 5 istanze. Nello stato stabile viene quindi creata una replica (da un set di repliche) in ogni dominio di errore e in ogni dominio di aggiornamento. concetto di livello di affidabilità intero Hello per il tipo di nodo primario hello è un modo toospecify questa impostazione per servizi di sistema. Pertanto hello stessa considerazione si applica anche tooyour i servizi con stato.
 
-Per i carichi di lavoro di produzione, la dimensione minima consigliata per il tipo di nodo non primario è quindi 5, se si eseguono carichi di lavoro con stato.
+Pertanto per i carichi di lavoro, dimensione minima consigliata non - nodo primario hello è 5, se si eseguono i carichi di lavoro con stati in essa contenuti.
 
 
-**SKU di VM:** in questo tipo di nodo sono in esecuzione i servizi dell'applicazione, quindi lo SKU per le VM scelto deve tenere in considerazione il carico massimo che si prevede di inserire in ogni nodo. Poiché le esigenze in termini di capacità del tipo di nodo dipendono dal carico di lavoro che si prevede di eseguire nel cluster, non è possibile offrire una guida valida per un carico di lavoro specifico. Di seguito sono tuttavia riportate indicazioni generali per poter iniziare.
+**VM SKU:** questo è il tipo di nodo hello in cui sono in esecuzione i servizi dell'applicazione, pertanto hello VM SKU scelto, è necessario prendere in considerazione hello punta il si prevede di tooplace in ogni nodo. salve le esigenze di capacità di hello nodetype, varia a seconda del carico di lavoro che si prevede di toorun cluster hello, pertanto, non possiamo fornirti con qualitativa si basa sulle linee guida per il carico di lavoro specifico, è tuttavia qui hello indicazioni generali toohelp iniziare
 
 Per i carichi di lavoro di produzione 
 
-- Lo SKU per le VM consigliato è Standard D3 o Standard D3_V2 o equivalente con un'unità SSD locale di almeno 14 GB.
-- La versione minima supportata dello SKU per le VM è Standard D1 o Standard D1_V2 o equivalente con un'unità SSD locale di almeno 14 GB. 
+- Hello consiglia VM SKU Standard D3 o D3_V2 Standard o con un minimo di 14 GB di unità SSD locale.
+- utilizzo di Hello minima supportata VM SKU è D1 Standard o D1_V2 Standard o con un minimo di 14 GB di unità SSD locale. 
 - Gli SKU per VM con core parziali, ad esempio Standard A0, non sono supportati per i carichi di lavoro di produzione.
 - Lo SKU Standard A1 in particolare non è supportato per i carichi di lavoro di produzione per motivi di prestazioni.
 
 
 ## <a name="non-primary-node-type---capacity-guidance-for-stateless-workloads"></a>Tipo di nodo non primario: guida alla capacità per carichi di lavoro senza stato
 
-Linee guida per i carichi di lavoro senza stato in esecuzione nel tipo di nodo non primario.
+Questa Guida di carichi di lavoro senza stati che eseguono nodetype non primario hello.
 
-**Numero di istanze delle VM:** per i carichi di lavoro di produzione senza stato, la dimensione minima supportata per il tipo di nodo non primario è pari a 2. Ciò consente di eseguire due istanze senza stato dell'applicazione e consente al servizio di resistere alla perdita di un'istanza di una VM. 
+**Numero di istanze di macchina virtuale:** per i carichi di lavoro che sono senza stati, dimensione del tipo di nodo principale di non - hello minimo supportato è 2. In questo modo è toorun è due senza stato istanze dell'applicazione e consentendo la toosurvive servizio hello perdita di un'istanza di macchina virtuale. 
 
 > [!NOTE]
-> Se il cluster è in esecuzione in una versione di Service Fabric precedente alla 5.6, a causa di un difetto del runtime (corretto nella versione 5.6), passando a un tipo di nodo non primario inferiore a 5, l'integrità del cluster viene meno, finché non si chiama il [comando Remove-ServiceFabricNodeState](https://docs.microsoft.com/powershell/servicefabric/vlatest/Remove-ServiceFabricNodeState) con il nome di nodo appropriato. Per altre informazioni, vedere [Aumentare o ridurre il numero di istanze del cluster di Service Fabric](service-fabric-cluster-scale-up-down.md).
+> Se il cluster è in esecuzione in una versione dell'infrastruttura service 5.6 minore, a causa di difetto tooa hello fase di esecuzione (il problema viene risolto in 5.6), la scalabilità verso il basso un tooless di tipo di nodo non primario di 5, comporta l'attivazione non è integro, fino a quando si chiama l'integrità del cluster [ Remove-ServiceFabricNodeState cmd](https://docs.microsoft.com/powershell/servicefabric/vlatest/Remove-ServiceFabricNodeState) con il nome di nodo appropriato hello. Per altre informazioni, vedere [Aumentare o ridurre il numero di istanze del cluster di Service Fabric](service-fabric-cluster-scale-up-down.md).
 > 
 >
 
-**SKU di VM:** in questo tipo di nodo sono in esecuzione i servizi dell'applicazione, quindi lo SKU per le VM scelto deve tenere in considerazione il carico massimo che si prevede di inserire in ogni nodo. Poiché le esigenze in termini di capacità del tipo di nodo dipendono dal carico di lavoro che si prevede di eseguire nel cluster, non è possibile offrire una guida valida per un carico di lavoro specifico. Di seguito sono tuttavia riportate indicazioni generali per poter iniziare.
+**VM SKU:** questo è il tipo di nodo hello in cui sono in esecuzione i servizi dell'applicazione, pertanto hello VM SKU scelto, è necessario prendere in considerazione hello punta il si prevede di tooplace in ogni nodo. salve le esigenze di capacità di hello nodetype, varia a seconda del carico di lavoro che si prevede di toorun cluster hello, pertanto, non possiamo fornirti con qualitativa si basa sulle linee guida per il carico di lavoro specifico, è tuttavia qui hello indicazioni generali toohelp iniziare
 
 Per i carichi di lavoro di produzione 
 
 
-- Lo SKU per le VM consigliato è Standard D3 o Standard D3_V2 o equivalente. 
-- La versione minima supportata dello SKU per le VM è Standard D1 o Standard D1_V2 o equivalente. 
+- Hello consiglia VM SKU Standard D3 o D3_V2 Standard o equivalente. 
+- utilizzo di Hello minima supportata VM SKU è D1 Standard o D1_V2 Standard o equivalente. 
 - Gli SKU per VM con core parziali, ad esempio Standard A0, non sono supportati per i carichi di lavoro di produzione.
 - Lo SKU Standard A1 non è supportato per i carichi di lavoro di produzione per motivi di prestazioni.
 
-<!--Every topic should have next steps and links to the next logical set of content to keep the customer engaged-->
+<!--Every topic should have next steps and links toohello next logical set of content tookeep hello customer engaged-->
 
 ## <a name="next-steps"></a>Passaggi successivi
-Dopo avere completato la pianificazione della capacità e configurato un cluster, vedere quanto segue:
+Una volta fine pianificazione della capacità e configurare un cluster, leggere hello seguenti:
 
 * [Sicurezza di un cluster di Service Fabric](service-fabric-cluster-security.md)
 * [Introduzione al monitoraggio dell'integrità di Service Fabric](service-fabric-health-introduction.md)
-* [Relazione tra i tipi di nodo di Service Fabric e i set di scalabilità di macchine virtuali](service-fabric-cluster-nodetypes.md)
+* [Relazione di scalabilità della macchina tooVirtual Nodetypes impostata](service-fabric-cluster-nodetypes.md)
 
 <!--Image references-->
 [SystemServices]: ./media/service-fabric-cluster-capacity/SystemServices.png

@@ -1,22 +1,22 @@
 # Panoramica
-## [Informazioni sul portale di Azure](../azure-portal-overview.md)
+## [Su hello portale di Azure](../azure-portal-overview.md)
 # Esercitazioni
-## [DevOps con il portale di Azure](tutorial-azureportal-devops.md)
+## [DevOps con hello portale di Azure](tutorial-azureportal-devops.md)
 # Concetti
 ## [Gestione risorse di Azure](../azure-resource-manager/resource-group-overview.md)
 ## [Tasti di scelta rapida](azure-portal-keyboard-shortcuts.md)
 ## [Browser e dispositivi supportati](../azure-preview-portal-supported-browsers-devices.md)
-# Guide alle procedure
+# Come tooguides
 ## Distribuire
 ### [Creare modelli di Azure Resource Manager](../azure-resource-manager/resource-group-authoring-templates.md)
 ### [Eseguire la distribuzione con il modello di Resource Manager](../azure-resource-manager/resource-group-template-deploy.md)
 ### [Creare e condividere dashboard di Azure](azure-portal-dashboards.md)
 ## Gestisci
 ### [Attivare un contrasto elevato o cambiare tema](azure-portal-change-theme-high-contrast.md)
-### [Usare il portale per gestire le risorse](../azure-resource-manager/resource-group-portal.md)
+### [Utilizzare le risorse toomanage portale](../azure-resource-manager/resource-group-portal.md)
 ### [Gestire l'accesso con il controllo degli accessi in base al ruolo](../active-directory/role-based-access-control-configure.md)
 ### [Condividere i dashboard con il controllo degli accessi in base al ruolo](azure-portal-dashboard-share-access.md)
-### [Usare tag per organizzare le risorse](../azure-resource-manager/resource-group-using-tags.md)
+### [Utilizzare tag tooorganize risorse](../azure-resource-manager/resource-group-using-tags.md)
 ### [Ridimensionare le risorse](../monitoring-and-diagnostics/insights-how-to-scale.md)
 ### [Creare una nuova entità servizio di Azure](../azure-resource-manager/resource-group-create-service-principal-portal.md)
 ## Monitorare

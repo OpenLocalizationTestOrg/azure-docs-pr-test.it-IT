@@ -1,6 +1,6 @@
 ---
-title: Come usare un servizio Web di Azure Machine Learning | Microsoft Docs
-description: "Dopo la pubblicazione di un servizio di Machine Learning, è possibile usare il servizio Web RESTFul che viene reso disponibile come servizio di richiesta-risposta o come un servizio di esecuzione del batch."
+title: aaaHow tooconsume un servizio Web di Azure Machine Learning | Documenti Microsoft
+description: "Dopo aver distribuito un servizio di machine learning, hello servizio Web RESTFul rese disponibile può essere utilizzato come servizio di richiesta-risposta in tempo reale o come un servizio esecuzione batch."
 services: machine-learning
 documentationcenter: 
 author: garyericson
@@ -14,114 +14,114 @@ ms.tgt_pltfrm: na
 ms.workload: tbd
 ms.date: 06/02/2017
 ms.author: garye
-ms.openlocfilehash: eec9f637b4b2306ab4a888dbd5ef5b9a021bcac5
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 19095604169e5af1daed12c17ba66258233178bb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-consume-an-azure-machine-learning-web-service"></a>Come usare un servizio Web di Azure Machine Learning
+# <a name="how-tooconsume-an-azure-machine-learning-web-service"></a>Come un servizio Web di Azure Machine Learning tooconsume
 
-Dopo aver distribuito un modello predittivo di Azure Machine Learning come servizio Web, è possibile usare un'API REST per inviare dati e ottenere stime. È possibile inviare i dati in tempo reale o in modalità batch.
+Dopo aver distribuito un modello predittivo Azure Machine Learning come servizio Web, è possibile utilizzare un toosend API REST, dati e ottenere stime. È possibile inviare dati hello in tempo reale o in modalità batch.
 
-Per informazioni su come creare e distribuire un servizio Web di Machine Learning tramite Machine Learning Studio:
+È possibile trovare altre informazioni su come toocreate e distribuire un servizio Web di Machine Learning tramite Machine Learning Studio di seguito:
 
-* Per un'esercitazione su come creare un esperimento in Machine Learning Studio, vedere l'articolo su come [creare il primo esperimento](machine-learning-create-experiment.md).
-* Per dettagli su come distribuire un servizio Web, vedere [Distribuire un servizio Web di Azure Machine Learning](machine-learning-publish-a-machine-learning-web-service.md).
-* Per altre informazioni su Machine Learning in generale, accedere alla [Documentazione su Machine Learning](https://azure.microsoft.com/documentation/services/machine-learning/).
+* Per un'esercitazione su come toocreate un esperimento di Machine Learning Studio, vedere [l'esperimento prima di creare](machine-learning-create-experiment.md).
+* Per informazioni dettagliate su come toodeploy un servizio Web, vedere [distribuire un servizio Web di Machine Learning](machine-learning-publish-a-machine-learning-web-service.md).
+* Per ulteriori informazioni su Machine Learning in generale, visitare hello [Centro documentazione di Machine Learning](https://azure.microsoft.com/documentation/services/machine-learning/).
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
 ## <a name="overview"></a>Panoramica
-Con il servizio Web di Azure Machine Learning, un'applicazione esterna comunica con un modello di valutazione del flusso di lavoro di Machine Learning in tempo reale. Una chiamata al servizio Web di Machine Learning restituisce i risultati della stima a un'applicazione esterna. Per effettuare una chiamata al servizio Web di Machine Learning, passare una chiave API creata quando si distribuisce una stima. Il servizio Web di Machine Learning è basato su REST, una scelta di architettura diffusa per progetti di programmazione Web.
+Con il servizio Web di Azure Machine Learning hello, un'applicazione esterna comunica con un modello del flusso di lavoro di Machine Learning assegnazione dei punteggi in tempo reale. Una chiamata al servizio Web di Machine Learning restituisce i risultati della stima tooan di applicazione esterna. una chiamata al servizio Web di Machine Learning toomake, passare una chiave API che viene creata quando si distribuisce una stima. servizio Web di Machine Learning Hello è basato su REST, una scelta di architettura comune per i progetti di programmazione web.
 
 Azure Machine Learning dispone di due tipi di servizi:
 
-* Servizio di richiesta-risposta (RRS). Un servizio a latenza bassa e altamente scalabile che offre un'interfaccia ai modelli senza stato creati e distribuiti da Machine Learning Studio.
+* Il servizio di richiesta-risposta (RR) – una bassa latenza, servizio altamente scalabile che offre un'interfaccia toohello modelli senza stato creato e distribuito da hello Machine Learning Studio.
 * Servizio esecuzione batch (BES). Un servizio asincrono che valuta un batch di record di dati.
 
 Per altre informazioni sui servizi Web di Machine Learning, vedere [Distribuire un servizio Web di Azure Machine Learning](machine-learning-publish-a-machine-learning-web-service.md).
 
 ## <a name="get-an-azure-machine-learning-authorization-key"></a>Ottenere una chiave di autorizzazione Azure Machine Learning
-Quando si distribuisce l'esperimento, vengono generate le chiavi API per il servizio Web, recuperabili da diverse posizioni.
+Quando si distribuisce l'esperimento, le chiavi API vengono generate per hello servizio Web. È possibile recuperare le chiavi di hello da diverse posizioni.
 
-### <a name="from-the-microsoft-azure-machine-learning-web-services-portal"></a>Dal portale dei servizi Web di Microsoft Azure Machine Learning
-Accedere al portale dei [servizi Web di Microsoft Azure Machine Learning](https://services.azureml.net).
+### <a name="from-hello-microsoft-azure-machine-learning-web-services-portal"></a>Dal portale di servizi Web di Microsoft Azure Machine Learning: hello
+Accedi toohello [servizi Web di Microsoft Azure Machine Learning](https://services.azureml.net) portale.
 
-Per recuperare la chiave API per un nuovo servizio Web Machine Learning:
+chiave di hello API tooretrieve per un servizio Web di nuova Machine Learning:
 
-1. Nel portale Servizi Web di Machine Learning di Azure, fare clic sul menu **Web Services** (Servizi Web) nel menu in alto.
-2. Selezionare il servizio Web per il quale si desidera recuperare la chiave.
-3. Nel menu in alto fare clic su **Consume**(Uso).
-4. Copiare e salvare la **Chiave primaria**.
+1. Nel portale di servizi Web di Azure Machine Learning hello, fare clic su **servizi Web** menu in alto hello.
+2. Fare clic su servizio Web hello per cui si desidera chiave hello tooretrieve.
+3. Scegliere dal menu superiore hello **consumare**.
+4. Copiare e salvare hello **chiave primaria**.
 
-Per recuperare la chiave API per un nuovo servizio Web Machine Learning di tipo classico:
+chiave di hello API tooretrieve per un servizio Web di classico Machine Learning:
 
-1. Nel portale Servizi Web di Machine Learning di Azure, fare clic sul menu **Classic Web Services** (Servizi Web classici) nel menu in alto.
-2. Fare clic sul servizio Web in uso.
-3. Selezionare l'endpoint per il quale si desidera recuperare la chiave.
-4. Nel menu in alto fare clic su **Consume**(Uso).
-5. Copiare e salvare la **Chiave primaria**.
+1. Nel portale di servizi Web di Azure Machine Learning hello, fare clic su **servizi Web classico** menu in alto hello.
+2. Fare clic su servizio Web hello con cui si lavora.
+3. Fare clic su endpoint hello per cui si desidera chiave hello tooretrieve.
+4. Scegliere dal menu superiore hello **consumare**.
+5. Copiare e salvare hello **chiave primaria**.
 
 ### <a name="classic-web-service"></a>Servizio Web classico
- La chiave di un servizio Web di tipo classico può essere recuperata anche da Machine Learning Studio o dal portale di Azure classico.
+ È inoltre possibile recuperare una chiave per un servizio Web classico da Machine Learning Studio o hello portale di Azure classico.
 
 #### <a name="machine-learning-studio"></a>Machine Learning Studio
-1. In Machine Learning Studio fare clic su **WEB SERVICES** (Servizi Web) a sinistra.
-2. Fare clic su un servizio Web. La **chiave API** si trova nella scheda **DASHBOARD**.
+1. In Machine Learning Studio, fare clic su **servizi WEB** a sinistra di hello.
+2. Fare clic su un servizio Web. Hello **chiave API** in hello **DASHBOARD** scheda.
 
 #### <a name="azure-classic-portal"></a>portale di Azure classico
-1. Fare clic su **MACHINE LEARNING** a sinistra.
-2. Fare clic sull'area di lavoro in cui si trova il servizio Web.
+1. Fare clic su **MACHINE LEARNING** a sinistra di hello.
+2. Fare clic su area di lavoro hello in cui si trova il servizio Web.
 3. Fare clic su **WEB SERVICES**.
 4. Fare clic su un servizio Web.
-5. Fare clic su un endpoint. La "CHIAVE API" si trova in basso a destra.
+5. Fare clic su un endpoint. Hello "Chiave API" non è attivo hello in basso a destra.
 
-## <a id="connect"></a>Connettersi a un servizio Web di Machine Learning
-È possibile connettersi a un servizio Web di Machine Learning usando qualsiasi linguaggio di programmazione che supporta la risposta e la richiesta HTTP. È possibile visualizzare gli esempi in C#, Python e R da una pagina della guida del servizio Web di Machine Learning.
+## <a id="connect"></a>La connessione del servizio Web di Machine Learning tooa
+È possibile connettersi tooa servizio Web di Machine Learning utilizzando qualsiasi linguaggio di programmazione che supporta la risposta e richiesta HTTP. È possibile visualizzare gli esempi in C#, Python e R da una pagina della guida del servizio Web di Machine Learning.
 
 **Guida alle API di Machine Learning** Una Guida per l'API di Machine Learning viene creata quando si distribuisce un servizio Web. Vedere [Procedura dettagliata di Azure Machine Learning - Distribuire il servizio Web](machine-learning-walkthrough-5-publish-web-service.md).
-La Guida per l'API di Machine Learning contiene i dettagli su un servizio Web di stima.
+Guida di Machine Learning API Hello contiene dettagli su una stima del servizio Web.
 
-1. Fare clic sul servizio Web in uso.
-2. Selezionare l'endpoint per il quale si desidera visualizzare la pagina della guida alle API.
-3. Nel menu in alto fare clic su **Consume**(Uso).
-4. Fare clic sulla pagina della **guida alle API** negli endpoint Request-Response o Esecuzione batch.
+1. Fare clic su servizio Web hello con cui si lavora.
+2. Fare clic su endpoint hello per cui si desidera tooview hello pagina della Guida di API.
+3. Scegliere dal menu superiore hello **consumare**.
+4. Fare clic su **pagina della Guida API** in hello richiesta-risposta o gli endpoint di esecuzione del Batch.
 
-**Per visualizzare la guida alle API di Machine Learning per un nuovo servizio Web**
+**la Guida di Machine Learning API tooview per un servizio Web nuovo**
 
-Nel portale dei servizi Web di Azure Machine Learning:
+Nel portale dei servizi Web Azure Machine Learning hello:
 
-1. Fare clic su **WEB SERVICES** (Servizi Web) nel menu in alto.
-2. Selezionare il servizio Web per il quale si desidera recuperare la chiave.
+1. Fare clic su **servizi WEB** nel menu superiore hello.
+2. Fare clic su servizio Web hello per cui si desidera chiave hello tooretrieve.
 
-Fare clic su **Consume** (Uso) per ottenere l'URI per i servizi Richiesta/Risposta ed Esecuzione in batch, nonché il codice di esempio in C#, R e Python.
+Fare clic su **consumare** tooget hello URI per la richiesta Reposonse hello e servizi per l'esecuzione Batch e codice di esempio in c#, R e Python.
 
-Fare clic su **Swagger API** (API Swagger) per ottenere la documentazione basata su Swagger per le API chiamate dagli URI specificati.
+Fare clic su **Swagger API** tooget Swagger documentazione di base per hello API chiamata da hello specificato gli URI.
 
 ### <a name="c-sample"></a>Esempio C#
-Per connettersi a un servizio Web di Machine Learning, usare un **HttpClient** che passa ScoreData. ScoreData contiene FeatureVector, un vettore n-dimensionale di funzioni numeriche che rappresentano ScoreData. Effettuare l'autenticazione al servizio di Machine Learning con una chiave API.
+tooconnect tooa servizio Web di Machine Learning, utilizzare un **HttpClient** passando ScoreData. ScoreData contiene un FeatureVector, un vettore di n-dimensionale delle funzionalità numerico che rappresenta hello ScoreData. Servizio di Machine Learning toohello l'autenticazione con una chiave API.
 
-Per connettersi a un servizio Web di Machine Learning, è necessario installare il pacchetto NuGet **Microsoft.AspNet.WebApi.Client** .
+tooconnect tooa servizio Web di Machine Learning, hello **webapi** è necessario installare il pacchetto NuGet.
 
 **Installare il Nuget Microsoft.AspNet.WebApi.Client in Visual Studio**
 
-1. Pubblicare il set di dati di download dal servizio Web UCI: Adult 2 class dataset.
+1. Pubblicare il set di dati di hello Download da UCI: 2 per adulti classe dataset servizio Web.
 2. Fare clic su **Strumenti** > **Gestione pacchetti NuGet** > **Console di Gestione pacchetti**.
 3. Scegliere **Install-Package Microsoft.AspNet.WebApi.Client**.
 
-**Per eseguire l'esempio di codice**
+**Nell'esempio di codice hello toorun**
 
-1. Pubblicare l'esperimento "Sample 1: Download dataset from UCI: Adult 2 class dataset", che fa parte della raccolta di esempi di Machine Learning.
-2. Assegnare ad apiKey la chiave di un servizio Web. Vedere la sezione precedente **Ottenere una chiave di autorizzazione di Azure Machine Learning** .
-3. Assegnare l'URI del servizio con l'URI della richiesta.
+1. Pubblicare "esempio 1: scaricare set di dati da UCI: adulto 2 classe dataset" esperimento, parte della raccolta di Machine Learning esempio hello.
+2. Assegnare apiKey con chiave hello da un servizio Web. Vedere la sezione precedente **Ottenere una chiave di autorizzazione di Azure Machine Learning** .
+3. Assegnare serviceUri con hello URI della richiesta.
 
 ### <a name="python-sample"></a>Esempio Python
-Per connettersi a un servizio Web di Machine Learning, usare la libreria **urllib2** con ScoreData. ScoreData contiene FeatureVector, un vettore n-dimensionale di funzioni numeriche che rappresentano ScoreData. Effettuare l'autenticazione al servizio di Machine Learning con una chiave API.
+tooconnect tooa servizio Web di Machine Learning, utilizzare hello **urllib2** libreria passando ScoreData. ScoreData contiene un FeatureVector, un vettore di n-dimensionale delle funzionalità numerico che rappresenta hello ScoreData. Servizio di Machine Learning toohello l'autenticazione con una chiave API.
 
-**Per eseguire l'esempio di codice**
+**Nell'esempio di codice hello toorun**
 
-1. Distribuire l'esperimento "Sample 1: Download dataset from UCI: Adult 2 class dataset", che fa parte della raccolta di esempi di Machine Learning.
-2. Assegnare ad apiKey la chiave di un servizio Web. Vedere la sezione **Ottenere una chiave di autorizzazione Azure Machine Learning** all'inizio di questo articolo.
-3. Assegnare l'URI del servizio con l'URI della richiesta.
+1. Distribuire "esempio 1: scaricare set di dati da UCI: adulto 2 classe dataset" esperimento, parte della raccolta di Machine Learning esempio hello.
+2. Assegnare apiKey con chiave hello da un servizio Web. Vedere hello **ottenere una chiave di autorizzazione di Azure Machine Learning** sezione parte iniziale di hello di questo articolo.
+3. Assegnare serviceUri con hello URI della richiesta.
 

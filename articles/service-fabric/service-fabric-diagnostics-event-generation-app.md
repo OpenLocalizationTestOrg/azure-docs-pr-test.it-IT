@@ -1,6 +1,6 @@
 ---
-title: Monitoraggio dell'applicazione Azure Service Fabric | Microsoft Docs
-description: Informazioni su log ed eventi a livello di servizio e applicazione usati per monitorare e diagnosticare i cluster di Azure Service Fabric.
+title: Monitoraggio livello di applicazione di servizio dell'infrastruttura aaaAzure | Documenti Microsoft
+description: Informazioni sull'applicazione e i registri e gli eventi a livello di servizio utilizzato toomonitor e diagnosticare i cluster di Azure Service Fabric.
 services: service-fabric
 documentationcenter: .net
 author: dkkapur
@@ -14,26 +14,26 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 05/26/2017
 ms.author: dekapur
-ms.openlocfilehash: 3c472904641108b7383cd0f1416c47460f8de11a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 4f4da1eaad4b88428eaa3a2100ac25c8a285a727
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="application-and-service-level-event-and-log-generation"></a>Generazione di eventi e log a livello di applicazione e servizio
 
-## <a name="instrumenting-the-code-with-custom-events"></a>Strumentazione del codice con eventi personalizzati
+## <a name="instrumenting-hello-code-with-custom-events"></a>La strumentazione di codice hello con eventi personalizzati
 
-La strumentazione del codice è la base di molti altri aspetti di monitoraggio dei servizi. La strumentazione è l'unico modo per rilevare eventuali problemi e individuare le correzioni necessarie. Anche se è tecnicamente possibile connettere un debugger a un servizio di produzione, questa non è una procedura comune. I dati dettagliati di strumentazione sono quindi importanti.
+La strumentazione di codice hello è base hello per la maggior parte degli altri aspetti dei servizi di monitoraggio. La strumentazione è unico modo hello che sanno che qualcosa non vada e toodiagnose cosa toobe fissa. Sebbene sia tecnicamente possibile tooconnect un servizio di produzione tooa debugger, non è una pratica comune. I dati dettagliati di strumentazione sono quindi importanti.
 
-Alcuni prodotti instrumentano automaticamente il codice. Benché queste soluzioni siano efficaci, è quasi sempre necessaria una strumentazione manuale. Alla fine, è necessario disporre di informazioni sufficienti per eseguire un debug accurato dell'applicazione. Questo documento illustra diversi approcci alla strumentazione del codice e indicano quando è consigliabile scegliere un approccio rispetto a un altro.
+Alcuni prodotti instrumentano automaticamente il codice. Benché queste soluzioni siano efficaci, è quasi sempre necessaria una strumentazione manuale. Fine hello, è necessario disporre di sufficiente tooforensically informazioni eseguire il debug di un'applicazione hello. Questo documento descrive diversi approcci tooinstrumenting del codice, e quando toochoose un approccio rispetto a un altro.
 
 ## <a name="eventsource"></a>EventSource
-Quando si crea una soluzione di Azure Service Fabric da un modello in Visual Studio, viene generata una classe derivata da **EventSource** (**ServiceEventSource** o **ActorEventSource**). Viene creato un modello in cui è possibile aggiungere eventi per l'applicazione o il servizio. Il nome di **EventSource** **deve** essere univoco e deve essere rinominato dalla stringa del modello predefinito MyCompany-&lt;soluzione&gt;-&lt;progetto&gt;. Se esistono più definizioni di **EventSource** con lo stesso nome, potranno verificarsi errori di runtime. Ogni evento definito deve avere un identificatore univoco. Se un identificatore non è univoco, si verificherà un errore di runtime. Alcune organizzazioni preassegnano intervalli di valori per gli identificatori, in modo da evitare conflitti tra team di sviluppo separati. Per altre informazioni, vedere il [blog di Vance](https://blogs.msdn.microsoft.com/vancem/2012/07/09/introduction-tutorial-logging-etw-events-in-c-system-diagnostics-tracing-eventsource/) o la [documentazione di MSDN](https://msdn.microsoft.com/library/dn774985(v=pandp.20).aspx).
+Quando si crea una soluzione di Azure Service Fabric da un modello in Visual Studio, viene generata una classe derivata da **EventSource** (**ServiceEventSource** o **ActorEventSource**). Viene creato un modello in cui è possibile aggiungere eventi per l'applicazione o il servizio. Hello **EventSource** nome **deve** essere univoco e deve essere rinominato dalla stringa di modello predefinito di hello MyCompany -&lt;soluzione&gt; - &lt; progetto&gt;. Più **EventSource** definizioni che usano hello stesso cause nome un problema in fase di esecuzione. Ogni evento definito deve avere un identificatore univoco. Se un identificatore non è univoco, si verificherà un errore di runtime. Alcune organizzazioni preassegnare intervalli di valori per i conflitti tooavoid identificatori tra i team di sviluppo separati. Per ulteriori informazioni, vedere [blog di Vance](https://blogs.msdn.microsoft.com/vancem/2012/07/09/introduction-tutorial-logging-etw-events-in-c-system-diagnostics-tracing-eventsource/) o hello [documentazione MSDN](https://msdn.microsoft.com/library/dn774985(v=pandp.20).aspx).
 
 ### <a name="using-structured-eventsource-events"></a>Uso di eventi EventSource strutturati
 
-Ogni evento negli esempi di codice di questa sezione è definito per un caso specifico, ad esempio, quando viene registrato un tipo di servizio. Quando si definiscono i messaggi in base al caso di utilizzo, è possibile creare pacchetti dei dati e con il testo dell'errore, quindi eseguire ricerche e applicare filtri con maggiore facilità in base ai nomi o ai valori delle proprietà specificate. Strutturando l'output della strumentazione è possibile usarlo con più facilità, ma ciò richiede sforzi maggiori per definire un nuovo evento per ciascun caso d'uso. Alcune definizioni di evento possono essere condivise nell'intera applicazione. Un evento di avvio o arresto di un metodo, ad esempio, può essere riutilizzato in molti servizi in un'applicazione. Un servizio specifico per un dominio, ad esempio un sistema di ordine, può avere un evento **CreateOrder**, che ha un proprio evento univoco. Questo approccio può generare un numero elevato di eventi e può potenzialmente richiedere il coordinamento degli identificatori tra i team di progetto. 
+Ciascuno di hello eventi negli esempi di codice hello in questa sezione vengono definiti per un caso specifico, ad esempio, quando viene registrato un tipo di servizio. Quando si definiscono i messaggi dal caso d'uso, possono essere incluso nel pacchetto dati testo hello di errore di hello e sarà possibile più facilmente la ricerca e filtro in base a nomi hello o valori di hello specificate proprietà. Strutturazione di output della strumentazione hello rende più facile tooconsume, ma richiede maggiore attenzione e l'ora toodefine un nuovo evento per ogni caso d'uso. Alcune definizioni di evento possono essere condivise tra l'intera applicazione hello. Un evento di avvio o arresto di un metodo, ad esempio, può essere riutilizzato in molti servizi in un'applicazione. Un servizio specifico per un dominio, ad esempio un sistema di ordine, può avere un evento **CreateOrder**, che ha un proprio evento univoco. Questo approccio può generare un numero elevato di eventi e può potenzialmente richiedere il coordinamento degli identificatori tra i team di progetto. 
 
 ```csharp
     [EventSource(Name = "MyCompany-VotingState-VotingStateService")]
@@ -41,12 +41,12 @@ Ogni evento negli esempi di codice di questa sezione è definito per un caso spe
     {
         public static readonly ServiceEventSource Current = new ServiceEventSource();
 
-        // The instance constructor is private to enforce singleton semantics.
+        // hello instance constructor is private tooenforce singleton semantics.
         private ServiceEventSource() : base() { }
 
         ...
 
-        // The ServiceTypeRegistered event contains a unique identifier, an event attribute that defined the event, and the code implementation of the event.
+        // hello ServiceTypeRegistered event contains a unique identifier, an event attribute that defined hello event, and hello code implementation of hello event.
         private const int ServiceTypeRegisteredEventId = 3;
         [Event(ServiceTypeRegisteredEventId, Level = EventLevel.Informational, Message = "Service host process {0} registered service type {1}", Keywords = Keywords.ServiceInitialization)]
         public void ServiceTypeRegistered(int hostProcessId, string serviceType)
@@ -54,7 +54,7 @@ Ogni evento negli esempi di codice di questa sezione è definito per un caso spe
             WriteEvent(ServiceTypeRegisteredEventId, hostProcessId, serviceType);
         }
 
-        // The ServiceHostInitializationFailed event contains a unique identifier, an event attribute that defined the event, and the code implementation of the event.
+        // hello ServiceHostInitializationFailed event contains a unique identifier, an event attribute that defined hello event, and hello code implementation of hello event.
         private const int ServiceHostInitializationFailedEventId = 4;
         [Event(ServiceHostInitializationFailedEventId, Level = EventLevel.Error, Message = "Service host initialization failed", Keywords = Keywords.ServiceInitialization)]
         public void ServiceHostInitializationFailed(string exception)
@@ -65,7 +65,7 @@ Ogni evento negli esempi di codice di questa sezione è definito per un caso spe
 
 ### <a name="using-eventsource-generically"></a>Uso generico di EventSource
 
-Poiché può essere difficile definire eventi specifici, molti utenti ne definiscono pochi con un set di parametri in comune che generalmente genera le informazioni sotto forma di stringa. Gran parte dell'aspetto strutturato viene persa, rendendo più difficili le ricerche e i filtri dei risultati. In questo approccio vengono definiti alcuni eventi, in genere corrispondenti ai livelli di registrazione. Il frammento seguente definisce un messaggio di debug e di errore:
+Poiché può essere difficile definire eventi specifici, molti utenti ne definiscono pochi con un set di parametri in comune che generalmente genera le informazioni sotto forma di stringa. Gran parte dell'aspetto di hello strutturato viene persa, ed è più difficili toosearch e filtro hello i risultati. In questo approccio, vengono definiti alcuni eventi che corrispondono in genere i livelli di registrazione toohello. Hello frammento di codice seguente definisce un messaggio di errore e di debug:
 
 ```csharp
     [EventSource(Name = "MyCompany-VotingState-VotingStateService")]
@@ -73,7 +73,7 @@ Poiché può essere difficile definire eventi specifici, molti utenti ne definis
     {
         public static readonly ServiceEventSource Current = new ServiceEventSource();
 
-        // The Instance constructor is private, to enforce singleton semantics.
+        // hello Instance constructor is private, tooenforce singleton semantics.
         private ServiceEventSource() : base() { }
 
         ...
@@ -93,23 +93,23 @@ Poiché può essere difficile definire eventi specifici, molti utenti ne definis
         }
 ```
 
-Anche un ibrido di strumentazione strutturata e generica può essere una soluzione ideale. La strumentazione strutturata viene usata per la segnalazione degli errori e per le metriche. Gli eventi generici possono essere usati per la registrazione dettagliata utilizzata dai tecnici per la risoluzione dei problemi.
+Anche un ibrido di strumentazione strutturata e generica può essere una soluzione ideale. La strumentazione strutturata viene usata per la segnalazione degli errori e per le metriche. Eventi generici possono essere usati per hello dettagliata registrazione ovvero utilizzati dai tecnici per la risoluzione dei problemi.
 
 ## <a name="aspnet-core-logging"></a>Registrazione di ASP.NET Core
 
-È importante pianificare con attenzione la strumentazione del codice. Il piano di strumentazione corretto può consentire di evitare la potenziale destabilizzazione della codebase e la conseguente necessità di ripetere la strumentazione del codice. Per ridurre il rischio, è possibile scegliere una libreria di strumentazione come [Microsoft.Extensions.Logging](https://www.nuget.org/packages/Microsoft.Extensions.Logging/), inclusa in Microsoft ASP.NET Core. ASP.NET Core ha un'interfaccia [ILogger](https://docs.microsoft.com/aspnet/core/api/microsoft.extensions.logging.ilogger) che può essere usata con il provider preferito, riducendo al minimo l'effetto sul codice esistente. È possibile usare il codice in ASP.NET Core in Windows e Linux e in .NET Framework completo, in modo da standardizzare la strumentazione del codice. Ciò viene approfondito di seguito:
+È importante toocarefully pianificare come instrumentare il codice. piano di Hello strumentazione destra consente di evitare potenzialmente destabilizzare il codice di base e quindi la necessità di codice hello tooreinstrument. tooreduce rischio, è possibile scegliere come una libreria di strumentazione [Microsoft.Extensions.Logging](https://www.nuget.org/packages/Microsoft.Extensions.Logging/), che fa parte di Microsoft ASP.NET Core. ASP.NET Core è un [ILogger](https://docs.microsoft.com/aspnet/core/api/microsoft.extensions.logging.ilogger) interfaccia che è possibile utilizzare con il provider di hello di propria scelta, riducendo l'effetto di hello sul codice esistente. È possibile utilizzare il codice hello in ASP.NET Core in Windows e Linux e in hello completa di .NET Framework, in modo standardizzato il codice di strumentazione. Ciò viene approfondito di seguito:
 
 ### <a name="using-microsoftextensionslogging-in-service-fabric"></a>Uso di Microsoft.Extensions.Logging in Service Fabric
 
-1. Aggiungere il pacchetto Microsoft.Extensions.Logging NuGet al progetto da strumentare. Aggiungere anche eventuali pacchetti del provider. Per un pacchetto di terze parti, vedere l'esempio seguente. Per altre informazioni, vedere [Logging in ASP.NET Core](https://docs.microsoft.com/aspnet/core/fundamentals/logging) (Registrazione in ASP.NET Core).
-2. Aggiungere una direttiva **using** per Microsoft.Extensions.Logging al file del servizio.
+1. Aggiungi progetto di toohello pacchetto Microsoft.Extensions.Logging NuGet da tooinstrument hello. Inoltre, aggiungere tutti i pacchetti di provider (per un pacchetto di terze parti, vedere hello di esempio seguente). Per altre informazioni, vedere [Logging in ASP.NET Core](https://docs.microsoft.com/aspnet/core/fundamentals/logging) (Registrazione in ASP.NET Core).
+2. Aggiungere un **utilizzando** direttiva Microsoft.Extensions.Logging tooyour file di servizio.
 3. Definire una variabile privata all'interno della classe di servizio.
 
   ```csharp
   private ILogger _logger = null;
 
   ```
-4. Nel costruttore della classe del servizio aggiungere il codice seguente:
+4. Nel costruttore hello della classe del servizio, aggiungere questo codice:
 
   ```csharp
   _logger = new LoggerFactory().CreateLogger<Stateless>();
@@ -121,30 +121,30 @@ Anche un ibrido di strumentazione strutturata e generica può essere una soluzio
   _logger.LogDebug("Debug-level event from Microsoft.Logging");
   _logger.LogInformation("Informational-level event from Microsoft.Logging");
 
-  // In this variant, we're adding structured properties RequestName and Duration, which have values MyRequest and the duration of the request.
-  // Later in the article, we discuss why this step is useful.
+  // In this variant, we're adding structured properties RequestName and Duration, which have values MyRequest and hello duration of hello request.
+  // Later in hello article, we discuss why this step is useful.
   _logger.LogInformation("{RequestName} {Duration}", "MyRequest", requestDuration);
 
   ```
 
 ## <a name="using-other-logging-providers"></a>Uso di altri provider di registrazione
 
-Alcuni provider di terze parti usano l'approccio descritto nella sezione precedente, inclusi [Serilog](https://serilog.net/), [NLog](http://nlog-project.org/) e [Loggr](https://github.com/imobile3/Loggr.Extensions.Logging). È possibile inserirli tutti nella registrazione ASP.NET Core oppure usarli separatamente. Serilog offre una funzionalità che arricchisce tutti i messaggi inviati da un logger. Questa funzionalità può essere utile per restituire il nome del servizio, il tipo e le informazioni sulla partizione. Per usare questa funzionalità nell'infrastruttura di ASP.NET Core, seguire questa procedura:
+Alcuni provider di terze parti utilizzano approccio hello descritto nella precedente sezione hello inclusi [Serilog](https://serilog.net/), [NLog](http://nlog-project.org/), e [Loggr](https://github.com/imobile3/Loggr.Extensions.Logging). È possibile inserirli tutti nella registrazione ASP.NET Core oppure usarli separatamente. Serilog offre una funzionalità che arricchisce tutti i messaggi inviati da un logger. Questa funzionalità può essere utile toooutput hello servizio nome, tipo e le informazioni di partizione. toouse questa funzionalità in hello infrastruttura ASP.NET Core, eseguire questi passaggi:
 
-1. Aggiungere i pacchetti NuGet Serilog, Serilog.Extensions.Logging e Serilog.Sinks.Observable al progetto. Per l'esempio successivo aggiungere anche Serilog.Sinks.Literate. Un approccio migliore viene illustrato più avanti in questo articolo.
-2. In Serilog creare LoggerConfiguration e l'istanza del logger.
+1. Aggiungere Serilog, Serilog.Extensions.Logging, hello e pacchetti di Serilog.Sinks.Observable NuGet toohello progetto. Ad esempio successivo hello, è necessario aggiungere anche Serilog.Sinks.Literate. Un approccio migliore viene illustrato più avanti in questo articolo.
+2. In Serilog, creare un'istanza di logger LoggerConfiguration e hello.
 
   ```csharp
   Log.Logger = new LoggerConfiguration().WriteTo.LiterateConsole().CreateLogger();
   ```
 
-3. Aggiungere un argomento SeriLog.ILogger al costruttore del servizio e passare il logger appena creato.
+3. Aggiungere un costruttore di servizio Serilog.ILogger toohello argomento e passare hello appena creata del logger.
 
   ```csharp
   ServiceRuntime.RegisterServiceAsync("StatelessType", context => new Stateless(context, Log.Logger)).GetAwaiter().GetResult();
   ```
 
-4. Nel costruttore del servizio aggiungere il codice seguente che crea il necessario per arricchire le proprietà **ServiceTypeName**, **ServiceName**, **PartitionId** e **InstanceId** del servizio. Aggiunge anche un enricher delle proprietà alla struttura di registrazione di ASP.NET Core, per consentire di usare Microsoft.Extensions.Logging.ILogger nel codice.
+4. Nel costruttore servizio hello, aggiungere hello seguente di codice che crea hello enrichers di proprietà per hello **ServiceTypeName**, **ServiceName**, **PartitionId**e  **InstanceId** proprietà del servizio hello. Aggiunge inoltre una toohello enricher proprietà factory di registrazione di ASP.NET Core, pertanto è possibile utilizzare Microsoft.Extensions.Logging.ILogger nel codice.
 
   ```csharp
   public Stateless(StatelessServiceContext context, Serilog.ILogger serilog)
@@ -164,15 +164,15 @@ Alcuni provider di terze parti usano l'approccio descritto nella sezione precede
   }
   ```
 
-5. Instrumentare il codice come se si stesse usando ASP.NET Core senza Serilog.
+5. Instrumentare il codice di hello hello stesso come se si utilizza ASP.NET Core senza Serilog.
 
   >[!NOTE]
-  >È consigliabile non usare Log.Logger statico con l'esempio precedente. Service Fabric può ospitare più istanze dello stesso tipo di servizio in un singolo processo. Se si usa Log.Logger statico, l'ultimo writer degli enricher delle proprietà mostrerà i valori per tutte le istanze in esecuzione. Questo è un motivo per cui la variabile _logger è una variabile di membro privata della classe di servizio. È anche necessario rendere disponibile _logger al codice comune, che potrebbe essere usato nei servizi.
+  >È consigliabile non utilizzare hello statico Log.Logger con hello sopra riportato. Service Fabric può ospitare più istanze di hello stesso tipo all'interno di un singolo processo del servizio. Se si utilizza hello Log.Logger statico, ultimo writer di hello di enrichers proprietà hello verranno visualizzati i valori per tutte le istanze in esecuzione. Si tratta di uno dei motivi per cui hello _logger variabile è una variabile membro privato della classe di servizio hello. Inoltre, è necessario apportare codice disponibile toocommon _logger di hello, che può essere utilizzato in tutti i servizi.
 
 ## <a name="choosing-a-logging-provider"></a>Scelta di un provider di registrazione
 
-Se l'applicazione si basa sulle prestazioni elevate, **EventSource** è in genere l'approccio ottimale. **EventSource** usa *in genere* un numero minore di risorse e offre prestazioni migliori rispetto alla registrazione di ASP.NET Core o di eventuali soluzioni di terze parti disponibili.  Non è un problema per molti servizi, ma se il servizio è orientato alle prestazioni **EventSource** si rivela la scelta più indicata. Tuttavia per ottenere questi vantaggi della registrazione strutturata, **EventSource** richiede un investimento maggiore da parte del team tecnico. Se possibile, effettuare un rapido prototipo di alcune opzioni di registrazione e quindi scegliere quello che meglio soddisfa le esigenze dell'utente.
+Se l'applicazione si basa sulle prestazioni elevate, **EventSource** è in genere l'approccio ottimale. **EventSource** *in genere* Usa meno risorse e più efficace rispetto alla registrazione di ASP.NET Core o una qualsiasi delle soluzioni di terze parti disponibili hello.  Non è un problema per molti servizi, ma se il servizio è orientato alle prestazioni **EventSource** si rivela la scelta più indicata. Tuttavia, tooget questi vantaggi di strutturato registrazione, **EventSource** richiede un investimento maggiore dal team di progettazione. Se possibile, eseguire un rapido prototipo di alcune opzioni di registrazione e quindi scegliere hello che meglio soddisfa le esigenze.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Dopo aver scelto il provider di accesso per instrumentare le applicazioni e i servizi, è necessario aggregare i log e gli eventi prima di inviarli a una piattaforma. Per meglio comprendere alcune delle opzioni consigliate leggere altre informazioni su [EventFlow](service-fabric-diagnostics-event-aggregation-eventflow.md) e [WAD](service-fabric-diagnostics-event-aggregation-wad.md).
+Dopo avere scelto il tooinstrument di provider di registrazione, le applicazioni e servizi, eventi e i registri delle necessario toobe aggregati prima di inviarli tooany piattaforma di analisi. Conoscenza [EventFlow](service-fabric-diagnostics-event-aggregation-eventflow.md) e [WAD](service-fabric-diagnostics-event-aggregation-wad.md) toobetter comprendere alcuni dei hello opzioni consigliata.

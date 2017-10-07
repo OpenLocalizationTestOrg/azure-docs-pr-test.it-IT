@@ -1,6 +1,6 @@
 ---
-title: Collegare modelli per la distribuzione di Azure | Microsoft Docs
-description: Descrive come usare i modelli collegati in un modello di Azure Resource Manager per creare una soluzione basata su un modello modulare. Mostra come passare i valori dei parametri, specificare un file di parametri e gli URL creati in modo dinamico.
+title: aaaLink modelli per la distribuzione di Azure | Documenti Microsoft
+description: Viene descritto come toouse collegato modelli in un toocreate modello di gestione risorse di Azure una soluzione di modello modulare. Illustra come specificare un file di parametri, valori dei parametri toopass e creati in modo dinamico gli URL.
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -14,19 +14,19 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/31/2017
 ms.author: tomfitz
-ms.openlocfilehash: 8b58a83ffd473500dd3f76c09e251f9208527d4f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b935b1810db5ce894d009403cd4bb945cab34ba7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="using-linked-templates-when-deploying-azure-resources"></a>Uso di modelli collegati nella distribuzione di risorse di Azure
-Dall'interno di un modello di Azure Resource Manager è possibile collegarsi a un altro modello che consente di scomporre la distribuzione in un set di modelli di destinazione specifici. In modo analogo alla scomposizione di un'applicazione in diverse classi di codice, la scomposizione offre vantaggi in termini di testing, riuso e leggibilità.  
+All'interno di un modello di gestione risorse di Azure, è possibile collegare tooanother modello, che consentono di toodecompose la distribuzione in un set di modelli di destinazione, scopo specifico. In modo analogo alla scomposizione di un'applicazione in diverse classi di codice, la scomposizione offre vantaggi in termini di testing, riuso e leggibilità.  
 
-È possibile passare parametri da un modello principale a un modello collegato. Tali parametri possono venire associati direttamente ai parametri e alle variabili esposti dal modello chiamante. Il modello collegato può inoltre passare una variabile di output al modello di origine, consentendo un scambio bidirezionale di dati tra modelli.
+È possibile passare parametri da un modello di collegato tooa principale dei modelli, e tali parametri è possono mappare direttamente tooparameters o variabili esposte dal modello di chiamata hello. modello collegato Hello è inoltre possibile passare un modello di origine toohello nascosto variabile output, l'abilitazione di uno scambio di dati bidirezionale tra modelli.
 
-## <a name="linking-to-a-template"></a>Collegamento a un modello
-Per creare un collegamento tra due modelli, aggiungere una risorsa di distribuzione all'interno del modello principale che punta al modello collegato. Impostare la proprietà **templateLink** sull'URI del modello collegato. È possibile specificare i valori dei parametri per il modello collegato direttamente nel modello o in un file di parametri. Nel seguente esempio viene utilizzata la proprietà **parameters** per specificare direttamente un valore di parametro.
+## <a name="linking-tooa-template"></a>Collegamento tooa modello
+Si crea un collegamento tra due modelli mediante l'aggiunta di una risorsa di distribuzione nel modello principale hello punti toohello modello collegato. Impostare hello **templateLink** toohello proprietà URI del modello collegato hello. È possibile fornire i valori dei parametri per il modello collegato hello direttamente nel modello o in un file di parametro. esempio Hello utilizza hello **parametri** toospecify proprietà direttamente un valore di parametro.
 
 ```json
 "resources": [ 
@@ -48,13 +48,13 @@ Per creare un collegamento tra due modelli, aggiungere una risorsa di distribuzi
 ] 
 ```
 
-Come altri tipi di risorse, è possibile impostare le dipendenze tra il modello collegato e altre risorse. Pertanto, quando le altre risorse richiedono un valore di output presente nel modello collegato, è possibile accertarsi di distribuire il modello collegato prima di queste risorse. Viceversa, quando il modello collegato dipende da altre risorse, è possibile accertarsi di distribuire le altre risorse prima di questo modello. Per recuperare un valore da un modello collegato, è possibile usare la sintassi seguente:
+Come altri tipi di risorse, è possibile impostare le dipendenze tra modello collegato hello e altre risorse. Di conseguenza, quando le altre risorse richiedono un valore di output dal modello collegato hello, è possibile verificare che sia distribuito modello collegato hello prima li. In alternativa, quando il modello di hello collegato si basa su altre risorse, per verificare se che altre risorse distribuite prima modello collegato hello. È possibile recuperare un valore da un modello collegato con hello la seguente sintassi:
 
 ```json
 "[reference('linkedTemplate').outputs.exampleProperty.value]"
 ```
 
-Il servizio Resource Manager deve poter accedere al modello collegato. Non è possibile specificare un file locale o un file che sia disponibile unicamente nella rete locale per il modello collegato. È possibile fornire solo un valore URI che includa **http** o **https**. È possibile scegliere di inserire il modello collegato in un account di archiviazione e usare l'URI per tale elemento, come illustrato nell'esempio seguente:
+Hello del servizio Gestione risorse deve essere in grado di tooaccess modello collegato di hello. È possibile specificare un file locale o un file che è disponibile solo in una rete locale per il modello collegato hello. È possibile fornire solo un valore URI che includa **http** o **https**. È il modello collegato in un account di archiviazione e utilizzo hello URI per l'elemento, come illustrato nell'esempio seguente hello tooplace:
 
 ```json
 "templateLink": {
@@ -63,9 +63,9 @@ Il servizio Resource Manager deve poter accedere al modello collegato. Non è po
 }
 ```
 
-Anche se il modello collegato deve essere disponibile esternamente, non è necessario che sia pubblicamente disponibile. È possibile aggiungere il modello a un account di archiviazione privato accessibile solo al proprietario dell'account di archiviazione. Creare quindi un token di firma di accesso condiviso per consentire l'accesso durante la distribuzione. Aggiungere il token con firma di accesso condiviso all'URI del modello collegato. Per conoscere la procedura per la configurazione di un modello in un account di archiviazione e per la generazione di un token con firma di accesso condiviso, consultare [Deploy resources with Resource Manager templates and Azure PowerShell](resource-group-template-deploy.md) (Distribuire le risorse con i modelli di Resource Manager e Azure PowerShell) o [Deploy resources with Resource Manager templates and Azure CLI](resource-group-template-deploy-cli.md) (Distribuire le risorse con i modelli di Azure Resource Manager e l'interfaccia della riga di comando di Azure). 
+Sebbene il modello collegato hello devono essere disponibile esternamente, non è necessario toobe toohello generalmente disponibili pubblico. È possibile aggiungere l'account di archiviazione privato tooa modello che è proprietario dell'account di archiviazione accessibile tooonly hello. È quindi possibile creare un accesso tooenable token di accesso condiviso (firma) durante la distribuzione. Aggiungere tale toohello token SAS URI per il modello collegato hello. Per conoscere la procedura per la configurazione di un modello in un account di archiviazione e per la generazione di un token con firma di accesso condiviso, consultare [Deploy resources with Resource Manager templates and Azure PowerShell](resource-group-template-deploy.md) (Distribuire le risorse con i modelli di Resource Manager e Azure PowerShell) o [Deploy resources with Resource Manager templates and Azure CLI](resource-group-template-deploy-cli.md) (Distribuire le risorse con i modelli di Azure Resource Manager e l'interfaccia della riga di comando di Azure). 
 
-Nell'esempio seguente viene illustrato un modello padre che si collega a un altro modello. È possibile accedere al modello collegato con un token di firma di accesso condiviso passato come parametro.
+Hello di esempio seguente viene illustrato un modello padre tale modello tooanother collegamenti. è possibile accedere con un token di firma di accesso condiviso che viene passato come un parametro di modello collegato Hello.
 
 ```json
 "parameters": {
@@ -87,14 +87,14 @@ Nell'esempio seguente viene illustrato un modello padre che si collega a un altr
 ],
 ```
 
-Anche se il token viene passato come stringa sicura, l'URI del modello collegato, incluso il token di firma di accesso condiviso, è registrato nelle operazioni di distribuzione. Per limitare l'esposizione, impostare una scadenza per il token.
+Anche se il token hello viene passato come stringa sicura, hello URI del modello collegato hello, incluso il token di firma di accesso condiviso hello, viene registrato nelle operazioni di distribuzione hello. esposizione di toolimit, impostare una scadenza per il token hello.
 
-Resource Manager gestisce ogni modello collegato come una distribuzione distinta. Nella cronologia delle distribuzioni relativa al gruppo di risorse, sono visibili distribuzioni distinte per il modello padre i modelli annidati.
+Resource Manager gestisce ogni modello collegato come una distribuzione distinta. Nella cronologia di distribuzione hello per il gruppo di risorse hello, vedrai distribuzioni separate per padre hello e i modelli annidati.
 
 ![cronologia della distribuzione](./media/resource-group-linked-templates/linked-deployment-history.png)
 
-## <a name="linking-to-a-parameter-file"></a>Collegamento a un file di parametri
-Nell'esempio successivo viene utilizzata la proprietà **parametersLink** per il collegamento a un file di parametri.
+## <a name="linking-tooa-parameter-file"></a>Il collegamento di file di parametro tooa
+esempio Hello utilizza hello **parametersLink** file dei parametri di proprietà toolink tooa.
 
 ```json
 "resources": [ 
@@ -117,12 +117,12 @@ Nell'esempio successivo viene utilizzata la proprietà **parametersLink** per il
 ] 
 ```
 
-Il valore URI per il file di parametro collegato non può essere un file locale e deve includere o **http** o **https**. È anche possibile limitare l'accesso al file dei parametri solo tramite un token di firma di accesso condiviso.
+valore dell'URI Hello per file collegato parametro hello non può essere un file locale e deve includere una **http** o **https**. file di parametro Hello può essere limitato tooaccess tramite un token di firma di accesso condiviso.
 
-## <a name="using-variables-to-link-templates"></a>Uso di variabili per collegare i modelli
-Negli esempi precedenti sono illustrati i valori di URL hard-coded per i collegamenti del modello. Questo approccio potrebbe funzionare per un modello semplice ma non funziona correttamente in caso di uso di un ampio set di modelli modulari. In alternativa, è possibile creare una variabile statica contenente un URL di base per il modello principale e quindi creare dinamicamente gli URL per i modelli collegati da tale URL di base. Il vantaggio di questo approccio è rappresentato dal fatto che risulta più semplice spostare o scomporre il modello perché è sufficiente modificare la variabile statica nel modello principale. Il modello principale passa gli URI corretti a tutto il modello scomposto.
+## <a name="using-variables-toolink-templates"></a>Utilizzo di variabili toolink modelli
+Negli esempi precedenti Hello mostrano i valori di URL hardcoded per i collegamenti di modello hello. Questo approccio potrebbe funzionare per un modello semplice ma non funziona correttamente in caso di uso di un ampio set di modelli modulari. In alternativa, è possibile creare una variabile statica che archivia un URL di base per il modello principale hello e quindi creare in modo dinamico gli URL per i modelli di hello collegato da tale URL di base. Il vantaggio di Hello di questo approccio è che è possibile spostare o divisione modello hello poiché è sufficiente variabile statica di hello toochange nel modello principale hello. modello principale Hello passa hello URI di hello scomposto modello corretto.
 
-Nell'esempio seguente viene illustrato come usare un URL di base per creare due URL per i modelli collegati (**sharedTemplateUrl** e **vmTemplate**). 
+Hello esempio seguente viene illustrato come una base toocreate URL toouse due URL per collegato modelli (**sharedTemplateUrl** e **vmTemplate**). 
 
 ```json
 "variables": {
@@ -132,7 +132,7 @@ Nell'esempio seguente viene illustrato come usare un URL di base per creare due 
 }
 ```
 
-È inoltre possibile usare [deployment ()](resource-group-template-functions-deployment.md#deployment) per ottenere l'URL di base per il modello corrente e usarlo per ottenere l'URL per altri modelli nello stesso percorso. Questo approccio è utile se la posizione del modello cambia, ad esempio a causa del controllo delle versioni, o si vuole evitare la codifica di URL nel file del modello. 
+È inoltre possibile utilizzare [distribuzione ()](resource-group-template-functions-deployment.md#deployment) tooget hello URL di base per il modello corrente hello e utilizzare l'URL hello tooget per gli altri modelli hello nello stesso percorso. Questo approccio è utile se viene modificato il percorso del modello (probabilmente dovuto tooversioning) o si desidera tooavoid rigido codifica URL nel file di modello hello. 
 
 ```json
 "variables": {
@@ -141,9 +141,9 @@ Nell'esempio seguente viene illustrato come usare un URL di base per creare due 
 ```
 
 ## <a name="complete-example"></a>Esempio completo
-I seguenti modelli di esempio mostrano una disposizione semplificata di modelli collegati, allo scopo di illustrare alcuni dei concetti in questo articolo. supponendo che i modelli siano stati aggiunti nello stesso contenitore in un account di archiviazione con accesso pubblico disattivato. Il modello collegato restituisce un valore al modello principale nella sezione **outputs** .
+Hello modelli di esempio seguente mostra una disposizione semplificata dei modelli collegati tooillustrate alcuni dei concetti hello in questo articolo. Si presuppone che i modelli di hello sono stati aggiunti toohello stesso contenitore in un account di archiviazione con accesso pubblico disattivato. modello collegato Hello passa un valore toohello indietro principale dei modelli in hello **restituisce** sezione.
 
-Il file **parent.json** è costituito da:
+Hello **parent.json** file costituito da:
 
 ```json
 {
@@ -175,7 +175,7 @@ Il file **parent.json** è costituito da:
 }
 ```
 
-Il file **helloworld.json** è costituito da:
+Hello **helloworld.json** file costituito da:
 
 ```json
 {
@@ -193,7 +193,7 @@ Il file **helloworld.json** è costituito da:
 }
 ```
 
-Nella PowerShell, ottenere un token per il contenitore e distribuire i modelli con:
+In PowerShell, ottenere un token per il contenitore di hello e distribuire modelli hello con:
 
 ```powershell
 Set-AzureRmCurrentStorageAccount -ResourceGroupName ManageGroup -Name storagecontosotemplates
@@ -202,7 +202,7 @@ $url = (Get-AzureStorageBlob -Container templates -Blob parent.json).ICloudBlob.
 New-AzureRmResourceGroupDeployment -ResourceGroupName ExampleGroup -TemplateUri ($url + $token) -containerSasToken $token
 ```
 
-Nell'interfaccia della riga di comando 2.0 di Azure si ottiene un token per il contenitore e si distribuiscono i modelli con il codice seguente:
+2.0 CLI di Azure, ottenere un token per il contenitore di hello e distribuire modelli hello con hello seguente codice:
 
 ```azurecli
 expiretime=$(date -u -d '30 minutes' +%Y-%m-%dT%H:%MZ)
@@ -226,6 +226,6 @@ az group deployment create --resource-group ExampleGroup --template-uri $url?$to
 ```
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Per informazioni sulla definizione dell'ordine di distribuzione per le risorse, vedere [Definizione delle dipendenze nei modelli di Azure Resource Manager](resource-group-define-dependencies.md)
-* Per informazioni su come definire una sola risorsa e crearne molte istanze, vedere [Creare più istanze di risorse in Azure Resource Manager](resource-group-create-multiple.md)
+* vedere toolearn sulla definizione di ordine di distribuzione hello per le risorse, hello [definizione delle dipendenze nei modelli di gestione risorse di Azure](resource-group-define-dependencies.md)
+* toolearn come una risorsa toodefine ma creare molte istanze di, vedere [creare più istanze delle risorse di gestione risorse di Azure](resource-group-create-multiple.md)
 

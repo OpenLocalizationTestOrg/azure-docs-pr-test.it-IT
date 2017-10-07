@@ -1,6 +1,6 @@
 ---
-title: Installare il dispositivo Microsoft Azure StorSimple 8100 | Documentazione Microsoft
-description: Viene descritto come disimballare, montare su rack e cablare il dispositivo StorSimple 8100 prima di distribuire e configurare il software.
+title: dispositivo di Microsoft Azure StorSimple 8100 aaaInstall | Documenti Microsoft
+description: Viene descritto come toounpack, montaggio rack e cablare il dispositivo StorSimple 8100 prima di distribuire e configurare il software di hello.
 services: storsimple
 documentationcenter: NA
 author: alkohli
@@ -14,32 +14,32 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 08/17/2016
 ms.author: alkohli
-ms.openlocfilehash: 102dffcd73f3d3b9362d7b2853faa060e9c645dd
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 76b94e57318b6c25dc3333ae73edc9e4752b7d1d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="unpack-rack-mount-and-cable-your-storsimple-8100-device"></a>Disimballaggio, montaggio su rack e cablaggio del dispositivo StorSimple 8100
 ## <a name="overview"></a>Panoramica
-Il dispositivo Microsoft Azure StorSimple 8100 è un dispositivo a singolo enclosure montato su rack. In questa esercitazione viene illustrato come disimballare, montare su rack e cablare l'hardware del dispositivo StorSimple 8100 prima di configurare e distribuire il dispositivo.
+Il dispositivo Microsoft Azure StorSimple 8100 è un dispositivo a singolo enclosure montato su rack. In questa esercitazione viene illustrato come cavo toounpack e montaggio in rack hardware dei dispositivi StorSimple 8100 hello prima di configurare e distribuire il dispositivo di StorSimple hello.
 
 ## <a name="unpack-your-storsimple-8100-device"></a>Disimballare il dispositivo StorSimple 8100
-Nella seguente procedura vengono fornite istruzioni chiare e dettagliate su come disimballare il dispositivo di archiviazione StorSimple 8100. Questo dispositivo viene fornito in una singola confezione.
+Hello passaggi seguenti offrono chiare e istruzioni dettagliate su come toounpack il dispositivo di archiviazione StorSimple 8100. Questo dispositivo viene fornito in una singola confezione.
 
-### <a name="prepare-to-unpack-your-device"></a>Preparazione del disimballaggio del dispositivo
-Prima di disimballare il dispositivo, consultare le informazioni seguenti.
+### <a name="prepare-toounpack-your-device"></a>Preparare il dispositivo di toounpack
+Prima di Disimballare il dispositivo, verificare le seguenti informazioni hello.
 
-![Icona di avviso](./media/storsimple-safety/IC740879.png)![icona peso elevato](./media/storsimple-8100-hardware-installation/HCS_HeavyWeight_Icon.png) **AVVISO**
+![Icona di avviso](./media/storsimple-safety/IC740879.png)![icona peso elevato](./media/storsimple-8100-hardware-installation/HCS_HeavyWeight_Icon.png)**AVVISO**
 
-1. Accertarsi che siano disponibili almeno due persone per sostenere il peso dell'enclosure, nel caso in cui debba essere trasportato manualmente. Un'enclosure completamente configurata può pesare fino a 32 kg.
-2. Posizionare la scatola su una superficie piana e orizzontale.
+1. Assicurarsi di disporre di due persone toomanage disponibili hello spessore enclosure hello se si sta gestendo manualmente. Un'enclosure completamente configurata può pesare backup too32 kg (70 lb.).
+2. Posizionare la casella di hello su una superficie piana.
 
-Successivamente, completare la procedura seguente per disimballare il dispositivo.
+Eseguire quindi hello seguendo i passaggi toounpack il dispositivo.
 
-#### <a name="to-unpack-your-device"></a>Per disimballare il dispositivo
-1. Controllare le scatole e le protezioni in schiuma per verificare l'eventuale presenza di ammaccature, tagli, danni provocati dall'acqua o altri danni evidenti. Se la scatola o le protezioni risultano danneggiate in modo grave, non aprire la confezione. [Contattare il Supporto tecnico Microsoft](storsimple-contact-microsoft-support.md) per istruzioni su come verificare il corretto funzionamento del dispositivo.
-2. Disimballare la scatola. La figura seguente illustra il dispositivo StorSimple disimballato.
+#### <a name="toounpack-your-device"></a>toounpack del dispositivo
+1. Controllare la casella di hello e hello in schiuma per schiacciamenti, tagli, guasti provocati dall'acqua o altri danni evidenti. Se la casella di hello o creazione di pacchetti è gravemente danneggiato, non aprire casella hello. . [Contattare il supporto Microsoft](storsimple-contact-microsoft-support.md) toohelp si valuta se il dispositivo di hello è funzioni correttamente.
+2. Decomprimere casella hello. Hello seguente immagine Mostra hello decompresso di dispositivo StorSimple.
    
      ![Disimballare il dispositivo di archiviazione](./media/storsimple-8100-hardware-installation/HCSUnpackyour2Udevice.png)
    
@@ -52,7 +52,7 @@ Successivamente, completare la procedura seguente per disimballare il dispositiv
    |   3 |Dispositivo |
    |   4 |Protezione superiore |
    |   5 |Scatola accessori |
-3. Dopo aver disimballato le due scatole, assicurarsi di avere a disposizione:
+3. Una volta hello scatola, verificare di disporre di:
    
    * 1 Dispositivo a singolo enclosure
    * 2 cavi di alimentazione
@@ -64,62 +64,62 @@ Successivamente, completare la procedura seguente per disimballare il dispositiv
    * 1 kit per il montaggio in rack (2 guide laterali con componenti di montaggio)
    * Guida introduttiva
      
-     In caso di mancato ricevimento di uno qualsiasi degli elementi sopra elencati, [contattare il Supporto Tecnico Microsoft](storsimple-contact-microsoft-support.md).
+     Se non si dispone delle hello elementi sopra elencati, [contattare il supporto Microsoft](storsimple-contact-microsoft-support.md).
 
-Il passaggio successivo consiste nel montaggio su rack del dispositivo.
+passaggio successivo Hello è toorack montaggio del dispositivo.
 
 ## <a name="rack-mount-your-storsimple-8100-device"></a>Montare su rack il dispositivo StorSimple 8100
-Seguire questa procedura per installare il dispositivo di archiviazione StorSimple 8100 in un rack standard da 48,26 cm (19 pollici) con montanti anteriori e posteriori. Il dispositivo StorSimple 8100 è costituito da un'enclosure principale.
+Seguire hello successivi passaggi tooinstall il dispositivo di archiviazione StorSimple 8100 in un rack standard da 19 pollici con anteriori e posteriori. il dispositivo StorSimple 8100 Hello contiene un'unica enclosure principale.
 
-L'installazione si articola in più passaggi, ciascuno dei quali è descritto nelle seguenti procedure.
+installazione di Hello è costituita da più passaggi, ognuno dei quali è descritto nelle procedure hello.
 
 > [!IMPORTANT]
 > I dispositivi StorSimple devono essere montati su rack per il corretto funzionamento.
 > 
 > 
 
-### <a name="prepare-the-site"></a>Preparare il sito
-Il dispositivo deve essere installato su un rack standard da 48,26 cm (19 pollici) con montanti anteriori e posteriori. Utilizzare la procedura seguente per predisporre l'installazione del rack.
+### <a name="prepare-hello-site"></a>Preparare il sito hello
+Hello dispositivo deve essere installato in un rack standard da 19 pollici con montanti anteriori e posteriori. Utilizzare hello seguente tooprepare procedure per l'installazione in rack.
 
-#### <a name="to-prepare-the-site-for-rack-installation"></a>Per predisporre l'ambiente per l'installazione del rack
-1. Assicurarsi che il dispositivo sia collocato in sicurezza su una superficie di lavoro (o simile) orizzontale, stabile e piana.
-2. Verificare che nell'ambiente in cui si intende effettuare l'installazione sia disponibile una fonte di alimentazione CA standard indipendente o un'unità PDU (Power Distribution Unit) rack con un gruppo di continuità.
-3. Assicurarsi che nel rack in cui si intende montare il dispositivo sia disponibile uno slot 2U.
+#### <a name="tooprepare-hello-site-for-rack-installation"></a>sito hello tooprepare per l'installazione in rack
+1. Assicurarsi che il dispositivo hello viene posizionato in modo sicuro su una, stabile e piana superficie di lavoro (o simile).
+2. Verificare che il sito di hello in cui si intende tooset backup dispone di alimentazione CA standard da un'origine indipendente o un'unità di distribuzione di alimentazione (PDU) rack con la potenza di una gruppo di continuità (UPS) di fornire.
+3. Verificare che sia disponibile in rack hello in cui si intende dispositivo hello toomount tale slot uno 2U.
 
-![Icona di avviso](./media/storsimple-safety/IC740879.png)![icona peso elevato](./media/storsimple-8100-hardware-installation/HCS_HeavyWeight_Icon.png) **AVVISO**
+![Icona di avviso](./media/storsimple-safety/IC740879.png)![icona peso elevato](./media/storsimple-8100-hardware-installation/HCS_HeavyWeight_Icon.png)**AVVISO**
 
-Se si prevede di trasportare il dispositivo a mano, assicurarsi che siano disponibili due persone. Un'enclosure completamente configurata può pesare fino a 32 kg.
+Assicurarsi di disporre di peso hello di due persone toomanage disponibili se si sta gestendo il programma di installazione di hello dispositivo manualmente. Un'enclosure completamente configurata può pesare backup too32 kg (70 lb.).
 
 ### <a name="rack-prerequisites"></a>Prerequisiti del rack
-L'enclosure 8100 è stata progettata per essere installata in un armadio rack standard da 48,26 cm (8100 pollici) con:
+enclosure 8100 Hello è progettato per l'installazione in un rack da 19 pollici standard CAB con:
 
-* Profondità minima di 70,71 cm (27,84 pollici) tra un montante del rack e un altro
-* Peso massimo del dispositivo pari a 32 kg
+* Profondità minima di 27,84 pollici dal rack post toopost.
+* Peso massimo di 32 kg per il dispositivo hello
 * Contropressione massima di 5 Pascal (corrispondente alla pressione esercitata da una colonna di acqua di 0,5 mm).
 
 ### <a name="rack-mounting-rail-kit"></a>Kit per il montaggio su rack
-Viene fornito un set di guide di montaggio da usare con l'armadio rack da 48,26 cm (19 pollici). Le guide sono state testate per sostenere il peso massimo dell'enclosure. Inoltre, grazie alla presenza delle guide, è possibile installare anche altre enclosure senza occupare spazio all'interno del rack.
+Per l'utilizzo con armadio rack da 19 pollici hello viene fornito un set di guide di montaggio. le sbarre Hello sono stati testati peso massimo dell'enclosure di hello toohandle. Le guide anche consentiranno l'installazione di più enclosure senza alcuna perdita di spazio nel rack hello.
 
-#### <a name="to-install-the-device-on-the-rails"></a>Per installare il dispositivo sulle guide
-1. Eseguire questo passaggio solo se nel dispositivo non sono installate guide interne. In genere, le guide sono preinstallate. In caso contrario, installare le slitte delle guide destra e sinistra ai lati dello chassis dell'enclosure. Tali slitte vengono fissate a ciascun lato con sei viti metriche. Per un migliore orientamento, le slitte delle guide sono contrassegnate con le diciture **LH – Front** (sinistra - anteriore) e **RH – Front** (destra - anteriore), mentre l'estremità a contatto con la parte posteriore dell'enclosure è affusolata.<br/>
+#### <a name="tooinstall-hello-device-on-hello-rails"></a>dispositivo hello tooinstall Guide hello
+1. Eseguire questo passaggio solo se non ci sono guide interne installate sul dispositivo. Guide interna hello in genere, vengono installati nella factory hello. Se non sono installati Guide, quindi installare hello slitte delle guide destra e sinistra toohello i lati del telaio dell'enclosure hello. Tali slitte vengono fissate a ciascun lato con sei viti metriche. toohelp con orientamento, sbarra hello slitte delle guide sono contrassegnate **LH-Front** e **RH-Front**, e di fine hello apposta parte posteriore di hello dell'enclosure hello è un affusolata.<br/>
    
-    ![Fissaggio delle slitte delle guide allo chassis dell'enclosure](./media/storsimple-8100-hardware-installation/HCSAttachingRailSlidestoEnclosureChassis.png)
+    ![Collegamento sbarra diapositive tooenclosure chassis](./media/storsimple-8100-hardware-installation/HCSAttachingRailSlidestoEnclosureChassis.png)
 
-    **Fissaggio delle slitte delle guide interne ai lati dello chassis**
+    **Collegamento sbarra interna diapositive toohello i lati dell'enclosure hello**
    
     Etichetta | Descrizione
     ----- | -----------
     1     | Viti con testa a bottone M 3X4
     2     | Guide dello chassis
 
-2. Fissare i gruppi guida destra esterna e guida sinistra esterna agli elementi verticali dell'armadio rack. Per un corretto orientamento, i supporti sono contrassegnati con le diciture **LH** (sinistra), **RH** (destra) e **This side up** (alto).
-3. Individuare i perni nella parte anteriore e posteriore del gruppo guida. Estendere la guida in modo da posizionarla tra i montanti del rack e inserire i perni nei fori degli elementi verticali dei montanti anteriori e posteriori. Assicurarsi che il gruppo guida sia in posizione orizzontale.
-4. Fissare il gruppo guida agli elementi verticali del rack con due delle viti metriche fornite. Usare una vite per l'elemento anteriore e una per quello posteriore.
-5. Ripetere la procedura per l'altro gruppo guida.<br/>
+2. Associare sbarra left outer hello e destra outer assembly toohello verticali dell'armadio rack. Hello supporti sono contrassegnati con **LH**, **RH**, e **questo lato backup** tooguide tramite hello correggere orientamento.
+3. Individuare i perni hello in hello anteriore e posteriore di assembly sbarra hello. Estendere hello sbarra toofit tra hello montanti del rack e inserire il PIN hello anteriore hello e rack posteriore post verticale fori. Assicurarsi che l'assembly sbarra hello sia livello.
+4. Utilizzare due membri hello fornito viti metriche toosecure hello sbarra assembly toohello rack verticale. Usare una vite per hello anteriore e una sul retro hello.
+5. Ripetere questi passaggi per hello altro gruppo Guida.<br/>
    
-     ![Fissaggio delle slitte delle guide all'armadio rack](./media/storsimple-8100-hardware-installation/HCSAttachingRailSlidestoRackCabinet.png)
+     ![Collegamento toorack diapositive sbarra CAB](./media/storsimple-8100-hardware-installation/HCSAttachingRailSlidestoRackCabinet.png)
    
-    **Fissaggio dei gruppi guida esterna al rack**
+    **Collegamento esterno sbarra assembly toohello rack**
    
    | Etichetta | Descrizione |
    | --- | --- |
@@ -129,70 +129,70 @@ Viene fornito un set di guide di montaggio da usare con l'armadio rack da 48,26 
    |   4 |Vite di fissaggio |
    |   5 |Perni di posizionamento della guida sinistra (parte posteriore) |
 
-### <a name="mounting-the-device-in-the-rack"></a>Montaggio del dispositivo nel rack
-Per montare il dispositivo nel rack usando le guide appena installate, seguire questa procedura.
+### <a name="mounting-hello-device-in-hello-rack"></a>Montaggio hello dispositivo nel rack hello
+Usando hello guide appena installate, eseguire hello seguendo i passaggi toomount hello dispositivo rack hello.
 
-#### <a name="to-mount-the-device"></a>Per montare il dispositivo
-1. Con l'aiuto di un'altra persona, sollevare l'enclosure e allinearla alle guide del rack.
-2. Inserire con cura il dispositivo nelle guide e spingerlo nell'armadio rack completamente.<br/>
+#### <a name="toomount-hello-device"></a>dispositivo hello toomount
+1. Con un Assistente, sollevare hello enclosure e allinearla alle guide rack hello.
+2. Inserire delicatamente dispositivo hello in Guide hello e quindi eseguire il push dispositivo hello completamente in rack hello CAB.<br/>
    
-    ![Inserimento del dispositivo nel rack](./media/storsimple-8100-hardware-installation/HCSInsertingDeviceintheRack.png)
+    ![Inserimento del dispositivo nel rack hello](./media/storsimple-8100-hardware-installation/HCSInsertingDeviceintheRack.png)
    
-    **Montaggio del dispositivo nel rack**
-3. Rimuovere i copriflangia anteriori sinistro e destro estraendoli dalle relative sedi. I copriflangia sono semplicemente inseriti sulle flange.
-4. Fissare l'enclosure nel rack installando una vite a croce in ciascuna flangia, sinistra e destra.
-5. Installare i copriflangia premendoli nella posizione corretta fino a inserirli completamente.<br/>
+    **Montaggio hello dispositivo nel rack hello**
+3. Rimuovere hello sinistra e destra anteriore copriflangia estraendo caps hello disponibile. copriflangia Hello semplicemente bloccata su hello flange.
+4. Fissare l'enclosure di hello in rack hello con l'installazione uno fornito vite a croce in ciascuna flangia, sinistra e destra.
+5. Installare hello copriflangia premendoli nella posizione e li allineamento sul posto.<br/>
    
      ![Installazione dei copriflangia](./media/storsimple-8100-hardware-installation/HCSInstallingFlangeCaps.png)
    
-    **Installazione dei copriflangia**
+    **Installazione dei copriflangia hello**
    
    | Etichetta | Descrizione |
    | --- | --- |
    |   1 |Vite di fissaggio dell'enclosure |
 
-Il passaggio successivo consiste nel cablare il dispositivo per l'alimentazione, l'accesso di rete e quello seriale.
+passaggio successivo Hello è toocable del dispositivo per l'alimentazione, rete e accesso seriale.
 
 ## <a name="cable-your-storsimple-8100-device"></a>Cablare il dispositivo StorSimple 8100
-In questo argomento vengono illustrate le procedure per cablare il dispositivo StorSimple 8100 per l'alimentazione, la connessione di rete e quella seriale.
+Hello procedure seguenti illustrano come toocable il dispositivo StorSimple 8100 per l'alimentazione, rete e porte seriali.
 
 ### <a name="prerequisites"></a>Prerequisiti
-Prima di iniziare il cablaggio del dispositivo, è necessario avere a disposizione:
+Prima di iniziare hello cablaggio del dispositivo, è necessario:
 
 * Il dispositivo di archiviazione, interamente disimballato e montato in rack.
 * 2 cavi di alimentazione inclusi con il dispositivo
-* Accesso a 2 unità PDU (Power Distribution Unit) - consigliato
+* Accesso too2 unità Power Distribution (scelta consigliata).
 * Cavi di rete
 * Cavi seriali forniti
-* Convertitore seriale-USB con il driver appropriato installato sul PC (se necessario)
+* Convertitore seriale-USB con driver di hello appropriato installato sul PC (se necessario)
 * 4 schede da QSFP a SFP fornite da usare con interfacce di rete 10 GbE
-* [Hardware supportato per le interfacce di rete 10 GbE sul dispositivo StorSimple](storsimple-supported-hardware-for-10-gbe-network-interfaces.md)
+* [Hardware supportati per le interfacce di rete GbE hello 10 nel dispositivo StorSimple](storsimple-supported-hardware-for-10-gbe-network-interfaces.md)
 
 ### <a name="power-cabling"></a>Cablaggio di alimentazione
-Il dispositivo include moduli PCM (Power and Cooling Modules) Entrambi i PCM devono essere installati e collegati a una fonte di alimentazione diversa per assicurare disponibilità elevata.
+Il dispositivo include moduli PCM (Power and Cooling Modules) Entrambi i PCM devono essere installati e connesso toodifferent power origini tooensure la disponibilità elevata.
 
-Per cablare il dispositivo per l'alimentazione, attenersi alla seguente procedura.
+Eseguire hello seguendo i passaggi toocable il dispositivo per l'alimentazione.
 
 [!INCLUDE [storsimple-cable-8100-for-power](../../includes/storsimple-cable-8100-for-power.md)]
 
 ### <a name="network-cabling"></a>Cablaggio di rete
-Il dispositivo presenta una configurazione di tipo attivo-standby: in qualsiasi momento uno dei moduli controller è attivo ed elabora tutte le operazioni su disco e di rete, mentre l'altro è in standby. In caso di malfunzionamento di un controller, quello in standby si attiva immediatamente e continua tutte le operazioni su disco e di rete.
+Il dispositivo non è una configurazione attivo-standby: in qualsiasi momento, un modulo controller è attivo e l'elaborazione di tutte le operazioni su disco e rete mentre hello altro modulo controller in standby. Se un controller non riesce, controller in standby hello viene attivata immediatamente e continua tutte le operazioni su disco e rete hello.
 
-Per supportare il failover del controller ridondante, è necessario cablare la rete del dispositivo come indicato nella procedura seguente.
+toosupport il failover del controller ridondante, è necessario toocable il dispositivo di rete come descritto in hello alla procedura seguente.
 
-#### <a name="to-cable-for-network-connection"></a>Per cablare il dispositivo per la connessione di rete
-1. Il dispositivo è dotato di sei interfacce di rete su ciascun controller: quattro porte Ethernet da 1 Gbps e due da 10 Gbps. Identificare le varie porte dati nel backplane del dispositivo.
+#### <a name="toocable-for-network-connection"></a>toocable per la connessione di rete
+1. Il dispositivo è dotato di sei interfacce di rete su ciascun controller: quattro porte Ethernet da 1 Gbps e due da 10 Gbps. Identificare hello diversi dati porte nel hello backplane del dispositivo.
    
     ![Backplane del dispositivo 8100](./media/storsimple-8100-hardware-installation/HCSBackplaneof2UDevicewithPortsLabeled.jpg)
    
-    **Parte posteriore del dispositivo con le porte dati**
+    **Parte posteriore dispositivo di hello con porte dati**
    
    | Etichetta | Description |
    | --- | --- |
    |   0,1,4,5 |Interfacce di rete da 1 GbE |
    |   2,3 |Interfacce di rete da 10 GbE |
    |   6 |Porte seriali |
-2. Per il cablaggio di rete vedere la seguente figura. La configurazione minima di rete è indicata da linee blu continue. La configurazione aggiuntiva richiesta per una disponibilità elevata e prestazioni ottimali è indicata da linee tratteggiate.
+2. Vedere hello seguente diagramma di cablaggio di rete. (configurazione di rete minima di hello è indicata da linee blu continue. La configurazione aggiuntiva richiesta per una disponibilità elevata e prestazioni ottimali è indicata da linee tratteggiate.
 
     ![Cablare il dispositivo 2U per la rete](./media/storsimple-8100-hardware-installation/HCSCableYour2UDeviceforNetwork.png)
 
@@ -210,41 +210,41 @@ Per supportare il failover del controller ridondante, è necessario cablare la r
 
 
 
-Quando si effettua il cablaggio del dispositivo, la configurazione minima richiede:
+Quando il cablaggio dispositivo hello, richiede la configurazione minima di hello:
 
-* Almeno due interfacce di rete connesse in ogni controller, di cui una per l'accesso al cloud e l'altra per iSCSI. La porta DATA 0 viene abilitata automaticamente e configurata mediante la console seriale del dispositivo. Oltre a DATA 0, è presente anche un'altra porta dati che deve essere configurata mediante il portale di Azure classico. In questo caso, collegare la porta DATA 0 alla rete LAN principale (rete con accesso a Internet). Le altre porte dati possono essere collegate al segmento SAN/iSCSI LAN (VLAN) della rete, a seconda del ruolo previsto.
-* Interfacce identiche in ogni controller collegato alla stessa rete, in modo da assicurare la disponibilità in seguito a un failover del controller. Se, ad esempio, si decide di collegare le porte DATA 0 e DATA 3 di uno dei controller, è necessario collegare anche le corrispondenti porte DATA 0 e DATA 3 dell'altro controller.
+* Almeno due interfacce di rete connesse in ogni controller, di cui una per l'accesso al cloud e l'altra per iSCSI. DATA 0, la porta è automaticamente abilitata e configurata mediante la console seriale del dispositivo hello hello Hello. Oltre a DATA 0, un'altra porta dati che deve anche toobe configurato tramite hello portale di Azure classico. In questo caso, la connessione dati 0 porta toohello rete LAN principale (rete con accesso a Internet). Hello altri dati porte possono essere connesso segmento di tooSAN/iSCSI LAN (VLAN) della rete hello, in base al ruolo hello previsto.
+* Interfacce identiche su ogni toohello controller connessi stessa rete tooensure disponibilità se si verifica un failover del controller. Ad esempio, se si sceglie tooconnect DATA 0 e DATA 3 di uno dei controller hello, è necessario tooconnect hello corrispondente DATA 0 e DATA 3 su hello altro controller.
 
 Da tenere presente per prestazioni e disponibilità elevate:
 
 * Se possibile, configurare in ogni controller una coppia di interfacce di rete per l'accesso al cloud (1 GbE) e un'altra coppia per iSCSI (10 GbE consigliati).
-* Se possibile, collegare le interfacce di rete di ogni controller a due interruttori diversi per assicurare la disponibilità in caso di malfunzionamento di un interruttore. L'immagine illustra le due interfacce di rete 10 GbE, DATA 2 e DATA 3, di ogni controller connesso a due diversi interruttori.
+* Se possibile, connettersi interfacce di rete da ogni disponibilità di controller tootwo diversi commutatori tooensure contro un malfunzionamento dell'interruttore. Hello illustrata hello due da 10 GbE interfacce di rete, DATA 2 e DATA 3, da ogni controller connessi tootwo diversi commutatori.
 
-Per altre informazioni, consultare le **interfacce di rete** sotto i [requisiti di disponibilità elevata per il dispositivo StorSimple](storsimple-system-requirements.md#high-availability-requirements-for-storsimple).
+Per ulteriori informazioni, vedere toohello **interfacce di rete** in hello [requisiti di disponibilità elevata per il dispositivo StorSimple](storsimple-system-requirements.md#high-availability-requirements-for-storsimple).
 
 > [!NOTE]
-> Se si usano ricetrasmettitori SFP+ con interfacce di rete 10 GbE, usare le schede QSFP-SFP+ di serie. Per altre informazioni, passare a [Hardware supportato per le interfacce di rete 10 GbE sul dispositivo StorSimple](storsimple-supported-hardware-for-10-gbe-network-interfaces.md).
+> Se si utilizza ricetrasmettitori SFP + con le interfacce di rete 10 GbE, utilizzare hello fornito QSFP-SFP + schede. Per ulteriori informazioni, visitare troppo[hardware supportato per le interfacce di rete GbE hello 10 nel dispositivo StorSimple](storsimple-supported-hardware-for-10-gbe-network-interfaces.md).
 > 
 > 
 
 ### <a name="serial-port-cabling"></a>Cablaggio della porta seriale
-Per cablare la porta seriale, attenersi alla seguente procedura.
+Eseguire hello seguendo i passaggi toocable la porta seriale.
 
-#### <a name="to-cable-for-serial-connection"></a>Per cablare il dispositivo per la connessione seriale
-1. Il dispositivo è dotato di una porta seriale su ogni controller, identificata da un'icona a forma di chiave inglese. Fare riferimento alla figura disponibile nella sezione [Cablaggio di rete](#network-cabling) per individuare le porte seriali sulla scheda madre del dispositivo.
-2. Identificare il controller attivo sul backplane del dispositivo, indicato da un LED blu lampeggiante.
-3. Usare il cavo seriale fornito (se necessario, usare il convertitore USB-seriale per il portatile) e collegare la console o il computer (con emulazione terminal al dispositivo) alla porta seriale del controller attivo.
-4. Installare i driver seriali-USB (forniti con il dispositivo) sul computer.
-5. Configurare la connessione seriale come segue: 115,200 baud, 8 bit di dati, 1 bit di stop, nessuna parità, set di controllo impostato su nessuno.
-6. Verificare che la connessione funzioni premendo INVIO nella console. Deve comparire un menu della console seriale.
+#### <a name="toocable-for-serial-connection"></a>toocable per la connessione seriale
+1. Il dispositivo è dotato di una porta seriale su ogni controller, identificata da un'icona a forma di chiave inglese. Vedere l'illustrazione toohello in hello [cavi di rete](#network-cabling) sezione toolocate hello porte seriali hello backplane del dispositivo.
+2. Identificare hello controller attivo sul backplane del dispositivo. Un LED blu lampeggiante indica che tale controller hello è attivo.
+3. Usare i cavi seriali di hello fornito (se necessario, il convertitore hello USB-seriale per il portatile) e connettere la console o il computer (con dispositivo toohello emulazione di terminale) toohello porta seriale del controller attivo hello.
+4. Installare i driver seriali-USB hello (forniti con il dispositivo hello) nel computer.
+5. Configurare la connessione seriale hello come segue: 115.200 baud, 8 bit di dati, 1 bit di stop, nessuna parità e controllo di flusso impostare tooNone.
+6. Verificare che hello connessione funzioni premendo INVIO nella finestra di console hello. Deve comparire un menu della console seriale.
 
 > [!NOTE]
-> **Gestione Lights-Out:**quando il dispositivo è installato in un datacenter remoto o in una sala macchine con accesso limitato, verificare che le connessioni seriali di entrambi i controller siano sempre collegate a un interruttore della console seriale o ad apparecchiature simili. In questo modo, sono possibili operazioni di supporto e controllo remoto fuori banda in caso di interruzione della connessione di rete o malfunzionamenti imprevisti.
+> **Gestione Lights-Out**: quando hello dispositivo è installato in un Data Center remoto o in una sala macchine con accesso limitato, assicurarsi che i controller di hello seriali tooboth siano sempre connessi tooa interruttore della console seriale o ad apparecchiature simili. In questo modo, sono possibili operazioni di supporto e controllo remoto fuori banda in caso di interruzione della connessione di rete o malfunzionamenti imprevisti.
 > 
 > 
 
-Il dispositivo è ora collegato per l'alimentazione, l'accesso di rete e quello seriale. Il passaggio successivo prevede la configurazione del software e la distribuzione del dispositivo.
+Il dispositivo è ora collegato per l'alimentazione, l'accesso di rete e quello seriale. passaggio successivo Hello tooconfigure hello software e distribuire il dispositivo.
 
 ## <a name="next-steps"></a>Passaggi successivi
-Informazioni su come [distribuire e configurare un dispositivo StorSimple locale](storsimple-deployment-walkthrough-u2.md).
+Informazioni su come troppo[distribuire e configurare il dispositivo StorSimple locale](storsimple-deployment-walkthrough-u2.md).
 

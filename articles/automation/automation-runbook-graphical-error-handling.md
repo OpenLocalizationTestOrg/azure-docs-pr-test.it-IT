@@ -1,6 +1,6 @@
 ---
-title: Gestione degli errori nei runbook grafici di Automazione di Azure | Documentazione Microsoft
-description: Questo articolo descrive come implementare la logica di gestione degli errori nei runbook grafici di Automazione di Azure.
+title: gestione nei runbook di automazione di Azure con interfaccia grafico aaaError | Documenti Microsoft
+description: Questo articolo viene descritto come errore tooimplement logica nei runbook di automazione di Azure con interfaccia grafica di gestione.
 services: automation
 documentationcenter: 
 author: mgoedtel
@@ -14,62 +14,62 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 12/26/2016
 ms.author: magoedte
-ms.openlocfilehash: 12313f7f245d32c33882f1036f7d4b48bfb3ddc5
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b9ff01361d2ebd9c0174b074a7a290b1cc2fd1c8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="error-handling-in-azure-automation-graphical-runbooks"></a>Gestione degli errori nei runbook grafici di Automazione di Azure
 
-Un elemento fondamentale della progettazione di un runbook è costituito dall'identificazione dei diversi problemi che potrebbero presentarsi in un runbook, ad esempio problemi relativi a esito positivo o negativo, stati di errore previsti e condizioni di errori imprevisti.
+Una progettazione di runbook chiave principale tooconsider prevede l'identificazione diversi problemi che potrebbe verificarsi un runbook. ad esempio problemi relativi a esito positivo o negativo, stati di errore previsti e condizioni di errori imprevisti.
 
-I runbook devono includere logica di gestione degli errori. Per convalidare l'output di un'attività o gestire un errore con runbook grafici, è possibile usare un'attività del codice di Windows PowerShell, definire la logica condizionale nel collegamento di output dell'attività o applicare un altro metodo.          
+I runbook devono includere logica di gestione degli errori. toovalidate hello output di un'attività o gestire un errore con i runbook grafici, è Impossibile utilizzare un'attività di codice Windows PowerShell, definire la logica condizionale nel collegamento di output di hello dell'attività hello o applicare un altro metodo.          
 
-Se è presente un errore non irreversibile che si verifica con un'attività del runbook, eventuali attività successive vengono elaborate indipendentemente dall'errore. È probabile che l'errore generi un'eccezione, ma è comunque consentita l'esecuzione dell'attività successiva. PowerShell è stato progettato in questo modo per la gestione degli errori.    
+Spesso, se si verifica un errore non irreversibile che si verifica con un'attività del runbook, qualsiasi attività che segue viene elaborata indipendentemente dall'errore hello. Errore Hello è probabilmente toogenerate un'eccezione, ma l'attività successiva hello è comunque consentita toorun. Questo è il modo di hello che PowerShell è progettato toohandle errori.    
 
-Durante l'esecuzione possono verificarsi errori PowerShell di tipo fatale o non fatale. Ecco le differenze tra errori irreversibili e non irreversibili:
+tipi di errori di PowerShell che possono verificarsi durante l'esecuzione di Hello sono interruzione o non irreversibile. differenze di Hello tra gli errori di interruzione e non definitive sono i seguenti:
 
-* **Errore irreversibile**: errore grave durante l'esecuzione, che arresta completamente il comando o l'esecuzione dello script. Gli esempi includono cmdlet inesistenti, errori di sintassi che impediscono l'esecuzione di un cmdlet o altri errori irreversibili.
+* **Errore fatale**: un errore grave durante l'esecuzione si ferma completamente, il comando hello (o l'esecuzione dello script). Gli esempi includono cmdlet inesistenti, errori di sintassi che impediscono l'esecuzione di un cmdlet o altri errori irreversibili.
 
-* **Errore non irreversibili**: errore non grave che consente di continuare comunque l'esecuzione. Gli esempi includono errori operativi come errori di file non trovati e problemi relativi alle autorizzazioni.
+* **Errore non irreversibile**: un errore non grave che consente l'esecuzione toocontinue nonostante l'errore hello. Gli esempi includono errori operativi come errori di file non trovati e problemi relativi alle autorizzazioni.
 
-I runbook grafici di Automazione di Azure sono stati migliorati con la capacità di includere la gestione degli errori. È ora possibile trasformare le eccezioni in errori non irreversibili e creare collegamenti di errori tra le attività. Questo processo consente a un autore di runbook di rilevare gli errori e gestire condizioni realizzate o impreviste.  
+Automazione di Azure sono stati migliorati i runbook grafici hello funzionalità tooinclude la gestione degli errori. È ora possibile trasformare le eccezioni in errori non irreversibili e creare collegamenti di errori tra le attività. Questo processo consente a un autore runbook toocatch errori e gestire le condizioni realizzate o impreviste.  
 
-## <a name="when-to-use-error-handling"></a>Quando usare la gestione degli errori
+## <a name="when-toouse-error-handling"></a>Quando la gestione degli errori toouse
 
-Se si verifica un'attività critica che genera un'errore o un'eccezione, è importante evitare l'elaborazione dell'attività successiva del runbook e gestire l'errore in modo appropriato. Questo è essenziale soprattutto quando i runbook supportano un processo correlato alle operazioni aziendali o di servizio.
+Ogni volta che è un'attività critica che genera un errore o eccezione, è importante tooprevent hello attività successiva del runbook dall'errore hello toohandle e l'elaborazione, in modo appropriato. Questo è essenziale soprattutto quando i runbook supportano un processo correlato alle operazioni aziendali o di servizio.
 
-Per ogni attività che può generare un errore, l'autore del runbook può aggiungere un collegamento di errore che punta a qualsiasi altra attività.  L'attività di destinazione può essere di qualsiasi tipo, incluse attività di codice, chiamata di un cmdlet, chiamata di un altro runbook e così via.
+Per ogni attività in grado di produrre un errore, autore runbook hello possibile aggiungere un collegamento all'errore che punta tooany altre attività.  attività di destinazione Hello possono essere di qualsiasi tipo, incluse le attività di codice, la chiamata di un cmdlet, richiamare un altro runbook e così via.
 
-L'attività di destinazione può avere anche collegamenti in uscita, che possono essere collegamenti normali o collegamenti di errore. Ciò significa che l'autore del runbook può implementare logica complessa per la gestione degli errori senza dovere usare alcuna attività di codice. La procedura consigliata comporta la creazione di un runbook dedicato per la gestione degli errori con funzionalità comuni, ma questa operazione non è obbligatoria. La logica di gestione degli errori in un'attività di codice di PowerShell non è l'unica opzione.  
+In attività di destinazione hello può inoltre essere collegamenti in uscita. che possono essere collegamenti normali o collegamenti di errore. Ciò significa che l'autore runbook hello può implementare la logica di gestione degli errori complessa senza ricorrere tooa attività del codice. Hello consigliato è toocreate un runbook di gestione degli errori dedicato con le funzionalità comuni, ma non è obbligatorio. La logica di gestione degli errori in un'attività di codice di PowerShell non è hello solo l'opzione.  
 
-Si consideri ad esempio un runbook che prova ad avviare una macchina virtuale e installarvi un'applicazione. Se la macchina virtuale non viene avviata correttamente, vengono eseguite due azioni:
+Ad esempio, si consideri un runbook che tenta di toostart una macchina virtuale e installare un'applicazione su di esso. Se hello VM non viene avviato correttamente, esegue due azioni:
 
 1. Invio di una notifica relativa al problema.
 2. Avvio di un altro runbook che effettua automaticamente il provisioning di una nuova macchina virtuale.
 
-Una soluzione consiste nell'avere un collegamento di errore che fa riferimento a un'attività che gestisce il primo passaggio. È ad esempio possibile connettere il cmdlet **Write-Warning** a un'attività per il passaggio due, ad esempio il cmdlet **Start-AzureRmAutomationRunbook**.
+Una soluzione è toohave un collegamento all'errore che punta tooan attività che gli handle di passaggio uno. Ad esempio, è possibile connettersi hello **Write-Warning** cmdlet tooan attività per il passaggio 2, ad esempio hello **inizio AzureRmAutomationRunbook** cmdlet.
 
-Si potrebbe anche generalizzare questo comportamento per usarlo in diversi runbook, inserendo le due attività in un runbook di gestione degli errori separato e seguendo le indicazioni riportate in precedenza. Prima di chiamare tale runbook di gestione degli errori, si potrebbe creare un messaggio personalizzato dai dati del runbook originale e quindi passarlo come parametro al runbook di gestione degli errori.
+È anche possibile generalizzare questo comportamento per l'uso nei runbook molti inserendo queste due attività in un runbook di gestione degli errori separata e linee guida seguenti di hello suggerito in precedenza. Prima di chiamare questo runbook di gestione degli errori, è possibile costruire un messaggio personalizzato da dati hello in runbook originale hello e passarla come un runbook di gestione degli errori di parametro toohello.
 
-## <a name="how-to-use-error-handling"></a>Come usare la gestione degli errori
+## <a name="how-toouse-error-handling"></a>La modalità di gestione degli errori toouse
 
-Ogni attività ha un'impostazione di configurazione che trasforma le eccezioni in errori non irreversibili. Per impostazione predefinita, questa impostazione è disabilitata. È consigliabile abilitare questa impostazione su qualsiasi attività in cui si vogliono gestire gli errori.  
+Ogni attività ha un'impostazione di configurazione che trasforma le eccezioni in errori non irreversibili. Per impostazione predefinita, questa impostazione è disabilitata. È consigliabile abilitare questa impostazione in qualsiasi attività in cui si desidera che gli errori toohandle.  
 
-Abilitando questa configurazione, gli errori sia irreversibili che non irreversibili nell'attività vengono trattati come errori non irreversibili e possono essere gestiti con un collegamento di errore.  
+Abilitando questa configurazione, sono garantire che gli errori di interruzione e non irreversibile nell'attività hello vengono gestiti come errori non irreversibili che possono essere gestiti con un collegamento all'errore.  
 
-Dopo aver configurato tale impostazione, si creano le attività che gestiscono l'errore. Se un'attività genera un errore, vengono seguiti i collegamenti di errore in uscita e non i collegamenti regolari a prescindere dal fatto che l'attività abbia generato anche output regolare.<br><br> ![Esempio di collegamento di errore in un runbook di Automazione](media/automation-runbook-graphical-error-handling/error-link-example.png)
+Dopo aver configurato questa impostazione, si crea un'attività che gestisce gli errori di hello. Se un'attività genera un errore, quindi hello in uscita di errore vengono seguiti i collegamenti e hello regolare i collegamenti sono, anche se l'attività hello produce anche output regolare.<br><br> ![Esempio di collegamento di errore in un runbook di Automazione](media/automation-runbook-graphical-error-handling/error-link-example.png)
 
-Nell'esempio seguente un runbook recupera una variabile che include il nome del computer di una macchina virtuale, quindi prova ad avviare la macchina virtuale con l'attività successiva.<br><br> ![Esempio di gestione degli errori in un runbook di Automazione](media/automation-runbook-graphical-error-handling/runbook-example-error-handling.png)<br><br>      
+Nel seguente esempio di hello, un runbook recupera una variabile che contiene il nome computer hello di una macchina virtuale. Tenta quindi di macchina virtuale di hello toostart con attività successiva hello.<br><br> ![Esempio di gestione degli errori in un runbook di Automazione](media/automation-runbook-graphical-error-handling/runbook-example-error-handling.png)<br><br>      
 
-Le attività **Get-AutomationVariable** e **Start-AzureRmVm** sono configurate per convertire le eccezioni in errori.  Se si verificano problemi nel recupero della variabile o nell'avvio della VM, vengono generati errori.<br><br> ![Impostazioni delle attività di gestione degli errori in un runbook di Automazione](media/automation-runbook-graphical-error-handling/activity-blade-convertexception-option.png)
+Hello **Get-AutomationVariable** attività e **inizio AzureRmVm** sono tooerrors eccezioni tooconvert configurato.  Se sono presenti problemi di funzionamento hello iniziale o variabile hello macchina virtuale, quindi vengono generati errori.<br><br> ![Impostazioni delle attività di gestione degli errori in un runbook di Automazione](media/automation-runbook-graphical-error-handling/activity-blade-convertexception-option.png)
 
-I collegamenti di errore passano da queste attività a una singola attività di **gestione degli errori** (attività di codice). Questa attività viene configurata con una semplice espressione di PowerShell che usa la parola chiave *Throw* per arrestare l'elaborazione, insieme a *$Error.Exception.Message* per ottenere il messaggio che illustra l'eccezione corrente.<br><br> ![Esempio di codice di gestione degli errori in un runbook di Automazione](media/automation-runbook-graphical-error-handling/runbook-example-error-handling-code.png)
+Flusso di errore collegamenti da questi tooa attività singola **la gestione degli errori** attività (un'attività del codice). Questa attività è configurata con un'espressione PowerShell semplice che utilizza hello *generare* toostop (parola chiave) l'elaborazione, insieme con *$Error.Exception.Message* tooget messaggio che descrive hello eccezione corrente.<br><br> ![Esempio di codice di gestione degli errori in un runbook di Automazione](media/automation-runbook-graphical-error-handling/runbook-example-error-handling-code.png)
 
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-* Per altre informazioni sui collegamenti e sui tipi di collegamento di errore nei runbook grafici, vedere [Creazione grafica in Automazione di Azure](automation-graphical-authoring-intro.md#links-and-workflow).
+* toolearn ulteriori informazioni sui collegamenti e i tipi di collegamento nei runbook con interfaccia grafico, vedere [grafici per la modifica in automazione di Azure](automation-graphical-authoring-intro.md#links-and-workflow).
 
-* Per altre informazioni sull'esecuzione dei runbook, su come monitorare i processi dei runbook e su altri dettagli tecnici, vedere [Verifica di un processo di runbook](automation-runbook-execution.md).
+* ulteriori sull'esecuzione di runbook, come i processi del runbook toomonitor e altri dettagli tecnici, vedere toolearn [tenere traccia di un processo del runbook](automation-runbook-execution.md).

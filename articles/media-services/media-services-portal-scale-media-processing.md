@@ -1,6 +1,6 @@
 ---
-title: Ridimensionare l'elaborazione di contenuti mediante il portale di Azure | Microsoft Docs
-description: Questa esercitazione descrive i passaggi per ridimensionare l'elaborazione multimediale mediante il portale di Azure.
+title: supporto aaaScale elaborazione utilizzando hello portale di Azure | Documenti Microsoft
+description: In questa esercitazione vengono illustrati i passaggi hello di scala media elaborazione utilizzando hello portale di Azure.
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,13 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/04/2017
 ms.author: juliako
-ms.openlocfilehash: 46ca29d3e66701f2abcb185791089e94761984e8
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 89240c6f7579b8795e7b47f2b1c398b1d5477e20
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="change-the-reserved-unit-type"></a>Modificare il tipo di unità riservata
+# <a name="change-hello-reserved-unit-type"></a>Tipo di unità di modifica hello riservato
 > [!div class="op_single_selector"]
 > * [.NET](media-services-dotnet-encoding-units.md)
 > * [Portale](media-services-portal-scale-media-processing.md)
@@ -32,32 +32,32 @@ ms.lasthandoff: 08/29/2017
 
 ## <a name="overview"></a>Panoramica
 
-Un account di Servizi multimediali è associato a un tipo di unità riservata che determina la velocità dei processi di elaborazione dei multimedia. È possibile scegliere uno dei seguenti tipi di unità riservata: **S1**, **S2** o **S3**. Lo stesso processo di codifica viene eseguito più velocemente quando si usa ad esempio il tipo di unità riservata **S2** rispetto al tipo **S1**.
+Un account di servizi multimediali è associato a un tipo di unità riservate, che determina la velocità di hello con cui vengono elaborati i file multimediali l'elaborazione delle attività. È possibile scegliere tra segue hello i tipi di unità riservata: **S1**, **S2**, o **S3**. Ad esempio, hello stesso processo di codifica viene eseguito più velocemente quando si utilizza hello **S2** toohello di confronto del tipo di unità riservata **S1** tipo.
 
-Oltre al tipo di unità riservata, è possibile specificare il provisioning dell'account con **Unità riservate** (UR). Il numero delle UR sottoposte a provisioning determina il numero di attività multimediali che possono essere elaborate contemporaneamente in un determinato account.
+Inoltre toospecifying hello riservati di tipo di unità, è possibile specificare l'account con tooprovision **unità riservate** (RUs). numero di Hello di provisioning RUs determina il numero di hello delle attività multimediali che possono essere elaborate contemporaneamente in un determinato account.
 
 >[!NOTE]
 >UR di lavoro per la parallelizzazione di tutta l'elaborazione di supporti di memorizzazione, tra cui l'indicizzazione di processi tramite Azure Media Indexer. Tuttavia, a differenza della codifica, l'indicizzazione di processi non viene elaborata più velocemente con unità riservate più veloci.
 
 > [!IMPORTANT]
-> Per altre informazioni sul ridimensionamento dell'elaborazione multimediale, vedere questo argomento di [panoramica](media-services-scale-media-processing-overview.md) .
+> Verificare che hello tooreview [Panoramica](media-services-scale-media-processing-overview.md) tooget argomento ulteriori informazioni sulla scalabilità supporti l'elaborazione di argomento.
 > 
 > 
 
 ## <a name="scale-media-processing"></a>Ridimensionare l'elaborazione di contenuti multimediali
-Per modificare il tipo di unità riservata e il numero di unità riservate, effettuare le operazioni seguenti:
+toochange hello riservato unità hello tipo e il numero di unità riservate, hello seguenti:
 
-1. Nel [portale di Azure ](https://portal.azure.com/) selezionare l'account Servizi multimediali di Azure.
-2. Nella finestra **Impostazioni** selezionare **Media Reserved Unit**.
+1. In hello [portale di Azure](https://portal.azure.com/), selezionare l'account di servizi multimediali di Azure.
+2. In hello **impostazioni** selezionare **supporto di unità riservate**.
    
-    Per cambiare il numero di unità riservate per il tipo selezionato, usare il dispositivo di scorrimento **Media Served Units** .
+    numero di hello toochange di unità riservate per hello selezionato il tipo di unità riservata, utilizzare hello **Media servita unità** dispositivo di scorrimento.
    
-    Per cambiare il **TIPO DI UNITÀ RISERVATA**, scegliere S1, S2 o S3.
+    hello toochange **il tipo di unità riservate**, premere S1, S2 o S3.
    
     ![Pagina relativa ai processori](./media/media-services-portal-scale-media-processing/media-services-scale-media-processing.png)
-3. Fare clic sul pulsante SAVE per salvare le modifiche apportate.
+3. Hello premere salvare toosave pulsante le modifiche.
    
-    Le nuove unità riservate vengono allocate quando si fa clic su SALVA.
+    Quando si preme di salvataggio, vengono allocate nuove unità riservate di Hello.
 
 ## <a name="next-steps"></a>Passaggi successivi
 Analizzare i percorsi di apprendimento di Servizi multimediali.

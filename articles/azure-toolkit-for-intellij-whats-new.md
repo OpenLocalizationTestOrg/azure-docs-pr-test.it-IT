@@ -1,6 +1,6 @@
 ---
-title: "Novità di Azure Toolkit for IntelliJ | Microsoft Docs"
-description: "Sono disponibili informazioni sulle funzionalità più recenti del Toolkit di Azure per IntelliJ."
+title: aaaWhat di nuovo in Azure Toolkit per IntelliJ hello | Documenti Microsoft
+description: "Informazioni sulle funzionalità più recenti hello hello Azure Toolkit per IntelliJ."
 services: 
 documentationcenter: java
 author: rmcmurray
@@ -14,73 +14,73 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 04/14/2017
 ms.author: robmcm;asirveda;martinsawicki
-ms.openlocfilehash: 23714856f0f778be04cf321e0726b53ade430f57
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 57599c9af1d41784941b8b363ab9089db5df98f2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="whats-new-in-the-azure-toolkit-for-intellij"></a>Novità del Toolkit di Azure per IntelliJ
+# <a name="whats-new-in-hello-azure-toolkit-for-intellij"></a>Novità in Azure Toolkit per IntelliJ hello
 ## <a name="azure-toolkit-for-intellij-releases"></a>Toolkit di Azure per le versioni di IntelliJ
-Questo articolo include informazioni sulle diverse versioni e sugli aggiornamenti più recenti del Toolkit di Azure per Eclipse.
+In questo articolo contiene informazioni su hello varie versioni e aggiornamenti più recenti toohello Azure Toolkit per IntelliJ.
 
 > [!NOTE]
-> Esiste anche un Toolkit di Azure per l’IDE di Eclipse. Per ulteriori informazioni, vedere [Toolkit di Azure per Eclipse].
+> È inoltre disponibile un Azure Toolkit per Eclipse IDE hello. Per ulteriori informazioni, vedere [Toolkit di Azure per Eclipse].
 > 
 > 
 
 ### <a name="april-14-2017"></a>14 aprile 2017
-La versione del Toolkit di Azure per IntelliJ rilasciata ad aprile 2017 include i miglioramenti seguenti.
+Hello Azure Toolkit per IntelliJ - versione aprile 2017 include hello seguenti miglioramenti:
 
-* **Accesso ad Azure migliorato**: il Toolkit di Azure per IntelliJ supporta ora due metodi di accesso all'account Azure, ovvero *Interattivo* e *Automatico*. Per altre informazioni, vedere [Istruzioni di accesso ad Azure per il Toolkit di Azure per IntelliJ].
-* **Pubblicazione con i contenitori Docker**: è ora possibile pubblicare le applicazioni Web come contenitori Docker usando il Toolkit di Azure per IntelliJ. Per altre informazioni, vedere [Come pubblicare un'app Web come contenitore Docker usando il Toolkit di Azure per IntelliJ]
-* **Gestione degli account di archiviazione**: il Toolkit di Azure per IntelliJ supporta ora la gestione degli account di archiviazione dalla visualizzazione Azure Explorer. Per altre informazioni, vedere [Gestione degli account di archiviazione con Azure Explorer per IntelliJ].
-* **Gestione delle macchine virtuali**: il Toolkit di Azure per IntelliJ supporta ora la gestione delle macchine virtuali nella finestra degli strumenti di Azure Explorer. Per altre informazioni, vedere [Gestione delle macchine virtuali con Azure Explorer per IntelliJ].
-* **Rimozione del supporto del debug remoto**. Il debug remoto di app Web Java nel Servizio app di Azure è stato rimosso dal Toolkit di Azure per IntelliJ a causa di problemi riscontrati dai clienti quando usavano il toolkit.
+* **Azure Sign In esperienza migliorata**: hello Azure Toolkit per IntelliJ ora supporta due metodi di registrazione all'account Azure: *Interactive* e *automatizzata*. Per ulteriori informazioni, vedere [Azure Sign In istruzioni per hello Azure Toolkit per IntelliJ].
+* **Pubblicazione con i contenitori Docker**: è ora possibile pubblicare le applicazioni Web come contenitori Docker usando il Toolkit di Azure per IntelliJ. Per ulteriori informazioni, vedere [come un'App Web come un contenitore Docker usando toopublish hello Azure Toolkit per IntelliJ].
+* **Gestione degli Account di archiviazione**: hello Azure Toolkit per IntelliJ ora supporta la gestione di account di archiviazione da hello visualizzazione di Esplora risorse di Azure. Per ulteriori informazioni, vedere [utilizzando la gestione di account di archiviazione hello Azure Explorer per IntelliJ].
+* **Virtual Machine Management**: hello Azure Toolkit per IntelliJ ora supporta la gestione delle macchine virtuali da hello finestra degli strumenti Esplora di Azure. Per ulteriori informazioni, vedere [gestione delle macchine virtuali utilizzando hello Azure Explorer per IntelliJ].
+* **Rimozione del supporto del debug remoto**. Debug remoto di applicazioni web Java in Azure App Service è stata rimossa da hello Azure Toolkit per IntelliJ; Questo è necessario tooresolve alcuni problemi dei clienti che sono stati verificati quando si utilizza hello toolkit.
 
 ### <a name="august-26-2016"></a>26 agosto 2016
-La versione del Toolkit di Azure per IntelliJ rilasciata ad agosto 2016 include i miglioramenti seguenti:
+Hello Azure Toolkit per IntelliJ - versione di agosto 2016 include hello seguenti miglioramenti:
 
-* **Distribuzioni di JDK personalizzate**. Azure Toolkit per IntelliJ supporta ora la specifica e la distribuzione di una versione di JDK arbitraria nel contenitore di app Web di Azure:
-  * Oltre alla versione JDK fornita da Azure, è possibile scegliere tra un'ampia gamma di versioni di Zulu OpenJDK rese disponibili in Azure da Azul Systems.
-  * È anche possibile specificare una distribuzione di JDK personalizzata se viene caricata come file ZIP nell'account di archiviazione.
-* **Miglioramenti alla visualizzazione di Azure Explorer**:
-  * Supporto per la gestione di Macchine virtuali usando il nuovo modello di Azure Resource Manager: è possibile elencare, creare ed eliminare le macchine virtuali basate su Resource Manager senza uscire dall'ambiente IDE.
-  * Supporto per la gestione di BLOB di account di archiviazione tramite Azure Resource Manager, che integra le funzionalità esistenti per la gestione di account di archiviazione "classici".
-* **Microsoft JDBC Driver 6.0 per SQL Server**. Questo aggiornamento include il driver JDBC più aggiornato per Microsoft SQL Server (versione 6.0), incluso ora come libreria che è possibile aggiungere facilmente ai progetti Java, sostituendo in tal modo la versione precedente.
+* **Distribuzioni di JDK personalizzate**. Hello Azure Toolkit per IntelliJ supporta ora specifica e la distribuzione di un contenitore di Azure WebApp tooyour di versione JDK arbitrario:
+  * In inoltre toohello JDK fornite da Azure, è possibile scegliere tra un'ampia selezione di versioni Zulu OpenJDK reso disponibile in Azure da Azul Systems.
+  * È possibile specificare la propria distribuzione di JDK anche se questo viene caricato come un account di archiviazione tooyour file ZIP.
+* **Miglioramenti toohello visualizzazione Esplora risorse di Azure**:
+  * Supporto per la gestione delle macchine virtuali utilizzando il nuovo modello di gestione risorse di Azure: è possibile elencare, creare ed eliminare le macchine virtuali basate su Gestione risorse senza uscire hello IDE.
+  * Supporto per la gestione di Account di archiviazione blob usando Gestione risorse di Azure, che integra le funzionalità esistenti per la gestione di account di archiviazione "classiche" hello.
+* **Microsoft JDBC Driver 6.0 per SQL Server**. Questo aggiornamento include il driver JDBC più recente di hello per Microsoft SQL Server (v 6.0), che è ora inclusa come una libreria che è possibile aggiungere facilmente i progetti Java tooyour, sostituendo in tal modo la versione precedente di hello.
 
 ### <a name="june-29-2016"></a>29 giugno 2016
-La versione del Toolkit di Azure per IntelliJ rilasciata a giugno 2016 include i miglioramenti seguenti:
+Hello Azure Toolkit per IntelliJ - versione di giugno 2016 include hello seguenti miglioramenti:
 
-* **Requisito Java 8**. Per il Toolkit Azure per IntelliJ è ora necessario Java 8. Sebbene questo requisito sia fondamentale per il toolkit, le applicazioni possono continuare a usare versioni di Java supportate da Azure.
-* **Supporto per i JDK di Java più recenti**. Le versioni più recenti dei JDK di Java sono ora supportate dal Toolkit di Azure per IntelliJ.
-* **Supporto per Azure SDK versione 2.9.1**. La versione più recente di Azure SDK è ora il prerequisito minimo per il Toolkit di Azure per IntelliJ.
-* **Campioni integrati**. Il Toolkit di Azure per IntelliJ presenta adesso numerose applicazioni campione per fornire supporto agli sviluppatori nella fase iniziale.
-* **Integrazione dello strumento HDInsight**. Gli strumenti HDInsight di Azure sono adesso contenuti nel Toolkit di Azure per IntelliJ. Per altre informazioni, vedere l'articolo relativo al [plug-in degli strumenti HDInsight per IntelliJ].
-* **Debug remoto delle app Web Java**. Il Toolkit di Azure per IntelliJ supporta adesso il debug remoto delle App Web Java nel servizio app di Azure.
+* **Requisito Java 8**. Hello Azure Toolkit per IntelliJ richiede ora Java 8, anche se questo requisito è solo per il toolkit di hello: le applicazioni possono continuare toouse tutte le versioni di Java supportate da Azure.
+* **Supporto per JDK Java più recente di hello**. le versioni più recenti di Hello di hello Java JDK sono ora supportate da hello Azure Toolkit per IntelliJ.
+* **Supporto per Azure SDK versione 2.9.1**. versione più recente di Hello di hello Azure SDK è ora hello minimo prerequisito per hello Azure Toolkit per IntelliJ.
+* **Campioni integrati**. Hello Azure Toolkit per IntelliJ include ora un'introduzione agli sviluppatori toohelp diverse applicazioni di esempio.
+* **Integrazione dello strumento HDInsight**. Gli strumenti di HDInsight di Azure vengono aggregati ora hello Azure Toolkit per IntelliJ. Per altre informazioni, vedere l'articolo relativo al [plug-in degli strumenti HDInsight per IntelliJ].
+* **Debug remoto delle app Web Java**. Hello Azure Toolkit per IntelliJ supporta ora il debug remoto di App web Java nel servizio App di Azure.
 
 ### <a name="april-12-2016"></a>12 aprile 2016
-La versione del Toolkit di Azure per IntelliJ rilasciata ad aprile 2016 include i miglioramenti seguenti:
+Hello Azure Toolkit per IntelliJ - versione di aprile 2016 include hello seguenti miglioramenti:
 
-* **Supporto per Azure SDK versione 2.9.0**. La versione più recente di Azure SDK è ora il prerequisito minimo per il Toolkit di Azure per IntelliJ.
-* **Vari miglioramenti di usabilità, velocità di risposta e prestazioni relativamente al supporto di app Web di Azure**. Prestazioni ottimizzate relativamente alla comunicazione tra il Toolkit e il risultato di Azure in un'interfaccia utente più reattiva.
-* **Possibilità di eliminare un contenitore di applicazioni Web in Azure da IntelliJ**. Il Toolkit di Azure per IntelliJ consente ora di eliminare un contenitore Web di Azure esistente senza uscire da IntelliJ.
+* **Supporto per Azure SDK versione 2.9.0**. versione più recente di Hello di hello Azure SDK è ora hello minimo prerequisito per hello Azure Toolkit per IntelliJ.
+* **Vari usabilità, velocità di risposta e miglioramenti delle prestazioni correlati a supporto di App Web tooAzure**. Un numero di ottimizzazioni delle prestazioni in modo hello Toolkit comunica con il risultato di Azure in un'interfaccia utente più reattiva.
+* **Capacità toodelete un contenitore di applicazione Web esistente in Azure da in IntelliJ**. Hello Azure Toolkit per IntelliJ consente ora toodelete un contenitore Web di Azure esistente senza uscire IntelliJ.
 
 ## <a name="see-also"></a>Vedere anche
-Per ulteriori informazioni sui Toolkit di Azure per gli IDE di Java, consultare i seguenti collegamenti:
+Per ulteriori informazioni su hello Azure Toolkit per ambienti Java, vedere hello seguenti collegamenti:
 
 * [Toolkit di Azure per Eclipse]
-  * [Novità di Azure Toolkit per Eclipse]
-  * [Installare il Toolkit di Azure per Eclipse.]
+  * [Novità in Azure Toolkit per Eclipse hello]
+  * [L'installazione di hello Azure Toolkit per Eclipse]
   * [Creare un'app Web Hello World per Azure in Eclipse]
-  * [Istruzioni di accesso ad Azure per il Toolkit di Azure per Eclipse]
+  * [Sign In istruzioni per hello Azure Toolkit per Eclipse]
 * [Toolkit di Azure per IntelliJ]
-  * *Novità del Toolkit di Azure per IntelliJ (questo articolo)*
-  * [Installazione del Toolkit di Azure per IntelliJ]
-  * [Istruzioni di accesso ad Azure per il Toolkit di Azure per IntelliJ]
+  * *Novità in Azure Toolkit per IntelliJ (articolo) hello*
+  * [Installazione di hello Azure Toolkit per IntelliJ]
+  * [Sign In istruzioni per hello Azure Toolkit per IntelliJ]
   * [Creare un'App Web Hello World per Azure in IntelliJ]
 
-Per altre informazioni su come usare Azure con Java, vedere il [Centro per sviluppatori Java di Azure].
+Per ulteriori informazioni sull'uso di Azure con Java, vedere hello [Centro per sviluppatori Java di Azure].
 
 <!-- URL List -->
 
@@ -88,17 +88,17 @@ Per altre informazioni su come usare Azure con Java, vedere il [Centro per svilu
 [Toolkit di Azure per IntelliJ]: ./azure-toolkit-for-intellij.md
 [Creare un'app Web Hello World per Azure in Eclipse]: ./app-service-web/app-service-web-eclipse-create-hello-world-web-app.md
 [Creare un'App Web Hello World per Azure in IntelliJ]: ./app-service-web/app-service-web-intellij-create-hello-world-web-app.md
-[Installare il Toolkit di Azure per Eclipse.]: ./azure-toolkit-for-eclipse-installation.md
-[Installazione del Toolkit di Azure per IntelliJ]: ./azure-toolkit-for-intellij-installation.md
-[Istruzioni di accesso ad Azure per il Toolkit di Azure per Eclipse]: ./azure-toolkit-for-eclipse-sign-in-instructions.md
-[Istruzioni di accesso ad Azure per il Toolkit di Azure per IntelliJ]: ./azure-toolkit-for-intellij-sign-in-instructions.md
-[Novità di Azure Toolkit per Eclipse]: ./azure-toolkit-for-eclipse-whats-new.md
-[What's New in the Azure Toolkit for IntelliJ]: ./azure-toolkit-for-intellij-whats-new.md
+[L'installazione di hello Azure Toolkit per Eclipse]: ./azure-toolkit-for-eclipse-installation.md
+[Installazione di hello Azure Toolkit per IntelliJ]: ./azure-toolkit-for-intellij-installation.md
+[Sign In istruzioni per hello Azure Toolkit per Eclipse]: ./azure-toolkit-for-eclipse-sign-in-instructions.md
+[Sign In istruzioni per hello Azure Toolkit per IntelliJ]: ./azure-toolkit-for-intellij-sign-in-instructions.md
+[Novità in Azure Toolkit per Eclipse hello]: ./azure-toolkit-for-eclipse-whats-new.md
+[What's New in hello Azure Toolkit for IntelliJ]: ./azure-toolkit-for-intellij-whats-new.md
 
-[Istruzioni di accesso ad Azure per il Toolkit di Azure per IntelliJ]: ./azure-toolkit-for-intellij-sign-in-instructions.md
-[Come pubblicare un'app Web come contenitore Docker usando il Toolkit di Azure per IntelliJ]: ./azure-toolkit-for-intellij-publish-as-docker-container.md
-[Gestione degli account di archiviazione con Azure Explorer per IntelliJ]: ./azure-toolkit-for-intellij-managing-storage-accounts-using-azure-explorer.md
-[Gestione delle macchine virtuali con Azure Explorer per IntelliJ]: ./azure-toolkit-for-intellij-managing-virtual-machines-using-azure-explorer.md
+[Azure Sign In istruzioni per hello Azure Toolkit per IntelliJ]: ./azure-toolkit-for-intellij-sign-in-instructions.md
+[come un'App Web come un contenitore Docker usando toopublish hello Azure Toolkit per IntelliJ]: ./azure-toolkit-for-intellij-publish-as-docker-container.md
+[utilizzando la gestione di account di archiviazione hello Azure Explorer per IntelliJ]: ./azure-toolkit-for-intellij-managing-storage-accounts-using-azure-explorer.md
+[gestione delle macchine virtuali utilizzando hello Azure Explorer per IntelliJ]: ./azure-toolkit-for-intellij-managing-virtual-machines-using-azure-explorer.md
 
 [Centro per sviluppatori Java di Azure]: http://go.microsoft.com/fwlink/?LinkID=699547
 

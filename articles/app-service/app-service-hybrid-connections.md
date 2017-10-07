@@ -1,6 +1,6 @@
 ---
-title: Connessioni ibride del Servizio app di Azure | Microsoft Docs
-description: Informazioni su come creare e usare Connessioni ibride per accedere alle risorse in reti diverse
+title: aaa "connessioni ibride di servizio App di Azure | Documenti di Microsoft"
+description: Come toocreate e utilizzare le connessioni ibride tooaccess delle risorse in reti diverse
 services: app-service
 documentationcenter: 
 author: ccompy
@@ -14,48 +14,48 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/22/2017
 ms.author: ccompy
-ms.openlocfilehash: fef9e7b280387934cb093f51b4c8aa134a3b87e7
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 61d58068ab0a7c803019e3f0e92bde4273d1a053
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-app-service-hybrid-connections"></a>Connessioni ibride del Servizio app di Azure #
 
 ## <a name="overview"></a>Panoramica ##
 
-Connessioni ibride è un servizio disponibile in Azure, nonché una funzionalità del Servizio app di Azure.  Come servizio fornisce modalità di utilizzo e funzionalità superiori rispetto a quelle offerte come funzionalità del Servizio app di Azure.  Per altre informazioni su Connessioni ibride e sul suo utilizzo al di fuori del Servizio app di Azure, vedere [Protocollo per le connessioni ibride di inoltro di Azure][HCService].
+Le connessioni ibride è un servizio in Azure oltre a una funzionalità di hello servizio App di Azure.  Come un servizio dispone di utilizzo e funzionalità oltre a quelle che vengono utilizzati in hello Azure App Service.  altre informazioni sulle connessioni ibride e il relativo utilizzo di fuori di hello Azure App Service è possibile iniziare da qui, toolearn [le connessioni ibride di inoltro di Azure][HCService]
 
-Nel Servizio app di Azure, la funzionalità Connessioni ibride può essere usata per accedere alle risorse di applicazione presenti in altre reti. Fornisce l'accesso DALLA propria app A un endpoint applicazione.  Non abilita una funzionalità alternativa per accedere all'applicazione.  Quando usata nel Servizio app, ogni connessione ibrida è correlata a una singola combinazione di host e porta TCP.  Ciò significa che l'endpoint della connessione ibrida può trovarsi in qualsiasi sistema operativo e qualsiasi applicazione purché vi sia una porta TCP in ascolto. Connessioni ibride non conosce e né deve conoscere quale sia il protocollo dell'applicazione o a quale risorsa l'utente stia accedendo,  in quanto si limita a fornire l'accesso alla rete.  
+All'interno di hello servizio App di Azure, le connessioni ibride possono essere risorse dell'applicazione tooaccess utilizzati nelle altre reti. Fornisce accesso dall'endpoint di applicazione della tooan app.  Non consente un tooaccess alternativa dalla capacità dell'applicazione.  Utilizzato in hello servizio App, ogni connessione ibrida correla tooa singolo host e porta combinazione TCP.  Ciò significa che tale endpoint della connessione ibrida hello può essere in qualsiasi sistema operativo e qualsiasi applicazione fornito che si raggiunge una porta di attesa TCP. Connessioni ibride non conosce o si è interessati è il protocollo di applicazione hello o si accede.  in quanto si limita a fornire l'accesso alla rete.  
 
 
 ## <a name="how-it-works"></a>Funzionamento ##
-La funzionalità Connessioni ibride è costituita da due chiamate in uscita a Inoltro del bus di servizio.  Esistono una connessione da una libreria nell'host in cui l'app è in esecuzione nel Servizio app e una connessione da Gestione connessione ibrida a Inoltro del bus di servizio.  Gestione connessione ibrida è un servizio di inoltro che viene distribuito nell'ambito dell'hosting di rete. 
+funzionalità di connessioni ibride Hello è costituita da due chiamate in uscita tooService inoltro del Bus.  C'è una connessione da una libreria nell'host di hello in cui l'app è in esecuzione nel servizio app di hello e quindi sia disponibile una connessione di inoltro del Bus tooService hello Manager(HCM) connessione ibrida.  Hello HCM è un servizio di inoltro che si distribuisce in hosting rete hello 
 
-Grazie alle due connessioni congiunte, l'app dispone di un tunnel TCP a una combinazione host:porta fissa sull'altro lato di Gestione connessione ibrida.  La connessione usa TLS 1.2 per la sicurezza e le chiavi SAS per l'autenticazione/autorizzazione.    
+Tramite hello due connessioni unita in join l'app abbia un tooa tunnel TCP predefinito combinazione host: porta su hello altro lato della hello HCM.  connessione Hello Usa TLS 1.2 per la sicurezza e le chiavi di firma di accesso condiviso per l'autenticazione/autorizzazione.    
 
 ![][1]
 
-Quando l'app effettua una richiesta DNS che corrisponde a un endpoint di Connessione ibrida configurato, il traffico TCP in uscita viene reindirizzato lungo la connessione ibrida.  
+Quando l'app esegue una richiesta DNS che corrisponde a un endpoint della connessione ibrida configura, quindi il traffico TCP in uscita hello verrà reindirizzato verso il basso la connessione ibrida hello.  
 
 > [!NOTE]
-> Ciò significa che è consigliabile usare sempre un nome DNS per la connessione ibrida.  Alcuni software client non eseguono una ricerca DNS se l'endpoint usa un indirizzo IP al posto del nome DNS.
+> Ciò significa che è consigliabile provare tooalways utilizzare un nome DNS per la connessione ibrida.  Alcuni software client non esegue una ricerca DNS se l'endpoint di hello utilizza invece di un indirizzo IP.
 >
 >
 
-Esistono due tipi di connessioni ibride: le nuove connessioni ibride che vengono offerte come servizio durante l'inoltro di Azure e le connessioni ibride BizTalk meno recenti.  Queste ultime sono definite nel portale come Connessioni ibride BizTalk (versione classica).  Per altre informazioni su queste connessioni, vedere più avanti in questo documento.
+Esistono due tipi di connessioni ibride, le connessioni ibride di nuovo hello che vengono offerto come servizio in Azure inoltro e hello connessioni ibride di BizTalk precedenti.  Hello connessioni ibride di BizTalk precedenti sono cui tooas classico connessioni ibride nel portale di hello.  Per altre informazioni su queste connessioni, vedere più avanti in questo documento.
 
 ### <a name="app-service-hybrid-connection-benefits"></a>Vantaggi della funzionalità Connessioni ibride del Servizio app di Azure ###
 
-La funzionalità Connessioni ibride offre numerosi vantaggi tra cui:
+Esistono una serie di vantaggi toohello ibrida connessioni funzionalità incluse
 
 - Le app possono accedere in modo sicuro a servizi e sistemi locali
-- Non richiede un endpoint accessibile tramite Internet
-- È facile e rapida da configurare  
-- Ogni connessione ibrida corrisponde a una singola combinazione host:porta, il che rappresenta un aspetto eccellente della sicurezza
-- In genere non richiede varchi nei firewall in quanto le connessioni sono tutte in uscita su porte Web standard
-- Dal momento che si tratta di una funzionalità a livello di rete, è agnostica alla lingua usata dall'app e alla tecnologia usata dall'endpoint
-- Può essere usata per fornire l'accesso a più reti da una singola app. 
+- funzionalità di Hello non richiede un endpoint accessibile da internet
+- è veloce e semplice tooset backup  
+- combinazione di host: porta singola tooa che rappresenta un aspetto eccellente sicurezza corrisponde a ogni connessione ibrida
+- in genere non comporta problemi di firewall connessioni hello sono tutti in uscita sulle porte web standard
+- Poiché la funzionalità hello è il livello di rete che significa anche che è toohello indipendenti dal linguaggio utilizzato per la tecnologia di app e hello utilizzata dall'endpoint hello
+- è possibile usare accesso tooprovide in più reti da una singola app 
 
 ### <a name="things-you-cannot-do-with-hybrid-connections"></a>Operazioni che non è possibile eseguire con la funzionalità Connessioni ibride ###
 
@@ -69,113 +69,113 @@ Esistono alcune operazioni che non è possibile eseguire con le connessioni ibri
 
 ## <a name="adding-and-creating-a-hybrid-connection-in-your-app"></a>Aggiunta e creazione di una connessione ibrida nell'app ##
 
-È possibile creare connessioni ibride tramite il portale delle app o dal portale del servizio Connessioni ibride.  È consigliabile usare il portale delle app per creare le connessioni ibride per la propria app.  Per creare una connessione ibrida, andare al [portale di Azure][portal] e accedere all'interfaccia utente della propria app.  Selezionare **Rete > Configurare gli endpoint della connessione ibrida**.  Da qui è possibile vedere le connessioni ibride configurate con l'app.  
+È possibile creare connessioni ibride tramite il portale di app hello o dal portale del servizio di hello connessione ibrida.  È consigliabile utilizzare hello toocreate portale tramite app hello connessioni ibride desiderato toouse con l'app.  una connessione ibrida toocreate passare toohello [portale di Azure] [ portal] , entra in hello dell'interfaccia utente per l'app.  Selezionare **Rete > Configurare gli endpoint della connessione ibrida**.  Da qui è possibile visualizzare le connessioni ibride hello configurati con l'app  
 
 ![][2]
 
-Per aggiungere una nuova connessione ibrida, fare clic su Aggiungi connessione ibrida.  Verrà visualizzato l'elenco delle connessioni ibride che sono già state create.  Per aggiungere una o più connessioni all'app, selezionare quelle desiderate e fare clic su **Aggiungi connessione ibrida selezionata**.  
+tooadd una nuova connessione ibrida, fare clic su Aggiungi connessione ibrida.  Hello dell'interfaccia utente visualizzata vengono elencate le connessioni ibride hello che è già stato creato.  tooadd uno o più oggetti tooyour app, fare clic su hello quelli desiderati e hit **Add selected connessione ibrida**.  
 
 ![][3]
 
-Se si intende creare una nuova connessione ibrida, fare clic su **Crea nuova connessione ibrida**.  Qui occorre specificare gli elementi seguenti: 
+Se si desidera toocreate una nuova connessione ibrida, fare clic su **creare una nuova connessione ibrida**.  Qui occorre specificare gli elementi seguenti: 
 
 - Nome dell'endpoint
 - Nome host dell'endpoint
 - Porta dell'endpoint
-- Spazio dei nomi del bus di servizio che si intende usare.
+- spazio dei nomi Service bus desiderato toouse
 
 ![][4]
 
-Ogni connessione ibrida è associata a uno spazio dei nomi del bus di servizio e ogni spazio dei nomi del bus di servizi si trova in un'area di Azure.  È importante provare a usare uno spazio dei nomi del bus di servizio nella stessa area dell'app in modo da evitare la latenza indotta dalla rete.
+Ogni connessione ibrida tooa legati spazio dei nomi bus di servizio e ogni spazio dei nomi di service bus in un'area di Azure.  È importante tootry e utilizzare un servizio del bus di spazio dei nomi in hello così come latenza di rete provocato tooavoid stessa area dell'app.
 
-Se si vuole rimuovere la connessione ibrida dall'app, fare clic sulla connessione e selezionare **Disconnetti**.  
+Se si desidera tooremove la connessione ibrida dall'app, fare clic su di esso e selezionare **Disconnect**.  
 
-È possibile visualizzare i dettagli di una connessione ibrida aggiunta all'app Web facendo semplicemente clic sulla connessione.  
+Dopo aver aggiunto una connessione ibrida tooyour web app, è possibile visualizzare i dettagli su di esso, facendo semplicemente clic su di esso.  
 
 ![][5]
 
 ## <a name="hybrid-connections-and-app-service-plans"></a>Connessioni ibride e piani di servizio app ##
 
-È ora possibile creare esclusivamente le nuove connessioni ibride.  Sono disponibili solo per le SKU di prezzo Basic, Standard, Premium e per ambiente isolato.  Esistono limiti legati al piano tariffario.  
+Hello ibrida solo le connessioni a questo punto è possibile apportare in hello nuovo ibrido.  Sono disponibili solo per le SKU di prezzo Basic, Standard, Premium e per ambiente isolato.  Esistono limiti legati toohello prezzi piano.  
 
-| Piano tariffario | Numero di connessioni ibride a disposizione nel piano |
+| Piano tariffario | Numero di connessioni ibride utilizzabile nel piano di hello |
 |----|----|
 | Basic | 5 |
 | Standard | 25 |
 | Premium | 200 |
 | Isolato | 200 |
 
-Le restrizioni previste dal piano di servizio app sono indicate anche nell'interfaccia utente del piano di servizio app che mostra quante connessioni ibride sono in uso e da quali app.  
+Poiché sono presenti restrizioni piano di servizio App è inoltre disponibile dell'interfaccia utente nel piano di servizio App in cui viene utilizzato il numero di connessioni ibride hello e per quali app.  
 
 ![][6]
 
-Esattamente come nella visualizzazione dell'app, è possibile vedere i dettagli sulla connessione ibrida facendo clic sulla connessione.  Nella sezione delle proprietà mostrata di seguito si possono vedere tutte le informazioni disponibili nella visualizzazione dell'app, in più si possono vedere quante altre app nello stesso piano di servizio app usano la connessione ibrida selezionata.
+Proprio come con visualizzazione app hello, è possibile vedere i dettagli per la connessione ibrida facendo clic su di esso.  Nelle proprietà hello qui è possibile visualizzare tutte le informazioni di hello in vista dell'applicazione hello è inoltre possibile visualizzare quanti altre App hello stesso il piano di servizio App utilizzano la connessione ibrida.
 
 ![][7]
 
-Sebbene esista un limite al numero di endpoint della connessione ibrida che possono essere usati in un piano di servizio app, ogni connessione ibrida usata può essere associata a un numero qualsiasi di app nel piano di servizio app specifico.  Per fare un esempio, se si dispone di 1 connessione ibrida usata in 5 app distinte nel piano di servizio app, si tratta comunque di 1 connessione ibrida.
+Mentre è previsto un limite sul numero di hello di endpoint della connessione ibrida che può essere usato in un piano di servizio App, ogni connessione ibrida utilizzato può essere utilizzato in un numero qualsiasi di applicazioni in tale piano di servizio App.  Ovvero toosay se la connessione ibrida 1 utilizzati in applicazioni separate 5 il piano di servizio App, che è ancora 1 connessione ibrida.
 
-Oltre alla possibilità di essere usate solo nelle SKU Basic, Standard, Premium o per ambiente isolato, esiste un costo aggiuntivo per le connessioni ibride.  Per altre informazioni sui prezzi delle connessioni ibride, vedere [Prezzi di Bus di servizio][sbpricing].
+È un connessioni toohybrid costi aggiuntivi oltre a essere solo utilizzabile in Basic, Standard, Premium o SKU di tipo isolato.  Per altre informazioni sui prezzi delle connessioni ibride, vedere [Prezzi di Bus di servizio][sbpricing].
 
 ## <a name="hybrid-connection-manager"></a>Gestione connessione ibrida ##
 
-Per il corretto funzionamento delle connessioni ibride, è necessario disporre di un agente di inoltro nella rete che ospita l'endpoint della connessione ibrida.  L'agente di inoltro viene chiamato Gestione connessione ibrida.  È possibile scaricare questo strumento scegliendo **Rete > Configurare gli endpoint della connessione ibrida** nell'interfaccia utente dell'app nel [portale di Azure][portal].  
+Affinché toowork connessioni ibride, è necessario un agente di inoltro nella rete hello che ospita l'endpoint della connessione ibrida.  Che l'agente di inoltro viene chiamato hello Hybrid Connection Manager (HCM).  Questo strumento può essere scaricato da hello **rete > configurare gli endpoint della connessione ibrida** dell'interfaccia utente disponibili dalla tua app in hello [portale di Azure][portal].  
 
-Questo strumento viene eseguito in Windows Server 2008 R2 e versioni successive di Windows.  Dopo che è stato installato, lo strumento Gestione connessione ibrida viene eseguito come servizio.  Questo servizio si connette al servizio di inoltro del bus di servizio di Azure in base agli endpoint configurati.  Le connessioni da Gestione connessione ibrida sono in uscita sulle porte 80 e 443.    
+Questo strumento viene eseguito in Windows Server 2008 R2 e versioni successive di Windows.  Una volta installato hello HCM viene eseguito come servizio.  Questo servizio si connette l'inoltro di Service bus tooAzure basata sugli endpoint hello configurato.  le connessioni Hello da hello HCM sono tooports in uscita 80 e 443.    
 
-Gestione connessione ibrida dispone di un'interfaccia utente che ne consente la configurazione.  Dopo avere installato Gestione connessione ibrida, è possibile visualizzarne l'interfaccia utente eseguendo il file HybridConnectionManagerUi.exe che risiede nella directory di installazione dell'agente di inoltro.  L'interfaccia può essere richiamata anche direttamente da Windows 10 digitando *interfaccia utente Gestione connessione ibrida* nella casella di ricerca.  
+Hello HCM ha un tooconfigure dell'interfaccia utente è.  Dopo aver hello che HCM è installato è possibile visualizzare hello dell'interfaccia utente eseguendo hello HybridConnectionManagerUi.exe che si trova nella directory di installazione di hello Hybrid Connection Manager.  L'interfaccia può essere richiamata anche direttamente da Windows 10 digitando *interfaccia utente Gestione connessione ibrida* nella casella di ricerca.  
 
-Quando l'interfaccia utente di Gestione connessione ibrida viene avviata, la prima cosa che si vede è una tabella nella quale sono elencate tutte le connessioni ibride che sono configurate con questa istanza di Gestione connessione ibrida.  Per apportare eventuali modifiche, è necessario eseguire l'autenticazione con Azure. 
+Quando viene avviato UI HCM, hello hello in primo luogo è vedere è una tabella che elenca tutte le connessioni ibride hello configurati con questa istanza di hello HCM.  Se si desiderano toomake tutte le modifiche, è necessario tooauthenticate con Azure. 
 
-Per aggiungere una o più connessioni ibride a Gestione connessione ibrida:
+tooadd uno o più connessioni ibride tooyour HCM:
 
-1. Avviare l'interfaccia utente di Gestione connessione ibrida.
+1. Avviare hello HCM UI
 1. Fare clic su Configure another hybrid connection (Configura un'altra connessione ibrida)![][8].
 
 1. Accedere con l'account Azure.
 1. Scegliere una sottoscrizione.
-1. Fare clic sulle connessioni ibride che si desidera vengano inoltrare tramite Gestione connessione ibrida. ![][9]
+1. Fare clic su connessioni ibride hello si desidera questo toorelay HCM![][9]
 
 1. Fare clic su Salva.
 
-Verranno visualizzate a questo punto le connessioni ibride che sono state aggiunte.  È inoltre possibile fare clic sulla connessione ibrida configurata e visualizzarne i dettagli.
+A questo punto si noterà che le connessioni ibride hello che è stato aggiunto.  È anche possibile fare clic su una connessione ibrida hello configurato e visualizzare i dettagli relativi alla connessione hello.
 
 ![][10]
 
-Affinché Gestione connessione ibrida supporti le connessioni ibride con cui è configurato, deve disporre di quanto segue:
+Per le HCM toobe toosupport in grado di hello ibrida connessioni che viene configurato con, è necessario:
 
-- Accesso TCP ad Azure sulle porte 80 e 443
-- Accesso TCP all'endpoint della connessione ibrida
-- Possibilità di eseguire ricerche DNS nell'host endpoint e nello spazio dei nomi del bus di servizio di Azure.
+- TooAzure accesso TCP sulla porta 80 e 443
+- Endpoint della connessione ibrida toohello accesso TCP
+- capacità toodo DNS aspetto ups sull'host di endpoint hello e dello spazio dei nomi di hello azure Service bus
 
-Gestione connessione ibrida supporta le nuove connessioni ibride nonché le connessioni ibride BizTalk meno recenti.
+Hello HCM supporta le nuove connessioni ibride nonché a connessioni ibride di BizTalk precedenti hello.
 
 ### <a name="redundancy"></a>Ridondanza ###
 
-Ogni istanza di Gestione connessione ibrida può supportare più connessioni ibride.  Ogni connessione ibrida specificata può inoltre essere supportata da più istanze di Gestione connessione ibrida.  Il comportamento predefinito consiste nell'eseguire il round robin sul traffico tra le istanze configurate di Gestione connessione ibrida per un endpoint specificato.  Se si intende usufruire della disponibilità elevata nelle connessioni ibride dalla rete, è sufficiente creare istanze di Gestione connessione ibrida in computer separati. 
+Ogni istanza di Gestione connessione ibrida può supportare più connessioni ibride.  Ogni connessione ibrida specificata può inoltre essere supportata da più istanze di Gestione connessione ibrida.  comportamento predefinito di Hello è traffico robin tooround tra hello configurato HCMs per qualsiasi endpoint specificato.  Se si intende usufruire della disponibilità elevata nelle connessioni ibride dalla rete, è sufficiente creare istanze di Gestione connessione ibrida in computer separati. 
 
 ### <a name="manually-adding-a-hybrid-connection"></a>Aggiunta manuale di una connessione ibrida ###
 
-Se si vuole che un'entità esterna alla propria sottoscrizione ospiti un'istanza di Gestione connessione ibrida per una connessione ibrida specificata, è possibile condividere con tale entità la stringa di connessione gateway per la connessione ibrida.  Questa stringa è visibile nelle proprietà di una connessione ibrida nel [portale di Azure][portal]. Per usare tale stringa, fare clic sul pulsante **Configure manually** (Configura manualmente) in Gestione connessione ibrida e incollare la stringa di connessione gateway.
+Se si desidera qualcuno all'esterno del toohost sottoscrizione istanza HCM per una connessione ibrida specificato, è possibile condividere con li hello stringa di connessione del gateway per la connessione ibrida hello.  È possibile vedere questo nelle proprietà hello per una connessione ibrida in hello [portale di Azure][portal]. toouse che stringa, fare clic su hello **configurare manualmente** pulsante hello HCM e incollare nella stringa di connessione del gateway hello.
 
 
 ## <a name="troubleshooting"></a>Risoluzione dei problemi ##
 
-Quando la connessione ibrida è configurata con un'applicazione in esecuzione ed esiste almeno un'istanza di Gestione connessione ibrida che dispone di tale connessione ibrida configurata, lo stato nel portale è **Connesso**.  Se lo stato non è **Connesso**, significa che l'app non funziona o che Gestione connessione ibrida non riesce a connettersi ad Azure tramite la porta 80 o 443.  
+Quando la connessione ibrida è configurata con un'applicazione in esecuzione è presente almeno un HCM che dispone di tale connessione ibrida configurato, quindi viene indicato che stato hello **connesso** nel portale di hello.  Se non è selezionato **connesso** quindi significa che l'app è inattivo o non può connettersi la HCM out tooAzure sulle porte 80 o 443.  
 
-Il motivo principale per cui i client non riescono a connettersi al relativo endpoint è perché l'endpoint è stato specificato usando un indirizzo IP anziché un nome DNS.  Se l'app non riesce a raggiungere l'endpoint desiderato ed è stato specificato un indirizzo IP, usare un nome DNS valido nell'host in cui Gestione connessione ibrida è in esecuzione.  È necessario controllare anche che il nome DNS venga risolto correttamente nell'host in cui Gestione connessione ibrida è in esecuzione e che vi sia connettività tra l'host in cui Gestione connessione ibrida è in esecuzione e l'endpoint della connessione ibrida.  
+principalmente Hello che i client non possono connettersi endpoint tootheir infatti endpoint hello è stato specificato utilizzando un indirizzo IP anziché un nome DNS.  Se l'app non è possibile raggiungere l'endpoint di hello desiderato e utilizzato un indirizzo IP, passare toousing un nome DNS valido nell'host di hello in hello HCM è in esecuzione.  Altri aspetti toocheck sono tale hello nome DNS venga risolto correttamente nell'host di hello in hello HCM è in esecuzione e che non vi è connettività da hello host in cui hello HCM è in esecuzione toohello endpoint della connessione ibrida.  
 
-Nel Servizio app è disponibile uno strumento denominato tcpping, richiamabile dalla console.  Questo strumento indica se si dispone dell'accesso a un endpoint TCP, ma non se si dispone dell'accesso all'endpoint di una connessione ibrida.  Se usato nella console per rilevare l'endpoint di una connessione ibrida, un ping con esito positivo indicherà solo che si dispone di una connessione ibrida configurata per l'app che usa la combinazione host:porta specificata.  
+Si è uno strumento nel servizio App che può essere richiamato dalla console di hello denominato tcpping hello.  Questo strumento può indicare se si dispone di accesso tooa TCP endpoint ma non indica se si dispone di accesso tooa endpoint della connessione ibrida.  Quando utilizzato nella console di hello rispetto a un endpoint della connessione ibrida, un ping ha esito positivo solo indicherà che si dispone di una connessione ibrida configurata per l'applicazione che utilizza tale combinazione di host: porta.  
 
 ## <a name="biztalk-hybrid-connections"></a>Connessioni ibride BizTalk ##
 
-Non è più possibile usare la funzionalità Connessioni ibride BizTalk precedente per la creazione di connessioni ibride BizTalk.  È possibile continuare a usare le connessioni ibride BizTalk preesistenti, ma è consigliabile migrare al nuovo servizio.  Rispetto alla versione di BizTalk, il nuovo servizio offre vari vantaggi tra cui:
+funzionalità di connessioni ibride di BizTalk precedenti Hello è stato chiuso disattivare le operazioni di creazione di toofurther connessione ibrida BizTalk.  È possibile continuare a usare le connessioni ibride di BizTalk preesistente con le applicazioni, ma deve eseguire la migrazione toohello nuovo servizio.  Tra hello vantaggi nel servizio di nuovo hello rispetto alla versione di hello BizTalk sono:
 
 - Non è richiesto alcun account BizTalk aggiuntivo
 - La versione di TLS è 1.2 anziché 1.0 come in Connessioni ibride BizTalk
-- La comunicazione avviene sulle porte 80 e 443 usando un nome DNS per raggiungere Azure anziché gli indirizzi IP e una gamma di altre porte aggiuntive.  
+- La comunicazione è sulle porte 80 e 443 usando un tooreach di nome DNS Azure anziché agli indirizzi IP e un intervallo di ulteriori altre porte.  
 
-Per aggiungere una connessione ibrida BizTalk alla propria app, passare all'app nel [portale di Azure][portal] e fare clic su **Rete > Configurare gli endpoint della connessione ibrida**.  Nella tabella Connessioni ibride (versione classica) fare clic su **Aggiungi connessione ibrida classica**.  Verrà visualizzato un elenco delle connessioni ibride BizTalk in uso.  
+tooadd app tooyour connessione ibrida BizTalk, app tooyour andare in hello [portale di Azure] [ portal] e fare clic su **rete > configurare gli endpoint della connessione ibrida**.  Nella tabella delle connessioni ibride hello classica fare clic su **aggiungere la connessione ibrida classico**.  Verrà visualizzato un elenco delle connessioni ibride BizTalk in uso.  
 
 
 <!--Image references-->

@@ -1,6 +1,6 @@
 ---
-title: Credenziali per la distribuzione del Servizio app di Azure | Microsoft Docs
-description: Informazioni su come usare le credenziali per la distribuzione del Servizio app di Azure.
+title: le credenziali di distribuzione di servizio App aaaAzure | Documenti Microsoft
+description: Informazioni su come toouse hello le credenziali di distribuzione di servizio App di Azure.
 services: app-service
 documentationcenter: 
 author: dariagrigoriu
@@ -13,45 +13,45 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 01/05/2016
 ms.author: dariagrigoriu
-ms.openlocfilehash: 86a2cd8ae9f97c606a378452e44eec8941700531
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d6f9f5cc1b62a17c42643266f4c9490f827c63f1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="configure-deployment-credentials-for-azure-app-service"></a>Configurazione delle credenziali per la distribuzione del Servizio app di Azure
-Il [Servizio app di Azure](http://go.microsoft.com/fwlink/?LinkId=529714) supporta due tipi di credenziali per la [distribuzione di GIT locale](app-service-deploy-local-git.md) e la [distribuzione FTP/S](app-service-deploy-ftp.md). Queste credenziali non corrispondono alle credenziali di Azure Active Directory.
+Il [Servizio app di Azure](http://go.microsoft.com/fwlink/?LinkId=529714) supporta due tipi di credenziali per la [distribuzione di GIT locale](app-service-deploy-local-git.md) e la [distribuzione FTP/S](app-service-deploy-ftp.md). Questi non sono hello stesso come credenziali di Azure Active Directory.
 
-* **Credenziali a livello di utente**: un insieme di credenziali per tutto l'account Azure. Può essere usato per distribuire il Servizio app per qualsiasi app, in tutte le sottoscrizioni a cui l'account di Azure è autorizzato ad accedere. Si tratta dell'insieme di credenziali predefinito configurabile in **Servizi app** > **&lt;nome_app>** > **Credenziali per la distribuzione**. Si tratta inoltre dell'insieme predefinito indicato nella GUI del portale, ad esempio **Panoramica** e **Proprietà** nel [pannello risorse](../azure-resource-manager/resource-group-portal.md#manage-resources) dell'app.
+* **Le credenziali a livello di utente**: un insieme di credenziali per l'intero account Azure di hello. Può essere utilizzato toodeploy tooApp servizio per qualsiasi app, in tutte le sottoscrizioni, hello account Azure dispone di autorizzazione tooaccess. Si tratta di set di credenziali predefinito hello configurate in **servizi App** > **&lt;nome_app >** > **lecredenzialididistribuzione**. Questo è anche hello set predefinito che viene esposto in portale hello GUI (ad esempio hello **Panoramica** e **proprietà** della tua app [pannello della risorsa](../azure-resource-manager/resource-group-portal.md#manage-resources)).
 
     > [!NOTE]
-    > Quando si delega l'accesso alle risorse di Azure tramite controllo degli accessi in base al ruolo o autorizzazioni di coamministratore, ogni utente Azure che riceve l'accesso a un'app può usare le sue credenziali a livello utente fino a quando l'accesso non viene revocato. Queste credenziali di distribuzione non devono essere condivise con altri utenti di Azure.
+    > Quando si delegano tooAzure di accedere alle risorse tramite basato sui ruoli accesso controllo (RBAC) o le autorizzazioni di co-amministratore, ogni utente di Azure che riceve l'accesso tooan app può utilizzare proprie credenziali a livello di utente personali fino a quando non viene revocato l'accesso. Queste credenziali di distribuzione non devono essere condivise con altri utenti di Azure.
     >
     >
 
-* **Credenziali a livello di applicazione**: un insieme di credenziali per ogni applicazione. Può essere usato per distribuire solo in quella app. Le credenziali per ogni app sono generate automaticamente alla creazione dell'app stessa e si trovano nel suo profilo di pubblicazione. Non è possibile configurare manualmente le credenziali per un'applicazione, ma è possibile reimpostarle in qualsiasi momento.
+* **Credenziali a livello di applicazione**: un insieme di credenziali per ogni applicazione. Può essere utilizzato toodeploy toothat app solo. le credenziali di Hello per ogni app viene generato automaticamente al momento della creazione di app ed è disponibile dell'applicazione hello profilo di pubblicazione. Non è possibile configurare manualmente le credenziali di hello, ma è possibile reimpostarle per un'app in qualsiasi momento.
 
     > [!NOTE]
-    > Per consentire a un utente di accedere a queste credenziali tramite il controllo degli accessi in base al ruolo, è necessario assegnare all'utente il ruolo di collaboratore o un ruolo superiore per l'app Web. Poiché non hanno l'autorizzazione per la pubblicazione, i lettori non possono accedere a queste credenziali.
+    > In ordine toogive un utente l'accesso le credenziali toothese tramite basato sui ruoli accesso controllo (RBAC), è necessario toomake li collaboratore o versione successiva hello App Web. I lettori non sono consentiti toopublish e pertanto non è possibile accedere a tali credenziali.
     >
     >
 
 ## <a name="userscope"></a>Impostare e reimpostare le credenziali a livello di utente
 
-È possibile configurare le credenziali a livello di utente nel [pannello risorse](../azure-resource-manager/resource-group-portal.md#manage-resources) di ogni app. Indipendentemente dall'app, le credenziali configurate si applicano a tutte le app e a tutte le sottoscrizioni nell'account di Azure dell'utente. 
+È possibile configurare le credenziali a livello di utente nel [pannello risorse](../azure-resource-manager/resource-group-portal.md#manage-resources) di ogni app. Indipendentemente dal fatto che nella quale app configurare queste credenziali, viene applicato tooall App e per tutte le sottoscrizioni di Azure dell'account. 
 
-Per configurare le credenziali a livello di utente:
+tooconfigure le credenziali a livello di utente:
 
-1. Nel [portale di Azure](https://portal.azure.com), fare clic su Servizio app > **&lt;qualsiasi_app>** > **Credenziali per la distribuzione**.
+1. In hello [portale di Azure](https://portal.azure.com), fare clic su servizio App >  **&lt;any_app >** > **le credenziali di distribuzione**.
 
     > [!NOTE]
-    > È necessario disporre di almeno un'app nel portale prima di poter accedere al pannello delle credenziali per la distribuzione. Tuttavia, con l'[interfaccia della riga di comando di Azure](app-service-web-app-azure-resource-manager-xplat-cli.md) è possibile configurare le credenziali a livello di utente senza un'app esistente.
+    > Nel portale di hello, è necessario disporre di almeno un'app prima di poter accedere pannello credenziali di distribuzione hello. Tuttavia, con hello [CLI di Azure](app-service-web-app-azure-resource-manager-xplat-cli.md), è possibile configurare le credenziali a livello di utente senza un'app esistente.
 
-2. Configurare il nome utente e la password e quindi fare clic su **Salva**.
+2. Configurare il nome di utente hello e una password e quindi fare clic su **salvare**.
 
     ![](./media/app-service-deployment-credentials/deployment_credentials_configure.png)
 
-Dopo aver impostato le credenziali per la distribuzione, è possibile trovare il nome utente per la distribuzione di *GIT* nella **Panoramica** dell'app,
+Dopo aver impostato le credenziali di distribuzione, è possibile trovare hello *Git* nome utente di distribuzione dell'app **Panoramica**,
 
 ![](./media/app-service-deployment-credentials/deployment_credentials_overview.png)
 
@@ -60,36 +60,36 @@ oltre a un nome utente per la distribuzione *FTP* nelle **Proprietà** dell'app.
 ![](./media/app-service-deployment-credentials/deployment_credentials_properties.png)
 
 > [!NOTE]
-> Azure non mostra la password di distribuzione a livello di utente. Se si dimentica la password, non è possibile recuperarla. Tuttavia, è possibile reimpostare le credenziali seguendo i passaggi descritti in questa sezione.
+> Azure non mostra la password di distribuzione a livello di utente. Se si dimentica la password di hello, non possono essere recuperati. Tuttavia, è possibile reimpostare le credenziali seguendo i passaggi di hello in questa sezione.
 >
 >  
 
 ## <a name="appscope"></a>Ottenere e reimpostare le credenziali a livello di utente
-Per ogni app nel servizio app, le credenziali a livello di app vengono archiviate nel file XML del profilo di pubblicazione.
+Per ogni applicazione nel servizio App, le credenziali a livello di applicazione vengono archiviate in hello XML profilo di pubblicazione.
 
-Per ottenere le credenziali a livello di app:
+credenziali a livello di applicazione hello tooget:
 
-1. Nel [portale di Azure](https://portal.azure.com), fare clic su Servizio app > **&lt;qualsiasi_app>** > **Panoramica**.
+1. In hello [portale di Azure](https://portal.azure.com), fare clic su servizio App >  **&lt;any_app >** > **Panoramica**.
 
 2. Fare clic su **...More** (...Altro) > **Recupera profilo di pubblicazione** per avviare il download di un file .PublishSettings.
 
     ![](./media/app-service-deployment-credentials/publish_profile_get.png)
 
-3. Aprire il file .PublishSettings e trovare il tag `<publishProfile>` con l'attributo `publishMethod="FTP"`. Quindi, ottenere i relativi attributi `userName` e `password`.
-Si tratta delle credenziali a livello di app.
+3. Aprire hello. Trovare hello e file PublishSettings `<publishProfile>` tag con attributo hello `publishMethod="FTP"`. Quindi, ottenere i relativi attributi `userName` e `password`.
+Si tratta di credenziali a livello di applicazione hello.
 
     ![](./media/app-service-deployment-credentials/publish_profile_editor.png)
 
-    Come per le credenziali a livello di utente, il nome utente di distribuzione dell'FTP è nel formato `<app_name>\<username>`, mentre quello della distribuzione è Git è solo `<username>` senza `<app_name>\` a precedere.
+    Credenziali a livello di utente toohello analoghe, nome utente di distribuzione FTP hello è nel formato di hello delle `<app_name>\<username>`, e nome utente di distribuzione Git hello è semplicemente `<username>` senza hello precedente `<app_name>\`.
 
-Per reimpostare le credenziali a livello di app:
+credenziali a livello di applicazione hello tooreset:
 
-1. Nel [portale di Azure](https://portal.azure.com), fare clic su Servizio app >  **&lt;qualsiasi_app>** > **Panoramica**.
+1. In hello [portale di Azure](https://portal.azure.com), fare clic su servizio App >  **&lt;any_app >** > **Panoramica**.
 
-2. Fare clic su **...More** (...Altro) > **Reimposta profilo di pubblicazione**. Fare clic su **Sì** per confermare la reimpostazione.
+2. Fare clic su **...More** (...Altro) > **Reimposta profilo di pubblicazione**. Fare clic su **Sì** tooconfirm hello Reimposta.
 
-    L'operazione di reimpostazione invalida qualsiasi file .PublishSettings scaricato in precedenza.
+    l'azione reset Hello invalida qualsiasi scaricati in precedenza. File PublishSettings.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Informazioni su come usare queste credenziali per distribuire l'app da [GIT locale](app-service-deploy-local-git.md) o usando [FTP/S](app-service-deploy-ftp.md).
+Scoprire come toouse toodeploy queste credenziali l'app da [Git locale](app-service-deploy-local-git.md) o tramite [FTP/S](app-service-deploy-ftp.md).

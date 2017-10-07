@@ -1,6 +1,6 @@
 ---
-title: Prevedere una risposta con un modello basato sulla regressione semplice - Azure Machine Learning | Microsoft Docs
-description: "Per sapere come creare un modello di regressione semplice per prevedere un prezzo, è disponibile il quarto video di Analisi scientifica dei dati per principianti. Include una regressione lineare con i dati di destinazione."
+title: una risposta con un semplice modello di regressione - Azure Machine Learning aaaPredict | Documenti Microsoft
+description: Toocreate una regressione semplice come modello toopredict un prezzo di analisi scientifica dei dati per i principianti 4 video. Include una regressione lineare con i dati di destinazione.
 keywords: creare un modello, modello semplice, previsione prezzi, modello di regressione semplice
 services: machine-learning
 documentationcenter: na
@@ -15,17 +15,17 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/13/2017
 ms.author: cgronlun
-ms.openlocfilehash: 24df1823af2610a5111118f47e4cadbcfcc0eff1
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: d4270c2237c33b7e898b78a08b292bc9d62e49ef
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="predict-an-answer-with-a-simple-model"></a>Prevedere una risposta con un modello semplice
 ## <a name="video-4-data-science-for-beginners-series"></a>Video 4: Analisi scientifica dei dati per principianti
-È possibile scoprire come creare un modello di regressione semplice per prevedere il prezzo di un diamante guardando il quarto video della serie Analisi scientifica dei dati per principianti. Verrà rappresentato un modello di regressione con i dati di destinazione.
+Informazioni su come toocreate un toopredict modello di regressione semplice hello prezzo di una forma di rombo scienza dei dati per i principianti 4 video. Verrà rappresentato un modello di regressione con i dati di destinazione.
 
-Per trarre il meglio dalla serie è consigliabile guardare tutti i video. [L'elenco dei video è disponibile qui](#other-videos-in-this-series)
+hello tooget meglio serie hello, guardare tutti. [Passare l'elenco toohello di video](#other-videos-in-this-series)
 <br>
 
 > [!VIDEO https://channel9.msdn.com/Blogs/Azure/data-science-for-beginners-series-predict-an-answer-with-a-simple-model/player]
@@ -33,23 +33,23 @@ Per trarre il meglio dalla serie è consigliabile guardare tutti i video. [L'ele
 >
 
 ## <a name="other-videos-in-this-series"></a>Altri video della serie
-*Analisi scientifica dei dati per principianti* è una rapida introduzione all'analisi scientifica dei dati in cinque brevi video.
+*Analisi scientifica dei dati per i principianti* scienza di toodata una rapida introduzione in cinque brevi video.
 
-* Video 1: [5 domande a cui può rispondere l'analisi scientifica dei dati](machine-learning-data-science-for-beginners-the-5-questions-data-science-answers.md) *(5 min e 14 sec)*
+* Video 1: [hello 5 domande risposte di analisi scientifica dei dati](machine-learning-data-science-for-beginners-the-5-questions-data-science-answers.md) *(5 min 14 sec)*
 * Video 2: [Verifica della preparazione dei dati per l'analisi scientifica dei dati](machine-learning-data-science-for-beginners-is-your-data-ready-for-data-science.md) *(4 min e 56 sec)*
 * Video 3: [Porre una domanda a cui è possibile rispondere con i dati](machine-learning-data-science-for-beginners-ask-a-question-you-can-answer-with-data.md) *(4 min e 17 sec)*
 * Video 4: Prevedere una risposta con un modello semplice
-* Video 5: [Copiare il lavoro di altre persone per l'analisi scientifica dei dati](machine-learning-data-science-for-beginners-copy-other-peoples-work-to-do-data-science.md) *(3 min e 18 sec)*
+* Video 5: [copiare analisi scientifica dei dati di altre persone lavoro toodo](machine-learning-data-science-for-beginners-copy-other-peoples-work-to-do-data-science.md) *(3 min 18 sec)*
 
 ## <a name="transcript-predict-an-answer-with-a-simple-model"></a>Trascrizione: Prevedere una risposta con un modello semplice
-Benvenuti al quarto video della serie "Analisi scientifica dei dati per principianti". In questa occasione verrà creato un modello semplice e realizzata una previsione.
+Benvenuti toohello quarto video in hello serie "Analisi scientifica dei dati per principianti". In questa occasione verrà creato un modello semplice e realizzata una previsione.
 
 Un *modello* non è altro che una storia semplificata dei dati. Adesso spiegherò cosa intendo.
 
 ## <a name="collect-relevant-accurate-connected-enough-data"></a>Raccolta di dati rilevanti, accurati, connessi, in quantità sufficiente
-Si pensi all'acquisto di un diamante. Possiedo un anello che apparteneva a mia nonna con un'incastonatura da 1,35 carati e vorrei farmi un'idea sul suo prezzo. Prendo un blocco note e una penna nella gioielleria e scrivo il prezzo di tutti i diamanti e il relativo peso in carati. Iniziando dal primo diamante, pesa 1,01 carati e costa $ 7.366.
+Si immagini tooshop per una forma di rombo. Ho un anello che faceva parte nonna toomy con un'impostazione per un rombo 1,35 accento circonflesso e si desidera tooget un'idea di come relativo costo. Si acquisiscono un blocco note e penna in gioielleria hello e scrivere verso il basso prezzo hello di rombi hello in caso di hello e quanto essi valutare carato tutti. A partire da hello prima forma di rombo - relativo 1.01 carato e $7,366.
 
-Adesso faccio la stessa cosa con tutti gli altri diamanti presenti in negozio.
+Ora scorrere e farlo per hello tutte le altri rombi nell'archivio di hello.
 
 ![Colonne di dati relativi ai diamanti](./media/machine-learning-data-science-for-beginners-predict-an-answer-with-a-simple-model/diamond-data.png)
 
@@ -57,79 +57,79 @@ L'elenco presenta quindi due colonne. Ciascuna colonna contiene un attributo div
 
 In questo modo è stata creato un piccolo set di dati, ovvero una tabella. Si noti che questa tabella soddisfa i criteri di qualità:
 
-* I dati sono **rilevanti** : il peso è senza dubbio correlato al prezzo
-* Sono **accurati** : i prezzi appuntati sono stati verificati due volte
+* dati Hello **rilevanti** -peso è sicuramente correlati tooprice
+* Ha **accurato** -è ricontrollato prezzi hello scritto verso il basso
 * Sono **connessi** : nessuna delle colonne contiene spazi vuoti
-* E, come illustrato, la quantità dei dati è **sufficiente** per rispondere alla domanda
+* E, come vedremo, ha **sufficiente** tooanswer dati alla domanda
 
 ## <a name="ask-a-sharp-question"></a>Porre una domanda ben strutturata
-La domanda verrà adesso posta in modo ben strutturato: "Quale sarà il costo di acquisto di un diamante da 1,35 carati?"
+Ora si sarà porre la domanda in modo acuto: "quante il costo toobuy un rombo accento circonflesso 1,35?"
 
-Nell'elenco non c'è un diamante da 1,35 carati, quindi sarà necessario usare gli altri dati per ottenere una risposta a questa domanda.
+In tale elenco avremo rest hello toouse del nostro tooget dati una domanda toohello risposta Web non dispone un rombo 1,35 accento circonflesso.
 
-## <a name="plot-the-existing-data"></a>Fare un grafico dei dati esistenti
-Per prima cosa verrà disegnata una linea numerica orizzontale, detta asse, su cui saranno indicati i pesi. L'intervallo dei pesi va da 0 a 2, quindi verranno disegnati una linea che copre questo intervallo e dei trattini per ciascun mezzo carato.
+## <a name="plot-hello-existing-data"></a>Tracciare i dati esistenti hello
+innanzitutto Hello che faremo è disegnare una linea orizzontale numero, un asse, pesi hello toochart chiamata. intervallo di Hello di pesi hello è too2 0, in modo ci sarà disegnare una linea che copre intervallo e inserire i segni di graduazione per ogni marcatore metà.
 
-Adesso, per registrare il prezzo verrà tracciato un asse verticale che sarà connesso all'asse orizzontale del peso. L'asse verticale sarà suddiviso in unità di dollari. A questo punto viene fuori un set di assi coordinati.
+Successivamente viene disegnare un prezzo di hello toorecord asse verticale e connetterla asse orizzontale peso toohello. L'asse verticale sarà suddiviso in unità di dollari. A questo punto viene fuori un set di assi coordinati.
 
 ![Assi del peso e del prezzo](./media/machine-learning-data-science-for-beginners-predict-an-answer-with-a-simple-model/weight-and-price-axes.png)
 
-Questi dati verranno adesso convertiti in un *grafico di dispersione*, un'ottima soluzione per visualizzare i set di dati numerici.
+Abbiamo tootake passare dati a questo punto è e trasformarlo in un *dispersione*. Si tratta di un set di dati numerici toovisualize consigliato.
 
-Per il primo punto di dati verrà tracciata una linea verticale fino a 1,01 carati. Poi, una linea orizzontale fino a $ 7.366. Laddove si intersecano, verrà disegnato un punto. Questo rappresenta il primo diamante.
+Per punto dati prima di hello, abbiamo individuare una riga verticale alla carato 1.01. Poi, una linea orizzontale fino a $ 7.366. Laddove si intersecano, verrà disegnato un punto. Questo rappresenta il primo diamante.
 
-Adesso farò la stessa cosa per ogni diamante presente nell'elenco. Una volta terminato, questo è quello che si ottiene: un mucchio di punti, uno per ogni diamante.
+Ora si scorrono ogni rombo nell'elenco e hello stessa operazione. Una volta terminato, questo è quello che si ottiene: un mucchio di punti, uno per ogni diamante.
 
 ![Grafico a dispersione](./media/machine-learning-data-science-for-beginners-predict-an-answer-with-a-simple-model/scatter-plot.png)
 
-## <a name="draw-the-model-through-the-data-points"></a>Disegnare il modello tramite i punti dei dati
-Dando un'occhiata veloce ai punti, la raccolta sembra una linea confusa e grossa. Usando il pennarello è possibile tracciare una linea retta che la attraversi.
+## <a name="draw-hello-model-through-hello-data-points"></a>Modello di hello disegno tramite i punti dati hello
+Se si osserva squint e punti di hello, raccolta hello è una linea fat, fuzzy. Usando il pennarello è possibile tracciare una linea retta che la attraversi.
 
-In questo modo si crea un *modello*. È come se si prendesse il modo reale e si realizzasse una versione cartacea semplicistica dello stesso. Adesso la versione cartacea è sbagliata, la linea non passa per tutti i punti di dati, ma è una semplificazione utile.
+In questo modo si crea un *modello*. Considerare come tenendo reale hello e apportando una versione di cartoni animati semplicistico. Ora cartoni animati hello sono errato: riga hello non giunge a tutti i punti dati hello. ma è una semplificazione utile.
 
 ![Linea di regressione lineare](./media/machine-learning-data-science-for-beginners-predict-an-answer-with-a-simple-model/linear-regression-line.png)
 
-Il fatto che non tutti i punti si trovino esattamente sulla linea va bene. Gli esperti di gestione dati spiegano tutto questo affermando che esiste il modello, ovvero la linea, e che a ogni punto vengono associati alcuni *disturbi* o *varianze*. Vi è quindi la perfetta relazione sottostante e vi è il mondo reale dinamico che aggiunge disturbo e incertezza.
+fatto Hello che tutti i punti di hello non vengono sottoposti esattamente riga hello è accettabile. Gli esperti di dati viene illustrato questo pronunciando è hello modello - riga hello - e quindi ogni punto presenta alcuni *rumore* o *varianza* associato. È hello perfetto relazione sottostante ed è quindi avanzata, reale HelloWorld che aggiunge il rumore e ridurre le incertezze.
 
-Dal momento che si cerca di rispondere alla domanda *Quanto costa?*, è possibile parlare di *regressione*. E visto che viene usata una linea dritta, si tratta di una *regressione lineare*.
+Poiché si sta tentando di domanda hello tooanswer *quanto?* si tratta di un *regressione*. E visto che viene usata una linea dritta, si tratta di una *regressione lineare*.
 
-## <a name="use-the-model-to-find-the-answer"></a>Usare il modello per trovare la risposta
+## <a name="use-hello-model-toofind-hello-answer"></a>Utilizzare risposte hello di hello modello toofind
 Una volta pronto il modello, è possibile porgli la domanda: Quando costerà un diamante da 1,35 carati?
 
-Per rispondere a questa domanda, occorre partire da 1,35 carati e disegnare una linea verticale. Esattamente nel punto in cui incrocia la linea del modello, verrà tracciata una linea orizzontale verso l'asse dei dollari. Va a colpire proprio i 10.000 dollari. Boom! Quella è la risposta: un diamante da 1,35 carati costa circa $ 10.000.
+tooanswer alla domanda, si individuare carato 1,35 e tracciare una linea verticale. In linea del modello hello attraversa, abbiamo individuare un asse di dollaro toohello linea orizzontale. Va a colpire proprio i 10.000 dollari. Boom! Risposta hello: un rombo accento circonflesso 1,35 costa circa $10.000.
 
-![Individuare la risposta a partire dal modello](./media/machine-learning-data-science-for-beginners-predict-an-answer-with-a-simple-model/find-the-answer.png)
+![Risposte hello sul modello hello](./media/machine-learning-data-science-for-beginners-predict-an-answer-with-a-simple-model/find-the-answer.png)
 
 ## <a name="create-a-confidence-interval"></a>Creare un intervallo di confidenza
-È naturale chiedersi quanto precisa sia questa previsione. È utile sapere se il diamante da 1,35 carati sarà più vicino ai $ 10.000 oppure se costerà molto più o molto meno. Per capirlo, sarà sufficiente disegnare un inviluppo attorno alla linea di regressione che include la maggior parte dei punti. Questo inviluppo viene detto *intervallo di confidenza*: si è abbastanza sicuri che i prezzi rientrino in questo inviluppo, poiché è stato così per la maggior parte degli stessi prezzi in precedenza. È possibile disegnare altre due linee orizzontali da cui la linea 1,35 carati incrocia la parte superiore e inferiore di quell'inviluppo.
+È naturale toowonder come precisa è la stima. È utile tooknow se rombo accento circonflesso 1,35 hello sarà molto simile troppo$ 10.000 o molto superiore o inferiore. toofigure questo out, è possibile disegnare un elemento envelope retta di regressione hello che include la maggior parte dei punti di hello. La busta viene chiamata il nostro *intervallo di confidenza*: siamo certi piuttosto che i prezzi rientrano in questa busta, perché in hello precedente la maggior parte di essi. È possibile creare due linee orizzontali più da intersezione di riga accento circonflesso 1,35 hello hello superiore e inferiore di hello di tale envelope.
 
 ![intervallo di confidenza](./media/machine-learning-data-science-for-beginners-predict-an-answer-with-a-simple-model/confidence-interval.png)
 
-A proposito dell'intervallo di confidenza è possibile affermare con sicurezza che il prezzo di un diamante da 1,35 carati costa circa $ 10.000, ma potrebbe scendere fino a $ 8.000 e salire fino a $ 12.000.
+Ora è possibile affermare qualcosa sull'intervallo di confidenza: suggerisce con fiducia che il prezzo di hello di accento circonflesso 1,35 rombo è circa $10.000 - ma potrebbe essere minimo di $8.000 e potrebbe essere a un massimo di $12.000.
 
 ## <a name="were-done-with-no-math-or-computers"></a>Ecco fatto, senza matematica, né computer
-Abbiamo svolto un lavoro scientifico semplicemente disegnando:
+È stato fatto, quali gli esperti di dati di ricevimento dei pagamenti toodo e abbiamo appena disegnando:
 
 * Abbiamo posto una domanda a cui è stato possibile rispondere con i dati
 * È stato creato un *modello* usando una *regressione lineare*.
 * È stata realizzata una *previsione*, completa di *intervallo di confidenza*
 
-senza matematica, né computer.
+E non è stato utilizzato toodo matematiche o computer è.
 
 Se fossero state necessarie ulteriori informazioni, ad esempio...
 
-* il taglio del diamante
-* le variazioni di colore (quanto si avvicina al bianco il diamante)
-* il numero di inclusioni nel diamante
+* Hello Taglia della forma di rombo hello
+* variazioni di colore (come chiudere rombo hello è toobeing bianco)
+* numero di Hello di inclusioni nella forma di rombo hello
 
-...avremmo avuto più colonne. In quel caso, la matematica diventa utile. Se le colonne sono più di due, è difficile disegnare punti su carta. La matematica consente di adattare una determinata linea o un determinato piano ai dati in modo molto preciso.
+...avremmo avuto più colonne. In quel caso, la matematica diventa utile. Se si dispone di più di due colonne, è toodraw rigido punti su carta. matematiche Hello consente si adattano perfettamente dati tooyour piano o riga.
 
 E se al posto di una semplice manciata diamanti, si trattasse di duemila o due milioni, allora un lavoro al computer sarebbe molto più veloce.
 
-Oggi l'argomento del video è stata la creazione di una regressione lineare e la realizzazione di una previsione usando i dati.
+Oggi, abbiamo parlato come regressione lineare toodo ed è resa una stima utilizzando i dati.
 
-Anche gli altri video della serie "Analisi scientifica dei dati per principianti" di Microsoft Azure Machine Learning meritano di essere visti.
+Impossibile verificare toocheck out hello altri video in "Data Science per principianti" da Microsoft Azure Machine Learning.
 
 ## <a name="next-steps"></a>Passaggi successivi
 * [Effettuare il primo esperimento di analisi scientifica dei dati con Machine Learning Studio](machine-learning-create-experiment.md)
-* [Leggere l'Introduzione all'apprendimento automatico in Microsoft Azure](machine-learning-what-is-machine-learning.md)
+* [Ottenere un tooMachine introduzione di apprendimento in Microsoft Azure](machine-learning-what-is-machine-learning.md)

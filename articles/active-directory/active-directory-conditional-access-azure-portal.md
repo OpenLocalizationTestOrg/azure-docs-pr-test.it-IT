@@ -1,8 +1,8 @@
 ---
-title: Accesso condizionale di Azure Active Directory | Microsoft Docs
-description: Usare il controllo di accesso condizionale di Azure Active Directory per controllare condizioni specifiche durante il processo di autenticazione per l'accesso alle applicazioni.
+title: aaaAzure Active Directory l'accesso condizionale | Documenti Microsoft
+description: Utilizzare il controllo di accesso condizionale in Azure Active Directory toocheck per condizioni specifiche per l'autenticazione per accesso tooapplications.
 services: active-directory
-keywords: accesso condizionale alle app, accesso condizionale con Azure AD, accesso sicuro alle risorse aziendali, criteri di accesso condizionale
+keywords: accesso condizionale tooapps, l'accesso condizionale con Azure AD, proteggere l'accesso alle risorse toocompany, criteri di accesso condizionale
 documentationcenter: 
 author: MarkusVi
 manager: femila
@@ -16,41 +16,41 @@ ms.workload: identity
 ms.date: 08/22/2017
 ms.author: markvi
 ms.reviewer: calebb
-ms.openlocfilehash: 20572ecbde79bc2722f3a25f297c92d8e722a3e8
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 9fa8a5c3e514c032fbe3aa56f33d759485a018c7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="conditional-access-in-azure-active-directory"></a>Accesso condizionale in Azure Active Directory
 
-In un mondo in cui i dispositivi mobili e il cloud hanno sempre più importanza, Azure Active Directory consente ovunque l'accesso Single Sign-On a dispositivi, app e servizi. Con il proliferare dei dispositivi (inclusi i dispositivi BYOD), del lavoro al di fuori delle reti aziendali e delle app SaaS di terze parti, i professionisti IT hanno due obiettivi opposti:
+In un ambiente mobile-first, prima di cloud, Azure Active Directory consente di single sign-on toodevices, applicazioni e servizi da qualsiasi posizione. Proliferazione hello di dispositivi (BYOD inclusi), di operare off reti aziendali e App SaaS di terze parti 3rd, i professionisti IT devono affrontare due obiettivi opposti:
 
-- Fare in modo che gli utenti finali siano produttivi sempre e ovunque
-- Proteggere gli asset aziendali in qualsiasi momento
+- Consentire toobe gli utenti finali di hello produttivi ovunque e
+- Proteggere le risorse aziendali hello in qualsiasi momento
 
-Per aumentare la produttività, Azure Active Directory consente agli utenti di accedere agli asset aziendali in molti modi diversi. Con la gestione degli accessi alle applicazioni, Azure Active Directory consente di assicurarsi che solo *le persone giuste* possano accedere alle applicazioni. Ma come comportarsi se si vuole più controllo sul modo in cui le persone giuste accedono alle risorse in determinate condizioni? O nei casi in cui si vuole impedire anche alle *persone giuste* l'accesso a determinate app? Ad esempio, può non essere un problema se le persone giuste accedono a determinate app da una rete attendibile, ma può essere opportuno evitare che accedano a tali app da una rete considerata non attendibile. Per risolvere questi dubbi, è possibile usare l'accesso condizionale.
+produttività tooimprove, Azure Active Directory fornisce agli utenti con un'ampia gamma di opzioni tooaccess risorse aziendali. Con la gestione di accesso dell'applicazione, Azure Active Directory consente solo tooensure *hello chi deve esserne informato* possono accedere alle applicazioni. Cosa accade se si desidera toohave maggiore controllo sulla modalità chi deve esserne informato hello accedono a risorse in determinate condizioni? Cosa accade se si dispone anche di condizioni in cui si desidera tooblock accesso toocertain App anche per hello *destro persone*? Ad esempio, potrebbe essere OK automaticamente se chi deve esserne informato hello accede determinate applicazioni da una rete attendibile. Tuttavia, potrebbe non desiderati tooaccess queste applicazioni da una rete che non attendibile. Per risolvere questi dubbi, è possibile usare l'accesso condizionale.
 
-L'accesso condizionale è una funzionalità di Azure Active Directory che consente di applicare controlli sull'accesso alle app nel proprio ambiente in base a specifiche condizioni. Con i controlli, è possibile vincolare l'accesso a requisiti aggiuntivi o bloccarlo. L'implementazione dell'accesso condizionale è basata su criteri. Un approccio basato su criteri semplifica l'esperienza di configurazione perché risponde a esigenze specifiche nell'ambito dei requisiti di accesso.  
+Accesso condizionale è una funzionalità di Azure Active Directory che consente di controlli tooenforce tooapps accesso hello nell'ambiente in base a condizioni specifiche. Con i controlli, è possibile collegare sia accesso toohello altri requisiti o si blocca. implementazione di Hello dell'accesso condizionale è basata sui criteri. Un approccio basato su criteri semplifica l'esperienza di configurazione in quanto segue modo hello che è valutare i requisiti di accesso.  
 
-In genere, per definire i requisiti di accesso, si usano istruzioni basate sullo schema seguente:
+In genere, è necessario definire i requisiti di accesso utilizzando le istruzioni che dipendono dal modello di hello:
 
 ![Controllo](./media/active-directory-conditional-access-azure-portal/10.png)
 
-Se si sostituiscono le due occorrenze di "*questo*" con le informazioni reali, si ottiene un esempio di istruzione dei criteri con cui probabilmente si ha familiarità:
+Quando si sostituisce hello due occorrenze "*questo*" con le informazioni del mondo reale, è necessario un esempio di un'istruzione di criteri che probabilmente ha un aspetto familiare tooyou:
 
-*Quando i terzisti cercano di accedere alle app per cloud da reti non considerate attendibili, bloccare l'accesso.*
+*Quando terzisti Cerca tooaccess nostri delle App cloud le reti non attendibili, bloccare l'accesso.*
 
-L'istruzione dei criteri precedente mette in evidenza l'efficacia dell'accesso condizionale. Se da un lato si può consentire ai terzisti l'accesso di base alle app per cloud (**chi**), con l'accesso condizionale si possono anche definire le condizioni in cui l'accesso è possibile (**come**).
+istruzione dei criteri Hello precedente evidenzia power hello di accesso condizionale. Sebbene sia possibile attivare terzisti toobasically accedere App cloud (**che**), con accesso condizionale, è inoltre possibile definire le condizioni in cui hello è possibile accedere (**come**).
 
-Nell'ambito dell'accesso condizionale di Azure Active Directory:
+Nel contesto di hello di accesso condizionale di Azure Active Directory,
 
 - "**Quando accade questo**" è l'**istruzione della condizione**
 - "**Fare questo**" sono i **controlli**
 
 ![Controllo](./media/active-directory-conditional-access-azure-portal/11.png)
 
-La combinazione di un'istruzione della condizione con i controlli rappresenta un criterio di accesso condizionale.
+combinazione di Hello di un'istruzione con i controlli di condizione rappresenta un criterio di accesso condizionale.
 
 ![Controllo](./media/active-directory-conditional-access-azure-portal/12.png)
 
@@ -59,62 +59,62 @@ La combinazione di un'istruzione della condizione con i controlli rappresenta un
 
 In un criterio di accesso condizionale i controlli definiscono che cosa deve accadere dopo che un'istruzione della condizione è stata soddisfatta.  
 Con i controlli, è possibile bloccare o consentire l'accesso con requisiti aggiuntivi.
-Quando si configura un criterio che consente l'accesso, è necessario selezionare almeno un requisito.   
+Quando si configura un criterio che consente l'accesso, è necessario tooselect almeno un requisito.   
 
 ### <a name="grant-controls"></a>Controlli di concessione
-L'implementazione corrente di Azure Active Directory consente di configurare i requisiti dei controlli di concessione seguenti:
+implementazione corrente di Hello di Azure Active Directory consente hello tooconfigure requisiti di controllo delle autorizzazioni seguenti:
 
 ![Controllo](./media/active-directory-conditional-access-azure-portal/05.png)
 
-- **Autenticazione a più fattori**: è possibile richiedere l'autenticazione avanzata tramite l'autenticazione a più fattori. I provider possono usare Azure Multi-Factor Authentication o un provider di autenticazione a più fattori locale, in combinazione con Active Directory Federation Services (AD FS). L'uso dell'autenticazione a più fattori assicura la protezione delle risorse nel caso in cui un utente non autorizzato abbia avuto l'accesso alle credenziali di un utente valido.
+- **Autenticazione a più fattori**: è possibile richiedere l'autenticazione avanzata tramite l'autenticazione a più fattori. I provider possono usare Azure Multi-Factor Authentication o un provider di autenticazione a più fattori locale, in combinazione con Active Directory Federation Services (AD FS). Tramite multi-factor authentication consente di proteggere le risorse da cui si accede da un utente non autorizzato potrebbe avere avuto accesso toohello le credenziali di un utente valido.
 
-- **Dispositivo conforme**: è possibile impostare criteri di accesso condizionale a livello di dispositivo. È possibile impostare un criterio per consentire l'accesso alle risorse dell'organizzazione soltanto ai computer conformi o registrati nella gestione di dispositivi mobili. Ad esempio, è possibile usare Intune per verificare la conformità dei dispositivi e quindi segnalarla a Azure AD affinché ne tenga conto durante l'accesso alle applicazioni. Per istruzioni dettagliate su come usare Intune per proteggere le applicazioni e i dati, vedere [Proteggere le applicazioni e i dati con Microsoft Intune](https://docs.microsoft.com/intune-classic/deploy-use/protect-apps-and-data-with-microsoft-intune). È inoltre possibile usare Intune per applicare la protezione dei dati per i dispositivi smarriti o rubati. Per altre informazioni, vedere [Proteggere i dati con la cancellazione completa o selettiva tramite Microsoft Intune](https://docs.microsoft.com/intune-classic/deploy-use/use-remote-wipe-to-help-protect-data-using-microsoft-intune).
+- **Un dispositivo conforme** -è possibile impostare i criteri di accesso condizionale a livello di dispositivo hello. È possibile impostare un criterio tooonly attiva i computer che sono conformi o i dispositivi mobili che sono registrati in un tooaccess di gestione di dispositivi mobili alle risorse dell'organizzazione. Ad esempio, possibile usare Intune toocheck conformità del dispositivo e quindi segnalarlo tooAzure Active Directory per l'applicazione quando l'utente hello tenta tooaccess un'applicazione. Per istruzioni dettagliate sul funzionamento toouse Intune tooprotect App e dati, vedere [proteggere App e dati con Microsoft Intune](https://docs.microsoft.com/intune-classic/deploy-use/protect-apps-and-data-with-microsoft-intune). È inoltre possibile utilizzare la protezione dei dati tooenforce Intune per dispositivi smarriti o rubati. Per altre informazioni, vedere [Proteggere i dati con la cancellazione completa o selettiva tramite Microsoft Intune](https://docs.microsoft.com/intune-classic/deploy-use/use-remote-wipe-to-help-protect-data-using-microsoft-intune).
 
-- **Dispositivo aggiunto a un dominio**: è possibile richiedere che il dispositivo usato per connettersi ad Azure Active Directory sia un dispositivo aggiunto ad Active Directory (AD) locale. Questo criterio si applica ai computer desktop, portatili o tablet aziendali Windows. 
+- **Dispositivi aggiunti a un dominio** : È possibile richiedere dispositivo hello utilizzati tooyour appartenenti a un dominio Active Directory toobe di tooconnect tooAzure locale Active Directory (AD). Questi criteri si applicano tooWindows desktop, portatili e Tablet enterprise. 
 
 Se si dispone di più controlli selezionati, è possibile inoltre configurare se tutti gli elementi sono richiesti quando viene elaborato il criterio.
 
 ![Controllo](./media/active-directory-conditional-access-azure-portal/06.png)
 
 ### <a name="session-controls"></a>Controlli di sessione
-I controlli di sessione consentono di limitare l'esperienza in un'app cloud. Questi controlli sono imposti dalle app cloud e si basano sulle informazioni aggiuntive relative alla sessione fornite da Azure AD all'app.
+I controlli di sessione consentono di limitare l'esperienza in un'app cloud. i controlli di sessione Hello vengono applicati da applicazioni basate su cloud e si basano su informazioni aggiuntive fornite dall'app di Azure AD toohello sulla sessione hello.
 
 ![Controllo](./media/active-directory-conditional-access-azure-portal/session-control-pic.png)
 
 #### <a name="use-app-enforced-restrictions"></a>Usa restrizioni imposte dalle app
-È possibile usare questo controllo per chiedere ad Azure AD di passare le informazioni sul dispositivo all'app cloud, che in questo modo può sapere se l'utente proviene da un dispositivo conforme o da un dispositivo aggiunto a un dominio. Questo controllo è attualmente supportato solo con SharePoint come app cloud. SharePoint usa le informazioni sul dispositivo per offrire agli utenti un'esperienza completa o limitata, a seconda dello stato del dispositivo.
-Per altre informazioni su come richiedere l'accesso limitato con SharePoint, vedere [qui](https://aka.ms/spolimitedaccessdocs).
+È possibile utilizzare questo controllo toorequire AD Azure toopass hello dispositivo informazioni toohello app cloud. In questo modo app cloud hello sapere se l'utente hello proviene da un dispositivo conforme o di un dispositivo aggiunto a un dominio. Questo controllo è attualmente supportata solo con SharePoint come app cloud hello. SharePoint utilizza hello dispositivo informazioni tooprovide gli utenti un'esperienza completa o limitata a seconda dello stato del dispositivo hello.
+passare toolearn ulteriori informazioni sulla modalità di accesso con SharePoint, limitato toorequire [qui](https://aka.ms/spolimitedaccessdocs).
 
 ## <a name="condition-statement"></a>Istruzione della condizione
 
-La sezione precedente ha illustrato le opzioni supportate per bloccare o limitare l'accesso alle risorse sotto forma di controlli. In un criterio di accesso condizionale si definiscono i criteri che devono essere soddisfatti per i controlli da applicare sotto forma di istruzione della condizione.  
+la sezione precedente di Hello ha introdotto toosupported opzioni tooblock o limitare l'accesso alle risorse tooyour in forma di controlli. In un criterio di accesso condizionale, è definire i criteri di hello necessari toobe soddisfatti per toobe i controlli applicati in forma di un'istruzione di condizione.  
 
-È possibile includere le assegnazioni seguenti nell'istruzione della condizione:
+È possibile includere hello seguendo le assegnazioni nell'istruzione della condizione:
 
 ![Controllo](./media/active-directory-conditional-access-azure-portal/07.png)
 
 
-- **Chi**: in molti casi è necessario applicare i controlli a uno specifico set di utenti. In un'istruzione della condizione è possibile definire questo set selezionando gli utenti e gruppi a cui si applica il criterio. Se necessario, è anche possibile escludere in modo esplicito un set di utenti dal criterio esentandoli.  
-Selezionando utenti e gruppi, si definisce l'ambito degli utenti a cui si applica il criterio.    
+- **Chi** -In molti casi, si desidera il set specifico di tooa toobe applicare controlli di utenti. In un'istruzione di condizione, è possibile definire questo set selezionando gli utenti di hello e il criterio si applica ai gruppi. Se necessario, è anche possibile escludere in modo esplicito un set di utenti dal criterio esentandoli.  
+Selezionando gli utenti e gruppi, definire ambito hello di utenti a che i criteri si applicano.    
 
     ![Controllo](./media/active-directory-conditional-access-azure-portal/08.png)
 
 
 
-- **Che cosa**: di solito nel proprio ambiente vengono eseguite alcune app che, dal punto di vista della protezione, richiedono più attenzione di altre, ad esempio, app che hanno accesso a dati sensibili.
-Selezionando le app per cloud, si definisce l'ambito delle app per cloud a cui si applica il criterio. Se necessario, è anche possibile escludere in modo esplicito un set di app dal criterio.
+- **Che cosa**: di solito nel proprio ambiente vengono eseguite alcune app che, dal punto di vista della protezione, richiedono più attenzione di altre, Questo interessa, ad esempio, le app che hanno accesso ai dati toosensitive.
+Se si seleziona App cloud, è definire l'ambito di hello delle applicazioni cloud, a che il criterio si applica. Se necessario, è anche possibile escludere in modo esplicito un set di app dal criterio.
 
     ![Controllo](./media/active-directory-conditional-access-azure-portal/09.png)
 
 
-- **Come**: purché l'accesso alle app avvenga in condizioni controllabili, non è necessario imporre altri controlli sull'accesso degli utenti alle app per cloud. Le cose tuttavia cambiano se l'accesso alle app per cloud viene eseguito, ad esempio, da reti non considerate attendibili o da dispositivi non conformi. In un'istruzione della condizione è possibile definire alcune condizioni di accesso con requisiti aggiuntivi per l'esecuzione dell'accesso alle app.
+- **Come** - come accesso tooyour App viene eseguita in condizioni è possibile controllare, è possibile che non sia necessario per l'imposizione di controlli aggiuntivi in modalità App cloud accessibili dagli utenti. Tuttavia, operazioni potrebbero essere diverse se viene eseguita App cloud tooyour di accesso, ad esempio, le reti non attendibili o i dispositivi non conformi. In un'istruzione di condizione, è possibile definire determinate condizioni di accesso che dispongono di requisiti aggiuntivi per la modalità di accesso tooyour app.
 
     ![Condizioni](./media/active-directory-conditional-access-azure-portal/21.png)
 
 
 ## <a name="conditions"></a>Condizioni
 
-Nell'implementazione corrente di Azure Active Directory è possibile definire condizioni per le aree seguenti:
+Nell'implementazione corrente di hello di Azure Active Directory, è possibile definire le condizioni per hello seguenti aree:
 
 - Rischio di accesso
 - Piattaforme del dispositivo
@@ -125,14 +125,14 @@ Nell'implementazione corrente di Azure Active Directory è possibile definire co
 
 ### <a name="sign-in-risk"></a>Rischio di accesso
 
-Un rischio di accesso è un oggetto usato da Azure Active Directory per tenere traccia della probabilità che un tentativo di accesso non sia eseguito dal proprietario legittimo di un account utente. In questo oggetto la probabilità (alta, media o bassa) viene archiviata sotto forma di attributo denominato [livello di rischio di accesso](active-directory-reporting-risk-events.md#risk-level). L'oggetto viene generato durante l'accesso di un utente se vengono rilevati rischi di accesso da Azure Active Directory. Per informazioni dettagliate, vedere [Accessi a rischio](active-directory-identityprotection.md#risky-sign-ins).  
-È possibile usare il livello di rischio di accesso calcolato come condizione nei criteri di accesso condizionale. 
+Il rischio di accesso è un oggetto che viene utilizzato per la probabilità di Azure Active Directory tootrack hello che un tentativo di accesso non è stato eseguito dal legittimo proprietario di hello di un account utente. In questo oggetto, probabilità hello (alta, Media o bassa) vengono memorizzate in forma di un attributo denominato [livello di rischio Accedi](active-directory-reporting-risk-events.md#risk-level). L'oggetto viene generato durante l'accesso di un utente se vengono rilevati rischi di accesso da Azure Active Directory. Per informazioni dettagliate, vedere [Accessi a rischio](active-directory-identityprotection.md#risky-sign-ins).  
+È possibile utilizzare un livello di rischio Accedi hello calcolato come condizione nei criteri di accesso condizionale. 
 
 ![Condizioni](./media/active-directory-conditional-access-azure-portal/22.png)
 
 ### <a name="device-platforms"></a>Piattaforme del dispositivo
 
-Le piattaforme del dispositivo sono caratterizzate dal sistema operativo in esecuzione sul dispositivo:
+piattaforma del dispositivo Hello è caratterizzata dal sistema operativo hello in cui è in esecuzione nel dispositivo:
 
 - Android
 - iOS
@@ -142,23 +142,23 @@ Le piattaforme del dispositivo sono caratterizzate dal sistema operativo in esec
 
 ![Condizioni](./media/active-directory-conditional-access-azure-portal/02.png)
 
-È possibile definire le piattaforme del dispositivo incluse, ma anche quelle escluse da un criterio.  
-Per usare le piattaforme del dispositivo, impostare prima i controlli di configurazione su **Sì** e quindi selezionare tutte oppure una o più piattaforme del dispositivo a cui il criterio si applica. Se si selezionano singole piattaforme del dispositivo, il criterio ha effetto solo su queste piattaforme. In questo caso, gli accessi alle altre piattaforme supportate non sono interessati dal criterio.
+È possibile definire piattaforme per dispositivi hello inclusi nonché piattaforme per dispositivi che sono esentate dai criteri.  
+piattaforme per dispositivi toouse criteri hello, prima modifica hello configurare gli elementi Toggle troppo**Sì**, quindi selezionare tutti o dispositivo singole piattaforme hello criterio si applica a. Se si selezionano le piattaforme per singoli dispositivi, criteri hello influisce solo su queste piattaforme. In questo caso, le piattaforme supportate tooother accessi non sono interessate dal criterio hello.
 
 
 ### <a name="locations"></a>Località
 
-La località è identificata dall'indirizzo IP del client usato per la connessione ad Azure Active Directory. Questa condizione richiede familiarità con le **località denominate** e gli **indirizzi IP attendibili MFA**.  
+Hello posizione viene identificata dall'indirizzo IP di hello del client hello utilizzati tooconnect tooAzure Active Directory. Questa condizione richiede toobe familiarità con **denominato percorsi** e **autenticazione a più fattori di indirizzi IP attendibili**.  
 
-**Località denominate** è una funzionalità di Azure Active Directory che consente di etichettare gli intervalli di indirizzi IP attendibili nelle organizzazioni. Nell'ambiente in uso si possono usare le località denominate nel contesto del rilevamento degli [eventi di rischio](active-directory-reporting-risk-events.md), oltre che per l'accesso condizionale. Per altre informazioni sulla configurazione delle località denominate in Azure Active Directory, vedere [Località denominate in Azure Active Directory](active-directory-named-locations.md).
+**Posizioni denominate** è una funzionalità di Azure Active Directory che consente di intervalli di indirizzi IP attendibili toolabel le organizzazioni. Nell'ambiente in uso, è possibile utilizzare posizioni denominate contesto hello di rilevamento hello di [gli eventi di rischio](active-directory-reporting-risk-events.md) nonché l'accesso condizionale. Per altre informazioni sulla configurazione delle località denominate in Azure Active Directory, vedere [Località denominate in Azure Active Directory](active-directory-named-locations.md).
 
-Il numero di località che è possibile configurare è limitato dalle dimensioni dell'oggetto correlato in Azure AD. È possibile configurare:
+numero di Hello delle posizioni che è possibile configurare è limitato dalle dimensioni hello dell'oggetto correlato hello in Azure AD. È possibile configurare:
  
- - Una località denominata con un massimo di 500 intervalli IP
- - Un massimo di 60 località denominate (anteprima), ognuna con un intervallo IP assegnato 
+ - Una posizione denominata con degli intervalli IP too500
+ - Un massimo di 60 alle posizioni (anteprima) con un intervallo IP assegnati tooeach di essi 
 
 
-Gli **IP attendibili MFA** sono una funzionalità di Multi-Factor Authentication che consente di definire intervalli di indirizzi IP attendibili che rappresentano la Intranet locale dell'organizzazione. Quando si configurano le condizioni di una località, Indirizzi IP attendibili consente di distinguere le connessioni stabilite dalla rete dell'organizzazione da quelle stabilite da tutte le altre località. Per altre informazioni, vedere [Indirizzi IP attendibili](../multi-factor-authentication/multi-factor-authentication-whats-next.md#trusted-ips).  
+**Autenticazione a più fattori di indirizzi IP attendibili** è una funzionalità di autenticazione a più fattori che consente di intervalli di indirizzi IP attendibili toodefine che rappresenta la intranet locale dell'organizzazione. Quando si configurano un condizioni di percorso, gli indirizzi IP attendibili permette toodistinguish tra le connessioni effettuate da tutti gli altri percorsi e di rete dell'organizzazione. Per altre informazioni, vedere [Indirizzi IP attendibili](../multi-factor-authentication/multi-factor-authentication-whats-next.md#trusted-ips).  
 
 
 
@@ -169,8 +169,8 @@ Gli **IP attendibili MFA** sono una funzionalità di Multi-Factor Authentication
 
 ### <a name="client-app"></a>App client
 
-L'app client può essere, a livello generale, l'app (Web browser, app per dispositivi mobili, client desktop) usata per la connessione ad Azure Active Directory oppure è possibile selezionare in modo specifico Exchange Active Sync.  
-L'autenticazione legacy fa riferimento ai client che usano l'autenticazione di base, ad esempio i client Office meno recenti che non usano la moderna autenticazione. L'accesso condizionale non è attualmente supportato con l'autenticazione legacy.
+app client Hello può essere in un'app di Windows hello livello generico (browser web, app per dispositivi mobili, desktop client) è stato utilizzato tooconnect tooAzure Active Directory o in particolare è possibile selezionare Exchange Active Sync.  
+Autenticazione legacy si riferisce tooclients utilizzando l'autenticazione di base, ad esempio client meno recenti di Office che non utilizzano l'autenticazione moderna. L'accesso condizionale non è attualmente supportato con l'autenticazione legacy.
 
 ![Condizioni](./media/active-directory-conditional-access-azure-portal/04.png)
 
@@ -179,27 +179,27 @@ L'autenticazione legacy fa riferimento ai client che usano l'autenticazione di b
 
 ### <a name="requiring-multi-factor-authentication-for-apps"></a>Richiesta dell'autenticazione a più fattori per le app
 
-Diversi ambienti hanno app che richiedono un livello di protezione maggiore delle altre,
-ad esempio, app che hanno accesso a dati sensibili.
-Per aggiungere un altro livello di protezione a queste app, è possibile configurare un criterio di accesso condizionale che richiede l'autenticazione a più fattori quando gli utenti accedono a queste app.
+Molti ambienti dispongono di applicazioni che richiedono un livello di protezione maggiore rispetto a hello ad altri utenti.
+Questo accade, ad esempio, hello per le applicazioni che dispongono di accesso toosensitive dati.
+Se si desidera tooadd un ulteriore livello di protezione toothese App, è possibile configurare un criterio di accesso condizionale che richiede l'autenticazione a più fattori quando gli utenti accedono a tali app.
 
 
 ### <a name="requiring-multi-factor-authentication-for-access-from-networks-that-are-not-trusted"></a>Richiesta dell'autenticazione a più fattori per l'accesso da reti non considerate attendibili
 
-Questo scenario è simile a quello precedente perché aggiunge un requisito per l'autenticazione a più fattori.
-La differenza principale è tuttavia la condizione per questo requisito.  
-Mentre l'elemento essenziale dello scenario precedente sono le app con accesso a dati sensibili, in questo scenario l'elemento essenziale sono le località attendibili.  
+Questo scenario consente simile toohello precedente perché aggiunge un requisito per l'autenticazione a più fattori.
+Tuttavia, la differenza principale hello è condizione hello per questo requisito.  
+Durante lo stato attivo hello dello scenario precedente hello per le app con accesso ai dati toosensitve, hello di questo scenario è attiva percorsi attendibili.  
 In altre parole, è possibile avere un requisito per l'autenticazione a più fattori se un'app è accessibile a un utente da una rete non considerata attendibile.
 
 
 ### <a name="only-trusted-devices-can-access-office-365-services"></a>Solo i dispositivi attendibili possono accedere ai servizi di Office 365
 
-Se si usa Intune nell'ambiente, è possibile iniziare immediatamente a usare l'interfaccia del criterio di accesso condizionale nella console Azure.
+Se si usa Intune nel proprio ambiente, è possibile avviare immediatamente usando l'interfaccia di criteri di accesso condizionale hello nella console di Azure hello.
 
-Molti clienti Intune usano l'accesso condizionale per assicurarsi che solo i dispositivi attendibili possano accedere a Office 365. Di conseguenza i dispositivi mobili vengono registrati con Intune e soddisfano i requisiti dei criteri di conformità e i PC Windows vengono aggiunti e un dominio locale. Un importante miglioramento consiste nel fatto che non è necessario impostare lo stesso criterio per ogni servizio di Office 365.  Quando si crea un nuovo criterio, configurare le app per cloud per includere ogni app di O365 che si vuole proteggere con l'accesso condizionale.
+Molti clienti di Intune usano tooensure di accesso condizionale che solo i dispositivi attendibili possono accedere ai servizi di Office 365. Ciò significa che i dispositivi mobili registrati con Intune e che soddisfano i requisiti di conformità e che i PC Windows sono dominio locale tooan unita in join. Dei miglioramenti principali è che non sia tooset hello stesso criterio per ognuno dei servizi di Office 365 hello.  Quando si crea un nuovo criterio, è possibile configurare hello Cloud App tooinclude ogni delle app di Office 365 hello che si desidera tooprotect con accesso condizionale.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Per informazioni su come configurare un criterio di accesso condizionale, vedere [Get started with conditional access in Azure Active Directory](active-directory-conditional-access-azure-portal-get-started.md) (Introduzione all'accesso condizionale in Azure Active Directory).
+Se si desidera tooknow tooconfigure criteri di accesso condizionale, vedere [iniziare con l'accesso condizionale in Azure Active Directory](active-directory-conditional-access-azure-portal-get-started.md).
 
-Se si è pronti per configurare i criteri di accesso condizionale per l'ambiente in uso, vedere il [Procedure consigliate per l'accesso condizionale in Azure Active Directory](active-directory-conditional-access-best-practices.md). 
+Se si è pronti tooconfigure criteri di accesso condizionale per l'ambiente, vedere hello [procedure consigliate per l'accesso condizionale in Azure Active Directory](active-directory-conditional-access-best-practices.md). 

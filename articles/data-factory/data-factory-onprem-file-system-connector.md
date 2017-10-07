@@ -1,6 +1,6 @@
 ---
-title: Copiare dati da e in un file system con Azure Data Factory | Microsoft Docs
-description: Informazioni su come copiare i dati da e in un file system locale usando Azure Data Factory.
+title: aaaCopy dati da e verso un file system utilizzando Data Factory di Azure | Documenti Microsoft
+description: Informazioni su come toocopy tooand di dati da un sistema di file locale con Azure Data Factory.
 services: data-factory
 documentationcenter: 
 author: linda33wj
@@ -14,61 +14,61 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/14/2017
 ms.author: jingwang
-ms.openlocfilehash: 52305e54f539de6aba2ba9cc856a09e04d608ded
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 201b8bc3ffa639df781443aa0c3f95c975d280be
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="copy-data-to-and-from-an-on-premises-file-system-by-using-azure-data-factory"></a>Copiare dati da e in un file system locale usando Azure Data Factory
-Questo articolo illustra come usare l'attività di copia in Azure Data Factory per copiare dati da e in un file system locale. Si basa sull'articolo relativo alle [attività di spostamento dei dati](data-factory-data-movement-activities.md), che offre una panoramica generale dello spostamento dei dati con l'attività di copia.
+# <a name="copy-data-tooand-from-an-on-premises-file-system-by-using-azure-data-factory"></a>Copiare tooand dati da un file system locale usando Azure Data Factory
+Questo articolo spiega come toouse hello attività di copia dei dati di Azure Data Factory toocopy a/da un file system locale. È basato su hello [attività lo spostamento dei dati](data-factory-data-movement-activities.md) articolo, che presenta una panoramica generale di spostamento dei dati con attività di copia hello.
 
 ## <a name="supported-scenarios"></a>Scenari supportati
-È possibile copiare dati **da un file system locale** negli archivi dati seguenti:
+È possibile copiare dati **da un file system locale** toohello archivi dati seguenti:
 
 [!INCLUDE [data-factory-supported-sink](../../includes/data-factory-supported-sinks.md)]
 
-È possibile copiare i dati dagli archivi dati seguenti **in un file system locale**:
+È possibile copiare dati da archivi dati seguenti hello **tooan locale sistema file**:
 
 [!INCLUDE [data-factory-supported-sources](../../includes/data-factory-supported-sources.md)]
 
 > [!NOTE]
-> L'attività di copia non elimina il file di origine dopo che è stato correttamente copiato nella destinazione. Se è necessario eliminare il file di origine dopo una copia con esito positivo, creare un'attività personalizzata per eliminare il file e usare l'attività nella pipeline. 
+> Attività di copia non elimina i file di origine hello dopo che è la destinazione toohello copiati correttamente. Se è necessario toodelete file di origine hello dopo una copia ha esito positivo, creare un file di hello toodelete di attività personalizzata e utilizzare attività hello nella pipeline hello. 
 
 ## <a name="enabling-connectivity"></a>Abilitazione della connettività
-Data Factory supporta la connessione da e verso il file system locale tramite il **Gateway di gestione dati**. È necessario installare il Gateway di gestione di dati nell'ambiente locale per consentire al servizio Data Factory per connettersi a qualsiasi archivio dati locale supportato, incluso il file system. Per informazioni sul Gateway di gestione dati e per istruzioni dettagliate sulla configurazione del gateway vedere l'articolo [Spostare dati tra origini locali e il cloud con Gateway di gestione dati](data-factory-move-data-between-onprem-and-cloud.md). Non è necessario installare altri file binari per la comunicazione da e verso il file system locale, tranne il Gateway di gestione dati. È necessario installare e usare il Gateway di gestione dati anche se il file system si trova in una macchina virtuale di Azure IaaS. Per informazioni dettagliate sul gateway, vedere [Gateway di gestione dati](data-factory-data-management-gateway.md).
+Data Factory supporta tooand connessione da un file di sistema locale tramite **Gateway di gestione dati**. Nell'ambiente locale per hello Data Factory servizio tooconnect tooany supportate in locale archivio dati incluso il file system, è necessario installare hello Gateway di gestione dati. toolearn sul Gateway di gestione dati e per istruzioni dettagliate sulla configurazione di gateway di hello, vedere [spostare dati tra origini locali e cloud hello con Gateway di gestione dati](data-factory-move-data-between-onprem-and-cloud.md). Oltre ai Gateway di gestione dati, nessun altro file binario necessario tooand toocommunicate toobe installato da un file system locale. È necessario installare e utilizzare hello Gateway di gestione dati, anche se hello file system sia in Azure IaaS con macchina virtuale. Per informazioni dettagliate sul gateway hello, vedere [Gateway di gestione dati](data-factory-data-management-gateway.md).
 
-Per usare una condivisione di file Linux, installare [Samba](https://www.samba.org/) sul server Linux e installare il Gateway di gestione dati in un server Windows. L'installazione di un Gateway di gestione dati su un server Linux non è supportata.
+installare una condivisione di file di Linux, toouse [Samba](https://www.samba.org/) sul server Linux e installare il Gateway di gestione di dati in un server Windows. L'installazione di un Gateway di gestione dati su un server Linux non è supportata.
 
 ## <a name="getting-started"></a>Introduzione
 È possibile creare una pipeline con l'attività di copia che sposta i dati da e verso un file system usando diversi strumenti/API.
 
-Il modo più semplice per creare una pipeline è usare la **Copia guidata**. Vedere [Esercitazione: Creare una pipeline usando la Copia guidata](data-factory-copy-data-wizard-tutorial.md) per la procedura dettagliata sulla creazione di una pipeline attenendosi alla procedura guidata per copiare i dati.
+toocreate modo più semplice di Hello una pipeline è hello toouse **Copia guidata**. Vedere [esercitazione: creare una pipeline mediante Copia guidata](data-factory-copy-data-wizard-tutorial.md) per un'esercitazione rapida sulla creazione di una pipeline mediante Creazione guidata di hello copia dati.
 
-È possibile anche usare gli strumenti seguenti per creare una pipeline: **portale di Azure**, **Visual Studio**, **Azure PowerShell**, **modello di Azure Resource Manager**, **API .NET** e **API REST**. Vedere l'[esercitazione sull'attività di copia](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) per le istruzioni dettagliate sulla creazione di una pipeline con un'attività di copia.
+È inoltre possibile utilizzare i seguenti strumenti toocreate una pipeline hello: **portale di Azure**, **Visual Studio**, **Azure PowerShell**, **modello di gestione risorse di Azure** , **API .NET**, e **API REST**. Vedere [esercitazione attività Copia](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) per istruzioni dettagliate toocreate una pipeline con attività di copia.
 
-Se si usano gli strumenti o le API, eseguire la procedura seguente per creare una pipeline che sposta i dati da un archivio dati di origine a un archivio dati sink:
+Se si utilizza hello o le API, è eseguire hello passaggi toocreate una pipeline che consente di spostare dati da un'origine tooa archiviano dati sink seguenti:
 
 1. Creare una **data factory**. Una data factory può contenere una o più pipeline. 
-2. Creare i **servizi collegati** per collegare gli archivi di dati di input e output alla data factory. Ad esempio, se si copiano dati da un archivio BLOB di Azure a un file system locale, si creano due servizi collegati per collegare il file system locale e l'account di archiviazione di Azure alla data factory. Per le proprietà del servizio collegato specifiche del file system locale, vedere la sezione sulle [proprietà del servizio collegato](#linked-service-properties).
-3. Creare i **set di dati** per rappresentare i dati di input e di output per le operazioni di copia. Nell'esempio citato nel passaggio precedente, si crea un set di dati per specificare un contenitore BLOB e la cartella che contiene i dati di input. Si crea anche un altro set di dati per specificare la cartella e il nome file (facoltativo) nel file system. Per le proprietà del set di dati specifiche del file system locale, vedere la sezione sulle [proprietà del set di dati](#dataset-properties).
-4. Creare una **pipeline** con un'attività di copia che accetti un set di dati come input e un set di dati come output. Nell'esempio indicato in precedenza si usa BlobSource come origine e FileSystemSink come sink per l'attività di copia. Analogamente, se si effettua la copia dal file system locale all'archivio BLOB di Azure, si usa FileSystemSource e BlobSink nell'attività di copia. Per le proprietà dell'attività di copia specifiche del file system locale, vedere la sezione sulle [proprietà dell'attività di copia](#copy-activity-properties). Per informazioni dettagliate su come usare un archivio dati come origine o come sink, fare clic sul collegamento nella sezione precedente per l'archivio dati.
+2. Creare **servizi collegati** toolink dati di input e output archivi tooyour data factory. Ad esempio, se si copiano dati da un file system locale di blob di Azure storage tooan, creerai due servizi collegati toolink il locale file system e data factory tooyour account di archiviazione di Azure. Per le proprietà di servizio collegato che sono tooan specifico nel file sistema locale, vedere [servizio proprietà collegate](#linked-service-properties) sezione.
+3. Creare **set di dati** toorepresent di input e output dell'operazione di copia di dati per hello. Nell'esempio hello indicato nell'ultimo passaggio hello è creare un contenitore di blob hello toospecify set di dati e una cartella che contiene i dati di input hello. E si crea un altro set di dati toospecify hello cartella e il nome (facoltativo) nel file system. Per le proprietà di set di dati specifici tooon locale del file system, vedere [proprietà set di dati](#dataset-properties) sezione.
+4. Creare una **pipeline** con un'attività di copia che accetti un set di dati come input e un set di dati come output. Nell'esempio hello indicato in precedenza, si usa BlobSource come un'origine e FileSystemSink come sink per attività di copia hello. Analogamente, se si sta copiando tooAzure di sistema di file locale nell'archiviazione Blob, utilizzare FileSystemSource e BlobSink nell'attività di copia hello. Per le proprietà di attività di copia locale tooon specifico del file system, vedere [copiare le proprietà dell'attività](#copy-activity-properties) sezione. Per informazioni dettagliate su come toouse un archivio dati come origine o un sink, fare clic sul collegamento di hello nella sezione precedente di hello per l'archivio dati.
 
-Quando si usa la procedura guidata, le definizioni JSON per queste entità di data factory (servizi, set di dati e pipeline collegati) vengono create automaticamente. Quando si usano gli strumenti o le API, ad eccezione delle API .NET, usare il formato JSON per definire le entità di data factory.  Per esempi con definizioni JSON per entità di data factory utilizzate per copiare i dati da e verso un file system, vedere la sezione degli [esempi JSON](#json-examples-for-copying-data-to-and-from-file-system) in questo articolo.
+Quando si utilizza la procedura guidata hello, le definizioni di JSON per queste entità Data Factory (servizi collegati, i set di dati e della pipeline hello) vengono create automaticamente per l'utente. Quando si utilizzano strumenti o le API (ad eccezione delle API .NET), utilizzando il formato JSON hello è definire queste entità Data Factory.  Per esempi con definizioni di JSON per le entità Data Factory toocopy utilizzati i dati in o da un file system, vedere [esempi JSON](#json-examples-for-copying-data-to-and-from-file-system) sezione di questo articolo.
 
-Le sezioni seguenti riportano informazioni dettagliate sulle proprietà JSON che vengono usate per definire entità di data factory specifiche di un file system:
+Hello le sezioni seguenti fornisce dettagli sulle proprietà JSON dal sistema utilizzati toodefine Data Factory entità toofile specifico:
 
 ## <a name="linked-service-properties"></a>Proprietà del servizio collegato
-È possibile collegare un file system locale a una data factory di Azure con il servizio collegato del **file server locale**. La tabella seguente include le descrizioni degli elementi JSON specifici del servizio collegato del file server locale.
+È possibile collegare una locale file system tooan data factory di Azure con hello **Server File locale** servizio collegato. Hello nella tabella seguente vengono fornite descrizioni per gli elementi JSON toohello specifico servizio locale di File Server collegato.
 
 | Proprietà | Descrizione | Obbligatorio |
 | --- | --- | --- |
-| type |Verificare che la proprietà type sia impostata su **OnPremisesFileServer**. |Sì |
-| host |Specifica il percorso radice della cartella da copiare. Usare il carattere di escape '\' per i caratteri speciali nella stringa. Per ottenere alcuni esempi, vedere [Servizio collegato di esempio e definizioni del set di dati](#sample-linked-service-and-dataset-definitions) . |Sì |
-| userid |Specificare l'ID dell'utente che ha accesso al server. |No (se si sceglie encryptedCredential) |
-| password |Specificare la password per l'utente (userid). |No (se si sceglie encryptedCredential) |
-| encryptedCredential |Specificare le credenziali crittografate che è possibile ottenere eseguendo il cmdlet New-AzureRmDataFactoryEncryptValue. |No (se si sceglie di specificare ID utente e password in testo normale) |
-| gatewayName |Specifica il nome del gateway che Data Factory deve usare per connettersi al file server locale. |Sì |
+| type |Verificare che la proprietà di tipo hello sia impostata troppo**OnPremisesFileServer**. |Sì |
+| host |Specifica il percorso radice hello della cartella hello che si desidera toocopy. Utilizzare il carattere di escape hello ' \ ' per i caratteri speciali nella stringa hello. Per ottenere alcuni esempi, vedere [Servizio collegato di esempio e definizioni del set di dati](#sample-linked-service-and-dataset-definitions) . |Sì |
+| userid |Specificare ID utente hello con server di accesso toohello hello. |No (se si sceglie encryptedCredential) |
+| password |Specificare la password hello per utente hello (userid). |No (se si sceglie encryptedCredential) |
+| encryptedCredential |Specificare le credenziali crittografato hello che è possibile ottenere eseguendo il cmdlet New-AzureRmDataFactoryEncryptValue hello. |No (se si sceglie toospecify userid e password in testo normale) |
+| gatewayName |Specifica il nome di hello del gateway hello che Data Factory deve usare tooconnect toohello ai file server locali. |Sì |
 
 
 ### <a name="sample-linked-service-and-dataset-definitions"></a>Servizio collegato di esempio e definizioni del set di dati
@@ -114,24 +114,24 @@ Le sezioni seguenti riportano informazioni dettagliate sulle proprietà JSON che
 ## <a name="dataset-properties"></a>Proprietà dei set di dati
 Per un elenco completo delle sezioni e delle proprietà disponibili per la definizione di set di dati, vedere l'articolo [Creazione di set di dati](data-factory-create-datasets.md). Le sezioni come struttura, disponibilità e criteri di un set di dati JSON sono simili per tutti i tipi di set di dati.
 
-La sezione typeProperties è diversa per ogni tipo di set di dati e fornisce informazioni come la posizione e il formato dei dati nell'archivio dati. La sezione typeProperties per il set di dati di tipo **FileShare** presenta le proprietà seguenti:
+sezione typeProperties Hello è diverso per ogni tipo di set di dati. Fornisce informazioni quali il percorso di hello e il formato dei dati di hello nell'archivio dati hello. Hello typeProperties sezione hello set di dati di tipo **FileShare** ha hello le proprietà seguenti:
 
 | Proprietà | Descrizione | Obbligatorio |
 | --- | --- | --- |
-| folderPath |Specifica il percorso secondario della cartella. Usare il carattere di escape '\' per i caratteri speciali nella stringa. Per ottenere alcuni esempi, vedere [Servizio collegato di esempio e definizioni del set di dati](#sample-linked-service-and-dataset-definitions) .<br/><br/>È possibile combinare questa proprietà con **partitionBy** per ottenere percorsi di cartelle basati su data e ora di inizio/fine delle sezioni. |Sì |
-| fileName |Specificare il nome del file in **folderPath** se si vuole che la tabella faccia riferimento a un file specifico nella cartella. Se non si specifica alcun valore per questa proprietà, la tabella punta a tutti i file nella cartella.<br/><br/>Quando **fileName** non è specificato per un set di dati di output e **preserveHierarchy** non è specificato nel sink dell'attività, il nome del file generato avrà il formato seguente: <br/><br/>`Data.<Guid>.txt` Esempio: Data.0a405f8a-93ff-4c6f-b3be-f69616f1df7a.txt |No |
-| fileFilter |Specificare un filtro da usare per selezionare un sottoinsieme di file in folderPath anziché tutti i file. <br/><br/>I valori consentiti sono: `*` (più caratteri) e `?` (carattere singolo).<br/><br/>Esempio 1: "fileFilter": "*. log"<br/>Esempio 2: "fileFilter": 2014 - 1-?. txt"<br/><br/>Si noti che fileFilter è applicabile per un set di dati di input FileShare. |No |
-| partitionedBy |È possibile usare partitionedBy per specificare un valore folderPath/fileName dinamico per i dati di una serie temporale. Un esempio è folderPath con parametri per ogni ora di dati. |No |
-| format | Sono supportati i tipi di formato seguenti: **TextFormat**, **JsonFormat**, **AvroFormat**, **OrcFormat** e **ParquetFormat**. Impostare la proprietà **type** nell'area format su uno di questi valori. Per altre informazioni, vedere le sezioni [TextFormat](data-factory-supported-file-and-compression-formats.md#text-format), [JsonFormat](data-factory-supported-file-and-compression-formats.md#json-format), [AvroFormat](data-factory-supported-file-and-compression-formats.md#avro-format), [OrcFormat](data-factory-supported-file-and-compression-formats.md#orc-format) e [ParquetFormat](data-factory-supported-file-and-compression-formats.md#parquet-format). <br><br> Per **copiare i file così come sono** tra archivi basati su file (copia binaria), è possibile ignorare la sezione del formato nelle definizioni dei set di dati di input e di output. |No |
-| compressione | Specificare il tipo e il livello di compressione dei dati. I tipi supportati sono **GZip**, **Deflate**, **BZip2** e **ZipDeflate**. I livelli supportati sono **Ottimale** e **Più veloce**. vedere [File e formati di compressione in Azure Data Factory](data-factory-supported-file-and-compression-formats.md#compression-support). |No |
+| folderPath |Specifica hello sottopercorso toohello cartella. Utilizzare il carattere di escape hello ' \' per i caratteri speciali nella stringa hello. Per ottenere alcuni esempi, vedere [Servizio collegato di esempio e definizioni del set di dati](#sample-linked-service-and-dataset-definitions) .<br/><br/>È possibile combinare questa proprietà con **partitionBy** toohave i percorsi delle cartelle in base a intervallo iniziale o finale data e ora. |Sì |
+| fileName |Specificare il nome di hello del file hello in hello **folderPath** se si desidera hello tabella toorefer tooa specifici file nella cartella hello. Se non si specifica alcun valore per questa proprietà, la tabella hello punta tooall file nella cartella hello.<br/><br/>Quando **fileName** non viene specificato per un set di dati di output e **preserveHierarchy** viene omesso in sink di attività, hello nome del file hello generato è hello seguente formato: <br/><br/>`Data.<Guid>.txt` Esempio: Data.0a405f8a-93ff-4c6f-b3be-f69616f1df7a.txt |No |
+| fileFilter |Specificare un filtro toobe tooselect un subset di file in hello folderPath, anziché tutti i file. <br/><br/>I valori consentiti sono: `*` (più caratteri) e `?` (carattere singolo).<br/><br/>Esempio 1: "fileFilter": "*. log"<br/>Esempio 2: "fileFilter": 2014 - 1-?. txt"<br/><br/>Si noti che fileFilter è applicabile per un set di dati di input FileShare. |No |
+| partitionedBy |È possibile utilizzare partitionedBy toospecify dinamica folderPath/nome di file per i dati delle serie temporali. Un esempio è folderPath con parametri per ogni ora di dati. |No |
+| format | è supportato i seguenti tipi di formato Hello: **TextFormat**, **JsonFormat**, **AvroFormat**, **OrcFormat**,  **ParquetFormat**. Set hello **tipo** proprietà in formato tooone di questi valori. Per altre informazioni, vedere le sezioni [TextFormat](data-factory-supported-file-and-compression-formats.md#text-format), [JsonFormat](data-factory-supported-file-and-compression-formats.md#json-format), [AvroFormat](data-factory-supported-file-and-compression-formats.md#avro-format), [OrcFormat](data-factory-supported-file-and-compression-formats.md#orc-format) e [ParquetFormat](data-factory-supported-file-and-compression-formats.md#parquet-format). <br><br> Se si desidera troppo**copiare i file come-è** tra archivi basati su file (copia binaria), ignorare le sezioni di formato hello in entrambe le definizioni di set di dati di input e output. |No |
+| compressione | Specificare il tipo di hello e livello di compressione per dati hello. I tipi supportati sono **GZip**, **Deflate**, **BZip2** e **ZipDeflate**. I livelli supportati sono **Ottimale** e **Più veloce**. vedere [File e formati di compressione in Azure Data Factory](data-factory-supported-file-and-compression-formats.md#compression-support). |No |
 
 > [!NOTE]
 > Non è possibile usare fileName e fileFilter contemporaneamente.
 
 ### <a name="using-partitionedby-property"></a>Uso della proprietà partitionedBy
-Come indicato nella sezione precedente, è possibile specificare valori fileName e folderPath dinamici per i dati di una serie temporale con la proprietà **partitionedBy**, le [funzioni di data factory e le variabili di sistema](data-factory-functions-variables.md).
+Come indicato nella sezione precedente di hello, è possibile specificare un folderPath dinamico e il nome di dati della serie temporale con hello **partitionedBy** proprietà [funzioni di Data Factory e le variabili di sistema hello](data-factory-functions-variables.md).
 
-Per altri dettagli sui set di dati delle serie temporali, sulla pianificazione e sulle sezioni, vedere gli articoli [Creazione di set di dati](data-factory-create-datasets.md), [Pianificazione ed esecuzione](data-factory-scheduling-and-execution.md) e [Creazione di pipeline](data-factory-create-pipelines.md).
+toounderstand ulteriori informazioni sul set di dati di serie temporali, la pianificazione e le sezioni, vedere [creazione dei DataSet](data-factory-create-datasets.md), [pianificazione ed esecuzione](data-factory-scheduling-and-execution.md), e [creazione di pipeline](data-factory-create-pipelines.md).
 
 #### <a name="sample-1"></a>Esempio 1.
 
@@ -143,7 +143,7 @@ Per altri dettagli sui set di dati delle serie temporali, sulla pianificazione e
 ],
 ```
 
-In questo esempio {Slice} viene sostituito con il valore della variabile di sistema SliceStart di Data Factory nel formato (AAAAMMGGHH). SliceStart fa riferimento all'ora di inizio della sezione. La proprietà folderPath è diversa per ogni sezione. Ad esempio: wikisampledataout/wikidatagateway/2014100103 o wikisampledataout/wikidatagateway/2014100104.
+In questo esempio, {Slice} viene sostituito con il valore di hello della variabile sistema hello Data Factory SliceStart nel formato hello (YYYYMMDDHH). SliceStart fa riferimento all'ora toostart sezione hello. Hello folderPath è diversa per ogni sezione. Ad esempio: wikisampledataout/wikidatagateway/2014100103 o wikisampledataout/wikidatagateway/2014100104.
 
 #### <a name="sample-2"></a>Esempio 2:
 
@@ -159,45 +159,45 @@ In questo esempio {Slice} viene sostituito con il valore della variabile di sist
 ],
 ```
 
-In questo esempio l'anno, il mese, il giorno e l'ora di SliceStart vengono estratti in variabili separate usate dalle proprietà folderPath e fileName.
+In questo esempio, anno, mese, giorno e ora della proprietà SliceStart vengono estratti in variabili distinte che utilizzano proprietà folderPath e fileName hello.
 
 ## <a name="copy-activity-properties"></a>Proprietà dell'attività di copia
-Per un elenco completo delle sezioni e delle proprietà disponibili per la definizione delle attività, fare riferimento all'articolo [Creazione di pipeline](data-factory-create-pipelines.md). Proprietà quali nome, descrizione, criteri e set di dati di input e di output sono disponibili per tutti i tipi di attività. Le proprietà disponibili nella sezione **typeProperties** dell'attività variano invece in base al tipo di attività.
+Per un elenco completo delle proprietà disponibili per la definizione delle attività e delle sezioni, vedere hello [la creazione di pipeline](data-factory-create-pipelines.md) articolo. Proprietà quali nome, descrizione, criteri e set di dati di input e di output sono disponibili per tutti i tipi di attività. Mentre le proprietà disponibili nella hello **typeProperties** sezione dell'attività hello variano in base a ogni tipo di attività.
 
-Per l'attività di copia variano in base ai tipi di origine e sink. Se si effettua il trasferimento dei dati da un file system locale, impostare il tipo di origine nell'attività di copia su **FileSystemSource**. Se si effettua il trasferimento dei dati verso un file system locale, impostare il tipo di sink nell'attività di copia su **FileSystemSink**. Questa sezione presenta un elenco delle proprietà supportate da FileSystemSource e FileSystemSink.
+Per attività di copia, variano a seconda dei tipi di hello di origini e sink. Se si stanno spostando i dati da un file system locale, impostare il tipo di origine hello nell'attività di copia hello troppo**FileSystemSource**. Analogamente, se si spostano dati tooan locale del file system, impostare il tipo di sink hello in attività di copia hello troppo**FileSystemSink**. Questa sezione presenta un elenco delle proprietà supportate da FileSystemSource e FileSystemSink.
 
-**FileSystemSource** supporta le proprietà seguenti:
-
-| Proprietà | Descrizione | Valori consentiti | Obbligatorio |
-| --- | --- | --- | --- |
-| ricorsiva |Indica se i dati vengono letti in modo ricorsivo dalle cartelle secondarie o solo dalla cartella specificata. |True, False (valore predefinito) |No |
-
-**FileSystemSink** supporta le proprietà seguenti:
+**FileSystemSource** supporta hello le proprietà seguenti:
 
 | Proprietà | Descrizione | Valori consentiti | Obbligatorio |
 | --- | --- | --- | --- |
-| copyBehavior |Definisce il comportamento di copia quando l'origine è BlobSource o FileSystem. |**PreserveHierarchy:** mantiene la gerarchia dei file nella cartella di destinazione. Il percorso relativo del file di origine nella cartella di origine è identico al percorso relativo del file di destinazione nella cartella di destinazione.<br/><br/>**FlattenHierarchy**: tutti i file della cartella di origine vengono creati nel primo livello della cartella di destinazione. Il nome dei file di destinazione viene generato automaticamente.<br/><br/>**MergeFiles**: unisce tutti i file della cartella di origine in un solo file. Se il nome file/BLOB viene specificato, il nome del file unito sarà il nome specificato. In caso contrario, verrà usato un nome file generato automaticamente. |No |
+| ricorsiva |Indica se hello i dati letti in modo ricorsivo dalle sottocartelle di hello o solo dalla cartella specificata hello. |True, False (valore predefinito) |No |
+
+**FileSystemSink** supporta hello le proprietà seguenti:
+
+| Proprietà | Descrizione | Valori consentiti | Obbligatorio |
+| --- | --- | --- | --- |
+| copyBehavior |Definisce il comportamento di copia hello quando origine hello è BlobSource o file System. |**PreserveHierarchy:** mantiene la gerarchia di file hello nella cartella di destinazione hello. Percorso relativo di hello hello origine toohello origine della cartella dei file, ovvero è hello come percorso relativo di hello hello file toohello destinazione della cartella di destinazione.<br/><br/>**FlattenHierarchy:** tutti i file dalla cartella di origine hello vengono creati nel primo livello di hello della cartella di destinazione. file di destinazione Hello vengono creati con un nome generato automaticamente.<br/><br/>**Oggetto:** unisce tutti i file dal file tooone cartella di origine hello. Se viene specificato nome di nome/blob file hello, nome di file uniti hello è nome specificato hello. In caso contrario, verrà usato un nome file generato automaticamente. |No |
 
 ### <a name="recursive-and-copybehavior-examples"></a>esempi ricorsivi e copyBehavior
-Questa sezione descrive il comportamento derivante dell'operazione di copia per diverse combinazioni di valori ricorsivi e delle proprietà copyBehavior.
+In questa sezione viene descritto il comportamento risultante hello dell'operazione di copia hello per diverse combinazioni di valori per le proprietà ricorsiva e copyBehavior hello.
 
 | valore ricorsivo | valore di copyBehavior | Comportamento risultante |
 | --- | --- | --- |
-| true |preserveHierarchy |Per una cartella di origine Cartella1 con la struttura seguente,<br/><br/>Cartella1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File2<br/>&nbsp;&nbsp;&nbsp;&nbsp;Sottocartella1<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File3<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File4<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File5<br/><br/>la cartella di destinazione Cartella1 viene creata con la stessa struttura dell'origine:<br/><br/>Cartella1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File2<br/>&nbsp;&nbsp;&nbsp;&nbsp;Sottocartella1<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File3<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File4<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File5 |
-| true |flattenHierarchy |Per una cartella di origine Cartella1 con la struttura seguente,<br/><br/>Cartella1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File2<br/>&nbsp;&nbsp;&nbsp;&nbsp;Sottocartella1<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File3<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File4<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File5<br/><br/>la Cartella1 di destinazione viene creata con la struttura seguente: <br/><br/>Cartella1<br/>&nbsp;&nbsp;&nbsp;&nbsp;Nome generato automaticamente per File1<br/>&nbsp;&nbsp;&nbsp;&nbsp;nome generato automaticamente per File2<br/>&nbsp;&nbsp;&nbsp;&nbsp;nome generato automaticamente per File3<br/>&nbsp;&nbsp;&nbsp;&nbsp;nome generato automaticamente per File4<br/>&nbsp;&nbsp;&nbsp;&nbsp;nome generato automaticamente per File5 |
-| true |mergeFiles |Per una cartella di origine Cartella1 con la struttura seguente,<br/><br/>Cartella1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File2<br/>&nbsp;&nbsp;&nbsp;&nbsp;Sottocartella1<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File3<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File4<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File5<br/><br/>la Cartella1 di destinazione viene creata con la struttura seguente: <br/><br/>Cartella1<br/>&nbsp;&nbsp;&nbsp;&nbsp;Il contenuto di File1 + File2 + File3 + File4 + File 5 viene unito in un file con nome generato automaticamente. |
-| false |preserveHierarchy |Per una cartella di origine Cartella1 con la struttura seguente,<br/><br/>Cartella1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File2<br/>&nbsp;&nbsp;&nbsp;&nbsp;Sottocartella1<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File3<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File4<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File5<br/><br/>la Cartella1 di destinazione viene creata con la struttura seguente:<br/><br/>Cartella1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File2<br/><br/>La sottocartella1 con File3, File4 e File5 non viene considerata. |
-| false |flattenHierarchy |Per una cartella di origine Cartella1 con la struttura seguente,<br/><br/>Cartella1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File2<br/>&nbsp;&nbsp;&nbsp;&nbsp;Sottocartella1<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File3<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File4<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File5<br/><br/>la Cartella1 di destinazione viene creata con la struttura seguente:<br/><br/>Cartella1<br/>&nbsp;&nbsp;&nbsp;&nbsp;Nome generato automaticamente per File1<br/>&nbsp;&nbsp;&nbsp;&nbsp;nome generato automaticamente per File2<br/><br/>La sottocartella1 con File3, File4 e File5 non viene considerata. |
-| false |mergeFiles |Per una cartella di origine Cartella1 con la struttura seguente,<br/><br/>Cartella1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File2<br/>&nbsp;&nbsp;&nbsp;&nbsp;Sottocartella1<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File3<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File4<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File5<br/><br/>la Cartella1 di destinazione viene creata con la struttura seguente:<br/><br/>Cartella1<br/>&nbsp;&nbsp;&nbsp;&nbsp;Il contenuto di File1 + File2 viene unito in un file con un nome file generato automaticamente.<br/>&nbsp;&nbsp;&nbsp;&nbsp;Nome generato automaticamente per File1<br/><br/>La sottocartella1 con File3, File4 e File5 non viene considerata. |
+| true |preserveHierarchy |Per una cartella di origine Cartella1 con hello seguente struttura,<br/><br/>Cartella1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File2<br/>&nbsp;&nbsp;&nbsp;&nbsp;Sottocartella1<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;File3<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File4<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;File5<br/><br/>cartella di destinazione Hello Cartella1 viene creata con hello stessa struttura come origine di hello:<br/><br/>Cartella1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File2<br/>&nbsp;&nbsp;&nbsp;&nbsp;Sottocartella1<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;File3<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File4<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;File5 |
+| true |flattenHierarchy |Per una cartella di origine Cartella1 con hello seguente struttura,<br/><br/>Cartella1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File2<br/>&nbsp;&nbsp;&nbsp;&nbsp;Sottocartella1<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;File3<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File4<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;File5<br/><br/>destinazione Hello Cartella1 viene creata con hello seguente struttura: <br/><br/>Cartella1<br/>&nbsp;&nbsp;&nbsp;&nbsp;Nome generato automaticamente per File1<br/>&nbsp;&nbsp;&nbsp;&nbsp;nome generato automaticamente per File2<br/>&nbsp;&nbsp;&nbsp;&nbsp;nome generato automaticamente per File3<br/>&nbsp;&nbsp;&nbsp;&nbsp;nome generato automaticamente per File4<br/>&nbsp;&nbsp;&nbsp;&nbsp;nome generato automaticamente per File5 |
+| true |mergeFiles |Per una cartella di origine Cartella1 con hello seguente struttura,<br/><br/>Cartella1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File2<br/>&nbsp;&nbsp;&nbsp;&nbsp;Sottocartella1<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;File3<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File4<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;File5<br/><br/>destinazione Hello Cartella1 viene creata con hello seguente struttura: <br/><br/>Cartella1<br/>&nbsp;&nbsp;&nbsp;&nbsp;Il contenuto di File1 + File2 + File3 + File4 + File 5 viene unito in un file con nome generato automaticamente. |
+| false |preserveHierarchy |Per una cartella di origine Cartella1 con hello seguente struttura,<br/><br/>Cartella1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File2<br/>&nbsp;&nbsp;&nbsp;&nbsp;Sottocartella1<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;File3<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File4<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;File5<br/><br/>cartella di destinazione Hello Cartella1 viene creata con hello seguente struttura:<br/><br/>Cartella1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File2<br/><br/>La sottocartella1 con File3, File4 e File5 non viene considerata. |
+| false |flattenHierarchy |Per una cartella di origine Cartella1 con hello seguente struttura,<br/><br/>Cartella1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File2<br/>&nbsp;&nbsp;&nbsp;&nbsp;Sottocartella1<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;File3<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File4<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;File5<br/><br/>cartella di destinazione Hello Cartella1 viene creata con hello seguente struttura:<br/><br/>Cartella1<br/>&nbsp;&nbsp;&nbsp;&nbsp;Nome generato automaticamente per File1<br/>&nbsp;&nbsp;&nbsp;&nbsp;nome generato automaticamente per File2<br/><br/>La sottocartella1 con File3, File4 e File5 non viene considerata. |
+| false |mergeFiles |Per una cartella di origine Cartella1 con hello seguente struttura,<br/><br/>Cartella1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File1<br/>&nbsp;&nbsp;&nbsp;&nbsp;File2<br/>&nbsp;&nbsp;&nbsp;&nbsp;Sottocartella1<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;File3<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File4<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;File5<br/><br/>cartella di destinazione Hello Cartella1 viene creata con hello seguente struttura:<br/><br/>Cartella1<br/>&nbsp;&nbsp;&nbsp;&nbsp;Il contenuto di File1 + File2 viene unito in un file con un nome file generato automaticamente.<br/>&nbsp;&nbsp;&nbsp;&nbsp;Nome generato automaticamente per File1<br/><br/>La sottocartella1 con File3, File4 e File5 non viene considerata. |
 
 ## <a name="supported-file-and-compression-formats"></a>Formati di file e di compressione supportati
 Per i dettagli, vedere l'articolo relativo ai [file e formati di compressione in Azure Data Factory](data-factory-supported-file-and-compression-formats.md).
 
-## <a name="json-examples-for-copying-data-to-and-from-file-system"></a>Esempi JSON per la copia dei dati da e verso un file system
-Gli esempi seguenti forniscono le definizioni JSON di esempio da usare per creare una pipeline con il [portale di Azure](data-factory-copy-activity-tutorial-using-azure-portal.md), [Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md) o [Azure PowerShell](data-factory-copy-activity-tutorial-using-powershell.md). Questi esempi mostrano come copiare dati da e nel file system locale e in Archiviazione BLOB di Azure. È tuttavia possibile copiare dati *direttamente* da una qualsiasi delle origini in uno qualsiasi dei sink elencati in [Sink e origini supportate](data-factory-data-movement-activities.md#supported-data-stores-and-formats) tramite l'attività di copia in Azure Data Factory.
+## <a name="json-examples-for-copying-data-tooand-from-file-system"></a>Esempi JSON per la copia dei dati tooand dal file system
+Negli esempi seguenti Hello forniscono definizioni JSON di esempio che è possibile utilizzare una pipeline toocreate utilizzando hello [portale di Azure](data-factory-copy-activity-tutorial-using-azure-portal.md), [Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md), o [Azure PowerShell](data-factory-copy-activity-tutorial-using-powershell.md). Vengono visualizzate come toocopy tooand di dati da un file system in locale e l'archiviazione Blob di Azure. Tuttavia, è possibile copiare dati *direttamente* da qualsiasi hello origini tooany di sink hello elencati in [origini e sink supportati](data-factory-data-movement-activities.md#supported-data-stores-and-formats) tramite attività di copia in Azure Data Factory.
 
-### <a name="example-copy-data-from-an-on-premises-file-system-to-azure-blob-storage"></a>Esempio: Copiare i dati da un file system locale in Archiviazione BLOB di Azure
-Questo esempio illustra come copiare dati da un file system locale in Archiviazione BLOB di Azure. L'esempio include le entità della data factory seguenti:
+### <a name="example-copy-data-from-an-on-premises-file-system-tooazure-blob-storage"></a>Esempio: Copiare i dati da un tooAzure di sistema di file locale nell'archiviazione Blob
+Questo esempio viene illustrato come dati toocopy tooAzure di sistema un file locale nell'archiviazione Blob. esempio Hello è hello entità Data Factory di seguito:
 
 * Un servizio collegato di tipo [OnPremisesFileServer](#linked-service-properties).
 * Un servizio collegato di tipo [AzureStorage](data-factory-azure-blob-connector.md#linked-service-properties).
@@ -205,9 +205,9 @@ Questo esempio illustra come copiare dati da un file system locale in Archiviazi
 * Un [set di dati](data-factory-create-datasets.md) di output di tipo [AzureBlob](data-factory-azure-blob-connector.md#dataset-properties).
 * Una [pipeline](data-factory-create-pipelines.md) con attività di copia che usa [FileSystemSource](#copy-activity-properties) e [BlobSink](data-factory-azure-blob-connector.md#copy-activity-properties).
 
-L'esempio seguente copia i dati appartenenti a una serie temporale da un file system locale in Archiviazione BLOB di Azure ogni ora. Le proprietà JSON usate in questi esempi sono descritte nelle sezioni riportate dopo gli esempi.
+Dopo l'esempio Hello copia dati delle serie temporali da tooAzure di sistema un file locale nell'archiviazione Blob ogni ora. le proprietà JSON Hello utilizzati in questi esempi vengono descritte nelle sezioni hello dopo gli esempi di hello.
 
-Come primo passaggio configurare il Gateway di gestione dati secondo le istruzioni in [Spostare dati tra origini locali e il cloud con Gateway di gestione dati](data-factory-move-data-between-onprem-and-cloud.md).
+Come primo passaggio, configurare il Gateway di gestione dati in base alle istruzioni hello [spostare dati tra origini locali e cloud hello con Gateway di gestione dati](data-factory-move-data-between-onprem-and-cloud.md).
 
 **Servizio collegato del file server locale:**
 
@@ -226,7 +226,7 @@ Come primo passaggio configurare il Gateway di gestione dati secondo le istruzio
 }
 ```
 
-Si consiglia di usare la proprietà **encryptedCredential** anziché le proprietà **userid** e **password**. Per informazioni dettagliate su questo servizio collegato, vedere l'articolo relativo al [servizio collegato del file server](#linked-service-properties).
+È consigliabile utilizzare hello **encryptedCredential** proprietà hello invece **userid** e **password** proprietà. Per informazioni dettagliate su questo servizio collegato, vedere l'articolo relativo al [servizio collegato del file server](#linked-service-properties).
 
 **Servizio collegato Archiviazione di Azure:**
 
@@ -244,9 +244,9 @@ Si consiglia di usare la proprietà **encryptedCredential** anziché le propriet
 
 **Set di dati di input del file system locale:**
 
-I dati vengono prelevati da un nuovo file ogni ora. Le proprietà folderPath e fileName vengono determinate in base all'ora di inizio della sezione.  
+I dati vengono prelevati da un nuovo file ogni ora. Hello folderPath e fileName proprietà sono determinate in base a ora di inizio hello della sezione hello.  
 
-L'impostazione di `"external": "true"` comunica a Data Factory che il set di dati è esterno alla data factory e non è prodotto da un'attività al suo interno.
+Impostazione `"external": "true"` informa Data Factory di set di dati hello è data factory di toohello esterni e non viene generato da un'attività nella data factory di hello.
 
 ```JSON
 {
@@ -310,7 +310,7 @@ L'impostazione di `"external": "true"` comunica a Data Factory che il set di dat
 
 **Set di dati di ouput di Archiviazione BLOB di Azure**
 
-I dati vengono scritti in un nuovo BLOB ogni ora (frequenza: ora, intervallo: 1). Il percorso della cartella per il BLOB viene valutato dinamicamente in base all'ora di inizio della sezione in fase di elaborazione. Il percorso della cartella usa le parti anno, mese, giorno e ora dell'ora di inizio.
+I dati vengono scritti tooa nuovo blob ogni ora (frequenza: ora, intervallo: 1). percorso della cartella Hello per blob hello viene valutato dinamicamente in base a ora di inizio hello della sezione hello che viene elaborato. percorso della cartella Hello Usa le parti di anno, mese, giorno e ora hello hello ora di inizio.
 
 ```JSON
 {
@@ -370,7 +370,7 @@ I dati vengono scritti in un nuovo BLOB ogni ora (frequenza: ora, intervallo: 1)
 
 **Un'attività di copia in una pipeline con un'origine su file system e un sink BLOB:**
 
-La pipeline contiene un'attività di copia configurata per usare i set di dati di input e output ed è programmata per essere eseguita ogni ora. Nella definizione JSON della pipeline, il tipo di **origine** è impostato su **FileSystemSource** e il tipo di **sink** è impostato su **BlobSink**.
+pipeline Hello contiene un'attività di copia che è configurato toouse hello set di dati di input e output, senza che sia pianificato toorun ogni ora. Nella pipeline hello definizione JSON, hello **origine** tipo è stato impostato troppo**FileSystemSource**, e **sink** tipo è stato impostato troppo**BlobSink**.
 
 ```JSON
 {  
@@ -418,8 +418,8 @@ La pipeline contiene un'attività di copia configurata per usare i set di dati d
 }
 ```
 
-### <a name="example-copy-data-from-azure-sql-database-to-an-on-premises-file-system"></a>Esempio: Copiare i dati dal database SQL di Azure in un file system locale
-L'esempio seguente mostra:
+### <a name="example-copy-data-from-azure-sql-database-tooan-on-premises-file-system"></a>Esempio: Copia i dati dal Database SQL di Azure tooan locale file system
+Hello nel seguente esempio viene illustrato:
 
 * Un servizio collegato di tipo [AzureSqlDatabase](data-factory-azure-sql-connector.md#linked-service-properties).
 * Un servizio collegato di tipo [OnPremisesFileServer](#linked-service-properties).
@@ -427,7 +427,7 @@ L'esempio seguente mostra:
 * Un set di dati di output di tipo [FileShare](#dataset-properties).
 * Una pipeline con attività di copia che usa [SqlSource](data-factory-azure-sql-connector.md##copy-activity-properties) e [FileSystemSink](#copy-activity-properties).
 
-L'esempio copia i dati di una serie temporale da una tabella di Azure SQL a un sistema di file locale ogni ora. Le proprietà JSON usate in questi esempi sono descritte nelle sezioni riportate dopo gli esempi.
+esempio Hello copia dati delle serie temporali da un file system locale di SQL Azure tabella tooan ogni ora. le proprietà JSON Hello utilizzati in questi esempi sono descritti nelle sezioni dopo gli esempi di hello.
 
 **Servizio collegato per il database SQL Azure:**
 
@@ -460,13 +460,13 @@ L'esempio copia i dati di una serie temporale da una tabella di Azure SQL a un s
 }
 ```
 
-Si consiglia di usare la proprietà **encryptedCredential** anziché le proprietà **userid** e **password**. Per informazioni dettagliate su questo servizio collegato, vedere l'articolo relativo al [servizio collegato del file system](#linked-service-properties).
+È consigliabile utilizzare hello **encryptedCredential** proprietà anziché hello **userid** e **password** proprietà. Per informazioni dettagliate su questo servizio collegato, vedere l'articolo relativo al [servizio collegato del file system](#linked-service-properties).
 
 **Set di dati di input SQL Azure:**
 
-L'esempio presuppone che sia stata creata una tabella "MyTable" in SQL Azure e che contenga una colonna denominata "timestampcolumn" per i dati di una serie temporale.
+esempio Hello presuppone che si crea una tabella "MyTable" in SQL Azure e che contiene una colonna denominata "timestampcolumn" per i dati delle serie temporali.
 
-L'impostazione di ``“external”: ”true”`` comunica a Data Factory che il set di dati è esterno alla data factory e non è prodotto da un'attività al suo interno.
+Impostazione ``“external”: ”true”`` informa Data Factory di set di dati hello è data factory di toohello esterni e non viene generato da un'attività nella data factory di hello.
 
 ```JSON
 {
@@ -495,7 +495,7 @@ L'impostazione di ``“external”: ”true”`` comunica a Data Factory che il 
 
 **Set di dati di output del file system locale:**
 
-I dati vengono copiati in un nuovo file ogni ora. folderPath e fileName per il BLOB vengono determinati in base all'ora di inizio della sezione.
+Dati viene copiato tooa nuovo file ogni ora. folderPath Hello e il nome di blob hello vengono determinate in base all'ora di inizio hello del sezione hello.
 
 ```JSON
 {
@@ -559,7 +559,7 @@ I dati vengono copiati in un nuovo file ogni ora. folderPath e fileName per il B
 
 **Un'attività di copia in una pipeline con un'origine SQL e un sink di file system:**
 
-La pipeline contiene un'attività di copia configurata per usare i set di dati di input e output ed è programmata per essere eseguita ogni ora. Nella definizione JSON della pipeline, il tipo **source** è impostato su **SqlSource** e il tipo **sink** è impostato su **FileSystemSink**. La query SQL specificata per la proprietà **SqlReaderQuery** consente di selezionare i dati da copiare nell'ultima ora.
+pipeline Hello contiene un'attività di copia che è configurato toouse hello set di dati di input e output, senza che sia pianificato toorun ogni ora. Nella pipeline hello definizione JSON, hello **origine** tipo è stato impostato troppo**SqlSource**, hello e **sink** tipo è stato impostato troppo**FileSystemSink**. query SQL Hello specificato per hello **SqlReaderQuery** proprietà consente di selezionare dati hello hello oltre toocopy ora.
 
 ```JSON
 {  
@@ -609,7 +609,7 @@ La pipeline contiene un'attività di copia configurata per usare i set di dati d
 ```
 
 
-È anche possibile eseguire il mapping delle colonne del set di dati di origine alle colonne del set di dati sink nella definizione dell'attività di copia. Per altre informazioni, vedere [Mapping delle colonne del set di dati in Azure Data Factory](data-factory-map-columns.md).
+È anche possibile mappare le colonne di origine toocolumns di set di dati dal set di dati di sink nella definizione di attività di copia hello. Per altre informazioni, vedere [Mapping delle colonne del set di dati in Azure Data Factory](data-factory-map-columns.md).
 
 ## <a name="performance-and-tuning"></a>Prestazioni e ottimizzazione
- Per informazioni sui fattori chiave che influiscono sulle prestazioni dello spostamento dei dati, ovvero dell'attività di copia, in Azure Data Factory e sui vari modi per ottimizzare tali prestazioni, vedere la [Guida alle prestazioni delle attività di copia e all'ottimizzazione](data-factory-copy-activity-performance.md).
+ toolearn sulla chiave di fattori che influiscono sulle prestazioni di hello spostamento dei dati (attività di copia) in Azure Data Factory e i vari modi toooptimize, vedere hello [ottimizzazione Guida e alle prestazioni di attività di copia](data-factory-copy-activity-performance.md).

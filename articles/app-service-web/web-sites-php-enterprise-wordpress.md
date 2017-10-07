@@ -1,6 +1,6 @@
 ---
-title: WordPress di livello aziendale in Azure | Documentazione Microsoft
-description: Informazioni su come ospitare un sito WordPress aziendale nel servizio app di Azure
+title: classe aaaEnterprise WordPress in Azure | Documenti Microsoft
+description: Informazioni su come toohost un WordPress di classe enterprise del sito nel servizio App di Azure
 services: app-service\web
 documentationcenter: 
 author: sunbuild
@@ -14,189 +14,189 @@ ms.tgt_pltfrm: na
 ms.workload: web
 ms.date: 10/24/2016
 ms.author: sumuth
-ms.openlocfilehash: 21281955458a2632d96a91d884cab13803f4d296
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 4347eddb31d622d1189dc5db4d81b0f3745d6e69
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="enterprise-class-wordpress-on-azure"></a>WordPress di livello aziendale in Azure
-Il Servizio app di Azure rende disponibile un ambiente scalabile, sicuro e facile da usare per siti [WordPress][wordpress] di importanza critica e su vasta scala. Anche Microsoft gestisce siti di livello aziendale come i blog di [Office][officeblog] e [Bing][bingblog]. Questo articolo illustra come usare la funzionalità App Web del Servizio app di Microsoft Azure per stabilire e mantenere un sito WordPress di livello aziendale, basato sul cloud, in grado di gestire un numero elevato di visitatori.
+Il Servizio app di Azure rende disponibile un ambiente scalabile, sicuro e facile da usare per siti [WordPress][wordpress] di importanza critica e su vasta scala. Microsoft ha eseguito siti aziendali, ad esempio hello [Office] [ officeblog] e [Bing] [ bingblog] blog. Questo articolo illustra come toouse hello funzionalità App Web di Microsoft Azure App Service tooestablish e mantenere un livello aziendale, il sito WordPress basato su cloud in grado di gestire un volume elevato di visitatori.
 
 ## <a name="architecture-and-planning"></a>Architettura e pianificazione
 Un'installazione di base di WordPress prevede solo due requisiti:
 
-* **Database MySQL**: questo requisito è disponibile tramite [ClearDB in Azure Marketplace][cdbnstore]. In alternativa, è possibile gestire l'installazione di MySQL su macchine virtuali di Azure tramite [Windows][mysqlwindows] o [Linux][mysqllinux].
+* **MySQL Database**: questo requisito è disponibile tramite [ClearDB in hello Azure Marketplace][cdbnstore]. In alternativa, è possibile gestire l'installazione di MySQL su macchine virtuali di Azure tramite [Windows][mysqlwindows] o [Linux][mysqllinux].
 
   > [!NOTE]
-  > ClearDB prevede diverse configurazioni di MySQL. Ciascuna configurazione presenta diverse caratteristiche di prestazioni. Per informazioni sulle offerte disponibili tramite Azure Store, vedere [Azure Store][cdbnstore] oppure direttamente il [sito Web di ClearDB](http://www.cleardb.com/pricing.view).
+  > ClearDB prevede diverse configurazioni di MySQL. Ciascuna configurazione presenta diverse caratteristiche di prestazioni. Vedere hello [Azure Store] [ cdbnstore] per informazioni sulle offerte che vengono fornite tramite hello Azure Store o direttamente nei hello [sito Web ClearDB](http://www.cleardb.com/pricing.view).
   >
   >
 * **PHP 5.2.4 o versioni successive**: il Servizio app di Azure fornisce attualmente le [versioni PHP 5.4, 5.5 e 5.6][phpwebsite].
 
   > [!NOTE]
-  > Si raccomanda di eseguire sempre l'ultima versione di PHP in modo da disporre delle correzioni per la protezione più recenti.
+  > È consigliabile che è sempre esecuzione hello versione più recente di PHP in modo da disporre di correzioni più recenti hello.
   >
   >
 
 ### <a name="basic-deployment"></a>Distribuzione di base
-Con i soli requisiti di base, è possibile creare una soluzione di base all'interno di un'area di Azure.
+Se si utilizzano solo i requisiti di base hello, è possibile creare una soluzione di base all'interno di un'area di Azure.
 
 ![Un'app Web di Azure e il database MySQL ospitati in un'unica area di Azure][basic-diagram]
 
-Anche se questa soluzione offre un aumento delle istanze per l'applicazione tramite la creazione di più istanze delle app Web del sito, tutti i componenti sono ospitati all'interno dei data center di una specifica area geografica. I visitatori residenti all'esterno di quest'area possono riscontrare tempi di risposta rallentati quando usano il sito. Se si verifica un blocco dei data center nell'area, anche l'applicazione viene interrotta.
+Anche se ciò consente di creare più istanze di App Web di hello sito tooscale orizzontalmente l'applicazione, tutto ciò che è ospitato all'interno di Data Center hello in un'area geografica specifica. Visitatori di fuori di quest'area possono vedere i tempi di risposta lenti quando usano sito hello. Se i Data Center hello in quest'area si disattivano, pertanto non l'applicazione.
 
 ### <a name="multi-region-deployment"></a>Distribuzione in più aree
-Con [Gestione traffico][trafficmanager] di Azure, è possibile ridimensionare il sito WordPress in più aree geografiche, fornendo ai visitatori un unico URL. Tutti i visitatori accedono tramite Gestione traffico e vengono quindi instradati in un'area in base alla configurazione del bilanciamento del carico.
+Tramite Azure [Traffic Manager][trafficmanager], è possibile ridimensionare il sito WordPress in più aree geografiche diverse e fornire hello stesso URL per tutti i visitatori. Tutti i visitatori possono essere tramite Gestione traffico e sono quindi area tooa indirizzato che è basato su hello configurazione di bilanciamento del carico.
 
-![Un'app Web di Azure, ospitata in più aree, con l'uso del router CDBR a disponibilità elevata per il routing a MySQL tra le aree][multi-region-diagram]
+![Un'applicazione web di Azure, ospitata in più aree, con disponibilità elevata CDBR router tooroute tooMySQL in aree geografiche][multi-region-diagram]
 
-All'interno di ogni area il sito WordPress viene ancora ridimensionato tra più istanze delle app Web, ma la scalabilità è specifica per l'area, ossia può essere diversa per le aree a traffico elevato rispetto a quelle a traffico ridotto.
+All'interno di ogni area sito WordPress hello sarebbe comunque essere scalato in più istanze di App Web, ma questa scalabilità è l'area tooa specifico. ossia può essere diversa per le aree a traffico elevato rispetto a quelle a traffico ridotto.
 
-Per replicare e instradare il traffico a più database MySQL, è possibile usare [router ClearDB a disponibilità elevata (CDBR)][cleardbscale] (mostrati a sinistra) o [MySQL Cluster Carrier Grade Edition (CGE)][cge].
+tooreplicate e instradare il traffico toomultiple database MySQL, è possibile utilizzare [router a disponibilità elevata ClearDB (CDBRs)] [ cleardbscale] (visualizzata a sinistra) o [MySQL Cluster vettore livello Edition (esegue questa operazione)] [cge].
 
 ### <a name="multi-region-deployment-with-media-storage-and-caching"></a>Distribuzione in più aree con memorizzazione nella cache e archiviazione di contenuti multimediali
-Se il sito accetta caricamenti o ospita file multimediali, usare l'archiviazione BLOB di Azure. Se sono necessarie soluzioni di memorizzazione nella cache, valutare [Cache Redis][rediscache], [Memcache Cloud](http://azure.microsoft.com/gallery/store/garantiadata/memcached/), [MemCachier](http://azure.microsoft.com/gallery/store/memcachier/memcachier/) o una delle altre offerte disponibili in [Azure Store](http://azure.microsoft.com/gallery/store/).
+Se il sito hello accetta caricamenti o ospita i file di supporto, usare archiviazione Blob di Azure. Se è necessario che la memorizzazione nella cache, è consigliabile [cache Redis][rediscache], [Memcache Cloud](http://azure.microsoft.com/gallery/store/garantiadata/memcached/), [MemCachier](http://azure.microsoft.com/gallery/store/memcachier/memcachier/), o una delle altre offerte di memorizzazione nella cache di hello hello [Azure Store](http://azure.microsoft.com/gallery/store/).
 
 ![Un'app Web di Azure, ospitata in più aree, con l'uso del router CDBR a disponibilità elevata per MySQL, con cache gestita, archiviazione BLOB e rete per la distribuzione di contenuti][performance-diagram]
 
-L'archiviazione BLOB è distribuita geograficamente in più aree per impostazione predefinita, quindi non è necessario occuparsi della replica dei file in tutti i siti. È anche possibile abilitare la [rete per la distribuzione di contenuti][cdn] di Azure per l'archiviazione BLOB, che distribuisce i file ai nodi finali più vicini ai visitatori.
+Archiviazione BLOB è distribuita geograficamente in aree geografiche per impostazione predefinita, non vi è tooworry sulla replica file in tutti i siti. È inoltre possibile abilitare hello Azure [Content Delivery Network] [ cdn] per l'archiviazione Blob, che distribuisce i file tooend nodi visitatori tooyour più vicino.
 
 ### <a name="planning"></a>Pianificazione
 #### <a name="additional-requirements"></a>Requisiti aggiuntivi
-| Per | Opzione |
+| toodo questo... | Opzione |
 | --- | --- |
 | **Caricare o archiviare file di grandi dimensioni** |[Plug-in di WordPress per l'uso dell'archiviazione BLOB][storageplugin] |
-| **Inviare posta elettronica** |[SendGrid][storesendgrid] e il [plug-in di WordPress per l'uso di SendGrid][sendgridplugin] |
+| **Inviare posta elettronica** |[SendGrid] [ storesendgrid] e hello [plug-in WordPress per l'uso di SendGrid][sendgridplugin] |
 | **Nomi di dominio personalizzati** |[Configurare un nome di dominio personalizzato nel Servizio app di Azure][customdomain] |
 | **HTTPS** |[Abilitare HTTPS per un'app Web nel Servizio app di Azure][httpscustomdomain] |
-| **Convalida di preproduzione** |[Configurare ambienti di gestione temporanea per le app Web nel Servizio app di Azure][staging] <p>Con il passaggio di un'app Web dalla gestione temporanea alla produzione viene trasferita anche la configurazione di WordPress. Assicurarsi che tutte le impostazioni siano aggiornate in base ai requisiti dell'app di produzione prima di passare dalla gestione temporanea alla produzione.</p> |
+| **Convalida di preproduzione** |[Configurare ambienti di gestione temporanea per le app Web nel Servizio app di Azure][staging] <p>Quando si sposta un'app web da tooproduction di gestione temporanea, è inoltre possibile spostare configurazione WordPress hello. Assicurarsi che tutte le impostazioni siano aggiornate toohello requisiti per l'applicazione di produzione prima di spostare tooproduction app hello gestione temporanea.</p> |
 | **Monitoraggio e risoluzione dei problemi** |[Abilitare la registrazione diagnostica per le app Web nel Servizio app di Azure][log] e [Monitorare le app Web nel Servizio app di Azure][monitor] |
 | **Distribuire il sito** |[Distribuire un'app Web nel Servizio app di Azure][deploy] |
 
 #### <a name="availability-and-disaster-recovery"></a>Disponibilità e ripristino di emergenza
-| Per | Opzione |
+| toodo questo... | Opzione |
 | --- | --- |
 | **Bilanciare il carico dei siti** o **distribuire geograficamente i siti** |[Instradare il traffico con Gestione traffico di Azure][trafficmanager] |
 | **Backup e ripristino** |[Eseguire il backup di un'app Web nel Servizio app di Azure][backup] e [Ripristinare un'app Web nel Servizio app di Azure][restore] |
 
 #### <a name="performance"></a>Prestazioni
-Le prestazioni nel cloud si ottengono prevalentemente tramite la memorizzazione nella cache e l'aumento delle istanze. È tuttavia necessario considerare anche la memoria, la larghezza di banda e altri attributi dell'hosting delle app Web.
+Le prestazioni nel cloud hello avviene principalmente tramite la memorizzazione nella cache e di scalabilità orizzontale. Tuttavia, è necessario considerare hello memoria, larghezza di banda e altri attributi dell'hosting di applicazioni Web.
 
-| Per | Opzione |
+| toodo questo... | Opzione |
 | --- | --- |
 | **Identificare le funzionalità delle istanze del servizio app** |[Dettagli dei prezzi, incluse le funzionalità dei livelli del Servizio app][websitepricing] |
-| **Memorizzare risorse nella cache** |[Cache Redis][rediscache], [Memcache Cloud](/gallery/store/garantiadata/memcached/), [MemCachier](/gallery/store/memcachier/memcachier/), o una delle altre offerte di memorizzazione nella cache disponibili in [Azure Store](/gallery/store/) |
-| **Scalare l'applicazione** |[Ridimensionare un'app Web nel Servizio app di Azure][websitescale] e [Routing ClearDB a disponibilità elevata][cleardbscale]. Se si sceglie di ospitare e gestire un'installazione personalizzata di MySQL, tenere presente [MySQL Cluster CGE][cge] per la scalabilità orizzontale. |
+| **Memorizzare risorse nella cache** |[Cache redis][rediscache], [Memcache Cloud](/gallery/store/garantiadata/memcached/), [MemCachier](/gallery/store/memcachier/memcachier/), o una delle altre offerte di memorizzazione nella cache di hello hello [Azure Store](/gallery/store/) |
+| **Scalare l'applicazione** |[Ridimensionare un'app Web nel Servizio app di Azure][websitescale] e [Routing ClearDB a disponibilità elevata][cleardbscale]. Se si sceglie toohost e gestire la propria installazione di MySQL, è necessario considerare [esegue questa operazione Cluster MySQL] [ cge] per scalabilità orizzontale. |
 
 #### <a name="migration"></a>Migrazione
-Sono disponibili due metodi per eseguire la migrazione di un sito WordPress esistente nel Servizio app di Azure:
+Esistono due metodi toomigrate un tooAzure di sito WordPress servizio App esistente:
 
-* **[Esportazione di WordPress][export]**: questo metodo consente di esportare il contenuto del blog. È quindi possibile importare il contenuto in un nuovo sito WordPress nel Servizio app di Azure tramite il [plug-in WordPress Importer][import].
+* **[Esportazione di WordPress][export]**: questo metodo consente di esportare il contenuto di hello del blog. È quindi possibile importare hello tooa contenuto nuovo WordPress sito nel servizio App di Azure tramite hello [plug-in WordPress importatore][import].
 
   > [!NOTE]
   > Questa procedura consente di eseguire la migrazione del contenuto, ma non di eventuali plug-in, temi o altre personalizzazioni. È necessario reinstallare questi componenti manualmente.
   >
   >
-* **Migrazione manuale**: [eseguire il backup del sito ][wordpressbackup] e del [database][wordpressdbbackup], quindi eseguire il ripristino manuale in un'app Web nel Servizio app di Azure e database MySQL associato. Questo metodo è utile per eseguire la migrazione di siti altamente personalizzati in quanto evita la necessità di installare manualmente plug-in, temi o altre personalizzazioni.
+* **La migrazione manuale**: [eseguire il backup del sito] [ wordpressbackup] e [database][wordpressdbbackup]e quindi ripristinare manualmente il tooa web app in Azure Servizio App e il database MySQL associato. Questo metodo è utile toomigrate altamente personalizzati siti quanto evita la necessità hello installare manualmente i plug-in, temi e altre personalizzazioni.
 
 ## <a name="step-by-step-instructions"></a>Istruzioni dettagliate
 ### <a name="create-a-wordpress-site"></a>Creare un sito WordPress
-1. Usare [Azure Marketplace][cdbnstore] per creare un database MySQL delle dimensioni identificate nella sezione [Architettura e pianificazione](#planning) nell'area o nelle aree in cui si ospiterà il sito.
-2. Seguire la procedura descritta in [Creare un'app WordPress nel Servizio app di Azure][createwordpress] per creare una nuova app Web WordPress. Durante la creazione dell'app Web, selezionare **Utilizzare un database MySQL esistente** e scegliere il database creato nel passaggio 1.
+1. Hello utilizzare [Azure Marketplace] [ cdbnstore] toocreate un database MySQL delle dimensioni di hello identificati nel hello [pianificazione e architettura](#planning) sezione nell'area di hello o aree in cui ospitare il sito.
+2. Seguire i passaggi di hello in [creare un'app web WordPress in Azure App Service] [ createwordpress] toocreate un'app web WordPress. Quando si crea un'app web hello, selezionare **utilizza un MySQL Database esistente**, quindi selezionare il database hello creato nel passaggio 1.
 
-Se si esegue la migrazione di un sito WordPress esistente, vedere [Eseguire la migrazione di un sito WordPress esistente in Azure](#Migrate-an-existing-WordPress-site-to-Azure) dopo aver creato una nuova app Web.
+Se si esegue la migrazione di un sito WordPress esistente, vedere [eseguire la migrazione di un esistente tooAzure sito WordPress](#Migrate-an-existing-WordPress-site-to-Azure) dopo aver creato una nuova app web.
 
-### <a name="migrate-an-existing-wordpress-site-to-azure"></a>Eseguire la migrazione di un sito WordPress esistente in Azure
-Come accennato nella sezione [Architettura e pianificazione](#planning) esistono due modi per eseguire la migrazione di un sito Web WordPress:
+### <a name="migrate-an-existing-wordpress-site-tooazure"></a>Eseguire la migrazione di un esistente tooAzure sito WordPress
+Come accennato in hello [pianificazione e architettura](#planning) sezione, sono disponibili due modi toomigrate un sito WordPress:
 
-* **Esportazione e importazione**, per i siti senza molte personalizzazioni o nel caso in cui si vogliano trasferire solo i contenuti.
-* **Backup e ripristino**, per i siti con molte personalizzazioni in cui si vuole trasferire tutto.
+* **Usare l'esportazione e importazione** per i siti che non dispongono di livello di personalizzazione o in cui si desidera solo contenuto hello toomove.
+* **Utilizzare backup e ripristino** per i siti che hanno una grande quantità di personalizzazione in cui si desidera toomove tutti gli elementi.
 
-Usare una delle sezioni seguenti per eseguire la migrazione del sito.
+Utilizzare una delle seguenti sezioni toomigrate hello al sito.
 
-#### <a name="the-export-and-import-method"></a>Metodo di esportazione e importazione
-1. Usare la funzione di [esportazione di WordPress][export] per esportare il sito esistente.
-2. Creare un'app Web seguendo la procedura riportata nella sezione [Creare un sito WordPress](#Create-a-new-WordPress-site).
-3. Accedere al sito WordPress nel [portale di Azure][mgmtportal] e fare clic su **Plug-in** > **Aggiungi nuovo**. Cercare e installare il plug-in **WordPress Importer**.
-4. Dopo l'installazione del plug-in, fare clic su **Strumenti** > **Importa** e quindi selezionare **WordPress** per usare il plug-in WordPress Importer.
-5. Nella pagina per **importare WordPress** fare clic sull'opzione per **scegliere il file**. Passare al file WXR esportato dal sito WordPress esistente e quindi scegliere l'opzione per **caricare il file e importare**.
-6. Fare clic su **Submit**. Viene visualizzata la conferma della corretta esecuzione dell'importazione.
-7. Dopo aver completato tutti questi passaggi, riavviare il sito dal relativo pannello dei **Servizi app** nel [portale di Azure][mgmtportal].
+#### <a name="hello-export-and-import-method"></a>Hello esportazione e importazione (metodo)
+1. Utilizzare [WordPress esportare] [ export] tooexport esistente del sito.
+2. Creare un'app web utilizzando i passaggi di hello hello [creare un sito WordPress](#Create-a-new-WordPress-site) sezione.
+3. Accedi al sito WordPress tooyour hello [portale di Azure][mgmtportal], quindi fare clic su **plug-in** > **Aggiungi nuovo**. Cercare e installare hello **WordPress importatore** plug-in.
+4. Dopo aver installato hello plug-in WordPress dell'utilità di importazione, fare clic su **strumenti** > **importazione**, quindi fare clic su **WordPress** toouse hello plug-in WordPress dell'utilità di importazione.
+5. In hello **importazione WordPress** pagina, fare clic su **Scegli File**. Trovare il file WXR hello esportata dal sito WordPress esistente e quindi fare clic su **file di caricamento e l'importazione**.
+6. Fare clic su **Submit**. Viene richiesto che l'importazione di hello ha esito positivo.
+7. Dopo aver completato tutti questi passaggi, riavviare il sito da relativo **servizi App** pannello in hello [portale di Azure][mgmtportal].
 
-Dopo l'importazione del sito, può essere necessario eseguire i passaggi seguenti per abilitare impostazioni non contenute nel file di importazione.
+Dopo aver importato sito hello, potrebbe essere necessario hello tooperform seguendo i passaggi tooenable impostazioni non nel file di importazione hello.
 
 | Se si usano... | Effettuare l'operazione seguente: |
 | --- | --- |
-| **Collegamenti permanenti** |Nel dashboard di WordPress del nuovo sito fare clic su **Impostazioni** > **Permalinks** (Collegamenti permanenti) e quindi aggiornare la struttura dei collegamenti permanenti. |
-| **Collegamenti a immagini/file multimediali** |Per aggiornare i collegamenti al nuovo percorso, usare il [plug-in Velvet Blues Update URLs ][velvet], uno strumento di ricerca e sostituzione oppure eseguire l'operazione manualmente nel database. |
-| **Temi** |Passare ad **Aspetto** > **Tema** e aggiornare il tema del sito come necessario. |
-| **Menu** |Se il tema supporta i menu, nei collegamenti alla home page potrebbe ancora essere incorporata la vecchia sottodirectory. Passare ad **Aspetto** > **Menu** e aggiornarli. |
+| **Collegamenti permanenti** |Dashboard di WordPress hello del nuovo sito hello fare clic su **impostazioni** > **permanenti**, quindi aggiornare struttura permanenti hello. |
+| **Collegamenti a immagini/file multimediali** |tooupdate collegamenti toohello nuova posizione, utilizzare hello [plug-in Velluto blu aggiornare URL][velvet], una ricerca e sostituzione strumento oppure aggiornare manualmente i collegamenti di hello nel database. |
+| **Temi** |Andare troppo**aspetto** > **tema**, quindi aggiornare il tema di sito hello in base alle esigenze. |
+| **Menu** |Se il tema supporta i menu, home page di collegamenti tooyour potrebbe essere sottodirectory di hello precedente incorporati in essi contenuti. Andare troppo**aspetto** > **menu**, quindi eseguire l'aggiornamento. |
 
-#### <a name="the-backup-and-restore-method"></a>Metodo di backup e ripristino
-1. Eseguire il backup dell'attuale sito WordPress usando le informazioni riportate nella pagina sui [backup di WordPress][wordpressbackup].
-2. Eseguire il backup dell'attuale database usando le informazioni riportate nella pagina sul [backup del database][wordpressdbbackup].
-3. Creare un database e ripristinare il backup.
+#### <a name="hello-backup-and-restore-method"></a>Hello backup e ripristino (metodo)
+1. Eseguire il backup del WordPress esistente del sito usando informazioni hello in [WordPress backup][wordpressbackup].
+2. Eseguire il backup del database esistente usando informazioni hello in [backup del database][wordpressdbbackup].
+3. Creare un database e ripristinare i backup di hello.
 
-   1. Acquistare un nuovo database da [Azure Marketplace][cdbnstore] oppure impostare un database MySQL in una macchina virtuale [Windows][mysqlwindows] o [Linux][mysqllinux].
-   2. Usando un client MySQL, come [MySQL Workbench][workbench], connettersi al nuovo database e importare il database WordPress.
-   3. Aggiornare il database per cambiare le voci di dominio in base al nuovo dominio del Servizio app di Azure, ad esempio mywordpress.azurewebsites.net. Usare lo [script di ricerca e sostituzione per database WordPress][searchandreplace] per cambiare in modo sicuro tutte le istanze.
-4. Creare un'app Web nel portale di Azure e pubblicare il backup di WordPress.
+   1. Acquistare un nuovo database da hello [Azure Marketplace][cdbnstore], o impostare un database MySQL in un [Windows] [ mysqlwindows] o [Linux ] [ mysqllinux] macchina virtuale.
+   2. Utilizzare un client di MySQL come [MySQL Workbench] [ workbench] tooconnect toohello nuovi database e importare il database di WordPress.
+   3. Aggiornamento hello database toochange hello voci tooyour nuovo servizio App di Azure dominio, ad esempio, mywordpress.azurewebsites.net. Hello utilizzare [ricerca e sostituzione per lo Script di database di WordPress] [ searchandreplace] toosafely modificare tutte le istanze.
+4. Creare un'app web nel portale di Azure hello e pubblicare backup WordPress hello.
 
-   1. Creare un'app Web nel [portale di Azure][mgmtportal] con un database mediante **Nuovo** > **Web e dispositivi mobili** > **Azure Marketplace** > **App Web** > **App Web e SQL** (o **App Web e MySQL**) -> **Crea**. Configurare tutte le impostazioni necessarie per creare un'app Web vuota.
-   2. Nel backup di WordPress individuare il file **wp-config.php** e aprirlo in un editor. Sostituire le voci seguenti con le informazioni del nuovo database MySQL:
+   1. un'app web con un database, in hello toocreate [portale di Azure][mgmtportal], fare clic su **New** > **Web e dispositivi mobili**  >  **Azure Marketplace** > **le app Web** > **Web app + SQL** (o **Web app + MySQL**) > **Creare**. Configurare tutte le necessarie hello impostazioni toocreate un'app web vuota.
+   2. Nel processo di backup di WordPress, individuare hello **wp config.php** file e aprirlo in un editor. Sostituire hello seguendo le voci con le informazioni di hello per il nuovo database MySQL:
 
-      * **DB_NAME**: nome utente del database.
-      * **DB_USER**: nome utente per accedere al database.
-      * **DB_PASSWORD**: password utente.
+      * **Db_name**: nome utente hello del database hello.
+      * **DB_USER**: hello utente nome utilizzato tooaccess hello database.
+      * **DB_PASSWORD**: password utente hello.
 
-        Dopo aver cambiato queste voci, salvare e chiudere il file **wp-config.php**.
-   3. Fare riferimento alle informazioni disponibili in [Distribuire un'app Web nel Servizio app di Azure][deploy] per abilitare il metodo di distribuzione che si desidera usare, quindi distribuire il backup di WordPress nell'app Web nel Servizio app di Azure.
-5. Dopo la distribuzione del sito WordPress, dovrebbe essere possibile accedere al nuovo sito (come app Web di Servizio app) usando l'URL *.azurewebsite.net.
+        Dopo la modifica di queste voci, salvare e chiudere hello **wp config.php** file.
+   3. Hello utilizzare [distribuire un'app web in Azure App Service] [ deploy] informazioni tooenable hello metodo di distribuzione che si desidera toouse e quindi distribuirla l'app web di WordPress tooyour backup nel servizio App di Azure.
+5. Dopo la distribuzione di sito WordPress hello, è necessario nuovo sito di tooaccess in grado di hello (come un'app web di servizio App) utilizzando hello *. URL azurewebsite.net hello sito.
 
 ### <a name="configure-your-site"></a>Configurare il sito
-Dopo la creazione o la migrazione del sito WordPress, usare le informazioni seguenti per migliorare le prestazioni o abilitare altre funzionalità.
+Dopo la creazione o la migrazione sito WordPress hello, utilizzare hello seguente prestazioni tooimprove informazioni o abilitare funzionalità aggiuntive.
 
-| Per | Opzione |
+| toodo questo... | Opzione |
 | --- | --- |
 | **Impostare la modalità del piano e le dimensioni del servizio app e abilitare la scalabilità** |[Ridimensionare un'app Web nel Servizio app di Azure][websitescale]. |
-| **Abilitare connessioni di database permanenti** |Per impostazione predefinita, WordPress non usa connessioni di database permanenti, che potrebbero causare rallentamenti dopo numerose connessioni. Per abilitare le connessioni permanenti, installare il [plug-in di aggiornamento delle connessioni permanenti](https://wordpress.org/plugins/persistent-database-connection-updater/installation/). |
-| **Migliorare le prestazioni** |<ul><li><p><a href="https://azure.microsoft.com/en-us/blog/disabling-arrs-instance-affinity-in-windows-azure-web-sites/">Disabilitare il cookie ARR</a>. In questo modo è possibile migliorare le prestazioni quando si esegue WordPress in più istanze delle app Web.</p></li><li><p>Abilitare il caching. È possibile usare <a href="http://msdn.microsoft.com/library/azure/dn690470.aspx">Cache Redis</a> (anteprima) con il <a href="https://wordpress.org/plugins/redis-object-cache/">plug-in di WordPress per l'oggetto Cache Redis</a> oppure usare una delle altre offerte di memorizzazione nella cache disponibili in <a href="/gallery/store/">Azure Store</a>.</p></li><li><p>[Come rendere più veloce WordPress con WinCache](https://wordpress.org/plugins/w3-total-cache/). Lo strumento WinCache è abilitato per impostazione predefinita per le app Web. Quando si usano insieme WinCache e la cache dinamica, disattivare la cache dei file di WinCache, ma lasciare abilitata la cache della sessione e dell'utente. Per disattivare la cache del file, in un file con estensione INI a livello di sistema, impostare il valore seguente:<br/><code>wincache.fcenabled = 0</code></p></li><li><p>[Ridimensionare un'app Web nel Servizio app di Azure][websitescale] e usare il <a href="http://www.cleardb.com/developers/cdbr/introduction">routing a disponibilità elevata di ClearDB</a> o <a href="http://www.mysql.com/products/cluster/">MySQL Cluster CGE</a>.</p></li></ul> |
-| **Usare i BLOB per l'archiviazione** |<ol><li><p>[Creare un account di Archiviazione di Azure](../storage/common/storage-create-storage-account.md).</p></li><li><p>Leggere come [usare la rete CDN](../cdn/cdn-create-new-endpoint.md) per distribuire geograficamente i dati archiviati in BLOB.</p></li><li><p>Installare e configurare il <a href="https://wordpress.org/plugins/windows-azure-storage/">plug-in di archiviazione di Azure per WordPress</a>.</p><p>Per informazioni dettagliate su installazione e configurazione del plug-in, vedere il <a href="http://plugins.svn.wordpress.org/windows-azure-storage/trunk/UserGuide.docx">manuale dell'utente</a>.</p> </li></ol> |
-| **Abilitare la posta elettronica** |Abilitare <a href="https://azure.microsoft.com/en-us/marketplace/partners/sendgrid/sendgrid-azure/">SendGrid</a> con Azure Store. Installare il <a href="http://wordpress.org/plugins/sendgrid-email-delivery-simplified">plug-in SendGrid</a> per WordPress. |
+| **Abilitare connessioni di database permanenti** |Per impostazione predefinita, WordPress non utilizza connessioni di database persistente, che potrebbero causare il toobecome di database toohello connessione limitata dopo più connessioni. tooenable connessioni permanenti, installare hello [plug-in di connessioni permanenti adapter](https://wordpress.org/plugins/persistent-database-connection-updater/installation/). |
+| **Migliorare le prestazioni** |<ul><li><p><a href="https://azure.microsoft.com/en-us/blog/disabling-arrs-instance-affinity-in-windows-azure-web-sites/">Disabilitare i cookie ARR hello</a>, che può migliorare le prestazioni durante l'esecuzione di WordPress in più istanze di applicazioni Web.</p></li><li><p>Abilitare il caching. È possibile utilizzare <a href="http://msdn.microsoft.com/library/azure/dn690470.aspx">cache Redis</a> (anteprima) con hello <a href="https://wordpress.org/plugins/redis-object-cache/">plug-in WordPress di oggetto della cache Redis</a>, oppure è possibile utilizzare uno di hello altre offerte di memorizzazione nella cache di hello <a href="/gallery/store/">Azure Store</a>.</p></li><li><p>[Come rendere più veloce WordPress con WinCache](https://wordpress.org/plugins/w3-total-cache/). Lo strumento WinCache è abilitato per impostazione predefinita per le app Web. Quando l'utilizzo combinato di WinCache e Cache dinamica, disattivare la cache dei file di WinCache, ma lasciare utente hello e la cache della sessione abilitata. tooturn disattivata la cache dei file, in un file con estensione ini a livello di sistema, impostare il valore seguente hello:<br/><code>wincache.fcenabled = 0</code></p></li><li><p>[Ridimensionare un'app Web nel Servizio app di Azure][websitescale] e usare il <a href="http://www.cleardb.com/developers/cdbr/introduction">routing a disponibilità elevata di ClearDB</a> o <a href="http://www.mysql.com/products/cluster/">MySQL Cluster CGE</a>.</p></li></ul> |
+| **Usare i BLOB per l'archiviazione** |<ol><li><p>[Creare un account di Archiviazione di Azure](../storage/common/storage-create-storage-account.md).</p></li><li><p>Informazioni su come troppo[hello utilizzo rete per la distribuzione di contenuti](../cdn/cdn-create-new-endpoint.md) toogeo-distribuire i dati archiviati nel BLOB.</p></li><li><p>Installare e configurare hello <a href="https://wordpress.org/plugins/windows-azure-storage/">archiviazione di Azure per i plug-in WordPress</a>.</p><p>Per il programma di installazione dettagliata e informazioni di configurazione per i plug-in di hello, vedere hello <a href="http://plugins.svn.wordpress.org/windows-azure-storage/trunk/UserGuide.docx">manuale dell'utente</a>.</p> </li></ol> |
+| **Abilitare la posta elettronica** |Abilitare <a href="https://azure.microsoft.com/en-us/marketplace/partners/sendgrid/sendgrid-azure/">SendGrid</a> utilizzando hello Azure Store. Installare hello <a href="http://wordpress.org/plugins/sendgrid-email-delivery-simplified">plug-in di SendGrid</a> per WordPress. |
 | **Configurare un nome di dominio personalizzato** |[Configurare un nome di dominio personalizzato nel Servizio app di Azure][customdomain]. |
 | **Abilitare HTTPS per un nome di dominio personalizzato** |[Abilitare HTTPS per un'app Web nel Servizio app di Azure][httpscustomdomain]. |
-| **Bilanciare il carico o distribuire geograficamente il sito** |[Instradare il traffico con Gestione traffico di Azure][trafficmanager]. Se si usa un dominio personalizzato, vedere [Configurare un nome di dominio personalizzato nel Servizio app di Azure][customdomain] per informazioni sull'uso di Gestione traffico con nomi di dominio personalizzati. |
+| **Bilanciare il carico o distribuire geograficamente il sito** |[Instradare il traffico con Gestione traffico di Azure][trafficmanager]. Se si utilizza un dominio personalizzato, vedere [configurare un nome di dominio personalizzato in Azure App Service] [ customdomain] per informazioni su come toouse gestione traffico con nomi di dominio personalizzati. |
 | **Abilitare i backup automatici** |[Eseguire il backup di un'app Web nel Servizio app di Azure][backup]. |
 | **Abilitare la registrazione diagnostica** |[Abilitare la registrazione diagnostica per le app Web nel Servizio app di Azure][log]. |
 
 ## <a name="next-steps"></a>Passaggi successivi
 * [Ottimizzazione di WordPress](http://codex.wordpress.org/WordPress_Optimization)
-* [Convertire WordPress in un multisito nel Servizio app di Azure](web-sites-php-convert-wordpress-multisite.md)
+* [Convertire toomultisite WordPress in Azure App Service](web-sites-php-convert-wordpress-multisite.md)
 * [Aggiornamento guidato di ClearDB per Azure](http://www.cleardb.com/store/azure/upgrade)
 * [Hosting di WordPress in una sottocartella dell'app Web nel servizio app di Azure](http://blogs.msdn.com/b/webapps/archive/2013/02/13/hosting-wordpress-in-a-subfolder-of-your-windows-azure-web-site.aspx)
 * [Procedura dettagliata: Creare un sito WordPress con Azure](http://blogs.technet.com/b/blainbar/archive/2013/08/07/article-create-a-wordpress-site-using-windows-azure-read-on.aspx)
 * [Ospitare il blog WordPress esistente in Azure](http://blogs.msdn.com/b/msgulfcommunity/archive/2013/08/26/migrating-a-self-hosted-wordpress-blog-to-windows-azure.aspx)
 * [Abilitare collegamenti permanenti efficaci in WordPress](http://www.iis.net/learn/extensions/url-rewrite-module/enabling-pretty-permalinks-in-wordpress)
-* [Come eseguire la migrazione e gestire il blog WordPress nel servizio app di Azure](http://www.kefalidis.me/2012/06/how-to-migrate-and-run-your-wordpress-blog-on-windows-azure-websites/)
-* [Come eseguire gratuitamente WordPress nel servizio app di Azure](http://architects.dzone.com/articles/how-run-wordpress-azure)
+* [Come toomigrate ed eseguire il blog di WordPress in Azure App Service](http://www.kefalidis.me/2012/06/how-to-migrate-and-run-your-wordpress-blog-on-windows-azure-websites/)
+* [Come liberare WordPress in Azure App Service per toorun](http://architects.dzone.com/articles/how-run-wordpress-azure)
 * [WordPress in Azure in un massimo di due minuti](http://www.sitepoint.com/wordpress-windows-azure-2-minutes-less/)
-* [Trasferimento di un blog WordPress in Azure - Parte 1: Creazione di un blog WordPress in Azure](http://www.davebost.com/2013/07/10/moving-a-wordpress-blog-to-windows-azure-part-1)
-* [Trasferimento di un blog WordPress in Azure - Parte 2: Trasferimento dei contenuti](http://www.davebost.com/2013/07/11/moving-a-wordpress-blog-to-windows-azure-transferring-your-content)
-* [Trasferimento di un blog WordPress in Azure - Parte 3: Configurazione del dominio personalizzato](http://www.davebost.com/2013/07/11/moving-a-wordpress-blog-to-windows-azure-part-3-setting-up-your-custom-domain)
-* [Trasferimento di un blog WordPress in Azure - Parte 4: Collegamenti permanenti efficaci e regole di riscrittura degli URL](http://www.davebost.com/2013/07/11/moving-a-wordpress-blog-to-windows-azure-part-4-pretty-permalinks-and-url-rewrite-rules)
-* [Trasferimento di un blog WordPress in Azure - Parte 5: Passaggio da una sottocartella alla radice](http://www.davebost.com/2013/07/11/moving-a-wordpress-blog-to-windows-azure-part-5-moving-from-a-subfolder-to-the-root)
-* [Come configurare un'app Web WordPress nel proprio account Azure](http://www.itexperience.net/2014/01/20/how-to-set-up-a-wordpress-website-in-your-windows-azure-account/)
+* [Lo spostamento di un tooAzure blog di WordPress - parte 1: creazione di un blog di WordPress in Azure](http://www.davebost.com/2013/07/10/moving-a-wordpress-blog-to-windows-azure-part-1)
+* [Lo spostamento di un tooAzure blog di WordPress - parte 2: il trasferimento del contenuto](http://www.davebost.com/2013/07/11/moving-a-wordpress-blog-to-windows-azure-transferring-your-content)
+* [Lo spostamento di un tooAzure blog di WordPress - parte 3: impostazione del dominio personalizzato](http://www.davebost.com/2013/07/11/moving-a-wordpress-blog-to-windows-azure-part-3-setting-up-your-custom-domain)
+* [Lo spostamento di un tooAzure blog di WordPress - parte 4: piuttosto permanenti e le regole di riscrittura URL](http://www.davebost.com/2013/07/11/moving-a-wordpress-blog-to-windows-azure-part-4-pretty-permalinks-and-url-rewrite-rules)
+* [Lo spostamento di un tooAzure blog di WordPress - parte 5: lo spostamento da una radice toohello sottocartella](http://www.davebost.com/2013/07/11/moving-a-wordpress-blog-to-windows-azure-part-5-moving-from-a-subfolder-to-the-root)
+* [Ricerca tooset backup un WordPress web app nell'account di Azure](http://www.itexperience.net/2014/01/20/how-to-set-up-a-wordpress-website-in-your-windows-azure-account/)
 * [Supporto di WordPress in Azure](http://www.johnpapa.net/wordpress-on-azure/)
 * [Suggerimenti per WordPress in Azure](http://www.johnpapa.net/azurecleardbmysql/)
 
 > [!NOTE]
-> Per iniziare a usare il Servizio app di Azure prima di registrarsi per ottenere un account Azure, andare a [Prova il Servizio app](https://azure.microsoft.com/try/app-service/), dove è possibile creare un'app Web iniziale temporanea nel Servizio app. Non è necessario fornire una carta di credito né impegnarsi in alcun modo.
+> Se si desidera tooget avviato con il servizio App di Azure prima di iscriversi per un account Azure, andare troppo[tenta di servizio App](https://azure.microsoft.com/try/app-service/), in cui è possibile creare subito un'app web di breve durata starter nel servizio App. Non è necessario fornire una carta di credito né impegnarsi in alcun modo.
 >
 >
 
 ## <a name="whats-changed"></a>Modifiche apportate
-Per una guida relativa al passaggio da siti Web al Servizio App, vedere [Servizio app di Azure e i servizi di Azure esistenti](http://go.microsoft.com/fwlink/?LinkId=529714).
+Per una modifica di toohello della Guida da tooApp di siti Web del servizio, vedere [servizio App di Azure e il relativo impatto sui servizi di Azure esistente](http://go.microsoft.com/fwlink/?LinkId=529714).
 
 <!-- URL List -->
 

@@ -1,5 +1,5 @@
 ---
-title: Impostazioni delle porte di Inoltro di Azure | Documentazione Microsoft
+title: le impostazioni delle porte di inoltro aaaAzure | Documenti Microsoft
 description: Informazioni dettagliate sui valori di porta di Inoltro di Azure.
 services: service-bus-relay
 documentationcenter: na
@@ -14,18 +14,18 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/03/2017
 ms.author: sethm
-ms.openlocfilehash: 5906495c565dad583e74a43b2e5eed57e0c68df1
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e66785f786ee241c974d250f9ec29dfcc1fdc3fe
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-relay-port-settings"></a>Impostazioni delle porte di inoltro di Azure
 
-La tabella seguente descrive la configurazione necessaria per i valori della porta del servizio Inoltro di Azure.
+Hello nella tabella seguente descrive hello di configurazione necessari per i valori di porta per l'inoltro di Azure.
 
-## <a name="hybrid-connections"></a>Connessioni ibride
-Connessioni ibride si avvale di WebSocket come meccanismo di trasporto di base che usa solo **HTTPS**. 
+## <a name="hybrid-connections"></a>connessioni ibride
+Utilizza i WebSocket come hello sottostante il meccanismo di trasporto, che usa le connessioni ibride **HTTPS** solo. 
 
 ## <a name="wcf-relays"></a>Inoltri WCF
   
@@ -49,6 +49,6 @@ Connessioni ibride si avvale di WebSocket come meccanismo di trasporto di base c
 |[Classe WS2007HttpRelayBinding](/dotnet/api/microsoft.servicebus.ws2007httprelaybinding) (servizio)|È possibile usare il|9351/HTTP|
 
 ## <a name="next-steps"></a>Passaggi successivi
-Per altre informazioni sul servizio di inoltro di Azure, vedere i collegamenti seguenti:
+toolearn ulteriori informazioni sull'inoltro di Azure, visitare i collegamenti:
 * [Che cos'è il servizio di inoltro di Azure?](relay-what-is-it.md)
 * [Domande frequenti sul servizio di inoltro](relay-faq.md)

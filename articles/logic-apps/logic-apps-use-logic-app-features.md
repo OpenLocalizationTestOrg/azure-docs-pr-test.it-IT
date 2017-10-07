@@ -1,5 +1,5 @@
 ---
-title: Aggiungere condizioni e avviare i flussi di lavoro - App per la logica di Azure | Microsoft Docs
+title: le condizioni e avviare i flussi di lavoro - App Azure per la logica di aaaAdd | Documenti Microsoft
 description: Controllare l'esecuzione dei flussi di lavoro nelle app per la logica di Azure mediante l'aggiunta di logica condizionale, trigger, azioni e parametri.
 author: stepsic-microsoft-com
 manager: anneta
@@ -14,134 +14,134 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/28/2017
 ms.author: LADocs; stepsic
-ms.openlocfilehash: e632c48ed31e82536db55a9c54438bece0c38fd4
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 76d5e44590ffa14cf70d7a93b99a241d286d555b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="use-logic-apps-features"></a>Usare le funzionalità delle app per la logica
 
-In un [argomento precedente](../logic-apps/logic-apps-create-a-logic-app.md) è stata creata la prima app per la logica. Per il controllo del flusso di lavoro delle app per la logica, è possibile specificare percorsi diversi per l'app per la logica da eseguire e la modalità di elaborazione dati in matrici, raccolte e batch. È possibile includere questi elementi nel flusso di lavoro dell'app per la logica:
+In un [argomento precedente](../logic-apps/logic-apps-create-a-logic-app.md) è stata creata la prima app per la logica. toocontrol flusso di lavoro logica dell'applicazione, è possibile specificare percorsi diversi per il toorun app logica e come troppo elaborare i dati in batch, le raccolte e matrici. È possibile includere questi elementi nel flusso di lavoro dell'app per la logica:
 
 * Le condizioni e le [istruzioni switch](../logic-apps/logic-apps-switch-case.md) consentono all'app per la logica di eseguire azioni diverse in base al fatto che vengano soddisfatte o meno condizioni specifiche.
 
 * I [cicli](../logic-apps/logic-apps-loops-and-scopes.md) consentono di eseguire ripetutamente passaggi dell'app per la logica. Ad esempio, è possibile ripetere azioni su una matrice quando si usa un ciclo **For_each**. Oppure è possibile ripetere azioni fino a quando non viene soddisfatta una condizione se si usa un ciclo **Until**.
 
-* Gli [ambiti](../logic-apps/logic-apps-loops-and-scopes.md) consentono di raggruppare serie di azioni, ad esempio per implementare la gestione delle eccezioni.
+* [Gli ambiti](../logic-apps/logic-apps-loops-and-scopes.md) consentono raggruppare serie di azioni, ad esempio, la gestione delle eccezioni tooimplement.
 
-* La [scomposizione dei batch](../logic-apps/logic-apps-loops-and-scopes.md) consente all'app per la logica di avviare flussi di lavoro separati per gli elementi di una matrice quando si usa il comando **SplitOn**.
+* [Scomposizione dei batch](../logic-apps/logic-apps-loops-and-scopes.md) consente di avviare i flussi di lavoro separati per gli elementi in una matrice quando si utilizza hello app logica **SplitOn** comando.
 
 Questo argomento introduce altri concetti per la compilazione dell'app per la logica:
 
-* Visualizzazione Codice per modificare un'app per la logica esistente
+* Visualizzazione tooedit un'app esistente per la logica del codice
 * Opzioni per avviare un flusso di lavoro
 
 ## <a name="conditions-run-steps-only-after-meeting-a-condition"></a>Condizioni: eseguire i passaggi solo quando è soddisfatta una condizione
 
-Per fare in modo che l'app per la logica esegua i passaggi solo quando i dati soddisfano criteri specifici, è possibile aggiungere una condizione che confronta i dati nel flusso di lavoro in base a campi o valori specifici.
+toohave logica app eseguire passaggi solo quando i dati soddisfano criteri specifici, è possibile aggiungere una condizione che confronta i dati nel flusso di lavoro hello in campi specifici o valori.
 
-Si supponga, ad esempio, di avere un'app per la logica che invia troppi messaggi di posta elettronica per i post sul feed RSS di un sito Web. È possibile aggiungere una condizione in modo che l'app per la logica invii un messaggio solo quando il nuovo post appartiene a una categoria specifica.
+Si supponga, ad esempio, di avere un'app per la logica che invia troppi messaggi di posta elettronica per i post sul feed RSS di un sito Web. È possibile aggiungere una condizione in modo che l'app logica invia posta elettronica solo quando Registra nuovo hello categoria specifica tooa appartiene.
 
-1. Nel [portale di Azure](https://portal.azure.com) individuare e aprire l'app per la logica in Progettazione app per la logica.
+1. In hello [portale di Azure](https://portal.azure.com), trovare e aprire l'app logica nella finestra di progettazione logica App.
 
-2. Aggiungere una condizione al percorso del flusso di lavoro da usare. 
+2. Aggiungere un percorso del flusso di lavoro toohello a condizione che si desidera. 
 
-   Per aggiungere la condizione tra i passaggi esistenti nel flusso di lavoro dell'app per la logica, spostare il puntatore sulla freccia dove si vuole aggiungere la condizione. 
-   Scegliere il **segno più** (**+**), quindi **Aggiungi una condizione**. ad esempio:
+   condizione di hello tooadd tra i passaggi esistenti nel flusso di lavoro di hello logica app, spostare il puntatore di hello sulla freccia di hello in cui si desidera condizione hello tooadd. 
+   Scegliere hello **segno** (**+**), quindi scegliere **aggiungere una condizione**. ad esempio:
 
-   ![Aggiungere una condizione all'app per la logica](./media/logic-apps-use-logic-app-features/add-condition.png)
+   ![Aggiungi condizione toologic app](./media/logic-apps-use-logic-app-features/add-condition.png)
 
    > [!NOTE]
-   > Se si vuole aggiungere una condizione alla fine del flusso di lavoro corrente, andare alla fine dell'app per la logica e scegliere **+ Nuovo passaggio**.
+   > Se si desidera tooadd una condizione alla fine di hello del flusso di lavoro corrente, toohello inferiore dell'app logica, quindi **+ nuovo passaggio**.
 
-3. Ora definire la condizione. Specificare il campo di origine da valutare, l'operazione da eseguire e il valore o il campo di destinazione. Per aggiungere alla condizione campi già esistenti, sceglierli dall'**elenco Aggiungi contenuto dinamico**.
+3. Ora definire la condizione hello. Specificare il campo di origine hello che si desidera tooevaluate, hello operazione tooperform e il valore di destinazione hello o un campo. tooadd esistente campi tooyour condizione, scegliere hello **elenco contenuto dinamico Aggiungi**.
 
    ad esempio:
 
    ![Modificare la condizione nella modalità di base](./media/logic-apps-use-logic-app-features/edit-condition-basic-mode.png)
 
-   Questa è la condizione completa:
+   Di seguito è la condizione completa hello:
 
    ![Condizione completa](./media/logic-apps-use-logic-app-features/edit-condition-basic-mode-2.png)
 
    > [!TIP]
-   > Per definire la condizione nel codice, scegliere **Modifica in modalità avanzata**. ad esempio:
+   > condizione di hello toodefine nel codice, scegliere **modifica nella modalità avanzata**. ad esempio:
    > 
    > ![Modificare la condizione nel codice](./media/logic-apps-use-logic-app-features/edit-condition-advanced-mode.png)
 
-4. In **SE SÌ** e **SE NO** aggiungere i passaggi da eseguire in base al fatto che la condizione sia soddisfatta o meno.
+4. In **Sì se** e **NO se**, aggiungere tooperform passaggi hello in base che hello condizione è soddisfatta.
 
    ad esempio:
 
    ![Condizione con percorsi SÌ e NO](./media/logic-apps-use-logic-app-features/condition-yes-no-path.png)
 
    > [!TIP]
-   > È possibile trascinare le azioni esistenti nei percorsi **SE SÌ** e **SE NO**.
+   > È possibile trascinare le azioni esistenti nel hello **Sì se** e **NO se** percorsi.
 
 5. Al termine, salvare l'app per la logica.
 
-Ora si ricevono messaggi di posta elettronica solo quando i post soddisfano la condizione.
+Ora si ottiene i messaggi di posta elettronica solo quando il postback hello soddisfa la condizione.
 
 ## <a name="repeat-actions-over-a-list-with-foreach"></a>Ripetere l'azione in un elenco con forEach
 
-Il ciclo forEach specifica una matrice per la ripetizione di un'azione. Se non è una matrice, il flusso ha esito negativo. Ad esempio, se action1 genera una matrice di messaggi e si vuole inviare ogni messaggio, è possibile inserire questa istruzione forEach nelle proprietà dell'azione: `forEach : "@action('action1').outputs.messages"`
+ciclo forEach Hello specifica un toorepeat matrice un'azione su. Se non è una matrice, il flusso di hello ha esito negativo. Ad esempio, se è azione1 che restituisce una matrice di messaggi che si desidera toosend ogni messaggio, è possibile includere l'istruzione forEach nelle proprietà hello dell'azione:`forEach : "@action('action1').outputs.messages"`
 
-## <a name="edit-the-code-definition-for-a-logic-app"></a>Modificare la definizione di codice per un'app per la logica
+## <a name="edit-hello-code-definition-for-a-logic-app"></a>Modifica definizione di codice hello per un'app di logica
 
-Oltre che nella finestra di progettazione dell'app per la logica, è possibile modificare direttamente il codice che definisce un'app per la logica.
+Anche se non si hello progettazione applicazione logica, è possibile modificare direttamente il codice hello che definisce un'app di logica.
 
-1. Nella barra dei comandi fare clic su **Visualizzazione Codice**.
+1. Nella barra dei comandi di hello, scegliere **Code vista**.
 
-    Verrà aperto un editor completo che mostra la definizione appena modificata.
+    Un editor completo viene visualizzata la definizione di hello che è stato modificato.
 
     ![Visualizzazione Codice](media/logic-apps-use-logic-app-features/codeview.png)
 
-    Nell'editor di testo, è possibile copiare e incollare un numero qualsiasi di azioni all'interno della stessa app per la logica o tra app per la logica. 
-    È anche possibile aggiungere o rimuovere facilmente intere sezioni dalla definizione, oltre a condividere definizioni con altri.
+    Nell'editor di testo hello, è possibile copiare e incollare qualsiasi numero di azioni all'interno di hello stessa logica app o tra App per la logica. 
+    È possibile anche aggiungere o rimuovere intere sezioni dalla definizione di hello ed è anche possibile condividere definizioni con altri utenti.
 
-2. Per salvare le modifiche, scegliere **Salva**.
+2. Scegliere le modifiche, toosave **salvare**.
 
-## <a name="parameters"></a>Parametri
+## <a name="parameters"></a>parameters
 
-Alcune funzionalità delle app per la logica sono disponibili solo nella visualizzazione codice, ad esempio, i parametri. I parametri semplificano il riutilizzo dei valori all'interno di un'app per la logica. Ad esempio, se si ha un indirizzo e-mail che si vuole usare in diverse azioni, è consigliabile definirlo come parametro.
+Alcune funzionalità delle app per la logica sono disponibili solo nella visualizzazione codice, ad esempio, i parametri. Parametri rendono facile tooreuse valori in tutta la logica app. Ad esempio, se si ha un indirizzo e-mail che si vuole usare in diverse azioni, è consigliabile definirlo come parametro.
 
-I parametri costituiscono un buon metodo per estrarre valori che probabilmente verranno modificati molto. Sono particolarmente utili quando è necessario eseguire l'override dei parametri in diversi ambienti. Per informazioni sull'esecuzione dell'override dei parametri in base all'ambiente, vedere l'argomento relativo alla [creazione di definizioni di app per la logica](../logic-apps/logic-apps-author-definitions.md) e la [documentazione dell'API REST](https://docs.microsoft.com/rest/api/logic).
+I parametri sono ideali per l'estrazione di valori che si è molto probabile toochange. Sono particolarmente utili quando è necessario toooverride parametri in ambienti diversi. toolearn toooverride parametri basati sull'ambiente, vedere [creare definizioni di logica app](../logic-apps/logic-apps-author-definitions.md) e [documentazione dell'API REST](https://docs.microsoft.com/rest/api/logic).
 
-Questo esempio illustra come aggiornare l'app per la logica esistente in modo che sia possibile usare i parametri per il termine della query.
+Questo esempio viene illustrato come tooupdate app logica esistente in modo che è possibile utilizzare i parametri per il termine di query hello.
 
-1. Nella visualizzazione codice trovare l'oggetto `parameters : {}` e aggiungere un oggetto `currentFeedUrl`:
+1. Nella visualizzazione codice, trovare hello `parameters : {}` e aggiungere un `currentFeedUrl` oggetto:
 
         "currentFeedUrl" : {
             "type" : "string",
             "defaultValue" : "http://rss.cnn.com/rss/cnn_topstories.rss"
         }
 
-2. Andare all'azione `When_a_feed-item_is_published`, trovare la sezione `queries` e sostituire il valore della query con `"feedUrl": "#@{parameters('currentFeedUrl')}"`. 
+2. Passare toohello `When_a_feed-item_is_published` azione, hello trova `queries` sezione e sostituire il valore di query hello con:`"feedUrl": "#@{parameters('currentFeedUrl')}"` 
 
-    Per unire due o più stringhe, è inoltre possibile usare la funzione `concat`. 
-    Ad esempio, `"@concat('#',parameters('currentFeedUrl'))"` funziona come sopra.
+    toojoin due o più stringhe, è inoltre possibile utilizzare hello `concat` (funzione). 
+    Ad esempio, `"@concat('#',parameters('currentFeedUrl'))"` works hello stesso come hello precedente.
 
 3.  Al termine dell'operazione, scegliere **Salva**. 
 
-    Ora è possibile modificare il feed RSS del sito Web passando un URL diverso attraverso l'oggetto `currentFeedURL`.
+    Ora è possibile modificare RSS del sito Web di hello feed passando un URL diverso tramite hello `currentFeedURL` oggetto.
 
-Altre informazioni su come [creare definizioni di app per la logica](../logic-apps/logic-apps-author-definitions.md).
+Altre informazioni, vedere [come definizioni di tooauthor logica app](../logic-apps/logic-apps-author-definitions.md).
 
 ## <a name="start-logic-app-workflows"></a>Avviare i flussi di lavoro delle app per la logica
 
-Sono disponibili diverse opzioni per avviare il flusso di lavoro definito nell'app per la logica. Un flusso di lavoro può sempre essere avviato su richiesta nel [Portale di Azure].
+Sono disponibili opzioni diverse per l'avvio del flusso di lavoro hello definito nell'applicazione la logica. È sempre possibile avviare un flusso di lavoro su richiesta in hello [portale di Azure].
 
 ### <a name="recurrence-triggers"></a>Trigger di ricorrenza
 
-Un trigger di ricorrenza viene eseguito a un intervallo specificato dall'utente. Quando il trigger è caratterizzato dalla logica condizionale, determina se è necessario eseguire il flusso di lavoro. Un trigger indica che il flusso di lavoro deve essere eseguito restituendo un codice di stato `200` . Quando non è necessaria l'esecuzione del flusso di lavoro, il trigger restituisce un codice di stato `202`.
+Un trigger di ricorrenza viene eseguito a un intervallo specificato dall'utente. Quando il trigger di hello logica condizionale, trigger hello determina necessità di un flusso di lavoro hello toorun. Un trigger indica flusso di lavoro hello devono essere eseguite tramite la restituzione di un `200` codice di stato. Quando non è necessaria toorun, flusso di lavoro hello trigger hello restituisce un `202` codice di stato.
 
 ### <a name="callback-using-rest-apis"></a>Callback tramite le API REST
 
-Per avviare un flusso di lavoro, i servizi possono chiamare un endpoint dell'app per la logica. Per avviare questa tipologia di app per la logica su richiesta, fare clic su **Run now** (Esegui ora) nella barra dei comandi. Vedere [Avviare i flussi di lavoro chiamando endpoint dell'app per la logica come trigger](../logic-apps/logic-apps-http-endpoint.md). 
+toostart un flusso di lavoro, è possono chiamare un endpoint di app logica servizi. Scegliere questo tipo di logica dell'applicazione su richiesta, toostart **Esegui ora** hello barra dei comandi. Vedere [Avviare i flussi di lavoro chiamando endpoint dell'app per la logica come trigger](../logic-apps/logic-apps-http-endpoint.md). 
 
 <!-- Shared links -->
-[Portale di Azure]: https://portal.azure.com
+[portale di Azure]: https://portal.azure.com
 
 ## <a name="next-steps"></a>Passaggi successivi
 

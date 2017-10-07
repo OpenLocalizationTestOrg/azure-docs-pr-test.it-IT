@@ -1,6 +1,6 @@
 ---
-title: "Procedura dettagliata sull’acquisizione di Hub eventi di Azure | Documentazione Microsoft"
-description: "Un esempio che usa l'SDK di Azure Python per illustrare l'uso della funzionalità di acquisizione dell'Hub eventi."
+title: procedura dettagliata di acquisire gli hub di eventi aaaAzure | Documenti Microsoft
+description: "Esempio che utilizza hello Azure SDK Python toodemonstrate funzionalità di acquisizione degli hub di eventi di hello."
 services: event-hubs
 documentationcenter: 
 author: djrosanova
@@ -14,25 +14,25 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/28/2017
 ms.author: darosa;sethm
-ms.openlocfilehash: a764a116755c20f60e92e553bd7c896425272b85
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 1737dcca283711d863aa970db0e80ae71814e666
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="event-hubs-capture-walkthrough-python"></a>Procedura dettagliata sull'acquisizione di Hub eventi: Python
 
-Acquisisci è una nuova funzionalità di Hub eventi che consente di distribuire automaticamente i dati di streaming dell'hub eventi a un account di archiviazione BLOB di Azure di propria scelta. Questa capacità rende più semplice eseguire l'elaborazione di batch su dati di streaming in tempo reale. In questo articolo viene descritto come usare l'acquisizione di Hub eventi con Python. Per altre informazioni sull'acquisizione di Hub eventi, vedere l' [articolo con la panoramica](event-hubs-archive-overview.md).
+Acquisizione di hub eventi è una funzionalità degli hub di eventi che si tooautomatically consente di recapitare hello flusso di dati del tooan hub eventi account di archiviazione Blob di Azure di propria scelta. Questa funzionalità rende facile tooperform elaborazione batch su dati di streaming in tempo reale. Questo articolo descrive la modalità di acquisizione di hub eventi toouse con Python. Per ulteriori informazioni sull'acquisizione di hub eventi, vedere hello [articolo introduttivo](event-hubs-archive-overview.md).
 
-Questo esempio usa [Azure Python SDK](https://azure.microsoft.com/develop/python/) per illustrare la funzionalità di acquisizione. Il programma sender.py invia una simulazione di telemetria ambientale a Hub eventi in formato JSON. L'hub eventi è configurato per usare la funzione Acquisisci per scrivere i dati nell'archiviazione BLOB in batch. L'app capturereader.py legge quindi questi BLOB, crea un file aggiuntivo per dispositivo, quindi scrive i dati in file con estensione csv.
+In questo esempio utilizza hello [Python di Azure SDK](https://azure.microsoft.com/develop/python/) toodemonstrate la funzionalità di acquisizione hello. programma sender.py Hello invia telemetria ambiente simulato tooEvent hub in formato JSON. Hello hub eventi è configurato toouse hello acquisizione funzionalità toowrite questa archiviazione tooblob dei dati in batch. app capturereader.py Hello quindi legge tali BLOB viene creato un file di Accodamento per ogni dispositivo, quindi scrive i dati di hello in file con estensione csv.
 
 ## <a name="what-will-be-accomplished"></a>Contenuto dell'esercitazione
 
-1. Creazione di un account di archiviazione BLOB di Azure e di un contenitore BLOB all'interno nel portale di Azure.
-2. Creazione di uno spazio dei nomi di Hub eventi nel portale di Azure.
-3. Creazione di un hub eventi con la funzione Acquisisci abilitata nel portale di Azure.
-4. Invio dei dati all'hub eventi con uno script Python.
-5. Lettura dei file dall'acquisizione ed elaborazione con un altro script Python.
+1. Creare un account di archiviazione Blob di Azure e un contenitore di blob in esso contenuti, tramite hello portale di Azure.
+2. Creare uno spazio dei nomi di Hub eventi, utilizzando hello portale di Azure.
+3. Creare un hub eventi con la funzionalità di acquisizione hello abilitata, mediante hello portale di Azure.
+4. Hub di eventi toohello dati con uno script Python di trasmissione.
+5. Lettura di file hello da acquisizione hello ed elaborarle con un altro script Python.
 
 ## <a name="prerequisites"></a>Prerequisiti
 
@@ -43,18 +43,18 @@ Questo esempio usa [Azure Python SDK](https://azure.microsoft.com/develop/python
 [!INCLUDE [create-account-note](../../includes/create-account-note.md)]
 
 ## <a name="create-an-azure-storage-account"></a>Creare un account di Archiviazione di Azure
-1. Accedere al [portale di Azure][Azure portal].
-2. Nel riquadro di spostamento sinistro del portale fare clic su **Nuovo**, quindi su **Archiviazione** e quindi su **Account di archiviazione**.
-3. Completare i campi nel pannello dell'account di archiviazione e quindi fare clic su **Crea**.
+1. Accesso toohello [portale di Azure][Azure portal].
+2. Nel riquadro di spostamento a sinistra di hello del portale di hello, fare clic su **New**, quindi fare clic su **archiviazione**, quindi fare clic su **Account di archiviazione**.
+3. Completare i campi di hello nel Pannello di account di archiviazione hello e quindi fare clic su **crea**.
    
    ![][1]
-4. Dopo aver visualizzato il messaggio **Deployments Succeeded** (Le distribuzioni sono riuscite), fare clic sul nome del nuovo account di archiviazione e nel pannello **Informazioni di base** fare clic su **BLOB**. Quando si apre il pannello **Servizio BLOB**, fare clic su **+ Contenitore** in alto. Assegnare al contenitore il nome **acquisizione**, quindi chiudere il pannello **Servizio BLOB**.
-5. Fare clic su **Chiavi di accesso** nel pannello sinistro e copiare il nome dell'account di archiviazione e il valore **key1**. Salvare questi valori nel Blocco note o in un'altra posizione temporanea.
+4. Dopo aver visualizzato hello **ha avuto esito positivo di distribuzioni** messaggio, fare clic sul nome di hello del nuovo account di archiviazione hello in hello **Essentials** pannello, fare clic su **BLOB**. Quando hello **servizio Blob** fare clic su pannello **+ contenitore** nella parte superiore di hello. Contenitore con nome hello **acquisire**, quindi chiudere hello **servizio Blob** blade.
+5. Fare clic su **le chiavi di accesso** hello sinistro blade e copia hello un nome dell'account di archiviazione hello e valore hello **key1**. Salvare queste tooNotepad valori o un'altra posizione temporanea.
 
-## <a name="create-a-python-script-to-send-events-to-your-event-hub"></a>Creazione di uno script Python per inviare gli eventi all'hub eventi
+## <a name="create-a-python-script-toosend-events-tooyour-event-hub"></a>Creare un hub di eventi tooyour Python script toosend eventi
 1. Aprire l'editor preferito di Python, ad esempio[Visual Studio Code][Visual Studio Code].
-2. Creare uno script chiamato **sender.py**. Questo script invia 200 eventi all'hub eventi. Si tratta di semplici letture ambientali inviate in JSON.
-3. Incollare il seguente codice in sender.py:
+2. Creare uno script chiamato **sender.py**. Questo script invia hub di eventi di 200 eventi tooyour. Si tratta di semplici letture ambientali inviate in JSON.
+3. Incollare hello seguente di codice in sender.py:
    
   ```python
   import uuid
@@ -75,13 +75,13 @@ Questo esempio usa [Azure Python SDK](https://azure.microsoft.com/develop/python
           sbs.send_event('INSERT YOUR EVENT HUB NAME', s)
       print y
   ```
-4. Aggiornare il codice precedente in modo che usi il nome dello spazio dei nomi, il valore chiave e il nome dell'hub eventi ottenuti al momento della creazione dello spazio dei nomi dell'hub eventi.
+4. Aggiornare hello precedente toouse codice il nome dello spazio dei nomi, valore della chiave e nome hub di eventi ottenuto al momento della creazione dello spazio dei nomi di hello hub eventi.
 
-## <a name="create-a-python-script-to-read-your-capture-files"></a>Creare uno script Python per leggere i file dell'acquisizione
+## <a name="create-a-python-script-tooread-your-capture-files"></a>Creare i file di acquisizione di un tooread script Python
 
-1. Compilare il pannello e fare clic su **Crea**.
-2. Creare uno script chiamato **capturereader.py**. Questo script legge i file di acquisizione e crea un file per dispositivo in modo da scrivere i dati solo per quel dispositivo.
-3. Incollare il seguente codice in capturereader.py:
+1. Compilare il pannello hello e fare clic su **crea**.
+2. Creare uno script chiamato **capturereader.py**. Questo script legge hello acquisiti i file e crea un file per i dati del dispositivo toowrite hello solo per quel dispositivo.
+3. Incollare hello seguente di codice in capturereader.py:
    
   ```python
   import os
@@ -125,10 +125,10 @@ Questo esempio usa [Azure Python SDK](https://azure.microsoft.com/develop/python
           block_blob_service.delete_blob(container, blob.name)
   startProcessing('YOUR STORAGE ACCOUNT NAME', 'YOUR KEY', 'capture')
   ```
-4. Assicurarsi di incollare i valori appropriati per il nome e la chiave dell'account di archiviazione e nella chiamata a `startProcessing`.
+4. Essere toopaste che i valori appropriati di hello per il nome account di archiviazione e la chiave in hello chiamata troppo`startProcessing`.
 
-## <a name="run-the-scripts"></a>Esecuzione degli script
-1. Aprire un prompt dei comandi con un percorso contenente Python, quindi eseguire questi comandi per installare i pacchetti dei prerequisiti di Python:
+## <a name="run-hello-scripts"></a>Eseguire gli script hello
+1. Aprire un prompt dei comandi con Python nel percorso e quindi eseguire i pacchetti di prerequisiti Python tooinstall questi comandi:
    
   ```
   pip install azure-storage
@@ -136,35 +136,35 @@ Questo esempio usa [Azure Python SDK](https://azure.microsoft.com/develop/python
   pip install avro
   ```
    
-  Se si dispone di una versione precedente di Azure o dell'archiviazione di Azure, potrebbe essere necessario usare l'opzione **aggiornamento**
+  Se si dispone di una versione precedente di archiviazione di azure o azure, potrebbe essere necessario hello toouse **-aggiornamento** opzione
    
-  Potrebbe inoltre essere necessario eseguire il comando seguente (non necessario nella maggior parte dei sistemi):
+  Potrebbe inoltre essere necessario toorun hello seguenti (non necessario nella maggior parte dei sistemi):
    
   ```
   pip install cryptography
   ```
-2. Modificare la directory nel punto in cui sono stati salvati sender.py e capturereader.py ed eseguire questo comando:
+2. Modificare la directory toowherever è stato salvato sender.py e capturereader.py ed eseguire questo comando:
    
   ```
   start python sender.py
   ```
    
-  Questo comando avvia un nuovo processo di Python per eseguire il mittente.
-3. A questo punto attendere alcuni minuti per l'esecuzione dell'acquisizione. Digitare quindi il comando seguente nella finestra di comando originale:
+  Questo comando avvia un nuovo mittente hello Python processo toorun.
+3. Ora, attendere alcuni minuti toorun acquisizione hello. Digitare quindi hello comando seguente nella finestra del comando originale:
    
    ```
    python capturereader.py
    ```
 
-   Questo processore dell'acquisizione usa la directory locale per scaricare tutti i BLOB dal contenitore o dall'account di archiviazione. Vengono elaborati i BLOB non vuoti e i risultati vengono scritti come file con estensione csv nella directory locale.
+   Questo processore acquisizione utilizza toodownload directory locale hello tutti i BLOB hello da account di archiviazione hello/contenitore. Elabora qualsiasi che non sono vuoti e scrive i risultati di hello come file con estensione csv in una directory locale hello.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Per ulteriori informazioni su Hub eventi visitare i collegamenti seguenti:
+Sono disponibili ulteriori informazioni sugli hub di eventi visitando hello seguenti collegamenti:
 
 * [Panoramica dell'acquisizione di Hub eventi][Overview of Event Hubs Capture]
 * Un' [applicazione di esempio completa che usa Hub eventi][sample application that uses Event Hubs].
-* Esempio relativo alla [scalabilità orizzontale dell'elaborazione di eventi con l'Hub eventi][Scale out Event Processing with Event Hubs].
+* Hello [scalabilità l'elaborazione di eventi agli hub di eventi] [ Scale out Event Processing with Event Hubs] esempio.
 * [Panoramica di Hub eventi][Event Hubs overview]
 
 [Azure portal]: https://portal.azure.com/

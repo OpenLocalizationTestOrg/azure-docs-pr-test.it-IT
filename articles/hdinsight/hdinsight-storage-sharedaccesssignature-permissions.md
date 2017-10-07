@@ -1,6 +1,6 @@
 ---
-title: 'Limitare l''accesso usando le firme di accesso condiviso: Azure HDInsight | Microsoft Docs'
-description: Informazioni su come usare le firme di accesso condiviso per limitare l'accesso di HDInsight ai dati archiviati nei BLOB di archiviazione di Azure.
+title: aaaRestrict l'accesso con firme di accesso condiviso - HDInsight di Azure | Documenti Microsoft
+description: Informazioni su come toouse firme di accesso condiviso toorestrict HDInsight accedere toodata archiviato nel BLOB di archiviazione di Azure.
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -15,21 +15,21 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 08/11/2017
 ms.author: larryfr
-ms.openlocfilehash: 2e4b1a307fae06c0639d93b9804c6f0f703d5900
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: a34a2f8e52e47a15b09f09bc1fc67fc6159ec75f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-azure-storage-shared-access-signatures-to-restrict-access-to-data-in-hdinsight"></a>Usare le firme di accesso condiviso di archiviazione di Azure per limitare l'accesso ai dati in HDInsight
+# <a name="use-azure-storage-shared-access-signatures-toorestrict-access-toodata-in-hdinsight"></a>Utilizzo di firme di accesso condiviso archiviazione Azure toorestrict accesso toodata in HDInsight
 
-HDInsight ha accesso completo ai dati negli account di archiviazione di Azure associati al cluster. È possibile usare le firme di accesso condiviso nel contenitore BLOB per limitare l'accesso ai dati, ad esempio per fornire accesso di sola lettura ai dati. Le firme di accesso condiviso sono una funzionalità degli account di archiviazione di Azure che consente di limitare l'accesso ai dati. Ad esempio, concedendo l'accesso in sola lettura ai dati.
+HDInsight dispone di accesso completo toodata negli account di archiviazione di Azure hello associato hello cluster. È possibile utilizzare le firme di accesso condiviso ai dati del blob contenitore toorestrict accesso toohello hello. Ad esempio, tooprovide accesso in sola lettura toohello dati. Le firme di accesso condiviso (SAS) sono una funzionalità di account di archiviazione di Azure che consente di toolimit toodata di accesso. Ad esempio, fornendo toodata accesso in sola lettura.
 
 > [!IMPORTANT]
-> Per una soluzione che usi Apache Ranger, considerare la possibilità di usare HDInsight aggiunto al dominio. Per altre informazioni, vedere il documento [Configurare i cluster HDInsight aggiunti al dominio](hdinsight-domain-joined-configure.md).
+> Per una soluzione che usi Apache Ranger, considerare la possibilità di usare HDInsight aggiunto al dominio. Per ulteriori informazioni, vedere hello [configurare dominio HDInsight](hdinsight-domain-joined-configure.md) documento.
 
 > [!WARNING]
-> HDInsight deve avere accesso completo alla risorsa di archiviazione predefinita per il cluster.
+> HDInsight è necessario spazio di archiviazione di accesso completo toohello predefinito per il cluster hello.
 
 ## <a name="requirements"></a>Requisiti
 
@@ -39,250 +39,250 @@ HDInsight ha accesso completo ai dati negli account di archiviazione di Azure as
   * Visual Studio versione 2013, 2015 o 2017
   * Python versione 2.7 o successiva.
 
-* Un cluster HDInsight basato su Linux OPPURE [Azure PowerShell][powershell]. Se è disponibile un cluster basato su Linux esistente, è possibile usare Ambari per aggiungere una firma di accesso condiviso al cluster. In caso contrario, è possibile usare Azure PowerShell per creare un cluster e aggiungere una firma di accesso condiviso durante la creazione del cluster.
+* Un cluster HDInsight basati su Linux o [Azure PowerShell] [ powershell] -se si dispone di un cluster esistente basata su Linux, è possibile utilizzare Ambari tooadd un cluster di toohello di firma di accesso condiviso. In caso contrario, è possibile usare Azure PowerShell toocreate un cluster e aggiungere una firma di accesso condiviso durante la creazione del cluster.
 
     > [!IMPORTANT]
-    > Linux è l'unico sistema operativo usato in HDInsight versione 3.4 o successiva. Per altre informazioni, vedere la sezione relativa al [ritiro di HDInsight in Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).
+    > Linux è hello solo sistema operativo utilizzato in HDInsight versione 3.4 o successiva. Per altre informazioni, vedere la sezione relativa al [ritiro di HDInsight in Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).
 
-* I file di esempio da [https://github.com/Azure-Samples/hdinsight-dotnet-python-azure-storage-shared-access-signature](https://github.com/Azure-Samples/hdinsight-dotnet-python-azure-storage-shared-access-signature). Il repository contiene gli elementi seguenti:
+* i file di esempio da Hello [https://github.com/Azure-Samples/hdinsight-dotnet-python-azure-storage-shared-access-signature](https://github.com/Azure-Samples/hdinsight-dotnet-python-azure-storage-shared-access-signature). Il repository contiene hello seguenti elementi:
 
   * Un progetto di Visual Studio che può creare un contenitore di archiviazione, i criteri archiviati e la firma di accesso condiviso da usare con HDInsight.
   * Uno script di Python che può creare un contenitore di archiviazione, i criteri archiviati e la firma di accesso condiviso da usare con HDInsight.
-  * Uno script di PowerShell in grado di creare un cluster HDInsight e configurarlo per l'uso della firma di accesso condiviso.
+  * Uno script di PowerShell che è possibile creare un HDInsight cluster e configurarlo hello toouse SAS.
 
 ## <a name="shared-access-signatures"></a>Firme di accesso condiviso
 
 Esistono due tipi di firme di accesso condiviso:
 
-* Ad hoc: l'ora di inizio, la scadenza e le autorizzazioni per la firma di accesso condiviso vengono tutte specificate nell'URI corrispondente.
+* Ad hoc: hello ora di inizio, ora di scadenza e le autorizzazioni per hello SAS vengono specificate in hello URI SAS.
 
-* Criteri di accesso archiviati: i criteri di accesso archiviati vengono definiti per un contenitore di risorse, ovvero un contenitore BLOB. I criteri di accesso archiviati possono essere usati per gestire i vincoli per una o più firme di accesso condiviso. Quando si associa una firma di accesso condiviso a criteri di accesso archiviati, la firma eredita i vincoli, ovvero ora di inizio, scadenza e autorizzazioni, definiti per i criteri di accesso archiviati.
+* Criteri di accesso archiviati: i criteri di accesso archiviati vengono definiti per un contenitore di risorse, ovvero un contenitore BLOB. I criteri possono essere utilizzati toomanage vincoli per uno o più firme di accesso condiviso. Quando si associa una firma di accesso condiviso con criteri di accesso archiviati, hello SAS eredita i vincoli di hello: hello ora di inizio, ora di scadenza e le autorizzazioni - definite per i criteri di accesso archiviato hello.
 
-La differenza tra le due forme è importante un unico scenario chiave, la revoca. Una firma di accesso condiviso è un URL, pertanto chiunque la ottiene può utilizzarla indipendentemente da chi l'ha richiesta per iniziare. Se la firma di accesso condiviso è stata pubblicata e resa pubblica, può essere usata da chiunque in tutto il mondo. Una forma di accesso condiviso rimane valida finché non si verifica una delle quattro condizioni seguenti:
+Hello differenza tra hello due forme è importante per uno scenario di chiave: revoche di certificati. Una firma di accesso condiviso è un URL, chiunque Ottiene hello SAS poterla utilizzare, indipendentemente dal fatto che ne ha richiesto toobegin con. Se una firma di accesso condiviso viene pubblicato, può essere utilizzato da chiunque in HelloWorld. Una forma di accesso condiviso rimane valida finché non si verifica una delle quattro condizioni seguenti:
 
-1. Viene raggiunta la scadenza specificata nella firma.
+1. ora di scadenza Hello specificato su hello che SAS viene raggiunto.
 
-2. Viene raggiunta la scadenza specificata nei criteri di accesso archiviati a cui fa riferimento la firma di accesso condiviso. Gli scenari seguenti portano a raggiungere la scadenza:
+2. ora di scadenza Hello specificato nel criterio di accesso archiviato hello hello che viene raggiunto firma di accesso condiviso a cui fa riferimento. negli scenari seguenti Hello causano l'ora di scadenza hello toobe raggiunto:
 
-    * L'intervallo di tempo è trascorso.
-    * Per i criteri di accesso archiviati è stata impostata una scadenza nel passato. Modificando la scadenza è possibile revocare la firma di accesso condiviso.
+    * è trascorso l'intervallo di tempo Hello.
+    * i criteri di accesso archiviato Hello sono toohave modificata un'ora di scadenza in hello precedente. Modificando l'ora di scadenza hello è un modo toorevoke hello SAS.
 
-3. I criteri di accesso archiviati cui viene fatto riferimento nella firma di accesso condiviso vengono eliminati e ciò corrisponde a un altro modo per revocare la firma. Se si ricreano i criteri di accesso archiviati specificando lo stesso nome, tutti i token di firma di accesso condiviso relativi ai criteri precedenti restano validi, a condizione che l'ora di scadenza indicata nella firma di accesso condiviso non sia trascorsa. Se si intende revocare la firma di accesso condiviso, verificare di usare un nome diverso per ricreare i criteri di accesso archiviati con scadenza nel futuro.
+3. Hello archiviati i criteri di accesso a cui fa riferimento hello che SAS viene eliminato, ovvero hello toorevoke di un altro modo SAS. Se si ricrea il criterio di accesso archiviato hello con stesso nome, tutti i token di firma di accesso condiviso per hello criteri precedenti hello valide (se l'ora di scadenza hello in hello SAS non ha superato). Se si prevede di hello toorevoke SAS, essere toouse che un altro nome se si ricrea il criterio di accesso hello con un'ora di scadenza in hello future.
 
-4. La chiave dell'account utilizzata per creare la firma di accesso condiviso viene rigenerata. Se si rigenera la chiave, l'autenticazione di tutte le applicazioni che usano la chiave precedente avrà esito negativo. Aggiornare tutti i componenti con la nuova chiave.
+4. chiave dell'account che è stato utilizzato toocreate hello SAS Hello viene rigenerato. Rigenerazione della chiave di hello fa sì che tutte le applicazioni che utilizzano l'autenticazione chiave toofail hello precedente. Aggiornare la chiave di nuovo di tutti i componenti toohello.
 
 > [!IMPORTANT]
-> L'URI di una firma di accesso condiviso è associato alla chiave dell'account usata per creare la firma e ai relativi criteri di accesso archiviati (se presenti). Se non sono specificati criteri di accesso archiviati, l'unico modo per revocare una firma di accesso condiviso consiste nel modificare la chiave dell'account.
+> Un URI di firma di accesso condiviso è associato con firma di hello toocreate utilizzati chiave account hello e hello associati criteri di accesso archiviati (se presente). Se si specifica alcun criterio di accesso archiviati, hello solo modo toorevoke una firma di accesso condiviso è toochange hello account chiave.
 
-È consigliabile usare sempre i criteri di accesso archiviati. Con i criteri archiviati, è possibile revocare le firme o estendere la scadenza in base alle esigenze. I passaggi illustrati in questo documento permettono di usare i criteri di accesso archiviati per generare firme di accesso condiviso.
+È consigliabile usare sempre i criteri di accesso archiviati. Quando si utilizzano i criteri archiviati, è possibile revocare le firme o estendere la data di scadenza hello in base alle esigenze. passaggi di Hello in questo documento usano i criteri di accesso archiviati toogenerate SAS.
 
-Per altre informazioni sulle firme di accesso condiviso, vedere [Informazioni sul modello di firma di accesso condiviso](../storage/common/storage-dotnet-shared-access-signature-part-1.md).
+Per ulteriori informazioni sulle firme di accesso condiviso, vedere [modello di firma di accesso condiviso hello comprensione](../storage/common/storage-dotnet-shared-access-signature-part-1.md).
 
 ### <a name="create-a-stored-policy-and-sas-using-c"></a>Creare un criterio archiviato e una firma di accesso condiviso con C\#
 
-1. Aprire la soluzione in Visual Studio.
+1. Aprire la soluzione hello in Visual Studio.
 
-2. In Esplora soluzioni fare clic con il pulsante destro del mouse sul progetto **SASToken** e scegliere **Proprietà**.
+2. In Esplora soluzioni, fare clic su hello **SASToken** del progetto e selezionare **proprietà**.
 
-3. Selezionare **Impostazioni** e aggiungere i valori per le voci seguenti:
+3. Selezionare **impostazioni** e aggiungere i valori per hello seguenti voci:
 
-   * StorageConnectionString: stringa di connessione per l'account di archiviazione per cui si vuole creare un criterio archiviato e una firma di accesso condiviso. Il formato deve essere `DefaultEndpointsProtocol=https;AccountName=myaccount;AccountKey=mykey`, dove `myaccount` è il nome dell'account di archiviazione e `mykey` è la chiave dell'account di archiviazione.
+   * StorageConnectionString: hello stringa di connessione per l'account di archiviazione hello che si desidera toocreate un criterio archiviato e SAS per. deve essere formato Hello `DefaultEndpointsProtocol=https;AccountName=myaccount;AccountKey=mykey` in `myaccount` hello nome dell'account di archiviazione e `mykey` è hello chiave hello account di archiviazione.
 
-   * ContainerName: contenitore nell'account di archiviazione a cui si vuole limitare l'accesso.
+   * ContainerName: contenitore hello nell'account di archiviazione hello che si desidera accedere toorestrict a.
 
-   * SASPolicyName: nome da usare per i criteri archiviati da creare.
+   * SASPolicyName: hello Nome toouse per hello archiviati toocreate criteri.
 
-   * FileToUpload: percorso di un file caricato nel contenitore.
+   * FileToUpload: hello percorso tooa file contenitore toohello caricato.
 
-4. Eseguire il progetto. Dopo la generazione della firma di accesso condiviso, vengono visualizzate informazioni simili al testo seguente:
+4. Eseguire il progetto hello. Toohello simile di informazioni dopo il testo viene visualizzato dopo che è stato generato hello SAS:
 
         Container SAS token using stored access policy: sr=c&si=policyname&sig=dOAi8CXuz5Fm15EjRUu5dHlOzYNtcK3Afp1xqxniEps%3D&sv=2014-02-14
 
-    Salvare il token dei criteri di firma di accesso condiviso, il nome dell'account di archiviazione e il nome del contenitore. Questi valori vengono usati quando si associa l'account di archiviazione al cluster HDInsight.
+    Salvare i token del criterio SAS hello, nome account di archiviazione e nome del contenitore. Questi valori vengono utilizzati quando si associa l'account di archiviazione hello con il cluster HDInsight.
 
 ### <a name="create-a-stored-policy-and-sas-using-python"></a>Creare un criterio archiviato e una firma di accesso condiviso con Python
 
-1. Aprire il file SASToken.py e modificare i valori seguenti:
+1. Aprire il file SASToken.py hello e modificare hello seguenti valori:
 
-   * policy\_name: nome da usare per i criteri archiviati da creare.
+   * criteri\_nome: hello Nome toouse per hello archiviati toocreate criteri.
 
-   * storage\_account\_name: nome del proprio account di archiviazione.
+   * archiviazione\_account\_name: nome hello dell'account di archiviazione.
 
-   * storage\_account\_key: chiave per l'account di archiviazione.
+   * archiviazione\_account\_chiave: hello chiave hello account di archiviazione.
 
-   * storage\_container\_name: contenitore nell'account di archiviazione a cui si vuole limitare l'accesso.
+   * archiviazione\_contenitore\_nome: il contenitore di hello nell'account di archiviazione hello che si desidera accedere toorestrict a.
 
-   * example\_file\_path: percorso di un file caricato nel contenitore.
+   * esempio\_file\_percorso: hello percorso tooa file contenitore toohello caricato.
 
-2. Eseguire lo script. Al termine dello script viene visualizzato un token della firma di accesso condiviso simile al testo seguente:
+2. Eseguire script hello. Visualizza hello SAS token simile toohello seguente testo al termine dello script hello:
 
         sr=c&si=policyname&sig=dOAi8CXuz5Fm15EjRUu5dHlOzYNtcK3Afp1xqxniEps%3D&sv=2014-02-14
 
-    Salvare il token dei criteri di firma di accesso condiviso, il nome dell'account di archiviazione e il nome del contenitore. Questi valori vengono usati quando si associa l'account di archiviazione al cluster HDInsight.
+    Salvare i token del criterio SAS hello, nome account di archiviazione e nome del contenitore. Questi valori vengono utilizzati quando si associa l'account di archiviazione hello con il cluster HDInsight.
 
-## <a name="use-the-sas-with-hdinsight"></a>Usare la firma di accesso condiviso con HDInsight
+## <a name="use-hello-sas-with-hdinsight"></a>Utilizzare hello SAS con HDInsight
 
-Quando si crea un cluster HDInsight è necessario specificare un account di archiviazione primario e, facoltativamente, è possibile specificare account di archiviazione aggiuntivi. Entrambi i metodi di aggiunta di risorse di archiviazione richiedono l'accesso completo agli account di archiviazione e ai contenitori usati.
+Quando si crea un cluster HDInsight è necessario specificare un account di archiviazione primario e, facoltativamente, è possibile specificare account di archiviazione aggiuntivi. Entrambi i metodi di aggiunta di memoria richiedono account di archiviazione toohello accesso completo e contenitori che vengono utilizzati.
 
-Per usare una firma di accesso condiviso allo scopo di limitare l'accesso a un contenitore, aggiungere una voce personalizzata alla configurazione del **core-site** per il cluster.
+toouse contenitore tooa accesso toolimit firma di accesso condiviso, aggiungere una voce personalizzata di toohello **core sito** configurazione per il cluster hello.
 
-* Per i cluster HDInsight **basati su Windows** o **basati su Linux**, è possibile aggiungere la voce durante la creazione del cluster con PowerShell.
-* Per i cluster HDInsight **basati su Linux**, modificare la configurazione dopo la creazione del cluster con Ambari.
+* Per **basati su Windows** o **basati su Linux** cluster HDInsight, è possibile aggiungere la voce hello durante la creazione del cluster tramite PowerShell.
+* Per **basati su Linux** cluster HDInsight, modificare la configurazione di hello dopo la creazione di cluster con Ambari.
 
-### <a name="create-a-cluster-that-uses-the-sas"></a>Creare un cluster che usa la firma di accesso condiviso
+### <a name="create-a-cluster-that-uses-hello-sas"></a>Creare un cluster che usa hello SAS
 
-La directory `CreateCluster` del repository include un esempio di creazione di un cluster HDInsight che usa la firma di accesso condiviso. Per usarlo, seguire questa procedura:
+Un esempio di creazione di un cluster HDInsight che hello utilizza firma di accesso condiviso è incluso in hello `CreateCluster` directory del repository hello. toouse, utilizzare hello seguendo i passaggi:
 
-1. Aprire il file `CreateCluster\HDInsightSAS.ps1` in un editor di testo e modificare i valori seguenti all'inizio del documento.
+1. Aprire hello `CreateCluster\HDInsightSAS.ps1` file in un editor di testo e modificare i seguenti valori all'inizio di hello del documento hello hello.
 
     ```powershell
-    # Replace 'mycluster' with the name of the cluster to be created
+    # Replace 'mycluster' with hello name of hello cluster toobe created
     $clusterName = 'mycluster'
     # Valid values are 'Linux' and 'Windows'
     $osType = 'Linux'
-    # Replace 'myresourcegroup' with the name of the group to be created
+    # Replace 'myresourcegroup' with hello name of hello group toobe created
     $resourceGroupName = 'myresourcegroup'
-    # Replace with the Azure data center you want to the cluster to live in
+    # Replace with hello Azure data center you want toohello cluster toolive in
     $location = 'North Europe'
-    # Replace with the name of the default storage account to be created
+    # Replace with hello name of hello default storage account toobe created
     $defaultStorageAccountName = 'mystorageaccount'
-    # Replace with the name of the SAS container created earlier
+    # Replace with hello name of hello SAS container created earlier
     $SASContainerName = 'sascontainer'
-    # Replace with the name of the SAS storage account created earlier
+    # Replace with hello name of hello SAS storage account created earlier
     $SASStorageAccountName = 'sasaccount'
-    # Replace with the SAS token generated earlier
+    # Replace with hello SAS token generated earlier
     $SASToken = 'sastoken'
-    # Set the number of worker nodes in the cluster
+    # Set hello number of worker nodes in hello cluster
     $clusterSizeInNodes = 3
     ```
 
-    Ad esempio, sostituire `'mycluster'` con il nome del cluster che si vuole creare. I valori della firma di accesso condiviso devono corrispondere ai valori usati nei passaggi precedenti durante la creazione di un token dell'account di archiviazione e della firma di accesso condiviso.
+    Ad esempio, modificare `'mycluster'` toohello nome del cluster hello desiderato toocreate. i valori di firma di accesso condiviso Hello devono corrispondere i valori hello nei passaggi precedenti hello durante la creazione di un account di archiviazione e il token di firma di accesso condiviso.
 
-    Dopo aver modificato i valori, salvare il file.
+    Dopo avere modificato i valori hello, salvare file hello.
 
 2. Aprire un nuovo prompt dei comandi di Azure PowerShell. Se non si ha familiarità con Azure PowerShell o non è stato installato, vedere [Install and configure Azure PowerShell][powershell] (Installare e configurare Azure PowerShell).
 
-1. Dal prompt dei comandi usare il comando seguente per eseguire l'autenticazione alla sottoscrizione di Azure:
+1. Dal prompt dei comandi hello, utilizzare hello successivo comando tooauthenticate tooyour sottoscrizione di Azure:
 
     ```powershell
     Login-AzureRmAccount
     ```
 
-    Quando richiesto, accedere con l'account associato alla sottoscrizione di Azure.
+    Quando richiesto, accedere con l'account hello per la sottoscrizione di Azure.
 
-    Se l'account è associato a più sottoscrizioni di Azure, può essere necessario usare `Select-AzureRmSubscription` per selezionare la sottoscrizione da usare.
+    Se l'account è associato a più sottoscrizioni di Azure, potrebbe essere necessario toouse `Select-AzureRmSubscription` sottoscrizione hello tooselect desiderato toouse.
 
-4. Dal prompt dei comandi, passare alla directory `CreateCluster` che contiene il file HDInsightSAS.ps1. Usare quindi il comando seguente per eseguire lo script
+4. Dal prompt dei comandi hello, modificare le directory toohello `CreateCluster` directory che contiene file HDInsightSAS.ps1 hello. Quindi utilizzare lo script di comando toorun hello seguente hello
 
     ```powershell
     .\HDInsightSAS.ps1
     ```
 
-    Durante l'esecuzione dello script, mentre vengono creati il gruppo di risorse e gli account di archiviazione, l'output viene registrato nel prompt di PowerShell. Viene chiesto di immettere l'utente HTTP per il cluster HDInsight. Questo account viene usato per proteggere l'accesso HTTP/s al cluster.
+    Durante l'esecuzione di script hello, Registra prompt di PowerShell toohello output durante la creazione risorsa hello gli account di archiviazione e di gruppo. Si è utente di hello HTTP richiesta tooenter per hello cluster HDInsight. Questo account è di tipo cluster toohello di accesso HTTP/s toosecure utilizzato.
 
-    Se si sta creando un cluster basato su Linux, viene chiesto di specificare anche un nome e una password per l'account utente SSH. Questo account viene usato per accedere in remoto al cluster.
+    Se si sta creando un cluster basato su Linux, viene chiesto di specificare anche un nome e una password per l'account utente SSH. Questo account è usato tooremotely log toohello cluster.
 
    > [!IMPORTANT]
-   > Quando vengono richiesti un nome e una password per HTTP/S o SSH, è necessario fornire una password che soddisfi i criteri seguenti:
+   > Quando viene richiesto di hello HTTP/s o nome utente SSH e password, è necessario fornire una password che soddisfi i seguenti criteri hello:
    >
    > * La lunghezza non può essere inferiore a 10 caratteri
    > * Deve contenere almeno una cifra
    > * Deve contenere almeno un carattere non alfanumerico
    > * Deve contenere almeno una lettera maiuscola o minuscola
 
-Il completamento dello script richiede in genere circa 15 minuti. Se lo script viene completato senza errori, il cluster è stato creato.
+Occorre un po' di tempo per toocomplete questo script, in genere circa 15 minuti. Al termine dello script hello senza errori, è stato creato il cluster hello.
 
-### <a name="use-the-sas-with-an-existing-cluster"></a>Usare la firma di accesso condiviso con un cluster esistente
+### <a name="use-hello-sas-with-an-existing-cluster"></a>Utilizzare hello SAS con un cluster esistente
 
-Se è disponibile un cluster basato su Linux esistente, è possibile aggiungere la firma di accesso condiviso alla configurazione del **core-site** seguendo questa procedura:
+Se si dispone di un cluster esistente basata su Linux, è possibile aggiungere hello SAS toohello **core sito** configurazione utilizzando hello alla procedura seguente:
 
-1. Aprire l'interfaccia utente Web di Ambari per il cluster. L'indirizzo di questa pagina è https://NOMECLUSTER.azurehdinsight.net. Quando richiesto, eseguire l'autenticazione al cluster con il nome amministratore (admin) e la password usati durante la creazione del cluster.
+1. Aprire hello Ambari web dell'interfaccia utente per il cluster. indirizzo Hello questa pagina è https://YOURCLUSTERNAME.azurehdinsight.net. Quando richiesto, eseguire l'autenticazione toohello cluster utilizzando il nome amministratore hello (amministratore) e la password utilizzati durante la creazione di cluster hello.
 
-2. Nel lato sinistro dell'interfaccia utente Web di Ambari selezionare **HDFS** e quindi selezionare la scheda **Configs** al centro della pagina.
+2. Hello il lato sinistro di hello Ambari web dell'interfaccia utente, selezionare **HDFS** e quindi selezionare hello **configurazioni** scheda centro hello della pagina hello.
 
-3. Selezionare la scheda **Advanced** e scorrere fino alla sezione **Custom core-site**.
+3. Seleziona hello **avanzate** scheda e quindi scorrere fino a individuare hello **dei siti principali personalizzato** sezione.
 
-4. Espandere la sezione **Custom core-site**, quindi scorrere fino alla fine e selezionare il collegamento **Add property**. Usare i valori seguenti per i campi **Key** e **Value**:
+4. Espandere hello **Custom. core-sito** sezione, quindi Fine toohello scorrere e seleziona hello **aggiungere proprietà...**  collegamento. I valori seguenti di hello di utilizzo per hello **chiave** e **valore** campi:
 
    * **Key**: fs.azure.sas.CONTAINERNAME.STORAGEACCOUNTNAME.blob.core.windows.net
-   * **Value**: la firma di accesso condiviso restituita dall'applicazione C# o Python eseguita in precedenza
+   * **Valore**: hello SAS restituito da hello applicazione c# o Python è stato eseguito in precedenza
 
-     Sostituire **CONTAINERNAME** con il nome del contenitore usato con l'applicazione C# o della firma di accesso condiviso. Sostituire **STORAGEACCOUNTNAME** con il nome dell'account di archiviazione usato.
+     Sostituire **CONTAINERNAME** con il nome di contenitore hello è usata con un'applicazione hello in c# o SAS. Sostituire **STORAGEACCOUNTNAME** con nome di account di archiviazione hello è stato utilizzato.
 
-5. Fare clic sul pulsate **Add** per salvare la chiave e il valore, quindi fare clic sul pulsante **Save** per salvare le modifiche alla configurazione. Quando richiesto, aggiungere una descrizione della modifica, ad esempio "aggiunta di accesso alle risorse di archiviazione per le firme di accesso condiviso", e quindi fare clic su **Save** (Salva).
+5. Fare clic su hello **Aggiungi** toosave questa chiave e valore, quindi fare clic su hello **salvare** pulsante toosave modifiche alla configurazione di hello. Quando richiesto, aggiungere una descrizione della modifica di hello ("aggiunta di accesso all'archiviazione SAS", ad esempio) e quindi fare clic su **salvare**.
 
-    Al termine delle modifiche, fare clic su **OK** .
+    Fare clic su **OK** quando le modifiche di hello sono state completate.
 
    > [!IMPORTANT]
-   > Perché le modifiche siano effettive, è necessario riavviare diversi servizi.
+   > Prima di hello modifica abbia effetto, è necessario riavviare diversi servizi.
 
-6. Nell'interfaccia utente Web di Ambari selezionare **HDFS** dall'elenco a sinistra e quindi selezionare **Restart All** dall'elenco a discesa **Service Actions** a destra. Quando richiesto, selezionare **Turn on maintenance mode** e quindi selezionare __Conform Restart All".
+6. Nell'interfaccia utente web di Ambari hello, selezionare **HDFS** elenco hello hello a sinistra e quindi selezionare **riavviare tutti** da hello **azioni servizio** hello destra elenco a discesa. Quando richiesto, selezionare **Turn on maintenance mode** e quindi selezionare __Conform Restart All".
 
     Ripetere il processo per MapReduce2 e YARN.
 
-7. Dopo il riavvio di questi servizi, selezionarli uno alla volta e disabilitare la modalità di manutenzione dall'elenco a discesa **Service Actions** (Azioni servizio).
+7. Dopo aver riavviato servizi hello, selezionare ciascuno di essi e disabilitare la modalità di manutenzione da hello **azioni servizio** elenco a discesa.
 
 ## <a name="test-restricted-access"></a>Testare l'accesso limitato
 
-Per verificare che l'accesso sia effettivamente limitato, usare i metodi seguenti:
+tooverify che con accesso limitato, hello di utilizzo dei seguenti metodi:
 
-* Per i cluster HDInsight **basati su Windows** , usare Desktop remoto per connettersi al cluster. Per altre informazioni, vedere [Connettersi a HDInsight con RDP](hdinsight-administer-use-management-portal.md#connect-to-clusters-using-rdp).
+* Per **basati su Windows** cluster HDInsight, utilizzare cluster toohello tooconnect di Desktop remoto. Per ulteriori informazioni, vedere [connettersi tramite RDP tooHDInsight](hdinsight-administer-use-management-portal.md#connect-to-clusters-using-rdp).
 
-    Dopo aver stabilito la connessione, usare l'icona della **riga di comando di Hadoop** sul desktop per aprire il prompt dei comandi.
+    Una volta connessi, utilizzare hello **Hadoop della riga di comando** icona su hello desktop tooopen un prompt dei comandi.
 
-* Per i cluster HDInsight **basati su Linux** , usare SSH per connettersi al cluster. Per altre informazioni, vedere [Usare SSH con HDInsight](hdinsight-hadoop-linux-use-ssh-unix.md).
+* Per **basati su Linux** cluster HDInsight, usare SSH tooconnect toohello cluster. Per altre informazioni, vedere [Usare SSH con HDInsight](hdinsight-hadoop-linux-use-ssh-unix.md).
 
-Dopo aver stabilito la connessione al cluster, usare la procedura seguente per verificare che nell'account di archiviazione della firma di accesso condiviso sia solo possibile leggere ed elencare gli elementi:
+Una volta connessi toohello cluster, utilizzare hello tooverify passaggi che è possibile solo lettura e l'elenco di elementi presenti in account di archiviazione SAS hello seguenti:
 
-1. Per elencare il contenuto del contenitore, usare il comando seguente dal prompt: 
+1. comando seguente dal prompt dei comandi hello hello del contenuto di hello toolist del contenitore di hello, utilizzare: 
 
     ```bash
     hdfs dfs -ls wasb://SASCONTAINER@SASACCOUNTNAME.blob.core.windows.net/
     ```
 
-    Sostituire **SASCONTAINER** con il nome del contenitore creato per l'account di archiviazione della firma di accesso condiviso. Sostituire **SASACCOUNTNAME** con il nome dell'account di archiviazione usato per la firma di accesso condiviso.
+    Sostituire **SASCONTAINER** con nome hello del contenitore di hello creato per l'account di archiviazione SAS hello. Sostituire **SASACCOUNTNAME** con nome hello hello dell'account di archiviazione utilizzato per hello SAS.
 
-    L'elenco include il file caricato quando sono stati creati il contenitore e la firma di accesso condiviso.
+    elenco di Hello include file hello caricate quando sono state create contenitore hello e SAS.
 
-2. Usare il comando seguente per verificare che sia possibile leggere il contenuto del file. Sostituire **SASCONTAINER** e **SASACCOUNTNAME** come indicato nel passaggio precedente. Sostituire **FILENAME** con il nome del file visualizzato nel comando precedente:
+2. Utilizzare hello seguente tooverify comando che è possibile leggere il contenuto di hello del file hello. Sostituire hello **SASCONTAINER** e **SASACCOUNTNAME** come passaggio precedente hello. Sostituire **FILENAME** con nome hello del file hello visualizzato nel comando precedente hello:
 
     ```bash
     hdfs dfs -text wasb://SASCONTAINER@SASACCOUNTNAME.blob.core.windows.net/FILENAME
     ```
 
-    Verrà visualizzato il contenuto del file.
+    Questo comando Elenca il contenuto di hello del file hello.
 
-3. Usare il comando seguente per scaricare il file nel file system locale:
+3. Utilizzare hello successivo comando toodownload hello file toohello file system locale:
 
     ```bash
     hdfs dfs -get wasb://SASCONTAINER@SASACCOUNTNAME.blob.core.windows.net/FILENAME testfile.txt
     ```
 
-    Il file verrà scaricato in un file locale denominato **testfile.txt**.
+    Questo comando Scarica hello tooa locale da un file denominato **testfile.txt**.
 
-4. Usare il comando seguente per caricare il file locale in un nuovo file denominato **testupload.txt** nella risorsa di archiviazione della firma di accesso condiviso:
+4. Comando che segue di hello utilizzare tooupload hello file locale tooa nuovo file denominato **testupload.txt** su hello archiviazione SAS:
 
     ```bash
     hdfs dfs -put testfile.txt wasb://SASCONTAINER@SASACCOUNTNAME.blob.core.windows.net/testupload.txt
     ```
 
-    Verrà visualizzato un messaggio simile al testo seguente:
+    Viene visualizzato un toohello simile messaggio seguente testo:
 
         put: java.io.IOException
 
-    Questo errore si verifica perché il percorso di archiviazione è di sola lettura+elenco. Usare il comando seguente per inserire i dati nella risorsa di archiviazione predefinita per il cluster, accessibile in scrittura:
+    Questo errore si verifica perché il percorso di archiviazione hello lettura + solo nell'elenco. Comando che segue di hello utilizzare dati di hello tooput in hello nell'archivio predefinito per i cluster di hello, che è accessibile in scrittura:
 
     ```bash
     hdfs dfs -put testfile.txt wasb:///testupload.txt
     ```
 
-    Questa volta l'operazione avrà esito positivo.
+    Questa volta, hello operazione deve essere completata correttamente.
 
 ## <a name="troubleshooting"></a>Risoluzione dei problemi
 
 ### <a name="a-task-was-canceled"></a>Un'attività è stata annullata
 
-**Sintomi**: durante la creazione di un cluster con lo script di PowerShell, si potrebbe ricevere il messaggio di errore seguente:
+**Sintomi**: durante la creazione di un cluster utilizzando uno script di PowerShell hello, potrebbe essere visualizzato hello seguente messaggio di errore:
 
     New-AzureRmHDInsightCluster : A task was canceled.
     At C:\Users\larryfr\Documents\GitHub\hdinsight-azure-storage-sas\CreateCluster\HDInsightSAS.ps1:62 char:5
@@ -291,9 +291,9 @@ Dopo aver stabilito la connessione al cluster, usare la procedura seguente per v
         + CategoryInfo          : NotSpecified: (:) [New-AzureRmHDInsightCluster], CloudException
         + FullyQualifiedErrorId : Hyak.Common.CloudException,Microsoft.Azure.Commands.HDInsight.NewAzureHDInsightClusterCommand
 
-**Causa**: questo errore può verificarsi se si usa una password per l'utente admin/HTTP per il cluster oppure, nei cluster basati su Linux, per l'utente SSH.
+**Causa**: questo errore può verificarsi se si utilizza una password per l'utente di amministrazione/HTTP hello per cluster hello o (per i cluster basati su Linux) utente SSH hello.
 
-**Risoluzione**: usare una password che soddisfi i criteri seguenti:
+**Risoluzione**: utilizzare una password che soddisfi i seguenti criteri hello:
 
 * La lunghezza non può essere inferiore a 10 caratteri
 * Deve contenere almeno una cifra
@@ -302,7 +302,7 @@ Dopo aver stabilito la connessione al cluster, usare la procedura seguente per v
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Ora che si è appreso come aggiungere risorse di archiviazione ad accesso limitato al cluster HDInsight, è possibile conoscere altri modi per usare i dati nel cluster:
+Ora che si è appreso come tooadd archiviazione ad accesso limitato tooyour cluster HDInsight, informazioni su altri toowork modi con i dati sul cluster:
 
 * [Usare Hive con HDInsight](hdinsight-use-hive.md)
 * [Usare Pig con HDInsight](hdinsight-use-pig.md)

@@ -1,6 +1,6 @@
 ---
-title: Introduzione alla distribuzione di VOD tramite il portale di Azure | Documentazione Microsoft
-description: Questa esercitazione illustra il processo di implementazione di un servizio per la distribuzione di contenuto video on demand (VoD) di base con l'applicazione Servizi multimediali di Azure (AMS) usando il portale di Azure.
+title: aaaGet avviato con recapito tramite il portale di Azure hello VoD | Documenti Microsoft
+description: In questa esercitazione vengono illustrati i passaggi hello dell'implementazione di un servizio di distribuzione di contenuti video on Demand (VoD) base con l'applicazione di servizi multimediali di Azure (AMS) utilizzando hello portale di Azure.
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,150 +14,150 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 08/07/2017
 ms.author: juliako
-ms.openlocfilehash: a8eeeeff412837acba14b441a3c590edf7e3597a
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 5c1c1b1f74ec1f1301120fe8e5a5ae183fe0338f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-with-delivering-content-on-demand-using-the-azure-portal"></a>Introduzione alla distribuzione di contenuto su richiesta tramite il portale di Azure
+# <a name="get-started-with-delivering-content-on-demand-using-hello-azure-portal"></a>Iniziare con la distribuzione di contenuti su richiesta utilizzando hello portale di Azure
 [!INCLUDE [media-services-selector-get-started](../../includes/media-services-selector-get-started.md)]
 
-Questa esercitazione illustra il processo di implementazione di un servizio per la distribuzione di contenuto video on demand (VoD) di base con l'applicazione Servizi multimediali di Azure (AMS) usando il portale di Azure.
+In questa esercitazione vengono illustrati i passaggi hello dell'implementazione di un servizio di distribuzione di contenuti video on Demand (VoD) base con l'applicazione di servizi multimediali di Azure (AMS) utilizzando hello portale di Azure.
 
 ## <a name="prerequisites"></a>Prerequisiti
-Per completare l'esercitazione è necessario quanto segue:
+di seguito Hello sono esercitazione hello toocomplete necessarie:
 
 * Un account Azure. Per informazioni dettagliate, vedere la pagina relativa alla [versione di valutazione gratuita di Azure](https://azure.microsoft.com/pricing/free-trial/). 
-* Account di Servizi multimediali. Per creare un account Servizi multimediali, vedere [Creare un account Servizi multimediali di Azure con il portale di Azure](media-services-portal-create-account.md).
+* Account di Servizi multimediali. toocreate un account di servizi multimediali, vedere [come un Account di servizi multimediali tooCreate](media-services-portal-create-account.md).
 
-Questa esercitazione include le attività seguenti:
+In questa esercitazione include hello seguenti attività:
 
 1. Avviare l'endpoint di streaming.
 2. Caricare un file video.
-3. Codificare il file di origine in un set di file MP4 a velocità in bit adattiva.
-4. Pubblicare l'asset e ottenere gli URL di streaming e di download progressivo.  
+3. Codificare il file di origine hello in un set di file MP4 a velocità in bit adattiva.
+4. Pubblicare l'asset hello e get streaming e l'URL di download progressivo.  
 5. Riprodurre i contenuti.
 
 ## <a name="start-streaming-endpoints"></a>Avviare gli endpoint di streaming 
 
-Uno degli scenari più frequenti dell'uso di Servizi multimediali di Azure riguarda la distribuzione di contenuto video in streaming a bitrate adattivo. Servizi multimediali include la funzionalità per la creazione dinamica dei pacchetti, che consente di distribuire contenuto con codifica MP4 a bitrate adattivo nei formati supportati da Servizi multimediali, come MPEG DASH, HLS e Smooth Streaming in modalità JIT, senza dover archiviare le versioni predefinite di ognuno di questi formati di streaming.
+Quando si lavora con uno degli scenari più comuni di hello recapita video tramite velocità in bit adattive servizi multimediali di Azure. Servizi multimediali fornisce creazione dinamica dei pacchetti, che consente di toodeliver la velocità in bit adattiva contenuto MP4 in formato con codificata in streaming formati supportati da servizi multimediali (MPEG DASH, HLS, Smooth Streaming) just-in-time, senza che sia necessario toostore preconfezionata versioni di ciascuno di questi formati di streaming.
 
 >[!NOTE]
->Quando l'account AMS viene creato, un endpoint di streaming **predefinito** viene aggiunto all'account con stato **Arrestato**. Per avviare lo streaming del contenuto e sfruttare i vantaggi della creazione dinamica dei pacchetti e della crittografia dinamica, l'endpoint di streaming da cui si vuole trasmettere il contenuto deve essere nello stato **In esecuzione**. 
+>Quando viene creato l'account di sistema AMS un **predefinito** endpoint di streaming viene aggiunto l'account tooyour in hello **arrestato** stato. lo streaming del contenuto e intraprendere sfruttare creazione dinamica dei pacchetti e la crittografia dinamica, toostart hello endpoint di streaming da cui si desidera in hello del contenuto toostream è toobe **esecuzione** stato. 
 
-Per avviare l'endpoint di streaming, eseguire queste operazioni:
+toostart hello endpoint di streaming, hello seguenti:
 
-1. Accedere al [portale di Azure](https://portal.azure.com/).
-2. Nella finestra Impostazioni fare clic su Endpoint di streaming. 
-3. Fare clic sull'endpoint di streaming predefinito. 
+1. Accedere all'indirizzo hello [portale di Azure](https://portal.azure.com/).
+2. Nella finestra Impostazioni hello, fare clic su endpoint di Streaming. 
+3. Fare clic su predefinito hello endpoint di streaming. 
 
-    Verrà visualizzata la finestra DETTAGLI ENDPOINT DI STREAMING PREDEFINITO.
+    verrà visualizzata la finestra Dettagli dell'ENDPOINT di STREAMING predefinito Hello.
 
-4. Fare clic sull'icona di avvio.
-5. Fare clic sul pulsante Salva per salvare le modifiche apportate.
+4. Fare clic sull'icona di avvio hello.
+5. Fare clic su toosave pulsante di hello Salva le modifiche.
 
 ## <a name="upload-files"></a>Caricare file
-Per riprodurre video in streaming con Servizi multimediali di Azure, è necessario caricare i video di origine, codificarli in bitrate multipli e pubblicare il risultato. Il primo passaggio è illustrato in questa sezione. 
+toostream video tramite servizi multimediali di Azure, è necessario video di origine tooupload hello, codificarli in più velocità in bit e pubblicare i risultati di hello. in questa sezione verrà illustrata innanzitutto Hello. 
 
-1. Nella finestra **Impostazione** fare clic su **Asset**.
+1. In hello **impostazione** finestra, fare clic su **asset**.
    
     ![Caricare file](./media/media-services-portal-vod-get-started/media-services-upload.png)
-2. Fare clic sul pulsante **Upload** .
+2. Fare clic su hello **caricare** pulsante.
    
-    Verrà visualizzata la finestra **Carica un asset video** .
+    Hello **caricare una risorsa video** verrà visualizzata la finestra.
    
    > [!NOTE]
    > Non esistono limiti alle dimensioni dei file.
    > 
    > 
-3. Passare al video desiderato nel computer locale, selezionarlo e fare clic su OK.  
+3. Sfoglia video toohello desiderato nel computer in uso, selezionarlo e fare clic su OK.  
    
-    Il caricamento viene avviato ed è possibile visualizzare l'avanzamento sotto il nome del file.  
+    Avvia il caricamento di Hello ed è possibile visualizzare lo stato di avanzamento hello in nome file hello.  
 
-Al termine del caricamento, il nuovo asset viene visualizzato nella finestra **Asset** . 
+Una volta completato il caricamento di hello, viene visualizzato di nuovo asset hello elencati in hello **asset** finestra. 
 
 ## <a name="encode-assets"></a>Codificare gli asset
 
-Quando si usa Servizi multimediali di Azure, uno degli scenari più frequenti consiste nella distribuzione di contenuti in streaming a velocità in bit adattiva ai client. Servizi multimediali supporta le tecnologie di streaming a bitrate adattivo seguenti: HTTP Live Streaming (HLS), Smooth Streaming e MPEG DASH. Per preparare i video per lo streaming a bitrate adattivo, è necessario codificare il video di origine in file a più bitrate. Per codificare i video, è consigliabile usare il codificatore **Media Encoder Standard** .  
+Quando si lavora con servizi multimediali di Azure offre uno degli scenari più comuni di hello client tooyour streaming velocità in bit adattiva. Servizi multimediali supporta hello velocità in bit adattive tecnologie seguente: HTTP Live Streaming (HLS), Smooth Streaming, MPEG DASH. tooprepare i video per lo streaming a velocità in bit adattiva, è necessario tooencode l'origine video in file più velocità in bit. È consigliabile utilizzare hello **Media Encoder Standard** tooencode codificatore video.  
 
-Servizi multimediali include la funzionalità per la creazione dinamica dei pacchetti, che consente di distribuire file MP4 a bitrate multipli nei formati MPEG DASH, HLS e Smooth Streaming, senza dover ricreare i pacchetti con questi formati di streaming. Con la creazione dinamica dei pacchetti si archiviano e si pagano solo i file in un singolo formato di archiviazione e Servizi multimediali crea e fornisce la risposta appropriata in base alle richieste di un client.
+Servizi multimediali offre anche creazione dinamica dei pacchetti, che consente di toodeliver MP4s l'asset MP4 in hello seguenti formati di streaming: MPEG DASH, HLS, Smooth Streaming, senza che sia necessario toorepackage in questi formati di streaming. Con creazione dinamica dei pacchetti, è necessario solo toostore e pagare per i file hello in unico formato di archiviazione e servizi multimediali di compilazioni e opera in base alle richieste da un client la risposta appropriata hello.
 
-Per sfruttare i vantaggi della creazione dinamica dei pacchetti, è necessario codificare il file di origine in un set di file MP4 a bitrate multipli. La procedura per la codifica è descritta più avanti in questa esercitazione.
+Il vantaggio di tootake creazione dinamica dei pacchetti, è necessario tooencode il file di origine in un set di file MP4 a più velocità in bit (hello codifica passaggi sono illustrati più avanti in questa sezione).
 
-### <a name="to-use-the-portal-to-encode"></a>Per usare il portale per la codifica
-Questa sezione descrive la procedura per la codifica di contenuti con Media Encoder Standard.
+### <a name="toouse-hello-portal-tooencode"></a>toouse hello portale tooencode
+In questa sezione descrive i passaggi di hello è possibile eseguire tooencode il contenuto con Media Encoder Standard.
 
-1. Nella finestra **Impostazioni** selezionare **Asset**.  
-2. Nella finestra **Asset** selezionare la risorsa che si vuole codificare.
-3. Fare clic sul pulsante **Codifica** .
-4. Nella finestra **Codifica un asset** selezionare il processore "Media Encoder Standard" e un set di impostazioni. Per informazioni sui set di impostazioni, vedere [Generare automaticamente un bitrate ladder](media-services-autogen-bitrate-ladder-with-mes.md) e [Set di impostazioni delle attività MES](media-services-mes-presets-overview.md). Se si prevede di controllare il set di impostazioni di codifica usato, tenere presente che è importante selezionare il set di impostazioni più appropriato per il video di input. Ad esempio, se è noto che il video di input ha una risoluzione di 1920x1080 pixel, è possibile usare il set di impostazioni "Codec video H.264 a bitrate multiplo con risoluzione 1080p". Se il video disponibile è a bassa risoluzione (640x360), non usare il set di impostazioni "Codec video H.264 a bitrate multiplo con risoluzione 1080p".
+1. In hello **impostazioni** selezionare **asset**.  
+2. In hello **asset** finestra, che si desidera tooencode asset di hello selezionare.
+3. Hello premere **Encode** pulsante.
+4. In hello **codificare un asset** finestra e processore "Media Encoder Standard" hello selezionare un set di impostazioni. Per informazioni sui set di impostazioni, vedere [Generare automaticamente un bitrate ladder](media-services-autogen-bitrate-ladder-with-mes.md) e [Set di impostazioni delle attività MES](media-services-mes-presets-overview.md). Se si prevede di toocontrol viene utilizzato il set di impostazioni di codifica, questo tenere presenti: è importante hello tooselect set di impostazioni che è più appropriato per il video di input. Ad esempio, se si conosce il video di input dispone di una risoluzione di 1920x1080 pixel, è possibile utilizzare hello "H264 bitrate multiplo con risoluzione 1080p" predefinito. Se il video disponibile è a bassa risoluzione (640x360), non usare il set di impostazioni "Codec video H.264 a bitrate multiplo con risoluzione 1080p".
    
-   Per una gestione più semplice, è possibile modificare il nome dell'asset di output e il nome del processo.
+   Per facilitare la gestione, è un'opzione di modifica nome hello dell'asset di output di hello e nome hello del processo di hello.
    
    ![Codificare gli asset](./media/media-services-portal-vod-get-started/media-services-encode1.png)
 5. Fare clic su **Crea**.
 
 ### <a name="monitor-encoding-job-progress"></a>Monitorare lo stato del processo di codifica
-Per monitorare l'avanzamento del processo di codifica, fare clic su **Impostazioni** nella parte superiore della pagina e selezionare **Processi**.
+lo stato di avanzamento di toomonitor hello di hello codifica processo, fare clic su **impostazioni** (in alto hello hello pagina) e quindi selezionare **processi**.
 
 ![Processi](./media/media-services-portal-vod-get-started/media-services-jobs.png)
 
 ## <a name="publish-content"></a>Pubblicare contenuti
-Perché l'utente possa avere a disposizione un URL da usare per scaricare o riprodurre in streaming i contenuti, è prima necessario "pubblicare" un asset creando un localizzatore. I localizzatori forniscono l'accesso ai file contenuti nell'asset. Servizi multimediali supporta due tipi di localizzatori: 
+tooprovide l'utente con un URL che possa essere utilizzati toostream o scaricare il contenuto, è innanzitutto necessario troppo "pubblica" l'asset creando un localizzatore. I localizzatori forniscono accesso toofiles contenuti in hello asset. Servizi multimediali supporta due tipi di localizzatori: 
 
-* Localizzatori di streaming (OnDemandOrigin) usati per lo streaming adattivo, ad esempio per riprodurre in streaming file MPEG DASH, HLS o Smooth Streaming. Per creare un localizzatore di streaming, l'asset deve contenere un file con estensione ISM. 
+* Streaming localizzatori (OnDemandOrigin) usati per streaming adattivo (ad esempio, toostream MPEG DASH, HLS o Smooth Streaming). toocreate un localizzatore di streaming dell'asset deve contenere un file con estensione ISM. 
 * Localizzatori progressivi (SAS) usati per la distribuzione di video tramite download progressivo.
 
-Un URL di streaming presenta il formato seguente e può essere usato per riprodurre asset Smooth Streaming.
+È possibile utilizzare asset Smooth Streaming tooplay un URL di streaming ha hello seguente formato.
 
     {streaming endpoint name-media services account name}.streaming.mediaservices.windows.net/{locator ID}/{filename}.ism/Manifest
 
-Per creare un URL di streaming HLS, aggiungere (format=m3u8-aapl) all'URL.
+aggiungere toobuild un URL di streaming HLS (formato = m3u8-aapl) toohello URL.
 
     {streaming endpoint name-media services account name}.streaming.mediaservices.windows.net/{locator ID}/{filename}.ism/Manifest(format=m3u8-aapl)
 
-Per creare un URL di streaming MPEG DASH, aggiungere (format=mpd-time-csf) all'URL.
+aggiungere toobuild un URL di streaming di contenuto MPEG DASH (formato = mpd-tempo-csf) toohello URL.
 
     {streaming endpoint name-media services account name}.streaming.mediaservices.windows.net/{locator ID}/{filename}.ism/Manifest(format=mpd-time-csf)
 
 
-Un URL di firma di accesso condiviso ha il formato seguente.
+Un URL SAS è hello seguente formato.
 
     {blob container name}/{asset name}/{file name}/{SAS signature}
 
 > [!NOTE]
-> I localizzatori creati attraverso il portale prima del mese di marzo 2015 hanno una validità di due anni.  
+> Se si utilizza i localizzatori toocreate portale hello prima marzo 2015, sono stati creati i localizzatori con una data di scadenza di due anni.  
 > 
 > 
 
-Per aggiornare la data di scadenza di un localizzatore, è possibile usare le API [REST](https://docs.microsoft.com/rest/api/media/operations/locator#update_a_locator) o [.NET](http://go.microsoft.com/fwlink/?LinkID=533259). Quando si aggiorna la data di scadenza di un localizzatore di firma di accesso condiviso, l'URL viene modificato.
+tooupdate data di scadenza su un indicatore di posizione, utilizzare [REST](https://docs.microsoft.com/rest/api/media/operations/locator#update_a_locator) o [.NET](http://go.microsoft.com/fwlink/?LinkID=533259) API. Quando si aggiorna la data di scadenza hello di un localizzatore SAS, hello URL cambia.
 
-### <a name="to-use-the-portal-to-publish-an-asset"></a>Per usare il portale per la pubblicazione di un asset
-Per pubblicare un asset tramite il portale, seguire questa procedura:
+### <a name="toouse-hello-portal-toopublish-an-asset"></a>toouse hello portale toopublish un asset
+toouse hello portale toopublish un asset, hello seguenti:
 
 1. Selezionare **Impostazioni** > **Asset**.
-2. Selezionare l'asset da pubblicare.
-3. Fare clic sul pulsante **Pubblica** .
-4. Selezionare il tipo di localizzatore.
+2. Selezionare asset hello che si desidera toopublish.
+3. Fare clic su hello **pubblica** pulsante.
+4. Selezionare il tipo di localizzatore hello.
 5. Fare clic su **Aggiungi**.
    
     ![Pubblica](./media/media-services-portal-vod-get-started/media-services-publish1.png)
 
-L'URL viene aggiunto all'elenco di **URL pubblicati**.
+URL di Hello viene aggiunto l'elenco toohello di **URL pubblicato**.
 
-## <a name="play-content-from-the-portal"></a>Riprodurre contenuti dal portale
-Il portale di Azure fornisce un lettore di contenuti che può essere usato per testare il proprio video.
+## <a name="play-content-from-hello-portal"></a>Riprodurre il contenuto dal portale hello
+portale di Azure Hello fornisce un lettore di contenuti che è possibile utilizzare tootest video.
 
-Fare clic sul video richiesto e quindi sul pulsante **Riproduci** .
+Fare clic su video hello desiderato e quindi fare clic su hello **riprodurre** pulsante.
 
 ![Pubblica](./media/media-services-portal-vod-get-started/media-services-play.png)
 
 Considerazioni applicabili:
 
-* Per avviare lo streaming, avviare l'esecuzione dell'endpoint di streaming **predefinito**.
-* Verificare che il video sia stato pubblicato.
-* **Media Player** esegue la riproduzione dall'endpoint di streaming predefinito. Se si vuole eseguire la riproduzione da un endpoint di streaming diverso, fare clic per copiare l'URL e usare un altro lettore, ad esempio [Lettore di Servizi multimediali di Azure](http://amsplayer.azurewebsites.net/azuremediaplayer.html).
+* toobegin streaming, avviare hello in esecuzione **predefinito** endpoint di streaming.
+* Verificare che sia stato pubblicato hello video.
+* Questo **Media player** riprodotto dal valore predefinito di hello endpoint di streaming. Se si desidera tooplay da un valore non predefinito, endpoint di streaming fare clic su URL hello toocopy e usare un altro lettore. ad esempio [Lettore di Servizi multimediali di Azure](http://amsplayer.azurewebsites.net/azuremediaplayer.html).
 
 ## <a name="next-steps"></a>Passaggi successivi
 Analizzare i percorsi di apprendimento di Servizi multimediali.

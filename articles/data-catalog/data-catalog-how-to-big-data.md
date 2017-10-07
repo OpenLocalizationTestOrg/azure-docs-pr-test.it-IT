@@ -1,6 +1,6 @@
 ---
-title: Come usare le origini dati di tipo "Big Data" | Documentazione Microsoft
-description: Articolo di procedure che descrive gli schemi per usare Azure Data Catalog con origini dati di tipo Big Data, incluso l'archiviazione BLOB di Azure, Azure Data Lake e HDFS di Hadoop.
+title: toowork aaaHow con origini dati 'big data' | Documenti Microsoft
+description: Modelli di evidenziazione come tooarticle per l'utilizzo di Azure Data Catalog con origini di dati 'big data', inclusi archiviazione Blob di Azure, Azure Data Lake e Hadoop HDFS.
 services: data-catalog
 documentationcenter: 
 author: steelanddata
@@ -15,20 +15,20 @@ ms.tgt_pltfrm: NA
 ms.workload: data-catalog
 ms.date: 08/15/2017
 ms.author: maroche
-ms.openlocfilehash: 001d80ce42f0e87276e59d70dffb75eb561d96cd
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: e478f71f26744975a7d7e1784b74bf50b424cf65
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-work-with-big-data-sources-in-azure-data-catalog"></a>Come utilizzare origini dati di tipo Big Data nel Catalogo dati di Azure
+# <a name="how-toowork-with-big-data-sources-in-azure-data-catalog"></a>Come origini di toowork dati di grandi dimensioni in Azure Data Catalog
 ## <a name="introduction"></a>Introduzione
-**Catalogo dati di Microsoft Azure** è un servizio cloud completamente gestito che funge da sistema di registrazione e di individuazione per origini dati aziendali. Permette agli utenti di trovare, comprendere e usare le origini dati e consente alle organizzazioni di ottenere maggior valore dalle origini dati esistenti, inclusi i Big Data.
+**Microsoft Azure Data Catalog** è un servizio cloud completamente gestito che funge da sistema di registrazione e di individuazione per origini dati aziendali. Si tratta di consentendo alle persone di individuare, comprendere e utilizzare origini dati e il supporto di maggior valore organizzazioni tooget dalle origini dati esistenti, inclusi i dati di grandi dimensioni.
 
-**Catalogo dati di Azure** supporta la registrazione di BLOB e directory di Archiviazione BLOB di Azure, nonché file e directory HDFS di Hadoop. La natura semistrutturata di questi dati offre una grande flessibilità. Per ottenere il massimo del valore dalla registrazione con **Azure Data Catalog**, gli utenti devono tuttavia considerare come sono organizzate le origini dati.
+**Azure Data Catalog** supporta hello registrazione del BLOB di archiviazione BLOB di Azure e le directory, nonché i file HDFS Hadoop e directory. Hello semistrutturati natura queste origini dati offre una notevole flessibilità. Tuttavia, tooget hello maggior valore tramite la registrazione con **Azure Data Catalog**, gli utenti devono considerare l'organizzazione delle origini dati hello.
 
 ## <a name="directories-as-logical-data-sets"></a>Directory come set di dati logici
-Un modello comune per l'organizzazione delle origini dati di tipo Big Data consiste nel considerare le directory come set di dati logici. Le directory di primo livello vengono usate per definire un set di dati, mentre le sottocartelle definiscono le partizioni e i file che contengono archiviano i dati stessi.
+Un modello comune per organizzare le origini dati di grandi dimensioni è tootreat directory come set di dati logico. Directory di primo livello sono toodefine utilizzato un set di dati, mentre le sottocartelle di definire le partizioni e hello che contengono dell'archivio dati hello stessi.
 
 Ecco un esempio di questo schema:
 
@@ -47,10 +47,10 @@ Ecco un esempio di questo schema:
 
 In questo esempio vehicle_maintenance_events e location_tracking_events rappresentano i set di dati logici. Ognuna di queste cartelle contiene file di dati organizzati in sottocartelle per anno e mese. Ogni cartella potrebbe contenere centinaia o migliaia di file.
 
-In questo schema la registrazione di singoli file con **Catalogo dati di Azure** probabilmente non ha senso. Registrare invece le directory che rappresentano i set di dati che sono significativi per gli utenti che utilizzano i dati.
+In questo schema la registrazione di singoli file con **Catalogo dati di Azure** probabilmente non ha senso. In alternativa, registrare directory hello che rappresentano i set di dati di hello essere significativi toohello agli utenti che lavorano con dati hello.
 
 ## <a name="reference-data-files"></a>File di dati di riferimento
-Uno schema complementare consiste nell'archiviare i set di dati di riferimento come singoli file. Questi set di dati possono essere considerati come il lato "piccolo" dei Big Data e spesso sono simili alle dimensioni in un modello di dati analitici. I file di dati di riferimento contengono record usati per fornire il contesto per la maggior parte dei file di dati archiviati altrove nell'archivio di Big Data.
+Un modello complementare è toostore set di dati di riferimento come singoli file. Questi set di dati può essere considerati come sul lato 'small' hello dei big data e sono spesso toodimensions simili in un modello di dati analitici. File di dati di riferimento contengono record di contesto utilizzate tooprovide per bulk hello hello dei file di dati archiviati in un' posizione nell'archivio dati hello.
 
 Ecco un esempio di questo schema:
 
@@ -58,12 +58,12 @@ Ecco un esempio di questo schema:
     \maintenance_facilities.csv
     \maintenance_types.csv
 
-Quando un analista o un data scientist utilizza i dati contenuti nelle strutture di directory più grandi, i dati in questi file di riferimento possono essere usati per fornire informazioni più dettagliate per le entità a cui viene fatto riferimento solo per nome o ID nel set di dati più grande.
+Quando un esperto di analista o dati funziona con dati hello contenuti in strutture di directory di dimensioni maggiori hello, dati hello in questi file di riferimento possono essere utilizzato tooprovide informazioni più dettagliate per le entità che sono definita tooonly per nome o ID in dati di dimensioni maggiori di hello set.
 
-In questo schema può essere utile registrare i singoli file di dati di riferimento con **Azure Data Catalog**. Ogni file rappresenta un set di dati e ognuno può essere annotato ed individuato singolarmente.
+In questo modello, è consigliabile memorizzarlo file di dati di riferimento individuale tooregister hello con **Azure Data Catalog**. Ogni file rappresenta un set di dati e ognuno può essere annotato ed individuato singolarmente.
 
 ## <a name="alternate-patterns"></a>Schemi alternativi
-Gli schemi descritti nella sezione precedente sono solo due possibili modalità di organizzazione di un archivio di Big Data, ma ogni implementazione è diversa. Indipendentemente da come sono strutturate le origini dati, quando si registrano origini dati di tipo Big Data con **Azure Data Catalog**, concentrarsi sulla registrazione di file e directory che rappresentano i set di dati importanti per altri utenti dell'organizzazione. La registrazione di tutti i file e tutte le directory può creare confusione nel catalogo, rendendo più difficile per gli utenti trovare le informazioni necessarie.
+modelli descritti nella precedente sezione hello Hello sono solo due possibili modalità che può essere organizzato in un archivio dati di grandi dimensioni, ma ogni implementazione è diverso. Indipendentemente dalla modalità le origini dati sono strutturate, durante la registrazione delle origini dati di grandi dimensioni con **Azure Data Catalog**, lo stato attivo sulla registrazione hello file e directory che rappresentano i set di dati hello di tooothers valore all'interno del organizzazione. Registrazione di tutti i file e directory possono creare confusione catalogo hello, rendendone più difficile per gli utenti toofind hanno bisogno.
 
 ## <a name="summary"></a>Riepilogo
-La registrazione di origini dati con il **Catalogo dati di Azure** ne rende più semplice l'individuazione e la comprensione. La registrazione e l'annotazione dei file e delle directory di Big Data che rappresentano set di dati logici permettono agli utenti di trovare e usare le origini dati di tipo Big Data necessarie.
+La registrazione delle origini dati con **Azure Data Catalog** rende più semplice toodiscover e comprendere. Registrando e annotazione hello dati file e directory che rappresentano il set di dati logico, si consente agli utenti di trovare e utilizzare origini dati hello che hanno bisogno.

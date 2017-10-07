@@ -1,6 +1,6 @@
 ---
-title: Esercitazione su Node.js per l'API DocumentDB per Azure Cosmos DB | Microsoft Docs
-description: Esercitazione su Node.js che crea un'istanza di Cosmos DB con l'API DocumentDB.
+title: esercitazione aaaNode.js per hello API DocumentDB per Azure Cosmos DB | Documenti Microsoft
+description: In questa esercitazione Node.js che crea un database Cosmos con hello API DocumentDB.
 keywords: esercitazione su node.js, database nodo
 services: cosmos-db
 documentationcenter: node.js
@@ -15,13 +15,13 @@ ms.devlang: node
 ms.topic: article
 ms.date: 08/14/2017
 ms.author: anhoh
-ms.openlocfilehash: 6510e0270bb2efa252a2b2ad40014c5d26b74a81
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: fce244c6a5f321608e82ca51a2c987e84b98bffa
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="nodejs-tutorial-use-the-documentdb-api-in-azure-cosmos-db-to-create-a-nodejs-console-application"></a>Esercitazione su Node.js: usare l'API DocumentDB in Azure Cosmos DB per creare un'applicazione console Node.js
+# <a name="nodejs-tutorial-use-hello-documentdb-api-in-azure-cosmos-db-toocreate-a-nodejs-console-application"></a>Esercitazione di Node.js: hello di utilizzare l'API DocumentDB in Azure Cosmos DB toocreate un'applicazione console Node.js
 > [!div class="op_single_selector"]
 > * [.NET](documentdb-get-started.md)
 > * [.NET Core](documentdb-dotnetcore-get-started.md)
@@ -32,49 +32,49 @@ ms.lasthandoff: 08/18/2017
 >  
 > 
 
-Esercitazione su Node.js per Azure Cosmos DB Node.js SDK. Dopo aver seguito questa esercitazione, si otterrà un'applicazione console che consente di creare e ridefinire le query delle risorse Azure Cosmos DB.
+Benvenuti toohello Node.js esercitazione per hello Azure Cosmos DB Node.js SDK. Dopo aver seguito questa esercitazione, si otterrà un'applicazione console che consente di creare e ridefinire le query delle risorse Azure Cosmos DB.
 
 Tratteremo questo argomento:
 
-* Creazione e connessione a un account Azure Cosmos DB
+* Creazione e connessione account Azure Cosmos DB tooan
 * Configurazione dell'applicazione
 * Creazione di un database nodo
 * Creare una raccolta
 * Creazione di documenti JSON
-* Esecuzione di query sulla raccolta
+* Esecuzione di query hello raccolta
 * Sostituzione di un documento
 * Eliminazione di un documento
-* Eliminazione del database nodo
+* L'eliminazione di hello nodo database
 
-Non si ha tempo? Nessun problema. La soluzione completa è disponibile in [GitHub](https://github.com/Azure-Samples/documentdb-node-getting-started). Per istruzioni rapide, vedere [ottenere la soluzione completa](#GetSolution) .
+Non si ha tempo? Nessun problema. la soluzione completa di Hello è disponibile in [GitHub](https://github.com/Azure-Samples/documentdb-node-getting-started). Vedere [ottenere una soluzione completa hello](#GetSolution) per istruzioni rapide.
 
-Dopo aver completato l'esercitazione su Node.js, usare i pulsanti di voto all'inizio e alla fine di questa pagina per fornire commenti e suggerimenti. Se si desidera contattarci, è possibile includere l'indirizzo di posta elettronica nel commento per il follow-up.
+Dopo aver completato l'esercitazione Node.js hello,. utilizzare hello pulsanti di voto in hello superiore e inferiore di questa pagina di toogive ci commenti e suggerimenti. Se desideri toocontact direttamente, ritieni libero tooinclude posta nei commenti.
 
 Ecco come procedere.
 
-## <a name="prerequisites-for-the-nodejs-tutorial"></a>Prerequisiti per l'esercitazione su Node.js
-Assicurarsi di disporre di quanto segue:
+## <a name="prerequisites-for-hello-nodejs-tutorial"></a>Prerequisiti per l'esercitazione Node.js hello
+Assicurarsi di avere hello segue:
 
 * Un account Azure attivo. Se non si ha un account, è possibile iscriversi per ottenere una [versione di valutazione gratuita di Azure](https://azure.microsoft.com/pricing/free-trial/).
-    * In alternativa, per questa esercitazione è possibile usare l'[emulatore Azure Cosmos DB](local-emulator.md).
+    * In alternativa, è possibile utilizzare hello [Azure Cosmos DB emulatore](local-emulator.md) per questa esercitazione.
 * [Node.js](https://nodejs.org/) v0.10.29 o versioni successive.
 
 ## <a name="step-1-create-an-azure-cosmos-db-account"></a>Passaggio 1: Creare un account di Azure Cosmos DB
-Creare prima di tutto un account Azure Cosmos DB. Se è già disponibile un account da usare, è possibile passare a [Configurare l'applicazione Node.js](#SetupNode). Se si usa l'emulatore Azure Cosmos DB, seguire la procedura descritta nell'articolo [Emulatore di Azure Cosmos DB](local-emulator.md) per configurare l'emulatore e proseguire con il passaggio [Configurare l'applicazione Node.js](#SetupNode).
+Creare prima di tutto un account Azure Cosmos DB. Se si dispone già di un account a cui si vuole toouse, è possibile andare troppo[impostare l'applicazione di Node.js](#SetupNode). Se si utilizza hello Azure Cosmos DB emulatore, eseguire le operazioni di hello in [emulatore di Azure Cosmos DB](local-emulator.md) toosetup hello emulatore e andare troppo[impostare l'applicazione di Node.js](#SetupNode).
 
 [!INCLUDE [cosmos-db-create-dbaccount](../../includes/cosmos-db-create-dbaccount.md)]
 
 ## <a id="SetupNode"></a>Passaggio 2: Configurare l'applicazione Node.js
 1. Aprire il terminale preferito.
-2. Individuare la cartella o la directory in cui si vuole salvare l'applicazione Node.js.
-3. Creare due file JavaScript vuoti con i comandi seguenti:
+2. Individuare la cartella hello o la directory in cui si desidera toosave l'applicazione di Node.js.
+3. Creare due file JavaScript vuoti con hello seguenti comandi:
    * Windows:
      * ```fsutil file createnew app.js 0```
      * ```fsutil file createnew config.js 0```
    * Linux/OS X:
      * ```touch app.js```
      * ```touch config.js```
-4. Installare il modulo documentdb tramite npm. Usare il comando seguente:
+4. Installare il modulo documentdb hello tramite npm. Utilizzare hello comando seguente:
    * ```npm install documentdb --save```
 
 L'installazione è riuscita. Dopo avere completato l'installazione, è possibile iniziare a scrivere il codice.
@@ -82,22 +82,22 @@ L'installazione è riuscita. Dopo avere completato l'installazione, è possibile
 ## <a id="Config"></a>Passaggio 3: Impostare le configurazioni dell'app
 Aprire il file ```config.js``` in un editor di testo.
 
-Quindi, copiare e incollare il frammento di codice riportato di seguito e impostare le proprietà ```config.endpoint``` e ```config.primaryKey``` sull'URI dell'endpoint Azure Cosmos DB e la chiave primaria. Entrambe le configurazioni sono disponibili nel [portale di Azure](https://portal.azure.com).
+Quindi, copia e Incolla frammento di codice hello seguente e impostare le proprietà ```config.endpoint``` e ```config.primaryKey``` tooyour Azure Cosmos DB uri di endpoint e la chiave primaria. Entrambe queste configurazioni sono reperibili hello [portale di Azure](https://portal.azure.com).
 
-![Esercitazione su Node.js: screenshot del portale di Azure che mostra un account Azure Cosmos DB con l'hub ATTIVO evidenziato, il pulsante CHIAVI evidenziato nel pannello dell'account Azure Cosmos DB e i valori di URI, CHIAVE PRIMARIA e CHIAVE SECONDARIA evidenziati nel pannello Chiavi, database nodo][keys]
+![Esercitazione per Node.js - cattura di schermata del portale di Azure, con un account di Azure Cosmos DB, con l'hub attivo hello hello evidenziato, pulsante CHIAVI hello evidenziata nel Pannello di account Azure Cosmos DB hello hello URI, la chiave primaria e SECONDARIA i valori ed evidenziati nella hello Pannello di chiavi - database nodo][keys]
 
-    // ADD THIS PART TO YOUR CODE
+    // ADD THIS PART tooYOUR CODE
     var config = {}
 
     config.endpoint = "~your Azure Cosmos DB endpoint uri here~";
     config.primaryKey = "~your primary key here~";
 
-Copiare e incollare ```database id```, ```collection id``` e ```JSON documents``` nell'oggetto ```config``` seguente in cui sono impostate le proprietà ```config.endpoint``` e ```config.authKey```. Se sono già disponibili dati da archiviare nel database, è possibile usare lo [strumento di migrazione dati](import-data.md) di Azure Cosmos DB invece di aggiungere le definizioni dei documenti.
+Copiare e incollare hello ```database id```, ```collection id```, e ```JSON documents``` tooyour ```config``` sottostante dell'oggetto in cui vengono impostati i ```config.endpoint``` e ```config.authKey``` proprietà. Se si dispongono già di dati desiderato toostore nel database, è possibile utilizzare Azure Cosmos DB [dello strumento di migrazione dei dati](import-data.md) invece di aggiungere le definizioni di hello document.
 
     config.endpoint = "~your Azure Cosmos DB endpoint uri here~";
     config.primaryKey = "~your primary key here~";
 
-    // ADD THIS PART TO YOUR CODE
+    // ADD THIS PART tooYOUR CODE
     config.database = {
         "id": "FamilyDB"
     };
@@ -164,55 +164,55 @@ Copiare e incollare ```database id```, ```collection id``` e ```JSON documents``
     };
 
 
-Le definizioni del database, della raccolta e del documento verranno usate come ```database id```, ```collection id``` e dati dei documenti di Azure Cosmos DB.
+Hello database raccolta e definizioni del documento, che fungerà del database di Azure Cosmos ```database id```, ```collection id```e i dati dei documenti.
 
-Esportare infine l'oggetto ```config``` per farvi riferimento nel file ```app.js```.
+Infine, esportare il ```config``` dell'oggetto, in modo che sia possibile farvi riferimento all'interno di hello ```app.js``` file.
 
             },
             "isRegistered": false
         }
     };
 
-    // ADD THIS PART TO YOUR CODE
+    // ADD THIS PART tooYOUR CODE
     module.exports = config;
 
-## <a id="Connect"></a> Passaggio 4: Connettersi a un account Azure Cosmos DB
-Aprire il file ```app.js``` vuoto nell'editor di testo. Copiare e incollare il codice seguente per importare il modulo ```documentdb``` e il modulo ```config``` appena creato.
+## <a id="Connect"></a>Passaggio 4: Connettere l'account di Azure Cosmos DB tooan
+Aprire il vuoto ```app.js``` file nell'editor di testo hello. Copiare e incollare il codice hello seguito hello tooimport ```documentdb``` modulo e appena creata ```config``` modulo.
 
-    // ADD THIS PART TO YOUR CODE
+    // ADD THIS PART tooYOUR CODE
     "use strict";
 
     var documentClient = require("documentdb").DocumentClient;
     var config = require("./config");
     var url = require('url');
 
-Copiare e incollare il codice per usare gli oggetti ```config.endpoint``` e ```config.primaryKey``` salvati in precedenza per creare un nuovo DocumentClient.
+Copiare e incollare hello toouse di codice hello salvato in precedenza ```config.endpoint``` e ```config.primaryKey``` toocreate DocumentClient una nuova.
 
     var config = require("./config");
     var url = require('url');
 
-    // ADD THIS PART TO YOUR CODE
+    // ADD THIS PART tooYOUR CODE
     var client = new documentClient(config.endpoint, { "masterKey": config.primaryKey });
 
-Ora che è disponibile il codice per inizializzare il client Azure Cosmos DB, è possibile esaminare l'uso delle risorse di Azure Cosmos DB.
+Ora che si dispone di client di hello codice tooinitialize hello DB Cosmos Azure, esaminiamo un utilizzo delle risorse di Azure Cosmos DB.
 
 ## <a name="step-5-create-a-node-database"></a>Passaggio 5: Creare un database di Node
-Copiare e incollare il codice seguente per impostare lo stato HTTP per l'URL della raccolta, l'URL di database e Non trovato. Tali URL definiscono il modo in cui il client Azure Cosmos DB trova il database e la raccolta corretti.
+Copiare e incollare il codice hello seguito hello tooset stato HTTP per non trovato, l'url di database hello e l'url della raccolta hello. Questi URL sono ricerca client DB Cosmos Azure hello insieme e il database corretto hello.
 
     var client = new documentClient(config.endpoint, { "masterKey": config.primaryKey });
 
-    // ADD THIS PART TO YOUR CODE
+    // ADD THIS PART tooYOUR CODE
     var HttpStatusCodes = { NOTFOUND: 404 };
     var databaseUrl = `dbs/${config.database.id}`;
     var collectionUrl = `${databaseUrl}/colls/${config.collection.id}`;
 
-È possibile creare un [database](documentdb-resources.md#databases) con la funzione [createDatabase](https://azure.github.io/azure-documentdb-node/DocumentClient.html) della classe **DocumentClient**. Un database è un contenitore logico di archiviazione documenti partizionato nelle raccolte.
+Oggetto [database](documentdb-resources.md#databases) possono essere create usando hello [createDatabase](https://azure.github.io/azure-documentdb-node/DocumentClient.html) funzione di hello **DocumentClient** classe. Un database è contenitore logico di hello di archiviazione documenti partizionato nelle raccolte.
 
-Copiare e incollare la funzione **getDatabase** per la creazione del nuovo database nel file app.js con l'```id``` specificato nell'oggetto ```config```. La funzione controlla se esiste già un database con lo stesso ID ```FamilyRegistry``` . Se esiste, verrà restituito il database esistente, invece di procedere con la creazione di un nuovo database.
+Copiare e incollare hello **getDatabase** funzione per la creazione del nuovo database nel file app.js hello con hello ```id``` specificato in hello ```config``` oggetto. Hello funzione controllerà se hello del database con hello stesso ```FamilyRegistry``` id esiste già. Se esiste, verrà restituito il database esistente, invece di procedere con la creazione di un nuovo database.
 
     var collectionUrl = `${databaseUrl}/colls/${config.collection.id}`;
 
-    // ADD THIS PART TO YOUR CODE
+    // ADD THIS PART tooYOUR CODE
     function getDatabase() {
         console.log(`Getting database:\n${config.database.id}\n`);
 
@@ -234,7 +234,7 @@ Copiare e incollare la funzione **getDatabase** per la creazione del nuovo datab
         });
     }
 
-Copiare e incollare il codice seguente in cui viene impostata la funzione **getDatabase** per aggiungere la funzione di supporto **exit**, che stampa il messaggio di uscita e la chiamata alla funzione **getDatabase**.
+Copiare e incollare codice hello riportato di seguito in cui vengono impostate hello **getDatabase** funzione funzione di supporto hello tooadd **uscire** che verrà stampato il messaggio di uscita hello e chiamata hello troppo**getDatabase** (funzione).
 
                 } else {
                     resolve(result);
@@ -243,10 +243,10 @@ Copiare e incollare il codice seguente in cui viene impostata la funzione **getD
         });
     }
 
-    // ADD THIS PART TO YOUR CODE
+    // ADD THIS PART tooYOUR CODE
     function exit(message) {
         console.log(message);
-        console.log('Press any key to exit');
+        console.log('Press any key tooexit');
         process.stdin.setRawMode(true);
         process.stdin.resume();
         process.stdin.on('data', process.exit.bind(process, 0));
@@ -256,7 +256,7 @@ Copiare e incollare il codice seguente in cui viene impostata la funzione **getD
     .then(() => { exit(`Completed successfully`); })
     .catch((error) => { exit(`Completed with error ${JSON.stringify(error)}`) });
 
-Nel terminale trovare il file ```app.js``` ed eseguire il comando ```node app.js```.
+Nella finestra del terminale, individuare il ```app.js``` file ed eseguire il comando di hello:```node app.js```
 
 Congratulazioni. La creazione di un database di Azure Cosmos DB è stata completata.
 
@@ -266,9 +266,9 @@ Congratulazioni. La creazione di un database di Azure Cosmos DB è stata complet
 > 
 > 
 
-È possibile creare una [raccolta](documentdb-resources.md#collections) con la funzione [createCollection](https://azure.github.io/azure-documentdb-node/DocumentClient.html) della classe **DocumentClient**. Una raccolta è un contenitore di documenti JSON e di logica dell'applicazione JavaScript associata.
+Oggetto [raccolta](documentdb-resources.md#collections) possono essere create usando hello [createCollection](https://azure.github.io/azure-documentdb-node/DocumentClient.html) funzione di hello **DocumentClient** classe. Una raccolta è un contenitore di documenti JSON e di logica dell'applicazione JavaScript associata.
 
-Copiare e incollare la funzione **getCollection** sotto la funzione **getDatabase** nel file app.js per creare la nuova raccolta con il valore ```id``` specificato nell'oggetto ```config```. Anche in questo caso è necessario assicurarsi che non esista già una raccolta con lo stesso ID ```FamilyCollection``` . Se esiste, verrà restituita la raccolta esistente, invece di procedere con la creazione di una nuova raccolta.
+Copiare e incollare hello **getCollection** funzione sotto hello **getDatabase** funzionare in hello app.js file toocreate la nuova raccolta con hello ```id``` specificato in hello ```config```oggetto. Nuovamente, verificheremo toomake assicurarsi che una raccolta con hello stesso ```FamilyCollection``` id esiste già. Se esiste, verrà restituita la raccolta esistente, invece di procedere con la creazione di una nuova raccolta.
 
                 } else {
                     resolve(result);
@@ -277,7 +277,7 @@ Copiare e incollare la funzione **getCollection** sotto la funzione **getDatabas
         });
     }
 
-    // ADD THIS PART TO YOUR CODE
+    // ADD THIS PART tooYOUR CODE
     function getCollection() {
         console.log(`Getting collection:\n${config.collection.id}\n`);
 
@@ -299,25 +299,25 @@ Copiare e incollare la funzione **getCollection** sotto la funzione **getDatabas
         });
     }
 
-Copiare e incollare il codice sotto la chiamata a **getDatabase** per eseguire la funzione **getCollection**.
+Copiare e incollare il codice hello sotto la chiamata hello troppo**getDatabase** tooexecute hello **getCollection** (funzione).
 
     getDatabase()
 
-    // ADD THIS PART TO YOUR CODE
+    // ADD THIS PART tooYOUR CODE
     .then(() => getCollection())
     // ENDS HERE
 
     .then(() => { exit(`Completed successfully`); })
     .catch((error) => { exit(`Completed with error ${JSON.stringify(error)}`) });
 
-Nel terminale trovare il file ```app.js``` ed eseguire il comando ```node app.js```.
+Nella finestra del terminale, individuare il ```app.js``` file ed eseguire il comando di hello:```node app.js```
 
 Congratulazioni. La creazione di una raccolta di Azure Cosmos DB è stata completata.
 
 ## <a id="CreateDoc"></a>Passaggio 7: Creare un documento
-È possibile creare un [documento](documentdb-resources.md#documents) con la funzione [createDocument](https://azure.github.io/azure-documentdb-node/DocumentClient.html) della classe **DocumentClient**. I documenti sono contenuto JSON definito dall'utente (arbitrario). È ora possibile inserire un documento in Azure Cosmos DB.
+Oggetto [documento](documentdb-resources.md#documents) possono essere create usando hello [createDocument](https://azure.github.io/azure-documentdb-node/DocumentClient.html) funzione di hello **DocumentClient** classe. I documenti sono contenuto JSON definito dall'utente (arbitrario). È ora possibile inserire un documento in Azure Cosmos DB.
 
-Copiare e incollare la funzione **getFamilyDocument** sotto la funzione **getCollection** per la creazione di documenti che contengono i dati JSON salvati nell'oggetto ```config```. Anche in questo caso è necessario assicurarsi che non esista già un documento con lo stesso ID.
+Copiare e incollare hello **getFamilyDocument** funzione sotto hello **getCollection** funzione per la creazione di documenti di hello che contengono i dati JSON hello salvati in hello ```config``` oggetto. Nuovamente, verificheremo toomake assicurarsi che un documento con lo stesso id esiste già hello.
 
                 } else {
                     resolve(result);
@@ -326,7 +326,7 @@ Copiare e incollare la funzione **getFamilyDocument** sotto la funzione **getCol
         });
     }
 
-    // ADD THIS PART TO YOUR CODE
+    // ADD THIS PART tooYOUR CODE
     function getFamilyDocument(document) {
         let documentUrl = `${collectionUrl}/docs/${document.id}`;
         console.log(`Getting document:\n${document.id}\n`);
@@ -349,12 +349,12 @@ Copiare e incollare la funzione **getFamilyDocument** sotto la funzione **getCol
         });
     };
 
-Copiare e incollare il codice sotto la chiamata a **getCollection** per eseguire la funzione **getFamilyDocument**.
+Copiare e incollare il codice hello sotto la chiamata hello troppo**getCollection** tooexecute hello **getFamilyDocument** (funzione).
 
     getDatabase()
     .then(() => getCollection())
 
-    // ADD THIS PART TO YOUR CODE
+    // ADD THIS PART tooYOUR CODE
     .then(() => getFamilyDocument(config.documents.Andersen))
     .then(() => getFamilyDocument(config.documents.Wakefield))
     // ENDS HERE
@@ -362,16 +362,16 @@ Copiare e incollare il codice sotto la chiamata a **getCollection** per eseguire
     .then(() => { exit(`Completed successfully`); })
     .catch((error) => { exit(`Completed with error ${JSON.stringify(error)}`) });
 
-Nel terminale trovare il file ```app.js``` ed eseguire il comando ```node app.js```.
+Nella finestra del terminale, individuare il ```app.js``` file ed eseguire il comando di hello:```node app.js```
 
 Congratulazioni. La creazione di un documento di Azure Cosmos DB è stata completata.
 
-![Esercitazione su Node.js - Diagramma che illustra la relazione gerarchica tra l'account, il database, la raccolta e i documenti - Database nodo](./media/documentdb-nodejs-get-started/node-js-tutorial-cosmos-db-account.png)
+![Database - diagramma che illustra relazione gerarchica di hello tra account hello, database hello, raccolta hello e documenti hello - nodo esercitazione Node.js](./media/documentdb-nodejs-get-started/node-js-tutorial-cosmos-db-account.png)
 
 ## <a id="Query"></a>Passaggio 8: Eseguire query sulle risorse di Azure Cosmos DB
-Azure Cosmos DB supporta [query complesse](documentdb-sql-query.md) sui documenti JSON archiviati in ogni raccolta. L'esempio di codice seguente illustra una query eseguibile nei documenti della raccolta.
+Azure Cosmos DB supporta [query complesse](documentdb-sql-query.md) sui documenti JSON archiviati in ogni raccolta. Hello codice di esempio seguente viene illustrata una query che è possibile eseguire sui documenti hello nella raccolta.
 
-Copiare e incollare la funzione **queryCollection** sotto la funzione **getFamilyDocument** nel file app.js. Azure Cosmos DB supporta query simili a SQL, come illustrato di seguito. Per altre informazioni sulla creazione di query complesse, vedere la pagina [Query Playground](https://www.documentdb.com/sql/demo) e la [documentazione sulle query](documentdb-sql-query.md).
+Copiare e incollare hello **queryCollection** funzione sotto hello **getFamilyDocument** funzione nel file app.js hello. Azure Cosmos DB supporta query simili a SQL, come illustrato di seguito. Per ulteriori informazioni sulla compilazione di query complesse, estrarre hello [Query Playground](https://www.documentdb.com/sql/demo) hello e [query documentazione](documentdb-sql-query.md).
 
                 } else {
                     resolve(result);
@@ -380,7 +380,7 @@ Copiare e incollare la funzione **queryCollection** sotto la funzione **getFamil
         });
     }
 
-    // ADD THIS PART TO YOUR CODE
+    // ADD THIS PART tooYOUR CODE
     function queryCollection() {
         console.log(`Querying collection through index:\n${config.collection.id}`);
 
@@ -403,32 +403,32 @@ Copiare e incollare la funzione **queryCollection** sotto la funzione **getFamil
     };
 
 
-Il diagramma seguente illustra il modo in cui la sintassi di query SQL di Azure Cosmos DB viene chiamata nella raccolta creata.
+Hello seguente diagramma viene illustrato come query di database SQL di Azure Cosmos hello sintassi viene chiamata insieme hello creata.
 
-![Esercitazione su Node.js - Diagramma che illustra l'ambito e il significato della query - Database nodo](./media/documentdb-nodejs-get-started/node-js-tutorial-collection-documents.png)
+![Database - diagramma che illustra ambito hello e il significato della query hello - nodo esercitazione Node.js](./media/documentdb-nodejs-get-started/node-js-tutorial-collection-documents.png)
 
-La parola chiave [FROM](documentdb-sql-query.md#FromClause) è facoltativa nella query perché le query di Azure Cosmos DB sono già limitate a una singola raccolta. Di conseguenza, "FROM Families f" può essere scambiata con "FROM root r" o con il nome di qualsiasi altra variabile scelta. Azure Cosmos DB dedurrà che Families, root o il nome della variabile scelta, si riferisce per impostazione predefinita alla raccolta attuale.
+Hello [FROM](documentdb-sql-query.md#FromClause) parola chiave è facoltativa in query hello perché le query di database di Azure Cosmos sono già tooa con ambito singola raccolta. Di conseguenza, "FROM Families f" può essere scambiata con "FROM root r" o con il nome di qualsiasi altra variabile scelta. Azure DB Cosmos dedurrà famiglie, alla radice o il nome di variabile hello scelto, raccolta corrente hello di riferimento per impostazione predefinita.
 
-Copiare e incollare il codice sotto la chiamata a **getFamilyDocument** per eseguire la funzione **queryCollection**.
+Copiare e incollare il codice hello sotto la chiamata hello troppo**getFamilyDocument** tooexecute hello **queryCollection** (funzione).
 
     .then(() => getFamilyDocument(config.documents.Andersen))
     .then(() => getFamilyDocument(config.documents.Wakefield))
 
-    // ADD THIS PART TO YOUR CODE
+    // ADD THIS PART tooYOUR CODE
     .then(() => queryCollection())
     // ENDS HERE
 
     .then(() => { exit(`Completed successfully`); })
     .catch((error) => { exit(`Completed with error ${JSON.stringify(error)}`) });
 
-Nel terminale trovare il file ```app.js``` ed eseguire il comando ```node app.js```.
+Nella finestra del terminale, individuare il ```app.js``` file ed eseguire il comando di hello:```node app.js```
 
 Congratulazioni. L'esecuzione di query sui documenti di Azure Cosmos DB è stata completata.
 
 ## <a id="ReplaceDocument"></a>Passaggio 9: Sostituire un documento
 Azure Cosmos DB supporta la sostituzione di documenti JSON.
 
-Copiare e incollare la funzione **replaceFamilyDocument** sotto la funzione **queryCollection** nel file app.js.
+Copiare e incollare hello **replaceFamilyDocument** funzione sotto hello **queryCollection** funzione nel file app.js hello.
 
                     }
                     console.log();
@@ -438,7 +438,7 @@ Copiare e incollare la funzione **replaceFamilyDocument** sotto la funzione **qu
         });
     }
 
-    // ADD THIS PART TO YOUR CODE
+    // ADD THIS PART tooYOUR CODE
     function replaceFamilyDocument(document) {
         let documentUrl = `${collectionUrl}/docs/${document.id}`;
         console.log(`Replacing document:\n${document.id}\n`);
@@ -454,13 +454,13 @@ Copiare e incollare la funzione **replaceFamilyDocument** sotto la funzione **qu
         });
     };
 
-Copiare e incollare il codice sotto la chiamata a **queryCollection** per eseguire la funzione **replaceDocument**. Aggiungere anche il codice per chiamare nuovamente **queryCollection** e verificare che il documento sia stato modificato correttamente.
+Copiare e incollare il codice hello sotto la chiamata hello troppo**queryCollection** tooexecute hello **replaceDocument** (funzione). Inoltre, aggiungere toocall codice hello **queryCollection** nuovamente tooverify documento hello è stata modificata.
 
     .then(() => getFamilyDocument(config.documents.Andersen))
     .then(() => getFamilyDocument(config.documents.Wakefield))
     .then(() => queryCollection())
 
-    // ADD THIS PART TO YOUR CODE
+    // ADD THIS PART tooYOUR CODE
     .then(() => replaceFamilyDocument(config.documents.Andersen))
     .then(() => queryCollection())
     // ENDS HERE
@@ -468,14 +468,14 @@ Copiare e incollare il codice sotto la chiamata a **queryCollection** per esegui
     .then(() => { exit(`Completed successfully`); })
     .catch((error) => { exit(`Completed with error ${JSON.stringify(error)}`) });
 
-Nel terminale trovare il file ```app.js``` ed eseguire il comando ```node app.js```.
+Nella finestra del terminale, individuare il ```app.js``` file ed eseguire il comando di hello:```node app.js```
 
 Congratulazioni. La sostituzione di un documento di Azure Cosmos DB è stata completata.
 
 ## <a id="DeleteDocument"></a>Passaggio 10: Eliminare un documento
 Azure Cosmos DB supporta l'eliminazione di documenti JSON.
 
-Copiare e incollare la funzione **deleteFamilyDocument** sotto la funzione **replaceFamilyDocument**.
+Copiare e incollare hello **deleteFamilyDocument** funzione sotto hello **replaceFamilyDocument** (funzione).
 
                 else {
                     resolve(result);
@@ -484,7 +484,7 @@ Copiare e incollare la funzione **deleteFamilyDocument** sotto la funzione **rep
         });
     };
 
-    // ADD THIS PART TO YOUR CODE
+    // ADD THIS PART tooYOUR CODE
     function deleteFamilyDocument(document) {
         let documentUrl = `${collectionUrl}/docs/${document.id}`;
         console.log(`Deleting document:\n${document.id}\n`);
@@ -499,27 +499,27 @@ Copiare e incollare la funzione **deleteFamilyDocument** sotto la funzione **rep
         });
     };
 
-Copiare e incollare il codice sotto la chiamata alla seconda funzione **queryCollection** per eseguire la funzione **deleteDocument**.
+Copiare e incollare il codice di hello seguito hello chiamata toohello secondo **queryCollection** tooexecute hello **deleteDocument** (funzione).
 
     .then(() => queryCollection())
     .then(() => replaceFamilyDocument(config.documents.Andersen))
     .then(() => queryCollection())
 
-    // ADD THIS PART TO YOUR CODE
+    // ADD THIS PART tooYOUR CODE
     .then(() => deleteFamilyDocument(config.documents.Andersen))
     // ENDS HERE
 
     .then(() => { exit(`Completed successfully`); })
     .catch((error) => { exit(`Completed with error ${JSON.stringify(error)}`) });
 
-Nel terminale trovare il file ```app.js``` ed eseguire il comando ```node app.js```.
+Nella finestra del terminale, individuare il ```app.js``` file ed eseguire il comando di hello:```node app.js```
 
 Congratulazioni. L'eliminazione di un documento di Azure Cosmos DB è stata completata.
 
-## <a id="DeleteDatabase"></a>Passaggio 11: Eliminare il database Node
-Se si elimina il database creato, verrà rimosso il database e tutte le risorse figlio (raccolte, documenti e così via).
+## <a id="DeleteDatabase"></a>Passaggio 11: Eliminare database nodo hello
+L'eliminazione hello creata database rimuoverà database hello e tutte le risorse di elementi figlio (raccolte, documenti e così via).
 
-Copiare e incollare la funzione **cleanup** sotto la funzione **deleteFamilyDocument** per rimuovere il database e tutte le risorse figlio.
+Copiare e incollare hello **pulizia** funzione sotto hello **deleteFamilyDocument** database hello tooremove e tutte le risorse figlio di hello di funzione.
 
                 else {
                     resolve(result);
@@ -528,7 +528,7 @@ Copiare e incollare la funzione **cleanup** sotto la funzione **deleteFamilyDocu
         });
     };
 
-    // ADD THIS PART TO YOUR CODE
+    // ADD THIS PART tooYOUR CODE
     function cleanup() {
         console.log(`Cleaning up by deleting database ${config.database.id}`);
 
@@ -540,11 +540,11 @@ Copiare e incollare la funzione **cleanup** sotto la funzione **deleteFamilyDocu
         });
     }
 
-Copiare e incollare il codice sotto la chiamata a **deleteFamilyDocument** per eseguire la funzione **cleanup**.
+Copiare e incollare il codice hello sotto la chiamata hello troppo**deleteFamilyDocument** tooexecute hello **pulizia** (funzione).
 
     .then(() => deleteFamilyDocument(config.documents.Andersen))
 
-    // ADD THIS PART TO YOUR CODE
+    // ADD THIS PART tooYOUR CODE
     .then(() => cleanup())
     // ENDS HERE
 
@@ -552,7 +552,7 @@ Copiare e incollare il codice sotto la chiamata a **deleteFamilyDocument** per e
     .catch((error) => { exit(`Completed with error ${JSON.stringify(error)}`) });
 
 ## <a id="Run"></a>Passaggio 12: Eseguire l'applicazione Node.js
-In generale, la sequenza per chiamare le funzioni dovrebbe avere un aspetto simile al seguente:
+Sequenza hello per chiamare le funzioni inconsistenze, dovrebbe essere simile al seguente:
 
     getDatabase()
     .then(() => getCollection())
@@ -566,9 +566,9 @@ In generale, la sequenza per chiamare le funzioni dovrebbe avere un aspetto simi
     .then(() => { exit(`Completed successfully`); })
     .catch((error) => { exit(`Completed with error ${JSON.stringify(error)}`) });
 
-Nel terminale trovare il file ```app.js``` ed eseguire il comando ```node app.js```.
+Nella finestra del terminale, individuare il ```app.js``` file ed eseguire il comando di hello:```node app.js```
 
-Verrà visualizzato l'output dell'app introduttiva. L'output dovrebbe essere analogo al testo di esempio seguente.
+Si dovrebbe vedere l'output di hello dell'app avviata get. output di Hello devono corrispondere a testo di esempio hello riportato di seguito.
 
     Getting database:
     FamilyDB
@@ -598,33 +598,33 @@ Verrà visualizzato l'output dell'app introduttiva. L'output dovrebbe essere ana
 
     Cleaning up by deleting database FamilyDB
     Completed successfully
-    Press any key to exit
+    Press any key tooexit
 
-Congratulazioni. È stata completata l'esercitazione su Node.js ed stata creata la prima applicazione console di Azure Cosmos DB.
+Congratulazioni. È stato creato è stata completata l'esercitazione Node.js hello e avere la prima applicazione console Azure Cosmos DB!
 
-## <a id="GetSolution"></a>Ottenere la soluzione completa per l'esercitazione su Node.js
-Se non si ha tempo per completare le procedure dell'esercitazione o se si vogliono solo scaricare gli esempi di codice, è possibile ottenerli da [GitHub](https://github.com/Azure-Samples/documentdb-node-getting-started).
+## <a id="GetSolution"></a>Ottenere hello completo Node.js soluzione di esercitazione
+Se non hai tempo toocomplete hello passaggi in questa esercitazione, oppure solo da codice hello toodownload, è possibile ottenere dalla [GitHub](https://github.com/Azure-Samples/documentdb-node-getting-started).
 
-Per eseguire la soluzione GetStarted completa contenente tutti gli esempi riportati in questo articolo, è necessario avere:
+soluzione GetStarted hello toorun che contiene tutti gli esempi di hello in questo articolo, è necessario seguente hello:
 
 * [Account Azure Cosmos DB][create-account].
-* La soluzione [GetStarted](https://github.com/Azure-Samples/documentdb-node-getting-started) disponibile su GitHub.
+* Hello [GetStarted](https://github.com/Azure-Samples/documentdb-node-getting-started) soluzione disponibile su GitHub.
 
-Installare il modulo **documentdb** tramite npm. Usare il comando seguente:
+Installare hello **documentdb** modulo tramite npm. Utilizzare hello comando seguente:
 
 * ```npm install documentdb --save```
 
-Nel file ```config.js``` aggiornare quindi i valori config.endpoint e config.authKey, come illustrato nel [Passaggio 3: Impostare le configurazioni dell'app](#Config). 
+Successivamente, nel hello ```config.js``` file, i valori di config.endpoint e config.authKey hello aggiornamento come descritto in [passaggio 3: impostare le configurazioni dell'applicazione](#Config). 
 
-Nel terminale trovare quindi il file ```app.js``` ed eseguire il comando: ```node app.js```.
+Quindi nella finestra del terminale, individuare il ```app.js``` file ed eseguire il comando di hello: ```node app.js```.
 
 Per completare la procedura, è sufficiente procedere alla compilazione. 
 
 ## <a name="next-steps"></a>Passaggi successivi
 * Per un esempio più complesso relativo a Node.js, Vedere [Creare un'applicazione Web Node.js con Azure Cosmos DB](documentdb-nodejs-application.md).
-* Informazioni su come [monitorare un account Azure Cosmos DB](monitor-accounts.md).
-* Eseguire query sul set di dati di esempio illustrato nella pagina [Query Playground](https://www.documentdb.com/sql/demo).
-* Per altre informazioni sul modello di programmazione, vedere la sezione relativa allo sviluppo nella pagina [Documentazione di Azure Cosmos DB](https://azure.microsoft.com/documentation/services/documentdb/).
+* Informazioni su come troppo[monitorare un account Azure Cosmos DB](monitor-accounts.md).
+* Eseguire query su questo set di dati di esempio in hello [Query Playground](https://www.documentdb.com/sql/demo).
+* Ulteriori informazioni sul modello di programmazione hello nella sezione sviluppo di hello hello [pagina della documentazione di Azure Cosmos DB](https://azure.microsoft.com/documentation/services/documentdb/).
 
 [create-account]: create-documentdb-dotnet.md#create-account
 [keys]: media/documentdb-nodejs-get-started/node-js-tutorial-keys.png

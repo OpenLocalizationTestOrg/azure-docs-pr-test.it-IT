@@ -1,6 +1,6 @@
 ---
-title: Valutare le prestazioni del modello in Machine Learning | Documentazione Microsoft
-description: Viene spiegato come valutare le prestazioni del modello in Azure Machine Learning.
+title: le prestazioni del modello aaaEvaluate in Machine Learning | Documenti Microsoft
+description: Viene illustrato come tooevaluate modello delle prestazioni in Azure Machine Learning.
 services: machine-learning
 documentationcenter: 
 author: garyericson
@@ -14,14 +14,14 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/20/2017
 ms.author: bradsev;garye
-ms.openlocfilehash: d9576e0059f2e77a684e518389182e713f0a4f09
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 03477368758dbb13aa6f54c5d27fb215615d1f9d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-evaluate-model-performance-in-azure-machine-learning"></a>Come valutare le prestazioni del modello in Azure Machine Learning
-Questo articolo illustra come valutare le prestazioni di un modello in Azure Machine Learning Studio e offre una breve spiegazione delle metriche disponibili per questa attività. L'argomento presenta inoltre tre scenari di apprendimento sorvegliato comuni: 
+# <a name="how-tooevaluate-model-performance-in-azure-machine-learning"></a>Come tooevaluate modello delle prestazioni in Azure Machine Learning
+In questo articolo viene illustrato come tooevaluate hello prestazioni di un modello in Azure Machine Learning Studio e fornisce una breve spiegazione di metriche di hello disponibile per questa attività. L'argomento presenta inoltre tre scenari di apprendimento sorvegliato comuni: 
 
 * Regressione
 * Classificazione binaria 
@@ -29,24 +29,24 @@ Questo articolo illustra come valutare le prestazioni di un modello in Azure Mac
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
-La valutazione delle prestazioni di un modello è una delle fasi principali nel processo di analisi scientifica dei dati. Indica quanto è stato positivo il punteggio (stime) di un set di dati da un modello sottoposto a training. 
+Valutazione delle prestazioni di hello di un modello è una delle fasi di base hello nel processo di analisi scientifica dei dati hello. Indica l'efficacia hello punteggio (stime) di un set di dati è stato da un modello con training. 
 
-Azure Machine Learning supporta la valutazione del modello tramite due moduli di apprendimento automatico principali, ovvero [Evaluate Model][evaluate-model] e [Cross-Validate Model][cross-validate-model]. Questi moduli consentono all'utente di osservare le prestazioni del proprio modello in termini di una serie di metriche comunemente usate in Machine Learning e nella statistica.
+Azure Machine Learning supporta la valutazione del modello tramite due moduli di apprendimento automatico principali, ovvero [Evaluate Model][evaluate-model] e [Cross-Validate Model][cross-validate-model]. Questi moduli consentono di toosee come il modello esegue in termini di un numero di metriche di uso comune in statistiche e machine learning.
 
 ## <a name="evaluation-vs-cross-validation"></a>Confronto tra la valutazione e la convalida incrociata
-La valutazione e la convalida incrociata sono due modi standard di misurare le prestazioni del proprio modello. Entrambi generano metriche di valutazione che l'utente può usare per controllare o mettere a confronto quelle di altri modelli.
+Valutazione e convalida incrociata sono le prestazioni di hello toomeasure modalità standard del modello. Entrambi generano metriche di valutazione che l'utente può usare per controllare o mettere a confronto quelle di altri modelli.
 
-Il modulo [Evaluate Model][evaluate-model] presuppone l'esistenza di un set di dati con punteggio come input (oppure di due set di dati se si desidera confrontare le prestazioni di due modelli diversi). Ciò significa che, prima di valutare i risultati, è necessario eseguire il training del modello con il modulo [Train Model][train-model] ed eseguire stime su alcuni set di dati con il modulo [Score Model][score-model]. La valutazione è basata sulle probabilità/etichette con punteggio e sulle etichette vere, tutti elementi restituiti dal modulo [Score Model][score-model].
+[Valutazione del modello] [ evaluate-model] prevede un set di dati con punteggio come input (o 2 in caso desideri prestazioni hello toocompare di 2 modelli diversi). Ciò significa che è necessario tootrain il modello utilizzando hello [Train Model] [ train-model] modulo e apportare le stime in alcuni set di dati utilizzando hello [Score Model] [ score-model] modulo, prima di poter valutare i risultati di hello. Hello valutazione si basa su con punteggio etichette/probabilità insieme alle etichette true hello, che sono tutti output hello hello [Score Model] [ score-model] modulo.
 
-In alternativa, è possibile usare la convalida incrociata per eseguire una serie di operazioni di valutazione, punteggio e training (10 sezioni) in modo automatico su diversi subset di dati di input. I dati di input vengono suddivisi in dieci partizioni, di cui una riservata per la convalida e le rimanenti usate per eseguire il training. Tale processo si ripete per 10 volte e viene calcolata una media delle metriche di valutazione. Ciò consente di determinare come verrebbero generalizzati nuovi set di dati da un modello. Il modulo [Cross-Validate Model][cross-validate-model] riceve in input un modello non sottoposto a training e alcuni set di dati con etichetta e restituisce i risultati della valutazione di ognuna delle 10 sezioni, oltre alla media dei risultati.
+In alternativa, è possibile utilizzare la convalida incrociata tooperform diverse operazioni valutare train-punteggio (10 sezioni) automaticamente in diversi subset hello di dati di input. dati di input Hello sono suddiviso in 10 parti, in cui uno è riservato per il testing e hello altri 9 per il training. Questo processo viene ripetuto 10 volte e vengono calcolata la media di metriche di valutazione di hello. Ciò consente di determinare come anche un modello verrebbe generalizzare toonew i set di dati. Hello [Cross-Validate Model] [ cross-validate-model] modulo accetta in un modello senza training e alcuni etichetta risultati della valutazione hello set di dati e di output di hello ogni 10 sezioni, toohello inoltre calcolata la media dei risultati.
 
-Nelle sezioni seguenti verranno creati semplici modelli di regressione e classificazione e ne verranno valutate le prestazioni usando i moduli [Evaluate Model][evaluate-model] e [Cross-Validate Model][cross-validate-model].
+Nelle seguenti sezioni di hello, verrà compilare i modelli di classificazione e regressione semplici e valutare le prestazioni, utilizzando entrambi hello [Evaluate Model] [ evaluate-model] e hello [Cross-Validate Modello] [ cross-validate-model] moduli.
 
 ## <a name="evaluating-a-regression-model"></a>Valutazione di un modello di regressione
-Si supponga di voler stimare il prezzo di un'auto tramite alcune caratteristiche quali dimensioni, cavalli, specifiche del motore e così via. Si tratta di un tipico problema di regressione, in cui la variabile di destinazione (*price*) è un valore numerico continuo. È possibile preparare un modello di regressione lineare semplice che, dati i valori caratteristici di una determinata auto, sia in grado di fare una stima del prezzo di tale auto. Questo modello di regressione può essere usato per calcolare il punteggio dello stesso set di dati su cui si sta effettuando il training Una volta ottenuti i prezzi stimati per tutte le auto, è possibile valutare le prestazioni del modello osservando la differenza tra le stime e i prezzi reali in media. Per illustrare questo concetto, si usa il set di dati *Automobile price data (Raw)* disponibile nella sezione **Saved Datasets** (Set di dati salvati) in Azure Machine Learning Studio.
+Si supponga di che voler toopredict prezzo dell'automobile, un utilizzo di alcune funzionalità, ad esempio dimensioni, potenza, le specifiche del motore e così via. Si tratta di un problema di regressione tipico, in cui hello variabile di destinazione (*prezzo*) è un valore numerico continuo. È possibile adattare un modello di regressione lineare semplice che, dato hello funzionalità valori di determinate un'automobile, stimare prezzo hello di tale macchina. È possibile utilizzare questo modello di regressione tooscore hello è sottoposto a training sui set di dati stesso. Una volta che è stata hello prezzi stimati per le automobili hello, è possibile valutare le prestazioni di hello del modello di hello esaminando quanto stime hello deviano dalla prezzi effettivi hello medio. tooillustrate, utilizziamo hello *set di dati (Raw) di prezzo Automobile* disponibile in hello **Saved Datasets** sezione in Azure Machine Learning Studio.
 
-### <a name="creating-the-experiment"></a>Creazione di un esperimento
-Aggiungere i seguenti moduli all'area di lavoro in Azure Machine Learning Studio:
+### <a name="creating-hello-experiment"></a>Creazione di hello esperimento
+Aggiungere hello seguendo l'area di lavoro tooyour moduli in Azure Machine Learning Studio:
 
 * Automobile price data (Raw)
 * [Linear Regression][linear-regression]
@@ -54,41 +54,41 @@ Aggiungere i seguenti moduli all'area di lavoro in Azure Machine Learning Studio
 * [Score Model][score-model]
 * [Evaluate Model][evaluate-model]
 
-Connettere le porte come indicato nella figura 1 seguente e impostare la colonna delle etichette nel modulo [Train Model][train-model] su *price*.
+Connettere le porte hello come mostrato nella figura 1 e colonna del set di etichetta hello di hello [Train Model] [ train-model] modulo troppo*prezzo*.
 
 ![Valutazione di un modello di regressione](media/machine-learning-evaluate-model-performance/1.png)
 
 Figura 1. Valutazione di un modello di regressione.
 
-### <a name="inspecting-the-evaluation-results"></a>Controllo dei risultati di valutazione
-Dopo aver eseguito l'esperimento, è possibile fare clic sulla porta di output del modulo [Evaluate Model][evaluate-model] e selezionare *Visualize* (Visualizza) per visualizzare i risultati della valutazione. Le metriche di valutazione disponibili per i modelli di regressione sono: *Mean Absolute Error* (Errore assoluto medio), *Root Mean Absolute Error* (Errore assoluto medio radice), *Relative Absolute Error* (Errore assoluto relativo), *Relative Squared Error* (Errore quadratico relativo) e *Coefficient of Determination* (Coefficiente di determinazione).
+### <a name="inspecting-hello-evaluation-results"></a>Esaminare i risultati della valutazione hello
+Dopo l'esperimento hello in esecuzione, è possibile fare clic sulla porta di output di hello di hello [Evaluate Model] [ evaluate-model] modulo e selezionare *Visualizza* toosee risultati della valutazione hello. Hello metriche di valutazione disponibili per i modelli di regressione sono: *errore assoluto medio*, *errore assoluto medio radice*, *errore assoluto relativo*,  *Errore quadratico relativo*, hello e *coefficiente di determinazione*.
 
-In questo caso, il termine "errore" rappresenta la differenza tra il valore stimato e il valore reale. Il valore assoluto o il quadrato di tale differenza solitamente vengono calcolati per ottenere il margine totale dell'errore in tutte le istanze, poiché la differenza tra il valore stimato e quello reale potrebbe essere negativa in alcuni casi. Le metriche di errore misurano le prestazioni predittive di un modello di regressione in termini di deviazione media delle stime rispetto ai valori reali. Più i valori di errore sono bassi, più il modello effettua stime precise. Una metrica di errore complessivo pari a 0 indica che il modello corrisponde perfettamente ai dati.
+il termine Hello "error" di seguito rappresenta la differenza hello tra hello valore stimato e il valore true hello. valore assoluto di Hello o hello quadrato di questa differenza sono in genere calcolata toocapture hello totale grandezza di errore in tutte le istanze, come differenza hello tra hello stimata e il valore true può essere negativo in alcuni casi. metriche errore Hello prestazioni hello predittiva di un modello di regressione in termini di deviazione media hello di esecuzione delle stime dai valori true hello. I valori di errore più bassi indicano che il modello di hello più accurato nell'esecuzione di stime. Una metrica di errore generale di 0 indica che hello modello si adatta perfettamente dati hello.
 
-Il coefficiente di determinazione, altrimenti noto come "valore quadratico R", rappresenta, inoltre, un modo standard di misurazione della percentuale di idoneità del modello rispetto ai dati. Può essere definito come la percentuale di variazione esplicitata dal modello. Una percentuale più elevata è migliore nel caso in cui 1 indica un'idoneità perfetta.
+coefficiente di determinazione, che è noto anche come R di Hello al quadrato, è anche un modo standard di misurare l'accuratezza modello di hello adatto dati hello. Questo può essere interpretato come proporzione hello della variazione spiegati da modello hello. Una percentuale più elevata è migliore nel caso in cui 1 indica un'idoneità perfetta.
 
 ![Metriche di valutazione della regressione lineare](media/machine-learning-evaluate-model-performance/2.png)
 
 Figura 2. Metriche di valutazione della regressione lineare.
 
 ### <a name="using-cross-validation"></a>Uso della convalida incrociata
-Come accennato in precedenza, è possibile ripetere il training, l'assegnazione del punteggio e le valutazioni in modo automatico usando il modulo [Cross-Validate Model][cross-validate-model]. In questo caso occorrono semplicemente un set di dati, un modello non sottoposto a training e un modulo [Cross-Validate Model][cross-validate-model] (vedere la figura seguente). Si noti che è necessario impostare la colonna delle etichette su *price* nelle proprietà del modulo [Cross-Validate Model][cross-validate-model].
+Come accennato in precedenza, è possibile eseguire training ripetuti, assegnazione di punteggi e valutazioni automaticamente utilizzando hello [Cross-Validate Model] [ cross-validate-model] modulo. In questo caso occorrono semplicemente un set di dati, un modello non sottoposto a training e un modulo [Cross-Validate Model][cross-validate-model] (vedere la figura seguente). Si noti che è necessario troppo colonna di etichetta hello tooset*prezzo* in hello [Cross-Validate Model] [ cross-validate-model] le proprietà del modulo.
 
 ![Convalida incrociata di un modello di regressione](media/machine-learning-evaluate-model-performance/3.png)
 
 Figura 3. Esecuzione della convalida incrociata di un modello di regressione.
 
-Dopo aver eseguito l'esperimento, è possibile fare clic sulla porta di output destra del modulo [Cross-Validate Model][cross-validate-model] per controllare i risultati della valutazione. In questo modo viene fornita una visualizzazione dettagliata delle metriche di ciascuna iterazione (sezione) e i risultati medi di ciascuna delle metriche (figura 4).
+Dopo l'esperimento hello in esecuzione, è possibile esaminare i risultati della valutazione hello facendo clic sulla porta di output di destra hello di hello [Cross-Validate Model] [ cross-validate-model] modulo. Questo fornirà una visualizzazione dettagliata delle metriche hello per ogni iterazione (sezione) e hello calcolata la media dei risultati di ogni metrica hello (figura 4).
 
 ![Risultati della convalida incrociata di un modello di regressione](media/machine-learning-evaluate-model-performance/4.png)
 
 Figura 4. Risultati della convalida incrociata di un modello di regressione.
 
 ## <a name="evaluating-a-binary-classification-model"></a>Valutazione di un modello di classificazione binaria
-In uno scenario di classificazione binaria la variabile di destinazione ha solo due risultati possibili, ad esempio: {0, 1} o {false, true}, {negative, positive}. Si presupponga di ricevere un set di dati di un dipendente adulto con alcune variabili demografiche e occupazionali e di dover stimare il livello di reddito, una variabile binaria con i valori {"<=50.000", ">50.000"}. In altri termini, la classe negativa rappresenta il caso in cui il dipendente realizza un valore inferiore o uguale a 50.000 l'anno, mentre la classe positiva rappresenta tutti gli altri dipendenti. Come nello scenario della regressione, verrà eseguito il training di un modello, verrà calcolato il punteggio di alcuni dati e verranno valutati i risultati. In questo caso la differenza principale consiste nella scelta degli output e dei calcoli delle metriche in Azure Machine Learning. Per illustrare lo scenario della stima del livello di reddito, verrà usato il set di dati [Adult](http://archive.ics.uci.edu/ml/datasets/Adult) per creare un esperimento in Azure Machine Learning e valutare le prestazioni di un modello di regressione logistica a due classi, un classificatore binario comunemente usato.
+In uno scenario di classificazione binaria, la variabile di destinazione hello ha solo due possibili risultati, ad esempio: {0, 1} o {false, true}, {negativo, positivo}. Si supponga che è un set di dati dei dipendenti per adulti con alcuni dati demografici e variabili occupazione, e che viene richiesto di livello di reddito hello toopredict, una variabile con valori hello binaria {"< = 50k", "> 50K"}. In altre parole, la classe negativo hello rappresenta dipendenti hello verificare che sia minore o uguale too50K all'anno e hello positivo classe rappresenta tutti gli altri dipendenti. Come nello scenario di regressione hello, si sarebbe training di un modello, assegnare un punteggio alcuni dati e valutare i risultati di hello. Hello differenza principale è scelta hello di metriche di che Azure Machine Learning calcola e output. scenario di livello stima il reddito hello tooillustrate, si utilizzerà hello [per adulti](http://archive.ics.uci.edu/ml/datasets/Adult) toocreate set di dati un Azure Machine Learning sperimentazione e valutare le prestazioni di hello di un modello di regressione logistica a due classi, un file binario di uso comune funzione di classificazione.
 
-### <a name="creating-the-experiment"></a>Creazione di un esperimento
-Aggiungere i seguenti moduli all'area di lavoro in Azure Machine Learning Studio:
+### <a name="creating-hello-experiment"></a>Creazione di hello esperimento
+Aggiungere hello seguendo l'area di lavoro tooyour moduli in Azure Machine Learning Studio:
 
 * Adult Census Income Binary Classification dataset
 * [Two-Class Logistic Regression][two-class-logistic-regression]
@@ -96,35 +96,35 @@ Aggiungere i seguenti moduli all'area di lavoro in Azure Machine Learning Studio
 * [Score Model][score-model]
 * [Evaluate Model][evaluate-model]
 
-Connettere le porte come indicato nella figura 5 seguente e impostare la colonna delle etichette del modulo [Train Model][train-model] su *income*.
+Connettere le porte hello come mostrato nella figura 5 e hello etichetta colonna del set di hello [Train Model] [ train-model] modulo troppo*reddito*.
 
 ![Valutazione di un modello di classificazione binaria](media/machine-learning-evaluate-model-performance/5.png)
 
 Figura 5. Valutazione di un modello di classificazione binaria.
 
-### <a name="inspecting-the-evaluation-results"></a>Controllo dei risultati di valutazione
-Dopo aver eseguito l'esperimento, è possibile fare clic sulla porta di output del modulo [Evaluate Model][evaluate-model] e selezionare *Visualize* (Visualizza) per visualizzare i risultati della valutazione (Figura 7). Le metriche di valutazione disponibili per i modelli di classificazione binaria sono: *Accuracy* (Accuratezza), *Precision* (Precisione), *Recall* (Richiamo), *F1 Score* (Punteggio F1) e *AUC*. Il modulo restituisce anche una matrice di confusione che mostra il numero di veri positivi, falsi negativi, falsi positivi e veri negativi, nonché le curve *ROC*, *Precision/Recall* (Precisione/Richiamo) e *Lift* (Accuratezza).
+### <a name="inspecting-hello-evaluation-results"></a>Esaminare i risultati della valutazione hello
+Dopo l'esperimento hello in esecuzione, è possibile fare clic sulla porta di output di hello di hello [Evaluate Model] [ evaluate-model] modulo e selezionare *Visualizza* risultati della valutazione hello toosee (figura 7). Hello metriche di valutazione disponibili per i modelli di classificazione binaria sono: *accuratezza*, *precisione*, *richiamare*, *punteggio F1*, e *AUC*. Inoltre, il modulo hello restituisce una matrice di confusione che mostra il numero di veri positivi, falsi negativi, falsi positivi e negativi true, hello nonché *ROC*, *precisione/richiamo*e *Accuratezza* curve.
 
-L'accuratezza è semplicemente la percentuale delle istanze classificate correttamente. In genere è la prima metrica che viene osservata quando si valuta un classificatore. Tuttavia, quando i dati di test non sono bilanciati (se la maggior parte delle istanze appartiene a una delle classi) o se l'utente è più interessato alle prestazioni di una classe, l'accuratezza non mostra realmente l'efficacia di un classificatore. Nello scenario di classificazione del livello di reddito, si supponga di eseguire il test di alcuni dati in cui il 99% delle istanze rappresenta le persone che guadagnano una cifra inferiore o uguale a 50.000 l'anno. È possibile ottenere un'accuratezza pari a 0,99 facendo una stima della classe “<=50.000” per tutte le istanze. In questo caso sembra che il classificatore svolga un buon lavoro in linea generale, ma in realtà non è in grado di classificare correttamente gli individui con un reddito superiore (il restante 1%).
+L'accuratezza è semplicemente proporzione di hello istanze classificato correttamente. È in genere metrica prima di hello che si osserva durante la valutazione di una funzione di classificazione. Tuttavia, quando i dati di test hello sono sbilanciata (in cui la maggior parte delle istanze di hello appartengono tooone delle classi di hello) o si è più interessati prestazioni hello su una delle classi di hello, accuratezza effettivamente non acquisisce l'efficacia di un classificatore hello. Nello scenario di classificazione di livello di reddito hello, si supponga che si sta testando con determinati dati, dove 99% delle istanze di hello rappresentano utenti guadagnare minore o uguale too50K all'anno. È possibile tooachieve una precisione 0.99 dalla stima classe hello "< = 50k" per tutte le istanze. classificazione Hello viene visualizzato in questo caso toobe facendo un buon lavoro globale, ma in realtà, non tooclassify uno qualsiasi dei singoli utenti ad alto reddito di hello (% 1 hello) correttamente.
 
-Per questo motivo è utile calcolare metriche aggiuntive che raccolgano aspetti più specifici della valutazione. Prima di entrare nei dettagli di tali metriche, è importante comprendere la matrice di confusione della valutazione di una classificazione binaria. Le etichette delle classi nel set di training possono assumere solo 2 valori possibili, cui faremo riferimento con positivo o negativo. Le istanze positive e negative stimate correttamente da un classificatore si definiscono rispettivamente valori veri positivi (VP) e veri negativi (VN). Analogamente, le istanze classificate in modo errato si definiscono valori falsi positivi (FP) e falsi negativi (FN). La matrice di confusione è semplicemente una tabella che mostra il numero di istanze all'interno di ognuna di queste 4 categorie. Azure Machine Learning stabilisce automaticamente quale delle due classi nel set di dati è quella positiva. Se le etichette delle classi sono valori booleani o interi, le istanze con etichetta "true" o "1" vengono assegnate alla classe positiva. Se si tratta di stringhe, come nel caso del set di dati sul reddito, le etichette vengono ordinate alfabeticamente: il primo livello sarà la classe negativa, mentre il secondo livello quella positiva.
+Per questo motivo, è utile toocompute altre metriche che consentono di acquisire gli aspetti più specifici di valutazione di hello. Prima di entrare nei dettagli hello di tali metriche, è una matrice di confusione hello toounderstand importante di una valutazione di classificazione binaria. classe di Hello etichette nel set di training hello possono assumere i valori possibili solo 2, che è in genere riferimento tooas positivo o negativo. le istanze positivi e negativi Hello che una funzione di classificazione consente di stimare correttamente vengono definite (TP) di veri positivi e negativi true (TN), rispettivamente. Analogamente, le istanze di classificazione non corretta di hello sono definite falsi positivi (/FP) e falsi negativi (FN). Matrice di confusione Hello è semplicemente una tabella che mostra il numero di istanze che rientrano in ognuna di queste 4 categorie hello. Azure Machine Learning decide automaticamente di hello due classi dataset hello ovvero hello positivo classe. Se le etichette di classe hello sono Boolean o numeri interi, hello istanze con etichette 'true' o '1' assegnate classe positivo hello. Se le etichette di hello sono stringhe, come nel caso di hello del set di dati di hello reddito, etichette hello vengono ordinate in ordine alfabetico e primo livello hello viene scelta classe negativo di hello toobe mentre secondo livello hello è la classe positivo hello.
 
 ![Matrice di confusione di classificazione binaria](media/machine-learning-evaluate-model-performance/6a.png)
 
 Figura 6. Matrice di confusione di classificazione binaria.
 
-Tornando al problema della classificazione del reddito, di seguito vengono fornite alcune domande sulla valutazione, utili a comprendere le prestazioni del classificatore usato. Una domanda da porsi è: "Delle persone con un modello di guadagno stimato >50.000 (VP+FP), quante sono state classificate correttamente (VP)?" È possibile rispondere a questa domanda osservando la **precisione** del modello, che è la percentuale di positivi classificati correttamente: VP/(VP+FP). Un'altra domanda comune è la seguente: "Di tutti i dipendenti con un reddito >50.000 (VP+FN), quanti sono stati classificati correttamente dal classificatore (VP)?". Questo è il **richiamo** o tasso di veri positivi, VP/(VP+FN), del classificatore. Come si può notare, vi è un chiaro compromesso tra precisione e richiamo. Ad esempio, in presenza di un set di dati relativamente bilanciato, un classificatore che stima istanze soprattutto positive avrà un richiamo elevato ma una precisione più bassa, poiché molte delle istanze negative verranno classificate in modo errato dando come risultato una serie di falsi positivi. Per vedere un tracciato delle variazioni di queste due metriche, è possibile fare clic sulla curva "PRECISIONE/RICHIAMO" nella pagina di output dei risultati di valutazione (la parte superiore sinistra della figura 7).
+Se si torna indietro toohello problema di classificazione di reddito, sarebbe necessario tooask diverse domande valutazione utili informazioni sulle prestazioni di hello del classificatore hello utilizzato. Una domanda molto naturale è: ' fuori individui hello cui hello modello toobe stimato ricevere > 50 K TP + FP (), quanti sono stati classificati in modo corretto (TP)?' Può rispondere a questa domanda esaminando hello **precisione** del modello di hello, che è la proporzione hello di positivi che siano classificati correttamente: TP/(TP+FP). Un'altra domanda comune è "tutti i dipendenti di reddito elevato hello con reddito > 50 k TP + FN (), quanti hello classificazione classificare correttamente (TP)". Si tratta in realtà hello **richiamare**, o tasso positivo true hello: TP/(TP+FN) del classificatore hello. Come si può notare, vi è un chiaro compromesso tra precisione e richiamo. Ad esempio, dato un set di dati relativamente bilanciato, una funzione di classificazione che stima principalmente positivo istanze, avrebbe un richiamo elevato, ma una precisione piuttosto bassa il numero di istanze negativo hello potrebbe essere classificato erroneamente risultante in un numero elevato di falsi positivi. toosee un tracciato di come questi due metriche variano, è possibile fare clic su curva ' Precisione/RICHIAMO' hello nella pagina di output di hello valutazione dei risultati (in alto a sinistra parte della figura 7).
 
 ![Risultati della valutazione della classificazione binaria](media/machine-learning-evaluate-model-performance/7.png)
 
 Figura 7. Risultati della valutazione della classificazione binaria.
 
-Un'altra metrica correlata spesso usata è **Punteggio F1**, che prende in considerazione precisione e richiamo. Si tratta della media armonica di queste 2 metriche ed è calcolata nel modo seguente: F1 = 2 (precisione x richiamo) / (precisione + richiamo). Il punteggio F1 è un buon modo per riassumere la valutazione in un unico numero, ma si dovrebbe sempre tenere conto di precisione e richiamo parallelamente per comprendere meglio il comportamento di un classificatore.
+Un'altra metrica che viene spesso utilizzato con le hello **punteggio F1**, che accetta sia la precisione e richiamo in considerazione. È la media armonica per hello queste 2 metriche e viene calcolata come tale: F1 = 2 (richiamo precisione x) / (precisione + richiamo). punteggio F1 Hello è una valutazione di hello toosummarize efficace in un singolo numero, ma è sempre un toolook buona norma sia precisione e richiamo toobetter insieme comprendere il comportamento di una funzione di classificazione.
 
-È anche possibile confrontare il tasso di veri positivi e il tasso di falsi positivi nella curva **ROC (Receiver Operating Characteristic)** e il valore **AUC (Area Under the Curve)** corrispondente. Più questa curva è vicina all'angolo superiore sinistro, migliori sono le prestazioni del classificatore (vale a dire portando al massimo il tasso vero positivo e riducendo al minimo il tasso falso positivo). Le curve che si trovano vicino alla diagonale del tracciato risultano dai classificatori che tendono a fare delle stime al limite della casualità.
+Inoltre, uno può controllare tasso positivo true da hello e frequenza di positivo false hello in hello **ricevitore operativo caratteristica (ROC)** curva e hello corrispondente **hello Area nella curva (AUC)** valore. Hello più vicino la curva è toohello superiore sinistro, le prestazioni del classificatore di hello migliori hello (vale a dire ottimizzazione hello true positivo velocità riducendo al minimo la frequenza di positivo false di hello). Curve di toohello Chiudi diagonale di hello tracciato, risultato classificatori che tendono a toomake stime che sono la chiusura toorandom un'ipotesi.
 
 ### <a name="using-cross-validation"></a>Uso della convalida incrociata
-Come nell'esempio della regressione, è possibile eseguire la convalida incrociata per ripetere il training, calcolare il punteggio e valutare diversi subset di dati in modo automatico. Analogamente, è possibile usare il modulo [Cross-Validate Model][cross-validate-model], un modello di regressione logistica non sottoposto a training, e un set di dati. La colonna delle etichette deve essere impostata su *income* nelle proprietà del modulo [Cross-Validate Model][cross-validate-model]. Dopo aver eseguito l'esperimento e selezionato la porta di output destra del modulo [Cross-Validate Model][cross-validate-model], è possibile visualizzare i valori metrici per ogni sezione, oltre alla deviazione media e standard di ognuna di esse. 
+Come esempio di regressione hello, è possibile eseguire la convalida incrociata toorepeatedly treno, assegnare un punteggio e valutare diversi subset di dati hello automaticamente. Analogamente, possiamo utilizzare hello [Cross-Validate Model] [ cross-validate-model] modulo, un modello di regressione logistica senza training e un set di dati. colonna di etichetta Hello deve essere impostato troppo*reddito* in hello [Cross-Validate Model] [ cross-validate-model] le proprietà del modulo. Dopo la porta di hello di output eseguendo esperimento hello e fare clic sulla destra hello [Cross-Validate Model] [ cross-validate-model] modulo, è possibile osservare la metrica di classificazione binaria hello i valori per ogni riduzione, inoltre toohello deviazione media e standard di ognuno. 
 
 ![Convalida incrociata di un modello di classificazione binaria](media/machine-learning-evaluate-model-performance/8.png)
 
@@ -135,10 +135,10 @@ Figura 8. Convalida incrociata di un modello di classificazione binaria.
 Figura 9. Risultati della convalida incrociata di un classificatore binario.
 
 ## <a name="evaluating-a-multiclass-classification-model"></a>Valutazione di un modello di classificazione multiclasse
-In questo esperimento verrà usato il comune set di dati [Iris](http://archive.ics.uci.edu/ml/datasets/Iris "Iris"), contenente istanze di 3 diversi tipi (classi) di iris. Esistono 4 valori caratteristici (lunghezza/larghezza sepalo e lunghezza/larghezza petalo) per ogni istanza. Negli esperimenti precedenti è stato eseguito il training e il test di modelli che usano gli stessi set di dati. In questo caso, viene usato il modulo [Split Data][split] per creare due subset di dati, eseguire il training sul primo e classificare e valutare il secondo. Il set di dati Iris è disponibile pubblicamente nel [repository di Machine Learning UCI](http://archive.ics.uci.edu/ml/index.html) e può essere scaricato usando un modulo [Import Data][import-data].
+In questo esercizio si utilizzerà hello diffuso [Iris](http://archive.ics.uci.edu/ml/datasets/Iris "Iris") set di dati che contiene le istanze di 3 diversi tipi (classi) di impianto iris hello. Esistono 4 valori caratteristici (lunghezza/larghezza sepalo e lunghezza/larghezza petalo) per ogni istanza. Negli esperimenti precedenti hello è eseguito il training e i modelli testati hello utilizzando hello stessi set di dati. In questo caso, si utilizzerà hello [dati divisi] [ split] subset toocreate 2 modulo dei dati di hello, formazione hello in primo luogo, assegnare un punteggio e valutare in hello secondo. Hello set di dati Iris è disponibile pubblicamente su hello [UCI Machine Learning Repository](http://archive.ics.uci.edu/ml/index.html)e può essere scaricata mediante un [l'importazione dei dati] [ import-data] modulo.
 
-### <a name="creating-the-experiment"></a>Creazione di un esperimento
-Aggiungere i seguenti moduli all'area di lavoro in Azure Machine Learning Studio:
+### <a name="creating-hello-experiment"></a>Creazione di hello esperimento
+Aggiungere hello seguendo l'area di lavoro tooyour moduli in Azure Machine Learning Studio:
 
 * [Import Data][import-data]
 * [Multiclass Decision Forest][multiclass-decision-forest]
@@ -147,27 +147,27 @@ Aggiungere i seguenti moduli all'area di lavoro in Azure Machine Learning Studio
 * [Score Model][score-model]
 * [Evaluate Model][evaluate-model]
 
-Connettere le porte come mostrato in basso nella figura 10.
+Connettere le porte hello come mostrato nella figura 10.
 
-Impostare l'indice della colonna delle etichette del modulo [Train Model][train-model] su 5. Il set di dati non dispone di una riga di intestazione ma, com'è noto, le etichette delle classi si trovano nella quinta colonna.
+Impostare l'indice di colonna di etichetta hello di hello [Train Model] [ train-model] too5 modulo. set di dati Hello non esiste alcuna riga di intestazione ma verrà tale classe hello le etichette sono hello quinta colonna.
 
-Fare clic sul modulo [Import Data][import-data] (Impora dati) e impostare la proprietà *Data source* (Origine dati) su *Web URL via HTTP* (URL Web via HTTP) e *URL* su http://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data.
+Fare clic su hello [l'importazione dei dati] [ import-data] modulo set hello e *origine dati* proprietà troppo*URL Web tramite HTTP*, hello e *URL*  toohttp://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data.
 
-Impostare la frazione delle istanze da usare per il training nel modulo [Split Data][split], ad esempio 0,7.
+Frazione di hello set di istanze toobe utilizzati per il training in hello [dati divisi] [ split] modulo (0,7 ad esempio).
 
 ![Valutazione di un classificatore multiclasse](media/machine-learning-evaluate-model-performance/10.png)
 
 Figura 10. Valutazione di un classificatore multiclasse
 
-### <a name="inspecting-the-evaluation-results"></a>Controllo dei risultati di valutazione
-Eseguire l'esperimento e fare clic sulla porta di output di [Evaluate Model][evaluate-model]. In questo caso, i risultati di valutazione sono presentati nel formato di una matrice di confusione. Nella matrice sono riportate le istanze stimate e reali per le 3 classi.
+### <a name="inspecting-hello-evaluation-results"></a>Esaminare i risultati della valutazione hello
+Eseguire l'esperimento hello e fare clic sulla porta di output di hello di [Evaluate Model][evaluate-model]. risultati della valutazione Hello vengono presentati in forma di hello di una matrice di confusione, in questo caso. Matrice di Hello Mostra hello effettivi e stimate istanze per tutte le classi di 3.
 
 ![Risultati della valutazione della classificazione multiclasse](media/machine-learning-evaluate-model-performance/11.png)
 
 Figura 11. Risultati di valutazione della classificazione a più classi.
 
 ### <a name="using-cross-validation"></a>Uso della convalida incrociata
-Come accennato in precedenza, è possibile ripetere il training, l'assegnazione del punteggio e le valutazioni in modo automatico usando il modulo [Cross-Validate Model][cross-validate-model]. Saranno necessari un set di dati, un modello non sottoposto a training e un modulo [Cross-Validate Model][cross-validate-model] (vedere la figura seguente). È nuovamente necessario impostare la colonna delle etichette del modulo [Cross-Validate Model][cross-validate-model] (in questo caso, indice della colonna 5). Dopo aver eseguito l'esperimento e selezionato la porta destra di output del modulo [Cross-Validate Model][cross-validate-model], è possibile controllare i valori metrici per ogni sezione, nonché la deviazione media e standard. Le metriche visualizzate sono simili a quelle illustrate nel caso della classificazione binaria. Tuttavia, si tenga presente che, nella classificazione a più classi, il calcolo dei veri positivi/negativi e dei falsi positivi/negativi è effettuato con un conteggio su una base specifica per ogni classe, poiché non esiste una classe positiva o negativa complessiva. Ad esempio, quando si esegue il calcolo della precisione o del richiamo della classe "Iris-setosa", si presuppone che questa sia la classe positiva e le altre quelle negative.
+Come accennato in precedenza, è possibile eseguire training ripetuti, assegnazione di punteggi e valutazioni automaticamente utilizzando hello [Cross-Validate Model] [ cross-validate-model] modulo. Saranno necessari un set di dati, un modello non sottoposto a training e un modulo [Cross-Validate Model][cross-validate-model] (vedere la figura seguente). Nuovo è necessario tooset colonna di etichetta hello di hello [Cross-Validate Model] [ cross-validate-model] modulo (indice di colonna 5 in questo caso). Dopo l'esecuzione esperimento hello e facendo clic sulla destra hello output porta hello [Cross-Validate Model][cross-validate-model], è possibile controllare i valori della metrica hello per ogni riduzione, nonché hello deviazione media e standard. metriche di Hello visualizzate di seguito sono toohello simile hello quelle illustrate in caso di classificazione binaria hello. Tuttavia, si noti che nella classificazione multiclasse, il calcolo hello veri positivi o negativi e falsi positivi o negativi viene eseguita dal conteggio dei singoli per ogni classe, perché non esiste alcuna classe generale positiva o negativa. Ad esempio, quando precisione hello elaborazione o il richiamo di classe "Iris setosa" hello, si presuppone che si tratta classe positivo hello e tutti gli altri come negativo.
 
 ![Convalida incrociata di un modello di classificazione multiclasse](media/machine-learning-evaluate-model-performance/12.png)
 

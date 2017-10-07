@@ -1,6 +1,6 @@
 ---
-title: Come ripristinare un server nel Database di Azure per PostgreSQL | Microsoft Docs
-description: In questo articolo viene descritta la procedura per ripristinare un server nel Database di Azure per PostgreSQL usando il portale di Azure.
+title: Come un Server di Database di Azure per PostgreSQL tooRestore | Documenti Microsoft
+description: Questo articolo viene descritto come un server di Database di Azure per l'utilizzo di PostgreSQL toorestore hello portale di Azure.
 services: postgresql
 author: jasonwhowell
 ms.author: jasonh
@@ -9,47 +9,47 @@ editor: jasonwhowell
 ms.service: postgresql
 ms.topic: article
 ms.date: 07/20/2017
-ms.openlocfilehash: 3fbdb7741481bd3620466c3489d3609f9ea6961f
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: bc7351f384607397806d837afd3e1d7a26575e0e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-backup-and-restore-a-server-in-azure-database-for-postgresql-using-the-azure-portal"></a>Come eseguire la procedura di backup e ripristino di un server nel Database di Azure per PostgreSQL usando il portale di Azure
+# <a name="how-toobackup-and-restore-a-server-in-azure-database-for-postgresql-using-hello-azure-portal"></a>Come tooBackup e il ripristino di un server di Database di Azure per l'utilizzo di PostgreSQL hello portale di Azure
 
 ## <a name="backup-happens-automatically"></a>Il backup viene eseguito automaticamente
-Quando si usa Database di Azure per PostgreSQL, il servizio di database esegue automaticamente il backup del servizio ogni 5 minuti. 
+Quando si utilizza il Database di Azure per PostgreSQL, il servizio di database hello rende automaticamente un backup del servizio hello ogni 5 minuti. 
 
-La disponibilità dei backup è di 7 giorni per il livello Basic e 35 giorni per il livello Standard. Per altre informazioni, vedere [Livelli di servizio del Database di Azure per PostgreSQL](concepts-service-tiers.md)
+Quando si utilizza il livello di base e 35 giorni, sono disponibili per 7 giorni backup di Hello quando si usa il livello Standard. Per altre informazioni, vedere [Livelli di servizio del Database di Azure per PostgreSQL](concepts-service-tiers.md)
 
-L'uso di questa funzionalità di backup automatico permette di ripristinare il server e tutti i suoi database in un nuovo server a un precedente punto temporizzato.
+Utilizzare questa funzionalità di backup automatico è possibile ripristinare server hello e tutti i database in un nuovo server tooan precedente punto nel tempo.
 
-## <a name="restore-in-the-azure-portal"></a>Ripristino nel portale di Azure
-Il Database di Azure per PostgreSQL consente di ripristinare il server a un punto temporizzato e in una nuova copia del server. È possibile usare questo nuovo server per ripristinare i dati. 
+## <a name="restore-in-hello-azure-portal"></a>Ripristinare nel portale di Azure hello
+Il Database di Azure per PostgreSQL consente toorestore hello server back-tooa punto nel tempo e in tooa nuova copia del server di hello. È possibile utilizzare questo nuovo toorecover server i dati. 
 
-Ad esempio, se oggi una tabella è stata accidentalmente eliminata a mezzogiorno, è possibile eseguire il ripristino a un'ora prima di mezzogiorno per recuperare la tabella e i dati mancanti dalla nuova copia del server.
+Ad esempio, se una tabella è stato accidentalmente eliminato a mezzogiorno oggi, si potrebbe ripristinare toohello ora prima di mezzogiorno e recuperare hello mancante nella tabella e i dati dalla nuova copia del server di hello.
 
-La procedura seguente consente di ripristinare il server di esempio ad un punto temporizzato.
-1. Accedere al [portale di Azure](https://portal.azure.com/)
-2. Individuare il Database di Azure per il server PostgreSQL. Nel portale di Azure fare clic su **Tutte le risorse** dal menu a sinistra e digitare il nome, ad esempio **mypgserver-20170401**, per cercare il server esistente. Fare clic sul nome del server elencato nei risultati della ricerca. Si apre la pagina **Panoramica** relativa al server, con le opzioni per un'ulteriore configurazione.
+Hello seguenti passaggi punto di ripristino hello esempio server tooa nel tempo:
+1. Sign in hello [portale di Azure](https://portal.azure.com/)
+2. Individuare il Database di Azure per il server PostgreSQL. Nel portale di Azure hello, fare clic su **tutte le risorse** dal menu a sinistra hello e digitare il nome di hello, ad esempio **mypgserver 20170401**, toosearch per il server esistente. Fare clic su un nome server hello elencato nei risultati di ricerca hello. Hello **Panoramica** pagina per il server viene aperto e offre opzioni per un'ulteriore configurazione.
 
-   ![Portale di Azure - Effettuare la ricerca del server](media/postgresql-howto-restore-server-portal/1-locate.png)
+   ![Portale di Azure - il server di ricerca toolocate](media/postgresql-howto-restore-server-portal/1-locate.png)
 
-3. Nella parte superiore del pannello Panoramica server, fare clic su **Ripristina** nella barra degli strumenti. Viene aperto il pannello Ripristina.
+3. Nella parte superiore di hello del pannello della panoramica hello server, fare clic su **ripristinare** sulla barra degli strumenti hello. verrà visualizzata la finestra di pannello Ripristina Hello.
 
    ![Database di Azure per PostgreSQL - Panoramica - Pulsante Ripristino](./media/postgresql-howto-restore-server-portal/2_server.png)
 
-4. Compilare il modulo Ripristina con le informazioni obbligatorie:
+4. Compilare il modulo ripristino hello con le informazioni necessarie hello:
 
    ![Database di Azure per PostgreSQL - Informazioni di ripristino ](./media/postgresql-howto-restore-server-portal/3_restore.png)
-  - **Punto di ripristino**: selezionare un punto nel tempo precedente alla modifica del server
-  - **Server di destinazione**: fornire un nuovo nome del server che si desidera ripristinare
-  - **Posizione**: non è possibile selezionare l'area, per impostazione predefinita è la stessa del server di origine
-  - **Piano tariffario**: non è possibile modificare questo valore quando si ripristina un server. È uguale al server di origine. 
+  - **Punto di ripristino**: selezionare un punto nel tempo che si verifica prima che il server di hello è stato modificato
+  - **Server di destinazione**: fornire un nuovo nome del server desiderato toorestore per
+  - **Percorso**: non è possibile selezionare l'area di hello, per impostazione predefinita è uguale al server di origine hello
+  - **Piano tariffario**: non è possibile modificare questo valore quando si ripristina un server. È uguale al server di origine hello. 
 
-5. Fare clic su **OK** per ripristinare il server al punto di ripristino temporizzato. 
+5. Fare clic su **OK** toorestore hello server toorestore tooa punto nel tempo. 
 
-6. Al termine del ripristino, individuare il nuovo server creato per verificare che il ripristino dei dati sia avvenuto come previsto.
+6. Al termine del ripristino di hello, individuare hello nuovo server in cui viene creato hello tooverify ripristino dei dati nel modo previsto.
 
 ## <a name="next-steps"></a>Passaggi successivi
 - [Raccolte connessioni per il Database di Azure per PostgreSQL](concepts-connection-libraries.md)

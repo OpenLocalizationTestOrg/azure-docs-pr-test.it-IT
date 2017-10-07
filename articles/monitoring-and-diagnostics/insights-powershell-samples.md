@@ -1,6 +1,6 @@
 ---
-title: Esempi di avvio rapido con PowerShell per Monitoraggio di Azure. | Microsoft Docs
-description: "Usare PowerShell per accedere alle funzionalità di Monitoraggio di Azure, ad esempio scalabilità automatica, avvisi, webhook e ricerca nei log attività."
+title: esempi di avvio rapido di aaaAzure PowerShell di monitoraggio. | Microsoft Docs
+description: "Utilizzare PowerShell tooaccess funzionalità di monitoraggio di Azure quali scalabilità automatica, gli avvisi, webhook e la ricerca di log di attività."
 author: kamathashwin
 manager: orenr
 editor: 
@@ -14,40 +14,40 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/09/2017
 ms.author: ashwink
-ms.openlocfilehash: 48f064884c2a6d0a55cc58a44169ed03c62de46d
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 6eece0b0227e0bbf08225bd330d0601169911f55
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-monitor-powershell-quick-start-samples"></a>Esempi di avvio rapido con PowerShell per Monitoraggio di Azure
-Questo articolo illustra comandi di PowerShell di esempio per accedere rapidamente alle funzionalità di Monitoraggio di Azure. Monitoraggio di Azure consente di ridimensionare automaticamente servizi cloud, macchine virtuali e app Web e di inviare notifiche di avviso o chiamare URL Web in base ai valori dei dati di telemetria configurati.
+In questo articolo viene indicato il campionamento toohelp di comandi di PowerShell accedere alle funzionalità di monitoraggio di Azure. Monitoraggio di Azure consente tooAutoScale servizi Cloud, macchine virtuali e le applicazioni Web e toosend notifiche di avviso o URL web chiamata in base ai valori dei dati di telemetria configurato.
 
 > [!NOTE]
-> Dal 25 settembre 2016 Monitoraggio di Azure è il nuovo nome di "Azure Insights". Tuttavia, gli spazi dei nomi e quindi i comandi seguenti contengono ancora il termine "insights".
+> Monitoraggio di Azure è hello nuovo nome per ciò che è stato chiamato "Azure Insights" fino a 25 settembre 2016. Tuttavia, gli spazi dei nomi hello e pertanto hello ancora i comandi seguenti contengono approfondite"hello".
 > 
 > 
 
 ## <a name="set-up-powershell"></a>Configurare PowerShell
-Se non è ancora stato fatto, configurare PowerShell per l'esecuzione sul computer. Per altre informazioni, vedere [Come installare e configurare PowerShell](/powershell/azure/overview).
+Se hai già fatto, configurare toorun PowerShell nel computer in uso. Per ulteriori informazioni, vedere [come tooInstall e configurare PowerShell](/powershell/azure/overview).
 
 ## <a name="examples-in-this-article"></a>Esempi in questo articolo
-Gli esempi in questo articolo illustrano come usare i cmdlet di Monitoraggio di Azure. È anche possibile esaminare l'elenco completo di cmdlet di PowerShell di Monitoraggio di Azure nell'argomento relativo ai [cmdlet di Monitoraggio di Azure(Azure Insights)](https://msdn.microsoft.com/library/azure/mt282452#40v=azure.200#41.aspx).
+esempi di Hello di articolo hello illustrato come utilizzare i cmdlet di monitoraggio di Azure. È inoltre possibile rivedere l'elenco completo di hello di cmdlet di PowerShell di monitoraggio di Azure in [i cmdlet di Azure Monitor (Insights)](https://msdn.microsoft.com/library/azure/mt282452#40v=azure.200#41.aspx).
 
 ## <a name="sign-in-and-use-subscriptions"></a>Eseguire l'acccesso e usare le sottoscrizioni
-Per prima cosa, accedere alla sottoscrizione di Azure.
+Innanzitutto, effettuare l'accesso tooyour sottoscrizione di Azure.
 
 ```PowerShell
 Login-AzureRmAccount
 ```
 
-Questo richiede di effettuare l’accesso. Dopo aver effettuato l'accesso, vengono visualizzati l'account, l'ID tenant e l'ID sottoscrizione predefinito. Tutti i cmdlet di Azure funzionano nel contesto della sottoscrizione predefinita. Per visualizzare l'elenco delle sottoscrizioni accessibili, usare il comando seguente.
+Questa operazione richiede toosign in. Dopo aver effettuato l'accesso, vengono visualizzati l'account, l'ID tenant e l'ID sottoscrizione predefinito. Tutti hello lavoro cmdlet di Azure nel contesto di hello della sottoscrizione predefinita. elenco di hello tooview delle sottoscrizioni si ha accesso a, utilizzare hello comando seguente.
 
 ```PowerShell
 Get-AzureRmSubscription
 ```
 
-Per modificare il contesto di lavoro in una sottoscrizione diversa, usare il comando seguente.
+toochange lavoro contesto tooa diversa sottoscrizione, utilizzare hello comando seguente.
 
 ```PowerShell
 Set-AzureRmContext -SubscriptionId <subscriptionid>
@@ -55,9 +55,9 @@ Set-AzureRmContext -SubscriptionId <subscriptionid>
 
 
 ## <a name="retrieve-activity-log-for-a-subscription"></a>Recuperare il registro attività per una sottoscrizione
-Utilizzare il cmdlet `Get-AzureRmLog` .  Di seguito sono riportati alcuni esempi comuni.
+Hello utilizzare `Get-AzureRmLog` cmdlet.  Hello di seguito è riportati alcuni esempi comuni.
 
-Ottenere le voci di log da questa data e ora fino a oggi:
+Ottenere le voci di log da toopresent questa data e ora:
 
 ```PowerShell
 Get-AzureRmLog -StartTime 2016-03-01T10:30
@@ -87,38 +87,38 @@ Ottenere tutte le voci di log con un chiamante specifico:
 Get-AzureRmLog -Caller 'myname@company.com'
 ```
 
-Il comando seguente recupera gli ultimi 1000 eventi dal registro attività:
+Hello comando Recupera hello ultimi 1.000 eventi dal log attività hello seguente:
 
 ```PowerShell
 Get-AzureRmLog -MaxEvents 1000
 ```
 
-`Get-AzureRmLog` supporta diversi altri parametri. Per altre informazioni, vedere il riferimento `Get-AzureRmLog` .
+`Get-AzureRmLog` supporta diversi altri parametri. Vedere hello `Get-AzureRmLog` riferimento per altre informazioni.
 
 > [!NOTE]
-> `Get-AzureRmLog` fornisce solo 15 giorni di cronologia. L’uso del parametro **-MaxEvents** consente di eseguire una query sugli ultimi N eventi, oltre i 15 giorni. Per accedere agli eventi precedenti ai 15 giorni, usare l'API REST o l'SDK (esempio di C# tramite il SDK). Se non si include **StartTime**, il valore predefinito è **EndTime** meno un'ora. Se non si include **EndTime**, il valore predefinito è l’ora corrente. Tutte le ore sono in formato UTC.
+> `Get-AzureRmLog` fornisce solo 15 giorni di cronologia. Utilizzo di hello **- MaxEvents** parametro consente tooquery hello ultimi N eventi, oltre a 15 giorni. eventi tooaccess anteriori a 15 giorni, utilizzare hello API REST o SDK (esempio di c# utilizzando hello SDK). Se non si include **StartTime**, il valore predefinito di hello **EndTime** meno di un'ora. Se non si include **EndTime**, il valore predefinito di hello ora corrente. Tutte le ore sono in formato UTC.
 > 
 > 
 
 ## <a name="retrieve-alerts-history"></a>Recupero della cronologia di avvisi
-Per visualizzare tutti gli eventi di avviso, è possibile eseguire query in Azure Resource Manager usando gli esempi seguenti.
+tutti gli eventi di allarme, è possibile eseguire query tooview hello registri di gestione risorse di Azure mediante hello seguono esempi.
 
 ```PowerShell
 Get-AzureRmLog -Caller "Microsoft.Insights/alertRules" -DetailedOutput -StartTime 2015-03-01
 ```
 
-Per visualizzare la cronologia per una regola avviso specifica, è possibile utilizzare il cmdlet `Get-AzureRmAlertHistory` passando l'ID risorsa della regola avvisi.
+regola di cronologia di hello tooview per un avviso specifico, è possibile utilizzare hello `Get-AzureRmAlertHistory` cmdlet, il passaggio di ID di risorsa hello della regola di avviso hello.
 
 ```PowerShell
 Get-AzureRmAlertHistory -ResourceId /subscriptions/s1/resourceGroups/rg1/providers/microsoft.insights/alertrules/myalert -StartTime 2016-03-1 -Status Activated
 ```
 
-Il cmdlet `Get-AzureRmAlertHistory` supporta diversi parametri. Per altre informazioni, vedere [Get-AlertHistory](https://msdn.microsoft.com/library/mt282453.aspx).
+Hello `Get-AzureRmAlertHistory` cmdlet supporta vari parametri. Per altre informazioni, vedere [Get-AlertHistory](https://msdn.microsoft.com/library/mt282453.aspx).
 
 ## <a name="retrieve-information-on-alert-rules"></a>Recupero delle informazioni sulle regole di avviso
-Tutti i comandi seguenti agiscono su un gruppo di risorse chiamato "montest".
+Tutti i seguenti comandi hello agiscono su un gruppo di risorse denominato "montest".
 
-Visualizzare tutte le proprietà della regola di avviso:
+Visualizzare tutte le proprietà di hello della regola di avviso hello:
 
 ```PowerShell
 Get-AzureRmAlertRule -Name simpletestCPU -ResourceGroup montest -DetailedOutput
@@ -139,11 +139,11 @@ Get-AzureRmAlertRule -ResourceGroup montest -TargetResourceId /subscriptions/s1/
 `Get-AzureRmAlertRule` supporta altri parametri. Per altre informazioni, vedere [Get-AlertRule](https://msdn.microsoft.com/library/mt282459.aspx) .
 
 ## <a name="create-metric-alerts"></a>Creare avvisi delle metriche
-È possibile utilizzare il cmdlet `Add-AlertRule` per creare, aggiornare o disabilitare una regola di avviso.
+È possibile utilizzare hello `Add-AlertRule` toocreate cmdlet, aggiornare o disabilitare una regola di avviso.
 
-È possibile creare proprietà di posta elettronica e webhook usando rispettivamente `New-AzureRmAlertRuleEmail` e `New-AzureRmAlertRuleWebhook`. Nel cmdlet per la regola avvisi assegnare queste azioni alla proprietà **Actions** della regola avvisi.
+È possibile creare proprietà di posta elettronica e webhook usando rispettivamente `New-AzureRmAlertRuleEmail` e `New-AzureRmAlertRuleWebhook`. Nel cmdlet hello regola di avviso per assegnare queste come azioni toohello **azioni** proprietà della regola di avviso hello.
 
-La tabella seguente descrive i parametri e valori usati per creare un avviso tramite una metrica.
+Hello nella tabella seguente vengono descritti i parametri di hello e valori utilizzati toocreate un avviso utilizzando una metrica.
 
 | parametro | value |
 | --- | --- |
@@ -151,13 +151,13 @@ La tabella seguente descrive i parametri e valori usati per creare un avviso tra
 | Posizione di questa regola di avviso |Stati Uniti orientali |
 | ResourceGroup |montest |
 | TargetResourceId |/subscriptions/s1/resourceGroups/montest/providers/Microsoft.Compute/virtualMachines/testconfig |
-| MetricName dell'avviso creato |\PhysicalDisk ( totale) \Disk scritture al secondo. Vedere il `Get-MetricDefinitions` cmdlet su come recuperare i nomi di metrica esatti |
+| MetricName di avviso hello creato |\PhysicalDisk ( totale) \Disk scritture al secondo. Vedere hello `Get-MetricDefinitions` come tooretrieve hello esatti nomi di metrica relativi ai cmdlet di |
 | operator |GreaterThan |
 | Valore soglia (conteggio al secondo per questa metrica) |1 |
 | WindowSize (formato hh:mm:ss) |00:05:00 |
-| aggregatore (statistica della metrica che usa il numero medio, in questo caso) |Media |
+| Aggregator (statistica della metrica di hello, che utilizza il numero medio, in questo caso) |Media |
 | indirizzi di posta elettronica personalizzati (matrice di stringhe) |'foo@example.com','bar@example.com' |
-| invio di messaggi di posta elettronica a proprietari, collaboratori e lettori |-SendToServiceOwners |
+| Invia messaggio di posta elettronica tooowners, contributors e readers |-SendToServiceOwners |
 
 Creare un'azione Email
 
@@ -171,28 +171,28 @@ Creazione di un’azione Webhook
 $actionWebhook = New-AzureRmAlertRuleWebhook -ServiceUri https://example.com?token=mytoken
 ```
 
-Creazione di una regola di avviso sulla metrica CPU% per una VM classica
+Crea regola di avviso hello nella metrica % della CPU di hello in una VM classica
 
 ```PowerShell
 Add-AzureRmMetricAlertRule -Name vmcpu_gt_1 -Location "East US" -ResourceGroup myrg1 -TargetResourceId /subscriptions/s1/resourceGroups/myrg1/providers/Microsoft.ClassicCompute/virtualMachines/my_vm1 -MetricName "Percentage CPU" -Operator GreaterThan -Threshold 1 -WindowSize 00:05:00 -TimeAggregationOperator Average -Actions $actionEmail, $actionWebhook -Description "alert on CPU > 1%"
 ```
 
-Recupero di una regola di avviso
+Recuperare la regola di avviso hello
 
 ```PowerShell
 Get-AzureRmAlertRule -Name vmcpu_gt_1 -ResourceGroup myrg1 -DetailedOutput
 ```
 
-Il cmdlet Aggiungi avviso aggiorna anche la regola se esiste già una regola di avviso per le proprietà specificate. Per disabilitare una regola di avviso, includere il parametro **-DisableRule**.
+Hello Aggiungi avviso cmdlet Aggiorna regola hello anche se per hello proprietà specificato esiste già una regola di avviso. toodisable una regola di avviso, includere il parametro hello **- DisableRule**.
 
 ## <a name="get-a-list-of-available-metrics-for-alerts"></a>Acquisizione di un elenco delle metriche disponibili per gli avvisi
-Usare il cmdlet `Get-AzureRmMetricDefinition` per visualizzare l'elenco di tutte le metriche per una specifica risorsa.
+È possibile utilizzare hello `Get-AzureRmMetricDefinition` cmdlet tooview hello elenco tutte le metriche per una risorsa specifica.
 
 ```PowerShell
 Get-AzureRmMetricDefinition -ResourceId <resource_id>
 ```
 
-L'esempio seguente genera una tabella con la metrica Name e il  relativo valore Unit.
+Hello esempio seguente genera una tabella con nome metrica di hello e hello unità per tale.
 
 ```PowerShell
 Get-AzureRmMetricDefinition -ResourceId <resource_id> | Format-Table -Property Name,Unit
@@ -202,30 +202,30 @@ Un elenco completo delle opzioni disponibili per `Get-AzureRmMetricDefinition` s
 
 ## <a name="create-and-manage-autoscale-settings"></a>Creazione e gestione delle impostazioni di scalabilità automatica
 Una risorsa, ad esempio un'app Web, una macchina virtuale, un servizio cloud o un set di scalabilità di macchine virtuali, può avere una sola impostazione di scalabilità automatica configurata.
-Tuttavia, ogni impostazione di scalabilità automatica può includere diversi profili. Ad esempio, un profilo di scalabilità in base alle prestazioni e un altro profilo basato sulla pianificazione. Ogni profilo può avere più regole associate configurate. Per altre informazioni sulla scalabilità automatica, vedere [Come configurare la scalabilità automatica di un servizio cloud](../cloud-services/cloud-services-how-to-scale.md).
+Tuttavia, ogni impostazione di scalabilità automatica può includere diversi profili. Ad esempio, un profilo di scalabilità in base alle prestazioni e un altro profilo basato sulla pianificazione. Ogni profilo può avere più regole associate configurate. Per ulteriori informazioni sulla scalabilità automatica, vedere [come un'applicazione tooAutoscale](../cloud-services/cloud-services-how-to-scale.md).
 
-Ecco i passaggi da utilizzare:
+Ecco i passaggi di hello che verrà utilizzato:
 
 1. Creare le regole.
-2. Creare i profili eseguendo il mapping delle regole create in precedenza.
+2. Creare profili hello mapping regole creata in precedenza toohello profili.
 3. Facoltativo: creare notifiche per la scalabilità automatica configurando le proprietà di webhook e posta elettronica.
-4. Creare un'impostazione di scalabilità automatica con un nome per la risorsa di destinazione associando profili e notifiche creati nei passaggi precedenti.
+4. Creare un'impostazione di scalabilità automatica con un nome sulla risorsa di destinazione hello eseguendo il mapping di profili di hello e notifiche creato nei passaggi precedenti hello.
 
-Gli esempi seguenti illustrano come creare un'impostazione di scalabilità automatica per un set di scalabilità di macchine virtuali per un sistema operativo Windows in base alla metrica di utilizzo della CPU.
+Hello esempi seguenti si illustra come creare un'impostazione di scalabilità automatica per un Set di scalabilità macchina virtuale per un sistema operativo Windows basato mediante la metrica di utilizzo della CPU hello.
 
-Per prima cosa, creare una regola per aumentare il numero di istanze, con un incremento del numero di istanze.
+Innanzitutto, creare una regola tooscale in orizzontale, con un aumento del numero di istanza.
 
 ```PowerShell
 $rule1 = New-AzureRmAutoscaleRule -MetricName "Percentage CPU" -MetricResourceId /subscriptions/s1/resourceGroups/big2/providers/Microsoft.Compute/virtualMachineScaleSets/big2 -Operator GreaterThan -MetricStatistic Average -Threshold 60 -TimeGrain 00:01:00 -TimeWindow 00:10:00 -ScaleActionCooldown 00:10:00 -ScaleActionDirection Increase -ScaleActionValue 1
 ```        
 
-Creare poi una regola per ridurre il numero di istanze, con una diminuzione di una istanza.
+Successivamente, creare una regola tooscale, con una riduzione del numero di istanza.
 
 ```PowerShell
 $rule2 = New-AzureRmAutoscaleRule -MetricName "Percentage CPU" -MetricResourceId /subscriptions/s1/resourceGroups/big2/providers/Microsoft.Compute/virtualMachineScaleSets/big2 -Operator GreaterThan -MetricStatistic Average -Threshold 30 -TimeGrain 00:01:00 -TimeWindow 00:10:00 -ScaleActionCooldown 00:10:00 -ScaleActionDirection Decrease -ScaleActionValue 1
 ```
 
-A questo punto, creare un profilo per le regole.
+Quindi, creare un profilo per le regole di hello.
 
 ```PowerShell
 $profile1 = New-AzureRmAutoscaleProfile -DefaultCapacity 2 -MaximumCapacity 10 -MinimumCapacity 2 -Rules $rule1,$rule2 -Name "My_Profile"
@@ -237,13 +237,13 @@ Creare una proprietà webhook.
 $webhook_scale = New-AzureRmAutoscaleWebhook -ServiceUri "https://example.com?mytoken=mytokenvalue"
 ```
 
-Creare la proprietà di notifica per l'impostazione di scalabilità automatica, tra cui posta elettronica e webhook create in precedenza.
+Creare la proprietà di notifica di hello per l'impostazione di scalabilità automatica hello, inclusa la posta elettronica e hello webhook creato in precedenza.
 
 ```PowerShell
 $notification1= New-AzureRmAutoscaleNotification -CustomEmails ashwink@microsoft.com -SendEmailToSubscriptionAdministrators SendEmailToSubscriptionCoAdministrators -Webhooks $webhook_scale
 ```
 
-Infine, creare l'impostazione di scalabilità automatica da aggiungere al profilo appena creato.
+Creare infine hello scalabilità automatica impostazione tooadd hello profilo creato in precedenza.
 
 ```PowerShell
 Add-AzureRmAutoscaleSetting -Location "East US" -Name "MyScaleVMSSSetting" -ResourceGroup big2 -TargetResourceId /subscriptions/s1/resourceGroups/big2/providers/Microsoft.Compute/virtualMachineScaleSets/big2 -AutoscaleProfiles $profile1 -Notifications $notification1
@@ -252,13 +252,13 @@ Add-AzureRmAutoscaleSetting -Location "East US" -Name "MyScaleVMSSSetting" -Reso
 Per altre informazioni sulla gestione delle impostazioni di scalabilità automatica, vedere [Get-AutoscaleSetting](https://msdn.microsoft.com/library/mt282461.aspx).
 
 ## <a name="autoscale-history"></a>Cronologia di scalabilità automatica
-Il seguente esempio illustra come visualizzare gli eventi di scalabilità automatica e avviso recenti. Usare la ricerca dei registri attività per consultare la cronologia di scalabilità automatica.
+Hello seguente esempio viene illustrato come visualizzare gli eventi di ridimensionamento automatico e avviso recente. Utilizzare hello attività tooview hello scalabilità automatica cronologia di ricerca.
 
 ```PowerShell
 Get-AzureRmLog -Caller "Microsoft.Insights/autoscaleSettings" -DetailedOutput -StartTime 2015-03-01
 ```
 
-È possibile usare il cmdlet `Get-AzureRmAutoScaleHistory` per recuperare la cronologia di scalabilità automatica.
+È possibile utilizzare hello `Get-AzureRmAutoScaleHistory` cmdlet tooretrieve cronologia scalabilità.
 
 ```PowerShell
 Get-AzureRmAutoScaleHistory -ResourceId /subscriptions/s1/resourceGroups/myrg1/providers/microsoft.insights/autoscalesettings/myScaleSetting -StartTime 2016-03-15 -DetailedOutput
@@ -267,32 +267,32 @@ Get-AzureRmAutoScaleHistory -ResourceId /subscriptions/s1/resourceGroups/myrg1/p
 Per altre informazioni, vedere [Get-AutoscaleHistory](https://msdn.microsoft.com/library/mt282464.aspx).
 
 ### <a name="view-details-for-an-autoscale-setting"></a>Visualizzazione dei dettagli per un'impostazione di scalabilità automatica
-È possibile usare il cmdlet `Get-Autoscalesetting` per recuperare altre informazioni sull'impostazione di scalabilità automatica.
+È possibile utilizzare hello `Get-Autoscalesetting` cmdlet tooretrieve ulteriori informazioni sull'impostazione di scalabilità automatica hello.
 
-L'esempio seguente mostra dettagli su tutte le impostazioni di scalabilità automatica nel gruppo di risorse 'myrg1'.
+Hello esempio seguente mostra informazioni dettagliate su tutte le impostazioni di scalabilità automatica nel gruppo di risorse hello 'myrg1'.
 
 ```PowerShell
 Get-AzureRmAutoscalesetting -ResourceGroup myrg1 -DetailedOutput
 ```
 
-L'esempio seguente mostra i dettagli su tutte le impostazioni di scalabilità automatica nel gruppo di risorse 'myrg1' e in particolare l'impostazione di scalabilità automatica denominata 'MyScaleVMSSSetting'.
+Hello esempio seguente mostra i dettagli di tutte le impostazioni di scalabilità automatica nel gruppo di risorse hello 'myrg1' e in particolare hello denominato 'MyScaleVMSSSetting' impostazione di scalabilità automatica.
 
 ```PowerShell
 Get-AzureRmAutoscalesetting -ResourceGroup myrg1 -Name MyScaleVMSSSetting -DetailedOutput
 ```
 
 ### <a name="remove-an-autoscale-setting"></a>Rimozione di un'impostazione di scalabilità automatica
-È possibile usare il cmdlet `Remove-Autoscalesetting` per eliminare un'impostazione di scalabilità automatica.
+È possibile utilizzare hello `Remove-Autoscalesetting` cmdlet toodelete un'impostazione di scalabilità automatica.
 
 ```PowerShell
 Remove-AzureRmAutoscalesetting -ResourceGroup myrg1 -Name MyScaleVMSSSetting
 ```
 
 ## <a name="manage-log-profiles-for-activity-log"></a>Gestione dei profili di log per i registri attività
-È possibile creare un *profilo di log* ed esportare i dati dai registri attività in un account di archiviazione ed è possibile configurare la relativa conservazione dei dati. Facoltativamente, è inoltre possibile trasmettere i dati all'hub eventi. Questa funzionalità attualmente è in anteprima ed è possibile creare solo un profilo di log per ogni sottoscrizione. Per creare e gestire i profili di log, è possibile usare i cmdlet seguenti con la sottoscrizione corrente. È anche possibile scegliere una sottoscrizione specifica. Anche se PowerShell usa la sottoscrizione corrente per impostazione predefinita, è sempre possibile modificarla usando `Set-AzureRmContext`. È possibile configurare i registri attività per indirizzare i dati a qualsiasi account di archiviazione o all'hub eventi all'interno di tale sottoscrizione. I dati sono scritti come file di BLOB in formato JSON.
+È possibile creare un *log profilo* e l'esportazione dei dati da account di archiviazione tooa log attività ed è possibile configurare conservazione dei dati per tale. Facoltativamente, è inoltre possibile trasmettere hello dati tooyour Hub eventi. Questa funzionalità attualmente è in anteprima ed è possibile creare solo un profilo di log per ogni sottoscrizione. È possibile utilizzare hello seguente cmdlet con il toocreate sottoscrizione corrente e gestire i profili di log. È anche possibile scegliere una sottoscrizione specifica. Anche se la sottoscrizione corrente toohello impostazioni predefinite di PowerShell è sempre possibile modificare tale tramite `Set-AzureRmContext`. È possibile configurare l'account di archiviazione tooany dati tooroute log attività o l'Hub di eventi all'interno di tale sottoscrizione. I dati sono scritti come file di BLOB in formato JSON.
 
 ### <a name="get-a-log-profile"></a>Acquisizione di un profilo di log
-Per recuperare i profili di log esistenti, usare il cmdlet `Get-AzureRmLogProfile` .
+toofetch i profili di log esistente, utilizzare hello `Get-AzureRmLogProfile` cmdlet.
 
 ### <a name="add-a-log-profile-without-data-retention"></a>Aggiunta di un profilo di log senza conservazione dei dati
 ```PowerShell
@@ -305,21 +305,21 @@ Remove-AzureRmLogProfile -name my_log_profile_s1
 ```
 
 ### <a name="add-a-log-profile-with-data-retention"></a>Aggiunta di un profilo di log con conservazione dei dati
-È possibile specificare la proprietà **-RetentionInDays** con il numero di giorni, sotto forma di numero intero positivo, per i quali i dati vengono conservati.
+È possibile specificare hello **- RetentionInDays** proprietà con hello numero di giorni, come un numero intero positivo, in cui i dati di hello verranno mantenuti.
 
 ```PowerShell
 Add-AzureRmLogProfile -Name my_log_profile_s1 -StorageAccountId /subscriptions/s1/resourceGroups/myrg1/providers/Microsoft.Storage/storageAccounts/my_storage -Locations global,westus,eastus,northeurope,westeurope,eastasia,southeastasia,japaneast,japanwest,northcentralus,southcentralus,eastus2,centralus,australiaeast,australiasoutheast,brazilsouth,centralindia,southindia,westindia -RetentionInDays 90
 ```
 
 ### <a name="add-log-profile-with-retention-and-eventhub"></a>Aggiunta di un profilo di log con conservazione e hub di eventi
-Oltre a instradare i dati a un account di archiviazione, è anche possibile trasmetterli all'hub eventi. In questa versione di anteprima, la configurazione dell'account di archiviazione è obbligatoria, mentre quella dell’hub di eventi è facoltativo.
+In aggiunta toorouting account toostorage di dati, è possibile anche trasmetterlo tramite flusso tooan Hub eventi. Si noti che in questa versione di anteprima release e hello configurazione di account di archiviazione è obbligatorio ma configurazione Hub eventi è facoltativa.
 
 ```PowerShell
 Add-AzureRmLogProfile -Name my_log_profile_s1 -StorageAccountId /subscriptions/s1/resourceGroups/myrg1/providers/Microsoft.Storage/storageAccounts/my_storage -serviceBusRuleId /subscriptions/s1/resourceGroups/Default-ServiceBus-EastUS/providers/Microsoft.ServiceBus/namespaces/mytestSB/authorizationrules/RootManageSharedAccessKey -Locations global,westus,eastus,northeurope,westeurope,eastasia,southeastasia,japaneast,japanwest,northcentralus,southcentralus,eastus2,centralus,australiaeast,australiasoutheast,brazilsouth,centralindia,southindia,westindia -RetentionInDays 90
 ```
 
 ## <a name="configure-diagnostics-logs"></a>Configurazione dei log di diagnostica
-Molti servizi di Azure fornisce log e dati di telemetria aggiuntivi che possono essere configurati per salvare i dati nell'account di Archiviazione di Azure, inviare dati all'hub eventi e/o inviare dati a un'area di lavoro di Log Analytics di OMS. Tale operazione può essere eseguita solo a livello di risorse e l'account di archiviazione o l'hub eventi deve essere presente nella stessa area come risorsa di destinazione in cui viene configurata l'impostazione di diagnostica.
+Molti servizi di Azure forniscono i log e dati di telemetria che possono essere dati toosave configurata nell'account di archiviazione di Azure, inviare tooEvent hub e/o inviati tooan dell'area di lavoro OMS Log Analitica. Tale operazione può essere eseguita solo a un livello di risorse e hub di eventi o di account di archiviazione hello devono essere presenti in hello stessa area risorse di destinazione hello in hello diagnostica è configurata.
 
 ### <a name="get-diagnostic-setting"></a>Acquisizione dell’impostazione di diagnostica
 ```PowerShell

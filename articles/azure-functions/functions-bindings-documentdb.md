@@ -1,6 +1,6 @@
 ---
-title: Binding di Azure Cosmos DB in Funzioni di Azure | Documentazione Microsoft
-description: Informazioni su come usare i binding di Azure Cosmos DB in Funzioni di Azure.
+title: associazioni di funzioni Cosmos DB aaaAzure | Documenti Microsoft
+description: Comprendere come associazioni Azure Cosmos DB toouse nelle funzioni di Azure.
 services: functions
 documentationcenter: na
 author: christopheranderson
@@ -16,48 +16,48 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 04/18/2016
 ms.author: glenga
-ms.openlocfilehash: de95b0591eb95e76dbb7ba2382e9e14e1f66cda1
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 76b89e8296db1dd28dff9528903b1f6a28f55232
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-functions-cosmos-db-bindings"></a>Binding di Azure Cosmos DB in Funzioni di Azure
 [!INCLUDE [functions-selector-bindings](../../includes/functions-selector-bindings.md)]
 
-Questo articolo illustra come configurare e scrivere il codice di associazioni di Azure Cosmos DB in Funzioni di Azure. Funzioni di Azure supporta le associazioni di input e output per Cosmos DB.
+Questo articolo viene illustrato come associazioni di Azure Cosmos DB tooconfigure e codice nelle funzioni di Azure. Funzioni di Azure supporta le associazioni di input e output per Cosmos DB.
 
 [!INCLUDE [intro](../../includes/functions-bindings-intro.md)]
 
-Per altre informazioni su Cosmos DB, vedere [Introduzione a Cosmos DB](../documentdb/documentdb-introduction.md) e [Compilare un'applicazione console Cosmos DB](../documentdb/documentdb-get-started.md).
+Per ulteriori informazioni su Cosmos DB, vedere [introduzione tooCosmos DB](../documentdb/documentdb-introduction.md) e [compilare un'applicazione console Cosmos DB](../documentdb/documentdb-get-started.md).
 
 <a id="docdbinput"></a>
 
 ## <a name="documentdb-api-input-binding"></a>Binding di input dell'API DocumentDB
-Il binding di input di DocumentDB recupera un documento di DocumentDB e lo passa al parametro di input denominato della funzione. L'ID documento può essere determinato in base al trigger che richiama la funzione. 
+associazione di input API DocumentDB Hello recupera un documento DB Cosmos e passa toohello denominato parametro di input della funzione hello. documento Hello che ID può essere determinato in base hello trigger che richiama la funzione hello. 
 
-Il binding di input di DocumentDB presenta le seguenti proprietà *function.json*:
+associazione di input API DocumentDB Hello è hello seguenti proprietà in *function.json*:
 
-- `name`: nome dell'identificatore usato nel codice della funzione per il documento
-- `type`: deve essere impostato su "documentdb"
-- `databaseName`: database che contiene il documento
-- `collectionName`: raccolta che contiene il documento
-- `id` : ID del documento da recuperare. Questa proprietà supporta i parametri di associazione. Vedere [Associare le proprietà di input personalizzate in un'espressione di associazione](functions-triggers-bindings.md#bind-to-custom-input-properties-in-a-binding-expression) nell'articolo [Concetti di Trigger e associazioni di Funzioni di Azure](functions-triggers-bindings.md).
-- `sqlQuery`: una query SQL di Cosmos DB utilizzata per il recupero di più documenti. La query supporta le associazioni di runtime. Ad esempio: `SELECT * FROM c where c.departmentId = {departmentId}`
-- `connection`: il nome dell'impostazione dell'app contenente la stringa di connessione di Cosmos DB
-- `direction`: deve essere impostato su `"in"`.
+- `name`: Nome identificatore nel codice di funzione per il documento hello
+- `type`: deve essere impostato troppo "documentdb"
+- `databaseName`: database hello contenente il documento hello
+- `collectionName`: raccolta hello contenente il documento hello
+- `id`: Id di hello documento tooretrieve hello. Questa proprietà supporta i parametri di binding. vedere [associare le proprietà di input toocustom in un'espressione di associazione](functions-triggers-bindings.md#bind-to-custom-input-properties-in-a-binding-expression) nell'articolo hello [trigger funzioni di Azure e i concetti di associazioni](functions-triggers-bindings.md).
+- `sqlQuery`: una query SQL di Cosmos DB utilizzata per il recupero di più documenti. query Hello supporta le associazioni di runtime. Ad esempio: `SELECT * FROM c where c.departmentId = {departmentId}`
+- `connection`: nome hello dell'impostazione di app di hello contenente la stringa di connessione Cosmos DB
+- `direction`: deve essere impostato troppo`"in"`.
 
-Le proprietà `id` e `sqlQuery` non possono essere entrambe specificate. Se non si specifica `id` né `sqlQuery`, viene recuperata l'intera raccolta.
+proprietà Hello `id` e `sqlQuery` non possono essere specificati. Se non si specifica `id` né `sqlQuery` è impostata, hello intero insieme viene recuperato.
 
 ## <a name="using-a-documentdb-api-input-binding"></a>Usare un binding di input dell'API DocumentDB
 
-* Nelle funzioni C# e F#, quando la funzione termina correttamente, le modifiche apportate al documento di input tramite i parametri di input denominati vengono rese automaticamente persistenti. 
-* Nelle funzioni di JavaScript gli aggiornamenti non vengono eseguiti automaticamente al termine della funzione. Per eseguire gli aggiornamenti usare invece `context.bindings.<documentName>In` e `context.bindings.<documentName>Out`. Vedere l'[esempio di JavaScript](#injavascript).
+* In c# e funzioni F # quando si esce dalla funzione hello correttamente, tutte le modifiche apportate toohello documento di input tramite parametri di input denominati vengono rese automaticamente persistenti. 
+* Nelle funzioni di JavaScript gli aggiornamenti non vengono eseguiti automaticamente al termine della funzione. Utilizzare invece `context.bindings.<documentName>In` e `context.bindings.<documentName>Out` toomake aggiornamenti. Vedere hello [esempio JavaScript](#injavascript).
 
 <a name="inputsample"></a>
 
 ## <a name="input-sample-for-single-document"></a>Esempio di input per il singolo documento
-Si supponga di avere il seguente binding di input dell'API DocumentDB nella matrice `bindings` di function.json:
+Si supponga di avere seguito hello API DocumentDB input associazione in hello `bindings` matrice function.json:
 
 ```json
 {
@@ -71,7 +71,7 @@ Si supponga di avere il seguente binding di input dell'API DocumentDB nella matr
 }
 ```
 
-Vedere l'esempio specifico del linguaggio che usa questa associazione di input per aggiornare il valore di testo del documento.
+Vedere l'esempio specifico del linguaggio hello che utilizza il valore di testo del documento l'associazione di input tooupdate hello.
 
 * [C#](#incsharp)
 * [F#](#infsharp)
@@ -98,7 +98,7 @@ let Run(myQueueItem: string, inputDocument: obj) =
   inputDocument?text <- "This has changed."
 ```
 
-Per questo esempio è necessario un file `project.json` che specifichi le dipendenze NuGet `FSharp.Interop.Dynamic` e `Dynamitey`:
+Questo esempio è necessario un `project.json` file che specifica hello `FSharp.Interop.Dynamic` e `Dynamitey` le dipendenze di NuGet:
 
 ```json
 {
@@ -113,7 +113,7 @@ Per questo esempio è necessario un file `project.json` che specifichi le dipend
 }
 ```
 
-Per aggiungere un file `project.json`, vedere l'argomento relativo alla [gestione dei pacchetti F #](functions-reference-fsharp.md#package).
+tooadd un `project.json` file, vedere [gestione dei pacchetti di F #](functions-reference-fsharp.md#package).
 
 <a name="injavascript"></a>
 
@@ -130,9 +130,9 @@ module.exports = function (context) {
 
 ## <a name="input-sample-with-multiple-documents"></a>Esempio di input con più documenti
 
-Si supponga che si desideri recuperare più documenti specificati da una query SQL, mediante un trigger di coda per personalizzare i parametri di query. 
+Si supponga che si desiderano tooretrieve più documenti specificati da una query SQL, utilizzando i parametri di query una coda trigger toocustomize hello. 
 
-In questo esempio, il trigger di coda offre un parametro `departmentId`. Un messaggio di coda `{ "departmentId" : "Finance" }` restituirà tutti i record per il reparto finanziario. Usare il codice seguente in *function.json*:
+In questo esempio, i trigger di coda hello fornisce un parametro `departmentId`. Un messaggio nella coda di `{ "departmentId" : "Finance" }` restituisce tutti i record per il reparto di contabilità hello. Utilizzare la seguente hello in *function.json*:
 
 ```
 {
@@ -177,30 +177,30 @@ module.exports = function (context, input) {
 ```
 
 ## <a id="docdboutput"></a>Binding di output dell'API DocumentDB
-Il binding di output dell'API DocumentDB consente di scrivere un nuovo documento in un database di Azure Cosmos DB. In *function.json* ha le proprietà seguenti:
+l'associazione consente di scrivere un nuovo database di Azure Cosmos DB tooan documento di output Hello API DocumentDB. Ha hello seguenti proprietà in *function.json*:
 
-- `name`: nome dell'identificatore usato nel codice della funzione per il nuovo documento
-- `type`: deve essere impostato su `"documentdb"`
-- `databaseName` : database contenente la raccolta in cui verrà creato il nuovo documento.
-- `collectionName` : raccolta in cui verrà creato il nuovo documento.
-- `createIfNotExists`: valore booleano che indica se la raccolta viene creata quando non esiste. Il valore predefinito è *false*. Il motivo è che le nuove raccolte vengono create con una velocità effettiva riservata, che ha implicazioni in termini di prezzi. Per altre informazioni, visitare la [pagina dei prezzi](https://azure.microsoft.com/pricing/details/documentdb/).
-- `connection`: il nome dell'impostazione dell'app contenente la stringa di connessione di Cosmos DB
-- `direction`: deve essere impostato su `"out"`
+- `name`: Identificatore utilizzato nel codice di funzione per il nuovo documento hello
+- `type`: deve essere impostato troppo`"documentdb"`
+- `databaseName`: database hello contenente hello raccolta in cui verrà creato il nuovo documento di hello.
+- `collectionName`: hello raccolta in cui verrà creato il nuovo documento di hello.
+- `createIfNotExists`: Un valore booleano tooindicate se verrà creato l'insieme di hello se non esiste. valore predefinito di Hello è *false*. Hello motivo relativo a questa nuova le raccolte vengono create con velocità effettiva riservata con prezzi implicazioni. Per ulteriori informazioni, visitare hello [pagina dei prezzi](https://azure.microsoft.com/pricing/details/documentdb/).
+- `connection`: nome hello dell'impostazione di app di hello contenente la stringa di connessione Cosmos DB
+- `direction`: deve essere impostato troppo`"out"`
 
 ## <a name="using-a-documentdb-api-output-binding"></a>Usare un binding di output dell'API DocumentDB
-Questa sezione illustra come usare il binding di output dell'API DocumentDB nel codice di funzione.
+In questa sezione viene illustrato come toouse l'API DocumentDB output associazione nel codice di funzione.
 
-Quando si scrive per il parametro di output nella funzione, per impostazione predefinita viene generato un nuovo documento nel database con un GUID generato automaticamente come ID documento. È possibile specificare l'ID documento del documento di output specificando la proprietà JSON `id` nel parametro di output. 
+Quando si scrive il parametro di output toohello nella funzione, per impostazione predefinita, che viene generato un nuovo documento nel database, con un GUID generato automaticamente come hello documento ID. È possibile specificare l'ID documento hello del documento di output specificando hello `id` proprietà JSON in hello parametro di output. 
 
 >[!Note]  
->Quando si specifica l'ID di un documento esistente, questo viene sovrascritto dal nuovo documento di output. 
+>Quando si specifica l'ID di hello di un documento esistente, si ottiene sovrascritto dal nuovo documento di output hello. 
 
-Per visualizzare più documenti, è anche possibile definire l'associazione a `ICollector<T>` o `IAsyncCollector<T>` dove `T` è uno dei tipi supportati.
+toooutput più documenti, è anche possibile associare troppo`ICollector<T>` o `IAsyncCollector<T>` dove `T` è uno dei tipi di hello è supportato.
 
 <a name="outputsample"></a>
 
 ## <a name="documentdb-api-output-binding-sample"></a>Esempio di binding di output dell'API DocumentDB
-Si supponga di avere la seguente associazione di output dell'API DocumentDB nella matrice `bindings` di function.json:
+Si supponga di avere seguito hello API DocumentDB output associazione in hello `bindings` matrice function.json:
 
 ```json
 {
@@ -214,7 +214,7 @@ Si supponga di avere la seguente associazione di output dell'API DocumentDB nell
 }
 ```
 
-Ed è disponibile un'associazione di input di coda per una coda che riceve JSON nel formato seguente:
+E si dispone di un'associazione di input di coda per una coda che riceve JSON in hello seguente formato:
 
 ```json
 {
@@ -224,7 +224,7 @@ Ed è disponibile un'associazione di input di coda per una coda che riceve JSON 
 }
 ```
 
-Si vuole creare documenti di Cosmos DB nel formato seguente per ogni record:
+E si desidera toocreate DB Cosmos documenti nel seguente formato per ogni record hello:
 
 ```json
 {
@@ -235,7 +235,7 @@ Si vuole creare documenti di Cosmos DB nel formato seguente per ogni record:
 }
 ```
 
-Vedere l'esempio specifico del linguaggio che usa questa associazione di output per aggiungere i documenti al database.
+Vedere l'esempio specifico del linguaggio hello che utilizza il database tooyour di documenti tooadd di associazione di output.
 
 * [C#](#outcsharp)
 * [F#](#outfsharp)
@@ -292,7 +292,7 @@ let Run(myQueueItem: string, employeeDocument: byref<obj>, log: TraceWriter) =
       address = employee?address }
 ```
 
-Per questo esempio è necessario un file `project.json` che specifichi le dipendenze NuGet `FSharp.Interop.Dynamic` e `Dynamitey`:
+Questo esempio è necessario un `project.json` file che specifica hello `FSharp.Interop.Dynamic` e `Dynamitey` le dipendenze di NuGet:
 
 ```json
 {
@@ -307,7 +307,7 @@ Per questo esempio è necessario un file `project.json` che specifichi le dipend
 }
 ```
 
-Per aggiungere un file `project.json`, vedere l'argomento relativo alla [gestione dei pacchetti F #](functions-reference-fsharp.md#package).
+tooadd un `project.json` file, vedere [gestione dei pacchetti di F #](functions-reference-fsharp.md#package).
 
 <a name="outjavascript"></a>
 

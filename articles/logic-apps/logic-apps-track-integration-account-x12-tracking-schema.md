@@ -1,6 +1,6 @@
 ---
-title: Schemi di rilevamento X12 per il monitoraggio B2B - App per la logica di Azure | Documentazione Microsoft
-description: Utilizzare gli schemi di rilevamento X12 per il monitoraggio dei messaggi B2B dalle transazioni nell'account di integrazione di Azure.
+title: gli schemi di rilevamento aaaX12 per il monitoraggio B2B - App Azure per la logica | Documenti Microsoft
+description: Utilizzare X12 rilevamento dei messaggi B2B toomonitor schemi dalle transazioni nell'Account di integrazione di Azure.
 author: padmavc
 manager: anneta
 editor: 
@@ -15,14 +15,14 @@ ms.topic: article
 ms.date: 01/27/2017
 ms.author: LADocs; padmavc
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 3782c0a76ea8728a146b3d73774f74c31187cbfd
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ed1b338730214dcae12c367ebff025d7122328fe
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="start-or-enable-tracking-of-x12-messages-to-monitor-success-errors-and-message-properties"></a>Avviare o attivare il rilevamento dei messaggi X12 per monitorare il completamento dell'operazione, gli errori e le proprietà dei messaggi
-È possibile usare questi schemi di rilevamento X12 nell'account di integrazione di Azure per monitorare le transazioni business-to-business (B2B):
+# <a name="start-or-enable-tracking-of-x12-messages-toomonitor-success-errors-and-message-properties"></a>Inizio o abilitare il rilevamento di X12 messaggi toomonitor successo, errori e le proprietà del messaggio
+È possibile utilizzare questi schemi di rilevamento X12 in toohelp di account l'integrazione di Azure è monitorare le transazioni di business-to-business (B2B):
 
 * Schema di rilevamento X12 per set di transazioni
 * Schema di rilevamento X12 per acknowledgement di set di transazioni
@@ -68,18 +68,18 @@ ms.lasthandoff: 07/11/2017
 | senderIdentifier | String | Invia l'identificatore del partner. (Obbligatoria) |
 | receiverQualifier | String | Riceve il qualificatore del partner. (Obbligatoria) |
 | receiverIdentifier | string | Riceve l'identificatore del partner. (Obbligatoria) |
-| agreementName | String | Nome del contratto X12 in base al quale vengono risolti i messaggi. (Facoltativa) |
-| direction | Enum | Direzione del flusso dei messaggi, ricezione o invio. (Obbligatoria) |
+| agreementName | String | Nome di messaggi hello toowhich di accordo X12 hello vengono risolti. Facoltativa |
+| direction | Enum | Direzione del flusso di messaggi hello, ricezione o trasmissione. Obbligatoria |
 | interchangeControlNumber | String | Numero di controllo interscambio. (Facoltativa) |
 | functionalGroupControlNumber | String | Numero di controllo funzionale. (Facoltativa) |
 | transactionSetControlNumber | String | Numero di controllo set transazioni. (Facoltativa) |
 | CorrelationMessageId | String | ID messaggio di correlazione. Una combinazione di {AgreementName}{*GroupControlNumber*}{TransactionSetControlNumber}. (Facoltativa) |
 | messageType | string | Set di transazioni o tipo di documento. (Facoltativa) |
-| isMessageFailed | Boolean | Indica se il messaggio X12 non è riuscito. (Obbligatoria) |
-| isTechnicalAcknowledgmentExpected | Boolean | Indica se l'acknowledgement tecnico è configurato nel contratto X12. (Obbligatoria) |
-| isFunctionalAcknowledgmentExpected | Boolean | Indica se l'acknowledgement funzionale è configurato nel contratto X12. (Obbligatoria) |
-| needAk2LoopForValidMessages | Boolean | Indica se il ciclo AK2 è necessario per un messaggio valido. (Obbligatoria) |
-| segmentsCount | Integer | Numero di segmenti nel set di transazioni X12. (Facoltativa) |
+| isMessageFailed | Boolean | Se il messaggio hello X12 non è riuscita. Obbligatoria |
+| isTechnicalAcknowledgmentExpected | Boolean | Riconoscimento tecnico hello se è configurato nel contratto X12 hello. Obbligatoria |
+| isFunctionalAcknowledgmentExpected | Boolean | Riconoscimento funzionale hello se è configurato nel contratto X12 hello. Obbligatoria |
+| needAk2LoopForValidMessages | Boolean | Indica se il ciclo AK2 hello è obbligatorio per un messaggio valido. Obbligatoria |
+| segmentsCount | Integer | Numero di segmenti nel set di transazioni X12 hello. Facoltativa |
 
 ## <a name="x12-transaction-set-acknowledgement-tracking-schema"></a>Schema di rilevamento X12 per acknowledgement di set di transazioni
 ````java
@@ -123,24 +123,24 @@ ms.lasthandoff: 07/11/2017
 | senderIdentifier | String | Invia l'identificatore del partner. (Obbligatoria) |
 | receiverQualifier | String | Riceve il qualificatore del partner. (Obbligatoria) |
 | receiverIdentifier | string | Riceve l'identificatore del partner. (Obbligatoria) |
-| agreementName | String | Nome del contratto X12 in base al quale vengono risolti i messaggi. (Facoltativa) |
-| direction | Enum | Direzione del flusso dei messaggi, ricezione o invio. (Obbligatoria) |
-| interchangeControlNumber | String | Numero di controllo interscambio dell'acknowledgement funzionale. Il valore viene popolato solo per il lato di invio che ha ricevuto un acknowledgement funzionale per il messaggio inviato al partner. (Facoltativa) |
-| functionalGroupControlNumber | String | Numero di controllo del gruppo funzionale dell'acknowledgement funzionale. Il valore viene popolato solo per il lato di invio che ha ricevuto un acknowledgement funzionale per il messaggio inviato al partner. (Facoltativa) |
-| isaSegment | String | Segmento ISA del messaggio. Il valore viene popolato solo per il lato di invio che ha ricevuto un acknowledgement funzionale per il messaggio inviato al partner. (Facoltativa) |
-| gsSegment | String | Segmento GS del messaggio. Il valore viene popolato solo per il lato di invio che ha ricevuto un acknowledgement funzionale per il messaggio inviato al partner. (Facoltativa) |
+| agreementName | String | Nome di messaggi hello toowhich di accordo X12 hello vengono risolti. Facoltativa |
+| direction | Enum | Direzione del flusso di messaggi hello, ricezione o trasmissione. Obbligatoria |
+| interchangeControlNumber | String | Numero di controllo di riconoscimento funzionale hello interscambio. Valore popola solo per il lato di trasmissione hello in cui è stata ricevuta riconoscimento funzionale per hello toopartner di messaggi inviati. Facoltativa |
+| functionalGroupControlNumber | String | Numero di controllo gruppo funzionale di riconoscimento funzionale hello. Valore popola solo per il lato di trasmissione hello in cui è stata ricevuta riconoscimento funzionale per hello toopartner di messaggi inviati. Facoltativa |
+| isaSegment | String | Segmento ISA di messaggio hello. Valore popola solo per il lato di trasmissione hello in cui è stata ricevuta riconoscimento funzionale per hello toopartner di messaggi inviati. Facoltativa |
+| gsSegment | String | Segmento GS di messaggio hello. Valore popola solo per il lato di trasmissione hello in cui è stata ricevuta riconoscimento funzionale per hello toopartner di messaggi inviati. Facoltativa |
 | respondingfunctionalGroupControlNumber | String | Numero di controllo interscambio di risposta. (Facoltativa) |
-| respondingFunctionalGroupId | string | ID del gruppo funzionale di risposta, che esegue il mapping ad AK101 nell'acknowledgement. (Facoltativa) |
+| respondingFunctionalGroupId | String | Blocca l'ID gruppo funzionale, che esegue il mapping di tooAK101 nel riconoscimento hello. Facoltativa |
 | respondingtransactionSetControlNumber | String | Numero di controllo set transazioni di risposta. (Facoltativa) |
-| respondingTransactionSetId | string | ID del set di transazioni di risposta, che esegue il mapping ad AK201 nell'acknowledgement. (Facoltativa) |
+| respondingTransactionSetId | String | ID, che esegue il mapping tooAK201 nel riconoscimento hello del set di transazioni risponde. Facoltativa |
 | statusCode | Boolean | Codice di stato dell'acknowledgement del set di transazioni. (Obbligatoria) |
 | segmentsCount | Enum | Codice di stato dell'acknowledgement. I valori consentiti sono **Accepted**, **Rejected** e **AcceptedWithErrors**. (Obbligatoria) |
-| processingStatus | Enum | Stato di elaborazione dell'acknowledgement. I valori consentiti sono **Received**, **Generated** e **Sent**. (Obbligatoria) |
+| processingStatus | Enum | Stato di elaborazione di acknowledgement hello. I valori consentiti sono **Received**, **Generated** e **Sent**. (Obbligatoria) |
 | CorrelationMessageId | String | ID messaggio di correlazione. Una combinazione di {AgreementName}{*GroupControlNumber*}{TransactionSetControlNumber}. (Facoltativa) |
-| isMessageFailed | Boolean | Indica se il messaggio X12 non è riuscito. (Obbligatoria) |
-| ak2Segment | string | Acknowledgement per un set di transazioni nel gruppo funzionale ricevuto. (Facoltativa) |
+| isMessageFailed | Boolean | Se il messaggio hello X12 non è riuscita. Obbligatoria |
+| ak2Segment | String | Accettazione di un set di transazioni all'interno di hello ricevuto gruppo funzionale. Facoltativa |
 | ak3Segment | String | Segnala gli errori in un segmento di dati. (Facoltativa) |
-| ak5Segment | string | Indica se il set di transazioni identificato nel segmento AK2 è accettato o rifiutato e il motivo. (Facoltativa) |
+| ak5Segment | String | Segnala se hello set di transazioni identificato nel segmento hello AK2 sono accettata o rifiutata e il motivo. Facoltativa |
 
 ## <a name="x12-interchange-tracking-schema"></a>Schema di rilevamento X12 per interscambio
 ````java
@@ -180,12 +180,12 @@ ms.lasthandoff: 07/11/2017
 | senderIdentifier | String | Invia l'identificatore del partner. (Obbligatoria) |
 | receiverQualifier | String | Riceve il qualificatore del partner. (Obbligatoria) |
 | receiverIdentifier | string | Riceve l'identificatore del partner. (Obbligatoria) |
-| agreementName | String | Nome del contratto X12 in base al quale vengono risolti i messaggi. (Facoltativa) |
-| direction | Enum | Direzione del flusso dei messaggi, ricezione o invio. (Obbligatoria) |
+| agreementName | String | Nome di messaggi hello toowhich di accordo X12 hello vengono risolti. Facoltativa |
+| direction | Enum | Direzione del flusso di messaggi hello, ricezione o trasmissione. Obbligatoria |
 | interchangeControlNumber | String | Numero di controllo interscambio. (Facoltativa) |
 | isaSegment | String | Segmento ISA del messaggio. (Facoltativa) |
-| isTechnicalAcknowledgmentExpected | Boolean | Indica se l'acknowledgement tecnico è configurato nel contratto X12. (Obbligatoria) |
-| isMessageFailed | Boolean | Indica se il messaggio X12 non è riuscito. (Obbligatoria) |
+| isTechnicalAcknowledgmentExpected | Boolean | Riconoscimento tecnico hello se è configurato nel contratto X12 hello. Obbligatoria |
+| isMessageFailed | Boolean | Se il messaggio hello X12 non è riuscita. Obbligatoria |
 | isa09 | string | Data di interscambio del documento X12. (Facoltativa) |
 | isa10 | String | Ora di interscambio del documento X12. (Facoltativa) |
 | isa11 | String | Identificatore standard del controllo di interscambio X12. (Facoltativa) |
@@ -229,12 +229,12 @@ ms.lasthandoff: 07/11/2017
 | senderIdentifier | String | Invia l'identificatore del partner. (Obbligatoria) |
 | receiverQualifier | String | Riceve il qualificatore del partner. (Obbligatoria) |
 | receiverIdentifier | string | Riceve l'identificatore del partner. (Obbligatoria) |
-| agreementName | String | Nome del contratto X12 in base al quale vengono risolti i messaggi. (Facoltativa) |
-| direction | Enum | Direzione del flusso dei messaggi, ricezione o invio. (Obbligatoria) |
-| interchangeControlNumber | string | Numero di controllo interscambio dell'acknowledgement tecnico ricevuto dai partner. (Facoltativa) |
-| isaSegment | String | Segmento ISA per l'acknowledgement tecnico ricevuto dai partner. (Facoltativa) |
-| respondingInterchangeControlNumber |String | Numero di controllo interscambio per l'acknowledgement tecnico ricevuto dai partner. (Facoltativa) |
-| isMessageFailed | Boolean | Indica se il messaggio X12 non è riuscito. (Obbligatoria) |
+| agreementName | String | Nome di messaggi hello toowhich di accordo X12 hello vengono risolti. Facoltativa |
+| direction | Enum | Direzione del flusso di messaggi hello, ricezione o trasmissione. Obbligatoria |
+| interchangeControlNumber | String | Numero di controllo di riconoscimento tecnico hello ricevuti dal partner di interscambio. Facoltativa |
+| isaSegment | String | Segmento ISA per riconoscimento tecnico hello ricevuti dal partner. Facoltativa |
+| respondingInterchangeControlNumber |String | Numero di controllo di riconoscimento tecnico hello ricevuti dal partner di interscambio. Facoltativa |
+| isMessageFailed | Boolean | Se il messaggio hello X12 non è riuscita. Obbligatoria |
 | statusCode | Enum | Codice di stato dell'acknowledgement di interscambio. I valori consentiti sono **Accepted**, **Rejected** e **AcceptedWithErrors**. (Obbligatoria) |
 | processingStatus | Enum | Stato dell'acknowledgement. I valori consentiti sono **Received**, **Generated** e **Sent**. (Obbligatoria) |
 | ta102 | string | Data di interscambio. (Facoltativa) |
@@ -281,14 +281,14 @@ ms.lasthandoff: 07/11/2017
 | senderIdentifier | String | Invia l'identificatore del partner. (Obbligatoria) |
 | receiverQualifier | String | Riceve il qualificatore del partner. (Obbligatoria) |
 | receiverIdentifier | string | Riceve l'identificatore del partner. (Obbligatoria) |
-| agreementName | String | Nome del contratto X12 in base al quale vengono risolti i messaggi. (Facoltativa) |
-| direction | Enum | Direzione del flusso dei messaggi, ricezione o invio. (Obbligatoria) |
+| agreementName | String | Nome di messaggi hello toowhich di accordo X12 hello vengono risolti. Facoltativa |
+| direction | Enum | Direzione del flusso di messaggi hello, ricezione o trasmissione. Obbligatoria |
 | interchangeControlNumber | String | Numero di controllo interscambio. (Facoltativa) |
 | functionalGroupControlNumber | String | Numero di controllo funzionale. (Facoltativa) |
 | gsSegment | String | Segmento GS del messaggio. (Facoltativa) |
-| isTechnicalAcknowledgmentExpected | Boolean | Indica se l'acknowledgement tecnico è configurato nel contratto X12. (Obbligatoria) |
-| isFunctionalAcknowledgmentExpected | Boolean | Indica se l'acknowledgement funzionale è configurato nel contratto X12. (Obbligatoria) |
-| isMessageFailed | Boolean | Indica se il messaggio X12 non è riuscito. (Obbligatoria)|
+| isTechnicalAcknowledgmentExpected | Boolean | Riconoscimento tecnico hello se è configurato nel contratto X12 hello. Obbligatoria |
+| isFunctionalAcknowledgmentExpected | Boolean | Riconoscimento funzionale hello se è configurato nel contratto X12 hello. Obbligatoria |
+| isMessageFailed | Boolean | Se il messaggio hello X12 non è riuscita. Obbligatoria|
 | gs01 | String | Codice identificatore funzionale. (Facoltativa) |
 | gs02 | String | Codice del mittente dell'applicazione. (Facoltativa) |
 | gs03 | String | Codice del ricevitore dell'applicazione. (Facoltativa) |
@@ -335,24 +335,24 @@ ms.lasthandoff: 07/11/2017
 | senderIdentifier | String | Invia l'identificatore del partner. (Obbligatoria) |
 | receiverQualifier | String | Riceve il qualificatore del partner. (Obbligatoria) |
 | receiverIdentifier | string | Riceve l'identificatore del partner. (Obbligatoria) |
-| agreementName | String | Nome del contratto X12 in base al quale vengono risolti i messaggi. (Facoltativa) |
-| direction | Enum | Direzione del flusso dei messaggi, ricezione o invio. (Obbligatoria) |
-| interchangeControlNumber | string | Numero di controllo interscambio, che viene popolato per il lato di invio quando un acknowledgement tecnico viene ricevuto dai partner. (Facoltativa) |
-| functionalGroupControlNumber | string | Numero di controllo gruppo funzionale dell'acknowledgement tecnico, che viene popolato per il lato di invio quando un acknowledgement tecnico viene ricevuto dai partner. (Facoltativa) |
+| agreementName | String | Nome di messaggi hello toowhich di accordo X12 hello vengono risolti. Facoltativa |
+| direction | Enum | Direzione del flusso di messaggi hello, ricezione o trasmissione. Obbligatoria |
+| interchangeControlNumber | String | Numero di controllo interscambio popola per hello lato di trasmissione quando viene ricevuto un riconoscimento tecnico dai partner. Facoltativa |
+| functionalGroupControlNumber | String | Numero di controllo gruppo funzionale di riconoscimento tecnico hello, che popola per hello lato di trasmissione quando viene ricevuto un riconoscimento tecnico dai partner. Facoltativa |
 | isaSegment | String | Come il numero di controllo interscambio, ma viene popolato solo in casi specifici. (Facoltativa) |
 | gsSegment | String | Come il numero di controllo gruppo funzionale, ma viene popolato solo in casi specifici. (Facoltativa) |
-| respondingfunctionalGroupControlNumber | string | Numero di controllo del gruppo funzionale originale. (Facoltativa) |
-| respondingFunctionalGroupId | String | Esegue il mapping ad AK101 nell'ID del gruppo funzionale dell'acknowledgement. (Facoltativa) |
-| isMessageFailed | Boolean | Indica se il messaggio X12 non è riuscito. (Obbligatoria) |
+| respondingfunctionalGroupControlNumber | String | Numero di controllo di gruppo funzionale originale hello. Facoltativa |
+| respondingFunctionalGroupId | String | Esegue il mapping tooAK101 in hello riconoscimento funzionale ID del gruppo. Facoltativa |
+| isMessageFailed | Boolean | Se il messaggio hello X12 non è riuscita. Obbligatoria |
 | statusCode | Enum | Codice di stato dell'acknowledgement. I valori consentiti sono **Accepted**, **Rejected** e **AcceptedWithErrors**. (Obbligatoria) |
-| processingStatus | Enum | Stato di elaborazione dell'acknowledgement. I valori consentiti sono **Received**, **Generated** e **Sent**. (Obbligatoria) |
+| processingStatus | Enum | Stato di elaborazione di acknowledgement hello. I valori consentiti sono **Received**, **Generated** e **Sent**. (Obbligatoria) |
 | ak903 | string | Numero di set transazioni ricevuti. (Facoltativa) |
-| ak904 | String | Numero di set di transazioni accettati nel gruppo funzionale identificato. (Facoltativa) |
-| ak9Segment | String | Indica se il gruppo funzionale identificato nel segmento AK1 è accettato o rifiutato e il motivo. (Facoltativa) |
+| ak904 | String | Numero di set di transazioni accettati nel gruppo funzionale identificato hello. Facoltativa |
+| ak9Segment | String | Se il gruppo funzionale hello identificato nel segmento hello AK1 è accettato o rifiutato e perché. Facoltativa |
 
 ## <a name="next-steps"></a>Passaggi successivi
 * Altre informazioni sul [monitoraggio dei messaggi B2B](logic-apps-monitor-b2b-message.md).
 * Altre informazioni sugli [schemi di rilevamento AS2](../logic-apps/logic-apps-track-integration-account-as2-tracking-schemas.md).
 * Altre informazioni sugli [schemi di rilevamento B2B personalizzati](../logic-apps/logic-apps-track-integration-account-custom-tracking-schema.md).
-* Altre informazioni sul [rilevamento dei messaggi B2B nel portale di Operations Management Suite](../logic-apps/logic-apps-track-b2b-messages-omsportal.md).
-* Altre informazioni su [Enterprise Integration Pack](../logic-apps/logic-apps-enterprise-integration-overview.md).  
+* Informazioni su [rilevamento dei messaggi B2B nel portale di Operations Management Suite hello](../logic-apps/logic-apps-track-b2b-messages-omsportal.md).
+* Altre informazioni su hello [Enterprise Integration Pack](../logic-apps/logic-apps-enterprise-integration-overview.md).  

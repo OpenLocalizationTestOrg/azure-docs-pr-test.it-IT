@@ -1,6 +1,6 @@
 ---
-title: Ridimensionare automaticamente i nodi di calcolo in un pool di Azure Batch | Microsoft Docs
-description: Abilitare il ridimensionamento automatico in un pool cloud per adeguare dinamicamente il numero di nodi di calcolo nel pool.
+title: scala aaaAutomatically nodi di calcolo in un pool di Azure Batch | Documenti Microsoft
+description: "Abilitare la scalabilità automatica in un toodynamically pool cloud regolare il numero di hello di nodi di calcolo nel pool di hello."
 services: batch
 documentationcenter: 
 author: tamram
@@ -15,52 +15,52 @@ ms.workload: multiple
 ms.date: 06/20/2017
 ms.author: tamram
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: f0e49cd8a64a48c53f5b6104703164a597c797f0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b6d1e0c5d8e0e56e15a4d3588150f2466a689f19
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-an-automatic-scaling-formula-for-scaling-compute-nodes-in-a-batch-pool"></a>Creare una formula di scalabilità automatica per la scalabilità dei nodi di calcolo in un pool Batch
 
-Azure Batch supporta la scalabilità automatica dei pool in base ai parametri definiti. Con la scalabilità automatica, Batch aggiunge in modo dinamico nodi a un pool man mano che cresce la richiesta di attività e rimuove i nodi di calcolo in seguito alla riduzione delle richieste. È possibile risparmiare tempo e denaro regolando automaticamente il numero dei nodi di calcolo usati dall'applicazione Batch. 
+Azure Batch supporta la scalabilità automatica dei pool in base ai parametri definiti. Con il ridimensionamento automatico, Batch consente di aggiungere in modo dinamico i nodi tooa pool come attività aumento della richiesta e rimuove i nodi di calcolo come riducono. È possibile salvare tempo e denaro modificando automaticamente il numero di hello dei nodi di calcolo utilizzato dall'applicazione di Batch. 
 
-Per abilitare la scalabilità automatica in un pool di nodi di calcolo, definire e associare al pool una *formula di scalabilità automatica*. Il servizio Batch usa la formula di scalabilità automatica per determinare il numero di nodi di calcolo necessari per eseguire il carico di lavoro. I nodi di calcolo possono essere nodi dedicati o [nodi con priorità bassa](batch-low-pri-vms.md). Batch risponde ai dati delle metriche del servizio raccolti periodicamente. Usando i dati delle metriche, Batch regola il numero di nodi di calcolo nel pool in base alla formula e a un intervallo configurabile.
+Per abilitare la scalabilità automatica in un pool di nodi di calcolo, definire e associare al pool una *formula di scalabilità automatica*. Hello servizio Batch Usa numero di hello toodetermine formula di scalabilità automatica hello dei nodi di calcolo che sono necessari tooexecute il carico di lavoro. I nodi di calcolo possono essere nodi dedicati o [nodi con priorità bassa](batch-low-pri-vms.md). I dati di metrica tooservice raccolti periodicamente di risposta batch. Utilizza i dati di metrica, Batch regola numero hello dei nodi di calcolo nel pool di hello in base a intervalli configurabili e formule.
 
-È possibile abilitare la scalabilità automatica al momento della creazione di un pool o in un pool esistente. Si può anche modificare una formula esistente in un pool configurato per la scalabilità automatica. Batch consente di valutare le formule prima di assegnarle ai pool e di monitorare lo stato delle esecuzioni della scalabilità automatica.
+È possibile abilitare la scalabilità automatica al momento della creazione di un pool o in un pool esistente. Si può anche modificare una formula esistente in un pool configurato per la scalabilità automatica. Batch consente tooevaluate formule prima dell'assegnazione di stato di hello toopools e toomonitor di ridimensionamento automatico viene eseguito.
 
-Questo articolo illustra le diverse entità che costituiranno le formule di scalabilità automatica, tra cui variabili, operatori, operazioni e funzioni. Si scoprirà come ottenere varie metriche relative ad attività e a risorse di calcolo all'interno di Batch. È possibile usare queste metriche per adeguare il numero di nodi del pool in base all'utilizzo delle risorse e allo stato delle attività. Verrà quindi illustrato come costruire una formula e abilitare la scalabilità automatica in un pool con le API REST e .NET per Batch, concludendo con alcune formule di esempio.
+Questo articolo illustra hello varie entità che costituiscono le formule di scalabilità automatica, ad esempio variabili, operatori, operazioni e funzioni. Viene illustrato come tooobtain varie metriche relative a risorse e attività all'interno di Batch di calcolo. È possibile utilizzare questi tooadjust metrica conteggio dei nodi del pool in base allo stato di attività e l'utilizzo della risorsa. È quindi descrivere la modalità tooconstruct una formula e abilitare utilizzando sia la scalabilità in un pool automatico hello Batch REST e le API .NET. concludendo con alcune formule di esempio.
 
 > [!IMPORTANT]
-> Quando si crea un account Batch, è possibile specificare la [configurazione dell'account](batch-api-basics.md#account) che determina se i pool devono essere allocati in una sottoscrizione del servizio Batch (impostazione predefinita) o nella sottoscrizione utente. Se l'account Batch è stato creato con la configurazione del servizio Batch predefinita, l'account è limitato a un numero massimo di core utilizzabili per l'elaborazione. Il servizio Batch gestisce la scalabilità dei nodi di calcolo solo fino al raggiungimento del limite di core. Per questo motivo, il servizio Batch può non raggiungere il numero di nodi di calcolo specificato da una formula di scalabilità automatica. Per informazioni su come visualizzare e aumentare le quote dell'account, vedere [Quote e limiti per il servizio Azure Batch](batch-quota-limit.md) .
+> Quando si crea un account Batch, è possibile specificare hello [configurazione dell'account](batch-api-basics.md#account), che determina se i pool vengono allocati in una sottoscrizione al servizio Batch (impostazione predefinita hello) o nella sottoscrizione utente. Se l'account Batch è stato creato con la configurazione di servizio Batch hello predefinita, l'account è tooa limitato il numero massimo di core che può essere utilizzato per l'elaborazione. servizio Batch Hello Ridimensiona i nodi di calcolo solo backup toothat limite di core. Per questo motivo, hello servizio Batch potrebbe non raggiungere il numero di destinazione hello dei nodi di calcolo specificata da una formula di scalabilità automatica. Vedere [quote e limiti per il servizio Azure Batch hello](batch-quota-limit.md) per informazioni sulla visualizzazione e ad aumentare le quote di account.
 >
->Se l'account è stato creato con la configurazione di sottoscrizione utente, l'account condivide la quota di core per la sottoscrizione. Per altre informazioni, vedere [Limiti relativi a Macchine virtuali](../azure-subscription-service-limits.md#virtual-machines-limits) in [Sottoscrizione di Azure e limiti, quote e vincoli dei servizi](../azure-subscription-service-limits.md).
+>Se l'account è stato creato con la configurazione della sottoscrizione utente hello, l'account nelle condivisioni di quota di core hello per sottoscrizione hello. Per altre informazioni, vedere [Limiti relativi a Macchine virtuali](../azure-subscription-service-limits.md#virtual-machines-limits) in [Sottoscrizione di Azure e limiti, quote e vincoli dei servizi](../azure-subscription-service-limits.md).
 >
 >
 
 ## <a name="automatic-scaling-formulas"></a>Formule di ridimensionamento automatico
-Una formula di scalabilità automatica è un valore stringa definito che contiene una o più istruzioni. La formula di scalabilità automatica viene assegnata all'elemento [autoScaleFormula][rest_autoscaleformula] di un pool (Batch REST) o alla proprietà [CloudPool.AutoScaleFormula][net_cloudpool_autoscaleformula] (Batch .NET). Il servizio Batch usa la formula per determinare il numero di nodi di calcolo di destinazione del pool per l'intervallo di elaborazione successivo. La stringa della formula non può avere dimensioni maggiori di 8 KB, può includere fino a 100 istruzioni separate da punti e virgola e può contenere interruzioni di riga e commenti.
+Una formula di scalabilità automatica è un valore stringa definito che contiene una o più istruzioni. formula di scalabilità automatica Hello viene assegnato del pool tooa [autoScaleFormula] [ rest_autoscaleformula] elemento (Batch REST) o [CloudPool.AutoScaleFormula] [ net_cloudpool_autoscaleformula] proprietà (.NET per Batch). Hello servizio Batch utilizza il numero di destinazione toodetermine formula hello di nodi di calcolo nel pool di hello per successivo intervallo di elaborazione di hello. formula la stringa Hello non può superare gli 8 KB, è possibile includere i rendiconti too100 che sono separati da punti e virgola e possono includere interruzioni di riga e i commenti.
 
-È possibile paragonare le formule di ridimensionamento automatico a un "linguaggio" di ridimensionamento automatico di Batch. Le istruzioni nella formula sono espressioni in formato libero che possono includere variabili definite dal servizio Batch e variabili definite dall'utente. Possono eseguire diverse operazioni su questi valori usando funzioni, operatori e tipi predefiniti. Ad esempio, un'istruzione può avere il formato seguente:
+È possibile paragonare le formule di ridimensionamento automatico a un "linguaggio" di ridimensionamento automatico di Batch. Le istruzioni formula sono espressioni in formato libero che possono includere sia definito dal servizio variabili (variabili definite dal servizio Batch hello) variabili definite dall'utente (variabili che definiscono). Possono eseguire diverse operazioni su questi valori usando funzioni, operatori e tipi predefiniti. Ad esempio, un'istruzione potrebbe richiedere hello seguente formato:
 
 ```
 $myNewVariable = function($ServiceDefinedVariable, $myCustomVariable);
 ```
 
-Le formule contengono in genere più istruzioni che eseguono operazioni su valori ottenuti nelle istruzioni precedenti. Ad esempio, si ottiene prima di tutto un valore per `variable1`, quindi il valore viene passato a una funzione per popolare `variable2`:
+Le formule contengono in genere più istruzioni che eseguono operazioni su valori ottenuti nelle istruzioni precedenti. Ad esempio, prima è ottenere un valore per `variable1`, quindi passarlo tooa funzione toopopulate `variable2`:
 
 ```
 $variable1 = function1($ServiceDefinedVariable);
 $variable2 = function2($OtherServiceDefinedVariable, $variable1);
 ```
 
-Includere queste istruzioni nella formula di scalabilità automatica per arrivare al numero di nodi di calcolo di destinazione. I nodi dedicati e i nodi con priorità bassa hanno impostazioni proprie per la destinazione, in modo da poter definire una destinazione per ogni tipo di nodo. Una formula di scalabilità automatica può includere un valore di destinazione per i nodi dedicati, un valore di destinazione per i nodi con priorità bassa o entrambi.
+Dichiarazioni del tooarrive formula di scalabilità automatica in un numero di nodi di calcolo di destinazione. I nodi dedicati e i nodi con priorità bassa hanno impostazioni proprie per la destinazione, in modo da poter definire una destinazione per ogni tipo di nodo. Una formula di scalabilità automatica può includere un valore di destinazione per i nodi dedicati, un valore di destinazione per i nodi con priorità bassa o entrambi.
 
-Il numero di nodi di destinazione può essere maggiore, minore o uguale al numero attuale di nodi di tale tipo nel pool. Batch valuta la formula di scalabilità automatica del pool a intervalli specifici (vedere gli [intervalli di scalabilità automatica](#automatic-scaling-interval)). Batch regola quindi il numero di nodi di destinazione di ogni tipo nel pool in base al numero specificato dalla formula di scalabilità automatica al momento della valutazione.
+numero di destinazione Hello dei nodi potrebbe essere superiore, inferiore o uguale hello numero corrente di nodi di quel tipo nel pool di hello hello. Batch valuta la formula di scalabilità automatica del pool a intervalli specifici (vedere gli [intervalli di scalabilità automatica](#automatic-scaling-interval)). Batch consente di regolare il numero di destinazione hello di ogni tipo di nodo nel numero di toohello pool hello che specifica la formula di scalabilità automatica in fase di valutazione di hello.
 
 ### <a name="sample-autoscale-formula"></a>Esempio di formula di scalabilità automatica
 
-Di seguito è riportato un esempio di formula di scalabilità automatica che può essere adattato alla maggior parte degli scenari. Le variabili `startingNumberOfVMs` e `maxNumberofVMs` nell'esempio di formula possono essere modificate in base alle proprie esigenze. Questa formula ridimensiona i nodi dedicati, ma può essere modificata per applicarla anche ai nodi con priorità bassa. 
+Di seguito è riportato un esempio di una formula di scalabilità automatica che può essere adattato toowork per la maggior parte degli scenari. Hello variabili `startingNumberOfVMs` e `maxNumberofVMs` in hello formula di esempio può essere adattato tooyour esigenze. Questa formula viene ridimensionata nodi dedicati, ma può essere modificato tooapply tooscale anche i nodi con priorità bassa. 
 
 ```
 startingNumberOfVMs = 1;
@@ -70,52 +70,52 @@ pendingTaskSamples = pendingTaskSamplePercent < 70 ? startingNumberOfVMs : avg($
 $TargetDedicatedNodes=min(maxNumberofVMs, pendingTaskSamples);
 ```
 
-Con questa formula di scalabilità automatica il pool viene inizialmente creato con una singola macchina virtuale. La metrica `$PendingTasks` definisce il numero di attività in esecuzione o in coda. La formula trova il numero medio di attività in sospeso negli ultimi 180 secondi e imposta la variabile `$TargetDedicatedNodes` di conseguenza. La formula garantisce che il numero di nodi dedicati di destinazione non superi mai 25 macchine virtuali. Man mano che vengono inviate nuove attività, il pool si espande automaticamente. Al termine delle attività le macchine virtuali diventano libere una ad una e la formula di scalabilità automatica riduce il pool.
+Con questa formula di scalabilità automatica, il pool di hello viene inizialmente creato con una singola macchina virtuale. Hello `$PendingTasks` metrica definisce il numero di hello di attività che sono in esecuzione o in coda. formula Hello trova numero medio di hello attività in sospeso in hello ultimi 180 secondi e imposta hello `$TargetDedicatedNodes` variabile di conseguenza. formula di Hello garantisce che il numero di destinazione hello dei nodi dedicati non superi mai il 25 macchine virtuali. Quando vengono inviate nuove attività, si espande automaticamente pool hello. Come attività di completamento, le macchine virtuali diventano disponibile uno alla volta e la formula di scalabilità automatica hello hello ridotta.
 
 ## <a name="variables"></a>variables
-Nelle formule di scalabilità automatica è possibile usare sia **variabili definite dal servizio** sia **variabili definite dall'utente**. Le variabili definite dal servizio sono incorporate nel servizio Batch. Alcune sono in lettura/scrittura e altre di sola lettura. Le variabili definite dall'utente vengono configurate dall'utente. Nella formula di esempio della sezione precedente `$TargetDedicatedNodes` e `$PendingTasks` sono variabili definite dal servizio. Le variabili `startingNumberOfVMs` e `maxNumberofVMs` sono definite dall'utente.
+Nelle formule di scalabilità automatica è possibile usare sia **variabili definite dal servizio** sia **variabili definite dall'utente**. le variabili di Hello definito dal servizio vengono compilate in toohello servizio Batch. Alcune sono in lettura/scrittura e altre di sola lettura. Le variabili definite dall'utente vengono configurate dall'utente. Nella formula di esempio hello illustrato nella sezione precedente hello `$TargetDedicatedNodes` e `$PendingTasks` sono variabili definito dal servizio. Le variabili `startingNumberOfVMs` e `maxNumberofVMs` sono definite dall'utente.
 
 > [!NOTE]
-> Le variabili definite dal servizio sono sempre precedute da un segno di dollaro ($). Per le variabili definite dall'utente il segno di dollaro è facoltativo.
+> Le variabili definite dal servizio sono sempre precedute da un segno di dollaro ($). Variabili definite dall'utente, il segno di dollaro hello è facoltativo.
 >
 >
 
-Le tabelle seguenti includono sia le variabili di lettura/scrittura che di sola lettura definite dal servizio Batch.
+Hello le tabelle seguenti Mostra sia in lettura / scrittura e le variabili di sola lettura che sono definite hello servizio Batch.
 
-È possibile ottenere e impostare i valori di queste variabili definite dal servizio per gestire il numero di nodi di calcolo in un pool:
+È possibile ottenere e impostare i valori hello di queste variabili definito dal servizio numero hello toomanage di nodi di calcolo in un pool di:
 
 | Variabili in lettura/scrittura definite dal servizio | Descrizione |
 | --- | --- |
-| $TargetDedicatedNodes |Numero di destinazione dei nodi di calcolo dedicati per il pool. Il numero di nodi dedicati viene specificato come destinazione, perché un pool potrebbe non ottenere sempre il numero desiderato di nodi. Ad esempio, se il numero di nodi dedicati di destinazione viene modificato da una valutazione di scalabilità automatica prima che il pool raggiunga il valore di destinazione iniziale, è possibile che il pool non raggiunga il numero di nodi di destinazione. <br /><br /> Un pool in un account creato con la configurazione del servizio Batch potrebbe non raggiungere il valore di destinazione se supera la quota di nodi o core di un account Batch. Un pool in un account creato con la configurazione di sottoscrizione utente potrebbe non raggiungere il valore di destinazione se supera la quota condivisa di nodi per la sottoscrizione.|
-| $TargetLowPriorityNodes |Numero di destinazione dei nodi di calcolo con priorità bassa per il pool. Il numero di nodi con priorità bassa viene specificato come destinazione, perché un pool potrebbe non ottenere sempre il numero desiderato di nodi. Ad esempio, se il numero di nodi con priorità bassa di destinazione viene modificato da una valutazione di scalabilità automatica prima che il pool raggiunga il valore di destinazione iniziale, è possibile che il pool non raggiunga il numero di nodi di destinazione. Un pool potrebbe anche non raggiungere il valore di destinazione se supera la quota di nodi o core di un account Batch. <br /><br /> Per altre informazioni sui nodi calcolo con priorità bassa, vedere [Usare le VM con priorità bassa in Batch (anteprima)](batch-low-pri-vms.md). |
-| $NodeDeallocationOption |L'azione che si verifica quando i nodi di calcolo vengono rimossi da un pool. I valori possibili sono:<ul><li>**requeue**: termina immediatamente le attività e le reinserisce nella coda dei processi in modo che vengano ripianificate.<li>**terminate**: termina immediatamente le attività e le rimuove dalla coda dei processi.<li>**taskcompletion**: attende il completamento delle attività in esecuzione e quindi rimuove il nodo dal pool.<li>**retaineddata**: attende che tutti i dati mantenuti per le attività locali nel nodo vengano ripuliti prima di rimuovere il nodo dal pool.</ul> |
+| $TargetDedicatedNodes |numero di destinazione Hello di dedicato nodi per il pool di hello di calcolo. numero di Hello dei nodi dedicati viene specificato come destinazione, perché un pool non può ottenere sempre numero desiderato di hello di nodi. Ad esempio, se viene modificato il numero di destinazione hello dei nodi dedicati da una versione di valutazione di scalabilità automatica prima di hello pool ha raggiunto la destinazione iniziale hello e quindi pool hello potrebbero non raggiungere la destinazione hello. <br /><br /> Un pool in un account creato con la configurazione del servizio Batch hello potrebbe non raggiungere la destinazione se destinazione hello supera una quota di nodi o core account Batch. Un pool in un account creato con la configurazione della sottoscrizione utente hello non può ottenere la relativa destinazione destinazione hello supera la quota di core condiviso hello per sottoscrizione hello.|
+| $TargetLowPriorityNodes |numero di destinazione Hello di bassa priorità nodi per il pool di hello di calcolo. numero di Hello di nodi con priorità bassa viene specificato come destinazione, perché un pool non può ottenere sempre numero desiderato di hello di nodi. Ad esempio, se il numero di destinazione hello di nodi con priorità bassa viene modificato da una versione di valutazione di scalabilità automatica prima di hello pool ha raggiunto la destinazione iniziale hello, quindi pool hello potrebbero non raggiungere la destinazione hello. Un pool di anche potrebbe non raggiungere la destinazione se destinazione hello supera una quota di nodi o core account Batch. <br /><br /> Per altre informazioni sui nodi calcolo con priorità bassa, vedere [Usare le VM con priorità bassa in Batch (anteprima)](batch-low-pri-vms.md). |
+| $NodeDeallocationOption |azione di Hello che si verifica quando i nodi di calcolo vengono rimossi da un pool. I valori possibili sono:<ul><li>**riaccodamento**-termina immediatamente le attività e le inserisce nuovamente nella coda processi hello in modo che vengano ripianificate.<li>**terminare**-termina le attività immediatamente e li rimuove dalla coda dei processi di hello.<li>**taskcompletion**-attende attualmente in esecuzione attività toofinish e quindi rimuove il nodo hello dal pool di hello.<li>**retaineddata**-attende tutti hello mantenuti attività dati locali nel hello nodo toobe puliti prima di rimuovere il nodo hello dal pool hello.</ul> |
 
-È possibile ottenere il valore di queste variabili definite dal servizio per eseguire adeguamenti basati sulla metrica del servizio Batch:
+È possibile ottenere il valore di hello di queste modifiche toomake definito dal servizio variabili che sono in base alle metriche dal servizio Batch hello:
 
 | Variabili di sola lettura definite dal servizio | Descrizione |
 | --- | --- |
-| $CPUPercent |Percentuale media di utilizzo della CPU. |
-| $WallClockSeconds |Numero di secondi utilizzati. |
-| $MemoryBytes |Numero medio di megabyte usati. |
-| $DiskBytes |Numero medio di gigabyte usati sui dischi locali. |
-| $DiskReadBytes |Numero di byte letti. |
-| $DiskWriteBytes |Numero di byte scritti. |
-| $DiskReadOps |Numero di operazioni di lettura del disco eseguite. |
-| $DiskWriteOps |Numero di operazioni di scrittura sul disco eseguite. |
-| $NetworkInBytes |Numero di byte in ingresso. |
-| $NetworkOutBytes |Numero di byte in uscita. |
-| $SampleNodeCount |Conteggio dei nodi di calcolo. |
-| $ActiveTasks |Numero di attività che sono pronte per l'esecuzione, ma non sono ancora in esecuzione. Il conteggio $ActiveTasks include tutte le attività che si trovano in stato attivo e le cui dipendenze sono state soddisfatte. Tutte le attività che sono nello stato attivo, ma per le quali le dipendenze non sono state soddisfatte vengono escluse dal conteggio per $ActiveTasks.|
-| $RunningTasks |Numero di attività nello stato in corso di esecuzione. |
-| $PendingTasks |La somma di $ActiveTasks e $RunningTasks. |
-| $SucceededTasks |Numero di attività completate correttamente. |
-| $FailedTasks |Numero di attività non riuscite. |
-| $CurrentDedicatedNodes |Numero corrente di nodi di calcolo dedicati. |
-| $CurrentLowPriorityNodes |Numero corrente di nodi di calcolo con priorità bassa, inclusi eventuali nodi annullati. |
-| $PreemptedNodeCount | Il numero di nodi nel pool che si trovano nello stato Annullato. |
+| $CPUPercent |percentuale media di Hello di utilizzo della CPU. |
+| $WallClockSeconds |numero di Hello di secondi usati. |
+| $MemoryBytes |numero medio di Hello di megabyte usati. |
+| $DiskBytes |numero medio di Hello di gigabyte usati nei dischi locali hello. |
+| $DiskReadBytes |numero di Hello di byte letti. |
+| $DiskWriteBytes |numero di Hello di byte scritti. |
+| $DiskReadOps |eseguita il conteggio di Hello delle operazioni di lettura del disco. |
+| $DiskWriteOps |conteggio di Hello di eseguire operazioni di scrittura su disco. |
+| $NetworkInBytes |numero di Hello di byte in ingresso. |
+| $NetworkOutBytes |numero di Hello di byte in uscita. |
+| $SampleNodeCount |conteggio di Hello dei nodi di calcolo. |
+| $ActiveTasks |numero di Hello di attività che sono pronti tooexecute ma non ancora in esecuzione. conteggio di Hello $ActiveTasks include tutte le attività che si trovano in stato attivo hello e le cui dipendenze sono state soddisfatte. Tutte le attività che sono in stato attivo hello ma non sono stati soddisfatti le cui dipendenze sono escluse dal conteggio hello $ActiveTasks.|
+| $RunningTasks |numero di Hello di attività in esecuzione. |
+| $PendingTasks |somma di Hello di $ActiveTasks e $RunningTasks. |
+| $SucceededTasks |numero di Hello di attività che è stata completata. |
+| $FailedTasks |numero di Hello di attività che non è riuscita. |
+| $CurrentDedicatedNodes |numero corrente di Hello di dedicato nodi di calcolo. |
+| $CurrentLowPriorityNodes |numero corrente di Hello di bassa priorità nodi di calcolo, inclusi tutti i nodi che sono stati rimovibile. |
+| $PreemptedNodeCount | numero di Hello di nodi nel pool di hello che sono in uno stato rimovibile. |
 
 > [!TIP]
-> Le variabili di sola lettura definite dal servizio illustrate nella tabella precedente sono *oggetti* che offrono vari metodi per accedere ai dati associati a ognuno. Per altre informazioni, vedere [Ottenere dati di esempio](#getsampledata) più avanti in questo articolo.
+> sono Hello le variabili di sola lettura, definito dal servizio vengono visualizzate nella tabella precedente hello *oggetti* vari metodi che forniscono dati tooaccess associati a ognuna. Per altre informazioni, vedere [Ottenere dati di esempio](#getsampledata) più avanti in questo articolo.
 >
 >
 
@@ -126,12 +126,12 @@ Questi sono i tipi supportati in una formula:
 * doubleVec
 * doubleVecList
 * string
-* timestamp, è una struttura composta che contiene i membri seguenti:
+* timestamp - timestamp è una struttura composta che contiene i seguenti membri hello:
 
   * year
   * month (1-12)
   * day (1-31)
-  * weekday (in formato numero, ad esempio 1 per lunedì)
+  * giorno della settimana (in formato hello del numero; ad esempio, 1 per lunedì)
   * hour (in formato 24 ore, ad esempio 13 per indicare le ore 13.00)
   * minute (00-59)
   * second (00-59)
@@ -149,7 +149,7 @@ Questi sono i tipi supportati in una formula:
   * TimeInterval_Year
 
 ## <a name="operations"></a>Operazioni
-Queste operazioni sono consentite sui tipi elencati nella sezione precedente.
+Queste operazioni sono consentite sui tipi di hello elencati nella sezione precedente hello.
 
 | Operazione | Operatori supportati | Tipo di risultato |
 | --- | --- | --- |
@@ -173,38 +173,38 @@ Queste operazioni sono consentite sui tipi elencati nella sezione precedente.
 Durante il test di un valore double con un operatore ternario (`double ? statement1 : statement2`), diverso da zero è **true** e zero è **false**.
 
 ## <a name="functions"></a>Funzioni
-Queste **funzioni** predefinite sono disponibili per consentire la definizione di una formula di ridimensionamento automatico.
+Questi predefiniti **funzioni** sono disponibili per toouse nella definizione di una formula di scalabilità automatica.
 
 | Funzione | Tipo restituito | Descrizione |
 | --- | --- | --- |
-| avg(doubleVecList) |double |Restituisce il valore medio per tutti i valori in doubleVecList. |
-| len(doubleVecList) |double |Restituisce la lunghezza del vettore creato da doubleVecList. |
-| lg(double) |double |Restituisce il logaritmo in base 2 di double. |
-| lg(doubleVecList) |doubleVec |Restituisce il logaritmo in base 2 a livello di componente di doubleVecList. vec(double) deve essere passato in modo esplicito per il parametro. In caso contrario viene usata la versione double lg(double). |
-| ln(double) |double |Restituisce il logaritmo naturale di double. |
-| ln(doubleVecList) |doubleVec |Restituisce il logaritmo in base 2 a livello di componente di doubleVecList. vec(double) deve essere passato in modo esplicito per il parametro. In caso contrario viene usata la versione double lg(double). |
-| log(double) |double |Restituisce il logaritmo in base 10 di double. |
-| log(doubleVecList) |doubleVec |Restituisce il logaritmo in base 10 a livello di componente di doubleVecList. vec(double) deve essere passato in modo esplicito per il singolo parametro double. In caso contrario, viene usata la versione double log(double). |
-| max(doubleVecList) |double |Restituisce il valore massimo in doubleVecList. |
-| min(doubleVecList) |double |Restituisce il valore minimo in doubleVecList. |
-| norm(doubleVecList) |double |Restituisce la norma 2 del vettore creato da doubleVecList. |
-| percentile(doubleVec v, double p) |double |Restituisce l'elemento percentile del vettore v. |
+| avg(doubleVecList) |double |Restituisce hello valore medio per tutti i valori in doubleVecList hello. |
+| len(doubleVecList) |double |Restituisce hello lunghezza del vettore hello creato da doubleVecList hello. |
+| lg(double) |double |Restituisce hello logaritmo in base 2 di hello double. |
+| lg(doubleVecList) |doubleVec |Restituisce hello component-wise logaritmo in base 2 di hello doubleVecList. Un vec (Double) deve essere passato in modo esplicito per il parametro hello. In caso contrario, verrà utilizzato versione double LG (Double) hello. |
+| ln(double) |double |Restituisce hello logaritmo naturale di hello double. |
+| ln(doubleVecList) |doubleVec |Restituisce hello component-wise logaritmo in base 2 di hello doubleVecList. Un vec (Double) deve essere passato in modo esplicito per il parametro hello. In caso contrario, verrà utilizzato versione double LG (Double) hello. |
+| log(double) |double |Restituisce hello logaritmo in base 10 di hello double. |
+| log(doubleVecList) |doubleVec |Restituisce hello component-wise logaritmo in base 10 di hello doubleVecList. Un vec (Double) deve essere passato in modo esplicito per il singolo parametro double hello. In caso contrario, verrà utilizzato versione double log (Double) hello. |
+| max(doubleVecList) |double |Restituisce hello valore massimo in doubleVecList hello. |
+| min(doubleVecList) |double |Restituisce hello valore minimo in doubleVecList hello. |
+| norm(doubleVecList) |double |Restituisce hello seminorma del vettore hello creato da doubleVecList hello. |
+| percentile(doubleVec v, double p) |double |Restituisce hello elemento percentile del vettore hello v. |
 | rand() |double |Restituisce un valore casuale compreso tra 0,0 e 1,0. |
-| range(doubleVecList) |double |Restituisce la differenza tra i valori minimo e massimo in doubleVecList. |
-| std(doubleVecList) |double |Restituisce la deviazione standard del campione dei valori in doubleVecList. |
-| stop() | |Arresta la valutazione dell'espressione per il ridimensionamento automatico. |
-| sum(doubleVecList) |double |Restituisce la somma di tutti i componenti di doubleVecList. |
-| time(string dateTime="") |timestamp |Restituisce il timestamp dell'ora corrente se non vengono passati parametri oppure il timestamp della stringa dateTime, se è stata passata. I formati dateTime supportati sono W3C-DTF e RFC 1123. |
-| val(doubleVec v, double i) |double |Restituisce il valore dell'elemento nella posizione i nel vettore v con un indice iniziale pari a zero. |
+| range(doubleVecList) |double |Restituisce la differenza di hello tra valori hello minimo e massimo in doubleVecList hello. |
+| std(doubleVecList) |double |Restituisce hello deviazione standard del campione di valori hello in hello doubleVecList. |
+| stop() | |Arresta la valutazione dell'espressione per la scalabilità automatica hello. |
+| sum(doubleVecList) |double |Restituisce hello somma di tutti i componenti di doubleVecList hello hello. |
+| time(string dateTime="") |timestamp |Restituisce timestamp hello di hello ora corrente, se nessun parametro viene passato o hello timestamp della stringa dateTime hello se viene passato. I formati dateTime supportati sono W3C-DTF e RFC 1123. |
+| val(doubleVec v, double i) |double |Restituisce il valore di hello dell'elemento hello nella posizione i nel vettore v con un indice iniziale pari a zero. |
 
-Alcune delle funzioni descritte nella tabella precedente possono accettare un elenco come argomento. L'elenco con valori delimitati da virgole è una combinazione qualsiasi di *double* e *doubleVec*. Ad esempio:
+Alcune funzioni che sono descritte nella tabella precedente hello hello può accettare un elenco come argomento. elenco delimitato da virgole di Hello è qualsiasi combinazione di *doppie* e *doubleVec*. ad esempio:
 
 `doubleVecList := ( (double | doubleVec)+(, (double | doubleVec) )* )?`
 
-Il valore *doubleVecList* viene convertito in un singolo *doubleVec* prima della valutazione. Ad esempio, se `v = [1,2,3]`, la chiamata di `avg(v)` equivale alla chiamata di `avg(1,2,3)`. La chiamata di `avg(v, 7)` equivale alla chiamata di `avg(1,2,3,7)`.
+Hello *doubleVecList* valore viene convertito tooa singolo *doubleVec* prima della valutazione. Ad esempio, se `v = [1,2,3]`, quindi chiamare `avg(v)` è equivalente toocalling `avg(1,2,3)`. La chiamata `avg(v, 7)` è equivalente toocalling `avg(1,2,3,7)`.
 
 ## <a name="getsampledata"></a>Ottenere dati di esempio
-Le formule di ridimensionamento automatico agiscono sui dati di metrica (campioni) forniti dal servizio Batch. Una formula aumenta o riduce le dimensioni del pool in base ai valori che ottiene dal servizio. Le variabili definite dal servizio descritte sopra sono oggetti che offrono vari metodi per accedere ai dati associati a un dato oggetto. Ad esempio, l'espressione seguente mostra una richiesta per recuperare gli ultimi 5 minuti di utilizzo della CPU:
+Formule di scalabilità automatica agiscono su dati di metrica (esempi) fornito dal servizio Batch hello. Una formula aumenta o riduce le dimensioni del pool in base a valori hello ottenuto dal servizio hello. Hello definito dal servizio le variabili sono stati descritti in precedenza sono oggetti che forniscono vari metodi tooaccess dati associato a tale oggetto. Ad esempio, hello espressione riportata di seguito viene illustrato un hello tooget richiesta ultimi 5 minuti di utilizzo della CPU:
 
 ```
 $CPUPercent.GetSample(TimeInterval_Minute * 5)
@@ -212,58 +212,58 @@ $CPUPercent.GetSample(TimeInterval_Minute * 5)
 
 | Metodo | Descrizione |
 | --- | --- |
-| GetSample() |Il metodo `GetSample()` restituisce un vettore relativo ai campioni di dati.<br/><br/>Un campione rappresenta 30 secondi di dati di metrica. In altre parole i campioni vengono raccolti ogni 30 secondi, ma come indicato di seguito si verifica un ritardo tra il momento in cui un campione viene raccolto e il momento in cui è disponibile per una formula. Di conseguenza, i campioni per un determinato periodo di tempo potrebbero non essere tutti disponibili per la valutazione da parte di una formula.<ul><li>`doubleVec GetSample(double count)`<br/>Specifica il numero di campioni da ottenere tra quelli raccolti più di recente.<br/><br/>`GetSample(1)` restituisce l'ultimo campione disponibile. Per le metriche come `$CPUPercent` non deve tuttavia essere usato perché non è possibile sapere *quando* è stato raccolto il campione. Potrebbe essere recente o risultare molto meno recente a causa di problemi di sistema. In questi casi è preferibile usare un intervallo di tempo, come illustrato di seguito.<li>`doubleVec GetSample((timestamp or timeinterval) startTime [, double samplePercent])`<br/>Specifica un intervallo di tempo per la raccolta di dati di esempio. Facoltativamente specifica anche la percentuale di campioni che deve essere disponibile nell'intervallo di tempo richiesto.<br/><br/>`$CPUPercent.GetSample(TimeInterval_Minute * 10)` restituisce 20 campioni se nella cronologia CPUPercent sono presenti tutti i campioni per gli ultimi 10 minuti. Se l'ultimo minuto della cronologia non è disponibile, vengono tuttavia restituiti solo 18 campioni. In questo caso:<br/><br/>`$CPUPercent.GetSample(TimeInterval_Minute * 10, 95)` avrà esito negativo poiché è disponibile solo il 90% dei campioni.<br/><br/>`$CPUPercent.GetSample(TimeInterval_Minute * 10, 80)` avrà esito positivo.<li>`doubleVec GetSample((timestamp or timeinterval) startTime, (timestamp or timeinterval) endTime [, double samplePercent])`<br/>Specifica un intervallo di tempo per la raccolta dei dati, con un'ora di inizio e un'ora di fine.<br/><br/>Come indicato in precedenza, si verifica un ritardo tra il momento in cui un campione viene raccolto e il momento in cui è disponibile per una formula. È necessario tenere presente questo ritardo quando si usa il metodo `GetSample`. Vedere `GetSamplePercent` di seguito. |
-| GetSamplePeriod() |Restituisce il periodo dei campioni raccolti in un set di dati campione cronologici. |
-| Count() |Restituisce il numero totale di campioni nella cronologia dei dati di metrica. |
-| HistoryBeginTime() |Restituisce il timestamp del campione di dati disponibile meno recente per la metrica. |
-| GetSamplePercent() |Restituisce la percentuale di campioni disponibili per un determinato intervallo di tempo. Ad esempio:<br/><br/>`doubleVec GetSamplePercent( (timestamp or timeinterval) startTime [, (timestamp or timeinterval) endTime] )`<br/><br/>Poiché il metodo `GetSample` non riesce se la percentuale di campioni restituiti è minore del valore `samplePercent` specificato, è possibile eseguire prima il controllo con il metodo `GetSamplePercent`. È quindi possibile eseguire un'azione alternativa se non sono presenti campioni sufficienti, senza interrompere la valutazione del ridimensionamento automatico. |
+| GetSample() |Hello `GetSample()` metodo restituisce un vettore di esempi di dati.<br/><br/>Un campione rappresenta 30 secondi di dati di metrica. In altre parole i campioni vengono raccolti ogni 30 secondi, Ma, come indicato di seguito, si verifica un ritardo tra quando viene raccolto un campione e quando è disponibile tooa formula. Di conseguenza, i campioni per un determinato periodo di tempo potrebbero non essere tutti disponibili per la valutazione da parte di una formula.<ul><li>`doubleVec GetSample(double count)`<br/>Specifica il numero di hello di esempi tooobtain dagli esempi più recenti hello che sono stati raccolti.<br/><br/>`GetSample(1)`Restituisce l'ultimo esempio disponibile di hello. Per le metriche quali `$CPUPercent`, tuttavia, questo non deve essere utilizzato perché è Impossibile tooknow *quando* è stato raccolto il campione hello. Potrebbe essere recente o risultare molto meno recente a causa di problemi di sistema. È preferibile in tali toouse casi un intervallo di tempo, come illustrato di seguito.<li>`doubleVec GetSample((timestamp or timeinterval) startTime [, double samplePercent])`<br/>Specifica un intervallo di tempo per la raccolta di dati di esempio. Facoltativamente, specifica inoltre percentuale hello di campioni che deve essere disponibile in hello richiesto l'intervallo di tempo.<br/><br/>`$CPUPercent.GetSample(TimeInterval_Minute * 10)`restituisce 20 campioni se sono presenti nella cronologia CPUPercent hello tutti i campioni per hello ultimi 10 minuti. Se hello ultimo minuto della cronologia non è disponibile, tuttavia, verranno restituiti solo 18 esempi. In questo caso:<br/><br/>`$CPUPercent.GetSample(TimeInterval_Minute * 10, 95)`avrà esito negativo perché solo il 90% di campioni di hello sono disponibili.<br/><br/>`$CPUPercent.GetSample(TimeInterval_Minute * 10, 80)` avrà esito positivo.<li>`doubleVec GetSample((timestamp or timeinterval) startTime, (timestamp or timeinterval) endTime [, double samplePercent])`<br/>Specifica un intervallo di tempo per la raccolta dei dati, con un'ora di inizio e un'ora di fine.<br/><br/>Come indicato in precedenza, si verifica un ritardo tra quando viene raccolto un campione e quando è disponibile tooa formula. Considerare questo ritardo quando si utilizza hello `GetSample` metodo. Vedere `GetSamplePercent` di seguito. |
+| GetSamplePeriod() |Restituisce il periodo di hello di campioni che sono stati eseguiti in un set di dati cronologici di esempio. |
+| Count() |Restituisce hello numero totale di campioni nella cronologia di metrica hello. |
+| HistoryBeginTime() |Restituisce hello timestamp dell'esempio di dati disponibili per metrica hello meno recente hello. |
+| GetSamplePercent() |Restituisce hello percentuali di campioni che sono disponibili per un determinato intervallo di tempo. ad esempio:<br/><br/>`doubleVec GetSamplePercent( (timestamp or timeinterval) startTime [, (timestamp or timeinterval) endTime] )`<br/><br/>Poiché hello `GetSample` metodo ha esito negativo se la percentuale di hello di campioni restituito è minore di hello `samplePercent` specificato, è possibile utilizzare hello `GetSamplePercent` metodo toocheck prima. È quindi possibile eseguire un'azione alternativa se sufficienti esempi sono presenti, senza interrompere la valutazione di scalabilità automatica di hello. |
 
-### <a name="samples-sample-percentage-and-the-getsample-method"></a>Campioni, percentuale di campioni e metodo *GetSample()*
-L'operazione di base per il funzionamento di una formula di ridimensionamento automatico consiste nell'ottenere i dati di metrica relativi a risorse ed attività e quindi l'adeguamento delle dimensioni del pool in base a tali dati. Di conseguenza, è importante conoscere a fondo la modalità di interazione delle formule di scalabilità automatica con i dati di metrica (campioni).
+### <a name="samples-sample-percentage-and-hello-getsample-method"></a>Esempi, la percentuale di campionamento e hello *GetSample()* (metodo)
+funzionamento di base Hello di una formula di scalabilità automatica è tooobtain attività e risorse dati di metrica e quindi modificare le dimensioni del pool in base a tali dati. Di conseguenza, è importante toohave una comprensione chiara della modalità di interazione delle formule di scalabilità automatica con i dati di metrica (esempi).
 
 **Esempi**
 
-Il servizio Batch acquisisce periodicamente campioni di metriche relative a risorse e attività e li rende disponibili per le formule di scalabilità automatica. Questi campioni vengono registrati ogni 30 secondi dal servizio Batch. In genere si verifica un ritardo tra il momento in cui i campioni sono stati registrati e il momento in cui vengono resi disponibili e possono essere letti dalle formule di scalabilità automatica. Inoltre, a causa di vari fattori, ad esempio problemi di rete o dell'infrastruttura, è possibile che i campioni non vengano registrati per un particolare intervallo.
+Hello servizio Batch periodicamente accetta gli esempi di metriche di attività e risorse e li rende disponibili tooyour formule di scalabilità automatica. Questi esempi vengono registrati ogni 30 secondi per hello servizio Batch. Tuttavia, si verifica in genere un ritardo tra registrati quando tali esempi e quando vengono resi disponibili troppo (e può essere letto da) delle formule di scalabilità automatica. Inoltre, a causa di fattori toovarious, ad esempio una rete o altri problemi di infrastruttura, gli esempi potrebbero non essere registrati per un determinato intervallo.
 
 **Percentuale di campioni**
 
-Quando si passa un oggetto `samplePercent` al metodo `GetSample()` o si chiama il metodo `GetSamplePercent()`, il termine _percentuale_ si riferisce a un confronto tra il possibile numero totale di campioni registrati dal servizio Batch e il numero di campioni disponibili per la formula di scalabilità automatica.
+Quando `samplePercent` viene passato toohello `GetSample()` metodo o hello `GetSamplePercent()` metodo viene chiamato, _%_ fa riferimento confronto tooa tra hello possibile totale di campioni che vengono registrati dal servizio Batch hello e numero di Hello di campioni che sono disponibili tooyour formula di scalabilità automatica.
 
-Come esempio, si esaminerà un intervallo di tempo di 10 minuti. Poiché i campioni vengono registrati ogni 30 secondi, in un intervallo di tempo di 10 minuti, il numero massimo totale di campioni registrati da Batch sarà di 20 campioni (2 al minuto). Tuttavia, a causa della latenza intrinseca del meccanismo di creazione di report e di altri problemi a all'interno di Azure, potrebbero essere disponibili solo 15 campioni per la lettura da parte della formula di scalabilità automatica. Per il periodo di 10 minuti, ad esempio, potrebbe essere quindi disponibile per la formula solo il 75% del numero totale di campioni registrati.
+Come esempio, si esaminerà un intervallo di tempo di 10 minuti. Poiché gli esempi vengono registrati ogni 30 secondi all'interno di un intervallo di tempo di 10 minuti, hello numero massimo totale di campioni che vengono registrati dal Batch sarà 20 campioni (2 al minuto). Tuttavia, a causa di latenza inerente a toohello di hello reporting meccanismo e altri problemi all'interno di Azure, è possibile solo 15 esempi disponibili tooyour formula di scalabilità automatica per la lettura. In tal caso, ad esempio, per tale periodo di 10 minuti, solo il 75% del numero totale di hello di campioni registrati possibile formula tooyour disponibili.
 
 **GetSample() e intervalli di campioni**
 
-Le formule di scalabilità automatica+ aumentano e riducono i pool, aggiungendovi nodi o rimuovendoli. Poiché i nodi hanno un costo, si vuole garantire che le formule applichino decisioni intelligenti sulla base di dati sufficienti. È quindi consigliabile usare un tipo di analisi delle tendenze nelle formule, aumentando e riducendo i pool in base a un intervallo di campioni raccolti.
+Le formule di scalabilità automatica sono in corso toobe espansione e riduzione del pool di &mdash; aggiunta di nodi o rimozione di nodi. Poiché i nodi una perdita di denaro, si desidera tooensure che le formule utilizzano un metodo di analisi che si basa su dati sufficienti intelligente. È quindi consigliabile usare un tipo di analisi delle tendenze nelle formule, aumentando e riducendo i pool in base a un intervallo di campioni raccolti.
 
-A tale scopo, usare `GetSample(interval look-back start, interval look-back end)` per restituire un vettore di campioni:
+toodo in tal caso, utilizzare `GetSample(interval look-back start, interval look-back end)` tooreturn un vettore di campioni:
 
 ```
 $runningTasksSample = $RunningTasks.GetSample(1 * TimeInterval_Minute, 6 * TimeInterval_Minute);
 ```
 
-Quando la riga precedente viene valutata da Batch, restituisce un intervallo di campioni come vettore di valori. Ad esempio:
+Quando hello sopra linea viene valutata dal Batch, restituisce un elenco di esempi di come un vettore di valori. ad esempio:
 
 ```
 $runningTasksSample=[1,1,1,1,1,1,1,1,1,1];
 ```
 
-Dopo aver raccolto il vettore di campioni, è possibile usare funzioni come `min()`, `max()` e `avg()` per derivare valori significativi dall'intervallo raccolto.
+Dopo aver raccolto il vettore di hello di esempi, è quindi possibile utilizzare funzioni quali `min()`, `max()`, e `avg()` tooderive valori significativi da hello raccolti intervallo.
 
-Per maggiore sicurezza, è possibile fare in modo che la valutazione di una formula non riesca se per un determinato periodo di tempo è disponibile una quantità di campioni inferiore a una certa percentuale. L'impostazione di un esito negativo della valutazione della formula indica a Batch di interromperne l'ulteriore valutazione se la percentuale di campioni specificata non è disponibile. In questo caso non viene apportata alcuna modifica alla dimensione del pool. Per specificare una percentuale di campioni obbligatoria perché la valutazione riesca, specificarla come terzo parametro in `GetSample()`. Qui è specificato un requisito pari al 75% dei campioni:
+Per una maggiore sicurezza, è possibile forzare una formula di valutazione toofail se inferiore a una determinata percentuale di esempio è disponibile per un determinato periodo di tempo. Se si forza toofail una formula di valutazione, è indicare toocease Batch un'ulteriore valutazione della formula hello se hello specificato percentuali di campioni non è disponibile. In questo caso, dimensioni del pool toohello viene apportata alcuna modifica. toospecify una percentuale di campioni per toosucceed valutazione hello, obbligatoria specificarlo come hello terzo parametro troppo`GetSample()`. Qui è specificato un requisito pari al 75% dei campioni:
 
 ```
 $runningTasksSample = $RunningTasks.GetSample(60 * TimeInterval_Second, 120 * TimeInterval_Second, 75);
 ```
 
-Poiché si può verificare un ritardo nella disponibilità dei campioni, è importante specificare sempre un intervallo di tempo con un'ora di inizio antecedente di almeno un minuto. La propagazione dei campioni attraverso il sistema richiede circa un minuto, quindi i campioni nell'intervallo `(0 * TimeInterval_Second, 60 * TimeInterval_Second)` possono non essere disponibili. Anche in questo caso, è possibile usare il parametro percentuale di `GetSample()` per imporre uno specifico requisito di percentuale dei campioni.
+Poiché possono essere presenti un ritardo nella disponibilità di esempio, è importante tooalways specificare un intervallo di tempo con un'ora di inizio ricerca back antecedenti a un minuto. Per esempi toopropagate attraverso il sistema di hello, pertanto esempi nell'intervallo di hello, richiede circa un minuto `(0 * TimeInterval_Second, 60 * TimeInterval_Second)` potrebbe non essere disponibile. Nuovamente, è possibile utilizzare il parametro di percentuale hello di `GetSample()` tooforce un requisito di percentuale di esempio specifico.
 
 > [!IMPORTANT]
-> È **consigliabile** **evitare di basarsi *solo* su `GetSample(1)` nelle formule di scalabilità automatica**. `GetSample(1)` indica infatti essenzialmente al servizio Batch di restituire l'ultimo campione disponibile, indipendentemente da quanto tempo prima è stato recuperato. Essendo solo un singolo campione, che potrebbe anche non essere recente, potrebbe non essere rappresentativo dell'immagine più ampia dello stato recente di attività o risorse. Se si usa `GetSample(1)`, accertarsi che faccia parte di un'istruzione di dimensioni maggiori e non sia il solo punto dati su cui si basa la formula.
+> È **consigliabile** **evitare di basarsi *solo* su `GetSample(1)` nelle formule di scalabilità automatica**. In questo modo `GetSample(1)` essenzialmente afferma servizio Batch toohello, "Offrono me hello ultimo esempio si dispone, indipendentemente dal tempo trascorso che è stato recuperato." Poiché è solo un singolo campione e può essere un esempio precedente, potrebbe non essere rappresentativo di immagine hello dell'attività recente o lo stato della risorsa. Se si utilizza `GetSample(1)`, assicurarsi che è parte di un'istruzione più grande e non hello solo punto dati da cui dipende la formula.
 >
 >
 
-## <a name="metrics"></a>Metriche
-Quando si definisce una formula, è possibile usare metriche di risorse e di attività. Adeguare il numero di destinazione di nodi dedicati nel pool in base ai dati di metrica ottenuti e valutati. Per altre informazioni su ogni metrica, vedere la sezione [Variabili](#variables) precedente.
+## <a name="metrics"></a>Metrica
+Quando si definisce una formula, è possibile usare metriche di risorse e di attività. È regolare il numero di destinazione hello dei nodi dedicati in pool hello in base ai dati di metrica hello che è possibile ottenere e valutare. Vedere hello [variabili](#variables) precedente sezione per ulteriori informazioni su ogni metrica.
 
 <table>
   <tr>
@@ -272,7 +272,7 @@ Quando si definisce una formula, è possibile usare metriche di risorse e di att
   </tr>
   <tr>
     <td><b>Risorsa</b></td>
-    <td><p>La metrica delle risorse si basa sull'uso della memoria, della CPU e della larghezza di banda dei nodi di calcolo, nonché sul numero di nodi.</p>
+    <td><p>Metriche delle risorse basati su hello CPU, larghezza di banda hello, utilizzo della memoria hello di nodi di calcolo e hello numero di nodi.</p>
         <p> Queste variabili definite dal servizio sono utili per eseguire adeguamenti in base al conteggio dei nodi:</p>
     <p><ul>
             <li>$TargetDedicatedNodes</li>
@@ -297,7 +297,7 @@ Quando si definisce una formula, è possibile usare metriche di risorse e di att
   </tr>
   <tr>
     <td><b>Task</b></td>
-    <td><p>La metrica delle attività si basa sullo stato delle attività, ad esempio Attiva, In sospeso e Completata. Le variabili definite dal servizio seguenti sono utili per gli adeguamenti delle dimensioni del pool basati sulla metrica delle attività:</p>
+    <td><p>Le metriche di attività sono in base allo stato di hello di attività, come ad esempio attivo, in sospeso e completate. Hello seguenti variabili definito dal servizio sono utili per apportare modifiche di dimensione del pool in base alle metriche di attività:</p>
     <p><ul>
       <li>$ActiveTasks</li>
       <li>$RunningTasks</li>
@@ -309,15 +309,15 @@ Quando si definisce una formula, è possibile usare metriche di risorse e di att
 </table>
 
 ## <a name="write-an-autoscale-formula"></a>Scrivere una formula di scalabilità automatica
-La compilazione di una formula di scalabilità automatica prevede la composizione di istruzioni che usano i componenti precedenti e quindi la combinazione di tali istruzioni in una formula completa. In questa sezione si crea una formula di scalabilità automatica di esempio che può assumere alcune decisioni di scalabilità in scenari del mondo reale.
+Per compilare una formula di scalabilità automatica che costituiscono le istruzioni che utilizzano hello in precedenza componenti, quindi combinare tali istruzioni in una formula completa. In questa sezione si crea una formula di scalabilità automatica di esempio che può assumere alcune decisioni di scalabilità in scenari del mondo reale.
 
-In primo luogo, definire i requisiti per la nuova formula di scalabilità automatica. La formula deve:
+In primo luogo, è pertanto possibile definire i requisiti di hello per la nuova formula di scalabilità automatica. formula Hello deve:
 
-1. Aumentare il numero di destinazione dei nodi di calcolo dedicati in un pool se l'uso della CPU è elevato.
-2. Ridurre il numero di destinazione dei nodi di calcolo dedicati in un pool se l'uso della CPU è basso.
-3. Limitare sempre il numero massimo di nodi dedicati a 400.
+1. Aumentare il numero di destinazione di hello dedicato di nodi di calcolo in un pool se l'utilizzo della CPU è elevato.
+2. Ridurre il numero di destinazione di hello dedicato di nodi di calcolo in un pool quando l'utilizzo della CPU è insufficiente.
+3. Sempre limitare hello massimo numero di nodi dedicato too400.
 
-Per l'aumento del numero di nodi durante l'uso elevato della CPU, viene definita un'istruzione che popola una variabile definita dall'utente (`$totalDedicatedNodes`) con un valore pari al 110% dell'attuale numero di destinazione dei nodi dedicati, ma solo se l'uso minimo medio della CPU negli ultimi 10 minuti è superiore al 70%. In caso contrario, usare il valore per il numero corrente di nodi dedicati.
+Consente di definire i nodi durante l'utilizzo elevato della CPU, svariate hello tooincrease istruzione hello che popola una variabile definita dall'utente (`$totalDedicatedNodes`) con un valore che corrisponde al 110% del numero di destinazione corrente di hello di nodi dedicati, ma solo se hello minimo utilizzo medio della CPU durante l'hello ultimi 10 minuti è superiore al 70%. In caso contrario, è possibile utilizzare il valore di hello per numero corrente di hello di nodi dedicati.
 
 ```
 $totalDedicatedNodes =
@@ -325,7 +325,7 @@ $totalDedicatedNodes =
     ($CurrentDedicatedNodes * 1.1) : $CurrentDedicatedNodes;
 ```
 
-Per *ridurre* il numero di nodi dedicati durante l'uso non elevato della CPU, l'istruzione successiva nella formula imposta la stessa variabile `$totalDedicatedNodes` sul 90% dell'attuale numero di destinazione dei nodi dedicati, se l'uso medio della CPU negli ultimi 60 minuti è stato inferiore al 20%. In caso contrario, usare il valore corrente di `$totalDedicatedNodes`, popolato nell'istruzione precedente.
+troppo*diminuire* hello numero di nodi dedicati durante un basso utilizzo della CPU, hello stessa istruzione successiva nel nostro hello set formula `$totalDedicatedNodes` too90 variabile percentuale del numero di destinazione corrente di hello di nodi dedicati se hello utilizzo medio CPU hello negli ultimi 60 minuti è stato in % 20. In caso contrario, utilizzare il valore corrente di hello di `$totalDedicatedNodes` è popolati nell'istruzione hello precedente.
 
 ```
 $totalDedicatedNodes =
@@ -333,13 +333,13 @@ $totalDedicatedNodes =
     ($CurrentDedicatedNodes * 0.9) : $totalDedicatedNodes;
 ```
 
-Limitare ora il numero di destinazione dei nodi di calcolo dedicati a un massimo di 400:
+Ora limite hello destinazione numero massimo di tooa di nodi di calcolo dedicato di 400:
 
 ```
 $TargetDedicatedNodes = min(400, $totalDedicatedNodes)
 ```
 
-Ecco la formula completa:
+Di seguito è riportata la formula completa hello:
 
 ```
 $totalDedicatedNodes =
@@ -353,15 +353,15 @@ $TargetDedicatedNodes = min(400, $totalDedicatedNodes)
 
 ## <a name="create-an-autoscale-enabled-pool-with-net"></a>Creare un pool abilitato per la scalabilità automatica con .NET
 
-Per creare un pool con la scalabilità automatica abilitata in .NET, seguire questi passaggi:
+toocreate un pool con scalabilità automatica abilitata in .NET, seguire questi passaggi:
 
-1. Creare il pool con [BatchClient.PoolOperations.CreatePool](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.pooloperations.createpool).
-2. Impostare la proprietà [CloudPool.AutoScaleEnabled](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.cloudpool.autoscaleenabled) su `true`.
-3. Impostare la proprietà [CloudPool.AutoScaleFormula](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.cloudpool.autoscaleformula) con la formula di scalabilità automatica.
-4. (Facoltativo) Impostare la proprietà [CloudPool.AutoScaleEvaluationInterval](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.cloudpool.autoscaleevaluationinterval) (valore predefinito è 15 minuti).
-5. Eseguire il commit del pool con [CloudPool.Commit](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.cloudpool.commit) o [CommitAsync](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.cloudpool.commitasync).
+1. Creare pool di hello con [BatchClient.PoolOperations.CreatePool](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.pooloperations.createpool).
+2. Set hello [CloudPool.AutoScaleEnabled](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.cloudpool.autoscaleenabled) proprietà troppo`true`.
+3. Set hello [CloudPool.AutoScaleFormula](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.cloudpool.autoscaleformula) proprietà con la formula di scalabilità automatica.
+4. (Facoltativo) Set hello [CloudPool.AutoScaleEvaluationInterval](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.cloudpool.autoscaleevaluationinterval) proprietà (valore predefinito è 15 minuti).
+5. Eseguire il commit pool hello con [CloudPool.Commit](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.cloudpool.commit) o [a CommitAsync](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.cloudpool.commitasync).
 
-Il frammento di codice seguente crea un pool abilitato per la scalabilità automatica in .NET. La formula di scalabilità automatica del pool imposta il numero di destinazione dei nodi dedicati su 5 il lunedì e su 1 per tutti gli altri giorni della settimana. L'[intervallo di scalabilità automatica](#automatic-scaling-interval) è impostato su 30 minuti. In questo e in altri frammenti di codice C# in questo articolo, `myBatchClient` è un'istanza correttamente inizializzata della classe [BatchClient][net_batchclient].
+Hello frammento di codice seguente crea un pool di scalabilità automatica abilitata in .NET. Hello formula di scalabilità automatica del pool imposta hello destinazione numero di nodi dedicato too5 lunedì e 1 il giorno della settimana hello. Hello [intervallo di ridimensionamento automatico](#automatic-scaling-interval) è impostato too30 minuti. In questo e altri frammenti c# in questo articolo, hello `myBatchClient` è un'istanza di hello inizializzata correttamente [BatchClient] [ net_batchclient] classe.
 
 ```csharp
 CloudPool pool = myBatchClient.PoolOperations.CreatePool(
@@ -375,54 +375,54 @@ await pool.CommitAsync();
 ```
 
 > [!IMPORTANT]
-> Quando si crea un pool abilitato per la scalabilità automatica, non specificare il parametro _targetDedicatedComputeNodes_ o il parametro _targetLowPriorityComputeNodes_ nella chiamata a **CreatePool**. Specificare invece le proprietà **AutoScaleEnabled** e **AutoScaleFormula** nel pool. I valori per queste proprietà determinano il numero di destinazione di ogni tipo di nodo. Inoltre, per ridimensionare manualmente un pool abilitato per la scalabilità automatica, ad esempio con [BatchClient.PoolOperations.ResizePoolAsync][net_poolops_resizepoolasync], è prima necessario **disabilitare** la scalabilità automatica nel pool e quindi ridimensionarlo.
+> Quando si crea un pool di scalabilità automatica abilitata, non si specifica hello _targetDedicatedComputeNodes_ parametro o hello _targetLowPriorityComputeNodes_ parametro hello chiamare troppo **CreatePool**. Specificare invece hello **AutoScaleEnabled** e **AutoScaleFormula** proprietà nel pool di hello. valori di Hello per queste proprietà determinano il numero di destinazione hello di ogni tipo di nodo. Inoltre, toomanually ridimensionare un pool di scalabilità automatica abilitata (ad esempio, con [BatchClient.PoolOperations.ResizePoolAsync][net_poolops_resizepoolasync]), primo **disabilitare** la scalabilità automatica in Hello pool, quindi ridimensionarlo.
 >
 >
 
-Oltre a Batch .NET, è possibile usare qualsiasi altro [SDK per Batch](batch-apis-tools.md#azure-accounts-for-batch-development), l'[API REST per Batch](https://docs.microsoft.com/rest/api/batchservice/), i [cmdlet di PowerShell per Batch](batch-powershell-cmdlets-get-started.md) e l'[interfaccia della riga di comando di Batch](batch-cli-get-started.md) per configurare la scalabilità automatica.
+Inoltre tooBatch .NET, è possibile utilizzare una delle altre hello [Batch SDK](batch-apis-tools.md#azure-accounts-for-batch-development), [Batch REST](https://docs.microsoft.com/rest/api/batchservice/), [i cmdlet di PowerShell Batch](batch-powershell-cmdlets-get-started.md), hello e [CLI Batch](batch-cli-get-started.md)tooconfigure per la scalabilità automatica.
 
 
 ### <a name="automatic-scaling-interval"></a>Intervallo di ridimensionamento automatico
-Per impostazione predefinita, il servizio Batch adegua le dimensioni di un pool in base alla relativa formula di ridimensionamento automatico ogni 15 minuti. Questo intervallo è configurabile usando le proprietà del pool seguenti:
+Per impostazione predefinita, hello servizio Batch consente di regolare le dimensioni di un pool in base tooits formula di scalabilità automatica ogni 15 minuti. Questo intervallo è configurabile tramite hello seguenti proprietà del pool:
 
 * [CloudPool.AutoScaleEvaluationInterval][net_cloudpool_autoscaleevalinterval] (Batch .NET)
 * [autoScaleEvaluationInterval][rest_autoscaleinterval] (API REST)
 
-L'intervallo minimo è di 5 minuti e il massimo di 168 ore. Se viene specificato un intervallo che non rientra in questi valori, il servizio Batch restituisce un errore di richiesta non valida (400).
+intervallo minimo Hello è cinque minuti e hello massimo è 168 ore. Se viene specificato un intervallo all'esterno di questo intervallo, hello servizio Batch restituisce un errore di richiesta non valida (400).
 
 > [!NOTE]
-> La funzionalità di ridimensionamento automatico non è attualmente concepita come risposta alle modifiche in meno di un minuto, ma piuttosto per l'adeguamento graduale delle dimensioni del pool durante l'esecuzione di un carico di lavoro.
+> La scalabilità automatica non è attualmente previsto toorespond toochanges in meno di un minuto, ma è invece destinato dimensioni hello tooadjust del pool di gradualmente durante l'esecuzione di un carico di lavoro.
 >
 >
 
 ## <a name="enable-autoscaling-on-an-existing-pool"></a>Abilitare la scalabilità automatica in un pool esistente
 
-Ogni SDK per Batch offre un modo per abilitare la scalabilità automatica, ad esempio:
+Ogni Batch di SDK fornisce un adattamento automatico tooenable modo. ad esempio:
 
 * [BatchClient.PoolOperations.EnableAutoScaleAsync][net_enableautoscaleasync] (Batch .NET)
 * [Abilitare la scalabilità automatica in un pool][rest_enableautoscale] (API REST)
 
-Quando si abilita la scalabilità automatica in un pool esistente, tenere presente quanto segue:
+Quando si abilita il ridimensionamento automatico in un pool esistente, tenere hello presente seguenti punti:
 
-* Se la scalabilità automatica è attualmente disabilitata nel pool quando si esegue la richiesta per l'abilitazione, è necessario specificare una formula di scalabilità automatica valida quando si esegue la richiesta. Facoltativamente, è possibile specificare un intervallo di valutazione della scalabilità automatica. Se non si specifica un intervallo, viene applicato il valore predefinito, pari a 15 minuti.
-* Se la scalabilità automatica è attualmente abilitata nel pool, è possibile specificare una formula di scalabilità automatica, un intervallo di valutazione o entrambi. È necessario specificare almeno una di queste proprietà.
+* Se la scalabilità automatica è attualmente disabilitata nel pool di hello quando si esegue il ridimensionamento automatico di hello richiesta tooenable, è necessario specificare una formula di scalabilità automatica valido quando si esegue una richiesta di hello. Facoltativamente, è possibile specificare un intervallo di valutazione della scalabilità automatica. Se non si specifica un intervallo, viene utilizzato il valore predefinito hello di 15 minuti.
+* Se scalabilità automatica sono attualmente abilitata nel pool di hello, è possibile specificare una formula di scalabilità automatica, un intervallo di valutazione o entrambi. È necessario specificare almeno una di queste proprietà.
 
-  * Se si specifica un nuovo intervallo per la valutazione della scalabilità automatica, la pianificazione esistente per la valutazione viene arrestata e viene avviata una nuova pianificazione. L'ora di inizio della nuova pianificazione corrisponde al momento in cui è stata inviata la richiesta di abilitazione della scalabilità automatica.
-  * Se si omette la formula di scalabilità automatica o l'intervallo di valutazione, il servizio Batch continuerà a usare il valore corrente.
+  * Se si specifica un nuovo intervallo di valutazione di scalabilità automatica, pianificazione valutazione esistente hello viene arrestato e viene avviata una nuova pianificazione. ora di inizio della pianificazione nuova Hello è ora hello in cui hello è stato inviato il ridimensionamento automatico tooenable richiesta.
+  * Se si omette entrambi intervallo hello formula o evaluation di scalabilità automatica, hello servizio Batch continua valore corrente di hello toouse di tale impostazione.
 
 > [!NOTE]
-> Se si specificano valori per i parametri *targetDedicatedComputeNodes* o *targetLowPriorityComputeNodes* del metodo **CreatePool** al momento della creazione del pool in .NET, o per parametri analoghi in un altro linguaggio, questi valori vengono ignorati quando viene valutata la formula di scalabilità automatica.
+> Se sono specificati valori per hello *targetDedicatedComputeNodes* o *targetLowPriorityComputeNodes* parametri di hello **CreatePool** metodo durante la creazione di hello pool in .NET, o per i parametri di confrontabili hello in un'altra lingua, quindi tali valori vengono ignorati quando viene valutata hello formula di scalabilità automatica.
 >
 >
 
-Questo frammento di codice C# usa la libreria [Batch .NET][net_api] per abilitare la scalabilità automatica in un pool esistente:
+Questo frammento di codice c# utilizza hello [.NET per Batch] [ net_api] la scalabilità automatica tooenable libreria in un pool esistente:
 
 ```csharp
-// Define the autoscaling formula. This formula sets the target number of nodes
-// to 5 on Mondays, and 1 on every other day of the week
+// Define hello autoscaling formula. This formula sets hello target number of nodes
+// too5 on Mondays, and 1 on every other day of hello week
 string myAutoScaleFormula = "$TargetDedicatedNodes = (time().weekday == 1 ? 5:1);";
 
-// Set the autoscale formula on the existing pool
+// Set hello autoscale formula on hello existing pool
 await myBatchClient.PoolOperations.EnableAutoScaleAsync(
     "myexistingpool",
     autoscaleFormula: myAutoScaleFormula);
@@ -430,7 +430,7 @@ await myBatchClient.PoolOperations.EnableAutoScaleAsync(
 
 ### <a name="update-an-autoscale-formula"></a>Aggiornare una formula di scalabilità automatica
 
-Per aggiornare la formula in un pool esistente abilitato per la scalabilità automatica, chiamare l'operazione per abilitare di nuovo la scalabilità automatica con la nuova formula. Ad esempio, se la scalabilità automatica è già abilitata su `myexistingpool` quando viene eseguito il codice .NET seguente, la relativa formula di scalabilità automatica viene sostituita con il contenuto di `myNewFormula`.
+formula di hello tooupdate esistente di scalabilità automatica abilitata pool, la scalabilità automatica tooenable operazione chiamata hello con nuova formula hello. Se, ad esempio, la scalabilità automatica è già abilitata nel `myexistingpool` quando viene eseguita dopo il codice .NET hello, la formula di scalabilità automatica viene sostituita con il contenuto di hello di `myNewFormula`.
 
 ```csharp
 await myBatchClient.PoolOperations.EnableAutoScaleAsync(
@@ -438,9 +438,9 @@ await myBatchClient.PoolOperations.EnableAutoScaleAsync(
     autoscaleFormula: myNewFormula);
 ```
 
-### <a name="update-the-autoscale-interval"></a>Aggiornare l'intervallo di scalabilità automatica
+### <a name="update-hello-autoscale-interval"></a>Intervallo di aggiornamento hello scalabilità automatica
 
-Per aggiornare l'intervallo di valutazione della scalabilità automatica in un pool esistente abilitato per la scalabilità automatica, chiamare l'operazione per abilitare di nuovo la scalabilità automatica con il nuovo intervallo. Ad esempio, per impostare l'intervallo di valutazione della scalabilità automatica su 60 minuti per un pool già abilitato per la scalabilità automatica in .NET:
+tooupdate hello scalabilità automatica l'intervallo di valutazione di un di scalabilità automatica abilitata pool esistente, la scalabilità automatica tooenable operazione chiamata hello nuovamente con il nuovo intervallo di hello. Ad esempio, tooset hello scalabilità automatica valutazione intervallo too60 minuti per un pool è già abilitato per la scalabilità automatica in .NET:
 
 ```csharp
 await myBatchClient.PoolOperations.EnableAutoScaleAsync(
@@ -450,50 +450,50 @@ await myBatchClient.PoolOperations.EnableAutoScaleAsync(
 
 ## <a name="evaluate-an-autoscale-formula"></a>Valutare la formula di scalabilità automatica
 
-È possibile valutare la formula prima di applicarla a un pool. In questo modo, è possibile testare la formula per vedere in che modo le relative istruzioni vengono valutate prima di inserire la formula nell'ambiente di produzione.
+È possibile valutare una formula prima di applicarla tooa pool. In questo modo, è possibile testare toosee formula di hello come le relative istruzioni valutano prima di inserire la formula hello nell'ambiente di produzione.
 
-Per valutare una formula di scalabilità automatica, è necessario avere abilitato prima la scalabilità automatica nel pool con una formula valida. Per testare una formula in un pool che non dispone ancora di scalabilità automatica abilitata, usare la formula `$TargetDedicatedNodes = 0` a una riga quando si abilita per la prima volta la scalabilità automatica. Usare quindi uno dei metodi seguenti per valutare la formula da testare:
+tooevaluate una formula di scalabilità automatica, è innanzitutto necessario abilitare la scalabilità automatica nel pool di hello con una formula valida. tootest una formula in un pool che non dispone ancora di scalabilità automatica è abilitata, utilizzare hello una sola riga formula `$TargetDedicatedNodes = 0` quando si attiva prima di tutto la scalabilità automatica. Quindi, utilizzare uno dei hello tooevaluate hello formula desiderata tootest seguente:
 
 * [BatchClient.PoolOperations.EvaluateAutoScale](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.pooloperations.evaluateautoscale) o [EvaluateAutoScaleAsync](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.pooloperations.evaluateautoscaleasync)
 
-    Questi metodi .NET Batch richiedono l'ID di un pool esistente e una stringa contenente la formula di scalabilità automatica da valutare.
+    Questi metodi .NET per Batch richiedono hello ID di un pool esistente e una stringa contenente hello tooevaluate di formula di scalabilità automatica.
 
 * [Valutare la formula di scalabilità automatica](https://docs.microsoft.com/rest/api/batchservice/evaluate-an-automatic-scaling-formula)
 
-    In questa richiesta di API REST specificare l'ID del pool nell'URI e la formula di scalabilità automatica nell'elemento *autoScaleFormula* del corpo della richiesta. La risposta dell'operazione contiene eventuali informazioni sugli errori che potrebbero essere correlate alla formula.
+    In questa richiesta di API REST, specificare l'ID del pool di hello in hello URI e hello formula di scalabilità automatica in hello *autoScaleFormula* elemento del corpo della richiesta hello. risposta di Hello dell'operazione hello contiene eventuali informazioni sugli errori che potrebbero essere correlati toohello formula.
 
-Questo frammento di codice [Batch .NET][net_api] valuta una formula di scalabilità automatica. Se il pool non dispone di scalabilità automatica abilitata, è necessario abilitarla prima.
+Questo frammento di codice [Batch .NET][net_api] valuta una formula di scalabilità automatica. Se il pool di hello non dispone di scalabilità automatica abilitata, è abilitarlo prima.
 
 ```csharp
-// First obtain a reference to an existing pool
+// First obtain a reference tooan existing pool
 CloudPool pool = await batchClient.PoolOperations.GetPoolAsync("myExistingPool");
 
-// If autoscaling isn't already enabled on the pool, enable it.
+// If autoscaling isn't already enabled on hello pool, enable it.
 // You can't evaluate an autoscale formula on non-autoscale-enabled pool.
 if (pool.AutoScaleEnabled == false)
 {
-    // We need a valid autoscale formula to enable autoscaling on the
-    // pool. This formula is valid, but won't resize the pool:
+    // We need a valid autoscale formula tooenable autoscaling on the
+    // pool. This formula is valid, but won't resize hello pool:
     await pool.EnableAutoScaleAsync(
         autoscaleFormula: "$TargetDedicatedNodes = {pool.CurrentDedicatedNodes};",
         autoscaleEvaluationInterval: TimeSpan.FromMinutes(5));
 
-    // Batch limits EnableAutoScaleAsync calls to once every 30 seconds.
-    // Because we want to apply our new autoscale formula below if it
+    // Batch limits EnableAutoScaleAsync calls tooonce every 30 seconds.
+    // Because we want tooapply our new autoscale formula below if it
     // evaluates successfully, and we *just* enabled autoscaling on
-    // this pool, we pause here to ensure we pass that threshold.
+    // this pool, we pause here tooensure we pass that threshold.
     Thread.Sleep(TimeSpan.FromSeconds(31));
 
-    // Refresh the properties of the pool so that we've got the
+    // Refresh hello properties of hello pool so that we've got the
     // latest value for AutoScaleEnabled
     await pool.RefreshAsync();
 }
 
-// We must ensure that autoscaling is enabled on the pool prior to
+// We must ensure that autoscaling is enabled on hello pool prior to
 // evaluating a formula
 if (pool.AutoScaleEnabled == true)
 {
-    // The formula to evaluate - adjusts target number of nodes based on
+    // hello formula tooevaluate - adjusts target number of nodes based on
     // day of week and time of day
     string myFormula = @"
         $curTime = time();
@@ -503,32 +503,32 @@ if (pool.AutoScaleEnabled == true)
         $TargetDedicatedNodes = $isWorkingWeekdayHour ? 20:10;
     ";
 
-    // Perform the autoscale formula evaluation. Note that this code does not
-    // actually apply the formula to the pool.
+    // Perform hello autoscale formula evaluation. Note that this code does not
+    // actually apply hello formula toohello pool.
     AutoScaleRun eval =
         await batchClient.PoolOperations.EvaluateAutoScaleAsync(pool.Id, myFormula);
 
     if (eval.Error == null)
     {
-        // Evaluation success - print the results of the AutoScaleRun.
-        // This will display the values of each variable as evaluated by the
+        // Evaluation success - print hello results of hello AutoScaleRun.
+        // This will display hello values of each variable as evaluated by the
         // autoscale formula.
         Console.WriteLine("AutoScaleRun.Results: " +
             eval.Results.Replace("$", "\n    $"));
 
-        // Apply the formula to the pool since it evaluated successfully
+        // Apply hello formula toohello pool since it evaluated successfully
         await batchClient.PoolOperations.EnableAutoScaleAsync(pool.Id, myFormula);
     }
     else
     {
-        // Evaluation failed, output the message associated with the error
+        // Evaluation failed, output hello message associated with hello error
         Console.WriteLine("AutoScaleRun.Error.Message: " +
             eval.Error.Message);
     }
 }
 ```
 
-La valutazione corretta della formula in questo frammento di codice produce risultati simili ai seguenti:
+Valutazione con esito positivo della formula hello illustrata in questo frammento di codice produce risultati simili a:
 
 ```
 AutoScaleRun.Results:
@@ -542,17 +542,17 @@ AutoScaleRun.Results:
 
 ## <a name="get-information-about-autoscale-runs"></a>Visualizzare informazioni sulle esecuzioni della scalabilità automatica
 
-Per garantire che la formula funzioni come previsto, è consigliabile controllare periodicamente i risultati delle operazioni di scalabilità automatica eseguite da Batch sul pool. A tale scopo, ottenere o aggiornare un riferimento al pool ed esaminare le proprietà dell'ultima esecuzione di scalabilità automatica.
+tooensure che sta eseguendo la formula come previsto, è consigliabile verificare periodicamente risultati hello di viene eseguito il ridimensionamento automatico hello che esegue il pool di Batch. toodo in tal caso, get (o aggiornare) toohello un riferimento pool e, esaminare le proprietà di hello della scalabilità automatica ultima esecuzione.
 
-In .NET di Batch la proprietà [CloudPool.AutoScaleRun](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.cloudpool.autoscalerun) presenta varie proprietà che forniscono informazioni sull'ultima esecuzione di scalabilità automatica sul pool:
+In .NET per Batch, hello [CloudPool.AutoScaleRun](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.cloudpool.autoscalerun) proprietà ha diverse proprietà che forniscono informazioni su hello più recente il ridimensionamento automatico eseguire eseguita nel pool di hello:
 
 * [AutoScaleRun.Timestamp](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.autoscalerun.timestamp)
 * [AutoScaleRun.Results](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.autoscalerun.results)
 * [AutoScaleRun.Error](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.autoscalerun.error)
 
-Nell'API REST la richiesta [Ottenere informazioni su un pool](https://docs.microsoft.com/rest/api/batchservice/get-information-about-a-pool) restituisce informazioni relative al pool, che includono l'ultima esecuzione della scalabilità automatica nella proprietà [autoScaleRun](https://docs.microsoft.com/rest/api/batchservice/get-information-about-a-pool#bk_autrun).
+In hello API REST, hello [ottenere informazioni su un pool](https://docs.microsoft.com/rest/api/batchservice/get-information-about-a-pool) richiesta restituisce informazioni sul pool di hello, che include hello più recente il ridimensionamento automatico le informazioni sull'esecuzione di hello [autoScaleRun](https://docs.microsoft.com/rest/api/batchservice/get-information-about-a-pool#bk_autrun) proprietà.
 
-Il frammento di codice C# seguente usa la libreria .NET di Batch per stampare informazioni sull'ultima esecuzione della scalabilità automatica nel pool _myPool_:
+Hello seguente frammento di codice c# utilizza le hello .NET per Batch libreria tooprint informazioni hello ultima per la scalabilità automatica eseguire sul pool _myPool_:
 
 ```csharp
 await Cloud pool = myBatchClient.PoolOperations.GetPoolAsync("myPool");
@@ -561,7 +561,7 @@ Console.WriteLine("Result:" + pool.AutoScaleRun.Results.Replace("$", "\n  $"));
 Console.WriteLine("Error: " + pool.AutoScaleRun.Error);
 ```
 
-Esempio di output del frammento precedente:
+Esempio di output di hello precedente frammento di codice:
 
 ```
 Last execution: 10/14/2016 18:36:43
@@ -576,12 +576,12 @@ Error:
 ```
 
 ## <a name="example-autoscale-formulas"></a>Formule di scalabilità automatica di esempio
-Di seguito verranno esaminate alcune formule che mostrano diverse modalità per regolare la quantità di risorse di calcolo in un pool.
+Esaminiamo alcune formule che mostrano l'importo di hello tooadjust modi diversi delle risorse di calcolo in un pool.
 
 ### <a name="example-1-time-based-adjustment"></a>Esempio 1: Adeguamento basato sul tempo
-Si supponga di volte regolare le dimensioni del pool in base al giorno della settimana e all'ora del giorno. Questo esempio mostra come aumentare o ridurre il numero di nodi nel pool di conseguenza.
+Si supponga di dimensioni del pool hello tooadjust in base a hello giorno della settimana hello e l'ora del giorno. Questo esempio mostra come tooincrease o diminuire il numero di hello di nodi in hello del pool di conseguenza.
 
-La formula ottiene prima di tutto l'ora corrente. Durante i giorni della settimana, da 1 a 5, e durante l'orario lavorativo, dalle 8.00 alle 18.00, le dimensioni del pool di destinazione sono impostate su 20 nodi. In caso contrario, vengono impostate su 10 nodi.
+formula Hello ottiene innanzitutto hello ora corrente. Se si tratta di un giorno della settimana (1-5) e nelle ore lavorative (8 AM too6 PM), dimensione del pool di destinazione hello è impostato too20 nodi. In caso contrario, è stata impostata too10 nodi.
 
 ```
 $curTime = time();
@@ -592,54 +592,54 @@ $TargetDedicatedNodes = $isWorkingWeekdayHour ? 20:10;
 ```
 
 ### <a name="example-2-task-based-adjustment"></a>Esempio 2: Adeguamento basato sulle attività
-In questo esempio le dimensioni del pool vengono regolate in base al numero di attività nella coda. Sia i commenti che le interruzioni di riga sono accettabili nelle stringhe della formula.
+In questo esempio hello pool viene ridimensionata in base al numero di hello delle attività nella coda di hello. Sia i commenti che le interruzioni di riga sono accettabili nelle stringhe della formula.
 
 ```csharp
-// Get pending tasks for the past 15 minutes.
+// Get pending tasks for hello past 15 minutes.
 $samples = $ActiveTasks.GetSamplePercent(TimeInterval_Minute * 15);
-// If we have fewer than 70 percent data points, we use the last sample point,
-// otherwise we use the maximum of last sample point and the history average.
+// If we have fewer than 70 percent data points, we use hello last sample point,
+// otherwise we use hello maximum of last sample point and hello history average.
 $tasks = $samples < 70 ? max(0,$ActiveTasks.GetSample(1)) : max( $ActiveTasks.GetSample(1), avg($ActiveTasks.GetSample(TimeInterval_Minute * 15)));
-// If number of pending tasks is not 0, set targetVM to pending tasks, otherwise
+// If number of pending tasks is not 0, set targetVM toopending tasks, otherwise
 // half of current dedicated.
 $targetVMs = $tasks > 0? $tasks:max(0, $TargetDedicatedNodes/2);
-// The pool size is capped at 20, if target VM value is more than that, set it
-// to 20. This value should be adjusted according to your use case.
+// hello pool size is capped at 20, if target VM value is more than that, set it
+// too20. This value should be adjusted according tooyour use case.
 $TargetDedicatedNodes = max(0, min($targetVMs, 20));
 // Set node deallocation mode - keep nodes active only until tasks finish
 $NodeDeallocationOption = taskcompletion;
 ```
 
 ### <a name="example-3-accounting-for-parallel-tasks"></a>Esempio 3: Considerazioni sulle attività parallele
-Questo esempio adegua le dimensioni del pool in base al numero di attività. Questa formula considera anche il valore [MaxTasksPerComputeNode][net_maxtasks] impostato per il pool. Questo approccio è utile nelle situazioni in cui l'[esecuzione di attività parallele](batch-parallel-node-tasks.md) è abilitata nel pool.
+Questo esempio Adatta dimensioni del pool hello in base al numero di hello delle attività. Questa formula accetta anche in hello account [MaxTasksPerComputeNode] [ net_maxtasks] valore impostato per il pool di hello. Questo approccio è utile nelle situazioni in cui l'[esecuzione di attività parallele](batch-parallel-node-tasks.md) è abilitata nel pool.
 
 ```csharp
-// Determine whether 70 percent of the samples have been recorded in the past
+// Determine whether 70 percent of hello samples have been recorded in hello past
 // 15 minutes; if not, use last sample
 $samples = $ActiveTasks.GetSamplePercent(TimeInterval_Minute * 15);
 $tasks = $samples < 70 ? max(0,$ActiveTasks.GetSample(1)) : max( $ActiveTasks.GetSample(1),avg($ActiveTasks.GetSample(TimeInterval_Minute * 15)));
-// Set the number of nodes to add to one-fourth the number of active tasks (the
-// MaxTasksPerComputeNode property on this pool is set to 4, adjust this number
+// Set hello number of nodes tooadd tooone-fourth hello number of active tasks (the
+// MaxTasksPerComputeNode property on this pool is set too4, adjust this number
 // for your use case)
 $cores = $TargetDedicatedNodes * 4;
 $extraVMs = (($tasks - $cores) + 3) / 4;
 $targetVMs = ($TargetDedicatedNodes + $extraVMs);
-// Attempt to grow the number of compute nodes to match the number of active
+// Attempt toogrow hello number of compute nodes toomatch hello number of active
 // tasks, with a maximum of 3
 $TargetDedicatedNodes = max(0,min($targetVMs,3));
-// Keep the nodes active until the tasks finish
+// Keep hello nodes active until hello tasks finish
 $NodeDeallocationOption = taskcompletion;
 ```
 
 ### <a name="example-4-setting-an-initial-pool-size"></a>Esempio 4: Impostazione di dimensioni iniziali del pool
-Questo esempio mostra un frammento di codice C# con una formula di scalabilità automatica che imposta le dimensioni del pool su un numero specificato di nodi per un periodo di tempo iniziale. Adegua quindi le dimensioni del pool in base al numero di attività in esecuzione e attive dopo la scadenza del periodo di tempo iniziale.
+In questo esempio mostra frammento con una formula di scalabilità automatica che imposta di codice c# hello tooa dimensioni pool specificato numero di nodi per un periodo di tempo iniziale. Modifica dimensioni del pool hello in base al numero di hello dell'esecuzione e le attività attive dopo hello iniziale periodo di tempo trascorso.
 
-La formula nel frammento di codice seguente:
+formula Hello nel seguente frammento di codice hello:
 
-* Imposta le dimensioni iniziali del pool su 4 nodi.
-* Non modifica le dimensioni del pool nei primi 10 minuti del relativo ciclo di vita.
-* Dopo 10 minuti ottiene il valore massimo del numero di attività in esecuzione e attive negli ultimi 60 minuti.
-  * Se entrambi i valori corrispondono a 0, ovvero nessuna attività era in esecuzione o attiva negli ultimi 60 minuti, le dimensioni del pool vengono impostate su 0.
+* Imposta pool iniziale di hello nodi toofour dimensioni.
+* Non ridimensionare hello pool all'interno di hello primi 10 minuti del ciclo di vita del pool di hello.
+* Dopo 10 minuti, ottiene il valore massimo di hello hello active e numero di esecuzione di attività all'interno di hello negli ultimi 60 minuti.
+  * Se entrambi i valori sono 0 (che indica che nessuna attività erano in esecuzione o attivi in hello 60 minuti), dimensione del pool di hello è impostato too0.
   * Se uno dei valori è maggiore di zero, non viene apportata alcuna modifica.
 
 ```csharp
@@ -656,8 +656,8 @@ string formula = string.Format(@"
 ```
 
 ## <a name="next-steps"></a>Passaggi successivi
-* [Ottimizzare l'uso delle risorse di calcolo di Azure Batch con attività dei nodi simultanee](batch-parallel-node-tasks.md) contiene informazioni dettagliate su come è possibile eseguire più attività contemporaneamente sui nodi di calcolo nel pool. Oltre al ridimensionamento automatico, questa funzionalità può contribuire a ridurre la durata del processo per alcuni carichi di lavoro, riducendo i costi.
-* Per ottimizzare ulteriormente l'efficienza, assicurarsi che l'applicazione Batch esegua query sul servizio Batch in modo ottimale. Vedere [Eseguire query sul servizio Azure Batch in modo efficiente](batch-efficient-list-queries.md) per informazioni su come limitare la quantità dei dati trasmessi in rete quando si esegue una query sullo stato potenzialmente di migliaia di nodi di calcolo o attività.
+* [Ottimizzare l'utilizzo delle risorse di calcolo di Azure Batch con le attività simultanee nodo](batch-parallel-node-tasks.md) contiene informazioni dettagliate su come è possibile eseguire più attività contemporaneamente sui nodi di calcolo hello del pool. Inoltre tooautoscaling, questa funzionalità può aiutare a toolower la durata del processo per alcuni carichi di lavoro, riducendo i costi.
+* Per un altro ottimizzatore di efficienza, verificare che le query dell'applicazione di Batch hello servizio Batch in modo ottimale la maggior parte delle hello. Vedere [Query in modo efficiente il servizio di Azure Batch hello](batch-efficient-list-queries.md) toolearn come toolimit hello quantità di dati che attraversa il transito hello quando si esegue una query sullo stato di hello di potenzialmente migliaia di calcolo nodi o attività.
 
 [net_api]: https://docs.microsoft.com/dotnet/api/microsoft.azure.batch
 [net_batchclient]: https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.batchclient

@@ -1,6 +1,6 @@
 ---
-title: Abilitazione delle metriche di archiviazione nel Portale di Azure | Microsoft Docs
-description: Come abilitare le metriche di archiviazione per i servizi BLOB, di accodamento, di tabelle e file
+title: aaaEnabling metriche di archiviazione nel portale di Azure hello | Documenti Microsoft
+description: Come tooenable metriche di archiviazione per hello servizi Blob, coda, tabella e File
 services: storage
 documentationcenter: 
 author: robinsh
@@ -14,68 +14,68 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 03/03/2017
 ms.author: robinsh
-ms.openlocfilehash: 4d6065597a41372ea6d320ab318b0c71d6a48b2a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 4c990371e08a6586d935b0535149eabd4960cfaa
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="enabling-storage-metrics-and-viewing-metrics-data"></a>Abilitazione di Metriche di archiviazione e visualizzazione dei dati di metrica
 [!INCLUDE [storage-selector-portal-enable-and-view-metrics](../../includes/storage-selector-portal-enable-and-view-metrics.md)]
 
 ## <a name="overview"></a>Panoramica
-Le metriche di archiviazione vengono abilitate per impostazione predefinita quando si crea un nuovo account di archiviazione. È possibile configurare il monitoraggio usando il [portale di Azure classico](https://manage.windowsazure.com) o Windows PowerShell. In alternativa, è possibile abilitarlo in modo programmatico tramite un'API di archiviazione.
+Le metriche di archiviazione vengono abilitate per impostazione predefinita quando si crea un nuovo account di archiviazione. È possibile configurare il monitoraggio tramite entrambi hello [portale di Azure classico](https://manage.windowsazure.com), Windows PowerShell, o a livello di codice tramite un'API di archiviazione.
 
-Quando si abilita Metriche di archiviazione, è necessario scegliere un periodo di memorizzazione per i dati: questo periodo determina per quanto tempo il servizio di archiviazione mantiene le metriche e addebita all'utente lo spazio necessario per archiviarle. In genere, è consigliabile usare un periodo di memorizzazione per le metriche al minuto più breve che per le metriche orarie, a causa dello spazio supplementare significativo necessario per le metriche al minuto. È consigliabile scegliere un periodo di memorizzazione tale da avere tempo sufficiente per analizzare i dati e scaricare le metriche da mantenere per l'analisi non in linea o la creazione di report. Tenere presente che verrà addebitato anche il download dei dati di metrica dall'account di archiviazione.
+Quando si abilita metriche di archiviazione, è necessario scegliere un periodo di memorizzazione per i dati di hello: questo periodo determina per quanto tempo archiviazione hello servizio mantiene le metriche hello e spese di hello spazio richiesto toostore li. In genere, è consigliabile utilizzare un periodo di memorizzazione più breve per le metriche al minuto più metrica oraria a causa di hello significativo spazio richiesto per le metriche al minuto. È consigliabile scegliere un periodo di memorizzazione in modo che si dispone di sufficiente tempo tooanalyze hello dati e download delle metriche che si desidera tookeep per l'analisi offline o creazione di report. Tenere presente che verrà addebitato anche il download dei dati di metrica dall'account di archiviazione.
 
-## <a name="how-to-enable-storage-metrics-using-the-azure-classic-portal"></a>Come abilitare Metriche di archiviazione usando il portale di Azure classico
-Nel [portale di Azure classico](https://manage.windowsazure.com), usare la pagina Configura per fare in modo che un account di archiviazione controlli le metriche di archiviazione. Per il monitoraggio, è possibile impostare un livello e un periodo di memorizzazione in giorni per ciascun BLOB, tabella e coda. In ciascun caso, il livello è uno dei seguenti:
+## <a name="how-tooenable-storage-metrics-using-hello-azure-classic-portal"></a>Come tooenable metriche di archiviazione usando hello portale classico di Azure
+In hello [portale di Azure classico](https://manage.windowsazure.com), usare hello Configura pagina relativa a un toocontrol di account di archiviazione metriche di archiviazione. Per il monitoraggio, è possibile impostare un livello e un periodo di memorizzazione in giorni per ciascun BLOB, tabella e coda. In ogni caso, il livello di hello è uno dei seguenti hello:
 
 * Disattivato: non vengono raccolte metriche.
-* Minimo: Metriche di archiviazione raccoglie un set base di metriche come ingresso/uscita, disponibilità, latenza e percentuali di successo, aggregate per i servizi BLOB, di tabelle e di accodamento.
-* Dettagliato: Metriche di archiviazione raccoglie un set completo di metriche che include le stesse metriche per ciascuna operazione API di archiviazione, oltre alle metriche a livello di servizio. Le metriche dettagliate consentono un'analisi più accurata dei problemi che si verificano durante l'elaborazione dell'applicazione.
+* Minimo tra Metriche di archiviazione raccoglie un set di metriche come ingresso/uscita, disponibilità, latenza e percentuali di successo aggregate per i servizi Blob, tabelle e code di hello base.
+* -Verbose Raccoglie le metriche di archiviazione set completo di metriche che include hello stesse metriche per ogni operazione API di archiviazione, inoltre toohello a livello di servizio metriche. Le metriche dettagliate consentono un'analisi più accurata dei problemi che si verificano durante l'elaborazione dell'applicazione.
 
-Si noti che il portale di Azure classico attualmente non consente di configurare le metriche al minuto nell'account di archiviazione; è necessario abilitare le metriche al minuto usando PowerShell o a livello di codice.
+Si noti che hello portale classico di Azure non attualmente consentono tooconfigure metrica al minuto nell'account di archiviazione; è necessario abilitare le metriche al minuto mediante PowerShell o a livello di codice.
 
-## <a name="how-to-enable-storage-metrics-using-powershell"></a>Come abilitare Metriche di archiviazione usando PowerShell
-È possibile usare PowerShell nel computer locale per configurare Metriche di archiviazione nell'account di archiviazione usando il cmdlet di Azure PowerShell Get-AzureStorageServiceMetricsProperty per recuperare le impostazioni correnti e il cmdlet Set-AzureStorageServiceMetricsProperty per modificare le impostazioni correnti.
+## <a name="how-tooenable-storage-metrics-using-powershell"></a>Come tooenable metriche di archiviazione con PowerShell
+È possibile usare PowerShell sulle metriche di archiviazione di tooconfigure computer locale nell'account di archiviazione usando le impostazioni correnti di hello Azure PowerShell cmdlet Get-AzureStorageServiceMetricsProperty tooretrieve hello e hello cmdlet Set-AzureStorageServiceMetricsProperty toochange hello le impostazioni correnti.
 
-I cmdlet che controllano Metriche di archiviazione usano i seguenti parametri:
+cmdlet di Hello che controllano metriche di archiviazione usano hello seguenti parametri:
 
 * I valori possibili di MetricsType sono Hour e Minute.
 * I valori possibili di ServiceType sono Blob, Queue e Table.
-* I valori possibili di MetricsLevel sono None (equivalente a Disattivato nel portale di Azure classico), Service (equivalente a Minimo nel portale di Azure classico) e ServiceAndApi (equivalente a Dettagliato nel portale di Azure classico).
+* MetricsLevel i valori possibili sono None (tooOff equivalente nel portale di Azure classico hello), il servizio (tooMinimal equivalente nel portale di Azure classico hello) e ServiceAndApi (tooVerbose equivalente nel portale di Azure classico hello).
 
-Ad esempio, il seguente comando attiva le metriche al minuto per il servizio BLOB nell'account di archiviazione predefinito con il periodo di memorizzazione impostato su cinque giorni:
+Ad esempio, hello seguente comando attiva le metriche per il servizio blob hello nell'account di archiviazione predefinito con il periodo di memorizzazione hello impostare i giorni toofive minuto:
 
 ```powershell
 Set-AzureStorageServiceMetricsProperty -MetricsType Minute -ServiceType Blob -MetricsLevel ServiceAndApi  -RetentionDays 5
 ```
-Il seguente comando recupera il livello delle metriche orarie corrente e i giorni di memorizzazione per il servizio BLOB nell'account di archiviazione predefinito:
+Hello seguente comando Recupera hello corrente oraria metriche livello e alla conservazione dei giorni per il servizio blob hello nell'account di archiviazione predefinito:
 
 ```powershell
 Get-AzureStorageServiceMetricsProperty -MetricsType Hour -ServiceType Blob
 ```
-Per informazioni su come configurare i cmdlet di Azure PowerShell per usare la sottoscrizione di Azure e su come selezionare l'account di archiviazione predefinito da utilizzare, vedere: [Come installare e configurare Azure PowerShell](/powershell/azure/overview).
+Per informazioni su come tooconfigure hello Azure PowerShell cmdlet toowork con la sottoscrizione di Azure e come tooselect hello spazio di archiviazione predefinito degli account toouse, vedere: [come tooinstall e configurare Azure PowerShell](/powershell/azure/overview).
 
-## <a name="how-to-enable-storage-metrics-programmatically"></a>Come abilitare Metriche di archiviazione a livello di codice
-Il frammento C# seguente illustra come abilitare le metriche e la registrazione per il servizio BLOB con la libreria del client di archiviazione per .NET:
+## <a name="how-tooenable-storage-metrics-programmatically"></a>Come tooenable metriche di archiviazione a livello di codice
+Hello frammento di codice c# seguente viene illustrato come tooenable metrica e registrazione per il servizio Blob hello utilizzando hello libreria client di archiviazione per .NET:
 
 ```csharp
-//Parse the connection string for the storage account.
+//Parse hello connection string for hello storage account.
 const string ConnectionString = "DefaultEndpointsProtocol=https;AccountName=account-name;AccountKey=account-key";
 CloudStorageAccount storageAccount = CloudStorageAccount.Parse(ConnectionString);
 
-// Create service client for credentialed access to the Blob service.
+// Create service client for credentialed access toohello Blob service.
 CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
 
-// Enable Storage Analytics logging and set retention policy to 10 days. 
+// Enable Storage Analytics logging and set retention policy too10 days. 
 ServiceProperties properties = new ServiceProperties();
 properties.Logging.LoggingOperations = LoggingOperations.All;
 properties.Logging.RetentionDays = 10;
 properties.Logging.Version = "1.0";
 
-// Configure service properties for metrics. Both metrics and logging must be set at the same time.
+// Configure service properties for metrics. Both metrics and logging must be set at hello same time.
 properties.HourMetrics.MetricsLevel = MetricsLevel.ServiceAndApi;
 properties.HourMetrics.RetentionDays = 10;
 properties.HourMetrics.Version = "1.0";
@@ -84,22 +84,22 @@ properties.MinuteMetrics.MetricsLevel = MetricsLevel.ServiceAndApi;
 properties.MinuteMetrics.RetentionDays = 10;
 properties.MinuteMetrics.Version = "1.0";
 
-// Set the default service version to be used for anonymous requests.
+// Set hello default service version toobe used for anonymous requests.
 properties.DefaultServiceVersion = "2015-04-05";
 
-// Set the service properties.
+// Set hello service properties.
 blobClient.SetServiceProperties(properties);
 ```
 
 ## <a name="viewing-storage-metrics"></a>Visualizzazione di Metriche di archiviazione
-Una volta configurato Metriche di archiviazione per monitorare l'account di archiviazione, le metriche vengono registrate in un set di tabelle note nell'account di archiviazione. È possibile usare la pagina Monitoraggio relativa all'account di archiviazione nel portale di Azure classico per visualizzare in un grafico le metriche orarie non appena risultano disponibili. In questa pagina del portale di Azure classico è possibile:
+Quando è stato configurato toomonitor metriche di archiviazione di account di archiviazione, registra le metriche hello in un set di tabelle note nell'account di archiviazione. È possibile utilizzare pagina monitoraggio hello dell'account di archiviazione in hello metrica oraria di portale di Azure classico tooview hello man mano che diventano disponibili in un grafico. In questa pagina in hello portale classico di Azure, è possibile:
 
-* Selezionare le metriche da tracciare nel grafico (la scelta delle metriche disponibili dipende dal fatto che sia stato scelto il monitoraggio dettagliato o minimo per il servizio nella pagina Configura).
-* Selezionare l'intervallo di tempo per le metriche visualizzate nel grafico.
-* Scegliere di usare una scala assoluta o relativa per tracciare le metriche.
-* Configurare gli avvisi di posta elettronica per inviare una notifica all'utente quando una metrica specifica raggiunge un determinato valore.
+* Selezionare quali tooplot metriche sul grafico hello (hello scelta delle metriche disponibili dipende se si è scelto di monitoraggio dettagliato o minimo per il servizio di hello nella pagina Configurazione hello).
+* Selezionare l'intervallo di tempo hello per le metriche di hello visualizzate nel grafico hello.
+* Scegliere toouse metriche di hello tooplot una scala assoluta o relativa.
+* Configurare toonotify gli avvisi di posta elettronica quando una metrica specifica raggiunge un determinato valore.
 
-Se si desidera scaricare le metriche per l'archiviazione a lungo termine o per analizzare le metriche in locale, è necessario usare uno strumento o scrivere il codice per leggere le tabelle. È necessario scaricare le metriche al minuto per l'analisi. Se si elencano tutte le tabelle nell'account di archiviazione, le tabelle non vengono visualizzate, ma è possibile accedervi direttamente mediante il nome. Molti strumenti di esplorazione di archiviazione di terze parti sono compatibili con queste tabelle e consentono di visualizzarle direttamente (per un elenco di strumenti disponibili, vedere il post di blog [Microsoft Azure Storage Explorer](http://blogs.msdn.com/b/windowsazurestorage/archive/2014/03/11/windows-azure-storage-explorers-2014.aspx) ).
+Se si desidera metriche hello toodownload per l'archiviazione a lungo termine o tooanalyze usarle in locale, si necessario toouse uno strumento o scrivere codice tabelle hello tooread. È necessario scaricare le metriche al minuto hello per l'analisi. tabelle di Hello non vengono visualizzati se si elencano tutte le tabelle di hello presenti account di archiviazione, ma è possibile accedervi direttamente per nome. Molti strumenti di esplorazione di archiviazione di terze parti sono a conoscenza di queste tabelle e consentono di tooview direttamente (vedere post di blog hello [Esplora archivi di Microsoft Azure](http://blogs.msdn.com/b/windowsazurestorage/archive/2014/03/11/windows-azure-storage-explorers-2014.aspx) per un elenco degli strumenti disponibili).
 
 ### <a name="hourly-metrics"></a>Metriche orarie
 * $MetricsHourPrimaryTransactionsBlob
@@ -114,7 +114,7 @@ Se si desidera scaricare le metriche per l'archiviazione a lungo termine o per a
 ### <a name="capacity"></a>Capacità
 * $MetricsCapacityBlob
 
-È possibile trovare i dettagli completi degli schemi di queste tabelle in [Schema di tabella della metrica di Analisi di archiviazione](https://msdn.microsoft.com/library/azure/hh343264.aspx). Le righe di esempio riportate di seguito mostrano solo un subset delle colonne disponibili, ma illustrano alcune importanti funzionalità relative al modo in cui Metriche di archiviazione salva queste metriche:
+È possibile trovare i dettagli completi degli schemi di hello delle tabelle in [Schema di tabella delle metriche di archiviazione Analitica](https://msdn.microsoft.com/library/azure/hh343264.aspx). le righe di esempio Hello riportato di seguito mostrano solo un subset di colonne hello disponibili, ma illustrano alcune importanti funzionalità della modalità di hello che metriche di archiviazione Salva le metriche:
 
 | PartitionKey | RowKey | Timestamp | TotalRequests | TotalBillableRequests | TotalIngress | TotalEgress | Disponibilità | AverageE2ELatency | AverageServerLatency | PercentSuccess |
 | --- |:---:| ---:| --- | --- | --- | --- | --- | --- | --- | --- |
@@ -123,41 +123,41 @@ Se si desidera scaricare le metriche per l'archiviazione a lungo termine o per a
 | 20140522T1100 |user;QueryEntity |2014-05-22T11:01:16.7650250Z |1 |1 |538 |633 |100 |3 |3 |100 |
 | 20140522T1100 |user;UpdateEntity |2014-05-22T11:01:16.7650250Z |1 |1 |771 |217 |100 |9 |6 |100 |
 
-Nei dati delle metriche al minuto di questo esempio, la chiave di partizione usa la risoluzione ora al minuto. La chiave di riga identifica il tipo di informazioni archiviate nella riga ed è composta da due informazioni, il tipo di accesso e il tipo di richiesta:
+Nei dati di metrica al minuto in questo esempio, la chiave di partizione hello utilizza ora hello risoluzione minuti. chiave di riga Hello identifica il tipo di hello di informazioni archiviate nella riga hello ed è composta da due tipi di informazioni, il tipo di accesso hello e il tipo di richiesta di hello:
 
-* Il tipo di accesso è user o system, laddove user si riferisce a tutte le richieste utente al servizio di archiviazione e system si riferisce alle richieste effettuate da Analisi archiviazione.
-* Il tipo di richiesta può essere all, e in questo caso si tratta di una riga di riepilogo, o identificare l'API specifica, ad esempio QueryEntity o UpdateEntity.
+* il tipo di accesso di Hello è l'utente o sistema, in cui utente fa riferimento a servizio di archiviazione toohello richieste utente tooall e ci si riferisce toorequests effettuate da archiviazione Analitica.
+* tipo di richiesta Hello è tutte nel qual caso è una riga di riepilogo, oppure identifica hello API specifica, ad esempio QueryEntity o UpdateEntity.
 
-I dati di esempio sopra riportati mostrano tutti i record per un solo minuto (a partire dalle 11.00). La somma del numero di richieste QueryEntities, del numero di richieste QueryEntity e del numero di richieste UpdateEntity è sette, che corrisponde al totale visualizzato nella riga user:All. Analogamente, è possibile ricavare la latenza end-to-end media 104,4286 nella riga user:All calcolando ((143,8 * 5) + 3 + 9) / 7.
+dati di esempio Hello precedente che tutti hello Registra per un singolo minuto (a partire da 11:00 AM), in tal caso hello numerose richieste QueryEntities più hello numero di richieste QueryEntity più hello un numero di richieste UpdateEntity somma tooseven, che è hello totale mostrato in riga user: All Hello. Analogamente, è possibile derivare hello end-to-end latenza media 104.4286 riga user: All hello calcolando ((143.8 * 5) + 3 + 9) / 7.
 
-È consigliabile impostare gli avvisi nel portale di Azure classico nella pagina Monitoraggio in modo che Metriche di archiviazione possa notificare automaticamente eventuali importanti modifiche nel comportamento dei servizi di archiviazione. Se si usa uno strumento di esplorazione di archiviazione per scaricare i dati di metrica in un formato delimitato, è possibile usare Microsoft Excel per analizzare i dati. Per un elenco di strumenti di esplorazione di archiviazione disponibili, vedere il post di blog [Microsoft Azure Storage Explorers](http://blogs.msdn.com/b/windowsazurestorage/archive/2014/03/11/windows-azure-storage-explorers-2014.aspx).
+È consigliabile impostare degli avvisi nella hello portale classico di Azure nella pagina monitoraggio hello in modo che le metriche di archiviazione può notificare automaticamente eventuali importanti modifiche di comportamento hello dei servizi di archiviazione. Se si utilizzano un toodownload strumento soluzioni di archiviazione dati di metrica in un formato delimitato, è possibile utilizzare dati di Microsoft Excel tooanalyze hello. Vedere post di blog hello [Esplora archivi di Microsoft Azure](http://blogs.msdn.com/b/windowsazurestorage/archive/2014/03/11/windows-azure-storage-explorers-2014.aspx) per un elenco di strumenti di esplorazione di archiviazione disponibile.
 
 ## <a name="accessing-metrics-data-programmatically"></a>Accesso ai dati di metrica a livello di codice
-Nell'elenco riportato di seguito viene illustrato il codice C# che consente l'accesso alle metriche al minuto per un intervallo di minuti. Vengono inoltre visualizzati i risultati in una finestra della console. Viene utilizzata la libreria di archiviazione di Azure versione 4 che include la classe CloudAnalyticsClient, in grado di semplificare l'accesso alle tabelle di metrica nell'archiviazione.
+Hello seguito è riportato codice c# che accede metrica al minuto per un intervallo di minuti hello e Visualizza risultati hello in una finestra della console. Usa hello libreria di archiviazione di Azure versione 4 che include hello classe CloudAnalyticsClient che semplifica l'accesso alle tabelle di metrica hello nel servizio di archiviazione.
 
 ```csharp
 private static void PrintMinuteMetrics(CloudAnalyticsClient analyticsClient, DateTimeOffset startDateTime, DateTimeOffset endDateTime)
 {
-    // Convert the dates to the format used in the PartitionKey
+    // Convert hello dates toohello format used in hello PartitionKey
     var start = startDateTime.ToUniversalTime().ToString("yyyyMMdd'T'HHmm");
     var end = endDateTime.ToUniversalTime().ToString("yyyyMMdd'T'HHmm");
 
     var services = Enum.GetValues(typeof(StorageService));
     foreach (StorageService service in services)
     {
-        Console.WriteLine("Minute Metrics for Service {0} from {1} to {2} UTC", service, start, end);
+        Console.WriteLine("Minute Metrics for Service {0} from {1} too{2} UTC", service, start, end);
         var metricsQuery = analyticsClient.CreateMinuteMetricsQuery(service, StorageLocation.Primary);
         var t = analyticsClient.GetMinuteMetricsTable(service);
         var opContext = new OperationContext();
         var query =
           from entity in metricsQuery
-          // Note, you can't filter using the entity properties Time, AccessType, or TransactionType
-          // because they are calculated fields in the MetricsEntity class.
-          // The PartitionKey identifies the DataTime of the metrics.
+          // Note, you can't filter using hello entity properties Time, AccessType, or TransactionType
+          // because they are calculated fields in hello MetricsEntity class.
+          // hello PartitionKey identifies hello DataTime of hello metrics.
           where entity.PartitionKey.CompareTo(start) >= 0 && entity.PartitionKey.CompareTo(end) <= 0 
         select entity;
 
-        // Filter on "user" transactions after fetching the metrics from Table Storage.
+        // Filter on "user" transactions after fetching hello metrics from Table Storage.
         // (StartsWith is not supported using LINQ with Azure table storage)
         var results = query.ToList().Where(m => m.RowKey.StartsWith("user"));
         var resultString = results.Aggregate(new StringBuilder(), (builder, metrics) => builder.AppendLine(MetricsString(metrics, opContext))).ToString();
@@ -178,15 +178,15 @@ private static string MetricsString(MetricsEntity entity, OperationContext opCon
 ```
 
 ## <a name="what-charges-do-you-incur-when-you-enable-storage-metrics"></a>Quali addebiti è necessario sostenere quando si abilitano le metriche di archiviazione?
-Le richieste di scrittura per creare entità di tabella per le metriche vengono addebitate alle tariffe standard applicabili a tutte le operazioni di archiviazione di Azure.
+Scrivere l'entità della tabella toocreate richieste per le metriche vengono addebitate con operazioni di archiviazione di Azure di hello tariffe standard applicabili tooall.
 
-Anche le richieste di lettura ed eliminazione da parte di un client relative ai dati di metrica sono fatturabili alle tariffe standard. Se è stato configurato un criterio di memorizzazione dati, non è necessario sostenere alcun addebito quando Archiviazione di Azure elimina i vecchi dati di metrica. Tuttavia, se si eliminano dati di analisi, all'account vengono addebitate le operazioni di eliminazione.
+Sono fatturabili in base alle tariffe standard anche le richieste di lettura ed eliminazione da una data toometrics client. Se è stato configurato un criterio di memorizzazione dati, non è necessario sostenere alcun addebito quando Archiviazione di Azure elimina i vecchi dati di metrica. Tuttavia, se si eliminano dati analitica, l'account viene addebitato hello nelle operazioni di eliminazione.
 
-Anche la capacità usata dalle tabelle di metrica è fatturabile: è possibile usare le seguenti informazioni per calcolare la quantità di capacità usata per l'archiviazione dei dati di metrica:
+capacità di Hello utilizzata dalle tabelle di metrica hello è fatturabile: è possibile utilizzare hello seguente quantità di hello tooestimate di capacità usata per l'archiviazione dei dati di metrica:
 
-* Se ogni ora un servizio utilizza tutte le API presenti in ciascun servizio, ogni ora circa 148 KB di dati vengono archiviati nelle tabelle delle transazioni metriche, se è stato abilitato il riepilogo a livello di servizio e di API.
-* Se ogni ora un servizio utilizza tutte le API presenti in ciascun servizio, ogni ora circa 12 KB di dati vengono archiviati nelle tabelle delle transazioni metriche, se è stato abilitato solo il riepilogo a livello di servizio.
-* La tabella di capacità per i BLOB contiene due righe aggiunte ogni giorno (se l'utente ha optato per i log): di conseguenza, ogni giorno la dimensione della tabella aumenta di circa 300 byte.
+* Se ogni ora un servizio utilizza ogni API in ogni servizio, quindi circa 148KB di dati è ogni ora archiviati nelle tabelle di metrica di transazione hello se è stata abilitata servizio sia a livello dell'API di riepilogo.
+* Se ogni ora un servizio utilizza ogni API in ogni servizio, quindi circa 12KB di dati è ogni ora archiviati nelle tabelle di metrica di transazione hello se sono stati abilitati solo i livello di servizio riepilogo.
+* Hello tabella della capacità per i BLOB dispone di due righe aggiunte ogni giorno (purché l'utente ha scelto i log): questo implica che ogni giorno hello dimensioni della tabella aumentano da backup tooapproximately 300 byte.
 
 ## <a name="next-steps"></a>Passaggi successivi:
 [Abilitazione della registrazione di Analisi archiviazione e accesso ai dati di log](https://msdn.microsoft.com/library/dn782840.aspx)

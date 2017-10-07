@@ -1,6 +1,6 @@
 ---
-title: Spostare dati da SQL Server locale a SQL Azure con Azure Data Factory | Microsoft Docs
-description: "Impostare una pipeline di ADF che comprenda due attività di migrazione di dati che insieme spostino i dati giornalmente tra database locali e nel cloud."
+title: aaaMove dati da un tooSQL di SQL Server on-premise Azure con Data Factory di Azure | Documenti Microsoft
+description: "Consente di impostare una pipeline ADF che riunisce due attività di migrazione di dati che spostano i dati su base giornaliera insieme tra i database locali e nel cloud hello."
 services: machine-learning
 documentationcenter: 
 author: bradsev
@@ -14,37 +14,37 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/29/2017
 ms.author: bradsev
-ms.openlocfilehash: 39fe26d3388be8b558f05063a8965889c013a41e
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 7f7e78c7a84a259539221d3235b76bb5a3cf9866
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="move-data-from-an-on-premises-sql-server-to-sql-azure-with-azure-data-factory"></a>Spostare i dati da SQL Server locale a SQL Azure con Azure Data Factory
-Questo argomento descrive come spostare i dati da un database di SQL Server locale a un database di SQL Azure tramite l'archiviazione BLOB di Azure usando Azure Data Factory (ADF).
+# <a name="move-data-from-an-on-premises-sql-server-toosql-azure-with-azure-data-factory"></a>Spostare i dati da un tooSQL di server SQL Azure con Data Factory di Azure in locale
+Questo argomento viene illustrato come toomove dati da un tooa di Database di SQL Server on-premise Database di SQL Azure tramite archiviazione Blob di Azure utilizzando hello Azure Data Factory (ADF).
 
-Per un tabella che riepiloga le varie opzioni per lo spostamento dei dati in un database SQL Azure, vedere [Spostare i dati a un database SQL Azure per Azure Machine Learning](machine-learning-data-science-move-sql-azure.md).
+Per una tabella che riepiloga le varie opzioni per lo spostamento dati tooan Database SQL di Azure, vedere [spostare dati tooan Database SQL di Azure per Azure Machine Learning](machine-learning-data-science-move-sql-azure.md).
 
-## <a name="intro"></a>Introduzione: che cos'è l’ADF e quando deve essere utilizzato per la migrazione dei dati?
-Il Data factory è un servizio di integrazione delle informazioni basato sul cloud che permette di automatizzare lo spostamento e la trasformazione dei dati. Il concetto chiave nel modello ADF è pipeline. Una pipeline è un raggruppamento logico di attività, ognuna delle quali definisce le azioni da eseguire sui dati contenuti nel set di dati. I servizi collegati vengono utilizzati per definire le informazioni necessarie affinché il servizio Data factory si connetta a risorse dati esterne.
+## <a name="intro"></a>Introduzione: Che cos'è Azure Data factory e quando deve essere utilizzato toomigrate dati?
+Data Factory di Azure è un servizio di integrazione di dati basato su cloud completamente gestito che Orchestra e automatizza lo spostamento di hello e trasformazione dei dati. concetto chiave Hello modello ADF hello è pipeline. Una pipeline è un raggruppamento logico delle attività, ognuna delle quali definisce hello azioni tooperform sui dati hello contenuti nel set di dati. Servizi collegati sono le informazioni di hello toodefine utilizzati necessarie per le risorse di dati di Data Factory tooconnect toohello.
 
-Con ADF, i servizi di elaborazione dei dati esistenti possono essere composti in pipeline di dati, altamente disponibili e gestiti nel cloud. Queste pipeline di dati possono essere pianificate per inserire, preparare, trasformare, analizzare e pubblicare i dati e l’ADF gestisce e organizza i dati complessi e le dipendenze di elaborazione. Le soluzioni possono essere compilate e distribuite nel cloud, collegando un numero crescente di origini dati locali e cloud.
+Con Azure Data factory, i servizi di elaborazione dei dati esistenti possono essere composte in pipeline di dati che sono gestiti e a disponibilità elevata nel cloud hello. Queste pipeline di dati possono essere pianificati tooingest, preparare, trasformare, analizzare e pubblicare i dati e file ADF gestisce e gestisce dati complessi hello e dipendenze di elaborazione. Le soluzioni possono essere cloud hello rapidamente compilato e distribuito in, la connessione a un numero crescente di on-premise e origini dati cloud.
 
 Considerare l'uso di ADF:
 
-* quando i dati sono soggetti a migrazione continua in uno scenario ibrido che accede alle risorse locali e cloud
-* quando i dati sono soggetti a transazioni, devono essere modificati o si vedono aggiungere una logica di business quando vengono migrati.
+* Quando dati esigenze toobe continuamente la migrazione in uno scenario ibrido che consente di accedere sia in locale e risorse cloud
+* Quando viene sottoposto a transazione dati hello o esigenze toobe modificato o dispone di logica di business aggiunto tooit quando viene eseguita la migrazione.
 
-L’ADF consente la pianificazione e il monitoraggio dei processi utilizzando semplici script JSON che gestiscono lo spostamento dei dati su base periodica. ADF dispone anche di altre funzionalità quali il supporto di operazioni complesse. Per ulteriori informazioni sul file ADF, vedere la documentazione di [Data factory di Azure (ADF)](https://azure.microsoft.com/services/data-factory/).
+ADF consente hello pianificazione e monitoraggio dei processi utilizzando semplici script JSON che gestiscono lo spostamento di hello dei dati su base periodica. ADF dispone anche di altre funzionalità quali il supporto di operazioni complesse. Per ulteriori informazioni sulla data factory di AZURE, vedere la documentazione di hello in [Azure Data Factory (ADF)](https://azure.microsoft.com/services/data-factory/).
 
-## <a name="scenario"></a>Scenario
-Si configura una pipeline ADF che compone due attività di migrazione dei dati. Insieme, queste attività spostano i dati giornalmente tra un database SQL locale e un database di SQL Azure nel cloud. Le due attività sono:
+## <a name="scenario"></a>Hello Scenario
+Si configura una pipeline ADF che compone due attività di migrazione dei dati. Insieme passano dati su base giornaliera tra un database SQL locale e un Database di SQL Azure nel cloud hello. Hello due attività sono:
 
-* Copiare dati da un database di SQL Server locale in un account dell'archiviazione BLOB di Azure
-* Copiare i dati dall'account di archiviazione BLOB di Azure a un Database di SQL Azure.
+* copiare i dati da un tooan di database di SQL Server on-premise account di archiviazione Blob di Azure
+* copiare i dati da tooan account di archiviazione Blob di Azure hello Database SQL di Azure.
 
 > [!NOTE]
-> I passaggi illustrati di seguito sono stati adattati dall'esercitazione più specifica fornita dal team ADF: [Spostare dati tra origini locali e il cloud con gateway di gestione dati](../data-factory/data-factory-move-data-between-onprem-and-cloud.md). I riferimenti alle sezioni pertinenti dell'argomento vengono resi disponibili laddove opportuno.
+> eseguire i passaggi illustrati di seguito sono state adattate da hello dettagliate esercitazione fornito dal team ADF hello Hello: [spostare dati tra origini locali e cloud con Gateway di gestione dati](../data-factory/data-factory-move-data-between-onprem-and-cloud.md) fa riferimento a toohello sezioni rilevanti dell'argomento vengono forniti quando appropriato.
 >
 >
 
@@ -52,35 +52,35 @@ Si configura una pipeline ADF che compone due attività di migrazione dei dati. 
 Il tutorial presuppone:
 
 * Una **sottoscrizione di Azure**. Se non si ha una sottoscrizione, è possibile iscriversi per provare una [versione di valutazione gratuita](https://azure.microsoft.com/pricing/free-trial/).
-* Un **account di archiviazione Azure**. In questa esercitazione si userà un account di archiviazione di Azure per archiviare i dati. Se non si dispone di un account di archiviazione di Azure, vedere l'articolo [Creare un account di archiviazione di Azure](../storage/common/storage-create-storage-account.md#create-a-storage-account) . Dopo avere creato l'account di archiviazione, è necessario ottenere la chiave dell'account usata per accedere alla risorsa di archiviazione. Vedere la sezione [Gestire le chiavi di accesso alle risorse di archiviazione](../storage/common/storage-create-storage-account.md#manage-your-storage-access-keys).
-* Accesso a un **database SQL di Azure**. Se è necessario impostare un database di SQL Azure, l'argomento [Guida introduttiva al database SQL di Microsoft Azure ](../sql-database/sql-database-get-started.md) fornisce informazioni su come eseguire il provisioning di una nuova istanza di un database di SQL Azure.
-* Installazione e configurazione di **Azure PowerShell** in locale. Per istruzioni, vedere [Come installare e configurare Azure PowerShell](/powershell/azure/overview).
+* Un **account di archiviazione Azure**. Utilizzare un account di archiviazione di Azure per archiviare i dati di hello in questa esercitazione. Se non si dispone di un account di archiviazione di Azure, vedere hello [creare un account di archiviazione](../storage/common/storage-create-storage-account.md#create-a-storage-account) articolo. Dopo aver creato l'account di archiviazione hello, è necessario account hello tooobtain chiave utilizzata l'archiviazione di hello tooaccess. Vedere la sezione [Gestire le chiavi di accesso alle risorse di archiviazione](../storage/common/storage-create-storage-account.md#manage-your-storage-access-keys).
+* Accesso tooan **Database SQL di Azure**. Se è necessario impostare un Database SQL di Azure, hello tpoic [Guida introduttiva a Database SQL di Microsoft Azure ](../sql-database/sql-database-get-started.md) fornisce informazioni su come tooprovision una nuova istanza di un Database di SQL Azure.
+* Installazione e configurazione di **Azure PowerShell** in locale. Per istruzioni, vedere [come tooinstall e configurare Azure PowerShell](/powershell/azure/overview).
 
 > [!NOTE]
-> In questa procedura viene utilizzato il [portale di Azure](https://portal.azure.com/).
+> Questa procedura utilizza hello [portale di Azure](https://portal.azure.com/).
 >
 >
 
-## <a name="upload-data"></a> Caricare i dati in SQL Server locale
-Utilizziamo il [set di dati NYC Taxi](http://chriswhong.com/open-data/foil_nyc_taxi/) per illustrare il processo di migrazione. Il set di dati NYC Taxi è disponibile, come indicato nel post, sull'archiviazione BLOB di Azure [Dati NYC Taxi](http://www.andresmh.com/nyctaxitrips/). I dati dispongono di due file, il file trip_data.csv che contiene i dettagli relativi alle corse e il file trip_far.csv che contiene i dettagli della tariffa pagata per ogni corsa. Un esempio e una descrizione di questi file sono inclusi in [Descrizione del set di dati relativo alle corse dei taxi di NYC](machine-learning-data-science-process-sql-walkthrough.md#dataset).
+## <a name="upload-data"></a>Caricamento hello dati tooyour SQL Server locale
+Utilizziamo hello [NYC Taxi dataset](http://chriswhong.com/open-data/foil_nyc_taxi/) toodemonstrate processo di migrazione hello. Hello NYC Taxi set di dati è disponibile, come indicato in questo post, nell'archiviazione blob di Azure [NYC Taxi dati](http://www.andresmh.com/nyctaxitrips/). dati Hello dispone di due file, file di trip_data.csv hello, che contiene i dettagli di andata e ritorno, e file di trip_far.csv hello, che contiene i dettagli della tariffa di hello pagata per ogni itinerario. Un esempio e una descrizione di questi file sono inclusi in [Descrizione del set di dati relativo alle corse dei taxi di NYC](machine-learning-data-science-process-sql-walkthrough.md#dataset).
 
-È possibile adattare le procedure riportate di seguito a un set di dati personalizzati o seguire i passaggi come descritto utilizzando il set di dati NYC Taxi. Per caricare il set di dati NYC Taxi nel database di SQL Server locale, seguire la procedura descritta in [Importazione in blocco dei dati nel database SQL Server](machine-learning-data-science-process-sql-walkthrough.md#dbload). Queste istruzioni sono per SQL Server in una macchina virtuale di Azure, ma la procedura per il caricamento in SQL Server locale è la stessa.
+È possibile adattare hello procedura qui tooa set di dati personalizzati o seguire i passaggi di hello, come descritto utilizzando hello NYC Taxi set di dati. hello tooupload NYC Taxi set di dati nel database di SQL Server locale, attenersi alla procedura hello [importazione Bulk dei dati nel Database di SQL Server](machine-learning-data-science-process-sql-walkthrough.md#dbload). Queste istruzioni sono valide per un Server SQL in una macchina virtuale di Azure, ma procedure hello per il caricamento toohello on-premise SQL Server è hello stesso.
 
 ## <a name="create-adf"></a> Creare un data factory di Azure
-Le istruzioni per la creazione di una nuova data factory di Azure e un gruppo di risorse nel [portale di Azure](https://portal.azure.com/) sono disponibili in [Creazione di un'istanza di Data factory di Azure](../data-factory/data-factory-build-your-first-pipeline-using-editor.md#create-data-factory). Denominare la nuova istanza ADF *adfdsp*e assegnare il nome *adfdsprg* al gruppo di risorse creato.
+istruzioni per la creazione di una nuova Data Factory di Azure e un gruppo di risorse in hello Hello [portale di Azure](https://portal.azure.com/) forniti [creare una Data Factory di Azure](../data-factory/data-factory-build-your-first-pipeline-using-editor.md#create-data-factory). Nome hello nuova ADF istanza *adfdsp* e nome gruppo di risorse di hello creato *adfdsprg*.
 
-## <a name="install-and-configure-up-the-data-management-gateway"></a>Installare e configurare i Gateway di gestione dati
-Per abilitare le pipeline in Azure Data Factory per il funzionamento con SQL Server locale, è necessario aggiungerle come servizio collegato ad Azure Data Factory. Per creare un servizio collegato per SQL Server locale, è necessario:
+## <a name="install-and-configure-up-hello-data-management-gateway"></a>Installare e configurare il backup hello Gateway di gestione dati
+tooenable le pipeline in toowork un factory di dati di Azure con un Server SQL locale, è necessario tooadd come una data factory toohello servizio collegato. toocreate un servizio collegato per un Server SQL locale, è necessario:
 
-* scaricare e installare il gateway di gestione dati di Microsoft nel computer locale.
-* configurare il servizio collegato per l'origine dati locale per l'utilizzo del gateway.
+* scaricare e installare il Gateway di gestione dati Microsoft nel computer locale hello.
+* configurare il servizio collegato hello per gateway di hello locale dati origine toouse hello.
 
-Gateway di gestione dati serializza e deserializza i dati di origine e sink sul computer in cui è ospitato.
+Hello Gateway di gestione dati serializza e deserializza i dati di origine e sink hello computer hello in cui è ospitato.
 
 Per le istruzioni di configurazione e i dettagli sul Gateway di gestione dati, vedere [Spostare dati tra origini locali e il cloud con Gateway di gestione dati](../data-factory/data-factory-move-data-between-onprem-and-cloud.md)
 
-## <a name="adflinkedservices"></a>Creare servizi collegati per connettersi alle risorse di dati
-I servizi collegati definiscono le informazioni necessarie affinché il servizio data factory si connetta a risorse dati. In [Creazione di servizi collegati](../data-factory/data-factory-move-data-between-onprem-and-cloud.md#create-linked-services)viene fornita la procedura dettagliata per la creazione di servizi collegati.
+## <a name="adflinkedservices"></a>Creare servizi collegati tooconnect toohello risorse di dati
+Un servizio collegato definisce informazioni di hello necessarie per la risorsa di Azure Data Factory tooconnect tooa dati. viene fornita la procedura dettagliata per la creazione di servizi collegati Hello in [creare i servizi collegati](../data-factory/data-factory-move-data-between-onprem-and-cloud.md#create-linked-services).
 
 Sono disponibili tre risorse in questo scenario per il quale sono necessari servizi collegati.
 
@@ -89,36 +89,36 @@ Sono disponibili tre risorse in questo scenario per il quale sono necessari serv
 3. [Servizio collegato per il database SQL Azure](#adf-linked-service-azure-sql)
 
 ### <a name="adf-linked-service-onprem-sql"></a>Servizio collegato per il database SQL Server locale
-Per creare un servizio collegato per SQL Server locale:
+servizio collegato hello toocreate per hello locale SQL Server:
 
-* fare clic su **Archivio dati** nella pagina di destinazione di ADF nel portale di Azure classico
-* selezionare **SQL** e immettere il *nome utente* e la *password* per SQL Server locale. È necessario immettere il nome del server nella forma **nome dell'istanza nomeserver completa barra rovesciata (nomeserver\nomeistanza)**. Nome servizio collegato *adfonpremsql*.
+* Fare clic su hello **archivio dati** nella pagina di destinazione ADF hello nel portale classico di Azure
+* Selezionare **SQL** e immettere hello *username* e *password* le credenziali per hello on-premise SQL Server. È necessario tooenter hello servername come un **servername completo barra rovesciata nome dell'istanza (nomeserver\nomeistanza)**. Servizio collegato hello nome *adfonpremsql*.
 
 ### <a name="adf-linked-service-blob-store"></a>Servizi collegati per BLOB
-Per creare un servizio collegato per l'account di archiviazione BLOB di Azure, è necessario:
+toocreate hello servizio collegato per l'account di archiviazione Blob di Azure hello:
 
-* fare clic su **Archivio dati** nella pagina di destinazione di ADF nel portale di Azure classico
+* Fare clic su hello **archivio dati** nella pagina di destinazione ADF hello nel portale classico di Azure
 * selezionare **Account di archiviazione di Azure**
-* immettere il nome del contenitore e la chiave dell'account di archiviazione BLOB di Azure. Rinominare il servizio collegato *adfds*.
+* Immettere hello archiviazione Blob di Azure contenitore chiave e il nome dell'account. Hello Nome servizio collegato *adfds*.
 
 ### <a name="adf-linked-service-azure-sql"></a>Servizio collegato per il database SQL Azure
-Per creare un servizio collegato per il database SQL di Azure, è necessario:
+toocreate hello servizio collegato per hello Database SQL di Azure:
 
-* fare clic su **Archivio dati** nella pagina di destinazione di ADF nel portale di Azure classico
-* selezionare **SQL di Azure** e immettere il *nome utente* e la *password* per il database SQL di Azure. Il *nome utente* deve essere specificato come *user@servername*.   
+* Fare clic su hello **archivio dati** nella pagina di destinazione ADF hello nel portale classico di Azure
+* Selezionare **SQL Azure** e immettere hello *username* e *password* le credenziali per hello Database SQL di Azure. Hello *username* deve essere specificato come  *user@servername* .   
 
-## <a name="adf-tables"></a>Definire e creare tabelle per specificare la modalità di accesso al set di dati
-Creare tabelle che specificano la struttura, la posizione e la disponibilità dei set di dati con le seguenti procedure basate su script. I file JSON vengono utilizzati per definire le tabelle. Per ulteriori informazioni sulla struttura di questi file, vedere [Set di dati](../data-factory/data-factory-create-datasets.md).
+## <a name="adf-tables"></a>Definire e creare tabelle toospecify come tooaccess hello set di dati
+Creare tabelle che specificano struttura hello, posizione e la disponibilità dei set di dati hello con hello procedure basato su script. File JSON vengono usati toodefine hello tabelle. Per ulteriori informazioni sulla struttura hello di questi file, vedere [set di dati](../data-factory/data-factory-create-datasets.md).
 
 > [!NOTE]
-> È necessario eseguire il cmdlet `Add-AzureAccount` prima di eseguire il cmdlet [New-AzureDataFactoryTable](https://msdn.microsoft.com/library/azure/dn835096.aspx) per verificare che sia selezionata la sottoscrizione di Azure giusta per l'esecuzione del comando. Per la documentazione di questo cmdlet, vedere [Add-AzureAccount](/powershell/module/azure/add-azureaccount?view=azuresmps-3.7.0).
+> È consigliabile eseguire hello `Add-AzureAccount` cmdlet prima di eseguire hello [New AzureDataFactoryTable](https://msdn.microsoft.com/library/azure/dn835096.aspx) tooconfirm cmdlet che hello sottoscrizione di Azure a destra è selezionata per l'esecuzione del comando hello. Per la documentazione di questo cmdlet, vedere [Add-AzureAccount](/powershell/module/azure/add-azureaccount?view=azuresmps-3.7.0).
 >
 >
 
-Le definizioni basate su JSON nelle tabelle utilizzano i nomi seguenti:
+le definizioni di basato su JSON di Hello nelle tabelle di hello utilizzare hello seguenti nomi:
 
-* il **nome della tabella** nel server SQL locale è *nyctaxi_data*
-* il **nome del contenitore** nell'account di archiviazione Blob di Azure è *nomecontenitore*  
+* Hello **nome tabella** hello on-premise SQL server è *nyctaxi_data*
+* Hello **nome contenitore** in hello archiviazione Blob di Azure è l'account *containername*  
 
 Per questa pipeline ADF sono necessarie tre definizioni di tabella:
 
@@ -127,12 +127,12 @@ Per questa pipeline ADF sono necessarie tre definizioni di tabella:
 3. [Tabella SQL Azure](#adf-table-azure-sql)
 
 > [!NOTE]
-> Queste procedure utilizzano Azure PowerShell per definire e creare le attività del file ADF. Tuttavia, queste attività possono inoltre essere eseguite tramite il portale di Azure. Per informazioni dettagliate, vedere [Creare set di dati](../data-factory/data-factory-move-data-between-onprem-and-cloud.md#create-datasets).
+> Queste procedure utilizzano toodefine Azure PowerShell e creare hello attività ADF. Tuttavia, queste attività possono inoltre essere eseguite utilizzando hello portale di Azure. Per informazioni dettagliate, vedere [Creare set di dati](../data-factory/data-factory-move-data-between-onprem-and-cloud.md#create-datasets).
 >
 >
 
 ### <a name="adf-table-onprem-sql"></a>Tabella SQL locale
-La definizione della tabella per SQL Server locale viene specificata nel file JSON seguente:
+definizione della tabella Hello per hello on-premise SQL Server specificato nel seguente file JSON hello:
 
         {
             "name": "OnPremSQLTable",
@@ -159,15 +159,15 @@ La definizione della tabella per SQL Server locale viene specificata nel file JS
             }
         }
 
-Qui non sono inclusi i nomi di colonna. È possibile sottoselezionare i nomi delle colonne includendoli qui (per ulteriori informazioni consultare l'argomento [Documentazione ADF](../data-factory/data-factory-data-movement-activities.md) ).
+non sono inclusi i nomi di colonna Hello. È possibile selezionare i nomi di colonna hello Sub includendoli qui (per dettagli, vedere hello [documentazione ADF](../data-factory/data-factory-data-movement-activities.md) argomento.
 
-Copiare la definizione JSON della tabella in un file denominata *onpremtabledef.json* e salvarlo in una posizione nota (generalmente *C:\temp\onpremtabledef.json*). Creare la tabella nel file ADF con il seguente cmdlet Azure PowerShell:
+Copiare definizione JSON hello della tabella hello in un file denominato *onpremtabledef.json* file e salvarlo tooa percorso noto (di seguito si presuppone che toobe *C:\temp\onpremtabledef.json*). Creare tabella hello in ADF con hello cmdlet di Azure PowerShell seguente:
 
     New-AzureDataFactoryTable -ResourceGroupName ADFdsprg -DataFactoryName ADFdsp –File C:\temp\onpremtabledef.json
 
 
 ### <a name="adf-table-blob-store"></a>Tabella BLOB
-La definizione della tabella per il percorso del BLOB di output è la seguente. I dati inseriti vengono così mappati dal server locale al BLOB di Azure:
+Definizione per la tabella hello per hello output blob si trova nella seguente hello (esegue il mapping dei dati di caricamento hello dal blob tooAzure locale):
 
         {
             "name": "OutputBlobTable",
@@ -192,12 +192,12 @@ La definizione della tabella per il percorso del BLOB di output è la seguente. 
             }
         }
 
-Copiare la definizione JSON della tabella in un file denominata *bloboutputtabledef.json* e salvarlo in una posizione nota (generalmente *C:\temp\bloboutputtabledef.json*). Creare la tabella nel file ADF con il seguente cmdlet Azure PowerShell:
+Copiare definizione JSON hello della tabella hello in un file denominato *bloboutputtabledef.json* file e salvarlo tooa percorso noto (di seguito si presuppone che toobe *C:\temp\bloboutputtabledef.json*). Creare tabella hello in ADF con hello cmdlet di Azure PowerShell seguente:
 
     New-AzureDataFactoryTable -ResourceGroupName adfdsprg -DataFactoryName adfdsp -File C:\temp\bloboutputtabledef.json  
 
 ### <a name="adf-table-azure-sq"></a>Tabella SQL Azure
-La definizione della tabella per l’output SQL Azure è la seguente (questo schema associa i dati provenienti dal blob):
+Definizione di tabella hello per SQL Azure di output di hello è seguito hello (questo schema Associa dati hello provenienti dal blob hello):
 
     {
         "name": "OutputSQLAzureTable",
@@ -222,34 +222,34 @@ La definizione della tabella per l’output SQL Azure è la seguente (questo sch
         }
     }
 
-Copiare la definizione JSON della tabella in un file denominata *AzureSqlTable.json* e salvarlo in una posizione nota (generalmente *C:\temp\AzureSqlTable.json*). Creare la tabella nel file ADF con il seguente cmdlet Azure PowerShell:
+Copiare definizione JSON hello della tabella hello in un file denominato *AzureSqlTable.json* file e salvarlo tooa percorso noto (di seguito si presuppone che toobe *C:\temp\AzureSqlTable.json*). Creare tabella hello in ADF con hello cmdlet di Azure PowerShell seguente:
 
     New-AzureDataFactoryTable -ResourceGroupName adfdsprg -DataFactoryName adfdsp -File C:\temp\AzureSqlTable.json  
 
 
-## <a name="adf-pipeline"></a>Definire e creare la pipeline
-Specificare le attività che appartengono alla pipeline e creare la pipeline con le seguenti procedure basate su script. Un file JSON viene utilizzato per definire le proprietà della pipeline.
+## <a name="adf-pipeline"></a>Definire e creare pipeline hello
+Specificare le attività di hello appartenenti toohello della pipeline e creare pipeline hello con hello procedure basato su script. Un file JSON è toodefine usate le proprietà della pipeline di hello.
 
-* Lo script presuppone che il **nome della pipeline** sia *AMLDSProcessPipeline*.
-* Si noti inoltre che abbiamo impostato la periodicità della pipeline per l’esecuzione su base giornaliera e utilizza il tempo di esecuzione predefinito per il processo (12 am UTC).
+* Hello script si presuppone che hello **nome pipeline** è *AMLDSProcessPipeline*.
+* Si noti inoltre che è impostata la periodicità hello di hello pipeline toobe eseguito su ogni giorno base e utilizzare hello tempo di esecuzione predefinito per il processo di hello (12 am UTC).
 
 > [!NOTE]
-> Le procedure seguenti utilizzano Azure PowerShell per definire e creare la pipeline del file ADF. Tuttavia, questa attività può inoltre essere eseguita tramite il portale di Azure. Per informazioni dettagliate, vedere [Creare una pipeline](../data-factory/data-factory-move-data-between-onprem-and-cloud.md#create-pipeline).
+> Hello procedure riportate di seguito utilizzano toodefine Azure PowerShell e creare pipeline ADF hello. Tuttavia, questa attività può inoltre essere eseguita tramite il portale di Azure. Per informazioni dettagliate, vedere [Creare una pipeline](../data-factory/data-factory-move-data-between-onprem-and-cloud.md#create-pipeline).
 >
 >
 
-Se si utilizzano le definizioni di tabella fornite in precedenza, la definizione della pipeline per il file ADF viene specificata come segue:
+Utilizzo di definizioni di tabella hello fornito in precedenza, definizione di pipeline hello per hello che ADF viene specificata come segue:
 
         {
             "name": "AMLDSProcessPipeline",
             "properties":
             {
-                "description" : "This pipeline has one Copy activity that copies data from an on-premises SQL to Azure blob",
+                "description" : "This pipeline has one Copy activity that copies data from an on-premises SQL tooAzure blob",
                  "activities":
                 [
                     {
                         "name": "CopyFromSQLtoBlob",
-                        "description": "Copy data from on-premises SQL server to blob",     
+                        "description": "Copy data from on-premises SQL server tooblob",     
                         "type": "CopyActivity",
                         "inputs": [ {"name": "OnPremSQLTable"} ],
                         "outputs": [ {"name": "OutputBlobTable"} ],
@@ -278,7 +278,7 @@ Se si utilizzano le definizioni di tabella fornite in precedenza, la definizione
 
                     {
                         "name": "CopyFromBlobtoSQLAzure",
-                        "description": "Push data to Sql Azure",        
+                        "description": "Push data tooSql Azure",        
                         "type": "CopyActivity",
                         "inputs": [ {"name": "OutputBlobTable"} ],
                         "outputs": [ {"name": "OutputSQLAzureTable"} ],
@@ -307,21 +307,21 @@ Se si utilizzano le definizioni di tabella fornite in precedenza, la definizione
             }
         }
 
-Copiare la definizione JSON della pipeline in un file denominato *pipelinedef.json* e salvarlo in una posizione nota (generalmente *C:\temp\pipelinedef.json*). Creare la pipeline ADF con il seguente cmdlet Azure PowerShell:
+Copiare questa definizione JSON della pipeline hello in un file denominato *pipelinedef.json* file e salvarlo tooa percorso noto (di seguito si presuppone che toobe *C:\temp\pipelinedef.json*). Creare pipeline hello in ADF con hello cmdlet di Azure PowerShell seguente:
 
     New-AzureDataFactoryPipeline  -ResourceGroupName adfdsprg -DataFactoryName adfdsp -File C:\temp\pipelinedef.json
 
-Accertarsi che sia possibile visualizzare la pipeline nel file ADF sul portale di Azure classico come indicato di seguito (quando si fa clic sul diagramma)
+Confermare che è possibile visualizzare pipeline hello in hello ADF nel portale di Azure classico hello visualizzati come riportato di seguito (quando si fa clic su diagramma hello)
 
 ![Pipeline ADF](media/machine-learning-data-science-move-sql-azure-adf/DJP1kji.png)
 
-## <a name="adf-pipeline-start"></a>Avviare la pipeline
-La pipeline è avviabile con il comando seguente:
+## <a name="adf-pipeline-start"></a>Avviare hello Pipeline
+è possibile eseguire pipeline Hello utilizzando hello comando seguente:
 
     Set-AzureDataFactoryPipelineActivePeriod -ResourceGroupName ADFdsprg -DataFactoryName ADFdsp -StartDateTime startdateZ –EndDateTime enddateZ –Name AMLDSProcessPipeline
 
-I valori del parametro *startdate* ed *enddate* devono essere sostituiti con le date effettive tra le quali si desidera eseguire la pipeline.
+Hello *startdate* e *enddate* i valori di parametro devono toobe sostituito con date effettive di hello tra i quali si desidera toorun pipeline hello.
 
-Una volta eseguita la pipeline, si dovrebbe poter visualizzare i dati visualizzati nel contenitore selezionato per il blob, un file al giorno.
+Una volta che viene eseguita la pipeline hello, si dovrebbe essere in grado di toosee hello dati visualizzati nel contenitore hello selezionati per il blob hello, un file per ogni giorno.
 
-Si noti che non abbiamo utilizzato la funzionalità fornita da ADF per dirigere i dati in modo incrementale. Per ulteriori informazioni su come eseguire questa e altre funzionalità fornite da ADF, vedere la [documentazione ADF](https://azure.microsoft.com/services/data-factory/).
+Si noti che non è stato sfruttato funzionalità hello fornita dai dati toopipe ADF in modo incrementale. Per ulteriori informazioni su come toodo questa e altre funzionalità fornite da Azure Data factory, vedere hello [documentazione ADF](https://azure.microsoft.com/services/data-factory/).

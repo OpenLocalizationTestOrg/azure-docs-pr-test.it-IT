@@ -1,6 +1,6 @@
 ---
-title: Esercitazione sulla distribuzione globale in Azure Cosmos DB per l'API di DocumentDB | Documentazione Microsoft
-description: Informazioni su come configurare la distribuzione globale in Azure Cosmos DB mediante l'API di DocumentDB.
+title: esercitazione di distribuzione globale Cosmos DB aaaAzure per l'API DocumentDB | Documenti Microsoft
+description: Informazioni su come distribuzione globale di Azure Cosmos DB toosetup utilizzando hello API DocumentDB.
 services: cosmos-db
 keywords: distribuzione globale, documentdb
 documentationcenter: 
@@ -15,51 +15,51 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/10/2017
 ms.author: mimig
-ms.openlocfilehash: f4d8efe9814bd28bb902567a23b541bc9b5414a1
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a1d5f01faa62407fbbc9c078ef4a9589a1a29219
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-setup-azure-cosmos-db-global-distribution-using-the-documentdb-api"></a>Procedura di configurazione della distribuzione globale in Azure Cosmos DB mediante l'API di DocumentDB
+# <a name="how-toosetup-azure-cosmos-db-global-distribution-using-hello-documentdb-api"></a>La distribuzione globale di Azure Cosmos DB toosetup utilizzando hello API DocumentDB
 
-Questo articolo illustra come usare il portale di Azure per configurare la distribuzione globale in Azure Cosmos DB e quindi connettersi tramite l'API di DocumentDB.
+In questo articolo viene illustrata come toouse hello toosetup portale Azure distribuzione globale di Azure Cosmos DB e quindi connettersi usando l'API DocumentDB hello.
 
-Questo articolo illustra le attività seguenti: 
+Questo articolo descrive hello seguenti attività: 
 
 > [!div class="checklist"]
-> * Configurare la distribuzione globale tramite il portale di Azure
-> * Configurare la distribuzione globale tramite le [API di DocumentDB](documentdb-introduction.md)
+> * Configurare la distribuzione globale mediante hello portale di Azure
+> * Configurare la distribuzione globale mediante hello [APIs DocumentDB](documentdb-introduction.md)
 
 <a id="portal"></a>
 [!INCLUDE [cosmos-db-tutorial-global-distribution-portal](../../includes/cosmos-db-tutorial-global-distribution-portal.md)]
 
 
-## <a name="connecting-to-a-preferred-region-using-the-documentdb-api"></a>Connessione a un'area preferita tramite l'API di DocumentDB
+## <a name="connecting-tooa-preferred-region-using-hello-documentdb-api"></a>Connessione area geografica preferita tooa utilizzando l'API DocumentDB hello
 
-Per sfruttare la [distribuzione globale](distribute-data-globally.md), le applicazioni client possono specificare un elenco di aree, nell'ordine preferito, da usare per eseguire operazioni sui documenti. Questa operazione può essere eseguita impostando il criterio di connessione. A seconda della configurazione dell'account Azure Cosmos DB, della disponibilità corrente delle aree e dell'elenco delle preferenze specificato, l'SDK DocumentDB sceglierà l'endpoint ottimale per eseguire le operazioni di scrittura e lettura.
+In ordine tootake sfruttare la [distribuzione globale](distribute-data-globally.md), applicazioni client possono specificare hello ordinato l'elenco delle preferenze di aree toobe utilizzato tooperform documento operazioni. Questa operazione può essere eseguita mediante l'impostazione di criteri di connessione hello. Basato sulla configurazione dell'account Azure Cosmos DB hello, elenco delle preferenze hello e la disponibilità di internazionale corrente specificato, hello hello operazioni di lettura e scrittura di DocumentDB SDK tooperform sceglierà la maggior parte degli endpoint ottimale.
 
-L'elenco delle preferenze viene specificato nella fase di inizializzazione di una connessione usando gli SDK DocumentDB. Gli SDK accettano il parametro facoltativo "PreferredLocations", ovvero un elenco ordinato di aree di Azure.
+L'elenco delle preferenze viene specificato durante l'inizializzazione di una connessione utilizzando il SDK di DocumentDB hello. Hello SDK di accettare un parametro facoltativo "PreferredLocations" che rappresenta un elenco ordinato di aree di Azure.
 
-L'SDK invia automaticamente tutte le scritture all'area di scrittura corrente.
+Hello SDK invierà automaticamente area scrittura di tutte le operazioni di scrittura toohello corrente.
 
-Tutte le letture verranno inviate alla prima area disponibile nell'elenco PreferredLocations. Se la richiesta ha esito negativo, il client trasferisce l'elenco all'area successiva e così via.
+Tutte le letture verranno inviate toohello prima area disponibile nell'elenco PreferredLocations hello. Se hello richiesta non riesce, il client hello esito negativo all'area di hello elenco toohello successiva e così via.
 
-Gli SDK tenteranno di leggere solo dalle aree specificate nell'elenco PreferredLocations. Quindi se l'Account di database è disponibile ad esempio in tre aree, ma il client specifica solo due delle aree di non scrittura per PreferredLocations, le letture non verranno distribuite fuori dall'area di scrittura, anche in caso di failover.
+Hello SDK tenterà solo tooread dalle aree hello specificato in PreferredLocations. In tal caso, ad esempio, se hello Account del Database è disponibile in tre aree, ma client hello specifica solo due delle aree non scrittura hello per PreferredLocations, quindi non letture verranno utilizzate da area di scrittura hello, anche nel caso di hello di failover.
 
-L'applicazione può verificare l'endpoint di scrittura e lettura corrente scelto dall'SDK controllando due proprietà, WriteEndpoint e ReadEndpoint, disponibili nella versione dell'SDK 1.8 e nelle versioni successive.
+un'applicazione Hello possibile verificare l'endpoint di scrittura corrente hello e leggere endpoint scelto da hello SDK dal controllo due proprietà, WriteEndpoint e ReadEndpoint, disponibili nella versione SDK 1.8 e versioni successive.
 
-Se la proprietà PreferredLocations non è impostata, tutte le richieste verranno distribuite dall'area di scrittura corrente.
+Se non è impostata la proprietà PreferredLocations hello, verranno utilizzate dall'area di scrittura corrente hello tutte le richieste.
 
 ## <a name="net-sdk"></a>.NET SDK
-L'SDK può essere usato senza alcuna modifica del codice. In questo caso l'SDK reindirizza automaticamente sia le operazioni di lettura che di scrittura all'area di scrittura corrente.
+Hello SDK è utilizzabile senza alcuna modifica al codice. In questo caso, hello SDK automaticamente indirizza entrambe le operazioni di lettura e scrive toohello area di scrittura corrente.
 
-Nella versione 1.8 e nelle versioni successive di .NET SDK, il parametro ConnectionPolicy per il costruttore DocumentClient dispone di una proprietà denominata Microsoft.Azure.Documents.ConnectionPolicy.PreferredLocations. Questa proprietà è di tipo raccolta `<string>` e deve contenere un elenco di nomi di aree. I valori della stringa vengono formattati secondo la colonna Nome dell'area nella pagina [Regioni di Azure][regions], senza spazi prima o dopo il primo e l'ultimo carattere.
+Nella versione 1.8 e versioni successive di .NET SDK hello, hello del parametro ConnectionPolicy per costruttore DocumentClient hello è una proprietà denominata Microsoft.Azure.Documents.ConnectionPolicy.PreferredLocations. Questa proprietà è di tipo raccolta `<string>` e deve contenere un elenco di nomi di aree. per ogni colonna di nome dell'area di hello in hello vengono formattati i valori di stringa Hello [aree di Azure] [ regions] pagina, senza spazi prima o dopo hello prima e l'ultimo carattere rispettivamente.
 
-Gli endpoint di lettura e scrittura correnti sono disponibili rispettivamente in DocumentClient.WriteEndpoint e DocumentClient.ReadEndpoint.
+scrittura corrente Hello e lettura di endpoint sono disponibili in DocumentClient.WriteEndpoint e DocumentClient.ReadEndpoint rispettivamente.
 
 > [!NOTE]
-> Gli URL per gli endpoint non devono essere considerati come costanti di lunga durata. Il servizio può aggiornare gli URL in qualsiasi momento. L'SDK gestisce la modifica in modo automatico.
+> Hello URL per gli endpoint di hello non deve essere considerato come costanti di lunga durate. servizio Hello può aggiornare questi in qualsiasi momento. Hello SDK gestisce automaticamente questa modifica.
 >
 >
 
@@ -81,44 +81,44 @@ DocumentClient docClient = new DocumentClient(
     accountKey,
     connectionPolicy);
 
-// connect to DocDB
+// connect tooDocDB
 await docClient.OpenAsync().ConfigureAwait(false);
 ```
 
 ## <a name="nodejs-javascript-and-python-sdks"></a>SDK di NodeJS, JavaScript e Python
-L'SDK può essere usato senza alcuna modifica del codice. In questo caso, l'SDK reindirizzerà automaticamente sia le letture sia le scritture all'area di scrittura corrente.
+Hello SDK è utilizzabile senza alcuna modifica al codice. In questo caso, hello che SDK indirizzerà automaticamente sia legge e scrive toohello area di scrittura corrente.
 
-Nella versione 1.8 e nelle versioni successive di ogni SDK, il parametro ConnectionPolicy per il costruttore DocumentClient dispone di una nuova proprietà denominata DocumentClient.ConnectionPolicy.PreferredLocations. Questo parametro è una matrice di stringhe che accetta un elenco di nomi di aree. I nomi vengono formattati secondo la colonna Nome dell'area nella pagina [Regioni di Azure][regions]. È anche possibile usare costanti predefinite nell'oggetto AzureDocuments.Regions
+Nella versione 1.8 e versioni successive di ogni SDK, hello ConnectionPolicy parametro hello DocumentClient costruttore una nuova proprietà denominata DocumentClient.ConnectionPolicy.PreferredLocations. Questo parametro è una matrice di stringhe che accetta un elenco di nomi di aree. i nomi di Hello vengono formattati per ogni colonna di nome dell'area di hello in hello [aree di Azure] [ regions] pagina. È inoltre possibile utilizzare costanti hello predefinito nell'oggetto praticità hello AzureDocuments.Regions
 
-Gli endpoint di lettura e scrittura correnti sono disponibili rispettivamente in DocumentClient.getWriteEndpoint e DocumentClient.getReadEndpoint.
+scrittura corrente Hello e lettura di endpoint sono disponibili in DocumentClient.getWriteEndpoint e DocumentClient.getReadEndpoint rispettivamente.
 
 > [!NOTE]
-> Gli URL per gli endpoint non devono essere considerati come costanti di lunga durata. Il servizio può aggiornare gli URL in qualsiasi momento. L'SDK gestirà questa modifica in automatico.
+> Hello URL per gli endpoint di hello non deve essere considerato come costanti di lunga durate. servizio Hello può aggiornare questi in qualsiasi momento. Hello SDK gestirà automaticamente questa modifica.
 >
 >
 
-Di seguito è riportato un esempio di codice per NodeJS/Javascript. Python e Java seguiranno lo stesso modello.
+Di seguito è riportato un esempio di codice per NodeJS/Javascript. Python e Java seguirà hello stesso modello.
 
 ```java
 // Creating a ConnectionPolicy object
 var connectionPolicy = new DocumentBase.ConnectionPolicy();
 
-// Setting read region selection preference, in the following order -
+// Setting read region selection preference, in hello following order -
 // 1 - West US
 // 2 - East US
 // 3 - North Europe
 connectionPolicy.PreferredLocations = ['West US', 'East US', 'North Europe'];
 
-// initialize the connection
+// initialize hello connection
 var client = new DocumentDBClient(host, { masterKey: masterKey }, connectionPolicy);
 ```
 
 ## <a name="rest"></a>REST
-Dopo aver reso disponibile un account di database in più aree, i client possono eseguire query sulla relativa disponibilità tramite una richiesta GET all'URI seguente.
+Una volta che un account del database è stata resa disponibile in più aree, i client possono eseguire query la sua disponibilità eseguendo una richiesta GET su hello seguente URI.
 
     https://{databaseaccount}.documents.azure.com/
 
-Il servizio restituirà un elenco delle aree e i relativi URI dell'endpoint Azure Cosmos DB per le repliche. L'area di scrittura corrente verrà indicata nella risposta. Il client può quindi selezionare l'endpoint appropriato per tutte le altre richieste dell'API REST come indicato di seguito.
+servizio Hello restituirà un elenco delle aree e i relativi endpoint di Azure Cosmos DB URI corrispondente per le repliche hello. area di scrittura corrente Hello viene indicato nella risposta hello. client Hello quindi possibile selezionare endpoint appropriato di hello per le richieste API REST di tutte le ulteriori come indicato di seguito.
 
 Risposta di esempio
 
@@ -153,27 +153,27 @@ Risposta di esempio
     }
 
 
-* Tutte le richieste PUT, POST e DELETE devono passare all'URI di scrittura indicato.
-* Tutte le richieste di sola lettura e GET, ad esempio le query, possono passare a qualsiasi endpoint scelto dal client.
+* Le richieste di tutti i PUT, POST e DELETE è necessario che venga indicato toohello scrivere URI
+* Ottiene tutti e altre richieste di sola lettura (ad esempio query) torni tooany endpoint scelto hello client
 
-Le richieste di scrittura per le aree di sola lettura avranno esito negativo con codice di errore HTTP 403 ("Non consentito").
+Scrivere le richieste solo tooread aree avrà esito negativo con codice di errore HTTP 403 ("accesso negato").
 
-Se l'area di scrittura viene modificata dopo la fase di individuazione iniziale del client, le scritture successive all'area di scrittura precedente avranno esito negativo con codice di errore HTTP 403 ("Non consentito"). Il client deve quindi OTTENERE nuovamente l'elenco delle aree per aggiornare l'area di scrittura.
+Se l'area di scrittura hello viene modificata dopo la fase di individuazione iniziale del client hello, successive scrive toohello precedente area scrittura avrà esito negativo con codice di errore HTTP 403 ("accesso negato"). client Hello deve quindi ottenere elenco hello delle aree nuovamente tooget hello scrittura aggiornato area.
 
-L'esercitazione è terminata. Per informazioni su come gestire la coerenza dell'account con replica globale, vedere [Livelli di coerenza in Azure Cosmos DB](consistency-levels.md). Per informazioni sul funzionamento della replica di database globale in Azure Cosmos DB, vedere [Distribuire i dati a livello globale con Azure Cosmos DB](distribute-data-globally.md).
+L'esercitazione è terminata. È possibile ottenere informazioni come toomanage hello la coerenza dell'account di replicato globalmente leggendo [livelli di coerenza nel database di Azure Cosmos](consistency-levels.md). Per informazioni sul funzionamento della replica di database globale in Azure Cosmos DB, vedere [Distribuire i dati a livello globale con Azure Cosmos DB](distribute-data-globally.md).
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-In questa esercitazione sono state eseguite le operazioni seguenti:
+In questa esercitazione, effettuata seguente hello:
 
 > [!div class="checklist"]
-> * Configurare la distribuzione globale tramite il portale di Azure
-> * Configurare la distribuzione globale tramite le API di DocumentDB
+> * Configurare la distribuzione globale mediante hello portale di Azure
+> * Configurare la distribuzione globale mediante hello APIs DocumentDB
 
-È ora possibile passare all'esercitazione successiva per imparare a sviluppare in locale usando l'emulatore locale di Azure Cosmos DB.
+È ora possibile procedere toolearn esercitazione successiva toohello come toodevelop localmente tramite hello emulatore locale di Azure Cosmos DB.
 
 > [!div class="nextstepaction"]
-> [Sviluppare in locale con l'emulatore](local-emulator.md)
+> [Sviluppare in locale con emulator hello](local-emulator.md)
 
 [regions]: https://azure.microsoft.com/regions/
 

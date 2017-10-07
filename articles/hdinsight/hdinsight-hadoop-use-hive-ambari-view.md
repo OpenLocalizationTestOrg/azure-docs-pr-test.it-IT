@@ -1,6 +1,6 @@
 ---
-title: Usare le visualizzazioni di Ambari per l'uso di Hive in HDInsight (Hadoop) - Azure | Documentazione Microsoft
-description: Informazioni su come usare la visualizzazione Hive dal Web browser per inviare query Hive. La visualizzazione Hive fa parte delle visualizzazioni di Ambari fornite con il cluster HDInsight basato su Linux.
+title: aaaUse Ambari viste toowork con Hive in HDInsight (Hadoop) - Azure | Documenti Microsoft
+description: Informazioni su come toouse hello Hive vista dalle query Hive toosubmit browser web. Hello Hive visualizzazione fa parte di hello che dell'interfaccia utente Web Ambari fornito con il cluster HDInsight basati su Linux.
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -16,50 +16,50 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 07/31/2017
 ms.author: larryfr
-ms.openlocfilehash: 80df3da4d62feb814ea2dd97c96e57954093c5c5
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: f9a77b652e70d34a0ff9165fbb8c2e16d3401ae0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-the-hive-view-with-hadoop-in-hdinsight"></a>Usare la visualizzazione Hive con Hadoop in HDInsight
+# <a name="use-hello-hive-view-with-hadoop-in-hdinsight"></a>Utilizzare hello vista Hive con Hadoop in HDInsight
 
 [!INCLUDE [hive-selector](../../includes/hdinsight-selector-use-hive.md)]
 
-Informazioni su come eseguire query Hive usando la vista Hive di Ambari. Ambari è un'utilità per la gestione e il monitoraggio fornita con i cluster HDInsight basati su Linux. Una delle funzionalità fornite da Ambari è un'interfaccia utente Web che può essere usata per eseguire query Hive.
+Informazioni su come una query utilizza la visualizzazione Hive Ambari toorun Hive. Ambari è un'utilità per la gestione e il monitoraggio fornita con i cluster HDInsight basati su Linux. Una delle funzionalità di hello fornita tramite Ambari è un'interfaccia utente Web che può essere una query Hive toorun utilizzato.
 
 > [!NOTE]
-> Ambari include numerose funzionalità non illustrate in questo documento. Per altre informazioni, vedere [Gestire i cluster HDInsight usando l'interfaccia utente Web di Ambari](hdinsight-hadoop-manage-ambari.md).
+> Ambari include numerose funzionalità non illustrate in questo documento. Per ulteriori informazioni, vedere [HDInsight gestire cluster utilizzando l'interfaccia utente Web Ambari hello](hdinsight-hadoop-manage-ambari.md).
 
 ## <a name="prerequisites"></a>Prerequisiti
 
 * Un cluster HDInsight basato su Linux. Per informazioni sulla creazione di un cluster, vedere [Introduzione all'uso di Hadoop con Hive in HDInsight in Linux](hdinsight-hadoop-linux-tutorial-get-started.md).
 
 > [!IMPORTANT]
-> I passaggi descritti in questo documento richiedono un cluster HDInsight che usa Linux. Linux è l'unico sistema operativo usato in HDInsight versione 3.4 o successiva. Per altre informazioni, vedere la sezione relativa al [ritiro di HDInsight in Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).
+> passaggi di Hello in questo documento richiedono un cluster HDInsight che utilizza Linux. Linux è hello solo sistema operativo utilizzato in HDInsight versione 3.4 o successiva. Per altre informazioni, vedere la sezione relativa al [ritiro di HDInsight in Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).
 
-## <a name="open-the-hive-view"></a>Aprire la visualizzazione Hive
+## <a name="open-hello-hive-view"></a>Aprire la visualizzazione di Hive hello
 
-Per accedere alle visualizzazioni di Ambari dal portale di Azure, selezionare il cluster HDInsight e quindi **Visualizzazioni di Ambari** nella sezione **Collegamenti rapidi**.
+È possibile Ambari viste dal portale di Azure; hello Selezionare il cluster HDInsight e quindi **Ambari viste** da hello **collegamenti rapidi** sezione.
 
-![Sezione Collegamenti rapidi del portale](./media/hdinsight-hadoop-use-hive-ambari-view/quicklinks.png)
+![sezione collegamenti rapidi del portale hello](./media/hdinsight-hadoop-use-hive-ambari-view/quicklinks.png)
 
-Nell'elenco di viste selezionare __vista Hive__.
+Hello l'elenco delle visualizzazioni, selezionare hello __Hive vista__.
 
-![Vista Hive selezionata](./media/hdinsight-hadoop-use-hive-ambari-view/select-hive-view.png)
+![Hello Hive visualizzazione selezionata](./media/hdinsight-hadoop-use-hive-ambari-view/select-hive-view.png)
 
 > [!NOTE]
-> Quando si accede ad Ambari, viene richiesto di eseguire l'autenticazione al sito. Immettere il nome dell'account amministratore (il valore predefinito è `admin`) e la password usati durante la creazione del cluster.
+> Quando si accede a Ambari, verrà richiesta tooauthenticate toohello sito. Immettere salve (impostazione predefinita `admin`) del cluster di hello nome e la password utilizzati per la creazione di account.
 
-Verrà visualizzata una pagina simile all'immagine seguente:
+Verrà visualizzato un toohello simile pagina seguente immagine:
 
-![Immagine del foglio di lavoro della query per la vista Hive](./media/hdinsight-hadoop-use-hive-ambari-view/ambari-hive-view.png)
+![Immagine di foglio di lavoro di query hello per Vista Hive hello](./media/hdinsight-hadoop-use-hive-ambari-view/ambari-hive-view.png)
 
 ## <a name="hivequery"></a>Eseguire una query
 
-Per eseguire una query Hive, seguire questa procedura dalla vista di Hive.
+toorun una query hive, usare hello dalla visualizzazione Hive hello come segue.
 
-1. Dalla scheda __Query__ incollare le istruzioni HiveQL seguenti nel foglio di lavoro:
+1. Da hello __Query__ scheda, incollare hello seguendo le istruzioni HiveQL nel foglio di lavoro hello:
 
     ```hiveql
     DROP TABLE log4jLogs;
@@ -69,100 +69,100 @@ Per eseguire una query Hive, seguire questa procedura dalla vista di Hive.
     SELECT t4 AS sev, COUNT(*) AS cnt FROM log4jLogs WHERE t4 = '[ERROR]' GROUP BY t4;
     ```
 
-    Di seguito sono elencate le istruzioni che eseguono queste azioni:
+    Queste istruzioni consentono di eseguire hello seguenti azioni:
 
-   * `DROP TABLE`: elimina la tabella e il file di dati, qualora la tabella esista già.
+   * `DROP TABLE`: Elimina tabella hello e file di dati hello, nel caso in cui hello tabella esiste già.
 
    * `CREATE EXTERNAL TABLE`: crea una nuova tabella "esterna" in Hive.
-   Le tabelle esterne archiviano solo la definizione della tabella in Hive. I dati rimangono nel percorso originale.
+   Le tabelle esterne archiviano solo definizione della tabella hello nell'Hive. dati Hello viene lasciati nella posizione originale hello.
 
-   * `ROW FORMAT`: indica il modo in cui sono formattati i dati. In questo caso, i campi in ogni log sono separati da uno spazio.
+   * `ROW FORMAT`-Modalità hello di formattazione. In questo caso, i campi di hello in ogni log sono separati da uno spazio.
 
-   * `STORED AS TEXTFILE LOCATION`: indica dove sono archiviati i dati e che sono archiviati come testo.
+   * `STORED AS TEXTFILE LOCATION`-Hello memorizzazione dei dati e che viene archiviato come testo.
 
-   * `SELECT`: seleziona un conteggio di tutte le righe in cui la colonna t4 include il valore [ERROR].
+   * `SELECT`-Seleziona un conteggio di tutte le righe in cui t4 colonna contiene il valore di hello [errore].
 
      > [!NOTE]
-     > Usa le tabelle esterne se si prevede che i dati sottostanti verranno aggiornati da un'origine esterna. Ad esempio, un processo di caricamento dati automatizzato o un'altra operazione MapReduce. L'eliminazione di una tabella esterna *non* comporta anche l'eliminazione dei dati. Viene eliminata solo la definizione della tabella.
+     > Le tabelle esterne da utilizzare quando si prevede di hello sottostante toobe dati aggiornati da un'origine esterna. Ad esempio, un processo di caricamento dati automatizzato o un'altra operazione MapReduce. Eliminazione di una tabella esterna *non* eliminare dati hello e definizione della tabella solo hello.
 
     > [!IMPORTANT]
-    > Mantenere la selezione di __Database__ __predefinita__. Gli esempi di questo documento usano il database predefinito incluso in HDInsight.
+    > Lasciare hello __Database__ selezione in __predefinito__. esempi di Hello in questo documento usano database predefinito hello incluso in HDInsight.
 
-2. Per avviare la query, usare il pulsante **Execute** (Esegui) sotto il foglio di lavoro. Il pulsante diventa arancione e il testo cambia in **Stop** (Arresta).
+2. query hello toostart, utilizzare hello **Execute** pulsante foglio di lavoro hello. Le modifiche al testo arancione e hello diventa troppo**arrestare**.
 
-3. Al termine dell'elaborazione della query, nella scheda **Results** (Risultati) vengono visualizzati i risultati dell'operazione. Il testo seguente è il risultato della query:
+3. Al termine di query hello, hello **risultati** scheda Visualizza risultati di hello dell'operazione di hello. Dopo il testo Hello è il risultato di hello di query hello:
 
         sev       cnt
         [ERROR]   3
 
-    La scheda **Logs** può essere usata per visualizzare le informazioni sulla registrazione create dal processo,
+    Hello **registri** scheda può essere utilizzato tooview informazioni di registrazione di hello create dal processo di hello.
 
    > [!TIP]
-   > La finestra di dialogo **Save results** (Salva risultati) nella parte superiore sinistra della sezione **Query Process Results** (Risultati del processo query) consente di scaricare o salvare i risultati.
+   > Hello **salvare i risultati** finestra di dialogo di riepilogo a discesa in hello superiore sinistra del hello **risultati della Query processo** sezione permette toodownload o salvare i risultati.
 
-4. Selezionare le prime quattro righe di questa query, quindi selezionare **Execute** (Esegui). Si noti che, al termine del processo, non viene visualizzato alcun risultato. Se si usa il pulsante **Execute** (Esegui) quando parte della query è selezionata, verranno eseguite solo le istruzioni selezionate. In questo caso, la selezione non include l'istruzione finale che recupera le righe dalla tabella. Se si seleziona solo tale riga e si usa **Execute** (Esegui), verranno visualizzati i risultati previsti.
+4. Selezionare hello prime quattro righe di questa query, quindi selezionare **Execute**. Si noti che non sono presenti risultati al termine il processo di hello. Utilizzo di hello **Execute** pulsante se fa parte di query hello è selezionata solo esecuzioni hello istruzioni selezionate. In questo caso, selezione hello non include l'istruzione finale hello che recupera le righe dalla tabella hello. Se si seleziona solo tale riga e utilizzare **Execute**, si otterranno risultati hello previsto.
 
-5. Per aggiungere un foglio di lavoro, usare il pulsate **New Worksheet** (Nuovo foglio di lavoro) nella parte inferiore di **Query Editor** (Editor query). Nel nuovo foglio di lavoro immettere le istruzioni HiveQL seguenti:
+5. tooadd un foglio di lavoro, utilizzare hello **nuovo foglio di lavoro** pulsante nella parte inferiore di hello di hello **Editor di Query**. In hello nuovo foglio di lavoro, immettere hello seguendo le istruzioni HiveQL:
 
     ```hiveql
     CREATE TABLE IF NOT EXISTS errorLogs (t1 string, t2 string, t3 string, t4 string, t5 string, t6 string, t7 string) STORED AS ORC;
     INSERT OVERWRITE TABLE errorLogs SELECT t1, t2, t3, t4, t5, t6, t7 FROM log4jLogs WHERE t4 = '[ERROR]';
     ```
 
-  Di seguito sono elencate le istruzioni che eseguono queste azioni:
+  Queste istruzioni consentono di eseguire hello seguenti azioni:
 
-   * **CREATE TABLE IF NOT EXISTS** : crea una tabella, se non esiste già. Poiché non viene usata la parola chiave **EXTERNAL**, viene creata una tabella interna. Una tabella interna verrà archiviata nel data warehouse di Hive e gestita completamente da Hive. A differenza delle tabelle esterne, se si elimina una tabella interna, vengono eliminati anche i dati sottostanti.
+   * **CREATE TABLE IF NOT EXISTS** : crea una tabella, se non esiste già. Poiché hello **esterno** parola chiave non viene utilizzato, viene creata una tabella interna. Una tabella interna verrà archiviata nel data warehouse di hello Hive e completamente gestita da Hive. A differenza delle tabelle esterne, eliminazione di una tabella interna Elimina hello anche i dati sottostanti.
 
-   * **STORED AS ORC** : archivia i dati nel formato ORC (Optimized Row Columnar). ORC è un formato altamente ottimizzato ed efficiente per l'archiviazione di dati Hive.
+   * **ARCHIVIATI AS ORC** -archivia i dati di hello in formato con ottimizzazione per la riga a colonne (ORC). ORC è un formato altamente ottimizzato ed efficiente per l'archiviazione di dati Hive.
 
-   * **INSERT OVERWRITE ... SELECT**: seleziona dalla tabella **log4jLogs** le righe contenenti `[ERROR]` e quindi inserisce i dati nella tabella **errorLogs**.
+   * **INSERT OVERWRITE ... Selezionare** -seleziona le righe da hello **log4jLogs** tabella contenenti `[ERROR]`, e quindi inserisce hello dati in hello **degli errori** tabella.
 
-     Usare il pulsante **Execute** (Esegui) per eseguire la query. La scheda **Results** (Risultati) non contiene informazioni quando la query restituisce zero righe. Lo stato visualizzato deve essere **SUCCEEDED** dopo il completamento della query.
+     Hello utilizzare **Execute** pulsante toorun questa query. Hello **risultati** scheda non contiene alcuna informazione hello query restituisce zero righe. deve essere stato Hello **SUCCEEDED** una volta completata la query hello.
 
 ### <a name="visual-explain"></a>Visual Explain
 
-Per aprire una visualizzazione del piano di query, selezionare la scheda **Visual Explain** (Spiegazione visiva) sotto il foglio di lavoro.
+una visualizzazione del piano di query hello, seleziona hello toodisplay **spiegare Visual** scheda di sotto del foglio di lavoro di hello.
 
-La vista **Visual Explain** (Spiegazione visiva) della query può essere utile per conoscere il flusso delle query complesse. Per un equivalente testuale di questa visualizzazione, usare il pulsante **Explain** (Spiega) in Query Editor.
+Hello **spiegare Visual** visualizzazione di query hello può essere utili per capire il flusso di hello di query complesse. È possibile visualizzare un equivalente testuale di questa vista utilizzando hello **esplicativo** pulsante hello Editor di Query.
 
 ### <a name="tez-ui"></a>Interfaccia utente di Tez
 
-Per visualizzare l'interfaccia utente di Tez per la query, selezionare la scheda **Tez** sotto il foglio di lavoro.
+toodisplay hello Tez UI per query hello, seleziona hello **Tez** scheda di sotto del foglio di lavoro di hello.
 
 > [!IMPORTANT]
-> Tez non viene usato per risolvere tutte le query. Molte query possono essere risolte senza usare Tez. 
+> Tez è tooresolve non in uso tutte le query. Molte query possono essere risolte senza usare Tez. 
 
-Se per risolvere la query è stato usato Tez, viene visualizzato il grafo aciclico diretto. Se si vuole visualizzare il DAG per le query eseguite in passato o eseguire il debug del processo Tez, usare invece [Tez View](hdinsight-debug-ambari-tez-view.md) .
+Se Tez query hello tooresolve usato, viene visualizzato hello descritto grafico aciclico diretto (DAG). Se si desidera tooview hello DAG per query è stato eseguito in hello precedente o eseguire il debug hello Tez processo, utilizzare hello [Tez vista](hdinsight-debug-ambari-tez-view.md) invece.
 
 ## <a name="view-job-history"></a>Visualizzare la cronologia processo
 
-La scheda __Jobs__ (Processi) visualizza una cronologia delle query Hive.
+Hello __processi__ scheda Visualizza una cronologia delle query Hive.
 
-![Immagine della cronologia processo](./media/hdinsight-hadoop-use-hive-ambari-view/job-history.png)
+![Immagine di cronologia processo hello](./media/hdinsight-hadoop-use-hive-ambari-view/job-history.png)
 
 ## <a name="database-tables"></a>Tabelle di database
 
-È possibile usare la scheda __Tables__ (Tabelle) per utilizzare le tabelle in un database Hive.
+È possibile utilizzare hello __tabelle__ scheda toowork con le tabelle all'interno di un database Hive.
 
-![Immagine della scheda delle tabelle](./media/hdinsight-hadoop-use-hive-ambari-view/tables.png)
+![Immagine della scheda tabelle hello](./media/hdinsight-hadoop-use-hive-ambari-view/tables.png)
 
 ## <a name="saved-queries"></a>Query salvate
 
-Dalla scheda Query è facoltativamente possibile salvare le query. Dopo avere salvato una query, è possibile usarla di nuovo dalla scheda __Saved Queries__ (Query salvate).
+Dalla scheda Query hello, è possibile salvare le query. Dopo il salvataggio, è possibile riutilizzare query hello da hello __query salvate__ scheda.
 
 ![Immagine della scheda delle query salvate](./media/hdinsight-hadoop-use-hive-ambari-view/saved-queries.png)
 
 ## <a name="user-defined-functions"></a>Funzioni definite dall'utente
 
-Hive può anche essere esteso tramite funzioni definite dall'utente, che consentono di implementare funzionalità o logica non facilmente modellate in HiveQL.
+Hive può anche essere esteso tramite funzioni definite dall'utente, Una funzione definita dall'utente consente a funzionalità tooimplement o logica che non è facilmente modellata in HiveQL.
 
-La scheda della funzione definita dall'utente nella parte superiore della vista Hive consente di dichiarare e salvare un set di funzioni definite dall'utente, che è possibile usare con **Query Editor**.
+scheda definita dall'utente nella parte superiore di hello di hello Hive vista Hello consente toodeclare e salvare un set di funzioni definite dall'utente. Queste funzioni definite dall'utente può essere utilizzato con hello **Editor di Query**.
 
 ![Immagine della scheda delle funzioni definite dall'utente](./media/hdinsight-hadoop-use-hive-ambari-view/user-defined-functions.png)
 
-Dopo avere aggiunto una funzione definita dall'utente alla visualizzazione Hive, verrà visualizzato un pulsante **Insert udfs** (Inserisci funzioni definite dall'utente) nella parte inferiore di **Query Editor**. Se si seleziona questa voce, verrà visualizzato un elenco di riepilogo a discesa di funzioni definite dall'utente nella vista Hive. La selezione di una funzione definita dall'utente aggiungerà istruzioni HiveQL alla query per abilitare la funzione definita dall'utente.
+Dopo aver aggiunto un toohello funzione definita dall'utente, vista Hive, un **inserire funzioni definite dall'utente** pulsante viene visualizzato nella parte inferiore di hello di hello **Editor di Query**. Selezionando questa voce visualizza un elenco di riepilogo a discesa di funzioni definite dall'utente definito nella vista Hive hello hello. Selezione di una funzione definita dall'utente aggiunge HiveQL istruzioni tooyour query tooenable hello funzione definita dall'utente.
 
-Ad esempio, se è stata specificata una funzione definita dall'utente con le proprietà seguenti:
+Ad esempio, se è stata definita una funzione definita dall'utente con hello le proprietà seguenti:
 
 * Nome della risorsa: myudfs
 
@@ -172,23 +172,23 @@ Ad esempio, se è stata specificata una funzione definita dall'utente con le pro
 
 * Nome della classe per la funzione definita dall'utente: com.myudfs.Awesome
 
-Se si usa il pulsante **Insert udfs** (Inserisci funzioni definite dall'utente), verrà visualizzata una voce denominata **myudfs**, con un altro elenco a discesa per ogni funzione definita dall'utente specificata per tale risorsa. In questo caso, **myawesomeudf**. Se si seleziona questa voce, verrà aggiunto quanto segue all'inizio della query:
+Utilizzando hello **inserire funzioni definite dall'utente** pulsante Visualizza una voce denominata **myudfs**, con un altro elenco a discesa per ogni funzione definita dall'utente definito per tale risorsa. In questo caso, **myawesomeudf**. Selezionando questa voce aggiunge hello toohello inizio della query hello seguenti:
 
 ```hiveql
 add jar /myudfs.jar;
 create temporary function myawesomeudf as 'com.myudfs.Awesome';
 ```
 
-Si potrà quindi usare la funzione definita dall'utente nella query, Ad esempio, `SELECT myawesomeudf(name) FROM people;`.
+È quindi possibile utilizzare hello funzione definita dall'utente nella query. ad esempio `SELECT myawesomeudf(name) FROM people;`.
 
-Per altre informazioni sull'uso di funzioni definite dall'utente con Hive in HDInsight, vedere i documenti seguenti:
+Per ulteriori informazioni sull'utilizzo di funzioni definite dall'utente con Hive in HDInsight, vedere hello seguenti documenti:
 
 * [Usare Python con Hive e Pig in HDInsight](hdinsight-python.md)
-* [Come aggiungere una funzione definita dall'utente Hive personalizzata in HDInsight](http://blogs.msdn.com/b/bigdatasupport/archive/2014/01/14/how-to-add-custom-hive-udfs-to-hdinsight.aspx)
+* [Come tooadd un tooHDInsight Hive definita dall'utente personalizzato](http://blogs.msdn.com/b/bigdatasupport/archive/2014/01/14/how-to-add-custom-hive-udfs-to-hdinsight.aspx)
 
 ## <a name="hive-settings"></a>Settings di Hive
 
-Le impostazioni possono essere usate per modificare varie impostazioni di Hive. Consentono ad esempio di cambiare il motore di esecuzione per Hive da Tez (opzione predefinita) a MapReduce.
+Le impostazioni possono essere utilizzati toochange varie impostazioni di Hive. Modifica, ad esempio, il motore di esecuzione hello per Hive da tooMapReduce Tez (impostazione predefinita hello).
 
 ## <a id="nextsteps"></a>Passaggi successivi
 

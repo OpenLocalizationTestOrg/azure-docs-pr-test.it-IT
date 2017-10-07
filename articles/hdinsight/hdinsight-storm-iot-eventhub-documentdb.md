@@ -1,6 +1,6 @@
 ---
-title: Elaborare i dati del sensore veicolo con Apache Storm in HDInsight | Documentazione Microsoft
-description: Informazioni su come elaborare i dati del sensore veicolo dagli hub eventi usando Apache Storm in HDInsight Aggiungere i dati del modello da Azure Cosmos DB e archiviarne l'output nella memoria.
+title: dati del sensore veicolo aaaProcess con Apache Storm in HDInsight | Documenti Microsoft
+description: Informazioni su come dati del sensore veicolo tooprocess dagli hub di eventi utilizzando Apache Storm in HDInsight. Aggiungere dati del modello dal database di Azure Cosmos e archiviare toostorage di output.
 services: hdinsight,documentdb,notification-hubs
 documentationcenter: 
 author: Blackmist
@@ -15,49 +15,49 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 05/03/2017
 ms.author: larryfr
-ms.openlocfilehash: 8e8ebc724e1c70e8fcd56312adef5da2342373ea
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8f7b1dbb9072e095ea32160bb731bedd071288af
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="process-vehicle-sensor-data-from-azure-event-hubs-using-apache-storm-on-hdinsight"></a>Elaborare i dati del sensore veicolo dagli hub eventi di Azure usando Apache Storm in HDInsight
 
-Informazioni su come elaborare i dati del sensore veicolo dagli hub eventi di Azure usando Apache Storm in HDInsight In questo esempio vengono letti i dati del sensore da Hub eventi di Azure e vengono arricchiti tali dati facendo riferimento a quelli archiviati in Azure Cosmos DB. I dati vengono infine archiviati in Archiviazione di Azure usando il file system Hadoop (HDFS).
+Informazioni su come dati del sensore veicolo tooprocess dagli hub di eventi di Azure usando Apache Storm in HDInsight. In questo esempio legge i dati del sensore dagli hub di eventi di Azure, arricchisce dati hello facendo riferimento a dati archiviati nel database di Azure Cosmos. Hello dati vengono archiviati in archiviazione di Azure usando hello del File System di Hadoop (HDFS).
 
-![HDInsight e il diagramma dell'architettura IoT (Internet of Things)](./media/hdinsight-storm-iot-eventhub-documentdb/iot.png)
+![HDInsight e hello diagramma dell'architettura di Internet delle cose (IoT)](./media/hdinsight-storm-iot-eventhub-documentdb/iot.png)
 
 ## <a name="overview"></a>Panoramica
 
-L'aggiunta di sensori ai veicoli consente di prevedere problemi alle apparecchiature in base alle tendenze dei dati cronologici, nonché di apportare miglioramenti a future versioni in base all'analisi dei modelli di utilizzo. È necessario poter caricare i dati da tutti i veicoli in Hadoop in modo rapido ed efficiente prima di eseguire l'elaborazione MapReduce. Inoltre, può essere utile eseguire analisi in tempo reale per i percorsi di errore critico, quali temperatura del motore, freni e così via.
+Aggiunta di sensori toovehicles consente problemi attrezzature toopredict in base alle tendenze dei dati cronologici. Consente inoltre toomake miglioramenti versioni toofuture basate su Analisi utilizzo del modello. È necessario essere in grado di tooquickly e caricare in modo efficiente i dati di hello da tutti i veicoli in Hadoop prima di poter eseguire l'elaborazione di MapReduce. Inoltre, è preferibile toodo analisi per i percorsi di errore critico (temperatura del motore, freni, e così via) in tempo reale.
 
-Hub eventi di Azure è progettato per gestire l'ingente volume di dati generati dai sensori. È possibile usare Apache Storm per caricare ed elaborare i dati prima di archiviarli in HDFS.
+Hub eventi di Azure è compilato in volume di grande hello toohandle dei dati generati dai sensori. Apache Storm può essere utilizzato tooload e hello elaborare i dati prima di essere archiviati in HDFS.
 
 ## <a name="solution"></a>Soluzione
 
-I dati di telemetria relativi a temperatura del motore, temperatura ambiente e velocità del veicolo vengono registrati dai sensori. Vengono quindi inviati a Hub eventi insieme al numero identificativo del veicolo (numero di telaio) e a un timestamp. A questo punto, una topologia Storm in esecuzione in un cluster Apache Storm in HDInsight legge i dati, li elabora e li archivia in HDFS.
+I dati di telemetria relativi a temperatura del motore, temperatura ambiente e velocità del veicolo vengono registrati dai sensori. Dati vengono quindi inviati hub tooEvent insieme veicolo identificazione numero (VPN dell'automobile hello) e un timestamp. Da qui, una topologia di Storm in esecuzione in un elevato numero di Apache nel cluster HDInsight legge i dati di hello, elabora e archivia in HDFS.
 
-Durante l'elaborazione viene usato il numero identificativo del veicolo per recuperare informazioni sul modello da Cosmos DB. Questi dati vengono aggiunti al flusso di dati prima dell'archiviazione.
+Durante l'elaborazione, hello VPN è informazioni relative al modello tooretrieve utilizzato dal database Cosmos. Questi dati viene aggiunto il flusso di dati toohello prima che venga archiviata.
 
-I componenti usati nella topologia Storm sono:
+componenti di Hello utilizzati nella topologia Storm hello sono:
 
 * **EventHubSpout** : legge i dati dagli hub eventi di Azure
-* **TypeConversionBolt**: converte la stringa JSON da Hub eventi in una tupla contenente i dati del sensore seguenti:
+* **TypeConversionBolt** -converte hello stringa JSON da hub eventi in una tupla contenente hello sensore dati seguenti:
     * engineTemperature
     * Temperatura ambiente
     * speed
     * vin
     * Timestamp
-* **DataReferencBolt**: cerca il modello del veicolo in Cosmos DB usando il numero identificativo del veicolo
-* **WasbStoreBolt** : archivia i dati in HDFS (Archiviazione di Azure)
+* **DataReferencBolt** -Cerca modello hello da DB Cosmos tramite VPN hello
+* **WasbStoreBolt** -archivi hello tooHDFS dati (archiviazione di Azure)
 
-Di seguito è riportato un diagramma di questa soluzione:
+Hello seguente immagine è un diagramma di questa soluzione:
 
 ![topologia storm](./media/hdinsight-storm-iot-eventhub-documentdb/iottopology.png)
 
 ## <a name="implementation"></a>Implementazione
 
-Una soluzione completa e automatizzata per questo scenario è disponibile nel repository di [esempi relativi a Storm in HDInsight](https://github.com/hdinsight/hdinsight-storm-examples) su GitHub. Per usare questo esempio, attenersi alla procedura riportata in [IoTExample README. MD](https://github.com/hdinsight/hdinsight-storm-examples/blob/master/IotExample/README.md).
+Una completa soluzione automatizzata per questo scenario è disponibile come parte di hello [esempi di Storm HDInsight](https://github.com/hdinsight/hdinsight-storm-examples) repository in GitHub. toouse in questo esempio, seguire la procedura seguente hello in hello [IoTExample README. MD](https://github.com/hdinsight/hdinsight-storm-examples/blob/master/IotExample/README.md).
 
 ## <a name="next-steps"></a>Passaggi successivi
 

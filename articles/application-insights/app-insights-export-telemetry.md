@@ -1,6 +1,6 @@
 ---
-title: Esportazione continua dei dati di telemetria da Application Insights | Microsoft Docs
-description: "Esportare i dati di diagnostica e di uso nella risorsa di archiviazione in Microsoft Azure e scaricarli da lì."
+title: esportazione di aaaContinuous di telemetria da Application Insights | Documenti Microsoft
+description: Esportare toostorage di dati di diagnostica e utilizzo in Microsoft Azure e scaricarlo da qui.
 services: application-insights
 documentationcenter: 
 author: CFreemanwa
@@ -13,115 +13,115 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/23/2017
 ms.author: bwren
-ms.openlocfilehash: 6ac3bda5101593b5ca66b4c9035e2fdac9d1e833
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: be9ed7e05922c1c8186df9ca4e642862adaa5fd0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="export-telemetry-from-application-insights"></a>Esportare i dati di telemetria da Application Insights
-Si vogliono mantenere i dati di telemetria per un periodo più lungo del periodo di mantenimento standard o elaborarli in un modo particolare? A tale scopo, l'esportazione continua è ideale. Gli eventi visualizzati nel portale di Application Insights possono essere esportati nella risorsa di archiviazione di Microsoft Azure in formato JSON. Da qui è possibile scaricare i dati e scrivere qualsiasi tipo di codice necessario per elaborarli.  
+Desidera tookeep dati di telemetria per oltre il periodo di memorizzazione standard di hello? o elaborarli in un modo particolare? A tale scopo, l'esportazione continua è ideale. gli eventi di Hello che viene visualizzato nel portale Application Insights hello possono essere esportati toostorage in Microsoft Azure in formato JSON. Da qui è possibile scaricare i dati e scrivere qualsiasi tipo di codice è necessario tooprocess è.  
 
 L'uso dell'esportazione continua può comportare un costo aggiuntivo. Controllare il [modello di prezzi](http://azure.microsoft.com/pricing/details/application-insights/).
 
-Prima di configurare l'esportazione continua, è necessario prendere in considerazione alcune alternative:
+Prima di configurare l'esportazione continua, sono disponibili alcune alternative tooconsider potrebbe essere necessario:
 
-* Il pulsante Esporta nella parte superiore del pannello delle metriche o di ricerca consente di esportare tabelle e grafici in un foglio di calcolo di Excel.
+* pulsante Esporta Hello nella parte superiore di hello di blade metriche o ricerca consente di trasferire le tabelle e grafici tooan foglio di calcolo Excel.
 
 * [Dati di analisi](app-insights-analytics.md) offre un linguaggio avanzato di query per la telemetria che consente anche di esportare i risultati.
-* Se si vogliono [esplorare i dati in Power BI](app-insights-export-power-bi.md), non è necessario usare l'esportazione continua.
-* L'[API REST di accesso ai dati](https://dev.applicationinsights.io/) consente di accedere ai dati di telemetria a livello di codice.
+* Se si sta cercando troppo[esplorare i dati in Power BI](app-insights-export-power-bi.md), è possibile farlo senza utilizzare l'esportazione continua.
+* Hello [API REST di accesso ai dati](https://dev.applicationinsights.io/) consente di accedere ai dati di telemetria a livello di codice.
 
-Con l'esportazione continua i dati vengono copiati nella risorsa di archiviazione, in cui possono rimanere fino a quando si desidera, ma sono ancora disponibili in Application Insights per il [periodo di conservazione](app-insights-data-retention-privacy.md) usuale.
+Dopo l'esportazione continua copia toostorage i dati (in cui possibile abilitarlo per fino a quando si desidera), è ancora disponibile in Application Insights per hello consueta [periodo di memorizzazione](app-insights-data-retention-privacy.md).
 
 ## <a name="setup"></a> Creare un'esportazione continua
-1. Nella risorsa di Application Insights per l'app aprire Esportazione continua e scegliere **Aggiungi**:
+1. Nella risorsa di Application Insights per l'applicazione hello, aprire l'esportazione continua e scegliere **Aggiungi**:
 
     ![Scorrere verso il basso e fare clic su Esportazione continua](./media/app-insights-export-telemetry/01-export.png)
 
-2. Scegliere i tipi di dati di telemetria da esportare.
+2. Scegliere i tipi di dati di telemetria hello desiderato tooexport.
 
-3. Creare o selezionare un [account di archiviazione di Azure](../storage/common/storage-introduction.md) in cui memorizzare i dati.
+3. Creare o selezionare un [account di archiviazione Azure](../storage/common/storage-introduction.md) in cui si desidera dati hello toostore.
 
     > [!Warning]
-    > Per impostazione predefinita, il percorso di archiviazione verrà impostato sulla stessa area geografica della risorsa di Application Insights. Se si esegue l'archiviazione in un'area differente, è possibile che vengano applicati addebiti per il trasferimento.
+    > Per impostazione predefinita, il percorso di archiviazione hello verrà impostato toohello stessa area geografica della risorsa di Application Insights. Se si esegue l'archiviazione in un'area differente, è possibile che vengano applicati addebiti per il trasferimento.
 
     ![Fare clic su Aggiungi, Destinazione di esportazione, Account di archiviazione e quindi creare un nuovo archivio o scegliere un archivio esistente](./media/app-insights-export-telemetry/02-add.png)
 
-4. Creare o selezionare un contenitore nella risorsa di archiviazione:
+4. Creare o selezionare un contenitore nell'archiviazione hello:
 
     ![Fare clic su Scegli tipi di eventi](./media/app-insights-export-telemetry/create-container.png)
 
-Dopo averla creata, l'esportazione viene avviata. Si ottengono solo i dati ricevuti dopo avere creato l'esportazione.
+Dopo averla creata, l'esportazione viene avviata. Si ottengono solo i dati in arrivo dopo la creazione di esportazione hello.
 
-Può verificarsi un ritardo di circa un'ora prima che i dati vengano visualizzati nella risorsa di archiviazione.
+Può esistere un ritardo di circa un'ora prima che i dati vengono visualizzati nel servizio di archiviazione hello.
 
-### <a name="to-edit-continuous-export"></a>Per modificare l'esportazione continua
+### <a name="tooedit-continuous-export"></a>esportazione continua tooedit
 
-Se si vogliono modificare i tipi di eventi in un secondo momento, è sufficiente modificare l'esportazione:
+Se si desidera che i tipi di evento hello toochange in un secondo momento, è sufficiente modificare esportazione hello:
 
 ![Fare clic su Scegli tipi di eventi](./media/app-insights-export-telemetry/05-edit.png)
 
-### <a name="to-stop-continuous-export"></a>Per interrompere l'esportazione continua
+### <a name="toostop-continuous-export"></a>esportazione continua toostop
 
-Per interrompere l'esportazione, fare clic su Disabilita. Quando si fa clic di nuovo su Abilita, l'esportazione verrà riavviata con nuovi dati. Non si otterranno i dati che arrivano nel portale mentre l'esportazione è stata disabilitata.
+esportazione di hello toostop, fare clic su Disattiva. Quando si sceglie abilita nuovamente, esportazione hello verrà riavviato con nuovi dati. Si otterranno dati hello ricevuti nel portale di hello durante l'esportazione è stata disabilitata.
 
-Per interrompere l'esportazione in modo permanente, eliminare l'esportazione. Questa operazione non elimina i dati dalla risorsa di archiviazione.
+esportazione di hello toostop, l'eliminazione definitiva. Questa operazione non elimina i dati dalla risorsa di archiviazione.
 
 ### <a name="cant-add-or-change-an-export"></a>Non si riesce ad aggiungere o modificare un'esportazione?
-* Per aggiungere o modificare le esportazioni, è necessario avere i diritti di accesso proprietario, collaboratore o collaboratore di Application Insights. [Informazioni sui ruoli][roles].
+* esportazioni tooadd o modifica, sono necessari i diritti di accesso proprietario, collaboratore o collaboratore di Application Insights. [Informazioni sui ruoli][roles].
 
 ## <a name="analyze"></a> Quali eventi si ottengono?
-I dati esportati sono dati di telemetria non elaborati ricevuti dall'applicazione, tranne che per l'aggiunta di dati del percorso calcolati dall'indirizzo IP del client.
+Hello dati esportati sono telemetria di hello non elaborati ricevuti dall'applicazione, ma è aggiungere dati di percorso che si calcolano dall'indirizzo IP del client hello.
 
-I dati che il [campionamento](app-insights-sampling.md) ha rimosso non sono inclusi nei dati esportati.
+Dati che sono stati eliminati da [campionamento](app-insights-sampling.md) non è incluso nei dati hello esportata.
 
-Le altre metriche calcolate non sono incluse. Ad esempio, non si procederà all'esportazione dell'uso medio della CPU, ma si procederà all'esportazione dei dati di telemetria non elaborati a partire dai quali viene calcolata la media.
+Le altre metriche calcolate non sono incluse. Ad esempio, non esportazione medio utilizzo della CPU, ma si procederà all'esportazione di telemetria non elaborati di hello da cui viene calcolata la media hello.
 
-I dati includono anche i risultati di ogni [test Web di disponibilità](app-insights-monitor-web-app-availability.md) impostato.
+Hello dati includono anche risultati hello di qualsiasi [test web disponibilità](app-insights-monitor-web-app-availability.md) che è stato impostato.
 
 > [!NOTE]
-> **Campionamento.** Se l'applicazione invia una grande quantità di dati, la funzionalità di campionamento può intervenire e inviare solo una percentuale della telemetria generata. [Altre informazioni sul campionamento.](app-insights-sampling.md)
+> **Campionamento.** Se l'applicazione invia una grande quantità di dati, funzionalità di campionamento hello possono operare e inviare solo una frazione di telemetria hello generato. [Altre informazioni sul campionamento.](app-insights-sampling.md)
 >
 >
 
-## <a name="get"></a> Esaminare i dati
-È possibile esaminare lo spazio di archiviazione direttamente nel portale. Fare clic su **Sfoglia**, selezionare l'account di archiviazione e quindi aprire i **Contenitori**.
+## <a name="get"></a>Controllare i dati di hello
+È possibile esaminare archiviazione hello direttamente nel portale di hello. Fare clic su **Sfoglia**, selezionare l'account di archiviazione e quindi aprire i **Contenitori**.
 
-Per esaminare l'archiviazione di Azure in Visual Studio, aprire **Visualizza**, **Cloud Explorer**. (Se non si dispone di tale comando del menu, è necessario installare l’SDK di Azure: aprire la finestra di dialogo **Nuovo progetto**, espandere Visual C#/Cloud e scegliere **Ottieni Microsoft Azure SDK per .NET**).
+tooinspect archiviazione di Azure in Visual Studio, aprire **vista**, **Cloud Explorer**. (Se non si dispone di tale comando di menu, è necessario tooinstall hello Azure SDK: hello aprire **nuovo progetto** finestra di dialogo espandere Visual c# del cloud e scegliere **ottenere Microsoft Azure SDK per .NET**.)
 
-Quando si apre l'archivio BLOB, si noterà un contenitore con un set di file BLOB. L'URI di ogni file è derivato dal nome della risorsa di Application Insights, la relativa chiave di strumentazione e tipo/data/ora della telemetria. (Il nome della risorsa viene scritto in minuscolo e la chiave di strumentazione omette i trattini).
+Quando si apre l'archivio BLOB, si noterà un contenitore con un set di file BLOB. URI di ogni file Hello derivato dal nome di risorsa di Application Insights, la chiave di strumentazione, tipo di dati di telemetria/data/ora. (nome della risorsa hello è tutti in lettere minuscole, e la chiave di strumentazione hello omette trattini).
 
-![Controllare l'archivio BLOB con uno strumento adatto](./media/app-insights-export-telemetry/04-data.png)
+![Controllare l'archivio di blob hello con uno strumento appropriato](./media/app-insights-export-telemetry/04-data.png)
 
-La data e ora sono UTC e lo sono quando i dati di telemetria sono stati depositati nell'archivio, non l'ora in cui sono stati generati. Di conseguenza, se si scrive codice per scaricare i dati, può spostarsi in modo lineare attraverso i dati.
+hello data e ora siano UTC e quando è stato depositato telemetria hello nell'archivio di hello - tempo di hello non è stato generato. Pertanto, se si scrivono dati di code toodownload hello, è possibile spostarsi in modo lineare dati hello.
 
-Di seguito è riportato il formato del percorso:
+Di seguito è il formato di hello di hello percorso:
 
     $"{applicationName}_{instrumentationKey}/{type}/{blobDeliveryTimeUtc:yyyy-MM-dd}/{ blobDeliveryTimeUtc:HH}/{blobId}_{blobCreationTimeUtc:yyyyMMdd_HHmmss}.blob"
 
 Where
 
-* `blobCreationTimeUtc` è l'ora di creazione del BLOB nell'archivio di gestione temporanea interno
-* `blobDeliveryTimeUtc` è l'ora in cui il BLOB viene copiato nell'archivio di destinazione dell'esportazione
+* `blobCreationTimeUtc`è ora di creazione blob in hello interno gestione temporanea di archiviazione
+* `blobDeliveryTimeUtc`è il momento di hello è copiato toohello esportazione destinazione archiviazione blob
 
 ## <a name="format"></a> Formato dati
-* Ogni BLOB è un file di testo che contiene più righe separate da '\n'. Contiene i dati di telemetria elaborati in un periodo di tempo di circa mezzo minuto.
+* Ogni BLOB è un file di testo che contiene più righe separate da '\n'. Contiene dati di telemetria hello elaborati in un periodo di tempo di circa metà un minuto.
 * Ogni riga rappresenta un punto dati di telemetria, ad esempio una richiesta o una visualizzazione di pagina.
-* Ogni riga è un documento JSON non formattato. Se si desidera sedersi a osservare, aprirlo in Visual Studio e scegliere Modifica, Avanzate, File di formato:
+* Ogni riga è un documento JSON non formattato. Se desidera toosit comincerà, aprirlo in Visual Studio e scegliere Modifica, avanzate, File di formato:
 
-![Visualizzare i dati di telemetria con uno strumento adatto](./media/app-insights-export-telemetry/06-json.png)
+![Visualizza dati di telemetria hello con uno strumento appropriato](./media/app-insights-export-telemetry/06-json.png)
 
-Gli intervalli di tempo sono espressi in tick, dove 10 000 tick = 1 ms. Questi valori, ad esempio, indicano un tempo di 1 ms per inviare una richiesta dal browser, 3 ms per riceverla e 1,8 s per elaborare la pagina nel browser:
+Gli intervalli di tempo sono espressi in tick, dove 10 000 tick = 1 ms. Ad esempio, questi valori vengono visualizzate un tempo pari a 1 ms toosend una richiesta da browser hello, 3 MS tooreceive e 1.8s tooprocess hello pagina nel browser hello:
 
     "sendRequest": {"value": 10000.0},
     "receiveRequest": {"value": 30000.0},
     "clientProcess": {"value": 17970000.0}
 
-[Riferimento dettagliato al modello di dati per i valori e i tipi di proprietà.](app-insights-export-data-model.md)
+[Riferimento per i tipi di proprietà hello e i valori del modello di dati dettagliati.](app-insights-export-data-model.md)
 
-## <a name="processing-the-data"></a>Elaborazione dei dati
-Su scala ridotta è possibile scrivere codice per separare i dati, leggerli in un foglio di calcolo e così via. ad esempio:
+## <a name="processing-hello-data"></a>L'elaborazione dei dati hello
+Su una scala di piccole dimensioni, è possibile scrivere i dati di alcuni toopull codice divide in due, leggerlo in un foglio di calcolo e così via. ad esempio:
 
     private IEnumerable<T> DeserializeMany<T>(string folderName)
     {
@@ -143,56 +143,56 @@ Su scala ridotta è possibile scrivere codice per separare i dati, leggerli in u
 Per un esempio di codice più esaustivo, vedere l'articolo relativo all'[uso di un ruolo di lavoro][exportasa].
 
 ## <a name="delete"></a>Eliminare i vecchi dati
-Si noti che si è responsabili della gestione della capacità di archiviazione ed eliminazione di vecchi dati, se necessario.
+Si noti che è responsabile per la gestione della capacità di archiviazione e l'eliminazione dei dati precedente hello se necessario.
 
 ## <a name="if-you-regenerate-your-storage-key"></a>Se si rigenera la chiave di archiviazione...
-Se si modifica la chiave per l'archiviazione, l'esportazione continua non funzionerà più. Verrà visualizzata una notifica nell'account Azure.
+Se si modifica l'archiviazione di chiavi tooyour hello, l'esportazione continua smetteranno di funzionare. Verrà visualizzata una notifica nell'account Azure.
 
-Aprire il pannello Esportazione continua e modificare l'esportazione. Modificare la destinazione di esportazione, ma lasciare selezionata la stessa risorsa di archiviazione. Fare clic su OK per confermare.
+Aprire il pannello di esportazione continua hello e modificare l'esportazione. Modifica hello esportare destinazione, ma lasciare hello stessa risorsa di archiviazione selezionato. Fare clic su OK tooconfirm.
 
-![Modificare l'esportazione continua, aprire e chiudere tre destinazioni di esportazione.](./media/app-insights-export-telemetry/07-resetstore.png)
+![Modifica hello continua esportare, aprire e chiudere tre destinazione dell'esportazione.](./media/app-insights-export-telemetry/07-resetstore.png)
 
-L'esportazione continua verrà riavviata.
+l'esportazione continua Hello verrà riavviato.
 
 ## <a name="export-samples"></a>Esempi di esportazione
 
-* [Eseguire l'esportazione in SQL usando l'analisi di flusso][exportasa]
+* [Esportare tooSQL tramite flusso Analitica][exportasa]
 * [Esempio di analisi di flusso 2](app-insights-export-stream-analytics.md)
 
-Su scala più estesa considerare la possibilità di usare cluster [HDInsight](https://azure.microsoft.com/services/hdinsight/) - Hadoop nel cloud. HDInsight offre un'ampia gamma di tecnologie per la gestione e analisi dei Big Data e può essere usato per elaborare i dati esportati da Application Insights.
+In scale di dimensioni maggiori, prendere in considerazione [HDInsight](https://azure.microsoft.com/services/hdinsight/) -cluster Hadoop in cloud hello. HDInsight offre un'ampia gamma di tecnologie per la gestione e analisi dei dati di grandi dimensioni e, è possibile utilizzare dati tooprocess che sono stati esportati da Application Insights.
 
 ## <a name="q--a"></a>Domande e risposte
 * *Si intende scaricare semplicemente un grafico.*  
 
-    Questa operazione è consentita. Nella parte superiore del pannello fare clic sul **pulsante di esportazione dati**.
+    Questa operazione è consentita. Nella parte superiore di hello del Pannello di hello, fare clic su **Esporta dati**.
 * *È stata impostata un'esportazione, ma non sono presenti dati nell'archivio personale.*
 
-    Application Insights ha ricevuto eventuali dati di telemetria dall'app dal momento in cui si è impostata l'esportazione? Si riceveranno solo nuovi dati.
-* *Si è tentato di impostare un'esportazione, ma è stato negato l'accesso*
+    Application Insights ricevuto eventuali dati di telemetria dall'app perché è impostare esportazione hello? Si riceveranno solo nuovi dati.
+* *Tentato tooset backup un'esportazione, ma è stato negato l'accesso*
 
-    Se l'account è di proprietà dell'organizzazione, è necessario essere un membro del gruppo di proprietari o di collaboratori.
-* *È possibile eseguire un'esportazione direttamente al negozio locale?*
+    Se l'organizzazione account hello è di proprietà, è necessario toobe un membro dei gruppi di collaboratori o i proprietari di hello.
+* *È possibile esportare toomy retta locale proprio archivio?*
 
     No. Il motore di esportazione attualmente funziona solo con Archiviazione di Azure.  
-* *Esiste un limite alla quantità di dati da inserire nell'archivio personale?*
+* *C'è alcun limite di toohello di dati inseriti nell'archivio personale?*
 
-    No. L'inserimento dei dati continuerà fino a quando non si elimina l'esportazione. Occorrerà fermarsi se i limiti esterni per l'archiviazione BLOB sono stati raggiunti, ma ciò è abbastanza difficile. Spetta all'utente controllare quante risorse di archiviazione usare.  
-* *Quanti BLOB dovrebbero essere visualizzati nella risorsa di archiviazione?*
+    No. Si saranno mantenere il push dei dati fino a quando non si elimina l'esportazione di hello. Verrà interrotta se viene raggiunto i limiti di hello esterno per l'archiviazione blob, ma che è notevole. È attivo tooyou toocontrol si utilizza lo spazio di archiviazione.  
+* *Il numero di BLOB è consigliabile vedere nel servizio di archiviazione hello*
 
-  * Per ogni tipi di dati selezionato per l'esportazione, viene creato un nuovo BLOB ogni minuto, se sono disponibili dati.
+  * Per ogni tipo di dati di tipo è tooexport selezionato, un nuovo blob viene creato ogni minuto (se sono disponibili dati).
   * Per le applicazioni con traffico elevato, inoltre, vengono allocate unità di partizione aggiuntive. In questo caso ogni unità crea un BLOB ogni minuto.
-* *La chiave per la risorsa di archiviazione è stata rigenerata o il nome del contenitore è stato modificato, ma l'esportazione non funziona.*
+* *Non è hello toomy chiave archiviazione rigenerate o nome hello del contenitore hello modificato, ed esportazione hello non funziona.*
 
-    Modificare l'esportazione e aprire il pannello di destinazione dell'esportazione. Lasciare la stessa risorsa di archiviazione selezionata come in precedenza e fare clic su OK per confermare. L'esportazione verrà riavviata. Se la modifica è stata eseguita negli ultimi giorni, non si perderanno i dati.
-* *È possibile sospendere l'esportazione?*
+    Modificare l'esportazione di hello e aprire Pannello di destinazione di esportazione hello. Lasciare hello stessa risorsa di archiviazione selezionato in precedenza e fare clic su OK tooconfirm. L'esportazione verrà riavviata. Se è stata modifica hello all'interno di hello dopo alcuni giorni, dei dati andrà perso.
+* *È possibile sospendere l'esportazione di hello?*
 
     Sì. Fare clic su Disabilita.
 
 ## <a name="code-samples"></a>Esempi di codice
 
 * [Esempio di analisi di flusso](app-insights-export-stream-analytics.md)
-* [Eseguire l'esportazione in SQL usando l'analisi di flusso][exportasa]
-* [Riferimento dettagliato al modello di dati per i valori e i tipi di proprietà.](app-insights-export-data-model.md)
+* [Esportare tooSQL tramite flusso Analitica][exportasa]
+* [Riferimento per i tipi di proprietà hello e i valori del modello di dati dettagliati.](app-insights-export-data-model.md)
 
 <!--Link references-->
 

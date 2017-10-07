@@ -1,6 +1,6 @@
 ---
-title: Eseguire l'autenticazione con un registro contenitori di Azure | Microsoft Docs
-description: "Come accedere a un registro contenitori di Azure usando un'entità servizio di Azure Active Directory o un account amministratore"
+title: aaaAuthenticate con un registro di sistema del contenitore di Azure | Documenti Microsoft
+description: Come toolog nel Registro di sistema di contenitore di Azure tooan usando Azure Active Directory service principale o un account amministratore
 services: container-registry
 documentationcenter: 
 author: stevelas
@@ -17,61 +17,61 @@ ms.workload: na
 ms.date: 03/24/2017
 ms.author: stevelas
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: aa2a6bf3d7d9ec22020036851fc0f2bca37e31bf
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: a0b0462e8432b2567689debca322e2426baa7fa2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="authenticate-with-a-private-docker-container-registry"></a>Eseguire l'autenticazione con un registro contenitori Docker privato
-Per usare le immagini contenitore nel registro contenitori di Azure, accedere usando il comando `docker login`. È possibile accedere usando un'**[entità servizio di Azure Active Directory](../active-directory/active-directory-application-objects.md)** o un **account amministratore** specifico del registro. In questo articolo vengono fornite maggiori informazioni su tali identità.
+toowork con immagini contenitore nel Registro di sistema contenitore di Azure, si accede tramite hello `docker login` comando. È possibile accedere usando un'**[entità servizio di Azure Active Directory](../active-directory/active-directory-application-objects.md)** o un **account amministratore** specifico del registro. In questo articolo vengono fornite maggiori informazioni su tali identità.
 
 
 
 ## <a name="service-principal"></a>Entità servizio
 
-È possibile [assegnare un'entità servizio](container-registry-get-started-azure-cli.md#assign-a-service-principal) nel registro e usarla per eseguire l'autenticazione Docker di base. È consigliabile usare un'entità servizio per la maggior parte degli scenari. Fornire l'ID app e la password dell'entità servizio per il comando `docker login`, come illustrato nell'esempio seguente:
+È possibile [assegnare un'entità servizio](container-registry-get-started-azure-cli.md#assign-a-service-principal) tooyour Registro di sistema e utilizzarlo per l'autenticazione di base Docker. È consigliabile usare un'entità servizio per la maggior parte degli scenari. Fornire l'ID app hello e la password di hello servizio principale toohello `docker login` comando, come illustrato nell'esempio seguente hello:
 
 ```
 docker login myregistry.azurecr.io -u xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx -p myPassword
 ```
 
-Dopo aver effettuato l'accesso, Docker memorizza nella cache le credenziali, così da non doversi ricordare l'ID app.
+Una volta effettuato l'accesso, Docker memorizza nella cache le credenziali di hello, pertanto non è necessario l'ID dell'app tooremember hello.
 
 > [!TIP]
-> Se lo si desidera, è possibile rigenerare la password di un'entità servizio eseguendo il comando `az ad sp reset-credentials`.
+> Se si desidera, è possibile rigenerare la password di hello di un'entità servizio eseguendo hello `az ad sp reset-credentials` comando.
 >
 
 
-Le entità servizio consentono l'[accesso basato su ruoli](../active-directory/role-based-access-control-configure.md) a un registro. I ruoli disponibili sono:
+Consentono l'entità servizio [accesso basato sui ruoli](../active-directory/role-based-access-control-configure.md) tooa Registro di sistema. I ruoli disponibili sono:
   * Lettore (solo accesso pull).
   * Collaboratore (accesso pull e push).
-  * Proprietario (accesso pull e push e facoltà di assegnare ruoli ad altri utenti).
+  * Proprietario (pull, push e assegnare ruoli tooother utenti).
 
 L'accesso anonimo non è disponibile nei registri contenitori di Azure. Per le immagini pubbliche è possibile utilizzare [Docker Hub](https://docs.docker.com/docker-hub/).
 
-È possibile assegnare più entità di servizio a un registro, così da poter definire l'accesso per utenti o applicazioni differenti. Le entità servizio abilitano anche la connettività "headless" a un registro negli scenari DevOps o per sviluppatori, come gli esempi seguenti:
+È possibile assegnare più entità di servizio tooa del Registro di sistema, che consente di accedere a toodefine per diversi utenti o applicazioni. Le entità servizio abilitare anche "headless" connettività tooa nel Registro di sistema per sviluppatori o DevOps scenari, ad esempio hello seguono esempi:
 
-  * Distribuzioni di contenitori da un registro ai sistemi di orchestrazione, tra cui DC/OS, Docker Swarm e Kubernetes. È anche possibile eseguire il pull dei registri contenitori a servizi di Azure correlati, come [Servizio contenitore](../container-service/index.yml), [Servizio App](../app-service/index.md), [Batch](../batch/index.md), [Service Fabric](/azure/service-fabric/) e altri.
+  * Distribuzioni di contenitori da sistemi di tooorchestration un registro di sistema inclusi controller di dominio/OS, Docker Swarm e Kubernetes. È possibile anche effettuare il pull toorelated registri contenitore Servizi di Azure, ad esempio [servizio contenitore](../container-service/index.yml), [servizio App](../app-service/index.md), [Batch](../batch/index.md), [Service Fabric](/azure/service-fabric/)e altri.
 
-  * Soluzioni di distribuzione e integrazione continua (ad esempio Visual Studio Team Services o Jenkins) che creano immagini contenitore e le inviano a un registro.
+  * Continua integrazione e distribuzione di soluzioni (ad esempio Visual Studio Team Services o Jenkins) che compilano le immagini contenitore e inviarli tooa Registro di sistema.
 
 
 
 
 
 ## <a name="admin-account"></a>Account amministratore
-Per ogni registro che si crea viene creato automaticamente un account amministratore. Per impostazione predefinita l'account è disabilitato, ma è possibile abilitarlo e gestirne le credenziali, ad esempio tramite il [portale](container-registry-get-started-portal.md#manage-registry-settings) o con i [comandi dell'interfaccia della riga di comando di Azure 2.0](container-registry-get-started-azure-cli.md#manage-admin-credentials). Ogni account amministratore dispone di due password, ognuna rigenerabile. Le due password consentono di mantenere le connessioni al registro usando una password mentre si rigenera l'altra. Se l'account è abilitato, è possibile passare il nome utente e la password al comando `docker login` per l'autenticazione di base per accedere al registro. Ad esempio:
+Per ogni registro che si crea viene creato automaticamente un account amministratore. Per impostazione predefinita account hello è disabilitata, ma è possibile abilitare e gestire le credenziali di hello, ad esempio tramite hello [portale](container-registry-get-started-portal.md#manage-registry-settings) o tramite hello [comandi CLI di Azure 2.0](container-registry-get-started-azure-cli.md#manage-admin-credentials). Ogni account amministratore dispone di due password, ognuna rigenerabile. due password Hello consentono del Registro di sistema di toomaintain connessioni toohello utilizzando una password mentre si rigenera hello altre password. Se hello account è abilitato, è possibile passare il nome di utente hello ed entrambi toohello password `docker login` comando del Registro di sistema di autenticazione di base toohello. ad esempio:
 
 ```
 docker login myregistry.azurecr.io -u myAdminName -p myPassword1
 ```
 
 > [!IMPORTANT]
-> L'account amministratore è pensato per l'accesso di un singolo utente al registro, principalmente per fare dei test. Non è consigliabile condividere le credenziali dell'account amministratore con altri utenti. Tutti gli utenti vengono visualizzati come un singolo utente nel registro. La modifica o la disattivazione di questo account disabilita l'accesso al registro da parte di tutti gli utenti che usano quelle credenziali.
+> account amministratore Hello è progettato per un singolo utente tooaccess hello del Registro di sistema, principalmente per scopi di test. Non è consigliabile credenziali dell'account amministratore hello tooshare tra altri utenti. Tutti gli utenti vengono visualizzati come un registro di sistema toohello utente singolo. La modifica o la disattivazione di questo account Disabilita accesso Registro di sistema per tutti gli utenti che utilizzano le credenziali di hello.
 >
 
 
 ### <a name="next-steps"></a>Passaggi successivi
-* [Eseguire il push della prima immagine con l'interfaccia della riga di comando di Docker](container-registry-get-started-docker-cli.md).
-* Per altre informazioni sull'autenticazione nell'anteprima del registro contenitori, vedere il [post di blog](https://blogs.msdn.microsoft.com/stevelasker/2016/11/17/azure-container-registry-user-accounts/).
+* [La prima immagine usando Docker CLI hello push](container-registry-get-started-docker-cli.md).
+* Per ulteriori informazioni sull'autenticazione in anteprima di hello contenitore del Registro di sistema, vedere hello [post di blog](https://blogs.msdn.microsoft.com/stevelasker/2016/11/17/azure-container-registry-user-accounts/).

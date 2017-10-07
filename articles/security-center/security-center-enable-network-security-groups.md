@@ -1,6 +1,6 @@
 ---
-title: Abilitare i gruppi di sicurezza di rete nel Centro sicurezza di Azure | Microsoft Docs
-description: Questo documento illustra come implementare la raccomandazione **Abilita i gruppi di sicurezza di rete** del Centro sicurezza di Azure.
+title: Gruppi di sicurezza di rete nel Centro protezione Azure aaaEnable | Documenti Microsoft
+description: Questo documento viene illustrato come tooimplement hello raccomandazione Centro sicurezza di Azure * * abilitare rete sicurezza gruppi * *.
 services: security-center
 documentationcenter: na
 author: TerryLanfear
@@ -14,51 +14,51 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 02/02/2017
 ms.author: terrylan
-ms.openlocfilehash: 1e034d59d8847f237fa0d4c772344d45cd618576
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2f70fe432aa452f833a5c322d13102ebbd6dbb69
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="enable-network-security-groups-in-azure-security-center"></a>Abilitare i gruppi di sicurezza di rete nel Centro sicurezza di Azure
-Se non è già disponibile, il Centro sicurezza di Azure consiglia l'abilitazione di un gruppo di sicurezza di rete. I gruppi di sicurezza di rete contengono un elenco di regole dell'elenco di controllo di accesso (ACL) che consentono o rifiutano il traffico di rete alle istanze VM in una rete virtuale. I gruppi di sicurezza di rete possono essere associati a subnet o singole istanze VM in una subnet. Quando un gruppo di sicurezza di rete viene associato a una subnet, le regole ACL si applicano a tutte le istanze di VM in tale subnet. Il traffico verso una singola VM può essere inoltre ulteriormente limitato associando un gruppo di sicurezza di rete direttamente a tale VM. Per altre informazioni, vedere [Che cos'è un gruppo di sicurezza di rete](../virtual-network/virtual-networks-nsg.md)
+Se non è già disponibile, il Centro sicurezza di Azure consiglia l'abilitazione di un gruppo di sicurezza di rete. NSGs contiene un elenco di regole di elenco di controllo di accesso (ACL) che consentono o negano il traffico di rete tooyour istanze di macchina virtuale in una rete virtuale. I gruppi di sicurezza di rete possono essere associati a subnet o singole istanze VM in una subnet. Quando un gruppo è associata a una subnet, regole ACL hello si applicano le istanze VM hello tooall nella subnet. Inoltre, il traffico tooan singole macchine Virtuali è possibile limitare ulteriormente l'associazione di un gruppo direttamente toothat macchina virtuale. vedere più toolearn [che cos'è un gruppo di sicurezza di rete (gruppo)?](../virtual-network/virtual-networks-nsg.md)
 
-Se i gruppi di sicurezza di rete non sono stati abilitati, il Centro sicurezza presenta all'utente due indicazioni, ovvero Abilita i gruppi di sicurezza di rete nelle subnet e Abilita i gruppi di sicurezza di rete sulle macchine virtuali. È possibile scegliere il livello a cui applicare i gruppi di sicurezza di rete, ovvero subnet o VM.
+Se non si dispone di NSGs abilitata, il Centro sicurezza PC presenta due indicazioni tooyou: abilitare dei gruppi di sicurezza di rete su subnet e attivare dei gruppi di sicurezza di rete nelle macchine virtuali. Si sceglie il livello, subnet o macchina virtuale, tooapply NSGs.
 
 > [!NOTE]
-> Il documento introduce il servizio usando una distribuzione di esempio.  Questa non è una guida dettagliata.
+> Questo documento introduce servizio hello utilizzando un esempio di distribuzione.  Questa non è una guida dettagliata.
 >
 >
 
-## <a name="implement-the-recommendation"></a>Implementare la raccomandazione
-1. Nel pannello **Raccomandazioni** selezionare **Abilita i gruppi di sicurezza di rete** nelle subnet o sulle macchine virtuali.
+## <a name="implement-hello-recommendation"></a>Implementare la raccomandazione hello
+1. In hello **indicazioni** pannello seleziona **abilitare gruppi di sicurezza di rete** in subnet o su macchine virtuali.
    ![Abilitare i gruppi di sicurezza di rete][1]
-2. Verrà visualizzato il pannello **Configura i gruppi di sicurezza di rete mancanti** per le subnet o le macchine virtuali, in base alla raccomandazione selezionata. Selezionare una subnet o una macchina virtuale su cui configurare un gruppo di sicurezza di rete.
+2. Verrà aperto il pannello hello **configurare gruppi di sicurezza rete mancante** per le subnet o per le macchine virtuali, a seconda della raccomandazione hello selezionato. Selezionare una subnet o tooconfigure una macchina virtuale un gruppo in.
 
    ![Configurare i gruppi di sicurezza di rete per la subnet][2]
 
    ![Configurare i gruppi di sicurezza di rete per le macchine virtuali][3]
-3. Nel pannello **Scegli un gruppo di sicurezza di rete** selezionare un gruppo di sicurezza di rete esistente o selezionare **Crea nuovo** per crearne uno nuovo.
+3. In hello **scegliere gruppo di sicurezza di rete** pannello selezionare un gruppo esistente oppure **Crea nuovo** toocreate un gruppo.
 
    ![Scegli un gruppo di sicurezza di rete][4]
 
-Se si crea un gruppo di sicurezza di rete, seguire la procedura illustrata in [Come gestire gruppi di sicurezza di rete tramite il portale di Azure](../virtual-network/virtual-networks-create-nsg-arm-pportal.md) per creare un gruppo di sicurezza di rete e configurare le regole di sicurezza.
+Se si crea un gruppo, seguire i passaggi di hello in [come NSGs toomanage utilizzando hello Azure portal](../virtual-network/virtual-networks-create-nsg-arm-pportal.md) toocreate un gruppo e impostare le regole di sicurezza.
 
 ## <a name="see-also"></a>Vedere anche
-Questo articolo ha illustrato come implementare la raccomandazione "Abilita i gruppi di sicurezza di rete" per subnet o macchine virtuali nel Centro sicurezza. Per altre informazioni sull'abilitazione dei gruppi di sicurezza di rete, vedere gli articoli seguenti:
+In questo articolo ha illustrato come tooimplement hello Centro sicurezza PC indicazione "abilitare gruppi di sicurezza rete" per le macchine virtuali o subnet. toolearn ulteriori informazioni su attivazione NSGs, vedere l'esempio hello:
 
 * [Che cos'è un gruppo di sicurezza di rete](../virtual-network/virtual-networks-nsg.md)
-* [Come gestire gruppi di sicurezza di rete tramite il portale di Azure](../virtual-network/virtual-networks-create-nsg-arm-pportal.md)
+* [Come NSGs toomanage utilizzando hello portale di Azure](../virtual-network/virtual-networks-create-nsg-arm-pportal.md)
 
-Per altre informazioni sul Centro sicurezza, vedere gli argomenti seguenti:
+toolearn ulteriori informazioni su Centro di sicurezza, vedere l'esempio hello:
 
-* [Impostazione dei criteri di sicurezza nel Centro sicurezza di Azure](security-center-policies.md) : informazioni su come configurare i criteri di sicurezza per le sottoscrizioni e i gruppi di risorse di Azure.
+* [L'impostazione di criteri di sicurezza nel Centro protezione Azure](security-center-policies.md) -informazioni su come tooconfigure i criteri di sicurezza per le sottoscrizioni di Azure e i gruppi di risorse.
 * [Gestione delle raccomandazioni di sicurezza nel Centro sicurezza di Azure](security-center-recommendations.md) : informazioni sul modo in cui le raccomandazioni semplificano la protezione delle risorse di Azure.
-* [Monitoraggio dell'integrità della sicurezza nel Centro sicurezza di Azure](security-center-monitoring.md) : informazioni su come monitorare l'integrità delle risorse di Azure.
-* [Gestione e risposta agli avvisi di sicurezza nel Centro sicurezza di Azure](security-center-managing-and-responding-alerts.md) : informazioni su come gestire e rispondere agli avvisi di sicurezza.
-* [Monitoraggio delle soluzioni dei partner con il Centro sicurezza di Azure](security-center-partner-solutions.md) : informazioni su come monitorare lo stato integrità delle soluzioni dei partner.
-* [Domande frequenti sul Centro sicurezza di Azure](security-center-faq.md) : domande frequenti sull'uso del servizio.
-* [Blog sulla sicurezza di Azure](http://blogs.msdn.com/b/azuresecurity/) : informazioni e notizie aggiornate sulla sicurezza di Azure.
+* [Il monitoraggio dello stato di sicurezza nel Centro protezione Azure](security-center-monitoring.md) -informazioni su come toomonitor hello integrità delle risorse di Azure.
+* [La gestione e risponde toosecurity gli avvisi in Centro sicurezza di Azure](security-center-managing-and-responding-alerts.md) -informazioni su come avvisi toosecurity toomanage e rispondere.
+* [Monitoraggio di soluzioni dei partner con Centro sicurezza di Azure](security-center-partner-solutions.md) -informazioni su come toomonitor hello lo stato di integrità delle soluzioni di partner.
+* [Domande frequenti su Centro sicurezza di Azure](security-center-faq.md) -domande frequenti sull'utilizzo di hello servizio di ricerca.
+* [Blog sulla sicurezza di Azure](http://blogs.msdn.com/b/azuresecurity/) -ottenere informazioni e notizie sicurezza di Azure hello.
 
 <!--Image references-->
 [1]: ./media/security-center-enable-nsg/enable-nsg.png

@@ -1,5 +1,5 @@
 ---
-title: Code dei messaggi non recapitabili del bus di servizio | Documentazione Microsoft
+title: le code di messaggi non recapitabili Bus aaaService | Documenti Microsoft
 description: Panoramica delle code dei messaggi non recapitabili del bus di servizio Azure
 services: service-bus-messaging
 documentationcenter: .net
@@ -14,71 +14,71 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/17/2017
 ms.author: clemensv;sethm
-ms.openlocfilehash: c16bcf30ab96f79e59404a41852e4cd227e28b08
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1638272085b8a3a59e8814f6f943caee35a2bfdc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="overview-of-service-bus-dead-letter-queues"></a>Panoramica delle code dei messaggi non recapitabili del bus di servizio
 
-Le code del bus di servizio e le sottoscrizioni dell'argomento includono una coda secondaria chiamata *coda di messaggi non recapitabili* (DLQ, Dead-Letter Queue). Non è necessario creare in modo esplicito la coda dei messaggi non recapitabili, che, tra l'altro, non può essere eliminata né altrimenti gestita indipendentemente dall'entità principale.
+Le code del bus di servizio e le sottoscrizioni dell'argomento includono una coda secondaria chiamata *coda di messaggi non recapitabili* (DLQ, Dead-Letter Queue). coda di messaggi non recapitabili Hello non è necessario toobe creati in modo esplicito e non può essere eliminato o in caso contrario gestito indipendentemente dall'entità principale hello.
 
-Questo articolo descrive le code dei messaggi non recapitabili nel bus di servizio di Azure. L'[esempio relativo alle code di messaggi non recapitabili](https://github.com/Azure/azure-service-bus/tree/master/samples/DotNet/Microsoft.ServiceBus.Messaging/DeadletterQueue) su GitHub descrive in dettaglio questo aspetto.
+Questo articolo descrive le code dei messaggi non recapitabili nel bus di servizio di Azure. Gran parte della discussione hello è illustrata hello [esempio recapitabili](https://github.com/Azure/azure-service-bus/tree/master/samples/DotNet/Microsoft.ServiceBus.Messaging/DeadletterQueue) su GitHub.
  
-## <a name="the-dead-letter-queue"></a>Coda di messaggi non recapitabili
+## <a name="hello-dead-letter-queue"></a>coda di messaggi non recapitabili Hello
 
-Lo scopo della coda dei messaggi non recapitabili è conservare i messaggi che non possono essere recapitati ai ricevitori o che non possono essere elaborati. I messaggi possono essere rimossi dalla coda e verificati. Con l'aiuto di un operatore, un'applicazione potrebbe correggere i problemi e inviare nuovamente il messaggio, registrare la notizia che si è verificato un errore e intraprendere azioni correttive. 
+scopo di Hello della coda di messaggi non recapitabili hello è toohold messaggi che non possono essere recapitati tooany ricevitore o i messaggi che non è stato possibile elaborare. I messaggi possono essere rimosse da DLQ hello e controllati. Un'applicazione potrebbe, con l'aiuto di un operatore, correggere i problemi e inviare nuovamente il messaggio hello, registrare hello fatto che si è verificato un errore e intraprendere l'azione correttiva. 
 
-Dal punto di vista di API e protocolli, la coda DLQ è molto simile a qualsiasi altra coda, ad eccezione del fatto che i messaggi possono essere inviati ad essa solo tramite il movimento messaggi non recapitabili dell'entità padre. Inoltre, il parametro time-to-live non viene rispettato e non è possibile impostare come non recapitabile un messaggio di una coda DLQ. La coda dei messaggi non recapitabili supporta completamente il recapito con blocco di visualizzazione e le operazioni transazionali.
+Da una prospettiva di API e il protocollo, hello DLQ è principalmente simile tooany altra coda, ad eccezione del fatto che i messaggi possono essere inviati solo mediante i movimenti di messaggi non recapitabili hello dell'entità padre hello. Inoltre, il parametro time-to-live non viene rispettato e non è possibile impostare come non recapitabile un messaggio di una coda DLQ. coda di messaggi non recapitabili Hello supporta operazioni transazionali e il recapito di blocco di visualizzazione.
 
-Si noti che non è prevista alcuna pulizia automatica della coda. I messaggi rimangono nella coda fino a quando non vengono esplicitamente recuperati e non si chiama il metodo [Complete()](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_CompleteAsync) sul messaggio non recapitabile.
+Si noti che non vi sia alcuna pulizia automatica di hello DLQ. I messaggi rimangono nella hello DLQ fino a quando non è in modo esplicito recuperarli da DLQ hello e chiamare [complete ()](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_CompleteAsync) nel messaggio non recapitabile hello.
 
-## <a name="moving-messages-to-the-dlq"></a>Spostare messaggi nella coda DLQ
+## <a name="moving-messages-toohello-dlq"></a>Lo spostamento di messaggi toohello DLQ
 
-Nel bus di servizio sono presenti diverse attività che comportano l'inserimento di messaggi nella coda DLQ dall'interno del motore di messaggistica stesso. Un'applicazione può anche spostare in modo esplicito i messaggi nella coda dei messaggi non recapitabili. 
+Esistono diverse attività di Service Bus che causano tooget messaggi inserito toohello DLQ all'interno di hello motore di messaggistica. Un'applicazione in modo esplicito anche possibile spostare messaggi toohello DLQ. 
 
-Quando un messaggio viene spostato dal broker, vengono aggiunte al messaggio due proprietà, `DeadLetterReason` e `DeadLetterErrorDescription`, nel momento in cui il broker chiama la sua versione interna del metodo [DeadLetter](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_DeadLetter_System_String_System_String_) sul messaggio.
+Come messaggio hello viene spostato dal broker hello, due proprietà vengono aggiunti toohello messaggio come broker hello chiama la versione di hello interna [dei messaggi non recapitabili](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_DeadLetter_System_String_System_String_) metodo sul messaggio hello: `DeadLetterReason` e `DeadLetterErrorDescription`.
 
-Le applicazioni possono definire i propri codici per la proprietà `DeadLetterReason`, ma il sistema imposta i valori seguenti.
+Le applicazioni possono definire i propri codici per hello `DeadLetterReason` proprietà, ma hello sistema set hello seguenti valori.
 
 | Condizione | DeadLetterReason | DeadLetterErrorDescription |
 | --- | --- | --- |
-| Sempre |HeaderSizeExceeded |È stata superata la dimensione del flusso. |
+| Sempre |HeaderSizeExceeded |Hello dimensioni per il flusso è stato superato. |
 | !TopicDescription.<br />EnableFilteringMessagesBeforePublishing e SubscriptionDescription.<br />EnableDeadLetteringOnFilterEvaluationExceptions |exception.GetType().Name |exception.Message |
-| EnableDeadLetteringOnMessageExpiration |TTLExpiredException |Il messaggio è scaduto ed è stato configurato come non recapitabile. |
+| EnableDeadLetteringOnMessageExpiration |TTLExpiredException |messaggio Hello scaduta e è stato recapitabile. |
 | SubscriptionDescription.RequiresSession |L'ID sessione ha valore null. |L'entità attivata dalla sessione non consente il recapito di un messaggio il cui identificatore di sessione è null. |
 | !dead letter queue |MaxTransferHopCountExceeded |Null |
 | Configurazione esplicita di messaggio non recapitabile da parte dell'applicazione  |Specificato dall'applicazione |Specificato dall'applicazione |
 
 ## <a name="exceeding-maxdeliverycount"></a>Superamento di MaxDeliveryCount
-Le code e le sottoscrizioni hanno ognuna una proprietà [QueueDescription.MaxDeliveryCount](/dotnet/api/microsoft.servicebus.messaging.queuedescription#Microsoft_ServiceBus_Messaging_QueueDescription_MaxDeliveryCount) e [SubscriptionDescription.MaxDeliveryCount](/dotnet/api/microsoft.servicebus.messaging.subscriptiondescription#Microsoft_ServiceBus_Messaging_SubscriptionDescription_MaxDeliveryCount). Il valore predefinito è 10. Ogni volta che un messaggio viene recapitato in un blocco ([ReceiveMode.PeekLock](/dotnet/api/microsoft.servicebus.messaging.receivemode)) ma viene abbandonato in modo esplicito oppure il blocco è scaduto, il valore [BrokeredMessage.DeliveryCount](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_DeliveryCount) del messaggio viene incrementato. Quando il valore [DeliveryCount](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_DeliveryCount) supera [MaxDeliveryCount](/dotnet/api/microsoft.servicebus.messaging.queuedescription#Microsoft_ServiceBus_Messaging_QueueDescription_MaxDeliveryCount), il messaggio viene spostato nella coda DLQ con il codice motivo `MaxDeliveryCountExceeded`.
+Code e sottoscrizioni hanno una [QueueDescription.MaxDeliveryCount](/dotnet/api/microsoft.servicebus.messaging.queuedescription#Microsoft_ServiceBus_Messaging_QueueDescription_MaxDeliveryCount) e [SubscriptionDescription.MaxDeliveryCount](/dotnet/api/microsoft.servicebus.messaging.subscriptiondescription#Microsoft_ServiceBus_Messaging_SubscriptionDescription_MaxDeliveryCount) proprietà hello; rispettivamente il valore predefinito è 10. Ogni volta che un messaggio è stato recapitato in un blocco ([Receivemode](/dotnet/api/microsoft.servicebus.messaging.receivemode)), ma è stato uno in modo esplicito il blocco di hello scaduto, del messaggio hello o abbandonata [BrokeredMessage.DeliveryCount](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_DeliveryCount) è incrementato. Quando [DeliveryCount](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_DeliveryCount) supera [MaxDeliveryCount](/dotnet/api/microsoft.servicebus.messaging.queuedescription#Microsoft_ServiceBus_Messaging_QueueDescription_MaxDeliveryCount), il messaggio hello viene spostata toohello DLQ, specificando hello `MaxDeliveryCountExceeded` codice motivo.
 
-Non è possibile disattivare questo comportamento, ma è possibile impostare [MaxDeliveryCount](/dotnet/api/microsoft.servicebus.messaging.queuedescription#Microsoft_ServiceBus_Messaging_QueueDescription_MaxDeliveryCount) su un numero molto elevato.
+Non è possibile disabilitare questo comportamento, ma è possibile impostare [MaxDeliveryCount](/dotnet/api/microsoft.servicebus.messaging.queuedescription#Microsoft_ServiceBus_Messaging_QueueDescription_MaxDeliveryCount) tooa numero di dimensioni molto grandi.
 
 ## <a name="exceeding-timetolive"></a>Superamento di TimeToLive
-Quando la proprietà [QueueDescription.EnableDeadLetteringOnMessageExpiration](/dotnet/api/microsoft.servicebus.messaging.queuedescription#Microsoft_ServiceBus_Messaging_QueueDescription_EnableDeadLetteringOnMessageExpiration) o [SubscriptionDescription.EnableDeadLetteringOnMessageExpiration](/dotnet/api/microsoft.servicebus.messaging.subscriptiondescription#Microsoft_ServiceBus_Messaging_SubscriptionDescription_EnableDeadLetteringOnMessageExpiration) viene impostata su **true** (il valore predefinito è **false**), tutti i messaggi in scadenza vengono spostati nella coda DLQ con il codice motivo `TTLExpiredException`.
+Quando hello [QueueDescription.EnableDeadLetteringOnMessageExpiration](/dotnet/api/microsoft.servicebus.messaging.queuedescription#Microsoft_ServiceBus_Messaging_QueueDescription_EnableDeadLetteringOnMessageExpiration) o [SubscriptionDescription.EnableDeadLetteringOnMessageExpiration](/dotnet/api/microsoft.servicebus.messaging.subscriptiondescription#Microsoft_ServiceBus_Messaging_SubscriptionDescription_EnableDeadLetteringOnMessageExpiration) impostata troppo**true** (valore predefinito di hello è **false**), tutti i messaggi scaduti vengono spostato toohello DLQ, specificando hello `TTLExpiredException` codice motivo.
 
-Si noti che i messaggi scaduti vengono ripuliti e quindi spostati nella coda di messaggi non recapitabili solo quando esiste almeno un ricevitore attivo che effettua il pull della sottoscrizione o della coda principale. Tale comportamento è predefinito.
+Si noti che i messaggi scaduti vengono eliminati solo e pertanto spostato toohello DLQ quando è presente almeno un destinatario active pull nella coda principale hello o nella sottoscrizione; Questo comportamento è da progettazione.
 
 ## <a name="errors-while-processing-subscription-rules"></a>Errori durante l'elaborazione di regole di sottoscrizione
-Quando la proprietà [SubscriptionDescription.EnableDeadLetteringOnFilterEvaluationExceptions](/dotnet/api/microsoft.servicebus.messaging.subscriptiondescription#Microsoft_ServiceBus_Messaging_SubscriptionDescription_EnableDeadLetteringOnFilterEvaluationExceptions) di una sottoscrizione è abilitata, qualsiasi errore si verifichi durante l'esecuzione di una regola di filtro SQL di una sottoscrizione viene acquisito nella coda DLQ con il messaggio che indica l'errore.
+Quando hello [SubscriptionDescription.EnableDeadLetteringOnFilterEvaluationExceptions](/dotnet/api/microsoft.servicebus.messaging.subscriptiondescription#Microsoft_ServiceBus_Messaging_SubscriptionDescription_EnableDeadLetteringOnFilterEvaluationExceptions) proprietà è abilitata per una sottoscrizione, eventuali errori che si verificano durante l'esecuzione di regola di filtro di una sottoscrizione SQL vengono acquisite in hello DLQ insieme a hello danneggiata di messaggio.
 
 ## <a name="application-level-dead-lettering"></a>Definizione di messaggi non recapitabili a livello di applicazione
-Oltre alle funzionalità di definizione dei messaggi non recapitabili del sistema, le applicazioni possono usare la coda DLQ per rifiutare esplicitamente i messaggi inaccettabili. Ciò può riguardare i messaggi che non possono essere elaborati correttamente a causa diversi problemi del sistema, i messaggi contenenti payload in formato non valido o che non superino il processo di autenticazione quando viene utilizzato un schema di sicurezza a livello di messaggio.
+In toohello fornita dal sistema mancato recapito dei messaggi non recapitabili funzionalità aggiuntive, le applicazioni possono utilizzare messaggi inaccettabili hello DLQ tooexplicitly rifiuto. Ciò può includere i messaggi che non possono essere elaborati correttamente a causa di ordinamento tooany di errore di sistema, i messaggi contenenti payload in formato non valido o che l'autenticazione non riesce quando viene utilizzato un schema di sicurezza a livello di messaggio.
 
 ## <a name="dead-lettering-in-forwardto-or-sendvia-scenarios"></a>Messaggi non recapitabili negli scenari ForwardTo o SendVia
 
-I messaggi verranno inviati nella coda dei messaggi non recapitabili di trasferimento nelle condizioni seguenti:
+I messaggi verranno inviati toohello trasferimento non recapitabili in hello seguenti condizioni:
 
 - Un messaggio passa attraverso più di 3 code o argomenti che sono [concatenati](service-bus-auto-forwarding.md).
-- L'argomento o la coda di destinazione è disattivato o eliminato.
-- L'argomento o la coda di destinazione supera le dimensioni massime dell'entità.
+- argomento o coda di destinazione di Hello è disabilitato o eliminato.
+- coda di destinazione Hello o un argomento supera le dimensioni massime entità hello.
 
-Per recuperare questi messaggi non recapitabili, è possibile creare un destinatario usando il metodo di utilità [FormatTransferDeadletterPath](/dotnet/api/microsoft.servicebus.messaging.queueclient#Microsoft_ServiceBus_Messaging_QueueClient_FormatTransferDeadLetterPath_System_String_).
+tooretrieve questi messaggi recapitabile dei messaggi non recapitabili, è possibile creare un ricevitore di hello [FormatTransferDeadletterPath](/dotnet/api/microsoft.servicebus.messaging.queueclient#Microsoft_ServiceBus_Messaging_QueueClient_FormatTransferDeadLetterPath_System_String_) metodo di utilità.
 
 ## <a name="example"></a>Esempio
-Il frammento di codice seguente crea un ricevitore del messaggio. Nel ciclo di ricezione della coda principale, il codice recupera il messaggio con [Receive(TimeSpan.Zero)](/dotnet/api/microsoft.servicebus.messaging.messagereceiver#Microsoft_ServiceBus_Messaging_MessageReceiver_Receive_System_TimeSpan_), che richiede al broker di restituire immediatamente i messaggi disponibili o di restituire nessun risultato. Se riceve un messaggio, il codice lo abbandona immediatamente, incrementando `DeliveryCount`. Dopo che il sistema ha spostato il messaggio alla coda DLQ, la coda principale rimane vuota e il ciclo viene interrotto, perché [ReceiveAsync](/dotnet/api/microsoft.servicebus.messaging.messagereceiver#Microsoft_ServiceBus_Messaging_MessageReceiver_ReceiveAsync_System_TimeSpan_) restituisce **null**.
+Hello frammento di codice seguente crea un ricevitore del messaggio. In hello ricezione ciclo per la coda principale hello, codice hello recupera il messaggio hello con [Receive(TimeSpan.Zero)](/dotnet/api/microsoft.servicebus.messaging.messagereceiver#Microsoft_ServiceBus_Messaging_MessageReceiver_Receive_System_TimeSpan_), che richiede hello broker tooinstantly restituito qualsiasi messaggio disponibile o tooreturn con nessun risultato. Se il codice hello riceve un messaggio, immediatamente Ignora, che viene incrementato hello `DeliveryCount`. Una volta sistema hello Sposta toohello messaggio hello DLQ, coda principale hello è vuota e hello viene chiusa ciclo, come [ReceiveAsync](/dotnet/api/microsoft.servicebus.messaging.messagereceiver#Microsoft_ServiceBus_Messaging_MessageReceiver_ReceiveAsync_System_TimeSpan_) restituisce **null**.
 
 ```csharp
 var receiver = await receiverFactory.CreateMessageReceiverAsync(queueName, ReceiveMode.PeekLock);
@@ -98,7 +98,7 @@ while(true)
 ```
 
 ## <a name="next-steps"></a>Passaggi successivi
-Per altre informazioni sulle code del bus di servizio, vedere gli articoli seguenti:
+Vedere i seguenti articoli per ulteriori informazioni sulle code Service Bus hello:
 
 * [Introduzione alle code del bus di servizio](service-bus-dotnet-get-started-with-queues.md)
 * [Analogie e differenze tra le code di Azure e le code del bus di servizio](service-bus-azure-and-service-bus-queues-compared-contrasted.md)

@@ -1,5 +1,5 @@
 ---
-title: "Transazioni e modalità di blocco delle raccolte Reliable Collections in Azure Service Fabric | Microsoft Docs"
+title: "Modalità di blocco e in Azure Service Fabric affidabile raccolte aaaTransactions | Documenti Microsoft"
 description: Transazioni e blocco delle raccolte Reliable Collections e di Reliable State Manager in Azure Service Fabric.
 services: service-fabric
 documentationcenter: .net
@@ -14,36 +14,36 @@ ms.tgt_pltfrm: na
 ms.workload: required
 ms.date: 5/1/2017
 ms.author: mcoskun
-ms.openlocfilehash: 3452473f5b2f86d29e46339c997193bc6403736a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 340e029aa98f43ad6e46b48f687dad01f9d96f69
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="transactions-and-lock-modes-in-azure-service-fabric-reliable-collections"></a>Transazioni e modalità di blocco delle raccolte Reliable Collections in Azure Service Fabric
 
 ## <a name="transaction"></a>Transazione
 Una transazione è una sequenza di operazioni eseguite in un'unica unità logica di lavoro
-e deve includere le proprietà seguenti, dette ACID (atomicità, coerenza, isolamento e durabilità) (vedere https://technet.microsoft.com/it-it/library/ms190612):
+Una transazione deve presentare hello seguenti proprietà ACID. (vedere https://technet.microsoft.com/it-it/library/ms190612):
 * **Atomicità**: una transazione deve essere un'unità di lavoro atomica. In altre parole, devono essere eseguite tutte le modifiche dei dati oppure non ne deve essere eseguita nessuna.
-* **Coerenza**: al termine della transazione, tutti i dati devono essere coerenti e tutte le strutture di dati interne devono risultare corrette.
-* **Isolamento**: le modifiche eseguite da transazioni simultanee devono essere isolate da quelle eseguite da qualsiasi altra transazione simultanea. Il livello di isolamento usato per un'operazione all'interno di un oggetto ITransaction è determinato dall'interfaccia IReliableState che esegue l'operazione.
-* **Durabilità**: gli effetti di una transazione completata sono permanenti all'interno del sistema. Le modifiche eseguite rimangono valide anche in caso di errore del sistema.
+* **Coerenza**: al termine della transazione, tutti i dati devono essere coerenti Tutte le strutture dati interne devono essere corrette al termine di hello della transazione hello.
+* **Isolamento**: le modifiche eseguite da transazioni simultanee devono essere isolate dalle modifiche apportate da altre transazioni simultanee hello. livello di isolamento Hello utilizzato per un'operazione all'interno di un ITransaction è determinato dal hello IReliableState l'operazione di hello.
+* **Durabilità**: al termine di una transazione, gli effetti sono permanenti nel sistema hello. modifiche di Hello permangono anche nell'evento hello di un errore di sistema.
 
 ### <a name="isolation-levels"></a>Livelli di isolamento
-Il livello di isolamento definisce il grado in cui la transazione deve essere isolata dalle modifiche apportate da altre transazioni.
+Livello di isolamento definisce il grado di hello transazione hello toowhich deve essere isolate dalle modifiche apportate da altre transazioni.
 Le raccolte Reliable Collections supportano due livelli di isolamento:
 
-* **Repeatable Read**: specifica che le istruzioni non possono leggere dati modificati da altre transazioni di cui non è ancora stato eseguito il commit e che nessun'altra transazione può modificare i dati letti dalla transazione corrente, finché quest'ultima non viene completata. Per altre informazioni, vedere [https://msdn.microsoft.com/library/ms173763.aspx](https://msdn.microsoft.com/library/ms173763.aspx).
-* **Snapshot**: specifica che i dati letti da qualsiasi istruzione in una transazione rappresentano la versione coerente dal punto di vista transazionale dei dati esistenti al momento dell'avvio della transazione.
-  La transazione può quindi riconoscere solo le modifiche dei dati di cui è stato eseguito il commit prima dell'avvio della transazione.
-  Le modifiche apportate da altre transazioni dopo l'inizio della transazione corrente non sono visibili per le istruzioni eseguite nella transazione corrente.
-  È come se le istruzioni di una transazione ottenessero uno snapshot dei dati di cui è stato eseguito il commit così come si presentavano al momento dell'avvio della transazione.
+* **Lettura ripetibile**: Specifica che le istruzioni non possono leggere i dati che sono stati modificati ma non ancora eseguito il commit da altre transazioni e che nessun'altra transazione possono modificare i dati letti dalla transazione corrente di hello finché hello corrente al termine della transazione. Per altre informazioni, vedere [https://msdn.microsoft.com/library/ms173763.aspx](https://msdn.microsoft.com/library/ms173763.aspx).
+* **Snapshot**: Specifica che i dati letti da qualsiasi istruzione in una transazione sono versione consistente dal punto di hello di hello i dati esistenti all'inizio di hello della transazione hello.
+  transazione Hello in grado di riconoscere solo le modifiche dei dati che è sono eseguito il commit prima di inizio della transazione hello hello.
+  Modifiche apportate da altre transazioni dopo hello avvio della transazione corrente di hello non sono visibili toostatements esecuzione nella transazione corrente hello.
+  effetto Hello è come se istruzioni hello in una transazione ottenessero uno snapshot dei dati hello eseguito il commit si trovavano all'inizio di hello di transazione hello.
   Gli snapshot tra le Reliable Collections sono coerenti.
   Per altre informazioni, vedere [https://msdn.microsoft.com/library/ms173763.aspx](https://msdn.microsoft.com/library/ms173763.aspx).
 
-Le raccolte Reliable Collections scelgono automaticamente il livello di isolamento da usare per una determinata operazione di lettura a seconda dell'operazione stessa e del ruolo della replica al momento della creazione della transazione.
-La tabella seguente descrive i valori predefiniti del livello di isolamento per le operazioni Reliable Dictionary e Reliable Queue.
+Raccolte affidabile scegliere automaticamente hello toouse livello di isolamento per una determinata operazione di lettura a seconda operazione hello e ruolo hello della replica di hello in fase di hello della creazione della transazione.
+Di seguito è tabella hello che raffigura impostazioni predefinite a livello di isolamento per le operazioni di dizionario affidabile e di Accodamento.
 
 | Operazione\Ruolo | Primario | Secondario |
 | --- |:--- |:--- |
@@ -54,25 +54,25 @@ La tabella seguente descrive i valori predefiniti del livello di isolamento per 
 > Alcuni esempi comuni per le operazioni sulla singola entità sono `IReliableDictionary.TryGetValueAsync` e `IReliableQueue.TryPeekAsync`.
 > 
 
-Gli oggetti ReliableDictionary e ReliableQueue supportano entrambi il criterio "Read Your Writes".
-In altri termini, qualsiasi operazione di scrittura all'interno di una transazione sarà visibile a una lettura successiva appartenente alla stessa transazione.
+Hello dizionario affidabile e hello coda affidabile supportano entrambi scrive di lettura.
+In altre parole, qualsiasi scrittura all'interno di una transazione saranno visibili tooa seguente letti appartenente toohello stessa transazione.
 
 ## <a name="locks"></a>Blocchi
-Nelle raccolte Reliable Collections tutte le transazioni implementano un rigoroso blocco in due fasi: una transazione non rilascia i blocchi acquisiti fino a quando non termina con un'interruzione o un commit.
+In raccolte affidabile, implementano tutti di transazioni rigorosi a due fasi di blocco: una transazione non rilascia i blocchi di hello ha acquisito finché non termina la transazione hello con un'interruzione o un'operazione di commit.
 
 L'operazione Reliable Dictionary usa il blocco a livello di riga per tutte le operazioni sulla singola entità.
 L'operazione Reliable Queue bilancia la concorrenza in cambio di una proprietà FIFO transazionale rigorosa.
 Reliable Queue usa i blocchi a livello di operazione che consentono una transazione con `TryPeekAsync` e/o `TryDequeueAsync` e una transazione con `EnqueueAsync` per volta.
-Si noti che per mantenere il modello FIFO, se `TryPeekAsync` o `TryDequeueAsync` rileva che la coda affidabile è vuota, bloccherà anche `EnqueueAsync`.
+Si noti che toopreserve FIFO, se un `TryPeekAsync` o `TryDequeueAsync` mai osserva che hello affidabile coda è vuota, anche bloccherà `EnqueueAsync`.
 
 Le operazioni di scrittura acquisiscono sempre blocchi esclusivi.
-Per le operazioni di lettura, il blocco dipende da due fattori.
+Per le operazioni di lettura, hello blocco dipende da due fattori.
 Le operazioni di lettura eseguite con Shapshot Isolation sono prive di blocchi.
 Per impostazione predefinita, ogni operazione di lettura ripetibile acquisisce blocchi condivisi.
-Tuttavia, per ogni operazione di lettura che supporta Repeatable Read, l'utente può chiedere un blocco di aggiornamento al posto del blocco condiviso.
-Il blocco di aggiornamento è asimmetrico e viene usato per impedire una forma comune di deadlock che si verifica quando più transazioni bloccano le risorse per un potenziale aggiornamento in un secondo momento.
+Tuttavia, per qualsiasi operazione di lettura che supporta la lettura ripetibile, utente hello può richiedere un blocco di aggiornamento anziché hello blocco condiviso.
+Un blocco di aggiornamento è che un blocco asimmetrico utilizzato tooprevent una forma comune di deadlock che si verifica quando più transazioni bloccate risorse quali aggiornamenti in un secondo momento.
 
-La matrice di compatibilità dei blocchi è disponibile nella tabella seguente:
+Matrice di compatibilità dei blocchi Hello è reperibile in hello nella tabella seguente:
 
 | Richiesto\Concesso | Nessuno | Condiviso | Aggiornamento | Esclusivo |
 | --- |:--- |:--- |:--- |:--- |
@@ -80,10 +80,10 @@ La matrice di compatibilità dei blocchi è disponibile nella tabella seguente:
 | Aggiornamento |Nessun conflitto |Nessun conflitto |Conflitto |Conflitto |
 | Esclusivo |Nessun conflitto |Conflitto |Conflitto |Conflitto |
 
-Per il rilevamento dei deadlock viene usato un argomento timeout delle API Reliable Collections.
-Si supponga, ad esempio, che due transazioni (T1 e T2) stiano cercando di leggere e aggiornare K1.
-È possibile che si verifichi un deadlock, poiché entrambe le transazioni si concludono con il blocco condiviso.
-In questo caso, potrebbe verificarsi il timeout di una o di entrambe le operazioni.
+Argomento timeout hello affidabile API raccolte viene utilizzata per il rilevamento dei deadlock.
+Ad esempio, due transazioni (T1 e T2) siano tentando di tooread e aggiornare K1.
+È possibile che li toodeadlock, perché entrambi finire con hello condiviso blocco.
+In questo caso, una o entrambe le operazioni di hello scadrà.
 
 Questo scenario di deadlock è un perfetto esempio di come il blocco di aggiornamento possa impedire i deadlock.
 

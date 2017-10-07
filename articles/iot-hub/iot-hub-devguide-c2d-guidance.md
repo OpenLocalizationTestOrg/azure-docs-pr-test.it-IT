@@ -1,6 +1,6 @@
 ---
-title: Opzioni da cloud a dispositivo dell'hub IoT di Azure | Documentazione Microsoft
-description: "Guida per gli sviluppatori: indicazioni su quando usare i metodi diretti, le proprietà desiderate del dispositivo gemello o i messaggi da cloud a dispositivo per le comunicazioni da cloud a dispositivo."
+title: Opzioni aaaAzure IoT Hub cloud a dispositivo | Documenti Microsoft
+description: "Guida per sviluppatori - indicazioni su quando toouse diretta di metodi, di un doppio dispositivo proprietà desiderate o cloud a dispositivo messaggi per le comunicazioni cloud a dispositivo."
 services: iot-hub
 documentationcenter: 
 author: fsautomata
@@ -14,35 +14,35 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/25/2017
 ms.author: elioda
-ms.openlocfilehash: e6cd4880c9bfcc670bd116d3dd8e5245d70f85cd
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: bb95445054fa2711e34fc1d928c3665e0246c81c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="cloud-to-device-communications-guidance"></a>Indicazioni sulle comunicazioni da cloud a dispositivo
-L'hub IoT fornisce tre opzioni per le app per dispositivo che consentono di esporre le funzionalità a un'app back-end:
+IoT Hub fornisce tre opzioni per app di back-end tooa dispositivo App tooexpose funzionalità:
 
-* [Metodi diretti][lnk-methods] per le comunicazioni che richiedono la conferma immediata del risultato. I metodi diretti vengono spesso usati per il controllo interattivo dei dispositivi, ad esempio l'accensione di una ventola.
-* [Proprietà desiderate del dispositivo gemello][lnk-twins], per comandi a esecuzione prolungata che consentono di impostare uno stato specifico per il dispositivo, ad esempio per impostare l'intervallo di invio dei dati di telemetria su 30 minuti.
-* [Messaggi da cloud a dispositivo][lnk-c2d], per le notifiche unidirezionali verso l'app per dispositivo.
+* [Metodi di indirizzare] [ lnk-methods] per le comunicazioni che richiedono la conferma immediata dei risultati di hello. I metodi diretti vengono spesso usati per il controllo interattivo dei dispositivi, ad esempio l'accensione di una ventola.
+* [Le proprietà del desiderate doppi] [ lnk-twins] per i comandi con esecuzione prolungata destinati desiderato di dispositivo hello tooput in un determinato stato. Ad esempio set hello telemetria inviare interval too30 minuti.
+* [I messaggi da cloud a dispositivo] [ lnk-c2d] per app per dispositivi toohello notifiche unidirezionale.
 
-Ecco un confronto dettagliato delle diverse opzioni di comunicazione da cloud a dispositivo.
+Ecco un confronto dettagliato di hello varie opzioni di comunicazione cloud a dispositivo.
 
 |  | Metodi diretti | Proprietà desiderate del dispositivo gemello | Messaggi da cloud a dispositivo |
 | ---- | ------- | ---------- | ---- |
-| Scenario | Comandi che richiedono una conferma immediata, ad esempio l'accensione di una ventola. | Comandi a esecuzione prolungata che consentono di impostare uno stato specifico per il dispositivo, ad esempio per impostare l'intervallo di invio dei dati di telemetria su 30 minuti. | Notifiche unidirezionali verso l'app per dispositivo. |
-| Flusso di dati | Bidirezionale. L'app per dispositivo può rispondere immediatamente al metodo. Il back-end della soluzione riceve il risultato insieme alla richiesta. | Unidirezionale. L'app per dispositivo riceve una notifica quando la proprietà viene modificata. | Unidirezionale. L'app per dispositivo riceve il messaggio.
-| Durabilità | I dispositivi disconnessi non vengono contattati. Il back-end della soluzione riceve una notifica che indica che il dispositivo non è connesso. | I valori delle proprietà vengono conservati nel dispositivo gemello. Il dispositivo li leggerà alla riconnessione successiva. I valori delle proprietà possono essere recuperati con il [linguaggio di query dell'hub IoT][lnk-query]. | I messaggi possono essere conservati dall'hub IoT per un massimo di 48 ore. |
+| Scenario | Comandi che richiedono una conferma immediata, ad esempio l'accensione di una ventola. | I comandi con esecuzione prolungata deve dispositivo hello tooput in un determinato stato desiderato. Ad esempio set hello telemetria inviare interval too30 minuti. | App per dispositivi toohello notifiche unidirezionale. |
+| Flusso di dati | Bidirezionale. app per dispositivi Hello può rispondere toohello metodo sin da subito. back-end di Hello soluzione riceve il risultato di hello contestualmente toohello richiesta. | Unidirezionale. app per dispositivi Hello riceve una notifica con la modifica di proprietà hello. | Unidirezionale. app per dispositivi Hello riceve il messaggio hello
+| Durabilità | I dispositivi disconnessi non vengono contattati. back-end di Hello soluzione viene notificato che il dispositivo hello non è connesso. | In un doppio dispositivo hello vengono mantenuti i valori di proprietà. Il dispositivo li leggerà alla riconnessione successiva. I valori delle proprietà vengono recuperati con hello [il linguaggio di query di IoT Hub][lnk-query]. | I messaggi possono essere mantenuti dall'IoT Hub per le ore too48. |
 | Destinazioni | Singolo dispositivo che usa **deviceId** o più dispositivi che usano [processi][lnk-jobs]. | Singolo dispositivo che usa **deviceId** o più dispositivi che usano [processi][lnk-jobs]. | Singolo dispositivo in base a **deviceId**. |
-| Dimensione | Fino a 8 KB di richieste e 8 KB di risposte. | Le dimensioni massime per le proprietà desiderate sono 8 KB. | Messaggi di un massimo di 64 KB. |
+| Dimensione | Backup too8KB richieste e risposte di 8KB. | Le dimensioni massime per le proprietà desiderate sono 8 KB. | I messaggi too64KB. |
 | Frequenza | Elevata. Per altre informazioni, vedere i [limiti dell'hub IoT][lnk-quotas]. | Media. Per altre informazioni, vedere i [limiti dell'hub IoT][lnk-quotas]. | Bassa. Per altre informazioni, vedere i [limiti dell'hub IoT][lnk-quotas]. |
 | Protocol | Attualmente disponibile solo quando si usa MQTT. | Attualmente disponibile solo quando si usa MQTT. | Disponibile in tutti i protocolli. Il dispositivo deve eseguire il polling quando usa HTTP. |
 
-Informazioni su come usare i metodi diretti, le proprietà desiderate e messaggi da cloud a dispositivo nelle esercitazioni seguenti:
+Informazioni su come toouse diretto i metodi, proprietà desiderate e i messaggi da cloud a dispositivo nelle seguenti esercitazioni hello:
 
 * [Usare i metodi diretti ][lnk-methods-tutorial], per i metodi diretti.
-* [Usare le proprietà desiderate per configurare i dispositivi][lnk-twin-properties], per le proprietà desiderate del dispositivo gemello. 
+* [Utilizzare i dispositivi di proprietà desiderato tooconfigure][lnk-twin-properties], per le proprietà; del desiderate da un doppio dispositivo 
 * [Inviare messaggi da cloud a dispositivo][lnk-c2d-tutorial], per messaggi da cloud a dispositivo.
 
 [lnk-twins]: iot-hub-devguide-device-twins.md

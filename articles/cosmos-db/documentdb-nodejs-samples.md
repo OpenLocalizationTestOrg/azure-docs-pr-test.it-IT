@@ -1,5 +1,5 @@
 ---
-title: Esempi di Node.js per Azure Cosmos DB | Microsoft Docs
+title: esempi di aaaNode.js per Azure Cosmos DB | Documenti Microsoft
 description: "Esempi di Node.js in GitHub per attività comuni in Azure Cosmos DB, tra cui operazioni CRUD."
 keywords: Esempi di Node.js
 services: cosmos-db
@@ -15,11 +15,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/23/2017
 ms.author: moderakh
-ms.openlocfilehash: 602615c2434b7ab11ec55f2427c76cf1730b1379
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 55c8ebb9ff425aeeaa49fd0738649d33556a1635
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-cosmos-db-nodejs-examples"></a>Esempi di Node.js per Azure Cosmos DB
 > [!div class="op_single_selector"]
@@ -30,25 +30,25 @@ ms.lasthandoff: 07/11/2017
 > 
 > 
 
-Il repository [azure-documentdb-nodejs](https://github.com/Azure/azure-documentdb-node/tree/master/samples) di GitHub include soluzioni di esempio che eseguono operazioni CRUD e altre operazioni comuni su risorse di Azure Cosmos DB. Questo articolo include:
+Esempi di soluzioni che eseguono operazioni CRUD e altre operazioni sulle risorse di Azure Cosmos DB comuni sono inclusi in hello [azure-documentdb-nodejs](https://github.com/Azure/azure-documentdb-node/tree/master/samples) repository GitHub. Questo articolo include:
 
-* Collegamenti alle attività in ogni file di progetto Node.js di esempio.
-* Collegamenti al contenuto di riferimento sulle API correlato.
+* Attività toohello di collegamenti in ognuno dei file di progetto di esempio Node.js hello.
+* Toohello collegamenti correlati di contenuti di riferimento API.
 
 **Prerequisiti**
 
-1. Per usare questi esempi Node.js, è necessario un account Azure:
-   * È possibile [aprire un account Azure gratuitamente](https://azure.microsoft.com/pricing/free-trial/): si riceveranno dei crediti da usare per provare i servizi di Azure a pagamento e, anche dopo avere esaurito i crediti, è possibile mantenere l'account per usare i servizi di Azure gratuiti, ad esempio Siti Web. La carta di credito non verrà mai addebitata, a meno l'utente non modifichi le impostazioni e che richieda esplicitamente di essere addebitato.
+1. È necessario un toouse account Azure in questi esempi di Node.js:
+   * È possibile [aprire un account Azure, gratuitamente](https://azure.microsoft.com/pricing/free-trial/): si ottiene crediti è possibile utilizzare tootry out a pagamento di servizi di Azure e anche dopo che vengono utilizzati fino è possibile tenere conto di hello e liberare di utilizzare servizi di Azure, ad esempio siti Web. Carta di credito non verranno mai addebitata, a meno che non modificare le impostazioni in modo esplicito e chiedere toobe addebitati.
      * È possibile [attivare i benefici della sottoscrizione Visual Studio](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/): con la sottoscrizione Visual Studio ogni mese si accumulano crediti che è possibile usare per i servizi di Azure a pagamento.
-2. È anche necessario [Node.js SDK](documentdb-sdk-node.md).
+2. È inoltre necessario hello [Node.js SDK](documentdb-sdk-node.md).
    
    > [!NOTE]
-   > Ogni esempio è indipendente e le operazioni di installazione e pulizia sono eseguite automaticamente. Di conseguenza, gli esempi eseguono più chiamate a [DocumentClient.createCollection](http://azure.github.io/azure-documentdb-node/DocumentClient.html#createCollection). A ogni chiamata, viene addebitata alla sottoscrizione 1 ora di utilizzo per ogni livello di prestazioni della raccolta in fase di creazione.
+   > Ogni esempio è indipendente e le operazioni di installazione e pulizia sono eseguite automaticamente. Di conseguenza, gli esempi di hello eseguire più chiamate troppo[DocumentClient.createCollection](http://azure.github.io/azure-documentdb-node/DocumentClient.html#createCollection). Ogni volta che questa operazione viene eseguita la sottoscrizione verrà addebitata per un'ora di utilizzo per ogni livello di prestazioni hello dell'insieme di hello viene creato.
    > 
    > 
 
 ## <a name="database-examples"></a>Esempi di database
-Il file [app.js](https://github.com/Azure/azure-documentdb-node/blob/master/samples/DatabaseManagement/app.js) del progetto [DatabaseManagement](https://github.com/Azure/azure-documentdb-node/tree/master/samples/DatabaseManagement) illustra come eseguire le attività seguenti.
+Hello [app.js](https://github.com/Azure/azure-documentdb-node/blob/master/samples/DatabaseManagement/app.js) file hello [DatabaseManagement](https://github.com/Azure/azure-documentdb-node/tree/master/samples/DatabaseManagement) progetto Mostra come hello tooperform seguenti attività.
 
 | Attività | Informazioni di riferimento sulle API |
 | --- | --- |
@@ -59,7 +59,7 @@ Il file [app.js](https://github.com/Azure/azure-documentdb-node/blob/master/samp
 | [Eliminare un database](https://github.com/Azure/azure-documentdb-node/blob/ef53e5f6707a5dc45920fb6ad54d9c7e008a6c18/samples/DocumentDB.Samples.DatabaseManagement/app.js#L133-L144) |[DocumentClient.deleteDatabase](http://azure.github.io/azure-documentdb-node/DocumentClient.html#deleteDatabase) |
 
 ## <a name="collection-examples"></a>Esempi di raccolta
-Il file [app.js](https://github.com/Azure/azure-documentdb-node/blob/master/samples/CollectionManagement/app.js) del progetto [CollectionManagement](https://github.com/Azure/azure-documentdb-node/tree/master/samples/CollectionManagement) illustra come eseguire le attività seguenti.
+Hello [app.js](https://github.com/Azure/azure-documentdb-node/blob/master/samples/CollectionManagement/app.js) file hello [CollectionManagement](https://github.com/Azure/azure-documentdb-node/tree/master/samples/CollectionManagement) progetto Mostra come hello tooperform seguenti attività.
 
 | Attività | Informazioni di riferimento sulle API |
 | --- | --- |
@@ -72,12 +72,12 @@ Il file [app.js](https://github.com/Azure/azure-documentdb-node/blob/master/samp
 | [Eliminare una raccolta](https://github.com/Azure/azure-documentdb-node/blob/ef53e5f6707a5dc45920fb6ad54d9c7e008a6c18/samples/DocumentDB.Samples.CollectionManagement/app.js#L204-L215) |[DocumentClient.deleteCollection](http://azure.github.io/azure-documentdb-node/DocumentClient.html#deleteCollection) |
 
 ## <a name="document-examples"></a>Esempi di documento
-Il file [app.js](https://github.com/Azure/azure-documentdb-node/blob/master/samples/DocumentManagement/app.js) del progetto [DocumentManagement](https://github.com/Azure/azure-documentdb-node/tree/master/samples/DocumentManagement) illustra come eseguire le attività seguenti.
+Hello [app.js](https://github.com/Azure/azure-documentdb-node/blob/master/samples/DocumentManagement/app.js) file hello [DocumentManagement](https://github.com/Azure/azure-documentdb-node/tree/master/samples/DocumentManagement) progetto Mostra come hello tooperform seguenti attività.
 
 | Attività | Informazioni di riferimento sulle API |
 | --- | --- |
 | [Creare i documenti](https://github.com/Azure/azure-documentdb-node/blob/ef53e5f6707a5dc45920fb6ad54d9c7e008a6c18/samples/DocumentDB.Samples.DocumentManagement/app.js#L153-L177) |[DocumentClient.createDocument](http://azure.github.io/azure-documentdb-node/DocumentClient.html#createDocument) |
-| [Leggere un feed di documenti per una raccolta](https://github.com/Azure/azure-documentdb-node/blob/ef53e5f6707a5dc45920fb6ad54d9c7e008a6c18/samples/DocumentDB.Samples.DocumentManagement/app.js#L179-L189) |[DocumentClient.readDocument](http://azure.github.io/azure-documentdb-node/DocumentClient.html#readDocument) |
+| [Leggere il documento hello feed per una raccolta](https://github.com/Azure/azure-documentdb-node/blob/ef53e5f6707a5dc45920fb6ad54d9c7e008a6c18/samples/DocumentDB.Samples.DocumentManagement/app.js#L179-L189) |[DocumentClient.readDocument](http://azure.github.io/azure-documentdb-node/DocumentClient.html#readDocument) |
 | [Leggere un documento in base all'ID](https://github.com/Azure/azure-documentdb-node/blob/ef53e5f6707a5dc45920fb6ad54d9c7e008a6c18/samples/DocumentDB.Samples.DocumentManagement/app.js#L191-L201) |[DocumentClient.readDocument](http://azure.github.io/azure-documentdb-node/DocumentClient.html#readDocument) |
 | [Leggere il documento solo se è stato modificato](https://github.com/Azure/azure-documentdb-node/blob/0778eadea7abb2af41e8c22a239dc872c584f421/samples/DocumentManagement/app.js#L79-L107) |[DocumentClient.readDocument](http://azure.github.io/azure-documentdb-node/DocumentClient.html#readDocument)<br/>[RequestOptions.accessCondition](http://azure.github.io/azure-documentdb-node/global.html#RequestOptions) |
 | [Eseguire query per documenti](https://github.com/Azure/azure-documentdb-node/blob/ef53e5f6707a5dc45920fb6ad54d9c7e008a6c18/samples/DocumentDB.Samples.DocumentManagement/app.js#L82-L110) |[DocumentClient.queryDocuments](http://azure.github.io/azure-documentdb-node/DocumentClient.html#queryDocuments) |
@@ -86,13 +86,13 @@ Il file [app.js](https://github.com/Azure/azure-documentdb-node/blob/master/samp
 | [Eliminare un documento](https://github.com/Azure/azure-documentdb-node/blob/ef53e5f6707a5dc45920fb6ad54d9c7e008a6c18/samples/DocumentDB.Samples.DocumentManagement/app.js#L122-L133) |[DocumentClient.deleteDocument](http://azure.github.io/azure-documentdb-node/DocumentClient.html#deleteDocument) |
 
 ## <a name="indexing-examples"></a>Esempi di indicizzazione
-Il file [app.js](https://github.com/Azure/azure-documentdb-node/blob/master/samples/IndexManagement/app.js) del progetto [IndexManagement](https://github.com/Azure/azure-documentdb-node/tree/master/samples/IndexManagement) illustra come eseguire le attività seguenti.
+Hello [app.js](https://github.com/Azure/azure-documentdb-node/blob/master/samples/IndexManagement/app.js) file hello [IndexManagement](https://github.com/Azure/azure-documentdb-node/tree/master/samples/IndexManagement) progetto Mostra come hello tooperform seguenti attività.
 
 | Attività | Informazioni di riferimento sulle API |
 | --- | --- |
 | [Creare una raccolta con indicizzazione predefinita](https://github.com/Azure/azure-documentdb-node/blob/ef53e5f6707a5dc45920fb6ad54d9c7e008a6c18/samples/DocumentDB.Samples.IndexManagement/app.js#L657-L701) |[DocumentClient.createCollection](http://azure.github.io/azure-documentdb-node/DocumentClient.html#createCollection) |
 | [Indicizzare manualmente un documento specifico](https://github.com/Azure/azure-documentdb-node/blob/ef53e5f6707a5dc45920fb6ad54d9c7e008a6c18/samples/DocumentDB.Samples.IndexManagement/app.js#L185-L238) |[RequestOptions.indexingDirective: 'include'](http://azure.github.io/azure-documentdb-node/global.html#RequestOptions) |
-| [Escludere manualmente un documento specifico dall'indice](https://github.com/Azure/azure-documentdb-node/blob/ef53e5f6707a5dc45920fb6ad54d9c7e008a6c18/samples/DocumentDB.Samples.IndexManagement/app.js#L120-L183) |[RequestOptions.indexingDirective: 'exclude'](http://azure.github.io/azure-documentdb-node/global.html#RequestOptions) |
+| [Escludere manualmente un documento specifico dall'indice di hello](https://github.com/Azure/azure-documentdb-node/blob/ef53e5f6707a5dc45920fb6ad54d9c7e008a6c18/samples/DocumentDB.Samples.IndexManagement/app.js#L120-L183) |[RequestOptions.indexingDirective: 'exclude'](http://azure.github.io/azure-documentdb-node/global.html#RequestOptions) |
 | [Usare l'indicizzazione differita per l'importazione in massa o raccolte con operazioni di lettura intense](https://github.com/Azure/azure-documentdb-node/blob/ef53e5f6707a5dc45920fb6ad54d9c7e008a6c18/samples/DocumentDB.Samples.IndexManagement/app.js#L240-L269) |[IndexingMode.Lazy](http://azure.github.io/azure-documentdb-node/global.html#IndexingMode) |
 | [Includere percorsi specifici di un documento nell'indicizzazione](https://github.com/Azure/azure-documentdb-node/blob/ef53e5f6707a5dc45920fb6ad54d9c7e008a6c18/samples/DocumentDB.Samples.IndexManagement/app.js#L433-L444) |[IndexingPolicy.IncludedPaths](http://azure.github.io/azure-documentdb-node/global.html#IndexingPolicy) |
 | [Escludere determinati percorsi dall'indicizzazione](https://github.com/Azure/azure-documentdb-node/blob/ef53e5f6707a5dc45920fb6ad54d9c7e008a6c18/samples/DocumentDB.Samples.IndexManagement/app.js#L427-L450) |[IndexingPolicy.ExcludedPath](http://azure.github.io/azure-documentdb-node/global.html#IndexingPolicy) |
@@ -103,7 +103,7 @@ Il file [app.js](https://github.com/Azure/azure-documentdb-node/blob/master/samp
 Per altre informazioni sull'indicizzazione, vedere [Criteri di indicizzazione di Azure Cosmos DB](indexing-policies.md).
 
 ## <a name="server-side-programming-examples"></a>Esempi di programmazione lato server
-Il file [app.js](https://github.com/Azure/azure-documentdb-node/blob/master/samples/ServerSideScripts/app.js) del progetto [ServerSideScripts](https://github.com/Azure/azure-documentdb-node/tree/master/samples/ServerSideScripts) illustra come eseguire le attività seguenti.
+Hello [app.js](https://github.com/Azure/azure-documentdb-node/blob/master/samples/ServerSideScripts/app.js) file hello [ServerSideScripts](https://github.com/Azure/azure-documentdb-node/tree/master/samples/ServerSideScripts) progetto Mostra come hello tooperform seguenti attività.
 
 | Attività | Informazioni di riferimento sulle API |
 | --- | --- |
@@ -113,7 +113,7 @@ Il file [app.js](https://github.com/Azure/azure-documentdb-node/blob/master/samp
 Per altre informazioni sulla programmazione lato server, vedere [Programmazione lato server per Azure Cosmos DB: stored procedure, trigger del database e funzioni definite dall'utente](programming.md).
 
 ## <a name="partitioning-examples"></a>Esempi di partizionamento
-Il file [app.js](https://github.com/Azure/azure-documentdb-node/blob/master/samples/Partitioning/app.js) del progetto [Partitioning](https://github.com/Azure/azure-documentdb-node/tree/master/samples/Partitioning) illustra come eseguire le attività seguenti.
+Hello [app.js](https://github.com/Azure/azure-documentdb-node/blob/master/samples/Partitioning/app.js) file hello [partizionamento](https://github.com/Azure/azure-documentdb-node/tree/master/samples/Partitioning) progetto Mostra come hello tooperform seguenti attività.
 
 | Attività | Informazioni di riferimento sulle API |
 | --- | --- |

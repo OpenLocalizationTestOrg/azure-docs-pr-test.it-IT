@@ -1,6 +1,6 @@
 ---
-title: "Come usare le proprietà nei criteri di Gestione API di Azure"
-description: "Informazioni su come usare le proprietà nei criteri di Gestione API di Azure"
+title: "proprietà toouse aaaHow nei criteri di gestione API di Azure"
+description: "Informazioni su come proprietà toouse nei criteri di gestione API di Azure."
 services: api-management
 documentationcenter: 
 author: steved0x
@@ -14,38 +14,38 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/15/2016
 ms.author: apimpm
-ms.openlocfilehash: 3b0fe2a300038e13cc488bdb4f50f8be270ea8f4
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1ff096deeb97543b48dcf1f40be9dbfcbcd09542
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-properties-in-azure-api-management-policies"></a>Come usare le proprietà nei criteri di Gestione API di Azure
-I criteri di Gestione API sono una potente funzionalità del sistema che consentono all'entità di pubblicazione di modificare il comportamento dell'API tramite la configurazione. I criteri sono una raccolta di istruzioni che vengono eseguite in modo sequenziale sulla richiesta o la risposta di un'API. Per creare istruzioni dei criteri è possibile usare valori di testo, espressioni di criteri e proprietà. 
+# <a name="how-toouse-properties-in-azure-api-management-policies"></a>Come proprietà toouse nei criteri di gestione API di Azure
+Criteri di gestione API sono una potente funzionalità del sistema hello che consentono ai server di pubblicazione hello comportamento hello toochange di hello API tramite la configurazione. I criteri sono una raccolta di istruzioni che vengono eseguite in sequenza su richiesta hello o la risposta di un'API. Per creare istruzioni dei criteri è possibile usare valori di testo, espressioni di criteri e proprietà. 
 
-Ogni istanza del servizio Gestione API dispone di una raccolta di proprietà di coppie chiave/valore globali per l'istanza stessa. Queste proprietà possono essere usate per gestire i valori stringa costanti all'interno dell'intera configurazione e di tutti i criteri delle API. Ogni proprietà ha gli attributi seguenti.
+Ogni istanza del servizio Gestione API include una raccolta di proprietà di coppie chiave/valore che sono toohello globale dell'istanza del servizio. Queste proprietà possono essere valori stringa costante toomanage utilizzata in tutti i criteri e configurazione dell'API. Ogni proprietà dispone hello gli attributi seguenti.
 
 | Attributo | Tipo | Descrizione |
 | --- | --- | --- |
-| Name |stringa |Nome della proprietà. Può contenere solo lettere, cifre, punti, trattini e caratteri di sottolineatura. |
-| Valore |stringa |Valore della proprietà. Non può essere vuoto o contenere solo spazi. |
-| Segreto |boolean |Determina se il valore è un segreto e se deve essere crittografato. |
-| Tag |matrice di valori string |Facoltativi. Quando specificati possono essere usati per filtrare l'elenco delle proprietà. |
+| Name |string |nome di Hello della proprietà hello. Può contenere solo lettere, cifre, punti, trattini e caratteri di sottolineatura. |
+| Valore |string |valore di Hello della proprietà hello. Non può essere vuoto o contenere solo spazi. |
+| Segreto |boolean |Determina se il valore di hello è una chiave privata e deve essere crittografato o meno. |
+| Tag |matrice di valori string |Tag facoltativo che quando viene fornito può essere utilizzato toofilter hello proprietà elenco. |
 
-Le proprietà vengono configurate nel portale di pubblicazione nella scheda **Properties** . Nell'esempio seguente, sono configurate tre proprietà.
+Le proprietà vengono configurate nel portale di server di pubblicazione hello in hello **proprietà** scheda. Nell'esempio seguente di hello, sono configurate tre proprietà.
 
-![Properties][api-management-properties]
+![Proprietà][api-management-properties]
 
-I valori delle proprietà possono contenere stringhe letterali ed [espressioni di criteri](https://msdn.microsoft.com/library/azure/dn910913.aspx). Nella tabella seguente sono mostrate le tre proprietà di esempio precedenti e i relativi attributi. Il valore di `ExpressionProperty` è un'espressione di criteri che restituisce una stringa contenente la data e l'ora correnti. La proprietà `ContosoHeaderValue` è contrassegnata come un segreto, quindi il valore corrispondente non viene visualizzato.
+I valori delle proprietà possono contenere stringhe letterali ed [espressioni di criteri](https://msdn.microsoft.com/library/azure/dn910913.aspx). Hello nella tabella seguente mostra hello precedente esempio tre proprietà e i relativi attributi. valore di Hello `ExpressionProperty` è un'espressione di criteri che restituisce una stringa contenente hello data e ora correnti. proprietà Hello `ContosoHeaderValue` è contrassegnata come chiave privata, pertanto il relativo valore non viene visualizzato.
 
-| Name | Valore | Segreto | Tag |
+| Nome | Valore | Segreto | Tag |
 | --- | --- | --- | --- |
 | ContosoHeader |TrackingId |False |Contoso |
 | ContosoHeaderValue |•••••••••••••••••••••• |True |Contoso |
 | ExpressionProperty |@(DateTime.Now.ToString()) |False | |
 
-## <a name="to-use-a-property"></a>Per usare una proprietà
-Per usare una proprietà di un criterio, inserire il nome della proprietà all'interno di parentesi graffe doppie, ad esempio `{{ContosoHeader}}`, come illustrato nell'esempio seguente.
+## <a name="toouse-a-property"></a>una proprietà toouse
+come nome della proprietà hello sul posto all'interno di una coppia di parentesi graffe doppia toouse una proprietà in un criterio, `{{ContosoHeader}}`, come illustrato nell'esempio seguente hello.
 
 ```xml
 <set-header name="{{ContosoHeader}}" exists-action="override">
@@ -53,11 +53,11 @@ Per usare una proprietà di un criterio, inserire il nome della proprietà all'i
 </set-header>
 ```
 
-In questo esempio, la proprietà `ContosoHeader` viene usata come nome di un'intestazione in un criterio `set-header` e la proprietà `ContosoHeaderValue` viene usata come valore di tale intestazione. Quando questo criterio viene valutato durante una richiesta o una risposta al gateway di Gestione API, `{{ContosoHeader}}` e `{{ContosoHeaderValue}}` vengono sostituiti dai valori delle rispettive proprietà.
+In questo esempio, `ContosoHeader` viene utilizzato come nome hello di un'intestazione in un `set-header` , criteri e `ContosoHeaderValue` viene utilizzato come valore hello di tale intestazione. Quando questo criterio viene valutato durante un gateway di gestione API toohello richiesta o risposta, `{{ContosoHeader}}` e `{{ContosoHeaderValue}}` vengono sostituiti con i relativi valori di proprietà corrispondenti.
 
-Le proprietà possono essere usate come valori completi di attributo o di elemento, come illustrato nell'esempio precedente, ma possono anche essere inserite all'interno di un'espressione di testo o combinate con una parte di un'espressione di testo, come illustrato nell'esempio seguente: `<set-header name = "CustomHeader{{ContosoHeader}}" ...>`
+Proprietà possono essere utilizzate come attributi completo o valori di elemento, come illustrato nell'esempio precedente hello, ma anche possono essere inseriti o combinati con parte di un'espressione di testo letterale, come illustrato nell'esempio seguente hello:`<set-header name = "CustomHeader{{ContosoHeader}}" ...>`
 
-Le proprietà possono anche contenere espressioni di criteri. Nell'esempio seguente viene usata la proprietà `ExpressionProperty` .
+Le proprietà possono anche contenere espressioni di criteri. Nell'esempio seguente di hello, hello `ExpressionProperty` viene utilizzato.
 
 ```xml
 <set-header name="CustomHeader" exists-action="override">
@@ -65,66 +65,66 @@ Le proprietà possono anche contenere espressioni di criteri. Nell'esempio segue
 </set-header>
 ```
 
-Quando questo criterio viene valutato, `{{ExpressionProperty}}` viene sostituito dal valore corrispondente: `@(DateTime.Now.ToString())`. Poiché il valore è un'espressione di criteri, l'espressione viene valutata e il criterio passa alla fase di esecuzione.
+Quando questo criterio viene valutato, `{{ExpressionProperty}}` viene sostituito dal valore corrispondente: `@(DateTime.Now.ToString())`. Poiché il valore di hello è un'espressione di criteri, hello espressione viene valutata e criteri hello continua con l'esecuzione.
 
-È possibile eseguire un test nel portale per sviluppatori chiamando un'operazione il cui ambito contiene un criterio con proprietà. Nell'esempio seguente viene chiamata un'operazione che contiene i due criteri di esempio precedenti `set-header` con proprietà. Si noti che la risposta contiene due intestazioni personalizzate configurate tramite criteri con proprietà.
+È possibile testare questo out nel portale per sviluppatori hello chiamando un'operazione che ha un criterio con le proprietà nell'ambito. Nell'esempio seguente di hello, chiamata di un'operazione con l'esempio precedente due hello `set-header` criteri con le proprietà. Si noti che la risposta hello contiene due intestazioni personalizzate che sono state configurate usando i criteri con le proprietà.
 
 ![Portale per sviluppatori][api-management-send-results]
 
-Se si osserva la [traccia di Controllo API](api-management-howto-api-inspector.md) relativa a una chiamata che include i due criteri con proprietà degli esempi precedenti, è possibile vedere i due criteri `set-header` con i valori delle proprietà inseriti, nonché la valutazione delle espressioni dei criteri per la proprietà che contiene l'espressione.
+Se si osserva hello [traccia API controllo](api-management-howto-api-inspector.md) per una chiamata che include hello due precedenti esempi di criteri con le proprietà, è possibile visualizzare due hello `set-header` criteri con i valori delle proprietà hello inseriti nonché l'espressione di criteri hello valutazione di proprietà hello contenente l'espressione di criteri hello.
 
 ![Traccia di Controllo API][api-management-api-inspector-trace]
 
-Si noti che mentre i valori delle proprietà possono contenere espressioni di criteri, i valori delle proprietà non possono contenere altre proprietà. Se il testo che contiene un riferimento a una proprietà viene usato come valore di una proprietà, ad esempio `Property value text {{MyProperty}}`, tale riferimento alla proprietà non viene sostituito e viene incluso come parte del valore della proprietà.
+Si noti che mentre i valori delle proprietà possono contenere espressioni di criteri, i valori delle proprietà non possono contenere altre proprietà. Se il testo che contiene un riferimento di proprietà viene utilizzato per un valore della proprietà, ad esempio `Property value text {{MyProperty}}`, un riferimento a proprietà non verrà sostituito che verrà incluso come parte del valore della proprietà hello.
 
-## <a name="to-create-a-property"></a>Per creare una proprietà
-Per creare una proprietà, fare clic su **Aggiungi proprietà** nella scheda **Proprietà**.
+## <a name="toocreate-a-property"></a>una proprietà toocreate
+Fare clic su una proprietà, toocreate **aggiungere proprietà** su hello **proprietà** scheda.
 
 ![Aggiungi proprietà][api-management-properties-add-property-menu]
 
-**Nome** e **Valore** sono obbligatori. Se il valore della proprietà è un segreto, selezionare la casella di controllo **This is a secret** . Immettere uno o più tag facoltativi per organizzare le proprietà, quindi fare clic su **Save**.
+**Nome** e **Valore** sono obbligatori. Se il valore della proprietà è una chiave privata, selezionare hello **si tratta di un segreto** casella di controllo. Immettere uno o più toohelp tag facoltativo all'organizzazione le proprietà e fare clic su **salvare**.
 
 ![Aggiungi proprietà][api-management-properties-add-property]
 
-Quando si salva una nuova proprietà, la casella di testo di **ricerca di proprietà** viene popolata con il nome della nuova proprietà e la nuova proprietà viene visualizzata. Per visualizzare tutte le proprietà, cancellare il contenuto della casella di testo di **ricerca di proprietà** e premere INVIO.
+Quando viene salvata una nuova proprietà, hello **proprietà di ricerca** casella di testo viene popolata con il nome di hello della nuova proprietà hello e hello nuova proprietà viene visualizzata. Deselezionare tutte le proprietà, toodisplay hello **proprietà di ricerca** casella di testo, quindi premere INVIO.
 
-![Properties][api-management-properties-property-saved]
+![Proprietà][api-management-properties-property-saved]
 
-Per informazioni sulla creazione di una proprietà tramite l'API REST, vedere la [pagina relativa alla creazione di una proprietà tramite l'API REST](https://msdn.microsoft.com/library/azure/mt651775.aspx#Put).
+Per informazioni sulla creazione di una proprietà utilizzando l'API REST di hello, vedere [creare una proprietà utilizzando l'API REST hello](https://msdn.microsoft.com/library/azure/mt651775.aspx#Put).
 
-## <a name="to-edit-a-property"></a>Per modificare una proprietà
-Per modificare una proprietà, fare clic su **Edit** accanto alla proprietà da modificare.
+## <a name="tooedit-a-property"></a>una proprietà tooedit
+Fare clic su una proprietà, tooedit **modifica** accanto a tooedit proprietà hello.
 
 ![Modifica proprietà][api-management-properties-edit]
 
-Apportare le modifiche desiderate e fare clic su **Save**. Se si modifica il nome della proprietà, tutti i criteri che fanno riferimento a tale proprietà vengono aggiornati automaticamente con il nuovo nome.
+Apportare le modifiche desiderate e fare clic su **Save**. Se si modifica il nome di proprietà hello, tutti i criteri che fanno riferimento a tale proprietà sono di nuovo nome di hello toouse aggiornate automaticamente.
 
 ![Modifica proprietà][api-management-properties-edit-property]
 
-Per informazioni sulla modifica di una proprietà tramite l'API REST, vedere la [pagina relativa alla modifica di una proprietà tramite l'API REST](https://msdn.microsoft.com/library/azure/mt651775.aspx#Patch).
+Per informazioni sulla modifica di una proprietà utilizzando l'API REST di hello, vedere [modificare una proprietà utilizzando l'API REST hello](https://msdn.microsoft.com/library/azure/mt651775.aspx#Patch).
 
-## <a name="to-delete-a-property"></a>Per eliminare una proprietà
-Per eliminare una proprietà, fare clic su **Delete** accanto alla proprietà da eliminare.
+## <a name="toodelete-a-property"></a>una proprietà toodelete
+Fare clic su una proprietà, toodelete **eliminare** accanto a toodelete proprietà hello.
 
 ![Elimina proprietà][api-management-properties-delete]
 
-Fare clic su **Sì, elimina** per confermare.
+Fare clic su **Sì, eliminarlo** tooconfirm.
 
 ![Conferma dell'eliminazione][api-management-delete-confirm]
 
 > [!IMPORTANT]
-> Se all'interno di almeno un criterio si fa riferimento alla proprietà, sarà possibile eliminare quest'ultima solo dopo averla rimossa da tutti i criteri che la usano.
+> Se la proprietà hello viene fatto riferimento da alcun criterio, non sarà possibile toosuccessfully eliminarlo finché non si rimuove la proprietà hello da tutti i criteri che la utilizzano.
 > 
 > 
 
-Per informazioni sull'eliminazione di una proprietà tramite l'API REST, vedere la [pagina relativa all'eliminazione di una proprietà tramite l'API REST](https://msdn.microsoft.com/library/azure/mt651775.aspx#Delete).
+Per informazioni sull'eliminazione di una proprietà utilizzando l'API REST di hello, vedere [eliminare una proprietà utilizzando l'API REST hello](https://msdn.microsoft.com/library/azure/mt651775.aspx#Delete).
 
-## <a name="to-search-and-filter-properties"></a>Per cercare e filtrare proprietà
-La scheda **Properties** include funzionalità di ricerca e filtro che consentono di gestire le proprietà. Per filtrare l'elenco delle proprietà in base al nome di queste, immettere un termine di ricerca nella casella di testo di **ricerca di proprietà** . Per visualizzare tutte le proprietà, cancellare il contenuto della casella di testo di **ricerca di proprietà** e premere INVIO.
+## <a name="toosearch-and-filter-properties"></a>proprietà toosearch e filtro
+Hello **proprietà** scheda include la ricerca e filtro toohelp funzionalità gestire le proprietà. elenco di proprietà hello toofilter dal nome di proprietà, immettere un termine di ricerca in hello **proprietà di ricerca** casella di testo. Deselezionare tutte le proprietà, toodisplay hello **proprietà di ricerca** casella di testo, quindi premere INVIO.
 
-![Search][api-management-properties-search]
+![Ricerca][api-management-properties-search]
 
-Per filtrare l'elenco delle proprietà in base al valore dei tag, immettere uno o più tag nella casella di testo di **filtro in base ai tag** . Per visualizzare tutte le proprietà, cancellare il contenuto della casella di testo di **filtro in base ai tag** e premere INVIO.
+elenco di proprietà hello toofilter dai valori di tag, immettere uno o più tag in hello **Filtra in base a tag** casella di testo. Deselezionare tutte le proprietà, toodisplay hello **Filtra in base a tag** casella di testo, quindi premere INVIO.
 
 ![Filtro][api-management-properties-filter]
 

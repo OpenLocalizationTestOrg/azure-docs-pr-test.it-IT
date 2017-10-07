@@ -1,6 +1,6 @@
 ---
-title: Rimuovere server e disabilitare la protezione | Documentazione Microsoft
-description: Questo articolo descrive come annullare la registrazione di server da un insieme di credenziali di Site Recovery e per disabilitare la protezione per le macchine virtuali e i server fisici.
+title: Server aaaRemove e disabilitare la protezione | Documenti Microsoft
+description: In questo articolo descrive come insieme di credenziali server toounregister da un ripristino del sito e protezione toodisable per le macchine virtuali e server fisici.
 services: site-recovery
 documentationcenter: 
 author: rayne-wiselman
@@ -14,82 +14,82 @@ ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
 ms.date: 03/27/2017
 ms.author: raynew
-ms.openlocfilehash: 43f92a35dc9b04584badd1c9f1152470246b5012
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 95f20433f782c93685ad4bae93c6bc0e2d2f2356
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="remove-servers-and-disable-protection"></a>Rimuovere server e disabilitare la protezione
 
-Il servizio Azure Site Recovery contribuisce al miglioramento della strategia di continuità aziendale e ripristino di emergenza (BCDR), coordinando la replica, il failover e il ripristino di macchine virtuali e server fisici. È possibile replicare i computer in Azure o in un data center locale secondario. Per una rapida panoramica, leggere [Che cos'è Azure Site Recovery?](site-recovery-overview.md)
+servizio Azure Site Recovery Hello contribuisce tooyour continuità aziendale e strategia di ripristino di emergenza. servizio Hello Orchestra la replica, failover e il ripristino delle macchine virtuali e server fisici. Macchine possono essere replicati tooAzure o tooa locale secondario data center. Per una rapida panoramica, leggere [Che cos'è Azure Site Recovery?](site-recovery-overview.md)
 
-Questo articolo descrive come annullare la registrazione di server dall'insieme di credenziali di Servizi di ripristino nel portale di Azure e come disabilitare la protezione per le macchine virtuali protette da Site Recovery.
+In questo articolo viene descritto come server toounregister da servizi di ripristino di un insieme di credenziali nel portale di Azure hello e come toodisable protezione per i computer protetti da Site Recovery.
 
-Per inviare commenti o domande, è possibile usare la parte inferiore di questo articolo oppure il [forum sui Servizi di ripristino di Azure](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
+Inviare eventuali commenti o domande nella parte inferiore di hello di questo articolo, o di hello [forum sui servizi di ripristino di Azure](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
 
 ## <a name="unregister-a-connected-configuration-server"></a>Annullare la registrazione di un server di configurazione connesso
 
-Se si replicano macchine virtuali VMware o server fisici Windows/Linux in Azure, è possibile annullare la registrazione di un server di configurazione connesso da un insieme di credenziali come indicato di seguito:
+Se si replica le macchine virtuali VMware o tooAzure server fisici Windows/Linux, è possibile annullare la registrazione di un server di configurazione connessa da un insieme di credenziali come indicato di seguito:
 
-1. Disabilitare la protezione delle macchine. In **Elementi protetti** > **Elementi replicati** fare clic sulla macchina > **Elimina**.
-2. Annullare l'associazione di tutti i criteri. In **Infrastruttura di Site Recovery** > **Per VMWare e computer fisici** > **Criteri di replica** fare doppio clic sui criteri associati. Fare doppio clic su server di configurazione > **Annulla associazione**.
-3. Rimuovere qualsiasi server di destinazione master o di elaborazione locale aggiuntivo. In **Infrastruttura di Site Recovery** > **Per VMWare e computer fisici** > **Server di configurazione** fare clic con il pulsante destro del mouse sul server > **Elimina**.
-4. Eliminare il server di configurazione.
-5. Disinstallare manualmente il servizio di mobilità in esecuzione nel server di destinazione master che sarà un server separato o in esecuzione nel server di configurazione.
+1. Disabilitare la protezione delle macchine. In **elementi protetti** > **elementi replicati**, macchina hello rapida > **eliminare**.
+2. Annullare l'associazione di tutti i criteri. In **infrastruttura di Site Recovery** > **per VMWare & macchine fisiche** > **criteri di replica**, fare doppio clic su hello criteri associati. Server di configurazione rapida hello > **Dissocia**.
+3. Rimuovere qualsiasi server di destinazione master o di elaborazione locale aggiuntivo. In **infrastruttura di Site Recovery** > **per VMWare & macchine fisiche** > **server di configurazione**, server hello pulsante destro del mouse > **Eliminare**.
+4. Eliminare il server di configurazione di hello.
+5. Disinstallare manualmente il servizio di mobilità hello in esecuzione nel server di destinazione master hello (sarà entrambi un apposito server o in esecuzione nel server di configurazione hello).
 6. Disinstallare eventuali server di elaborazione aggiuntivi.
-7. Disinstallare il server di configurazione.
-8. Nel server di configurazione disinstallare l'istanza di MySQL installata da Site Recovery.
-9. Eliminare la chiave ``HKEY_LOCAL_MACHINE\Software\Microsoft\Azure Site Recovery`` nel Registro di sistema del server di configurazione.
+7. Disinstallare il server di configurazione di hello.
+8. Nel server di configurazione hello, disinstallare l'istanza di hello di MySQL che è stata installata mediante il ripristino del sito.
+9. Nel Registro di sistema di hello hello del server di configurazione eliminare la chiave di hello ``HKEY_LOCAL_MACHINE\Software\Microsoft\Azure Site Recovery``.
 
 ## <a name="unregister-a-unconnected-configuration-server"></a>Annullare la registrazione di un server di configurazione non connesso
 
-Se si replicano macchine virtuali VMware o server fisici Windows/Linux in Azure, è possibile annullare la registrazione di un server di configurazione non connesso da un insieme di credenziali come indicato di seguito:
+Se si replica le macchine virtuali VMware o tooAzure server fisici Windows/Linux, è possibile annullare la registrazione di un server di configurazione non è connesso da un insieme di credenziali come indicato di seguito:
 
-1. Disabilitare la protezione delle macchine. In **Elementi protetti** > **Elementi replicati** fare clic sulla macchina > **Elimina**. Selezionare **Interrompi gestione della macchina virtuale**.
-2. Rimuovere qualsiasi server di destinazione master o di elaborazione locale aggiuntivo. In **Infrastruttura di Site Recovery** > **Per VMWare e computer fisici** > **Server di configurazione** fare clic con il pulsante destro del mouse sul server > **Elimina**.
-3. Eliminare il server di configurazione.
-4. Disinstallare manualmente il servizio di mobilità in esecuzione nel server di destinazione master che sarà un server separato o in esecuzione nel server di configurazione.
+1. Disabilitare la protezione delle macchine. In **elementi protetti** > **elementi replicati**, macchina hello rapida > **eliminare**. Selezionare **Interrompi gestione macchina hello**.
+2. Rimuovere qualsiasi server di destinazione master o di elaborazione locale aggiuntivo. In **infrastruttura di Site Recovery** > **per VMWare & macchine fisiche** > **server di configurazione**, server hello pulsante destro del mouse > **Eliminare**.
+3. Eliminare il server di configurazione di hello.
+4. Disinstallare manualmente il servizio di mobilità hello in esecuzione nel server di destinazione master hello (sarà entrambi un apposito server o in esecuzione nel server di configurazione hello).
 5. Disinstallare eventuali server di elaborazione aggiuntivi.
-6. Disinstallare il server di configurazione.
-7. Nel server di configurazione disinstallare l'istanza di MySQL installata da Site Recovery.
-8. Eliminare la chiave ``HKEY_LOCAL_MACHINE\Software\Microsoft\Azure Site Recovery`` nel Registro di sistema del server di configurazione.
+6. Disinstallare il server di configurazione di hello.
+7. Nel server di configurazione hello, disinstallare l'istanza di hello di MySQL che è stata installata mediante il ripristino del sito.
+8. Nel Registro di sistema di hello hello del server di configurazione eliminare la chiave di hello ``HKEY_LOCAL_MACHINE\Software\Microsoft\Azure Site Recovery``.
 
 ## <a name="unregister-a-connected-vmm-server"></a>Annullare la registrazione di un server VMM connesso
 
-Come procedura consigliata, annullare la registrazione del server VMM quando è connesso ad Azure. In questo modo le impostazioni nei server VMM e in altri server VMM con cloud abbinati vengono rimosse correttamente. Si consiglia di rimuovere un server non connesso solo in caso di problema di connettività permanente. Se il server VMM non è connesso, è necessario eseguire manualmente uno script per rimuovere le impostazioni.
+Come procedura consigliata, è consigliabile annullare la registrazione server VMM hello quando è connesso tooAzure. In questo modo si garantisce che le impostazioni nel server VMM hello (e su altri server VMM con i cloud associati) vengano pulite correttamente. Si consiglia di rimuovere un server non connesso solo in caso di problema di connettività permanente. Se non è connesso il server VMM hello, sarà necessario toomanually un tooclean script le impostazioni di esecuzione.
 
-1. Arrestare la replica delle VM nei cloud presenti sul server VMM da rimuovere.
-2. Eliminare i mapping di rete usati dai cloud nel server VMM da eliminare. In **Infrastruttura di Site Recovery** > **Per System Center VMM** > **Mapping di rete** fare clic con il pulsante destro del mouse sul mapping di rete > **Elimina**.
-3. Annullare l'associazione dei criteri di replica dai cloud nel server VMM da rimuovere.  In **Infrastruttura di Site Recovery** > **Per System Center VMM** >  **Criteri di replica** fare doppio clic sui criteri associati. Fare clic con il pulsante destro del mouse sul cloud > **Annulla associazione**.
-4. Eliminare il server VMM o il nodo VMM attivo. In **Infrastruttura di Site Recovery** > **Per System Center VMM** > **Server VMM** fare clic con il pulsante destro del mouse sul server > **Elimina**.
-5. Disinstallare manualmente il Provider nel server VMM. Se si dispone di un cluster, eseguire la rimozione da tutti i nodi.
-6. Se si esegue la replica in Azure, rimuovere manualmente l'agente di Servizi di ripristino di Microsoft dagli host Hyper-V nei cloud eliminati.
+1. Arrestare la replica delle macchine virtuali nel cloud nel server VMM si desidera tooremove hello.
+2. Eliminare tutti i mapping di rete utilizzati dal cloud nel server VMM si desidera toodelete hello. In **infrastruttura di Site Recovery** > **per System Center VMM** > **Mapping di rete**, fare doppio clic su mapping di rete hello >  **Eliminare**.
+3. Annullare l'associazione dei criteri di replica dal cloud nel server VMM si desidera tooremove hello.  In **infrastruttura di Site Recovery** > **per System Center VMM** >  **criteri di replica**, fare doppio clic sul criterio hello associata. Fare doppio clic su cloud hello > **Dissocia**.
+4. Eliminare il server VMM hello o nodo attivo di VMM. In **infrastruttura di Site Recovery** > **per System Center VMM** > **server VMM**, server hello rapida >  **Eliminare**.
+5. Disinstallare hello Provider manualmente nel server VMM di hello. Se si dispone di un cluster, eseguire la rimozione da tutti i nodi.
+6. Se si esegue la replica tooAzure, rimuovere manualmente l'agente di servizi di ripristino di Microsoft hello dagli host Hyper-V nei cloud hello eliminato.
 
 
 
 ### <a name="unregister-an-unconnected-vmm-server"></a>Annullare la registrazione di un server VMM non connesso
 
-1. Arrestare la replica delle VM nei cloud presenti sul server VMM da rimuovere.
-2. Eliminare i mapping di rete usati dai cloud nel server VMM da eliminare. In **Infrastruttura di Site Recovery** > **Per System Center VMM** > **Mapping di rete** fare clic con il pulsante destro del mouse sul mapping di rete > **Elimina**.
-3. Prendere nota dell'ID del server VMM.
-4. Annullare l'associazione dei criteri di replica dai cloud nel server VMM da rimuovere.  In **Infrastruttura di Site Recovery** > **Per System Center VMM** >  **Criteri di replica** fare doppio clic sui criteri associati. Fare clic con il pulsante destro del mouse sul cloud > **Annulla associazione**.
-5. Eliminare il server VMM o il nodo attivo. In **Infrastruttura di Site Recovery** > **Per System Center VMM** > **Server VMM** fare clic con il pulsante destro del mouse sul server > **Elimina**.
-6. Nel server VMM scaricare ed eseguire lo [script di pulizia](http://aka.ms/asr-cleanup-script-vmm). Aprire PowerShell con l'opzione **Esegui come amministratore** per modificare i criteri di esecuzione per l'ambito predefinito (LocalMachine). Nello script specificare l'ID del server VMM da rimuovere. Lo script rimuove le informazioni sulla registrazione e l'associazione del cloud dal server.
-5. Eseguire lo script di pulizia in tutti gli altri server VMM che contengono cloud associati ai cloud nel server VMM da rimuovere.
-6. Eseguire lo script di pulizia in qualsiasi altro nodo cluster VMM passivo in cui è installato il Provider.
-7. Disinstallare manualmente il Provider nel server VMM. Se si dispone di un cluster, eseguire la rimozione da tutti i nodi.
-8. Se si esegue la replica in Azure, è possibile rimuovere manualmente l'agente di Servizi di ripristino di Microsoft dagli host Hyper-V nei cloud eliminati.
+1. Arrestare la replica delle macchine virtuali nel cloud nel server VMM si desidera tooremove hello.
+2. Eliminare tutti i mapping di rete utilizzati dal cloud nel server VMM hello che si desidera toodelete. In **infrastruttura di Site Recovery** > **per System Center VMM** > **Mapping di rete**, fare doppio clic su mapping di rete hello >  **Eliminare**.
+3. Annotare l'ID di hello del server VMM hello.
+4. Annullare l'associazione dei criteri di replica dal cloud nel server VMM si desidera tooremove hello.  In **infrastruttura di Site Recovery** > **per System Center VMM** >  **criteri di replica**, fare doppio clic sul criterio hello associata. Fare doppio clic su cloud hello > **Dissocia**.
+5. Eliminare il server VMM hello o nodo attivo. In **infrastruttura di Site Recovery** > **per System Center VMM** > **server VMM**, server hello rapida >  **Eliminare**.
+6. Scaricare ed eseguire hello [script di pulizia](http://aka.ms/asr-cleanup-script-vmm) nel server VMM hello. Aprire PowerShell con hello **Esegui come amministratore** opzione criteri di esecuzione hello toochange per l'ambito predefinito (LocalMachine) hello. Nello script hello, specificare ID hello del server VMM si desidera tooremove hello. script Hello rimuove la registrazione e le informazioni dal server hello associazione cloud.
+5. Eseguire script di pulizia hello in qualsiasi altro server VMM che contengono cloud che vengono associati a cloud nel server VMM si desidera tooremove hello.
+6. Eseguire script di pulizia hello in qualsiasi altro passivi nodi cluster VMM contenenti hello che provider installato.
+7. Disinstallare hello Provider manualmente nel server VMM di hello. Se si dispone di un cluster, eseguire la rimozione da tutti i nodi.
+8. Se si replica tooAzure, è possibile rimuovere l'agente di servizi di ripristino di Microsoft hello dagli host Hyper-V nei cloud hello eliminato.
 
 ## <a name="unregister-a-hyper-v-host-in-a-hyper-v-site"></a>Annullare la registrazione di un host Hyper-V in un sito di Hyper-V
 
 Gli host Hyper-V non gestiti da VMM vengono raccolti in un sito di Hyper-V. Rimuovere un host in un sito di Hyper-V nel modo seguente:
 
-1. Disabilitare la replica per le VM Hyper-V presenti nell'host.
-2. Annullare l'associazione dei criteri per il sito Hyper-V. In **Infrastruttura di Site Recovery** > **Per siti Hyper-V** >  **Criteri di replica** fare doppio clic sui criteri associati. Fare clic con il pulsante destro del mouse sul cloud > **Annulla associazione**.
-3. Eliminare gli host Hyper-V. In **Infrastruttura di Site Recovery** > **Per System Center VMM** > **Host Hyper-V** fare clic con il pulsante destro del mouse sul server > **Elimina**.
-4. Eliminare il sito Hyper-V dopo che sono stati rimossi tutti gli host dal sito. In **Infrastruttura di Site Recovery** > **Per System Center VMM** > **Siti Hyper-V** fare clic con il pulsante destro del mouse sul sito > **Elimina**.
-5. Eseguire lo script seguente in ogni host Hyper-V che è stato rimosso. Lo script pulisce le impostazioni del server e ne annulla la registrazione dall'insieme di credenziali.
+1. Disabilitare la replica per le macchine virtuali Hyper-V nell'host di hello.
+2. Annullare l'associazione di criteri per il sito Hyper-V hello. In **infrastruttura di Site Recovery** > **per i siti Hyper-V** >  **criteri di replica**, fare doppio clic sul criterio hello associata. Sito hello rapida > **Dissocia**.
+3. Eliminare gli host Hyper-V. In **infrastruttura di Site Recovery** > **per System Center VMM** > **host Hyper-V**, server hello rapida >  **Eliminare**.
+4. Eliminare il sito Hyper-V hello dopo tutti gli host sono state rimosse da quest'ultimo. In **infrastruttura di Site Recovery** > **per System Center VMM** > **siti Hyper-V**, sito hello rapida >  **Eliminare**.
+5. Eseguire lo script seguente in ogni host Hyper-V che è stata rimossa hello. script di Hello pulisce le impostazioni nel server di hello e ne annulla la registrazione dell'insieme di credenziali di hello.
 
 
         `` pushd .
@@ -101,13 +101,13 @@ Gli host Hyper-V non gestiti da VMM vengono raccolti in un sito di Hyper-V. Rimu
              $isAdmin=$principal.IsInRole($administrators)
              if (!$isAdmin)
              {
-                "Please run the script as an administrator in elevated mode."
+                "Please run hello script as an administrator in elevated mode."
                 $choice = Read-Host
                 return;       
              }
 
             $error.Clear()    
-            "This script will remove the old Azure Site Recovery Provider related properties. Do you want to continue (Y/N) ?"
+            "This script will remove hello old Azure Site Recovery Provider related properties. Do you want toocontinue (Y/N) ?"
             $choice =  Read-Host
 
             if (!($choice -eq 'Y' -or $choice -eq 'y'))
@@ -120,7 +120,7 @@ Gli host Hyper-V non gestiti da VMM vengono raccolti in un sito di Hyper-V. Rimu
             $service = Get-Service -Name $serviceName
             if ($service.Status -eq "Running")
             {
-                "Stopping the Azure Site Recovery service..."
+                "Stopping hello Azure Site Recovery service..."
                 net stop $serviceName
             }
 
@@ -152,12 +152,12 @@ Gli host Hyper-V non gestiti da VMM vengono raccolti in un sito di Hyper-V. Rimu
                 "Registry keys removed."
             }
 
-            # First retrive all the certificates to be deleted
+            # First retrive all hello certificates toobe deleted
             $ASRcerts = Get-ChildItem -Path cert:\localmachine\my | where-object {$_.friendlyname.startswith('ASR_SRSAUTH_CERT_KEY_CONTAINER') -or $_.friendlyname.startswith('ASR_HYPER_V_HOST_CERT_KEY_CONTAINER')}
             # Open a cert store object
             $store = New-Object System.Security.Cryptography.X509Certificates.X509Store("My","LocalMachine")
             $store.Open('ReadWrite')
-            # Delete the certs
+            # Delete hello certs
             "Removing all related certificates"
             foreach ($cert in $ASRcerts)
             {
@@ -176,42 +176,42 @@ Gli host Hyper-V non gestiti da VMM vengono raccolti in un sito di Hyper-V. Rimu
 
 ## <a name="disable-protection-for-a-vmware-vm-or-physical-server"></a>Disabilitare la protezione per una VM VMware o un server fisico
 
-1. In **Elementi protetti** > **Elementi replicati** fare clic sulla macchina > **Elimina**.
+1. In **elementi protetti** > **elementi replicati**, macchina hello rapida > **eliminare**.
 2. In **Rimuovi macchina virtuale** selezionare una delle opzioni seguenti:
-    - **Disabilita protezione per la macchina virtuale (impostazione consigliata)**. Usare questa opzione per arrestare la replica della macchina. Le impostazioni di Site Recovery verranno rimosse automaticamente. Questa opzione verrà visualizzata nelle circostanze seguenti:
-        - **Il volume della VM è stato ridimensionato**: quando si ridimensiona un volume, la macchina virtuale entra in uno stato critico. Selezionare questa opzione per disabilitare la protezione mantenendo i punti di ripristino in Azure. Quando si riabilita la protezione per la macchina virtuale, i dati per il volume ridimensionato verranno trasferiti in Azure.
-        - **È stato eseguito recentemente un failover**: dopo avere eseguito un failover per testare l'ambiente, selezionare questa opzione per ripristinare la protezione delle macchine locali. Viene disabilitata ogni macchina virtuale ed è quindi necessario riabilitare la protezione. La disabilitazione della macchina con questa impostazione non riguarda la macchina virtuale di replica in Azure. Non disinstallare il servizio Mobility dalla macchina virtuale.
-    - **Interrompi gestione della macchina virtuale**. Se si seleziona questa opzione, la macchina virtuale verrà rimossa solo dall'insieme di credenziali. Le impostazioni di protezione locali per la macchina virtuale non saranno interessate. Per rimuovere le impostazioni nella macchina e per rimuovere la macchina dalla sottoscrizione di Azure, è necessario rimuovere le impostazioni tramite la disinstallazione del servizio Mobility.
+    - **Disabilitare la protezione per macchina hello (scelta consigliata)**. Utilizzare questa opzione toostop replica macchina hello. Le impostazioni di Site Recovery verranno rimosse automaticamente. Viene visualizzata solo l'opzione hello seguenti circostanze:
+        - **È stato ridimensionato volume VM hello**: quando si ridimensiona un hello volume virtuale computer entra in uno stato critico. Selezionare questa protezione toodisables opzione mantenendo i punti di ripristino in Azure. Quando si abilita di nuovo la protezione per macchina hello, i dati per il volume ridimensionato hello hello sono tooAzure trasferiti.
+        - **Eseguire un failover recente**, dopo aver eseguito un failover tootest l'ambiente, selezionare questa opzione toostart proteggere nuovamente il computer locale. Disabilita ogni macchina virtuale e quindi è necessario tooenable protezione per tali nuovamente. Disabilitazione macchina hello con questa impostazione non influisce sulla macchina virtuale di replica hello in Azure. Non disinstallare il servizio di mobilità hello dalla macchina di hello.
+    - **Interrompi gestione macchina hello**. Se si seleziona questa opzione, verrà rimossa solo macchina hello dall'insieme di credenziali hello. Le impostazioni di protezione locali per la macchina hello non saranno interessate. impostazioni tooremove macchina hello e tooremove hello macchina da hello sottoscrizione di Azure, è necessario impostazioni hello tooclean, disinstallare il servizio di mobilità hello.
 
 ## <a name="disable-protection-for-a-hyper-v-vm-in-a-vmm-cloud"></a>Disabilitare la protezione per una VM Hyper-V in un cloud VMM
 
-1. In **Elementi protetti** > **Elementi replicati** fare clic sulla macchina > **Elimina**.
+1. In **elementi protetti** > **elementi replicati**, macchina hello rapida > **eliminare**.
 2. In **Rimuovi macchina virtuale** selezionare una delle opzioni seguenti:
 
-    - **Disabilita protezione per la macchina virtuale (impostazione consigliata)**. Usare questa opzione per arrestare la replica della macchina. Le impostazioni di Site Recovery verranno rimosse automaticamente.
-    - **Interrompi gestione della macchina virtuale**. Se si seleziona questa opzione, la macchina virtuale verrà rimossa solo dall'insieme di credenziali. Le impostazioni di protezione locali per la macchina virtuale non saranno interessate. Per rimuovere le impostazioni nella macchina e per rimuovere la macchina dalla sottoscrizione di Azure è necessario pulire manualmente le impostazioni usando le istruzioni seguenti. Si noti che se si sceglie di eliminare la macchina virtuale e i relativi dischi rigidi, questi verranno rimossi dal percorso di destinazione.
+    - **Disabilitare la protezione per macchina hello (scelta consigliata)**. Utilizzare questa opzione toostop replica macchina hello. Le impostazioni di Site Recovery verranno rimosse automaticamente.
+    - **Interrompi gestione macchina hello**. Se si seleziona questa opzione, verrà rimossa solo macchina hello dall'insieme di credenziali hello. Le impostazioni di protezione locali per la macchina hello non saranno interessate. impostazioni tooremove macchina hello e tooremove hello macchina da hello sottoscrizione di Azure, sono necessarie tooclean hello impostazioni backup manualmente, usando le istruzioni di hello seguenti. Si noti che se si seleziona macchina virtuale di toodelete hello e relativi dischi rigidi, essi verranno essere rimosso dal percorso di destinazione hello.
 
-### <a name="clean-up-protection-settings---replication-to-a-secondary-vmm-site"></a>Eseguire la pulizia delle impostazioni di protezione: replica in un sito VMM secondario
+### <a name="clean-up-protection-settings---replication-tooa-secondary-vmm-site"></a>Pulire le impostazioni di protezione - sito di replica tooa secondario VMM
 
-Se è stato selezionato **Interrompi gestione della macchina virtuale** e si sta eseguendo la replica in un sito secondario, eseguire questo script nel server primario per rimuovere le impostazioni per la macchina virtuale primaria. Nella console VMM fare clic sul pulsante PowerShell per aprire la console PowerShell di VMM. Sostituire SQLVM1 con il nome della macchina virtuale.
+Se si seleziona **Interrompi gestione macchina hello** ed è la replica tooa sito secondario, eseguire questo script su hello server primario tooclean le impostazioni di hello per una macchina virtuale primaria hello. Nella console VMM hello fare clic sulla console di VMM PowerShell hello hello PowerShell pulsante tooopen. Sostituire SQLVM1 con nome hello della macchina virtuale.
 
          ``$vm = get-scvirtualmachine -Name "SQLVM1"
          Set-SCVirtualMachine -VM $vm -ClearDRProtection``
-2. Nel server VMM secondario eseguire questo script per pulire le impostazioni per la macchina virtuale secondaria:
+2. Nel server VMM secondario hello eseguire questo script tooclean le impostazioni di hello per una macchina virtuale secondaria hello:
 
         ``$vm = get-scvirtualmachine -Name "SQLVM1"
         Remove-SCVirtualMachine -VM $vm -Force``
-3. Nel server VMM secondario aggiornare le macchine virtuali nel server host Hyper-V in modo che la VM secondaria venga rilevata di nuovo nella console VMM.
-4. I passaggi sopra descritti cancellano le impostazioni di replica nel server VMM. Se si vuole arrestare la replica per la macchina virtuale, eseguire lo script seguente nelle VM primarie e secondarie. Sostituire SQLVM1 con il nome della macchina virtuale.
+3. Nel server VMM secondario hello, aggiornare hello le macchine virtuali nel server host Hyper-V di hello, in modo che hello secondario VM Ottiene rilevato nuovamente nella console VMM hello.
+4. cancellare le impostazioni di replica hello nel server VMM hello Hello sopra passaggi. Se si desidera che la replica per la macchina virtuale hello, eseguire lo script seguente oh hello toostop hello macchine virtuali primarie e secondarie. Sostituire SQLVM1 con nome hello della macchina virtuale.
 
         ``Remove-VMReplication –VMName “SQLVM1”``
 
-### <a name="clean-up-protection-settings---replication-to-azure"></a>Eseguire la pulizia delle impostazioni di protezione: replica in Azure
+### <a name="clean-up-protection-settings---replication-tooazure"></a>Pulire le impostazioni di protezione dati - replica tooAzure
 
-1. Se è stato selezionato **Interrompi gestione della macchina virtuale** e si esegue la replica in Azure, eseguire questo script nel server VMM di origine usando PowerShell dalla console VMM.
+1. Se si seleziona **Interrompi gestione macchina hello** e replicare tooAzure, eseguire questo script nel server VMM di origine hello, usando PowerShell dalla console VMM hello.
         ``$vm = get-scvirtualmachine -Name "SQLVM1"
         Set-SCVirtualMachine -VM $vm -ClearDRProtection``
-2. I passaggi sopra descritti cancellano le impostazioni di replica del server VMM. Per arrestare la replica per la macchina virtuale in esecuzione nel server host Hyper-V, eseguire questo script. Sostituire SQLVM1 con il nome della macchina virtuale e host01.contoso.com con il nome del server host Hyper-V.
+2. Hello sopra passaggi cancellare le impostazioni di replica hello nel server VMM hello. replica toostop per la macchina virtuale hello in esecuzione nel server host Hyper-V di hello, eseguire lo script. Sostituire SQLVM1 con nome hello di macchina virtuale e host01.contoso.com con nome hello del server host Hyper-V di hello.
 
         ``$vmName = "SQLVM1"
         $hostName  = "host01.contoso.com"
@@ -222,14 +222,14 @@ Se è stato selezionato **Interrompi gestione della macchina virtuale** e si sta
 
 ## <a name="disable-protection-for-a-hyper-v-vm-in-a-hyper-v-site"></a>Disabilitare la protezione per una VM Hyper-V in un sito Hyper-V
 
-Usare questa procedura se si esegue la replica di VM Hyper-V in Azure senza un server VMM.
+Utilizzare questa procedura se si esegue la replica di macchine virtuali Hyper-V tooAzure senza un server VMM.
 
-1. In **Elementi protetti** > **Elementi replicati** fare clic sulla macchina > **Elimina**.
-2. In **Rimuovi macchina virtuale** è possibile selezionare le opzioni seguenti:
+1. In **elementi protetti** > **elementi replicati**, macchina hello rapida > **eliminare**.
+2. In **Rimuovi macchina**, è possibile selezionare hello le opzioni seguenti:
 
-   - **Disabilita protezione per la macchina virtuale (impostazione consigliata)**. Usare questa opzione per arrestare la replica della macchina. Le impostazioni di Site Recovery verranno rimosse automaticamente.
-   - **Interrompi gestione della macchina virtuale**. Se si seleziona questa opzione, la macchina virtuale verrà rimossa solo dall'insieme di credenziali. Le impostazioni di protezione locali per la macchina virtuale non saranno interessate. Per rimuovere le impostazioni nella macchina e per rimuovere la macchina virtuale dalla sottoscrizione di Azure, è necessario pulire manualmente le impostazioni. Se si sceglie di eliminare la macchina virtuale e i relativi dischi rigidi, essi verranno rimossi dal percorso di destinazione.
-3. Se è stato selezionato **Interrompi gestione della macchina virtuale**, eseguire questo script nel server host Hyper-V di origine per rimuovere la replica per la macchina virtuale. Sostituire SQLVM1 con il nome della macchina virtuale.
+   - **Disabilitare la protezione per macchina hello (scelta consigliata)**. Utilizzare questa opzione toostop replica macchina hello. Le impostazioni di Site Recovery verranno rimosse automaticamente.
+   - **Interrompi gestione macchina hello**. Se si seleziona questa opzione solo macchina hello verrà rimosso dall'insieme di credenziali hello. Le impostazioni di protezione locali per la macchina hello non saranno interessate. impostazioni tooremove macchina hello e tooremove hello della macchina virtuale da hello sottoscrizione di Azure, sono necessarie tooclean hello impostazioni backup manualmente. Se si seleziona macchina virtuale di toodelete hello e relativi dischi rigidi che verranno rimossi dal percorso di destinazione hello.
+3. Se si seleziona **Interrompi gestione macchina hello**, eseguire questo script nel server host Hyper-V di origine di hello, tooremove replica per la macchina virtuale hello. Sostituire SQLVM1 con nome hello della macchina virtuale.
 
         $vmName = "SQLVM1"
         $vm = Get-WmiObject -Namespace "root\virtualization\v2" -Query "Select * From Msvm_ComputerSystem Where ElementName = '$vmName'"

@@ -1,6 +1,6 @@
 ---
-title: Usare REST per eseguire il backup e il ripristino di app del servizio App
-description: Informazioni su come usare chiamate API RESTful per eseguire il backup e il ripristino di un'app in Servizio app di Azure
+title: aaaUse REST tooback backup e ripristino di applicazioni di servizio App
+description: Informazioni su come toouse API REST chiama tooback e ripristino di un'app in Azure App Service
 services: app-service
 documentationcenter: 
 author: NKing92
@@ -14,50 +14,50 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/10/2016
 ms.author: nicking
-ms.openlocfilehash: c1b8fc3be3af46279bf35bddbc82acf1827b9eb9
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: f77bdfc7de1626d04d8d0c0e8979231ae1ced81a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-rest-to-back-up-and-restore-app-service-apps"></a>Usare REST per eseguire il backup e il ripristino di app del servizio App
+# <a name="use-rest-tooback-up-and-restore-app-service-apps"></a>Utilizzare tooback REST e ripristino di applicazioni di servizio App
 > [!div class="op_single_selector"]
 > * [PowerShell](../app-service/app-service-powershell-backup.md)
 > * [API REST](websites-csm-backup.md)
 > 
 > 
 
-[app del servizio App](https://azure.microsoft.com/services/app-service/web/) come BLOB nell'archiviazione di Azure. Il backup può contenere anche i database delle app. Se si elimina l'app accidentalmente o se è necessario ripristinarne una versione precedente, è possibile farlo da un backup precedente. I backup possono essere eseguito in qualsiasi momento su richiesta o pianificati a intervalli appropriati.
+[app del servizio App](https://azure.microsoft.com/services/app-service/web/) come BLOB nell'archiviazione di Azure. backup di Hello può contenere anche i database dell'applicazione hello. Se l'applicazione hello viene mai accidentalmente eliminato o se hello app esigenze toobe ripristinata la versione precedente di tooa, può essere ripristinato da un backup precedente. I backup possono essere eseguito in qualsiasi momento su richiesta o pianificati a intervalli appropriati.
 
-Questo articolo illustra le procedure di backup e ripristino di un'app con le richieste API RESTful. Se si vogliono creare e gestire i backup di app graficamente tramite il portale di Azure, vedere [Eseguire il backup di un'app Web nel servizio app di Azure](web-sites-backup.md)
+Questo articolo spiega come toobackup e ripristino di un'app con l'API REST richieste. Se desideri toocreate e gestire i backup di app graficamente tramite hello portale di Azure, vedere [eseguire il backup di un'app web nel servizio App di Azure](web-sites-backup.md)
 
 <a name="gettingstarted"></a>
 
 ## <a name="getting-started"></a>Introduzione
-Per inviare richieste REST, è necessario conoscere **nome**, **gruppo di risorse** e **ID sottoscrizione** dell'app. Per trovare queste informazioni, fare clic sull'app nel pannello **Servizio app** del [portale di Azure](https://portal.azure.com). Per gli esempi in questo articolo, verrà configurato il sito Web **backuprestoreapiexamples.azurewebsites.net**. È archiviato nel gruppo di risorse Default-Web-WestUS ed è in esecuzione in una sottoscrizione con l'ID 00001111-2222-3333-4444-555566667777.
+le richieste di toosend REST, è necessario tooknow dell'app **nome**, **gruppo di risorse**, e **id sottoscrizione**. Queste informazioni sono reperibile facendo l'app in hello **servizio App** blade di hello [portale di Azure](https://portal.azure.com). Per esempi di hello in questo articolo, è fase di configurazione del sito Web hello **backuprestoreapiexamples.azurewebsites.net**. Viene archiviato nel gruppo di risorse predefinito-Web-WestUS hello ed è in esecuzione in una sottoscrizione con ID 00001111-2222-3333-4444-555566667777 hello.
 
 ![Informazioni sul sito Web di esempio][SampleWebsiteInformation]
 
 <a name="backup-restore-rest-api"></a>
 
 ## <a name="backup-and-restore-rest-api"></a>API REST per backup e ripristino
-Verranno ora esaminati alcuni esempi relativi all'uso dell'API REST per il backup e il ripristino di un'app. Ogni esempio include un URL e il corpo della richiesta HTTP. L'URL di esempio contiene segnaposto racchiusi tra parentesi graffe, ad esempio {subscription-id}. Sostituire i segnaposto con le informazioni corrispondenti per la propria app. Come riferimento, ecco una descrizione di ogni segnaposto visualizzato negli URL di esempio.
+Ora illustra alcuni esempi di come toouse hello toobackup API REST e il ripristino di un'app. Ogni esempio include un URL e il corpo della richiesta HTTP. URL di esempio Hello contiene segnaposto incapsulati tra parentesi graffe, ad esempio {id sottoscrizione}. Sostituire i segnaposto hello con informazioni corrispondenti di hello per l'app. Per riferimento, ecco una spiegazione di ogni segnaposto visualizzato negli URL di esempio hello.
 
-* subscription-id: ID della sottoscrizione di Azure che include l'app
-* resource-group-name: nome del gruppo di risorse che include l'app
-* name: nome dell'app
-* backup-id: ID del backup dell'app
+* id sottoscrizione: ID di contenitore hello app di hello sottoscrizione di Azure
+* Resource-group-name: nome della risorsa hello gruppo contenitore app hello
+* Name: nome dell'applicazione hello
+* backup-id: ID di backup di app hello
 
-Per la documentazione completa dell'API, inclusi i diversi parametri opzionali che possono essere inclusi nella richiesta HTTP, vedere [Esplora risorse di Azure](https://resources.azure.com/).
+Per una documentazione completa di hello di hello API, inclusi i diversi parametri facoltativi che possono essere inclusi nella richiesta HTTP hello, vedere hello [Esplora inventario risorse di Azure](https://resources.azure.com/).
 
 <a name="backup-on-demand"></a>
 
 ## <a name="backup-an-app-on-demand"></a>Eseguire il backup di un'app su richiesta
-Per eseguire immediatamente il backup di un'app, inviare una richiesta **POST** a **https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Web/sites/{name}/backup/**.
+tooback di un'app immediatamente, inviare un **POST** richiesta troppo**https://management.azure.com/subscriptions/ {subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Web/sites/{name}/ backup /**.
 
-Ecco l'aspetto dell'URL se si usa il sito Web di esempio. **https://management.azure.com/subscriptions/00001111-2222-3333-4444-555566667777/resourceGroups/Default-Web-WestUS/providers/Microsoft.Web/sites/backuprestoreapiexamples/backup/**
+Ecco l'aspetto hello URL tramite il sito Web di esempio. **https://management.azure.com/subscriptions/00001111-2222-3333-4444-555566667777/resourceGroups/Default-Web-WestUS/providers/Microsoft.Web/sites/backuprestoreapiexamples/backup/**
 
-È necessario fornire un oggetto JSON nel corpo della richiesta per specificare l'account di archiviazione da usare per archiviare il backup. L'oggetto JSON deve avere una proprietà denominata **storageAccountUrl**, che contiene un [URL di firma di accesso condiviso](../storage/common/storage-dotnet-shared-access-signature-part-1.md) che concede dell'accesso in scrittura al contenitore di archiviazione di Azure che contiene il BLOB di backup. Se si vuole eseguire il backup dei database, è necessario fornire anche un elenco contenente i nomi, tipi e le stringhe di connessione dei database di cui eseguire il backup.
+Fornire un oggetto JSON nel corpo di hello di toospecify la richiesta hello backup quali toostore toouse account di archiviazione. oggetto JSON Hello deve avere una proprietà denominata **storageAccountUrl**, che contiene un [URL SAS](../storage/common/storage-dotnet-shared-access-signature-part-1.md) concessione dell'accesso in scrittura toohello di archiviazione di Azure contenitore di blob di backup hello. Se si desidera tooback backup dei database, è necessario fornire anche un elenco contenente i nomi di hello, tipi e le stringhe di connessione di hello database toobe sottoposti a backup.
 
 ```
 {
@@ -75,7 +75,7 @@ Ecco l'aspetto dell'URL se si usa il sito Web di esempio. **https://management.a
 }
 ```
 
-Il backup dell'app inizia immediatamente alla ricezione della richiesta. Il completamento del processo di backup può richiedere molto tempo. La risposta HTTP contiene un ID che è possibile usare in un'altra richiesta per visualizzare lo stato del backup. Ecco un esempio del corpo della risposta HTTP alla richiesta di backup.
+Un backup dell'applicazione hello inizia immediatamente quando viene ricevuta la richiesta di hello. processo di backup Hello potrebbe richiedere un toocomplete molto tempo. Hello risposta HTTP contiene un ID che è possibile utilizzare un'altra richiesta toosee hello dello stato backup hello. Di seguito è riportato un esempio di corpo hello di richiesta tooour di risposta HTTP hello backup.
 
 ```
 {
@@ -106,21 +106,21 @@ Il backup dell'app inizia immediatamente alla ricezione della richiesta. Il comp
 ```
 
 > [!NOTE]
-> I messaggi di errore si trovano nella proprietà log della risposta HTTP.
+> I messaggi di errore sono reperibile nella proprietà log hello di hello risposta HTTP.
 > 
 > 
 
 <a name="schedule-automatic-backups"></a>
 
 ## <a name="schedule-automatic-backups"></a>Pianificare backup automatici
-Oltre al backup di un'app su richiesta, è anche possibile pianificare l'esecuzione automatica di un backup.
+In toobacking aggiunta di un'app su richiesta, è anche possibile pianificare un backup toohappen automaticamente.
 
 ### <a name="set-up-a-new-automatic-backup-schedule"></a>Configurare una nuova pianificazione di backup automatico
-Per pianificare un backup, inviare una richiesta **PUT** a **https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Web/sites/{name}/config/backup**.
+tooset di una pianificazione di backup, invia un **inserire** richiesta troppo**https://management.azure.com/subscriptions/ {subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Web/sites/{name}/config / backup**.
 
-Ecco l'aspetto dell'URL per il sito Web di esempio. **https://management.azure.com/subscriptions/00001111-2222-3333-4444-555566667777/resourceGroups/Default-Web-WestUS/providers/Microsoft.Web/sites/backuprestoreapiexamples/config/backup**
+Ecco l'aspetto hello URL per il sito Web di esempio. **https://management.azure.com/subscriptions/00001111-2222-3333-4444-555566667777/resourceGroups/Default-Web-WestUS/providers/Microsoft.Web/sites/backuprestoreapiexamples/config/backup**
 
-Il corpo della richiesta deve includere un oggetto JSON che specifica la configurazione di backup. Ecco un esempio con tutti i parametri necessari.
+corpo della richiesta Hello deve disporre di un oggetto JSON che specifica la configurazione del backup hello. Di seguito è riportato un esempio con tutti i parametri necessario hello.
 
 ```
 {
@@ -133,32 +133,32 @@ Il corpo della richiesta deve includere un oggetto JSON che specifica la configu
             "keepAtLeastOneBackup": "True",
             "retentionPeriodInDays": "10",
         },
-        "enabled": "True", // Must be set to true to enable automatic backups
+        "enabled": "True", // Must be set tootrue tooenable automatic backups
         "name": “mysitebackup”,
         "storageAccountUrl": "https://account.blob.core.windows.net/backups?sv=2015-02-21&sr=c&sig=DzlkBl7h32C8qCv%2BifdBRxE63r4iv0kZ9L7E0qP16sY%3D&se=2016-09-15T22%3A46%3A54Z&sp=rwdl"
     }
 }
 ```
 
-Questo esempio configura l'app per l'esecuzione automatica del backup ogni sette giorni. I parametri **frequencyInterval** e **frequencyUnit** determinano insieme la frequenza con cui verranno eseguiti i backup. I valori validi per **frequencyUnit** sono **hour** e **day**. Ad esempio, per eseguire il backup di un'app per ogni 12 ore, impostare frequencyInterval su 12 e frequencyUnit su hour.
+In questo esempio Configura hello app toobe backup automatico ogni sette giorni. Hello parametri **frequencyInterval** e **frequencyUnit** determinano la frequenza con cui hello backup eseguito. I valori validi per **frequencyUnit** sono **hour** e **day**. Ad esempio, tooback backup ogni 12 ore, un'app impostare frequencyInterval too12 e frequencyUnit toohour.
 
-I backup precedenti saranno rimossi automaticamente dall'account di archiviazione. È possibile controllare la durata dei backup impostando il parametro **retentionPeriodInDays** . Se si vuole avere sempre almeno un backup salvato, indipendentemente dalla durata definita, impostare **keepAtLeastOneBackup** su true.
+I backup precedenti vengono automaticamente rimossi dall'account di archiviazione hello. È possibile controllare hello risale backup possono essere dall'impostazione hello **retentionPeriodInDays** parametro. Se si desidera tooalways avere almeno un backup salvato, indipendentemente dalla modalità precedente, viene **keepAtLeastOneBackup** tootrue.
 
-### <a name="get-the-automatic-backup-schedule"></a>Ottenere una pianificazione di backup automatico
-Per ottenere la configurazione del backup di un'app, inviare una richiesta **POST** all'URL **https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Web/sites/{name}/config/backup/list**.
+### <a name="get-hello-automatic-backup-schedule"></a>Ottenere la pianificazione di backup automatici di hello
+della tooget un'app configurazione di backup, invia un **POST** toohello URL della richiesta **https://management.azure.com/subscriptions/ {subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Web/ siti / {name} / config/backup/elenco**.
 
-L'URL per il sito di esempio è **https://management.azure.com/subscriptions/00001111-2222-3333-4444-555566667777/resourceGroups/Default-Web-WestUS/providers/Microsoft.Web/sites/backuprestoreapiexamples/config/backup/list**.
+l'URL per il sito di esempio Hello è **https://management.azure.com/subscriptions/00001111-2222-3333-4444-555566667777/resourceGroups/Default-Web-WestUS/providers/Microsoft.Web/sites/backuprestoreapiexamples/config/backup/list**.
 
 <a name="get-backup-status"></a>
 
-## <a name="get-the-status-of-a-backup"></a>Ottenere lo stato di un backup
-A seconda delle dimensioni dell'app, il completamento di un backup può richiedere alcuni minuti. I backup possono anche non riuscire, raggiungere il timeout o riuscire parzialmente. Per visualizzare lo stato di tutti i backup di un'app, inviare una richiesta **GET** all'URL **https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Web/sites/{name}/backups**.
+## <a name="get-hello-status-of-a-backup"></a>Ottenere lo stato di hello di un backup
+A seconda delle dimensioni app hello è una copia di backup potrebbe richiedere qualche minuto toocomplete. I backup possono anche non riuscire, raggiungere il timeout o riuscire parzialmente. stato di hello toosee dei backup di tutti di un'app, inviare un **ottenere** toohello URL della richiesta **https://management.azure.com/subscriptions/ {id sottoscrizione} / ResourceGroups / {resource-group-name} /providers/ Microsoft.Web/sites/{name}/backups**.
 
-Per visualizzare lo stato di un backup specifico, inviare una richiesta GET all'URL **https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Web/sites/{name}/backups/{backup-id}**.
+stato hello toosee di un backup specifico, inviare un URL di toohello richiesta GET **https://management.azure.com/subscriptions/ {{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Web/sites/{name}/backups/ backup-id}**.
 
-Ecco l'aspetto dell'URL per il sito Web di esempio. **https://management.azure.com/subscriptions/00001111-2222-3333-4444-555566667777/resourceGroups/Default-Web-WestUS/providers/Microsoft.Web/sites/backuprestoreapiexamples/backups/1**
+Ecco l'aspetto hello URL per il sito Web di esempio. **https://management.azure.com/subscriptions/00001111-2222-3333-4444-555566667777/resourceGroups/Default-Web-WestUS/providers/Microsoft.Web/sites/backuprestoreapiexamples/backups/1**
 
-Il corpo della risposta contiene un oggetto JSON simile a questo esempio.
+corpo della risposta Hello contiene un esempio di toothis simile oggetto JSON.
 
 ```
 {
@@ -179,27 +179,27 @@ Il corpo della risposta contiene un oggetto JSON simile a questo esempio.
 }
 ```
 
-Lo stato di un backup è un tipo enumerato. Ecco tutti gli stati possibili.
+lo stato di Hello di un backup è un tipo enumerato. Ecco tutti gli stati possibili.
 
-* 0 – InProgress: il backup è stato avviato ma non è ancora stato completato.
-* 1 – Failed: il backup non riuscito.
-* 2 – Succeeded: il backup è stato completato correttamente.
-* 3 – TimedOut: il backup non è stato completato entro il tempo previsto ed è stato annullato.
-* 4 – Created: la richiesta di backup è in coda, ma non è stata avviata.
-* 5 – Skipped: il backup non ha potuto continuare, perché una pianificazione ha attivato troppi backup.
-* 6 – PartiallySucceeded: il backup è riuscito, ma alcuni file non sono stati inclusi nel backup perché non hanno potuto essere letti. Ciò accade di solito perché è stato attivato un blocco esclusivo sui file.
-* 7 – DeleteInProgress: è stata richiesta l'eliminazione del backup, ma l'operazione non è ancora stata completata.
-* 8 – DeleteFailed: non è stato possibile eliminare il backup. Ciò può verificarsi perché l'URL di firma di accesso condiviso usata per creare il backup è scaduta.
-* 9 – Deleted: il backup è stato eliminato.
+* 0 – InProgress: backup hello è stato avviato ma non è ancora stata completata.
+* 1-non riuscito: backup hello non riuscito.
+* 2 – completata: backup hello completato.
+* 3 – TimedOut: backup hello non è stata completata nel tempo ed è stato annullato.
+* 4-creato: richiesta di backup hello è in coda ma non è stato avviato.
+* 5-ignorato: backup hello non è stata eseguita a causa di pianificazione tooa attivazione di un numero eccessivo di backup.
+* 6-completato parzialmente: backup hello completata, ma alcuni file non eseguiti perché non è possibile leggere. Ciò si verifica in genere perché è stato inserito un blocco esclusivo sui file hello.
+* 7-DeleteInProgress: hello backup è stato richiesto toobe eliminato, ma non è ancora stato eliminato.
+* 8-eliminazione non riuscita: non è stato possibile eliminare i backup di hello. Questa situazione può verificarsi perché hello URL SAS backup hello toocreate usato è scaduto.
+* 9-eliminati: hello backup è stato eliminato correttamente.
 
 <a name="restore-app"></a>
 
 ## <a name="restore-an-app-from-a-backup"></a>Ripristinare un'app da un backup
-Se l'app è stata eliminata o se si vuole tornare a una versione precedente dell'app, è possibile ripristinarla da un backup. Per richiamare un ripristino, inviare una richiesta **POST** all'URL **https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Web/sites/{name}/backups/{backup-id}/restore**.
+Se l'app è stata eliminata o se si desidera toorevert la versione precedente di app tooa, è possibile ripristinare l'applicazione hello da un backup. tooinvoke un ripristino, inviare un **POST** toohello URL della richiesta **https://management.azure.com/subscriptions/ {subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Web/sites/{name}/ backup / {backup-id} / ripristino**.
 
-Ecco l'aspetto dell'URL per il sito Web di esempio. **https://management.azure.com/subscriptions/00001111-2222-3333-4444-555566667777/resourceGroups/Default-Web-WestUS/providers/Microsoft.Web/sites/backuprestoreapiexamples/backups/1/restore**
+Ecco l'aspetto hello URL per il sito Web di esempio. **https://management.azure.com/subscriptions/00001111-2222-3333-4444-555566667777/resourceGroups/Default-Web-WestUS/providers/Microsoft.Web/sites/backuprestoreapiexamples/backups/1/restore**
 
-Nel corpo della richiesta inviare un oggetto JSON che contiene le proprietà per l'operazione di ripristino. Di seguito è riportato un esempio che contiene tutte le proprietà richieste:
+Nel corpo della richiesta hello, inviare un oggetto JSON che contiene le proprietà di hello per operazione di ripristino hello. Di seguito è riportato un esempio che contiene tutte le proprietà richieste:
 
 ```
 {
@@ -213,29 +213,29 @@ Nel corpo della richiesta inviare un oggetto JSON che contiene le proprietà per
                 “name”: “MyDatabase1”
         }],
         "overwrite": "true",
-        "storageAccountUrl": "https://account.blob.core.windows.net/backups?sv=2015-02-21&sr=c&sig=DzlkBl7h32C8qCv%2BifdBRxE63r4iv0kZ9L7E0qP16sY%3D&se=2016-09-15T22%3A46%3A54Z&sp=rwdl" // SAS URL to storage container containing your website backup
+        "storageAccountUrl": "https://account.blob.core.windows.net/backups?sv=2015-02-21&sr=c&sig=DzlkBl7h32C8qCv%2BifdBRxE63r4iv0kZ9L7E0qP16sY%3D&se=2016-09-15T22%3A46%3A54Z&sp=rwdl" // SAS URL toostorage container containing your website backup
     }
 }
 ```
 
-### <a name="restore-to-a-new-app"></a>Ripristinare una nuova app
-Quando si ripristina un backup, in alcuni casi è consigliabile creare una nuova app, invece di sovrascriverne una esistente. A tale scopo, modificare l'URL della richiesta in modo che punti alla nuova app che si vuole creare e modificare la proprietà **overwrite** in JSON su **false**.
+### <a name="restore-tooa-new-app"></a>Ripristinare tooa nuova app
+In alcuni casi potrebbe essere toocreate una nuova app quando si ripristina un backup, anziché sovrascrivere un'app già esistente. toodo, questa modifica richiesta URL toopoint toohello nuova app hello toocreate desiderato e modificare hello **sovrascrivere** proprietà hello JSON troppo**false**.
 
 <a name="delete-app-backup"></a>
 
 ## <a name="delete-an-app-backup"></a>Eliminare un backup dell'app
-Per eliminare un backup, inviare una richiesta **DELETE** all'URL **https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Web/sites/{name}/backups/{backup-id}**.
+Se si desidera toodelete una copia di backup, invia un **eliminare** toohello URL della richiesta **https://management.azure.com/subscriptions/ {subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Web/ siti / {name} {backup-id} /backups/**.
 
-Ecco l'aspetto dell'URL per il sito Web di esempio. **https://management.azure.com/subscriptions/00001111-2222-3333-4444-555566667777/resourceGroups/Default-Web-WestUS/providers/Microsoft.Web/sites/backuprestoreapiexamples/backups/1**
+Ecco l'aspetto hello URL per il sito Web di esempio. **https://management.azure.com/subscriptions/00001111-2222-3333-4444-555566667777/resourceGroups/Default-Web-WestUS/providers/Microsoft.Web/sites/backuprestoreapiexamples/backups/1**
 
 <a name="manage-sas-url"></a>
 
 ## <a name="manage-a-backups-sas-url"></a>Gestire L'URL di firma di accesso condiviso di un backup
-Servizio app di Azure tenta di eliminare il backup dall'archiviazione di Azure usando l'URL di firma di accesso condiviso specificato al momento della creazione del backup. Se questo URL di firma di accesso condiviso non è più valido, il backup non potrà essere eliminato tramite l'API REST. È possibile tuttavia aggiornare l'URL della firma di accesso condiviso associato a un backup inviando una richiesta **POST** all'URL **https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Web/sites/{name}/backups/{backup-id}/list**.
+Servizio App di Azure tenterà toodelete il backup nell'archiviazione di Azure usando l'URL di firma di accesso condiviso fornito al momento della creazione hello backup hello. Se l'URL di firma di accesso condiviso non è più valido, backup hello non possono essere eliminati tramite hello API REST. Tuttavia, è possibile aggiornare hello URL SAS associata a un backup mediante l'invio di un **POST** toohello URL della richiesta **https://management.azure.com/subscriptions/ {id sottoscrizione} / ResourceGroups / {resource-group-name} / providers/Microsoft.Web/sites/{name}/backups/{backup-id}/list**.
 
-Ecco l'aspetto dell'URL per il sito Web di esempio. **https://management.azure.com/subscriptions/00001111-2222-3333-4444-555566667777/resourceGroups/Default-Web-WestUS/providers/Microsoft.Web/sites/backuprestoreapiexamples/backups/1/list**
+Ecco l'aspetto hello URL per il sito Web di esempio. **https://management.azure.com/subscriptions/00001111-2222-3333-4444-555566667777/resourceGroups/Default-Web-WestUS/providers/Microsoft.Web/sites/backuprestoreapiexamples/backups/1/list**
 
-Nel corpo della richiesta inviare un oggetto JSON che contiene il nuovo URL di firma di accesso condiviso. Di seguito è fornito un esempio.
+Nel corpo della richiesta hello, inviare un oggetto JSON contenente hello nuovo URL di firma di accesso condiviso. Di seguito è fornito un esempio.
 
 ```
 {
@@ -247,7 +247,7 @@ Nel corpo della richiesta inviare un oggetto JSON che contiene il nuovo URL di f
 ```
 
 > [!NOTE]
-> Per motivi di sicurezza, l'URL di firma di accesso condiviso associato a un backup non viene restituito quando si invia una richiesta GET per un backup specifico. Se si vuole visualizzare l'URL di firma di accesso condiviso associato a un backup, inviare una richiesta POST allo stesso URL precedente e includere semplicemente un oggetto JSON vuoto nel corpo della richiesta. La risposta dal server contiene tutte le informazioni del backup, incluso l'URL di firma di accesso condiviso.
+> Per motivi di sicurezza hello che URL SAS associata a un backup non viene restituito quando l'invio di una richiesta GET per un determinato backup. Se si desidera hello tooview URL SAS associata a un backup, inviare un toohello richiesta POST stesso URL precedente. Includere un oggetto JSON vuoto nel corpo della richiesta hello. risposta Hello hello server contiene le informazioni di backup, inclusi il relativo URL di firma di accesso condiviso.
 > 
 > 
 

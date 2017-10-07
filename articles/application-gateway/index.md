@@ -1,6 +1,6 @@
 ---
-title: Documentazione del gateway applicazione di Azure - Esercitazioni e informazioni di riferimento sulle API | Documentazione Microsoft
-description: Informazioni su come distribuire un controller di distribuzione di applicazioni cloud. I documenti mostrano come configurare servizi di routing e bilanciamento del carico a livello di applicazione per un front-end Web.
+title: aaaAzure documentazione di Gateway applicazione - esercitazioni, riferimenti alle API | Documenti Microsoft
+description: Informazioni su come toodeploy un controller del cloud di recapito dell'applicazione. Documentazione viene illustrato come tooset routing a livello di applicazione di backup e il bilanciamento del carico per un front-end web.
 services: application-gateway
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 535364a9da46b137c4d32e1c3049a5be3496e5d2
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 9351bbc5cf288fd4650e9edb89be5a601c2a13ce
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="application-gateway-documentation"></a>Documentazione sul gateway applicazione
 
-Informazioni su come distribuire un gateway applicazione, un controller della distribuzione di applicazioni come servizio. Esercitazioni, informazioni di riferimento sulle API e altri documenti mostrano come configurare servizi di routing e bilanciamento del carico a livello di applicazione per creare un front-end Web scalabile e a disponibilità elevata.
+Informazioni su come toodeploy Gateway applicazione, un controller di recapito dell'applicazione (ADC) come servizio. Esercitazioni, riferimenti ad API e altra documentazione mostrano come tooset di routing a livello di applicazione e il bilanciamento del carico di servizi che consentono di creare un front-end web scalabile e a disponibilità elevata.
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -70,7 +70,7 @@ Informazioni su come distribuire un gateway applicazione, un controller della di
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Introduzione al gateway applicazione con il portale di Azure</h3>
+                        <h3>Guida introduttiva di Gateway applicazione utilizzando hello portale di Azure</h3>
                     </div>
                 </div>
             </div>

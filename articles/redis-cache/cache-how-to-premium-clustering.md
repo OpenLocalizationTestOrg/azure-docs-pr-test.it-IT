@@ -1,6 +1,6 @@
 ---
-title: Come configurare il clustering Redis per una Cache Redis di Azure Premium | Microsoft Docs
-description: In questo articolo viene illustrato come creare e gestire il clustering Redis per le istanze di Cache Redis di Azure di livello Premium.
+title: aaaHow tooconfigure Redis clustering per una Cache Redis di Azure Premium | Documenti Microsoft
+description: Informazioni su come toocreate e gestire il servizio cluster per il livello Premium, le istanze di Cache Redis di Azure Redis
 services: redis-cache
 documentationcenter: 
 author: steved0x
@@ -14,155 +14,155 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/05/2017
 ms.author: sdanie
-ms.openlocfilehash: 86a4a605dbb3b11924c14ff42238009742f72898
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 44d520facb9d1af145b69f1b58f082aabb655d4a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-configure-redis-clustering-for-a-premium-azure-redis-cache"></a>Come configurare il clustering Redis per una Cache Redis di Azure Premium
-Cache Redis di Azure include diverse soluzioni cache che offrono flessibilità di scelta riguardo alle dimensioni e alle funzionalità della cache, tra cui le funzionalità del livello Premium come clustering, persistenza e supporto per reti virtuali. In questo articolo viene descritto come configurare il clustering in un'istanza Premium di Cache Redis di Azure.
+# <a name="how-tooconfigure-redis-clustering-for-a-premium-azure-redis-cache"></a>Come tooconfigure Redis clustering per una Cache Redis di Azure Premium
+Cache Redis di Azure ha diverse offerte di cache, che forniscono flessibilità nella scelta di hello della dimensione della cache e le funzionalità, incluse le funzionalità di livello Premium, ad esempio clustering, persistenza e il supporto di rete virtuale. In questo articolo viene descritto come tooconfigure clustering in premium Azure Redis Cache istanza.
 
-Per informazioni su altre funzionalità di cache premium, vedere [Introduzione al piano Premium di Cache Redis di Azure](cache-premium-tier-intro.md).
+Per informazioni su altre funzionalità di cache premium, vedere [livello Premium di Cache Redis di Azure di introduzione toohello](cache-premium-tier-intro.md).
 
 ## <a name="what-is-redis-cluster"></a>Che cos'è un cluster Redis?
-Cache Redis di Azure offre funzionalità di clustering Redis come nell' [implementazione in Redis](http://redis.io/topics/cluster-tutorial). Con un cluster Redis si ottengono i vantaggi seguenti: 
+Cache Redis di Azure offre funzionalità di clustering Redis come nell' [implementazione in Redis](http://redis.io/topics/cluster-tutorial). Con Redis Cluster, si otterrà hello seguenti vantaggi: 
 
-* Possibilità di suddividere automaticamente il set di dati tra più nodi. 
-* Possibilità di continuare le operazioni quando si verificano errori in un subset dei nodi oppure quando un subset dei nodi non è in grado di comunicare con il resto del cluster. 
-* Maggiore velocità effettiva: la velocità effettiva aumenta in modo lineare man mano che aumenta il numero di partizioni. 
-* Dimensioni maggiori della memoria: l'incremento è lineare man mano che aumenta il numero di partizioni.  
+* Hello possibilità tooautomatically dividere il set di dati tra più nodi. 
+* Hello possibilità toocontinue operazioni quando un sottoinsieme di nodi hello si sono verificati errori o sono Impossibile toocommunicate con rest hello del cluster di hello. 
+* Maggiore velocità effettiva: velocità effettiva aumenta in modo lineare man mano che aumenta il numero di hello di partizioni. 
+* Altre dimensioni della memoria: aumenta in modo lineare man mano che aumenta il numero di hello di partizioni.  
 
 Per altre informazioni su dimensioni, velocità effettiva e larghezza di banda delle cache premium, vedere [Quali offerte e dimensioni della Cache Redis è consigliabile usare?](cache-faq.md#what-redis-cache-offering-and-size-should-i-use)
 
-In Azure, il cluster Redis viene offerto nel modello primario/replica, in cui ogni partizione dispone di una coppia primario/di replica con la replica, in cui la replica viene gestita dal servizio Cache Redis di Azure. 
+In Azure, Redis cluster viene offerto come un modello principale/replica in ogni partizione ha una coppia di principale/replica con replica in replica hello viene gestita dal servizio Cache Redis di Azure. 
 
 ## <a name="clustering"></a>Clustering
-Le funzionalità di clustering vengono abilitate nel pannello **Nuova cache Redis** durante la creazione della cache. 
+Il servizio cluster è stato attivato hello **nuova Cache Redis** pannello durante la creazione della cache. 
 
 [!INCLUDE [redis-cache-create](../../includes/redis-cache-premium-create.md)]
 
-Le funzionalità di clustering vengono configurate nel pannello **Cluster Redis** .
+Il servizio cluster è configurato su hello **Cluster Redis** blade.
 
 ![Clustering][redis-cache-clustering]
 
-È possibile includere fino a 10 partizioni nel cluster. Fare clic su **Abilitato** e far scorrere il dispositivo di scorrimento o digitare un numero compreso tra 1 e 10 per **Numero di partizioni**, quindi fare clic su **OK**.
+Possono esistere fino a partizioni too10 cluster hello. Fare clic su **abilitato** e far scorrere il dispositivo di scorrimento hello o digitare un numero compreso tra 1 e 10 per **numero di partizioni** e fare clic su **OK**.
 
-Ogni partizione è una coppia di cache primaria/di replica gestita da Azure e la dimensione totale della cache viene calcolata moltiplicando il numero di partizioni per la dimensione della cache selezionata nel piano tariffario. 
+Ogni partizione è una coppia di cache principale/replica gestita da Azure e dimensioni totali di hello della cache di hello viene calcolata moltiplicando il numero di hello di partizioni per dimensioni della cache di hello selezionata nel piano tariffario hello. 
 
-![clustering][redis-cache-clustering-selected]
+![Clustering][redis-cache-clustering-selected]
 
-Dopo aver creato la cache è possibile connettersi alla cache e usarla come una cache non in cluster e Redis distribuisce i dati tra le partizioni della cache. Se la diagnostica è [abilitata](cache-how-to-monitor.md#enable-cache-diagnostics), le metriche vengono acquisite separatamente per ogni partizione e possono essere [visualizzate](cache-how-to-monitor.md) nel pannello della Cache Redis. 
+Dopo la creazione della cache di hello ci si connette tooit e usare semplicemente come una cache non cluster e Redis distribuisce i dati di hello in partizioni di Cache di hello. Se è diagnostica [abilitato](cache-how-to-monitor.md#enable-cache-diagnostics), le metriche acquisite separatamente per ogni partizione e può essere [visualizzati](cache-how-to-monitor.md) nel pannello Cache Redis hello. 
 
 > [!NOTE]
 > 
-> Sono richieste alcune lievi modifiche all'applicazione client quando le funzionalità di clustering vengono configurate. Per altre informazioni, vedere [È necessario apportare modifiche all'applicazione client per usare il clustering?](#do-i-need-to-make-any-changes-to-my-client-application-to-use-clustering)
+> Sono richieste alcune lievi modifiche all'applicazione client quando le funzionalità di clustering vengono configurate. Per ulteriori informazioni, vedere [devo toomake qualsiasi toouse applicazione di modifiche toomy client clustering?](#do-i-need-to-make-any-changes-to-my-client-application-to-use-clustering)
 > 
 > 
 
-Per un codice di esempio sull'uso del clustering con il client StackExchange.Redis, vedere la porzione [clustering.cs](https://github.com/rustd/RedisSamples/blob/master/HelloWorld/Clustering.cs) dell'esempio [Hello World](https://github.com/rustd/RedisSamples/tree/master/HelloWorld).
+Per il codice di esempio sull'utilizzo di clustering con client stackexchange. Redis hello, vedere hello [clustering.cs](https://github.com/rustd/RedisSamples/blob/master/HelloWorld/Clustering.cs) parte hello [Hello World](https://github.com/rustd/RedisSamples/tree/master/HelloWorld) esempio.
 
 <a name="cluster-size"></a>
 
-## <a name="change-the-cluster-size-on-a-running-premium-cache"></a>Modificare la dimensione del cluster in una cache premium in esecuzione
-Per modificare le dimensioni di un cluster per una cache premium in esecuzione con clustering abilitato, fare clic su **Dimensioni cluster Redis** nel menu **Risorsa**.
+## <a name="change-hello-cluster-size-on-a-running-premium-cache"></a>Modificare dimensioni hello cluster in esecuzione cache premium
+dimensione del cluster toochange hello in un premium in esecuzione la cache con clustering fare clic su abilitato, **dimensione del Cluster Redis** da hello **menu risorse**.
 
 > [!NOTE]
-> Si noti che mentre il livello Premium della Cache Redis di Azure è stato rilasciato pubblicamente, la funzionalità dimensione del cluster Redis è attualmente in anteprima.
+> Mentre hello Azure Redis Cache Premium livello è stato rilasciato tooGeneral disponibilità, funzionalità di dimensioni del Cluster Redis hello è attualmente in anteprima.
 > 
 > 
 
 ![Dimensione del cluster Redis][redis-cache-redis-cluster-size]
 
-Per modificare la dimensione del cluster, usare il dispositivo di scorrimento oppure digitare un numero compreso tra 1 e 10 nella casella di testo **Numero di partizioni** e fare clic su **OK** per salvare.
+dimensione del cluster toochange hello, utilizzare il dispositivo di scorrimento hello o digitare un numero compreso tra 1 e 10 hello **numero di partizioni** casella di testo e fare clic su **OK** toosave.
 
 > [!NOTE]
-> Se si ridimensiona un cluster, viene eseguito il comando [MIGRATE](https://redis.io/commands/migrate), che usa un elevato numero di risorse e di conseguenza, per ridurre l'impatto, si consiglia di eseguire questa operazione durante le ore non di punta. Durante il processo di migrazione, si noterà un picco di carico nel server. Il ridimensionamento di un cluster è un processo di lunga esecuzione e la quantità di tempo necessario dipende dal numero di chiavi e dalle dimensioni dei valori associati a tali chiavi.
+> Ridimensionamento di un cluster esegue hello [migrazione](https://redis.io/commands/migrate) comando, che è un comando dispendiosa, pertanto, per un impatto minimo, si consiglia di eseguire questa operazione durante le ore non di punta. Durante il processo di migrazione hello, si noterà un picco di carico del server. Ridimensionamento di un cluster è un valore long processo in esecuzione e hello quantità di tempo dipende dalla hello numero di chiavi e le dimensioni dei valori di hello associati a tali chiavi.
 > 
 > 
 
 ## <a name="clustering-faq"></a>Domande frequenti sul clustering
-Nell'elenco seguente sono fornite le risposte alle domande poste comunemente sul clustering di Cache Redis di Azure.
+Hello elenco seguente contiene le risposte toocommonly domande frequenti su cluster di Cache Redis di Azure.
 
-* [È necessario apportare modifiche all'applicazione client per usare il clustering?](#do-i-need-to-make-any-changes-to-my-client-application-to-use-clustering)
+* [È necessario toomake qualsiasi toouse applicazione di modifiche toomy client clustering?](#do-i-need-to-make-any-changes-to-my-client-application-to-use-clustering)
 * [Come vengono distribuite le chiavi in un cluster?](#how-are-keys-distributed-in-a-cluster)
-* [Quali sono le dimensioni massime della cache che è possibile creare?](#what-is-the-largest-cache-size-i-can-create)
+* [Che cos'è una dimensione della cache più grande hello che posso creare?](#what-is-the-largest-cache-size-i-can-create)
 * [Tutti i client Redis supportano il clustering?](#do-all-redis-clients-support-clustering)
-* [Come ci si connette alla cache quando il clustering è abilitato?](#how-do-i-connect-to-my-cache-when-clustering-is-enabled)
-* [È possibile connettersi direttamente a singole partizioni della cache?](#can-i-directly-connect-to-the-individual-shards-of-my-cache)
+* [Come connettersi toomy cache quando il servizio cluster è abilitato?](#how-do-i-connect-to-my-cache-when-clustering-is-enabled)
+* [È possibile connettersi direttamente toohello singole partizioni di my cache?](#can-i-directly-connect-to-the-individual-shards-of-my-cache)
 * [È possibile configurare il clustering per una cache creata in precedenza?](#can-i-configure-clustering-for-a-previously-created-cache)
 * [È possibile configurare il clustering per una cache Basic o Standard?](#can-i-configure-clustering-for-a-basic-or-standard-cache)
-* [È possibile usare il clustering con il provider di stato della sessione ASP.NET Redis e il provider di cache di output?](#can-i-use-clustering-with-the-redis-aspnet-session-state-and-output-caching-providers)
+* [È possibile utilizzare il clustering con i provider di stato della sessione ASP.NET Redis e la memorizzazione nella cache di Output di hello?](#can-i-use-clustering-with-the-redis-aspnet-session-state-and-output-caching-providers)
 * [Usando StackExchange.Redis e il clustering si ottengono eccezioni MOVE. Cosa fare?](#i-am-getting-move-exceptions-when-using-stackexchangeredis-and-clustering-what-should-i-do)
 
-### <a name="do-i-need-to-make-any-changes-to-my-client-application-to-use-clustering"></a>È necessario apportare modifiche all'applicazione client per usare il clustering?
-* Quando il clustering è abilitato, sarà disponibile solo il database 0. Se l'applicazione client usa più database e prova a leggere o scrivere in un database diverso da 0, verrà generata l'eccezione seguente. `Unhandled Exception: StackExchange.Redis.RedisConnectionException: ProtocolFailure on GET --->` `StackExchange.Redis.RedisCommandException: Multiple databases are not supported on this server; cannot switch to database: 6`
+### <a name="do-i-need-toomake-any-changes-toomy-client-application-toouse-clustering"></a>È necessario toomake qualsiasi toouse applicazione di modifiche toomy client clustering?
+* Quando il clustering è abilitato, sarà disponibile solo il database 0. Se l'applicazione client utilizza più database e tenta di tooread o scrittura database tooa diverso da 0, hello seguente eccezione viene generata. `Unhandled Exception: StackExchange.Redis.RedisConnectionException: ProtocolFailure on GET --->``StackExchange.Redis.RedisCommandException: Multiple databases are not supported on this server; cannot switch toodatabase: 6`
   
   Per altre informazioni, vedere la [specifica sul cluster Redis: subset implementato](http://redis.io/topics/cluster-spec#implemented-subset).
-* Se si usa [StackExchange.Redis](https://www.nuget.org/packages/StackExchange.Redis/), è necessario usare la versione 1.0.481 o successiva. Connettersi alla cache usando gli stessi [endpoint, porte e chiavi](cache-configure.md#properties) usati per la connessione a una cache senza clustering abilitato. L'unica differenza consiste nel fatto che tutte le operazioni di lettura e scrittura devono essere eseguite nel database 0.
+* Se si usa [StackExchange.Redis](https://www.nuget.org/packages/StackExchange.Redis/), è necessario usare la versione 1.0.481 o successiva. La connessione della cache toohello utilizzando hello stesso [endpoint, porte e le chiavi](cache-configure.md#properties) utilizzati durante la connessione della cache tooa che non dispone di clustering abilitato. Hello unica differenza è che tutte le letture e scritture devono essere eseguite toodatabase 0.
   
   * Altri client possono avere requisiti diversi. Vedere [Tutti i client Redis supportano il clustering?](#do-all-redis-clients-support-clustering)
-* Se l'applicazione usa più operazioni chiave raggruppate in un singolo comando, tutte le chiavi devono trovarsi nella stessa partizione. Per individuare le chiavi nella stessa partizione, vedere [Come vengono distribuite le chiavi in un cluster?](#how-are-keys-distributed-in-a-cluster)
-* Se si usa il provider di stato della sessione ASP.NET Redis, è necessario usare la versione 2.0.1 o successiva. Vedere [È possibile usare il clustering con il provider di stato della sessione ASP.NET Redis e i provider di output caching?](#can-i-use-clustering-with-the-redis-aspnet-session-state-and-output-caching-providers)
+* Se l'applicazione usa più chiavi operazioni batch in un unico comando, tutte le chiavi devono trovarsi in hello stesso partizione. le chiavi toolocate in hello stesso partizione, vedere [modalità sono le chiavi di distribuzione in un cluster?](#how-are-keys-distributed-in-a-cluster)
+* Se si usa il provider di stato della sessione ASP.NET Redis, è necessario usare la versione 2.0.1 o successiva. Vedere [è possibile utilizzare il clustering con i provider di stato della sessione ASP.NET Redis e la memorizzazione nella cache di Output di hello?](#can-i-use-clustering-with-the-redis-aspnet-session-state-and-output-caching-providers)
 
 ### <a name="how-are-keys-distributed-in-a-cluster"></a>Come vengono distribuite le chiavi in un cluster?
-In base alla documentazione relativa al [modello di distribuzione delle chiavi](http://redis.io/topics/cluster-spec#keys-distribution-model) di Redis, lo spazio delle chiavi è suddiviso in 16384 slot. Viene eseguito l'hashing di ogni chiave e le chiavi vengono assegnate a uno di questi slot, che vengono distribuiti in tutti i nodi del cluster. È possibile configurare la parte della chiave sottoposta a hashing, per assicurare che più chiavi vengano inserite nella stessa partizione mediante i tag hash.
+Per ogni hello Redis [il modello di distribuzione di chiavi](http://redis.io/topics/cluster-spec#keys-distribution-model) documentazione: spazio della chiave hello è suddiviso in 16384 slot. Ogni chiave è stato eseguito l'hashing e assegnato tooone di questi slot, cui sono distribuiti tra i nodi del cluster hello hello. È possibile configurare quale parte della chiave di hello è tooensure con hash che più chiavi si trovano nella stesso partizione con il tag di hash hello.
 
-* Chiavi con tag hash: se una parte della chiave è racchiusa tra `{` e `}`, solo tale parte della chiave verrà sottoposta a hashing allo scopo di determinare lo slot hash di una chiave. Ad esempio, le 3 chiavi seguenti, `{key}1`, `{key}2` e `{key}3`, si troveranno nella stessa partizione poiché solo la parte `key` del nome viene sottoposta a hashing. Per un elenco completo di specifiche dei tag hash per le chiavi, vedere la pagina relativa ai [tag hash per le chiavi](http://redis.io/topics/cluster-spec#keys-hash-tags).
-* Chiavi senza tag hash: l'intero nome della chiave viene usato per l'hashing. Si otterrà una distribuzione statisticamente uniforme nelle partizioni della cache.
+* Le chiavi con un tag - hash se qualsiasi parte della chiave di hello è racchiuso tra parentesi `{` e `}`, solo tale parte della chiave hello viene eseguito l'hashing per hello determinazione dello slot di hello hash di una chiave. Ad esempio, hello dopo 3 chiavi potrebbe trovarsi in hello partizione stesso: `{key}1`, `{key}2`, e `{key}3` dal solo hello `key` parte del nome hello viene eseguito l'hashing. Per un elenco completo di specifiche dei tag hash per le chiavi, vedere la pagina relativa ai [tag hash per le chiavi](http://redis.io/topics/cluster-spec#keys-hash-tags).
+* Chiavi senza un tag di hash - nome della chiave intera hello viene utilizzato per l'hashing. Ciò comporta una distribuzione uniforme statisticamente tra partizioni hello della cache di hello.
 
-Per prestazioni e velocità effettiva ottimali, è consigliabile distribuire le chiavi in modo uniforme. Se si usano chiavi con un tag hash, l'applicazione dovrà assicurare che le chiavi vengano distribuite in modo uniforme.
+Per ottimizzare le prestazioni e velocità effettiva, si consiglia di distribuire le chiavi di hello in modo uniforme. Se si usano le chiavi con un tag di hash è chiavi hello tooensure di responsabilità dell'applicazione hello siano distribuite uniformemente.
 
 Per altre informazioni, vedere le pagine relative al [modello di distribuzione delle chiavi](http://redis.io/topics/cluster-spec#keys-distribution-model), al [partizionamento orizzontale del cluster Redis](http://redis.io/topics/cluster-tutorial#redis-cluster-data-sharding) e ai [tag hash per le chiavi](http://redis.io/topics/cluster-spec#keys-hash-tags).
 
-Per un codice di esempio sull'uso del clustering e sul posizionamento delle chiavi nella stessa partizione con il client StackExchange.Redis, vedere la porzione [clustering.cs](https://github.com/rustd/RedisSamples/blob/master/HelloWorld/Clustering.cs) dell'esempio [Hello World](https://github.com/rustd/RedisSamples/tree/master/HelloWorld).
+Per il codice di esempio sull'utilizzo di clustering e l'individuazione di chiavi in hello stesso partizione con client stackexchange. Redis hello, vedere hello [clustering.cs](https://github.com/rustd/RedisSamples/blob/master/HelloWorld/Clustering.cs) parte hello [Hello World](https://github.com/rustd/RedisSamples/tree/master/HelloWorld) esempio.
 
-### <a name="what-is-the-largest-cache-size-i-can-create"></a>Quali sono le dimensioni massime della cache che è possibile creare?
-Le dimensioni massime per la cache Premium sono 53 GB. È possibile creare fino a 10 partizioni, per una dimensione massima di 530 GB. Se è necessaria una dimensione maggiore, è possibile [farne richiesta](mailto:wapteams@microsoft.com?subject=Redis%20Cache%20quota%20increase). Per altre informazioni, vedere [Prezzi di Cache Redis di Azure](https://azure.microsoft.com/pricing/details/cache/).
+### <a name="what-is-hello-largest-cache-size-i-can-create"></a>Che cos'è una dimensione della cache più grande hello che posso creare?
+dimensione della cache premium più grande di Hello è 53 GB. È possibile creare le partizioni too10 offrendo una dimensione massima di 530 GB. Se è necessaria una dimensione maggiore, è possibile [farne richiesta](mailto:wapteams@microsoft.com?subject=Redis%20Cache%20quota%20increase). Per altre informazioni, vedere [Prezzi di Cache Redis di Azure](https://azure.microsoft.com/pricing/details/cache/).
 
 ### <a name="do-all-redis-clients-support-clustering"></a>Tutti i client Redis supportano il clustering?
-Non tutti i client supportano attualmente il clustering Redis. StackExchange.Redis è uno dei client che supporta questa funzionalità. Per altre informazioni su altri client, vedere la sezione dedicata alle [prove con il cluster](http://redis.io/topics/cluster-tutorial#playing-with-the-cluster) nell'[esercitazione per il cluster Redis](http://redis.io/topics/cluster-tutorial).
+In hello ora corrente, non tutti i client supportano Redis clustering. StackExchange.Redis è uno dei client che supporta questa funzionalità. Per ulteriori informazioni su altri client, vedere hello [Playing with cluster hello](http://redis.io/topics/cluster-tutorial#playing-with-the-cluster) sezione di hello [esercitazione cluster Redis](http://redis.io/topics/cluster-tutorial).
 
 > [!NOTE]
-> Se si usa StackExchange.Redis come client, assicurarsi di usare la versione più recente di [StackExchange.Redis](https://www.nuget.org/packages/StackExchange.Redis/) 1.0.481 o versione successiva per il corretto funzionamento del clustering. Per altre informazioni in caso di problemi con le eccezioni MOVE, vedere la sezione relativa alle [eccezioni MOVE](#move-exceptions) .
+> Se si utilizza il client stackexchange. Redis, assicurarsi di utilizzare più recente di hello [stackexchange. Redis](https://www.nuget.org/packages/StackExchange.Redis/) 1.0.481 o versione successiva per il clustering toowork correttamente. Per altre informazioni in caso di problemi con le eccezioni MOVE, vedere la sezione relativa alle [eccezioni MOVE](#move-exceptions) .
 > 
 > 
 
-### <a name="how-do-i-connect-to-my-cache-when-clustering-is-enabled"></a>Come ci si connette alla cache quando il clustering è abilitato?
-È possibile connettersi alla cache con gli stessi [endpoint](cache-configure.md#properties), [porte](cache-configure.md#properties) e [chiavi](cache-configure.md#access-keys) usati per la connessione a una cache senza clustering abilitato. Redis gestisce il clustering sul back-end in modo che non sia necessario gestirlo dal client.
+### <a name="how-do-i-connect-toomy-cache-when-clustering-is-enabled"></a>Come connettersi toomy cache quando il servizio cluster è abilitato?
+È possibile connettersi tooyour cache utilizzando hello stesso [endpoint](cache-configure.md#properties), [porte](cache-configure.md#properties), e [chiavi](cache-configure.md#access-keys) utilizzati durante la connessione della cache tooa che non dispone di clustering abilitato. Redis gestisce hello clustering nel back-end hello in modo non si dispone di toomanage dal client.
 
-### <a name="can-i-directly-connect-to-the-individual-shards-of-my-cache"></a>È possibile connettersi direttamente a singole partizioni della cache?
-Questa operazione non è supportata ufficialmente. Ciò premesso, ogni partizione è costituita da una coppia di cache primaria/di replica nota complessivamente come un'istanza della cache. È possibile connettersi tramite l'utilità cli redis in queste istanze di cache nel ramo [instabile](http://redis.io/download) del repository Redis in GitHub. Questa versione implementa il supporto di base quando avviata con il passaggio `-c` . Per altre informazioni vedere [Playing with the cluster](http://redis.io/topics/cluster-tutorial#playing-with-the-cluster) (Usare il cluster) all'indirizzo [http://redis.io](http://redis.io) nell'[esercitazione sul cluster Redis](http://redis.io/topics/cluster-tutorial).
+### <a name="can-i-directly-connect-toohello-individual-shards-of-my-cache"></a>È possibile connettersi direttamente toohello singole partizioni di my cache?
+Questa operazione non è supportata ufficialmente. Ciò premesso, ogni partizione è costituita da una coppia di cache primaria/di replica nota complessivamente come un'istanza della cache. È possibile connettersi a istanze di cache toothese tramite l'utilità di redis-cli hello hello [instabile](http://redis.io/download) ramo del repository di Redis hello in GitHub. Questa versione implementa il supporto di base iniziali di hello `-c` passare. Per ulteriori informazioni vedere [Playing with cluster hello](http://redis.io/topics/cluster-tutorial#playing-with-the-cluster) su [http://redis.io](http://redis.io) in hello [esercitazione cluster Redis](http://redis.io/topics/cluster-tutorial).
 
-Per non-ssl usare i comandi seguenti.
+Per non ssl, utilizzare hello i comandi seguenti.
 
-    Redis-cli.exe –h <<cachename>> -p 13000 (to connect to instance 0)
-    Redis-cli.exe –h <<cachename>> -p 13001 (to connect to instance 1)
-    Redis-cli.exe –h <<cachename>> -p 13002 (to connect to instance 2)
+    Redis-cli.exe –h <<cachename>> -p 13000 (tooconnect tooinstance 0)
+    Redis-cli.exe –h <<cachename>> -p 13001 (tooconnect tooinstance 1)
+    Redis-cli.exe –h <<cachename>> -p 13002 (tooconnect tooinstance 2)
     ...
-    Redis-cli.exe –h <<cachename>> -p 1300N (to connect to instance N)
+    Redis-cli.exe –h <<cachename>> -p 1300N (tooconnect tooinstance N)
 
 Per ssl, sostituire `1300N` con `1500N`.
 
 ### <a name="can-i-configure-clustering-for-a-previously-created-cache"></a>È possibile configurare il clustering per una cache creata in precedenza?
-Al momento è possibile solo abilitare il clustering durante la creazione di una cache. Dopo aver creato la cache, è possibile modificarne la dimensione, ma non è possibile aggiungere il clustering a una cache premium o rimuoverlo da una cache. Una cache premium con il clustering abilitato e una sola partizione è diversa da una cache premium delle stesse dimensioni senza cluster abilitato.
+Al momento è possibile solo abilitare il clustering durante la creazione di una cache. È possibile modificare le dimensioni di cluster hello dopo la creazione di cache di hello, ma non è possibile aggiungere clustering tooa premium cache o rimuovere il servizio cluster da una cache premium dopo la creazione della cache di hello. Una cache premium con il clustering abilitato e solo una partizione è diversa da una cache premium di hello stesse dimensioni con alcun tipo di clustering.
 
 ### <a name="can-i-configure-clustering-for-a-basic-or-standard-cache"></a>È possibile configurare il clustering per una cache Basic o Standard?
 Il clustering è disponibile esclusivamente per le cache Premium.
 
-### <a name="can-i-use-clustering-with-the-redis-aspnet-session-state-and-output-caching-providers"></a>È possibile usare il clustering con il provider di stato della sessione ASP.NET Redis e il provider di cache di output?
+### <a name="can-i-use-clustering-with-hello-redis-aspnet-session-state-and-output-caching-providers"></a>È possibile utilizzare il clustering con i provider di stato della sessione ASP.NET Redis e la memorizzazione nella cache di Output di hello?
 * **Provider di cache di output Redis** : nessuna modifica necessaria.
-* **Provider di stato della sessione Redis**: per usare il clustering, è necessario usare [RedisSessionStateProvider](https://www.nuget.org/packages/Microsoft.Web.RedisSessionStateProvider) 2.0.1 o versione successiva. In caso contrario, verrà generata un'eccezione. Si tratta di una modifica significativa. Per altre informazioni, vedere la pagina relativa ai [dettagli delle modifiche significative della versione 2.0.0](https://github.com/Azure/aspnet-redis-providers/wiki/v2.0.0-Breaking-Change-Details).
+* **Provider di stato della sessione redis** -toouse clustering, è necessario utilizzare [RedisSessionStateProvider](https://www.nuget.org/packages/Microsoft.Web.RedisSessionStateProvider) 2.0.1 o versione successiva o un'eccezione viene generata. Si tratta di una modifica significativa. Per altre informazioni, vedere la pagina relativa ai [dettagli delle modifiche significative della versione 2.0.0](https://github.com/Azure/aspnet-redis-providers/wiki/v2.0.0-Breaking-Change-Details).
 
 <a name="move-exceptions"></a>
 
 ### <a name="i-am-getting-move-exceptions-when-using-stackexchangeredis-and-clustering-what-should-i-do"></a>Usando StackExchange.Redis e il clustering si ottengono eccezioni MOVE. Cosa fare?
-Se si usa StackExchange.Redis e si ricevono eccezioni `MOVE` quando si usa il clustering, assicurarsi di usare [StackExchange.Redis 1.1.603](https://www.nuget.org/packages/StackExchange.Redis/) o versioni successive. Per le istruzioni di configurazione delle applicazioni .NET per l'uso di StackExchange.Redis, vedere l'articolo sulla [configurazione dei client della cache](cache-dotnet-how-to-use-azure-redis-cache.md#configure-the-cache-clients).
+Se si usa StackExchange.Redis e si ricevono eccezioni `MOVE` quando si usa il clustering, assicurarsi di usare [StackExchange.Redis 1.1.603](https://www.nuget.org/packages/StackExchange.Redis/) o versioni successive. Per istruzioni sulla configurazione del toouse di applicazioni .NET stackexchange. Redis, vedere [configurare i client della cache di hello](cache-dotnet-how-to-use-azure-redis-cache.md#configure-the-cache-clients).
 
 ## <a name="next-steps"></a>Passaggi successivi
-Informazioni su come usare altre funzionalità di cache premium.
+Informazioni su come toouse premium più memorizzano nella cache le funzionalità.
 
-* [Introduzione al piano Premium di Cache Redis di Azure](cache-premium-tier-intro.md)
+* [Livello di introduzione toohello Premium di Cache Redis di Azure](cache-premium-tier-intro.md)
 
 <!-- IMAGES -->
 

@@ -1,5 +1,5 @@
 ---
-title: Domande frequenti su Azure Data Catalog | Microsoft Docs
+title: Catalogo dati di domande frequenti aaaAzure | Documenti Microsoft
 description: "Domande frequenti relative al Catalogo dati di Azure, incluse le funzionalità per la gestione, l'annotazione e l'individuazione dell'origine dati."
 services: data-catalog
 documentationcenter: 
@@ -15,31 +15,31 @@ ms.tgt_pltfrm: NA
 ms.workload: data-catalog
 ms.date: 08/15/2017
 ms.author: maroche
-ms.openlocfilehash: 11e4bc7e71b4a94c3a0eda4275745b1beb44974d
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 03f9f4b801640b2e14232c62c8fc168e42e2c393
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-data-catalog-frequently-asked-questions"></a>Domande frequenti sul Catalogo dati di Azure
-Questo articolo fornisce le risposte alle domande frequenti relative al servizio Azure Data Catalog.
+Questo articolo fornisce le risposte toofrequently frequenti domande riguardo toohello servizio di Azure Data Catalog.
 
 ## <a name="what-is-azure-data-catalog"></a>Che cos'è il Catalogo dei dati di Azure?
-Data Catalog è un servizio completamente gestito, ospitato in Microsoft Azure, che funge da sistema di registrazione e di individuazione per origini dati aziendali. Con Data Catalog, tutti gli utenti, dagli analisti ai data scientist fino agli sviluppatori, possono registrare, trovare, comprendere e utilizzare le origini dati.
+Data Catalog è un servizio completamente gestito, ospitato in Microsoft Azure, che funge da sistema di registrazione e di individuazione per origini dati aziendali. Con il catalogo dati, qualsiasi utente, gli esperti toodata gli analisti e sviluppatori, può registrare, individuare, comprendere e utilizzare le origini dati.
 
 ## <a name="what-customer-challenges-does-it-solve"></a>Quali sono le problematiche dei clienti che consente di risolvere?
-Data Catalog risolve la richiesta di individuazione dell'origine dati e dei cosiddetti "dati oscuri" in modo che gli utenti possano identificare e comprendere le origini dati aziendali.
+Gli indirizzi dei dati del catalogo hello difficoltà di individuazione dell'origine dati e di "dati scuri" in modo che gli utenti possono individuare e comprendere origini dati aziendali.
 
 ## <a name="what-are-its-target-audiences"></a>A chi è destinato?
 Data Catalog è progettato per gli utenti tecnici e non tecnici, tra cui:
 
-* Sviluppatori di dati e professionisti di analisi e business intelligence: persone responsabili della produzione di dati e contenuti di analisi a uso di altri utenti.
-* Amministratori dei dati: persone in possesso di informazioni relative ai dati, al significato dei dati e al metodo d'uso.
-* Consumer di dati: persone che devono riuscire a trovare, comprendere e connettersi con facilità ai dati necessari per svolgere il lavoro, usando uno strumento di propria scelta.
-* Team IT centrale: persone che necessitano di rendere individuabili centinaia di origini dati per gli utenti aziendali e che si occupano della supervisione della modalità d'uso dei dati e degli utenti che li usano.
+* Dati sviluppatori e professionisti di Business Intelligence e analitica: responsabili per la creazione di dati e analitica di contenuto per altri tooconsume.
+* Amministratori dei dati: gli utenti che dispongono di conoscenza di hello hello dati, cosa significa e come è previsto toobe utilizzato.
+* Consumer di dati: persone che necessario toobe tooeasily in grado di individuare, comprendere e connettere i dati toohello devono toodo relativo processo, lo strumento hello di propria scelta.
+* Centrale IT: gli utenti che necessitano individuabile toomake centinaia di origini dati da parte degli utenti di business e che necessitano di supervisione toomaintain sulla modalità di utilizzo dei dati e da chi.
 
 ## <a name="what-is-its-availability-by-region"></a>Qual è la disponibilità per area?
-Attualmente i servizi di Data Catalog sono disponibili nei data center seguenti:
+Servizi di catalogo dati attualmente disponibili in hello centri dati seguenti:
 
 * Stati Uniti occidentali
 * Stati Uniti Orientali
@@ -48,28 +48,28 @@ Attualmente i servizi di Data Catalog sono disponibili nei data center seguenti:
 * Australia orientale
 * Asia sudorientale
 
-## <a name="what-are-its-limits-on-the-number-of-data-assets"></a>Quali sono i limiti relativi al numero di asset di dati?
-L'edizione gratuita di Data Catalog è limitata a 5.000 asset di dati registrati.
+## <a name="what-are-its-limits-on-hello-number-of-data-assets"></a>Quali sono i limiti sul numero di hello di asset di dati?
+Hello edizione gratuita di catalogo dati è limitato too5, asset di dati registrati 000.
 
-L'edizione Standard di Date Catalog supporta fino a 100.000 asset di dati registrati.
+supporta l'edizione Standard di catalogo dati Hello backup too100, 000 registrato asset di dati.
 
 ## <a name="what-are-its-supported-data-source-and-asset-types"></a>Quali sono i tipi di origine dati e di asset supportati?
 Per un elenco di origini dati attualmente supportate, vedere [Riferimento per l'origine dati di Azure Data Catalog](data-catalog-dsr.md).
 
 ## <a name="how-do-i-request-support-for-another-data-source"></a>Come si richiede il supporto per un'altra origine dati?
-Per inviare le richieste di funzionalità e altri commenti, andare al [forum di Azure Data Catalog](http://go.microsoft.com/fwlink/?LinkID=616424&clcid=0x409).
+toosubmit funzionalità richieste e altri commenti e suggerimenti, andare toohello [forum di Azure Data Catalog](http://go.microsoft.com/fwlink/?LinkID=616424&clcid=0x409).
 
 ## <a name="how-do-i-get-started-with-data-catalog"></a>Come si inizia a usare Data Catalog?
-Il modo migliore per iniziare è vedere l'articolo [Introduzione ad Azure Data Catalog](data-catalog-get-started.md). In questo articolo è riportata una panoramica end-to-end delle funzionalità nel servizio.
+Hello tooget modo migliore avviato è passando troppo[Introduzione al catalogo dati](data-catalog-get-started.md). Questo articolo è una panoramica di end-to-end delle funzionalità di hello nel servizio hello.
 
 ## <a name="how-do-i-register-my-data"></a>Come si registrano i dati?
-Per registrare i dati in Data Catalog:
-1. Nell'area **Pubblica** del portale di Azure Data Catalog avviare lo strumento di registrazione di Azure Data Catalog. 
-2. Nell'applicazione di pubblicazione di Data Catalog eseguire l'accesso con le stesse credenziali usate per accedere al portale di Data Catalog.
-3. Selezionare l'origine dati e gli asset specifici che si vuole registrare.
+tooregister i dati nel catalogo dati:
+1. Nel portale di Azure Data Catalog, hello hello **pubblica** area, lo strumento di registrazione iniziale hello Azure Data Catalog. 
+2. Nel catalogo dati hello pubblicazione dell'applicazione, accedere con hello stesso credenziali utilizzate tooaccess hello portale catalogo dati.
+3. Selezionare l'origine dati hello e beni di hello specifici che si desidera tooregister.
 
 ## <a name="what-properties-does-it-extract-for-data-assets-that-are-registered"></a>Quali proprietà estrae per gli asset di dati registrati?
-Le proprietà specifiche variano in base all'origine dati, ma in genere il servizio di pubblicazione di Data Catalog estrae le informazioni seguenti:
+proprietà specifiche di Hello differisce dall'origine toodata di origine dati, ma, in generale, hello del servizio pubblicazione sul catalogo di dati estrae hello le seguenti informazioni:
 
 * Nome dell’asset
 * Tipo di risorsa
@@ -79,52 +79,52 @@ Le proprietà specifiche variano in base all'origine dati, ma in genere il servi
 * Descrizione di colonna/attributo
 
 > [!IMPORTANT]
-> La registrazione degli asset di dati con Data Catalog non sposta o copia i dati nel cloud. Registrando gli asset da un'origine dati si copiano i metadati degli asset in Azure, ma i dati rimangono nel percorso esistente dell'origine dati. L'eccezione a questa regola si rileva quando si sceglie di caricare i record di anteprima o un profilo dei dati quando si registrano gli asset. Quando si include un'anteprima, vengono copiati fino a 20 record da ogni asset e vengono archiviati come snapshot in Data Catalog. Quando si include un profilo dei dati, le informazioni aggregate vengono calcolate e incluse nei metadati archiviati nel catalogo. Le informazioni aggregate possono includere le dimensioni delle tabelle, la percentuale di valori null per colonna o i valori minimi, massimi e medi per le colonne. 
+> La registrazione di asset di dati con Data Catalog non spostare o copiare i dati nel cloud toohello. Registrazione delle risorse da un'origine dati copie hello tooAzure i metadati degli asset, ma hello dati rimangono nella posizione di origine dati esistente hello. regola di Hello eccezione toothis è se si sceglie record di anteprima tooupload o un profilo dati quando si registra l'attività hello. Quando si include un'anteprima, backup too20 record vengono copiati da ogni asset e archiviati come snapshot nel catalogo dati. Quando si include un profilo dati, informazioni di aggregazione vengano calcolate e inclusi nei metadati hello che vengono archiviati nel catalogo di hello. Informazioni di aggregazione possono includere hello dimensione delle tabelle, hello percentuale di valori null per ogni colonna o hello minimo, massimo e medi i valori per le colonne. 
 >
 >
 
 > [!NOTE]
-> Per le origini dati come SQL Server Analysis Services che hanno una proprietà **Description** ottimale, l'applicazione di pubblicazione di Data Catalog estrae il valore della proprietà. Per i database relazionali di SQL Server, che non hanno una proprietà **Description** ottimale, l'applicazione di pubblicazione di Data Catalog estrae il valore dalla proprietà estesa **ms_description** per oggetti e colonne. Per altre informazioni, vedere [Uso di proprietà estese su oggetti di database](https://technet.microsoft.com/library/ms190243%28v=sql.105%29.aspx).
+> Per le origini dati, ad esempio SQL Server Analysis Services con un costrutto **descrizione** proprietà hello catalogo dati di pubblicazione dell'applicazione estrae il valore della proprietà. Per i database relazionali di SQL Server, che non dispongono di un costrutto **descrizione** proprietà hello applicazione per la pubblicazione del catalogo dati estrae il valore di hello da hello **ms_description** proprietà estesa per gli oggetti e colonne. Per altre informazioni, vedere [Uso di proprietà estese su oggetti di database](https://technet.microsoft.com/library/ms190243%28v=sql.105%29.aspx).
 >
 >
 
-## <a name="how-long-should-it-take-for-newly-registered-assets-to-appear-in-the-catalog"></a>Quanto tempo deve trascorrere prima che gli asset appena registrati vengano visualizzati nel catalogo?
-Dopo aver registrato gli asset in Data Catalog è possibile che trascorrano da 5 a 10 secondi prima che vengano visualizzati nel portale di Data Catalog.
+## <a name="how-long-should-it-take-for-newly-registered-assets-tooappear-in-hello-catalog"></a>Quanto tempo necessario per tooappear asset appena registrati nel catalogo di hello?
+Dopo aver registrato gli asset con il catalogo dati, potrebbe esserci un periodo di 5 secondi too10 prima che vengano visualizzati nel portale di hello catalogo dati.
 
-## <a name="how-do-i-annotate-and-enrich-the-metadata-for-my-registered-data-assets"></a>Come si annotano e ampliano i metadati per l'asset di dati registrato?
-Il modo più semplice per fornire i metadati agli asset registrati consiste nel selezionare l'asset nel portale di Data Catalog e immettere i valori nel riquadro delle proprietà o dello schema per l'oggetto selezionato.
+## <a name="how-do-i-annotate-and-enrich-hello-metadata-for-my-registered-data-assets"></a>Come aggiungere annotazioni e arricchire hello metadati per l'asset di dati registrati?
+Hello più semplice modo tooprovide i metadati per gli asset registrati è bene hello tooselect nel portale di catalogo dati hello e quindi immettere i valori hello nel riquadro Proprietà hello o dello schema per l'oggetto selezionato hello.
 
-È inoltre possibile fornire alcuni metadati, ad esempio esperti e tag, durante il processo di registrazione. I valori forniti nel servizio di pubblicazione di Data Catalog vengono applicati a tutti gli asset che si trovano in fase di registrazione. Per visualizzare gli oggetti registrati recentemente nel portale per aggiungere annotazioni, selezionare il pulsante **Visualizza portale** nella schermata finale dell'applicazione di pubblicazione di Data Catalog.
+È anche possibile fornire alcuni metadati, ad esempio esperti e tag, durante il processo di registrazione hello. i valori di Hello fornito nel servizio di pubblicazione del catalogo dati hello validi tooall asset viene registrato in quel momento. oggetti tooview hello recentemente registrati nel portale di hello per un'ulteriore annotazione, seleziona hello **portale visualizzazione** pulsante nella schermata finale di hello di hello applicazione per la pubblicazione del catalogo dati.
 
 ## <a name="how-do-i-delete-my-registered-data-objects"></a>Come si eliminano gli oggetti dati registrati?
-È possibile eliminare un oggetto da Data Catalog selezionandolo nel portale e quindi scegliendo il pulsante **Elimina**. Rimuovendo l'oggetto vengono rimossi da Data Catalog anche i metadati, ma non l'origine dati sottostante.
+È possibile eliminare un oggetto dal catalogo dati selezionando oggetto hello nel portale di hello e quindi fare clic su hello **eliminare** pulsante. Rimozione oggetto hello rimuove i metadati dal catalogo dati, ma non modifica origine dati sottostante hello.
 
 ## <a name="what-is-an-expert"></a>Che cos'è un esperto?
-Un esperto è una persona che ha una prospettiva informata su un oggetto dati. Un oggetto può avere più esperti. Un esperto non deve necessariamente essere il "proprietario" dell'oggetto, ma è una persona che sa come i dati possono e devono essere usati.
+Un esperto è una persona che ha una prospettiva informata su un oggetto dati. Un oggetto può avere più esperti. Un esperto non necessita di hello toobe "proprietario" per un oggetto, ma è semplicemente un utente che sa come dati hello possono e deve essere utilizzato.
 
-## <a name="how-do-i-share-information-with-the-data-catalog-team-if-i-encounter-problems"></a>Come si condividono le informazioni con il team di Data Catalog se si riscontrano problemi?
-Per segnalare problemi e condividere informazioni e domande, andare al [forum di Azure Data Catalog](http://go.microsoft.com/fwlink/?LinkID=616424&clcid=0x409).
+## <a name="how-do-i-share-information-with-hello-data-catalog-team-if-i-encounter-problems"></a>Come è possibile condividere informazioni con il team di catalogo dati hello se verificano problemi?
+problemi di tooreport, condividere informazioni e porre domande, visita toohello [forum di Azure Data Catalog](http://go.microsoft.com/fwlink/?LinkID=616424&clcid=0x409).
 
-## <a name="does-the-catalog-work-with-another-data-source-that-im-interested-in"></a>Il catalogo funziona con un'altra origine dati a cui si è interessati?
-Grazie al lavoro che si sta svolgendo, in futuro è prevista l'aggiunta di altre origini dati a Data Catalog. Se si è interessati al supporto di un'origine dati specifica, scrivere un suggerimento in proposito (o esprimere il proprio sostegno se già suggerita) andando al [forum di Azure Data Catalog](http://go.microsoft.com/fwlink/?LinkID=616424&clcid=0x409).
+## <a name="does-hello-catalog-work-with-another-data-source-that-im-interested-in"></a>Esegue operazioni di catalogo hello con un'altra origine dati che desidero?
+Si sta lavorando attivamente aggiungendo ulteriori tooData di origini dati del catalogo. Se si desidera toosee un'origine dati specifica supportata, consigliabile (o voice il supporto tecnico se è già stato suggerito) da passare toohello [forum di Azure Data Catalog](http://go.microsoft.com/fwlink/?LinkID=616424&clcid=0x409).
 
-## <a name="how-is-azure-data-catalog-related-to-the-data-catalog-in-power-bi-for-office-365"></a>Qual è la correlazione tra Azure Data Catalog e il catalogo dati di Power BI per Office 365?
-È possibile pensare ad Azure Data Catalog come a un'evoluzione del catalogo dati in Power BI. A partire dalla primavera 2017, Azure Data Catalog viene usato per abilitare la condivisione e l'individuazione delle query in Excel 2016 e Power Query per Excel. Le funzionalità del catalogo dati in Excel sono disponibili per gli utenti con licenza Power BI Pro.
+## <a name="how-is-azure-data-catalog-related-toohello-data-catalog-in-power-bi-for-office-365"></a>Come è Azure Data Catalog correlati toohello catalogo dati in Power BI per Office 365?
+È possibile considerare come un'evoluzione del catalogo dati in Power BI hello Azure Data Catalog. A partire da spring 2017, Azure Data Catalog è usato tooenable hello condivisione e l'individuazione di query in Excel 2016 e Power Query per Excel. Funzionalità di catalogo dati di Excel sono disponibili toousers con licenze di Power BI Pro.
 
-## <a name="what-permissions-do-i-need-to-register-assets-with-data-catalog"></a>Quali autorizzazioni sono necessarie per registrare gli asset in Data Catalog?
-Per eseguire lo strumento di registrazione di Data Catalog, sono necessarie autorizzazioni per l'origine dati che consentano di leggere i metadati dall'origine. Per includere anche un'anteprima, è necessario avere autorizzazioni che consentono di leggere i dati dagli oggetti in fase di registrazione.
+## <a name="what-permissions-do-i-need-tooregister-assets-with-data-catalog"></a>Cosa fare le autorizzazioni sono necessarie risorse tooregister con catalogo dati?
+strumento di registrazione toorun hello catalogo dati, sono necessarie autorizzazioni sull'origine dati hello che consente di determinare i metadati di hello tooread dall'origine di hello. tooalso includono un'anteprima, è necessario disporre delle autorizzazioni che consentono di tooread nei dati hello dagli oggetti hello in corso la registrazione.
 
 ## <a name="will-data-catalog-be-made-available-for-on-premises-deployment-as-well"></a>Data Catalog sarà disponibile anche per la distribuzione locale?
-Data Catalog è un servizio cloud che può usare origini dati locali e del cloud per fornire una soluzione ibrida di individuazione dell'origine dati. Al momento non è prevista una versione del servizio Data Catalog da eseguire in locale.
+Catalogo dati è un servizio cloud che può funzionare con toodeliver di origini dati sia in locale e cloud soluzione ibrida individuazione origine dati. Non è attualmente previsto per una versione di hello servizio Catalogo dati che viene eseguito in locale.
 
-## <a name="can-i-extract-more-or-richer-metadata-from-the-data-sources-i-register"></a>È possibile estrarre metadati più numerosi o migliorati dalle origini dati registrate?
-Si sta lavorando attivamente per ampliare le funzionalità di Data Catalog. Se si è interessati all'estrazione di altri metadati dall'origine dati durante la registrazione, scrivere un suggerimento (o esprimere il proprio sostegno se già suggerito) nel [forum di Azure Data Catalog](http://go.microsoft.com/fwlink/?LinkID=616424&clcid=0x409). In futuro verrà consentito a terze parti di aggiungere nuovi tipi di origine dati tramite un'API di estensibilità.
+## <a name="can-i-extract-more-or-richer-metadata-from-hello-data-sources-i-register"></a>È possibile estrarre metadati più completi o altre origini di dati hello che la registrazione?
+Stiamo lavorando attivamente funzionalità hello tooexpand del catalogo dati. Se si desidera toohave metadati aggiuntivi estratti dall'origine dati hello durante la registrazione, suggerire (oppure voto perché, se è già stato suggerito) in hello [forum di Azure Data Catalog](http://go.microsoft.com/fwlink/?LinkID=616424&clcid=0x409). In futuro hello, verrà consentito a terzi tooadd nuovi tipi di origini dati tramite un'API di estensibilità.
 
-## <a name="how-do-i-restrict-the-visibility-of-registered-data-assets-so-that-only-certain-people-can-discover-them"></a>Come si limita la visibilità degli asset di dati registrati, in modo che solo determinati utenti possano individuarli?
-Selezionare gli asset di dati in Data Catalog e fare clic sul pulsante **Assumi proprietà**. I proprietari degli asset di dati in Data Catalog possono modificare le impostazioni di visibilità per consentire a tutti gli utenti di trovare gli asset di proprietà o limitare la visibilità a utenti specifici.
+## <a name="how-do-i-restrict-hello-visibility-of-registered-data-assets-so-that-only-certain-people-can-discover-them"></a>Come limitare la visibilità di hello degli asset di dati registrata, in modo che solo determinati utenti possono individuarli?
+Selezionare asset di dati hello in hello catalogo dati e quindi fare clic su hello **Take Ownership** pulsante. I proprietari degli asset di dati nel catalogo dati è possono modificare la visibilità di hello tooeither impostazioni hello di toodiscover utenti tutte le risorse di proprietà come consentire o limitare gli utenti toospecific visibilità.
 
-## <a name="how-do-i-update-the-registration-for-a-data-asset-so-that-changes-in-the-data-source-are-reflected-in-the-catalog"></a>Come si aggiorna la registrazione di un asset di dati in modo che le modifiche apportate nell'origine dati vengano riflesse nel catalogo?
-Per aggiornare i metadati degli asset di dati già registrati nel catalogo, è sufficiente registrare nuovamente l'origine dati che contiene gli asset. Le modifiche nell'origine dati, ad esempio l'aggiunta o la rimozione di colonne da tabelle o viste, vengono aggiornate nel catalogo, ma tutte le annotazioni fornite dagli utenti vengono conservate.
+## <a name="how-do-i-update-hello-registration-for-a-data-asset-so-that-changes-in-hello-data-source-are-reflected-in-hello-catalog"></a>Come aggiornare la registrazione di hello per un asset di dati in modo che le modifiche nell'origine dati hello vengono riflesse nel catalogo di hello?
+semplicemente tooupdate hello metadati per gli asset di dati che sono già registrati nel catalogo di hello, registrare nuovamente origine dati hello che contiene risorse hello. Tutte le modifiche nell'origine dati hello, ad esempio aggiunta o rimozione di tabelle o viste, le colonne vengono aggiornate nel catalogo di hello, ma vengono mantenute tutte le annotazioni fornite dagli utenti.
 
 ## <a name="my-question-isnt-answered-here-where-can-i-go-for-answers"></a>Non sono disponibili risposte a una domanda. Dove è possibile trovarle?
-Passare al [forum di Azure Data Catalog](http://go.microsoft.com/fwlink/?LinkID=616424&clcid=0x409). dove le domande frequenti trovano risposta.
+Passare toohello [forum di Azure Data Catalog](http://go.microsoft.com/fwlink/?LinkID=616424&clcid=0x409). dove le domande frequenti trovano risposta.

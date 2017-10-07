@@ -1,6 +1,6 @@
 ---
-title: Autenticazione IIS e server Azure MFA | Microsoft Docs
-description: "Questa è la pagina di Azure Multi-Factor Authentication contenente le informazioni utili per distribuire l'autenticazione IIS e il server Azure Multi-Factor Authentication."
+title: "aaaIIS l'autenticazione e Server di autenticazione a più fattori di Azure | Documenti Microsoft"
+description: Si tratta hello Azure multi-factor authentication pagina di supporto nella distribuzione dell'autenticazione IIS e il Server Azure multi-Factor Authentication.
 services: multi-factor-authentication
 documentationcenter: 
 author: kgremban
@@ -15,64 +15,64 @@ ms.date: 06/16/2017
 ms.author: kgremban
 ms.reviewer: yossib
 ms.custom: H1Hack27Feb2017,it-pro
-ms.openlocfilehash: ab6f9110dccd3cfc15092f535650e8d8cb1af13c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 74bd39c2644e2bca0880baea3824cad4c9215111
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="configure-azure-multi-factor-authentication-server-for-iis-web-apps"></a>Configurazione di Azure Multi-Factor Authentication per le App Web IIS
 
-Usare la sezione Autenticazione IIS del server Azure Multi-Factor Authentication (MFA) per abilitare e configurare l'autenticazione IIS per l'integrazione con le applicazioni Web Microsoft IIS. Il server Azure MFA installa un plug-in che può filtrare le richieste inoltrate al server Web IIS per aggiungere Azure Multi-Factor Authentication. Il plug-in di IIS fornisce inoltre il supporto per l'autenticazione basata su form e l'autenticazione HTTP integrata di Windows. È possibile anche configurare gli indirizzi IP attendibili in modo da escludere gli indirizzi IP interni dall'autenticazione a due fattori.
+Utilizzare sezione autenticazione IIS hello di hello Server Azure multi-Factor Authentication (MFA) tooenable e configurare l'autenticazione IIS per l'integrazione con applicazioni web IIS Microsoft. Hello Azure MFA Server viene installato un plug-in che è possibile filtrare le richieste inoltrate toohello IIS web server tooadd Azure multi-Factor Authentication. Hello plug-in IIS fornisce supporto per l'autenticazione basata su Form e l'autenticazione HTTP integrata di Windows. Attendibili che gli indirizzi IP possono anche essere tooexempt configurato gli indirizzi IP interni dall'autenticazione a due fattori.
 
 ![Autenticazione IIS](./media/multi-factor-authentication-get-started-server-iis/iis.png)
 
 ## <a name="using-form-based-iis-authentication-with-azure-multi-factor-authentication-server"></a>Uso dell'autenticazione IIS basata su form con il server Azure Multi-Factor Authentication
-Per proteggere un'applicazione Web IIS che usa l'autenticazione basata su form, installare il server Azure Multi-Factor Authentication nel server Web IIS e configurare il server seguendo questa procedura:
+toosecure IIS web dell'applicazione che utilizza l'autenticazione basata su form, installare hello del Server Azure multi-Factor Authentication nel server web IIS di hello e configurare hello Server per ogni procedura hello:
 
-1. Nel server Azure Multi-Factor Authentication fare clic sull'icona Autenticazione IIS nel menu a sinistra.
-2. Fare clic sulla scheda **Basata su form**.
+1. In hello del Server Azure multi-Factor Authentication, fare clic sull'icona autenticazione IIS hello nel menu a sinistra di hello.
+2. Fare clic su hello **basata su Form** scheda.
 3. Fare clic su **Aggiungi**.
-4. Per rilevare automaticamente le variabili di dominio, nome utente e password, immettere l'URL di accesso, ad esempio https://localhost/contoso/auth/login.aspx, nella finestra di dialogo Configura automaticamente sito Web basato su form e fare clic su **OK**.
-5. Se tutti gli utenti sono già stati o verranno importati nel server e saranno soggetti all'autenticazione a più fattori, selezionare la casella **Richiedi corrispondenza utente di Multi-Factor Authentication**. Se un numero significativo di utenti non è ancora stato importato nel Server e/o esenti dall'autenticazione a più fattori, lasciare deselezionata la casella.
-6. Se le variabili di pagina non possono essere rilevate automaticamente, fare clic su **Specifica manualmente** nella finestra di dialogo Configura automaticamente sito Web basato su form.
-7. Nella finestra di dialogo Aggiungi sito Web immettere l'URL alla pagina di accesso nel campo URL di invio e immettere un nome di applicazione (facoltativo). Il nome dell'applicazione viene visualizzato nei report di Azure multi-Factor Authentication e potrebbe essere visualizzato all'interno di messaggi di autenticazione dell'App Mobile o SMS.
-8. Selezionare il formato di richiesta corretto È impostato su **POST or GET** (OTTIENI) per la maggior parte delle applicazioni Web.
-9. Immettere la variabile nome utente, la variabile password e la variabile dominio (se è presente nella pagina di accesso). Per individuare i nomi delle caselle di input, passare alla pagina di accesso in un Web browser, fare clic con il pulsante destro del mouse nella pagina e quindi scegliere **Visualizza origine**.
-10. Selezionare la casella **Require Azure Multi-Factor Authentication user match** (Richiedi corrispondenza utente di Azure Multi-Factor Authentication) se tutti gli utenti sono già stati o verranno importati nel server e saranno soggetti all'autenticazione a più fattori. Se un numero significativo di utenti non è ancora stato importato nel Server e/o esenti dall'autenticazione a più fattori, lasciare deselezionata la casella.
-11. Fare clic su **Avanzate** per rivedere le impostazioni avanzate, tra cui:
+4. le variabili nome utente, password e dominio toodetect automaticamente, immettere hello URL di accesso (ad esempio, https://localhost/contoso/auth/login.aspx) nella finestra di dialogo Configura automaticamente sito Web di hello e fare clic su **OK**.
+5. Controllare hello **corrispondenza utente di multi-Factor Authentication richiedono** se tutti gli utenti sono stati o verranno importati nel Server hello e soggetto toomulti-factor authentication. Se un numero significativo di utenti non è ancora stato importato nel Server hello e/o esenti dall'autenticazione a più fattori, lasciare deselezionata la casella hello.
+6. Se le variabili di pagina hello non possono essere rilevate automaticamente, fare clic su **specificare manualmente** nella finestra di dialogo Configura automaticamente sito Web di hello.
+7. Nella finestra di dialogo Aggiungi sito Web di hello, immettere nella pagina account di accesso URL toohello hello nel campo URL di invio hello e immettere un nome di applicazione (facoltativo). nome dell'applicazione Hello viene visualizzato nei report di Azure multi-Factor Authentication e potrebbe essere visualizzato all'interno di messaggi di autenticazione SMS o App per dispositivi mobili.
+8. Selezionare il formato di richiesta corretto hello. Questa proprietà è impostata troppo**POST o GET** per la maggior parte delle applicazioni web.
+9. Immettere variabile nome utente hello, la variabile Password e variabili di dominio (se è presente nella pagina di accesso hello). nomi hello toofind di hello caselle di input, passare toohello pagina di accesso in un web browser, fare clic su pagina hello e selezionare **Visualizza origine**.
+10. Controllare hello **corrispondenza utente richiedono Azure multi-Factor Authentication** se tutti gli utenti sono stati o verranno importati nel Server hello e soggetto toomulti-factor authentication. Se un numero significativo di utenti non è ancora stato importato nel Server hello e/o esenti dall'autenticazione a più fattori, lasciare deselezionata la casella hello.
+11. Fare clic su **avanzate** tooreview le impostazioni avanzate, tra cui:
 
   - Selezionare un file di paging di rifiuto personalizzato
-  - Memorizzare nella cache le autenticazioni riuscite per il sito Web per un periodo di tempo tramite cookie
-  - Scegliere se autenticare le credenziali primarie in un dominio di Windows, in una directory LDAP o in un server RADIUS.
+  - Sito Web toohello di cache le autenticazioni riuscite per un periodo di tempo utilizzando cookie
+  - Selezionare se credenziali tooauthenticate hello primario in un dominio di Windows, la directory LDAP. o in un server RADIUS.
 
-12. Fare clic su **OK** per tornare alla finestra di dialogo Aggiungi sito Web basato su form.
+12. Fare clic su **OK** finestra di dialogo Aggiungi sito Web toohello tooreturn.
 13. Fare clic su **OK**.
-14. Dopo aver rilevato o immesso le variabili di pagina e URL, i dati del sito Web vengono visualizzati nel pannello Basata su form.
+14. Una volta hello URL e rilevate o immesse le variabili di pagina, vengono visualizzati dati del sito Web hello in hello pannello basata su Form.
 
 ## <a name="using-integrated-windows-authentication-with-azure-multi-factor-authentication-server"></a>Uso dell'autenticazione integrata di Windows con il server Azure Multi-Factor Authentication
-Per proteggere un'applicazione Web IIS che usa l'autenticazione HTTP integrata di Windows, installare il server Azure MFA nel server Web IIS e configurare il server seguendo questa procedura:
+toosecure IIS web dell'applicazione che utilizza l'autenticazione HTTP integrata di Windows, installare hello Azure MFA Server nel server web IIS di hello, quindi configurare hello Server con hello alla procedura seguente:
 
-1. Nel server Azure Multi-Factor Authentication fare clic sull'icona Autenticazione IIS nel menu a sinistra.
-2. Fare clic sulla scheda **HTTP**.
+1. In hello del Server Azure multi-Factor Authentication, fare clic sull'icona autenticazione IIS hello nel menu a sinistra di hello.
+2. Fare clic su hello **HTTP** scheda.
 3. Fare clic su **Aggiungi**.
-4. Nella finestra di dialogo Aggiungi URL di base immettere l'URL del sito Web in cui viene eseguita l'autenticazione HTTP, ad esempio http://localhost/owa, e immettere il nome dell'applicazione (facoltativo). Il nome dell'applicazione viene visualizzato nei report di Azure multi-Factor Authentication e potrebbe essere visualizzato all'interno di messaggi di autenticazione dell'App Mobile o SMS.
-5. Modificare i valori relativi al timeout di inattività e al tempo massimo delle sessioni se i valori predefiniti non sono sufficienti.
-6. Se tutti gli utenti sono già stati o verranno importati nel server e saranno soggetti all'autenticazione a più fattori, selezionare la casella **Richiedi corrispondenza utente di Multi-Factor Authentication**. Se un numero significativo di utenti non è ancora stato importato nel Server e/o esenti dall'autenticazione a più fattori, lasciare deselezionata la casella.
-7. Se lo si desidera, selezionare la casella **Cookie cache** (Cache di cookie).
+4. Nella finestra di dialogo Aggiungi URL di Base di hello, immettere l'URL di hello per il sito Web di hello in cui viene eseguita l'autenticazione HTTP (ad esempio, http://localhost/owa) e specificare un nome di applicazione (facoltativo). nome dell'applicazione Hello viene visualizzato nei report di Azure multi-Factor Authentication e potrebbe essere visualizzato all'interno di messaggi di autenticazione SMS o App per dispositivi mobili.
+5. Se i timeout di inattività hello e massimo sessione predefinita hello non è sufficiente.
+6. Controllare hello **corrispondenza utente di multi-Factor Authentication richiedono** se tutti gli utenti sono stati o verranno importati nel Server hello e soggetto toomulti-factor authentication. Se un numero significativo di utenti non è ancora stato importato nel Server hello e/o esenti dall'autenticazione a più fattori, lasciare deselezionata la casella hello.
+7. Controllare hello **cache dei Cookie** casella se si desidera.
 8. Fare clic su **OK**.
 
 ## <a name="enable-iis-plug-ins-for-azure-multi-factor-authentication-server"></a>Abilitare i plug-in di IIS per il server Azure Multi-Factor Authentication
-Dopo aver configurato gli URL e le impostazioni dell'autenticazione HTTP o basata su form, selezionare le destinazioni in cui i plug-in di IIS del server Azure Multi-Factor Authentication devono essere caricati e abilitati in IIS. Usare la procedura seguente:
+Dopo aver configurato hello basata su Form o URL dell'autenticazione HTTP e impostazioni, selezionare hello posizioni in cui hello plug-in IIS di Azure multi-Factor Authentication deve essere caricato e abilitato in IIS. Utilizzare hello seguente procedura:
 
-1. Se si esegue IIS 6, fare clic sulla scheda **ISAPI**. Selezionare il sito Web che esegue l'applicazione Web (ad esempio "Sito Web predefinito") per abilitare il plug-in dei filtri ISAPI di Azure Multi-Factor Authentication per tale sito.
-2. Se si esegue IIS 7 o versione successiva, fare clic sulla scheda **Modulo nativo**. Selezionare il server, i siti Web o le applicazioni per abilitare il plug-in di IIS ai livelli desiderati.
-3. Scegliere la casella **Abilita autenticazione IIS** nella parte superiore della schermata. A questo punto l'applicazione IIS selezionata è protetta da Azure Multi-Factor Authentication. Verificare che gli utenti siano stati importati nel server.
+1. Se in esecuzione in IIS 6, fare clic su hello **ISAPI** scheda. Sito Web selezionare hello hello applicazione web è in esecuzione in (ad esempio, sito Web predefinito) tooenable hello Azure multi-Factor Authentication filtro ISAPI plug-in per il sito.
+2. Se in esecuzione in IIS 7 o versione successiva, fare clic su hello **modulo nativo** scheda. Selezionare server hello, siti Web o applicazioni tooenable hello plug-in IIS livelli hello desiderato.
+3. Fare clic su hello **autenticazione IIS abilitare** casella in alto hello hello. Applicazione di IIS hello selezionata è ora protetta da Azure multi-Factor Authentication. Verificare che gli utenti siano stati importati nel Server hello.
 
 ## <a name="trusted-ips"></a>IP attendibili
-Il provider di identità attendibili consente agli utenti di ignorare Azure multi-Factor Authentication per le richieste del sito Web provenienti da specifici indirizzi IP o subnet. Ad esempio, è possibile escludere gli utenti da Azure multi-Factor Authentication durante l'accesso dall'ufficio. A tale scopo, specificare la subnet dell'ufficio come voce di Indirizzi IP attendibili. Per configurare gli indirizzi IP attendibili, seguire questa procedura:
+Hello gli indirizzi IP attendibili consente agli utenti toobypass Azure multi-Factor Authentication per le richieste del sito Web provenienti da specifici indirizzi IP o subnet. Ad esempio, è consigliabile tooexempt utenti da Azure multi-Factor Authentication durante l'accesso dall'ufficio hello. A tale scopo, è necessario specificare subnet dell'ufficio hello come una voce di indirizzi IP attendibili. tooconfigure indirizzi IP attendibili, utilizzare hello seguente procedura:
 
-1. Fare clic sulla scheda **IP attendibili** nella sezione Autenticazione IIS.
+1. Nella sezione autenticazione IIS hello, fare clic su hello **gli indirizzi IP attendibili** scheda.
 2. Fare clic su **Aggiungi**.
-3. Quando viene visualizzata la finestra di dialogo Add Trusted IPs (Aggiungi IP attendibili), selezionare il pulsante di opzione **IP singolo**, **Intervallo IP** o **Subnet**.
-4. Immettere l'indirizzo IP, intervallo di indirizzi IP o subnet devono essere incluse nell'elenco. Se si immette una subnet, selezionare la Netmask appropriata e fare clic su **OK**. L'elenco whitelist è stato aggiunto.
+3. Quando viene visualizzata la finestra di dialogo di hello aggiungere gli indirizzi IP attendibili, selezionare hello **IP singolo**, **intervallo IP**, o **Subnet** pulsante di opzione.
+4. Immettere l'indirizzo IP hello, intervallo di indirizzi IP o subnet che deve essere abilitata. Se l'immissione di una subnet, hello seleziona la Netmask appropriata e fare clic su **OK**. ora è stata aggiunta Hello whitelist.

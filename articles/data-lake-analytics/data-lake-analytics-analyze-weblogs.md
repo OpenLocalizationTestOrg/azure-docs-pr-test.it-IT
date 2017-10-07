@@ -1,6 +1,6 @@
 ---
-title: Analizzare i log dei siti Web con Azure Data Lake Analytics | Documentazione Microsoft
-description: 'Informazioni su come analizzare i log dei siti Web con Analisi Azure Data Lake. '
+title: i log di sito Web aaaAnalyze usando Azure Data Lake Analitica | Documenti Microsoft
+description: 'Informazioni su come sito Web tooanalyze registra utilizzando Data Lake Analitica. '
 services: data-lake-analytics
 documentationcenter: 
 author: saveenr
@@ -14,63 +14,63 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 12/05/2016
 ms.author: saveenr
-ms.openlocfilehash: 25fbbe97d26491fc421f4821315761c18e523ec8
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d27aaca95ed2b643cfed7a17b0066bf7fa4a1bf5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="analyze-website-logs-using-azure-data-lake-analytics"></a>Analizzare i log dei siti Web con Azure Data Lake Analytics
-Informazioni su come analizzare i log dei siti Web con Analisi Data Lake, in particolare come scoprire quali referrer hanno riscontrato errori durante la visita al il sito Web.
+Informazioni su come i log di sito Web di tooanalyze tramite Data Lake Analitica, specialmente su come individuare quali riferimenti eseguito errori quando ha tentato di sito Web di hello toovisit.
 
 ## <a name="prerequisites"></a>Prerequisiti
 * **Visual Studio 2015 o Visual Studio 2013**.
 * **[Data Lake Tools per Visual Studio](http://aka.ms/adltoolsvs)**.
 
-    Dopo avere installato Strumenti Data Lake per Visual Studio, in Visual Studio verrà visualizzata una voce **Data Lake** nel menu **Strumenti**:
+    Una volta Data Lake Tools per Visual Studio è installato, verrà visualizzato un **Data Lake** elemento hello **strumenti** menu in Visual Studio:
 
     ![Menu U-SQL di Visual Studio](./media/data-lake-analytics-data-lake-tools-get-started/data-lake-analytics-data-lake-tools-menu.png)
-* **Conoscenza di base di Analisi Data Lake e Data Lake Tools per Visual Studio**. Per iniziare, vedere:
+* **Conoscenza di base del Data Lake Analitica e hello Data Lake Tools per Visual Studio**. tooget introduzione, vedere:
 
   * [Sviluppare script U-SQL con Data Lake Tools per Visual Studio](data-lake-analytics-data-lake-tools-get-started.md).
 * **Account Analisi Data Lake.**  Vedere la sezione relativa alla [creazione di un account di Azure Data Lake Analytics](data-lake-analytics-get-started-portal.md).
-* **Caricare i dati di esempio nell'account Analisi Data Lake.** Vedere [Per copiare file di dati di esempio](data-lake-analytics-get-started-portal.md).
+* **Caricamento account Data Lake Analitica toohello di hello esempio dati.** Vedere [file di dati di esempio toocopy](data-lake-analytics-get-started-portal.md).
 
-    Per eseguire un processo di Analisi Data Lake, sanno necessari alcuni dati. Anche se Data Lake Tools supporta il caricamento di dati, si userà il portale per caricare i dati di esempio e seguire più facilmente questa esercitazione.
+    un processo di Data Lake Analitica toorun, sarà necessario alcuni dati. Anche se hello Data Lake Tools supporta il caricamento di dati, si utilizzerà hello tooupload portale hello esempio dati toomake questa esercitazione toofollow più semplice.
 
-## <a name="connect-to-azure"></a>Connect to Azure
-Prima di poter compilare e testare qualsiasi script U-SQL, è necessario connettersi ad Azure.
+## <a name="connect-tooazure"></a>Connettersi tooAzure
+Prima di poter compilare e testare qualsiasi script U-SQL, è necessario innanzitutto connettersi tooAzure.
 
-**Per connettersi ad Analisi Data Lake**
+**tooconnect tooData Lake Analitica**
 
 1. Aprire Visual Studio.
 2. Fare clic su **Data Lake > Opzioni e impostazioni**.
-3. Fare clic su **Accedi** o **Cambia utente** se un altro utente ha già eseguito l'accesso e seguire le istruzioni.
-4. Fare clic su **OK** per chiudere la finestra di dialogo Opzioni e impostazioni.
+3. Fare clic su **Accedi**, o **Cambia utente** se un utente ha effettuato l'accesso e seguire le istruzioni di hello.
+4. Fare clic su **OK** finestra Opzioni e impostazioni di hello tooclose.
 
-**Per accedere agli account Analisi Data Lake personali**
+**toobrowse agli account Data Lake Analitica**
 
 1. In Visual Studio aprire **Esplora server** premendo i tasti **CTRL + ALT + S**.
-2. Da **Esplora server** espandere **Azure** e quindi **Data Lake Analytics**. Verrà visualizzato l'elenco degli account di Analisi Data Lake personali, se disponibili. Non è possibile creare account Analisi Data Lake da Visual Studio. Per creare un account, vedere [Introduzione ad Azure Data Lake Analytics con il portale di Azure](data-lake-analytics-get-started-portal.md) o [Introduzione ad Azure Data Lake Analytics con Azure PowerShell](data-lake-analytics-get-started-powershell.md).
+2. Da **Esplora server** espandere **Azure** e quindi **Data Lake Analytics**. Verrà visualizzato l'elenco degli account di Analisi Data Lake personali, se disponibili. È possibile creare gli account Data Lake Analitica da studio hello. toocreate un account, vedere [Guida introduttiva di Azure Data Lake Analitica tramite il portale di Azure](data-lake-analytics-get-started-portal.md) o [Guida introduttiva di Azure Data Lake Analitica con Azure PowerShell](data-lake-analytics-get-started-powershell.md).
 
 ## <a name="develop-u-sql-application"></a>Sviluppare un'applicazione U-SQL
-Un'applicazione U-SQL è principalmente uno script U-SQL. Per altre informazioni su U-SQL, vedere [Introduzione a U-SQL](data-lake-analytics-u-sql-get-started.md).
+Un'applicazione U-SQL è principalmente uno script U-SQL. toolearn ulteriori informazioni su U-SQL, vedere [introduzione U-SQL](data-lake-analytics-u-sql-get-started.md).
 
-È possibile aggiungere all'applicazione operatori addizione definiti dall'utente.  Per altre informazioni, vedere [Sviluppare operatori U-SQL definiti dall'utente per i processi di Analisi Data Lake](data-lake-analytics-u-sql-develop-user-defined-operators.md).
+È possibile aggiungere l'applicazione di toohello aggiunta agli operatori definiti dall'utente.  Per altre informazioni, vedere [Sviluppare operatori U-SQL definiti dall'utente per i processi di Analisi Data Lake](data-lake-analytics-u-sql-develop-user-defined-operators.md).
 
-**Per creare e inviare un processo di Analisi Data Lake**
+**toocreate e inviare un processo di Data Lake Analitica**
 
-1. Fare clic su **File > Nuovo > Progetto**.
-2. Selezionare il tipo Progetto U-SQL.
+1. Fare clic su hello **File > Nuovo > progetto**.
+2. Selezionare il tipo di progetto U-SQL hello.
 
     ![nuovo progetto U-SQL di Visual Studio](./media/data-lake-analytics-data-lake-tools-get-started/data-lake-analytics-data-lake-tools-new-project.png)
 3. Fare clic su **OK**. Visual Studio crea una soluzione con un file Script.usql.
-4. Immettere lo script seguente nel file Script.usql:
+4. Immettere lo script seguente nel file Script.usql hello hello:
 
-        // Create a database for easy reuse, so you don't need to read from a file every time.
+        // Create a database for easy reuse, so you don't need tooread from a file every time.
         CREATE DATABASE IF NOT EXISTS SampleDBTutorials;
 
-        // Create a Table valued function. TVF ensures that your jobs fetch data from the weblog file with the correct schema.
+        // Create a Table valued function. TVF ensures that your jobs fetch data from hello weblog file with hello correct schema.
         DROP FUNCTION IF EXISTS SampleDBTutorials.dbo.WeblogsView;
         CREATE FUNCTION SampleDBTutorials.dbo.WeblogsView()
         RETURNS @result TABLE
@@ -144,38 +144,38 @@ Un'applicazione U-SQL è principalmente uno script U-SQL. Per altre informazioni
                 cs_referer,
                 sc_status;
 
-    Per informazioni su U-SQL, vedere [Introduzione al linguaggio U-SQL con Analisi Data Lake](data-lake-analytics-u-sql-get-started.md).    
-5. Aggiungere al progetto un nuovo script U-SQL e immettere quanto segue:
+    hello toounderstand U-SQL, vedere [Introduzione a Data Lake Analitica U-SQL language](data-lake-analytics-u-sql-get-started.md).    
+5. Aggiungere un nuovo progetto di tooyour script U-SQL e immettere hello seguente:
 
-        // Query the referrers that ran into errors
+        // Query hello referrers that ran into errors
         @content =
             SELECT *
             FROM SampleDBTutorials.dbo.ReferrersPerDay
             WHERE sc_status >=400 AND sc_status < 500;
 
         OUTPUT @content
-        TO @"/Samples/Outputs/UnsuccessfulResponses.log"
+        too@"/Samples/Outputs/UnsuccessfulResponses.log"
         USING Outputters.Tsv();
-6. Tornare al primo script U-SQL e accanto al pulsante **Invia** , specificare l'account di analisi.
-7. In **Esplora soluzioni** fare clic con il pulsante destro del mouse su **Script.usql** e quindi scegliere **Build Script** (Compila script). Verificare il risultato nel riquadro di output.
+6. Passare script U-SQL prima toohello indietro e Avanti toohello **Invia** pulsante, specificare l'account Analitica.
+7. In **Esplora soluzioni** fare clic con il pulsante destro del mouse su **Script.usql** e quindi scegliere **Build Script** (Compila script). Verificare i risultati di hello nel riquadro di Output di hello.
 8. In **Esplora soluzioni** fare clic con il pulsante destro del mouse su **Script.usql** e quindi scegliere **Submit Script** (Invia script).
-9. Verificare che **Account Analisi** sia quello in cui si vuole eseguire il processo e quindi fare clic su **Invia**. Al termine della procedura di invio, nella finestra dei risultati di Strumenti di Data Lake per Visual Studio saranno disponibili i risultati dell'operazione di invio e il collegamento al processo.
-10. Attendere che il processo venga completato.  Se il processo non riesce, è molto probabile che manchi il file di origine.  Vedere la sezione Prerequisiti di questa esercitazione. Per altre informazioni sulla risoluzione dei problemi, vedere [Monitoraggio e risoluzione dei problemi dei processi di Analisi Azure Data Lake](data-lake-analytics-monitor-and-troubleshoot-jobs-tutorial.md).
+9. Verificare hello **Account Analitica** è hello uno in cui si desidera toorun hello processo e quindi fare clic su **Invia**. Risultati di invio e il collegamento di processo sono disponibili in hello Data Lake Tools per Visual Studio risultati quando viene completato l'invio di hello.
+10. Attendere che il processo di hello viene completato correttamente.  Se ha esito negativo processo hello, molto probabilmente manca il file di origine hello.  Verificare hello nella sezione dei prerequisiti di questa esercitazione. Per altre informazioni sulla risoluzione dei problemi, vedere [Monitoraggio e risoluzione dei problemi dei processi di Analisi Azure Data Lake](data-lake-analytics-monitor-and-troubleshoot-jobs-tutorial.md).
 
-    Una volta completato il processo, verrà visualizzata la schermata seguente:
+    Al termine dell'esecuzione processo hello, vedrai hello seguente schermata:
 
     ![Analisi Data Lake analizzare i log dei siti Web log dei siti Web](./media/data-lake-analytics-analyze-weblogs/data-lake-analytics-analyze-weblogs-job-completed.png)
 11. Ripetere i passaggi da 7 a 10 per **Script1.usql**.
 
-**Per visualizzare l'output del processo**
+**output del processo hello toosee**
 
-1. Da **Esplora server** espandere **Azure**, quindi **Data Lake Analytics**, l'account Data Lake Analytics e infine **Account di archiviazione**. Fare clic con il pulsante destro del mouse sull'account Data Lake Analytics predefinito e quindi scegliere **Esplora**.
-2. Fare doppio clic su **Esempi** per aprire la cartella e quindi su **Output**.
+1. Da **Esplora Server**, espandere **Azure**, espandere **Data Lake Analitica**, espandere l'account Data Lake Analitica **gliaccountdiarchiviazione**, fare doppio clic su account di archiviazione dei dati Lake hello predefinito e quindi fare clic su **Esplora**.
+2. Fare doppio clic su **esempi** tooopen hello cartella e quindi fare doppio clic su **output**.
 3. Fare doppio clic su **UnsuccessfulResponsees.log**.
-4. È anche possibile fare doppio clic sul file di output nella visualizzazione grafico del processo per passare direttamente al file di output.
+4. È possibile anche fare doppio clic sul file di output di hello in visualizzazione grafico hello del processo di hello in ordine toonavigate direttamente toohello output.
 
 ## <a name="see-also"></a>Vedere anche
-Per iniziare a usare Analisi Data Lake usando vari tipi di strumenti, vedere:
+tooget introduttiva Data Lake Analitica usando strumenti diversi, vedere:
 
 * [Introduzione a Analisi Data Lake tramite il portale di Azure](data-lake-analytics-get-started-portal.md)
 * [Introduzione ad Azure Data Lake Analytics con Azure PowerShell](data-lake-analytics-get-started-powershell.md)

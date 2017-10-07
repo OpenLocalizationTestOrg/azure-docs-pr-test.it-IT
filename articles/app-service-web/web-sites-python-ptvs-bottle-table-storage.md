@@ -1,6 +1,6 @@
 ---
-title: Bottle e archiviazione tabelle di Azure con Python Tools 2.2 per Visual Studio
-description: Informazioni su come usare Python Tools per Visual Studio per creare un'applicazione Bottle che archivia i dati nel servizio di archiviazione tabelle di Azure e distribuisce l'app Web in App Web del servizio app di Azure.
+title: aaaBottle e l'archiviazione tabelle di Azure in Azure con Python Tools 2.2 per Visual Studio
+description: Informazioni su come toouse hello Python Tools per Visual Studio toocreate un'applicazione di bottiglia che archivia i dati nell'archiviazione tabelle di Azure e distribuire hello web app tooAzure App del servizio Web App.
 services: app-service\web
 documentationcenter: python
 author: huguesv
@@ -14,146 +14,146 @@ ms.devlang: python
 ms.topic: article
 ms.date: 07/07/2016
 ms.author: huvalo
-ms.openlocfilehash: fb25f03607ac6e9af46b47f54e830e0283dd1b0a
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 25b9eb002b8748483d5b9458b7b5860a958b4bb3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="bottle-and-azure-table-storage-on-azure-with-python-tools-22-for-visual-studio"></a>Bottle e archiviazione tabelle di Azure con Python Tools 2.2 per Visual Studio
-In questa esercitazione si userà [Python Tools per Visual Studio] al fine di creare una semplice app Web per sondaggi con uno dei modelli di esempio PTVS. Questa esercitazione è anche disponibile in formato [video](https://www.youtube.com/watch?v=GJXDGaEPy94).
+In questa esercitazione si userà [Python Tools per Visual Studio] toocreate una semplice app web utilizzando uno dei modelli di esempio hello PTVS esegue il polling. Questa esercitazione è anche disponibile in formato [video](https://www.youtube.com/watch?v=GJXDGaEPy94).
 
-L'app Web per sondaggi definisce un'astrazione per il proprio repository; in questo modo, è possibile passare facilmente tra diversi tipi di repository (in memoria, archiviazione tabelle di Azure, MongoDB).
+app web viene eseguito il polling di Hello definisce un'astrazione per il relativo repository, pertanto è possibile passare facilmente tra diversi tipi di repository (In memoria, archiviazione tabelle di Azure, MongoDB).
 
-Si apprenderà come creare un account di archiviazione di Azure, come configurare l'app Web per l'uso dell'archiviazione tabelle di Azure e come pubblicare l'app Web in [App Web del servizio app di Azure](http://go.microsoft.com/fwlink/?LinkId=529714).
+Si apprenderà come account di toocreate una risorsa di archiviazione di Azure, come tooconfigure hello web app toouse archiviazione tabelle di Azure e come toopublish hello app web troppo[App Web di servizio App di Azure](http://go.microsoft.com/fwlink/?LinkId=529714).
 
-Vedere il [Centro per sviluppatori Python] per consultare altri articoli che trattano lo sviluppo di app Web del servizio app di Azure con PTVS usando i framework Web di Bottle, Flask e Django con i servizi di MongoDB, archiviazione tabelle di Azure, MySQL e Database SQL. Sebbene questo articolo sia incentrato sul servizio app, i passaggi sono simili a quelli previsti per lo sviluppo dei [servizi cloud di Azure].
+Vedere hello [Centro per sviluppatori Python] per ulteriori articoli che coprono lo sviluppo di App del servizio Web App di Azure con PTVS utilizzando Bottle pallone e Django web Framework, con i servizi di MongoDB, archiviazione tabelle di Azure, MySQL e SQL Database. Durante questo articolo è incentrato sul servizio App, i passaggi di hello sono simili durante lo sviluppo di [servizi Cloud di Azure].
 
 ## <a name="prerequisites"></a>Prerequisiti
 * Visual Studio 2015
 * [Python Tools 2.2 per Visual Studio]
-* [VSIX degli esempi di Python Tools 2.2 per Visual Studio]
+* [Python Tools 2.2 per Visual Studio esempi VSIX]
 * [Strumenti di Azure SDK per Visual Studio 2015]
 * [Python 2.7 a 32 bit] o [Python 3.4 a 32 bit]
 
 [!INCLUDE [create-account-and-websites-note](../../includes/create-account-and-websites-note.md)]
 
 > [!NOTE]
-> Per iniziare a usare Servizio app di Azure prima di registrarsi per ottenere un account Azure, andare a [Prova il servizio app](https://azure.microsoft.com/try/app-service/), dove è possibile creare un'app Web iniziale temporanea nel servizio app. Non è necessario fornire una carta di credito né impegnarsi in alcun modo.
+> Se si desidera tooget avviato con il servizio App di Azure prima di effettuare l'iscrizione per un account Azure, andare troppo[tenta di servizio App](https://azure.microsoft.com/try/app-service/), in cui è possibile creare subito un'app web di breve durata starter nel servizio App. Non è necessario fornire una carta di credito né impegnarsi in alcun modo.
 > 
 > 
 
-## <a name="create-the-project"></a>Creare il progetto
-In questa sezione verrà creato un progetto di Visual Studio usando un modello di esempio. Verrà creato un ambiente virtuale e verranno installati i pacchetti necessari. L'applicazione verrà quindi eseguita in locale tramite il repository in memoria predefinito.
+## <a name="create-hello-project"></a>Creare hello progetto
+In questa sezione verrà creato un progetto di Visual Studio usando un modello di esempio. Verrà creato un ambiente virtuale e verranno installati i pacchetti necessari. Viene quindi eseguito localmente utilizzando i repository di hello predefinito in memoria un'applicazione hello.
 
 1. In Visual Studio selezionare **File**, **Nuovo progetto**.
-2. I modelli di progetto di [VSIX degli esempi di Python Tools 2.2 per Visual Studio] sono disponibili in **Python**, **Esempi**. Selezionare **Progetto Web di sondaggi Bottle** e fare clic su OK per creare il progetto.
+2. modelli di progetto da hello Hello [Python Tools 2.2 per Visual Studio esempi VSIX] sono disponibili in **Python**, **esempi**. Selezionare **progetto Web Bottle di polling** e fare clic su OK toocreate hello progetto.
    
      ![Finestra di dialogo Nuovo progetto](./media/web-sites-python-ptvs-bottle-table-storage/PollsBottleNewProject.png)
-3. Verrà richiesto di installare pacchetti esterni. Selezionare **Installa in un ambiente virtuale**.
+3. Sarà richiesto tooinstall i pacchetti esterni. Selezionare **Installa in un ambiente virtuale**.
    
      ![Finestra di dialogo dei pacchetti esterni](./media/web-sites-python-ptvs-bottle-table-storage/PollsBottleExternalPackages.png)
-4. Selezionare **Python 2.7** o **Python 3.4** come interprete di base.
+4. Selezionare **Python 2.7** o **Python 3.4** come interprete base hello.
    
      ![Finestra di dialogo Aggiungi ambiente virtuale](./media/web-sites-python-ptvs-bottle-table-storage/PollsCommonAddVirtualEnv.png)
-5. Verificare che l'applicazione funzioni premendo `F5`. Per impostazione predefinita, l'applicazione usa un repository in memoria che non richiede alcuna configurazione. Tutti i dati vengono persi quando il server Web viene arrestato.
+5. Verificare che l'applicazione hello funzioni premendo `F5`. Per impostazione predefinita, un'applicazione hello utilizza un archivio in memoria che non richiede alcuna configurazione. Tutti i dati viene persa quando hello del server web.
 6. Fare clic su **Crea sondaggio di esempio**, quindi fare clic su un sondaggio e su un voto.
    
      ![Web browser](./media/web-sites-python-ptvs-bottle-table-storage/PollsBottleInMemoryBrowser.png)
 
 ## <a name="create-an-azure-storage-account"></a>Creare un account di Archiviazione di Azure
-Per effettuare operazioni di archiviazione, è necessario un account di archiviazione di Azure. Per creare un account di archiviazione, attenersi alla procedura riportata di seguito
+le operazioni di archiviazione toouse, è necessario un account di archiviazione di Azure. Per creare un account di archiviazione, attenersi alla procedura riportata di seguito
 
-1. Accedere al [portale di Azure](https://portal.azure.com/).
-2. Fare clic sull'icona **Nuovo** nella parte inferiore sinistra del portale, quindi fare clic su **Dati e archiviazione** >  **Account di archiviazione**.  Fare clic sul pulsante **Crea** quindi assegnare un nome univoco all'account di archiviazione e creare un nuovo [gruppo di risorse](../azure-resource-manager/resource-group-overview.md) correlato.
+1. Accedere al hello [portale Azure](https://portal.azure.com/).
+2. Fare clic su hello **New** sull'icona nella parte superiore di hello a sinistra della hello portale, quindi fare clic su **dati e archiviazione** > **Account di archiviazione**.  Fare clic su hello **crea** pulsante, quindi assegnare un nome univoco di account di archiviazione hello e creare un nuovo [gruppo di risorse](../azure-resource-manager/resource-group-overview.md) relativo.
    
       ![Quick Create](./media/web-sites-python-ptvs-bottle-table-storage/PollsCommonAzureStorageCreate.png)
    
-    Quando l'account di archiviazione viene creato, nel pulsante **Notifiche** lampeggia in verde il testo **OPERAZIONE RIUSCITA** e il pannello dell'account di archiviazione si apre per visualizzare che appartiene al nuovo gruppo di risorse creato.
-3. Fare clic sulla sezione **Chiavi di accesso** del pannello dell'account di archiviazione. Prendere nota del nome dell'account e della chiave denominata key1.
+    Quando è stato creato l'account di archiviazione hello, hello **notifiche** pulsante farà lampeggiare una verde **esito positivo** ed è aperto il pannello dell'account di archiviazione hello gruppo tooshow appartiene toohello nuova risorsa creato.
+3. Fare clic su hello **le chiavi di accesso** parte nel pannello hello account di archiviazione. Prendere nota del nome dell'account hello e key1.
    
       ![Chiavi](./media/web-sites-python-ptvs-bottle-table-storage/PollsCommonAzureStorageKeys.png)
    
-    Queste informazioni sono necessarie per configurare il progetto nella sezione successiva.
+    È necessario questo tooconfigure informazioni nella sezione successiva hello del progetto.
 
-## <a name="configure-the-project"></a>Configurare il progetto
-In questa sezione verrà configurata l'applicazione per usare l'account di archiviazione appena creato. quindi verrà eseguita l'applicazione in locale.
+## <a name="configure-hello-project"></a>Configurare hello progetto
+In questa sezione, è possibile configurare l'account di archiviazione applicazione toouse hello che appena creato. Quindi verrà eseguito in locale un'applicazione hello.
 
-1. In Visual Studio fare clic con il pulsante destro del mouse sul nodo del progetto in Esplora soluzioni e scegliere **Proprietà**. Fare clic sulla scheda **Debug** .
+1. In Visual Studio fare clic con il pulsante destro del mouse sul nodo del progetto in Esplora soluzioni e scegliere **Proprietà**. Fare clic su hello **Debug** scheda.
    
      ![Impostazioni di debug del progetto](./media/web-sites-python-ptvs-bottle-table-storage/PollsBottleAzureTableStorageProjectDebugSettings.png)
-2. Impostare i valori delle variabili di ambiente richieste dall'applicazione in **Debug Server Command**, **Environment**.
+2. Impostare i valori hello delle variabili di ambiente richieste da un'applicazione hello in **comando Server Debug**, **ambiente**.
    
        REPOSITORY_NAME=azuretablestorage
        STORAGE_NAME=<storage account name>
        STORAGE_KEY=<primary access key>
    
-   In questo modo verranno impostate le variabili di ambiente quando si sceglie **Avvia debug**. Se si vuole che le variabili vengano impostate quando si **avvia senza eseguire il debug**, impostare gli stessi valori anche in **Run Server Command**.
+   Questo verrà impostato le variabili di ambiente hello quando si **Avvia debug**. Se si desidera hello variabili toobe imposta quando si **Avvia senza eseguire debug**, hello set stessi valori in **esecuzione del comando Server** anche.
    
-   In alternativa, è possibile definire variabili di ambiente usando il Pannello di controllo di Windows. Si tratta di un'opzione migliore se si vuole evitare di archiviare le credenziali nel codice sorgente/nel file del progetto. Si noti che è necessario riavviare Visual Studio affinché i nuovi valori di ambiente siano disponibili per l'applicazione.
-3. Il codice che implementa il repository di archiviazione tabelle di Azure si trova in **models/azuretablestorage.py**. Per altre informazioni su come usare il servizio tabelle da Python, vedere la [documentazione] .
-4. Eseguire l'applicazione con `F5`. I sondaggi creati con **Create Sample Polls** e i dati inviati mediante voto verranno serializzati nell'archiviazione tabelle di Azure.
+   In alternativa, è possibile definire variabili di ambiente utilizzando il pannello di controllo di Windows hello. Si tratta di un'opzione migliore se si desidera archiviare le credenziali nel codice sorgente tooavoid o file di progetto. Si noti che è necessario per nuovo ambiente valori toobe toohello disponibile un'applicazione hello toorestart Visual Studio.
+3. codice Hello che implementa il repository di archiviazione tabelle di Azure hello è **models/azuretablestorage.py**. Vedere hello [documentazione] per ulteriori informazioni su come toouse del servizio tabelle da Python.
+4. Eseguire un'applicazione hello con `F5`. Esegue il polling creati con **creare sondaggi esempio** e dati hello inviati dai voti verranno serializzati nell'archiviazione tabelle di Azure.
    
    > [!NOTE]
-   > L'ambiente virtuale Python 2.7 può causare un'interruzione di eccezioni in Visual Studio.  Premere `F5` per continuare il caricamento del progetto web.
+   > Ambiente virtuale di Python 2.7 Hello può causare un'interruzione di eccezioni in Visual Studio.  Premere `F5` toocontinue durante il caricamento di progetto web hello.
    > 
    > 
-5. Passare alla pagina **About** per verificare che l'applicazione usi il repository di **archiviazione tabelle di Azure**.
+5. Sfoglia toohello **su** tooverify pagina che hello applicazione utilizza hello **archiviazione tabelle di Azure** repository.
    
      ![Web browser](./media/web-sites-python-ptvs-bottle-table-storage/PollsBottleAzureTableStorageAbout.png)
 
-## <a name="explore-the-azure-table-storage"></a>Esplorare l'archiviazione tabelle di Azure
-È facile visualizzare e modificare le tabelle di archiviazione tramite Cloud Explorer in Visual Studio. In questa sezione si userà Esplora server per visualizzare il contenuto delle tabelle dell'applicazione di sondaggio.
+## <a name="explore-hello-azure-table-storage"></a>Esplorare hello archiviazione tabelle di Azure
+È facile tooview e modificare le tabelle di archiviazione con Cloud Explorer in Visual Studio. In questa sezione si userà contenuto hello tooview di Esplora Server delle tabelle di applicazione hello viene eseguito il polling.
 
 > [!NOTE]
-> A tale scopo, è necessario che siano installati gli strumenti di Microsoft Azure, disponibili come parte di [Azure SDK per .NET].
+> Questo richiede toobe strumenti di Microsoft Azure installato, che sono disponibili come parte di hello [Azure SDK per .NET].
 > 
 > 
 
 1. Aprire **Cloud Explorer**. Espandere **Account di archiviazione**, l'account di archiviazione di riferimento e quindi **Tabelle**.
    
      ![Cloud Explorer](./media/web-sites-python-ptvs-bottle-table-storage/PollsCommonServerExplorer.png)
-2. Fare doppio clic su **sondaggi** o **opzioni** per visualizzarne i contenuti in una finestra di documento, nonché aggiungere/rimuovere/modificare entità.
+2. Fare doppio clic su hello **sondaggi** o **scelte** contenuto hello tooview della tabella hello in una finestra del documento, nonché aggiungere, rimuovere o modificare entità di tabella.
    
      ![Risultati della query relativa alla tabella](./media/web-sites-python-ptvs-bottle-table-storage/PollsCommonServerExplorerTable.png)
 
-## <a name="publish-the-web-app-to-azure-app-service"></a>Pubblicare l'app Web nel servizio app di Azure
-L'SDK .NET di Azure offre un modo semplice di distribuire l'app Web nel servizio app di Azure.
+## <a name="publish-hello-web-app-tooazure-app-service"></a>Pubblicare hello web app tooAzure servizio App
+Hello Azure .NET SDK fornisce un modo semplice di toodeploy il tooAzure app web del servizio App.
 
-1. In **Esplora soluzioni** fare clic con il pulsante destro del mouse sul nodo di progetto e scegliere **Pubblica**.
+1. In **Esplora**, fare clic sul nodo del progetto hello e selezionare **pubblica**.
    
      ![Finestra di dialogo Pubblica sito Web](./media/web-sites-python-ptvs-bottle-table-storage/PollsCommonPublishWebSiteDialog.png)
 2. Fare clic su **App Web di Microsoft Azure**.
-3. Fare clic su **Nuovo** per creare una nuova app Web.
-4. Compilare i campi seguenti, quindi fare clic su **Crea**.
+3. Fare clic su **New** toocreate una nuova app web.
+4. Compilare hello seguente i campi e fare clic su **crea**.
    
    * **Nome dell'app Web**
    * **Piano di servizio app**
    * **Gruppo di risorse**
    * **Area**
-   * Lasciare **Server database** impostato su **Nessun database**.
+   * Lasciare **server di Database** impostare troppo**alcun database**
 5. Accettare tutte le altre impostazioni predefinite e fare clic su **Pubblica**.
-6. L'app Web pubblicata verrà aperto automaticamente nel Web browser. Se si passa alla pagina relativa alle informazioni, si noterà che viene usato il repository **in memoria**, non il repository di **archiviazione tabelle di Azure**.
+6. Web browser verrà aperto automaticamente toohello pubblicato web app. Se si seleziona toohello sulla pagina, si noterà che usa hello **In memoria** repository, non hello **archiviazione tabelle di Azure** repository.
    
-   Ciò avviene perché le variabili di ambiente non sono impostate per l'istanza app Web in Azure App Service; pertanto vengono usati i valori predefiniti specificati in **settings.py**.
+   Ciò accade perché le variabili di ambiente hello non sono impostate nell'istanza di hello App Web nel servizio App di Azure, pertanto utilizza valori predefiniti di hello specificati **settings.py**.
 
-## <a name="configure-the-web-apps-instance"></a>Configurare l'istanza di app Web
-In questa sezione verranno configurate le variabili dell'istanza di App Web.
+## <a name="configure-hello-web-apps-instance"></a>Configurare l'istanza di hello App Web
+In questa sezione, è possibile configurare le variabili di ambiente per istanza di hello App Web.
 
-1. Nel [portale di Azure] aprire il pannello dell'app Web facendo clic su **Sfoglia** > **Servizi app** > nome dell'app Web.
+1. In [portale Azure], aprire il pannello dell'app web hello facendo **Sfoglia** > **servizi App** > nome dell'app web.
 2. Nel pannello dell'app Web fare clic su **Tutte le impostazioni** e quindi su **Impostazioni applicazione**.
-3. Scorrere verso il basso fino alla sezione **Impostazioni app** e impostare i valori per **REPOSITORY\_NAME**, **STORAGE\_NAME** e **STORAGE\_KEY**, come descritto nella sezione precedente **Configurare il progetto**.
+3. Scorrere verso il basso toohello **impostazioni App** sezione e impostare i valori hello **REPOSITORY\_nome**, **archiviazione\_nome** e  **ARCHIVIAZIONE\_chiave** come descritto in hello **progetto hello configura** sezione precedente.
    
      ![Impostazioni app](./media/web-sites-python-ptvs-bottle-table-storage/PollsCommonWebSiteConfigureSettingsTableStorage.png)
-4. Fare clic su **Save**. Dopo aver ricevuto le notifiche relative all'applicazione delle modifiche, fare clic su **Sfoglia** dal pannello principale dell'app Web.
-5. L'app Web dovrebbe funzionare come previsto, usando il repository di **archiviazione tabelle di Azure** .
+4. Fare clic su **Save**. Dopo aver ricevuto le notifiche di hello che sono state applicate le modifiche di hello, fare clic su **Sfoglia** dal pannello principale di hello Web app.
+5. Dovrebbe essere funzionante di hello web app come previsto, utilizzando hello **archiviazione tabelle di Azure** repository.
    
    Congratulazioni.
    
      ![Web browser](./media/web-sites-python-ptvs-bottle-table-storage/PollsBottleAzureBrowser.png)
 
 ## <a name="next-steps"></a>Passaggi successivi
-Usare i collegamenti seguenti per altre informazioni su Python Tools per Visual Studio, Bottle e archiviazione tabelle di Azure.
+Seguire questi toolearn collegamenti ulteriori informazioni sugli strumenti Python per Visual Studio, Bottle e archiviazione tabelle di Azure.
 
 * [Documentazione di Python Tools per Visual Studio]
   * [Progetti Web]
@@ -162,24 +162,24 @@ Usare i collegamenti seguenti per altre informazioni su Python Tools per Visual 
 * [Documentazione di Bottle]
 * [Archiviazione di Azure]
 * [Azure SDK per Python]
-* [Come usare il servizio di archiviazione tabelle di Python]
+* [Come tooUse hello del servizio di archiviazione di tabelle da Python]
 
 ## <a name="whats-changed"></a>Modifiche apportate
-* Per una guida relativa al passaggio da Siti Web al servizio app, vedere [Servizio app di Azure e impatto sui servizi di Azure esistenti](http://go.microsoft.com/fwlink/?LinkId=529714)
+* Per una Guida toohello modifica da siti Web tooApp servizio vedere: [relativo impatto sui servizi di Azure esistente e servizio App di Azure](http://go.microsoft.com/fwlink/?LinkId=529714)
 
 <!--Link references-->
 [Centro per sviluppatori Python]: /develop/python/
-[servizi cloud di Azure]: ../cloud-services/cloud-services-python-ptvs.md
+[servizi Cloud di Azure]: ../cloud-services/cloud-services-python-ptvs.md
 [documentazione]:../cosmos-db/table-storage-how-to-use-python.md
-[Come usare il servizio di archiviazione tabelle di Python]:../cosmos-db/table-storage-how-to-use-python.md
+[Come tooUse hello del servizio di archiviazione di tabelle da Python]:../cosmos-db/table-storage-how-to-use-python.md
 
 
 <!--External Link references-->
-[portale di Azure]: https://portal.azure.com
+[portale Azure]: https://portal.azure.com
 [Azure SDK per .NET]: http://azure.microsoft.com/downloads/
 [Python Tools per Visual Studio]: http://aka.ms/ptvs
 [Python Tools 2.2 per Visual Studio]: http://go.microsoft.com/fwlink/?LinkId=624025
-[VSIX degli esempi di Python Tools 2.2 per Visual Studio]: http://go.microsoft.com/fwlink/?LinkId=624025
+[Python Tools 2.2 per Visual Studio esempi VSIX]: http://go.microsoft.com/fwlink/?LinkId=624025
 [Strumenti di Azure SDK per Visual Studio 2015]: http://go.microsoft.com/fwlink/?LinkId=518003
 [Python 2.7 a 32 bit]: http://go.microsoft.com/fwlink/?LinkId=517190
 [Python 3.4 a 32 bit]: http://go.microsoft.com/fwlink/?LinkId=517191

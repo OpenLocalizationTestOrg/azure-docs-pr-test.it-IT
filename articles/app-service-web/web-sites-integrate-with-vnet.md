@@ -1,6 +1,6 @@
 ---
-title: Integrazione di un'app in una rete virtuale di Azure
-description: Illustra come connettere un'app del servizio app di Azure a una rete virtuale di Azure nuova o esistente
+title: aaaIntegrate un'app con una rete virtuale di Azure
+description: Illustra come tooconnect un'app in Azure App Service tooa esistente o nuova rete virtuale di Azure
 services: app-service
 documentationcenter: 
 author: ccompy
@@ -14,36 +14,36 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/23/2017
 ms.author: ccompy
-ms.openlocfilehash: 61508f759cad92a8c17d72a5d68fb54994c393bc
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: a93c504481400245b02220b541a008a7c874d10a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="integrate-your-app-with-an-azure-virtual-network"></a>Integrare un'app in una rete virtuale di Azure
-Questo documento descrive la funzionalità di integrazione del servizio app di Azure in una rete virtuale, specificando come configurarla con le app del [servizio app di Azure](http://go.microsoft.com/fwlink/?LinkId=529714). Se non si ha familiarità con le reti virtuali di Azure, si tratta di una funzionalità che consente di posizionare molte delle risorse di Azure in una rete instradabile non Internet a cui si controlla l'accesso. Queste reti possono quindi essere connesse alle reti locali usando diverse tecnologie VPN. Per altre informazioni sulle reti virtuali di Azure, è possibile iniziare dalla [Panoramica sulla rete virtuale di Azure][VNETOverview]. 
+Questo documento vengono descritte funzionalità di integrazione di rete virtuale Azure App Service hello e Mostra come tooset, configurarlo con le App in [Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714). Se non si ha familiarità con le reti virtuali di Azure (Vnet), questa è una funzionalità che consente di tooplace molte delle risorse di Azure in una rete routeable internet non è possibile controllare l'accesso a. Queste reti possono quindi essere reti locali tooyour connesso tramite una vasta gamma di tecnologie VPN. toolearn ulteriori informazioni sulle reti virtuali di Azure, iniziare con informazioni hello qui: [Panoramica di rete virtuale di Azure][VNETOverview]. 
 
-Il servizio app di Azure è disponibile in due forme. 
+Hello Azure App Service presenta due forme. 
 
-1. I sistemi multi-tenant che supportano l'intera gamma dei piani tariffari
-2. La funzionalità Premium ambiente del servizio app (ASE) che consente la distribuzione nella rete virtuale. 
+1. sistemi multi-tenant Hello che supportano la gamma completa di hello di piani tariffari
+2. funzionalità premium ambiente del servizio App (ASE) Hello, che consente di distribuire in una rete virtuale. 
 
-Questo documento tratta dell'integrazione rete virtuale, ma non dell'ambiente del servizio app. Per altre informazioni sulla funzionalità dell'ambiente del servizio app, iniziare dall'articolo [Introduzione all'ambiente del servizio app][ASEintro].
+Questo documento tratta dell'integrazione rete virtuale, ma non dell'ambiente del servizio app. Se si desidera ulteriori informazioni sulla funzionalità hello ASE toolearn, iniziare con informazioni hello qui: [introduzione di ambiente del servizio App][ASEintro].
 
-Integrazione rete virtuale consente all'app Web di accedere alle risorse presenti nella propria rete virtuale. Al contrario, l'accesso privato all'app Web dalla rete virtuale non viene concesso. Per accesso privato s'intende la possibilità di rendere l'app accessibile soltanto da una rete privata, ad esempio all'interno di una rete virtuale di Azure. L'accesso privato al sito è disponibile solo con un ambiente del servizio app configurato con un servizio di bilanciamento del carico interno (ILB). Per informazioni dettagliate in proposito, vedere [Uso di un servizio di bilanciamento del carico interno con un ambiente del servizio app][ILBASE]. 
+Integrazione della rete virtuale fornisce il tooresources di accesso di app web nella rete virtuale, ma non concede all'app web di accesso privata tooyour dalla rete virtuale hello. Accesso al sito privata fa riferimento toomaking app accessibile solo da una rete privata, ad esempio all'interno di una rete virtuale di Azure. L'accesso privato al sito è disponibile solo con un ambiente del servizio app configurato con un servizio di bilanciamento del carico interno (ILB). Per informazioni dettagliate sull'uso di ASE un bilanciamento del carico interno, iniziare con articolo hello: [creazione e utilizzo di un ASE ILB][ILBASE]. 
 
-L'integrazione rete virtuale viene comunemente usata per consentire l'accesso dall'app Web a un database o a un servizio Web in esecuzione in una macchina virtuale nella rete virtuale di Azure. Con Integrazione rete virtuale non è necessario esporre un endpoint pubblico per le applicazioni nella macchina virtuale ma è possibile usare gli indirizzi instradabili non Internet privati. 
+Uno scenario comune in cui si utilizzerebbe l'integrazione della rete virtuale è abilitazione dell'accesso da database tooa app web o un servizio web in esecuzione in una macchina virtuale nella rete virtuale di Azure. Con l'integrazione della rete virtuale, non è necessario tooexpose un endpoint pubblico per le applicazioni nella VM ma può utilizzare indirizzi instradabile su internet non privato hello. 
 
-La funzionalità Integrazione rete virtuale:
+funzionalità di integrazione della rete virtuale Hello:
 
 * richiede un piano tariffario Standard, Premium o Isolated 
 * funziona con reti virtuali classiche o di Resource Manager 
 * supporta TCP e UDP
 * funziona con le app Web, le app per dispositivi mobili e le app per le API
-* consente a un'app di connettersi a 1 sola rete virtuale alla volta
-* consente di integrare fino a cinque reti virtuali in un piano di servizio app 
-* consente l'uso della stessa rete virtuale da parte di più app in un piano di servizio app
-* supporta un contratto di servizio pari al 99,9% grazie al contratto di servizio sul gateway di rete virtuale
+* consente un tooonly tooconnect app 1 rete virtuale alla volta
+* Consente di toofive toobe reti virtuali è integrato con un piano di servizio App 
+* Consente di hello stessa rete virtuale toobe utilizzato da più applicazioni in un piano di servizio App
+* supporta un contratto di servizio con disponibilità del 99,9% a causa di contratto di servizio toohello su hello Gateway di rete virtuale
 
 Tra le operazioni non supportate da Integrazione rete virtuale:
 
@@ -52,54 +52,54 @@ Tra le operazioni non supportate da Integrazione rete virtuale:
 * NetBios
 * accesso al sito privato
 
-### <a name="getting-started"></a>Introduzione
-Prima di procedere con la connessione della propria app Web a una rete virtuale, è opportuno prendere in considerazione i seguenti aspetti:
+### <a name="getting-started"></a>introduttiva
+Ecco alcuni aspetti tookeep presente prima della connessione di rete virtuale tooa app web:
 
-* Integrazione rete virtuale funziona solo con le app dei piani tariffari **Standard**, **Premium** o **Isolated**. Se si abilita la funzionalità e successivamente il piano di servizio app viene ridimensionato a un piano tariffario non supportato, le app perdono la connessione alle relative reti virtuali. 
-* Se la rete virtuale di destinazione esiste già, deve trattarsi di una VPN da punto a sito con un gateway di routing dinamico per poter eseguire la connessione a un'app. Non è possibile attivare la VPN da punto a sito se il gateway è configurato con il routing statico.
-* La rete virtuale deve essere inclusa nella stessa sottoscrizione del piano di servizio app (ASP). 
-* Le app che si integrano con una rete virtuale usano il DNS specificato per quella rete virtuale.
-* Per impostazione predefinita, le app di integrazione instradano il traffico nella rete virtuale esclusivamente in base alle route definite nella rete virtuale. 
+* Integrazione rete virtuale funziona solo con le app dei piani tariffari **Standard**, **Premium** o **Isolated**. Se si abilita la funzionalità hello e quindi tooan il piano di servizio App non supportato prezzi piano App perdere loro toohello connessioni reti virtuali in uso. 
+* Se la rete virtuale di destinazione esiste già, deve avere VPN point-to-site abilitata con un gateway con routing dinamico prima di poter essere app tooan connesso. Non è possibile attivare la VPN da punto a sito se il gateway è configurato con il routing statico.
+* Hello rete virtuale deve essere hello stessa sottoscrizione del Plan(ASP) di servizio App. 
+* le app di Hello che si integrano con una rete virtuale usano hello DNS specificato per tale rete virtuale.
+* Per impostazione predefinita le applicazioni di integrazione solo instradare il traffico in una rete virtuale in base a route hello definiti in una rete virtuale. 
 
 ## <a name="enabling-vnet-integration"></a>Abilitazione della funzionalità Integrazione rete virtuale
-Questo documento è incentrato principalmente sull'uso del portale di Azure per l'integrazione rete virtuale. Per abilitare l'integrazione rete virtuale con l'app tramite PowerShell, seguire le istruzioni riportate nell'articolo [Connettere l'app alla rete virtuale tramite PowerShell][IntPowershell].
+Questo documento è incentrato principalmente sull'utilizzo di hello portale di Azure per l'integrazione della rete virtuale. tooenable integrazione della rete virtuale con l'app tramite PowerShell, seguire le direzioni di hello qui: [la connessione di rete virtuale tooyour app tramite PowerShell][IntPowershell].
 
-È possibile connettere l'app a una rete virtuale nuova o a una esistente. Se si crea una nuova rete durante l'integrazione, oltre a creare la rete virtuale, viene preconfigurato un gateway di routing dinamico e viene abilitata una VPN da punto a sito. 
+È necessario tooconnect opzione hello app tooa esistente o nuova rete virtuale. Se si crea una nuova rete come parte dell'integrazione, quindi inoltre la creazione di toojust hello rete virtuale, un gateway con routing dinamico è preconfigurato per l'utente e punto tooSite VPN è abilitato. 
 
 > [!NOTE]
 > La configurazione di una nuova integrazione di reti virtuali può richiedere diversi minuti. 
 > 
 > 
 
-Per abilitare Integrazione rete virtuale, aprire le impostazioni dell'app e selezionare Rete. L'interfaccia utente visualizzata offre tre opzioni di rete. Questa guida tratta solo la funzionalità Integrazione rete virtuale, anche se le connessioni ibride e gli ambienti del servizio app sono descritti più avanti in questo documento. 
+tooenable integrazione della rete virtuale, aprire l'app impostazioni e quindi selezionare la rete. Hello dell'interfaccia utente visualizzata offre tre opzioni di rete. Questa guida tratta solo la funzionalità Integrazione rete virtuale, anche se le connessioni ibride e gli ambienti del servizio app sono descritti più avanti in questo documento. 
 
-Se l'app non è inclusa nel piano tariffario corretto, l'interfaccia utente permette di scegliere un piano tariffario superiore.
+Se l'app non è presente in hello prezzi piano corretta, hello dell'interfaccia utente consente tooscale tooa il piano superiore prezzi piano di propria scelta.
 
 ![][1]
 
 ### <a name="enabling-vnet-integration-with-a-pre-existing-vnet"></a>Abilitazione della funzionalità Integrazione rete virtuale con una rete virtuale preesistente
-L'interfaccia utente di Integrazione rete virtuale consente di selezionare da un elenco di reti virtuali. Le reti virtuali classiche sono quelle indicate dalla parola "classica" tra parentesi accanto al nome della rete virtuale. L'elenco è ordinato in modo che le reti virtuali di Resource Manager siano riportate per prime. L'immagine seguente mostra che è possibile selezionare solo una rete virtuale. Una rete virtuale può risultare disattivata per diversi motivi, ad esempio:
+interfaccia utente di integrazione di rete virtuale Hello consente tooselect da un elenco delle reti virtuali. Hello reti virtuali classiche indicare che sono ad esempio con la parola hello "Classico" nel nome di rete virtuale toohello avanti tra parentesi. elenco Hello è ordinato in modo che hello VNets Gestione risorse vengono elencati per primi. In hello immagine illustrato di seguito è possibile vedere che è possibile selezionare solo una rete virtuale. Una rete virtuale può risultare disattivata per diversi motivi, ad esempio:
 
-* la rete virtuale è in un'altra sottoscrizione a cui l'account ha accesso
-* la rete virtuale non è da punto a sito
-* la rete virtuale non ha un gateway di routing dinamico
+* Hello rete virtuale si trova in un'altra sottoscrizione che l'account ha accesso a
+* Hello rete virtuale non dispone di tooSite punto abilitato
+* Hello rete virtuale non dispone di un gateway con routing dinamico
 
 ![][2]
 
-Per abilitare l'integrazione è sufficiente fare clic sulla rete virtuale con cui eseguire l'integrazione. Dopo aver selezionato la rete virtuale, l'app verrà riavviata automaticamente per rendere effettive le modifiche. 
+integrazione tooenable semplicemente fare clic su rete virtuale che si desidera toointegrate con hello. Dopo aver selezionato hello rete virtuale, l'app viene riavviato automaticamente per effetto di tootake modifiche hello. 
 
-##### <a name="enable-point-to-site-in-a-classic-vnet"></a>Abilitare la connessione da punto a sito in una rete virtuale classica
-Se la rete virtuale non ha un gateway e non è da punto a sito, è necessario eseguirne prima di tutto la configurazione. Per eseguire questa operazione per una rete virtuale classica, accedere al [portale di Azure][AzurePortal] e visualizzare l'elenco Reti virtuali (classico). Qui fare clic sulla rete con cui eseguire l'integrazione e quindi sulla casella grande Connessioni VPN in Informazioni di base. Da qui è possibile creare la VPN da punto a sito e anche fare in modo che venga creato un gateway. La rete da punto a sito con gateway appena creata sarà pronta dopo circa 30 minuti. 
+##### <a name="enable-point-toosite-in-a-classic-vnet"></a>Abilita punto tooSite in una rete virtuale classica
+Se la rete virtuale non è un gateway né né tooSite punto, è necessario tooset il primo backup. toodo per una rete virtuale classica, passare toohello [portale di Azure] [ AzurePortal] e visualizzare elenco hello di Networks(classic) virtuale. Da qui, fare clic su rete hello toointegrate con desiderato e fare clic sulla casella hello in Essentials chiamato le connessioni VPN. Da qui è possibile creare la VPN punto toosite e anche fare in modo creare un gateway. Dopo che si naviga hello punto toosite con esperienza di creazione gateway è circa 30 minuti prima che sia pronto. 
 
 ![][8]
 
-##### <a name="enabling-point-to-site-in-a-resource-manager-vnet"></a>Abilitare la connessione da punto a sito in una rete virtuale di Resource Manager
-Per configurare una connessione da punto a sito in una rete virtuale di Resource Manager con un gateway, è possibile usare PowerShell come descritto in [Configurare una connessione da punto a sito a una rete virtuale con PowerShell][V2VNETP2S] o usare il portale di Azure come descritto in [Configurare una connessione da punto a sito a una rete virtuale usando il portale di Azure][V2VNETPortal]. L'interfaccia utente per eseguire questa funzionalità non è ancora disponibile. Tenere presente che la configurazione da punto a sito non richiede la creazione di certificati, poiché viene configurata automaticamente quando si connette l'app Web alla rete virtuale. 
+##### <a name="enabling-point-toosite-in-a-resource-manager-vnet"></a>Abilitazione tooSite punto in un gestore delle risorse di VNet
+tooconfigure VNet un gestore delle risorse con un gateway e tooSite punto, è possibile utilizzare PowerShell come descritto in questo caso, [configurare una Point-to-Site connessione tooa rete virtuale con PowerShell] [ V2VNETP2S] o utilizzare hello portale di Azure come descritto in questo caso, [configura una Point-to-Site connessione tooa rete virtuale usando hello Azure portal][V2VNETPortal]. Hello UI tooperform questa funzionalità non è ancora disponibile. Si noti che è necessario toocreate certificati per la configurazione di hello tooSite punto. Quando ci si connette la rete virtuale di toohello WebApp viene configurato automaticamente. 
 
 ### <a name="creating-a-pre-configured-vnet"></a>Creazione di una rete virtuale preconfigurata
-Se si vuole creare una nuova rete virtuale configurata con un gateway e una connessione da punto a sito, è possibile usare l'interfaccia utente di rete del servizio app, ma solo per una rete virtuale di Resource Manager. Se si vuole creare una rete virtuale classica con un gateway e una connessione da punto a sito, l'operazione deve essere eseguita manualmente tramite l'interfaccia utente di rete. 
+Se si desidera toocreate una nuova rete virtuale configurata con un gateway e Point-to-Site, hello servizio App di rete dell'interfaccia utente non ha hello funzionalità toodo tale ma solo per una rete virtuale di gestione risorse. Se si desidera toocreate una rete virtuale classica con un gateway e Point-to-Site, è necessario toodo questo manualmente tramite l'interfaccia utente di rete hello. 
 
-Per creare una rete virtuale di Resource Manager tramite l'interfaccia utente dell'integrazione rete virtuale, è sufficiente selezionare **Crea una nuova rete virtuale** e specificare quanto segue:
+toocreate VNet un gestore delle risorse tramite hello interfaccia utente di integrazione di rete virtuale, selezionare semplicemente **Crea nuova rete virtuale** e fornire il:
 
 * Nome della rete virtuale
 * Blocco di indirizzi della rete virtuale
@@ -108,177 +108,177 @@ Per creare una rete virtuale di Resource Manager tramite l'interfaccia utente de
 * Blocco di indirizzi del gateway
 * Blocco di indirizzi della connessione da punto a sito
 
-Se si vuole che la rete virtuale si connetta alle altre reti è consigliabile evitare di scegliere uno spazio di indirizzi IP che si sovrappone a tali reti. 
+Se si desidera questo tooany tooconnect di rete virtuale altre reti, è consigliabile evitare il prelievo di spazio di indirizzi IP che si sovrappone a tali reti. 
 
 > [!NOTE]
-> Per creare una rete virtuale di Resource Manager con un gateway sono necessari circa 30 minuti e attualmente la rete virtuale non viene integrata con l'app. Dopo la creazione della rete virtuale con il gateway è necessario tornare all'interfaccia utente di Integrazione rete virtuale dell'app e selezionare la nuova rete virtuale.
+> Creazione di gestione risorse VNet con un gateway richiede circa 30 minuti e attualmente non si integra hello rete virtuale con l'app. Dopo aver creata la rete virtuale con gateway hello è necessario toocome tooyour indietro app interfaccia utente di integrazione di rete virtuale e selezionare nuova rete virtuale.
 > 
 > 
 
 ![][3]
 
-Le reti virtuali di Azure in genere vengono create all'interno di indirizzi di rete privati. Per impostazione predefinita, la funzionalità Integrazione rete virtuale instrada nella rete virtuale il traffico destinato a tali intervalli di indirizzi IP. Gli intervalli di indirizzi IP privati sono:
+Le reti virtuali di Azure in genere vengono create all'interno di indirizzi di rete privati. Da hello predefinito integrazione della rete virtuale funzionalità consente di instradare tutto il traffico destinato a tali intervalli di indirizzi IP in una rete virtuale. intervalli di indirizzi IP privati Hello sono:
 
-* 10.0.0.0/8 - equivalente a 10.0.0.0 - 10.255.255.255
-* 172.16.0.0/12 - equivalente a 172.16.0.0 - 172.31.255.255 
-* 192.168.0.0/16 - equivalente a 192.168.0.0 - 192.168.255.255
+* 10.0.0.0/8 - questo è hello stesso come 10.0.0.0 - 10.255.255.255
+* 172.16.0.0/12 - questo è hello stesso come 172.16.0.0 - 172.31.255.255 
+* 192.168.0.0/16 - questo è hello stesso come 192.168.0.0 - 192.168.255.255
 
-Lo spazio di indirizzi della rete virtuale deve essere specificato usando la notazione CIDR. Se non si ha familiarità con la notazione CIDR, si tratta di un metodo per specificare blocchi di indirizzi usando un indirizzo IP e un numero intero che rappresenta la network mask. Come riferimento rapido, tenere presente che 10.1.0.0/24 equivale a 256 indirizzi e 10.1.0.0/25 equivale a 128 indirizzi. Un indirizzo IPv4 che termina con /32 equivale a 1 indirizzo. 
+Hello spazio degli indirizzi di rete virtuale deve toobe specificato nella notazione CIDR. Se non si ha familiarità con la notazione CIDR, è un metodo per specificare i blocchi di indirizzi utilizzando un indirizzo IP e un intero che rappresenta la maschera di rete hello. Come riferimento rapido, tenere presente che 10.1.0.0/24 equivale a 256 indirizzi e 10.1.0.0/25 equivale a 128 indirizzi. Un indirizzo IPv4 che termina con /32 equivale a 1 indirizzo. 
 
-Le informazioni sul server DNS impostate qui verranno usate per impostare la rete virtuale. Dopo aver creato la rete virtuale è possibile modificare queste informazioni dall'esperienza utente della rete virtuale. Se si modifica il DNS della rete virtuale, è necessario eseguire un'operazione Sincronizza rete.
+Se si imposta qui hello informazioni sul server DNS, che è impostato per la rete virtuale. Dopo la creazione della rete virtuale è possibile modificare queste informazioni da hello esperienze degli utenti di rete virtuale. Se si modifica hello DNS di hello rete virtuale, è necessario tooperform un'operazione di rete di sincronizzazione.
 
-Quando si crea una rete virtuale classica usando l'interfaccia utente dell'integrazione rete virtuale, questa viene creata nello stesso gruppo di risorse dell'app. 
+Quando si crea una rete virtuale classica utilizzando hello interfaccia utente di integrazione di rete virtuale, crea una rete virtuale in hello stesso gruppo di risorse dell'app. 
 
-## <a name="how-the-system-works"></a>Funzionamento del sistema
-Questa funzionalità sfrutta la tecnologia VPN da punto a sito per connettere l'app alla rete virtuale. Le app nei Siti Web di Microsoft Azure presentano un'architettura del sistema multi-tenant che preclude il provisioning di un'app direttamente in una rete virtuale come si fa con le macchine virtuali. Grazie al ricorso alla tecnologia da punto a sito, è possibile consentire l'accesso alla rete solo alla macchina virtuale che ospita l'app. L'accesso alla rete è ulteriormente limitato su questi host di app, per consentire alle app di accedere solo alle reti appositamente configurate a questo scopo. 
+## <a name="how-hello-system-works"></a>Funzionamento del sistema hello
+In hello include informazioni su questa funzionalità si basa sulle tooconnect tecnologia VPN Point-to-Site il tooyour app rete virtuale. Le app nei Siti Web di Microsoft Azure presentano un'architettura del sistema multi-tenant che preclude il provisioning di un'app direttamente in una rete virtuale come si fa con le macchine virtuali. Tramite la compilazione sulla tecnologia point-to-site limitiamo macchina rete accesso toojust hello virtuale che ospita l'applicazione hello. Accedere alla rete toohello viene ulteriormente limitato in tali host dell'applicazione in modo che le app possono accedere solo reti hello configurarli tooaccess. 
 
 ![][4]
 
-Se non è stato configurato un server DNS con la propria rete virtuale, l'app dovrà usare gli indirizzi IP per trovare la risorsa nella rete virtuale. Quando si usano gli indirizzi IP, il vantaggio principale di questa funzionalità consiste nella possibilità di usare gli indirizzi privati all'interno della rete privata. Se si imposta l'app per l'uso di indirizzi IP pubblici per una delle proprie macchine virtuali, la funzionalità Integrazione rete virtuale non viene usata e le comunicazioni avvengono via Internet.
+Se non è configurato un server DNS con la rete virtuale, l'app sarà necessario toouse IP indirizzi tooreach risorse nella rete virtuale hello. Quando si utilizzano gli indirizzi IP, tenere presente che hello dei principali vantaggi di questa funzionalità che consente gli indirizzi privati toouse hello all'interno della rete privata. Se si imposta l'app di toouse gli indirizzi IP pubblici per una delle macchine virtuali, è quindi possibile non utilizza funzionalità di integrazione della rete virtuale hello e comunicano attraverso hello internet.
 
-## <a name="managing-the-vnet-integrations"></a>Gestione delle integrazioni di reti virtuali
-La possibilità di connettersi e disconnettersi da una rete virtuale è a livello di app. Le operazioni che possono influenzare l'integrazione di reti virtuali tra più app sono a livello di ASP. Dall'interfaccia utente visualizzata a livello di app è possibile ottenere dettagli sulla rete virtuale. La maggior parte di queste informazioni viene visualizzata anche a livello di ASP. 
+## <a name="managing-hello-vnet-integrations"></a>La gestione di integrazioni tra reti virtuali hello
+Hello tooconnect possibilità e disconnettere tooa che rete virtuale è a livello di applicazione. Le operazioni che possono influire sulla hello integrazione della rete virtuale tra più applicazioni sono a livello di ASP. Dall'interfaccia utente che viene visualizzata a livello di app hello hello, è possibile ottenere informazioni dettagliate su una rete virtuale. Maggior parte delle stesse informazioni vengono inoltre visualizzate hello ASP livello hello. 
 
 ![][5]
 
-Dalla pagina Stato funzionalità di rete è possibile vedere se l'app è connessa alla rete virtuale. Se il gateway della rete virtuale è inattivo per qualsiasi motivo, la rete viene visualizzata come non connessa. 
+Dalla pagina di hello lo stato della funzionalità di rete, è possibile visualizzare se l'applicazione è connessa tooyour rete virtuale. Se il gateway della rete virtuale è inattivo per qualsiasi motivo, la rete viene visualizzata come non connessa. 
 
-Le informazioni ora disponibili nell'interfaccia utente di integrazione rete virtuale a livello di app sono le stesse fornite a livello di ASP. Nel dettaglio:
+informazioni di Hello è ora disponibile tooyou nell'app hello è hello stesso livello dell'interfaccia utente integrazione tra reti virtuali come le informazioni di dettaglio hello ricevute hello ASP. Nel dettaglio:
 
-* Nome della rete virtuale: questo collegamento apre l'interfaccia utente della rete virtuale di Azure
-* Località: indica la località della rete virtuale. È possibile eseguire l'integrazione con una rete virtuale situata in un'altra località.
-* Stato dei certificati: qui sono riportati i certificati usati per proteggere la connessione VPN tra l'app e la rete virtuale. Lo stato restituisce il risultato di un test di verifica della sincronizzazione.
-* Stato dei gateway: se i gateway sono inattivi per qualsiasi motivo, l'app non può accedere alle risorse nella rete virtuale. 
-* Spazio di indirizzi della rete virtuale: lo spazio di indirizzi IP della rete virtuale. 
-* Spazio di indirizzi da punto a sito: lo spazio di indirizzi IP da punto a sito della rete virtuale. L'app visualizza le comunicazioni come provenienti da uno degli IP in questo spazio di indirizzi. 
-* Spazio di indirizzi da sito a sito: è possibile usare una connessione VPN da sito a sito per connettere la rete virtuale alle risorse locali o ad altre reti virtuali. Se questa impostazione è configurata, gli intervalli IP specificati con la connessione VPN vengono visualizzati qui.
+* Nome di rete virtuale - questo collegamento apre hello rete virtuale di Azure dell'interfaccia utente
+* Posizione - rispecchia percorso hello di una rete virtuale. È possibile toointegrate con una rete virtuale in un altro percorso.
+* -Stato del certificato sono presenti i certificati utilizzati toosecure hello VPN connessione tra l'applicazione hello e hello rete virtuale. Ciò indica un tooensure test siano sincronizzate.
+* Lo stato del gateway, il gateway è necessario verso il basso per qualsiasi motivo quindi l'app non è possibile accedere alle risorse hello rete virtuale. 
+* Spazio degli indirizzi di rete virtuale - hello uno spazio di indirizzi IP per la rete virtuale. 
+* Spazio degli indirizzi punto tooSite - si tratta di spazio di indirizzi IP toosite punto hello per la rete virtuale. L'app viene comunicazione come proveniente da una delle hello in questo spazio di indirizzi IP. 
+* Spazio di indirizzi toosite del sito - è possibile utilizzare sito tooSite VPN tooconnect tooyour la rete virtuale locale risorse o tooother rete virtuale. È necessario che configurato gli intervalli IP hello definita con la connessione VPN visualizzato qui.
 * Server DNS: qui sono elencati gli eventuali server DNS configurati con la rete virtuale.
-* Indirizzi IP instradati alla rete virtuale: viene qui visualizzato l'elenco di indirizzi IP per cui è stato specificato il routing nella rete virtuale. 
+* Gli indirizzi IP indirizzato toohello rete virtuale: sono presenti un elenco di indirizzi IP della rete virtuale con routing definito per, e agli indirizzi visualizzati. 
 
-L'unica operazione possibile nella vista app di Integrazione rete virtuale è la disconnessione dell'app dalla rete virtuale a cui è attualmente connessa. Per eseguire questa operazione, è sufficiente fare clic su Disconnetti nella parte superiore. Questa azione non modifica la rete virtuale. La rete virtuale e la relativa configurazione, inclusi i gateway, rimane invariata. Per eliminare la rete virtuale è necessario eliminare prima le risorse al suo interno, inclusi i gateway. 
+Hello solo l'operazione da eseguire nella visualizzazione di app hello dell'integrazione della rete virtuale è toodisconnect l'app da hello rete virtuale è attualmente connesso. toodo questa semplicemente fare clic su Disconnetti nella parte superiore di hello. Questa azione non modifica la rete virtuale. Hello rete virtuale e la relativa configurazione, inclusi gateway hello rimane invariato. Se desideri quindi toodelete la rete virtuale, è necessario risorse di hello di eliminazione toofirst in esso inclusi gateway hello. 
 
-La visualizzazione del piano di servizio app consente alcune operazioni aggiuntive ed è anche accessibile diversamente, oltre che dall'app. Per raggiungere l'interfaccia utente della rete ASP, è sufficiente aprire l'interfaccia utente ASP e scorrere verso il basso fino a raggiungere l'elemento denominato Stato funzionalità di rete. L'elemento fornisce alcuni dettagli secondari sull'integrazione di reti virtuali. Facendo clic su questo elemento, viene visualizzata l'interfaccia utente di Stato funzionalità di rete. Selezionando "Fare clic qui per gestire", viene visualizzato un elenco delle integrazioni di reti virtuali nell'ASP.
+Visualizza piano di servizio App Hello dispone di un numero di operazioni aggiuntive. È anche possibile accedervi in modo diverso rispetto a dall'applicazione hello. hello tooreach dell'interfaccia utente di rete di ASP semplicemente aprire l'interfaccia utente di ASP e scorrere verso il basso. fino a raggiungere l'elemento denominato Stato funzionalità di rete. L'elemento fornisce alcuni dettagli secondari sull'integrazione di reti virtuali. Facendo clic su questa interfaccia consente di aprire hello stato interfaccia utente funzionalità di rete. Se si fa quindi clic su "fare clic qui toomanage", hello dell'interfaccia utente che elenca le integrazioni tra reti virtuali in questo ASP apre hello.
 
 ![][6]
 
-È utile ricordare la località dell'ASP quando si esaminano le località delle reti virtuali di cui si esegue l'integrazione. Quando la rete virtuale è in un'altra località, è molto più probabile che ci siano problemi di latenza. 
+percorso di Hello del hello ASP è buona tooremember durante la ricerca nei percorsi di hello di reti virtuali che si sta integrando con hello. Quando hello rete virtuale si trova in un'altra posizione sono problemi di latenza toosee molto più probabili. 
 
-La voce relativa alle reti virtuali integrate indica il numero di reti virtuali con cui le app sono integrate in questo ASP rispetto al numero di reti possibile. 
+le reti virtuali integrate con Hello è un promemoria per il numero di reti virtuali, che le app sono integrate con questa ASP e il numero è possibile disporre di. 
 
-Per visualizzare altri dettagli su ogni rete virtuale, fare clic sulla rete virtuale in questione. Oltre ai dettagli rilevati in precedenza, viene visualizzato anche un elenco delle app nell'ASP che usano la rete virtuale. 
+toosee aggiungere dettagli su ogni rete virtuale, fare clic sul hello rete virtuale in questione. Inoltre dettagli toohello che sono stati annotati in precedenza, si può anche visualizzare un elenco di App hello in questo ASP che usano tale rete virtuale. 
 
-Sono disponibili due azioni principali. La prima è la possibilità di aggiungere route indirizzando il traffico dall'app alla propria rete virtuale. La seconda è la possibilità di sincronizzare i certificati e le informazioni di rete.
+Riguardo tooactions vi sono due operazioni principali. Hello viene innanzitutto le route tooadd hello possibilità che l'unità di traffico lasciando l'app in una rete virtuale. seconda azione Hello è certificati toosync possibilità di hello e informazioni di rete.
 
 ![][7]
 
-**Routing**: come indicato in precedenza le route definite in una rete virtuale vengono usate per indirizzare il traffico dall'app alla propria rete virtuale. L'invio di traffico aggiuntivo in uscita da un'app alla rete virtuale è possibile, ma la gestione del traffico da quel punto in poi dipende dalla configurazione della rete virtuale del cliente. 
+**Routing** come indicato in precedenza route hello definiti in una rete virtuale sono viene usata per indirizzare il traffico in rete virtuale dall'app. Sebbene in cui i clienti desiderano toosend aggiuntive il traffico in uscita da un'app in hello rete virtuale e per essi questa funzionalità viene fornita, esistono alcuni utilizzi. Cosa accade traffico toohello dopo che i clienti di hello toohow consente di configurare la rete virtuale. 
 
-**Certificati** : lo stato dei certificati riflette un controllo eseguito dal servizio app per verificare la validità dei certificati usati per la connessione VPN. Quando la funzionalità Integrazione rete virtuale è abilitata, alla prima integrazione nella rete virtuale da una qualsiasi app in questo ASP è necessario uno scambio di certificati per garantire la sicurezza della connessione. Con i certificati si ottengono la configurazione DNS, le route e altre informazioni simili che descrivono la rete.
-Se vengono modificati i certificati o le informazioni di rete, è necessario eseguire nuovamente la sincronizzazione della rete. **NOTA**: la sincronizzazione della rete provoca una breve interruzione della connettività tra l'app e la rete virtuale. L'app non viene riavviata, ma la perdita di connettività potrebbe causare il funzionamento non corretto del sito. 
+**I certificati** hello stato certificato riflette un segno di spunta eseguita da hello toovalidate di servizio App che i certificati di hello che si sono usando per la connessione VPN hello sono ancora valido. Quando è abilitata l'integrazione della rete virtuale, quindi se si tratta di toothat delle integrazione prima rete virtuale di hello da qualsiasi App in questo ASP è uno scambio di sicurezza di hello certificati tooensure della connessione hello obbligatorio. Insieme ai certificati hello si ottiene la configurazione del DNS hello, route e altre operazioni simili che descrivono la rete hello.
+Se tali certificati o le informazioni di rete viene modificato, è necessario tooclick "Rete di sincronizzazione". **NOTA**: la sincronizzazione della rete provoca una breve interruzione della connettività tra l'app e la rete virtuale. Mentre l'app non viene riavviato, una perdita di connettività hello potrebbe causare il funzionamento di toonot del sito in modo corretto. 
 
 ## <a name="accessing-on-premises-resources"></a>Accesso alle risorse locali
-Uno dei vantaggi offerti dalla funzionalità Integrazione rete virtuale è la possibilità per le app di accedere alle risorse locali direttamente dall'app, se la rete virtuale è connessa alla rete locale con una VPN da sito a sito. A questo scopo, tuttavia, è possibile che sia necessario aggiornare il gateway VPN locale con le route per l'intervallo IP da punto a sito. Quando la connessione VPN da sito a sito viene configurata per la prima volta, gli script usati per la configurazione devono impostare route che includono la VPN da punto a sito. Se la VPN da punto a sito viene aggiunta dopo aver creato la VPN da sito a sito, è necessario aggiornare le route manualmente. Le informazioni dettagliate su come eseguire questa operazione variano in base al gateway e non sono descritte in questo documento. 
+Uno dei vantaggi di hello della funzionalità di integrazione della rete virtuale hello è che se è connesso alla rete virtuale tooyour locale rete con un tooSite sito VPN App può avere accesso alle risorse locali di tooyour dall'app. Per questo toowork potrebbe essere necessario tooupdate il gateway VPN locale con hello instrada per l'intervallo di IP tooSite punto. Quando hello sito tooSite VPN è prima di tutto configurare quindi gli script di hello utilizzati tooconfigure deve impostare i percorsi inclusi la VPN tooSite punto. Se si aggiunta hello VPN tooSite punto dopo aver creato il tooSite sito VPN, è necessario route hello tooupdate manualmente. Informazioni dettagliate su come toodo che variano per ogni gateway e non sono descritti di seguito. 
 
 > [!NOTE]
-> La funzionalità Integrazione rete virtuale non consente l'integrazione di un'app con una rete virtuale dotata di un gateway ExpressRoute. Anche se il gateway ExpressRoute è configurato in [modalità di coesistenza][VPNERCoex], Integrazione rete virtuale non funziona. Se è necessario accedere alle risorse tramite una connessione ExpressRoute, è possibile usare un [ambiente del servizio app][ASE] eseguito nella rete virtuale.
+> funzionalità di integrazione della rete virtuale Hello non si integra un'app con una rete virtuale che dispone di un ExpressRoute Gateway. Anche se è configurato il ExpressRoute Gateway hello in [modalità di coesistenza] [ VPNERCoex] hello integrazione della rete virtuale non funziona. Se sono necessarie risorse tooaccess tramite una connessione ExpressRoute, è quindi possibile utilizzare un [ambiente del servizio App][ASE], che viene eseguita in una rete virtuale.
 > 
 > 
 
 ## <a name="pricing-details"></a>Dettagli prezzi
-Quando si usa la funzionalità Integrazione rete virtuale è opportuno tenere presente alcune differenze nei prezzi. I 3 costi correlati all'uso della funzionalità sono:
+Ci sono alcuni prezzi sfumature da prendere in considerazione quando si usa hello funzionalità di integrazione della rete virtuale. Vi sono addebiti correlati 3 toohello uso di questa funzionalità:
 
 * Requisiti del piano tariffario ASP
 * Costi di trasferimento dati
 * Costi del gateway VPN
 
-Perché le app possano usare questa funzionalità, devono far parte di un piano di servizio app di livello Premium o Standard. Per altre informazioni sui costi, vedere i [prezzi del servizio app][ASPricing]. 
+Per il toouse in grado di App toobe questa funzionalità, hanno bisogno toobe in un piano di servizio App Premium o Standard. Per altre informazioni sui costi, vedere i [prezzi del servizio app][ASPricing]. 
 
-A causa della modalità di gestione delle VPN da punto a sito, è sempre previsto un addebito per i dati in uscita attraverso la connessione di Integrazione rete virtuale anche se la rete virtuale si trova nello stesso data center. Per conoscere gli addebiti, vedere [Dettagli prezzi dei trasferimenti di dati][DataPricing]. 
+Scadenza modo toohello tooSite punto VPN vengono gestite, è sempre un addebito per i dati in uscita tramite la connessione a integrazione della rete virtuale anche se in rete virtuale hello hello stesso centro dati. toosee quali sono tali spese, andare al: [dettagli prezzi di trasferire dati][DataPricing]. 
 
-L'ultimo elemento è il costo dei gateway di rete virtuale. Se il gateway non è necessario per altri motivi, ad esempio per le reti VPN da sito a sito, viene addebitato il costo dei gateway per il supporto della funzionalità Integrazione rete virtuale. Per informazioni su questi costi, vedere i [prezzi di Gateway VPN][VNETPricing]. 
+ultimo elemento Hello è il costo di hello del gateway di rete virtuale hello. Se non è necessario gateway hello per qualcos'altro come sito tooSite VPN, quindi di pagamento per la funzionalità di integrazione della rete virtuale hello toosupport gateway. Per informazioni su questi costi, vedere i [prezzi di Gateway VPN][VNETPricing]. 
 
 ## <a name="troubleshooting"></a>Risoluzione dei problemi
-La funzionalità è semplice da configurare, ma possono comunque verificarsi problemi durante l'uso. In caso di problemi di accesso all'endpoint desiderato, sono disponibili varie utilità che permettono di testare la connettività dalla console dell'app. Le console disponibili sono due: la console Kudu e la console raggiungibile nel portale di Azure. Per accedere alla console Kudu dalla propria app, selezionare Strumenti -> Kudu. Questa operazione equivale a visitare [nomesito].scm.azurewebsites.net. Dopo l'apertura, passare alla scheda della console di debug. Per accedere alla console ospitata nel portale di Azure dalla propria app, selezionare Strumenti -> Console. 
+Mentre la funzionalità hello è facile tooset, ciò non significa che l'esperienza sarà problema disponibile. In caso problemi di accesso l'endpoint desiderato vi sono alcune utilità, è possibile usare la connettività tootest dalla console di app hello. Le console disponibili sono due: Uno dalla console Kudu hello e hello altri console hello in grado di raggiungere in hello portale di Azure. console di Kudu toohello tooget dall'app passare tooTools -> Kudu. Questo è hello stesso che troppo [nomesito]. n e t. Una volta che toohello tooget relativo a apre semplicemente passare toohello Debug console scheda console ospitati del portale Azure quindi dall'app passare tooTools -> Console. 
 
 #### <a name="tools"></a>Strumenti
-Gli strumenti ping, nslookup e tracert non funzionano dalla console a causa di vincoli di sicurezza. Per questo motivo sono stati aggiunti due strumenti separati. Per testare la funzionalità del DNS è stato aggiunto lo strumento nameresolver.exe. La sintassi è:
+il ping di strumenti Hello, nslookup e tracert non funzionano tramite la console hello a causa di vincoli toosecurity. void di hello toofill sono state aggiunti due strumenti. Funzionalità di ordine tootest DNS è stato aggiunto uno strumento denominato nameresolver.exe. sintassi di Hello è:
 
     nameresolver.exe hostname [optional: DNS Server]
 
-Si può usare nameresolver per controllare i nomi host da cui dipende l'app. In questo modo è possibile verificare se la configurazione del server DNS è corretta e se si ha accesso al server DNS.
+È possibile utilizzare i nomi host hello nameresolver toocheck che l'applicazione dipende. In questo modo è possibile verificare se si dispone di un valore non è configurato con il server DNS o potrebbe non essere server DNS di accesso tooyour.
 
-Il secondo strumento permette di verificare la connettività TCP a una combinazione di host e porta. Si tratta dello strumento tcpping.exe, la cui sintassi è:
+strumento Avanti Hello consente tootest per TCP connettività tooa host e porta combinazione. Questo strumento viene chiamato tcpping.exe e hello sintassi è:
 
     tcpping.exe hostname [optional: port]
 
-L'utilità tcpping indica se è possibile raggiungere una porta e un host specifici. Essa visualizza il completamento solo se: è presente un'applicazione in ascolto presso la combinazione di host e porta ed è presente un accesso di rete dall'app all'host e alla porta specificati.
+utilità tcpping Hello indica se è possibile raggiungere una porta e un host specifico. Può visualizzare solo il completamento se: non è un'applicazione in ascolto su una combinazione di host e porta hello ed è l'accesso alla rete l'host specificato toohello di app e la porta.
 
-#### <a name="debugging-access-to-vnet-hosted-resources"></a>Accesso di debug a risorse ospitate su una rete virtuale
-L'app potrebbe non riuscire a raggiungere un host e una porta specifici per una serie di motivi. Nella maggior parte dei casi il motivo è uno dei seguenti:
+#### <a name="debugging-access-toovnet-hosted-resources"></a>Debug tooVNet accesso risorse ospitate
+L'app potrebbe non riuscire a raggiungere un host e una porta specifici per una serie di motivi. La maggior parte del tempo di hello è una delle tre operazioni:
 
-* **L'ostacolo è rappresentato da un firewall**: se è presente un firewall, si verifica il timeout TCP, che in questo caso è di 21 secondi. Usare lo strumento tcpping per testare la connettività. Il timeout TCP può essere dovuto anche ad altri motivi, ma è consigliabile iniziare dal firewall. 
-* **Il DNS non è accessibile**: il timeout DNS è di tre secondi per ogni server DNS. Se si dispone di due server DNS, il timeout è di 6 secondi. Usare nameresolver per verificare il funzionamento del DNS. Si noti che non è possibile usare nslookup, perché non usa il DNS con cui è configurata la rete virtuale.
-* **Intervallo IP P2S non valido** L'intervallo da punto a sito deve essere compreso tra gli intervalli IP privati RFC 1918 (10.0.0.0-10.255.255.255 / 172.16.0.0-172.31.255.255 / 192.168.0.0-192.168.255.255). Se l'intervallo usa indirizzi IP esterni a tali intervalli, allora il processo non funzionerà. 
+* **Sia presente un firewall in hello modo** se è presente un firewall in modo hello, verrà raggiunto il timeout TCP hello. che in questo caso è di 21 secondi. Usare la connettività di hello tcpping strumento tootest. Timeout TCP può essere a causa di operazioni toomany oltre i firewall ma partire da qui. 
+* **DNS non è accessibile** timeout DNS hello è tre secondi per il server DNS. Se si dispone di due server DNS, il timeout di hello è 6 secondi. Utilizzare nameresolver toosee se DNS funziona correttamente. Tenere presente che usino hello la rete virtuale è configurata con DNS non è possibile utilizzare nslookup.
+* **Intervallo IP P2S non valido** intervallo IP di hello toosite punto deve toobe in intervalli IP privati hello RFC 1918 (10.0.0.0-10.255.255.255 / 172.16.0.0-172.31.255.255 / 192.168.0.0-192.168.255.255). Se l'intervallo hello utilizza indirizzi IP all'esterno che, ciò non funziona. 
 
-Se il problema non rientra in nessuno dei tre casi, cercare prima di tutto le cause più semplici. Ad esempio: 
+Se il problema non rispondono a tali elementi, cerca innanzitutto per operazioni semplici di hello come: 
 
-* Il gateway viene visualizzato come attivo nel portale?
+* Hello Gateway viene visualizzato come backup nel portale di hello?
 * I certificati vengono visualizzati come sincronizzati?
-* La configurazione di rete è stata modificata senza poi eseguire una sincronizzazione della rete nell'ASP interessato? 
+* Chiunque ha modificare la configurazione di rete hello senza effettuare una rete"sincronizzazione" in ASP hello interessata? 
 
-Se il gateway è inattivo, è necessario riattivarlo. Se i certificati non sono sincronizzati, passare alla visualizzazione ASP dell'integrazione di reti virtuali ed eseguire la sincronizzazione della rete. Se si sospetta che sia stata apportata una modifica alla configurazione di rete virtuale senza la successiva sincronizzazione con gli ASP, passare alla visualizzazione ASP di integrazione rete virtuale ed eseguire la sincronizzazione della rete. Ricordarsi che questa operazione provocherà una breve interruzione della connessione di rete virtuale e del funzionamento delle app. 
+Se il gateway è inattivo, è necessario riattivarlo. Se i certificati non sono sincronizzati, Vai a visualizzazione ASP toohello dell'integrazione della rete virtuale e hit "Rete di sincronizzazione". Se si ritiene che è una configurazione di rete virtuale sono state apportate modifiche tooyour e non è stato sincronizzazione sarebbe con le pagine ASP, quindi passare vista ASP toohello dell'integrazione della rete virtuale e hit "Rete di sincronizzazione" Just come promemoria, causando una breve interruzione del servizio con la connessione di rete virtuale e le app . 
 
-Se i quesiti precedenti non permettono di risolvere il problema, è necessario approfondire l'analisi:
+Se tutto è accettabile, è necessario toodig in un po' più approfondito:
 
-* Sono presenti altre app che usano l'integrazione rete virtuale per raggiungere risorse nella stessa rete virtuale? 
-* È possibile accedere alla console dell'app e usare tcpping per raggiungere altre risorse nella rete virtuale? 
+* Sono sono le app usando le risorse di integrazione della rete virtuale tooreach in hello stessa rete virtuale? 
+* Può passare toohello console di app e usare tcpping tooreach tutte le altre risorse in una rete virtuale? 
 
-Se viene soddisfatta una delle condizioni precedenti, l'integrazione di reti virtuali funziona correttamente e il problema è altrove. In tal caso, scoprire perché non è possibile raggiungere una combinazione host:porta può risultare più complesso. Tra le cause possibili:
+In presenza di una di hello precedente, quindi l'integrazione della rete virtuale è appropriato e problema hello è altra. Si tratta in cui ottiene toobe più complessa poiché non esiste alcun toosee semplice perché non è possibile raggiungere una host: porta. Alcune delle cause hello includono:
 
-* È presente un firewall sull'host che impedisce l'accesso alla porta dell'applicazione dall'intervallo IP da punto a sito. Il passaggio tra subnet spesso richiede l'accesso pubblico.
+* è presente un firewall nell'host di impedire l'accesso toohello applicazione porta dall'intervallo di IP toosite punto. Il passaggio tra subnet spesso richiede l'accesso pubblico.
 * L'host di destinazione è inattivo.
 * L'applicazione è inattiva.
-* L'IP o il nome host è errato.
-* L'applicazione è in ascolto su una porta diversa da quella prevista. Per verificare ciò, accedere all'host e immettere "netstat -aon" dal prompt dei comandi di cmd. Vengono visualizzati gli ID processo in ascolto e le relative porte. 
-* I gruppi di sicurezza di rete sono configurati in modo da impedire l'accesso all'host e alla porta dell'applicazione dall'intervallo IP da punto a sito.
+* era hello errato IP o nome host
+* L'applicazione è in ascolto su una porta diversa da quella prevista. È possibile verificare che in tale host e usando "netstat - aon" dal prompt dei comandi cmd hello. Vengono visualizzati gli ID processo in ascolto e le relative porte. 
+* i gruppi di sicurezza di rete configurati in modo tale che impediscono di host applicazioni tooyour di accesso e la porta dall'intervallo di IP toosite punto
 
-Tenere presente che non si conosce l'IP usato dall'app nell'intervallo IP da punto a sito, quindi è necessario consentire l'accesso all'intero intervallo. 
+Tenere presente che non si conosce quali IP dell'intervallo IP tooSite punto che verrà utilizzati dall'applicazione, pertanto è necessario accedere tooallow dall'intero intervallo hello. 
 
 Di seguito è riportata la procedura di debug aggiuntiva:
 
-* Accedere a un'altra macchina virtuale nella rete virtuale e provare a raggiungere la combinazione host:porta della risorsa da lì. A questo scopo è possibile usare alcune utilità ping TCP o telnet, se necessario. In questo caso si vuole solo determinare se è disponibile la connettività dall'altra macchina virtuale. 
-* Visualizzare un'applicazione in un'altra macchina virtuale e testare l'accesso all'host e alla porta dalla console dell'app.
+* accedere a un'altra macchina virtuale in tooreach la rete virtuale e tentativo la risorsa host: porta da qui. A questo scopo è possibile usare alcune utilità ping TCP o telnet, se necessario. Hello scopo qui è toodetermine solo se la connettività è presente questo altre VM. 
+* visualizzare un'applicazione in un'altra macchina virtuale e testare toothat accesso host e porta dalla console hello dall'app
 
 #### <a name="on-premises-resources"></a>Risorse locali ####
-Se l'applicazione non riesce a raggiungere le risorse locali, è necessario prima di tutto verificare se è possibile raggiungere una risorsa nella rete virtuale. Se funziona, cercare di raggiungere l'applicazione locale da una macchina virtuale presente nella rete virtuale. A questo scopo è possibile usare telnet o un'utilità ping TCP. Se la macchina virtuale non riesce a raggiungere la risorsa locale, verificare che la connessione VPN da sito a sito funzioni correttamente. Se la connessione funziona, eseguire gli stessi controlli descritti in precedenza, nonché la configurazione e lo stato del gateway locale. 
+Se l'applicazione non riesce a raggiungere le risorse locali, innanzitutto hello che è consigliabile controllare è se è possibile raggiungere una risorsa in una rete virtuale. Se funziona, provare a un'applicazione locale hello tooreach da una macchina virtuale nella rete virtuale hello. A questo scopo è possibile usare telnet o un'utilità ping TCP. Se la macchina virtuale non riesce a raggiungere la risorsa locale, verificare che la connessione VPN da sito tooSite sia funzionante. Se funziona, controllare hello operazioni indicati in precedenza e configurazione del gateway locale hello e lo stato. 
 
-A questo punto, se la macchina virtuale ospitata nella rete virtuale può raggiungere il sistema locale ma l'app non ci riesce, la causa è probabilmente una delle seguenti:
+Ora se la rete virtuale ospitato VM può raggiungere il sistema locale, ma l'app non può quindi motivo hello è probabilmente una delle seguenti hello:
 
-* le route non sono configurate con gli intervalli di IP da punto a sito nel gateway locale
-* i gruppi di sicurezza della rete bloccano l'accesso all'intervallo di IP da punto a sito
-* i firewall locali bloccano il traffico proveniente dall'intervallo di IP da punto a sito
-* nella rete virtuale è presente una route definita dall'utente (UDR) che impedisce al traffico da punto a sito di raggiungere la rete locale
+* i percorsi non sono configurati con gli intervalli IP punto toosite nel gateway locale
+* i gruppi di sicurezza di rete bloccano l'accesso per l'intervallo di IP tooSite punto
+* i firewall locale stanno bloccando il traffico dall'intervallo di IP tooSite punto
+* si dispone di un Route(UDR) definito dall'utente in una rete virtuale che impedisce che il traffico tooSite punto basato su raggiungere la rete locale
 
 ## <a name="hybrid-connections-and-app-service-environments"></a>Connessioni ibride e ambienti del servizio App
-Sono disponibili tre funzioni che consentono l'accesso alle risorse ospitate su reti virtuali. Sono:
+Esistono tre funzionalità che consentono di accedere alle risorse di tooVNet ospitato. Sono:
 
 * Integrazione rete virtuale
 * connessioni ibride
 * Ambienti del servizio app
 
-Per le connessioni ibride è necessario installare nella rete un agente di inoltro denominato Gestione connessione ibrida. Gestione connessione ibrida deve potersi connettere ad Azure e anche all'applicazione. Questa soluzione è particolarmente vantaggiosa se adottata da una rete remota, come la propria rete locale o un'altra rete ospitata sul cloud, poiché non richiede un endpoint accessibile da Internet. Gestione connessione ibrida può essere eseguita solo su sistemi Windows e prevede un massimo di cinque istanze in esecuzione per garantire un'elevata disponibilità. Le connessioni ibride, tuttavia, supportano solo il TCP e ogni endpoint di connessione ibrida deve corrispondere a una combinazione host:porta specifica. 
+Le connessioni ibride richiede tooinstall un agente di inoltro chiamato hello Manager(HCM) connessione ibrida nella rete. Hello HCM deve toobe tooconnect in grado di tooAzure nonché tooyour applicazione. Questa soluzione è particolarmente vantaggiosa se adottata da una rete remota, come la propria rete locale o un'altra rete ospitata sul cloud, poiché non richiede un endpoint accessibile da Internet. Hello HCM viene eseguito solo in Windows ed è possibile disporre di istanze toofive tooprovide la disponibilità elevata. Le connessioni ibride supporta solo TCP tuttavia e ogni endpoint HC dispone di combinazione di toomatch tooa host: porta specifica. 
 
-La funzionalità Ambiente del servizio app consente di eseguire un'istanza dei Siti Web di Microsoft Azure nella propria rete virtuale. In questo modo le app possono accedere alle risorse nella rete virtuale senza eseguire altri passaggi. Tra i vantaggi dell'ambiente del servizio app c'è la possibilità di usare ruoli di lavoro basati su Dv2 con fino a 14 GB di RAM. Un altro vantaggio è la possibilità di ridimensionare il sistema in base alle esigenze. A differenza degli ambienti multi-tenant, in cui la pagina ASP è limitata a 20 istanze, in un ambiente del servizio app è possibile scalare fino a 100 istanze ASP. Uno dei vantaggi dell'ambiente del servizio app rispetto all'integrazione di reti virtuali è che il primo è compatibile con una VPN ExpressRoute. 
+funzionalità di ambiente del servizio App Hello consente toorun un'istanza di servizio App di Azure hello in una rete virtuale. In questo modo le app possono accedere alle risorse nella rete virtuale senza eseguire altri passaggi. Alcune di hello altri vantaggi di un ambiente del servizio App sono che è possibile utilizzare Dv2 basato su ruoli di lavoro con backup too14 GB di RAM. Un altro vantaggio è che è possibile scalare hello sistema toomeet le proprie esigenze. A differenza di hello multi-tenant ambienti in cui la pagina ASP istanze too20 limitata, in un ASE è possibile ridimensionare le istanze di too100 ASP. Una delle operazioni di hello che con una base che non sono presenti con integrazione della rete virtuale è che un ambiente del servizio App può funzionare con una VPN ExpressRoute. 
 
-Nonostante ci sia una parziale sovrapposizione, nessuna di queste funzionalità può sostituire le altre. In base all'uso che se ne intende fare è possibile stabilire quali funzionalità usare. ad esempio:
+Mentre che alcuni utilizzano case si sovrappongono, nessuna di queste funzionalità può sostituire tutti hello ad altri utenti. Sapere quali toouse funzionalità esigenze tooyour collegati. ad esempio:
 
-* Uno sviluppatore che voglia semplicemente eseguire un sito in Azure e consentire l'accesso al database nella workstation locale, può usare Connessioni ibride. 
-* Una grande organizzazione che voglia inserire un gran numero di proprietà Web nel cloud pubblico e gestirle nella propria rete, può usare Ambiente del servizio app. 
-* Per accedere alle risorse nella rete virtuale con un numero elevato di app ospitate nel servizio app, è possibile usare la funzionalità Integrazione rete virtuale. 
+* Se uno sviluppatore e deve semplicemente toorun un sito in Azure e hanno accesso database hello nella workstation hello in scrivania, toouse cosa più semplice hello è connessioni ibride. 
+* Se si una grande organizzazione che vuole tooput un numero elevato di proprietà web nel cloud pubblico hello e gestirli nella propria rete, è possibile toogo con hello ambiente del servizio App. 
+* Se si dispone di un numero di servizio App ospitato App semplicemente volere tooaccess risorse in una rete virtuale, quindi integrazione della rete virtuale è toogo modo hello. 
 
-Oltre ai casi d'uso è opportuno tenere conto di alcuni aspetti relativi alla semplicità. Se la rete virtuale è già connessa alla rete locale, uno dei modi più semplici per usare le risorse locali è costituito dall'integrazione della rete virtuale o dall'uso di un ambiente del servizio app. Se invece la rete virtuale non è connessa alla rete locale, è molto più complicato configurare una VPN da sito a sito con la rete virtuale piuttosto che installare Gestione connessione ibrida. 
+Oltre a casi d'uso hello, esistono alcuni semplicità gli aspetti correlati. Se la rete virtuale è già connesso tooyour rete, quindi utilizzando l'integrazione della rete virtuale in locale o un ambiente del servizio App è un modo semplice tooconsume risorse locali. Nel hello altra parte, se la rete virtuale non è connessa una rete locale tooyour è molto che più tooset overhead backup toosite un sito VPN con la rete virtuale rispetto all'installazione hello HCM. 
 
-Oltre a differenze funzionali, vanno considerate le differenze di prezzo. La funzionalità Ambiente del servizio app è un'offerta di servizio Premium che garantisce il massimo delle possibilità di configurazione di rete e altre funzionalità. La funzionalità Integrazione rete virtuale può essere usata con ASP Standard o Premium ed è ideale per l'uso sicuro delle risorse in una rete virtuale dal servizio app multi-tenant. La funzionalità Connessioni ibride dipende attualmente da un account BizTalk che prevede diversi piani tariffari, da quello gratuito a quello meno economico, a seconda della quantità richiesta. Per l'uso su più reti, tuttavia, la scelta ideale è la funzionalità Connessioni ibride, che permette di accedere a risorse in oltre 100 reti separate. 
+Oltre hello differenze funzionali, vi sono anche prezzi differenze. funzionalità di ambiente del servizio App Hello è Premium offerta di servizio ma hello offre la maggior parte delle possibilità di configurazione di rete inoltre tooother importanti funzionalità. Integrazione della rete virtuale può essere utilizzato con Standard o Premium ASP e rappresenta la soluzione ideale per l'utilizzo in modo sicuro le risorse in una rete virtuale da multi-tenant di hello servizio App. Le connessioni ibride attualmente dipende da BizTalk account, che dispone dei prezzi di livelli di avviare disponibile e quindi ottengono progressivamente più costoso in base all'ammontare hello è necessario. Quando si tratta tuttavia tooworking tra molte reti, non siano disponibili altre funzionalità come le connessioni ibride, che consentono di risorse tooaccess oltre 100 reti separate. 
 
 <!--Image references-->
 [1]: ./media/web-sites-integrate-with-vnet/vnetint-upgradeplan.png

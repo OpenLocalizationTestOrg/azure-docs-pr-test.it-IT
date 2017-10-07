@@ -1,6 +1,6 @@
 ---
-title: Riattivare la sottoscrizione disabilitata di Azure | Documentazione Microsoft
-description: Descrive i casi in cui la sottoscrizione potrebbe essere disabilitata e come riattivarla.
+title: aaaReactivate disabilitato sottoscrizione di Azure | Documenti Microsoft
+description: "Descrive quando potrebbe essere disabilitata una sottoscrizione di Azure e la modalità tooreactivate è."
 keywords: sottoscrizione di Azure disabilitata
 services: 
 documentationcenter: 
@@ -16,51 +16,51 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/13/2017
 ms.author: genli
-ms.openlocfilehash: 0603786292cf29c2eff60bbc90a72c9cd1ea2860
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2c9712304dd25431a7b66a33a2c5816f1547cfee
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="why-is-my-azure-subscription-disabled-and-how-do-i-reactivate-it"></a>Perché la sottoscrizione di Azure è disabilitata e cosa occorre fare per riattivarla?
-La sottoscrizione di Azure potrebbe essere disabilitata perché è stato raggiunto il limite di spesa, è scaduto un pagamento, è stato raggiunto il limite di credito oppure perché la sottoscrizione è stata annullata dall'amministratore account. Identificare il problema che descrive la situazione in corso e seguire la procedura descritta in questo articolo per riattivare la sottoscrizione.
+Si potrebbe avere disabilitata perché è stato raggiunto il limite di spesa la sottoscrizione di Azure, un pagamento scaduto, ha raggiunto il limite di carta di credito, oppure perché la sottoscrizione hello è stata annullata dall'amministratore dell'account hello. Vedere qual è il problema si applica tooyou e seguire i passaggi hello in questo articolo di tooget riattivata la sottoscrizione.
 
 ## <a name="you-reached-your-spending-limit"></a>È stato raggiunto il limite di spesa
-Quando l'uso previsto per il mese incluso nella sottoscrizione è stato superato, il servizio viene disabilitato fino alla fine del mese di fatturazione. Il servizio è disabilitato per impedire addebiti errati per un utilizzo superiore alla quantità inclusa nella sottoscrizione. È possibile rimuovere il limite di spesa per e [impostare avvisi di fatturazione per le sottoscrizioni di Microsoft Azure](billing-set-up-alerts.md) che consentono di monitorare e gestire le attività di fatturazione per gli account Azure.
+Quando l'utilizzo esaurisce gli importi mensili di hello inclusi con la sottoscrizione, abbiamo disabilitato il servizio per il resto di hello del mese di fatturazione. Il servizio è disabilitato tooprotect impedirebbero accidentalmente gli addebiti di utilizzo eccedente hello quantità inclusa con la sottoscrizione. È possibile rimuovere hello limite di spesa e [configurare la fatturazione degli avvisi per le sottoscrizioni di Microsoft Azure](billing-set-up-alerts.md) toohelp monitorare e gestire attività di fatturazione per l'account di Azure.
 
-Per rimuovere il limite di spesa,
+la spesa limitare tooremove,
 
-1. Accedere al [Centro account di Azure](https://account.windowsazure.com/Home/Index).
+1. Accedi toohello [centro Account Azure](https://account.windowsazure.com/Home/Index).
 2. Fare clic su **Sottoscrizioni**.
 3. Selezionare una sottoscrizione.
-4. Fare clic su **L'abbonamento ha raggiunto un limite di spesa ed è stato sospeso per impedire addebiti**.
+4. Fare clic su **sottoscrizione raggiunto hello limite di spesa ed è stato disabilitato tooprevent spese**.
 
-    Se questa opzione non è visibile, fare clic su **Rimuovere il limite di spesa** nell'area **Stato sottoscrizione**.
-5. Selezionare una delle opzioni seguenti:
+    Se tale opzione non è visualizzata, fare clic su **Rimuovi limite di spesa** nella sottoscrizione hello **stato** area.
+5. Selezionare una delle seguenti opzioni hello:
 
 | Opzione | Effetto |
 | --- | --- |
-| Rimuovi il limite di spesa per un periodo illimitato |Rimuove il limite di spesa fino a quando non viene riattivato. |
-| Rimuovi il limite di spesa per il periodo di fatturazione corrente |Rimuove il limite di spesa che viene riavviato per il periodo di fatturazione successivo. |
+| Rimuovi il limite di spesa per un periodo illimitato |Rimuove hello limite di spesa fino a quando non riattivata. |
+| Rimuovere il limite di spesa per hello periodo di fatturazione corrente |Rimuove un limite di spesa hello ma hello riavvii del limite di spesa per hello successivo periodo di fatturazione. |
 
-Se si usa una sottoscrizione di valutazione gratuita e si rimuovono i limiti di spesa, la sottoscrizione verrà convertita al pagamento in base al consumo alla fine del periodo di valutazione gratuita.
+Se si dispone di una sottoscrizione di valutazione gratuita e rimuovere i limiti di spesa hello, la sottoscrizione converte tooPay-come-di-Go alla fine di hello della versione di valutazione gratuita di hello.
 
 ## <a name="your-bill-is-past-due"></a>Il saldo da pagare è scaduto
-Pagare il saldo totale. Vedere l'articolo [Perché si riceve una notifica che la sottoscrizione di Azure presenta un saldo dovuto non pagato?](billing-azure-subscription-past-due-balance.md#how-to-resolve-the-issue)
+Pagare il saldo totale. Vedere l'articolo hello [perché hanno ricevuto una notifica che la sottoscrizione di Azure ha una precedenza addebitare?](billing-azure-subscription-past-due-balance.md#how-to-resolve-the-issue)
 
-## <a name="the-bill-exceeds-your-credit-card-limit"></a>La fattura supera il limite della carta di credito
-Per risolvere il problema [Cambiare carta di credito](billing-how-to-change-credit-card.md). Oppure, nel caso di un'azienda, è possibile [passare al metodo di pagamento tramite fattura](https://azure.microsoft.com/pricing/invoicing/).
+## <a name="hello-bill-exceeds-your-credit-card-limit"></a>fattura Hello supera il limite di carta di credito
+tooresolve questo problema, [tooa di switch altra carta di credito](billing-how-to-change-credit-card.md). O se si sta che rappresenta un'azienda, è possibile [passare toopay da fattura](https://azure.microsoft.com/pricing/invoicing/).
 
-## <a name="the-subscription-was-canceled-by-the-account-administrator"></a>La sottoscrizione è stata annullata dall'amministratore account
-Se si è l'amministratore account, riattivare la sottoscrizione con pagamento in base al consumo attenendosi alla procedura seguente:
+## <a name="hello-subscription-was-canceled-by-hello-account-administrator"></a>sottoscrizione Hello è stata annullata dall'amministratore dell'Account hello
+Se si è amministratore dell'account hello, riattivare la sottoscrizione a pagamento tramite hello alla procedura seguente:
 
-1. Accedere al [Centro account di Azure](https://account.windowsazure.com/Home/Index).
-2. Selezionare la sottoscrizione annullata.
+1. Accedi toohello [centro Account Azure](https://account.windowsazure.com/Home/Index).
+2. Seleziona hello annullata sottoscrizione.
 3. Fare clic su **Riattiva**.
 
-![Screenshot che mostra l'opzione per riattivare i collegamenti nel riquadro di destra.](./media/billing-how-to-cancel-azure-subscription/reactivate-sub.png)
+![Schermata che mostra riattivare i collegamenti nel riquadro di destra hello.](./media/billing-how-to-cancel-azure-subscription/reactivate-sub.png)
 
-Per altri tipi di sottoscrizione, [contattare il supporto tecnico](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade) per riattivare la sottoscrizione.
+Per altri tipi di sottoscrizione, [contattare il supporto tecnico](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade) toohave riattivata la sottoscrizione.
 
 ## <a name="need-help-contact-support"></a>Richiesta di assistenza Contattare il supporto tecnico.
-Se si necessita ancora di assistenza, [contattare il supporto tecnico](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade) per ottenere una rapida risoluzione del problema.
+Se è ancora necessario della Guida, [contattare il supporto tecnico](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade) tooget risolta il problema.

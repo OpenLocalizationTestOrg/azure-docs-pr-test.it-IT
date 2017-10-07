@@ -1,6 +1,6 @@
 ---
-title: Personalizzazione dei set di impostazioni di Media Encoder Standard | Documentazione Microsoft
-description: "Questo argomento illustra come eseguire la codifica avanzata personalizzando i set di impostazioni delle attività di Media Encoder Standard. Questo argomento illustra come usare Media Services .NET SDK per creare un processo e un'attività di codifica. Illustra anche come specificare set di impostazioni personalizzati per il processo di codifica."
+title: aaaCustomizing Media Encoder Standard predefiniti | Documenti Microsoft
+description: "Questo argomento viene illustrato come tooperform avanzate codifica personalizzando Media Encoder Standard attività predefiniti. argomento di Hello viene illustrato come toouse Media Services .NET SDK toocreate una codifica e attività del processo. Viene inoltre illustrato come toosupply personalizzati predefiniti toohello processo di codifica."
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,29 +14,29 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/17/2017
 ms.author: juliako
-ms.openlocfilehash: b4d25f07349043da8cb745930fde3371c98f9960
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: fa8c3bef63b0c1ecc88a6b8874ecbff3a8028a57
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="customizing-media-encoder-standard-presets"></a>Personalizzazione dei set di impostazioni di Media Encoder Standard
 
 ## <a name="overview"></a>Panoramica
 
-Questo argomento illustra come eseguire le attività di codifica avanzata con Media Encoder Standard usando un set di impostazioni personalizzato. In questo argomento viene usato .NET per creare un'attività di codifica e un processo che la esegue.  
+Questo argomento viene illustrato come set di impostazioni tooperform avanzate codifica con Media codificatore Standard (MES) mediante un oggetto personalizzato. argomento Hello utilizza .NET toocreate un'attività di codifica e un processo che esegue questa attività.  
 
-L'argomento illustra come personalizzare un set di impostazioni partendo dal set di impostazioni [Codec video H.264 a bitrate multiplo con risoluzione 720p](media-services-mes-preset-H264-Multiple-Bitrate-720p.md) e riducendo il numero di livelli. L'argomento [Personalizzazione dei set di impostazioni di Media Encoder Standard](media-services-advanced-encoding-with-mes.md) illustra i set di impostazioni personalizzati che è possibile usare per eseguire attività di codifica avanzata.
+In questo argomento verrà visualizzato come toocustomize tramite l'aggiunta di un set di impostazioni hello [H264 bitrate multiplo con risoluzione 720p](media-services-mes-preset-H264-Multiple-Bitrate-720p.md) numero hello preimpostati e riduzione dei livelli. Hello [predefiniti personalizzazione Media Encoder Standard](media-services-advanced-encoding-with-mes.md) argomento viene illustrato predefiniti personalizzati che possono essere utilizzati tooperform avanzato di attività di codifica.
 
 ## <a id="customizing_presets"></a> Personalizzazione di un set di impostazioni di Media Encoder Standard
 
 ### <a name="original-preset"></a>Set di impostazioni originale
 
-Salvare il codice JSON definito nell'argomento [Codec video H.264 a bitrate multiplo con risoluzione 720p](media-services-mes-preset-H264-Multiple-Bitrate-720p.md) in un file con estensione json. Ad esempio, **CustomPreset_JSON.json**.
+Salva hello JSON definito in hello [H264 bitrate multiplo con risoluzione 720p](media-services-mes-preset-H264-Multiple-Bitrate-720p.md) argomento in un file con estensione JSON. Ad esempio, **CustomPreset_JSON.json**.
 
 ### <a name="customized-preset"></a>Set di impostazioni personalizzato
 
-Aprire il file **CustomPreset_JSON.json** e rimuovere i primi tre livelli da **H264Layers** in modo che il file sia simile al seguente.
+Aprire hello **CustomPreset_JSON.json** file e rimuovere i primi tre livelli da **H264Layers** in modo che il file sia simile al seguente.
 
     
     {  
@@ -111,24 +111,24 @@ Aprire il file **CustomPreset_JSON.json** e rimuovere i primi tre livelli da **H
 
 ## <a id="encoding_with_dotnet"></a>Codifica con l’SDK .NET dei servizi multimediali
 
-Il seguente codice usa l'SDK .NET di Servizi multimediali per eseguire le seguenti attività: 
+esempio di codice seguente Hello utilizza hello tooperform Media Services .NET SDK seguenti attività:
 
 - Creare un processo di codifica.
-- Ottenere un riferimento al codificatore Media Encoder Standard.
-- Caricare il set di impostazioni personalizzato JSON creato nella sezione precedente. 
+- Ottiene un codificatore Media Encoder Standard toohello di riferimento.
+- Caricare il set di impostazioni JSON personalizzato creato nella sezione precedente hello hello. 
   
-        // Load the JSON from the local file.
+        // Load hello JSON from hello local file.
         string configuration = File.ReadAllText(fileName);  
 
-- Aggiungere un'attività di codifica al processo. 
-- Specificare l’asset di input da codificare.
-- Creare un asset di output che conterrà l'asset codificato.
-- Aggiungere un gestore eventi per controllare l'avanzamento del processo.
-- Inviare il processo.
+- Aggiungere un processo di codifica attività toohello. 
+- Specificare l'input hello toobe asset codificato.
+- Creare un asset di output che conterrà l'asset codificato hello.
+- Aggiungere un avanzamento del processo hello toocheck gestore dell'evento.
+- Inviare il processo di hello.
    
 #### <a name="create-and-configure-a-visual-studio-project"></a>Creare e configurare un progetto di Visual Studio
 
-Configurare l'ambiente di sviluppo e popolare il file app.config con le informazioni di connessione, come descritto in [Sviluppo di applicazioni di Servizi multimediali con .NET](media-services-dotnet-how-to-use.md). 
+Configurare l'ambiente di sviluppo e di popolare il file app. config hello con informazioni di connessione, come descritto in [lo sviluppo di servizi multimediali con .NET](media-services-dotnet-how-to-use.md). 
 
 #### <a name="example"></a>Esempio   
 
@@ -143,7 +143,7 @@ Configurare l'ambiente di sviluppo e popolare il file app.config con le informaz
     {
         class Program
         {
-        // Read values from the App.config file.
+        // Read values from hello App.config file.
         private static readonly string _AADTenantDomain =
         ConfigurationManager.AppSettings["AADTenantDomain"];
         private static readonly string _RESTAPIEndpoint =
@@ -168,7 +168,7 @@ Configurare l'ambiente di sviluppo e popolare il file app.config con le informaz
             // Get an uploaded asset.
             var asset = _context.Assets.FirstOrDefault();
 
-            // Encode and generate the output using custom presets.
+            // Encode and generate hello output using custom presets.
             EncodeToAdaptiveBitrateMP4Set(asset);
 
             Console.ReadLine();
@@ -178,11 +178,11 @@ Configurare l'ambiente di sviluppo e popolare il file app.config con le informaz
         {
             // Declare a new job.
             IJob job = _context.Jobs.Create("Media Encoder Standard Job");
-            // Get a media processor reference, and pass to it the name of the 
-            // processor to use for the specific task.
+            // Get a media processor reference, and pass tooit hello name of hello 
+            // processor toouse for hello specific task.
             IMediaProcessor processor = GetLatestMediaProcessorByName("Media Encoder Standard");
 
-            // Load the XML (or JSON) from the local file.
+            // Load hello XML (or JSON) from hello local file.
             string configuration = File.ReadAllText("CustomPreset_JSON.json");
 
             // Create a task
@@ -191,11 +191,11 @@ Configurare l'ambiente di sviluppo e popolare il file app.config con le informaz
             configuration,
             TaskOptions.None);
 
-            // Specify the input asset to be encoded.
+            // Specify hello input asset toobe encoded.
             task.InputAssets.Add(asset);
-            // Add an output asset to contain the results of the job. 
+            // Add an output asset toocontain hello results of hello job. 
             // This output is specified as AssetCreationOptions.None, which 
-            // means the output asset is not encrypted. 
+            // means hello output asset is not encrypted. 
             task.OutputAssets.AddNew("Output asset",
             AssetCreationOptions.None);
 

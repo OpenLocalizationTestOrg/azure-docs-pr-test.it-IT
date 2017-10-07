@@ -1,6 +1,6 @@
 ---
 title: 'Azure Active Directory Domain Services: Introduzione | Microsoft Docs'
-description: Abilitare Azure Active Directory Domain Services tramite il portale di Azure (anteprima)
+description: Abilitare Azure Active Directory Domain Services utilizzando hello del portale di Azure (anteprima)
 services: active-directory-ds
 documentationcenter: 
 author: mahesh-unnikrishnan
@@ -14,64 +14,64 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/28/2017
 ms.author: maheshu
-ms.openlocfilehash: 47507096a6245d4f1ba57a652ddf5167b3776ae9
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 79cbb21c4a50194f5ad8ca1a4a8493ee4a260a9d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="enable-azure-active-directory-domain-services-using-the-azure-portal-preview"></a>Abilitare Azure Active Directory Domain Services tramite il portale di Azure (Anteprima)
-Questo articolo illustra come abilitare Azure Active Directory Domain Services (Azure AD DS) tramite il portale di Azure.
+# <a name="enable-azure-active-directory-domain-services-using-hello-azure-portal-preview"></a>Abilitare Azure Active Directory Domain Services utilizzando hello del portale di Azure (anteprima)
+Questo articolo illustra come tooenable Azure Active Directory servizi di dominio (Azure AD DS) tramite hello portale di Azure.
 
 
-Per avviare la procedura guidata **Abilita Azure AD Domain Services**, seguire questa procedura:
+hello toolaunch **servizi di dominio Active Directory di Azure attiva** hello procedura guidata, completo alla procedura seguente:
 
-1. Accedere al [portale di Azure](https://portal.azure.com).
-2. Nel riquadro sinistro fare clic su **Nuovo**.
-3. Nel pannello **Nuovo** digitare **Domain Services** nella barra di ricerca.
+1. Passare toohello [portale di Azure](https://portal.azure.com).
+2. Nel riquadro di sinistra hello, fare clic su **New**.
+3. In hello **New** blade, tipo **servizi di dominio** nella barra di ricerca hello.
 
     ![Ricerca di Domain Services](./media/getting-started/search-domain-services.png)
 
-4. Fare clic per selezionare **Azure AD Domain Services** dall'elenco dei suggerimenti di ricerca. Nel pannello **Azure AD Domain Services** fare clic sul pulsante **Crea**.
+4. Fare clic su tooselect **servizi di dominio Active Directory di Azure** elenco hello dei suggerimenti di ricerca. In hello **servizi di dominio Active Directory di Azure** pannello, fare clic su hello **crea** pulsante.
 
     ![Pannello Domain Services](./media/getting-started/domain-services-blade.png)
 
-5. Viene avviata la procedura guidata **Abilita Azure AD Domain Services**.
+5. Hello **servizi di dominio Active Directory di Azure attiva** procedura guidata viene avviata.
 
 
 ## <a name="task-1-configure-basic-settings"></a>Attività 1: Configurare le impostazioni di base
-Nella pagina **Informazioni di base** della procedura guidata è possibile specificare il nome di dominio DNS relativo al dominio gestito. È possibile anche scegliere il gruppo di risorse e la località di Azure in cui deve essere distribuito il dominio gestito.
+In hello **nozioni di base** pagina della procedura guidata hello, è possibile specificare nome di dominio DNS hello per il dominio gestito hello. È anche possibile scegliere il gruppo di risorse hello e dominio gestito di Azure percorso toowhich hello deve essere distribuito.
 
 ![Configurare le informazioni di base](./media/getting-started/domain-services-blade-basics.png)
 
-1. Scegliere il **Nome dominio DNS** per il dominio gestito.
+1. Scegliere hello **nome di dominio DNS** per il dominio gestito.
 
-   * Il nome di dominio predefinito della directory (con suffisso **.onmicrosoft.com**) viene specificato per impostazione predefinita.
+   * nome di dominio Hello predefinito della directory hello (con un **. c o m** suffisso) viene specificato per impostazione predefinita.
 
-   * È anche possibile immettere un nome di dominio personalizzato. In questo esempio, il nome di dominio personalizzato è *contoso100.com*.
+   * È anche possibile immettere un nome di dominio personalizzato. In questo esempio, è il nome di dominio personalizzato hello *contoso100.com*.
 
      > [!WARNING]
-     > Il prefisso del nome del dominio specificato (ad esempio, *contoso100* nel nome di dominio *contoso100.com*) può contenere massimo 15 caratteri. Non è possibile creare un dominio gestito con un prefisso più lungo di 15 caratteri.
+     > prefisso Hello del nome del dominio specificato (ad esempio, *contoso100* in hello *contoso100.com* nome di dominio) deve contenere meno di 15 caratteri. Non è possibile creare un dominio gestito con un prefisso più lungo di 15 caratteri.
      >
      >
 
-2. Assicurarsi che il nome di dominio DNS scelto per il dominio gestito non esista già nella rete virtuale. In particolare, verificare se:
+2. Verificare il nome di dominio DNS hello che scelto per hello gestito dominio non esiste già nella rete virtuale hello. In particolare, verificare se:
 
-   * È già presente un dominio con lo stesso nome di dominio DNS nella rete virtuale.
+   * Si dispone già di un dominio con hello stesso nome di dominio DNS nella rete virtuale hello.
 
-   * La rete virtuale in cui si intende abilitare il dominio gestito ha una connessione VPN alla rete locale. In questo caso, verificare che non sia presente un dominio con lo stesso nome di dominio DNS nella rete locale.
+   * rete virtuale di Hello in cui si prevede di dominio gestiti di hello tooenable stabilita una connessione VPN alla rete locale. In questo scenario, verificare che non si dispone di un dominio con hello stesso nome di dominio DNS nella rete locale.
 
-   * Esiste un servizio cloud con lo stesso nome della rete virtuale.
+   * È un servizio cloud esistente con lo stesso nome nella rete virtuale hello.
 
-3. Scegliere il **tipo di rete virtuale**. Per impostazione predefinita, viene selezionato il tipo di rete virtuale **Resource Manager**. È consigliabile usare questo tipo di rete virtuale per tutti i nuovi domini gestiti creati.
+3. Scegliere hello **tipo di rete virtuale**. Per impostazione predefinita, hello **Gestione risorse** viene selezionato il tipo di rete virtuale. È consigliabile usare questo tipo di rete virtuale per tutti i nuovi domini gestiti creati.
 
-4. Selezionare la **Sottoscrizione** di Azure in cui si vuole creare il dominio gestito.
+4. Seleziona hello Azure **sottoscrizione** nel quale si desidera toocreate hello gestito dominio.
 
-5. Selezionare il **Gruppo di risorse** a cui deve appartenere il dominio gestito. Quando si seleziona il gruppo di risorse, è possibile scegliere tra le opzioni **Crea nuovo** e **Usa esistente**.
+5. Seleziona hello **gruppo di risorse** toowhich hello gestito dominio deve appartenere. È possibile scegliere entrambi hello **Crea nuovo** o **utilizzare esistente** gruppo di risorse hello tooselect opzioni.
 
-6. Scegliere la **Località** di Azure in cui deve essere creato il dominio gestito. Nella pagina **Rete** della procedura guidata vengono visualizzate solo le reti virtuali appartenenti alla località selezionata.
+6. Scegliere hello Azure **percorso** in cui hello deve essere creato un dominio gestito. In hello **rete** pagina della procedura guidata hello, vedrai le reti virtuali solo appartenenti toohello percorso selezionato.
 
-7. Al termine, fare clic su **OK** per passare alla pagina **Rete** della procedura guidata.
+7. Al termine, fare clic su **OK** toomove su toohello **rete** pagina della procedura guidata hello.
 
 
 ## <a name="next-step"></a>Passaggio successivo

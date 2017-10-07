@@ -1,6 +1,6 @@
 ---
-title: Introduzione a ruoli, autorizzazioni e sicurezza con Monitoraggio di Azure | Microsoft Docs
-description: Informazioni su come usare le autorizzazioni e i ruoli predefiniti di monitoraggio di Azure per limitare l'accesso alle risorse di monitoraggio.
+title: aaaGet avviato con i ruoli, autorizzazioni e sicurezza con Monitor di Azure | Documenti Microsoft
+description: Informazioni su come ruoli predefiniti e autorizzazioni toorestrict toouse Azure monitoraggio accedere alle risorse di toomonitoring.
 author: johnkemnetz
 manager: orenr
 editor: 
@@ -14,82 +14,82 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/26/2016
 ms.author: johnkem
-ms.openlocfilehash: a28f971ae898ffdd1168550a909f2a48e1b3b652
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 44fdf2a697050309480dfc164ebab51445b19bc8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-with-roles-permissions-and-security-with-azure-monitor"></a>Introduzione a ruoli, autorizzazioni e sicurezza con il monitoraggio di Azure
-Molti team hanno bisogno di regolare rigorosamente l'accesso ai dati e alle impostazioni di monitoraggio. Ad esempio, se si dispone di membri del team che lavorano esclusivamente sul monitoraggio (tecnici del supporto, tecnici DevOps) o si usa un provider di servizi gestiti, si consiglia di concedere loro l'accesso ai dati di monitoraggio solo limitandone la possibilità di creare, modificare o eliminare le risorse. In questo articolo viene illustrato come applicare rapidamente un ruolo di monitoraggio predefinito nel Controllo degli accessi in base al ruolo a un utente in Azure o creare il proprio ruolo personalizzato per un utente che ha bisogno di autorizzazioni di monitoraggio limitate. Vengono poi esposte alcune considerazioni sulla sicurezza per le risorse legate al monitoraggio di Azure e viene illustrato come è possibile limitare l'accesso ai dati che contengono.
+Molti team necessario toostrictly regolare toomonitoring accedere ai dati e impostazioni. Ad esempio, se si dispongono di membri del team che lavorano esclusivamente sul monitoraggio (tecnici del supporto, i tecnici devops) o se si utilizza un provider del servizio gestito, è opportuno toogrant tooonly dati di monitoraggio limitando la possibilità toocreate loro l'accesso, modificare, o eliminare le risorse. Questo articolo illustra come tooquickly applicare un monitoraggio RBAC ruolo tooa utente incorporato in Azure o creare il proprio ruolo personalizzato per un utente che necessita di autorizzazioni limitate di monitoraggio. Quindi illustra le considerazioni sulla sicurezza per le risorse correlate al monitoraggio di Azure e come è possibile limitare l'accesso ai dati toohello contengono.
 
 ## <a name="built-in-monitoring-roles"></a>Ruoli di monitoraggio predefiniti
-I ruoli predefiniti del monitoraggio di Azure consentono di limitare l'accesso alle risorse in una sottoscrizione e allo stesso tempo consentire ai responsabili del monitoraggio dell'infrastruttura di ottenere e configurare i dati necessari. Il monitoraggio di Azure fornisce due ruoli predefiniti: un lettore di monitoraggio e un collaboratore al monitoraggio.
+Ruoli predefiniti del monitoraggio di Azure sono progettate toohelp limite accesso tooresources in una sottoscrizione durante l'abilitazione di quelli ancora responsabili del monitoraggio dell'infrastruttura tooobtain e configurare dati hello che necessari. Il monitoraggio di Azure fornisce due ruoli predefiniti: un lettore di monitoraggio e un collaboratore al monitoraggio.
 
 ### <a name="monitoring-reader"></a>Lettore di monitoraggio
-Le persone a cui è assegnato il ruolo di lettore di monitoraggio possono visualizzare tutti i dati di monitoraggio in una sottoscrizione ma non possono modificare alcuna risorsa o impostazione relativa alle risorse di monitoraggio. Questo ruolo è appropriato per gli utenti di un'organizzazione, ad esempio tecnici del supporto o delle operazioni, che devono essere in grado di:
+Persone assegnate il ruolo di lettore monitoraggio hello possono visualizzare tutti i dati di monitoraggio in una sottoscrizione, ma non è possibile modificare qualsiasi risorsa o modificare tutte le risorse correlate toomonitoring impostazioni. Questo ruolo è appropriato per gli utenti in un'organizzazione, ad esempio i tecnici del supporto o operazioni, che necessitano di toobe in grado di:
 
-* Visualizzare i dashboard di monitoraggio nel portale e creare dashboard di monitoraggio privati.
-* Eseguire query per le metriche usando l'[API REST di Monitoraggio di Azure](https://msdn.microsoft.com/library/azure/dn931930.aspx), i [cmdlet di PowerShell](insights-powershell-samples.md) o l'[interfaccia della riga di comando multipiattaforma](insights-cli-samples.md).
-* Eseguire query per il registro attività usando il portale, l'API REST di monitoraggio di Azure, i cmdlet di PowerShell o l'interfaccia della riga di comando multipiattaforma.
-* Visualizzare le [impostazioni di diagnostica](monitoring-overview-of-diagnostic-logs.md#resource-diagnostic-settings) per una risorsa.
-* Visualizzare il [profilo di registro](monitoring-overview-activity-logs.md#export-the-activity-log-with-a-log-profile) per una sottoscrizione.
+* Visualizzare i dashboard di monitoraggio nel portale di hello e creare i propri dashboard di monitoraggio privato.
+* Query per le metriche utilizzando hello [API REST di Azure monitoraggio](https://msdn.microsoft.com/library/azure/dn931930.aspx), [i cmdlet di PowerShell](insights-powershell-samples.md), o [CLI multipiattaforma](insights-cli-samples.md).
+* Query hello Log attività utilizzando portale hello, API REST di monitoraggio di Azure, i cmdlet di PowerShell o CLI multipiattaforma.
+* Hello vista [le impostazioni di diagnostica](monitoring-overview-of-diagnostic-logs.md#resource-diagnostic-settings) per una risorsa.
+* Hello vista [log profilo](monitoring-overview-activity-logs.md#export-the-activity-log-with-a-log-profile) per una sottoscrizione.
 * Visualizzare le impostazioni di scalabilità automatica.
 * Visualizzare impostazioni e attività di avviso.
 * Accedere ai dati di Application Insights e visualizzarli in AI Analytics.
-* Cercare i dati dell'area di lavoro Log Analytics (OMS), inclusi i dati sull'uso dell'area di lavoro.
+* Cercare nei dati dell'area di lavoro Analitica Log (OMS) tra i dati di utilizzo per l'area di lavoro hello.
 * Visualizzare i gruppi di gestione di Log Analytics (OMS).
-* Recuperare lo schema di ricerca di Log Analytics (OMS).
+* Recuperare lo schema di ricerca di hello Analitica Log (OMS).
 * Elencare gli Intelligence Pack di Log Analytics (OMS).
 * Recuperare ed eseguire le ricerche salvate di Log Analytics (OMS).
-* Recuperare la configurazione di archiviazione di Log Analytics (OMS).
+* Recuperare la configurazione di archiviazione di hello Analitica Log (OMS).
 
 > [!NOTE]
-> Questo ruolo non concede l'accesso in lettura ai dati del registro che sono stati trasmessi a un hub eventi o archiviati in un account di archiviazione. [vedere di seguito](#security-considerations-for-monitoring-data) .
+> Questo ruolo non fornisce l'accesso in lettura i dati di toolog hub eventi tooan con flusso o memorizzati in un account di archiviazione. [Vedere di seguito](#security-considerations-for-monitoring-data) per informazioni sulla configurazione toothese di accedere alle risorse.
 > 
 > 
 
 ### <a name="monitoring-contributor"></a>Collaboratore al monitoraggio
-Le persone a cui è assegnato il ruolo di collaboratore al monitoraggio possono visualizzare tutti i dati di monitoraggio in una sottoscrizione e creare o modificare le impostazioni, ma non possono modificare altre risorse. Questo ruolo è un soprainsieme del ruolo di lettore di monitoraggio ed è adatto ai membri del team di monitoraggio di un'organizzazione o ai fornitori di servizi gestiti che, oltre alle autorizzazioni di cui sopra, devono essere in grado di:
+Gli utenti assegnati hello collaboratore monitoraggio ruolo può visualizzare tutti i dati di monitoraggio in una sottoscrizione e creare o modificare le impostazioni di monitoraggio, ma non è possibile modificare tutte le altre risorse. Questo ruolo è un superset del ruolo di lettore monitoraggio hello ed è appropriato per i membri del team di monitoraggio o provider di servizi gestiti che, inoltre autorizzazioni toohello precedente, nonché toobe in grado di un'organizzazione:
 
 * Pubblicare dashboard di monitoraggio come dashboard condivisi.
 * Configurare le [impostazioni di diagnostica](monitoring-overview-of-diagnostic-logs.md#resource-diagnostic-settings) per una risorsa.*
-* Impostare il [profilo di registro](monitoring-overview-activity-logs.md#export-the-activity-log-with-a-log-profile) per una sottoscrizione.*
+* Set hello [log profilo](monitoring-overview-activity-logs.md#export-the-activity-log-with-a-log-profile) per un subscription.*
 * Configurare impostazioni e attività di avviso.
 * Creare componenti e test Web di Application Insights.
 * Elencare le chiavi condivise dell'area di lavoro di Log Analytics (OMS).
 * Abilitare o disabilitare gli Intelligence Pack di Log Analytics (OMS).
 * Creare ed eliminare poi eseguire le ricerche salvate di Log Analytics (OMS).
-* Creare ed eliminare la configurazione di archiviazione di Log Analytics (OMS).
+* Creare ed eliminare le configurazioni di archiviazione di hello Analitica Log (OMS).
 
-*per configurare un profilo di registro o un'impostazione di diagnostica, è necessario che all'utente sia concessa separatamente anche l'autorizzazione ListKeys nella risorsa di destinazione (account di archiviazione o spazio dei nomi dell'hub eventi).
+* utente separatamente anche concedere elenco chiavi dell'autorizzazione per tooset risorse (archiviazione account o l'evento hub dello spazio dei nomi) di destinazione hello un profilo di log o impostazione diagnostica.
 
 > [!NOTE]
-> Questo ruolo non concede l'accesso in lettura ai dati del registro che sono stati trasmessi a un hub eventi o archiviati in un account di archiviazione. [vedere di seguito](#security-considerations-for-monitoring-data) .
+> Questo ruolo non fornisce l'accesso in lettura i dati di toolog hub eventi tooan con flusso o memorizzati in un account di archiviazione. [Vedere di seguito](#security-considerations-for-monitoring-data) per informazioni sulla configurazione toothese di accedere alle risorse.
 > 
 > 
 
 ## <a name="monitoring-permissions-and-custom-rbac-roles"></a>Autorizzazioni per il monitoraggio e ruoli personalizzati nel Controllo degli accessi in base al ruolo
-Se i precedenti ruoli predefiniti non soddisfano le esigenze esatte del team, è possibile [creare un ruolo personalizzato nel Controllo degli accessi in base al ruolo](../active-directory/role-based-access-control-custom-roles.md) con autorizzazioni più granulari. Di seguito sono riportate le più comuni operazioni nel Controllo degli accessi in base al ruolo di monitoraggio di Azure con le relative descrizioni.
+Se hello sopra ruoli predefiniti non soddisfa esigenze specifiche hello del team, è possibile [creare un ruolo RBAC personalizzato](../active-directory/role-based-access-control-custom-roles.md) con autorizzazioni più granulari. Di seguito è hello operazioni comuni di Azure monitoraggio RBAC con le relative descrizioni.
 
 | Operazione | Descrizione |
 | --- | --- |
 | Microsoft.Insights/AlertRules/[Read, Write, Delete] |Regole di avviso di lettura, scrittura ed eliminazione. |
-| Microsoft.Insights/AlertRules/Incidents/Read |Elenco degli eventi imprevisti (cronologia della regola di avviso attivata) per le regole di avviso. Si applica solo al portale. |
+| Microsoft.Insights/AlertRules/Incidents/Read |Elenco eventi imprevisti (cronologia della regola di avviso hello venga attivata) per le regole di avviso. Si applica solo toohello portale. |
 | Microsoft.Insights/AutoscaleSettings/[Read, Write, Delete] |Impostazioni di scalabilità automatica di lettura, scrittura ed eliminazione. |
 | Microsoft.Insights/DiagnosticSettings/[Read, Write, Delete] |Impostazioni di diagnostica di lettura, scrittura ed eliminazione. |
-| Microsoft.Insights/eventtypes/digestevents/Read |Questa autorizzazione è necessaria per gli utenti che hanno bisogno dell'accesso ai registri attività tramite il portale. |
-| Microsoft.Insights/eventtypes/values/Read |Elenco degli eventi dei registri attività (eventi di gestione) in una sottoscrizione. Questa autorizzazione è applicabile sia all'accesso programmatico che all'accesso al portale per il registro attività. |
-| Microsoft.Insights/LogDefinitions/Read |Questa autorizzazione è necessaria per gli utenti che hanno bisogno dell'accesso ai registri attività tramite il portale. |
+| Microsoft.Insights/eventtypes/digestevents/Read |Questa autorizzazione è necessaria per gli utenti che devono accedere tooActivity log tramite il portale di hello. |
+| Microsoft.Insights/eventtypes/values/Read |Elenco degli eventi dei registri attività (eventi di gestione) in una sottoscrizione. Questa autorizzazione è applicabile tooboth accesso a livello di codice e portale toohello Log attività. |
+| Microsoft.Insights/LogDefinitions/Read |Questa autorizzazione è necessaria per gli utenti che devono accedere tooActivity log tramite il portale di hello. |
 | Microsoft.Insights/MetricDefinitions/Read |Definizioni delle metriche (elenco dei tipi di metriche disponibili per una risorsa). |
 | Microsoft.Insights/Metrics/Read |Metriche per una risorsa. |
 
 > [!NOTE]
-> L'accesso ad avvisi, impostazioni di diagnostica e metriche per una risorsa richiede che l'utente disponga dell'accesso in lettura per il tipo di risorsa e l'ambito di tale risorsa. La creazione ("scrittura") di un'impostazione di diagnostica o di un profilo di registro che archivia in un account di archiviazione o trasmette a un hub eventi richiede che l'utente disponga anche dell'autorizzazione ListKeys nella risorsa di destinazione.
+> Accedere a tooalerts, le impostazioni di diagnostica e le metriche per una risorsa, è necessario che l'utente hello è di tipo di risorsa toohello accesso in lettura e l'ambito di tale risorsa. Creazione ("scrittura"), un profilo di impostazione o di log diagnostico che gli archivi tooa storage account o flussi tooevent hub richiede hello utente tooalso dispone dell'autorizzazione di elenco chiavi sulla risorsa di destinazione hello.
 > 
 > 
 
-Ad esempio, usando la tabella sopra è possibile creare un ruolo personalizzato nel Controllo degli accessi in base al ruolo per un "lettore di registro attività" come il seguente:
+Ad esempio, utilizzando hello sopra tabella è possibile creare un ruolo RBAC personalizzato per un "attività di lettura Log" simile al seguente:
 
 ```powershell
 $role = Get-AzureRmRoleDefinition "Reader"
@@ -106,34 +106,34 @@ New-AzureRmRoleDefinition -Role $role
 ## <a name="security-considerations-for-monitoring-data"></a>Considerazioni sulla sicurezza per i dati sul monitoraggio
 I dati sul monitoraggio dei dati, in particolare i file di registro, possono contenere informazioni sensibili, come indirizzi IP o nomi utente. I dati sul monitoraggio di Azure sono forniti in tre forme base:
 
-1. Registro attività, che descrive tutte le azioni del piano di controllo nella sottoscrizione di Azure.
+1. Hello registro attività, che descrive tutte le azioni del piano di controllo nella sottoscrizione di Azure.
 2. Registri di diagnostica, cioè registri generati da una risorsa.
 3. Metriche, generate dalle risorse.
 
-Tutti e tre questi tipi di dati possono essere archiviati in un account di archiviazione o trasmessi a un hub eventi, che sono entrambi risorse di Azure di scopo generico. Poiché si tratta di risorse di scopo generico, la creazione, l'eliminazione e l'accesso sono operazioni privilegiate e generalmente riservate agli amministratori. Si consiglia di usare le procedure seguenti con le risorse relative al monitoraggio per evitare un uso improprio:
+Tutte e tre questi tipi di dati possono essere archiviati in un account di archiviazione o trasmessi tooEvent Hub, entrambi i quali sono le risorse di Azure di uso generale. Poiché si tratta di risorse di scopo generico, la creazione, l'eliminazione e l'accesso sono operazioni privilegiate e generalmente riservate agli amministratori. Si consiglia di utilizzare hello consigliate per l'utilizzo improprio tooprevent relativi al monitoraggio delle risorse seguenti:
 
-* Usare un account di archiviazione singolo e dedicato per il monitoraggio dei dati. Se è necessario separare i dati di monitoraggio in più account di archiviazione, non condividere mai l'uso di un account di archiviazione tra dati relativi al monitoraggio e non relativi al monitoraggio, perché in questo modo si potrebbe inavvertitamente fornire l'accesso ai dati non relativi al monitoraggio a chi ha bisogno solo dei dati di monitoraggio (es. SIEM di terze parti).
-* Usare un singolo bus di servizio o spazio dei nomi dell'hub eventi dedicato in tutte le impostazioni di diagnostica per lo stesso motivo specificato sopra.
-* Limitare l'accesso agli hub eventi o agli account di archiviazione relativi al monitoraggio tenendoli in un gruppo di risorse separato e [usare l'ambito](../active-directory/role-based-access-control-what-is.md#basics-of-access-management-in-azure) nei ruoli di monitoraggio per limitare l'accesso solo a tale gruppo di risorse.
-* Non concedere mai l'autorizzazione ListKeys ad account di archiviazione o hub eventi nell'ambito della sottoscrizione quando un utente ha bisogno solo dell'accesso ai dati di monitoraggio. Piuttosto, assegnare queste autorizzazioni all'utente nell'ambito di una risorsa o di un gruppo di risorse (se si dispone di un gruppo di risorse di monitoraggio dedicato).
+* Usare un account di archiviazione singolo e dedicato per il monitoraggio dei dati. Se è necessario tooseparate dati di monitoraggio in più account di archiviazione, non condividono mai l'utilizzo di un account di archiviazione tra il monitoraggio e dati sul monitoraggio, come si possono concedere inavvertitamente coloro che devono accedere solo ai dati toomonitoring (ad es. un SIEM di terze parti) accedere ai dati di monitoraggio toonon.
+* Utilizzare nomi di hub eventi o Bus di servizio dedicato in tutte le impostazioni di diagnostica per hello stesso motivo sopra.
+* Limitare gli account di accesso correlati toomonitoring archiviazione o hub eventi salvandole in un gruppo di risorse distinto, e [utilizzare ambito](../active-directory/role-based-access-control-what-is.md#basics-of-access-management-in-azure) nei ruoli monitoraggio toolimit accedere tooonly tale gruppo di risorse.
+* Non concedere l'autorizzazione di elenco chiavi dell'hello per gli account di archiviazione o hub eventi nell'ambito di sottoscrizione quando un utente deve solo toomonitoring accedere ai dati. Ma è possibile ottenere questi toohello autorizzazioni degli utenti a una risorsa o un gruppo di risorse (se si dispone di un gruppo di risorse di monitoraggio dedicato) ambito.
 
-### <a name="limiting-access-to-monitoring-related-storage-accounts"></a>Limitare l'accesso agli account di archiviazione relativi al monitoraggio
-Quando un utente o un'applicazione richiede l'accesso ai dati di monitoraggio in un account di archiviazione, è necessario [generare una firma di accesso condiviso per l'account](https://msdn.microsoft.com/library/azure/mt584140.aspx) nell'account di archiviazione che contiene i dati di monitoraggio con accesso in sola lettura a livello di servizio all'archivio BLOB. In PowerShell, potrebbe avere un aspetto simile al seguente:
+### <a name="limiting-access-toomonitoring-related-storage-accounts"></a>Account di archiviazione correlati toomonitoring limitazione accesso
+Quando un utente o un'applicazione deve accedere a dati toomonitoring in un account di archiviazione, è necessario [generare una firma di accesso condiviso](https://msdn.microsoft.com/library/azure/mt584140.aspx) nell'account di archiviazione hello che contiene i dati di monitoraggio con l'archiviazione tooblob accesso in sola lettura a livello di servizio. In PowerShell, potrebbe avere un aspetto simile al seguente:
 
 ```powershell
 $context = New-AzureStorageContext -ConnectionString "[connection string for your monitoring Storage Account]"
 $token = New-AzureStorageAccountSASToken -ResourceType Service -Service Blob -Permission "rl" -Context $context
 ```
 
-A questo punto è possibile fornire il token all'entità che ha bisogno di leggere da quell'account di archiviazione; tale token può elencare e leggere da tutti i BLOB nell'account di archiviazione.
+È quindi possibile assegnare entità toohello token hello necessarie tooread dall'account di archiviazione e può elencare e leggere tutti i BLOB nell'account di archiviazione.
 
-In alternativa, se è necessario verificare l'autorizzazione con il Controllo degli accessi in base al ruolo, è possibile concedere a tale entità l'autorizzazione Microsoft.Storage/storageAccounts/listkeys/action su quel particolare account di archiviazione. Questo è necessario per gli utenti che devono essere in grado di configurare un'impostazione di diagnostica o un profilo di registro per l'archiviazione in un account di archiviazione. Ad esempio, è possibile creare il seguente ruolo personalizzato nel Controllo degli accessi in base al ruolo per un utente o un'applicazione che deve solo leggere da un account di archiviazione:
+In alternativa, se è necessario toocontrol questa autorizzazione con RBAC, è possibile concedere tale autorizzazione Microsoft.Storage/storageAccounts/listkeys/action per tale account di archiviazione specifico di hello entità. Ciò è necessario per gli utenti che necessitano di toobe in grado di tooset una diagnostica impostazione o log profilo tooarchive tooa account di archiviazione. Ad esempio, è possibile creare hello seguente ruolo RBAC personalizzato per un utente o applicazione che richiede solo tooread da un account di archiviazione:
 
 ```powershell
 $role = Get-AzureRmRoleDefinition "Reader"
 $role.Id = $null
 $role.Name = "Monitoring Storage Account Reader"
-$role.Description = "Can get the storage account keys for a monitoring storage account."
+$role.Description = "Can get hello storage account keys for a monitoring storage account."
 $role.Actions.Clear()
 $role.Actions.Add("Microsoft.Storage/storageAccounts/listkeys/action")
 $role.Actions.Add("Microsoft.Storage/storageAccounts/Read")
@@ -143,21 +143,21 @@ New-AzureRmRoleDefinition -Role $role
 ```
 
 > [!WARNING]
-> L'autorizzazione ListKeys consente all'utente di elencare le chiavi dell'account di archiviazione primario e secondario. Queste chiavi concedono all'utente tutte le autorizzazioni accettate (lettura, scrittura, creazione di BLOB, eliminazione di BLOB e così via) in tutti i servizi accettati (BLOB, coda, tabella, file) di tale account di archiviazione. Se possibile, si consiglia di usare una firma di accesso condiviso dell'account come descritto sopra.
+> elenco chiavi dell'autorizzazione Hello consente chiavi dell'account di hello utente toolist hello archiviazione primaria e secondaria. Queste chiavi concedono hello tutti firmati autorizzazioni (lettura, scrittura, creare BLOB, eliminare i BLOB e così via) in tutti i servizi (blob, coda, tabella, file) in tale account di archiviazione firmato. Se possibile, si consiglia di usare una firma di accesso condiviso dell'account come descritto sopra.
 > 
 > 
 
-### <a name="limiting-access-to-monitoring-related-event-hubs"></a>Limitare l'accesso agli hub eventi relativi al monitoraggio
-Un modello simile può essere seguito con gli hub eventi, tuttavia è innanzitutto necessario creare una regola di autorizzazione di ascolto dedicata. Se si desidera concedere l'accesso a un'applicazione che ha bisogno solo di ascoltare gli hub eventi relativi al monitoraggio, procedere come segue:
+### <a name="limiting-access-toomonitoring-related-event-hubs"></a>Hub di eventi correlati al toomonitoring limitazione accesso
+Un modello simile può essere seguito con hub eventi, ma è necessario innanzitutto toocreate una regola di autorizzazione di ascolto dedicata. Se si desidera toogrant accesso tooan applicazione necessarie solo per gli hub di eventi correlati al toomonitoring toolisten, hello seguenti:
 
-1. Creare un criterio di accesso condiviso negli hub eventi creati per trasmettere i dati di monitoraggio solo con attestazioni di ascolto. Questa operazione può essere eseguita nel portale. Ad esempio, è possibile chiamarlo "monitoringReadOnly". Se possibile, si dovrà fornire la chiave direttamente al consumatore e ignorare il passaggio successivo.
-2. Se il consumatore deve essere in grado di ottenere la chiave ad hoc, concedere all'utente l'azione ListKeys per l'hub eventi. Questo è necessario anche per gli utenti che devono essere in grado di configurare un'impostazione di diagnostica o un profilo di registro per trasmettere agli hub eventi. Ad esempio, è possibile creare una regola nel Controllo degli accessi in base al ruolo:
+1. Creare un criterio di accesso condiviso in hub eventi resteranno hello che sono stati creati per il flusso di dati di monitoraggio con solo le attestazioni di attesa. Questa operazione può essere eseguita nel portale di hello. Ad esempio, è possibile chiamarlo "monitoringReadOnly". Se possibile, si desidererà toogive chiave direttamente toohello consumer e ignorare il passaggio successivo hello.
+2. Se il consumer hello deve toobe tooget in grado di hello chiave ad hoc, concedere hello hello elenco chiavi dell'intervento per l'hub eventi. Questo è anche necessario per gli utenti che devono toobe in grado di tooset un'impostazione di diagnostica o di log hub tooevent toostream di profilo. Ad esempio, è possibile creare una regola nel Controllo degli accessi in base al ruolo:
    
    ```powershell
    $role = Get-AzureRmRoleDefinition "Reader"
    $role.Id = $null
    $role.Name = "Monitoring Event Hub Listener"
-   $role.Description = "Can get the key to listen to an event hub streaming monitoring data."
+   $role.Description = "Can get hello key toolisten tooan event hub streaming monitoring data."
    $role.Actions.Clear()
    $role.Actions.Add("Microsoft.ServiceBus/namespaces/authorizationrules/listkeys/action")
    $role.Actions.Add("Microsoft.ServiceBus/namespaces/Read")
@@ -168,5 +168,5 @@ Un modello simile può essere seguito con gli hub eventi, tuttavia è innanzitut
 
 ## <a name="next-steps"></a>Passaggi successivi
 * [Controllo degli accessi in base al ruolo e autorizzazioni in Resource Manager](../active-directory/role-based-access-control-what-is.md)
-* [Panoramica sul monitoraggio in Azure](monitoring-overview.md)
+* [Panoramica di hello di monitoraggio in Azure](monitoring-overview.md)
 

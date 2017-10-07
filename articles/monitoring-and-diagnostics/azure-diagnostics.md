@@ -1,5 +1,5 @@
 ---
-title: Panoramica di Diagnostica di Azure | Documentazione Microsoft
+title: aaaOverview di diagnostica di Azure | Documenti Microsoft
 description: Usare Diagnostica di Azure per debug, valutazione delle prestazioni, monitoraggio e analisi del traffico dei servizi cloud, delle macchine virtuali e di Service Fabric.
 services: multiple
 documentationcenter: .net
@@ -14,67 +14,67 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 03/18/2017
 ms.author: robb
-ms.openlocfilehash: e2d3a6725ee53dc6d6986b185fac143901ba6955
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2a03a96a37091894d7ab16120c125116e4bf462a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="what-is-azure-diagnostics"></a>Informazioni sulla diagnostica di Azure
-Diagnostica di Azure è la funzionalità all'interno di Azure che consente la raccolta di dati di diagnostica in un'applicazione distribuita. È possibile usare l'estensione di diagnostica da numerose origini diverse. Sono attualmente supportati i ruoli Web e di lavoro dei servizi cloud di Azure e le macchine virtuali di Azure che eseguono Microsoft Windows e Service Fabric. Altri servizi di Azure dispongono di propri strumenti di diagnostica separati.
+Diagnostica di Azure è possibilità hello all'interno di Azure che consente la raccolta hello dei dati di diagnostica in un'applicazione distribuita. È possibile utilizzare l'estensione diagnostica hello da un numero di origini diverse. Sono attualmente supportati i ruoli Web e di lavoro dei servizi cloud di Azure e le macchine virtuali di Azure che eseguono Microsoft Windows e Service Fabric. Altri servizi di Azure dispongono di propri strumenti di diagnostica separati.
 
 ## <a name="data-you-can-collect"></a>Dati che è possibile raccogliere
-Diagnostica di Azure consente di raccogliere i tipi di dati seguenti:
+Diagnostica Azure può raccogliere hello seguenti tipi di dati:
 
-| Origine dati | Descrizione |
+| origine dati | Descrizione |
 | --- | --- |
 | Contatori delle prestazioni |Contatori delle prestazioni del sistema operativo e personalizzati |
 | Log applicazioni |Messaggi di traccia scritti dall'applicazione |
-| Registri eventi di Windows |Informazioni inviate al sistema di registrazione eventi di Windows. |
-| Origine dell'evento .NET |Eventi di scrittura di codice con la classe [EventSource](https://msdn.microsoft.com/library/system.diagnostics.tracing.eventsource.aspx) di .NET |
+| Registri eventi di Windows |Informazioni inviate sistema toohello la registrazione degli eventi di Windows |
+| Origine dell'evento .NET |Scrittura di eventi tramite .NET hello codice [EventSource](https://msdn.microsoft.com/library/system.diagnostics.tracing.eventsource.aspx) classe |
 | Log di IIS |Informazioni sui siti Web di IIS |
 | ETW basato su manifesto |Traccia di eventi per eventi Windows generati da qualsiasi processo |
-| Dump di arresto anomalo del sistema |Informazioni sullo stato del processo in caso di arresto anomalo dell'applicazione. |
+| Dump di arresto anomalo del sistema |Informazioni sullo stato di hello del processo di hello nell'evento hello di un arresto anomalo dell'applicazione |
 | Log degli errori personalizzati |Log creati dall'applicazione o dal servizio. |
 | Log dell'infrastruttura diagnostica di Azure |Informazioni su Diagnostica |
 
-L'estensione di diagnostica di Azure consente di trasferire i dati in un account di archiviazione di Azure o di inviarli a servizi come [Application Insights](../application-insights/app-insights-cloudservices.md). È possibile usare i dati per il debug, la risoluzione dei problemi, la valutazione delle prestazioni, il monitoraggio dell'utilizzo delle risorse, l'analisi del traffico, la pianificazione della capacità e il controllo.
+Hello estensione diagnostica di Azure è possibile trasferire questa tooan dati account di archiviazione di Azure o inviarlo tooservices come [Application Insights](../application-insights/app-insights-cloudservices.md). È possibile utilizzare dati hello per il debug e risoluzione dei problemi, la misurazione delle prestazioni, il monitoraggio dell'utilizzo delle risorse, l'analisi del traffico e la pianificazione della capacità e il controllo.
 
 ## <a name="versioning"></a>Controllo delle versioni
 Vedere [Cronologia delle versioni di Diagnostica di Azure](azure-diagnostics-versioning-history.md).
 
 ## <a name="next-steps"></a>Passaggi successivi
-Scegliere il servizio su cui si desidera raccogliere dati di diagnostica e usare i seguenti articoli per iniziare. Usare i collegamenti di diagnostica di Azure generali per riferimento per attività specifiche.
+Scegliere il servizio che si sta tentando toocollect diagnostica e utilizzare hello seguenti articoli tooget avviato. Utilizzare i collegamenti di diagnostica di Azure generali hello per riferimento per attività specifiche.
 
 ## <a name="web-apps"></a>App Web
-Si noti che le app Web non usano Diagnostica di Azure. Trovare le informazioni equivalenti in [App Web](../app-service-web/web-sites-enable-diagnostic-log.md)
+Si noti che le app Web non usano Diagnostica di Azure. Trovare informazioni equivalenti di hello in [App Web](../app-service-web/web-sites-enable-diagnostic-log.md)
 
 ## <a name="cloud-services-using-azure-diagnostics"></a>Servizi cloud con Diagnostica di Azure
-* Se si usa Visual Studio, per iniziare vedere l'articolo su come [usare Visual Studio per tracciare un'applicazione di Servizi cloud](../vs-azure-tools-debug-cloud-services-virtual-machines.md). In alternativa, vedere
-* [Come monitorare i servizi cloud con Diagnostica di Azure](../cloud-services/cloud-services-how-to-monitor.md)
+* Se si utilizza Visual Studio, vedere [tootrace usare Visual Studio un'applicazione di servizi Cloud](../vs-azure-tools-debug-cloud-services-virtual-machines.md) tooget avviato. In alternativa, vedere
+* [Come toomonitor Cloud services mediante la diagnostica di Azure](../cloud-services/cloud-services-how-to-monitor.md)
 * [Configurare Diagnostica di Azure in un'applicazione di Servizi cloud](../cloud-services/cloud-services-dotnet-diagnostics.md)
 
 Per argomenti più avanzati, vedere
 
 * [Uso di Diagnostica di Azure con Application Insights per Servizi cloud](../application-insights/app-insights-cloudservices.md)
-* [Tracciare il flusso di un'applicazione di Servizi cloud con Diagnostica di Azure](../cloud-services/cloud-services-dotnet-diagnostics-trace-flow.md)
-* [Usare PowerShell per configurare la diagnostica in Servizi cloud](../virtual-machines/windows/ps-extensions-diagnostics.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+* [Flusso di hello traccia di un'applicazione di servizi Cloud con diagnostica di Azure](../cloud-services/cloud-services-dotnet-diagnostics-trace-flow.md)
+* [Utilizzare PowerShell tooset di diagnostica nei servizi Cloud](../virtual-machines/windows/ps-extensions-diagnostics.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 
 ## <a name="virtual-machines-using-azure-diagnostics"></a>Macchine virtuali con Diagnostica di Azure
-* Se si usa Visual Studio, per iniziare vedere l'articolo su come [usare Visual Studio per tracciare le macchine virtuali di Azure](../vs-azure-tools-debug-cloud-services-virtual-machines.md). In alternativa, vedere
+* Se si utilizza Visual Studio, vedere [tootrace usare Visual Studio macchine virtuali di Azure](../vs-azure-tools-debug-cloud-services-virtual-machines.md) tooget avviato. In alternativa, vedere
 * [Configurare Diagnostica di Azure in una macchina virtuale di Azure](../virtual-machines-dotnet-diagnostics.md)
 
 Per argomenti più avanzati, vedere
 
-* [Usare PowerShell per abilitare Diagnostica di Azure nelle macchine virtuali di Azure](../virtual-machines/windows/ps-extensions-diagnostics.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+* [Utilizzare PowerShell tooset di diagnostica nelle macchine virtuali di Azure](../virtual-machines/windows/ps-extensions-diagnostics.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 * [Creare una macchina virtuale Windows con monitoraggio e diagnostica con un modello di Azure Resource Manager](../virtual-machines/windows/extensions-diagnostics-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 
 ## <a name="service-fabric-using-azure-diagnostics"></a>Service Fabric con Diagnostica di Azure
-Per un'introduzione, vedere [Monitorare un'applicazione di Service Fabric](../service-fabric/service-fabric-diagnostics-how-to-monitor-and-diagnose-services-locally.md). Numerosi altri articoli sulla diagnostica di Service Fabric sono disponibili nella struttura di navigazione a sinistra.
+Per un'introduzione, vedere [Monitorare un'applicazione di Service Fabric](../service-fabric/service-fabric-diagnostics-how-to-monitor-and-diagnose-services-locally.md). Molti altri articoli Service Fabric con diagnostica sono disponibili nell'albero di navigazione hello in hello dopo aver articolo toothis a sinistra.
 
 ## <a name="general-azure-diagnostics-articles"></a>Articoli su Diagnostica di Azure
-* [Schemi di configurazione di diagnostica di Azure](https://msdn.microsoft.com/library/azure/mt634524.aspx) -Informazioni su come modificare il file di schema per raccogliere e inviare dati di diagnostica. Si noti che è anche possibile usare Visual Studio per modificare il file di schema.
-* [Modalità di archiviazione dei dati di diagnostica in Archiviazione di Azure](../cloud-services/cloud-services-dotnet-diagnostics-storage.md) - Nomi delle tabelle e dei BLOB in cui vengono scritti i dati di diagnostica.
-* Informazioni su come [usare i contatori delle prestazioni in Diagnostica di Azure](../cloud-services/cloud-services-dotnet-diagnostics-performance-counters.md).
-* Informazioni su come [instradare le informazioni di diagnostica di Azure ad Application Insights](azure-diagnostics-configure-application-insights.md)
+* [Configurazione dello Schema di diagnostica Azure](https://msdn.microsoft.com/library/azure/mt634524.aspx) - informazioni su come toochange hello toocollect file dello schema e l'invio di dati di diagnostica. Si noti che è possibile utilizzare anche i file di schema hello toochange Visual Studio.
+* [Archiviazione dei dati di diagnostica di Azure in archiviazione di Azure](../cloud-services/cloud-services-dotnet-diagnostics-storage.md) -conoscere hello nomi di tabelle di hello e BLOB in cui vengono scritti i dati di diagnostica hello.
+* Informazioni su troppo[utilizzare i contatori delle prestazioni in diagnostica Azure](../cloud-services/cloud-services-dotnet-diagnostics-performance-counters.md).
+* Informazioni su troppo[tooApplication informazioni di diagnostica Route Azure Insights](azure-diagnostics-configure-application-insights.md)
 * In caso di problemi nell'avvio della diagnostica o nell'individuazione dei dati nelle tabelle di archiviazione di Azure, vedere [Risoluzione dei problemi di Diagnostica di Azure](azure-diagnostics-troubleshooting.md)

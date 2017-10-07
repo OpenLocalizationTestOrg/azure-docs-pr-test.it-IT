@@ -1,6 +1,6 @@
 ---
-title: Monitoraggio delle operazioni dell'hub IoT di Azure | Microsoft Docs
-description: Come usare il monitoraggio delle operazioni dell'hub IoT di Azure per monitorare lo stato delle operazioni nell'hub IoT in tempo reale.
+title: monitoraggio delle operazioni di Hub IoT aaaAzure | Documenti Microsoft
+description: Operazioni di IoT Hub Azure toouse monitoraggio toomonitor hello come lo stato delle operazioni l'hub IoT in tempo reale.
 services: iot-hub
 documentationcenter: 
 author: nberdy
@@ -14,15 +14,15 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/25/2017
 ms.author: nberdy
-ms.openlocfilehash: b6de5c5df5f9401a41be152bfa06eb994594e83d
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: a0b233ef2d9bd0827e19fa30fdbdd49b2b61b813
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="iot-hub-operations-monitoring"></a>Monitoraggio delle operazioni dell'hub IoT
 
-Il monitoraggio delle operazioni dell'hub IoT consente di monitorare lo stato delle operazioni nel proprio hub IoT in tempo reale. L'hub IoT tiene traccia degli eventi nelle diverse categorie di operazioni. È possibile scegliere di impostare l'invio di eventi da una o più categorie a un endpoint del proprio hub IoT per l'elaborazione. È possibile monitorare i dati per individuare gli errori o configurare un'elaborazione più complessa in base ai modelli di dati.
+Monitoraggio delle operazioni di IoT Hub consente lo stato di hello toomonitor delle operazioni l'hub IoT in tempo reale. L'hub IoT tiene traccia degli eventi nelle diverse categorie di operazioni. È possibile scegliere di inviare gli eventi da uno o più endpoint tooan categorie dell'hub IoT per l'elaborazione. È possibile controllare i dati di hello per errori o impostare un'elaborazione più complessa basata su modelli di dati.
 
 L'hub IoT monitora sei categorie di eventi:
 
@@ -33,28 +33,28 @@ L'hub IoT monitora sei categorie di eventi:
 * Caricamenti di file
 * Routing dei messaggi
 
-## <a name="how-to-enable-operations-monitoring"></a>Come abilitare il monitoraggio delle operazioni
+## <a name="how-tooenable-operations-monitoring"></a>Il monitoraggio delle operazioni tooenable
 
-1. Creare un hub IoT. Le istruzioni sulla creazione di un hub IoT sono disponibili nella [Guida introduttiva][lnk-get-started].
+1. Creare un hub IoT. È possibile trovare istruzioni su come toocreate un hub IoT in hello [iniziare] [ lnk-get-started] Guida.
 
-1. Aprire il pannello dell'hub IoT. Da qui, fare clic su **Monitoraggio operazioni**.
+1. Aprire il pannello hello dell'hub IoT. Da qui, fare clic su **Monitoraggio operazioni**.
 
-    ![Accedere alla configurazione del monitoraggio delle operazioni nel portale][1]
+    ![Monitoraggio della configurazione nel portale di hello le operazioni di accesso][1]
 
-1. Selezionare le categorie di monitoraggio da controllare e fare clic su **Salva**. Gli eventi sono disponibili per la lettura nell'endpoint compatibile con l'hub eventi elencato in **Impostazioni di monitoraggio**. L'endpoint dell'hub IoT è chiamato `messages/operationsmonitoringevents`.
+1. Seleziona hello categorie desidera toomonitor e quindi fare clic su monitoraggio **salvare**. Hello eventi sono disponibili per la lettura dall'endpoint hello compatibile con Hub eventi elencati in **le impostazioni di monitoraggio**. Hello endpoint IoT Hub è chiamato `messages/operationsmonitoringevents`.
 
     ![Configurare il monitoraggio delle operazioni sull'hub IoT][2]
 
 > [!NOTE]
-> La selezione del monitoraggio **Dettagliato** per la categoria **Connessioni** consente all'hub IoT di generare messaggi di diagnostica aggiuntivi. Per tutte le altre categorie, l'impostazione **Dettagliato** modifica la quantità di informazioni che l'hub IoT include in ogni messaggio di errore.
+> Selezione **Verbose** monitoraggio per hello **connessioni** categoria fa sì che l'IoT Hub toogenerate i messaggi di diagnostica aggiuntivi. Per tutte le altre categorie, hello **Verbose** modifiche alle impostazioni quantità hello informazioni IoT Hub sono inclusi in ogni messaggio di errore.
 
-## <a name="event-categories-and-how-to-use-them"></a>Categorie di eventi e modalità d'uso
+## <a name="event-categories-and-how-toouse-them"></a>Categorie di eventi e come toouse li
 
 Ogni categoria di monitoraggio delle operazioni tiene traccia di un diverso tipo di interazione con l'hub IoT e ogni categoria di monitoraggio ha uno schema che definisce come sono strutturati gli eventi nella categoria stessa.
 
 ### <a name="device-identity-operations"></a>Operazioni relative alle identità dei dispositivi
 
-La categoria di operazioni di identità del dispositivo tiene traccia degli errori che si verificano quando si prova a creare, aggiornare o eliminare una voce nel registro delle identità dell'hub IoT. Il rilevamento di questa categoria è utile per gli scenari di provisioning.
+categoria di operazioni identità dispositivo Hello tiene traccia degli errori che si verificano quando si tenta di toocreate, aggiornare o eliminare una voce nel Registro di sistema dell'hub del IoT identità. Il rilevamento di questa categoria è utile per gli scenari di provisioning.
 
 ```json
 {
@@ -73,7 +73,7 @@ La categoria di operazioni di identità del dispositivo tiene traccia degli erro
 
 ### <a name="device-telemetry"></a>Telemetria dei dispositivi
 
-La categoria di telemetria dei dispositivi tiene traccia degli errori che si verificano nell'hub IoT e sono correlati alla pipeline di telemetria. Questa categoria include gli errori che si verificano durante l'invio di eventi di telemetria, ad esempio la limitazione, e la ricezione di eventi di telemetria, ad esempio un lettore non autorizzato. Questa categoria non può intercettare gli errori causati da codice in esecuzione nel dispositivo stesso.
+categoria di dati di telemetria dispositivi Hello tiene traccia degli errori che si verificano all'hub IoT hello e sono la pipeline di telemetria correlati toohello. Questa categoria include gli errori che si verificano durante l'invio di eventi di telemetria, ad esempio la limitazione, e la ricezione di eventi di telemetria, ad esempio un lettore non autorizzato. Questa categoria non può intercettare gli errori causati da codice in esecuzione sul dispositivo hello stesso.
 
 ```json
 {
@@ -97,7 +97,7 @@ La categoria di telemetria dei dispositivi tiene traccia degli errori che si ver
 
 ### <a name="cloud-to-device-commands"></a>Comandi da cloud a dispositivo
 
-La categoria di comandi da cloud a dispositivo tiene traccia degli errori che si verificano nell'hub IoT e sono correlati alla pipeline di messaggi da cloud a dispositivo. Questa categoria include gli errori che si verificano durante l'invio di messaggi da cloud a dispositivo, ad esempio un mittente non autorizzato, la ricezione di messaggi da cloud a dispositivo, ad esempio il superamento del numero di recapiti, e la ricezione di commenti sui messaggi da cloud a dispositivo, ad esempio commenti scaduti. Questa categoria non intercetta gli errori da un dispositivo che gestisce in modo non corretto un messaggio da cloud a dispositivo, se questo è stato recapitato correttamente.
+categoria di comandi cloud a dispositivo Hello tiene traccia degli errori che si verificano all'hub IoT hello e sono pipeline messaggio cloud a dispositivo toohello correlati. Questa categoria include gli errori che si verificano durante l'invio di messaggi da cloud a dispositivo, ad esempio un mittente non autorizzato, la ricezione di messaggi da cloud a dispositivo, ad esempio il superamento del numero di recapiti, e la ricezione di commenti sui messaggi da cloud a dispositivo, ad esempio commenti scaduti. Questa categoria non rileva gli errori da un dispositivo che gestisce correttamente un messaggio da cloud a dispositivo se il messaggio hello del cloud a dispositivo è stata inviata correttamente.
 
 ```json
 {
@@ -121,7 +121,7 @@ La categoria di comandi da cloud a dispositivo tiene traccia degli errori che si
 
 ### <a name="connections"></a>Connessioni
 
-La categoria Connessioni tiene traccia degli errori che si verificano quando i dispositivi si connettono o disconnettono da un hub IoT. Il rilevamento di questa categoria è utile per identificare i tentativi di connessione non autorizzati e per rilevare quando una connessione viene persa dai dispositivi in aree di scarsa connettività.
+categoria di connessioni Hello tiene traccia degli errori che si verificano quando i dispositivi connettono o Disconnetti da un hub IoT. Il rilevamento di questa categoria è utile per identificare i tentativi di connessione non autorizzati e per rilevare quando una connessione viene persa dai dispositivi in aree di scarsa connettività.
 
 ```json
 {
@@ -141,13 +141,13 @@ La categoria Connessioni tiene traccia degli errori che si verificano quando i d
 
 ### <a name="file-uploads"></a>Caricamenti di file
 
-La categoria di caricamenti dei file tiene traccia degli errori che si verificano nell'hub IoT e correlati alla funzionalità di caricamento dei file. Questa categoria include:
+categoria di caricamento file Hello tiene traccia degli errori che si verificano all'hub IoT hello e sono funzionalità di caricamento toofile correlati. Questa categoria include:
 
-* Errori che si verificano con l'URI di firma di accesso condiviso, ad esempio quando l'URI scade prima che un dispositivo notifichi all'hub un caricamento completato.
-* Caricamenti non riusciti segnalati dal dispositivo.
+* Errori che si verificano con hello URI SAS, ad esempio quando scade prima che un dispositivo notifica hub hello di un caricamento completato.
+* Non è stato possibile caricamenti segnalati dal dispositivo hello.
 * Errori che si verificano quando un file non viene trovato nell'archivio durante la creazione del messaggio di notifica dell'hub IoT.
 
-Questa categoria non può intercettare errori che si verificano direttamente mentre il dispositivo sta caricando un file in memoria.
+Questa categoria non può intercettare gli errori generati direttamente durante dispositivo hello sta caricando un file toostorage.
 
 ```json
 {
@@ -168,7 +168,7 @@ Questa categoria non può intercettare errori che si verificano direttamente men
 
 ### <a name="message-routing"></a>Routing dei messaggi
 
-La categoria del routing dei messaggi tiene traccia degli errori che si verificano durante la valutazione del routing dei messaggi e dell'integrità dell'endpoint percepiti dall'hub IoT. Questa categoria include eventi come ad esempio quando una regola viene valutata come "non definita", quando l'hub IoT contrassegna un endpoint come inattivo ed eventuali altri errori ricevuti da un endpoint. Questa categoria non include errori specifici sui messaggi stessi, ad esempio gli errori di limitazione sui dispositivi, che vengono segnalati nella categoria "telemetria del dispositivo".
+categoria di routing di messaggi Hello tiene traccia degli errori che si verificano durante la valutazione di route di messaggio e l'integrità di endpoint percepita dall'IoT Hub. Questa categoria include gli eventi, ad esempio quando una regola valuta troppo "undefined", quando l'IoT Hub contrassegna un endpoint come inattivi e gli errori ricevuti da un endpoint. Questa categoria non sono inclusi errori specifici relative ai messaggi hello stessi (ad esempio dispositivo errori di limitazione), che vengono segnalati nella categoria "telemetria del dispositivo" hello.
 
 ```json
 {
@@ -187,49 +187,49 @@ La categoria del routing dei messaggi tiene traccia degli errori che si verifica
 
 ## <a name="view-events"></a>Visualizzare eventi
 
-È possibile usare lo strumento *iothub-explorer* per verificare rapidamente che l'hub IoT stia generando eventi di monitoraggio. Per installare lo strumento, vedere le istruzioni disponibili nel repository GitHub [iothub-explorer][lnk-iothub-explorer].
+È possibile utilizzare hello *l'hub IOT Esplora* strumento tooquickly verificare che l'hub IoT è la generazione di eventi di monitoraggio. hello tooinstall strumento, vedere le istruzioni hello hello [l'hub IOT Esplora] [ lnk-iothub-explorer] repository GitHub.
 
-1. Assicurarsi che la categoria di monitoraggio **Connessioni** sia impostata su **Dettagliato** nel portale.
+1. Verificare che hello **connessioni** monitoraggio categoria viene impostato troppo**Verbose** nel portale di hello.
 
-1. Al prompt dei comandi eseguire il comando seguente per consentire la lettura dell'endpoint di monitoraggio:
+1. Al prompt di comando, eseguire hello seguenti tooread comando dagli hello dell'endpoint di monitoraggio:
 
     ```
     iothub-explorer monitor-ops --login {your iothubowner connection string}
     ```
 
-1. A un altro prompt dei comandi eseguire il comando seguente per simulare un dispositivo che invia messaggi da dispositivo a cloud:
+1. In un altro prompt dei comandi, eseguire hello successivo comando toosimulate un dispositivo l'invio di messaggi da dispositivo a cloud:
 
     ```
     iothub-explorer simulate-device {your device name} --send "My test message" --login {your iothubowner connection string}
     ```
 
-1. Il primo prompt dei comandi visualizza gli eventi di monitoraggio nel momento in cui il dispositivo simulato si connette all'hub IoT.
+1. Hello prima della riga di comando Mostra gli eventi di monitoraggio di hello dispositivo simulato hello si connette tooyour hub IoT.
 
-## <a name="connect-to-the-monitoring-endpoint"></a>Connettersi all'endpoint di monitoraggio
+## <a name="connect-toohello-monitoring-endpoint"></a>Connettersi toohello dell'endpoint di monitoraggio
 
-L'endpoint di monitoraggio sull'hub IoT è un endpoint compatibile con Hub eventi. Per leggere i messaggi di monitoraggio da questo endpoint, è possibile usare qualsiasi meccanismo che funzioni con l'Hub eventi. L'esempio seguente crea un lettore di base non adatto per una distribuzione con velocità effettiva elevata. Per altre informazioni su come elaborare i messaggi da Hub eventi, vedere l'esercitazione [Introduzione all'Hub eventi][lnk-eventhubs-tutorial].
+Hello monitoraggio endpoint dell'hub IoT è un endpoint compatibile con Hub eventi. È possibile utilizzare qualsiasi meccanismo che funziona con i messaggi di monitoraggio tooread gli hub di eventi da questo endpoint. Hello esempio seguente crea un lettore di base che non è adatto per una distribuzione di velocità effettiva elevata. Per ulteriori informazioni su come tooprocess messaggi dagli hub eventi, vedere hello [Introduzione agli hub di eventi] [ lnk-eventhubs-tutorial] esercitazione.
 
-Per connettersi all'endpoint di monitoraggio, è necessaria una stringa di connessione e il nome dell'endpoint. La procedura seguente mostra come trovare i valori necessari nel portale:
+endpoint di monitoraggio toohello tooconnect, è necessario un nome di endpoint hello e di stringa di connessione. Hello alla procedura seguente viene mostrato come toofind hello valori necessari nel portale di hello:
 
-1. Nel portale, passare al pannello di risorse dell'hub IoT.
+1. Nel portale di hello passare tooyour pannello della risorsa IoT Hub.
 
-1. Scegliere **Monitoraggio operazioni** e prendere nota dei valori in **Nome compatibile con Hub eventi** e in **Endpoint compatibile con Hub eventi**:
+1. Scegliere **monitoraggio delle operazioni**e prendere nota di hello **nome compatibile con Hub eventi** e **endpoint compatibile con Hub eventi** valori:
 
     ![Valori di Endpoint compatibile con Hub eventi][img-endpoints]
 
-1. Scegliere **Criteri di accesso condiviso**, quindi scegliere **servizio**. Prendere nota del valore presente in **Chiave primaria**:
+1. Scegliere **Criteri di accesso condiviso**, quindi scegliere **servizio**. Prendere nota di hello **chiave primaria** valore:
 
     ![Chiave primaria del servizio dei criteri di accesso condiviso][img-service-key]
 
-L'esempio di codice C# seguente viene preso da un'app console C# per **Desktop classico di Windows** di Visual Studio. Il progetto ha il pacchetto **WindowsAzure.ServiceBus** NuGet installato.
+Hello seguente esempio di codice c# viene eseguita da Visual Studio **Windows Desktop classico** applicazione console c#. progetto Hello è hello **Windowsazure** installato il pacchetto NuGet.
 
-* Sostituire il placeholder della stringa di connessione con una stringa di connessione che usa i valori precedentemente annotati per l'**endpoint compatibile con Hub eventi** e il servizio **Chiave primaria** come illustrato nell'esempio seguente:
+* Sostituire i segnaposto di stringa di connessione hello con una stringa di connessione che utilizza hello **endpoint compatibile con Hub eventi** e servizio **chiave primaria** sui valori annotati in precedenza, come illustrato nell'esempio hello esempio:
 
     ```cs
     "Endpoint={your Event Hub-compatible endpoint};SharedAccessKeyName=service;SharedAccessKey={your service primary key value}"
     ```
 
-* Sostituire il placeholder del nome dell'endpoint di monitoraggio con il valore del **nome Hub eventi compatibile** annotato in precedenza.
+* Sostituire i segnaposto nome endpoint con hello monitoraggio hello **nome compatibile con Hub eventi** valore annotato in precedenza.
 
 ```cs
 class Program
@@ -240,7 +240,7 @@ class Program
 
     static void Main(string[] args)
     {
-        Console.WriteLine("Monitoring. Press Enter key to exit.\n");
+        Console.WriteLine("Monitoring. Press Enter key tooexit.\n");
 
         eventHubClient = EventHubClient.CreateFromConnectionString(connectionString, monitoringEndpointName);
         var d2cPartitions = eventHubClient.GetRuntimeInformation().PartitionIds;
@@ -282,7 +282,7 @@ class Program
 ```
 
 ## <a name="next-steps"></a>Passaggi successivi
-Per altre informazioni sulle funzionalità dell'hub IoT, vedere:
+toofurther esplorare le funzionalità di hello di IoT Hub, vedere:
 
 * [Guida per gli sviluppatori dell'hub IoT][lnk-devguide]
 * [Simulazione di un dispositivo con Azure IoT Edge][lnk-iotedge]

@@ -1,6 +1,6 @@
 ---
-title: Quote e limiti del servizio per Azure Batch | Microsoft Docs
-description: Informazioni sui vincoli, limiti e quote di Azure Batch predefiniti e su come richiedere incrementi di quota
+title: aaaService quote e limiti per il Batch di Azure | Documenti Microsoft
+description: Informazioni sulle quote di Azure Batch predefinito, i limiti e i vincoli e come aumentare il livello toorequest quota
 services: batch
 documentationcenter: 
 author: tamram
@@ -15,21 +15,21 @@ ms.topic: article
 ms.date: 06/28/2017
 ms.author: tamram
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: f3f69ed8d3a985afe07e648e7512a88b25278ced
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6035d1c7618cfe97ebca3780e02a4ee34f54e534
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="batch-service-quotas-and-limits"></a>Quote e limiti del servizio Batch
 
-Come con altri servizi di Azure, sono previsti limiti per determinate risorse associate al servizio Batch. Molti di questi limiti sono quote predefinite applicate da Azure a livello di account o di sottoscrizione. Questo articolo illustra i valori predefiniti e come è possibile richiedere aumenti di quota.
+Come con altri servizi di Azure, vi sono limiti di determinate risorse associate hello servizio Batch. Molti di questi limiti sono le quote predefinite applicate da Azure a livello di account o sottoscrizione hello. Questo articolo illustra i valori predefiniti e come è possibile richiedere aumenti di quota.
 
-Tenere presenti queste quote quando si progettano i carichi di lavoro di Batch e se ne aumentano le prestazioni. Se, ad esempio, il pool non raggiunge il numero di destinazione di nodi di calcolo specificato, potrebbe essere stato raggiunto il limite di quota di core per l'account Batch o una quota di core di macchine virtuali regionali per la sottoscrizione.
+Tenere presenti queste quote quando si progettano i carichi di lavoro di Batch e se ne aumentano le prestazioni. Ad esempio, se il pool non è raggiunto il numero di destinazione hello dei nodi di calcolo che è stato specificato, potrebbe aver raggiunto limite di quota di core hello per l'account Batch o una quota di core VM internazionale per la sottoscrizione.
 
-È possibile eseguire più carichi di lavoro Batch in un solo account Batch o distribuire i carichi di lavoro tra gli account Batch nella stessa sottoscrizione, ma in aree di Azure diverse.
+È possibile eseguire i carichi di lavoro di più Batch in un singolo account di Batch o distribuire i carichi di lavoro tra gli account Batch in hello stessa sottoscrizione, ma in diverse aree di Azure.
 
-Se si prevede di eseguire carichi di lavoro di produzione in Batch, potrebbe essere necessario incrementare il valore predefinito di una o più quote. Per aumentare una quota, è possibile aprire una [richiesta di assistenza clienti](#increase-a-quota) online gratuitamente.
+Se si prevede di toorun i carichi di lavoro in Batch, si potrebbe essere necessario tooincrease uno o più quote hello sopra predefinito hello. Se si desidera tooraise una quota, è possibile aprire in linea [richiesta di supporto clienti](#increase-a-quota) senza alcun costo.
 
 > [!NOTE]
 > Una quota è un limite di credito, non una garanzia di capacità. Se si hanno esigenze di capacità su larga scala, contattare il supporto di Azure.
@@ -41,9 +41,9 @@ Se si prevede di eseguire carichi di lavoro di produzione in Batch, potrebbe ess
 
 ## <a name="quotas-in-user-subscription-mode"></a>Quote in modalità di sottoscrizione utente
 
-Per un account Batch con modalità di allocazione di pool impostata su **sottoscrizione utente**, le macchine virtuali Batch e altre risorse, ad esempio gli account di archiviazione, vengono create direttamente nella sottoscrizione al momento della creazione di un pool. La quota di core di Azure Batch non è applicabile a un account creato in questa modalità. Vengono applicati invece le quote della sottoscrizione per i core di calcolo regionali e altre risorse. Per altre informazioni su tali quote, vedere [Sottoscrizione di Azure e limiti, quote e vincoli dei servizi](../azure-subscription-service-limits.md).
+Per un account Batch in modalità di allocazione del pool di troppo**sottoscrizione utente**, Batch macchine virtuali e altre risorse, quali gli account di archiviazione, vengono creati direttamente nella sottoscrizione quando viene creato un pool. quota di core Hello Azure Batch non è applicabile tooan account creato in questa modalità. Al contrario, vengono applicate le quote di hello nella sottoscrizione per core di calcolo locali e altre risorse. Per altre informazioni su tali quote, vedere [Sottoscrizione di Azure e limiti, quote e vincoli dei servizi](../azure-subscription-service-limits.md).
 
-Quando si pianifica l'uso delle risorse per un account creato in modalità di sottoscrizione utente, tenere presente che le risorse di Batch seguenti (oltre ai core di calcolo) sono obbligatorie per ogni 40 macchine virtuali Linux o 20 macchine virtuali Windows:
+Quando si pianifica l'utilizzo delle risorse per un account creato in modalità di sottoscrizione utente, sono necessarie per ogni 40 le macchine virtuali Linux, o 20 macchine virtuali di Windows hello nota seguente risorse Batch (in core toocompute aggiunta):
 
 | Risorsa | Quota | Provider |
 | --- | ---| --- |
@@ -54,7 +54,7 @@ Quando si pianifica l'uso delle risorse per un account creato in modalità di so
 | Un set di scalabilità di macchine virtuali | Set di scalabilità di macchine virtuali | Microsoft.Compute | 
 | Un bilanciamento del carico | Servizi di bilanciamento del carico | Microsoft.Network | 
 
-La quota di core a livello di area o per ogni famiglia di macchine virtuali deve essere impostata in base alle dimensioni di macchina virtuale necessarie per il pool o i pool di Batch:
+quota di core Hello livello regionale o per ogni famiglia di macchina virtuale deve essere set in base toohello dimensioni delle macchine Virtuali necessarie per il pool di Batch o il pool:
 
 | Quota | Provider |
 | --- | ---- |
@@ -76,32 +76,32 @@ La quota di core a livello di area o per ogni famiglia di macchine virtuali deve
 <sup>2</sup> include i file di risorse e le variabili di ambiente
 
 ## <a name="view-batch-quotas"></a>Visualizzare le quote Batch
-Visualizzare le quote dell'account Batch nel [portale di Azure][portal].
+Visualizzare le quote di account di Batch in hello [portale di Azure][portal].
 
-1. Selezionare **Account Batch** nel portale, quindi selezionare l'account Batch di interesse.
-2. Selezionare **Proprietà** nel pannello del menu dell'account Batch.
-3. Il pannello **Proprietà** mostra le quote attualmente applicate all'account Batch
+1. Selezionare **Batch account** nel portale di hello, quindi selezionare account di Batch hello si è interessati.
+2. Selezionare **proprietà** nel Pannello di menu dell'account Batch hello.
+3. Pannello proprietà Hello Visualizza hello **quote** attualmente applicato account Batch toohello
    
     ![Quote di account Batch][account_quotas]
 
-Per un account Batch creato in modalità di sottoscrizione utente, visualizzare le quote delle sottoscrizioni correlate nel portale di Azure.
+Per un account Batch è stato creato in modalità di sottoscrizione utente, hello Vista correlate le quote della sottoscrizione nel portale di Azure hello.
 
-1. Selezionare **Sottoscrizioni** e quindi scegliere la sottoscrizione in uso per l'account Batch.
+1. Selezionare **sottoscrizioni**e selezionare hello sottoscrizione in uso per hello account Batch.
 
-2. Nel pannello **Sottoscrizione** selezionare **Utilizzo e quote**.
+2. In hello **sottoscrizione** pannello seleziona **utilizzo + quote**.
 
 
 
 ## <a name="increase-a-quota"></a>Aumentare una quota
-Per richiedere un aumento di quota per la sottoscrizione o l'account Batch usando il [portale di Azure][portal], seguire questa procedura. Il tipo di aumento delle quote dipende dalla modalità di allocazione del pool dell'account Batch.
+Seguire questi toorequest passaggi aumentare di una quota per l'account Batch o la sottoscrizione utilizzando hello [portale di Azure][portal]. tipo di Hello di aumento della quota dipende dalla modalità di allocazione del pool di hello dell'account di Batch.
 
 ### <a name="increase-a-batch-cores-quota"></a>Aumentare una quota di core Batch 
 
-Se l'account Batch è stato creato in modalità **servizio Batch**, seguire questa procedura per richiedere l'aumento di una quota di core Batch:
+Se l'account Batch è stato creato **Batch servizio** modalità, seguire questi toorequest passaggi un aumento della quota core Batch:
 
-1. Selezionare il riquadro **Guida e supporto** nel dashboard del portale o il punto interrogativo (**?**) nell'angolo superiore destro del portale.
+1. Seleziona hello **Guida e supporto** riquadro nel dashboard del portale o hello punto interrogativo (**?**) nell'angolo superiore destro di hello del portale hello.
 2. Selezionare **Nuova richiesta di supporto** > **Informazioni di base**.
-3. Nel pannello **Informazioni di base** :
+3. In hello **nozioni di base** pannello:
    
     a. **Tipo di problema** > **Quota**
    
@@ -112,22 +112,22 @@ Se l'account Batch è stato creato in modalità **servizio Batch**, seguire ques
     d. **Piano di supporto** > **Supporto per la quota - Incluso**
    
     Fare clic su **Avanti**.
-4. Nel pannello **Problema** :
+4. In hello **problema** pannello:
    
-    a. Selezionare una **Gravità** in base all'[impatto sull'attività aziendale][support_sev].
+    a. Selezionare un **gravità** in base tooyour [impatto aziendale][support_sev].
    
-    b. In **Dettagli**specificare ogni quota che si desidera modificare, il nome dell'account Batch e il nuovo limite.
+    b. In **dettagli**, specificare ogni quota si desidera toochange, nome dell'account Batch hello e hello nuovo limite.
    
     Fare clic su **Avanti**.
-5. Nel pannello **Informazioni di contatto** :
+5. In hello **le informazioni di contatto** pannello:
    
     a. Selezionare il **metodo di contatto preferito**.
    
-    b. Verificare e immettere i dettagli di contatto richiesti.
+    b. Verificare e immettere i dettagli di contatto hello necessario.
    
-    Fare clic su **Crea** per inviare la richiesta di supporto.
+    Fare clic su **crea** toosubmit hello richiesta di supporto.
 
-Dopo aver inviato la richiesta di supporto, si verrà contattati dal supporto tecnico di Azure. Si noti che il completamento della richiesta può richiedere fino a 2 giorni lavorativi.
+Dopo aver inviato la richiesta di supporto, si verrà contattati dal supporto tecnico di Azure. Nota: completamento hello richiesta può richiedere giorni lavorativi too2.
 
 ### <a name="increase-a-subscription-cores-quota"></a>Aumentare la quota di core della sottoscrizione
 
@@ -136,7 +136,7 @@ Se l'account Batch è stato creato in modalità di **sottoscrizione utente** ed 
 
 
 ## <a name="related-topics"></a>Argomenti correlati
-* [Creare un account Azure Batch usando il portale di Azure](batch-account-create-portal.md)
+* [Creare un account Azure Batch utilizzando hello portale di Azure](batch-account-create-portal.md)
 * [Cenni preliminari sulla funzionalità Azure Batch](batch-api-basics.md)
 * [Sottoscrizione di Azure e limiti, quote e vincoli dei servizi](../azure-subscription-service-limits.md)
 

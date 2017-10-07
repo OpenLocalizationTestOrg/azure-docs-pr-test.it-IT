@@ -1,6 +1,6 @@
 ---
-title: Usare Azure Active Directory per autenticare le soluzioni del servizio Azure Batch | Microsoft Docs
-description: Batch supporta Azure AD per l'autenticazione dal servizio Batch.
+title: soluzioni di servizio Azure Batch tooauthenticate aaaUse Azure Active Directory | Documenti Microsoft
+description: Batch supporta Azure AD per l'autenticazione dal servizio Batch hello.
 services: batch
 documentationcenter: .net
 author: tamram
@@ -15,48 +15,48 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: big-compute
 ms.date: 06/20/2017
 ms.author: tamram
-ms.openlocfilehash: 9c03bde919c46cd301229255c0b12ee69dda6f78
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6c825c30f1c80bb059a797a2e78367e599acd109
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="authenticate-batch-service-solutions-with-active-directory"></a>Autenticare le soluzioni del servizio Batch con Active Directory
 
-Azure Batch supporta l'autenticazione con [Azure Active Directory][aad_about], ovvero Azure AD. Azure AD è il servizio Microsoft di gestione di identità e directory basato sul cloud e multi-tenant. Azure stesso usa Azure AD per l'autenticazione i propri clienti, gli amministratori del servizio e gli utenti dell'organizzazione.
+Azure Batch supporta l'autenticazione con [Azure Active Directory][aad_about], ovvero Azure AD. Azure AD è il servizio Microsoft di gestione di identità e directory basato sul cloud e multi-tenant. Azure stesso utilizza Azure AD tooauthenticate relativi clienti, gli amministratori del servizio e gli utenti dell'organizzazione.
 
 Quando si usa l'autenticazione di Azure AD con Azure Batch, è possibile eseguire l'autenticazione in uno dei due modi:
 
-- Usando **l'autenticazione integrata** per autenticare un utente che interagisce con l'applicazione. Un'applicazione che usa l'autenticazione integrata raccoglie le credenziali dell'utente e le usa per autenticare l'accesso alle risorse di Batch.
-- Usando un'**entità servizio** per autenticare un'applicazione automatica. L'entità servizio definisce i criteri e le autorizzazioni per un'applicazione al fine di rappresentare l'applicazione al momento dell'accesso alle risorse in fase di runtime.
+- Utilizzando **l'autenticazione integrata di** tooauthenticate un utente che interagisce con un'applicazione hello. Un'applicazione utilizzando l'autenticazione integrata raccoglie le credenziali dell'utente e utilizza tali credenziali tooauthenticate accedere tooBatch alle risorse.
+- Utilizzando un **dell'entità servizio** tooauthenticate un'applicazione automatica. Un'entità servizio definisce criteri hello e le autorizzazioni per un'applicazione in un'applicazione hello toorepresent ordine quando accedono alle risorse in fase di esecuzione.
 
-Per altre informazioni su Azure AD, vedere [Documentazione di Azure Active Directory](https://docs.microsoft.com/azure/active-directory/).
+toolearn ulteriori informazioni su Azure AD, vedere hello [documentazione di Azure Active Directory](https://docs.microsoft.com/azure/active-directory/).
 
 ## <a name="authentication-and-pool-allocation-mode"></a>Modalità di allocazione pool e autenticazione
 
-Quando si crea un account Batch, è possibile specificare dove devono essere allocati i pool creati per tale account. È possibile scegliere di allocare i pool nella sottoscrizione predefinita del servizio Batch o in una sottoscrizione utente. La scelta influisce sulla modalità di autenticazione dell'accesso alle risorse nell'account.
+Quando si crea un account Batch, è possibile specificare dove devono essere allocati i pool creati per tale account. È possibile scegliere pool tooallocate sottoscrizione al servizio Batch predefinito hello o in una sottoscrizione utente. La scelta influisce sulla modalità di autenticazione accesso tooresources in tale account.
 
-- **Sottoscrizione al servizio Batch**. Per impostazione predefinita, i pool di Batch vengono allocati in una sottoscrizione del servizio Batch. è Se si sceglie questa opzione, possibile eseguire l'autenticazione per l'accesso alle risorse in tale account con [chiave condivisa](https://docs.microsoft.com/rest/api/batchservice/authenticate-requests-to-the-azure-batch-service) o con Azure AD.
-- **Sottoscrizione utente.** È possibile scegliere di allocare il pool Batch in una sottoscrizione utente specificata. Se si sceglie questa opzione, è necessario eseguire l'autenticazione con Azure AD.
+- **Sottoscrizione al servizio Batch**. Per impostazione predefinita, i pool di Batch vengono allocati in una sottoscrizione del servizio Batch. Se si sceglie questa opzione, è possibile autenticare accesso tooresources in quell'account con [chiave condivisa](https://docs.microsoft.com/rest/api/batchservice/authenticate-requests-to-the-azure-batch-service) o con Azure AD.
+- **Sottoscrizione utente.** È possibile scegliere tooallocate pool Batch in una sottoscrizione utente specificato. Se si sceglie questa opzione, è necessario eseguire l'autenticazione con Azure AD.
 
 ## <a name="endpoints-for-authentication"></a>Endpoint per l'autenticazione
 
-Per autenticare le applicazioni Batch con Azure AD, è necessario includere endpoint noti nel codice.
+applicazioni di Batch tooauthenticate con Azure AD, è necessario tooinclude alcuni endpoint noto nel codice.
 
 ### <a name="azure-ad-endpoint"></a>Endpoint di Azure AD
 
-L'endpoint dell'autorità di base di Azure AD è:
+Hello base endpoint autorità di Azure AD:
 
 `https://login.microsoftonline.com/`
 
-Per eseguire l'autenticazione con Azure AD, usare l'endpoint con l'ID tenant, ovvero l'ID directory. L'ID tenant identifica il tenant di Azure AD da usare per l'autenticazione. Per recuperare l'ID tenant, attenersi alla procedura descritta in [Ottenere l'ID tenant per Azure Active Directory](#get-the-tenant-id-for-your-active-directory):
+tooauthenticate con Azure AD, utilizzare l'endpoint con l'ID tenant hello (ID di directory). l'ID tenant Hello identifica toouse tenant di Azure AD hello per l'autenticazione. tooretrieve hello ID tenant, seguire i passaggi di hello illustrati in [ottenere l'ID del tenant hello per Azure Active Directory](#get-the-tenant-id-for-your-active-directory):
 
 `https://login.microsoftonline.com/<tenant-id>`
 
 > [!NOTE] 
-> L'endpoint specifico per il tenant è obbligatorio quando si esegue l'autenticazione tramite un'entità servizio. 
+> endpoint specifico del tenant Hello è obbligatorio quando si autentica utilizzando un'entità servizio. 
 > 
-> L'endpoint specifico del tenant è facoltativo quando si esegue l'autenticazione usando l'autenticazione integrata, ma è consigliabile usarlo. Tuttavia, è anche possibile usare l'endpoint di Azure AD comune. L'endpoint comune consente di usare un'interfaccia di raccolta di credenziali generiche quando non è disponibile un tenant specifico. L'endpoint comune è `https://login.microsoftonline.com/common`.
+> endpoint specifico del tenant Hello è facoltativo quando si autentica utilizzando l'autenticazione integrata, ma consigliato. Tuttavia, è possibile utilizzare anche l'endpoint comune hello Azure AD. endpoint comune Hello fornisce le credenziali generica dell'interfaccia di raccolta quando non viene fornito un tenant specifico. endpoint comuni Hello è `https://login.microsoftonline.com/common`.
 >
 >
 
@@ -64,123 +64,123 @@ Per altre informazioni sugli endpoint di Azure AD, vedere [Scenari di autenticaz
 
 ### <a name="batch-resource-endpoint"></a>Endpoint di risorse Batch
 
-Usare l'**endpoint delle risorse di Azure Batch** per acquisire un token per autenticare le richieste al servizio Batch:
+Hello utilizzare **endpoint di risorse di Azure Batch** tooacquire un token per l'autenticazione delle richieste di servizio Batch toohello:
 
 `https://batch.core.windows.net/`
 
 ## <a name="register-your-application-with-a-tenant"></a>Registrare l'applicazione con un tenant
 
-Il primo passaggio nell'uso di Azure AD per eseguire l'autenticazione consiste nella registrazione dell'applicazione nel tenant di Azure AD. La registrazione dell'applicazione consente di chiamare l'[Active Directory Authentication Library][aad_adal], ovvero ADAL, di Azure dal codice. ADAL offre un'API per eseguire l'autenticazione con Azure AD dall'applicazione. La registrazione dell'applicazione è necessaria se si prevede di usare l'autenticazione integrata o un'entità servizio.
+Hello innanzitutto usando Azure AD tooauthenticate sta registrando l'applicazione in un tenant di Azure AD. Registrazione dell'applicazione consente toocall hello Azure [Active Directory Authentication Library] [ aad_adal] (ADAL) dal codice. Hello ADAL fornisce un'API per l'autenticazione con Azure AD dall'applicazione. Registrazione dell'applicazione è necessario se si prevede l'autenticazione integrata di toouse o un'entità servizio.
 
-Quando si registra l'applicazione, si danno informazioni sull'applicazione ad Azure AD. Azure AD fornisce quindi un ID applicazione che viene usato per associare l'applicazione ad Azure AD in fase di esecuzione. Per altre informazioni sull'ID applicazione, vedere [Oggetti applicazione e oggetti entità servizio in Azure Active Directory](../active-directory/develop/active-directory-application-objects.md).
+Quando si registra l'applicazione, è fornire informazioni relative la tooAzure applicazione Active Directory. Quindi AD Azure fornisce un ID applicazione di usare tooassociate l'applicazione con Azure AD in fase di esecuzione. vedere toolearn ulteriori informazioni su ID applicazione hello [applicazione e oggetti entità servizio in Azure Active Directory](../active-directory/develop/active-directory-application-objects.md).
 
-Per registrare l'applicazione Batch, seguire la procedura descritta nella sezione [Aggiunta di un'applicazione](../active-directory/develop/active-directory-integrating-applications.md#adding-an-application) dell'articolo [Integrazione di applicazioni con Azure Active Directory][aad_integrate]. Se si registra l'applicazione come applicazione nativa, è possibile specificare qualsiasi URI valido per l'**URI di reindirizzamento**. Non è necessario che sia un endpoint reale.
+tooregister l'applicazione di Batch, seguire la procedura seguente hello in hello [aggiunta di un'applicazione](../active-directory/develop/active-directory-integrating-applications.md#adding-an-application) sezione [integrazione di applicazioni con Azure Active Directory][aad_integrate]. Se si registra l'applicazione come applicazione nativa, è possibile specificare qualsiasi URI valido per hello **URI di reindirizzamento**. Non è necessario un endpoint reale toobe.
 
-Al termine della registrazione dell'applicazione, verrà visualizzata l'ID applicazione:
+Dopo aver registrato l'applicazione, verrà visualizzato l'ID dell'applicazione hello:
 
 ![Registrare l'applicazione Batch in Azure AD](./media/batch-aad-auth/app-registration-data-plane.png)
 
 Per altre informazioni sulla registrazione di un'applicazione con Azure AD, vedere [Scenari di autenticazione per Azure AD](../active-directory/develop/active-directory-authentication-scenarios.md).
 
-## <a name="get-the-tenant-id-for-your-active-directory"></a>Ottenere l'ID tenant per Active Directory
+## <a name="get-hello-tenant-id-for-your-active-directory"></a>Ottenere l'ID del tenant hello per Active Directory
 
-L'ID tenant identifica il tenant di Azure AD che offre servizi di autenticazione all'applicazione. Per ottenere l'ID tenant, seguire questa procedura:
+l'ID tenant Hello identifica tenant di Azure AD hello che fornisce l'autenticazione servizi tooyour applicazione. tooget hello ID tenant, seguire questi passaggi:
 
-1. Nel portale di Azure selezionare Active Directory.
+1. Nel portale di Azure hello, selezionare Active Directory.
 2. Fare clic su **Proprietà**.
-3. Copiare il valore GUID indicato per l'ID directory. Questo valore viene chiamato anche ID tenant.
+3. Copiare il valore GUID hello fornito per l'ID di directory hello. Questo valore viene anche chiamato hello ID del tenant.
 
-![Copiare l'ID directory](./media/batch-aad-auth/aad-directory-id.png)
+![Copiare l'ID di directory hello](./media/batch-aad-auth/aad-directory-id.png)
 
 
 ## <a name="use-integrated-authentication"></a>Usare l'autenticazione integrata
 
-Per eseguire l'autenticazione con l'autenticazione integrata, è necessario concedere le autorizzazioni per l'applicazione per connettersi all'API del servizio Batch. Questo passaggio consente all'applicazione di autenticare le chiamate all'API del servizio Batch con Azure AD.
+tooauthenticate con l'autenticazione integrata, è necessario toogrant toohello di tooconnect le autorizzazioni applicazione API del servizio Batch. Questo passaggio attiva le API del servizio Batch di applicazione tooauthenticate chiamate toohello con Azure AD.
 
-Dopo aver [registrato l'applicazione](#register-your-application-with-an-azure-ad-tenant), seguire questi passaggi nel portale di Azure per concedere l'accesso al servizio Batch:
+Dopo aver [registrazione dell'applicazione](#register-your-application-with-an-azure-ad-tenant), seguire questi passaggi nell'hello Azure toogrant portale, servizio Batch toohello di accesso:
 
-1. Nel riquadro di spostamento a sinistra del portale di Azure scegliere **Altri servizi** e fare clic su **Registrazioni per l'app**.
-2. Cercare il nome dell'applicazione nell'elenco di registrazioni di app:
+1. Nel riquadro di navigazione a sinistra hello di hello portale di Azure, scegliere **più servizi**, fare clic su **registrazioni di App**.
+2. Ricerca per nome hello dell'applicazione nell'elenco di hello di registrazioni di app:
 
     ![Cercare il nome dell'applicazione](./media/batch-aad-auth/search-app-registration.png)
 
-3. Aprire il pannello **Impostazioni** per l'applicazione. Nella sezione **Accesso all'API** selezionare **Autorizzazioni necessarie**.
-4. Nel pannello **Autorizzazioni necessarie** fare clic sul pulsante **Aggiungi**.
-5. Nel passaggio 1 cercare l'API Batch. Cercare ognuna di queste stringhe fino a trovare l'API:
+3. Aprire hello **impostazioni** pannello per l'applicazione. In hello **l'accesso all'API** selezionare **delle autorizzazioni necessarie**.
+4. In hello **delle autorizzazioni necessarie** pannello, fare clic su hello **Aggiungi** pulsante.
+5. Nel passaggio 1, cercare hello API Batch. Fino a individuare hello API di ricerca per ognuna di queste stringhe:
     1. **MicrosoftAzureBatch**.
     2. **Microsoft Azure Batch**. I tenant di Azure AD più recenti potrebbero usare questo nome.
-    3. **ddbf3205-c6bd-46ae-8127-60eb93363864** è l'ID dell'API Batch. 
-6. Dopo aver trovato l'API Batch, selezionarla e fare clic sul pulsante **Seleziona**.
-6. Nel passaggio 2 selezionare la casella di controllo accanto ad **Access Azure Batch Service** (Accedi al servizio Azure Batch) e fare clic sul pulsante **Seleziona**.
-7. Fare clic sul pulsante **Fine**.
+    3. **ddbf3205-c6bd-46ae-8127-60eb93363864** ID hello per hello API Batch. 
+6. Dopo aver individuato hello API Batch, selezionarlo e fare clic su hello **selezionare** pulsante.
+6. Nel passaggio 2, selezionare hello casella di controllo accanto troppo**servizio di accesso Azure Batch** e fare clic su hello **selezionare** pulsante.
+7. Fare clic su hello **eseguita** pulsante.
 
-Il pannello **Autorizzazioni necessarie** mostra ora che l'applicazione Azure AD concede l'accesso alle API sia di ADAL che del servizio Batch. Le autorizzazioni vengono automaticamente concesse ad ADAL quando si registra per la prima volta l'app in Azure AD.
+Hello **autorizzazioni obbligatorie** pannello indica che l'applicazione Azure AD dispone di accesso tooboth ADAL e hello API del servizio Batch. Le autorizzazioni vengono concesse tooADAL automaticamente quando si innanzitutto registrare l'applicazione con Azure AD.
 
 ![Concedere le autorizzazioni delle API](./media/batch-aad-auth/required-permissions-data-plane.png)
 
 ## <a name="use-a-service-principal"></a>Usare un’entità servizio 
 
-Per autenticare un'applicazione in esecuzione automatica, usare un'entità servizio. Dopo aver registrato l'applicazione, seguire questi passaggi nel portale di Azure per configurare un'entità servizio:
+tooauthenticate un'applicazione in esecuzione automatica, utilizzare un'entità servizio. Dopo aver registrato l'applicazione, seguire questi passaggi in hello tooconfigure portale Azure un'entità servizio:
 
 1. Richiedere una chiave privata per l'applicazione.
-2. Assegnare un ruolo con controllo degli accessi in base al ruolo all'applicazione.
+2. Assegnare un'applicazione di tooyour RBAC ruolo.
 
 ### <a name="request-a-secret-key-for-your-application"></a>Richiedere una chiave privata per l'applicazione
 
-Quando l'applicazione autentica con un'entità servizio, invia l'ID dell'applicazione e una chiave privata ad Azure AD. Sarà necessario creare e copiare la chiave privata da usare dal codice.
+Quando l'applicazione esegue l'autenticazione con un'entità servizio, Invia ID applicazione hello sia un tooAzure chiave segreta Active Directory. Si sarà necessario toocreate e copiare toouse chiave segreta hello dal codice.
 
-Seguire questa procedura nel portale di Azure:
+Seguire questi passaggi in hello portale di Azure:
 
-1. Nel riquadro di spostamento a sinistra del portale di Azure scegliere **Altri servizi** e fare clic su **Registrazioni per l'app**.
-2. Cercare il nome dell'applicazione nell'elenco di registrazioni dell'app.
-3. Visualizzare il pannello **Impostazioni**. Nella sezione **Accesso all'API** selezionare **Chiavi**.
-4. Per creare una chiave, immettere una descrizione per la chiave. Quindi selezionare la durata della chiave di uno o due anni. 
-5. Fare clic sul pulsante **Salva** per creare e visualizzare la chiave. Copiare il valore della chiave in una posizione sicura, poiché non sarà possibile accedervi nuovamente dopo aver chiuso il pannello. 
+1. Nel riquadro di navigazione a sinistra hello di hello portale di Azure, scegliere **più servizi**, fare clic su **registrazioni di App**.
+2. Ricerca per nome hello dell'applicazione nell'elenco di hello di registrazioni di app.
+3. Hello visualizzazione **impostazioni** blade. In hello **l'accesso all'API** selezionare **chiavi**.
+4. toocreate una chiave, immettere una descrizione per la chiave di hello. Selezionare una durata per la chiave hello di uno o due anni. 
+5. Fare clic su hello **salvare** pulsante toocreate e visualizzare la chiave di hello. Copiare il luogo sicuro tooa valore chiave hello, poiché non sarà in grado di tooaccess nuovamente dopo averlo lasciare pannello hello. 
 
     ![Creare una chiave privata](./media/batch-aad-auth/secret-key.png)
 
-### <a name="assign-an-rbac-role-to-your-application"></a>Assegnare un ruolo con controllo degli accessi in base al ruolo all'applicazione
+### <a name="assign-an-rbac-role-tooyour-application"></a>Assegnare un'applicazione di tooyour RBAC ruolo
 
-Per eseguire l'autenticazione con un'entità servizio, è necessario assegnare il ruolo con controllo degli accessi in base al ruolo all'applicazione. A tale scopo, seguire questa procedura:
+tooauthenticate con un'entità servizio, è necessario tooassign un'applicazione di tooyour RBAC ruolo. A tale scopo, seguire questa procedura:
 
-1. Nel portale di Azure passare all'account Batch usato dall'applicazione.
-2. Nel pannello **Impostazioni** per l'account Batch selezionare **Controllo di accesso (IAM)**.
-3. Fare clic su **Add** . 
-4. Dall'elenco a discesa **Ruolo** scegliere il ruolo _Collaboratore_ o _Lettore_ per l'applicazione. Per altre informazioni sui ruoli, vedere [Introduzione al controllo degli accessi in base al ruolo nel portale di Azure](../active-directory/role-based-access-control-what-is.md).  
-5. Nel campo **Seleziona** immettere il nome dell'applicazione. Selezionare l'applicazione dall'elenco e fare clic su **Salva**.
+1. Nel portale di Azure hello, passare l'account Batch toohello utilizzati dall'applicazione.
+2. In hello **impostazioni** pannello per l'account Batch hello, selezionare **il controllo di accesso (IAM)**.
+3. Fare clic su hello **Aggiungi** pulsante. 
+4. Da hello **ruolo** elenco a discesa, selezionare entrambi hello _collaboratore_ o _lettore_ ruolo per l'applicazione. Per ulteriori informazioni su questi ruoli, vedere [Introduzione a controllo di accesso basato sui ruoli nel portale di Azure hello](../active-directory/role-based-access-control-what-is.md).  
+5. In hello **selezionare** immettere nome hello dell'applicazione. Selezionare l'applicazione hello elenco e fare clic su **salvare**.
 
 L'applicazione dovrebbe ora essere visualizzata nelle impostazioni di controllo di accesso con un ruolo con controllo degli accessi in base al ruolo assegnato. 
 
-![Assegnare un ruolo con controllo degli accessi in base al ruolo all'applicazione](./media/batch-aad-auth/app-rbac-role.png)
+![Assegnare un'applicazione di tooyour RBAC ruolo](./media/batch-aad-auth/app-rbac-role.png)
 
-### <a name="get-the-tenant-id-for-your-azure-active-directory"></a>Ottenere l'ID tenant per Azure Active Directory
+### <a name="get-hello-tenant-id-for-your-azure-active-directory"></a>Ottenere l'ID del tenant hello per Azure Active Directory
 
-L'ID tenant identifica il tenant di Azure AD che offre servizi di autenticazione all'applicazione. Per ottenere l'ID tenant, seguire questa procedura:
+l'ID tenant Hello identifica tenant di Azure AD hello che fornisce l'autenticazione servizi tooyour applicazione. tooget hello ID tenant, seguire questi passaggi:
 
-1. Nel portale di Azure selezionare Active Directory.
+1. Nel portale di Azure hello, selezionare Active Directory.
 2. Fare clic su **Proprietà**.
-3. Copiare il valore GUID indicato per l'ID directory. Questo valore viene chiamato anche ID tenant.
+3. Copiare il valore GUID hello fornito per l'ID di directory hello. Questo valore viene anche chiamato hello ID del tenant.
 
-![Copiare l'ID directory](./media/batch-aad-auth/aad-directory-id.png)
+![Copiare l'ID di directory hello](./media/batch-aad-auth/aad-directory-id.png)
 
 
 ## <a name="code-examples"></a>Esempi di codice
 
-Gli esempi di codice in questa sezione illustrano come eseguire l'autenticazione con Azure AD mediante l'autenticazione integrata e con un'entità servizio. Questi esempi di codice usano .NET, ma i concetti sono simili per le altre lingue.
+esempi di codice Hello in questa sezione illustrano come tooauthenticate con Azure AD mediante l'autenticazione integrata e con un'entità servizio. .NET di utilizzare questi esempi di codice, ma i concetti di hello sono simili ad altri linguaggi.
 
 > [!NOTE]
-> Un token di autenticazione di Azure AD scade dopo un'ora. Quando si usa un oggetto **BatchClient** di lunga durata, è consigliabile recuperare un token da ADAL a ogni richiesta per assicurarsi di avere sempre un token valido. 
+> Un token di autenticazione di Azure AD scade dopo un'ora. Quando si utilizza una lunga durata **BatchClient** dell'oggetto, si consiglia recuperare un token da ADAL su tooensure ogni richiesta è sempre necessario un token valido. 
 >
 >
-> A tale scopo, in .NET scrivere un metodo che recuperi il token da Azure AD e passi tale metodo a un oggetto **BatchTokenCredentials** come delegato. Il metodo delegato verrà chiamato a ogni richiesta al servizio Batch per garantire che venga fornito un token valido. Per impostazione predefinita, ADAL memorizza i token nella cache, quindi un nuovo token viene recuperato da Azure AD solo quando necessario. Per altre informazioni sui token in Azure AD, vedere [Scenari di autenticazione per Azure AD][aad_auth_scenarios].
+> tooachieve in .NET, scrivere un metodo che recupera hello token da Azure AD e passa tale tooa metodo **BatchTokenCredentials** oggetto come un delegato. metodo delegato Hello viene chiamato su ogni richiesta toohello Batch servizio tooensure viene fornito un token valido. Per impostazione predefinita, ADAL memorizza i token nella cache, quindi un nuovo token viene recuperato da Azure AD solo quando necessario. Per altre informazioni sui token in Azure AD, vedere [Scenari di autenticazione per Azure AD][aad_auth_scenarios].
 >
 >
 
 ### <a name="code-example-using-azure-ad-integrated-authentication-with-batch-net"></a>Esempio di codice: uso dell'autenticazione integrata di Azure AD con .NET di Batch
 
-Per eseguire l'autenticazione con l'autenticazione integrata di Batch .NET, fare riferimento al pacchetto [Azure Batch .NET](https://www.nuget.org/packages/Azure.Batch/) e al pacchetto [ADAL](https://www.nuget.org/packages/Microsoft.IdentityModel.Clients.ActiveDirectory/).
+tooauthenticate con l'autenticazione integrata da .NET di Batch, hello riferimento [.NET di Azure Batch](https://www.nuget.org/packages/Azure.Batch/) pacchetto e hello [ADAL](https://www.nuget.org/packages/Microsoft.IdentityModel.Clients.ActiveDirectory/) pacchetto.
 
-Includere le istruzioni `using` seguenti nel codice:
+Sono inclusi i seguenti hello `using` istruzioni nel codice:
 
 ```csharp
 using Microsoft.Azure.Batch;
@@ -188,13 +188,13 @@ using Microsoft.Azure.Batch.Auth;
 using Microsoft.IdentityModel.Clients.ActiveDirectory;
 ```
 
-Fare riferimento all'endpoint di Azure AD nel codice, che include l'ID tenant. Per recuperare l'ID tenant, attenersi alla procedura descritta in [Ottenere l'ID tenant per Azure Active Directory](#get-the-tenant-id-for-your-active-directory):
+Hello riferimento endpoint di Azure AD nel codice, tra cui hello tenant ID. tooretrieve hello ID tenant, seguire i passaggi di hello illustrati in [ottenere l'ID del tenant hello per Azure Active Directory](#get-the-tenant-id-for-your-active-directory):
 
 ```csharp
 private const string AuthorityUri = "https://login.microsoftonline.com/<tenant-id>";
 ```
 
-Riferimento all'endpoint delle risorse per il servizio Batch:
+Fare riferimento a endpoint di risorse del servizio Batch hello:
 
 ```csharp
 private const string BatchResourceUri = "https://batch.core.windows.net/";
@@ -206,26 +206,26 @@ Riferimento all'account Batch:
 private const string BatchAccountUrl = "https://myaccount.mylocation.batch.azure.com";
 ```
 
-Specificare l'ID dell'applicazione (ID client). L'ID dell'applicazione è disponibile nella registrazione dell'app nel portale di Azure:
+Specificare l'ID dell'applicazione hello (ID client) per l'applicazione. ID dell'applicazione Hello è disponibile tramite la registrazione dell'app nel portale di Azure hello:
 
 ```csharp
 private const string ClientId = "<application-id>";
 ```
 
-Copiare anche l'URI di reindirizzamento specificato durante il processo di registrazione. L'URI di reindirizzamento specificato nel codice deve corrispondere a quello specificato quando è stata registrata l'applicazione:
+Copiare anche il reindirizzamento di hello URI specificato durante il processo di registrazione hello. URI specificato nel codice di reindirizzamento Hello deve corrispondere reindirizzamento hello URI fornito dall'utente durante la registrazione di un'applicazione hello:
 
 ```csharp
 private const string RedirectUri = "http://mybatchdatasample";
 ```
 
-Scrivere un metodo di callback per acquisire il token di autenticazione da Azure AD. Il metodo di callback **GetAuthenticationTokenAsync** illustrato qui chiama ADAL per eseguire l'autenticazione a un utente che interagisce con l'applicazione. Il metodo **AcquireTokenAsync** indicato da ADAL richiede all'utente le credenziali e l'applicazione procede dopo che sono state specificate, a meno che queste credenziali non siano già state memorizzate nella cache:
+Scrivere un token di autenticazione hello tooacquire metodo di callback da Azure AD. Hello **GetAuthenticationTokenAsync** metodo di callback illustrato di seguito chiama tooauthenticate ADAL un utente interagisce con un'applicazione hello. Hello **AcquireTokenAsync** metodo fornite dalla libreria ADAL richiede hello le loro credenziali utente e un'applicazione hello continua una volta utente hello fornisce loro (a meno che non ha già memorizzato nella cache le credenziali):
 
 ```csharp
 public static async Task<string> GetAuthenticationTokenAsync()
 {
     var authContext = new AuthenticationContext(AuthorityUri);
 
-    // Acquire the authentication token from Azure AD.
+    // Acquire hello authentication token from Azure AD.
     var authResult = await authContext.AcquireTokenAsync(BatchResourceUri, 
                                                         ClientId, 
                                                         new Uri(RedirectUri), 
@@ -235,7 +235,7 @@ public static async Task<string> GetAuthenticationTokenAsync()
 }
 ```
 
-Costruire un oggetto **BatchTokenCredentials** che accetta il delegato come parametro. Usare tali credenziali per aprire un oggetto **BatchClient**. È possibile usare l'oggetto **BatchClient** per operazioni successive sul servizio Batch:
+Costruire un **BatchTokenCredentials** oggetto che accetta hello delegato come parametro. Utilizzare tali tooopen credenziali un **BatchClient** oggetto. È possibile utilizzare tale **BatchClient** oggetto per le successive operazioni nel servizio Batch hello:
 
 ```csharp
 public static async Task PerformBatchOperations()
@@ -251,9 +251,9 @@ public static async Task PerformBatchOperations()
 
 ### <a name="code-example-using-an-azure-ad-service-principal-with-batch-net"></a>Esempio di codice: uso di un'entità servizio Azure AD con Batch .NET
 
-Per eseguire l'autenticazione con un'entità servizio di Batch .NET, fare riferimento al pacchetto [Azure Batch .NET](https://www.nuget.org/packages/Azure.Batch/) e al pacchetto [ADAL](https://www.nuget.org/packages/Microsoft.IdentityModel.Clients.ActiveDirectory/).
+tooauthenticate con un'entità servizio da .NET di Batch, hello riferimento [.NET di Azure Batch](https://www.nuget.org/packages/Azure.Batch/) pacchetto e hello [ADAL](https://www.nuget.org/packages/Microsoft.IdentityModel.Clients.ActiveDirectory/) pacchetto.
 
-Includere le istruzioni `using` seguenti nel codice:
+Sono inclusi i seguenti hello `using` istruzioni nel codice:
 
 ```csharp
 using Microsoft.Azure.Batch;
@@ -261,13 +261,13 @@ using Microsoft.Azure.Batch.Auth;
 using Microsoft.IdentityModel.Clients.ActiveDirectory;
 ```
 
-Fare riferimento all'endpoint di Azure AD nel codice, che include l'ID tenant. Quando si usa un'entità servizio, è necessario indicare un endpoint specifico del tenant. Per recuperare l'ID tenant, attenersi alla procedura descritta in [Ottenere l'ID tenant per Azure Active Directory](#get-the-tenant-id-for-your-active-directory):
+Hello riferimento endpoint di Azure AD nel codice, tra cui hello tenant ID. Quando si usa un'entità servizio, è necessario indicare un endpoint specifico del tenant. tooretrieve hello ID tenant, seguire i passaggi di hello illustrati in [ottenere l'ID del tenant hello per Azure Active Directory](#get-the-tenant-id-for-your-active-directory):
 
 ```csharp
 private const string AuthorityUri = "https://login.microsoftonline.com/<tenant-id>";
 ```
 
-Riferimento all'endpoint delle risorse per il servizio Batch:  
+Fare riferimento a endpoint di risorse del servizio Batch hello:  
 
 ```csharp
 private const string BatchResourceUri = "https://batch.core.windows.net/";
@@ -279,19 +279,19 @@ Riferimento all'account Batch:
 private const string BatchAccountUrl = "https://myaccount.mylocation.batch.azure.com";
 ```
 
-Specificare l'ID dell'applicazione (ID client). L'ID dell'applicazione è disponibile nella registrazione dell'app nel portale di Azure:
+Specificare l'ID dell'applicazione hello (ID client) per l'applicazione. ID dell'applicazione Hello è disponibile tramite la registrazione dell'app nel portale di Azure hello:
 
 ```csharp
 private const string ClientId = "<application-id>";
 ```
 
-Specificare la chiave privata copiata dal portale di Azure:
+Specificare una chiave segreta hello copiata dal portale di Azure hello:
 
 ```csharp
 private const string ClientKey = "<secret-key>";
 ```
 
-Scrivere un metodo di callback per acquisire il token di autenticazione da Azure AD. Il metodo di callback **GetAuthenticationTokenAsync** illustrato di seguito chiama ADAL per l'autenticazione automatica:
+Scrivere un token di autenticazione hello tooacquire metodo di callback da Azure AD. Hello **GetAuthenticationTokenAsync** il metodo di callback illustrato di seguito chiama ADAL per l'autenticazione automatica:
 
 ```csharp
 public static async Task<string> GetAuthenticationTokenAsync()
@@ -303,7 +303,7 @@ public static async Task<string> GetAuthenticationTokenAsync()
 }
 ```
 
-Costruire un oggetto **BatchTokenCredentials** che accetta il delegato come parametro. Usare tali credenziali per aprire un oggetto **BatchClient**. È quindi possibile usare l'oggetto **BatchClient** per operazioni successive sul servizio Batch:
+Costruire un **BatchTokenCredentials** oggetto che accetta hello delegato come parametro. Utilizzare tali tooopen credenziali un **BatchClient** oggetto. È quindi possibile utilizzare che **BatchClient** oggetto per le successive operazioni nel servizio Batch hello:
 
 ```csharp
 public static async Task PerformBatchOperations()
@@ -319,11 +319,11 @@ public static async Task PerformBatchOperations()
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Per altre informazioni su Azure AD, vedere [Documentazione di Azure Active Directory](https://docs.microsoft.com/azure/active-directory/). Esempi dettagliati dell'uso di ADAL sono disponibili nella libreria degli [esempi di codice per Azure](https://azure.microsoft.com/resources/samples/?service=active-directory).
+toolearn ulteriori informazioni su Azure AD, vedere hello [documentazione di Azure Active Directory](https://docs.microsoft.com/azure/active-directory/). Esempi dettagliati che mostra come toouse ADAL sono disponibili in hello [esempi di codice di Azure](https://azure.microsoft.com/resources/samples/?service=active-directory) libreria.
 
-Per altre informazioni sull'entità servizio, vedere [Oggetti applicazione e oggetti entità servizio in Azure Active Directory](../active-directory/develop/active-directory-application-objects.md). Per creare un'entità servizio tramite il portale di Azure, vedere [Usare il portale per creare un'applicazione Azure Active Directory e un'entità servizio che possano accedere alle risorse](../resource-group-create-service-principal-portal.md). È anche possibile creare un'entità servizio con PowerShell o con l'interfaccia della riga di comando di Azure. 
+toolearn sulle entità servizio, vedere [applicazione e oggetti entità servizio in Azure Active Directory](../active-directory/develop/active-directory-application-objects.md). toocreate un servizio principale utilizzando hello Azure portale, vedere [utilizzare portale toocreate applicazione di Active Directory e dell'entità servizio che possono accedere alle risorse](../resource-group-create-service-principal-portal.md). È anche possibile creare un'entità servizio con PowerShell o con l'interfaccia della riga di comando di Azure. 
 
-Per eseguire l'autenticazione di applicazioni di gestione batch con Azure AD, vedere [Authenticate Batch Management solutions with Active Directory](batch-aad-auth-management.md) (Autenticare le soluzioni di gestione batch con Active Directoy). 
+applicazioni di gestione dei Batch tooauthenticate mediante Azure AD, vedere [soluzioni di gestione dei Batch l'autenticazione con Active Directory](batch-aad-auth-management.md). 
 
 [aad_about]: ../active-directory/active-directory-whatis.md "Informazioni su Azure Active Directory"
 [aad_adal]: ../active-directory/active-directory-authentication-libraries.md

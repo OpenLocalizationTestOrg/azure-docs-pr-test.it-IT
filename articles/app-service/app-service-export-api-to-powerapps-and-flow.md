@@ -1,6 +1,6 @@
 ---
-title: Esportazione di un'API ospitata in Azure in PowerApps e Microsoft Flow | Microsoft Docs
-description: Panoramica su come esporre un'API ospitata nel servizio app in PowerApps e Microsoft Flow
+title: aaaExporting un tooPowerApps API ospitato di Azure e Microsoft Flow | Documenti Microsoft
+description: Panoramica di come tooexpose un'API ospitato nel servizio App tooPowerApps e Microsoft Flow
 services: app-service
 documentationcenter: 
 author: mattchenderson
@@ -14,21 +14,21 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 06/20/2017
 ms.author: mahender
-ms.openlocfilehash: 0d166a2e5b60c3b9f911f9fc3ad49ad7f252abb4
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 285b6efa3af5b0feac1ee2f617c0dc56dc3fd198
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="exporting-an-azure-hosted-api-to-powerapps-and-microsoft-flow"></a>Esportazione di un'API ospitata in Azure in PowerApps e Microsoft Flow
+# <a name="exporting-an-azure-hosted-api-toopowerapps-and-microsoft-flow"></a>Esportazione di un tooPowerApps API ospitato di Azure e Microsoft Flow
 
 ## <a name="creating-custom-connectors-for-powerapps-and-microsoft-flow"></a>Creare connettori personalizzati per PowerApps e Microsoft Flow
 
-[PowerApps](https://powerapps.com) è un servizio per la creazione e l'uso di applicazioni aziendali personalizzate in grado di connettersi ai dati dell'utente e di funzionare su più piattaforme. [Microsoft Flow](https://flow.microsoft.com) facilita l'automazione dei flussi di lavoro e dei processi aziendali tra le app e i servizi preferiti dagli utenti. Sia PowerApps che Microsoft Flow dispongono di un'ampia varietà di connettori predefiniti a origini di dati come Office 365, Dynamics 365, Salesforce e così via. Tuttavia, gli utenti devono inoltre essere in grado di sfruttare le origini dati e le API create dall'organizzazione.
+[PowerApps](https://powerapps.com) è un servizio per la creazione e uso di App di business personalizzata che si connettono tooyour dati e di lavoro tra le piattaforme. [Microsoft Flow](https://flow.microsoft.com) rende facile tooautomate flussi di lavoro e i processi di business tra i servizi e App preferite. PowerApps sia Microsoft Flow includono una gamma di origini toodata connettori incorporati, ad esempio Office 365, Dynamics 365, Salesforce e altro ancora. Tuttavia, gli utenti devono inoltre toobe tooleverage in grado di origini dei dati e le API compilate dall'organizzazione.
 
-Analogamente, gli sviluppatori che desiderano esporre ulteriormente le proprie API nell'organizzazione potrebbero volerle rendere disponibili agli utenti di PowerApps e Microsoft Flow. Questo argomento illustrerà come esporre un'API creata con il Servizio app di Azure o le Funzioni di Azure in PowerApps e Microsoft Flow. Il [Servizio app di Azure](https://azure.microsoft.com/services/app-service/) è un'offerta di piattaforma distribuita come servizio (PaaS - Platform as a Service) che consente agli sviluppatori di creare applicazioni Web, API e per dispositivi mobili di livello aziendale, con rapidità e semplicità. [Funzioni di Azure](https://azure.microsoft.com/services/functions/) è una soluzione di calcolo senza server basata su eventi che consente di scrivere rapidamente codice in grado di reagire ad altre parti del sistema e di ridimensionarsi in base alla domanda.
+Analogamente, gli sviluppatori che vogliono tooexpose le rispettive API ulteriori su vasta scala all'interno di hello organizzazione opportuno toomake i relativi utenti di Microsoft Flow e l'API tooPowerApps disponibili. In questo argomento illustra la modalità di compilazione con tooPowerApps Azure App Service o funzioni di Azure e Microsoft Flow tooexpose un'API. [Servizio App di Azure](https://azure.microsoft.com/services/app-service/) è un'offerta platform-as-a-service che consente agli sviluppatori tooquickly e facilmente web aziendale di compilazione, applicazioni mobili e API. [Funzioni di Azure](https://azure.microsoft.com/services/functions/) è una soluzione di calcolo senza server basato su eventi che consente a codice autore tooquickly che può rispondere tooother parti del sistema e scala in base alle esigenze.
 
-Per altre informazioni su questo servizio, vedere:
+toolearn informazioni su questi servizi, vedere:
 - [Formazione guidata di PowerApps](https://powerapps.microsoft.com/guided-learning/learning-introducing-powerapps/) 
 - [Formazione guidata di Microsoft Flow](https://flow.microsoft.com/guided-learning/learning-introducing-flow/)
 - [Informazioni sul servizio app](https://docs.microsoft.com/azure/app-service/app-service-value-prop-what-is)
@@ -36,80 +36,80 @@ Per altre informazioni su questo servizio, vedere:
 
 ## <a name="sharing-an-api-definition"></a>Condividere la definizione di un'API
 
-Le API sono spesso descritte tramite un [documento OpenAPI](https://www.openapis.org/), talvolta definito documento "Swagger". Questo file contiene tutte le informazioni sulle operazioni disponibili e su come strutturare i dati. PowerApps e Microsoft Flow possono creare connettori personalizzati per qualsiasi documento OpenAPI 2.0. Dopo aver creato un connettore personalizzato, è possibile usarlo allo stesso modo dei connettori predefiniti ed è rapidamente integrabile in un'applicazione.
+Le API vengono spesso descritti tramite un [OpenAPI documento](https://www.openapis.org/) (talvolta definita tooas un documento "Swagger"). Contiene le informazioni di hello sulle operazioni che sono disponibili come dati di hello devono essere strutturati. PowerApps e Microsoft Flow possono creare connettori personalizzati per qualsiasi documento OpenAPI 2.0. Dopo aver creato un connettore personalizzato, può essere utilizzato in hello esattamente come uno dei connettori incorporati hello e possono essere integrati rapidamente in un'applicazione.
 
-Il Servizio app di Azure e Funzioni di Azure dispongono di [supporto integrato](https://docs.microsoft.com/azure/app-service-api/app-service-api-metadata) per la creazione, l'hosting e la gestione di un documento OpenAPI. Per creare un connettore personalizzato per un'App Web, un'app per dispositivi mobili, per API o un'app per le funzioni, PowerApps e Flow devono ricevere una copia della definizione.
+Il Servizio app di Azure e Funzioni di Azure dispongono di [supporto integrato](https://docs.microsoft.com/azure/app-service-api/app-service-api-metadata) per la creazione, l'hosting e la gestione di un documento OpenAPI. In ordine toocreate un connettore personalizzato per un web per dispositivi mobili, API o app di funzione, flusso e PowerApps necessario toobe assegnata una copia della definizione di hello.
 
 > [!NOTE]
-> Poiché si sta usando una copia della definizione dell'API, PowerApps e Microsoft Flow non rileveranno subito eventuali aggiornamenti o modifiche di rilievo all'applicazione. Se viene resa disponibile una nuova versione dell'API, sarà necessario ripetere questi passaggi per la nuova versione. 
+> Perché è in uso una copia della definizione dell'API di hello, PowerApps e Microsoft Flow non immediatamente conosceranno aggiornamenti o applicazione toohello modifiche di rilievo. Se una nuova versione dell'API di hello viene resa disponibile, questa procedura deve essere ripetuta per la nuova versione di hello. 
 
-Per dotare PowerApps e Microsoft Flow della definizione dell'API ospitata, seguire questa procedura:
+tooprovide PowerApps e Microsoft Flow con hello ospitato di definizione dell'API per l'app, seguire questi passaggi:
 
-1. Aprire il [portale di Azure](https://portal.azure.com) e passare all'applicazione di servizio App o Funzioni di Azure.
+1. Aprire hello [portale Azure](https://portal.azure.com) e passare tooyour applicazione di servizio App o funzioni di Azure.
 
-    Se si usa il Servizio app di Azure, selezionare **Definizione dell'API** dall'elenco delle impostazioni. 
+    Se si utilizza servizio App di Azure, selezionare **di definizione dell'API** dall'elenco di impostazioni hello. 
     
-    Se si usa Funzioni di Azure, selezionare l'app per le funzioni interessata, scegliere **Funzionalità della piattaforma** e quindi **Definizione API**. In alternativa, è anche possibile scegliere di aprire la scheda **Definizione API (anteprima)**.
+    Se si usa Funzioni di Azure, selezionare l'app per le funzioni interessata, scegliere **Funzionalità della piattaforma** e quindi **Definizione API**. È anche possibile scegliere hello tooopen **(anteprima) di definizione dell'API** scheda invece.
 
-2. Se è stata specificata una definizione dell'API, verrà visualizzato il pulsante **Export to PowerApps + Microsoft Flow** (Esporta in PowerApps + Microsoft Flow). Fare clic su questo pulsante per avviare il processo di esportazione.
+2. Se è stata specificata una definizione dell'API, verrà visualizzato un **esportare tooPowerApps + Microsoft Flow** pulsante. Fare clic su questo processo di esportazione hello toobegin pulsante.
 
-3. Selezionare la **modalità di esportazione**. Questa opzione determina la procedura che dovrà essere seguita per creare un connettore. Il servizio app offre due opzioni per fornire la definizione dell'API a PowerApps e Microsoft Flow:
+3. Seleziona hello **modalità esportazione**. Consente di determinare i passaggi di hello che sarà necessario toofollow toocreate un connettore. Il servizio app offre due opzioni per fornire la definizione dell'API a PowerApps e Microsoft Flow:
 
-    **Rapida**: consente di creare il connettore personalizzato dall'interno del portale di Azure. L'utente connesso deve necessariamente disporre dell'autorizzazione per la creazione di connettori nell'ambiente di destinazione. Questo è l'approccio consigliato se tale requisito può essere soddisfatto. Se si usa questa modalità, seguire le istruzioni per l'[esportazione rapida](#express) riportate di seguito.
+    **Express** consente di creare connettore personalizzato hello all'interno di hello portale di Azure. Richiede che hello correnti utente connesso dispone di autorizzazione toocreate connettori nell'ambiente di destinazione hello. Si tratta di hello approccio consigliato se tale requisito può essere soddisfatto. Se si utilizza questa modalità, seguire hello [Express esportazione](#express) istruzioni riportate di seguito.
 
-    **Manuale**: consente di esportare una copia della definizione dell'API che può essere importata tramite il portale di PowerApps o di Microsoft Flow. Questo approccio è consigliato se l'utente di Azure e l'utente con l'autorizzazione per la creazione di connettori sono diversi o se il connettore deve essere creato in un altro tenant. Se si usa questa modalità, seguire le istruzioni per l'[importazione e l'esportazione manuali](#manual) riportate di seguito.
+    **Manuale** consente di esportare una copia della definizione di hello API che può essere importato utilizzando hello PowerApps o Microsoft Flow portali. Si tratta di hello approccio consigliato se hello utente di Azure e hello con i connettori toocreate autorizzazioni sono diverse o se il connettore di hello deve toobe creato in un altro tenant. Se si utilizza questa modalità, seguire hello [importazione ed esportazione manuale](#manual) istruzioni riportate di seguito.
 
 <a name="express"></a>
 ## <a name="express-export"></a>Esportazione rapida
 
-In questa sezione si crea un nuovo connettore personalizzato dall'interno del portale di Azure. È necessario essere connessi al tenant verso cui si desidera esportare ed è necessario disporre dell'autorizzazione per creare un connettore personalizzato nell'ambiente di destinazione.
+In questa sezione si creerà un nuovo connettore personalizzato all'interno di hello portale di Azure. È necessario essere connessi in hello tenant toowhich desiderato tooexport e, è necessario disporre dell'autorizzazione toocreate un connettore personalizzato nell'ambiente di destinazione hello.
 
-1. Selezionare l'ambiente in cui si vuole creare il connettore. Specificare quindi un nome per il connettore personalizzato.
+1. Selezionare l'ambiente hello in cui si desidera connettore hello toocreate. Specificare quindi un nome per il connettore personalizzato.
 
-2. Se la definizione dell'API include definizioni di sicurezza, queste verranno indicate nel passaggio 2. Se necessario, specificare i dettagli di configurazione di sicurezza necessari per concedere ad altri utenti l'accesso all'API. Per altre informazioni, vedere [Autenticazione](#auth) di seguito. 
+2. Se la definizione dell'API include definizioni di sicurezza, queste verranno indicate nel passaggio 2. Se necessario, fornire sicurezza hello dettagli di configurazione necessarie toogrant accesso API tooyour. Per altre informazioni, vedere [Autenticazione](#auth) di seguito. 
 
-3. Fare clic su **OK** per creare il connettore personalizzato.
+3. Fare clic su **OK** toocreate il connettore personalizzato.
 
 
 <a name="manual"></a>
 ## <a name="manual-export-and-import"></a>Esportazione e importazione manuali
 
-Per creare un connettore personalizzato per un'app web, API, per le funzioni o per dispositivi mobili, sono necessari due passaggi:
+In ordine toocreate un connettore personalizzato per un web per dispositivi mobili, API o app di funzione, saranno necessari due passaggi:
 
-1. [Recuperare la definizione dell'API dal servizio app o da Funzioni di Azure](#export)
-2. [Importare la definizione dell'API in PowerApps e Microsoft Flow](#import)
+1. [Recupero definizione dell'API hello dal servizio App o funzioni di Azure](#export)
+2. [Importazione di definizione dell'API hello in PowerApps e Microsoft Flow](#import)
 
-È possibile che questi due passaggi debbano essere eseguiti da due utenti diversi in un'organizzazione, in quanto un dato utente potrebbe non avere le autorizzazioni per eseguirli entrambi. In questo caso, uno sviluppatore con accesso di collaboratore all'applicazione del servizio app o a Funzioni di Azure dovrà ottenere la definizione dell'API (un singolo file JSON) o un collegamento a essa. Dovrà quindi fornire tale definizione a un proprietario di PowerApps o Microsoft flow. Tale proprietario può usare i metadati per creare il connettore personalizzato.
+È possibile che questi due passaggi necessario toobe svolte dai singoli utenti separati all'interno dell'organizzazione, come un determinato utente non dispone dell'autorizzazione tooperform entrambe le azioni. Uno sviluppatore che ha collaboratore toohello di accesso dell'applicazione di servizio App o funzioni di Azure in questo caso, sarà necessario definizione hello API tooobtain (un singolo file JSON) o tooit un collegamento. Sarà quindi necessario tooprovide tale definizione tooa PowerApps o Microsoft Flow il proprietario. Il proprietario può usare connettore personalizzato hello toocreate metadati hello.
 
 <a name="export"></a>
-### <a name="retrieving-the-api-definition-from-app-service-or-azure-functions"></a>Recuperare la definizione dell'API dal servizio app o da Funzioni di Azure
+### <a name="retrieving-hello-api-definition-from-app-service-or-azure-functions"></a>Recupero definizione dell'API hello dal servizio App o funzioni di Azure
 
-In questa sezione si esporterà la definizione dell'API per l'API del servizio app, per usarla in un secondo momento nel portale di PowerApps o di Microsoft Flow.
+In questa sezione, si esporterà definizione dell'API per l'API del servizio App, usato in un secondo momento nel portale di PowerApps o Microsoft Flow hello toobe hello.
 
-1. È possibile scegliere se **scaricare la definizione dell'API** o **utilizzare un collegamento**. A prescindere dalla scelta, il risultato verrà fornito nella sezione successiva. Selezionare una delle opzioni e seguire le istruzioni.
+1. È possibile scegliere tooeither **Scarica definizione hello API** o **di ottenere un collegamento**. A seconda del valore scelto, il risultato di hello verrà fornito nella sezione successiva hello. Selezionare una delle seguenti opzioni e seguire le istruzioni di hello.
  
-2. Se la definizione dell'API include definizioni di sicurezza, queste verranno indicate nel passaggio 2. Durante l'importazione, PowerApps e Microsoft Flow le rileveranno e richiederanno informazioni sulla sicurezza. Raccogliere le credenziali relative a ogni definizione per l'utilizzo nella sezione successiva. Per altre informazioni, vedere [Autenticazione](#auth) di seguito. 
+2. Se la definizione dell'API include definizioni di sicurezza, queste verranno indicate nel passaggio 2. Durante l'importazione, PowerApps e Microsoft Flow le rileveranno e richiederanno informazioni sulla sicurezza. Raccogliere hello credenziali tooeach correlati definizione per l'utilizzo nella sezione successiva hello. Per altre informazioni, vedere [Autenticazione](#auth) di seguito. 
 
 <a name="import"></a>
-### <a name="importing-the-api-definition-into-powerapps-and-microsoft-flow"></a>Importare la definizione dell'API in PowerApps e Microsoft Flow
+### <a name="importing-hello-api-definition-into-powerapps-and-microsoft-flow"></a>Importazione di definizione dell'API hello in PowerApps e Microsoft Flow
 
-In questa sezione si creerà un connettore personalizzato in PowerApps e Microsoft Flow usando la definizione dell'API ottenuta in precedenza. Poiché i connettori personalizzati sono condivisi tra i due servizi, è necessario importare la definizione una sola volta. Per altre informazioni sui connettori personalizzati, vedere [Registrare e usare connettori personalizzati in PowerApps] e [Registrare e usare connettori personalizzati in Microsoft Flow].
+In questa sezione si creerà un connettore personalizzato in PowerApps e Microsoft Flow utilizzando definizione hello API ottenuta in precedenza. Connettori personalizzati vengono condivisi tra hello due servizi, pertanto è necessario solo definizione di hello tooimport una sola volta. Per altre informazioni sui connettori personalizzati, vedere [registrare e utilizzare i connettori personalizzati in PowerApps] e [registrare e utilizzare i connettori personalizzati in Microsoft Flow].
 
-1. Aprire il [portale Web di PowerApps](https://web.powerapps.com) o il [portale Web di Microsoft Flowl](https://flow.microsoft.com/) ed eseguire l'accesso. 
+1. Aprire hello [portale web Powerapps](https://web.powerapps.com) o hello [portale web di Microsoft Flow](https://flow.microsoft.com/)ed eseguire l'accesso. 
 
-2. Fare clic sul pulsante **Impostazioni** (icona a forma di ingranaggio) nella parte superiore destra della pagina e selezionare **Custom connectors** (Connettori personalizzati). 
+2. Fare clic su hello **impostazioni** pulsante (icona a forma di ingranaggio hello) in alto a destra hello della pagina hello e selezionare **connettori personalizzati**. 
 
 3. Fare clic su **Create custom connector** (Crea connettore personalizzato).
 
-4. Nella scheda **Generale** specificare un nome per l'API, quindi caricare la definizione OpenAPI o incollare l'URL dei metadati. Fare clic su **Continue**.
+4. In hello **generale** scheda, specificare un nome per l'API e quindi caricare definizione OpenAPI hello o incollare nell'URL dei metadati hello. Fare clic su **Continue**.
 
-4. Nella scheda **Sicurezza**, se viene chiesto di fornire i dettagli di autenticazione, immettere i valori ottenuti nella sezione precedente. In caso contrario, procedere con il passaggio successivo.
+4. In hello **sicurezza** scheda, in caso di richiesta tooprovide dettagli relativi all'autenticazione, immettere i valori hello ottenuti nella sezione precedente hello. In caso contrario, procedere toohello successivo.
 
-5. Nella scheda **Definizioni** tutte le operazioni definite nel file OpenAPI vengono popolate automaticamente. Se sono state definite tutte le operazioni necessarie, si può procedere al passaggio successivo. In caso contrario, è possibile aggiungere e modificare qui le operazioni.
+5. In hello **definizioni** scheda tutte le operazioni definite nel file OpenAPI hello vengono popolati automaticamente. Se si definiscono tutte le operazioni necessarie, è possibile passare toohello successivo. In caso contrario, è possibile aggiungere e modificare qui le operazioni.
 
-6. Fare clic su **Crea connettore**. Se si desidera testare le chiamate API, andare al passaggio successivo.
+6. Fare clic su **Crea connettore**. Se si desidera tootest le chiamate API, visitare toohello successivo.
 
-7. Nella scheda **Test** creare una connessione, selezionare un'operazione da testare e immettere i dati richiesti dall'operazione.
+7. In hello **Test** scheda, creare una connessione, selezionare un'operazione tootest e immettere i dati necessari per l'operazione di hello.
 
 8. Fare clic su **Verifica operazione**.
 
@@ -117,42 +117,42 @@ In questa sezione si creerà un connettore personalizzato in PowerApps e Microso
 <a name="auth"></a>
 ## <a name="authentication"></a>Autenticazione
 
-PowerApps e Microsoft Flow supportano in modo nativo una raccolta di provider di identità che può essere usata per l'accesso degli utenti del connettore personalizzato. Se l'API richiede l'autenticazione, assicurarsi che venga acquisita come _definizione di sicurezza_ nel documento OpenAPI. Durante l'esportazione è necessario specificare valori di configurazione che consentano a PowerApps e Microsoft Flow di eseguire azioni di accesso.
+PowerApps e Microsoft Flow supporto nativo per una raccolta di provider di identità che può essere utilizzato toolog gli utenti del connettore personalizzato. Se l'API richiede l'autenticazione, assicurarsi che venga acquisita come _definizione di sicurezza_ nel documento OpenAPI. Durante l'esportazione, sarà necessario tooprovide i valori di configurazione che consentono a un'azione di account di accesso di Microsoft Flow tooperform PowerApps.
 
-Questa sezione descrive i tipi di autenticazione che sono supportati dal flusso rapido: chiave API, Azure Active Directory e OAuth 2.0 generica. Per un elenco completo dei provider e delle credenziali richieste da ognuno, vedere [Registrare e usare connettori personalizzati in PowerApps] e [Registrare e usare connettori personalizzati in Microsoft Flow].
+Questa sezione vengono descritti i tipi di autenticazione hello supportate dal flusso express hello: chiave API, Azure Active Directory e generico OAuth 2.0. Per un elenco completo di provider e ogni istanza richiede le credenziali di hello, vedere [registrare e utilizzare i connettori personalizzati in PowerApps] e [registrare e utilizzare i connettori personalizzati in Microsoft Flow].
 
 ### <a name="api-key"></a>Chiave API
-Quando si usa questo schema di sicurezza, per creare una connessione gli utenti del connettore devono specificare la chiave. È possibile indicare loro il nome di chiave API da usare. Per Funzioni di Azure la chiave è in genere una delle chiavi host, che copre varie funzioni all'interno dell'app per le funzioni.
+Quando viene utilizzato questo schema di sicurezza, gli utenti di hello del connettore saranno chiave hello tooprovide richiesta durante la creazione di una connessione. È possibile fornire un toohelp nome chiave API che li sapere quale chiave è necessaria. Per le funzioni di Azure, ciò corrisponderà in genere una delle chiavi di host hello, che coprono diverse funzioni all'interno di app di funzione hello.
 
 ### <a name="azure-active-directory"></a>Azure Active Directory
-Quando si configura un connettore personalizzato che richiede l'accesso ad AAD, sono necessarie due registrazioni dell'applicazione AAD: una per modellare le API di back-end e una per modellare il connettore in PowerApps e Flow.
+Quando si configura un connettore personalizzato che richiede account di accesso AAD, sono necessari due registrazioni del applicazione AAD: un'API di back-end hello toomodel e un connettore di hello toomodel PowerApps e del flusso.
 
-È consigliabile configurare l'API in modo da usarla con la prima registrazione e questo aspetto sarà già configurato se è stata usata la funzione [Autenticazione/Autorizzazione servizio app](https://docs.microsoft.com/azure/app-service-mobile/app-service-mobile-how-to-configure-active-directory-authentication).
+L'API deve essere toowork configurata con la registrazione del primo hello e questo verrà già essere preso in considerazione se è stato utilizzato hello [autenticazione/autorizzazione del servizio App](https://docs.microsoft.com/azure/app-service-mobile/app-service-mobile-how-to-configure-active-directory-authentication) funzionalità.
 
-Sarà necessario creare manualmente la seconda registrazione per il connettore, usando la procedura riportata in [Aggiunta di un'applicazione in AAD](https://docs.microsoft.com/azure/active-directory/develop/active-directory-integrating-applications#adding-an-application). La registrazione deve disporre dell'accesso delegato all'API e di un URL di risposta di `https://msmanaged-na.consent.azure-apim.net/redirect`. Per altre informazioni, vedere [questo esempio](
-https://powerapps.microsoft.com/tutorials/customapi-azure-resource-manager-tutorial/) per la sostituzione dell'API per Azure Resource Manager.
+Sarà necessario toomanually creare hello registrazione secondo per il connettore di hello, attenendosi alla procedura hello analizzata in [aggiunta di un'applicazione AAD](https://docs.microsoft.com/azure/active-directory/develop/active-directory-integrating-applications#adding-an-application). Hello registrazione necessita toohave delegato accesso tooyour API e un URL di risposta `https://msmanaged-na.consent.azure-apim.net/redirect`. Vedere [in questo esempio](
+https://powerapps.microsoft.com/tutorials/customapi-azure-resource-manager-tutorial/) per maggiori dettagli, sostituendo l'API per hello Azure Resource Manager.
 
-Sono richiesti i valori di configurazione seguenti:
-- **ID client** - L'ID client della registrazione in AAD del connettore
-- **Segreto client** - Il segreto client della registrazione in AAD del connettore
-- **URL di accesso** - URL di base per AAD. In Azure pubblico questo URL è in genere `https://login.windows.net`.
-- **ID tenant** - L'ID del tenant da usare per l'accesso. Deve essere "comune" oppure l'ID del tenant in cui viene creato il connettore.
-- **URL risorsa** - L'URL della risorsa della registrazione in AAD di back-end dell'API
+Hello seguente i valori di configurazione è necessario:
+- **ID client** -hello client ID del connettore registrazione in AAD
+- **Segreto client** -segreto client hello del connettore registrazione in AAD
+- **URL di accesso** : hello URL di base per AAD. In Azure pubblico questo URL è in genere `https://login.windows.net`.
+- **ID tenant** -hello ID di hello tenant toobe usata per l'accesso hello. Questo deve essere "common" oppure hello ID del tenant hello in cui hello connettore viene creato.
+- **URL della risorsa** -hello URL della risorsa della registrazione del AAD API back-end
 
 > [!IMPORTANT]
-> Se un altro utente intende importare la definizione dell'API in PowerApps e Microsoft Flow nell'ambito del flusso manuale, è necessario specificare all'utente l'ID client e il segreto client **della registrazione del connettore**, nonché l'URL di risorsa dell'API. Assicurarsi che questi segreti siano gestiti in modo sicuro. **Non condividere le credenziali di sicurezza dell'API stessa.**
+> Se un altro individuo importeranno definizione hello API in PowerApps e Microsoft Flow come parte del flusso di hello manuale, occorrerà tooprovide con chiave privata client e l'ID client hello **di registrazione del connettore hello**, nonché come URL della risorsa hello dell'API. Assicurarsi che questi segreti siano gestiti in modo sicuro. **Non condividere le credenziali di sicurezza hello di hello stessa interfaccia API.**
 
 ### <a name="generic-oauth-20"></a>OAuth 2.0 generica
-Il supporto di OAuth 2.0 generica consente l'integrazione con qualsiasi provider OAuth 2.0. Ciò consente di usare qualsiasi provider personalizzato che non è supportato in modo nativo.
+supporto per OAuth 2.0 generico Hello consente toointegrate con qualsiasi provider OAuth 2.0. In questo modo si toobring qualsiasi provider personalizzati che non è supportato in modo nativo.
 
-Sono richiesti i valori di configurazione seguenti:
-- **ID client** - L'ID client OAuth 2.0
-- **Segreto client** - Il segreto client OAuth 2.0
-- **URL dell'autorizzazione** - L'URL dell'autorizzazione OAuth 2.0
-- **URL del token** - L'URL del token OAuth 2.0
-- **Aggiorna URL** - L'URL di aggiornamento OAuth 2.0
+Hello seguente i valori di configurazione è necessario:
+- **ID client** -hello ID client OAuth 2.0
+- **Segreto client** -segreto client hello OAuth 2.0
+- **Autorizzazione URL** -hello URL di autorizzazione OAuth 2.0
+- **Token URL** -hello URL token OAuth 2.0
+- **Aggiorna URL** -hello URL di aggiornamento OAuth 2.0
 
 
 
-[Registrare e usare connettori personalizzati in PowerApps]: https://powerapps.microsoft.com/tutorials/register-custom-api/
-[Registrare e usare connettori personalizzati in Microsoft Flow]: https://flow.microsoft.com/documentation/register-custom-api/
+[registrare e utilizzare i connettori personalizzati in PowerApps]: https://powerapps.microsoft.com/tutorials/register-custom-api/
+[registrare e utilizzare i connettori personalizzati in Microsoft Flow]: https://flow.microsoft.com/documentation/register-custom-api/

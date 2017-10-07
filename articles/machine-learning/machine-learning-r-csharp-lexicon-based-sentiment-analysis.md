@@ -1,5 +1,5 @@
 ---
-title: (Deprecato) Analisi del sentiment basata sul lessico - Azure | Documentazione Microsoft
+title: AAA(deprecated) lessico basato su analisi del Sentiment - Azure | Documenti Microsoft
 description: (Deprecato) Analisi del sentiment basata sul lessico
 services: machine-learning
 documentationcenter: 
@@ -16,40 +16,40 @@ ms.date: 01/06/2017
 ms.author: pengxia
 ROBOTS: NOINDEX
 redirect_url: https://gallery.cortanaintelligence.com/
-redirect_document_id: TRUE
-ms.openlocfilehash: 7bc80a1e1067296528eca1a843ea30b0c27af616
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+redirect_document_id: True
+ms.openlocfilehash: 1ed7e19441c6a8ad270a0c0f567b4aea588a583e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="deprecated-lexicon-based-sentiment-analysis"></a>(Deprecato) Analisi del sentiment basata sul lessico
 
 > [!NOTE]
-> Microsoft DataMarket è in fase di ritiro e questa API è stata deprecata. 
+> è stata ritirata Hello Microsoft DataMarket e questa API è stata deprecata. 
 > 
-> Numerose API e molti esperimenti utili di esempio sono disponibili in [Cortana Intelligence Gallery](http://gallery.cortanaintelligence.com). Per altre informazioni sulla raccolta, vedere [Condividere e scoprire risorse in Cortana Intelligence Gallery](machine-learning-gallery-how-to-use-contribute-publish.md).
+> Sono disponibili molte esperimenti di esempio utile e API hello [Cortana Intelligence Gallery](http://gallery.cortanaintelligence.com). Per ulteriori informazioni sulla raccolta hello, vedere [condivisione e individuare le risorse in Cortana Intelligence Gallery hello](machine-learning-gallery-how-to-use-contribute-publish.md).
 
 Come si misurano le opinioni degli utenti e gli atteggiamenti verso i marchi o gli argomenti dei social network online, ad esempio post di Facebook, tweet, revisioni, ecc.? Le analisi dei sentimenti forniscono un metodo per l'analisi di queste domande.
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
-In genere esistono due metodi per l'analisi dei sentimenti. Uno consiste nell'utilizzare un algoritmo di apprendimento supervisionato e l'altro può essere considerato come un apprendimento senza supervisione. Un algoritmo di apprendimento supervisionato crea in genere un modello di classificazione in base a una raccolta con annotazioni di grandi dimensioni. La precisione si basa principalmente sulla qualità dell'annotazione e in genere il processo di training richiede molto tempo. Quando si applica l'algoritmo a un altro dominio, inoltre, i risultati non sono in genere validi. Rispetto all'apprendimento supervisionato, l'apprendimento non supervisionato basato sul lessico usa un dizionario di sentimenti, che non richiede l'archiviazione di un corpus di dati di grandi dimensioni e non necessita di training. Il processo risulta quindi molto più veloce. 
+In genere esistono due metodi per l'analisi dei sentimenti. Viene utilizzato un algoritmo di apprendimento supervisionato e hello altri può essere considerato come apprendimento non supervisionato. Un algoritmo di apprendimento supervisionato crea in genere un modello di classificazione in base a una raccolta con annotazioni di grandi dimensioni. L'accuratezza si basa principalmente sulla qualità hello dell'annotazione hello e in genere il processo di training hello richiederà molto tempo. Oltre che, quando si applica dominio tooanother algoritmo hello hello risultato in genere non è valido. Confronto learning toosupervised, basata su dizionario di apprendimento non supervisionato utilizza un dizionario di valutazione, che non richiede l'archiviazione di una raccolta di dati di grandi dimensioni e formazione - rendendo hello intero processo molto più rapidamente. 
 
-Questo [servizio](https://datamarket.azure.com/dataset/aml_labs/lexicon_based_sentiment_analysis) è basato sul lessico di soggettività MPQA (http://mpqa.cs.pitt.edu/lexicons/subj_lexicon/), che è uno dei lessici di soggettività più usati. MPQA include 5097 parole negative e 2533 parole positive. Tutte queste parole sono annotate con polarità forte o debole. L'intero corpus è disponibile con la licenza pubblica generale GNU. Il servizio Web può essere applicato a qualsiasi frase breve, ad esempio tweet, post di Facebook e così via. 
+Il nostro [servizio](https://datamarket.azure.com/dataset/aml_labs/lexicon_based_sentiment_analysis) si basa su hello MPQA soggettività lessico (http://mpqa.cs.pitt.edu/lexicons/subj_lexicon/), che è uno dei dizionari soggettività hello comunemente utilizzato. MPQA include 5097 parole negative e 2533 parole positive. Tutte queste parole sono annotate con polarità forte o debole. corpo intero Hello è sotto la licenza GNU General Public License. servizio web Hello può essere frasi breve tooany applicato, ad esempio TWEET e post di Facebook. 
 
-> Questo servizio Web può essere utilizzato dagli utenti: potenzialmente tramite un'app mobile, un sito Web o anche in un computer locale, ad esempio. Ma lo scopo del servizio Web è anche fornire un esempio di come è possibile utilizzare Azure Machine Learning per creare servizi Web in codice R. Con poche righe di codice R e la selezione di alcuni pulsanti in Azure Machine Learning Studio è possibile creare un esperimento con codice R e pubblicarlo come servizio Web. Il servizio Web può essere quindi pubblicato in Azure Marketplace e può essere usato da utenti e dispositivi in tutto il mondo, senza che l'autore del servizio Web debba configurare alcuna infrastruttura.
+> Questo servizio Web può essere utilizzato dagli utenti: potenzialmente tramite un'app mobile, un sito Web o anche in un computer locale, ad esempio. Ma scopo hello del servizio web hello anche tooserve come esempio di come Azure Machine Learning è possibile servizi web utilizzati toocreate su codice R. Con poche righe di codice R e la selezione di alcuni pulsanti in Azure Machine Learning Studio è possibile creare un esperimento con codice R e pubblicarlo come servizio Web. servizio web Hello può quindi essere pubblicata toohello Azure Marketplace e utilizzato da utenti e dispositivi attraverso HelloWorld con alcuna installazione dell'infrastruttura dall'autore hello del servizio web hello.
 > 
 > 
 
 ## <a name="consumption-of-web-service"></a>Uso del servizio Web
-Come dati di input è possibile usare qualsiasi testo, ma il servizio funziona in modo ottimale con frasi brevi. L'output è un valore numerico compreso tra -1 e 1. Qualsiasi valore inferiore a 0 indica che il sentimento del testo è negativo; mentre un valore maggiore di 0 indica che è positivo. Il valore assoluto del risultato indica il livello di attendibilità del sentimento associato. 
+dati di input Hello possono essere qualsiasi testo, ma servizio web hello funziona meglio con frasi brevi. output di Hello è un valore numerico compreso tra -1 e 1. Qualsiasi valore inferiore a 0 indica che la valutazione hello del testo hello è negativa; Se positivo maggiore di 0. valore assoluto di Hello del risultato hello indica resistenza hello del sentiment hello associata. 
 
-> Questo servizio, come ospitato in Azure Marketplace, è un servizio OData ed è possibile utilizzare i metodi POST o GET per effettuare le chiamate. 
+> Questo servizio, ospitato in Azure Marketplace, hello è un servizio OData. questi può essere chiamati tramite i metodi POST o GET. 
 > 
 > 
 
-Sono disponibili molte opzioni per l'uso del servizio in modalità automatica. Per un'app di esempio, vedere [qui](http://microsoftazuremachinelearning.azurewebsites.net/).
+Esistono diversi modi di utilizzo di servizio hello in modo automatico (è un'app di esempio [qui](http://microsoftazuremachinelearning.azurewebsites.net/)).
 
 ### <a name="starting-c-code-for-web-service-consumption"></a>Codice C# iniziale per l'uso del servizio Web:
     public class ScoreResult
@@ -81,20 +81,20 @@ Sono disponibili molte opzioni per l'uso del servizio in modalità automatica. P
 
 
 
-L'input è "Oggi è un buon giorno". L'output è "1", che indica un sentimento positivo associato alla frase di input. 
+input di Hello è "Oggi sono un buon giorno". output di Hello è "1", che indica una valutazione positiva ha associato frase di input hello. 
 
 ## <a name="creation-of-web-service"></a>Creazione del servizio Web
-> Questo servizio Web è stato creato tramite Azure Machine Learning. Per una versione di prova gratuita e per video introduttivi sulla creazione di esperimenti e sulla [pubblicazione di servizi Web](machine-learning-publish-a-machine-learning-web-service.md), vedere [azure.com/ml](http://azure.com/ml). La schermata seguente mostra un esperimento per la creazione del servizio Web e codice di esempio per ogni modulo incluso nell'esperimento.
+> Questo servizio Web è stato creato tramite Azure Machine Learning. Per una versione di prova gratuita e per video introduttivi sulla creazione di esperimenti e sulla [pubblicazione di servizi Web](machine-learning-publish-a-machine-learning-web-service.md), vedere [azure.com/ml](http://azure.com/ml). Di seguito è riportata una schermata dell'esperimento hello creato codice di esempio e servizio web hello per ciascuno dei moduli di hello all'interno di sperimentazione hello.
 > 
 > 
 
-In Azure Machine Learning è stato creato un nuovo esperimento vuoto. La figura seguente mostra il flusso dell'esperimento di un'analisi del sentimento basata sul lessico. Il file "sent_dict.csv" è il lessico di soggettività MPQA ed è configurato come uno degli input di [Execute R Script][execute-r-script] (Esegui script R). Un altro input è costituito da una revisione campionata dal set di dati di revisioni Amazon per la verifica, in cui sono state eseguite operazioni di selezione, modifica del nome di colonna e suddivisione. Un pacchetto di hash viene usato per archiviare il lessico di soggettività in memoria e accelerare il processo di calcolo del punteggio. L'intero testo verrà suddiviso in token dal pacchetto "tm" e verrà confrontato con le parole disponibili nel dizionario di sentiment. Verrà infine calcolato un punteggio tramite la somma dei pesi di ogni parola soggettiva nel testo. 
+In Azure Machine Learning è stato creato un nuovo esperimento vuoto. Hello seguente figura flusso esperimento hello di analisi del sentiment basata su dizionario. file "sent_dict.csv" Hello lessico soggettività MPQA di hello e viene impostato su uno degli input hello di [Execute R Script][execute-r-script]. Un altro input è una revisione campionata da set di dati di hello Amazon revisione per test, in cui è eseguita la selezione, modificarne il nome di colonna e operazioni di divisione. Si utilizza una libreria di oggetti hash pacchetto toostore hello soggettività in memoria hello e accelerazione il processo di calcolo di hello punteggio. intero testo Hello verrà suddiviso in token dal pacchetto di "tm" e confrontato con la parola hello nel dizionario sentiment hello. Infine, un punteggio verrà calcolato aggiungendo il peso di hello di ogni parola soggettiva nel testo hello. 
 
 ### <a name="experiment-flow"></a>Flusso dell'esperimento
 ![flusso dell'esperimento][2]
 
 #### <a name="module-1"></a>Modulo 1:
-    # Map 1-based optional input ports to variables
+    # Map 1-based optional input ports toovariables
     sent_dict_data<- maml.mapInputPort(1) # class: data.frame
     dataset2 <- maml.mapInputPort(2) # class: data.frame
 
@@ -145,16 +145,16 @@ In Azure Machine Learning è stato creato un nuovo esperimento vuoto. La figura 
     # Sample operation
     data.set <- data.frame(result)
 
-    # Select data.frame to be sent to the output Dataset port
+    # Select data.frame toobe sent toohello output Dataset port
     maml.mapOutputPort("data.set")
 
 
 
 ## <a name="limitations"></a>Limitazioni
-Dal punto di vista dell'algoritmo, l'analisi dei sentimenti basata sul lessico è uno strumento generale per l'analisi dei sentimenti ed è possibile che non offra prestazioni migliori rispetto al metodo di classificazione per campi specifici. Il problema relativo alla negazione non viene affrontato. Nel programma sono codificate alcune parole di negazione, ma è consigliabile usare un dizionario di negazione e creare alcune regole. Il servizio Web offre prestazioni migliori per frasi brevi e semplici quali tweet e post di Facebook rispetto a frasi lunghe e complesse come quelle delle revisioni di Amazon. 
+Da una prospettiva di algoritmo, analisi del sentiment basata su dizionario sono uno strumento di analisi di valutazione generale, non è possibile ottenere prestazioni migliori rispetto al metodo di classificazione hello per campi specifici. problema di negazione Hello non è trattato anche. Nel programma sono codificate alcune parole di negazione, ma è consigliabile usare un dizionario di negazione e creare alcune regole. servizio web Hello garantisce prestazioni migliori in frasi breve e semplice, ad esempio TWEET e post di Facebook, rispetto a sulle frasi lunghe e complesse quali le recensioni Amazon. 
 
-## <a name="faq"></a>Domande frequenti
-Per le domande frequenti relative all'uso del servizio Web o alla pubblicazione in Azure Marketplace, vedere [qui](machine-learning-marketplace-faq.md).
+## <a name="faq"></a>domande frequenti
+Per domande frequenti sull'utilizzo del servizio web hello o pubblicazione toohello Azure Marketplace, vedere [qui](machine-learning-marketplace-faq.md).
 
 [1]: ./media/machine-learning-r-csharp-lexicon-based-sentiment-analysis/sentiment_analysis_1.png
 [2]: ./media/machine-learning-r-csharp-lexicon-based-sentiment-analysis/sentiment_analysis_2.png

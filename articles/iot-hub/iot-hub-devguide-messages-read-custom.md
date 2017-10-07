@@ -1,6 +1,6 @@
 ---
-title: Conoscere gli endpoint personalizzati di Hub IoTdi Azure | Microsoft Docs
-description: 'Guida per gli sviluppatori: uso delle regole di routing per instradare i messaggi da dispositivo a cloud per gli endpoint personalizzati.'
+title: endpoint personalizzati di Azure IoT Hub aaaUnderstand | Documenti Microsoft
+description: Guida per sviluppatori - mediante routing regole endpoint toocustom di tooroute messaggi da dispositivo a cloud.
 services: iot-hub
 documentationcenter: .net
 author: dominicbetts
@@ -13,26 +13,26 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/25/2017
 ms.author: dobett
-ms.openlocfilehash: a21f1c61f344f96e2e03422e41fd8c5f7f841a0c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: daa9cfb35d0853e316bbf469b034d4dadbd4e85d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="use-message-routes-and-custom-endpoints-for-device-to-cloud-messages"></a>Usare endpoint personalizzati e il routing dei messaggi per i messaggi da dispositivo a cloud
 
-L'hub IoT consente di eseguire il routing dei [messaggi da dispositivo a cloud][lnk-device-to-cloud] agli endpoint per il servizio dellhub IoT in base alle proprietà dei messaggi. Le regole di routing offrono la flessibilità necessaria per inviare messaggi alle destinazioni desiderate, senza dover attivare altri servizi per elaborare i messaggi o scrivere codice aggiuntivo. Ogni regola di routing configurata ha le proprietà seguenti:
+IoT Hub consente tooroute [messaggi da dispositivo a cloud] [ lnk-device-to-cloud] tooIoT Hub endpoint orientati ai servizi in base alle proprietà del messaggio. Routing offrono regole si hello toosend flessibilità messaggi dove servono toogo senza hello necessitano per i messaggi di servizi aggiuntivi tooprocess o toowrite ulteriore codice. Configurare ogni regola di routing ha hello le proprietà seguenti:
 
 | Proprietà      | Descrizione |
 | ------------- | ----------- |
-| **Nome**      | Il nome univoco che identifica la regola. |
-| **Origine**    | L'origine del flusso dati su cui intervenire. Ad esempio, i dati di telemetria del dispositivo. |
-| **Condition** | L'espressione di query per la regola di routing che viene eseguita rispetto alle intestazione e al corpo del messaggio e usata per determinare se si tratti di una corrispondenza per l'endpoint. Per altre informazioni sulla creazione di una condizione di route, vedere il [Riferimento: linguaggio query per dispositivi gemelli e processi][lnk-devguide-query-language]. |
-| **Endpoint**  | Il nome dell'endpoint dove l'hub IoT invia i messaggi corrispondenti alla condizione. Gli endpoint devono trovarsi nella stessa area dell'hub IoT, in caso contrario potrebbero essere addebitati dei costi per le scritture tra aree. |
+| **Nome**      | nome univoco Hello che identifica la regola hello. |
+| **Origine**    | il flusso di origine Hello dei dati di hello toobe intervenire. Ad esempio, i dati di telemetria del dispositivo. |
+| **Condition** | espressione di query Hello per regola di routing hello che viene eseguito su intestazioni e corpo del messaggio hello e utilizzato toodetermine se si tratta di una corrispondenza per l'endpoint di hello. Per ulteriori informazioni sulla creazione di una condizione di route, vedere hello [riferimento - linguaggio di query per gemelli di dispositivo e i processi][lnk-devguide-query-language]. |
+| **Endpoint**  | nome Hello dell'endpoint di hello in cui l'IoT Hub invia i messaggi che corrispondono alla condizione hello. Gli endpoint devono trovarsi in hello hub IoT hello stessa area, in caso contrario potrebbe essere addebitato per scrive tra aree. |
 
-Un singolo messaggio può corrispondere alla condizione su più regole di routing. In questo caso, l'hub IoT invia il messaggio all'endpoint associato a ciascuna regola corrispondente. L'hub IoT deduplica automaticamente la consegna dei messaggi, quindi se uno di questi corrisponde a più regole che hanno tutte la stessa destinazione, verrà scritto in quella destinazione una sola volta.
+Un singolo messaggio può corrispondere a condizione di hello in più regole di routine, in cui caso IoT Hub offre endpoint toohello di messaggio hello associata a ogni regola corrispondente. IoT Hub deduplicates automaticamente anche il recapito dei messaggi, pertanto se un messaggio corrisponde a più regole che hanno tutti hello stessa destinazione, ma viene scritto toothat destinazione una volta.
 
-Un hub IoT dispone di un [endpoint predefinito][lnk-built-in]. È possibile creare endpoint personalizzati per indirizzare i messaggi collegando all'hub gli altri servizi nella sottoscrizione. L'hub IoT supporta attualmente l'Hub eventi, le code e gli argomenti del bus di servizio come endpoint personalizzati.
+Un hub IoT dispone di un [endpoint predefinito][lnk-built-in]. È possibile creare endpoint personalizzati tooroute messaggi tooby collegamento altri servizi nell'hub toohello sottoscrizione. L'hub IoT supporta attualmente l'Hub eventi, le code e gli argomenti del bus di servizio come endpoint personalizzati.
 
 > [!WARNING]
 > Le code del bus di servizio e gli argomenti che hanno abilitato con **Sessioni** o **Rilevamento duplicati** non sono supportati come endpoint personalizzati.
@@ -49,9 +49,9 @@ Per altre informazioni sulla lettura da endpoint personalizzati, vedere:
 
 Per altre informazioni sugli endpoint dell'hub IoT, vedere [Endpoint dell'hub IoT][lnk-devguide-endpoints].
 
-Per altre informazioni sul linguaggio di query che è possibile per definire le regole di routing, vedere [Linguaggio di query dell'hub IoT per dispositivi gemelli, processi e routing dei messaggi][lnk-devguide-query-language].
+Per ulteriori informazioni sul linguaggio di query hello utilizzare regole di routing toodefine, vedere [linguaggio di query IoT Hub per gemelli di dispositivo, processi e il routing dei messaggi][lnk-devguide-query-language].
 
-L'esercitazione [Elaborare messaggi da dispositivo a cloud dell'hub IoT usando i route][lnk-d2c-tutorial] illustra come usare le regole di routing e gli endpoint personalizzati.
+Hello [messaggi da dispositivo a cloud IoT Hub processo mediante route] [ lnk-d2c-tutorial] esercitazione viene illustrato come regole di routing toouse e gli endpoint personalizzati.
 
 [lnk-built-in]: iot-hub-devguide-messages-read-builtin.md
 [lnk-device-to-cloud]: iot-hub-devguide-messages-d2c.md

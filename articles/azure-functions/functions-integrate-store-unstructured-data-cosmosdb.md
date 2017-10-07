@@ -1,5 +1,5 @@
 ---
-title: Archiviare dati non strutturati tramite Funzioni di Azure e Cosmos DB
+title: aaaStore dati non strutturati tramite le funzioni di Azure e Cosmos DB
 description: Archiviare dati non strutturati tramite Funzioni di Azure e Cosmos DB
 services: functions
 documentationcenter: functions
@@ -17,23 +17,23 @@ ms.workload: na
 ms.date: 08/03/2017
 ms.author: glenga
 ms.custom: mvc
-ms.openlocfilehash: 7c18676ff94ec7da17094abc5f33fb3c6a79895f
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 48d6899c20d3e6f6b062725fca329972ead3c696
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="store-unstructured-data-using-azure-functions-and-cosmos-db"></a>Archiviare dati non strutturati tramite Funzioni di Azure e Cosmos DB
 
-[Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/) offre un approccio ottimale per archiviare dati non strutturati e JSON. Insieme a Funzioni di Azure, Cosmos DB semplifica e velocizza l'archiviazione dei dati con una quantità minore di codice rispetto a quella necessaria per l'archiviazione dei dati in un database relazionale.
+[Azure DB Cosmos](https://azure.microsoft.com/services/cosmos-db/) è un ottimo modo toostore non strutturati e i dati JSON. Insieme a Funzioni di Azure, Cosmos DB semplifica e velocizza l'archiviazione dei dati con una quantità minore di codice rispetto a quella necessaria per l'archiviazione dei dati in un database relazionale.
 
-In Funzioni di Azure, i binding di input e di output forniscono una modalità dichiarativa per connettersi a dati di servizio esterni dalla funzione. Questo argomento illustra come aggiornare una funzione C# esistente per l'aggiunta di un binding di output che archivia dati non strutturati in un documento di Cosmos DB. 
+Nelle funzioni di Azure, le associazioni di input e outpue forniscono dati di servizio tooexternal tooconnect una modalità dichiarativa dalla funzione. In questo argomento, informazioni su come tooupdate un esistente c# funzione tooadd un'associazione di output che archivia i dati non strutturati in un documento DB Cosmos. 
 
 ![Cosmos DB](./media/functions-integrate-store-unstructured-data-cosmosdb/functions-cosmosdb.png)
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-Per completare questa esercitazione:
+toocomplete questa esercitazione:
 
 [!INCLUDE [Previous quickstart note](../../includes/functions-quickstart-previous-topics.md)]
 
@@ -41,42 +41,42 @@ Per completare questa esercitazione:
 
 1. Espandere sia l'app per le funzioni sia la funzione.
 
-1. Selezionare **Integrazione** e **Nuovo output** in alto a destra nella pagina. Scegliere **Azure Cosmos DB**, quindi fare clic su **Seleziona**.
+1. Selezionare **integrazione** e **+ nuovo Output**, ovvero hello in alto a destra della pagina hello. Scegliere **Azure Cosmos DB**, quindi fare clic su **Seleziona**.
 
     ![Aggiungere un binding di output di Cosmos DB](./media/functions-integrate-store-unstructured-data-cosmosdb/functions-integrate-tab-add-new-output-binding.png)
 
-3. Usare le impostazioni di **Azure Cosmos DB output** (Output di Azure Cosmos DB) specificate nella tabella: 
+3. Hello utilizzare **output Azure Cosmos DB** impostazioni come specificato nella tabella hello: 
 
     ![Configurare il binding di output di Cosmos DB](./media/functions-integrate-store-unstructured-data-cosmosdb/functions-integrate-tab-configure-cosmosdb-binding.png)
 
     | Impostazione      | Valore consigliato  | Descrizione                                |
     | ------------ | ---------------- | ------------------------------------------ |
-    | **Nome del parametro del documento** | taskDocument | Nome che fa riferimento all'oggetto Cosmos DB nel codice. |
-    | **Database name** (Nome database) | taskDatabase | Nome del database per il salvataggio dei documenti. |
+    | **Nome del parametro del documento** | taskDocument | Nome che fa riferimento a oggetto DB Cosmos toohello nel codice. |
+    | **Database name** (Nome database) | taskDatabase | Nome del database toosave documenti. |
     | **Nome raccolta** | TaskCollection | Nome della raccolta di database di Cosmos DB. |
-    | **Se true, crea il database e la raccolta di Cosmos DB** | Selezionato | La raccolta non esiste ancora, quindi crearla. |
+    | **Se true, Crea raccolta e il database DB Cosmos hello** | Selezionato | raccolta di Hello non esiste già, quindi crearla. |
 
-4. Fare clic sul collegamento **Nuovo** accanto all'etichetta **Connessione dell'account Cosmos DB** e quindi selezionare **Crea nuovo**. 
+4. Selezionare **New** toohello Avanti **connessione documento Cosmos DB** etichetta, quindi selezionare **+ Crea nuovo**. 
 
-5. Usare quindi le impostazioni di **Nuovo account** specificate nella tabella: 
+5. Hello utilizzare **nuovo account** impostazioni come specificato nella tabella hello: 
 
     ![Configurare la connessione di Cosmos DB](./media/functions-integrate-store-unstructured-data-cosmosdb/functions-create-CosmosDB.png)
 
     | Impostazione      | Valore consigliato  | Descrizione                                |
     | ------------ | ---------------- | ------------------------------------------ |
-    | **ID** | Nome del database | ID univoco per il database Cosmos DB  |
-    | **API** | SQL (DocumentDB) | Selezionare l'API del database di documenti.  |
+    | **ID** | Nome del database | ID univoco per il database DB Cosmos hello  |
+    | **API** | SQL (DocumentDB) | Selezionare l'API di database documento hello.  |
     | **Sottoscrizione** | Sottoscrizione di Azure | Sottoscrizione di Azure  |
-    | **Gruppo di risorse** | myResourceGroup |  Usare il gruppo di risorse esistente che contiene l'app per le funzioni. |
-    | **Posizione**  | Europa occidentale | Selezionare una località nei pressi dell'app per le funzioni o di altre app che usano i documenti archiviati.  |
+    | **Gruppo di risorse** | myResourceGroup |  Usare gruppo di risorse esistente hello che contiene l'app di funzione. |
+    | **Posizione**  | Europa occidentale | Selezionare una posizione accanto tooeither l'app di funzione o tooother App che usano hello documenti archiviati.  |
 
-6. Fare clic su **OK** per creare il database. La creazione del database può richiedere alcuni minuti. Dopo avere creato il database, la stringa di connessione del database viene archiviata come impostazione dell'app per le funzioni. Il nome di questa impostazione dell'app viene inserito nella **connessione dell'account Cosmos DB**. 
+6. Fare clic su **OK** database hello toocreate. Potrebbe richiedere alcuni database di hello toocreate minuti. Dopo aver creato il database di hello, stringa di connessione database hello è archiviato come un'impostazione di app di funzione. nome Hello di questa impostazione di app viene inserita nella **connessione ad account Cosmos DB**. 
  
-8. Dopo aver impostato la stringa di connessione, selezionare **Salva** per creare il binding.
+8. Dopo aver impostata la stringa di connessione hello, selezionare **salvare** associazione hello toocreate.
 
-## <a name="update-the-function-code"></a>Aggiornare il codice funzione
+## <a name="update-hello-function-code"></a>Aggiornare il codice di funzione hello
 
-Sostituire il codice della funzione C# esistente con il seguente:
+Sostituire hello c# funzione codice esistente con hello seguente codice:
 
 ```csharp
 using System.Net;
@@ -110,11 +110,11 @@ public static HttpResponseMessage Run(HttpRequestMessage req, out object taskDoc
 }
 
 ```
-Questo esempio di codice legge le stringhe della query di richiesta HTTP e le assegna ai campi dell'oggetto `taskDocument`. Il binding `taskDocument` invia i dati dell'oggetto di questo parametro di binding per l'archiviazione nel database di documenti associato. Il database viene creato alla prima esecuzione della funzione.
+In questo esempio di codice legge hello richiesta HTTP le stringhe di query e li assegna toofields in hello `taskDocument` oggetto. Hello `taskDocument` associazione invia dati dell'oggetto hello da questo toobe di parametro di associazione archiviati nel database di hello documento associato. database Hello viene creata la prima esecuzione funzione hello di hello.
 
-## <a name="test-the-function-and-database"></a>Testare la funzione e il database
+## <a name="test-hello-function-and-database"></a>Funzione hello test e database
 
-1. Espandere la finestra di destra e selezionare **Test**. In **Query** fare clic su **Aggiungi parametro** e aggiungere i parametri seguenti per la stringa di query:
+1. Finestra di destra hello espandere e selezionare **Test**. In **Query**, fare clic su **+ Aggiungi parametro** e aggiungere hello seguente stringa di query toohello parametri:
 
     + `name`
     + `task`
@@ -124,15 +124,15 @@ Questo esempio di codice legge le stringhe della query di richiesta HTTP e le as
 
     ![Configurare il binding di output di Cosmos DB](./media/functions-integrate-store-unstructured-data-cosmosdb/functions-test-function.png)
 
-1. Sul lato sinistro del portale di Azure espandere la barra delle icone, digitare `cosmos` nel campo di ricerca e selezionare **Azure Cosmos DB**.
+1. Hello il lato sinistro di hello portale di Azure, espandere barra delle icone hello tipo `cosmos` in hello ricerca campo e selezionare **Azure Cosmos DB**.
 
-    ![Cercare il servizio Cosmos DB](./media/functions-integrate-store-unstructured-data-cosmosdb/functions-search-cosmos-db.png)
+    ![Cercare hello servizio Cosmos DB](./media/functions-integrate-store-unstructured-data-cosmosdb/functions-search-cosmos-db.png)
 
-2. Selezionare il database creato e quindi selezionare **Esplora dati**. Espandere i nodi **Raccolte**, selezionare il nuovo documento e verificare che il documento contenga i valori della stringa di query, oltre ad alcuni metadati aggiuntivi. 
+2. Database selezionare hello è stato creato, quindi selezionare **Esplora dati**. Espandere hello **raccolte** nodi, selezionare nuovo documento hello e verificare che il documento hello contiene i valori di stringa di query, con alcuni metadati aggiuntivi. 
 
     ![Verificare la voce di Cosmos DB](./media/functions-integrate-store-unstructured-data-cosmosdb/functions-verify-cosmosdb-output.png)
 
-È stato aggiunto un binding al trigger HTTP che archivia dati non strutturati in un database Cosmos DB.
+È stato aggiunto correttamente un trigger HTTP tooyour di associazione che contiene dati non strutturati in un database DB Cosmos.
 
 [!INCLUDE [Clean-up section](../../includes/clean-up-section-portal.md)]
 
@@ -140,4 +140,4 @@ Questo esempio di codice legge le stringhe della query di richiesta HTTP e le as
 
 [!INCLUDE [functions-quickstart-next-steps](../../includes/functions-quickstart-next-steps.md)]
 
-Per altre informazioni sul binding a un database Cosmos DB, vedere [Binding di Azure Cosmos DB in Funzioni di Azure](functions-bindings-documentdb.md).
+Per ulteriori informazioni sul binding tooa DB Cosmos database, vedere [associazioni Azure funzioni Cosmos DB](functions-bindings-documentdb.md).

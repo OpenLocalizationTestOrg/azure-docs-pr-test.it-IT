@@ -1,6 +1,6 @@
 ---
-title: Connettore ProjectOnline per App per la logica di Azure | Microsoft Docs
-description: "Creare app per la logica in Servizio app di Azure. Project Online è una soluzione flessibile online per la gestione del portfolio dei progetti (PPM) e per il lavoro di tutti i giorni offerta da Microsoft. Distribuito tramite Office 365, Project Online consente alle organizzazioni di iniziare a usare da subito potenti funzionalità di gestione per pianificare, classificare in ordine di priorità e gestire progetti e investimenti del portfolio di progetti praticamente ovunque e da qualsiasi dispositivo."
+title: connettore aaaProjectOnline nelle app di logica di Azure | Documenti Microsoft
+description: "Creare app per la logica in Servizio app di Azure. Project Online è una soluzione flessibile online per la gestione del portfolio dei progetti (PPM) e per il lavoro di tutti i giorni offerta da Microsoft. Recapitati tramite Office 365, Project Online consente alle organizzazioni tooget iniziare rapidamente con potenti tooplan funzionalità di gestione di progetti, assegnare priorità e gestire progetti e degli investimenti nel portfolio progetto, ovvero da quasi qualsiasi postazione quasi qualsiasi dispositivo."
 services: logic-apps
 documentationcenter: .net,nodejs,java
 author: MandiOhlinger
@@ -15,30 +15,30 @@ ms.tgt_pltfrm: na
 ms.workload: integration
 ms.date: 08/18/2016
 ms.author: mandia; ladocs
-ms.openlocfilehash: b075e2eb36f54afb7544e0aeb698701cd224ff93
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c24c3167a053f9c179594d201308fb41595dae30
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-with-the-projectonline-connector"></a>Introduzione al connettore ProjectOnline
-Project Online è una soluzione flessibile online per la gestione del portfolio dei progetti (PPM) e per il lavoro di tutti i giorni offerta da Microsoft. Distribuito tramite Office 365, Project Online consente alle organizzazioni di iniziare a usare da subito potenti funzionalità di gestione per pianificare, classificare in ordine di priorità e gestire progetti e investimenti del portfolio di progetti praticamente ovunque e da qualsiasi dispositivo.
+# <a name="get-started-with-hello-projectonline-connector"></a>Iniziare con connettore ProjectOnline hello
+Project Online è una soluzione flessibile online per la gestione del portfolio dei progetti (PPM) e per il lavoro di tutti i giorni offerta da Microsoft. Recapitati tramite Office 365, Project Online consente alle organizzazioni tooget iniziare rapidamente con potenti tooplan funzionalità di gestione di progetti, assegnare priorità e gestire progetti e degli investimenti nel portfolio progetto, ovvero da quasi qualsiasi postazione quasi qualsiasi dispositivo.
 
 Per iniziare subito a creare un'app per la logica, vedere [Creare un'app per la logica](../logic-apps/logic-apps-create-a-logic-app.md).
 
-## <a name="create-a-connection-to-projectonline"></a>Creare una connessione a ProjectOnline
-Per creare app per la logica con Project Online, è prima necessario creare una **connessione** e quindi specificare i dettagli per le proprietà seguenti: 
+## <a name="create-a-connection-tooprojectonline"></a>Creare una connessione tooProjectOnline
+app di logica toocreate con ProjectOnline, è necessario creare innanzitutto un **connessione** quindi fornire i dettagli di hello per hello le proprietà seguenti: 
 
 | Proprietà | Obbligatorio | Descrizione |
 | --- | --- | --- |
 | Token |Sì |Fornire le credenziali ProjectOnline |
 
-> [!INCLUDE [Steps to create a connection to ProjectOnline](../../includes/connectors-create-api-projectonline.md)]
+> [!INCLUDE [Steps toocreate a connection tooProjectOnline](../../includes/connectors-create-api-projectonline.md)]
 > 
 
 ## <a name="connector-specific-details"></a>Dettagli specifici del connettore
 
-Per visualizzare eventuali azioni e trigger definiti in Swagger ed eventuali limiti, vedere i [dettagli del connettore](/connectors/projectonline/).
+Visualizzare tutti i trigger e azioni definite in swagger hello e anche eventuali limiti di hello [dettagli connettore](/connectors/projectonline/).
 
 ## <a name="more-connectors"></a>Altri connettori
-Tornare all' [elenco di API](apis-list.md).
+Tornare indietro toohello [elenco API](apis-list.md).

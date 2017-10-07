@@ -1,6 +1,6 @@
 ---
-title: Visualizzare il contenuto Javadoc in Eclipse per il pacchetto di librerie di Azure per Java
-description: Come visualizzare il contenuto Javadoc per le librerie di Azure in Eclipse.
+title: aaaDisplaying contenuto Javadoc in Eclipse per hello pacchetto di librerie di Azure per Java
+description: Come toodisplay hello contenuto Javadoc per hello le librerie di Azure in Eclipse.
 services: 
 documentationcenter: java
 author: rmcmurray
@@ -14,39 +14,39 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 04/14/2017
 ms.author: robmcm
-ms.openlocfilehash: b44deb773b2159cba1d5d957455409f10fc49334
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8070023a24dc07eca8df906db5b8b662ceed6ccc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="displaying-javadoc-content-in-eclipse-for-the-azure-libraries-package-for-java"></a>Visualizzare il contenuto Javadoc in Eclipse per il pacchetto di librerie di Azure per Java
-Il contenuto Javadoc per le librerie di Azure per Java può essere visualizzato nell'ambiente Eclipse associando il contenuto Javadoc per le librerie di Azure per Java. La procedura seguente mostra come usare questa funzionalità in Eclipse.
+# <a name="displaying-javadoc-content-in-eclipse-for-hello-azure-libraries-package-for-java"></a>Visualizzazione di contenuto Javadoc in Eclipse per hello pacchetto di librerie di Azure per Java
+Hello contenuto Javadoc per Azure Libraries for Java hello può essere visualizzato all'interno dell'ambiente Eclipse associando toohello contenuto Javadoc di hello Azure Libraries for Java. Hello passaggi seguenti viene illustrato come toouse questa funzionalità in Eclipse.
 
-Questa procedura presuppone che la libreria di Azure per Java sia già stata aggiunta al percorso di compilazione.
+Questa procedura presuppone che Hello Azure Library per il percorso di compilazione Java tooyour è già stato aggiunto.
 
-## <a name="to-display-javadoc-content-in-eclipse-for-the-azure-libraries-for-java"></a>Visualizzare il contenuto Javadoc in Eclipse per le librerie di Azure per Java
-* In Project Explorer di Eclipse, nella sezione del progetto **Librerie a cui si fa riferimento** , aprire il menu di scelta rapida per la libreria di Azure per Java JAR. Ad esempio, **microsoft-windowsazure-api-0.1.0.jar** (il numero della versione può essere diverso, a seconda della versione installata).
+## <a name="toodisplay-javadoc-content-in-eclipse-for-hello-azure-libraries-for-java"></a>toodisplay contenuto Javadoc in Eclipse per hello Azure Libraries for Java
+* In Project Explorer di Eclipse, in hello **Referenced Libraries** sezione del progetto, hello Apri menu di scelta rapida della libreria di Azure per Java JAR hello. Ad esempio, **0.1.0.jar-microsoft-Azure-api** (numero di versione di hello potrebbe essere diverse, a seconda della versione installata).
 
 * Fare clic su **Proprietà**.
 
-* Nella finestra di dialogo **Properties** (Proprietà) nel riquadro sinistro, fare clic su **Javadoc Location** (Posizione Javadoc). Viene visualizzata la finestra di dialogo **Posizione Javadoc** .
+* All'interno di hello **proprietà** finestra di dialogo, nel riquadro di sinistra hello, fare clic su **Javadoc Location**. Hello **Javadoc Location** viene visualizzata una finestra di dialogo.
 
 * È possibile specificare un **URL Javadoc** o un **Javadoc nell'archivio**.
 
-   * Se si sceglie di specificare un **URL Javadoc**, usare URL simili a **http://dl.windowsazure.com/javadoc** o **http://dl.windowsazure.com/storage/javadoc**.
+   * Se si sceglie toospecify un **Javadoc URL**, utilizzare ad esempio hello URL **http://dl.windowsazure.com/javadoc** o **http://dl.windowsazure.com/storage/javadoc**.
 
-   * Se si sceglie di utilizzare **Javadoc nell'archivio**, è possibile specificare un file esterno o un file dell’area di lavoro.
+   * Se si sceglie toouse **Javadoc in archive**, è possibile specificare un file esterno o un file di area di lavoro.
 
-   Effettuare la selezione e sfogliare/convalidare in base alle esigenze. L'esempio seguente associa le librerie di Azure per Java con il corrispondente file JAR di Javadoc scaricato localmente in una cartella denominata **c:\MyAzureJARs**.
+   Effettuare la selezione e sfogliare/convalidare in base alle esigenze. Hello esempio associa hello Azure Libraries for Java hello corrispondente file JAR di Javadoc è stato scaricato localmente tooa cartella denominata **c:\MyAzureJARs**.
 
    ![][ic553487]
 
-* *Passaggio facoltativo*: fare clic su **Convalida**. Potrebbero essere visualizzati dei potenziali problemi con il file JAR di Javadoc.
+* *Passaggio facoltativo*: fare clic su **Convalida**. Potenziali problemi con i file JAR di Javadoc hello potrebbero essere visualizzati.
 
 * Fare clic su **OK**.
 
-Una volta associato alla libreria, il contenuto Javadoc deve essere visualizzato nell'IDE di Eclipse. Ad esempio, se `blob` è definito come tipo `CloudBlockBlob` nel codice, quello che segue è un esempio del contenuto Javadoc che viene visualizzato quando si digita `blob.acquireLease` nel codice:
+Una volta associato libreria hello, hello contenuto Javadoc deve essere visualizzato nell'IDE di Eclipse. Ad esempio, se `blob` è definito come tipo `CloudBlockBlob` all'interno del codice, hello seguito è riportato un esempio del contenuto Javadoc che viene visualizzata quando si digita `blob.acquireLease` nel codice:
 
 ![][ic553488]
 
@@ -55,16 +55,16 @@ Una volta associato alla libreria, il contenuto Javadoc deve essere visualizzato
 
 [Creare un'applicazione Hello World per Azure in Eclipse][Creating a Hello World Application for Azure in Eclipse]
 
-[Installazione di Azure Toolkit for Eclipse][Installing the Azure Toolkit for Eclipse] 
+[L'installazione di hello Azure Toolkit per Eclipse][Installing hello Azure Toolkit for Eclipse] 
 
-Per altre informazioni su come usare Azure con Java, vedere il [Centro per sviluppatori Java di Azure][Azure Java Developer Center].
+Per ulteriori informazioni sull'uso di Azure con Java, vedere hello [Centro per sviluppatori Java di Azure][Azure Java Developer Center].
 
 <!-- URL List -->
 
 [Azure Java Developer Center]: http://go.microsoft.com/fwlink/?LinkID=699547
 [Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkID=699529
 [Creating a Hello World Application for Azure in Eclipse]: http://go.microsoft.com/fwlink/?LinkID=699533
-[Installing the Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkId=699546
+[Installing hello Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkId=699546
 
 <!-- IMG List -->
 

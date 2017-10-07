@@ -1,6 +1,6 @@
 ---
-title: "Eseguire attività di codifica avanzata personalizzando i set di impostazioni di Media Encoder Standard | Documentazione Microsoft"
-description: "Questo argomento illustra come eseguire la codifica avanzata personalizzando i set di impostazioni delle attività di Media Encoder Standard."
+title: aaaPerform avanzate codifica personalizzando MES predefiniti | Documenti Microsoft
+description: "Questo argomento viene illustrato come tooperform avanzate codifica personalizzando Media Encoder Standard attività predefiniti."
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,27 +14,27 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/01/2017
 ms.author: juliako
-ms.openlocfilehash: 8de3bdd45261c84a0e1bb90f1c58863ad740dd5a
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 9caa68fafacaf51f91f0554c5bafe491928d8c77
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="perform-advanced-encoding-by-customizing-mes-presets"></a>Eseguire attività di codifica avanzata personalizzando i set di impostazioni di Media Encoder Standard 
 
 ## <a name="overview"></a>Panoramica
 
-Questo argomento descrive come personalizzare i set d impostazioni di Media Encoder Standard. L'argomento [Codifica avanzata con Media Encoder Standard](media-services-custom-mes-presets-with-dotnet.md) mostra come usare .NET per creare un'attività di codifica e un processo per l'esecuzione di tale attività. Dopo aver personalizzato un set di impostazioni, fornire tali impostazioni all'attività di codifica. 
+Questo argomento viene illustrato come toocustomize Media Encoder Standard predefiniti. Hello [codifica con Media Encoder Standard utilizzando predefiniti personalizzati](media-services-custom-mes-presets-with-dotnet.md) argomento viene illustrato come toouse .NET toocreate una codifica attività e un processo che esegue questa attività. Dopo aver personalizzato di un set di impostazioni attività codifica toohello alimentatore hello predefiniti personalizzati. 
 
 >[!NOTE]
->Se si usa un set di impostazioni XML, assicurarsi di mantenere l'ordine degli elementi, come illustrato negli esempi XML seguenti (KeyFrameInterval, ad esempio, deve precedere SceneChangeDetection).
+>Se si utilizza un set di impostazioni XML, creare che toopreserve hello ordine degli elementi, come illustrato negli esempi XML seguenti (durata di KeyFrameInterval, ad esempio, deve precedere SceneChangeDetection).
 >
 
-In questo argomento vengono illustrati i set di impostazioni personalizzati che eseguono le attività di codifica seguenti.
+In questo argomento vengono illustrati predefiniti personalizzati hello che eseguono hello seguente attività di codifica.
 
 ## <a name="support-for-relative-sizes"></a>Supporto per le dimensioni relative
 
-Quando si generano anteprime, non è sempre necessario specificare la larghezza e l'altezza dell'output in pixel. È possibile specificare questi valori sotto forma di percentuali nell'intervallo [1%, …, 100%].
+Durante la generazione di anteprime, non è necessario specificare di tooalways output larghezza e altezza in pixel. È possibile specificarle in percentuali nell'intervallo di hello [% 1, …, 100%].
 
 ### <a name="json-preset"></a>Set di impostazioni JSON
     "Width": "100%",
@@ -46,16 +46,16 @@ Quando si generano anteprime, non è sempre necessario specificare la larghezza 
 
 ## <a id="thumbnails"></a>Generare anteprime
 
-Questa sezione illustra come personalizzare un set di impostazioni che genera anteprime. Il set di impostazioni definito di seguito contiene informazioni su come codificare il file, nonché le informazioni necessarie per generare le anteprime. È possibile usare uno dei set di impostazioni per Media Encoder Standard documentati in [questa](media-services-mes-presets-overview.md) sezione e aggiungere il codice che genera le anteprime.  
+Questa sezione viene illustrato come toocustomize un set di impostazioni che genera le anteprime. Hello predefinito definito di seguito contiene informazioni su come si desidera tooencode il file, nonché le informazioni necessarie toogenerate anteprime. È possibile eseguire uno dei set di impostazioni MES hello documentato [questo](media-services-mes-presets-overview.md) sezione e aggiungere codice che genera le anteprime.  
 
 > [!NOTE]
-> L'impostazione **SceneChangeDetection** nell'impostazione predefinita seguente può essere impostata a true solo in caso di codifica in un video a velocità in bit singola. In caso di codifica in video a bitrate multipli e impostazione di **SceneChangeDetection** su true, il codificatore restituisce un errore.  
+> Hello **SceneChangeDetection** impostazione hello seguente set di impostazioni può essere impostato solo tootrue se si esegue la codifica video con velocità in bit singola tooa. Se si esegue la codifica tooa più velocità in bit video e impostare **SceneChangeDetection** tootrue, il codificatore hello restituisce un errore.  
 >
 >
 
 Per informazioni sullo schema, vedere [questo](media-services-mes-schema.md) argomento.
 
-Assicurarsi di esaminare la sezione [Considerazioni](#considerations) .
+Verificare che hello tooreview [considerazioni](#considerations) sezione.
 
 ### <a id="json"></a>Set di impostazioni JSON
     {
@@ -232,25 +232,25 @@ Assicurarsi di esaminare la sezione [Considerazioni](#considerations) .
 
 ### <a name="considerations"></a>Considerazioni
 
-Si applicano le considerazioni seguenti:
+si applica Hello seguenti considerazioni:
 
-* L'utilizzo di timestamp espliciti per Inizio/Passaggio/Intervallo presuppone che l'origine dell'input duri almeno 1 minuto.
+* utilizzo di Hello del timestamp esplicito per Inizio passaggio/intervallo presuppone che tale origine di input hello è lungo almeno 1 minuto.
 * Gli elementi Jpg/Png/BmpImage hanno gli attributi inizio, passaggio e intervallo della stringa, che possono essere interpretati come:
 
   * Se sono numeri interi non negativi, numero di frame, ad esempio "Start": "120",
-  * Relativi alla durata di origine se espressi con il suffisso %, ad esempio "Start": "15%", OR
+  * Durata toosource relativo se espresso come presenta il suffisso %, ad esempio "Start": "% 15", o
   * Timestamp se espresso come HH:MM:SS come formato, ad esempio "Start": "00:01:00"
 
     È possibile combinare e associare le notazioni a piacimento.
 
-    Inoltre, Inizio supporta anche una Macro speciale: {Best}, che tenta di determinare il primo fotogramma "interessante" della NOTA contenuto: (Passaggio e Intervallo vengono ignorati quando Inizio è impostato su {Best})
+    Inizio supporta inoltre anche una Macro speciale: {ottimale}, che tenta di toodetermine hello primo "interessante" frame di contenuto hello Nota: (passaggio e intervallo vengono ignorati quando l'avvio viene impostato troppo {migliore})
   * Impostazioni predefinite: Start: {Best}
-* Il formato di output deve essere specificato in modo esplicito per ogni formato immagine: Jpg/Png/BmpFormat. Quando è presente, MES collega JpgVideo a JpgFormat e così via. OutputFormat presenta una nuova Macro specifica di codec di immagine : {Index}, che deve essere presente (una volta e una sola volta) per i formati immagine.
+* Formato di output deve toobe forniti in modo esplicito per ogni formato di immagine: Jpg o Png/BmpFormat. Se presente, MES corrisponde JpgVideo tooJpgFormat e così via. OutputFormat introduce una nuova immagine codec specifico (macro): {indice}, che richiede toobe presente (una volta e una sola volta) per formati di output di immagine.
 
 ## <a id="trim_video"></a>Tagliare un video (ritaglio)
-Questa sezione descrive la modifica di set di impostazioni del codificatore per tagliare o ritagliare il video di input quando l'input è un file in formato intermedio o su richiesta. Il codificatore può anche essere usato per tagliare o ritagliare un asset acquisito o archiviato da un flusso in tempo reale. Per i relativi dettagli, vedere [questo blog](https://azure.microsoft.com/blog/sub-clipping-and-live-archive-extraction-with-media-encoder-standard/).
+Discussioni questa sezione sulla modifica del codificatore hello predefiniti tooclip o tagliare i video di input hello dove hello input è un file mezzanine cosiddetti o su richiesta. Hello codificatore può anche essere utilizzati tooclip o tagliare un asset, che viene acquisito o archiviato da un flusso in tempo reale: hello dettagli per questo sono disponibili nel [questo blog](https://azure.microsoft.com/blog/sub-clipping-and-live-archive-extraction-with-media-encoder-standard/).
 
-Per tagliare i video, è possibile eseguire uno dei set di impostazioni di Media Encoder Standard documentati in [questa](media-services-mes-presets-overview.md) sezione e modificare l'elemento **Sources** (come illustrato di seguito). Il valore di StartTime deve corrispondere ai timestamp assoluti del video di input. Ad esempio, se il primo fotogramma del video di input ha un timestamp di 12:00:10.000, il valore di StartTime deve essere di almeno 12:00:10.000 o superiore. Nell'esempio seguente, si presuppone che il video di input abbia un timestamp iniziale pari a zero. **Sources** deve essere posizionato all'inizio del set di impostazioni.
+tootrim i video, può accettare qualsiasi hello MES predefiniti documentati [questo](media-services-mes-presets-overview.md) sezione e modificare hello **origini** elemento (come illustrato di seguito). il valore di Hello di StartTime deve toomatch hello i timestamp assoluto del video di input hello. Ad esempio, se hello primo frame del video di input hello ha un timestamp di 12:00:10.000 quindi StartTime deve essere almeno 12:00:10.000 e versioni successive. Nell'esempio hello seguente, si presuppone che l'input di hello video presenta un timestamp inizio pari a zero. **Origini** deve essere inserito all'inizio di hello di hello predefinito.
 
 ### <a id="json"></a>Set di impostazioni JSON
     {
@@ -372,7 +372,7 @@ Per tagliare i video, è possibile eseguire uno dei set di impostazioni di Media
     }
 
 ### <a name="xml-preset"></a>Set di impostazioni XML
-Per tagliare i video, è possibile eseguire un’impostazione predefinita MES documentata [qui](media-services-mes-presets-overview.md) e modificare l'elemento **Sources** (come illustrato di seguito).
+tootrim i video, può accettare qualsiasi hello MES predefiniti documentati [qui](media-services-mes-presets-overview.md) e modificare hello **origini** elemento (come illustrato di seguito).
 
     <?xml version="1.0" encoding="utf-16"?>
     <Preset xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Version="1.0" xmlns="http://www.windowsazure.com/media/encoding/Preset/2014/03">
@@ -491,11 +491,11 @@ Per tagliare i video, è possibile eseguire un’impostazione predefinita MES do
 
 ## <a id="overlay"></a>Creare una sovrimpressione
 
-Il Media Encoder Standard consente di sovrapporre un'immagine a un video esistente. Attualmente, sono supportati i seguenti formati: png, jpg, gif e bmp. Il set di impostazioni definito di seguito è un esempio di base di una sovrimpressione video.
+Hello Media Encoder Standard consente toooverlay un'immagine in un video esistente. Attualmente, è supportato i seguenti formati hello: png, jpg, gif, bmp e. Hello predefinito definito di seguito è un esempio di base di un sovrimpressione video.
 
-Oltre a definire un file del set di impostazioni, è anche necessario indicare a Servizi multimediali quale file dell'asset corrisponde all'immagine da sovrapporre e quale file contiene il video di origine sul quale sovrapporre l'immagine. Il file video deve essere il file **primario** .
+Inoltre toodefining un file predefinito, è inoltre servizi multimediali toolet sapere quali file di asset hello è l'immagine sovrapposta hello e il file di cui è in cui si desidera che toooverlay hello immagine video di origine di hello. file video Hello è hello toobe **primario** file.
 
-Se si usa .NET, aggiungere le due funzioni seguenti all'esempio .NET definito in [questo](media-services-custom-mes-presets-with-dotnet.md#encoding_with_dotnet) argomento. La funzione **UploadMediaFilesFromFolder** carica i file, ad esempio BigBuckBunny.mp4 e Image001.png, da una cartella e imposta il file con estensione mp4 come file primario dell'asset. La funzione **EncodeWithOverlay** usa il file di set di impostazioni personalizzato passato alla funzione stessa, ad esempio il set di impostazioni seguente, per creare l'attività di codifica.
+Se si utilizza .NET, aggiungere hello seguenti due funzioni di esempio .NET toohello definito in [questo](media-services-custom-mes-presets-with-dotnet.md#encoding_with_dotnet) argomento. Hello **UploadMediaFilesFromFolder** funzione carica i file da una cartella (ad esempio, BigBuckBunny.mp4 e Image001.png) e set hello mp4 file toobe hello file primario nel asset hello. Hello **EncodeWithOverlay** funzione utilizza hello personalizzato preimpostate che è stato passato tooit (ad esempio, hello preset che segue) toocreate hello attività di codifica.
 
 
     static public IAsset UploadMediaFilesFromFolder(string folderPath)
@@ -504,7 +504,7 @@ Se si usa .NET, aggiungere le due funzioni seguenti all'esempio .NET definito in
     
         foreach (var af in asset.AssetFiles)
         {
-            // The following code assumes 
+            // hello following code assumes 
             // you have an input folder with one MP4 and one overlay image file.
             if (af.Name.Contains(".mp4"))
                 af.IsPrimary = true;
@@ -521,11 +521,11 @@ Se si usa .NET, aggiungere le due funzioni seguenti all'esempio .NET definito in
     {
         // Declare a new job.
         IJob job = _context.Jobs.Create("Media Encoder Standard Job");
-        // Get a media processor reference, and pass to it the name of the 
-        // processor to use for the specific task.
+        // Get a media processor reference, and pass tooit hello name of hello 
+        // processor toouse for hello specific task.
         IMediaProcessor processor = GetLatestMediaProcessorByName("Media Encoder Standard");
 
-        // Load the XML (or JSON) from the local file.
+        // Load hello XML (or JSON) from hello local file.
         string configuration = File.ReadAllText(customPresetFileName);
 
         // Create a task
@@ -534,11 +534,11 @@ Se si usa .NET, aggiungere le due funzioni seguenti all'esempio .NET definito in
             configuration,
             TaskOptions.None);
 
-        // Specify the input assets to be encoded.
+        // Specify hello input assets toobe encoded.
         // This asset contains a source file and an overlay file.
         task.InputAssets.Add(assetSource);
 
-        // Add an output asset to contain the results of the job. 
+        // Add an output asset toocontain hello results of hello job. 
         task.OutputAssets.AddNew("Output asset",
             AssetCreationOptions.None);
 
@@ -553,9 +553,9 @@ Se si usa .NET, aggiungere le due funzioni seguenti all'esempio .NET definito in
 > [!NOTE]
 > Limitazioni correnti:
 >
-> L'impostazione di opacità della sovrimpressione non è supportata.
+> impostazione di opacità Hello sovrapposizione non è supportata.
 >
-> Il file video di origine e il file dell'immagine sovrapposta devono essere nello stesso asset e il file video deve essere impostato come file primario nell'asset.
+> Il file video di origine e di un file di immagine sovrapposta hello hanno toobe in hello stesso asset e hello file video esigenze toobe set come file primario hello questo asset.
 >
 >
 
@@ -700,11 +700,11 @@ Se si usa .NET, aggiungere le due funzioni seguenti all'esempio .NET definito in
 
 
 ## <a id="silent_audio"></a>Inserire una traccia audio silenziosa quando l'input è privo di audio
-Per impostazione predefinita, se si invia al codificatore un input che contiene solo video e nessun audio, l'asset di output contiene file di soli dati video. Alcuni lettori non possono gestire flussi di output di questo tipo. In tal caso, è possibile usare questa impostazione per forzare l'aggiunta di una traccia audio silenziosa all'output da parte del codificatore.
+Per impostazione predefinita, se si invia un codificatore toohello input che contiene solo i video e audio non hello asset di output contiene file che contengono dati solo video. Alcuni lettori potrebbero non essere possibile toohandle tali flussi di output. È possibile utilizzare questo tooadd di codificatore hello tooforce impostazione un output di traccia audio invisibile all'utente toohello in tale scenario.
 
-Per forzare la generazione di un asset contenente una traccia audio silenziosa da parte del codificatore quando l'input è privo di audio, specificare il valore "InsertSilenceIfNoAudio".
+tooforce hello codificatore tooproduce un asset che contenga una traccia audio invisibile all'utente quando l'input non dispone di alcun audio, specificare il valore di "InsertSilenceIfNoAudio" hello.
 
-È possibile usare uno dei set di impostazioni di Media Encoder Standard documentati in [questa](media-services-mes-presets-overview.md) sezione e apportare la modifica seguente:
+È possibile eseguire qualsiasi hello MES predefiniti documentati in [questo](media-services-mes-presets-overview.md) sezione e rendere hello seguente modifica:
 
 ### <a name="json-preset"></a>Set di impostazioni JSON
     {
@@ -723,9 +723,9 @@ Per forzare la generazione di un asset contenente una traccia audio silenziosa d
     </AACAudio>
 
 ## <a id="deinterlacing"></a>Disabilitare il deinterlacciamento automatico
-I clienti non devono eseguire alcuna operazione se desiderano che il contenuto interlacciato sia automaticamente deinterlacciato. Quando il deinterlacciamento automatico è attivato (impostazione predefinita) il MES rileva automaticamente i fotogrammi interlacciati e deinterlaccia solo i fotogrammi contrassegnati come interlacciati.
+I clienti non devono toodo alcuna operazione se sono ad esempio hello interlacciata toobe contenuto automaticamente deallocare interlacciata. Una volta deinterlacciamento dei automatica hello in hello (impostazione predefinita) MES hello automaticamente il rilevamento di fotogrammi interlacciati e solo interlaces deallocare frame contrassegnati come interlacciata.
 
-È possibile disattivare il deinterlacciamento automatico. Questa opzione non è consigliata.
+È possibile disattivare deinterlacciamento dei automatica hello. Questa opzione non è consigliata.
 
 ### <a name="json-preset"></a>Set di impostazioni JSON
     "Sources": [
@@ -799,24 +799,24 @@ In questa sezione vengono illustrate due impostazioni predefinite MES solo audio
 
 ## <a id="concatenate"></a>Concatenare due o più file video
 
-Nell'esempio seguente viene illustrato come generare un set di impostazioni per concatenare due o più file video. Lo scenario più comune è l'aggiunta di un'intestazione o una sequenza finale al video principale. L'uso previsto sono i file video modificati insieme che condividono proprietà: risoluzione video, frequenza dei fotogrammi, conteggio tracce audio e così via. Prestare attenzione a non combinare video con frequenze dei fotogrammi diverse o con un numero diverso di tracce audio.
+Hello seguente viene illustrato come è possibile generare un set di impostazioni tooconcatenate due o più file video. nello scenario più comune di Hello è quando si desidera tooadd un'intestazione o un video principale di toohello finale. Hello scopo viene utilizzato quando i file video hello in fase di modifica insieme condividono proprietà (risoluzione video, frequenza dei fotogrammi, conteggio traccia audio e così via). È necessario prestare attenzione non toomix video di frequenze diverse o con un numero diverso di tracce audio.
 
 >[!NOTE]
->La struttura corrente della funzionalità di concatenazione prevede che i clip video siano coerenti in termini di risoluzione, frequenza dei fotogrammi e così via. 
+>Hello struttura corrente della funzionalità di concatenazione hello prevede che hello input clip video sono coerenti in termini di risoluzione, frequenza dei fotogrammi e così via. 
 
 ### <a name="requirements-and-considerations"></a>Problemi e considerazioni
 
 * I video di input devono contenere solo una traccia audio.
-* Tutti i video di input devono avere la stessa frequenza dei fotogrammi.
-* È necessario caricare i video in asset separati e impostare i video come file primario in ogni asset.
-* È necessario conoscere la durata dei video.
-* Il seguente esempio di set di impostazioni presuppone che tutti i video di input inizino con un timestamp pari a zero. È necessario modificare i valori StartTime se i video hanno un timestamp iniziale diverso, come avviene in genere con gli archivi in tempo reale.
-* Il set di impostazioni JSON fa riferimenti espliciti ai valori AssetID degli asset di input.
-* Il codice di esempio presuppone che il set di impostazioni JSON sia stato salvato in un file locale, ad esempio "C:\supportFiles\preset.json". Presuppone anche che siano stati creati due asset caricando due file video e che si conoscano i valori AssetID risultanti.
-* Il frammento di codice e il set di impostazioni JSON mostrano un esempio di concatenazione di due file video. È possibile estendere la concatenazione a più di due video nel modo seguente:
+* Video di input devono tutti avere hello stessa frequenza dei fotogrammi.
+* È necessario caricare i video in asset separati e impostare video hello come file primario hello ogni asset.
+* È necessario durata hello tooknow dei video.
+* Hello predefiniti negli esempi seguenti si presuppone che tutti i video di input hello inizino con un timestamp pari a zero. Sono necessari valori di StartTime hello toomodify se video hello con un timestamp di inizio diversi, come avviene in genere hello con gli archivi in tempo reale.
+* Hello JSON predefinito rende i riferimenti espliciti toohello AssetID valori hello di asset di input.
+* codice di esempio Hello si presuppone che hello che JSON predefinito è stato salvato come file locale tooa, ad esempio "C:\supportFiles\preset.json". Si presuppone inoltre che siano state create due asset caricando due file video, di cui si conosce hello valori AssetID risultanti.
+* Hello frammento di codice e JSON predefinito viene illustrato un esempio della concatenazione di due file video. È possibile estenderlo toomore rispetto a due video da:
 
-  1. Chiamando ripetutamente task.InputAssets.Add() per aggiungere più video in ordine.
-  2. Effettuando le modifiche corrispondenti all'elemento "Sources" nel file JSON, aggiungendo altre voci nello stesso ordine.
+  1. Attività chiamata. InputAssets.Add() ripetutamente tooadd altri video, in ordine.
+  2. Rendendo corrispondente Modifica elemento toohello "origini" hello JSON, dall'aggiunta di più voci, hello stesso ordine.
 
 ### <a name="net-code"></a>Codice .NET
 
@@ -825,11 +825,11 @@ Nell'esempio seguente viene illustrato come generare un set di impostazioni per 
 
     // Declare a new job.
     IJob job = _context.Jobs.Create("Media Encoder Standard Job for Concatenating Videos");
-    // Get a media processor reference, and pass to it the name of the
-    // processor to use for the specific task.
+    // Get a media processor reference, and pass tooit hello name of the
+    // processor toouse for hello specific task.
     IMediaProcessor processor = GetLatestMediaProcessorByName("Media Encoder Standard");
 
-    // Load the XML (or JSON) from the local file.
+    // Load hello XML (or JSON) from hello local file.
     string configuration = File.ReadAllText(@"c:\supportFiles\preset.json");
 
     // Create a task
@@ -838,12 +838,12 @@ Nell'esempio seguente viene illustrato come generare un set di impostazioni per 
         configuration,
         TaskOptions.None);
 
-    // Specify the input videos to be concatenated (in order).
+    // Specify hello input videos toobe concatenated (in order).
     task.InputAssets.Add(asset1);
     task.InputAssets.Add(asset2);
-    // Add an output asset to contain the results of the job.
+    // Add an output asset toocontain hello results of hello job.
     // This output is specified as AssetCreationOptions.None, which
-    // means the output asset is not encrypted.
+    // means hello output asset is not encrypted.
     task.OutputAssets.AddNew("Output asset",
         AssetCreationOptions.None);
 
@@ -853,7 +853,7 @@ Nell'esempio seguente viene illustrato come generare un set di impostazioni per 
 
 ### <a name="json-preset"></a>Set di impostazioni JSON
 
-Aggiornare il set di impostazioni personalizzate con gli ID degli asset che si vuole concatenare e l'intervallo di tempo appropriato per ogni video.
+Aggiornare personalizzati predefiniti con gli ID degli asset hello che si desidera tooconcatenate e con intervallo di tempo appropriato hello per ogni video.
 
     {
       "Version": 1.0,
@@ -908,21 +908,21 @@ Aggiornare il set di impostazioni personalizzate con gli ID degli asset che si v
     }
 
 ## <a id="crop"></a>Ritagliare video con Media Encoder Standard
-Vedere l'argomento [Ritagliare video con Media Encoder Standard](media-services-crop-video.md) .
+Vedere hello [ritagliare video con Media Encoder Standard](media-services-crop-video.md) argomento.
 
 ## <a id="no_video"></a>Inserire una traccia video quando l'input non ha video
 
-Per impostazione predefinita, se si invia al codificatore un input che contiene solo audio e nessun video, l'asset di output contiene file di soli dati audio. Alcuni lettori, tra cui Azure Media Player (vedere [qui](https://feedback.azure.com/forums/169396-azure-media-services/suggestions/8082468-audio-only-scenarios)) potrebbero non essere in grado di gestire tali flussi. In tal caso, è possibile usare questa impostazione per forzare l'aggiunta di una traccia video monocromatica all'output da parte del codificatore.
+Per impostazione predefinita, se si invia un codificatore toohello input che contiene solo audio e video non hello asset di output contiene file che contengono dati solo audio. Alcuni lettori, tra cui Azure Media Player (vedere [questo](https://feedback.azure.com/forums/169396-azure-media-services/suggestions/8082468-audio-only-scenarios)) potrebbe non essere in grado di toohandle questi flussi. È possibile utilizzare un output di traccia video monocromatica toohello tooadd di codificatore questa impostazione tooforce hello in tale scenario.
 
 > [!NOTE]
-> Forzando il codificatore a inserire una traccia video di output si accresce la dimensione dell'asset di output e perciò il costo sostenuto per l'attività di codifica. È necessario eseguire test per verificare che questo incremento abbia un impatto modesto sugli addebiti mensili.
+> Una dimensione di hello aumenta traccia video output di hello forzando hello codificatore tooinsert Asset di output e hello in tal modo i costi sostenuti per attività di codifica hello. È consigliabile eseguire test tooverify questo aumento incide solo modesta sugli addebiti mensili.
 >
 
-### <a name="inserting-video-at-only-the-lowest-bitrate"></a>Inserimento di video alla sola velocità in bit più bassa
+### <a name="inserting-video-at-only-hello-lowest-bitrate"></a>Inserimento di video a solo hello più bassa velocità in bit
 
-Si supponga di usare un'impostazione di codifica a bitrate multipli, ad esempio ["H264 bitrate multipli 720p"](media-services-mes-preset-h264-multiple-bitrate-720p.md) per codificare l'intero catalogo di input per lo streaming, che contiene una combinazione di file video e file di solo audio. In questo scenario, quando l'input non ha video, è opportuno forzare il codificatore a inserire una traccia video monocromatica solo alla velocità in bit più bassa, anziché inserire il video a tutte le velocità in bit. A tale scopo è necessario usare il flag **InsertBlackIfNoVideoBottomLayerOnly**.
+Si supponga che si utilizza una velocità in bit più codifica predefinito, ad esempio ["H264 bitrate multiplo con risoluzione 720p"](media-services-mes-preset-h264-multiple-bitrate-720p.md) tooencode all'intero catalogo per lo streaming, che contiene una combinazione di file solo audio e video di input. In questo scenario, quando l'input hello dispone di alcun monitor, è opportuno tooforce hello codificatore tooinsert un video monocromatico rilevare al solo hello più bassa velocità in bit, come tooinserting anziché video a velocità in bit ogni output. tooachieve, è necessario hello toouse **InsertBlackIfNoVideoBottomLayerOnly** flag.
 
-È possibile usare uno dei set di impostazioni di Media Encoder Standard documentati in [questa](media-services-mes-presets-overview.md) sezione e apportare la modifica seguente:
+È possibile eseguire qualsiasi hello MES predefiniti documentati in [questo](media-services-mes-presets-overview.md) sezione e rendere hello seguente modifica:
 
 #### <a name="json-preset"></a>Set di impostazioni JSON
     {
@@ -936,7 +936,7 @@ Si supponga di usare un'impostazione di codifica a bitrate multipli, ad esempio 
 
 #### <a name="xml-preset"></a>Set di impostazioni XML
 
-Se si usa XML, applicare Condition="InsertBlackIfNoVideoBottomLayerOnly" come attributo per l'elemento **H264Video** e Condition="InsertSilenceIfNoAudio" come attributo per l'elemento **AACAudio**.
+Quando si utilizza XML, utilizzare una condizione = "InsertBlackIfNoVideoBottomLayerOnly" come un attributo di toohello **H264Video** elemento e condizione = "InsertSilenceIfNoAudio" come attributo troppo**AACAudio**.
 
 ```
 . . .
@@ -963,9 +963,9 @@ Se si usa XML, applicare Condition="InsertBlackIfNoVideoBottomLayerOnly" come at
 ```
 
 ### <a name="inserting-video-at-all-output-bitrates"></a>Inserimento di video a tutte le velocità in bit di output
-Si supponga di usare un'impostazione di codifica a bitrate multipli, ad esempio ["H264 bitrate multipli 720p"](media-services-mes-preset-H264-Multiple-Bitrate-720p.md) per codificare l'intero catalogo di input per lo streaming, che contiene una combinazione di file video e file di solo audio. In questo scenario, quando l'input non ha video, è opportuno forzare il codificatore a inserire una traccia video monocromatica a tutte le velocità in bit di output. In questo modo gli asset di output saranno tutti omogenei rispetto al numero di tracce video e tracce audio. A tale scopo è necessario specificare il flag "InsertBlackIfNoVideo".
+Si supponga che si utilizza una velocità in bit più codifica predefinito, ad esempio ["H264 bitrate multiplo con risoluzione 720p](media-services-mes-preset-H264-Multiple-Bitrate-720p.md) tooencode all'intero catalogo per lo streaming, che contiene una combinazione di file solo audio e video di input. In questo scenario, quando l'input hello dispone di alcun monitor, è opportuno tooforce hello codificatore tooinsert tenere traccia di un video monocromatico a tutte le velocità di output di hello in. Ciò garantisce che l'output di attività sono tutte omogeneo con riguardo toonumber di tracce video e le tracce audio. tooachieve, è necessario toospecify hello flag "InsertBlackIfNoVideo".
 
-È possibile usare uno dei set di impostazioni di Media Encoder Standard documentati in [questa](media-services-mes-presets-overview.md) sezione e apportare la modifica seguente:
+È possibile eseguire qualsiasi hello MES predefiniti documentati in [questo](media-services-mes-presets-overview.md) sezione e rendere hello seguente modifica:
 
 #### <a name="json-preset"></a>Set di impostazioni JSON
     {
@@ -979,7 +979,7 @@ Si supponga di usare un'impostazione di codifica a bitrate multipli, ad esempio 
 
 #### <a name="xml-preset"></a>Set di impostazioni XML
 
-Se si usa XML, applicare Condition="InsertBlackIfNoVideo" come attributo per l'elemento **H264Video** e Condition="InsertSilenceIfNoAudio" come attributo per l'elemento **AACAudio**.
+Quando si utilizza XML, utilizzare una condizione = "InsertBlackIfNoVideo" come un attributo di toohello **H264Video** elemento e condizione = "InsertSilenceIfNoAudio" come attributo troppo**AACAudio**.
 
 ```
 . . .
@@ -1006,7 +1006,7 @@ Se si usa XML, applicare Condition="InsertBlackIfNoVideo" come attributo per l'e
 ```
 
 ## <a id="rotate_video"></a>Ruotare un video
-Il [codificatore multimediale standard](media-services-dotnet-encode-with-media-encoder-standard.md) supporta la rotazione in base ad angoli di 0/90/180/270. Il comportamento predefinito è "Auto", che tenta di rilevare i metadati di rotazione nel file video in arrivo per la compensazione. Includere l'elemento **Sources** seguente in uno dei set di impostazioni definiti in [questa](media-services-mes-presets-overview.md) sezione:
+Hello [Media Encoder Standard](media-services-dotnet-encode-with-media-encoder-standard.md) supporta rotazione dagli angoli di utilizzabile come 0, 90, 180 o 270. comportamento predefinito di Hello è "Auto", in cui tenta toodetect hello rotazione metadati nel file video in ingresso hello e compensare relativo. Sono inclusi i seguenti hello **origini** tooone elemento hello predefiniti definiti in [questo](media-services-mes-presets-overview.md) sezione:
 
 ### <a name="json-preset"></a>Set di impostazioni JSON
     "Sources": [
@@ -1030,9 +1030,9 @@ Il [codificatore multimediale standard](media-services-dotnet-encode-with-media-
         </Source>
     </Sources>
 
-Per altre informazioni sul modo in cui il codificatore interpreta le impostazioni di larghezza e altezza nei set di impostazioni quando è attivata la compensazione di rotazione, vedere [questo](media-services-mes-schema.md#PreserveResolutionAfterRotation) argomento.
+Vedere anche [questo](media-services-mes-schema.md#PreserveResolutionAfterRotation) argomento per ulteriori informazioni sulla modalità di interpretazione delle impostazioni di larghezza e altezza hello in hello codificatore hello predefinito, quando viene attivato compensazione di rotazione.
 
-È possibile usare il valore "0" per indicare al codificatore di ignorare i metadati di rotazione, se presenti, nel video di input.
+È possibile utilizzare hello valore "0" tooindicate toohello codificatore tooignore rotazione dei metadati, se presente, nel video di input hello.
 
 ## <a name="media-services-learning-paths"></a>Percorsi di apprendimento di Servizi multimediali
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]

@@ -1,6 +1,6 @@
 ---
-title: "Trasformare dati usando l'attività di streaming di Hadoop - Azure | Documentazione Microsoft"
-description: "Informazioni su come usare l'attività di Hadoop Streaming in una Data factory di Azure per trasformare i dati eseguendo i programmi di Hadoop Streaming in un cluster HDInsight personalizzato o su richiesta."
+title: "dati aaaTransform utilizzando Hadoop Streaming attività - Azure | Documenti Microsoft"
+description: "Informazioni su come utilizzare possibile hello attività di Streaming di Hadoop in un Azure factory tootransform dati tramite l'esecuzione di programmi Hadoop Streaming in un cluster di HDInsight su richiesta o il personalizzati."
 services: data-factory
 documentationcenter: 
 author: sharonlo101
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/14/2017
 ms.author: shlo
-ms.openlocfilehash: bfe62aa60f5a0ff339e1d495d22a5fdfac10d5dc
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: a7ddb7268f47162709a9c8136ccd69e0b7d4ad7d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="transform-data-using-hadoop-streaming-activity-in-azure-data-factory"></a>Trasformare dati usando l'attività di streaming di Hadoop in Azure Data Factory
 > [!div class="op_single_selector" title1="Transformation Activities"]
@@ -33,15 +33,15 @@ ms.lasthandoff: 08/18/2017
 > * [Attività U-SQL di Data Lake Analytics](data-factory-usql-activity.md)
 > * [Attività personalizzata di .NET](data-factory-use-custom-activities.md)
 
-È possibile usare l'attività HDInsightStreamingActivity per richiamare un processo di Hadoop Streaming da una pipeline di Data factory di Azure. Il frammento JSON seguente illustra la sintassi per l'uso di HDInsightStreamingActivity in un file JSON della pipeline. 
+È possibile utilizzare attività HDInsightStreamingActivity hello richiamare un processo Hadoop Streaming da una pipeline di Data Factory di Azure. Hello frammento di codice JSON seguente mostra la sintassi hello per l'utilizzo di hello HDInsightStreamingActivity in un file JSON di pipeline. 
 
-L'attività HDInsight Streaming Activity in una [pipeline](data-factory-create-pipelines.md) di Data Factory esegue i programmi di Hadoop Streaming nei cluster HDInsight [personalizzati](data-factory-compute-linked-services.md#azure-hdinsight-linked-service) o [su richiesta](data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service) basati su Windows/Linux. Questo articolo si basa sull'articolo relativo alle [attività di trasformazione dei dati](data-factory-data-transformation-activities.md) che presenta una panoramica generale della trasformazione dei dati e le attività di trasformazione supportate.
+Attività Streaming di HDInsight in una Data Factory Hello [pipeline](data-factory-create-pipelines.md) esegue i programmi di Streaming di Hadoop nel [la propria](data-factory-compute-linked-services.md#azure-hdinsight-linked-service) o [su richiesta](data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service) HDInsight basati su Windows/Linux cluster. In questo articolo si basa su hello [le attività di trasformazione dati](data-factory-data-transformation-activities.md) articolo, che presenta una panoramica generale di trasformazione dei dati e le attività di trasformazione hello è supportato.
 
 > [!NOTE] 
-> Se non si ha familiarità con Azure Data Factory, leggere l'[Introduzione ad Azure Data Factory](data-factory-introduction.md) ed eseguire l'esercitazione: [Creare la prima pipeline di dati](data-factory-build-your-first-pipeline.md) prima di leggere questo articolo. 
+> Se si tooAzure nuova Data Factory, leggere [tooAzure introduzione Data Factory](data-factory-introduction.md) e hello esercitazione: [la pipeline di dati prima di compilare](data-factory-build-your-first-pipeline.md) prima di leggere questo articolo. 
 
 ## <a name="json-sample"></a>Esempio JSON
-Il cluster HDInsight viene popolato automaticamente con programmi di esempio (wc.exe e cat.exe) e con i dati (davinci.txt). Per impostazione predefinita, il nome del contenitore che viene utilizzato dal cluster HDInsight è il nome del cluster stesso. Ad esempio, se il nome del cluster è myhdicluster, il nome del contenitore BLOB associato sarebbe myhdicluster. 
+cluster HDInsight Hello viene popolato automaticamente con i programmi di esempio (wc.exe e cat.exe) e i dati (davinci.txt). Per impostazione predefinita, nome del contenitore di hello utilizzato dal cluster HDInsight hello è il nome di hello del cluster di hello stesso. Ad esempio, se il nome del cluster è myhdicluster, nome del contenitore blob hello associata sarebbe myhdicluster. 
 
 ```JSON
 {
@@ -89,30 +89,30 @@ Il cluster HDInsight viene popolato automaticamente con programmi di esempio (wc
 }
 ```
 
-Tenere presente quanto segue:
+Si noti hello seguenti punti:
 
-1. Impostare **linkedServiceName** sul nome del servizio collegato che punta al cluster HDInsight in cui viene eseguito il processo di streaming mapreduce.
-2. Impostare il tipo di attività su **HDInsightStreaming**.
-3. Per la proprietà **mapper** specificare il nome dell'eseguibile del mapper. Nell'esempio cat.exe è l'eseguibile del mapper.
-4. Per la proprietà **reducer** specificare il nome dell'eseguibile del reducer. Nell'esempio wc.exe è l'eseguibile del mapper.
-5. Per la proprietà di tipo **input** specificare il file di input (incluso il percorso) per il mapper. Nell'esempio "wasb://adfsample@<account name>.blob.core.windows.net/example/data/gutenberg/davinci.txt" adfsample è il contenitore BLOB, example/data/Gutenberg è la cartella e davinci.txt è il BLOB.
-6. Per la proprietà di tipo **output** specificare il file di output (incluso il percorso) per il reducer. L'output del processo di Hadoop Streaming viene scritto nel percorso specificato per questa proprietà.
-7. Nella sezione **filePaths** specificare i percorsi dei file eseguibili del mapper e del reducer. Nell'esempio: "adfsample/example/apps/wc.exe", adfsample è il contenitore BLOB, example/apps è la cartella e wc.exe è l'eseguibile.
-8. Per la proprietà **fileLinkedService** specificare il servizio collegato Archiviazione di Azure che rappresenta l'archivio di Azure contenente i file specificati nella sezione filePaths.
-9. Per la proprietà **arguments** specificare gli argomenti per il processo di streaming.
-10. La proprietà **getDebugInfo** è un elemento facoltativo. Quando viene impostata su Failure, i log vengono scaricati solo in caso di errore. Quando viene impostata su Always, i log vengono sempre scaricati indipendentemente dallo stato dell'esecuzione.
+1. Set hello **linkedServiceName** toohello nome hello collegato del servizio che fa riferimento il cluster di HDInsight tooyour su quali hello streaming mapreduce processo viene eseguito.
+2. Impostare il tipo di hello dell'attività hello troppo**HDInsightStreaming**.
+3. Per hello **mapper** proprietà, specificare il nome di hello del mapper eseguibile. Nell'esempio hello cat.exe è mapper hello eseguibile.
+4. Per hello **riduttore** proprietà, specificare il nome di hello del file eseguibile del reducer. Nell'esempio hello wc.exe è file eseguibile del reducer hello.
+5. Per hello **input** digitare proprietà, specificare i file di input hello (incluso il percorso di hello) per il mapper hello. Nell'esempio hello: "//adfsample @<account name>.blob.core.windows.net/example/data/gutenberg/davinci.txt": adfsample è il contenitore di blob hello, esempio/data/Gutenberg è la cartella hello e davinci.txt è blob hello.
+6. Per hello **output** digitare proprietà, specificare i file di output di hello (incluso il percorso di hello) per riduttore hello. output di Hello del processo Hadoop Streaming hello viene scritto toohello percorso specificato per questa proprietà.
+7. In hello **filePaths** sezione, specificare i percorsi per gli eseguibili del mapper e del reducer hello hello. Nell'esempio hello: "adfsample/example/apps/wc.exe", adfsample è il contenitore di blob hello, example/apps è la cartella hello e wc.exe è hello eseguibile.
+8. Per hello **fileLinkedService** proprietà, specificare l'archiviazione di Azure che rappresenta il servizio collegato archiviazione di Azure che contiene file hello specificati nella sezione filePaths hello di hello hello.
+9. Per hello **argomenti** proprietà, specificare gli argomenti di hello per hello processo di streaming.
+10. Hello **getDebugInfo** proprietà è un elemento facoltativo. Quando si imposta tooFailure, hello registri vengono scaricati solo in caso di errore. Quando si imposta tooAlways, i log vengono sempre scaricati indipendentemente lo stato di esecuzione hello.
 
 > [!NOTE]
-> Come illustrato nell'esempio, è necessario specificare un set di dati di output per l'attività di Hadoop Streaming per la proprietà **output** . Questo è solo un set di dati fittizio necessario per la pianificazione della pipeline. Non è necessario specificare alcun set di dati di input per l'attività per la proprietà **input** .  
+> Come illustrato nell'esempio hello, specificare un set di dati di output di hello attività di Streaming di Hadoop per hello **restituisce** proprietà. Questo set di dati è semplicemente un dummy set di dati è necessario toodrive hello pipeline pianificazione. Non è necessario toospecify qualsiasi set di dati di input per l'attività hello per hello **input** proprietà.  
 > 
 > 
 
 ## <a name="example"></a>Esempio
-La pipeline in questa procedura dettagliata esegue il programma di mapping e riduzione dello streaming del conteggio delle parole sul cluster HDInsight di Azure. 
+pipeline Hello in questa procedura dettagliata viene eseguito il programma MapReduce streaming di hello Conteggio parole il cluster HDInsight di Azure. 
 
 ### <a name="linked-services"></a>Servizi collegati
 #### <a name="azure-storage-linked-service"></a>Servizio collegato Archiviazione di Azure
-In primo luogo, si crea un servizio collegato per collegare l'archiviazione di Azure utilizzata dal cluster HDInsight di Azure per la factory di dati di Azure. Se si copia e incolla il codice seguente, non dimenticare di sostituire il nome account e la chiave account con il nome e la chiave di archiviazione di Azure. 
+Creare innanzitutto un hello toolink servizio collegato di archiviazione Azure utilizzato da hello Azure HDInsight cluster toohello data factory di Azure. Se si copia e Incolla hello seguente di codice, non dimenticare tooreplace account nome account e la chiave con nome hello e dello spazio di archiviazione di Azure. 
 
 ```JSON
 {
@@ -127,7 +127,7 @@ In primo luogo, si crea un servizio collegato per collegare l'archiviazione di A
 ```
 
 #### <a name="azure-hdinsight-linked-service"></a>Servizio collegato Azure HDInsight
-Successivamente, si crea un servizio collegato per collegare il cluster HDInsight di Azure alla factory di dati di Azure. Se si copia e incolla il codice seguente, sostituire il nome del cluster HDInsight con il nome del cluster HDInsight e modificare i valori nome utente e password. 
+Successivamente, si crea un servizio collegato di toolink Azure HDInsight cluster toohello data factory di Azure. Se si copia e Incolla hello seguente di codice, sostituire il nome del cluster HDInsight con nome hello del cluster HDInsight e modificare i valori di nome e una password utente. 
 
 ```JSON
 {
@@ -144,9 +144,9 @@ Successivamente, si crea un servizio collegato per collegare il cluster HDInsigh
 }
 ```
 
-### <a name="datasets"></a>Set di dati
+### <a name="datasets"></a>DATASETS
 #### <a name="output-dataset"></a>Set di dati di output
-La pipeline in questo esempio non accetta alcun input. È necessario specificare un set di dati di output per l'attività Streaming di HDInsight. Questo è solo un set di dati fittizio necessario per la pianificazione della pipeline. 
+pipeline Hello in questo esempio non accetta alcun input. Specificare un set di dati di output di hello attività Streaming di HDInsight. Questo set di dati è semplicemente un dummy set di dati è necessario toodrive hello pipeline pianificazione. 
 
 ```JSON
 {
@@ -171,9 +171,9 @@ La pipeline in questo esempio non accetta alcun input. È necessario specificare
 ```
 
 ### <a name="pipeline"></a>Pipeline
-La pipeline in questo esempio contiene una sola attività che è di tipo: **HDInsightStreaming**. 
+pipeline di Hello in questo esempio include una sola attività che è di tipo: **HDInsightStreaming**. 
 
-Il cluster HDInsight viene popolato automaticamente con programmi di esempio (wc.exe e cat.exe) e con i dati (davinci.txt). Per impostazione predefinita, il nome del contenitore che viene utilizzato dal cluster HDInsight è il nome del cluster stesso. Ad esempio, se il nome del cluster è myhdicluster, il nome del contenitore BLOB associato sarebbe myhdicluster.  
+cluster HDInsight Hello viene popolato automaticamente con i programmi di esempio (wc.exe e cat.exe) e i dati (davinci.txt). Per impostazione predefinita, nome del contenitore di hello utilizzato dal cluster HDInsight hello è il nome di hello del cluster di hello stesso. Ad esempio, se il nome del cluster è myhdicluster, nome del contenitore blob hello associata sarebbe myhdicluster.  
 
 ```JSON
 {

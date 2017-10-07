@@ -1,6 +1,6 @@
 ---
-title: Gestire i log di flusso del gruppo di sicurezza di rete con Network Watcher di Azure | Microsoft Docs
-description: Questa pagina illustra come gestire i log di flusso del gruppo di sicurezza di rete in Network Watcher di Azure
+title: registri aaaManage rete sicurezza gruppo flusso con il Watcher di rete di Azure | Documenti Microsoft
+description: Questa pagina viene illustrato come flusso del gruppo di sicurezza di rete toomanage accede Watcher di rete di Azure
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -14,13 +14,13 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
-ms.openlocfilehash: 41cb5ffab9bd3a3bed75ffdb6a7383ca1690f810
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: fb250337ab9d1a0c0d0d3569c00bc221dd102a3f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="manage-network-security-group-flow-logs-in-the-azure-portal"></a>Gestire i log di flusso del gruppo di sicurezza di rete nel portale di Azure
+# <a name="manage-network-security-group-flow-logs-in-hello-azure-portal"></a>Gestire i registri del flusso di rete sicurezza gruppo nel portale di Azure hello
 
 > [!div class="op_single_selector"]
 > - [Portale di Azure](network-watcher-nsg-flow-logging-portal.md)
@@ -29,76 +29,76 @@ ms.lasthandoff: 07/11/2017
 > - [Interfaccia della riga di comando 2.0](network-watcher-nsg-flow-logging-cli.md)
 > - [API REST](network-watcher-nsg-flow-logging-rest.md)
 
-I log di flusso del gruppo di sicurezza di rete sono una funzionalità di Network Watcher che consente di visualizzare le informazioni sul traffico IP in entrata e in uscita tramite un gruppo di sicurezza di rete. Questi log di flusso sono scritti in formato JSON e contengono informazioni importanti, tra cui: 
+Registri flusso gruppo di sicurezza rete sono una funzionalità del controllo di rete che consente di tooview informazioni sul traffico IP in entrata e in uscita tramite un gruppo di sicurezza di rete. Questi log di flusso sono scritti in formato JSON e contengono informazioni importanti, tra cui: 
 
 - Flussi in ingresso e in uscita in base a ciascuna regola.
-- La scheda di interfaccia di rete che si applica al flusso.
-- Informazioni a 5 tuple sul flusso, IP di origine/destinazione, porta di origine/destinazione, protocollo.
+- scheda di rete che hello flusso Hello si applica a.
+- 5 tuple informazioni sul flusso di hello (origine/destinazione IP, porta di origine/destinazione, protocol).
 - Indica se il traffico è stato consentito o negato.
 
 ## <a name="before-you-begin"></a>Prima di iniziare
 
-Questo scenario presuppone il completamento dei passaggi descritti in [Creare un'istanza di Azure Network Watcher](network-watcher-create.md). Lo scenario presuppone anche che l'utente possieda un gruppo di risorse con una macchina virtuale valida.
+Questo scenario si presuppone che si sono già stati seguiti i passaggi di hello in [creare un'istanza del controllo di rete](network-watcher-create.md). scenario di Hello si presuppone inoltre che si dispone di un gruppo di risorse con una macchina virtuale valida.
 
-## <a name="register-insights-provider"></a>Registrare il provider Insights
+## <a name="register-insights-provider"></a>Registrare il provider di Insight
 
-Per il corretto funzionamento della registrazione dei flussi, è necessario registrare il provider **Microsoft.Insights**. Registrare il provider seguendo la procedura seguente: 
+Per il flusso di registrazione toowork hello correttamente, **Insights** provider deve essere registrato. provider di hello tooregister, hello take alla procedura seguente: 
 
-1. Passare a **Sottoscrizioni** e selezionare la sottoscrizione per la quale si vuole abilitare i log dei flussi. 
-2. Nel pannello **Sottoscrizione** selezionare **Provider di risorse**. 
-3. Osservare l'elenco di provider e verificare che il provider **microsoft.insights** sia registrato. In caso contrario selezionare **Registra**.
+1. Andare troppo**sottoscrizioni**, quindi selezionare hello sottoscrizione per cui si desidera tooenable flusso registri. 
+2. In hello **sottoscrizione** pannello seleziona **i provider di risorse**. 
+3. Esaminare hello elenco dei provider e verificare che hello **Insights** provider è registrato. In caso contrario selezionare **Registra**.
 
 ![Visualizzare i provider][providers]
 
 ## <a name="enable-flow-logs"></a>Abilitare i log di flusso
 
-Questi passaggi descrivono il processo di abilitazione dei log di flusso in un gruppo di sicurezza di rete.
+Questi passaggi vengono illustrati il processo di hello di abilitazione del flusso di log in un gruppo di sicurezza di rete.
 
 ### <a name="step-1"></a>Passaggio 1
 
-Passare a un'istanza di Network Watcher e selezionare **Log del flusso del NSG**.
+Passare l'istanza di tooa Watcher di rete e quindi selezionare **NSG flusso registra**.
 
 ![Panoramica dei log di flusso][1]
 
 ### <a name="step-2"></a>Passaggio 2
 
-Selezionare un gruppo di sicurezza di rete dall'elenco.
+Selezionare un gruppo di sicurezza di rete dall'elenco di hello.
 
 ![Panoramica dei log di flusso][2]
 
 ### <a name="step-3"></a>Passaggio 3 
 
-Nel pannello **Impostazioni dei log dei flussi** impostare lo stato su **On** (Attivo) e configurare un account di archiviazione.  Al termine, fare clic su **OK**. Selezionare quindi **Salva**.
+In hello **delle impostazioni dei log flusso** pannello, impostare lo stato di hello troppo**su**e quindi configurare un account di archiviazione.  Al termine, fare clic su **OK**. Selezionare quindi **Salva**.
 
 ![Panoramica dei log di flusso][3]
 
 ## <a name="download-flow-logs"></a>Scaricare i log di flusso
 
-I log di flusso vengono salvati in un account di archiviazione. Scaricare i log di flusso per visualizzarli.
+I log di flusso vengono salvati in un account di archiviazione. Scaricare il tooview registri flusso li.
 
 ### <a name="step-1"></a>Passaggio 1
 
-Per scaricare i log di flusso, fare clic su **È possibile scaricare i log dei flussi dagli account di archiviazione configurati**. Con questo passaggio si accede a una visualizzazione dell'account di archiviazione in cui è possibile scegliere i log per il download.
+Selezionare i log di flusso, toodownload **è possibile scaricare i log di flusso dagli account di archiviazione configurato**. Questo passaggio consente di visualizzare account di archiviazione tooa in cui è possibile scegliere quali toodownload log.
 
 ![Impostazioni dei log di flusso][4]
 
 ### <a name="step-2"></a>Passaggio 2
 
-Passare all'account di archiviazione corretto. Selezionare quindi **Contenitori** > **insights-log-networksecuritygroupflowevent**.
+Passare toohello account di archiviazione corretto. Selezionare quindi **Contenitori** > **insights-log-networksecuritygroupflowevent**.
 
 ![Impostazioni dei log di flusso][5]
 
 ### <a name="step-3"></a>Passaggio 3
 
-Passare al percorso del log di flusso, selezionarlo e quindi selezionare **Scarica**.
+Passare toohello del percorso del Registro di flusso hello, selezionarlo e quindi selezionare **scaricare**.
 
 ![Impostazioni dei log di flusso][6]
 
-Per informazioni sulla struttura del log, leggere [Panoramica sul log di flusso del gruppo di sicurezza di rete](network-watcher-nsg-flow-logging-overview.md).
+Per informazioni sulla struttura di hello del log di hello, visitare [Cenni preliminari sul registro del flusso di rete sicurezza gruppo](network-watcher-nsg-flow-logging-overview.md).
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Informazioni su come [visualizzare i log di flusso NSG con Power BI](network-watcher-visualize-nsg-flow-logs-power-bi.md).
+Informazioni su come troppo[visualizzare i log di flusso NSG con Power BI](network-watcher-visualize-nsg-flow-logs-power-bi.md).
 
 <!-- Image references -->
 [1]: ./media/network-watcher-nsg-flow-logging-portal/figure1.png

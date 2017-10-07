@@ -1,5 +1,5 @@
 ---
-title: Azure Application Insights per ASP.NET Core | Microsoft Docs
+title: Application Insights per ASP.NET Core aaaAzure | Documenti Microsoft
 description: "Monitorare la disponibilità, le prestazioni e l'utilizzo delle applicazioni Web."
 services: application-insights
 documentationcenter: .net
@@ -13,53 +13,53 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/14/2017
 ms.author: bwren
-ms.openlocfilehash: d86495eea467977f6c079de72e2b49a2a1da2b60
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: a7a27f9eef1daec5b0deae9fd88906e646980659
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="application-insights-for-aspnet-core"></a>Application Insights per ASP.NET Core
-[Application Insights](app-insights-overview.md) consente di monitorare la disponibilità, le prestazioni e l'uso dell'applicazione Web. Con il feedback ottenuto sulle prestazioni e sull'efficacia dell'app in circostanze normali, è possibile prendere decisioni informate sulla direzione della progettazione in ogni ciclo di vita di sviluppo.
+[Application Insights](app-insights-overview.md) consente di monitorare la disponibilità, le prestazioni e l'uso dell'applicazione Web. Con il feedback hello che è ottenere sulle prestazioni di hello e l'efficacia dell'app in hello wild, è possibile prendere decisioni informate sulla direzione hello della progettazione hello in ogni ciclo di vita di sviluppo.
 
 ![Esempio](./media/app-insights-asp-net-core/sample.png)
 
-È necessaria una sottoscrizione con [Microsoft Azure](http://azure.com). È possibile accedere con un account Microsoft, che in genere si ottiene per Windows, XBox Live o altri servizi cloud Microsoft. Se il team ha una sottoscrizione di Azure per l'organizzazione, chiedere al proprietario di aggiungere l'utente alla sottoscrizione usando il rispettivo account Microsoft.
+È necessaria una sottoscrizione con [Microsoft Azure](http://azure.com). È possibile accedere con un account Microsoft, che in genere si ottiene per Windows, XBox Live o altri servizi cloud Microsoft. Il team potrebbe avere un tooAzure sottoscrizione aziendale: chiedere hello proprietario tooadd tooit con l'account Microsoft.
 
-## <a name="getting-started"></a>Introduzione
+## <a name="getting-started"></a>introduttiva
 
-* In Esplora soluzioni di Visual Studio fare clic con il pulsante destro del mouse sul progetto e selezionare **Configura Application Insights** oppure **Aggiungi > Application Insights**. [Altre informazioni](app-insights-asp-net.md).
-* Se questi comandi non sono disponibili, seguire la [guida introduttiva manuale](https://github.com/Microsoft/ApplicationInsights-aspnetcore/wiki/Getting-Started). Questa operazione potrebbe essere necessaria se il progetto è stato creato con una versione di Visual Studio precedente alla versione 2017.
+* In Esplora soluzioni di Visual Studio fare clic con il pulsante destro del mouse sul progetto e selezionare **Configura Application Insights** oppure **Aggiungi > Application Insights**. [Altre informazioni](app-insights-asp-net.md)
+* Se i comandi di menu non viene visualizzata, seguire hello [manuale Guida introduttiva recupero](https://github.com/Microsoft/ApplicationInsights-aspnetcore/wiki/Getting-Started). Potrebbe essere necessario toodo questo se il progetto è stato creato con una versione di Visual Studio prima 2017.
 
 ## <a name="using-application-insights"></a>Utilizzo di Application Insights
-Accedere al [portale di Microsoft Azure](https://portal.azure.com), selezionare **Tutte le risorse** o **Application Insights** e quindi selezionare la risorsa creata per monitorare l'applicazione.
+Sign in hello [portale Microsoft Azure](https://portal.azure.com)selezionare **tutte le risorse** o **Application Insights**, quindi selezionare risorsa hello creato toomonitor l'app.
 
-In una finestra separata dal browser, usare l'app per un periodo di tempo. Verranno visualizzati dati nei grafici di Application Insights. (Potrebbe essere necessario fare clic su Aggiorna.) Ci sarà solo una piccola quantità di dati al momento dello sviluppo, ma questi grafici si attiveranno davvero quando si pubblicherà l'app e si avranno numerosi utenti. 
+In una finestra separata dal browser, usare l'app per un periodo di tempo. Si noterà che i dati visualizzati nei grafici di Application Insights hello. (Potrebbe essere tooclick aggiornamento). Ci sarà solo una piccola quantità di dati al momento dello sviluppo, ma questi grafici si attiveranno davvero quando si pubblicherà l'app e si avranno numerosi utenti. 
 
-La pagina di panoramica mostra i grafici delle prestazioni più importanti: tempo di risposta del server, tempo di caricamento della pagina e conteggi delle richieste non riuscite. Fare clic su qualsiasi grafico per visualizzare altri grafici e dati.
+pagina di panoramica Hello vengono visualizzati grafici di prestazioni chiave: tempo di risposta server, il tempo di caricamento pagina e il numero di richieste non riuscite. Fare clic su qualsiasi toosee grafico più grafici e dati.
 
-Le visualizzazioni nel portale rientrano in tre categorie principali:
+Visualizzazioni nel portale di hello rientrano in tre categorie principali:
 
-* [Esplora metriche](app-insights-metrics-explorer.md) mostra grafici e tabelle di metriche e conteggi, come tempi di risposta, frequenze di errori o metriche create dall'utente con l'[API](app-insights-api-custom-events-metrics.md). Filtrare e segmentare i dati dai valori della proprietà per ottenere una migliore comprensione dell'app e dei relativi utenti.
-* [Esplora ricerche](app-insights-diagnostic-search.md) elenca i singoli eventi, come richieste specifiche, eccezioni, tracce di log o eventi creati dall'utente con l'[API](app-insights-api-custom-events-metrics.md). Filtrare e cercare negli eventi, e spostarsi tra gli eventi correlati per analizzare i problemi.
+* [Esplora metriche](app-insights-metrics-explorer.md) Mostra grafici e tabelle di metrica e i conteggi, ad esempio tempi di risposta, percentuale degli errori o metriche personalizzate con hello [API](app-insights-api-custom-events-metrics.md). Filtro e segmento dati hello da tooget di valori di proprietà una comprensione migliore dell'app e i relativi utenti.
+* [Ricerca di Esplora](app-insights-diagnostic-search.md) Elenca gli eventi singoli, ad esempio richieste specifiche, eccezioni, le tracce di log o eventi creato personalmente con hello [API](app-insights-api-custom-events-metrics.md). Filtrare e cercare gli eventi di hello e spostarsi tra i problemi di tooinvestigate eventi correlati.
 * [Analisi](app-insights-analytics.md) consente di eseguire query simili a SQL sui dati di telemetria ed è un potente strumento di analisi e diagnostica.
 
 ## <a name="alerts"></a>Avvisi
 * Si ottengono automaticamente [avvisi di diagnostica proattivi](app-insights-proactive-diagnostics.md) che informano su modifiche anomale alle frequenze di errori o ad altre metriche.
-* Impostare i [test di disponibilità](app-insights-monitor-web-app-availability.md) per testare il sito Web continuamente da varie parti del mondo e ottenere messaggi di posta elettronica non appena un test ha esito negativo.
-* Impostare [avvisi di metrica](app-insights-monitor-web-app-availability.md) per sapere se delle metriche quali tempi di risposta o frequenza di eccezioni superano i limiti accettabili.
+* Impostare [disponibilità test](app-insights-monitor-web-app-availability.md) tootest un sito Web continuamente da parte del mondo e si invia tramite posta elettronica non appena un test ha esito negativo.
+* Impostare [metrici avvisi](app-insights-monitor-web-app-availability.md) tooknow se metriche, ad esempio tempi di risposta o tariffe eccezione compresa nei limiti accettabili.
 
 ## <a name="video"></a>Video
 
 > [!VIDEO https://channel9.msdn.com/events/Connect/2016/100/player] 
 
 ## <a name="open-source"></a>Aprire origine
-[Leggere e contribuire al codice](https://github.com/Microsoft/ApplicationInsights-aspnetcore#recent-updates)
+[Leggere e fornire codice toohello](https://github.com/Microsoft/ApplicationInsights-aspnetcore#recent-updates)
 
 
 ## <a name="next-steps"></a>Passaggi successivi
-* [Aggiungere i dati di telemetria alle pagine Web](app-insights-javascript.md) per monitorare l'uso e le prestazioni delle pagine.
-* [Monitoraggio delle dipendenze](app-insights-asp-net-dependencies.md) per vedere se REST, SQL o altre risorse esterne rallentano l’utente.
-* [Utilizzare l'API](app-insights-api-custom-events-metrics.md) per inviare gli eventi e le metriche per una visualizzazione più dettagliata dell'utilizzo e delle prestazioni dell'app.
-* [Test di disponibilità](app-insights-monitor-web-app-availability.md) controlla costantemente l’app da tutto il mondo. 
+* [Aggiungere le pagine web di telemetria tooyour](app-insights-javascript.md) toomonitor pagina informazioni sull'utilizzo e prestazioni.
+* [Monitoraggio dipendenze](app-insights-asp-net-dependencies.md) toosee se REST, SQL o altre risorse esterne rallentano è.
+* [Utilizzare l'API di hello](app-insights-api-custom-events-metrics.md) toosend di eventi e le metriche per una visualizzazione più dettagliata dell'utilizzo e delle prestazioni dell'applicazione.
+* [Test disponibilità](app-insights-monitor-web-app-availability.md) controllare app costantemente dal mondo hello. 
 

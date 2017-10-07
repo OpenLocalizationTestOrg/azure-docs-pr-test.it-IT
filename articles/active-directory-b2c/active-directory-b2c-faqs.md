@@ -14,35 +14,35 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/16/2017
 ms.author: saeeda
-ms.openlocfilehash: e8b28bc9ccc12b280b1746272519bd4c9ea9e4a4
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: f7857299bc3cb9d5fbe58e047818ec56741e0740
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-ad-b2c-frequently-asked-questions-faq"></a>Azure AD B2C: domande frequenti 
-Questa pagina include le risposte alle domande frequenti relative ad Azure Active Directory (Azure AD) B2C. Controllarla costantemente per eventuali aggiornamenti.
+Questa pagina risponde alle domande frequenti su hello B2C Azure Active Directory (Azure AD). Controllarla costantemente per eventuali aggiornamenti.
 
 ### <a name="can-i-use-azure-ad-b2c-features-in-my-existing-employee-based-azure-ad-tenant"></a>È possibile usare le funzionalità di Azure AD B2C nel tenant di Azure AD esistente per dipendenti aziendali?
-Azure AD e Azure AD B2C vengono offerti come prodotti separati e non possono coesistere nello stesso tenant.  Un tenant di Azure AD rappresenta un'organizzazione.  Un tenant di Azure AD B2C rappresenta una raccolta di identità da usare con le applicazioni relying party.  Con i criteri personalizzati (in anteprima pubblica), Azure AD B2C può eseguire la federazione di Azure AD consentendo l'autenticazione dei dipendenti in un'organizzazione.
+Azure AD e Azure Active Directory B2C vengono offerte di prodotti separata e non possono coesistere nel hello stesso tenant.  Un tenant di Azure AD rappresenta un'organizzazione.  Un tenant di Azure Active Directory B2C rappresenta una raccolta di identità toobe utilizzato con le applicazioni relying party.  Con i criteri personalizzati (in anteprima pubblica), Azure Active Directory B2C possibile attuare la federazione tooAzure AD autenticazione consentendo di dipendenti in un'organizzazione.
 
-### <a name="can-i-use-azure-ad-b2c-to-provide-social-login-facebook-and-google-into-office-365"></a>È possibile usare Azure AD B2C per fornire l'accesso a piattaforme di social networking (Facebook e Google+) in Office 365?
-Azure AD B2C non può essere usato per autenticare gli utenti per Microsoft Office 365.  Azure AD è la soluzione Microsoft per la gestione dell'accesso dei dipendenti alle applicazioni SaaS e dispone di funzionalità progettate a tale scopo, ad esempio l'accesso condizionale e le licenze.  Azure AD B2C offre una piattaforma di gestione di identità e accessi per la compilazione di applicazioni web e per dispositivi mobili.  Quando Azure AD B2C è configurato per eseguire la federazione di un tenant di Azure AD, il tenant di Azure AD gestisce l'accesso dei dipendenti alle applicazioni che si basano su Azure AD B2C.
+### <a name="can-i-use-azure-ad-b2c-tooprovide-social-login-facebook-and-google-into-office-365"></a>È possibile utilizzare Azure AD B2C tooprovide social login (Facebook e Google +) in Office 365?
+Azure Active Directory B2C non può essere utilizzato tooauthenticate utenti per Microsoft Office 365.  Azure AD è la soluzione Microsoft per la gestione dei dipendenti accesso tooSaaS App e dispone di funzionalità progettate a tale scopo, ad esempio l'accesso condizionale di licenza.  Azure AD B2C offre una piattaforma di gestione di identità e accessi per la compilazione di applicazioni web e per dispositivi mobili.  Quando Azure Active Directory B2C è configurato toofederate tooan tenant di Azure AD, il tenant di Azure AD hello gestisce tooapplications accesso dipendente che si basano su Azure Active Directory B2C.
 
 ### <a name="what-are-local-accounts-in-azure-ad-b2c-how-are-they-different-from-work-or-school-accounts-in-azure-ad"></a>Che cosa sono gli account locali in Azure AD B2C? In che cosa differiscono dagli account aziendali o dell'istituto di istruzione in Azure AD?
-In un tenant di Azure AD, gli utenti che vi appartengono effettuano l'accesso con un indirizzo di posta elettronica del modulo `<xyz>@<tenant domain>`.  `<tenant domain>` è uno dei domini verificati nel tenant o nel dominio `<...>.onmicrosoft.com` iniziale. Questo tipo di account è un account aziendale o dell'istituto di istruzione.
+In un tenant di Azure AD, gli utenti che appartengono a tenant toohello Accedi con un indirizzo di posta elettronica del modulo hello `<xyz>@<tenant domain>`.  Hello `<tenant domain>` domini hello tenant o di saluto iniziali è uno dei hello verificato `<...>.onmicrosoft.com` dominio. Questo tipo di account è un account aziendale o dell'istituto di istruzione.
 
-In un tenant di Azure AD B2C, la maggior parte delle app richiede l'accesso dell'utente con un indirizzo di posta elettronica arbitrario, ad esempio joe@comcast.net, bob@gmail.com, sarah@contoso.com o jim@live.com. Questo tipo di account è un account locale.  Sono supportati anche nomi utente arbitrari come account locali (ad esempio, joe, bob, sarah o jim). È possibile scegliere uno di questi due tipi di account locale configurando Azure AD B2C nel portale di Azure.
+In un tenant di Azure Active Directory B2C, la maggior parte delle applicazioni si desideri impostare utente hello toosign in qualsiasi indirizzo di posta elettronica arbitrario (ad esempio, joe@comcast.net, bob@gmail.com, sarah@contoso.com, o jim@live.com). Questo tipo di account è un account locale.  Sono supportati anche nomi utente arbitrari come account locali (ad esempio, joe, bob, sarah o jim). È possibile scegliere uno di questi due tipi di account locale tramite la configurazione di Azure Active Directory B2C in hello portale di Azure.
 
-### <a name="which-social-identity-providers-do-you-support-now-which-ones-do-you-plan-to-support-in-the-future"></a>Quali provider di identità di social networking sono attualmente supportati? Per quali provider è previsto il supporto in futuro?
+### <a name="which-social-identity-providers-do-you-support-now-which-ones-do-you-plan-toosupport-in-hello-future"></a>Quali provider di identità di social networking sono attualmente supportati? Quali occorre pianificare toosupport in futuro hello?
 Attualmente sono supportati Facebook, Google +, LinkedIn, Amazon, Twitter (anteprima), WeChat (anteprima), Weibo (anteprima) e QQ (anteprima). Verrà aggiunto il supporto per altri provider di identità di social networking noti, in base alle esigenze dei clienti.
 
-In Azure AD B2C è stato aggiunto anche il supporto per i [criteri personalizzati](https://docs.microsoft.com/en-us/azure/active-directory-b2c/active-directory-b2c-overview-custom).  I [criteri personalizzati](https://docs.microsoft.com/en-us/azure/active-directory-b2c/active-directory-b2c-overview-custom) consentono agli sviluppatori di creare criteri con qualsiasi provider di identità che supporta [OpenID Connect](http://openid.net/specs/openid-connect-core-1_0.html) o SAML. 
+In Azure AD B2C è stato aggiunto anche il supporto per i [criteri personalizzati](https://docs.microsoft.com/en-us/azure/active-directory-b2c/active-directory-b2c-overview-custom).  Questi [criteri personalizzati](https://docs.microsoft.com/en-us/azure/active-directory-b2c/active-directory-b2c-overview-custom) consentono di propri criteri che con qualsiasi provider di identità che supporta un toocreate developer [OpenID Connect](http://openid.net/specs/openid-connect-core-1_0.html) o SAML. 
 
 Per un'introduzione ai criteri personalizzati, vedere lo [starter pack sui criteri personalizzati](https://github.com/Azure-Samples/active-directory-b2c-custom-policy-starterpack).
 
-### <a name="can-i-configure-scopes-to-gather-more-information-about-consumers-from-various-social-identity-providers"></a>È possibile configurare ambiti per raccogliere altre informazioni sugli utenti da diversi provider di identità di social networking?
-No, ma questa funzionalità verrà implementata in futuro. Gli ambiti predefiniti usati per il gruppo di provider di identità di social networking supportato sono:
+### <a name="can-i-configure-scopes-toogather-more-information-about-consumers-from-various-social-identity-providers"></a>È possibile configurare gli ambiti toogather ulteriori informazioni sui clienti, dai diversi provider di identità di social networking?
+No, ma questa funzionalità verrà implementata in futuro. ambiti di Hello predefinito utilizzati per il set supportato dei provider di identità di social networking sono:
 
 * Facebook: email
 * Google+: email
@@ -50,78 +50,78 @@ No, ma questa funzionalità verrà implementata in futuro. Gli ambiti predefinit
 * Amazon: profile
 * LinkedIn: r_emailaddress e r_basicprofile
 
-### <a name="does-my-application-have-to-be-run-on-azure-for-it-work-with-azure-ad-b2c"></a>Per essere compatibile con Azure AD B2C, un'applicazione deve essere eseguita in Azure?
-No, l'applicazione può essere ospitata ovunque (nel cloud o in locale). Per interagire con Azure AD B2C deve avere la possibilità di inviare e ricevere richieste HTTP su endpoint accessibili pubblicamente.
+### <a name="does-my-application-have-toobe-run-on-azure-for-it-work-with-azure-ad-b2c"></a>L'applicazione dispone di toobe eseguire in Azure per tale lavoro con Azure Active Directory B2C?
+No, non è possibile ospitare l'applicazione in qualsiasi punto (in locale o cloud hello). Tutti gli elementi necessari toointeract con Azure Active Directory B2C è hello toosend possibilità e ricevere richieste HTTP su endpoint accessibile pubblicamente.
 
-### <a name="i-have-multiple-azure-ad-b2c-tenants-how-can-i-manage-them-on-the-azure-portal"></a>Nel caso di più tenant Azure AD B2C, come è possibile gestirli nel portale di Azure?
-Prima di aprire "Azure AD B2C" nel menu sul lato sinistro del portale di Azure, è necessario passare alla directory che si vuole gestire.  Per cambiare directory, fare clic sulla propria identità in alto a destra nel portale di Azure e quindi scegliere una directory nell'elenco a discesa che viene visualizzato.  Per una procedura dettagliata con immagini, vedere [Passare alle impostazioni di B2C](active-directory-b2c-app-registration.md#navigate-to-b2c-settings).
+### <a name="i-have-multiple-azure-ad-b2c-tenants-how-can-i-manage-them-on-hello-azure-portal"></a>Nel caso di più tenant Azure AD B2C, Come è possibile gestire tali nel portale di Azure hello?
+Prima di aprire 'Azure Active Directory B2C' nel menu di sinistra hello di hello portale di Azure, è necessario passare nella directory hello desiderato toomanage.  Passare alla directory facendo la tua identità in alto a hello destra hello portale di Azure, quindi scegliere una directory in hello elenco a discesa che viene visualizzata.  Per istruzioni dettagliate con immagini, vedere [passare le impostazioni di Active Directory B2C tooAzure](active-directory-b2c-app-registration.md#navigate-to-b2c-settings).
 
-### <a name="how-do-i-customize-verification-emails-the-content-and-the-from-field-sent-by-azure-ad-b2c"></a>Come si personalizzano i messaggi di posta elettronica di verifica (il contenuto e il campo "Da:") inviati da Azure AD B2C?
-È possibile usare la [funzionalità di personalizzazione della società](../active-directory/active-directory-add-company-branding.md) per personalizzare il contenuto dei messaggi di posta elettronica di verifica. In particolare, è possibile personalizzare i due elementi di posta elettronica seguenti:
+### <a name="how-do-i-customize-verification-emails-hello-content-and-hello-from-field-sent-by-azure-ad-b2c"></a>Come personalizzare i messaggi di posta elettronica verifica (hello contenuto e hello "da:" campo) inviato da Azure AD B2C?
+È possibile utilizzare hello [funzionalità di branding aziendale](../active-directory/active-directory-add-company-branding.md) contenuto hello toocustomize di verifica messaggi di posta elettronica. In particolare, è possono personalizzare questi due elementi di posta elettronica hello:
 
-* **Logo del banner**: in basso a destra.
-* **Colore di sfondo**: in alto.
+* **Logo banner**: mostrato all'hello in basso a destra.
+* **Colore di sfondo**: visualizzata nella parte superiore di hello.
 
     ![Screenshot di un messaggio di posta elettronica di verifica personalizzato](./media/active-directory-b2c-faqs/company-branded-verification-email.png)
 
-La firma della posta elettronica contiene il nome del tenant B2C fornito al momento della creazione del tenant B2C. È possibile modificare il nome seguendo queste istruzioni:
+firma di posta elettronica Hello contiene il nome del tenant di hello B2C fornito al momento della creazione tenant hello B2C. È possibile modificare il nome di hello usando queste istruzioni:
 
-1. Accedere al [portale di Azure classico](https://manage.windowsazure.com/) come amministratore della sottoscrizione.
-1. Accedere al tenant B2C.
-1. Fare clic sulla scheda **Configura**.
-1. Modificare il campo **Nome** nella sezione **Proprietà directory**.
-1. Fare clic su **Save** nella parte inferiore della pagina.
+1. Accedi toohello [portale di Azure classico](https://manage.windowsazure.com/) come hello amministratore della sottoscrizione.
+1. Passare tooyour B2C tenant.
+1. Fare clic su hello **configura** scheda.
+1. Hello modifica **nome** campo hello **proprietà Directory** sezione.
+1. Fare clic su **salvare** nella parte inferiore di hello della pagina hello.
 
-Attualmente non è possibile modificare il campo "Da:" del messaggio di posta elettronica. Votare su [feedback.azure.com](https://feedback.azure.com/forums/169401-azure-active-directory/suggestions/15334335-fully-customizable-verification-emails) se si è interessati alla personalizzazione del corpo del messaggio di posta elettronica di verifica.
+Attualmente non c'è nessun hello toochange modo "da:" campo messaggio di posta elettronica hello. Votare [feedback.azure.com](https://feedback.azure.com/forums/169401-azure-active-directory/suggestions/15334335-fully-customizable-verification-emails) si è interessati alla personalizzazione corpo hello del messaggio di verifica hello.
 
-### <a name="how-can-i-migrate-my-existing-user-names-passwords-and-profiles-from-my-database-to-azure-ad-b2c"></a>Come si esegue la migrazione di nomi utente, password e profili esistenti dal database personale in Azure AD B2C?
-È possibile usare l'API Graph di Azure AD per creare lo strumento di migrazione. Per informazioni dettagliate, vedere l' [esempio relativo all'API Graph](active-directory-b2c-devquickstarts-graph-dotnet.md) .
+### <a name="how-can-i-migrate-my-existing-user-names-passwords-and-profiles-from-my-database-tooazure-ad-b2c"></a>Come è possibile migrare il nome utente, password e i profili da my tooAzure database Active Directory B2C?
+È possibile utilizzare hello API Azure AD Graph toowrite lo strumento di migrazione. Vedere hello [esempio relativo all'API Graph](active-directory-b2c-devquickstarts-graph-dotnet.md) per informazioni dettagliate.
 
 ### <a name="what-password-policy-is-used-for-local-accounts-in-azure-ad-b2c"></a>Quali sono i criteri password usati per gli account locali in Azure AD B2C?
-I criteri password di Azure AD B2C per gli account locali si basano su quelli di Azure AD. I criteri di iscrizione, iscrizione o accesso e reimpostazione della password di Azure AD B2C usano un livello di complessità della password "avanzato" e senza scadenza delle password. Per altre informazioni dettagliate, vedere [Criteri password in Azure AD](https://msdn.microsoft.com/library/azure/jj943764.aspx) .
+criteri password di Azure Active Directory B2C per gli account locali Hello si basa sui criteri di hello per Azure AD. Azure AD B2C dell'iscrizione, l'iscrizione o accesso e la password reimpostare la complessità della password "sicuro" di criteri utilizzato hello e senza scadenza le password. Hello lettura [criteri password di Azure AD](https://msdn.microsoft.com/library/azure/jj943764.aspx) per altri dettagli.
 
-### <a name="can-i-use-azure-ad-connect-to-migrate-consumer-identities-that-are-stored-on-my-on-premises-active-directory-to-azure-ad-b2c"></a>È possibile usare Azure AD Connect per eseguire la migrazione in Azure AD B2C delle identità utente archiviate in Active Directory locale?
-No, Azure AD Connect non è progettato per funzionare con Azure AD B2C. È consigliabile usare l'[API Graph](active-directory-b2c-devquickstarts-graph-dotnet.md) per la migrazione dell'utente.
+### <a name="can-i-use-azure-ad-connect-toomigrate-consumer-identities-that-are-stored-on-my-on-premises-active-directory-tooazure-ad-b2c"></a>È possibile utilizzare le identità utente di Azure AD Connect toomigrate archiviati nel mio tooAzure di Active Directory locale AD B2C?
+No, Azure AD Connect non è progettato toowork con Azure Active Directory B2C. È consigliabile utilizzare hello [API Graph](active-directory-b2c-devquickstarts-graph-dotnet.md) per la migrazione dell'utente.
 
 ### <a name="can-my-app-open-up-azure-ad-b2c-pages-within-an-iframe"></a>L'applicazione può aprire le pagine di Azure AD B2C all'interno di un iFrame?
-No. Per motivi di sicurezza, le pagine di Azure AD B2C non possono essere aperte in un iFrame.  Il servizio comunica con il browser per impedire iFrames.  L'uso di iFrames per le esperienze di gestione delle identità è sconsigliato dalla community della sicurezza in generale e dalla specifica OAUTH2 a causa del rischio di clickjacking.
+No. Per motivi di sicurezza, le pagine di Azure AD B2C non possono essere aperte in un iFrame.  Il servizio comunica con hello browser tooprohibit IFRAME.  Hello community di sicurezza in generale e hello specifica OAUTH2, consigliabile evitare l'utilizzo di IFRAME per esperienze di identità a causa di rischio toohello martinetto fare clic su.
 
 ### <a name="does-azure-ad-b2c-work-with-crm-systems-such-as-microsoft-dynamics"></a>Azure AD B2C è compatibile con i sistemi CRM come Microsoft Dynamics?
-È disponibile l'integrazione con il portale di Microsoft Dynamics 365.  Vedere l'articolo relativo alla [configurazione del portale di Dynamics 365 per usare Azure AD B2C per l'autenticazione](https://docs.microsoft.com/en-us/dynamics365/customer-engagement/portals/azure-ad-b2c).
+È disponibile l'integrazione con il portale di Microsoft Dynamics 365.  Vedere [toouse configurazione Dynamics 365 portale Azure Active Directory B2C per l'autenticazione](https://docs.microsoft.com/en-us/dynamics365/customer-engagement/portals/azure-ad-b2c).
 
 ### <a name="does-azure-ad-b2c-work-with-sharepoint-on-premises-2016-or-earlier"></a>Azure AD B2C è compatibile con SharePoint 2016 locale o versione precedente?
-Azure AD B2C non è concepito per lo scenario di condivisione esterna con i partner di SharePoint. A questo scopo, vedere invece il blog su [Azure AD B2B](http://blogs.technet.com/b/ad/archive/2015/09/15/learn-all-about-the-azure-ad-b2b-collaboration-preview.aspx).
+Azure Active Directory B2C non è destinata hello SharePoint esterni partner scenario di condivisione; vedere [Azure AD B2B](http://blogs.technet.com/b/ad/archive/2015/09/15/learn-all-about-the-azure-ad-b2b-collaboration-preview.aspx) invece.
 
-### <a name="should-i-use-azure-ad-b2c-or-b2b-to-manage-external-identities"></a>È necessario usare Azure AD B2C o B2B per gestire le identità esterne?
-Per altre informazioni su come applicare le funzionalità appropriate agli scenari relativi alle identità esterne, vedere l'articolo sulle [identità esterne](../active-directory/active-directory-b2b-compare-external-identities.md) .
+### <a name="should-i-use-azure-ad-b2c-or-b2b-toomanage-external-identities"></a>Utilizzare le identità esterne di toomanage B2B o di Azure Active Directory B2C
+Leggere questo articolo su [le identità esterne](../active-directory/active-directory-b2b-compare-external-identities.md) toolearn informazioni sull'applicazione hello appropriate funzionalità tooyour scenari di identità esterna.
 
-### <a name="what-reporting-and-auditing-features-does-azure-ad-b2c-provide-are-they-the-same-as-in-azure-ad-premium"></a>Quali funzionalità di reporting e controllo offre Azure AD B2C? Offre le stesse funzionalità di Azure AD Premium?
-No, Azure AD B2C non supporta lo stesso set di report di Azure AD Premium. Esistono tuttavia molte caratteristiche comuni:
+### <a name="what-reporting-and-auditing-features-does-azure-ad-b2c-provide-are-they-hello-same-as-in-azure-ad-premium"></a>Quali funzionalità di reporting e controllo offre Azure AD B2C? Sono che essi stessi hello come Azure AD Premium?
+Azure Active Directory B2C No, non supporta hello stesso insieme di report come Azure AD Premium. Esistono tuttavia molte caratteristiche comuni:
 
-* I report degli accessi contengono un record per ogni accesso con dettagli ridotti.
-* I report di controllo sono disponibili nel portale di Azure selezionando Azure Active Directory > ATTIVITÀ > Log di controllo > B2C e applicando i filtri desiderati. Sono incluse sia le attività amministrative che quelle delle applicazioni. 
+* Hello Accedi report forniscono un record di ogni Accedi con dettagli ridotti.
+* I report di controllo sono disponibili nel portale di Azure in Azure Active Directory hello > log di controllo di attività > scegliere B2C e applicare filtri in base alle esigenze. Sono incluse sia le attività amministrative che quelle delle applicazioni. 
 * Un report di utilizzo, che include il numero di utenti, il numero di accessi e il volume di autenticazioni MFA, è disponibile tramite l'[API per la creazione di report di utilizzo](https://docs.microsoft.com/azure/active-directory-b2c/active-directory-b2c-reference-usage-reporting-api).
 
-### <a name="can-i-localize-the-ui-of-pages-served-by-azure-ad-b2c-what-languages-are-supported"></a>È possibile localizzare l'interfaccia utente delle pagine servite da Azure AD B2C? Quali lingue sono supportate?
-È possibile usarlo.  Altre informazioni sulla [personalizzazione della lingua](active-directory-b2c-reference-language-customization.md) che è in anteprima pubblica.  Offriamo traduzioni per 36 lingue ed è possibile eseguire l'override di qualsiasi stringa in base alle esigenze.
+### <a name="can-i-localize-hello-ui-of-pages-served-by-azure-ad-b2c-what-languages-are-supported"></a>È possibile localizzare i hello dell'interfaccia utente delle pagine gestite da Azure AD B2C? Quali lingue sono supportate?
+È possibile usarlo.  Altre informazioni sulla [personalizzazione della lingua](active-directory-b2c-reference-language-customization.md) che è in anteprima pubblica.  Offriamo traduzioni per 36 lingue ed è possibile sostituire qualsiasi toosuit stringa le proprie esigenze.
 
-### <a name="can-i-use-my-own-urls-on-my-sign-up-and-sign-in-pages-that-are-served-by-azure-ad-b2c-for-instance-can-i-change-the-url-from-loginmicrosoftonlinecom-to-logincontosocom"></a>È possibile usare l'URL personale nelle pagine di iscrizione e accesso servite da Azure AD B2C? È ad esempio possibile sostituire l'URL login.microsoftonline.com con login.contoso.com?
-No, per il momento. Questa funzionalità verrà implementata in futuro. La verifica del dominio nella scheda **Domini** nel portale di Azure classico non raggiungere questo obiettivo.
+### <a name="can-i-use-my-own-urls-on-my-sign-up-and-sign-in-pages-that-are-served-by-azure-ad-b2c-for-instance-can-i-change-hello-url-from-loginmicrosoftonlinecom-toologincontosocom"></a>È possibile usare l'URL personale nelle pagine di iscrizione e accesso servite da Azure AD B2C? Ad esempio, è possibile modificare l'URL di hello da login.microsoftonline.com toologin.contoso.com?
+No, per il momento. Questa funzionalità verrà implementata in futuro. Verifica del dominio in hello **domini** scheda nel portale di Azure classico hello non raggiungere questo obiettivo.
 
 ### <a name="how-do-i-delete-my-azure-ad-b2c-tenant"></a>Come si elimina il tenant di Azure AD B2C?
-Attenersi a questa procedura per eliminare il tenant di Azure AD B2C:
+Seguire questi passaggi toodelete tenant di Azure Active Directory B2C:
 
-1. Seguire questa procedura per [passare alle impostazioni di Azure AD B2C](active-directory-b2c-app-registration.md#navigate-to-b2c-settings) nel portale di Azure.
-1. Passare ad **Applicazioni**, **Provider di identità** e **Tutti i criteri** ed eliminare tutte le voci rispettivamente visualizzate.
-1. Accedere ora al [portale di Azure classico](https://manage.windowsazure.com/) come amministratore della sottoscrizione. Usare lo stesso account aziendale o dell'istituto d'istruzione o lo stesso account Microsoft usato per l'iscrizione ad Azure.
-1. Passare all'estensione di Active Directory a sinistra e fare clic sul nome del tenant B2C.
-1. Fare clic sulla scheda **Utenti** .
-1. Selezionare un utente alla volta, escludendo l'amministratore della sottoscrizione con il quale si è connessi attualmente. Fare clic su **Elimina** nella parte inferiore della pagina, quindi su **SÌ** quando richiesto.
-1. Fare clic sulla scheda **Applicazioni** .
-1. Selezionare **Applications my company owns** (Applicazioni di proprietà dell'azienda) nel campo a discesa **Mostra** e fare clic sul segno di spunta.
-1. Un'applicazione denominata **b2c-extensions-app**. Fare clic su **Elimina** nella parte inferiore della pagina, quindi su **SÌ** quando richiesto.
-1. Passare di nuovo all'estensione di Active Directory e selezionare il tenant di B2C.
-1. Nella parte inferiore della pagina fare clic su **Elimina** . Seguire le istruzioni sullo schermo per completare il processo.
+1. Seguire questi passaggi troppo[passare le impostazioni di Active Directory B2C tooAzure](active-directory-b2c-app-registration.md#navigate-to-b2c-settings) su hello portale di Azure.
+1. Passare toohello **applicazioni**, **provider di identità**, e **tutti i criteri** ed eliminare tutte le voci di hello in ognuno di essi.
+1. Accedi a questo punto toohello [portale di Azure classico](https://manage.windowsazure.com/) come hello amministratore della sottoscrizione. (Utilizzare hello stesso lavoro o scuola account o hello stesso account di Microsoft utilizzato toosign iscrizione a Azure).
+1. Passare toohello estensione di Active Directory a sinistra di hello e fare clic su tenant B2C.
+1. Fare clic su hello **utenti** scheda.
+1. Selezionare ogni utente a sua volta (utente exclude hello amministratore della sottoscrizione è stato eseguito l'accesso come). Fare clic su **eliminare** nella parte inferiore di hello della pagina hello e fare clic su **Sì** quando richiesto.
+1. Fare clic su hello **applicazioni** scheda.
+1. Selezionare **applicazioni proprietà dell'azienda** in hello **Mostra** campo elenco a discesa e fare clic su hello segno di spunta.
+1. Un'applicazione denominata **b2c-extensions-app**. Fare clic su **eliminare** nella parte inferiore di hello della pagina hello e fare clic su **Sì** quando richiesto.
+1. Passare di nuovo l'estensione Active Directory toohello e selezionare il tenant B2C.
+1. Fare clic su **eliminare** nella parte inferiore di hello della pagina hello. processo di hello toocomplete, seguire le istruzioni di hello nella schermata di hello.
 
 ### <a name="can-i-get-azure-ad-b2c-as-part-of-enterprise-mobility-suite"></a>È possibile ottenere Azure AD B2C come parte di Enterprise Mobility Suite?
 No, Azure AD B2C è un servizio di Azure con pagamento in base al consumo e non fa parte di Enterprise Mobility Suite.

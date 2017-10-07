@@ -1,6 +1,6 @@
 ---
-title: Usare il riepilogo per dispositivi StorSimple serie 8000 | Microsoft Docs
-description: "Descrive il pannello di riepilogo del servizio StorSimple e illustra come usarlo per monitorare l'integrità della soluzione StorSimple."
+title: dispositivo serie StorSimple 8000 aaaUse riepilogo | Documenti Microsoft
+description: "Pannello riepilogo servizio StorSimple di hello descrive e illustra come toouse, integrità hello toomonitor della soluzione StorSimple."
 services: storsimple
 documentationcenter: 
 author: alkohli
@@ -14,77 +14,77 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 03/27/2017
 ms.author: alkohli
-ms.openlocfilehash: d987a4ae170f21532a886552cbe1eb5a0d25fc3f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ec1d971a8656df0be6eb1e3ec2603d97737ff070
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-the-service-summary-blade-for-storsimple-8000-series-device"></a>Usare il pannello di riepilogo del servizio per dispositivi StorSimple serie 8000
+# <a name="use-hello-service-summary-blade-for-storsimple-8000-series-device"></a>Utilizzare Pannello di riepilogo servizio hello per dispositivo StorSimple serie 8000
 
 ## <a name="overview"></a>Panoramica
 
-Il pannello di riepilogo del servizio Gestione dispositivi StorSimple offre una visualizzazione di riepilogo di tutti i dispositivi connessi a tale servizio, evidenziando quelli che richiedono attenzione da parte dell'amministratore di sistema. Questa esercitazione illustra il pannello di riepilogo del servizio e descrive il contenuto e la funzione del dashboard nonché le attività che è possibile eseguire da questa pagina.
+Pannello riepilogo servizio di gestione di dispositivi StorSimple Hello fornisce un riepilogo di tutti i dispositivi di hello che sono connesso toohello servizio di gestione di dispositivi StorSimple, evidenziando i dispositivi che richiedono attenzione da parte dell'amministratore di sistema. In questa esercitazione presenta Pannello di riepilogo servizio hello, spiega (funzione) e del contenuto del dashboard hello e vengono descritte le attività di hello che è possibile eseguire in questa pagina.
 
 ![Riepilogo del servizio](./media/storsimple-8000-service-dashboard/service-summary1.png)
 
 
 ## <a name="management-commands"></a>Comandi di gestione
 
-Nel pannello di riepilogo del servizio StorSimple vengono visualizzate le opzioni per gestire il servizio Gestione dispositivi StorSimple e i dispositivi StorSimple serie 8000 in esso registrati. I comandi per la gestione vengono visualizzati nella parte superiore del pannello e sul lato sinistro.
+Nel pannello riepilogo servizio StorSimple hello, vedrai opzioni hello per la gestione del servizio di gestione di dispositivi StorSimple e hello StorSimple 8000 series dispositivi registrati toothis servizio. Verranno visualizzati i comandi di gestione hello in alto di hello del pannello hello e sul lato sinistro di hello.
 
 ![Barra dei comandi](./media/storsimple-8000-service-dashboard/service-summary2.png)
 
-Usare queste opzioni per eseguire diverse operazioni, ad esempio aggiungere volumi o condivisioni, oppure monitorare i vari processi in esecuzione nei dispositivi StorSimple.
+Utilizzare queste opzioni tooperform varie operazioni, ad esempio aggiungono condivisioni, volumi o hello monitoraggio diversi processi in esecuzione su dispositivi StorSimple hello.
 
 
 ## <a name="essentials"></a>Informazioni di base
 
-L'area relativa alle informazioni di base riporta alcune proprietà importanti, ad esempio il gruppo di risorse, il percorso e la sottoscrizione in cui è stato creato il servizio Gestione dispositivi StorSimple.
+area essentials Hello acquisisce alcune proprietà importanti hello, ad esempio, il gruppo di risorse hello, la posizione e sottoscrizione in cui è stato creato il dispositivo StorSimple Manager.
 
 ![Informazioni di base](./media/storsimple-8000-service-dashboard/service-summary3.png)
 
 ## <a name="storsimple-device-manager-service-summary"></a>Riepilogo servizio di Gestione dispositivi StorSimple
 
-* Il riquadro **Avvisi** offre uno snapshot di tutti gli avvisi attivi per tutti i dispositivi, raggruppati in base alla gravità.
+* Hello **avvisi** riquadro fornisce uno snapshot di tutti gli avvisi attivi hello in tutti i dispositivi, raggruppati in base alla gravità dell'avviso.
 
     ![Riquadro Avvisi](./media/storsimple-8000-service-dashboard/service-summary4.png)
 
-    Facendo clic sul riquadro viene aperto il pannello **Avvisi**, in cui è possibile fare clic su un singolo avviso per visualizzare altri dettagli specifici, incluse tutte le operazioni consigliate. È inoltre possibile cancellare l'avviso se il problema è stato risolto.
+    Facendo clic su riquadro hello apre hello **avvisi** pannello in cui è possibile fare clic su un singolo tooview avviso ulteriori dettagli su tale avviso, inclusi eventuali azioni consigliate. È inoltre possibile cancellare avviso hello se hello problema è stato risolto.
 
     ![Fare clic sul riquadro Avvisi](./media/storsimple-8000-service-dashboard/service-summary8.png)
 
-* Il riquadro **Capacità** mostra lo spazio di archiviazione primario di cui è stato effettuato il provisioning e quello rimanente in tutti i dispositivi rispetto allo spazio di archiviazione totale in essi disponibile. **Provisioning eseguito** fa riferimento allo spazio di archiviazione preparato e allocato per l'uso, mentre **Rimanente** fa riferimento alla capacità rimanente di cui è possibile effettuare il provisioning in tutti i dispositivi.
+* Hello **capacità** riquadro Visualizza Mostra hello archiviazione primaria che è stato eseguito il provisioning e rimanente in tutti i dispositivi toohello relativo spazio di archiviazione totale disponibile tra tutti i dispositivi. **Il provisioning** fa riferimento toohello quantità di spazio di archiviazione preparata e allocata per l'utilizzo, **rimanente** fa riferimento toohello residua che è possibile effettuare il provisioning in tutti i dispositivi.
 
     ![Riquadro Capacità](./media/storsimple-8000-service-dashboard/service-summary6.png)
 
-    La capacità **Rimanente - A livelli** è quella disponibile per il provisioning includendo il cloud, mentre **Rimanente - Locale** è la capacità rimanente nei dischi collegati ai dispositivi StorSimple serie 8000.
+    Hello **a livelli rimanenti** capacità sia hello disponibile una capacità che è possibile effettuare il provisioning inclusi cloud, mentre hello **rimanenti locale** capacità hello rimanente su dischi hello collegato toohello Dispositivi della serie StorSimple 8000.
 
 
-* Nel grafico **Utilizzo** vengono visualizzate le metriche rilevanti per i dispositivi. È possibile visualizzare lo spazio di archiviazione primario usato in tutti i dispositivi e lo spazio di archiviazione cloud utilizzato dai dispositivi negli ultimi 7 giorni, il periodo di tempo predefinito. 
+* In hello **utilizzo** grafico, è possibile visualizzare le metriche pertinenti hello per i dispositivi. È possibile visualizzare l'archiviazione primaria di hello usata in tutti i dispositivi e archiviazione cloud hello utilizzati dai dispositivi su hello ultimi 7 giorni, il periodo di tempo predefinito di hello. 
 
     ![Riquadro Utilizzo](./media/storsimple-8000-service-dashboard/service-summary7.png) 
 
-    Per scegliere una diversa scala cronologica, usare l'opzione **Modifica** nell'angolo superiore destro del grafico.
+    toochoose una scala temporale diverso, utilizzare hello **modifica** opzione nell'angolo superiore destro di hello del grafico hello.
 
      ![Fare clic sul riquadro Utilizzo](./media/storsimple-8000-service-dashboard/service-summary10.png)
 
      ![Esportare i dati del grafico](./media/storsimple-8000-service-dashboard/service-summary11.png)
 
-* Il riquadro **Dispositivi** contiene un riepilogo del numero dei dispositivi StorSimple serie 8000 in Gestione dispositivi StorSimple, raggruppati in base allo stato del dispositivo. 
+* Hello **dispositivi** riquadro fornisce un riepilogo del numero di hello di dispositivi della serie StorSimple 8000 nella gestione di dispositivi di StorSimple raggruppati per stato del dispositivo. 
 
     ![Riquadro Dispositivi](./media/storsimple-8000-service-dashboard/service-summary5.png)
 
-    Fare clic su questo riquadro per aprire l'elenco **Dispositivi** e fare clic su un singolo dispositivo per esaminarne in dettaglio il riepilogo. È anche possibile eseguire azioni specifiche relative a un dispositivo dal pannello di riepilogo di un determinato dispositivo. Per altre informazioni sul pannello di riepilogo dispositivo, vedere [Pannello di riepilogo dispositivo](storsimple-8000-device-dashboard.md).
+    Fare clic su questo hello tooopen riquadro **dispositivi** elenco pannello e quindi fare clic su un singolo dispositivo toodrill in riepilogo toohello specifiche di dispositivo di hello. È anche possibile eseguire azioni specifiche relative a un dispositivo dal pannello di riepilogo di un determinato dispositivo. Per ulteriori informazioni su Pannello di riepilogo dispositivo hello, andare troppo[pannello riepilogo dispositivo](storsimple-8000-device-dashboard.md).
 
     ![Fare clic sul riquadro Dispositivi](./media/storsimple-8000-service-dashboard/service-summary9.png)
 
-## <a name="view-the-activity-logs"></a>Visualizzare i log attività
+## <a name="view-hello-activity-logs"></a>Visualizzare i registri attività hello
 
-Per visualizzare le varie operazioni eseguite in Gestione dispositivi StorSimple, fare clic sul collegamento **Log attività** sul lato sinistro del pannello di riepilogo servizio StorSimple. Viene visualizzato il pannello **Log attività** in cui è possibile visualizzare un riepilogo delle operazioni recenti eseguite.
+hello tooview varie operazioni svolte all'interno di gestione i dispositivi StorSimple, fare clic su hello **log attività** collegamento sul lato sinistro del Pannello di riepilogo del servizio StorSimple hello. Consente di passare toohello **log attività** pannello, in cui è possibile visualizzare un riepilogo delle operazioni di recente hello effettuate.
 
 ![Log attività](./media/storsimple-8000-service-dashboard/activity-logs1.png)
 ## <a name="next-steps"></a>Passaggi successivi
 
-* Altre informazioni su come [usare il servizio Gestione dispositivi StorSimple per amministrare un dispositivo StorSimple](storsimple-8000-manager-service-administration.md).
+* Per ulteriori informazioni su troppo[utilizzare hello tooadminister servizio di gestione di dispositivi StorSimple dispositivo StorSimple](storsimple-8000-manager-service-administration.md).
 

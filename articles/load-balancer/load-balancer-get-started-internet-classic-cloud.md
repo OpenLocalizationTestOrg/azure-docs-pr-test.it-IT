@@ -1,6 +1,6 @@
 ---
-title: Creare un servizio di bilanciamento del carico con connessione Internet per Servizi cloud di Azure | Documentazione Microsoft
-description: Informazioni su come creare un servizio di bilanciamento del carico Internet nel modello di distribuzione classica per i servizi cloud
+title: bilanciamento del carico aaaCreate con una connessione Internet per i servizi cloud di Azure | Documenti Microsoft
+description: Informazioni su come una connessione Internet toocreate bilanciamento del carico in modello di distribuzione classica per i servizi cloud
 services: load-balancer
 documentationcenter: na
 author: kumudd
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 01/23/2017
 ms.author: kumud
-ms.openlocfilehash: 1ceaafebcaebecb04314c7da62c69b2e9b5ba39a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d93cf76d417cbfc744cf07ba48c43a63cc14df69
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-creating-an-internet-facing-load-balancer-for-cloud-services"></a>Introduzione alla creazione del servizio di bilanciamento del carico Internet per i servizi cloud
 
@@ -31,17 +31,17 @@ ms.lasthandoff: 07/11/2017
 [!INCLUDE [load-balancer-get-started-internet-intro-include.md](../../includes/load-balancer-get-started-internet-intro-include.md)]
 
 > [!IMPORTANT]
-> Prima di iniziare a usare le risorse di Azure, è importante comprendere che Azure al momento offre due modelli di distribuzione, la distribuzione classica e Azure Resource Manager. È importante comprendere i [modelli e strumenti di distribuzione](../azure-classic-rm.md) prima di lavorare con le risorse di Azure. È possibile visualizzare la documentazione relativa a diversi strumenti facendo clic sulle schede nella parte superiore di questo articolo. In questo articolo viene illustrato il modello di distribuzione classica. Vedere [Informazioni su come creare un servizio di bilanciamento del carico Internet in Gestione risorse di Azure](load-balancer-get-started-internet-arm-ps.md).
+> Prima di lavorare con le risorse di Azure, è importante toounderstand che Azure ha due modelli di distribuzione: Gestione risorse di Azure e classica. È importante comprendere i [modelli e strumenti di distribuzione](../azure-classic-rm.md) prima di lavorare con le risorse di Azure. È possibile visualizzare la documentazione di hello per diversi strumenti facendo clic sulle schede hello nella parte superiore di hello di questo articolo. Questo articolo descrive il modello di distribuzione classica hello. È anche possibile [informazioni su come una connessione Internet toocreate bilanciamento del carico con Azure Resource Manager](load-balancer-get-started-internet-arm-ps.md).
 
-I servizi cloud vengono configurati automaticamente con il servizio di bilanciamento del carico e possono essere personalizzati tramite il modello del servizio.
+Servizi cloud vengono configurati automaticamente con un bilanciamento del carico e possono essere personalizzati tramite il modello di servizio hello.
 
-## <a name="create-a-load-balancer-using-the-service-definition-file"></a>Creare un bilanciamento del carico tramite il file di definizione del servizio
+## <a name="create-a-load-balancer-using-hello-service-definition-file"></a>Creare un bilanciamento del carico utilizzando file di definizione del servizio hello
 
-È possibile usare Azure SDK per .NET 2.5 per aggiornare il servizio cloud. Le impostazioni degli endpoint per i servizi cloud vengono configurate nel file di [definizione del servizio](https://msdn.microsoft.com/library/azure/gg557553.aspx), con estensione csdef.
+È possibile sfruttare hello Azure SDK per .NET 2.5 tooupdate il servizio cloud. Le impostazioni di endpoint per servizi cloud vengono eseguite in hello [definizione servizio](https://msdn.microsoft.com/library/azure/gg557553.aspx) file con estensione csdef.
 
-L'esempio seguente mostra la configurazione di un file servicedefinition.csdef per una distribuzione cloud:
+Hello esempio seguente viene illustrato come un file servicedefinition. csdef per una distribuzione cloud configurato:
 
-Analizzando il frammento di codice per il file con estensione csdef generato da una distribuzione cloud, è possibile vedere l'endpoint esterno configurato per usare le porte HTTP sulle porte 10000, 10001 e 10002.
+Controllo di frammento hello per file con estensione csdef hello generato da una distribuzione cloud, è possibile visualizzare hello endpoint esterno configurato toouse porte HTTP sulla porta 10000 e 10001 10002.
 
 ```xml
 <ServiceDefinition name=“Tenant“>
@@ -66,7 +66,7 @@ Analizzando il frammento di codice per il file con estensione csdef generato da 
 
 ## <a name="check-load-balancer-health-status-for-cloud-services"></a>Controllo dello stato di integrità del servizio di bilanciamento del carico per i servizi cloud
 
-Di seguito è riportato un esempio di probe di integrità:
+Hello Ecco un esempio di un probe di integrità:
 
 ```xml
 <LoadBalancerProbes>
@@ -74,13 +74,13 @@ Di seguito è riportato un esempio di probe di integrità:
 </LoadBalancerProbes>
 ```
 
-Il servizio di bilanciamento del carico combina le informazioni dell'endpoint e le informazioni del probe per creare un URL nel formato `http://{DIP of VM}:80/Probe.aspx`, che verrà usato per eseguire una query sull'integrità del servizio.
+Hello bilanciamento del carico combina hello informazioni dell'endpoint hello e hello di hello probe toocreate un URL nel formato hello `http://{DIP of VM}:80/Probe.aspx` che può essere utilizzato tooquery hello integrità del servizio hello.
 
-Il servizio rileva probe periodiche dallo stesso indirizzo IP. Si tratta della richiesta del probe di integrità proveniente dall'host del nodo in cui è in esecuzione la macchina virtuale. Il servizio deve rispondere con un codice di stato HTTP 200 per indicare l'integrità al bilanciamento del carico. Qualsiasi altro codice di stato HTTP (ad esempio 503) esclude direttamente la macchina virtuale dalla rotazione.
+servizio Hello rileva probe periodiche da hello stesso indirizzo IP. Si tratta di richiesta di probe di integrità hello provenienti dall'host di hello del nodo hello in cui è in esecuzione macchine virtuali di hello. servizio Hello è toorespond con codice di stato HTTP 200 per tooassume del servizio di bilanciamento carico di hello che servizio hello è integro. Qualsiasi altro tipo di stato HTTP (ad esempio 503) il codice direttamente accetta hello macchina virtuale dalla rotazione.
 
-La definizione del probe ne controlla anche la frequenza. Nel caso precedente, il bilanciamento del carico controlla l'endpoint tramite probe ogni 5 secondi. Se non viene ricevuta alcuna risposta positiva per 10 secondi (due intervalli di probe), si presuppone che il probe abbia avuto esito negativo e la macchina virtuale viene esclusa dalla rotazione. Analogamente, se il servizio è escluso dalla rotazione e viene ricevuta una risposta positiva, il servizio viene immediatamente inserito di nuovo nella rotazione. Se il servizio passa continuamente da uno stato integro a uno non integro, il servizio di bilanciamento del carico può decidere di ritardare la reintroduzione del servizio nella rotazione fino a quando non risulta integro per un determinato numero di probe.
+definizione di tipo probe Hello controlla anche la frequenza di hello del probe hello. In questo caso precedente, bilanciamento del carico hello è probing endpoint hello ogni 5 secondi. Se nessuna risposta positiva viene ricevuta per 10 secondi (due intervalli di probe), si presuppone che il probe hello verso il basso e macchina virtuale hello viene escluso dalla rotazione. Analogamente, se il servizio di hello è dalla rotazione e viene ricevuta una risposta positiva, servizio hello viene reinserita toorotation immediatamente. Se il servizio hello sta fluttuando. potete tra integro e non corretti, bilanciamento del carico hello può decidere reintroduzione hello toodelay di hello servizio back-toorotation fino a quando non è stato integro per un numero di probe.
 
-Per altre informazioni, fare riferimento allo schema di definizione del servizio per il [probe di integrità](https://msdn.microsoft.com/library/azure/jj151530.aspx) .
+Verifica dello schema di definizione del servizio di hello per hello [probe di integrità](https://msdn.microsoft.com/library/azure/jj151530.aspx) per ulteriori informazioni.
 
 ## <a name="next-steps"></a>Passaggi successivi
 

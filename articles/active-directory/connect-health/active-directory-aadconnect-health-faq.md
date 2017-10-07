@@ -1,6 +1,6 @@
 ---
-title: Domande frequenti su Azure Active Directory Connect Healtht | Microsoft Docs
-description: "Di seguito sono elencate le domande frequenti e le relative risposte su Azure AD Connect Health. In questa sezione sono contenute le domande sull'uso del servizio, inclusi il modello di fatturazione, le funzionalità, le limitazioni e il supporto."
+title: aaaAzure Active Directory Connect Health domande frequenti - Azure | Documenti Microsoft
+description: "Di seguito sono elencate le domande frequenti e le relative risposte su Azure AD Connect Health. Queste domande frequenti sono contenute le informazioni sull'utilizzo del servizio di hello, tra cui hello fatturazione modello, funzionalità, limitazioni e supporto."
 services: active-directory
 documentationcenter: 
 author: billmath
@@ -14,23 +14,23 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/18/2017
 ms.author: billmath
-ms.openlocfilehash: 902e5bdfbbf04ab70989be8c41e16eb69e475908
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 3f15d9e9b557b09ef74ceff85806579dd51f2412
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-ad-connect-health-frequently-asked-questions"></a>Domande frequenti su Azure AD Connect Health
-Questo articolo include risposte alle domande frequenti su Azure Active Directory (Azure AD) Connect Health. Le domande sono relative all'uso del servizio, inclusi il modello di fatturazione, le funzionalità, le limitazioni e il supporto.
+In questo articolo vengono fornite le risposte toofrequently domande frequenti (FAQ) sullo stato di connessione di Azure Active Directory (Azure AD). Queste domande frequenti riguardano domande su come toouse hello servizio, che include hello modello, funzionalità, limitazioni e supporto di fatturazione.
 
 ## <a name="general-questions"></a>Domande generali
-**D: Quando si gestiscono più directory di Azure AD, come è possibile passare a quella con Azure Active Directory Premium?**
+**D: Quando si gestiscono più directory di Azure AD, Come passare toohello uno con Azure Active Directory Premium?**
 
-Per spostarsi tra tenant di Azure AD diversi, selezionare il **Nome utente** attualmente connesso nell'angolo in alto a destra e scegliere l'account appropriato. Se l'account non è incluso nell'elenco, selezionare **Disconnetti** e quindi usare le credenziali di amministratore globale della directory con Azure Active Directory Premium abilitato per l'accesso.
+tooswitch tra diversi Azure AD i tenant, seleziona hello attualmente firmato aggiuntivo **nome utente** via hello angolo superiore destro e quindi scegliere account appropriato hello. Se l'account di hello non è elencato qui, selezionare **Disconnetti**, e quindi utilizza le credenziali di amministratore globale di hello della directory hello con Azure Active Directory Premium abilitato toosign in.
 
 **D: Quali versioni dei ruoli di identità sono supportate da Azure AD Connect Health?**
 
-La tabella seguente elenca i ruoli e le versioni del sistema operativo supportate.
+Hello nella tabella seguente sono elencati i ruoli di hello e le versioni del sistema operativo supportate.
 
 |Ruolo| Sistema operativo/Versione|
 |--|--|
@@ -38,15 +38,15 @@ La tabella seguente elenca i ruoli e le versioni del sistema operativo supportat
 |Azure AD Connect | Versione 1.0.9125 o successiva|
 |Active Directory Domain Services (AD DS)| <ul> <li> Windows Server 2008 R2 </li><li> Windows Server 2012  </li> <li>Windows Server 2012 R2 </li> <li> Windows Server 2016  </li> </ul>|
 
-Si noti che le funzionalità offerte dal servizio possono variare in base al ruolo e al sistema operativo. In altre parole, è possibile che non tutte le funzionalità siano disponibili per tutte le versioni del sistema operativo. Vedere le descrizioni delle funzionalità per i dettagli.
+Si noti che le funzionalità di hello fornite dal servizio hello possono variare in base ruolo hello e del sistema operativo hello. In altre parole, tutte le funzionalità di hello potrebbero non essere disponibile per tutte le versioni del sistema operativo. Descrizioni delle funzionalità di hello per informazioni dettagliate, vedere.
 
-**D: Quante licenze è necessario avere per monitorare l'infrastruttura?**
+**D: come numero di licenze si devo toomonitor dell'infrastruttura?**
 
-* Per il primo agente di Connect Health è necessaria almeno una licenza Premium di Azure AD.
+* Hello prima Connect Health Agent richiede almeno una licenza di Azure AD Premium.
 * Ogni agente registrato successivamente richiede altre 25 licenze Azure AD Premium.
-* Il numero di agenti è uguale al numero totale di agenti registrati in tutti i ruoli monitorati (AD FS, Azure AD Connect e/o AD DS).
+* Numero di agenti è equivalente toohello il numero totale di agenti che sono registrati in tutti i ruoli monitorati (AD FS, Azure AD Connect e/o dominio Active Directory).
 
-È inoltre possibile trovare le informazioni sulle licenze sulla [pagina dei prezzi di Azure AD](https://aka.ms/aadpricing).
+Informazioni sulle licenze sono inoltre disponibili in hello [pagina dei prezzi di Azure AD](https://aka.ms/aadpricing).
 
 Esempio:
 
@@ -61,105 +61,105 @@ Esempio:
 
 ## <a name="installation-questions"></a>Domande sull'installazione
 
-**D: Qual è l'impatto dell'installazione dell'agente di Azure AD Connect Health in singoli server?**
+**D: qual è l'impatto di hello dell'installazione di Azure AD Connect Health Agent hello nei singoli server?**
 
-L'impatto dell'installazione dell'agente di Microsoft Azure AD Connect Health, di AD FS, dei server proxy applicazione Web, dei server di Azure AD Connect (sincronizzazione) e dei controller di dominio è minimo per quanto riguarda CPU, utilizzo della memoria, larghezza di banda della rete e archiviazione.
+Hello impatto dell'installazione di server di proxy applicazione web Microsoft Azure AD Connect Health Agent, AD FS, hello, i server di Azure AD Connect (sincronizzazione), i controller di dominio è minimo con riguardo toohello CPU, utilizzo della memoria, larghezza di banda di rete e archiviazione.
 
-I numeri seguenti sono approssimativi:
+Hello dopo i numeri è un'approssimazione:
 
 * Utilizzo della CPU: ~1-5% di incremento.
-* Utilizzo della memoria: fino a al 10% della memoria di sistema totale.
+* Utilizzo della memoria: % too10 hello totale di memoria di sistema.
 
 > [!NOTE]
-> Se l'agente non può comunicare con Azure, archivia i dati localmente per un limite massimo definito. L'agente sovrascrive i dati "memorizzati nella cache" secondo un criterio di tipo "intervento di manutenzione meno recente".
+> Se l'agente hello non può comunicare con Azure, agente hello archivia i dati di hello in locale per un limite massimo definito. agente Hello sovrascrive hello "memorizzato nella cache" dati "serviti meno di recente".
 >
 >
 
 * Archiviazione buffer locale per gli agenti di Azure AD Connect Health: ~20 MB.
-* Per i server di AD FS, è consigliabile effettuare il provisioning di 1.024 MB (1 GB) di spazio su disco per il canale di controllo di AD FS per consentire agli agenti di Azure AD Connect Health di elaborare tutti i dati di controllo prima che vengano sovrascritti.
+* Per i server ADFS, è consigliabile che si esegua il provisioning uno spazio su disco pari a 1024 MB (1 GB) per il canale di controllo hello ADFS di Azure Active Directory gli agenti Connect Health tooprocess tutti i dati di controllo di hello prima che vengano sovrascritti.
 
-**D: È necessario riavviare i server durante l'installazione degli agenti di Azure AD Connect Health?**
+**D: ho tooreboot my Server durante l'installazione di hello degli agenti hello Azure AD Connect Health?**
 
-No. Per l'installazione degli agenti non è necessario il riavvio del server. L'installazione di alcuni passaggi preliminare può richiedere tuttavia un riavvio del server.
+No. installazione di Hello degli agenti di hello non richiederanno tooreboot hello il server. Installazione di alcuni passaggi potrebbe tuttavia richiedere il riavvio del server di hello.
 
 In Windows Server 2008 R2, ad esempio, l'installazione di .NET 4.5 Framework richiede un riavvio del server.
 
 **D: Il servizio Azure AD Connect Health usa un proxy HTTP pass-through?**
 
-Sì. Per le operazioni in corso, è possibile configurare l'agente per l'integrità in modo che usi un proxy HTTP per inoltrare le richieste HTTP in uscita.
+Sì. Per le operazioni in corso, è possibile configurare hello integrità agente toouse richieste HTTP in uscita un HTTP proxy tooforward.
 Per altre informazioni, vedere la [configurazione del proxy HTTP per gli agenti per l'integrità](active-directory-aadconnect-health-agent-install.md#configure-azure-ad-connect-health-agents-to-use-http-proxy).
 
-Se è necessario configurare un proxy durante la registrazione dell'agente, modificare prima di tutto le impostazioni del proxy di Internet Explorer.
+Se è necessario un proxy tooconfigure durante la registrazione dell'agente, potrebbe essere toomodify le impostazioni Proxy di Internet Explorer in anticipo.
 
 1. Aprire Internet Explorer > **Impostazioni** > **Opzioni Internet** > **Connessioni** > **Impostazioni LAN**.
 2. Selezionare **Usa un server di proxy per la rete LAN**.
 3. Selezionare **Avanzate** se sono presenti porte proxy diverse per HTTP e HTTPS/Protetto.
 
-**D: Il servizio Azure AD Connect Health supporta l'autenticazione di base per la connessione ai proxy HTTP?**
+**Q: esegue l'autenticazione di base di supporto di Azure AD Connect Health quando la connessione proxy tooHTTP?**
 
-No. Non è attualmente supportato alcun meccanismo per specificare in modo arbitrario un nome utente o una password per l'autenticazione di base.
+No. Un meccanismo toospecify un nome utente non autorizzato e la password per l'autenticazione di base non è attualmente supportato.
 
-**D: Quali porte del firewall è necessario aprire per garantire il funzionamento dell'agente di Azure AD Connect Health?**
+**D: le porte del firewall che cosa è necessario tooopen per hello Azure AD Connect Health Agent toowork?**
 
-Vedere la [sezione sui requisiti](active-directory-aadconnect-health-agent-install.md#requirements) per l'elenco delle porte del firewall e altri requisiti di connettività.
+Vedere hello [sezione Requisiti](active-directory-aadconnect-health-agent-install.md#requirements) per elenco hello delle porte del firewall e altri requisiti di connettività.
 
-**D: Perché vengono visualizzati due server con lo stesso nome nel portale di Azure AD Connect Health?**
+**D: perché è non vengono visualizzati due server con stesso nome nel portale di hello Azure AD Connect Health hello?**
 
-Quando si rimuove un agente da un server, tale server non viene automaticamente rimosso dal portale di Azure AD Connect Health. Se si rimuove manualmente un agente da un server o se si rimuove il server stesso, è necessario eliminare manualmente la voce relativa al server dal portale di Azure AD Connect Health.
+Quando si rimuove un agente da un server, server hello non viene rimosso automaticamente dal portale di Azure AD Connect Health hello. Se si rimuove un agente da un server o rimuovere manualmente server hello stesso, è necessario toomanually voce server hello di eliminazione dal portale di hello Azure AD Connect Health.
 
-È possibile ricreare l'immagine di un server o creare un nuovo server con gli stessi dettagli, ad esempio il nome del computer. Se il server già registrato non è stato rimosso dal portale di Azure AD Connect Health e l'agente è stato installato nel nuovo server, è possibile che vengano visualizzate due voci con lo stesso nome.
+È possibile ricreare l'immagine di un server o creare un nuovo server con hello stessi dettagli (ad esempio nome del computer). Server già registrati hello non è stato rimosso dal portale di hello Azure AD Connect Health, se è installato l'agente di hello nel nuovo server hello, si possono essere visualizzate due voci con hello stesso nome.
 
-In questo caso, eliminare manualmente la voce appartenente al server meno recente. I dati per questo server non dovrebbero essere aggiornati.
+In questo caso, è possibile eliminare manualmente voce hello appartenente toohello precedente server. dati Hello per questo server devono essere aggiornati.
 
 ## <a name="health-agent-registration-and-data-freshness"></a>Registrazione dell'agente per l'integrità e aggiornamento dati
 
-**D: Quali sono le cause più comuni che generano errori nella registrazione dell'agente per l'integrità e come risolverle?**
+**D: quali sono i motivi comuni per gli errori di registrazione dell'agente di integrità di hello e come risolvere i problemi?**
 
-Le possibili cause per cui un agente per l'integrità non riesce a eseguire la registrazione sono elencate di seguito:
+Hello Agente integrità sistema può non riuscire tooregister scadenza toohello seguenti cause:
 
-* L'agente non può comunicare con gli endpoint necessari perché un firewall blocca il traffico. Questa situazione è molto comune nei server proxy applicazione Web. Assicurarsi di aver abilitato la comunicazione in uscita per le porte e gli endpoint obbligatori. Per informazioni dettagliate, vedere la sezione [Requisiti](active-directory-aadconnect-health-agent-install.md#requirements).
-* La comunicazione in uscita viene sottoposta a un'ispezione SSL dal livello di rete. In questo modo il certificato usato dall'agente viene sostituito dall'entità o dal server per l'ispezione e non è possibile eseguire i passaggi necessari per completare la registrazione dell'agente.
-* L'utente non dispone dell'accesso per eseguire la registrazione dell'agente. Per impostazione predefinita, agli amministratori globali l'accesso è consentito. È possibile usare il [Controllo degli accessi in base al ruolo](active-directory-aadconnect-health-operations.md#manage-access-with-role-based-access-control) per delegare l'accesso ad altri utenti.
+* agente Hello non può comunicare con gli endpoint hello richiesto perché un firewall sta bloccando il traffico. Questa situazione è molto comune nei server proxy applicazione Web. Assicurarsi di aver abilitato le porte e gli endpoint necessario toohello le comunicazioni in uscita. Vedere hello [sezione Requisiti](active-directory-aadconnect-health-agent-install.md#requirements) per informazioni dettagliate.
+* Le comunicazioni in uscita sono ispezione SSL tooan sottoposti dal livello di rete hello. In questo modo certificato hello agente hello utilizza toobe sostituiti da entità/server hello ispezione e la registrazione dell'agente hello toocomplete hello passaggi esito negativo.
+* utente Hello non dispone di accesso tooperform hello registrazione dell'agente di hello. Per impostazione predefinita, agli amministratori globali l'accesso è consentito. È possibile utilizzare [Role Based Access Control](active-directory-aadconnect-health-operations.md#manage-access-with-role-based-access-control) toodelegate accesso tooother gli utenti.
 
-**D: Si ricevono avvisi che indicano che "I dati del Servizio integrità non sono aggiornati". Come si risolve il problema?**
+**D: Sto recupero avvisato che "servizio integrità dati non sono backup toodate." Come risolvere il problema di hello?**
 
-Azure AD Connect Health genera l'avviso quando non riceve tutti i punti dati dal server nelle ultime due ore. I motivi per cui questo avviso viene generato possono essere diversi.
+Azure AD Connect Health Genera avviso di hello quando non riceve tutti i punti dati hello dal server hello in hello ultime due ore. I motivi per cui questo avviso viene generato possono essere diversi.
 
-* L'agente non può comunicare con gli endpoint necessari perché un firewall blocca il traffico. Questa situazione è molto comune nei server proxy applicazione Web. Assicurarsi di aver abilitato la comunicazione in uscita per le porte e gli endpoint obbligatori. Per informazioni dettagliate, vedere la sezione [Requisiti](active-directory-aadconnect-health-agent-install.md#requirements).
-* La comunicazione in uscita viene sottoposta a un'ispezione SSL dal livello di rete. In questo modo il certificato usato dall'agente viene sostituito dall'entità o dal server per l'ispezione e il processo non riesce a caricare i dati nel servizio Azure AD Connect Health.
-* È possibile usare il comando di connettività predefinito nell'agente. [Altre informazioni](active-directory-aadconnect-health-agent-install.md#test-connectivity-to-azure-ad-connect-health-service).
-* Gli agenti supportano anche la connettività in uscita tramite un proxy HTTP non autenticato. [Altre informazioni](active-directory-aadconnect-health-agent-install.md##configure-azure-ad-connect-health-agents-to-use-http-proxy).
+* agente Hello non può comunicare con gli endpoint hello richiesto perché un firewall sta bloccando il traffico. Questa situazione è molto comune nei server proxy applicazione Web. Assicurarsi di aver abilitato le comunicazioni in uscita toohello necessario punti di fine e le porte. Vedere hello [sezione Requisiti](active-directory-aadconnect-health-agent-install.md#requirements) per informazioni dettagliate.
+* Le comunicazioni in uscita sono ispezione SSL tooan sottoposti dal livello di rete hello. In questo modo certificato hello agente hello utilizza toobe sostituiti da entità/server hello ispezione e il processo di hello ha esito negativo del servizio di Azure AD Connect Health tooupload dati toohello.
+* È possibile utilizzare il comando di connettività hello compilato nell'agente hello. [Altre informazioni](active-directory-aadconnect-health-agent-install.md#test-connectivity-to-azure-ad-connect-health-service).
+* gli agenti di Hello supportano inoltre la connettività in uscita tramite un HTTP Proxy non autenticati. [Altre informazioni](active-directory-aadconnect-health-agent-install.md##configure-azure-ad-connect-health-agents-to-use-http-proxy).
 
 ## <a name="operations-questions"></a>Domande sulle operazioni
-**D: è necessario abilitare il controllo nei server proxy applicazione Web?**
+**D: è necessario tooenable controllo nei server proxy applicazione web di hello?**
 
-No, il controllo non deve essere abilitato nei server proxy applicazione Web.
+No, il controllo non è necessario toobe abilitato nel server proxy applicazione web di hello.
 
 **D: In che modo vengono risolti gli avvisi di Azure AD Connect Health?**
 
-Gli avvisi di Azure AD Connect Health vengono risolti se si verifica una condizione di esito positivo. Gli agenti di Azure AD Connect Health rilevano e segnalano periodicamente al servizio le condizioni di esito positivo. Per alcuni avvisi, l'eliminazione è basata sul tempo. In altri termini, se entro 72 ore dalla generazione dell'avviso non viene osservata la stessa condizione di errore, l'avviso viene automaticamente risolto.
+Gli avvisi di Azure AD Connect Health vengono risolti se si verifica una condizione di esito positivo. Azure Active Directory gli agenti Connect Health rilevare e segnalare servizio toohello condizioni di esito positivo hello periodicamente. Per alcuni avvisi, l'eliminazione hello è basato sul tempo. In altre parole, se hello stessa condizione di errore non viene osservata entro 72 ore dalla generazione dell'avviso, hello avviso viene risolto automaticamente.
 
-**D: Viene visualizzato l'avviso "La richiesta di autenticazione di test (transazione sintetica) non è riuscita a ottenere un token." Come si risolve il problema?**
+**D: Sto recupero avvisato che "richiesta di autenticazione di Test (transazione sintetica) non riuscito tooobtain un token." Come risolvere il problema di hello?**
 
-Azure AD Connect Health per AD FS genera questo avviso quando l'agente installato in un server AD FS non riesce a ottenere un token in quanto parte di una transazione sintetica avviata dall'agente stesso. L'agente di Azure AD Connect Health usa il contesto di sistema locale e tenta di ottenere un token per un self relying party. Si tratta di un test di tipo catch-all per assicurarsi che AD FS sia in uno stato di rilascio di token.
+Azure AD Connect Health per AD FS questo avviso viene generato quando hello Health Agent installato in un server AD FS non riesce tooobtain un token come parte di una transazione sintetica avviata da hello Agente integrità sistema. Agente integrità Hello utilizza il contesto di sistema locale hello e prova tooget un token per una relying party self. Si tratta di un test di catch-all di tooensure che ADFS si trova in uno stato di rilascio di token.
 
-Spesso questo test ha esito negativo perché l'agente di Azure AD Connect Health non può risolvere il nome della farm AD FS. Questa situazione può verificarsi se i server AD FS si trovano dietro un bilanciamento del carico di rete e la richiesta viene avviata da un nodo che si trova dietro il bilanciamento del carico, in contrapposizione a un client normale che si trova davanti al bilanciamento del carico. Questo problema può essere risolto aggiornando il file "hosts" in "C:\Windows\System32\drivers\etc" per includere l'indirizzo IP del server AD FS o un indirizzo IP di loopback (127.0.0.1) per il nome della farm AD FS, come ad esempio sts.contoso.com. Quando si aggiunge il file host, la chiamata di rete viene messa in corto circuito, consentendo in tal modo all'agente di Azure AD Connect Health di ottenere il token.
+Spesso questo test non riesce perché hello integrità agente nome della farm non è possibile tooresolve hello AD FS. Questa situazione può verificarsi se i server ADFS hello Active Directory sono protetti da un bilanciamento del carico di rete e richiesta hello viene avviata da un nodo di bilanciamento del carico hello (come tooa anziché regolare client che si trova davanti al servizio di bilanciamento del carico hello). Può essere risolto aggiornando il file hosts"hello" sotto l'indirizzo IP di "C:\WINDOWS\system32\drivers\etc." tooinclude hello del server AD FS hello o un indirizzo IP di loopback (127.0.0.1) per il nome di farm hello ADFS (ad esempio sts.contoso.com). Aggiunta del file host hello verrà corto circuito di chiamata di rete hello, consentendo in tal modo i token di hello integrità agente tooget hello.
 
-**D: Viene ricevuto un messaggio di posta elettronica che indica che il computer non ha le patch corrette per gli attacchi ransomeware recenti. Qual è il motivo per cui si riceve tale messaggio di posta elettronica?**
+**D: ho ricevuto un messaggio di posta elettronica che indica che il computer non sono corretti per gli attacchi ransomeware recenti hello. Qual è il motivo per cui si riceve tale messaggio di posta elettronica?**
 
-Il servizio di Azure AD Connect Health ha analizzato tutti i computer di cui esegue il monitoraggio per verificare che le patch necessarie siano installate. Se almeno un computer non dispone delle patch critiche, viene inviato tale messaggio di posta elettronica agli amministratori del tenant. Per arrivare a tale decisione, è stata usata la logica seguente.
-1. Trovare tutti gli hotfix installati nel computer.
-2. Controllare se è presente almeno uno degli hotfix inclusi nell'elenco definito.
-3. Se sì, il computer è protetto. In caso contrario, il computer è a rischio di attacco.
+Servizio di Azure AD Connect Health analizzati hello tutte le macchine vengono controllate le patch necessarie hello tooensure sono state installate. gli amministratori tenant toohello è stato inviato da posta elettronica Hello se almeno un computer non dispone di patch critiche hello. Hello seguenti logica è stato utilizzato toomake questa operazione.
+1. Trovare tutti gli hotfix hello è installati nel computer di hello.
+2. Controllare se almeno uno di hello hotfix da hello definito l'elenco è presente.
+3. In caso affermativo, macchina di hello è protetta. In caso contrario, hello macchina è il rischio di attacco hello.
 
-Per eseguire manualmente questo controllo, è possibile usare lo script di PowerShell seguente. In questo modo viene implementata la logica precedente.
+È possibile utilizzare hello tooperform script PowerShell seguente questo controllo manualmente. Implementa hello sopra logica.
 
 ```
 Function CheckForMS17-010 ()
 {
     $hotfixes = "KB3205409", "KB3210720", "KB3210721", "KB3212646", "KB3213986", "KB4012212", "KB4012213", "KB4012214", "KB4012215", "KB4012216", "KB4012217", "KB4012218", "KB4012220", "KB4012598", "KB4012606", "KB4013198", "KB4013389", "KB4013429", "KB4015217", "KB4015438", "KB4015546", "KB4015547", "KB4015548", "KB4015549", "KB4015550", "KB4015551", "KB4015552", "KB4015553", "KB4015554", "KB4016635", "KB4019213", "KB4019214", "KB4019215", "KB4019216", "KB4019263", "KB4019264", "KB4019472", "KB4015221", "KB4019474", "KB4015219", "KB4019473"
 
-    #checks the computer it's run on if any of the listed hotfixes are present
+    #checks hello computer it's run on if any of hello listed hotfixes are present
     $hotfix = Get-HotFix -ComputerName $env:computername | Where-Object {$hotfixes -contains $_.HotfixID} | Select-Object -property "HotFixID"
 
     #confirms whether hotfix is found or not

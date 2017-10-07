@@ -1,6 +1,6 @@
 ---
-title: Esempio di PowerShell - Spostare un database SQL di Azure tra pool elastici SQL | Microsoft Docs
-description: Script di esempio di Azure PowerShell per spostare un database SQL tra pool elastici usando PowerShell
+title: pool elastico SQL database SQL di Azure esempio spostamento aaaPowerShell | Documenti Microsoft
+description: Azure PowerShell esempio script toomove un database SQL tra il pool elastico con PowerShell
 services: sql-database
 documentationcenter: sql-database
 author: janeng
@@ -16,25 +16,25 @@ ms.tgt_pltfrm: sql-database
 ms.workload: database
 ms.date: 06/23/2017
 ms.author: janeng
-ms.openlocfilehash: 58f14dc668f25f17e93fcaf30f72b15a46d71484
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 501e82ce93a31264d0625fb0243b4e44dcb2d007
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-powershell-to-create-elastic-pools-and-move-databases-between-elastic-pools"></a>Usare Use PowerShell per creare pool elastici e spostare database tra pool elastici
+# <a name="use-powershell-toocreate-elastic-pools-and-move-databases-between-elastic-pools"></a>Utilizzare i pool elastici toocreate di PowerShell e spostare database tra i pool elastici
 
-Questo esempio di script di PowerShell crea due pool elastici e sposta un database da un pool elastico all'altro, quindi sposta un database all'esterno di un pool elastico in un livello di prestazioni a database singolo. 
+In questo esempio di script di PowerShell consente di creare due pool elastico e sposta un database da un pool elastico in un altro pool elastico e quindi si sposta un database all'esterno di un livello di prestazioni pool elastico tooa singolo database. 
 
 [!INCLUDE [sample-powershell-install](../../../includes/sample-powershell-install-no-ssh.md)]
 
 ## <a name="sample-script"></a>Script di esempio
 
-[!code-powershell[main](../../../powershell_scripts/sql-database/move-database-between-pools-and-standalone/move-database-between-pools-and-standalone.ps1?highlight=17-18 "Spostare database tra pool")]
+[!code-powershell[main](../../../powershell_scripts/sql-database/move-database-between-pools-and-standalone/move-database-between-pools-and-standalone.ps1?highlight=17-18 "Move database between pools")]
 
 ## <a name="clean-up-deployment"></a>Pulire la distribuzione
 
-Dopo l'esecuzione dello script di esempio, è possibile usare il comando seguente per rimuovere il gruppo di risorse e tutte le risorse ad esso associate.
+Dopo l'esecuzione di script di esempio hello, hello comando seguente può essere utilizzato tooremove gruppo di risorse hello e tutte le risorse associate.
 
 ```powershell
 Remove-AzureRmResourceGroup -ResourceGroupName "myResourceGroup"
@@ -42,7 +42,7 @@ Remove-AzureRmResourceGroup -ResourceGroupName "myResourceGroup"
 
 ## <a name="script-explanation"></a>Spiegazione dello script
 
-Questo script usa i comandi seguenti. Ogni comando della tabella include collegamenti alla documentazione specifica del comando.
+Questo script utilizza hello i comandi seguenti. Ogni comando in documentazione specifica toocommand hello tabella collegamenti.
 
 | Comando | Note |
 |---|---|
@@ -56,6 +56,6 @@ Questo script usa i comandi seguenti. Ogni comando della tabella include collega
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Per altre informazioni su Azure PowerShell, vedere la [documentazione di Azure PowerShell](/powershell/azure/overview).
+Per ulteriori informazioni su hello Azure PowerShell, vedere [documentazione di Azure PowerShell](/powershell/azure/overview).
 
-Per altri esempi, vedere tra gli [script di PowerShell per database SQL di Azure](../sql-database-powershell-samples.md).
+Ulteriori esempi di script di PowerShell per Database SQL sono reperibile in hello [gli script di PowerShell per Azure SQL Database](../sql-database-powershell-samples.md).

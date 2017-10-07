@@ -1,6 +1,6 @@
 ---
-title: 'Gestire le acquisizioni di pacchetti con Azure Network Watcher: API REST | Microsoft Docs'
-description: "Questa pagina illustra come gestire la funzionalità di acquisizione di pacchetti di Network Watcher usando l'API REST"
+title: acquisizioni di pacchetti aaaManage con Watcher di rete di Azure - API REST | Documenti Microsoft
+description: "Questa pagina viene illustrato come toomanage hello funzionalità di acquisizione di pacchetti di controllo di rete utilizzando l'API REST di Azure"
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
-ms.openlocfilehash: 49ec20802a252258d8493eb26510270b925e851a
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 7a531fbe796e85e94961bd192d171defb299be05
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="manage-packet-captures-with-azure-network-watcher-using-azure-rest-api"></a>Gestire le acquisizioni di pacchetti con Azure Network Watcher usando l'API REST di Azure
 
@@ -29,24 +29,24 @@ ms.lasthandoff: 08/29/2017
 > - [Interfaccia della riga di comando 2.0](network-watcher-packet-capture-manage-cli.md)
 > - [API REST di Azure](network-watcher-packet-capture-manage-rest.md)
 
-Il servizio di acquisizione di pacchetti di Network Watcher consente di creare sessioni di acquisizione per registrare il traffico da e verso una macchina virtuale. Sono disponibili filtri per la sessione di acquisizione per garantire che venga acquisito solo il traffico desiderato. Il servizio di acquisizione di pacchetti consente di individuare eventuali anomalie di rete in modo proattivo e reattivo. Altri utilizzi comprendono la raccolta di statistiche di rete, informazioni sulle intrusioni nella rete, debug delle comunicazioni client-server e molto altro ancora. La possibilità di attivare da remoto l'acquisizione di pacchetti evita di dover eseguire manualmente questa operazione sul computer desiderato, consentendo un notevole risparmio di tempo.
+Acquisizione di pacchetti di rete Watcher consente tooand toocreate acquisizione sessioni tootrack traffico da una macchina virtuale. I filtri vengono forniti per hello acquisizione sessione tooensure che si acquisisce solo il traffico hello desiderato. Acquisizione di pacchetti consente toodiagnose anomalie di rete in modo proattivo e reattivo. Altri usi includono la raccolta di statistiche di rete, ottenere informazioni su intrusioni di rete, client-server toodebug le comunicazioni e molto altro ancora. Essendo in grado di tooremotely trigger pacchetto acquisizioni, questa funzionalità semplifica il carico di hello dell'esecuzione di acquisizione pacchetto eseguita manualmente e nel computer desiderato hello, che consente di risparmiare tempo prezioso.
 
-Questo articolo illustra le diverse attività di gestione attualmente disponibili per l'acquisizione di pacchetti.
+In questo articolo illustra hello diverse operazioni di gestione che sono attualmente disponibili per l'acquisizione di pacchetti.
 
 - [**Ottenere un'acquisizione di pacchetti**](#get-a-packet-capture)
 - [**Elencare tutte le acquisizioni di pacchetti**](#list-all-packet-captures)
-- [**Effettuare una query dello stato di un'acquisizione di pacchetti**](#query-packet-capture-status)
+- [**Query hello sullo stato di un'acquisizione pacchetti**](#query-packet-capture-status)
 - [**Avviare un'acquisizione di pacchetti**](#start-packet-capture)
 - [**Interrompere un'acquisizione di pacchetti**](#stop-packet-capture)
 - [**Eliminare un'acquisizione di pacchetti**](#delete-packet-capture)
 
 ## <a name="before-you-begin"></a>Prima di iniziare
 
-In questo scenario si chiama l'API REST Network Watcher per eseguire la verifica del flusso IP. ARMclient viene usato per chiamare l'API REST con PowerShell. ARMClient è reperibile in Chocolatey in [ARMClient on Chocolatey](https://chocolatey.org/packages/ARMClient) (ARMClient in Chocolatey)
+In questo scenario, si chiama hello toorun di API Rest Watcher di rete IP flusso verificare. ARMclient è l'API REST di hello toocall utilizzati tramite PowerShell. ARMClient è reperibile in Chocolatey in [ARMClient on Chocolatey](https://chocolatey.org/packages/ARMClient) (ARMClient in Chocolatey)
 
-Questo scenario presuppone il completamento dei passaggi descritti in [Creare un servizio Network Watcher](network-watcher-create.md) per creare un servizio Network Watcher.
+Questo scenario si presuppone che si sono già stati seguiti i passaggi di hello in [creare un controllo di rete](network-watcher-create.md) toocreate Watcher di rete.
 
-> L'acquisizione di pacchetti richiede un'estensione macchina virtuale `AzureNetworkWatcherExtension`. Per installare l'estensione in una VM Windows, vedere [Estensione macchina virtuale agente Azure Network Watcher per Windows](../virtual-machines/windows/extensions-nwa.md) e per una VM Linux VM vedere [Estensione macchina virtuale Azure Network Watcher Agent per Linux](../virtual-machines/linux/extensions-nwa.md).
+> L'acquisizione di pacchetti richiede un'estensione macchina virtuale `AzureNetworkWatcherExtension`. Per l'installazione dell'estensione hello in una macchina virtuale di Windows, visitare [estensione della macchina virtuale Azure rete Watcher agente per Windows](../virtual-machines/windows/extensions-nwa.md) e per la visita di VM Linux [estensione della macchina virtuale Azure rete Watcher agente per Linux](../virtual-machines/linux/extensions-nwa.md).
 
 ## <a name="log-in-with-armclient"></a>Accedere con ARMClient
 
@@ -56,12 +56,12 @@ armclient login
 
 ## <a name="retrieve-a-virtual-machine"></a>Recuperare una macchina virtuale
 
-Eseguire lo script seguente per restituire la macchina virtuale. Queste informazioni sono necessarie per avviare un'acquisizione di pacchetti.
+Eseguire hello seguenti script tooreturn una macchina virtuale. Queste informazioni sono necessarie per avviare un'acquisizione di pacchetti.
 
-Per il codice seguente sono necessarie alcune variabili:
+Hello codice riportato di seguito è necessario variabili:
 
-- **subscriptionId**: l'ID sottoscrizione può essere recuperato anche con il cmdlet **Get-AzureRMSubscription**.
-- **resourceGroupName**: il nome di un gruppo di risorse contenente le macchine virtuali.
+- **subscriptionId** -id sottoscrizione hello possono anche essere recuperati con hello **Get AzureRMSubscription** cmdlet.
+- **resourceGroupName** : hello nome di un gruppo di risorse contenente le macchine virtuali.
 
 ```powershell
 $subscriptionId = "<subscription id>"
@@ -70,7 +70,7 @@ $resourceGroupName = "<resource group name>"
 armclient get https://management.azure.com/subscriptions/${subscriptionId}/ResourceGroups/${resourceGroupName}/providers/Microsoft.Compute/virtualMachines?api-version=2015-05-01-preview
 ```
 
-L'ID della macchina virtuale dell'output seguente viene usato nell'esempio successivo.
+Dall'output seguente hello, id di hello della macchina virtuale hello viene utilizzato nell'esempio riportato di seguito hello.
 
 ```json
 ...
@@ -88,7 +88,7 @@ L'ID della macchina virtuale dell'output seguente viene usato nell'esempio succe
 
 ## <a name="get-a-packet-capture"></a>Ottenere un'acquisizione di pacchetti
 
-L'esempio seguente ottiene lo stato di una singola acquisizione di pacchetti
+esempio Hello Ottiene hello stato di un'acquisizione singolo pacchetto
 
 ```powershell
 $subscriptionId = "<subscription id>"
@@ -97,7 +97,7 @@ $networkWatcherName = "NetworkWatcher_westcentralus"
 armclient post "https://management.azure.com/subscriptions/${subscriptionId}/ResourceGroups/${resourceGroupName}/providers/Microsoft.Network/networkWatchers/${networkWatcherName}/packetCaptures/${packetCaptureName}/querystatus?api-version=2016-12-01"
 ```
 
-Le risposte seguenti sono esempi di una tipica risposta restituita quando si effettua una query sullo stato di un'acquisizione di pacchetti.
+Hello risposte seguenti sono esempi di una tipica risposta restituito quando si eseguono query stato hello di un'acquisizione di pacchetti.
 
 ```json
 {
@@ -122,7 +122,7 @@ Le risposte seguenti sono esempi di una tipica risposta restituita quando si eff
 
 ## <a name="list-all-packet-captures"></a>Elencare tutte le acquisizioni di pacchetti
 
-L'esempio seguente ottiene tutte le sessioni di acquisizione di pacchetti in un'area.
+Hello di esempio seguente ottiene tutte le sessioni di acquisizione di pacchetti in un'area.
 
 ```powershell
 $subscriptionId = "<subscription id>"
@@ -131,7 +131,7 @@ $networkWatcherName = "NetworkWatcher_westcentralus"
 armclient get "https://management.azure.com/subscriptions/${subscriptionId}/ResourceGroups/${resourceGroupName}/providers/Microsoft.Network/networkWatchers/${networkWatcherName}/packetCaptures?api-version=2016-12-01"
 ```
 
-La risposta seguente è un esempio di una tipica risposta restituita quando si ottengono tutte le acquisizioni di pacchetti
+Hello risposta seguente è riportato un esempio di una risposta tipica restituito durante il recupero di tutti i pacchetti acquisisce
 
 ```json
 {
@@ -196,7 +196,7 @@ ture_17_23_15_364.cap",
 
 ## <a name="query-packet-capture-status"></a>Effettuare una query dello stato di acquisizione di pacchetti
 
-L'esempio seguente ottiene tutte le sessioni di acquisizione di pacchetti in un'area.
+Hello di esempio seguente ottiene tutte le sessioni di acquisizione di pacchetti in un'area.
 
 ```powershell
 $subscriptionId = "<subscription id>"
@@ -206,7 +206,7 @@ $packetCaptureName = "TestPacketCapture5"
 armclient get "https://management.azure.com/subscriptions/${subscriptionId}/ResourceGroups/${resourceGroupName}/providers/Microsoft.Network/networkWatchers/${networkWatcherName}/packetCaptures/${packetCaptureName}/querystatus?api-version=2016-12-01"
 ```
 
-La risposta seguente è un esempio di una tipica risposta restituita quando si effettua una query sullo stato di un'acquisizione di pacchetti.
+Hello risposta seguente è riportato un esempio di una risposta tipica restituito quando si eseguono query stato hello di un'acquisizione di pacchetti.
 
 ```json
 {
@@ -220,7 +220,7 @@ La risposta seguente è un esempio di una tipica risposta restituita quando si e
 
 ## <a name="start-packet-capture"></a>Avviare un'acquisizione di pacchetti
 
-L'esempio seguente crea un'acquisizione di pacchetti in una macchina virtuale.  Nell'esempio vengono impostati parametri per consentire flessibilità nella creazione di un esempio.
+Hello di esempio seguente crea una pacchetto di acquisizione in una macchina virtuale.  esempio Hello è tooallow con parametri per la flessibilità per la creazione di un esempio.
 
 ```powershell
 $subscriptionId = '<subscription id>'
@@ -272,7 +272,7 @@ armclient PUT "https://management.azure.com/subscriptions/${subscriptionId}/Reso
 
 ## <a name="stop-packet-capture"></a>Arrestare un'acquisizione di pacchetti
 
-L'esempio seguente arresta un'acquisizione di pacchetti in una macchina virtuale.  Nell'esempio vengono impostati parametri per consentire flessibilità nella creazione di un esempio.
+Hello di esempio seguente viene arrestata un'acquisizione di pacchetti in una macchina virtuale.  esempio Hello è tooallow con parametri per la flessibilità per la creazione di un esempio.
 
 ```powershell
 $subscriptionId = '<subscription id>'
@@ -284,7 +284,7 @@ armclient post "https://management.azure.com/subscriptions/${subscriptionId}/Res
 
 ## <a name="delete-packet-capture"></a>Eliminare un'acquisizione di pacchetti
 
-L'esempio seguente elimina un'acquisizione di pacchetti in una macchina virtuale.  Nell'esempio vengono impostati parametri per consentire flessibilità nella creazione di un esempio.
+Hello di esempio seguente elimina un'acquisizione di pacchetti in una macchina virtuale.  esempio Hello è tooallow con parametri per la flessibilità per la creazione di un esempio.
 
 ```powershell
 $subscriptionId = '<subscription id>'
@@ -296,13 +296,13 @@ armclient delete "https://management.azure.com/subscriptions/${subscriptionId}/R
 ```
 
 > [!NOTE]
-> L'eliminazione di un'acquisizione di pacchetti non elimina il file nell'account di archiviazione
+> L'eliminazione di un'acquisizione di pacchetti non elimina il file hello nell'account di archiviazione hello
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Per istruzioni sul download di file dall'account di archiviazione di Azure, vedere [Introduzione all'archivio BLOB di Azure con .NET](../storage/blobs/storage-dotnet-how-to-use-blobs.md). Un altro strumento che può essere usato è Storage Explorer. Altre informazioni su Storage Explorer sono reperibili facendo clic sul collegamento seguente: [Storage Explorer](http://storageexplorer.com/).
+Per istruzioni sul download di file dall'account di archiviazione di azure, consultare troppo[Introduzione all'archiviazione Blob di Azure usando .NET](../storage/blobs/storage-dotnet-how-to-use-blobs.md). Un altro strumento che può essere usato è Storage Explorer. Ulteriori informazioni su soluzioni di archiviazione sono reperibile qui in hello seguente collegamento: [Esplora archivi](http://storageexplorer.com/)
 
-Per altre informazioni su come automatizzare le acquisizioni di pacchetti tramite gli avvisi della macchina virtuale, leggere l'articolo su come [creare un'acquisizione di pacchetti attivata da un avviso](network-watcher-alert-triggered-packet-capture.md).
+Informazioni su come acquisizioni di pacchetti tooautomate con gli avvisi di macchina virtuale visualizzando [creare un'acquisizione pacchetto attivati avvisi](network-watcher-alert-triggered-packet-capture.md)
 
 
 

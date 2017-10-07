@@ -1,5 +1,5 @@
 ---
-title: Azure Data Factory - Informazioni di riferimento sugli script JSON | Documentazione Microsoft
+title: aaaAzure Data Factory - riferimento agli script JSON | Documenti Microsoft
 description: "Questo articolo fornisce gli schemi JSON per le entità di Data Factory."
 services: data-factory
 documentationcenter: 
@@ -13,17 +13,17 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/10/2017
 ms.author: spelluru
-ms.openlocfilehash: 805106c0a5cdbff1f143f22a2ae59f6d2a0bf126
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 813fd752bb0ecb1b513d022b9f302325105dac31
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-data-factory---json-scripting-reference"></a>Azure Data Factory - Informazioni di riferimento sugli script JSON
 Questo articolo fornisce gli schemi JSON ed esempi per la definizione di entità di Azure Data Factory (pipeline, attività, set di dati e servizi collegati).  
 
 ## <a name="pipeline"></a>Pipeline 
-La struttura di livello superiore per una definizione di pipeline è la seguente: 
+struttura di alto livello per una definizione di pipeline Hello è come segue: 
 
 ```json
 {
@@ -38,22 +38,22 @@ La struttura di livello superiore per una definizione di pipeline è la seguente
 } 
 ```
 
-Nella tabella seguente vengono descritte le proprietà all'interno della definizione JSON della pipeline:
+Nella tabella seguente vengono descritte le proprietà di hello all'interno della pipeline hello definizione JSON:
 
 | Proprietà | Descrizione | Obbligatorio
 -------- | ----------- | --------
-| name | Nome della pipeline. Specificare un nome che rappresenta l'azione che l'attività o la pipeline è configurata per eseguire<br/><ul><li>Numero massimo di caratteri: 260</li><li>Deve iniziare con una lettera, un numero o un carattere di sottolineatura (_)</li><li>Non sono ammessi i caratteri seguenti: ".", "+", "?", "/", "<", ">", "*", "%", "&", ":", "\\"</li></ul> |Sì |
-| Descrizione |Testo descrittivo per lo scopo dell'attività o della pipeline | No |
+| name | Nome della pipeline hello. Specificare un nome che rappresenta l'azione di hello che hello attività o pipeline è toodo configurato<br/><ul><li>Numero massimo di caratteri: 260</li><li>Deve iniziare con una lettera, un numero o un carattere di sottolineatura (_)</li><li>Non sono ammessi i caratteri seguenti: ".", "+", "?", "/", "<", ">", "*", "%", "&", ":", "\\"</li></ul> |Sì |
+| description |Testo che descrive le attività hello o una pipeline viene utilizzata per | No |
 | attività | Contiene un elenco di attività. | Sì |
-| start |Data e ora di inizio per la pipeline. Devono essere nel [formato ISO](http://en.wikipedia.org/wiki/ISO_8601), ad esempio: 2014-10-14T16:32:41. <br/><br/>È possibile specificare un'ora locale, ad esempio in base al fuso orario EST. Di seguito è fornito l'esempio `2016-02-27T06:00:00**-05:00`, che indica le 6 EST.<br/><br/>Le proprietà start ed end insieme specificano il periodo attivo per la pipeline. Le sezioni di output vengono generate solo in questo periodo attivo. |No<br/><br/>Se si specifica un valore per la proprietà di fine, è necessario specificare un valore anche per la proprietà di avvio.<br/><br/>L'ora di inizio e l'ora di fine possono essere entrambe vuote per creare una pipeline. È necessario specificare entrambi i valori per impostare un periodo attivo per l'esecuzione della pipeline. Se non si specificano le ore di inizio e fine durante la creazione di una pipeline, è possibile impostare tali valori in un secondo momento usando il cmdlet Set-AzureRmDataFactoryPipelineActivePeriod. |
-| end |Data e ora di fine per la pipeline. Se specificate, devono essere in formato ISO. Ad esempio: 2014-10-14T17:32:41 <br/><br/>È possibile specificare un'ora locale, ad esempio in base al fuso orario EST. Di seguito è fornito l'esempio `2016-02-27T06:00:00**-05:00`, che indica le 6 EST.<br/><br/>Per eseguire la pipeline illimitatamente, specificare 9999-09-09 come valore per la proprietà end. |No <br/><br/>Se si specifica un valore per la proprietà di avvio, è necessario specificare un valore anche per la proprietà di fine.<br/><br/>Vedere le note della proprietà **start** . |
-| isPaused |Se impostato su true, la pipeline non viene eseguita. Valore predefinito = false. È possibile usare questa proprietà per abilitare o disabilitare. |No |
-| pipelineMode |Metodo di pianificazione delle esecuzioni per la pipeline. I valori consentiti sono scheduled (predefinito) e onetime.<br/><br/>"Scheduled" indica che la pipeline viene eseguita a intervalli di tempo specificati in base al periodo di attività, ovvero all'ora di inizio e di fine. "Onetime" indica che la pipeline viene eseguita una sola volta. Al momento, dopo aver creato una pipeline monouso non è possibile modificarla o aggiornarla. Per informazioni dettagliate sull'impostazione onetime, vedere la sezione [Pipeline monouso](data-factory-create-pipelines.md#onetime-pipeline) . |No |
-| expirationTime |Periodo di tempo dopo la creazione in cui la pipeline è valida e deve rimanere con provisioning eseguito. Se non ha esecuzioni attive, non riuscite o in sospeso, quando viene raggiunta la scadenza, la pipeline viene eliminata automaticamente. |No |
+| start |Data-ora di inizio per la pipeline di hello. Devono essere nel [formato ISO](http://en.wikipedia.org/wiki/ISO_8601), ad esempio: 2014-10-14T16:32:41. <br/><br/>È possibile toospecify un'ora locale, ad esempio un'ora EST. Di seguito è fornito l'esempio `2016-02-27T06:00:00**-05:00`, che indica le 6 EST.<br/><br/>Hello proprietà start ed end insieme specificano il periodo attivo per la pipeline di hello. Le sezioni di output vengono generate solo in questo periodo attivo. |No<br/><br/>Se si specifica un valore per la proprietà di fine hello, è necessario specificare una valore per la proprietà di avvio hello.<br/><br/>Hello ora di inizio e fine può essere entrambi vuoti toocreate una pipeline. È necessario specificare entrambi i valori tooset un periodo attivo per hello pipeline toorun. Se non si specifica l'ora di inizio e fine durante la creazione di una pipeline, è possibile impostare utilizzando il cmdlet Set-AzureRmDataFactoryPipelineActivePeriod hello in un secondo momento. |
+| end |Data-ora di fine per la pipeline di hello. Se specificate, devono essere in formato ISO. Ad esempio: 2014-10-14T17:32:41 <br/><br/>È possibile toospecify un'ora locale, ad esempio un'ora EST. Di seguito è fornito l'esempio `2016-02-27T06:00:00**-05:00`, che indica le 6 EST.<br/><br/>pipeline hello toorun specificare in modo indefinito, 9999-09-09 come valore di hello per la proprietà di fine hello. |No <br/><br/>Se si specifica un valore per la proprietà di avvio hello, è necessario specificare una valore per la proprietà di fine hello.<br/><br/>Vedere le note per hello **avviare** proprietà. |
+| isPaused |Se set tootrue hello pipeline non viene eseguito. Valore predefinito = false. È possibile utilizzare questa proprietà tooenable o disabilitare. |No |
+| pipelineMode |metodo Hello per la pianificazione viene eseguita per la pipeline di hello. I valori consentiti sono scheduled (predefinito) e onetime.<br/><br/>'Pianificata' indica che pipeline hello viene eseguita in un intervallo di tempo specificato in base tooits periodo attivo (ora di inizio e fine). 'Unica' indica che pipeline hello viene eseguito una sola volta. Al momento, dopo aver creato una pipeline monouso non è possibile modificarla o aggiornarla. Per informazioni dettagliate sull'impostazione onetime, vedere la sezione [Pipeline monouso](data-factory-create-pipelines.md#onetime-pipeline) . |No |
+| expirationTime |Periodo di tempo dopo la creazione per i quali hello pipeline sia valido e deve rimanere disponibile. Se non è attiva qualsiasi, non è riuscita, o in attesa di esecuzione, la pipeline di hello viene eliminata automaticamente una volta raggiunta l'ora di scadenza hello. |No |
 
 
 ## <a name="activity"></a>Attività 
-La struttura di livello superiore per un'attività all'interno di una definizione di pipeline (elemento attività) è la seguente:
+struttura di alto livello Hello per un'attività all'interno di una definizione di pipeline (elemento di attività) è il seguente:
 
 ```json
 {
@@ -76,46 +76,46 @@ La struttura di livello superiore per un'attività all'interno di una definizion
 }
 ```
 
-Nella tabella seguente vengono descritte le proprietà all'interno della definizione JSON dell'attività:
+Seguente tabella vengono descritti proprietà hello all'interno di attività hello definizione JSON:
 
 | Tag | Descrizione | Obbligatorio |
 | --- | --- | --- |
-| name |Nome dell'attività. Specificare un nome che rappresenta l'azione che l'attività è configurata per eseguire<br/><ul><li>Numero massimo di caratteri: 260</li><li>Deve iniziare con una lettera, un numero o un carattere di sottolineatura (_)</li><li>Non sono ammessi i caratteri seguenti: ".", "+", "?", "/", "<", ">", "*", "%", "&", ":", "\\"</li></ul> |Sì |
-| Descrizione |Testo descrittivo per lo scopo dell'attività. |Sì |
-| type |Specifica il tipo di attività. Per informazioni sui diversi tipi di attività, vedere le sezioni [ARCHIVIAZIONE DEI DATI](#data-stores) e [ATTIVITÀ DI TRASFORMAZIONE DEI DATI](#data-transformation-activities). |Sì |
-| inputs |Tabelle di input usate dall'attività<br/><br/>`// one input table`<br/>`"inputs":  [ { "name": "inputtable1"  } ],`<br/><br/>`// two input tables` <br/>`"inputs":  [ { "name": "inputtable1"  }, { "name": "inputtable2"  } ],` |Sì |
-| outputs |Tabelle di output usate dall'attività.<br/><br/>`// one output table`<br/>`"outputs":  [ { "name": “outputtable1” } ],`<br/><br/>`//two output tables`<br/>`"outputs":  [ { "name": “outputtable1” }, { "name": “outputtable2” }  ],` |Sì |
-| linkedServiceName |Nome del servizio collegato usato dall'attività. <br/><br/>Per un'attività può essere necessario specificare il servizio collegato che collega all'ambiente di calcolo richiesto. |Sì per attività di HDInsight, attività di Azure Machine Learning e attività delle stored procedure. <br/><br/>No per tutto il resto |
-| typeProperties |Le proprietà nella sezione typeProperties dipendono dal tipo di attività. |No |
-| policy |Criteri che influiscono sul comportamento di runtime dell'attività. Se vengono omessi, vengono usati i criteri predefiniti. |No |
-| scheduler |La proprietà "scheduler" viene usata per definire la pianificazione per l'attività. Le relative proprietà secondarie sono quelle indicate nella sezione [Disponibilità dei set di dati](data-factory-create-datasets.md#dataset-availability). |No |
+| name |Nome dell'attività hello. Specificare un nome che rappresenta l'azione di hello che attività hello è configurato toodo<br/><ul><li>Numero massimo di caratteri: 260</li><li>Deve iniziare con una lettera, un numero o un carattere di sottolineatura (_)</li><li>Non sono ammessi i caratteri seguenti: ".", "+", "?", "/", "<", ">", "*", "%", "&", ":", "\\"</li></ul> |Sì |
+| description |Testo che descrive le attività di hello viene utilizzato per. |Sì |
+| type |Specifica il tipo di hello di attività hello. Vedere hello [archivi dati](#data-stores) e [le attività di trasformazione dati](#data-transformation-activities) sezioni per diversi tipi di attività. |Sì |
+| inputs |Tabelle di input utilizzate dall'attività hello<br/><br/>`// one input table`<br/>`"inputs":  [ { "name": "inputtable1"  } ],`<br/><br/>`// two input tables` <br/>`"inputs":  [ { "name": "inputtable1"  }, { "name": "inputtable2"  } ],` |Sì |
+| outputs |Tabelle di output utilizzate dall'attività hello.<br/><br/>`// one output table`<br/>`"outputs":  [ { "name": “outputtable1” } ],`<br/><br/>`//two output tables`<br/>`"outputs":  [ { "name": “outputtable1” }, { "name": “outputtable2” }  ],` |Sì |
+| linkedServiceName |Nome del servizio hello collegato usato dall'attività hello. <br/><br/>Un'attività potrebbe essere necessario specificare il servizio collegato hello che collega l'ambiente di calcolo necessarie toohello. |Sì per attività di HDInsight, attività di Azure Machine Learning e attività delle stored procedure. <br/><br/>No per tutto il resto |
+| typeProperties |Le proprietà nella sezione typeProperties hello dipendono dal tipo di attività hello. |No |
+| policy |Criteri che influiscono sul comportamento di hello in fase di esecuzione dell'attività hello. Se vengono omessi, vengono usati i criteri predefiniti. |No |
+| scheduler |proprietà "utilità di pianificazione" è utilizzato toodefine desiderato pianificazione per l'attività hello. Le sottoproprietà sono hello stesso hello quelle nella hello [proprietà disponibilità in un set di dati](data-factory-create-datasets.md#dataset-availability). |No |
 
 ### <a name="policies"></a>Criteri
-I criteri influiscono sul comportamento in fase di esecuzione di un'attività, in particolare quando viene elaborata la sezione di una tabella. La tabella seguente fornisce informazioni dettagliate.
+Criteri influiscono sul comportamento di hello in fase di esecuzione di un'attività, in particolare quando viene elaborata la sezione hello di una tabella. Hello nella tabella seguente fornisce dettagli hello.
 
 | Proprietà | Valori consentiti | Valore predefinito | Descrizione |
 | --- | --- | --- | --- |
-| Concorrenza |Integer  <br/><br/>Valore massimo: 10 |1 |Numero di esecuzioni simultanee dell'attività.<br/><br/>Determina il numero di esecuzioni di attività parallele che possono verificarsi in sezioni diverse. Ad esempio, se un'attività deve passare attraverso grandi set di dati disponibili, con un valore di concorrenza maggiore che consente di velocizzare l'elaborazione dei dati. |
-| executionPriorityOrder |NewestFirst<br/><br/>OldestFirst |OldestFirst |Determina l'ordine delle sezioni di dati che vengono elaborate.<br/><br/>Ad esempio nel caso in cui si abbiano 2 sezioni, una alle 16.00 e l'altra alle 17.00, ed entrambe siano in attesa di esecuzione. Se si imposta executionPriorityOrder su NewestFirst, viene elaborata per prima la sezione delle 17:00. Allo stesso modo, se si imposta executionPriorityORder su OldestFIrst, verrà elaborata per prima la sezione delle 16:00. |
-| retry |Integer <br/><br/>Valore massimo: 10 |0 |Numero di tentativi prima che l'elaborazione dei dati per la sezione sia contrassegnata come errore. L'esecuzione dell’attività per una sezione di dati viene ritentata fino al numero di tentativi specificato. Il tentativo viene eseguito appena possibile dopo l'errore. |
-| timeout |TimeSpan |00:00:00 |Timeout per l'attività. Esempio: 00:10:00 (implica un timeout di 10 minuti)<br/><br/>Se un valore non è specificato o è 0, il timeout è infinito.<br/><br/>Se il tempo di elaborazione dei dati in una sezione supera il valore di timeout, viene annullato e il sistema prova a ripetere l'elaborazione. Il numero di tentativi dipende dalla proprietà retry. Quando si verifica il timeout, lo stato viene impostato su TimedOut. |
-| delay |TimeSpan |00:00:00 |Specificare il ritardo prima che abbia inizio l'elaborazione dei dati della sezione.<br/><br/>L'esecuzione dell'attività per una sezione di dati viene avviata non appena il ritardo supera il tempo di esecuzione previsto.<br/><br/>Esempio: 00:10:00 (implica un ritardo di 10 minuti) |
-| longRetry |Integer <br/><br/>Valore massimo: 10 |1 |Numero di tentativi estesi prima che l'esecuzione della sezione dia esito negativo.<br/><br/>I tentativi longRetry sono distanziati da longRetryInterval. Pertanto, se è necessario specificare un tempo tra i tentativi, utilizzare longRetry. Se si specificano sia Retry che longRetry, ogni tentativo longRetry include tentativi Retry e il numero massimo di tentativi corrisponde a Retry * longRetry.<br/><br/>Ad esempio, se si hanno le seguenti impostazioni nel criterio attività:<br/>Retry: 3<br/>longRetry: 2<br/>longRetryInterval: 01:00:00<br/><br/>si presume che la sezione da eseguire sia solo una, con stato Waiting, e che l'esecuzione dell'attività abbia ogni volta esito negativo. All’inizio vi saranno tre tentativi di esecuzione consecutivi. Dopo ogni tentativo, lo stato della sezione sarà Retry. Una volta terminati i 3 tentativi sulla sezione, lo stato sarà LongRetry.<br/><br/>Dopo un'ora (vale a dire il valore di longRetryInteval), verrà eseguita un'altra serie di 3 tentativi di esecuzione consecutivi. Al termine, lo stato della sezione sarà Failed e non verranno eseguiti altri tentativi. Quindi, sono stati eseguiti 6 tentativi.<br/><br/>Se un'esecuzione ha esito positivo, lo stato della sezione sarà Ready e non saranno ripetuti altri tentativi.<br/><br/>longRetry può essere usato nelle situazioni in cui i dati dipendenti arrivano in orari non deterministici o l'ambiente complessivo in cui si verifica l'elaborazione dei dati è debole. In tali casi, l'esecuzione di tentativi consecutivi potrebbe non essere utile, mentre l'applicazione di un intervallo consente di ottenere il risultato voluto.<br/><br/>Attenzione: non impostare valori elevati per longRetry o longRetryInterval. In genere, valori più elevati comportano altri problemi sistemici. |
-| longRetryInterval |TimeSpan |00:00:00 |Il ritardo tra tentativi longRetry |
+| Concorrenza |Integer  <br/><br/>Valore massimo: 10 |1 |Numero di esecuzioni simultanee dell'attività hello.<br/><br/>Determina il numero di hello di esecuzioni di attività parallele che possono verificarsi in sezioni diverse. Ad esempio, se un'attività deve toogo tramite un ampio set di dati disponibili, un valore maggiore di concorrenza di velocizzare l'elaborazione dati hello. |
+| executionPriorityOrder |NewestFirst<br/><br/>OldestFirst |OldestFirst |Determina hello ordinamento delle sezioni di dati che vengono elaborate.<br/><br/>Ad esempio nel caso in cui si abbiano 2 sezioni, una alle 16.00 e l'altra alle 17.00, ed entrambe siano in attesa di esecuzione. Se si imposta executionPriorityOrder di hello toobe NewestFirst, slice hello 17: 00 viene elaborata per prima. Allo stesso modo se si imposta executionPriorityORder di hello toobe OldestFIrst, viene elaborato sezione hello 4 ore. |
+| retry |Integer <br/><br/>Valore massimo: 10 |0 |Numero di tentativi prima dell'elaborazione dei dati di hello per sezione hello è contrassegnato come errore. Esecuzione di attività per una sezione di dati viene ripetuta backup toohello specificato numero di tentativi. Riprova Hello viene eseguito appena possibile dopo l'errore hello. |
+| timeout |TimeSpan |00:00:00 |Timeout per l'attività hello. Esempio: 00:10:00 (implica un timeout di 10 minuti)<br/><br/>Se un valore viene omesso o è 0, hello timeout è infinito.<br/><br/>Se il tempo di elaborazione di dati hello in una sezione supera il valore di timeout di hello, viene annullata e sistema hello tenta l'elaborazione di hello tooretry. numero di tentativi di Hello dipende dalla proprietà retry hello. Quando si verifica il timeout, hello stato tooTimedOut. |
+| delay |TimeSpan |00:00:00 |Specificare il ritardo di hello prima dell'elaborazione di dati di hello sezione inizia.<br/><br/>esecuzione di Hello dell'attività per una sezione di dati viene avviata dopo hello ritardo passato hello previsto tempo di esecuzione.<br/><br/>Esempio: 00:10:00 (implica un ritardo di 10 minuti) |
+| longRetry |Integer <br/><br/>Valore massimo: 10 |1 |numero di Hello di long tentativi prima dell'esecuzione della sezione hello è non è riuscito.<br/><br/>I tentativi longRetry sono distanziati da longRetryInterval. Pertanto, se è necessario toospecify un intervallo tra tentativi, usare quindi longRetry. Se vengono specificati Retry e longRetry, ogni tentativo longRetry include nuovi tentativi e numero massimo di tentativi di hello è Riprova * longRetry.<br/><br/>Ad esempio, se si dispone delle seguenti impostazioni in criteri attività hello hello:<br/>Retry: 3<br/>longRetry: 2<br/>longRetryInterval: 01:00:00<br/><br/>Si supponga che sia presente solo una sezione tooexecute (lo stato è in attesa) e l'esecuzione dell'attività hello ha esito negativo di ogni volta. All’inizio vi saranno tre tentativi di esecuzione consecutivi. Dopo ogni tentativo, lo stato della sezione hello sarà Retry. Dopo aver innanzitutto 3 tentativi di failover, lo stato della sezione hello sarebbe LongRetry.<br/><br/>Dopo un'ora (vale a dire il valore di longRetryInteval), verrà eseguita un'altra serie di 3 tentativi di esecuzione consecutivi. Successivamente, lo stato della sezione hello sarà Failed e non più necessario tentativi. Quindi, sono stati eseguiti 6 tentativi.<br/><br/>Se qualsiasi esecuzione ha esito positivo, lo stato della sezione hello sarà Ready e non più tentativi.<br/><br/>longRetry possono essere utilizzati in situazioni in cui dipendenti dati arrivano a volte non deterministica o hello ambiente generale non è affidabile in cui l'elaborazione dei dati si verifica. In questi casi, potrebbe non aiutare eseguire tentativi uno dopo l'altro e in questo modo, dopo un intervallo di risultati in fase di hello desiderato output.<br/><br/>Attenzione: non impostare valori elevati per longRetry o longRetryInterval. In genere, valori più elevati comportano altri problemi sistemici. |
+| longRetryInterval |TimeSpan |00:00:00 |ritardo Hello tra nuovi tentativi lunghi |
 
 ### <a name="typeproperties-section"></a>sezione typeProperties
-La sezione typeProperties è diversa per ogni tipo di attività. Le attività di trasformazione dispongono delle sole proprietà del tipo. Vedere la sezione [Attività di trasformazione dei dati](#data-transformation-activities) in questo articolo per esempi JSON che definiscono le attività di trasformazione in una pipeline. 
+sezione typeProperties Hello è diverso per ogni attività. Le attività di trasformazione dispongono solo le proprietà del tipo hello. Vedere la sezione [Attività di trasformazione dei dati](#data-transformation-activities) in questo articolo per esempi JSON che definiscono le attività di trasformazione in una pipeline. 
 
-L'**attività di copia** ha due sottosezioni nella sezione typeProperties: **origine** e **sink**. Vedere la sezione [Archivi dati](#data-stores) in questo articolo per esempi JSON che mostrano come usare un archivio dati come origine e/o sink. 
+**Attività di copia** contiene due sottosezioni nella sezione typeProperties hello: **origine** e **sink**. Vedere [archivi dati](#data-stores) sezione in questo articolo per esempi che mostrano come toouse dati memorizzati come origine e/o un sink di JSON. 
 
 ### <a name="sample-copy-pipeline"></a>Esempio di una pipeline di copia
-In questa pipeline di esempio è presente un'attività di tipo **Copy** in the **attività** . In questo esempio, [Copia attività](data-factory-data-movement-activities.md) consente di copiare i dati da un archivio BLOB di Azure a un database SQL di Azure. 
+In hello seguente della pipeline di esempio, un'attività di tipo è **copia** in hello **attività** sezione. In questo esempio, hello [attività di copia](data-factory-data-movement-activities.md) copia i dati da un database di SQL Azure tooan di archiviazione Blob di Azure. 
 
 ```json
 {
   "name": "CopyPipeline",
   "properties": {
-    "description": "Copy data from a blob to Azure SQL table",
+    "description": "Copy data from a blob tooAzure SQL table",
     "activities": [
       {
         "name": "CopyFromBlobToSQL",
@@ -154,18 +154,18 @@ In questa pipeline di esempio è presente un'attività di tipo **Copy** in the *
 } 
 ```
 
-Tenere presente quanto segue:
+Si noti hello seguenti punti:
 
-* Nella sezione delle attività esiste una sola attività con l'oggetto **type** impostato su **Copy**.
-* L'input per l'attività è impostato su **InputDataset** e l'output è impostato su **OutputDataset**.
-* Nella sezione **typeProperties** vengono specificati **BlobSource** come tipo di origine e **SqlSink** come tipo di sink.
+* Nella sezione attività hello, è presente una sola attività il cui **tipo** è troppo**copia**.
+* Input per attività hello è troppo**InputDataset** e di output per attività hello è troppo**OutputDataset**.
+* In hello **typeProperties** sezione **BlobSource** è specificato come tipo di origine hello e **SqlSink** è specificato come tipo di sink hello.
 
-Vedere la sezione [Archivi dati](#data-stores) in questo articolo per esempi JSON che mostrano come usare un archivio dati come origine e/o sink.    
+Vedere [archivi dati](#data-stores) sezione in questo articolo per esempi che mostrano come toouse dati memorizzati come origine e/o un sink di JSON.    
 
-Per la procedura completa di creazione di questa pipeline, vedere [Esercitazione: copiare i dati dall'archivio BLOB al database SQL](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md). 
+Per una descrizione completa della creazione di questa pipeline, vedere [esercitazione: copiare i dati da archiviazione Blob tooSQL Database](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md). 
 
 ### <a name="sample-transformation-pipeline"></a>Esempio di una pipeline di trasformazione
-In questa pipeline di esempio è presente un'attività di tipo **HDInsightHive** in the **attività** . In questo esempio, l' [attività Hive di HDInsight](data-factory-hive-activity.md) trasforma i dati da un archivio BLOB di Azure tramite l'esecuzione di un file di script Hive in un cluster Hadoop di HDInsight. 
+In hello seguente della pipeline di esempio, un'attività di tipo è **HDInsightHive** in hello **attività** sezione. In questo esempio, hello [attività Hive di HDInsight](data-factory-hive-activity.md) Trasforma i dati da un archivio Blob di Azure eseguendo un file di script Hive in un cluster Azure HDInsight Hadoop. 
 
 ```json
 {
@@ -212,37 +212,37 @@ In questa pipeline di esempio è presente un'attività di tipo **HDInsightHive**
 }
 ```
 
-Tenere presente quanto segue: 
+Si noti hello seguenti punti: 
 
-* Nella sezione attività esiste una sola attività con l'oggetto **type** impostato su **HDInsightHive**.
-* Il file di script Hive, **partitionweblogs.hql**, è archiviato nell'account di archiviazione di Azure (specificato da scriptLinkedService, denominato **AzureStorageLinkedService**) e nella cartella **script** nel contenitore **adfgetstarted**.
-* La sezione **defines** viene usata per specificare le impostazioni di runtime che vengono passate allo script Hive come valori di configurazione Hive, ad esempio `${hiveconf:inputtable}` e `${hiveconf:partitionedtable}`.
+* Nella sezione attività hello, è presente una sola attività il cui **tipo** è troppo**HDInsightHive**.
+* file di script Hive Hello, **partitionweblogs.hql**, viene archiviato nell'account di archiviazione Azure hello (specificato da scriptLinkedService hello, chiamato **AzureStorageLinkedService**) e in  **script** cartella nel contenitore hello **adfgetstarted**.
+* Hello **definisce** sezione è le impostazioni di runtime hello toospecify utilizzati script hive toohello passati come valori di configurazione di Hive (ad esempio `${hiveconf:inputtable}`, `${hiveconf:partitionedtable}`).
 
 Vedere la sezione [Attività di trasformazione dei dati](#data-transformation-activities) in questo articolo per esempi JSON che definiscono le attività di trasformazione in una pipeline.
 
-Per la procedura completa della creazione di questa pipeline, vedere [Esercitazione: creare la prima pipeline per elaborare i dati usando il cluster Hadoop](data-factory-build-your-first-pipeline.md). 
+Per una descrizione completa della creazione di questa pipeline, vedere [esercitazione: creare i primi dati tooprocess pipeline utilizzando cluster Hadoop](data-factory-build-your-first-pipeline.md). 
 
 ## <a name="linked-service"></a>Servizio collegato
-La struttura di livello superiore per una definizione di servizio collegato è la seguente:
+struttura di alto livello per una definizione di servizio collegato Hello è come segue:
 
 ```json
 {
-    "name": "<name of the linked service>",
+    "name": "<name of hello linked service>",
     "properties": {
-        "type": "<type of the linked service>",
+        "type": "<type of hello linked service>",
         "typeProperties": {
         }
     }
 }
 ```
 
-Nella tabella seguente vengono descritte le proprietà all'interno della definizione JSON dell'attività:
+Seguente tabella vengono descritti proprietà hello all'interno di attività hello definizione JSON:
 
 | Proprietà | Descrizione | Obbligatorio |
 | -------- | ----------- | -------- | 
-| name | Nome del servizio collegato. | Sì | 
-| proprietà - tipo | Tipo di servizio collegato. Ad esempio: archiviazione di Azure, database SQL di Azure. |
-| typeProperties | La sezione typeProperties contiene elementi che sono diversi per ogni archivio dati o ambiente di calcolo. Vedere la sezione [Archivi dati](#datastores) per tutti i servizi collegati agli archivi dati e la sezione [Ambienti di calcolo](#compute-environments) per tutti i servizi collegati agli ambienti di calcolo. |   
+| name | Nome del servizio collegato hello. | Sì | 
+| proprietà - tipo | Tipo di servizio collegato hello. Ad esempio: archiviazione di Azure, database SQL di Azure. |
+| typeProperties | sezione typeProperties Hello dispone degli elementi che sono diverse per ogni archivio dati o l'ambiente di calcolo. Vedere [archivi dati](#datastores) sezione per tutti i dati di hello servizi collegati dell'archivio e [calcolo ambienti](#compute-environments) per hello tutti i servizi collegati di calcolo |   
 
 ## <a name="dataset"></a>Set di dati 
 Un set di dati in Azure Data Factory viene definito come segue:
@@ -252,12 +252,12 @@ Un set di dati in Azure Data Factory viene definito come segue:
     "name": "<name of dataset>",
     "properties": {
         "type": "<type of dataset: AzureBlob, AzureSql etc...>",
-        "external": <boolean flag to indicate external data. only for input datasets>,
-        "linkedServiceName": "<Name of the linked service that refers to a data store.>",
+        "external": <boolean flag tooindicate external data. only for input datasets>,
+        "linkedServiceName": "<Name of hello linked service that refers tooa data store.>",
         "structure": [
             {
-                "name": "<Name of the column>",
-                "type": "<Name of the type>"
+                "name": "<Name of hello column>",
+                "type": "<Name of hello type>"
             }
         ],
         "typeProperties": {
@@ -265,8 +265,8 @@ Un set di dati in Azure Data Factory viene definito come segue:
             "<type specific property 2>": "<value 2>",
         },
         "availability": {
-            "frequency": "<Specifies the time unit for data slice production. Supported frequency: Minute, Hour, Day, Week, Month>",
-            "interval": "<Specifies the interval within the defined frequency. For example, frequency set to 'Hour' and interval set to 1 indicates that new data slices should be produced hourly>"
+            "frequency": "<Specifies hello time unit for data slice production. Supported frequency: Minute, Hour, Day, Week, Month>",
+            "interval": "<Specifies hello interval within hello defined frequency. For example, frequency set too'Hour' and interval set too1 indicates that new data slices should be produced hourly>"
         },
        "policy":
         {      
@@ -275,28 +275,28 @@ Un set di dati in Azure Data Factory viene definito come segue:
 }
 ```
 
-La tabella seguente descrive le proprietà nel codice JSON precedente:   
+Hello nella tabella seguente vengono descritte le proprietà in hello sopra JSON:   
 
 | Proprietà | Descrizione | Obbligatorio | Default |
 | --- | --- | --- | --- |
-| name | Nome del set di dati. Per le regole di denominazione, vedere [Azure Data Factory: regole di denominazione](data-factory-naming-rules.md) . |Sì |ND |
-| type | Tipo del set di dati. Specificare uno dei tipi supportati da Azure Data Factory, ad esempio AzureBlob, AzureSqlTable. Vedere la sezione [Archivi dati](#data-stores) per tutti gli archivi dati e i tipi di set di dati supportati da Data Factory. | 
-| structure | Schema del set di dati. Contiene le colonne, i tipi e così via. | No |ND |
-| typeProperties | Proprietà che corrispondono al tipo selezionato. Vedere la sezione [Archivi dati](#data-stores) per i tipi supportati e le rispettive proprietà. |Sì |ND |
-| external | Flag booleano per specificare se un set di dati è generato o meno in modo esplicito da una pipeline della data factory. |No |false |
-| disponibilità | Definisce la finestra di elaborazione o il modello di sezionamento per la produzione di set di dati Per informazioni dettagliate sul modello di sezionamento dei set di dati, vedere l'articolo [Pianificazione ed esecuzione](data-factory-scheduling-and-execution.md). |Sì |ND |
-| policy |Definisce i criteri o la condizione che devono soddisfare i sezionamenti di set di dati. <br/><br/>Per informazioni dettagliate, vedere la sezione [Criteri di set di dati](#Policy) . |No |ND |
+| name | Nome del set di dati hello. Per le regole di denominazione, vedere [Azure Data Factory: regole di denominazione](data-factory-naming-rules.md) . |Sì |ND |
+| type | tipo di set di dati hello. Specificare uno dei tipi di hello supportati da Data Factory di Azure (ad esempio: AzureBlob, AzureSqlTable). Vedere [archivi dati](#data-stores) sezione per tutti hello archivi dati e i tipi di set di dati supportati da Data Factory. | 
+| structure | Schema di set di dati hello. Contiene le colonne, i tipi e così via. | No |ND |
+| typeProperties | Le proprietà corrispondenti toohello tipo selezionato. Vedere la sezione [Archivi dati](#data-stores) per i tipi supportati e le rispettive proprietà. |Sì |ND |
+| external | Valore booleano flag toospecify se un set di dati generata in modo esplicito tramite una pipeline di factory di dati o non. |No |false |
+| disponibilità | Definisce l'elaborazione di finestra o sezionamento modello per la produzione di set di dati hello hello hello. Per informazioni dettagliate sul set di dati hello sezionamento modello, vedere [pianificazione ed esecuzione](data-factory-scheduling-and-execution.md) articolo. |Sì |ND |
+| policy |Definisce i criteri di hello o condizione hello che devono soddisfare le sezioni di hello set di dati. <br/><br/>Per informazioni dettagliate, vedere la sezione [Criteri di set di dati](#Policy) . |No |ND |
 
-Ogni colonna della sezione **struttura** contiene le proprietà seguenti:
+Ogni colonna hello **struttura** sezione contiene hello le proprietà seguenti:
 
 | Proprietà | Descrizione | Obbligatorio |
 | --- | --- | --- |
-| name |Nome della colonna. |Sì |
-| type |Tipo di dati della colonna.  |No |
-| culture |Impostazioni cultura basate su .NET da usare quando il tipo è specificato ed un tipo .NET `Datetime` o `Datetimeoffset`. Il valore predefinito è `en-us`. |No |
-| format |Stringa di formato da usare quando il tipo è specificato ed è un tipo .NET `Datetime` o `Datetimeoffset`. |No |
+| name |Nome della colonna hello. |Sì |
+| type |Tipo di dati della colonna hello.  |No |
+| culture |Impostazioni cultura toobe utilizzato quando il tipo specificato e il tipo .NET basato su .NET `Datetime` o `Datetimeoffset`. Il valore predefinito è `en-us`. |No |
+| format |Formato stringa toobe utilizzato quando il tipo specificato e il tipo .NET `Datetime` o `Datetimeoffset`. |No |
 
-Nell'esempio seguente il set di dati ha tre colonne, ovvero `slicetimestamp`, `projectname` e `pageviews`, che sono rispettivamente di tipo String, String e Decimal.
+Nell'esempio seguente di hello, set di dati hello ha tre colonne `slicetimestamp`, `projectname`, e `pageviews` e sono di tipo: String, String e decimali rispettivamente.
 
 ```json
 structure:  
@@ -307,17 +307,17 @@ structure:
 ]
 ```
 
-La tabella seguente descrive le proprietà che è possibile usare nella sezione **availability**:
+Hello nella tabella seguente vengono descritte le proprietà è possibile utilizzare in hello **disponibilità** sezione:
 
 | Proprietà | Descrizione | Obbligatorio | Default |
 | --- | --- | --- | --- |
-| frequency |Specifica l'unità di tempo per la produzione di sezioni di set di dati.<br/><br/><b>Frequenza supportata</b>: minuto, ora, giorno, settimana, mese |Sì |ND |
-| interval |Specifica un moltiplicatore per la frequenza.<br/><br/>"Intervallo di frequenza x" determina la frequenza con cui viene generata la sezione.<br/><br/>Se è necessario suddividere il set di dati su base oraria, impostare l'opzione <b>Frequenza</b> su <b>Ora</b> e <b>Intervallo</b> su <b>1</b>.<br/><br/><b>Nota</b> : se si specifica frequency come Minute, è consigliabile impostare interval su un valore non inferiore a 15 |Sì |ND |
-| style |Specifica se la sezione deve essere generata all'inizio o alla fine dell'intervallo.<ul><li>StartOfInterval</li><li>EndOfInterval</li></ul><br/><br/>Se frequency è impostato su Month e style è impostato su EndOfInterval, la sezione viene generata l'ultimo giorno del mese. Se style è impostato su StartOfInterval, la sezione viene generata il primo giorno del mese.<br/><br/>Se l'opzione Frequnza è impostata su Mese e l'opzione Stile è impostata su EndOfInterval, la sezione viene generata l'ultima ora del giorno.<br/><br/>Se frequency è impostato su Hour e style è impostato su EndOfInterval, la sezione viene generata alla fine dell'ora. Ad esempio, una sezione per il periodo 13.00 - 14.00 viene generata alle 14.00. |No |EndOfInterval |
-| anchorDateTime |Definisce la posizione assoluta nel tempo usata dall'utilità di pianificazione per calcolare i limiti della sezione del set di dati. <br/><br/><b>Nota:</b> se AnchorDateTime include parti della data più granulari rispetto alla frequenza, le parti più granulari vengono ignorate. <br/><br/>Ad esempio, se l'<b>intervallo</b> è <b>orario</b> (ovvero frequenza: ora e intervallo: 1) e <b>AnchorDateTime</b> contiene <b>minuti e secondi</b>, le parti <b>minuti e secondi</b> di AnchorDateTime vengono ignorate. |No |01/01/0001 |
-| offset |Intervallo di tempo in base al quale l'inizio e la fine di tutte le sezioni dei set di dati vengono spostate. <br/><br/><b>Nota:</b> se vengono specificati sia anchorDateTime che offset, il risultato sarà lo spostamento combinato. |No |ND |
+| frequency |Specifica l'unità di tempo hello per la produzione di sezione set di dati.<br/><br/><b>Frequenza supportata</b>: minuto, ora, giorno, settimana, mese |Sì |ND |
+| interval |Specifica un moltiplicatore per la frequenza.<br/><br/>"Intervallo di frequenza x" determina la frequenza con cui hello sezione viene prodotta.<br/><br/>Se è necessario hello toobe dataset sezionati su base oraria, impostare <b>frequenza</b> troppo<b>ora</b>, e <b>intervallo</b> troppo<b>1</b>.<br/><br/><b>Nota</b>: se si specifica Frequency come Minute, si consiglia di impostare hello intervallo toono inferiore a 15 |Sì |ND |
+| style |Specifica se la sezione hello deve essere prodotta all'hello inizio/fine dell'intervallo "hello".<ul><li>StartOfInterval</li><li>EndOfInterval</li></ul><br/><br/>Se Frequency è impostato tooMonth e style è impostato tooEndOfInterval, hello sezione viene prodotta hello ultimo giorno del mese. Se lo stile di hello è impostato tooStartOfInterval, hello sezione viene prodotta hello primo giorno del mese.<br/><br/>Se Frequency è impostato tooDay e style è impostato tooEndOfInterval, sezione hello viene prodotta nell'ultima ora del giorno hello hello.<br/><br/>Se Frequency è impostato tooHour e style è impostato tooEndOfInterval, sezione hello viene prodotta alla fine hello ora hello. Ad esempio, per una sezione per periodo 1 PM – 2 PM, sezione di hello viene prodotta alle 14.00. |No |EndOfInterval |
+| anchorDateTime |Definisce una posizione assoluta di hello in utilizzata dai limiti di sezione dell'utilità di pianificazione toocompute set di dati. <br/><br/><b>Nota</b>: se hello AnchorDateTime ha parti di date più granulari frequenza hello in hello parti più granulari verranno ignorate. <br/><br/>Ad esempio, se hello <b>intervallo</b> è <b>oraria</b> (frequenza: ora e intervallo: 1) e hello <b>AnchorDateTime</b> contiene <b>minuti e secondi</b>quindi hello <b>minuti e secondi</b> parti di hello AnchorDateTime verranno ignorate. |No |01/01/0001 |
+| offset |Intervallo di tempo da cui hello iniziale e finale di tutte le sezioni di set di dati vengono spostati. <br/><br/><b>Nota</b>: se vengono specificati sia anchorDateTime che offset, il risultato di hello è MAIUSC hello combinato. |No |ND |
 
-La sezione availability seguente specifica che il set di dati di output viene generato ogni ora oppure che il set di dati di input è disponibile ogni ora:
+Hello seguente sezione di disponibilità specifica il set di dati di output di hello è creati ogni ora (o) input set di dati è disponibile ogni ora:
 
 ```json
 "availability":    
@@ -327,12 +327,12 @@ La sezione availability seguente specifica che il set di dati di output viene ge
 }
 ```
 
-La sezione **policy** nella definizione del set di dati stabilisce i criteri o la condizione che le sezioni del set di dati devono soddisfare.
+Hello **criteri** sezione nella definizione di set di dati definisce i criteri di hello o condizione hello hello sezioni di set di dati è necessario soddisfare.
 
-| Nome criterio | Descrizione | Applicato a | Obbligatorio | Default |
+| Nome criterio | Descrizione | Troppo applicato| Obbligatorio | Default |
 | --- | --- | --- | --- | --- |
-| minimumSizeMB |Verifica che i dati in un **BLOB di Azure** soddisfino i requisiti relativi alle dimensioni minime (in megabyte). |BLOB di Azure |No |ND |
-| minimumRows |Verifica che i dati in un **database SQL di Azure** o in una **tabella di Azure** contengano il numero minimo di righe. |<ul><li>Database SQL di Azure</li><li>tabella di Azure</li></ul> |No |ND |
+| minimumSizeMB |Convalida i dati di hello un **blob di Azure** hello di soddisfa i requisiti di dimensioni minime (in megabyte). |BLOB Azure |No |ND |
+| minimumRows |Convalida i dati di hello un **database SQL di Azure** o **tabella Azure** contiene hello numero minimo di righe. |<ul><li>Database SQL di Azure</li><li>tabella di Azure</li></ul> |No |ND |
 
 **Esempio:**
 
@@ -347,24 +347,24 @@ La sezione **policy** nella definizione del set di dati stabilisce i criteri o l
 }
 ```
 
-A meno che un set di dati non sia generato da Azure Data Factory, deve essere contrassegnato come **external**. Questa impostazione si applica in genere agli input della prima attività in una pipeline, a meno che non si usi il concatenamento di attività o di pipeline.
+A meno che un set di dati non sia generato da Azure Data Factory, deve essere contrassegnato come **external**. Questa impostazione si applica in genere input toohello della prima attività in una pipeline, a meno che l'attività o il concatenamento della pipeline in uso.
 
-| name | Descrizione | Obbligatorio | Default Value |
+| Nome | Descrizione | Obbligatorio | Default Value |
 | --- | --- | --- | --- |
-| dataDelay |Tempo di attesa per il controllo sulla disponibilità dei dati esterni per il sezionamento specificato. Ad esempio, se i dati sono disponibili ogni ora, il controllo per vedere se i dati esterni sono disponibili e la sezione corrispondente è Ready può essere ritardato usando dataDelay.<br/><br/>Si applica solo all'ora corrente.  Ad esempio, se in questo momento sono le 13:00 e questo valore è di 10 minuti, la convalida inizia alle 13:10.<br/><br/>Questa impostazione non influisce sulle sezioni nel passato; le sezioni con i parametri Ora di fine sezione + dataDelay < Ora vengono elaborate senza alcun ritardo.<br/><br/>Valori superiori a 23:59 ore devono essere specificati nel formato `day.hours:minutes:seconds`. Per specificare 24 ore, ad esempio, non utilizzare 24:00:00; utilizzare invece 1.00:00:00. Il valore 24:00:00 viene considerato 24 giorni (24.00:00:00). Per 1 giorno e 4 ore, specificare 1:04:00:00. |No |0 |
-| retryInterval |Il tempo di attesa tra un errore e il successivo tentativo. Se un tentativo non riesce, il tentativo successivo avviene dopo retryInterval. <br/><br/>Se in questo momento sono le 13:00, viene avviato il primo tentativo. Se la durata per completare il primo controllo di convalida è 1 minuto e l'operazione non è riuscita, il tentativo successivo è alle 13:00 + 1 min (durata) + 1 min (intervallo tentativi) = 13:02. <br/><br/>Per le sezioni passate, non si verifica alcun ritardo. La ripetizione avviene immediatamente. |No |00:01:00 (1 minute) |
-| retryTimeout |Timeout per ogni nuovo tentativo.<br/><br/>Se questa proprietà è impostata su 10 minuti, la convalida deve essere completata entro 10 minuti. Se sono necessari più di 10 minuti per eseguire la convalida, il tentativo viene sospeso.<br/><br/>Se tutti i tentativi per la convalida scadono, la sezione viene contrassegnata come TimedOut. |No |00:10:00 (10 minutes) |
-| maximumRetry |Numero di volte per controllare la disponibilità dei dati esterni. Il valore massimo consentito è 10. |No |3 |
+| dataDelay |Tempo toodelay hello controllo disponibilità hello di dati esterni di hello di hello dato sezione. Ad esempio, se hello i dati sono disponibili ogni ora, hello controllo toosee hello i dati esterni sono disponibili e la sezione corrispondente di hello sia Ready può essere posticipato utilizzando dataDelay.<br/><br/>Si applica solo toohello ora corrente.  Ad esempio, se è 1:00 PM subito e questo valore è 10 minuti, convalida hello inizia alle ore 1:10.<br/><br/>Questa impostazione influisce sulle sezioni in hello precedente (sezioni con ora di fine sezione + dataDelay < ora) vengono elaborati senza alcun ritardo.<br/><br/>Periodo di tempo maggiore di 23:59 ore necessario toospecified utilizzando hello `day.hours:minutes:seconds` formato. Ad esempio, toospecify 24 ore, non utilizzare 24:00:00; Utilizzare invece 1.00:00:00. Il valore 24:00:00 viene considerato 24 giorni (24.00:00:00). Per 1 giorno e 4 ore, specificare 1:04:00:00. |No |0 |
+| retryInterval |tempo di attesa Hello tra un errore e hello successivo tentativo. Se un tentativo non riesce, il successivo tentativo di hello è dopo retryInterval. <br/><br/>Se è 1:00 PM al momento, iniziamo hello primo tentativo. Se hello durata toocomplete hello primo controllo di convalida è 1 minuto e operazione hello non riuscita, tentativo successivo di hello è 1:00 + 1 min (durata) + 1 minuto (intervallo tra tentativi) = 1:02 PM. <br/><br/>Per le sezioni hello precedente, non si verifica alcun ritardo. Riprova Hello si verifica immediatamente. |No |00:01:00 (1 minute) |
+| retryTimeout |timeout di Hello per ogni nuovo tentativo.<br/><br/>Se questa proprietà è impostata too10 minuti, hello toobe esigenze convalida completata entro 10 minuti. Se impiega più tempo rispetto alla convalida hello tooperform di 10 minuti, hello ripetere verifica il timeout.<br/><br/>Se tutti i tentativi per la convalida di hello scade, sezione hello è contrassegnata come TimedOut. |No |00:10:00 (10 minutes) |
+| maximumRetry |Numero di volte in cui toocheck per la disponibilità di dati esterni hello hello. Hello consentito valore massimo è 10. |No |3 |
 
 
 ## <a name="data-stores"></a>Archivi dati
-La sezione [Servizi collegati](#linked-service) ha fornito le descrizioni degli elementi JSON comuni a tutti i tipi di servizi collegati. Questa sezione fornisce informazioni sugli elementi JSON specifici di ogni archivio dati.
+Hello [servizio collegato](#linked-service) descrizioni sezione forniti per gli elementi JSON che sono tipi di servizi collegati tooall comuni. Questa sezione vengono fornite informazioni dettagliate sugli elementi JSON che sono l'archivio dati tooeach specifico.
 
-La sezione [Set di dati ](#dataset) ha fornito le descrizioni degli elementi JSON comuni a tutti i tipi di set di dati. Questa sezione fornisce informazioni sugli elementi JSON specifici di ogni archivio dati.
+Hello [Dataset](#dataset) descrizioni sezione forniti per gli elementi JSON che sono tipi di set di dati tooall comuni. Questa sezione vengono fornite informazioni dettagliate sugli elementi JSON che sono l'archivio dati tooeach specifico.
 
-La sezione [Attività](#activity) ha fornito le descrizioni degli elementi JSON comuni a tutti i tipi di attività. Questa sezione fornisce informazioni sugli elementi JSON specifici di ogni archivio dati quando è usato come origine/sink in un'attività di copia.  
+Hello [attività](#activity) descrizioni sezione forniti per gli elementi JSON che sono tipi tooall comuni di attività. Questa sezione vengono fornite informazioni dettagliate sugli elementi JSON che sono l'archivio dati specifico tooeach quando viene utilizzata come origine/sink in un'attività di copia.  
 
-Fare clic sul collegamento all'archivio a cui si è interessati per visualizzare gli schemi JSON per i servizi collegati, il set di dati e l'origine/sink dell'attività di copia.
+Fare clic sul collegamento hello per archivio hello si è interessati negli schemi JSON hello toosee per il servizio collegato, set di dati e hello origine/sink per attività di copia hello.
 
 | Categoria | Archivio dati 
 |:--- |:--- |
@@ -404,11 +404,11 @@ Fare clic sul collegamento all'archivio a cui si è interessati per visualizzare
 Esistono due tipi di servizi collegati: servizio collegato di Archiviazione di Azure e servizio collegato di firma di accesso condiviso Archiviazione di Azure.
 
 #### <a name="azure-storage-linked-service"></a>Servizio collegato Archiviazione di Azure
-Per collegare un account di Archiviazione di Azure a una data factory tramite la **chiave dell'account**, creare un servizio collegato di Archiviazione di Azure. Per definire un servizio collegato di Archiviazione di Azure, impostare il **tipo** di servizio collegato su **AzureStorage**. Specificare quindi le seguenti proprietà nella sezione **typeProperties**:  
+toolink la data factory tooa account di archiviazione di Azure tramite hello **chiave dell'account**, creare un servizio collegato di archiviazione di Azure. il set hello servizio collegato di toodefine una risorsa di archiviazione di Azure **tipo** di hello servizio collegato troppo**AzureStorage**. Quindi, è possibile specificare le seguenti proprietà in hello **typeProperties** sezione:  
 
 | Proprietà | Descrizione | Obbligatorio |
 |:--- |:--- |:--- |
-| connectionString |Specificare le informazioni necessarie per connettersi all’archivio Azure per la proprietà connectionString. |Sì |
+| connectionString |Specificare le informazioni necessarie tooconnect tooAzure archiviazione per la proprietà connectionString hello. |Sì |
 
 ##### <a name="example"></a>Esempio  
 
@@ -425,11 +425,11 @@ Per collegare un account di Archiviazione di Azure a una data factory tramite la
 ```
 
 #### <a name="azure-storage-sas-linked-service"></a>Servizio collegato di firma di accesso condiviso Archiviazione di Azure
-Il servizio collegato di firma di accesso condiviso Archiviazione di Azure consente di collegare un account di Archiviazione di Azure a Data factory di Azure tramite una firma di accesso condiviso. Offre a Data factory un accesso con restrizioni o limiti di tempo a tutte le risorse o a risorse specifiche (BLOB/contenitore) nella risorsa di archiviazione. Per collegare un account di Archiviazione di Azure a una data factory tramite la firma di accesso condiviso, creare un servizio collegato di firma di accesso condiviso Archiviazione di Azure. Per definire un Servizio collegato di firma di accesso condiviso Archiviazione di Azure, impostare il **tipo** del servizio collegato su **AzureStorageSas**. Specificare quindi le seguenti proprietà nella sezione **typeProperties**:   
+servizio sa di archiviazione di Azure collegati Hello consente toolink un Account di archiviazione Azure tooan data factory di Azure tramite una firma di accesso condiviso (SAS). Fornisce data factory di hello con accesso limitato/scadenza tooall/specifiche risorse (blob/contenitore) nell'archiviazione hello. toolink la data factory tooa account di archiviazione di Azure tramite la firma di accesso condiviso, creare un servizio sa di archiviazione di Azure collegati. il servizio hello set toodefine un SAS di archiviazione di Azure collegato **tipo** di hello servizio collegato troppo**AzureStorageSas**. Quindi, è possibile specificare le seguenti proprietà in hello **typeProperties** sezione:   
 
 | Proprietà | Descrizione | Obbligatorio |
 |:--- |:--- |:--- |
-| sasUri |Specificare l'URI della firma di accesso condiviso per le risorse di Archiviazione di Azure come BLOB, contenitore o tabella. |Sì |
+| sasUri |Specificare le risorse di archiviazione di Azure toohello URI firma di accesso condiviso, ad esempio una tabella, contenitore o blob. |Sì |
 
 ##### <a name="example"></a>Esempio
 
@@ -448,15 +448,15 @@ Il servizio collegato di firma di accesso condiviso Archiviazione di Azure conse
 Per altre informazioni sui servizi collegati, vedere [Connettore Archiviazione BLOB di Azure](data-factory-azure-blob-connector.md#linked-service-properties). 
 
 ### <a name="dataset"></a>Set di dati
-Per definire un set di dati BLOB di Azure, impostare il **tipo** del set di dati su **AzureBlob**. Specificare quindi le proprietà seguenti specifiche del BLOB di Azure nella sezione **typeProperties**: 
+toodefine un set di dati Blob di Azure, hello set **tipo** del set di dati hello troppo**AzureBlob**. Quindi, specificare le proprietà specifiche di Blob di Azure in hello seguenti hello **typeProperties** sezione: 
 
 | Proprietà | Descrizione | Obbligatorio |
 | --- | --- | --- |
-| folderPath |Percorso del contenitore e della cartella nell'archivio BLOB. Esempio: myblobcontainer\myblobfolder\ |Sì |
-| fileName |Nome del BLOB. fileName è facoltativo e non applica la distinzione tra maiuscole e minuscole.<br/><br/>Se si specifica un filename, l'attività, inclusa la copia, funziona sul BLOB specifico.<br/><br/>Quando fileName non è specificato, la copia include tutti i BLOB in folderPath per il set di dati di input.<br/><br/>Quando fileName non viene specificato per un set di dati di output, il nome del file generato avrà il formato seguente: Data.<Guid>.txt, ad esempio: Data.0a405f8a-93ff-4c6f-b3be-f69616f1df7a.txt |No |
-| partitionedBy |partitionedBy è una proprietà facoltativa. Può essere utilizzata per specificare una proprietà folderPath dinamica e un nome file per i dati della serie temporale. Ad esempio, è possibile includere parametri per ogni ora di dati in folderPath. |No |
-| format | Sono supportati i tipi di formato seguenti: **TextFormat**, **JsonFormat**, **AvroFormat**, **OrcFormat** e **ParquetFormat**. Impostare la proprietà **type** nell'area format su uno di questi valori. Per altre informazioni, vedere le sezioni [TextFormat](data-factory-supported-file-and-compression-formats.md#text-format), [JsonFormat](data-factory-supported-file-and-compression-formats.md#json-format), [AvroFormat](data-factory-supported-file-and-compression-formats.md#avro-format), [OrcFormat](data-factory-supported-file-and-compression-formats.md#orc-format) e [ParquetFormat](data-factory-supported-file-and-compression-formats.md#parquet-format). <br><br> Per **copiare i file così come sono** tra archivi basati su file (copia binaria), è possibile ignorare la sezione del formato nelle definizioni dei set di dati di input e di output. |No |
-| compressione | Specificare il tipo e il livello di compressione dei dati. I tipi supportati sono **GZip**, **Deflate**, **BZip2** e **ZipDeflate**. I livelli supportati sono **Ottimale** e **Più veloce**. Per altre informazioni, vedere [File e formati di compressione in Azure Data Factory](data-factory-supported-file-and-compression-formats.md#compression-support). |No |
+| folderPath |Percorso toohello contenitore e della cartella nell'archiviazione blob hello. Esempio: myblobcontainer\myblobfolder\ |Sì |
+| fileName |Nome del blob hello. fileName è facoltativo e non applica la distinzione tra maiuscole e minuscole.<br/><br/>Se si specifica un nome di file, hello attività (incluso copia) funziona su hello Blob specifico.<br/><br/>Quando non è stato specificato il nome del file, copia include tutti i BLOB in folderPath hello per input set di dati.<br/><br/>Quando il nome di file non viene specificato per un set di dati di output, il nome di hello del file hello generato sarebbe in hello segue questo formato: dati. <Guid>. txt (ad esempio:: Data.0a405f8a-93ff-4c6f-b3be-f69616f1df7a.txt |No |
+| partitionedBy |partitionedBy è una proprietà facoltativa. È possibile utilizzare è toospecify un dinamica folderPath e filename per dati della serie temporale. Ad esempio, è possibile includere parametri per ogni ora di dati in folderPath. |No |
+| format | è supportato i seguenti tipi di formato Hello: **TextFormat**, **JsonFormat**, **AvroFormat**, **OrcFormat**,  **ParquetFormat**. Set hello **tipo** proprietà in formato tooone di questi valori. Per altre informazioni, vedere le sezioni [TextFormat](data-factory-supported-file-and-compression-formats.md#text-format), [JsonFormat](data-factory-supported-file-and-compression-formats.md#json-format), [AvroFormat](data-factory-supported-file-and-compression-formats.md#avro-format), [OrcFormat](data-factory-supported-file-and-compression-formats.md#orc-format) e [ParquetFormat](data-factory-supported-file-and-compression-formats.md#parquet-format). <br><br> Se si desidera troppo**copiare i file come-è** tra archivi basati su file (copia binaria), ignorare le sezioni di formato hello in entrambe le definizioni di set di dati di input e output. |No |
+| compressione | Specificare il tipo di hello e livello di compressione per dati hello. I tipi supportati sono **GZip**, **Deflate**, **BZip2** e **ZipDeflate**. I livelli supportati sono **Ottimale** e **Più veloce**. Per altre informazioni, vedere [File e formati di compressione in Azure Data Factory](data-factory-supported-file-and-compression-formats.md#compression-support). |No |
 
 #### <a name="example"></a>Esempio
 
@@ -488,11 +488,11 @@ Per definire un set di dati BLOB di Azure, impostare il **tipo** del set di dati
 Per altre informazioni, vedere [Connettore BLOB di Azure](data-factory-azure-blob-connector.md#dataset-properties).
 
 ### <a name="blobsource-in-copy-activity"></a>BlobSource in attività di copia
-Se si copiano dati da Archiviazione BLOB di Azure, impostare il **tipo di origine** dell'attività di copia su **BlobSource**e specificare le proprietà seguenti nella sezione **source**:
+Se si copiano dati da un archivio Blob di Azure, impostare hello **tipo di origine** di hello attività di copia troppo**BlobSource**e specificare le seguenti proprietà in hello * * origine * * sezione:
 
 | Proprietà | Descrizione | Valori consentiti | Obbligatorio |
 | --- | --- | --- | --- |
-| ricorsiva |Indica se i dati vengono letti in modo ricorsivo dalle cartelle secondarie o solo dalla cartella specificata. |True (valore predefinito), False |No |
+| ricorsiva |Indica se hello i dati letti in modo ricorsivo dal sottocartelle hello o solo dalla cartella specificata hello. |True (valore predefinito), False |No |
 
 #### <a name="example-blobsource"></a>Esempio: BlobSource**
 ```json
@@ -531,11 +531,11 @@ Se si copiano dati da Archiviazione BLOB di Azure, impostare il **tipo di origin
 }
 ```
 ### <a name="blobsink-in-copy-activity"></a>BlobSink in attività di copia
-Se si copiano dati in Archiviazione BLOB di Azure, impostare il **tipo di sink** dell'attività di copia su **BlobSink**e specificare le proprietà seguenti nella sezione **sink**:
+Se si copiano dati tooan archiviazione Blob di Azure, impostare hello **tipo di sink** di hello attività di copia troppo**BlobSink**e specificare le seguenti proprietà in hello **sink** sezione:
 
 | Proprietà | Descrizione | Valori consentiti | Obbligatorio |
 | --- | --- | --- | --- |
-| copyBehavior |Definisce il comportamento di copia quando l'origine è BlobSource o FileSystem. |<b>PreserveHierarchy:</b> mantiene la gerarchia dei file nella cartella di destinazione. Il percorso relativo del file di origine nella cartella di origine è identico al percorso relativo del file di destinazione nella cartella di destinazione.<br/><br/><b>FlattenHierarchy</b>: tutti i file della cartella di origine si trovano nel primo livello della cartella di destinazione. Il nome dei file di destinazione viene generato automaticamente. <br/><br/><b>MergeFiles (valore predefinito)</b>: unisce tutti i file della cartella di origine in un solo file. Se viene specificato il nome file/BLOB, il nome file unito sarà il nome specificato. In caso contrario, sarà il nome file generato automaticamente. |No |
+| copyBehavior |Definisce il comportamento di copia hello quando origine hello è BlobSource o file System. |<b>PreserveHierarchy</b>: mantiene hello gerarchia del file nella cartella di destinazione hello. percorso relativo di Hello origine toosource della cartella dei file è identico toohello percorso relativo della cartella tootarget file di destinazione.<br/><br/><b>FlattenHierarchy</b>: tutti i file dalla cartella di origine hello presenti hello primo livelli della cartella di destinazione. i file di destinazione Hello hanno nome generato automaticamente. <br/><br/><b>Oggetto (impostazione predefinita):</b> unisce tutti i file dal file tooone cartella di origine hello. Se viene specificato il nome di File/Blob hello, il nome di file sottoposto a merge hello sarebbe nome specificato hello. in caso contrario, potrebbe essere il nome file generato automaticamente. |No |
 
 #### <a name="example-blobsink"></a>Esempio: BlobSink
 
@@ -581,19 +581,19 @@ Per altre informazioni, vedere [Connettore BLOB di Azure](data-factory-azure-blo
 ## <a name="azure-data-lake-store"></a>Archivio Azure Data Lake
 
 ### <a name="linked-service"></a>Servizio collegato
-Per definire un servizio collegato di Azure Data Lake Store, impostare il tipo di servizio collegato su **AzureDataLakeStore** e specificare le proprietà seguenti nella sezione **typeProperties**:  
+un servizio collegato archivio Azure Data Lake toodefine, imposta il tipo di hello hello servizio collegato troppo**AzureDataLakeStore**e specificare le seguenti proprietà in hello **typeProperties** sezione:  
 
 | Proprietà | Descrizione | Obbligatorio |
 |:--- |:--- |:--- |
-| type | La proprietà type deve essere impostata su: **AzureDataLakeStore** | Sì |
-| dataLakeStoreUri | Specificare le informazioni sull'account Archivio Azure Data Lake. Ha il formato seguente: `https://[accountname].azuredatalakestore.net/webhdfs/v1` o `adl://[accountname].azuredatalakestore.net/`. | Sì |
-| subscriptionId | ID sottoscrizione di Azure a cui il Data Lake Store appartiene. | Richiesto per il sink |
-| resourceGroupName | Nome del gruppo di risorse di Azure a cui il Data Lake Store appartiene. | Richiesto per il sink |
-| servicePrincipalId | Specificare l'ID client dell'applicazione. | Sì (per l'autenticazione di un'entità servizio) |
-| servicePrincipalKey | Specificare la chiave dell'applicazione. | Sì (per l'autenticazione di un'entità servizio) |
-| tenant | Specificare le informazioni sul tenant (nome di dominio o ID tenant) in cui si trova l'applicazione. È possibile recuperarlo passando il cursore del mouse sull'angolo superiore destro del portale di Azure. | Sì (per l'autenticazione di un'entità servizio) |
-| autorizzazione | Fare clic sul pulsante **Autorizza** nell'**editor di Data Factory** e immettere le credenziali per assegnare l'URL di autorizzazione generato automaticamente a questa proprietà. | Sì (per l'autenticazione basata su credenziali utente)|
-| sessionId | ID sessione OAuth dalla sessione di autorizzazione oauth. Ogni ID di sessione è univoco e può essere usato solo una volta. Questa impostazione viene generata automaticamente quando si usa l'editor di Data Factory. | Sì (per l'autenticazione basata su credenziali utente) |
+| type | proprietà di tipo Hello deve essere impostata su: **AzureDataLakeStore** | Sì |
+| dataLakeStoreUri | Specificare le informazioni su hello account archivio Azure Data Lake. È presente nel seguente formato hello: `https://[accountname].azuredatalakestore.net/webhdfs/v1` o `adl://[accountname].azuredatalakestore.net/`. | Sì |
+| subscriptionId | Sottoscrizione di Azure toowhich Id archivio Data Lake appartiene. | Richiesto per il sink |
+| resourceGroupName | Toowhich di nome gruppo di risorse di Azure archivio Data Lake appartiene. | Richiesto per il sink |
+| servicePrincipalId | Specificare un ID client. dell'applicazione hello | Sì (per l'autenticazione di un'entità servizio) |
+| servicePrincipalKey | Specificare la chiave dell'applicazione hello. | Sì (per l'autenticazione di un'entità servizio) |
+| tenant | Specificare le informazioni di hello tenant (dominio tenant o nome ID) in cui risiede l'applicazione. È possibile recuperarlo dal passaggio del mouse hello nell'angolo superiore destro di hello di hello portale di Azure. | Sì (per l'autenticazione di un'entità servizio) |
+| autorizzazione | Fare clic su **Authorize** pulsante hello **Editor delle Data Factory** e immettere le credenziali dell'utente che assegna hello autogenerati autorizzazione URL toothis proprietà. | Sì (per l'autenticazione basata su credenziali utente)|
+| sessionId | Id di sessione OAuth della sessione di autorizzazione OAuth hello. Ogni ID di sessione è univoco e può essere usato solo una volta. Questa impostazione viene generata automaticamente quando si usa l'editor di Data Factory. | Sì (per l'autenticazione basata su credenziali utente) |
 
 #### <a name="example-using-service-principal-authentication"></a>Esempio: uso dell'autenticazione basata su entità servizio
 ```json
@@ -631,15 +631,15 @@ Per definire un servizio collegato di Azure Data Lake Store, impostare il tipo d
 Per altre informazioni, vedere [Connettore Azure Data Lake Store](data-factory-azure-datalake-connector.md#linked-service-properties). 
 
 ### <a name="dataset"></a>Set di dati
-Per definire un set di dati Azure Data Lake Store, impostare il **tipo** del set di dati **AzureDataLakeStore**e specificare le proprietà seguenti nella sezione **typeProperties**: 
+toodefine un set di dati di archivio Azure Data Lake, hello set **tipo** del set di dati hello troppo**AzureDataLakeStore**e specificare le proprietà in hello seguenti hello **typeProperties**sezione: 
 
 | Proprietà | Descrizione | Obbligatorio |
 |:--- |:--- |:--- |
-| folderPath |Percorso del contenitore e della cartella nell'Archivio Azure Data Lake. |Sì |
-| fileName |Il nome del file in fileName nell'archivio di Azure Data Lake è facoltativo e distingue tra maiuscole e minuscole. fileName è facoltativo e non applica la distinzione tra maiuscole e minuscole. <br/><br/>Se si specifica un filename, l'attività, inclusa la copia, funziona sul file specifico.<br/><br/>Quando fileName non è specificato, la copia include tutti i file in folderPath per il set di dati di input.<br/><br/>Quando fileName non viene specificato per un set di dati di output, il nome del file generato avrà il formato seguente: Data<Guid>.txt, ad esempio: Data.0a405f8a-93ff-4c6f-b3be-f69616f1df7a.txt |No |
-| partitionedBy |partitionedBy è una proprietà facoltativa. Può essere utilizzata per specificare una proprietà folderPath dinamica e un nome file per i dati della serie temporale. Ad esempio, è possibile includere parametri per ogni ora di dati in folderPath. |No |
-| format | Sono supportati i tipi di formato seguenti: **TextFormat**, **JsonFormat**, **AvroFormat**, **OrcFormat** e **ParquetFormat**. Impostare la proprietà **type** nell'area format su uno di questi valori. Per altre informazioni, vedere le sezioni [TextFormat](data-factory-supported-file-and-compression-formats.md#text-format), [JsonFormat](data-factory-supported-file-and-compression-formats.md#json-format), [AvroFormat](data-factory-supported-file-and-compression-formats.md#avro-format), [OrcFormat](data-factory-supported-file-and-compression-formats.md#orc-format) e [ParquetFormat](data-factory-supported-file-and-compression-formats.md#parquet-format). <br><br> Per **copiare i file così come sono** tra archivi basati su file (copia binaria), è possibile ignorare la sezione del formato nelle definizioni dei set di dati di input e di output. |No |
-| compressione | Specificare il tipo e il livello di compressione dei dati. I tipi supportati sono **GZip**, **Deflate**, **BZip2** e **ZipDeflate**. I livelli supportati sono **Ottimale** e **Più veloce**. Per altre informazioni, vedere [File e formati di compressione in Azure Data Factory](data-factory-supported-file-and-compression-formats.md#compression-support). |No |
+| folderPath |Percorso toohello contenitore e della cartella in hello Azure Data Lake archiviare. |Sì |
+| fileName |Nome del file hello nell'archivio Azure Data Lake hello. fileName è facoltativo e non applica la distinzione tra maiuscole e minuscole. <br/><br/>Se si specifica un nome di file, attività hello (inclusi copia) funziona su file specifiche hello.<br/><br/>Quando non è stato specificato il nome del file, copia include tutti i file in folderPath hello per input set di dati.<br/><br/>Quando il nome di file non viene specificato per un set di dati di output, il nome di hello del file hello generato sarebbe in hello segue questo formato: dati. <Guid>. txt (ad esempio:: Data.0a405f8a-93ff-4c6f-b3be-f69616f1df7a.txt |No |
+| partitionedBy |partitionedBy è una proprietà facoltativa. È possibile utilizzare è toospecify un dinamica folderPath e filename per dati della serie temporale. Ad esempio, è possibile includere parametri per ogni ora di dati in folderPath. |No |
+| format | è supportato i seguenti tipi di formato Hello: **TextFormat**, **JsonFormat**, **AvroFormat**, **OrcFormat**,  **ParquetFormat**. Set hello **tipo** proprietà in formato tooone di questi valori. Per altre informazioni, vedere le sezioni [TextFormat](data-factory-supported-file-and-compression-formats.md#text-format), [JsonFormat](data-factory-supported-file-and-compression-formats.md#json-format), [AvroFormat](data-factory-supported-file-and-compression-formats.md#avro-format), [OrcFormat](data-factory-supported-file-and-compression-formats.md#orc-format) e [ParquetFormat](data-factory-supported-file-and-compression-formats.md#parquet-format). <br><br> Se si desidera troppo**copiare i file come-è** tra archivi basati su file (copia binaria), ignorare le sezioni di formato hello in entrambe le definizioni di set di dati di input e output. |No |
+| compressione | Specificare il tipo di hello e livello di compressione per dati hello. I tipi supportati sono **GZip**, **Deflate**, **BZip2** e **ZipDeflate**. I livelli supportati sono **Ottimale** e **Più veloce**. Per altre informazioni, vedere [File e formati di compressione in Azure Data Factory](data-factory-supported-file-and-compression-formats.md#compression-support). |No |
 
 #### <a name="example"></a>Esempio
 ```json
@@ -676,13 +676,13 @@ Per definire un set di dati Azure Data Lake Store, impostare il **tipo** del set
 Per altre informazioni, vedere [Connettore Azure Data Lake Store](data-factory-azure-datalake-connector.md#dataset-properties). 
 
 ### <a name="azure-data-lake-store-source-in-copy-activity"></a>Origine Azure Data Lake Store in attività di copia
-Se si copiano dati da Azure Data Lake Store, impostare il **tipo di origine** dell'attività di copia su **AzureDataLakeStoreSource**e specificare le proprietà seguenti nella sezione **source**:
+Se si copiano dati da un archivio Azure Data Lake, impostare hello **tipo di origine** di hello attività di copia troppo**AzureDataLakeStoreSource**e specificare le seguenti proprietà in hello **origine**  sezione:
 
-**AzureDataLakeStoreSource** supporta le proprietà seguenti della sezione **typeProperties**:
+**AzureDataLakeStoreSource** supporta le proprietà seguenti hello **typeProperties** sezione:
 
 | Proprietà | Descrizione | Valori consentiti | Obbligatorio |
 | --- | --- | --- | --- |
-| ricorsiva |Indica se i dati vengono letti in modo ricorsivo dalle cartelle secondarie o solo dalla cartella specificata. |True (valore predefinito), False |No |
+| ricorsiva |Indica se hello i dati letti in modo ricorsivo dal sottocartelle hello o solo dalla cartella specificata hello. |True (valore predefinito), False |No |
 
 #### <a name="example-azuredatalakestoresource"></a>Esempio: AzureDataLakeStoreSource
 
@@ -725,11 +725,11 @@ Se si copiano dati da Azure Data Lake Store, impostare il **tipo di origine** de
 Per altre informazioni, vedere [Connettore Azure Data Lake Store](data-factory-azure-datalake-connector.md#copy-activity-properties).
 
 ### <a name="azure-data-lake-store-sink-in-copy-activity"></a>Sink Azure Data Lake Store in attività di copia
-Se si copiano dati in Azure Data Lake Store, impostare il **tipo di sink**  dell'attività di copia su **AzureDataLakeStoreSink**e specificare le proprietà seguenti nella sezione **sink**:
+Se si copia un archivio dati tooan Azure Data Lake, impostare hello **tipo di sink** di hello attività di copia troppo**AzureDataLakeStoreSink**e specificare le seguenti proprietà in hello **sink**sezione:
 
 | Proprietà | Descrizione | Valori consentiti | Obbligatorio |
 | --- | --- | --- | --- |
-| copyBehavior |Specifica il comportamento di copia. |<b>PreserveHierarchy:</b> mantiene la gerarchia dei file nella cartella di destinazione. Il percorso relativo del file di origine nella cartella di origine è identico al percorso relativo del file di destinazione nella cartella di destinazione.<br/><br/><b>FlattenHierarchy</b>: tutti i file della cartella di origine vengono creati nel primo livello della cartella di destinazione. Il nome dei file di destinazione viene generato automaticamente.<br/><br/><b>MergeFiles</b>: unisce tutti i file della cartella di origine in un solo file. Se viene specificato il nome file/BLOB, il nome file unito sarà il nome specificato. In caso contrario, sarà il nome file generato automaticamente. |No |
+| copyBehavior |Specifica il comportamento di copia hello. |<b>PreserveHierarchy</b>: mantiene hello gerarchia del file nella cartella di destinazione hello. percorso relativo di Hello origine toosource della cartella dei file è identico toohello percorso relativo della cartella tootarget file di destinazione.<br/><br/><b>FlattenHierarchy</b>: tutti i file dalla cartella di origine hello vengono creati nel primo livello di hello della cartella di destinazione. file di destinazione Hello vengono creati con il nome generato automaticamente.<br/><br/><b>Oggetto</b>: unisce tutti i file dal file tooone cartella di origine hello. Se viene specificato il nome di File/Blob hello, il nome di file sottoposto a merge hello sarebbe nome specificato hello. in caso contrario, potrebbe essere il nome file generato automaticamente. |No |
 
 #### <a name="example-azuredatalakestoresink"></a>Esempio: AzureDataLakeStoreSink
 ```json
@@ -777,11 +777,11 @@ Per altre informazioni, vedere [Connettore Azure Data Lake Store](data-factory-a
 ## <a name="azure-cosmos-db"></a>Azure Cosmos DB  
 
 ### <a name="linked-service"></a>Servizio collegato
-Per definire un servizio collegato di Azure Cosmos DB, impostare il **tipo** di servizio collegato su **DocumentDb** e specificare le proprietà seguenti nella sezione **typeProperties**:  
+il servizio hello set toodefine un database di Azure Cosmos collegato **tipo** di hello servizio collegato troppo**DocumentDb**e specificare le seguenti proprietà in hello **typeProperties** sezione:  
 
 | **Proprietà** | **Descrizione** | **Obbligatorio** |
 | --- | --- | --- |
-| connectionString |Specificare le informazioni necessarie per connettersi al database di Azure Cosmos DB. |Sì |
+| connectionString |Specificare le informazioni necessarie tooconnect tooAzure DB Cosmos database. |Sì |
 
 #### <a name="example"></a>Esempio
 
@@ -799,11 +799,11 @@ Per definire un servizio collegato di Azure Cosmos DB, impostare il **tipo** di 
 Per altre informazioni, vedere l'articolo [Connettore Azure Cosmos DB](data-factory-azure-documentdb-connector.md#linked-service-properties).
 
 ### <a name="dataset"></a>Set di dati
-Per definire un set di dati Azure Cosmos DB, impostare il **tipo** di set di dati su **DocumentDbCollection**e specificare le proprietà seguenti nella sezione **typeProperties**: 
+toodefine un set di dati di Azure Cosmos DB hello set **tipo** del set di dati hello troppo**DocumentDbCollection**e specificare le proprietà in hello seguenti hello **typeProperties** sezione: 
 
 | **Proprietà** | **Descrizione** | **Obbligatorio** |
 | --- | --- | --- |
-| collectionName |Nome della raccolta di Azure Cosmos DB. |Sì |
+| collectionName |Nome della raccolta di Azure Cosmos DB hello. |Sì |
 
 #### <a name="example"></a>Esempio
 
@@ -827,13 +827,13 @@ Per definire un set di dati Azure Cosmos DB, impostare il **tipo** di set di dat
 Per altre informazioni, vedere l'articolo [Connettore Azure Cosmos DB](data-factory-azure-documentdb-connector.md#dataset-properties).
 
 ### <a name="azure-cosmos-db-collection-source-in-copy-activity"></a>Origine della raccolta Azure Cosmos DB in attività di copia
-Se si copiano dati da un archivio Azure Cosmos DB, impostare il **tipo di origine** dell'attività di copia su **DocumentDbCollectionSource** e specificare le proprietà seguenti nella sezione **source**:
+Se si copiano dati da un database di Azure Cosmos, impostare hello **tipo di origine** di hello attività di copia troppo**DocumentDbCollectionSource**e specificare le seguenti proprietà in hello **origine** sezione:
 
 
 | **Proprietà** | **Descrizione** | **Valori consentiti** | **Obbligatorio** |
 | --- | --- | --- | --- |
-| query |Specificare la query per leggere i dati. |Stringa di query supportata da Azure Cosmos DB. <br/><br/>Esempio: `SELECT c.BusinessEntityID, c.PersonType, c.NameStyle, c.Title, c.Name.First AS FirstName, c.Name.Last AS LastName, c.Suffix, c.EmailPromotion FROM c WHERE c.ModifiedDate > \"2009-01-01T00:00:00\"` |No <br/><br/>Se non specificato, l'istruzione SQL eseguita: `select <columns defined in structure> from mycollection` |
-| nestingSeparator |Carattere speciale per indicare che il documento è nidificato |Qualsiasi carattere. <br/><br/>Azure Cosmos DB è un archivio NoSQL per i documenti JSON, dove sono consentite strutture nidificate. Azure Data Factory consente di indicare una gerarchia tramite nestingSeparator, ovvero "." negli esempi precedenti. Con il separatore, l'attività copia genererà l'oggetto "Name" con tre elementi figlio First, Middle e Last, in base a "Name.First", "Name.Middle" e "Name.Last" nella definizione della tabella. |No |
+| query |Specificare i dati di tooread query hello. |Stringa di query supportata da Azure Cosmos DB. <br/><br/>Esempio: `SELECT c.BusinessEntityID, c.PersonType, c.NameStyle, c.Title, c.Name.First AS FirstName, c.Name.Last AS LastName, c.Suffix, c.EmailPromotion FROM c WHERE c.ModifiedDate > \"2009-01-01T00:00:00\"` |No <br/><br/>Se non specificato, hello istruzione SQL eseguita:`select <columns defined in structure> from mycollection` |
+| nestingSeparator |Carattere speciale tooindicate che hello documento nidificato |Qualsiasi carattere. <br/><br/>Azure Cosmos DB è un archivio NoSQL per i documenti JSON, dove sono consentite strutture nidificate. Data Factory di Azure consente gerarchia toodenote utente tramite nestingSeparator, ovvero "." in hello esempi sopra riportati. Con il separatore di hello, attività di copia hello genererà l'oggetto "Name" hello con elementi tre figli prima, intermedio e ultimo, in base too"Name.First", "Name.Middle" e "." in hello "Cognome" definizione di tabella. |No |
 
 #### <a name="example"></a>Esempio
 
@@ -874,13 +874,13 @@ Se si copiano dati da un archivio Azure Cosmos DB, impostare il **tipo di origin
 ```
 
 ### <a name="azure-cosmos-db-collection-sink-in-copy-activity"></a>Sink della raccolta Azure Cosmos DB in attività di copia
-Se si copiano dati in Azure Cosmos DB, impostare il **tipo di sink** dell'attività di copia su **DocumentDbCollectionSink** e specificare le proprietà seguenti nella sezione **sink**:
+Se si copiano dati tooAzure DB Cosmos, impostare hello **tipo di sink** di hello attività di copia troppo**DocumentDbCollectionSink**e specificare le seguenti proprietà in hello **sink**sezione:
 
 | **Proprietà** | **Descrizione** | **Valori consentiti** | **Obbligatorio** |
 | --- | --- | --- | --- |
-| nestingSeparator |È necessario un carattere speciale nel nome della colonna di origine per indicare tale documento nidificato. <br/><br/>Per l'esempio sopra: `Name.First` nella tabella di output produce la struttura JSON seguente nel documento di Cosmos DB:<br/><br/>"Name": {<br/>    "First": "John"<br/>}, |Carattere utilizzato per separare i livelli di nidificazione.<br/><br/>Il valore predefinito è `.` (punto). |Carattere utilizzato per separare i livelli di nidificazione. <br/><br/>Il valore predefinito è `.` (punto). |
-| writeBatchSize |Numero di richieste in parallelo per il servizio Azure Cosmos DB per creare documenti.<br/><br/>È possibile ottimizzare le prestazioni quando si copiano dati da e verso Azure Cosmos DB usando questa proprietà. È possibile prevedere prestazioni migliori quando si aumenta writeBatchSize, poiché vengono inviate più richieste in parallelo a Azure Cosmos DB. Tuttavia è necessario evitare la limitazione che può generare il messaggio di errore: "La frequenza delle richieste è troppo elevata".<br/><br/>La limitazione è dovuta a diversi fattori, inclusi la dimensione dei documenti, il numero di termini nei documenti, i criteri di indicizzazione della raccolta di destinazione, ecc. Per le operazioni di copia, è possibile usare una raccolta migliore (ad esempio, S3) per poter disporre della maggiore velocità effettiva possibile (2.500 unità richieste al secondo). |Integer |No (valore predefinito: 5) |
-| writeBatchTimeout |Tempo di attesa per il completamento dell’operazione prima del timeout. |Intervallo di tempo<br/><br/> Ad esempio: "00:30:00" (30 minuti). |No |
+| nestingSeparator |È necessario un carattere speciale nel hello origine colonna nome tooindicate annidati di documento. <br/><br/>Ad esempio sopra: `Name.First` nell'output di hello tabella produce hello seguente struttura JSON nel documento Cosmos DB hello:<br/><br/>"Name": {<br/>    "First": "John"<br/>}, |Carattere usato tooseparate livelli di annidamento.<br/><br/>Il valore predefinito è `.` (punto). |Carattere usato tooseparate livelli di annidamento. <br/><br/>Il valore predefinito è `.` (punto). |
+| writeBatchSize |Numero parallelo di richieste di documenti di toocreate tooAzure DB Cosmos del servizio.<br/><br/>È possibile ottimizzare le prestazioni di hello quando si copiano dati da e verso Azure Cosmos DB usando questa proprietà. È possibile prevedere prestazioni migliori quando si aumenta viene raggiunto writeBatchSize poiché vengono inviate altre richieste in parallelo tooAzure DB Cosmos. Tuttavia, occorre tooavoid la limitazione delle richieste che possono generare il messaggio di errore hello: "Richiesta frequenza è grande".<br/><br/>La limitazione è dovuta a diversi fattori, inclusi la dimensione dei documenti, il numero di termini nei documenti, i criteri di indicizzazione della raccolta di destinazione, ecc. Per le operazioni di copia, è possibile utilizzare un migliore hello toohave raccolta (ad esempio, S3) la maggior parte delle velocità effettiva disponibile (2.500 richiesta unità al secondo). |Integer |No (valore predefinito: 5) |
+| writeBatchTimeout |Tempo di attesa per hello operazione toocomplete prima del timeout. |Intervallo di tempo<br/><br/> Ad esempio: "00:30:00" (30 minuti). |No |
 
 #### <a name="example"></a>Esempio
 
@@ -902,7 +902,7 @@ Se si copiano dati in Azure Cosmos DB, impostare il **tipo di sink** dell'attivi
                 },
                 "translator": {
                     "type": "TabularTranslator",
-                    "ColumnMappings": "FirstName: Name.First, MiddleName: Name.Middle, LastName: Name.Last, BusinessEntityID: BusinessEntityID, PersonType: PersonType, NameStyle: NameStyle, Title: Title, Suffix: Suffix"
+                    "ColumnMappings": "FirstName: Name.First, MiddleName: Name.Middle, LastName: Name.Last, BusinessEntityID: BusinessEntityID, PersonType: PersonType, NameStyle: NameStyle, title: aaaTitle, Suffix: Suffix"
                 }
             },
             "inputs": [{
@@ -927,11 +927,11 @@ Per altre informazioni, vedere l'articolo [Connettore Azure Cosmos DB](data-fact
 ## <a name="azure-sql-database"></a>Database SQL di Azure
 
 ### <a name="linked-service"></a>Servizio collegato
-Per definire un servizio collegato di Database SQL di Azure, impostare il **tipo** di servizio collegato su **AzureSqlDatabase**e specificare le proprietà seguenti nella sezione **typeProperties**:  
+il set hello servizio collegato di toodefine un Database di SQL Azure **tipo** di hello servizio collegato troppo**AzureSqlDatabase**e specificare le seguenti proprietà in hello **typeProperties**sezione:  
 
 | Proprietà | Descrizione | Obbligatorio |
 | --- | --- | --- |
-| connectionString |Specificare le informazioni necessarie per connettersi all'istanza di database SQL di Azure per la proprietà connectionString. |Sì |
+| connectionString |Specificare l'istanza del Database di SQL Azure toohello tooconnect necessarie informazioni per la proprietà connectionString hello. |Sì |
 
 #### <a name="example"></a>Esempio
 ```json
@@ -949,11 +949,11 @@ Per definire un servizio collegato di Database SQL di Azure, impostare il **tipo
 Per altre informazioni, vedere [Connettore SQL di Azure](data-factory-azure-sql-connector.md#linked-service-properties). 
 
 ### <a name="dataset"></a>Set di dati
-Per definire un set di dati del Database SQL di Azure, impostare il **tipo** di set di dati su **AzureSqlTable**e specificare le proprietà seguenti nella sezione **typeProperties**: 
+toodefine un set di dati di Database SQL di Azure, hello set **tipo** del set di dati hello troppo**AzureSqlTable**e specificare le proprietà in hello seguenti hello **typeProperties** sezione: 
 
 | Proprietà | Descrizione | Obbligatorio |
 | --- | --- | --- |
-| tableName |Nome della tabella o vista nell'istanza di database SQL di Azure a cui fa riferimento il servizio collegato. |Sì |
+| tableName |Nome della tabella hello o della vista nell'istanza di Database SQL di Azure hello che il servizio collegato fa riferimento a. |Sì |
 
 #### <a name="example"></a>Esempio
 
@@ -984,14 +984,14 @@ Per definire un set di dati del Database SQL di Azure, impostare il **tipo** di 
 Per altre informazioni, vedere [Connettore SQL di Azure](data-factory-azure-sql-connector.md#dataset-properties). 
 
 ### <a name="sql-source-in-copy-activity"></a>Origine SQL nell'attività di copia
-Se si copiano dati da un database SQL di Azure, impostare il **tipo di origine** dell'attività di copia su **SqlSource**e specificare le proprietà seguenti nella sezione **source**:
+Se si copiano dati da un Database SQL di Azure, impostare hello **tipo di origine** di hello attività di copia troppo**SqlSource**e specificare le seguenti proprietà in hello **origine** sezione:
 
 
 | Proprietà | Descrizione | Valori consentiti | Obbligatorio |
 | --- | --- | --- | --- |
-| SqlReaderQuery |Usare la query personalizzata per leggere i dati. |Stringa di query SQL. Esempio: `select * from MyTable`. |No |
-| sqlReaderStoredProcedureName |Nome della stored procedure che legge i dati dalla tabella di origine. |Nome della stored procedure. |No |
-| storedProcedureParameters |Parametri per la stored procedure. |Coppie nome/valore. I nomi e le maiuscole e minuscole dei parametri devono corrispondere ai nomi e alle maiuscole e minuscole dei parametri della stored procedure. |No |
+| SqlReaderQuery |Utilizzare i dati di tooread hello query personalizzata. |Stringa di query SQL. Esempio: `select * from MyTable`. |No |
+| sqlReaderStoredProcedureName |Nome di hello stored procedure che legge i dati dalla tabella di origine hello. |Nome di hello stored procedure. |No |
+| storedProcedureParameters |I parametri per hello stored procedure. |Coppie nome/valore. Nomi e le maiuscole e minuscole dei parametri devono corrispondere i nomi di hello e maiuscole e minuscole di parametri di hello stored procedure. |No |
 
 #### <a name="example"></a>Esempio
 
@@ -1038,17 +1038,17 @@ Se si copiano dati da un database SQL di Azure, impostare il **tipo di origine**
 Per altre informazioni, vedere [Connettore SQL di Azure](data-factory-azure-sql-connector.md#copy-activity-properties). 
 
 ### <a name="sql-sink-in-copy-activity"></a>Sink SQL nell'attività di copia
-Se si copiano dati in un database SQL di Azure, impostare il **tipo di sink** dell'attività di copia su **SqlSink**e specificare le proprietà seguenti nella sezione **sink**:
+Se si copiano dati tooAzure Database SQL, impostare hello **tipo di sink** di hello attività di copia troppo**SqlSink**e specificare le seguenti proprietà in hello **sink** sezione:
 
 | Proprietà | Descrizione | Valori consentiti | Obbligatorio |
 | --- | --- | --- | --- |
-| writeBatchTimeout |Tempo di attesa per l'operazione di inserimento batch da completare prima del timeout. |Intervallo di tempo<br/><br/> Ad esempio: "00:30:00" (30 minuti). |No |
-| writeBatchSize |Inserisce dati nella tabella SQL quando la dimensione del buffer raggiunge writeBatchSize. |Numero intero (numero di righe) |No (valore predefinito: 10000) |
-| sqlWriterCleanupScript |Specificare una query da eseguire nell'attività di copia per pulire i dati di una sezione specifica. |Istruzione di query. |No |
-| sliceIdentifierColumnName |Specificare il nome di una colonna in cui inserire nell'attività di copia l'identificatore di sezione generato automaticamente che verrà usato per pulire i dati di una sezione specifica quando viene ripetuta l'esecuzione. |Nome di colonna di una colonna con tipo di dati binario (32). |No |
-| sqlWriterStoredProcedureName |Nome della stored procedure che esegue l'upsert (aggiornamenti/inserimenti) nella tabella di destinazione. |Nome della stored procedure. |No |
-| storedProcedureParameters |Parametri per la stored procedure. |Coppie nome/valore. I nomi e le maiuscole e minuscole dei parametri devono corrispondere ai nomi e alle maiuscole e minuscole dei parametri della stored procedure. |No |
-| sqlWriterTableType |Specificare il nome di un tipo di tabella da usare nella stored procedure. L'attività di copia rende i dati spostati disponibili in una tabella temporanea con questo tipo di tabella. Il codice della stored procedure può quindi unire i dati copiati con i dati esistenti. |Nome del tipo di tabella. |No |
+| writeBatchTimeout |Tempo di attesa per hello batch insert operazione toocomplete prima del timeout. |Intervallo di tempo<br/><br/> Ad esempio: "00:30:00" (30 minuti). |No |
+| writeBatchSize |Inserisce dati in una tabella SQL hello quando viene raggiunto writeBatchSize raggiungerà le dimensioni di buffer hello. |Numero intero (numero di righe) |No (valore predefinito: 10000) |
+| sqlWriterCleanupScript |Specificare una query per attività di copia tooexecute modo che la pulitura dei dati di una sezione specifica. |Istruzione di query. |No |
+| sliceIdentifierColumnName |Specificare un nome di colonna per attività di copia toofill con identificatore di sezione generati automaticamente, che è usato tooclean dei dati di una sezione specifica quando eseguire di nuovo. |Nome di colonna di una colonna con tipo di dati binario (32). |No |
+| sqlWriterStoredProcedureName |Nome della hello stored procedure che upserts (aggiornamenti/inserimenti) i dati nella tabella di destinazione hello. |Nome di hello stored procedure. |No |
+| storedProcedureParameters |I parametri per hello stored procedure. |Coppie nome/valore. Nomi e le maiuscole e minuscole dei parametri devono corrispondere i nomi di hello e maiuscole e minuscole di parametri di hello stored procedure. |No |
+| sqlWriterTableType |Specificare un toobe nome tipo di tabella utilizzati in hello stored procedure. Attività di copia rende disponibili in una tabella temporanea con questo tipo di tabella dati di hello viene spostati. Codice della stored procedure può unire dati hello copiati con i dati esistenti. |Nome del tipo di tabella. |No |
 
 #### <a name="example"></a>Esempio
 
@@ -1098,11 +1098,11 @@ Per altre informazioni, vedere [Connettore SQL di Azure](data-factory-azure-sql-
 ## <a name="azure-sql-data-warehouse"></a>Azure SQL Data Warehouse
 
 ### <a name="linked-service"></a>Servizio collegato
-Per definire un servizio collegato di Azure SQL Data Warehouse, impostare il **tipo** di servizio collegato su **AzureSqlDW**e specificare le proprietà seguenti nella sezione **typeProperties**:  
+il servizio hello set toodefine un Data Warehouse di SQL Azure collegato **tipo** di hello servizio collegato troppo**AzureSqlDW**e specificare le seguenti proprietà in hello **typeProperties**sezione:  
 
 | Proprietà | Descrizione | Obbligatorio |
 | --- | --- | --- |
-| connectionString |Specificare le informazioni necessarie per connettersi all'istanza di Azure SQL Data Warehouse per la proprietà connectionString. |Sì |
+| connectionString |Specificare l'istanza di Azure SQL Data Warehouse toohello tooconnect necessarie informazioni per la proprietà connectionString hello. |Sì |
 
 
 
@@ -1123,11 +1123,11 @@ Per definire un servizio collegato di Azure SQL Data Warehouse, impostare il **t
 Per altre informazioni, vedere [Connettore Azure SQL Data Warehouse](data-factory-azure-sql-data-warehouse-connector.md#linked-service-properties). 
 
 ### <a name="dataset"></a>Set di dati
-Per definire un set di dati di Azure SQL Data Warehouse, impostare il **tipo** di set di dati su **AzureSqlDWTable**e specificare le proprietà seguenti nella sezione **typeProperties**: 
+toodefine un set di dati di Azure SQL Data Warehouse, hello set **tipo** del set di dati hello troppo**AzureSqlDWTable**e specificare le proprietà in hello seguenti hello **typeProperties**sezione: 
 
 | Proprietà | Descrizione | Obbligatorio |
 | --- | --- | --- |
-| tableName |Nome della tabella o della visualizzazione nell'istanza del database SQL Data Warehouse di Azure a cui fa riferimento il servizio collegato. |Sì |
+| tableName |Nome della tabella hello o della vista nel database di Azure SQL Data Warehouse hello che hello servizio collegato fa riferimento a. |Sì |
 
 #### <a name="example"></a>Esempio
 
@@ -1159,14 +1159,14 @@ Per definire un set di dati di Azure SQL Data Warehouse, impostare il **tipo** d
 Per altre informazioni, vedere [Connettore Azure SQL Data Warehouse](data-factory-azure-sql-data-warehouse-connector.md#dataset-properties). 
 
 ### <a name="sql-dw-source-in-copy-activity"></a>Origine SQL DW nell'attività di copia
-Se si copiano dati da un Azure SQL Data Warehouse, impostare il **tipo di origine** dell'attività di copia su **SqlDWSource**e specificare le proprietà seguenti nella sezione **source**:
+Se si copiano dati da Azure SQL Data Warehouse, impostare hello **tipo di origine** di hello attività di copia troppo**SqlDWSource**e specificare le seguenti proprietà in hello **origine**sezione:
 
 
 | Proprietà | Descrizione | Valori consentiti | Obbligatorio |
 | --- | --- | --- | --- |
-| SqlReaderQuery |Usare la query personalizzata per leggere i dati. |Stringa di query SQL. Ad esempio: `select * from MyTable`. |No |
-| sqlReaderStoredProcedureName |Nome della stored procedure che legge i dati dalla tabella di origine. |Nome della stored procedure. |No |
-| storedProcedureParameters |Parametri per la stored procedure. |Coppie nome/valore. I nomi e le maiuscole e minuscole dei parametri devono corrispondere ai nomi e alle maiuscole e minuscole dei parametri della stored procedure. |No |
+| SqlReaderQuery |Utilizzare i dati di tooread hello query personalizzata. |Stringa di query SQL. Ad esempio: `select * from MyTable`. |No |
+| sqlReaderStoredProcedureName |Nome di hello stored procedure che legge i dati dalla tabella di origine hello. |Nome di hello stored procedure. |No |
+| storedProcedureParameters |I parametri per hello stored procedure. |Coppie nome/valore. Nomi e le maiuscole e minuscole dei parametri devono corrispondere i nomi di hello e maiuscole e minuscole di parametri di hello stored procedure. |No |
 
 #### <a name="example"></a>Esempio
 
@@ -1214,19 +1214,19 @@ Se si copiano dati da un Azure SQL Data Warehouse, impostare il **tipo di origin
 Per altre informazioni, vedere [Connettore Azure SQL Data Warehouse](data-factory-azure-sql-data-warehouse-connector.md#copy-activity-properties). 
 
 ### <a name="sql-dw-sink-in-copy-activity"></a>Sink SQL DW nell'attività di copia
-Se si copiano dati in un Azure SQL Data Warehouse, impostare il **tipo di sink** dell'attività di copia su **SqlDWSink**e specificare le proprietà seguenti nella sezione **sink**:
+Se si copiano dati tooAzure SQL Data Warehouse, impostare hello **tipo di sink** di hello attività di copia troppo**SqlDWSink**e specificare le seguenti proprietà in hello **sink** sezione:
 
 | Proprietà | Descrizione | Valori consentiti | Obbligatorio |
 | --- | --- | --- | --- |
-| sqlWriterCleanupScript |Specificare una query da eseguire nell'attività di copia per pulire i dati di una sezione specifica. |Istruzione di query. |No |
-| allowPolyBase |Indica se usare PolyBase, quando applicabile, invece del meccanismo BULKINSERT. <br/><br/> **L'uso di PolyBase è il modo consigliato per caricare dati in SQL Data Warehouse.** |True  <br/>False (impostazione predefinita) |No |
-| polyBaseSettings |Gruppo di proprietà che è possibile specificare quando la proprietà **allowPolybase** è impostata su **true**. |&nbsp; |No |
-| rejectValue |Specifica il numero o la percentuale di righe che è possibile rifiutare prima che la query abbia esito negativo. <br/><br/>Per altre informazioni sulle opzioni di rifiuto di PolyBase, vedere la sezione **Arguments** (Argomenti) in [CREATE EXTERNAL TABLE (Transact-SQL)](https://msdn.microsoft.com/library/dn935021.aspx) . |0 (impostazione predefinita), 1, 2, … |No |
-| rejectType |Indica se l'opzione rejectValue viene specificata come valore letterale o come percentuale. |Value (impostazione predefinita), Percentage |No |
-| rejectSampleValue |Determina il numero di righe da recuperare prima che PolyBase ricalcoli la percentuale di righe rifiutate. |1, 2, … |Sì se **rejectType** è **percentage** |
-| useTypeDefault |Specifica come gestire i valori mancanti nei file con testo delimitato quando PolyBase recupera dati dal file di testo.<br/><br/>Per altre informazioni su questa proprietà, vedere la sezione Arguments (Argomenti) in [CREATE EXTERNAL FILE FORMAT (Transact-SQL)](https://msdn.microsoft.com/library/dn935026.aspx). |True, False (valore predefinito) |No |
-| writeBatchSize |Inserisce dati nella tabella SQL quando la dimensione del buffer raggiunge writeBatchSize. |Numero intero (numero di righe) |No (valore predefinito: 10000) |
-| writeBatchTimeout |Tempo di attesa per l'operazione di inserimento batch da completare prima del timeout. |Intervallo di tempo<br/><br/> Ad esempio: "00:30:00" (30 minuti). |No |
+| sqlWriterCleanupScript |Specificare una query per attività di copia tooexecute modo che la pulitura dei dati di una sezione specifica. |Istruzione di query. |No |
+| allowPolyBase |Indica se toouse PolyBase (se applicabile) anziché meccanismo BULKINSERT. <br/><br/> **Utilizzo di PolyBase è hello consigliato dei dati tooload in SQL Data Warehouse.** |True  <br/>False (impostazione predefinita) |No |
+| polyBaseSettings |Un gruppo di proprietà che possono essere specificati quando hello **allowPolybase** impostata troppo**true**. |&nbsp; |No |
+| rejectValue |Specifica il numero di hello o la percentuale di righe che può essere rifiutata prima di hello query ha esito negativo. <br/><br/>Informazioni su ulteriori informazioni su del PolyBase hello rifiutare le opzioni di hello **argomenti** sezione [CREATE EXTERNAL TABLE (Transact-SQL)](https://msdn.microsoft.com/library/dn935021.aspx) argomento. |0 (impostazione predefinita), 1, 2, … |No |
+| rejectType |Specifica se l'opzione rejectValue hello è specificato come valore letterale o percentuale. |Value (impostazione predefinita), Percentage |No |
+| rejectSampleValue |Determina il numero di hello di tooretrieve righe prima di hello PolyBase Ricalcola percentuale hello di righe rifiutate. |1, 2, … |Sì se **rejectType** è **percentage** |
+| useTypeDefault |Specifica la modalità toohandle mancano i valori nel file di testo delimitati quando PolyBase recupera i dati da file di testo hello.<br/><br/>Altre informazioni su questa proprietà dalla sezione argomenti hello [CREATE EXTERNAL FILE FORMAT (Transact-SQL)](https://msdn.microsoft.com/library/dn935026.aspx). |True, False (valore predefinito) |No |
+| writeBatchSize |Inserisce i dati in una tabella SQL hello quando viene raggiunto writeBatchSize raggiungerà le dimensioni di buffer hello |Numero intero (numero di righe) |No (valore predefinito: 10000) |
+| writeBatchTimeout |Tempo di attesa per hello batch insert operazione toocomplete prima del timeout. |Intervallo di tempo<br/><br/> Ad esempio: "00:30:00" (30 minuti). |No |
 
 #### <a name="example"></a>Esempio
 
@@ -1277,12 +1277,12 @@ Per altre informazioni, vedere [Connettore Azure SQL Data Warehouse](data-factor
 ## <a name="azure-search"></a>Ricerca di Azure
 
 ### <a name="linked-service"></a>Servizio collegato
-Per definire un servizio collegato di Ricerca di Azure, impostare il **tipo** di servizio collegato su **AzureSearch** e specificare le proprietà seguenti nella sezione **typeProperties**:  
+il servizio hello set toodefine una ricerca di Azure collegato **tipo** di hello servizio collegato troppo**AzureSearch**e specificare le seguenti proprietà in hello **typeProperties** sezione:  
 
 | Proprietà | Descrizione | Obbligatorio |
 | -------- | ----------- | -------- |
-| URL | URL del servizio Ricerca di Azure. | sì |
-| key | Chiave amministratore del servizio Ricerca di Azure. | Sì |
+| URL | URL per il servizio di ricerca di Azure hello. | Sì |
+| key | Chiave di amministrazione per hello del servizio di ricerca di Azure. | Sì |
 
 #### <a name="example"></a>Esempio
 
@@ -1302,12 +1302,12 @@ Per definire un servizio collegato di Ricerca di Azure, impostare il **tipo** di
 Per altre informazioni, vedere [Connettore Ricerca di Azure](data-factory-azure-search-connector.md#linked-service-properties).
 
 ### <a name="dataset"></a>Set di dati
-Per definire un set di dati di Ricerca di Azure, impostare il **tipo** di set di dati su **AzureSearchIndex** e specificare le proprietà seguenti nella sezione **typeProperties**: 
+toodefine un set di dati di ricerca di Azure, hello set **tipo** del set di dati hello troppo**AzureSearchIndex**e specificare le proprietà in hello seguenti hello **typeProperties** sezione : 
 
 | Proprietà | Descrizione | Obbligatorio |
 | -------- | ----------- | -------- |
-| type | La proprietà type deve essere impostata su **AzureSearchIndex**.| Sì |
-| indexName | Nome dell'indice di Ricerca di Azure. Il servizio Data Factory non crea l'indice. L'indice deve essere presente in Ricerca di Azure. | Sì |
+| type | proprietà di tipo Hello deve essere impostata troppo**AzureSearchIndex**.| Sì |
+| indexName | Nome dell'indice di ricerca di Azure hello. Data Factory di creare l'indice di hello. indice di Hello deve esistere in ricerca di Azure. | Sì |
 
 #### <a name="example"></a>Esempio
 
@@ -1331,12 +1331,12 @@ Per definire un set di dati di Ricerca di Azure, impostare il **tipo** di set di
 Per altre informazioni, vedere [Connettore Ricerca di Azure](data-factory-azure-search-connector.md#dataset-properties).
 
 ### <a name="azure-search-index-sink-in-copy-activity"></a>Sink Indice di Ricerca di Azure in attività di copia
-Se si copiano dati in un indice di Ricerca di Azure, impostare il **tipo di sink**  dell'attività di copia su **AzureSearchIndexSink**e specificare le proprietà seguenti nella sezione **sink**:
+Se si sta copiando l'indice di ricerca di Azure tooan dati, impostare hello **tipo di sink** di hello attività di copia troppo**AzureSearchIndexSink**e specificare le seguenti proprietà in hello **sink**sezione:
 
 | Proprietà | Descrizione | Valori consentiti | Obbligatorio |
 | -------- | ----------- | -------------- | -------- |
-| WriteBehavior | Specifica se eseguire un'unione o una sostituzione quando nell'indice esiste già un documento. | Merge (impostazione predefinita)<br/>Carica| No |
-| WriteBatchSize | Consente di caricare dati nell'indice di Ricerca di Azure quando le dimensioni del buffer raggiungono il valore indicato da writeBatchSize. | Da 1 a 1000. Il valore predefinito è 1000. | No |
+| WriteBehavior | Specifica se toomerge o Sostituisci quando un documento già presente nell'indice hello. | Merge (impostazione predefinita)<br/>Carica| No |
+| WriteBatchSize | Carica i dati nell'indice di ricerca di Azure hello quando viene raggiunto writeBatchSize raggiungerà le dimensioni di buffer hello. | 1 too1, 000. Il valore predefinito è 1000. | No |
 
 #### <a name="example"></a>Esempio
 
@@ -1389,12 +1389,12 @@ Per altre informazioni, vedere [Connettore Ricerca di Azure](data-factory-azure-
 Esistono due tipi di servizi collegati: servizio collegato di Archiviazione di Azure e servizio collegato di firma di accesso condiviso Archiviazione di Azure.
 
 #### <a name="azure-storage-linked-service"></a>Servizio collegato Archiviazione di Azure
-Per collegare un account di Archiviazione di Azure a una data factory tramite la **chiave dell'account**, creare un servizio collegato di Archiviazione di Azure. Per definire un servizio collegato di Archiviazione di Azure, impostare il **tipo** di servizio collegato su **AzureStorage**. Specificare quindi le seguenti proprietà nella sezione **typeProperties**:  
+toolink la data factory tooa account di archiviazione di Azure tramite hello **chiave dell'account**, creare un servizio collegato di archiviazione di Azure. il set hello servizio collegato di toodefine una risorsa di archiviazione di Azure **tipo** di hello servizio collegato troppo**AzureStorage**. Quindi, è possibile specificare le seguenti proprietà in hello **typeProperties** sezione:  
 
 | Proprietà | Descrizione | Obbligatorio |
 |:--- |:--- |:--- |
-| type |La proprietà type deve essere impostata su: **AzureStorage** |Sì |
-| connectionString |Specificare le informazioni necessarie per connettersi all’archivio Azure per la proprietà connectionString. |Sì |
+| type |proprietà di tipo Hello deve essere impostata su: **AzureStorage** |Sì |
+| connectionString |Specificare le informazioni necessarie tooconnect tooAzure archiviazione per la proprietà connectionString hello. |Sì |
 
 **Esempio:**  
 
@@ -1411,12 +1411,12 @@ Per collegare un account di Archiviazione di Azure a una data factory tramite la
 ```
 
 #### <a name="azure-storage-sas-linked-service"></a>Servizio collegato di firma di accesso condiviso Archiviazione di Azure
-Il servizio collegato di firma di accesso condiviso Archiviazione di Azure consente di collegare un account di Archiviazione di Azure a Data factory di Azure tramite una firma di accesso condiviso. Offre a Data factory un accesso con restrizioni o limiti di tempo a tutte le risorse o a risorse specifiche (BLOB/contenitore) nella risorsa di archiviazione. Per collegare un account di Archiviazione di Azure a una data factory tramite la firma di accesso condiviso, creare un servizio collegato di firma di accesso condiviso Archiviazione di Azure. Per definire un Servizio collegato di firma di accesso condiviso Archiviazione di Azure, impostare il **tipo** del servizio collegato su **AzureStorageSas**. Specificare quindi le seguenti proprietà nella sezione **typeProperties**:   
+servizio sa di archiviazione di Azure collegati Hello consente toolink un Account di archiviazione Azure tooan data factory di Azure tramite una firma di accesso condiviso (SAS). Fornisce data factory di hello con accesso limitato/scadenza tooall/specifiche risorse (blob/contenitore) nell'archiviazione hello. toolink la data factory tooa account di archiviazione di Azure tramite la firma di accesso condiviso, creare un servizio sa di archiviazione di Azure collegati. il servizio hello set toodefine un SAS di archiviazione di Azure collegato **tipo** di hello servizio collegato troppo**AzureStorageSas**. Quindi, è possibile specificare le seguenti proprietà in hello **typeProperties** sezione:   
 
 | Proprietà | Descrizione | Obbligatorio |
 |:--- |:--- |:--- |
-| type |La proprietà type deve essere impostata su: **AzureStorageSas** |Sì |
-| sasUri |Specificare l'URI della firma di accesso condiviso per le risorse di Archiviazione di Azure come BLOB, contenitore o tabella. |Sì |
+| type |proprietà di tipo Hello deve essere impostata su: **AzureStorageSas** |Sì |
+| sasUri |Specificare le risorse di archiviazione di Azure toohello URI firma di accesso condiviso, ad esempio una tabella, contenitore o blob. |Sì |
 
 **Esempio:**
 
@@ -1435,11 +1435,11 @@ Il servizio collegato di firma di accesso condiviso Archiviazione di Azure conse
 Per altre informazioni sui servizi collegati, vedere [Connettore Archiviazione tabelle di Azure](data-factory-azure-table-connector.md#linked-service-properties). 
 
 ### <a name="dataset"></a>Set di dati
-Per definire un set di dati di Archiviazione tabelle di Azure, impostare il **tipo** di set di dati su **AzureTable**e specificare le proprietà seguenti nella sezione **typeProperties**: 
+toodefine un set di dati di tabelle di Azure, hello set **tipo** del set di dati hello troppo**AzureTable**e specificare le proprietà in hello seguenti hello **typeProperties** sezione: 
 
 | Proprietà | Descrizione | Obbligatorio |
 | --- | --- | --- |
-| tableName |Nome della tabella nell'istanza del database di tabelle di Azure a cui fa riferimento il servizio collegato. |Sì. Quando si specifica tableName senza azureTableSourceQuery, tutti i record della tabella vengono copiati nella destinazione. Se si specifica anche azureTableSourceQuery, i record della tabella che soddisfa la query vengono copiati nella destinazione. |
+| tableName |Nome della tabella hello nell'istanza di Database della tabella di Azure hello che il servizio collegato fa riferimento a. |Sì. Quando un tableName viene specificato senza un azureTableSourceQuery, tutti i record dalla tabella hello vengono copiati toohello destinazione. Se viene specificato anche un azureTableSourceQuery, i record dalla tabella hello che soddisfa la query hello sono destinazione toohello copiato. |
 
 #### <a name="example"></a>Esempio
 
@@ -1471,12 +1471,12 @@ Per definire un set di dati di Archiviazione tabelle di Azure, impostare il **ti
 Per altre informazioni sui servizi collegati, vedere [Connettore Archiviazione tabelle di Azure](data-factory-azure-table-connector.md#dataset-properties). 
 
 ### <a name="azure-table-source-in-copy-activity"></a>Origine Tabella di Azure nell'attività di copia
-Se si copiano dati dall'archiviazione tabelle di Azure, impostare il **tipo di origine** dell'attività di copia su **AzureTableSource**e specificare le proprietà seguenti nella sezione **source**:
+Se si copiano dati da Archiviazione tabelle di Azure, impostare hello **tipo di origine** di hello attività di copia troppo**AzureTableSource**e specificare le seguenti proprietà in hello **origine**sezione:
 
 | Proprietà | Descrizione | Valori consentiti | Obbligatorio |
 | --- | --- | --- | --- |
-| AzureTableSourceQuery |Usare la query personalizzata per leggere i dati. |Stringa di query della tabella di Azure. Vedere gli esempi nella sezione successiva. |No. Quando si specifica tableName senza azureTableSourceQuery, tutti i record della tabella vengono copiati nella destinazione. Se si specifica anche azureTableSourceQuery, i record della tabella che soddisfa la query vengono copiati nella destinazione. |
-| azureTableSourceIgnoreTableNotFound |Indica se ignorare l'eccezione di tabella inesistente. |TRUE<br/>FALSE |No |
+| AzureTableSourceQuery |Utilizzare i dati di tooread hello query personalizzata. |Stringa di query della tabella di Azure. Vedere gli esempi nella sezione successiva hello. |No. Quando un tableName viene specificato senza un azureTableSourceQuery, tutti i record dalla tabella hello vengono copiati toohello destinazione. Se viene specificato anche un azureTableSourceQuery, i record dalla tabella hello che soddisfa la query hello sono destinazione toohello copiato. |
+| azureTableSourceIgnoreTableNotFound |Indica se ignorare hello eccezione della tabella non esiste. |TRUE<br/>FALSE |No |
 
 #### <a name="example"></a>Esempio
 
@@ -1524,16 +1524,16 @@ Se si copiano dati dall'archiviazione tabelle di Azure, impostare il **tipo di o
 Per altre informazioni sui servizi collegati, vedere [Connettore Archiviazione tabelle di Azure](data-factory-azure-table-connector.md#copy-activity-properties). 
 
 ### <a name="azure-table-sink-in-copy-activity"></a>Sink Tabella di Azure nell'attività di copia
-Se si copiano dati in un'archiviazione tabelle di Azure, impostare il **tipo di sink** dell'attività di copia su **AzureTableSink**e specificare le proprietà seguenti nella sezione **sink**:
+Se si copiano dati tooAzure archiviazione tabelle, impostare hello **tipo di sink** di hello attività di copia troppo**AzureTableSink**e specificare le seguenti proprietà in hello **sink** sezione:
 
 | Proprietà | Descrizione | Valori consentiti | Obbligatorio |
 | --- | --- | --- | --- |
-| azureTableDefaultPartitionKeyValue |Valore predefinito della chiave di partizione che può essere usato dal sink. |Valore stringa. |No |
-| azureTablePartitionKeyName |Specificare il nome della colonna i cui valori vengono usati come chiavi di partizione. Se non specificato, AzureTableDefaultPartitionKeyValue viene usato come chiave di partizione. |Nome colonna. |No |
-| azureTableRowKeyName |Specificare il nome della colonna i cui valori vengono usati come chiavi di riga. Se non specificato, usare un GUID per ogni riga. |Nome colonna. |No |
-| azureTableInsertType |Modalità di inserimento dei dati in una tabella di Azure.<br/><br/>Questa proprietà verifica se per le righe esistenti nella tabella di output con chiavi di partizione e di riga corrispondenti i valori vengono sostituiti o uniti. <br/><br/>Per scoprire come funzionano queste impostazioni (unione e sostituzione), vedere gli argomenti [Insert or Merge Entity](https://msdn.microsoft.com/library/azure/hh452241.aspx) (Inserire o unire un'entità) e [Insert or Replace Entity](https://msdn.microsoft.com/library/azure/hh452242.aspx) (Inserire o sostituire un'entità). <br/><br> Queste impostazioni vengono applicate a livello di riga, non a livello di tabella, e nessuna delle due opzioni elimina le righe della tabella di output che non esistono nell'input. |merge (impostazione predefinita)<br/>replace |No |
-| writeBatchSize |Inserisce dati nella tabella di Azure quando viene raggiunto il writeBatchSize o writeBatchTimeout. |Numero intero (numero di righe) |No (valore predefinito: 10000) |
-| writeBatchTimeout |Inserisce i dati nella tabella di Azure quando viene raggiunto writeBatchSize o writeBatchTimeout |Intervallo di tempo<br/><br/>Ad esempio: "00:20:00" (20 minuti) |No. (il valore predefinito è il timeout del client di archiviazione pari a 90 secondi) |
+| azureTableDefaultPartitionKeyValue |Partizione chiave valore predefinito che può essere usato dal sink hello. |Valore stringa. |No |
+| azureTablePartitionKeyName |Nome della colonna hello i cui valori vengono utilizzati come chiavi di partizione. Se non specificato, AzureTableDefaultPartitionKeyValue viene utilizzato come chiave di partizione hello. |Nome colonna. |No |
+| azureTableRowKeyName |Nome della colonna hello i cui valori di colonna vengono utilizzati come chiave di riga. Se non specificato, usare un GUID per ogni riga. |Nome colonna. |No |
+| azureTableInsertType |Hello modalità tooinsert i dati in tabelle di Azure.<br/><br/>Questa proprietà controlla se le righe esistenti nella tabella di output di hello con le chiavi di riga e di partizione corrispondenti hanno valori di sostituzione o unione. <br/><br/>toolearn sul funzionano di queste impostazioni (merge e la sostituzione), vedere [Insert o l'entità di tipo Merge](https://msdn.microsoft.com/library/azure/hh452241.aspx) e [Insert o sostituire entità](https://msdn.microsoft.com/library/azure/hh452242.aspx) argomenti. <br/><br> Questa impostazione si applica a livello di riga hello, non a livello tabella hello, e nessuna delle due opzioni consente di eliminare le righe nella tabella di output di hello che non esistono nell'input hello. |merge (impostazione predefinita)<br/>replace |No |
+| writeBatchSize |Inserisce dati nella tabella di Azure hello quando hello di viene raggiunto writeBatchSize o writeBatchTimeout. |Numero intero (numero di righe) |No (valore predefinito: 10000) |
+| writeBatchTimeout |Inserisce i dati in tabelle di Azure hello quando viene raggiunto writeBatchSize hello o writeBatchTimeout |Intervallo di tempo<br/><br/>Ad esempio: "00:20:00" (20 minuti) |No (valore di timeout predefinito del client predefinito toostorage 90 secondi) |
 
 #### <a name="example"></a>Esempio
 
@@ -1583,15 +1583,15 @@ Per altre informazioni sui servizi collegati, vedere [Connettore Archiviazione t
 ## <a name="amazon-redshift"></a>Amazon Redshift
 
 ### <a name="linked-service"></a>Servizio collegato
-Per definire un servizio collegato di Amazon Redshift, impostare il **tipo** di servizio collegato su **AmazonRedshift** e specificare le proprietà seguenti nella sezione **typeProperties**:  
+toodefine un Amazon Redshift collegato del servizio, hello set **tipo** di hello servizio collegato troppo**AmazonRedshift**e specificare le seguenti proprietà in hello **typeProperties**sezione:  
 
 | Proprietà | Descrizione | Obbligatorio |
 | --- | --- | --- |
-| server |Indirizzo IP o nome host del server Amazon Redshift. |Sì |
-| port |Il numero della porta TCP che il server Amazon Redshift usa per ascoltare le connessioni client. |No, valore predefinito: 5439 |
-| database |Nome del database Amazon Redshift. |Sì |
-| Nome utente |Nome dell'utente che ha accesso al database. |Sì |
-| password |La password per l'account utente. |Sì |
+| server |IP il nome host o indirizzo del server di Amazon Redshift hello. |Sì |
+| port |numero di Hello di porta TCP hello hello server Amazon Redshift utilizza toolisten per le connessioni client. |No, valore predefinito: 5439 |
+| database |Nome del database Amazon Redshift hello. |Sì |
+| username |Nome dell'utente che dispone di accesso toohello database. |Sì |
+| password |Password dell'account utente di hello. |Sì |
 
 #### <a name="example"></a>Esempio
 
@@ -1614,11 +1614,11 @@ Per definire un servizio collegato di Amazon Redshift, impostare il **tipo** di 
 Per altre informazioni, vedere [Connettore Amazon Redshift](#data-factory-amazon-redshift-connector.md#linked-service-properties). 
 
 ### <a name="dataset"></a>Set di dati
-Per definire un set di dati di AmazonRedshift, impostare il **tipo** di set di dati su **RelationalTable**e specificare le proprietà seguenti nella sezione **typeProperties**: 
+toodefine un set di dati di Amazon Redshift set hello **tipo** del set di dati hello troppo**RelationalTable**e specificare le proprietà in hello seguenti hello **typeProperties** sezione: 
 
 | Proprietà | Descrizione | Obbligatorio |
 | --- | --- | --- |
-| tableName |Nome della tabella nel database Amazon Redshift a cui fa riferimento il servizio collegato. |No (se la **query** di **RelationalSource** è specificata) |
+| tableName |Nome della tabella hello hello Amazon Redshift in database in cui il servizio collegato fa riferimento a. |No (se la **query** di **RelationalSource** è specificata) |
 
 
 #### <a name="example"></a>Esempio
@@ -1643,11 +1643,11 @@ Per definire un set di dati di AmazonRedshift, impostare il **tipo** di set di d
 Per altre informazioni, vedere [Connettore Amazon Redshift](#data-factory-amazon-redshift-connector.md#dataset-properties).
 
 ### <a name="relational-source-in-copy-activity"></a>Origine relazionale nell'attività di copia 
-Se si copiano dati da Amazon Redshift, impostare il **tipo di origine** dell'attività di copia su **SqlRelationalSourceSource**e specificare le proprietà seguenti nella sezione **source**:
+Se si copiano dati da Amazon Redshift, impostare hello **tipo di origine** di hello attività di copia troppo**RelationalSource**e specificare le seguenti proprietà in hello **origine** sezione:
 
 | Proprietà | Descrizione | Valori consentiti | Obbligatorio |
 | --- | --- | --- | --- |
-| query |Usare la query personalizzata per leggere i dati. |Stringa di query SQL. Ad esempio: `select * from MyTable`. |No (se **tableName** di **set di dati** è specificato) |
+| query |Utilizzare i dati di tooread hello query personalizzata. |Stringa di query SQL. Ad esempio: `select * from MyTable`. |No (se **tableName** di **set di dati** è specificato) |
 
 #### <a name="example"></a>Esempio
 
@@ -1695,17 +1695,17 @@ Per altre informazioni, vedere [Connettore Amazon Redshift](#data-factory-amazon
 ## <a name="ibm-db2"></a>IBM DB2
 
 ### <a name="linked-service"></a>Servizio collegato
-Per definire un servizio collegato di IBM DB2, impostare il **tipo** di servizio collegato su **OnPremisesDB2** e specificare le proprietà seguenti nella sezione **typeProperties**:  
+il set hello servizio collegato di toodefine un IBM DB2 **tipo** di hello servizio collegato troppo**OnPremisesDB2**e specificare le seguenti proprietà in hello **typeProperties** sezione:  
 
 | Proprietà | Descrizione | Obbligatorio |
 | --- | --- | --- |
-| server |Nome del server DB2. |Sì |
-| database |Nome del database DB2. |Sì |
-| schema |Nome dello schema nel database. Il nome dello schema fa distinzione tra maiuscole e minuscole. |No |
-| authenticationType |Tipo di autenticazione usato per connettersi al database DB2. I valori possibili sono: anonima, di base e Windows. |Sì |
+| server |Nome del server DB2 hello. |Sì |
+| database |Nome del database DB2 hello. |Sì |
+| schema |Nome dello schema hello nel database di hello. nome dello schema Hello è tra maiuscole e minuscole. |No |
+| authenticationType |Tipo di autenticazione usato tooconnect toohello DB2 database. I valori possibili sono: anonima, di base e Windows. |Sì |
 | username |Specificare il nome utente se si usa l'autenticazione di base o Windows. |No |
-| password |Specificare la password per l'account utente specificato per il nome utente. |No |
-| gatewayName |Nome del gateway che il servizio Data factory deve usare per connettersi al database DB2 locale. |Sì |
+| password |Specificare la password per account utente di hello specificato per il nome utente hello. |No |
+| gatewayName |Nome del gateway hello hello servizio Data Factory deve usare database di DB2 tooconnect toohello locale. |Sì |
 
 #### <a name="example"></a>Esempio
 ```json
@@ -1728,11 +1728,11 @@ Per definire un servizio collegato di IBM DB2, impostare il **tipo** di servizio
 Per altre informazioni, vedere [Connettore IBM DB2](#data-factory-onprem-db2-connector.md#linked-service-properties).
 
 ### <a name="dataset"></a>Set di dati
-Per definire un set di dati di DB2, impostare il **tipo** di set di dati su **RelationalTable**e specificare le proprietà seguenti nella sezione **typeProperties**:
+set di dati toodefine un DB2, set hello **tipo** del set di dati hello troppo**RelationalTable**e specificare le proprietà in hello seguenti hello **typeProperties** sezione:
 
 | Proprietà | Descrizione | Obbligatorio |
 | --- | --- | --- |
-| tableName |Nome della tabella nell'istanza del database DB2 a cui fa riferimento il servizio collegato. La proprietà tableName fa distinzione tra maiuscole e minuscole. |No (se la **query** di **RelationalSource** è specificata) 
+| tableName |Nome della tabella hello nell'istanza di Database DB2 hello che il servizio collegato fa riferimento a. tableName Hello è tra maiuscole e minuscole. |No (se la **query** di **RelationalSource** è specificata) 
 
 #### <a name="example"></a>Esempio
 ```json
@@ -1761,12 +1761,12 @@ Per definire un set di dati di DB2, impostare il **tipo** di set di dati su **Re
 Per altre informazioni, vedere [Connettore IBM DB2](#data-factory-onprem-db2-connector.md#dataset-properties).
 
 ### <a name="relational-source-in-copy-activity"></a>Origine relazionale nell'attività di copia
-Se si copiano dati da IBM DB2, impostare il **tipo di origine** dell'attività di copia su **RelationalSource**e specificare le proprietà seguenti nella sezione **source**:
+Se si copiano dati da IBM DB2, impostare hello **tipo di origine** di hello attività di copia troppo**RelationalSource**e specificare le seguenti proprietà in hello **origine** sezione:
 
 
 | Proprietà | Descrizione | Valori consentiti | Obbligatorio |
 | --- | --- | --- | --- |
-| query |Usare la query personalizzata per leggere i dati. |Stringa di query SQL. Ad esempio: `"query": "select * from "MySchema"."MyTable""`. |No (se **tableName** di **set di dati** è specificato) |
+| query |Utilizzare i dati di tooread hello query personalizzata. |Stringa di query SQL. Ad esempio: `"query": "select * from "MySchema"."MyTable""`. |No (se **tableName** di **set di dati** è specificato) |
 
 #### <a name="example"></a>Esempio
 ```json
@@ -1811,17 +1811,17 @@ Per altre informazioni, vedere [Connettore IBM DB2](#data-factory-onprem-db2-con
 ## <a name="mysql"></a>MySQL
 
 ### <a name="linked-service"></a>Servizio collegato
-Per definire un servizio collegato di MySQL, impostare il **tipo** di servizio collegato su **OnPremisesMySql** e specificare le proprietà seguenti nella sezione **typeProperties**:  
+il servizio hello set toodefine MySQL collegato **tipo** di hello servizio collegato troppo**OnPremisesMySql**e specificare le seguenti proprietà in hello **typeProperties** sezione:  
 
 | Proprietà | Descrizione | Obbligatorio |
 | --- | --- | --- |
-| server |Nome del server MySQL. |Sì |
-| database |Nome del database MySQL. |Sì |
-| schema |Nome dello schema nel database. |No |
-| authenticationType |Tipo di autenticazione usato per connettersi al database MySQL. I valori possibili sono:`Basic`. |Sì |
-| username |Specificare nome utente per la connessione al database MySQL. |Sì |
-| password |Specificare la password per l'account utente specificato. |Sì |
-| gatewayName |Nome del gateway che il servizio Data factory deve usare per connettersi al database MySQL locale. |Sì |
+| server |Nome del server MySQL hello. |Sì |
+| database |Nome del database MySQL hello. |Sì |
+| schema |Nome dello schema hello nel database di hello. |No |
+| authenticationType |Tipo di autenticazione usato toohello tooconnect di database MySQL. I valori possibili sono:`Basic`. |Sì |
+| username |Specificare i database di MySQL toohello tooconnect nome utente. |Sì |
+| password |Specificare la password per l'account utente di hello specificato. |Sì |
+| gatewayName |Nome del gateway hello hello servizio Data Factory deve utilizzare database MySQL di tooconnect toohello locale. |Sì |
 
 #### <a name="example"></a>Esempio
 
@@ -1846,11 +1846,11 @@ Per definire un servizio collegato di MySQL, impostare il **tipo** di servizio c
 Per altre informazioni, vedere [Connettore MySQL](data-factory-onprem-mysql-connector.md#linked-service-properties). 
 
 ### <a name="dataset"></a>Set di dati
-Per definire un set di dati di MySQL, impostare il **tipo** di set di dati su **RelationalTable**e specificare le proprietà seguenti nella sezione **typeProperties**: 
+toodefine un set di dati di MySQL, hello set **tipo** del set di dati hello troppo**RelationalTable**e specificare le proprietà in hello seguenti hello **typeProperties** sezione: 
 
 | Proprietà | Descrizione | Obbligatorio |
 | --- | --- | --- |
-| tableName |Nome della tabella nell'istanza del database MySQL a cui fa riferimento il servizio collegato. |No (se la **query** di **RelationalSource** è specificata) |
+| tableName |Nome della tabella hello nell'istanza di MySQL Database che fa riferimento il servizio collegato a hello. |No (se la **query** di **RelationalSource** è specificata) |
 
 #### <a name="example"></a>Esempio
 
@@ -1879,12 +1879,12 @@ Per definire un set di dati di MySQL, impostare il **tipo** di set di dati su **
 Per altre informazioni, vedere [Connettore MySQL](data-factory-onprem-mysql-connector.md#dataset-properties). 
 
 ### <a name="relational-source-in-copy-activity"></a>Origine relazionale nell'attività di copia
-Se si copiano dati da un database MySQL, impostare il **tipo di origine** dell'attività di copia su **RelationalSource**e specificare le proprietà seguenti nella sezione **source**:
+Se si copiano dati da un database MySQL, impostare hello **tipo di origine** di hello attività di copia troppo**RelationalSource**e specificare le seguenti proprietà in hello **origine** sezione:
 
 
 | Proprietà | Descrizione | Valori consentiti | Obbligatorio |
 | --- | --- | --- | --- |
-| query |Usare la query personalizzata per leggere i dati. |Stringa di query SQL. Ad esempio: `select * from MyTable`. |No (se **tableName** di **set di dati** è specificato) |
+| query |Utilizzare i dati di tooread hello query personalizzata. |Stringa di query SQL. Ad esempio: `select * from MyTable`. |No (se **tableName** di **set di dati** è specificato) |
 
 
 #### <a name="example"></a>Esempio
@@ -1933,13 +1933,13 @@ Per altre informazioni, vedere [Connettore MySQL](data-factory-onprem-mysql-conn
 ## <a name="oracle"></a>Oracle 
 
 ### <a name="linked-service"></a>Servizio collegato
-Per definire un servizio collegato di Oracle, impostare il **tipo** di servizio collegato su **OnPremisesOracle** e specificare le proprietà seguenti nella sezione **typeProperties**:  
+il servizio hello set toodefine Oracle collegato **tipo** di hello servizio collegato troppo**OnPremisesOracle**e specificare le seguenti proprietà in hello **typeProperties** sezione:  
 
 | Proprietà | Descrizione | Obbligatorio |
 | --- | --- | --- |
-| driverType | Specificare il driver da usare per copiare i dati da/verso il database Oracle. I valori consentiti sono **Microsoft** o **ODP** (impostazione predefinita). Per informazioni dettagliate sui driver, vedere la sezione [Versione e installazione supportate](#supported-versions-and-installation). | No |
-| connectionString | Specificare le informazioni necessarie per connettersi all'istanza del database Oracle per la proprietà connectionString. | Sì |
-| gatewayName | Nome del gateway usato per connettersi al server Oracle locale |Sì |
+| driverType | Specificare i dati del driver toouse toocopy da / tooOracle Database. I valori consentiti sono **Microsoft** o **ODP** (impostazione predefinita). Per informazioni dettagliate sui driver, vedere la sezione [Versione e installazione supportate](#supported-versions-and-installation). | No |
+| connectionString | Specificare l'istanza di Oracle Database toohello tooconnect necessarie informazioni per la proprietà connectionString hello. | Sì |
+| gatewayName | Nome del gateway hello che viene utilizzato tooconnect toohello server Oracle locale |Sì |
 
 #### <a name="example"></a>Esempio
 ```json
@@ -1959,11 +1959,11 @@ Per definire un servizio collegato di Oracle, impostare il **tipo** di servizio 
 Per altre informazioni, vedere [Connettore Oracle](data-factory-onprem-oracle-connector.md#linked-service-properties).
 
 ### <a name="dataset"></a>Set di dati
-Per definire un set di dati di Oracle, impostare il **tipo** di set di dati su **OracleTable**e specificare le proprietà seguenti nella sezione **typeProperties**: 
+toodefine un set di dati Oracle, hello set **tipo** del set di dati hello troppo**OracleTable**e specificare le proprietà in hello seguenti hello **typeProperties** sezione: 
 
 | Proprietà | Descrizione | Obbligatorio |
 | --- | --- | --- |
-| tableName |Nome della tabella nell'istanza del database Oracle a cui fa riferimento il servizio collegato. |No, se **oracleReaderQuery** di **OracleSource** è specificato |
+| tableName |Nome della tabella hello nel Database Oracle per il servizio collegato di hello hello fa riferimento a. |No, se **oracleReaderQuery** di **OracleSource** è specificato |
 
 #### <a name="example"></a>Esempio
 
@@ -1996,11 +1996,11 @@ Per definire un set di dati di Oracle, impostare il **tipo** di set di dati su *
 Per altre informazioni, vedere [Connettore Oracle](data-factory-onprem-oracle-connector.md#dataset-properties).
 
 ### <a name="oracle-source-in-copy-activity"></a>Origine Oracle nell'attività di copia
-Se si copiano dati da un database Oracle, impostare il **tipo di origine** dell'attività di copia su **OracleSource**e specificare le proprietà seguenti nella sezione **source**:
+Se si copiano dati da un database Oracle, impostare hello **tipo di origine** di hello attività di copia troppo**OracleSource**e specificare le seguenti proprietà in hello **origine** sezione:
 
 | Proprietà | Descrizione | Valori consentiti | Obbligatorio |
 | --- | --- | --- | --- |
-| oracleReaderQuery |Usare la query personalizzata per leggere i dati. |Stringa di query SQL. Ad esempio: `select * from MyTable` <br/><br/>Se non specificato, l'istruzione SQL eseguita: `select * from MyTable` |No (se **tableName** di **set di dati** è specificato) |
+| oracleReaderQuery |Utilizzare i dati di tooread hello query personalizzata. |Stringa di query SQL. Ad esempio: `select * from MyTable` <br/><br/>Se non specificato, hello istruzione SQL eseguita:`select * from MyTable` |No (se **tableName** di **set di dati** è specificato) |
 
 #### <a name="example"></a>Esempio
 
@@ -2048,14 +2048,14 @@ Se si copiano dati da un database Oracle, impostare il **tipo di origine** dell'
 Per altre informazioni, vedere [Connettore Oracle](data-factory-onprem-oracle-connector.md#copy-activity-properties).
 
 ### <a name="oracle-sink-in-copy-activity"></a>Sink Oracle nell'attività di copia
-Se si copiano dati in un database Oracle, impostare il **tipo di sink** dell'attività di copia su **OracleSink**e specificare le proprietà seguenti nella sezione **sink**:
+Se si copia database Oracle tooam di dati, impostare hello **tipo di sink** di hello attività di copia troppo**OracleSink**e specificare le seguenti proprietà in hello **sink** sezione:
 
 | Proprietà | Descrizione | Valori consentiti | Obbligatorio |
 | --- | --- | --- | --- |
-| writeBatchTimeout |Tempo di attesa per l'operazione di inserimento batch da completare prima del timeout. |Intervallo di tempo<br/><br/> Ad esempio: "00:30:00" (30 minuti). |No |
-| writeBatchSize |Inserisce dati nella tabella SQL quando la dimensione del buffer raggiunge writeBatchSize. |Numero intero (numero di righe) |No (valore predefinito: 100) |
-| sqlWriterCleanupScript |Specificare una query da eseguire nell'attività di copia per pulire i dati di una sezione specifica. |Istruzione di query. |No |
-| sliceIdentifierColumnName |Specificare il nome della colonna per l'attività di copia da riempire con l'identificatore di sezione generato automaticamente, che viene usato per eliminare i dati di una sezione specifica quando viene nuovamente eseguita. |Nome di colonna di una colonna con tipo di dati binario (32). |No |
+| writeBatchTimeout |Tempo di attesa per hello batch insert operazione toocomplete prima del timeout. |Intervallo di tempo<br/><br/> Ad esempio: "00:30:00" (30 minuti). |No |
+| writeBatchSize |Inserisce dati in una tabella SQL hello quando viene raggiunto writeBatchSize raggiungerà le dimensioni di buffer hello. |Numero intero (numero di righe) |No (valore predefinito: 100) |
+| sqlWriterCleanupScript |Specificare una query per attività di copia tooexecute modo che la pulitura dei dati di una sezione specifica. |Istruzione di query. |No |
+| sliceIdentifierColumnName |Specificare il nome di colonna per attività di copia toofill con identificatore di sezione generati automaticamente, che è usato tooclean dei dati di una sezione specifica quando eseguire di nuovo. |Nome di colonna di una colonna con tipo di dati binario (32). |No |
 
 #### <a name="example"></a>Esempio
 ```json
@@ -2102,17 +2102,17 @@ Per altre informazioni, vedere [Connettore Oracle](data-factory-onprem-oracle-co
 ## <a name="postgresql"></a>PostgreSQL
 
 ### <a name="linked-service"></a>Servizio collegato
-Per definire un servizio collegato di PostgreSQL, impostare il **tipo** di servizio collegato su **OnPremisesPostgreSql** e specificare le proprietà seguenti nella sezione **typeProperties**:  
+toodefine un PostgreSQL collegato del servizio, hello set **tipo** di hello servizio collegato troppo**OnPremisesPostgreSql**e specificare le seguenti proprietà in hello **typeProperties**sezione:  
 
 | Proprietà | Descrizione | Obbligatorio |
 | --- | --- | --- |
-| server |Nome del server PostgreSQL. |Sì |
-| database |Nome del database PostgreSQL. |Sì |
-| schema |Nome dello schema nel database. Il nome dello schema fa distinzione tra maiuscole e minuscole. |No |
-| authenticationType |Tipo di autenticazione usato per connettersi al database PostgreSQL. I valori possibili sono: anonima, di base e Windows. |Sì |
+| server |Nome del server PostgreSQL hello. |Sì |
+| database |Nome del database PostgreSQL hello. |Sì |
+| schema |Nome dello schema hello nel database di hello. nome dello schema Hello è tra maiuscole e minuscole. |No |
+| authenticationType |Tipo di autenticazione usato tooconnect toohello PostgreSQL database. I valori possibili sono: anonima, di base e Windows. |Sì |
 | username |Specificare il nome utente se si usa l'autenticazione di base o Windows. |No |
-| password |Specificare la password per l'account utente specificato per il nome utente. |No |
-| gatewayName |Nome del gateway che il servizio Data factory deve usare per connettersi al database PostgreSQL locale. |Sì |
+| password |Specificare la password per account utente di hello specificato per il nome utente hello. |No |
+| gatewayName |Nome del gateway hello hello servizio Data Factory deve utilizzare database PostgreSQL locale di tooconnect toohello. |Sì |
 
 #### <a name="example"></a>Esempio
 
@@ -2136,11 +2136,11 @@ Per definire un servizio collegato di PostgreSQL, impostare il **tipo** di servi
 Per altre informazioni, vedere [Connettore PostgreSQL](data-factory-onprem-postgresql-connector.md#linked-service-properties).
 
 ### <a name="dataset"></a>Set di dati
-Per definire un set di dati di PostgreSQL, impostare il **tipo** di set di dati su **RelationalTable**e specificare le proprietà seguenti nella sezione **typeProperties**: 
+toodefine un set di dati, PostgreSQL hello set **tipo** del set di dati hello troppo**RelationalTable**e specificare le proprietà in hello seguenti hello **typeProperties** sezione: 
 
 | Proprietà | Descrizione | Obbligatorio |
 | --- | --- | --- |
-| tableName |Nome della tabella nell'istanza del database PostgreSQL a cui fa riferimento il servizio collegato. La proprietà tableName fa distinzione tra maiuscole e minuscole. |No (se la **query** di **RelationalSource** è specificata) |
+| tableName |Nome della tabella hello in hello istanza PostgreSQL Database riferito al servizio collegato. tableName Hello è tra maiuscole e minuscole. |No (se la **query** di **RelationalSource** è specificata) |
 
 #### <a name="example"></a>Esempio
 ```json
@@ -2168,12 +2168,12 @@ Per definire un set di dati di PostgreSQL, impostare il **tipo** di set di dati 
 Per altre informazioni, vedere [Connettore PostgreSQL](data-factory-onprem-postgresql-connector.md#dataset-properties).
 
 ### <a name="relational-source-in-copy-activity"></a>Origine relazionale nell'attività di copia
-Se si copiano dati da un database PostgreSQL, impostare il **tipo di origine** dell'attività di copia su **RelationalSource**e specificare le proprietà seguenti nella sezione **source**:
+Se si copiano dati da un database PostgreSQL, impostare hello **tipo di origine** di hello attività di copia troppo**RelationalSource**e specificare le seguenti proprietà in hello **origine**sezione:
 
 
 | Proprietà | Descrizione | Valori consentiti | Obbligatorio |
 | --- | --- | --- | --- |
-| query |Usare la query personalizzata per leggere i dati. |Stringa di query SQL. Ad esempio: "query": "select * from \"Schema\".\"Tabella\"". |No (se **tableName** di **set di dati** è specificato) |
+| query |Utilizzare i dati di tooread hello query personalizzata. |Stringa di query SQL. Ad esempio: "query": "select * from \"Schema\".\"Tabella\"". |No (se **tableName** di **set di dati** è specificato) |
 
 #### <a name="example"></a>Esempio
 
@@ -2221,17 +2221,17 @@ Per altre informazioni, vedere [Connettore PostgreSQL](data-factory-onprem-postg
 
 
 ### <a name="linked-service"></a>Servizio collegato
-Per definire un servizio collegato di SAP Business Warehouse (BW), impostare il **tipo** di servizio collegato su **SapBw**e specificare le proprietà seguenti nella sezione **typeProperties**:  
+il set hello servizio collegato di toodefine un SAP Business Warehouse (BW) **tipo** di hello servizio collegato troppo**SapBw**e specificare le seguenti proprietà in hello **typeProperties**sezione:  
 
 Proprietà | Descrizione | Valori consentiti | Obbligatoria
 -------- | ----------- | -------------- | --------
-server | Nome del server in cui si trova l'istanza di SAP BW. | string | Sì
-systemNumber | Numero del sistema SAP BW. | Numero decimale a due cifre rappresentato come stringa. | Sì
-clientId | ID del client nel sistema SAP BW. | Numero decimale a tre cifre rappresentato come stringa. | Sì
-username | Nome dell'utente che ha accesso al server SAP | string | Sì
-password | Password per l'utente. | string | Sì
-gatewayName | Nome del gateway che il servizio Data factory deve usare per connettersi all'istanza di SAP BW locale. | string | Sì
-encryptedCredential | Stringa di credenziali crittografata. | string | No
+server | Nome del server di hello in SAP BW che hello si trova l'istanza. | string | Sì
+systemNumber | Numero di sistema di hello sistema SAP BW. | Numero decimale a due cifre rappresentato come stringa. | Sì
+clientId | ID client di client hello in hello sistema SAP W. | Numero decimale a tre cifre rappresentato come stringa. | Sì
+username | Nome dell'utente di hello con server di accesso toohello SAP | string | Sì
+password | Password utente hello. | string | Sì
+gatewayName | Nome del gateway hello hello servizio Data Factory deve utilizzare l'istanza di SAP BW tooconnect toohello locale. | string | Sì
+encryptedCredential | stringa di credenziale crittografato Hello. | string | No
 
 #### <a name="example"></a>Esempio
 
@@ -2255,7 +2255,7 @@ encryptedCredential | Stringa di credenziali crittografata. | string | No
 Per altre informazioni, vedere [Connettore SAP Business Warehouse](data-factory-sap-business-warehouse-connector.md#linked-service-properties). 
 
 ### <a name="dataset"></a>Set di dati
-Per definire un set di dati SAP BW, impostare il **tipo** del set di dati su **RelationalTable**. Il set di dati SAP BW di tipo **RelationalTable** non supporta alcuna proprietà specifica del tipo.  
+toodefine un set di dati SAP BW, hello set **tipo** del set di dati hello troppo**RelationalTable**. Non esistono proprietà specifiche del tipo supportato per il set di dati di hello SAP BW di tipo **RelationalTable**.  
 
 #### <a name="example"></a>Esempio
 
@@ -2277,12 +2277,12 @@ Per definire un set di dati SAP BW, impostare il **tipo** del set di dati su **R
 Per altre informazioni, vedere [Connettore SAP Business Warehouse](data-factory-sap-business-warehouse-connector.md#dataset-properties). 
 
 ### <a name="relational-source-in-copy-activity"></a>Origine relazionale nell'attività di copia
-Se si copiano dati da SAP Business Warehouse, impostare il **tipo di origine** dell'attività di copia su **RelationalSource**e specificare le proprietà seguenti nella sezione **source**:
+Se si copiano dati da SAP Business Warehouse, impostare hello **tipo di origine** di hello attività di copia troppo**RelationalSource**e specificare le seguenti proprietà in hello **origine**sezione:
 
 
 | Proprietà | Descrizione | Valori consentiti | Obbligatorio |
 | --- | --- | --- | --- |
-| query | Specifica la query MDX che consente di leggere i dati dall'istanza di SAP BW. | Query MDX. | Sì |
+| query | Specifica i dati di tooread query MDX hello dall'istanza di SAP BW hello. | Query MDX. | Sì |
 
 #### <a name="example"></a>Esempio
 
@@ -2331,16 +2331,16 @@ Per altre informazioni, vedere [Connettore SAP Business Warehouse](data-factory-
 ## <a name="sap-hana"></a>SAP HANA
 
 ### <a name="linked-service"></a>Servizio collegato
-Per definire un servizio collegato di SAP HANA, impostare il **tipo** di servizio collegato su **SapHana** e specificare le proprietà seguenti nella sezione **typeProperties**:  
+il set hello servizio collegato di toodefine un SAP HANA **tipo** di hello servizio collegato troppo**SapHana**e specificare le seguenti proprietà in hello **typeProperties** sezione:  
 
 Proprietà | Descrizione | Valori consentiti | Obbligatoria
 -------- | ----------- | -------------- | --------
-server | Nome del server in cui si trova l'istanza di SAP HANA. Se il server usa una porta personalizzata, specificare `server:port`. | string | Sì
+server | Nome del server di hello in SAP HANA quali hello si trova l'istanza. Se il server usa una porta personalizzata, specificare `server:port`. | string | Sì
 authenticationType | Tipo di autenticazione. | string. "Basic" o "Windows" | Sì 
-username | Nome dell'utente che ha accesso al server SAP | string | Sì
-password | Password per l'utente. | string | Sì
-gatewayName | Nome del gateway che il servizio Data factory deve usare per connettersi all'istanza di SAP HANA locale. | string | Sì
-encryptedCredential | Stringa di credenziali crittografata. | string | No
+username | Nome dell'utente di hello con server di accesso toohello SAP | string | Sì
+password | Password utente hello. | string | Sì
+gatewayName | Nome del gateway hello hello servizio Data Factory deve utilizzare l'istanza di SAP HANA tooconnect toohello locale. | string | Sì
+encryptedCredential | stringa di credenziale crittografato Hello. | string | No
 
 #### <a name="example"></a>Esempio
 
@@ -2363,7 +2363,7 @@ encryptedCredential | Stringa di credenziali crittografata. | string | No
 Per altre informazioni, vedere [Connettore SAP HANA](data-factory-sap-hana-connector.md#linked-service-properties).
  
 ### <a name="dataset"></a>Set di dati
-Per definire un set di dati SAP HANA, impostare il **tipo** del set di dati su **RelationalTable**. Il set di dati SAP HANA di tipo **RelationalTable** non supporta alcuna proprietà specifica del tipo. 
+toodefine un set di dati SAP HANA, hello set **tipo** del set di dati hello troppo**RelationalTable**. Non esistono proprietà specifiche del tipo supportato per i set di dati SAP HANA hello di tipo **RelationalTable**. 
 
 #### <a name="example"></a>Esempio
 
@@ -2385,11 +2385,11 @@ Per definire un set di dati SAP HANA, impostare il **tipo** del set di dati su *
 Per altre informazioni, vedere [Connettore SAP HANA](data-factory-sap-hana-connector.md#dataset-properties). 
 
 ### <a name="relational-source-in-copy-activity"></a>Origine relazionale nell'attività di copia
-Se si copiano dati da un archivio dati SAP HANA, impostare il **tipo di origine** dell'attività di copia su **RelationalSource**e specificare le proprietà seguenti nella sezione **source**:
+Se si copiano dati da un archivio dati SAP HANA, impostare hello **tipo di origine** di hello attività di copia troppo**RelationalSource**e specificare le seguenti proprietà in hello **origine**sezione:
 
 | Proprietà | Descrizione | Valori consentiti | Obbligatorio |
 | --- | --- | --- | --- |
-| query | Specifica la query SQL che consente di leggere i dati dall'istanza di SAP HANA. | Query SQL. | Sì |
+| query | Specifica i dati di tooread query SQL hello dall'istanza di SAP HANA hello. | Query SQL. | Sì |
 
 
 #### <a name="example"></a>Esempio
@@ -2441,19 +2441,19 @@ Per altre informazioni, vedere [Connettore SAP HANA](data-factory-sap-hana-conne
 ## <a name="sql-server"></a>SQL Server
 
 ### <a name="linked-service"></a>Servizio collegato
-È stato creato un servizio collegato di tipo **OnPremisesSqlServer** per collegare un database di SQL Server locale a una data factory. La tabella seguente contiene le descrizioni degli elementi JSON specifici per il servizio collegato di SQL Server locale.
+Creare un servizio collegato di tipo **OnPremisesSqlServer** toolink una data factory tooa di on-premise SQL Server database. Hello nella tabella seguente fornisce una descrizione del servizio collegato SQL Server locale tooon specifici elementi JSON.
 
-La tabella seguente contiene le descrizioni degli elementi JSON specifici del servizio collegato SQL Server.
+Hello nella tabella seguente fornisce una descrizione JSON elementi specifici tooSQL servizio del Server collegato.
 
 | Proprietà | Descrizione | Obbligatorio |
 | --- | --- | --- |
-| type |La proprietà type deve essere impostata su **OnPremisesSqlServer**. |Sì |
-| connectionString |Specificare le informazioni di connectionString necessarie per connettersi al database di SQL Server locale usando l'autenticazione di SQL o Windows. |Sì |
-| gatewayName |Nome del gateway che il servizio Data factory deve usare per connettersi al database di SQL Server locale. |Sì |
+| type |proprietà di tipo Hello deve essere impostata su: **OnPremisesSqlServer**. |Sì |
+| connectionString |Specificare le informazioni connectionString necessarie tooconnect database di SQL Server on-premise toohello utilizzando l'autenticazione di SQL Server o l'autenticazione di Windows. |Sì |
+| gatewayName |Nome del gateway hello hello servizio Data Factory deve utilizzare i database di SQL Server on-premise toohello tooconnect. |Sì |
 | username |Specificare il nome utente se si usa l'autenticazione Windows. Esempio: **nomedominio\\nomeutente**. |No |
-| password |Specificare la password per l'account utente specificato per il nome utente. |No |
+| password |Specificare la password per account utente di hello specificato per il nome utente hello. |No |
 
-È possibile crittografare le credenziali usando il cmdlet **New-AzureRmDataFactoryEncryptValue** e usarle nella stringa di connessione, come illustrato nell'esempio seguente (proprietà **EncryptedCredential**):  
+È possibile crittografare le credenziali utilizzando hello **New AzureRmDataFactoryEncryptValue** cmdlet e utilizzarli nella stringa di connessione hello, come illustrato nell'esempio seguente hello (**EncryptedCredential** proprietà):  
 
 ```json
 "connectionString": "Data Source=<servername>;Initial Catalog=<databasename>;Integrated Security=True;EncryptedCredential=<encrypted credential>",
@@ -2476,7 +2476,7 @@ La tabella seguente contiene le descrizioni degli elementi JSON specifici del se
 ```
 #### <a name="example-json-for-using-windows-authentication"></a>Esempio: JSON per l'uso dell'autenticazione Windows
 
-Se vengono specificati nome utente e password, il gateway li usa per rappresentare l'account utente specificato per la connessione al database di SQL Server locale. In caso contrario, il gateway si connette a SQL Server direttamente con il contesto di sicurezza del gateway (l'account di avvio).
+Se vengono specificati nome utente e password, gateway li utilizza hello tooimpersonate database di SQL Server on-premise toohello tooconnect account utente specificato. In caso contrario, gateway si connetta toohello SQL Server direttamente con il contesto di sicurezza hello del Gateway (il relativo account di avvio).
 
 ```json
 {
@@ -2496,11 +2496,11 @@ Se vengono specificati nome utente e password, il gateway li usa per rappresenta
 Per altre informazioni, vedere [Connettore SQL Server](data-factory-sqlserver-connector.md#linked-service-properties). 
 
 ### <a name="dataset"></a>Set di dati
-Per definire un set di dati di SQL Server, impostare il **tipo** di set di dati su **SqlServerTable**e specificare le proprietà seguenti nella sezione **typeProperties**: 
+toodefine un set di dati di SQL Server, hello set **tipo** del set di dati hello troppo**SqlServerTable**e specificare le proprietà in hello seguenti hello **typeProperties** sezione: 
 
 | Proprietà | Descrizione | Obbligatorio |
 | --- | --- | --- |
-| tableName |Nome della tabella o vista nell'istanza del database di SQL Server a cui fa riferimento il servizio collegato. |Sì |
+| tableName |Nome della tabella hello o della vista nell'istanza di Database di SQL Server hello che il servizio collegato fa riferimento a. |Sì |
 
 #### <a name="example"></a>Esempio
 ```json
@@ -2531,23 +2531,23 @@ Per definire un set di dati di SQL Server, impostare il **tipo** di set di dati 
 Per altre informazioni, vedere [Connettore SQL Server](data-factory-sqlserver-connector.md#dataset-properties). 
 
 ### <a name="sql-source-in-copy-activity"></a>Origine SQL nell'attività di copia
-Se si copiano dati da un database SQL Server, impostare il **tipo di origine** dell'attività di copia su **SqlSource**e specificare le proprietà seguenti nella sezione **source**:
+Se si copiano dati da un database di SQL Server, impostare hello **tipo di origine** di hello attività di copia troppo**SqlSource**e specificare le seguenti proprietà in hello **origine** sezione:
 
 
 | Proprietà | Descrizione | Valori consentiti | Obbligatorio |
 | --- | --- | --- | --- |
-| SqlReaderQuery |Usare la query personalizzata per leggere i dati. |Stringa di query SQL. Ad esempio: `select * from MyTable`. Può fare riferimento a più tabelle del database a cui fa riferimento il set di dati di input. Se non specificato, l'istruzione SQL eseguita: selezionare da MyTable. |No |
-| sqlReaderStoredProcedureName |Nome della stored procedure che legge i dati dalla tabella di origine. |Nome della stored procedure. |No |
-| storedProcedureParameters |Parametri per la stored procedure. |Coppie nome/valore. I nomi e le maiuscole e minuscole dei parametri devono corrispondere ai nomi e alle maiuscole e minuscole dei parametri della stored procedure. |No |
+| SqlReaderQuery |Utilizzare i dati di tooread hello query personalizzata. |Stringa di query SQL. Ad esempio: `select * from MyTable`. Può fare riferimento a più tabelle dal database hello hello di un set di dati dell'input a cui fa riferimento. Se non specificato, hello istruzione SQL eseguita: select from MyTable. |No |
+| sqlReaderStoredProcedureName |Nome di hello stored procedure che legge i dati dalla tabella di origine hello. |Nome di hello stored procedure. |No |
+| storedProcedureParameters |I parametri per hello stored procedure. |Coppie nome/valore. Nomi e le maiuscole e minuscole dei parametri devono corrispondere i nomi di hello e maiuscole e minuscole di parametri di hello stored procedure. |No |
 
-Se la proprietà **sqlReaderQuery** è specificata per SqlSource, l'attività di copia esegue questa query nell'origine del database del server di SQL per ottenere i dati.
+Se hello **sqlReaderQuery** specificato per hello SqlSource, hello attività di copia viene eseguita questa query hello Database di SQL Server tooget hello dati.
 
-In alternativa, è possibile specificare una stored procedure indicando i parametri **sqlReaderStoredProcedureName** e **storedProcedureParameters** (se la stored procedure accetta parametri).
+In alternativa, è possibile specificare una stored procedure specificando hello **sqlReaderStoredProcedureName** e **storedProcedureParameters** (se hello stored procedure accetta parametri).
 
-Se non si specifica il parametro sqlReaderQuery o sqlReaderStoredProcedureName, le colonne definite nella sezione della struttura vengono usate per compilare una query da eseguire nel database del server di SQL. Se la definizione del set di dati non dispone della struttura, vengono selezionate tutte le colonne della tabella.
+Se non si specifica sqlReaderQuery o sqlReaderStoredProcedureName, le colonne di hello definite nella sezione di struttura hello sono utilizzati toobuild toorun una query select su hello Database di SQL Server. Se non dispone di definizione del set di dati hello struttura hello, vengono selezionate tutte le colonne dalla tabella hello.
 
 > [!NOTE]
-> Quando si usa **sqlReaderStoredProcedureName** è necessario specificare un valore per la proprietà **tableName** nel set di dati JSON. Non sono disponibili convalide eseguite su questa tabella.
+> Quando si utilizza **sqlReaderStoredProcedureName**, è comunque necessario toospecify un valore per hello **tableName** proprietà hello set di dati JSON. Non sono disponibili convalide eseguite su questa tabella.
 
 
 #### <a name="example"></a>Esempio
@@ -2592,27 +2592,27 @@ Se non si specifica il parametro sqlReaderQuery o sqlReaderStoredProcedureName, 
 }
 ```
 
-In questo esempio la proprietà **sqlReaderQuery** è specificata per SqlSource. L'attività di copia esegue questa query nell'origine del database del server SQL per ottenere i dati. In alternativa, è possibile specificare una stored procedure indicando i parametri **sqlReaderStoredProcedureName** e **storedProcedureParameters** (se la stored procedure accetta parametri). La proprietà sqlReaderQuery può fare riferimento a più tabelle nel database a cui fa riferimento il set di dati di input. Non è limitato solo alla tabella impostata come typeProperty tableName del set di dati.
+In questo esempio, **sqlReaderQuery** specificato per hello SqlSource. Attività di copia Hello consente di eseguire questa query hello dati hello tooget origine di Database di SQL Server. In alternativa, è possibile specificare una stored procedure specificando hello **sqlReaderStoredProcedureName** e **storedProcedureParameters** (se hello stored procedure accetta parametri). Hello sqlReaderQuery può fare riferimento a più tabelle all'interno del database hello hello di un set di dati dell'input a cui fa riferimento. Non è limitato tooonly hello tabella impostata come hello typeProperty tableName del set di dati.
 
-Se non si specifica il parametro sqlReaderQuery o sqlReaderStoredProcedureName, le colonne definite nella sezione della struttura vengono usate per compilare una query di selezione da eseguire nel database del server di SQL. Se la definizione del set di dati non dispone della struttura, vengono selezionate tutte le colonne della tabella.
+Se non si specifica sqlReaderQuery o sqlReaderStoredProcedureName, le colonne di hello definite nella sezione di struttura hello sono utilizzati toobuild toorun una query select su hello Database di SQL Server. Se non dispone di definizione del set di dati hello struttura hello, vengono selezionate tutte le colonne dalla tabella hello.
 
 Per altre informazioni, vedere [Connettore SQL Server](data-factory-sqlserver-connector.md#copy-activity-properties). 
 
 ### <a name="sql-sink-in-copy-activity"></a>Sink SQL nell'attività di copia
-Se si copiano dati da un database SQL Server, impostare il **tipo di sink** dell'attività di copia su **SqlSink**e specificare le proprietà seguenti nella sezione **ink**:
+Se si desidera copiare i database di SQL Server tooa di dati, impostare hello **tipo di sink** di hello attività di copia troppo**SqlSink**e specificare le seguenti proprietà in hello **sink** sezione:
 
 | Proprietà | Descrizione | Valori consentiti | Obbligatorio |
 | --- | --- | --- | --- |
-| writeBatchTimeout |Tempo di attesa per l'operazione di inserimento batch da completare prima del timeout. |Intervallo di tempo<br/><br/> Ad esempio: "00:30:00" (30 minuti). |No |
-| writeBatchSize |Inserisce dati nella tabella SQL quando la dimensione del buffer raggiunge writeBatchSize. |Numero intero (numero di righe) |No (valore predefinito: 10000) |
-| sqlWriterCleanupScript |Specificare la query per l'attività di copia da eseguire in modo che i dati di una sezione specifica vengano eliminati. Per altre informazioni, vedere la sezione relativa alla [ripetibilità](#repeatability-during-copy) . |Istruzione di query. |No |
-| sliceIdentifierColumnName |Specificare il nome della colonna per l'attività di copia da riempire con l'identificatore di sezione generato automaticamente, che viene usato per eliminare i dati di una sezione specifica quando viene nuovamente eseguita. Per altre informazioni, vedere la sezione relativa alla [ripetibilità](#repeatability-during-copy) . |Nome di colonna di una colonna con tipo di dati binario (32). |No |
-| sqlWriterStoredProcedureName |Nome della stored procedure che esegue l'upsert (aggiornamenti/inserimenti) nella tabella di destinazione. |Nome della stored procedure. |No |
-| storedProcedureParameters |Parametri per la stored procedure. |Coppie nome/valore. I nomi e le maiuscole e minuscole dei parametri devono corrispondere ai nomi e alle maiuscole e minuscole dei parametri della stored procedure. |No |
-| sqlWriterTableType |Specificare il tipo di tabella da usare nella stored procedure. L'attività di copia rende i dati spostati disponibili in una tabella temporanea con questo tipo di tabella. Il codice della stored procedure può quindi unire i dati copiati con i dati esistenti. |Nome del tipo di tabella. |No |
+| writeBatchTimeout |Tempo di attesa per hello batch insert operazione toocomplete prima del timeout. |Intervallo di tempo<br/><br/> Ad esempio: "00:30:00" (30 minuti). |No |
+| writeBatchSize |Inserisce dati in una tabella SQL hello quando viene raggiunto writeBatchSize raggiungerà le dimensioni di buffer hello. |Numero intero (numero di righe) |No (valore predefinito: 10000) |
+| sqlWriterCleanupScript |Specificare query per l'attività di copia tooexecute modo che la pulitura dei dati di una sezione specifica. Per altre informazioni, vedere la sezione relativa alla [ripetibilità](#repeatability-during-copy) . |Istruzione di query. |No |
+| sliceIdentifierColumnName |Specificare il nome di colonna per attività di copia toofill con identificatore di sezione generati automaticamente, che è usato tooclean dei dati di una sezione specifica quando eseguire di nuovo. Per altre informazioni, vedere la sezione relativa alla [ripetibilità](#repeatability-during-copy) . |Nome di colonna di una colonna con tipo di dati binario (32). |No |
+| sqlWriterStoredProcedureName |Nome della hello stored procedure che upserts (aggiornamenti/inserimenti) i dati nella tabella di destinazione hello. |Nome di hello stored procedure. |No |
+| storedProcedureParameters |I parametri per hello stored procedure. |Coppie nome/valore. Nomi e le maiuscole e minuscole dei parametri devono corrispondere i nomi di hello e maiuscole e minuscole di parametri di hello stored procedure. |No |
+| sqlWriterTableType |Specificare toobe nome tipo di tabella utilizzati in hello stored procedure. Attività di copia rende disponibili in una tabella temporanea con questo tipo di tabella dati di hello viene spostati. Codice della stored procedure può unire dati hello copiati con i dati esistenti. |Nome del tipo di tabella. |No |
 
 #### <a name="example"></a>Esempio
-La pipeline contiene un'attività di copia configurata per usare i set di dati di input e output ed è programmata per essere eseguita ogni ora. Nella definizione JSON della pipeline, il tipo di **origine** è impostato su **BlobSource** e il tipo **sink** è impostato su **SqlSink**.
+pipeline di Hello contiene un'attività di copia che è configurato toouse questi set di dati di input e output e toorun pianificato ogni ora. Nella pipeline hello definizione JSON, hello **origine** tipo è stato impostato troppo**BlobSource** e **sink** tipo è stato impostato troppo**SqlSink**.
 
 ```json
 {
@@ -2660,17 +2660,17 @@ Per altre informazioni, vedere [Connettore SQL Server](data-factory-sqlserver-co
 ## <a name="sybase"></a>Sybase
 
 ### <a name="linked-service"></a>Servizio collegato
-Per definire un servizio collegato di Sybase, impostare il **tipo** di servizio collegato su **OnPremisesSybase** e specificare le proprietà seguenti nella sezione **typeProperties**:  
+toodefine un Sybase collegato del servizio, hello set **tipo** di hello servizio collegato troppo**OnPremisesSybase**e specificare le seguenti proprietà in hello **typeProperties** sezione:  
 
 | Proprietà | Descrizione | Obbligatorio |
 | --- | --- | --- |
-| server |Nome del server Sybase. |Sì |
-| database |Nome del database Sybase. |Sì |
-| schema |Nome dello schema nel database. |No |
-| authenticationType |Tipo di autenticazione usato per connettersi al database Sybase. I valori possibili sono: anonima, di base e Windows. |Sì |
+| server |Nome del server di Sybase hello. |Sì |
+| database |Nome del database di Sybase hello. |Sì |
+| schema |Nome dello schema hello nel database di hello. |No |
+| authenticationType |Tipo di autenticazione usato tooconnect toohello database di Sybase. I valori possibili sono: anonima, di base e Windows. |Sì |
 | username |Specificare il nome utente se si usa l'autenticazione di base o Windows. |No |
-| password |Specificare la password per l'account utente specificato per il nome utente. |No |
-| gatewayName |Nome del gateway che il servizio Data factory deve usare per connettersi al database Sybase locale. |Sì |
+| password |Specificare la password per account utente di hello specificato per il nome utente hello. |No |
+| gatewayName |Nome del gateway hello hello servizio Data Factory deve usare database di Sybase tooconnect toohello locale. |Sì |
 
 #### <a name="example"></a>Esempio
 ```json
@@ -2694,11 +2694,11 @@ Per definire un servizio collegato di Sybase, impostare il **tipo** di servizio 
 Per altre informazioni, vedere [Connettore Sybase](data-factory-onprem-sybase-connector.md#linked-service-properties). 
 
 ### <a name="dataset"></a>Set di dati
-Per definire un set di dati di Sybase, impostare il **tipo** di set di dati su **RelationalTable**e specificare le proprietà seguenti nella sezione **typeProperties**: 
+toodefine un set di dati, Sybase hello set **tipo** del set di dati hello troppo**RelationalTable**e specificare le proprietà in hello seguenti hello **typeProperties** sezione: 
 
 | Proprietà | Descrizione | Obbligatorio |
 | --- | --- | --- |
-| tableName |Nome della tabella nell'istanza del database Sybase a cui fa riferimento il servizio collegato. |No (se la **query** di **RelationalSource** è specificata) |
+| tableName |Nome della tabella hello in hello istanza del Database di Sybase riferito al servizio collegato. |No (se la **query** di **RelationalSource** è specificata) |
 
 #### <a name="example"></a>Esempio
 
@@ -2728,12 +2728,12 @@ Per definire un set di dati di Sybase, impostare il **tipo** di set di dati su *
 Per altre informazioni, vedere [Connettore Sybase](data-factory-onprem-sybase-connector.md#dataset-properties). 
 
 ### <a name="relational-source-in-copy-activity"></a>Origine relazionale nell'attività di copia
-Se si copiano dati da un database Sybase, impostare il **tipo di origine** dell'attività di copia su **RelationalSource**e specificare le proprietà seguenti nella sezione **source**:
+Se si copiano dati da un database di Sybase, impostare hello **tipo di origine** di hello attività di copia troppo**RelationalSource**e specificare le seguenti proprietà in hello **origine** sezione:
 
 
 | Proprietà | Descrizione | Valori consentiti | Obbligatorio |
 | --- | --- | --- | --- |
-| query |Usare la query personalizzata per leggere i dati. |Stringa di query SQL. Ad esempio: `select * from MyTable`. |No (se **tableName** di **set di dati** è specificato) |
+| query |Utilizzare i dati di tooread hello query personalizzata. |Stringa di query SQL. Ad esempio: `select * from MyTable`. |No (se **tableName** di **set di dati** è specificato) |
 
 #### <a name="example"></a>Esempio
 
@@ -2780,15 +2780,15 @@ Per altre informazioni, vedere [Connettore Sybase](data-factory-onprem-sybase-co
 ## <a name="teradata"></a>Teradata
 
 ### <a name="linked-service"></a>Servizio collegato
-Per definire un servizio collegato di Teradata, impostare il **tipo** di servizio collegato su **OnPremisesTeradata** e specificare le proprietà seguenti nella sezione **typeProperties**:  
+il servizio hello set toodefine un Teradata collegato **tipo** di hello servizio collegato troppo**OnPremisesTeradata**e specificare le seguenti proprietà in hello **typeProperties** sezione:  
 
 | Proprietà | Descrizione | Obbligatorio |
 | --- | --- | --- |
-| server |Nome del server Teradata. |Sì |
-| authenticationType |Tipo di autenticazione usato per connettersi al database Teradata. I valori possibili sono: anonima, di base e Windows. |Sì |
+| server |Nome del server Teradata hello. |Sì |
+| authenticationType |Tipo di autenticazione usato tooconnect toohello Teradata database. I valori possibili sono: anonima, di base e Windows. |Sì |
 | username |Specificare il nome utente se si usa l'autenticazione di base o Windows. |No |
-| password |Specificare la password per l'account utente specificato per il nome utente. |No |
-| gatewayName |Nome del gateway che il servizio Data factory deve usare per connettersi al database Teradata locale. |Sì |
+| password |Specificare la password per account utente di hello specificato per il nome utente hello. |No |
+| gatewayName |Nome del gateway hello hello servizio Data Factory deve usare database di Teradata tooconnect toohello locale. |Sì |
 
 #### <a name="example"></a>Esempio
 ```json
@@ -2810,7 +2810,7 @@ Per definire un servizio collegato di Teradata, impostare il **tipo** di servizi
 Per altre informazioni, vedere [Connettore Teradata](data-factory-onprem-teradata-connector.md#linked-service-properties).
 
 ### <a name="dataset"></a>Set di dati
-Per definire un set di dati BLOB di Teradata, impostare il **tipo** del set di dati su **RelationalTable**. Attualmente non sono disponibili proprietà di tipo supportate per il set di dati Teradata. 
+toodefine un set di dati Teradata Blob hello set **tipo** del set di dati hello troppo**RelationalTable**. Non sono attualmente presenti proprietà del tipo non supportato per i set di dati Teradata hello. 
 
 #### <a name="example"></a>Esempio
 ```json
@@ -2839,11 +2839,11 @@ Per definire un set di dati BLOB di Teradata, impostare il **tipo** del set di d
 Per altre informazioni, vedere [Connettore Teradata](data-factory-onprem-teradata-connector.md#dataset-properties).
 
 ### <a name="relational-source-in-copy-activity"></a>Origine relazionale nell'attività di copia
-Se si copiano dati da un database Teradata, impostare il **tipo di origine** dell'attività di copia su **RelationalSource**e specificare le proprietà seguenti nella sezione **source**:
+Se si copiano dati da un database Teradata, impostare hello **tipo di origine** di hello attività di copia troppo**RelationalSource**e specificare le seguenti proprietà in hello **origine**sezione:
 
 | Proprietà | Descrizione | Valori consentiti | Obbligatorio |
 | --- | --- | --- | --- |
-| query |Usare la query personalizzata per leggere i dati. |Stringa di query SQL. Ad esempio: `select * from MyTable`. |Sì |
+| query |Utilizzare i dati di tooread hello query personalizzata. |Stringa di query SQL. Ad esempio: `select * from MyTable`. |Sì |
 
 #### <a name="example"></a>Esempio
 
@@ -2894,17 +2894,17 @@ Per altre informazioni, vedere [Connettore Teradata](data-factory-onprem-teradat
 
 
 ### <a name="linked-service"></a>Servizio collegato
-Per definire un servizio collegato di Cassandra, impostare il **tipo** di servizio collegato su **OnPremisesCassandra** e specificare le proprietà seguenti nella sezione **typeProperties**:  
+toodefine un Cassandra collegato del servizio, hello set **tipo** di hello servizio collegato troppo**OnPremisesCassandra**e specificare le seguenti proprietà in hello **typeProperties** sezione:  
 
 | Proprietà | Descrizione | Obbligatorio |
 | --- | --- | --- |
-| host |Uno o più indirizzi IP o nomi host di server Cassandra.<br/><br/>Specificare un elenco delimitato da virgole degli indirizzi IP o nomi host per la connessione a tutti i server contemporaneamente. |Sì |
-| port |La porta TCP che il server Cassandra usa per ascoltare le connessioni client. |No, valore predefinito: 9042 |
+| host |Uno o più indirizzi IP o nomi host di server Cassandra.<br/><br/>Specificare un elenco delimitato da virgole di indirizzi IP o host nomi tooconnect tooall server contemporaneamente. |Sì |
+| port |la porta TCP che hello server Cassandra Hello utilizza toolisten per le connessioni client. |No, valore predefinito: 9042 |
 | authenticationType |Di base o anonima |Sì |
-| username |Specificare il nome utente per l'account utente. |Sì, se authenticationType è impostato su Basic. |
-| password |Specifica la password per l'account utente. |Sì, se authenticationType è impostato su Basic. |
-| gatewayName |Il nome del gateway che viene usato per connettersi al database Cassandra locale. |Sì |
-| encryptedCredential |Credenziali crittografate dal gateway. |No |
+| username |Specificare nome utente per l'account utente di hello. |Sì, se authenticationType impostata tooBasic. |
+| password |Specificare la password per l'account utente di hello. |Sì, se authenticationType impostata tooBasic. |
+| gatewayName |nome Hello del gateway hello tooconnect utilizzati toohello Cassandra database locale. |Sì |
+| encryptedCredential |Credenziali crittografate dal gateway hello. |No |
 
 #### <a name="example"></a>Esempio
 
@@ -2928,12 +2928,12 @@ Per definire un servizio collegato di Cassandra, impostare il **tipo** di serviz
 Per altre informazioni, vedere [Connettore Cassandra](data-factory-onprem-cassandra-connector.md#linked-service-properties). 
 
 ### <a name="dataset"></a>Set di dati
-Per definire un set di dati di Cassandra, impostare il **tipo** di set di dati su **Table**e specificare le proprietà seguenti nella sezione **typeProperties**: 
+toodefine un set di dati Cassandra hello set **tipo** del set di dati hello troppo**CassandraTable**e specificare le proprietà in hello seguenti hello **typeProperties** sezione: 
 
 | Proprietà | Descrizione | Obbligatorio |
 | --- | --- | --- |
-| keyspace |Nome del keyspace o schema nel database Cassandra. |Sì, se **query** per **CassandraSource** non è definito. |
-| tableName |Nome della tabella in un database Cassandra. |Sì, se **query** per **CassandraSource** non è definito. |
+| keyspace |Nome di schema nel database Cassandra o di spazio delle chiavi hello. |Sì, se **query** per **CassandraSource** non è definito. |
+| tableName |Nome della tabella hello Cassandra database. |Sì, se **query** per **CassandraSource** non è definito. |
 
 #### <a name="example"></a>Esempio
 
@@ -2966,12 +2966,12 @@ Per definire un set di dati di Cassandra, impostare il **tipo** di set di dati s
 Per altre informazioni, vedere [Connettore Cassandra](data-factory-onprem-cassandra-connector.md#dataset-properties). 
 
 ### <a name="cassandra-source-in-copy-activity"></a>Origine Cassandra nell'attività di copia
-Se si copiano dati da Cassandra, impostare il **tipo di origine** dell'attività di copia su **Source**e specificare le proprietà seguenti nella sezione **source**:
+Se si copiano dati da Cassandra, impostare hello **tipo di origine** di hello attività di copia troppo**CassandraSource**e specificare le seguenti proprietà in hello **origine** sezione :
 
 | Proprietà | Descrizione | Valori consentiti | Obbligatorio |
 | --- | --- | --- | --- |
-| query |Usare la query personalizzata per leggere i dati. |Query SQL-92 o query CQL. Vedere il [riferimento a CQL](https://docs.datastax.com/en/cql/3.1/cql/cql_reference/cqlReferenceTOC.html). <br/><br/>Quando si usa una query SQL, specificare **nome keyspace.nome tabella** per indicare la tabella su cui eseguire la query. |No (se tableName e keyspace sul set di dati sono definiti). |
-| consistencyLevel |Il livello di coerenza specifica quante repliche devono rispondere a una richiesta di lettura prima della restituzione dei dati all'applicazione client. Cassandra controlla il numero di repliche specificato perché i dati soddisfino la richiesta di lettura. |ONE, TWO, THREE, QUORUM, ALL, LOCAL_QUORUM, EACH_QUORUM, LOCAL_ONE. Per informazioni dettagliate, vedere [Configuring data consistency](http://docs.datastax.com/en//cassandra/2.0/cassandra/dml/dml_config_consistency_c.html) (Configurazione della coerenza dei dati). |No. Il valore predefinito è ONE. |
+| query |Utilizzare i dati di tooread hello query personalizzata. |Query SQL-92 o query CQL. Vedere il [riferimento a CQL](https://docs.datastax.com/en/cql/3.1/cql/cql_reference/cqlReferenceTOC.html). <br/><br/>Quando si utilizza una query SQL, specificare **spazio delle chiavi name.table nome** toorepresent hello tabella tooquery. |No (se tableName e keyspace sul set di dati sono definiti). |
+| consistencyLevel |livello di coerenza Hello specifica il numero di repliche deve rispondere tooa richiesta di lettura prima della restituzione dell'applicazione client toohello di dati. Controlli Cassandra hello specificato numero di repliche per hello toosatisfy dati richiesta di lettura. |ONE, TWO, THREE, QUORUM, ALL, LOCAL_QUORUM, EACH_QUORUM, LOCAL_ONE. Per informazioni dettagliate, vedere [Configuring data consistency](http://docs.datastax.com/en//cassandra/2.0/cassandra/dml/dml_config_consistency_c.html) (Configurazione della coerenza dei dati). |No. Il valore predefinito è ONE. |
 
 #### <a name="example"></a>Esempio
   
@@ -2984,7 +2984,7 @@ Se si copiano dati da Cassandra, impostare il **tipo di origine** dell'attività
         "description": "pipeline with copy activity",
         "activities": [{
             "name": "CassandraToAzureBlob",
-            "description": "Copy from Cassandra to an Azure blob",
+            "description": "Copy from Cassandra tooan Azure blob",
             "type": "Copy",
             "inputs": [{
                 "name": "CassandraInput"
@@ -3021,18 +3021,18 @@ Per altre informazioni, vedere [Connettore Cassandra](data-factory-onprem-cassan
 ## <a name="mongodb"></a>MongoDB
 
 ### <a name="linked-service"></a>Servizio collegato
-Per definire un servizio collegato di MongoDB, impostare il **tipo** di servizio collegato su **OnPremisesMongoDB** e specificare le proprietà seguenti nella sezione **typeProperties**:  
+toodefine un MongoDB collegato del servizio, hello set **tipo** di hello servizio collegato troppo**OnPremisesMongoDB**e specificare le seguenti proprietà in hello **typeProperties** sezione:  
 
 | Proprietà | Descrizione | Obbligatorio |
 | --- | --- | --- |
-| server |Indirizzo IP o nome host del server MongoDB. |Sì |
-| port |Porta TCP che il server MongoDB usa per ascoltare le connessioni client. |Facoltativo, valore predefinito: 27017 |
+| server |IP il nome host o indirizzo del server di MongoDB hello. |Sì |
+| port |La porta TCP che hello MongoDB server utilizza toolisten per le connessioni client. |Facoltativo, valore predefinito: 27017 |
 | authenticationType |Di base o anonima. |Sì |
-| username |Account utente per accedere a MongoDB. |Sì (se si usa l'autenticazione di base). |
-| password |Password per l'utente. |Sì (se si usa l'autenticazione di base). |
-| authSource |Nome del database MongoDB che si vuole usare per controllare le credenziali di autenticazione. |Facoltativo (se si usa l'autenticazione di base). Predefinito: usa l'account di amministrazione e il database specificato usando la proprietà databaseName. |
-| databaseName |Nome del database MongoDB a cui si vuole accedere. |Sì |
-| gatewayName |Nome del gateway che accede all'archivio dati. |Sì |
+| username |Utente account tooaccess MongoDB. |Sì (se si usa l'autenticazione di base). |
+| password |Password utente hello. |Sì (se si usa l'autenticazione di base). |
+| authSource |Nome del database MongoDB hello che si desidera toouse toocheck le credenziali per l'autenticazione. |Facoltativo (se si usa l'autenticazione di base). impostazione predefinita: Usa l'account amministratore hello e database hello specificato utilizzando la proprietà databaseName. |
+| databaseName |Nome del database MongoDB hello che si desidera tooaccess. |Sì |
+| gatewayName |Nome del gateway hello che accede a hello archivio di dati. |Sì |
 | encryptedCredential |Credenziali crittografate in base al gateway. |Facoltativo |
 
 #### <a name="example"></a>Esempio
@@ -3044,11 +3044,11 @@ Per definire un servizio collegato di MongoDB, impostare il **tipo** di servizio
         "type": "OnPremisesMongoDb",
         "typeProperties": {
             "authenticationType": "<Basic or Anonymous>",
-            "server": "< The IP address or host name of the MongoDB server >",
-            "port": "<The number of the TCP port that the MongoDB server uses to listen for client connections.>",
+            "server": "< hello IP address or host name of hello MongoDB server >",
+            "port": "<hello number of hello TCP port that hello MongoDB server uses toolisten for client connections.>",
             "username": "<username>",
             "password": "<password>",
-            "authSource": "< The database that you want to use to check your credentials for authentication. >",
+            "authSource": "< hello database that you want toouse toocheck your credentials for authentication. >",
             "databaseName": "<database name>",
             "gatewayName": "<onpremgateway>"
         }
@@ -3059,11 +3059,11 @@ Per definire un servizio collegato di MongoDB, impostare il **tipo** di servizio
 Per altre informazioni, vedere [Connettore MongoDB](data-factory-on-premises-mongodb-connector.md#linked-service-properties).
 
 ### <a name="dataset"></a>Set di dati
-Per definire un set di dati MongoDB, impostare il **tipo** del set di dati su **DbCollection**e specificare le proprietà seguenti nella sezione **typeProperties**: 
+toodefine un set di dati, MongoDB hello set **tipo** del set di dati hello troppo**MongoDbCollection**e specificare le proprietà in hello seguenti hello **typeProperties** sezione: 
 
 | Proprietà | Descrizione | Obbligatorio |
 | --- | --- | --- |
-| collectionName |Nome della raccolta nel database MongoDB. |Sì |
+| collectionName |Nome dell'insieme di hello nel database di MongoDB. |Sì |
 
 #### <a name="example"></a>Esempio
 
@@ -3088,11 +3088,11 @@ Per definire un set di dati MongoDB, impostare il **tipo** del set di dati su **
 Per altre informazioni, vedere [Connettore MongoDB](data-factory-on-premises-mongodb-connector.md#dataset-properties).
 
 #### <a name="mongodb-source-in-copy-activity"></a>Origine MongoDB nell'attività di copia
-Se si copiano dati da MongoDB, impostare il **tipo di origine** dell'attività di copia su **Source**e specificare le proprietà seguenti nella sezione **source**:
+Se si copiano dati da MongoDB, impostare hello **tipo di origine** di hello attività di copia troppo**MongoDbSource**e specificare le seguenti proprietà in hello **origine** sezione:
 
 | Proprietà | Descrizione | Valori consentiti | Obbligatorio |
 | --- | --- | --- | --- |
-| query |Usare la query personalizzata per leggere i dati. |Stringa di query SQL-92. Ad esempio: `select * from MyTable`. |No, se **collectionName** di **set di dati** è specificato |
+| query |Utilizzare i dati di tooread hello query personalizzata. |Stringa di query SQL-92. Ad esempio: `select * from MyTable`. |No, se **collectionName** di **set di dati** è specificato |
 
 #### <a name="example"></a>Esempio
 
@@ -3142,12 +3142,12 @@ Per altre informazioni, vedere [Connettore MongoDB](data-factory-on-premises-mon
 
 
 ### <a name="linked-service"></a>Servizio collegato
-Per definire un servizio collegato di Amazon S3, impostare il **tipo** di servizio collegato su **AwsAccessKey** e specificare le proprietà seguenti nella sezione **typeProperties**:  
+toodefine un S3 Amazon collegato del servizio, hello set **tipo** di hello servizio collegato troppo**AwsAccessKey**e specificare le seguenti proprietà in hello **typeProperties** sezione :  
 
 | Proprietà | Descrizione | Valori consentiti | Obbligatorio |
 | --- | --- | --- | --- |
-| accessKeyID |ID della chiave di accesso segreta. |string |Sì |
-| secretAccessKey |La stessa chiave di accesso segreta. |La stringa segreta crittografata |Sì |
+| accessKeyID |ID della chiave di accesso privata hello. |string |Sì |
+| secretAccessKey |chiave di accesso per i segreti Hello stessa. |La stringa segreta crittografata |Sì |
 
 #### <a name="example"></a>Esempio
 ```json
@@ -3166,20 +3166,20 @@ Per definire un servizio collegato di Amazon S3, impostare il **tipo** di serviz
 Per altre informazioni, vedere [Connettore Amazon S3](data-factory-amazon-simple-storage-service-connector.md#linked-service-properties).
 
 ### <a name="dataset"></a>Set di dati
-Per definire un set di dati di Amazon S3, impostare il **tipo** di set di dati su **AmazonS3**e specificare le proprietà seguenti nella sezione **typeProperties**: 
+set di dati toodefine un S3 Amazon, hello set **tipo** del set di dati hello troppo**AmazonS3**e specificare le proprietà in hello seguenti hello **typeProperties** sezione: 
 
 | Proprietà | Descrizione | Valori consentiti | Obbligatorio |
 | --- | --- | --- | --- |
-| bucketName |Il nome del bucket S3. |string |Sì |
-| key |La chiave dell'oggetto S3. |string |No |
-| prefix |Il prefisso per la chiave dell'oggetto S3. Vengono selezionati gli oggetti le cui chiavi iniziano con questo prefisso. Si applica solo quando la chiave è vuota. |string |No |
-| version |La versione dell'oggetto S3 se è stato abilitato il controllo delle versioni S3. |string |No |
-| format | Sono supportati i tipi di formato seguenti: **TextFormat**, **JsonFormat**, **AvroFormat**, **OrcFormat** e **ParquetFormat**. Impostare la proprietà **type** nell'area format su uno di questi valori. Per altre informazioni, vedere le sezioni [TextFormat](data-factory-supported-file-and-compression-formats.md#text-format), [JsonFormat](data-factory-supported-file-and-compression-formats.md#json-format), [AvroFormat](data-factory-supported-file-and-compression-formats.md#avro-format), [OrcFormat](data-factory-supported-file-and-compression-formats.md#orc-format) e [ParquetFormat](data-factory-supported-file-and-compression-formats.md#parquet-format). <br><br> Per **copiare i file così come sono** tra archivi basati su file (copia binaria), è possibile ignorare la sezione del formato nelle definizioni dei set di dati di input e di output. |No | |
-| compressione | Specificare il tipo e il livello di compressione dei dati. I tipi supportati sono **GZip**, **Deflate**, **BZip2** e **ZipDeflate**. I livelli supportati sono **Ottimale** e **Più veloce**. Per altre informazioni, vedere [File e formati di compressione in Azure Data Factory](data-factory-supported-file-and-compression-formats.md#compression-support). |No | |
+| bucketName |nome di bucket Hello S3. |String |Sì |
+| key |chiave dell'oggetto Hello S3. |String |No |
+| prefix |Prefisso per la chiave dell'oggetto hello S3. Vengono selezionati gli oggetti le cui chiavi iniziano con questo prefisso. Si applica solo quando la chiave è vuota. |string |No |
+| version |versione di Hello dell'oggetto S3 se è abilitato il controllo delle versioni S3. |String |No |
+| format | è supportato i seguenti tipi di formato Hello: **TextFormat**, **JsonFormat**, **AvroFormat**, **OrcFormat**,  **ParquetFormat**. Set hello **tipo** proprietà in formato tooone di questi valori. Per altre informazioni, vedere le sezioni [TextFormat](data-factory-supported-file-and-compression-formats.md#text-format), [JsonFormat](data-factory-supported-file-and-compression-formats.md#json-format), [AvroFormat](data-factory-supported-file-and-compression-formats.md#avro-format), [OrcFormat](data-factory-supported-file-and-compression-formats.md#orc-format) e [ParquetFormat](data-factory-supported-file-and-compression-formats.md#parquet-format). <br><br> Se si desidera troppo**copiare i file come-è** tra archivi basati su file (copia binaria), ignorare le sezioni di formato hello in entrambe le definizioni di set di dati di input e output. |No | |
+| compressione | Specificare il tipo di hello e livello di compressione per dati hello. I tipi supportati sono **GZip**, **Deflate**, **BZip2** e **ZipDeflate**. livelli di Hello supportato sono: **ottimale** e **Fastest**. Per altre informazioni, vedere [File e formati di compressione in Azure Data Factory](data-factory-supported-file-and-compression-formats.md#compression-support). |No | |
 
 
 > [!NOTE]
-> bucketName + chiave specifica la posizione dell'oggetto S3 in cui il bucket è il contenitore radice per gli oggetti S3 e la chiave rappresenta il percorso completo all'oggetto S3.
+> bucketName + tasto specifica il percorso di hello dell'oggetto hello S3 in bucket è il contenitore radice hello per gli oggetti S3 e la chiave è oggetto di tooS3 hello percorso completo.
 
 #### <a name="example-sample-dataset-with-prefix"></a>Esempio: set di dati di esempio con prefisso
 
@@ -3230,31 +3230,31 @@ Per definire un set di dati di Amazon S3, impostare il **tipo** di set di dati s
 ```
 
 #### <a name="example-dynamic-paths-for-s3"></a>Esempio: percorsi dinamici per S3
-Nell'esempio, vengono utilizzati dei valori fissi per le proprietà chiave e bucketName nel set di dati Amazon S3.
+Nell'esempio hello, utilizziamo valori fissi per le proprietà di chiave e bucketName nel set di dati hello Amazon S3.
 
 ```json
 "key": "testFolder/test.orc",
 "bucketName": "<S3 bucket name>",
 ```
 
-È possibile fare in modo che Data Factory calcoli la chiave e il bucketName dinamicamente in fase di runtime utilizzando le variabili di sistema, come SliceStart.
+È possibile avere Data Factory di calcolare la chiave di hello e bucketName dinamicamente in fase di esecuzione tramite variabili di sistema, ad esempio SliceStart.
 
 ```json
 "key": "$$Text.Format('{0:MM}/{0:dd}/test.orc', SliceStart)"
 "bucketName": "$$Text.Format('{0:yyyy}', SliceStart)"
 ```
 
-È possibile eseguire la stessa operazione per la proprietà prefix di un set di dati di Amazon S3. Per un elenco delle funzioni e delle variabili di sistema supportate da Data Factory, vedere l'articolo [Funzioni e variabili di sistema di Data Factory](data-factory-functions-variables.md) .
+È possibile eseguire stesso hello per le proprietà prefix hello di un set di dati di Amazon S3. Per un elenco delle funzioni e delle variabili di sistema supportate da Data Factory, vedere l'articolo [Funzioni e variabili di sistema di Data Factory](data-factory-functions-variables.md) .
 
 Per altre informazioni, vedere [Connettore Amazon S3](data-factory-amazon-simple-storage-service-connector.md#dataset-properties).
 
 ### <a name="file-system-source-in-copy-activity"></a>Origine File System nell'attività di copia
-Se si copiano dati da Amazon S3, impostare il **tipo di origine** dell'attività di copia su **FileSystemSource**e specificare le proprietà seguenti nella sezione **source**:
+Se si copiano dati da S3 Amazon, impostare hello **tipo di origine** di hello attività di copia troppo**FileSystemSource**e specificare le seguenti proprietà in hello **origine** sezione :
 
 
 | Proprietà | Descrizione | Valori consentiti | Obbligatorio |
 | --- | --- | --- | --- |
-| ricorsiva |Specifica se elencare in modo ricorsivo gli oggetti S3 sotto la directory. |true/false |No |
+| ricorsiva |Specifica se l'elenco toorecursively S3 oggetti nella directory hello. |true/false |No |
 
 
 #### <a name="example"></a>Esempio
@@ -3306,16 +3306,16 @@ Per altre informazioni, vedere [Connettore Amazon S3](data-factory-amazon-simple
 
 
 ### <a name="linked-service"></a>Servizio collegato
-È possibile collegare un file system locale a una data factory di Azure con il servizio collegato del **file server locale**. La tabella seguente include le descrizioni degli elementi JSON specifici del servizio collegato del file server locale.
+È possibile collegare una locale file system tooan data factory di Azure con hello **Server File locale** servizio collegato. Hello nella tabella seguente vengono fornite descrizioni per gli elementi JSON toohello specifico servizio locale di File Server collegato.
 
 | Proprietà | Descrizione | Obbligatorio |
 | --- | --- | --- |
-| type |Verificare che la proprietà type sia impostata su **OnPremisesFileServer**. |Sì |
-| host |Specifica il percorso radice della cartella da copiare. Usare il carattere di escape '\' per i caratteri speciali nella stringa. Per ottenere alcuni esempi, vedere [Servizio collegato di esempio e definizioni del set di dati](#sample-linked-service-and-dataset-definitions) . |Sì |
-| userid |Specificare l'ID dell'utente che ha accesso al server. |No (se si sceglie encryptedCredential) |
-| password |Specificare la password per l'utente (userid). |No (se si sceglie encryptedCredential) |
-| encryptedCredential |Specificare le credenziali crittografate che è possibile ottenere eseguendo il cmdlet New-AzureRmDataFactoryEncryptValue. |No (se si sceglie di specificare ID utente e password in testo normale) |
-| gatewayName |Specifica il nome del gateway che Data Factory deve usare per connettersi al file server locale. |Sì |
+| type |Verificare che la proprietà di tipo hello sia impostata troppo**OnPremisesFileServer**. |Sì |
+| host |Specifica il percorso radice hello della cartella hello che si desidera toocopy. Utilizzare il carattere di escape hello ' \ ' per i caratteri speciali nella stringa hello. Per ottenere alcuni esempi, vedere [Servizio collegato di esempio e definizioni del set di dati](#sample-linked-service-and-dataset-definitions) . |Sì |
+| userid |Specificare ID utente hello con server di accesso toohello hello. |No (se si sceglie encryptedCredential) |
+| password |Specificare la password hello per utente hello (userid). |No (se si sceglie encryptedCredential) |
+| encryptedCredential |Specificare le credenziali crittografato hello che è possibile ottenere eseguendo il cmdlet New-AzureRmDataFactoryEncryptValue hello. |No (se si sceglie toospecify userid e password in testo normale) |
+| gatewayName |Specifica il nome di hello del gateway hello che Data Factory deve usare tooconnect toohello ai file server locali. |Sì |
 
 #### <a name="sample-folder-path-definitions"></a>Definizioni del percorso della cartella di esempio 
 | Scenario | Host nella definizione del servizio collegato | folderPath nella definizione del set di dati |
@@ -3360,16 +3360,16 @@ Per altre informazioni, vedere [Connettore Amazon S3](data-factory-amazon-simple
 Per altre informazioni, vedere [Connettore File System](data-factory-onprem-file-system-connector.md#linked-service-properties).
 
 ### <a name="dataset"></a>Set di dati
-Per definire un set di dati di File System, impostare il **tipo** di set di dati su **FileShare**e specificare le proprietà seguenti nella sezione **typeProperties**: 
+toodefine un set di dati di File System, hello set **tipo** del set di dati hello troppo**FileShare**e specificare le proprietà in hello seguenti hello **typeProperties** sezione: 
 
 | Proprietà | Descrizione | Obbligatorio |
 | --- | --- | --- |
-| folderPath |Specifica il percorso secondario della cartella. Usare il carattere di escape '\' per i caratteri speciali nella stringa. Per ottenere alcuni esempi, vedere [Servizio collegato di esempio e definizioni del set di dati](#sample-linked-service-and-dataset-definitions) .<br/><br/>È possibile combinare questa proprietà con **partitionBy** per ottenere percorsi di cartelle basati su data e ora di inizio/fine delle sezioni. |Sì |
-| fileName |Specificare il nome del file in **folderPath** se si vuole che la tabella faccia riferimento a un file specifico nella cartella. Se non si specifica alcun valore per questa proprietà, la tabella punta a tutti i file nella cartella.<br/><br/>Quando fileName non viene specificato per un set di dati di output, il formato del nome del file generato è il seguente: <br/><br/>`Data.<Guid>.txt` Esempio: Data.0a405f8a-93ff-4c6f-b3be-f69616f1df7a.txt |No |
-| fileFilter |Specificare un filtro da usare per selezionare un sottoinsieme di file in folderPath anziché tutti i file. <br/><br/>I valori consentiti sono: `*` (più caratteri) e `?` (carattere singolo).<br/><br/>Esempio 1: "fileFilter": "*. log"<br/>Esempio 2: "fileFilter": 2016-1-?.txt"<br/><br/>Si noti che fileFilter è applicabile per un set di dati di input FileShare. |No |
-| partitionedBy |È possibile usare partitionedBy per specificare un valore folderPath/fileName dinamico per i dati di una serie temporale. Un esempio è folderPath con parametri per ogni ora di dati. |No |
-| format | Sono supportati i tipi di formato seguenti: **TextFormat**, **JsonFormat**, **AvroFormat**, **OrcFormat** e **ParquetFormat**. Impostare la proprietà **type** nell'area format su uno di questi valori. Per altre informazioni, vedere le sezioni [TextFormat](data-factory-supported-file-and-compression-formats.md#text-format), [JsonFormat](data-factory-supported-file-and-compression-formats.md#json-format), [AvroFormat](data-factory-supported-file-and-compression-formats.md#avro-format), [OrcFormat](data-factory-supported-file-and-compression-formats.md#orc-format) e [ParquetFormat](data-factory-supported-file-and-compression-formats.md#parquet-format). <br><br> Per **copiare i file così come sono** tra archivi basati su file (copia binaria), è possibile ignorare la sezione del formato nelle definizioni dei set di dati di input e di output. |No |
-| compressione | Specificare il tipo e il livello di compressione dei dati. I tipi supportati sono **GZip**, **Deflate**, **BZip2** e **ZipDeflate**, mentre i livelli supportati sono **Optimal** (Ottimale) **Fastest** (Più veloce). vedere [File e formati di compressione in Azure Data Factory](data-factory-supported-file-and-compression-formats.md#compression-support). |No |
+| folderPath |Specifica hello sottopercorso toohello cartella. Utilizzare il carattere di escape hello ' \' per i caratteri speciali nella stringa hello. Per ottenere alcuni esempi, vedere [Servizio collegato di esempio e definizioni del set di dati](#sample-linked-service-and-dataset-definitions) .<br/><br/>È possibile combinare questa proprietà con **partitionBy** toohave i percorsi delle cartelle in base a intervallo iniziale o finale data e ora. |Sì |
+| fileName |Specificare il nome di hello del file hello in hello **folderPath** se si desidera hello tabella toorefer tooa specifici file nella cartella hello. Se non si specifica alcun valore per questa proprietà, la tabella hello punta tooall file nella cartella hello.<br/><br/>Quando il nome di file non viene specificato per un set di dati di output, il nome di hello del file hello generato è in hello seguente formato: <br/><br/>`Data.<Guid>.txt` Esempio: Data.0a405f8a-93ff-4c6f-b3be-f69616f1df7a.txt |No |
+| fileFilter |Specificare un filtro toobe tooselect un subset di file in hello folderPath, anziché tutti i file. <br/><br/>I valori consentiti sono: `*` (più caratteri) e `?` (carattere singolo).<br/><br/>Esempio 1: "fileFilter": "*. log"<br/>Esempio 2: "fileFilter": 2016-1-?.txt"<br/><br/>Si noti che fileFilter è applicabile per un set di dati di input FileShare. |No |
+| partitionedBy |È possibile utilizzare partitionedBy toospecify dinamica folderPath/nome di file per i dati delle serie temporali. Un esempio è folderPath con parametri per ogni ora di dati. |No |
+| format | è supportato i seguenti tipi di formato Hello: **TextFormat**, **JsonFormat**, **AvroFormat**, **OrcFormat**,  **ParquetFormat**. Set hello **tipo** proprietà in formato tooone di questi valori. Per altre informazioni, vedere le sezioni [TextFormat](data-factory-supported-file-and-compression-formats.md#text-format), [JsonFormat](data-factory-supported-file-and-compression-formats.md#json-format), [AvroFormat](data-factory-supported-file-and-compression-formats.md#avro-format), [OrcFormat](data-factory-supported-file-and-compression-formats.md#orc-format) e [ParquetFormat](data-factory-supported-file-and-compression-formats.md#parquet-format). <br><br> Se si desidera troppo**copiare i file come-è** tra archivi basati su file (copia binaria), ignorare le sezioni di formato hello in entrambe le definizioni di set di dati di input e output. |No |
+| compressione | Specificare il tipo di hello e livello di compressione per dati hello. I tipi supportati sono **GZip**, **Deflate**, **BZip2** e **ZipDeflate**, mentre i livelli supportati sono **Optimal** (Ottimale) **Fastest** (Più veloce). vedere [File e formati di compressione in Azure Data Factory](data-factory-supported-file-and-compression-formats.md#compression-support). |No |
 
 > [!NOTE]
 > Non è possibile usare fileName e fileFilter contemporaneamente.
@@ -3434,11 +3434,11 @@ Per definire un set di dati di File System, impostare il **tipo** di set di dati
 Per altre informazioni, vedere [Connettore File System](data-factory-onprem-file-system-connector.md#dataset-properties).
 
 ### <a name="file-system-source-in-copy-activity"></a>Origine File System nell'attività di copia
-Se si copiano dati da File System, impostare il **tipo di origine** dell'attività di copia su **FileSystemSource**e specificare le proprietà seguenti nella sezione **source**:
+Se si siano copiando i dati dal File System, impostare hello **tipo di origine** di hello attività di copia troppo**FileSystemSource**e specificare le seguenti proprietà in hello **origine** sezione:
 
 | Proprietà | Descrizione | Valori consentiti | Obbligatorio |
 | --- | --- | --- | --- |
-| ricorsiva |Indica se i dati vengono letti in modo ricorsivo dalle cartelle secondarie o solo dalla cartella specificata. |True, False (valore predefinito) |No |
+| ricorsiva |Indica se hello i dati letti in modo ricorsivo dalle sottocartelle di hello o solo dalla cartella specificata hello. |True, False (valore predefinito) |No |
 
 #### <a name="example"></a>Esempio
 
@@ -3484,11 +3484,11 @@ Se si copiano dati da File System, impostare il **tipo di origine** dell'attivit
 Per altre informazioni, vedere [Connettore File System](data-factory-onprem-file-system-connector.md#copy-activity-properties).
 
 ### <a name="file-system-sink-in-copy-activity"></a>Sink File System nell'attività di copia
-Se si copiano dati in File System, impostare il **tipo di sink** dell'attività di copia su **FileSystemSink**e specificare le proprietà seguenti nella sezione **sink**:
+Se si copiano dati tooFile sistema, impostare hello **tipo di sink** di hello attività di copia troppo**FileSystemSink**e specificare le seguenti proprietà in hello **sink** sezione:
 
 | Proprietà | Descrizione | Valori consentiti | Obbligatorio |
 | --- | --- | --- | --- |
-| copyBehavior |Definisce il comportamento di copia quando l'origine è BlobSource o FileSystem. |**PreserveHierarchy:** mantiene la gerarchia dei file nella cartella di destinazione. Il percorso relativo del file di origine nella cartella di origine è identico al percorso relativo del file di destinazione nella cartella di destinazione.<br/><br/>**FlattenHierarchy**: tutti i file della cartella di origine vengono creati nel primo livello della cartella di destinazione. Il nome dei file di destinazione viene generato automaticamente.<br/><br/>**MergeFiles**: unisce tutti i file della cartella di origine in un solo file. Se il nome file/BLOB viene specificato, il nome del file unito sarà il nome specificato. In caso contrario, verrà usato un nome file generato automaticamente. |No |
+| copyBehavior |Definisce il comportamento di copia hello quando origine hello è BlobSource o file System. |**PreserveHierarchy:** mantiene la gerarchia di file hello nella cartella di destinazione hello. Percorso relativo di hello hello origine toohello origine della cartella dei file, ovvero è hello come percorso relativo di hello hello file toohello destinazione della cartella di destinazione.<br/><br/>**FlattenHierarchy:** tutti i file dalla cartella di origine hello vengono creati nel primo livello di hello della cartella di destinazione. file di destinazione Hello vengono creati con un nome generato automaticamente.<br/><br/>**Oggetto:** unisce tutti i file dal file tooone cartella di origine hello. Se viene specificato nome di nome/blob file hello, nome di file uniti hello è nome specificato hello. In caso contrario, verrà usato un nome file generato automaticamente. |No |
 auto-
 
 #### <a name="example"></a>Esempio
@@ -3539,19 +3539,19 @@ Per altre informazioni, vedere [Connettore File System](data-factory-onprem-file
 ## <a name="ftp"></a>FTP
 
 ### <a name="linked-service"></a>Servizio collegato
-Per definire un servizio collegato di FTP, impostare il **tipo** di servizio collegato su **FtpServer** e specificare le proprietà seguenti nella sezione **typeProperties**:  
+il set hello servizio collegato di toodefine un FTP **tipo** di hello servizio collegato troppo**server FTP**e specificare le seguenti proprietà in hello **typeProperties** sezione:  
 
 | Proprietà | Descrizione | Obbligatorio | Default |
 | --- | --- | --- | --- |
-| host |Nome o indirizzo IP del server FTP |Sì |&nbsp; |
+| host |Nome o indirizzo IP del FTP Server hello |Sì |&nbsp; |
 | authenticationType |Specificare il tipo di autenticazione |Sì |Di base, anonimo |
-| username |Utente che ha accesso al server FTP |No |&nbsp; |
-| password |Password per l'utente (nome utente) |No |&nbsp; |
-| encryptedCredential |Credenziali crittografate per accedere al server FTP |No |&nbsp; |
-| gatewayName |Nome del gateway di Gateway di gestione dati per connettersi a un server FTP locale |No |&nbsp; |
-| port |Porta su cui è in ascolto il server FTP |No |21 |
-| enableSsl |Specificare se usare FTP su un canale SSL/TLS |No |true |
-| enableServerCertificateValidation |Specificare se abilitare la convalida del certificato SSL del server quando si usa FTP sul canale SSL/TLS |No |true |
+| username |Utente che dispone di server di accesso FTP toohello |No |&nbsp; |
+| password |Password per l'utente di hello (nomeutente) |No |&nbsp; |
+| encryptedCredential |Server FTP di credenziali crittografate tooaccess hello |No |&nbsp; |
+| gatewayName |Nome di hello Gateway di gestione dati gateway tooconnect tooan locale server FTP |No |&nbsp; |
+| port |Porta su cui hello FTP è in attesa server |No |21 |
+| enableSsl |Specificare se toouse FTP attraverso il canale SSL/TLS |No |true |
+| enableServerCertificateValidation |Specificare se il server tooenable SSL la convalida del certificato quando si utilizza FTP su canale SSL/TLS. |No |true |
 
 #### <a name="example-using-anonymous-authentication"></a>Esempio: uso dell'autenticazione anonima
 
@@ -3625,16 +3625,16 @@ Per definire un servizio collegato di FTP, impostare il **tipo** di servizio col
 Per altre informazioni, vedere [Connettore FTP](data-factory-ftp-connector.md#linked-service-properties).
 
 ### <a name="dataset"></a>Set di dati
-Per definire un set di dati di FTP, impostare il **tipo** di set di dati su **FileShare**e specificare le proprietà seguenti nella sezione **typeProperties**: 
+set di dati toodefine un FTP, hello set **tipo** del set di dati hello troppo**FileShare**e specificare le proprietà in hello seguenti hello **typeProperties** sezione: 
 
 | Proprietà | Descrizione | Obbligatorio |
 | --- | --- | --- |
-| folderPath |Sottopercorso alla cartella. Usare il carattere di escape "\" per i caratteri speciali nella stringa. Per ottenere alcuni esempi, vedere [Servizio collegato di esempio e definizioni del set di dati](#sample-linked-service-and-dataset-definitions) .<br/><br/>È possibile combinare questa proprietà con **partitionBy** per ottenere percorsi di cartelle basati su data e ora di inizio/fine delle sezioni. |Sì 
-| fileName |Specificare il nome del file in **folderPath** se si vuole che la tabella faccia riferimento a un file specifico nella cartella. Se non si specifica alcun valore per questa proprietà, la tabella punta a tutti i file nella cartella.<br/><br/>Quando fileName non viene specificato per un set di dati di output, il nome del file generato sarà nel formato seguente: <br/><br/>Data.<Guid>.txt, ad esempio: Data.0a405f8a-93ff-4c6f-b3be-f69616f1df7a.txt |No |
-| fileFilter |Specificare un filtro da usare per selezionare un sottoinsieme di file in folderPath anziché tutti i file.<br/><br/>I valori consentiti sono: `*` (più caratteri) e `?` (carattere singolo).<br/><br/>Esempi 1: `"fileFilter": "*.log"`<br/>Esempio 2: `"fileFilter": 2016-1-?.txt"`<br/><br/> fileFilter è applicabile per un set di dati di input FileShare. Questa proprietà non è supportata con HDFS. |No |
-| partitionedBy |partitionedBy può essere usato per specificare un valore folderPath dinamico e un nome file per i dati di una serie temporale. Ad esempio, folderPath con parametri per ogni ora di dati. |No |
-| format | Sono supportati i tipi di formato seguenti: **TextFormat**, **JsonFormat**, **AvroFormat**, **OrcFormat** e **ParquetFormat**. Impostare la proprietà **type** nell'area format su uno di questi valori. Per altre informazioni, vedere le sezioni [TextFormat](data-factory-supported-file-and-compression-formats.md#text-format), [JsonFormat](data-factory-supported-file-and-compression-formats.md#json-format), [AvroFormat](data-factory-supported-file-and-compression-formats.md#avro-format), [OrcFormat](data-factory-supported-file-and-compression-formats.md#orc-format) e [ParquetFormat](data-factory-supported-file-and-compression-formats.md#parquet-format). <br><br> Per **copiare i file così come sono** tra archivi basati su file (copia binaria), è possibile ignorare la sezione del formato nelle definizioni dei set di dati di input e di output. |No |
-| compressione | Specificare il tipo e il livello di compressione dei dati. I tipi supportati sono **GZip**, **Deflate**, **BZip2** e **ZipDeflate**, mentre i livelli supportati sono **Optimal** (Ottimale) **Fastest** (Più veloce). Per altre informazioni, vedere [File e formati di compressione in Azure Data Factory](data-factory-supported-file-and-compression-formats.md#compression-support). |No |
+| folderPath |Toohello sottocartella percorso. Utilizzare il carattere di escape ' \ ' per i caratteri speciali nella stringa hello. Per ottenere alcuni esempi, vedere [Servizio collegato di esempio e definizioni del set di dati](#sample-linked-service-and-dataset-definitions) .<br/><br/>È possibile combinare questa proprietà con **partitionBy** toohave i percorsi delle cartelle in base a intervallo iniziale o finale data e ora. |Sì 
+| fileName |Specificare il nome di hello del file hello in hello **folderPath** se si desidera hello tabella toorefer tooa specifici file nella cartella hello. Se non si specifica alcun valore per questa proprietà, la tabella hello punta tooall file nella cartella hello.<br/><br/>Quando il nome di file non viene specificato per un set di dati di output, il nome di hello del file hello generato sarebbe in hello segue questo formato: <br/><br/>Data.<Guid>.txt, ad esempio: Data.0a405f8a-93ff-4c6f-b3be-f69616f1df7a.txt |No |
+| fileFilter |Specificare un filtro toobe tooselect un subset di file in hello folderPath, anziché tutti i file.<br/><br/>I valori consentiti sono: `*` (più caratteri) e `?` (carattere singolo).<br/><br/>Esempi 1: `"fileFilter": "*.log"`<br/>Esempio 2: `"fileFilter": 2016-1-?.txt"`<br/><br/> fileFilter è applicabile per un set di dati di input FileShare. Questa proprietà non è supportata con HDFS. |No |
+| partitionedBy |partitionedBy può essere utilizzato toospecify un folderPath dinamica, il nome file per i dati della serie temporale. Ad esempio, folderPath con parametri per ogni ora di dati. |No |
+| format | è supportato i seguenti tipi di formato Hello: **TextFormat**, **JsonFormat**, **AvroFormat**, **OrcFormat**,  **ParquetFormat**. Set hello **tipo** proprietà in formato tooone di questi valori. Per altre informazioni, vedere le sezioni [TextFormat](data-factory-supported-file-and-compression-formats.md#text-format), [JsonFormat](data-factory-supported-file-and-compression-formats.md#json-format), [AvroFormat](data-factory-supported-file-and-compression-formats.md#avro-format), [OrcFormat](data-factory-supported-file-and-compression-formats.md#orc-format) e [ParquetFormat](data-factory-supported-file-and-compression-formats.md#parquet-format). <br><br> Se si desidera troppo**copiare i file come-è** tra archivi basati su file (copia binaria), ignorare le sezioni di formato hello in entrambe le definizioni di set di dati di input e output. |No |
+| compressione | Specificare il tipo di hello e livello di compressione per dati hello. I tipi supportati sono **GZip**, **Deflate**, **BZip2** e **ZipDeflate**, mentre i livelli supportati sono **Optimal** (Ottimale) **Fastest** (Più veloce). Per altre informazioni, vedere [File e formati di compressione in Azure Data Factory](data-factory-supported-file-and-compression-formats.md#compression-support). |No |
 | useBinaryTransfer |Specificare se usare la modalità di trasferimento binario. True per la modalità binaria e false per ASCII. Valore predefinito: True. Questa proprietà può essere usata solo quando il tipo di servizio collegato associato è di tipo: FtpServer. |No |
 
 > [!NOTE]
@@ -3649,7 +3649,7 @@ Per definire un set di dati di FTP, impostare il **tipo** di set di dati su **Fi
         "type": "FileShare",
         "linkedServiceName": "FTPLinkedService",
         "typeProperties": {
-            "folderPath": "<path to shared folder>",
+            "folderPath": "<path tooshared folder>",
             "fileName": "test.csv",
             "useBinaryTransfer": true
         },
@@ -3665,11 +3665,11 @@ Per definire un set di dati di FTP, impostare il **tipo** di set di dati su **Fi
 Per altre informazioni, vedere [Connettore FTP](data-factory-ftp-connector.md#dataset-properties).
 
 ### <a name="file-system-source-in-copy-activity"></a>Origine File System nell'attività di copia
-Se si copiano dati da un server FTP, impostare il **tipo di origine** dell'attività di copia su **FileSystemSource**e specificare le proprietà seguenti nella sezione **source**:
+Se si copiano dati da un server FTP, impostare hello **tipo di origine** di hello attività di copia troppo**FileSystemSource**e specificare le seguenti proprietà in hello **origine** sezione:
 
 | Proprietà | Descrizione | Valori consentiti | Obbligatorio |
 | --- | --- | --- | --- |
-| ricorsiva |Indica se i dati vengono letti in modo ricorsivo dalle cartelle secondarie o solo dalla cartella specificata. |True, False (valore predefinito) |No |
+| ricorsiva |Indica se hello i dati letti in modo ricorsivo dal sottocartelle hello o solo dalla cartella specificata hello. |True, False (valore predefinito) |No |
 
 #### <a name="example"></a>Esempio
 
@@ -3717,17 +3717,17 @@ Per altre informazioni, vedere [Connettore FTP](data-factory-ftp-connector.md#co
 ## <a name="hdfs"></a>HDFS
 
 ### <a name="linked-service"></a>Servizio collegato
-Per definire un servizio collegato di HDFS, impostare il **tipo** di servizio collegato su **Hdfs** e specificare le proprietà seguenti nella sezione **typeProperties**:  
+il set hello servizio collegato di toodefine un HDFS **tipo** di hello servizio collegato troppo**Hdfs**e specificare le seguenti proprietà in hello **typeProperties** sezione:  
 
 | Proprietà | Descrizione | Obbligatorio |
 | --- | --- | --- |
-| type |La proprietà type deve essere impostata su: **Hdfs** |Sì |
-| Url |URL di HDFS |Sì |
-| authenticationType |Anonima o Windows. <br><br> Per usare l'**autenticazione Kerberos** per il connettore HDFS, fare riferimento a [questa sezione](#use-kerberos-authentication-for-hdfs-connector) per impostare correttamente l'ambiente locale. |Sì |
+| type |proprietà di tipo Hello deve essere impostata su: **Hdfs** |Sì |
+| Url |URL toohello HDFS |Sì |
+| authenticationType |Anonima o Windows. <br><br> toouse **l'autenticazione Kerberos** per connettore HDFS, fare riferimento troppo[in questa sezione](#use-kerberos-authentication-for-hdfs-connector) tooset l'ambiente locale di conseguenza. |Sì |
 | userName |Nome utente per l'autenticazione di Windows |Sì (per l'autenticazione di Windows) |
 | password |Password per l'autenticazione di Windows |Sì (per l'autenticazione di Windows) |
-| gatewayName |Nome del gateway che il servizio Data Factory deve usare per connettersi a HDFS. |Sì |
-| encryptedCredential |[New-AzureRMDataFactoryEncryptValue](https://msdn.microsoft.com/library/mt603802.aspx) delle credenziali di accesso. |No |
+| gatewayName |Nome del gateway hello hello servizio Data Factory deve usare tooconnect toohello HDFS. |Sì |
+| encryptedCredential |[Nuovo AzureRMDataFactoryEncryptValue](https://msdn.microsoft.com/library/mt603802.aspx) output delle credenziali di accesso hello. |No |
 
 #### <a name="example-using-anonymous-authentication"></a>Esempio: uso dell'autenticazione anonima
 
@@ -3767,15 +3767,15 @@ Per definire un servizio collegato di HDFS, impostare il **tipo** di servizio co
 Per altre informazioni, vedere [Connettore HDFS](#data-factory-hdfs-connector.md#linked-service-properties). 
 
 ### <a name="dataset"></a>Set di dati
-Per definire un set di dati di HDFS, impostare il **tipo** di set di dati su **FileShare**e specificare le proprietà seguenti nella sezione **typeProperties**: 
+toodefine un set di dati HDFS set hello **tipo** del set di dati hello troppo**FileShare**e specificare le proprietà in hello seguenti hello **typeProperties** sezione: 
 
 | Proprietà | Descrizione | Obbligatorio |
 | --- | --- | --- |
-| folderPath |Percorso della cartella. Esempio: `myfolder`<br/><br/>Usare il carattere di escape "\" per i caratteri speciali nella stringa. Ad esempio: per cartella\sottocartella specificare cartella\\\\sottocartella e per d:\cartellaesempio specificare l'unità d:\\\\cartellaesempio.<br/><br/>È possibile combinare questa proprietà con **partitionBy** per ottenere percorsi di cartelle basati su data e ora di inizio/fine delle sezioni. |Sì |
-| fileName |Specificare il nome del file in **folderPath** se si vuole che la tabella faccia riferimento a un file specifico nella cartella. Se non si specifica alcun valore per questa proprietà, la tabella punta a tutti i file nella cartella.<br/><br/>Quando fileName non viene specificato per un set di dati di output, il nome del file generato sarà nel formato seguente: <br/><br/>Data<Guid>.txt, ad esempio: Data.0a405f8a-93ff-4c6f-b3be-f69616f1df7a.txt |No |
-| partitionedBy |partitionedBy può essere usato per specificare un valore folderPath dinamico e un nome file per i dati di una serie temporale. Ad esempio, folderPath con parametri per ogni ora di dati. |No |
-| format | Sono supportati i tipi di formato seguenti: **TextFormat**, **JsonFormat**, **AvroFormat**, **OrcFormat** e **ParquetFormat**. Impostare la proprietà **type** nell'area format su uno di questi valori. Per altre informazioni, vedere le sezioni [TextFormat](data-factory-supported-file-and-compression-formats.md#text-format), [JsonFormat](data-factory-supported-file-and-compression-formats.md#json-format), [AvroFormat](data-factory-supported-file-and-compression-formats.md#avro-format), [OrcFormat](data-factory-supported-file-and-compression-formats.md#orc-format) e [ParquetFormat](data-factory-supported-file-and-compression-formats.md#parquet-format). <br><br> Per **copiare i file così come sono** tra archivi basati su file (copia binaria), è possibile ignorare la sezione del formato nelle definizioni dei set di dati di input e di output. |No |
-| compressione | Specificare il tipo e il livello di compressione dei dati. I tipi supportati sono **GZip**, **Deflate**, **BZip2** e **ZipDeflate**. I livelli supportati sono **Ottimale** e **Più veloce**. Per altre informazioni, vedere [File e formati di compressione in Azure Data Factory](data-factory-supported-file-and-compression-formats.md#compression-support). |No |
+| folderPath |Cartella toohello percorso. Esempio: `myfolder`<br/><br/>Utilizzare il carattere di escape ' \ ' per i caratteri speciali nella stringa hello. Ad esempio: per cartella\sottocartella specificare cartella\\\\sottocartella e per d:\cartellaesempio specificare l'unità d:\\\\cartellaesempio.<br/><br/>È possibile combinare questa proprietà con **partitionBy** toohave i percorsi delle cartelle in base a intervallo iniziale o finale data e ora. |Sì |
+| fileName |Specificare il nome di hello del file hello in hello **folderPath** se si desidera hello tabella toorefer tooa specifici file nella cartella hello. Se non si specifica alcun valore per questa proprietà, la tabella hello punta tooall file nella cartella hello.<br/><br/>Quando il nome di file non viene specificato per un set di dati di output, il nome di hello del file hello generato sarebbe in hello segue questo formato: <br/><br/>Data<Guid>.txt, ad esempio: Data.0a405f8a-93ff-4c6f-b3be-f69616f1df7a.txt |No |
+| partitionedBy |partitionedBy può essere utilizzato toospecify un folderPath dinamica, il nome file per i dati della serie temporale. Ad esempio, folderPath con parametri per ogni ora di dati. |No |
+| format | è supportato i seguenti tipi di formato Hello: **TextFormat**, **JsonFormat**, **AvroFormat**, **OrcFormat**,  **ParquetFormat**. Set hello **tipo** proprietà in formato tooone di questi valori. Per altre informazioni, vedere le sezioni [TextFormat](data-factory-supported-file-and-compression-formats.md#text-format), [JsonFormat](data-factory-supported-file-and-compression-formats.md#json-format), [AvroFormat](data-factory-supported-file-and-compression-formats.md#avro-format), [OrcFormat](data-factory-supported-file-and-compression-formats.md#orc-format) e [ParquetFormat](data-factory-supported-file-and-compression-formats.md#parquet-format). <br><br> Se si desidera troppo**copiare i file come-è** tra archivi basati su file (copia binaria), ignorare le sezioni di formato hello in entrambe le definizioni di set di dati di input e output. |No |
+| compressione | Specificare il tipo di hello e livello di compressione per dati hello. I tipi supportati sono **GZip**, **Deflate**, **BZip2** e **ZipDeflate**. I livelli supportati sono **Ottimale** e **Più veloce**. Per altre informazioni, vedere [File e formati di compressione in Azure Data Factory](data-factory-supported-file-and-compression-formats.md#compression-support). |No |
 
 > [!NOTE]
 > filename e fileFilter non possono essere usati contemporaneamente.
@@ -3803,13 +3803,13 @@ Per definire un set di dati di HDFS, impostare il **tipo** di set di dati su **F
 Per altre informazioni, vedere [Connettore HDFS](#data-factory-hdfs-connector.md#dataset-properties). 
 
 ### <a name="file-system-source-in-copy-activity"></a>Origine File System nell'attività di copia
-Se si copiano dati da HDFS, impostare il **tipo di origine** dell'attività di copia su **FileSystemSource**e specificare le proprietà seguenti nella sezione **source**:
+Se si copiano dati da HDFS, impostare hello **tipo di origine** di hello attività di copia troppo**FileSystemSource**e specificare le seguenti proprietà in hello **origine** sezione:
 
-**FileSystemSource** supporta le proprietà seguenti:
+**FileSystemSource** supporta hello le proprietà seguenti:
 
 | Proprietà | Descrizione | Valori consentiti | Obbligatorio |
 | --- | --- | --- | --- |
-| ricorsiva |Indica se i dati vengono letti in modo ricorsivo dalle cartelle secondarie o solo dalla cartella specificata. |True, False (valore predefinito) |No |
+| ricorsiva |Indica se hello i dati letti in modo ricorsivo dal sottocartelle hello o solo dalla cartella specificata hello. |True, False (valore predefinito) |No |
 
 #### <a name="example"></a>Esempio
 
@@ -3853,26 +3853,26 @@ Per altre informazioni, vedere [Connettore HDFS](#data-factory-hdfs-connector.md
 
 
 ### <a name="linked-service"></a>Servizio collegato
-Per definire un servizio collegato di SFTP, impostare il **tipo** di servizio collegato su **Sftp** e specificare le proprietà seguenti nella sezione **typeProperties**:  
+il set hello servizio collegato di toodefine un SFTP **tipo** di hello servizio collegato troppo**Sftp**e specificare le seguenti proprietà in hello **typeProperties** sezione:  
 
 | Proprietà | Descrizione | Obbligatorio |
 | --- | --- | --- | --- |
-| host | Nome o indirizzo IP del server SFTP. |Sì |
-| port |Porta su cui è in ascolto il server SFTP. Il valore predefinito è 21 |No |
-| authenticationType |Specificare il tipo di autenticazione. Valori consentiti: **Base**, **SshPublicKey**. <br><br> Fare riferimento alle sezioni [Uso dell'autenticazione di base](#using-basic-authentication) e [Uso dell'autenticazione con chiave pubblica SSH](#using-ssh-public-key-authentication) rispettivamente per vedere altre proprietà ed esempi JSON. |Sì |
-| skipHostKeyValidation | Specificare se si desidera ignorare la convalida tramite della chiave host. | No. Il valore predefinito è: falso |
-| hostKeyFingerprint | Specificare le impronte digitali della chiave host. | Sì se `skipHostKeyValidation` è impostato su falso.  |
-| gatewayName |Nome del gateway di gestione dati per connettersi a un server SFTP locale. | Sì se si copiano i dati da un server SFTP locale. |
-| encryptedCredential | Credenziali crittografate per accedere al server SFTP. Generato automaticamente quando si specifica l'autenticazione di base (nome utente e password) o l'autenticazione SshPublicKey (nome utente e percorso della chiave privato o contenuto) nella copia guidata o nella finestra di dialogo popup ClickOnce. | No. Applicare solo se si copiano i dati da un server SFTP locale. |
+| host | Nome o indirizzo IP del server SFTP hello. |Sì |
+| port |Porta su cui hello SFTP server è in ascolto. valore predefinito di Hello è: 21 |No |
+| authenticationType |Specificare il tipo di autenticazione. Valori consentiti: **Base**, **SshPublicKey**. <br><br> Fare riferimento troppo[tramite l'autenticazione di base](#using-basic-authentication) e [tramite SSH autenticazione a chiave pubblica](#using-ssh-public-key-authentication) sezioni su altre proprietà e gli esempi JSON rispettivamente. |Sì |
+| skipHostKeyValidation | Specificare se tooskip chiave convalida dell'host. | No. Hello valore predefinito: false |
+| hostKeyFingerprint | Specificare impronte digitali hello della chiave host hello. | Sì se hello `skipHostKeyValidation` è impostato toofalse.  |
+| gatewayName |Nome di hello Gateway di gestione dati tooconnect tooan locale server SFTP. | Sì se si copiano i dati da un server SFTP locale. |
+| encryptedCredential | Server SFTP hello tooaccess credenziali crittografate. Generati automaticamente quando si specifica l'autenticazione di base (password e nome utente) o parametri SshPublicKey (nome utente + percorso della chiave privata o contenuto) nella copia guidata o hello ClickOnce finestra di dialogo popup. | No. Applicare solo se si copiano i dati da un server SFTP locale. |
 
 #### <a name="example-using-basic-authentication"></a>Esempio: uso dell'autenticazione di base
 
-Per usare l'autenticazione di base, impostare `authenticationType` come `Basic` e specificare le proprietà seguenti oltre a quelle generiche del connettore SFTP introdotte nell'ultima sezione:
+impostare l'autenticazione di base toouse, `authenticationType` come `Basic`e specificare le proprietà seguenti, oltre alle hello connettore SFTP oggetti generici introdotte nell'ultima sezione hello hello:
 
 | Proprietà | Descrizione | Obbligatorio |
 | --- | --- | --- | --- |
-| username | Utente che ha accesso al server SFTP. |Sì |
-| password | Password per l'utente (nome utente). | Sì |
+| username | Utente che dispone di server di accesso toohello SFTP. |Sì |
+| password | Password per l'utente di hello (nomeutente). | Sì |
 
 ```json
 {
@@ -3916,14 +3916,14 @@ Per usare l'autenticazione di base, impostare `authenticationType` come `Basic` 
 
 #### <a name="using-ssh-public-key-authentication"></a>Esempio: uso dell'autenticazione con chiave pubblica SSH:**
 
-Per usare l'autenticazione di base, impostare `authenticationType` come `SshPublicKey` e specificare le proprietà seguenti oltre a quelle generiche del connettore SFTP introdotte nell'ultima sezione:
+impostare l'autenticazione di base toouse, `authenticationType` come `SshPublicKey`e specificare le proprietà seguenti, oltre alle hello connettore SFTP oggetti generici introdotte nell'ultima sezione hello hello:
 
 | Proprietà | Descrizione | Obbligatorio |
 | --- | --- | --- | --- |
-| username |Utente che ha accesso al server SFTP |Sì |
-| privateKeyPath | Specificare un percorso assoluto al file di chiave privato a cui il gateway può accedere. | Specificare `privateKeyPath` o `privateKeyContent`. <br><br> Applicare solo se si copiano i dati da un server SFTP locale. |
-| privateKeyContent | Una stringa serializzata del contenuto di chiave privata. La copia guidata può leggere il file di chiave privata ed estrarre automaticamente il contenuto della chiave privata. Se si usa un qualsiasi altro strumento/SDK, usare la proprietà privateKeyPath. | Specificare `privateKeyPath` o `privateKeyContent`. |
-| passPhrase | Specificare la passphrase o la password per decrittografare la chiave privata se il file della chiave è protetto da una passphrase. | Sì se il file della chiave privata è protetto da una passphrase. |
+| username |Utente che dispone di server di accesso toohello SFTP |Sì |
+| privateKeyPath | Specificare un percorso assoluto toohello file di chiave privata accessibile tale gateway. | Specificare entrambi hello `privateKeyPath` o `privateKeyContent`. <br><br> Applicare solo se si copiano i dati da un server SFTP locale. |
+| privateKeyContent | Una stringa serializzata del contenuto di chiave privata di hello. Hello Copia guidata è possibile leggere il file di chiave privata di hello ed estrarre automaticamente il contenuto di chiave privata di hello. Se si utilizza qualsiasi altro strumento o SDK, è possibile utilizzare proprietà privateKeyPath hello. | Specificare entrambi hello `privateKeyPath` o `privateKeyContent`. |
+| passPhrase | Specificare hello frase/password toodecrypt hello privati passkey se i file di chiave hello è protetto da una passphrase. | Sì se il file di chiave privata di hello è protetto da una passphrase. |
 
 ```json
 {
@@ -3956,7 +3956,7 @@ Per usare l'autenticazione di base, impostare `authenticationType` come `SshPubl
             "port": 22,
             "authenticationType": "SshPublicKey",
             "username": "xxx",
-            "privateKeyContent": "<base64 string of the private key content>",
+            "privateKeyContent": "<base64 string of hello private key content>",
             "passPhrase": "xxx",
             "skipHostKeyValidation": true
         }
@@ -3967,16 +3967,16 @@ Per usare l'autenticazione di base, impostare `authenticationType` come `SshPubl
 Per altre informazioni, vedere [Connettore SFTP](data-factory-sftp-connector.md#linked-service-properties). 
 
 ### <a name="dataset"></a>Set di dati
-Per definire un set di dati di SFTP, impostare il **tipo** di set di dati su **FileShare**e specificare le proprietà seguenti nella sezione **typeProperties**: 
+toodefine un set di dati, SFTP, hello set **tipo** del set di dati hello troppo**FileShare**e specificare le proprietà in hello seguenti hello **typeProperties** sezione: 
 
 | Proprietà | Descrizione | Obbligatorio |
 | --- | --- | --- |
-| folderPath |Sottopercorso alla cartella. Usare il carattere di escape "\" per i caratteri speciali nella stringa. Per ottenere alcuni esempi, vedere [Servizio collegato di esempio e definizioni del set di dati](#sample-linked-service-and-dataset-definitions) .<br/><br/>È possibile combinare questa proprietà con **partitionBy** per ottenere percorsi di cartelle basati su data e ora di inizio/fine delle sezioni. |Sì |
-| fileName |Specificare il nome del file in **folderPath** se si vuole che la tabella faccia riferimento a un file specifico nella cartella. Se non si specifica alcun valore per questa proprietà, la tabella punta a tutti i file nella cartella.<br/><br/>Quando fileName non viene specificato per un set di dati di output, il nome del file generato sarà nel formato seguente: <br/><br/>Data.<Guid>.txt, ad esempio: Data.0a405f8a-93ff-4c6f-b3be-f69616f1df7a.txt |No |
-| fileFilter |Specificare un filtro da usare per selezionare un sottoinsieme di file in folderPath anziché tutti i file.<br/><br/>I valori consentiti sono: `*` (più caratteri) e `?` (carattere singolo).<br/><br/>Esempi 1: `"fileFilter": "*.log"`<br/>Esempio 2: `"fileFilter": 2016-1-?.txt"`<br/><br/> fileFilter è applicabile per un set di dati di input FileShare. Questa proprietà non è supportata con HDFS. |No |
-| partitionedBy |partitionedBy può essere usato per specificare un valore folderPath dinamico e un nome file per i dati di una serie temporale. Ad esempio, folderPath con parametri per ogni ora di dati. |No |
-| format | Sono supportati i tipi di formato seguenti: **TextFormat**, **JsonFormat**, **AvroFormat**, **OrcFormat** e **ParquetFormat**. Impostare la proprietà **type** nell'area format su uno di questi valori. Per altre informazioni, vedere le sezioni [TextFormat](data-factory-supported-file-and-compression-formats.md#text-format), [JsonFormat](data-factory-supported-file-and-compression-formats.md#json-format), [AvroFormat](data-factory-supported-file-and-compression-formats.md#avro-format), [OrcFormat](data-factory-supported-file-and-compression-formats.md#orc-format) e [ParquetFormat](data-factory-supported-file-and-compression-formats.md#parquet-format). <br><br> Per **copiare i file così come sono** tra archivi basati su file (copia binaria), è possibile ignorare la sezione del formato nelle definizioni dei set di dati di input e di output. |No |
-| compressione | Specificare il tipo e il livello di compressione dei dati. I tipi supportati sono **GZip**, **Deflate**, **BZip2** e **ZipDeflate**. I livelli supportati sono **Ottimale** e **Più veloce**. Per altre informazioni, vedere [File e formati di compressione in Azure Data Factory](data-factory-supported-file-and-compression-formats.md#compression-support). |No |
+| folderPath |Toohello sottocartella percorso. Utilizzare il carattere di escape ' \ ' per i caratteri speciali nella stringa hello. Per ottenere alcuni esempi, vedere [Servizio collegato di esempio e definizioni del set di dati](#sample-linked-service-and-dataset-definitions) .<br/><br/>È possibile combinare questa proprietà con **partitionBy** toohave i percorsi delle cartelle in base a intervallo iniziale o finale data e ora. |Sì |
+| fileName |Specificare il nome di hello del file hello in hello **folderPath** se si desidera hello tabella toorefer tooa specifici file nella cartella hello. Se non si specifica alcun valore per questa proprietà, la tabella hello punta tooall file nella cartella hello.<br/><br/>Quando il nome di file non viene specificato per un set di dati di output, il nome di hello del file hello generato sarebbe in hello segue questo formato: <br/><br/>Data.<Guid>.txt, ad esempio: Data.0a405f8a-93ff-4c6f-b3be-f69616f1df7a.txt |No |
+| fileFilter |Specificare un filtro toobe tooselect un subset di file in hello folderPath, anziché tutti i file.<br/><br/>I valori consentiti sono: `*` (più caratteri) e `?` (carattere singolo).<br/><br/>Esempi 1: `"fileFilter": "*.log"`<br/>Esempio 2: `"fileFilter": 2016-1-?.txt"`<br/><br/> fileFilter è applicabile per un set di dati di input FileShare. Questa proprietà non è supportata con HDFS. |No |
+| partitionedBy |partitionedBy può essere utilizzato toospecify un folderPath dinamica, il nome file per i dati della serie temporale. Ad esempio, folderPath con parametri per ogni ora di dati. |No |
+| format | è supportato i seguenti tipi di formato Hello: **TextFormat**, **JsonFormat**, **AvroFormat**, **OrcFormat**,  **ParquetFormat**. Set hello **tipo** proprietà in formato tooone di questi valori. Per altre informazioni, vedere le sezioni [TextFormat](data-factory-supported-file-and-compression-formats.md#text-format), [JsonFormat](data-factory-supported-file-and-compression-formats.md#json-format), [AvroFormat](data-factory-supported-file-and-compression-formats.md#avro-format), [OrcFormat](data-factory-supported-file-and-compression-formats.md#orc-format) e [ParquetFormat](data-factory-supported-file-and-compression-formats.md#parquet-format). <br><br> Se si desidera troppo**copiare i file come-è** tra archivi basati su file (copia binaria), ignorare le sezioni di formato hello in entrambe le definizioni di set di dati di input e output. |No |
+| compressione | Specificare il tipo di hello e livello di compressione per dati hello. I tipi supportati sono **GZip**, **Deflate**, **BZip2** e **ZipDeflate**. I livelli supportati sono **Ottimale** e **Più veloce**. Per altre informazioni, vedere [File e formati di compressione in Azure Data Factory](data-factory-supported-file-and-compression-formats.md#compression-support). |No |
 | useBinaryTransfer |Specificare se usare la modalità di trasferimento binario. True per la modalità binaria e false per ASCII. Valore predefinito: True. Questa proprietà può essere usata solo quando il tipo di servizio collegato associato è di tipo: FtpServer. |No |
 
 > [!NOTE]
@@ -3991,7 +3991,7 @@ Per definire un set di dati di SFTP, impostare il **tipo** di set di dati su **F
         "type": "FileShare",
         "linkedServiceName": "SftpLinkedService",
         "typeProperties": {
-            "folderPath": "<path to shared folder>",
+            "folderPath": "<path tooshared folder>",
             "fileName": "test.csv"
         },
         "external": true,
@@ -4006,11 +4006,11 @@ Per definire un set di dati di SFTP, impostare il **tipo** di set di dati su **F
 Per altre informazioni, vedere [Connettore SFTP](data-factory-sftp-connector.md#dataset-properties). 
 
 ### <a name="file-system-source-in-copy-activity"></a>Origine File System nell'attività di copia
-Se si copiano dati da un'origine SFTP, impostare il **tipo di origine** dell'attività di copia su **FileSystemSource**e specificare le proprietà seguenti nella sezione **source**:
+Se si copiano dati da un'origine SFTP, impostare hello **tipo di origine** di hello attività di copia troppo**FileSystemSource**e specificare le seguenti proprietà in hello **origine** sezione:
 
 | Proprietà | Descrizione | Valori consentiti | Obbligatorio |
 | --- | --- | --- | --- |
-| ricorsiva |Indica se i dati vengono letti in modo ricorsivo dalle cartelle secondarie o solo dalla cartella specificata. |True, False (valore predefinito) |No |
+| ricorsiva |Indica se hello i dati letti in modo ricorsivo dal sottocartelle hello o solo dalla cartella specificata hello. |True, False (valore predefinito) |No |
 
 
 
@@ -4060,23 +4060,23 @@ Per altre informazioni, vedere [Connettore SFTP](data-factory-sftp-connector.md#
 ## <a name="http"></a>HTTP
 
 ### <a name="linked-service"></a>Servizio collegato
-Per definire un servizio collegato di HTTP, impostare il **tipo** di servizio collegato su **Http** e specificare le proprietà seguenti nella sezione **typeProperties**:  
+il set hello servizio collegato di toodefine un HTTP **tipo** di hello servizio collegato troppo**Http**e specificare le seguenti proprietà in hello **typeProperties** sezione:  
 
 | Proprietà | Descrizione | Obbligatorio |
 | --- | --- | --- |
-| URL | URL di base al server Web | Sì |
-| authenticationType | Specifica il tipo di autenticazione. I valori consentiti sono: **Anonymous**, **Basic**, **Digest**, **Windows** e **ClientCertificate**. <br><br> Fare riferimento alle sezioni sotto questa tabella per altre proprietà e altri esempi JSON per questi tipi di autenticazione. | Sì |
-| enableServerCertificateValidation | Specificare se abilitare la convalida del certificato SSL del server se l'origine è un server Web HTTPS | No, il valore predefinito è true |
-| gatewayName | Nome del gateway di gestione dati per connettersi a un'origine HTTP locale. | Sì se si copiano i dati da un'origine HTTP locale. |
-| encryptedCredential | Credenziali crittografate per accedere all'endpoint HTTP. Generate automaticamente quando si configurano le informazioni di autenticazione nella procedura di copia guidata o nella finestra di dialogo popup ClickOnce. | No. Applicare solo se si copiano i dati da un server HTTP locale. |
+| URL | URL toohello Server Web di base | Sì |
+| authenticationType | Specifica il tipo di autenticazione hello. I valori consentiti sono: **Anonymous**, **Basic**, **Digest**, **Windows** e **ClientCertificate**. <br><br> Vedere rispettivamente toosections riportata sotto questa tabella in più proprietà e gli esempi JSON per i tipi di autenticazione. | Sì |
+| enableServerCertificateValidation | Specificare se il server tooenable SSL la convalida del certificato se l'origine è il Server Web HTTPS | No, il valore predefinito è true |
+| gatewayName | Nome di hello Gateway di gestione dati tooconnect tooan locale origine HTTP. | Sì se si copiano i dati da un'origine HTTP locale. |
+| encryptedCredential | Credenziali crittografate tooaccess hello endpoint HTTP. Generati automaticamente quando si configurano le informazioni di autenticazione hello in copia guidata o hello ClickOnce finestra di dialogo popup. | No. Applicare solo se si copiano i dati da un server HTTP locale. |
 
 #### <a name="example-using-basic-digest-or-windows-authentication"></a>Esempio: uso dell'autenticazione di base, Digest o Windows
-Impostare `authenticationType` come `Basic`, `Digest`, o `Windows` e specificare le proprietà seguenti oltre a quelle generiche del connettore HTTP illustrate in precedenza:
+Impostare `authenticationType` come `Basic`, `Digest`, o `Windows`e specificare le proprietà seguenti, oltre alle hello generico connettore HTTP quelli illustrati in precedenza hello:
 
 | Proprietà | Descrizione | Obbligatorio |
 | --- | --- | --- |
-| username | Nome utente per accedere all'endpoint HTTP. | Sì |
-| password | Password per l'utente (nome utente). | Sì |
+| username | Nome utente tooaccess hello endpoint HTTP. | Sì |
+| password | Password per l'utente di hello (nomeutente). | Sì |
 
 ```json
 {
@@ -4095,22 +4095,22 @@ Impostare `authenticationType` come `Basic`, `Digest`, o `Windows` e specificare
 
 #### <a name="example-using-clientcertificate-authentication"></a>Esempio: uso dell'autenticazione ClientCertificate
 
-Per usare l'autenticazione di base, impostare `authenticationType` come `ClientCertificate` e specificare le proprietà seguenti oltre a quelle generiche del connettore HTTP introdotte in precedenza:
+impostare l'autenticazione di base toouse, `authenticationType` come `ClientCertificate`e specificare le proprietà seguenti, oltre alle hello generico connettore HTTP quelli illustrati in precedenza hello:
 
 | Proprietà | Descrizione | Obbligatorio |
 | --- | --- | --- |
-| embeddedCertData | Contenuto con codifica Base 64 dei dati binari del file di scambio di informazioni personali (PFX, Personal Information Exchange). | Specificare `embeddedCertData` o `certThumbprint`. |
-| certThumbprint | L'identificazione personale del certificato installato nell'archivio certificati del computer gateway. Applicare solo se si copiano i dati da un'origine HTTP locale. | Specificare `embeddedCertData` o `certThumbprint`. |
-| password | Password associata al certificato. | No |
+| embeddedCertData | Hello contenuto con codifica Base64 di dati binari del file di scambio di informazioni personali (PFX) hello. | Specificare entrambi hello `embeddedCertData` o `certThumbprint`. |
+| certThumbprint | Hello identificazione personale del certificato hello che è stata installata nell'archivio certificati del computer gateway. Applicare solo se si copiano i dati da un'origine HTTP locale. | Specificare entrambi hello `embeddedCertData` o `certThumbprint`. |
+| password | Password associata al certificato hello. | No |
 
-Se si usa `certThumbprint` per l'autenticazione e il certificato è installato nell'archivio personale del computer locale, è necessario concedere l'autorizzazione di lettura per il servizio gateway:
+Se si utilizza `certThumbprint` per hello e autenticazione il certificato è installato nell'archivio personale di hello del computer locale hello, è necessario che il servizio gateway toogrant hello autorizzazione di lettura toohello:
 
-1. Avviare Microsoft Management Console (MMC). Aggiungere lo snap-in **Certificati** con il **Computer locale** come destinazione.
+1. Avviare Microsoft Management Console (MMC). Aggiungere hello **certificati** snap-in tale hello destinazioni **Computer locale**.
 2. Espandere **Certificati**, **Personali** e fare clic su **Certificati**.
-3. Fare clic con il tasto destro del mouse sul certificato dall'archivio personale, quindi selezionare **Tutte le attività**->**Gestisci chiavi private...**
-3. Nella scheda **Sicurezza** aggiungere l'account utente in cui è in esecuzione il Servizio host di Gateway di gestione dati con l'accesso in lettura al certificato.  
+3. Certificato hello dall'archivio personale hello e scegliere **tutte le attività**->**Gestisci chiavi Private...**
+3. In hello **sicurezza** scheda, aggiungere l'account utente di hello in cui è in esecuzione servizio Host di Gateway di gestione di dati con certificato toohello di hello accesso in lettura.  
 
-**Esempio: uso del certificato client:** questo servizio collegato collega la data factory a un server Web HTTP locale. Usa un file del certificato client installato nel computer che dispone del Gateway di gestione dati.
+**Esempio: utilizzo del certificato client:** questo collegato collegamenti al servizio data factory tooan locale HTTP server web. Usa un certificato client è installato nel computer di hello con Gateway di gestione di dati installati.
 
 ```json
 {
@@ -4128,7 +4128,7 @@ Se si usa `certThumbprint` per l'autenticazione e il certificato è installato n
 ```
 
 #### <a name="example-using-client-certificate-in-a-file"></a>Esempio: utilizzo di un certificato client in un file
-Questo servizio collegato collega la data factory a un server Web HTTP locale. Usa un file del certificato client nel computer con installato il Gateway di gestione dati.
+Questo collegato collegamenti al servizio data factory tooan locale HTTP server web. Usa un file del certificato client nel computer di hello con Gateway di gestione di dati installati.
 
 ```json
 {
@@ -4148,18 +4148,18 @@ Questo servizio collegato collega la data factory a un server Web HTTP locale. U
 Per altre informazioni, vedere [Connettore HTTP](data-factory-http-connector.md#linked-service-properties).
 
 ### <a name="dataset"></a>Set di dati
-Per definire un set di dati di HTTP, impostare il **tipo** di set di dati su **Http**e specificare le proprietà seguenti nella sezione **typeProperties**: 
+set di dati toodefine un HTTP, hello set **tipo** del set di dati hello troppo**Http**e specificare le proprietà in hello seguenti hello **typeProperties** sezione: 
 
 | Proprietà | Descrizione | Obbligatorio |
 |:--- |:--- |:--- |
-| relativeUrl | URL relativo della risorsa che contiene i dati. Quando non è specificato alcun percorso, viene usato solo l'URL specificato nella definizione del servizio collegato. <br><br> Per creare un URL dinamico, è possibile usare le [unzioni e variabili di sistema di Data Factory](data-factory-functions-variables.md), ad esempio: `"relativeUrl": "$$Text.Format('/my/report?month={0:yyyy}-{0:MM}&fmt=csv', SliceStart)"`. | No |
+| relativeUrl | Una risorsa relativa di URL toohello che contiene dati hello. Quando non viene specificato alcun percorso, viene utilizzato solo URL hello specificato nella definizione di servizio collegato hello. <br><br> tooconstruct URL dinamico, è possibile utilizzare [funzioni di Data Factory e le variabili di sistema](data-factory-functions-variables.md), esempio: `"relativeUrl": "$$Text.Format('/my/report?month={0:yyyy}-{0:MM}&fmt=csv', SliceStart)"`. | No |
 | requestMethod | Metodo HTTP. I valori consentiti sono **GET** o **POST**. | No. Il valore predefinito è `GET`. |
 | additionalHeaders | Intestazioni richiesta HTTP aggiuntive. | No |
 | requestBody | Il corpo della richiesta HTTP. | No |
-| format | Se si desidera semplicemente **recuperare i dati dall'endpoint HTTP così come sono** senza analizzarli, ignorare questa impostazione di formato. <br><br> Se si desidera analizzare i contenuti di risposta HTTP durante la copia, sono supportati i tipi di formato seguenti: **TextFormat**, **JsonFormat**, **AvroFormat**, **OrcFormat** e **ParquetFormat**. Per altre informazioni, vedere le sezioni [TextFormat](data-factory-supported-file-and-compression-formats.md#text-format), [JsonFormat](data-factory-supported-file-and-compression-formats.md#json-format), [AvroFormat](data-factory-supported-file-and-compression-formats.md#avro-format), [OrcFormat](data-factory-supported-file-and-compression-formats.md#orc-format) e [ParquetFormat](data-factory-supported-file-and-compression-formats.md#parquet-format). |No |
-| compressione | Specificare il tipo e il livello di compressione dei dati. I tipi supportati sono **GZip**, **Deflate**, **BZip2** e **ZipDeflate**. I livelli supportati sono **Ottimale** e **Più veloce**. Per altre informazioni, vedere [File e formati di compressione in Azure Data Factory](data-factory-supported-file-and-compression-formats.md#compression-support). |No |
+| format | Se si desidera toosimply **recuperare i dati di hello da endpoint HTTP come-è** senza analizzarlo, ignorare questa impostazione di formato. <br><br> Se si desidera tooparse hello HTTP risposta contenuto durante la copia, è supportato i seguenti tipi di formato hello: **TextFormat**, **JsonFormat**, **AvroFormat**, **OrcFormat**, **ParquetFormat**. Per altre informazioni, vedere le sezioni [TextFormat](data-factory-supported-file-and-compression-formats.md#text-format), [JsonFormat](data-factory-supported-file-and-compression-formats.md#json-format), [AvroFormat](data-factory-supported-file-and-compression-formats.md#avro-format), [OrcFormat](data-factory-supported-file-and-compression-formats.md#orc-format) e [ParquetFormat](data-factory-supported-file-and-compression-formats.md#parquet-format). |No |
+| compressione | Specificare il tipo di hello e livello di compressione per dati hello. I tipi supportati sono **GZip**, **Deflate**, **BZip2** e **ZipDeflate**. I livelli supportati sono **Ottimale** e **Più veloce**. Per altre informazioni, vedere [File e formati di compressione in Azure Data Factory](data-factory-supported-file-and-compression-formats.md#compression-support). |No |
 
-#### <a name="example-using-the-get-default-method"></a>Esempio: usando il metodo GET (predefinito)
+#### <a name="example-using-hello-get-default-method"></a>Esempio: hello metodo GET (impostazione predefinita)
 
 ```json
 {
@@ -4180,7 +4180,7 @@ Per definire un set di dati di HTTP, impostare il **tipo** di set di dati su **H
 }
 ```
 
-#### <a name="example-using-the-post-method"></a>Esempio: usando il metodo POST
+#### <a name="example-using-hello-post-method"></a>Esempio: utilizzo di metodo POST hello
 
 ```json
 {
@@ -4204,11 +4204,11 @@ Per definire un set di dati di HTTP, impostare il **tipo** di set di dati su **H
 Per altre informazioni, vedere [Connettore HTTP](data-factory-http-connector.md#dataset-properties).
 
 ### <a name="http-source-in-copy-activity"></a>Origine HTTP nell'attività di copia
-Se si copiano dati da un'origine HTTP, impostare il **tipo di origine** dell'attività di copia su **HttpSource**e specificare le proprietà seguenti nella sezione **source**:
+Se si copiano dati da un'origine HTTP, impostare hello **tipo di origine** di hello attività di copia troppo**HttpSource**e specificare le seguenti proprietà in hello **origine** sezione:
 
 | Proprietà | Descrizione | Obbligatorio |
 | -------- | ----------- | -------- |
-| httpRequestTimeout | Il timeout (TimeSpan) durante il quale la richiesta HTTP attende una risposta. Si tratta del timeout per ottenere una risposta, non per leggere i dati della risposta stessa. | No. Valore predefinito: 00:01:40 |
+| httpRequestTimeout | Hello timeout (TimeSpan) per hello HTTP richiesta tooget una risposta. È hello timeout tooget una risposta, dati di risposta non hello timeout tooread. | No. Valore predefinito: 00:01:40 |
 
 
 #### <a name="example"></a>Esempio
@@ -4222,7 +4222,7 @@ Se si copiano dati da un'origine HTTP, impostare il **tipo di origine** dell'att
         "description": "pipeline with copy activity",
         "activities": [{
             "name": "HttpSourceToAzureBlob",
-            "description": "Copy from an HTTP source to an Azure blob",
+            "description": "Copy from an HTTP source tooan Azure blob",
             "type": "Copy",
             "inputs": [{
                 "name": "HttpSourceDataInput"
@@ -4258,16 +4258,16 @@ Per altre informazioni, vedere [Connettore HTTP](data-factory-http-connector.md#
 ## <a name="odata"></a>OData
 
 ### <a name="linked-service"></a>Servizio collegato
-Per definire un servizio collegato di OData, impostare il **tipo** di servizio collegato su **OData** e specificare le proprietà seguenti nella sezione **typeProperties**:  
+il servizio hello set toodefine OData collegato **tipo** di hello servizio collegato troppo**OData**e specificare le seguenti proprietà in hello **typeProperties** sezione:  
 
 | Proprietà | Descrizione | Obbligatorio |
 | --- | --- | --- |
-| URL |URL del servizio OData. |Sì |
-| authenticationType |Tipo di autenticazione usato per connettersi all'origine OData. <br/><br/> Per OData in cloud, i valori possibili sono Anonymous, Basic e OAuth. Si noti che Azure Data Factory attualmente supporta solo OAuth basato su Azure Active Directory). <br/><br/> Per OData locale, i valori possibili sono Anonima, Di base e Windows. |Sì |
+| URL |URL del servizio OData hello. |Sì |
+| authenticationType |Tipo di autenticazione usato tooconnect toohello un'origine OData. <br/><br/> Per OData in cloud, i valori possibili sono Anonymous, Basic e OAuth. Si noti che Azure Data Factory attualmente supporta solo OAuth basato su Azure Active Directory). <br/><br/> Per OData locale, i valori possibili sono Anonima, Di base e Windows. |Sì |
 | username |Specificare il nome utente se si usa l'autenticazione di base. |Sì (solo se si usa l'autenticazione di base) |
-| password |Specificare la password per l'account utente specificato per il nome utente. |Sì (solo se si usa l'autenticazione di base) |
-| authorizedCredential |Se si usa OAuth, fare clic sul pulsante **Autorizza** nella procedura guidata di copia di Data Factory o nell'Editor e immettere le credenziali. Il valore di questa proprietà viene quindi generato automaticamente. |Sì (solo se si usa l'autenticazione OAuth) |
-| gatewayName |Nome del gateway che il servizio Data Factory deve usare per connettersi al servizio OData locale. Specificare solo se si copiano dati da un'origine OData locale. |No |
+| password |Specificare la password per account utente di hello specificato per il nome utente hello. |Sì (solo se si usa l'autenticazione di base) |
+| authorizedCredential |Se si utilizza OAuth, fare clic su **Authorize** pulsante nell'Editor o hello Data Factory Copia guidata e immettere le credenziali, il valore di hello di questa proprietà verrà generato automaticamente. |Sì (solo se si usa l'autenticazione OAuth) |
+| gatewayName |Nome del gateway hello hello servizio Data Factory deve usare servizio OData di tooconnect toohello locale. Specificare solo se si copiano dati da un'origine OData locale. |No |
 
 #### <a name="example---using-basic-authentication"></a>Esempio - Uso dell'autenticazione di base
 ```json
@@ -4329,7 +4329,7 @@ Per definire un servizio collegato di OData, impostare il **tipo** di servizio c
         {
             "url": "<endpoint of cloud OData source, for example, https://<tenant>.crm.dynamics.com/XRMServices/2011/OrganizationData.svc>",
             "authenticationType": "OAuth",
-            "authorizedCredential": "<auto generated by clicking the Authorize button on UI>"
+            "authorizedCredential": "<auto generated by clicking hello Authorize button on UI>"
         }
     }
 }
@@ -4338,11 +4338,11 @@ Per definire un servizio collegato di OData, impostare il **tipo** di servizio c
 Per altre informazioni, vedere [Connettore OData](data-factory-odata-connector.md#linked-service-properties).
 
 ### <a name="dataset"></a>Set di dati
-Per definire un set di dati di OData, impostare il **tipo** di set di dati su **ODataResource**e specificare le proprietà seguenti nella sezione **typeProperties**: 
+toodefine un set di dati OData, hello set **tipo** del set di dati hello troppo**ODataResource**e specificare le proprietà in hello seguenti hello **typeProperties** sezione: 
 
 | Proprietà | Descrizione | Obbligatorio |
 | --- | --- | --- |
-| path |Percorso della risorsa OData |No |
+| path |Percorso toohello risorse OData |No |
 
 #### <a name="example"></a>Esempio
 
@@ -4373,11 +4373,11 @@ Per definire un set di dati di OData, impostare il **tipo** di set di dati su **
 Per altre informazioni, vedere [Connettore OData](data-factory-odata-connector.md#dataset-properties).
 
 ### <a name="relational-source-in-copy-activity"></a>Origine relazionale nell'attività di copia
-Se si copiano dati da un'origine OData, impostare il **tipo di origine** dell'attività di copia su **RelationalSource**e specificare le proprietà seguenti nella sezione **source**:
+Se si copiano dati da un'origine OData, impostare hello **tipo di origine** di hello attività di copia troppo**RelationalSource**e specificare le seguenti proprietà in hello **origine** sezione:
 
 | Proprietà | Descrizione | Esempio | Obbligatorio |
 | --- | --- | --- | --- |
-| query |Usare la query personalizzata per leggere i dati. |"?$select=Name, Description&$top=5" |No |
+| query |Utilizzare i dati di tooread hello query personalizzata. |"?$select=Name, Description&$top=5" |No |
 
 #### <a name="example"></a>Esempio
 
@@ -4428,16 +4428,16 @@ Per altre informazioni, vedere [Connettore OData](data-factory-odata-connector.m
 
 
 ### <a name="linked-service"></a>Servizio collegato
-Per definire un servizio collegato di ODBC, impostare il **tipo** di servizio collegato su **OnPremisesOdbc** e specificare le proprietà seguenti nella sezione **typeProperties**:  
+il set hello servizio collegato di toodefine un ODBC **tipo** di hello servizio collegato troppo**OnPremisesOdbc**e specificare le seguenti proprietà in hello **typeProperties** sezione:  
 
 | Proprietà | Descrizione | Obbligatorio |
 | --- | --- | --- |
-| connectionString |La parte delle credenziali non di accesso della stringa di connessione e una credenziale crittografata facoltativa. Vedere gli esempi nelle sezioni seguenti. |Sì |
-| credential |La parte delle credenziali di accesso della stringa di connessione specificata nel formato di valore della proprietà specifico del driver. Esempio: "Uid=<user ID>;Pwd=<password>;RefreshToken=<secret refresh token>;". |No |
-| authenticationType |Tipo di autenticazione usato per connettersi all'archivio dati ODBC. I valori possibili sono: anonima e di base. |Sì |
+| connectionString |credenziale è crittografata da parte di credenziali di accesso non Hello di stringa di connessione hello e un parametro facoltativo. Vedere esempi in hello le sezioni seguenti. |Sì |
+| credential |parte delle credenziali di accesso Hello hello della stringa di connessione specificato nel formato valore della proprietà specifiche del driver. Esempio: "Uid=<user ID>;Pwd=<password>;RefreshToken=<secret refresh token>;". |No |
+| authenticationType |Tipo di autenticazione utilizzato l'archivio di dati ODBC toohello tooconnect. I valori possibili sono: anonima e di base. |Sì |
 | username |Specificare il nome utente se si usa l'autenticazione di base. |No |
-| password |Specificare la password per l'account utente specificato per il nome utente. |No |
-| gatewayName |Nome del gateway che il servizio Data Factory deve usare per connettersi all'archivio dati ODBC. |Sì |
+| password |Specificare la password per account utente di hello specificato per il nome utente hello. |No |
+| gatewayName |Nome del gateway hello hello servizio Data Factory deve utilizzare l'archivio di dati ODBC toohello tooconnect. |Sì |
 
 #### <a name="example---using-basic-authentication"></a>Esempio - Uso dell'autenticazione di base
 
@@ -4457,7 +4457,7 @@ Per definire un servizio collegato di ODBC, impostare il **tipo** di servizio co
 }
 ```
 #### <a name="example---using-basic-authentication-with-encrypted-credentials"></a>Esempio - Uso dell'autenticazione di base con credenziali crittografate
-È possibile crittografare le credenziali usando il cmdlet [New-AzureRMDataFactoryEncryptValue](https://msdn.microsoft.com/library/mt603802.aspx), in Azure PowerShell versione 1.0, oppure [New-AzureDataFactoryEncryptValue](https://msdn.microsoft.com/library/dn834940.aspx), in Azure PowerShell versione 0.9 o precedente.  
+È possibile crittografare le credenziali di hello utilizzando hello [New AzureRMDataFactoryEncryptValue](https://msdn.microsoft.com/library/mt603802.aspx) cmdlet (1.0 versione di Azure PowerShell) o [New-AzureDataFactoryEncryptValue](https://msdn.microsoft.com/library/dn834940.aspx) (0,9 o versioni precedenti di hello Azure PowerShell).  
 
 ```json
 {
@@ -4493,11 +4493,11 @@ Per definire un servizio collegato di ODBC, impostare il **tipo** di servizio co
 Per altre informazioni, vedere [Connettore ODBC](data-factory-odbc-connector.md#linked-service-properties). 
 
 ### <a name="dataset"></a>Set di dati
-Per definire un set di dati di ODBC, impostare il **tipo** di set di dati su **RelationalTable**e specificare le proprietà seguenti nella sezione **typeProperties**: 
+toodefine un set di dati ODBC, hello set **tipo** del set di dati hello troppo**RelationalTable**e specificare le proprietà in hello seguenti hello **typeProperties** sezione: 
 
 | Proprietà | Descrizione | Obbligatorio |
 | --- | --- | --- |
-| tableName |Nome della tabella nell'archivio dati ODBC. |Sì |
+| tableName |Nome della tabella hello nell'archivio di dati ODBC hello. |Sì |
 
 
 #### <a name="example"></a>Esempio
@@ -4528,11 +4528,11 @@ Per definire un set di dati di ODBC, impostare il **tipo** di set di dati su **R
 Per altre informazioni, vedere [Connettore ODBC](data-factory-odbc-connector.md#dataset-properties). 
 
 ### <a name="relational-source-in-copy-activity"></a>Origine relazionale nell'attività di copia
-Se si copiano dati da un archivio dati ODBC, impostare il **tipo di origine** dell'attività di copia su **RelationalSource**e specificare le proprietà seguenti nella sezione **source**:
+Se si copiano dati da un archivio di dati ODBC, impostare hello **tipo di origine** di hello attività di copia troppo**RelationalSource**e specificare le seguenti proprietà in hello **origine** sezione:
 
 | Proprietà | Descrizione | Valori consentiti | Obbligatorio |
 | --- | --- | --- | --- |
-| query |Usare la query personalizzata per leggere i dati. |Stringa di query SQL. Ad esempio: `select * from MyTable`. |Sì |
+| query |Utilizzare i dati di tooread hello query personalizzata. |Stringa di query SQL. Ad esempio: `select * from MyTable`. |Sì |
 
 #### <a name="example"></a>Esempio
 
@@ -4582,14 +4582,14 @@ Per altre informazioni, vedere [Connettore ODBC](data-factory-odbc-connector.md#
 
 
 ### <a name="linked-service"></a>Servizio collegato
-Per definire un servizio collegato di Salesforce, impostare il **tipo** di servizio collegato su **Salesforce** e specificare le proprietà seguenti nella sezione **typeProperties**:  
+il set hello servizio collegato di Salesforce toodefine **tipo** di hello servizio collegato troppo**Salesforce**e specificare le seguenti proprietà in hello **typeProperties** sezione:  
 
 | Proprietà | Descrizione | Obbligatorio |
 | --- | --- | --- |
-| environmentUrl | Specificare l'URL dell'istanza di Salesforce. <br><br> - Il valore predefinito è "https://login.salesforce.com". <br> - Per copiare i dati dalla sandbox, specificare "https://test.salesforce.com". <br> - Per copiare i dati dal dominio personalizzato, specificare ad esempio "https://[dominio].my.salesforce.com". |No |
-| username |Specificare un nome utente per l'account utente. |Sì |
-| password |Specificare la password per l'account utente. |Sì |
-| securityToken |Specificare un token di sicurezza per l'account utente. Per istruzioni su come ottenere o reimpostare un token di sicurezza, vedere [Get security token](https://help.salesforce.com/apex/HTViewHelpDoc?id=user_security_token.htm) (Ottenere un token di sicurezza). Per informazioni generali sui token di sicurezza, vedere [Security and the API](https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/sforce_api_concepts_security.htm)(Sicurezza e API). |Sì |
+| environmentUrl | Specificare l'istanza di URL di Salesforce hello. <br><br> - Il valore predefinito è "https://login.salesforce.com". <br> -toocopy dati dalla sandbox, specificare "https://test.salesforce.com". <br> -toocopy dati da un dominio personalizzato, specificare, ad esempio, "https://[domain].my.salesforce.com". |No |
+| username |Specificare un nome utente per l'account utente di hello. |Sì |
+| password |Specificare una password per account utente di hello. |Sì |
+| securityToken |Specificare un token di sicurezza per l'account utente di hello. Vedere [ottenere token di sicurezza](https://help.salesforce.com/apex/HTViewHelpDoc?id=user_security_token.htm) per istruzioni su come un token di sicurezza tooreset/get. in generale, vedere toolearn sui token di sicurezza [API di protezione e hello](https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/sforce_api_concepts_security.htm). |Sì |
 
 #### <a name="example"></a>Esempio
 
@@ -4610,11 +4610,11 @@ Per definire un servizio collegato di Salesforce, impostare il **tipo** di servi
 Per altre informazioni, vedere [Connettore Salesforce](data-factory-salesforce-connector.md#linked-service-properties). 
 
 ### <a name="dataset"></a>Set di dati
-Per definire un set di dati di Salesforce, impostare il **tipo** di set di dati su **RelationalTable**e specificare le proprietà seguenti nella sezione **typeProperties**: 
+toodefine un set di dati di Salesforce, hello set **tipo** del set di dati hello troppo**RelationalTable**e specificare le proprietà in hello seguenti hello **typeProperties** sezione: 
 
 | Proprietà | Descrizione | Obbligatorio |
 | --- | --- | --- |
-| tableName |Nome della tabella in Salesforce. |No, se è specificata una **query** di **RelationalSource** |
+| tableName |Nome della tabella hello in Salesforce. |No, se è specificata una **query** di **RelationalSource** |
 
 #### <a name="example"></a>Esempio
 
@@ -4646,11 +4646,11 @@ Per definire un set di dati di Salesforce, impostare il **tipo** di set di dati 
 Per altre informazioni, vedere [Connettore Salesforce](data-factory-salesforce-connector.md#dataset-properties). 
 
 ### <a name="relational-source-in-copy-activity"></a>Origine relazionale nell'attività di copia
-Se si copiano dati da Salesforce, impostare il **tipo di origine** dell'attività di copia su **RelationalSource**e specificare le proprietà seguenti nella sezione **source**:
+Se si copiano dati da Salesforce, impostare hello **tipo di origine** di hello attività di copia troppo**RelationalSource**e specificare le seguenti proprietà in hello **origine** sezione:
 
 | Proprietà | Descrizione | Valori consentiti | Obbligatorio |
 | --- | --- | --- | --- |
-| query |Usare la query personalizzata per leggere i dati. |Query SQL-92 o query [Salesforce Object Query Language (SOQL)](https://developer.salesforce.com/docs/atlas.en-us.soql_sosl.meta/soql_sosl/sforce_api_calls_soql.htm). Ad esempio: `select * from MyTable__c`. |No, se è specificato **tableName** per il **set di dati** |
+| query |Utilizzare i dati di tooread hello query personalizzata. |Query SQL-92 o query [Salesforce Object Query Language (SOQL)](https://developer.salesforce.com/docs/atlas.en-us.soql_sosl.meta/soql_sosl/sforce_api_calls_soql.htm). Ad esempio: `select * from MyTable__c`. |No (se hello **tableName** di hello **set di dati** è specificato) |
 
 #### <a name="example"></a>Esempio  
 
@@ -4665,7 +4665,7 @@ Se si copiano dati da Salesforce, impostare il **tipo di origine** dell'attivit�
         "description": "pipeline with copy activity",
         "activities": [{
             "name": "SalesforceToAzureBlob",
-            "description": "Copy from Salesforce to an Azure blob",
+            "description": "Copy from Salesforce tooan Azure blob",
             "type": "Copy",
             "inputs": [{
                 "name": "SalesforceInput"
@@ -4698,18 +4698,18 @@ Se si copiano dati da Salesforce, impostare il **tipo di origine** dell'attivit�
 ```
 
 > [!IMPORTANT]
-> La parte "__c" del nome dell'API è necessaria per qualsiasi oggetto personalizzato.
+> parte di "__c" Hello del nome dell'API hello è necessaria per qualsiasi oggetto personalizzato.
 
 Per altre informazioni, vedere [Connettore Salesforce](data-factory-salesforce-connector.md#copy-activity-properties). 
 
 ## <a name="web-data"></a>Dati Web 
 
 ### <a name="linked-service"></a>Servizio collegato
-Per definire un servizio collegato Web, impostare il **tipo** di servizio collegato su **Web** e specificare le proprietà seguenti nella sezione **typeProperties**:  
+il servizio hello set toodefine Web collegato **tipo** di hello servizio collegato troppo**Web**e specificare le seguenti proprietà in hello **typeProperties** sezione:  
 
 | Proprietà | Descrizione | Obbligatorio |
 | --- | --- | --- |
-| Url |URL dell'origine Web |Sì |
+| Url |Origine di URL toohello Web |Sì |
 | authenticationType |Anonimo. |Sì |
  
 
@@ -4732,13 +4732,13 @@ Per definire un servizio collegato Web, impostare il **tipo** di servizio colleg
 Per altre informazioni, vedere [Connettore Tabella Web](data-factory-web-table-connector.md#linked-service-properties). 
 
 ### <a name="dataset"></a>Set di dati
-Per definire un set di dati Web, impostare il **tipo** di set di dati su **WebTable**e specificare le proprietà seguenti nella sezione **typeProperties**: 
+toodefine un set di dati Web hello set **tipo** del set di dati hello troppo**tabella Web**e specificare le proprietà in hello seguenti hello **typeProperties** sezione: 
 
 | Proprietà | Descrizione | Obbligatorio |
 |:--- |:--- |:--- |
-| type |Tipo del set di dati. Deve essere impostato su **WebTable** |Sì |
-| path |URL relativo della risorsa che contiene la tabella. |No. Quando non è specificato alcun percorso, viene usato solo l'URL specificato nella definizione del servizio collegato. |
-| index |Indice della tabella nella risorsa. Per i passaggi per ottenere l'indice di una tabella in una pagina HTML, vedere la sezione [Ottenere l'indice di una tabella in una pagina HTML](#get-index-of-a-table-in-an-html-page) . |Sì |
+| type |tipo di set di dati hello. deve essere impostato troppo**tabella Web** |Sì |
+| path |Una risorsa relativa di URL toohello che contiene la tabella hello. |No. Quando non viene specificato alcun percorso, viene utilizzato solo URL hello specificato nella definizione di servizio collegato hello. |
+| index |indice di Hello della tabella hello nella risorsa hello. Vedere [indice Get di una tabella in una pagina HTML](#get-index-of-a-table-in-an-html-page) sezione per indice toogetting passaggi di una tabella in una pagina HTML. |Sì |
 
 #### <a name="example"></a>Esempio
 
@@ -4764,7 +4764,7 @@ Per definire un set di dati Web, impostare il **tipo** di set di dati su **WebTa
 Per altre informazioni, vedere [Connettore Tabella Web](data-factory-web-table-connector.md#dataset-properties). 
 
 ### <a name="web-source-in-copy-activity"></a>Origine Web nell'attività di copia
-Se si copiano dati da una tabella Web, impostare il **tipo di origine** dell'attività di copia su **WebSource**. Quando l'origine nell'attività di copia è di tipo **WebSource**non sono attualmente supportate altre proprietà.
+Se si copiano dati da una tabella, impostare hello **tipo di origine** di hello attività di copia troppo**WebSource**. Attualmente, quando origine hello in attività di copia è di tipo **WebSource**, non sono supportate proprietà aggiuntive.
 
 #### <a name="example"></a>Esempio
 
@@ -4777,7 +4777,7 @@ Se si copiano dati da una tabella Web, impostare il **tipo di origine** dell'att
         "description": "pipeline with copy activity",
         "activities": [{
             "name": "WebTableToAzureBlob",
-            "description": "Copy from a Web table to an Azure blob",
+            "description": "Copy from a Web table tooan Azure blob",
             "type": "Copy",
             "inputs": [{
                 "name": "WebTableInput"
@@ -4811,7 +4811,7 @@ Se si copiano dati da una tabella Web, impostare il **tipo di origine** dell'att
 Per altre informazioni, vedere [Connettore Tabella Web](data-factory-web-table-connector.md#copy-activity-properties). 
 
 ## <a name="compute-environments"></a>Ambienti di calcolo
-La tabella seguente elenca gli ambienti di calcolo supportati da Data Factory e le attività di trasformazione eseguibili in tali ambienti. Fare clic sul collegamento al calcolo al quale si è interessati per visualizzare gli schemi JSON per il servizio collegato per eseguirne il collegamento a una data factory. 
+Hello nella tabella seguente elenca gli ambienti di calcolo hello è supportati da Data Factory e hello attività di trasformazione che è possibile eseguire su di essi. Fare clic sul collegamento hello per il calcolo hello si è interessati negli schemi JSON hello toosee per toolink servizio collegato data factory di tooa. 
 
 | Ambiente di calcolo | Attività |
 | --- | --- |
@@ -4822,24 +4822,24 @@ La tabella seguente elenca gli ambienti di calcolo supportati da Data Factory e 
 | [Azure SQL Database](#azure-sql-database-1), [Azure SQL Data Warehouse](#azure-sql-data-warehouse-1), [SQL Server](#sql-server-1) |[Stored procedure](#stored-procedure-activity) |
 
 ## <a name="on-demand-azure-hdinsight-cluster"></a>Cluster HDInsight di Azure su richiesta
-Il servizio Data factory di Azure può creare automaticamente un cluster HDInsight su richiesta basato su Windows o Linux per elaborare i dati. La creazione del cluster avviene nella stessa area dell'account di archiviazione (proprietà linkedServiceName in JSON) associato al cluster. Su questo servizio collegato è possibile eseguire le attività di trasformazione seguenti: [attività personalizzata .NET](#net-custom-activity), [attività Hive](#hdinsight-hive-activity), [attività Pig] (#hdinsight-pig-activity, [attività MapReduce](#hdinsight-mapreduce-activity), [attività di Hadoop Streaming](#hdinsight-streaming-activityd), [attività Spark](#hdinsight-spark-activity). 
+Hello servizio Azure Data Factory può creare automaticamente un dati di tooprocess di basati su Windows o Linux su richiesta HDInsight cluster. Hello cluster viene creato nella stessa area dell'account di archiviazione hello (proprietà linkedServiceName in JSON hello) associata a cluster hello hello. È possibile eseguire hello seguire le attività di trasformazione di questo servizio collegato: [attività personalizzate .NET](#net-custom-activity), [attività Hive](#hdinsight-hive-activity), [attività Pig] (#hdinsight--attività pig, [attività MapReduce ](#hdinsight-mapreduce-activity), [Hadoop streaming attività](#hdinsight-streaming-activityd), [nascita attività](#hdinsight-spark-activity). 
 
 ### <a name="linked-service"></a>Servizio collegato 
-La tabella seguente fornisce le descrizioni delle proprietà usate nella definizione JSON di Azure per un servizio collegato HDInsight su richiesta.
+Hello nella tabella seguente vengono fornite descrizioni per le proprietà di hello utilizzate nella definizione di hello Azure JSON di un servizio collegato di HDInsight su richiesta.
 
 | Proprietà | Descrizione | Obbligatorio |
 | --- | --- | --- |
-| type |La proprietà type deve essere impostata su **HDInsightOnDemand**. |Sì |
-| clusterSize |Numero di nodi del ruolo di lavoro/nodi dati nel cluster. Il cluster HDInsight viene creato con 2 nodi head e il numero di nodi del ruolo di lavoro specificato per questa proprietà. I nodi sono di dimensione Standard_D3, con 4 core, quindi un cluster di 4 nodi del ruolo di lavoro ha 24 core, ossia 4\*4 = 16 core per i nodi del ruolo di lavoro + 2\*4 = 8 core per i nodi head. Vedere [Creare cluster Hadoop basati su Linux in HDInsight](../hdinsight/hdinsight-hadoop-provision-linux-clusters.md) per i dettagli sul livello Standard_D3. |Sì |
-| timeToLive |Il tempo di inattività consentito per il cluster HDInsight su richiesta. Specifica per quanto tempo il cluster HDInsight su richiesta rimane attivo dopo il completamento di un'attività eseguita se non sono presenti altri processi attivi del cluster.<br/><br/>Ad esempio, se un'esecuzione di attività accetta 6 minuti e timetolive è impostato su 5 minuti, il cluster rimane attivo per altri 5 minuti dopo i 6 minuti di elaborazione dell'attività. Se un'altra attività viene eseguita entro i 6 minuti consentiti, verrà elaborata dal cluster stesso.<br/><br/>Poiché la creazione di un cluster HDInsight su richiesta è un'operazione che usa un numero elevato di risorse e potrebbe richiedere alcuni minuti, usare questa impostazione a seconda delle necessità per migliorare le prestazioni di una data factory riutilizzando un cluster HDInsight su richiesta.<br/><br/>Se si imposta il valore della proprietà timetolive su 0, il cluster viene eliminato non appena l'attività in elaborazione termina. D'altra parte, se si imposta un valore elevato, il cluster può rimanere inattivo inutilmente causando costi elevati. È quindi importante impostare il valore appropriato in base alle esigenze.<br/><br/>Più pipeline possono condividere la stessa istanza del cluster HDInsight su richiesta se il valore della proprietà timetolive è impostato in modo appropriato. |Sì |
-| version |Versione del cluster HDInsight Per informazioni dettagliate vedere le [versioni supportate di HDInsight in Azure Data Factory](data-factory-compute-linked-services.md#supported-hdinsight-versions-in-azure-data-factory). |No |
-| linkedServiceName |Servizio collegato Archiviazione di Azure che il cluster su richiesta deve usare per l'archiviazione e l'elaborazione dei dati. <p>Non è attualmente possibile creare un cluster HDInsight su richiesta che usa Azure Data Lake Store come risorsa di archiviazione. Per archiviare i dati dei risultati dell'elaborazione di HDInsight in un'istanza di Azure Data Lake Store, usare un'attività di copia per copiare i dati dall'archivio BLOB di Azure in Azure Data Lake Store.</p>  | Sì |
-| additionalLinkedServiceNames |Specifica account di archiviazione aggiuntivi per il servizio collegato HDInsight in modo che il servizio Data Factory possa registrarli per conto dell'utente. |No |
+| type |proprietà tipo Hello deve essere impostato troppo**HDInsightOnDemand**. |Sì |
+| clusterSize |Numero di nodi di lavoro o dati in cluster hello. cluster HDInsight Hello viene creato con 2 nodi head e il numero di hello di nodi di lavoro che è specificato per questa proprietà. nodi Hello sono di dimensioni Standard_D3 con 4 core, pertanto un cluster di nodi di 4 lavoro accetta 24 core (4\*4 = 16 core per i nodi di lavoro, più 2\*4 = 8 core per i nodi head). Vedere [cluster basati su Linux creare Hadoop in HDInsight](../hdinsight/hdinsight-hadoop-provision-linux-clusters.md) per informazioni dettagliate su livello hello Standard_D3. |Sì |
+| timeToLive |Hello consentito tempo di inattività per il cluster HDInsight su richiesta di hello. Specifica quanto tempo rimarrà attivo cluster HDInsight su richiesta di hello dopo il completamento di un'attività eseguita se non sono disponibili altri processi attivi cluster hello.<br/><br/>Ad esempio, se un'attività eseguita richiede 6 minuti e la proprietà timetolive è impostato too5 minuti, hello cluster rimane attivo per 5 minuti dopo hello 6 minuti di elaborazione di esecuzione dell'attività hello. Se l'esecuzione di un'altra attività viene eseguita con finestra 6 minuti hello, che viene elaborato dalla hello dello stesso cluster.<br/><br/>Creazione di un cluster di HDInsight su richiesta è un'operazione dispendiosa (potrebbe richiedere un po' di tempo), quindi utilizzare questa impostazione prestazioni tooimprove necessari per una data factory riutilizzando un cluster di HDInsight su richiesta.<br/><br/>Se si imposta la proprietà timetolive valore too0, cluster hello viene eliminato non appena l'esecuzione di attività hello in elaborato. In hello invece se si imposta un valore elevato, cluster hello può rimanere inattivo inutilmente risultante in costi elevati. Pertanto, è importante impostare hello di valore appropriato in base alle proprie esigenze.<br/><br/>Più pipeline possono condividere hello stessa istanza del cluster HDInsight su richiesta di hello se il valore della proprietà timetolive hello è impostato in modo appropriato |Sì |
+| version |Versione del cluster HDInsight hello. Per informazioni dettagliate vedere le [versioni supportate di HDInsight in Azure Data Factory](data-factory-compute-linked-services.md#supported-hdinsight-versions-in-azure-data-factory). |No |
+| linkedServiceName |Servizio collegato di archiviazione Azure: toobe utilizzato dal cluster di hello su richiesta per l'archiviazione e l'elaborazione dei dati. <p>Attualmente, è possibile creare un cluster HDInsight su richiesta che utilizza un archivio Azure Data Lake come archiviazione hello. Se si desiderano dati del risultato hello toostore dal HDInsight l'elaborazione in un archivio Azure Data Lake, utilizzare un attività di copia toocopy hello dati dall'archiviazione Blob di Azure di hello toohello archivio Azure Data Lake.</p>  | Sì |
+| additionalLinkedServiceNames |Specifica l'account di archiviazione aggiuntivi per hello HDInsight servizio collegato in modo che il servizio di Data Factory hello può registrare per conto dell'utente. |No |
 | osType |Tipo di sistema operativo. I valori consentiti sono: Windows (impostazione predefinita) e Linux |No |
-| hcatalogLinkedServiceName |Il nome del servizio collegato di Azure SQL che fa riferimento al database HCatalog. Viene creato il cluster HDInsight su richiesta usando il database SQL di Azure come metastore. |No |
+| hcatalogLinkedServiceName |nome Hello del collegato SQL Azure database HCatalog toohello punto del servizio. cluster di HDInsight su richiesta Hello viene creato utilizzando il database di SQL Azure hello come metastore hello. |No |
 
 ### <a name="json-example"></a>Esempio di JSON
-Il codice JSON seguente definisce un servizio collegato HDInsight su richiesta basato su Linux. Il servizio Data factory crea automaticamente un cluster HDInsight **basato su Linux** durante l'elaborazione di una sezione di dati. 
+Hello JSON seguente definisce un servizio di collegato di HDInsight su richiesta basati su Linux. Hello servizio Data Factory crea automaticamente un **basati su Linux** cluster HDInsight durante l'elaborazione di una sezione di dati. 
 
 ```json
 {
@@ -4860,18 +4860,18 @@ Il codice JSON seguente definisce un servizio collegato HDInsight su richiesta b
 Per altre informazioni, vedere l'articolo relativo ai [servizi collegati di calcolo](data-factory-compute-linked-services.md). 
 
 ## <a name="existing-azure-hdinsight-cluster"></a>Cluster HDInsight di Azure esistente
-È possibile creare un servizio collegato Azure HDInsight per registrare il proprio cluster HDInsight con Data Factory. Su questo servizio collegato è possibile eseguire le attività di trasformazione seguenti:[attività personalizzate .NET ](#net-custom-activity), [attività Hive](#hdinsight-hive-activity), [attività Pig](#hdinsight-pig-activity, [attività MapReduce](#hdinsight-mapreduce-activity), [attività di Hadoop Streaming](#hdinsight-streaming-activityd), [attività Spark](#hdinsight-spark-activity). 
+È possibile creare cluster HDInsight un tooregister di servizio collegato di HDInsight di Azure con Data Factory. È possibile eseguire hello seguente attività di trasformazione dei dati in questo servizio collegato: [attività personalizzate .NET](#net-custom-activity), [attività Hive](#hdinsight-hive-activity), [attività Pig] (#hdinsight--attività pig, [MapReduce attività](#hdinsight-mapreduce-activity), [Hadoop streaming attività](#hdinsight-streaming-activityd), [nascita attività](#hdinsight-spark-activity). 
 
 ### <a name="linked-service"></a>Servizio collegato
-La tabella seguente fornisce le descrizioni delle proprietà usate nella definizione JSON di Azure di un servizio collegato HDInsight di Azure.
+Hello nella tabella seguente vengono fornite descrizioni per le proprietà di hello utilizzate nella definizione di hello Azure JSON di un servizio collegato di HDInsight di Azure.
 
 | Proprietà | Descrizione | Obbligatorio |
 | --- | --- | --- |
-| type |La proprietà type deve essere impostata su **HDInsight**. |Sì |
-| clusterUri |L'URI del cluster HDInsight. |Sì |
-| username |Specifica il nome dell'utente da utilizzare per connettersi a un cluster HDInsight esistente. |Sì |
-| password |Specifica la password per l'account utente. |Sì |
-| linkedServiceName | Nome del servizio collegato all'archiviazione di Azure che fa riferimento all'archiviazione BLOB di Azure usata dal cluster HDInsight. <p>Attualmente non è possibile specificare un servizio collegato di Azure Data Lake Store per questa proprietà. È possibile accedere ai dati in Azure Data Lake Store da script Hive/Pig se il cluster HDInsight dispone di accesso a Data Lake Store. </p>  |Sì |
+| type |proprietà tipo Hello deve essere impostato troppo**HDInsight**. |Sì |
+| clusterUri |URI del cluster HDInsight hello Hello. |Sì |
+| username |Specificare nome hello di hello utente toobe utilizzata cluster di HDInsight tooconnect tooan esistente. |Sì |
+| password |Specificare la password per l'account utente di hello. |Sì |
+| linkedServiceName | Nome di servizio collegato di archiviazione di Azure che fa riferimento nell'archiviazione blob di Azure toohello hello utilizzato da hello cluster HDInsight. <p>Attualmente non è possibile specificare un servizio collegato di Azure Data Lake Store per questa proprietà. È possibile accedere ai dati hello archivio Azure Data Lake dagli script Hive o Pig se il cluster di HDInsight hello dispone di accesso toohello archivio Data Lake. </p>  |Sì |
 
 Per le versioni dei cluster di HDInsight, vedere le [versioni supportate di HDInsight](data-factory-compute-linked-services.md#supported-hdinsight-versions-in-azure-data-factory). 
 
@@ -4893,18 +4893,18 @@ Per le versioni dei cluster di HDInsight, vedere le [versioni supportate di HDIn
 ```
 
 ## <a name="azure-batch"></a>Azure Batch
-È possibile creare un servizio collegato di Azure Batch per registrare un pool di Batch di macchine virtuali in una data factory. È possibile eseguire le attività .NET personalizzate utilizzando Batch Azure o Azure HDInsight. Su questo servizio collegato è possibile eseguire un' [attività personalizzata .NET](#net-custom-activity). 
+È possibile creare un pool di Batch di macchine virtuali (VM) di un tooregister di servizio collegato di Azure Batch con una data factory. È possibile eseguire le attività .NET personalizzate utilizzando Batch Azure o Azure HDInsight. Su questo servizio collegato è possibile eseguire un' [attività personalizzata .NET](#net-custom-activity). 
 
 ### <a name="linked-service"></a>Servizio collegato
-La tabella seguente fornisce le descrizioni delle proprietà usate nella definizione JSON di Azure di un servizio collegato Azure Batch.
+Hello nella tabella seguente vengono fornite descrizioni per le proprietà di hello utilizzate nella definizione di hello Azure JSON di un servizio collegato di Azure Batch.
 
 | Proprietà | Descrizione | Obbligatorio |
 | --- | --- | --- |
-| type |La proprietà type deve essere impostata su **AzureBatch**. |Sì |
-| accountName |Nome dell'account Azure Batch. |Sì |
-| accessKey |Chiave di accesso per l'account Azure Batch. |Sì |
-| poolName |Nome del pool di macchine virtuali. |Sì |
-| linkedServiceName |Nome dello spazio di archiviazione del servizio collegato Azure associato al servizio collegato Azure Batch. Questo servizio collegato viene utilizzato per organizzare i file necessari per eseguire l'attività e archiviare i log di esecuzione dell’attività. |Sì |
+| type |proprietà tipo Hello deve essere impostato troppo**AzureBatch**. |Sì |
+| accountName |Nome dell'account Azure Batch hello. |Sì |
+| accessKey |Chiave di accesso per account Azure Batch hello. |Sì |
+| poolName |Nome del pool di hello delle macchine virtuali. |Sì |
+| linkedServiceName |Nome del servizio collegato di archiviazione di Azure associato a questo servizio collegato di Azure Batch hello. Questo servizio collegato viene utilizzato per i file di gestione temporanea attività hello toorun e l'archiviazione dei log di esecuzione di attività hello obbligatori. |Sì |
 
 
 #### <a name="json-example"></a>Esempio di JSON
@@ -4925,16 +4925,16 @@ La tabella seguente fornisce le descrizioni delle proprietà usate nella definiz
 ```
 
 ## <a name="azure-machine-learning"></a>Azure Machine Learning
-Creare un servizio collegato di Azure Machine Learning per registrare un endpoint di punteggio batch Machine Learning in una data factory. Su questo servizio collegato è possibile eseguire due attività di trasformazione dati: [Attività di esecuzione batch di Machine Learning](#machine-learning-batch-execution-activity), [Attività della risorsa di aggiornamento di Machine Learning](#machine-learning-update-resource-activity). 
+Creare un tooregister di servizio collegato di Azure Machine Learning punteggio endpoint con una data factory di un batch di Machine Learning. Su questo servizio collegato è possibile eseguire due attività di trasformazione dati: [Attività di esecuzione batch di Machine Learning](#machine-learning-batch-execution-activity), [Attività della risorsa di aggiornamento di Machine Learning](#machine-learning-update-resource-activity). 
 
 ### <a name="linked-service"></a>Servizio collegato
-La tabella seguente fornisce le descrizioni delle proprietà usate nella definizione JSON di Azure di un servizio collegato Azure Machine Learning.
+Hello nella tabella seguente vengono fornite descrizioni per le proprietà di hello utilizzate nella definizione di hello Azure JSON di un servizio collegato di Azure Machine Learning.
 
 | Proprietà | Descrizione | Obbligatorio |
 | --- | --- | --- |
-| type |La proprietà type deve essere impostata su **AzureML**. |Sì |
-| mlEndpoint |L’URL del batch punteggio. |Sì |
-| apiKey |Modello dell'area di lavoro pubblicato di API. |Sì |
+| Tipo |proprietà di tipo Hello deve essere impostata su: **Azure ml**. |Sì |
+| mlEndpoint |URL di punteggio batch di Hello. |Sì |
+| apiKey |Hello pubblicati API del modello di area di lavoro. |Sì |
 
 #### <a name="json-example"></a>Esempio di JSON
 
@@ -4952,25 +4952,25 @@ La tabella seguente fornisce le descrizioni delle proprietà usate nella definiz
 ```
 
 ## <a name="azure-data-lake-analytics"></a>Azure Data Lake Analytics.
-Creare un servizio collegato di **Azure Data Lake Analytics** per collegare un servizio di calcolo di Azure Data Lake Analytics a una Data factory di Azure prima di usare l' [attività U-SQL di Data Lake Analytics](data-factory-usql-activity.md) in una pipeline.
+Si crea un **Azure Data Lake Analitica** collegati toolink servizio una factory di dati di Azure tooan del servizio di calcolo di Azure Data Lake Analitica prima di utilizzare hello [attività Data Lake Analitica U-SQL](data-factory-usql-activity.md) in una pipeline .
 
 ### <a name="linked-service"></a>Servizio collegato
 
-La tabella seguente fornisce le descrizioni delle proprietà usate nella definizione JSON di un servizio collegato Azure Data Lake Analytics. 
+Hello nella tabella seguente vengono fornite descrizioni per le proprietà di hello utilizzate nella definizione JSON hello di un servizio di Azure Data Lake Analitica collegato. 
 
 | Proprietà | Descrizione | Obbligatorio |
 | --- | --- | --- |
-| Tipo |La proprietà type deve essere impostata su **AzureDataLakeAnalytics**. |Sì |
+| Tipo |proprietà di tipo Hello deve essere impostata su: **AzureDataLakeAnalytics**. |Sì |
 | accountName |Nome dell'account di Azure Data Lake Analytics. |Sì |
 | dataLakeAnalyticsUri |URI di Azure Data Lake Analytics. |No |
-| autorizzazione |Il codice di autorizzazione viene recuperato automaticamente dopo aver fatto clic sul pulsante **Autorizza** nell'editor di Data factory e aver completato l'accesso OAuth. |Sì |
-| subscriptionId |ID sottoscrizione di Azure |No (se non specificata, viene usata la sottoscrizione della Data factory). |
-| resourceGroupName |Nome del gruppo di risorse di Azure |No (se non specificata, viene usato il gruppo di risorse di Data Factory). |
-| sessionId |ID di sessione dalla sessione di autorizzazione OAuth. Ogni ID di sessione è univoco e può essere usato solo una volta. L'ID viene generato automaticamente nell'editor di Data Factory. |Sì |
+| autorizzazione |Codice di autorizzazione viene recuperato automaticamente dopo aver fatto clic **Authorize** pulsante hello Editor delle Data Factory e completamento dell'account di accesso hello OAuth. |Sì |
+| subscriptionId |ID sottoscrizione di Azure |No (se non specificato, sottoscrizione di hello viene utilizzata una data factory). |
+| resourceGroupName |Nome del gruppo di risorse di Azure |No (se non specificato, il gruppo di risorse di hello viene utilizzata una data factory). |
+| sessionId |id di sessione dalla sessione di autorizzazione OAuth hello. Ogni ID di sessione è univoco e può essere usato solo una volta. Quando si utilizza l'Editor delle Data Factory di hello, questo ID viene generato automaticamente. |Sì |
 
 
 #### <a name="json-example"></a>Esempio di JSON
-Nell'esempio seguente viene fornita la definizione JSON per un servizio collegato di Azure Data Lake Analytics.
+Hello di esempio seguente fornisce una definizione JSON per un servizio di Azure Data Lake Analitica collegato.
 
 ```json
 {
@@ -4990,14 +4990,14 @@ Nell'esempio seguente viene fornita la definizione JSON per un servizio collegat
 ```
 
 ## <a name="azure-sql-database"></a>Database SQL di Azure
-Si crea un servizio collegato di Azure SQL e lo si utilizza con l’ [Attività di stored procedure](#stored-procedure-activity) per richiamare una procedura stored da una pipeline Data Factory. 
+È possibile creare un servizio collegato SQL Azure e usarlo con hello [attività Stored Procedure](#stored-procedure-activity) tooinvoke una stored procedure da una pipeline di Data Factory. 
 
 ### <a name="linked-service"></a>Servizio collegato
-Per definire un servizio collegato di Database SQL di Azure, impostare il **tipo** di servizio collegato su **AzureSqlDatabase**e specificare le proprietà seguenti nella sezione **typeProperties**:  
+il set hello servizio collegato di toodefine un Database di SQL Azure **tipo** di hello servizio collegato troppo**AzureSqlDatabase**e specificare le seguenti proprietà in hello **typeProperties**sezione:  
 
 | Proprietà | Descrizione | Obbligatorio |
 | --- | --- | --- |
-| connectionString |Specificare le informazioni necessarie per connettersi all'istanza di database SQL di Azure per la proprietà connectionString. |Sì |
+| connectionString |Specificare l'istanza del Database di SQL Azure toohello tooconnect necessarie informazioni per la proprietà connectionString hello. |Sì |
 
 #### <a name="json-example"></a>Esempio di JSON
 
@@ -5016,14 +5016,14 @@ Per definire un servizio collegato di Database SQL di Azure, impostare il **tipo
 Vedere l’articolo [Connettore di Azure SQL](data-factory-azure-sql-connector.md#linked-service-properties) per informazioni dettagliate su questo servizio collegato.
 
 ## <a name="azure-sql-data-warehouse"></a>Azure SQL Data Warehouse
-Si crea un servizio collegato di Azure SQL Data Warehouse e lo si usa con l' [attività di stored procedure](data-factory-stored-proc-activity.md) per richiamare una stored procedure da una pipeline Data Factory. 
+È possibile creare un servizio collegato di Azure SQL Data Warehouse e usarlo con hello [attività Stored Procedure](data-factory-stored-proc-activity.md) tooinvoke una stored procedure da una pipeline di Data Factory. 
 
 ### <a name="linked-service"></a>Servizio collegato
-Per definire un servizio collegato di Azure SQL Data Warehouse, impostare il **tipo** di servizio collegato su **AzureSqlDW**e specificare le proprietà seguenti nella sezione **typeProperties**:  
+il servizio hello set toodefine un Data Warehouse di SQL Azure collegato **tipo** di hello servizio collegato troppo**AzureSqlDW**e specificare le seguenti proprietà in hello **typeProperties**sezione:  
 
 | Proprietà | Descrizione | Obbligatorio |
 | --- | --- | --- |
-| connectionString |Specificare le informazioni necessarie per connettersi all'istanza di Azure SQL Data Warehouse per la proprietà connectionString. |Sì |
+| connectionString |Specificare l'istanza di Azure SQL Data Warehouse toohello tooconnect necessarie informazioni per la proprietà connectionString hello. |Sì |
 
 #### <a name="json-example"></a>Esempio di JSON
 
@@ -5042,22 +5042,22 @@ Per definire un servizio collegato di Azure SQL Data Warehouse, impostare il **t
 Per altre informazioni, vedere [Connettore Azure SQL Data Warehouse](data-factory-azure-sql-data-warehouse-connector.md#linked-service-properties). 
 
 ## <a name="sql-server"></a>SQL Server 
-Si crea un servizio collegato di SQL Server e lo si usa con l' [attività di stored procedure](data-factory-stored-proc-activity.md) per richiamare una stored procedure da una pipeline Data Factory. 
+Creare un servizio collegato SQL Server e usarlo con hello [attività Stored Procedure](data-factory-stored-proc-activity.md) tooinvoke una stored procedure da una pipeline di Data Factory. 
 
 ### <a name="linked-service"></a>Servizio collegato
-È stato creato un servizio collegato di tipo **OnPremisesSqlServer** per collegare un database di SQL Server locale a una data factory. La tabella seguente contiene le descrizioni degli elementi JSON specifici per il servizio collegato di SQL Server locale.
+Creare un servizio collegato di tipo **OnPremisesSqlServer** toolink una data factory tooa di on-premise SQL Server database. Hello nella tabella seguente fornisce una descrizione del servizio collegato SQL Server locale tooon specifici elementi JSON.
 
-La tabella seguente contiene le descrizioni degli elementi JSON specifici del servizio collegato SQL Server.
+Hello nella tabella seguente fornisce una descrizione JSON elementi specifici tooSQL servizio del Server collegato.
 
 | Proprietà | Descrizione | Obbligatorio |
 | --- | --- | --- |
-| type |La proprietà type deve essere impostata su **OnPremisesSqlServer**. |Sì |
-| connectionString |Specificare le informazioni di connectionString necessarie per connettersi al database di SQL Server locale usando l'autenticazione di SQL o Windows. |Sì |
-| gatewayName |Nome del gateway che il servizio Data factory deve usare per connettersi al database di SQL Server locale. |Sì |
+| type |proprietà di tipo Hello deve essere impostata su: **OnPremisesSqlServer**. |Sì |
+| connectionString |Specificare le informazioni connectionString necessarie tooconnect database di SQL Server on-premise toohello utilizzando l'autenticazione di SQL Server o l'autenticazione di Windows. |Sì |
+| gatewayName |Nome del gateway hello hello servizio Data Factory deve utilizzare i database di SQL Server on-premise toohello tooconnect. |Sì |
 | username |Specificare il nome utente se si usa l'autenticazione Windows. Esempio: **nomedominio\\nomeutente**. |No |
-| password |Specificare la password per l'account utente specificato per il nome utente. |No |
+| password |Specificare la password per account utente di hello specificato per il nome utente hello. |No |
 
-È possibile crittografare le credenziali usando il cmdlet **New-AzureRmDataFactoryEncryptValue** e usarle nella stringa di connessione, come illustrato nell'esempio seguente (proprietà **EncryptedCredential**):  
+È possibile crittografare le credenziali utilizzando hello **New AzureRmDataFactoryEncryptValue** cmdlet e utilizzarli nella stringa di connessione hello, come illustrato nell'esempio seguente hello (**EncryptedCredential** proprietà):  
 
 ```JSON
 "connectionString": "Data Source=<servername>;Initial Catalog=<databasename>;Integrated Security=True;EncryptedCredential=<encrypted credential>",
@@ -5080,7 +5080,7 @@ La tabella seguente contiene le descrizioni degli elementi JSON specifici del se
 ```
 #### <a name="example-json-for-using-windows-authentication"></a>Esempio: JSON per l'uso dell'autenticazione Windows
 
-Se vengono specificati nome utente e password, il gateway li usa per rappresentare l'account utente specificato per la connessione al database di SQL Server locale. In caso contrario, il gateway si connette a SQL Server direttamente con il contesto di sicurezza del gateway (l'account di avvio).
+Se vengono specificati nome utente e password, gateway li utilizza hello tooimpersonate database di SQL Server on-premise toohello tooconnect account utente specificato. In caso contrario, gateway si connetta toohello SQL Server direttamente con il contesto di sicurezza hello del Gateway (il relativo account di avvio).
 
 ```json
 {
@@ -5103,31 +5103,31 @@ Per altre informazioni, vedere [Connettore SQL Server](data-factory-sqlserver-co
 
 Attività | Descrizione
 -------- | -----------
-[Attività Hive di HDInsight](#hdinsight-hive-activity) | L'attività Hive di HDInsight in una pipeline di Data factory esegue query Hive sul proprio cluster HDInsight o sul cluster HDInsight su richiesta basato su Windows o Linux. 
-[Attività Pig di HDInsight](#hdinsight-pig-activity) | L'attività Pig di HDInsight in una pipeline di Data factory esegue query Pig sul proprio cluster HDInsight o sul cluster HDInsight su richiesta basato su Windows o Linux.
-[Attività MapReduce di HDInsight](#hdinsight-mapreduce-activity) | L'attività HDInsight MapReduce in una pipeline di Data Factory esegue i programmi di MapReduce nei cluster HDInsight personalizzati o su richiesta basati su Windows/Linux.
-[Attività di streaming di HDInsight](#hdinsight-streaming-activity) | L'attività HDInsight Streaming Activity in una pipeline di Data Factory esegue i programmi di Hadoop Streaming nei cluster HDInsight personalizzati o su richiesta basati su Windows/Linux.
-[Attività HDInsight Spark](#hdinsight-spark-activity) | L'attività Spark di HDInsight in una pipeline di Data Factory esegue programmi Spark nel cluster HDInsight personale. 
-[Attività di esecuzione batch di Machine Learning](#machine-learning-batch-execution-activity) | Azure Data Factory consente di creare facilmente pipeline che usano un servizio Web pubblicato di Azure Machine Learning per l'analisi predittiva. Con Attività di esecuzione Batch in una pipeline di Azure Data Factory è possibile richiamare un servizio Web di Machine Learning per eseguire stime dei dati in batch. 
-[Attività della risorsa di aggiornamento di Machine Learning](#machine-learning-update-resource-activity) | Nel corso del tempo è necessario ripetere il training dei modelli predittivi negli esperimenti di assegnazione dei punteggi di Machine Learning usando nuovi set di dati di input. Una volta ripetuto il training, aggiornare il servizio Web di assegnazione dei punteggi con il modello Machine Learning di cui è stato ripetuto il training. È possibile usare l'attività di aggiornamento risorse per aggiornare il servizio Web con il nuovo modello sottoposto a training.
-[Attività stored procedure](#stored-procedure-activity) | È possibile usare l'attività stored procedure in una pipeline di Data Factory per richiamare una stored procedure in uno dei seguenti archivi dati: database SQL di Azure, Azure SQL Data Warehouse, database di SQL Server in azienda o in una macchina virtuale di Azure. 
+[Attività Hive di HDInsight](#hdinsight-hive-activity) | attività Hive di HDInsight in una pipeline di Data Factory Hello esegue query Hive per proprio conto o il cluster HDInsight basati su Windows o Linux su richiesta. 
+[Attività Pig di HDInsight](#hdinsight-pig-activity) | attività Pig di HDInsight in una pipeline di Data Factory Hello esegue query Pig autonomamente o il cluster HDInsight basati su Windows o Linux su richiesta.
+[Attività MapReduce di HDInsight](#hdinsight-mapreduce-activity) | attività MapReduce di HDInsight in una pipeline di Data Factory Hello esegue i programmi MapReduce autonomamente o il cluster HDInsight basati su Windows o Linux su richiesta.
+[Attività di streaming di HDInsight](#hdinsight-streaming-activity) | Hello attività Streaming di HDInsight in una pipeline di Data Factory esegue i programmi di Hadoop Streaming autonomamente o il cluster HDInsight basati su Windows o Linux su richiesta.
+[Attività HDInsight Spark](#hdinsight-spark-activity) | attività HDInsight Spark in una pipeline di Data Factory Hello esegue programmi Spark nel cluster HDInsight. 
+[Attività di esecuzione batch di Machine Learning](#machine-learning-batch-execution-activity) | Servizio per analitica predittiva web di Azure consente di Data Factory è tooeasily creare pipeline che utilizzano una versione pubblicata di Azure Machine Learning. Utilizza hello attività di esecuzione del Batch in una pipeline di Data Factory di Azure, è possibile richiamare un stime di toomake servizio web Machine Learning sui dati hello in batch. 
+[Attività della risorsa di aggiornamento di Machine Learning](#machine-learning-update-resource-activity) | Nel corso del tempo, modelli predittivi di hello in hello Machine Learning esperimenti punteggio necessario toobe ripetere il training utilizzando il nuovo set di dati di input. Dopo avere completato con ripetizione di training, si desidera hello tooupdate punteggio servizio web con hello Training modello di Machine Learning. È possibile utilizzare servizio web di attività di aggiornamento risorsa tooupdate hello hello con hello appena training del modello.
+[Attività stored procedure](#stored-procedure-activity) | È possibile utilizzare l'attività di Stored Procedure hello in tooinvoke di pipeline una stored procedure in uno dei seguenti archivi dati hello una Data Factory: Database SQL di Azure, Azure SQL Data Warehouse, il Database di SQL Server nell'organizzazione o una macchina virtuale di Azure. 
 [Attività U-SQL di Data Lake Analytics](#data-lake-analytics-u-sql-activity) | L'attività U-SQL di Data Lake Analytics esegue uno script U-SQL in un cluster di Azure Data Lake Analytics.  
-[Attività personalizzata .NET](#net-custom-activity) | Se è necessario trasformare i dati in una modalità non supportata da Data Factory, è possibile creare un'attività personalizzata contenente la logica di elaborazione dei dati richiesta e usarla nella pipeline. È possibile configurare l'attività .NET personalizzata da eseguire usando il servizio Azure Batch o un cluster Azure HDInsight. 
+[Attività personalizzata .NET](#net-custom-activity) | Se è necessario tootransform dati in modo che non è supportato da Data Factory, è possibile creare un'attività personalizzata con la logica di elaborazione dei dati e utilizzare attività hello nella pipeline hello. È possibile configurare hello personalizzato .NET attività toorun utilizzando un servizio Azure Batch o un cluster Azure HDInsight. 
 
      
 ## <a name="hdinsight-hive-activity"></a>Attività Hive di HDInsight
-In una definizione JSON di attività Hive è possibile specificare le proprietà seguenti. Il tipo di proprietà dell'attività deve essere impostato su **HDInsightHive**. È necessario creare innanzitutto un servizio collegato di HDInsight e quindi specificarne il nome come valore della proprietà **linkedServiceName**. Quando si imposta il tipo di attività HDInsightHive vengono le proprietà seguenti sono supportate nella sezione **typeProperties**:
+È possibile specificare le proprietà in una definizione del formato JSON dell'attività Hive seguenti hello. deve essere di proprietà del tipo Hello attività hello: **HDInsightHive**. È necessario creare innanzitutto un servizio collegato di HDInsight e specificare il nome di hello di esso come valore per hello **linkedServiceName** proprietà. salve le proprietà seguenti sono supportate in hello **typeProperties** sezione quando si imposta il tipo di hello di tooHDInsightHive attività:
 
 | Proprietà | Descrizione | Obbligatorio |
 | --- | --- | --- |
-| script |Specificare lo script Hive inline |No |
-| script path |Archiviare lo script Hive in un archivio BLOB di Azure e immettere il percorso del file. Usare la proprietà "script" o "scriptPath". Non è possibile usare entrambe le proprietà. Il nome del file distingue tra maiuscole e minuscole. |No |
-| defines |Specificare i parametri come coppie chiave/valore per fare riferimento ad essi nello script Hive usando "hiveconf" |No |
+| script |Specificare hello Hive script inline |No |
+| script path |Hello archivio Hive script in una risorsa di archiviazione blob di Azure e fornire hello percorso toohello file. Usare la proprietà "script" o "scriptPath". Non è possibile usare entrambe le proprietà. nome del file Hello è tra maiuscole e minuscole. |No |
+| defines |Specificare i parametri come coppie chiave/valore per il riferimento all'interno dello script Hive hello utilizzando 'hiveconf' |No |
 
-Questi tipi di proprietà sono specifiche per l'attività Hive. Altre proprietà (esterne alla sezione typeProperties) sono supportate per tutte le attività.   
+Queste proprietà sono toohello specifica attività Hive. Altre proprietà (all'esterno di sezione typeProperties hello) sono supportati per tutte le attività.   
 
 ### <a name="json-example"></a>Esempio di JSON
-Il codice JSON seguente definisce un'attività Hive di HDInsight in una pipeline.  
+Hello JSON seguente definisce un'attività Hive di HDInsight in una pipeline.  
 
 ```json
 {
@@ -5162,15 +5162,15 @@ Il codice JSON seguente definisce un'attività Hive di HDInsight in una pipeline
 Per altre informazioni, vedere [Attività Hive](data-factory-hive-activity.md). 
 
 ## <a name="hdinsight-pig-activity"></a>Attività Pig di HDInsight
-In una definizione JSON di attività Pig è possibile specificare le proprietà seguenti. Il tipo di proprietà dell'attività deve essere impostato su **HDInsightPig**. È necessario creare innanzitutto un servizio collegato di HDInsight e quindi specificarne il nome come valore della proprietà **linkedServiceName**. Quando il tipo di attività è impostato su HDInsightPig, nella sezione **typeProperties** sono supportate le proprietà seguenti: 
+È possibile specificare le proprietà in una definizione del formato JSON dell'attività Pig seguenti hello. deve essere di proprietà del tipo Hello attività hello: **HDInsightPig**. È necessario creare innanzitutto un servizio collegato di HDInsight e specificare il nome di hello di esso come valore per hello **linkedServiceName** proprietà. salve le proprietà seguenti sono supportate in hello **typeProperties** sezione quando si imposta il tipo di hello di tooHDInsightPig attività: 
 
 | Proprietà | Descrizione | Obbligatorio |
 | --- | --- | --- |
-| script |Specificare lo script Pig inline |No |
-| script path |Archiviare lo script Pig in un archivio BLOB di Azure e immettere il percorso del file. Usare la proprietà "script" o "scriptPath". Non è possibile usare entrambe le proprietà. Il nome del file distingue tra maiuscole e minuscole. |No |
-| defines |Specificare i parametri come coppie chiave/valore per fare riferimento ad essi nello script Pig |No |
+| script |Specificare hello Pig script inline |No |
+| script path |Archiviare lo script Pig hello in una risorsa di archiviazione blob di Azure e fornire hello percorso toohello file. Usare la proprietà "script" o "scriptPath". Non è possibile usare entrambe le proprietà. nome del file Hello è tra maiuscole e minuscole. |No |
+| defines |Specificare i parametri come coppie chiave/valore per il riferimento all'interno di uno script Pig hello |No |
 
-Questi tipi di proprietà sono specifiche per l'attività Pig. Altre proprietà (esterne alla sezione typeProperties) sono supportate per tutte le attività.   
+Queste proprietà sono toohello specifica attività Pig. Altre proprietà (all'esterno di sezione typeProperties hello) sono supportati per tutte le attività.   
 
 ### <a name="json-example"></a>Esempio di JSON
 
@@ -5214,14 +5214,14 @@ Questi tipi di proprietà sono specifiche per l'attività Pig. Altre proprietà 
 Per altre informazioni, vedere [Attività Pig](#data-factory-pig-activity.md). 
 
 ## <a name="hdinsight-mapreduce-activity"></a>Attività MapReduce di HDInsight
-In una definizione JSON di attività MapReduce è possibile specificare le proprietà seguenti. Il tipo di proprietà dell'attività deve essere impostato su **HDInsightMapReduce**. È necessario creare innanzitutto un servizio collegato di HDInsight e quindi specificarne il nome come valore della proprietà **linkedServiceName**. Quando il tipo di attività è impostato su HDInsightMapReduce, nella sezione **typeProperties** sono supportate le proprietà seguenti: 
+È possibile specificare hello seguenti proprietà in una definizione del formato JSON dell'attività MapReduce. deve essere di proprietà del tipo Hello attività hello: **HDInsightMapReduce**. È necessario creare innanzitutto un servizio collegato di HDInsight e specificare il nome di hello di esso come valore per hello **linkedServiceName** proprietà. salve le proprietà seguenti sono supportate in hello **typeProperties** sezione quando si imposta il tipo di hello di tooHDInsightMapReduce attività: 
 
 | Proprietà | Descrizione | Obbligatorio |
 | --- | --- | --- |
-| jarLinkedService | Nome del servizio collegato di Archiviazione di Azure che contiene il file JAR. | Sì |
-| jarFilePath | Percorso del file JAR nell'archiviazione di Azure. | Sì | 
-| className | Nome della classe principale nel file JAR. | Sì | 
-| arguments | Un elenco di argomenti delimitati da virgole per il programma MapReduce. In fase di esecuzione, vengono visualizzati alcuni argomenti aggiuntivi (ad esempio: mapreduce.job.tags) dal framework di MapReduce. Per differenziare gli argomenti con gli argomenti di MapReduce, è consigliabile usare sia l'opzione che il valore come argomenti, come illustrato nell'esempio seguente (- s, --input - output e così via sono opzioni immediatamente seguite dai valori). | No | 
+| jarLinkedService | Nome di hello collegato del servizio di archiviazione di Azure che contiene i file JAR hello hello. | Sì |
+| jarFilePath | Percorso file JAR di toohello in hello archiviazione di Azure. | Sì | 
+| className | Nome della classe principale di hello in file JAR hello. | Sì | 
+| arguments | Un elenco di argomenti delimitato da virgole per il programma MapReduce hello. In fase di esecuzione vedere alcuni argomenti aggiuntivi (ad esempio: mapreduce.job.tags) dal framework MapReduce hello. toodifferentiate degli argomenti con argomenti di MapReduce hello, considerare l'utilizzo sia opzione e il valore come argomenti, come illustrato nell'esempio seguente hello (- s, input, --output e così via, sono immediatamente seguite dai valori di opzioni) | No | 
 
 ### <a name="json-example"></a>Esempio di JSON
 
@@ -5229,7 +5229,7 @@ In una definizione JSON di attività MapReduce è possibile specificare le propr
 {
     "name": "MahoutMapReduceSamplePipeline",
     "properties": {
-        "description": "Sample Pipeline to Run a Mahout Custom Map Reduce Jar. This job calculates an Item Similarity Matrix to determine the similarity between two items",
+        "description": "Sample Pipeline tooRun a Mahout Custom Map Reduce Jar. This job calculates an Item Similarity Matrix toodetermine hello similarity between two items",
         "activities": [
             {
                 "type": "HDInsightMapReduce",
@@ -5259,7 +5259,7 @@ In una definizione JSON di attività MapReduce è possibile specificare le propr
                     "interval": 1
                 },
                 "name": "MahoutActivity",
-                "description": "Custom Map Reduce to generate Mahout result",
+                "description": "Custom Map Reduce toogenerate Mahout result",
                 "linkedServiceName": "HDInsightLinkedService"
             }
         ],
@@ -5272,21 +5272,21 @@ In una definizione JSON di attività MapReduce è possibile specificare le propr
 Per altre informazioni, vedere [Attività MapReduce](data-factory-map-reduce.md). 
 
 ## <a name="hdinsight-streaming-activity"></a>Attività di streaming di HDInsight
-In una definizione JSON di attività Hadoop Streaming è possibile specificare le proprietà seguenti. Il tipo di proprietà dell'attività deve essere impostato su **HDInsightStreaming**. È necessario creare innanzitutto un servizio collegato di HDInsight e quindi specificarne il nome come valore della proprietà **linkedServiceName**. Quando il tipo di attività è impostato su HDInsightStreaming, nella sezione **typeProperties** sono supportate le proprietà seguenti: 
+È possibile specificare le proprietà in una definizione del formato JSON dell'attività di Streaming Hadoop seguenti hello. deve essere di proprietà del tipo Hello attività hello: **HDInsightStreaming**. È necessario creare innanzitutto un servizio collegato di HDInsight e specificare il nome di hello di esso come valore per hello **linkedServiceName** proprietà. salve le proprietà seguenti sono supportate in hello **typeProperties** sezione quando si imposta il tipo di hello di tooHDInsightStreaming attività: 
 
 | Proprietà | Descrizione | 
 | --- | --- |
-| mapper | Nome del mapper eseguibile. Nell'esempio cat.exe è l'eseguibile del mapper.| 
-| reducer | Nome del reducer eseguibile. Nell'esempio wc.exe è l'eseguibile del mapper. | 
-| input | File di input (incluso percorso) del mapper. Nell'esempio "wasb://adfsample@<account name>.blob.core.windows.net/example/data/gutenberg/davinci.txt" adfsample è il contenitore BLOB, example/data/Gutenberg è la cartella e davinci.txt è il BLOB. |
-| output | File di output (incluso percorso) del reducer. L'output del processo di Hadoop Streaming viene scritto nel percorso specificato per questa proprietà. |
-| filePaths | Percorsi dei file eseguibili del mapper e del reducer. Nell'esempio: "adfsample/example/apps/wc.exe", adfsample è il contenitore BLOB, example/apps è la cartella e wc.exe è l'eseguibile. | 
-| fileLinkedService | Servizio collegato di Archiviazione di Azure che rappresenta l'archivio di Azure contenente i file specificati nella sezione filePaths. | 
-| arguments | Un elenco di argomenti delimitati da virgole per il programma MapReduce. In fase di esecuzione, vengono visualizzati alcuni argomenti aggiuntivi (ad esempio: mapreduce.job.tags) dal framework di MapReduce. Per differenziare gli argomenti con gli argomenti di MapReduce, è consigliabile usare sia l'opzione che il valore come argomenti, come illustrato nell'esempio seguente (- s, --input - output e così via sono opzioni immediatamente seguite dai valori). | 
-| getDebugInfo | Un elemento facoltativo. Quando viene impostata su Failure, i log vengono scaricati solo in caso di errore. Quando viene impostata su All, i log vengono sempre scaricati indipendentemente dallo stato dell'esecuzione. | 
+| mapper | Nome del mapper hello eseguibile. Nell'esempio hello cat.exe è mapper hello eseguibile.| 
+| reducer | Nome del file eseguibile del reducer hello. Nell'esempio hello wc.exe è file eseguibile del reducer hello. | 
+| input | File di input (incluso percorso) per il mapper hello. Nell'esempio hello: "//adfsample @<account name>.blob.core.windows.net/example/data/gutenberg/davinci.txt": adfsample è il contenitore di blob hello, esempio/data/Gutenberg è la cartella hello e davinci.txt è blob hello. |
+| output | File di output (incluso percorso) per riduttore hello. output di Hello del processo Hadoop Streaming hello viene scritto toohello percorso specificato per questa proprietà. |
+| filePaths | Percorsi per gli eseguibili del mapper e del reducer hello. Nell'esempio hello: "adfsample/example/apps/wc.exe", adfsample è il contenitore di blob hello, example/apps è la cartella hello e wc.exe è hello eseguibile. | 
+| fileLinkedService | Servizio collegato di archiviazione Azure che rappresenta l'archiviazione di Azure che contiene file hello specificati nella sezione filePaths hello hello. | 
+| arguments | Un elenco di argomenti delimitato da virgole per il programma MapReduce hello. In fase di esecuzione vedere alcuni argomenti aggiuntivi (ad esempio: mapreduce.job.tags) dal framework MapReduce hello. toodifferentiate degli argomenti con argomenti di MapReduce hello, considerare l'utilizzo sia opzione e il valore come argomenti, come illustrato nell'esempio seguente hello (- s, input, --output e così via, sono immediatamente seguite dai valori di opzioni) | 
+| getDebugInfo | Un elemento facoltativo. Quando si imposta tooFailure, hello registri vengono scaricati solo in caso di errore. Quando si imposta tooAll, i log vengono sempre scaricati indipendentemente lo stato di esecuzione hello. | 
 
 > [!NOTE]
-> È necessario specificare un set di dati di output per l'attività di Hadoop Streaming per la proprietà **output** . Questo set di dati fittizio è necessario per la pianificazione della pipeline (oraria, giornaliera e così via). Se l'attività non accetta un input, è possibile evitare di specificare il set di dati di input dell'attività per la proprietà **input**.  
+> È necessario specificare un set di dati di output di hello attività di Streaming di Hadoop per hello **restituisce** proprietà. Questo set di dati può essere solo un dummy set di dati è necessario toodrive hello pipeline pianificazione (oraria, giornaliera, e così via.). Se l'attività hello non accetta un input, è possibile ignorare specificando un set di dati di input per l'attività hello per hello **input** proprietà.  
 
 ## <a name="json-example"></a>Esempio di JSON
 
@@ -5336,18 +5336,18 @@ In una definizione JSON di attività Hadoop Streaming è possibile specificare l
 Per altre informazioni, vedere l'argomento relativo all'[attività Hadoop Streaming](data-factory-hadoop-streaming-activity.md). 
 
 ## <a name="hdinsight-spark-activity"></a>Attività Spark di HDInsight
-In una definizione JSON di attività Spark è possibile specificare le proprietà seguenti. Il tipo di proprietà dell'attività deve essere impostato su **HDInsightSpark**. È necessario creare innanzitutto un servizio collegato di HDInsight e quindi specificarne il nome come valore della proprietà **linkedServiceName**. Quando il tipo di attività è impostato su HDInsightSpark, nella sezione **typeProperties** sono supportate le proprietà seguenti: 
+È possibile specificare le proprietà in una definizione del formato JSON dell'attività Spark seguenti hello. deve essere di proprietà del tipo Hello attività hello: **HDInsightSpark**. È necessario creare innanzitutto un servizio collegato di HDInsight e specificare il nome di hello di esso come valore per hello **linkedServiceName** proprietà. salve le proprietà seguenti sono supportate in hello **typeProperties** sezione quando si imposta il tipo di hello di tooHDInsightSpark attività: 
 
 | Proprietà | Descrizione | Obbligatorio |
 | -------- | ----------- | -------- |
-| rootPath | Contenitore BLOB di Azure e cartella che contiene il file Spark. Il nome del file distingue tra maiuscole e minuscole. | Sì |
-| entryFilePath | Percorso relativo alla cartella radice del pacchetto/codice Spark. | Sì |
+| rootPath | contenitore di Blob di Azure Hello e della cartella che contiene file Spark hello. nome del file Hello è tra maiuscole e minuscole. | Sì |
+| entryFilePath | Cartella radice di percorso relativo toohello di hello Spark codice o del pacchetto. | Sì |
 | className | Classe principale Java/Spark dell'applicazione | No | 
-| arguments | Elenco di argomenti della riga di comando del programma Spark. | No | 
-| proxyUser | Account utente da rappresentare per eseguire il programma Spark | No | 
+| arguments | Un elenco di programmi di Spark toohello gli argomenti della riga di comando. | No | 
+| proxyUser | programma di Hello utente account tooimpersonate tooexecute hello Spark | No | 
 | sparkConfig | Proprietà di configurazione di Spark. | No | 
-| getDebugInfo | Specifica quando i file di log di Spark vengono copiati nell'archiviazione di Azure usata dal cluster HDInsight (o) specificata da sparkJobLinkedService. Valori consentiti: None, Always o Failure. Valore predefinito: None. | No | 
-| sparkJobLinkedService | Il servizio collegato di archiviazione di Azure che contiene il file di processo, le dipendenze e i log di Spark.  Se non si specifica un valore per questa proprietà, viene usato lo spazio di archiviazione associato al cluster HDInsight. | No |
+| getDebugInfo | Specifica quando i file di log Spark hello toohello copiato archiviazione di Azure usati dal cluster HDInsight (o) specificato da sparkJobLinkedService. Valori consentiti: None, Always o Failure. Valore predefinito: None. | No | 
+| sparkJobLinkedService | servizio collegato di archiviazione di Azure che contiene i registri, le dipendenze e hello Spark processo file Hello.  Se non si specifica un valore per questa proprietà, viene utilizzata l'archiviazione di hello associato al cluster HDInsight. | No |
 
 ### <a name="json-example"></a>Esempio di JSON
 
@@ -5377,31 +5377,31 @@ In una definizione JSON di attività Spark è possibile specificare le propriet�
     }
 }
 ```
-Tenere presente quanto segue: 
+Si noti hello seguenti punti: 
 
-- La proprietà **type** è impostata su **HDInsightSpark**.
-- Il **rootPath** è impostato su **adfspark\\pyFiles**, dove adfspark è il contenitore BLOB di Azure e pyFiles è la cartella di file nel contenitore. In questo esempio, l'archivio BLOB di Azure è quello associato al cluster Spark. È possibile caricare il file in un archivio di Azure diverso. In tal caso, creare un servizio collegato Archiviazione di Azure per collegare l'account di archiviazione alla data factory. Quindi, specificare il nome del servizio collegato come valore per la proprietà **sparkJobLinkedService**. Vedere [Proprietà dell'attività Spark](#spark-activity-properties) per informazioni dettagliate su questa e altre proprietà supportate dall'attività Spark.
-- La proprietà **entryFilePath** è impostata su **test.py**, ovvero il file python. 
-- La proprietà **getDebugInfo** è impostata su **Sempre** e indica che i file di log vengono sempre generati (con esito positivo o negativo).  
+- Hello **tipo** impostata troppo**HDInsightSpark**.
+- Hello **rootPath** è troppo**adfspark\\pyFiles** dove adfspark è il contenitore di Blob di Azure hello e pyFiles è cartella correttamente in tale contenitore. In questo esempio hello archiviazione Blob di Azure è hello uno associato al cluster Spark hello. È possibile caricare tooa file hello archiviazione di Azure diversi. In tal caso, creare un toolink di servizio collegato di archiviazione di Azure che data factory toohello account di archiviazione. Quindi, specificare il nome di hello del servizio hello collegato come valore per hello **sparkJobLinkedService** proprietà. Vedere [le proprietà dell'attività di Spark](#spark-activity-properties) per informazioni dettagliate su questa proprietà e altre proprietà supportate dall'attività Spark hello.
+- Hello **entryFilePath** è impostato toohello **test.py**, ossia file python hello. 
+- Hello **getDebugInfo** impostata troppo**sempre**, ovvero i file di log hello vengono sempre generati (esito positivo o negativo).  
 
     > [!IMPORTANT]
-    > Non è consigliabile impostare questa proprietà su Sempre in un ambiente di produzione a meno che non si stia tentando di risolvere un problema. 
-- La sezione **outputs** presenta un set di dati di output. Anche se il programma Spark non genera alcun output, è necessario specificare un set di dati di output. Il set di dati di output è ciò su cui si basa la pianificazione della pipeline (oraria, giornaliera e così via).
+    > È consigliabile non impostare tooAlways questa proprietà in un ambiente di produzione a meno che non si sta risolvendo un problema. 
+- Hello **restituisce** sezione ha un set di dati di output. Anche se il programma di spark hello non genera alcun output, è necessario specificare un set di dati di output. pianificazione di hello unità per set di dati di output Hello per pipeline hello (oraria, giornaliera, e così via.).
 
-Per altre informazioni sull'attività, vedere l'argomento relativo all'[attività Spark](data-factory-spark.md).  
+Per ulteriori informazioni sulle attività hello, vedere [attività Spark](data-factory-spark.md) articolo.  
 
 ## <a name="machine-learning-batch-execution-activity"></a>Attività di esecuzione batch di Machine Learning
-In una definizione JSON di attività di esecuzione batch di Machine Learning è possibile specificare le proprietà seguenti. Il tipo di proprietà dell'attività deve essere impostato su **AzureMLBatchExecution**. È necessario creare innanzitutto un servizio collegato di Azure Machine Learning e quindi specificare il nome come valore della proprietà **linkedServiceName**. Quando il tipo di attività è impostato su AzureMLBatchExecution, nella sezione **typeProperties** sono supportate le proprietà seguenti:
+È possibile specificare le proprietà in una definizione di Azure ML Batch esecuzione attività JSON seguenti hello. deve essere di proprietà del tipo Hello attività hello: **AzureMLBatchExecution**. È necessario creare un Azure Machine Learning innanzitutto il servizio collegato e specificare il nome di hello di esso come un valore per hello **linkedServiceName** proprietà. salve le proprietà seguenti sono supportate in hello **typeProperties** sezione quando si imposta il tipo di hello di tooAzureMLBatchExecution attività:
 
 Proprietà | Descrizione | Obbligatorio 
 -------- | ----------- | --------
-webServiceInput | Il set di dati da passare come input del servizio Web di Azure Machine Learning. Questo set di dati deve essere incluso anche nella sezione inputs dell'attività. |Usare webServiceInput o webServiceInputs. | 
-webServiceInputs | I set di dati specifici da passare come input del servizio Web di Azure Machine Learning. Se il servizio Web accetta più input, usare la proprietà webServiceInputs invece di webServiceInput. Includere anche i set di dati a cui **webServiceInputs** fa riferimento negli **input** dell'attività. | Usare webServiceInput o webServiceInputs. | 
-webServiceOutputs | I set di dati assegnati come output del servizio Web Azure Machine Learning. Il servizio Web restituisce i dati di output in questo set di dati. | Sì | 
-globalParameters | Specificare i valori dei parametri del servizio Web in questa sezione. | No | 
+webServiceInput | Hello toobe di set di dati passato come input per hello servizio web di Azure ML. Questo set di dati deve essere incluso anche in input hello per attività hello. |Usare webServiceInput o webServiceInputs. | 
+webServiceInputs | Specificare i set di dati toobe passate come input per hello servizio web di Azure ML. Se il servizio web hello accetta più input, è possibile utilizzare proprietà webServiceInputs hello anziché proprietà WebServiceInputActivity hello. Set di dati che fanno riferimento hello **webServiceInputs** deve essere incluso anche in attività hello **input**. | Usare webServiceInput o webServiceInputs. | 
+webServiceOutputs | Hello set di dati che vengono assegnati come output per il servizio web di Azure ML hello. servizio web Hello restituisce i dati di output in questo set di dati. | Sì | 
+globalParameters | Specificare i valori per parametri del servizio web hello in questa sezione. | No | 
 
 ### <a name="json-example"></a>Esempio di JSON
-In questo esempio, l'attività ha il set di dati **MLSqlInput** come input e **MLSqlOutput** come output. Il set di dati **MLSqlInput** viene passato come input al servizio Web usando la proprietà JSON **webServiceInput**. Il set di dati **MLSqlOutput** viene passato come output al servizio Web usando la proprietà JSON **webServiceOutputs**. 
+In questo esempio, attività hello presenta dataset hello **MLSqlInput** come input e **MLSqlOutput** come output di hello. Hello **MLSqlInput** viene passato come un servizio web di input toohello da utilizzando hello **WebServiceInputActivity** proprietà JSON. Hello **MLSqlOutput** viene passato come un servizio Web toohello di output da utilizzando hello **webserviceoutputs della** proprietà JSON. 
 
 ```json
 {
@@ -5441,21 +5441,21 @@ In questo esempio, l'attività ha il set di dati **MLSqlInput** come input e **M
 }
 ```
 
-Nell'esempio JSON, il servizio Web di Azure Machine Learning distribuito usa un modulo Reader e un modulo Writer per leggere e scrivere i dati da e in un database SQL di Azure. Il servizio Web espone i quattro parametri seguenti: Database server name, Database name, Server user account name e Server user account password.
+Nell'esempio hello JSON hello distribuito Azure Machine Learning Web servizio utilizza un lettore e un writer modulo tooread/scrittura di dati da / tooan Database SQL di Azure. Questo servizio Web espone hello seguenti quattro parametri: nome del server, nome del Database, nome Server dell'account utente e password dell'account utente Server di Database.
 
 > [!NOTE]
-> Possono essere passati come parametri per il servizio Web solo input e output dell'attività AzureMLBatchExecution. Nel precedente snippet JSON, ad esempio, MLSqlInput è un input per l'attività AzureMLBatchExecution e viene passato come input al servizio Web tramite il parametro webServiceInput.
+> Solo input e output dell'attività AzureMLBatchExecution hello possono essere passati come parametri toohello servizio Web. Ad esempio, in hello sopra frammento di codice JSON, MLSqlInput è un input toohello AzureMLBatchExecution attività, che viene passato come un input toohello servizio Web tramite un parametro webServiceInput.
 
 ## <a name="machine-learning-update-resource-activity"></a>Attività della risorsa di aggiornamento di Machine Learning
-In una definizione JSON di attività della risorsa di aggiornamento di Machine Learning è possibile specificare le proprietà seguenti. Il tipo di proprietà dell'attività deve essere impostato su **AzureMLUpdateResource**. È necessario creare innanzitutto un servizio collegato di Azure Machine Learning e quindi specificare il nome come valore della proprietà **linkedServiceName**. Quando il tipo di attività è impostato su AzureMLUpdateResource, nella sezione **typeProperties** sono supportate le proprietà seguenti:
+È possibile specificare hello seguenti proprietà in una definizione di Azure ML aggiornamento risorsa attività JSON. deve essere di proprietà del tipo Hello attività hello: **AzureMLUpdateResource**. È necessario creare un Azure Machine Learning innanzitutto il servizio collegato e specificare il nome di hello di esso come un valore per hello **linkedServiceName** proprietà. salve le proprietà seguenti sono supportate in hello **typeProperties** sezione quando si imposta il tipo di hello di tooAzureMLUpdateResource attività:
 
 Proprietà | Descrizione | Obbligatorio 
 -------- | ----------- | --------
-trainedModelName | Nome del modello sottoposto nuovamente a training. | Sì |  
-trainedModelDatasetName | Set di dati che punta al file iLearner restituito dall'operazione di ripetizione del training. | Sì | 
+trainedModelName | Nome di hello ripetere il training del modello. | Sì |  
+trainedModelDatasetName | Set di dati puntamento toohello iLearner file restituito dall'operazione di ripetizione di training hello. | Sì | 
 
 ### <a name="json-example"></a>Esempio di JSON
-La pipeline include due attività: **AzureMLBatchExecution** e **AzureMLUpdateResource**. Attività di esecuzione batch di Azure ML accetta i dati di training come input e genera il file con estensione iLearner come output. L'attività richiama il servizio Web di training, l'esperimento di training esposto come servizio Web, con i dati di training di input e riceve il file iLearner dal servizio Web. placeholderBlob è solo un set di dati di output fittizio richiesto dal servizio Data factory di Azure per eseguire la pipeline.
+Hello pipeline dispone di due attività: **AzureMLBatchExecution** e **AzureMLUpdateResource**. l'attività di esecuzione Batch di Azure ML Hello accetta i dati di training hello come input e genera un file iLearner come output. attività Hello richiama il servizio web di formazione hello (esperimento di training esposta come servizio web) con input hello i dati di training e riceve file ilearner hello dal servizio Web hello. placeholderBlob Hello è solo un set di dati del fittizio output richiesto dalla pipeline di hello toorun di hello Data Factory di Azure del servizio.
 
 
 ```json
@@ -5514,16 +5514,16 @@ La pipeline include due attività: **AzureMLBatchExecution** e **AzureMLUpdateRe
 ```
 
 ## <a name="data-lake-analytics-u-sql-activity"></a>Attività U-SQL di Data Lake Analytics
-In una definizione JSON di attività U-SQL è possibile specificare le proprietà seguenti. Il tipo di proprietà dell'attività deve essere impostato su **DataLakeAnalyticsU-SQL**. È necessario creare innanzitutto un servizio collegato di Azure Data Lake Analytics e quindi specificare il nome come valore della proprietà **linkedServiceName**. Quando il tipo di attività è impostato su DataLakeAnalyticsU-SQL, nella sezione **typeProperties** sono supportate le proprietà seguenti: 
+È possibile specificare le proprietà in una definizione del formato JSON dell'attività U-SQL seguenti hello. deve essere di proprietà del tipo Hello attività hello: **DataLakeAnalyticsU SQL**. È necessario creare un servizio di Azure Data Lake Analitica collegato e specificare il nome di hello di esso come un valore per hello **linkedServiceName** proprietà. salve le proprietà seguenti sono supportate in hello **typeProperties** sezione quando si imposta il tipo di hello di attività tooDataLakeAnalyticsU-SQL: 
 
 | Proprietà | Descrizione | Obbligatorio |
 |:--- |:--- |:--- |
-| scriptPath |Percorso della cartella contenente lo script U-SQL. Il nome del file distingue tra maiuscole e minuscole. |No (se si usa uno script) |
-| scriptLinkedService |Servizi collegati che collegano la risorsa di archiviazione contenente lo script alla Data factory |No (se si usa uno script) |
+| scriptPath |Toofolder percorso che contiene lo script hello U-SQL. Nome del file hello è tra maiuscole e minuscole. |No (se si usa uno script) |
+| scriptLinkedService |Servizio collegato che si collega archiviazione hello che contiene una data factory di hello script toohello |No (se si usa uno script) |
 | script |Specificare lo script inline anziché scriptPath e scriptLinkedService. Ad esempio: "script": "CREATE DATABASE test". |No (se si usano le proprietà scriptPath e scriptLinkedService) |
-| degreeOfParallelism |Il numero massimo di nodi usati contemporaneamente per eseguire il processo. |No |
-| priority |Determina quali processi rispetto a tutti gli altri disponibili nella coda devono essere selezionati per essere eseguiti per primi. Più è basso il numero, maggiore sarà la priorità. |No |
-| parameters |Parametri per lo script U-SQL |No |
+| degreeOfParallelism |numero massimo di Hello di nodi utilizzati contemporaneamente processo hello toorun. |No |
+| priority |Determina innanzitutto quali processi, tra tutti quelli accodati devono essere toorun selezionato. Hello hello numero inferiore, priorità più alta hello hello. |No |
+| parameters |Parametri per hello U-SQL script |No |
 
 ### <a name="json-example"></a>Esempio di JSON
 
@@ -5581,22 +5581,22 @@ In una definizione JSON di attività U-SQL è possibile specificare le propriet�
 Per altre informazioni, vedere [Attività Data Lake Analytics U-SQL](data-factory-usql-activity.md). 
 
 ## <a name="stored-procedure-activity"></a>Attività stored procedure
-In una definizione JSON di attività stored procedure è possibile specificare le proprietà seguenti. Il tipo di proprietà dell'attività deve essere impostato su **SqlServerStoredProcedure**. È necessario creare uno dei seguenti servizi collegati e specificare il nome del servizio collegato come valore della proprietà **linkedServiceName**:
+È possibile specificare hello seguenti proprietà in una definizione di Stored Procedure formato JSON dell'attività. deve essere di proprietà del tipo Hello attività hello: **SqlServerStoredProcedure**. È necessario creare un uno dei seguenti servizi collegati hello e specificare il nome di hello del servizio hello collegato come un valore per hello **linkedServiceName** proprietà:
 
 - SQL Server 
 - Database SQL di Azure
 - Azure SQL Data Warehouse
 
-Quando il tipo di attività è impostato su SqlServerStoredProcedure, nella sezione **typeProperties** sono supportate le proprietà seguenti:
+salve le proprietà seguenti sono supportate in hello **typeProperties** sezione quando si imposta il tipo di hello di tooSqlServerStoredProcedure attività:
 
 | Proprietà | Descrizione | Obbligatorio |
 | --- | --- | --- |
-| storedProcedureName |Specificare il nome della stored procedure nel database SQL di Azure o Azure SQL Data Warehouse rappresentato dal servizio collegato che usa la tabella di output. |Sì |
-| storedProcedureParameters |Specificare i valori dei parametri della stored procedure. Se è necessario passare null per un parametro, usare la sintassi "param1": null (tutte lettere minuscole). Vedere l'esempio seguente per informazioni sull'uso di questa proprietà. |No |
+| storedProcedureName |Specificare il nome di hello della routine di hello archiviato nel database di SQL Azure hello o Azure SQL Data Warehouse è rappresentato dal servizio hello collegato che Usa tabella di output di hello. |Sì |
+| storedProcedureParameters |Specificare i valori dei parametri della stored procedure. Se è necessario toopass null per un parametro, utilizzare la sintassi di hello: "param1": null (lettere minuscole). Vedere hello seguente toolearn esempio sull'utilizzo di questa proprietà. |No |
 
-Se si specifica un set di dati di input, questo dovrà essere disponibile (in stato 'Ready') per l'esecuzione dell'attività della stored procedure. Il set di dati di input non può essere usato nella stored procedure come parametro. Viene usato solo per verificare la dipendenza prima di iniziare l'attività della stored procedure. È necessario specificare un set di dati di output per un'attività della stored procedure. 
+Se si specifica un set di dati di input, deve essere disponibile (in stato "Pronto") per hello stored procedure toorun di attività. set di dati Hello input non può essere utilizzato nella procedura hello archiviato come parametro. È solo toocheck utilizzati hello dipendenza prima hello Inizia attività stored procedure. È necessario specificare un set di dati di output per un'attività della stored procedure. 
 
-Il set di dati di output specifica la **pianificazione** per le attività della stored procedure (ogni ora, ogni settimana, ogni mese e così via). Il set di dati di output deve usare un **servizio collegato** che faccia riferimento a un database SQL di Azure, a un Azure SQL Data Warehouse o a un database SQL Server in cui si vuole che venga eseguita la stored procedure. Il set di dati di output può essere usato per passare il risultato della stored procedure per la successiva elaborazione da parte di un'altra attività ([concatenamento di attività](data-factory-scheduling-and-execution.md##multiple-activities-in-a-pipeline)) nella pipeline. Data Factory non scrive tuttavia automaticamente l'output di una stored procedure in questo set di dati. È la stored procedure a scrivere dati in una tabella SQL cui punta il set di dati di output. In alcuni casi, il set di dati di output può essere un **set di dati fittizio**che viene usato solo per specificare la pianificazione per l'esecuzione dell'attività della stored procedure.  
+Set di dati di output specifica hello **pianificazione** per hello attività stored procedure (ogni ora, settimanale, mensile, ecc.). Hello set di dati di output deve utilizzare un **servizio collegato** che fa riferimento tooan Database SQL di Azure o di un Data Warehouse di SQL Azure o di un Database di SQL Server in cui si desidera hello toorun stored procedure. Hello set di dati di output può essere utilizzato come un risultato hello toopass modo procedure hello archiviato per l'elaborazione successiva da un'altra attività ([concatenamento di attività](data-factory-scheduling-and-execution.md##multiple-activities-in-a-pipeline)) nella pipeline hello. Tuttavia, Data Factory non scrive automaticamente output di hello di un set di dati toothis stored procedure. È hello stored procedure di scritture tooa SQL tabella punti di set di dati di output di hello. In alcuni casi, il set di dati di hello output può essere un **set di dati fittizio**, che viene utilizzato solo pianificazione hello toospecify per l'esecuzione di hello attività stored procedure.  
 
 ### <a name="json-example"></a>Esempio di JSON
 
@@ -5627,15 +5627,15 @@ Il set di dati di output specifica la **pianificazione** per le attività della 
 Per altre informazioni, vedere [Attività stored procedure](data-factory-stored-proc-activity.md). 
 
 ## <a name="net-custom-activity"></a>Attività personalizzata .NET
-In una definizione JSON di attività personalizzata .NET è possibile specificare le proprietà seguenti. Il tipo di proprietà dell'attività deve essere impostato su **DotNetActivity**. È necessario creare un servizio collegato Azure HDInsight o Azure Batch e specificare il nome del servizio collegato come valore della proprietà **linkedServiceName**. Quando il tipo di attività è impostato su DotNetActivity, nella sezione **typeProperties** sono supportate le proprietà seguenti:
+È possibile specificare le proprietà in un'attività personalizzata .NET definizione JSON seguenti hello. deve essere di proprietà del tipo Hello attività hello: **DotNetActivity**. È necessario creare un servizio collegato di HDInsight di Azure o un Batch di Azure collegato del servizio e specificare il nome di hello del servizio collegato hello come valore per hello **linkedServiceName** proprietà. salve le proprietà seguenti sono supportate in hello **typeProperties** sezione quando si imposta il tipo di hello di tooDotNetActivity attività:
  
 | Proprietà | Descrizione | Obbligatorio |
 |:--- |:--- |:--- |
-| AssemblyName | Nome dell'assembly. Nell'esempio è: **MyDotnetActivity.dll**. | Sì |
-| EntryPoint |Nome della classe che implementa l'interfaccia IDotNetActivity. Nell'esempio è: **MyDotNetActivityNS.MyDotNetActivity** dove MyDotNetActivityNS è lo spazio dei nomi e MyDotNetActivity è la classe.  | Sì | 
-| PackageLinkedService | None del servizio collegato di Archiviazione di Azure che punta all'archivio BLOB contenente il file con estensione zip dell'attività personalizzata. Nell'esempio è: **AzureStorageLinkedService**.| Sì |
-| PackageFile | Nome del file con estensione zip. Nell'esempio è: **customactivitycontainer/MyDotNetActivity.zip**. | Sì |
-| extendedProperties | Proprietà estese che è possibile definire e passare al codice .NET. In questo esempio, la variabile **SliceStart** è impostata su un valore basato sulla variabile di sistema SliceStart. | No | 
+| AssemblyName | Nome dell'assembly hello. Nell'esempio hello è: **MyDotnetActivity.dll**. | Sì |
+| EntryPoint |Nome della classe hello che implementa l'interfaccia IDotNetActivity hello. Nell'esempio hello è: **MyDotNetActivityNS.MyDotNetActivity** dove MyDotNetActivityNS è lo spazio dei nomi hello e MyDotNetActivity è la classe hello.  | Sì | 
+| PackageLinkedService | Nome del servizio collegato di archiviazione di Azure che punta toohello archiviazione di blob che contiene i file zip di attività personalizzata hello hello. Nell'esempio hello è: **AzureStorageLinkedService**.| Sì |
+| PackageFile | Nome del file zip hello. Nell'esempio hello è: **customactivitycontainer/MyDotNetActivity.zip**. | Sì |
+| extendedProperties | Proprietà estese che è possibile definire e passare al codice .NET toohello. In questo esempio hello **SliceStart** variabile è impostata un valore tooa in base alla variabile di sistema SliceStart hello. | No | 
 
 ### <a name="json-example"></a>Esempio di JSON
 
@@ -5687,7 +5687,7 @@ In una definizione JSON di attività personalizzata .NET è possibile specificar
 Per altre informazioni, vedere l'articolo relativo all'[uso delle attività personalizzate in Data Factory](data-factory-use-custom-activities.md). 
 
 ## <a name="next-steps"></a>Passaggi successivi
-Vedere le esercitazioni seguenti: 
+Vedere hello seguenti esercitazioni: 
 
 - [Esercitazione: Creare una pipeline con un'attività di copia](data-factory-copy-activity-tutorial-using-azure-portal.md)
 - [Esercitazione: Creare una pipeline con un'attività di Hive](data-factory-build-your-first-pipeline-using-editor.md)

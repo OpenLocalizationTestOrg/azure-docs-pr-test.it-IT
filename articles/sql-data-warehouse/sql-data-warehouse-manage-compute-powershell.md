@@ -1,6 +1,6 @@
 ---
-title: Gestire la potenza di calcolo in Azure SQL Data Warehouse (PowerShell) | Microsoft Docs
-description: "Attività di PowerShell per la gestione della potenza di calcolo. Ridimensionare le risorse di calcolo cambiando il numero di DWU. In alternativa, sospendere e riprendere le risorse di calcolo per ridurre i costi."
+title: aaaManage calcolo power in Azure SQL Data Warehouse (PowerShell) | Documenti Microsoft
+description: "Potenza di calcolo toomanage attività PowerShell. Ridimensionare le risorse di calcolo cambiando il numero di DWU. In alternativa, è possibile sospendere e riprendere toosave costi delle risorse di calcolo."
 services: sql-data-warehouse
 documentationcenter: NA
 author: hirokib
@@ -15,11 +15,11 @@ ms.workload: data-services
 ms.custom: manage
 ms.date: 10/31/2016
 ms.author: elbutter;barbkess
-ms.openlocfilehash: 6a185d96447c2e1b0b463439dd062081e783da5f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8b379d4cf89570649767f6896d2c630d4f1111d7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="manage-compute-power-in-azure-sql-data-warehouse-powershell"></a>Gestire la potenza di calcolo in Azure SQL Data Warehouse (PowerShell)
 > [!div class="op_single_selector"]
@@ -32,17 +32,17 @@ ms.lasthandoff: 07/11/2017
 >
 
 ## <a name="before-you-begin"></a>Prima di iniziare
-### <a name="install-the-latest-version-of-azure-powershell"></a>Installare la versione più recente di Azure PowerShell.
+### <a name="install-hello-latest-version-of-azure-powershell"></a>Installare hello la versione più recente di Azure PowerShell
 > [!NOTE]
-> Per usare Azure PowerShell con SQL Data Warehouse, è necessario installare Azure PowerShell 1.0.3 o versione successiva.  Per verificare la versione corrente, eseguire il comando **Get-Module -ListAvailable -Name Azure**. È possibile installare la versione più recente usando l'[Installazione guidata piattaforma Web Microsoft][Microsoft Web Platform Installer].  Per altre informazioni, vedere [Come installare e configurare Azure PowerShell][How to install and configure Azure PowerShell].
+> toouse PowerShell di Azure con SQL Data Warehouse, è necessario Azure PowerShell versione 1.0.3 o versione successiva.  tooverify la versione corrente comando hello **Get-Module - ListAvailable-Name Azure**. È possibile installare una versione più recente di hello dal [installazione guidata piattaforma Web di Microsoft][Microsoft Web Platform Installer].  Per ulteriori informazioni, vedere [come tooinstall e configurare Azure PowerShell][How tooinstall and configure Azure PowerShell].
 >
 > 
 
 ### <a name="get-started-with-azure-powershell-cmdlets"></a>Introduzione ai cmdlet di Azure PowerShell
-Attività iniziali
+tooget avviato:
 
 1. Aprire Azure PowerShell.
-2. Al prompt di PowerShell, eseguire questi comandi per accedere ad Azure Resource Manager e selezionare la sottoscrizione.
+2. Al prompt di PowerShell hello, eseguire questi comandi toosign in toohello Gestione risorse di Azure e selezionare la sottoscrizione.
 
     ```PowerShell
     Login-AzureRmAccount
@@ -56,7 +56,7 @@ Attività iniziali
 ## <a name="scale-compute-power"></a>Ridimensionare la potenza di calcolo
 [!INCLUDE [SQL Data Warehouse scale DWUs description](../../includes/sql-data-warehouse-scale-dwus-description.md)]
 
-Per modificare il numero di DWU usare il cmdlet PowerShell [Set-AzureRmSqlDatabase][Set-AzureRmSqlDatabase]. L'esempio seguente imposta l'obiettivo del livello di servizio su DW1000 per il database MySQLDW ospitato nel server MyServer.
+hello toochange Dwu, utilizzare hello [Set AzureRmSqlDatabase] [ Set-AzureRmSqlDatabase] cmdlet di PowerShell. Hello esempio imposta hello servizio livello obiettivo tooDW1000 per database hello MySQLDW che è ospitato nel server MyServer.
 
 ```Powershell
 Set-AzureRmSqlDatabase -DatabaseName "MySQLDW" -ServerName "MyServer" -RequestedServiceObjectiveName "DW1000"
@@ -67,10 +67,10 @@ Set-AzureRmSqlDatabase -DatabaseName "MySQLDW" -ServerName "MyServer" -Requested
 ## <a name="pause-compute"></a>Sospendere le risorse di calcolo
 [!INCLUDE [SQL Data Warehouse pause description](../../includes/sql-data-warehouse-pause-description.md)]
 
-Per sospendere l'esecuzione di un database, usare il cmdlet [Suspend-AzureRmSqlDatabase][Suspend-AzureRmSqlDatabase]. L'esempio seguente sospende il database Database02 ospitato sul server Server01. Il server appartiene al gruppo di risorse di Azure ResourceGroup1.
+toopause un database, utilizzare hello [Suspend AzureRmSqlDatabase] [ Suspend-AzureRmSqlDatabase] cmdlet. Hello esempio seguente viene sospeso un database denominato Database02 ospitato in un server denominato Server01. server Hello è denominato ResourceGroup1 in un gruppo di risorse di Azure.
 
 > [!NOTE]
-> Se il server è foo.database.windows.net, usare "foo" come nome server nei cmdlet di PowerShell.
+> Si noti che se il server è foo.database.windows.net, utilizzare "foo" come hello - ServerName nei cmdlet di PowerShell hello.
 >
 > 
 
@@ -78,7 +78,7 @@ Per sospendere l'esecuzione di un database, usare il cmdlet [Suspend-AzureRmSqlD
 Suspend-AzureRmSqlDatabase –ResourceGroupName "ResourceGroup1" `
 –ServerName "Server01" –DatabaseName "Database02"
 ```
-Come variazione, il database dell'esempio seguente viene recuperato nell'oggetto $database. L'oggetto viene quindi inviato tramite pipe a [Suspend-AzureRmSqlDatabase][Suspend-AzureRmSqlDatabase]. I risultati vengono archiviati nell'oggetto resultDatabase. Il comando finale mostra i risultati.
+Una variazione, in questo esempio Recupera database hello in oggetto hello $database. Quindi, Invia oggetto hello troppo[Suspend AzureRmSqlDatabase][Suspend-AzureRmSqlDatabase]. Hello risultati vengono archiviati in resultDatabase oggetto hello. comando finale Hello Mostra risultati hello.
 
 ```Powershell
 $database = Get-AzureRmSqlDatabase –ResourceGroupName "ResourceGroup1" `
@@ -92,14 +92,14 @@ $resultDatabase
 ## <a name="resume-compute"></a>Riavviare le risorse di calcolo
 [!INCLUDE [SQL Data Warehouse resume description](../../includes/sql-data-warehouse-resume-description.md)]
 
-Per avviare un database, usare il cmdlet [Resume-AzureRmSqlDatabase][Resume-AzureRmSqlDatabase]. L'esempio seguente avvia il database Database02 ospitato sul server Server01. Il server appartiene al gruppo di risorse di Azure ResourceGroup1.
+toostart un database, utilizzare hello [Resume AzureRmSqlDatabase] [ Resume-AzureRmSqlDatabase] cmdlet. Hello esempio seguente viene avviato un database denominato Database02 ospitato in un server denominato Server01. server Hello è denominato ResourceGroup1 in un gruppo di risorse di Azure.
 
 ```Powershell
 Resume-AzureRmSqlDatabase –ResourceGroupName "ResourceGroup1" `
 –ServerName "Server01" -DatabaseName "Database02"
 ```
 
-Come variazione, il database dell'esempio seguente viene recuperato nell'oggetto $database. L'oggetto viene quindi inviato tramite pipe a [Resume-AzureRmSqlDatabase][Resume-AzureRmSqlDatabase] e i risultati vengono archiviati in $resultDatabase. Il comando finale mostra i risultati.
+Una variazione, in questo esempio Recupera database hello in oggetto hello $database. Quindi, Invia oggetto hello troppo[Resume AzureRmSqlDatabase] [ Resume-AzureRmSqlDatabase] e archivia i risultati di hello in $resultDatabase. comando finale Hello Mostra risultati hello.
 
 ```Powershell
 $database = Get-AzureRmSqlDatabase –ResourceGroupName "ResourceGroup1" `
@@ -112,7 +112,7 @@ $resultDatabase
 
 ## <a name="check-database-state"></a>Controllare lo stato del database
 
-Come illustrato negli esempi precedenti, è possibile usare il cmdlet [Get-AzureRmSqlDatabase][Get-AzureRmSqlDatabase] per ottenere informazioni su un database, controllando quindi lo stato, oppure usarlo come argomento. 
+Come illustrato nell'hello esempi sopra riportati, è possibile utilizzare [Get AzureRmSqlDatabase] [ Get-AzureRmSqlDatabase] cmdlet tooget informazioni in un database, in tal modo il controllo stato hello, ma anche toouse come argomento. 
 
 ```powershell
 Get-AzureRmSqlDatabase [-ResourceGroupName] <String> [-ServerName] <String> [[-DatabaseName] <String>]
@@ -142,7 +142,7 @@ ElasticPoolName               :
 EarliestRestoreDate           : 1/1/0001 12:00:00 AM
 ```
 
-in cui è quindi possibile controllare lo *stato* del database. Nel caso in questione, il database è online. 
+In cui è possibile selezionare hello toosee *stato* del database hello. Nel caso in questione, il database è online. 
 
 Quando si esegue questo comando, è possibile ricevere un valore di stato Online, In pausa, Ripresa, Ridimensionamento e Sospeso.
 
@@ -156,7 +156,7 @@ Per altre attività di gestione, vedere [Panoramica della gestione][Management o
 <!--Article references-->
 [Service capacity limits]: ./sql-data-warehouse-service-capacity-limits.md
 [Management overview]: ./sql-data-warehouse-overview-manage.md
-[How to install and configure Azure PowerShell]: /powershell/azureps-cmdlets-docs
+[How tooinstall and configure Azure PowerShell]: /powershell/azureps-cmdlets-docs
 [Manage compute overview]: ./sql-data-warehouse-manage-compute-overview.md
 
 <!--MSDN references-->

@@ -1,5 +1,5 @@
 ---
-title: "Panoramica su Integrità risorse di Azure | Microsoft Docs"
+title: Panoramica dello stato delle risorse aaaAzure | Documenti Microsoft
 description: "Panoramica su Integrità risorse di Azure"
 services: Resource health
 documentationcenter: 
@@ -14,80 +14,80 @@ ms.tgt_pltfrm: na
 ms.workload: Supportability
 ms.date: 06/01/2016
 ms.author: BernardoAMunoz
-ms.openlocfilehash: d54979995ca97a70ba92c64915b919da09f548ec
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b920241b2f64a0695ba2c32e9ccb0c2c3739986d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-resource-health-overview"></a>Panoramica su Integrità risorse di Azure
  
-Integrità risorse consente di eseguire una diagnosi e di ottenere supporto quando un problema di Azure ha effetto sulle risorse. Informa sull'integrità corrente e passata delle risorse e consente di attenuare i problemi. Integrità risorse offre supporto tecnico quando è necessaria assistenza per problemi con i servizi di Azure.
+Integrità risorse consente di eseguire una diagnosi e di ottenere supporto quando un problema di Azure ha effetto sulle risorse. Informato dello stato corrente e precedenti hello delle risorse e consente di attenuare i problemi. Integrità risorse offre supporto tecnico quando è necessaria assistenza per problemi con i servizi di Azure.
 
-A differenza di [Stato di Azure](https://status.azure.com) che visualizza informazioni sui problemi dei servizi che interessano numerosi clienti di Azure, Integrità risorse offre un dashboard personalizzato dell'integrità delle risorse. Integrità risorse visualizza tutte le volte in cui le risorse non sono state disponibili a causa di problemi dei servizi di Azure. Ciò consente di individuare in modo semplice se è stato violato un contratto di servizio. 
+Mentre [stato Azure](https://status.azure.com) informare sui problemi di servizio che interessano una vasta gamma di clienti di Azure, l'integrità delle risorse offre un dashboard di integrità hello delle risorse personalizzato. Integrità delle risorse viene sempre hello le risorse non sono disponibili in hello scaduta tooAzure i problemi del servizio. Questo rende semplice per è toounderstand se è stato violato un contratto di servizio. 
 
 ## <a name="what-is-considered-a-resource-and-how-does-resource-health-decides-if-a-resource-is-healthy-or-not"></a>Qual è la definizione di "risorsa" e in che modo Integrità risorse stabilisce se una risorsa è integra o meno?
 Una risorsa è un'istanza di un tipo di risorsa messo a disposizione da un servizio di Azure tramite Azure Resource Manager, ad esempio una macchina virtuale, un'app Web o un database SQL.
 
-Integrità risorse si basa su segnali emessi dai diversi servizi di Azure per determinare se una risorsa è integra o meno. Se una risorsa non è integra, Integrità risorse analizza informazioni aggiuntive per determinare l'origine del problema. Identifica anche le azioni intraprese da Microsoft per risolvere il problema o le azioni da eseguire per eliminare la causa del problema. 
+Integrità delle risorse si basa su segnali emessi da hello diversi servizi Azure tooassess se una risorsa è integro o non. Se una risorsa non è integra, integrità delle risorse analizza le informazioni aggiuntive toodetermine hello causa hello problema. Vengono inoltre identificati azioni che richiede Microsoft problema hello toofix o quali azioni da eseguire tooaddress hello causano del problema hello. 
 
-Esaminare l'elenco completo dei tipi di risorse e dei controlli di integrità in [Integrità risorse di Azure](resource-health-checks-resource-types.md) per altri dettagli sulla modalità di valutazione dell'integrità.
+Elenco completo di hello revisione dei tipi di risorse e l'integrità controlla [integrità delle risorse Azure](resource-health-checks-resource-types.md) per ulteriori informazioni sulle modalità di valutazione di integrità.
 
 ## <a name="health-status-provided-by-resource-health"></a>Stato di integrità indicato da Integrità risorse
-L'integrità di una risorsa è indicata da uno degli stati seguenti:
+integrità Hello di una risorsa è uno dei seguenti stati hello:
 
 ### <a name="available"></a>Disponibile
-Il servizio non ha rilevato eventi che hanno effetto sull'integrità della risorsa. Se la risorsa è stata ripristinata da un tempo di inattività non pianificato nelle ultime 24 ore, viene visualizzata la notifica di **recupero recente**.
+servizio Hello non è stata rilevata tutti gli eventi che hanno un impatto integrità hello della risorsa hello. Nei casi in cui risorse hello è stata ripristinata da tempi di inattività imprevisti durante hello ultime 24 ore, verrà visualizzato hello **ripristinato di recente** notifica.
 
 ![Integrità risorse: macchina virtuale con stato Disponibile](./media/resource-health-overview/Available.png)
 
 ### <a name="unavailable"></a>Non disponibile
-Il servizio ha rilevato un evento piattaforma o non piattaforma in corso che ha effetto sull'integrità della risorsa.
+Hello servizio ha rilevato un evento di non piattaforma conseguenze integrità hello della risorsa hello o di piattaforma in corso.
 
 #### <a name="platform-events"></a>Eventi piattaforma
-Questi eventi vengono generati da più componenti dell'infrastruttura di Azure e includono azioni pianificate, ad esempio la manutenzione, ed eventi imprevisti, ad esempio un riavvio dell'host non pianificato.
+Questi eventi vengono attivati da più componenti di infrastruttura di Azure hello e includono sia azioni pianificate come la manutenzione pianificata e gli eventi imprevisti imprevisti come il riavvio di un host non pianificato.
 
-Integrità risorse visualizza ulteriori dettagli sull'evento, il processo di recupero e consente di contattare il supporto tecnico anche se non si ha un contratto di supporto Microsoft.
+Integrità delle risorse sono disponibili ulteriori dettagli sull'evento hello, il processo di ripristino di hello e consente il supporto toocontact anche se non si dispone di Microsoft active contratto di supporto.
 
-![Integrità risorse: macchina virtuale con stato Non disponibile a causa di un evento piattaforma](./media/resource-health-overview/Unavailable.png)
+![Risorsa integrità disponibile macchina virtuale a causa di eventi tooplatform](./media/resource-health-overview/Unavailable.png)
 
 #### <a name="non-platform-events"></a>Eventi non piattaforma
-Questi eventi vengono generati da azioni eseguite dagli utenti, ad esempio l'arresto di una macchina virtuale o il raggiungimento del numero massimo di connessioni a una cache Redis.
+Questi eventi vengono attivati da azioni eseguite dagli utenti, ad esempio l'arresto di una macchina virtuale o raggiungere hello il numero massimo di connessioni tooa Cache Redis.
 
-![Integrità risorse: macchina virtuale con stato Non disponibile a causa di un evento non piattaforma](./media/resource-health-overview/Unavailable_NonPlatform.png)
+![Risorsa integrità disponibile macchina virtuale a causa di evento toonon piattaforma](./media/resource-health-overview/Unavailable_NonPlatform.png)
 
 ### <a name="unknown"></a>Sconosciuto
-Questo stato indica che Integrità risorse non ha ricevuto informazioni sulla risorsa per più di 10 minuti. Sebbene questo stato non sia un'indicazione definitiva dello stato della risorsa, è un punto dati importanti nel processo di risoluzione dei problemi:
-* Se la risorsa viene eseguita come previsto, lo stato della risorsa verrà aggiornato in Disponibile dopo alcuni minuti.
-* Se si verificano problemi con la risorsa, lo stato di integrità Sconosciuto può indicare che la risorsa è stata interessata da un evento nella piattaforma.
+Questo stato indica che Integrità risorse non ha ricevuto informazioni sulla risorsa per più di 10 minuti. Sebbene questo stato non è un'indicazione dello stato di hello della risorsa hello definitiva, è un punto dati importanti nel processo di risoluzione dei problemi di hello:
+* Se la risorsa hello è in esecuzione allo stato previsto hello della risorsa hello aggiornerà tooAvailable dopo alcuni minuti.
+* Se si verificano problemi con la risorsa hello, hello lo stato di integrità sconosciuto può suggerire risorse hello sono stata interessata da un evento nella piattaforma hello.
 
 ![Integrità risorse: macchina virtuale con stato Sconosciuto](./media/resource-health-overview/Unknown.png)
 
 ## <a name="report-an-incorrect-status"></a>Segnalare uno stato non corretto
-Se in qualsiasi momento si ritiene che lo stato di integrità corrente non sia corretto, è possibile inviare una segnalazione facendo clic su **Report incorrect health status** (Segnala stato integrità non corretto). Se si verifica un problema di Azure, è consigliabile contattare il supporto tecnico dal pannello di Integrità risorse. 
+Se in qualsiasi momento si ritiene che lo stato di integrità corrente hello è corretto, è possibile segnalarlo facendo **segnalare lo stato di integrità corretto**. Nei casi in cui sono interessati da un problema di Azure, si consiglia di supporto toocontact dal pannello integrità della risorsa hello. 
 
 ![Integrità risorse: report di stato non corretto](./media/resource-health-overview/incorrect-status.png)
 
 ## <a name="historical-information"></a>Informazioni sulla cronologia
-È possibile accedere a un massimo di 14 giorni di dati cronologici sull'integrità facendo clic su **Visualizza cronologia** nel pannello di Integrità risorse. 
+I giorni too14 dei dati cronologici di integrità di cui è possibile accedere facendo clic su **Visualizza cronologia** nel Pannello di integrità risorsa hello. 
 
 ![Integrità risorse: report della cronologia](./media/resource-health-overview/history-blade.png)
 
-## <a name="getting-started"></a>Introduzione
-Per aprire Integrità risorse per una risorsa
-1.  Accedere al portale di Azure.
-2.  Passare alla risorsa.
-3.  Nel menu della risorsa sul lato sinistro fare clic su **Integrità risorsa**.
+## <a name="getting-started"></a>introduttiva
+tooopen integrità delle risorse per una risorsa
+1.  Accedere in hello portale di Azure.
+2.  Passare tooyour risorse.
+3.  Scegliere dal menu risorse hello si trova nella parte sinistra hello **integrità delle risorse**.
 
 ![Aprire Integrità risorse dal pannello della risorsa](./media/resource-health-overview/from-resource-blade.png)
 
-È anche possibile accedere a Integrità risorse facendo clic su **Altri servizi** e digitando **Integrità risorse** nella casella di testo di filtro per aprire il pannello **Guida e supporto**. Infine fare clic su [**Integrità risorse**](https://ms.portal.azure.com/#blade/Microsoft_Azure_Monitoring/AzureMonitoringBrowseBlade/resourceHealth).
+È inoltre possibile accedere integrità delle risorse facendo **più servizi**e digitando **integrità delle risorse** in hello tooopen casella testo di filtro **della Guida e supporto** blade. Infine fare clic su [**Integrità risorse**](https://ms.portal.azure.com/#blade/Microsoft_Azure_Monitoring/AzureMonitoringBrowseBlade/resourceHealth).
 
 ![Aprire Integrità risorse da Altri servizi](./media/resource-health-overview/FromOtherServices.png)
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Per altre informazioni su Integrità risorse, vedere:
+Consultare queste risorse toolearn più sull'integrità delle risorse:
 -  [Tipi di risorse e controlli di integrità in Integrità risorse di Azure](resource-health-checks-resource-types.md)
 -  [Domande frequenti su Integrità risorse di Azure](resource-health-faq.md)
 

@@ -1,5 +1,5 @@
 ---
-title: Regole e gruppi di regole CRS del Web application firewall di Gateway applicazione di Azure | Microsoft Docs
+title: firewall applicazione web di aaaAzure Gateway applicazione CRS gruppi di regole e regole | Documenti Microsoft
 description: Questa pagina offre informazioni sulle regole e i gruppi di regole CRS del Web application firewall.
 documentationcenter: na
 services: application-gateway
@@ -15,17 +15,17 @@ ms.custom:
 ms.workload: infrastructure-services
 ms.date: 03/28/2017
 ms.author: gwallace
-ms.openlocfilehash: 9f4445b7ceb5b39c7907b1ca4c7bf0ad52ba8212
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6be139847392baeb235bc48b079335c1e0d8287b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="list-of-web-application-firewall-crs-rule-groups-and-rules-offered"></a>Elenco delle regole e dei gruppi di regole CRS del Web application firewall disponibili
 
-Il Web application firewall (WAF) di Gateway applicazione protegge le applicazioni Web da vulnerabilità ed exploit comuni. A questo scopo vengono usate regole definite in base a OWASP Core Rule Set 2.2.9 o 3.0. Queste regole possono essere disabilitate singolarmente. Questo articolo contiene le regole e i set di regole attualmente offerti.
+Il Web application firewall (WAF) di Gateway applicazione protegge le applicazioni Web da vulnerabilità ed exploit comuni. Questa operazione viene eseguita in base alle regole definite in base a set di regole base di OWASP hello 2.2.9 o 3.0. Queste regole possono essere disabilitate singolarmente. In questo articolo contiene le regole correnti hello e ruleSet offerto.
 
-Nelle tabelle seguenti sono riportati le regole e i gruppi di regole disponibili quando si usa Gateway applicazione con il Web application firewall.  Ogni tabella rappresenta le regole incluse in un gruppo di regole per una specifica versione di CRS.
+Hello le tabelle seguenti è gruppi di regole hello e regole che sono disponibili quando si usa Gateway applicazione con firewall applicazione web.  Ogni tabella rappresenta regole hello trovate in un gruppo di regole per una versione specifica di CR.
 
 ##<a name="owasp30"></a> OWASP_3.0
 
@@ -110,7 +110,7 @@ Nelle tabelle seguenti sono riportati le regole e i gruppi di regole disponibili
 |920011|Regola 920011|
 |920012|Regola 920012|
 |920100|Riga della richiesta HTTP non valida|
-|920130|Impossibile analizzare corpo della richiesta|
+|920130|Non è stato possibile tooparse il corpo della richiesta.|
 |920140|La convalida di tipo strict del corpo della richiesta multiparte non è riuscita:     PE %@{REQBODY_PROCESSOR_ERROR}     BQ %@{MULTIPART_BOUNDARY_QUOTED}     BW %@{MULTIPART_BOUNDARY_WHITESPACE}     DB %@{MULTIPART_DATA_BEFORE}     DA %@{MULTIPART_DATA_AFTER}     HF %@{MULTIPART_HEADER_FOLDING}     LF %@{MULTIPART_LF_LINE}     SM %@{MULTIPART_SEMICOLON_MISSING}     IQ %@{MULTIPART_INVALID_QUOTING}     IH %@{MULTIPART_INVALID_HEADER_FOLDING}     FLE %@{MULTIPART_FILE_LIMIT_EXCEEDED}|
 |920160|Intestazione HTTP Content-Length non numerica|
 |920170|Richiesta GET o HEAD con contenuto del corpo|
@@ -342,7 +342,7 @@ Nelle tabelle seguenti sono riportati le regole e i gruppi di regole disponibili
 |---|---|
 |960911|Riga della richiesta HTTP non valida|
 |981227|Errore Apache: URI non valido nella richiesta|
-|960912|Impossibile analizzare corpo della richiesta|
+|960912|Non è stato possibile tooparse il corpo della richiesta.|
 |960914|La convalida di tipo strict del corpo della richiesta multiparte non è riuscita:     PE %@{REQBODY_PROCESSOR_ERROR}     BQ %@{MULTIPART_BOUNDARY_QUOTED}     BW %@{MULTIPART_BOUNDARY_WHITESPACE}     DB %@{MULTIPART_DATA_BEFORE}     DA %@{MULTIPART_DATA_AFTER}     HF %@{MULTIPART_HEADER_FOLDING}     LF %@{MULTIPART_LF_LINE}     SM %@{MULTIPART_SEMICOLON_MISSING}     IQ %@{MULTIPART_INVALID_QUOTING}     IH %@{MULTIPART_INVALID_HEADER_FOLDING}     FLE %@{MULTIPART_FILE_LIMIT_EXCEEDED}|
 |960915|Il parser multiparte ha rilevato un possibile limite senza corrispondenza|
 |960016|Intestazione HTTP Content-Length non numerica|
@@ -400,9 +400,9 @@ Nelle tabelle seguenti sono riportati le regole e i gruppi di regole disponibili
 
 |ID regola|Descrizione|
 |---|---|
-|990002|La richiesta indica che è stata eseguita l'analisi della sicurezza sul sito|
-|990901|La richiesta indica che è stata eseguita l'analisi della sicurezza sul sito|
-|990902|La richiesta indica che è stata eseguita l'analisi della sicurezza sul sito|
+|990002|Richiesta indica un hello scansione di sicurezza del sito|
+|990901|Richiesta indica un hello scansione di sicurezza del sito|
+|990902|Richiesta indica un hello scansione di sicurezza del sito|
 |990012|Agente di ricerca siti Web non autorizzato|
 
 ### <a name="crs40"></a> crs_40_generic_attacks
@@ -592,6 +592,6 @@ Nelle tabelle seguenti sono riportati le regole e i gruppi di regole disponibili
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Per informazioni su come disabilitare le regole WAF, vedere l'articolo su come [personalizzare le regole del Web application firewall](application-gateway-customize-waf-rules-portal.md)
+Informazioni su come toodisable WAF regole visitando: [regole WAF personalizzare](application-gateway-customize-waf-rules-portal.md)
 
 [1]: ./media/application-gateway-integration-security-center/figure1.png

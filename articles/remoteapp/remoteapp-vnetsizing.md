@@ -1,6 +1,6 @@
 ---
-title: Informazioni sul ridimensionamento di una rete virtuale in Azure RemoteApp | Documentazione Microsoft
-description: Informazioni sui requisiti relativi agli indirizzi IP per Azure RemoteApp in esecuzione con una rete virtuale
+title: aaaSizing informazioni per una rete virtuale in Azure RemoteApp | Documenti Microsoft
+description: Informazioni sui requisiti di indirizzo IP di hello per Azure RemoteApp in esecuzione con una rete virtuale
 services: remoteapp
 documentationcenter: 
 author: msmbaldwin
@@ -13,24 +13,24 @@ ms.devlang: na
 ms.topic: article
 ms.date: 11/23/2016
 ms.author: mbaldwin
-ms.openlocfilehash: 9375981db64ec4a1ae523e958423b5f5787cec33
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: f98b831af32c41740b258d122b3e18765be08d97
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="sizing-information-for-a-vnet-in-azure-remoteapp"></a>Informazioni sul ridimensionamento di una rete virtuale in Azure RemoteApp
 > [!IMPORTANT]
-> Azure RemoteApp verrà sospeso a partire dal 31 agosto 2017. Per i dettagli, vedere l' [annuncio](https://go.microsoft.com/fwlink/?linkid=821148) .
+> Azure RemoteApp verrà sospeso a partire dal 31 agosto 2017. Hello lettura [annuncio](https://go.microsoft.com/fwlink/?linkid=821148) per informazioni dettagliate.
 > 
 > 
 
-Quando si usa Azure RemoteApp con una rete virtuale (VNET), RemoteApp usa gli indirizzi IP all'interno della subnet. In base alla scala del servizio RemoteApp, è necessario assicurarsi che la subnet abbia indirizzi IP sufficienti per le macchine virtuali RemoteApp. Queste indicazioni di ridimensionamento non sono complete se si osserva in che modo RemoteApp esegue dinamicamente lo spin-up e lo spin-down delle macchine virtuali all'interno di una raccolta, tuttavia consentono di stimare l'intervallo di subnet. Ciò è particolarmente importante perché, quando si include un servizio RemoteApp in una rete virtuale, non è possibile aumentare le dimensioni della subnet senza rimuovere RemoteApp.
+Quando si usa Azure RemoteApp con una rete virtuale (VNET), RemoteApp Usa gli indirizzi IP in subnet hello. In base alla scala di hello del servizio di RemoteApp, è necessario che la subnet disponga di indirizzi IP sufficienti per le macchine virtuali RemoteApp tooensure. Queste indicazioni di ridimensionamento non sono complete se si osserva in che modo RemoteApp esegue dinamicamente lo spin-up e lo spin-down delle macchine virtuali all'interno di una raccolta, tuttavia consentono di stimare l'intervallo di subnet. Ciò è particolarmente importante perché, dopo un servizio di RemoteApp è posizionato in una rete virtuale, non è possibile aumentare la dimensione della subnet hello senza rimuovere RemoteApp.
 
-Per ogni raccolta RemoteApp da eseguire alla capacità massima devono essere disponibili 100 indirizzi IP. Ad esempio, se si ha una raccolta RemoteApp nel piano Standard e si vuole avere un numero massimo di 500 utenti, sono necessari 100 indirizzi IP per la raccolta. Analogamente, in un piano Basic con 800 utenti sono necessari 100 indirizzi IP per una raccolta RemoteApp. Se si prevede un numero minore di utenti (inferiore al numero massimo), è possibile ridurre gli indirizzi IP per ogni raccolta. Il requisito minimo per le dimensioni della subnet è di 30 indirizzi IP (/27).
+Per ogni raccolta RemoteApp che si desidera toorun alla capacità massima, è necessario 100 gli indirizzi IP disponibili. Ad esempio, se si dispone di una raccolta RemoteApp nel piano Standard hello e si desidera toohave hello massimo 500 utenti, è necessario 100 indirizzi IP per la raccolta. Analogamente, è necessario 100 indirizzi IP per una raccolta RemoteApp nel piano base hello dotato di 800 utenti. Se si prevede di toohave un numero di utenti (minore di hello massima), è possibile ridurre gli indirizzi IP hello necessari per ogni raccolta. requisiti relativi alla dimensione minima subnet Hello sono 30 indirizzi IP (/ 27).
 
-Consultare le informazioni seguenti per assicurarsi che la rete virtuale sia configurata e funzioni correttamente:
+Estrarre hello dopo che la rete virtuale sia configurata con informazioni toomake e funziona correttamente:
 
-* [Come eseguire la migrazione da una rete virtuale personale a una rete virtuale di Azure](remoteapp-migratevnet.md)
-* [Convalidare la rete virtuale di Azure da usare con Azure RemoteApp](remoteapp-vnet.md)
+* [Eseguire la migrazione da un tooan di rete virtuale personale rete virtuale di Azure](remoteapp-migratevnet.md)
+* [Convalidare hello toouse di rete virtuale di Azure con Azure RemoteApp](remoteapp-vnet.md)
 

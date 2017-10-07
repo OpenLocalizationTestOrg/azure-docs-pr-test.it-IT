@@ -1,6 +1,6 @@
 ---
-title: Protezione dell'accesso ad Azure RemoteApp e oltre | Documentazione Microsoft
-description: Informazioni su come proteggere l'accesso ad RemoteApp usando l'accesso condizionale in Azure Active Directory
+title: aaaSecuring accesso tooAzure RemoteApp e oltre | Documenti Microsoft
+description: Informazioni su come proteggere l'accesso tooAzure RemoteApp con accesso condizionale in Azure Active Directory
 services: remoteapp
 documentationcenter: 
 author: piotrci
@@ -13,106 +13,106 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/26/2017
 ms.author: mbaldwin
-ms.openlocfilehash: 28ee4698515d11964e5371628d21dbc00687c861
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 98dfe69e2f5fa5014b6eb3157e01f131c287134d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="securing-access-to-azure-remoteapp-and-beyond"></a>Protezione dell'accesso ad Azure RemoteApp e oltre
+# <a name="securing-access-tooazure-remoteapp-and-beyond"></a>Protezione accesso tooAzure RemoteApp e oltre
 > [!IMPORTANT]
-> Azure RemoteApp verrà sospeso a partire dal 31 agosto 2017. Per i dettagli, vedere l' [annuncio](https://go.microsoft.com/fwlink/?linkid=821148) .
+> Azure RemoteApp verrà sospeso a partire dal 31 agosto 2017. Hello lettura [annuncio](https://go.microsoft.com/fwlink/?linkid=821148) per informazioni dettagliate.
 > 
 > 
 
-In questo articolo verrà illustrato come un amministratore può configurare un canale di accesso sicuro dall'utente finale ad Azure RemoteApp e infine a una risorsa sicura, ad esempio un database SQL o un altro back-end dell'applicazione. L'obiettivo è fare in modo che solo gli utenti autorizzati che soddisfano le condizioni desiderate possano accedere alle applicazioni remote e che il back-end sicuro sia accessibile solo dall'ambiente di Azure RemoteApp controllato e non da altre posizioni.
+In questo articolo viene verrà fornita una panoramica di come un amministratore può impostare un canale di proteggere l'accesso a partire dall'utente finale di hello, tramite Azure RemoteApp e terminano con una risorsa protetta, ad esempio un database SQL o un'altra applicazione back-end. obiettivo di Hello è toomake assicurarsi che solo gli utenti autorizzati hello riunione desiderato condizioni possono accedere le applicazioni remote e che hello back-end sicuro accessibile solo dall'ambiente di Azure RemoteApp hello controllato e non da altri percorsi.
 
-Le 3 aree principali che l'amministratore deve esaminare sono le seguenti:
+Sono disponibili 3 aree principali salve deve toolook in:
 
 ![Considerazioni sull'accesso condizionale di Azure RemoteApp](./media/remoteapp-secureaccess/ra-conditionalenvironment.png)
 
-Per informazioni e per le risposte a queste domande, continuare a leggere l'articolo.
+Continuare a leggere per informazioni e le risposte alle domande toothese.
 
-## <a name="who-can-access-the-collection"></a>Chi può accedere alla raccolta?
-L'amministratore sceglie gli utenti che possono accedere alle applicazioni remote della raccolta. È possibile usare gli account aziendali o dell'istituto di istruzione di Azure Active Directory (Azure AD), in precedenza denominati "account aziendali", o gli account Microsoft, ad esempio @outlook.com. La maggior parte degli scenari aziendali usa account Azure AD che consentono di usare le funzionalità di accesso condizionale illustrate più avanti e costituiscono l'unica scelta per le raccolte appartenenti a un dominio. Nella parte restante dell'articolo si presuppone che si stiano usando gli account Azure AD con Azure RemoteApp.
+## <a name="who-can-access-hello-collection"></a>Chi può accedere raccolta hello?
+messaggio per l'amministratore sceglie utenti hello che possano accedere alle applicazioni remote nell'insieme di hello. È possibile usare gli account aziendali o dell'istituto di istruzione di Azure Active Directory (Azure AD), in precedenza denominati "account aziendali", o gli account Microsoft, ad esempio @outlook.com. La maggior parte degli scenari aziendali di utilizzare gli account di Azure AD, consentono di utilizzare le funzionalità di accesso condizionale illustrate più avanti e sono inoltre scelta solo di hello per le raccolte di dominio. il resto di Hello di hello articolo si presuppone il che usano degli account Azure AD con Azure RemoteApp.
 
 **Risultati ottenuti:**
 
-Usando gli account Azure AD per controllare l'accesso ad Azure RemoteApp si ottengono due risultati:
+Utilizzo di Azure AD account toocontrol accesso tooAzure che RemoteApp offre due operazioni:
 
-1. Si sa sempre chi può accedere alle applicazioni pubblicate e ai back-end a cui le applicazioni si connettono.
-2. Si controlla l'istanza di Azure AD sottostante per poter creare ed eliminare gli account utente, impostare i criteri password, usare l'autenticazione a più fattori e così via. 
+1. È sempre sapere quali utenti possono accedere le applicazioni è stata pubblicata e accedere a tali applicazioni qualsiasi back-end si connettono hello.
+2. Controlliamo hello sottostante AD Azure, è possibile creare e gli account utente di eliminazione, impostare i criteri password, utilizzano l'autenticazione a più fattori e così via. 
 
-## <a name="how-is-the-collection-accessed-from-where"></a>Come si accede alla raccolta? Da dove?
-Gli amministratori di solito vogliono definire i criteri per l'accesso a un ambiente Internet pubblico, ad esempio Azure RemoteApp. Vogliono, ad esempio, essere certi che gli utenti che accedono all'ambiente dall'esterno della rete aziendale debbano usare l'autenticazione a più fattori (MFA) per ottenere l'accesso o che vengano completamente bloccati, se necessario.
+## <a name="how-is-hello-collection-accessed-from-where"></a>Come avviene insieme hello? Da dove?
+In genere gli amministratori vogliono toodefine criteri per l'accesso a un ambiente con connessione Internet pubblico, ad esempio Azure RemoteApp. Ad esempio, desiderano tooensure che gli utenti che accedono ambiente hello dall'esterno alla rete aziendale hello accedano toouse multi-factor authentication (MFA) toogain; o forse devono essere bloccate completamente.
 
-Gli amministratori di Azure RemoteApp possono usare la funzionalità disponibile in Azure AD Premium per impostare criteri di accesso condizionale per l'ambiente Azure RemoteApp. Possono anche usare le funzionalità avanzate di creazione di report e gli avvisi per monitorare l'accesso all'ambiente.
+Azure RemoteApp consente agli amministratori funzionalità di hello disponibili tramite i criteri di accesso condizionale di Azure AD Premium tooset per il proprio ambiente di Azure RemoteApp. È inoltre possibile utilizzare report avanzati e avvisi toomonitor funzionalità modalità di accesso ambiente hello.
 
-### <a name="how-to-set-up-conditional-access-for-azure-remoteapp"></a>Come configurare l'accesso condizionale per Azure RemoteApp
-Verrà ora illustrato uno scenario di esempio: l'amministratore di Azure RemoteApp vuole bloccare l'accesso all'ambiente quando gli utenti sono all'esterno della rete aziendale.
+### <a name="how-tooset-up-conditional-access-for-azure-remoteapp"></a>Come tooset di accesso condizionale per Azure RemoteApp
+È in corso toowalk tramite uno scenario di esempio: hello Azure RemoteApp amministratore ambiente toohello di tooblock accesso quando gli utenti sono di fuori di rete aziendale hello.
 
 > [!NOTE]
-> Si presuppone che Azure AD sia stato aggiornato al piano Premium e che sia stata creata almeno una raccolta di Azure RemoteApp.
+> Si presuppone che l'aggiornamento AD Azure toohello livello Premium e che sia stato creato almeno una raccolta di Azure RemoteApp.
 > 
 > 
 
-1. Nel portale di Azure fare clic sulla scheda **Active Directory** . quindi fare clic sulla directory che si vuole configurare.
+1. Nel portale di Azure fare clic su hello **Active Directory** scheda. Fare clic su directory hello si tooconfigure.
    
-   Si ricordi che l'accesso condizionale è una proprietà della directory e non di Azure RemoteApp, quindi la configurazione viene completamente eseguita a livello di directory e perciò è necessario essere l'amministratore della directory per apportare queste modifiche.
-2. Fare clic su **Applicazioni** e quindi su **Microsoft Azure RemoteApp** per configurare l'accesso condizionale. Si noti che è possibile configurare l'accesso condizionale per ogni singola applicazione "software come un servizio" nella directory.
+   Ricorda: L'accesso condizionale è una proprietà di directory e non di Azure RemoteApp, in modo tutta la configurazione viene eseguita a livello di directory hello. Questo significa anche occorre toobe hello directory amministratore toomake queste modifiche.
+2. Fare clic su **applicazioni**, quindi fare clic su **Microsoft Azure RemoteApp** tooset di accesso condizionale. Si noti che è possibile configurare l'accesso condizionale per ogni singola applicazione "software come un servizio" nella directory.
    ![Configurazione dell'accesso condizionale per Azure RemoteApp](./media/remoteapp-secureaccess/ra-conditionalaccessscreen.png)
-3. Nella scheda **Configura** attivare **Abilita regole di accesso**.
+3. In hello **configura** scheda, impostare **abilitare le regole di accesso** tooON.
    ![Abilitare le regole di accesso per Azure RemoteApp](./media/remoteapp-secureaccess/ra-enableaccessrules.png)
-4. Ora è possibile configurare diverse regole e scegliere a chi applicarle:
+4. È ora possibile configurare varie regole e scegliere chi tooapply a:
    
-   1. Scegliere **Blocca l'accesso quando non al lavoro** per impedire completamente agli utenti di accedere ad Azure RemoteApp al di fuori dell'ambiente specificato.
-   2. Fare clic sull'opzione sotto per definire gli intervalli di indirizzi IP che costituiscono la "rete attendibile". Tutti gli altri indirizzi verranno rifiutati.
-5. Testare la configurazione avviando il client Azure RemoteApp da un indirizzo IP non compreso nell'intervallo specificato. Dopo avere eseguito l'accesso con le credenziali di Azure AD, verrà visualizzato un messaggio simile a questo:
+   1. Scegliere **bloccare l'accesso quando non al lavoro** toocompletely impedire agli utenti l'accesso a Azure RemoteApp dall'ambiente di rete hello specificate.
+   2. Scegliere l'opzione hello sotto toodefine hello indirizzi IP che costituiscono la "rete attendibile". Tutti gli altri indirizzi verranno rifiutati.
+5. Verificare la configurazione avviando il client Azure RemoteApp hello da un indirizzo IP di fuori intervallo hello specificato. Dopo avere eseguito l'accesso con le credenziali di Azure AD, verrà visualizzato un messaggio simile a questo:
 
-![Accesso negato ad Azure RemoteApp](./media/remoteapp-secureaccess/ra-accessdenied.png)
+![Accesso negato tooAzure RemoteApp](./media/remoteapp-secureaccess/ra-accessdenied.png)
 
 ### <a name="future-conditional-access-features"></a>Funzionalità di accesso condizionale future
-Il team di Azure Active Directory sta lavorando alle nuove funzionalità di accesso condizionale. Gli amministratori potranno creare nuovi tipi di regole oltre a quelle basate sui percorsi di rete. Un'anteprima pubblica delle nuove funzionalità sarà presto disponibile.
+il team di Azure Active Directory Hello funziona sulle nuove funzionalità di accesso condizionale. Gli amministratori saranno in grado di toocreate nuovi tipi di regole regole di percorso basato su rete. Non appena l'anteprima pubblica di nuove funzionalità di hello dovrebbe essere disponibile.
 
-### <a name="how-to-monitor-access-to-azure-remoteapp"></a>Come monitorare l'accesso ad Azure RemoteApp
-Un'eccellente funzionalità da usare con l'accesso condizionale è la creazione di report di Azure Active Directory Premium. È possibile usare i report per monitorare chi accede all'ambiente e rilevare le attività sospette.
+### <a name="how-toomonitor-access-tooazure-remoteapp"></a>Modalità di accesso tooAzure RemoteApp toomonitor
+Toouse un grande funzionalità con accesso condizionale è una funzionalità di reporting di hello Azure Active Directory Premium. È possibile utilizzare i report toomonitor che accede al proprio ambiente e rilevare eventuali attività sospette.
 
-Ad esempio, è possibile visualizzare i nomi degli utenti che hanno eseguito l'accesso ad Azure RemoteApp, quante volte l'hanno effettuato e quando.
+Ad esempio, è possibile visualizzare nomi di hello di utenti hello che Azure RemoteApp, quante volte è stato ottenuto questo e quando.
 
 1. Nel portale di Azure fare clic su **Active Directory**e quindi sulla directory.
-2. Passare alla scheda **Report** .
-3. Nell'elenco di report selezionare **Utilizzo applicazioni** in **Applicazioni integrate**.
+2. Passare toohello **report** scheda.
+3. Selezionare nell'elenco dei report hello **utilizzo dell'applicazione** in **integrato applicazioni**.
    
    Verranno visualizzate alcune statistiche aggregate per Azure RemoteApp. 
    ![Statistiche di accesso di Azure RemoteApp aggregate](./media/remoteapp-secureaccess/ra-accessstats.png)
-4. Fare clic sull'applicazione per visualizzare le informazioni sugli utenti che accedono ad Azure RemoteApp.
+4. Fare clic su hello applicazione tooreveal informazioni agli utenti l'accesso a Azure RemoteApp.
    ![Statistiche di accesso utente per Azure RemoteApp](./media/remoteapp-secureaccess/ra-userstats.png)
 
 ### <a name="summary"></a>Riepilogo
-Con Azure Active Directory Premium è possibile configurare regole di accesso ad Azure RemoteApp (e ad altre applicazioni software come un servizio disponibili in Azure AD). Le regole attualmente sono limitate ai criteri basati sui percorsi di rete, ma in futuro verranno estese ad altri aspetti della gestione aziendale.
+Con Azure Active Directory Premium è possibile impostare regole tooAzure RemoteApp di accesso (e altri software come un servizio le applicazioni disponibili tramite Azure AD). Le regole sono attualmente limitate toonetwork criteri di posizione in base ma verranno in futuro hello esteso tooother aspetti della gestione aziendale.
 
-Azure AD Premium offre anche funzionalità di creazione di report e di monitoraggio che estendono ulteriormente il controllo dell'amministratore sull'ambiente Azure RemoteApp.
+Azure AD Premium offre inoltre reporting e il monitoraggio di funzionalità che estendono ulteriormente hello controllo salve ha sull'ambiente di Azure RemoteApp.
 
 ## <a name="how-do-i-make-sure-my-secure-resource-is-accessible-only-from-my-azure-remoteapp-environment"></a>Come verificare che la risorsa sicura sia accessibile solo dall'ambiente Azure RemoteApp?
-Nelle sezioni precedenti di questo articolo è stata illustrata la protezione dell'accesso all'ambiente Azure RemoteApp, che è stata realizzata scegliendo gli utenti a cui è consentito l'accesso e configurando regole di accesso per ottenere un controllo maggiore su come possono usare il servizio.
+Nelle sezioni precedenti di questo articolo è incentrata sulla protezione di ambiente di Azure RemoteApp toohello di accesso. È stata eseguita che scegliendo utenti hello sono consentiti l'accesso e impostare il controllo di accesso regole toofurther sull'utilizzo di servizio hello.
 
-Uno scenario comune per le distribuzioni di Azure RemoteApp è quello in cui le applicazioni remote devono comunicare con una risorsa back-end, ad esempio un database SQL. Questa risorsa è ospitata in locale (ad esempio, in una rete aziendale) o nel cloud (ad esempio, in IaaS di Azure). Gli amministratori spesso vogliono verificare che la risorsa back-end possa essere accessibile solo alle applicazioni distribuite tramite Azure RemoteApp e non, ad esempio, a un'applicazione eseguita direttamente nel PC di un utente e che accede tramite Internet pubblico. Azure RemoteApp viene spesso considerato un ambiente protetto e gestito centralmente e di conseguenza il solo percorso attraverso cui gli utenti possono interagire con la risorsa back-end.
+Uno scenario comune per le distribuzioni di Azure RemoteApp è che le applicazioni remote hello necessitino toocommunicate con una risorsa di back-end, ad esempio un database SQL. Questa risorsa è ospitata in locale (ad esempio in una rete aziendale) o nel cloud hello (ad esempio in Azure IaaS). Gli amministratori desiderano spesso toomake accertarsi che risorse back-end hello accessibile solo dalle applicazioni distribuite tramite Azure RemoteApp e non, ad esempio da un'applicazione in esecuzione direttamente in PC un e l'accesso a Internet pubblico. Azure RemoteApp viene spesso visualizzato come hello-gestiti centralmente e ambiente protetto e pertanto l'unico percorso di hello attraverso il quale gli utenti devono interagire con hello risorse back-end.
 
-La soluzione è inserire sia l'ambiente Azure RemoteApp che la risorsa sicura nella stessa rete virtuale di Azure. Se la risorsa è in un sito diverso, è possibile stabilire una connessione VPN da sito a sito, ad esempio per creare una rete virtuale che si estende sul data center di Azure e sull'ambiente locale del cliente.
+soluzione hello è tooplace entrambi hello Azure RemoteApp ambiente e risorsa protetta di hello in hello stesso Azure rete virtuale (VNET). Se la risorsa di hello è in un altro sito, è possibile stabilire una connessione VPN da sito a sito, ad esempio un rete virtuale spanning hello data center di Azure toocreate e hello cliente nell'ambiente locale.
 
 Azure RemoteApp supporta due tipi di distribuzione di raccolte in cui è possibile specificare la propria rete virtuale:
 
-* Non appartenente a un dominio: le applicazioni avranno una "visuale" delle altre risorse della rete virtuale. Può essere usata, ad esempio, per connettere le applicazioni a un database SQL che usa l'autenticazione SQL (le applicazioni autenticano l'utente direttamente nel database)
-* Appartenente a un dominio: le macchine virtuali usate da Azure RemoteApp appartengono a un controller di dominio della rete virtuale. È utile quando le applicazioni devono eseguire l'autenticazione in un controller di dominio Windows per ottenere l'accesso a una risorsa back-end.
+* Non appartenenti a un dominio: hello applicazioni hanno "di visibilità" di hello altre risorse nella rete virtuale hello. Ad esempio, questo può essere utilizzato tooconnect applicazioni tooa database SQL viene utilizzata l'autenticazione di SQL (applicazioni eseguono l'autenticazione utente hello direttamente nel database hello)
+* Dominio: hello usate da RemoteApp di Azure le macchine virtuali sono tooa aggiunti a un controller di dominio nella rete virtuale hello. Ciò è utile quando le applicazioni di hello devono tooauthenticate su un Controller di dominio di Windows in risorse di back-end tooa accesso tooget ordine.
   ![Raccolta appartenente a un dominio in Azure RemoteApp](./media/remoteapp-secureaccess/ra-domainjoined.png)
 
-### <a name="how-to-create-a-secure-connection-between-azure-and-my-on-premises-environment"></a>Come creare una connessione sicura tra l'ambiente Azure e locale
-Le opzioni di configurazione per connettere gli ambienti Azure e locali sono diverse. Qui è disponibile un'ampia panoramica delle opzioni.
+### <a name="how-toocreate-a-secure-connection-between-azure-and-my-on-premises-environment"></a>Come toocreate una connessione sicura tra Azure e l'ambiente locale
+Le opzioni di configurazione per connettere gli ambienti Azure e locali sono diverse. Una buona panoramica delle opzioni di hello è disponibile qui.
 
-Con Azure RemoteApp è necessario configurare prima la rete virtuale e quindi usarla durante il processo di creazione della raccolta. 
+Con Azure RemoteApp necessario tooconfigure innanzitutto la rete virtuale e quindi utilizzarla durante il processo di creazione hello della raccolta. 
 
-## <a name="the-complete-solution"></a>Soluzione completa
-Il diagramma seguente illustra la soluzione completa in cui è stato creato un canale di accesso sicuro dall'utente finale, attraverso Azure RemoteApp (ARA), alla risorsa backend.
-![Proteggere Azure RemoteApp](./media/remoteapp-secureaccess/ra-secureoverview.png) Nella fase 1 sono stati selezionati gli utenti e sono state create le regole di accesso che determinano come accedere ad ARA. Nell'esempio seguente viene consentito l'accesso solo agli utenti che lavorano dalla rete aziendale. Gli utenti non conformi non potranno accedere all'ambiente ARA.
-Nella "Fase 2" la risorsa back-end è stata esposta solo tramite la configurazione di rete virtuale/VPN controllata. Azure RemoteApp è stato inserito nella stessa rete virtuale. Come risultato finale la risorsa è accessibile solo dall'ambiente ARA.
+## <a name="hello-complete-solution"></a>soluzione completa di Hello
+diagramma di Hello seguente mostra la soluzione completa di hello è stata creata in un canale protetto di accesso dall'utente finale di hello, RemoteApp tramite Azure (ARA), in risorse di back-end hello.
+![Protezione di Azure RemoteApp](./media/remoteapp-secureaccess/ra-secureoverview.png) nella fase 1 si hello utenti selezionati e creare regole di accesso che determinano come ARA accessibili. Nel seguente esempio hello è consentire l'accesso solo per gli utenti che lavorano dalla rete aziendale hello. Gli utenti non conforme non saranno in qualsiasi ambiente ARA di tooaccess in grado di hello.
+Nella fase 2 esposta risorse back-end hello solo tramite la configurazione di rete virtuale/VPN hello che si controllata. Azure RemoteApp è stato inserito in hello stessa rete virtuale. risultato finale Hello è che la risorsa hello solo è possibile accedere tramite ambiente ARA hello.
 

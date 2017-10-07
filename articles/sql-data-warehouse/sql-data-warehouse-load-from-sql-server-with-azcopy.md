@@ -1,6 +1,6 @@
 ---
-title: Caricare dati da SQL Server in Azure SQL Data Warehouse (PolyBase) | Documentazione Microsoft
-description: Uso di bcp per esportare dati da SQL Server a file flat, di AZCopy per importare dati nell'archivio BLOB di Azure e di PolyBase per inserire i dati in Azure SQL Data Warehouse.
+title: dati aaaLoad da SQL Server in Azure SQL Data Warehouse (PolyBase) | Documenti Microsoft
+description: Utilizza bcp tooexport dati da file tooflat di SQL Server, archiviazione blob di AZCopy tooimport dati tooAzure e dati di PolyBase tooingest hello in Azure SQL Data Warehouse.
 services: sql-data-warehouse
 documentationcenter: NA
 author: ckarst
@@ -15,32 +15,32 @@ ms.workload: data-services
 ms.custom: loading
 ms.date: 10/31/2016
 ms.author: cakarst;barbkess
-ms.openlocfilehash: 08f94bc26d8b1e1f5a56dfccd41e394dbd721024
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 89e2a91bc97642e9fc18545cb802b42d8dc4ad95
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="load-data-from-sql-server-into-azure-sql-data-warehouse-azcopy"></a>Caricare dati da SQL Server in Azure SQL Data Warehouse (AZCopy)
-Usare le utilità della riga di comando bcp e AZCopy per caricare dati da SQL Server all'archivio BLOB di Azure. Usare quindi PolyBase o Azure Data Factory per caricare i dati in Azure SQL Data Warehouse. 
+Utilizzare bcp e dati tooload utilità della riga di comando di AZCopy dall'archiviazione blob tooAzure di SQL Server. Quindi utilizzare i dati di hello tooload PolyBase o Data Factory di Azure in Azure SQL Data Warehouse. 
 
 ## <a name="prerequisites"></a>Prerequisiti
-Per eseguire questa esercitazione, è necessario:
+toostep di questa esercitazione, è necessario:
 
 * Un database di SQL Data Warehouse
-* Utilità della riga di comando bcp installata
-* Utilità della riga di comando SQLCMD installata
+* utilità della riga di comando bcp Hello installato
+* utilità della riga di comando SQLCMD installato Hello
 
 > [!NOTE]
-> È possibile scaricare le utilità bcp e sqlcmd dall'[Area download Microsoft][Microsoft Download Center].
+> È possibile scaricare le utilità bcp e sqlcmd hello da hello [Microsoft Download Center][Microsoft Download Center].
 > 
 > 
 
 ## <a name="import-data-into-sql-data-warehouse"></a>Importare i dati in SQL Data Warehouse
-In questa esercitazione verrà creata una tabella in Azure SQL Data Warehouse e verranno importati dati nella tabella.
+In questa esercitazione, verrà di creare una tabella in Azure SQL Data Warehouse e di importare dati nella tabella hello.
 
 ### <a name="step-1-create-a-table-in-azure-sql-data-warehouse"></a>Passaggio 1: Creare una tabella in Azure SQL Data Warehouse
-Al prompt dei comandi usare sqlcmd per eseguire la query seguente per creare una tabella nell'istanza:
+Da un prompt dei comandi, utilizzare sqlcmd toorun hello seguente query toocreate una tabella nell'istanza:
 
 ```sql
 sqlcmd.exe -S <server name> -d <database name> -U <username> -P <password> -I -Q "
@@ -59,12 +59,12 @@ sqlcmd.exe -S <server name> -d <database name> -U <username> -P <password> -I -Q
 ```
 
 > [!NOTE]
-> Per altre informazioni sulla creazione di una tabella in SQL Data Warehouse e sulle opzioni disponibili con la clausola WITH, vedere [Panoramica delle tabelle][Table Overview] o la [sintassi di CREATE TABLE][CREATE TABLE syntax].
+> Vedere [Cenni preliminari su tabella] [ Table Overview] o [sintassi CREATE TABLE] [ CREATE TABLE syntax] per ulteriori informazioni sulla creazione di una tabella in SQL Data Warehouse e hello  opzioni disponibili nella clausola WITH hello.
 > 
 > 
 
 ### <a name="step-2-create-a-source-data-file"></a>Passaggio 2: Creare un file di dati di origine
-Aprire il Blocco note, copiare le righe di dati seguenti in un nuovo file di testo e quindi salvare il file nella directory temporanea locale, C:\Temp\DimDate2.txt.
+Aprire Blocco note e copiare hello seguenti righe di dati in un nuovo file di testo e quindi salvare il file tooyour locale directory temporanea, C:\Temp\DimDate2.txt.
 
 ```
 20150301,1,3
@@ -82,24 +82,24 @@ Aprire il Blocco note, copiare le righe di dati seguenti in un nuovo file di tes
 ```
 
 > [!NOTE]
-> È importante ricordare che bcp.exe non supporta la codifica UTF-8 del file. Usare i file ASCII o con codifica UTF-16 quando si usa bcp.exe.
+> È importante tooremember che bcp.exe non supporta la codifica file hello UTF-8. Usare i file ASCII o con codifica UTF-16 quando si usa bcp.exe.
 > 
 > 
 
-### <a name="step-3-connect-and-import-the-data"></a>Passaggio 3: Connettersi e importare i dati
-bcp permette di connettersi e importare i dati usando il comando seguente, sostituendo i valori in base alla necessità:
+### <a name="step-3-connect-and-import-hello-data"></a>Passaggio 3: Connettersi e importare i dati hello
+Utilizzo di bcp, è possibile connettersi e importare i dati di hello tramite hello seguente comando sostituendo hello i valori appropriati:
 
 ```sql
 bcp DimDate2 in C:\Temp\DimDate2.txt -S <Server Name> -d <Database Name> -U <Username> -P <password> -q -c -t  ','
 ```
 
-È possibile verificare che i dati siano stati caricati eseguendo la query seguente con sqlcmd:
+È possibile verificare i dati sono stati caricati eseguendo la seguente query utilizzando sqlcmd hello hello:
 
 ```sql
 sqlcmd.exe -S <server name> -d <database name> -U <username> -P <password> -I -Q "SELECT * FROM DimDate2 ORDER BY 1;"
 ```
 
-Dovrebbero essere visualizzati i risultati seguenti:
+Deve essere restituito hello seguenti risultati:
 
 | DateId | CalendarQuarter | FiscalQuarter |
 | --- | --- | --- |
@@ -117,9 +117,9 @@ Dovrebbero essere visualizzati i risultati seguenti:
 | 20151201 |4 |2 |
 
 ### <a name="step-4-create-statistics-on-your-newly-loaded-data"></a>Passaggio 4: creare le statistiche sui dati appena caricati
-SQL Data Warehouse di Azure non supporta ancora le statistiche di creazione automatica o aggiornamento automatico. Per ottenere le migliori prestazioni dalle query, è importante creare statistiche per tutte le colonne di tutte le tabelle dopo il primo caricamento o dopo eventuali modifiche sostanziali dei dati. Per una spiegazione dettagliata delle statistiche, vedere l'argomento [Statistiche][Statistics] nel gruppo di argomenti sullo sviluppo. Di seguito è possibile vedere un rapido esempio di come creare statistiche nella tabella caricata in questo esempio.
+SQL Data Warehouse di Azure non supporta ancora le statistiche di creazione automatica o aggiornamento automatico. Ordine tooget hello prestazioni migliori dalle query, è importante creare statistiche per tutte le colonne di tutte le tabelle dopo il primo caricamento hello o si verificano modifiche sostanziali in dati hello. Per una spiegazione dettagliata delle statistiche, vedere hello [statistiche] [ Statistics] argomento nel gruppo di sviluppare hello degli argomenti. Di seguito è riportato un esempio di come statistiche toocreate sulla tabella hello caricati in questo esempio
 
-Da un prompt di sqlcmd, eseguire le istruzioni CREATE STATISTICS seguenti:
+Hello seguendo le istruzioni CREATE STATISTICS sqlcmd al prompt dei comandi eseguire:
 
 ```sql
 sqlcmd.exe -S <server name> -d <database name> -U <username> -P <password> -I -Q "
@@ -130,15 +130,15 @@ sqlcmd.exe -S <server name> -d <database name> -U <username> -P <password> -I -Q
 ```
 
 ## <a name="export-data-from-sql-data-warehouse"></a>Esportare i dati da SQL Data Warehouse
-In questa esercitazione verrà creato un file di dati da una tabella in SQL Data Warehouse. I dati creati in precedenza verranno esportati in un nuovo file denominato DimDate2_export.txt.
+In questa esercitazione verrà creato un file di dati da una tabella in SQL Data Warehouse. Si esporterà i dati di hello creato in precedenza tooa nuovo file di dati denominato DimDate2_export.txt.
 
-### <a name="step-1-export-the-data"></a>Passaggio 1: Esportare i dati
-L'utilità bcp permette di connettersi ed esportare i dati usando il comando seguente, sostituendo i valori in base alla necessità:
+### <a name="step-1-export-hello-data"></a>Passaggio 1: Esportare i dati di hello
+Utilità bcp hello, è possibile connettersi ed esportare dati utilizzando hello seguente comando sostituendo hello i valori appropriati:
 
 ```sql
 bcp DimDate2 out C:\Temp\DimDate2_export.txt -S <Server Name> -d <Database Name> -U <Username> -P <password> -q -c -t ','
 ```
-Per verificare che i dati siano stati esportati correttamente, aprire il nuovo file. I dati del file devono corrispondere al testo seguente:
+È possibile verificare i dati è stati esportati correttamente aprendo hello nuovo file hello. dati Hello nel file hello devono corrispondere testo hello riportato di seguito:
 
 ```
 20150301,1,3
@@ -156,7 +156,7 @@ Per verificare che i dati siano stati esportati correttamente, aprire il nuovo f
 ```
 
 > [!NOTE]
-> A causa della natura dei sistemi distribuiti, è possibile che l'ordine dei dati non sia uguale nei database di SQL Data Warehouse. Un'altra opzione consiste nell'usare la funzione **queryout** di bcp per scrivere un estratto di query invece di esportare l'intera tabella.
+> A causa di natura toohello dei sistemi distribuiti, ordine dei dati hello potrebbe non essere hello uguali tra i database di SQL Data Warehouse. Un'altra opzione consiste hello toouse **queryout** funzione di bcp toowrite una query estrarre anziché di esportare l'intera tabella hello.
 > 
 > 
 

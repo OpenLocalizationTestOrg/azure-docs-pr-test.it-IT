@@ -9,51 +9,51 @@ editor: jasonwhowell
 ms.service: postgresql
 ms.topic: article
 ms.date: 05/10/2017
-ms.openlocfilehash: 150c4f53c5ab6a6425b6af7d286d4c1518b006f8
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 1d46a4434c483c3612a9a7b4cdef718d6dc3e765
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-database-for-postgresql-server-firewall-rules"></a>Regole firewall per Database di Azure per PostgreSQL
-I firewall impediscono qualsiasi accesso al server del database finché non vengono specificati i computer autorizzati. Il firewall concede l'accesso al server in base all'indirizzo IP di origine di ogni richiesta.
-Per configurare il firewall, creare regole del firewall che specificano gli intervalli di indirizzi IP accettabili. È possibile creare regole firewall a livello di server.
+I firewall impediscono tutti i server di database di access tooyour finché non si specifica quali computer dispongono di autorizzazioni. firewall Hello concede server toohello accesso in base a hello provenienti dall'indirizzo IP di ogni richiesta.
+tooconfigure il firewall, creare regole del firewall che specificano intervalli di indirizzi IP accettabili. È possibile creare regole del firewall a livello di server hello.
 
-**Regole firewall:** queste regole consentono ai client di accedere all'intero Database di Azure per il server PostgreSQL, ovvero a tutti i database all'interno dello stesso server logico. Le regole firewall a livello di server possono essere configurate usando il portale di Azure o i comandi dell'interfaccia della riga di comando di Azure. Per creare regole firewall a livello di server è necessario essere il proprietario o un collaboratore della sottoscrizione.
+**Regole del firewall:** queste regole abilitare tooaccess client l'intero Database di Azure per PostgreSQL Server, vale a dire tutti i database all'interno di hello hello stesso server logico. Regole del firewall a livello di server possono essere configurate usando hello portale di Azure o i comandi CLI di Azure. le regole firewall di livello server toocreate, è necessario essere proprietario della sottoscrizione hello o un collaboratore alla sottoscrizione.
 
 ## <a name="firewall-overview"></a>Panoramica del firewall
-Per impostazione predefinita, l'accesso al Database di Azure per il server PostgreSQL è bloccato dal firewall. Per iniziare a usare il server da un altro computer è necessario specificare una o più regole firewall a livello di server che consentano di accedere al server. Usare le regole firewall per specificare gli intervalli di indirizzi IP da Internet a cui concedere l'accesso. L'accesso al sito Web del portale di Azure non è determinato dalle regole firewall.
-I tentativi di connessione da Internet e Azure devono superare il firewall prima di poter raggiungere il database PostgreSQL, come illustrato nel diagramma seguente:
+Per impostazione predefinita, tutti i database access tooyour Database di Azure per server PostgreSQL è bloccato dal firewall hello. toobegin utilizzando il server da un altro computer, è necessario toospecify uno o più a livello di server firewall regole tooenable accesso tooyour server. Utilizzare toospecify di regole firewall hello quale indirizzo IP compreso tra tooallow Internet hello. Accesso toohello sito Web del portale Azure stesso non è interessata da regole del firewall hello.
+Hello di tentativi di connessione da Internet e Azure deve superare il firewall hello prima di poter raggiungere il PostgreSQL Database, come illustrato nel seguente diagramma hello:
 
-![Esempio del flusso di funzionamento del firewall](media/concepts-firewall-rules/1-firewall-concept.png)
+![Flusso di esempio del funzionamento di firewall hello](media/concepts-firewall-rules/1-firewall-concept.png)
 
-## <a name="connecting-from-the-internet"></a>Connessione da Internet
-Le regole firewall a livello di server si applicano a tutti i database del Database di Azure per il server PostgreSQL. Se l'indirizzo IP della richiesta rientra in uno degli intervalli specificati nelle regole firewall a livello di server, viene consentita la connessione.
-Se l'indirizzo IP della richiesta non rientra negli intervalli specificati in una delle regole firewall a livello di database o di server, la richiesta di connessione ha esito negativo.
-Ad esempio, se l'applicazione si connette con il driver JDBC per PostgreSQL, potrebbe verificarsi questo errore durante il tentativo di connessione quando il firewall blocca la connessione.
+## <a name="connecting-from-hello-internet"></a>Connessione da Internet hello
+Le regole del firewall a livello di server applicano tooall database hello Azure Database per server PostgreSQL. Se l'indirizzo IP hello della richiesta di hello è in uno degli intervalli di hello specificati nelle regole del firewall a livello di server hello, connessione hello viene concessa.
+Se l'indirizzo IP hello della richiesta di hello non è presente all'interno di intervalli hello specificata in una delle hello a livello di database o delle regole del firewall a livello di server, hello richiesta di connessione ha esito negativo.
+Ad esempio, se l'applicazione si connette con il driver JDBC per PostgreSQL, è possibile riscontrare questo errore durante il tentativo di tooconnect quando hello firewall blocchi la connessione hello.
 > java.util.concurrent.ExecutionException: java.lang.RuntimeException: org.postgresql.util.PSQLException: FATAL: nessuna voce pg\_hba.conf per l'host "123.45.67.890", utente "adminuser", database "postgresql", SSL
 
 ## <a name="programmatically-managing-firewall-rules"></a>Gestione di regole del firewall a livello di programmazione
-Oltre al portale di Azure, le regole firewall possono essere gestite a livello di programmazione usando l'interfaccia della riga di comando di Azure.
+Inoltre toohello portale di Azure, firewall, le regole possono essere gestiti a livello di programmazione utilizzando CLI di Azure.
 Vedere anche [Create and manage Azure Database for PostgreSQL firewall rules using Azure CLI](howto-manage-firewall-using-cli.md) (Creare e gestire regole firewall per il Database di Azure per PostgreSQL tramite l'interfaccia della riga di comando di Azure)
 
-## <a name="troubleshooting-the-database-firewall"></a>Risoluzione dei problemi del firewall del database
-Quando si effettua l'accesso al servizio Database di Microsoft Azure per il server PostgreSQL non si comporta come previsto, considerare quanto segue:
+## <a name="troubleshooting-hello-database-firewall"></a>Risoluzione dei problemi di firewall del database hello
+Considerare i seguenti punti di accesso toohello Database di Microsoft Azure per il servizio PostgreSQL Server non comportarsi come previsto hello:
 
-* **Le modifiche all'elenco Consentiti non sono state ancora applicate:** per rendere effettive le modifiche apportate al firewall del Database di Azure per il server PostgreSQL possono essere necessari fino a cinque minuti.
+* **Elenco Consenti toohello le modifiche non sono state applicate ancora:** potrebbero essere presenti in quanto un ritardo di cinque minuti per la modifica toohello Database di Azure per effetto di tootake configurazione firewall PostgreSQL Server.
 
-* **L'accesso non è autorizzato oppure è stata usata una password errata:** quando un account di accesso non dispone delle autorizzazioni per il Database di Azure per il server PostgreSQL o la password usata non è corretta, la connessione al Database di Azure per il server PostgreSQL verrà negata. La creazione di un'impostazione del firewall fornisce ai client soltanto un'opportunità di connessione al server; ogni client deve fornire le credenziali di sicurezza necessarie.
+* **account di accesso Hello non è autorizzato o è stata utilizzata una password errata:** se un account di accesso non dispone di autorizzazioni sul Database Azure hello per PostgreSQL server o hello password utilizzata non è corretta, hello toohello connessione Database di Azure per server PostgreSQL è negato. Creazione di un'impostazione del firewall fornisce solo i client con un'opportunità tooattempt connessione server tooyour; ogni client dovrà fornire le credenziali di sicurezza necessarie hello.
 
-Ad esempio, se si usa un client JDBC potrebbe essere visualizzato l'errore seguente.
+Ad esempio, un client di JDBC hello il seguente errore ammesso.
 > java.util.concurrent.ExecutionException: java.lang.RuntimeException: org.postgresql.util.PSQLException: FATAL: autenticazione della password non riuscita per l'utente "yourusername"
 
-* **Indirizzo IP dinamico:** se si dispone di una connessione Internet con indirizzi IP dinamici e si verificano problemi di comunicazione attraverso il firewall, è possibile provare una delle seguenti soluzioni:
+* **Indirizzo IP dinamico:** se si dispone di una connessione Internet con impostazione di indirizzi IP dinamici e si verificano problemi di comunicazione attraverso il firewall hello, è possibile provare una delle seguenti soluzioni hello:
 
-* Richiedere al provider di servizi Internet (ISP) l'intervallo di indirizzi IP assegnato ai computer client che accedono al Database di Azure per il server MySQL, quindi aggiungere l'intervallo di indirizzi IP come regola firewall.
+* Richiedere il Provider di servizi Internet (ISP) per l'intervallo di indirizzi IP hello assegnato tooyour i computer client che hello di accesso ai Database di Azure per PostgreSQL Server e quindi aggiungere l'intervallo di indirizzi IP hello come una regola del firewall.
 
-* Ottenere indirizzi IP statici per i computer client, quindi aggiungere gli indirizzi IP come regole del firewall.
+* Ottenere indirizzi IP statici per i computer client e quindi aggiungere gli indirizzi IP hello come regole del firewall.
 
 ## <a name="next-steps"></a>Passaggi successivi
 Per informazioni sulla creazione di regole del firewall a livello di server e di database, vedere:
-* [Create and manage Azure Database for PostgreSQL firewall rules using the Azure portal](howto-manage-firewall-using-portal.md) (Creare e gestire regole firewall per il Database di Azure per PostgreSQL usando il portale di Azure)
+* [Creare e gestire i Database di Azure per le regole firewall PostgreSQL utilizzando hello portale di Azure](howto-manage-firewall-using-portal.md)
 * [Create and manage Azure Database for PostgreSQL firewall rules using Azure CLI](howto-manage-firewall-using-cli.md) (Creare e gestire regole firewall del Database di Azure per PostgreSQL tramite l'interfaccia della riga di comando di Azure)

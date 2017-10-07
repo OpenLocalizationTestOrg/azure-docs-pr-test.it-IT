@@ -1,6 +1,6 @@
 ---
-title: Distribuzione di processi Web usando Visual Studio
-description: Informazioni su come distribuire processi Web di Azure in Servizio app per app Web di Azure.
+title: aaaDeploy processi Web usando Visual Studio
+description: Informazioni su come toodeploy processi Web di Azure tooAzure applicazione servizio Web App con Visual Studio.
 services: app-service
 documentationcenter: 
 author: ggailey777
@@ -14,36 +14,36 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 04/27/2016
 ms.author: glenga
-ms.openlocfilehash: 5b0808afdadcf4d86a9a2d07ee6fc63b80b22993
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 5fc5d9562e8836348f5ab6844fb6c23ff40a321c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="deploy-webjobs-using-visual-studio"></a>Distribuzione di processi Web usando Visual Studio
-## <a name="overview"></a>Overview
-Questo argomento illustra come usare Visual Studio per distribuire un progetto di applicazione console in un'app Web in [Servizio app](http://go.microsoft.com/fwlink/?LinkId=529714) come un [processo Web Azure](http://go.microsoft.com/fwlink/?LinkId=390226). Per informazioni su come distribuire processi Web usando il [portale di Azure](https://portal.azure.com), vedere [Eseguire attività in background con processi Web](web-sites-create-web-jobs.md).
+## <a name="overview"></a>Panoramica
+Questo argomento viene illustrato come toouse Visual Studio toodeploy un'applicazione Console progetto app web tooa [servizio App](http://go.microsoft.com/fwlink/?LinkId=529714) come un [processo Web di Azure](http://go.microsoft.com/fwlink/?LinkId=390226). Per informazioni su come toodeploy processi Web usando hello [portale Azure](https://portal.azure.com), vedere [attività eseguire in Background con processi Web](web-sites-create-web-jobs.md).
 
 Quando distribuisce un progetto di applicazione console abilitato per i processi Web, Visual Studio esegue due attività:
 
-* Copia i file di runtime nella cartella appropriata nell'app Web (*App_Data/jobs/continuous* per i processi Web in modalità continua, *App_Data/jobs/triggered* per i processi Web pianificati e su richiesta).
-* Configura i [processi dell'utilità di pianificazione di Azure](#scheduler) per i processi Web pianificati per essere eseguiti a orari specifici. Tale operazione non è necessaria per l'esecuzione dei processi Web in modalità continua.
+* File di runtime di copie di toohello cartella appropriata in hello web app (*App_Data/processi/continua* per processi Web continui, *App_Data, processi/attivato* per processi Web pianificati e su richiesta).
+* Consente di impostare [processi dell'utilità di pianificazione di Azure](#scheduler) per processi Web che vengono pianificati toorun in determinati momenti. Tale operazione non è necessaria per l'esecuzione dei processi Web in modalità continua.
 
-A un progetto abilitato per i processi Web vengono aggiunti gli elementi seguenti:
+Un progetto processi Web abilitati presenta hello tooit aggiunti gli elementi seguenti:
 
-* Pacchetto NuGet [Microsoft.Web.WebJobs.Publish](http://www.nuget.org/packages/Microsoft.Web.WebJobs.Publish/) .
+* Hello [Microsoft.Web.WebJobs.Publish](http://www.nuget.org/packages/Microsoft.Web.WebJobs.Publish/) pacchetto NuGet.
 * File [webjob-publish-settings.json](#publishsettings) che contiene le impostazioni di distribuzione e dell'utilità di pianificazione. 
 
-![Diagramma che mostra gli elementi aggiunti a un'app console per abilitare la distribuzione come processo Web](./media/websites-dotnet-deploy-webjobs/convert.png)
+![Diagramma che mostra ciò che viene aggiunto tooa App Console tooenable deployment come un processo Web](./media/websites-dotnet-deploy-webjobs/convert.png)
 
-È possibile aggiungere questi elementi a un progetto di applicazione console esistente o usare un modello per creare un nuovo progetto di applicazione console abilitato per i processi Web. 
+È possibile aggiungere questi tooan elementi progetto di applicazione Console esistente o utilizzare un toocreate modello un nuovo progetto applicazione Console abilitata per processi Web. 
 
-È possibile distribuire un progetto come processo Web indipendente o collegarlo a un progetto Web in modo tale che venga distribuito automaticamente ogni volta che viene distribuito il progetto Web. Per collegare i progetti, Visual Studio include il nome del progetto abilitato per i processi Web in un file [webjobs-list.json](#webjobslist) nel progetto Web.
+È possibile distribuire un progetto come un processo Web da solo o collegare il progetto di web tooa in modo che venga distribuito automaticamente ogni volta che si distribuisce il progetto di web hello. toolink progetti di Visual Studio include il nome di hello del progetto abilitato processi Web hello in un [processi Web list.json](#webjobslist) file nel progetto web hello.
 
-![Diagramma che mostra il collegamento del progetto processo Web al progetto Web](./media/websites-dotnet-deploy-webjobs/link.png)
+![Diagramma che illustra il progetto processo Web collegamento tooweb progetto](./media/websites-dotnet-deploy-webjobs/link.png)
 
 ## <a name="prerequisites"></a>Prerequisiti
-Le funzionalità di distribuzione di processi Web sono disponibili in Visual Studio quando si installa Azure SDK per .NET:
+Funzionalità di distribuzione di processi Web sono disponibili in Visual Studio quando si installa hello Azure SDK per .NET:
 
 * [Azure SDK per .NET (Visual Studio)](https://azure.microsoft.com/downloads/).
 
@@ -52,77 +52,77 @@ Sono disponibili due opzioni:
 
 * [Abilitare la distribuzione automatica con un progetto Web](#convertlink).
   
-    Configurare un progetto di applicazione console esistente in modo tale che venga distribuito automaticamente come processo Web quando viene distribuito un progetto Web. Usare questa opzione quando si vuole eseguire il processo Web nella stessa app Web in cui viene eseguita l'applicazione Web correlata.
+    Configurare un progetto di applicazione console esistente in modo tale che venga distribuito automaticamente come processo Web quando viene distribuito un progetto Web. Utilizzare questa opzione quando si desidera che il processo Web in hello toorun stessa app web in cui si esegue hello correlati dell'applicazione web.
 * [Abilitare la distribuzione senza un progetto Web](#convertnolink).
   
-    Configurare un progetto di applicazione console esistente in modo tale che venga distribuito come processo Web indipendente senza alcun collegamento a un progetto Web. Usare questa opzione quando si vuole eseguire un processo Web in un'app Web in modo indipendente senza l'esecuzione dell'applicazione Web nell'app Web. Questa opzione potrebbe essere utile per scalare le risorse del processo Web indipendentemente dalle risorse dell'applicazione Web.
+    Configurare un toodeploy di progetto applicazione Console esistente come un processo Web da sola, con alcun progetto web tooa di collegamento. Utilizzare questa opzione quando si desidera toorun un processo Web in un'app web di per sé con nessuna applicazione web in esecuzione nell'app web hello. È possibile toodo questo ordine tooscale in grado di toobe le risorse di processo Web indipendentemente dalle risorse dell'applicazione web.
 
 ### <a id="convertlink"></a> Abilitare la distribuzione automatica dei processi Web con un progetto Web
-1. Fare clic con il pulsante destro del mouse sul progetto Web in **Esplora soluzioni**, quindi scegliere **Aggiungi** > **Progetto esistente come processo Web di Azure**.
+1. Progetto web di hello pulsante destro del mouse in **Esplora**, quindi fare clic su **Aggiungi** > **progetto esistente come processo Web di Azure**.
    
     ![Progetto esistente come processo Web Azure](./media/websites-dotnet-deploy-webjobs/eawj.png)
    
-    Viene visualizzata la finestra di dialogo [Aggiungi processo Web Azure](#configure) .
-2. Nell'elenco a discesa **Nome progetto** selezionare il progetto di applicazione console da aggiungere come processo Web.
+    Hello [Aggiungi processo Web di Azure](#configure) viene visualizzata la finestra di dialogo.
+2. In hello **nome progetto** elenco a discesa, tooadd di progetto applicazione Console hello selezionare come un processo Web.
    
     ![Selezione del progetto nella finestra di dialogo Aggiungi processo Web Azure](./media/websites-dotnet-deploy-webjobs/aaw1.png)
-3. Completare la finestra di dialogo [Aggiungi processo Web Azure](#configure) , quindi fare clic su **OK**. 
+3. Hello completo [Aggiungi processo Web di Azure](#configure) finestra di dialogo e quindi fare clic su **OK**. 
 
 ### <a id="convertnolink"></a> Abilitare la distribuzione dei processi Web senza un progetto Web
-1. Fare clic con il pulsante destro del mouse sul progetto di applicazione console in **Esplora soluzioni** e quindi scegliere **Pubblica come processo Web Azure...**. 
+1. Progetto di applicazione Console hello pulsante destro del mouse in **Esplora**, quindi fare clic su **pubblica come processo Web di Azure...** . 
    
     ![Pubblica come processo Web Azure](./media/websites-dotnet-deploy-webjobs/paw.png)
    
-    Viene visualizzata la finestra di dialogo [Aggiungi processo Web Azure](#configure) con il progetto selezionato nella casella **Nome progetto** .
-2. Completare la finestra di dialogo [Aggiungi processo Web Azure](#configure) , quindi fare clic su **OK**.
+    Hello [Aggiungi processo Web di Azure](#configure) viene visualizzata la finestra di dialogo, con progetto hello in hello **nome progetto** casella.
+2. Hello completo [Aggiungi processo Web di Azure](#configure) la finestra di dialogo e quindi fare clic su **OK**.
    
-   Viene visualizzata la procedura guidata **Pubblica sito Web** .  Se non si vuole eseguire subito la pubblicazione, chiudere la procedura guidata. Le impostazioni immesse vengono salvate in modo da poter essere usate quando si vuole [distribuire il progetto](#deploy).
+   Hello **pubblica sul Web** procedura guidata viene visualizzata.  Se si desidera toopublish immediatamente, chiudere la procedura guidata hello. le impostazioni di Hello immessi vengono salvate per quando si desidera troppo[distribuire il progetto hello](#deploy).
 
 ## <a id="create"></a>Creare un nuovo progetto abilitato per i processi Web
-Per creare un nuovo progetto abilitato per i processi Web, è possibile usare il modello del progetto di applicazione console e abilitare la distribuzione dei processi Web come descritto nella [sezione precedente](#convert). In alternativa, è possibile usare il modello nuovo-progetto di processi Web:
+toocreate un nuovo progetto processi Web abilitata, è possibile utilizzare hello applicazione Console progetto modello e abilitare processi Web distribuzione come spiegato in [hello precedente sezione](#convert). In alternativa, è possibile utilizzare modello nuovo progetto di hello processi Web:
 
-* [Usare il modello nuovo-progetto di processi Web per un processo Web indipendente](#createnolink)
+* [Modello di hello processi Web nuovo progetto per un processo indipendente dal Web](#createnolink)
   
-    Creare un progetto e configurarlo per essere distribuito in modo indipendente come processo Web senza alcun collegamento a un progetto Web. Usare questa opzione quando si vuole eseguire un processo Web in un'app Web in modo indipendente senza l'esecuzione dell'applicazione Web nell'app Web. Questa opzione potrebbe essere utile per scalare le risorse del processo Web indipendentemente dalle risorse dell'applicazione Web.
-* [Usare il modello nuovo-progetto di processi Web per un processo Web collegato a un progetto Web](#createlink)
+    Creare un progetto e configurare toodeploy da se stesso come un processo Web, un progetto di web tooa alcun collegamento. Utilizzare questa opzione quando si desidera toorun un processo Web in un'app web di per sé con nessuna applicazione web in esecuzione nell'app web hello. È possibile toodo questo ordine tooscale in grado di toobe le risorse di processo Web indipendentemente dalle risorse dell'applicazione web.
+* [Modello di hello processi Web nuovo progetto per un progetto di web tooa collegato processo Web](#createlink)
   
-    Creare un progetto configurato in modo da essere distribuito automaticamente come processo Web quando viene distribuito un progetto Web nella stessa soluzione. Usare questa opzione quando si vuole eseguire il processo Web nella stessa app Web in cui viene eseguita l'applicazione Web correlata.
+    Creare un progetto toodeploy configurato automaticamente come un processo Web quando un progetto web nella stessa soluzione viene distribuita hello. Utilizzare questa opzione quando si desidera che il processo Web in hello toorun stessa app web in cui si esegue hello correlati dell'applicazione web.
 
 > [!NOTE]
-> Il modello new-project di Processi Web installa automaticamente pacchetti NuGet e in *Program.cs* include codice per [WebJobs SDK](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/getting-started-with-windows-azure-webjobs). Se non si vuole usare WebJobs SDK, rimuovere o modificare l'istruzione `host.RunAndBlock` in *Program.cs*.
+> modello nuovo progetto processi Web di Hello automaticamente installa i pacchetti NuGet e include il codice in *Program.cs* per hello [WebJobs SDK](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/getting-started-with-windows-azure-webjobs). Se non si desidera toouse hello WebJobs SDK, rimuovere o modificare hello `host.RunAndBlock` istruzione *Program.cs*.
 > 
 > 
 
-### <a id="createnolink"></a> Usare il modello nuovo-progetto di processi Web per un processo Web indipendente
-1. Fare clic su **File** > **Nuovo progetto** e quindi nella finestra di dialogo **Nuovo progetto** fare clic su **Cloud** > **Processo Web Azure (.NET Framework)**.
+### <a id="createnolink"></a>Modello di hello processi Web nuovo progetto per un processo indipendente dal Web
+1. Fare clic su **File** > **nuovo progetto**e quindi in hello **nuovo progetto** finestra di dialogo fare clic su **Cloud**  >   **Processo Web di Azure (.NET Framework)**.
    
     ![Finestra di dialogo Nuovo progetto con il modello processo Web](./media/websites-dotnet-deploy-webjobs/np.png)
-2. Seguire le istruzioni illustrate in precedenza per [rendere il progetto di applicazione console un progetto processi Web indipendente](#convertnolink).
+2. Seguire le direzioni di hello illustrate in precedenza troppo[rendere hello progetto applicazione Console come un progetto processi Web indipendente](#convertnolink).
 
-### <a id="createlink"></a> Usare il modello nuovo-progetto di processi Web per un processo Web collegato a un progetto Web
-1. Fare clic con il pulsante destro del mouse sul progetto Web in **Esplora soluzioni**, quindi scegliere **Aggiungi** > **Nuovo progetto processo Web Azure**.
+### <a id="createlink"></a>Modello di hello processi Web nuovo progetto per un progetto di web tooa collegato processo Web
+1. Progetto web di hello pulsante destro del mouse in **Esplora**, quindi fare clic su **Aggiungi** > **nuovo progetto processo Web di Azure**.
    
     ![Voce del menu Nuovo progetto processo Web Azure](./media/websites-dotnet-deploy-webjobs/nawj.png)
    
-    Viene visualizzata la finestra di dialogo [Aggiungi processo Web Azure](#configure) .
-2. Completare la finestra di dialogo [Aggiungi processo Web Azure](#configure) , quindi fare clic su **OK**.
+    Hello [Aggiungi processo Web di Azure](#configure) viene visualizzata la finestra di dialogo.
+2. Hello completo [Aggiungi processo Web di Azure](#configure) la finestra di dialogo e quindi fare clic su **OK**.
 
-## <a id="configure"></a>Finestra di dialogo Aggiungi processo Web Azure
-La finestra di dialogo **Aggiungi processo Web Azure** consente di immettere il nome del processo Web ed eseguire l'impostazione della modalità per il processo Web. 
+## <a id="configure"></a>finestra di dialogo Aggiungi processo Web di Azure Hello
+Hello **Aggiungi processo Web di Azure** finestra di dialogo consente di immettere il nome di processo Web hello ed eseguire l'impostazione della modalità per il processo Web. 
 
 ![Finestra di dialogo Aggiungi processo Web Azure](./media/websites-dotnet-deploy-webjobs/aaw2.png)
 
-I campi in questa finestra di dialogo corrispondono ai campi presenti nella finestra di dialogo **Nuovo processo** del portale di Azure. Per ulteriori informazioni, vedere [attività in Background eseguito con WebJobs](web-sites-create-web-jobs.md).
+i campi di Hello in questa finestra di dialogo corrispondono toofields su hello **nuovo processo** finestra di dialogo di hello portale di Azure. Per ulteriori informazioni, vedere [attività in Background eseguito con WebJobs](web-sites-create-web-jobs.md).
 
 > [!NOTE]
 > * Per informazioni sulla distribuzione da riga di comando, vedere [Abilitazione della riga di comando o del recapito continuo di processi Web Azure](https://azure.microsoft.com/blog/2014/08/18/enabling-command-line-or-continuous-delivery-of-azure-webjobs/).
-> * Se si distribuisce un processo Web e si desidera modificare il tipo di processo Web e ridistribuire, è necessario eliminare il file settings.json webjobs di pubblicazione. In questo modo Visual Studio Mostra le opzioni di pubblicazione, è possibile modificare il tipo di processo Web.
-> * Se si distribuisce un processo Web e successivamente si modifica la modalità di esecuzione da continua a non continua o viceversa, Visual Studio crea un nuovo processo Web in Azure quando si esegue nuovamente la distribuzione. Se si modificano le altre impostazioni di pianificazione lasciando invariata la modalità di esecuzione o passando dalla modalità pianificata a quella su richiesta o viceversa, Visual Studio aggiorna il processo esistente anziché crearne uno nuovo.
+> * Se si distribuisce un processo Web e quindi si decide toochange hello tipo processo Web e ridistribuzione, è necessario file Settings pubblicare processi Web di toodelete hello. In questo modo Visual Studio Mostra hello opzioni di pubblicazione, pertanto è possibile modificare il tipo di hello del processo Web.
+> * Se si distribuisce un processo Web e successivamente si cambia modalità di esecuzione da continuo continua a toonon hello o viceversa, Visual Studio crea un nuovo processo di Web in Azure quando si ridistribuisce. Se è modificare altre impostazioni di pianificazione, ma lasciare eseguire modalità hello stesso o alternare pianificati e su richiesta, gli aggiornamenti di Visual Studio hello processo esistente anziché crearne uno nuovo.
 > 
 > 
 
 ## <a id="publishsettings"></a>webjob-publish-settings.json
-Quando si configura un'applicazione console per la distribuzione dei processi Web, Visual Studio installa il pacchetto NuGet [Microsoft.Web.WebJobs.Publish](http://www.nuget.org/packages/Microsoft.Web.WebJobs.Publish/) e archivia le informazioni di pianificazione in un file *webjob-publish-settings.json* nella cartella *Proprietà* del progetto processi Web. Di seguito è riportato un esempio di tale file:
+Quando si configura un'applicazione Console per la distribuzione di processi Web, Visual Studio installa hello [Microsoft.Web.WebJobs.Publish](http://www.nuget.org/packages/Microsoft.Web.WebJobs.Publish/) NuGet package e archivi la programmazione di informazioni in un *Settings pubblicare processo Web*  file nel progetto hello *proprietà* nella cartella del progetto processi Web hello. Di seguito è riportato un esempio di tale file:
 
         {
           "$schema": "http://schemastore.org/schemas/json/webjob-publish-settings.json",
@@ -134,10 +134,10 @@ Quando si configura un'applicazione console per la distribuzione dei processi We
           "runMode": "Continuous"
         }
 
-È possibile modificare questo file direttamente e Visual Studio fornisce IntelliSense. Lo schema del file viene archiviato in [http://schemastore.org](http://schemastore.org/schemas/json/webjob-publish-settings.json) da dove può essere visualizzato.  
+È possibile modificare questo file direttamente e Visual Studio fornisce IntelliSense. schema del file Hello è archiviato in [http://schemastore.org](http://schemastore.org/schemas/json/webjob-publish-settings.json) e può essere visualizzata.  
 
 ## <a id="webjobslist"></a>webjobs-list.json
-Quando si collega un progetto abilitato per i processi Web a un progetto Web, Visual Studio archivia il nome del progetto processi Web in un file *webjobs-list.json* nella cartella *Proprietà* del progetto Web. L'elenco potrebbe contenere più progetti processi Web, come illustrato nell'esempio seguente:
+Quando si collega un progetto di web tooa progetto processi Web, Visual Studio archivia il nome di hello del progetto processi Web hello in un *processi Web list.json* file nel progetto hello web *proprietà* cartella. elenco di Hello potrebbe contenere più progetti processi Web, come illustrato nell'esempio seguente hello:
 
         {
           "$schema": "http://schemastore.org/schemas/json/webjobs-list.json",
@@ -151,17 +151,17 @@ Quando si collega un progetto abilitato per i processi Web a un progetto Web, Vi
           ]
         }
 
-È possibile modificare questo file direttamente e Visual Studio fornisce IntelliSense. Lo schema del file viene archiviato in [http://schemastore.org](http://schemastore.org/schemas/json/webjobs-list.json) da dove può essere visualizzato.
+È possibile modificare questo file direttamente e Visual Studio fornisce IntelliSense. schema del file Hello è archiviato in [http://schemastore.org](http://schemastore.org/schemas/json/webjobs-list.json) e può essere visualizzata.
 
 ## <a id="deploy"></a>Distribuire un progetto processi Web
-Un progetto processi Web collegato a un progetto Web viene distribuito automaticamente con il progetto Web. Per informazioni sulla distribuzione dei progetti Web, vedere [Come distribuire su App Web](web-sites-deploy.md).
+Un progetto processi Web che è stato collegato un progetto web tooa distribuisce automaticamente un progetto web hello. Per informazioni sulla distribuzione dei progetti web, vedere [come toodeploy tooWeb app](web-sites-deploy.md).
 
-Per distribuire un progetto processi Web indipendente, fare clic con il pulsante destro del mouse sul progetto in **Esplora soluzioni**, quindi scegliere **Pubblica come processo Web Azure...**. 
+un progetto processi Web di per sé toodeploy fare clic sul progetto hello in **Esplora** e fare clic su **pubblica come processo Web di Azure...** . 
 
 ![Pubblica come processo Web Azure](./media/websites-dotnet-deploy-webjobs/paw.png)
 
-Per un processo Web indipendente viene visualizzata la stessa procedura guidata **Pubblica sito Web** usata per i progetti Web ma con meno impostazioni disponibili da modificare.
+Per un processo Web indipendenti, hello stesso **pubblica sul Web** procedura guidata che viene utilizzato per i progetti web viene visualizzato, ma con un numero inferiore toochange disponibili di impostazioni.
 
 ## <a id="nextsteps"></a>Passaggi successivi
-Questo articolo ha descritto come distribuire processi Web tramite Visual Studio. Per altre informazioni su come distribuire Processi Web di Azure, vedere [Risorse di documentazione di Processi Web di Azure](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/azure-webjobs-recommended-resources#deploying).
+Questo articolo è stato spiegato come toodeploy processi Web usando Visual Studio. Per ulteriori informazioni su come toodeploy processi Web di Azure, vedere [processi Web di Azure - consigliato risorse - distribuzione](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/azure-webjobs-recommended-resources#deploying).
 

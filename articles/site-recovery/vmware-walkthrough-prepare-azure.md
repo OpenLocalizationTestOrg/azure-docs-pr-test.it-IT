@@ -1,6 +1,6 @@
 ---
-title: Preparare le risorse di Azure per replicare le macchine virtuali VMware locali in Azure usando Azure Site Recovery | Microsoft Docs
-description: Descrive gli elementi necessari in Azure prima di iniziare la replica di macchine virtuali VMware locali in Azure usando Azure Site Recovery
+title: aaaPrepare risorse di Azure tooreplicate locale tooAzure le macchine virtuali VMware usando Azure Site Recovery | Documenti Microsoft
+description: Descrive i passaggi presenti in Azure prima di iniziare la replica locale le macchine virtuali VMware tooAzure usando Azure Site Recovery
 services: site-recovery
 documentationcenter: 
 author: rayne-wiselman
@@ -14,50 +14,50 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/27/2017
 ms.author: raynew
-ms.openlocfilehash: 40abff72278c9f8d9f701023fd473fe52c17b421
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: ac72fff0593783add789408ecfeb1812d70108b9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="step-5-prepare-azure-resources-for-vmware-replication-to-azure"></a>Passaggio 5: preparare le risorse di Azure per la replica VMWare in Azure
+# <a name="step-5-prepare-azure-resources-for-vmware-replication-tooazure"></a>Passaggio 5: Preparare le risorse di Azure per tooAzure replica VMWare
 
 
-Usare le istruzioni in questo articolo per preparare le risorse di Azure in modo che sia possibile replicare le macchine locali in Azure usando il servizio [Azure Site Recovery](site-recovery-overview.md).
+Utilizzare istruzioni hello in questa tooprepare articolo Azure le risorse in modo che è possibile replicare tooAzure macchine locali utilizzando hello [Azure Site Recovery](site-recovery-overview.md) servizio.
 
-Inserire commenti e domande nella parte inferiore di questo articolo oppure nel [forum sui servizi di ripristino di Azure](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
+Inviare commenti e domande nella parte inferiore di hello di questo articolo, o di hello [forum sui servizi di ripristino di Azure](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
 
 ## <a name="before-you-start"></a>Prima di iniziare
 
-Assicurarsi di aver letto i [prerequisiti](vmware-walkthrough-prerequisites.md)
+Assicurarsi di avere letto hello [prerequisiti](vmware-walkthrough-prerequisites.md)
 
 ## <a name="set-up-an-azure-account"></a>Configurare un account Azure
 
 - Ottenere un [account Microsoft Azure](http://azure.microsoft.com/).
 - È possibile iniziare con una [versione di valutazione gratuita](https://azure.microsoft.com/pricing/free-trial/).
-- Consultare le informazioni sulla disponibilità a livello geografico e sulle aree supportate nella pagina relativa ai [dettagli sui prezzi per Azure Site Recovery](https://azure.microsoft.com/pricing/details/site-recovery/).
-- Leggere le informazioni sui [prezzi di Site Recovery](site-recovery-faq.md#pricing) e ottenere i [dettagli dei prezzi](https://azure.microsoft.com/pricing/details/site-recovery/).
+- Verificare le aree di hello è supportato per il ripristino del sito, in aree geografiche disponibili in [dettagli prezzi di Azure Site Recovery](https://azure.microsoft.com/pricing/details/site-recovery/).
+- Informazioni su [dei prezzi di Site Recovery](site-recovery-faq.md#pricing)e ottenere hello [prezzi](https://azure.microsoft.com/pricing/details/site-recovery/).
 
 
 
 ## <a name="set-up-an-azure-network"></a>Configurare una rete di Azure
 
 - Configurare una rete di Azure. Le VM di Azure create dopo il failover verranno inserite in questa rete.
-- Site Recovery nel portale di Azure può usare reti configurate in [Gestione risorse](../resource-manager-deployment-model.md) o in modalità classica.
-- La rete deve trovarsi nella stessa area dell'insieme di credenziali di Servizi di ripristino
+- Il ripristino del sito nel portale di Azure hello può utilizzare reti configurate in [Gestione risorse](../resource-manager-deployment-model.md), o in modalità classica.
+- rete Hello devono trovarsi in hello stessa area hello insieme di credenziali di servizi di ripristino
 - Leggere le informazioni sui [prezzi per la rete virtuale](https://azure.microsoft.com/pricing/details/virtual-network/).
 - Altre informazioni sulla [connettività della macchina virtuale di Azure](site-recovery-network-design.md) dopo il failover.
 
 
 ## <a name="set-up-an-azure-storage-account"></a>Configurare un account di archiviazione di Azure
 
-- Site Recovery replica le macchine locali in Archiviazione di Azure. Le macchine virtuali di Azure vengono create dalla risorsa di archiviazione dopo che si verifica il failover.
+- Il ripristino del sito vengono replicati archiviazione tooAzure di computer locale. Macchine virtuali di Azure vengono create dall'archiviazione hello dopo che si verifica il failover.
 - Configurare un [account di archiviazione di Azure](../storage/common/storage-create-storage-account.md#create-a-storage-account) per i dati replicati.
-- Site Recovery nel portale di Azure può usare gli account di archiviazione configurati in Gestione risorse o in modalità classica.
-- L'account di archiviazione può essere Standard o [Premium](../storage/common/storage-premium-storage.md).
+- Ripristino del sito in hello portale di Azure è possibile utilizzare gli account di archiviazione impostato in Gestione risorse o in modalità classica.
+- account di archiviazione Hello può essere standard o [premium](../storage/common/storage-premium-storage.md).
 - Se si configura un account Premium, sarà necessario anche un altro account Standard per i dati di log.
 
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Andare al [Passaggio 6: preparare le risorse VMware](vmware-walkthrough-prepare-vmware.md)
+Andare troppo[passaggio 6: preparazione VMware risorse](vmware-walkthrough-prepare-vmware.md)

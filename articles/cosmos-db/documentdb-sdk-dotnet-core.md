@@ -1,6 +1,6 @@
 ---
-title: 'Azure Cosmos DB: risorse, SDK e API .NET Core | Microsoft Docs'
-description: Informazioni complete sull'SDK e sull'API .NET Core, incluse le date di rilascio e di ritiro e le modifiche apportate tra le singole versioni di Azure Cosmos DB .NET Core SDK.
+title: aaaAzure Cosmos DB .NET Core API, risorse e SDK | Documenti Microsoft
+description: Altre informazioni sui hello .NET Core API e SDK tra date di rilascio, date di ritiro e le modifiche apportate tra ogni versione di hello Azure Cosmos DB .NET Core SDK.
 services: cosmos-db
 documentationcenter: .net
 author: rnagpal
@@ -15,11 +15,11 @@ ms.topic: article
 ms.date: 08/11/2017
 ms.author: rnagpal
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: a7ce4d771e9c655687f72f4b46c7405cf64aeb74
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 1269cafe0ea1caaa871404d507b12632dbb3ed82
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-cosmos-db-net-core-sdk-release-notes-and-resources"></a>Azure Cosmos DB .NET Core SDK: risorse e note sulla versione
 > [!div class="op_single_selector"]
@@ -43,7 +43,7 @@ ms.lasthandoff: 08/18/2017
 
 <tr><td>**Esempi**</td><td>[Esempi di codice .NET](documentdb-dotnet-samples.md)</td></tr>
 
-<tr><td>**Introduzione**</td><td>[Introduzione ad Azure Cosmos DB .NET Core SDK](documentdb-dotnetcore-get-started.md)</td></tr>
+<tr><td>**Introduzione**</td><td>[Introduzione a hello Azure Cosmos DB .NET Core SDK](documentdb-dotnetcore-get-started.md)</td></tr>
 
 <tr><td>**Esercitazione sull'app Web**</td><td>[Sviluppo di applicazioni Web con Azure Cosmos DB](documentdb-dotnet-application.md)</td></tr>
 
@@ -52,19 +52,19 @@ ms.lasthandoff: 08/18/2017
 
 ## <a name="release-notes"></a>Note sulla versione
 
-Azure Cosmos DB .NET Core SDK ha le stesse funzionalità della versione più recente di [Azure Cosmos DB .NET SDK](documentdb-sdk-dotnet.md).
+Hello Azure Cosmos DB .NET Core SDK dispone di parità di funzionalità con la versione più recente di hello di hello [SDK .NET di Azure Cosmos DB](documentdb-sdk-dotnet.md).
 
 > [!NOTE] 
-> Azure Cosmos DB .NET Core SDK non è ancora compatibile con le app della piattaforma UWP (Universal Windows Platform). In caso di interesse a .NET Core SDK che supporta le app della piattaforma UWP, inviare un messaggio di posta elettronica a [askcosmosdb@microsoft.com](mailto:askcosmosdb@microsoft.com).
+> non ancora Hello Azure Cosmos DB .NET Core SDK è compatibile con le app Universal Windows Platform (UWP). Se è interessati a hello .NET Core SDK che supporta le app UWP, inviare posta elettronica troppo[askcosmosdb@microsoft.com](mailto:askcosmosdb@microsoft.com).
 
 ### <a name="a-name150150"></a><a name="1.5.0"/>1.5.0 
 
-* Aggiunta del supporto per PartitionKeyRangeId come FeedOption per limitare l'ambito dei risultati di query a un intervallo di chiavi di partizione specifico. 
-* Aggiunta del supporto per StartTime come ChangeFeedOption per avviare la ricerca delle modifiche a partire dall'ora di inizio. 
+* Aggiunta del supporto per PartitionKeyRangeId come un FeedOption per definire l'ambito di valore di intervallo di chiavi di query risultati tooa partizione specifica. 
+* Aggiunta del supporto per StartTime come un toostart ChangeFeedOption cercando modifiche hello dopo tale periodo di tempo. 
 
 ### <a name="a-name141141"></a><a name="1.4.1"/>1.4.1
 
-*   È stato risolto un problema nella classe JsonSerializable che può generare un'eccezione di overflow dello stack.
+*   Risolto un problema in hello classe JsonSerializable che potrebbe causare un'eccezione di overflow dello stack.
 
 ### <a name="a-name140140"></a><a name="1.4.0"/>1.4.0
 
@@ -72,7 +72,7 @@ Azure Cosmos DB .NET Core SDK ha le stesse funzionalità della versione più rec
 
 ### <a name="a-name132132"></a><a name="1.3.2"/>1.3.2
 
-*   Supporto di .NET Standard 1.5 come uno dei framework di destinazione.
+*   Supporto .NET Standard 1.5 come uno dei framework di destinazione hello.
 
 ### <a name="a-name131131"></a><a name="1.3.1"/>1.3.1
 
@@ -82,55 +82,55 @@ Azure Cosmos DB .NET Core SDK ha le stesse funzionalità della versione più rec
 
 *   Aggiunta del supporto per un nuovo livello di coerenza denominato ConsistentPrefix.
 *   Aggiunta del supporto per le metriche delle query per le singole partizioni.
-*   Aggiunta del supporto per la limitazione delle dimensioni del token di continuazione per le query.
+*   Aggiunta del supporto per la limitazione delle dimensioni di hello hello del token di continuazione per le query.
 *   Aggiunta del supporto per una traccia più dettagliata delle richieste non riuscite.
-*   Alcuni miglioramenti delle prestazioni nell'SDK.
+*   Introdotti alcuni miglioramenti delle prestazioni hello SDK.
 
 ### <a name="a-name122122"></a><a name="1.2.2"/>1.2.2
 
-* Risolto un problema per cui il valore PartitionKey in FeedOptions veniva ignorato per le query di aggregazione.
+* Risolto un problema che ignorati valore PartitionKey hello fornito FeedOptions per le query di aggregazione.
 * Risolto un problema nella gestione trasparente delle partizioni durante l'esecuzione dell'ordinamento per query della partizione trasversale intermedia.
 
 ### <a name="a-name121121"></a><a name="1.2.1"/>1.2.1
 
-* Correzione di un problema che ha causato deadlock in alcune API asincrone, se usate in un contesto ASP.NET.
+* Risolto un problema che ha causato deadlock in alcune hello async API quando utilizzato all'interno di contesto ASP.NET.
 
 ### <a name="a-name120120"></a><a name="1.2.0"/>1.2.0
 
-* Correzioni per rendere l'SDK più resiliente per il failover automatico in determinate condizioni.
+* Consente di correggere toomake SDK più failover tooautomatic resiliente a determinate condizioni.
 
 ### <a name="a-name112112"></a><a name="1.1.2"/>1.1.2
 
-* Correzione di un problema che occasionalmente causa un'eccezione WebException, ovvero l'impossibilità di risolvere il nome remoto.
-* Aggiunta del supporto per la lettura diretta di un documento con tipo includendo nuovi overload all'API ReadDocumentAsync.
+* Correzione di un problema che causa un'eccezione WebException: Impossibile risolto nome remoto hello.
+* Hello aggiunto il supporto per lettura diretta di un documento tipizzato tramite l'aggiunta di nuove API tooReadDocumentAsync di overload.
 
 ### <a name="a-name111111"></a><a name="1.1.1"/>1.1.1
 
 * Aggiunta del supporto LINQ per le query di aggregazione (COUNT, MIN, MAX, SUM e AVG).
-* Correzione per un problema di perdita di memoria per l'oggetto ConnectionPolicy provocata dall'uso del gestore eventi.
+* Correzione per un problema di perdita di memoria per oggetto ConnectionPolicy hello causato dall'uso di hello del gestore eventi.
 * Correzione per un problema relativo al mancato funzionamento di UpsertAttachmentAsync in caso di uso di ETag.
 * Correzione di un problema relativo al mancato funzionamento della continuazione della query di tipo order-by tra partizioni in caso di ordinamento in un campo di tipo stringa.
 
 ### <a name="a-name110110"></a><a name="1.1.0"/>1.1.0
 
 * Aggiunta del supporto per le query di aggregazione (COUNT, MIN, MAX, SUM e AVG). Vedere [Supporto dell'aggregazione](documentdb-sql-query.md#Aggregates).
-* Velocità effettiva minima ridotta nelle raccolte partizionate da 10.100 UR/s a 2.500 UR/s.
+* Più basso di velocità effettiva minima per le raccolte partizionate da 10,100 UR/sec too2500 UR/sec.
 
 ### <a name="a-name100100"></a><a name="1.0.0"/>1.0.0
 
-Azure Cosmos DB .NET Core SDK consente di compilare app [ASP.NET Core](https://www.asp.net/core) e [.NET Core](https://www.microsoft.com/net/core#windows) veloci e multipiattaforma da eseguire in Windows, Mac e Linux. L'ultima versione di Azure Cosmos DB .NET Core SDK è completamente compatibile con [Xamarin](https://www.xamarin.com) e può essere usata per compilare applicazioni destinate a iOS, Android e Mono (Linux).  
+Hello Azure Cosmos DB .NET Core SDK consente toobuild veloci, multipiattaforma [ASP.NET Core](https://www.asp.net/core) e [.NET Core](https://www.microsoft.com/net/core#windows) toorun App in Windows, Mac e Linux. Hello ultima versione di hello Azure Cosmos DB .NET Core SDK è completamente [Xamarin](https://www.xamarin.com) compatibile e applicazioni usati toobuild destinate Mono (Linux), iOS e Android.  
 
 ### <a name="a-name010-preview010-preview"></a><a name="0.1.0-preview"/>0.1.0-preview
 
-Azure Cosmos DB .NET Core Preview SDK consente di compilare app [ASP.NET Core](https://www.asp.net/core) e [.NET Core](https://www.microsoft.com/net/core#windows) veloci e multipiattaforma da eseguire in Windows, Mac e Linux.
+Hello Azure Cosmos DB .NET Core anteprima SDK consente toobuild veloci, multipiattaforma [ASP.NET Core](https://www.asp.net/core) e [.NET Core](https://www.microsoft.com/net/core#windows) toorun App in Windows, Mac e Linux.
 
-Azure Cosmos DB .NET Core Preview SDK ha le stesse funzionalità della versione più recente di [Azure Cosmos DB .NET SDK](documentdb-sdk-dotnet.md) e supporta quanto segue.
+Hello Azure Cosmos DB .NET Core anteprima SDK dispone di parità di funzionalità con la versione più recente di hello di hello [SDK .NET di Azure Cosmos DB](documentdb-sdk-dotnet.md) e supporta hello seguenti:
 * Tutte le [modalità di connessione](performance-tips.md#networking): modalità gateway, TCP diretto e HTTP diretti. 
 * Tutti i [livelli di coerenza](consistency-levels.md): assoluta, di sessione, con decadimento ristretto e finale.
 * [Raccolte partizionate](partition-data.md). 
 * [Account di database tra più aree e replica geografica](distribute-data-globally.md).
 
-Per domande su questo SDK, pubblicare un post su [StackOverflow](http://stackoverflow.com/questions/tagged/azure-documentdb) o inserire la domanda nel [repository github](https://github.com/Azure/azure-documentdb-dotnet/issues). 
+Nel caso di domande correlate toothis SDK, registrare troppo[StackOverflow](http://stackoverflow.com/questions/tagged/azure-documentdb), o il file di un problema in hello [repository github](https://github.com/Azure/azure-documentdb-dotnet/issues). 
 
 ## <a name="release--retirement-dates"></a>Date di rilascio e di ritiro
 
@@ -152,5 +152,5 @@ Per domande su questo SDK, pubblicare un post su [StackOverflow](http://stackove
 | [0.1.0-preview](#0.1.0-preview) |15 novembre 2016 |31 dicembre 2016 |
 
 ## <a name="see-also"></a>Vedere anche
-Per altre informazioni su Cosmos DB, vedere la pagina del servizio [Microsoft Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/). 
+toolearn ulteriori informazioni su Cosmos DB, vedere [DB di Microsoft Azure Cosmos](https://azure.microsoft.com/services/cosmos-db/) pagina del servizio. 
 

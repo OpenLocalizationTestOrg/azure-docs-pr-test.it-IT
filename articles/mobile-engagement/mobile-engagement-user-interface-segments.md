@@ -1,6 +1,6 @@
 ---
-title: Interfaccia utente di Azure Mobile Engagement - Segmenti
-description: Informazioni su come creare e gestire segmenti di utenti per identificare modelli di utilizzo mediante Azure Mobile Engagement
+title: aaaAzure interfaccia utente di Engagement Mobile - segmenti
+description: Informazioni su come toocreate e gestiscono segmenti di modelli di utilizzo tooidentify gli utenti con Azure Mobile Engagement
 services: mobile-engagement
 documentationcenter: 
 author: piyushjo
@@ -14,63 +14,63 @@ ms.tgt_pltfrm: mobile-multiple
 ms.workload: mobile
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: 087f4a1fef420abe9669f8dfe2b84c7a847ce263
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: bb214c45d05ebfbf243978658a7e331d4a7c6e0e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-create-and-manage-segments-of-users-to-identify-usage-patterns"></a>Come creare e gestire segmenti di utenti per identificare modelli di utilizzo
-In questo articolo viene descritta la scheda **SEGMENTI** del portale **Mobile Engagement**. Utilizzare il portale **Mobile Engagement** per monitorare e gestire le app per dispositivi mobili.
+# <a name="how-toocreate-and-manage-segments-of-users-tooidentify-usage-patterns"></a>Come toocreate e gestiscono segmenti di modelli di utilizzo tooidentify utenti
+Questo articolo descrive hello **segmenti** scheda di hello **Mobile Engagement** portale. Utilizzare hello **Mobile Engagement** toomonitor portale e gestire le App per dispositivi mobili.
 
-La sezione Segmenti dell'interfaccia utente consente di dividere gli utenti in segmenti in base al comportamento e all'analisi che è possibile ottenere dall'applicazione ed è possibile accedervi anche tramite l'API Segmenti. I segmenti vengono calcolati per la prima volta 24 ore dopo che sono stati creati e quindi ricalcolati ogni 24 ore in base alle informazioni di analisi più recenti. Una volta calcolato un segmento, viene visualizzato un grafico di cronologia giorno per giorno ogni giorno.
+sezione di segmenti Hello di hello dell'interfaccia utente consente toowork nella segmentazione agli utenti in base a un comportamento diverso hello e analitica che è possibile ottenere da un'applicazione hello e possono accedere anche tramite API di segmenti hello. Segmenti vengono innanzitutto calcolati 24 ore dopo che sono stati creati e vengono ricalcolate ogni 24 ore in base alle informazioni analitica più recente di hello. Una volta che viene calcolato un segmento, viene visualizzato un grafico "Cronologia tooday giorno" ogni giorno.
 
 > [!NOTE]
-> Molte sezioni dell'interfaccia utente del portale **Mobile Engagement** contengono il pulsante **MOSTRA LA GUIDA**. Premere questo pulsante per ottenere ulteriori informazioni contestuali su una sezione.
+> Numero di sezioni di hello **Mobile Engagement** interfaccia utente del portale contengono hello **Mostra Guida** pulsante. Premere tooget questo pulsante più informazioni contestuali su una sezione.
 > 
 > 
 
 ## <a name="create-segments"></a>Creare segmenti
-È possibile creare un segmento basato su criteri (fino a 10) in base a un periodo specifico di massimo 60 giorni precedenti dalla sezione di analisi. Ad esempio, è possibile creare un segmento in base alle persone che hanno visualizzato alcune pagine o che hanno cercato contenuto specifico all'interno dell'app negli ultimi 10 giorni. Queste informazioni sono disponibili nella sezione di analisi. È possibile utilizzarle per creare un segmento e quindi configurare una notifica push da indirizzare a questo sottoinsieme di utenti per fare in modo che tornino all'applicazione. 
+È possibile creare un segmento di base dei criteri too10 di un periodo specifico di giorni too60 hello passato dalla sezione analitica hello. Ad esempio, è possibile creare un segmento in base alle persone hello che dispongono di visualizzare alcune pagine o cercare contenuto specifico all'interno dell'app all'interno di hello ultimi 10 giorni. Queste informazioni sono disponibili nella sezione analitica hello. In tal caso, è possibile usarlo toocreate un segmento e quindi impostare un tootarget di notifica push questo subset di utenti tooget li toocome toohello indietro applicazione. 
 
 > [!NOTE]
-> una volta calcolato, un segmento non può essere modificato; può essere solo duplicato (copiato) o distrutto (eliminato). Un segmento può essere duplicato all'interno della stessa applicazione (con lo stesso AppID) e anche in altre applicazioni (con un AppID diverso). 
+> una volta calcolato, un segmento non può essere modificato; può essere solo duplicato (copiato) o distrutto (eliminato). È possibile duplicare un segmento all'interno di hello stessa applicazione (con hello AppID stesso), e possono anche essere clonato in altre applicazioni (con un ID applicazione diverso). 
 
  ![segments1][35] 
 
 ## <a name="examples-segments"></a>Esempi di segmento
  ![segments2][36]
 
-I segmenti consentono di suddividere gli utenti finali dell'applicazione.
-La segmentazione degli utenti è un'importante strategia di marketing. Azure Mobile Engagement consente di ottenere dati cronologici e creare segmenti personalizzati. Questo potente strumento consente di acquisire informazioni sull'esperienza dei clienti con l'applicazione. È possibile analizzare facilmente i segmenti e utilizzarli come destinazioni di push.
-Un caso di utilizzo comune si verifica quando si desidera eseguire il push di una notifica per incoraggiare gli utenti finali a valutare l'applicazione nell'archivio. Anziché inviare una notifica a tutti gli utenti finali, è possibile creare un segmento che specifichi solo gli utenti che hanno utilizzato l'applicazione ogni giorno nel corso dell'ultimo mese e sono stati soddisfatti. Quando si invia un numero inferiore di notifiche push mirate, è possibile ottenere un ritorno sugli investimenti migliore.
+Segmenti consentono agli utenti finali hello toosegment dell'applicazione.
+La segmentazione degli utenti è un'importante strategia di marketing. Azure Mobile Engagement consente dati cronologici tooget e creare segmenti di personalizzati. Questo potente strumento consente toolearn sull'esperienza dei clienti dell'applicazione. È possibile analizzare facilmente i segmenti e utilizzarli come destinazioni di push.
+Un caso di utilizzo comune è che si desidera toosend tooencourage una notifica push il toorate gli utenti finali dell'applicazione nell'archivio di hello. Anziché inviare una notifica tooall agli utenti finali, è possibile creare un segmento che è necessario specificare solo gli utenti che hanno utilizzato l'applicazione ogni giorno per ultimo mese hello e hanno avuto esperienza di un utente. Quando si invia un numero inferiore di notifiche push mirate, è possibile ottenere un ritorno sugli investimenti migliore.
 
  ![segments3][37]
 
-### <a name="segments-you-can-create-based-on-the-major-azure-mobile-engagement-elements"></a>Segmenti che è possibile creare in base agli elementi principali di Azure Mobile Engagement:
-* Evento: creare un segmento destinato a un solo evento specifico dell'applicazione che si è verificato più di due volte alla settimana. 
-* Sessione: creare un segmento di utenti che hanno utilizzato l'applicazione più di 5 volte nell'ultima settimana.
+### <a name="segments-you-can-create-based-on-hello-major-azure-mobile-engagement-elements"></a>Segmenti che è possibile creare in base agli elementi di Azure Mobile Engagement principali hello:
+* Evento: creare un segmento di tale evento specifico di destinazioni con uno di un'applicazione hello che si sono verificati più di due volte a settimana. 
+* Sessione: creazione di un segmento di utenti che hanno utilizzato più di 5 volte la settimana scorsa un'applicazione hello.
 * Attività: creare un segmento di utenti che hanno utilizzato una pagina o un contenuto più o meno di 10 volte nell'ultimo mese.
 * Processo: creare un segmento di utenti che hanno completato un processo più di due volte al giorno.
-* Arresto anomalo: creare un segmento di tutti gli utenti che hanno avuto un arresto anomalo più di 10 volte nel corso dell'ultima settimana (il push per questo segmento dovrebbe includere un messaggio di scuse ed eventualmente un buono).
-* Errore: creare un segmento di tutti gli utenti che hanno incontrato un errore più di 100 volte negli ultimi 3 giorni.
-* Info app: creare un segmento mirato a un'info app personalizzata che si è verificata negli ultimi 25 giorni.
+* Arresto anomalo: creazione di un segmento di tutti gli utenti di hello che hanno subito un arresto anomalo di più di 10 volte la settimana scorsa. (il push per questo segmento dovrebbe includere un messaggio di scuse ed eventualmente un buono).
+* Errore: creare un segmento di tutti gli utenti di hello che hanno un errore più di 100 volte ultimi 3 giorni.
+* App Info: creazione di un segmento che ha come destinazione un App Info personalizzato che si sono verificati durante hello ultimi 25 giorni.
   
   ![segments4][38]
 
-Per utilizzare il segmento in modo ottimale, è necessario aver effettuato un'integrazione personalizzata dell'SDK nell'applicazione con un piano di tag "Info app".
-Quindi, passare alla home page dell'interfaccia, selezionare l'applicazione desiderata e scegliere la sezione "Segmenti".
+toouse segmento in modo ottimale, è necessario aver eseguito un'integrazione personalizzata di hello SDK nell'applicazione con un piano di assegnazione di tag di tag "App Info".
+Quindi, passare toohello home page di interfaccia di hello, selezionare un'applicazione hello desiderato e fare clic sulla sezione "Segmenti" hello.
 
-1. Selezionare la sezione "Segmenti".
-2. Fare clic su "Nuovo segmento" per creare un nuovo segmento.
+1. Selezionare una sezione "Segmenti" hello.
+2. Fare clic su "Nuovo segmento" hello pulsante toocreate un nuovo segmento.
 
 ## <a name="real-life-example-create-a-simple-segment-based-on-session-information"></a>Esempio di vita reale: creare un segmento semplice in base alle informazioni di "Sessione"
-Creare un segmento di tutti gli utenti finali che hanno utilizzato l'app almeno 50 volte nell'ultima settimana. Da qui, individuare solo gli utenti finali che hanno trascorso almeno 30 secondi per sessione nell'applicazione. Verranno visualizzati tutti gli utenti finali che hanno avuto un'esperienza positiva nell'applicazione. Quindi, il segmento creato potrebbe essere utilizzato per effettuare il push di una notifica a tali utenti finali per chiedere loro di valutare l'app nell'archivio.
+Creare un segmento di tutti gli utenti finali hello che hanno utilizzato almeno 50 volte l'app in hello ultima settimana. Da qui, trovare solo gli utenti finali hello impiegato almeno 30 secondi nell'app per ogni sessione. Verranno visualizzati tutti hello agli utenti finali un'esperienza positiva nell'app. Quindi, segmento hello creato potrebbe essere utilizzato toopush un tooask gli utenti finali di notifica toothese li toorate l'app in hello archiviare.
 
  ![segments5][39]
 
-1. Assegnare un nome al segmento per trovarlo rapidamente nell'elenco di "Segmenti".
-2. Fare clic sul pulsante "Crea".
+1. Assegnare un nome di segmento in ordine toofind rapidamente nell'elenco di "Segmento" hello.
+2. Fare clic sul hello pulsante "Crea".
    
    ![segments6][40]
 
@@ -78,34 +78,34 @@ Selezionare Sessione.
 
  ![segments7][41]
 
-1. Selezionare il periodo "Ultima settimana".
+1. Selezionare il periodo di hello di "Ultima settimana".
 2. Fare clic su Avanti.
    
    ![segments8][42]
-3. Selezionare l'operatore rilevante nell'elenco: =; ≥, ≤.
-4. Immettere il numero desiderato.
-5. Selezionare l'occorrenza desiderata. 
+3. Seleziona hello operatore rilevanti tra elenco hello: =; ≥, ≤.
+4. Immettere hello numero desiderato.
+5. Selezionare hello occorrenza desiderato. 
 6. Fare clic su Avanti.
-   In questo esempio nell'ultima settimana gli utenti corrispondenti sono quelli che hanno creato almeno 50 sessioni.
+   In questo esempio viene impostato in modo che over hello ultima settimana, corrispondenza utenti che hanno almeno 50 sessioni.
    
    ![segments9][43]
 
-Per la segmentazione in base alla sessione, è possibile scegliere come criterio la lunghezza per sessione.
+Per hello segmentazione della sessione, è possibile scegliere di lunghezza hello per ogni sessione come criterio.
 
-1. Selezionare l'operatore dall'elenco.
-2. Specificare la lunghezza per sessione.
+1. Selezionare hello operatore dall'elenco di hello.
+2. Fornire hello lunghezza per ogni sessione.
 3. Fare clic su Avanti.
-   In questo esempio, in tutte le sessioni segmentate in base alla sezione dell'occorrenza, devono essere selezionati solo gli utenti che hanno trascorso più di 30 secondi per sessione.
+   In questo esempio, afferma che su tutti hello sessioni che sono state segmentate nella sezione di occorrenza hello, selezionare solo gli utenti di hello impiegato più di 30 secondi per ogni sessione.
    
    ![segments10][44]
 
-Assegnare il nome al criterio per recuperarlo nel relativo grafico completo e fare clic su Fine.
+Nome del criterio di ordine tooretrieve in hello completare a imbuto e fare clic su Fine.
 
  ![segments11][45]
 
-Al termine dell'impostazione, il criterio viene visualizzato nel grafico del segmento.
+Al termine dell'impostazione del criterio, esso apparirà nel grafico a imbuto segmento hello.
 Poiché un segmento è basato su dati di analisi, i segmenti vengono calcolati una volta al giorno.
-In questo esempio, il 47,7% degli utenti finali totali corrispondeva al criterio. Tali utenti sono quelli che hanno avuto un'esperienza ottima e che probabilmente esprimeranno una valutazione più alta se ricevono una notifica push che chiede loro di valutare l'applicazione nell'archivio.
+In questo esempio, 47,7% degli utenti finali totale hello corrispondente criterio hello. Dovrebbero essere utenti hello hanno un'esperienza ottimale e sarà possibile tooprovide probabilmente una classificazione superiore, se si esegue il push in una notifica chiedere loro toorate hello app nell'archivio di hello.
 
 ## <a name="see-also"></a>Vedere anche
 * [Concetti][Link 6]

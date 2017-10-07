@@ -1,6 +1,6 @@
 ---
-title: Foglio informativo sugli algoritmi di Machine Learning | Microsoft Docs
-description: Un foglio informativo sugli algoritmi di Machine Learning stampabile aiuta a scegliere il giusto algoritmo per il proprio modello predittivo in Azure Machine Learning Studio.
+title: aaaMachine foglio informativo algoritmo di apprendimento | Documenti Microsoft
+description: Una macchina stampabile foglio informativo algoritmo di apprendimento consente di scegliere l'algoritmo appropriato di hello per il modello predittivo in Azure Machine Learning Studio.
 keywords: foglio informativo sugli algoritmi, foglio informatico, algoritmo di machine learning
 services: machine-learning
 documentationcenter: 
@@ -15,66 +15,66 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/14/2017
 ms.author: garye
-ms.openlocfilehash: 2cf4f498a107b8c6085489723ae946b119bb6244
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2bedd77bfc65128a90c6128743016415dd8609d7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="machine-learning-algorithm-cheat-sheet-for-microsoft-azure-machine-learning-studio"></a>Foglio informativo sugli algoritmi di Machine Learning per Microsoft Azure Machine Learning Studio
-Il **foglio informativo sugli algoritmi di Microsoft Azure Machine Learning** aiuta a scegliere il giusto algoritmo per un modello di analisi predittiva.
+Hello **Microsoft Azure Machine Learning algoritmo irregolarità foglio** consente di scegliere l'algoritmo di destra hello per un modello predittivo analitica.
 
-[Azure Machine Learning Studio](https://studio.azureml.net/) include una grande libreria di algoritmi delle famiglie di ***regressione***, ***classificazione***, ***clustering*** e ***rilevamento anomalie***. Ognuno è progettato per risolvere un tipo diverso di problema di Machine Learning.
+[Azure Machine Learning Studio](https://studio.azureml.net/) ha un'ampia libreria di algoritmi da hello ***regressione***, ***classificazione***, ***clustering***e ***il rilevamento di anomalie*** famiglie. Ognuno è progettato tooaddress un diverso tipo di problema di machine learning.
 
 ## <a name="download-machine-learning-algorithm-cheat-sheet"></a>Download: foglio informativo sugli algoritmi di Machine Learning
-**Download del foglio informativo: [Foglio informativo sugli algoritmi di Machine Learning (27,9 x 43,2 cm)](http://download.microsoft.com/download/A/6/1/A613E11E-8F9C-424A-B99D-65344785C288/microsoft-machine-learning-algorithm-cheat-sheet-v6.pdf)**.
+**Scaricare hello il foglio informativo qui: [Machine Learning algoritmo irregolarità foglio (11 x 17 in)](http://download.microsoft.com/download/A/6/1/A613E11E-8F9C-424A-B99D-65344785C288/microsoft-machine-learning-algorithm-cheat-sheet-v6.pdf)**
 
-![Foglio informativo sugli algoritmi di Machine Learning: informazioni su come scegliere un algoritmo di Machine Learning.][cheat-sheet]
+![Foglio informativo di algoritmo di apprendimento macchina: informazioni su come toochoose un algoritmo di Machine Learning.][cheat-sheet]
 
 [cheat-sheet]: ./media/machine-learning-algorithm-cheat-sheet/machine-learning-algorithm-cheat-sheet-small_v_0_6-01.png
 
-Scaricare e stampare il foglio informativo sugli algoritmi di Machine Learning in formato tabloid per averlo sempre a disposizione quando è necessario scegliere un algoritmo.
+Scaricare e stampare Ciao Machine Learning algoritmo irregolarità foglio tookeep dimensioni tabloid poterla e Guida scelta di un algoritmo.
 
 > [!NOTE]
-> Vedere l'articolo [Come scegliere gli algoritmi di Microsoft Azure Machine Learning](machine-learning-algorithm-choice.md) per una Guida dettagliata all'utilizzo di questo foglio informativo.
+> Vedere l'articolo hello [come algoritmi toochoose per Microsoft Azure Machine Learning](machine-learning-algorithm-choice.md) per una Guida dettagliata di toousing questo foglio informativo.
 > 
 > 
 
 ## <a name="more-help-with-algorithms"></a>Altre informazioni sugli algoritmi
-* Per informazioni sull'uso di questo foglio informativo per la scelta dell'algoritmo corretto e per una discussione più approfondita sui diversi tipi di algoritmi di apprendimento automatico e sul relativo uso, vedere [Come scegliere gli algoritmi di Microsoft Azure Machine Learning](machine-learning-algorithm-choice.md).
+* Per informazioni sull'utilizzo di questo foglio informativo per la scelta di algoritmo appropriato hello e una discussione più approfondita di diversi tipi di hello di algoritmi di machine learning e modalità di utilizzo, vedere [come algoritmi toochoose per Microsoft Azure Machine Learning](machine-learning-algorithm-choice.md).
 * Per ottenere una descrizione degli algoritmi e alcuni esempi, vedere [Infografica scaricabile: nozioni fondamentali di Machine Learning con esempi di algoritmi](machine-learning-basics-infographic-with-algorithm-examples.md).
-* Per un elenco per categoria degli algoritmi di Machine Learning disponibili in Machine Learning Studio, vedere l'argomento relativo al [modello di inizializzazione][initialize-model] nella Guida degli algoritmi e dei moduli di Machine Learning Studio.
+* Per un elenco in base alla categoria tutti hello algoritmi di machine learning disponibili in Machine Learning Studio, vedere [inizializzare modello] [ initialize-model] hello algoritmo di Machine Learning Studio e modulo della Guida.
 * Per un elenco alfabetico completo degli algoritmi e dei moduli disponibili in Machine Learning Studio, vedere l'argomento relativo all'[elenco alfabetico dei moduli di Machine Learning Studio][a-z-list] nella Guida degli algoritmi e dei moduli di Machine Learning Studio.
-* Per scaricare e stampate un diagramma che offra una panoramica delle funzionalità di Machine Learning Studio, vedere [Diagramma della panoramica delle funzionalità di Azure Machine Learning Studio](machine-learning-studio-overview-diagram.md).
+* toodownload e stampare un diagramma che offra una panoramica delle funzionalità di hello di Machine Learning Studio, vedere [diagramma della panoramica delle funzionalità di Azure Machine Learning Studio](machine-learning-studio-overview-diagram.md).
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
-## <a name="notes-and-terminology-definitions-for-the-machine-learning-algorithm-cheat-sheet"></a>Note e definizioni terminologiche per il foglio informativo sugli algoritmi di Machine Learning
+## <a name="notes-and-terminology-definitions-for-hello-machine-learning-algorithm-cheat-sheet"></a>Note e le definizioni di terminologia per hello algoritmo di machine learning schede di riferimento rapido
 
-* I consigli offerti in questo foglio informativo sugli algoritmi sono regole empiriche puramente indicative. Alcuni possono essere modificati, altri totalmente ignorati. Queste informazioni vengono fornite come punto di partenza consigliato. È anche possibile provare a eseguire un confronto in parallelo tra diversi algoritmi sui dati. Questa può rivelarsi la soluzione migliore per comprendere i principi di ogni algoritmo e il sistema che ha generato i dati.
+* i suggerimenti di Hello disponibili in questo foglio informativo algoritmo sono le regole di thumb approssimativo. Alcuni possono essere modificati, altri totalmente ignorati. Si tratta di toosuggest previsto un punto di partenza. Non essere toorun termine della lezione una concorrenza combattimenti testa a testa tra diversi algoritmi sui dati. Non è semplicemente alcuna sostituzione per comprendere i principi di hello di ogni algoritmo e la comprensione di sistema hello che ha generato i dati.
 
-* Ogni algoritmo di apprendimento automatico ha il proprio stile o *bias induttivo*. Per un problema specifico, possono essere appropriati diversi algoritmi, uno dei quali può rivelarsi una scelta più adatta rispetto agli altri. Non è sempre possibile, tuttavia, conoscere in anticipo la soluzione ottimale. In casi simili, nel foglio informativo sono elencati insieme diversi algoritmi. Una strategia appropriata può essere quella di provare un algoritmo e quindi provarne altri se i risultati del primo non sono soddisfacenti. Un esempio tratto da [Cortana Intelligence Gallery](http://gallery.cortanaintelligence.com/) di un esperimento che prova diversi algoritmi sugli stessi dati e ne confronta i risultati è disponibile in: [Compare Multi-class Classifiers: Letter recognition](http://gallery.cortanaintelligence.com/Details/a635502fc98b402a890efe21cec65b92) (Confrontare classificatori multiclasse: riconoscimento di lettere).
+* Ogni algoritmo di apprendimento automatico ha il proprio stile o *bias induttivo*. Per un problema specifico, possono essere appropriati diversi algoritmi, uno dei quali può rivelarsi una scelta più adatta rispetto agli altri. Ma non è sempre possibile tooknow in anticipo hello migliore adattamento. In questi casi diversi algoritmi sono elencati insieme nel foglio informativo hello. Una strategia appropriata sarebbe tootry un algoritmo e se hello risultati non sono ancora soddisfacenti, riprovare hello ad altri utenti. Di seguito è riportato un esempio di hello [Cortana Intelligence Gallery](http://gallery.cortanaintelligence.com/) di un esperimento che tenta di diversi algoritmi contro hello stessi dati e le confronta hello risultati: [Compare multi-class Classifiers: Letter recognition ](http://gallery.cortanaintelligence.com/Details/a635502fc98b402a890efe21cec65b92).
 
 * L'apprendimento automatico si divide in tre categorie principali: **apprendimento supervisionato**, **apprendimento non supervisionato** e **apprendimento per rinforzo**.
 
-  * Nell'**apprendimento supervisionato** ogni punto dati è etichettato con o associato a una categoria o un valore di interesse.  Un esempio di un'etichetta di categoria è l'assegnazione di un'immagine come "gatto" o "cane".  Un esempio di un'etichetta di valore è il prezzo di vendita associato a un'auto usata. L'obiettivo di apprendimento controllato consiste nello studio di molti esempi etichettati come questi e quindi di essere in grado di eseguire stime sui futuri punti dati, ad esempio l'identificazione di nuove foto con l'animale corretto o l'assegnazione di prezzi di vendita precisi ad altre auto usate. Questo tipo di Machine Learning è utile e diffuso. Tutti i moduli di Azure Machine Learning sono algoritmi di apprendimento supervisionato, ad eccezione di [K-Means Clustering][k-means-clustering].
+  * Nell'**apprendimento supervisionato** ogni punto dati è etichettato con o associato a una categoria o un valore di interesse.  Un esempio di un'etichetta di categoria è l'assegnazione di un'immagine come "gatto" o "cane".  Un esempio di un valore dell'etichetta è il prezzo di vendita hello associato a un'auto usata. obiettivo di apprendimento supervisionati Hello è toostudy molti etichettate esempi come queste e quindi toobe toomake in grado di stime sui punti dati futuri. Ad esempio, identificare nuove foto con hello corretto animale o l'assegnazione di tooother i prezzi di vendita accurate utilizzato automobili. Questo tipo di Machine Learning è utile e diffuso. Tutti i moduli di hello in Azure Machine Learning sotto la supervisione algoritmi, ad eccezione di apprendimento [Clustering K-Means][k-means-clustering].
 
-  * Nell'**apprendimento non supervisionato** ai punti dati non sono associate etichette. L'obiettivo di un algoritmo di apprendimento non supervisionato è invece l'organizzazione dei dati in un certo modo o la descrizione della loro struttura. Questo può significare il raggruppamento dei dati in cluster, come fa K-Means, o l'individuazione di modi diversi in cui osservare dati complessi perché appaiano semplici.
+  * Nell'**apprendimento non supervisionato** ai punti dati non sono associate etichette. Hello, invece, l'obiettivo di un algoritmo di apprendimento non supervisionato sono la struttura di dati hello tooorganize in alcune modalità o toodescribe. Questo può significare il raggruppamento dei dati in cluster, come fa K-Means, o l'individuazione di modi diversi in cui osservare dati complessi perché appaiano semplici.
 
-  * Nell'**apprendimento per rinforzo** l'algoritmo arriva a scegliere un'azione in risposta a ogni punto dati. Si tratta di un approccio comune in robotica, in cui il set di letture del sensore in un certo momento è un punto dati e l'algoritmo deve scegliere l'azione successiva del robot. Questo approccio è ideale anche per applicazioni "Internet delle cose" (Internet of Things, IoT). L'algoritmo di apprendimento riceve anche un segnale di ricompensa poco dopo, a indicare il livello di correttezza della decisione presa. In base a questo segnale, l'algoritmo modifica la propria strategia per ottenere la ricompensa maggiore. Attualmente in Azure ML non sono disponibili moduli di algoritmi di apprendimento per rinforzo.
+  * In **learning amplificazione**, algoritmo hello Ottiene toochoose un'azione nel punto di dati di risposta tooeach. È un approccio comune in robotica, in cui set di lettura dei sensori in un determinato punto nel tempo hello è un punto dati e algoritmo hello necessario scegliere l'azione successiva del robot hello. Questo approccio è ideale anche per applicazioni "Internet delle cose" (Internet of Things, IoT). algoritmo di apprendimento Hello anche riceve un segnale di benefici è stato un breve periodo in un secondo momento, che indica la qualità delle decisioni hello. In base a questa, algoritmo hello modifica la propria strategia in benefici ottenuti dalla più alta di hello tooachieve ordine. Attualmente in Azure ML non sono disponibili moduli di algoritmi di apprendimento per rinforzo.
 
-* I **metodi bayesiani** presuppongono punti dati statisticamente indipendenti. Questo significa che la variabilità non modellata in un punto dati non è correlata agli altri, ovvero non può essere stimata. Ad esempio, se i dati registrati sono il numero di minuti fino all'arrivo del prossimo treno della metropolitana, due misurazioni eseguite a distanza di un giorno sono statisticamente indipendenti. Tuttavia, due misurazioni eseguite a distanza di un minuto non sono statisticamente indipendenti e il valore di una è altamente predittivo rispetto a quello dell'altra.
+* **Metodi di Bayes** fare ipotesi hello di dati statisticamente indipendenti. Ciò significa che hello unmodeled variabilità in un punto dati è non correlato con altri utenti, vale a dire, non è possibile prevedere. Ad esempio, se i dati di hello registrati hello numero di minuti fino a quando non arriva train metropolitana Avanti hello, due misure smontate un giorno sono statisticamente indipendenti. Tuttavia, due misure smontate un minuto non sono statisticamente indipendenti: valore hello uno elevata predittiva del valore di hello di hello altri.
 
-* La **regressione con alberi delle decisioni con boosting** sfrutta la sovrapposizione delle caratteristiche o l'interazione tra caratteristiche. Questo significa che, in ogni punto dati specifico, il valore di una caratteristica è in parte predittivo del valore di un'altra. Ad esempio, nel caso di dati di bassa/alta temperatura giornaliera, la possibilità di determinare la bassa temperatura del giorno permette di stimare ragionevolmente anche quella alta. Le informazioni contenute nelle due caratteristiche sono in parte ridondanti.
+* La **regressione con alberi delle decisioni con boosting** sfrutta la sovrapposizione delle caratteristiche o l'interazione tra caratteristiche. Che significa che, in tutti i dati determinati punto, hello valore di una funzionalità viene in qualche modo predittiva del valore di hello di un altro. Ad esempio, nei dati di alta o bassa temperatura giornaliera, conoscere bassa temperatura hello per giorno hello consente toomake un ragionevole in hello elevata. informazioni di Hello in due funzionalità hello sono piuttosto ridondante.
 
-* La classificazione di dati in più di due categorie può essere eseguita usando un classificatore essenzialmente multiclasse o combinando un set di classificatori a due classi in un **insieme**. L'approccio basato su un insieme prevede un classificatore a due classi per ogni classe, ognuno dei quali separa i dati in due categorie: "questa classe" e "non questa classe". I classificatori votano quindi l'assegnazione corrente del punto dati. Questo è il principio operativo alla base del modulo [One-vs-All Multiclass][one-vs-all-multiclass].
+* La classificazione di dati in più di due categorie può essere eseguita usando un classificatore essenzialmente multiclasse o combinando un set di classificatori a due classi in un **insieme**. Nell'approccio insieme hello, vi è un classificatore a due classi separato per ogni classe - ciascuno di essi hello i dati vengono separati in due categorie: "questa classe" e "non questa classe." Quindi questi classificatori votano corretta assegnazione di hello del punto dati hello. Si tratta di hello principio operativo dietro [One-vs-All Multiclass][one-vs-all-multiclass].
 
-* Diversi metodi, tra cui la regressione logistica e Bayes Point Machine, presuppongono **limiti tra classi lineari**, ovvero assumono che i limiti tra le classi siano approssimativamente linee rette (oppure iperpiani nel caso più generale). Spesso questa caratteristica dei dati non viene individuata fino a dopo aver provato a separarli, ma può essere determinata in genere visualizzando i dati in anticipo. Se i limiti di classe appaiono molto irregolari, optare per alberi delle decisioni, giungle delle decisioni, macchine a vettori di supporto o reti neurali.
+* Si supponga di diversi metodi, incluse la regressione logistica e i computer del punto di Bayes hello, **limiti di classe lineare**. Ovvero, si presuppone che hello limiti tra le classi sono circa linee rette (o hyperplanes nel caso più generale di hello). Spesso si tratta di una caratteristica dei dati hello che non si conosce fino a dopo che hai tentato tooseparate, ma si è un elemento che in genere possono essere appresi da visualizzare in anticipo. Se i limiti di classe hello aspetto molto irregolari, utilizzare gli alberi delle decisioni, giungle delle decisioni, supportano le macchine a vettori, o reti neurali.
 
-* Le reti neurali possono essere usate con variabili di categoria creando una **variabile fittizia** per ogni categoria e impostandola su 1 nei casi in cui la categoria è applicabile e su 0 quando non lo è.
+* Reti neurali sono utilizzabile con variabili di categoria creando un **variabile fittizia** per ogni categoria, impostarlo too1 nei casi in cui si applica la categoria hello, in caso contrario 0.
 
 
-<!-- This is how you can embed a link in an image in HTML. Don't know how to do this in markdown.
+<!-- This is how you can embed a link in an image in HTML. Don't know how toodo this in markdown.
 <a href="http://download.microsoft.com/download/A/6/1/A613E11E-8F9C-424A-B99D-65344785C288/microsoft-machine-learning-algorithm-cheat-sheet.pdf">
 <img src="C:\Users\garye\azure-docs-pr\articles\media\machine-learning-algorithm-cheat-sheet\cheat-sheet-small.png">
 </a>

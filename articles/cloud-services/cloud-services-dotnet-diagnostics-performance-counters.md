@@ -1,6 +1,6 @@
 ---
-title: Usare i contatori delle prestazioni in Diagnostica di Azure Diagnostics | Documentazione Microsoft
-description: Usare i contatori delle prestazioni nei servizi cloud o nelle macchine virtuali di Azure per trovare i colli di bottiglia e ottimizzare le prestazioni.
+title: contatori delle prestazioni in diagnostica Azure aaaUse | Documenti Microsoft
+description: Utilizzare i contatori delle prestazioni in servizi cloud di Azure o i colli di bottiglia toofind macchina virtuale e ottimizzare le prestazioni.
 services: cloud-services
 documentationcenter: .net
 author: rboucher
@@ -14,32 +14,32 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 02/29/2016
 ms.author: robb
-ms.openlocfilehash: 2cf765cb034725199127c547a9b8b997a4a6089c
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: f3250816c01fc6e164a6aae48da5035845e6d2b3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-and-use-performance-counters-in-an-azure-application"></a>Creare e usare contatori di prestazioni in un'applicazione Azure
-Questo articolo descrive i vantaggi dei contatori delle prestazioni e come inserirli nell'applicazione Azure. È possibile usarli per raccogliere dati, trovare colli di bottiglia e ottimizzare le prestazioni del sistema e dell'applicazione.
+Questo articolo descrive i vantaggi hello e come i contatori delle prestazioni tooput nell'applicazione Azure. È possibile utilizzarli come dati toocollect, individuare i colli di bottiglia e ottimizzare le prestazioni del sistema e dell'applicazione.
 
-I contatori delle prestazioni disponibili per Windows Server, IIS e ASP.NET possono essere raccolti e usati anche per determinare l'integrità di ruoli Web, ruoli di lavoro e macchine virtuali di Azure. È anche possibile creare e usare contatori delle prestazioni personalizzati.  
+Contatori delle prestazioni disponibili per Windows Server, IIS e ASP.NET possono anche essere raccolti e utilizzato integrità hello toodetermine di ruoli web di Azure e i ruoli di lavoro, le macchine virtuali. È anche possibile creare e usare contatori delle prestazioni personalizzati.  
 
 È possibile esaminare i dati dei contatori delle prestazioni
 
-1. Direttamente nell'host applicazione con lo strumento Performance Monitor accessibile da Desktop remoto
-2. Con System Center Operations Manager con Azure Management Pack
-3. Con altri strumenti di monitoraggio che accedono ai dati di diagnostica trasferiti ad Archiviazione di Azure. Per altre informazioni, vedere [Archiviare e visualizzare i dati di diagnostica nell'account di archiviazione Azure](https://msdn.microsoft.com/library/azure/hh411534.aspx) .  
+1. Direttamente nell'host di applicazioni hello con lo strumento Performance Monitor hello accesso tramite Desktop remoto
+2. Con System Center Operations Manager hello Azure Management Pack
+3. Con altri strumenti di monitoraggio che accedono a hello tooAzure archiviazione trasferire i dati di diagnostica. Per altre informazioni, vedere [Archiviare e visualizzare i dati di diagnostica nell'account di archiviazione Azure](https://msdn.microsoft.com/library/azure/hh411534.aspx) .  
 
-Per altre informazioni sul monitoraggio delle prestazioni dell'applicazione nel [portale di Azure](http://portal.azure.com/), vedere [Come monitorare i servizi cloud](https://www.azure.com/manage/services/cloud-services/how-to-monitor-a-cloud-service/).
+Per ulteriori informazioni sul monitoraggio delle prestazioni di hello dell'applicazione in hello [portale di Azure](http://portal.azure.com/), vedere [come servizi Cloud tooMonitor](https://www.azure.com/manage/services/cloud-services/how-to-monitor-a-cloud-service/).
 
-Per ulteriori indicazioni dettagliate sulla creazione di una strategia di registrazione e traccia e sull'utilizzo della diagnostica e di altre tecniche per risolvere i problemi e ottimizzare le applicazioni Azure, vedere le [procedure consigliate di risoluzione dei problemi per lo sviluppo di applicazioni Azure](https://msdn.microsoft.com/library/azure/hh771389.aspx).
+Per altre informazioni dettagliate sulla creazione di una registrazione e traccia strategia e sull'uso della diagnostica e altri problemi tootroubleshoot tecniche e ottimizzare le applicazioni Azure, vedere [risoluzione dei problemi di procedure consigliate per lo sviluppo di Azure Applicazioni](https://msdn.microsoft.com/library/azure/hh771389.aspx).
 
 ## <a name="enable-performance-counter-monitoring"></a>Abilitare il monitoraggio del contatore delle prestazioni
-Per impostazione predefinita, i contatori delle prestazioni non sono abilitati. L'applicazione o un'attività di avvio deve modificare la configurazione predefinita dell'agente di diagnostica in modo che includa i contatori delle prestazioni specifici da monitorare per ogni istanza del ruolo.
+Per impostazione predefinita, i contatori delle prestazioni non sono abilitati. L'applicazione o un'attività di avvio deve modificare diagnostica predefinito hello prestazioni specifici di agente configurazione tooinclude hello contatori che si desidera toomonitor per ogni istanza del ruolo.
 
 ### <a name="performance-counters-available-for-microsoft-azure"></a>Contatori delle prestazioni disponibili per Microsoft Azure
-Azure fornisce un subset dei contatori delle prestazioni disponibili per Windows Server, IIS e lo stack ASP.NET. La tabella seguente elenca alcuni contatori delle prestazioni particolarmente interessanti per le applicazioni Azure.
+Azure fornisce un subset di contatori delle prestazioni di hello disponibili per Windows Server, IIS e ASP.NET stack hello. Hello nella tabella seguente sono elencati alcuni dei contatori delle prestazioni di hello di particolare interesse per le applicazioni Azure.
 
 | Categoria contatore: oggetto (istanza) | Nome contatore | Riferimento |
 | --- | --- | --- |
@@ -69,54 +69,54 @@ Azure fornisce un subset dei contatori delle prestazioni disponibili per Windows
 | Interfaccia di rete (Scheda di rete per il bus delle macchine virtuali Microsoft _2) |Byte inviati/sec |Oggetto interfaccia di rete |
 | Interfaccia di rete (Scheda di rete per il bus delle macchine virtuali Microsoft _2) |Totale byte/sec |Oggetto interfaccia di rete |
 
-## <a name="create-and-add-custom-performance-counters-to-your-application"></a>Creare e aggiungere contatori delle prestazioni personalizzati all'applicazione
-Azure include il supporto per creare e modificare contatori delle prestazioni personalizzati per ruoli Web e ruoli di lavoro. I contatori possono essere usati per tenere traccia del comportamento specifico dell'applicazione e per monitorarlo. È possibile creare ed eliminare categorie e identificatori dei contatori delle prestazioni personalizzati da un'attività di avvio, un ruolo Web o un ruolo di lavoro con autorizzazioni elevate.
+## <a name="create-and-add-custom-performance-counters-tooyour-application"></a>Creare e aggiungere l'applicazione di tooyour i contatori delle prestazioni personalizzati
+Azure dispone di supporto toocreate e modificare i contatori delle prestazioni personalizzati per i ruoli web e ruoli di lavoro. contatori di Hello possono essere utilizzato il comportamento di specifiche dell'applicazione tootrack e monitoraggio. È possibile creare ed eliminare categorie e identificatori dei contatori delle prestazioni personalizzati da un'attività di avvio, un ruolo Web o un ruolo di lavoro con autorizzazioni elevate.
 
 > [!NOTE]
-> Il codice che apporta le modifiche ai contatori delle prestazioni personalizzati deve avere autorizzazioni di esecuzione elevate. Se il codice è in un ruolo Web o in un ruolo di lavoro, il ruolo deve includere il tag <Runtime executionContext="elevated" /> nel file ServiceDefinition.csdef per la corretta inizializzazione del ruolo.
+> Codice che modifica i contatori delle prestazioni toocustom deve elevate toorun autorizzazioni. Se il codice hello è in un ruolo web o un ruolo di lavoro, il ruolo di hello deve includere tag hello <Runtime executionContext="elevated" /> in hello servicedefinition. Csdef del file per hello ruolo tooinitialize correttamente.
 >
 >
 
-È possibile inviare i dati dei contatori delle prestazioni personalizzati alla risorsa di archiviazione di Azure con l'agente di diagnostica.
+È possibile inviare archiviazione tooAzure dati contatore di prestazioni personalizzati utilizzando hello diagnostica agente.
 
-I dati dei contatori delle prestazioni standard vengono generati dai processi di Azure. I dati dei contatori delle prestazioni personalizzati devono essere creati dall'applicazione ruolo Web o ruolo di lavoro. Per informazioni sui tipi di dati che possono essere archiviati nei contatori delle prestazioni personalizzati, vedere [Tipi di contatori delle prestazioni](https://msdn.microsoft.com/library/z573042h.aspx) . Per un esempio di creazione e impostazione dei dati dei contatori delle prestazioni personalizzati in un ruolo Web, vedere [Esempio PerformanceCounters](http://code.msdn.microsoft.com/azure/) .
+i dati dei contatori delle prestazioni standard Hello viene generati da hello che Azure elabora. I dati dei contatori delle prestazioni personalizzati devono essere creati dall'applicazione ruolo Web o ruolo di lavoro. Vedere [tipi di contatori delle prestazioni](https://msdn.microsoft.com/library/z573042h.aspx) per informazioni sui tipi di hello di dati che possono essere archiviati in contatori delle prestazioni personalizzati. Per un esempio di creazione e impostazione dei dati dei contatori delle prestazioni personalizzati in un ruolo Web, vedere [Esempio PerformanceCounters](http://code.msdn.microsoft.com/azure/) .
 
 ## <a name="store-and-view-performance-counter-data"></a>Archiviare e visualizzare i dati dei contatori delle prestazioni
-Azure memorizza nella cache i dati dei contatori delle prestazioni con altre informazioni di diagnostica. Questi dati sono disponibili per il monitoraggio remoto mentre l'istanza del ruolo è in esecuzione con l'accesso desktop remoto per visualizzare strumenti come Performance Monitor. Per rendere i dati persistenti al di fuori dell'istanza del ruolo, l'agente di diagnostica deve trasferire i dati nell'account di archiviazione di Azure. Il limite di dimensioni dei dati dei contatori delle prestazioni memorizzati nella cache può essere configurato nell'agente di diagnostica oppure come parte di un limite condiviso per tutti i dati di diagnostica. Per altre informazioni sull'impostazione delle dimensioni del buffer, vedere [OverallQuotaInMB](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.diagnostics.diagnosticmonitorconfiguration.overallquotainmb.aspx) e [DirectoriesBufferConfiguration](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.diagnostics.directoriesbufferconfiguration.aspx). Per una panoramica della configurazione dell'agente di diagnostica per i trasferire i dati in un account di archiviazione, vedere [Archiviare e visualizzare i dati di diagnostica nell'account di archiviazione Azure](https://msdn.microsoft.com/library/azure/hh411534.aspx)
+Azure memorizza nella cache i dati dei contatori delle prestazioni con altre informazioni di diagnostica. Questi dati sono disponibili per il monitoraggio remoto durante l'esecuzione di istanza del ruolo hello utilizzando gli strumenti tooview accesso desktop remoto, ad esempio Performance Monitor. toopersist hello trasferimento dei dati all'esterno di istanza del ruolo hello, agente di diagnostica hello deve archiviazione tooAzure dei dati hello. limite delle dimensioni dei dati dei contatori delle prestazioni memorizzati nella cache di hello Hello può essere configurato nell'agente di diagnostica hello o può essere configurato toobe parte di un limite condiviso per tutti i dati di diagnostica di hello. Per ulteriori informazioni sull'impostazione delle dimensioni del buffer hello, vedere [OverallQuotaInMB](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.diagnostics.diagnosticmonitorconfiguration.overallquotainmb.aspx) e [DirectoriesBufferConfiguration](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.diagnostics.directoriesbufferconfiguration.aspx). Vedere [archivio e visualizza i dati di diagnostica in archiviazione di Azure](https://msdn.microsoft.com/library/azure/hh411534.aspx) per una panoramica dell'impostazione di account di archiviazione di hello diagnostica agente tootransfer dati tooa.
 
-Ogni istanza dei contatori delle prestazioni configurati viene registrata con una frequenza di campionamento specificata e i dati campionati vengono trasferiti nell'account di archiviazione in base a una richiesta di trasferimento pianificato o a una richiesta di trasferimento su richiesta. I trasferimenti automatici possono essere pianificati con una frequenza di una volta ogni minuto. I dati dei contatori delle prestazioni trasferiti dall'agente di diagnostica vengono archiviati in una tabella, WADPerformanceCountersTable, nell'account di archiviazione. Questa tabella è accessibile e può essere sottoposta a query con i metodi API di archiviazione standard di Azure. Per un esempio di query e di visualizzazione dei dati dei contatori delle prestazioni dalla tabella WADPerformanceCountersTable, vedere l' [esempio PerformanceCounters per Microsoft Azure](http://code.msdn.microsoft.com/Windows-Azure-PerformanceCo-7d80ebf9) .
+Ogni istanza del contatore delle prestazioni configurati viene registrata con una frequenza di campionamento specificata e trasferimento dei dati campionato hello toohello account di archiviazione tramite una richiesta di trasferimento pianificato o di una richiesta di trasferimento su richiesta. I trasferimenti automatici possono essere pianificati con una frequenza di una volta ogni minuto. Dati del contatore di prestazioni trasferiti dall'agente di diagnostica hello sono archiviati in una tabella, WADPerformanceCountersTable, nell'account di archiviazione hello. Questa tabella è accessibile e può essere sottoposta a query con i metodi API di archiviazione standard di Azure. Vedere [esempio PerformanceCounters di Microsoft Azure](http://code.msdn.microsoft.com/Windows-Azure-PerformanceCo-7d80ebf9) per un esempio di query e visualizzazione di dati del contatore delle prestazioni dalla tabella WADPerformanceCountersTable hello.
 
 > [!NOTE]
-> A seconda della latenza della coda e della frequenza di trasferimento dell'agente di diagnostica, i dati dei contatori delle prestazioni più recenti nell'account di archiviazione potrebbero essere scaduti da alcuni minuti.
+> A seconda della frequenza di trasferimento dell'agente di diagnostica hello e latenza della coda, hello dati più recente del contatore delle prestazioni nell'account di archiviazione hello sia aggiornata alcuni minuti.
 >
 >
 
 ## <a name="enable-performance-counters-using-diagnostics-configuration-file"></a>Abilitare i contatori delle prestazioni con il file di configurazione della diagnostica
-Usare la procedura seguente per abilitare i contatori delle prestazioni nell'applicazione Azure.
+Utilizzare i seguenti contatori delle prestazioni di stored procedure tooenable nell'applicazione Azure hello.
 
 ## <a name="prerequisites"></a>Prerequisiti
-Questa sezione presuppone che il monitor di diagnostica sia stato importato nell'applicazione e che il file di configurazione della diagnostica sia stato aggiunto alla soluzione Visual Studio (diagnostics.wadcfg in SDK 2.4 e versioni precedenti o diagnostics.wadcfgx in SDK 2.5 e versioni successive). Per altre informazioni, vedere i passaggi 1 e 2 in [Abilitazione della diagnostica nei servizi cloud e nelle macchine virtuali di Azure](cloud-services-dotnet-diagnostics.md).
+In questa sezione si presuppone di aver importato monitor di diagnostica hello nell'applicazione e aggiunto hello diagnostica configurazione file tooyour soluzione di Visual Studio (Diagnostics. wadcfg in SDK 2.4 e di sotto o wadcfgx in SDK 2.5 e versioni successive). Per altre informazioni, vedere i passaggi 1 e 2 in [Abilitazione della diagnostica nei servizi cloud e nelle macchine virtuali di Azure](cloud-services-dotnet-diagnostics.md).
 
 ## <a name="step-1-collect-and-store-data-from-performance-counters"></a>Passaggio 1: Raccogliere e archiviare i dati dei contatori delle prestazioni
-Dopo avere aggiunto il file della diagnostica alla soluzione Visual Studio, è possibile configurare la raccolta e l'archiviazione dei dati dei contatori delle prestazioni in un'applicazione Azure. Questa operazione viene eseguita tramite l'aggiunta di contatori delle prestazioni nel file della diagnostica. I dati di diagnostica, inclusi i dati dei contatori delle prestazioni, vengono innanzitutto raccolti nell'istanza e quindi salvati in modo permanente nella tabella WADPerformanceCountersTable del servizio tabelle di Azure, pertanto è necessario specificare l'account di archiviazione nell'applicazione. Se si esegue il test dell'applicazione in locale nell'emulatore di calcolo, è anche possibile archiviare i dati di diagnostica in locale nell'emulatore di archiviazione. Prima di archiviare i dati di diagnostica è necessario passare al [portale di Azure](http://portal.azure.com/) e creare un account di archiviazione classico. È consigliabile creare l'account di archiviazione nella stessa area geografica in cui si trova l'applicazione Azure. Mantenendo l'applicazione e l'account di archiviazione di Azure nella stessa area geografica, si evita il pagamento di costi per la larghezza di banda esterna e si riduce la latenza.
+Dopo aver aggiunto la diagnostica hello file tooyour soluzione di Visual Studio, è possibile configurare hello raccolta e l'archiviazione dei dati dei contatori delle prestazioni in un'applicazione Azure. Questa operazione viene eseguita mediante l'aggiunta di file di diagnostica toohello dei contatori delle prestazioni. Dati di diagnostica, inclusi i contatori delle prestazioni, vengono prima raccolti nell'istanza di hello. dati Hello sono persistente toohello WADPerformanceCountersTable tabella hello servizio tabelle di Azure, pertanto sarà anche necessario toospecify hello account di archiviazione nell'applicazione. Se si sta testando l'applicazione localmente nell'emulatore di calcolo di hello, è anche possibile archiviare i dati di diagnostica a livello locale in hello emulatore di archiviazione. Prima di archiviare dati di diagnostica, è necessario passare toohello [portale di Azure](http://portal.azure.com/) e creare un account di archiviazione classico. È consigliabile toolocate account di archiviazione nella stessa posizione geografica dell'applicazione Azure hello. Da mantenere hello Azure account di archiviazione e di applicazione sono in hello stessa località geografica, evitare di sostenere costi di larghezza di banda esterna e ridurre la latenza.
 
-### <a name="add-performance-counters-to-the-diagnostics-file"></a>Aggiungere i contatori delle prestazioni nel file della diagnostica
-È possibile usare diversi contatori. L'esempio seguente comprende diversi contatori delle prestazioni consigliati per il monitoraggio dei ruoli Web e di lavoro.
+### <a name="add-performance-counters-toohello-diagnostics-file"></a>Aggiungere file di diagnostica toohello dei contatori delle prestazioni
+È possibile usare diversi contatori. Hello riportato di seguito diversi contatori delle prestazioni consigliati per il web e ruolo di lavoro monitoraggio.
 
-Aprire il file della diagnostica (diagnostics.wadcfg in SDK 2.4 e versioni precedenti o diagnostics.wadcfgx in SDK 2.5 e versioni successive) e aggiungere quanto segue all'elemento DiagnosticMonitorConfiguration:
+Aprire il file di hello diagnostica (Diagnostics. wadcfg in SDK 2.4 e versioni precedenti o wadcfgx in SDK 2.5 e versioni successive) e aggiungere hello successivo elemento DiagnosticMonitorConfiguration toohello:
 
 ```xml
 <PerformanceCounters bufferQuotaInMB="0" scheduledTransferPeriod="PT30M">
     <PerformanceCounterConfiguration counterSpecifier="\Memory\Available Bytes" sampleRate="PT30S" />
     <PerformanceCounterConfiguration counterSpecifier="\Processor(_Total)\% Processor Time" sampleRate="PT30S" />
 
-    <!-- Use the Process(w3wp) category counters in a web role -->
+    <!-- Use hello Process(w3wp) category counters in a web role -->
 
     <PerformanceCounterConfiguration counterSpecifier="\Process(w3wp)\% Processor Time" sampleRate="PT30S" />
     <PerformanceCounterConfiguration counterSpecifier="\Process(w3wp)\Private Bytes" sampleRate="PT30S" />
     <PerformanceCounterConfiguration counterSpecifier="\Process(w3wp)\Thread Count" sampleRate="PT30S" />
 
-    <!-- Use the Process(WaWorkerHost) category counters in a worker role.
+    <!-- Use hello Process(WaWorkerHost) category counters in a worker role.
         <PerformanceCounterConfiguration counterSpecifier="\Process(WaWorkerHost)\% Processor Time" sampleRate="PT30S" />
         <PerformanceCounterConfiguration counterSpecifier="\Process(WaWorkerHost)\Private Bytes" sampleRate="PT30S" />
         <PerformanceCounterConfiguration counterSpecifier="\Process(WaWorkerHost)\Thread Count" sampleRate="PT30S" />
@@ -132,67 +132,67 @@ Aprire il file della diagnostica (diagnostics.wadcfg in SDK 2.4 e versioni prece
 </PerformanceCounters>
 ```
 
-L'attributo bufferQuotaInMB, che specifica la quantità massima di spazio di archiviazione disponibile nel file system per il tipo di raccolta dati (log di Azure, log di IIS ecc.). Il valore predefinito è 0. Quando viene raggiunta la quota massima, i dati meno recenti vengono eliminati man mano che vengono aggiunti nuovi dati. La somma di tutte le proprietà di bufferQuotaInMB deve essere maggiore del valore dell'attributo OverallQuotaInMB. Per informazioni dettagliate su come determinare la quantità di archiviazione necessaria per la raccolta dei dati di diagnostica, vedere la sezione relativa alla configurazione di WAD in [Procedure consigliate di risoluzione dei problemi per lo sviluppo di applicazioni Azure](https://msdn.microsoft.com/library/windowsazure/hh771389.aspx).
+attributo di bufferQuotaInMB Hello, che specifica hello quantità massima di archiviazione nel file system disponibile per il tipo di raccolta dati hello (log di Azure, i log di IIS e così via). valore predefinito di Hello è 0. Quando viene raggiunta la quota hello, dati meno recenti di hello vengono eliminati man mano che vengono aggiunti nuovi dati. somma di Hello di tutte le proprietà di bufferQuotaInMB hello deve essere maggiore del valore di hello dell'attributo OverallQuotaInMB hello. Per una discussione più dettagliata di determinare la quantità di archiviazione richiesta per la raccolta di hello dei dati di diagnostica, vedere hello sezione WAD il programma di installazione di [risoluzione dei problemi di procedure consigliate per lo sviluppo di applicazioni Azure](https://msdn.microsoft.com/library/windowsazure/hh771389.aspx).
 
-L'attributo scheduledTransferPeriod, che specifica l'intervallo tra i trasferimenti di dati pianificati, arrotondato per eccesso al minuto più vicino. Negli esempi seguenti è impostato su PT30M (30 minuti). Un valore di impostazione troppo basso, ad esempio 1 minuto, del periodo di trasferimento influisce negativamente sulle prestazioni dell'applicazione in produzione, ma può risultare utile per l'esecuzione rapida della diagnostica in fase di test. Il periodo di trasferimento pianificato deve essere sufficientemente basso da garantire che i dati di diagnostica non vengano sovrascritti nell'istanza, ma anche sufficientemente alto da non influire sulle prestazioni dell'applicazione.
+l'attributo scheduledTransferPeriod Hello, che specifica l'intervallo di hello tra i trasferimenti di dati pianificati, arrotondato per eccesso toohello più vicino al minuto. In hello seguono esempi, è impostato tooPT30M (30 minuti). Impostazione hello trasferimento tooa periodo valore basso, ad esempio 1 minuto, influisce negativamente sulle prestazioni dell'applicazione nell'ambiente di produzione, ma può essere utile per visualizzare l'esecuzione rapida, quando si esegue il test della diagnostica. periodo di trasferimento pianificato Hello deve essere sufficientemente piccole tooensure che i dati di diagnostica non viene sovrascritti nell'istanza di hello, ma sufficientemente elevato che non influirà hello delle prestazioni dell'applicazione.
 
-L'attributo counterSpecifier specifica il contatore delle prestazioni di cui raccogliere i dati. L'attributo sampleRate specifica la frequenza con cui raccogliere i dati del contatore delle prestazioni, in questo caso 30 secondi.
+attributo counterSpecifier Hello specifica toocollect contatore delle prestazioni di hello. attributo sampleRate Hello specifica velocità hello in corrispondenza del quale hello delle prestazioni del contatore, in questo caso 30 secondi.
 
-Una volta aggiunti i contatori delle prestazioni di cui raccogliere i dati, salvare le modifiche nel file diagnostica. Sarà quindi necessario specificare l'account di archiviazione nel quale verranno salvati in modo permanente i dati di diagnostica.
+Una volta aggiunti i contatori delle prestazioni di hello che si desidera toocollect, salvare il file di diagnostica toohello di modifiche. Successivamente, è necessario l'account di archiviazione hello toospecify che verranno mantenuti per i dati di diagnostica hello.
 
-### <a name="specify-the-storage-account"></a>Specificare l'account di archiviazione
-Per salvare in modo permanente le informazioni di diagnostica nell'account di archiviazione di Azure, è necessario specificare una stringa di connessione nel file di configurazione del servizio (ServiceConfiguration.cscfg).
+### <a name="specify-hello-storage-account"></a>Specificare l'account di archiviazione hello
+toopersist il tooyour informazioni di diagnostica Azure Storage account, è necessario specificare una stringa di connessione nel file di configurazione (ServiceConfiguration. cscfg) del servizio.
 
-Per Azure SDK 2.5 l'account di archiviazione può essere specificato nel file diagnostics.wadcfgx.
+Per Azure SDK 2.5, hello Account di archiviazione può essere specificato nel file Diagnostics. wadcfgx hello.
 
 > [!NOTE]
-> Queste istruzioni si applicano solo ad Azure SDK 2.4 e versioni precedenti. Per Azure SDK 2.5 l'account di archiviazione può essere specificato nel file diagnostics.wadcfgx.
+> Queste istruzioni si applicano solo tooAzure SDK 2.4 e versioni precedenti. Per Azure SDK 2.5, hello Account di archiviazione può essere specificato nel file Diagnostics. wadcfgx hello.
 >
 >
 
-Per impostare le stringhe di connessione:
+stringhe di connessione tooset hello:
 
-1. Aprire il file ServiceConfiguration.Cloud.cscfg usando l'editor di testo preferito e impostare la stringa di connessione per l'account di archiviazione. I valori *AccountName* e *AccountKey* sono disponibili nel dashboard dell'account di archiviazione del portale di Azure, in Chiavi di accesso.
+1. Aprire il file ServiceConfiguration hello utilizzando l'editor di testo preferito e stringa di connessione hello set per l'archiviazione. Hello *AccountName* e *AccountKey* i valori sono disponibili in hello portale Azure nel dashboard dell'account di archiviazione hello, in corrispondenza delle chiavi di accesso.
 
     ```xml
     <ConfigurationSettings>
       <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="DefaultEndpointsProtocol=https;AccountName=<name>;AccountKey=<key>"/>
     </ConfigurationSettings>
     ```
-2. Salvare il file ServiceConfiguration.Cloud.cscfg.
-3. Aprire il file ServiceConfiguration.Local.cscfg e verificare che UseDevelopmentStorage sia impostato su true.
+2. Salvare file ServiceConfiguration hello.
+3. Aprire il file local. cscfg hello e verificare che UseDevelopmentStorage sia impostato tootrue.
 
     ```xml
     <ConfigurationSettings>
       <Settingname="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="UseDevelopmentStorage=true"/>
     </ConfigurationSettings>
     ```
-   Ora che le stringhe di connessione sono impostate, i dati di diagnostica verranno salvati in modo permanente nell'account di archiviazione al momento della distribuzione dell'applicazione.
+   Ora che sono impostate le stringhe di connessione hello, quando l'applicazione viene distribuita l'applicazione viene mantenuto account di archiviazione tooyour dati di diagnostica.
 4. Salvare e compilare il progetto, quindi distribuire l'applicazione.
 
 ## <a name="step-2-optional-create-custom-performance-counters"></a>Passaggio 2: (Facoltativo) Creare contatori delle prestazioni personalizzati
-Oltre ai contatori delle prestazioni predefiniti, è possibile aggiungere contatori delle prestazioni personalizzati per monitorare i ruoli Web o di lavoro. I contatori delle prestazioni personalizzati possono essere utilizzati per tenere traccia e monitorare il funzionamento specifico dell'applicazione e possono essere creati o eliminati in un'attività di avvio, in un ruolo Web o in un ruolo di lavoro con autorizzazioni elevate.
+Inoltre toohello predefiniti i contatori delle prestazioni, è possibile aggiungere che i ruoli web o di lavoro toomonitor contatori delle proprie prestazioni personalizzati. Contatori delle prestazioni personalizzati possono modo utilizzati tootrack e monitoraggio specifici dell'applicazione e può essere creati o eliminati in un'attività di avvio, un ruolo web o un ruolo di lavoro con autorizzazioni elevate.
 
-L'agente Diagnostica di Azure aggiorna la configurazione dei contatori delle prestazioni dal file con estensione wadcfg un minuto dopo l'avvio.  Se si creano contatori delle prestazioni personalizzati nel metodo OnStart e l'esecuzione delle attività di avvio dura più di un minuto, i contatori delle prestazioni personalizzati non risulteranno creati quando l'agente Diagnostica di Azure cercherà di caricarli.  In questo scenario Diagnostica di Azure acquisirà correttamente tutti i dati di diagnostica tranne i contatori delle prestazioni personalizzati.  Per risolvere questo problema, creare i contatori delle prestazioni in un'attività di avvio o spostare parte delle operazioni delle attività di avvio al metodo OnStart dopo avere creato i contatori delle prestazioni.
+agente di diagnostica di Azure Hello Aggiorna hello configurazione contatori di prestazioni dal file con estensione wadcfg hello un minuto dopo l'avvio.  Se si creano i contatori delle prestazioni personalizzati nel metodo OnStart hello e le attività di avvio richiedono più di un minuto tooexecute, i contatori delle prestazioni personalizzati non è state create quando l'agente diagnostica Azure hello tenta tooload li.  In questo scenario Diagnostica di Azure acquisirà correttamente tutti i dati di diagnostica tranne i contatori delle prestazioni personalizzati.  tooresolve questo problema, creare hello contatori delle prestazioni in un'attività di avvio o spostare alcune delle attività di avvio funziona metodo OnStart toohello dopo la creazione di contatori delle prestazioni di hello.
 
-Per creare un semplice contatore delle prestazioni personalizzato denominato "\MyCustomCounterCategory\MyButton1Counter", effettuare i passaggi seguenti:
+Eseguire i seguenti passaggi toocreate una semplice personalizzata contatore delle prestazioni "\MyCustomCounterCategory\MyButton1Counter" hello:
 
-1. Aprire il file di definizione del servizio (CSDEF) dell'applicazione.
-2. Aggiungere l'elemento Runtime all'elemento WebRole o WorkerRole per consentire l'esecuzione con privilegi elevati:
+1. Aprire hello file di definizione del servizio (CSDEF) per l'applicazione.
+2. Aggiungere hello elemento toohello WebRole o WorkerRole elemento tooallow esecuzione con privilegi elevati:
 
     ```xml
     <runtime executioncontext="elevated"/>
     ```
-3. Salvare il file.
-4. Aprire il file della diagnostica (diagnostics.wadcfg in SDK 2.4 e versioni precedenti o diagnostics.wadcfgx in SDK 2.5 e versioni successive) e aggiungere quanto segue a DiagnosticMonitorConfiguration:
+3. Salvare il file hello.
+4. Aprire il file di hello diagnostica (Diagnostics. wadcfg in SDK 2.4 e versioni precedenti o wadcfgx in SDK 2.5 e versioni successive) e aggiungere hello seguente toohello DiagnosticMonitorConfiguration
 
     ```xml
     <PerformanceCounters bufferQuotaInMB="0" scheduledTransferPeriod="PT30M">
       <PerformanceCounterConfiguration counterSpecifier="\MyCustomCounterCategory\MyButton1Counter" sampleRate="PT30S"/>
     </PerformanceCounters>
     ```
-5. Salvare il file.
-6. Creare la categoria dei contatori delle prestazioni personalizzati nel metodo OnStart del ruolo prima di richiamare base.OnStart. Nell'esempio C# seguente viene creata una categoria personalizzata, nel caso in cui non esista già:
+5. Salvare il file hello.
+6. Creare categoria del contatore delle prestazioni personalizzati hello nel metodo OnStart hello del ruolo, prima di chiamare base. OnStart. Hello esempio c# seguente viene creata una categoria personalizzata, se non esiste già:
 
     ```csharp
     public override bool OnStart()
@@ -222,7 +222,7 @@ Per creare un semplice contatore delle prestazioni personalizzato denominato "\M
     return base.OnStart();
     }
     ```
-7. Aggiornare i contatori all'interno dell'applicazione. Nell'esempio seguente viene aggiornato un contatore delle prestazioni personalizzato per gli eventi Button1_Click:
+7. Aggiornare i contatori di hello all'interno dell'applicazione. Hello di esempio seguente aggiorna un contatore delle prestazioni personalizzato in eventi Button1_Click:
 
     ```csharp
     protected void Button1_Click(object sender, EventArgs e)
@@ -237,14 +237,14 @@ Per creare un semplice contatore delle prestazioni personalizzato denominato "\M
         button1Counter.RawValue.ToString();
     }
     ```
-8. Salvare il file.  
+8. Salvare il file hello.  
 
-I dati dei contatori delle prestazioni personalizzati verranno ora raccolti dal monitoraggio di diagnostica di Azure.
+I dati dei contatori delle prestazioni personalizzati verranno ora raccolti dal monitor di diagnostica di Azure hello.
 
 ## <a name="step-3-query-performance-counter-data"></a>Passaggio 3: Eseguire query sui dati dei contatori delle prestazioni
-Dopo che l'applicazione è stata distribuita ed è in esecuzione, il monitoraggio diagnostica inizierà a raccogliere i dati dei contatori delle prestazioni e a salvarli in modo permanente nell'archiviazione di Azure. Usare strumenti come Esplora server in Visual Studio, [Azure Storage Explorer](http://azurestorageexplorer.codeplex.com/) o [Azure Diagnostics Manager](http://www.cerebrata.com/Products/AzureDiagnosticsManager/Default.aspx) di Cerebrata per visualizzare i dati dei contatori delle prestazioni nella tabella WADPerformanceCountersTable. A livello di codice è anche possibile eseguire una query sul servizio tabelle usando [C#](../cosmos-db/table-storage-how-to-use-dotnet.md), [Java](../cosmos-db/table-storage-how-to-use-java.md), [Node.js](../cosmos-db/table-storage-how-to-use-nodejs.md), [Python](../cosmos-db/table-storage-how-to-use-python.md), [Ruby](../cosmos-db/table-storage-how-to-use-ruby.md) o [PHP](../cosmos-db/table-storage-how-to-use-php.md).
+Dopo l'applicazione viene distribuita e in esecuzione, il monitor di diagnostica hello inizierà a raccogliere i contatori delle prestazioni e che tooAzure l'archiviazione dei dati di persistenza. Utilizzare gli strumenti, ad esempio Esplora Server in Visual Studio, [Azure Storage Explorer](http://azurestorageexplorer.codeplex.com/), o [Azure Diagnostics Manager](http://www.cerebrata.com/Products/AzureDiagnosticsManager/Default.aspx) di Cerebrata in hello dati dei contatori delle prestazioni di hello tooview Tabella WADPerformanceCountersTable. È possibile eseguire una query anche a livello di codice hello tabella servizio tramite [c#](../cosmos-db/table-storage-how-to-use-dotnet.md), [Java](../cosmos-db/table-storage-how-to-use-java.md), [Node.js](../cosmos-db/table-storage-how-to-use-nodejs.md), [Python](../cosmos-db/table-storage-how-to-use-python.md), [Ruby](../cosmos-db/table-storage-how-to-use-ruby.md), o [PHP](../cosmos-db/table-storage-how-to-use-php.md).
 
-Nell'esempio C# seguente viene illustrato come eseguire una query di base sulla tabella WADPerformanceCountersTable e come salvare i dati di diagnostica in un file CSV. Dopo aver salvato i contatori delle prestazioni in un file CSV, è possibile usare le funzionalità grafiche di Microsoft Excel o altri strumenti per visualizzare i dati. Ricordarsi di aggiungere un riferimento a Microsoft.WindowsAzure.Storage.dll, che è stato incluso in Azure SDK per .NET a partire dalla versione di ottobre 2012. L'assembly viene installato nella directory %Programmi%\Microsoft SDKs\Microsoft Azure.NET SDK\version-num\ref\.
+Hello esempio c# seguente viene illustrata una query di base sulla tabella WADPerformanceCountersTable hello e Salva il file CSV tooa di hello diagnostica dei dati. Dopo che i contatori delle prestazioni di hello vengono salvati i file CSV tooa, è possibile utilizzare le funzionalità di Microsoft Excel o alcuni altri dati hello toovisualize dello strumento di creazione di grafi hello. Impossibile verificare tooadd tooMicrosoft.WindowsAzure.Storage.dll un riferimento, incluso in hello Azure SDK per .NET ottobre 2012 e versioni successive. assembly Hello è installato toohello % programma Files%\Microsoft SDKs\Microsoft Azure.NET sdk\version-num\ref\. directory.
 
 ```csharp
 using Microsoft.WindowsAzure.Storage;
@@ -252,28 +252,28 @@ using Microsoft.WindowsAzure.Storage.Auth;
 using Microsoft.WindowsAzure.Storage.Table;
 ...
 
-// Get the connection string. When using Microsoft Azure Cloud Services, it is recommended
-// you store your connection string using the Microsoft Azure service configuration
-// system (*.csdef and *.cscfg files). You can you use the CloudConfigurationManager type
-// to retrieve your storage connection string.  If you're not using Cloud Services, it's
-// recommended that you store the connection string in your web.config or app.config file.
-// Use the ConfigurationManager type to retrieve your storage connection string.
+// Get hello connection string. When using Microsoft Azure Cloud Services, it is recommended
+// you store your connection string using hello Microsoft Azure service configuration
+// system (*.csdef and *.cscfg files). You can you use hello CloudConfigurationManager type
+// tooretrieve your storage connection string.  If you're not using Cloud Services, it's
+// recommended that you store hello connection string in your web.config or app.config file.
+// Use hello ConfigurationManager type tooretrieve your storage connection string.
 
 string connectionString = Microsoft.WindowsAzure.CloudConfigurationManager.GetSetting("StorageConnectionString");
 //string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["StorageConnectionString"].ConnectionString;
 
-// Get a reference to the storage account using the connection string.  You can also use the development
+// Get a reference toohello storage account using hello connection string.  You can also use hello development
 // storage account (Storage Emulator) for local debugging.
 CloudStorageAccount storageAccount = CloudStorageAccount.Parse(connectionString);
 //CloudStorageAccount storageAccount = CloudStorageAccount.DevelopmentStorageAccount;
 
-// Create the table client.
+// Create hello table client.
 CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
 
-// Create the CloudTable object that represents the "WADPerformanceCountersTable" table.
+// Create hello CloudTable object that represents hello "WADPerformanceCountersTable" table.
 CloudTable table = tableClient.GetTableReference("WADPerformanceCountersTable");
 
-// Create the table query, filter on a specific CounterName, DeploymentId and RoleInstance.
+// Create hello table query, filter on a specific CounterName, DeploymentId and RoleInstance.
 TableQuery<PerformanceCountersEntity> query = new TableQuery<PerformanceCountersEntity>()
   .Where(
     TableQuery.CombineFilters(
@@ -287,10 +287,10 @@ TableQuery<PerformanceCountersEntity> query = new TableQuery<PerformanceCounters
   )
 );
 
-// Execute the table query.
+// Execute hello table query.
 IEnumerable<PerformanceCountersEntity> result = table.ExecuteQuery(query);
 
-// Process the query results and build a CSV file.
+// Process hello query results and build a CSV file.
 StringBuilder sb = new StringBuilder("TimeStamp,EventTickCount,DeploymentId,Role,RoleInstance,CounterName,CounterValue\n");
 
 foreach (PerformanceCountersEntity entity in result)
@@ -304,7 +304,7 @@ sw.Write(sb.ToString());
 sw.Close();
 ```
 
-Per eseguire il mapping di entità a oggetti C#, viene utilizzata una classe personalizzata derivata da **TableEntity**. Il codice seguente definisce una classe dell'entità che rappresenta un contatore delle prestazioni nella tabella **WADPerformanceCountersTable** .
+Eseguire il mapping di entità tooC # oggetti usando una classe personalizzata derivata da **TableEntity**. il codice seguente Hello definisce una classe di entità che rappresenta un contatore delle prestazioni in hello **WADPerformanceCountersTable** tabella.
 
 ```csharp
 public class PerformanceCountersEntity : TableEntity

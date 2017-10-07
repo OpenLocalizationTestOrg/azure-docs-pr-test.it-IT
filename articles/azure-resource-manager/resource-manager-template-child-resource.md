@@ -1,6 +1,6 @@
 ---
-title: Definire una risorsa figlio in un modello di Azure | Microsoft Docs
-description: Illustra come impostare il nome e il tipo di una risorsa figlio in un modello di Azure Resource Manager
+title: la risorsa aaaDefine figlio nel modello di Azure | Documenti Microsoft
+description: Viene illustrato come tooset hello tipo di risorsa e il nome per la risorsa figlio in un modello di gestione risorse di Azure
 services: azure-resource-manager
 documentationcenter: 
 author: tfitzmac
@@ -14,22 +14,22 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/01/2017
 ms.author: tomfitz
-ms.openlocfilehash: 5b6ce5526f354008eb4a697deec737876f22391f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c502c589100d7ae864d7fb01b5ba10ddfaf92592
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="set-name-and-type-for-child-resource-in-resource-manager-template"></a>Impostare il nome e il tipo di una risorsa figlio in un modello di Resource Manager
-Quando si crea un modello, è spesso necessario includere una risorsa figlio correlata a una risorsa padre. Il modello, ad esempio, potrebbe includere un'istanza di SQL Server e un database. L'istanza di SQL Server è la risorsa padre e il database è la risorsa figlio. 
+Quando si crea un modello, spesso necessario tooinclude una risorsa figlio risorsa padre tooa correlati. Il modello, ad esempio, potrebbe includere un'istanza di SQL Server e un database. Hello SQL server è risorsa padre hello e database hello è la risorsa figlio hello. 
 
-Il formato del tipo della risorsa figlio è: `{resource-provider-namespace}/{parent-resource-type}/{child-resource-type}`
+formato Hello hello figlio del tipo di risorsa è:`{resource-provider-namespace}/{parent-resource-type}/{child-resource-type}`
 
-Il formato del nome della risorsa figlio è: `{parent-resource-name}/{child-resource-name}`
+formato Hello hello figlio del nome di risorsa è:`{parent-resource-name}/{child-resource-name}`
 
-Il tipo e il nome vengono tuttavia specificati in modo diverso in un modello a seconda che la risorsa sia annidata nella risorsa padre oppure di primo livello. Questo argomento illustra come gestire entrambi gli approcci.
+È tuttavia specificare hello tipo e il nome in un modello in modo diverso in base è annidata all'interno di risorsa padre hello oppure autonomamente al primo livello hello. Questo argomento viene illustrato come si avvicina toohandle entrambi.
 
-Quando si crea un riferimento completo a una risorsa, l'ordine di combinazione dei segmenti dal tipo e dal nome non è semplicemente una concatenazione dei due elementi.  Dopo lo spazio dei nomi, usare invece una sequenza di coppie *tipo/nome* dal meno specifico al più specifico:
+Quando si crea una risorsa di riferimento completo tooa, hello ordine toocombine segmenti dal tipo hello e nome non è semplicemente una concatenazione di due hello.  Dopo aver hello dello spazio dei nomi, utilizzare invece una sequenza di *nome/tipo* le coppie meno specifico toomost specifico:
 
 ```json
 {resource-provider-namespace}/{parent-resource-type}/{parent-resource-name}[/{child-resource-type}/{child-resource-name}]*
@@ -40,7 +40,7 @@ ad esempio:
 `Microsoft.Compute/virtualMachines/myVM/extensions/myExt` è corretto `Microsoft.Compute/virtualMachines/extensions/myVM/myExt` non è corretto
 
 ## <a name="nested-child-resource"></a>Risorsa figlio annidata
-Il modo più semplice per definire una risorsa figlio consiste nell'annidarla nella risorsa padre. L'esempio seguente illustra un database SQL annidato in un'istanza di SQL Server.
+toodefine modo più semplice di Hello una risorsa figlio è toonest in risorsa padre hello. Hello esempio seguente viene illustrato un database SQL annidato in un Server SQL.
 
 ```json
 {
@@ -59,10 +59,10 @@ Il modo più semplice per definire una risorsa figlio consiste nell'annidarla ne
 }
 ```
 
-Per la risorsa figlio, il tipo è impostato su `databases`, ma il tipo di risorsa completo è `Microsoft.Sql/servers/databases`. Non si specifica `Microsoft.Sql/servers/` perché viene ottenuto dal tipo della risorsa padre. Il nome della risorsa figlio è impostato su `exampledatabase`, ma il nome completo include il nome della risorsa padre. Non si specifica `exampleserver` perché viene ottenuto dalla risorsa padre.
+Per una risorsa figlio hello tipo hello è troppo`databases` ma il tipo di risorsa completo `Microsoft.Sql/servers/databases`. Non si specifica `Microsoft.Sql/servers/` perché si presuppone dal tipo di risorsa padre hello. nome di risorsa figlio Hello impostato troppo`exampledatabase` ma il nome completo di hello include il nome del padre hello. Non si specifica `exampleserver` perché si presuppone dalla risorsa padre hello.
 
 ## <a name="top-level-child-resource"></a>Risorsa figlio di primo livello
-È possibile definire la risorsa figlio al primo livello. Questo approccio potrebbe essere usato se la risorsa padre non viene distribuita nello stesso modello o se si vuole usare `copy` per creare più risorse figlio. Con questo approccio, è necessario specificare il tipo di risorsa completo e includere il nome della risorsa padre nel nome della risorsa figlio.
+È possibile definire la risorsa figlio hello al primo livello hello. È possibile utilizzare questo approccio se risorsa padre hello non viene distribuito nella hello stesso modello o se desidera toouse `copy` toocreate più risorse figlio. Con questo approccio, è necessario fornire il tipo di risorsa completo hello e includono nome della risorsa padre di hello nel nome di risorsa figlio hello.
 
 ```json
 {
@@ -81,8 +81,8 @@ Per la risorsa figlio, il tipo è impostato su `databases`, ma il tipo di risors
 }
 ```
 
-Il database è una risorsa figlio del server anche se sono definiti allo stesso livello nel modello.
+database Hello è un server di toohello risorse figlio, anche se sono definiti in hello stesso livello nel modello di hello.
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Per altri suggerimenti su come creare i modelli, vedere [Procedure consigliate per la creazione di modelli di Azure Resource Manager](resource-manager-template-best-practices.md).
+* Per indicazioni su come toocreate modelli, vedere [procedure consigliate per la creazione di modelli di Azure Resource Manager](resource-manager-template-best-practices.md).
 * Per un esempio della creazione di più risorse figlio, vedere [Distribuire più istanze delle risorse nei modelli di Azure Resource Manager](resource-group-create-multiple.md).

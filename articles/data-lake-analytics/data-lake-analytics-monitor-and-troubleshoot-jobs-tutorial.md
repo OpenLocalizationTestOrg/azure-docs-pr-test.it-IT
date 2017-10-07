@@ -1,6 +1,6 @@
 ---
-title: Risolvere i problemi dei processi di Azure Data Lake Analytics con il portale di Azure | Documentazione Microsoft
-description: 'Informazioni su come usare il portale di Azure per risolvere i problemi relativi ai processi di Analisi Data Lake. '
+title: i processi di Azure Data Lake Analitica aaaTroubleshoot tramite il portale di Azure | Documenti Microsoft
+description: 'Informazioni su come toouse hello i processi di Data Lake Analitica tootroubleshoot portale di Azure. '
 services: data-lake-analytics
 documentationcenter: 
 author: saveenr
@@ -14,20 +14,20 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 12/05/2016
 ms.author: edmaca
-ms.openlocfilehash: b9c7453cc0a94f70d0098ed83e5f127832065a62
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e810d56bab8f1a8254721ec9906bb6a4508dc22a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="troubleshoot-azure-data-lake-analytics-jobs-using-azure-portal"></a>Risolvere i problemi dei processi di Analisi di Azure Data Lake mediante il portale di Azure
-Informazioni su come usare il portale di Azure per risolvere i problemi relativi ai processi di Analisi Data Lake.
+Informazioni su come toouse hello i processi di Data Lake Analitica tootroubleshoot portale di Azure.
 
-In questa esercitazione verrà impostato un problema relativo a un file di origine mancante e verrà usato il portale di Azure per risolvere il problema.
+In questa esercitazione, è un problema di file di origine mancanti del programma di installazione e utilizzare problema hello tootroubleshoot di hello portale di Azure.
 
 ## <a name="submit-a-data-lake-analytics-job"></a>Inviare un processo di Data Lake Analytics
 
-Inviare il processo U-SQL seguente:
+Inviare hello processo U-SQL seguente:
 
 ```
 @searchlog =
@@ -42,38 +42,38 @@ Inviare il processo U-SQL seguente:
    USING Extractors.Tsv();
 
 OUTPUT @searchlog   
-   TO "/output/SearchLog-from-adls.csv"
+   too"/output/SearchLog-from-adls.csv"
    USING Outputters.Csv();
 ```
     
-Il file di origine definito nello script è **/Samples/Data/SearchLog.tsv1**, ma dovrebbe essere modificato in **/Samples/Data/SearchLog.tsv**.
+Hello file di origine definiti nello script hello è **/Samples/Data/SearchLog.tsv1**, in cui deve essere **/Samples/Data/SearchLog.tsv**.
 
 
-## <a name="troubleshoot-the-job"></a>Risolvere i problemi relativi al processo
+## <a name="troubleshoot-hello-job"></a>Risoluzione dei problemi hello processo
 
-**Per visualizzare tutti i processi**
+**toosee tutti i processi di hello**
 
-1. Nel portale di Azure fare clic su **Microsoft Azure** nell'angolo superiore sinistro.
-2. Fare clic nel riquadro contenente il nome dell'account di Analisi Data Lake personale.  Viene visualizzato il riepilogo del processo nel riquadro **Gestione processo** .
+1. Dal portale di Azure hello, fare clic su **Microsoft Azure** nell'angolo superiore sinistro di hello.
+2. Fare clic sul riquadro hello con il nome dell'account Data Lake Analitica.  riepilogo dei processi Hello è mostrato sul hello **gestione dei processi** riquadro.
 
     ![Azure Data Lake Analytics - Gestione dei processi](./media/data-lake-analytics-monitor-and-troubleshoot-tutorial/data-lake-analytics-job-management.png)
 
-    Nel riquadro Gestione processo viene fornito un riepilogo dello stato del processo. Si noti che è presente un processo non riuscito.
-3. Fare clic nel riquadro **Gestione processo** per visualizzare i processi. I processi sono classificati in base agli stati **In esecuzione**, **In coda** e **Terminato**. Il processo non riuscito verrà visualizzato nella sezione **Terminato** e occuperà la prima posizione nell'elenco. Quando sono presenti molti processi, è possibile fare clic su **Filtro** per semplificare l'individuazione dei processi.
+    il processo di Hello Management offre immediatamente hello lo stato del processo. Si noti che è presente un processo non riuscito.
+3. Fare clic su hello **gestione dei processi** riquadro processi hello toosee. i processi di Hello sono classificati in **esecuzione**, **in coda**, e **finito**. Verrà visualizzato il processo non riuscito in hello **finito** sezione. Deve essere primo elenco hello. Quando si dispone di molti processi, è possibile fare clic su **filtro** toohelp si toolocate processi.
 
     ![Azure Data Lake Analytics - Filtrare i processi](./media/data-lake-analytics-monitor-and-troubleshoot-tutorial/data-lake-analytics-filter-jobs.png)
-4. Fare clic sul processo non riuscito nell'elenco per aprire i relativi dettagli in un nuovo pannello:
+4. Fare clic su hello processo non riuscito da hello elenco tooopen hello i dettagli dei processi in un nuovo pannello:
 
     ![Azure Data Lake Analytics - Processo non riuscito](./media/data-lake-analytics-monitor-and-troubleshoot-tutorial/data-lake-analytics-failed-job.png)
 
-    Si noti il pulsante **Invia di nuovo** . Dopo aver risolto il problema, è possibile inviare nuovamente il processo.
-5. Fare clic sulla parte evidenziata nella schermata precedente per aprire i dettagli dell'errore.  Verrà visualizzato qualcosa di simile a quanto segue:
+    Hello preavviso **inviare di nuovo** pulsante. Dopo aver risolto il problema di hello, è possibile inviare di nuovo il processo di hello.
+5. Fare clic sulla parte evidenziata da hello precedente schermata tooopen hello i dettagli dell'errore.  Verrà visualizzato qualcosa di simile a quanto segue:
 
     ![Azure Data Lake Analytics - Dettagli del processo non riuscito](./media/data-lake-analytics-monitor-and-troubleshoot-tutorial/data-lake-analytics-failed-job-details.png)
 
-    Indica che la cartella di origine non è disponibile.
+    Indica la cartella di origine hello non viene trovata.
 6. Fare clic su **Duplicate Script**.
-7. Aggiornare il percorso nella riga **FROM** impostando il seguente percorso:
+7. Hello aggiornamento **FROM** seguente toohello percorso:
 
     "/Samples/Data/SearchLog.tsv"
 8. Fare clic su **Submit Job**.

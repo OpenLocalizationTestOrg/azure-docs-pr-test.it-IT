@@ -1,5 +1,5 @@
 ---
-title: Configurare una macchina virtuale SQL Server come server IPython Notebook | Documentazione Microsoft
+title: aaaSet rapidamente una macchina virtuale di SQL Server come server IPython Notebook | Documenti Microsoft
 description: Configurazione di una macchina virtuale per l'analisi scientifica dei dati con SQL Server e IPython Server.
 services: machine-learning
 documentationcenter: 
@@ -14,68 +14,68 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/24/2017
 ms.author: xibingao;bradsev
-ms.openlocfilehash: 8a151a6a15d4d000a774e3ec4e38bfa0e58ca33b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ee83d1d5de671d9817c1bc1abd6b4f9c256dde8f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="set-up-an-azure-sql-server-virtual-machine-as-an-ipython-notebook-server-for-advanced-analytics"></a>Configurare una macchina virtuale SQL Server di Azure come server IPython Notebook per l'analisi avanzata
-In questo argomento viene illustrato come preparare e configurare una macchina virtuale di SQL Server da usare come parte di un ambiente di analisi scientifica dei dati basati su cloud. La macchina virtuale Windows è configurata con strumenti di supporto come IPython Notebook, Azure Storage Explorer e AzCopy, nonché altre utilità per progetti di analisi scientifica dei dati. Ad esempio, Esplora archivi Azure e AzCopy forniscono modi efficaci per caricare dati nell'archiviazione BLOB di Azure dal computer locale o per scaricarli dall'archiviazione BLOB nel computer locale.
+Questo argomento viene illustrato come tooprovision e configurare un toobe macchina virtuale di SQL Server utilizzato come parte di un ambiente di analisi scientifica dei dati basati su cloud. macchina virtuale di Windows Hello è configurato con supporto di strumenti, ad esempio IPython Notebook, Azure Storage Explorer, AzCopy, nonché altre utilità che sono utili per i progetti di analisi scientifica dei dati. Azure Storage Explorer e AzCopy, ad esempio, fornire agevolmente archiviazione blob di tooAzure tooupload dati dal computer locale o toodownload è tooyour locali dall'archiviazione blob.
 
-Nella raccolta di macchine virtuali di Azure sono disponibili numerose immagini che contengono Microsoft SQL Server. Selezionare l'immagine di una macchina virtuale di SQL Server adatta alle esigenze dei dati di cui si dispone. Di seguito sono riportate le immagini consigliate:
+raccolta di macchine virtuali di Azure Hello include diverse immagini contenenti Microsoft SQL Server. Selezionare l'immagine di una macchina virtuale di SQL Server adatta alle esigenze dei dati di cui si dispone. Di seguito sono riportate le immagini consigliate:
 
-* SQL Server 2012 SP2 Enterprise per dati di piccole e medie dimensioni
-* SQL Server 2012 SP2 Enterprise ottimizzato per carichi di lavoro di data warehouse per dati di dimensioni molto elevate
+* SQL Server 2012 SP2 Enterprise per le dimensioni dei dati di piccole dimensioni toomedium
+* SQL Server 2012 SP2 Enterprise con ottimizzazione per carichi di lavoro di DataWarehouse per toovery di grandi dimensioni di dati di grandi dimensioni
   
   > [!NOTE]
-  > L'immagine di SQL Server 2012 SP2 Enterprise **non include un disco dati**. Sarà necessario aggiungere e/o collegare uno o più dischi rigidi virtuali per archiviare i dati. Quando si crea una macchina virtuale di Azure, questa contiene un disco per il sistema operativo mappato all'unità C e un disco temporaneo mappato all'unità D. Non usare l'unità D per archiviare i dati. Come si può dedurre dal nome, fornisce solo archiviazione temporanea. Non offre funzionalità di ridondanza o backup perché non risiede nel servizio di archiviazione di Azure.
+  > L'immagine di SQL Server 2012 SP2 Enterprise **non include un disco dati**. Si sarà necessario tooadd e/o collegare uno o più toostore di dischi rigidi virtuali dei dati. Quando si crea una macchina virtuale di Azure, è un disco per unità di toohello C del sistema operativo eseguito il mapping di hello e un'unità di toohello D disco temporaneo mappato. Non utilizzare hello D unità toostore dati. Come suggerisce il nome di hello, fornisce esclusivamente all'archiviazione temporanea. Non offre funzionalità di ridondanza o backup perché non risiede nel servizio di archiviazione di Azure.
   > 
   > 
 
-## <a name="Provision"></a>Connettersi al portale di Azure classico ed effettuare il provisioning di una macchina virtuale di SQL Server
-1. Accedere al [portale di Azure classico](http://manage.windowsazure.com/) con il proprio account.
+## <a name="Provision"></a>Toohello portale classico di Azure di connettersi ed eseguire il provisioning di una macchina virtuale di SQL Server
+1. Accedi toohello [portale di Azure classico](http://manage.windowsazure.com/) con l'account.
    Se non si dispone di un account Azure, provare la [versione di valutazione gratuita di Azure](https://azure.microsoft.com/pricing/free-trial/).
-2. Nel portale di Azure classico fare clic su **+Nuovo** nella parte inferiore sinistra della pagina Web e quindi su **Calcolo**, **Macchina virtuale** e infine **Da raccolta**.
-3. Nella pagina **Crea macchina virtuale** selezionare un'immagine di una macchina virtuale contenente SQL Server in base alle esigenze dei dati di cui si dispone, quindi fare clic sulla freccia Avanti nella parte inferiore destra della pagina. Per le informazioni più aggiornate sulle immagini di SQL Server supportate in Azure, vedere l'argomento [Introduzione a SQL Server in macchine virtuali di Azure](http://go.microsoft.com/fwlink/p/?LinkId=294720) nel set di documentazione [SQL Server in macchine virtuali di Azure](http://go.microsoft.com/fwlink/p/?LinkId=294719).
+2. Nel portale di Azure classico hello, a sinistra di hello nella parte inferiore della pagina web hello, fare clic su **+ nuovo**, fare clic su **calcolo**, fare clic su **macchina virtuale**, quindi fare clic su **FROM RACCOLTA**.
+3. In hello **creare una macchina virtuale** pagina, selezionare un'immagine di macchina virtuale contenente SQL Server in base alle proprie esigenze di dati e quindi fare clic sulla freccia avanti hello nella parte inferiore destra della pagina hello. Per informazioni più aggiornate di hello in hello supportate immagini di SQL Server in Azure, vedere [Introduzione a SQL Server in macchine virtuali di Azure](http://go.microsoft.com/fwlink/p/?LinkId=294720) argomento hello [SQL Server in macchine virtuali di Azure](http://go.microsoft.com/fwlink/p/?LinkId=294719) set di documentazione.
    
    ![Selezionare la macchina virtuale SQL Server][1]
-4. Nella prima pagina di **Configurazione macchina virtuale** immettere le informazioni seguenti:
+4. In hello prima **configurazione della macchina virtuale** pagina, fornire le informazioni seguenti:
    
    * Specificare un nome in **NOME MACCHINA VIRTUALE**.
-   * Nella casella **NEW USER NAME** digitare un nome utente univoco per l'account di amministratore locale della macchina virtuale.
-   * Nella casella **NEW PASSWORD** immettere una password complessa. Per ulteriori informazioni, vedere [Password complesse](http://msdn.microsoft.com/library/ms161962.aspx).
-   * Nella casella **CONFIRM PASSWORD** ridigitare la password.
-   * Selezionare un valore appropriato per **SIZE** nell'elenco a discesa.
+   * In hello **nuovo nome utente** casella, il nome utente univoco di tipo per hello account amministratore locale della macchina virtuale.
+   * In hello **nuova PASSWORD** , digitare una password complessa. Per ulteriori informazioni, vedere [Password complesse](http://msdn.microsoft.com/library/ms161962.aspx).
+   * In hello **conferma PASSWORD** casella, digitare nuovamente la password hello.
+   * Seleziona hello appropriato **dimensioni** da hello nell'elenco a discesa.
      
      > [!NOTE]
-     > Le dimensioni della macchina virtuale vengono specificate durante il provisioning: A2 corrisponde alle dimensioni minime consigliate per i carichi di lavoro di produzione. Le dimensioni minime consigliate per una macchina virtuale corrispondono ad A3 quando si usa SQL Server Enterprise Edition. Selezionare A3 o un valore superiore per l'uso di SQL Server Enterprise Edition. Selezionare A4 per l'uso di immagini di SQL Server 2012 o 2014 Enterprise ottimizzato per carichi di lavoro transazionali.
-     > Selezionare A7 per l'uso di immagini di SQL Server 2012 o 2014 Enterprise ottimizzato per carichi di lavoro di data warehouse. Le dimensioni selezionate limitano il numero di dischi dati che è possibile configurare. Per informazioni aggiornate sulle dimensioni di macchine virtuali disponibili e sul numero di dischi dati che è possibile collegare a una macchina virtuale, vedere [Dimensioni delle macchine virtuali e dei servizi cloud per Azure](http://msdn.microsoft.com/library/azure/dn197896.aspx). Per informazioni sui prezzi, vedere [Macchine virtuali - Prezzi](https://azure.microsoft.com/pricing/details/virtual-machines/).
+     > dimensioni Hello della macchina virtuale hello viene specificata durante il provisioning: A2 hello dimensione è minima consigliata per i carichi di lavoro. Le dimensioni minime consigliate per una macchina virtuale corrispondono ad A3 quando si usa SQL Server Enterprise Edition. Selezionare A3 o un valore superiore per l'uso di SQL Server Enterprise Edition. Selezionare A4 per l'uso di immagini di SQL Server 2012 o 2014 Enterprise ottimizzato per carichi di lavoro transazionali.
+     > Selezionare A7 per l'uso di immagini di SQL Server 2012 o 2014 Enterprise ottimizzato per carichi di lavoro di data warehouse. dimensione Hello selezionata limita il numero di dischi dati, che è possibile configurare. Per informazioni più aggiornate sulle dimensioni delle macchine virtuali disponibili e il numero di hello di dischi dati che è possibile collegare macchina virtuale tooa, vedere [dimensioni delle macchine virtuali per Azure](http://msdn.microsoft.com/library/azure/dn197896.aspx). Per informazioni sui prezzi, vedere [Macchine virtuali - Prezzi](https://azure.microsoft.com/pricing/details/virtual-machines/).
      > 
      > 
    
-   Fare clic sulla freccia Avanti nella parte inferiore destra per continuare.
+   Fare clic sulla freccia avanti hello in hello nella parte inferiore destra toocontinue.
    
    ![Configurazione macchina virtuale][2]
-5. Nella seconda pagina di **Configurazione macchina virtuale** configurare le risorse per la rete, l'archiviazione e la disponibilità:
+5. In hello secondo **configurazione della macchina virtuale** pagina, configurare le risorse di rete, archiviazione e la disponibilità:
    
-   * Nella casella **Servizio cloud** scegliere **Crea un nuovo servizio cloud**.
-   * Nella casella **Nome DNS del servizio cloud** specificare la prima parte del nome DNS da usare, in modo che completi un nome nel formato **TESTNAME.cloudapp.net**
-   * Nella casella **REGIONE/GRUPPO DI AFFINITÀ/RETE VIRTUALE** selezionare l'area in cui verrà ospitata l'immagine virtuale.
-   * In **Account di archiviazione**selezionare un account di archiviazione esistente o sceglierne uno generato automaticamente.
-   * Nella casella **SET DI DISPONIBILITÀ** selezionare **(nessuno)**.
-   * Leggere e accettare le informazioni sui prezzi.
-6. Nella sezione **ENDPOINT** fare clic sull'elenco a discesa vuoto in **NOME** e selezionare **MSSQL**, quindi digitare il numero di porta dell'istanza del motore di database (**1433** per l'istanza predefinita).
+   * In hello **servizio Cloud** scegliere **creare un nuovo servizio cloud**.
+   * In hello **nome DNS del servizio Cloud** casella, specificare hello prima parte del nome DNS desiderato, in modo che completi un nome nel formato **TESTNAME.cloudapp.net**
+   * In hello **AFFINITÀ di area/gruppo/rete virtuale** , selezionare un'area in cui verrà ospitata questa immagine virtuale.
+   * In hello **Account di archiviazione**, selezionare un account di archiviazione esistente o selezionarne uno generato automaticamente.
+   * In hello **SET di disponibilità** , quindi selezionare **(nessuno)**.
+   * Leggere e accettare hello informazioni sui prezzi.
+6. In hello **endpoint** fare clic su nell'elenco a discesa vuoto hello in **nome**e selezionare **MSSQL** quindi digitare il numero di porta hello dell'istanza del motore di Database (hello**1433** per l'istanza predefinita di hello).
 7. La macchina virtuale di SQL Server può inoltre essere utilizzata come server di IPython Notebook, che verrà configurato in un momento successivo.
-   Aggiungere un nuovo endpoint per specificare la porta da utilizzare per il server di IPython Notebook. Immettere un nome nella colonna **NOME**, selezionare un numero di porta scelto dall'utente per la porta pubblica e 9999 per quella privata.
+   Aggiungere un nuovo toouse porta hello di toospecify endpoint per il server di IPython Notebook. Immettere un nome in hello **nome** colonna, selezionare un numero di porta desiderato per la porta pubblica hello e 9999 per la porta privata hello.
    
-   Fare clic sulla freccia Avanti nella parte inferiore destra per continuare.
+   Fare clic sulla freccia avanti hello in hello nella parte inferiore destra toocontinue.
    
    ![Selezionare le porte MSSQL e IPython][3]
-8. Accettare l'opzione **Installa agente di macchine virtuali** predefinita selezionata e fare clic sul segno di spunta nell'angolo inferiore destro della procedura guidata per completare il processo di provisioning della macchina virtuale.
+8. Accettare l'impostazione predefinita hello **agente VM installato** opzione è selezionata e fare clic su hello hello segno di spunta nell'angolo in basso hello della hello toocomplete tramite procedura guidata hello processo di provisioning di macchine Virtuali.
    
    `![Opzioni finali della macchina virtuale][4]
-9. Attendere durante la preparazione della macchina virtuale in Azure. Lo stato della macchina virtuale attraverserà le fasi seguenti:
+9. Attendere durante la preparazione della macchina virtuale in Azure. Previsto tooproceed stato macchina virtuale di hello tramite:
    
    * Starting (Provisioning)
    * Arrestato
@@ -83,66 +83,66 @@ Nella raccolta di macchine virtuali di Azure sono disponibili numerose immagini 
    * Running (Provisioning)
    * In esecuzione
 
-## <a name="RemoteDesktop"></a>Aprire la macchina virtuale tramite Desktop remoto e completare la configurazione
-1. Al termine del provisioning, fare clic sul nome della macchina virtuale per passare alla pagina DASHBOARD. Nella parte inferiore della pagina fare clic su **Connect**.
-2. Scegliere di aprire il file rpd usando il programma Desktop remoto Windows (`%windir%\system32\mstsc.exe`).
-3. Nella finestra di dialogo **Protezione di Windows** immettere la password per l'account Administrator locale specificata in uno dei passaggi precedenti.
-   (Potrebbe essere richiesta la verifica delle credenziali della macchina virtuale).
-4. In occasione del primo accesso alla macchina virtuale, potrebbe essere necessario completare diversi processi, come la configurazione del desktop, l'aggiornamento di Windows e il completamento delle attività di configurazione iniziali di Windows (sysprep). Al termine delle attività di configurazione iniziali di Windows, verranno completate le attività di configurazione di SQL Server. Queste attività potrebbero causare un ritardo di pochi minuti mentre vengono completate. `SELECT @@SERVERNAME` potrebbe non restituire il nome corretto fino al completamento dell'installazione di SQL Server e SQL Server Management Studio potrebbe non essere visibile nella pagina iniziale.
+## <a name="RemoteDesktop"></a>Aprire hello virtual machine tramite Desktop remoto e completare la configurazione
+1. Quando al termine del provisioning, fare clic sul nome di hello della pagina DASHBOARD toohello toogo macchina virtuale. Nella parte inferiore di hello della pagina hello, fare clic su **Connetti**.
+2. Scegliere tooopen hello rpd file utilizzando il programma di Desktop remoto di Windows hello (`%windir%\system32\mstsc.exe`).
+3. In hello **la sicurezza di Windows** finestra di dialogo, fornire la password di hello per l'account amministratore locale specificato in un passaggio precedente.
+   (Potrebbe essere necessario credenziali hello tooverify della macchina virtuale hello.)
+4. Hello prima volta che accede nella macchina virtuale toothis diversi processi potrebbe essere necessario toocomplete, tra cui il programma di installazione del desktop, gli aggiornamenti di Windows e il completamento dell'attività di configurazione iniziale di Windows hello (sysprep). Al termine delle attività di configurazione iniziali di Windows, verranno completate le attività di configurazione di SQL Server. Queste attività potrebbero causare un ritardo di pochi minuti mentre vengono completate. `SELECT @@SERVERNAME`non può restituire il nome corretto hello fino a quando non viene completata l'installazione di SQL Server e SQL Server Management Studio potrebbe non essere visibile nella pagina iniziale di hello.
 
-Dopo avere eseguito la connessione alla macchina virtuale con Desktop remoto Windows, la macchina virtuale funziona come qualsiasi altro computer. Eseguire normalmente la connessione all'istanza predefinita di SQL Server con SQL Server Management Studio (in esecuzione nella macchina virtuale).
+Una volta toohello connessa la macchina virtuale con Desktop remoto di Windows, hello macchina virtuale funziona come qualsiasi altro computer. Connettersi toohello di istanza predefinita di SQL Server con SQL Server Management Studio (in esecuzione nella macchina virtuale hello) in hello normalmente.
 
 ## <a name="InstallIPython"></a>Installare IPython Notebook e altri strumenti di supporto
-Per configurare la nuova macchina virtuale di SQL Server in modo che funzioni da server di IPython Notebook e per installare ulteriori strumenti di supporto, come AzCopy, Esplora archivi Azure, i pacchetti Python per l'analisi scientifica dei dati e altro, all'utente viene fornita una personalizzazione particolare. Per effettuare l'installazione:
+tooconfigure il nuovo tooserve macchina virtuale SQL Server come server IPython Notebook e installazione di supporto aggiuntive degli strumenti tali AzCopy, Azure Storage Explorer, pacchetti Python di analisi scientifica dei dati utili e ad altri utenti, uno script di personalizzazione speciale viene fornito tooyou. tooinstall:
 
-1. Fare clic con il pulsante destro del mouse sull'icona di **avvio di Windows** e scegliere **Prompt dei comandi (amministratore)**
-2. Copiare i seguenti comandi e incollarli nel prompt dei comandi.
+1. Pulsante destro del mouse hello **Start di Windows** icona e fare clic su **prompt dei comandi (amministrazione)**
+2. Comandi seguenti di hello di copia e Incolla, al prompt dei comandi di hello.
   
         set script='https://raw.githubusercontent.com/Azure/Azure-MachineLearning-DataScience/master/Misc/MachineSetup/Azure_VM_Setup_Windows.ps1'
         @powershell -NoProfile -ExecutionPolicy unrestricted -Command "iex ((new-object net.webclient).DownloadString(%script%))"
-3. Quando richiesto, immettere una password per il server di IPython Notebook.
-4. Lo script di personalizzazione consente di automatizzare varie procedure post-installazione, tra cui:
+3. Quando richiesto, immettere una password di propria scelta per hello server IPython Notebook.
+4. script di personalizzazione Hello automatizza varie procedure post-installazione, tra cui:
     * Installazione e configurazione del server di IPython Notebook
-    * Apertura di porte TCP in Windows Firewall per gli endpoint creati in precedenza:
+    * Apertura di porte TCP in hello Windows firewall per endpoint hello creato in precedenza:
     * Per la connessione remota di SQL Server
     * Per la connessione remota del server di IPython Notebook
     * Recupero di blocchi appunti IPython e script SQL di esempio
     * Download e installazione di pacchetti Python per l'analisi scientifica dei dati
     * Download e installazione di strumenti Azure come AzCopy ed Esplora archivi Azure   
     <br>
-5. È possibile accedere a IPython Notebook ed eseguirlo da un browser remoto o locale usando un URL nel formato `https://<virtual_machine_DNS_name>:<port>`, dove la porta indica la porta pubblica di IPython selezionata durante il provisioning della macchina virtuale.
-6. Il server di IPython Notebook è in esecuzione come servizio in background e verrà riavviato automaticamente quando si riavvierà la macchina virtuale.
+5. È possibile accedere ed eseguire IPython Notebook da qualsiasi browser locale o remoto utilizzando un URL di form hello `https://<virtual_machine_DNS_name>:<port>`, in cui la porta è pubblica porta selezionato durante il provisioning di macchina virtuale hello IPython hello.
+6. Server IPython Notebook è in esecuzione come servizio in background e verrà riavviato automaticamente quando si riavvia una macchina virtuale hello.
 
 ## <a name="Optional"></a>Collegare un disco dati secondo necessità
-Se l'immagine di macchina virtuale non contiene dischi dati, vale a dire dischi diversi dall'unità C (disco del SO) e dall'unità D (disco temporaneo), è necessario aggiungere uno o più dischi dati per archiviare i dati. L'immagine di macchina virtuale per SQL Server 2012 SP2 Enterprise ottimizzato per carichi di lavoro di data warehouse viene preconfigurata con dischi aggiuntivi per file di dati e log di SQL Server.
+Se l'immagine di macchina virtuale include dischi dati, ad esempio, i dischi diversi da unità C (disco del sistema operativo) e l'unità D (disco temporaneo), è necessario tooadd uno o più dati dischi toostore i dati. immagine della macchina virtuale per SQL Server 2012 SP2 Enterprise con ottimizzazione per carichi di lavoro DataWarehouse Hello è preconfigurata con dischi aggiuntivi per i file di dati e di log di SQL Server.
 
 > [!NOTE]
-> Non usare l'unità D per archiviare i dati. Come si può dedurre dal nome, fornisce solo archiviazione temporanea. Non offre funzionalità di ridondanza o backup perché non risiede nel servizio di archiviazione di Azure.
+> Non utilizzare hello D unità toostore dati. Come suggerisce il nome di hello, fornisce esclusivamente all'archiviazione temporanea. Non offre funzionalità di ridondanza o backup perché non risiede nel servizio di archiviazione di Azure.
 > 
 > 
 
-Per collegare altri dischi dati, seguire la procedura descritta in [Come collegare un disco dati a una macchina virtuale Windows](../virtual-machines/windows/classic/attach-disk.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json), in cui sono disponibili informazioni dettagliate per eseguire queste operazioni:
+i dischi dati aggiuntivi tooattach, seguire i passaggi di hello descritti in [come tooAttach tooa un disco dati macchina virtuale Windows](../virtual-machines/windows/classic/attach-disk.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json), che consentono di:
 
-1. Collegamento di dischi vuoti alla macchina virtuale di cui è stato effettuato il provisioning nei passaggi precedenti
-2. Inizializzazione di nuovi dischi nella macchina virtuale
+1. Collegamento di macchina virtuale di dischi vuoti toohello provisioning nei passaggi precedenti
+2. Inizializzazione di hello nuovi dischi nella macchina virtuale hello
 
-## <a name="SSMS"></a>Connessione a SQL Server Management Studio e attivazione dell'autenticazione in modalità mista
-Il motore di database di SQL Server non può usare l'Autenticazione di Windows senza ambiente di dominio. Per connettersi al motore di database da un altro computer, configurare SQL Server per l'autenticazione in modalità mista. L'autenticazione in modalità mista consente sia l'autenticazione di SQL Server sia l'autenticazione di Windows. La modalità di autenticazione di SQL è necessaria per inserire dati direttamente dai database della macchina virtuale di SQL Server VM in [Azure Machine Learning Studio](https://studio.azureml.net) tramite il modulo Import Data.
+## <a name="SSMS"></a>Connettersi tooSQL Server Management Studio e abilitare l'autenticazione modalità mista
+Hello il motore di Database di SQL Server non è possibile utilizzare l'autenticazione di Windows senza l'ambiente di dominio. tooconnect toohello motore di Database da un altro computer, configurare SQL Server per l'autenticazione modalità mista. L'autenticazione in modalità mista consente sia l'autenticazione di SQL Server sia l'autenticazione di Windows. Modalità di autenticazione SQL è necessaria nei dati tooingest ordine direttamente dal database nella macchina virtuale SQL Server il [Azure Machine Learning Studio](https://studio.azureml.net) usando il modulo di importazione dei dati hello.
 
-1. Durante la connessione alla macchina virtuale tramite Desktop remoto, usare il riquadro **Ricerca** di Windows e digitare **SQL Server Management Studio** (SMSS). Fare clic per avviare SQL Server Management Studio (SSMS). È possibile aggiungere un collegamento a SSMS sul desktop per utilizzi futuri.
+1. Durante la macchina virtuale di toohello connessi tramite Desktop remoto, usare Windows hello **ricerca** riquadro e tipo **SQL Server Management Studio** (SMSS). Fare clic su hello toostart SQL Server Management Studio (SSMS). È opportuno tooadd tooSSMS un collegamento sul Desktop per utilizzi futuri.
    
    ![Avvio di SQL Server Management Studio][5]
    
-   Alla prima apertura di Management Studio è necessario creare gli utenti dell'ambiente Management Studio. L'operazione potrebbe richiedere alcuni istanti.
-2. All'apertura verrà visualizzata la finestra di dialogo **Connetti al server** di Management Studio. Nella casella **Nome server** digitare il nome della macchina virtuale da connettere al motore di database con Esplora oggetti.
-   Invece del nome della macchina virtuale è possibile usare anche **(locale)** o un singolo punto come **Nome server**. Selezionare **Autenticazione di Windows** e lasciare ***nome\_macchina\_virtuale*\\nome\_amministratore\_locale** nella casella **Nome utente**. Fare clic su **Connect**.
+   Hello prima apertura di Management Studio, è necessario creare l'ambiente di hello utenti Management Studio. L'operazione potrebbe richiedere alcuni istanti.
+2. Quando si apre, Management Studio presenta hello **connettersi tooServer** la finestra di dialogo. In hello **nome Server** casella, il nome del tipo hello di hello macchina virtuale tooconnect toohello motore di Database con hello Esplora oggetti.
+   (Anziché il nome di macchina virtuale hello è inoltre possibile utilizzare **(local)** o un singolo periodo come hello **nome Server**. Selezionare **l'autenticazione di Windows**, lasciando  ***il\_VM\_nome*\\il\_locale\_amministratore**  in hello **nome utente** casella. Fare clic su **Connetti**.
    
-   ![Connetti al server][6]
+   ![Connettersi tooServer][6]
    
    <br>
    
    > [!TIP]
-   > È possibile cambiare la modalità di autenticazione di SQL Server tramite una modifica della chiave di registro di Windows oppure tramite SQL Server Management Studio. Per cambiare la modalità di autenticazione tramite una modifica della chiave di registro, avviare una **Nuova query** ed eseguire lo script seguente:
+   > È possibile modificare la modalità di autenticazione SQL Server hello mediante una modifica della chiave del Registro di sistema Windows o SQL Server Management Studio hello. modalità di autenticazione toochange con cambio di una chiave del Registro di sistema hello, avviare un **nuova Query** ed eseguire lo script seguente hello:
    > 
    > 
    
@@ -152,24 +152,24 @@ Il motore di database di SQL Server non può usare l'Autenticazione di Windows s
        EXEC xp_instance_regwrite N'HKEY_LOCAL_MACHINE', N'Software\Microsoft\MSSQLServer\MSSQLServer', N'LoginMode', REG_DWORD, 2
        go
 
-    Per cambiare la modalità di autenticazione tramite SQL Server management Studio:
+    modalità di autenticazione hello toochange utilizzando SQL Server management Studio:
 
-1. In **Esplora oggetti di SQL Server Management Studio** fare clic con il pulsante destro del mouse sul nome dell'istanza di SQL Server (nome della macchina virtuale) e quindi scegliere **Proprietà**.
+1. In **Esplora oggetti di SQL Server Management Studio**, fare doppio clic sul nome dell'istanza di hello di SQL Server (nome della macchina virtuale hello) e quindi fare clic su **proprietà**.
    
    ![Proprietà del server][7]
-2. Nella pagina **Sicurezza**, in **Autenticazione server** selezionare **Autenticazione di SQL Server e di Windows** e quindi fare clic su **OK**.
+2. In hello **sicurezza** pagina **l'autenticazione Server**selezionare **modalità di autenticazione di Windows e SQL Server**e quindi fare clic su **OK** .
    
    ![Selezione della modalità di autenticazione][8]
-3. Nella finestra di dialogo di **SQL Server Management Studio** fare clic su **OK** per confermare il requisito del riavvio di SQL Server.
+3. In hello **SQL Server Management Studio** la finestra di dialogo, fare clic su **OK** per riconoscere hello requisito toorestart SQL Server.
 4. In **Esplora oggetti** fare clic con il pulsante destro del mouse sul server e quindi scegliere **Riavvia**. (Se SQL Server Agent è in esecuzione, anch'esso dovrà essere riavviato).
    
    ![Riavvia][9]
-5. Nella finestra di dialogo di **SQL Server Management Studio** fare clic su **Sì** per accettare il riavvio di SQL Server.
+5. In hello **SQL Server Management Studio** la finestra di dialogo, fare clic su **Sì** per accettare che si desidera toorestart SQL Server.
 
 ## <a name="Logins"></a>Creare gli account di accesso di SQL Server
-Per connettersi al motore di database da un altro computer, configurare almeno un account di accesso con autenticazione di SQL Server.  
+tooconnect toohello motore di Database da un altro computer, è necessario creare almeno un accesso con autenticazione SQL Server.  
 
-È possibile creare nuovi account di accesso di SQL Server a livello di programmazione oppure tramite SQL Server Management Studio. Per creare un nuovo utente amministratore di sistema con l'autenticazione di SQL a livello di programmazione, avviare una **Nuova query** ed eseguire lo script seguente. Sostituire <new user name\> e <new password\> con il *nome utente* e la *password* da usare. 
+È possibile creare nuovi account di accesso di SQL Server a livello di programmazione o utilizzando hello SQL Server Management Studio. toocreate un nuovo utente sysadmin con autenticazione di SQL Server a livello di codice avvia un **nuova Query** ed eseguire lo script seguente hello. Sostituire <new user name\> e <new password\> con il *nome utente* e la *password* da usare. 
 
     USE master
     go
@@ -181,83 +181,83 @@ Per connettersi al motore di database da un altro computer, configurare almeno u
     EXEC sp_addsrvrolemember @loginame = N'<new user name>', @rolename = N'sysadmin';
 
 
-Regolare i criteri relativi alla password secondo necessità (il codice di esempio consente di disattivare il controllo dei criteri e la scadenza della password). Per ulteriori informazioni sugli account di accesso di SQL Server, vedere [Creazione di un account di accesso](http://msdn.microsoft.com/library/aa337562.aspx).  
+Modificare i criteri password hello in base alle esigenze (codice di esempio hello viene disattivata la scadenza di criteri di controllo e la password). Per ulteriori informazioni sugli account di accesso di SQL Server, vedere [Creazione di un account di accesso](http://msdn.microsoft.com/library/aa337562.aspx).  
 
-Per creare nuovi account di accesso di SQL Server tramite SQL Server Management Studio:
+toocreate nuovi accessi di SQL Server utilizzando SQL Server Management Studio hello:
 
-1. In **Esplora oggetti di SQL Server Management Studio**espandere la cartella dell'istanza del server in cui si vuole creare il nuovo account di accesso.
-2. Fare clic con il pulsante destro del mouse sulla cartella **Sicurezza**, scegliere **Nuovo** e quindi **Account di accesso**.
+1. In **Esplora oggetti di SQL Server Management Studio**, espandere la cartella hello hello dell'istanza del server in cui si desidera toocreate hello nuovo account di accesso.
+2. Pulsante destro del mouse hello **sicurezza** cartella, scegliere troppo**nuovo**e selezionare **account di accesso...** .
    
    ![Nuovo account di accesso][10]
-3. Nella finestra di dialogo **Account di accesso - Nuovo**, nella pagina **Generale** immettere il nome del nuovo utente nella casella **Nome account di accesso**.
+3. In hello **accesso - nuovo** della finestra di dialogo hello **generale** pagina, immettere il nome di hello del nuovo utente hello in hello **nome account di accesso** casella.
 4. Selezionare **Autenticazione di SQL Server**.
-5. Nella casella **Password** digitare una password per il nuovo utente. Digitare di nuovo la password nella casella **Conferma password** .
-6. Per applicare le opzioni dei criteri password per la complessità e l'imposizione, selezionare **Applica criteri password** (scelta consigliata). Si tratta di un'opzione predefinita quando si seleziona l'autenticazione di SQL Server.
-7. Per applicare le opzioni dei criteri password per la scadenza, selezionare **Imponi scadenza password** (scelta consigliata). Per abilitare questa casella di controllo, è necessario che sia selezionata l'opzione Applica criteri password. Si tratta di un'opzione predefinita quando si seleziona l'autenticazione di SQL Server.
-8. Per forzare un utente a creare una nuova password dopo il primo utilizzo dell'account di accesso, selezionare **Richiedi modifica della password all'accesso successivo** (scelta consigliata se il nome di accesso verrà utilizzato da un altro utente. Se si tratta del proprio nome di accesso, non selezionare questa opzione). Per abilitare questa casella di controllo, è necessario che sia selezionata l'opzione Imponi scadenza password. Si tratta di un'opzione predefinita quando si seleziona l'autenticazione di SQL Server.
-9. Nell'elenco **Database predefinito** selezionare un database predefinito per il nome di accesso. **master** è il valore predefinito per questa opzione. Se il database utente non è ancora stato creato, lasciare questa opzione impostata su **master**.
-10. Nell'elenco **Lingua predefinita** lasciare il valore predefinito **default**.
+5. In hello **Password** casella, immettere una password per hello nuovo utente. Immettere nuovamente quella password in hello **Conferma Password** casella.
+6. Selezionare le opzioni dei criteri password tooenforce per complessità e l'applicazione, **Applica criteri password** (scelta consigliata). Si tratta di un'opzione predefinita quando si seleziona l'autenticazione di SQL Server.
+7. Selezionare le opzioni dei criteri password tooenforce per la scadenza, **Imponi scadenza password** (scelta consigliata). Applica criteri password deve essere tooenable selezionata questa casella di controllo. Si tratta di un'opzione predefinita quando si seleziona l'autenticazione di SQL Server.
+8. tooforce hello utente toocreate viene utilizzata una nuova password dopo hello prima volta che l'account di accesso, selezionare **cambiamento obbligatorio password all'accesso successivo** (opzione consigliata se l'account di accesso è per un utente toouse else. Se l'account di accesso di hello è per uso personale, non selezionare questa opzione.) Imponi scadenza password deve essere tooenable selezionata questa casella di controllo. Si tratta di un'opzione predefinita quando si seleziona l'autenticazione di SQL Server.
+9. Da hello **database predefinito** , selezionare un database predefinito per l'account di accesso hello. **master** hello predefinito per questa opzione. Se non è ancora stato creato un database utente, lasciare questa impostazione è troppo**master**.
+10. In hello **Default language** elenco, lasciare **predefinito** come valore di hello.
     
     ![Proprietà account di accesso][11]
-11. Se si tratta del primo account di accesso che si crea, è possibile assegnarlo all'amministratore di SQL Server. A questo scopo, nella pagina **Ruoli server** selezionare **sysadmin**.
+11. Nel caso di accesso di hello prima che si sta creando, si desidera definire l'account di accesso come amministratore di SQL Server. A questo scopo, nella pagina **Ruoli server** selezionare **sysadmin**.
     
     > [!IMPORTANT]
-    > i membri del ruolo predefinito del server dispongono del controllo completo sul motore di database. Per motivi di sicurezza, è opportuno limitare attentamente le appartenenze a questo ruolo.
+    > I membri del ruolo predefinito del server sysadmin di hello sono controllo completo di hello motore di Database. Per motivi di sicurezza, è opportuno limitare attentamente le appartenenze a questo ruolo.
     > 
     > 
     
     ![sysadmin][12]
 12. Fare clic su OK.
 
-## <a name="DNS"></a>Determinare il nome DNS della macchina virtuale
-Per connettersi al motore di database di SQL Server da un altro computer, è necessario conoscere il nome DNS (Domain Name System) della macchina virtuale.
+## <a name="DNS"></a>Determinare il nome DNS hello della macchina virtuale hello
+tooconnect toohello, il motore di Database di SQL Server da un altro computer, è necessario conoscere hello sistema DNS (Domain Name) nome della macchina virtuale hello.
 
-(Si tratta del nome utilizzato da Internet per identificare la macchina virtuale. È possibile utilizzare l'indirizzo IP, ma questo indirizzo può cambiare se Azure sposta le risorse per la ridondanza o la manutenzione. Il nome DNS rimane stabile in quanto può essere reindirizzato a un nuovo indirizzo IP).
+(Si tratta di hello Nome hello internet utilizza tooidentify hello macchina virtuale. È possibile utilizzare l'indirizzo IP di hello, ma l'indirizzo IP hello potrebbe cambiare quando Azure consente di spostare risorse per la ridondanza o la manutenzione. nome DNS Hello sarà stabile perché può essere reindirizzato tooa nuovo indirizzo IP.)
 
-1. Nel portale di Azure classico (o dal passaggio precedente) selezionare **MACCHINE VIRTUALI**.
-2. Nella pagina **ISTANZE MACCHINA VIRTUALE** nella colonna **NOME DNS** trovare e copiare il nome DNS per la macchina virtuale preceduto da **http://**. (Nell'interfaccia utente potrebbe non essere visualizzato l'intero nome, ma è possibile fare clic su di esso con il pulsante destro del mouse e scegliere Copia).
+1. Nel portale di Azure classico hello (o dal passaggio precedente hello), selezionare **macchine VIRTUALI**.
+2. In hello **istanze di macchine VIRTUALI** pagina hello **nome DNS** colonna di ricerca e copia nome hello DNS per la macchina virtuale hello visualizzato preceduto da **http://**. (interfaccia utente di hello potrebbe non essere visualizzati nome intero hello, ma è possibile fare doppio clic su di esso e scegliere Copia.)
 
-## <a name="cde"></a>Eseguire la connessione al motore di database da un altro computer
-1. In un computer connesso a Internet aprire SQL Server Management Studio.
-2. Nella casella **Connetti al server** o nella finestra di dialogo **Connetti al motore di database** immettere nella casella **Nome server** il nome DNS della macchina virtuale (determinato nell'attività precedente) e un numero di porta di endpoint pubblica nel formato *NomeDNS,NumeroPorta*, ad esempio **tutorialtestVM.cloudapp.net,57500**.
-3. Nella casella **Autenticazione** selezionare **Autenticazione di SQL Server**.
-4. Nella casella **Account di accesso** digitare il nome di un account di accesso creato in una delle attività precedenti.
-5. Nella casella **Password** digitare la password dell'account di accesso creato in una delle attività precedenti.
-6. Fare clic su **Connect**.
+## <a name="cde"></a>Connettersi toohello motore di Database da un altro computer
+1. In un computer connesso toohello internet, aprire SQL Server Management Studio.
+2. In hello **connettersi tooServer** o **connettersi tooDatabase motore** della finestra di dialogo hello **nome Server** , immettere il nome DNS hello della macchina virtuale (determinata hello attività precedente) e un numero di porta endpoint pubblico nel formato hello *Nomedns, NumeroPorta* , ad esempio **tutorialtestVM.cloudapp.net,57500**.
+3. In hello **autenticazione** , quindi selezionare **autenticazione di SQL Server**.
+4. In hello **accesso** casella, il nome del tipo hello di un account di accesso è stato creato in un'attività precedente.
+5. In hello **Password** casella, digitare la password dell'account di accesso di hello creati in un'attività precedente hello.
+6. Fare clic su **Connetti**.
 
-## <a name="amlconnect"></a>Connettersi al motore di database da Azure Machine Learning
-Nelle fasi successive del Processo di analisi scientifica dei dati per i team verrà usato [Azure Machine Learning Studio](https://studio.azureml.net) per creare e distribuire modelli di Machine Learning. Per inserire dati dai database delle macchine virtuali di SQL Server direttamente in Azure Machine Learning per il training o l'assegnazione di punteggi, utilizzare il modulo **Import Data** in un nuovo esperimento di [Azure Machine Learning Studio](https://studio.azureml.net) . Questo argomento fornisce informazioni più dettagliate con collegamenti alle istruzioni del Processo di analisi scientifica dei dati per i team. Per un'introduzione, vedere [Informazioni su Azure Machine Learning Studio](machine-learning-what-is-ml-studio.md).
+## <a name="amlconnect"></a>Connettersi toohello motore di Database da Azure Machine Learning
+In fasi successive della hello processo di analisi scientifica dei dati di Team, si utilizzerà hello [Azure Machine Learning Studio](https://studio.azureml.net) toobuild e distribuire modelli di machine learning. tooingest dati dal database di macchina virtuale SQL Server direttamente in Azure Machine Learning per training o la valutazione, utilizzare hello **l'importazione dei dati** modulo in un nuovo [Azure Machine Learning Studio](https://studio.azureml.net) provare. Questo argomento viene descritto in dettaglio tramite hello collegamenti di Guida di processo di analisi scientifica dei dati del Team. Per un'introduzione, vedere [Informazioni su Azure Machine Learning Studio](machine-learning-what-is-ml-studio.md).
 
-1. Nel riquadro **Proprietà** del [modulo Import Data](https://msdn.microsoft.com/library/azure/dn905997.aspx) selezionare **Database SQL di Azure** dall'elenco a discesa **Origine dati**.
-2. Nella casella di testo **Nome server database** immettere `tcp:<DNS name of your virtual machine>,1433`
-3. Immettere il nome utente di SQL nella casella di testo **Nome account utente server** .
-4. Immettere la password dell'utente di SQL nella casella di testo **Password account utente server** .
+1. In hello **proprietà** riquadro di hello [modulo Importa dati](https://msdn.microsoft.com/library/azure/dn905997.aspx)selezionare **Database SQL di Azure** da hello **origine dati** elenco a discesa.
+2. In hello **nome server Database** testo immettere`tcp:<DNS name of your virtual machine>,1433`
+3. Immettere nome utente SQL hello in hello **nome dell'account utente Server** casella di testo.
+4. Immettere la password dell'utente sql hello in hello **password dell'account utente Server** casella di testo.
    
    ![Dati di importazione di Azure Machine Learning][13]
 
 ## <a name="shutdown"></a>Arresto e deallocazione della macchina virtuale quando non in uso
-Macchine virtuali di Azure è disponibile con **pagamento a consumo**. Per assicurarsi di non subire addebiti quando non si utilizzano le macchine virtuali, lo stato deve essere impostato su **Arrestato (deallocato)** .
+Macchine virtuali di Azure è disponibile con **pagamento a consumo**. tooensure che non vengono fatturate quando non si utilizza la macchina virtuale, è toobe in hello **arrestato (deallocato)** stato.
 
 > [!NOTE]
-> Arrestando la macchina virtuale dall'interno (usando le opzioni di risparmio energia di Windows), la macchina virtuale viene arrestata ma rimane allocata. Per assicurarsi di non subire addebiti, arrestare sempre le macchine virtuali dal [portale di Azure classico](http://manage.windowsazure.com/). È inoltre possibile arrestare la macchina virtuale con Powershell chiamando ShutdownRoleOperation con "PostShutdownAction" uguale a "StoppedDeallocated".
+> Arresto della macchina virtuale hello da all'interno (tramite Opzioni risparmio energia di Windows), hello macchina virtuale è stato arrestato ma rimane allocata. tooensure non viene addebitata, sempre arrestare le macchine virtuali da hello [portale di Azure classico](http://manage.windowsazure.com/). È anche possibile arrestare hello VM tramite Powershell chiamando ShutdownRoleOperation con uguale a "PostShutdownAction" troppo "StoppedDeallocated".
 > 
 > 
 
-Per arrestare e deallocare la macchina virtuale:
+tooshutdown e deallocare una macchina virtuale hello:
 
-1. Accedere al [portale di Azure classico](http://manage.windowsazure.com/) con il proprio account.  
-2. Selezionare **MACCHINE VIRTUALI** dalla barra di spostamento a sinistra.
-3. Nell'elenco delle macchine virtuali fare clic sul nome della macchina virtuale, quindi andare alla pagina **DASHBOARD** .
-4. Nella parte inferiore della pagina fare clic su **ARRESTO**.
+1. Accedi toohello [portale di Azure classico](http://manage.windowsazure.com/) con l'account.  
+2. Selezionare **macchine VIRTUALI** dalla barra di spostamento a sinistra di hello.
+3. Nell'elenco di hello delle macchine virtuali, fare clic sul nome hello la macchina virtuale, quindi passa toohello **DASHBOARD** pagina.
+4. Nella parte inferiore di hello della pagina hello, fare clic su **arresto**.
 
 ![Arresto della macchina virtuale][15]
 
-La macchina virtuale verrà deallocata ma non eliminata. È possibile riavviare la macchina virtuale in qualsiasi momento dal portale di Azure classico.
+macchina virtuale Hello verranno deallocata ma non eliminato. È possibile riavviare la macchina virtuale in qualsiasi momento da hello portale classico di Azure.
 
-## <a name="your-azure-sql-server-vm-is-ready-to-use-whats-next"></a>La macchina virtuale di Azure SQL Server è pronta all'utilizzo: passaggi successivi
-La macchina virtuale è pronta per essere utilizzata negli esercizi di analisi scientifica dei dati. La macchina virtuale può anche essere usata come server di IPython Notebook per la navigazione e l'elaborazione dei dati e per altre attività legate ad Azure Machine Learning e al Processo di analisi scientifica dei dati per i team (TDSP).
+## <a name="your-azure-sql-server-vm-is-ready-toouse-whats-next"></a>La macchina virtuale di Azure SQL Server è pronto toouse: che cos'è successivo?
+La macchina virtuale è ora pronto toouse negli esercizi di analisi scientifica dei dati. macchina virtuale Hello è pronto per l'utilizzo come un server di IPython Notebook per l'elaborazione dei dati e l'esplorazione di hello e altre attività in combinazione con Azure Machine Learning e hello Team Data Science processo (TDSP).
 
-I passaggi successivi del processo di scienza dei dati sono illustrati in [Processo di analisi scientifica dei dati per i team](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/) e possono includere le procedure per lo spostamento, l'elaborazione e il campionamento dei dati in HDInsight in preparazione dell'apprendimento dei dati con Azure Machine Learning.
+Hello passaggi successivi nel processo di analisi scientifica dei dati hello vengono eseguito il mapping in hello [processo di analisi scientifica dei dati di Team](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/) e possono includere passaggi spostare i dati in HDInsight, processo e, di esempio in preparazione per l'apprendimento dai dati hello con Azure macchina Apprendimento.
 
 [1]: ./media/machine-learning-data-science-setup-sql-server-virtual-machine/selectsqlvmimg.png
 [2]: ./media/machine-learning-data-science-setup-sql-server-virtual-machine/4vm-config.png

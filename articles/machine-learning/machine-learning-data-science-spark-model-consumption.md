@@ -1,6 +1,6 @@
 ---
-title: Rendere operativi i modelli di apprendimento automatico compilati con Spark | Documentazione Microsoft
-description: Informazioni su come caricare e assegnare punteggi ai modelli di apprendimento salvati in Archiviazione BLOB di Azure (WASB) con Python.
+title: aaaOperationalize compilato Spark modelli di machine learning | Documenti Microsoft
+description: Come tooload e modelli di apprendimento punteggio archiviati in Azure Blob Storage (WASB) con Python.
 services: machine-learning
 documentationcenter: 
 author: bradsev
@@ -14,64 +14,64 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/15/2017
 ms.author: deguhath;bradsev;gokuma
-ms.openlocfilehash: 00fec675bed0137473f7e3c5ddfe9c3c0e8344c6
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c5fadcb13257b94dcb28a522be454f6e03dfa991
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="operationalize-spark-built-machine-learning-models"></a>Rendere operativi i modelli di apprendimento automatico compilati con Spark
 [!INCLUDE [machine-learning-spark-modeling](../../includes/machine-learning-spark-modeling.md)]
 
-Questo argomento illustra come rendere operativo un modello di apprendimento automatico (ML) salvato mediante Python in cluster HDInsight Spark. Descrive come caricare modelli di apprendimento automatico compilati con MLlib di Spark e archiviati in BLOB di Archiviazione di Azure (WASB) e come assegnare loro un punteggio con dataset archiviati in WASB. Illustra come pre-elaborare i dati di input, come trasformare le funzionalità con le funzioni di codifica e indicizzazione nel toolkit MLlib e come creare un oggetto dati punto etichettato da usare come input per l'assegnazione dei punteggi con i modelli di apprendimento automatico. I modelli usati per l'assegnazione dei punteggi includono la regressione lineare, la regressione logistica, le foreste casuali e gli alberi con boosting a gradienti.
+Questo argomento viene illustrato come toooperationalize un modello di apprendimento macchina salvata (ML) usando Python in HDInsight Spark cluster. Viene descritto come tooload machine learning i modelli che sono stati compilati utilizzando MLlib Spark e archiviati in archiviazione Blob di Azure (WASB) e come tooscore con set di dati che sono anche stati archiviati in WASB. Mostra dati di input hello come toopre-process, utilizzando le funzionalità di trasformazione hello funzioni di indicizzazione e la codifica in hello MLlib toolkit, e come toocreate un oggetto di etichetta punto dati che può essere utilizzato come input per il punteggio con i modelli di hello ML. modelli di Hello utilizzati per il punteggio includono Linear Regression, Logistic Regression, modelli di foreste casuali e sfumatura Boosting i modelli di albero.
 
 ## <a name="spark-clusters-and-jupyter-notebooks"></a>Cluster Spark e notebook di Jupyter
-La procedura di configurazione e il codice per rendere operativo un modello ML, forniti in questa procedura dettagliata, sono applicabili sia con cluster HDInsight Spark 1.6 sia che con cluster Spark 2.0. Il codice per queste procedure è fornito anche nel notebook di Jupyter.
+Passaggi di installazione e toooperationalize codice hello un modello di Machine Learning disponibili in questa procedura dettagliata per l'utilizzo di un cluster HDInsight Spark 1.6, nonché un cluster Spark 2.0. codice di Hello per queste procedure viene fornito anche nel server Jupyter notebook.
 
 ### <a name="notebook-for-spark-16"></a>Notebook per Spark 1.6
-Il notebook di Jupyter [pySpark-machine-learning-data-science-spark-model-consumption.ipynb](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/Spark/pySpark/Spark1.6/pySpark-machine-learning-data-science-spark-model-consumption.ipynb) illustra come rendere operativo un modello salvato usando Python sui cluster di HDInsight. 
+Hello [pySpark-machine-learning-data-science-spark-model-consumption.ipynb](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/Spark/pySpark/Spark1.6/pySpark-machine-learning-data-science-spark-model-consumption.ipynb) server Jupyter notebook viene illustrato come toooperationalize un modello salvato usando Python in HDInsight cluster. 
 
 ### <a name="notebook-for-spark-20"></a>Notebook per Spark 2.0
-Al fine di modificare il notebook di Jupyter per Spark 1.6 per l'uso di un cluster HDInsight Spark 2.0, sostituire il file di codice Python con [questo file](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/Spark/Python/Spark2.0_ConsumeRFCV_NYCReg.py). Questo codice illustra come usare i modelli creati in Spark 2.0.
+toomodify hello Jupyter notebook toouse 1.6 Spark con un cluster HDInsight Spark 2.0, sostituire i file di codice Python hello con [questo file](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/Spark/Python/Spark2.0_ConsumeRFCV_NYCReg.py). Questo codice viene illustrato come i modelli di hello tooconsume creati in Spark 2.0.
 
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-1. Per completare questa procedura dettagliata sono necessari un account Azure e un cluster HDInsight Spark 1.6 o 2.0. Per istruzioni su come soddisfare questi requisiti, vedere [Panoramica dell'analisi scientifica dei dati con Spark in Azure HDInsight](machine-learning-data-science-spark-overview.md). Questo argomento contiene inoltre una descrizione dei dati dei taxi di NYC per il 2013 usati qui e istruzioni su come eseguire il codice da un notebook Jupyter nel cluster Spark. 
-2. È anche necessario creare i modelli di Machine Learning per l'assegnazione dei punteggi seguendo le istruzioni nell'argomento [Modellazione ed esplorazione dei dati con Spark](machine-learning-data-science-spark-data-exploration-modeling.md) per il cluster Spark 1.6 o i notebook Spark 2.0. 
-3. I notebook Spark 2.0 usano un dataset aggiuntivo per l'attività di classificazione, il noto dataset sulle partenze puntuali dei voli tra il 2011 e il 2012. Vengono inoltre forniti una descrizione dei notebook e i relativi collegamenti nel [Readme.md](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/Spark/pySpark/Readme.md) per il repository GitHub che li contiene. Inoltre, il codice in questo esempio e nei notebook collegati è generico e funzionerà in qualsiasi cluster Spark. Se non si usa HDInsight Spark, i passaggi di configurazione e gestione del cluster possono essere leggermente diversi rispetto a quanto illustrato qui. 
+1. È necessario un account Azure e Spark 1.6 (o 2.0 Spark) toocomplete cluster HDInsight in questa procedura dettagliata. Vedere hello [panoramica dell'analisi scientifica dei dati utilizzando Spark in Azure HDInsight](machine-learning-data-science-spark-overview.md) per istruzioni su come toosatisfy questi requisiti. Questo argomento contiene inoltre una descrizione di hello dati NYC 2013 Taxi utilizzati in questo argomento e per istruzioni su come il codice da un server Jupyter notebook nel cluster Spark hello tooexecute. 
+2. È inoltre necessario creare hello modelli di machine learning toobe con punteggio qui l'esecuzione di hello [l'esplorazione dei dati e modellazione con Spark](machine-learning-data-science-spark-data-exploration-modeling.md) l'argomento relativo a cluster Spark 1.6 hello o un notebook hello Spark 2.0. 
+3. notebook Hello Spark 2.0 utilizzare un set di dati aggiuntivo per attività di classificazione hello, hello noto Airline in orario partenza set di dati da 2011 e 2012. Vengono forniti una descrizione di hello blocchi appunti e collegamenti toothem in hello [Readme.md](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/Spark/pySpark/Readme.md) per il repository di GitHub hello che li contengono. Inoltre, codice hello qui e i notebook hello collegato è generico e dovrebbe funzionare in un cluster Spark. Se non si utilizza HDInsight Spark, passaggi di configurazione e gestione di cluster hello potrebbero essere leggermente diversi rispetto a quanto mostrato di seguito. 
 
 [!INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
 
-## <a name="setup-storage-locations-libraries-and-the-preset-spark-context"></a>Configurazione: percorsi di archiviazione, librerie e contesto Spark preimpostato
-Spark può eseguire operazioni di lettura e scrittura in un BLOB del servizio di archiviazione di Azure (WASB). I dati esistenti archiviati in WASB possono essere elaborati con Spark e i relativi risultati possono essere memorizzati nuovamente in BLOB di Archiviazione di Azure.
+## <a name="setup-storage-locations-libraries-and-hello-preset-spark-context"></a>Il programma di installazione: hello, librerie e percorsi di archiviazione predefinito contesto Spark
+Spark è in grado di tooan tooread e di scrittura Blob di archiviazione di Azure (WASB). Pertanto, i dati esistenti archiviate possono essere elaborati utilizzando Spark e hello risultati WASB archiviato nuovamente in.
 
-Per salvare file o modelli in WASB, è necessario specificare correttamente il percorso. È possibile fare riferimento al contenitore predefinito collegato al cluster Spark usando un percorso che inizia con: *"wasb//"*. L'esempio di codice seguente specifica il percorso dei dati da leggere e il percorso della directory di archiviazione del modello in cui viene salvato l'output del modello. 
+modelli toosave o file in WASB, percorso hello deve toobe specificato correttamente. Hello del cluster Spark toohello contenitore collegato predefinito possibile farvi riferimento tramite un che inizia con: *"wasb / /"*. esempio di codice seguente Hello Specifica percorso hello di hello dati toobe leggere e hello percorso per l'output di hello modello archiviazione directory toowhich hello modello viene salvato. 
 
 ### <a name="set-directory-paths-for-storage-locations-in-wasb"></a>Impostare percorsi di directory per i percorsi di archiviazione in WASB
 I modelli vengono salvati in: "wasb:///user/remoteuser/NYCTaxi/Models". Se questo percorso non è impostato correttamente, i modelli non vengono caricati per l'assegnazione dei punteggi.
 
-I risultati con punteggio vengono salvati in: "wasb:///user/remoteuser/NYCTaxi/ScoredResults". Se il percorso della cartella non è corretto, i risultati non vengono salvati nella cartella.   
+Hello risultati con punteggi sono stati salvati: "wasb: / / / utente/remoteuser/NYCTaxi/ScoredResults". Se toofolder percorso hello è errata, i risultati non vengono salvati in tale cartella.   
 
 > [!NOTE]
-> È possibile incollare i percorsi dei file nei segnaposto di questo codice dopo averli copiati dall'output dell'ultima cella del notebook **machine-learning-data-science-spark-data-exploration-modeling.ipynb** .   
+> percorsi di file Hello possono essere copiati e incollati in segnaposto hello in questo codice dall'output di hello dell'ultima cella di hello di hello **machine-learning-data-science-spark-data-exploration-modeling.ipynb** notebook.   
 > 
 > 
 
-Ecco il codice per impostare i percorsi di directory: 
+Ecco i percorsi di directory tooset codice hello: 
 
-    # LOCATION OF DATA TO BE SCORED (TEST DATA)
+    # LOCATION OF DATA tooBE SCORED (TEST DATA)
     taxi_test_file_loc = "wasb://mllibwalkthroughs@cdspsparksamples.blob.core.windows.net/Data/NYCTaxi/JoinedTaxiTripFare.Point1Pct.Test.tsv";
 
-    # SET THE MODEL STORAGE DIRECTORY PATH 
-    # NOTE THE LAST BACKSLASH IN THIS PATH IS NEEDED
+    # SET hello MODEL STORAGE DIRECTORY PATH 
+    # NOTE hello LAST BACKSLASH IN THIS PATH IS NEEDED
     modelDir = "wasb:///user/remoteuser/NYCTaxi/Models/" 
 
     # SET SCORDED RESULT DIRECTORY PATH
-    # NOTE THE LAST BACKSLASH IN THIS PATH IS NEEDED
+    # NOTE hello LAST BACKSLASH IN THIS PATH IS NEEDED
     scoredResultDir = "wasb:///user/remoteuser/NYCTaxi/ScoredResults/"; 
 
-    # FILE LOCATIONS FOR THE MODELS TO BE SCORED
+    # FILE LOCATIONS FOR hello MODELS tooBE SCORED
     logisticRegFileLoc = modelDir + "LogisticRegressionWithLBFGS_2016-04-1817_40_35.796789"
     linearRegFileLoc = modelDir + "LinearRegressionWithSGD_2016-04-1817_44_00.993832"
     randomForestClassificationFileLoc = modelDir + "RandomForestClassification_2016-04-1817_42_58.899412"
@@ -88,7 +88,7 @@ Ecco il codice per impostare i percorsi di directory:
 datetime.datetime(2016, 4, 25, 23, 56, 19, 229403)
 
 ### <a name="import-libraries"></a>Importare le librerie
-Impostare il contesto Spark e importare le librerie necessarie usando il codice seguente.
+Impostare il contesto di spark e importare le librerie necessarie con hello seguente di codice
 
     #IMPORT LIBRARIES
     import pyspark
@@ -107,23 +107,23 @@ Impostare il contesto Spark e importare le librerie necessarie usando il codice 
 
 
 ### <a name="preset-spark-context-and-pyspark-magics"></a>Contesto di Spark preimpostato e magic di PySpark
-I kernel PySpark forniti con i notebook di Jupyter hanno un contesto preimpostato, quindi non è necessario impostare esplicitamente i contesti Spark o Hive prima di iniziare a usare l'applicazione in fase di sviluppo. I contesti sono disponibili per impostazione predefinita. Questi contesti sono:
+kernel PySpark Hello forniti con i notebook Jupyter dispone di un contesto predefinito. Pertanto, non è necessario contesti di Spark o Hive hello tooset in modo esplicito prima di iniziare con un'applicazione hello che si sta sviluppando. I contesti sono disponibili per impostazione predefinita. Questi contesti sono:
 
 * sc per Spark 
 * sqlContext per Hive
 
-Il kernel PySpark offre alcuni “magic” predefiniti, ovvero comandi speciali che è possibile chiamare con %%. Negli esempi di codice seguenti sono usati due comandi di questo tipo.
+Hello kernel PySpark fornisce alcuni predefinite "magics", che sono comandi speciale che è possibile chiamare con % %. Negli esempi di codice seguenti sono usati due comandi di questo tipo.
 
-* **%%local**: specifica che il codice presente nelle righe successive viene eseguito localmente. Deve trattarsi di codice Python valido.
+* **% % locale** specificato che il codice hello nelle righe successive viene eseguito localmente. Deve trattarsi di codice Python valido.
 * **%%sql -o <variable name>** 
-* Esegue una query Hive su sqlContext. Se viene passato il parametro -o, il risultato della query viene salvato in modo permanente nel contesto Python %%local come frame di dati Pandas.
+* Esegue una query Hive sqlContext hello. Se viene passato il parametro -o hello, il risultato di hello di hello query è persistente nel hello % % contesto Python locale come un frame di dati Pandas.
 
-Per altre informazioni sui kernel per i notebook di Jupyter e i "magic" predefiniti messi a disposizione, vedere [Kernels available for Jupyter notebooks with HDInsight Spark Linux clusters on HDInsight](../hdinsight/hdinsight-apache-spark-jupyter-notebook-kernels.md) (Kernel disponibili per i notebook di Jupyter con cluster Apache Spark in HDInsight Linux).
+Per ulteriori informazioni su kernel hello per notebook Jupyter e hello predefiniti "magics" che forniscono, vedere [cluster kernel disponibile per i server Jupyter notebook con Linux di HDInsight Spark in HDInsight](../hdinsight/hdinsight-apache-spark-jupyter-notebook-kernels.md).
 
 ## <a name="ingest-data-and-create-a-cleaned-data-frame"></a>Inserire i dati e creare un frame di dati pulito
-Questa sezione contiene il codice per una serie di attività necessarie per inserire i dati per l'assegnazione dei punteggi. Leggere un campione unito in join pari allo 0,1% del file TSV relativo alle corse e alle tariffe dei taxi, formattare i dati e creare un frame di dati pulito.
+In questa sezione contiene codice hello per una serie di attività richiesto tooingest hello dati toobe con punteggio. Lettura in un campione di 0,1% unita in join di hello taxi di andata e ritorno e tariffa file (archiviati come file tsv), dati in formato hello e quindi crea un frame di dati pulito.
 
-I file relativi alle corse e alle tariffe dei taxi sono stati uniti seguendo la procedura illustrata nell'articolo [Processo di analisi scientifica dei dati per i team in azione: uso dei cluster Hadoop di HDInsight](machine-learning-data-science-process-hive-walkthrough.md) .
+Hello taxi di andata e ritorno e tariffa i file sono stati aggiunti in base hello procedura il: [hello Team processo di analisi scientifica dei dati in azione: utilizzo dei cluster HDInsight Hadoop](machine-learning-data-science-process-hive-walkthrough.md) argomento.
 
     # INGEST DATA AND CREATE A CLEANED DATA FRAME
 
@@ -133,7 +133,7 @@ I file relativi alle corse e alle tariffe dei taxi sono stati uniti seguendo la 
     # IMPORT FILE FROM PUBLIC BLOB
     taxi_test_file = sc.textFile(taxi_test_file_loc)
 
-    # GET SCHEMA OF THE FILE FROM HEADER
+    # GET SCHEMA OF hello FILE FROM HEADER
     taxi_header = taxi_test_file.filter(lambda l: "medallion" in l)
 
     # PARSE FIELDS AND CONVERT DATA TYPE FOR SOME FIELDS
@@ -142,7 +142,7 @@ I file relativi alle corse e alle tariffe dei taxi sono stati uniti seguendo la 
                             float(p[11]),float(p[12]),p[13],p[14],p[15],p[16],p[17],p[18],float(p[19]),
                             float(p[20]),float(p[21]),float(p[22]),float(p[23]),float(p[24]),int(p[25]),int(p[26])))
 
-    # GET SCHEMA OF THE FILE FROM HEADER
+    # GET SCHEMA OF hello FILE FROM HEADER
     schema_string = taxi_test_file.first()
     fields = [StructField(field_name, StringType(), True) for field_name in schema_string.split('\t')]
     fields[7].dataType = IntegerType() #Pickup hour
@@ -178,24 +178,24 @@ I file relativi alle corse e alle tariffe dei taxi sono stati uniti seguendo la 
     # REGISTER DATA-FRAME AS A TEMP-TABLE IN SQL-CONTEXT
     taxi_df_test_cleaned.registerTempTable("taxi_test")
 
-    # PRINT HOW MUCH TIME IT TOOK TO RUN THE CELL
+    # PRINT HOW MUCH TIME IT TOOK tooRUN hello CELL
     timeend = datetime.datetime.now()
     timedelta = round((timeend-timestart).total_seconds(), 2) 
-    print "Time taken to execute above cell: " + str(timedelta) + " seconds"; 
+    print "Time taken tooexecute above cell: " + str(timedelta) + " seconds"; 
 
 **OUTPUT:**
 
-Tempo impiegato per eseguire questa cella: 46,37 secondi.
+Tempo impiegato tooexecute di sopra di: 46.37 secondi
 
 ## <a name="prepare-data-for-scoring-in-spark"></a>Preparare i dati per l'assegnazione dei punteggi in Spark
-Questa sezione illustra come indicizzare, codificare e ridimensionare le caratteristiche categoriche per prepararle all'uso in algoritmi di apprendimento supervisionato di MLlib, per la classificazione e la regressione.
+In questa sezione viene illustrato come tooindex, codificare e scalare tooprepare organizzato per categorie di funzionalità per l'utilizzo in algoritmi di apprendimento supervisionato MLlib per la classificazione e regressione.
 
 ### <a name="feature-transformation-index-and-encode-categorical-features-for-input-into-models-for-scoring"></a>Trasformazione di funzionalità: indicizzare e codificare funzionalità categoriche per l'inserimento in modelli per l'assegnazione dei punteggi
-Questa sezione illustra come indicizzare dati categorici con `StringIndexer` e codificare funzionalità con `OneHotEncoder` per l'inserimento nei modelli.
+Questa sezione viene illustrato come tooindex dati categorici utilizzando un `StringIndexer` e codificare funzionalità con `OneHotEncoder` di input in modelli hello.
 
-[StringIndexer](http://spark.apache.org/docs/latest/ml-features.html#stringindexer) esegue la codifica di una colonna stringa di etichette in una colonna di indici etichetta. Gli indici sono ordinati in base alla frequenza delle etichette. 
+Hello [StringIndexer](http://spark.apache.org/docs/latest/ml-features.html#stringindexer) codifica di una colonna stringa della colonna di etichette tooa di indici di etichetta. gli indici di Hello sono ordinati per le frequenze di etichetta. 
 
-[OneHotEncoder](http://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OneHotEncoder.html#sklearn.preprocessing.OneHotEncoder) esegue il mapping di una colonna di indici etichetta a una colonna di vettori binari, con al massimo un singolo valore unico. Questa codifica permette di applicare a funzionalità categoriche gli algoritmi che prevedono funzionalità con valori continui, ad esempio la regressione logistica.
+Hello [OneHotEncoder](http://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OneHotEncoder.html#sklearn.preprocessing.OneHotEncoder) esegue il mapping di una colonna della colonna di etichetta indici tooa di vettori binari, con al massimo uno a valore singolo. Questa codifica consente di utilizzare gli algoritmi che prevede funzionalità con valori continui, come la regressione logistica, funzionalità toocategorical toobe applicato.
 
     #INDEX AND ONE-HOT ENCODE CATEGORICAL FEATURES
 
@@ -224,7 +224,7 @@ Questa sezione illustra come indicizzare dati categorici con `StringIndexer` e c
 
     # INDEX AND ONE-HOT ENCODING
     stringIndexer = StringIndexer(inputCol="vendor_id", outputCol="vendorIndex")
-    model = stringIndexer.fit(taxi_df_test_with_newFeatures) # Input data-frame is the cleaned one from above
+    model = stringIndexer.fit(taxi_df_test_with_newFeatures) # Input data-frame is hello cleaned one from above
     indexed = model.transform(taxi_df_test_with_newFeatures)
     encoder = OneHotEncoder(dropLast=False, inputCol="vendorIndex", outputCol="vendorVec")
     encoded1 = encoder.transform(indexed)
@@ -250,19 +250,19 @@ Questa sezione illustra come indicizzare dati categorici con `StringIndexer` e c
     encoder = OneHotEncoder(dropLast=False, inputCol="TrafficTimeBinsIndex", outputCol="TrafficTimeBinsVec")
     encodedFinal = encoder.transform(indexed)
 
-    # PRINT HOW MUCH TIME IT TOOK TO RUN THE CELL
+    # PRINT HOW MUCH TIME IT TOOK tooRUN hello CELL
     timeend = datetime.datetime.now()
     timedelta = round((timeend-timestart).total_seconds(), 2) 
-    print "Time taken to execute above cell: " + str(timedelta) + " seconds"; 
+    print "Time taken tooexecute above cell: " + str(timedelta) + " seconds"; 
 
 **OUTPUT:**
 
-Tempo impiegato per eseguire questa cella: 5,37 secondi.
+Tempo impiegato tooexecute di sopra di: 5,37 secondi
 
 ### <a name="create-rdd-objects-with-feature-arrays-for-input-into-models"></a>Creare oggetti RDD con matrici di funzionalità per l'inserimento in modelli
-Questa sezione contiene codice che illustra come indicizzare dati di testo categorici come oggetti RDD e come usare la codifica one-hot per codificarli per l'uso per il training e il testing della regressione logistica MLlib e dei modelli basati su albero. I dati indicizzati vengono archiviati come oggetti [RDD (Resilient Distributed Dataset)](http://spark.apache.org/docs/latest/api/java/org/apache/spark/rdd/RDD.html) . Si tratta dell'astrazione di base in Spark. Un oggetto RDD rappresenta una raccolta partizionata non modificabile di elementi su cui è possibile operare in parallelo con Spark.
+In questa sezione contiene codice che illustra come dati di testo categorico tooindex come un RDD dell'oggetto e a caldo uno codificare in modo da poterli usate tootrain test MLlib la regressione logistica ed e i modelli basati sulla struttura ad albero. Hello indicizzate vengono memorizzati in [resilienti Distributed Dataset (RDD)](http://spark.apache.org/docs/latest/api/java/org/apache/spark/rdd/RDD.html) oggetti. Si tratta di astrazione di base hello in Spark. Un oggetto RDD rappresenta una raccolta partizionata non modificabile di elementi su cui è possibile operare in parallelo con Spark.
 
-Contiene anche codice che mostra come ridimensionare i dati con `StandardScalar` , fornito da MLlib per l'uso nella regressione lineare con la discesa del gradiente stocastica (SGD), un algoritmo molto diffuso per il training di una vasta gamma di modelli di Machine Learning. [StandardScaler](https://spark.apache.org/docs/latest/api/python/pyspark.mllib.html#pyspark.mllib.feature.StandardScaler) viene usato per ridimensionare le funzionalità alla varianza unitaria. Il ridimensionamento di funzionalità, noto anche come normalizzazione dei dati, permette di fare in modo che alle funzionalità con valori molto dispersi non venga attribuito un peso eccessivo nella funzione obiettivo. 
+Contiene anche il codice che illustra come dati tooscale con hello `StandardScalar` forniti da MLlib per la regressione lineare con stocastico sfumatura Descent (SGD), un algoritmo comune per il training di una vasta gamma di modelli di machine learning. Hello [StandardScaler](https://spark.apache.org/docs/latest/api/python/pyspark.mllib.html#pyspark.mllib.feature.StandardScaler) è usato tooscale hello funzionalità toounit varianza. Funzionalità di scalabilità, noto anche come normalizzazione dei dati, si assicura che le funzionalità con ampiamente i valori sono non specificato un numero eccessivo pesare nella funzione obiettivo hello. 
 
     # CREATE RDD OBJECTS WITH FEATURE ARRAYS FOR INPUT INTO MODELS
 
@@ -324,17 +324,17 @@ Contiene anche codice che mostra come ridimensionare i dati con `StandardScalar`
     oneHotTESTreg.cache();
     oneHotTESTregScaled.cache();
 
-    # PRINT HOW MUCH TIME IT TOOK TO RUN THE CELL
+    # PRINT HOW MUCH TIME IT TOOK tooRUN hello CELL
     timeend = datetime.datetime.now()
     timedelta = round((timeend-timestart).total_seconds(), 2) 
-    print "Time taken to execute above cell: " + str(timedelta) + " seconds"; 
+    print "Time taken tooexecute above cell: " + str(timedelta) + " seconds"; 
 
 **OUTPUT:**
 
-Tempo impiegato per eseguire questa cella: 11,72 secondi.
+Tempo impiegato tooexecute di sopra di: 11.72 secondi
 
-## <a name="score-with-the-logistic-regression-model-and-save-output-to-blob"></a>Assegnare punteggi con il modello di regressione logistica e salvare l'output in BLOB
-Il codice riportato in questa sezione illustra come caricare un modello di regressione logistica che è stato salvato in un archivio BLOB di Azure e come usarlo per prevedere se viene lasciata una mancia per una corsa in taxi, assegnare un punteggio con metriche di classificazione standard e quindi salvare e tracciare i risultati nell'archivio BLOB. I risultati con punteggio vengono archiviati in oggetti RDD. 
+## <a name="score-with-hello-logistic-regression-model-and-save-output-tooblob"></a>Assegnare un punteggio con modello di regressione logistica hello e salvare l'output tooblob
+codice di Hello in questa sezione viene illustrato come tooload un modello di regressione logistica che è stata salvata in Azure nell'archiviazione blob e utilizzarlo o meno un suggerimento è pagato toopredict in viaggio taxi, assegnare un punteggio, con le metriche di classificazione standard e quindi salvare e tracciare hello risultati tooblob spazio di archiviazione. risultati con punteggio Hello vengono archiviati negli oggetti RDD. 
 
     # SCORE AND EVALUATE LOGISTIC REGRESSION MODEL
 
@@ -348,26 +348,26 @@ Il codice riportato in questa sezione illustra come caricare un modello di regre
     savedModel = LogisticRegressionModel.load(sc, logisticRegFileLoc)
     predictions = oneHotTESTbinary.map(lambda features: (float(savedModel.predict(features))))
 
-    ## SAVE SCORED RESULTS (RDD) TO BLOB
+    ## SAVE SCORED RESULTS (RDD) tooBLOB
     datestamp = unicode(datetime.datetime.now()).replace(' ','').replace(':','_');
     logisticregressionfilename = "LogisticRegressionWithLBFGS_" + datestamp + ".txt";
     dirfilename = scoredResultDir + logisticregressionfilename;
     predictions.saveAsTextFile(dirfilename)
 
 
-    # PRINT HOW MUCH TIME IT TOOK TO RUN THE CELL
+    # PRINT HOW MUCH TIME IT TOOK tooRUN hello CELL
     timeend = datetime.datetime.now()
     timedelta = round((timeend-timestart).total_seconds(), 2) 
-    print "Time taken to execute above cell: " + str(timedelta) + " seconds";
+    print "Time taken tooexecute above cell: " + str(timedelta) + " seconds";
 
 **OUTPUT:**
 
-Tempo impiegato per eseguire questa cella: 19,22 secondi.
+Tempo impiegato tooexecute di sopra di: 19.22 secondi
 
 ## <a name="score-a-linear-regression-model"></a>Assegnare punteggi a un modello di regressione lineare
-Per il training di un modello di regressione lineare con il metodo di discesa del gradiente stocastica (SGD) per l'ottimizzazione allo scopo di prevedere l'importo delle mance lasciate è stato usato [LinearRegressionWithSGD](https://spark.apache.org/docs/latest/api/python/pyspark.mllib.html#pyspark.mllib.regression.LinearRegressionWithSGD). 
+È stato usato [LinearRegressionWithSGD](https://spark.apache.org/docs/latest/api/python/pyspark.mllib.html#pyspark.mllib.regression.LinearRegressionWithSGD) a pagamento di un modello di regressione lineare usando valori descent con sfumatura Stocastica (SGD, Virtual Private Network) per quantità di hello toopredict ottimizzazione del suggerimento tootrain. 
 
-Il codice riportato in questa sezione illustra come caricare un modello di regressione lineare dall'archivio BLOB di Azure, assegnare un punteggio con variabili ridimensionate e salvare nuovamente i risultati nel BLOB.
+codice di Hello in questa sezione viene illustrato come tooload un modello di regressione lineare dall'archiviazione blob di Azure, assegna un punteggio con variabili scalate e quindi salvare blob di back-toohello risultati hello.
 
     #SCORE LINEAR REGRESSION MODEL
 
@@ -387,20 +387,20 @@ Il codice riportato in questa sezione illustra come caricare un modello di regre
     dirfilename = scoredResultDir + linearregressionfilename;
     predictions.saveAsTextFile(dirfilename)
 
-    # PRINT HOW MUCH TIME IT TOOK TO RUN THE CELL
+    # PRINT HOW MUCH TIME IT TOOK tooRUN hello CELL
     timeend = datetime.datetime.now()
     timedelta = round((timeend-timestart).total_seconds(), 2) 
-    print "Time taken to execute above cell: " + str(timedelta) + " seconds"; 
+    print "Time taken tooexecute above cell: " + str(timedelta) + " seconds"; 
 
 
 **OUTPUT:**
 
-Tempo impiegato per eseguire questa cella: 16,63 secondi.
+Tempo impiegato tooexecute di sopra di: 16.63 secondi
 
 ## <a name="score-classification-and-regression-random-forest-models"></a>Assegnare punteggi a modelli di foresta casuale per la classificazione e la regressione
-Il codice riportato in questa sezione illustra come caricare i modelli di foresta casuale per la classificazione e la regressione salvati nell'archivio BLOB di Azure, assegnare punteggi alle relative prestazioni con misure di classificazione e regressione standard e salvare nuovamente i risultati nell'archivio BLOB.
+codice Hello in questa sezione viene illustrato come hello tooload salvate classificazione e regressione i modelli di foresta casuale salvata nell'archiviazione blob di Azure, assegnare un punteggio delle relative prestazioni con classificazione standard e le misure di regressione e quindi salvare hello risultati tooblob indietro archiviazione.
 
-[foreste casuali](http://spark.apache.org/docs/latest/mllib-ensembles.html#Random-Forests) sono insiemi di alberi delle decisioni.  Queste foreste combinano diversi alberi delle decisioni per ridurre il rischio di overfitting. Le foreste casuali possono gestire funzionalità categoriche, si estendono all'impostazione di classificazione multiclasse, non richiedono il ridimensionamento delle funzionalità e possono rilevare non linearità e interazioni di funzionalità. Le foreste casuali sono tra i modelli di apprendimento automatico più diffusi per la classificazione e la regressione.
+[foreste casuali](http://spark.apache.org/docs/latest/mllib-ensembles.html#Random-Forests) sono insiemi di alberi delle decisioni.  Combinano molti decision trees tooreduce hello rischio di overfitting. Foreste casuali possono gestire funzioni categoriche, estendere l'impostazione di classificazione multiclasse toohello, non richiedono la funzionalità di scalabilità e sono in grado di toocapture non linearità e interazioni di funzionalità. Foreste casuali sono uno dei hello riuscito più modelli di machine learning per la classificazione e regressione.
 
 [spark.mllib](http://spark.apache.org/mllib/) supporta foreste casuali per la classificazione binaria e multiclasse e per la regressione, con funzionalità sia continue che categoriche. 
 
@@ -413,7 +413,7 @@ Il codice riportato in questa sezione illustra come caricare i modelli di forest
     from pyspark.mllib.tree import RandomForest, RandomForestModel
 
 
-    # CLASSIFICATION: LOAD SAVED MODEL, SCORE AND SAVE RESULTS BACK TO BLOB
+    # CLASSIFICATION: LOAD SAVED MODEL, SCORE AND SAVE RESULTS BACK tooBLOB
     savedModel = RandomForestModel.load(sc, randomForestClassificationFileLoc)
     predictions = savedModel.predict(indexedTESTbinary)
 
@@ -424,7 +424,7 @@ Il codice riportato in questa sezione illustra come caricare i modelli di forest
     predictions.saveAsTextFile(dirfilename)
 
 
-    # REGRESSION: LOAD SAVED MODEL, SCORE AND SAVE RESULTS BACK TO BLOB
+    # REGRESSION: LOAD SAVED MODEL, SCORE AND SAVE RESULTS BACK tooBLOB
     savedModel = RandomForestModel.load(sc, randomForestRegFileLoc)
     predictions = savedModel.predict(indexedTESTreg)
 
@@ -434,21 +434,21 @@ Il codice riportato in questa sezione illustra come caricare i modelli di forest
     dirfilename = scoredResultDir + rfregressionfilename;
     predictions.saveAsTextFile(dirfilename)
 
-    # PRINT HOW MUCH TIME IT TOOK TO RUN THE CELL
+    # PRINT HOW MUCH TIME IT TOOK tooRUN hello CELL
     timeend = datetime.datetime.now()
     timedelta = round((timeend-timestart).total_seconds(), 2) 
-    print "Time taken to execute above cell: " + str(timedelta) + " seconds";
+    print "Time taken tooexecute above cell: " + str(timedelta) + " seconds";
 
 **OUTPUT:**
 
-Tempo impiegato per eseguire questa cella: 31,07 secondi.
+Tempo impiegato tooexecute di sopra di: 31.07 secondi
 
 ## <a name="score-classification-and-regression-gradient-boosting-tree-models"></a>Assegnare punteggi a modelli di alberi con boosting a gradienti per la classificazione e la regressione
-Il codice riportato in questa sezione illustra come caricare i modelli di alberi con boosting a gradienti (GBT) per la classificazione e la regressione salvati nell'archivio BLOB di Azure, assegnare punteggi alle relative prestazioni con misure di classificazione e regressione standard e salvare nuovamente i risultati nell'archivio BLOB. 
+codice di Hello in questa sezione viene illustrato come classificazione tooload sfumatura Boosting i modelli di albero di regressione dall'archiviazione blob di Azure, assegnare un punteggio delle relative prestazioni con classificazione standard e le misure di regressione e quindi salvare hello risultati tooblob indietro archiviazione. 
 
 **spark.mllib** supporta gli alberi GBT per la classificazione binaria e per la regressione, con funzionalità sia continue che categoriche. 
 
-[alberi con boosting a gradienti](http://spark.apache.org/docs/latest/ml-classification-regression.html#gradient-boosted-trees-gbts) (GBT) sono insiemi di alberi delle decisioni. Gli alberi GBT eseguono il training degli alberi delle decisioni in modo iterativo per ridurre al minimo la perdita di funzioni. Gli alberi GBT possono gestire funzionalità categoriche, non richiedono il ridimensionamento delle funzionalità e possono rilevare non linearità e interazioni di funzionalità. Possono anche essere usati in un'impostazione di classificazione multiclasse.
+[alberi con boosting a gradienti](http://spark.apache.org/docs/latest/ml-classification-regression.html#gradient-boosted-trees-gbts) (GBT) sono insiemi di alberi delle decisioni. GBTs train alberi delle decisioni in modo iterativo toominimize una funzione di perdita. GBTs può gestire funzioni categoriche, non richiedono la funzionalità di scalabilità e sono in grado di toocapture non linearità e interazioni di funzionalità. Possono anche essere usati in un'impostazione di classificazione multiclasse.
 
     # SCORE GRADIENT BOOSTING TREE MODELS FOR CLASSIFICATION AND REGRESSION
 
@@ -458,9 +458,9 @@ Il codice riportato in questa sezione illustra come caricare i modelli di alberi
     #IMPORT MLLIB LIBRARIES
     from pyspark.mllib.tree import GradientBoostedTrees, GradientBoostedTreesModel
 
-    # CLASSIFICATION: LOAD SAVED MODEL, SCORE AND SAVE RESULTS BACK TO BLOB
+    # CLASSIFICATION: LOAD SAVED MODEL, SCORE AND SAVE RESULTS BACK tooBLOB
 
-    #LOAD AND SCORE THE MODEL
+    #LOAD AND SCORE hello MODEL
     savedModel = GradientBoostedTreesModel.load(sc, BoostedTreeClassificationFileLoc)
     predictions = savedModel.predict(indexedTESTbinary)
 
@@ -471,7 +471,7 @@ Il codice riportato in questa sezione illustra come caricare i modelli di alberi
     predictions.saveAsTextFile(dirfilename)
 
 
-    # REGRESSION: LOAD SAVED MODEL, SCORE AND SAVE RESULTS BACK TO BLOB
+    # REGRESSION: LOAD SAVED MODEL, SCORE AND SAVE RESULTS BACK tooBLOB
 
     # LOAD AND SCORE MODEL 
     savedModel = GradientBoostedTreesModel.load(sc, BoostedTreeRegressionFileLoc)
@@ -484,14 +484,14 @@ Il codice riportato in questa sezione illustra come caricare i modelli di alberi
     predictions.saveAsTextFile(dirfilename)
 
 
-    # PRINT HOW MUCH TIME IT TOOK TO RUN THE CELL
+    # PRINT HOW MUCH TIME IT TOOK tooRUN hello CELL
     timeend = datetime.datetime.now()
     timedelta = round((timeend-timestart).total_seconds(), 2) 
-    print "Time taken to execute above cell: " + str(timedelta) + " seconds"; 
+    print "Time taken tooexecute above cell: " + str(timedelta) + " seconds"; 
 
 **OUTPUT:**
 
-Tempo impiegato per eseguire questa cella: 14,6 secondi.
+Tempo impiegato tooexecute di sopra di: 14.6 secondi
 
 ## <a name="clean-up-objects-from-memory-and-print-scored-file-locations"></a>Pulire gli oggetti dalla memoria e stampare i percorsi di file con punteggio
     # UNPERSIST OBJECTS CACHED IN MEMORY
@@ -503,7 +503,7 @@ Tempo impiegato per eseguire questa cella: 14,6 secondi.
     oneHotTESTregScaled.unpersist();
 
 
-    # PRINT OUT PATH TO SCORED OUTPUT FILES
+    # PRINT OUT PATH tooSCORED OUTPUT FILES
     print "logisticRegFileLoc: " + logisticregressionfilename;
     print "linearRegFileLoc: " + linearregressionfilename;
     print "randomForestClassificationFileLoc: " + rfclassificationfilename;
@@ -527,38 +527,38 @@ BoostedTreeClassificationFileLoc: GradientBoostingTreeClassification_2016-05-031
 BoostedTreeRegressionFileLoc: GradientBoostingTreeRegression_2016-05-0317_23_56.860740.txt
 
 ## <a name="consume-spark-models-through-a-web-interface"></a>Utilizzare i modelli Spark da un'interfaccia Web
-Spark offre un meccanismo che permette di inviare in modalità remota processi batch o query interattive tramite un'interfaccia REST con un componente denominato Livy. Livy è abilitato per impostazione predefinita nel cluster HDInsight Spark. Per altre informazioni, vedere [Inviare processi Spark in modalità remota tramite Livy](../hdinsight/hdinsight-apache-spark-livy-rest-interface.md). 
+Spark fornisce un meccanismo tooremotely invia i processi batch o query interattive attraverso un resto interfacciarsi con un componente chiamato inserire il. Livy è abilitato per impostazione predefinita nel cluster HDInsight Spark. Per altre informazioni, vedere [Inviare processi Spark in modalità remota tramite Livy](../hdinsight/hdinsight-apache-spark-livy-rest-interface.md). 
 
-Livy può essere usato per inviare in modalità remota un processo che assegna punteggi in batch a un file archiviato in un BLOB di Azure e quindi scrive i risultati in un altro BLOB. A tale scopo, caricare lo script Python da   
-[GitHub](https://raw.githubusercontent.com/Azure/Azure-MachineLearning-DataScience/master/Misc/Spark/Python/ConsumeGBNYCReg.py) nel BLOB del cluster Spark. Per copiare lo script nel BLOB del cluster, è possibile usare uno strumento come **Microsoft Azure Storage Explorer** o **AzCopy**. In questo caso lo script è stato caricato in ***wasb:///example/python/ConsumeGBNYCReg.py***.   
+È possibile utilizzare inserire il tooremotely invia un processo batch punteggi di un file che viene archiviato in un blob di Azure e quindi scrive blob tooanother di hello risultati. toodo, script Python hello da caricare  
+[GitHub](https://raw.githubusercontent.com/Azure/Azure-MachineLearning-DataScience/master/Misc/Spark/Python/ConsumeGBNYCReg.py) toohello blob del cluster Spark hello. È possibile utilizzare uno strumento come **Microsoft Azure Storage Explorer** o **AzCopy** blob cluster toohello di toocopy hello script. In questo caso è stato caricato script hello troppo***wasb:///example/python/ConsumeGBNYCReg.py***.   
 
 > [!NOTE]
-> Le chiavi di accesso necessarie sono reperibili nel portale dell'account di archiviazione associato al cluster Spark. 
+> Hello chiavi di accesso che è necessario è reperibile nel portale di hello hello account di archiviazione associato al cluster Spark hello. 
 > 
 > 
 
-Dopo essere stato caricato in questo percorso, lo script viene eseguito all'interno del cluster Spark in un contesto distribuito. Lo script carica il modello ed esegue le previsioni sui file di input in base al modello.  
+Una volta caricato il percorso toothis, questo script viene eseguito all'interno di cluster Spark hello in un contesto distribuito. Carica il modello di hello ed esegue stime sui file di input basati sul modello hello.  
 
-È possibile richiamare lo script in modalità remota tramite una semplice richiesta HTTPS/REST in Livy.  Di seguito è riportato un comando curl per costruire la richiesta HTTP per richiamare lo script Python in modalità remota. Sostituire CLUSTERLOGIN, CLUSTERPASSWORD e CLUSTERNAME con i valori appropriati per il cluster Spark usato.
+È possibile richiamare lo script in modalità remota tramite una semplice richiesta HTTPS/REST in Livy.  Ecco un curl comando tooconstruct hello HTTP richiesta tooinvoke hello script Python in modalità remota. Sostituire CLUSTERLOGIN, CLUSTERPASSWORD, CLUSTERNAME con i valori appropriati di hello per il cluster Spark.
 
-    # CURL COMMAND TO INVOKE PYTHON SCRIPT WITH HTTP REQUEST
+    # CURL COMMAND tooINVOKE PYTHON SCRIPT WITH HTTP REQUEST
 
     curl -k --user "CLUSTERLOGIN:CLUSTERPASSWORD" -X POST --data "{\"file\": \"wasb:///example/python/ConsumeGBNYCReg.py\"}" -H "Content-Type: application/json" https://CLUSTERNAME.azurehdinsight.net/livy/batches
 
-Con una semplice chiamata HTTPS con autenticazione di base è possibile usare qualsiasi linguaggio nel sistema remoto per richiamare il processo Spark tramite Livy.   
+È possibile utilizzare qualsiasi linguaggio per il processo hello sistema remoto tooinvoke hello Spark tramite inserire il mediante una semplice chiamata HTTPS con l'autenticazione di base.   
 
 > [!NOTE]
-> Potrebbe essere preferibile usare la libreria di richieste Python quando si esegue la chiamata HTTP, ma attualmente non è installata per impostazione predefinita in Funzioni di Azure. Vengono quindi usate altre librerie HTTP.   
+> Sarebbe libreria Python richieste di hello toouse pratico quando si effettua questa chiamata HTTP, ma non è attualmente installato per impostazione predefinita nelle funzioni di Azure. Vengono quindi usate altre librerie HTTP.   
 > 
 > 
 
-Di seguito è riportato il codice Python per la chiamata HTTP:
+Di seguito è riportato il codice Python hello per chiamata hello HTTP:
 
     #MAKE AN HTTPS CALL ON LIVY. 
 
     import os
 
-    # OLDER HTTP LIBRARIES USED HERE INSTEAD OF THE REQUEST LIBRARY AS THEY ARE AVAILBLE BY DEFAULT
+    # OLDER HTTP LIBRARIES USED HERE INSTEAD OF hello REQUEST LIBRARY AS THEY ARE AVAILBLE BY DEFAULT
     import httplib, urllib, base64
 
     # REPLACE VALUE WITH ONES FOR YOUR SPARK CLUSTER
@@ -571,21 +571,21 @@ Di seguito è riportato il codice Python per la chiamata HTTP:
     auth = base64.encodestring('%s:%s' % (username, password)).replace('\n', '')
     headers = {'Content-Type': 'application/json', 'Authorization': 'Basic %s' % auth}
 
-    # SPECIFY THE PYTHON SCRIPT TO RUN ON THE SPARK CLUSTER
-    # IN THE FILE PARAMETER OF THE JSON POST REQUEST BODY
+    # SPECIFY hello PYTHON SCRIPT tooRUN ON hello SPARK CLUSTER
+    # IN hello FILE PARAMETER OF hello JSON POST REQUEST BODY
     r=conn.request("POST", '/livy/batches', '{"file": "wasb:///example/python/ConsumeGBNYCReg.py"}', headers )
     response = conn.getresponse().read()
     print(response)
     conn.close()
 
 
-È anche possibile aggiungere questo codice Python a [Funzioni di Azure](https://azure.microsoft.com/documentation/services/functions/) per attivare l'invio di un processo Spark che assegna punteggi a un BLOB in base a vari eventi, ad esempio un timer, la creazione o l'aggiornamento di un BLOB. 
+È inoltre possibile aggiungere questo codice Python troppo[Azure funzioni](https://azure.microsoft.com/documentation/services/functions/) tootrigger un invio di processi di Spark che assegna un punteggio a un blob in base a diversi eventi timer, creazione o aggiornamento di un blob. 
 
-Se si preferisce non ricorrere al codice, usare [App per la logica di Azure](https://azure.microsoft.com/documentation/services/app-service/logic/) per richiamare l'assegnazione di punteggi batch di Spark definendo un'azione HTTP in **Progettazione app per la logica** e impostando i parametri. 
+Se si preferisce un'esperienza client disponibile codice, utilizzare hello [Azure logica app](https://azure.microsoft.com/documentation/services/app-service/logic/) batch di Spark hello tooinvoke punteggio definendo un'azione HTTP su hello **logica App progettazione** e impostando i relativi parametri. 
 
 * Nel portale di Azure creare una nuova app per la logica selezionando **+Nuovo** -> **Web e dispositivi mobili** -> **App per la logica**. 
-* Per visualizzare **Progettazione app per la logica**, immettere il nome dell'app per la logica e il piano di servizio app.
-* Selezionare un'azione HTTP e immettere i parametri mostrati nella figura seguente:
+* toobring backup hello **logica App progettazione**, immettere il nome di hello dell'App per la logica di hello e piano di servizio App.
+* Selezionare un'azione HTTP e immettere i parametri di hello mostrati nella seguente illustrazione hello:
 
 ![Progettazione app per la logica](./media/machine-learning-data-science-spark-model-consumption/spark-logica-app-client.png)
 

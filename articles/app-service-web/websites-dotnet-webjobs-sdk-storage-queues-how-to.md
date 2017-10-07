@@ -1,6 +1,6 @@
 ---
-title: Come usare il servizio di archiviazione code di Azure con WebJobs SDK
-description: Informazioni su come usare il servizio di archiviazione code di Azure con WebJobs SDK. Creare ed eliminare code, inserire, visualizzare, ottenere ed eliminare messaggi dalla coda e altro ancora.
+title: aaaHow toouse l'archiviazione delle code di Azure con hello WebJobs SDK
+description: Informazioni su come toouse Azure coda di archiviazione con hello WebJobs SDK. Creare ed eliminare code, inserire, visualizzare, ottenere ed eliminare messaggi dalla coda e altro ancora.
 services: app-service\web, storage
 documentationcenter: .net
 author: ggailey777
@@ -14,19 +14,19 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 06/01/2016
 ms.author: glenga
-ms.openlocfilehash: 63b987a2c9471f2929b8d2dd605323910d2ad43b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 49f844436b0453489800b2762a5c7dc30b9db805
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-azure-queue-storage-with-the-webjobs-sdk"></a>Come usare il servizio di archiviazione code di Azure con WebJobs SDK
+# <a name="how-toouse-azure-queue-storage-with-hello-webjobs-sdk"></a>Coda di archiviazione con hello WebJobs SDK come toouse Azure
 ## <a name="overview"></a>Panoramica
-Questa guida fornisce esempi di codice C# che illustrano come usare Azure WebJobs SDK versione 1.x con il servizio di archiviazione code di Azure.
+Questa guida vengono forniti esempi di codice c# che mostrano come toouse hello Azure WebJobs SDK versione 1. x con il servizio di archiviazione di Azure coda hello.
 
-Nella guida si presuppone che si sappia come [creare un progetto processo Web in Visual Studio con stringhe di connessione che puntano all'account di archiviazione](websites-dotnet-webjobs-sdk-get-started.md) o a [più account di archiviazione](https://github.com/Azure/azure-webjobs-sdk/blob/master/test/Microsoft.Azure.WebJobs.Host.EndToEndTests/MultipleStorageAccountsEndToEndTests.cs).
+Guida di Hello presuppone che si conosca [toocreate un progetto processo Web in Visual Studio con connessione come stringhe di account di archiviazione punto tooyour](websites-dotnet-webjobs-sdk-get-started.md) o troppo[più account di archiviazione](https://github.com/Azure/azure-webjobs-sdk/blob/master/test/Microsoft.Azure.WebJobs.Host.EndToEndTests/MultipleStorageAccountsEndToEndTests.cs).
 
-La maggior parte dei frammenti di codice mostra solo le funzioni, non il codice che crea l'oggetto `JobHost` come nel seguente esempio:
+La maggior parte dei frammenti di codice hello Mostra solo le funzioni, hello non codice che crea hello `JobHost` oggetto come nel seguente esempio:
 
         static void Main(string[] args)
         {
@@ -34,76 +34,76 @@ La maggior parte dei frammenti di codice mostra solo le funzioni, non il codice 
             host.RunAndBlock();
         }
 
-La guida include i seguenti argomenti:
+Guida di Hello include hello seguenti argomenti:
 
-* [Come attivare una funzione quando viene ricevuto un messaggio in coda](#trigger)
+* [Come tootrigger una funzione quando viene ricevuto un messaggio nella coda](#trigger)
   * Messaggi stringa in coda
   * Messaggi di coda POCO
   * Funzioni asincrone
-  * Tipi usati dall'attributo QueueTrigger
+  * Attributo di tipi hello QueueTrigger funziona con
   * Algoritmo di polling
   * Più istanze
   * Esecuzione parallela
   * Ottenere i metadati della coda o del messaggio in coda
   * Arresto normale
-* [Come creare un messaggio in coda durante l'elaborazione di un messaggio in coda](#createqueue)
+* [Come toocreate una coda dei messaggi durante l'elaborazione di un messaggio nella coda](#createqueue)
   * Messaggi stringa in coda
   * Messaggi di coda POCO
   * Creare più messaggi o in funzioni asincrone
-  * Tipi usati dall'attributo Queue
-  * Usare gli attributi di WebJobs SDK nel corpo di una funzione
-* [Come leggere e scrivere BLOB durante l'elaborazione di un messaggio in coda](#blobs)
+  * Attributo della coda di tipi hello funziona con
+  * Utilizzare gli attributi di WebJobs SDK nel corpo di hello di una funzione
+* [Come tooread e scrittura BLOB durante l'elaborazione di un messaggio nella coda](#blobs)
   * Messaggi stringa in coda
   * Messaggi di coda POCO
-  * Tipi usati dall'attributo Blob
-* [Come gestire i messaggi non elaborabili](#poison)
+  * Attributo di Blob hello tipi funziona con
+* [Come messaggi non elaborabili toohandle](#poison)
   * Gestione automatica dei messaggi non elaborabili
   * Gestione manuale dei messaggi non elaborabili
-* [Come impostare le opzioni di configurazione](#config)
+* [Come le opzioni di configurazione tooset](#config)
   * Impostare le stringhe di connessione SDK nel codice
   * Configurare le impostazioni di QueueTrigger
   * Impostare i valori per i parametri del costruttore WebJobs SDK nel codice
-* [Come attivare manualmente una funzione](#manual)
-* [Come scrivere i log](#logs)
-* [Come gestire gli errori e configurare i timeout](#errors)
+* [Come una funzione tootrigger manualmente](#manual)
+* [Modalità di registrazione toowrite](#logs)
+* [Modalità errori toohandle e configurare i timeout](#errors)
 * [Passaggi successivi](#nextsteps)
 
-## <a id="trigger"></a> Come attivare una funzione quando viene ricevuto un messaggio in coda
-Per scrivere una funzione che viene chiamata da WebJobs SDK quando viene ricevuto un messaggio di coda, usare l'attributo `QueueTrigger` . Il costruttore dell'attributo accetta un parametro di stringa che specifica il nome della coda di cui eseguire il polling. È anche possibile [impostare il nome della coda in modo dinamico](#config).
+## <a id="trigger"></a>Come tootrigger una funzione quando viene ricevuto un messaggio nella coda
+chiama una funzione che hello WebJobs SDK toowrite quando viene ricevuto un messaggio nella coda, utilizzare hello `QueueTrigger` attributo. costruttore di attributo Hello accetta un parametro di stringa che specifica il nome di hello di hello coda toopoll. È anche possibile [impostare dinamicamente il nome di coda hello](#config).
 
 ### <a name="string-queue-messages"></a>Messaggi stringa in coda
-Nel seguente esempio la coda contiene un messaggio stringa in modo che l'attributo `QueueTrigger` venga applicato a un parametro di stringa denominato `logMessage` che include il contenuto del messaggio di coda. La funzione [scrive un messaggio di log nel dashboard](#logs).
+Nell'esempio seguente di hello, hello coda contiene una stringa di messaggio, pertanto `QueueTrigger` tooa applicato parametro di stringa denominato `logMessage` che comprende il contenuto di hello del messaggio della coda. funzione Hello [scrive un toohello messaggio log Dashboard](#logs).
 
         public static void ProcessQueueMessage([QueueTrigger("logqueue")] string logMessage, TextWriter logger)
         {
             logger.WriteLine(logMessage);
         }
 
-Oltre a `string`, il parametro può essere una matrice di byte, un oggetto `CloudQueueMessage` o un oggetto POCO definito dall'utente.
+Oltre a `string`, il parametro hello può essere una matrice di byte, un `CloudQueueMessage` oggetto o un POCO definiti.
 
 ### <a name="poco-plain-old-clr-objecthttpenwikipediaorgwikiplainoldclrobject-queue-messages"></a>Messaggi di coda POCO [(Plain Old CLR Object](http://en.wikipedia.org/wiki/Plain_Old_CLR_Object))
-Nel seguente esempio il messaggio di coda contiene JSON per un oggetto `BlobInformation` che include una proprietà `BlobName`. L'SDK deserializza automaticamente l'oggetto.
+Nell'esempio seguente di hello, messaggio della coda contiene JSON per un `BlobInformation` oggetto che include un `BlobName` proprietà. Hello SDK deserializza automaticamente oggetto hello.
 
         public static void WriteLogPOCO([QueueTrigger("logqueue")] BlobInformation blobInfo, TextWriter logger)
         {
-            logger.WriteLine("Queue message refers to blob: " + blobInfo.BlobName);
+            logger.WriteLine("Queue message refers tooblob: " + blobInfo.BlobName);
         }
 
-L'SDK usa il pacchetto [Newtonsoft.Json NuGet](http://www.nuget.org/packages/Newtonsoft.Json) per serializzare e deserializzare i messaggi. Se si creano messaggi di coda in un programma che non usa WebJobs SDK, è possibile scrivere codice simile a quello del seguente esempio per creare un messaggio di coda POCO analizzabile dall'SDK.
+Hello SDK Usa hello [pacchetto NuGet newtonsoft. JSON](http://www.nuget.org/packages/Newtonsoft.Json) tooserialize e deserializzare i messaggi. Se si creano messaggi in coda in un programma che non utilizza hello WebJobs SDK, è possibile scrivere codice simile al seguente esempio toocreate un messaggio nella coda POCO hello che hello che SDK consente di analizzare.
 
         BlobInformation blobInfo = new BlobInformation() { BlobName = "log.txt" };
         var queueMessage = new CloudQueueMessage(JsonConvert.SerializeObject(blobInfo));
         logQueue.AddMessage(queueMessage);
 
 ### <a name="async-functions"></a>Funzioni asincrone
-La seguente funzione asincrona [scrive un log nel dashboard](#logs).
+Hello seguente funzione async [scrive un toohello log Dashboard](#logs).
 
         public async static Task ProcessQueueMessageAsync([QueueTrigger("logqueue")] string logMessage, TextWriter logger)
         {
             await logger.WriteLineAsync(logMessage);
         }
 
-Le funzioni asincrone possono usare un [token di annullamento](http://www.asp.net/mvc/overview/performance/using-asynchronous-methods-in-aspnet-mvc-4#CancelToken), come illustrato nel seguente esempio che copia un BLOB. (per una spiegazione del segnaposto `queueTrigger`, vedere la sezione [BLOB](#blobs)).
+Le funzioni asincrone potrebbero richiedere un [token di annullamento](http://www.asp.net/mvc/overview/performance/using-asynchronous-methods-in-aspnet-mvc-4#CancelToken), come illustrato nell'esempio che consente di copiare un blob seguente hello. (Per una spiegazione di hello `queueTrigger` segnaposto, vedere hello [BLOB](#blobs) sezione.)
 
         public async static Task ProcessQueueMessageAsyncCancellationToken(
             [QueueTrigger("blobcopyqueue")] string blobName,
@@ -114,8 +114,8 @@ Le funzioni asincrone possono usare un [token di annullamento](http://www.asp.ne
             await blobInput.CopyToAsync(blobOutput, 4096, token);
         }
 
-### <a id="qtattributetypes"></a> Tipi usati dall'attributo QueueTrigger
-È possibile usare `QueueTrigger` con i seguenti tipi:
+### <a id="qtattributetypes"></a>Attributo di tipi hello QueueTrigger funziona con
+È possibile utilizzare `QueueTrigger` con hello seguenti tipi:
 
 * `string`
 * Tipo POCO serializzato come JSON
@@ -123,20 +123,20 @@ Le funzioni asincrone possono usare un [token di annullamento](http://www.asp.ne
 * `CloudQueueMessage`
 
 ### <a id="polling"></a> Algoritmo di polling
-L'SDK implementa un algoritmo di backoff esponenziale casuale per ridurre l'effetto del polling delle code inattive sui costi delle transazioni di archiviazione.  Quando viene trovato un messaggio, l'SDK attende due secondi e controlla la presenza di un altro messaggio. Quando non viene trovato alcun messaggio, rimane in attesa per circa quattro secondi prima di riprovare. Dopo alcuni tentativi non riusciti per ottenere un messaggio nella coda, il tempo di attesa continua ad aumentare finché non raggiunge il tempo massimo di attesa, che per impostazione predefinita è di un minuto. [Il tempo di attesa massimo è configurabile](#config).
+Hello SDK implementa un effetto di hello esponenziale Backoff algoritmo casuali tooreduce di inattività della coda del polling sui costi delle transazioni di archiviazione.  Quando viene trovato un messaggio, hello SDK attende due secondi e ne controlla la presenza di un altro messaggio. Quando viene trovato alcun messaggio rimane in attesa circa quattro secondi prima di riprovare. Dopo i tentativi non riusciti successivi tooget un messaggio nella coda, il tempo di attesa hello continua tooincrease finché raggiunge il tempo di attesa massimo hello, il minuto tooone valori predefiniti. [Hello tempo di attesa massimo è configurabile](#config).
 
 ### <a id="instances"></a> Più istanze
-Se l'app Web viene eseguita in più istanze, in ogni computer i WebJob verranno eseguiti in modalità continua e ogni computer attenderà i trigger e proverà a eseguire le funzioni. Il trigger delle code SDK di WebJobs impedisce automaticamente a una funzione di elaborare un messaggio di coda più volte. Le funzioni non devono essere scritte per essere idempotenti. Tuttavia, se si desidera garantire che solo un'istanza di una funzione venga eseguita anche se sono presenti più istanze dell’app web host, è possibile utilizzare l’attributo `Singleton`.
+Se l'app web viene eseguito su più istanze, viene eseguito un processo Web continuo in ogni computer e ogni computer tenterà di attesa per i trigger e funzioni toorun. Hello trigger coda WebJobs SDK impedisce automaticamente una funzione di un messaggio nella coda di elaborazione più volte. le funzioni non hanno toobe scritto toobe idempotente. Tuttavia, se si desidera tooensure solo un'istanza di una funzione viene eseguita anche quando sono presenti più istanze dell'app web di hello host, è possibile utilizzare hello `Singleton` attributo.
 
 ### <a id="parallel"></a> Esecuzione parallela
-Se si dispongono di più funzioni in ascolto in code diverse, l'SDK le chiamerà in parallelo quando i messaggi vengono ricevuti simultaneamente.
+Se si dispongono di più funzioni in attesa in code diverse, hello SDK verrà chiamarli in parallelo quando vengono ricevuti i messaggi contemporaneamente.
 
-Lo stesso vale quando si ricevono più messaggi per una singola coda. Per impostazione predefinita, l'SDK ottiene un batch di 16 messaggi in coda alla volta ed esegue la funzione che li elabora in parallelo. [La dimensione del batch è configurabile](#config). Quando il numero elaborato viene ridotto alla metà della dimensione del batch, l'SDK ottiene un altro batch e inizia l'elaborazione dei messaggi. Di conseguenza, il numero massimo di messaggi simultanei elaborati per ogni funzione è pari a una volta e mezza la dimensione del batch. Questo limite si applica separatamente a ogni funzione caratterizzata da un attributo `QueueTrigger` .
+Hello stesso vale quando vengono ricevuti più messaggi per una singola coda. Per impostazione predefinita, hello SDK riceve un batch di messaggi in coda 16 alla volta ed esegue funzione hello elaborarli in parallelo. [dimensioni del batch Hello sono configurabile](#config). Quando il numero di hello elaborato Ottiene verso il basso toohalf della dimensione di batch di hello, hello SDK riceve un altro batch e inizia l'elaborazione di tali messaggi. Numero massimo di hello simultanee messaggi vengano elaborati per ogni funzione pertanto è dimensioni di batch di una volta e mezza hello. Questo limite si applica separatamente tooeach funzione che ha un `QueueTrigger` attributo.
 
-Se non si vuole avviare l'esecuzione parallela per i messaggi ricevuti su una coda, impostare le dimensioni del batch su 1. Vedere anche **Maggiore controllo sull'elaborazione delle code** in [Azure WebJobs SDK 1.1.0 RTM](https://azure.microsoft.com/blog/azure-webjobs-sdk-1-1-0-rtm/).
+Se non si desidera l'esecuzione parallela per i messaggi ricevuti su una coda, è possibile impostare too1 dimensioni di batch hello. Vedere anche **Maggiore controllo sull'elaborazione delle code** in [Azure WebJobs SDK 1.1.0 RTM](https://azure.microsoft.com/blog/azure-webjobs-sdk-1-1-0-rtm/).
 
 ### <a id="queuemetadata"></a>Ottenere i metadati della coda o del messaggio in coda
-Con l'aggiunta di parametri alla firma del metodo, è possibile ottenere le proprietà del messaggio seguenti:
+È possibile ottenere hello seguenti proprietà di messaggio mediante l'aggiunta di firma del metodo toohello parametri:
 
 * `DateTimeOffset` expirationTime
 * `DateTimeOffset` insertionTime
@@ -146,9 +146,9 @@ Con l'aggiunta di parametri alla firma del metodo, è possibile ottenere le prop
 * `string` popReceipt
 * `int` dequeueCount
 
-Se si desidera usare direttamente l'API di archiviazione di Azure, è anche possibile aggiungere un parametro `CloudStorageAccount` .
+Se si desidera toowork direttamente con hello API di archiviazione di Azure, è inoltre possibile aggiungere un `CloudStorageAccount` parametro.
 
-Nell'esempio seguente tutti questi metadati vengono scritti in un log applicazione INFO. Nell'esempio, gli attributi logMessage e queueTrigger includono il contenuto del messaggio in coda.
+Hello nell'esempio seguente vengono tutti il registro applicazioni di metadati tooan INFO. Nell'esempio hello logMessage sia queueTrigger contenuto hello di messaggio della coda hello.
 
         public static void WriteLog([QueueTrigger("logqueue")] string logMessage,
             DateTimeOffset expirationTime,
@@ -175,7 +175,7 @@ Nell'esempio seguente tutti questi metadati vengono scritti in un log applicazio
                 queueTrigger);
         }
 
-Ecco un log di esempio scritto dal codice di esempio:
+Di seguito è riportato un log di esempio scritto dal codice di esempio hello:
 
         logMessage=Hello world!
         expirationTime=10/14/2014 10:31:04 PM +00:00
@@ -188,9 +188,9 @@ Ecco un log di esempio scritto dal codice di esempio:
         queueTrigger=Hello world!
 
 ### <a id="graceful"></a>Arresto normale
-Una funzione eseguita in un processo Web continuo può accettare un parametro `CancellationToken` che consente al sistema operativo di notificare alla funzione quando il processo Web sta per essere terminato. È possibile usare questa notifica per assicurarsi che la funzione non termini in modo imprevisto lasciando i dati in uno stato incoerente.
+Una funzione che viene eseguito in un processo Web continuo può accettare un `CancellationToken` parametro che consente di hello toonotify hello funzione del sistema operativo quando hello processo Web sta toobe terminato. È possibile utilizzare questo toomake di notifica che la funzione hello non causare l'interruzione imprevista in modo che i dati rimane in uno stato incoerente.
 
-L'esempio seguente illustra come controllare la chiusura imminente di un processo Web in una funzione.
+Hello seguente esempio viene illustrato come toocheck imminente chiusura processo Web in una funzione.
 
     public static void GracefulShutdownDemo(
                 [QueueTrigger("inputqueue")] string inputText,
@@ -209,15 +209,15 @@ L'esempio seguente illustra come controllare la chiusura imminente di un process
         }
     }
 
-**Nota:** è possibile che il dashboard non mostri correttamente lo stato e il risultato delle funzioni che sono state interrotte.
+**Nota:** hello Dashboard potrebbe non visualizzare correttamente hello stato e l'output di funzioni che è stato arrestato.
 
 Per altre informazioni, vedere l'articolo sull' [arresto normale dei processi Web](http://blog.amitapple.com/post/2014/05/webjobs-graceful-shutdown/#.VCt1GXl0wpR).   
 
-## <a id="createqueue"></a> Come creare un messaggio in coda durante l'elaborazione di un messaggio in coda
-Per scrivere una funzione che crea un nuovo messaggio di coda, usare l'attributo `Queue` . Come per l'attributo `QueueTrigger`, è possibile passare il nome della coda come stringa oppure [impostare dinamicamente il nome della coda](#config).
+## <a id="createqueue"></a>Come toocreate una coda dei messaggi durante l'elaborazione di un messaggio nella coda
+una funzione che crea un nuovo messaggio, utilizzare hello toowrite `Queue` attributo. Ad esempio `QueueTrigger`, si passa il nome della coda hello sotto forma di stringa oppure è possibile [impostare dinamicamente il nome di coda hello](#config).
 
 ### <a name="string-queue-messages"></a>Messaggi stringa in coda
-Il seguente esempio di codice non asincrono crea nella coda denominata "outputqueue" un nuovo messaggio di coda con lo stesso contenuto del messaggio di coda ricevuto nella coda denominata "inputqueue". Per le funzioni asincrone, usare `IAsyncCollector<T>` come illustrato più avanti in questa sezione.
+Hello non asincrona nell'esempio di codice seguente crea un nuovo messaggio nella coda di hello denominato "outputqueue" con stesso contenuto sotto forma di messaggio della coda di hello ricevuto nella coda di hello denominata "inputqueue" hello. Per le funzioni asincrone, usare `IAsyncCollector<T>` come illustrato più avanti in questa sezione.
 
         public static void CreateQueueMessage(
             [QueueTrigger("inputqueue")] string queueMessage,
@@ -227,7 +227,7 @@ Il seguente esempio di codice non asincrono crea nella coda denominata "outputqu
         }
 
 ### <a name="poco-plain-old-clr-objecthttpenwikipediaorgwikiplainoldclrobject-queue-messages"></a>Messaggi di coda POCO [(Plain Old CLR Object](http://en.wikipedia.org/wiki/Plain_Old_CLR_Object))
-Per creare un messaggio di coda contenente un oggetto POCO anziché una stringa, passare il tipo POCO come parametro di output al costruttore dell'attributo `Queue` .
+tipo di un messaggio nella coda che contiene un POCO anziché una stringa, passata hello POCO toocreate come un toohello di parametro di output `Queue` costruttore di attributo.
 
         public static void CreateQueueMessage(
             [QueueTrigger("inputqueue")] BlobInformation blobInfoInput,
@@ -236,10 +236,10 @@ Per creare un messaggio di coda contenente un oggetto POCO anziché una stringa,
             blobInfoOutput = blobInfoInput;
         }
 
-L'SDK deserializza automaticamente l'oggetto in JSON. Viene sempre creato un messaggio in coda, anche se l'oggetto è null.
+Hello SDK serializza automaticamente tooJSON oggetto hello. Viene sempre creato un messaggio nella coda, anche se l'oggetto hello è null.
 
 ### <a name="create-multiple-messages-or-in-async-functions"></a>Creare più messaggi o in funzioni asincrone
-Per creare più messaggi, impostare il tipo di parametro per la coda di output `ICollector<T>` o `IAsyncCollector<T>`, come illustrato nel seguente esempio.
+toocreate più messaggi, rendere il tipo di parametro hello per coda di output di hello `ICollector<T>` o `IAsyncCollector<T>`, come illustrato nell'esempio seguente hello.
 
         public static void CreateQueueMessages(
             [QueueTrigger("inputqueue")] string queueMessage,
@@ -251,23 +251,23 @@ Per creare più messaggi, impostare il tipo di parametro per la coda di output `
             outputQueueMessage.Add(queueMessage + "2");
         }
 
-Ogni messaggio di coda viene creato immediatamente quando viene chiamato il metodo `Add` .
+Ogni messaggio della coda viene creato immediatamente quando hello `Add` metodo viene chiamato.
 
-### <a name="types-that-the-queue-attribute-works-with"></a>Tipi usati dall'attributo Queue
-È possibile usare l'attributo `Queue` nei seguenti tipi di parametri:
+### <a name="types-that-hello-queue-attribute-works-with"></a>Tipi di attributo coda hello funziona con
+È possibile utilizzare hello `Queue` attributo hello seguenti tipi di parametro:
 
-* `out string` (crea il messaggio di coda se il valore del parametro è diverso da null quando termina la funzione)
+* `out string`(Crea messaggio della coda se il valore del parametro è diverso da null quando la funzione hello termina)
 * `out byte[]` (funziona come `string`)
 * `out CloudQueueMessage` (funziona come `string`)
-* `out POCO` (tipo serializzabile, crea un messaggio con un oggetto null se il parametro è null quando termina la funzione)
+* `out POCO`(un tipo serializzabile, crea un messaggio con un oggetto null, se il parametro hello è null quando la funzione hello termina)
 * `ICollector`
 * `IAsyncCollector`
-* `CloudQueue` (per la creazione manuale dei messaggi direttamente con l'API di archiviazione di Azure)
+* `CloudQueue`(per la creazione di messaggi manualmente utilizzando direttamente hello API di archiviazione di Azure)
 
-### <a id="ibinder"></a>Usare gli attributi di WebJobs SDK nel corpo di una funzione
-Se è necessario eseguire alcune operazioni nella funzione prima di usare un attributo di WebJobs SDK come `Queue`, `Blob` o `Table`, è possibile usare l'interfaccia `IBinder`.
+### <a id="ibinder"></a>Utilizzare gli attributi di WebJobs SDK nel corpo di hello di una funzione
+Se è necessario toodo alcune funzionano nella funzione prima di utilizzare un attributo WebJobs SDK, ad esempio `Queue`, `Blob`, o `Table`, è possibile utilizzare hello `IBinder` interfaccia.
 
-Nell'esempio seguente viene accettato un messaggio di coda di input e creato un nuovo messaggio con lo stesso contenuto in una coda di output. Il nome della coda di output viene impostato dal codice nel corpo della funzione.
+Hello di esempio seguente accetta un messaggio della coda di input e crea un nuovo messaggio con stesso contenuto in una coda di output di hello. nome della coda output Hello viene impostata dal codice nel corpo di hello della funzione hello.
 
         public static void CreateQueueMessage(
             [QueueTrigger("inputqueue")] string queueMessage,
@@ -279,15 +279,15 @@ Nell'esempio seguente viene accettato un messaggio di coda di input e creato un 
             outputQueue.AddMessage(new CloudQueueMessage(queueMessage));
         }
 
-L'interfaccia `IBinder`può essere usata anche con gli attributi `Table` e `Blob`.
+Hello `IBinder` interfaccia può essere utilizzata anche con hello `Table` e `Blob` gli attributi.
 
-## <a id="blobs"></a> Come leggere e scrivere BLOB e tabelle durante l'elaborazione di un messaggio in coda
-Gli attributi `Blob` e `Table` consentono di leggere e scrivere BLOB e tabelle. Gli esempi in questa sezione si applicano ai BLOB. Per esempi di codice che illustrano come attivare processi quando i BLOB vengono creati o aggiornati, vedere [Come usare il servizio di archiviazione BLOB di Azure con WebJobs SDK](websites-dotnet-webjobs-sdk-storage-blobs-how-to.md) e per esempi di codice che leggono e scrivono tabelle, vedere [Come usare il servizio di archiviazione tabelle di Azure con WebJobs SDK](websites-dotnet-webjobs-sdk-storage-tables-how-to.md).
+## <a id="blobs"></a>Come tooread e scrittura BLOB e tabelle durante l'elaborazione di un messaggio nella coda
+Hello `Blob` e `Table` gli attributi consentono di tooread e scrivere i BLOB e tabelle. esempi di Hello in questa sezione si applicano tooblobs. Per esempi di codice che mostrano come tootrigger elabora quando BLOB vengono creati o aggiornati, vedere [toouse Azure come blob di archiviazione con hello WebJobs SDK](websites-dotnet-webjobs-sdk-storage-blobs-how-to.md)e per esempi di codice che leggono e scrivono le tabelle, vedere [come toouse tabelle di Azure archiviazione con hello WebJobs SDK](websites-dotnet-webjobs-sdk-storage-tables-how-to.md).
 
 ### <a name="string-queue-messages-triggering-blob-operations"></a>Messaggi di coda stringa che attivano operazioni BLOB
-Per un messaggio di coda contenente una stringa, `queueTrigger` è un segnaposto che è possibile usare nel parametro `blobPath` dell'attributo `Blob` che include il contenuto del messaggio.
+Per un messaggio nella coda che contiene una stringa, `queueTrigger` è un segnaposto che è possibile utilizzare in hello `Blob` dell'attributo `blobPath` parametro hello il contenuto del messaggio hello.
 
-Il seguente esempio usa oggetti `Stream` per leggere e scrivere i BLOB. Il messaggio di coda è il nome di un BLOB presente nel contenitore textblobs. Una copia del BLOB con "-new" aggiunto al nome viene creata nello stesso contenitore.
+Hello seguente utilizza `Stream` oggetti BLOB tooread e di scrittura. messaggio della coda di Hello è il nome di hello di un blob nel contenitore textblobs hello. Una copia di blob hello con "-new" nome toohello accodato viene creato in hello stesso contenitore.
 
         public static void ProcessQueueMessage(
             [QueueTrigger("blobcopyqueue")] string blobName,
@@ -297,11 +297,11 @@ Il seguente esempio usa oggetti `Stream` per leggere e scrivere i BLOB. Il messa
             blobInput.CopyTo(blobOutput, 4096);
         }
 
-Il costruttore dell'attributo `Blob` usa un parametro `blobPath` che specifica il contenitore e il nome del BLOB. Per altre informazioni su questo segnaposto, vedere [Come usare il servizio di archiviazione BLOB di Azure con WebJobs SDK](websites-dotnet-webjobs-sdk-storage-blobs-how-to.md).
+Hello `Blob` attributo costruttore accetta un `blobPath` parametro che specifica il nome di blob e contenitore hello. Per ulteriori informazioni su questo segnaposto, vedere [toouse Azure come blob di archiviazione con hello WebJobs SDK](websites-dotnet-webjobs-sdk-storage-blobs-how-to.md),
 
-Quando l'attributo decora un oggetto `Stream`, un altro parametro del costruttore specifica la modalità `FileAccess` come lettura, scrittura o lettura/scrittura.
+Quando attributo hello decora un `Stream` dell'oggetto, un altro parametro di costruttore specifica hello `FileAccess` modalità come lettura, scrittura o lettura/scrittura.
 
-Il seguente esempio usa un oggetto `CloudBlockBlob` per eliminare un BLOB. Il messaggio di coda è il nome del BLOB.
+Hello esempio seguente viene utilizzato un `CloudBlockBlob` oggetto toodelete un blob. messaggio della coda di Hello è il nome di hello del blob hello.
 
         public static void DeleteBlob(
             [QueueTrigger("deleteblobqueue")] string blobName,
@@ -311,9 +311,9 @@ Il seguente esempio usa un oggetto `CloudBlockBlob` per eliminare un BLOB. Il me
         }
 
 ### <a id="pocoblobs"></a> Messaggi di coda POCO [(Plain Old CLR Object](http://en.wikipedia.org/wiki/Plain_Old_CLR_Object))
-Per un oggetto POCO archiviato come JSON nel messaggio di coda, è possibile usare i segnaposto che denominano le proprietà dell'oggetto nel parametro `blobPath` dell'attributo `Queue`. È anche possibile usare [nomi di proprietà dei metadati di coda](#queuemetadata) come segnaposto.
+Per POCO archiviato in formato JSON in messaggio hello in coda, è possibile utilizzare i segnaposto di nome di proprietà dell'oggetto hello in hello `Queue` dell'attributo `blobPath` parametro. È anche possibile usare [nomi di proprietà dei metadati di coda](#queuemetadata) come segnaposto.
 
-Il seguente esempio copia un BLOB in un nuovo BLOB con un'estensione diversa. Il messaggio di coda è un oggetto `BlobInformation` che include le proprietà  `BlobName` e `BlobNameWithoutExtension`. I nomi delle proprietà vengono usati come segnaposto nel percorso BLOB per gli attributi `Blob` .
+Hello esempio copia un blob tooa nuovo blob con un'estensione diversa. messaggio della coda di Hello è un `BlobInformation` oggetto che include `BlobName` e `BlobNameWithoutExtension` proprietà. i nomi delle proprietà Hello vengono utilizzati come segnaposto nel percorso blob hello per hello `Blob` attributi.
 
         public static void CopyBlobPOCO(
             [QueueTrigger("copyblobqueue")] BlobInformation blobInfo,
@@ -323,38 +323,38 @@ Il seguente esempio copia un BLOB in un nuovo BLOB con un'estensione diversa. Il
             blobInput.CopyTo(blobOutput, 4096);
         }
 
-L'SDK usa il pacchetto [Newtonsoft.Json NuGet](http://www.nuget.org/packages/Newtonsoft.Json) per serializzare e deserializzare i messaggi. Se si creano messaggi di coda in un programma che non usa WebJobs SDK, è possibile scrivere codice simile a quello del seguente esempio per creare un messaggio di coda POCO analizzabile dall'SDK.
+Hello SDK Usa hello [pacchetto NuGet newtonsoft. JSON](http://www.nuget.org/packages/Newtonsoft.Json) tooserialize e deserializzare i messaggi. Se si creano messaggi in coda in un programma che non utilizza hello WebJobs SDK, è possibile scrivere codice simile al seguente esempio toocreate un messaggio nella coda POCO hello che hello che SDK consente di analizzare.
 
         BlobInformation blobInfo = new BlobInformation() { BlobName = "boot.log", BlobNameWithoutExtension = "boot" };
         var queueMessage = new CloudQueueMessage(JsonConvert.SerializeObject(blobInfo));
         logQueue.AddMessage(queueMessage);
 
-Se è necessario eseguire alcune operazioni nella funzione prima di associare un BLOB a un oggetto, è possibile usare l'attributo nel corpo della funzione, [come mostrato in precedenza per l'attributo Queue](#ibinder).
+Se è necessario toodo alcuni nella funzione prima di associare un oggetto tooan blob, è possibile utilizzare l'attributo di hello nel corpo di hello della funzione hello, [come illustrato in precedenza per l'attributo coda hello](#ibinder).
 
-### <a id="blobattributetypes"></a> Tipi con cui è possibile usare l'attributo Blob
-L'attributo `Blob` può essere usato con i seguenti tipi:
+### <a id="blobattributetypes"></a>Tipi di dati hello Blob di attributo con
+Hello `Blob` attributo può essere utilizzato con hello seguenti tipi:
 
-* `Stream` (lettura o scrittura, specificata tramite il parametro del costruttore FileAccess)
+* `Stream`(lettura o scrittura, specificato utilizzando il parametro di costruttore FileAccess hello)
 * `TextReader`
 * `TextWriter`
 * `string` (lettura)
-* `out string` (scrittura; crea un BLOB solo se il parametro di stringa è diverso da null quando la funzione restituisce un valore)
+* `out string`(scrittura; crea un blob solo se il parametro di stringa hello è non null quando viene restituita la funzione hello)
 * POCO (lettura)
-* out POCO (scrittura; crea sempre un BLOB come oggetto null se il parametro POCO è null quando la funzione restituisce un valore)
+* out POCO (scrivere; sempre creato un blob, come oggetto null se il parametro POCO è null quando viene restituita la funzione hello)
 * `CloudBlobStream` (scrittura)
 * `ICloudBlob` (lettura o scrittura)
 * `CloudBlockBlob` (lettura o scrittura)
 * `CloudPageBlob` (lettura o scrittura)
 
-## <a id="poison"></a> Come gestire i messaggi non elaborabili
-I messaggi il cui contenuto comporta l'esito negativo di una funzione sono denominati *messaggi non elaborabili*. Quando la funzione non riesce, il messaggio in coda non viene eliminato e infine viene prelevato, causando la ripetizione del ciclo. L'SDK può interrompere automaticamente il ciclo dopo un numero limitato di iterazioni oppure è possibile farlo manualmente.
+## <a id="poison"></a>Come messaggi non elaborabili toohandle
+Messaggi il cui contenuto provoca un toofail funzione sono denominati *messaggi non elaborabili*. Quando la funzione hello non riesce, il messaggio di coda hello non viene eliminato e infine viene prelevato nuovamente, causando hello ciclo toobe ripetuto. Hello SDK automaticamente in grado di interrompere il ciclo di hello dopo un numero limitato di iterazioni o è possibile farlo manualmente.
 
 ### <a name="automatic-poison-message-handling"></a>Gestione automatica dei messaggi non elaborabili
-L'SDK chiamerà una funzione fino a 5 volte per elaborare un messaggio nella coda. Se il quinto tentativo non riesce, il messaggio viene spostato in una coda non elaborabile. [Il numero massimo di tentativi è configurabile](#config).
+Hello SDK chiama una funzione di too5 volte tooprocess un messaggio nella coda. Se non riesce try quinto hello, messaggio hello è la coda non elaborabile spostato tooa. [Hello il numero massimo di tentativi è configurabile](#config).
 
-La coda non elaborabile è denominata *{nomecodaoriginale}*-poison. È possibile scrivere una funzione per elaborare i messaggi dalla coda non elaborabile archiviandoli o inviando una notifica della necessità di un intervento manuale.
+coda non elaborabile Hello è denominata *{originalqueuename}*-messaggi non elaborabili. È possibile scrivere messaggi tooprocess un funzione dalla coda non elaborabile hello registrarle o inviando una notifica che è necessario un intervento manuale.
 
-Nel seguente esempio la funzione `CopyBlob` ha esito negativo quando un messaggio di coda contiene il nome di un BLOB inesistente. In questo caso, il messaggio viene spostato dalla coda copyblobqueue alla coda non elaborabile copyblobqueue-poison. `ProcessPoisonMessage` registra quindi il messaggio non elaborabile.
+In seguito hello esempio hello `CopyBlob` function ha esito negativo quando un messaggio nella coda contiene il nome di hello di un blob che non esiste. In questo caso, il messaggio hello viene spostato dalla hello copyblobqueue toohello copyblobqueue poison coda. Hello `ProcessPoisonMessage` quindi registri hello messaggi non elaborabili.
 
         public static void CopyBlob(
             [QueueTrigger("copyblobqueue")] string blobName,
@@ -367,15 +367,15 @@ Nel seguente esempio la funzione `CopyBlob` ha esito negativo quando un messaggi
         public static void ProcessPoisonMessage(
             [QueueTrigger("copyblobqueue-poison")] string blobName, TextWriter logger)
         {
-            logger.WriteLine("Failed to copy blob, name=" + blobName);
+            logger.WriteLine("Failed toocopy blob, name=" + blobName);
         }
 
-Nella figura seguente viene illustrato l'output di console di queste funzioni quando viene elaborato un messaggio non elaborabile.
+Hello figura seguente Mostra output di console da queste funzioni durante l'elaborazione di un messaggio non elaborabile.
 
 ![Output di console per la gestione dei messaggi non elaborabili](./media/websites-dotnet-webjobs-sdk-storage-queues-how-to/poison.png)
 
 ### <a name="manual-poison-message-handling"></a>Gestione manuale dei messaggi non elaborabili
-È possibile ottenere il numero di volte in cui un messaggio è stato selezionato per l'elaborazione aggiungendo alla funzione un parametro `int` denominato `dequeueCount`. Sarà quindi possibile controllare il conteggio di rimozione dalla coda nel codice della funzione ed eseguire la gestione dei messaggi non elaborabili quando il numero supera una certa soglia, come illustrato nell'esempio seguente.
+È possibile ottenere un numero di volte in cui è stato selezionato un messaggio per l'elaborazione di hello aggiungendo un `int` parametro denominato `dequeueCount` tooyour funzione. È possibile quindi controllo hello numero nel codice della funzione di rimozione dalla coda ed eseguire la propria gestione di messaggio non elaborabile quando il numero di hello supera una soglia, come illustrato nell'esempio seguente hello.
 
         public static void CopyBlob(
             [QueueTrigger("copyblobqueue")] string blobName, int dequeueCount,
@@ -385,7 +385,7 @@ Nella figura seguente viene illustrato l'output di console di queste funzioni qu
         {
             if (dequeueCount > 3)
             {
-                logger.WriteLine("Failed to copy blob, name=" + blobName);
+                logger.WriteLine("Failed toocopy blob, name=" + blobName);
             }
             else
             {
@@ -393,15 +393,15 @@ Nella figura seguente viene illustrato l'output di console di queste funzioni qu
             }
         }
 
-## <a id="config"></a> Come impostare le opzioni di configurazione
-È possibile usare il tipo `JobHostConfiguration` per impostare le seguenti opzioni di configurazione:
+## <a id="config"></a>Come le opzioni di configurazione tooset
+È possibile utilizzare hello `JobHostConfiguration` hello tooset tipo le opzioni di configurazione seguenti:
 
-* Impostare le stringhe di connessione SDK nel codice.
+* Impostare le stringhe di connessione SDK hello nel codice.
 * Configurare le impostazioni di `QueueTrigger` , ad esempio il conteggio rimozione dalla coda.
 * Ottenere i nomi delle code dalla configurazione.
 
 ### <a id="setconnstr"></a>Impostare le stringhe di connessione SDK nel codice
-Impostare le stringhe di connessione SDK nel codice per poter usare i propri nomi di stringa di connessione nei file di configurazione o nelle variabili di ambiente, come illustrato nell'esempio seguente.
+L'impostazione di stringhe di connessione SDK hello nel codice consente si toouse i propri nomi di stringa di connessione nel file di configurazione o le variabili di ambiente, come illustrato nell'esempio seguente hello.
 
         static void Main(string[] args)
         {
@@ -423,13 +423,13 @@ Impostare le stringhe di connessione SDK nel codice per poter usare i propri nom
         }
 
 ### <a id="configqueue"></a>Configurare le impostazioni di QueueTrigger
-È possibile configurare le seguenti impostazioni valide per l'elaborazione del messaggio di coda:
+È possibile configurare hello seguendo le impostazioni che si applicano toohello l'elaborazione del messaggio della coda:
 
-* Numero massimo di messaggi in coda che vengono prelevati contemporaneamente per l'esecuzione in parallelo (il valore predefinito è 16).
-* Numero massimo di tentativi prima che un messaggio nella coda venga inviato a una coda non elaborabile (il valore predefinito è 5).
-* Tempo massimo di attesa prima di eseguire nuovamente il polling quando una coda è vuota (il valore predefinito è 1 minuto).
+* numero massimo di messaggi in coda che vengono prelevati contemporaneamente toobe eseguite in parallelo Hello (valore predefinito è 16).
+* Hello numero massimo di tentativi prima che un messaggio nella coda venga inviato coda non elaborabile tooa (valore predefinito è 5).
+* tempo di attesa massimo Hello prima polling nuovamente quando una coda è vuota (valore predefinito è 1 minuto).
 
-L'esempio seguente illustra come configurare queste impostazioni:
+Hello seguente esempio viene illustrato come tooconfigure queste impostazioni:
 
         static void Main(string[] args)
         {
@@ -442,18 +442,18 @@ L'esempio seguente illustra come configurare queste impostazioni:
         }
 
 ### <a id="setnamesincode"></a>Impostare i valori per i parametri del costruttore WebJobs SDK nel codice
-A volte si desidera specificare un nome di coda, un nome di BLOB o un contenitore oppure un nome di tabella nel codice anziché impostarlo come hardcoded. È ad esempio possibile specificare il nome della coda per `QueueTrigger` in una variabile di ambiente o in un file di configurazione.
+Talvolta si desidera toospecify un nome di coda, un nome di blob o contenitore o una tabella di nome in codice anziché a livello di codice. Ad esempio, è consigliabile toospecify hello nome della coda `QueueTrigger` in una variabile di ambiente o i file di configurazione.
 
-A tale scopo, passare un oggetto `NameResolver` al tipo `JobHostConfiguration`. Includere segnaposto speciali racchiusi tra segni di percentuale (%) nei parametri del costruttore dell'attributo di SDK e il codice `NameResolver` specifica i valori effettivi da usare in sostituzione di questi segnaposto.
+È possibile farlo tramite il passaggio di un `NameResolver` oggetto toohello `JobHostConfiguration` tipo. Si includono segnaposto speciale racchiusi tra segni di percentuale (%) nei parametri di costruttore di attributo WebJobs SDK e `NameResolver` codice specifica toobe valori effettivi hello utilizzato al posto di questi segnaposto.
 
-Si supponga, ad esempio, di voler usare una coda denominata logqueuetest nell'ambiente di test e una coda denominata logqueueprod nell'ambiente di produzione. Invece di impostare un nome di coda come hardcoded, è possibile specificare il nome di una voce nella raccolta `appSettings` con il nome effettivo della coda. Se la chiave `appSettings` è logqueue, la funzione potrebbe essere simile al seguente esempio.
+Ad esempio, si supponga che si desidera toouse una coda denominata logqueuetest nell'ambiente di test hello e uno denominato logqueueprod nell'ambiente di produzione. Anziché un nome di coda a livello di codice, si desidera nome hello toospecify di una voce in hello `appSettings` raccolta aventi il nome di coda effettivo hello. Se hello `appSettings` chiave logqueue, la funzione potrebbe essere analogo al seguente esempio hello.
 
         public static void WriteLog([QueueTrigger("%logqueue%")] string logMessage)
         {
             Console.WriteLine(logMessage);
         }
 
-La classe `NameResolver` può quindi ottenere il nome della coda da `appSettings`, come illustrato nell'esempio seguente:
+Il `NameResolver` classe quindi è stato possibile ottenere il nome della coda hello da `appSettings` come illustrato nell'esempio seguente hello:
 
         public class QueueNameResolver : INameResolver
         {
@@ -463,7 +463,7 @@ La classe `NameResolver` può quindi ottenere il nome della coda da `appSettings
             }
         }
 
-Passare la classe `NameResolver` all'oggetto `JobHost`, come illustrato nel seguente esempio.
+Si passa hello `NameResolver` classe toohello `JobHost` come mostrato nel seguente esempio hello.
 
         static void Main(string[] args)
         {
@@ -473,10 +473,10 @@ Passare la classe `NameResolver` all'oggetto `JobHost`, come illustrato nel segu
             host.RunAndBlock();
         }
 
-**Nota:** i nomi di coda, tabella e BLOB vengono risolti ogni volta che viene chiamata una funzione, ma i nomi di contenitore di BLOB vengono risolti solo all'avvio dell'applicazione. Non è possibile modificare il nome del contenitore di BLOB durante l'esecuzione del processo.
+**Nota:** coda, tabella e i nomi di blob vengono risolti ogni volta che viene chiamata una funzione, ma i nomi dei contenitori blob vengono risolti solo quando viene avviata un'applicazione hello. È possibile modificare il nome di contenitore blob mentre è in esecuzione il processo di hello.
 
-## <a id="manual"></a>Come attivare manualmente una funzione
-Per attivare manualmente una funzione, usare il metodo `Call` o `CallAsync` per l'oggetto `JobHost` e l'attributo `NoAutomaticTrigger` per la funzione, come illustrato nel seguente esempio.
+## <a id="manual"></a>Come una funzione tootrigger manualmente
+una funzione tootrigger manualmente, utilizzare hello `Call` o `CallAsync` metodo hello `JobHost` oggetto e hello `NoAutomaticTrigger` attributo funzione hello, come illustrato nell'esempio seguente hello.
 
         public class Program
         {
@@ -497,29 +497,29 @@ Per attivare manualmente una funzione, usare il metodo `Call` o `CallAsync` per 
             }
         }
 
-## <a id="logs"></a>Come scrivere i log
-Il dashboard visualizza i log in due posizioni: la pagina del processo Web e la pagina di una particolare chiamata al processo Web.
+## <a id="logs"></a>Modalità di registrazione toowrite
+Hello Dashboard Mostra i registri in due posizioni: la pagina hello per processo Web hello e hello per una chiamata a un particolare processo Web.
 
 ![Log nella pagina del processo Web](./media/websites-dotnet-webjobs-sdk-storage-queues-how-to/dashboardapplogs.png)
 
 ![Log nella pagina di una chiamata di funzione](./media/websites-dotnet-webjobs-sdk-storage-queues-how-to/dashboardlogs.png)
 
-L'output dei metodi Console chiamati in una funzione o nel metodo `Main()` viene visualizzato nella pagina Dashboard del WebJob, non nella pagina di una chiamata a un metodo specifico. L'output dell'oggetto TextWriter ottenuto da un parametro nella firma del metodo viene visualizzato nella pagina Dashboard di una chiamata al metodo.
+Output dei metodi di Console che si chiama una funzione o hello `Main()` metodo verrà visualizzato nella pagina Dashboard hello per hello processo Web, non nella pagina hello per una chiamata di metodo specifico. Verrà visualizzato l'output dall'oggetto TextWriter hello che si ottiene da un parametro nella firma del metodo nella pagina Dashboard hello per una chiamata al metodo.
 
-L'output di Console non può essere collegato a una chiamata a un metodo particolare perché Console è a thread singolo, mentre potrebbero essere in esecuzione più funzioni di processo contemporaneamente. Per questo motivo l'SDK fornisce a ogni chiamata di funzione il proprio oggetto writer di log univoco.
+Output della console non può essere chiamata al metodo particolare tooa collegato perché hello Console è a thread singolo, mentre molte funzioni di processo potrebbero essere in esecuzione hello contemporaneamente. Per tale motivo hello SDK fornisce a ogni chiamata di funzione con il proprio oggetto writer di log univoco.
 
-Per scrivere [log di traccia dell'applicazione](web-sites-dotnet-troubleshoot-visual-studio.md#logsoverview), usare `Console.Out` (crea log contrassegnati come INFO) e `Console.Error` (crea log contrassegnati come ERROR). In alternativa, è possibile usare [Trace o TraceSource](http://blogs.msdn.com/b/mcsuksoldev/archive/2014/09/04/adding-trace-to-azure-web-sites-and-web-jobs.aspx), che fornisce livelli dettagliati, di avviso e critici, oltre ai livelli di informazioni e di errore. I log di traccia dell'applicazione vengono visualizzati nei file di log dell'app Web, nelle tabelle di Azure o nei BLOB di Azure a seconda di come è configurata l'app Web di Azure. Come per tutti gli output di Console, anche i 100 registri applicazioni più recenti vengono visualizzati nella pagina Dashboard del processo Web e non nella pagina di una chiamata di funzione.
+toowrite [registri di traccia delle applicazioni](web-sites-dotnet-troubleshoot-visual-studio.md#logsoverview), utilizzare `Console.Out` (Crea registri contrassegnati come INFO) e `Console.Error` (Crea log contrassegnato come errore). In alternativa, è toouse [traccia o TraceSource](http://blogs.msdn.com/b/mcsuksoldev/archive/2014/09/04/adding-trace-to-azure-web-sites-and-web-jobs.aspx), che fornisce Verbose, avviso, e i livelli di tooInfo aggiunta e di errore critico. Registri di traccia delle applicazioni vengono visualizzati nel file di log di hello web app, le tabelle di Azure, o oggetti BLOB di Azure a seconda di come si configura l'app web di Azure. Come nel caso di tutti gli output di Console, i registri applicazione 100 più recente di hello vengono inoltre visualizzati nella pagina Dashboard hello hello processo Web, la pagina di hello non per una chiamata di funzione.
 
-L'output di Console viene visualizzato nel dashboard solo se il programma viene eseguito in un processo Web di Azure e non se il programma viene eseguito localmente o in un altro ambiente.
+Output della console viene visualizzato in hello Dashboard solo se il programma hello è in esecuzione in un processo Web di Azure, non se il programma hello viene eseguito localmente o in altri ambienti di rete.
 
-Disabilitare la registrazione dei dashboard per scenari con velocità effettiva elevata. Per impostazione predefinita, l’SDK scrive i log nella memoria e questa attività potrebbe influire negativamente sulle prestazioni quando si elaborano numerosi messaggi. Per disabilitare la registrazione, impostare la stringa di connessione dashboard su null, come illustrato nell'esempio seguente.
+Disabilitare la registrazione dei dashboard per scenari con velocità effettiva elevata. Per impostazione predefinita, hello SDK scrive i log toostorage e questa attività potrebbe influire negativamente sulle prestazioni quando si elaborano numerosi messaggi. toodisable registrazione, impostare hello dashboard connessione stringa toonull come illustrato nell'esempio seguente hello.
 
         JobHostConfiguration config = new JobHostConfiguration();       
         config.DashboardConnectionString = "";        
         JobHost host = new JobHost(config);
         host.RunAndBlock();
 
-Nell'esempio seguente vengono illustrati diversi modi per scrivere log:
+Hello esempio seguente vengono illustrati vari modi toowrite log:
 
         public static void WriteLog(
             [QueueTrigger("logqueue")] string logMessage,
@@ -531,50 +531,50 @@ Nell'esempio seguente vengono illustrati diversi modi per scrivere log:
             logger.WriteLine("TextWriter - " + logMessage);
         }
 
-Nel dashboard di WebJobs SDK, l'output dell'oggetto `TextWriter` viene visualizzato quando si visita la pagina relativa a una chiamata di funzione specifica e si fa clic su **Attiva/Disattiva output**:
+Nel Dashboard di processi Web SDK hello, hello output di hello `TextWriter` dell'oggetto viene visualizzato quando si passa toohello pagina per una particolare chiamata di funzione e fare clic su **attiva/disattiva Output**:
 
 ![Fare clic sul collegamento della chiamata di funzione](./media/websites-dotnet-webjobs-sdk-storage-queues-how-to/dashboardinvocations.png)
 
 ![Log nella pagina di una chiamata di funzione](./media/websites-dotnet-webjobs-sdk-storage-queues-how-to/dashboardlogs.png)
 
-Nel dashboard di WebJobs SDK le 100 righe più recenti dell'output di Console vengono visualizzate quando si visita la pagina relativa al processo Web (non alla chiamata di funzione) e si fa clic su **Attiva/Disattiva output**.
+Nel Dashboard di processi Web SDK hello, righe hello 100 più recente della Console l'output Mostra backup quando accede pagina toohello per hello processo Web (non per la chiamata di funzione hello) e fare clic su **attiva/disattiva Output**.
 
 ![Fare clic su Toggle Output](./media/websites-dotnet-webjobs-sdk-storage-queues-how-to/dashboardapplogs.png)
 
-In un processo Web continuo, i log dell'applicazione vengono visualizzati in /data/jobs/continuous/*{nomeprocessoweb}*/job_log.txt nel file system dell'app Web.
+In un processo Web continuo, log applicazioni visualizzati nella/dati processi/continua/*{webjobname}*/job_log.txt nel file system di hello web app.
 
         [09/26/2014 21:01:13 > 491e54: INFO] Console.Write - Hello world!
         [09/26/2014 21:01:13 > 491e54: ERR ] Console.Error - Hello world!
         [09/26/2014 21:01:13 > 491e54: INFO] Console.Out - Hello world!
 
-In un BLOB di Azure, l'aspetto dei registri applicazione è simile al seguente: 2014-09-26T21:01:13,Information,contosoadsnew,491e54,635473620738373502,0,17404,17,Console.Write - Hello world!, 2014-09-26T21:01:13,Error,contosoadsnew,491e54,635473620738373502,0,17404,19,Console.Error - Hello world!, 2014-09-26T21:01:13,Information,contosoadsnew,491e54,635473620738529920,0,17404,17,Console.Out - Hello world!,
+In un'applicazione hello blob di Azure registri simile al seguente: 2014-09-26T21:01:13,Information,contosoadsnew,491e54,635473620738373502,0,17404,17,Console.Write - Hello world!, 2014-09-26T21:01:13, errore, contosoadsnew, 491e54, 635473620738373502,0,17404,19,console.Error - Hello world!, 2014-09-26T21:01:13,Information,contosoadsnew,491e54,635473620738529920,0,17404,17,Console.Out - Hello world!,
 
-In una tabella di Azure, i log `Console.Out` e `Console.Error` hanno un aspetto simile al seguente:
+In un hello tabella Azure `Console.Out` e `Console.Error` registri è simile al seguente:
 
 ![Log delle informazioni nella tabella](./media/websites-dotnet-webjobs-sdk-storage-queues-how-to/tableinfo.png)
 
 ![Log degli errori nella tabella](./media/websites-dotnet-webjobs-sdk-storage-queues-how-to/tableerror.png)
 
-Se si desidera collegare un proprio logger, vedere [questo esempio](http://github.com/Azure/azure-webjobs-sdk-samples/blob/master/BasicSamples/MiscOperations/Program.cs).
+Se si desidera tooplug un logger personalizzato, vedere [in questo esempio](http://github.com/Azure/azure-webjobs-sdk-samples/blob/master/BasicSamples/MiscOperations/Program.cs).
 
-## <a id="errors"></a>Come gestire gli errori e configurare i timeout
-WebJobs SDK include anche un attributo [Timeout](http://github.com/Azure/azure-webjobs-sdk-samples/blob/master/BasicSamples/MiscOperations/Functions.cs) che è possibile utilizzare per annullare una funzione se non viene completata entro un periodo di tempo specificato. E se si desidera generare un avviso quando si verificano numerosi errori entro un periodo di tempo specificato, è possibile utilizzare l’attributo `ErrorTrigger` . Ecco un [esempio ErrorTrigger](https://github.com/Azure/azure-webjobs-sdk-extensions/wiki/Error-Monitoring).
+## <a id="errors"></a>Modalità errori toohandle e configurare i timeout
+Hello WebJobs SDK include anche un [Timeout](http://github.com/Azure/azure-webjobs-sdk-samples/blob/master/BasicSamples/MiscOperations/Functions.cs) attributo che è possibile utilizzare toocause toobe una funzione annullata se non viene completato entro un periodo di tempo specificato. E se si desidera tooraise un avviso quando verificati troppi errori si verificano all'interno di un periodo di tempo specificato, è possibile utilizzare hello `ErrorTrigger` attributo. Ecco un [esempio ErrorTrigger](https://github.com/Azure/azure-webjobs-sdk-extensions/wiki/Error-Monitoring).
 
 ```
 public static void ErrorMonitor(
 [ErrorTrigger("00:01:00", 1)] TraceFilter filter, TextWriter log,
 [SendGrid(
-    To = "admin@emailaddress.com",
+    too= "admin@emailaddress.com",
     Subject = "Error!")]
  SendGridMessage message)
 {
-    // log last 5 detailed errors to the Dashboard
+    // log last 5 detailed errors toohello Dashboard
    log.WriteLine(filter.GetDetailedMessage(5));
    message.Text = filter.GetDetailedMessage(1);
 }
 ```
 
-Anche in modo dinamico, è possibile disabilitare e abilitare le funzioni per controllare se possono essere attivate, utilizzando un'opzione di configurazione che potrebbe essere un'impostazione app o il nome della variabile dell’ambiente. Per codici di esempio, vedere l’attributo `Disable` nel [repository degli esempi di WebJobs SDK](https://github.com/Azure/azure-webjobs-sdk-samples/blob/master/BasicSamples/MiscOperations/Functions.cs).
+Anche in modo dinamico, è possibile disabilitare e abilitare le funzioni toocontrol se possono essere attivate, utilizzando un'opzione di configurazione che potrebbe essere un'impostazione di app o un nome di variabile di ambiente. Per esempio di codice, vedere hello `Disable` attributo [repository di esempi di hello WebJobs SDK](https://github.com/Azure/azure-webjobs-sdk-samples/blob/master/BasicSamples/MiscOperations/Functions.cs).
 
 ## <a id="nextsteps"></a> Passaggi successivi
-Questa guida ha fornito esempi di codice che illustrano come gestire scenari comuni per l'uso di code di Azure. Per altre informazioni su come usare i processi Web di Azure e su WebJobs SDK, vedere le [risorse consigliate per i processi Web di Azure](http://go.microsoft.com/fwlink/?linkid=390226).
+Questa guida è fornito codice di esempio che mostrano come toohandle scenari comuni per l'utilizzo di code di Azure. Per ulteriori informazioni su come toouse processi Web di Azure e hello WebJobs SDK, vedere [risorse consigliato processi Web di Azure](http://go.microsoft.com/fwlink/?linkid=390226).

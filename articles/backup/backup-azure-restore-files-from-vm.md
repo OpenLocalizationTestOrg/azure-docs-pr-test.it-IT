@@ -14,63 +14,63 @@ ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
 ms.date: 07/20/2017
 ms.author: pullabhk;markgal
-ms.openlocfilehash: ae7c345c11a7db25413d60ad822f16f84ca37362
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 1a62a0ed83d61272c032ac0377a54099ed118db4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="recover-files-from-azure-virtual-machine-backup"></a>Ripristinare i file da un backup della macchina virtuale di Azure
 
-Backup di Azure consente di ripristinare [i dischi e le VM di Azure](./backup-azure-arm-restore-vms.md) dai backup delle VM di Azure. Questo articolo illustra come è possibile ripristinare elementi, come file e cartelle, da un backup di VM di Azure.
+Backup di Azure offre hello funzionalità toorestore [macchine virtuali di Azure e i dischi](./backup-azure-arm-restore-vms.md) da backup di macchina virtuale di Azure. Questo articolo illustra come è possibile ripristinare elementi, come file e cartelle, da un backup di VM di Azure.
 
 > [!Note]
-> Questa funzionalità è disponibile per le VM di Azure distribuite usando il modello di Resource Manager e protette in un insieme di credenziali di Servizi di ripristino.
+> Questa funzionalità è disponibile per le macchine virtuali di Azure distribuiti tramite il modello di gestione risorse hello e protetto tooa archivio di servizi di ripristino.
 > Il ripristino di file da un backup della VM crittografato non è supportato.
 >
 
-## <a name="mount-the-volume-and-copy-files"></a>Montare il volume e copiare i file
+## <a name="mount-hello-volume-and-copy-files"></a>Montare hello volume e copia i file
 
-1. Accedere al [portale di Azure](http://portal.Azure.com). Cercare l'insieme di credenziali di Servizi di ripristino pertinente e la voce di backup necessaria.
+1. Sign in hello [portale di Azure](http://portal.Azure.com). Trovare hello rilevanti Recovery services insieme di credenziali e backup dell'elemento hello necessario.
 
-2. Nel pannello Elemento di backup fare clic su **Ripristino file**
+2. Nel Pannello di elemento di Backup hello, fare clic su **ripristino di File**
 
     ![Aprire la voce di backup dell'insieme di credenziali di Servizi di ripristino](./media/backup-azure-restore-files-from-vm/open-vault-item.png)
 
-    Verrà aperto il pannello **Ripristino file**.
+    Hello **ripristino File** apre blade.
 
     ![Pannello Ripristino file](./media/backup-azure-restore-files-from-vm/file-recovery-blade.png)
 
-3. Nel menu a discesa **Selezionare il punto di ripristino**, selezionare il punto di ripristino contenente i file desiderati. Per impostazione predefinita, il punto di ripristino più recente è già selezionato.
+3. Da hello **selezionare il punto di ripristino** dal menu a discesa, un punto di ripristino selezionare hello che contiene file hello desiderato. Per impostazione predefinita, il punto di ripristino più recente hello è già selezionato.
 
-4. Fare clic su **Download Executable** (Scarica eseguibile) (per la VM di Windows Azure) o su **Scarica script** (per la VM di Azure per Linux) per scaricare il software che verrà usato per copiare i file dal punto di ripristino.
+4. Fare clic su **scaricare eseguibile** (per la macchina virtuale Windows Azure) o **Download Script** (per la macchina virtuale di Azure Linux) software hello toodownload che userai toocopy file hello punto di ripristino.
 
-  Il file eseguibile/script crea una connessione tra il computer locale e il punto di ripristino specificato.
+  file eseguibile o script Hello crea una connessione tra computer locali hello e hello specificato punto di ripristino.
 
-5. Per eseguire lo script o il file eseguibile scaricato è necessaria una password. È possibile copiare la password dal portale usando il pulsante Copia vicino alla password generata
+5. È necessario un password toorun hello scaricato script o file eseguibile. È possibile copiare la password di hello dal portale di hello con accanto alla copia hello password hello generato
 
     ![Password generata](./media/backup-azure-restore-files-from-vm/generated-pswd.png)
 
-6. Eseguire il file eseguibile/script nel computer in cui si vogliono ripristinare i file. È necessario eseguire il file eseguibile/script con le credenziali di amministratore. Se si esegue lo script in un computer con accesso limitato, verificare che sia disponibile l'accesso a:
+6. Nel computer in cui si desidera file hello toorecover hello eseguire hello eseguibile o lo script. È necessario eseguire il file eseguibile/script con le credenziali di amministratore. Se si esegue uno script hello in un computer con accesso limitato, verificare l'accesso a è:
 
     - download.microsoft.com
     - Endpoint di Azure usati per i backup di VM di Azure
     - porta in uscita 3260
 
-   Per Linux, lo script richiede i componenti "open-iscsi" e "lshw" per la connessione al punto di ripristino. Se tali componenti non esistono nel computer in cui lo script è in esecuzione, verrà richiesta l'autorizzazione per installare i componenti rilevanti, che saranno installati dopo avere ottenuto il consenso.
+   Per Linux, script hello richiede componenti 'open-iscsi' e 'lshw' tooconnect toohello punto di ripristino. Se non quelli esistenti nel computer di hello in cui viene eseguito, richiesto per componenti in questione autorizzazione tooinstall hello e li installa al consenso.
    
-   Immettere la password copiata dal portale quando richiesto. Dopo avere immesso la password valida, gli script si connettono al punto di ripristino.
+   Immettere la password di hello copiata dal portale di hello quando richiesto. Dopo avere immesso la password valida hello script hello si connette il punto di ripristino toohello.
       
     ![Pannello Ripristino file](./media/backup-azure-restore-files-from-vm/executable-output.png)
     
    
-   È possibile eseguire lo script in qualsiasi computer con lo stesso sistema operativo (o compatibile) della macchina virtuale sottoposta a backup. Vedere la [tabella di sistemi operativi compatibili](backup-azure-restore-files-from-vm.md#compatible-os) per informazioni in proposito. Se la macchina virtuale di Azure protetta usa Spazi di archiviazione Windows (per le VM di Windows Azure) o LVM/matrici RAID (per le VM di Linux), non è possibile eseguire il file eseguibile/script nella stessa macchina virtuale. Eseguirlo invece in qualsiasi altro computer con un sistema operativo compatibile.
+   È possibile eseguire script hello in tutti i computer con sistema operativo hello stesso (o compatibile) come backup hello macchina virtuale. Vedere hello [tabella del sistema operativo compatibile](backup-azure-restore-files-from-vm.md#compatible-os) per sistemi operativi compatibili. Se hello protetto virtuale di Azure Usa macchina in che spazi di archiviazione di Windows (per le macchine virtuali di Windows Azure) o Arrays(for Linux VMs) LVM/RAID, sarà possibile eseguire hello eseguibile o lo script hello stessa macchina virtuale. Eseguirlo invece in qualsiasi altro computer con un sistema operativo compatibile.
 
 ### <a name="compatible-os"></a>Sistema operativo compatibile
 
 #### <a name="for-windows"></a>Per Windows
 
-La tabella seguente illustra la compatibilità tra i sistemi operativi del server e del computer. Quando si esegue il ripristino dei file, non è possibile ripristinare i file tra sistemi operativi non compatibili.
+Hello nella seguente tabella mostra hello compatibilità tra i sistemi operativi server e computer. Quando si esegue il ripristino dei file, non è possibile ripristinare i file tra sistemi operativi non compatibili.
 
 |Sistema operativo del server | Sistema operativo compatibile del client  |
 | --------------- | ---- |
@@ -80,7 +80,7 @@ La tabella seguente illustra la compatibilità tra i sistemi operativi del serve
 
 #### <a name="for-linux"></a>Per Linux
 
-In Linux il requisito fondamentale è che il sistema operativo del computer in cui viene eseguito lo script supporti il file system dei file presenti nella VM Linux sottoposta a backup. Quando si seleziona un computer per eseguire lo script, verificare che disponga delle versioni e del sistema operativo compatibile indicati nella tabella seguente.
+In Linux, requisito fondamentale hello è tale hello del sistema operativo della macchina hello in cui viene eseguito uno script hello deve supportare filesystem hello di hello file presenti nella hello backup VM Linux. Durante la selezione di uno script di hello toorun macchina, verificare che come indicato nella tabella hello riportata di seguito contiene versioni del sistema operativo e hello compatibili hello.
 
 |Sistema operativo Linux | Versioni  |
 | --------------- | ---- |
@@ -90,7 +90,7 @@ In Linux il requisito fondamentale è che il sistema operativo del computer in c
 | Debian | 7 e versioni successive |
 | Oracle Linux | 6.4 e versioni successive |
 
-Lo script richiede inoltre i componenti python e bash per l'esecuzione e la connessione protetta al punto di ripristino.
+script Hello inoltre richiede python e bash tooexecute componenti e connettersi in modo sicuro toohello punto di ripristino.
 
 |Componente | Versione  |
 | --------------- | ---- |
@@ -102,65 +102,65 @@ Lo script richiede inoltre i componenti python e bash per l'esecuzione e la conn
 
 #### <a name="for-windows"></a>Per Windows
 
-Quando si esegue il file eseguibile, il sistema operativo monta i nuovi volumi e assegna le lettere di unità. È possibile usare Esplora risorse o Esplora file per individuare queste unità. Le lettere di unità assegnate ai volumi potrebbero non essere le stesse lettere della macchina virtuale originale; il nome del volume viene tuttavia mantenuto. Ad esempio, se il volume nella macchina virtuale originale era "Disco dati (e:\)", questo volume può essere associato come "Disco dati ('Lettera di unità disponibile':\)" nel computer locale. Esplorare tutti i volumi indicati nell'output dello script fino a individuare il file o la cartella.  
+Quando si esegue l'eseguibile hello, sistema operativo hello hello nuovi volumi montati e assegna le lettere di unità. È possibile utilizzare Esplora risorse o Esplora File toobrowse tali unità. Hello lettere di unità assegnate toohello volumi potrebbero non essere hello stesse lettere come hello macchina virtuale originale, tuttavia, hello il nome del volume viene mantenuta. Ad esempio, se hello volume nella macchina virtuale originale hello era "disco dati (e:\)", che può essere collegato come volume "disco dati ('Qualsiasi lettera di unità disponibile':\) nel computer locale hello. Esplorare tutti i volumi indicati nell'output di hello dello script fino a individuare il file/cartella.  
        
    ![Pannello Ripristino file](./media/backup-azure-restore-files-from-vm/volumes-attached.png)
            
 #### <a name="for-linux"></a>Per Linux
 
-In Linux i volumi del punto di ripristino sono montati nella cartella in cui viene eseguito lo script. I dischi collegati, i volumi e i percorsi di montaggio corrispondenti vengono visualizzati di conseguenza. Questi percorsi di montaggio sono visibili agli utenti con accesso a livello radice. Esplorare i volumi indicati nell'output dello script.
+In Linux, volumi hello hello del punto di ripristino sono montati toohello cartella in cui viene eseguito uno script hello. Hello collegati dischi, volumi e montaggio corrispondente hello percorsi sono visualizzati di conseguenza. Questi percorsi di montaggio sono visibili toousers con accesso al livello radice. Esplorare i volumi di hello indicati nell'output di hello script.
 
   ![Pannello Ripristino file per Linux](./media/backup-azure-restore-files-from-vm/linux-mount-paths.png)
   
 
-## <a name="closing-the-connection"></a>Chiusura della connessione
+## <a name="closing-hello-connection"></a>Chiusura della connessione hello
 
-Dopo avere identificato i file e averli copiati in un percorso di archiviazione locale, rimuovere o smontare le unità aggiuntive. Smontare le unità, nel pannello **Ripristino file** del portale di Azure fare clic su **Unmount Disks** (Smonta dischi).
+Dopo aver identificato i file hello e copiarli tooa posizione di archiviazione locale, rimuovere o smontare unità aggiuntive hello. toounmount hello unità, hello **ripristino File** fare clic su pannello nel portale di Azure hello **smontare dischi**.
 
 ![Smontare i dischi](./media/backup-azure-restore-files-from-vm/unmount-disks3.png)
 
-Dopo che i dischi sono stati smontati, viene visualizzato un messaggio indicante che l'operazione è stata eseguita correttamente. L'aggiornamento della connessione in modo che sia possibile rimuovere i dischi potrebbe richiedere alcuni minuti.
+Una volta dischi hello sono stati smontati, viene visualizzato un messaggio per comunicarti che ha avuto esito positivo. Potrebbe richiedere alcuni minuti per toorefresh connessione hello in modo che sia possibile rimuovere i dischi di hello.
 
-In Linux, dopo che la connessione al punto di ripristino viene interrotta, il sistema operativo non rimuove automaticamente i percorsi di montaggio corrispondenti, che rimangono come volumi "orfani" e sono visibili, ma generano un errore quando si accede o si scrive sui file. Questi percorsi possono essere rimossi manualmente. Quando viene eseguito, lo script identifica tutti i volumi di questo tipo esistenti da eventuali punti di ripristino precedenti e li elimina dopo avere ottenuto il consenso.
+In Linux, dopo il punto di ripristino toohello hello connessione viene interrotta, hello del sistema operativo non rimuove i percorsi di montaggio corrispondente hello automaticamente. Vengono forniti come volumi "orfano" e sono visibili, ma verrà generato un errore quando si file hello accesso/scrittura. Questi percorsi possono essere rimossi manualmente. script di Hello, quando eseguito, identifica tali volumi esistenti da punti di ripristino precedente e pulisce al consenso.
 
 ## <a name="special-configurations"></a>Configurazioni speciali
 
 ### <a name="dynamic-disks"></a>Dischi dinamici
 
-Se la macchina virtuale di Azure di cui è stato eseguito il backup dispone di volumi che si estendono su più dischi (volumi con spanning e striping) e/o a tolleranza di errore (volumi con mirroring e RAID-5) su dischi dinamici, non è possibile eseguire lo script eseguibile nella stessa macchina virtuale. Eseguire invece lo script eseguibile in qualsiasi altro computer con un sistema operativo compatibile.
+Se hello macchina virtuale di Azure che è stato eseguito il backup di volumi che si estendono su più dischi (volumi con spanning e con striping) e/o a tolleranza di errore (volumi con mirroring e RAID-5) nei dischi dinamici non è possibile eseguire uno script eseguibile hello hello stessa macchina virtuale. Al contrario, eseguire uno script eseguibile hello in qualsiasi altro computer con un sistema operativo compatibile.
 
 ### <a name="windows-storage-spaces"></a>Spazi di archiviazione di Windows
 
-Spazi di archiviazione Windows è una tecnologia di archiviazione Windows che consente di virtualizzare le risorse di archiviazione. Con Spazi di archiviazione Windows è possibile raggruppare dischi standard del settore in pool di archiviazione e creare dischi virtuali, detti spazi di archiviazione, dallo spazio disponibile nei pool di archiviazione.
+Spazi di archiviazione di Windows è una tecnologia di archiviazione di Windows che consente l'archiviazione toovirtualize. Con spazi di archiviazione di Windows è possibile raggruppare dischi standard del settore in pool di archiviazione e quindi creare dischi virtuali, detti spazi di archiviazione dallo spazio disponibile di hello in tali pool di archiviazione.
 
-Se la VM di Azure sottoposta a backup usa Spazi di archiviazione Windows, non è possibile eseguire lo script eseguibile nella stessa VM. Eseguire invece lo script eseguibile in qualsiasi altro computer con un sistema operativo compatibile.
+Se hello macchina virtuale di Azure che è stato eseguito il backup Usa spazi di archiviazione di Windows, quindi è possibile eseguire uno script eseguibile hello in hello stessa macchina virtuale. Al contrario, eseguire uno script eseguibile hello in qualsiasi altro computer con un sistema operativo compatibile.
 
 ### <a name="lvmraid-arrays"></a>LVM/matrici RAID
 
-In Linux vengono usati la gestione dei volumi logici (LVM) e/o le matrici RAID software per gestire i volumi logici su più dischi. Se la VM Linux sottoposta a backup usa la gestione dei volumi logici (LVM) e/o matrici RAID, non è possibile eseguire lo script nella stessa macchina virtuale. Eseguire invece lo script in qualsiasi altro computer con sistema operativo compatibile e che supporti il file system della macchina virtuale sottoposta a backup.
+In Linux, il gestore di volumi logici (LVM) e/o software nelle matrici RAID sono volumi logici toomanage usato su più dischi. Se il backup di VM Linux hello utilizza LVM e/o nelle matrici RAID, è possibile eseguire script hello in hello stessa macchina virtuale. Invece di eseguire script hello in qualsiasi altro computer con sistema operativo compatibile e che supporta file System del backup di VM hello.
 
-L'output dello script visualizza i dischi LVM e/o delle matrici RAID e i volumi con il tipo di partizione come mostrato di seguito:
+output di Hello script Visualizza hello LVM e/o i dischi nelle matrici RAID e volumi hello con tipo di partizione hello come illustrato di seguito
 
    ![Pannello dell'output LVM per Linux](./media/backup-azure-restore-files-from-vm/linux-LVMOutput.png)
    
-I comandi seguenti devono essere eseguiti dall'utente per portare queste partizioni online. 
+Hello seguenti comandi necessario toobe eseguire da hello utente toobring queste partizioni online. 
 
 **Per le partizioni LVM**
 
 ```
-$ pvs <volume name as shown above in the script output> 
+$ pvs <volume name as shown above in hello script output> 
 ```
-Elenca i nomi del gruppo di volumi in un volume fisico.
+Elenca i nomi dei gruppi di volumi hello in un volume fisico.
 
 ```
-$ lvdisplay <volume-group-name from the pvs command’s results> 
+$ lvdisplay <volume-group-name from hello pvs command’s results> 
 ```
 Elenca tutti i volumi logici, i nomi e i relativi percorsi in un gruppo di volumi.
 
 ```
 $ mount <LV path> </mountpath>
 ```
-Per montare i volumi logici nel percorso scelto.
+toomount percorso toohello hello volumi logici di propria scelta.
 
 
 **Per le matrici RAID**
@@ -168,25 +168,25 @@ Per montare i volumi logici nel percorso scelto.
 ```
 $ mdadm –detail –scan
 ```
-Consente di visualizzare informazioni dettagliate su tutti i dischi RAID. Il disco RAID rilevante verrà visualizzato come `/dev/mdm/<RAID array name in the backed up VM>`
+Consente di visualizzare informazioni dettagliate su tutti i dischi RAID. verranno visualizzato come disco RAID rilevante Hello`/dev/mdm/<RAID array name in hello backed up VM>`
 
-Usare il comando mount se il disco RAID dispone di volumi fisici.
+Utilizzare il comando di montaggio hello se dispone di dischi RAID hello volumi fisici.
 ```
 $ mount [RAID Disk Path] [/mounthpath]
 ```
 
-Se questo disco RAID ha un'altra LVM configurata, seguire la stessa procedura descritta in precedenza per le partizioni LVM con il nome del volume corrispondente al nome del disco RAID.
+Se il disco RAID dispone di un altro LVM configurate Segui hello stessa procedura descritta sopra per le partizioni LVM con il nome del volume hello Nome disco RAID hello
 
 ## <a name="troubleshooting"></a>Risoluzione dei problemi
 
-Se si verificano problemi durante il ripristino di file dalle macchine virtuali, controllare la tabella seguente per informazioni aggiuntive.
+Se si verificano problemi durante il recupero di file di macchine virtuali hello, controllare hello per ulteriori informazioni nella tabella seguente.
 
 | Messaggio di errore/scenario | Possibile causa | Azione consigliata |
 | ------------------------ | -------------- | ------------------ |
-| Output del file exe: *Eccezione di connessione alla destinazione.* |Lo script non è in grado di accedere al punto di ripristino | Controllare se la macchina virtuale soddisfa i requisiti di accesso indicati in precedenza|  
-|   Output del file exe: *Accesso alla destinazione già eseguito mediante una sessione iSCSI.* | Lo script è stato già eseguito nella stessa macchina virtuale e le unità sono state associate | I volumi del punto di ripristino sono già stati associati. È possibile che NON siano installati con le stesse lettere di unità della VM originale. Esplorare tutti i volumi disponibili in Esplora file per il file |
-| Output di file exe: *Questo script non è valido perché è necessario smontare i dischi tramite il portale/è stato superato il limite di 12 ore. Scaricare un nuovo script dal portale.* |  I dischi sono stati smontati dal portale o è stato superato il limite di 12 ore |    Non è possibile eseguire questo specifico file con estensione exe perché non è più valido. Se si vuole accedere ai file di questo punto di ripristino, visitare il portale per ottenere un nuovo file con estensione exe|
-| Nella macchina virtuale in cui viene eseguito il file con estensione exe: i nuovi volumi non vengono smontati dopo avere selezionato il pulsante di disinstallazione |    L'iniziatore ISCSI nella macchina virtuale non sta rispondendo/aggiornando la connessione alla destinazione ed eseguendo la manutenzione della cache |    Attendere alcuni minuti dopo la pressione del pulsante per smontare. Se i nuovi volumi non sono ancora stati smontati, sfogliare tutti i volumi. In questo modo l'iniziatore deve aggiornare la connessione e il volume viene smontato con un messaggio di errore indicante che il disco non è disponibile|
-| Output del file exe: lo script viene eseguito correttamente ma l'output indicante nuovi volumi associati non viene visualizzato nell'output dello script | Si tratta di un errore temporaneo   | I volumi sono stata già associati. Aprire Explorer per visualizzare lo stato. Se si sta usando la stessa macchina virtuale per eseguire gli script ogni volta, è consigliabile riavviare la macchina; l'elenco verrà visualizzato nelle successive esecuzioni del file eseguibile. |
-| Specifico per Linux: non è possibile visualizzare i volumi desiderati | Il sistema operativo del computer in cui viene eseguito lo script potrebbe non riconoscere il file system sottostante della macchina virtuale sottoposta a backup | Controllare se il punto di ripristino è coerente con l'arresto anomalo del sistema o è coerente a livello di file. Se è coerente a livello di file, eseguire lo script in un altro computer il cui sistema operativo riconosca il file system della macchina virtuale sottoposta a backup. |
-| Specifico per Windows: non è possibile visualizzare i volumi desiderati | I dischi possono essere stati collegati, ma i volumi non sono stati configurati | Dalla schermata Gestione disco, identificare i dischi aggiuntivi correlati al punto di recupero. Se uno di questi dischi è in stato offline, provare a renderlo online facendo clic con il pulsante destro del mouse sul disco e fare clic su "Online"|
+| Output exe: *eccezione toohello destinazione connessione* |Script non è in grado di tooaccess hello punto di ripristino | Controllare se il computer hello soddisfa i requisiti di accesso hello indicati in precedenza|  
+|   Output exe: *destinazione hello è già stato registrato tramite una sessione ISCSI.* |   script Hello già è stato eseguito nella stessa macchina e hello le unità sono state allegate hello |   volumi Hello hello del punto di ripristino sono già stati associati. NON può essere montati con hello stessa unità di hello macchina virtuale originale. Esplorare tutti i volumi disponibili hello in Esplora file hello per il file |
+| Output exe: *questo script non è valido perché è necessario smontare dischi hello attraverso il limite di 12 ore hello portale/superato. Scaricare un nuovo script dal portale hello.* |    è necessario smontare dischi Hello dal portale di hello o superato il limite di hello 12 ore |  Non è possibile eseguire questo specifico file con estensione exe perché non è più valido. Se si desidera tooaccess hello i file di tale ripristino punto nel tempo, visitare il portale di hello per un nuovo file exe|
+| Nel computer di hello in cui viene eseguito exe hello: nuovi volumi hello non vengono smontati dopo hello lo smontaggio del pulsante |    iniziatore ISCSI Hello computer hello non risponde/aggiornare la destinazione toohello di connessione e la gestione di cache di hello |    Attendere alcuni minuti dopo hello lo smontaggio del pulsante. Se i nuovi volumi hello non sono ancora disinstallati, passare attraverso tutti i volumi di hello. Questo viene smontato hello iniziatore toorefresh hello connessione hello volume e con un messaggio di errore di forza che hello disco non è disponibile|
+| Output exe: Script è stato eseguito correttamente ma "Nuovi volumi collegati" non sono visualizzati nell'output di hello script |   Si tratta di un errore temporaneo   | volumi Hello potrebbero aver già allegati. Aprire Esplora toobrowse. Se si utilizza hello stesso computer per l'esecuzione di script ogni volta, si consiglia di riavviare il computer hello e hello elenco deve essere visualizzato nelle esecuzioni successive exe hello. |
+| Specifiche di Linux: non è possibile tooview hello desiderato volumi | Hello del sistema operativo della macchina hello in cui viene eseguito uno script hello potrebbe non riconoscere hello filesystem sottostante di hello backup VM | Verifica se il punto di ripristino hello è l'arresto anomalo del sistema coerente o coerenti con i file. Se lo script in un altro computer il cui sistema operativo riconosce hello hello coerente, l'esecuzione del file di backup del file System della macchina virtuale |
+| Specifiche di Windows: non è possibile tooview hello desiderato volumi | dischi Hello collegati ma non sono stati configurati i volumi di hello | Dalla schermata di Gestione disco hello, identificare un punto di ripristino correlati toohello hello dischi aggiuntivi. Se uno di questi dischi è non in linea in stato di provare a renderli online facendo clic sul disco hello e fare clic su 'In linea'|

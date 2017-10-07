@@ -1,6 +1,6 @@
 ---
-title: Migrazione di un'app Web aziendale a un servizio app di Azure
-description: Illustra come usare il Migration Assistant di App Web per eseguire rapidamente la migrazione dei siti Web IIS esistenti al servizio app per app Web
+title: aaaMigrate un tooAzure di app web enterprise servizio App
+description: Viene illustrato come tooquickly Web App Migration Assistant toouse migrazione tooAzure di siti Web IIS esistente App del servizio Web App
 services: app-service
 documentationcenter: 
 author: cephalin
@@ -15,118 +15,118 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/01/2016
 ms.author: cephalin
-ms.openlocfilehash: 18d6a8da38b42dcf5c1500f7fc26638aea26a809
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 7d66c5b799f0eefe85cbd9ba596ee0a05167f295
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="migrate-an-enterprise-web-app-to-azure-app-service"></a>Migrazione di un'app Web aziendale a un servizio app di Azure
-È possibile eseguire facilmente la migrazione dei siti Web esistenti che vengono eseguiti su Internet Information Service (IIS) 6 o versioni successive al [servizio app per app Web](http://go.microsoft.com/fwlink/?LinkId=529714). 
+# <a name="migrate-an-enterprise-web-app-tooazure-app-service"></a>Eseguire la migrazione di un tooAzure di app web enterprise servizio App
+È possibile migrare facilmente i siti Web esistenti eseguite in Internet Information Service (IIS) 6 o versione successiva troppo[App del servizio Web App](http://go.microsoft.com/fwlink/?LinkId=529714). 
 
 > [!IMPORTANT]
-> Il supporto per Windows Server 2003 è terminato il 14 luglio 2015. Se i siti Web sono attualmente eseguiti su un server IIS che è Windows Server 2003, le app Web rappresentano una soluzione a basso rischio, a costo contenuto e ad attrito ridotto per mantenere i propri siti Web online, mentre Migration Assistant di App Web può aiutare ad automatizzare il processo di migrazione per conto dell'utente. 
+> Il supporto per Windows Server 2003 è terminato il 14 luglio 2015. Se attualmente si trovano i siti Web in un server IIS in Windows Server 2003, Web App è basso rischio, a basso costo e a basso attrito tookeep ai siti Web online e App migrazione pubblicazione guidata sul Web consente di automatizzare il processo di migrazione hello di. 
 > 
 > 
 
-[Migration Assistant di App Web](https://www.movemetothecloud.net/) può analizzare l'installazione del server IIS, identificare di quali siti è possibile eseguire la migrazione al servizio app, evidenziare eventuali elementi dei quali non è possibile eseguire la migrazione o che non sono supportati sulla piattaforma e quindi eseguire la migrazione dei propri siti Web e dei database associati in Azure.
+[Web App Migration Assistant](https://www.movemetothecloud.net/) possibile analizzare l'installazione del server IIS, identificare quali siti possono essere migrati tooApp servizio evidenziare tutti gli elementi che non è possibile eseguire la migrazione o non sono supportati nella piattaforma hello e quindi eseguire la migrazione di siti Web e tooAzure database associati.
 
 [!INCLUDE [app-service-web-to-api-and-mobile](../../includes/app-service-web-to-api-and-mobile.md)]
 
 ## <a name="elements-verified-during-compatibility-analysis"></a>Elementi verificati durante l'analisi della compatibilità ##
-Il Migration Assistant crea un report di conformità per identificare le potenziali cause dei problemi di blocco che potrebbero impedire la corretta migrazione da IIS in locale al servizio app per app Web di Azure. Alcuni degli elementi chiavi da considerare sono:
+Migration Assistant Hello crea un tooidentify report conformità le potenziali cause problema o problemi di blocco che potrebbero impedire correttamente una migrazione da on-premise IIS tooAzure App del servizio Web App. Alcune delle toobe elementi chiave hello comunicata sono:
 
-* Associazioni delle porte: App Web supporta solo la porta 80 per il traffico HTTP e la porta 443 per quello HTTPS. Diverse configurazioni di porta verranno ignorate e il traffico verrà indirizzato alla porta 80 o 443. 
+* Associazioni delle porte: App Web supporta solo la porta 80 per il traffico HTTP e la porta 443 per quello HTTPS. Diverse configurazioni di porta verranno ignorate e il traffico verrà indirizzato too80 o 443. 
 * Autenticazione: App Web supporta l'autenticazione anonima per impostazione predefinita e l'autenticazione basata su form laddove specificato da un'applicazione. L'autenticazione di Windows può essere usata eseguendo l'integrazione solo con Azure Active Directory e ADFS. Tutte le altre forme di autenticazione, come ad esempio l'autenticazione di base, al momento non sono supportate. 
-* Global Assembly Cache (GAC) – Una GAC non è supportata in App Web. Se l'applicazione fa riferimento ad assembly che in genere si distribuiscono nella GAC, sarà necessario distribuirli alla cartella bin dell'applicazione nelle app Web. 
+* Global Assembly Cache (GAC): hello Global Assembly Cache non è supportata nelle App Web. Se l'applicazione fa riferimento ad assembly che si distribuisce in genere toohello Global Assembly Cache, è necessario cartella bin dell'applicazione toohello toodeploy nelle App Web. 
 * Modalità di compatibilità IIS5: non supportata in App Web. 
-* Pool di applicazioni: in App Web, ogni sito e le applicazioni figlio vengono eseguiti nello stesso pool di applicazioni. Se il sito ha più applicazioni figlio che usano più pool di applicazioni, consolidarle in un singolo pool di applicazioni con impostazioni comuni o eseguire la migrazione di ogni applicazione in un'app Web separata.
-* Componenti COM: App Web non consente la registrazione di componenti COM sulla piattaforma. Se le applicazioni o i siti Web si avvalgono di tutti i componenti COM, è necessario riscriverli nel codice gestito e distribuirli con il sito Web o l'applicazione.
-* Estensioni ISAPI: App Web può supportare l'uso di estensioni ISAPI. È necessario eseguire le operazioni seguenti:
+* Pool di applicazioni – nelle App Web, ogni sito e le relative applicazioni figlio eseguiti in hello stesso pool di applicazioni. Se il sito ha più applicazioni figlio che utilizzano più pool di applicazioni, consolidare tooa singolo pool di applicazioni con le stesse impostazioni o eseguire la migrazione di ogni app web separato tooa di applicazione.
+* Componenti COM, App Web non consente la registrazione di hello di componenti COM su piattaforma hello. Se le applicazioni o siti Web di avvalersi di tutti i componenti COM, è necessario riscriverle nel codice gestito e distribuirle con l'applicazione o sito Web di hello.
+* Estensioni ISAPI, l'App Web può supportare utilizzo hello di estensioni ISAPI. È necessario seguente hello toodo:
   
-  * distribuire le DLL con l'app Web 
-  * registrare le DLL con [Web.config](http://www.iis.net/configreference/system.webserver/isapifilters)
-  * inserire un file applicationHost.xdt nella radice del sito con il contenuto descritto nella sezione relativa all'abilitazione del caricamento delle estensioni ISAPI arbitrart [di questo articolo](https://github.com/projectkudu/kudu/wiki/Xdt-transform-samples) 
+  * distribuire le DLL di hello con l'app web 
+  * registrare le DLL di hello utilizzando [Web. config](http://www.iis.net/configreference/system.webserver/isapifilters)
+  * Inserire un file di applicationHost.xdt nella radice del sito hello con contenuto hello descritto in "Consentito toobe di estensioni ISAPI arbitrart caricati" [sezione di questo articolo](https://github.com/projectkudu/kudu/wiki/Xdt-transform-samples) 
     
   
     
-    Per altri esempi di utilizzo del formato XML Document Transformations con il proprio sito Web, vedere [Trasformare il proprio sito Web di Microsoft Azure](http://blogs.msdn.com/b/waws/archive/2014/06/17/transform-your-microsoft-azure-web-site.aspx).
+    Per ulteriori esempi di come toouse le trasformazioni di documento XML con il sito Web, vedere [trasformare il sito Web di Microsoft Azure](http://blogs.msdn.com/b/waws/archive/2014/06/17/transform-your-microsoft-azure-web-site.aspx).
 * Non verrà eseguita la migrazione di altri componenti, come SharePoint, le estensioni FPSE, FTP e i certificati SSL.
 
-## <a name="how-to-use-the-web-apps-migration-assistant"></a>Come usare Migration Assistant di App Web ##
-Questa sezione prende in esame un esempio di migrazione di alcuni siti Web che usano un server di database SQL Server in esecuzione su un computer Windows Server 2003 R2 (IIS 6.0) locale:
+## <a name="how-toouse-hello-web-apps-migration-assistant"></a>Come toouse hello Web App Migration Assistant
+In questa sezione passaggi tootoomigrate un esempio alcuni siti Web che utilizzano un database di SQL Server e in esecuzione in un computer Windows Server 2003 R2 (IIS 6.0) locale:
 
-1. Nel server IIS o nel computer client andare a [https://www.movemetothecloud.net/](https://www.movemetothecloud.net/) 
+1. In IIS hello server o computer client passare troppo[https://www.movemetothecloud.net/](https://www.movemetothecloud.net/) 
    
    ![](./media/web-sites-migration-from-iis-server/migration-tool-homepage.png)
-2. Installare il Migration Assistant di App Web facendo clic sul pulsante **Server IIS dedicato** . Altre opzioni saranno disponibili nel prossimo futuro. 
-3. Fare clic sul pulsante **Installa strumento** per installare Migration Assistant di App Web nel computer.
+2. Installare Web App Migration Assistant facendo clic su hello **dedicato Server IIS** pulsante. Altre opzioni siano opzioni hello prossimo futuro. 
+3. Fare clic su hello **Install Tool** pulsante tooinstall Migration Assistant Web App nel computer.
    
    ![](./media/web-sites-migration-from-iis-server/install-page.png)
    
    > [!NOTE]
-   > È anche possibile fare clic su **Download for offline install** (Scarica per installazione offline) per scaricare un file ZIP per l'installazione nei server non connessi a Internet. In alternativa, fare clic su **Carica un report di conformità di una migrazione esistente**, che è un'opzione avanzata per usare un report di conformità di una migrazione esistente generato in precedenza (illustrato più avanti in questo articolo).
+   > È anche possibile fare clic su **scaricare per l'installazione offline** toodownload un file ZIP file per l'installazione nei server non connessi toohello internet. In alternativa, è possibile fare clic su **caricare un report di preparazione della migrazione esistente**, ovvero toowork un'opzione avanzata con un migrazione conformità report esistente che è stato generato in precedenza (illustrato più avanti).
    > 
    > 
-4. Nella schermata **Application Install** fare clic su **Install** per eseguire l'installazione sul computer. Verranno installate anche le dipendenze corrispondenti come distribuzione Web, DacFX e IIS, se necessario. 
+4. In hello **applicazione installata** schermata, fare clic su **installare** tooinstall nel computer. Verranno installate anche le dipendenze corrispondenti come distribuzione Web, DacFX e IIS, se necessario. 
    
    ![](./media/web-sites-migration-from-iis-server/install-progress.png)
    
    Una volta installato, Migration Assistant di App Web viene avviato automaticamente.
-5. Scegliere **Esegui la migrazione di siti e database da un server remoto ad Azure**. Immettere le credenziali amministrative del server remoto e fare clic su **Continua**. 
+5. Scegliere **esegue la migrazione di database e i siti da un server remoto di tooAzure**. Immettere le credenziali amministrative hello per il server remoto hello e fare clic su **continua**. 
    
    ![](./media/web-sites-migration-from-iis-server/migrate-from-remote.png)
    
-   Naturalmente, è possibile scegliere di eseguire la migrazione dal server locale. L'opzione remota è utile quando si vuole eseguire la migrazione di siti Web da un server IIS di produzione.
+   Naturalmente, è possibile scegliere toomigrate dal server locale hello. opzione remote Hello è utile quando si desidera che i siti Web toomigrate da un server IIS di produzione.
    
-   A questo punto, l'utilità di migrazione analizzerà la configurazione del server IIS, quali siti, applicazioni, pool di applicazioni e dipendenze, allo scopo di identificare i siti Web di candidati alla migrazione. 
-6. Nella schermata seguente sono mostrati tre siti Web: **Sito Web predefinito**, **TimeTracker** e **CommerceNet4**. A tutti e tre è associato un database di cui si vuole eseguire la migrazione. Selezionare tutti i siti che si voglio valutare, quindi fare clic su **Avanti**.
+   A questo punto esamina lo strumento di migrazione hello hello configurazione del server IIS, ad esempio siti Web candidato tooidentify siti, applicazioni, i pool di applicazioni e le dipendenze per la migrazione. 
+6. schermata di Hello seguente mostra tre siti Web: **sito Web predefinito**, **TimeTracker**, e **CommerceNet4**. Tutti dispongono di un database associato che si desidera toomigrate. Selezionare tutti i siti di hello tooassess desiderato e quindi fare clic su **Avanti**.
    
    ![](./media/web-sites-migration-from-iis-server/select-migration-candidates.png)
-7. Fare clic su **Carica** per caricare il report di conformità. Se si sceglie di **salvare il file in locale**, è possibile eseguire lo strumento di migrazione in un secondo momento per caricare il report di conformità salvato, come indicato in precedenza.
+7. Fare clic su **caricare** report di conformità tooupload hello. Se si fa clic **salvare file in locale**, è possibile eseguire nuovamente lo strumento di migrazione hello e caricamento hello salvati report di conformità come indicato in precedenza.
    
    ![](./media/web-sites-migration-from-iis-server/upload-readiness-report.png)
    
-   Dopo aver caricato il report di conformità, Azure esegue l'analisi di conformità e vengono illustrati i risultati. Leggere i dettagli di valutazione per ogni sito Web e assicurarsi di comprendere o che siano stati risolti tutti i problemi prima di procedere. 
+   Dopo aver caricato i report di conformità hello, Azure esegue l'analisi di conformità e Mostra hello risultati. Leggere i dettagli di valutazione di hello per ogni sito Web e assicurarsi di comprendere oppure sono risolti tutti i problemi prima di procedere. 
    
    ![](./media/web-sites-migration-from-iis-server/readiness-assessment.png)
-8. Fare clic su **Begin Migration** per avviare la migrazione. Si verrà reindirizzati ad Azure per accedere al proprio account. È importante accedere usando un account con una sottoscrizione di Azure attiva. Se non si dispone di un account di Azure, è possibile iscriversi alla versione di valutazione gratuita [qui](https://azure.microsoft.com/pricing/free-trial/?WT.srch=1&WT.mc_ID=SEM_). 
-9. Selezionare l'account tenant, la sottoscrizione di Azure e l'area da usare per le app Web e i database di Azure di cui è stata eseguita la migrazione e quindi fare clic su **Start Migration**(Avvia la migrazione). È possibile selezionare i siti Web di cui eseguire la migrazione in un secondo momento.
+8. Fare clic su **iniziare la migrazione** migrazione hello toostart. Sarà ora toolog tooAzure reindirizzato al tuo account. È importante accedere usando un account con una sottoscrizione di Azure attiva. Se non si dispone di un account di Azure, è possibile iscriversi alla versione di valutazione gratuita [qui](https://azure.microsoft.com/pricing/free-trial/?WT.srch=1&WT.mc_ID=SEM_). 
+9. Selezionare l'account tenant hello, sottoscrizione di Azure e toouse area per le app web di Azure migrati e il database e quindi fare clic su **avviare Migrazione**. È possibile selezionare hello toomigrate di siti Web in un secondo momento.
    
    ![](./media/web-sites-migration-from-iis-server/choose-tenant-account.png)
-10. Nella schermata successiva è possibile apportare modifiche alle impostazioni di migrazione predefinite, ad esempio:
+10. Nella schermata successiva hello è possibile modificare le impostazioni di migrazione toohello predefinito, ad esempio:
     
     * usare un database SQL di Azure esistente o crearne uno nuovo e configurarne le credenziali
-    * selezionare i siti Web di cui eseguire la migrazione
-    * definire i nomi per le app Web di Azure e i relativi database SQL collegati
-    * personalizzare le impostazioni globali e a livello di sito
+    * Selezionare hello toomigrate di siti Web
+    * definire i nomi per le app web di Azure hello e i database SQL collegati
+    * personalizzare le impostazioni globali hello e le impostazioni a livello di sito
     
-    La schermata seguente mostra tutti i siti Web selezionati per la migrazione con le impostazioni predefinite.
+    schermata di Hello riportata di seguito mostra tutti i siti Web hello selezionato per la migrazione con le impostazioni predefinite di hello.
     
     ![](./media/web-sites-migration-from-iis-server/migration-settings.png)
     
     > [!NOTE]
-    > La casella di controllo **Abilita Azure Active Directory** nelle impostazioni personalizzate integra l'app Web di Azure con [Azure Active Directory](../active-directory/active-directory-whatis.md), la **directory predefinita**. Per altre informazioni sulla sincronizzazione di Azure Active Directory con l'Active Directory locale, vedere [Integrazione di directory](http://msdn.microsoft.com/library/jj573653).
+    > Hello **abilitare Azure Active Directory** casella di controllo nelle impostazioni personalizzate integra hello Azure web app con [Azure Active Directory](../active-directory/active-directory-whatis.md) (hello **Directory predefinita**). Per altre informazioni sulla sincronizzazione di Azure Active Directory con l'Active Directory locale, vedere [Integrazione di directory](http://msdn.microsoft.com/library/jj573653).
     > 
     > 
-11. Dopo aver apportato tutte le modifiche desiderate, fare clic su **Crea** per avviare il processo di migrazione. Lo strumento di migrazione creerà il database SQL di Azure e l'app Web di Azure e quindi pubblicherà il contenuto del sito Web e i database. L'avanzamento della migrazione è chiaramente indicato nello strumento di migrazione e sarà visualizzata una schermata di riepilogo alla fine, che include dettagli sui siti di cui è stata eseguita la migrazione, l'esito della migrazione e collegamenti alle app Web di Azure appena create. 
+11. Dopo aver effettuato tutte le modifiche di hello desiderato, fare clic su **crea** toostart processo di migrazione hello. strumento di migrazione Hello verrà creare app web di Database SQL di Azure e Azure hello e quindi pubblicare database e contenuto del sito Web di hello. avanzamento della migrazione Hello è chiaramente indicato nello strumento di migrazione hello e verrà visualizzata una schermata Riepilogo fine hello, quali siti hello dettagli eseguita la migrazione, se ha avuto esito positivo, le app web di Azure appena creato toohello di collegamenti. 
     
-    Se si verifica un errore durante la migrazione, lo strumento di migrazione indicherà chiaramente l'errore ed eseguirà il rollback delle modifiche. Sarà anche possibile inviare il report degli errori direttamente al team di progettazione facendo clic sul pulsante **Invia segnalazione errori** , con lo stack di chiamate acquisito e il corpo del messaggio di compilazione. 
+    Se qualsiasi errore si verifica durante la migrazione, hello chiaramente sarà lo strumento di migrazione indicare modifiche di hello hello errore e il rollback. Sarà inoltre possibile segnalazione di errori in grado di toosend hello direttamente toohello engineering team facendo hello **Invia segnalazione errori** pulsante, con stack di chiamate acquisito errore hello e compilare il corpo del messaggio. 
     
     ![](./media/web-sites-migration-from-iis-server/migration-error-report.png)
     
-    Se la migrazione avviene senza errori, fare clic su **Invia commenti** e suggerimenti per fornire direttamente eventuali commenti e suggerimenti. 
-12. Fare clic sui collegamenti alle app Web di Azure per verificare che la migrazione sia riuscita.
-13. È ora possibile gestire le app Web migrate nel servizio app di Azure. A tal scopo, accedere al [portale di Azure](https://portal.azure.com).
-14. Nel portale di Azure, aprire il pannello App Web per visualizzare i siti Web migrati (mostrati come app Web), quindi fare clic su uno di loro per avviare la gestione dell'app Web, ad esempio per configurare la pubblicazione continua, creare backup, avviare la scalabilità automatica e monitorare l'uso o le prestazioni.
+    Se la migrazione ha esito positivo senza errori, è anche possibile fare clic su hello **lascia un commento** pulsante tooprovide commenti direttamente. 
+12. Fare clic su app web di Azure di hello collegamenti toohello e verificare che la migrazione di hello ha avuto esito positivo.
+13. È ora possibile gestire hello eseguita la migrazione di applicazioni web in Azure App Service. toodo, accedere hello [portale Azure](https://portal.azure.com).
+14. In hello portale di Azure, aprire hello Web App pannello toosee i siti Web migrati (visualizzate come App web), quindi fare clic su uno di essi toostart gestione hello web app, ad esempio la configurazione continua la pubblicazione, la creazione di backup, il ridimensionamento automatico e il monitoraggio dell'utilizzo o prestazioni.
     
     ![](./media/web-sites-migration-from-iis-server/TimeTrackerMigrated.png)
 
 > [!NOTE]
-> Per iniziare a usare Servizio app di Azure prima di registrarsi per ottenere un account Azure, andare a [Prova il servizio app](https://azure.microsoft.com/try/app-service/), dove è possibile creare un'app Web iniziale temporanea nel servizio app. Non è necessario fornire una carta di credito né impegnarsi in alcun modo.
+> Se si desidera tooget avviato con il servizio App di Azure prima di effettuare l'iscrizione per un account Azure, andare troppo[tenta di servizio App](https://azure.microsoft.com/try/app-service/), in cui è possibile creare subito un'app web di breve durata starter nel servizio App. Non è necessario fornire una carta di credito né impegnarsi in alcun modo.
 > 
 > 
 
 ## <a name="whats-changed"></a>Modifiche apportate
-* Per una guida relativa al passaggio da Siti Web al servizio app, vedere [Servizio app di Azure e impatto sui servizi di Azure esistenti](http://go.microsoft.com/fwlink/?LinkId=529714)
+* Per una Guida toohello modifica da siti Web tooApp servizio vedere: [relativo impatto sui servizi di Azure esistente e servizio App di Azure](http://go.microsoft.com/fwlink/?LinkId=529714)
 

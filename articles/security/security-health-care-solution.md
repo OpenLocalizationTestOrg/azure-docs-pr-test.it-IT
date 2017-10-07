@@ -1,6 +1,6 @@
 ---
-title: Guida pratica alla progettazione di soluzioni sicure per il settore sanitario in Azure | Documentazione Microsoft
-description: " Questo articolo spiega come migliorare la sicurezza delle soluzioni sanitarie con i servizi e le funzionalità di Azure. "
+title: "aaaA Guida pratica toodesigning secure integrità soluzioni attenzione in Azure | Documenti Microsoft"
+description: " In questo articolo aiuta a comprendere come tooimprove di sicurezza per le soluzioni sanitari utilizzando hello Azure dei servizi e funzionalità che si configura. "
 services: security
 documentationcenter: na
 author: TomShinder
@@ -14,20 +14,20 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 01/07/2017
 ms.author: terrylan
-ms.openlocfilehash: 34ded89eb7fe005be2341f96e5b883ec73d9e0a5
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: bf8812402c2181f033f5d71e1814fd1b4ee4fb2f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="a-practical-guide-to-designing-secure-health-care-solutions-in-azure"></a>Guida pratica alla progettazione di soluzioni sicure per il settore sanitario in Azure
-Le startup, gli integratori di sistemi, i fornitori di software indipendenti (ISV) e le organizzazioni del settore sanitario che intendono passare ad Azure sono alla ricerca di una guida che le aiuti a integrare controlli di sicurezza che consentano di soddisfare gli obblighi di conformità.
+# <a name="a-practical-guide-toodesigning-secure-health-care-solutions-in-azure"></a>Una guida pratica toodesigning sanitari soluzioni protette in Azure
+Avvii di settore sanitario, integratori di sistema (SIs), fornitori di software indipendenti (ISV) e organizzazioni si considera un tooAzure spostamento siano cercando di linee guida che consente di incorporare toomeet controlli di sicurezza obblighi di conformità.
 
-[A Practical Guide to Designing Secure Health Care Solutions in Microsoft Azure](https://aka.ms/azureindustrysecurity) (Guida pratica alla progettazione di soluzioni sicure per il settore sanitario in Microsoft Azure) consente di comprendere come migliorare la sicurezza delle soluzioni usando i servizi di Azure e le funzionalità che è possibile configurare in base alle esigenze.
-Il contenuto è suddiviso in tre sezioni principali:
+[Una guida pratica tooDesigning Secure Health Care soluzioni in Microsoft Azure](https://aka.ms/azureindustrysecurity) consente di capire come si può migliorare la sicurezza per le soluzioni utilizzando hello servizi di Azure e le funzionalità che è possibile configurare in base alle esigenze.
+contenuto Hello è suddivisa in tre sezioni principali:
 
 1. Considerazioni sull'uso delle tecnologie cloud, incluse informazioni su gestione dei rischi, responsabilità condivise, implementazione di un sistema di gestione della sicurezza delle informazioni, comprensione delle normative locali e del settore e applicazione di procedure operative standard.
-2. Principi di sicurezza fondamentali allineati a uno standard di gestione della sicurezza delle informazioni, come ISO 27001, e a processi di sviluppo standard, come Microsoft Security Development Lifecycle (SDL).
-3. Applicazione dei principi fondamentali a casi d'uso illustrando l'allineamento da una prospettiva di architetto di soluzioni, in cui i requisiti per le soluzioni sono allineati allo standard di gestione della sicurezza delle informazioni.
+2. Principi di sicurezza delle chiavi che sono sia allineato tooa standard informazioni sicurezza management, ad esempio ISO 27001, standard e i processi di sviluppo, ad esempio Microsoft Security Development Lifecycle (SDL).
+3. L'applicazione hello principi fondamentali toouse casi illustrando allineamento da una soluzione di progettano prospettiva, in cui requisiti per le soluzioni hello sono allineati toohello protezione gestione standard.
 
-Microsoft confida che [Guida pratica alla progettazione di soluzioni sicure per il settore sanitario in Azure](https://aka.ms/azureindustrysecurity) sia utile. In caso di domande o suggerimenti è possibile lasciare un commento in basso.
+Ci auguriamo che [Guida pratica tooDesigning Secure Health Care soluzioni](https://aka.ms/azureindustrysecurity) utile nel caso di domande o suggerimenti, segnalarlo lasciando un commento di seguito.

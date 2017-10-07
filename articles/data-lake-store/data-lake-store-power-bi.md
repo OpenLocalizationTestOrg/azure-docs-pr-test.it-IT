@@ -1,6 +1,6 @@
 ---
-title: Analizzare i dati in Data Lake Store con Power BI | Documentazione Microsoft
-description: Uso di Power BI per analizzare i dati presenti in Archivio Azure Data Lake
+title: dati aaaAnalyze in archivio Data Lake tramite Power BI | Documenti Microsoft
+description: Utilizzare i dati di Power BI tooanalyze archiviati nell'archivio Azure Data Lake
 services: data-lake-store
 documentationcenter: 
 author: nitinme
@@ -14,88 +14,88 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 05/10/2017
 ms.author: nitinme
-ms.openlocfilehash: 0cf7e385ef2edd650479e120f52469bc6632f2eb
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6a1bfa80fd1b0dda59b7eaaae9ca1585ba42783e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="analyze-data-in-data-lake-store-by-using-power-bi"></a>Analizzare i dati in Archivio Data Lake con Power BI
-Questo articolo spiega come usare Power BI Desktop per analizzare e visualizzare i dati presenti in Archivio Azure Data Lake.
+In questo articolo si apprenderà come toouse tooanalyze di Power BI Desktop e visualizzare i dati archiviati nell'archivio Azure Data Lake.
 
 ## <a name="prerequisites"></a>Prerequisiti
-Prima di iniziare questa esercitazione, è necessario disporre di quanto segue:
+Prima di iniziare questa esercitazione, è necessario disporre delle seguenti hello:
 
 * **Una sottoscrizione di Azure**. Vedere [Ottenere una versione di valutazione gratuita di Azure](https://azure.microsoft.com/pricing/free-trial/).
-* **Account di Archivio Data Lake di Azure**. Seguire le istruzioni fornite in [Introduzione ad Archivio Azure Data Lake tramite il portale di Azure](data-lake-store-get-started-portal.md). Questo articolo presuppone che sia già stato creato un account di Data Lake Store denominato **mybidatalakestore** e sia stato caricato un file di dati di esempio (**Drivers.txt**) nell'account. Il file di esempio può essere scaricato dal [repository Git di Azure Data Lake](https://github.com/Azure/usql/tree/master/Examples/Samples/Data/AmbulanceData/Drivers.txt).
+* **Account di Archivio Data Lake di Azure**. Seguire le istruzioni di hello in [introduzione archivio Azure Data Lake tramite il portale di Azure hello](data-lake-store-get-started-portal.md). Questo articolo si presuppone che è già stato creato un account archivio Data Lake, denominato **mybidatalakestore**e caricamento di un file di dati di esempio (**Drivers.txt**) tooit. Il file di esempio può essere scaricato dal [repository Git di Azure Data Lake](https://github.com/Azure/usql/tree/master/Examples/Samples/Data/AmbulanceData/Drivers.txt).
 * **Power BI Desktop**. Può essere scaricato dall'[Area download Microsoft](https://www.microsoft.com/en-us/download/details.aspx?id=45331). 
 
 ## <a name="create-a-report-in-power-bi-desktop"></a>Creare un report in Power BI Desktop
 1. Avviare Power BI Desktop sul computer.
-2. Nella barra multifunzione **Home** fare clic su **Recupera dati**, quindi su Altro. Nella finestra di dialogo **Recupera dati** fare clic su **Azure**, **Azure Data Lake Store** e quindi su **Connetti**.
+2. Da hello **Home** della barra multifunzione, fare clic su **recupera dati**, quindi fare clic su informazioni. In hello **recupera dati** la finestra di dialogo, fare clic su **Azure**, fare clic su **archivio Azure Data Lake**, quindi fare clic su **Connetti**.
    
-    ![Connettersi a Data Lake Store](./media/data-lake-store-power-bi/get-data-lake-store-account.png "Connettersi a Data Lake Store")
-3. Se viene visualizzata una finestra di dialogo relativa al connettore in una fase di sviluppo, scegliere di continuare.
-4. Nella finestra di dialogo **Microsoft Azure Data Lake Store** indicare l'URL al proprio account di Data Lake Store e fare clic su **OK**.
+    ![Connetti tooData Lake archivio](./media/data-lake-store-power-bi/get-data-lake-store-account.png "Connetti tooData Lake archivio")
+3. Se viene visualizzato una finestra di dialogo informazioni sul connettore hello in fase di sviluppo, scegliere toocontinue.
+4. In hello **Microsoft Azure Data Lake Store** nella finestra di dialogo specificare account archivio Data Lake di hello URL tooyour e quindi fare clic su **OK**.
    
     ![URL di Data Lake Store](./media/data-lake-store-power-bi/get-data-lake-store-account-url.png "URL di Data Lake Store")
-5. Nella finestra di dialogo successiva fare clic su **Accedi** per accedere all'account di Archivio Data Lake. Si verrà reindirizzati alla pagina di accesso dell'organizzazione. Seguire le istruzioni per accedere all'account.
+5. In hello successiva finestra di dialogo, fare clic su **Accedi** toosign in account archivio Data Lake. Verrà reindirizzati nella pagina di accesso dell'organizzazione tooyour. Seguire hello richieste toosign conto hello.
    
     ![Accedere a Data Lake Store](./media/data-lake-store-power-bi/get-data-lake-store-account-signin.png "Accedere a Data Lake Store")
 6. Dopo aver completato l'accesso, fare clic su **Connetti**.
    
-    ![Connettersi a Data Lake Store](./media/data-lake-store-power-bi/get-data-lake-store-account-connect.png "Connettersi a Data Lake Store")
-7. Nella finestra di dialogo successiva viene visualizzato il file caricato nell'account di Archivio Data Lake. Verificare le informazioni e fare clic su **Carica**.
+    ![Connetti tooData Lake archivio](./media/data-lake-store-power-bi/get-data-lake-store-account-connect.png "Connetti tooData Lake archivio")
+7. Hello successiva finestra di dialogo Mostra file hello caricato account archivio Data Lake tooyour. Verificare le informazioni di hello e quindi fare clic su **carico**.
    
     ![Caricare dati da Data Lake Store](./media/data-lake-store-power-bi/get-data-lake-store-account-load.png "Caricare dati da Data Lake Store")
-8. Dopo il caricamento dei dati in Power BI, nella scheda **Campi** vengono visualizzati i campi indicati di seguito.
+8. Al termine dati hello caricati in Power BI, si noterà hello seguenti campi hello **campi** scheda.
    
     ![Campi importati](./media/data-lake-store-power-bi/imported-fields.png "Campi importati")
    
-    Al fine della visualizzazione e dell'analisi è tuttavia preferibile che i dati siano organizzati in questi campi:
+    Tuttavia, toovisualize e analizzare i dati di hello, preferiamo hello toobe di dati disponibili per i seguenti campi hello
    
     ![Campi desiderati](./media/data-lake-store-power-bi/desired-fields.png "Campi desiderati")
    
-    La procedura che segue descrive come aggiornare la query per convertire i dati importati nel formato desiderato.
-9. Nella barra multifunzione **Home** fare clic su **Modifica query**.
+    Nei passaggi successivi hello, Microsoft aggiornerà hello query tooconvert importato dati hello nel formato desiderato hello.
+9. Da hello **Home** della barra multifunzione, fare clic su **modifica query**.
    
     ![Modifica query](./media/data-lake-store-power-bi/edit-queries.png "Modifica query")
-10. Nell'editor di query fare clic su **Binario** nella colonna **Contenuto**.
+10. Nell'Editor di Query di hello in hello **contenuto** colonna, fare clic su **binario**.
     
     ![Modifica query](./media/data-lake-store-power-bi/convert-query1.png "Modifica query")
-11. Viene visualizzata un'icona che rappresenta il file **Drivers.txt** caricato. Fare clic sul file con il pulsante destro del mouse e scegliere **CSV**.    
+11. Si noterà un'icona di file, che rappresenta hello **Drivers.txt** file caricato. Fare clic sul file hello e fare clic su **CSV**.    
     
     ![Modifica query](./media/data-lake-store-power-bi/convert-query2.png "Modifica query")
-12. L'output sarà come quello illustrato di seguito. I dati ora sono disponibili in un formato che può essere usato per creare visualizzazioni.
+12. L'output sarà come quello illustrato di seguito. I dati sono ora disponibili in un formato che è possibile utilizzare visualizzazioni toocreate.
     
     ![Modifica query](./media/data-lake-store-power-bi/convert-query3.png "Modifica query")
-13. Dalla barra multifunzione **Home** fare clic su **Chiudi e applica**, quindi su **Chiudi e applica**.
+13. Da hello **Home** della barra multifunzione, fare clic su **chiudere e applicare**, quindi fare clic su **chiudere e applicare**.
     
     ![Modifica query](./media/data-lake-store-power-bi/load-edited-query.png "Modifica query")
-14. Dopo l'aggiornamento della query, la scheda **Campi** contiene i nuovi campi disponibili per la visualizzazione.
+14. Una volta query hello viene aggiornato, hello **campi** scheda verrà visualizzato hello nuovi campi disponibili per la visualizzazione.
     
     ![Campi aggiornati](./media/data-lake-store-power-bi/updated-query-fields.png "Campi aggiornati")
-15. È possibile creare un grafico a torta per rappresentare i conducenti in ogni città per un determinato paese. Per eseguire questa operazione, effettuare le selezioni seguenti.
+15. Possiamo creare un grafico a torta di toorepresent driver hello in ogni città per un determinato paese. toodo in tal caso, verificare le selezioni seguenti hello.
     
-    1. Nella scheda Visualizzazioni fare clic sul simbolo del grafico a torta.
+    1. Dalla scheda visualizzazioni hello, fare clic sul simbolo hello per un grafico a torta.
        
         ![Creare un grafico a torta](./media/data-lake-store-power-bi/create-pie-chart.png "Creare un grafico a torta")
-    2. Le colonne che verranno usate sono la **colonna 4** (nome della città) e la **colonna 7** (nome del paese). Trascinare le colonne dalla scheda **Campi** nella scheda **Visualizzazioni** come illustrato di seguito.
+    2. le colonne Hello verrà toouse sono **colonna 4** (nome di città hello) e **colonna 7** (nome di paese hello). Trascinare le colonne dalla **campi** scheda troppo**visualizzazioni** scheda come illustrato di seguito.
        
         ![Creare visualizzazioni](./media/data-lake-store-power-bi/create-visualizations.png "Creare visualizzazioni")
-    3. Il grafico a torta ora dovrebbe essere simile a quello che segue.
+    3. grafico a torta Hello dovrebbe essere simile ad esempio hello illustrato di seguito.
        
         ![Grafico a torta](./media/data-lake-store-power-bi/pie-chart.png "Creare visualizzazioni")
-16. Se si seleziona un paese specifico dai filtri a livello di pagina, è possibile visualizzare il numero di conducenti in ogni città del paese selezionato. Ad esempio, nella scheda **Visualizzazioni** selezionare **Brazil** da **Filtri a livello di pagina**.
+16. Se si seleziona un paese specifico da filtri a livello di pagina hello, è ora possibile visualizzare il numero di hello dei driver in ogni città del paese hello selezionato. Ad esempio, in hello **visualizzazioni** scheda **filtri a livello di pagina**selezionare **Brasile**.
     
     ![Selezionare un paese](./media/data-lake-store-power-bi/select-country.png "Selezionare un paese")
-17. Il grafico a torta viene automaticamente aggiornato in modo da visualizzare i conducenti delle città del Brasile.
+17. grafico a torta Hello è toodisplay aggiornate automaticamente i driver di hello in città hello del Brasile.
     
     ![Conducenti in un paese](./media/data-lake-store-power-bi/driver-per-country.png "Conducenti in un paese")
-18. Dal menu **File** fare clic su **Salva** per salvare la visualizzazione come file di Power BI Desktop.
+18. Da hello **File** menu, fare clic su **salvare** visualizzazione hello toosave come un file di Power BI Desktop.
 
-## <a name="publish-report-to-power-bi-service"></a>Pubblicare report nel servizio Power BI
-Dopo aver creato le visualizzazioni in Power BI Desktop, è possibile condividerle con altri utenti pubblicandole nel servizio Power BI. Per istruzioni sulla procedura, vedere [Pubblicare da Power BI Desktop](https://powerbi.microsoft.com/documentation/powerbi-desktop-upload-desktop-files/).
+## <a name="publish-report-toopower-bi-service"></a>Pubblicare report tooPower BI servizio
+Dopo aver creato visualizzazioni hello in Power BI Desktop, è possibile condividere con altri utenti tramite la pubblicazione di servizi di Power BI toohello. Per istruzioni su come toodo che, vedere [pubblicare da Power BI Desktop](https://powerbi.microsoft.com/documentation/powerbi-desktop-upload-desktop-files/).
 
 ## <a name="see-also"></a>Vedere anche
 * [Analizzare i dati in Archivio Data Lake con Analisi Data Lake](../data-lake-analytics/data-lake-analytics-get-started-portal.md)

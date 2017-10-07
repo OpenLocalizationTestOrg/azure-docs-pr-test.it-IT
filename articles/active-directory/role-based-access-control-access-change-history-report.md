@@ -1,6 +1,6 @@
 ---
-title: Creazione di report sull'accesso - Controllo degli accessi in base al ruolo di Azure | Documentazione Microsoft
-description: Generare un report che elenca tutte le modifiche nell'accesso alle sottoscrizioni di Azure con il controllo degli accessi in base al ruolo negli ultimi 90 giorni.
+title: creazione di report aaaAccess - RBAC Azure | Documenti Microsoft
+description: Generare un report che elenca tutte le modifiche nell'accesso tooyour le sottoscrizioni di Azure con Role-Based Access Control tramite hello ultimi 90 giorni.
 services: active-directory
 documentationcenter: 
 author: andredm7
@@ -15,35 +15,35 @@ ms.date: 07/17/2017
 ms.author: andredm
 ms.reviewer: rqureshi
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 4e8028ab43ed02ef0c0a1374326b07f72f97d9d9
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 9ad85d3d8e66ce167032638a35e4afffb46d3892
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-an-access-report-for-role-based-access-control"></a>Creare un report degli accessi per il controllo degli accessi in base al ruolo
-Ogni volta che un utente concede o revoca l'accesso all'interno delle sottoscrizioni, le modifiche vengono registrate negli eventi di Azure. È possibile creare report della cronologia delle modifiche relative all'accesso per visualizzare tutte le modifiche degli ultimi 90 giorni.
+Ogni volta che un utente concede o revoca l'accesso all'interno delle sottoscrizioni, le modifiche di hello vengono registrate gli eventi di Azure. È possibile creare accesso Modifica cronologia report toosee tutte le modifiche per hello ultimi 90 giorni.
 
 ## <a name="create-a-report-with-azure-powershell"></a>Creare un rapporto con Azure PowerShell
-Per creare un report della cronologia delle modifiche relative all'accesso in PowerShell, usare il comando [Get-AzureRMAuthorizationChangeLog](/powershell/module/azurerm.resources/get-azurermauthorizationchangelog).
+un accesso toocreate modificare report della cronologia in PowerShell, usare hello [Get AzureRMAuthorizationChangeLog](/powershell/module/azurerm.resources/get-azurermauthorizationchangelog) comando.
 
-Quando si chiama questo comando, è possibile specificare la proprietà delle assegnazioni da elencare, ad esempio:
+Quando si chiama questo comando, è possibile specificare le proprietà delle assegnazioni di hello desiderato, inclusi hello seguenti:
 
 | Proprietà | Descrizione |
 | --- | --- |
 | **Azione** |Indica se l'accesso è stato concesso o revocato. |
-| **Chiamante** |Proprietario responsabile della modifica all'accesso. |
-| **PrincipalId** | L'identificatore univoco dell'utente, del gruppo o dell'applicazione che è stato assegnato al ruolo |
-| **PrincipalName** |Nome dell'utente, del gruppo o dell'applicazione. |
-| **PrincipalType** |Indica se l'assegnazione era destinata a un utente, un gruppo o un'applicazione |
-| **RoleDefinitionId** |GUID del ruolo concesso o revocato. |
-| **RoleName** |Ruolo concesso o revocato. |
-| **Ambito** | L'identificatore univoco della sottoscrizione, del gruppo di risorse o della risorsa a cui si applica l'assegnazione | 
-| **ScopeName** |Nome della sottoscrizione, del gruppo di risorse o della risorsa. |
-| **ScopeType** |Indica se l'assegnazione era a livello di ambito della sottoscrizione, del gruppo di risorse e della risorsa. |
-| **Timestamp** |Data e ora in cui l'accesso è stato modificato. |
+| **Chiamante** |Modifica proprietario Hello responsabile per l'accesso hello |
+| **PrincipalId** | Identificatore univoco dell'applicazione che è stato assegnato il ruolo di hello, gruppo o utente hello Hello |
+| **PrincipalName** |nome Hello di hello utente, gruppo o applicazione |
+| **PrincipalType** |Se l'assegnazione hello è per un utente, gruppo o l'applicazione |
+| **RoleDefinitionId** |GUID del ruolo hello che è stato concesso o revocato Hello |
+| **RoleName** |ruolo Hello che è stato concesso o revocato |
+| **Ambito** | Identificatore univoco di Hello della sottoscrizione di hello, gruppo di risorse o una risorsa hello assegnazione applica troppo| 
+| **ScopeName** |nome di Hello della sottoscrizione hello, gruppo di risorse o risorsa |
+| **ScopeType** |Se l'assegnazione hello è nell'ambito di risorsa, gruppo di risorse o di sottoscrizione hello |
+| **Timestamp** |Hello data e ora di accesso è stato modificato. |
 
-Questo comando di esempio elenca tutte le modifiche relative all'accesso nella sottoscrizione per gli ultimi 7 giorni.
+Questo comando di esempio sono elencate tutte le modifiche di accesso nella sottoscrizione hello per hello ultimi sette giorni:
 
 ```
 Get-AzureRMAuthorizationChangeLog -StartTime ([DateTime]::Now - [TimeSpan]::FromDays(7)) | FT Caller,Action,RoleName,PrincipalType,PrincipalName,ScopeType,ScopeName
@@ -52,14 +52,14 @@ Get-AzureRMAuthorizationChangeLog -StartTime ([DateTime]::Now - [TimeSpan]::From
 ![PowerShell Get-AzureRMAuthorizationChangeLog - Schermata](./media/role-based-access-control-configure/access-change-history.png)
 
 ## <a name="create-a-report-with-azure-cli"></a>Creare un rapporto con l’interfaccia di riga di comando di Azure
-Per creare un report della cronologia delle modifiche relative all'accesso nell'interfaccia della riga di comando, usare il comando `azure role assignment changelog list` .
+toocreate un report di cronologia modifiche di access in hello Azure interfaccia della riga di comando (CLI), utilizzare hello `azure role assignment changelog list` comando.
 
-## <a name="export-to-a-spreadsheet"></a>Esportare in un foglio di calcolo
-Per salvare il report o modificare i dati, esportare le modifiche relative all'accesso in un file CSV. Sarà quindi possibile visualizzare il report in un foglio di calcolo per la revisione.
+## <a name="export-tooa-spreadsheet"></a>Esportare tooa foglio di calcolo
+toosave hello report o modificare i dati di hello, l'accesso hello esportazione le modifiche in un file con estensione csv. È quindi possibile visualizzare report hello in un foglio di calcolo per la revisione.
 
 ![Log delle modifiche visualizzato come foglio di calcolo - Schermata](./media/role-based-access-control-configure/change-history-spreadsheet.png)
 
 ## <a name="next-steps"></a>Passaggi successivi
 * Utilizzare i [ruoli personalizzati nel Controllo degli accessi in base al ruolo di Azure](role-based-access-control-custom-roles.md)
-* Informazioni sono disponibili in [Gestire il controllo degli accessi in base al ruolo con Azure PowerShell](role-based-access-control-manage-access-powershell.md)
+* Informazioni su come toomanage [RBAC Azure con powershell](role-based-access-control-manage-access-powershell.md)
 

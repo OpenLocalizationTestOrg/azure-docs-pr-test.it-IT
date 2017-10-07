@@ -1,5 +1,5 @@
 ---
-title: "Tipi di risorse supportati tramite Integrità risorse di Azure|Microsoft Docs"
+title: "Tipi di risorse tramite integrità delle risorse di Azure aaaSupported | Documenti Microsoft"
 description: "Tipi di risorse supportati tramite Integrità risorse di Azure"
 services: Resource health
 documentationcenter: 
@@ -14,102 +14,102 @@ ms.tgt_pltfrm: na
 ms.workload: Supportability
 ms.date: 03/19/2017
 ms.author: BernardoAMunoz
-ms.openlocfilehash: ed9c955096a5427e8184bb6c542ad85ff4c302be
-ms.sourcegitcommit: 422efcbac5b6b68295064bd545132fcc98349d01
+ms.openlocfilehash: fc7bef214702f8ba6954b5aca62236b38023d27a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="resource-types-and-health-checks-in-azure-resource-health"></a>Tipi di risorse e controlli di integrità in Integrità risorse di Azure
-Di seguito è riportato un elenco completo di tutti i controlli eseguiti tramite Integrità risorse suddivisi per tipi di risorse.
+Di seguito è riportato un elenco completo di tutti i controlli di hello eseguito tramite l'integrità delle risorse da tipi di risorse.
 
 ## <a name="microsoftcacheredisredis"></a>Microsoft.CacheRedis/Redis
 |Controlli eseguiti|
 |---|
-|<ul><li>Tutti i nodi della cache sono operativi?</li><li>La cache è raggiungibile dal data center?</li><li>La cache ha raggiunto il numero massimo di connessioni?</li><li> La cache ha esaurito la memoria disponibile? </li><li>La cache sta riscontrando un numero elevato di errori di pagina?</li><li>Il carico della cache è elevato?</li></ul>|
+|<ul><li>Backup di tutti i nodi della Cache di hello e in esecuzione?</li><li>Cache di hello raggiungibili dai Data Center hello?</li><li>Ha raggiunto il numero massimo di hello di connessioni della Cache di hello?</li><li> Cache di hello esaurito la memoria disponibile? </li><li>Cache di hello presenta un numero elevato di errori di pagina?</li><li>È hello Cache sovraccarico?</li></ul>|
 
 ## <a name="microsoftcdnprofile"></a>Microsoft.CDN/profile
 |Controlli eseguiti|
 |---|
-|<ul> <li>Uno degli endpoint è stato arrestato, rimosso o non configurato correttamente?</li><li>Il portale supplementare è accessibile per le operazioni di configurazione della rete CDN?</li><li>Si stanno verificando problemi di recapito con gli endpoint della rete CDN?</li><li>Gli utenti possono modificare la configurazione delle risorse della rete CDN?</li><li>Le modifiche di configurazione si propagano come previsto?</li><li>Gli utenti possono gestire la configurazione della rete CDN tramite il portale di Azure, PowerShell o l'API?</li> </ul>|
+|<ul> <li>Qualsiasi endpoint hello viene arrestato, rimosso o non configurati correttamente?</li><li>È accessibile per operazioni di configurazione della rete CDN portale supplementare hello?</li><li>Sono presenti problemi di recapito continuo con hello endpoint rete CDN?</li><li>Gli utenti modificabili configurazione hello delle risorse della rete CDN?</li><li>Le modifiche alla configurazione propagazione velocità hello previsto?</li><li>Possano utenti gestire la configurazione di rete CDN hello utilizzando hello portale di Azure, PowerShell o API hello?</li> </ul>|
 
 ## <a name="microsoftclassiccomputevirtualmachines"></a>Microsoft.classiccompute/virtualmachines
 |Controlli eseguiti|
 |---|
-|<ul><li>Il server host è operativo?</li><li>L'avvio del sistema operativo host è stato completato?</li><li>Sono stati eseguiti il provisioning e l'accensione del contenitore della macchina virtuale?</li><li>È disponibile la connettività di rete tra l'host e l'account di archiviazione?</li><li>L'avvio del sistema operativo guest è stato completato?</li><li>È in corso la manutenzione pianificata?</li></ul>|
+|<ul><li>Sia i server host hello attivo e in esecuzione?</li><li>L'avvio del sistema operativo host di hello completata?</li><li>Contenitore della macchina virtuale hello è eseguito il provisioning e acceso?</li><li>C'è connettività di rete tra host hello e account di archiviazione hello?</li><li>Hello l'avvio del sistema operativo guest hello completata?</li><li>È in corso la manutenzione pianificata?</li></ul>|
 
 ## <a name="microsoftcognitiveservicesaccounts"></a>Microsoft.cognitiveservices/accounts
 |Controlli eseguiti|
 |---|
-|<ul><li>L'account è raggiungibile dal data center?</li><li>È disponibile il provider di risorse Servizi cognitivi?</li><li>I Servizi cognitivi sono disponibili nell'area appropriata?</li><li>Le operazioni di lettura possono essere eseguite nell'account di archiviazione contenente i metadati delle risorse?</li><li>È stata raggiunta la quota di chiamate dell'API?</li><li>È stato raggiunto il limite di lettura delle chiamate dell'API?</li></ul>|
+|<ul><li>Account hello raggiungibili dai Data Center hello?</li><li>È hello cognitivi Provider di risorse servizi disponibili?</li><li>È hello cognitivi servizio disponibile nell'area appropriata hello?</li><li>Leggere può eseguire operazioni su account di archiviazione hello dei metadati di risorsa hello?</li><li>È stata raggiunta la quota di chiamata API hello?</li><li>È stato raggiunto limite-lettura delle chiamate API hello?</li></ul>|
 
 ## <a name="microsoftcomputevirtualmachines"></a>Microsoft.compute/virtualmachines
 |Controlli eseguiti|
 |---|
-|<ul><li>Il server che ospita la macchina virtuale è operativo?</li><li>L'avvio del sistema operativo host è stato completato?</li><li>Sono stati eseguiti il provisioning e l'accensione del contenitore della macchina virtuale?</li><li>È disponibile la connettività di rete tra l'host e l'account di archiviazione?</li><li>L'avvio del sistema operativo guest è stato completato?</li><li>È in corso la manutenzione pianificata?</li></ul>|
+|<ul><li>Server hello che ospita la macchina virtuale di e in esecuzione?</li><li>L'avvio del sistema operativo host di hello completata?</li><li>Contenitore della macchina virtuale hello è eseguito il provisioning e acceso?</li><li>C'è connettività di rete tra host hello e account di archiviazione hello?</li><li>Hello l'avvio del sistema operativo guest hello completata?</li><li>È in corso la manutenzione pianificata?</li></ul>|
 
 ## <a name="microsoftdatalakeanalyticsaccounts"></a>Microsoft.datalakeanalytics/accounts
 |Controlli eseguiti|
 |---|
-|<ul><li>Gli utenti possono inviare i processi a Data Lake Analytics nell'area?</li><li>I processi di base vengono eseguiti e completati nell'area?</li><li>Gli utenti possono elencare gli elementi del catalogo nell'area?</li>|
+|<ul><li>Possano agli utenti di inviare processi tooData Lake Analitica in hello area?</li><li>Tale area hello eseguito e completato correttamente in processi di base?</li><li>Gli utenti elencare gli elementi del catalogo nella regione hello?</li>|
 
 
 ## <a name="microsoftdatalakestoreaccounts"></a>Microsoft.datalakestore/accounts
 |Controlli eseguiti|
 |---|
-|<ul><li>Gli utenti possono caricare i dati in Data Lake Store nell'area?</li><li>Gli utenti possono scaricare i dati da Data Lake Store nell'area?</li></ul>|
+|<ul><li>Gli utenti possono caricare l'archivio data Lake di tooData nell'area di hello?</li><li>Gli utenti scaricare dati dall'archivio Data Lake nella regione hello?</li></ul>|
 
 ## <a name="microsoftdocumentdbdatabaseaccounts"></a>Microsoft.documentdb/databaseAccounts
 |Controlli eseguiti|
 |---|
-|<ul><li>Ci sono state richieste di database o raccolta non eseguite a causa della mancata disponibilità di un servizio DocumentDB?</li><li>Ci sono state richieste di documento non eseguite a causa della mancata disponibilità di un servizio DocumentDB?</li></ul>|
+|<ul><li>Sono state richieste database o una raccolta non servite a causa di indisponibilità del servizio DocumentDB tooa?</li><li>Sono state tutte le richieste di documenti non servite a causa di indisponibilità del servizio DocumentDB tooa?</li></ul>|
 
 ## <a name="microsoftnetworkconnections"></a>Microsoft.network/connections
 |Controlli eseguiti|
 |---|
-|<ul><li>Il tunnel VPN è connesso?</li><li>Sono presenti conflitti di configurazione nella connessione?</li><li>Le chiavi precondivise sono configurate correttamente?</li><li>Il dispositivo VPN locale è raggiungibile?</li><li>Esistono mancate corrispondenze nei criteri di sicurezza IPSec/IKE?</li><li>Il provisioning della connessione VPN S2S è stato eseguito correttamente oppure la connessione è in stato di errore?</li><li>Il provisioning della connessione da rete virtuale a rete virtuale è stato eseguito correttamente oppure la connessione è in stato di errore?</li></ul>|
+|<ul><li>È stato connesso tunnel VPN hello?</li><li>Sono presenti conflitti di configurazione in connessione hello?</li><li>Chiavi già condivise hello siano configurate correttamente?</li><li>È raggiungibile dispositivo locale di hello VPN?</li><li>Sono presenti le mancate corrispondenze in Criteri di sicurezza IPSec/IKE hello?</li><li>È di connessione VPN S2S hello correttamente provisioning o in uno stato di errore?</li><li>È la connessione di rete virtuale a hello correttamente provisioning o in uno stato di errore?</li></ul>|
 
 ## <a name="microsoftnetworkvirtualnetworkgateways"></a>Microsoft.network/virtualNetworkGateways
 |Controlli eseguiti|
 |---|
-|<ul><li>Il gateway VPN è raggiungibile da Internet?</li><li>Il gateway VPN è in modalità standby?</li><li>Il servizio VPN è in esecuzione nel gateway?</li></ul>|
+|<ul><li>È possibile raggiungerlo dal gateway VPN hello hello internet?</li><li>È hello Gateway VPN in modalità standby?</li><li>È in esecuzione hello servizio VPN gateway hello?</li></ul>|
 
 ## <a name="microsoftnotificationhubsnamespace"></a>Microsoft.NotificationHubs/namespace
 |Controlli eseguiti|
 |---|
-|<ul><li> Le operazioni di runtime come la registrazione, l'installazione o l'invio possono essere eseguite nello spazio dei nomi?</li></ul>|
+|<ul><li> Le operazioni di runtime come la registrazione, l'installazione o trasmissione possono essere eseguite nello spazio dei nomi hello?</li></ul>|
 
 ## <a name="microsoftpowerbiworkspacecollections"></a>Microsoft.PowerBI/workspaceCollections
 |Controlli eseguiti|
 |---|
-|<ul><li>Il sistema operativo host è operativo?</li><li>La raccolta di aree di lavoro è raggiungibile dall'esterno del data center?</li><li>Il provider di risorse PowerBI è disponibile?</li><li>Il servizio PowerBI è disponibile nell'area appropriata?</li></ul>|
+|<ul><li>Sistema operativo host hello sia attivo in esecuzione?</li><li>Sia raggiungibile da all'esterno di datacenter hello workspaceCollection hello?</li><li>È hello Provider di risorse di Power BI disponibili?</li><li>È hello PowerBI Service disponibile nell'area appropriata hello?</li></ul>|
 
 ## <a name="microsoftsearchsearchservices"></a>Microsoft.search/searchServices
 |Controlli eseguiti|
 |---|
-|<ul><li>Le operazioni di diagnostica possono essere eseguite nel cluster?</li></ul>|
+|<ul><li>Eseguire le operazioni di diagnostica del cluster hello?</li></ul>|
 
 ## <a name="microsoftsqlserverdatabase"></a>Microsoft.SQL/Server/database
 |Controlli eseguiti|
 |---|
-|<ul><li> Sono stati eseguiti accessi al database?</li></ul>|
+|<ul><li> Sono state database toohello gli account di accesso?</li></ul>|
 
 ## <a name="microsoftstreamanalyticsstreamingjobs"></a>Microsoft.StreamAnalytics/streamingjobs
 |Controlli eseguiti|
 |---|
-|<ul><li>Gli host in cui il processo è in esecuzione sono operativi?</li><li>Non è stato possibile avviare il processo?</li><li>Sono in corso aggiornamenti di runtime?</li><li>Il processo si trova in uno stato previsto, ad esempio in esecuzione o arrestato dal cliente?</li><li>Si sono verificate eccezioni di memoria insufficiente per il processo?</li><li>Sono in corso aggiornamenti di calcolo pianificati?</li><li>È disponibile Gestione esecuzioni (piano di controllo)?</li></ul>|
+|<ul><li>Sono tutti gli host hello in cui il processo di hello è l'esecuzione di backup e in esecuzione?</li><li>È stato Impossibile toostart di hello processo?</li><li>Sono in corso aggiornamenti di runtime?</li><li>È il processo di hello in uno stato previsto (ad esempio in esecuzione o arrestato dal cliente)?</li><li>Hello processo durante le eccezioni di memoria insufficiente?</li><li>Sono in corso aggiornamenti di calcolo pianificati?</li><li>È hello Gestione esecuzioni (piano di controllo) disponibili?</li></ul>|
 
 ## <a name="microsoftwebserverfarms"></a>Microsoft.web/serverFarms
 |Controlli eseguiti|
 |---|
-|<ul><li>Il server host è operativo?</li><li>Internet Information Services è in esecuzione?</li><li>Il bilanciamento del carico è in esecuzione?</li><li>Il piano di servizio Web è raggiungibile dal data center?</li><li>L'account di archiviazione che ospita il contenuto dei siti per ServerFarm è disponibile?</li></ul>|
+|<ul><li>Sia i server host hello attivo e in esecuzione?</li><li>Internet Information Services è in esecuzione?</li><li>Servizio di bilanciamento del carico hello è in esecuzione?</li><li>Hello il piano di servizio Web sia raggiungibile dal Data Center hello?</li><li>È disponibile hello storage account hosting hello contenuto dei siti per la server farm hello??</li></ul>|
 
 ## <a name="microsoftwebsites"></a>Microsoft.web/sites
 |Controlli eseguiti|
 |---|
-|<ul><li>Il server host è operativo?</li><li>Internet Information Server è in esecuzione?</li><li>Il bilanciamento del carico è in esecuzione?</li><li>L'app Web è raggiungibile dal data center?</li><li>L'account di archiviazione che ospita il contenuto del sito è disponibile?</li></ul>|
+|<ul><li>Sia i server host hello attivo e in esecuzione?</li><li>Internet Information Server è in esecuzione?</li><li>Servizio di bilanciamento del carico hello è in esecuzione?</li><li>Hello App Web sia raggiungibile dal Data Center hello?</li><li>Account di archiviazione hello ospita il contenuto del sito hello disponibile?</li></ul>|
 
 # <a name="next-steps"></a>Passaggi successivi
--  Vedere [Introduzione all'integrità dei servizi di Azure](service-health-overview.md) e [Introduzione a Integrità risorse di Azure](resource-health-overview.md) per informazioni più specifiche. 
+-  Vedere [tooAzure introduzione del servizio integrità](service-health-overview.md) e [tooAzure introduzione integrità delle risorse](resource-health-overview.md) toounderstand altre relative informazioni. 
 -  [Domande frequenti su Integrità risorse di Azure](resource-health-faq.md)
 - Impostare gli avvisi per ricevere notifiche sui problemi di integrità. Per altre informazioni, vedere [Configurare gli avvisi per Integrità dei servizi](../monitoring-and-diagnostics/monitoring-activity-log-alerts-on-service-notifications.md). 

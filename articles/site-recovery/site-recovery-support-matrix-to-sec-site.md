@@ -1,6 +1,6 @@
 ---
-title: Matrice di supporto per la replica in un sito secondario con Azure Site Recovery | Documentazione Microsoft
-description: Riepiloga i sistemi operativi e componenti supportati per Azure Site Recovery
+title: Matrice di aaaSupport per il sito secondario di replica tooa con Azure Site Recovery | Documenti Microsoft
+description: Vengono riepilogati i sistemi operativi supportato hello e componenti per Azure Site Recovery
 services: site-recovery
 documentationcenter: 
 author: rayne-wiselman
@@ -14,21 +14,21 @@ ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
 ms.date: 05/24/2017
 ms.author: raynew
-ms.openlocfilehash: db7ee5251f2e2016081e55ca4b295e284c8b08cf
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0b2bbc86aff52308d5a90a56d7a3ff4286877740
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="support-matrix-for-replication-to-a-secondary-site-with-azure-site-recovery"></a>Matrice di supporto per la replica in un sito secondario con Azure Site Recovery
+# <a name="support-matrix-for-replication-tooa-secondary-site-with-azure-site-recovery"></a>Matrice di supporto per il sito secondario di replica tooa con Azure Site Recovery
 
-Questo articolo contiene un riepilogo di elementi supportati quando si usa Azure Site Recovery per eseguire la replica in un sito locale secondario.
+Questo articolo riepiloga le quali è supportata quando si usa Azure Site Recovery tooreplicate tooa secondario nel sito locale.
 
 ## <a name="deployment-options"></a>Opzioni di distribuzione
 
 **Distribuzione** | **Server fisico/VMware** | **Hyper-V (con/senza SCVMM)**
 --- | --- | --- | ---
-**Portale di Azure** | Macchine virtuali VMware locali nel sito VMware secondario.<br/><br/> Scaricare il [manuale dell'utente per InMage Scout](http://download.microsoft.com/download/E/0/8/E08B3BCE-3631-4CED-8E65-E3E7D252D06D/InMage_Scout_Standard_User_Guide_8.0.1.pdf) (non disponibile nel portale di Azure). | VM Hyper-V locali in cloud VMM in un cloud VMM secondario.<br></br> Non supportato senza VMM  <br/><br/> Viene usata solo la replica Hyper-V standard. SAN non supportato.
+**Portale di Azure** | Le macchine virtuali VMware toosecondary VMware sito locale.<br/><br/> Scaricare hello [manuale dell'utente InMage Scout](http://download.microsoft.com/download/E/0/8/E08B3BCE-3631-4CED-8E65-E3E7D252D06D/InMage_Scout_Standard_User_Guide_8.0.1.pdf) (non disponibile nel portale di Azure hello). | Macchine virtuali Hyper-V nel cloud VMM secondario di VMM cloud tooa in locale.<br></br> Non supportato senza VMM  <br/><br/> Viene usata solo la replica Hyper-V standard. SAN non supportato.
 **Portale classico** | Solo modalità manutenzione. Non è possibile creare nuovi insiemi di credenziali. | Solo modalità di manutenzione.<br></br> Non supportato senza SCVMM
 **PowerShell** | Non supportate | Supportato<br></br> Non supportato senza SCVMM
 
@@ -49,20 +49,20 @@ Questo articolo contiene un riepilogo di elementi supportati quando si usa Azure
 **Distribuzione** | **Supporto**
 --- | ---
 **Server fisico/VM VMware** | vCenter 5.5 o 6.0 (supporto per le sole funzionalità 5.5) 
-**Hyper-V (senza VMM)** | Configurazione non supportata per la replica in un sito secondario
-**Hyper-V con VMM** | Windows Server 2016 e Windows Server 2012 R2 con gli aggiornamenti più recenti.<br/><br/> Gli host Windows Server 2016 dovranno essere gestiti da VMM 2016.
+**Hyper-V (senza VMM)** | Non è una configurazione supportata per la replica del sito secondario tooa
+**Hyper-V con VMM** | Windows Server 2016 e Windows Server 2012 R2 con aggiornamenti più recenti di hello.<br/><br/> Gli host Windows Server 2016 dovranno essere gestiti da VMM 2016.
 
 ## <a name="support-for-replicated-machine-os-versions"></a>Supporto per le versioni dei sistemi operativi dei computer replicati
-La tabella seguente offre un riepilogo dei sistemi operativi supportati nei vari scenari di distribuzione quando si usa Azure Site Recovery. Il supporto è applicabile per qualsiasi carico di lavoro in esecuzione nel sistema operativo indicato.
+Hello nella tabella seguente viene riepilogato il supporto del sistema operativo in vari scenari di distribuzione durante l'utilizzo di Azure Site Recovery. Questo supporto è applicabile per qualsiasi carico di lavoro in esecuzione su hello indicato del sistema operativo.
 
 **Server fisico/VMware** | **Hyper-V (con VMM)**
 --- | --- | ---
-Le VM Windows Server 2012 R2 a 64 bit, Windows Server 2012, Windows Server 2008 R2 con SP1 o successivo<br/><br/> Red Hat Enterprise Linux 6.7, 7.1, 7.2 <br/><br/> Centos 6.5, 6.6, 6.7, 7.0, 7.1, 7.2 <br/><br/> Oracle Enterprise Linux 6.4 o 6.5 che esegue il kernel compatibile Red Hat o Unbreakable Enterprise Kernel versione 3 (UEK3) <br/><br/> SUSE Linux Enterprise Server 11 SP3 | Qualsiasi sistema operativo guest [supportato da Hyper-V](https://technet.microsoft.com/library/mt126277.aspx)
+Le VM Windows Server 2012 R2 a 64 bit, Windows Server 2012, Windows Server 2008 R2 con SP1 o successivo<br/><br/> Red Hat Enterprise Linux 6.7, 7.1, 7.2 <br/><br/> Centos 6.5, 6.6, 6.7, 7.0, 7.1, 7.2 <br/><br/> Oracle Enterprise Linux versione 6.4 o 6.5 esegue kernel compatibile di hello Red Hat o non interrompibile Enterprise Kernel Release 3 (UEK3) <br/><br/> SUSE Linux Enterprise Server 11 SP3 | Qualsiasi sistema operativo guest [supportato da Hyper-V](https://technet.microsoft.com/library/mt126277.aspx)
 
 >[!Note]
->Solo per i computer Linux con le risorse di archiviazione seguenti: file system (EXT3, ETX4, ReiserFS e XFS); software per percorsi multipli - Device Mapper; Archiviazione volumi: LVM2.
+>Solo i computer Linux con hello dopo l'archiviazione possono essere replicati: File system (EXT3 ETX4, ReiserFS, XFS); Dispositivo di software multipath Mapper; Gestione di volume (LVM2).
 >I server fisici con archiviazione del controller HP CCISS non sono supportati.
->Il file system ReiserFS è supportato solo su SUSE Linux Enterprise Server 11 SP3.
+>Hello ReiserFS file system è supportato solo in SUSE Linux Enterprise Server 11 SP3.
 
 ## <a name="network-configuration"></a>Network configuration
 
@@ -103,7 +103,7 @@ Percorsi multipli (MPIO) | Sì | Sì
 **Configurazione** | **Server fisico/VMware** | **Hyper-V (con VMM)**
 --- | --- | ---
 VMDK | Sì | N/D
-VHD/VHDX | N/D | Sì (fino a 16 dischi)
+VHD/VHDX | N/D | Sì (backup di dischi too16)
 VM di seconda generazione | N/D | Sì
 Disco cluster condiviso | Sì  | No
 Disco crittografato | No | No
@@ -130,10 +130,10 @@ Spostare le risorse di archiviazione, la rete e le VM di Azure tra i gruppi di r
 **Nome** | **Descrizione** | **Versione più recente** | **Dettagli**
 --- | --- | --- | --- | ---
 **Provider di Azure Site Recovery** | Coordina le comunicazioni tra server locali e Azure <br/><br/> Installato su server VMM locali o server Hyper-V se non esiste alcun server VMM | 5.1.19 ([disponibile dal portale](http://aka.ms/downloaddra)) | [Funzionalità e correzioni più recenti](https://support.microsoft.com/kb/3155002)
-**Servizio Mobility** | Coordina la replica fra server VMware locali/server fisici e sito secondario<br/><br/> Installato in server fisici o in VM VMware da replicare  | N/D (disponibile dal portale) | N/D
+**Servizio Mobility** | Coordina la replica tra server VMware locali o di server fisici e di sito secondario di hello<br/><br/> Installato in VMware VM o di server fisici che si desidera tooreplicate  | N/D (disponibile dal portale) | N/D
 
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-- [Eseguire la replica di VM Hyper-V nel cloud VMM in un sito secondario](site-recovery-vmm-to-vmm.md)
-- [Replicare VM VMware e server fisici in un sito secondario](site-recovery-vmware-to-vmware.md)
+- [Replicare macchine virtuali Hyper-V nel sito secondario tooa di cloud VMM](site-recovery-vmm-to-vmm.md)
+- [Replicare le macchine virtuali VMware e il sito secondario di server fisici tooa](site-recovery-vmware-to-vmware.md)

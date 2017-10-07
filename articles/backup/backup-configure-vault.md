@@ -1,6 +1,6 @@
 ---
-title: Usare l'agente di Azure Backup per eseguire il backup di file e cartelle | Documentazione Microsoft
-description: Usare l'agente di Backup di Microsoft Azure per eseguire il backup di file e cartelle Windows in Azure. Creare un insieme di credenziali di Servizi di ripristino, installare l'agente di Backup, definire i criteri di backup ed eseguire il backup iniziale di file e cartelle.
+title: aaaUse Azure Backup agent tooback backup di file e cartelle | Documenti Microsoft
+description: Utilizzare hello Microsoft Azure Backup agent tooback backup tooAzure file e cartelle di Windows. Creare un insieme di credenziali di servizi di ripristino, installare l'agente di Backup hello, definire i criteri di backup hello ed eseguire backup iniziale hello in cartelle e file hello.
 services: backup
 documentationcenter: 
 author: markgalioto
@@ -15,173 +15,173 @@ ms.devlang: na
 ms.topic: article
 ms.date: 8/15/2017
 ms.author: markgal;trinadhk;
-ms.openlocfilehash: b95dc0a83d8e5618effb573353f419e1837d30c5
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: be203c24841971872b5c6e7cf260a2fa5c58ac47
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="back-up-a-windows-server-or-client-to-azure-using-the-resource-manager-deployment-model"></a>Eseguire il backup di un client o server Windows in Azure con Backup di Azure usando il modello di distribuzione Resource Manager
+# <a name="back-up-a-windows-server-or-client-tooazure-using-hello-resource-manager-deployment-model"></a>Eseguire il backup di un tooAzure di Windows Server o client utilizzando hello modello di distribuzione di gestione risorse
 > [!div class="op_single_selector"]
 > * [Portale di Azure](backup-configure-vault.md)
 > * [Portale classico](backup-configure-vault-classic.md)
 >
 >
 
-Questo articolo illustra come eseguire il backup di file e cartelle di Windows Server o di un client Windows in Azure con Backup di Azure tramite il modello di distribuzione di Resource Manager.
+Questo articolo spiega come tooAzure tooback backup del Server di Windows (o un client di Windows) di file e cartelle con Azure Backup tramite hello il modello di distribuzione di gestione risorse.
 
 [!INCLUDE [learn-about-deployment-models](../../includes/backup-deployment-models.md)]
 
 ![Passaggi del processo di backup](./media/backup-configure-vault/initial-backup-process.png)
 
 ## <a name="before-you-start"></a>Prima di iniziare
-Per eseguire il backup di un server o un client in Azure, è necessario un account Azure. Se non si ha un account, è possibile crearne uno [gratuito](https://azure.microsoft.com/free/) in pochi minuti.
+tooback backup di un server o client tooAzure, è necessario un account di Azure. Se non si ha un account, è possibile crearne uno [gratuito](https://azure.microsoft.com/free/) in pochi minuti.
 
 ## <a name="create-a-recovery-services-vault"></a>Creare un insieme di credenziali di Servizi di ripristino
-Un insieme di credenziali dei servizi di ripristino è un'entità che archivia tutti i backup e i punti di ripristino che sono stati creati nel corso del tempo. L'insieme di credenziali dei servizi di ripristino contiene anche i criteri di backup applicati ai file e alle cartelle protette. Quando si crea un insieme di credenziali dei servizi di ripristino, è necessario selezionare anche l'opzione di ridondanza di archiviazione appropriata.
+Un insieme di credenziali di servizi di ripristino è un'entità contenente tutti i backup di hello e i punti di ripristino creati nel corso del tempo. insieme di credenziali di servizi di ripristino Hello contiene inoltre hello applicato criteri di backup protetti toohello file e cartelle. Quando si crea un insieme di credenziali di servizi di ripristino, è necessario inoltre selezionare opzione di ridondanza di archiviazione appropriato hello.
 
-### <a name="to-create-a-recovery-services-vault"></a>Per creare un insieme di credenziali di Servizi di ripristino
-1. Se questa operazione non è già stata eseguita, accedere al [portale di Azure](https://portal.azure.com/) , tramite la sottoscrizione di Azure.
-2. Scegliere **Altri servizi** dal menu Hub e nell'elenco di risorse digitare **Servizi di ripristino**, quindi fare clic su **Insiemi di credenziali dei servizi di ripristino**.
+### <a name="toocreate-a-recovery-services-vault"></a>toocreate un insieme di credenziali di servizi di ripristino
+1. Se non già stato fatto, accedere toohello [portale Azure](https://portal.azure.com/) tramite la sottoscrizione di Azure.
+2. Nel menu Hub hello, fare clic su **più servizi** e nell'elenco di hello delle risorse, digitare **servizi di ripristino** e fare clic su **insiemi di credenziali di servizi di ripristino**.
 
     ![Creare un insieme di credenziali dei servizi di ripristino - Passaggio 1](./media/backup-try-azure-backup-in-10-mins/open-rs-vault-list.png) <br/>
 
-    Se presenti nella sottoscrizione, gli insiemi di credenziali dei servizi di ripristino vengono elencati.
+    Se sono presenti archivi di servizi di ripristino nella sottoscrizione hello, vengono elencati gli insiemi di credenziali di hello.
 
-3. Scegliere **Aggiungi** dal menu **Insiemi di credenziali dei servizi di ripristino**.
+3. In hello **insiemi di credenziali di servizi di ripristino** menu, fare clic su **Aggiungi**.
 
     ![Creare un insieme di credenziali dei servizi di ripristino - Passaggio 2](./media/backup-try-azure-backup-in-10-mins/rs-vault-menu.png)
 
-    Verrà visualizzato il pannello degli insiemi di credenziali dei servizi di ripristino, in cui viene richiesto di specificare **Nome**, **Sottoscrizione**, **Gruppo di risorse** e **Località**.
+    Servizi di ripristino Hello insieme di credenziali si apre Pannello chiesto tooprovide un **nome**, **sottoscrizione**, **gruppo di risorse**, e **percorso**.
 
     ![Creare un insieme di credenziali dei servizi di ripristino - Passaggio 3](./media/backup-try-azure-backup-in-10-mins/rs-vault-step-3.png)
 
-4. Nel campo **Nome**digitare un nome descrittivo per identificare l'insieme di credenziali. Il nome deve essere univoco per la sottoscrizione di Azure. Digitare un nome che contenga tra i 2 e i 50 caratteri. Deve iniziare con una lettera e può contenere solo lettere, numeri e trattini.
+4. Per **nome**, immettere un insieme di credenziali di nome descrittivo tooidentify hello. nome di Hello deve toobe univoco per la sottoscrizione di Azure hello. Digitare un nome che contenga tra i 2 e i 50 caratteri. Deve iniziare con una lettera e può contenere solo lettere, numeri e trattini.
 
-5. Nella sezione **Sottoscrizione** usare il menu a discesa per scegliere la sottoscrizione di Azure. Se si usa una sola sottoscrizione, questa verrà visualizzata e sarà possibile andare al passaggio successivo. Se non si è certi di quale sottoscrizione usare, usare la sottoscrizione predefinita (o suggerita). Sono disponibili più scelte solo se l'account dell'organizzazione è associato a più sottoscrizioni di Azure.
+5. In hello **sottoscrizione** sezione, utilizzare hello toochoose di menu a discesa hello sottoscrizione di Azure. Se si utilizza una sola sottoscrizione, che viene visualizzato di sottoscrizione ed è possibile ignorare toohello successivo passaggio. Se non sei sicuro che toouse di sottoscrizione, utilizzare predefinito hello (o suggerito) sottoscrizione. Sono disponibili più scelte solo se l'account dell'organizzazione è associato a più sottoscrizioni di Azure.
 
-6. Nella sezione **Gruppo di risorse**:
+6. In hello **gruppo di risorse** sezione:
 
-    * Selezionare **Crea nuovo** per creare un nuovo gruppo di risorse.
+    * Selezionare **Crea nuovo** se si desidera toocreate un nuovo gruppo di risorse.
     Or
-    * Selezionare **Usa esistente** e fare clic sul menu a discesa per visualizzare l'elenco di gruppi di risorse disponibili.
+    * Selezionare **utilizzare esistente** e fare clic su hello dal menu a discesa toosee hello disponibili elenco di gruppi di risorse.
 
-  Per informazioni complete sui gruppi di risorse, vedere [Panoramica di Azure Resource Manager](../azure-resource-manager/resource-group-overview.md).
+  Per informazioni complete su gruppi di risorse, vedere hello [Panoramica di gestione risorse di Azure](../azure-resource-manager/resource-group-overview.md).
 
-7. Fare clic su **Località** per selezionare l'area geografica per l'insieme di credenziali. La scelta determina l'area geografica in cui vengono inviati i dati di backup.
+7. Fare clic su **percorso** tooselect hello località geografica per l'insieme di credenziali hello. Questa opzione determina l'area geografica di hello in cui viene inviati ai dati di backup.
 
-8. Nella parte inferiore del pannello Insieme di credenziali dei servizi di ripristino fare clic su **Crea**.
+8. Nella parte inferiore di hello del pannello dell'insieme di credenziali di servizi di ripristino hello, fare clic su **crea**.
 
-  La creazione dell'insieme di credenziali dei servizi di ripristino può richiedere alcuni minuti. Monitorare le notifiche di stato nell'area superiore destra del portale. L'insieme di credenziali, dopo essere stato creato, viene visualizzato negli insiemi di credenziali di Servizi di ripristino. Se l'insieme di credenziali non viene visualizzato dopo qualche minuto, fare clic su **Aggiorna**.
+  Può richiedere alcuni minuti per hello che toobe creato insieme di credenziali di servizi di ripristino. Monitorare le notifiche di stato hello in area destra superiore hello del portale hello. Una volta creato l'insieme di credenziali, viene visualizzato nell'elenco hello degli insiemi di credenziali di servizi di ripristino. Se l'insieme di credenziali non viene visualizzato dopo qualche minuto, fare clic su **Aggiorna**.
 
   ![Fare clic sul pulsante Aggiorna](./media/backup-try-azure-backup-in-10-mins/refresh-button.png)</br>
 
-  Dopo la visualizzazione dell'insieme di credenziali nell'elenco corrispondente per i Servizi di ripristino, è possibile configurare la ridondanza di archiviazione.
+  Dopo aver visualizzato l'insieme di credenziali nell'elenco di hello degli insiemi di credenziali di servizi di ripristino, si è pronti tooset ridondanza dell'archiviazione hello.
 
 
 ### <a name="set-storage-redundancy"></a>Impostare la ridondanza di archiviazione
 Quando si crea per la prima volta un insieme di credenziali di Servizi di ripristino, si determina come replicare lo spazio di archiviazione.
 
-1. Nel pannello **Insieme di credenziali dei servizi di ripristino** fare clic sul nuovo insieme di credenziali.
+1. Da hello **insiemi di credenziali di servizi di ripristino** pannello, fare clic su nuovo insieme di credenziali hello.
 
-    ![Selezionare il nuovo insieme di credenziali dall'elenco corrispondente per Servizi di ripristino](./media/backup-try-azure-backup-in-10-mins/rs-vault-list.png)
+    ![Selezionare nuovo insieme di credenziali hello hello elenco dell'insieme di credenziali di servizi di ripristino](./media/backup-try-azure-backup-in-10-mins/rs-vault-list.png)
 
-    Quando si seleziona l'insieme di credenziali, il pannello **Insieme di credenziali dei servizi di ripristino** si restringe e vengono aperti il pannello Impostazioni,*con il nome dell'insieme di credenziali nella parte superiore*, e il pannello dei dettagli dell'insieme di credenziali.
+    Quando si seleziona l'insieme di credenziali hello, hello **insieme di credenziali di servizi di ripristino** consente di restringere blade e pannello impostazioni hello (*che ha il nome di hello dell'insieme di credenziali hello nella parte superiore di hello*) e pannello Dettagli insieme di credenziali hello aperto.
 
-    ![Visualizzare la configurazione dell'archiviazione per il nuovo insieme di credenziali](./media/backup-try-azure-backup-in-10-mins/set-storage-configuration-2.png)
+    ![Configurazione dell'archiviazione hello vista per nuovo insieme di credenziali](./media/backup-try-azure-backup-in-10-mins/set-storage-configuration-2.png)
 
-2. Nel pannello Impostazioni del nuovo insieme di credenziali usare il dispositivo di scorrimento verticale per passare alla sezione Gestisci e fare clic su **Infrastruttura di backup**.
+2. Nel pannello impostazioni di hello nuovo insieme di credenziali, utilizzare hello tooscroll di scorrimento verticale verso il basso toohello sezione gestione e fare clic su **infrastruttura Backup**.
 
-  Verrà visualizzato il pannello Infrastruttura di backup.
+  verrà visualizzata la finestra di blade Backup infrastruttura Hello.
 
-3. Nel pannello Infrastruttura di backup fare clic su **Configurazione backup** per aprire il pannello **Configurazione backup**.
+3. Nel Pannello di hello infrastruttura di Backup, fare clic su **la configurazione del Backup** tooopen hello **la configurazione del Backup** blade.
 
-  ![Impostare la configurazione dell'archiviazione per il nuovo insieme di credenziali](./media/backup-try-azure-backup-in-10-mins/set-storage-configuration.png)
+  ![Set di configurazione dell'archiviazione hello per nuovo insieme di credenziali](./media/backup-try-azure-backup-in-10-mins/set-storage-configuration.png)
 
-4. Scegliere l'opzione di replica di archiviazione appropriata per l'insieme di credenziali.
+4. Scegliere l'opzione di replica di archiviazione appropriato hello per l'insieme di credenziali.
 
   ![opzioni di configurazione dell'archiviazione](./media/backup-try-azure-backup-in-10-mins/choose-storage-configuration.png)
 
-  Per impostazione predefinita, l'insieme di credenziali prevede l'archiviazione con ridondanza geografica. Se si usa Azure come endpoint di archiviazione di backup primario, continuare a usare l'opzione **Con ridondanza geografica**. Se non si usa Azure come endpoint di archiviazione di backup primario, scegliere l'opzione **Con ridondanza locale**, che riduce i costi di archiviazione di Azure. Per altre informazioni sulle opzioni di archiviazione [con ridondanza geografica](../storage/common/storage-redundancy.md#geo-redundant-storage) e [con ridondanza locale](../storage/common/storage-redundancy.md#locally-redundant-storage), vedere [Panoramica della ridondanza di archiviazione](../storage/common/storage-redundancy.md).
+  Per impostazione predefinita, l'insieme di credenziali prevede l'archiviazione con ridondanza geografica. Se si usa Azure come un endpoint di archiviazione di backup primario, continuare toouse **con ridondanza geografica**. Se non si utilizza Azure come un endpoint di archiviazione di backup primario, quindi scegliere **ridondanza locale**, che consente di ridurre i costi di archiviazione di Azure hello. Per altre informazioni sulle opzioni di archiviazione [con ridondanza geografica](../storage/common/storage-redundancy.md#geo-redundant-storage) e [con ridondanza locale](../storage/common/storage-redundancy.md#locally-redundant-storage), vedere [Panoramica della ridondanza di archiviazione](../storage/common/storage-redundancy.md).
 
-Dopo avere creato un insieme di credenziali, preparare l'infrastruttura per il backup di file e cartelle scaricando e installando l'agente di Servizi di ripristino di Microsoft Azure, scaricando le credenziali dell'insieme di credenziali e usandole per registrare l'agente con l'insieme di credenziali.
+Dopo aver creato un insieme di credenziali, preparare l'infrastruttura tooback backup di file e cartelle dal download e installazione agente servizi di ripristino di Microsoft Azure hello, scaricare l'insieme di credenziali e quindi utilizzare tali credenziali tooregister hello agente insieme di credenziali Hello.
 
-## <a name="configure-the-vault"></a>Configurare l'insieme di credenziali
+## <a name="configure-hello-vault"></a>Configurare l'insieme di credenziali hello
 
-1. Nel pannello dell'insieme di credenziali dei servizi di ripristino appena creato, nella sezione Attività iniziali fare clic su **Backup** e nel pannello **Introduzione al backup** selezionare **Obiettivo del backup**.
+1. In hello pannello dell'insieme di credenziali di servizi di ripristino (per hello insieme di credenziali appena creato), nella sezione Guida introduttiva hello, fare clic su **Backup**, quindi su hello **Introduzione a Backup** pannello seleziona  **Obiettivo di backup**.
 
   ![Aprire il Pannello Obiettivo di backup](./media/backup-try-azure-backup-in-10-mins/open-backup-settings.png)
 
-  Verrà visualizzato il pannello **Obiettivo del backup**. Se l'insieme di credenziali di Servizi di ripristino è stato configurato in precedenza, viene visualizzato il pannello **Obiettivo del backup** quando si fa clic su **Backup** nel pannello dell'insieme di credenziali di Servizi di ripristino.
+  Hello **Backup obiettivo** apre blade. Se hello insieme di credenziali di servizi di ripristino è stata configurata in precedenza, hello **Backup obiettivo** pannelli viene visualizzata quando si fa clic su **Backup** in servizi di ripristino hello credenziali blade.
 
   ![Aprire il Pannello Obiettivo di backup](./media/backup-try-azure-backup-in-10-mins/backup-goal-blade.png)
 
-2. Scegliere **Locale** dal menu a discesa **Posizione di esecuzione del carico di lavoro**.
+2. Da hello **in cui viene eseguito il carico di lavoro?** menu a discesa, seleziona **locale**.
 
   Si sceglie **Locale** perché il server di Windows o il computer Windows è un computer fisico che non si trova in Azure.
 
-3. Scegliere **File e cartelle** dal menu **Elementi di cui eseguire il backup**, quindi fare clic su **OK**.
+3. Da hello **cosa si desidera toobackup?** dal menu **file e cartelle**, fare clic su **OK**.
 
   ![Configurazione di file e cartelle](./media/backup-try-azure-backup-in-10-mins/set-file-folder.png)
 
-  Dopo aver fatto clic su OK verrà visualizzato un segno di spunta accanto a **Obiettivo del backup** e si aprirà il pannello **Preparare l'infrastruttura**.
+  Fare clic su OK, un segno di spunta accanto troppo**obiettivo Backup**, hello e **Prepare infrastruttura** apre blade.
 
   ![Preparare l'infrastruttura dopo aver configurato l'obiettivo del backup](./media/backup-try-azure-backup-in-10-mins/backup-goal-configed.png)
 
-4. Nel pannello **Preparare l'infrastruttura** fare clic su **Scaricare l'agente per Windows Server o Windows Client**.
+4. In hello **Prepare infrastruttura** pannello, fare clic su **Scarica agente per Windows Server o Client Windows**.
 
   ![Preparare l'infrastruttura](./media/backup-try-azure-backup-in-10-mins/choose-agent-for-server-client.png)
 
-  Se si usa Windows Server Essentials, scegliere di scaricare l'agente per Windows Server Essentials. Un menu a comparsa chiederà di eseguire o salvare MARSAgentInstaller.exe.
+  Se si utilizza Windows Server essenziali, quindi scegliere agente hello toodownload per Windows Server essenziali. Un menu a comparsa chiede toorun o salvare MARSAgentInstaller.exe.
 
   ![Finestra di dialogo di MARSAgentInstaller](./media/backup-try-azure-backup-in-10-mins/mars-installer-run-save.png)
 
-5. Fare clic su **Salva** nel menu a comparsa del download.
+5. Nel menu a comparsa download hello, fare clic su **salvare**.
 
-  Per impostazione predefinita, il file **MARSagentinstaller.exe** viene salvato nella cartella Downloads. Al termine del programma di installazione verrà visualizzato un messaggio popup che chiede se eseguire il programma di installazione o aprire la cartella.
+  Per impostazione predefinita, hello **MARSagentinstaller.exe** tooyour cartella di download viene salvato. Al termine dell'installazione guidata di hello, verrà visualizzato un messaggio popup che chiede se si desidera che il programma di installazione di toorun hello o aprire la cartella hello.
 
   ![Preparare l'infrastruttura](./media/backup-try-azure-backup-in-10-mins/mars-installer-complete.png)
 
-  Non è ancora necessario installare l'agente. È possibile installare l'agente al termine del download delle credenziali dell'insieme di credenziali.
+  È necessario ancora agente hello tooinstall. È possibile installare l'agente di hello dopo avere scaricato l'insieme di credenziali hello.
 
-6. Fare clic su **Scarica** nel pannello **Preparare l'infrastruttura**.
+6. In hello **Prepare infrastruttura** pannello, fare clic su **scaricare**.
 
   ![Scaricare le credenziali dell'insieme di credenziali](./media/backup-try-azure-backup-in-10-mins/download-vault-credentials.png)
 
-  Le credenziali dell'insieme di credenziali verranno scaricate nella cartella Download locale. Al termine del download delle credenziali dell'insieme di credenziali verrà visualizzato un messaggio popup che chiede se aprire o salvare le credenziali. Fare clic su **Save**. Se si fa clic accidentalmente su **Apri**, attendere che il tentativo di apertura delle credenziali termini con un errore. Non è possibile aprire le credenziali dell'insieme di credenziali. Procedere con il passaggio successivo. Le credenziali dell'insieme di credenziali si trovano nella cartella Downloads.   
+  insieme di credenziali Hello scaricare tooyour cartella di download. Dopo l'insieme di credenziali hello completare il download, vengono visualizzati una finestra popup che chiede se si desidera tooopen o salvare le credenziali di hello. Fare clic su **Salva**. Se si sceglie accidentalmente **aprire**, consentono di finestra di dialogo hello tenta tooopen hello insieme di credenziali, l'esito negativo. È possibile aprire l'insieme di credenziali hello. Passaggio successivo toohello di procedere. insieme di credenziali Hello sono nella cartella di download di hello.   
 
   ![Il download delle credenziali dell'insieme di credenziali è terminato](./media/backup-try-azure-backup-in-10-mins/vault-credentials-downloaded.png)
 
-## <a name="install-and-register-the-agent"></a>Installare e registrare l'agente
+## <a name="install-and-register-hello-agent"></a>Installare e registrare agente hello
 
 > [!NOTE]
-> L'abilitazione del backup tramite il portale di Azure non è ancora disponibile. Usare l'agente di Servizi di ripristino di Microsoft Azure per eseguire il backup di file e cartelle.
+> Non è ancora disponibile, l'abilitazione backup tramite il portale di Azure hello. Utilizzare hello tooback di agente servizi di ripristino di Microsoft Azure backup di file e cartelle.
 >
 
-1. Cercare e fare doppio clic sul file **MARSagentinstaller.exe** nella cartella Downloads o nella cartella in cui è stato salvato.
+1. Individuare e fare doppio clic su hello **MARSagentinstaller.exe** dalla cartella download di hello (o altro percorso di salvataggio).
 
-  Il programma di installazione visualizzerà una serie di messaggi durante l'estrazione, l'installazione e la registrazione dell'agente di Servizi di ripristino.
+  programma di installazione Hello fornisce una serie di messaggi durante l'estrazione, installa e registra l'agente di servizi di ripristino hello.
 
   ![Eseguire il programma di installazione dell'agente di Servizi di ripristino](./media/backup-try-azure-backup-in-10-mins/mars-installer-registration.png)
 
-2. Completare l'Installazione guidata di Agente servizi di ripristino di Microsoft Azure. Per completare la procedura guidata, è necessario:
+2. Completare l'installazione guidata di Microsoft Azure Recovery Services Agent hello. procedura guidata hello toocomplete, è necessario:
 
-  * Scegliere un percorso per la cartella di installazione e della cache.
-  * Fornire le informazioni sul server proxy se si usa un server proxy per connettersi a Internet.
+  * Scegliere il percorso della cartella di installazione e la cache di hello.
+  * Fornire il proprio proxy informazioni sul server se si utilizza un toohello tooconnect di server proxy internet.
   * Se si usa un proxy autenticato, immettere il nome utente e la password.
-  * Fornire le credenziali dell'insieme di credenziali scaricate.
-  * Salvare la passphrase di crittografia in un luogo sicuro.
+  * Fornire le credenziali dell'insieme di credenziali scaricato hello
+  * Salvare la passphrase di crittografia hello in un luogo sicuro.
 
   > [!NOTE]
-  > Se la passphrase viene persa o dimenticata, Microsoft non potrà offrire assistenza per il recupero dei dati di backup. Salvare il file in una posizione sicura. È necessario per ripristinare un backup.
+  > Se si perde o dimentica passphrase hello, Microsoft non consente di ripristinare i dati di backup hello. Salvare il file hello in un luogo sicuro. È necessario toorestore una copia di backup.
   >
   >
 
-L'agente ora è installato e il computer è registrato nell'insieme di credenziali. Ora è possibile configurare e pianificare il backup.
+agente Hello è ora installato e il computer è registrato toohello insieme di credenziali. È possibile tooconfigure e pianificare il backup.
 
 ## <a name="network-and-connectivity-requirements"></a>Requisiti di rete e connettività
 
-Se il computer/proxy ha un accesso a Internet limitato, verificare che le impostazioni del firewall sul computer/proxy siano configurate per consentire gli URL seguenti: <br>
+Se il computer/proxy ha limitato l'accesso a internet, assicurarsi che le impostazioni del firewall nel computer di hello/proxy siano configurati tooallow hello URL seguenti: <br>
     1. www.msftncsi.com
     2. *.Microsoft.com
     3. windowsazure.com
@@ -189,81 +189,81 @@ Se il computer/proxy ha un accesso a Internet limitato, verificare che le impost
     5. *. windows.ne
 
 
-## <a name="create-the-backup-policy"></a>Creare i criteri di backup
-I criteri di backup costituiscono la pianificazione per l'acquisizione degli snapshot di backup e la durata di conservazione di questi snapshot. Usare l'agente di Backup di Microsoft Azure per creare il criterio di backup di file e cartelle.
+## <a name="create-hello-backup-policy"></a>Creare criteri di backup hello
+criterio di backup Hello è pianificazione hello quando i punti di ripristino vengono eseguiti e hello periodo di tempo sono mantenuti i punti di ripristino hello. Usare hello Microsoft Azure Backup agent toocreate hello criterio di backup di file e cartelle.
 
-### <a name="to-create-a-backup-schedule"></a>Per creare una pianificazione di backup
-1. Aprire l'agente Backup di Microsoft Azure. È possibile trovarlo se si cerca **Backup di Microsoft Azure**nel computer.
+### <a name="toocreate-a-backup-schedule"></a>toocreate una pianificazione di backup
+1. Aprire l'agente di Backup di Microsoft Azure hello. È possibile trovarlo se si cerca **Backup di Microsoft Azure**nel computer.
 
-    ![Avviare Azure Backup Agent](./media/backup-configure-vault/snap-in-search.png)
-2. Nel riquadro **Azioni** dell'agente di Backup fare clic su **Pianifica backup** per avviare la Pianificazione guidata backup.
+    ![Avviare l'agente Azure Backup hello](./media/backup-configure-vault/snap-in-search.png)
+2. Nell'agente hello Backup **azioni** riquadro, fare clic su **pianifica Backup** toolaunch hello pianificazione guidata Backup.
 
     ![Pianificare un backup di Windows Server](./media/backup-configure-vault/schedule-first-backup.png)
 
-3. Nella pagina **Attività iniziali** della Pianificazione guidata backup fare clic su **Avanti**.
-4. Nella pagina **Seleziona elementi per backup** fare clic su **Aggiungi elementi**.
+3. In hello **Introduzione** di hello pianificazione guidata Backup fare clic su **Avanti**.
+4. In hello **selezionare elementi tooBackup** pagina, fare clic su **Aggiungi elementi**.
 
-  Verrà visualizzata la finestra di dialogo Seleziona elementi.
+  verrà visualizzata la finestra di dialogo Seleziona elementi Hello.
 
-5. Selezionare i file e le cartelle da proteggere e fare clic su **OK**.
-6. Nella pagina **Seleziona elementi per backup** fare clic su **Avanti**.
-7. Nella pagina **Specificare la pianificazione del backup** specificare la pianificazione del backup e fare clic su **Avanti**.
+5. Selezionare il file hello e le cartelle che desidera tooprotect e quindi fare clic su **OK**.
+6. In hello **selezionare elementi tooBackup** pagina, fare clic su **Avanti**.
+7. In hello **specificare pianificazione Backup** specificare pianificazione backup hello e fare clic su **Avanti**.
 
     È possibile pianificare backup giornalieri, da eseguire non più di tre volte al giorno, o settimanali.
 
     ![Elementi per il backup di Windows Server](./media/backup-configure-vault/specify-backup-schedule-close.png)
 
    > [!NOTE]
-   > Per altre informazioni su come specificare la pianificazione del backup vedere l'articolo [Usare Backup di Azure per sostituire l'infrastruttura basata su nastro](backup-azure-backup-cloud-as-tape.md).
+   > Per ulteriori informazioni su come toospecify hello pianificazione del backup, vedere l'articolo hello [tooreplace utilizzare Azure Backup infrastruttura nastro](backup-azure-backup-cloud-as-tape.md).
    >
    >
 
-8. Nella pagina **Seleziona i criteri di conservazione** selezionare i criteri di conservazione specifici per la copia di backup e fare clic su **Avanti**.
+8. In hello **selezionare criteri di conservazione** pagina, scegliere hello di criteri di memorizzazione specifico hello hello copia di backup e fare clic su **Avanti**.
 
-    I criteri di conservazione specificano il periodo di tempo per cui il backup verrà archiviato. Anziché specificare solo un "criterio semplice" per tutti i punti di backup, è possibile specificare criteri di conservazione diversi in base al momento in cui viene eseguito il backup. È possibile modificare i criteri di conservazione giornalieri, settimanali, mensili e annuali in base alle proprie esigenze.
-9. Nella pagina Scegliere il tipo di backup iniziale selezionare il tipo di backup iniziale. Lasciare selezionata l'opzione **Automaticamente tramite la rete** e fare clic su **Avanti**.
+    criteri di conservazione Hello specificano durata hello viene archiviato il backup di hello. Anziché specificare solo un criterio"semplice" per tutti i punti di backup, è possibile specificare i criteri di conservazione diversi in base a quando viene eseguito il backup di hello. È possibile modificare toomeet criteri di conservazione giornaliero, settimanale, mensile e annuale hello le proprie esigenze.
+9. Nella pagina tipo di Backup iniziale scegliere hello, scegliere il tipo di backup iniziale di hello. Lasciare l'opzione hello **automaticamente tramite rete hello** selezionata e quindi fare clic su **Avanti**.
 
-    È possibile eseguire il backup automaticamente in rete oppure offline. Il resto di questo articolo descrive il processo di backup automatico. Se si preferisce eseguire un backup offline, vedere l'articolo [Flusso di lavoro di backup offline in Backup di Azure](backup-azure-backup-import-export.md) per altre informazioni.
-10. Nella pagina Conferma esaminare le informazioni e fare clic su **Fine**.
-11. Dopo aver creato la pianificazione del backup tramite la procedura guidata, fare clic su **Chiudi**.
+    È possibile eseguire il backup automaticamente tramite rete hello oppure è possibile eseguire il backup non in linea. resto Hello di questo articolo descrive il processo di hello per il backup automaticamente. Se si preferisce toodo un backup offline, vedere l'articolo di hello [Offline backup flusso di lavoro in Backup di Azure](backup-azure-backup-import-export.md) per ulteriori informazioni.
+10. Nella pagina di conferma hello, esaminare le informazioni di hello e quindi fare clic su **fine**.
+11. Al termine la procedura guidata hello creazione pianificazione backup hello, fare clic su **Chiudi**.
 
 ### <a name="enable-network-throttling"></a>Abilitare la limitazione della larghezza di banda
-L'agente di Microsoft Backup di Azure consente di limitare la larghezza di banda della rete. La limitazione controlla l'uso della larghezza di banda della rete durante il trasferimento dati. Questo controllo può essere utile se è necessario eseguire il backup dei dati durante l'orario di lavoro, ma senza che il processo di backup interferisca con il resto del traffico Internet. La limitazione si applica alle attività di backup e ripristino.
+agente di Backup di Microsoft Azure Hello fornisce la limitazione delle richieste di rete. La limitazione controlla l'uso della larghezza di banda della rete durante il trasferimento dati. Questo controllo può essere utile se è necessario tooback dei dati durante le ore lavorative, ma non si desidera hello toointerfere di processo di backup con il traffico Internet. La limitazione si applica tooback backup e ripristino.
 
 > [!NOTE]
-> La limitazione di rete non è disponibile su Windows Server 2008 R2 SP1, Windows Server 2008 SP2 o Windows 7 (con i pacchetti di servizio). La funzione di limitazione della rete di Backup di Azure attiva il QoS ( Quality of Service) sul sistema operativo locale. Anche se il Backup di Azure è in grado di proteggere questi sistemi operativi, la versione del QoS disponibile su queste piattaforme non funziona con la limitazione di rete di Backup di Azure. La limitazione di rete può essere utilizzata in tutti gli altri [sistemi operativi supportati](backup-azure-backup-faq.md).
+> La limitazione di rete non è disponibile su Windows Server 2008 R2 SP1, Windows Server 2008 SP2 o Windows 7 (con i pacchetti di servizio). rete di Backup di Azure Hello limitazione funzionalità coinvolge Quality of Service (QoS) nel sistema operativo locale hello. Se il Backup di Azure per poter proteggere questi sistemi operativi, versione di hello QoS disponibile in queste piattaforme non funziona con la limitazione della rete di Backup di Azure. La limitazione di rete può essere utilizzata in tutti gli altri [sistemi operativi supportati](backup-azure-backup-faq.md).
 >
 >
 
-**Per abilitare la limitazione larghezza di banda**
+**la limitazione delle richieste di rete tooenable**
 
-1. Nell'agente di Backup di Microsoft Azure fare clic su **Modifica proprietà**.
+1. Nell'agente di Backup di Microsoft Azure hello, fare clic su **Modifica proprietà**.
 
     ![Modifica proprietà](./media/backup-configure-vault/change-properties.png)
-2. Nella scheda **Limitazione larghezza di banda rete** selezionare la casella di controllo **Abilita la limitazione all'utilizzo della larghezza di banda Internet per le operazioni di backup**.
+2. In hello **limitazione** scheda, seleziona hello **abilitare la limitazione per le operazioni di backup all'utilizzo della larghezza di banda di internet** casella di controllo.
 
     ![Limitazione della larghezza di banda della rete](./media/backup-configure-vault/throttling-dialog.png)
-3. Dopo aver abilitato la limitazione, specificare la larghezza di banda consentita per trasferire i dati di backup durante le **ore lavorative** e le **ore non lavorative**.
+3. Dopo avere abilitato la limitazione delle richieste, specificare hello consentito della larghezza di banda per trasferire i dati di backup durante **ore lavorative** e **ore Non lavorative**.
 
-    I valori della larghezza di banda partono da 512 kilobit al secondo (Kbps) e possono arrivare fino a 1.023 megabyte al secondo (Mbps). È anche possibile definire l'inizio e la fine delle **ore lavorative**e i giorni della settimana da considerare come giorni lavorativi. Gli orari al di fuori delle ore lavorative definite vengono considerati ore non lavorative.
+    i valori di larghezza di banda Hello iniziano 512 kilobit al secondo (Kbps) e possono aumentare fino a too1, 023 megabyte al secondo (MBps). È anche possibile designare inizio hello e di fine per **ore lavorative**, e i giorni della settimana hello sono considerate giorni. Gli orari al di fuori delle ore lavorative definite vengono considerati ore non lavorative.
 4. Fare clic su **OK**.
 
-### <a name="to-back-up-files-and-folders-for-the-first-time"></a>Per eseguire il backup di file e cartelle per la prima volta
-1. Nell'agente di Backup fare clic su **Esegui backup** per completare il seeding iniziale sulla rete.
+### <a name="tooback-up-files-and-folders-for-hello-first-time"></a>tooback backup di file e cartelle per la prima volta hello
+1. Nell'agente di backup hello, fare clic su **Effettua backup** hello toocomplete iniziale tramite rete hello il seeding.
 
     ![Eseguire ora il backup di Windows Server](./media/backup-configure-vault/backup-now.png)
-2. Nella pagina Conferma riesaminare le impostazioni che l'Esecuzione guidata backup userà per il backup del computer. Fare clic su **Backup**.
-3. Fare clic su **Chiudi** per chiudere la procedura guidata. Se quest'operazione viene svolta prima che venga completato il processo di backup, l'esecuzione guidata proseguirà in background.
+2. Nella pagina di conferma hello, rivedere le impostazioni di hello che hello backup guidato immediato utilizzerà tooback macchina hello. Fare clic su **Backup**.
+3. Fare clic su **Chiudi** guidata hello tooclose. Se si esegue questa operazione prima al termine del processo di backup hello, toorun guidata hello continua in background hello.
 
-Al termine del backup iniziale, nella console Backup comparirà lo stato **Processo completato** .
+Al termine dell'operazione backup iniziale hello, hello **processo completato** stato viene visualizzato nella console Backup hello.
 
 ![Completamento infrarossi](./media/backup-configure-vault/ircomplete.png)
 
 ## <a name="questions"></a>Domande?
-In caso di domande o se si vuole che venga inclusa una funzionalità, è possibile [inviare commenti e suggerimenti](http://aka.ms/azurebackup_feedback).
+Se si hanno domande o se è presente una funzionalità che si desidera toosee incluso, [inviare commenti e suggerimenti](http://aka.ms/azurebackup_feedback).
 
 ## <a name="next-steps"></a>Passaggi successivi
 Per altre informazioni sul backup di macchine virtuali o altri carichi di lavoro, vedere:
 
 * Ora che si è eseguito il backup dei file e delle cartelle, è possibile [gestire l'insieme di credenziali e i server](backup-azure-manage-windows-server.md).
-* Se è necessario ripristinare un backup, usare questo articolo per [ripristinare i file in un computer Windows](backup-azure-restore-windows-server.md).
+* Se è necessario toorestore una copia di backup, utilizzare anche in questo articolo[ripristinare i file tooa Windows macchina](backup-azure-restore-windows-server.md).

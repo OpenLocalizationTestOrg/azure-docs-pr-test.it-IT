@@ -1,6 +1,6 @@
 ---
 title: Flusso del codice di autorizzazione - Azure AD B2C | Microsoft Docs
-description: Informazioni su come compilare app Web tramite Azure AD B2C e il protocollo di autenticazione OpenID Connect.
+description: Informazioni su come toobuild App web utilizzando il protocollo di autenticazione di Azure Active Directory B2C e OpenID Connect.
 services: active-directory-b2c
 documentationcenter: 
 author: saeedakhter-msft
@@ -14,31 +14,31 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/16/2017
 ms.author: saeedakhter-msft
-ms.openlocfilehash: dfc4f2e84704307ccbea6141c0dbc8d089733b22
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 6bf9d37310bd45b39bda346441413556f9fd4fdc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-active-directory-b2c-oauth-20-authorization-code-flow"></a>Azure Active Directory B2C: flusso del codice di autorizzazione di OAuth 2.0
-È possibile usare la concessione del codice di autorizzazione OAuth 2.0 nelle app che vengono installate su un dispositivo per ottenere l'accesso a risorse protette, ad esempio le API Web. Con l'implementazione di Azure Active Directory B2C (Azure AD B2C) di OAuth 2.0 è possibile aggiungere attività di gestione dell'iscrizione, dell'accesso e altre attività di gestione delle identità alle app per desktop e per dispositivi mobili. Questo articolo è indipendente dal linguaggio. Descrive come inviare e ricevere messaggi HTTP senza usare alcuna libreria open source.
+È possibile utilizzare concessione del codice di autorizzazione OAuth 2.0 hello in App installate in un dispositivo toogain accedere tooprotected alle risorse, ad esempio API web. Tramite l'implementazione di hello Azure Active Directory B2C (Azure AD B2C) di OAuth 2.0, è possibile aggiungere per l'abbonamento, accesso e le attività di altri gestione delle identità tooyour app di dispositivi mobili e desktop. Questo articolo è indipendente dal linguaggio. Nell'articolo hello, viene descritto come toosend e ricevere messaggi HTTP senza utilizzare le eventuali librerie open source.
 
-<!-- TODO: Need link to libraries -->
+<!-- TODO: Need link toolibraries -->
 
-Il flusso del codice di autorizzazione di OAuth 2.0 è descritto nella [sezione 4.1 della specifica di OAuth 2.0](http://tools.ietf.org/html/rfc6749). È possibile usarlo per eseguire l'autenticazione e l'autorizzazione nella maggior parte dei tipi di app, tra cui le [App Web](active-directory-b2c-apps.md#web-apps) e le [app installate in modo nativo](active-directory-b2c-apps.md#mobile-and-native-apps). È possibile usare il flusso del codice di autorizzazione di OAuth 2.0 per acquisire in modo sicuro *token di accesso* per le app, i quali possono essere usati per accedere a risorse protette da un [server di autorizzazione](active-directory-b2c-reference-protocols.md#the-basics).
+flusso di codice di autorizzazione OAuth 2.0 Hello è descritta in [sezione 4.1 della specifica OAuth 2.0 hello](http://tools.ietf.org/html/rfc6749). È possibile usarlo per eseguire l'autenticazione e l'autorizzazione nella maggior parte dei tipi di app, tra cui le [App Web](active-directory-b2c-apps.md#web-apps) e le [app installate in modo nativo](active-directory-b2c-apps.md#mobile-and-native-apps). È possibile utilizzare hello acquisire toosecurely flusso codice di autorizzazione di OAuth 2.0 *i token di accesso* per le app, che può essere utilizzato tooaccess risorse che sono protetti da un [server autorizzazione](active-directory-b2c-reference-protocols.md#the-basics).
 
-Questo articolo illustra il flusso del codice di autorizzazione di OAuth 2.0 dei **client pubblici**. Un client pubblico è qualsiasi applicazione client che non può essere considerata attendibile in modo sicuro per mantenere l'integrità di una password segreta. Questo include app per dispositivi mobili, app per desktop e pressoché qualsiasi applicazione che viene eseguita su un dispositivo e deve ottenere token di accesso. 
+Questo articolo è incentrato su hello **client pubblica** flusso di codice di autorizzazione OAuth 2.0. Un client pubblico è qualsiasi applicazione client che non può essere attendibile toosecurely hello integrità di una password segreta. Ciò include l'App per dispositivi mobili, applicazioni desktop ed essenzialmente qualsiasi applicazione in esecuzione su un dispositivo e deve tooget i token di accesso. 
 
 > [!NOTE]
-> Per aggiungere la gestione delle identità a un'App Web usando Azure AD B2C, usare [OpenID Connect](active-directory-b2c-reference-oidc.md) al posto di OAuth 2.0.
+> app web con Azure Active Directory B2C, utilizzare tooadd identity management tooa [OpenID Connect](active-directory-b2c-reference-oidc.md) anziché OAuth 2.0.
 
-Azure AD B2C estende i flussi standard OAuth 2.0 per non limitarsi esclusivamente a semplici operazioni di autorizzazione e autenticazione. Introduce il [parametro di criteri](active-directory-b2c-reference-policies.md). Con i criteri integrati è possibile usare OAuth 2.0 per aggiungere esperienze utente all'app, ad esempio la gestione dell'iscrizione, dell'accesso e del profilo. Questo articolo illustra come usare OAuth 2.0 e i criteri per implementare ognuna di queste esperienze nelle applicazioni native. Illustra anche come ottenere i token di accesso per accedere alle API Web.
+Azure Active Directory B2C estende standard hello che flusso OAuth 2.0 toodo più semplice autenticazione e autorizzazione. Introduce hello [parametro criteri](active-directory-b2c-reference-policies.md). Con i criteri predefiniti, è possibile usare OAuth 2.0 tooadd utente esperienze tooyour app, ad esempio effettua l'iscrizione, accesso e la gestione dei profili. In questo articolo verrà illustrato come tooimplement toouse OAuth 2.0 e i criteri, ognuna di queste esperienze nelle applicazioni native. Viene anche illustrata la modalità tooget i token di accesso per l'accesso a web API.
 
-Nelle richieste HTTP di esempio in questo articolo si usa la directory di Azure AD B2C di esempio, **fabrikamb2c.onmicrosoft.com**. Si usano anche i criteri e l'applicazione di esempio. È possibile provare le richieste in autonomia usando questi valori o sostituendoli con valori personalizzati.
-Altre informazioni su come [ottenere la directory, l'applicazione e i criteri di Azure AD B2C personalizzati](#use-your-own-azure-ad-b2c-directory).
+Nelle richieste HTTP di esempio di hello in questo articolo, utilizziamo la directory di Azure Active Directory B2C, **fabrikamb2c.onmicrosoft.com**. Si usano anche i criteri e l'applicazione di esempio. È possibile provare le richieste di hello utilizzando i valori o sostituirli con valori personalizzati.
+Informazioni su come troppo[ottenere la propria directory, applicazione e i criteri di Azure Active Directory B2C](#use-your-own-azure-ad-b2c-directory).
 
 ## <a name="1-get-an-authorization-code"></a>1. Ottenere un codice di autorizzazione
-Il flusso del codice di autorizzazione ha inizio con il client che indirizza l'utente all'endpoint `/authorize` . Questa è la parte interattiva del flusso, dove l'utente esegue operazioni. In questa richiesta il client indica nel parametro `scope` le autorizzazioni che deve acquisire dall'utente. Nel parametro `p` indica i criteri da eseguire. Di seguito vengono presentati tre esempi (con interruzioni di riga per migliorare la leggibilità), ognuno dei quali usa criteri diversi.
+flusso di codice di autorizzazione Hello inizia con il client di hello indirizzamento hello utente toohello `/authorize` endpoint. Questo è parte interattiva di hello del flusso di hello, in cui interviene utente hello. In questa richiesta, il client hello indica in hello `scope` autorizzazioni hello parametro che deve tooacquire utente hello. In hello `p` parametro indica tooexecute criteri hello. Hello tre esempi seguenti (con interruzioni di riga per migliorare la leggibilità) ogni usano criteri diversi.
 
 ### <a name="use-a-sign-in-policy"></a>Uso di un criterio di accesso
 ```
@@ -78,33 +78,33 @@ client_id=90c0fe63-bcf2-44d5-8fb7-b8bbc0b29dc6
 
 | Parametro | Obbligatorio? | Descrizione |
 | --- | --- | --- |
-| client_id |Obbligatorio |ID applicazione assegnato all'app nel [portale di Azure](https://portal.azure.com). |
-| response_type |Obbligatorio |Tipo di risposta, che deve includere `code` per il flusso del codice di autorizzazione. |
-| redirect_uri |Obbligatorio |URI di reindirizzamento dell'app dove le risposte di autenticazione possono essere inviate e ricevute dall'app. Deve corrispondere esattamente a uno degli URI di reindirizzamento registrati nel portale, ad eccezione del fatto che deve essere codificato come URL. |
-| scope |Obbligatorio |Elenco di ambiti separati da spazi. Un singolo valore di ambito indica ad Azure Active Directory (Azure AD) entrambe le autorizzazioni richieste. L'uso dell'ID client come ambito indica che l'app necessita di un token di accesso, che può essere usato per il servizio o l'API Web, rappresentato dallo stesso ID client.  L'ambito `offline_access` indica che l'app necessita di un token di aggiornamento per avere un accesso di lunga durata alle risorse. È anche possibile usare l'ambito `openid` per richiedere un token ID ad Azure Active Directory B2C. |
-| response_mode |Consigliato |Metodo da usare per inviare all'app il codice di autorizzazione risultante. Può essere `query`, `form_post` o `fragment`. |
-| state |Consigliato |Valore incluso nella richiesta che viene restituito nella risposta del token. Può trattarsi di una stringa di qualsiasi contenuto si voglia usare. Per evitare attacchi di richiesta intersito falsa, viene in genere usato un valore univoco generato casualmente. Anche lo stato viene usato per codificare le informazioni sullo stato dell'utente nell'app prima del verificarsi della richiesta di autenticazione, ad esempio la pagina in cui si trova l'utente o i criteri che vengono eseguiti. |
-| p |Obbligatorio |Criteri che vengono eseguiti. Si tratta del nome di criteri creati nella directory di Azure AD B2C. Il valore del nome dei criteri deve iniziare con **b2c\_1\_**. Per altre informazioni sui criteri, vedere l'articolo relativo ai [criteri predefiniti di Azure AD B2C](active-directory-b2c-reference-policies.md). |
-| prompt |Facoltativo |Tipo di interazione utente obbligatoria. L'unico valore valido in questa fase è `login`, che impone all'utente di immettere le credenziali per la richiesta. L'accesso Single Sign-On non avrà effetto. |
+| client_id |Obbligatorio |ID dell'applicazione Hello assegnato app tooyour in hello [portale di Azure](https://portal.azure.com). |
+| response_type |Obbligatorio |tipo di risposta Hello, che deve includere `code` per flusso di codice di autorizzazione hello. |
+| redirect_uri |Obbligatorio |Hello URI di reindirizzamento dell'app, in cui le risposte di autenticazione vengono inviate e ricevute dall'app. Deve corrispondere esattamente a uno di reindirizzamento hello URI a cui è stato registrato nel portale di hello, ad eccezione del fatto che deve essere codificato in URL. |
+| scope |Obbligatorio |Elenco di ambiti separati da spazi. Il valore di un singolo ambito indica tooAzure Active Directory (Azure AD) entrambi delle autorizzazioni di hello che sono stati richiesti. Utilizzando client hello ID come ambito hello indica che è necessario un token di accesso ai servizi o API web, è possibile utilizzare l'app è rappresentato dal hello stesso ID client.  Hello `offline_access` ambito indica che l'app è necessario un token di aggiornamento per tooresources di accesso di lunga durata. È inoltre possibile utilizzare hello `openid` toorequest ambito un ID di token da Azure Active Directory B2C. |
+| response_mode |Consigliato |metodo Hello utilizzare toosend hello autorizzazione codice tooyour indietro app risultante. Può essere `query`, `form_post` o `fragment`. |
+| state |Consigliato |Un valore incluso nella richiesta di hello restituito nella risposta token hello. Può essere una stringa di qualsiasi contenuto che si desidera toouse. In genere, viene utilizzato un valore univoco generato casualmente, attacchi di tooprevent cross-site request forgery. stato di Hello è anche tooencode utilizzati informazioni sullo stato dell'utente hello in app hello prima dell'esecuzione della richiesta di autenticazione hello. Ad esempio, hello pagina hello utente nel o hello criteri che è stato in esecuzione. |
+| p |Obbligatorio |criteri di Hello che viene eseguito. Hello nome di un criterio che viene creato nella directory di Azure Active Directory B2C. valore del nome criterio Hello deve iniziare con **b2c\_1\_**. toolearn informazioni sui criteri, vedere [criteri predefiniti di Azure Active Directory B2C](active-directory-b2c-reference-policies.md). |
+| prompt |Facoltativo |tipo di Hello dell'interazione dell'utente che è obbligatorio. Attualmente, hello unico valore valido è `login`, che forza hello tooenter utente le credenziali per tale richiesta. L'accesso Single Sign-On non avrà effetto. |
 
-Viene a questo punto richiesto all'utente di completare il flusso di lavoro dei criteri. È possibile che venga richiesto all'utente di immettere nome utente e password, di accedere con un'identità di social networking, di iscriversi alla directory o di effettuare qualsiasi altro passaggio. Le azioni dell'utente dipendono dal modo in cui sono definiti i criteri.
+A questo punto, hello verrà chiesto del flusso di lavoro del criterio di toocomplete hello. Questa operazione potrebbe comportare hello immissione di nome utente e password, accedere con un'identità di social networking, iscriversi a directory hello o qualsiasi altro numero di passaggi. Le azioni dell'utente dipendono come criterio di hello è definito.
 
-Dopo che l'utente ha completato i criteri, Azure AD restituisce una risposta per l'app in corrispondenza del valore usato per `redirect_uri`. Viene usato il metodo specificato nel parametro `response_mode`. La risposta è esattamente la stessa per ogni scenario di azione dell'utente, indipendentemente dai criteri eseguiti.
+Al termine di criteri di hello, utente hello Azure AD restituisce una app tooyour risposta al valore di hello utilizzato per `redirect_uri`. Usa metodo hello specificato in hello `response_mode` parametro. risposta Hello è esattamente hello stesso per ogni hello azione scenari utente, indipendentemente dal criterio hello che è stato eseguito.
 
 Una risposta con esito positivo che usa `response_mode=query` ha un aspetto simile al seguente:
 
 ```
 GET urn:ietf:wg:oauth:2.0:oob?
-code=AwABAAAAvPM1KaPlrEqdFSBzjqfTGBCmLdgfSTLEMPGYuNHSUYBrq...        // the authorization_code, truncated
-&state=arbitrary_data_you_can_receive_in_the_response                // the value provided in the request
+code=AwABAAAAvPM1KaPlrEqdFSBzjqfTGBCmLdgfSTLEMPGYuNHSUYBrq...        // hello authorization_code, truncated
+&state=arbitrary_data_you_can_receive_in_the_response                // hello value provided in hello request
 ```
 
 | Parametro | Descrizione |
 | --- | --- |
-| code |Codice di autorizzazione richiesto dall'app. L'app può usare il codice di autorizzazione per richiedere un token di accesso per una risorsa di destinazione. I codici di autorizzazione hanno una durata molto breve. In genere scadono dopo circa 10 minuti. |
-| state |Vedere la descrizione completa nella tabella della sezione precedente. Se un parametro `state` è incluso nella richiesta, lo stesso valore deve essere visualizzato nella risposta. L'app deve verificare che i valori `state` nella richiesta e nella risposta siano identici. |
+| code |codice di autorizzazione Hello che hello app richiesto. app Hello è possibile utilizzare toorequest codice di autorizzazione hello un token di accesso per una risorsa di destinazione. I codici di autorizzazione hanno una durata molto breve. In genere scadono dopo circa 10 minuti. |
+| state |Vedere la descrizione completa di hello nella tabella hello nella precedente sezione hello. Se un `state` parametro è incluso nella richiesta di hello, hello stesso valore deve essere visualizzato nella risposta hello. Hello app deve verificare che hello `state` valori hello richiesta e risposta sono identici. |
 
-Anche le risposte di errore possono essere inviate all'URI di reindirizzamento in modo che l'app possa gestirle adeguatamente:
+Le risposte di errore inoltre possono essere inviate toohello URI di reindirizzamento in modo che hello app in grado di gestirle in modo appropriato:
 
 ```
 GET urn:ietf:wg:oauth:2.0:oob?
@@ -113,14 +113,14 @@ error=access_denied
 &state=arbitrary_data_you_can_receive_in_the_response
 ```
 
-| Parametro | Descrizione |
+| . | Descrizione |
 | --- | --- |
-| error |Stringa di codice di errore che è possibile usare per classificare i tipi di errori che si verificano. È possibile usare la stringa anche per rispondere agli errori. |
-| error_description |Messaggio di errore specifico che consente di identificare la causa principale di un errore di autenticazione. |
-| state |Vedere la descrizione completa nella tabella precedente. Se un parametro `state` è incluso nella richiesta, lo stesso valore deve essere visualizzato nella risposta. L'app deve verificare che i valori `state` nella richiesta e nella risposta siano identici. |
+| error |Una stringa di codice di errore che è possibile utilizzare i tipi di hello tooclassify di errori che si verificano. È inoltre possibile utilizzare hello stringa tooreact tooerrors. |
+| error_description |Un messaggio di errore specifico che può aiutarti a identificare causa radice di hello di un errore di autenticazione. |
+| state |Vedere la descrizione completa di hello in hello tabella precedente. Se un `state` parametro è incluso nella richiesta di hello, hello stesso valore deve essere visualizzato nella risposta hello. Hello app deve verificare che hello `state` valori hello richiesta e risposta sono identici. |
 
 ## <a name="2-get-a-token"></a>2. Acquisizione di un token
-Ora che è stato acquisito il codice di autorizzazione, è possibile riscattare `code` per un token per la risorsa desiderata inviando una richiesta POST all'endpoint `/token`. In Azure AD B2C, l'unica risorsa per la quale è possibile richiedere un token è l'API Web back-end dell'app stessa. La convenzione usata per richiedere un token di questo tipo consiste nell'usare l'ID client dell'app come ambito:
+Ora che è stato acquisito un codice di autorizzazione, è possibile riscattare hello `code` per un token toohello destinati risorsa inviando un toohello richiesta POST `/token` endpoint. In Azure Active Directory B2C, hello solo risorse che è possibile richiedere un token per sono l'API web di back-end dell'app. convenzione di Hello che viene utilizzato per richiedere un token tooyourself è l'ID client dell'app come ambito hello toouse:
 
 ```
 POST fabrikamb2c.onmicrosoft.com/oauth2/v2.0/token?p=b2c_1_sign_in HTTP/1.1
@@ -131,14 +131,14 @@ grant_type=authorization_code&client_id=90c0fe63-bcf2-44d5-8fb7-b8bbc0b29dc6&sco
 
 ```
 
-| Parametro | Obbligatorio? | Descrizione |
+| . | Obbligatorio? | Descrizione |
 | --- | --- | --- |
-| p |Obbligatorio |Il criterio utilizzato per acquisire il codice di autorizzazione. Non è possibile usare un criterio diverso in questa richiesta. Si noti che questo parametro viene aggiunto alla *stringa di query*, non al corpo della richiesta POST. |
-| client_id |Obbligatorio |ID applicazione assegnato all'app nel [portale di Azure](https://portal.azure.com). |
-| grant_type |Obbligatorio |Tipo di concessione. Per il flusso del codice di autorizzazione il tipo di concessione deve essere `authorization_code`. |
-| scope |Consigliato |Elenco di ambiti separati da spazi. Un valore per l'ambito indica ad Azure AD entrambe le autorizzazioni richieste. L'uso dell'ID client come ambito indica che l'app necessita di un token di accesso, che può essere usato per il servizio o l'API Web, rappresentato dallo stesso ID client.  L'ambito `offline_access` indica che l'app necessita di un token di aggiornamento per avere un accesso di lunga durata alle risorse.  È anche possibile usare l'ambito `openid` per richiedere un token ID ad Azure Active Directory B2C. |
-| code |Obbligatorio |Codice di autorizzazione acquisito nella prima sezione del flusso. |
-| redirect_uri |Obbligatorio |L'URI di reindirizzamento dell'applicazione dove è stato ricevuto il codice di autorizzazione. |
+| p |Obbligatorio |criteri che è stato utilizzato tooacquire hello autorizzazione Hello codice. Non è possibile usare un criterio diverso in questa richiesta. Si noti che si aggiunge questo toohello parametro *stringa di query*, non nel corpo del POST hello. |
+| client_id |Obbligatorio |ID dell'applicazione Hello assegnato app tooyour in hello [portale di Azure](https://portal.azure.com). |
+| grant_type |Obbligatorio |tipo di Hello di concessione. Per flusso di codice di autorizzazione hello, deve essere il tipo di concessione di hello `authorization_code`. |
+| scope |Consigliato |Elenco di ambiti separati da spazi. Il valore di un singolo ambito indica tooAzure AD entrambi delle autorizzazioni di hello che sono stati richiesti. Utilizzando client hello ID come ambito hello indica che è necessario un token di accesso ai servizi o API web, è possibile utilizzare l'app è rappresentato dal hello stesso ID client.  Hello `offline_access` ambito indica che l'app è necessario un token di aggiornamento per tooresources di accesso di lunga durata.  È inoltre possibile utilizzare hello `openid` toorequest ambito un ID di token da Azure Active Directory B2C. |
+| code |Obbligatorio |codice di autorizzazione Hello acquisito nel segmento prima di hello del flusso di hello. |
+| redirect_uri |Obbligatorio |Hello URI di reindirizzamento dell'applicazione hello in cui viene visualizzato il codice di autorizzazione hello. |
 
 Una risposta di token con esito positivo ha un aspetto simile al seguente:
 
@@ -154,29 +154,29 @@ Una risposta di token con esito positivo ha un aspetto simile al seguente:
 ```
 | Parametro | Descrizione |
 | --- | --- |
-| not_before |Il momento in cui il token viene considerato valido, nel periodo. |
-| token_type |Valore del tipo di token. L'unico tipo supportato da Azure AD è Bearer. |
-| access_token |Token JSON Web (JWT) firmato richiesto. |
-| scope |Ambiti per i quali il token è valido. È possibile usare gli ambiti anche per memorizzare i token nella cache per un uso successivo. |
-| expires_in |Periodo di validità del token (in secondi). |
-| refresh_token |Token di aggiornamento di OAuth 2.0. L'app può usare questo token per acquisire token aggiuntivi dopo la scadenza del token corrente. I token di aggiornamento sono di lunga durata. È possibile usarli per mantenere l'accesso alle risorse per periodi prolungati di tempo. Per altre informazioni, vedere le [informazioni di riferimento sul token di Azure AD B2C](active-directory-b2c-reference-tokens.md). |
+| not_before |ora di Hello al quale hello è considerato valido, in valore epoch token. |
+| token_type |valore di tipo di token Hello. Hello solo il tipo che supporta Azure AD connessione. |
+| access_token |Hello firmato JSON Web Token (JWT) richiesto. |
+| scope |gli ambiti di Hello hello token è valido per. È inoltre possibile utilizzare i token toocache ambiti per un uso successivo. |
+| expires_in |durata Hello che hello token è valido (in secondi). |
+| refresh_token |Token di aggiornamento di OAuth 2.0. app Hello è possibile usare questo token aggiuntivi tooacquire token alla scadenza del token corrente hello. I token di aggiornamento sono di lunga durata. È possibile utilizzare tali tooretain accesso tooresources per lunghi periodi di tempo. Per ulteriori informazioni, vedere hello [riferimento del token di Azure Active Directory B2C](active-directory-b2c-reference-tokens.md). |
 
 Le risposte di errore si presentano nel modo seguente:
 
 ```
 {
     "error": "access_denied",
-    "error_description": "The user revoked access to the app.",
+    "error_description": "hello user revoked access toohello app.",
 }
 ```
 
 | Parametro | Descrizione |
 | --- | --- |
-| error |Stringa di codice di errore che è possibile usare per classificare i tipi di errori che si verificano. È possibile usare la stringa anche per rispondere agli errori. |
-| error_description |Messaggio di errore specifico che consente di identificare la causa principale di un errore di autenticazione. |
+| error |Una stringa di codice di errore che è possibile utilizzare i tipi di hello tooclassify di errori che si verificano. È inoltre possibile utilizzare hello stringa tooreact tooerrors. |
+| error_description |Un messaggio di errore specifico che può aiutarti a identificare causa radice di hello di un errore di autenticazione. |
 
-## <a name="3-use-the-token"></a>3. Uso del token
-Dopo avere acquisito un token di accesso, è possibile usarlo nelle richieste alle API Web back-end includendolo nell'intestazione `Authorization`:
+## <a name="3-use-hello-token"></a>3. Usare il token di hello
+Ora che è stato acquisito un token di accesso, è possibile utilizzare token hello in web back-end tramite tooyour richieste API includendola in hello `Authorization` intestazione:
 
 ```
 GET /tasks
@@ -184,8 +184,8 @@ Host: https://mytaskwebapi.com
 Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Ik5HVEZ2ZEstZnl0aEV1Q...
 ```
 
-## <a name="4-refresh-the-token"></a>4. Aggiornamento del token
-I token di accesso e i token ID hanno breve durata. È necessario aggiornarli dopo la scadenza per continuare ad accedere alle risorse. Inviare a tale scopo un'altra richiesta POST per l'endpoint `/token`. questa volta specificando `refresh_token` invece di `code`:
+## <a name="4-refresh-hello-token"></a>4. Hello token di aggiornamento
+I token di accesso e i token ID hanno breve durata. Dopo la scadenza, è necessario aggiornarli toocontinue tooaccess risorse. toodo, inviare un altro POST richiesta toohello `/token` endpoint. Questa volta, fornire hello `refresh_token` anziché hello `code`:
 
 ```
 POST fabrikamb2c.onmicrosoft.com/oauth2/v2.0/token?p=b2c_1_sign_in HTTP/1.1
@@ -195,14 +195,14 @@ Content-Type: application/x-www-form-urlencoded
 grant_type=refresh_token&client_id=90c0fe63-bcf2-44d5-8fb7-b8bbc0b29dc6&scope=90c0fe63-bcf2-44d5-8fb7-b8bbc0b29dc6 offline_access&refresh_token=AwABAAAAvPM1KaPlrEqdFSBzjqfTGBCmLdgfSTLEMPGYuNHSUYBrq...&redirect_uri=urn:ietf:wg:oauth:2.0:oob
 ```
 
-| Parametro | Obbligatorio? | Descrizione |
+| . | Obbligatorio? | Descrizione |
 | --- | --- | --- |
-| p |Obbligatorio |Criteri usati per acquisire il token di aggiornamento originale. Non è possibile usare un criterio diverso in questa richiesta. Si noti che questo parametro viene aggiunto alla *stringa di query*, non al corpo della richiesta POST. |
-| client_id |Consigliato |ID applicazione assegnato all'app nel [portale di Azure](https://portal.azure.com). |
-| grant_type |Obbligatorio |Tipo di concessione. Per questa parte del flusso del codice di autorizzazione il tipo di concessione deve essere `refresh_token`. |
-| scope |Consigliato |Elenco di ambiti separati da spazi. Un valore per l'ambito indica ad Azure AD entrambe le autorizzazioni richieste. L'uso dell'ID client come ambito indica che l'app necessita di un token di accesso, che può essere usato per il servizio o l'API Web, rappresentato dallo stesso ID client.  L'ambito `offline_access` indica che l'app necessita di un token di aggiornamento per un accesso di lunga durata alle risorse.  È anche possibile usare l'ambito `openid` per richiedere un token ID ad Azure Active Directory B2C. |
-| redirect_uri |Facoltativo |L'URI di reindirizzamento dell'applicazione dove è stato ricevuto il codice di autorizzazione. |
-| refresh_token |Obbligatorio |Token di aggiornamento originale acquisito nella seconda sezione del flusso. |
+| p |Obbligatorio |Hello criteri token di aggiornamento utilizzato tooacquire hello originale. Non è possibile usare un criterio diverso in questa richiesta. Si noti che si aggiunge questo toohello parametro *stringa di query*, non nel corpo del POST hello. |
+| client_id |Consigliato |ID dell'applicazione Hello assegnato app tooyour in hello [portale di Azure](https://portal.azure.com). |
+| grant_type |Obbligatorio |tipo di Hello di concessione. Per questo segmento del flusso di codice di autorizzazione hello, deve essere il tipo di concessione di hello `refresh_token`. |
+| scope |Consigliato |Elenco di ambiti separati da spazi. Il valore di un singolo ambito indica tooAzure AD entrambi delle autorizzazioni di hello che sono stati richiesti. Utilizzando client hello ID come ambito hello indica che è necessario un token di accesso ai servizi o API web, è possibile utilizzare l'app è rappresentato dal hello stesso ID client.  Hello `offline_access` ambito indica che l'app sarà necessario un token di aggiornamento per tooresources di accesso di lunga durata.  È inoltre possibile utilizzare hello `openid` toorequest ambito un ID di token da Azure Active Directory B2C. |
+| redirect_uri |Facoltativo |Hello URI di reindirizzamento dell'applicazione hello in cui viene visualizzato il codice di autorizzazione hello. |
+| refresh_token |Obbligatorio |Hello originale token di aggiornamento acquisito nel segmento di secondo hello del flusso di hello. |
 
 Una risposta di token con esito positivo ha un aspetto simile al seguente:
 
@@ -218,31 +218,31 @@ Una risposta di token con esito positivo ha un aspetto simile al seguente:
 ```
 | Parametro | Descrizione |
 | --- | --- |
-| not_before |Il momento in cui il token viene considerato valido, nel periodo. |
-| token_type |Valore del tipo di token. L'unico tipo supportato da Azure AD è Bearer. |
-| access_token |Token JWT firmato richiesto. |
-| scope |Ambiti per i quali il token è valido. È possibile usare gli ambiti anche per memorizzare i token nella cache per un uso successivo. |
-| expires_in |Periodo di validità del token (in secondi). |
-| refresh_token |Token di aggiornamento di OAuth 2.0. L'app può usare questo token per acquisire token aggiuntivi dopo la scadenza del token corrente. I token di aggiornamento hanno durata elevata e possono essere usati per mantenere l'accesso alle risorse per lunghi periodi di tempo. Per altre informazioni, vedere le [informazioni di riferimento sul token di Azure AD B2C](active-directory-b2c-reference-tokens.md). |
+| not_before |ora di Hello al quale hello è considerato valido, in valore epoch token. |
+| token_type |valore di tipo di token Hello. Hello solo il tipo che supporta Azure AD connessione. |
+| access_token |Hello firma JWT richiesto. |
+| scope |gli ambiti di Hello hello token è valido per. È inoltre possibile utilizzare i token di hello ambiti toocache per un uso successivo. |
+| expires_in |durata Hello che hello token è valido (in secondi). |
+| refresh_token |Token di aggiornamento di OAuth 2.0. app Hello è possibile usare questo token aggiuntivi tooacquire token alla scadenza del token corrente hello. Aggiornare i token sono di lunga durati e possono essere utilizzati tooretain accesso tooresources per lunghi periodi di tempo. Per ulteriori informazioni, vedere hello [riferimento del token di Azure Active Directory B2C](active-directory-b2c-reference-tokens.md). |
 
 Le risposte di errore si presentano nel modo seguente:
 
 ```
 {
     "error": "access_denied",
-    "error_description": "The user revoked access to the app.",
+    "error_description": "hello user revoked access toohello app.",
 }
 ```
 
 | Parametro | Descrizione |
 | --- | --- |
-| error |Stringa di codice di errore che è possibile usare per classificare i tipi di errori che si verificano. È possibile usare la stringa anche per rispondere agli errori. |
-| error_description |Messaggio di errore specifico che consente di identificare la causa principale di un errore di autenticazione. |
+| error |Una stringa di codice di errore che è possibile utilizzare tooclassify tipi di errori che si verificano. È inoltre possibile utilizzare hello stringa tooreact tooerrors. |
+| error_description |Un messaggio di errore specifico che può aiutarti a identificare causa radice di hello di un errore di autenticazione. |
 
 ## <a name="use-your-own-azure-ad-b2c-directory"></a>Usare la directory di Azure AD B2C
-Per provare queste richieste, completare i passaggi seguenti. Sostituire i valori dell'esempio usato in questo articolo con valori personalizzati.
+tootry queste richieste manualmente, hello completo seguendo i passaggi necessari. Sostituire i valori di esempio hello che è usata in questo articolo con valori personalizzati.
 
-1. [Creare una directory Azure AD B2C](active-directory-b2c-get-started.md). Usare il nome della directory nelle richieste.
-2. [Creare un'applicazione](active-directory-b2c-app-registration.md) per ottenere un ID applicazione e un URI di reindirizzamento. Includere un client nativo nell'app.
-3. [Creare i criteri](active-directory-b2c-reference-policies.md) per ottenere i nomi dei criteri.
+1. [Creare una directory Azure AD B2C](active-directory-b2c-get-started.md). Utilizzare il nome di hello di directory nelle richieste di hello.
+2. [Creare un'applicazione](active-directory-b2c-app-registration.md) tooobtain un ID applicazione e un URI di reindirizzamento. Includere un client nativo nell'app.
+3. [Creare i criteri](active-directory-b2c-reference-policies.md) tooobtain i nomi dei criteri.
 

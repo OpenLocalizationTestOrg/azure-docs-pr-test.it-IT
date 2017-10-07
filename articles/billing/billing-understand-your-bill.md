@@ -1,6 +1,6 @@
 ---
-title: Informazioni sulla fattura per Azure | Microsoft Docs
-description: Informazioni su come leggere e comprendere l'utilizzo e la fattura per la sottoscrizione di Azure
+title: aaaUnderstand la fattura per Azure | Documenti Microsoft
+description: Informazioni su come tooread e comprendere l'utilizzo e costi per la sottoscrizione di Azure
 services: 
 documentationcenter: 
 author: tonguyen10
@@ -15,30 +15,30 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/14/2017
 ms.author: tonguyen
-ms.openlocfilehash: 547b035646ccb80d1001591ae59e6a0871d1ed2c
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: a3195eb129b1576e8cb665aa6f88a1a2647edd78
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="understand-your-bill-for-microsoft-azure"></a>Comprendere la fattura per Microsoft Azure
-Per comprendere la fattura di Azure, confrontare la fattura con il file dei dettagli di utilizzo giornaliero e con i report di gestione dei costi nel portale di Azure.
+toounderstand fatturazione di Azure, confrontare la fattura con il file di utilizzo di hello dettagliato giornaliera e hello Gestione report nel portale di Azure hello dei costi.
 
-Per ottenere la fattura in formato PDF e una copia del download del file dei dettagli di utilizzo giornaliero in formato CSV, vedere [Ottenere la fattura e i dati di utilizzo giornaliero di Azure](billing-download-azure-invoice-daily-usage-date.md). 
+tooobtain un fattura in formato PDF e una copia di dettagliate giornaliero utilizzo download del file CSV, vedere [ottenere di Azure i dati di utilizzo giornaliero e fatturazione di fatturazione](billing-download-azure-invoice-daily-usage-date.md). 
 
 Per una spiegazione dettagliata dei termini e delle descrizioni nella fattura e nel file dei dettagli di utilizzo giornaliero, vedere [Understand terms on your Microsoft Azure invoice](billing-understand-your-invoice.md) (Comprendere i termini nella fattura di Microsoft Azure) e [Understand terms on your Microsoft Azure detailed usage](billing-understand-your-usage.md) (Comprendere i termini nel file dei dettagli di utilizzo giornaliero). 
 
-Per informazioni sui report di gestione dei costi, vedere [Gestione dei costi del Portale di Azure](https://docs.microsoft.com/en-us/azure/billing/billing-getting-started).
+Per informazioni dettagliate su hello costi di gestione report, vedere [la gestione dei costi Azure portal](https://docs.microsoft.com/en-us/azure/billing/billing-getting-started).
 
 
-## <a name="charges"></a>Come posso assicurarmi che gli addebiti nella fattura siano corretti?
+## <a name="charges"></a>Come assicurarsi che siano corretti addebiti hello in fattura
 Se nella fattura è presente un addebito su cui si vogliono ricevere altre informazioni, sono disponibili due opzioni.
 
-### <a name="option-1-review-your-invoice-and-compare-the-usage-and-costs-with-the-detailed-usage-csv-file"></a>Opzione 1: Rivedere la fattura e confrontare l'utilizzo e i costi con il file dei dettagli di utilizzo in formato CSV
+### <a name="option-1-review-your-invoice-and-compare-hello-usage-and-costs-with-hello-detailed-usage-csv-file"></a>Opzione 1: Esaminare la fattura e confrontare i costi e utilizzo di hello con hello dettagliata file CSV di utilizzo
 
-Il file con i dettagli di utilizzo in formato CSV illustra gli addebiti per periodo di fatturazione e utilizzo giornaliero. Per ottenere questi file con i dettagli di utilizzo in formato CSV, vedere [Ottenere la fattura e i dati di utilizzo giornaliero di Azure](https://docs.microsoft.com/en-us/azure/billing/billing-download-azure-invoice-daily-usage-date).
+Hello file CSV dettagliate sull'utilizzo mostra gli addebiti per il periodo di fatturazione e utilizzo giornaliero. vedere il file CSV, sull'utilizzo dettagliati tooget [ottenere di Azure i dati di utilizzo giornaliero e fatturazione di fatturazione](https://docs.microsoft.com/en-us/azure/billing/billing-download-azure-invoice-daily-usage-date).
 
-Gli addebiti relativi all'utilizzo vengono visualizzati a livello di contatore. I termini seguenti hanno lo stesso significato sia nella fattura che nel file con i dettagli di utilizzo. Ad esempio, il ciclo di fatturazione indicato nella fattura corrisponde al periodo di fatturazione indicato nel file con i dettagli di utilizzo.
+Gli addebiti di utilizzo vengono visualizzati a livello di misuratore hello. Hello seguenti termini hello stessa operazione nella fattura entrambi hello e hello file dettagliate sull'utilizzo. Ad esempio, hello fatturazione ciclo nella fattura hello è il periodo di fatturazione toohello equivalente illustrato nel file di hello dettagliate sull'utilizzo.
 
  | Fattura (PDF) | Dettagli di utilizzo (CSV)|
  | --- | --- |
@@ -51,56 +51,56 @@ Gli addebiti relativi all'utilizzo vengono visualizzati a livello di contatore. 
  |Incluso |Quantità inclusa |
  |Fatturabile |Quantità in eccesso |
 
-La sezione **Costi di utilizzo** nella fattura riporta il valore totale per ogni misuratore utilizzato durante il periodo di fatturazione. Ad esempio, lo screenshot seguente illustra l'addebito per l'utilizzo del servizio Utilità di pianificazione di Azure.
+Hello **addebiti di utilizzo** sezione della fattura è hello totale per ogni controllo che è stata utilizzata durante il periodo di fatturazione. Ad esempio, hello cattura di schermata seguente mostra un addebito di utilizzo per hello servizio Utilità di pianificazione di Azure.
 
 ![Addebiti di utilizzo nella fattura](./media/billing-understand-your-bill/1.png)
 
-La sezione **Statement** (Rendiconto) del file CSV con i dettagli di utilizzo indica lo stesso addebito. Sia la quantità indicata in *Consumato* che *Valore* hanno una corrispondenza nella fattura.
+Hello **istruzione** sezione relativa all'utilizzo dettagliato CSV Mostra hello addebito stesso. Entrambi hello *consumato* quantità e *valore* corrispondenza hello fattura.
 
 ![Addebiti di utilizzo nel file CSV](./media/billing-understand-your-bill/2.png)
 
-Per visualizzare una suddivisione di questo addebito su base giornaliera, andare alla sezione **Utilizzo giornaliero** del CSV. Filtrare "Utilità di pianificazione" in *Categoria misuratore* per visualizzare i giorni in cui il misuratore è stato usato e la quantità di consumo. Vengono elencate anche le informazioni *Risorsa* e *Gruppo di risorse* per il confronto. La somma dei valori in *Consumato* corrisponderà a quanto indicato nella fattura.
+dettagli di questo addebito su base giornaliera, andare toohello toosee **utilizzo giornaliero** sezione di hello CSV. Filtrare per "Utilità di pianificazione" sotto *misuratore categoria* ed è possibile visualizzare il misuratore hello giorni è stato utilizzato e quanto è stato elaborato. Hello *risorse* e *gruppo di risorse* informazioni sono disponibile anche per il confronto. Hello *consumato* valori devono sommare del toowhat visualizzato nella fattura hello.
 
-![Sezione Utilizzo giornaliero nel CSV](./media/billing-understand-your-bill/3.png)
+![Sezione Utilizzo giornaliera hello CSV](./media/billing-understand-your-bill/3.png)
 
-Per ottenere il costo giornaliero, moltiplicare le quantità in *Consumato* con il valore *Tariffa* della sezione **Statement** (Rendiconto).
+costo di hello tooget al giorno, moltiplicare hello *consumato* quantità con hello *frequenza* valore hello **istruzione** sezione.
 
-Per altre informazioni sulla fattura, vedere [Comprendere la fattura di Azure](billing-understand-your-invoice.md).
+toolearn ulteriori informazioni su invoice hello, vedere [comprendere la fattura di Azure](billing-understand-your-invoice.md).
 
-Per informazioni su ogni colonna del CSV, vedere [Informazioni sui dettagli di utilizzo di Azure](billing-understand-your-invoice.md).
+toolearn su ognuna delle colonne hello hello CSV, vedere [comprendere l'utilizzo dettagliato Azure](billing-understand-your-invoice.md).
 
-### <a name="option-2-review-your-invoice-and-compare-with-the-usage-and-costs-in-the-azure-portal"></a>Opzione 2: Rivedere la fattura e confrontarla con l'utilizzo e i costi riportati nel portale di Azure
+### <a name="option-2-review-your-invoice-and-compare-with-hello-usage-and-costs-in-hello-azure-portal"></a>Opzione 2: Esaminare la fattura e confrontare con l'utilizzo di hello e i costi di hello portale di Azure
 
-Il Portale di Azure consente anche di verificare gli addebiti. Il portale di Azure offre grafici di gestione dei costi per una rapida panoramica dell'utilizzo e degli addebiti nella fattura.
+Hello portale di Azure consente inoltre di verificare gli addebiti. Hello portale di Azure fornisce i grafici di gestione dei costi per una panoramica dei costi di utilizzo e hello nella fattura.
 
-Per continuare con l'esempio precedente, vedere la [pagina Sottoscrizioni](https://portal.azure.com/#blade/Microsoft_Azure_Billing/SubscriptionsBlade), selezionare la sottoscrizione e quindi scegliere **Analisi dei costi**. È quindi possibile specificare l'intervallo di tempo e visualizzare i costi di utilizzo per il servizio Utilità di pianificazione di Azure.
+toocontinue con hello esempio precedente, visitare hello [pagina sottoscrizioni](https://portal.azure.com/#blade/Microsoft_Azure_Billing/SubscriptionsBlade), selezionare la sottoscrizione e quindi scegliere **analisi dei costi**. Da qui, è possibile specificare l'intervallo di tempo hello e vedere i costi di utilizzo per il servizio Utilità di pianificazione di Azure hello.
 
 ![Visualizzazione dell'analisi dei costi nel Portale di Azure](./media/billing-understand-your-bill/4.png)
 
-Per visualizzare la suddivisione dei costi giornalieri in **Cronologia dei costi**, fare clic sulla riga.
+suddivisione giornaliera dei costi toosee hello in **storico costo**, fare clic sulla riga hello.
 
 ![Visualizzazione Cronologia dei costi nel portale di Azure](./media/billing-understand-your-bill/5.png)
 
-Per altre informazioni, vedere [Evitare costi imprevisti con la gestione dei costi e alla fatturazione di Azure](billing-getting-started.md#costs).
+vedere, più toolearn [evitare i costi imprevisti con la fatturazione di Azure e gestione dei costi](billing-getting-started.md#costs).
 
 ## <a name="external"></a>A cosa si riferiscono gli addebiti per servizi esterni?
-I servizi esterni, noti anche come ordini di Azure Marketplace, sono erogati da fornitori di servizi indipendenti e vengono fatturati separatamente. Questi addebiti non compaiono nella fattura di Azure. Per altre informazioni, vedere [Informazioni sugli addebiti per i servizi esterni](billing-understand-your-azure-marketplace-charges.md).
+I servizi esterni, noti anche come ordini di Azure Marketplace, sono erogati da fornitori di servizi indipendenti e vengono fatturati separatamente. gli addebiti di Hello non vengono visualizzati nella fattura di Azure. vedere, più toolearn [comprendere gli addebiti di servizio esterni Azure](billing-understand-your-azure-marketplace-charges.md).
 
 ## <a name="payment"></a>Come si effettua il pagamento?
 
-Se il metodo di pagamento è impostato su carta di credito o carta di debito, il pagamento viene addebitato automaticamente entro 10 giorni dal termine del periodo di fatturazione. Nell'estratto conto della carta di credito la voce sarà **MSFT Azure**.
+Se si imposta una carta di credito o sulla carta di credito come metodo di pagamento, pagamento hello viene addebitato automaticamente entro 10 giorni di scadenza del periodo di fatturazione hello. L'istruzione di carta di credito, hello voce direbbe **MSFT Azure**.
 
-Se si [paga tramite fattura](billing-how-to-pay-by-invoice.md), inviare il pagamento al destinatario elencato nella parte inferiore della fattura. Per altre informazioni, [contattare il supporto tecnico](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade).
+Se si [pagamento per la fatturazione](billing-how-to-pay-by-invoice.md), trasmissione, la posizione di pagamento toohello elencata nella parte inferiore di hello della fattura. Per altre informazioni, [contattare il supporto tecnico](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade).
 
-## <a name="how-do-i-check-the-status-of-a-payment-made-by-credit-card"></a>Come si controlla lo stato di un pagamento effettuato con carta di credito?
+## <a name="how-do-i-check-hello-status-of-a-payment-made-by-credit-card"></a>Come è possibile controllare lo stato di hello di pagamento effettuato con carta di credito?
 
-[Creare un ticket di supporto](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade) per richiedere lo stato del pagamento. 
+[Creare un ticket di supporto](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade) tooask per lo stato di hello del pagamento. 
 
 ## <a name="tips-for-cost-management"></a>Suggerimenti per la gestione dei costi
-- Stimare i costi usando il [calcolatore dei prezzi](https://azure.microsoft.com/pricing/calculator/) e il [calcolatore del costo totale di proprietà](https://aka.ms/azure-tco-calculator) e ottenere [informazioni dettagliate sui prezzi per ogni servizio](https://azure.microsoft.com/en-us/pricing/).
+- Stima dei costi mediante hello [calcolatore dei costi](https://azure.microsoft.com/pricing/calculator/) e [costo totale di calcolatrice di proprietà](https://aka.ms/azure-tco-calculator)e ottenere hello [dettagliate informazioni sui prezzi per ogni servizio](https://azure.microsoft.com/en-us/pricing/).
 - [Impostare avvisi di fatturazione](billing-set-up-alerts.md).
-- [Controllare regolarmente utilizzo e costi nel portale di Azure](billing-getting-started.md#costs).
+- [Esaminare le informazioni sull'utilizzo e costi regolarmente nel portale di Azure hello](billing-getting-started.md#costs).
 
 ## <a name="need-help-contact-support"></a>Richiesta di assistenza Contattare il supporto tecnico.
 
-Se si necessita ancora di assistenza, [contattare il supporto tecnico](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade) per ottenere una rapida risoluzione del problema.
+Se è ancora necessario della Guida, [contattare il supporto tecnico](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade) tooget risolta il problema.

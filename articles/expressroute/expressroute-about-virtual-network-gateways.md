@@ -1,5 +1,5 @@
 ---
-title: Informazioni sui gateway di rete virtuale per ExpressRoute | Microsoft Docs
+title: gateway di rete virtuale ExpressRoute aaaAbout | Documenti Microsoft
 description: Informazioni sui gateway di rete virtuale per ExpressRoute.
 services: expressroute
 documentationcenter: na
@@ -15,38 +15,38 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 07/05/2017
 ms.author: cherylmc
-ms.openlocfilehash: a6363fa380d0bab05d7500141cc6019d1d3f68b8
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 4daf4f96b4fadb00683d8e536e51734853008c50
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="about-virtual-network-gateways-for-expressroute"></a>Informazioni sui gateway di rete virtuale per ExpressRoute
-Il gateway di rete virtuale viene usato per inviare il traffico di rete tra le reti virtuali di Azure e i percorsi locali. Quando si configura una connessione ExpressRoute, è necessario creare e configurare un gateway di rete virtuale e la connessione corrispondente.
+Viene utilizzato un gateway di rete virtuale toosend il traffico tra reti virtuali di Azure e i percorsi locali. Quando si configura una connessione ExpressRoute, è necessario creare e configurare un gateway di rete virtuale e la connessione corrispondente.
 
-Quando si crea un gateway di rete virtuale, si devono specificare alcune impostazioni. Una delle impostazioni necessarie indica se il gateway verrà usato per il traffico VPN sito a sito o ExpressRoute. Nel modello di distribuzione di Gestione risorse, l'impostazione è "-GatewayType".
+Quando si crea un gateway di rete virtuale, si devono specificare alcune impostazioni. Una delle impostazioni necessarie hello specifica se verrà utilizzato per il traffico di ExpressRoute o Site-to-Site VPN gateway hello. Nel modello di distribuzione di gestione risorse hello, impostazione hello è '-il tipo di gateway '.
 
-Quando il traffico di rete viene inviato con una connessione privata, si usa il tipo di gateway ExpressRoute, detto appunto gateway ExpressRoute. Quando il traffico di rete viene inviato crittografato attraverso una rete Internet pubblica, si usa il gateway di tipo 'VPN', detto appunto gateway VPN. Le connessioni da sito a sito, da punto a sito e da rete virtuale a rete virtuale usano tutte un gateway VPN.
+Quando il traffico di rete viene inviato su una connessione privata, si utilizza il tipo di gateway hello 'ExpressRoute'. Questo è un gateway ExpressRoute di tooas cui viene fatto riferimento. Quando il traffico di rete viene inviato in forma crittografato tra hello rete Internet pubblica, si utilizza il tipo di gateway hello 'Vpn'. Si tratta di un gateway VPN di tooas cui viene fatto riferimento. Le connessioni da sito a sito, da punto a sito e da rete virtuale a rete virtuale usano tutte un gateway VPN.
 
-Ogni rete virtuale può avere un solo gateway di rete virtuale per tipo di gateway. Ad esempio, è possibile configurare un gateway di rete virtuale che usa -GatewayType Vpn e una che usa -GatewayType ExpressRoute. L'articolo è incentrato sul gateway di rete virtuale per ExpressRoute.
+Ogni rete virtuale può avere un solo gateway di rete virtuale per tipo di gateway. Ad esempio, è possibile configurare un gateway di rete virtuale che usa -GatewayType Vpn e una che usa -GatewayType ExpressRoute. In questo articolo è incentrato sul gateway di rete virtuale hello ExpressRoute.
 
 ## <a name="gwsku"></a>SKU del gateway
 [!INCLUDE [expressroute-gwsku-include](../../includes/expressroute-gwsku-include.md)]
 
-Se si vuole aggiornare il gateway a uno SKU più potente, nella maggior parte dei casi è possibile usare il cmdlet PowerShell 'Resize-AzureRmVirtualNetworkGateway'. Questa tecnica funziona per gli aggiornamenti agli SKU Standard e HighPerformance. Tuttavia, per eseguire l'aggiornamento per allo SKU UltraPerformance sarà necessario ricreare il gateway.
+Se si desidera tooupgrade tooa il gateway più potente gateway SKU, nella maggior parte dei casi è possibile utilizzare hello cmdlet di PowerShell 'Ridimensionamento AzureRmVirtualNetworkGateway'. Questa tecnica funziona per gli aggiornamenti tooStandard e SKU ad alte prestazioni. Tuttavia, tooupgrade toohello UltraPerformance SKU, sarà necessario gateway hello toorecreate.
 
 ### <a name="aggthroughput"></a>Velocità effettiva aggregata stimata per SKU del gateway
-La tabella seguente illustra i tipi di gateway e la velocità effettiva aggregata stimata. La tabella è valida per entrambi i modelli di distribuzione classica e di Gestione risorse.
+Hello nella tabella seguente mostra i tipi di gateway hello e velocità effettiva aggregata di hello stimato. Questa tabella si applica hello tooboth Gestione risorse e i modelli di distribuzione classica.
 
 [!INCLUDE [expressroute-table-aggthroughput](../../includes/expressroute-table-aggtput-include.md)]
 
 > [!IMPORTANT]
-> Le velocità effettiva dell'applicazione dipende da vari fattori, ad esempio la latenza end-to-end e il numero di flussi di traffico avviati dall'applicazione. I numeri nella tabella rappresentano il limite massimo che l'applicazione può ottenere in teoria in un ambiente ideale. 
+> Velocità effettiva dell'applicazione dipende da vari fattori, ad esempio la latenza end-to-end di hello, e il numero di hello del traffico flussi hello aperto dall'applicazione. numeri di Hello hello tabella rappresentano hello limite massimo utilizzabile da un'applicazione hello theorectically raggiungono in un ambiente ideale. 
 > 
 >
 
 ## <a name="resources"></a>API REST e cmdlet PowerShell
-Per altre risorse tecniche e requisiti di sintassi specifici quando si usano le API REST e i cmdlet PowerShell per le configurazioni di gateway di rete virtuale, vedere le pagine seguenti:
+Per i requisiti di sintassi specifici quando si utilizzano le API REST e i cmdlet di PowerShell per le configurazioni di gateway di rete virtuale e risorse tecniche aggiuntive, vedere hello seguenti pagine:
 
 | **Classico** | **Gestione risorse** |
 | --- | --- |

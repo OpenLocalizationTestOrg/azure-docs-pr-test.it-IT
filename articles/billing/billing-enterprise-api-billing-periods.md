@@ -1,6 +1,6 @@
 ---
-title: API per clienti Enterprise per la fatturazione di Azure - Periodi di fatturazione | Microsoft Docs
-description: Informazioni sulle API di creazione di report che consentono ai clienti Enterprise di Azure di estrarre i dati sull'uso a livello di codice.
+title: aaaAzure fatturazione API Enterprise - periodi di fatturazione | Documenti Microsoft
+description: Informazioni sulle API di creazione di report che consentono di dati relativi al consumo toopull clienti Azure Enterprise a livello di codice hello.
 services: 
 documentationcenter: 
 author: aedwin
@@ -15,26 +15,26 @@ ms.tgt_pltfrm: na
 ms.workload: billing
 ms.date: 04/25/2017
 ms.author: aedwin
-ms.openlocfilehash: c6880b79189e0683387a7aafbd6fa4805b3b42ef
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: d4e17f25b22729a7f213306fb019ee0dbeca87ff
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="reporting-apis-for-enterprise-customers---billing-periods"></a>API di creazione report per clienti Enterprise - Periodi di fatturazione
 
-L'API per periodi di fatturazione restituisce un elenco di periodi di fatturazione contenente i dati sull'uso per la registrazione specificata in ordine cronologico inverso. Ogni periodo contiene una proprietà che punta alla route API per i quattro set di dati, ovvero BalanceSummary, UsageDetails, MarketplaceCharges e PriceSheet. Se per il periodo non sono presenti dati, la proprietà corrispondente è null. 
+API di periodi di fatturazione Hello restituisce un elenco di fatturazione periodi che dispongono di dati di utilizzo per hello specificato registrazione in ordine cronologico inverso. Ogni periodo contiene una proprietà che punta route API toohello per quattro set di dati - BalanceSummary, UsageDetails, gli addebiti Marktplace e PriceSheet di hello. Se il periodo di hello non dispone di dati, la proprietà corrispondente hello è null. 
 
 
 ##<a name="request"></a>Richiesta 
-Le proprietà di intestazione comuni che devono essere aggiunte vengono specificate [qui](billing-enterprise-api.md). 
+Sono specificate proprietà di intestazione comuni che richiedono toobe aggiunto [qui](billing-enterprise-api.md). 
 
 |Metodo | URI della richiesta|
 |-|-|
 |GET| https://consumption.azure.com/v2/enrollments/{enrollmentNumber}/billingperiods|
 
 > [!Note]
-> Per usare la versione di anteprima dell'API, sostituire v2 con v1 nell'URL precedente.
+> versione di anteprima hello toouse dell'API, sostituire v2 con v1 in hello sopra URL.
 >
 
 ## <a name="response"></a>Response
@@ -59,13 +59,13 @@ Le proprietà di intestazione comuni che devono essere aggiunte vengono specific
 
 |Nome proprietà| Tipo| Descrizione
 |-|-|-|
-|billingPeriodId| string| ID univoco che rappresenta un determinato periodo di fatturazione|
-|billingStart| datetime| Stringa ISO 8601 che rappresenta la data di inizio del periodo|
-|billingEnd| datetime| Stringa ISO 8601 che rappresenta la data di fine del periodo|
-|balanceSummary| string| Percorso dell'URL che punta ai dati di riepilogo saldi per il periodo|
-|usageDetails| string| Percorso dell'URL che punta ai dati dei dettagli sull'uso per il periodo|
-|marketplaceCharges| string| Percorso URL che punta ai dati delle spese per il Marketplace per il periodo|
-|priceSheet| string| Percorso dell'URL che punta ai dati dell'elenco prezzi per il periodo|
+|billingPeriodId| string| Hello Id univoco che rappresenta un determinato periodo di fatturazione|
+|billingStart| datetime| Stringa ISO 8601 che rappresenta la data di inizio periodo hello|
+|billingEnd| datetime| Stringa ISO 8601 che rappresenta la data di fine periodo hello|
+|balanceSummary| string| percorso URL Hello che indirizza i dati di riepilogo saldi toohello per questo periodo|
+|usageDetails| string| percorso URL Hello che indirizza i dati di utilizzo dettagli toohello per questo periodo|
+|marketplaceCharges| string| percorso URL Hello che indirizza i dati di Marketplace addebiti toohello per questo periodo|
+|priceSheet| string| percorso URL Hello che indirizza i dati di PriceSheet toohello per questo periodo|
 
 <br/>
 ## <a name="see-also"></a>Vedere anche

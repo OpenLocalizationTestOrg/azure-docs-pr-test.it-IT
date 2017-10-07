@@ -1,6 +1,6 @@
 ---
-title: Modelli di API in Gestione API di Azure | Microsoft Docs
-description: Informazioni su come personalizzare il contenuto delle pagine API nel portale per sviluppatori in Gestione API di Azure.
+title: modelli aaaAPI in Gestione API di Azure | Documenti Microsoft
+description: Informazioni su come toocustomize hello contenuto delle pagine di hello API nel portale per sviluppatori hello in Gestione API di Azure.
 services: api-management
 documentationcenter: 
 author: miaojiang
@@ -14,16 +14,16 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/09/2017
 ms.author: apimpm
-ms.openlocfilehash: 3802868470f0f74cd1f895a00195259861ea16f8
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: fdfa76167cfaf3b23b22d6321904f34da077fecb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="api-templates-in-azure-api-management"></a>Modelli di API in Gestione API di Azure
-In Gestione API di Azure è possibile personalizzare le pagine del portale per sviluppatori usando un set di modelli che ne configurano il contenuto. La sintassi [DotLiquid](http://dotliquidmarkup.org/) usata insieme a un editor di propria scelta, quale [DotLiquid for Designers](https://github.com/dotliquid/dotliquid/wiki/DotLiquid-for-Designers), e a un set di [risorse stringa](api-management-template-resources.md#strings), [risorse Glifo](api-management-template-resources.md#glyphs) e [controlli di pagina](api-management-page-controls.md) offre una grande flessibilità nella configurazione personalizzata del contenuto delle pagine attraverso questi modelli.  
+Gestione API di Azure fornisce che si hello contenuto hello toocustomize di possibilità di pagine del portale per sviluppatori tramite un set di modelli che consentono di configurare i propri contenuti. Utilizzando [DotLiquid](http://dotliquidmarkup.org/) sintassi e hello editor di propria scelta, ad esempio [DotLiquid per i progettisti](https://github.com/dotliquid/dotliquid/wiki/DotLiquid-for-Designers), e un set specificato di localizzato [risorse di stringa](api-management-template-resources.md#strings), [ Risorse glifo](api-management-template-resources.md#glyphs), e [pagina controlli](api-management-page-controls.md), una grande flessibilità tooconfigure hello alcuni contenuti sono di pagine hello secondo necessità utilizzando questi modelli.  
   
- I modelli in questa sezione consentono di personalizzare il contenuto delle pagine API del portale per sviluppatori.  
+ i modelli di Hello in questa sezione consentono di contenuto hello toocustomize delle pagine di hello API nel portale per sviluppatori hello.  
   
 -   [Elenco API](#APIList)  
 -   [Operazione](#Product)  
@@ -38,10 +38,10 @@ In Gestione API di Azure è possibile personalizzare le pagine del portale per s
     -   [Ruby](#Ruby)  
 
 > [!NOTE]
->  La documentazione seguente include alcuni modelli predefiniti di esempio. A causa dei continui miglioramenti che vengono apportati, questi modelli sono però soggetti a modifiche. È possibile visualizzare i modelli predefiniti direttamente nel portale per sviluppatori accedendo ai singoli modelli desiderati. Per ulteriori informazioni sull'uso dei modelli, vedere [Come personalizzare il portale per sviluppatori di Gestione API usando i modelli](https://azure.microsoft.com/documentation/articles/api-management-developer-portal-templates/).  
+>  Modelli predefiniti di esempio sono inclusi in hello seguente documentazione, ma sono soggetto toochange scadenza toocontinuous miglioramenti. È possibile visualizzare i modelli predefiniti in tempo reale di hello nel portale per sviluppatori di hello passando singoli modelli toohello desiderato. Per ulteriori informazioni sull'utilizzo dei modelli, vedere [come toocustomize hello portale di gestione API per gli sviluppatori utilizzando i modelli](https://azure.microsoft.com/documentation/articles/api-management-developer-portal-templates/).  
   
 ##  <a name="APIList"></a> Elenco API  
- Il modello **Elenco API** consente di personalizzare il corpo della pagina di elenco API nel portale per sviluppatori.  
+ Hello **elenco API** modello consente il corpo di hello toocustomize della pagina di elenco hello API nel portale per sviluppatori hello.  
   
  ![Elenco API del portale per sviluppatori](./media/api-management-api-templates/APIM-Developer-Portal-Templates-API-List.png "Elenco API del portale per sviluppatori in Gestione API")  
   
@@ -76,7 +76,7 @@ In Gestione API di Azure è possibile personalizzare le pagine del portale per s
 ```  
   
 ### <a name="controls"></a>Controlli  
- Il modello `API list` può usare i [controlli di pagina](api-management-page-controls.md) seguenti.  
+ Hello `API list` modello può utilizzare l'esempio hello [pagina controlli](api-management-page-controls.md).  
   
 -   [paging-control](api-management-page-controls.md#paging-control)  
   
@@ -86,7 +86,7 @@ In Gestione API di Azure è possibile personalizzare le pagine del portale per s
   
 |Proprietà|Tipo|Descrizione|  
 |--------------|----------|-----------------|  
-|API|Raccolta di entità [Riepilogo dell'API](api-management-template-data-model-reference.md#APISummary).|Le API visibili all'utente corrente.|  
+|API|Raccolta di entità [Riepilogo dell'API](api-management-template-data-model-reference.md#APISummary).|utente corrente toohello visibile API Hello.|  
   
 ### <a name="sample-template-data"></a>Dati del modello di esempio  
   
@@ -108,8 +108,8 @@ In Gestione API di Azure è possibile personalizzare le pagine del portale per s
 }  
 ```  
   
-##  <a name="Product"></a> Operazione  
- Il modello **Operazione** consente di personalizzare il corpo della pagina dell'operazione nel portale per sviluppatori.  
+##  <a name="Product"></a>Operazione  
+ Hello **operazione** modello consente il corpo di hello toocustomize della pagina operazione hello nel portale per sviluppatori hello.  
   
  ![Pagina dell'operazione nel portale per sviluppatori](./media/api-management-api-templates/APIM-Developer-Portal-templates-Operation-page.png "Pagina dell'operazione nel portale per sviluppatori in Gestione API")  
   
@@ -335,21 +335,21 @@ In Gestione API di Azure è possibile personalizzare le pagine del portale per s
 ```  
   
 ### <a name="controls"></a>Controlli  
- Il modello `Operation` non consente l'uso di [controlli di pagina](api-management-page-controls.md).  
+ Hello `Operation` modello non consente l'uso di hello di qualsiasi [pagina controlli](api-management-page-controls.md).  
   
 ### <a name="data-model"></a>Modello di dati  
   
 |Proprietà|Tipo|Descrizione|  
 |--------------|----------|-----------------|  
-|apiId|string|ID dell'API corrente.|  
-|apiName|string|Nome dell'API.|  
-|apiDescription|string|Descrizione dell'API.|  
-|api|Entità [Riepilogo dell'API](api-management-template-data-model-reference.md#APISummary).|API corrente.|  
-|operation|[Operazione](api-management-template-data-model-reference.md#Operation)|L'operazione attualmente visualizzata.|  
-|sampleUrl|string|L'URL per l'operazione corrente.|  
+|apiId|string|id di Hello dell'API di hello corrente.|  
+|apiName|string|nome Hello di hello API.|  
+|apiDescription|string|Descrizione dell'API hello.|  
+|api|Entità [Riepilogo dell'API](api-management-template-data-model-reference.md#APISummary).|Hello API corrente.|  
+|operation|[Operazione](api-management-template-data-model-reference.md#Operation)|operazione Hello attualmente visualizzato.|  
+|sampleUrl|string|Hello URL per l'operazione corrente hello.|  
 |operationMenu|[Menu dell'operazione](api-management-template-data-model-reference.md#Menu)|Un menu di operazioni per questa API.|  
-|consoleUrl|URI|L'URI per il pulsante **Prova**.|  
-|esempi|Raccolta di entità [Esempio di codice](api-management-template-data-model-reference.md#Sample).|Gli esempi di codice per l'operazione corrente.|  
+|consoleUrl|URI|Hello URI per hello **provarla** pulsante.|  
+|esempi|Raccolta di entità [Esempio di codice](api-management-template-data-model-reference.md#Sample).|esempi di codice Hello per l'operazione corrente hello...|  
   
 ### <a name="sample-template-data"></a>Dati del modello di esempio  
   
@@ -376,7 +376,7 @@ In Gestione API di Azure è possibile personalizzare le pagine del portale per s
             "headers": [  
                 {  
                     "name": "Ocp-Apim-Subscription-Key",  
-                    "description": "Subscription key which provides access to this API. Found in your <a href='/developer'>Profile</a>.",  
+                    "description": "Subscription key which provides access toothis API. Found in your <a href='/developer'>Profile</a>.",  
                     "value": "{subscription key}",  
                     "typeName": "string",  
                     "options": null,  
@@ -456,7 +456,7 @@ In Gestione API di Azure è possibile personalizzare le pagine del portale per s
             "headers": [  
                 {  
                     "name": "Ocp-Apim-Subscription-Key",  
-                    "description": "Subscription key which provides access to this API. Found in your <a href='/developer'>Profile</a>.",  
+                    "description": "Subscription key which provides access toothis API. Found in your <a href='/developer'>Profile</a>.",  
                     "value": "{subscription key}",  
                     "typeName": "string",  
                     "options": null,  
@@ -480,7 +480,7 @@ In Gestione API di Azure è possibile personalizzare le pagine del portale per s
             "headers": [  
                 {  
                     "name": "Ocp-Apim-Subscription-Key",  
-                    "description": "Subscription key which provides access to this API. Found in your <a href='/developer'>Profile</a>.",  
+                    "description": "Subscription key which provides access toothis API. Found in your <a href='/developer'>Profile</a>.",  
                     "value": "{subscription key}",  
                     "typeName": "string",  
                     "options": null,  
@@ -504,7 +504,7 @@ In Gestione API di Azure è possibile personalizzare le pagine del portale per s
             "headers": [  
                 {  
                     "name": "Ocp-Apim-Subscription-Key",  
-                    "description": "Subscription key which provides access to this API. Found in your <a href='/developer'>Profile</a>.",  
+                    "description": "Subscription key which provides access toothis API. Found in your <a href='/developer'>Profile</a>.",  
                     "value": "{subscription key}",  
                     "typeName": "string",  
                     "options": null,  
@@ -528,7 +528,7 @@ In Gestione API di Azure è possibile personalizzare le pagine del portale per s
             "headers": [  
                 {  
                     "name": "Ocp-Apim-Subscription-Key",  
-                    "description": "Subscription key which provides access to this API. Found in your <a href='/developer'>Profile</a>.",  
+                    "description": "Subscription key which provides access toothis API. Found in your <a href='/developer'>Profile</a>.",  
                     "value": "{subscription key}",  
                     "typeName": "string",  
                     "options": null,  
@@ -552,7 +552,7 @@ In Gestione API di Azure è possibile personalizzare le pagine del portale per s
             "headers": [  
                 {  
                     "name": "Ocp-Apim-Subscription-Key",  
-                    "description": "Subscription key which provides access to this API. Found in your <a href='/developer'>Profile</a>.",  
+                    "description": "Subscription key which provides access toothis API. Found in your <a href='/developer'>Profile</a>.",  
                     "value": "{subscription key}",  
                     "typeName": "string",  
                     "options": null,  
@@ -576,7 +576,7 @@ In Gestione API di Azure è possibile personalizzare le pagine del portale per s
             "headers": [  
                 {  
                     "name": "Ocp-Apim-Subscription-Key",  
-                    "description": "Subscription key which provides access to this API. Found in your <a href='/developer'>Profile</a>.",  
+                    "description": "Subscription key which provides access toothis API. Found in your <a href='/developer'>Profile</a>.",  
                     "value": "{subscription key}",  
                     "typeName": "string",  
                     "options": null,  
@@ -600,7 +600,7 @@ In Gestione API di Azure è possibile personalizzare le pagine del portale per s
             "headers": [  
                 {  
                     "name": "Ocp-Apim-Subscription-Key",  
-                    "description": "Subscription key which provides access to this API. Found in your <a href='/developer'>Profile</a>.",  
+                    "description": "Subscription key which provides access toothis API. Found in your <a href='/developer'>Profile</a>.",  
                     "value": "{subscription key}",  
                     "typeName": "string",  
                     "options": null,  
@@ -624,7 +624,7 @@ In Gestione API di Azure è possibile personalizzare le pagine del portale per s
             "headers": [  
                 {  
                     "name": "Ocp-Apim-Subscription-Key",  
-                    "description": "Subscription key which provides access to this API. Found in your <a href='/developer'>Profile</a>.",  
+                    "description": "Subscription key which provides access toothis API. Found in your <a href='/developer'>Profile</a>.",  
                     "value": "{subscription key}",  
                     "typeName": "string",  
                     "options": null,  
@@ -639,7 +639,7 @@ In Gestione API di Azure è possibile personalizzare le pagine del portale per s
 ```  
   
 ##  <a name="CodeSamples"></a> Esempi di codice  
- I modelli seguenti consentono di personalizzare il corpo degli esempi di codice singoli nella pagina operazione.  
+ Hello modelli seguenti consentono di corpo hello toocustomize hello singoli esempi di codice nella pagina operazione hello.  
   
  ![Modelli per esempi di codice nel portale per sviluppatori](./media/api-management-api-templates/APIM-Developer-Portal-Templates-Code-samples.png "Modelli per esempi di codice nel portale per sviluppatori in Gestione API")  
   
@@ -660,7 +660,7 @@ In Gestione API di Azure è possibile personalizzare le pagine del portale per s
 -   [Ruby](#Ruby)  
   
 ###  <a name="Curl"></a> Curl  
- Il modello **DocumentationSamplesCurl** consente di personalizzare tale esempio di codice nella relativa sezione della pagina operazione.  
+ Hello **DocumentationSamplesCurl** modello consente toocustomize codice di esempio nella sezione degli esempi di codice hello della pagina operazione hello.  
   
 #### <a name="default-template"></a>Modello predefinito  
   
@@ -678,7 +678,7 @@ curl -v -X {{method}} "{{scheme}}://{{host}}{{path}}{{query | escape }}"
 ```  
   
 #### <a name="controls"></a>Controlli  
- I modelli degli esempi di codici non consentono l'uso di [controlli di pagina](api-management-page-controls.md).  
+ Hello modelli di esempio di codice non consentono l'hello uso di qualsiasi [pagina controlli](api-management-page-controls.md).  
   
 #### <a name="data-model"></a>Modello di dati  
  Entità [Esempio di codice](api-management-template-data-model-reference.md#Sample).  
@@ -700,7 +700,7 @@ curl -v -X {{method}} "{{scheme}}://{{host}}{{path}}{{query | escape }}"
     "headers": [  
         {  
             "name": "Ocp-Apim-Subscription-Key",  
-            "description": "Subscription key which provides access to this API. Found in your <a href='/developer'>Profile</a>.",  
+            "description": "Subscription key which provides access toothis API. Found in your <a href='/developer'>Profile</a>.",  
             "value": "{subscription key}",  
             "typeName": "string",  
             "options": null,  
@@ -713,7 +713,7 @@ curl -v -X {{method}} "{{scheme}}://{{host}}{{path}}{{query | escape }}"
 ```  
   
 ###  <a name="CSharp"></a> C#  
- Il modello **DocumentationSamplesCsharp** consente di personalizzare tale esempio di codice nella relativa sezione della pagina operazione.  
+ Hello **DocumentationSamplesCsharp** modello consente toocustomize codice di esempio nella sezione degli esempi di codice hello della pagina operazione hello.  
   
 #### <a name="default-template"></a>Modello predefinito  
   
@@ -731,7 +731,7 @@ namespace CSHttpClientSample
         static void Main()  
         {  
             MakeRequest();  
-            Console.WriteLine("Hit ENTER to exit...");  
+            Console.WriteLine("Hit ENTER tooexit...");  
             Console.ReadLine();  
         }  
   
@@ -857,7 +857,7 @@ namespace CSHttpClientSample
 ```  
   
 #### <a name="controls"></a>Controlli  
- I modelli degli esempi di codici non consentono l'uso di [controlli di pagina](api-management-page-controls.md).  
+ Hello modelli di esempio di codice non consentono l'hello uso di qualsiasi [pagina controlli](api-management-page-controls.md).  
   
 #### <a name="data-model"></a>Modello di dati  
  Entità [Esempio di codice](api-management-template-data-model-reference.md#Sample).  
@@ -879,7 +879,7 @@ namespace CSHttpClientSample
     "headers": [  
         {  
             "name": "Ocp-Apim-Subscription-Key",  
-            "description": "Subscription key which provides access to this API. Found in your <a href='/developer'>Profile</a>.",  
+            "description": "Subscription key which provides access toothis API. Found in your <a href='/developer'>Profile</a>.",  
             "value": "{subscription key}",  
             "typeName": "string",  
             "options": null,  
@@ -892,12 +892,12 @@ namespace CSHttpClientSample
 ```  
   
 ###  <a name="Stub"></a> Java  
- Il modello **DocumentationSamplesJava** consente di personalizzare tale esempio di codice nella relativa sezione della pagina operazione.  
+ Hello **DocumentationSamplesJava** modello consente toocustomize codice di esempio nella sezione degli esempi di codice hello della pagina operazione hello.  
   
 #### <a name="default-template"></a>Modello predefinito  
   
 ```xml  
-// // This sample uses the Apache HTTP client from HTTP Components (http://hc.apache.org/httpcomponents-client-ga/)  
+// // This sample uses hello Apache HTTP client from HTTP Components (http://hc.apache.org/httpcomponents-client-ga/)  
 import java.net.URI;  
 import org.apache.http.HttpEntity;  
 import org.apache.http.HttpResponse;  
@@ -953,7 +953,7 @@ public class JavaSample
 ```  
   
 #### <a name="controls"></a>Controlli  
- I modelli degli esempi di codici non consentono l'uso di [controlli di pagina](api-management-page-controls.md).  
+ Hello modelli di esempio di codice non consentono l'hello uso di qualsiasi [pagina controlli](api-management-page-controls.md).  
   
 #### <a name="data-model"></a>Modello di dati  
  Entità [Esempio di codice](api-management-template-data-model-reference.md#Sample).  
@@ -975,7 +975,7 @@ public class JavaSample
     "headers": [  
         {  
             "name": "Ocp-Apim-Subscription-Key",  
-            "description": "Subscription key which provides access to this API. Found in your <a href='/developer'>Profile</a>.",  
+            "description": "Subscription key which provides access toothis API. Found in your <a href='/developer'>Profile</a>.",  
             "value": "{subscription key}",  
             "typeName": "string",  
             "options": null,  
@@ -988,7 +988,7 @@ public class JavaSample
 ```  
   
 ###  <a name="JavaScript"></a> JavaScript  
- Il modello **DocumentationSamplesJs** consente di personalizzare tale esempio di codice nella relativa sezione della pagina operazione.  
+ Hello **DocumentationSamplesJs** modello consente toocustomize codice di esempio nella sezione degli esempi di codice hello della pagina operazione hello.  
   
 #### <a name="default-template"></a>Modello predefinito  
   
@@ -1042,7 +1042,7 @@ public class JavaSample
 ```  
   
 #### <a name="controls"></a>Controlli  
- I modelli degli esempi di codici non consentono l'uso di [controlli di pagina](api-management-page-controls.md).  
+ Hello modelli di esempio di codice non consentono l'hello uso di qualsiasi [pagina controlli](api-management-page-controls.md).  
   
 #### <a name="data-model"></a>Modello di dati  
  Entità [Esempio di codice](api-management-template-data-model-reference.md#Sample).  
@@ -1064,7 +1064,7 @@ public class JavaSample
     "headers": [  
         {  
             "name": "Ocp-Apim-Subscription-Key",  
-            "description": "Subscription key which provides access to this API. Found in your <a href='/developer'>Profile</a>.",  
+            "description": "Subscription key which provides access toothis API. Found in your <a href='/developer'>Profile</a>.",  
             "value": "{subscription key}",  
             "typeName": "string",  
             "options": null,  
@@ -1077,7 +1077,7 @@ public class JavaSample
 ```  
   
 ###  <a name="ObjectiveC"></a> Objective C  
- Il modello **DocumentationSamplesObjc** consente di personalizzare tale esempio di codice nella relativa sezione della pagina operazione.  
+ Hello **DocumentationSamplesObjc** modello consente toocustomize codice di esempio nella sezione degli esempi di codice hello della pagina operazione hello.  
   
 #### <a name="default-template"></a>Modello predefinito  
   
@@ -1154,7 +1154,7 @@ int main(int argc, const char * argv[])
 ```  
   
 #### <a name="controls"></a>Controlli  
- I modelli degli esempi di codici non consentono l'uso di [controlli di pagina](api-management-page-controls.md).  
+ Hello modelli di esempio di codice non consentono l'hello uso di qualsiasi [pagina controlli](api-management-page-controls.md).  
   
 #### <a name="data-model"></a>Modello di dati  
  Entità [Esempio di codice](api-management-template-data-model-reference.md#Sample).  
@@ -1176,7 +1176,7 @@ int main(int argc, const char * argv[])
     "headers": [  
         {  
             "name": "Ocp-Apim-Subscription-Key",  
-            "description": "Subscription key which provides access to this API. Found in your <a href='/developer'>Profile</a>.",  
+            "description": "Subscription key which provides access toothis API. Found in your <a href='/developer'>Profile</a>.",  
             "value": "{subscription key}",  
             "typeName": "string",  
             "options": null,  
@@ -1189,13 +1189,13 @@ int main(int argc, const char * argv[])
 ```  
   
 ###  <a name="PHP"></a> PHP  
- Il modello **DocumentationSamplesPhp** consente di personalizzare tale esempio di codice nella relativa sezione della pagina operazione.  
+ Hello **DocumentationSamplesPhp** modello consente toocustomize codice di esempio nella sezione degli esempi di codice hello della pagina operazione hello.  
   
 #### <a name="default-template"></a>Modello predefinito  
   
 ```xml  
 <?php  
-// This sample uses the Apache HTTP client from HTTP Components (http://hc.apache.org/httpcomponents-client-ga/)  
+// This sample uses hello Apache HTTP client from HTTP Components (http://hc.apache.org/httpcomponents-client-ga/)  
 require_once 'HTTP/Request2.php';  
   
 $request = new Http_Request2('{{scheme}}://{{host}}{{path}}');  
@@ -1244,7 +1244,7 @@ catch (HttpException $ex)
 ```  
   
 #### <a name="controls"></a>Controlli  
- I modelli degli esempi di codici non consentono l'uso di [controlli di pagina](api-management-page-controls.md).  
+ Hello modelli di esempio di codice non consentono l'hello uso di qualsiasi [pagina controlli](api-management-page-controls.md).  
   
 #### <a name="data-model"></a>Modello di dati  
  Entità [Esempio di codice](api-management-template-data-model-reference.md#Sample).  
@@ -1266,7 +1266,7 @@ catch (HttpException $ex)
     "headers": [  
         {  
             "name": "Ocp-Apim-Subscription-Key",  
-            "description": "Subscription key which provides access to this API. Found in your <a href='/developer'>Profile</a>.",  
+            "description": "Subscription key which provides access toothis API. Found in your <a href='/developer'>Profile</a>.",  
             "value": "{subscription key}",  
             "typeName": "string",  
             "options": null,  
@@ -1279,7 +1279,7 @@ catch (HttpException $ex)
 ```  
   
 ###  <a name="Python"></a> Python  
- Il modello **DocumentationSamplesPython** consente di personalizzare tale esempio di codice nella relativa sezione della pagina operazione.  
+ Hello **DocumentationSamplesPython** modello consente toocustomize codice di esempio nella sezione degli esempi di codice hello della pagina operazione hello.  
   
 #### <a name="default-template"></a>Modello predefinito  
   
@@ -1362,7 +1362,7 @@ except Exception as e:
 ```  
   
 #### <a name="controls"></a>Controlli  
- I modelli degli esempi di codici non consentono l'uso di [controlli di pagina](api-management-page-controls.md).  
+ Hello modelli di esempio di codice non consentono l'hello uso di qualsiasi [pagina controlli](api-management-page-controls.md).  
   
 #### <a name="data-model"></a>Modello di dati  
  Entità [Esempio di codice](api-management-template-data-model-reference.md#Sample).  
@@ -1384,7 +1384,7 @@ except Exception as e:
     "headers": [  
         {  
             "name": "Ocp-Apim-Subscription-Key",  
-            "description": "Subscription key which provides access to this API. Found in your <a href='/developer'>Profile</a>.",  
+            "description": "Subscription key which provides access toothis API. Found in your <a href='/developer'>Profile</a>.",  
             "value": "{subscription key}",  
             "typeName": "string",  
             "options": null,  
@@ -1397,7 +1397,7 @@ except Exception as e:
 ```  
   
 ###  <a name="Ruby"></a> Ruby  
- Il modello **DocumentationSamplesRuby** consente di personalizzare tale esempio di codice nella relativa sezione della pagina operazione.  
+ Hello **DocumentationSamplesRuby** modello consente toocustomize codice di esempio nella sezione degli esempi di codice hello della pagina operazione hello.  
   
 #### <a name="default-template"></a>Modello predefinito  
   
@@ -1433,7 +1433,7 @@ puts response.body
 ```  
   
 #### <a name="controls"></a>Controlli  
- I modelli degli esempi di codici non consentono l'uso di [controlli di pagina](api-management-page-controls.md).  
+ Hello modelli di esempio di codice non consentono l'hello uso di qualsiasi [pagina controlli](api-management-page-controls.md).  
   
 #### <a name="data-model"></a>Modello di dati  
  Entità [Esempio di codice](api-management-template-data-model-reference.md#Sample).  
@@ -1455,7 +1455,7 @@ puts response.body
     "headers": [  
         {  
             "name": "Ocp-Apim-Subscription-Key",  
-            "description": "Subscription key which provides access to this API. Found in your <a href='/developer'>Profile</a>.",  
+            "description": "Subscription key which provides access toothis API. Found in your <a href='/developer'>Profile</a>.",  
             "value": "{subscription key}",  
             "typeName": "string",  
             "options": null,  
@@ -1468,4 +1468,4 @@ puts response.body
 ```
 
 ## <a name="next-steps"></a>Passaggi successivi
-Per ulteriori informazioni sull'uso dei modelli, vedere [Come personalizzare il portale per sviluppatori di Gestione API usando i modelli](api-management-developer-portal-templates.md).
+Per ulteriori informazioni sull'utilizzo dei modelli, vedere [come toocustomize hello portale di gestione API per gli sviluppatori utilizzando i modelli](api-management-developer-portal-templates.md).

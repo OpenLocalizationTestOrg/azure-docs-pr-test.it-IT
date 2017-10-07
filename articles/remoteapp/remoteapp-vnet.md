@@ -1,6 +1,6 @@
 ---
-title: Convalidare la rete virtuale di Azure da usare con Azure RemoteApp | Documentazione Microsoft
-description: "Informazioni su come assicurarsi che la rete virtuale di Azure sia pronta all’utilizzo con Azure RemoteApp"
+title: aaaValidate hello rete virtuale di Azure toouse con Azure RemoteApp | Documenti Microsoft
+description: "Informazioni su come toomake assicurarsi che la rete virtuale di Azure è pronta toouse con Azure RemoteApp"
 services: remoteapp
 documentationcenter: 
 author: msmbaldwin
@@ -13,31 +13,31 @@ ms.devlang: na
 ms.topic: article
 ms.date: 11/23/2016
 ms.author: mbaldwin
-ms.openlocfilehash: 05c8a0ff04293947cec391b6467cc4adddb6a7b0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 5587556c264356e6ab6039b983a38cb2b95ed268
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="validate-the-azure-vnet-to-use-with-azure-remoteapp"></a>Convalidare la rete virtuale di Azure da usare con Azure RemoteApp
+# <a name="validate-hello-azure-vnet-toouse-with-azure-remoteapp"></a>Convalidare hello toouse di rete virtuale di Azure con Azure RemoteApp
 > [!IMPORTANT]
-> Azure RemoteApp verrà sospeso a partire dal 31 agosto 2017. Per i dettagli, vedere l' [annuncio](https://go.microsoft.com/fwlink/?linkid=821148) .
+> Azure RemoteApp verrà sospeso a partire dal 31 agosto 2017. Hello lettura [annuncio](https://go.microsoft.com/fwlink/?linkid=821148) per informazioni dettagliate.
 > 
 > 
 
-Prima di utilizzare una rete virtuale di Azure con Azure RemoteApp, è possibile convalidare la rete virtuale. Consente di evitare problemi con la connettività.
+Prima di utilizzare una rete virtuale di Azure con Azure RemoteApp, è possibile toovalidate hello rete virtuale. Consente di evitare problemi con la connettività.
 
-Per convalidare la rete virtuale di Azure, procedere come segue:
+toovalidate rete virtuale di Azure, hello seguenti:
 
-1. Creare una macchina virtuale di Azure all'interno della subnet della rete virtuale di Azure da usare con Azure RemoteApp.
-2. Connettersi a tale macchina virtuale usando l’opzione **Connetti** nel portale di gestione.
-3. Aggiungere la macchina virtuale allo stesso dominio che si desidera usare con Azure RemoteApp. Se si sta creando una raccolta ibrida che si connette alla rete locale, aggiungere la macchina virtuale al dominio locale.
+1. Creare una macchina virtuale di Azure all'interno di hello subnet della rete virtuale di Azure, si desidera toouse con Azure RemoteApp hello.
+2. Connettersi con hello toothat VM **Connetti** opzione nel portale di gestione di hello.
+3. Join hello macchina virtuale toohello stesso dominio in cui si desidera toouse con Azure RemoteApp. Se si sta creando una raccolta ibrida che si connette rete locale tooyour, dominio locale tooyour join hello macchina virtuale.
 
-Se l'operazione viene completata, la rete virtuale di Azure è pronta per l'utilizzo con RemoteApp.
+Se ha esito positivo, hello rete virtuale di Azure è pronta toouse con RemoteApp.
 
-Per ulteriori informazioni sul flusso di lavoro della raccolta ibrida end-to-end, vedere gli articoli seguenti:
+Per ulteriori informazioni sul flusso di lavoro Raccolta hello ibrida end-to-end, vedere hello seguenti articoli:
 
-* [Come pianificare la rete virtuale per RemoteApp di Azure](remoteapp-planvnet.md)
+* [Come tooplan la rete virtuale di Azure RemoteApp](remoteapp-planvnet.md)
 * [Creare una raccolta ibrida](remoteapp-create-hybrid-deployment.md)
-* [Distribuire la raccolta di Azure RemoteApp alla rete virtuale di Azure (con supporto per ExpressRoute)](http://blogs.msdn.com/b/rds/archive/2015/04/23/deploy-azure-remoteapp-collection-to-your-azure-virtual-network-with-support-for-expressroute.aspx)
+* [Distribuire Azure RemoteApp raccolta tooyour rete virtuale di Azure (con supporto per ExpressRoute)](http://blogs.msdn.com/b/rds/archive/2015/04/23/deploy-azure-remoteapp-collection-to-your-azure-virtual-network-with-support-for-expressroute.aspx)
 

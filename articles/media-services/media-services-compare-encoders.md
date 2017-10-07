@@ -1,6 +1,6 @@
 ---
-title: Confronto tra i codificatori multimediali su richiesta di Azure | Documentazione Microsoft
-description: "Questo argomento mette a confronto le funzionalità di codifica di **Media Encoder Standard** e di **Flusso di lavoro Premium del codificatore multimediale**."
+title: aaaComparison di Azure in codificatori media richiesta | Documenti Microsoft
+description: "In questo argomento vengono confrontate le funzionalità di codifica hello del * * Media Encoder Standard * * e * * Media Encoder Premium del flusso di lavoro * *."
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,23 +14,23 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/17/2017
 ms.author: juliako
-ms.openlocfilehash: 3bba48d5425ae47c72aca893af7c11fe270c2929
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: ee04ad10d8e7c5f4f3c6e91e9b7679c2aba82c99
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="comparison-of-azure-on-demand-media-encoders"></a>Confronto tra i codificatori multimediali su richiesta di Azure
 
-Questo argomento mette a confronto le funzionalità di codifica di **Media Encoder Standard** e di **Flusso di lavoro Premium del codificatore multimediale**.
+In questo argomento vengono confrontate le funzionalità di codifica hello di **Media Encoder Standard** e **flusso di lavoro Premium del codificatore multimediale**.
 
 ## <a name="video-and-audio-processing-capabilities"></a>Funzionalità di elaborazione audio e video
 
-La tabella seguente mette a confronto le funzionalità di Media Encoder Standard (MES) e Media Encoder Premium Workflow (MEPW). 
+Hello nella tabella seguente vengono confrontate le funzionalità di hello tra supporti codificatore Standard (MES) e Media Encoder Premium del flusso di lavoro (MEPW). 
 
 |Funzionalità|Codificatore multimediale standard|Flusso di lavoro Premium del codificatore multimediale|
 |---|---|---|
-|Applicazione della logica condizionale durante la codifica<br/>(ad esempio, se l'input è HD viene usata la codifica audio 5.1)|No|Sì|
+|Applicazione della logica condizionale durante la codifica<br/>(ad esempio, se l'input hello HD, quindi codificare audio 5.1)|No|Sì|
 |Sottotitoli|No|[Sì](media-services-premium-workflow-encoder-formats.md#closed_captioning)|
 |[Dolby® Professional Loudness Correction](http://www.dolby.com/us/en/technologies/dolby-professional-loudness-solutions.pdf)<br/> con Dialogue Intelligence™|No|Sì|
 |Deinterlacciamento, telecine inverso|Basic|Qualità broadcast|
@@ -44,8 +44,8 @@ La tabella seguente mette a confronto le funzionalità di Media Encoder Standard
 ## <a id="billing"></a>Metro di fatturazione usato da ogni codificatore
 | Nome del processore multimediale | Prezzi applicabili | Note |
 | --- | --- | --- |
-| **Codificatore multimediale standard** |CODIFICATORE |Le attività di codifica verranno addebitate le attività in base alla durata totale, espressa in minuti, di tutti i file multimediali generati come output, alla tariffa specificata [qui][1], nella colonna CODIFICATORE. |
-| **Flusso di lavoro Premium del codificatore multimediale** |CODIFICATORE PREMIUM |Le attività di codifica verranno addebitate le attività in base alla durata totale, espressa in minuti, di tutti i file multimediali generati come output, alla tariffa specificata [qui][1], nella colonna CODIFICATORE PREMIUM. |
+| **Codificatore multimediale standard** |CODIFICATORE |Codifica l'attività verranno addebitate in base alla durata totale hello, in minuti, di tutti i file di supporto hello generati come output, hello frequenza specificata [qui][1], nella colonna CODIFICATORE hello. |
+| **Flusso di lavoro Premium del codificatore multimediale** |CODIFICATORE PREMIUM |Codifica l'attività verranno addebitate in base alla durata totale hello, in minuti, di tutti i file di supporto hello generati come output, hello frequenza specificata [qui][1], nella colonna CODIFICATORE PREMIUM hello. |
 
 ## <a name="input-containerfile-formats"></a>Contenitore di input/formati di file
 | Contenitore di input/formati di file | Codificatore multimediale standard | Flusso di lavoro Premium del codificatore multimediale |
@@ -67,11 +67,11 @@ La tabella seguente mette a confronto le funzionalità di Media Encoder Standard
 ## <a name="input-video-codecs"></a>Codec video di input
 | Codec video di input | Codificatore multimediale standard | Flusso di lavoro Premium del codificatore multimediale |
 | --- | --- | --- |
-| AVC 8 bit/10 bit, fino a 4:2:2, incluso AVCIntra |4:2:0 e 4:2:2 a 8 bit |Sì |
+| AVC 8 bit/10 bit, di too4:2:2, tra cui AVCIntra |4:2:0 e 4:2:2 a 8 bit |Sì |
 | Avid DNxHD (in MXF) |Sì |Sì |
 | DVCPro/DVCProHD (in MXF) |Sì |Sì |
 | JPEG2000 |Sì |Sì |
-| MPEG-2 (fino a 4:2:2 Profile e High Level; incluse varianti quali XDCAM, XDCAM HD, XDCAM IMX, CableLabs® e D10) |Fino a 422 Profile |Sì |
+| MPEG-2 (backup too422 profilo e di livello elevato, ad esempio varianti XDCAM, XDCAM HD, XDCAM IMX, CableLabs® e D10) |Profilo di too422 |Sì |
 | MPEG-1 |Sì |Sì |
 | Windows Media Video/VC-1 |Sì |Sì |
 | Canopus HQ/HQX |No |No |
@@ -91,7 +91,7 @@ La tabella seguente mette a confronto le funzionalità di Media Encoder Standard
 | Dolby® E |No |Sì |
 | Dolby® Digital (AC3) |No |Sì |
 | Dolby® Digital Plus (E-AC3) |No |Sì |
-| AAC (AAC-LC, AAC-HE e AAC-HEv2; fino a 5.1) |Sì |Sì |
+| AAC (AAC-LC, HE-AAC e AAC-HEv2; backup too5.1) |Sì |Sì |
 | MPEG Layer 2 |Sì |Sì |
 | MP3 (MPEG-1 Audio Layer 3) |Sì |Sì |
 | Windows Media Audio |Sì |Sì |
@@ -116,9 +116,9 @@ La tabella seguente mette a confronto le funzionalità di Media Encoder Standard
 ## <a name="output-video-codecs"></a>Codec video di output
 | Codec video di output | Codificatore multimediale standard | Flusso di lavoro Premium del codificatore multimediale |
 | --- | --- | --- |
-| AVC (H.264; 8 bit; fino a High Profile, Level 5.2; 4K Ultra HD; AVC Intra) |Solo 4:2:0 a 8 bit |Sì |
+| AVC (h. 264; 8 bit; backup tooHigh profilo, livello 5.2; HD Ultra 4K. All'interno di AVC) |Solo 4:2:0 a 8 bit |Sì |
 | Avid DNxHD (in MXF) |No |Sì |
-| MPEG-2 (fino a 4:2:2 Profile e High Level; incluse varianti quali XDCAM, XDCAM HD, XDCAM IMX, CableLabs® e D10) |No |Sì |
+| MPEG-2 (backup too422 profilo e di livello elevato, ad esempio varianti XDCAM, XDCAM HD, XDCAM IMX, CableLabs® e D10) |No |Sì |
 | MPEG-1 |No |Sì |
 | Windows Media Video/VC-1 |No |Sì |
 | Creazione anteprime JPEG |Sì |Sì |
@@ -130,14 +130,14 @@ La tabella seguente mette a confronto le funzionalità di Media Encoder Standard
 | --- | --- | --- |
 | AES (SMPTE 331M e 302M, AES3-2003) |No |Sì |
 | Dolby® Digital (AC3) |No |Sì |
-| Dolby® Digital Plus (E-AC3) fino a 7.1 |No |Sì |
-| AAC (AAC-LC, AAC-HE e AAC-HEv2; fino a 5.1) |Sì |Sì |
+| Dolby® Digital Plus (AC3 E) di too7.1 |No |Sì |
+| AAC (AAC-LC, HE-AAC e AAC-HEv2; backup too5.1) |Sì |Sì |
 | MPEG Layer 2 |No |Sì |
 | MP3 (MPEG-1 Audio Layer 3) |No |Sì |
 | Windows Media Audio |No |Sì |
 
 >[!NOTE]
->Se si codifica per Dolby® Digital (AC3), l'output può essere scritto solo in un file ISO MP4.
+>Se si codifica tooDolby® Digital (AC3), è possibile scrivere l'output di hello solo in un file ISO MP4.
 
 ## <a name="media-services-learning-paths"></a>Percorsi di apprendimento di Servizi multimediali
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]

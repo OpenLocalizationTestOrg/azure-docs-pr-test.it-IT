@@ -1,5 +1,5 @@
 ---
-title: 'Larghezza di banda di rete di Azure RemoteApp: linee guida generali | Microsoft Docs'
+title: larghezza di banda RemoteApp aaaAzure - linee guida generali | Documenti Microsoft
 description: Linee guida di base sulla larghezza di banda di rete per le raccolte e le app Azure RemoteApp.
 services: remoteapp
 documentationcenter: 
@@ -13,30 +13,30 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/26/2017
 ms.author: mbaldwin
-ms.openlocfilehash: 0b6521cc240556186890f0b797c6d80e431ac4be
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d3407eea71e2e8ac524787ee680cfd870c800864
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-remoteapp-network-bandwidth---general-guidelines-if-you-cant-test-your-own"></a>Larghezza di banda di rete di Azure RemoteApp: linee guida generali (se non è possibile verificare direttamente)
 > [!IMPORTANT]
-> Azure RemoteApp verrà sospeso a partire dal 31 agosto 2017. Per i dettagli, vedere l' [annuncio](https://go.microsoft.com/fwlink/?linkid=821148) .
+> Azure RemoteApp verrà sospeso a partire dal 31 agosto 2017. Hello lettura [annuncio](https://go.microsoft.com/fwlink/?linkid=821148) per informazioni dettagliate.
 > 
 > 
 
-Se non si dispone del tempo o non si ha la possibilità di eseguire il [test della larghezza di banda della rete](remoteapp-bandwidthtests.md) per Azure RemoteApp, di seguito sono riportate alcune linee guida piuttosto generiche che consentono di stimare la larghezza di banda di rete per utente.
+Se non si dispone hello toorun ora o la funzionalità di hello [test della larghezza di banda di rete](remoteapp-bandwidthtests.md) per Azure RemoteApp, di seguito sono riportate alcune linee guida piuttosto generica che consentono di stimare la larghezza di banda di rete per ogni utente.
 
-Se il proprio scenario è una combinazione di questi, non è consigliabile un valore minore di (o uguale a) 10 MB/s come larghezza di banda MINIMA per le app moderne connesse a Internet in un ambiente remoto. Questo però, come si è detto, non garantisce un'esperienza utente superiore alla media.
+Se si dispone di una combinazione di questi scenari, non è consigliabile un valore minore di (o uguale a) 10 MB/s come hello larghezza di banda minima per le app moderne in un ambiente remoto connesso a Internet. Questo però, come si è detto, non garantisce un'esperienza utente superiore alla media.
 
 ## <a name="complex-powerpoint-simple-powerpoint"></a>Presentazioni complesse, presentazioni semplici
-Azure RemoteApp funziona meglio in una LAN a 100 MB. Con un profilo di rete di 10 MB/s, quando l'instabilità oltre 120 ms supera il 5%, l'esperienza utente è di qualità media. Con 1 MB/s la differenza è evidente. Ad esempio, in una presentazione, l'utente potrebbe non vedere affatto le transizioni animate perché vengono ignorati numerosi fotogrammi.
+Azure RemoteApp funziona meglio in una LAN a 100 MB. In hello 10 MB/s rete profilo quando più del 5%, utente hello instabilità sopra ms 120 visualizzeranno un'esperienza di Media. A hello di 1 MB/s diverso è ritornare - ad esempio, in una presentazione, utente hello potrebbe non essere visibili transizioni animate affatto perché i frame vengono ignorati.
 
 ## <a name="internet-explorer-mixed-pdf-pdf-text"></a>Internet Explorer, PDF misto, PDF, testo
-Un profilo di rete di 10 MB/s è simile a una LAN in molti aspetti. 1 MB/s offre un'esperienza accettabile, anche se potrebbe verificarsi una certa instabilità quando un utente scorre un documento mentre sono visualizzate immagini sullo schermo.
+Profilo di rete 10 MB/s è tooLAN Chiudi nella maggior parte degli aspetti. 1 MB/s fornirà un'esperienza di OK, sebbene vi siano alcune instabilità quando un utente scorre mentre vi sono immagini nella schermata di hello.
 
 ## <a name="flash-video-youtube"></a>Video Flash (YouTube)
-Una LAN da 100 MB/s garantisce un'esperienza ottimale, mentre una larghezza di banda di 10 MB/s è accettabile, nel senso che riesce a stare al passo con la frequenza dei fotogrammi ma l'instabilità aumenta. Con 1 MB/s l'instabilità è molto elevata ed evidente.
+100 MB/s LAN fornisce un'esperienza ottimale hello, mentre i 10 MB/s è accettabile (a indicare che è sincronizzato con frequenza dei fotogrammi hello, ma aumenta di variazione). Con 1 MB/s l'instabilità è molto elevata ed evidente.
 
 ## <a name="word-typing-word-remote-input"></a>Digitazione in Word (input remoto in Word)
 Si tratta di uno scenario con un utilizzo ridotto della larghezza di banda. Con 256 KB/s l'esperienza ha la stessa qualità di quella offerta da una LAN.

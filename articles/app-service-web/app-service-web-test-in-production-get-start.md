@@ -1,6 +1,6 @@
 ---
-title: Introduzione al test in ambiente di produzione per le app Web
-description: "Informazioni sulla funzionalità di test in ambiente di produzione in app Web del servizio app di Azure."
+title: aaaGet avviato con test nell'ambiente di produzione per le app Web
+description: "Informazioni sulle funzionalità di produzione (TiP) nelle App Web di Azure App Service Ciao Test."
 services: app-service\web
 documentationcenter: 
 author: cephalin
@@ -14,68 +14,68 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/13/2016
 ms.author: cephalin
-ms.openlocfilehash: 9f38b635140cacf0513c75385bce3c110a930969
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2ddbd532ffe2a4f3e07fd386d9741a3fde3639ca
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-with-test-in-production-for-web-apps"></a>Introduzione al test in ambiente di produzione per le app Web
-Il test in ambiente di produzione, ovvero il test in diretta dell'app Web con il traffico dei clienti live, è una strategia di test che gli sviluppatori di app integrano sempre più spesso nella metodologia di [sviluppo Agile](https://en.wikipedia.org/wiki/Agile_software_development) . Consente di testare la qualità delle app con il traffico utente live nell'ambiente di produzione, invece dei dati sintetizzati in un ambiente di test. Esponendo la nuova app agli utenti reali, è possibile venire a conoscenza dei veri problemi che potrebbero verificarsi nell'app una volta distribuita. È possibile verificare la funzionalità, le prestazioni e il valore degli aggiornamenti app rispetto al volume, alla velocità e alla varietà del traffico utente reale, che non è mai possibile prevedere in un ambiente di test.
+Il test in ambiente di produzione, ovvero il test in diretta dell'app Web con il traffico dei clienti live, è una strategia di test che gli sviluppatori di app integrano sempre più spesso nella metodologia di [sviluppo Agile](https://en.wikipedia.org/wiki/Agile_software_development) . Consente di qualità hello tootest delle App con il traffico utente in tempo reale nell'ambiente di produzione, come dati toosynthesized anziché in un ambiente di test. Per esporre i nuovi utenti tooreal app, possono essere informati sui problemi relativi alle reali hello che può incontrare l'app dopo la distribuzione. È possibile verificare la funzionalità di hello, prestazioni e valore gli aggiornamenti di app su volume hello, velocità e la varietà del traffico utente reale, in cui non è mai simile in un ambiente di test.
 
 ## <a name="traffic-routing-in-app-service-web-apps"></a>Routing del traffico in app Web del servizio app
-Con la funzionalità Routing del traffico nel [Servizio app di Azure](http://go.microsoft.com/fwlink/?LinkId=529714) è possibile indirizzare una parte del traffico utente live a uno o più [slot di distribuzione](web-sites-staged-publishing.md) e quindi analizzare l'app con [Azure Application Insights](/services/application-insights/), [Azure HDInsight](/services/hdinsight/) o uno strumento di terze parti, ad esempio [New Relic](/marketplace/partners/newrelic/newrelic/), per convalidare la modifica. Con il servizio app, ad esempio, è possibile implementare gli scenari seguenti:
+Con il Routing del traffico hello funzionalità in [Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714), è possibile indirizzare una parte di tooone traffico utente in tempo reale o più [gli slot di distribuzione](web-sites-staged-publishing.md)e quindi analizzare l'app con [l'applicazione Azure Insights](/services/application-insights/) o [Azure HDInsight](/services/hdinsight/), o uno strumento di terze parti, ad esempio [New Relic](/marketplace/partners/newrelic/newrelic/) toovalidate la modifica. Ad esempio, è possibile implementare hello seguenti scenari con il servizio App:
 
-* Individuare i bug funzionali o trovare i colli di bottiglia delle prestazioni negli aggiornamenti prima della distribuzione a livello di sito
-* Effettuare "voli di prova controllati" delle modifiche misurando la metrica di usabilità nell'app beta
-* Passare gradualmente a un nuovo aggiornamento e, in caso di errore, tornare semplicemente alla versione corrente 
+* Individuare bug funzionale o individuare eventuali colli di bottiglia nella distribuzione di aggiornamenti precedenti toosite wide
+* Eseguire "test controllato voli" delle modifiche misurando le metriche di usabilità per app di hello beta
+* Gradualmente salita tooa nuovo aggiornamento e normalmente nuovamente verso il basso la versione corrente di toohello se si verifica un errore 
 * Ottimizzare i risultati aziendali dell'app eseguendo [test A/B](https://en.wikipedia.org/wiki/A/B_testing) o [test multivariati](https://en.wikipedia.org/wiki/Multivariate_testing_in_marketing) in più slot di distribuzione
 
 ### <a name="requirements-for-using-traffic-routing-in-web-apps"></a>Requisiti per l'uso di Routing del traffico nelle app Web
 * L'app Web deve essere eseguita nel piano **Standard** o **Premium**, come richiesto per slot di distribuzione multipli.
-* Per il corretto funzionamento di Routing del traffico, i cookie devono essere abilitati nel browser degli utenti. Routing del traffico usa i cookie per aggiungere un browser client a uno slot di distribuzione per tutta la durata della sessione client.
+* In ordine toowork correttamente, il Routing del traffico richiede toobe i cookie abilitati nel browser degli utenti hello. Routing del traffico utilizza cookie toopin uno slot di distribuzione tooa browser client per la sessione di hello vita hello client.
 * Routing del traffico supporta scenari di test in ambiente di produzione avanzati grazie ai cmdlet di Azure PowerShell.
 
-## <a name="route-traffic-segment-to-a-deployment-slot"></a>Instradare un segmento di traffico a uno slot di distribuzione
-A livello di base in ogni scenario di test in ambiente di produzione, si instrada una percentuale predefinita di traffico live a uno slot di distribuzione non di produzione. A questo scopo, eseguire la procedura seguente.
+## <a name="route-traffic-segment-tooa-deployment-slot"></a>Slot di distribuzione di route del traffico segmento tooa
+A livello di base hello in ogni scenario di suggerimento, si distribuisce una percentuale predefinita dello slot di distribuzione non di produzione tooa traffico in tempo reale. toodo, questa procedura hello seguire seguente:
 
 > [!NOTE]
-> Questi passaggi presuppongono che sia già disponibile uno [slot di distribuzione non di produzione](web-sites-staged-publishing.md) in cui sia già stato [distribuito](web-sites-deploy.md) il contenuto dell'app Web.
+> Hello questa procedura si presuppone che sia già un [slot di distribuzione non di produzione](web-sites-staged-publishing.md) e lo si desidera che hello contenuti dell'app web sono già [distribuito](web-sites-deploy.md) tooit.
 > 
 > 
 
-1. Accedere al [portale di Azure](https://portal.azure.com/).
+1. Accedere al hello [portale Azure](https://portal.azure.com/).
 2. Nel pannello dell'app Web fare clic su **Impostazioni** > **Routing del traffico**.
    ![](./media/app-service-web-test-in-production/01-traffic-routing.png)
-3. Selezionare lo slot a cui instradare il traffico e la percentuale del traffico totale desiderata, quindi fare clic su **Salva**.
+3. Slot selezionare hello che si desidera che tooroute traffico tooand hello percentuale di traffico totale di hello è desiderato, quindi fare clic su **salvare**.
    
     ![](./media/app-service-web-test-in-production/02-select-slot.png)
-4. Passare al pannello dello slot di distribuzione. Dovrebbe essere visualizzato il traffico live che viene instradato allo slot.
+4. Andare a pannello dello slot di distribuzione toohello. Viene visualizzato in tempo reale del traffico viene indirizzato tooit.
    
     ![](./media/app-service-web-test-in-production/03-traffic-routed.png)
 
-Una volta configurato Routing del traffico, la percentuale specificata di client verrà instradata casualmente allo slot non di produzione. È importante, tuttavia, notare che un client, una volta automaticamente instradato a uno slot specifico, verrà aggiunto a tale slot per tutta la durata della sessione client. Per aggiungere la sessione utente, viene usato un cookie. Se si osservano le richieste HTTP, si noterà un cookie `TipMix` in ogni richiesta successiva.
+Dopo aver configurato il Routing del traffico, hello specificati percentuale di client sarà slot non di produzione tooyour indirizzato in modo casuale. Tuttavia, è importante toonote che un client viene automaticamente indirizzato tooa specifico slot, sarà "bloccato" toothat slot per ciclo di vita di hello di tale sessione client. L'operazione viene eseguita tramite una sessione utente di cookie toopin hello. Se si osservano le richieste HTTP hello, si noterà un `TipMix` cookie in tutte le richieste successive.
 
 ![](./media/app-service-web-test-in-production/04-tip-cookie.png)
 
-## <a name="force-client-requests-to-a-specific-slot"></a>Forzare le richieste client in uno slot specifico
-Oltre al routing automatico del traffico, il servizio app può instradare le richieste a uno slot specifico. Ciò risulta utile se si vuole consentire agli utenti di acconsentire esplicitamente o rifiutare esplicitamente l'app beta. A questo scopo, si usa il parametro di query `x-ms-routing-name` .
+## <a name="force-client-requests-tooa-specific-slot"></a>Forzare slot specifico tooa di richieste client
+In aggiunta tooautomatic il routing del traffico, servizio App è slot specifico di tooroute in grado di richieste tooa. Ciò è utile quando si desidera che il toobe di utenti in grado di tooopt-in o rifiutare esplicitamente l'app beta. toodo, utilizzare hello `x-ms-routing-name` parametro di query.
 
-Per reinstradare gli utenti a uno slot specifico usando `x-ms-routing-name`, è necessario verificare che lo slot sia già stato aggiunto all'elenco di Routing del traffico. Poiché si vuole eseguire il routing esplicito a uno slot, la percentuale di routing effettiva non è importante. Se necessario, è possibile creare un "collegamento beta" su cui gli utenti possono fare clic per accedere all'app beta.
+tooreroute utenti tooa slot specifico usando `x-ms-routing-name`, è necessario assicurarsi che tale slot hello è già stato aggiunto l'elenco di Routing del traffico toohello. Poiché si desidera tooroute tooa slot in modo esplicito, non è rilevante percentuale routing con hello effettiva che è impostata. Se si desidera, è possibile elaborare un "collegamento a beta" che consente agli utenti tooaccess hello app beta.
 
 ![](./media/app-service-web-test-in-production/06-enable-x-ms-routing-name.png)
 
 ### <a name="opt-users-out-of-beta-app"></a>Consentire agli utenti di rifiutare esplicitamente l'app beta
-Per permettere agli utenti di rifiutare esplicitamente l'app beta, ad esempio, è possibile inserire questo collegamento nella pagina Web:
+gli utenti toolet rifiutare esplicitamente l'app beta, ad esempio, è possibile inserire questo collegamento nella pagina web:
 
-    <a href="<webappname>.azurewebsites.net/?x-ms-routing-name=self">Go back to production app</a>
+    <a href="<webappname>.azurewebsites.net/?x-ms-routing-name=self">Go back tooproduction app</a>
 
-La stringa `x-ms-routing-name=self` specifica lo slot di produzione. Una volta che il browser client accede al collegamento, non solo viene reindirizzato allo slot di produzione, ma ogni richiesta successiva conterrà il cookie `x-ms-routing-name=self` che aggiunge la sessione allo slot di produzione.
+stringa Hello `x-ms-routing-name=self` specifica hello slot di produzione. Una volta hello collegamento hello accesso al browser client, non solo è reindirizzarlo toohello slot di produzione, ma tutte le richieste successive conterrà hello `x-ms-routing-name=self` cookie che blocca slot di produzione toohello sessione hello.
 
 ![](./media/app-service-web-test-in-production/05-access-production-slot.png)
 
-### <a name="opt-users-in-to-beta-app"></a>Consentire agli utenti di acconsentire esplicitamente all'app beta
-Per permettere agli utenti di acconsentire esplicitamente all'app beta, impostare lo stesso parametro di query sul nome dello slot non di produzione, ad esempio:
+### <a name="opt-users-in-toobeta-app"></a>Scegliere gli utenti nell'app toobeta
+gli utenti toolet tooyour beta app consente di partecipare, set hello stessa query toohello nome del parametro dello slot di hello non di produzione, ad esempio:
 
         <webappname>.azurewebsites.net/?x-ms-routing-name=staging
 

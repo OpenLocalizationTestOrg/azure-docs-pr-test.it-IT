@@ -1,6 +1,6 @@
 ---
-title: Notebook Jupyter di Cortana Intelligence Gallery | Microsoft Docs
-description: Scoprire notebook di Jupiter in Cortana Intelligence Gallery.
+title: aaaCortana Intelligence raccolta Jupyter notebook | Documenti Microsoft
+description: Individuazione server Jupyter notebook hello Cortana Intelligence Gallery.
 services: machine-learning
 documentationcenter: 
 author: garyericson
@@ -14,59 +14,59 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/31/2017
 ms.author: roopalik;garye
-ms.openlocfilehash: ff7d5c372500c2cd392ed65a921d8a994b090f23
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 459968ddbcf1da17e6993dd577a90b4dd3847cfa
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="discover-jupyter-notebooks-in-the-cortana-intelligence-gallery"></a>Scoprire notebook di Jupiter in Cortana Intelligence Gallery
+# <a name="discover-jupyter-notebooks-in-hello-cortana-intelligence-gallery"></a>L'individuazione server Jupyter notebook hello Cortana Intelligence Gallery
 [!INCLUDE [machine-learning-gallery-item-selector](../../includes/machine-learning-gallery-item-selector.md)]
 
 ## <a name="jupyter-notebooks"></a>Notebook di Jupyter
 I **[notebook di Jupyter](https://gallery.cortanaintelligence.com/notebooks)** includono codice, visualizzazioni di dati e documentazione in un'unica area di disegno interattiva.
-I notebook in Cortana Intelligence Gallery offrono esercitazioni e spiegazioni dettagliate su tecniche e soluzioni avanzate di apprendimento automatico.
+Notebook hello raccolta forniscono esercitazioni e una spiegazione dettagliata delle avanzate di machine learning tecniche e le soluzioni.
 
 ## <a name="discover"></a>Scoprire
-  Per individuare nella raccolta di blocchi appunti, aprire il [raccolta](http://gallery.cortanaintelligence.com) e fare clic su **notebook** nella parte superiore della home page della raccolta.
+  toobrowse per notebook hello hello aprire raccolta [raccolta](http://gallery.cortanaintelligence.com) e fare clic su **notebook** nella parte superiore di hello della home page della Galleria hello.
 
- Il  **[Jupyter notebook](https://gallery.cortanaintelligence.com/notebooks)**  pagina Visualizza un elenco di blocchi appunti più diffusi.
-Fare clic su **See all** (Visualizza tutto) per visualizzare tutti i notebook.
-In questa pagina è possibile eseguire la ricerca di tutti i notebook della raccolta. È anche possibile eseguire la ricerca selezionando i criteri di filtro a sinistra della pagina e immettendo i termini di ricerca nella parte superiore.
+ Il  **[Jupyter notebook](https://gallery.cortanaintelligence.com/notebooks)**  pagina Visualizza un elenco dei blocchi appunti più diffusi hello.
+Fare clic su **tutti** tooview tutti i blocchi appunti.
+In questa pagina, è possibile esplorare tutti i blocchi appunti hello raccolta. È anche possibile effettuare la ricerca selezionando i criteri di filtro a sinistra di hello della pagina hello e immettere i termini di ricerca all'inizio di hello.
 
- Fare clic su un notebook qualsiasi per aprirne la pagina dei dettagli e leggere maggiori informazioni su di esso. In questa pagina è disponibile una sezione dedicata ai commenti in cui è possibile inserire un commento, inviare suggerimenti o porre una domanda. Usando le funzionalità di condivisione di LinkedIn o Twitter è anche possibile condividere la pagina con amici o colleghi. È inoltre possibile invitare altri utenti a visualizzare la pagina inviando loro un collegamento al notebook tramite posta elettronica.
+ Fare clic su qualsiasi tooopen notebook pagina dei dettagli del blocco appunti e leggere altre informazioni. In questa pagina è che possibile impostare come commento, fornire commenti e suggerimenti o porre domande tramite sezione commenti hello. È anche possibile condividerla con altri utenti o i colleghi tramite hello condividono le funzionalità di LinkedIn o Twitter. È possibile anche inviare tramite posta elettronica tooinvite di notebook toothe un collegamento pagina di hello tooview altri utenti.
 
 ![Condividere l'elemento con amici](media/machine-learning-gallery-how-to-use-contribute-publish/share-links.png)
 
 ![Aggiungere un commento](media/machine-learning-gallery-how-to-use-contribute-publish/comments.png)
 
 ## <a name="download"></a>Scaricare
-È possibile scaricare nella propria area di lavoro di Machine Learning Studio una copia di un qualsiasi notebook presente in Gallery.
+È possibile scaricare una copia di qualsiasi notebook da hello raccolta nell'area di lavoro di Machine Learning Studio.
 
-### <a name="download-from-the-gallery"></a>Download dalla raccolta
-Per scaricare la copia di un notebook da Gallery:
+### <a name="download-from-hello-gallery"></a>Scaricare da hello raccolta
+toodownload una copia di un blocco per Appunti da hello raccolta:
 
-1. Aprire la pagina dei dettagli del notebook in Gallery
+1. Aprire pagina dei dettagli del notebook hello in hello raccolta
 2. Fare clic su **Open in Studio** (Apri in Studio)
-3. Selezionare l'area geografica e l'area di lavoro da usare
+3. Selezionare hello area e area di lavoro toouse
    
-    ![Aprire notebook di Jupyter da Gallery](media/machine-learning-gallery-jupyter-notebooks/open-notebook-from-gallery.png)
+    ![Aprire Server Jupyter notebook da hello raccolta](media/machine-learning-gallery-jupyter-notebooks/open-notebook-from-gallery.png)
 
-Quando si fa clic su **Open in Studio** (Apri in Studio), il notebook viene caricato nella propria area di lavoro di Machine Learning Studio e aperto (se non è già stato eseguito l'accesso a Studio, prima che il notebook venga copiato nell'area di lavoro verrà richiesto di accedere con il proprio account Microsoft). È possibile ritrovare il notebook in un secondo momento facendo clic su **Notebooks** (Notebook) sul lato sinistro della home page di Studio.
+Quando fa clic su **Open in Studio**, notebook hello viene caricata nell'area di lavoro di Machine Learning Studio e aprire (se non è già stato effettuato in tooStudio, sarà possibile toosign richiesta con l'account Microsoft prima di hello blocco appunti è copiato tooyour dell'area di lavoro). È possibile trovare notebook hello più tardi facendo **notebook** sul lato sinistro di home page di hello Studio hello.
 
 ### <a name="download-in-machine-learning-studio"></a>Download in Machine Learning Studio
-È possibile aprire gli stessi notebook di Gallery anche mentre si lavora in Machine Learning Studio:
+È anche possibile aprire qualsiasi di hello stesso notebook raccolta mentre si lavora in Machine Learning Studio:
 
 1. In Machine Learning Studio fare clic su **+NUOVO**
-2. Selezionare **Notebook** (Notebook): viene visualizzato l'elenco dei notebook presenti in Gallery da cui è possibile scegliere quello desiderato. In alternativa, è possibile trovare un notebook specifico usando la casella di ricerca
+2. Selezionare **Notebook** -viene visualizzato un elenco dei blocchi appunti da hello raccolta che è possibile scegliere tra oppure è possibile trovare un blocco per Appunti specifico tramite la casella di ricerca hello
 3. Posizionare il puntatore del mouse su un notebook e selezionare **Open Notebook** (Apri notebook)
    
     ![Aprire un notebook di Gallery da Machine Learning Studio](media/machine-learning-gallery-jupyter-notebooks/open-notebook-from-studio.png)
 
-Una copia del notebook viene scaricata e aperta nella propria area di lavoro, nella sezione Jupyter Notebooks (Notebook di Jupiter) di Machine Learning Studio.
-Il notebook verrà elencato insieme agli altri notebook di cui già si dispone nella pagina **Notebooks** (Notebook) di Studio (fare clic su **Notebooks** (Notebook) nella parte sinistra della [home page di Studio](https://studio.azureml.net/)).
+Una copia del blocco per Appunti hello viene scaricata e aperto nell'area di lavoro nella sezione Server Jupyter notebook di Machine Learning Studio hello.
+verranno elencati notebook Hello, con i notebook, su hello **notebook** pagina di Studio (in hello [home page di Studio](https://studio.azureml.net/), fare clic su **notebook** a sinistra di hello).
 
-**[VAI A GALLERY >>](http://gallery.cortanaintelligence.com)**
+**[RICHIEDERE ME toohello Raccolta >>](http://gallery.cortanaintelligence.com)**
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 

@@ -1,6 +1,6 @@
 ---
-title: Introduzione ai modelli privati | Documentazione Microsoft
-description: Aggiungere, gestire e condividere modelli privati usando il portale di Azure, l'interfaccia della riga di comando di Azure o PowerShell.
+title: aaaGet un'introduzione ai modelli privati | Documenti Microsoft
+description: Aggiungere, gestire e condividere i modelli privati utilizzando hello portale di Azure, hello CLI di Azure o PowerShell.
 services: marketplace-customer
 documentationcenter: 
 author: VybavaRamadoss
@@ -16,120 +16,120 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/18/2016
 ms.author: vybavar
-ms.openlocfilehash: 01657619cbe579c6818a790cc3ab95a33936a565
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1fe2c6422f62a98f7ae9ba5c61b9639d993f0bca
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-with-private-templates-on-the-azure-portal"></a>Introduzione ai modelli privati nel portale di Azure
-Un modello di [Azure Resource Manager](../azure-resource-manager/resource-group-authoring-templates.md) è un modello dichiarativo usato per definire la distribuzione. Permette di definire le risorse da distribuire per una soluzione e di specificare i parametri e le variabili che consentono di immettere valori per diversi ambienti. Il modello è composto da JSON ed espressioni che è possibile usare per creare valori per la distribuzione.
+# <a name="get-started-with-private-templates-on-hello-azure-portal"></a>Introduzione a modelli privati su hello portale di Azure
+Un [Azure Resource Manager](../azure-resource-manager/resource-group-authoring-templates.md) modello è un modello dichiarativo utilizzato toodefine la distribuzione. È possibile definire hello toodeploy di risorse per una soluzione e specificare i parametri e variabili che consentono valori tooinput per ambienti diversi. Hello costituito da JSON e le espressioni che è possibile utilizzare valori tooconstruct per la distribuzione.
 
-È possibile usare la nuova funzionalità **Modelli** nel [portale di Azure](https://portal.azure.com) insieme al provider di risorse **Microsoft.Gallery** come estensione di [Azure Marketplace](https://azure.microsoft.com/marketplace/), per consentire agli utenti di creare, gestire e distribuire modelli privati da una raccolta personale.
+È possibile usare hello nuovo **modelli** funzionalità hello [portale Azure](https://portal.azure.com) insieme hello **Microsoft.Gallery** provider di risorse come estensione di hello [ Azure Marketplace](https://azure.microsoft.com/marketplace/) tooenable utenti toocreate, gestire e distribuire modelli privati da una libreria personale.
 
-Questo documento descrive come aggiungere, gestire e condividere un **modello** privato con il portale di Azure.
+Questo documento illustra la procedura aggiunta, la gestione e condivisione privata **modello** utilizzando hello portale di Azure.
 
 ## <a name="guidance"></a>Indicazioni
-I suggerimenti riportati di seguito permettono di sfruttare al meglio i **modelli** per l'uso delle soluzioni:
+Hello suggerimenti seguenti consentono di sfruttare appieno **modelli** quando si lavora con le soluzioni:
 
-* Un **modello** è una risorsa di incapsulamento contenente un modello di Resource Manager e metadati aggiuntivi. Si comporta in modo molto simile a un elemento di Marketplace. La differenza principale è che si tratta di un elemento privato, mentre gli elementi di Marketplace sono pubblici.
-* La raccolta **Modelli** è efficace per gli utenti che vogliono personalizzare le distribuzioni.
+* Un **modello** è una risorsa di incapsulamento contenente un modello di Resource Manager e metadati aggiuntivi. Si comporta in modo molto simile elemento tooan hello Marketplace. la differenza principale Hello è che è un elemento privato come elementi del Marketplace pubblici toohello anziché.
+* Hello **modelli** libreria funziona anche per gli utenti che richiedono toocustomize le distribuzioni.
 * **modelli** permettono di usare un repository semplice all'interno di Azure.
 * Iniziare con un modello di Resource Manager esistente. In [GitHub](https://github.com/Azure/azure-quickstart-templates) o nel post di blog relativo all'[esportazione modelli](../azure-resource-manager/resource-manager-export-template.md) è possibile trovare modelli a partire da un gruppo di risorse esistente.
-* **modelli** sono legati all'utente che li pubblica. Il nome dell'autore è visibile a chiunque abbia accesso in lettura.
+* **Modelli** toohello collegati gli utenti che li pubblica. nome del server di pubblicazione Hello è visibile tooeveryone che dispone di accesso in lettura tooit.
 * **modelli** sono risorse di Resource Manager e non possono essere rinominati dopo la pubblicazione.
 
 ## <a name="add-a-template-resource"></a>Aggiungere una risorsa modello
-Per creare una risorsa **modello** nel portale di Azure è possibile procedere in due modi.
+Esistono due modi toocreate un **modello** risorsa nel portale di Azure hello.
 
 ### <a name="method-1--create-a-new-template-resource-from-a-running-resource-group"></a>Metodo 1: creare una nuova risorsa modello da un gruppo di risorse in esecuzione
-1. Passare a un gruppo di risorse esistente nel portale di Azure. In **Impostazioni** selezionare **Esporta modello**.
-2. Dopo aver esportato il modello di Resource Manager, fare clic sul pulsante **Salva modello** per salvarlo nel repository **Modelli**. Per informazioni dettagliate sull'esportazione di modelli, vedere questa [pagina](../azure-resource-manager/resource-manager-export-template.md).
+1. Passare tooan gruppo di risorse esistente nel portale di Azure hello. In **Impostazioni** selezionare **Esporta modello**.
+2. Dopo aver esportato il modello di gestione risorse di hello, utilizzare hello **Salva modello** toosave pulsante è toohello **modelli** repository. Per informazioni dettagliate sull'esportazione di modelli, vedere questa [pagina](../azure-resource-manager/resource-manager-export-template.md).
    <br /><br />
    ![Esportazione di un gruppo di risorse](media/rg-export-portal1.PNG)  <br />
-3. Fare clic sul pulsante di comando **Salva modello** .
+3. Seleziona hello **salvare tooTemplate** pulsante di comando.
    <br /><br />
-4. Immettere le seguenti informazioni:
+4. Immettere hello le seguenti informazioni:
    
-   * Nome: nome dell'oggetto modello. Nota: il nome è basato su Azure Resource Manager. È soggetto a tutte le limitazioni relative all'assegnazione dei nomi non può essere modificato dopo la creazione.
-   * Descrizione: breve descrizione del modello.
+   * Name: nome dell'oggetto modello hello (Nota: questo è un nome di base di Azure Resource Manager. È soggetto a tutte le limitazioni relative all'assegnazione dei nomi non può essere modificato dopo la creazione.
+   * Descrizione: riepilogo rapido sul modello hello.
      
      ![Salva modello](media/save-template-portal1.PNG)  <br />
-5. Fare clic su **Save**.
+5. Fare clic su **Salva**.
    
    > [!NOTE]
-   > In caso di errori del modello di Resource Manager esportato, le notifiche vengono visualizzate nel pannello Esporta modello. Sarà comunque possibile salvare il modello di Resource Manager nei modelli. Assicurarsi di controllare e correggere eventuali problemi del modello di Resource Manager prima di ridistribuire il modello di Resource Manager esportato.
+   > Hello pannello modello esportazione Mostra notifiche quando il modello di gestione delle risorse esportato hello presenta errori, ma sarà comunque in grado di toosave questo toohello modello di gestione risorse modelli. Assicurarsi di controllare e correggere problemi nel modello un gestore delle risorse prima di ridistribuzione hello esportata modello di gestione risorse.
    > 
    > 
 
 ### <a name="method-2--add-a-new-template-resource-from-browse"></a>Metodo 2: aggiungere una nuova risorsa modello dall'esplorazione
-È anche possibile aggiungere un nuovo **modello** da zero usando il pulsante di comando +Aggiungi in **Esplora > Modelli**. È necessario specificare un nome, una descrizione e il file JSON del modello di Resource Manager.
+È inoltre possibile aggiungere un nuovo **modello** da zero utilizzando hello + Aggiungi pulsante di comando in **Sfoglia > modelli**. Tooprovide sarà necessario un nome, descrizione e il modello di gestione risorse JSON hello.
 
 ![Aggiungi modello](media/add-template-portal1.PNG)  <br />
 
 > [!NOTE]
-> Microsoft.Gallery è un provider di risorse di Azure basato su tenant. La risorsa modello è associata all'utente che l'ha creata. Non è associata a una sottoscrizione specifica. È necessario scegliere una sottoscrizione solo quando si distribuisce un modello.
+> Microsoft.Gallery è un provider di risorse di Azure basato su tenant. Hello risorsa modello è abbinato toohello utente che lo ha creato. Non è vincolata tooany specifica sottoscrizione. Una sottoscrizione deve toobe scelte solo durante la distribuzione di un modello.
 > 
 > 
 
 ## <a name="view-template-resources"></a>Visualizzare le risorse modello
-È possibile visualizzare tutti i **modelli** disponibili in **Esplora > Modelli**. Sono inclusi i **modelli** creati dall'utente e quelli condivisi con l'utente a vari livelli di autorizzazione. Per altre informazioni sul [controllo di accesso](#access-control-for-a-tenant-resource-provider) , vedere la relativa sezione più avanti in questo articolo.
+Tutti **modelli** tooyou disponibili possono essere visualizzati in **Sfoglia > modelli**. Sono inclusi i **modelli** creati dall'utente e quelli condivisi con l'utente a vari livelli di autorizzazione. Altre informazioni, vedere hello [il controllo degli accessi](#access-control-for-a-tenant-resource-provider) sezione riportata di seguito.
 
 ![Visualizza modello](media/view-template-portal1.PNG)  <br />
 
-Per visualizzare i dettagli di un **modello** è possibile fare clic su un elemento nell'elenco.
+È possibile visualizzare i dettagli di hello di un **modello** facendo clic in un elemento nell'elenco di hello.
 
 ![Visualizza modello](media/view-template-portal2c.png)  <br />
 
 ## <a name="edit-a-template-resource"></a>Modificare una risorsa modello
-Per avviare il flusso di modifica per un **modello** , fare clic con il pulsante destro del mouse sull'elemento nell'elenco di ricerca o scegliere il pulsante di comando Modifica.
+È possibile avviare il flusso di modifica hello per un **modello** dall'elemento di hello facendo clic su elenco hello o scegliendo pulsante di comando di modifica hello.
 
 ![Modifica modello](media/edit-template-portal1a.PNG)  <br />
 
-È possibile modificare la descrizione o il testo del modello di Resource Manager. Dato che si tratta di un nome di risorsa di Resource Manager, non è possibile modificare il nome. Quando si modifica il file JSON del modello di Resource Manager, viene eseguita la convalida per verificare che si tratti di un file JSON valido. Scegliere **OK** e quindi **Salva** per salvare il modello aggiornato.
+È possibile modificare la descrizione hello o il testo del modello di gestione risorse. È possibile modificare il nome di hello perché è un nome di risorsa di gestione risorse. Quando si modifica il modello di gestione risorse di hello JSON è convaliderà tooensure è costituito da un oggetto JSON valido. Scegliere **OK** e quindi **salvare** toosave il modello aggiornato.
 
 ![Modifica modello](media/edit-template-portal2a.PNG)  <br />
 
-Verrà visualizzata una notifica che conferma il salvataggio del **modello** .
+Una volta hello **modello** viene salvato verrà visualizzata una notifica di conferma.
 
 ![Modifica modello](media/edit-template-portal3b.png)  <br />
 
 ## <a name="deploy-a-template-resource"></a>Distribuire una risorsa modello
-È possibile distribuire qualsiasi **modello** per cui si hanno autorizzazioni di **lettura**. Il flusso di distribuzione consente di avviare il pannello di distribuzione del modello di Azure standard. Compilare i valori per i parametri del modello di Resource Manager per procedere con la distribuzione.
+È possibile distribuire qualsiasi **modello** per cui si hanno autorizzazioni di **lettura**. flusso di distribuzione Hello avvia pannello distribuzione il modello di Azure standard di hello. Compilare i valori hello per hello tooproceed parametri modello di gestione delle risorse con la distribuzione di hello.
 
 ![Modello di distribuzione](media/deploy-template-portal1b.png)  <br />
 
 ## <a name="share-a-template-resource"></a>Condividere una risorsa modello
-È possibile condividere le risorse **modello** con altri utenti. La condivisione funziona in modo simile all' [assegnazione di ruoli per qualsiasi risorsa di Azure](../active-directory/role-based-access-control-configure.md). Il proprietario del **modello** fornisce le autorizzazioni ad altri utenti, che possono interagire con la risorsa modello. L'utente o il gruppo di utenti con cui viene condiviso il **modello** può visualizzare il modello di Resource Manager e le relative proprietà della raccolta.
+È possibile condividere le risorse **modello** con altri utenti. Condivisione presenta un comportamento simile troppo[assegnazione di ruolo per qualsiasi risorsa di Azure](../active-directory/role-based-access-control-configure.md). Hello **modello** proprietario fornisce le autorizzazioni tooother gli utenti possono interagire con una risorsa di modello. Hello persona o il gruppo di utenti condividere hello **modello** sarà in grado di toosee modello di gestione risorse di hello e le relative proprietà di raccolta.
 
-### <a name="access-control-for-the-microsoftgallery-resources"></a>Controllo di accesso per le risorse Microsoft.Gallery
+### <a name="access-control-for-hello-microsoftgallery-resources"></a>Controllo di accesso per le risorse Microsoft.Gallery hello
 | Ruolo | Autorizzazioni |
 | --- | --- |
-| Proprietario |Consente il controllo completo sulla risorsa modello, inclusa la condivisione. |
-| Lettore |Consente l'autorizzazione di lettura ed esecuzione o distribuzione sulla risorsa modello. |
-| Collaboratore |Consente l'autorizzazione di modifica ed eliminazione sulla risorsa modello. L'utente non può condividere il modello con altri. |
+| Proprietario |Consente il controllo completo su una risorsa modello di hello inclusi condivisione |
+| Reader |Consente di lettura ed Execute(Deploy) su hello risorsa modello |
+| Collaboratore |Consente l'autorizzazione per modificare ed eliminare hello risorse modello. Utente non può condividere hello modello con altri utenti |
 
-Fare clic con il pulsante destro del mouse sul pannello di visualizzazione di un elemento specifico e selezionare **Condividi** . Verrà avviata la condivisione.
+Selezionare **condivisione** sull'elemento di visualizzazione hello facendo clic o nel Pannello di visualizzazione hello di un elemento specifico. Verrà avviata la condivisione.
 
 ![Condividi modello](media/share-template-portal1a.png)  <br />
 
- È possibile scegliere un ruolo e un utente o un gruppo a cui fornire l'accesso a un **modello**specifico. I ruoli disponibili sono Proprietario, Lettore e Collaboratore. Per altre informazioni sul [controllo di accesso](#access-control-for-a-tenant-resource-provider) , vedere la relativa sezione precedente.
+ È ora possibile scegliere un ruolo e un utente o gruppo tooprovide accesso tooa particolare **modello**. i ruoli disponibili Hello sono proprietario, il lettore e collaboratore. Altre informazioni, vedere hello [il controllo degli accessi](#access-control-for-a-tenant-resource-provider) sezione precedente.
 
 ![Condividi modello](media/share-template-portal2b.png)  <br />
 
 ![Condividi modello](media/share-template-portal3b.png)  <br />
 
-Fare clic su **Seleziona** e quindi su **OK**. Ora è possibile visualizzare gli utenti o i gruppi aggiunti alla risorsa.
+Fare clic su **Seleziona** e quindi su **OK**. È ora possibile visualizzare hello utenti o gruppi aggiunti toohello risorse.
 
 ![Condividi modello](media/share-template-portal4b.png)  <br />
 
 > [!NOTE]
-> Un modello può essere condiviso solo con utenti e gruppi nello stesso tenant di Azure Active Directory. Se si condivide un modello con un indirizzo di posta elettronica che non è incluso nel tenant, viene inviato un invito a entrare nel tenant come guest.
+> Un modello può essere condiviso solo con utenti e gruppi in hello stesso tenant di Azure Active Directory. Se si condivide un modello con un indirizzo di posta elettronica che non è nel tenant, verrà inviato un invito porre tenant di hello utente toojoin hello come guest.
 > 
 > 
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Per informazioni sulla creazione di modelli di Resource Manager, vedere [Creazione di modelli](../azure-resource-manager/resource-group-authoring-templates.md)
-* Per informazioni sulle funzioni disponibili in un modello di Resource Manager, vedere [Funzioni del modello](../azure-resource-manager/resource-group-template-functions.md)
+* toolearn sulla creazione di modelli di gestione delle risorse, vedere [creazione di modelli](../azure-resource-manager/resource-group-authoring-templates.md)
+* le funzioni hello toounderstand è possibile utilizzare in un modello di gestione delle risorse, vedere [funzioni di modello](../azure-resource-manager/resource-group-template-functions.md)
 * Per informazioni aggiuntive sulla progettazione di modelli, vedere [Procedure consigliate per la progettazione di modelli di Gestione risorse di Azure](../azure-resource-manager/best-practices-resource-manager-design-templates.md)
 

@@ -1,6 +1,6 @@
 ---
-title: Ricerca di applicazioni cloud non gestite con Cloud App Discovery | Documentazione Microsoft
-description: Fornisce informazioni sull'individuazione e la gestione delle applicazioni con Cloud App Discovery, quali sono i vantaggi e il relativo funzionamento.
+title: le applicazioni cloud a Cloud App Discovery non gestita di aaaFinding | Documenti Microsoft
+description: Fornisce informazioni sulla ricerca e la gestione delle applicazioni con Cloud App Discovery, quali sono i vantaggi di hello e sul relativo funzionamento.
 services: active-directory
 keywords: cloud app discovery, gestione delle applicazioni
 documentationcenter: 
@@ -15,33 +15,33 @@ ms.topic: article
 ms.date: 07/05/2017
 ms.author: markvi
 ms.reviewer: nigu
-ms.openlocfilehash: 6284ff5bac8edbc19561d0916adef153526dfbe3
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 50c24af9bb400e4be11f4ad2d1de13d26f5467bd
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="finding-unmanaged-cloud-applications-with-cloud-app-discovery"></a>Ricerca di applicazioni cloud non gestite con Cloud App Discovery
 ## <a name="overview"></a>Panoramica
-Nelle aziende moderne spesso i reparti IT non sono a conoscenza di tutte le applicazioni cloud usate dai membri dell'organizzazione per svolgere il proprio lavoro. L'accesso non autorizzato ai dati aziendali, le possibili perdite di dati e altri rischi di sicurezza rappresentano una preoccupazione per gli amministratori. A causa di questa mancanza di consapevolezza, la creazione di un piano per la gestione dei rischi per la sicurezza potrebbe sembrare complicata.
+Nelle aziende moderne i reparti IT spesso non sono a conoscenza di tutte le applicazioni cloud hello che i membri dell'organizzazione di utilizzare toodo il proprio lavoro. È facile toosee perché gli amministratori avranno preoccupazioni dati toocorporate di accesso non autorizzato, perdita di dati e altri rischi di protezione. A causa di questa mancanza di consapevolezza, la creazione di un piano per la gestione dei rischi per la sicurezza potrebbe sembrare complicata.
 
-Cloud App Discovery è una funzionalità dell'edizione Premium di Azure Active Directory (AD) che consente di individuare le applicazioni cloud usate dai dipendenti dell'azienda.
+Cloud App Discovery è una funzionalità Premium di Azure Active Directory (AD) che consente applicazioni cloud toodiscover in uso da parte di persone hello all'interno dell'organizzazione.
 
 **Cloud App Discovery consente di:**
 
-* Individuare le applicazioni cloud in uso e misurarne l'utilizzo in base al numero di utenti, al volume di traffico o al numero di richieste Web all'applicazione.
-* Identificare gli utenti che usano un'applicazione.
+* Trovare le applicazioni cloud hello in uso e misurarne dal numero di utenti, volume di traffico o un numero di applicazione toohello di richieste web.
+* Identificare gli utenti di hello che usano un'applicazione.
 * Esportare i dati per analisi offline.
 * Portare le applicazioni sotto il controllo IT e abilitare la funzionalità Single Sign-On per la gestione degli utenti.
 
 ## <a name="how-it-works"></a>Funzionamento
 1. Gli agenti di utilizzo dell'applicazione vengono installati nei computer dell'utente.
-2. Le informazioni sull'utilizzo delle applicazioni acquisite dagli agenti vengono inviate tramite un canale crittografato sicuro al servizio Cloud App Discovery.
-3. Il servizio Cloud App Discovery valuta i dati e genera report.
+2. informazioni sull'utilizzo di applicazione Hello acquisite dagli agenti hello viene inviate tramite un servizio cloud app discovery di canale crittografato protetto toohello.
+3. Hello servizio Cloud App Discovery valuta dati hello e genera i report.
 
 ![Diagramma di Cloud App Discovery](./media/active-directory-cloudappdiscovery/cad01.png)
 
-Per iniziare a usare Cloud App Discovery, vedere l' [introduzione a Cloud App Discovery](http://social.technet.microsoft.com/wiki/contents/articles/30962.getting-started-with-cloud-app-discovery.aspx)
+tooget a usare Cloud App Discovery, vedere [Guida introduttiva a Cloud App Discovery](http://social.technet.microsoft.com/wiki/contents/articles/30962.getting-started-with-cloud-app-discovery.aspx)
 
 ## <a name="related-articles"></a>Articoli correlati
 * [Considerazioni sulla sicurezza e sulla privacy in Cloud App Discovery](active-directory-cloudappdiscovery-security-and-privacy-considerations.md)  

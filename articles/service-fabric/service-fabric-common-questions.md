@@ -1,5 +1,5 @@
 ---
-title: Domande frequenti su Microsoft Azure Service Fabric | Microsoft Docs
+title: domande aaaCommon su Microsoft Azure Service Fabric | Documenti Microsoft
 description: Domande frequenti su Service Fabric e relative risposte
 services: service-fabric
 documentationcenter: .net
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/18/2017
 ms.author: chackdan
-ms.openlocfilehash: ee1fe4e83ce796fd50b779c0880701b9dfcefff7
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 4cbe92d2a03f7a1ea5d077807fdc982288220a7e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="commonly-asked-service-fabric-questions"></a>Domande frequenti su Service Fabric
 
@@ -30,122 +30,122 @@ Esistono molte domande frequenti sulle caratteristiche e sulle modalità di uso 
 
 Sì. 
 
-La tecnologia di clustering principale di Service Fabric può essere usata per unire macchine in esecuzione in tutto il mondo, purché dispongano di connettività di rete l'una con l'altra. La compilazione e l'esecuzione di questo tipo di cluster possono essere tuttavia complicate.
+core Hello tecnologia di clustering Service Fabric può essere utilizzato toocombine macchine in esecuzione ovunque nel mondo hello, in modo che abbiano rete connettività tooeach altri. La compilazione e l'esecuzione di questo tipo di cluster possono essere tuttavia complicate.
 
-Se si è interessati a questo scenario, invitiamo a contattarci tramite [Service Fabric Github Issues List](https://github.com/azure/service-fabric-issues) o tramite il supporto tecnico per ottenere altro materiale sussidiario. Il team di Service Fabric sta lavorando per fornire ulteriori informazioni, materiale sussidiario e consigli per questo scenario. 
+Se si è interessati in questo scenario, è consigliabile tooget in contatto tramite hello [elenco di problemi di Service Fabric Github](https://github.com/azure/service-fabric-issues) o tramite il supporto tecnico clienti in altro materiale sussidiario tooobtain ordine. il team di Service Fabric Hello sta spiegazioni aggiuntive tooprovide, linee guida e consigli per questo scenario. 
 
-Alcuni aspetti da considerare: 
+Tooconsider alcune operazioni: 
 
-1. La risorsa cluster di Service Fabric in Azure è ora divisa in aree, così come i set di scalabilità di macchine virtuali su cui viene creato il cluster. Ciò significa che in caso di malfunzionamento di un'area si potrebbe perdere la possibilità di gestire il cluster tramite Azure Resource Manager o il Portale di Azure. Questa situazione può verificarsi anche se il cluster resta in esecuzione ed è possibile interagire direttamente con esso. Azure inoltre attualmente non offre la possibilità di disporre di una singola rete virtuale che può essere usata tra le aree. Ciò significa che un cluster con più aree in Azure richiede [indirizzi IP pubblici per ogni macchina virtuale nei set di scalabilità di macchine virtuali di Microsoft Azure](../virtual-machine-scale-sets/virtual-machine-scale-sets-networking.md#public-ipv4-per-virtual-machine) o [gateway VPN di Azure](../vpn-gateway/vpn-gateway-about-vpngateways.md). Queste opzioni di rete hanno effetti diversi sui costi, sulle prestazioni e su alcuni livelli di progettazione di applicazioni. È richiesta un'attenta analisi e una pianificazione prima di affrontare un ambiente di questo tipo.
-2. La manutenzione, gestione e monitoraggio di tali computer possono diventare complicati, soprattutto quando estesi su _tipi_ di ambienti, ad esempio tra provider di cloud diversi o tra risorse locali e Azure. È necessario determinare accuratamente gli aggiornamenti, il monitoraggio, la gestione e la diagnostica per il cluster e le applicazioni prima di eseguire i carichi di lavoro di produzione in tale ambiente. Se si ha già grande esperienza di risoluzione di questi problemi in Azure o nei propri Data center, è possibile che si possano applicare queste stesse soluzioni durante la compilazione o l'esecuzione del cluster di Service Fabric. 
+1. Hello risorsa cluster di Service Fabric in Azure è oggi regionale, come sono set di scalabilità della macchina virtuale hello tale cluster hello si basa su. Ciò significa che nell'evento hello di un errore internazionale è possibile perdere cluster hello di hello possibilità toomanage tramite Gestione risorse di Azure hello o hello portale di Azure. Questa situazione può verificarsi anche se hello cluster rimane in esecuzione e sarà in grado di toointeract con esso direttamente. Inoltre, Azure attualmente non offre hello possibilità toohave una singola rete virtuale che può essere utilizzata in aree geografiche. Ciò significa che richiede un cluster con più aree in Azure [indirizzi IP pubblici per ogni macchina virtuale nel set di scalabilità di macchine Virtuali hello](../virtual-machine-scale-sets/virtual-machine-scale-sets-networking.md#public-ipv4-per-virtual-machine) o [gateway VPN di Azure](../vpn-gateway/vpn-gateway-about-vpngateways.md). Queste opzioni rete hanno effetti diversi nella progettazione di applicazioni di livello toosome i costi e prestazioni, in modo che un'attenta analisi e la pianificazione è necessario prima posizione di un ambiente di questo tipo.
+2. Hello manutenzione, la gestione e monitoraggio di tali macchine può diventare complicati, soprattutto quando estese su _tipi_ degli ambienti, ad esempio tra provider di cloud diversi o tra risorse locali e Azure . Prestare attenzione tooensure che viene aggiornato, il monitoraggio, gestione e diagnostica viene riconosciuta per cluster hello e applicazioni hello prima di eseguire i carichi di lavoro in un tale ambiente. Se si ha già grande esperienza di risoluzione di questi problemi in Azure o nei propri Data center, è possibile che si possano applicare queste stesse soluzioni durante la compilazione o l'esecuzione del cluster di Service Fabric. 
 
 ### <a name="do-service-fabric-nodes-automatically-receive-os-updates"></a>I nodi di Service Fabric ricevono automaticamente aggiornamenti del sistema operativo?
 
-Non ancora, ma si tratta di una richiesta comune che Azure intende implementare in futuro.
+Non oggi, ma è anche una richiesta comune che Azure intende toodeliver.
 
-Nel frattempo, abbiamo [fornito un'applicazione](service-fabric-patch-orchestration-application.md) attraverso la quale i sistemi operativi sottostanti ai nodi di Service Fabric ricevono patch e sono aggiornati.
+In hello provvisorio, abbiamo [fornita un'applicazione](service-fabric-patch-orchestration-application.md) che i sistemi operativi hello sotto i nodi di Service Fabric rimangono patch e backup toodate.
 
-Il problema con gli aggiornamenti del sistema operativo è che solitamente richiedono un riavvio della macchina, causando così una perdita temporanea di disponibilità. Di per sé non sarebbe un problema, poiché Service Fabric reindirizzerà automaticamente verso altri nodi il traffico di tali servizi. Tuttavia, se gli aggiornamenti del sistema operativo non vengono coordinati all'interno del cluster, esiste il rischio di interruzione simultanea per parecchi nodi. Tali riavvii simultanei possono causare la perdita totale di disponibilità per un servizio o, perlomeno, per una partizione specifica (per un servizio con stato).
+challenge Hello con aggiornamenti del sistema operativo è in genere che richiedono il riavvio del computer hello, che comporta una perdita temporanea della disponibilità. Di per sé che non è un problema, poiché Service Fabric verrà reindirizzata automaticamente il traffico per tali nodi tooother servizi. Tuttavia, se gli aggiornamenti del sistema operativo non vengono coordinati cluster hello, è potenzialmente hello che molti nodi verso il basso in una sola volta. Tali riavvii simultanei possono causare la perdita totale di disponibilità per un servizio o, perlomeno, per una partizione specifica (per un servizio con stato).
 
-In futuro Microsoft intende supportare un criterio di aggiornamento del sistema operativo completamente automatico e coordinato tra i vari domini di aggiornamento, per garantire la disponibilità nonostante i riavvii e altri guasti o errori imprevisti.
+In futuro hello, contiamo criteri di aggiornamento toosupport un sistema operativo che sono completamente automatizzato e coordinato tra i domini di aggiornamento, verificare che la disponibilità viene mantenuta nonostante i riavvii e altri errori imprevisti.
 
 ### <a name="can-i-use-large-virtual-machine-scale-sets-in-my-sf-cluster"></a>È possibile usare set di scalabilità di macchine virtuali di grandi dimensioni nel cluster di Service Fabric? 
 
 **Risposta breve**: no. 
 
-**Risposta lunga**: anche se con i set di scalabilità di macchine virtuali di grandi dimensioni è possibile arrivare fino a 1000 istanze di VM, per farlo è necessario usare i gruppi di posizionamento. I domini di errore e i domini di aggiornamento sono coerenti solo in un gruppo di posizionamento. Service Fabric usa i domini di errore e i domini di aggiornamento per prendere decisioni relative al posizionamento delle repliche del servizio/istanze del servizio. Poiché i domini di errore e i domini di aggiornamento sono confrontabili solo in un gruppo di posizionamento, Service Fabric non può usarli. Se, ad esempio, VM1 nel gruppo di posizionamento 1 ha una topologia di dominio di errore 0 e VM9 nel gruppo di posizionamento 2 ha una topologia di domini di errore 4, non significa che VM1 e VM2 siano in due diversi rack hardware, quindi Service Fabric in questo caso non può usare i valori dei domini di errore per prendere decisioni relative al posizionamento.
+**Tempo di risposta** : anche se i set di scalabilità macchina virtuale di grandi dimensioni hello consentono tooscale un macchina virtuale del set di scalabilità fino a 1000 istanze della macchina virtuale, tale scopo, utilizzare hello dei gruppi di posizionamento (PGs). Domini di errore (Fd) e domini di aggiornamento (UD) sono solo coerenti all'interno di un servizio dell'infrastruttura Usa posizionamento gruppo decisioni di posizionamento toomake domini di errore e domini di aggiornamento delle istanze di repliche o del servizio del servizio. Poiché hello domini di errore e domini di aggiornamento sono confrontabili solo all'interno di un gruppo di posizionamento SF può essere utilizzato. Ad esempio, se VM1 in PG1 con una topologia di FD = 0 e VM9 in PG2 con una topologia di FD = 4, non significa che VM1 e VM2 si trovano in due rack Hardware diverso, pertanto SF non è possibile utilizzare i valori hello FD nelle decisioni di selezione host case toomake.
 
-I set di scalabilità di macchine virtuali di grandi dimensioni attualmente presentano altri problemi, ad esempio la mancanza di supporto per il bilanciamento del carico di livello 4. Per altre informazioni, vedere i [dettagli sui set di scalabilità di grandi dimensioni](../virtual-machine-scale-sets/virtual-machine-scale-sets-placement-groups.md)
+Esistono altri problemi con il set di scalabilità di grandi dimensioni di macchina virtuale, ad esempio mancanza di hello di livello 4 di supporto del bilanciamento del carico. Fare riferimento toofor [informazioni dettagliate sulla grande set di scalabilità](../virtual-machine-scale-sets/virtual-machine-scale-sets-placement-groups.md)
 
 
 
-### <a name="what-is-the-minimum-size-of-a-service-fabric-cluster-why-cant-it-be-smaller"></a>Qual è la dimensione minima di un cluster di Service Fabric? Perché non può essere di dimensioni minori?
+### <a name="what-is-hello-minimum-size-of-a-service-fabric-cluster-why-cant-it-be-smaller"></a>Che cos'è una dimensione minima di hello di un cluster di Service Fabric? Perché non può essere di dimensioni minori?
 
-La dimensione minima supportata per un cluster di Service Fabric che esegue carichi di lavoro di produzione è di cinque nodi. Per scenari di sviluppo e test, sono supportati cluster a tre nodi.
+Hello dimensione supportata minima per un cluster di Service Fabric che esegue i carichi di lavoro è cinque nodi. Per scenari di sviluppo e test, sono supportati cluster a tre nodi.
 
-Queste dimensioni minime esistono poiché il cluster di Service Fabric esegue un set di servizi di sistema con stato, inclusi il servizio di denominazione e la gestione del failover. Questi servizi, che tengono traccia di quali sono stati distribuiti nel cluster e dove sono attualmente ospitati, dipendono da una coerenza elevata. Tale coerenza elevata, a sua volta, dipende dalla possibilità di acquisire un *quorum* per qualsiasi aggiornamento specifico per lo stato di tali servizi, dove per quorum si intende una stretta maggioranza delle repliche (N/2 + 1) per un determinato servizio.
+Questi valori minimi esistono perché il cluster di Service Fabric hello esegue un set di servizi di sistema con stato, tra cui servizio di denominazione hello e gestione failover hello. Questi servizi, tenere traccia di quali servizi sono stati distribuiti toohello cluster e in cui sono ospitati attualmente, dipendono dalla coerenza assoluta. La coerenza assoluta, a sua volta dipende da hello possibilità tooacquire un *quorum* per qualsiasi aggiornamento specificato toohello stato di tali dei servizi, in cui un quorum rappresenta una maggioranza strict di repliche di hello (N/2 + 1) per un determinato servizio.
 
 Detto questo, esaminiamo alcune possibili configurazioni di cluster:
 
-**Un nodo**: questa opzione non offre una disponibilità elevata, in quanto perdere quel singolo nodo per qualsivoglia motivo significa perdere l'intero cluster.
+**Un nodo**: questa opzione non fornisce la disponibilità elevata poiché la perdita di hello del nodo singolo di hello per qualsiasi motivo significa perdita di hello dell'intero cluster hello.
 
-**Due nodi**: un quorum per un servizio distribuito tra due nodi (N = 2) è 2 (2/2 + 1 = 2). Se viene persa una singola replica, è impossibile creare un quorum. Dato che per aggiornare un servizio è necessario portare temporaneamente offline una replica, questa non è una configurazione utile.
+**Due nodi**: un quorum per un servizio distribuito tra due nodi (N = 2) è 2 (2/2 + 1 = 2). Quando una singola replica viene persa, è Impossibile toocreate un quorum. Dato che per aggiornare un servizio è necessario portare temporaneamente offline una replica, questa non è una configurazione utile.
 
-**Tre nodi**: con tre nodi (N = 3), è comunque necessario creare un quorum di duo nodi (3/2 + 1 = 2). Ciò significa che è possibile perdere un singolo nodo e mantenere comunque il quorum.
+**Tre nodi**: con tre nodi (N = 3), hello requisito toocreate un quorum è ancora due nodi (3/2 + 1 = 2). Ciò significa che è possibile perdere un singolo nodo e mantenere comunque il quorum.
 
-La configurazione del cluster a tre nodi è supportata per gli scenari di sviluppo e test perché è possibile eseguire aggiornamenti in sicurezza e i guasti ai nodi individuali non rappresentano un rischio elevato, purché che non si verifichino contemporaneamente. Per i carichi di lavoro di produzione, è necessario disporre di una maggiore resilienza a tali guasti simultanei, pertanto sono richiesti cinque nodi.
+configurazione di Hello tre nodi del cluster è supportata per sviluppo/test perché è possibile in modo sicuro eseguire aggiornamenti e mantenute in seguito a errori di nodo singolo, fino a quando essi non vengono eseguite contemporaneamente. Per i carichi di lavoro, è necessario essere resilienti toosuch errori simultanei, quindi cinque nodi sono obbligatori.
 
-### <a name="can-i-turn-off-my-cluster-at-nightweekends-to-save-costs"></a>È possibile disattivare il cluster di notte o nei fine settimana per ridurre i costi?
+### <a name="can-i-turn-off-my-cluster-at-nightweekends-toosave-costs"></a>È possibile disattivare il cluster costi toosave notte/i fine settimana?
 
-Generalmente, no. Service Fabric archivia lo stato su dischi locali e temporanei, vale a dire che se la macchina virtuale viene spostata in un host diverso, i dati non vengono spostati con essa. In condizioni normali, ciò non rappresenta un problema, in quanto il nuovo nodo viene aggiornato dagli altri nodi. Tuttavia, se si arrestano tutti i nodi per riavviarli in un secondo momento, è molto probabile che la maggior parte di essi verrà avviata su nuovi host, rendendo impossibile il ripristino dle sistema.
+Generalmente, no. Service Fabric archivia lo stato su dischi locali, temporanei, vale a dire che se tooa spostato diversi host macchina virtuale hello è hello dati non vengono spostati con esso. In condizioni normali, che non è un problema come nuovo nodo hello viene portata backup toodate da altri nodi. Tuttavia, se si arresta tutti i nodi e riavviarle in un secondo momento, è possibile che la maggior parte dei nodi hello avviare nei nuovi host e rendere hello sistema non è possibile toorecover significativa.
 
-Se si desidera creare cluster per testare l'applicazione prima di distribuirla, è consigliabile crearli in maniera dinamica come parte della [pipeline integrazione costante/distribuzione costante](service-fabric-set-up-continuous-integration.md).
+Se si desidera toocreate cluster per il test dell'applicazione prima della distribuzione, è consigliabile creare in modo dinamico tali cluster come parte del [integrazione continua/continua pipeline di distribuzione](service-fabric-set-up-continuous-integration.md).
 
 
-### <a name="how-do-i-upgrade-my-operating-system-for-example-from-windows-server-2012-to-windows-server-2016"></a>Come aggiorno il sistema operativo? Ad esempio come passo da Windows Server 2012 a Windows Server 2016?
+### <a name="how-do-i-upgrade-my-operating-system-for-example-from-windows-server-2012-toowindows-server-2016"></a>Come aggiornare il sistema operativo (ad esempio da Windows Server 2012 tooWindows Server 2016)
 
-Mentre Microsoft sviluppa un'esperienza migliorata oggi l'utente è responsabile dell'aggiornamento. È necessario aggiornare l'immagine del sistema operativo nelle macchine virtuali del cluster per una macchina virtuale per volta. 
+Mentre si sta lavorando oggi, una migliore esperienza utente è responsabile per l'aggiornamento di hello. È necessario aggiornare l'immagine del sistema operativo hello in hello macchine virtuali di hello una macchina virtuale del cluster alla volta. 
 
 ## <a name="container-support"></a>Supporto dei contenitori
 
-### <a name="why-are-my-containers-that-are-deployed-to-sf-unable-to-resolve-dns-addresses"></a>Perché i contenitori distribuiti in Service Fabric non riescono a risolvere gli indirizzi DNS?
+### <a name="why-are-my-containers-that-are-deployed-toosf-unable-tooresolve-dns-addresses"></a>Perché sono i contenitori che vengono distribuiti tooSF Impossibile tooresolve DNS risolve?
 
 Il problema è stato segnalato nei cluster versione 5.6.204.9494 
 
-**Mitigazione**: seguire [questo documento](service-fabric-dnsservice.md) per abilitare il servizio DNS di Service Fabric nel cluster.
+**Attenuazione** : seguire [questo documento](service-fabric-dnsservice.md) tooenable hello DNS del servizio service fabric nel cluster.
 
-**Correzione**: eseguire l'aggiornamento a una versione del cluster supportata successiva a 5.6.204.9494, se disponibile. Se il cluster è impostato per gli aggiornamenti automatici, verrà aggiornato automaticamente alla versione in cui questo problema è stato risolto.
+**Correggere** : versione del cluster aggiornamento tooa supportato che è superiore a 5.6.204.9494, quando è disponibile. Se il cluster è impostato tooautomatic aggiornamenti, quindi cluster hello verrà aggiornato automaticamente toohello versione che si è verificato questo problema risolto.
 
   
 ## <a name="application-design"></a>Progettazione di applicazioni
 
-### <a name="whats-the-best-way-to-query-data-across-partitions-of-a-reliable-collection"></a>Qual è il modo migliore per eseguire query sui dati in partizioni di una raccolta Reliable Collections?
+### <a name="whats-hello-best-way-tooquery-data-across-partitions-of-a-reliable-collection"></a>Che cos'è dati tooquery modo migliori di hello tra partizioni di un insieme affidabile?
 
-Le raccolte Reliable Collections sono in genere [partizionate](service-fabric-concepts-partitioning.md) per abilitare l'aumento delle istanze per maggiori prestazioni e velocità effettiva. Ciò significa che lo stato di un determinato servizio può essere distribuito in decine o centinaia di macchine. Per eseguire operazioni su quel set di dati completo, sono disponibili varie opzioni:
+Raccolte affidabili sono in genere [partizionata](service-fabric-concepts-partitioning.md) tooenable con scalabilità maggiore produttività e prestazioni. Ciò significa che lo stato di hello per un determinato servizio può essere distribuito in 10s o 100s macchine. tooperform operazioni sul set di dati completo, sono disponibili alcune opzioni:
 
-- Creare un servizio che esegua una query di tutte le partizioni di un altro servizio per estrarre i dati richiesti.
+- Creare un servizio che esegue una query di tutte le partizioni di un altro servizio toopull nei dati hello necessario.
 - Creare un servizio che possa ricevere dati da tutte le partizioni di un altro servizio.
-- Inviare periodicamente dati da ogni servizio in un archivio esterno. Questo approccio è appropriato solamente se si eseguono query che non fanno parte della logica di business principale.
+- Periodicamente il push dei dati dall'archivio esterno di tooan ogni servizio. Questo approccio è appropriato se stai eseguendo query di hello non fanno parte della logica di business principale.
 
 
-### <a name="whats-the-best-way-to-query-data-across-my-actors"></a>Qual è il modo migliore per eseguire query sui dati nei vari attori?
+### <a name="whats-hello-best-way-tooquery-data-across-my-actors"></a>Che cos'è dati tooquery modo migliori di hello in my attori?
 
-Gli attori sono progettati per essere unità indipendenti di stato e calcolo, pertanto è consigliabile non eseguire query generali dello stato degli attori in fase di esecuzione. Se è necessario eseguire query nel set completo di stati degli attori, è consigliabile piuttosto:
+Gli attori sono progettate toobe unità indipendenti dello stato e calcolo, pertanto non è consigliabile tooperform ampie query dello stato actor in fase di esecuzione. Se si dispone di un tooquery necessario tra il set completo di hello dello stato dell'actor, considerare uno:
 
-- Sostituire i servizi di attori con servizi Reliable con stato, come il numero delle richieste di rete per raccogliere tutti i dati, dal numero di attori al numero di partizioni nel servizio.
-- Progettare gli attori per l'invio periodico del relativo stato a un'archiviazione esterna per facilitare le query. Come in precedenza, questo approccio è ideale solo se le query in esecuzione non sono richieste per il comportamento di runtime.
+- Sostituendo i servizi actor con i servizi reliable con stati, in modo che il numero di hello di rete richieste toogather tutti i dati da hello numero attori toohello di partizioni nel servizio.
+- Progettazione al push tooperiodically attori relativo archivio esterno tooan di stato per le query più semplice. Come in precedenza, questo approccio è realizzabile solo se si sta eseguendo query di hello non sono necessari per il comportamento di runtime.
 
 ### <a name="how-much-data-can-i-store-in-a-reliable-collection"></a>Quanti dai è possibile archiviare in una raccolta Reliable Collections?
 
-In genere i servizi Reliable sono partizionati. Pertanto, la quantità di dati archiviabili è limitata solo dal numero di macchine presenti nel cluster e dalla quantità di memoria disponibile su tali macchine.
+Servizi affidabili sono in genere partizionati, in modo quantità hello che è possibile archiviare è limitato solo dalle hello numero dei computer che sono presenti cluster hello e quantità hello di memoria disponibile in tali computer.
 
-Ad esempio, si supponga di avere una raccolta Reliable Collections in un servizio con 100 partizioni e 3 replica, con archiviati oggetti di dimensioni pari a 1 KB di media. Si supponga quindi di disporre di un cluster di 10 macchine con 16 GB di memoria per macchina. Per ragioni di semplicità e cautela, si supponga che il sistema operativo, i servizi di sistema, il runtime di Service Fabric e i servizi consumino 6 GB di quella memoria, lasciandone così 10 disponibili per ogni macchina o 100 per il cluster.
+Ad esempio, si supponga di avere una raccolta Reliable Collections in un servizio con 100 partizioni e 3 replica, con archiviati oggetti di dimensioni pari a 1 KB di media. Si supponga quindi di disporre di un cluster di 10 macchine con 16 GB di memoria per macchina. Per semplicità e toobe molto conservativa, si supponga che hello del sistema operativo e i servizi di sistema, il runtime di Service Fabric hello e i servizi utilizzano 6gb di che, se si lascia 10gb disponibili per ogni computer, o 100gb per i cluster di hello.
 
-Tenendo presente che ciascun oggetto deve essere archiviato tre volte (una primaria e due repliche), si avrà una memoria sufficiente per circa 35 milioni di oggetti nella raccolta, con funzionamento a piena capacità. Tuttavia, si consiglia di essere preparati in caso di perdita simultanea di un dominio di errore e di un dominio di aggiornamento, che rappresentano circa 1/3 di capacità e ne ridurrebbero così il numero a circa 23 milioni.
+Tenendo presente che ciascun oggetto deve essere archiviato tre volte (una primaria e due repliche), si avrà una memoria sufficiente per circa 35 milioni di oggetti nella raccolta, con funzionamento a piena capacità. Tuttavia, è consigliabile essere resilienti toohello perdita simultaneo di un dominio di errore e un dominio di aggiornamento, che rappresenta circa 1/3 della capacità e consentirebbe di ridurre tooroughly numero hello 23 milioni.
 
 Si noti che questo calcolo presuppone inoltre:
 
-- Che la distribuzione dei dati nelle partizioni sia approssimativamente uniforme o che si indichino le metriche di caricamento a Cluster Resource Manager. Per impostazione predefinita, Service Fabric bilancia il carico in base al numero di repliche. Nell'esempio precedente, vengono inserite 10 repliche primarie e 20 repliche secondarie su ciascun nodo nel cluster. Quanto descritto in precedenza è ideale per carichi distribuiti in modo uniforme tra le partizioni. Se i carichi non sono uniformi, è necessario segnalarli in modo che Resource Manager possa raggruppare più repliche di piccole dimensioni e consentire alle repliche di dimensioni maggiori di utilizzare più memoria su un singolo nodo.
+- Tale distribuzione hello dei dati tra partizioni hello è approssimativamente uniforme o che si sta segnalando carico metriche toohello gestione delle risorse Cluster. Per impostazione predefinita, Service Fabric bilancia il carico in base al numero di repliche. Nell'esempio precedente, che dovrà inserire 10 repliche primarie e secondarie 20 su ogni nodo nel cluster hello. Che funziona bene per un carico viene distribuito uniformemente tra le partizioni di hello. Se il carico non è in realtà, deve segnalare carico hello Gestione risorse può pack insieme le repliche più piccole e consentire più grande tooconsume repliche maggiore quantità di memoria di un singolo nodo.
 
-- Che il servizio Reliable in questione sia l'unico ad archiviare stato nel cluster. Poiché è possibile distribuire più servizi in un cluster, è necessario tenere conto delle risorse di esecuzione e gestione dello stato richieste da ciascun servizio.
+- Servizio affidabile hello in questione è solo uno stato archiviazione hello cluster hello. Poiché è possibile distribuire cluster tooa a più servizi, è necessario toobe attenzione risorse hello che ognuno sarà anche necessario toorun e gestire il proprio stato.
 
-- Che il cluster stesso non si stia ampliando o riducendo. Se si aggiungono più macchine, Service Fabric bilancerà nuovamente le repliche per sfruttare la capacità aggiuntiva fino a quando il numero di macchine sarà superiore al numero di partizioni nel servizio, poiché una replica singola non può estendersi alle macchine. Al contrario, se si riduce la dimensione del cluster rimuovendo le macchine, le repliche saranno raggruppate più strettamente e avranno una minore capacità totale.
+- Tale cluster hello stesso non stia aumentando o la compattazione. Se si aggiungono altre macchine, Service Fabric verrà ribilanciare la capacità di repliche tooleverage hello aggiuntive fino a quando non numero hello di macchine supera il numero di hello di partizioni nel servizio, poiché non può estendersi a una replica di singole macchine. Al contrario, se si riducono le dimensioni di hello del cluster di hello rimuovendo le macchine, le repliche verranno compressa più rigoroso di minore capacità globale.
 
 ### <a name="how-much-data-can-i-store-in-an-actor"></a>Quanti dati è possibile archiviare in un attore?
 
-Come per i servizi Reliable, la quantità di dati archiviabile in un servizio attore è limitata solo dallo spazio totale su disco e della memoria disponibile tra i nodi del cluster. Tuttavia, i singoli attori sono più efficaci quando vengono usati per racchiudere una piccola quantità di logica di business di stato e associata. Come regola generale, un singolo attore dovrebbe avere uno stato misurabile in kilobyte.
+Come per i servizi affidabili, quantità hello di dati che è possibile archiviare in un servizio actor è limitato solo dalle hello spazio totale su disco e memoria disponibile tra i nodi del cluster hello. Tuttavia, singoli soggetti risultano più efficaci quando vengono utilizzati tooencapsulate una piccola quantità di logica di business associati e stato. Come regola generale, un singolo attore dovrebbe avere uno stato misurabile in kilobyte.
 
 ## <a name="other-questions"></a>Altre domande
 
-### <a name="how-does-service-fabric-relate-to-containers"></a>In che modo Service Fabric è correlato ai contenitori?
+### <a name="how-does-service-fabric-relate-toocontainers"></a>Correlazione di toocontainers Service Fabric
 
-I contenitori offrono un modo semplice per racchiudere i servizi e le relative dipendenze in modo da risultare eseguibili con coerenza in tutti gli ambiente e usabili in modo isolato su una singola macchina. Service Fabric offre un modo per distribuire e gestire servizi, tra cui [quelli inclusi in un contenitore](service-fabric-containers-overview.md).
+I contenitori offrono un modo semplice toopackage services e le relative dipendenze in modo che possano eseguire in modo coerente in tutti gli ambienti e può funzionare in modo isolato su un singolo computer. Service Fabric offre un modo toodeploy e gestione dei servizi, tra cui [servizi che sono state incluse in un contenitore](service-fabric-containers-overview.md).
 
-### <a name="are-you-planning-to-open-source-service-fabric"></a>Si prevede di rendere disponibile Service Fabric in open source?
+### <a name="are-you-planning-tooopen-source-service-fabric"></a>Se si sta pianificando origine tooopen Service Fabric?
 
-Microsoft prevede di rendere disponibili in open source i framework di Reliable Services e Reliable Actors in GitHub e accetterà i contributi della community per questi progetti. Seguire il [blog di Service Fabric](https://blogs.msdn.microsoft.com/azureservicefabric/) per le informazioni più recenti.
+Si prevede servizi affidabili di tooopen origine hello e altri framework attori affidabile su GitHub e accetteranno i progetti di toothose i contributi della community. Segui hello [blog Service Fabric](https://blogs.msdn.microsoft.com/azureservicefabric/) per altri dettagli come sta annunciati.
 
-Non si prevede attualmente di rendere disponibile in open source il runtime di Service Fabric.
+Hello non sono attualmente alcuna fase di esecuzione di piani tooopen origine hello Service Fabric.
 
 ## <a name="next-steps"></a>Passaggi successivi
 

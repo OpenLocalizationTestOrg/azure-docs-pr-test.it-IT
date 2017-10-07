@@ -1,6 +1,6 @@
 ---
-title: Criteri delle risorse di Azure per le risorse di rete | Microsoft Docs
-description: Descrive i criteri di Azure Resource Manager per gestire la distribuzione delle risorse di rete.
+title: criteri delle risorse per le risorse di rete aaaAzure | Documenti Microsoft
+description: Descrive i criteri di gestione risorse di Azure per la Gestione distribuzione hello di risorse di rete.
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -14,18 +14,18 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/05/2017
 ms.author: tomfitz
-ms.openlocfilehash: bca66bbdd9da9b3e4099d0d961f42c9368a17f5e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a6072c1c30db0a4e4a1cae04efc7828d14069709
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="apply-resource-policies-to-network-resources"></a>Applicare i criteri delle risorse alle risorse di rete
-In questo articolo viene illustrato un esempio di [criteri delle risorse](resource-manager-policy.md) che è possibile applicare ai gateway di rete virtuale di Azure. Questi criteri assicurano la coerenza per i gateway distribuiti nell'organizzazione. 
+# <a name="apply-resource-policies-toonetwork-resources"></a>Applicare toonetwork risorse criteri
+In questo articolo viene illustrato un esempio [criterio risorse](resource-manager-policy.md) è possibile applicare tooAzure gateway di rete virtuale. Questi criteri assicurano la coerenza per i gateway distribuiti nell'organizzazione. 
 
 ## <a name="define-permitted-virtual-network-gateway-sku"></a>Definire lo SKU dei gateway di rete virtuale consentiti
 
-I criteri seguenti consentono di limitare gli SKU che è possibile distribuire per i gateway di rete virtuale:
+Hello seguente criterio limita gli SKU di cui possono essere distribuiti per gateway di rete virtuale:
 
 ```json
 {
@@ -53,6 +53,6 @@ I criteri seguenti consentono di limitare gli SKU che è possibile distribuire p
 ```
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Dopo aver definito una regola di criterio, come mostrato negli esempi precedenti, è necessario creare la definizione di criterio e assegnarla a un ambito. L'ambito può essere una sottoscrizione, un gruppo di risorse o una risorsa. Per assegnare i criteri tramite il portale, vedere [Use Azure portal to assign and manage resource policies](resource-manager-policy-portal.md) (Usare il portale di Azure per assegnare e gestire i criteri delle risorse). Per assegnare i criteri tramite l'API REST, PowerShell o l'interfaccia della riga di comando di Azure, vedere [Assegnare e gestire i criteri tramite script](resource-manager-policy-create-assign.md). 
-* Per indicazioni su come le aziende possono usare Resource Manager per gestire efficacemente le sottoscrizioni, vedere [Azure enterprise scaffold - prescriptive subscription governance](resource-manager-subscription-governance.md) (Scaffolding aziendale Azure - Governance prescrittiva per le sottoscrizioni).
+* Dopo aver definito una regola dei criteri (come illustrato in hello precedenti esempi), è necessario toocreate definizione dei criteri hello e assegnarlo tooa ambito. Hello ambito può essere una sottoscrizione, un gruppo di risorse o una risorsa. criteri tooassign tramite il portale di hello, vedere [tooassign portale utilizzare Azure e gestire i criteri di risorse](resource-manager-policy-portal.md). criteri di tooassign tramite l'API REST, PowerShell o l'interfaccia CLI di Azure, vedere [assegnare e gestire i criteri tramite script](resource-manager-policy-create-assign.md). 
+* Per istruzioni su come le aziende possono usare tooeffectively Gestione risorse di gestione di sottoscrizioni, vedere [lo scaffolding di Azure enterprise - governance sottoscrizione rigorosa](resource-manager-subscription-governance.md).
 

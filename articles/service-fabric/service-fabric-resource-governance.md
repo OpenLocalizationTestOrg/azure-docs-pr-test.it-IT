@@ -1,6 +1,6 @@
 ---
-title: Governance delle risorse di Azure Service Fabric per contenitori e i servizi | Microsoft Docs
-description: Azure Service Fabric consente di specificare limiti di risorse per i servizi in esecuzione all'interno o all'esterno di contenitori.
+title: governance delle risorse dell'infrastruttura di servizio per contenitori e i servizi aaaAzure | Documenti Microsoft
+description: Azure Service Fabric consente toospecify i limiti delle risorse per i servizi in esecuzione all'interno o esterno contenitori.
 services: service-fabric
 documentationcenter: .net
 author: mani-ramaswamy
@@ -14,35 +14,35 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 8/9/2017
 ms.author: subramar
-ms.openlocfilehash: 88d44953ad83f9e7401fd087a39842e4a3790124
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 34e368211d98ff6b5b294c9c8b3af5ca30eeb20c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="resource-governance"></a>Governance delle risorse 
 
-Quando si eseguono più servizi sullo stesso nodo o cluster, è possibile che uno di essi consumi molte risorse a scapito degli altri. Questo problema prende il nome di noisy neighbor effect. Service Fabric consente allo sviluppatore di specificare prenotazioni e limiti per servizio in modo da garantire le risorse e limitarne l'utilizzo. 
+Quando si eseguono più servizi hello allo stesso nodo o un cluster, è possibile che un servizio può utilizzare più risorse di memoria destinata altri servizi. Problema di cui viene fatto riferimento tooas hello vicino fastidioso è il problema. Service Fabric consente le prenotazioni di toospecify developer hello e limitazioni per le risorse del servizio tooguarantee e anche di limitare l'utilizzo di risorse. 
 
 ## <a name="resource-governance-metrics"></a>Metriche di governance delle risorse 
 
-In Service Fabric la governance delle risorse è supportata per [pacchetto del servizio](service-fabric-application-model.md). Le risorse assegnate a un pacchetto del servizio possono essere ulteriormente divise tra pacchetti di codice. I limiti di risorse specificati implicano anche la prenotazione delle stesse. Service Fabric supporta la specifica di CPU e memoria per pacchetto del servizio mediante due [metriche](service-fabric-cluster-resource-manager-metrics.md) predefinite:
+In Service Fabric la governance delle risorse è supportata per [pacchetto del servizio](service-fabric-application-model.md). risorse Hello assegnati tooService pacchetto possono essere ulteriormente suddivisi tra pacchetti di codice. i limiti delle risorse Hello specificati anche trattarsi di prenotazione hello delle risorse di hello. Service Fabric supporta la specifica di CPU e memoria per pacchetto del servizio mediante due [metriche](service-fabric-cluster-resource-manager-metrics.md) predefinite:
 
-* CPU (nome della metrica `ServiceFabric:/_CpuCores`): una memoria centrale è una memoria centrale logica disponibile nel computer host. Tutte le memorie centrali in tutti i nodi vengono ponderate nello stesso modo.
-* Memoria (nome della metrica `ServiceFabric:/_MemoryInMB`): la memoria viene espressa in megabyte ed esegue il mapping alla memoria fisica disponibile nel computer.
+* CPU (nome della metrica `ServiceFabric:/_CpuCores`): un core è un core logico disponibile nel computer host hello e tutti i core in tutti i nodi vengono ponderati hello stesso.
+* Memoria (il nome della metrica `ServiceFabric:/_MemoryInMB`): viene eseguito il mapping toophysical memoria disponibile nel computer di hello e memoria viene espressa in megabyte.
 
-Vengono fornite solo garanzie di prenotazione flessibile: il runtime rifiuta l'apertura di nuovi pacchetti del servizio se vengono superate le risorse disponibili. Tuttavia, se nel nodo viene posizionato un altro file eseguibile o un contenitore, tale elemento può superare le garanzie di prenotazione originali.
+Solo le garanzie di riserva soft sono fornite - runtime hello rifiuta l'apertura del nuovo servizio vengono superate le risorse disponibili pacchetti. Tuttavia, se un altro file eseguibile o un contenitore viene posizionato sul nodo hello, che potrebbe violare le garanzie di riserva originale hello.
 
-Per queste due metriche, [Cluster Resource Manager](service-fabric-cluster-resource-manager-cluster-description.md) rileva la capacità totale del cluster, il carico presente su ciascun nodo e le restanti risorse del cluster. Queste due metriche sono equivalenti a qualsiasi altra metrica dell'utente o personalizzata e possono essere usate con tutte le funzionalità esistenti:
-* Il cluster può essere [bilanciato](service-fabric-cluster-resource-manager-balancing.md) in base a queste due metriche (comportamento predefinito).
-* Il cluster può essere [deframmentato](service-fabric-cluster-resource-manager-defragmentation-metrics.md) in base a queste due metriche.
+Per questi due metriche, hello [gestione delle risorse Cluster](service-fabric-cluster-resource-manager-cluster-description.md) tiene traccia delle relative capacità totale del cluster, carico hello in ogni nodo cluster hello, e le risorse cluster hello rimanenti. Questi due metriche sono equivalenti tooany altro utente o una metrica personalizzata e possono utilizzare tutte le funzionalità esistenti:
+* Può essere cluster [bilanciato](service-fabric-cluster-resource-manager-balancing.md) in base a metriche toothese due (comportamento predefinito).
+* Può essere cluster [deframmentati](service-fabric-cluster-resource-manager-defragmentation-metrics.md) in base a metriche toothese due.
 * Quando si [descrive un cluster](service-fabric-cluster-resource-manager-cluster-description.md), è possibile impostare il buffer di capacità per queste due metriche.
 
 La [creazione di report sul carico dinamico](service-fabric-cluster-resource-manager-metrics.md) non è supportata per queste metriche e i relativi carichi vengono definiti al momento della creazione.
 
 ## <a name="cluster-set-up-for-enabling-resource-governance"></a>Configurazione del cluster per l'abilitazione della governance delle risorse
 
-È necessario definire manualmente la capacità in ogni tipo di nodo del cluster nel modo indicato di seguito:
+La capacità deve essere definita manualmente in ogni tipo di nodo nel cluster hello come indicato di seguito:
 
 ```xml
     <NodeType Name="MyNodeType">
@@ -53,7 +53,7 @@ La [creazione di report sul carico dinamico](service-fabric-cluster-resource-man
     </NodeType>
 ```
  
-La governance delle risorse è consentita solo per i servizi utente, non per qualsiasi servizio di sistema. Quando si specifica la capacità, è necessario lasciare non allocate alcune memorie centrali e parte della memoria per i servizi di sistema. Per ottenere prestazioni ottimali, nel manifesto del cluster è necessario attivare anche l'impostazione seguente: 
+La governance delle risorse è consentita solo per i servizi utente, non per qualsiasi servizio di sistema. Quando si specifica la capacità, è necessario lasciare non allocate alcune memorie centrali e parte della memoria per i servizi di sistema. Per prestazioni ottimali, hello dopo l'impostazione deve inoltre essere attivata nel manifesto del cluster hello: 
 
 ```xml
 <Section Name="PlacementAndLoadBalancing">
@@ -65,7 +65,7 @@ La governance delle risorse è consentita solo per i servizi utente, non per qua
 
 ## <a name="specifying-resource-governance"></a>Specifica della governance delle risorse 
 
-I limiti di governance delle risorse vengono specificati nel manifesto dell'applicazione (sezione ServiceManifestImport) come mostrato nell'esempio seguente:
+I limiti di governance delle risorse vengono specificati nel manifesto dell'applicazione hello (sezione oggetto ServiceManifestImport) come illustrato nell'esempio seguente hello:
 
 ```xml
 <?xml version='1.0' encoding='UTF-8'?>
@@ -73,9 +73,9 @@ I limiti di governance delle risorse vengono specificati nel manifesto dell'appl
   <Parameters>
   </Parameters>
   <!--
-  ServicePackageA has the number of CPU cores defined, but doesn't have the MemoryInMB defined.
-  In this case, Service Fabric will sum the limits on code packages and uses the sum as 
-  the overall ServicePackage limit.
+  ServicePackageA has hello number of CPU cores defined, but doesn't have hello MemoryInMB defined.
+  In this case, Service Fabric will sum hello limits on code packages and uses hello sum as 
+  hello overall ServicePackage limit.
   -->
   <ServiceManifestImport>
     <ServiceManifestRef ServiceManifestName='ServicePackageA' ServiceManifestVersion='v1'/>
@@ -87,11 +87,11 @@ I limiti di governance delle risorse vengono specificati nel manifesto dell'appl
   </ServiceManifestImport>
 ```
   
-In questo esempio il pacchetto del servizio ServicePackageA ottiene una memoria centrale sui nodi in cui è posizionato. Il pacchetto del servizio contiene due pacchetti di codice, CodeA1 e CodeA2, che specificano entrambi il parametro `CpuShares`. La proporzione CpuShares 512:256 divide la memoria centrale tra i due pacchetti di codice. Di conseguenza, in questo esempio CodeA1 ottiene due terzi di una memoria centrale e CodeA2 ne ottiene un terzo, oltre a una prenotazione con garanzia flessibile sulla stessa. Nel caso in cui CpuShares non sia specificato per i pacchetti di codice, Service Fabric divide le memorie centrali in parti uguali tra di essi.
+In questo esempio, pacchetto del servizio ServicePackageA Ottiene uno dei core nei nodi hello in cui viene inserito. Questo pacchetto del servizio contiene due pacchetti di codice (CodeA1 e CodeA2) e specificano hello `CpuShares` parametro. percentuale di Hello di CpuShares 512:256 divide core hello tra due pacchetti di codice hello. Pertanto, in questo esempio, CodeA1 Ottiene due terzi di un core e CodeA2 Ottiene un terzo di un core e una prenotazione soft garanzia di hello stesso. Nel caso in cui CpuShares quando non vengono specificati per i pacchetti di codice, Service Fabric divide core hello in modo uniforme tra essi.
 
-I limiti di memoria sono assoluti, motivo per cui i pacchetti di codice sono limitati a 1024 MB di memoria, con prenotazione a garanzia flessibile. I pacchetti di codice (contenitori o pacchetti) non sono in grado di allocare una quantità di memoria superiore a questo limite. Un'operazione di questo tipo genererebbe un'eccezione di memoria esaurita. Perché l'imposizione di un limite di risorse funzioni, è necessario che tutti i pacchetti di codice inclusi in un pacchetto del servizio abbiano limiti di memoria specificati.
+I limiti di memoria sono assoluti, in modo che entrambi i pacchetti di codice siano limitate too1024 MB di memoria (e una prenotazione soft garanzia di hello stesso). Pacchetti di codice (contenitori o processi) non sono in grado di tooallocate più memoria rispetto a questo limite e il tentativo di toodo operazione genera un'eccezione di memoria insufficiente. Per risorse limite imposizione toowork, tutti i pacchetti di codice all'interno di un pacchetto del servizio devono avere i limiti di memoria specificati.
 
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Per altre informazioni su Cluster Resource Manager, leggere questo [articolo](service-fabric-cluster-resource-manager-introduction.md).
-* Per altre informazioni sul modello dell'applicazione, i pacchetti del servizio e i pacchetti di codice, nonché sul mapping delle repliche a tali elementi, leggere questo [articolo](service-fabric-application-model.md).
+* toolearn più sulla gestione delle risorse Cluster, leggere questo [articolo](service-fabric-cluster-resource-manager-introduction.md).
+* toolearn più sul modello di applicazione, pacchetti, pacchetti di codice e toothem le corrispondenze tra le repliche di leggere questo [articolo](service-fabric-application-model.md).

@@ -1,6 +1,6 @@
 ---
-title: "  Pubblicare contenuti con il portale di Azure | Microsoft Docs"
-description: Questa esercitazione illustra i passaggi necessari per la pubblicazione di contenuti con il portale di Azure.
+title: aaa"pubblicare il contenuto con hello portale di Azure | Documenti di Microsoft"
+description: In questa esercitazione vengono illustrati i passaggi hello della pubblicazione del contenuto con hello portale di Azure.
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,13 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/07/2017
 ms.author: juliako
-ms.openlocfilehash: 68a2fbdda0996cf4ba5ea3b09816bf845af756f4
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: a7a3867a6939b4b9da883176c6cc20c99d6c54e7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="publish-content-with-the-azure-portal"></a>Pubblicare contenuti con il portale di Azure
+# <a name="publish-content-with-hello-azure-portal"></a>Pubblicare il contenuto con hello portale di Azure
 > [!div class="op_single_selector"]
 > * [Portale](media-services-portal-publish.md)
 > * [.NET](media-services-deliver-streaming-content.md)
@@ -30,66 +30,66 @@ ms.lasthandoff: 08/29/2017
 
 ## <a name="overview"></a>Panoramica
 > [!NOTE]
-> Per completare l'esercitazione, è necessario un account Azure. Per informazioni dettagliate, vedere la pagina relativa alla [versione di valutazione gratuita di Azure](https://azure.microsoft.com/pricing/free-trial/). 
+> toocomplete questa esercitazione, è necessario un account di Azure. Per informazioni dettagliate, vedere la pagina relativa alla [versione di valutazione gratuita di Azure](https://azure.microsoft.com/pricing/free-trial/). 
 > 
 > 
 
-Perché l'utente possa avere a disposizione un URL da usare per scaricare o riprodurre in streaming i contenuti, è prima necessario "pubblicare" un asset creando un localizzatore. I localizzatori forniscono l'accesso ai file contenuti nell'asset. Servizi multimediali supporta due tipi di localizzatori: 
+tooprovide l'utente con un URL che possa essere utilizzati toostream o scaricare il contenuto, è innanzitutto necessario troppo "pubblica" l'asset creando un localizzatore. I localizzatori forniscono accesso toofiles contenuti in hello asset. Servizi multimediali supporta due tipi di localizzatori: 
 
-* Localizzatori di streaming (OnDemandOrigin) usati per lo streaming adattivo, ad esempio per riprodurre in streaming file MPEG DASH, HLS o Smooth Streaming. Per creare un localizzatore di streaming, l'asset deve contenere un file con estensione ISM. 
+* Streaming localizzatori (OnDemandOrigin) usati per streaming adattivo (ad esempio, toostream MPEG DASH, HLS o Smooth Streaming). toocreate un localizzatore di streaming dell'asset deve contenere un file con estensione ISM. 
 * Localizzatori progressivi (SAS) usati per la distribuzione di video tramite download progressivo.
 
-Un URL di streaming presenta il formato seguente e può essere usato per riprodurre asset Smooth Streaming.
+È possibile utilizzare asset Smooth Streaming tooplay un URL di streaming ha hello seguente formato.
 
     {streaming endpoint name-media services account name}.streaming.mediaservices.windows.net/{locator ID}/{filename}.ism/Manifest
 
-Per creare un URL di streaming HLS, aggiungere (format=m3u8-aapl) all'URL.
+aggiungere toobuild un URL di streaming HLS (formato = m3u8-aapl) toohello URL.
 
     {streaming endpoint name-media services account name}.streaming.mediaservices.windows.net/{locator ID}/{filename}.ism/Manifest(format=m3u8-aapl)
 
-Per creare un URL di streaming MPEG DASH, aggiungere (format=mpd-time-csf) all'URL.
+aggiungere toobuild un URL di streaming di contenuto MPEG DASH (formato = mpd-tempo-csf) toohello URL.
 
     {streaming endpoint name-media services account name}.streaming.mediaservices.windows.net/{locator ID}/{filename}.ism/Manifest(format=mpd-time-csf)
 
-Un URL di firma di accesso condiviso ha il formato seguente.
+Un URL SAS è hello seguente formato.
 
     {blob container name}/{asset name}/{file name}/{SAS signature}
 
 Per altre informazioni, vedere [Panoramica della distribuzione di contenuti](media-services-deliver-content-overview.md).
 
 > [!NOTE]
-> I localizzatori creati attraverso il portale prima del mese di marzo 2015 hanno una data di scadenza di due anni.  
+> Se si utilizza i localizzatori toocreate portale hello prima marzo 2015, sono stati creati con una data di scadenza per anno a due indicatori di posizione.  
 > 
 > 
 
-Per aggiornare la data di scadenza di un localizzatore, è possibile usare le API [REST](https://docs.microsoft.com/rest/api/media/operations/locator#update_a_locator) o [.NET](http://go.microsoft.com/fwlink/?LinkID=533259). Si noti che quando si aggiorna la data di scadenza di un localizzatore di firma di accesso condiviso, l'URL viene modificato.
+tooupdate data di scadenza su un indicatore di posizione, utilizzare [REST](https://docs.microsoft.com/rest/api/media/operations/locator#update_a_locator) o [.NET](http://go.microsoft.com/fwlink/?LinkID=533259) API. Si noti che quando si aggiorna la data di scadenza hello di un localizzatore SAS, hello URL viene modificato.
 
-### <a name="to-use-the-portal-to-publish-an-asset"></a>Per usare il portale per la pubblicazione di un asset
-Per pubblicare un asset tramite il portale, seguire questa procedura:
+### <a name="toouse-hello-portal-toopublish-an-asset"></a>toouse hello portale toopublish un asset
+toouse hello portale toopublish un asset, hello seguenti:
 
-1. Nel [portale di Azure ](https://portal.azure.com/) selezionare l'account Servizi multimediali di Azure.
+1. In hello [portale di Azure](https://portal.azure.com/), selezionare l'account di servizi multimediali di Azure.
 2. Selezionare **Impostazioni** > **Asset**.
-3. Selezionare l'asset da pubblicare.
-4. Fare clic sul pulsante **Pubblica** .
-5. Selezionare il tipo di localizzatore.
+3. Selezionare asset hello che si desidera toopublish.
+4. Fare clic su hello **pubblica** pulsante.
+5. Selezionare il tipo di localizzatore hello.
 6. Fare clic su **Aggiungi**.
    
     ![Pubblica](./media/media-services-portal-vod-get-started/media-services-publish1.png)
 
-L'URL verrà aggiunto all'elenco di **URL pubblicati**.
+Hello URL verrà aggiunto l'elenco toohello di **URL pubblicato**.
 
-## <a name="play-content-from-the-portal"></a>Riprodurre contenuti dal portale
-Il portale di Azure fornisce un lettore di contenuti che può essere usato per testare il proprio video.
+## <a name="play-content-from-hello-portal"></a>Riprodurre il contenuto dal portale hello
+portale di Azure Hello fornisce un lettore di contenuti che è possibile utilizzare tootest video.
 
-Fare clic sul video richiesto e quindi sul pulsante **Riproduci** .
+Fare clic su video hello desiderato e quindi fare clic su hello **riprodurre** pulsante.
 
 ![Pubblica](./media/media-services-portal-vod-get-started/media-services-play.png)
 
 Considerazioni applicabili:
 
-* Verificare che il video sia stato pubblicato.
-* **Media Player** esegue la riproduzione dall'endpoint di streaming predefinito. Se si vuole eseguire la riproduzione da un endpoint di streaming diverso, fare clic per copiare l'URL e usare un altro lettore, ad esempio [Lettore di Servizi multimediali di Azure](http://amsplayer.azurewebsites.net/azuremediaplayer.html).
-* L'endpoint di streaming da cui si effettua lo streaming deve essere in esecuzione.  
+* Verificare che sia stato pubblicato hello video.
+* Questo **Media player** riprodotto dal valore predefinito di hello endpoint di streaming. Se si desidera tooplay da un valore non predefinito, endpoint di streaming fare clic su URL hello toocopy e usare un altro lettore. ad esempio [Lettore di Servizi multimediali di Azure](http://amsplayer.azurewebsites.net/azuremediaplayer.html).
+* Hello da cui si utilizza il flusso di endpoint di streaming deve essere in esecuzione.  
 
 ## <a name="next-steps"></a>Passaggi successivi
 Analizzare i percorsi di apprendimento di Servizi multimediali.

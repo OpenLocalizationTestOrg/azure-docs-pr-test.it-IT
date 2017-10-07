@@ -1,6 +1,6 @@
 ---
-title: Messaggi da cloud a dispositivo con l'hub IoT di Azure (.NET) | Documentazione Microsoft
-description: Come inviare messaggi da cloud a dispositivo a un dispositivo da un hub IoT di Azure usando gli SDK di Azure IoT per .NET. Si modifica un'app per dispositivi per ricevere i messaggi diretti dal cloud al dispositivo e si modifica un'app back-end per inviare i messaggi diretti dal cloud al dispositivo.
+title: i messaggi aaaCloud al dispositivo con Azure IoT Hub (.NET) | Documenti Microsoft
+description: "La modalità toosend cloud a dispositivo dei messaggi tooa dispositivo da un hub IoT di Azure usando hello Azure IoT SDK per .NET. Per modificare i messaggi di cloud a dispositivo un dispositivo app tooreceive e modificare un messaggio di cloud a dispositivo hello toosend app back-end."
 services: iot-hub
 documentationcenter: .net
 author: fsautomata
@@ -14,49 +14,49 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/24/2017
 ms.author: elioda
-ms.openlocfilehash: 3f5f83671054c30afde3d7f18ff0edcdb8f78a01
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: f6a7618b164d95c8ddaf28943f244aeeb568217f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="send-messages-from-the-cloud-to-your-device-with-iot-hub-net"></a>Inviare messaggi dal cloud al dispositivo con Hub IoT (.NET)
+# <a name="send-messages-from-hello-cloud-tooyour-device-with-iot-hub-net"></a>Inviare messaggi da dispositivo di tooyour hello cloud con Hub IoT (.NET)
 [!INCLUDE [iot-hub-selector-c2d](../../includes/iot-hub-selector-c2d.md)]
 
 ## <a name="introduction"></a>Introduzione
-L'hub IoT di Azure è un servizio completamente gestito che consente di abilitare comunicazioni bidirezionali affidabili e sicure tra milioni di dispositivi e un back-end della soluzione. L'esercitazione [Introduzione all'hub IoT di Azure] illustra come creare un hub IoT, effettuare il provisioning dell'identità di un dispositivo al suo interno e creare il codice di un'app per dispositivi che invia messaggi dal dispositivo al cloud.
+L'hub IoT di Azure è un servizio completamente gestito che consente di abilitare comunicazioni bidirezionali affidabili e sicure tra milioni di dispositivi e un back-end della soluzione. Hello [iniziare con l'IoT Hub] esercitazione viene illustrato come eseguire il provisioning di un'identità del dispositivo in essa contenuti, toocreate un hub IoT e codice di un'app di dispositivo che invia messaggi da dispositivo a cloud.
 
-Questa esercitazione si basa su [Introduzione all'hub IoT di Azure]. Illustra le operazioni seguenti:
+Questa esercitazione si basa su [iniziare con l'IoT Hub]. Illustra le operazioni seguenti:
 
-* Dal back-end della soluzione inviare messaggi da cloud a dispositivo a un singolo dispositivo tramite l'hub IoT.
+* Dal back-end soluzione, inviare singolo dispositivo tooa messaggi da cloud a dispositivo tramite l'IoT Hub.
 * Ricevere messaggi da cloud a dispositivo in un dispositivo.
-* Dal back-end della soluzione richiedere l'acknowledgement di recapito (*feedback*) per i messaggi inviati a un dispositivo dall'hub IoT.
+* Dal back-end soluzione, richiedere la conferma di recapito (*feedback*) per i messaggi inviati tooa dispositivo dall'IoT Hub.
 
-Per altre informazioni sui messaggi da cloud a dispositivo, vedere la[Guida per gli sviluppatori dell'hub IoT][IoT Hub developer guide - C2D].
+Sono disponibili ulteriori informazioni sui cloud a dispositivo messaggi hello [Guida per sviluppatori di IoT Hub][IoT Hub developer guide - C2D].
 
-Al termine di questa esercitazione vengono eseguite due app console .NET:
+Alla fine di hello di questa esercitazione, si esegue due applicazioni di console .NET:
 
-* **SimulatedDevice**, una versione modificata dell'app creata in [Introduzione all'hub IoT di Azure], che si connette all'hub IoT e riceve messaggi da cloud a dispositivo.
-* **SendCloudToDevice**, che invia un messaggio diretto dal cloud al dispositivo all'app per dispositivi tramite l'hub IoT e quindi riceve la conferma di recapito.
+* **SimulatedDevice**, una versione modificata dell'applicazione hello creato in [iniziare con l'IoT Hub], che si connette l'hub IoT tooyour e riceve messaggi da cloud a dispositivo.
+* **SendCloudToDevice**, che invia un'app di dispositivo toohello messaggio cloud a dispositivo tramite l'IoT Hub e quindi riceve la conferma di recapito.
 
 > [!NOTE]
-> L’hub IoT dispone del supporto SDK per molte piattaforme e linguaggi, tra cui C, Java e Javascript, tramite gli [SDK del dispositivo IoT Azure]. Per istruzioni dettagliate su come connettere il dispositivo al codice dell'esercitazione e in generale all'hub IoT di Azure, vedere la [Guida per sviluppatori dell'hub IoT].
+> L’hub IoT dispone del supporto SDK per molte piattaforme e linguaggi, tra cui C, Java e Javascript, tramite gli [SDK del dispositivo IoT Azure]. Per istruzioni dettagliate su come tooconnect l'esercitazione toothis dispositivo codice e in genere tooAzure IoT Hub, vedere hello [Guida per sviluppatori di IoT Hub].
 > 
 > 
 
-Per completare l'esercitazione, sono necessari gli elementi seguenti:
+toocomplete questa esercitazione, è necessario hello seguenti:
 
 * Visual Studio 2015 o Visual Studio 2017
 * Un account Azure attivo. Se non si ha un account, è possibile creare un [account gratuito][lnk-free-trial] in pochi minuti.
 
-## <a name="receive-messages-in-the-device-app"></a>Ricevere messaggi nell'app per dispositivi
-In questa sezione si modificherà l'app per dispositivi creata in [Introduzione all'hub IoT di Azure] per ricevere i messaggi diretti dal cloud al dispositivo dall'hub IoT.
+## <a name="receive-messages-in-hello-device-app"></a>Ricezione di messaggi hello dispositivo App
+In questa sezione, che si desidera modificare hello app del dispositivo è stato creato in [iniziare con l'IoT Hub] tooreceive di messaggi da cloud a dispositivo dall'hub IoT hello.
 
-1. In Visual Studio, nel progetto **SimulatedDevice** aggiungere il seguente metodo alla classe **Program**.
+1. In Visual Studio, in hello **SimulatedDevice** del progetto, aggiungere hello seguente metodo toohello **programma** classe.
    
         private static async void ReceiveC2dAsync()
         {
-            Console.WriteLine("\nReceiving cloud to device messages from service");
+            Console.WriteLine("\nReceiving cloud toodevice messages from service");
             while (true)
             {
                 Message receivedMessage = await deviceClient.ReceiveAsync();
@@ -70,72 +70,72 @@ In questa sezione si modificherà l'app per dispositivi creata in [Introduzione 
             }
         }
    
-    Il metodo `ReceiveAsync` restituisce in modo asincrono il messaggio ricevuto nel momento in cui viene ricevuto dal dispositivo. Restituisce *null* dopo un periodo di timeout specificabile (in questo caso viene usato il valore predefinito di un minuto). Quando l'app riceve un valore *Null*, deve rimanere in attesa di nuovi messaggi. Questo requisito è il motivo per la riga `if (receivedMessage == null) continue`.
+    Hello `ReceiveAsync` (metodo) restituisce in modo asincrono il messaggio hello ricevuto in fase di hello ricevuto dal dispositivo hello. Restituisce *null* dopo un periodo di timeout specificabile (in questo caso, viene usato predefinito hello è un minuto). Quando applicazione hello riceve un *null*, deve continuare toowait per i nuovi messaggi. Questo requisito è motivo hello hello `if (receivedMessage == null) continue` riga.
    
-    La chiamata a `CompleteAsync()` notifica all'hub IoT che il messaggio è stato elaborato correttamente. Il messaggio può essere rimosso dalla coda del dispositivo in modo sicuro. Se si è verificato un evento che ha impedito all'app per dispositivo di completare l'elaborazione del messaggio, l'hub IoT lo recapita nuovamente. È quindi importante che la logica di elaborazione del messaggio nell'app per dispositivo sia *idempotente*, in modo che la ricezione dello stesso messaggio più volte produca lo stesso risultato. Un'applicazione può anche abbandonare temporaneamente un messaggio e, di conseguenza, l'hub IoT mantiene il messaggio nella coda per un uso futuro. In alternativa, l'applicazione può rifiutare un messaggio, rimuovendolo così definitivamente dalla coda. Per altre informazioni sul ciclo di vita del messaggio da cloud a dispositivo, vedere [Guida per gli sviluppatori dell'hub IoT][IoT Hub developer guide - C2D].
+    Hello chiamata troppo`CompleteAsync()` notifica IoT Hub è stato elaborato il messaggio hello. messaggio Hello può essere rimossi dalla coda dispositivo hello. Se si è verificato tale app dispositivo hello ha impedito di completare l'elaborazione di hello del messaggio hello un IoT Hub recapita nuovamente. È quindi importante è il messaggio hello dispositivo App logica di elaborazione *idempotente*, in modo che la ricezione di hello stesso messaggio più volte produce hello stesso risultato. Un'applicazione può inoltre temporaneamente abbandono di un messaggio, che comporta l'hub IoT mantenendo il messaggio hello nella coda di hello per un utilizzo futuro. In alternativa, un'applicazione hello può rifiutare un messaggio, che consente di rimuovere definitivamente il messaggio hello dalla coda hello. Per ulteriori informazioni sul ciclo di vita di hello messaggio cloud a dispositivo, vedere hello [Guida per sviluppatori di IoT Hub][IoT Hub developer guide - C2D].
    
    > [!NOTE]
-   > Quando si usa HTTP invece di MQTT o AMQP come trasporto, il metodo `ReceiveAsync` verrà restituito immediatamente. Il modello supportato per i messaggi da cloud a dispositivo con HTTP è dispositivi collegati occasionalmente che controllano raramente la presenza di messaggi (a intervalli inferiori 25 minuti). La generazione di altre ricezioni HTTP comporta la limitazione delle richieste da parte dell'hub IoT. Per altre informazioni sulle differenze tra il supporto di MQTT, AMQP e HTTP e sulla limitazione delle richieste dell'hub IoT, vedere [Guida per gli sviluppatori dell'hub IoT][IoT Hub developer guide - C2D].
+   > Quando si Usa HTTP invece di MQTT o AMQP come trasporto, hello `ReceiveAsync` metodo viene restituito immediatamente. modello di Hello è supportato per i messaggi da cloud a dispositivo con HTTP è occasionali per i dispositivi che consentono di controllare per i messaggi raramente (meno di 25 minuti). Emissione ulteriori HTTP riceve i risultati nelle richieste hello limitazione IoT Hub. Per ulteriori informazioni sulle differenze hello supporto MQTT, AMQP e HTTP e la limitazione delle richieste di Hub IoT, vedere hello [Guida per sviluppatori di IoT Hub][IoT Hub developer guide - C2D].
    > 
    > 
-2. Aggiungere il metodo seguente al metodo **Main** immediatamente prima della riga `Console.ReadLine()`:
+2. Aggiungere al metodo in hello hello **Main** (metodo), immediatamente prima di hello `Console.ReadLine()` riga:
    
         ReceiveC2dAsync();
 
 > [!NOTE]
-> Per semplicità, in questa esercitazione non si implementa alcun criterio di nuovi tentativi. Nel codice di produzione è consigliabile implementare criteri di ripetizione dei tentativi, ad esempio un backoff esponenziale, come indicato nell'articolo di MSDN [Transient Fault Handling](Gestione degli errori temporanei).
+> Per semplicità, in questa esercitazione non si implementa alcun criterio di nuovi tentativi. Nel codice di produzione, è necessario implementare criteri di ripetizione (ad esempio backoff esponenziale), come indicato nell'articolo MSDN hello [gestione degli errori temporanei].
 > 
 > 
 
 ## <a name="send-a-cloud-to-device-message"></a>Inviare un messaggio da cloud a dispositivo
-In questa sezione viene scritta un'app console di .NET che invia messaggi da cloud a dispositivo all'app per dispositivi.
+In questa sezione, scrivere un'applicazione console .NET che invia messaggi da cloud a dispositivo toohello dispositivo app.
 
-1. Nella soluzione di Visual Studio corrente creare un progetto di applicazioni desktop in Visual C# usando il modello di progetto **Applicazione console**. Denominare il progetto **SendCloudToDevice**.
+1. Nella soluzione di Visual Studio hello corrente, creare un progetto di App Desktop Visual c# utilizzando hello **applicazione Console** modello di progetto. Progetto hello nome **SendCloudToDevice**.
    
     ![Nuovo progetto in Visual Studio][20]
-2. In Esplora soluzioni fare clic con il pulsante destro del mouse sulla soluzione e quindi scegliere **Gestisci pacchetti NuGet per la soluzione**. 
+2. In Esplora soluzioni fare doppio clic hello soluzione e quindi fare clic su **Gestisci pacchetti NuGet per la soluzione...** . 
    
-    L'azione consente di visualizzare la finestra **Gestisci pacchetti NuGet**.
-3. Cercare **Microsoft.Azure.Devices**, fare clic su **Installa** e quindi accettare le condizioni per l'uso. 
+    Questa azione apre hello **Gestisci pacchetti NuGet** finestra.
+3. Cercare **Microsoft.Azure.Devices**, fare clic su **installare**e accettare le condizioni di hello d'uso. 
    
-    Verrà quindi scaricato e installato il [pacchetto NuGet Azure IoT Service SDK] e verrà aggiunto un riferimento a tale pacchetto.
+    Questo download, si installa e si aggiunge un riferimento toohello [pacchetto NuGet SDK del servizio Azure IoT].
 
-4. Aggiungere l'istruzione `using` seguente all'inizio del file **Program.cs** :
+4. Aggiungere il seguente hello `using` istruzione nella parte superiore di hello di hello **Program.cs** file:
    
         using Microsoft.Azure.Devices;
-5. Aggiungere i campi seguenti alla classe **Program** . Sostituire il valore del segnaposto con la stringa di connessione all'hub IoT da [Introduzione all'hub IoT di Azure]:
+5. Aggiungere i seguenti campi toohello hello **programma** classe. Sostituire il valore di segnaposto hello con stringa di connessione hub IoT hello da [iniziare con l'IoT Hub]:
    
         static ServiceClient serviceClient;
         static string connectionString = "{iot hub connection string}";
-6. Aggiungere il metodo seguente alla classe **Program** :
+6. Aggiungere hello seguente metodo toohello **programma** classe:
    
         private async static Task SendCloudToDeviceMessageAsync()
         {
-            var commandMessage = new Message(Encoding.ASCII.GetBytes("Cloud to device message."));
+            var commandMessage = new Message(Encoding.ASCII.GetBytes("Cloud toodevice message."));
             await serviceClient.SendAsync("myFirstDevice", commandMessage);
         }
    
-    Questo metodo invia un nuovo messaggio da cloud a dispositivo al dispositivo con ID `myFirstDevice`. Modificare questo parametro solo nel caso in cui sia stato modificato rispetto a quello usato in [Introduzione all'hub IoT di Azure].
-7. Aggiungere infine le righe seguenti al metodo **Main** :
+    Questo metodo invia un nuovo dispositivo toohello cloud a dispositivo messaggio con ID hello, `myFirstDevice`. Modificare questo parametro solo se è stato modificato da hello quello utilizzato nel [iniziare con l'IoT Hub].
+7. Infine, aggiungere hello seguenti righe toohello **Main** metodo:
    
         Console.WriteLine("Send Cloud-to-Device message\n");
         serviceClient = ServiceClient.CreateFromConnectionString(connectionString);
    
-        Console.WriteLine("Press any key to send a C2D message.");
+        Console.WriteLine("Press any key toosend a C2D message.");
         Console.ReadLine();
         SendCloudToDeviceMessageAsync().Wait();
         Console.ReadLine();
-8. In Visual Studio fare clic con il pulsante destro del mouse sulla soluzione e selezionare **Imposta progetti di avvio**. Selezionare **Progetti di avvio multipli**, quindi selezionare l'azione **Start** per **ReadDeviceToCloudMessages**, **SimulatedDevice** e **SendCloudToDevice**.
-9. Premere **F5**. Devono avviarsi tutte e tre le applicazioni. Selezionare la finestra **SendCloudToDevice** e premere **INVIO**. Verrà visualizzato il messaggio ricevuto dall'app per dispositivi.
+8. In Visual Studio fare clic con il pulsante destro del mouse sulla soluzione e selezionare **Imposta progetti di avvio**. Selezionare **più progetti di avvio**, quindi selezionare hello **avviare** azione per **ReadDeviceToCloudMessages**, **SimulatedDevice**, e **SendCloudToDevice**.
+9. Premere **F5**. Devono avviarsi tutte e tre le applicazioni. Seleziona hello **SendCloudToDevice** windows e premere **invio**. Verrà visualizzato il messaggio hello ricevuto dall'app per dispositivi hello.
    
    ![Ricezione di un messaggio da parte dell'app][21]
 
 ## <a name="receive-delivery-feedback"></a>Ricevere feedback di recapito
-È possibile richiedere la conferma della ricezione (o della scadenza) dall'hub IoT per ogni messaggio da cloud a dispositivo. Questa opzione consente al back-end della soluzione di informare facilmente la logica di ripetizione o di compensazione. Per altre informazioni sul feedback da cloud a dispositivo, vedere [Guida per gli sviluppatori dell'hub IoT][IoT Hub developer guide - C2D].
+È possibile toorequest recapito (scadenza) acknowledgment o dall'IoT Hub per ogni messaggio cloud a dispositivo. Questo tooeasily di opzione Abilita hello soluzione back-end che indicano la logica di compensazione o di tentativi. Per ulteriori informazioni sui commenti cloud a dispositivo, vedere hello [Guida per sviluppatori di IoT Hub][IoT Hub developer guide - C2D].
 
-In questa sezione viene modificata l'app **SendCloudToDevice** per richiedere feedback e riceverli dall'hub IoT.
+In questa sezione, si modifica hello **SendCloudToDevice** feedback toorequest app e riceve dall'IoT Hub.
 
-1. In Visual Studio, nel progetto **SendCloudToDevice** aggiungere il seguente metodo alla classe **Programma**.
+1. In Visual Studio, in hello **SendCloudToDevice** del progetto, aggiungere hello seguente metodo toohello **programma** classe.
    
         private async static void ReceiveFeedbackAsync()
         {
@@ -155,28 +155,28 @@ In questa sezione viene modificata l'app **SendCloudToDevice** per richiedere fe
             }
         }
    
-    Si noti che il modello di ricezione è identico a quello usato per ricevere messaggi da cloud a dispositivo dall'app per dispositivo.
-2. Aggiungere il metodo seguente nel metodo **Main`serviceClient = ServiceClient.CreateFromConnectionString(connectionString)` immediatamente dopo la riga** :
+    Nota di questo modello di ricezione è hello stessi messaggi cloud a dispositivo tooreceive usato uno dall'app per dispositivi hello.
+2. Aggiungere al metodo in hello hello **Main** metodo subito dopo hello `serviceClient = ServiceClient.CreateFromConnectionString(connectionString)` riga:
    
         ReceiveFeedbackAsync();
-3. Per richiedere feedback del recapito del messaggio da cloud a dispositivo, è necessario specificare una proprietà nel metodo **SendCloudToDeviceMessageAsync** . Aggiungere la riga seguente, subito dopo la riga `var commandMessage = new Message(...);` :
+3. toorequest commenti e suggerimenti per il recapito del messaggio da cloud a dispositivo hello, aver toospecify una proprietà in hello **SendCloudToDeviceMessageAsync** metodo. Aggiungere hello successiva riga, subito dopo hello `var commandMessage = new Message(...);` riga:
    
         commandMessage.Ack = DeliveryAcknowledgement.Full;
-4. Premere **F5**per eseguire le app. Si dovrebbero avviare tutte e tre le applicazioni. Selezionare la finestra **SendCloudToDevice** e premere **INVIO**. Verrà visualizzata la ricezione del messaggio da parte dell'app per dispositivi e, dopo alcuni secondi, la ricezione del messaggio di feedback da parte dell'applicazione **SendCloudToDevice**.
+4. Eseguire App hello premendo **F5**. Si dovrebbero avviare tutte e tre le applicazioni. Seleziona hello **SendCloudToDevice** windows e premere **invio**. Dovrebbe essere hello dei messaggi ricevuti dall'app per dispositivi hello e, dopo alcuni secondi, hello messaggio commenti e suggerimenti ricevuto dal **SendCloudToDevice** dell'applicazione.
    
    ![Ricezione di un messaggio da parte dell'app][22]
 
 > [!NOTE]
-> Per semplicità, in questa esercitazione non si implementa alcun criterio di nuovi tentativi. Nel codice di produzione è consigliabile implementare criteri di ripetizione dei tentativi, ad esempio un backoff esponenziale, come indicato nell'articolo di MSDN [Transient Fault Handling](Gestione degli errori temporanei).
+> Per semplicità, in questa esercitazione non si implementa alcun criterio di nuovi tentativi. Nel codice di produzione, è necessario implementare criteri di ripetizione (ad esempio backoff esponenziale), come indicato nell'articolo MSDN hello [gestione degli errori temporanei].
 > 
 > 
 
 ## <a name="next-steps"></a>Passaggi successivi
-In questa esercitazione è stato descritto come inviare e ricevere messaggi da cloud a dispositivo. 
+In questa esercitazione, si è appreso come toosend e ricevere messaggi da cloud a dispositivo. 
 
-Per avere degli esempi di soluzioni complete che utilizzano l'hub IoT, vedere la [Azure IoT Suite].
+esempi di toosee di soluzioni end-to-end completate che usa IoT Hub, vedere [Azure IoT Suite].
 
-Per altre informazioni sullo sviluppo delle soluzioni con l'hub IoT, vedere la [Guida per sviluppatori dell'hub IoT].
+toolearn più sullo sviluppo di soluzioni con l'IoT Hub, vedere hello [Guida per sviluppatori di IoT Hub].
 
 <!-- Images -->
 [20]: ./media/iot-hub-csharp-csharp-c2d/create-identity-csharp1.png
@@ -185,13 +185,13 @@ Per altre informazioni sullo sviluppo delle soluzioni con l'hub IoT, vedere la [
 
 <!-- Links -->
 
-[pacchetto NuGet Azure IoT Service SDK]: https://www.nuget.org/packages/Microsoft.Azure.Devices/
-[Transient Fault Handling]: https://msdn.microsoft.com/library/hh680901(v=pandp.50).aspx
+[pacchetto NuGet SDK del servizio Azure IoT]: https://www.nuget.org/packages/Microsoft.Azure.Devices/
+[gestione degli errori temporanei]: https://msdn.microsoft.com/library/hh680901(v=pandp.50).aspx
 
 [IoT Hub developer guide - C2D]: iot-hub-devguide-messaging.md
 
-[Guida per sviluppatori dell'hub IoT]: iot-hub-devguide.md
-[Introduzione all'hub IoT di Azure]: iot-hub-csharp-csharp-getstarted.md
+[Guida per sviluppatori di IoT Hub]: iot-hub-devguide.md
+[iniziare con l'IoT Hub]: iot-hub-csharp-csharp-getstarted.md
 [lnk-free-trial]: http://azure.microsoft.com/pricing/free-trial/
 [Azure IoT Suite]: https://docs.microsoft.com/en-us/azure/iot-suite/
 [SDK del dispositivo IoT Azure]: iot-hub-devguide-sdks.md

@@ -1,6 +1,6 @@
 ---
-title: Segnalazione avanzata di Windows universale con MobileApps Engagement
-description: Come integrare Azure Mobile Engagement con le app universali di Windows
+title: aaaWindows universale avanzate Reporting con MobileApps Engagement
+description: Come tooIntegrate Azure Mobile Engagement con App universali di Windows
 services: mobile-engagement
 documentationcenter: mobile
 author: piyushjo
@@ -14,13 +14,13 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 08/12/2016
 ms.author: piyushjo;ricksal
-ms.openlocfilehash: feac309db1ffce0945012e293bfc1df417aed876
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 20968f238ef7ae9dc0b8bb6dac3fb8bdb9bc3a10
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="advanced-reporting-with-the-windows-universal-apps-engagement-sdk"></a>Segnalazione avanzata con Engagement SDK per le app di Windows universali
+# <a name="advanced-reporting-with-hello-windows-universal-apps-engagement-sdk"></a>Creazione di report avanzate con hello Windows Universal App Engagement SDK
 > [!div class="op_single_selector"]
 > * [Windows universale](mobile-engagement-windows-store-advanced-reporting.md)
 > * [Windows Phone Silverlight](mobile-engagement-windows-phone-integrate-engagement.md)
@@ -29,22 +29,22 @@ ms.lasthandoff: 07/11/2017
 > 
 > 
 
-Questo argomento descrive scenari di segnalazione aggiuntivi nell'applicazione di Windows universale. Questi scenari includono le opzioni che è possibile scegliere di applicare all'app creata nell'esercitazione [introduttiva](mobile-engagement-windows-store-dotnet-get-started.md) .
+Questo argomento descrive scenari di segnalazione aggiuntivi nell'applicazione di Windows universale. Questi scenari includono opzioni che è possibile selezionare app toohello tooapply creato in hello [Introduzione](mobile-engagement-windows-store-dotnet-get-started.md) esercitazione.
 
 ## <a name="prerequisites"></a>Prerequisiti
 [!INCLUDE [Prereqs](../../includes/mobile-engagement-windows-store-prereqs.md)]
 
-Prima di iniziare questa esercitazione, è necessario completare l'esercitazione [introduttiva](mobile-engagement-windows-store-dotnet-get-started.md) che è intenzionalmente diretta e semplice . Questa esercitazione illustra le opzioni aggiuntive disponibili.
+Prima di iniziare questa esercitazione, è necessario prima completare hello [Introduzione](mobile-engagement-windows-store-dotnet-get-started.md) esercitazione, è intenzionalmente semplice e diretto. Questa esercitazione illustra le opzioni aggiuntive disponibili.
 
 ## <a name="specifying-engagement-configuration-at-runtime"></a>Specifica della configurazione di Engagement in fase di esecuzione
-La configurazione di Engagement è centralizzata nel file `Resources\EngagementConfiguration.xml` del progetto, ovvero quello in cui è stata specificata nell'argomento [introduttivo](mobile-engagement-windows-store-dotnet-get-started.md) .
+configurazione di Engagement Hello è centralizzata in hello `Resources\EngagementConfiguration.xml` file del progetto, in cui è stato specificato in hello [Introduzione](mobile-engagement-windows-store-dotnet-get-started.md) argomento.
 
-Se si vuole specificarlo in fase di esecuzione, è possibile chiamare il metodo seguente prima dell'inizializzazione dell'agente di Engagement:
+Ma è possibile inoltre specificare in fase di esecuzione: è possibile chiamare hello al metodo prima dell'inizializzazione dell'agente di Engagement hello:
 
           /* Engagement configuration. */
           EngagementConfiguration engagementConfiguration = new EngagementConfiguration();
 
-          /* Set the Engagement connection string. */
+          /* Set hello Engagement connection string. */
           engagementConfiguration.Agent.ConnectionString = "Endpoint={appCollection}.{domain};AppId={appId};SdkKey={sdkKey}";
 
           /* Initialize Engagement angent with above configuration. */
@@ -53,14 +53,14 @@ Se si vuole specificarlo in fase di esecuzione, è possibile chiamare il metodo 
 
 
 ## <a name="recommended-method-overload-your-page-classes"></a>Metodo consigliato: eseguire l'overload delle classi `Page`
-Per attivare la segnalazione di tutti i log richiesti da Engagement per calcolare utenti, sessioni, attività, arresti anomali e statistiche tecniche, fare in modo che tutte le sottoclassi `Page` ereditino dalle classi `EngagementPage`.
+tooactivate hello reporting di tutti i log di hello richiesti da Engagement toocompute utenti, sessioni, attività, arresti anomali del sistema e le statistiche tecniche, apportare tutte le `Page` sottoclassi ereditano hello `EngagementPage` classi.
 
-Di seguito è riportato un esempio per una pagina dell'applicazione. È possibile procedere allo stesso modo per tutte le pagine dell'applicazione.
+Di seguito è riportato un esempio per una pagina dell'applicazione. È possibile eseguire hello stessa operazione per tutte le pagine dell'applicazione.
 
 ### <a name="c-source-file"></a>File di origine C#
 Modificare il file `.xaml.cs` della pagina:
 
-* Aggiungere quanto segue alle istruzioni `using`:
+* Aggiungere tooyour `using` istruzioni:
   
       using Microsoft.Azure.Engagement;
 * Sostituire `Page` con `EngagementPage`:
@@ -88,14 +88,14 @@ Modificare il file `.xaml.cs` della pagina:
         }
 
 > [!IMPORTANT]
-> Se la pagina esegue l'override del metodo `OnNavigatedTo`, accertarsi di chiamare `base.OnNavigatedTo(e)`. In caso contrario, l'attività non verrà segnalata, ovvero `EngagementPage` chiama `StartActivity` all'interno del relativo metodo `OnNavigatedTo`.
+> Se la pagina esegue l'override di hello `OnNavigatedTo` metodo toocall assicurarsi di essere `base.OnNavigatedTo(e)`. In caso contrario, attività hello non venga segnalato (hello `EngagementPage` chiamate `StartActivity` all'interno di relativo `OnNavigatedTo` (metodo)).
 > 
 > 
 
 ### <a name="xaml-file"></a>File XAML
 Modificare il file `.xaml` della pagina:
 
-* Aggiungere le dichiarazioni di spazi dei nomi:
+* Aggiungere le dichiarazioni di spazi dei nomi tooyour:
   
       xmlns:engagement="using:Microsoft.Azure.Engagement"
 * Sostituire `Page` con `engagement:EngagementPage`:
@@ -115,31 +115,31 @@ Modificare il file `.xaml` della pagina:
             ...
         </engagement:EngagementPage >
 
-### <a name="override-the-default-behaviour"></a>Eseguire l'override del comportamento predefinito
-Per impostazione predefinita, il nome della classe della pagina viene indicato come nome dell'attività, senza elementi aggiuntivi. Se la classe usa il suffisso "Page", Engagement rimuoverà questo elemento.
+### <a name="override-hello-default-behaviour"></a>Eseguire l'override di comportamento predefinito di hello
+Per impostazione predefinita, il nome di classe hello della pagina hello viene segnalato come nome dell'attività hello con senza aggiuntivi. Se la classe hello utilizza il suffisso "Pagina" hello, Engagement lo rimuove.
 
-Per sostituire il comportamento predefinito per il nome, aggiungere il codice seguente:
+comportamento predefinito di hello toooverride per nome hello, aggiungere questo codice:
 
-        // in the .xaml.cs file
+        // in hello .xaml.cs file
         protected override string GetEngagementPageName()
         {
           /* your code */
           return "new name";
         }
 
-Per segnalare informazioni aggiuntive con l'attività, aggiungere il codice seguente:
+tooreport informazioni aggiuntive con l'attività, aggiungere il seguente codice:
 
-        // in the .xaml.cs file
+        // in hello .xaml.cs file
         protected override Dictionary<object,object> GetEngagementPageExtra()
         {
           /* your code */
           return extra;
         }
 
-Questi metodi vengono chiamati dall'interno del metodo `OnNavigatedTo` della pagina.
+Questi metodi vengono chiamati all'interno di hello `OnNavigatedTo` metodo della pagina.
 
 ### <a name="alternate-method-call-startactivity-manually"></a>Metodo alternativo: chiamare `StartActivity()` manualmente
-Se non si può o non si vuole eseguire l'overload delle classi `Page`, in alternativa è possibile avviare le attività chiamando direttamente i metodi `EngagementAgent`.
+Se non è possibile o non si desidera toooverload il `Page` classi, invece, è possibile avviare le attività chiamando `EngagementAgent` diretta dei metodi.
 
 È consigliabile chiamare `StartActivity` all'interno del metodo `OnNavigatedTo` della pagina.
 
@@ -152,12 +152,12 @@ Se non si può o non si vuole eseguire l'overload delle classi `Page`, in altern
 > [!IMPORTANT]
 > Assicurarsi che la sessione venga terminata correttamente.
 > 
-> Windows Universal SDK chiama automaticamente il metodo `EndActivity` quando l'applicazione viene chiusa. È quindi **ALTAMENTE** consigliabile chiamare il metodo `StartActivity` ogni volta che l'attività dell'utente cambia e non chiamare **MAI** il metodo `EndActivity`. Questo metodo notifica al server di Engagement che l'utente ha chiuso l'applicazione e ciò influirà su tutti i log delle applicazioni.
+> SDK di Windows universale Hello chiama automaticamente hello `EndActivity` metodo quando un'applicazione hello viene chiuso. È pertanto **elevata** consigliato hello toocall `StartActivity` metodo ogni volta che cambia attività hello dell'utente di hello e troppo**mai** chiamata hello `EndActivity` metodo. Questo metodo notifica server Engagement hello che l'utente corrente hello ha lasciato l'applicazione hello, che avrà un impatto tutti i log dell'applicazione.
 > 
 > 
 
 ## <a name="advanced-reporting"></a>Segnalazione avanzata
-Facoltativamente, è possibile segnalare eventi specifici dell'applicazione, errori e processi. A tale scopo, usare gli altri metodi disponibili nella classe `EngagementAgent`. L'API di Engagement consente di usare tutte le funzionalità avanzate di Engagement.
+Facoltativamente, è opportuno eventi specifici dell'applicazione tooreport, errori e processi e toodo, pertanto, utilizzare hello altri metodi, vedere hello `EngagementAgent` classe. Hello Engagement API consente l'utilizzo delle funzionalità avanzate di Engagement tutti.
 
-Per altre informazioni, vedere [Come usare l'API di Engagement in un'app di Windows universale](mobile-engagement-windows-store-use-engagement-api.md).
+Per ulteriori informazioni, vedere [come toouse hello avanzate tag API in app universali di Windows di Mobile Engagement](mobile-engagement-windows-store-use-engagement-api.md).
 

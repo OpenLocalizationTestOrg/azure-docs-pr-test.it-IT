@@ -1,6 +1,6 @@
 ---
-title: "Test delle prestazioni e della scalabilità in Azure Cosmos DB | Microsoft Docs"
-description: "Informazioni sull'esecuzione di test delle prestazioni e della scalabilità con Azure Cosmos DB"
+title: aaaAzure DB Cosmos scala e il test delle prestazioni | Documenti Microsoft
+description: "Informazioni su come applicare la scalabilità tooperform e il test delle prestazioni con Azure Cosmos DB"
 keywords: test delle prestazioni
 services: cosmos-db
 author: arramac
@@ -15,44 +15,44 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/19/2017
 ms.author: arramac
-ms.openlocfilehash: b5a1edd08819e82437c5b22d8eb131665d7c9645
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 46d1217e11a39ee970a868de9a5c5dfcf52cedf3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="performance-and-scale-testing-with-azure-cosmos-db"></a>Test delle prestazioni e della scalabilità con Azure Cosmos DB
-Il test delle prestazioni e della scalabilità è un passaggio chiave nello sviluppo di un'applicazione. Per molte applicazioni, il livello del database ha un impatto significativo sulle prestazioni e sulla scalabilità globali, è pertanto un componente fondamentale del test delle prestazioni. [Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/) è appositamente progettato per garantire scalabilità elastica e prestazioni prevedibili ed è quindi ideale per applicazioni che richiedono un livello database con prestazioni elevate. 
+Il test delle prestazioni e della scalabilità è un passaggio chiave nello sviluppo di un'applicazione. Per molte applicazioni, il livello di database hello ha un impatto significativo sulle hello prestazioni e scalabilità e viene pertanto un componente critico delle prestazioni il test. [Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/) è appositamente progettato per garantire scalabilità elastica e prestazioni prevedibili ed è quindi ideale per applicazioni che richiedono un livello database con prestazioni elevate. 
 
-Questo articolo offre informazioni di riferimento per gli sviluppatori che implementano gruppi di test delle prestazioni per i carichi di lavoro di Cosmos DB o valutano Cosmos DB per scenari di applicazioni ad alte prestazioni. Approfondisce soprattutto i test isolati delle prestazioni del database, ma include anche le procedure consigliate per le applicazioni di produzione.
+Questo articolo offre informazioni di riferimento per gli sviluppatori che implementano gruppi di test delle prestazioni per i carichi di lavoro di Cosmos DB o valutano Cosmos DB per scenari di applicazioni ad alte prestazioni. Si concentra principalmente sui test delle prestazioni di tipo isolata di database hello, ma include anche le procedure consigliate per le applicazioni di produzione.
 
-Dopo la lettura di questo articolo, si potrà rispondere alle domande seguenti:   
+Dopo aver letto questo articolo, sarà in grado di tooanswer hello seguenti domande:   
 
 * Dove è possibile trovare un'applicazione client .NET di esempio per i test delle prestazioni di Cosmos DB? 
 * Come è possibile ottenere livelli di velocità effettiva elevati con Cosmos DB dall'applicazione client?
 
-Per iniziare a usare il codice, scaricare il progetto dell'[esempio relativo al test delle prestazioni di Azure Cosmos DB](https://github.com/Azure/azure-documentdb-dotnet/tree/master/samples/documentdb-benchmark). 
+tooget avviato con il codice, scaricare il progetto hello da [esempio test delle prestazioni di Azure Cosmos DB](https://github.com/Azure/azure-documentdb-dotnet/tree/master/samples/documentdb-benchmark). 
 
 > [!NOTE]
-> L'obiettivo di questa applicazione è illustrare le procedure consigliate per ottenere prestazioni migliori da Cosmos DB con un numero ridotto di computer client. L'applicazione non è stata realizzata per dimostrare la capacità massima del servizio, che può essere aumentata senza limiti.
+> obiettivo di Hello di questa applicazione è toodemonstrate procedure consigliate per l'estrazione di ottenere prestazioni migliori fuori DB Cosmos con un numero limitato di computer client. Questa capacità di picco toodemonstrate hello del servizio di hello, che possono essere ridimensionati limitlessly non è stata eseguita.
 > 
 > 
 
-Se si è interessati alle opzioni di configurazione lato client per migliorare le prestazioni di Cosmos DB, vedere [Suggerimenti sulle prestazioni per Azure Cosmos DB](performance-tips.md).
+Se si sta cercando le opzioni di configurazione lato client tooimprove DB Cosmos prestazioni, vedere [suggerimenti sulle prestazioni di Azure Cosmos DB](performance-tips.md).
 
-## <a name="run-the-performance-testing-application"></a>Eseguire l'applicazione per il test delle prestazioni
-Il modo più rapido per iniziare è compilare ed eseguire l'esempio .NET riportato di seguito, come descritto nella procedura seguente. È anche possibile esaminare il codice sorgente e implementare configurazioni analoghe alle applicazioni client.
+## <a name="run-hello-performance-testing-application"></a>Eseguire l'applicazione di test delle prestazioni di hello
+Hello tooget modo più rapido avviato è toocompile e l'esempio di esecuzione hello .NET riportato di seguito, come descritto nei passaggi hello riportato di seguito. È anche possibile esaminare il codice sorgente hello e implementare applicazioni di un client tooyour configurazioni simili.
 
-**Passaggio 1**: scaricare il progetto dell'[esempio relativo al test delle prestazioni di Azure Cosmos DB](https://github.com/Azure/azure-documentdb-dotnet/tree/master/samples/documentdb-benchmark) o creare la biforcazione del repository GitHub.
+**Passaggio 1:** progetto hello Download da [esempio test delle prestazioni di Azure Cosmos DB](https://github.com/Azure/azure-documentdb-dotnet/tree/master/samples/documentdb-benchmark), o repository di GitHub hello fork.
 
-**Passaggio 2** : modificare le impostazioni di EndpointUrl, AuthorizationKey, CollectionThroughput e DocumentTemplate (facoltativo) nel file App.config.
+**Passaggio 2:** modificare le impostazioni di hello per EndpointUrl, AuthorizationKey, CollectionThroughput e DocumentTemplate (facoltativo) nel file app. config.
 
 > [!NOTE]
-> Prima del provisioning delle raccolte con velocità effettiva elevata, consultare la [pagina dei prezzi](https://azure.microsoft.com/pricing/details/cosmos-db/) per stimare i costi di ogni raccolta. Poiché l'addebito dello spazio di archiviazione e della velocità effettiva per Azure Cosmos DB viene eseguito in modo indipendente su base oraria, è possibile risparmiare eliminando o riducendo la velocità effettiva delle raccolte Azure Cosmos DB al termine del test.
+> Prima di provisioning di raccolte con velocità effettiva elevata, consultare toohello [pagina prezzi](https://azure.microsoft.com/pricing/details/cosmos-db/) costi hello tooestimate per ogni raccolta. DB Cosmos Azure addebita archiviazione e la velocità effettiva in modo indipendente su base oraria, pertanto è possibile salvare i costi per l'eliminazione o la riduzione della velocità effettiva hello delle raccolte DB Cosmos Azure al termine del test.
 > 
 > 
 
-**Passaggio 3** : compilare ed eseguire l'app console dalla riga di comando. Verrà visualizzato un output simile al seguente:
+**Passaggio 3:** compilare ed eseguire l'applicazione console hello dalla riga di comando hello. Output dovrebbe essere simile hello seguente:
 
     Summary:
     ---------------------------------------------------------------------
@@ -98,15 +98,15 @@ Il modo più rapido per iniziare è compilare ed eseguire l'esempio .NET riporta
     DocumentDBBenchmark completed successfully.
 
 
-**Passaggio 4 (se necessario)** : la velocità effettiva segnalata (UR/sec) dallo strumento deve essere analoga o superiore a quella della raccolta. In caso contrario, l'aumento di DegreeOfParallelism in incrementi ridotti può aiutare a raggiungere il limite. Se la velocità effettiva dall'app client su stabilizza, l'avvio di più istanze dell'app nelle stesse macchine o in macchine diverse consente di raggiungere il limite di provisioning tra istanze diverse. Per ottenere assistenza per questo passaggio, inviare un messaggio di posta elettronica all'indirizzo askcosmosdb@microsoft.com o creare un ticket di supporto dal [portale di Azure](https://portal.azure.com).
+**Passaggio 4 (se necessario):** hello velocità effettiva segnalata (UR/sec) dallo strumento hello deve essere hello uguale o superiore alla velocità effettiva di hello provisioning della raccolta hello. In caso contrario, incremento hello DegreeOfParallelism piccoli incrementi consentono di raggiungere il limite di hello. Se avventurarci velocità effettiva di hello dall'app client, avviare più istanze dell'applicazione hello in hello stesso o diversi computer consentono di raggiungere il limite di hello il provisioning in hello istanze diverse. Se occorre assistenza per questo passaggio,, scrivere un messaggio di posta elettronica tooaskcosmosdb@microsoft.com o creare un ticket di supporto da hello [portale Azure](https://portal.azure.com).
 
-Quando l'app è in esecuzione, è possibile provare diversi [criteri di indicizzazione](indexing-policies.md) e [livelli di coerenza](consistency-levels.md) per comprenderne l'impatto sulla velocità effettiva e sulla latenza. È anche possibile esaminare il codice sorgente e implementare configurazioni analoghe alle suite di test o alle applicazioni di produzione.
+Dopo aver creato hello app in esecuzione, è possibile provare diverse [criteri di indicizzazione](indexing-policies.md) e [livelli di coerenza](consistency-levels.md) toounderstand loro impatto sulla velocità effettiva e latenza. È anche possibile esaminare il codice sorgente hello e implementare simile configurazioni tooyour propri gruppi di test o le applicazioni di produzione.
 
 ## <a name="next-steps"></a>Passaggi successivi
-In questo articolo è stato illustrato come eseguire test delle prestazioni e della scalabilità con Cosmos DB usando un'app console .NET. Per altre informazioni sull'uso di Azure Cosmos DB, vedere i collegamenti seguenti.
+In questo articolo è stato illustrato come eseguire test delle prestazioni e della scalabilità con Cosmos DB usando un'app console .NET. Per ulteriori informazioni sull'utilizzo di Azure Cosmos DB, vedere toohello collegamenti riportati di seguito.
 
 * [Esempio di test delle prestazioni di Azure Cosmos DB](https://github.com/Azure/azure-documentdb-dotnet/tree/master/samples/documentdb-benchmark)
-* [Opzioni di configurazione client per migliorare le prestazioni di Azure Cosmos DB](performance-tips.md)
+* [Tooimprove opzioni di configurazione client DB Cosmos Azure prestazioni](performance-tips.md)
 * [Partizionamento lato server in Azure Cosmos DB](partition-data.md)
 
 

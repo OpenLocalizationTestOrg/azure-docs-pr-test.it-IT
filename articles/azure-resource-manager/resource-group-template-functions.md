@@ -1,6 +1,6 @@
 ---
-title: Funzioni del modello di gestione risorse | Microsoft Docs
-description: Vengono descritte le funzioni da utilizzare in un modello di gestione risorse di Azure per recuperare valori, lavorare con stringhe e valori numerici, e recuperare informazioni sulla distribuzione.
+title: Funzioni di modello di gestione aaaResource | Documenti Microsoft
+description: Viene descritto hello funzioni toouse i valori tooretrieve un modello Gestione risorse di Azure, utilizzare le stringhe e valori numerici e recuperare le informazioni di distribuzione.
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -14,20 +14,20 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/01/2017
 ms.author: tomfitz
-ms.openlocfilehash: 1324bed07e991e9d84cb6832afe78bdb2d3348fa
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: d1b2e68a33d75058f83d6972dadb33a6390d49b2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-resource-manager-template-functions"></a>Funzioni del modello di Azure Resource Manager
-Questo argomento descrive tutte le funzioni disponibili in un modello di Azure Resource Manager.
+In questo argomento vengono descritte tutte le funzioni hello che è possibile utilizzare un modello di gestione risorse di Azure.
 
-Le funzioni vengono aggiunte ai modelli racchiudendole tra parentesi quadre: `[` e `]`, rispettivamente. L'espressione viene valutata durante la distribuzione. Sebbene sia scritto come valore letterale stringa, il risultato della valutazione dell'espressione può essere di un tipo JSON diverso, ad esempio una matrice, un oggetto o un numero intero. Proprio come in JavaScript, le chiamate di funzione sono formattate come `functionName(arg1,arg2,arg3)`. Per i riferimenti alle proprietà si usano il punto e gli operatori [index].
+Le funzioni vengono aggiunte ai modelli racchiudendole tra parentesi quadre: `[` e `]`, rispettivamente. Hello espressione viene valutata durante la distribuzione. Durante la scrittura sotto forma di stringa letterale, il risultato di hello della valutazione di hello espressione può essere di tipo JSON diverso, ad esempio una matrice, un oggetto o un numero intero. Proprio come in JavaScript, le chiamate di funzione sono formattate come `functionName(arg1,arg2,arg3)`. Fare riferimento alle proprietà utilizzando gli operatori di hello punto e [index].
 
 L'espressione di un modello non può superare i 24.576 caratteri.
 
-Le funzioni del modello e i relativi parametri non hanno la distinzione tra maiuscole e minuscole. Ad esempio, Gestione risorse consente di risolvere allo stesso modo le **variables('var1')** e le **VARIABLES('VAR1')**. Durante la valutazione, la funzione mantiene invariato l'uso delle maiuscole/minuscole, a meno che queste non vengano modificate espressamente dalla funzione, ad esempio toUpper o toLower. Alcuni tipi di risorse possono avere requisiti per le maiuscole e minuscole indipendentemente dalla modalità di valutazione delle funzioni.
+Le funzioni del modello e i relativi parametri non hanno la distinzione tra maiuscole e minuscole. Ad esempio, Gestione risorse risolve **variables('var1')** e **VARIABLES('VAR1')** come hello stesso. Quando viene valutata, a meno che la funzione hello modifica espressamente case (ad esempio toUpper o toLower), la funzione hello mantiene case hello. Alcuni tipi di risorse possono avere requisiti per le maiuscole e minuscole indipendentemente dalla modalità di valutazione delle funzioni.
 
 <a id="array" />
 <a id="coalesce" />
@@ -87,7 +87,7 @@ Resource Manager include numerose funzioni per l'esecuzione di confronti nei mod
 <a id="variables" />
 
 ## <a name="deployment-value-functions"></a>Funzioni dei valori della distribuzione
-Gestione risorse fornisce le funzioni seguenti per ottenere i valori dalle sezioni del modello e i valori relativi alla distribuzione:
+Gestione risorse offre seguente hello funzioni per ottenere valori dalle sezioni del modello di hello e valori correlati toohello distribuzione:
 
 * [deployment](resource-group-template-functions-deployment.md#deployment)
 * [parameters](resource-group-template-functions-deployment.md#parameters)
@@ -105,7 +105,7 @@ Gestione risorse fornisce le funzioni seguenti per ottenere i valori dalle sezio
 <a id="sub" />
 
 ## <a name="logical-functions"></a>Funzioni logiche
-Resource Manager fornisce le funzioni seguenti per utilizzare le condizioni logiche:
+Gestione risorse offre hello seguenti funzioni per l'utilizzo di condizioni logiche:
 
 * [and](resource-group-template-functions-logical.md#and)
 * [bool](resource-group-template-functions-logical.md#bool)
@@ -114,7 +114,7 @@ Resource Manager fornisce le funzioni seguenti per utilizzare le condizioni logi
 * [or](resource-group-template-functions-logical.md#or)
 
 ## <a name="numeric-functions"></a>Funzioni numeriche
-Gestione risorse fornisce le funzioni seguenti per usare i numeri interi:
+Gestione risorse offre hello seguenti funzioni per l'utilizzo di numeri interi:
 
 * [add](resource-group-template-functions-numeric.md#add)
 * [copyIndex](resource-group-template-functions-numeric.md#copyindex)
@@ -136,7 +136,7 @@ Gestione risorse fornisce le funzioni seguenti per usare i numeri interi:
 <a id="subscription" />
 
 ## <a name="resource-functions"></a>Funzioni delle risorse
-Gestione risorse fornisce le funzioni seguenti per ottenere i valori delle risorse:
+Gestione risorse offre hello funzioni per ottenere i valori delle risorse seguenti:
 
 * [listKeys e list{Value}](resource-group-template-functions-resource.md#listkeys)
 * [provider](resource-group-template-functions-resource.md#providers)
@@ -176,7 +176,7 @@ Gestione risorse fornisce le funzioni seguenti per ottenere i valori delle risor
 <a id="uricomponenttostring" />
 
 ## <a name="string-functions"></a>Funzioni stringa
-Gestione risorse fornisce le funzioni seguenti per usare le stringhe:
+Gestione risorse offre hello funzioni per l'utilizzo con le stringhe seguenti:
 
 * [base64](resource-group-template-functions-string.md#base64)
 * [base64ToJson](resource-group-template-functions-string.md#base64tojson)
@@ -210,8 +210,8 @@ Gestione risorse fornisce le funzioni seguenti per usare le stringhe:
 
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Per una descrizione delle sezioni in un modello di Gestione risorse di Azure, vedere [Creazione di modelli di Gestione risorse di Azure](resource-group-authoring-templates.md)
-* Per unire più modelli, vedere [Uso di modelli collegati con Gestione risorse di Azure](resource-group-linked-templates.md)
-* Per eseguire un'iterazione di un numero di volte specificato durante la creazione di un tipo di risorsa, vedere [Creare più istanze di risorse in Azure Resource Manager](resource-group-create-multiple.md)
-* Per informazioni su come distribuire il modello che è stato creato, vedere [Distribuire un'applicazione con un modello di Gestione risorse di Azure](resource-group-template-deploy.md)
+* Per una descrizione delle sezioni hello in un modello di gestione risorse di Azure, vedere [modelli di creazione di gestione risorse di Azure](resource-group-authoring-templates.md)
+* toomerge più modelli, vedere [con modelli collegati con Azure Resource Manager](resource-group-linked-templates.md)
+* tooiterate un numero specificato di volte durante la creazione di un tipo di risorsa, vedere [creare più istanze delle risorse di gestione risorse di Azure](resource-group-create-multiple.md)
+* toosee come modello hello toodeploy è stato creato, vedere [distribuire un'applicazione con il modello di gestione risorse di Azure](resource-group-template-deploy.md)
 

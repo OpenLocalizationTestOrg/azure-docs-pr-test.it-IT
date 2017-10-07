@@ -1,6 +1,6 @@
 ---
-title: Documentazione di Monitoraggio di Azure - Esercitazioni e informazioni di riferimento sulle API | Microsoft Docs
-description: Informazioni su come usare i servizi di monitoraggio e diagnostica per monitorare le prestazioni, gestire la sicurezza e individuare le tendenze. Informazioni di riferimento sulle API, procedure consigliate e altro ancora.
+title: aaaAzure monitoraggio documentazione, esercitazioni, riferimenti alle API | Documenti Microsoft
+description: Informazioni su come toouse monitoraggio e diagnostica servizi tootrack prestazioni, la sicurezza e identificare le tendenze. Informazioni di riferimento sulle API, procedure consigliate e altro ancora.
 services: monitoring-and-diagnostics
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 5583254cd559314478bdc42e3f41171c6cf1e85a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b86390735ef74e137ec835b301b904763fad4405
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-monitor-documentation"></a>Documentazione di Monitoraggio di Azure
 
-Informazioni su come usare i servizi di monitoraggio e diagnostica di Azure per monitorare le prestazioni, gestire la sicurezza e individuare le tendenze. Esercitazioni, informazioni di riferimento sulle API, procedure consigliate e altri documenti in cui vengono illustrati gli usi di monitoraggio e diagnostica e come pianificare e distribuire soluzioni scalabili e affidabili.
+Informazioni su come Azure monitoring toouse prestazioni tootrack servizi di diagnostica, gestione della sicurezza e identificare le tendenze. Esercitazioni, i riferimenti API, procedure consigliate e altri documentazione comprendere hello utilizzi di monitoraggio e diagnostica e la modalità tooplan e distribuire soluzioni scalabili e affidabili.
 
 <ul class="panelContent cardsFTitle">
     <li>

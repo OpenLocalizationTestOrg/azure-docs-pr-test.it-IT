@@ -1,6 +1,6 @@
 ---
-title: Monitorare e gestire le pipeline con il portale di Azure e PowerShell | Microsoft Docs
-description: Informazioni su come usare il portale di Azure e Azure PowerShell per monitorare e gestire le pipeline e le data factory di Azure create.
+title: aaaMonitor e gestire le pipeline utilizzando hello portale di Azure e PowerShell | Documenti Microsoft
+description: "Informazioni su come toouse hello portale di Azure e Azure PowerShell toomonitor e gestire hello Azure data factory e le pipeline che è stato creato."
 services: data-factory
 documentationcenter: 
 author: spelluru
@@ -14,91 +14,91 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/18/2017
 ms.author: spelluru
-ms.openlocfilehash: 61bb5379cd94dd00814e14420947e7783999ff0a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a8d3c7943e79450895ff754f06a37fdad1cbef92
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="monitor-and-manage-azure-data-factory-pipelines-by-using-the-azure-portal-and-powershell"></a>Monitorare e gestire le pipeline di Azure Data Factory con il portale di Azure e PowerShell
+# <a name="monitor-and-manage-azure-data-factory-pipelines-by-using-hello-azure-portal-and-powershell"></a>Monitorare e gestire le pipeline di Data Factory di Azure tramite il portale di Azure hello e PowerShell
 > [!div class="op_single_selector"]
 > * [Con il portale di Azure/Azure PowerShell](data-factory-monitor-manage-pipelines.md)
 > * [Con l'app di monitoraggio e gestione](data-factory-monitor-manage-app.md)
 
 
 > [!IMPORTANT]
-> L'applicazione di monitoraggio e gestione offre un supporto migliore per il monitoraggio e la gestione delle pipeline di dati, nonché per la risoluzione di eventuali problemi. Per dettagli sull'uso dell'applicazione, vedere [Monitorare e gestire le pipeline di Azure Data Factory con l'app di monitoraggio e gestione](data-factory-monitor-manage-app.md). 
+> applicazione di monitoraggio e gestione Hello fornisce un supporto migliore per il monitoraggio e le pipeline di dati di gestione e risoluzione dei problemi relativi a eventuali problemi. Per informazioni dettagliate sull'utilizzo di un'applicazione hello, vedere [monitorare e gestire le pipeline di Data Factory tramite app di gestione e monitoraggio hello](data-factory-monitor-manage-app.md). 
 
 
-Questo articolo descrive come monitorare e gestire le pipeline ed eseguirne il debug tramite il Portale di Azure e PowerShell. L'articolo contiene anche informazioni su come creare avvisi e ricevere notifiche sugli errori.
+In questo articolo viene descritto come toomonitor, gestire ed eseguire il debug le pipeline tramite il portale di Azure e PowerShell. Hello inoltre fornite informazioni su come toocreate gli avvisi e ottenere una notifica sugli errori.
 
 ## <a name="understand-pipelines-and-activity-states"></a>Informazioni sulle pipeline e sugli stati delle attività
-L'uso del portale di Azure consente di:
+Utilizzando hello portale di Azure, è possibile:
 
 * Visualizzare la data factory come diagramma.
 * Visualizzare le attività all'interno di una pipeline.
 * Visualizzare set di dati di input e di output.
 
-Questa sezione illustra anche come avviene la transizione di una sezione di un set di dati da uno stato a un altro.   
+Questa sezione descrive anche la modalità di transizione dallo stato tooanother uno stato di una sezione di set di dati.   
 
-### <a name="navigate-to-your-data-factory"></a>Passare alla data factory
-1. Accedere al [portale di Azure](https://portal.azure.com).
-2. Fare clic su **Data factory** nel menu a sinistra. Se non è visibile, fare clic su **Altri servizi >**, quindi selezionare **Data factory** nella categoria **Intelligence e analisi**.
+### <a name="navigate-tooyour-data-factory"></a>Passare a data factory di tooyour
+1. Accedi toohello [portale di Azure](https://portal.azure.com).
+2. Fare clic su **Data factory** menu hello sulla sinistra hello. Se non è visualizzata, fare clic su **più servizi >**, quindi fare clic su **Data factory** in hello **INTELLIGENCE + analisi** categoria.
 
    ![Esplora tutto > Data factory](./media/data-factory-monitor-manage-pipelines/browseall-data-factories.png)
-3. Nel pannello **Data factory** selezionare la data factory a cui si è interessati.
+3. In hello **Data factory** blade, factory di hello selezionare dati che si è interessati.
 
     ![Selezionare la data factory](./media/data-factory-monitor-manage-pipelines/select-data-factory.png)
 
-   Verrà visualizzata la home page della data factory.
+   Si dovrebbe essere hello home page per data factory di hello.
 
    ![Pannello Data factory](./media/data-factory-monitor-manage-pipelines/data-factory-blade.png)
 
 #### <a name="diagram-view-of-your-data-factory"></a>Vista diagramma della data factory
-La vista **Diagramma** di una data factory offre un'unica console da cui monitorare e gestire la data factory e i relativi asset. Per visualizzare la vista **Diagramma** della data factory, fare clic su **Diagramma** nella home page della data factory.
+Hello **diagramma** visualizzazione di una data factory offre un unico riquadro della finestra effetto cristallo toomonitor e gestire data factory di hello e delle relative risorse. hello toosee **diagramma** visualizzare la data factory, fare clic su **diagramma** hello home page per data factory di hello.
 
 ![Vista diagramma](./media/data-factory-monitor-manage-pipelines/diagram-view.png)
 
-È possibile eseguire lo zoom avanti, lo zoom indietro, lo zoom 100%, adattare alla finestra, bloccare il layout del diagramma e posizionare automaticamente pipeline e set di dati. È anche possibile visualizzare le informazioni sulla derivazione dei dati, vale a dire gli elementi upstream e downstream degli elementi selezionati.
+È possibile eseguire lo zoom avanti, eseguire lo zoom indietro, toofit zoom, zoom too100%, blocco hello del layout hello diagramma e posiziona automaticamente le pipeline e set di dati. È inoltre possibile visualizzare informazioni sulla derivazione dei dati hello (vale a dire Mostra gli elementi a monte e a valle degli elementi selezionati).
 
 ### <a name="activities-inside-a-pipeline"></a>Attività all'interno di una pipeline
-1. Fare clic con il pulsante destro del mouse sulla pipeline e scegliere **Apri pipeline** per visualizzare tutte le attività della pipeline, oltre ai set di dati di input e output relativi a tali attività. Questa funzionalità è utile quando la pipeline include più di una attività e si vuole conoscere la derivazione operativa di una singola pipeline.
+1. Fare clic sulla pipeline hello e quindi fare clic su **pipeline aprire** toosee tutte le attività in hello pipeline, insieme ai set di dati di input e output per le attività di hello. Questa funzionalità è utile quando la pipeline include più di un'attività e si desidera derivazione operative di hello toounderstand di una singola pipeline.
 
     ![Menu Apri pipeline](./media/data-factory-monitor-manage-pipelines/open-pipeline-menu.png)     
-2. L'esempio seguente mostra un'attività di copia nella pipeline con un input e un output. 
+2. In hello l'esempio seguente, viene visualizzato nella pipeline hello con un input e un output di un'attività di copia. 
 
     ![Attività all'interno di una pipeline](./media/data-factory-monitor-manage-pipelines/activities-inside-pipeline.png)
-3. Per tornare alla home page della data factory, fare clic sul collegamento **Data factory** nella barra di navigazione nell'angolo superiore sinistro.
+3. È possibile spostarsi indietro toohello home page della data factory di hello facendo hello **Data factory** collegamento di navigazione hello nell'angolo superiore sinistro di hello.
 
-    ![Ritorno a Data factory](./media/data-factory-monitor-manage-pipelines/navigate-back-to-data-factory.png)
+    ![Spostarsi indietro toodata factory](./media/data-factory-monitor-manage-pipelines/navigate-back-to-data-factory.png)
 
-### <a name="view-the-state-of-each-activity-inside-a-pipeline"></a>Visualizzare lo stato di ogni attività all'interno di una pipeline
-Per visualizzare lo stato corrente di un'attività, visualizzare lo stato di uno dei set di dati generati dall'attività.
+### <a name="view-hello-state-of-each-activity-inside-a-pipeline"></a>Stato di visualizzazione hello di ogni attività all'interno di una pipeline
+È possibile visualizzare lo stato corrente di hello di un'attività visualizzando lo stato di hello di uno dei set di dati hello generati dalle attività hello.
 
-Facendo doppio clic su **OutputBlobTable** nella vista **Diagramma**, è possibile visualizzare tutte le sezioni generate da esecuzioni diverse dell'attività all'interno di una pipeline. Si noti che l'attività di copia è stata eseguita correttamente nelle ultime otto ore e ha generato sezioni con lo stato **Pronto**.  
+Facendo doppio clic su hello **OutputBlobTable** in hello **diagramma**, è possibile visualizzare tutte le sezioni di hello generate dall'esecuzione di attività diverse all'interno di una pipeline. È possibile vedere che attività di copia hello è stato eseguito correttamente per hello ultime otto ore e prodotti sezioni hello hello **pronto** stato.  
 
-![Stato della pipeline](./media/data-factory-monitor-manage-pipelines/state-of-pipeline.png)
+![Stato della pipeline hello](./media/data-factory-monitor-manage-pipelines/state-of-pipeline.png)
 
-Le sezioni dei set di dati nella data factory possono avere uno degli stati seguenti:
+sezioni di set di dati Hello nella data factory di hello possono avere uno dei seguenti stati hello:
 
 <table>
 <tr>
     <th align="left">Stato</th><th align="left">Sottostato</th><th align="left">Descrizione</th>
 </tr>
 <tr>
-    <td rowspan="8">Waiting</td><td>ScheduleTime</td><td>Non è il momento di eseguire la sezione.</td>
+    <td rowspan="8">Waiting</td><td>ScheduleTime</td><td>tempo di Hello non venga per toorun sezione hello.</td>
 </tr>
 <tr>
-<td>DatasetDependencies</td><td>Le dipendenze upstream non sono pronte.</td>
+<td>DatasetDependencies</td><td>le dipendenze upstream Hello non sono pronte.</td>
 </tr>
 <tr>
-<td>ComputeResources</td><td>Le risorse di calcolo non sono disponibili.</td>
+<td>ComputeResources</td><td>risorse di calcolo Hello non sono disponibili.</td>
 </tr>
 <tr>
-<td>ConcurrencyLimit</td> <td>Tutte le istanze di attività sono occupate nell’esecuzione di altre sezioni.</td>
+<td>ConcurrencyLimit</td> <td>Tutte le istanze di attività hello sono occupate con l'esecuzione di altre sezioni.</td>
 </tr>
 <tr>
-<td>ActivityResume</td><td>L'attività è sospesa e non può eseguire le sezioni fino a quando non viene ripresa.</td>
+<td>ActivityResume</td><td>attività di Hello è sospesa e non possono essere eseguiti a intervalli hello finché non viene ripreso attività hello.</td>
 </tr>
 <tr>
 <td>Retry</td><td>L'esecuzione dell'attività viene ritentata.</td>
@@ -107,69 +107,69 @@ Le sezioni dei set di dati nella data factory possono avere uno degli stati segu
 <td>Convalida</td><td>La convalida non è ancora stata avviata.</td>
 </tr>
 <tr>
-<td>ValidationRetry</td><td>La convalida è in attesa di essere ripetuta.</td>
+<td>ValidationRetry</td><td>La convalida è in attesa toobe ripetuta.</td>
 </tr>
 <tr>
 <tr>
 <td rowspan="2">InProgress</td><td>Convalida in corso.</td><td>La convalida è in esecuzione.</td>
 </tr>
 <td>-</td>
-<td>La sezione è in corso.</td>
+<td>sezione Hello è stato elaborato.</td>
 </tr>
 <tr>
-<td rowspan="4">Operazione non riuscita</td><td>TimedOut</td><td>L'esecuzione dell'attività ha richiesto più tempo di quello consentito dall'attività.</td>
+<td rowspan="4">Operazione non riuscita</td><td>TimedOut</td><td>l'esecuzione dell'attività Hello ha richiesto più tempo rispetto a quelle consentite dall'attività hello.</td>
 </tr>
 <tr>
-<td>Canceled</td><td>La sezione è stata annullata dall'utente.</td>
+<td>Canceled</td><td>sezione Hello è stata annullata dall'utente.</td>
 </tr>
 <tr>
 <td>Convalida</td><td>Convalida non riuscita.</td>
 </tr>
 <tr>
-<td>-</td><td>Non è stato possibile generare e/o convalidare la sezione.</td>
+<td>-</td><td>sezione Hello Impossibile toobe generato e/o convalidare.</td>
 </tr>
-<td>Ready</td><td>-</td><td>La sezione è pronta per essere utilizzata.</td>
-</tr>
-<tr>
-<td>Skipped</td><td>None</td><td>La sezione non viene elaborata.</td>
+<td>Ready</td><td>-</td><td>sezione di Hello è pronto per l'utilizzo.</td>
 </tr>
 <tr>
-<td>None</td><td>-</td><td>Esisteva una sezione con uno stato differente, ma è stata reimpostata.</td>
+<td>Skipped</td><td>Nessuno</td><td>sezione Hello non elaborate.</td>
+</tr>
+<tr>
+<td>Nessuno</td><td>-</td><td>Una sezione utilizza tooexist con un altro stato, ma è stato reimpostato.</td>
 </tr>
 </table>
 
 
 
-Per visualizzare i dettagli di una sezione, fare clic sulla voce di una sezione nel pannello **Sezioni aggiornate di recente**.
+È possibile visualizzare i dettagli di hello su una sezione facendo clic su una voce della sezione in hello **sezioni aggiornato di recente** blade.
 
 ![Dettagli della sezione](./media/data-factory-monitor-manage-pipelines/slice-details.png)
 
-Se la sezione è stata eseguita più volte, vengono visualizzate più righe nell'elenco **Esecuzioni attività** . Per visualizzare i dettagli di un'esecuzione attività, fare clic sulla voce di un'esecuzione nell'elenco **Esecuzioni attività** . L'elenco presenta tutti i file di log insieme a eventuali messaggi di errore. Questa funzionalità è utile per visualizzare i log ed eseguirne il debug senza dover uscire dalla data factory.
+Se la sezione hello è stata eseguita più volte, vedrai più righe in hello **viene eseguita l'attività** elenco. È possibile visualizzare informazioni dettagliate su un'attività eseguire facendo voce hello eseguire hello **viene eseguita l'attività** elenco. Hello sono elencati tutti i file di log di hello, insieme a un messaggio di errore, se presente. Questa funzionalità è utili registri di debug e di tooview senza tooleave la data factory.
 
 ![Dettagli esecuzione attività](./media/data-factory-monitor-manage-pipelines/activity-run-details.png)
 
-Se lo stato della sezione non è **Pronto**, sarà possibile visualizzare le sezioni upstream che non sono pronte e bloccano l'esecuzione della sezione corrente nell'elenco **Sezioni upstream non pronte**. Questa funzionalità è utile quando lo stato della sezione è **In attesa** e si vogliono conoscere le dipendenze upstream di cui la sezione è in attesa.
+Se non è la sezione hello in hello **pronto** stato, è possibile vedere le sezioni upstream hello che non sono pronto e bloccano l'intervallo corrente di hello l'esecuzione in hello **sezioni Upstream non pronte** elenco. Questa funzionalità è utile quando è la sezione **in attesa** stato e si desidera che le dipendenze upstream toounderstand hello che hello sezione è in attesa.
 
 ![Sezioni upstream non pronte](./media/data-factory-monitor-manage-pipelines/upstream-slices-not-ready.png)
 
 ### <a name="dataset-state-diagram"></a>Diagramma di stato del set di dati
-Quando la data factory è stata distribuita e le pipeline hanno un periodo attivo valido, le sezioni del set di dati passano da uno stato a un altro. Attualmente lo stato delle sezioni segue questo diagramma di stato:
+Dopo la distribuzione di una data factory e hello pipeline dispongono di un periodo attivo valido, set di dati hello seziona transizione da uno stato tooanother. Attualmente, lo stato della sezione hello segue hello seguente diagramma di stato:
 
 ![Diagramma di stato](./media/data-factory-monitor-manage-pipelines/state-diagram.png)
 
-Il flusso di transizione di stato del set dati nella data factory è il seguente: In attesa -> In corso/In corso (Convalida) -> Pronto/Non riuscito.
+il flusso di transizione dello stato di set di dati in data factory di Hello è hello seguente: in attesa -> In corso/In esecuzione (Validating) -> pronto/non riuscito.
 
-La sezione viene avviata nello stato **In attesa** e prima dell'esecuzione è necessario che vengano soddisfatte le precondizioni. In seguito inizia l'esecuzione dell'attività e la sezione passa allo stato **In corso**. L'esecuzione dell'attività può avere esito positivo o negativo. Lo stato della sezione sarà **Pronto** o **Non riuscito** in base al risultato dell'esecuzione.
+sezione Hello viene avviato in un **in attesa** stato, in attesa di toobe precondizioni soddisfatti prima dell'esecuzione. Quindi avvia l'esecuzione di attività hello e sezione hello diventa un **In corso** stato. l'esecuzione dell'attività Hello potrebbe riuscire o meno. sezione Hello è contrassegnato come **pronto** o **Failed**, in base ai risultati di hello dell'esecuzione di hello.
 
-È possibile reimpostare la sezione in modo che dallo stato **Pronto** o **Non riuscito** torni allo stato **In attesa**. È anche possibile impostare lo stato della sezione su **Ignora**per impedire l'esecuzione dell'attività e l'elaborazione della sezione.
+È possibile reimpostare hello sezione toogo da hello **pronto** o **Failed** stato toohello **in attesa** stato. È inoltre possibile contrassegnare lo stato di sezione hello troppo**Skip**, impedendo così l'attività hello eseguire e di non elaborazione hello sezione.
 
 ## <a name="pause-and-resume-pipelines"></a>Sospendere e riprendere le pipeline
 È possibile gestire le pipeline usando Azure PowerShell. Ad esempio, è possibile sospendere e riprendere le pipeline eseguendo i cmdlet di Azure PowerShell. 
 
 > [!NOTE] 
-> La vista diagramma non supporta la sospensione e la ripresa di pipeline. Se si vuole usare un'interfaccia utente, usare l'applicazione di gestione e monitoraggio. Per dettagli sull'uso dell'applicazione, vedere l'articolo [Monitorare e gestire le pipeline di Azure Data Factory con l'app di monitoraggio e gestione](data-factory-monitor-manage-app.md). 
+> vista diagramma Hello non supporta la sospensione e ripresa di pipeline. Se si desidera toouse un'interfaccia utente, è possibile utilizzare Monitoraggio hello e la gestione di applicazioni. Per informazioni dettagliate sull'utilizzo di un'applicazione hello, vedere [monitorare e gestire le pipeline di Data Factory tramite app di gestione e monitoraggio hello](data-factory-monitor-manage-app.md) articolo. 
 
-È possibile sospendere le pipeline usando il cmdlet di PowerShell **Suspend-AzureRmDataFactoryPipeline**. Questo cmdlet è utile quando non si desidera eseguire le pipeline finché non viene risolto un problema. 
+È possibile sospendere o sospendere le pipeline utilizzando hello **Suspend AzureRmDataFactoryPipeline** cmdlet di PowerShell. Questo cmdlet è utile quando non si desidera toorun le pipeline finché non viene risolto un problema. 
 
 ```powershell
 Suspend-AzureRmDataFactoryPipeline [-ResourceGroupName] <String> [-DataFactoryName] <String> [-Name] <String>
@@ -180,7 +180,7 @@ ad esempio:
 Suspend-AzureRmDataFactoryPipeline -ResourceGroupName ADF -DataFactoryName productrecgamalbox1dev -Name PartitionProductsUsagePipeline
 ```
 
-Dopo aver risolto il problema della pipeline, è possibile riprendere l'esecuzione della pipeline sospesa tramite il comando di PowerShell seguente:
+Dopo hello problema è stato risolto con pipeline hello, è possibile riprendere pipeline hello sospeso eseguendo hello comando PowerShell seguente:
 
 ```powershell
 Resume-AzureRmDataFactoryPipeline [-ResourceGroupName] <String> [-DataFactoryName] <String> [-Name] <String>
@@ -192,27 +192,27 @@ Resume-AzureRmDataFactoryPipeline -ResourceGroupName ADF -DataFactoryName produc
 ```
 
 ## <a name="debug-pipelines"></a>Eseguire il debug delle pipeline
-Azure Data Factory offre funzionalità avanzate per il debug e la risoluzione dei problemi relativi alle pipeline tramite il portale di Azure e Azure PowerShell.
+Data Factory di Azure offre funzionalità avanzate di toodebug e risolvere i problemi di pipeline utilizzando hello portale di Azure e Azure PowerShell.
 
-> [!NOTA} È molto più semplice risolvere gli errori tramite l'app di monitoraggio e gestione. Per dettagli sull'uso dell'applicazione, vedere l'articolo [Monitorare e gestire le pipeline di Azure Data Factory con l'app di monitoraggio e gestione](data-factory-monitor-manage-app.md). 
+> [! Si noti} è molto più semplice tootroubleshot hello di errori tramite Monitoraggio e gestione App. Per informazioni dettagliate sull'utilizzo di un'applicazione hello, vedere [monitorare e gestire le pipeline di Data Factory tramite app di gestione e monitoraggio hello](data-factory-monitor-manage-app.md) articolo. 
 
 ### <a name="find-errors-in-a-pipeline"></a>Trovare gli errori in una pipeline
-Se l'esecuzione di un'attività in una pipeline non riesce, il set di dati generato dalla pipeline è in uno stato di errore. È possibile eseguire il debug e risolvere i problemi relativi agli errori in Azure Data Factory usando i metodi seguenti.
+Se l'esecuzione dell'attività hello ha esito negativo in una pipeline, i set di dati di hello viene generato dalla pipeline hello è in stato di errore a causa di errore hello. È possibile eseguire il debug e risolvere gli errori nella Data Factory di Azure tramite hello dei seguenti metodi.
 
-#### <a name="use-the-azure-portal-to-debug-an-error"></a>Usare il portale di Azure per eseguire il debug di un errore
-1. Nel pannello **Tabella** fare clic sulla sezione con errori con **Stato** impostato su **Non riuscito**.
+#### <a name="use-hello-azure-portal-toodebug-an-error"></a>Utilizzare hello toodebug portale Azure un errore
+1. In hello **tabella** pannello, fare clic sulla sezione problema hello con hello **stato** impostare troppo**non riuscito**.
 
    ![Pannello Tabella con sezione con errori](./media/data-factory-monitor-manage-pipelines/table-blade-with-error.png)
-2. Nel pannello **Sezione dati** fare clic sull'esecuzione dell'attività non riuscita.
+2. In hello **sezione dati** pannello, fare clic sull'attività hello eseguire che non è riuscita.
 
    ![Sezione dati con un errore](./media/data-factory-monitor-manage-pipelines/dataslice-with-error.png)
-3. Nel pannello **Dettagli esecuzione attività** è possibile scaricare i file associati all'elaborazione di HDInsight. Fare clic su **Scarica** in corrispondenza di Stato/stderr per scaricare il file di log degli errori che contiene i dettagli dell'errore stesso.
+3. In hello **Dettagli esecuzione attività** pannello, è possibile scaricare i file di hello associati con l'elaborazione di HDInsight hello. Fare clic su **scaricare** per stato/stderr toodownload hello file di log che contiene dettagli sull'errore hello.
 
    ![Pannello Dettagli esecuzione attività con errore](./media/data-factory-monitor-manage-pipelines/activity-run-details-with-error.png)     
 
-#### <a name="use-powershell-to-debug-an-error"></a>Usare PowerShell per eseguire il debug di un errore
+#### <a name="use-powershell-toodebug-an-error"></a>Utilizzare PowerShell toodebug un errore
 1. Avviare **PowerShell**.
-2. Eseguire il comando **Get-AzureRmDataFactorySlice** per vedere le sezioni e i relativi stati. Verrà visualizzata una sezione con lo stato **Non riuscito**.        
+2. Eseguire hello **Get AzureRmDataFactorySlice** comando sezioni hello toosee e i relativi stati. Si noterà una sezione con stato hello **Failed**.        
 
     ```powershell   
     Get-AzureRmDataFactorySlice [-ResourceGroupName] <String> [-DataFactoryName] <String> [-DatasetName] <String> [-StartDateTime] <DateTime> [[-EndDateTime] <DateTime> ] [-Profile <AzureProfile> ] [ <CommonParameters>]
@@ -224,21 +224,21 @@ Se l'esecuzione di un'attività in una pipeline non riesce, il set di dati gener
     ```
 
    Sostituire **StartDateTime** con l'ora di inizio della pipeline. 
-3. Eseguire ora il cmdlet **Get-AzureRmDataFactoryRun** per ottenere i dettagli sull'esecuzione dell'attività per la sezione.
+3. A questo punto, eseguire hello **Get AzureRmDataFactoryRun** tooget cmdlet dettagli attività hello eseguire per sezione hello.
 
     ```powershell   
     Get-AzureRmDataFactoryRun [-ResourceGroupName] <String> [-DataFactoryName] <String> [-DatasetName] <String> [-StartDateTime]
     <DateTime> [-Profile <AzureProfile> ] [ <CommonParameters>]
     ```
 
-    Ad esempio:
+    ad esempio:
 
     ```powershell   
     Get-AzureRmDataFactoryRun -ResourceGroupName ADF -DataFactoryName LogProcessingFactory -DatasetName EnrichedGameEventsTable -StartDateTime "5/5/2014 12:00:00 AM"
     ```
 
-    Il valore di StartDateTime è l'orario di inizio per la sezione con errori/problemi di cui si è preso nota nel passaggio precedente. La data e ora dovrebbe essere racchiusa tra virgolette doppie.
-4. Si otterrà l'output con informazioni dettagliate sull'errore e sarà simile al seguente:
+    il valore di Hello di StartDateTime è ora di inizio hello sezione errore/problema hello annotato nel passaggio precedente hello. Data e ora Hello deve essere racchiuse tra virgolette doppie.
+4. Verrà visualizzato l'output con i dettagli sull'errore hello che è simile toohello seguente:
 
     ```   
     Id                      : 841b77c9-d56c-48d1-99a3-8c16c3e77d39
@@ -262,7 +262,7 @@ Se l'esecuzione di un'attività in una pipeline non riesce, il set di dati gener
     PipelineName            : EnrichGameLogsPipeline
     Type                    :
     ```
-5. È possibile eseguire il cmdlet **Save-AzureRmDataFactoryLog** con il valore ID visualizzato nell'output e scaricare i file di log usando l'opzione **-DownloadLogsoption** del cmdlet.
+5. È possibile eseguire hello **Salva AzureRmDataFactoryLog** cmdlet con il valore Id vedere dall'output di hello e scaricare i file di log di hello utilizzando hello hello **- DownloadLogsoption** per hello cmdlet.
 
     ```powershell
     Save-AzureRmDataFactoryLog -ResourceGroupName "ADF" -DataFactoryName "LogProcessingFactory" -Id "841b77c9-d56c-48d1-99a3-8c16c3e77d39" -DownloadLogs -Output "C:\Test"
@@ -271,32 +271,32 @@ Se l'esecuzione di un'attività in una pipeline non riesce, il set di dati gener
 ## <a name="rerun-failures-in-a-pipeline"></a>Eseguire nuovamente le operazioni non riuscite in una pipeline
 
 > [!IMPORTANT]
-> È più semplice risolvere gli errori e ripetere l'esecuzione di sezioni non riuscite tramite l'app di monitoraggio e gestione. Per dettagli sull'uso dell'applicazione, vedere [Monitorare e gestire le pipeline di Azure Data Factory con l'app di monitoraggio e gestione](data-factory-monitor-manage-app.md). 
+> È più facile tootroubleshoot errori ed eseguire di nuovo le sezioni non riuscite utilizzando hello monitoraggio e gestione delle App. Per informazioni dettagliate sull'utilizzo di un'applicazione hello, vedere [monitorare e gestire le pipeline di Data Factory tramite app di gestione e monitoraggio hello](data-factory-monitor-manage-app.md). 
 
-### <a name="use-the-azure-portal"></a>Usare il portale di Azure
-Dopo aver risolto i problemi relativi agli errori in una pipeline e averne eseguito il debug, è possibile eseguire nuovamente le operazioni non riuscite passando alla sezione degli errori e facendo clic sul pulsante **Esegui** sulla barra dei comandi.
+### <a name="use-hello-azure-portal"></a>Utilizzare hello portale di Azure
+Dopo aver il debug degli errori in una pipeline di risoluzione dei problemi, è possibile rieseguire errori passando sezione errore toohello e facendo clic su hello **eseguire** pulsante sulla barra dei comandi di hello.
 
 ![Nuova esecuzione di una sezione non riuscita](./media/data-factory-monitor-manage-pipelines/rerun-slice.png)
 
-Se non è possibile eseguire la convalida della sezione a causa di un errore relativo ai criteri, ad esempio se i dati non sono disponibili, è possibile correggere l'errore ed eseguire nuovamente la convalida facendo clic sul pulsante **Convalida** sulla barra dei comandi.
+Nel caso sezione hello convalida non è riuscita a causa di un errore dei criteri (ad esempio, se dati non sono disponibili), è possibile correggere l'errore hello e convalidare di nuovo facendo hello **convalida** pulsante sulla barra dei comandi di hello.
 
 ![Correggere gli errori e convalidare](./media/data-factory-monitor-manage-pipelines/fix-error-and-validate.png)
 
 ### <a name="use-azure-powershell"></a>Uso di Azure PowerShell
-È possibile eseguire nuovamente le operazioni non riuscite usando il cmdlet **Set-AzureRmDataFactorySliceStatus**. Per informazioni sulla sintassi e altri dettagli sul cmdlet, vedere l'argomento [Set-AzureRmDataFactorySliceStatus](https://msdn.microsoft.com/library/mt603522.aspx).
+È possibile eseguire nuovamente gli errori utilizzando hello **Set AzureRmDataFactorySliceStatus** cmdlet. Vedere hello [Set AzureRmDataFactorySliceStatus](https://msdn.microsoft.com/library/mt603522.aspx) argomento per la sintassi e altri dettagli sul cmdlet hello.
 
 **Esempio:**
 
-L'esempio seguente mostra come impostare lo stato di tutte le sezioni per la tabella "DAWikiAggregatedData" su "In attesa" nella data factory "WikiADF" di Azure.
+esempio Hello Imposta stato hello di tutte le sezioni per hello nella tabella 'DAWikiAggregatedData' too'Waiting' in hello data factory di Azure 'WikiADF'.
 
-"UpdateType" è impostato su "UpstreamInPipeline". Ciò significa che lo stato di ogni sezione della tabella e di tutte le tabelle dipendenti, ovvero upstream, viene impostato su "In attesa". Un altro possibile valore per questo parametro è "Individuale".
+Hello 'Tipo di aggiornamento' è impostato too'UpstreamInPipeline ', il che significa che gli stati di ogni sezione per la tabella hello e tutte le tabelle (upstream) dipendenti hello siano impostati too'Waiting'. Hello altri valori possibili per questo parametro sono 'Individuale'.
 
 ```powershell
 Set-AzureRmDataFactorySliceStatus -ResourceGroupName ADF -DataFactoryName WikiADF -DatasetName DAWikiAggregatedData -Status Waiting -UpdateType UpstreamInPipeline -StartDateTime 2014-05-21T16:00:00 -EndDateTime 2014-05-21T20:00:00
 ```
 
 ## <a name="create-alerts"></a>Creare avvisi
-Azure registra eventi utente quando una risorsa di Azure (ad esempio, una data factory) viene creata, aggiornata o eliminata. È possibile creare avvisi per questi eventi. Azure Data Factory consente di acquisire diverse metriche e di creare avvisi relativi alle metriche. È consigliabile usare gli eventi per il monitoraggio in tempo reale e le metriche per motivi cronologici.
+Azure registra eventi utente quando una risorsa di Azure (ad esempio, una data factory) viene creata, aggiornata o eliminata. È possibile creare avvisi per questi eventi. È possibile utilizzare Data Factory toocapture diverse metriche e creare avvisi per le metriche. È consigliabile usare gli eventi per il monitoraggio in tempo reale e le metriche per motivi cronologici.
 
 ### <a name="alerts-on-events"></a>Avvisi relativi agli eventi
 Gli eventi di Azure forniscono utili informazioni su quanto accade alle risorse di Azure. Quando si usa Azure Data Factory, vengono generati eventi quando:
@@ -305,14 +305,14 @@ Gli eventi di Azure forniscono utili informazioni su quanto accade alle risorse 
 * L'elaborazione dati (esecuzione) viene avviata o completata.
 * Un cluster HDInsight su richiesta viene creato o rimosso.
 
-È possibile creare avvisi per questi eventi utente e configurarli per l'invio di notifiche tramite posta elettronica all'amministratore e ai coamministratori della sottoscrizione. Inoltre, è possibile specificare altri indirizzi di posta elettronica di utenti che devono ricevere notifiche tramite posta elettronica quando vengono soddisfatte le condizioni. Questa funzionalità è molto utile quando si desidera ricevere notifiche sugli errori senza monitorare continuamente la data factory.
+È possibile creare avvisi per questi eventi utente e configurarli amministratore toohello le notifiche di posta elettronica toosend e coadministrators della sottoscrizione hello. Inoltre, è possibile specificare gli indirizzi di posta elettronica aggiuntivi di utenti che necessitano di tooreceive notifiche di posta elettronica quando vengono soddisfatte le condizioni di hello. Questa funzionalità è utile quando si desidera tooget notifiche in caso di errori e non toocontinuously monitoraggio la data factory.
 
 > [!NOTE]
-> Attualmente il portale non visualizza gli avvisi relativi agli eventi. Usare l'[app di monitoraggio e gestione](data-factory-monitor-manage-app.md) per visualizzare tutti gli avvisi.
+> Attualmente, portale hello non vengono visualizzati avvisi sugli eventi. Hello utilizzare [monitoraggio e gestione di app](data-factory-monitor-manage-app.md) toosee tutti gli avvisi.
 
 
 #### <a name="specify-an-alert-definition"></a>Specificare una definizione di avviso
-Per specificare una definizione di avviso, creare un file JSON che descrive le operazioni per cui si vuole essere avvisati. Nell'esempio seguente l'avviso invia una notifica tramite posta elettronica per l'operazione RunFinished. In particolare, viene inviata una notifica tramite posta elettronica quando un'esecuzione nella data factory viene completata, ma l'esito è negativo (stato = FailedExecution).
+toospecify una definizione di avviso, si crea un file JSON che descrive le operazioni che si desidera toobe avvisati sul hello. Nell'esempio seguente di hello, avviso hello invia una notifica di posta elettronica per hello RunFinished operazione. toobe specifico, viene inviata una notifica di posta elettronica quando è stata completata un'esecuzione in data factory di hello e hello eseguire non è riuscita (stato = FailedExecution).
 
 ```JSON
 {
@@ -329,7 +329,7 @@ Per specificare una definizione di avviso, creare un file JSON che descrive le o
             "properties":
             {
                 "name": "ADFAlertsSlice",
-                "description": "One or more of the data slices for the Azure Data Factory has failed processing.",
+                "description": "One or more of hello data slices for hello Azure Data Factory has failed processing.",
                 "isEnabled": true,
                 "condition":
                 {
@@ -353,15 +353,15 @@ Per specificare una definizione di avviso, creare un file JSON che descrive le o
 }
 ```
 
-Se non si vuole ricevere un avviso in caso di errore specifico, è possibile rimuovere **subStatus** dalla definizione JSON.
+È possibile rimuovere **subStatus** dalla definizione JSON se non si desidera ricevere un avviso in caso di errore specifico toobe hello.
 
-Questo esempio configura l'avviso per tutte le data factory nella sottoscrizione. Se si desidera che venga impostato l'avviso per una data factory specifica, è possibile indicare la data factory **resourceUri** nel blocco **dataSource**:
+In questo esempio imposta avviso hello per tutte le data factory nella sottoscrizione. Se si desidera toobe di avviso hello impostato per una particolare data factory, è possibile specificare data factory di **resourceUri** in hello **dataSource**:
 
 ```JSON
 "resourceUri" : "/SUBSCRIPTIONS/<subscriptionId>/RESOURCEGROUPS/<resourceGroupName>/PROVIDERS/MICROSOFT.DATAFACTORY/DATAFACTORIES/<dataFactoryName>"
 ```
 
-La tabella seguente contiene l'elenco delle operazioni e degli stati e stati secondari disponibili.
+Hello nella tabella seguente sono elencate per hello operazioni disponibili e gli stati (e stati secondari).
 
 | Nome operazione | Stato | Stato secondario |
 | --- | --- | --- |
@@ -371,21 +371,21 @@ La tabella seguente contiene l'elenco delle operazioni e degli stati e stati sec
 | OnDemandClusterCreateSuccessful |Operazione completata | |
 | OnDemandClusterDeleted |Operazione completata | |
 
-Per informazioni dettagliate sugli elementi JSON usati nell'esempio, vedere [Crea regola avviso](https://msdn.microsoft.com/library/azure/dn510366.aspx).
+Vedere [Crea regola di avviso](https://msdn.microsoft.com/library/azure/dn510366.aspx) per informazioni dettagliate sugli elementi JSON hello utilizzati nell'esempio hello.
 
-#### <a name="deploy-the-alert"></a>Distribuire l'avviso
-Per distribuire l'avviso, usare il cmdlet **New-AzureRmResourceGroupDeployment**di Azure PowerShell, come mostrato nell'esempio seguente:
+#### <a name="deploy-hello-alert"></a>Distribuire avviso hello
+avviso di hello toodeploy, utilizzare cmdlet di Azure PowerShell hello **New AzureRmResourceGroupDeployment**, come illustrato nell'esempio seguente hello:
 
 ```powershell
 New-AzureRmResourceGroupDeployment -ResourceGroupName adf -TemplateFile .\ADFAlertFailedSlice.json  
 ```
 
-Al termine della distribuzione del gruppo di risorse, verranno visualizzati i messaggi seguenti:
+Dopo la distribuzione del gruppo di risorse hello è stato completato, vedrai hello seguenti messaggi:
 
 ```
 VERBOSE: 7:00:48 PM - Template is valid.
-WARNING: 7:00:48 PM - The StorageAccountName parameter is no longer used and will be removed in a future release.
-Please update scripts to remove this parameter.
+WARNING: 7:00:48 PM - hello StorageAccountName parameter is no longer used and will be removed in a future release.
+Please update scripts tooremove this parameter.
 VERBOSE: 7:00:49 PM - Create template deployment 'ADFAlertFailedSlice'.
 VERBOSE: 7:00:57 PM - Resource microsoft.insights/alertrules 'ADFAlertsSlice' provisioning status is succeeded
 
@@ -400,11 +400,11 @@ Outputs           :
 ```
 
 > [!NOTE]
-> È possibile usare l'API REST di [Crea regola avviso](https://msdn.microsoft.com/library/azure/dn510366.aspx) per creare una regola di avviso. Il payload JSON è simile all'esempio JSON riportato sopra.  
+> È possibile utilizzare hello [Crea regola di avviso](https://msdn.microsoft.com/library/azure/dn510366.aspx) API REST toocreate una regola di avviso. payload JSON Hello è esempio JSON di toohello simile.  
 
 
-#### <a name="retrieve-the-list-of-azure-resource-group-deployments"></a>Recuperare l'elenco delle distribuzioni di gruppi di risorse di Azure
-Per recuperare l'elenco delle distribuzioni di gruppi di risorse di Azure distribuite, usare il cmdlet **Get-AzureRmResourceGroupDeployment**, come mostrato nell'esempio seguente:
+#### <a name="retrieve-hello-list-of-azure-resource-group-deployments"></a>Recuperare l'elenco di hello di distribuzioni del gruppo di risorse di Azure
+elenco di hello tooretrieve di distribuito distribuzioni del gruppo di risorse di Azure, utilizzare i cmdlet di hello **Get AzureRmResourceGroupDeployment**, come illustrato nell'esempio seguente hello:
 
 ```powershell
 Get-AzureRmResourceGroupDeployment -ResourceGroupName adf
@@ -422,23 +422,23 @@ Outputs           :
 ```
 
 #### <a name="troubleshoot-user-events"></a>Risolvere i problemi relativi a eventi utente
-1. È possibile visualizzare tutti gli eventi generati dopo aver selezionato il riquadro **Metriche e operazioni**.
+1. È possibile visualizzare tutti gli eventi di hello che vengono generati dopo aver fatto clic hello **operazioni e le metriche** riquadro.
 
     ![Riquadro Metriche e operazioni](./media/data-factory-monitor-manage-pipelines/metrics-and-operations-tile.png)
-2. Fare clic sul riquadro **Eventi** per visualizzare gli eventi.
+2. Fare clic su hello **eventi** riquadro eventi hello toosee.
 
     ![Riquadro Eventi](./media/data-factory-monitor-manage-pipelines/events-tile.png)
-3. Nel pannello **Eventi** è possibile visualizzare i dettagli sugli eventi, filtrare gli eventi e così via.
+3. In hello **eventi** pannello, è possibile visualizzare i dettagli sugli eventi, eventi filtrati e così via.
 
     ![Pannello Eventi](./media/data-factory-monitor-manage-pipelines/events-blade.png)
-4. Fare clic su un'**operazione** nell'elenco delle operazioni che genera un errore.
+4. Fare clic su un **operazione** nell'elenco di operazioni hello che provoca un errore.
 
     ![Selezionare un'operazione](./media/data-factory-monitor-manage-pipelines/select-operation.png)
-5. Fare clic su un evento di **errore** per visualizzare i dettagli dell'errore.
+5. Fare clic su un **errore** dettagli sull'errore hello toosee dell'evento.
 
     ![Evento di errore](./media/data-factory-monitor-manage-pipelines/operation-error-event.png)
 
-Per informazioni sui cmdlet di PowerShell che è possibile usare per aggiungere, ottenere o rimuovere avvisi, vedere l'articolo relativo ai [cmdlet di Azure Insights](https://msdn.microsoft.com/library/mt282452.aspx). Ecco alcuni esempi di uso del cmdlet **Get-AlertRule** :
+Vedere [informazioni dettagliate di Azure cmdlet](https://msdn.microsoft.com/library/mt282452.aspx) per i cmdlet di PowerShell che è possibile utilizzare tooadd, ottenere o rimuovere gli avvisi. Ecco alcuni esempi di utilizzo hello **Get AlertRule** cmdlet:
 
 ```powershell
 get-alertrule -res $resourceGroup -n ADFAlertsSlice -det
@@ -460,7 +460,7 @@ Status                : Failed
 SubStatus             : FailedExecution
 Claims                : Microsoft.Azure.Management.Insights.Models.RuleManagementEventClaimsDataSource
 Condition      :
-Description : One or more of the data slices for the Azure Data Factory has failed processing.
+Description : One or more of hello data slices for hello Azure Data Factory has failed processing.
 Status      : Enabled
 Name:       : ADFAlertsSlice
 Tags       :
@@ -499,7 +499,7 @@ Location   : West US
 Name       : FailedExecutionRunsWest0
 ```
 
-Eseguire i seguenti comandi get-help per visualizzare informazioni dettagliate ed esempi per il cmdlet Get-AlertRule.
+Eseguire hello seguente get-help comandi toosee dettagli ed esempi per cmdlet Get-AlertRule hello.
 
 ```powershell
 get-help Get-AlertRule -detailed
@@ -510,67 +510,67 @@ get-help Get-AlertRule -examples
 ```
 
 
-Se gli eventi di generazione avvisi vengono visualizzati nel pannello del portale, ma non si ricevono le notifiche di posta elettronica, controllare se l'indirizzo di posta elettronica specificato è impostato per la ricezione di messaggi da mittenti esterni. I messaggi di avviso potrebbero essere stati bloccati dalle impostazioni di posta elettronica.
+Se viene visualizzato gli eventi di generazione dell'avviso hello in hello portale pannello ma non ricevere notifiche tramite posta elettronica, controllare se l'indirizzo di posta elettronica hello specificato è impostato tooreceive messaggi di posta elettronica da mittenti esterni. messaggi di avviso Hello potrebbero sono state bloccate dalle impostazioni di posta elettronica.
 
 ### <a name="alerts-on-metrics"></a>Avvisi relativi alle metriche
-Azure Data Factory consente di acquisire diverse metriche e di creare avvisi relativi alle metriche. È possibile monitorare e creare avvisi per le metriche seguenti relative alle sezioni della data factory:
+Azure Data Factory consente di acquisire diverse metriche e di creare avvisi relativi alle metriche. È possibile monitorare e creare avvisi per hello seguenti metriche per le sezioni hello la data factory:
 
 * **Esecuzioni non riuscite**
 * **Esecuzioni riuscite**
 
-Queste metriche sono utili e consentono di ottenere una panoramica di tutte le esecuzioni riuscite e non riuscite nella data factory. Le metriche vengono emesse ogni volta che viene eseguita una sezione. All'inizio di ogni ora, queste metriche vengono aggregate e inserite nell'account di archiviazione. Per abilitare le metriche, configurare un account di archiviazione.
+Queste metriche sono utili e consentono una panoramica generale e non viene eseguito in data factory di hello tooget. Le metriche vengono emesse ogni volta che viene eseguita una sezione. Inizio hello ora hello, queste metriche vengono aggregate e inserito tooyour account di archiviazione. metriche tooenable, impostare un account di archiviazione.
 
 #### <a name="enable-metrics"></a>Abilitazione di metriche
-Per abilitare le metriche, fare clic su quanto segue nel pannello **Data factory**:
+tooenable metriche, fare clic su informazioni seguenti hello hello **Data Factory** pannello:
 
 **Monitoraggio** > **Metrica** > **Impostazioni di diagnostica** > **Diagnostica**
 
 ![Collegamento per la diagnostica](./media/data-factory-monitor-manage-pipelines/diagnostics-link.png)
 
-Nel pannello **Diagnostica** fare clic su **Sì**, selezionare l'account di archiviazione e fare clic su **Salva**.
+In hello **diagnostica** pannello, fare clic su **su**, selezionare l'account di archiviazione hello e fare clic su **salvare**.
 
 ![Pannello Diagnostica](./media/data-factory-monitor-manage-pipelines/diagnostics-blade.png)
 
-Potrebbe trascorrere anche un'ora prima che le metriche siano visibili nel pannello **Monitoraggio**, perché l'aggregazione delle metriche viene eseguita ogni ora.
+Operazione può richiedere ora tooone per hello metriche toobe visibile in hello **monitoraggio** pannello poiché l'aggregazione di metriche si verifica ogni ora.
 
 ### <a name="set-up-an-alert-on-metrics"></a>Configurare un avviso relativo alle metriche
-Fare clic sul riquadro **Metriche data factory**:
+Fare clic su hello **metriche Data Factory** riquadro:
 
 ![Riquadro Metriche data factory](./media/data-factory-monitor-manage-pipelines/data-factory-metrics-tile.png)
 
-Nel pannello **Metrica** fare clic su **+ Aggiungi avviso** nella barra degli strumenti.
+In hello **metrica** pannello, fare clic su **+ Aggiungi avviso** sulla barra degli strumenti hello.
 ![Pannello Metriche data factory > Aggiungi avviso](./media/data-factory-monitor-manage-pipelines/add-alert.png)
 
-Nella pagina **Aggiungi una regola di avviso**, attenersi alla procedura seguente e fare clic su **OK**.
+In hello **aggiungere una regola di avviso** pagina hello alla procedura seguente e fare clic su **OK**.
 
-* Immettere un nome per l'avviso, ad esempio "Avviso non riuscito".
-* Immettere una descrizione dell'avviso, ad esempio "Invia un messaggio di posta elettronica quando si verifica un errore".
+* Immettere un nome per l'avviso hello (esempio: "non riuscito-avviso").
+* Immettere una descrizione dell'avviso hello (esempio: "Invia un messaggio di posta elettronica quando si verifica un errore").
 * Selezionare una metrica tra "Esecuzioni non riuscite" ed "Esecuzioni riuscite".
 * Specificare una condizione e un valore di soglia.   
-* Specificare il periodo di tempo.
-* Specificare se inviare un'e-mail a proprietari, collaboratori e lettori.
+* Specificare hello periodo di tempo.
+* Specificare se è necessario inviare un messaggio di posta elettronica tooowners, contributors e readers.
 
 ![Pannello Metriche data factory > Aggiungi regola di avviso](./media/data-factory-monitor-manage-pipelines/add-an-alert-rule.png)
 
-Dopo aver aggiunto la regola di avviso, il pannello si chiude e il nuovo avviso viene visualizzato nel pannello **Metrica**.
+Dopo che la regola di avviso hello viene aggiunto correttamente, pannello hello chiude e viene visualizzato di nuovo avviso hello in hello **metrica** blade.
 
 ![Pannello Metriche data factory > Nuovo avviso aggiunto](./media/data-factory-monitor-manage-pipelines/failed-alert-in-metric-blade.png)
 
-Nel riquadro **Regole di avviso** si dovrebbe vedere anche il numero degli avvisi. Fare clic sul riquadro **Regole di avviso**.
+Verrà inoltre visualizzato il numero di hello di avvisi in hello **regole di avviso** riquadro. Fare clic su hello **regole di avviso** riquadro.
 
 ![Pannello Metriche data factory - Regole di avviso](./media/data-factory-monitor-manage-pipelines/alert-rules-tile-rules.png)
 
-Nel pannello **Regole di avviso** vengono visualizzati gli avvisi esistenti. Per aggiungere un avviso, fare clic su **Aggiungi avviso** nella barra degli strumenti.
+In hello **avvisi regole** pannello viene visualizzato di tutti gli avvisi esistenti. tooadd un avviso, fare clic su **Aggiungi avviso** sulla barra degli strumenti hello.
 
 ![Pannello Regole di avviso](./media/data-factory-monitor-manage-pipelines/alert-rules-blade.png)
 
 ### <a name="alert-notifications"></a>Notifiche di avviso
-Quando la regola di avviso corrisponde alla condizione, si riceve un messaggio di posta elettronica che conferma l'attivazione dell'avviso. Quando il problema viene risolto e la condizione di avviso non corrisponde più, si riceve un messaggio di posta elettronica che conferma la risoluzione dell'avviso.
+Dopo che la regola di avviso hello corrisponde a hello condizione, viene visualizzato un messaggio di posta elettronica che segnala hello avviso viene attivato. Dopo che viene risolto hello e condizione di avviso hello non corrisponde più, viene visualizzato un messaggio di posta elettronica che segnala hello avviso verrà risolto.
 
 Questo comportamento è diverso da quello degli eventi in cui viene inviata una notifica per ogni errore qualificato da una regola di avviso.
 
 ### <a name="deploy-alerts-by-using-powershell"></a>Distribuire avvisi tramite PowerShell
-È possibile distribuire avvisi per le metriche esattamente come avviene per gli eventi.
+È possibile distribuire gli avvisi per le metriche hello stessa modalità utilizzata per gli eventi.
 
 **Definizione di avviso**
 
@@ -614,16 +614,16 @@ Questo comportamento è diverso da quello degli eventi in cui viene inviata una 
 }
 ```
 
-Sostituire *subscriptionId*, *resourceGroupName* e *dataFactoryName* nell'esempio precedente con i valori appropriati.
+Sostituire *subscriptionId*, *resourceGroupName*, e *dataFactoryName* nell'esempio hello con valori appropriati.
 
 *metricName* supporta attualmente due valori:
 
 * FailedRuns
 * SuccessfulRuns
 
-**Distribuire l'avviso**
+**Distribuire avviso hello**
 
-Per distribuire l'avviso, usare il cmdlet **New-AzureRmResourceGroupDeployment**di Azure PowerShell, come mostrato nell'esempio seguente:
+avviso di hello toodeploy, utilizzare cmdlet di Azure PowerShell hello **New AzureRmResourceGroupDeployment**, come illustrato nell'esempio seguente hello:
 
 ```powershell
 New-AzureRmResourceGroupDeployment -ResourceGroupName adf -TemplateFile .\FailedRunsGreaterThan5.json
@@ -647,13 +647,13 @@ Parameters        :
 Outputs           
 ```
 
-È anche possibile usare il cmdlet **Add-AlertRule** per distribuire una regola di avviso. Per informazioni dettagliate ed esempi, vedere l'argomento [Add-AlertRule](https://msdn.microsoft.com/library/mt282468.aspx).  
+È inoltre possibile utilizzare hello **Aggiungi AlertRule** toodeploy cmdlet una regola di avviso. Vedere hello [Aggiungi AlertRule](https://msdn.microsoft.com/library/mt282468.aspx) argomento per informazioni dettagliate ed esempi.  
 
-## <a name="move-a-data-factory-to-a-different-resource-group-or-subscription"></a>Spostare una data factory in un gruppo di risorse diverso o una sottoscrizione diversa
-È possibile spostare una data factory in un gruppo di risorse diverso o in una sottoscrizione diversa usando il pulsante **Sposta** della barra dei comandi nella home page della data factory.
+## <a name="move-a-data-factory-tooa-different-resource-group-or-subscription"></a>Spostare un gruppo di risorse diverso tooa data factory o una sottoscrizione
+È possibile spostare un gruppo di risorse diverso dati tooa factory o una sottoscrizione diversa utilizzando hello **spostare** barra pulsante hello home page della data factory dei comandi.
 
 ![Spostare una data factory](./media/data-factory-monitor-manage-pipelines/MoveDataFactory.png)
 
-È anche possibile spostare le risorse correlate insieme alla data factory, ad esempio gli avvisi ad essa associati.
+È inoltre possibile spostare le risorse correlate (ad esempio gli avvisi che sono associati a data factory di hello), insieme a data factory di hello.
 
 ![Finestra di dialogo Sposta risorse](./media/data-factory-monitor-manage-pipelines/MoveResources.png)

@@ -1,6 +1,6 @@
 ---
-title: Creare un servizio di bilanciamento del carico interno per Servizi cloud di Azure | Documentazione Microsoft
-description: Informazioni su come creare un servizio di bilanciamento del carico interno usando PowerShell nel modello di distribuzione classica
+title: aaaCreate un bilanciamento del carico interno per servizi Cloud di Azure | Documenti Microsoft
+description: Informazioni su come toocreate un interno bilanciamento del carico con PowerShell nel modello di distribuzione classica hello
 services: load-balancer
 documentationcenter: na
 author: kumudd
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 01/23/2017
 ms.author: kumud
-ms.openlocfilehash: 8dbc951416d577fa7f534c2eab1605c6bee61fce
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: fe7975bca7bec3248626b0ad0fad6823e278ade2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-creating-an-internal-load-balancer-classic-for-cloud-services"></a>Introduzione alla creazione di un servizio di bilanciamento del carico interno (classico) per i servizi cloud
 
@@ -28,32 +28,32 @@ ms.lasthandoff: 07/11/2017
 > * [Servizi cloud](../load-balancer/load-balancer-get-started-ilb-classic-cloud.md)
 
 > [!IMPORTANT]
-> Azure offre due modelli di distribuzione per creare e usare le risorse: [Gestione risorse e la distribuzione classica](../azure-resource-manager/resource-manager-deployment-model.md).  Questo articolo illustra l'uso del modello di distribuzione classica. Microsoft consiglia di usare il modello di Gestione risorse per le distribuzioni più recenti. Informazioni su come [eseguire questa procedura con il modello di Resource Manager](load-balancer-get-started-ilb-arm-ps.md).
+> Azure offre due modelli di distribuzione per creare e usare le risorse: [Gestione risorse e la distribuzione classica](../azure-resource-manager/resource-manager-deployment-model.md).  In questo articolo viene illustrato l'utilizzo del modello di distribuzione classica hello. Si consiglia di utilizzano il modello di gestione risorse hello più nuove distribuzioni. Informazioni su come troppo[eseguire questi passaggi tramite il modello di gestione risorse di hello](load-balancer-get-started-ilb-arm-ps.md).
 
 ## <a name="configure-internal-load-balancer-for-cloud-services"></a>Configurare il servizio di bilanciamento del carico interno per i servizi cloud
 
-Il servizio di bilanciamento del carico interno è supportato sia per le macchine virtuali che per i servizi cloud. Un endpoint del servizio di bilanciamento del carico interno creato in un servizio cloud esterno a una rete virtuale dell'area sarà accessibile solo nel servizio cloud.
+Il servizio di bilanciamento del carico interno è supportato sia per le macchine virtuali che per i servizi cloud. Un endpoint di servizio di bilanciamento carico interno creato in un servizio cloud di fuori di una rete virtuale regionale sarà accessibile solo all'interno del servizio cloud hello.
 
-La configurazione del servizio di bilanciamento del carico interno deve essere impostata durante la creazione della prima distribuzione nel servizio cloud, come illustrato nell'esempio seguente.
+configurazione di bilanciamento del carico interno Hello è toobe impostato durante la creazione di hello di distribuzione prima di hello nel servizio cloud hello, come illustrato nell'esempio hello riportato di seguito.
 
 > [!IMPORTANT]
-> Come prerequisito per eseguire i passaggi seguenti, è necessario avere già creato una rete virtuale per la distribuzione cloud. Per creare il bilanciamento del carico interno, saranno necessari il nome della rete virtuale e il nome della subnet.
+> Una procedura di hello toorun prerequisiti riportata di seguito è una rete virtuale già creata per la distribuzione cloud hello toohave. Sarà necessario hello rete virtuale nome e la subnet nome toocreate hello bilanciamento del carico interno.
 
 ### <a name="step-1"></a>Passaggio 1
 
-Aprire il file di configurazione del servizio (.cscfg) per la distribuzione cloud in Visual Studio e aggiungere la sezione seguente per creare il bilanciamento del carico interno sotto l'ultimo elemento "`</Role>`" per la configurazione di rete.
+Aprire file di configurazione servizio hello (. cscfg) per la distribuzione cloud in Visual Studio e aggiungere hello seguente ultima sezione toocreate hello bilanciamento del carico interno in hello "`</Role>`" elemento di configurazione di rete hello.
 
 ```xml
 <NetworkConfiguration>
     <LoadBalancers>
-    <LoadBalancer name="name of the load balancer">
+    <LoadBalancer name="name of hello load balancer">
         <FrontendIPConfiguration type="private" subnet="subnet-name" staticVirtualNetworkIPAddress="static-IP-address"/>
     </LoadBalancer>
     </LoadBalancers>
 </NetworkConfiguration>
 ```
 
-Vengono aggiunti i valori per il file di configurazione di rete per mostrare come apparirà. Nell'esempio, si supponga di aver creato una rete virtuale denominata "test_vnet" con una subnet 10.0.0.0/24 denominata test_subnet e un indirizzo IP statico 10.0.0.4. Il servizio di bilanciamento del carico si chiamerà testLB.
+Aggiungere i valori hello per hello rete configurazione file tooshow l'aspetto. Nell'esempio di hello si supponga che creare una rete virtuale denominata "test_vnet" con un 10.0.0.0/24 subnet denominata test_subnet e un indirizzo IP statico 10.0.0.4. servizio di bilanciamento del carico Hello verrà denominato testLB.
 
 ```xml
 <NetworkConfiguration>
@@ -65,11 +65,11 @@ Vengono aggiunti i valori per il file di configurazione di rete per mostrare com
 </NetworkConfiguration>
 ```
 
-Per altre informazioni sullo schema di bilanciamento del carico, vedere [Aggiungere il servizio di bilanciamento del carico](https://msdn.microsoft.com/library/azure/dn722411.aspx).
+Per ulteriori informazioni sullo schema di bilanciamento carico di hello, vedere [Aggiungi servizio di bilanciamento del carico](https://msdn.microsoft.com/library/azure/dn722411.aspx).
 
 ### <a name="step-2"></a>Passaggio 2
 
-Modificare il file di definizione del servizio (.csdef) per aggiungere endpoint al bilanciamento del carico interno. Non appena viene creata un'istanza del ruolo, il file di definizione del servizio aggiunge le istanze del ruolo al bilanciamento del carico interno.
+Modificare gli endpoint hello servizio definizione (con estensione csdef) file tooadd toohello con bilanciamento del carico interno. momento di Hello viene creata un'istanza del ruolo, file di definizione del servizio hello aggiungerà hello toohello di istanze di ruolo bilanciamento del carico interno.
 
 ```xml
 <WorkerRole name="worker-role-name" vmsize="worker-role-size" enableNativeCodeExecution="[true|false]">
@@ -79,7 +79,7 @@ Modificare il file di definizione del servizio (.csdef) per aggiungere endpoint 
 </WorkerRole>
 ```
 
-Usando gli stessi valori dell'esempio precedente, vengono aggiunti i valori al file di definizione del servizio.
+In seguito hello stesso valori nell'esempio hello precedente, aggiungere file di definizione del servizio toohello valori hello.
 
 ```xml
 <WorkerRole name="WorkerRole1" vmsize="A7" enableNativeCodeExecution="[true|false]">
@@ -89,7 +89,7 @@ Usando gli stessi valori dell'esempio precedente, vengono aggiunti i valori al f
 </WorkerRole>
 ```
 
-Il traffico di rete verrà configurato per il bilanciamento del carico tramite il servizio di bilanciamento del carico testLB, usando la porta 80 per le richieste in ingresso e anche per l'invio alle istanze del ruolo di lavoro.
+il traffico di rete Hello sarà con carico bilanciato con bilanciamento del carico di testLB hello utilizza la porta 80 per le richieste in ingresso, l'invio di tooworker le istanze del ruolo anche sulla porta 80.
 
 ## <a name="next-steps"></a>Passaggi successivi
 

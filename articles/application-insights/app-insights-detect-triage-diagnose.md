@@ -1,6 +1,6 @@
 ---
-title: Panoramica di Azure Application Insights per DevOps| Microsoft Docs
-description: Imparare a usare Application Insights in un ambiente di sviluppo Ops.
+title: aaaOverview di Azure Application Insights per DevOps | Documenti Microsoft
+description: Informazioni su come toouse Application Insights in un ambiente di sviluppo Ops.
 author: CFreemanwa
 services: application-insights
 documentationcenter: 
@@ -13,101 +13,101 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/26/2017
 ms.author: bwren
-ms.openlocfilehash: 4f9578fd39b80496a8de060b6cae8f5612e03aa7
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 42139f4645e815f26378726f4716a9bfbdc78551
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="overview-of-application-insights-for-devops"></a>Panoramica di Application Insights per DevOps
 
-Con [Application Insights](app-insights-overview.md) è possibile capire velocemente le prestazioni dell'app e come viene usata quando è attiva. Se è presente un problema, consente di scoprirlo, aiuta a valutarne l'impatto e a determinarne la causa.
+Con [Application Insights](app-insights-overview.md) è possibile capire velocemente le prestazioni dell'app e come viene usata quando è attiva. Se si verifica un problema, è possibile conoscere, consente di valutare l'impatto di hello e consente di determinare la causa hello.
 
 Ecco un account da un team che sviluppa applicazioni web:
 
-* *"Un paio di giorni fa, è stato distribuito un 'piccolo' aggiornamento rapido. Non è stato eseguito un superamento test esteso, ma purtroppo alcune modifiche impreviste sono state unite nel payload, a causa di incompatibilità tra il front-end e il back-end. Immediatamente si è verificato un incremento delle eccezioni del server, sono stati generati avvisi e si è venuti a conoscenza della situazione. Con pochi clic nel portale di Application Insights si ottengono informazioni sufficienti dagli stack di chiamate delle eccezioni per circoscrivere il problema. È stato eseguito immediatamente il rollback e i danni sono stati limitati. Application Insights ha reso questa parte del ciclo DevOps molto semplice e utilizzabile."*
+* *"Un paio di giorni fa, è stato distribuito un 'piccolo' aggiornamento rapido. È Impossibile eseguire passi del test ampie, ma purtroppo alcune modifiche imprevisto sono state unite nel payload hello, causando l'incompatibilità tra hello estremità anteriore e posteriore. Immediatamente, viene generato l'avviso sono aumentate di eccezioni di server, e ci siamo a conoscenza di situazione hello. Pochi clic lontano nel portale Application Insights hello, abbiamo informazioni sufficienti da toonarrow stack di chiamate di eccezione del problema hello. Abbiamo rollback immediatamente e hello danni limitati. Application Insights ha reso questa parte della devops hello ciclo molto semplice e utilizzabili."*
 
-In questo articolo si seguirà un team di Fabrikam Bank che sviluppa il sistema di servizi bancari online (OBS) per vedere come viene usato Application Insights per rispondere ai clienti e apportare aggiornamenti velocemente.  
+In questo articolo si seguirà un team di Fabrikam Bank che sviluppa hello online banking online toosee di sistema (OBS) il relativo utilizzo tooquickly Application Insights rispondere toocustomers e apportare aggiornamenti.  
 
-Il team lavora con un ciclo DevOps illustrato nella figura seguente:
+viene eseguita dal team di Hello in un ciclo DevOps illustrato nella seguente figura hello:
 
 ![Ciclo DevOps](./media/app-insights-detect-triage-diagnose/00-devcycle.png)
 
-I requisiti passano nel backlog di sviluppo (elenco attività). Lavorano per brevi sprint, in cui spesso viene distribuito il software funzionante - in genere sotto forma di miglioramenti ed estensioni per l'applicazione esistente. L'app attiva viene aggiornata di frequente con le nuove funzionalità. Mentre è attiva, il team ne esegue il monitoraggio per le prestazioni e l'uso con l'aiuto di Application Insights. Questi dati APM riconducono al loro backlog di sviluppo.
+I requisiti passano nel backlog di sviluppo (elenco attività). In breve, funzionano sprint, che offrono spesso un software di lavoro - in genere sotto forma di hello di miglioramenti ed estensioni toohello applicazione esistente. applicazione in tempo reale Hello viene aggiornato di frequente con nuove funzionalità. Mentre è in tempo reale, il team di hello esegue monitoraggio per le prestazioni e l'utilizzo con l'aiuto di hello di Application Insights. Questi dati APM riconducono al loro backlog di sviluppo.
 
-Il team usa Application Insights per monitorare attentamente l'applicazione web attiva per gli elementi seguenti:
+team Hello utilizza l'applicazione web in tempo reale di Application Insights toomonitor hello strettamente per:
 
-* Prestazioni. Il team vuole capire come variano i tempi di risposta in base al numero di richieste; la quantità usata di CPU, la rete, il disco e altre risorse, e dove sono i colli di bottiglia.
-* Errori. Se esistono eccezioni o richieste non riuscite, o se un contatore delle prestazioni non rientra nell'intervallo noto, il team deve esserne informato rapidamente in modo che sia possibile intraprendere l'azione.
-* Utilizzo. Ogni volta che viene rilasciata una nuova funzionalità, il team desidera sapere in quale misura viene usata e se gli utenti hanno difficoltà con essa.
+* Prestazioni. Desiderano toounderstand come tempi di risposta variano con numero di richieste; quanto più CPU, rete, disco e altre risorse in uso; e in cui sono colli di bottiglia hello.
+* Errori. Se esistono eccezioni richieste non riuscite o se un contatore delle prestazioni viene portato non rientra nell'intervallo familiarità, hello team esigenze tooknow rapidamente in modo che è possibile eseguire azioni.
+* Utilizzo. Ogni volta che viene rilasciata una nuova funzionalità, team hello desidera tooknow toowhat misura viene utilizzata e indica se gli utenti hanno difficoltà con esso.
 
-Ci si concentra ora parte del ciclo dedicata ai commenti e suggerimenti:
+Concentriamoci sulla parte di commenti e suggerimenti hello del ciclo di hello:
 
 ![Rilevare-Valutare-Diagnosticare](./media/app-insights-detect-triage-diagnose/01-pipe1.png)
 
 ## <a name="detect-poor-availability"></a>Rilevare scarsa disponibilità
-Marcela Markova è un senior developer del team di OBS e accetta di essere responsabile del monitoraggio delle prestazioni online. Imposta alcuni [test di disponibilità](app-insights-monitor-web-app-availability.md):
+Marcela Markova è uno sviluppatore senior team OBS hello e accetta hello lead al monitoraggio delle prestazioni in linea. Imposta alcuni [test di disponibilità](app-insights-monitor-web-app-availability.md):
 
-* Un test con singolo URL per la pagina di destinazione principale per l'app, http://fabrikambank.com/onlinebanking/. Imposta i criteri del codice HTTP 200 e il testo 'Benvenuto'. Se il test ha esito negativo, è presente un grave problema relativo alla rete o ai server o forse un problema di distribuzione, oppure un utente ha modificato il messaggio di benvenuto nella pagina senza comunicarlo a lei.
-* Un test più approfondito in più passaggi, che registra e ottiene un elenco di account corrente, che verifica alcuni dettagli chiave in ogni pagina. Questo test verifica che il collegamento al database degli account sia funzionante. Usa un id cliente fittizio: alcuni vengono mantenuti a scopo di test.
+* Un test URL singolo per la pagina principale hello per le app di hello, http://fabrikambank.com/onlinebanking/. Imposta i criteri del codice HTTP 200 e il testo 'Benvenuto'. Se il test ha esito negativo, ci sono problemi gravi con rete hello o server hello o potrebbe essere un problema di distribuzione. (O un utente è stato modificato hello benvenuto! messaggio nella pagina di hello evitando proprio noti.)
+* Un test più approfondito in più passaggi, che registra e ottiene un elenco di account corrente, che verifica alcuni dettagli chiave in ogni pagina. Questo test verifica che database di account toohello collegamento hello funziona. Usa un id cliente fittizio: alcuni vengono mantenuti a scopo di test.
 
-Con questi test impostati, Marcela è certa che il team verrà rapidamente a conoscenza di ogni interruzione.  
+Con questi test impostare Marcela è sicuro che Team hello conosceranno rapidamente qualsiasi interruzione.  
 
-Gli errori vengono visualizzati come punti rossi nel grafico del test Web:
+Gli errori visualizzati come punti rossi nel grafico del test web hello:
 
-![Visualizzazione dei test Web eseguiti nel periodo precedente](./media/app-insights-detect-triage-diagnose/04-webtests.png)
+![Visualizzazione dei test web che hanno eseguito su hello precedente](./media/app-insights-detect-triage-diagnose/04-webtests.png)
 
-Ma soprattutto viene inviato al team di sviluppo un avviso su eventuali errori mediante posta elettronica. In questo modo ne verranno a conoscenza prima quasi tutti i clienti.
+Ma soprattutto, un avviso per eventuali errori viene inviato tramite posta elettronica toohello team di sviluppo. In tal modo, sono preliminari su di esso quasi tutti i clienti di hello.
 
 ## <a name="monitor-performance"></a>Monitorare le prestazioni
-Nella pagina Panoramica in Application Insights è presente un grafico che mostra una serie di [metriche chiave](app-insights-web-monitor-performance.md).
+Nella pagina Panoramica hello in Application Insights è un grafico che mostra una vasta gamma di [metriche chiave](app-insights-web-monitor-performance.md).
 
 ![Alcuni criteri di misurazione](./media/app-insights-detect-triage-diagnose/05-perfMetrics.png)
 
-Il tempo di caricamento della pagina del browser deriva dai dati di telemetria inviati direttamente dalle pagine Web. Il tempo di risposta del server, il numero di richieste al server e il numero di richieste non riuscite sono tutti misurati nel server Web e inviati direttamente ad Application Insights.
+Il tempo di caricamento della pagina del browser deriva dai dati di telemetria inviati direttamente dalle pagine Web. Tempo di risposta server, il numero di richieste di server e il numero di richieste non riuscite vengono tutti misurate in server web hello e inviati tooApplication informazioni da lì.
 
-Marcela è un po' in apprensione riguardo al grafico di risposta del server, che mostra il tempo medio che intercorre tra il momento in cui il server riceve una richiesta HTTP dal browser di un utente al momento in cui viene inviata la risposta. Non è raro vedere una variazione all'interno del grafico, in ragione della variazione del carico sul sistema. Tuttavia, nel caso specifico sembra che vi sia una correlazione tra gli incrementi minimi nel conteggio delle risposte e quelli rilevanti nel tempo di risposta. Questa correlazione potrebbe indicare che il funzionamento del sistema è al limite.
+Marcela è leggermente in questione con graph di risposta server hello. Questo grafico mostra il tempo medio di hello tra quando server hello riceve una richiesta HTTP da un browser, e restituisce quando la risposta hello. Non è insolito toosee una variazione in questo grafico, in base alla variazione carico sul sistema hello. Ma in questo caso, ci toobe una correlazione tra small maggiore hello numero di richieste e grande aumenta nel tempo di risposta hello. Che potrebbe indicare che il sistema hello opera solo limiti.
 
-Apre i grafici dei server:
+Apre i grafici hello server:
 
 ![Alcuni criteri di misurazione](./media/app-insights-detect-triage-diagnose/06.png)
 
-Apparentemente non si rilevano limitazioni delle risorse, quindi magari i salti nei grafici di risposta del server sono solo una coincidenza.
+Non ci toobe alcun segno di risorse insufficienti, in modo maybe hello salti nei grafici di risposta server hello sono solo una coincidenza.
 
-## <a name="set-alerts-to-meet-goals"></a>Impostare avvisi per soddisfare gli obiettivi
-Marcela, ad ogni modo, vuole monitorare i tempi di risposta. Se aumentano in modo eccessivo, vuole esserne informata.
+## <a name="set-alerts-toomeet-goals"></a>Impostare gli avvisi toomeet obiettivi
+Tuttavia, vuole tookeep sotto controllo per i tempi di risposta hello. Se si verificano troppo elevati, desiderate tooknow informazioni immediatamente.
 
 Quindi imposta un [avviso](app-insights-metrics-explorer.md) se i tempi di risposta sono superiori alla soglia tipica. Questo le consentirà di conoscere la velocità dei tempi di risposta.
 
 ![Pannello Aggiungi avviso](./media/app-insights-detect-triage-diagnose/07-alerts.png)
 
-È possibile impostare avvisi su svariate altre metriche. Ad esempio, è possibile ricevere messaggi di posta elettronica se il numero di eccezioni risulta elevato o la memoria disponibile è insufficiente o se è presente un picco nelle richieste del client.
+È possibile impostare avvisi su svariate altre metriche. Ad esempio, è possibile ricevere messaggi di posta elettronica se la memoria disponibile hello diventa bassa o del numero di eccezioni hello diventa elevato o se è presente un picco nelle richieste del client.
 
 ## <a name="stay-informed-with-smart-detection-alerts"></a>Rimanere aggiornati con gli avvisi di rilevamento intelligente
-Il giorno successivo arriva un avviso in posta elettronica da Application Insights. Tuttavia, quando lo apre, vede che non si tratta dell'avviso sul tempo di risposta che aveva impostato. Al contrario, indica che c'è stato un aumento improvviso delle richieste non riuscite, ovvero, delle richieste che hanno restituito 500 o più codici di errore.
+Il giorno successivo arriva un avviso in posta elettronica da Application Insights. Ma quando si apre, trova che non è di avviso di tempo di risposta hello che lei impostata. Al contrario, indica che c'è stato un aumento improvviso delle richieste non riuscite, ovvero, delle richieste che hanno restituito 500 o più codici di errore.
 
-Le richieste non riuscite sono quelle richieste in cui gli utenti hanno individuato un errore, in genere dopo un'eccezione generata nel codice. Forse viene visualizzato il messaggio "Sorry we couldn't update your details right now" (Non è possibile aggiornare i dettagli adesso). Oppure, nella peggiore delle ipotesi, viene visualizzato un dump dello stack sullo schermo dell'utente concesso dal server web.
+Richieste non riuscite sono in cui gli utenti hanno rilevato un errore, in genere dopo un'eccezione generata nel codice hello. Forse viene visualizzato il messaggio "Sorry we couldn't update your details right now" (Non è possibile aggiornare i dettagli adesso). In alternativa, nel peggiore imbarazzante assoluto, un dump dello stack viene visualizzato sullo schermo dell'utente hello, gentilmente server web hello.
 
-L'avviso la lascia stupita perché l'ultima volta il numero delle richieste non riuscite era particolarmente basso. In un server occupato, un numero esiguo di errori è un evento prevedibile.
+Questo avviso è una categoria Sorpresa, perché hello ora dell'ultimo utente esaminata, hello richieste non riuscite conteggio solidi insufficiente. Un numero ridotto di errori è toobe previsto in un server occupato.
 
-Lo stupore nasceva anche dal fatto che non era necessario configurare l'avviso. Application Insights include il rilevamento intelligente. Si adatta automaticamente al consueto modello di errore dell'app "abituandosi" agli errori di una particolare pagina o un carico elevato, o collegato ad altre metriche. Genera l'avviso solo in caso di un aumento prevedibile.
+Era inoltre un bit di una novità per suo conto perché e non è stato possibile tooconfigure questo avviso. Application Insights include il rilevamento intelligente. Modifica automaticamente modello errore consuete tooyour dell'app e gli errori "viene utilizzato per" in una pagina specifica o in un carico elevato o metriche tooother collegato. Genera un avviso di hello solo se è disponibile un aumento sopra l'oggetto a cui viene fornito tooexpect.
 
 ![messaggio di posta elettronica sulla diagnostica proattiva](./media/app-insights-detect-triage-diagnose/21.png)
 
-Si tratta di un messaggio di posta elettronica molto utile. Non si limita a generare un avviso, ma esegue anche valutazioni e diagnosi.
+Si tratta di un messaggio di posta elettronica molto utile. Non si limita a generare un avviso, Esegue una notevole quantità di valutazione hello e attività di diagnostica, troppo.
 
-Mostra il numero di clienti coinvolti e le pagine Web o le operazioni. Marcela può decidere se è necessario ottenere l'impegno dell'intero team come esercitazione, o se può essere ignorato fino alla settimana successiva.
+Mostra il numero di clienti coinvolti e le pagine Web o le operazioni. Marcela può decidere se è necessario tooget hello tutto il team lavorando su questo come un antincendio o se può essere ignorato fino a quando la settimana prossima.
 
-Il messaggio di posta elettronica mostra inoltre il verificarsi di una particolare eccezione e, cosa ancora più interessante, che l'errore è associato a chiamate non riuscite a un particolare database. Questo spiega come mai si è generato improvvisamente l'errore anche se il team di Marcela non ha distribuito aggiornamenti di recente.
+messaggio di posta elettronica Hello Mostra anche che una particolare eccezione si è verificato e - ancora più interessante - errore hello è associata a chiamate non riuscite tooa particolare database. Questo spiega perché errore hello improvvisamente è presente anche se il team del Marcela non è stato distribuito recente eventuali aggiornamenti.
 
-Marcella contatta il responsabile del team di database in merito a questo messaggio di posta elettronica. Apprende che è stato rilasciato un aggiornamento rapido nell'ultima mezz'ora; forse può essere stato eseguito un piccolo cambiamento di schema...
+Guida di hello Marcella ping del team di database hello in base a questo messaggio di posta elettronica. Lei apprende che essi rilasciato un aggiornamento rapido in hello ultimi mezz'ora; e non potrebbe essere presente una modifica dello schema secondario...
 
-In definitiva, il problema sta per essere risolto anche prima di esaminare i log, e dopo soli 15 minuti dal momento in cui si è generato l'errore. Tuttavia, Marcela seleziona il collegamento per aprire Application Insights. Si apre direttamente su una richiesta non riuscita in cui è possibile visualizzare la chiamata al database non riuscita nell'elenco delle chiamate di dipendenza associato.
+Così il problema di hello è sul toobeing modo hello fissata, anche prima di analizzare i log ed entro 15 minuti di esso derivanti. Marcela fa clic sul collegamento di hello tooopen Application Insights. Si apre direttamente in una richiesta non riuscita e individuare il database non riuscito chiamare hello elenco di chiamate a dipendenze.
 
 ![richiesta non riuscita](./media/app-insights-detect-triage-diagnose/23.png)
 
 ## <a name="detect-exceptions"></a>Rilevare le eccezioni
-Con una configurazione minima, le [eccezioni](app-insights-asp-net-exceptions.md) vengono segnalate automaticamente ad Application Insights. Possono anche essere acquisite in modo esplicito con l'inserimento di chiamate a [TrackException()](app-insights-api-custom-events-metrics.md#trackexception) nel codice:  
+Con una minima del programma di installazione, [eccezioni](app-insights-asp-net-exceptions.md) vengono automaticamente segnalate tooApplication Insights. È possibile anche acquisito in modo esplicito mediante l'inserimento di chiamate troppo[trackexception () effettuate](app-insights-api-custom-events-metrics.md#trackexception) nel codice hello:  
 
     var telemetry = new TelemetryClient();
     ...
@@ -123,14 +123,14 @@ Con una configurazione minima, le [eccezioni](app-insights-asp-net-exceptions.md
        var measurements = new Dictionary <string, double>
          {{"Users", currentGame.Users.Count}};
 
-       // Send the exception telemetry:
+       // Send hello exception telemetry:
        telemetry.TrackException(ex, properties, measurements);
     }
 
 
-Il team della banca Fabrikam ha sviluppato la pratica di inviare sempre i dati di telemetria di un'eccezione, a meno che non vi sia un ripristino ovvio.  
+il team di Fabrikam Bank Hello si è evoluto pratica hello di sempre l'invio di dati di telemetria di un'eccezione, a meno che non vi è un ripristino ovvio.  
 
-In effetti, la strategia usata è persino più ampia: vengono inviati i dati di telemetria in tutti i casi in cui il cliente sia frustrato riguardo a ciò che voleva fare, che corrisponda o meno a un'eccezione del codice. Ad esempio, se il sistema esterno di bonifico interbancario restituisce un messaggio che indica che non è possibile completare l'operazione per qualche ragione operativa (nessun errore del cliente), allora si tiene traccia di quell'evento.
+In realtà, la strategia è ancora più ampia rispetto a quello: inviano i dati di telemetria in ogni caso in cui si sentono frustrati i dati cliente di hello volevano toodo, se corrisponde tooan eccezione nel codice hello o non. Ad esempio, se il sistema di trasferimento Inter-bank esterna hello restituisce un messaggio "Impossibile completare l'operazione" per ragioni operative (nessun errore di cliente hello) quindi consentono di tenere traccia dell'evento.
 
     var successCode = AttemptTransfer(transferAmount, ...);
     if (successCode < 0)
@@ -142,93 +142,93 @@ In effetti, la strategia usata è persino più ampia: vengono inviati i dati di 
        telemetry.TrackEvent("transfer failed", properties, measurements);
     }
 
-TrackException viene usato per segnalare le eccezioni perché invia una copia dello stack. TrackEvent viene usato per segnalare altri eventi. È possibile collegare le proprietà che potrebbero essere utili nella diagnosi.
+TrackException infatti tooreport utilizzati eccezioni invia una copia dello stack hello. TrackEvent è tooreport utilizzati altri eventi. È possibile collegare le proprietà che potrebbero essere utili nella diagnosi.
 
-Eccezioni ed eventi vengono visualizzati nel pannello [Ricerca diagnostica](app-insights-diagnostic-search.md). È possibile esaminarli per visualizzare le proprietà aggiuntive e l'analisi dello stack.
+Eccezioni e gli eventi visualizzati nella hello [ricerca diagnostica](app-insights-diagnostic-search.md) blade. È possibile analizzare le proprietà aggiuntive di toosee hello e traccia dello stack.
 
-![In Ricerca diagnostica usare i filtri per visualizzare determinati tipi di dati](./media/app-insights-detect-triage-diagnose/appinsights-333facets.png)
+![Nella ricerca di diagnostica, utilizzare i filtri tooshow particolari tipi di dati](./media/app-insights-detect-triage-diagnose/appinsights-333facets.png)
 
 
 ## <a name="monitor-proactively"></a>Monitorare in modo proattivo
-Marcela non resta ferma in attesa di avvisi. Subito dopo ogni ridistribuzione, esamina i [tempi di risposta](app-insights-web-monitor-performance.md), sia la figura nel suo complesso che la tabella delle richieste più lente, nonché il numero di eccezioni.  
+Marcela non resta ferma in attesa di avvisi. Dopo ogni ridistribuzione, prende in considerazione [tempi di risposta](app-insights-web-monitor-performance.md) - entrambi hello figura complessiva e conta tabella hello di richieste più lente, nonché l'eccezione.  
 
 ![Grafico dei tempi di risposta e griglia dei tempi di risposta del server.](./media/app-insights-detect-triage-diagnose/09-dependencies.png)
 
-Marcela riesce a valutare l'impatto sulle prestazioni di ogni distribuzione, in genere confrontando ogni settimana con l'ultima. Se si verifica un improvviso peggioramento, lo segnala agli sviluppatori rilevanti.
+È possibile valutare effetto sulle prestazioni di hello di ogni distribuzione, in genere il confronto di ultima settimana con hello. Se è presente un improvviso aggravi, che lei genera con gli sviluppatori rilevanti hello.
 
 ## <a name="triage-issues"></a>Problemi di valutazione
-Valutazione: consente di valutare la gravità e l'estensione di un problema. È il primo passaggio dopo il rilevamento. Si dovrebbe chiamare il team a mezzanotte oppure è possibile soprassedere fino al successivo divario utile nel backlog? Esistono alcune domande fondamentali nella valutazione.
+La valutazione - valutazione gravità hello ed extent di un problema, è innanzitutto hello dopo il rilevamento. Dovremmo si richiamano team hello a mezzanotte? Oppure può essere lasciato fino al successivo gap pratico di hello nel backlog hello? Esistono alcune domande fondamentali nella valutazione.
 
-Con quale frequenza succede? I grafici nel pannello Panoramica offrono nuove prospettive per risolvere un problema. Ad esempio, l'applicazione di Fabrikam ha generato quattro avvisi di test Web una notte. Osservando il grafico il mattino successivo, il team ha potuto vedere che vi erano infatti alcuni punti rossi, anche se la maggior parte dei test erano in verde. Esaminando il grafico di disponibilità, era chiaro che tutti questi problemi intermittenti provenivano da un'unica posizione di test. La situazione era ovviamente dovuta a un problema di rete che interessava solo una route e molto probabilmente si sarebbe risolta automaticamente da sola.  
+La frequenza con cui è il problema? grafici di Hello nel pannello della panoramica hello assegnare problemi tooa prospettiva. Ad esempio, Fabrikam applicazione hello generati avvisi di test web quattro una notte. Osservando il grafico hello mattino hello, team hello visualizzare che non vi sono effettivamente alcuni punti rossi, se ancora la maggior parte dei test hello fosse verde. Drill-down grafico disponibilità hello, era chiaro che tutti questi problemi intermittenti erano dal percorso di un test. La situazione era ovviamente dovuta a un problema di rete che interessava solo una route e molto probabilmente si sarebbe risolta automaticamente da sola.  
 
-Al contrario, un aumento significativo e stabile nel grafico del numero di eccezioni e dei tempi di risposta è ovviamente qualcosa di cui preoccuparsi seriamente.
+Al contrario, un aumento significativo e stabile nel grafico hello del conteggio delle eccezioni o tempi di risposta è ovviamente toopanic su.
 
-Una tattica di valutazione utile è fare una prova in prima persona. Se si rileva lo stesso problema, risulta chiaro che è reale.
+Una tattica di valutazione utile è fare una prova in prima persona. Se si verificano hello stesso problema, si saprà sia reale.
 
-Quale parte di utenti è interessata? Per ottenere una risposta approssimativa, dividere la percentuale di errori per il numero di sessioni.
+La frazione degli utenti sono interessati? tooobtain una risposta approssimativa, dividere il tasso di esiti negativi hello per il numero di sessioni di hello.
 
 ![Grafici delle sessioni e richieste non riuscite](./media/app-insights-detect-triage-diagnose/10-failureRate.png)
 
-Quando le risposte sono lente, confrontare la tabella delle richieste che rispondono più lentamente con la frequenza d'uso di ogni pagina.
+Quando sono presenti una risposta lenta, è possibile confrontare tabella hello di richieste più lente risponde con una frequenza di utilizzo di hello di ogni pagina.
 
-Quanto è importante lo scenario bloccato? Se si tratta di un problema funzionale che blocca una storia utente specifica, chiedersi quanto è importante. Se i clienti non possono pagare le fatture, si tratta di un problema grave. Se non è possibile modificare le preferenze di colore dello schermo, è un problema non urgente. I dettagli dell'evento o dell'eccezione o l'identità della pagina lenta consentono di individuare dove i clienti riscontrano problemi.
+Il livello di importanza è uno scenario di hello bloccato? Se si tratta di un problema funzionale che blocca una storia utente specifica, chiedersi quanto è importante. Se i clienti non possono pagare le fatture, si tratta di un problema grave. Se non è possibile modificare le preferenze di colore dello schermo, è un problema non urgente. salve dettagli dell'evento hello o dell'eccezione o identità hello della pagina lento hello, indica dove i clienti riscontrano problemi.
 
 ## <a name="diagnose-issues"></a>Diagnosticare i problemi
-La diagnosi non è proprio uguale al debug. Prima di iniziare l'analisi del codice, si deve avere un'idea approssimativa del motivo, del luogo e del momento in cui si verifica il problema.
+Diagnosi non è abbastanza hello stesso modo del debug. Prima si avvia la traccia tramite codice hello, è necessario avere un'idea approssimativa dei motivi per cui, dove e quando si verifica il problema di hello.
 
-**Quando si verifica?** La visualizzazione cronologica fornita dai grafici di eventi e di metriche consente di correlare gli effetti alle possibili cause. Se sono presenti picchi intermittenti nel tempo di risposta e nella frequenza delle eccezioni, esaminare il numero di richieste: se i picchi si presentano contemporaneamente, sembrerebbe un problema di risorse. È necessario assegnare più CPU o memoria oppure è una dipendenza che non riesce a gestire il carico?
+**Quando può verificarsi?**  visualizzazione cronologici di hello fornita da grafici di evento e metrica hello rende facile toocorrelate effetti con le possibili cause. Se sono presenti picchi intermittenti nella velocità di risposta tempo o di un'eccezione, esaminare il numero di richieste di hello: se picco hello stesso tempo, quindi simile a un problema di risorse. È necessario tooassign più CPU o memoria? O è una dipendenza che non è possibile gestire il carico hello?
 
-**Dipende da chi?**  Se si verifica una riduzione improvvisa delle prestazioni di un particolare tipo di richiesta, ad esempio quando il cliente desidera un estratto conto, potrebbe essere dovuto a un sottosistema esterno invece che all'applicazione Web. In Esplora metriche, selezionare la percentuale di errori di dipendenza e la frequenza della durata delle dipendenze e confrontare le cronologie delle ultime ore o giorni con il problema rilevato. Se vi sono variazioni di correlazione, il problema potrebbe essere dovuto a un sottosistema esterno.  
+**Dipende da chi?**  Se si dispone di un calo improvviso delle prestazioni di un determinato tipo di richiesta - ad esempio quando hello cliente vuole raggiungere un estratto conto, quindi è possibile potrebbe essere un sottosistema esterno anziché all'applicazione web. In Esplora metriche, selezionare il numero di errori di dipendenza hello e di tariffe di durata delle dipendenze e confrontare le cronologie su hello oltre ad alcune ore o giorni con il database è stato rilevato un problema hello. Se vi sono correlazione delle modifiche, un sottosistema esterno potrebbe essere tooblame.  
 
-![Grafici degli errori di dipendenza e delle chiamate di durata alle dipendenze](./media/app-insights-detect-triage-diagnose/11-dependencies.png)
+![Grafici di errore di dipendenza e la durata delle chiamate toodependencies](./media/app-insights-detect-triage-diagnose/11-dependencies.png)
 
 Alcuni problemi di dipendenza lenta sono problemi di georilevazione. La banca Fabrikam usa macchine virtuali di Azure e ha scoperto che aveva inavvertitamente posizionato i server Web e di account in paesi diversi. Si è avuto un notevole miglioramento con la migrazione di uno dei server.
 
-**Che cosa è successo?** Se il problema non sembra essere una dipendenza e se non è sempre presente, è probabilmente causato da una modifica recente. La prospettiva storica offerta dai grafici di metriche e di eventi semplifica la correlazione di eventuali modifiche improvvise con le distribuzioni. Ciò consente di limitare l'ambito della ricerca del problema.
+**Che cosa è successo?** Se non è presente una dipendenza toobe problema hello e se non è sempre presente, è probabilmente provocato da una modifica recente. Hello cronologico prospettiva fornita dai grafici di metrica ed evento hello rende facile toocorrelate eventuali modifiche improvvise con le distribuzioni. Che consente di limitare la ricerca hello per problema hello.
 
-**Cosa sta succedendo?** Alcuni problemi si verificano solo raramente e possono essere difficili da rilevare mediante il test offline. È possibile solo tentare di acquisire il bug quando si verifica in tempo reale. È possibile esaminare i dump dello stack nei report di eccezione. Inoltre, è possibile scrivere le chiamate di traccia, con il framework di registrazione preferito o con TrackTrace() o TrackEvent().  
+**Cosa sta succedendo?** Alcuni problemi si verificano solo raramente e possono essere difficile tootrack verso il basso eseguendo i test non in linea. È possibile eseguire questa operazione è bug di hello toocapture tootry quando si verifica in tempo reale. È possibile esaminare il dump dello stack hello nei report di eccezione. Inoltre, è possibile scrivere le chiamate di traccia, con il framework di registrazione preferito o con TrackTrace() o TrackEvent().  
 
-Fabrikam ha un problema intermittente con i trasferimenti tra conti, ma solo con determinati tipi di conti. Per comprendere meglio la situazione, sono state inserite chiamate TrackTrace() in punti chiave nel codice, associando il tipo di conto come una proprietà a ogni chiamata. In tal modo è facile filtrare solo quelle tracce in Ricerca diagnostica. Sono stati associati anche i valori dei parametri come proprietà e misure alle chiamate di traccia.
+Fabrikam ha un problema intermittente con i trasferimenti tra conti, ma solo con determinati tipi di conti. toounderstand migliori Qual era il problema, vengono inserite le chiamate a tracktrace () presenti in punti chiavi nel codice hello, associare il tipo di account hello come una chiamata di tooeach proprietà. Questo è stato facile toofilter out solo le tracce in ricerca di diagnostica. I nodi collegati anche i valori dei parametri come chiamate di traccia toohello proprietà e le misure.
 
-## <a name="respond-to-discovered-issues"></a>Rispondere ai problemi individuati
-Una volta che è stato diagnosticato il problema, è possibile creare un piano per risolverlo. Potrebbe essere necessario eseguire il rollback di una modifica recente o forse è sufficiente andare avanti per risolvere il problema. Dopo aver eseguito la correzione, Application Insights indicherà se ha avuto esito positivo.  
+## <a name="respond-toodiscovered-issues"></a>Rispondere toodiscovered problemi
+Una volta che è stato: identificato problema hello, è possibile apportare toofix un piano è. Forse è necessario tooroll nuovamente una modifica recente oppure potrebbe essere possibile proseguiamo e correggerlo. Al termine, correzione hello Application Insights indica se ha avuto esito positivo.  
 
-Il team di sviluppo della banca Fabrikam adotta un approccio più strutturato per la misurazione delle prestazioni rispetto a quello usato prima di Application Insights.
+Il team di sviluppo della banca Fabrikam richiedere una misura tooperformance approccio più strutturata rispetto toobefore utilizzati Application Insights.
 
-* Gli obiettivi delle prestazioni erano impostati in termini di misure specifiche nella pagina di panoramica di Application Insights.
-* Progettano le misurazioni di prestazioni nell'applicazione fin dall'inizio, ad esempio le metriche che misurano l'avanzamento utente tramite 'grafici'.  
+* Nella pagina Panoramica di Application Insights hello impostano obiettivi in termini di misure specifiche.
+* Progettano le misurazioni di prestazioni in un'applicazione hello dall'inizio di hello, ad esempio le metriche di hello di misurano lo stato di avanzamento utente tramite 'grafici a imbuto.'  
 
 
 ## <a name="monitor-user-activity"></a>Monitorare l'attività dell'utente
-Quando il tempo di risposta è coerentemente adeguato e sono presenti poche eccezioni, il team di sviluppo può passare all'usabilità. Si può pensare a come migliorare l'esperienza degli utenti e a incoraggiare più utenti affinché raggiungano gli obiettivi desiderati.
+Quando il tempo di risposta è valido in modo coerente e vi sono alcune eccezioni, è possibile spostare team di sviluppo hello in toousability. Si pensi come tooimprove hello esperienza degli utenti, e come tooencourage hello di tooachieve ulteriori utenti desiderato obiettivi.
 
-Application Insights consente anche di essere usato per informazioni sulle operazioni che gli utenti possono eseguire con un'app. Dopo che è stato eseguito senza problemi, il team desidera sapere quali funzionalità sono più diffuse, quali sono quelle preferite dagli utenti o quali presentano problemi e quali sono visitate più frequentemente. Tali informazioni consentiranno di stabilire le priorità relative al lavoro imminente. E sarà possibile valutare l'esito di ogni funzionalità come parte del ciclo di sviluppo. 
+Application Insights può essere anche usato toolearn degli utenti a cui si con un'applicazione. Una volta che viene eseguito senza problemi, team hello sarebbe tooknow quali funzionalità sono hello più diffuso, quali gli utenti come o avere problemi e la frequenza con cui tornare. Tali informazioni consentiranno di stabilire le priorità relative al lavoro imminente. E poter pianificare come parte del ciclo di sviluppo hello successo hello toomeasure di ogni funzionalità. 
 
-Ad esempio, un tipico percorso utente nel sito Web presenta chiaramente un "imbuto." Molti clienti esaminano le frequenze dei diversi tipi di prestito. Un numero inferiore compila il modulo delle offerte. Tra quelli che ricevono un'offerta, alcuni proseguono per avere il prestito.
+Ad esempio, un proprio processo utente tipico tramite sito web hello ha un chiaro "a imbuto." Molti clienti considerano in base alle tariffe di tipi diversi di prestito hello. Un numero inferiore andare toofill nel modulo offerta hello. Di quelle che ottengono una citazione, alcuni proseguiamo e diamo out prestito hello.
 
 ![Numero di visualizzazioni della pagina](./media/app-insights-detect-triage-diagnose/12-funnel.png)
 
-Considerando il punto in cui la maggior parte degli utenti abbandona, l'azienda può valutare come fare in modo che più utenti completino il percorso fino alla fine. In alcuni casi potrebbe trattarsi di un errore dell'esperienza utente, ad esempio, è difficile trovare il pulsante "Avanti" o le istruzioni non sono intuitive. Più probabilmente, esistono motivi aziendali più significativi per gli abbandoni: forse i tassi di prestito sono troppo alti.
+Considerando in entrata hello un numero maggiore di clienti, business hello possibile scoprire come tooget più utenti tramite toohello fondo hello a imbuto. In alcuni casi, potrebbe esserci un errore dell'esperienza utente: ad esempio, il pulsante 'Avanti' hello è toofind disco rigido o istruzioni hello non sono evidenti. Più probabilmente, sono presenti più significativi motivi aziendali per drop-out: forse hello prestito rientrino troppo elevato.
 
-Qualunque sia il motivo, i dati consentono al team di valutare l'attività degli utenti. È possibile inserire più chiamate di rilevamento per scoprire altri dettagli. Si può usare TrackEvent() per contare tutte le azioni utente, dai piccoli dettagli come i singoli clic sui pulsanti, ai risultati più significativi come il pagamento di un prestito.
+Qualsiasi motivo, hello dati hello consentono hello team di risolvere svolte dagli utenti. Rilevamento di altre chiamate può essere inserito toowork ulteriori dettagli. Trackevent può essere utilizzato toocount tutte le azioni utente, da dettaglio hello di fa clic sul pulsante singoli, toosignificant obiettivi, ad esempio estinzione un prestito.
 
-Il team si sta abituando ad avere informazioni sull'attività degli utenti. Attualmente, quando progetta una nuova funzionalità, valuta in che modo potrà ricevere commenti e suggerimenti sull'utilizzo. Progetta quindi chiamate di rilevamento che vengono incorporate nella funzionalità fin dall'inizio. I commenti e suggerimenti saranno usati per migliorare la funzionalità in ogni ciclo di sviluppo.
+team Hello stanno toohaving utilizzato informazioni sulle attività degli utenti. Attualmente, quando progetta una nuova funzionalità, valuta in che modo potrà ricevere commenti e suggerimenti sull'utilizzo. Progettano chiamate di rilevamento nella funzionalità hello dall'inizio hello. Usano funzionalità hello tooimprove commenti e suggerimenti di hello in ogni ciclo di sviluppo.
 
 [Altre informazioni sul monitoraggio dell'utilizzo](app-insights-usage-overview.md).
 
-## <a name="apply-the-devops-cycle"></a>Applicare il ciclo DevOps
-Ecco come un solo team usa Application Insights non solo per risolvere singoli problemi, ma per migliorare il ciclo di vita dello sviluppo. Si tratta di suggerimenti e idee su come Application Insights può aiutare a gestire le prestazioni delle proprie applicazioni.
+## <a name="apply-hello-devops-cycle"></a>Applicare il ciclo di DevOps hello
+Si tratta come un team di usare Application Insights toofix non solo singoli problemi, ma tooimprove intero ciclo di vita di sviluppo. Si tratta di suggerimenti e idee su come Application Insights può aiutare a gestire le prestazioni delle proprie applicazioni.
 
 ## <a name="video"></a>Video
 
 > [!VIDEO https://channel9.msdn.com/events/Connect/2016/112/player]
 
 ## <a name="next-steps"></a>Passaggi successivi
-È possibile iniziare in diversi modi, a seconda delle caratteristiche dell'applicazione. Scegliere l'opzione più adatta:
+È possibile iniziare in diversi modi, a seconda delle caratteristiche di hello dell'applicazione. Scegliere l'opzione più adatta:
 
 * [Applicazione Web ASP.NET](app-insights-asp-net.md)
 * [Applicazione Web Java](app-insights-java-get-started.md)
 * [Applicazione Web Node.js](app-insights-nodejs.md)
 * App già distribuite, ospitate in [IIS](app-insights-monitor-web-app-availability.md), [J2EE](app-insights-java-live.md) o [Azure](app-insights-azure.md).
-* [Pagine Web](app-insights-javascript.md): app a singola pagina o pagina Web ordinaria da usare autonomamente o in combinazione con una delle opzioni del server.
-* [Test di disponibilità](app-insights-monitor-web-app-availability.md) per testare l'applicazione dalla rete internet pubblica.
+* [Pagine Web](app-insights-javascript.md) -applicazione a pagina singola o pagina web comune - usare questo autonomamente o in aggiunta tooany hello opzioni del server.
+* [Test disponibilità](app-insights-monitor-web-app-availability.md) tootest l'app da hello rete internet pubblica.

@@ -1,6 +1,6 @@
 ---
-title: Foglio informativo sulla pipeline di dati automatizzati di Azure Machine Learning | Microsoft Docs
-description: Un foglio informativo stampabile che illustra come configurare una pipeline di dati automatizzati per il servizio web Azure Machine Learning, sia che i dati siano locali, in streaming, in Azure o in un servizio cloud di terze parti.
+title: Machine Learning aaaAzure automatizzata foglio informativo della pipeline di dati | Documenti Microsoft
+description: Un foglio informativo stampabile che mostra come tooset backup un'automatica dei dati della pipeline tooyour servizio web Azure Machine Learning se i dati sono locali, streaming, in Azure o in un servizio cloud di terze parti.
 services: machine-learning
 documentationcenter: 
 author: garyericson
@@ -14,22 +14,22 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/14/2017
 ms.author: mithal;garye
-ms.openlocfilehash: e212b2c935eb0ae64ed1cd2e6dc1564f8fcd503b
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 045f5c0a40fe301fcdc8df61a156f93246286174
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="cheat-sheet-for-an-automated-data-pipeline-for-azure-machine-learning-predictions"></a>Foglio informativo sulla pipeline di dati automatizzati per le stime di Azure Machine Learning
-Il **foglio informativo sulla pipeline di dati automatizzati per le stime di Microsoft Azure Machine Learning** consente di spostarsi tra la tecnologia che si può usare per ottenere i dati per il servizio Web Machine Learning, in cui  i dati stessi possono essere classificati dal modello di analisi predittiva.
+Hello **Microsoft Azure Machine Learning automatizzata foglio informativo della pipeline di dati** consente spostarsi tra la tecnologia è possibile utilizzare tooget il servizio web Machine Learning di tooyour di dati in cui si possono essere assegnati punteggi per la stima modello analitica.
 
-A seconda che i dati siano in locale, nel cloud o in streaming in tempo reale, sono disponibili diversi meccanismi per spostare i dati all'endpoint del servizio web per la classificazione.
-Questo foglio informativo favorisce il processo decisionale e offre collegamenti ad articoli in supporto allo sviluppo della soluzione.
+A seconda che i dati siano in locale, in hello cloud o in streaming in tempo reale, sono disponibili diversi meccanismi disponibili toomove hello tooyour web endpoint del servizio dati per il punteggio.
+Questo si interromperanno foglio informativo tramite decisioni hello necessari toomake e offre tooarticles collegamenti che consentono di sviluppa la soluzione.
 
-## <a name="download-the-machine-learning-automated-data-pipeline-cheat-sheet"></a>Download del foglio informativo sulla pipeline di dati automatizzati di Machine Learning
-Una volta scaricato, è possibile stampare il foglio informativo in formato tabloid (27 x 43 cm circa).
+## <a name="download-hello-machine-learning-automated-data-pipeline-cheat-sheet"></a>Scaricare il foglio informativo della pipeline di hello Machine Learning automatica dei dati
+Dopo avere scaricato foglio informativo hello, è possibile stamparlo dimensioni tabloid (11 x 17 pollici).
 
-Scaricare il foglio informativo qui: **[foglio informativo sulla pipeline di dati automatizzati per le stime di Microsoft Azure Machine Learning](http://download.microsoft.com/download/C/C/7/CC726F8B-2E6F-4C20-9B6F-AFBEE8253023/microsoft-machine-learning-operationalization-cheat-sheet_v1.pdf)**
+Scaricare hello il foglio informativo qui:  **[Microsoft Azure Machine Learning automatizzata foglio informativo della pipeline di dati](http://download.microsoft.com/download/C/C/7/CC726F8B-2E6F-4C20-9B6F-AFBEE8253023/microsoft-machine-learning-operationalization-cheat-sheet_v1.pdf)**
 
 ![Panoramica delle funzionalità di Microsoft Azure Machine Learning Studio][op-cheat-sheet]
 
@@ -37,9 +37,9 @@ Scaricare il foglio informativo qui: **[foglio informativo sulla pipeline di dat
 
 
 ## <a name="more-help-with-machine-learning-studio"></a>Altre informazioni su Machine Learning Studio
-* Per una panoramica di Microsoft Azure Machine Learning, vedere [Introduzione all’apprendimento automatico su Microsoft Azure](machine-learning-what-is-machine-learning.md)
-* Per una spiegazione su come distribuire un servizio Web di classificazione, vedere [Distribuire un servizio Web di Azure Machine Learning](machine-learning-publish-a-machine-learning-web-service.md)
-* Per una spiegazione di come usare un servizio Web di assegnazione dei punteggi, vedere [Come usare un servizio Web di Azure Machine Learning](machine-learning-consume-web-services.md).
+* Per una panoramica di Microsoft Azure Machine Learning, vedere [toomachine introduzione di apprendimento in Microsoft Azure](machine-learning-what-is-machine-learning.md).
+* Per una spiegazione del toodeploy un servizio web di punteggio, vedere [distribuire un servizio web Azure Machine Learning](machine-learning-publish-a-machine-learning-web-service.md).
+* Per una descrizione di come tooconsume un servizio web di punteggio, vedere [come un servizio Web di Azure Machine Learning tooconsume](machine-learning-consume-web-services.md).
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 

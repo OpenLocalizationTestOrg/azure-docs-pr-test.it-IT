@@ -1,6 +1,6 @@
 ---
-title: Registrare le origini dati in Azure Data Catalog | Microsoft Docs
-description: Questo articolo illustra come registrare le origini dati in Azure Data Catalog, inclusi i campi di metadati estratti durante la registrazione.
+title: origini dei dati in Azure Data Catalog aaaRegister | Documenti Microsoft
+description: In questo articolo evidenzia la tooregister origini di dati in Azure Data Catalog, inclusi i campi di metadati hello estrazione durante la registrazione.
 services: data-catalog
 documentationcenter: 
 author: steelanddata
@@ -15,45 +15,45 @@ ms.tgt_pltfrm: NA
 ms.workload: data-catalog
 ms.date: 08/15/2017
 ms.author: maroche
-ms.openlocfilehash: 30166823b33669dda88b41a4aee2dfc34f01466f
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: efc8a852ddc9fb4bbacc7b0280477bd47814936f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="register-data-sources-in-azure-data-catalog"></a>Registrare le origini dati in Azure Data Catalog
 ## <a name="introduction"></a>Introduzione
-Azure Data Catalog è un servizio cloud completamente gestito che funge da sistema di registrazione e di individuazione per le origini dati aziendali. In altre parole, Data Catalog permette agli utenti di trovare, comprendere e usare le origini dati e consente alle organizzazioni di ottenere maggior valore dai dati esistenti. Il primo passaggio per rendere individuabile un'origine dati in Data Catalog consiste nel registrare l'origine dati.
+Azure Data Catalog è un servizio cloud completamente gestito che funge da sistema di registrazione e di individuazione per le origini dati aziendali. In altre parole, Data Catalog permette agli utenti di trovare, comprendere e usare le origini dati e consente alle organizzazioni di ottenere maggior valore dai dati esistenti. primo passaggio toomaking un'origine dati Hello individuabili tramite catalogo dati tooregister di è che l'origine dati.
 
 ## <a name="register-data-sources"></a>Registrare le origini dati
-La registrazione è il processo di estrazione dei metadati da un'origine dati e di copia dei dati nel servizio Data Catalog. I dati rimangono nella posizione in cui risiedono attualmente e sotto il controllo degli amministratori e dei criteri del sistema corrente.
+La registrazione è il processo di hello di estrazione dei metadati dall'origine dati hello e la copia di tale servizio Catalogo dati di toohello di dati. Hello dati restano in cui risiede e rimane in Criteri di sistema corrente hello e controllo hello degli amministratori di hello.
 
-Per registrare un'origine dati, seguire questa procedura:
-1. Nel portale di Azure Data Catalog avviare lo strumento di registrazione delle origini dati di Data Catalog. 
-2. Eseguire l'accesso con l'account aziendale o dell'istituto di istruzione con le stesse credenziali usate per accedere al portale.
-3. Selezionare l'origine dati che si vuole registrare.
+un'origine dati, tooregister hello seguenti:
+1. Nel portale di Azure Data Catalog hello avviare strumento per la registrazione di origine dati di hello catalogo dati. 
+2. Accedere con l'account aziendale o dell'istituto di istruzione con hello stesso che si usa toosign nel portale di toohello le credenziali di Azure Active Directory.
+3. Selezionare l'origine dati di hello da tooregister.
 
-Per altre informazioni dettagliate, vedere [Introduzione ad Azure Data Catalog](data-catalog-get-started.md).
+Per ulteriori informazioni dettagliate, vedere hello [Guida introduttiva di Azure Data Catalog](data-catalog-get-started.md) esercitazione.
 
-Dopo la registrazione dell'origine dati, il catalogo tiene traccia della posizione e ne indicizza i metadati. Gli utenti possono cercare, esplorare e trovare l'origine dati e quindi usarne la posizione per connettersi tramite l'applicazione o lo strumento preferito.
+Dopo aver registrato origine dati hello, catalogo hello tiene traccia di posizione e indicizza i propri metadati. Gli utenti possono eseguire la ricerca, Sfoglia e individua l'origine dati hello e quindi usare relativo tooit tooconnect percorso tramite l'applicazione hello o lo strumento di propria scelta.
 
 ## <a name="supported-data-sources"></a>Origini dati supportate
 Per un elenco di origini dati attualmente supportate, vedere [Riferimento per l'origine dati di Azure Data Catalog](data-catalog-dsr.md).
 
 ## <a name="structural-metadata"></a>Metadati strutturali
-Quando si registra un'origine dati, lo strumento di registrazione estrae le informazioni sulla struttura degli oggetti selezionati. Queste informazioni sono dette metadati strutturali.
+Quando si registra un'origine dati, lo strumento di registrazione hello estrae le informazioni sulla struttura hello degli oggetti hello selezionati. Queste informazioni sono metadati strutturali tooas cui viene fatto riferimento.
 
-Per tutti gli oggetti, questi metadati strutturali includono la posizione dell'oggetto, in modo che gli utenti che trovano i dati possano usare tali informazioni per connettersi all'oggetto negli strumenti client di propria scelta. Altri metadati strutturali includono il tipo e il nome dell'oggetto e il nome di colonna/attributo e il tipo di dati.
+Per tutti gli oggetti, questi metadati strutturali includeranno il percorso dell'oggetto hello, in modo che gli utenti individuare dati hello possono utilizzare l'oggetto di informazioni tooconnect toohello negli strumenti client hello di propria scelta. Altri metadati strutturali includono il tipo e il nome dell'oggetto e il nome di colonna/attributo e il tipo di dati.
 
 ## <a name="descriptive-metadata"></a>Metadati descrittivi
-Oltre ai metadati strutturali di base estratti dall'origine dati, lo strumento di registrazione dell'origine dati estrae i metadati descrittivi. Per SQL Server Analysis Services e SQL Server Reporting Services questi metadati vengono estratti dalle proprietà Description esposte da questi servizi. Per SQL Server vengono estratti i valori specificati con la proprietà estesa ms\_description. Per il database Oracle lo strumento di registrazione dell'origine dati estrae la colonna COMMENTS dalla vista ALL\_TAB\_COMMENTS.
+Inoltre toohello core metadati strutturali estratti dall'origine dati hello, strumento di registrazione di origine dati hello estrae i metadati descrittivi. Per SQL Server Analysis Services e SQL Server Reporting Services, questi metadati viene ricavato dalla proprietà della descrizione hello esposte da questi servizi. Per SQL Server, i valori forniti tramite ms hello\_Descrizione proprietà estesa viene estratto. Per Database Oracle, hello origine dati registrazione strumento estrae hello colonna COMMENTS da hello tutti\_scheda\_Visualizza i commenti.
 
-Oltre ai metadati descrittivi estratti dall'origine dati, gli utenti possono immettere metadati descrittivi usando lo strumento di registrazione dell'origine dati. Gli utenti possono aggiungere tag e identificare esperti per gli oggetti in fase di registrazione. Tutti questi metadati descrittivi vengono copiati nel servizio Data Catalog con i metadati strutturali.
+In aggiunta toohello metadati descrittivi estratti dall'origine dati hello, utenti possono immettere metadati descrittivi mediante strumento di registrazione di origine dati hello. Gli utenti possono aggiungere tag e consentono di identificare gli esperti per gli oggetti hello in corso la registrazione. Tutti questi metadati descrittivi sono copiati servizio Catalogo dati toohello insieme ai metadati strutturali hello.
 
 ## <a name="include-previews"></a>Includere le anteprime
-Per impostazione predefinita, solo i metadati vengono estratti dalle origini dati e copiati nel servizio Data Catalog, ma un'origine dati spesso è più facile da comprendere quando è possibile visualizzare un esempio dei dati che contiene.
+Per impostazione predefinita, solo i metadati vengono estratti da origini dati e copiato toohello servizio Catalogo dati, ma comprensione di che un'origine dati è spesso semplificata quando è possibile visualizzare un campione di dati hello in che esso contenuti.
 
-Usando lo strumento di registrazione dell'origine dati di Data Catalog, è possibile includere un'anteprima dei dati in ogni tabella sotto forma di snapshot e una vista registrata. Se si sceglie di includere anteprime durante la registrazione, lo strumento di registrazione include un massimo di 20 record da ogni tabella e vista. Questo snapshot viene quindi copiato nel catalogo con i metadati strutturali e descrittivi.
+Tramite lo strumento di registrazione hello catalogo dati dell'origine dati, è possibile includere un'anteprima di snapshot dei dati hello in ogni tabella e vista in cui è registrato. Se si scelgono di anteprime tooinclude durante la registrazione, lo strumento di registrazione hello include too20 record da ogni tabella o vista. Lo snapshot viene quindi copiato catalogo toohello insieme ai metadati di hello strutturale e descrittivo.
 
 > [!NOTE]
 > Nell'anteprima delle tabelle di grandi dimensioni con un numero elevato di colonne potrebbero essere inclusi meno di 20 record.
@@ -61,16 +61,16 @@ Usando lo strumento di registrazione dell'origine dati di Data Catalog, è possi
 >
 
 ## <a name="include-data-profiles"></a>Includere i profili dei dati
-Esattamente come l'inclusione delle anteprime può offrire un contesto utile per gli utenti che cercano le origini dati in Data Catalog, includere un profilo dei dati può semplificare la comprensione delle origini dati trovate.
+Come anteprime inclusione possono fornire contesto importante per gli utenti di eseguire la ricerca di origini dati nel catalogo dati, tra cui un profilo di dati può rendere più semplice le origini dati toounderstand individuati.
 
-Usando lo strumento di registrazione dell'origine dati di Data Catalog, è possibile includere un profilo dei dati in ogni tabella e vista registrate. Se si sceglie di includere un profilo dei dati durante la registrazione, lo strumento di registrazione include statistiche aggregate sui dati in ogni tabella o vista, tra cui:
+Tramite lo strumento di registrazione hello catalogo dati dell'origine dati, è possibile includere un profilo dati per ogni tabella e vista in cui è registrato. Se si sceglie un profilo dati tooinclude durante la registrazione, lo strumento di registrazione hello include statistiche aggregate sui dati hello in ogni tabella o vista, tra cui:
 
-* Il numero di righe e le dimensioni dei dati nell'oggetto.
-* La data dell'aggiornamento più recente dei dati e lo schema dell'oggetto.
-* Il numero di record null e i valori distinti per colonne.
-* I valori minimo, massimo, medio e deviazione standard per le colonne.
+* numero di Hello di righe e le dimensioni dei dati di hello nell'oggetto hello.
+* Data Hello hello di aggiornamento più recente dei dati di hello e lo schema dell'oggetto hello.
+* numero di Hello di record null e i valori distinti per le colonne.
+* Hello minima, massima, Media e deviazione standard valori per le colonne.
 
-Queste statistiche vengono quindi copiate nel catalogo con i metadati strutturali e descrittivi.
+Queste statistiche vengono quindi copiate catalogo toohello insieme ai metadati di hello strutturale e descrittivo.
 
 > [!NOTE]
 > Le colonne del testo e della data non includono le statistiche della media o della deviazione standard nel profilo dei dati.
@@ -78,12 +78,12 @@ Queste statistiche vengono quindi copiate nel catalogo con i metadati struttural
 >
 
 ## <a name="update-registrations"></a>Aggiornare le registrazioni
-La registrazione di un'origine dati la rende individuabile in Data Catalog quando si usano i metadati e l'anteprima facoltativa estratti durante la registrazione. Se l'origine dati deve essere aggiornata nel catalogo (ad esempio, se lo schema di un oggetto è stato modificato, le tabelle escluse in origine devono essere incluse oppure si vuole aggiornare i dati inclusi nelle anteprime), è possibile eseguire di nuovo lo strumento di registrazione dell'origine dati.
+Registrazione di un'origine dati rende individuabili nel catalogo dati quando si utilizzano i metadati di hello e anteprima facoltativo estratti durante la registrazione. Se l'origine dati hello toobe aggiornate nel catalogo di hello (ad esempio, se hello schema di un oggetto è stato modificato, originariamente escluse tabelle devono essere incluse, oppure da dati hello tooupdate inclusi nelle anteprime hello), è necessario strumento per la registrazione di origine dati hello può essere eseguita nuovamente.
 
-La nuova registrazione di un'origine dati già registrata esegue un'operazione di unione "upsert": gli oggetti esistenti vengono aggiornati e i nuovi oggetti vengono creati. Tutti i metadati forniti dagli utenti tramite il portale di Data Catalog vengono mantenuti.
+La nuova registrazione di un'origine dati già registrata esegue un'operazione di unione "upsert": gli oggetti esistenti vengono aggiornati e i nuovi oggetti vengono creati. I metadati forniti dagli utenti tramite il portale di catalogo dati hello vengono mantenuti.
 
 ## <a name="summary"></a>Riepilogo
-La registrazione dell'origine dati in Data Catalog, poiché copia i metadati strutturali e descrittivi da un'origine dati al servizio catalogo, rende più facile trovare e comprendere i dati. Dopo avere registrato l'origine dati, è possibile annotarla, gestirla e trovarla usando il portale di Data Catalog.
+Poiché i metadati strutturali e descrittivo copia da un servizio di catalogo toohello origine dati, la registrazione di origine dati hello nel catalogo dati rende più facile toodiscover di hello dati e comprendere. Dopo aver registrato l'origine dati hello, è possibile annotare, gestire e individuandolo utilizzando il portale di catalogo dati hello.
 
 ## <a name="next-steps"></a>Passaggi successivi
-Per altre informazioni sulla registrazione delle origini dati, vedere l'esercitazione [Introduzione ad Azure Data Catalog](data-catalog-get-started.md).
+Per ulteriori informazioni sulla registrazione di origini dati, vedere hello [Guida introduttiva di Azure Data Catalog](data-catalog-get-started.md) esercitazione.

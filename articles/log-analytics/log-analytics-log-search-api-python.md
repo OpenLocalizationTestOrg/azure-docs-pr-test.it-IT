@@ -1,6 +1,6 @@
 ---
-title: Script Python per recuperare dati da Azure Log Analytics | Microsoft Docs
-description: L'API di ricerca log Log Analytics consente a qualsiasi client API REST di recuperare dati da un'area di lavoro di Log Analytics.  Questo articolo fornisce uno script Python di esempio tramite l'API di ricerca log.
+title: dati da Azure Log Analitica tooretrieve degli script aaaPython | Documenti Microsoft
+description: API di ricerca Log Analitica Log Hello consente qualsiasi client dell'API REST tooretrieve dati da un'area di lavoro Log Analitica.  Questo articolo fornisce uno script Python di esempio tramite l'API di ricerca Log hello.
 services: log-analytics
 documentationcenter: 
 author: bwren
@@ -13,22 +13,22 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 06/28/2017
 ms.author: bwren
-ms.openlocfilehash: 56d7c6dc648a01e7b0efc167cb65c94bac5468ec
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a45693b04cd388301b859e7186ca671786d0229e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="retrieve-data-from-log-analytics-with-a-python-script"></a><span data-ttu-id="8e43a-104">Recuperare i dati da Log Analytics con uno script Python</span><span class="sxs-lookup"><span data-stu-id="8e43a-104">Retrieve data from Log Analytics with a Python script</span></span>
-<span data-ttu-id="8e43a-105">L'[API di ricerca log Log Analytics](log-analytics-log-search-api.md) consente a qualsiasi client API REST di recuperare dati da un'area di lavoro di Log Analytics.</span><span class="sxs-lookup"><span data-stu-id="8e43a-105">The [Log Analytics Log Search API](log-analytics-log-search-api.md) allows any REST API client to retrieve data from a Log Analytics workspace.</span></span>  <span data-ttu-id="8e43a-106">Questo articolo presenta uno script Python di esempio che utilizza l'API di ricerca log Log Analytics.</span><span class="sxs-lookup"><span data-stu-id="8e43a-106">This article presents a sample Python script that uses the Log Analytics Log Search API.</span></span>  
+# <a name="retrieve-data-from-log-analytics-with-a-python-script"></a><span data-ttu-id="28fa4-104">Recuperare i dati da Log Analytics con uno script Python</span><span class="sxs-lookup"><span data-stu-id="28fa4-104">Retrieve data from Log Analytics with a Python script</span></span>
+<span data-ttu-id="28fa4-105">Hello [API di ricerca Log Analitica Log](log-analytics-log-search-api.md) consente a qualsiasi client dell'API REST tooretrieve dati da un'area di lavoro Log Analitica.</span><span class="sxs-lookup"><span data-stu-id="28fa4-105">hello [Log Analytics Log Search API](log-analytics-log-search-api.md) allows any REST API client tooretrieve data from a Log Analytics workspace.</span></span>  <span data-ttu-id="28fa4-106">In questo articolo presenta uno script Python di esempio che utilizza l'API di ricerca Log Analitica Log hello.</span><span class="sxs-lookup"><span data-stu-id="28fa4-106">This article presents a sample Python script that uses hello Log Analytics Log Search API.</span></span>  
 
-## <a name="authentication"></a><span data-ttu-id="8e43a-107">Autenticazione</span><span class="sxs-lookup"><span data-stu-id="8e43a-107">Authentication</span></span>
-<span data-ttu-id="8e43a-108">Questo script utilizza un'entità servizio in Azure Active Directory per l'autenticazione nell'area di lavoro.</span><span class="sxs-lookup"><span data-stu-id="8e43a-108">This script uses a service principal in Azure Active Directory to authenticate to the workspace.</span></span>  <span data-ttu-id="8e43a-109">Le entità servizio consentono a un'applicazione client di richiedere al servizio l'autenticazione di un account anche se il client non ha il nome dell'account.</span><span class="sxs-lookup"><span data-stu-id="8e43a-109">Service principals allow a client application to request that the service authenticate an account even if the client does not have the account name.</span></span> <span data-ttu-id="8e43a-110">Prima di eseguire lo script, creare un'entità servizio utilizzando il processo di [Usare il portale per creare un'applicazione Azure Active Directory e un'entità servizio che possano accedere alle risorse](../azure-resource-manager/resource-group-create-service-principal-portal.md).</span><span class="sxs-lookup"><span data-stu-id="8e43a-110">Before running this script, you must create a service principal using the process at [Use portal to create an Azure Active Directory application and service principal that can access resources](../azure-resource-manager/resource-group-create-service-principal-portal.md).</span></span>  <span data-ttu-id="8e43a-111">È necessario fornire allo script l'ID applicazione, l'ID tenant e la chiave di autenticazione.</span><span class="sxs-lookup"><span data-stu-id="8e43a-111">You'll need to provide the Application ID, Tenant ID, and Authentication Key to the script.</span></span> 
+## <a name="authentication"></a><span data-ttu-id="28fa4-107">Autenticazione</span><span class="sxs-lookup"><span data-stu-id="28fa4-107">Authentication</span></span>
+<span data-ttu-id="28fa4-108">Questo script utilizza un'entità servizio dell'area di lavoro di Azure Active Directory tooauthenticate toohello.</span><span class="sxs-lookup"><span data-stu-id="28fa4-108">This script uses a service principal in Azure Active Directory tooauthenticate toohello workspace.</span></span>  <span data-ttu-id="28fa4-109">Le entità servizio consentono a un client applicazione toorequest che hello servizio autenticare un account anche se hello client non dispone di nome dell'account hello.</span><span class="sxs-lookup"><span data-stu-id="28fa4-109">Service principals allow a client application toorequest that hello service authenticate an account even if hello client does not have hello account name.</span></span> <span data-ttu-id="28fa4-110">Prima di eseguire questo script, è necessario creare un'entità servizio tramite il processo di hello in [utilizzare portale toocreate un'applicazione Azure Active Directory e dell'entità servizio che possono accedere alle risorse](../azure-resource-manager/resource-group-create-service-principal-portal.md).</span><span class="sxs-lookup"><span data-stu-id="28fa4-110">Before running this script, you must create a service principal using hello process at [Use portal toocreate an Azure Active Directory application and service principal that can access resources](../azure-resource-manager/resource-group-create-service-principal-portal.md).</span></span>  <span data-ttu-id="28fa4-111">È necessario tooprovide hello ID applicazione, ID Tenant e chiave di autenticazione toohello script.</span><span class="sxs-lookup"><span data-stu-id="28fa4-111">You'll need tooprovide hello Application ID, Tenant ID, and Authentication Key toohello script.</span></span> 
 
 > [!NOTE]
-> <span data-ttu-id="8e43a-112">Quando si [crea un account di Automazione di Azure](../automation/automation-create-standalone-account.md), viene creata un'entità servizio adatta all'uso con questo script.</span><span class="sxs-lookup"><span data-stu-id="8e43a-112">When you [create an Azure Automation account](../automation/automation-create-standalone-account.md), a service principal is created that is suitable to use with this script.</span></span>  <span data-ttu-id="8e43a-113">Se si ha già un'entità servizio creata da Automazione di Azure, è possibile utilizzare quella anziché crearne una nuova, anche se può essere necessario [creare una chiave di autenticazione](../azure-resource-manager/resource-group-create-service-principal-portal.md#get-application-id-and-authentication-key) se l'entità non ne ha già una.</span><span class="sxs-lookup"><span data-stu-id="8e43a-113">If you already have a service principal created by Azure Automation then you should be able to use it instead of creating a new one, although you may need to [create an authentication key](../azure-resource-manager/resource-group-create-service-principal-portal.md#get-application-id-and-authentication-key) if it doesn't already have one.</span></span>
+> <span data-ttu-id="28fa4-112">Quando si [creare un account di automazione di Azure](../automation/automation-create-standalone-account.md), un'entità servizio viene creata toouse adatto con questo script.</span><span class="sxs-lookup"><span data-stu-id="28fa4-112">When you [create an Azure Automation account](../automation/automation-create-standalone-account.md), a service principal is created that is suitable toouse with this script.</span></span>  <span data-ttu-id="28fa4-113">Se si dispone già di un'entità servizio creata di automazione di Azure, dovrebbe essere in grado di toouse, anziché crearne uno nuovo, anche se potrebbe essere troppo[creare una chiave di autenticazione](../azure-resource-manager/resource-group-create-service-principal-portal.md#get-application-id-and-authentication-key) se non ne ha già uno.</span><span class="sxs-lookup"><span data-stu-id="28fa4-113">If you already have a service principal created by Azure Automation then you should be able toouse it instead of creating a new one, although you may need too[create an authentication key](../azure-resource-manager/resource-group-create-service-principal-portal.md#get-application-id-and-authentication-key) if it doesn't already have one.</span></span>
 
-## <a name="script"></a><span data-ttu-id="8e43a-114">Script</span><span class="sxs-lookup"><span data-stu-id="8e43a-114">Script</span></span>
+## <a name="script"></a><span data-ttu-id="28fa4-114">Script</span><span class="sxs-lookup"><span data-stu-id="28fa4-114">Script</span></span>
 ``` python
 import adal
 import requests
@@ -40,7 +40,7 @@ from pprint import pprint
 resource_group = 'xxxxxxxx'
 workspace = 'xxxxxxxx'
 
-# Details of query.  Modify these to your requirements.
+# Details of query.  Modify these tooyour requirements.
 query = "Type=Event"
 end_time = datetime.datetime.utcnow()
 start_time = end_time - datetime.timedelta(hours=24)
@@ -61,7 +61,7 @@ context = adal.AuthenticationContext('https://login.microsoftonline.com/' + tena
 token_response = context.acquire_token_with_client_credentials('https://management.core.windows.net/', application_id, application_key)
 access_token = token_response.get('accessToken')
 
-# Add token to header
+# Add token tooheader
 headers = {
     "Authorization": 'Bearer ' + access_token,
     "Content-Type":'application/json'
@@ -90,7 +90,7 @@ response = requests.post(uri,json=search_params,headers=headers)
 # Response of 200 if successful
 if response.status_code == 200:
 
-    # Parse the response to get the ID and status
+    # Parse hello response tooget hello ID and status
     data = response.json()
     search_id = data["id"].split("/")
     id = search_id[len(search_id)-1]
@@ -99,12 +99,12 @@ if response.status_code == 200:
     # If status is pending, then keep checking until complete
     while status == "Pending":
 
-        # Build URL to get search from ID and send request
+        # Build URL tooget search from ID and send request
         uri_search = uri_search + '/' + id
         uri = uri_search + '?' + uri_api
         response = requests.get(uri,headers=headers)
 
-        # Parse the response to get the status
+        # Parse hello response tooget hello status
         data = response.json()
         status = data["__metadata"]["Status"]
 
@@ -118,5 +118,5 @@ print ("Total records:" + str(data["__metadata"]["total"]))
 print ("Returned top:" + str(data["__metadata"]["top"]))
 pprint (data["value"])
 ```
-## <a name="next-steps"></a><span data-ttu-id="8e43a-115">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="8e43a-115">Next steps</span></span>
-- <span data-ttu-id="8e43a-116">Altre informazioni sull'[API di ricerca log Log Analytics](log-analytics-log-search-api.md).</span><span class="sxs-lookup"><span data-stu-id="8e43a-116">Learn more about the [Log Analytics Log Search API](log-analytics-log-search-api.md).</span></span>
+## <a name="next-steps"></a><span data-ttu-id="28fa4-115">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="28fa4-115">Next steps</span></span>
+- <span data-ttu-id="28fa4-116">Altre informazioni su hello [API di ricerca Log Analitica Log](log-analytics-log-search-api.md).</span><span class="sxs-lookup"><span data-stu-id="28fa4-116">Learn more about hello [Log Analytics Log Search API](log-analytics-log-search-api.md).</span></span>

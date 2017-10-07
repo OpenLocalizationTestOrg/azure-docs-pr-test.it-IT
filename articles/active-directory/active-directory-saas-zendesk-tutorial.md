@@ -1,6 +1,6 @@
 ---
 title: 'Esercitazione: Integrazione di Azure Active Directory con Zendesk | Microsoft Docs'
-description: Informazioni su come configurare l'accesso Single Sign-On tra Azure Active Directory e Zendesk.
+description: Informazioni su come tooconfigure single sign-on tra Azure Active Directory e Zendesk.
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,264 +13,264 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/28/2017
 ms.author: jeedes
-ms.openlocfilehash: 51c06d838c5ed6286dfb99ea25faaaf33bad5f3c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 46ccd57a4adeb810af459caaa1e592cf2b62cb8c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="tutorial-azure-active-directory-integration-with-zendesk"></a><span data-ttu-id="a634f-103">Esercitazione: Integrazione di Azure Active Directory con Zendesk</span><span class="sxs-lookup"><span data-stu-id="a634f-103">Tutorial: Azure Active Directory integration with Zendesk</span></span>
+# <a name="tutorial-azure-active-directory-integration-with-zendesk"></a><span data-ttu-id="59a2d-103">Esercitazione: Integrazione di Azure Active Directory con Zendesk</span><span class="sxs-lookup"><span data-stu-id="59a2d-103">Tutorial: Azure Active Directory integration with Zendesk</span></span>
 
-<span data-ttu-id="a634f-104">Questa esercitazione descrive come integrare Zendesk con Azure Active Directory (Azure AD).</span><span class="sxs-lookup"><span data-stu-id="a634f-104">In this tutorial, you learn how to integrate Zendesk with Azure Active Directory (Azure AD).</span></span>
+<span data-ttu-id="59a2d-104">In questa esercitazione, è illustrato come toointegrate Zendesk con Azure Active Directory (Azure AD).</span><span class="sxs-lookup"><span data-stu-id="59a2d-104">In this tutorial, you learn how toointegrate Zendesk with Azure Active Directory (Azure AD).</span></span>
 
-<span data-ttu-id="a634f-105">L'integrazione di Zendesk con Azure AD offre i vantaggi seguenti:</span><span class="sxs-lookup"><span data-stu-id="a634f-105">Integrating Zendesk with Azure AD provides you with the following benefits:</span></span>
+<span data-ttu-id="59a2d-105">Integrazione di Zendesk con Azure AD fornisce hello seguenti vantaggi:</span><span class="sxs-lookup"><span data-stu-id="59a2d-105">Integrating Zendesk with Azure AD provides you with hello following benefits:</span></span>
 
-- <span data-ttu-id="a634f-106">È possibile controllare in Azure AD chi può accedere a Zendesk</span><span class="sxs-lookup"><span data-stu-id="a634f-106">You can control in Azure AD who has access to Zendesk</span></span>
-- <span data-ttu-id="a634f-107">È possibile abilitare gli utenti per l'accesso automatico a Zendesk (Single Sign-On) con i propri account Azure AD</span><span class="sxs-lookup"><span data-stu-id="a634f-107">You can enable your users to automatically get signed-on to Zendesk (Single Sign-On) with their Azure AD accounts</span></span>
-- <span data-ttu-id="a634f-108">È possibile gestire gli account in un'unica posizione centrale: il portale di Azure.</span><span class="sxs-lookup"><span data-stu-id="a634f-108">You can manage your accounts in one central location - the Azure portal</span></span>
+- <span data-ttu-id="59a2d-106">È possibile controllare in Azure AD che ha accesso tooZendesk</span><span class="sxs-lookup"><span data-stu-id="59a2d-106">You can control in Azure AD who has access tooZendesk</span></span>
+- <span data-ttu-id="59a2d-107">È possibile abilitare l'utenti tooautomatically get connesso tooZendesk (Single Sign-On) con i propri account Azure AD</span><span class="sxs-lookup"><span data-stu-id="59a2d-107">You can enable your users tooautomatically get signed-on tooZendesk (Single Sign-On) with their Azure AD accounts</span></span>
+- <span data-ttu-id="59a2d-108">È possibile gestire gli account in un'unica posizione centrale - hello portale di Azure</span><span class="sxs-lookup"><span data-stu-id="59a2d-108">You can manage your accounts in one central location - hello Azure portal</span></span>
 
-<span data-ttu-id="a634f-109">Per altre informazioni sull'integrazione di app SaaS con Azure AD, vedere [Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory](active-directory-appssoaccess-whatis.md).</span><span class="sxs-lookup"><span data-stu-id="a634f-109">If you want to know more details about SaaS app integration with Azure AD, see [what is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).</span></span>
+<span data-ttu-id="59a2d-109">Se si desiderano tooknow ulteriori informazioni sull'integrazione dell'applicazione SaaS con Azure AD, vedere [novità di accesso alle applicazioni e single sign-on con Azure Active Directory](active-directory-appssoaccess-whatis.md).</span><span class="sxs-lookup"><span data-stu-id="59a2d-109">If you want tooknow more details about SaaS app integration with Azure AD, see [what is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="a634f-110">Prerequisiti</span><span class="sxs-lookup"><span data-stu-id="a634f-110">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="59a2d-110">Prerequisiti</span><span class="sxs-lookup"><span data-stu-id="59a2d-110">Prerequisites</span></span>
 
-<span data-ttu-id="a634f-111">Per configurare l'integrazione di Azure AD con Zendesk, sono necessari gli elementi seguenti:</span><span class="sxs-lookup"><span data-stu-id="a634f-111">To configure Azure AD integration with Zendesk, you need the following items:</span></span>
+<span data-ttu-id="59a2d-111">integrazione di Azure AD con Zendesk tooconfigure, è necessario hello seguenti elementi:</span><span class="sxs-lookup"><span data-stu-id="59a2d-111">tooconfigure Azure AD integration with Zendesk, you need hello following items:</span></span>
 
-- <span data-ttu-id="a634f-112">Sottoscrizione di Azure AD.</span><span class="sxs-lookup"><span data-stu-id="a634f-112">An Azure AD subscription</span></span>
-- <span data-ttu-id="a634f-113">Zendesk abilitata per l'accesso Single Sign-On</span><span class="sxs-lookup"><span data-stu-id="a634f-113">A Zendesk single sign-on enabled subscription</span></span>
+- <span data-ttu-id="59a2d-112">Sottoscrizione di Azure AD.</span><span class="sxs-lookup"><span data-stu-id="59a2d-112">An Azure AD subscription</span></span>
+- <span data-ttu-id="59a2d-113">Zendesk abilitata per l'accesso Single Sign-On</span><span class="sxs-lookup"><span data-stu-id="59a2d-113">A Zendesk single sign-on enabled subscription</span></span>
 
 
 > [!NOTE]
-> <span data-ttu-id="a634f-114">Non è consigliabile usare un ambiente di produzione per testare i passaggi di questa esercitazione.</span><span class="sxs-lookup"><span data-stu-id="a634f-114">To test the steps in this tutorial, we do not recommend using a production environment.</span></span>
+> <span data-ttu-id="59a2d-114">hello tootest i passaggi in questa esercitazione, è consigliabile utilizzare un ambiente di produzione.</span><span class="sxs-lookup"><span data-stu-id="59a2d-114">tootest hello steps in this tutorial, we do not recommend using a production environment.</span></span>
 
 
-<span data-ttu-id="a634f-115">A questo scopo, è consigliabile seguire le indicazioni seguenti:</span><span class="sxs-lookup"><span data-stu-id="a634f-115">To test the steps in this tutorial, you should follow these recommendations:</span></span>
+<span data-ttu-id="59a2d-115">passaggi di hello tootest in questa esercitazione, è necessario seguire questi suggerimenti:</span><span class="sxs-lookup"><span data-stu-id="59a2d-115">tootest hello steps in this tutorial, you should follow these recommendations:</span></span>
 
-- <span data-ttu-id="a634f-116">Non usare l'ambiente di produzione a meno che non sia necessario.</span><span class="sxs-lookup"><span data-stu-id="a634f-116">Do not use your production environment, unless it is necessary.</span></span>
-- <span data-ttu-id="a634f-117">Se non si dispone di un ambiente di prova di Azure AD, è possibile ottenere una versione di valutazione di un mese [qui](https://azure.microsoft.com/pricing/free-trial/).</span><span class="sxs-lookup"><span data-stu-id="a634f-117">If you don't have an Azure AD trial environment, you can get a one-month trial [here](https://azure.microsoft.com/pricing/free-trial/).</span></span>
-
-
-## <a name="scenario-description"></a><span data-ttu-id="a634f-118">Descrizione dello scenario</span><span class="sxs-lookup"><span data-stu-id="a634f-118">Scenario description</span></span>
-<span data-ttu-id="a634f-119">In questa esercitazione viene eseguito il test dell'accesso Single Sign-On di Azure AD in un ambiente di test.</span><span class="sxs-lookup"><span data-stu-id="a634f-119">In this tutorial, you test Azure AD single sign-on in a test environment.</span></span> <span data-ttu-id="a634f-120">Lo scenario descritto in questa esercitazione prevede i due blocchi predefiniti seguenti:</span><span class="sxs-lookup"><span data-stu-id="a634f-120">The scenario outlined in this tutorial consists of two main building blocks:</span></span>
-
-1. <span data-ttu-id="a634f-121">Aggiunta di Zendesk dalla raccolta</span><span class="sxs-lookup"><span data-stu-id="a634f-121">Adding Zendesk from the gallery</span></span>
-2. <span data-ttu-id="a634f-122">Configurazione e test dell'accesso Single Sign-On di Azure AD</span><span class="sxs-lookup"><span data-stu-id="a634f-122">Configuring and testing Azure AD single sign-on</span></span>
+- <span data-ttu-id="59a2d-116">Non usare l'ambiente di produzione a meno che non sia necessario.</span><span class="sxs-lookup"><span data-stu-id="59a2d-116">Do not use your production environment, unless it is necessary.</span></span>
+- <span data-ttu-id="59a2d-117">Se non si dispone di un ambiente di prova di Azure AD, è possibile ottenere una versione di valutazione di un mese [qui](https://azure.microsoft.com/pricing/free-trial/).</span><span class="sxs-lookup"><span data-stu-id="59a2d-117">If you don't have an Azure AD trial environment, you can get a one-month trial [here](https://azure.microsoft.com/pricing/free-trial/).</span></span>
 
 
-## <a name="adding-zendesk-from-the-gallery"></a><span data-ttu-id="a634f-123">Aggiunta di Zendesk dalla raccolta</span><span class="sxs-lookup"><span data-stu-id="a634f-123">Adding Zendesk from the gallery</span></span>
-<span data-ttu-id="a634f-124">Per configurare l'integrazione di Zendesk in Azure AD, è necessario aggiungerla dalla raccolta al proprio elenco di app SaaS gestite.</span><span class="sxs-lookup"><span data-stu-id="a634f-124">To configure the integration of Zendesk into Azure AD, you need to add Zendesk from the gallery to your list of managed SaaS apps.</span></span>
+## <a name="scenario-description"></a><span data-ttu-id="59a2d-118">Descrizione dello scenario</span><span class="sxs-lookup"><span data-stu-id="59a2d-118">Scenario description</span></span>
+<span data-ttu-id="59a2d-119">In questa esercitazione viene eseguito il test dell'accesso Single Sign-On di Azure AD in un ambiente di test.</span><span class="sxs-lookup"><span data-stu-id="59a2d-119">In this tutorial, you test Azure AD single sign-on in a test environment.</span></span> <span data-ttu-id="59a2d-120">scenario di Hello descritto in questa esercitazione è composto da due componenti principali:</span><span class="sxs-lookup"><span data-stu-id="59a2d-120">hello scenario outlined in this tutorial consists of two main building blocks:</span></span>
 
-<span data-ttu-id="a634f-125">**Per aggiungere Zendesk dalla raccolta, seguire questa procedura:**</span><span class="sxs-lookup"><span data-stu-id="a634f-125">**To add Zendesk from the gallery, perform the following steps:**</span></span>
+1. <span data-ttu-id="59a2d-121">Aggiunta di Zendesk dalla raccolta hello</span><span class="sxs-lookup"><span data-stu-id="59a2d-121">Adding Zendesk from hello gallery</span></span>
+2. <span data-ttu-id="59a2d-122">Configurazione e test dell'accesso Single Sign-On di Azure AD</span><span class="sxs-lookup"><span data-stu-id="59a2d-122">Configuring and testing Azure AD single sign-on</span></span>
 
-1. <span data-ttu-id="a634f-126">Nel **[portale di Azure](https://portal.azure.com)** fare clic sull'icona di **Azure Active Directory** nel riquadro di spostamento sinistro.</span><span class="sxs-lookup"><span data-stu-id="a634f-126">In the **[Azure Portal](https://portal.azure.com)**, on the left navigation panel, click **Azure Active Directory** icon.</span></span> 
+
+## <a name="adding-zendesk-from-hello-gallery"></a><span data-ttu-id="59a2d-123">Aggiunta di Zendesk dalla raccolta hello</span><span class="sxs-lookup"><span data-stu-id="59a2d-123">Adding Zendesk from hello gallery</span></span>
+<span data-ttu-id="59a2d-124">integrazione hello tooconfigure di Zendesk in Azure AD, è necessario tooadd Zendesk dall'elenco di tooyour hello raccolta di App SaaS gestite.</span><span class="sxs-lookup"><span data-stu-id="59a2d-124">tooconfigure hello integration of Zendesk into Azure AD, you need tooadd Zendesk from hello gallery tooyour list of managed SaaS apps.</span></span>
+
+<span data-ttu-id="59a2d-125">**tooadd Zendesk dalla raccolta di hello, eseguire hello alla procedura seguente:**</span><span class="sxs-lookup"><span data-stu-id="59a2d-125">**tooadd Zendesk from hello gallery, perform hello following steps:**</span></span>
+
+1. <span data-ttu-id="59a2d-126">In hello  **[portale Azure](https://portal.azure.com)**via hello del Pannello di navigazione a sinistra, fare clic su **Azure Active Directory** icona.</span><span class="sxs-lookup"><span data-stu-id="59a2d-126">In hello **[Azure Portal](https://portal.azure.com)**, on hello left navigation panel, click **Azure Active Directory** icon.</span></span> 
 
     ![Active Directory][1]
 
-2. <span data-ttu-id="a634f-128">Passare ad **Applicazioni aziendali**.</span><span class="sxs-lookup"><span data-stu-id="a634f-128">Navigate to **Enterprise applications**.</span></span> <span data-ttu-id="a634f-129">Andare quindi a **Tutte le applicazioni**.</span><span class="sxs-lookup"><span data-stu-id="a634f-129">Then go to **All applications**.</span></span>
+2. <span data-ttu-id="59a2d-128">Passare troppo**applicazioni aziendali**.</span><span class="sxs-lookup"><span data-stu-id="59a2d-128">Navigate too**Enterprise applications**.</span></span> <span data-ttu-id="59a2d-129">Quindi andare troppo**tutte le applicazioni**.</span><span class="sxs-lookup"><span data-stu-id="59a2d-129">Then go too**All applications**.</span></span>
 
     ![Applicazioni][2]
     
-3. <span data-ttu-id="a634f-131">Fare clic sul pulsante **Nuova applicazione** nella parte superiore della finestra di dialogo.</span><span class="sxs-lookup"><span data-stu-id="a634f-131">Click **New application** button on the top of the dialog.</span></span>
+3. <span data-ttu-id="59a2d-131">Fare clic su **nuova applicazione** pulsante nella parte superiore di hello della finestra di dialogo hello.</span><span class="sxs-lookup"><span data-stu-id="59a2d-131">Click **New application** button on hello top of hello dialog.</span></span>
 
     ![Applicazioni][3]
 
-4. <span data-ttu-id="a634f-133">Nella casella di ricerca digitare **Zendesk**.</span><span class="sxs-lookup"><span data-stu-id="a634f-133">In the search box, type **Zendesk**.</span></span>
+4. <span data-ttu-id="59a2d-133">Nella casella di ricerca hello, digitare **Zendesk**.</span><span class="sxs-lookup"><span data-stu-id="59a2d-133">In hello search box, type **Zendesk**.</span></span>
 
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-zendesk-tutorial/tutorial_zendesk_search.png)
 
-5. <span data-ttu-id="a634f-135">Nel pannello dei risultati selezionare **Zendesk** e quindi fare clic sul pulsante **Aggiungi** per aggiungere l'applicazione.</span><span class="sxs-lookup"><span data-stu-id="a634f-135">In the results panel, select **Zendesk**, and then click **Add** button to add the application.</span></span>
+5. <span data-ttu-id="59a2d-135">Nel riquadro dei risultati hello, selezionare **Zendesk**, quindi fare clic su **Aggiungi** pulsante applicazione hello tooadd.</span><span class="sxs-lookup"><span data-stu-id="59a2d-135">In hello results panel, select **Zendesk**, and then click **Add** button tooadd hello application.</span></span>
 
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-zendesk-tutorial/tutorial_zendesk_addfromgallery.png)
 
-##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a><span data-ttu-id="a634f-137">Configurazione e test dell'accesso Single Sign-On di Azure AD</span><span class="sxs-lookup"><span data-stu-id="a634f-137">Configuring and testing Azure AD single sign-on</span></span>
-<span data-ttu-id="a634f-138">In questa sezione viene configurato e testato l'accesso Single Sign-On di Azure AD con Zendesk in base a un utente test di nome "Britta Simon".</span><span class="sxs-lookup"><span data-stu-id="a634f-138">In this section, you configure and test Azure AD single sign-on with Zendesk based on a test user called "Britta Simon".</span></span>
+##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a><span data-ttu-id="59a2d-137">Configurazione e test dell'accesso Single Sign-On di Azure AD</span><span class="sxs-lookup"><span data-stu-id="59a2d-137">Configuring and testing Azure AD single sign-on</span></span>
+<span data-ttu-id="59a2d-138">In questa sezione viene configurato e testato l'accesso Single Sign-On di Azure AD con Zendesk in base a un utente test di nome "Britta Simon".</span><span class="sxs-lookup"><span data-stu-id="59a2d-138">In this section, you configure and test Azure AD single sign-on with Zendesk based on a test user called "Britta Simon".</span></span>
 
-<span data-ttu-id="a634f-139">Per il funzionamento dell'accesso Single Sign-On, Azure AD deve conoscere qual è l'utente di Zendesk che corrisponde a un utente di Azure AD.</span><span class="sxs-lookup"><span data-stu-id="a634f-139">For single sign-on to work, Azure AD needs to know what the counterpart user in Zendesk is to a user in Azure AD.</span></span> <span data-ttu-id="a634f-140">In altre parole, deve essere stabilita una relazione di collegamento tra un utente di Azure AD e l'utente correlato in Zendesk.</span><span class="sxs-lookup"><span data-stu-id="a634f-140">In other words, a link relationship between an Azure AD user and the related user in Zendesk needs to be established.</span></span>
+<span data-ttu-id="59a2d-139">Per toowork di accesso singolo, Azure AD deve tooknow quale utente controparte hello in Zendesk è tooa utente in Azure AD.</span><span class="sxs-lookup"><span data-stu-id="59a2d-139">For single sign-on toowork, Azure AD needs tooknow what hello counterpart user in Zendesk is tooa user in Azure AD.</span></span> <span data-ttu-id="59a2d-140">In altre parole, una relazione di collegamento tra un utente di Azure Active Directory e l'utente correlato di hello in Zendesk richiede toobe stabilita.</span><span class="sxs-lookup"><span data-stu-id="59a2d-140">In other words, a link relationship between an Azure AD user and hello related user in Zendesk needs toobe established.</span></span>
 
-<span data-ttu-id="a634f-141">La relazione di collegamento viene stabilita assegnando al valore di **nome utente** in Azure AD lo stesso valore di **Username** (Nome utente) in Zendesk.</span><span class="sxs-lookup"><span data-stu-id="a634f-141">This link relationship is established by assigning the value of the **user name** in Azure AD as the value of the **Username** in Zendesk.</span></span>
+<span data-ttu-id="59a2d-141">Questa relazione di collegamento viene stabilita tramite l'assegnazione valore hello di hello **nome utente** in Azure AD come valore hello hello **Username** in Zendesk.</span><span class="sxs-lookup"><span data-stu-id="59a2d-141">This link relationship is established by assigning hello value of hello **user name** in Azure AD as hello value of hello **Username** in Zendesk.</span></span>
 
-<span data-ttu-id="a634f-142">Per configurare e testare l'accesso Single Sign-On di Azure AD con Zendesk, è necessario completare i blocchi predefiniti seguenti:</span><span class="sxs-lookup"><span data-stu-id="a634f-142">To configure and test Azure AD single sign-on with Zendesk, you need to complete the following building blocks:</span></span>
+<span data-ttu-id="59a2d-142">tooconfigure e test Azure single sign-on AD con Zendesk, è necessario hello toocomplete seguenti blocchi predefiniti:</span><span class="sxs-lookup"><span data-stu-id="59a2d-142">tooconfigure and test Azure AD single sign-on with Zendesk, you need toocomplete hello following building blocks:</span></span>
 
-1. <span data-ttu-id="a634f-143">**[Configurazione dell'accesso Single Sign-On di Azure AD](#configuring-azure-ad-single-sign-on)** : per abilitare gli utenti all'utilizzo di questa funzionalità.</span><span class="sxs-lookup"><span data-stu-id="a634f-143">**[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** - to enable your users to use this feature.</span></span>
-2. <span data-ttu-id="a634f-144">**[Creazione di un utente test di Azure AD](#creating-an-azure-ad-test-user)** : per testare l'accesso Single Sign-On di Azure AD con l'utente Britta Simon.</span><span class="sxs-lookup"><span data-stu-id="a634f-144">**[Creating an Azure AD test user](#creating-an-azure-ad-test-user)** - to test Azure AD single sign-on with Britta Simon.</span></span>
-3. <span data-ttu-id="a634f-145">**[Creazione di un utente di test di Zendesk](#creating-a-zendesk-test-user)**: per avere una controparte di Britta Simon in Zendesk collegata alla relativa rappresentazione in Azure AD dell'utente.</span><span class="sxs-lookup"><span data-stu-id="a634f-145">**[Creating a Zendesk test user](#creating-a-zendesk-test-user)** - to have a counterpart of Britta Simon in Zendesk that is linked to the Azure AD representation of user.</span></span>
-4. <span data-ttu-id="a634f-146">**[Assegnazione dell'utente test di Azure AD](#assigning-the-azure-ad-test-user)** : per abilitare Britta Simon all'uso dell'accesso Single Sign-On di Azure AD.</span><span class="sxs-lookup"><span data-stu-id="a634f-146">**[Assigning the Azure AD test user](#assigning-the-azure-ad-test-user)** - to enable Britta Simon to use Azure AD single sign-on.</span></span>
-5. <span data-ttu-id="a634f-147">**[Testing Single Sign-On](#testing-single-sign-on)** : per verificare se la configurazione funziona.</span><span class="sxs-lookup"><span data-stu-id="a634f-147">**[Testing Single Sign-On](#testing-single-sign-on)** - to verify whether the configuration works.</span></span>
+1. <span data-ttu-id="59a2d-143">**[Configurazione di Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)**  -tooenable il toouse utenti questa funzionalità.</span><span class="sxs-lookup"><span data-stu-id="59a2d-143">**[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** - tooenable your users toouse this feature.</span></span>
+2. <span data-ttu-id="59a2d-144">**[Creazione di un utente prova AD Azure](#creating-an-azure-ad-test-user)**  -tootest AD Azure single sign-on con Britta Simon.</span><span class="sxs-lookup"><span data-stu-id="59a2d-144">**[Creating an Azure AD test user](#creating-an-azure-ad-test-user)** - tootest Azure AD single sign-on with Britta Simon.</span></span>
+3. <span data-ttu-id="59a2d-145">**[Creazione di un utente test Zendesk](#creating-a-zendesk-test-user)**  -toohave un equivalente di Britta Simon in Zendesk che è la rappresentazione toohello collegato Azure AD dell'utente.</span><span class="sxs-lookup"><span data-stu-id="59a2d-145">**[Creating a Zendesk test user](#creating-a-zendesk-test-user)** - toohave a counterpart of Britta Simon in Zendesk that is linked toohello Azure AD representation of user.</span></span>
+4. <span data-ttu-id="59a2d-146">**[Assegnazione utente di prova hello Azure AD](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD accesso single sign-on.</span><span class="sxs-lookup"><span data-stu-id="59a2d-146">**[Assigning hello Azure AD test user](#assigning-the-azure-ad-test-user)** - tooenable Britta Simon toouse Azure AD single sign-on.</span></span>
+5. <span data-ttu-id="59a2d-147">**[Test di Single Sign-On](#testing-single-sign-on)**  -tooverify hello se funzionamento della configurazione.</span><span class="sxs-lookup"><span data-stu-id="59a2d-147">**[Testing Single Sign-On](#testing-single-sign-on)** - tooverify whether hello configuration works.</span></span>
 
-### <a name="configuring-azure-ad-single-sign-on"></a><span data-ttu-id="a634f-148">Configurazione dell'accesso Single Sign-On di Azure AD</span><span class="sxs-lookup"><span data-stu-id="a634f-148">Configuring Azure AD single sign-on</span></span>
+### <a name="configuring-azure-ad-single-sign-on"></a><span data-ttu-id="59a2d-148">Configurazione dell'accesso Single Sign-On di Azure AD</span><span class="sxs-lookup"><span data-stu-id="59a2d-148">Configuring Azure AD single sign-on</span></span>
 
-<span data-ttu-id="a634f-149">In questa sezione viene abilitato l'accesso Single Sign-On di Azure AD nel portale di Azure e viene configurato l'accesso Single Sign-On nell'applicazione Zendesk.</span><span class="sxs-lookup"><span data-stu-id="a634f-149">In this section, you enable Azure AD single sign-on in the Azure portal and configure single sign-on in your Zendesk application.</span></span>
+<span data-ttu-id="59a2d-149">In questa sezione, si abilita Azure AD single sign-on in hello portale di Azure e configurare l'accesso single sign-on nell'applicazione Zendesk.</span><span class="sxs-lookup"><span data-stu-id="59a2d-149">In this section, you enable Azure AD single sign-on in hello Azure portal and configure single sign-on in your Zendesk application.</span></span>
 
-<span data-ttu-id="a634f-150">**Per configurare Single Sign-On di Azure AD con Zendesk, seguire questa procedura:**</span><span class="sxs-lookup"><span data-stu-id="a634f-150">**To configure Azure AD single sign-on with Zendesk, perform the following steps:**</span></span>
+<span data-ttu-id="59a2d-150">**Azure AD tooconfigure single sign-on con Zendesk, eseguire hello alla procedura seguente:**</span><span class="sxs-lookup"><span data-stu-id="59a2d-150">**tooconfigure Azure AD single sign-on with Zendesk, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="a634f-151">Nella pagina di integrazione dell'applicazione **Zendesk** del portale di Azure fare clic su **Single Sign-On**.</span><span class="sxs-lookup"><span data-stu-id="a634f-151">In the Azure portal, on the **Zendesk** application integration page, click **Single sign-on**.</span></span>
+1. <span data-ttu-id="59a2d-151">Nel portale di Azure su hello hello **Zendesk** pagina di integrazione dell'applicazione, fare clic su **Single sign-on**.</span><span class="sxs-lookup"><span data-stu-id="59a2d-151">In hello Azure portal, on hello **Zendesk** application integration page, click **Single sign-on**.</span></span>
 
     ![Configura accesso Single Sign-On][4]
 
-2. <span data-ttu-id="a634f-153">Nella finestra di dialogo **Single Sign-On** selezionare **Accesso basato su SAML** per **Modalità** per abilitare l'accesso Single Sign-On.</span><span class="sxs-lookup"><span data-stu-id="a634f-153">On the **Single sign-on** dialog, select **Mode** as **SAML-based Sign-on** to enable single sign-on.</span></span>
+2. <span data-ttu-id="59a2d-153">In hello **Single sign-on** finestra di dialogo Seleziona **modalità** come **basato su SAML Sign-on** tooenable single sign-on.</span><span class="sxs-lookup"><span data-stu-id="59a2d-153">On hello **Single sign-on** dialog, select **Mode** as   **SAML-based Sign-on** tooenable single sign-on.</span></span>
  
     ![Configura accesso Single Sign-On](./media/active-directory-saas-zendesk-tutorial/tutorial_zendesk_samlbase.png)
 
-3. <span data-ttu-id="a634f-155">Nella sezione **Zendesk Domain and URLs** (URL e dominio Zendesk) seguire questa procedura:</span><span class="sxs-lookup"><span data-stu-id="a634f-155">On the **Zendesk Domain and URLs** section, perform the following steps:</span></span>
+3. <span data-ttu-id="59a2d-155">In hello **Zendesk dominio e gli URL** seguire hello alla procedura seguente:</span><span class="sxs-lookup"><span data-stu-id="59a2d-155">On hello **Zendesk Domain and URLs** section, perform hello following steps:</span></span>
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-zendesk-tutorial/tutorial_zendesk_url.png)
 
-    <span data-ttu-id="a634f-157">a.</span><span class="sxs-lookup"><span data-stu-id="a634f-157">a.</span></span> <span data-ttu-id="a634f-158">Nella casella di testo **URL di accesso** digitare il valore usando il modello seguente: `https://<subdomain>.zendesk.com`</span><span class="sxs-lookup"><span data-stu-id="a634f-158">In the **Sign-on URL** textbox, type the value using the following pattern: `https://<subdomain>.zendesk.com`</span></span>
+    <span data-ttu-id="59a2d-157">a.</span><span class="sxs-lookup"><span data-stu-id="59a2d-157">a.</span></span> <span data-ttu-id="59a2d-158">In hello **Sign-on URL** casella di testo, valore di tipo hello utilizzando hello modello:`https://<subdomain>.zendesk.com`</span><span class="sxs-lookup"><span data-stu-id="59a2d-158">In hello **Sign-on URL** textbox, type hello value using hello following pattern: `https://<subdomain>.zendesk.com`</span></span>
 
-    <span data-ttu-id="a634f-159">b.</span><span class="sxs-lookup"><span data-stu-id="a634f-159">b.</span></span> <span data-ttu-id="a634f-160">Nella casella di testo **Identificatore** digitare il valore adottando il modello seguente: `https://<subdomain>.zendesk.com`</span><span class="sxs-lookup"><span data-stu-id="a634f-160">In the **Identifier** textbox, type the value using the following pattern: `https://<subdomain>.zendesk.com`</span></span>
+    <span data-ttu-id="59a2d-159">b.</span><span class="sxs-lookup"><span data-stu-id="59a2d-159">b.</span></span> <span data-ttu-id="59a2d-160">In hello **identificatore** casella di testo, valore di tipo hello utilizzando hello modello:`https://<subdomain>.zendesk.com`</span><span class="sxs-lookup"><span data-stu-id="59a2d-160">In hello **Identifier** textbox, type hello value using hello following pattern: `https://<subdomain>.zendesk.com`</span></span>
 
     > [!NOTE] 
-    > <span data-ttu-id="a634f-161">Poiché questi non sono i valori reali,</span><span class="sxs-lookup"><span data-stu-id="a634f-161">These values are not real.</span></span> <span data-ttu-id="a634f-162">è necessario aggiornarli con l'URL identificatore e l'URL di accesso effettivi.</span><span class="sxs-lookup"><span data-stu-id="a634f-162">Update these values with the actual Sign-on URL and Identifier URL.</span></span> <span data-ttu-id="a634f-163">Per ottenere questi valori, contattare il [team di supporto di Zendesk](https://support.zendesk.com/hc/articles/203663676-Using-SAML-for-single-sign-on-Professional-and-Enterprise).</span><span class="sxs-lookup"><span data-stu-id="a634f-163">Contact [Zendesk support team](https://support.zendesk.com/hc/articles/203663676-Using-SAML-for-single-sign-on-Professional-and-Enterprise) to get these values.</span></span> 
+    > <span data-ttu-id="59a2d-161">Poiché questi non sono i valori reali,</span><span class="sxs-lookup"><span data-stu-id="59a2d-161">These values are not real.</span></span> <span data-ttu-id="59a2d-162">Aggiornare questi valori con URL hello effettivo Sign-on e URL dell'identificatore.</span><span class="sxs-lookup"><span data-stu-id="59a2d-162">Update these values with hello actual Sign-on URL and Identifier URL.</span></span> <span data-ttu-id="59a2d-163">Contatto [team di supporto di Zendesk](https://support.zendesk.com/hc/articles/203663676-Using-SAML-for-single-sign-on-Professional-and-Enterprise) tooget questi valori.</span><span class="sxs-lookup"><span data-stu-id="59a2d-163">Contact [Zendesk support team](https://support.zendesk.com/hc/articles/203663676-Using-SAML-for-single-sign-on-Professional-and-Enterprise) tooget these values.</span></span> 
 
-4. <span data-ttu-id="a634f-164">Zendesk prevede che le asserzioni SAML abbiano un formato specifico.</span><span class="sxs-lookup"><span data-stu-id="a634f-164">Zendesk expects the SAML assertions in a specific format.</span></span> <span data-ttu-id="a634f-165">Non sono presenti attributi SAML obbligatori ma facoltativamente è possibile aggiungere un attributo dalla sezione **Attributi utente** sezione seguendo questa procedura:</span><span class="sxs-lookup"><span data-stu-id="a634f-165">There are no mandatory SAML attributes but optionally you can add an attribute from **User Attributes** section by following the below steps:</span></span> 
+4. <span data-ttu-id="59a2d-164">Zendesk prevede asserzioni SAML hello in un formato specifico.</span><span class="sxs-lookup"><span data-stu-id="59a2d-164">Zendesk expects hello SAML assertions in a specific format.</span></span> <span data-ttu-id="59a2d-165">Non sono presenti attributi SAML obbligatori ma facoltativamente è possibile aggiungere un attributo da **gli attributi utente** sezione hello seguente passaggi seguenti:</span><span class="sxs-lookup"><span data-stu-id="59a2d-165">There are no mandatory SAML attributes but optionally you can add an attribute from **User Attributes** section by following hello below steps:</span></span> 
 
      ![Configura accesso Single Sign-On](./media/active-directory-saas-zendesk-tutorial/tutorial_zendesk_attributes1.png)
 
-    <span data-ttu-id="a634f-167">a.</span><span class="sxs-lookup"><span data-stu-id="a634f-167">a.</span></span> <span data-ttu-id="a634f-168">Fare clic sulla casella di controllo **View and edit all the other attributes** (Visualizza e modifica tutti gli altri attributi).</span><span class="sxs-lookup"><span data-stu-id="a634f-168">Click the **View and edit all the other attributes** check box.</span></span>
+    <span data-ttu-id="59a2d-167">a.</span><span class="sxs-lookup"><span data-stu-id="59a2d-167">a.</span></span> <span data-ttu-id="59a2d-168">Fare clic su hello **visualizzare e modificare tutti gli altri attributi di hello** casella di controllo.</span><span class="sxs-lookup"><span data-stu-id="59a2d-168">Click hello **View and edit all hello other attributes** check box.</span></span>
      
     ![Configura accesso Single Sign-On](./media/active-directory-saas-zendesk-tutorial/tutorial_zendesk_attributes2.png)
    
-    <span data-ttu-id="a634f-170">b.</span><span class="sxs-lookup"><span data-stu-id="a634f-170">b.</span></span> <span data-ttu-id="a634f-171">Fare clic su **Aggiungi attributo** per aprire la finestra di dialogo **Aggiungi attributo**.</span><span class="sxs-lookup"><span data-stu-id="a634f-171">Click the **Add Attribute** to open **Add attribute** dialog.</span></span>
+    <span data-ttu-id="59a2d-170">b.</span><span class="sxs-lookup"><span data-stu-id="59a2d-170">b.</span></span> <span data-ttu-id="59a2d-171">Fare clic su hello **Aggiungi attributo** tooopen **Aggiungi attributo** finestra di dialogo.</span><span class="sxs-lookup"><span data-stu-id="59a2d-171">Click hello **Add Attribute** tooopen **Add attribute** dialog.</span></span>
     
     ![Configura accesso Single Sign-On](./media/active-directory-saas-zendesk-tutorial/tutorial_attribute_05.png)
 
-    <span data-ttu-id="a634f-173">c.</span><span class="sxs-lookup"><span data-stu-id="a634f-173">c.</span></span> <span data-ttu-id="a634f-174">Nella casella di testo **Nome** digitare il nome dell'attributo (ad esempio **emailaddress**).</span><span class="sxs-lookup"><span data-stu-id="a634f-174">In the **Name** textbox, type the attribute name (for example **emailaddress**).</span></span>
+    <span data-ttu-id="59a2d-173">c.</span><span class="sxs-lookup"><span data-stu-id="59a2d-173">c.</span></span> <span data-ttu-id="59a2d-174">In hello **nome** casella di testo, nome dell'attributo di tipo hello (ad esempio **emailaddress**).</span><span class="sxs-lookup"><span data-stu-id="59a2d-174">In hello **Name** textbox, type hello attribute name (for example **emailaddress**).</span></span>
     
-    <span data-ttu-id="a634f-175">d.</span><span class="sxs-lookup"><span data-stu-id="a634f-175">d.</span></span> <span data-ttu-id="a634f-176">Nell'elenco **Valore** selezionare il valore dell'attributo (ad esempio **user.mail**).</span><span class="sxs-lookup"><span data-stu-id="a634f-176">From the **Value** list, select the attribute value (as **user.mail**).</span></span>
+    <span data-ttu-id="59a2d-175">d.</span><span class="sxs-lookup"><span data-stu-id="59a2d-175">d.</span></span> <span data-ttu-id="59a2d-176">Da hello **valore** elenco, il valore di attributo selezionare hello (come **user.mail**).</span><span class="sxs-lookup"><span data-stu-id="59a2d-176">From hello **Value** list, select hello attribute value (as **user.mail**).</span></span>
     
-    <span data-ttu-id="a634f-177">e.</span><span class="sxs-lookup"><span data-stu-id="a634f-177">e.</span></span> <span data-ttu-id="a634f-178">Fare clic su **Ok**</span><span class="sxs-lookup"><span data-stu-id="a634f-178">Click **Ok**</span></span>
+    <span data-ttu-id="59a2d-177">e.</span><span class="sxs-lookup"><span data-stu-id="59a2d-177">e.</span></span> <span data-ttu-id="59a2d-178">Fare clic su **Ok**</span><span class="sxs-lookup"><span data-stu-id="59a2d-178">Click **Ok**</span></span>
  
     > [!NOTE] 
-    > <span data-ttu-id="a634f-179">Usare gli attributi dell'estensione per aggiungere attributi che non sono in Azure AD per impostazione predefinita.</span><span class="sxs-lookup"><span data-stu-id="a634f-179">You use extension attributes to add attributes that are not in Azure AD by default.</span></span> <span data-ttu-id="a634f-180">Fare clic su [User attributes that can be set in SAML](https://support.zendesk.com/hc/en-us/articles/203663676-Using-SAML-for-single-sign-on-Professional-and-Enterprise-) (Attributi utente che possono essere impostati in SAML) per ottenere l'elenco completo degli attributi accettati da **Zendesk**.</span><span class="sxs-lookup"><span data-stu-id="a634f-180">Click [User attributes that can be set in SAML](https://support.zendesk.com/hc/en-us/articles/203663676-Using-SAML-for-single-sign-on-Professional-and-Enterprise-) to get the complete list of SAML attributes that **Zendesk** accepts.</span></span> 
+    > <span data-ttu-id="59a2d-179">Utilizzare gli attributi tooadd gli attributi dell'estensione che non sono in Azure AD per impostazione predefinita.</span><span class="sxs-lookup"><span data-stu-id="59a2d-179">You use extension attributes tooadd attributes that are not in Azure AD by default.</span></span> <span data-ttu-id="59a2d-180">Fare clic su [gli attributi utente che possono essere impostati in SAML](https://support.zendesk.com/hc/en-us/articles/203663676-Using-SAML-for-single-sign-on-Professional-and-Enterprise-) tooget elenco completo di hello di SAML attributi che **Zendesk** accetta.</span><span class="sxs-lookup"><span data-stu-id="59a2d-180">Click [User attributes that can be set in SAML](https://support.zendesk.com/hc/en-us/articles/203663676-Using-SAML-for-single-sign-on-Professional-and-Enterprise-) tooget hello complete list of SAML attributes that **Zendesk** accepts.</span></span> 
 
-5. <span data-ttu-id="a634f-181">Nella sezione **Certificato di firma SAML** copiare il valore **IDENTIFICAZIONE PERSONALE** del certificato.</span><span class="sxs-lookup"><span data-stu-id="a634f-181">On the **SAML Signing Certificate** section, copy the **THUMBPRINT** value of certificate.</span></span>
+5. <span data-ttu-id="59a2d-181">In hello **certificato di firma SAML** sezione, hello copia **identificazione personale** valore del certificato.</span><span class="sxs-lookup"><span data-stu-id="59a2d-181">On hello **SAML Signing Certificate** section, copy hello **THUMBPRINT** value of certificate.</span></span>
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-zendesk-tutorial/tutorial_zendesk_certificate.png) 
 
-6. <span data-ttu-id="a634f-183">Nella sezione **Zendesk Configuration** (Configurazione di Zendesk) fare clic su **Configure Zendesk** (Configura Zendesk) per aprire la finestra **Configura accesso**.</span><span class="sxs-lookup"><span data-stu-id="a634f-183">On the **Zendesk Configuration** section, click **Configure Zendesk** to open **Configure sign-on** window.</span></span> <span data-ttu-id="a634f-184">Copiare l'**URL servizio Single Sign-On SAML e l'URL di disconnessione** dalla sezione **Riferimento rapido**.</span><span class="sxs-lookup"><span data-stu-id="a634f-184">Copy the **Sign-Out URL and SAML Single Sign-On Service URL** from the **Quick Reference section.**</span></span>
+6. <span data-ttu-id="59a2d-183">In hello **Zendesk configurazione** fare clic su **configurare Zendesk** tooopen **Configura sign-on** finestra.</span><span class="sxs-lookup"><span data-stu-id="59a2d-183">On hello **Zendesk Configuration** section, click **Configure Zendesk** tooopen **Configure sign-on** window.</span></span> <span data-ttu-id="59a2d-184">Hello copia **Sign-Out URL e SAML Single Sign-On Service URL** da hello **sezione di riferimento rapido.**</span><span class="sxs-lookup"><span data-stu-id="59a2d-184">Copy hello **Sign-Out URL and SAML Single Sign-On Service URL** from hello **Quick Reference section.**</span></span>
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-zendesk-tutorial/tutorial_zendesk_configure.png) 
 
-7. <span data-ttu-id="a634f-186">In un'altra finestra del Web browser accedere al sito aziendale di Zendesk come amministratore.</span><span class="sxs-lookup"><span data-stu-id="a634f-186">In a different web browser window, log into your Zendesk company site as an administrator.</span></span>
+7. <span data-ttu-id="59a2d-186">In un'altra finestra del Web browser accedere al sito aziendale di Zendesk come amministratore.</span><span class="sxs-lookup"><span data-stu-id="59a2d-186">In a different web browser window, log into your Zendesk company site as an administrator.</span></span>
 
-8. <span data-ttu-id="a634f-187">Fare clic su **Admin**.</span><span class="sxs-lookup"><span data-stu-id="a634f-187">Click **Admin**.</span></span>
+8. <span data-ttu-id="59a2d-187">Fare clic su **Admin**.</span><span class="sxs-lookup"><span data-stu-id="59a2d-187">Click **Admin**.</span></span>
 
-9. <span data-ttu-id="a634f-188">Nel riquadro di spostamento sinistro fare clic su **Impostazioni** e quindi su **Sicurezza**.</span><span class="sxs-lookup"><span data-stu-id="a634f-188">In the left navigation pane, click **Settings**, and then click **Security**.</span></span>
+9. <span data-ttu-id="59a2d-188">Nel riquadro di spostamento a sinistra di hello, fare clic su **impostazioni**, quindi fare clic su **sicurezza**.</span><span class="sxs-lookup"><span data-stu-id="59a2d-188">In hello left navigation pane, click **Settings**, and then click **Security**.</span></span>
 
-10. <span data-ttu-id="a634f-189">Nella pagina **Sicurezza** eseguire la procedura seguente:</span><span class="sxs-lookup"><span data-stu-id="a634f-189">On the **Security** page, perform the following steps:</span></span> 
+10. <span data-ttu-id="59a2d-189">In hello **sicurezza** eseguire hello alla procedura seguente:</span><span class="sxs-lookup"><span data-stu-id="59a2d-189">On hello **Security** page, perform hello following steps:</span></span> 
    
-     <span data-ttu-id="a634f-190">![Sicurezza](./media/active-directory-saas-zendesk-tutorial/ic773089.png "Sicurezza")</span><span class="sxs-lookup"><span data-stu-id="a634f-190">![Security](./media/active-directory-saas-zendesk-tutorial/ic773089.png "Security")</span></span>
+     <span data-ttu-id="59a2d-190">![Sicurezza](./media/active-directory-saas-zendesk-tutorial/ic773089.png "Sicurezza")</span><span class="sxs-lookup"><span data-stu-id="59a2d-190">![Security](./media/active-directory-saas-zendesk-tutorial/ic773089.png "Security")</span></span>
 
-    <span data-ttu-id="a634f-191">![Single Sign-On](./media/active-directory-saas-zendesk-tutorial/ic773090.png "Single Sign-On")</span><span class="sxs-lookup"><span data-stu-id="a634f-191">![Single sign-on](./media/active-directory-saas-zendesk-tutorial/ic773090.png "Single sign-on")</span></span>
+    <span data-ttu-id="59a2d-191">![Single Sign-On](./media/active-directory-saas-zendesk-tutorial/ic773090.png "Single Sign-On")</span><span class="sxs-lookup"><span data-stu-id="59a2d-191">![Single sign-on](./media/active-directory-saas-zendesk-tutorial/ic773090.png "Single sign-on")</span></span>
 
-     <span data-ttu-id="a634f-192">a.</span><span class="sxs-lookup"><span data-stu-id="a634f-192">a.</span></span> <span data-ttu-id="a634f-193">Fare clic sulla scheda **Amministratore e agenti**.</span><span class="sxs-lookup"><span data-stu-id="a634f-193">Click the **Admin & Agents** tab.</span></span>
+     <span data-ttu-id="59a2d-192">a.</span><span class="sxs-lookup"><span data-stu-id="59a2d-192">a.</span></span> <span data-ttu-id="59a2d-193">Fare clic su hello **Admin & agenti** scheda.</span><span class="sxs-lookup"><span data-stu-id="59a2d-193">Click hello **Admin & Agents** tab.</span></span>
 
-     <span data-ttu-id="a634f-194">b.</span><span class="sxs-lookup"><span data-stu-id="a634f-194">b.</span></span> <span data-ttu-id="a634f-195">Selezionare **Single sign-on (SSO) e SAML** e quindi **SAML**.</span><span class="sxs-lookup"><span data-stu-id="a634f-195">Select **Single sign-on (SSO) and SAML**, and then select **SAML**.</span></span>
+     <span data-ttu-id="59a2d-194">b.</span><span class="sxs-lookup"><span data-stu-id="59a2d-194">b.</span></span> <span data-ttu-id="59a2d-195">Selezionare **Single sign-on (SSO) e SAML** e quindi **SAML**.</span><span class="sxs-lookup"><span data-stu-id="59a2d-195">Select **Single sign-on (SSO) and SAML**, and then select **SAML**.</span></span>
 
-     <span data-ttu-id="a634f-196">c.</span><span class="sxs-lookup"><span data-stu-id="a634f-196">c.</span></span> <span data-ttu-id="a634f-197">Nella casella di testo **SAML SSO URL** (URL SSO SAML) incollare il valore dell'**URL del servizio Single Sign-On SAML** copiato dal portale di Azure.</span><span class="sxs-lookup"><span data-stu-id="a634f-197">In **SAML SSO URL** textbox, paste the value of **SAML Single Sign-On Service URL** which you have copied from Azure portal.</span></span> 
+     <span data-ttu-id="59a2d-196">c.</span><span class="sxs-lookup"><span data-stu-id="59a2d-196">c.</span></span> <span data-ttu-id="59a2d-197">In **URL SSO SAML** casella di testo, hello Incolla valore **SAML Single Sign-On Service URL** che è stato copiato dal portale di Azure.</span><span class="sxs-lookup"><span data-stu-id="59a2d-197">In **SAML SSO URL** textbox, paste hello value of **SAML Single Sign-On Service URL** which you have copied from Azure portal.</span></span> 
 
-     <span data-ttu-id="a634f-198">d.</span><span class="sxs-lookup"><span data-stu-id="a634f-198">d.</span></span> <span data-ttu-id="a634f-199">Nella casella di testo **Remote Log Out URL** (URL di disconnessione remota) incollare il valore dell'**URL di disconnessione** copiato dal portale di Azure.</span><span class="sxs-lookup"><span data-stu-id="a634f-199">In **Remote Logout URL** textbox, paste the value of **Sign-Out URL** which you have copied from Azure portal.</span></span>
+     <span data-ttu-id="59a2d-198">d.</span><span class="sxs-lookup"><span data-stu-id="59a2d-198">d.</span></span> <span data-ttu-id="59a2d-199">In **URL disconnessione remota** casella di testo, hello Incolla valore **Sign-Out URL** che è stato copiato dal portale di Azure.</span><span class="sxs-lookup"><span data-stu-id="59a2d-199">In **Remote Logout URL** textbox, paste hello value of **Sign-Out URL** which you have copied from Azure portal.</span></span>
         
-     <span data-ttu-id="a634f-200">e.</span><span class="sxs-lookup"><span data-stu-id="a634f-200">e.</span></span> <span data-ttu-id="a634f-201">Nella casella di testo **Certificate Fingerprint** (Impronta digitale certificato) incollare il valore **Identificazione personale** del certificato copiato dal portale di Azure.</span><span class="sxs-lookup"><span data-stu-id="a634f-201">In **Certificate Fingerprint** textbox, paste the **Thumbprint** value of certificate which you have copied from Azure portal.</span></span>
+     <span data-ttu-id="59a2d-200">e.</span><span class="sxs-lookup"><span data-stu-id="59a2d-200">e.</span></span> <span data-ttu-id="59a2d-201">In **Certificate Fingerprint** casella di testo, incollare hello **identificazione personale** valore del certificato che è stato copiato dal portale di Azure.</span><span class="sxs-lookup"><span data-stu-id="59a2d-201">In **Certificate Fingerprint** textbox, paste hello **Thumbprint** value of certificate which you have copied from Azure portal.</span></span>
      
-     <span data-ttu-id="a634f-202">f.</span><span class="sxs-lookup"><span data-stu-id="a634f-202">f.</span></span> <span data-ttu-id="a634f-203">Fare clic su **Save**.</span><span class="sxs-lookup"><span data-stu-id="a634f-203">Click **Save**.</span></span>
+     <span data-ttu-id="59a2d-202">f.</span><span class="sxs-lookup"><span data-stu-id="59a2d-202">f.</span></span> <span data-ttu-id="59a2d-203">Fare clic su **Save**.</span><span class="sxs-lookup"><span data-stu-id="59a2d-203">Click **Save**.</span></span>
 
-### <a name="creating-an-azure-ad-test-user"></a><span data-ttu-id="a634f-204">Creazione di un utente test di Azure AD</span><span class="sxs-lookup"><span data-stu-id="a634f-204">Creating an Azure AD test user</span></span>
-<span data-ttu-id="a634f-205">Questa sezione descrive come creare un utente test denominato Britta Simon nel portale di Azure.</span><span class="sxs-lookup"><span data-stu-id="a634f-205">The objective of this section is to create a test user in the Azure portal called Britta Simon.</span></span>
+### <a name="creating-an-azure-ad-test-user"></a><span data-ttu-id="59a2d-204">Creazione di un utente test di Azure AD</span><span class="sxs-lookup"><span data-stu-id="59a2d-204">Creating an Azure AD test user</span></span>
+<span data-ttu-id="59a2d-205">obiettivo di Hello di questa sezione è un utente di test nel portale di Azure chiamato Britta Simon hello toocreate.</span><span class="sxs-lookup"><span data-stu-id="59a2d-205">hello objective of this section is toocreate a test user in hello Azure portal called Britta Simon.</span></span>
 
 ![Creare un utente di Azure AD][100]
 
-<span data-ttu-id="a634f-207">**Per creare un utente test in Azure AD, eseguire la procedura seguente:**</span><span class="sxs-lookup"><span data-stu-id="a634f-207">**To create a test user in Azure AD, perform the following steps:**</span></span>
+<span data-ttu-id="59a2d-207">**un utente di prova in Azure AD, toocreate eseguire hello alla procedura seguente:**</span><span class="sxs-lookup"><span data-stu-id="59a2d-207">**toocreate a test user in Azure AD, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="a634f-208">Nel **portale di Azure** fare clic sull'icona di **Azure Active Directory** nel riquadro di spostamento sinistro.</span><span class="sxs-lookup"><span data-stu-id="a634f-208">In the **Azure portal**, on the left navigation pane, click **Azure Active Directory** icon.</span></span>
+1. <span data-ttu-id="59a2d-208">In hello **portale di Azure**via hello riquadro di spostamento a sinistra, fare clic su **Azure Active Directory** icona.</span><span class="sxs-lookup"><span data-stu-id="59a2d-208">In hello **Azure portal**, on hello left navigation pane, click **Azure Active Directory** icon.</span></span>
 
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-zendesk-tutorial/create_aaduser_01.png) 
 
-2. <span data-ttu-id="a634f-210">Passare a **Utenti e gruppi** e fare clic su **Tutti gli utenti** per visualizzare l'elenco di utenti.</span><span class="sxs-lookup"><span data-stu-id="a634f-210">To display the list of users go to **Users and groups** and click **All users**.</span></span>
+2. <span data-ttu-id="59a2d-210">elenco di hello toodisplay utenti andare troppo**utenti e gruppi** e fare clic su **tutti gli utenti**.</span><span class="sxs-lookup"><span data-stu-id="59a2d-210">toodisplay hello list of users go too**Users and groups** and click **All users**.</span></span>
     
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-zendesk-tutorial/create_aaduser_02.png) 
 
-3. <span data-ttu-id="a634f-212">Nella parte superiore della finestra di dialogo fare clic su **Aggiungi** per aprire la finestra di dialogo **Utente**.</span><span class="sxs-lookup"><span data-stu-id="a634f-212">At the top of the dialog, click **Add** to open the **User** dialog.</span></span>
+3. <span data-ttu-id="59a2d-212">Nella parte superiore di hello della finestra di dialogo hello, fare clic su **Aggiungi** tooopen hello **utente** finestra di dialogo.</span><span class="sxs-lookup"><span data-stu-id="59a2d-212">At hello top of hello dialog, click **Add** tooopen hello **User** dialog.</span></span>
  
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-zendesk-tutorial/create_aaduser_03.png) 
 
-4. <span data-ttu-id="a634f-214">Nella pagina della finestra di dialogo **Utente** seguire questa procedura:</span><span class="sxs-lookup"><span data-stu-id="a634f-214">On the **User** dialog page, perform the following steps:</span></span>
+4. <span data-ttu-id="59a2d-214">In hello **utente** finestra di dialogo eseguire hello alla procedura seguente:</span><span class="sxs-lookup"><span data-stu-id="59a2d-214">On hello **User** dialog page, perform hello following steps:</span></span>
  
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-zendesk-tutorial/create_aaduser_04.png) 
 
-    <span data-ttu-id="a634f-216">a.</span><span class="sxs-lookup"><span data-stu-id="a634f-216">a.</span></span> <span data-ttu-id="a634f-217">Nella casella di testo **Nome** digitare **BrittaSimon**.</span><span class="sxs-lookup"><span data-stu-id="a634f-217">In the **Name** textbox, type **BrittaSimon**.</span></span>
+    <span data-ttu-id="59a2d-216">a.</span><span class="sxs-lookup"><span data-stu-id="59a2d-216">a.</span></span> <span data-ttu-id="59a2d-217">In hello **nome** casella tipo **BrittaSimon**.</span><span class="sxs-lookup"><span data-stu-id="59a2d-217">In hello **Name** textbox, type **BrittaSimon**.</span></span>
 
-    <span data-ttu-id="a634f-218">b.</span><span class="sxs-lookup"><span data-stu-id="a634f-218">b.</span></span> <span data-ttu-id="a634f-219">Nella casella di testo **Nome utente** digitare l'**indirizzo di posta elettronica** di BrittaSimon.</span><span class="sxs-lookup"><span data-stu-id="a634f-219">In the **User name** textbox, type the **email address** of BrittaSimon.</span></span>
+    <span data-ttu-id="59a2d-218">b.</span><span class="sxs-lookup"><span data-stu-id="59a2d-218">b.</span></span> <span data-ttu-id="59a2d-219">In hello **nome utente** casella di testo, hello tipo **indirizzo di posta elettronica** di BrittaSimon.</span><span class="sxs-lookup"><span data-stu-id="59a2d-219">In hello **User name** textbox, type hello **email address** of BrittaSimon.</span></span>
 
-    <span data-ttu-id="a634f-220">c.</span><span class="sxs-lookup"><span data-stu-id="a634f-220">c.</span></span> <span data-ttu-id="a634f-221">Selezionare **Mostra password** e prendere nota del valore della **Password**.</span><span class="sxs-lookup"><span data-stu-id="a634f-221">Select **Show Password** and write down the value of the **Password**.</span></span>
+    <span data-ttu-id="59a2d-220">c.</span><span class="sxs-lookup"><span data-stu-id="59a2d-220">c.</span></span> <span data-ttu-id="59a2d-221">Selezionare **Show Password** e annotare il valore di hello di hello **Password**.</span><span class="sxs-lookup"><span data-stu-id="59a2d-221">Select **Show Password** and write down hello value of hello **Password**.</span></span>
 
-    <span data-ttu-id="a634f-222">d.</span><span class="sxs-lookup"><span data-stu-id="a634f-222">d.</span></span> <span data-ttu-id="a634f-223">Fare clic su **Crea**.</span><span class="sxs-lookup"><span data-stu-id="a634f-223">Click **Create**.</span></span> 
+    <span data-ttu-id="59a2d-222">d.</span><span class="sxs-lookup"><span data-stu-id="59a2d-222">d.</span></span> <span data-ttu-id="59a2d-223">Fare clic su **Crea**.</span><span class="sxs-lookup"><span data-stu-id="59a2d-223">Click **Create**.</span></span> 
 
-### <a name="creating-a-zendesk-test-user"></a><span data-ttu-id="a634f-224">Creazione di un utente test Zendesk</span><span class="sxs-lookup"><span data-stu-id="a634f-224">Creating a Zendesk test user</span></span>
+### <a name="creating-a-zendesk-test-user"></a><span data-ttu-id="59a2d-224">Creazione di un utente test Zendesk</span><span class="sxs-lookup"><span data-stu-id="59a2d-224">Creating a Zendesk test user</span></span>
 
-<span data-ttu-id="a634f-225">Per consentire agli utenti di Azure AD di accedere a **Zendesk**, è necessario eseguirne il provisioning in **Zendesk**.</span><span class="sxs-lookup"><span data-stu-id="a634f-225">To enable Azure AD users to log into **Zendesk**, they must be provisioned into **Zendesk**.</span></span>  
-<span data-ttu-id="a634f-226">Il comportamento si basa sul ruolo assegnato nelle applicazioni:</span><span class="sxs-lookup"><span data-stu-id="a634f-226">Depending on the role assigned in the apps, it's the expected behavior:</span></span>
+<span data-ttu-id="59a2d-225">Azure AD tooenable utenti toolog in **Zendesk**, è necessario eseguirne il provisioning in **Zendesk**.</span><span class="sxs-lookup"><span data-stu-id="59a2d-225">tooenable Azure AD users toolog into **Zendesk**, they must be provisioned into **Zendesk**.</span></span>  
+<span data-ttu-id="59a2d-226">A seconda del ruolo di hello nelle App hello, hello è previsto il comportamento:</span><span class="sxs-lookup"><span data-stu-id="59a2d-226">Depending on hello role assigned in hello apps, it's hello expected behavior:</span></span>
 
- 1. <span data-ttu-id="a634f-227">All'accesso viene eseguito automaticamente il provisioning degli account dell'**utente finale**.</span><span class="sxs-lookup"><span data-stu-id="a634f-227">**End-user** accounts are automatically provisioned when signing in.</span></span>
- 2. <span data-ttu-id="a634f-228">Il provisioning degli account **Agente** e **Amministratore** devono essere eseguiti manualmente in **Zendesk** prima dell'accesso.</span><span class="sxs-lookup"><span data-stu-id="a634f-228">**Agent** and **Admin** accounts need to be manually provisioned in **Zendesk** before signing in.</span></span>
+ 1. <span data-ttu-id="59a2d-227">All'accesso viene eseguito automaticamente il provisioning degli account dell'**utente finale**.</span><span class="sxs-lookup"><span data-stu-id="59a2d-227">**End-user** accounts are automatically provisioned when signing in.</span></span>
+ 2. <span data-ttu-id="59a2d-228">**Agente** e **Admin** account necessitano toobe manualmente il provisioning **Zendesk** prima dell'accesso.</span><span class="sxs-lookup"><span data-stu-id="59a2d-228">**Agent** and **Admin** accounts need toobe manually provisioned in **Zendesk** before signing in.</span></span>
  
-<span data-ttu-id="a634f-229">**Per eseguire il provisioning di un account utente, seguire questa procedura:**</span><span class="sxs-lookup"><span data-stu-id="a634f-229">**To provision a user account, perform the following steps:**</span></span>
+<span data-ttu-id="59a2d-229">**tooprovision un account utente, eseguire hello alla procedura seguente:**</span><span class="sxs-lookup"><span data-stu-id="59a2d-229">**tooprovision a user account, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="a634f-230">Accedere al tenant di **Zendesk** .</span><span class="sxs-lookup"><span data-stu-id="a634f-230">Log in to your **Zendesk** tenant.</span></span>
+1. <span data-ttu-id="59a2d-230">Accedi tooyour **Zendesk** tenant.</span><span class="sxs-lookup"><span data-stu-id="59a2d-230">Log in tooyour **Zendesk** tenant.</span></span>
 
-2. <span data-ttu-id="a634f-231">Selezionare la scheda **Customer List** .</span><span class="sxs-lookup"><span data-stu-id="a634f-231">Select the **Customer List** tab.</span></span>
+2. <span data-ttu-id="59a2d-231">Seleziona hello **un elenco di clienti** scheda.</span><span class="sxs-lookup"><span data-stu-id="59a2d-231">Select hello **Customer List** tab.</span></span>
 
-3. <span data-ttu-id="a634f-232">Selezionare la scheda **User** e fare clic su **Add**.</span><span class="sxs-lookup"><span data-stu-id="a634f-232">Select the **User** tab, and click **Add**.</span></span>
+3. <span data-ttu-id="59a2d-232">Seleziona hello **utente** scheda e fare clic su **Aggiungi**.</span><span class="sxs-lookup"><span data-stu-id="59a2d-232">Select hello **User** tab, and click **Add**.</span></span>
    
-    <span data-ttu-id="a634f-233">![Aggiungere un utente](./media/active-directory-saas-zendesk-tutorial/ic773632.png "Aggiungere un utente")</span><span class="sxs-lookup"><span data-stu-id="a634f-233">![Add user](./media/active-directory-saas-zendesk-tutorial/ic773632.png "Add user")</span></span>
-4. <span data-ttu-id="a634f-234">Digitare l'indirizzo di posta elettronica di un account Azure AD esistente di cui si vuole eseguire il provisioning e quindi fare clic su **Save**.</span><span class="sxs-lookup"><span data-stu-id="a634f-234">Type the email address of an existing Azure AD account you want to provision, and then click **Save**.</span></span>
+    <span data-ttu-id="59a2d-233">![Aggiungere un utente](./media/active-directory-saas-zendesk-tutorial/ic773632.png "Aggiungere un utente")</span><span class="sxs-lookup"><span data-stu-id="59a2d-233">![Add user](./media/active-directory-saas-zendesk-tutorial/ic773632.png "Add user")</span></span>
+4. <span data-ttu-id="59a2d-234">Digitare l'indirizzo di posta elettronica hello di un account di Azure AD esistente si desidera tooprovision e quindi fare clic su **salvare**.</span><span class="sxs-lookup"><span data-stu-id="59a2d-234">Type hello email address of an existing Azure AD account you want tooprovision, and then click **Save**.</span></span>
    
-    <span data-ttu-id="a634f-235">![Nuovo utente](./media/active-directory-saas-zendesk-tutorial/ic773633.png "Nuovo utente")</span><span class="sxs-lookup"><span data-stu-id="a634f-235">![New user](./media/active-directory-saas-zendesk-tutorial/ic773633.png "New user")</span></span>
+    <span data-ttu-id="59a2d-235">![Nuovo utente](./media/active-directory-saas-zendesk-tutorial/ic773633.png "Nuovo utente")</span><span class="sxs-lookup"><span data-stu-id="59a2d-235">![New user](./media/active-directory-saas-zendesk-tutorial/ic773633.png "New user")</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="a634f-236">È possibile usare qualsiasi altro strumento o API di creazione di account utente fornita da Zendesk per eseguire il provisioning degli account utente Azure AD.</span><span class="sxs-lookup"><span data-stu-id="a634f-236">You can use any other Zendesk user account creation tools or APIs provided by Zendesk to provision AAD user accounts.</span></span>
+> <span data-ttu-id="59a2d-236">È possibile usare qualsiasi altro Zendesk utente account strumento di creazione o qualsiasi API fornita da Zendesk tooprovision account utente di AAD.</span><span class="sxs-lookup"><span data-stu-id="59a2d-236">You can use any other Zendesk user account creation tools or APIs provided by Zendesk tooprovision AAD user accounts.</span></span>
 
 
-### <a name="assigning-the-azure-ad-test-user"></a><span data-ttu-id="a634f-237">Assegnazione dell'utente test di Azure AD</span><span class="sxs-lookup"><span data-stu-id="a634f-237">Assigning the Azure AD test user</span></span>
+### <a name="assigning-hello-azure-ad-test-user"></a><span data-ttu-id="59a2d-237">Assegnazione utente test hello Azure AD</span><span class="sxs-lookup"><span data-stu-id="59a2d-237">Assigning hello Azure AD test user</span></span>
 
-<span data-ttu-id="a634f-238">In questa sezione Britta Simon viene abilitata per l'uso dell'accesso Single Sign-On di Azure concedendole l'accesso a Zendesk.</span><span class="sxs-lookup"><span data-stu-id="a634f-238">In this section, you enable Britta Simon to use Azure single sign-on by granting access to Zendesk.</span></span>
+<span data-ttu-id="59a2d-238">In questa sezione per abilitare Britta Simon toouse single sign-on Azure concessione dell'accesso tooZendesk.</span><span class="sxs-lookup"><span data-stu-id="59a2d-238">In this section, you enable Britta Simon toouse Azure single sign-on by granting access tooZendesk.</span></span>
 
 ![Assegna utente][200] 
 
-<span data-ttu-id="a634f-240">**Per assegnare Britta Simon a Zendesk, seguire questa procedura:**</span><span class="sxs-lookup"><span data-stu-id="a634f-240">**To assign Britta Simon to Zendesk, perform the following steps:**</span></span>
+<span data-ttu-id="59a2d-240">**tooassign Britta Simon tooZendesk, eseguire hello alla procedura seguente:**</span><span class="sxs-lookup"><span data-stu-id="59a2d-240">**tooassign Britta Simon tooZendesk, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="a634f-241">Nel portale di Azure aprire la visualizzazione delle applicazioni e quindi la visualizzazione delle directory e passare ad **Applicazioni aziendali**, quindi fare clic su **Tutte le applicazioni**.</span><span class="sxs-lookup"><span data-stu-id="a634f-241">In the Azure portal, open the applications view, and then navigate to the directory view and go to **Enterprise applications** then click **All applications**.</span></span>
+1. <span data-ttu-id="59a2d-241">Nel portale di Azure hello, aprire la visualizzazione di applicazioni hello, quindi selezionare Visualizza directory toohello e andare troppo**applicazioni aziendali** quindi fare clic su **tutte le applicazioni**.</span><span class="sxs-lookup"><span data-stu-id="59a2d-241">In hello Azure portal, open hello applications view, and then navigate toohello directory view and go too**Enterprise applications** then click **All applications**.</span></span>
 
     ![Assegna utente][201] 
 
-2. <span data-ttu-id="a634f-243">Nell'elenco di applicazioni selezionare **Zendesk**.</span><span class="sxs-lookup"><span data-stu-id="a634f-243">In the applications list, select **Zendesk**.</span></span>
+2. <span data-ttu-id="59a2d-243">Nell'elenco di applicazioni hello, selezionare **Zendesk**.</span><span class="sxs-lookup"><span data-stu-id="59a2d-243">In hello applications list, select **Zendesk**.</span></span>
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-zendesk-tutorial/tutorial_zendesk_app.png) 
 
-3. <span data-ttu-id="a634f-245">Scegliere **Utenti e gruppi** dal menu a sinistra.</span><span class="sxs-lookup"><span data-stu-id="a634f-245">In the menu on the left, click **Users and groups**.</span></span>
+3. <span data-ttu-id="59a2d-245">Dal menu hello hello sinistra, fare clic su **utenti e gruppi**.</span><span class="sxs-lookup"><span data-stu-id="59a2d-245">In hello menu on hello left, click **Users and groups**.</span></span>
 
     ![Assegna utente][202] 
 
-4. <span data-ttu-id="a634f-247">Fare clic sul pulsante **Aggiungi**.</span><span class="sxs-lookup"><span data-stu-id="a634f-247">Click **Add** button.</span></span> <span data-ttu-id="a634f-248">Selezionare quindi **Utenti e gruppi** nella finestra di dialogo **Aggiungi assegnazione**.</span><span class="sxs-lookup"><span data-stu-id="a634f-248">Then select **Users and groups** on **Add Assignment** dialog.</span></span>
+4. <span data-ttu-id="59a2d-247">Fare clic sul pulsante **Aggiungi**.</span><span class="sxs-lookup"><span data-stu-id="59a2d-247">Click **Add** button.</span></span> <span data-ttu-id="59a2d-248">Selezionare quindi **Utenti e gruppi** nella finestra di dialogo **Aggiungi assegnazione**.</span><span class="sxs-lookup"><span data-stu-id="59a2d-248">Then select **Users and groups** on **Add Assignment** dialog.</span></span>
 
     ![Assegna utente][203]
 
-5. <span data-ttu-id="a634f-250">Nella finestra di dialogo **Utenti e gruppi** selezionare **Britta Simon** nell'elenco Utenti.</span><span class="sxs-lookup"><span data-stu-id="a634f-250">On **Users and groups** dialog, select **Britta Simon** in the Users list.</span></span>
+5. <span data-ttu-id="59a2d-250">In **utenti e gruppi** finestra di dialogo Seleziona **Britta Simon** nell'elenco di utenti hello.</span><span class="sxs-lookup"><span data-stu-id="59a2d-250">On **Users and groups** dialog, select **Britta Simon** in hello Users list.</span></span>
 
-6. <span data-ttu-id="a634f-251">Fare clic sul pulsante **Seleziona** nella finestra di dialogo **Utenti e gruppi**.</span><span class="sxs-lookup"><span data-stu-id="a634f-251">Click **Select** button on **Users and groups** dialog.</span></span>
+6. <span data-ttu-id="59a2d-251">Fare clic sul pulsante **Seleziona** nella finestra di dialogo **Utenti e gruppi**.</span><span class="sxs-lookup"><span data-stu-id="59a2d-251">Click **Select** button on **Users and groups** dialog.</span></span>
 
-7. <span data-ttu-id="a634f-252">Fare clic sul pulsante **Assegna** nella finestra di dialogo **Aggiungi assegnazione**.</span><span class="sxs-lookup"><span data-stu-id="a634f-252">Click **Assign** button on **Add Assignment** dialog.</span></span>
+7. <span data-ttu-id="59a2d-252">Fare clic sul pulsante **Assegna** nella finestra di dialogo **Aggiungi assegnazione**.</span><span class="sxs-lookup"><span data-stu-id="59a2d-252">Click **Assign** button on **Add Assignment** dialog.</span></span>
     
-### <a name="testing-single-sign-on"></a><span data-ttu-id="a634f-253">Test dell'accesso Single Sign-On</span><span class="sxs-lookup"><span data-stu-id="a634f-253">Testing single sign-on</span></span>
+### <a name="testing-single-sign-on"></a><span data-ttu-id="59a2d-253">Test dell'accesso Single Sign-On</span><span class="sxs-lookup"><span data-stu-id="59a2d-253">Testing single sign-on</span></span>
 
-<span data-ttu-id="a634f-254">In questa sezione viene testata la configurazione dell'accesso Single Sign-On di Azure AD usando il pannello di accesso.</span><span class="sxs-lookup"><span data-stu-id="a634f-254">In this section, you test your Azure AD single sign-on configuration using the Access Panel.</span></span>
+<span data-ttu-id="59a2d-254">In questa sezione si test configurazione di Azure AD single sign-on utilizzando hello Pannello di accesso.</span><span class="sxs-lookup"><span data-stu-id="59a2d-254">In this section, you test your Azure AD single sign-on configuration using hello Access Panel.</span></span>
 
-<span data-ttu-id="a634f-255">Quando si fa clic sul riquadro di Zendesk nel riquadro di accesso, si dovrebbe accedere automaticamente all'applicazione Zendesk.</span><span class="sxs-lookup"><span data-stu-id="a634f-255">When you click the Zendesk tile in the Access Panel, you should get automatically signed-on to your Zendesk application.</span></span>
-<span data-ttu-id="a634f-256">Per altre informazioni sul pannello di accesso, vedere [Introduzione al Pannello di accesso](active-directory-saas-access-panel-introduction.md).</span><span class="sxs-lookup"><span data-stu-id="a634f-256">For more information about the Access Panel, see [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).</span></span>
+<span data-ttu-id="59a2d-255">Quando si fa clic su riquadro Zendesk hello in hello Pannello di accesso, è necessario ottenere tooyour automaticamente firmato in Zendesk applicazione.</span><span class="sxs-lookup"><span data-stu-id="59a2d-255">When you click hello Zendesk tile in hello Access Panel, you should get automatically signed-on tooyour Zendesk application.</span></span>
+<span data-ttu-id="59a2d-256">Per ulteriori informazioni su hello Pannello di accesso, vedere [introduzione toohello Pannello di accesso](active-directory-saas-access-panel-introduction.md).</span><span class="sxs-lookup"><span data-stu-id="59a2d-256">For more information about hello Access Panel, see [Introduction toohello Access Panel](active-directory-saas-access-panel-introduction.md).</span></span>
 
-## <a name="additional-resources"></a><span data-ttu-id="a634f-257">Risorse aggiuntive</span><span class="sxs-lookup"><span data-stu-id="a634f-257">Additional resources</span></span>
+## <a name="additional-resources"></a><span data-ttu-id="59a2d-257">Risorse aggiuntive</span><span class="sxs-lookup"><span data-stu-id="59a2d-257">Additional resources</span></span>
 
-* [<span data-ttu-id="a634f-258">Elenco di esercitazioni sulla procedura di integrazione delle app SaaS con Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="a634f-258">List of Tutorials on How to Integrate SaaS Apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
-* [<span data-ttu-id="a634f-259">Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="a634f-259">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
+* [<span data-ttu-id="59a2d-258">Elenco di esercitazioni sulla tooIntegrate App SaaS con Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="59a2d-258">List of Tutorials on How tooIntegrate SaaS Apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
+* [<span data-ttu-id="59a2d-259">Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="59a2d-259">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
 
 
 

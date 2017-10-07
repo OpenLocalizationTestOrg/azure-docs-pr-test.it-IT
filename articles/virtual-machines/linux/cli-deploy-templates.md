@@ -1,6 +1,6 @@
 ---
-title: Distribuire le macchine virtuali Linux con modelli di Azure | Documentazione Microsoft
-description: "Distribuire e gestire le configurazioni più comuni per le macchine virtuali di Azure utilizzando i modelli di Gestione risorse e l'interfaccia della riga di comando di Azure."
+title: aaaDeploy le macchine virtuali Linux con modelli di Azure | Documenti Microsoft
+description: "Distribuire e gestire le configurazioni più comuni di hello per macchine virtuali di Azure mediante Azure CLI e modelli di gestione risorse."
 services: virtual-machines-linux
 documentationcenter: 
 author: squillace
@@ -15,14 +15,14 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/23/2016
 ms.author: rasquill
-ms.openlocfilehash: 415be559a8e0d1940a6a3da4f44ebd26b750fab0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 087b21504adc7e5f462530a748d26f0c1a1c99a5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="deploy-and-manage-virtual-machines-by-using-azure-resource-manager-templates-and-the-azure-cli"></a><span data-ttu-id="b7f0c-103">Distribuire e gestire le macchine virtuali usando modelli di Gestione risorse di Azure e l'interfaccia della riga di comando di Azure</span><span class="sxs-lookup"><span data-stu-id="b7f0c-103">Deploy and manage virtual machines by using Azure Resource Manager templates and the Azure CLI</span></span>
-<span data-ttu-id="b7f0c-104">Questo articolo illustra come usare i modelli di Gestione risorse e l'interfaccia della riga di comando di Azure per eseguire attività comuni per la distribuzione e la gestione delle macchine virtuali di Azure.</span><span class="sxs-lookup"><span data-stu-id="b7f0c-104">This article shows you how to use Azure Resource Manager templates and the Azure CLI to do the following common tasks for deploying and managing Azure virtual machines.</span></span> <span data-ttu-id="b7f0c-105">Per altri modelli disponibili, vedere [Modelli di avvio rapido di Azure](https://azure.microsoft.com/documentation/templates/) e [Framework applicazioni usando i modelli](app-frameworks.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span><span class="sxs-lookup"><span data-stu-id="b7f0c-105">For more templates you can use, see [Azure Quickstart templates](https://azure.microsoft.com/documentation/templates/) and [Application frameworks using templates](app-frameworks.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span></span>
+# <a name="deploy-and-manage-virtual-machines-by-using-azure-resource-manager-templates-and-hello-azure-cli"></a><span data-ttu-id="3021a-103">Distribuire e gestire macchine virtuali utilizzando modelli di gestione risorse di Azure e hello CLI di Azure</span><span class="sxs-lookup"><span data-stu-id="3021a-103">Deploy and manage virtual machines by using Azure Resource Manager templates and hello Azure CLI</span></span>
+<span data-ttu-id="3021a-104">In questo articolo illustra come toouse Azure Resource Manager hello toodo CLI di Azure di hello seguenti attività comuni per distribuire e gestire macchine virtuali di Azure e modelli.</span><span class="sxs-lookup"><span data-stu-id="3021a-104">This article shows you how toouse Azure Resource Manager templates and hello Azure CLI toodo hello following common tasks for deploying and managing Azure virtual machines.</span></span> <span data-ttu-id="3021a-105">Per altri modelli disponibili, vedere [Modelli di avvio rapido di Azure](https://azure.microsoft.com/documentation/templates/) e [Framework applicazioni usando i modelli](app-frameworks.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span><span class="sxs-lookup"><span data-stu-id="3021a-105">For more templates you can use, see [Azure Quickstart templates](https://azure.microsoft.com/documentation/templates/) and [Application frameworks using templates](app-frameworks.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span></span>
 
 [!INCLUDE [virtual-machines-common-cli-deploy-templates](../../../includes/virtual-machines-common-cli-deploy-templates.md)]
 

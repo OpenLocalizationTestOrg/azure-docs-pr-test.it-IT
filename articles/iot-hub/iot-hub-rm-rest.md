@@ -1,6 +1,6 @@
 ---
-title: Creare un hub IoT di Azure con l'API REST del provider di risorse | Documentazione Microsoft
-description: Come usare l'API REST del provider di risorse per creare un hub IoT.
+title: un hub IoT di Azure mediante aaaCreate hello API REST del provider di risorse | Documenti Microsoft
+description: Come un IoT Hub toouse hello toocreate API REST del provider di risorse.
 services: iot-hub
 documentationcenter: .net
 author: dominicbetts
@@ -14,40 +14,40 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/08/2017
 ms.author: dobett
-ms.openlocfilehash: e443259507aacbefca141be4c9c1688ab19bf6ec
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 98d240ccce47dec13a255bce28943b40f5354ecf
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-an-iot-hub-using-the-resource-provider-rest-api-net"></a><span data-ttu-id="cbe4a-103">Creare un hub IoT con l'API REST del provider di risorse (.NET)</span><span class="sxs-lookup"><span data-stu-id="cbe4a-103">Create an IoT hub using the resource provider REST API (.NET)</span></span>
+# <a name="create-an-iot-hub-using-hello-resource-provider-rest-api-net"></a><span data-ttu-id="b9637-103">Creazione di un hub IoT utilizzando il provider di risorse hello API REST (.NET)</span><span class="sxs-lookup"><span data-stu-id="b9637-103">Create an IoT hub using hello resource provider REST API (.NET)</span></span>
 
 [!INCLUDE [iot-hub-resource-manager-selector](../../includes/iot-hub-resource-manager-selector.md)]
 
-<span data-ttu-id="cbe4a-104">È possibile usare l'[API REST del provider di risorse dell'hub IoT][lnk-rest-api] per creare e gestire hub IoT di Azure a livello di codice.</span><span class="sxs-lookup"><span data-stu-id="cbe4a-104">You can use the [IoT Hub resource provider REST API][lnk-rest-api] to create and manage Azure IoT hubs programmatically.</span></span> <span data-ttu-id="cbe4a-105">In questa esercitazione viene illustrato come usare l'API REST del provider di risorse hub IoT per creare un hub IoT da un programma C#.</span><span class="sxs-lookup"><span data-stu-id="cbe4a-105">This tutorial shows you how to use the IoT Hub resource provider REST API to create an IoT hub from a C# program.</span></span>
+<span data-ttu-id="b9637-104">È possibile utilizzare hello [il provider di risorse IoT Hub API REST] [ lnk-rest-api] toocreate e gestire hub IoT di Azure a livello di codice.</span><span class="sxs-lookup"><span data-stu-id="b9637-104">You can use hello [IoT Hub resource provider REST API][lnk-rest-api] toocreate and manage Azure IoT hubs programmatically.</span></span> <span data-ttu-id="b9637-105">Questa esercitazione viene illustrato come toouse hello toocreate API REST del provider di IoT Hub risorsa un hub IoT da un programma c#.</span><span class="sxs-lookup"><span data-stu-id="b9637-105">This tutorial shows you how toouse hello IoT Hub resource provider REST API toocreate an IoT hub from a C# program.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="cbe4a-106">Azure offre due modelli di distribuzione per creare e usare le risorse: [modello di distribuzione classica e Azure Resource Manager](../azure-resource-manager/resource-manager-deployment-model.md).</span><span class="sxs-lookup"><span data-stu-id="cbe4a-106">Azure has two different deployment models for creating and working with resources:  [Azure Resource Manager and classic](../azure-resource-manager/resource-manager-deployment-model.md).</span></span>  <span data-ttu-id="cbe4a-107">In questo articolo viene illustrato l'uso del modello di distribuzione Azure Resource Manager.</span><span class="sxs-lookup"><span data-stu-id="cbe4a-107">This article covers using the Azure Resource Manager deployment model.</span></span>
+> <span data-ttu-id="b9637-106">Azure offre due modelli di distribuzione per creare e usare le risorse: [modello di distribuzione classica e Azure Resource Manager](../azure-resource-manager/resource-manager-deployment-model.md).</span><span class="sxs-lookup"><span data-stu-id="b9637-106">Azure has two different deployment models for creating and working with resources:  [Azure Resource Manager and classic](../azure-resource-manager/resource-manager-deployment-model.md).</span></span>  <span data-ttu-id="b9637-107">In questo articolo viene illustrato l'utilizzo del modello di distribuzione Azure Resource Manager hello.</span><span class="sxs-lookup"><span data-stu-id="b9637-107">This article covers using hello Azure Resource Manager deployment model.</span></span>
 
-<span data-ttu-id="cbe4a-108">Per completare l'esercitazione, sono necessari gli elementi seguenti:</span><span class="sxs-lookup"><span data-stu-id="cbe4a-108">To complete this tutorial, you need the following:</span></span>
+<span data-ttu-id="b9637-108">toocomplete questa esercitazione, è necessario hello seguenti:</span><span class="sxs-lookup"><span data-stu-id="b9637-108">toocomplete this tutorial, you need hello following:</span></span>
 
-* <span data-ttu-id="cbe4a-109">Visual Studio 2015 o Visual Studio 2017.</span><span class="sxs-lookup"><span data-stu-id="cbe4a-109">Visual Studio 2015 or Visual Studio 2017.</span></span>
-* <span data-ttu-id="cbe4a-110">Un account Azure attivo.</span><span class="sxs-lookup"><span data-stu-id="cbe4a-110">An active Azure account.</span></span> <br/><span data-ttu-id="cbe4a-111">Se non si ha un account, è possibile crearne uno [gratuito][lnk-free-trial] in pochi minuti.</span><span class="sxs-lookup"><span data-stu-id="cbe4a-111">If you don't have an account, you can create a [free account][lnk-free-trial] in just a couple of minutes.</span></span>
-* <span data-ttu-id="cbe4a-112">[Azure PowerShell 1.0][lnk-powershell-install] o versione successiva.</span><span class="sxs-lookup"><span data-stu-id="cbe4a-112">[Azure PowerShell 1.0][lnk-powershell-install] or later.</span></span>
+* <span data-ttu-id="b9637-109">Visual Studio 2015 o Visual Studio 2017.</span><span class="sxs-lookup"><span data-stu-id="b9637-109">Visual Studio 2015 or Visual Studio 2017.</span></span>
+* <span data-ttu-id="b9637-110">Un account Azure attivo.</span><span class="sxs-lookup"><span data-stu-id="b9637-110">An active Azure account.</span></span> <br/><span data-ttu-id="b9637-111">Se non si ha un account, è possibile crearne uno [gratuito][lnk-free-trial] in pochi minuti.</span><span class="sxs-lookup"><span data-stu-id="b9637-111">If you don't have an account, you can create a [free account][lnk-free-trial] in just a couple of minutes.</span></span>
+* <span data-ttu-id="b9637-112">[Azure PowerShell 1.0][lnk-powershell-install] o versione successiva.</span><span class="sxs-lookup"><span data-stu-id="b9637-112">[Azure PowerShell 1.0][lnk-powershell-install] or later.</span></span>
 
 [!INCLUDE [iot-hub-prepare-resource-manager](../../includes/iot-hub-prepare-resource-manager.md)]
 
-## <a name="prepare-your-visual-studio-project"></a><span data-ttu-id="cbe4a-113">Preparare il progetto di Visual Studio</span><span class="sxs-lookup"><span data-stu-id="cbe4a-113">Prepare your Visual Studio project</span></span>
+## <a name="prepare-your-visual-studio-project"></a><span data-ttu-id="b9637-113">Preparare il progetto di Visual Studio</span><span class="sxs-lookup"><span data-stu-id="b9637-113">Prepare your Visual Studio project</span></span>
 
-1. <span data-ttu-id="cbe4a-114">In Visual Studio creare un progetto desktop classico di Windows Visual C# usando il modello di progetto **App console (.NET Framework)**.</span><span class="sxs-lookup"><span data-stu-id="cbe4a-114">In Visual Studio, create a Visual C# Windows Classic Desktop project using the **Console App (.NET Framework)** project template.</span></span> <span data-ttu-id="cbe4a-115">Denominare il progetto **CreateIoTHubREST**.</span><span class="sxs-lookup"><span data-stu-id="cbe4a-115">Name the project **CreateIoTHubREST**.</span></span>
+1. <span data-ttu-id="b9637-114">In Visual Studio, creare un progetto di Visual c# Windows Desktop classico utilizzando hello **applicazione Console (.NET Framework)** modello di progetto.</span><span class="sxs-lookup"><span data-stu-id="b9637-114">In Visual Studio, create a Visual C# Windows Classic Desktop project using hello **Console App (.NET Framework)** project template.</span></span> <span data-ttu-id="b9637-115">Progetto hello nome **CreateIoTHubREST**.</span><span class="sxs-lookup"><span data-stu-id="b9637-115">Name hello project **CreateIoTHubREST**.</span></span>
 
-2. <span data-ttu-id="cbe4a-116">In Esplora soluzioni fare clic con il pulsante destro del mouse sul progetto, quindi scegliere **Gestisci pacchetti NuGet**.</span><span class="sxs-lookup"><span data-stu-id="cbe4a-116">In Solution Explorer, right-click on your project and then click **Manage NuGet Packages**.</span></span>
+2. <span data-ttu-id="b9637-116">In Esplora soluzioni fare clic con il pulsante destro del mouse sul progetto, quindi scegliere **Gestisci pacchetti NuGet**.</span><span class="sxs-lookup"><span data-stu-id="b9637-116">In Solution Explorer, right-click on your project and then click **Manage NuGet Packages**.</span></span>
 
-3. <span data-ttu-id="cbe4a-117">In Gestione pacchetti NuGet selezionare **Includi versione preliminare** e nella pagina **Sfoglia** cercare **Microsoft.Azure.Management.ResourceManager**.</span><span class="sxs-lookup"><span data-stu-id="cbe4a-117">In NuGet Package Manager, check **Include prerelease**, and on the **Browse** page search for **Microsoft.Azure.Management.ResourceManager**.</span></span> <span data-ttu-id="cbe4a-118">Selezionare il pacchetto, fare clic su **Installa**, in **Rivedi modifiche** fare clic su **OK**, quindi fare clic su **I Accept** (Accetto) per accettare le licenze.</span><span class="sxs-lookup"><span data-stu-id="cbe4a-118">Select the package, click **Install**, in **Review Changes** click **OK**, then click **I Accept** to accept the licenses.</span></span>
+3. <span data-ttu-id="b9637-117">Controllare in Gestione pacchetti NuGet **versione provvisoria di inclusione**e in hello **Sfoglia** Cerca pagina **Microsoft.Azure.Management.ResourceManager**.</span><span class="sxs-lookup"><span data-stu-id="b9637-117">In NuGet Package Manager, check **Include prerelease**, and on hello **Browse** page search for **Microsoft.Azure.Management.ResourceManager**.</span></span> <span data-ttu-id="b9637-118">Selezionare il pacchetto di hello, fare clic su **installare**nella **verificare le modifiche** fare clic su **OK**, quindi fare clic su **accetto** licenze hello tooaccept.</span><span class="sxs-lookup"><span data-stu-id="b9637-118">Select hello package, click **Install**, in **Review Changes** click **OK**, then click **I Accept** tooaccept hello licenses.</span></span>
 
-4. <span data-ttu-id="cbe4a-119">In Gestione pacchetti NuGet cercare **Microsoft.IdentityModel.Clients.ActiveDirectory**.</span><span class="sxs-lookup"><span data-stu-id="cbe4a-119">In NuGet Package Manager, search for **Microsoft.IdentityModel.Clients.ActiveDirectory**.</span></span>  <span data-ttu-id="cbe4a-120">Fare clic su **Installa**, in **Rivedi modifiche** fare clic su **OK**, quindi fare clic su **I Accept** (Accetto) per accettare la licenza.</span><span class="sxs-lookup"><span data-stu-id="cbe4a-120">Click **Install**, in **Review Changes** click **OK**, then click **I Accept** to accept the license.</span></span>
+4. <span data-ttu-id="b9637-119">In Gestione pacchetti NuGet cercare **Microsoft.IdentityModel.Clients.ActiveDirectory**.</span><span class="sxs-lookup"><span data-stu-id="b9637-119">In NuGet Package Manager, search for **Microsoft.IdentityModel.Clients.ActiveDirectory**.</span></span>  <span data-ttu-id="b9637-120">Fare clic su **installare**nella **verificare le modifiche** fare clic su **OK**, quindi fare clic su **accetto** licenza hello tooaccept.</span><span class="sxs-lookup"><span data-stu-id="b9637-120">Click **Install**, in **Review Changes** click **OK**, then click **I Accept** tooaccept hello license.</span></span>
 
-5. <span data-ttu-id="cbe4a-121">In Program.cs sostituire le istruzioni **using** esistenti con il codice seguente:</span><span class="sxs-lookup"><span data-stu-id="cbe4a-121">In Program.cs, replace the existing **using** statements with the following code:</span></span>
+5. <span data-ttu-id="b9637-121">In Program.cs, sostituire hello **utilizzando** istruzioni con hello seguente codice:</span><span class="sxs-lookup"><span data-stu-id="b9637-121">In Program.cs, replace hello existing **using** statements with hello following code:</span></span>
 
     ```csharp
     using System;
@@ -63,7 +63,7 @@ ms.lasthandoff: 08/18/2017
     using System.Threading;
     ```
 
-6. <span data-ttu-id="cbe4a-122">In Program.cs aggiungere le seguenti variabili statiche sostituendo i valori dei segnaposto.</span><span class="sxs-lookup"><span data-stu-id="cbe4a-122">In Program.cs, add the following static variables replacing the placeholder values.</span></span> <span data-ttu-id="cbe4a-123">Nella parte precedente di questa esercitazione si è preso nota di **ApplicationId**, **SubscriptionId**, **TenantId** e **Password**.</span><span class="sxs-lookup"><span data-stu-id="cbe4a-123">You made a note of **ApplicationId**, **SubscriptionId**, **TenantId**, and **Password** earlier in this tutorial.</span></span> <span data-ttu-id="cbe4a-124">**Nome gruppo di risorse** è il nome del gruppo di risorse che viene usato quando si crea l'hub IoT.</span><span class="sxs-lookup"><span data-stu-id="cbe4a-124">**Resource group name** is the name of the resource group you use when you create the IoT hub.</span></span> <span data-ttu-id="cbe4a-125">È possibile usare un gruppo di risorse preesistente o nuovo.</span><span class="sxs-lookup"><span data-stu-id="cbe4a-125">You can use a pre-existing or a new resource group.</span></span> <span data-ttu-id="cbe4a-126">**Nome hub IoT** è il nome dell'hub IoT creato, ad esempio **MioHubIoT**.</span><span class="sxs-lookup"><span data-stu-id="cbe4a-126">**IoT Hub name** is the name of the IoT Hub you create, such as **MyIoTHub**.</span></span> <span data-ttu-id="cbe4a-127">Il nome dell'hub IoT deve essere globalmente univoco.</span><span class="sxs-lookup"><span data-stu-id="cbe4a-127">The name of your IoT hub must be globally unique.</span></span> <span data-ttu-id="cbe4a-128">**Nome distribuzione** è un nome per la distribuzione, ad esempio **Deployment_01**.</span><span class="sxs-lookup"><span data-stu-id="cbe4a-128">**Deployment name** is a name for the deployment, such as **Deployment_01**.</span></span>
+6. <span data-ttu-id="b9637-122">In Program.cs aggiungere hello seguenti variabili statiche, sostituendo i valori segnaposto hello.</span><span class="sxs-lookup"><span data-stu-id="b9637-122">In Program.cs, add hello following static variables replacing hello placeholder values.</span></span> <span data-ttu-id="b9637-123">Nella parte precedente di questa esercitazione si è preso nota di **ApplicationId**, **SubscriptionId**, **TenantId** e **Password**.</span><span class="sxs-lookup"><span data-stu-id="b9637-123">You made a note of **ApplicationId**, **SubscriptionId**, **TenantId**, and **Password** earlier in this tutorial.</span></span> <span data-ttu-id="b9637-124">**Nome del gruppo di risorse** hello nome del gruppo di risorse hello è utilizzare quando si crea l'hub IoT hello.</span><span class="sxs-lookup"><span data-stu-id="b9637-124">**Resource group name** is hello name of hello resource group you use when you create hello IoT hub.</span></span> <span data-ttu-id="b9637-125">È possibile usare un gruppo di risorse preesistente o nuovo.</span><span class="sxs-lookup"><span data-stu-id="b9637-125">You can use a pre-existing or a new resource group.</span></span> <span data-ttu-id="b9637-126">**Nome dell'IoT Hub** nome hello di hello IoT Hub create, ad esempio **MyIoTHub**.</span><span class="sxs-lookup"><span data-stu-id="b9637-126">**IoT Hub name** is hello name of hello IoT Hub you create, such as **MyIoTHub**.</span></span> <span data-ttu-id="b9637-127">nome Hello dell'hub IoT deve essere globalmente univoco.</span><span class="sxs-lookup"><span data-stu-id="b9637-127">hello name of your IoT hub must be globally unique.</span></span> <span data-ttu-id="b9637-128">**Nome della distribuzione** è un nome per la distribuzione di hello, ad esempio **Deployment_01**.</span><span class="sxs-lookup"><span data-stu-id="b9637-128">**Deployment name** is a name for hello deployment, such as **Deployment_01**.</span></span>
 
     ```csharp
     static string applicationId = "{Your ApplicationId}";
@@ -78,11 +78,11 @@ ms.lasthandoff: 08/18/2017
 
 [!INCLUDE [iot-hub-get-access-token](../../includes/iot-hub-get-access-token.md)]
 
-## <a name="use-the-resource-provider-rest-api-to-create-an-iot-hub"></a><span data-ttu-id="cbe4a-129">Usare l'API REST del provider di risorse per creare un hub IoT</span><span class="sxs-lookup"><span data-stu-id="cbe4a-129">Use the resource provider REST API to create an IoT hub</span></span>
+## <a name="use-hello-resource-provider-rest-api-toocreate-an-iot-hub"></a><span data-ttu-id="b9637-129">Utilizzare i provider di risorse hello, toocreate API REST un hub IoT</span><span class="sxs-lookup"><span data-stu-id="b9637-129">Use hello resource provider REST API toocreate an IoT hub</span></span>
 
-<span data-ttu-id="cbe4a-130">Usare l'[API REST del provider di risorse dell'hub IoT][lnk-rest-api] per creare un hub IoT nel gruppo di risorse.</span><span class="sxs-lookup"><span data-stu-id="cbe4a-130">Use the [IoT Hub resource provider REST API][lnk-rest-api] to create an IoT hub in your resource group.</span></span> <span data-ttu-id="cbe4a-131">È possibile usare l'API REST del provider di risorse anche per apportare modifiche a un hub IoT esistente.</span><span class="sxs-lookup"><span data-stu-id="cbe4a-131">You can also use the resource provider REST API to make changes to an existing IoT hub.</span></span>
+<span data-ttu-id="b9637-130">Hello utilizzare [il provider di risorse IoT Hub API REST] [ lnk-rest-api] toocreate un hub IoT nel gruppo di risorse.</span><span class="sxs-lookup"><span data-stu-id="b9637-130">Use hello [IoT Hub resource provider REST API][lnk-rest-api] toocreate an IoT hub in your resource group.</span></span> <span data-ttu-id="b9637-131">È possibile utilizzare anche hello resource provider API REST toomake modifiche tooan IoT hub esistente.</span><span class="sxs-lookup"><span data-stu-id="b9637-131">You can also use hello resource provider REST API toomake changes tooan existing IoT hub.</span></span>
 
-1. <span data-ttu-id="cbe4a-132">Aggiungere il metodo seguente a Program.cs:</span><span class="sxs-lookup"><span data-stu-id="cbe4a-132">Add the following method to Program.cs:</span></span>
+1. <span data-ttu-id="b9637-132">Aggiungere hello tooProgram.cs metodo seguente:</span><span class="sxs-lookup"><span data-stu-id="b9637-132">Add hello following method tooProgram.cs:</span></span>
 
     ```csharp
     static void CreateIoTHub(string token)
@@ -91,14 +91,14 @@ ms.lasthandoff: 08/18/2017
     }
     ```
 
-2. <span data-ttu-id="cbe4a-133">Aggiungere il codice seguente al metodo **CreateIoTHub**.</span><span class="sxs-lookup"><span data-stu-id="cbe4a-133">Add the following code to the **CreateIoTHub** method.</span></span> <span data-ttu-id="cbe4a-134">Questo codice crea un oggetto **HttpClient** con il token di autenticazione nelle intestazioni:</span><span class="sxs-lookup"><span data-stu-id="cbe4a-134">This code creates an **HttpClient** object with the authentication token in the headers:</span></span>
+2. <span data-ttu-id="b9637-133">Aggiungere i seguenti toohello codice hello **CreateIoTHub** metodo.</span><span class="sxs-lookup"><span data-stu-id="b9637-133">Add hello following code toohello **CreateIoTHub** method.</span></span> <span data-ttu-id="b9637-134">Questo codice crea un **HttpClient** oggetto con il token di autenticazione hello nelle intestazioni hello:</span><span class="sxs-lookup"><span data-stu-id="b9637-134">This code creates an **HttpClient** object with hello authentication token in hello headers:</span></span>
 
     ```csharp
     HttpClient client = new HttpClient();
     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
     ```
 
-3. <span data-ttu-id="cbe4a-135">Aggiungere il codice seguente al metodo **CreateIoTHub**.</span><span class="sxs-lookup"><span data-stu-id="cbe4a-135">Add the following code to the **CreateIoTHub** method.</span></span> <span data-ttu-id="cbe4a-136">Questo codice descrive l'hub IoT per creare e genera una rappresentazione JSON.</span><span class="sxs-lookup"><span data-stu-id="cbe4a-136">This code describes the IoT hub to create and generates a JSON representation.</span></span> <span data-ttu-id="cbe4a-137">Per un elenco aggiornato delle località in cui è supportato l'hub IoT, vedere lo [Stato di Azure][lnk-status]:</span><span class="sxs-lookup"><span data-stu-id="cbe4a-137">For the current list of locations that support IoT Hub see [Azure Status][lnk-status]:</span></span>
+3. <span data-ttu-id="b9637-135">Aggiungere i seguenti toohello codice hello **CreateIoTHub** metodo.</span><span class="sxs-lookup"><span data-stu-id="b9637-135">Add hello following code toohello **CreateIoTHub** method.</span></span> <span data-ttu-id="b9637-136">Questo codice descrive hello IoT hub toocreate e genera una rappresentazione JSON.</span><span class="sxs-lookup"><span data-stu-id="b9637-136">This code describes hello IoT hub toocreate and generates a JSON representation.</span></span> <span data-ttu-id="b9637-137">Per l'elenco corrente di hello di percorsi che supportano IoT Hub vedere [stato Azure][lnk-status]:</span><span class="sxs-lookup"><span data-stu-id="b9637-137">For hello current list of locations that support IoT Hub see [Azure Status][lnk-status]:</span></span>
 
     ```csharp
     var description = new
@@ -116,7 +116,7 @@ ms.lasthandoff: 08/18/2017
     var json = JsonConvert.SerializeObject(description, Formatting.Indented);
     ```
 
-4. <span data-ttu-id="cbe4a-138">Aggiungere il codice seguente al metodo **CreateIoTHub**.</span><span class="sxs-lookup"><span data-stu-id="cbe4a-138">Add the following code to the **CreateIoTHub** method.</span></span> <span data-ttu-id="cbe4a-139">Questo codice invia la richiesta REST ad Azure.</span><span class="sxs-lookup"><span data-stu-id="cbe4a-139">This code submits the REST request to Azure.</span></span> <span data-ttu-id="cbe4a-140">Il codice verifica quindi la risposta e recupera l'URL da usare per monitorare lo stato dell'attività di distribuzione:</span><span class="sxs-lookup"><span data-stu-id="cbe4a-140">The code then checks the response and retrieves the URL you can use to monitor the state of the deployment task:</span></span>
+4. <span data-ttu-id="b9637-138">Aggiungere i seguenti toohello codice hello **CreateIoTHub** metodo.</span><span class="sxs-lookup"><span data-stu-id="b9637-138">Add hello following code toohello **CreateIoTHub** method.</span></span> <span data-ttu-id="b9637-139">Questo codice invia hello REST richiesta tooAzure.</span><span class="sxs-lookup"><span data-stu-id="b9637-139">This code submits hello REST request tooAzure.</span></span> <span data-ttu-id="b9637-140">codice Hello quindi controlla la risposta hello e recupera l'URL di hello è possibile utilizzare toomonitor hello stato dell'attività di distribuzione hello:</span><span class="sxs-lookup"><span data-stu-id="b9637-140">hello code then checks hello response and retrieves hello URL you can use toomonitor hello state of hello deployment task:</span></span>
 
     ```csharp
     var content = new StringContent(JsonConvert.SerializeObject(description), Encoding.UTF8, "application/json");
@@ -132,7 +132,7 @@ ms.lasthandoff: 08/18/2017
     var asyncStatusUri = result.Headers.GetValues("Azure-AsyncOperation").First();
     ```
 
-5. <span data-ttu-id="cbe4a-141">Alla fine del metodo **CreateIoTHub** aggiungere il codice seguente.</span><span class="sxs-lookup"><span data-stu-id="cbe4a-141">Add the following code to the end of the **CreateIoTHub** method.</span></span> <span data-ttu-id="cbe4a-142">Questo codice usa l'indirizzo **asyncStatusUri** recuperato nel passaggio precedente per attendere il completamento della distribuzione:</span><span class="sxs-lookup"><span data-stu-id="cbe4a-142">This code uses the **asyncStatusUri** address retrieved in the previous step to wait for the deployment to complete:</span></span>
+5. <span data-ttu-id="b9637-141">Aggiungere hello successivo toohello codice alla fine di hello **CreateIoTHub** metodo.</span><span class="sxs-lookup"><span data-stu-id="b9637-141">Add hello following code toohello end of hello **CreateIoTHub** method.</span></span> <span data-ttu-id="b9637-142">Questo codice Usa hello **asyncStatusUri** hello toowait di passaggio precedente per hello distribuzione toocomplete recuperare l'indirizzo:</span><span class="sxs-lookup"><span data-stu-id="b9637-142">This code uses hello **asyncStatusUri** address retrieved in hello previous step toowait for hello deployment toocomplete:</span></span>
 
     ```csharp
     string body;
@@ -144,7 +144,7 @@ ms.lasthandoff: 08/18/2017
     } while (body == "{\"status\":\"Running\"}");
     ```
 
-6. <span data-ttu-id="cbe4a-143">Alla fine del metodo **CreateIoTHub** aggiungere il codice seguente.</span><span class="sxs-lookup"><span data-stu-id="cbe4a-143">Add the following code to the end of the **CreateIoTHub** method.</span></span> <span data-ttu-id="cbe4a-144">Questo codice recupera le chiavi dell'hub IoT creato e le visualizza nella console:</span><span class="sxs-lookup"><span data-stu-id="cbe4a-144">This code retrieves the keys of the IoT hub you created and prints them to the console:</span></span>
+6. <span data-ttu-id="b9637-143">Aggiungere hello successivo toohello codice alla fine di hello **CreateIoTHub** metodo.</span><span class="sxs-lookup"><span data-stu-id="b9637-143">Add hello following code toohello end of hello **CreateIoTHub** method.</span></span> <span data-ttu-id="b9637-144">Questo codice recupera le chiavi di hello di hello hub IoT è stato creato e li visualizza toohello console:</span><span class="sxs-lookup"><span data-stu-id="b9637-144">This code retrieves hello keys of hello IoT hub you created and prints them toohello console:</span></span>
 
     ```csharp
     var listKeysUri = string.Format("https://management.azure.com/subscriptions/{0}/resourceGroups/{1}/providers/Microsoft.Devices/IotHubs/{2}/IoTHubKeys/listkeys?api-version=2016-02-03", subscriptionId, rgName, iotHubName);
@@ -153,40 +153,40 @@ ms.lasthandoff: 08/18/2017
     Console.WriteLine("Keys: {0}", keysresults.Content.ReadAsStringAsync().Result);
     ```
 
-## <a name="complete-and-run-the-application"></a><span data-ttu-id="cbe4a-145">Compilare ed eseguire l'applicazione</span><span class="sxs-lookup"><span data-stu-id="cbe4a-145">Complete and run the application</span></span>
+## <a name="complete-and-run-hello-application"></a><span data-ttu-id="b9637-145">Applicazione hello completo e di esecuzione</span><span class="sxs-lookup"><span data-stu-id="b9637-145">Complete and run hello application</span></span>
 
-<span data-ttu-id="cbe4a-146">È ora possibile completare l'applicazione chiamando il metodo **CreateIoTHub** prima di compilarla ed eseguirla.</span><span class="sxs-lookup"><span data-stu-id="cbe4a-146">You can now complete the application by calling the **CreateIoTHub** method before you build and run it.</span></span>
+<span data-ttu-id="b9637-146">È ora possibile completare un'applicazione hello dal chiamante hello **CreateIoTHub** metodo prima di generare ed eseguirlo.</span><span class="sxs-lookup"><span data-stu-id="b9637-146">You can now complete hello application by calling hello **CreateIoTHub** method before you build and run it.</span></span>
 
-1. <span data-ttu-id="cbe4a-147">Alla fine del metodo **Main** aggiungere il codice seguente:</span><span class="sxs-lookup"><span data-stu-id="cbe4a-147">Add the following code to the end of the **Main** method:</span></span>
+1. <span data-ttu-id="b9637-147">Aggiungere hello successivo toohello codice alla fine di hello **Main** metodo:</span><span class="sxs-lookup"><span data-stu-id="b9637-147">Add hello following code toohello end of hello **Main** method:</span></span>
 
     ```csharp
     CreateIoTHub(token.AccessToken);
     Console.ReadLine();
     ```
 
-2. <span data-ttu-id="cbe4a-148">Fare clic su **Compila** e quindi su **Compila soluzione**.</span><span class="sxs-lookup"><span data-stu-id="cbe4a-148">Click **Build** and then **Build Solution**.</span></span> <span data-ttu-id="cbe4a-149">Correggere eventuali errori.</span><span class="sxs-lookup"><span data-stu-id="cbe4a-149">Correct any errors.</span></span>
+2. <span data-ttu-id="b9637-148">Fare clic su **Compila** e quindi su **Compila soluzione**.</span><span class="sxs-lookup"><span data-stu-id="b9637-148">Click **Build** and then **Build Solution**.</span></span> <span data-ttu-id="b9637-149">Correggere eventuali errori.</span><span class="sxs-lookup"><span data-stu-id="b9637-149">Correct any errors.</span></span>
 
-3. <span data-ttu-id="cbe4a-150">Fare clic su **Debug** e quindi su **Avvia debug** per eseguire l'applicazione.</span><span class="sxs-lookup"><span data-stu-id="cbe4a-150">Click **Debug** and then **Start Debugging** to run the application.</span></span> <span data-ttu-id="cbe4a-151">Potrebbero occorrere alcuni minuti per l'esecuzione della distribuzione.</span><span class="sxs-lookup"><span data-stu-id="cbe4a-151">It may take several minutes for the deployment to run.</span></span>
+3. <span data-ttu-id="b9637-150">Fare clic su **Debug** e quindi **Avvia debug** toorun un'applicazione hello.</span><span class="sxs-lookup"><span data-stu-id="b9637-150">Click **Debug** and then **Start Debugging** toorun hello application.</span></span> <span data-ttu-id="b9637-151">Potrebbe richiedere alcuni minuti per hello toorun di distribuzione.</span><span class="sxs-lookup"><span data-stu-id="b9637-151">It may take several minutes for hello deployment toorun.</span></span>
 
-4. <span data-ttu-id="cbe4a-152">Per verificare che l'applicazione abbia aggiunto il nuovo hub IoT, visitare il [portale di Azure][lnk-azure-portal] e visualizzare l'elenco delle risorse.</span><span class="sxs-lookup"><span data-stu-id="cbe4a-152">To verify that your application added the new IoT hub, visit the [Azure portal][lnk-azure-portal] and view your list of resources.</span></span> <span data-ttu-id="cbe4a-153">In alternativa, usare il cmdlet di PowerShell **Get-AzureRmResource**.</span><span class="sxs-lookup"><span data-stu-id="cbe4a-153">Alternatively, use the **Get-AzureRmResource** PowerShell cmdlet.</span></span>
+4. <span data-ttu-id="b9637-152">tooverify che l'applicazione aggiunta hello nuovo hub IoT, visitare hello [portale di Azure] [ lnk-azure-portal] e visualizzare l'elenco delle risorse.</span><span class="sxs-lookup"><span data-stu-id="b9637-152">tooverify that your application added hello new IoT hub, visit hello [Azure portal][lnk-azure-portal] and view your list of resources.</span></span> <span data-ttu-id="b9637-153">In alternativa, utilizzare hello **Get-AzureRmResource** cmdlet di PowerShell.</span><span class="sxs-lookup"><span data-stu-id="b9637-153">Alternatively, use hello **Get-AzureRmResource** PowerShell cmdlet.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="cbe4a-154">Questa applicazione di esempio aggiunge un hub IoT Standard S1 che viene addebitato.</span><span class="sxs-lookup"><span data-stu-id="cbe4a-154">This example application adds an S1 Standard IoT Hub for which you are billed.</span></span> <span data-ttu-id="cbe4a-155">Al termine è possibile eliminare l'hub IoT tramite il [portale di Azure][lnk-azure-portal] o usando il cmdlet di PowerShell **Remove-AzureRmResource**.</span><span class="sxs-lookup"><span data-stu-id="cbe4a-155">When you are finished, you can delete the IoT hub through the [Azure portal][lnk-azure-portal] or by using the **Remove-AzureRmResource** PowerShell cmdlet when you are finished.</span></span>
+> <span data-ttu-id="b9637-154">Questa applicazione di esempio aggiunge un hub IoT Standard S1 che viene addebitato.</span><span class="sxs-lookup"><span data-stu-id="b9637-154">This example application adds an S1 Standard IoT Hub for which you are billed.</span></span> <span data-ttu-id="b9637-155">Al termine, è possibile eliminare l'hub IoT hello tramite hello [portale di Azure] [ lnk-azure-portal] o utilizzando hello **Remove-AzureRmResource** cmdlet PowerShell dopo aver terminato.</span><span class="sxs-lookup"><span data-stu-id="b9637-155">When you are finished, you can delete hello IoT hub through hello [Azure portal][lnk-azure-portal] or by using hello **Remove-AzureRmResource** PowerShell cmdlet when you are finished.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="cbe4a-156">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="cbe4a-156">Next steps</span></span>
-<span data-ttu-id="cbe4a-157">Dopo aver distribuito un hub IoT mediante l'API REST del provider di risorse, può essere opportuno approfondire gli argomenti seguenti:</span><span class="sxs-lookup"><span data-stu-id="cbe4a-157">Now you have deployed an IoT hub using the resource provider REST API, you may want to explore further:</span></span>
+## <a name="next-steps"></a><span data-ttu-id="b9637-156">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="b9637-156">Next steps</span></span>
+<span data-ttu-id="b9637-157">Dopo aver distribuito un hub IoT utilizzando il provider di risorse hello API REST, è opportuno tooexplore ulteriormente:</span><span class="sxs-lookup"><span data-stu-id="b9637-157">Now you have deployed an IoT hub using hello resource provider REST API, you may want tooexplore further:</span></span>
 
-* <span data-ttu-id="cbe4a-158">Informazioni sulle funzionalità dell'[API REST del provider di risorse dell'hub IoT][lnk-rest-api].</span><span class="sxs-lookup"><span data-stu-id="cbe4a-158">Read about the capabilities of the [IoT Hub resource provider REST API][lnk-rest-api].</span></span>
-* <span data-ttu-id="cbe4a-159">Per altre informazioni sulle funzionalità di Azure Resource Manager, vedere la [Panoramica di Azure Resource Manager][lnk-azure-rm-overview].</span><span class="sxs-lookup"><span data-stu-id="cbe4a-159">Read [Azure Resource Manager overview][lnk-azure-rm-overview] to learn more about the capabilities of Azure Resource Manager.</span></span>
+* <span data-ttu-id="b9637-158">Leggere informazioni sulle funzionalità di hello di hello [il provider di risorse IoT Hub API REST][lnk-rest-api].</span><span class="sxs-lookup"><span data-stu-id="b9637-158">Read about hello capabilities of hello [IoT Hub resource provider REST API][lnk-rest-api].</span></span>
+* <span data-ttu-id="b9637-159">Lettura [Panoramica di gestione risorse di Azure] [ lnk-azure-rm-overview] toolearn ulteriori informazioni sulla funzionalità hello di gestione risorse di Azure.</span><span class="sxs-lookup"><span data-stu-id="b9637-159">Read [Azure Resource Manager overview][lnk-azure-rm-overview] toolearn more about hello capabilities of Azure Resource Manager.</span></span>
 
-<span data-ttu-id="cbe4a-160">Per altre informazioni sulle attività di sviluppo per l'hub IoT, vedere gli articoli seguenti:</span><span class="sxs-lookup"><span data-stu-id="cbe4a-160">To learn more about developing for IoT Hub, see the following articles:</span></span>
+<span data-ttu-id="b9637-160">toolearn più sullo sviluppo per l'IoT Hub, vedere hello seguenti articoli:</span><span class="sxs-lookup"><span data-stu-id="b9637-160">toolearn more about developing for IoT Hub, see hello following articles:</span></span>
 
-* <span data-ttu-id="cbe4a-161">[Introduzione a C SDK][lnk-c-sdk]</span><span class="sxs-lookup"><span data-stu-id="cbe4a-161">[Introduction to C SDK][lnk-c-sdk]</span></span>
-* <span data-ttu-id="cbe4a-162">[Azure IoT SDKs][lnk-sdks] (SDK di IoT di Azure)</span><span class="sxs-lookup"><span data-stu-id="cbe4a-162">[Azure IoT SDKs][lnk-sdks]</span></span>
+* <span data-ttu-id="b9637-161">[Introduzione tooC SDK][lnk-c-sdk]</span><span class="sxs-lookup"><span data-stu-id="b9637-161">[Introduction tooC SDK][lnk-c-sdk]</span></span>
+* <span data-ttu-id="b9637-162">[Azure IoT SDKs][lnk-sdks] (SDK di IoT di Azure)</span><span class="sxs-lookup"><span data-stu-id="b9637-162">[Azure IoT SDKs][lnk-sdks]</span></span>
 
-<span data-ttu-id="cbe4a-163">Per altre informazioni sulle funzionalità dell'hub IoT, vedere:</span><span class="sxs-lookup"><span data-stu-id="cbe4a-163">To further explore the capabilities of IoT Hub, see:</span></span>
+<span data-ttu-id="b9637-163">toofurther esplorare le funzionalità di hello di IoT Hub, vedere:</span><span class="sxs-lookup"><span data-stu-id="b9637-163">toofurther explore hello capabilities of IoT Hub, see:</span></span>
 
-* <span data-ttu-id="cbe4a-164">[Simulazione di un dispositivo con Azure IoT Edge][lnk-iotedge]</span><span class="sxs-lookup"><span data-stu-id="cbe4a-164">[Simulating a device with Azure IoT Edge][lnk-iotedge]</span></span>
+* <span data-ttu-id="b9637-164">[Simulazione di un dispositivo con Azure IoT Edge][lnk-iotedge]</span><span class="sxs-lookup"><span data-stu-id="b9637-164">[Simulating a device with Azure IoT Edge][lnk-iotedge]</span></span>
 
 <!-- Links -->
 [lnk-free-trial]: https://azure.microsoft.com/pricing/free-trial/

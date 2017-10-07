@@ -34,7 +34,7 @@
 ### [Cambiare le impostazioni dei runbook](automation-runbook-settings.md)
 ### [Gestione dei dati di Automazione di Azure](automation-managing-data.md)
 ### [Chiamare un runbook di Automazione di Azure da un avviso di Log Analytics](automation-invoke-runbook-from-omsla-alert.md)
-### [Passare un oggetto JSON a un runbook di Automazione di Azure](automation-pass-json-string.md)
+### [Passare a un runbook di automazione di Azure tooan oggetto JSON](automation-pass-json-string.md)
 ## ruolo di lavoro ibrido per runbook
 ### [Distribuire il ruolo di lavoro ibrido per runbook](automation-hybrid-runbook-worker.md)
 ### [Eseguire runbook nel ruolo di lavoro](automation-hrw-run-runbooks.md)
@@ -44,7 +44,7 @@
 ### [Onboarding di computer per la gestione](automation-dsc-onboarding.md)
 ### [Compilazione di configurazioni DSC](automation-dsc-compile.md)
 ### [Distribuzione continua tramite Chocolatey](automation-dsc-cd-chocolatey.md)
-### [Inoltrare i dati dei report di Automation DSC per Azure a Log Analytics di OMS](automation-dsc-diagnostics.md)
+### [Inoltrare reporting dati tooOMS Analitica Log DSC di automazione di Azure](automation-dsc-diagnostics.md)
 ## Gestire le risorse
 ### [Certificati](automation-certificates.md)
 ### [Connessioni](automation-connections.md)
@@ -68,7 +68,7 @@
 ### [Gestione degli aggiornamenti](../operations-management-suite/oms-solution-update-management.md)
 ### [Avviare/arrestare le VM durante gli orari di minore attività](automation-solution-vm-management.md)
 ## Monitorare
-### [Inoltrare dati dei processi di Automazione di Azure a Log Analytics](automation-manage-send-joblogs-log-analytics.md)
+### [Automazione di Azure processo dati tooLog Analitica Avanti](automation-manage-send-joblogs-log-analytics.md)
 ### [Scollegare l'account di automazione di Azure dal Log Analytics](automation-unlink-from-log-analytics.md)
 ## Migrazione
 ### [Eseguire la migrazione dall'agente di orchestrazione](automation-orchestrator-migration.md)

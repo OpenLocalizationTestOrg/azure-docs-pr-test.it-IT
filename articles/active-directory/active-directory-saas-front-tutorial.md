@@ -1,6 +1,6 @@
 ---
 title: 'Esercitazione: Integrazione di Azure Active Directory con Front | Microsoft Docs'
-description: Informazioni su come configurare l'accesso Single Sign-On tra Azure Active Directory e Front.
+description: Informazioni su come tooconfigure single sign-on tra Azure Active Directory e di primo piano.
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -14,237 +14,237 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/25/2017
 ms.author: jeedes
-ms.openlocfilehash: d936bc50a66ac2a3c17038ff08351edf9902c99f
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 4be363a3d338ec9268f3324daab4a80346ec3131
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="tutorial-azure-active-directory-integration-with-front"></a><span data-ttu-id="3e02a-103">Esercitazione: Integrazione di Azure Active Directory con Front</span><span class="sxs-lookup"><span data-stu-id="3e02a-103">Tutorial: Azure Active Directory integration with Front</span></span>
+# <a name="tutorial-azure-active-directory-integration-with-front"></a><span data-ttu-id="c57cc-103">Esercitazione: Integrazione di Azure Active Directory con Front</span><span class="sxs-lookup"><span data-stu-id="c57cc-103">Tutorial: Azure Active Directory integration with Front</span></span>
 
-<span data-ttu-id="3e02a-104">Questa esercitazione descrive come integrare Front con Azure Active Directory (Azure AD).</span><span class="sxs-lookup"><span data-stu-id="3e02a-104">In this tutorial, you learn how to integrate Front with Azure Active Directory (Azure AD).</span></span>
+<span data-ttu-id="c57cc-104">In questa esercitazione, è illustrato come toointegrate anteriore con Azure Active Directory (Azure AD).</span><span class="sxs-lookup"><span data-stu-id="c57cc-104">In this tutorial, you learn how toointegrate Front with Azure Active Directory (Azure AD).</span></span>
 
-<span data-ttu-id="3e02a-105">L'integrazione di Front con Azure AD offre i vantaggi seguenti:</span><span class="sxs-lookup"><span data-stu-id="3e02a-105">Integrating Front with Azure AD provides you with the following benefits:</span></span>
+<span data-ttu-id="c57cc-105">Integrazione di primo piano con Azure AD fornisce hello seguenti vantaggi:</span><span class="sxs-lookup"><span data-stu-id="c57cc-105">Integrating Front with Azure AD provides you with hello following benefits:</span></span>
 
-- <span data-ttu-id="3e02a-106">È possibile controllare in Azure AD chi può accedere a Front.</span><span class="sxs-lookup"><span data-stu-id="3e02a-106">You can control in Azure AD who has access to Front.</span></span>
-- <span data-ttu-id="3e02a-107">È possibile abilitare gli utenti per l'accesso automatico a Front (Single Sign-On) con gli account Azure AD personali.</span><span class="sxs-lookup"><span data-stu-id="3e02a-107">You can enable your users to automatically get signed-on to Front (Single Sign-On) with their Azure AD accounts.</span></span>
-- <span data-ttu-id="3e02a-108">È possibile gestire gli account in un'unica posizione centrale: il portale di Azure.</span><span class="sxs-lookup"><span data-stu-id="3e02a-108">You can manage your accounts in one central location - the Azure portal.</span></span>
+- <span data-ttu-id="c57cc-106">È possibile controllare in Azure AD che ha accesso tooFront.</span><span class="sxs-lookup"><span data-stu-id="c57cc-106">You can control in Azure AD who has access tooFront.</span></span>
+- <span data-ttu-id="c57cc-107">È possibile abilitare l'utenti tooautomatically get connesso tooFront (Single Sign-On) con i propri account Azure AD.</span><span class="sxs-lookup"><span data-stu-id="c57cc-107">You can enable your users tooautomatically get signed-on tooFront (Single Sign-On) with their Azure AD accounts.</span></span>
+- <span data-ttu-id="c57cc-108">È possibile gestire gli account in un'unica posizione centrale - hello portale di Azure.</span><span class="sxs-lookup"><span data-stu-id="c57cc-108">You can manage your accounts in one central location - hello Azure portal.</span></span>
 
-<span data-ttu-id="3e02a-109">Per altre informazioni sull'integrazione di app SaaS con Azure AD, vedere [Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory](active-directory-appssoaccess-whatis.md).</span><span class="sxs-lookup"><span data-stu-id="3e02a-109">If you want to know more details about SaaS app integration with Azure AD, see [what is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).</span></span>
+<span data-ttu-id="c57cc-109">Se si desiderano tooknow ulteriori informazioni sull'integrazione dell'applicazione SaaS con Azure AD, vedere [novità di accesso alle applicazioni e single sign-on con Azure Active Directory](active-directory-appssoaccess-whatis.md).</span><span class="sxs-lookup"><span data-stu-id="c57cc-109">If you want tooknow more details about SaaS app integration with Azure AD, see [what is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="3e02a-110">Prerequisiti</span><span class="sxs-lookup"><span data-stu-id="3e02a-110">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="c57cc-110">Prerequisiti</span><span class="sxs-lookup"><span data-stu-id="c57cc-110">Prerequisites</span></span>
 
-<span data-ttu-id="3e02a-111">Per configurare l'integrazione di Azure AD con Front, sono necessari gli elementi seguenti:</span><span class="sxs-lookup"><span data-stu-id="3e02a-111">To configure Azure AD integration with Front, you need the following items:</span></span>
+<span data-ttu-id="c57cc-111">integrazione di tooconfigure Azure AD con inizio, è necessario hello seguenti elementi:</span><span class="sxs-lookup"><span data-stu-id="c57cc-111">tooconfigure Azure AD integration with Front, you need hello following items:</span></span>
 
-- <span data-ttu-id="3e02a-112">Sottoscrizione di Azure AD.</span><span class="sxs-lookup"><span data-stu-id="3e02a-112">An Azure AD subscription</span></span>
-- <span data-ttu-id="3e02a-113">Sottoscrizione di Front abilitata per l'accesso Single Sign-On</span><span class="sxs-lookup"><span data-stu-id="3e02a-113">A Front single sign-on enabled subscription</span></span>
+- <span data-ttu-id="c57cc-112">Sottoscrizione di Azure AD.</span><span class="sxs-lookup"><span data-stu-id="c57cc-112">An Azure AD subscription</span></span>
+- <span data-ttu-id="c57cc-113">Sottoscrizione di Front abilitata per l'accesso Single Sign-On</span><span class="sxs-lookup"><span data-stu-id="c57cc-113">A Front single sign-on enabled subscription</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="3e02a-114">Non è consigliabile usare un ambiente di produzione per testare i passaggi di questa esercitazione.</span><span class="sxs-lookup"><span data-stu-id="3e02a-114">To test the steps in this tutorial, we do not recommend using a production environment.</span></span>
+> <span data-ttu-id="c57cc-114">hello tootest i passaggi in questa esercitazione, è consigliabile utilizzare un ambiente di produzione.</span><span class="sxs-lookup"><span data-stu-id="c57cc-114">tootest hello steps in this tutorial, we do not recommend using a production environment.</span></span>
 
-<span data-ttu-id="3e02a-115">A questo scopo, è consigliabile seguire le indicazioni seguenti:</span><span class="sxs-lookup"><span data-stu-id="3e02a-115">To test the steps in this tutorial, you should follow these recommendations:</span></span>
+<span data-ttu-id="c57cc-115">passaggi di hello tootest in questa esercitazione, è necessario seguire questi suggerimenti:</span><span class="sxs-lookup"><span data-stu-id="c57cc-115">tootest hello steps in this tutorial, you should follow these recommendations:</span></span>
 
-- <span data-ttu-id="3e02a-116">Non usare l'ambiente di produzione a meno che non sia necessario.</span><span class="sxs-lookup"><span data-stu-id="3e02a-116">Do not use your production environment, unless it is necessary.</span></span>
-- <span data-ttu-id="3e02a-117">Se non è disponibile un ambiente di valutazione di Azure AD, è possibile [ottenere una versione di valutazione di un mese](https://azure.microsoft.com/pricing/free-trial/).</span><span class="sxs-lookup"><span data-stu-id="3e02a-117">If you don't have an Azure AD trial environment, you can [get a one-month trial](https://azure.microsoft.com/pricing/free-trial/).</span></span>
+- <span data-ttu-id="c57cc-116">Non usare l'ambiente di produzione a meno che non sia necessario.</span><span class="sxs-lookup"><span data-stu-id="c57cc-116">Do not use your production environment, unless it is necessary.</span></span>
+- <span data-ttu-id="c57cc-117">Se non è disponibile un ambiente di valutazione di Azure AD, è possibile [ottenere una versione di valutazione di un mese](https://azure.microsoft.com/pricing/free-trial/).</span><span class="sxs-lookup"><span data-stu-id="c57cc-117">If you don't have an Azure AD trial environment, you can [get a one-month trial](https://azure.microsoft.com/pricing/free-trial/).</span></span>
 
-## <a name="scenario-description"></a><span data-ttu-id="3e02a-118">Descrizione dello scenario</span><span class="sxs-lookup"><span data-stu-id="3e02a-118">Scenario description</span></span>
-<span data-ttu-id="3e02a-119">In questa esercitazione viene eseguito il test dell'accesso Single Sign-On di Azure AD in un ambiente di test.</span><span class="sxs-lookup"><span data-stu-id="3e02a-119">In this tutorial, you test Azure AD single sign-on in a test environment.</span></span> <span data-ttu-id="3e02a-120">Lo scenario descritto in questa esercitazione prevede i due blocchi predefiniti seguenti:</span><span class="sxs-lookup"><span data-stu-id="3e02a-120">The scenario outlined in this tutorial consists of two main building blocks:</span></span>
+## <a name="scenario-description"></a><span data-ttu-id="c57cc-118">Descrizione dello scenario</span><span class="sxs-lookup"><span data-stu-id="c57cc-118">Scenario description</span></span>
+<span data-ttu-id="c57cc-119">In questa esercitazione viene eseguito il test dell'accesso Single Sign-On di Azure AD in un ambiente di test.</span><span class="sxs-lookup"><span data-stu-id="c57cc-119">In this tutorial, you test Azure AD single sign-on in a test environment.</span></span> <span data-ttu-id="c57cc-120">scenario di Hello descritto in questa esercitazione è composto da due componenti principali:</span><span class="sxs-lookup"><span data-stu-id="c57cc-120">hello scenario outlined in this tutorial consists of two main building blocks:</span></span>
 
-1. <span data-ttu-id="3e02a-121">Aggiunta di Front dalla raccolta</span><span class="sxs-lookup"><span data-stu-id="3e02a-121">Adding Front from the gallery</span></span>
-2. <span data-ttu-id="3e02a-122">Configurazione e test dell'accesso Single Sign-On di Azure AD</span><span class="sxs-lookup"><span data-stu-id="3e02a-122">Configuring and testing Azure AD single sign-on</span></span>
+1. <span data-ttu-id="c57cc-121">Aggiunta di primo piano dalla raccolta hello</span><span class="sxs-lookup"><span data-stu-id="c57cc-121">Adding Front from hello gallery</span></span>
+2. <span data-ttu-id="c57cc-122">Configurazione e test dell'accesso Single Sign-On di Azure AD</span><span class="sxs-lookup"><span data-stu-id="c57cc-122">Configuring and testing Azure AD single sign-on</span></span>
 
-## <a name="adding-front-from-the-gallery"></a><span data-ttu-id="3e02a-123">Aggiunta di Front dalla raccolta</span><span class="sxs-lookup"><span data-stu-id="3e02a-123">Adding Front from the gallery</span></span>
-<span data-ttu-id="3e02a-124">Per configurare l'integrazione di Front in Azure AD, è necessario aggiungere Front dalla raccolta al proprio elenco di app SaaS gestite.</span><span class="sxs-lookup"><span data-stu-id="3e02a-124">To configure the integration of Front into Azure AD, you need to add Front from the gallery to your list of managed SaaS apps.</span></span>
+## <a name="adding-front-from-hello-gallery"></a><span data-ttu-id="c57cc-123">Aggiunta di primo piano dalla raccolta hello</span><span class="sxs-lookup"><span data-stu-id="c57cc-123">Adding Front from hello gallery</span></span>
+<span data-ttu-id="c57cc-124">integrazione hello tooconfigure di primo piano in Azure AD, è necessario tooadd Front dall'elenco di tooyour hello raccolta di App SaaS gestite.</span><span class="sxs-lookup"><span data-stu-id="c57cc-124">tooconfigure hello integration of Front into Azure AD, you need tooadd Front from hello gallery tooyour list of managed SaaS apps.</span></span>
 
-<span data-ttu-id="3e02a-125">**Per aggiungere Front dalla raccolta, seguire questa procedura:**</span><span class="sxs-lookup"><span data-stu-id="3e02a-125">**To add Front from the gallery, perform the following steps:**</span></span>
+<span data-ttu-id="c57cc-125">**tooadd anteriore dalla raccolta di hello, eseguire hello alla procedura seguente:**</span><span class="sxs-lookup"><span data-stu-id="c57cc-125">**tooadd Front from hello gallery, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="3e02a-126">Nel **[portale di Azure](https://portal.azure.com)** fare clic sull'icona di **Azure Active Directory** nel riquadro di spostamento sinistro.</span><span class="sxs-lookup"><span data-stu-id="3e02a-126">In the **[Azure portal](https://portal.azure.com)**, on the left navigation panel, click **Azure Active Directory** icon.</span></span> 
+1. <span data-ttu-id="c57cc-126">In hello  **[portale di Azure](https://portal.azure.com)**via hello del Pannello di navigazione a sinistra, fare clic su **Azure Active Directory** icona.</span><span class="sxs-lookup"><span data-stu-id="c57cc-126">In hello **[Azure portal](https://portal.azure.com)**, on hello left navigation panel, click **Azure Active Directory** icon.</span></span> 
 
-    ![Pulsante Azure Active Directory][1]
+    ![pulsante di Hello Azure Active Directory][1]
 
-2. <span data-ttu-id="3e02a-128">Passare ad **Applicazioni aziendali**.</span><span class="sxs-lookup"><span data-stu-id="3e02a-128">Navigate to **Enterprise applications**.</span></span> <span data-ttu-id="3e02a-129">Andare quindi a **Tutte le applicazioni**.</span><span class="sxs-lookup"><span data-stu-id="3e02a-129">Then go to **All applications**.</span></span>
+2. <span data-ttu-id="c57cc-128">Passare troppo**applicazioni aziendali**.</span><span class="sxs-lookup"><span data-stu-id="c57cc-128">Navigate too**Enterprise applications**.</span></span> <span data-ttu-id="c57cc-129">Quindi andare troppo**tutte le applicazioni**.</span><span class="sxs-lookup"><span data-stu-id="c57cc-129">Then go too**All applications**.</span></span>
 
-    ![Pannello Applicazioni aziendali][2]
+    ![Pannello di applicazioni Enterprise Hello][2]
     
-3. <span data-ttu-id="3e02a-131">Fare clic sul pulsante **Nuova applicazione** nella parte superiore della finestra di dialogo per aggiungere una nuova applicazione.</span><span class="sxs-lookup"><span data-stu-id="3e02a-131">To add new application, click **New application** button on the top of dialog.</span></span>
+3. <span data-ttu-id="c57cc-131">tooadd nuova applicazione, fare clic su **nuova applicazione** pulsante nella parte superiore di hello della finestra di dialogo.</span><span class="sxs-lookup"><span data-stu-id="c57cc-131">tooadd new application, click **New application** button on hello top of dialog.</span></span>
 
-    ![Pulsante Nuova applicazione][3]
+    ![Nuovo pulsante dell'applicazione Hello][3]
 
-4. <span data-ttu-id="3e02a-133">Nella casella di ricerca digitare **Front**, selezionare **Front** nel pannello dei risultati e quindi fare clic sul pulsante **Aggiungi** per aggiungere l'applicazione.</span><span class="sxs-lookup"><span data-stu-id="3e02a-133">In the search box, type **Front**, select **Front** from result panel then click **Add** button to add the application.</span></span>
+4. <span data-ttu-id="c57cc-133">Nella casella di ricerca hello, digitare **front-**selezionare **anteriore** dal pannello risultati quindi fare clic su **Aggiungi** pulsante applicazione hello tooadd.</span><span class="sxs-lookup"><span data-stu-id="c57cc-133">In hello search box, type **Front**, select **Front** from result panel then click **Add** button tooadd hello application.</span></span>
 
-    ![Front nell'elenco risultati](./media/active-directory-saas-front-tutorial/tutorial_front_addfromgallery.png)
+    ![Primo piano nell'elenco risultati hello](./media/active-directory-saas-front-tutorial/tutorial_front_addfromgallery.png)
 
-## <a name="configure-and-test-azure-ad-single-sign-on"></a><span data-ttu-id="3e02a-135">Configurare e testare l'accesso Single Sign-On di Azure AD</span><span class="sxs-lookup"><span data-stu-id="3e02a-135">Configure and test Azure AD single sign-on</span></span>
+## <a name="configure-and-test-azure-ad-single-sign-on"></a><span data-ttu-id="c57cc-135">Configurare e testare l'accesso Single Sign-On di Azure AD</span><span class="sxs-lookup"><span data-stu-id="c57cc-135">Configure and test Azure AD single sign-on</span></span>
 
-<span data-ttu-id="3e02a-136">In questa sezione viene configurato e testato l'accesso Single Sign-On di Azure AD con Front usando un utente di test di nome "Britta Simon".</span><span class="sxs-lookup"><span data-stu-id="3e02a-136">In this section, you configure and test Azure AD single sign-on with Front based on a test user called "Britta Simon".</span></span>
+<span data-ttu-id="c57cc-136">In questa sezione viene configurato e testato l'accesso Single Sign-On di Azure AD con Front usando un utente di test di nome "Britta Simon".</span><span class="sxs-lookup"><span data-stu-id="c57cc-136">In this section, you configure and test Azure AD single sign-on with Front based on a test user called "Britta Simon".</span></span>
 
-<span data-ttu-id="3e02a-137">Per il funzionamento dell'accesso Single Sign-On, Azure AD deve conoscere l'utente controparte di Front corrispondente a un utente di Azure AD.</span><span class="sxs-lookup"><span data-stu-id="3e02a-137">For single sign-on to work, Azure AD needs to know what the counterpart user in Front is to a user in Azure AD.</span></span> <span data-ttu-id="3e02a-138">In altre parole, deve essere stabilita una relazione di collegamento tra un utente di Azure AD e l'utente correlato in Front.</span><span class="sxs-lookup"><span data-stu-id="3e02a-138">In other words, a link relationship between an Azure AD user and the related user in Front needs to be established.</span></span>
+<span data-ttu-id="c57cc-137">Per toowork di accesso singolo, Azure AD deve tooknow in primo piano quale utente hello controparte è tooa utente in Azure AD.</span><span class="sxs-lookup"><span data-stu-id="c57cc-137">For single sign-on toowork, Azure AD needs tooknow what hello counterpart user in Front is tooa user in Azure AD.</span></span> <span data-ttu-id="c57cc-138">In altre parole, una relazione di collegamento tra un utente di Azure AD e in primo piano utente correlato hello deve toobe stabilita.</span><span class="sxs-lookup"><span data-stu-id="c57cc-138">In other words, a link relationship between an Azure AD user and hello related user in Front needs toobe established.</span></span>
 
-<span data-ttu-id="3e02a-139">Per stabilire la relazione di collegamento, in Front assegnare il valore del **nome utente** in Azure AD come valore di **Username** (Nome utente).</span><span class="sxs-lookup"><span data-stu-id="3e02a-139">In Front, assign the value of the **user name** in Azure AD as the value of the **Username** to establish the link relationship.</span></span>
+<span data-ttu-id="c57cc-139">In primo piano, assegnare il valore di hello di hello **nome utente** in Azure AD come valore hello hello **Username** tooestablish relazione di collegamento hello.</span><span class="sxs-lookup"><span data-stu-id="c57cc-139">In Front, assign hello value of hello **user name** in Azure AD as hello value of hello **Username** tooestablish hello link relationship.</span></span>
 
-<span data-ttu-id="3e02a-140">Per configurare e testare l'accesso Single Sign-On di Azure AD con Front, è necessario completare i blocchi predefiniti seguenti:</span><span class="sxs-lookup"><span data-stu-id="3e02a-140">To configure and test Azure AD single sign-on with Front, you need to complete the following building blocks:</span></span>
+<span data-ttu-id="c57cc-140">tooconfigure e prova AD Azure single sign-on con inizio, è necessario hello toocomplete seguenti blocchi predefiniti:</span><span class="sxs-lookup"><span data-stu-id="c57cc-140">tooconfigure and test Azure AD single sign-on with Front, you need toocomplete hello following building blocks:</span></span>
 
-1. <span data-ttu-id="3e02a-141">**[Configurare l'accesso Single Sign-On di Azure AD](#configure-azure-ad-single-sign-on)**: per consentire agli utenti di usare questa funzionalità.</span><span class="sxs-lookup"><span data-stu-id="3e02a-141">**[Configure Azure AD Single Sign-On](#configure-azure-ad-single-sign-on)** - to enable your users to use this feature.</span></span>
-2. <span data-ttu-id="3e02a-142">**[Creare un utente di test di Azure AD](#create-an-azure-ad-test-user)**: per testare l'accesso Single Sign-On di Azure AD con l'utente Britta Simon.</span><span class="sxs-lookup"><span data-stu-id="3e02a-142">**[Create an Azure AD test user](#create-an-azure-ad-test-user)** - to test Azure AD single sign-on with Britta Simon.</span></span>
-3. <span data-ttu-id="3e02a-143">**[Creare un utente di test di Front](#create-a-front-test-user)**: per avere una controparte di Britta Simon in Front collegata alla rappresentazione dell'utente in Azure AD.</span><span class="sxs-lookup"><span data-stu-id="3e02a-143">**[Create a Front test user](#create-a-front-test-user)** - to have a counterpart of Britta Simon in Front that is linked to the Azure AD representation of user.</span></span>
-4. <span data-ttu-id="3e02a-144">**[Assegnare l'utente test di Azure AD](#assign-the-azure-ad-test-user)**: per abilitare Britta Simon all'uso dell'accesso Single Sign-On di Azure AD.</span><span class="sxs-lookup"><span data-stu-id="3e02a-144">**[Assign the Azure AD test user](#assign-the-azure-ad-test-user)** - to enable Britta Simon to use Azure AD single sign-on.</span></span>
-5. <span data-ttu-id="3e02a-145">**[Testare l'accesso Single Sign-On](#test-single-sign-on)** per verificare se la configurazione funziona.</span><span class="sxs-lookup"><span data-stu-id="3e02a-145">**[Test single sign-on](#test-single-sign-on)** - to verify whether the configuration works.</span></span>
+1. <span data-ttu-id="c57cc-141">**[Configurare Azure Active Directory Single Sign-On](#configure-azure-ad-single-sign-on)**  -tooenable il toouse utenti questa funzionalità.</span><span class="sxs-lookup"><span data-stu-id="c57cc-141">**[Configure Azure AD Single Sign-On](#configure-azure-ad-single-sign-on)** - tooenable your users toouse this feature.</span></span>
+2. <span data-ttu-id="c57cc-142">**[Creare un utente prova AD Azure](#create-an-azure-ad-test-user)**  -tootest AD Azure single sign-on con Britta Simon.</span><span class="sxs-lookup"><span data-stu-id="c57cc-142">**[Create an Azure AD test user](#create-an-azure-ad-test-user)** - tootest Azure AD single sign-on with Britta Simon.</span></span>
+3. <span data-ttu-id="c57cc-143">**[Creare un utente test anteriore](#create-a-front-test-user)**  -toohave un equivalente di Britta Simon in primo piano che è la rappresentazione toohello collegato Azure AD dell'utente.</span><span class="sxs-lookup"><span data-stu-id="c57cc-143">**[Create a Front test user](#create-a-front-test-user)** - toohave a counterpart of Britta Simon in Front that is linked toohello Azure AD representation of user.</span></span>
+4. <span data-ttu-id="c57cc-144">**[Assegnare l'utente test hello Azure AD](#assign-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD accesso single sign-on.</span><span class="sxs-lookup"><span data-stu-id="c57cc-144">**[Assign hello Azure AD test user](#assign-the-azure-ad-test-user)** - tooenable Britta Simon toouse Azure AD single sign-on.</span></span>
+5. <span data-ttu-id="c57cc-145">**[Testare single sign-on](#test-single-sign-on)**  -tooverify hello se funzionamento della configurazione.</span><span class="sxs-lookup"><span data-stu-id="c57cc-145">**[Test single sign-on](#test-single-sign-on)** - tooverify whether hello configuration works.</span></span>
 
-### <a name="configure-azure-ad-single-sign-on"></a><span data-ttu-id="3e02a-146">Configurare l'accesso Single Sign-On di Azure AD</span><span class="sxs-lookup"><span data-stu-id="3e02a-146">Configure Azure AD single sign-on</span></span>
+### <a name="configure-azure-ad-single-sign-on"></a><span data-ttu-id="c57cc-146">Configurare l'accesso Single Sign-On di Azure AD</span><span class="sxs-lookup"><span data-stu-id="c57cc-146">Configure Azure AD single sign-on</span></span>
 
-<span data-ttu-id="3e02a-147">In questa sezione viene abilitato l'accesso Single Sign-On di Azure AD nel portale di Azure e viene configurato l'accesso Single Sign-On nell'applicazione Front.</span><span class="sxs-lookup"><span data-stu-id="3e02a-147">In this section, you enable Azure AD single sign-on in the Azure portal and configure single sign-on in your Front application.</span></span>
+<span data-ttu-id="c57cc-147">In questa sezione, si abilita Azure AD single sign-on in hello portale di Azure e configurare single sign-on nell'applicazione di primo piano.</span><span class="sxs-lookup"><span data-stu-id="c57cc-147">In this section, you enable Azure AD single sign-on in hello Azure portal and configure single sign-on in your Front application.</span></span>
 
-<span data-ttu-id="3e02a-148">**Per configurare Single Sign-On di Azure AD con Front, seguire questa procedura:**</span><span class="sxs-lookup"><span data-stu-id="3e02a-148">**To configure Azure AD single sign-on with Front, perform the following steps:**</span></span>
+<span data-ttu-id="c57cc-148">**tooconfigure AD Azure single sign-on con inizio, eseguire hello alla procedura seguente:**</span><span class="sxs-lookup"><span data-stu-id="c57cc-148">**tooconfigure Azure AD single sign-on with Front, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="3e02a-149">Nella pagina di integrazione dell'applicazione **Front** del portale di Azure fare clic su **Single Sign-On**.</span><span class="sxs-lookup"><span data-stu-id="3e02a-149">In the Azure portal, on the **Front** application integration page, click **Single sign-on**.</span></span>
+1. <span data-ttu-id="c57cc-149">Nel portale di Azure su hello hello **anteriore** pagina di integrazione dell'applicazione, fare clic su **Single sign-on**.</span><span class="sxs-lookup"><span data-stu-id="c57cc-149">In hello Azure portal, on hello **Front** application integration page, click **Single sign-on**.</span></span>
 
-    ![Collegamento Configura accesso Single Sign-On][4]
+    ![Collegamento per la configurazione dell'accesso Single Sign-On][4]
 
-2. <span data-ttu-id="3e02a-151">Nella finestra di dialogo **Single Sign-On** selezionare **Accesso basato su SAML** per **Modalità** per abilitare l'accesso Single Sign-On.</span><span class="sxs-lookup"><span data-stu-id="3e02a-151">On the **Single sign-on** dialog, select **Mode** as **SAML-based Sign-on** to enable single sign-on.</span></span>
+2. <span data-ttu-id="c57cc-151">In hello **Single sign-on** finestra di dialogo Seleziona **modalità** come **basato su SAML Sign-on** tooenable single sign-on.</span><span class="sxs-lookup"><span data-stu-id="c57cc-151">On hello **Single sign-on** dialog, select **Mode** as   **SAML-based Sign-on** tooenable single sign-on.</span></span>
  
     ![Finestra di dialogo Single Sign-On](./media/active-directory-saas-front-tutorial/tutorial_front_samlbase.png)
 
-3. <span data-ttu-id="3e02a-153">Nella sezione **URL e dominio Front** seguire questa procedura se si vuole configurare l'applicazione in modalità avviata da **IDP**:</span><span class="sxs-lookup"><span data-stu-id="3e02a-153">On the **Front Domain and URLs** section, If you wish to configure the application in **IDP** initiated mode:</span></span>
+3. <span data-ttu-id="c57cc-153">In hello **dominio anteriore e gli URL** sezione, se si desidera in un'applicazione hello tooconfigure **IDP** modalità iniziata da:</span><span class="sxs-lookup"><span data-stu-id="c57cc-153">On hello **Front Domain and URLs** section, If you wish tooconfigure hello application in **IDP** initiated mode:</span></span>
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-front-tutorial/tutorial_front_url1.png)
 
-    <span data-ttu-id="3e02a-155">a.</span><span class="sxs-lookup"><span data-stu-id="3e02a-155">a.</span></span> <span data-ttu-id="3e02a-156">Nella casella di testo **Identificatore** digitare l'URL adottando il modello seguente: `https://<companyname>.frontapp.com`</span><span class="sxs-lookup"><span data-stu-id="3e02a-156">In the **Identifier** textbox, type a URL using the following pattern: `https://<companyname>.frontapp.com`</span></span>
+    <span data-ttu-id="c57cc-155">a.</span><span class="sxs-lookup"><span data-stu-id="c57cc-155">a.</span></span> <span data-ttu-id="c57cc-156">In hello **identificatore** casella di testo, digitare un URL utilizzando hello seguente modello:`https://<companyname>.frontapp.com`</span><span class="sxs-lookup"><span data-stu-id="c57cc-156">In hello **Identifier** textbox, type a URL using hello following pattern: `https://<companyname>.frontapp.com`</span></span>
 
-    <span data-ttu-id="3e02a-157">b.</span><span class="sxs-lookup"><span data-stu-id="3e02a-157">b.</span></span> <span data-ttu-id="3e02a-158">Nella casella di testo **URL di risposta** digitare l'URL usando il modello seguente: `https://<companyname>.frontapp.com/sso/saml/callback`</span><span class="sxs-lookup"><span data-stu-id="3e02a-158">In the **Reply URL** textbox, type a URL using the following pattern: `https://<companyname>.frontapp.com/sso/saml/callback`</span></span>
+    <span data-ttu-id="c57cc-157">b.</span><span class="sxs-lookup"><span data-stu-id="c57cc-157">b.</span></span> <span data-ttu-id="c57cc-158">In hello **URL di risposta** casella di testo, digitare un URL utilizzando hello seguente modello:`https://<companyname>.frontapp.com/sso/saml/callback`</span><span class="sxs-lookup"><span data-stu-id="c57cc-158">In hello **Reply URL** textbox, type a URL using hello following pattern: `https://<companyname>.frontapp.com/sso/saml/callback`</span></span>
 
-4. <span data-ttu-id="3e02a-159">Selezionare **Mostra impostazioni URL avanzate**, se si desidera configurare l'applicazione in modalità avviata da **SP**:</span><span class="sxs-lookup"><span data-stu-id="3e02a-159">Check **Show advanced URL settings**, If you wish to configure the application in **SP** initiated mode:</span></span>
+4. <span data-ttu-id="c57cc-159">Controllare **Mostra URL impostazioni avanzate**, se si desidera in un'applicazione hello tooconfigure **SP** modalità iniziata da:</span><span class="sxs-lookup"><span data-stu-id="c57cc-159">Check **Show advanced URL settings**, If you wish tooconfigure hello application in **SP** initiated mode:</span></span>
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-front-tutorial/tutorial_front_url2.png)
 
-    <span data-ttu-id="3e02a-161">Nella casella di testo **URL di accesso** digitare l'URL usando il modello seguente: `https://<companyname>.frontapp.com`</span><span class="sxs-lookup"><span data-stu-id="3e02a-161">In the **Sign-on URL** textbox, type a URL using the following pattern: `https://<companyname>.frontapp.com`</span></span>
+    <span data-ttu-id="c57cc-161">In hello **Sign-on URL** casella di testo, digitare un URL utilizzando hello seguente modello:`https://<companyname>.frontapp.com`</span><span class="sxs-lookup"><span data-stu-id="c57cc-161">In hello **Sign-on URL** textbox, type a URL using hello following pattern: `https://<companyname>.frontapp.com`</span></span>
      
     > [!NOTE] 
-    > <span data-ttu-id="3e02a-162">Poiché questi non sono i valori reali,</span><span class="sxs-lookup"><span data-stu-id="3e02a-162">These values are not real.</span></span> <span data-ttu-id="3e02a-163">Aggiornare questi valori con identificatore, URL di risposta e URL di accesso effettivi, illustrati più avanti in questa esercitazione, oppure contattare il [team di supporto clienti di Front](mailto:support@frontapp.com) per ottenere questi valori.</span><span class="sxs-lookup"><span data-stu-id="3e02a-163">Update these values with the actual Identifier, Reply URL, and Sign-On URL which are explained later in tutorial or contact [Front Client support team](mailto:support@frontapp.com) to get these values.</span></span> 
+    > <span data-ttu-id="c57cc-162">Poiché questi non sono i valori reali,</span><span class="sxs-lookup"><span data-stu-id="c57cc-162">These values are not real.</span></span> <span data-ttu-id="c57cc-163">Aggiornamento di questi valori con hello effettivo identificatore, l'URL di risposta e URL Sign-On che vengono descritte più avanti nell'esercitazione o contatto [team di supporto Client anteriore](mailto:support@frontapp.com) tooget questi valori.</span><span class="sxs-lookup"><span data-stu-id="c57cc-163">Update these values with hello actual Identifier, Reply URL, and Sign-On URL which are explained later in tutorial or contact [Front Client support team](mailto:support@frontapp.com) tooget these values.</span></span> 
 
-5. <span data-ttu-id="3e02a-164">Nella sezione **Certificato di firma SAML** fare clic su **Certificato (Base64)** e quindi salvare il file del certificato nel computer.</span><span class="sxs-lookup"><span data-stu-id="3e02a-164">On the **SAML Signing Certificate** section, click **Certificate(Base64)** and then save the certificate file on your computer.</span></span>
+5. <span data-ttu-id="c57cc-164">In hello **certificato di firma SAML** fare clic su **Certificate(Base64)** e quindi salvare il file di certificato hello nel computer in uso.</span><span class="sxs-lookup"><span data-stu-id="c57cc-164">On hello **SAML Signing Certificate** section, click **Certificate(Base64)** and then save hello certificate file on your computer.</span></span>
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-front-tutorial/tutorial_front_certificate.png) 
 
-6. <span data-ttu-id="3e02a-166">Fare clic sul pulsante **Salva** .</span><span class="sxs-lookup"><span data-stu-id="3e02a-166">Click **Save** button.</span></span>
+6. <span data-ttu-id="c57cc-166">Fare clic sul pulsante **Salva** .</span><span class="sxs-lookup"><span data-stu-id="c57cc-166">Click **Save** button.</span></span>
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-front-tutorial/tutorial_general_400.png)
     
-7. <span data-ttu-id="3e02a-168">Nella sezione **Configurazione di Front** fare clic su **Configura Front** per aprire la finestra **Configura accesso**.</span><span class="sxs-lookup"><span data-stu-id="3e02a-168">On the **Front Configuration** section, click **Configure Front** to open **Configure sign-on** window.</span></span> <span data-ttu-id="3e02a-169">Copiare l'**URL di disconnessione, l'ID di entità SAML e l'URL del servizio Single Sign-On SAML** dalla sezione **Riferimento rapido.**</span><span class="sxs-lookup"><span data-stu-id="3e02a-169">Copy the **Sign-Out URL, SAML Entity ID, and SAML Single Sign-On Service URL** from the **Quick Reference section.**</span></span>
+7. <span data-ttu-id="c57cc-168">In hello **configurazione front-** fare clic su **configurare anteriore** tooopen **Configura sign-on** finestra.</span><span class="sxs-lookup"><span data-stu-id="c57cc-168">On hello **Front Configuration** section, click **Configure Front** tooopen **Configure sign-on** window.</span></span> <span data-ttu-id="c57cc-169">Hello copia **Sign-Out URL, l'ID entità SAML e SAML Single Sign-On Service URL** da hello **sezione di riferimento rapido.**</span><span class="sxs-lookup"><span data-stu-id="c57cc-169">Copy hello **Sign-Out URL, SAML Entity ID, and SAML Single Sign-On Service URL** from hello **Quick Reference section.**</span></span>
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-front-tutorial/tutorial_front_configure.png) 
 
-8. <span data-ttu-id="3e02a-171">Accedere al tenant di Front come amministratore.</span><span class="sxs-lookup"><span data-stu-id="3e02a-171">Sign-on to your Front tenant as an administrator.</span></span>
+8. <span data-ttu-id="c57cc-171">Tenant di primo piano tooyour Sign-on come amministratore.</span><span class="sxs-lookup"><span data-stu-id="c57cc-171">Sign-on tooyour Front tenant as an administrator.</span></span>
 
-9. <span data-ttu-id="3e02a-172">Passare a **Impostazioni (l'icona dell'ingranaggio in fondo all'intestazione laterale a sinistra) > Preferenze**.</span><span class="sxs-lookup"><span data-stu-id="3e02a-172">Go to **Settings (cog icon at the bottom of the left sidebar) > Preferences**.</span></span>
+9. <span data-ttu-id="c57cc-172">Andare troppo**impostazioni (icona della ruota dentata nella parte inferiore di hello dell'intestazione laterale sinistra hello) > Preferenze**.</span><span class="sxs-lookup"><span data-stu-id="c57cc-172">Go too**Settings (cog icon at hello bottom of hello left sidebar) > Preferences**.</span></span>
    
     ![Configurazione accesso Single Sign-On sul lato app](./media/active-directory-saas-front-tutorial/tutorial_front_000.png)
 
-10. <span data-ttu-id="3e02a-174">Fare clic sul collegamento **Single Sign On** .</span><span class="sxs-lookup"><span data-stu-id="3e02a-174">Click **Single Sign On** link.</span></span>
+10. <span data-ttu-id="c57cc-174">Fare clic sul collegamento **Single Sign On** .</span><span class="sxs-lookup"><span data-stu-id="c57cc-174">Click **Single Sign On** link.</span></span>
    
     ![Configurazione accesso Single Sign-On sul lato app](./media/active-directory-saas-front-tutorial/tutorial_front_001.png)
 
-11. <span data-ttu-id="3e02a-176">Selezionare **SAML** nell'elenco a discesa **Single Sign On**.</span><span class="sxs-lookup"><span data-stu-id="3e02a-176">Select **SAML** in the drop-down list of **Single Sign On**.</span></span>
+11. <span data-ttu-id="c57cc-176">Selezionare **SAML** nell'elenco a discesa hello di **Single Sign-On**.</span><span class="sxs-lookup"><span data-stu-id="c57cc-176">Select **SAML** in hello drop-down list of **Single Sign On**.</span></span>
    
     ![Configurazione accesso Single Sign-On sul lato app](./media/active-directory-saas-front-tutorial/tutorial_front_002.png)
 
-12. <span data-ttu-id="3e02a-178">Nella casella di testo **Entry Point** (Punto di ingresso) inserire il valore di **URL servizio Single Sign-On** dalla configurazione guidata dell'applicazione di Azure AD.</span><span class="sxs-lookup"><span data-stu-id="3e02a-178">In the **Entry Point** textbox put the value of **Single Sign-on Service URL** from Azure AD application configuration wizard.</span></span>
+12. <span data-ttu-id="c57cc-178">In hello **punto di ingresso** casella di testo inserire il valore di hello di **URL servizio Single Sign-on** dalla configurazione guidata di Azure AD applicazione.</span><span class="sxs-lookup"><span data-stu-id="c57cc-178">In hello **Entry Point** textbox put hello value of **Single Sign-on Service URL** from Azure AD application configuration wizard.</span></span>
     
     ![Configurazione accesso Single Sign-On sul lato app](./media/active-directory-saas-front-tutorial/tutorial_front_003.png)
 
-13. <span data-ttu-id="3e02a-180">Aprire il file del **certificato (Base64)** scaricato nel Blocco note, copiarne il contenuto negli Appunti e incollarlo nella casella di testo **Certificato di firma**.</span><span class="sxs-lookup"><span data-stu-id="3e02a-180">Open your downloaded **Certificate(Base64)** file in notepad, copy the content of it into your clipboard, and then paste it to the **Signing certificate** textbox.</span></span>
+13. <span data-ttu-id="c57cc-180">Aprire lo scaricato **Certificate(Base64)** file nel blocco note, hello copia del contenuto di esso negli Appunti e quindi incollarlo toohello **certificato di firma** casella di testo.</span><span class="sxs-lookup"><span data-stu-id="c57cc-180">Open your downloaded **Certificate(Base64)** file in notepad, copy hello content of it into your clipboard, and then paste it toohello **Signing certificate** textbox.</span></span>
     
     ![Configurazione accesso Single Sign-On sul lato app](./media/active-directory-saas-front-tutorial/tutorial_front_004.png)
 
-14. <span data-ttu-id="3e02a-182">Nella sezione **Service provider settings** (Impostazioni provider di servizi) seguire questa procedura:</span><span class="sxs-lookup"><span data-stu-id="3e02a-182">On the **Service provider settings** section, perform the following steps:</span></span>
+14. <span data-ttu-id="c57cc-182">In hello **le impostazioni del provider del servizio** seguire hello alla procedura seguente:</span><span class="sxs-lookup"><span data-stu-id="c57cc-182">On hello **Service provider settings** section, perform hello following steps:</span></span>
 
     ![Configurazione accesso Single Sign-On sul lato app](./media/active-directory-saas-front-tutorial/tutorial_front_005.png)
 
-    <span data-ttu-id="3e02a-184">a.</span><span class="sxs-lookup"><span data-stu-id="3e02a-184">a.</span></span> <span data-ttu-id="3e02a-185">Copiare il valore dell'**ID entità** e incollarlo nella casella di testo **Identificatore** nella sezione **URL e dominio Front** del portale di Azure.</span><span class="sxs-lookup"><span data-stu-id="3e02a-185">Copy the value of **Entity ID** and paste it into the **Identifier** textbox in **Front Domain and URLs** section in Azure portal.</span></span>
+    <span data-ttu-id="c57cc-184">a.</span><span class="sxs-lookup"><span data-stu-id="c57cc-184">a.</span></span> <span data-ttu-id="c57cc-185">Copiare il valore di hello di **ID entità** e incollarlo in hello **identificatore** nella casella di testo **dominio anteriore e gli URL** sezione nel portale di Azure.</span><span class="sxs-lookup"><span data-stu-id="c57cc-185">Copy hello value of **Entity ID** and paste it into hello **Identifier** textbox in **Front Domain and URLs** section in Azure portal.</span></span>
 
-    <span data-ttu-id="3e02a-186">b.</span><span class="sxs-lookup"><span data-stu-id="3e02a-186">b.</span></span> <span data-ttu-id="3e02a-187">Copiare il valore dell'**URL ACS** e incollarlo nella casella di testo **URL di accesso** nella sezione **URL e dominio Front** del portale di Azure.</span><span class="sxs-lookup"><span data-stu-id="3e02a-187">Copy the value of **ACS URL** and paste it into the **Sign-on URL** textbox in **Front Domain and URLs** section in Azure portal.</span></span>
+    <span data-ttu-id="c57cc-186">b.</span><span class="sxs-lookup"><span data-stu-id="c57cc-186">b.</span></span> <span data-ttu-id="c57cc-187">Copiare il valore di hello di **URL ACS** e incollarlo in hello **Sign-on URL** nella casella di testo **dominio anteriore e gli URL** sezione nel portale di Azure.</span><span class="sxs-lookup"><span data-stu-id="c57cc-187">Copy hello value of **ACS URL** and paste it into hello **Sign-on URL** textbox in **Front Domain and URLs** section in Azure portal.</span></span>
     
-15. <span data-ttu-id="3e02a-188">Fare clic sul pulsante **Salva** .</span><span class="sxs-lookup"><span data-stu-id="3e02a-188">Click **Save** button.</span></span>
+15. <span data-ttu-id="c57cc-188">Fare clic sul pulsante **Salva** .</span><span class="sxs-lookup"><span data-stu-id="c57cc-188">Click **Save** button.</span></span>
 
 > [!TIP]
-> <span data-ttu-id="3e02a-189">Un riepilogo delle istruzioni è disponibile all'interno del [portale di Azure](https://portal.azure.com) durante la configurazione dell'app.</span><span class="sxs-lookup"><span data-stu-id="3e02a-189">You can now read a concise version of these instructions inside the [Azure portal](https://portal.azure.com), while you are setting up the app!</span></span>  <span data-ttu-id="3e02a-190">Dopo aver aggiunto l'app dalla sezione **Active Directory > Applicazioni aziendali** è sufficiente fare clic sulla scheda **Single Sign-On** e accedere alla documentazione incorporata tramite la sezione **Configurazione** nella parte inferiore.</span><span class="sxs-lookup"><span data-stu-id="3e02a-190">After adding this app from the **Active Directory > Enterprise Applications** section, simply click the **Single Sign-On** tab and access the embedded documentation through the **Configuration** section at the bottom.</span></span> <span data-ttu-id="3e02a-191">Altre informazioni sulla funzione di documentazione incorporata sono disponibili in [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985) (Documentazione incorporata di Azure AD).</span><span class="sxs-lookup"><span data-stu-id="3e02a-191">You can read more about the embedded documentation feature here: [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span></span>
+> <span data-ttu-id="c57cc-189">È ora possibile leggere una versione di queste istruzioni all'interno di hello concisa [portale di Azure](https://portal.azure.com), mentre si stanno impostando app hello!</span><span class="sxs-lookup"><span data-stu-id="c57cc-189">You can now read a concise version of these instructions inside hello [Azure portal](https://portal.azure.com), while you are setting up hello app!</span></span>  <span data-ttu-id="c57cc-190">Dopo l'aggiunta di questa app da hello **Active Directory > applicazioni aziendali** fare semplicemente clic su hello **Single Sign-On** scheda e l'accesso hello incorporato documentazione tramite hello  **Configurazione** sezione nella parte inferiore di hello.</span><span class="sxs-lookup"><span data-stu-id="c57cc-190">After adding this app from hello **Active Directory > Enterprise Applications** section, simply click hello **Single Sign-On** tab and access hello embedded documentation through hello **Configuration** section at hello bottom.</span></span> <span data-ttu-id="c57cc-191">È possibile leggere altre informazioni sulla funzionalità di documentazione embedded hello qui: [AD Azure incorporato documentazione]( https://go.microsoft.com/fwlink/?linkid=845985)</span><span class="sxs-lookup"><span data-stu-id="c57cc-191">You can read more about hello embedded documentation feature here: [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span></span>
 > 
 
-### <a name="create-an-azure-ad-test-user"></a><span data-ttu-id="3e02a-192">Creare un utente test di Azure AD</span><span class="sxs-lookup"><span data-stu-id="3e02a-192">Create an Azure AD test user</span></span>
+### <a name="create-an-azure-ad-test-user"></a><span data-ttu-id="c57cc-192">Creare un utente test di Azure AD</span><span class="sxs-lookup"><span data-stu-id="c57cc-192">Create an Azure AD test user</span></span>
 
-<span data-ttu-id="3e02a-193">Questa sezione descrive come creare un utente test denominato Britta Simon nel portale di Azure.</span><span class="sxs-lookup"><span data-stu-id="3e02a-193">The objective of this section is to create a test user in the Azure portal called Britta Simon.</span></span>
+<span data-ttu-id="c57cc-193">obiettivo di Hello di questa sezione è un utente di test nel portale di Azure chiamato Britta Simon hello toocreate.</span><span class="sxs-lookup"><span data-stu-id="c57cc-193">hello objective of this section is toocreate a test user in hello Azure portal called Britta Simon.</span></span>
 
    ![Creare un utente test di Azure AD][100]
 
-<span data-ttu-id="3e02a-195">**Per creare un utente test in Azure AD, eseguire la procedura seguente:**</span><span class="sxs-lookup"><span data-stu-id="3e02a-195">**To create a test user in Azure AD, perform the following steps:**</span></span>
+<span data-ttu-id="c57cc-195">**un utente di prova in Azure AD, toocreate eseguire hello alla procedura seguente:**</span><span class="sxs-lookup"><span data-stu-id="c57cc-195">**toocreate a test user in Azure AD, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="3e02a-196">Nel portale di Azure fare clic sul pulsante **Azure Active Directory** nel riquadro sinistro.</span><span class="sxs-lookup"><span data-stu-id="3e02a-196">In the Azure portal, in the left pane, click the **Azure Active Directory** button.</span></span>
+1. <span data-ttu-id="c57cc-196">Nel portale di Azure, nel riquadro di sinistra hello, hello fare clic su hello **Azure Active Directory** pulsante.</span><span class="sxs-lookup"><span data-stu-id="c57cc-196">In hello Azure portal, in hello left pane, click hello **Azure Active Directory** button.</span></span>
 
-    ![Pulsante Azure Active Directory](./media/active-directory-saas-front-tutorial/create_aaduser_01.png)
+    ![pulsante di Hello Azure Active Directory](./media/active-directory-saas-front-tutorial/create_aaduser_01.png)
 
-2. <span data-ttu-id="3e02a-198">Per visualizzare l'elenco di utenti, passare a **Utenti e gruppi** e quindi fare clic su **Tutti gli utenti**.</span><span class="sxs-lookup"><span data-stu-id="3e02a-198">To display the list of users, go to **Users and groups**, and then click **All users**.</span></span>
+2. <span data-ttu-id="c57cc-198">elenco di hello toodisplay di utenti, andare troppo**utenti e gruppi**, quindi fare clic su **tutti gli utenti**.</span><span class="sxs-lookup"><span data-stu-id="c57cc-198">toodisplay hello list of users, go too**Users and groups**, and then click **All users**.</span></span>
 
-    ![Collegamenti "Utenti e gruppi" e "Tutti gli utenti"](./media/active-directory-saas-front-tutorial/create_aaduser_02.png)
+    ![Hello "Utenti e gruppi" e i collegamenti di "Tutti gli utenti"](./media/active-directory-saas-front-tutorial/create_aaduser_02.png)
 
-3. <span data-ttu-id="3e02a-200">Per aprire la finestra di dialogo **Utente** fare clic su **Aggiungi** nella parte superiore della finestra di dialogo **Tutti gli utenti**.</span><span class="sxs-lookup"><span data-stu-id="3e02a-200">To open the **User** dialog box, click **Add** at the top of the **All Users** dialog box.</span></span>
+3. <span data-ttu-id="c57cc-200">hello tooopen **utente** la finestra di dialogo, fare clic su **Aggiungi** nella parte superiore di hello di hello **tutti gli utenti** la finestra di dialogo.</span><span class="sxs-lookup"><span data-stu-id="c57cc-200">tooopen hello **User** dialog box, click **Add** at hello top of hello **All Users** dialog box.</span></span>
 
-    ![Pulsante Aggiungi](./media/active-directory-saas-front-tutorial/create_aaduser_03.png)
+    ![pulsante Aggiungi Hello](./media/active-directory-saas-front-tutorial/create_aaduser_03.png)
 
-4. <span data-ttu-id="3e02a-202">Nella finestra di dialogo **Utente** seguire questa procedura:</span><span class="sxs-lookup"><span data-stu-id="3e02a-202">In the **User** dialog box, perform the following steps:</span></span>
+4. <span data-ttu-id="c57cc-202">In hello **utente** finestra di dialogo eseguire hello alla procedura seguente:</span><span class="sxs-lookup"><span data-stu-id="c57cc-202">In hello **User** dialog box, perform hello following steps:</span></span>
 
-    ![Finestra di dialogo Utente](./media/active-directory-saas-front-tutorial/create_aaduser_04.png)
+    ![finestra di dialogo utente Hello](./media/active-directory-saas-front-tutorial/create_aaduser_04.png)
 
-    <span data-ttu-id="3e02a-204">a.</span><span class="sxs-lookup"><span data-stu-id="3e02a-204">a.</span></span> <span data-ttu-id="3e02a-205">Nella casella **Nome** digitare **BrittaSimon**.</span><span class="sxs-lookup"><span data-stu-id="3e02a-205">In the **Name** box, type **BrittaSimon**.</span></span>
+    <span data-ttu-id="c57cc-204">a.</span><span class="sxs-lookup"><span data-stu-id="c57cc-204">a.</span></span> <span data-ttu-id="c57cc-205">In hello **nome** digitare **BrittaSimon**.</span><span class="sxs-lookup"><span data-stu-id="c57cc-205">In hello **Name** box, type **BrittaSimon**.</span></span>
 
-    <span data-ttu-id="3e02a-206">b.</span><span class="sxs-lookup"><span data-stu-id="3e02a-206">b.</span></span> <span data-ttu-id="3e02a-207">Nella casella **Nome utente** digitare l'indirizzo di posta elettronica dell'utente Britta Simon.</span><span class="sxs-lookup"><span data-stu-id="3e02a-207">In the **User name** box, type the email address of user Britta Simon.</span></span>
+    <span data-ttu-id="c57cc-206">b.</span><span class="sxs-lookup"><span data-stu-id="c57cc-206">b.</span></span> <span data-ttu-id="c57cc-207">In hello **nome utente** casella Tipo hello di indirizzo di posta elettronica dell'utente Britta Simon.</span><span class="sxs-lookup"><span data-stu-id="c57cc-207">In hello **User name** box, type hello email address of user Britta Simon.</span></span>
 
-    <span data-ttu-id="3e02a-208">c.</span><span class="sxs-lookup"><span data-stu-id="3e02a-208">c.</span></span> <span data-ttu-id="3e02a-209">Selezionare la casella di controllo **Mostra password** e quindi prendere nota del valore visualizzato nella casella **Password**.</span><span class="sxs-lookup"><span data-stu-id="3e02a-209">Select the **Show Password** check box, and then write down the value that's displayed in the **Password** box.</span></span>
+    <span data-ttu-id="c57cc-208">c.</span><span class="sxs-lookup"><span data-stu-id="c57cc-208">c.</span></span> <span data-ttu-id="c57cc-209">Seleziona hello **Show Password** casella di controllo e quindi annotare i valori hello visualizzati in hello **Password** casella.</span><span class="sxs-lookup"><span data-stu-id="c57cc-209">Select hello **Show Password** check box, and then write down hello value that's displayed in hello **Password** box.</span></span>
 
-    <span data-ttu-id="3e02a-210">d.</span><span class="sxs-lookup"><span data-stu-id="3e02a-210">d.</span></span> <span data-ttu-id="3e02a-211">Fare clic su **Crea**.</span><span class="sxs-lookup"><span data-stu-id="3e02a-211">Click **Create**.</span></span>
+    <span data-ttu-id="c57cc-210">d.</span><span class="sxs-lookup"><span data-stu-id="c57cc-210">d.</span></span> <span data-ttu-id="c57cc-211">Fare clic su **Crea**.</span><span class="sxs-lookup"><span data-stu-id="c57cc-211">Click **Create**.</span></span>
  
-### <a name="create-a-front-test-user"></a><span data-ttu-id="3e02a-212">Creare un utente test di Front</span><span class="sxs-lookup"><span data-stu-id="3e02a-212">Create a Front test user</span></span>
+### <a name="create-a-front-test-user"></a><span data-ttu-id="c57cc-212">Creare un utente test di Front</span><span class="sxs-lookup"><span data-stu-id="c57cc-212">Create a Front test user</span></span>
 
-<span data-ttu-id="3e02a-213">In questa sezione viene creato un utente di nome Britta Simon in Front.</span><span class="sxs-lookup"><span data-stu-id="3e02a-213">In this section, you create a user called Britta Simon in Front.</span></span> <span data-ttu-id="3e02a-214">Collaborare con il [team di supporto clienti di Front](mailto:support@frontapp.com) per aggiungere gli utenti nella piattaforma Front.</span><span class="sxs-lookup"><span data-stu-id="3e02a-214">Work with [Front Client support team](mailto:support@frontapp.com) to add the users in the Front platform.</span></span> <span data-ttu-id="3e02a-215">Gli utenti devono essere creati e attivati prima di usare l'accesso Single Sign-On.</span><span class="sxs-lookup"><span data-stu-id="3e02a-215">Users must be created and activated before you use single sign-on.</span></span>
+<span data-ttu-id="c57cc-213">In questa sezione viene creato un utente di nome Britta Simon in Front.</span><span class="sxs-lookup"><span data-stu-id="c57cc-213">In this section, you create a user called Britta Simon in Front.</span></span> <span data-ttu-id="c57cc-214">Lavorare con [team di supporto Client anteriore](mailto:support@frontapp.com) per aggiungere gli utenti di hello nella piattaforma di primo piano hello.</span><span class="sxs-lookup"><span data-stu-id="c57cc-214">Work with [Front Client support team](mailto:support@frontapp.com) to add hello users in hello Front platform.</span></span> <span data-ttu-id="c57cc-215">Gli utenti devono essere creati e attivati prima di usare l'accesso Single Sign-On.</span><span class="sxs-lookup"><span data-stu-id="c57cc-215">Users must be created and activated before you use single sign-on.</span></span>
 
-### <a name="assign-the-azure-ad-test-user"></a><span data-ttu-id="3e02a-216">Assegnare l'utente test di Azure AD</span><span class="sxs-lookup"><span data-stu-id="3e02a-216">Assign the Azure AD test user</span></span>
+### <a name="assign-hello-azure-ad-test-user"></a><span data-ttu-id="c57cc-216">Assegnare l'utente test hello Azure AD</span><span class="sxs-lookup"><span data-stu-id="c57cc-216">Assign hello Azure AD test user</span></span>
 
-<span data-ttu-id="3e02a-217">In questa sezione Britta Simon viene abilitata per l'uso dell'accesso Single Sign-On di Azure concedendole l'accesso a Front.</span><span class="sxs-lookup"><span data-stu-id="3e02a-217">In this section, you enable Britta Simon to use Azure single sign-on by granting access to Front.</span></span>
+<span data-ttu-id="c57cc-217">In questa sezione per abilitare Britta Simon toouse single sign-on Azure concessione dell'accesso tooFront.</span><span class="sxs-lookup"><span data-stu-id="c57cc-217">In this section, you enable Britta Simon toouse Azure single sign-on by granting access tooFront.</span></span>
 
-![Assegnare il ruolo utente][200] 
+![Assegnazione del ruolo utente hello][200] 
 
-<span data-ttu-id="3e02a-219">**Per assegnare Britta Simon a Front, seguire questa procedura:**</span><span class="sxs-lookup"><span data-stu-id="3e02a-219">**To assign Britta Simon to Front, perform the following steps:**</span></span>
+<span data-ttu-id="c57cc-219">**tooassign Britta Simon tooFront, eseguire hello alla procedura seguente:**</span><span class="sxs-lookup"><span data-stu-id="c57cc-219">**tooassign Britta Simon tooFront, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="3e02a-220">Nel portale di Azure aprire la visualizzazione delle applicazioni e quindi la visualizzazione delle directory e passare ad **Applicazioni aziendali**, quindi fare clic su **Tutte le applicazioni**.</span><span class="sxs-lookup"><span data-stu-id="3e02a-220">In the Azure portal, open the applications view, and then navigate to the directory view and go to **Enterprise applications** then click **All applications**.</span></span>
+1. <span data-ttu-id="c57cc-220">Nel portale di Azure hello, aprire la visualizzazione di applicazioni hello, quindi selezionare Visualizza directory toohello e andare troppo**applicazioni aziendali** quindi fare clic su **tutte le applicazioni**.</span><span class="sxs-lookup"><span data-stu-id="c57cc-220">In hello Azure portal, open hello applications view, and then navigate toohello directory view and go too**Enterprise applications** then click **All applications**.</span></span>
 
     ![Assegna utente][201] 
 
-2. <span data-ttu-id="3e02a-222">Nell'elenco delle applicazioni, selezionare **Front**.</span><span class="sxs-lookup"><span data-stu-id="3e02a-222">In the applications list, select **Front**.</span></span>
+2. <span data-ttu-id="c57cc-222">Nell'elenco di applicazioni hello, selezionare **anteriore**.</span><span class="sxs-lookup"><span data-stu-id="c57cc-222">In hello applications list, select **Front**.</span></span>
 
-    ![Collegamento di Front nell'elenco delle applicazioni](./media/active-directory-saas-front-tutorial/tutorial_front_app.png)  
+    ![collegamento di primo piano Hello nell'elenco delle applicazioni hello](./media/active-directory-saas-front-tutorial/tutorial_front_app.png)  
 
-3. <span data-ttu-id="3e02a-224">Scegliere **Utenti e gruppi** dal menu a sinistra.</span><span class="sxs-lookup"><span data-stu-id="3e02a-224">In the menu on the left, click **Users and groups**.</span></span>
+3. <span data-ttu-id="c57cc-224">Dal menu hello hello sinistra, fare clic su **utenti e gruppi**.</span><span class="sxs-lookup"><span data-stu-id="c57cc-224">In hello menu on hello left, click **Users and groups**.</span></span>
 
-    ![Collegamento "Utenti e gruppi"][202]
+    ![collegamento di "Utenti e gruppi" Hello][202]
 
-4. <span data-ttu-id="3e02a-226">Fare clic sul pulsante **Aggiungi**.</span><span class="sxs-lookup"><span data-stu-id="3e02a-226">Click **Add** button.</span></span> <span data-ttu-id="3e02a-227">Selezionare quindi **Utenti e gruppi** nella finestra di dialogo **Aggiungi assegnazione**.</span><span class="sxs-lookup"><span data-stu-id="3e02a-227">Then select **Users and groups** on **Add Assignment** dialog.</span></span>
+4. <span data-ttu-id="c57cc-226">Fare clic sul pulsante **Aggiungi**.</span><span class="sxs-lookup"><span data-stu-id="c57cc-226">Click **Add** button.</span></span> <span data-ttu-id="c57cc-227">Selezionare quindi **Utenti e gruppi** nella finestra di dialogo **Aggiungi assegnazione**.</span><span class="sxs-lookup"><span data-stu-id="c57cc-227">Then select **Users and groups** on **Add Assignment** dialog.</span></span>
 
-    ![Riquadro Aggiungi assegnazione][203]
+    ![riquadro assegnazione aggiungere Hello][203]
 
-5. <span data-ttu-id="3e02a-229">Nella finestra di dialogo **Utenti e gruppi** selezionare **Britta Simon** nell'elenco Utenti.</span><span class="sxs-lookup"><span data-stu-id="3e02a-229">On **Users and groups** dialog, select **Britta Simon** in the Users list.</span></span>
+5. <span data-ttu-id="c57cc-229">In **utenti e gruppi** finestra di dialogo Seleziona **Britta Simon** nell'elenco di utenti hello.</span><span class="sxs-lookup"><span data-stu-id="c57cc-229">On **Users and groups** dialog, select **Britta Simon** in hello Users list.</span></span>
 
-6. <span data-ttu-id="3e02a-230">Fare clic sul pulsante **Seleziona** nella finestra di dialogo **Utenti e gruppi**.</span><span class="sxs-lookup"><span data-stu-id="3e02a-230">Click **Select** button on **Users and groups** dialog.</span></span>
+6. <span data-ttu-id="c57cc-230">Fare clic sul pulsante **Seleziona** nella finestra di dialogo **Utenti e gruppi**.</span><span class="sxs-lookup"><span data-stu-id="c57cc-230">Click **Select** button on **Users and groups** dialog.</span></span>
 
-7. <span data-ttu-id="3e02a-231">Fare clic sul pulsante **Assegna** nella finestra di dialogo **Aggiungi assegnazione**.</span><span class="sxs-lookup"><span data-stu-id="3e02a-231">Click **Assign** button on **Add Assignment** dialog.</span></span>
+7. <span data-ttu-id="c57cc-231">Fare clic sul pulsante **Assegna** nella finestra di dialogo **Aggiungi assegnazione**.</span><span class="sxs-lookup"><span data-stu-id="c57cc-231">Click **Assign** button on **Add Assignment** dialog.</span></span>
     
-### <a name="test-single-sign-on"></a><span data-ttu-id="3e02a-232">Testare l'accesso Single Sign-On</span><span class="sxs-lookup"><span data-stu-id="3e02a-232">Test single sign-on</span></span>
+### <a name="test-single-sign-on"></a><span data-ttu-id="c57cc-232">Testare l'accesso Single Sign-On</span><span class="sxs-lookup"><span data-stu-id="c57cc-232">Test single sign-on</span></span>
 
-<span data-ttu-id="3e02a-233">Questa sezione descrive come testare la configurazione dell'accesso Single Sign-on di Azure AD usando il pannello di accesso.</span><span class="sxs-lookup"><span data-stu-id="3e02a-233">The objective of this section is to test your Azure AD SSOconfiguration using the Access Panel.</span></span>
+<span data-ttu-id="c57cc-233">obiettivo di Hello di questa sezione è tootest utilizzando Azure AD SSOconfiguration hello Pannello di accesso.</span><span class="sxs-lookup"><span data-stu-id="c57cc-233">hello objective of this section is tootest your Azure AD SSOconfiguration using hello Access Panel.</span></span>
 
-<span data-ttu-id="3e02a-234">Quando si fa clic sul riquadro Front nel pannello di accesso, si accederà automaticamente all'applicazione Front.</span><span class="sxs-lookup"><span data-stu-id="3e02a-234">When you click the Front tile in the Access Panel, you should get automatically signed-on to your Front application.</span></span> 
+<span data-ttu-id="c57cc-234">Quando si fa clic su riquadro anteriore hello in hello Pannello di accesso, è necessario ottenere l'applicazione Front tooyour automaticamente firmato-on.</span><span class="sxs-lookup"><span data-stu-id="c57cc-234">When you click hello Front tile in hello Access Panel, you should get automatically signed-on tooyour Front application.</span></span> 
 
-## <a name="additional-resources"></a><span data-ttu-id="3e02a-235">Risorse aggiuntive</span><span class="sxs-lookup"><span data-stu-id="3e02a-235">Additional resources</span></span>
+## <a name="additional-resources"></a><span data-ttu-id="c57cc-235">Risorse aggiuntive</span><span class="sxs-lookup"><span data-stu-id="c57cc-235">Additional resources</span></span>
 
-* [<span data-ttu-id="3e02a-236">Elenco di esercitazioni sulla procedura di integrazione delle app SaaS con Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="3e02a-236">List of Tutorials on How to Integrate SaaS Apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
-* [<span data-ttu-id="3e02a-237">Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="3e02a-237">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
+* [<span data-ttu-id="c57cc-236">Elenco di esercitazioni sulla tooIntegrate App SaaS con Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="c57cc-236">List of Tutorials on How tooIntegrate SaaS Apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
+* [<span data-ttu-id="c57cc-237">Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="c57cc-237">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
 
 <!--Image references-->
 

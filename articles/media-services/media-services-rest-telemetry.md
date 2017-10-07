@@ -1,6 +1,6 @@
 ---
-title: Configurare la telemetria di Servizi multimediali di Azure con REST | Microsoft Docs
-description: Questo articolo illustra come usare i dati di telemetria di Servizi multimediali di Azure usando le API REST.
+title: dati di telemetria di servizi multimediali di Azure con REST aaaConfiguring | Documenti Microsoft
+description: Questo articolo illustra come toouse hello telemetria di servizi multimediali di Azure tramite l'API REST...
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,38 +14,38 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/09/2017
 ms.author: juliako
-ms.openlocfilehash: 7d785c6eb9a9e16ae4853cded3c7c142080c7a09
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: d0b6798c49be756fcebecf2e1e6ea497edd27cf0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="configuring-azure-media-services-telemetry-with-rest"></a><span data-ttu-id="0ea1b-103">Configurare la telemetria di Servizi multimediali di Azure con REST</span><span class="sxs-lookup"><span data-stu-id="0ea1b-103">Configuring Azure Media Services telemetry with REST</span></span>
+# <a name="configuring-azure-media-services-telemetry-with-rest"></a><span data-ttu-id="15096-103">Configurare la telemetria di Servizi multimediali di Azure con REST</span><span class="sxs-lookup"><span data-stu-id="15096-103">Configuring Azure Media Services telemetry with REST</span></span>
 
-<span data-ttu-id="0ea1b-104">Questo argomento descrive in generale i possibili passaggi da eseguire per configurare la telemetria di Servizi multimediali di Azure usando l'API REST.</span><span class="sxs-lookup"><span data-stu-id="0ea1b-104">This topic describes general steps that you might take when configuring the Azure Media Services (AMS) telemetry using REST API.</span></span> 
+<span data-ttu-id="15096-104">Questo argomento descrive i passaggi generali che è possibile eseguire durante la configurazione di telemetria di hello Azure Media Services (AMS) tramite l'API REST.</span><span class="sxs-lookup"><span data-stu-id="15096-104">This topic describes general steps that you might take when configuring hello Azure Media Services (AMS) telemetry using REST API.</span></span> 
 
 >[!NOTE]
-><span data-ttu-id="0ea1b-105">Per una spiegazione dettagliata della telemetria AMS e di come usarla, vedere l'argomento di [panoramica](media-services-telemetry-overview.md).</span><span class="sxs-lookup"><span data-stu-id="0ea1b-105">For the detailed explanation of what is AMS telemetry and how to consume it, see the [overview](media-services-telemetry-overview.md) topic.</span></span>
+><span data-ttu-id="15096-105">Per informazioni su cosa hello è telemetria AMS e come tooconsume, vedere hello [Panoramica](media-services-telemetry-overview.md) argomento.</span><span class="sxs-lookup"><span data-stu-id="15096-105">For hello detailed explanation of what is AMS telemetry and how tooconsume it, see hello [overview](media-services-telemetry-overview.md) topic.</span></span>
 
-<span data-ttu-id="0ea1b-106">Questo argomento descrive come:</span><span class="sxs-lookup"><span data-stu-id="0ea1b-106">The steps described in this topic are:</span></span>
+<span data-ttu-id="15096-106">Hello passaggi descritti in questo argomento sono:</span><span class="sxs-lookup"><span data-stu-id="15096-106">hello steps described in this topic are:</span></span>
 
-- <span data-ttu-id="0ea1b-107">Associare l'account di archiviazione a un account Servizi multimediali</span><span class="sxs-lookup"><span data-stu-id="0ea1b-107">Getting the storage account associated with a Media Services account</span></span>
-- <span data-ttu-id="0ea1b-108">Acquisire gli endpoint di notifica</span><span class="sxs-lookup"><span data-stu-id="0ea1b-108">Getting the Notification Endpoints</span></span>
-- <span data-ttu-id="0ea1b-109">Creare un endpoint di notifica per il monitoraggio.</span><span class="sxs-lookup"><span data-stu-id="0ea1b-109">Creating a Notification Endpoint for Monitoring.</span></span> 
+- <span data-ttu-id="15096-107">Recupero di account di archiviazione hello associata a un account di servizi multimediali</span><span class="sxs-lookup"><span data-stu-id="15096-107">Getting hello storage account associated with a Media Services account</span></span>
+- <span data-ttu-id="15096-108">Recupero degli endpoint di notifica hello</span><span class="sxs-lookup"><span data-stu-id="15096-108">Getting hello Notification Endpoints</span></span>
+- <span data-ttu-id="15096-109">Creare un endpoint di notifica per il monitoraggio.</span><span class="sxs-lookup"><span data-stu-id="15096-109">Creating a Notification Endpoint for Monitoring.</span></span> 
 
-    <span data-ttu-id="0ea1b-110">Per creare un endpoint di notifica, impostare la proprietà EndPointType su AzureTable (2) e endPointAddress sulla tabella di archiviazione (ad esempio, https://telemetryvalidationstore.table.core.windows.net/).</span><span class="sxs-lookup"><span data-stu-id="0ea1b-110">To create a Notification Endpoint, set the EndPointType to AzureTable (2) and endPontAddress set to the storage table (for example, https://telemetryvalidationstore.table.core.windows.net/).</span></span>
+    <span data-ttu-id="15096-110">toocreate un Endpoint di notifica, impostare hello EndPointType tooAzureTable (2) e tabella di archiviazione endPontAddress set toohello (ad esempio, https://telemetryvalidationstore.table.core.windows.net/).</span><span class="sxs-lookup"><span data-stu-id="15096-110">toocreate a Notification Endpoint, set hello EndPointType tooAzureTable (2) and endPontAddress set toohello storage table (for example, https://telemetryvalidationstore.table.core.windows.net/).</span></span>
   
-- <span data-ttu-id="0ea1b-111">Ottenere le configurazioni di monitoraggio</span><span class="sxs-lookup"><span data-stu-id="0ea1b-111">Get the monitoring configurations</span></span>
+- <span data-ttu-id="15096-111">Ottenere le configurazioni di monitoraggio hello</span><span class="sxs-lookup"><span data-stu-id="15096-111">Get hello monitoring configurations</span></span>
 
-    <span data-ttu-id="0ea1b-112">Creare un'impostazione di configurazione del monitoraggio per i servizi da monitorare.</span><span class="sxs-lookup"><span data-stu-id="0ea1b-112">Create a monitoring configuration settings for the services you want to monitor.</span></span> <span data-ttu-id="0ea1b-113">È consentita una sola impostazione di configurazione del monitoraggio.</span><span class="sxs-lookup"><span data-stu-id="0ea1b-113">No more than one monitoring configuration settings is allowed.</span></span> 
+    <span data-ttu-id="15096-112">Creare una configurazione di monitoraggio delle impostazioni per hello servizi si desidera toomonitor.</span><span class="sxs-lookup"><span data-stu-id="15096-112">Create a monitoring configuration settings for hello services you want toomonitor.</span></span> <span data-ttu-id="15096-113">È consentita una sola impostazione di configurazione del monitoraggio.</span><span class="sxs-lookup"><span data-stu-id="15096-113">No more than one monitoring configuration settings is allowed.</span></span> 
 
-- <span data-ttu-id="0ea1b-114">Aggiungere una configurazione di monitoraggio</span><span class="sxs-lookup"><span data-stu-id="0ea1b-114">Add a monitoring configuration</span></span>
+- <span data-ttu-id="15096-114">Aggiungere una configurazione di monitoraggio</span><span class="sxs-lookup"><span data-stu-id="15096-114">Add a monitoring configuration</span></span>
 
 
  
-## <a name="get-the-storage-account-associated-with-a-media-services-account"></a><span data-ttu-id="0ea1b-115">Associare l'account di archiviazione a un account Servizi multimediali</span><span class="sxs-lookup"><span data-stu-id="0ea1b-115">Get the storage account associated with a Media Services account</span></span>
+## <a name="get-hello-storage-account-associated-with-a-media-services-account"></a><span data-ttu-id="15096-115">Ottenere l'account di archiviazione hello associata a un account di servizi multimediali</span><span class="sxs-lookup"><span data-stu-id="15096-115">Get hello storage account associated with a Media Services account</span></span>
 
-###<a name="request"></a><span data-ttu-id="0ea1b-116">Richiesta</span><span class="sxs-lookup"><span data-stu-id="0ea1b-116">Request</span></span>
+###<a name="request"></a><span data-ttu-id="15096-116">Richiesta</span><span class="sxs-lookup"><span data-stu-id="15096-116">Request</span></span>
 
     GET https://wamsbnp1clus001rest-hs.cloudapp.net/api/StorageAccounts HTTP/1.1
     x-ms-version: 2.13
@@ -71,9 +71,9 @@ ms.lasthandoff: 08/29/2017
     
     {"d":{"results":[{"__metadata":{"id":"https://wamsbnp1clus001rest-hs.cloudapp.net/api/StorageAccounts('telemetryvalidationstore')","uri":"https://wamsbnp1clus001rest-hs.cloudapp.net/api/StorageAccounts('telemetryvalidationstore')","type":"Microsoft.Cloud.Media.Vod.Rest.Data.Models.StorageAccount"},"Name":"telemetryvalidationstore","IsDefault":true,"BytesUsed":null}]}}
 
-## <a name="get-the-notification-endpoints"></a><span data-ttu-id="0ea1b-117">Acquisire gli endpoint di notifica</span><span class="sxs-lookup"><span data-stu-id="0ea1b-117">Get the Notification Endpoints</span></span>
+## <a name="get-hello-notification-endpoints"></a><span data-ttu-id="15096-117">Ottenere gli endpoint di notifica hello</span><span class="sxs-lookup"><span data-stu-id="15096-117">Get hello Notification Endpoints</span></span>
 
-###<a name="request"></a><span data-ttu-id="0ea1b-118">Richiesta</span><span class="sxs-lookup"><span data-stu-id="0ea1b-118">Request</span></span>
+###<a name="request"></a><span data-ttu-id="15096-118">Richiesta</span><span class="sxs-lookup"><span data-stu-id="15096-118">Request</span></span>
 
     GET https://wamsbnp1clus001rest-hs.cloudapp.net/api/NotificationEndPoints HTTP/1.1
     x-ms-version: 2.13
@@ -83,7 +83,7 @@ ms.lasthandoff: 08/29/2017
     Authorization: (redacted)
     Host: wamsbnp1clus001rest-hs.cloudapp.net
     
-###<a name="response"></a><span data-ttu-id="0ea1b-119">Response</span><span class="sxs-lookup"><span data-stu-id="0ea1b-119">Response</span></span>
+###<a name="response"></a><span data-ttu-id="15096-119">Response</span><span class="sxs-lookup"><span data-stu-id="15096-119">Response</span></span>
     HTTP/1.1 200 OK
     Cache-Control: no-cache
     Content-Length: 20
@@ -104,9 +104,9 @@ ms.lasthandoff: 08/29/2017
         }
     }
  
-## <a name="create-a-notification-endpoint-for-monitoring"></a><span data-ttu-id="0ea1b-120">Creare un endpoint di notifica per il monitoraggio</span><span class="sxs-lookup"><span data-stu-id="0ea1b-120">Create a Notification Endpoint for monitoring</span></span>
+## <a name="create-a-notification-endpoint-for-monitoring"></a><span data-ttu-id="15096-120">Creare un endpoint di notifica per il monitoraggio</span><span class="sxs-lookup"><span data-stu-id="15096-120">Create a Notification Endpoint for monitoring</span></span>
 
-###<a name="request"></a><span data-ttu-id="0ea1b-121">Richiesta</span><span class="sxs-lookup"><span data-stu-id="0ea1b-121">Request</span></span>
+###<a name="request"></a><span data-ttu-id="15096-121">Richiesta</span><span class="sxs-lookup"><span data-stu-id="15096-121">Request</span></span>
 
     POST https://wamsbnp1clus001rest-hs.cloudapp.net/api/NotificationEndPoints HTTP/1.1
     x-ms-version: 2.13
@@ -125,9 +125,9 @@ ms.lasthandoff: 08/29/2017
     }
 
 >[!NOTE]
-><span data-ttu-id="0ea1b-122">Non dimenticare di modificare il valore "https://telemetryvalidationstore.table.core.windows.net" con l'account di archiviazione.</span><span class="sxs-lookup"><span data-stu-id="0ea1b-122">Don't forget to change the "https://telemetryvalidationstore.table.core.windows.net" value to your storage account.</span></span>
+><span data-ttu-id="15096-122">Non dimenticare di account di archiviazione tooyour toochange hello "https://telemetryvalidationstore.table.core.windows.net" valore.</span><span class="sxs-lookup"><span data-stu-id="15096-122">Don't forget toochange hello "https://telemetryvalidationstore.table.core.windows.net" value tooyour storage account.</span></span>
 
-###<a name="response"></a><span data-ttu-id="0ea1b-123">Response</span><span class="sxs-lookup"><span data-stu-id="0ea1b-123">Response</span></span>
+###<a name="response"></a><span data-ttu-id="15096-123">Response</span><span class="sxs-lookup"><span data-stu-id="15096-123">Response</span></span>
 
     HTTP/1.1 201 Created
     Cache-Control: no-cache
@@ -146,9 +146,9 @@ ms.lasthandoff: 08/29/2017
     
     {"d":{"__metadata":{"id":"https://wamsbnp1clus001rest-hs.cloudapp.net/api/NotificationEndPoints('nb%3Anepid%3AUUID%3A76bb4faf-ea29-4815-840a-9a8e20102fc4')","uri":"https://wamsbnp1clus001rest-hs.cloudapp.net/api/NotificationEndPoints('nb%3Anepid%3AUUID%3A76bb4faf-ea29-4815-840a-9a8e20102fc4')","type":"Microsoft.Cloud.Media.Vod.Rest.Data.Models.NotificationEndPoint"},"Id":"nb:nepid:UUID:76bb4faf-ea29-4815-840a-9a8e20102fc4","Name":"monitoring","Created":"\/Date(1449033042667)\/","EndPointAddress":"https://telemetryvalidationstore.table.core.windows.net/","EndPointType":2}}
  
-## <a name="get-the-monitoring-configurations"></a><span data-ttu-id="0ea1b-124">Ottenere le configurazioni di monitoraggio</span><span class="sxs-lookup"><span data-stu-id="0ea1b-124">Get the monitoring configurations</span></span>
+## <a name="get-hello-monitoring-configurations"></a><span data-ttu-id="15096-124">Ottenere le configurazioni di monitoraggio hello</span><span class="sxs-lookup"><span data-stu-id="15096-124">Get hello monitoring configurations</span></span>
 
-### <a name="request"></a><span data-ttu-id="0ea1b-125">Richiesta</span><span class="sxs-lookup"><span data-stu-id="0ea1b-125">Request</span></span>
+### <a name="request"></a><span data-ttu-id="15096-125">Richiesta</span><span class="sxs-lookup"><span data-stu-id="15096-125">Request</span></span>
 
     GET https://wamsbnp1clus001rest-hs.cloudapp.net/api/MonitoringConfigurations HTTP/1.1
     x-ms-version: 2.13
@@ -158,7 +158,7 @@ ms.lasthandoff: 08/29/2017
     Authorization: (redacted)
     Host: wamsbnp1clus001rest-hs.cloudapp.net
 
-###<a name="response"></a><span data-ttu-id="0ea1b-126">Response</span><span class="sxs-lookup"><span data-stu-id="0ea1b-126">Response</span></span>
+###<a name="response"></a><span data-ttu-id="15096-126">Response</span><span class="sxs-lookup"><span data-stu-id="15096-126">Response</span></span>
     
     HTTP/1.1 200 OK
     Cache-Control: no-cache
@@ -176,9 +176,9 @@ ms.lasthandoff: 08/29/2017
     
     {"d":{"results":[]}}
 
-## <a name="add-a-monitoring-configuration"></a><span data-ttu-id="0ea1b-127">Aggiungere una configurazione di monitoraggio</span><span class="sxs-lookup"><span data-stu-id="0ea1b-127">Add a monitoring configuration</span></span>
+## <a name="add-a-monitoring-configuration"></a><span data-ttu-id="15096-127">Aggiungere una configurazione di monitoraggio</span><span class="sxs-lookup"><span data-stu-id="15096-127">Add a monitoring configuration</span></span>
 
-### <a name="request"></a><span data-ttu-id="0ea1b-128">Richiesta</span><span class="sxs-lookup"><span data-stu-id="0ea1b-128">Request</span></span>
+### <a name="request"></a><span data-ttu-id="15096-128">Richiesta</span><span class="sxs-lookup"><span data-stu-id="15096-128">Request</span></span>
 
     POST https://wamsbnp1clus001rest-hs.cloudapp.net/api/MonitoringConfigurations HTTP/1.1
     x-ms-version: 2.13
@@ -200,7 +200,7 @@ ms.lasthandoff: 08/29/2017
        ]
     }
 
-### <a name="response"></a><span data-ttu-id="0ea1b-129">Risposta</span><span class="sxs-lookup"><span data-stu-id="0ea1b-129">Response</span></span>
+### <a name="response"></a><span data-ttu-id="15096-129">Risposta</span><span class="sxs-lookup"><span data-stu-id="15096-129">Response</span></span>
 
     HTTP/1.1 201 Created
     Cache-Control: no-cache
@@ -219,9 +219,9 @@ ms.lasthandoff: 08/29/2017
     
     {"d":{"__metadata":{"id":"https://wamsbnp1clus001rest-hs.cloudapp.net/api/MonitoringConfigurations('nb%3Amcid%3AUUID%3A1a8931ae-799f-45fd-8aeb-9641740295c2')","uri":"https://wamsbnp1clus001rest-hs.cloudapp.net/api/MonitoringConfigurations('nb%3Amcid%3AUUID%3A1a8931ae-799f-45fd-8aeb-9641740295c2')","type":"Microsoft.Cloud.Media.Vod.Rest.Data.Models.MonitoringConfiguration"},"Id":"nb:mcid:UUID:1a8931ae-799f-45fd-8aeb-9641740295c2","NotificationEndPointId":"nb:nepid:UUID:76bb4faf-ea29-4815-840a-9a8e20102fc4","Created":"2015-12-02T05:10:43.7680396Z","LastModified":"2015-12-02T05:10:43.7680396Z","Settings":{"__metadata":{"type":"Collection(Microsoft.Cloud.Media.Vod.Rest.Data.Models.ComponentMonitoringSettings)"},"results":[{"Component":"Channel","Level":"Normal"},{"Component":"StreamingEndpoint","Level":"Disabled"}]}}}
 
-## <a name="stop-telemetry"></a><span data-ttu-id="0ea1b-130">Arrestare la telemetria</span><span class="sxs-lookup"><span data-stu-id="0ea1b-130">Stop telemetry</span></span>
+## <a name="stop-telemetry"></a><span data-ttu-id="15096-130">Arrestare la telemetria</span><span class="sxs-lookup"><span data-stu-id="15096-130">Stop telemetry</span></span>
 
-###<a name="request"></a><span data-ttu-id="0ea1b-131">Richiesta</span><span class="sxs-lookup"><span data-stu-id="0ea1b-131">Request</span></span>
+###<a name="request"></a><span data-ttu-id="15096-131">Richiesta</span><span class="sxs-lookup"><span data-stu-id="15096-131">Request</span></span>
 
     DELETE https://wamsbnp1clus001rest-hs.cloudapp.net/api/MonitoringConfigurations('nb%3Amcid%3AUUID%3A1a8931ae-799f-45fd-8aeb-9641740295c2')
     x-ms-version: 2.13
@@ -232,14 +232,14 @@ ms.lasthandoff: 08/29/2017
     Content-Type: application/json; charset=utf-8
     Host: wamsbnp1clus001rest-hs.cloudapp.net
 
-## <a name="consuming-telemetry-information"></a><span data-ttu-id="0ea1b-132">Uso delle informazioni di telemetria</span><span class="sxs-lookup"><span data-stu-id="0ea1b-132">Consuming telemetry information</span></span>
+## <a name="consuming-telemetry-information"></a><span data-ttu-id="15096-132">Uso delle informazioni di telemetria</span><span class="sxs-lookup"><span data-stu-id="15096-132">Consuming telemetry information</span></span>
 
-<span data-ttu-id="0ea1b-133">Per informazioni sull'uso dei dati di telemetria, vedere [questo](media-services-telemetry-overview.md) argomento.</span><span class="sxs-lookup"><span data-stu-id="0ea1b-133">For information about consuming telemetry information, see [this](media-services-telemetry-overview.md) topic.</span></span>
+<span data-ttu-id="15096-133">Per informazioni sull'uso dei dati di telemetria, vedere [questo](media-services-telemetry-overview.md) argomento.</span><span class="sxs-lookup"><span data-stu-id="15096-133">For information about consuming telemetry information, see [this](media-services-telemetry-overview.md) topic.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="0ea1b-134">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="0ea1b-134">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="15096-134">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="15096-134">Next steps</span></span>
 
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 
-## <a name="provide-feedback"></a><span data-ttu-id="0ea1b-135">Fornire commenti e suggerimenti</span><span class="sxs-lookup"><span data-stu-id="0ea1b-135">Provide feedback</span></span>
+## <a name="provide-feedback"></a><span data-ttu-id="15096-135">Fornire commenti e suggerimenti</span><span class="sxs-lookup"><span data-stu-id="15096-135">Provide feedback</span></span>
 
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]

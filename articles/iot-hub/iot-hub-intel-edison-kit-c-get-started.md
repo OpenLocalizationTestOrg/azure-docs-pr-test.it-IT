@@ -1,12 +1,12 @@
 ---
-title: Da Intel Edison al cloud (C) - Connettere Intel Edison all'Hub IoT di Azure | Microsoft Docs
-description: "Informazioni su come configurare e connettere Intel Edison all'hub IoT di Azure perché Intel Edison invii i dati alla piattaforma cloud di Azure in questa esercitazione."
+title: aaaIntel Edison toocloud (C) - connessione Edison Intel tooAzure IoT Hub | Documenti Microsoft
+description: Informazioni su come toosetup e connettersi Edison Intel tooAzure IoT Hub per la piattaforma cloud di Azure Edison Intel toosend dati toohello in questa esercitazione.
 services: iot-hub
 documentationcenter: 
 author: shizn
 manager: timlt
 tags: 
-keywords: azure iot intel edison, intel edison hub iot, intel edison invio dati al cloud, da intel edison al cloud
+keywords: Azure iot intel edison, intel hub iot edison, intel edison invia dati toocloud, intel toocloud edison
 ms.assetid: 4885fa2c-c2ee-4253-b37f-ccd55f92b006
 ms.service: iot-hub
 ms.devlang: c
@@ -16,179 +16,179 @@ ms.workload: na
 ms.date: 4/17/2017
 ms.author: xshi
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: edbdbe0230f742cd7228f04a4a83c9bd567527e8
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: d0928e6c7870d724ff2044280937a45a9e032c75
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="connect-intel-edison-to-azure-iot-hub-c"></a><span data-ttu-id="1aadf-104">Connettere Intel Edison all'Hub IoT di Azure (C)</span><span class="sxs-lookup"><span data-stu-id="1aadf-104">Connect Intel Edison to Azure IoT Hub (C)</span></span>
+# <a name="connect-intel-edison-tooazure-iot-hub-c"></a><span data-ttu-id="b1e07-104">Connettersi Edison Intel tooAzure IoT Hub (C)</span><span class="sxs-lookup"><span data-stu-id="b1e07-104">Connect Intel Edison tooAzure IoT Hub (C)</span></span>
 
 [!INCLUDE [iot-hub-get-started-device-selector](../../includes/iot-hub-get-started-device-selector.md)]
 
-<span data-ttu-id="1aadf-105">Questa esercitazione illustra le nozioni base per l'uso di Intel Edison.</span><span class="sxs-lookup"><span data-stu-id="1aadf-105">In this tutorial, you begin by learning the basics of working with Intel Edison.</span></span> <span data-ttu-id="1aadf-106">Viene poi illustrato come connettere i dispositivi al cloud usando l'[hub IoT di Azure](iot-hub-what-is-iot-hub.md).</span><span class="sxs-lookup"><span data-stu-id="1aadf-106">You then learn how to seamlessly connect your devices to the cloud by using [Azure IoT Hub](iot-hub-what-is-iot-hub.md).</span></span>
+<span data-ttu-id="b1e07-105">In questa esercitazione, è necessario innanzitutto hello nozioni fondamentali sulle operazioni con Intel Edison di apprendimento.</span><span class="sxs-lookup"><span data-stu-id="b1e07-105">In this tutorial, you begin by learning hello basics of working with Intel Edison.</span></span> <span data-ttu-id="b1e07-106">Si apprenderà quindi la modalità di connessione cloud toohello dispositivi utilizzando tooseamlessly [IoT Hub Azure](iot-hub-what-is-iot-hub.md).</span><span class="sxs-lookup"><span data-stu-id="b1e07-106">You then learn how tooseamlessly connect your devices toohello cloud by using [Azure IoT Hub](iot-hub-what-is-iot-hub.md).</span></span>
 
-<span data-ttu-id="1aadf-107">Se non si ha ancora un kit,</span><span class="sxs-lookup"><span data-stu-id="1aadf-107">Don't have a kit yet?</span></span> <span data-ttu-id="1aadf-108">iniziare da [qui](https://azure.microsoft.com/develop/iot/starter-kits)</span><span class="sxs-lookup"><span data-stu-id="1aadf-108">Start [here](https://azure.microsoft.com/develop/iot/starter-kits)</span></span>
+<span data-ttu-id="b1e07-107">Se non si ha ancora un kit,</span><span class="sxs-lookup"><span data-stu-id="b1e07-107">Don't have a kit yet?</span></span> <span data-ttu-id="b1e07-108">iniziare da [qui](https://azure.microsoft.com/develop/iot/starter-kits)</span><span class="sxs-lookup"><span data-stu-id="b1e07-108">Start [here](https://azure.microsoft.com/develop/iot/starter-kits)</span></span>
 
-## <a name="what-you-do"></a><span data-ttu-id="1aadf-109">Operazioni da fare</span><span class="sxs-lookup"><span data-stu-id="1aadf-109">What you do</span></span>
+## <a name="what-you-do"></a><span data-ttu-id="b1e07-109">Operazioni da fare</span><span class="sxs-lookup"><span data-stu-id="b1e07-109">What you do</span></span>
 
-* <span data-ttu-id="1aadf-110">Configurare i moduli Intel Edison e Grove.</span><span class="sxs-lookup"><span data-stu-id="1aadf-110">Setup Intel Edison and and Grove modules.</span></span>
-* <span data-ttu-id="1aadf-111">Creare un hub IoT.</span><span class="sxs-lookup"><span data-stu-id="1aadf-111">Create an IoT hub.</span></span>
-* <span data-ttu-id="1aadf-112">Registrare un dispositivo per Edison nel proprio hub IoT.</span><span class="sxs-lookup"><span data-stu-id="1aadf-112">Register a device for Edison in your IoT hub.</span></span>
-* <span data-ttu-id="1aadf-113">Eseguire un'applicazione di esempio in Edison per inviare i dati del sensore all'hub IoT.</span><span class="sxs-lookup"><span data-stu-id="1aadf-113">Run a sample application on Edison to send sensor data to your IoT hub.</span></span>
+* <span data-ttu-id="b1e07-110">Configurare i moduli Intel Edison e Grove.</span><span class="sxs-lookup"><span data-stu-id="b1e07-110">Setup Intel Edison and and Grove modules.</span></span>
+* <span data-ttu-id="b1e07-111">Creare un hub IoT.</span><span class="sxs-lookup"><span data-stu-id="b1e07-111">Create an IoT hub.</span></span>
+* <span data-ttu-id="b1e07-112">Registrare un dispositivo per Edison nel proprio hub IoT.</span><span class="sxs-lookup"><span data-stu-id="b1e07-112">Register a device for Edison in your IoT hub.</span></span>
+* <span data-ttu-id="b1e07-113">Eseguire un'applicazione di esempio nell'hub IoT di Edison toosend sensore dati tooyour.</span><span class="sxs-lookup"><span data-stu-id="b1e07-113">Run a sample application on Edison toosend sensor data tooyour IoT hub.</span></span>
 
-<span data-ttu-id="1aadf-114">Connettere Intel Edison a un hub IoT creato dall'utente.</span><span class="sxs-lookup"><span data-stu-id="1aadf-114">Connect Intel Edison to an IoT hub that you create.</span></span> <span data-ttu-id="1aadf-115">Eseguire un'applicazione di esempio in Edison per raccogliere dati di temperatura e umidità da un sensore temperatura Grove.</span><span class="sxs-lookup"><span data-stu-id="1aadf-115">Then you run a sample application on Edison to collect temperature and humidity data from a Grove temperature sensor.</span></span> <span data-ttu-id="1aadf-116">Infine inviare i dati del sensore all'hub IoT.</span><span class="sxs-lookup"><span data-stu-id="1aadf-116">Finally, you send the sensor data to your IoT hub.</span></span>
+<span data-ttu-id="b1e07-114">Connettersi Edison Intel tooan l'hub IoT creati.</span><span class="sxs-lookup"><span data-stu-id="b1e07-114">Connect Intel Edison tooan IoT hub that you create.</span></span> <span data-ttu-id="b1e07-115">Quindi eseguire un'applicazione di esempio in Edison toocollect temperatura e umidità dati da un sensore di temperatura Groove.</span><span class="sxs-lookup"><span data-stu-id="b1e07-115">Then you run a sample application on Edison toocollect temperature and humidity data from a Grove temperature sensor.</span></span> <span data-ttu-id="b1e07-116">Infine, si invia l'hub IoT hello sensore dati tooyour.</span><span class="sxs-lookup"><span data-stu-id="b1e07-116">Finally, you send hello sensor data tooyour IoT hub.</span></span>
 
-## <a name="what-you-learn"></a><span data-ttu-id="1aadf-117">Contenuto dell'esercitazione</span><span class="sxs-lookup"><span data-stu-id="1aadf-117">What you learn</span></span>
+## <a name="what-you-learn"></a><span data-ttu-id="b1e07-117">Contenuto dell'esercitazione</span><span class="sxs-lookup"><span data-stu-id="b1e07-117">What you learn</span></span>
 
-* <span data-ttu-id="1aadf-118">Come creare un hub IoT di Azure e ottenere la stringa di connessione del nuovo dispositivo.</span><span class="sxs-lookup"><span data-stu-id="1aadf-118">How to create an Azure IoT hub and get your new device connection string.</span></span>
-* <span data-ttu-id="1aadf-119">Come connettere Edison a un sensore temperatura Grove.</span><span class="sxs-lookup"><span data-stu-id="1aadf-119">How to connect Edison with a Grove temperature sensor.</span></span>
-* <span data-ttu-id="1aadf-120">Come raccogliere i dati del sensore eseguendo un'applicazione di esempio in Edison.</span><span class="sxs-lookup"><span data-stu-id="1aadf-120">How to collect sensor data by running a sample application on Edison.</span></span>
-* <span data-ttu-id="1aadf-121">Come inviare i dati del sensore all'hub IoT.</span><span class="sxs-lookup"><span data-stu-id="1aadf-121">How to send sensor data to your IoT hub.</span></span>
+* <span data-ttu-id="b1e07-118">Come toocreate un hub IoT di Azure e ottenere la stringa di connessione nuovo dispositivo.</span><span class="sxs-lookup"><span data-stu-id="b1e07-118">How toocreate an Azure IoT hub and get your new device connection string.</span></span>
+* <span data-ttu-id="b1e07-119">Come tooconnect Edison con un sensore di temperatura Groove.</span><span class="sxs-lookup"><span data-stu-id="b1e07-119">How tooconnect Edison with a Grove temperature sensor.</span></span>
+* <span data-ttu-id="b1e07-120">Come dati del sensore toocollect mediante l'esecuzione di un'applicazione di esempio su Edison.</span><span class="sxs-lookup"><span data-stu-id="b1e07-120">How toocollect sensor data by running a sample application on Edison.</span></span>
+* <span data-ttu-id="b1e07-121">Come l'hub IoT toosend sensore dati tooyour.</span><span class="sxs-lookup"><span data-stu-id="b1e07-121">How toosend sensor data tooyour IoT hub.</span></span>
 
-## <a name="what-you-need"></a><span data-ttu-id="1aadf-122">Elementi necessari</span><span class="sxs-lookup"><span data-stu-id="1aadf-122">What you need</span></span>
+## <a name="what-you-need"></a><span data-ttu-id="b1e07-122">Elementi necessari</span><span class="sxs-lookup"><span data-stu-id="b1e07-122">What you need</span></span>
 
 ![Elementi necessari](media/iot-hub-intel-edison-kit-c-get-started/0_kit.png)
 
-* <span data-ttu-id="1aadf-124">Scheda Intel Edison</span><span class="sxs-lookup"><span data-stu-id="1aadf-124">The Intel Edison board</span></span>
-* <span data-ttu-id="1aadf-125">Scheda di espansione Arduino</span><span class="sxs-lookup"><span data-stu-id="1aadf-125">Arduino expansion board</span></span>
-* <span data-ttu-id="1aadf-126">Una sottoscrizione di Azure attiva.</span><span class="sxs-lookup"><span data-stu-id="1aadf-126">An active Azure subscription.</span></span> <span data-ttu-id="1aadf-127">Se non si ha un account Azure, [creare un account Azure gratuito](https://azure.microsoft.com/free/) in pochi minuti.</span><span class="sxs-lookup"><span data-stu-id="1aadf-127">If you don't have an Azure account, [create a free Azure trial account](https://azure.microsoft.com/free/) in just a few minutes.</span></span>
-* <span data-ttu-id="1aadf-128">Un Mac o PC che esegue Windows o Linux.</span><span class="sxs-lookup"><span data-stu-id="1aadf-128">A Mac or a PC that is running Windows or Linux.</span></span>
-* <span data-ttu-id="1aadf-129">Una connessione Internet.</span><span class="sxs-lookup"><span data-stu-id="1aadf-129">An Internet connection.</span></span>
-* <span data-ttu-id="1aadf-130">Cavo USB Micro B/Tipo A</span><span class="sxs-lookup"><span data-stu-id="1aadf-130">A Micro B to Type A USB cable</span></span>
-* <span data-ttu-id="1aadf-131">Alimentatore in corrente continua (CC).</span><span class="sxs-lookup"><span data-stu-id="1aadf-131">A direct current (DC) power supply.</span></span> <span data-ttu-id="1aadf-132">I valori nominali dell'alimentatore devono essere i seguenti:</span><span class="sxs-lookup"><span data-stu-id="1aadf-132">Your power supply should be rated as follows:</span></span>
-  - <span data-ttu-id="1aadf-133">7-15 V CC</span><span class="sxs-lookup"><span data-stu-id="1aadf-133">7-15V DC</span></span>
-  - <span data-ttu-id="1aadf-134">Almeno 1500 mA</span><span class="sxs-lookup"><span data-stu-id="1aadf-134">At least 1500mA</span></span>
-  - <span data-ttu-id="1aadf-135">Il pin centrale deve essere il polo positivo dell'alimentatore</span><span class="sxs-lookup"><span data-stu-id="1aadf-135">The center/inner pin should be the positive pole of the power supply</span></span>
+* <span data-ttu-id="b1e07-124">Hello Lavagna Edison Intel</span><span class="sxs-lookup"><span data-stu-id="b1e07-124">hello Intel Edison board</span></span>
+* <span data-ttu-id="b1e07-125">Scheda di espansione Arduino</span><span class="sxs-lookup"><span data-stu-id="b1e07-125">Arduino expansion board</span></span>
+* <span data-ttu-id="b1e07-126">Una sottoscrizione di Azure attiva.</span><span class="sxs-lookup"><span data-stu-id="b1e07-126">An active Azure subscription.</span></span> <span data-ttu-id="b1e07-127">Se non si ha un account Azure, [creare un account Azure gratuito](https://azure.microsoft.com/free/) in pochi minuti.</span><span class="sxs-lookup"><span data-stu-id="b1e07-127">If you don't have an Azure account, [create a free Azure trial account](https://azure.microsoft.com/free/) in just a few minutes.</span></span>
+* <span data-ttu-id="b1e07-128">Un Mac o PC che esegue Windows o Linux.</span><span class="sxs-lookup"><span data-stu-id="b1e07-128">A Mac or a PC that is running Windows or Linux.</span></span>
+* <span data-ttu-id="b1e07-129">Una connessione Internet.</span><span class="sxs-lookup"><span data-stu-id="b1e07-129">An Internet connection.</span></span>
+* <span data-ttu-id="b1e07-130">Un cavo USB A di tooType Micro B</span><span class="sxs-lookup"><span data-stu-id="b1e07-130">A Micro B tooType A USB cable</span></span>
+* <span data-ttu-id="b1e07-131">Alimentatore in corrente continua (CC).</span><span class="sxs-lookup"><span data-stu-id="b1e07-131">A direct current (DC) power supply.</span></span> <span data-ttu-id="b1e07-132">I valori nominali dell'alimentatore devono essere i seguenti:</span><span class="sxs-lookup"><span data-stu-id="b1e07-132">Your power supply should be rated as follows:</span></span>
+  - <span data-ttu-id="b1e07-133">7-15 V CC</span><span class="sxs-lookup"><span data-stu-id="b1e07-133">7-15V DC</span></span>
+  - <span data-ttu-id="b1e07-134">Almeno 1500 mA</span><span class="sxs-lookup"><span data-stu-id="b1e07-134">At least 1500mA</span></span>
+  - <span data-ttu-id="b1e07-135">pin center/interna Hello devono essere polo positivo hello di alimentatore hello</span><span class="sxs-lookup"><span data-stu-id="b1e07-135">hello center/inner pin should be hello positive pole of hello power supply</span></span>
 
-<span data-ttu-id="1aadf-136">Gli elementi seguenti sono opzionali:</span><span class="sxs-lookup"><span data-stu-id="1aadf-136">The following items are optional:</span></span>
+<span data-ttu-id="b1e07-136">Hello seguenti elementi è facoltativo:</span><span class="sxs-lookup"><span data-stu-id="b1e07-136">hello following items are optional:</span></span>
 
-* <span data-ttu-id="1aadf-137">Grove Base Shield V2</span><span class="sxs-lookup"><span data-stu-id="1aadf-137">Grove Base Shield V2</span></span>
-* <span data-ttu-id="1aadf-138">Sensore temperatura Grove</span><span class="sxs-lookup"><span data-stu-id="1aadf-138">Grove - Temperature Sensor</span></span>
-* <span data-ttu-id="1aadf-139">Cavo Grove</span><span class="sxs-lookup"><span data-stu-id="1aadf-139">Grove Cable</span></span>
-* <span data-ttu-id="1aadf-140">Elementi distanziali o viti contenuti nel pacchetto, inclusi quattro set di viti ed elementi distanziali in plastica e due viti per fissare il modulo alla scheda di espansione.</span><span class="sxs-lookup"><span data-stu-id="1aadf-140">Any spacer bars or screws included in the packaging, including two screws to fasten the module to the expansion board and four sets of screws and plastic spacers.</span></span>
+* <span data-ttu-id="b1e07-137">Grove Base Shield V2</span><span class="sxs-lookup"><span data-stu-id="b1e07-137">Grove Base Shield V2</span></span>
+* <span data-ttu-id="b1e07-138">Sensore temperatura Grove</span><span class="sxs-lookup"><span data-stu-id="b1e07-138">Grove - Temperature Sensor</span></span>
+* <span data-ttu-id="b1e07-139">Cavo Grove</span><span class="sxs-lookup"><span data-stu-id="b1e07-139">Grove Cable</span></span>
+* <span data-ttu-id="b1e07-140">Le barre dello spaziatore né viti incluse nel pacchetto di hello, tra cui scheda di espansione toohello modulo hello toofasten due viti e quattro set di viti e spaziatore plastica.</span><span class="sxs-lookup"><span data-stu-id="b1e07-140">Any spacer bars or screws included in hello packaging, including two screws toofasten hello module toohello expansion board and four sets of screws and plastic spacers.</span></span>
 
 > [!NOTE] 
-<span data-ttu-id="1aadf-141">Questi elementi sono opzionali, poiché l'esempio di codice supporta i dati del sensore simulato.</span><span class="sxs-lookup"><span data-stu-id="1aadf-141">These items are optional because the code sample support simulated sensor data.</span></span>
+<span data-ttu-id="b1e07-141">Poiché il supporto di esempio di codice hello simulati i dati del sensore, questi elementi sono facoltativi.</span><span class="sxs-lookup"><span data-stu-id="b1e07-141">These items are optional because hello code sample support simulated sensor data.</span></span>
 
 [!INCLUDE [iot-hub-get-started-create-hub-and-device](../../includes/iot-hub-get-started-create-hub-and-device.md)]
 
-## <a name="setup-intel-edison"></a><span data-ttu-id="1aadf-142">Configurare Intel Edison</span><span class="sxs-lookup"><span data-stu-id="1aadf-142">Setup Intel Edison</span></span>
+## <a name="setup-intel-edison"></a><span data-ttu-id="b1e07-142">Configurare Intel Edison</span><span class="sxs-lookup"><span data-stu-id="b1e07-142">Setup Intel Edison</span></span>
 
-### <a name="assemble-your-board"></a><span data-ttu-id="1aadf-143">Assemblare la scheda</span><span class="sxs-lookup"><span data-stu-id="1aadf-143">Assemble your board</span></span>
+### <a name="assemble-your-board"></a><span data-ttu-id="b1e07-143">Assemblare la scheda</span><span class="sxs-lookup"><span data-stu-id="b1e07-143">Assemble your board</span></span>
 
-<span data-ttu-id="1aadf-144">Questa sezione contiene i passaggi per connettere il modulo Intel® Edison alla scheda di espansione.</span><span class="sxs-lookup"><span data-stu-id="1aadf-144">This section contains steps to attach your Intel® Edison module to your expansion board.</span></span>
+<span data-ttu-id="b1e07-144">In questa sezione contiene passaggi tooattach la scheda di espansione Intel® Edison tooyour modulo.</span><span class="sxs-lookup"><span data-stu-id="b1e07-144">This section contains steps tooattach your Intel® Edison module tooyour expansion board.</span></span>
 
-1. <span data-ttu-id="1aadf-145">Posizionare il modulo Intel® Edison all'interno del bordo bianco della scheda di espansione, allineando i fori del modulo con le viti della scheda di espansione.</span><span class="sxs-lookup"><span data-stu-id="1aadf-145">Place the Intel® Edison module within the white outline on your expansion board, lining up the holes on the module with the screws on the expansion board.</span></span>
+1. <span data-ttu-id="b1e07-145">Modulo di Intel® Edison hello sul posto all'interno di struttura hello bianca sulla Lavagna espansione, allineare fori hello sul modulo hello con viti hello nella scheda di espansione hello.</span><span class="sxs-lookup"><span data-stu-id="b1e07-145">Place hello Intel® Edison module within hello white outline on your expansion board, lining up hello holes on hello module with hello screws on hello expansion board.</span></span>
 
-2. <span data-ttu-id="1aadf-146">Premere verso il basso il modulo sotto le parole `What will you make?` fino a quando non si sente uno scatto.</span><span class="sxs-lookup"><span data-stu-id="1aadf-146">Press down on the module just below the words `What will you make?` until you feel a snap.</span></span>
+2. <span data-ttu-id="b1e07-146">Premere sul modulo hello subito dopo le parole hello `What will you make?` fino a quando non si ritiene un gioco da ragazzi.</span><span class="sxs-lookup"><span data-stu-id="b1e07-146">Press down on hello module just below hello words `What will you make?` until you feel a snap.</span></span>
 
    ![assemblare la scheda 2](media/iot-hub-intel-edison-kit-c-get-started/1_assemble_board2.jpg)
 
-3. <span data-ttu-id="1aadf-148">Usare i due dadi esagonali (inclusi nel pacchetto) per fissare il modulo alla scheda di espansione.</span><span class="sxs-lookup"><span data-stu-id="1aadf-148">Use the two hex nuts (included in the package) to secure the module to the expansion board.</span></span>
+3. <span data-ttu-id="b1e07-148">Utilizzare una scheda di espansione di hello due dadi esadecimale (inclusi nel pacchetto hello) toosecure hello modulo toohello.</span><span class="sxs-lookup"><span data-stu-id="b1e07-148">Use hello two hex nuts (included in hello package) toosecure hello module toohello expansion board.</span></span>
 
    ![assemblare la scheda 3](media/iot-hub-intel-edison-kit-c-get-started/2_assemble_board3.jpg)
 
-4. <span data-ttu-id="1aadf-150">Inserire una vite in uno dei quattro fori negli angoli della scheda di espansione.</span><span class="sxs-lookup"><span data-stu-id="1aadf-150">Insert a screw in one of the four corner holes on the expansion board.</span></span> <span data-ttu-id="1aadf-151">Avvitare e fissare uno dei due elementi distanziali in plastica alla vite.</span><span class="sxs-lookup"><span data-stu-id="1aadf-151">Twist and tighten one of the white plastic spacers onto the screw.</span></span>
+4. <span data-ttu-id="b1e07-150">Inserire una vite in uno dei quattro fori angolo hello nella scheda di espansione hello.</span><span class="sxs-lookup"><span data-stu-id="b1e07-150">Insert a screw in one of hello four corner holes on hello expansion board.</span></span> <span data-ttu-id="b1e07-151">Torsione e stringere uno spaziatore plastica di hello bianco su vite hello.</span><span class="sxs-lookup"><span data-stu-id="b1e07-151">Twist and tighten one of hello white plastic spacers onto hello screw.</span></span>
 
    ![assemblare la scheda 4](media/iot-hub-intel-edison-kit-c-get-started/3_assemble_board4.jpg)
 
-5. <span data-ttu-id="1aadf-153">Ripetere l'operazione per gli altri tre elementi distanziali angolari.</span><span class="sxs-lookup"><span data-stu-id="1aadf-153">Repeat for the other three corner spacers.</span></span>
+5. <span data-ttu-id="b1e07-153">Ripetere l'operazione per hello spaziatore altri tre angolo.</span><span class="sxs-lookup"><span data-stu-id="b1e07-153">Repeat for hello other three corner spacers.</span></span>
 
    ![assemblare la scheda 5](media/iot-hub-intel-edison-kit-c-get-started/4_assemble_board5.jpg)
 
-<span data-ttu-id="1aadf-155">A questo punto la scheda è assemblata.</span><span class="sxs-lookup"><span data-stu-id="1aadf-155">Now your board is assembled.</span></span>
+<span data-ttu-id="b1e07-155">A questo punto la scheda è assemblata.</span><span class="sxs-lookup"><span data-stu-id="b1e07-155">Now your board is assembled.</span></span>
 
    ![scheda assemblata](media/iot-hub-intel-edison-kit-c-get-started/5_assembled_board.jpg)
 
-### <a name="connect-the-grove-base-shield-and-the-temperature-sensor"></a><span data-ttu-id="1aadf-157">Connettere Grove Base Shield e il sensore temperatura</span><span class="sxs-lookup"><span data-stu-id="1aadf-157">Connect the Grove Base Shield and the temperature sensor</span></span>
+### <a name="connect-hello-grove-base-shield-and-hello-temperature-sensor"></a><span data-ttu-id="b1e07-157">Connettere hello dello scudo di Base di Groove e sensore di temperatura hello</span><span class="sxs-lookup"><span data-stu-id="b1e07-157">Connect hello Grove Base Shield and hello temperature sensor</span></span>
 
-1. <span data-ttu-id="1aadf-158">Posizionare Grove Base Shield sulla scheda</span><span class="sxs-lookup"><span data-stu-id="1aadf-158">Place the Grove Base Shield on to your board.</span></span> <span data-ttu-id="1aadf-159">e assicurarsi che sia inserito correttamente nella scheda.</span><span class="sxs-lookup"><span data-stu-id="1aadf-159">Make sure all pins are tightly plugged into your board.</span></span>
+1. <span data-ttu-id="b1e07-158">Inserire hello dello scudo di Base di Groove nella Lavagna tooyour.</span><span class="sxs-lookup"><span data-stu-id="b1e07-158">Place hello Grove Base Shield on tooyour board.</span></span> <span data-ttu-id="b1e07-159">e assicurarsi che sia inserito correttamente nella scheda.</span><span class="sxs-lookup"><span data-stu-id="b1e07-159">Make sure all pins are tightly plugged into your board.</span></span>
    
    ![Grove Base Shield](media/iot-hub-intel-edison-kit-c-get-started/6_grove_base_sheild.jpg)
 
-2. <span data-ttu-id="1aadf-161">Usare il cavo Grove Cable per connettere il sensore temperatura Grove alla porta **A0** di Grove Base Shield.</span><span class="sxs-lookup"><span data-stu-id="1aadf-161">Use Grove Cable to connect Grove temperature sensor onto the Grove Base Shield **A0** port.</span></span>
+2. <span data-ttu-id="b1e07-161">Sensore di temperatura utilizzare Groove cavo tooconnect Groove su hello dello scudo di Base di Groove **A0** porta.</span><span class="sxs-lookup"><span data-stu-id="b1e07-161">Use Grove Cable tooconnect Grove temperature sensor onto hello Grove Base Shield **A0** port.</span></span>
 
-   ![Connettersi al sensore temperatura](media/iot-hub-intel-edison-kit-c-get-started/7_temperature_sensor.jpg)
+   ![Connettersi sensore tootemperature](media/iot-hub-intel-edison-kit-c-get-started/7_temperature_sensor.jpg)
    
    ![Edison e connessione al sensore](media/iot-hub-intel-edison-kit-c-get-started/16_edion_sensor.png)
 
-<span data-ttu-id="1aadf-164">Il sensore è pronto.</span><span class="sxs-lookup"><span data-stu-id="1aadf-164">Now your sensor is ready.</span></span>
+<span data-ttu-id="b1e07-164">Il sensore è pronto.</span><span class="sxs-lookup"><span data-stu-id="b1e07-164">Now your sensor is ready.</span></span>
 
-### <a name="power-up-edison"></a><span data-ttu-id="1aadf-165">Alimentare Edison</span><span class="sxs-lookup"><span data-stu-id="1aadf-165">Power up Edison</span></span>
+### <a name="power-up-edison"></a><span data-ttu-id="b1e07-165">Alimentare Edison</span><span class="sxs-lookup"><span data-stu-id="b1e07-165">Power up Edison</span></span>
 
-1. <span data-ttu-id="1aadf-166">Collegare l'alimentatore.</span><span class="sxs-lookup"><span data-stu-id="1aadf-166">Plug in the power supply.</span></span>
+1. <span data-ttu-id="b1e07-166">Plug-in dell'alimentatore hello.</span><span class="sxs-lookup"><span data-stu-id="b1e07-166">Plug in hello power supply.</span></span>
 
    ![Collegare l'alimentatore](media/iot-hub-intel-edison-kit-c-get-started/8_plug_power.jpg)
 
-2. <span data-ttu-id="1aadf-168">Un LED verde (con etichetta DS1 sulla scheda di espansione Arduino*) dovrebbe accendersi e rimanere acceso.</span><span class="sxs-lookup"><span data-stu-id="1aadf-168">A green LED(labeled DS1 on the Arduino* expansion board) should light up and stay lit.</span></span>
+2. <span data-ttu-id="b1e07-168">Un LED verde (nella scheda di espansione Arduino * hello con etichettato DS1) dovrebbe accendersi e rimanere acceso.</span><span class="sxs-lookup"><span data-stu-id="b1e07-168">A green LED(labeled DS1 on hello Arduino* expansion board) should light up and stay lit.</span></span>
 
-3. <span data-ttu-id="1aadf-169">Attendere un minuto per il completamento dell'avvio della scheda.</span><span class="sxs-lookup"><span data-stu-id="1aadf-169">Wait one minute for the board to finish booting up.</span></span>
+3. <span data-ttu-id="b1e07-169">Attendere un minuto per hello Lavagna toofinish l'avvio.</span><span class="sxs-lookup"><span data-stu-id="b1e07-169">Wait one minute for hello board toofinish booting up.</span></span>
 
    > [!NOTE]
-   > <span data-ttu-id="1aadf-170">Se non si dispone di un alimentatore CC, è comunque possibile alimentare la scheda tramite una porta USB.</span><span class="sxs-lookup"><span data-stu-id="1aadf-170">If you do not have a DC power supply, you can still power the board through a USB port.</span></span> <span data-ttu-id="1aadf-171">Per informazioni dettagliate, vedere la sezione `Connect Edison to your computer`.</span><span class="sxs-lookup"><span data-stu-id="1aadf-171">See `Connect Edison to your computer` section for details.</span></span> <span data-ttu-id="1aadf-172">Questo modo di alimentare la scheda può causarne un comportamento non prevedibile, soprattutto quando si usa il Wi-Fi o si comandano motori.</span><span class="sxs-lookup"><span data-stu-id="1aadf-172">Powering your board in this fashion may result in unpredictable behavior from your board, especially when using Wi-Fi or driving motors.</span></span>
+   > <span data-ttu-id="b1e07-170">Se non si dispone di un alimentatore controller di dominio, è comunque possibile Lavagna hello power attraverso una porta USB.</span><span class="sxs-lookup"><span data-stu-id="b1e07-170">If you do not have a DC power supply, you can still power hello board through a USB port.</span></span> <span data-ttu-id="b1e07-171">Per informazioni dettagliate, vedere la sezione `Connect Edison tooyour computer`.</span><span class="sxs-lookup"><span data-stu-id="b1e07-171">See `Connect Edison tooyour computer` section for details.</span></span> <span data-ttu-id="b1e07-172">Questo modo di alimentare la scheda può causarne un comportamento non prevedibile, soprattutto quando si usa il Wi-Fi o si comandano motori.</span><span class="sxs-lookup"><span data-stu-id="b1e07-172">Powering your board in this fashion may result in unpredictable behavior from your board, especially when using Wi-Fi or driving motors.</span></span>
 
-### <a name="connect-edison-to-your-computer"></a><span data-ttu-id="1aadf-173">Connettere Edison al computer</span><span class="sxs-lookup"><span data-stu-id="1aadf-173">Connect Edison to your computer</span></span>
+### <a name="connect-edison-tooyour-computer"></a><span data-ttu-id="b1e07-173">Connettere computer tooyour Edison</span><span class="sxs-lookup"><span data-stu-id="b1e07-173">Connect Edison tooyour computer</span></span>
 
-1. <span data-ttu-id="1aadf-174">Spostare i microinterruttori verso le due porte micro-USB in modo che Edison si trovi in modalità dispositivo.</span><span class="sxs-lookup"><span data-stu-id="1aadf-174">Toggle down the microswitch towards the two micro USB ports, so that Edison is in device mode.</span></span> <span data-ttu-id="1aadf-175">Per informazioni sulle differenze tra la modalità dispositivo e la modalità host, vedere [qui](https://software.intel.com/en-us/node/628233#usb-device-mode-vs-usb-host-mode).</span><span class="sxs-lookup"><span data-stu-id="1aadf-175">For differences between device mode and host mode, please reference [here](https://software.intel.com/en-us/node/628233#usb-device-mode-vs-usb-host-mode).</span></span>
+1. <span data-ttu-id="b1e07-174">Attiva o disattiva verso il basso microinterruttore hello verso hello due micro porte USB, in modo che Edison è in modalità di dispositivo.</span><span class="sxs-lookup"><span data-stu-id="b1e07-174">Toggle down hello microswitch towards hello two micro USB ports, so that Edison is in device mode.</span></span> <span data-ttu-id="b1e07-175">Per informazioni sulle differenze tra la modalità dispositivo e la modalità host, vedere [qui](https://software.intel.com/en-us/node/628233#usb-device-mode-vs-usb-host-mode).</span><span class="sxs-lookup"><span data-stu-id="b1e07-175">For differences between device mode and host mode, please reference [here](https://software.intel.com/en-us/node/628233#usb-device-mode-vs-usb-host-mode).</span></span>
 
-   ![Spostare verso il basso il microinterruttore](media/iot-hub-intel-edison-kit-c-get-started/9_toggle_down_microswitch.jpg)
+   ![Attivare o disattivare verso il basso microinterruttore hello](media/iot-hub-intel-edison-kit-c-get-started/9_toggle_down_microswitch.jpg)
 
-2. <span data-ttu-id="1aadf-177">Collegare il cavo micro-USB alla porta micro-USB superiore.</span><span class="sxs-lookup"><span data-stu-id="1aadf-177">Plug the micro USB cable into the top micro USB port.</span></span>
+2. <span data-ttu-id="b1e07-177">Collegare il cavo USB micro di hello superiore porta USB micro hello.</span><span class="sxs-lookup"><span data-stu-id="b1e07-177">Plug hello micro USB cable into hello top micro USB port.</span></span>
 
    ![Porta micro-USB superiore](media/iot-hub-intel-edison-kit-c-get-started/10_top_usbport.jpg)
 
-3. <span data-ttu-id="1aadf-179">Collegare l'altra estremità del cavo USB al computer.</span><span class="sxs-lookup"><span data-stu-id="1aadf-179">Plug the other end of USB cable into your computer.</span></span>
+3. <span data-ttu-id="b1e07-179">Plug hello altra estremità del cavo USB nel computer.</span><span class="sxs-lookup"><span data-stu-id="b1e07-179">Plug hello other end of USB cable into your computer.</span></span>
 
    ![USB computer](media/iot-hub-intel-edison-kit-c-get-started/11_computer_usb.jpg)
 
-4. <span data-ttu-id="1aadf-181">La scheda è completamente inizializzata quando il computer consente di montare una nuova unità (ad esempio inserendo una scheda SD).</span><span class="sxs-lookup"><span data-stu-id="1aadf-181">You will know that your board is fully initialized when your computer mounts a new drive (much like inserting a SD card into your computer).</span></span>
+4. <span data-ttu-id="b1e07-181">La scheda è completamente inizializzata quando il computer consente di montare una nuova unità (ad esempio inserendo una scheda SD).</span><span class="sxs-lookup"><span data-stu-id="b1e07-181">You will know that your board is fully initialized when your computer mounts a new drive (much like inserting a SD card into your computer).</span></span>
 
-## <a name="download-and-run-the-configuration-tool"></a><span data-ttu-id="1aadf-182">Scaricare ed eseguire lo strumento di configurazione</span><span class="sxs-lookup"><span data-stu-id="1aadf-182">Download and run the configuration tool</span></span>
-<span data-ttu-id="1aadf-183">Scaricare lo strumento di configurazione più recente presente in [questo collegamento](https://software.intel.com/en-us/iot/hardware/edison/downloads) sotto l'intestazione `Installers`.</span><span class="sxs-lookup"><span data-stu-id="1aadf-183">Get the latest configuration tool from [this link](https://software.intel.com/en-us/iot/hardware/edison/downloads) listed under the `Installers` heading.</span></span> <span data-ttu-id="1aadf-184">Eseguire lo strumento e attenersi alle istruzioni visualizzate. Fare clic su Avanti quando necessario.</span><span class="sxs-lookup"><span data-stu-id="1aadf-184">Execute the tool and follow its on-screen instructions, clicking Next where needed</span></span>
+## <a name="download-and-run-hello-configuration-tool"></a><span data-ttu-id="b1e07-182">Scaricare ed eseguire lo strumento di configurazione hello</span><span class="sxs-lookup"><span data-stu-id="b1e07-182">Download and run hello configuration tool</span></span>
+<span data-ttu-id="b1e07-183">Strumento di configurazione più recente di hello da ottenere [questo collegamento](https://software.intel.com/en-us/iot/hardware/edison/downloads) sotto hello `Installers` intestazione.</span><span class="sxs-lookup"><span data-stu-id="b1e07-183">Get hello latest configuration tool from [this link](https://software.intel.com/en-us/iot/hardware/edison/downloads) listed under hello `Installers` heading.</span></span> <span data-ttu-id="b1e07-184">Esecuzione dello strumento hello e seguire il visualizzate le istruzioni, fare clic su Avanti dove necessario</span><span class="sxs-lookup"><span data-stu-id="b1e07-184">Execute hello tool and follow its on-screen instructions, clicking Next where needed</span></span>
 
-### <a name="flash-firmware"></a><span data-ttu-id="1aadf-185">Eseguire il flashing del firmware</span><span class="sxs-lookup"><span data-stu-id="1aadf-185">Flash firmware</span></span>
-1. <span data-ttu-id="1aadf-186">Nella pagina `Set up options` fare clic su `Flash Firmware`.</span><span class="sxs-lookup"><span data-stu-id="1aadf-186">On the `Set up options` page, click `Flash Firmware`.</span></span>
-2. <span data-ttu-id="1aadf-187">Selezionare l'immagine per eseguire il flashing sulla scheda tramite una delle operazioni seguenti:</span><span class="sxs-lookup"><span data-stu-id="1aadf-187">Select the image to flash onto your board by doing one of the following:</span></span>
-   - <span data-ttu-id="1aadf-188">Per scaricare ed eseguire il flashing della scheda con l'immagine del firmware più recente disponibile in Intel, selezionare `Download the latest image version xxxx`.</span><span class="sxs-lookup"><span data-stu-id="1aadf-188">To download and flash your board with the latest firmware image available from Intel, select `Download the latest image version xxxx`.</span></span>
-   - <span data-ttu-id="1aadf-189">Per eseguire il flashing della scheda con un'immagine già salvata nel computer, selezionare `Select the local image`.</span><span class="sxs-lookup"><span data-stu-id="1aadf-189">To flash your board with an image you already have saved on your computer, select `Select the local image`.</span></span> <span data-ttu-id="1aadf-190">Individuare e selezionare l'immagine di cui si desidera eseguire il flashing nella scheda.</span><span class="sxs-lookup"><span data-stu-id="1aadf-190">Browse to and select the image you want to flash to your board.</span></span>
-3. <span data-ttu-id="1aadf-191">Lo strumento di installazione tenterà di eseguire il flashing della scheda.</span><span class="sxs-lookup"><span data-stu-id="1aadf-191">The setup tool will attempt to flash your board.</span></span> <span data-ttu-id="1aadf-192">L'intero processo di esecuzione del flashing può richiedere fino a 10 minuti.</span><span class="sxs-lookup"><span data-stu-id="1aadf-192">The entire flashing process may take up to 10 minutes.</span></span>
+### <a name="flash-firmware"></a><span data-ttu-id="b1e07-185">Eseguire il flashing del firmware</span><span class="sxs-lookup"><span data-stu-id="b1e07-185">Flash firmware</span></span>
+1. <span data-ttu-id="b1e07-186">In hello `Set up options` pagina, fare clic su `Flash Firmware`.</span><span class="sxs-lookup"><span data-stu-id="b1e07-186">On hello `Set up options` page, click `Flash Firmware`.</span></span>
+2. <span data-ttu-id="b1e07-187">Selezionare tooflash immagine hello nella scheda effettuando una delle seguenti hello:</span><span class="sxs-lookup"><span data-stu-id="b1e07-187">Select hello image tooflash onto your board by doing one of hello following:</span></span>
+   - <span data-ttu-id="b1e07-188">toodownload e flash la Lavagna con hello più recente del firmware immagine disponibile da Intel, selezionare `Download hello latest image version xxxx`.</span><span class="sxs-lookup"><span data-stu-id="b1e07-188">toodownload and flash your board with hello latest firmware image available from Intel, select `Download hello latest image version xxxx`.</span></span>
+   - <span data-ttu-id="b1e07-189">Selezionare la scheda con un'immagine è già stato salvato nel computer in uso, tooflash `Select hello local image`.</span><span class="sxs-lookup"><span data-stu-id="b1e07-189">tooflash your board with an image you already have saved on your computer, select `Select hello local image`.</span></span> <span data-ttu-id="b1e07-190">Sfoglia tooand hello selezionare l'immagine tooflash tooyour Lavagna.</span><span class="sxs-lookup"><span data-stu-id="b1e07-190">Browse tooand select hello image you want tooflash tooyour board.</span></span>
+3. <span data-ttu-id="b1e07-191">strumento di configurazione Hello tenterà tooflash la Lavagna.</span><span class="sxs-lookup"><span data-stu-id="b1e07-191">hello setup tool will attempt tooflash your board.</span></span> <span data-ttu-id="b1e07-192">processo lampeggiante Hello potrebbe richiedere too10 minuti.</span><span class="sxs-lookup"><span data-stu-id="b1e07-192">hello entire flashing process may take up too10 minutes.</span></span>
 
-### <a name="set-password"></a><span data-ttu-id="1aadf-193">Impostare la password</span><span class="sxs-lookup"><span data-stu-id="1aadf-193">Set password</span></span>
-1. <span data-ttu-id="1aadf-194">Nella pagina `Set up options` fare clic su `Enable Security`.</span><span class="sxs-lookup"><span data-stu-id="1aadf-194">On the `Set up options` page, click `Enable Security`.</span></span>
-2. <span data-ttu-id="1aadf-195">Per la scheda Intel® Edison è possibile impostare un nome personalizzato.</span><span class="sxs-lookup"><span data-stu-id="1aadf-195">You can set a custom name for your Intel® Edison board.</span></span> <span data-ttu-id="1aadf-196">Facoltativo.</span><span class="sxs-lookup"><span data-stu-id="1aadf-196">This is optional.</span></span>
-3. <span data-ttu-id="1aadf-197">Digitare una password per la scheda e quindi fare clic su `Set password`.</span><span class="sxs-lookup"><span data-stu-id="1aadf-197">Type a password for your board, then click `Set password`.</span></span>
-4. <span data-ttu-id="1aadf-198">Annotare la password per usarla in seguito.</span><span class="sxs-lookup"><span data-stu-id="1aadf-198">Mark down the password, which is used later.</span></span>
+### <a name="set-password"></a><span data-ttu-id="b1e07-193">Impostare la password</span><span class="sxs-lookup"><span data-stu-id="b1e07-193">Set password</span></span>
+1. <span data-ttu-id="b1e07-194">In hello `Set up options` pagina, fare clic su `Enable Security`.</span><span class="sxs-lookup"><span data-stu-id="b1e07-194">On hello `Set up options` page, click `Enable Security`.</span></span>
+2. <span data-ttu-id="b1e07-195">Per la scheda Intel® Edison è possibile impostare un nome personalizzato.</span><span class="sxs-lookup"><span data-stu-id="b1e07-195">You can set a custom name for your Intel® Edison board.</span></span> <span data-ttu-id="b1e07-196">Facoltativo.</span><span class="sxs-lookup"><span data-stu-id="b1e07-196">This is optional.</span></span>
+3. <span data-ttu-id="b1e07-197">Digitare una password per la scheda e quindi fare clic su `Set password`.</span><span class="sxs-lookup"><span data-stu-id="b1e07-197">Type a password for your board, then click `Set password`.</span></span>
+4. <span data-ttu-id="b1e07-198">Contrassegnare come inattivo password hello, che viene utilizzata in un secondo momento.</span><span class="sxs-lookup"><span data-stu-id="b1e07-198">Mark down hello password, which is used later.</span></span>
 
-### <a name="connect-wi-fi"></a><span data-ttu-id="1aadf-199">Connettere il Wi-Fi</span><span class="sxs-lookup"><span data-stu-id="1aadf-199">Connect Wi-Fi</span></span>
-1. <span data-ttu-id="1aadf-200">Nella pagina `Set up options` fare clic su `Connect Wi-Fi`.</span><span class="sxs-lookup"><span data-stu-id="1aadf-200">On the `Set up options` page, click `Connect Wi-Fi`.</span></span> <span data-ttu-id="1aadf-201">Attendere fino a un minuto per la ricerca delle reti Wi-Fi disponibili.</span><span class="sxs-lookup"><span data-stu-id="1aadf-201">Wait up to one minute as your computer scans for available Wi-Fi networks.</span></span>
-2. <span data-ttu-id="1aadf-202">Nell'elenco a discesa `Detected Networks` selezionare la rete.</span><span class="sxs-lookup"><span data-stu-id="1aadf-202">From the `Detected Networks` drop-down list, select your network.</span></span>
-3. <span data-ttu-id="1aadf-203">Nell'elenco a discesa `Security` selezionare il tipo di sicurezza della rete.</span><span class="sxs-lookup"><span data-stu-id="1aadf-203">From the `Security` drop-down list, select the network's security type.</span></span>
-4. <span data-ttu-id="1aadf-204">Specificare le informazioni di accesso e la password, quindi fare clic su `Configure Wi-Fi`.</span><span class="sxs-lookup"><span data-stu-id="1aadf-204">Provide your login and password information, then click `Configure Wi-Fi`.</span></span>
-5. <span data-ttu-id="1aadf-205">Annotare l'indirizzo IP per usarlo in seguito.</span><span class="sxs-lookup"><span data-stu-id="1aadf-205">Mark down the IP address, which is used later.</span></span>
+### <a name="connect-wi-fi"></a><span data-ttu-id="b1e07-199">Connettere il Wi-Fi</span><span class="sxs-lookup"><span data-stu-id="b1e07-199">Connect Wi-Fi</span></span>
+1. <span data-ttu-id="b1e07-200">In hello `Set up options` pagina, fare clic su `Connect Wi-Fi`.</span><span class="sxs-lookup"><span data-stu-id="b1e07-200">On hello `Set up options` page, click `Connect Wi-Fi`.</span></span> <span data-ttu-id="b1e07-201">Attesa di minuto tooone come l'analisi del computer per reti Wi-Fi disponibili.</span><span class="sxs-lookup"><span data-stu-id="b1e07-201">Wait up tooone minute as your computer scans for available Wi-Fi networks.</span></span>
+2. <span data-ttu-id="b1e07-202">Da hello `Detected Networks` elenco a discesa, selezionare la rete.</span><span class="sxs-lookup"><span data-stu-id="b1e07-202">From hello `Detected Networks` drop-down list, select your network.</span></span>
+3. <span data-ttu-id="b1e07-203">Da hello `Security` elenco a discesa, il tipo di sicurezza della rete selezionare hello.</span><span class="sxs-lookup"><span data-stu-id="b1e07-203">From hello `Security` drop-down list, select hello network's security type.</span></span>
+4. <span data-ttu-id="b1e07-204">Specificare le informazioni di accesso e la password, quindi fare clic su `Configure Wi-Fi`.</span><span class="sxs-lookup"><span data-stu-id="b1e07-204">Provide your login and password information, then click `Configure Wi-Fi`.</span></span>
+5. <span data-ttu-id="b1e07-205">Contrassegnare come inattivo hello indirizzo IP, che viene utilizzato in un secondo momento.</span><span class="sxs-lookup"><span data-stu-id="b1e07-205">Mark down hello IP address, which is used later.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="1aadf-206">Verificare che Edison sia connesso alla stessa rete del computer.</span><span class="sxs-lookup"><span data-stu-id="1aadf-206">Make sure that Edison is connected to the same network as your computer.</span></span> <span data-ttu-id="1aadf-207">Il computer si connette a Edison tramite l'indirizzo IP.</span><span class="sxs-lookup"><span data-stu-id="1aadf-207">Your computer connects to your Edison by using the IP address.</span></span>
+> <span data-ttu-id="b1e07-206">Assicurarsi che Edison sia connesso toohello stessa rete del computer.</span><span class="sxs-lookup"><span data-stu-id="b1e07-206">Make sure that Edison is connected toohello same network as your computer.</span></span> <span data-ttu-id="b1e07-207">Il computer si connette tooyour Edison utilizzando l'indirizzo IP hello.</span><span class="sxs-lookup"><span data-stu-id="b1e07-207">Your computer connects tooyour Edison by using hello IP address.</span></span>
 
-   ![Connettersi al sensore temperatura](media/iot-hub-intel-edison-kit-c-get-started/12_configuration_tool.png)
+   ![Connettersi sensore tootemperature](media/iot-hub-intel-edison-kit-c-get-started/12_configuration_tool.png)
 
-<span data-ttu-id="1aadf-209">Congratulazioni.</span><span class="sxs-lookup"><span data-stu-id="1aadf-209">Congratulations!</span></span> <span data-ttu-id="1aadf-210">Edison è stato configurato.</span><span class="sxs-lookup"><span data-stu-id="1aadf-210">You've successfully configured Edison.</span></span>
+<span data-ttu-id="b1e07-209">Congratulazioni.</span><span class="sxs-lookup"><span data-stu-id="b1e07-209">Congratulations!</span></span> <span data-ttu-id="b1e07-210">Edison è stato configurato.</span><span class="sxs-lookup"><span data-stu-id="b1e07-210">You've successfully configured Edison.</span></span>
 
-## <a name="run-a-sample-application-on-intel-edison"></a><span data-ttu-id="1aadf-211">Eseguire un'applicazione di esempio in Intel Edison</span><span class="sxs-lookup"><span data-stu-id="1aadf-211">Run a sample application on Intel Edison</span></span>
+## <a name="run-a-sample-application-on-intel-edison"></a><span data-ttu-id="b1e07-211">Eseguire un'applicazione di esempio in Intel Edison</span><span class="sxs-lookup"><span data-stu-id="b1e07-211">Run a sample application on Intel Edison</span></span>
 
-### <a name="prepare-the-azure-iot-device-sdk"></a><span data-ttu-id="1aadf-212">Preparare Azure IoT SDK per dispositivi</span><span class="sxs-lookup"><span data-stu-id="1aadf-212">Prepare the Azure IoT Device SDK</span></span>
+### <a name="prepare-hello-azure-iot-device-sdk"></a><span data-ttu-id="b1e07-212">Preparare hello dispositivo IoT di Azure SDK</span><span class="sxs-lookup"><span data-stu-id="b1e07-212">Prepare hello Azure IoT Device SDK</span></span>
 
-1. <span data-ttu-id="1aadf-213">Per connettersi a Intel Edison, usare uno dei client SSH seguenti dal computer host.</span><span class="sxs-lookup"><span data-stu-id="1aadf-213">Use one of the following SSH clients from your host computer to connect to your Intel Edison.</span></span> <span data-ttu-id="1aadf-214">L'indirizzo IP è relativo allo strumento di configurazione e la password corrisponde a quella impostata nello strumento.</span><span class="sxs-lookup"><span data-stu-id="1aadf-214">The IP address is from the configuration tool and the password is the one you've set in that tool.</span></span>
-    - <span data-ttu-id="1aadf-215">[PuTTY](http://www.putty.org/) per Windows.</span><span class="sxs-lookup"><span data-stu-id="1aadf-215">[PuTTY](http://www.putty.org/) for Windows.</span></span>
-    - <span data-ttu-id="1aadf-216">Il client SSH incorporato in Ubuntu o macOS (eseguire `ssh root@"the IP address"`).</span><span class="sxs-lookup"><span data-stu-id="1aadf-216">The built-in SSH client on Ubuntu or macOS (run `ssh root@"the IP address"`).</span></span>
+1. <span data-ttu-id="b1e07-213">Utilizzare uno dei seguenti client SSH dagli tooyour di tooconnect computer host Intel Edison hello.</span><span class="sxs-lookup"><span data-stu-id="b1e07-213">Use one of hello following SSH clients from your host computer tooconnect tooyour Intel Edison.</span></span> <span data-ttu-id="b1e07-214">indirizzo IP Hello è dallo strumento di configurazione hello e password di hello è hello uno impostate in questo strumento.</span><span class="sxs-lookup"><span data-stu-id="b1e07-214">hello IP address is from hello configuration tool and hello password is hello one you've set in that tool.</span></span>
+    - <span data-ttu-id="b1e07-215">[PuTTY](http://www.putty.org/) per Windows.</span><span class="sxs-lookup"><span data-stu-id="b1e07-215">[PuTTY](http://www.putty.org/) for Windows.</span></span>
+    - <span data-ttu-id="b1e07-216">client SSH incorporato Hello in Ubuntu o macOS (eseguire `ssh root@"hello IP address"`).</span><span class="sxs-lookup"><span data-stu-id="b1e07-216">hello built-in SSH client on Ubuntu or macOS (run `ssh root@"hello IP address"`).</span></span>
 
-2. <span data-ttu-id="1aadf-217">Clonare l'app client di esempio nel dispositivo.</span><span class="sxs-lookup"><span data-stu-id="1aadf-217">Clone the sample client app to your device.</span></span> 
+2. <span data-ttu-id="b1e07-217">Clone hello esempio app tooyour dispositivo client.</span><span class="sxs-lookup"><span data-stu-id="b1e07-217">Clone hello sample client app tooyour device.</span></span> 
    
    ```bash
    git clone https://github.com/Azure-Samples/iot-hub-c-intel-edison-client-app.git
    ```
 
-3. <span data-ttu-id="1aadf-218">Passare quindi alla cartella del repository per eseguire il comando seguente per compilare Azure IoT SDK</span><span class="sxs-lookup"><span data-stu-id="1aadf-218">Then navigate to the repo folder to run the following command to build Azure IoT SDK</span></span>
+3. <span data-ttu-id="b1e07-218">Passare quindi hello toorun cartella repository di toohello successivo comando toobuild IoT di Azure SDK</span><span class="sxs-lookup"><span data-stu-id="b1e07-218">Then navigate toohello repo folder toorun hello following command toobuild Azure IoT SDK</span></span>
 
    ```bash
    cd iot-hub-c-intel-edison-client-app
@@ -197,9 +197,9 @@ ms.lasthandoff: 08/03/2017
    ./buildSDK.sh
    ```
 
-### <a name="configure-the-sample-application"></a><span data-ttu-id="1aadf-219">Configurare l'applicazione di esempio</span><span class="sxs-lookup"><span data-stu-id="1aadf-219">Configure the sample application</span></span>
+### <a name="configure-hello-sample-application"></a><span data-ttu-id="b1e07-219">Configurare l'applicazione di esempio hello</span><span class="sxs-lookup"><span data-stu-id="b1e07-219">Configure hello sample application</span></span>
 
-1. <span data-ttu-id="1aadf-220">Aprire il file di configurazione eseguendo i comandi seguenti:</span><span class="sxs-lookup"><span data-stu-id="1aadf-220">Open the config file by running the following commands:</span></span>
+1. <span data-ttu-id="b1e07-220">Aprire il file di configurazione hello eseguendo hello seguenti comandi:</span><span class="sxs-lookup"><span data-stu-id="b1e07-220">Open hello config file by running hello following commands:</span></span>
 
    ```bash
    nano config.h
@@ -207,36 +207,36 @@ ms.lasthandoff: 08/03/2017
 
    ![File di configurazione](media/iot-hub-intel-edison-kit-c-get-started/13_configure_file.png)
 
-   <span data-ttu-id="1aadf-222">Questo file contiene due macro configurabili.</span><span class="sxs-lookup"><span data-stu-id="1aadf-222">There are two macros in this file you can configurate.</span></span> <span data-ttu-id="1aadf-223">La prima è `INTERVAL`, che definisce l'intervallo di tempo tra due messaggi inviati al cloud.</span><span class="sxs-lookup"><span data-stu-id="1aadf-223">The first one is `INTERVAL`, which defines the time interval between two messages that send to cloud.</span></span> <span data-ttu-id="1aadf-224">La seconda è `SIMULATED_DATA`, ossia un valore booleano che indica se usare o no i dati del sensore simulato.</span><span class="sxs-lookup"><span data-stu-id="1aadf-224">The second one `SIMULATED_DATA`,which is a Boolean value for whether to use simulated sensor data or not.</span></span>
+   <span data-ttu-id="b1e07-222">Questo file contiene due macro configurabili.</span><span class="sxs-lookup"><span data-stu-id="b1e07-222">There are two macros in this file you can configurate.</span></span> <span data-ttu-id="b1e07-223">Hello prima uno è `INTERVAL`, che definisce l'intervallo di tempo hello tra due messaggi che inviano toocloud.</span><span class="sxs-lookup"><span data-stu-id="b1e07-223">hello first one is `INTERVAL`, which defines hello time interval between two messages that send toocloud.</span></span> <span data-ttu-id="b1e07-224">Hello secondo `SIMULATED_DATA`, ovvero un valore booleano per se toouse sensore dati simulati o non.</span><span class="sxs-lookup"><span data-stu-id="b1e07-224">hello second one `SIMULATED_DATA`,which is a Boolean value for whether toouse simulated sensor data or not.</span></span>
 
-   <span data-ttu-id="1aadf-225">Se **non si dispone del sensore**, impostare il valore `SIMULATED_DATA` su `1` per permettere all'applicazione di esempio di creare e usare i dati del sensore simulati.</span><span class="sxs-lookup"><span data-stu-id="1aadf-225">If you **don't have the sensor**, set the `SIMULATED_DATA` value to `1` to make the sample application create and use simulated sensor data.</span></span>
+   <span data-ttu-id="b1e07-225">Se si **non dispone di sensore hello**, hello impostare `SIMULATED_DATA` valore troppo`1` applicazione di esempio hello toomake creare e utilizzare dati del sensore simulato.</span><span class="sxs-lookup"><span data-stu-id="b1e07-225">If you **don't have hello sensor**, set hello `SIMULATED_DATA` value too`1` toomake hello sample application create and use simulated sensor data.</span></span>
 
-2. <span data-ttu-id="1aadf-226">Salvare e uscire premendo CTRL-O > Invio > CTRL-X.</span><span class="sxs-lookup"><span data-stu-id="1aadf-226">Save and exit by pressing Control-O > Enter > Control-X.</span></span>
+2. <span data-ttu-id="b1e07-226">Salvare e uscire premendo CTRL-O > Invio > CTRL-X.</span><span class="sxs-lookup"><span data-stu-id="b1e07-226">Save and exit by pressing Control-O > Enter > Control-X.</span></span>
 
-### <a name="build-and-run-the-sample-application"></a><span data-ttu-id="1aadf-227">Compilare ed eseguire l'applicazione di esempio</span><span class="sxs-lookup"><span data-stu-id="1aadf-227">Build and run the sample application</span></span>
+### <a name="build-and-run-hello-sample-application"></a><span data-ttu-id="b1e07-227">Compilare ed eseguire l'applicazione di esempio hello</span><span class="sxs-lookup"><span data-stu-id="b1e07-227">Build and run hello sample application</span></span>
 
-1. <span data-ttu-id="1aadf-228">Compilare l'applicazione di esempio eseguendo il comando seguente:</span><span class="sxs-lookup"><span data-stu-id="1aadf-228">Build the sample application by running the following command:</span></span>
+1. <span data-ttu-id="b1e07-228">Compilare l'applicazione di esempio hello eseguendo hello comando seguente:</span><span class="sxs-lookup"><span data-stu-id="b1e07-228">Build hello sample application by running hello following command:</span></span>
 
    ```bash
    cmake . && make
    ```
    ![Output della compilazione](media/iot-hub-intel-edison-kit-c-get-started/14_build_output.png)
 
-1. <span data-ttu-id="1aadf-230">Eseguire l'applicazione di esempio tramite il comando seguente:</span><span class="sxs-lookup"><span data-stu-id="1aadf-230">Run the sample application by running the following command:</span></span>
+1. <span data-ttu-id="b1e07-230">Eseguire l'applicazione di esempio hello eseguendo hello comando seguente:</span><span class="sxs-lookup"><span data-stu-id="b1e07-230">Run hello sample application by running hello following command:</span></span>
 
    ```bash
    sudo ./app '<your Azure IoT hub device connection string>'
    ```
 
    > [!NOTE] 
-   <span data-ttu-id="1aadf-231">Assicurarsi di copiare e incollare la stringa di connessione del dispositivo tra virgolette singole.</span><span class="sxs-lookup"><span data-stu-id="1aadf-231">Make sure you copy-paste the device connection string into the single quotes.</span></span>
+   <span data-ttu-id="b1e07-231">Assicurarsi copiare e incollare stringa di connessione del dispositivo hello in virgolette hello.</span><span class="sxs-lookup"><span data-stu-id="b1e07-231">Make sure you copy-paste hello device connection string into hello single quotes.</span></span>
 
-<span data-ttu-id="1aadf-232">Dovrebbe essere visibile l'output seguente che mostra i dati del sensore e i messaggi inviati all'hub IoT.</span><span class="sxs-lookup"><span data-stu-id="1aadf-232">You should see the following output that shows the sensor data and the messages that are sent to your IoT hub.</span></span>
+<span data-ttu-id="b1e07-232">Verrà visualizzato l'output seguente hello che mostra hello sensore dati e hello i messaggi vengono inviati tooyour IoT hub.</span><span class="sxs-lookup"><span data-stu-id="b1e07-232">You should see hello following output that shows hello sensor data and hello messages that are sent tooyour IoT hub.</span></span>
 
-![Output - dati del sensore inviati da Intel Edison all'hub IoT](media/iot-hub-intel-edison-kit-c-get-started/15_message_sent.png)
+![Output - sensore dati vengono inviati da Intel Edison tooyour hub IoT](media/iot-hub-intel-edison-kit-c-get-started/15_message_sent.png)
 
-## <a name="next-steps"></a><span data-ttu-id="1aadf-234">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="1aadf-234">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="b1e07-234">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="b1e07-234">Next steps</span></span>
 
-<span data-ttu-id="1aadf-235">È stata eseguita un'applicazione di esempio per raccogliere i dati del sensore da inviare all'hub IoT.</span><span class="sxs-lookup"><span data-stu-id="1aadf-235">You’ve run a sample application to collect sensor data and send it to your IoT hub.</span></span>
+<span data-ttu-id="b1e07-235">È stato eseguito dati sensore toocollect di applicazione di esempio e inviarlo tooyour IoT hub.</span><span class="sxs-lookup"><span data-stu-id="b1e07-235">You’ve run a sample application toocollect sensor data and send it tooyour IoT hub.</span></span>
 
 [!INCLUDE [iot-hub-get-started-next-steps](../../includes/iot-hub-get-started-next-steps.md)]

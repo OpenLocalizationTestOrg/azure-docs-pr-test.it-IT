@@ -1,6 +1,6 @@
 ---
-title: 'Analizzare i dati di Twitter con Apache Hive: Azure HDInsight | Microsoft Docs'
-description: Informazioni su come usare Hive e Hadoop in HDInsight per trasformare i dati di Twitter non elaborati in una tabella Hive ricercabile.
+title: dati di Twitter con Apache Hive - Azure HDInsight aaaAnalyze | Documenti Microsoft
+description: Informazioni su come toouse usano Hive e Hadoop in HDInsight tootransform raw TWitter dati in una tabella Hive ricercabile.
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -16,67 +16,67 @@ ms.topic: article
 ms.date: 08/07/2017
 ms.author: larryfr
 ms.custom: H1Hack27Feb2017,hdinsightactive
-ms.openlocfilehash: b8656123fa9c5158f366872ab050f370080ec18a
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 02c4d027c7bbf390ac1c3724c14f8d549ea5195e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="analyze-twitter-data-using-hive-and-hadoop-on-hdinsight"></a><span data-ttu-id="4ec19-103">Analizzare i dati di Twitter mediante Hive e Hadoop in HDInsight</span><span class="sxs-lookup"><span data-stu-id="4ec19-103">Analyze Twitter data using Hive and Hadoop on HDInsight</span></span>
+# <a name="analyze-twitter-data-using-hive-and-hadoop-on-hdinsight"></a><span data-ttu-id="794db-103">Analizzare i dati di Twitter mediante Hive e Hadoop in HDInsight</span><span class="sxs-lookup"><span data-stu-id="794db-103">Analyze Twitter data using Hive and Hadoop on HDInsight</span></span>
 
-<span data-ttu-id="4ec19-104">Informazioni su come usare Apache Hive per elaborare i dati di Twitter.</span><span class="sxs-lookup"><span data-stu-id="4ec19-104">Learn how to use Apache Hive to process Twitter data.</span></span> <span data-ttu-id="4ec19-105">Il risultato è un elenco di utenti Twitter che hanno inviato il maggior numero di tweet contenenti una determinata parola.</span><span class="sxs-lookup"><span data-stu-id="4ec19-105">The result is a list of Twitter users who sent the most tweets that contain a certain word.</span></span>
+<span data-ttu-id="794db-104">Informazioni su come toouse Apache Hive tooprocess dati Twitter.</span><span class="sxs-lookup"><span data-stu-id="794db-104">Learn how toouse Apache Hive tooprocess Twitter data.</span></span> <span data-ttu-id="794db-105">il risultato di Hello è un elenco di utenti di Twitter che ha inviato hello la maggior parte dei TWEET che contengono una determinata parola.</span><span class="sxs-lookup"><span data-stu-id="794db-105">hello result is a list of Twitter users who sent hello most tweets that contain a certain word.</span></span>
 
 > [!IMPORTANT]
-> <span data-ttu-id="4ec19-106">I passaggi descritti in questo documento sono stati testati in HDInsight 3.6.</span><span class="sxs-lookup"><span data-stu-id="4ec19-106">The steps in this document were tested on HDInsight 3.6.</span></span>
+> <span data-ttu-id="794db-106">passaggi di Hello in questo documento sono stati testati su HDInsight 3.6.</span><span class="sxs-lookup"><span data-stu-id="794db-106">hello steps in this document were tested on HDInsight 3.6.</span></span>
 >
-> <span data-ttu-id="4ec19-107">Linux è l'unico sistema operativo usato in HDInsight versione 3.4 o successiva.</span><span class="sxs-lookup"><span data-stu-id="4ec19-107">Linux is the only operating system used on HDInsight version 3.4 or greater.</span></span> <span data-ttu-id="4ec19-108">Per altre informazioni, vedere la sezione relativa al [ritiro di HDInsight in Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).</span><span class="sxs-lookup"><span data-stu-id="4ec19-108">For more information, see [HDInsight retirement on Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).</span></span>
+> <span data-ttu-id="794db-107">Linux è hello solo sistema operativo utilizzato in HDInsight versione 3.4 o successiva.</span><span class="sxs-lookup"><span data-stu-id="794db-107">Linux is hello only operating system used on HDInsight version 3.4 or greater.</span></span> <span data-ttu-id="794db-108">Per altre informazioni, vedere la sezione relativa al [ritiro di HDInsight in Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).</span><span class="sxs-lookup"><span data-stu-id="794db-108">For more information, see [HDInsight retirement on Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).</span></span>
 
-## <a name="get-the-data"></a><span data-ttu-id="4ec19-109">Ottenere i dati</span><span class="sxs-lookup"><span data-stu-id="4ec19-109">Get the data</span></span>
+## <a name="get-hello-data"></a><span data-ttu-id="794db-109">Ottenere dati hello</span><span class="sxs-lookup"><span data-stu-id="794db-109">Get hello data</span></span>
 
-<span data-ttu-id="4ec19-110">Twitter consente di recuperare i [dati relativi ad ogni tweet](https://dev.twitter.com/docs/platform-objects/tweets) come documento JSON (JavaScript Object Notation) attraverso un'API REST.</span><span class="sxs-lookup"><span data-stu-id="4ec19-110">Twitter allows you to retrieve the [data for each tweet](https://dev.twitter.com/docs/platform-objects/tweets) as a JavaScript Object Notation (JSON) document through a REST API.</span></span> <span data-ttu-id="4ec19-111">[OAuth](http://oauth.net) .</span><span class="sxs-lookup"><span data-stu-id="4ec19-111">[OAuth](http://oauth.net) is required for authentication to the API.</span></span>
+<span data-ttu-id="794db-110">Twitter consente hello tooretrieve [dati per ogni tweet](https://dev.twitter.com/docs/platform-objects/tweets) come documento di JavaScript Object Notation (JSON) attraverso un'API REST.</span><span class="sxs-lookup"><span data-stu-id="794db-110">Twitter allows you tooretrieve hello [data for each tweet](https://dev.twitter.com/docs/platform-objects/tweets) as a JavaScript Object Notation (JSON) document through a REST API.</span></span> <span data-ttu-id="794db-111">[OAuth](http://oauth.net) è necessaria per l'autenticazione toohello API.</span><span class="sxs-lookup"><span data-stu-id="794db-111">[OAuth](http://oauth.net) is required for authentication toohello API.</span></span>
 
-### <a name="create-a-twitter-application"></a><span data-ttu-id="4ec19-112">Creare un'applicazione Twitter</span><span class="sxs-lookup"><span data-stu-id="4ec19-112">Create a Twitter application</span></span>
+### <a name="create-a-twitter-application"></a><span data-ttu-id="794db-112">Creare un'applicazione Twitter</span><span class="sxs-lookup"><span data-stu-id="794db-112">Create a Twitter application</span></span>
 
-1. <span data-ttu-id="4ec19-113">Da un Web browser accedere a [https://apps.twitter.com/](https://apps.twitter.com/).</span><span class="sxs-lookup"><span data-stu-id="4ec19-113">From a web browser, sign in to [https://apps.twitter.com/](https://apps.twitter.com/).</span></span> <span data-ttu-id="4ec19-114">Se non si dispone di un account Twitter, fare clic sul collegamento **Sign up now** (Registrati ora).</span><span class="sxs-lookup"><span data-stu-id="4ec19-114">Click the **Sign-up now** link if you don't have a Twitter account.</span></span>
+1. <span data-ttu-id="794db-113">Da un web browser, accesso anche[https://apps.twitter.com/](https://apps.twitter.com/).</span><span class="sxs-lookup"><span data-stu-id="794db-113">From a web browser, sign in too[https://apps.twitter.com/](https://apps.twitter.com/).</span></span> <span data-ttu-id="794db-114">Fare clic su hello **iscriversi ora** collegare se non si dispone di un account Twitter.</span><span class="sxs-lookup"><span data-stu-id="794db-114">Click hello **Sign-up now** link if you don't have a Twitter account.</span></span>
 
-2. <span data-ttu-id="4ec19-115">Fare clic su **Create New App**.</span><span class="sxs-lookup"><span data-stu-id="4ec19-115">Click **Create New App**.</span></span>
+2. <span data-ttu-id="794db-115">Fare clic su **Create New App**.</span><span class="sxs-lookup"><span data-stu-id="794db-115">Click **Create New App**.</span></span>
 
-3. <span data-ttu-id="4ec19-116">Compilare i campi **Name**, **Description**, **Website**.</span><span class="sxs-lookup"><span data-stu-id="4ec19-116">Enter **Name**, **Description**, **Website**.</span></span> <span data-ttu-id="4ec19-117">Per il campo **Website** è possibile creare un URL fittizio.</span><span class="sxs-lookup"><span data-stu-id="4ec19-117">You can make up a URL for the **Website** field.</span></span> <span data-ttu-id="4ec19-118">Nella tabella seguente vengono mostrati alcuni valori di esempio da usare:</span><span class="sxs-lookup"><span data-stu-id="4ec19-118">The following table shows some sample values to use:</span></span>
+3. <span data-ttu-id="794db-116">Compilare i campi **Name**, **Description**, **Website**.</span><span class="sxs-lookup"><span data-stu-id="794db-116">Enter **Name**, **Description**, **Website**.</span></span> <span data-ttu-id="794db-117">Si può creare un URL per hello **sito Web** campo.</span><span class="sxs-lookup"><span data-stu-id="794db-117">You can make up a URL for hello **Website** field.</span></span> <span data-ttu-id="794db-118">Hello nella tabella seguente mostra alcuni toouse di valori di esempio:</span><span class="sxs-lookup"><span data-stu-id="794db-118">hello following table shows some sample values toouse:</span></span>
 
-   | <span data-ttu-id="4ec19-119">Campo</span><span class="sxs-lookup"><span data-stu-id="4ec19-119">Field</span></span> | <span data-ttu-id="4ec19-120">Valore</span><span class="sxs-lookup"><span data-stu-id="4ec19-120">Value</span></span> |
+   | <span data-ttu-id="794db-119">Campo</span><span class="sxs-lookup"><span data-stu-id="794db-119">Field</span></span> | <span data-ttu-id="794db-120">Valore</span><span class="sxs-lookup"><span data-stu-id="794db-120">Value</span></span> |
    |:--- |:--- |
-   | <span data-ttu-id="4ec19-121">Nome</span><span class="sxs-lookup"><span data-stu-id="4ec19-121">Name</span></span> |<span data-ttu-id="4ec19-122">MyHDInsightApp</span><span class="sxs-lookup"><span data-stu-id="4ec19-122">MyHDInsightApp</span></span> |
-   | <span data-ttu-id="4ec19-123">Descrizione</span><span class="sxs-lookup"><span data-stu-id="4ec19-123">Description</span></span> |<span data-ttu-id="4ec19-124">MyHDInsightApp</span><span class="sxs-lookup"><span data-stu-id="4ec19-124">MyHDInsightApp</span></span> |
-   | <span data-ttu-id="4ec19-125">Website</span><span class="sxs-lookup"><span data-stu-id="4ec19-125">Website</span></span> |<span data-ttu-id="4ec19-126">http://www.myhdinsightapp.com</span><span class="sxs-lookup"><span data-stu-id="4ec19-126">http://www.myhdinsightapp.com</span></span> |
+   | <span data-ttu-id="794db-121">Nome</span><span class="sxs-lookup"><span data-stu-id="794db-121">Name</span></span> |<span data-ttu-id="794db-122">MyHDInsightApp</span><span class="sxs-lookup"><span data-stu-id="794db-122">MyHDInsightApp</span></span> |
+   | <span data-ttu-id="794db-123">Descrizione</span><span class="sxs-lookup"><span data-stu-id="794db-123">Description</span></span> |<span data-ttu-id="794db-124">MyHDInsightApp</span><span class="sxs-lookup"><span data-stu-id="794db-124">MyHDInsightApp</span></span> |
+   | <span data-ttu-id="794db-125">Website</span><span class="sxs-lookup"><span data-stu-id="794db-125">Website</span></span> |<span data-ttu-id="794db-126">http://www.myhdinsightapp.com</span><span class="sxs-lookup"><span data-stu-id="794db-126">http://www.myhdinsightapp.com</span></span> |
 
-4. <span data-ttu-id="4ec19-127">Fare clic su **Yes, I agree** e su **Create your Twitter application**.</span><span class="sxs-lookup"><span data-stu-id="4ec19-127">Check **Yes, I agree**, and then click **Create your Twitter application**.</span></span>
+4. <span data-ttu-id="794db-127">Fare clic su **Yes, I agree** e su **Create your Twitter application**.</span><span class="sxs-lookup"><span data-stu-id="794db-127">Check **Yes, I agree**, and then click **Create your Twitter application**.</span></span>
 
-5. <span data-ttu-id="4ec19-128">Fare clic sulla scheda **Permissions** . L'autorizzazione predefinita è **Read only**.</span><span class="sxs-lookup"><span data-stu-id="4ec19-128">Click the **Permissions** tab. The default permission is **Read only**.</span></span>
+5. <span data-ttu-id="794db-128">Fare clic su hello **autorizzazioni** all'autorizzazione predefinita hello scheda **di sola lettura**.</span><span class="sxs-lookup"><span data-stu-id="794db-128">Click hello **Permissions** tab. hello default permission is **Read only**.</span></span>
 
-6. <span data-ttu-id="4ec19-129">Fare clic sulla scheda **Keys and Access Tokens** .</span><span class="sxs-lookup"><span data-stu-id="4ec19-129">Click the **Keys and Access Tokens** tab.</span></span>
+6. <span data-ttu-id="794db-129">Fare clic su hello **chiavi e i token di accesso** scheda.</span><span class="sxs-lookup"><span data-stu-id="794db-129">Click hello **Keys and Access Tokens** tab.</span></span>
 
-7. <span data-ttu-id="4ec19-130">Fare clic su **Create my access token**.</span><span class="sxs-lookup"><span data-stu-id="4ec19-130">Click **Create my access token**.</span></span>
+7. <span data-ttu-id="794db-130">Fare clic su **Create my access token**.</span><span class="sxs-lookup"><span data-stu-id="794db-130">Click **Create my access token**.</span></span>
 
-8. <span data-ttu-id="4ec19-131">Fare clic su **Test OAuth** nell'angolo superiore destro della pagina.</span><span class="sxs-lookup"><span data-stu-id="4ec19-131">Click **Test OAuth** in the upper-right corner of the page.</span></span>
+8. <span data-ttu-id="794db-131">Fare clic su **Test OAuth** nell'angolo superiore destro di hello della pagina hello.</span><span class="sxs-lookup"><span data-stu-id="794db-131">Click **Test OAuth** in hello upper-right corner of hello page.</span></span>
 
-9. <span data-ttu-id="4ec19-132">Compilare i campi **Consumer key**, **Consumer secret**, **Access token** e **Access token secret**.</span><span class="sxs-lookup"><span data-stu-id="4ec19-132">Write down **consumer key**, **Consumer secret**, **Access token**, and **Access token secret**.</span></span>
+9. <span data-ttu-id="794db-132">Compilare i campi **Consumer key**, **Consumer secret**, **Access token** e **Access token secret**.</span><span class="sxs-lookup"><span data-stu-id="794db-132">Write down **consumer key**, **Consumer secret**, **Access token**, and **Access token secret**.</span></span>
 
-### <a name="download-tweets"></a><span data-ttu-id="4ec19-133">Scaricare tweet</span><span class="sxs-lookup"><span data-stu-id="4ec19-133">Download tweets</span></span>
+### <a name="download-tweets"></a><span data-ttu-id="794db-133">Scaricare tweet</span><span class="sxs-lookup"><span data-stu-id="794db-133">Download tweets</span></span>
 
-<span data-ttu-id="4ec19-134">Il codice Python seguente consente di scaricare 10.000 tweet da Twitter e salvarli in un file denominato **tweets.txt**.</span><span class="sxs-lookup"><span data-stu-id="4ec19-134">The following Python code downloads 10,000 tweets from Twitter and save them to a file named **tweets.txt**.</span></span>
+<span data-ttu-id="794db-134">Hello seguente codice Python Scarica 10.000 TWEET da Twitter e salvare i file tooa denominato **tweets.txt**.</span><span class="sxs-lookup"><span data-stu-id="794db-134">hello following Python code downloads 10,000 tweets from Twitter and save them tooa file named **tweets.txt**.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="4ec19-135">I passaggi indicati di seguito vengono eseguiti nel cluster HDInsight, poiché Python è già installato.</span><span class="sxs-lookup"><span data-stu-id="4ec19-135">The following steps are performed on the HDInsight cluster, since Python is already installed.</span></span>
+> <span data-ttu-id="794db-135">Hello alla procedura seguente viene eseguita nel cluster HDInsight hello, poiché è già installato Python.</span><span class="sxs-lookup"><span data-stu-id="794db-135">hello following steps are performed on hello HDInsight cluster, since Python is already installed.</span></span>
 
-1. <span data-ttu-id="4ec19-136">Connettersi al cluster HDInsight usando SSH:</span><span class="sxs-lookup"><span data-stu-id="4ec19-136">Connect to the HDInsight cluster using SSH:</span></span>
+1. <span data-ttu-id="794db-136">Connettere il cluster di HDInsight toohello tramite SSH:</span><span class="sxs-lookup"><span data-stu-id="794db-136">Connect toohello HDInsight cluster using SSH:</span></span>
 
     ```bash
     ssh USERNAME@CLUSTERNAME-ssh.azurehdinsight.net
     ```
 
-    <span data-ttu-id="4ec19-137">Per altre informazioni, vedere [Usare SSH con HDInsight](hdinsight-hadoop-linux-use-ssh-unix.md).</span><span class="sxs-lookup"><span data-stu-id="4ec19-137">For more information, see [Use SSH with HDInsight](hdinsight-hadoop-linux-use-ssh-unix.md).</span></span>
+    <span data-ttu-id="794db-137">Per altre informazioni, vedere [Usare SSH con HDInsight](hdinsight-hadoop-linux-use-ssh-unix.md).</span><span class="sxs-lookup"><span data-stu-id="794db-137">For more information, see [Use SSH with HDInsight](hdinsight-hadoop-linux-use-ssh-unix.md).</span></span>
 
-3. <span data-ttu-id="4ec19-138">Per installare i moduli [Tweepy](http://www.tweepy.org/) e [Progressbar](https://pypi.python.org/pypi/progressbar/2.2) e altri pacchetti obbligatori, usare i comandi seguenti:</span><span class="sxs-lookup"><span data-stu-id="4ec19-138">Use the following commands to install [Tweepy](http://www.tweepy.org/), [Progressbar](https://pypi.python.org/pypi/progressbar/2.2), and other required packages:</span></span>
+3. <span data-ttu-id="794db-138">Seguente hello utilizzare comandi tooinstall [Tweepy](http://www.tweepy.org/), [Progressbar](https://pypi.python.org/pypi/progressbar/2.2)e altri pacchetti richiesti:</span><span class="sxs-lookup"><span data-stu-id="794db-138">Use hello following commands tooinstall [Tweepy](http://www.tweepy.org/), [Progressbar](https://pypi.python.org/pypi/progressbar/2.2), and other required packages:</span></span>
 
    ```bash
    sudo apt install python-dev libffi-dev libssl-dev
@@ -89,13 +89,13 @@ ms.lasthandoff: 08/18/2017
    pip install tweepy progressbar pyOpenSSL requests[security]
    ```
 
-4. <span data-ttu-id="4ec19-139">Usare il comando seguente per creare un file denominato **gettweets.py**:</span><span class="sxs-lookup"><span data-stu-id="4ec19-139">Use the following command to create a file named **gettweets.py**:</span></span>
+4. <span data-ttu-id="794db-139">Comando che segue hello utilizzare toocreate un file denominato **gettweets.py**:</span><span class="sxs-lookup"><span data-stu-id="794db-139">Use hello following command toocreate a file named **gettweets.py**:</span></span>
 
    ```bash
    nano gettweets.py
    ```
 
-5. <span data-ttu-id="4ec19-140">Usare il testo seguente come contenuto del file **gettweets.py**:</span><span class="sxs-lookup"><span data-stu-id="4ec19-140">Use the following text as the contents of the **gettweets.py** file:</span></span>
+5. <span data-ttu-id="794db-140">Hello utilizzo successivo di testo come contenuto di hello di hello **gettweets.py** file:</span><span class="sxs-lookup"><span data-stu-id="794db-140">Use hello following text as hello contents of hello **gettweets.py** file:</span></span>
 
    ```python
    #!/usr/bin/python
@@ -112,29 +112,29 @@ ms.lasthandoff: 08/18/2017
    access_token='Your access token'
    access_token_secret='Your access token secret'
 
-   #The number of tweets we want to get
+   #hello number of tweets we want tooget
    max_tweets=10000
 
-   #Create the listener class that receives and saves tweets
+   #Create hello listener class that receives and saves tweets
    class listener(StreamListener):
-       #On init, set the counter to zero and create a progress bar
+       #On init, set hello counter toozero and create a progress bar
        def __init__(self, api=None):
            self.num_tweets = 0
            self.pbar = ProgressBar(widgets=[Percentage(), Bar()], maxval=max_tweets).start()
 
        #When data is received, do this
        def on_data(self, data):
-           #Append the tweet to the 'tweets.txt' file
+           #Append hello tweet toohello 'tweets.txt' file
            with open('tweets.txt', 'a') as tweet_file:
                tweet_file.write(data)
-               #Increment the number of tweets
+               #Increment hello number of tweets
                self.num_tweets += 1
-               #Check to see if we have hit max_tweets and exit if so
+               #Check toosee if we have hit max_tweets and exit if so
                if self.num_tweets >= max_tweets:
                    self.pbar.finish()
                    sys.exit(0)
                else:
-                   #increment the progress bar
+                   #increment hello progress bar
                    self.pbar.update(self.num_tweets)
            return True
 
@@ -142,68 +142,68 @@ ms.lasthandoff: 08/18/2017
        def on_error(self, status):
            print status
 
-   #Get the OAuth token
+   #Get hello OAuth token
    auth = OAuthHandler(consumer_key, consumer_secret)
    auth.set_access_token(access_token, access_token_secret)
-   #Use the listener class for stream processing
+   #Use hello listener class for stream processing
    twitterStream = Stream(auth, listener())
    #Filter for these topics
    twitterStream.filter(track=["azure","cloud","hdinsight"])
    ```
 
     > [!IMPORTANT]
-    > <span data-ttu-id="4ec19-141">Sostituire il testo segnaposto per gli elementi seguenti con le informazioni fornite dall'app Twitter:</span><span class="sxs-lookup"><span data-stu-id="4ec19-141">Replace the placeholder text for the following items with the information from your twitter application:</span></span>
+    > <span data-ttu-id="794db-141">Sostituire il testo segnaposto hello per i seguenti elementi con le informazioni di hello dall'applicazione twitter hello:</span><span class="sxs-lookup"><span data-stu-id="794db-141">Replace hello placeholder text for hello following items with hello information from your twitter application:</span></span>
     >
     > * `consumer_secret`
     > * `consumer_key`
     > * `access_token`
     > * `access_token_secret`
 
-6. <span data-ttu-id="4ec19-142">Usare **Ctrl + X**, quindi premere **Y** per salvare il file.</span><span class="sxs-lookup"><span data-stu-id="4ec19-142">Use **Ctrl + X**, then **Y** to save the file.</span></span>
+6. <span data-ttu-id="794db-142">Utilizzare **Ctrl + X**, quindi **Y** file hello toosave.</span><span class="sxs-lookup"><span data-stu-id="794db-142">Use **Ctrl + X**, then **Y** toosave hello file.</span></span>
 
-7. <span data-ttu-id="4ec19-143">Usare il comando seguente per aprire il file e scaricare i tweet:</span><span class="sxs-lookup"><span data-stu-id="4ec19-143">Use the following command to run the file and download tweets:</span></span>
+7. <span data-ttu-id="794db-143">Utilizzare i seguenti file di comando toorun hello hello e scaricare TWEET:</span><span class="sxs-lookup"><span data-stu-id="794db-143">Use hello following command toorun hello file and download tweets:</span></span>
 
     ```bash
     python gettweets.py
     ```
 
-    <span data-ttu-id="4ec19-144">Viene visualizzato un indicatore di stato</span><span class="sxs-lookup"><span data-stu-id="4ec19-144">A progress indicator appears.</span></span> <span data-ttu-id="4ec19-145">che mostra un valore fino al 100% mentre vengono scaricati i tweet.</span><span class="sxs-lookup"><span data-stu-id="4ec19-145">It counts up to 100% as the tweets are downloaded.</span></span>
+    <span data-ttu-id="794db-144">Viene visualizzato un indicatore di stato</span><span class="sxs-lookup"><span data-stu-id="794db-144">A progress indicator appears.</span></span> <span data-ttu-id="794db-145">Considerata too100% hello TWEET vengono scaricati.</span><span class="sxs-lookup"><span data-stu-id="794db-145">It counts up too100% as hello tweets are downloaded.</span></span>
 
    > [!NOTE]
-   > <span data-ttu-id="4ec19-146">Se l'indicatore di stato impiega molto tempo per avanzare, è necessario modificare il filtro per monitorare gli argomenti di tendenza.</span><span class="sxs-lookup"><span data-stu-id="4ec19-146">If it is taking a long time for the progress bar to advance, you should change the filter to track trending topics.</span></span> <span data-ttu-id="4ec19-147">Quando sono presenti molti tweet relativi all'argomento del filtro, è possibile ottenere rapidamente i 10000 tweet necessari.</span><span class="sxs-lookup"><span data-stu-id="4ec19-147">When there are many tweets about the topic in your filter, you can quickly get the 10000 tweets needed.</span></span>
+   > <span data-ttu-id="794db-146">Se l'operazione impiega molto tempo per tooadvance barra di stato di avanzamento hello, è necessario modificare gli argomenti relativi alle tendenze di hello filtro tootrack.</span><span class="sxs-lookup"><span data-stu-id="794db-146">If it is taking a long time for hello progress bar tooadvance, you should change hello filter tootrack trending topics.</span></span> <span data-ttu-id="794db-147">Quando sono presenti molti TWEET su argomento hello nel filtro, puoi ottenere velocemente hello 10000 TWEET necessari.</span><span class="sxs-lookup"><span data-stu-id="794db-147">When there are many tweets about hello topic in your filter, you can quickly get hello 10000 tweets needed.</span></span>
 
-### <a name="upload-the-data"></a><span data-ttu-id="4ec19-148">Caricare i dati</span><span class="sxs-lookup"><span data-stu-id="4ec19-148">Upload the data</span></span>
+### <a name="upload-hello-data"></a><span data-ttu-id="794db-148">Caricare i dati di hello</span><span class="sxs-lookup"><span data-stu-id="794db-148">Upload hello data</span></span>
 
-<span data-ttu-id="4ec19-149">Usare i comandi seguenti per aggiornare i dati nell'archiviazione HDInsight:</span><span class="sxs-lookup"><span data-stu-id="4ec19-149">To upload the data to HDInsight storage, use the following commands:</span></span>
+<span data-ttu-id="794db-149">tooupload hello tooHDInsight di archiviazione, hello di utilizzare i comandi seguenti:</span><span class="sxs-lookup"><span data-stu-id="794db-149">tooupload hello data tooHDInsight storage, use hello following commands:</span></span>
 
    ```bash
    hdfs dfs -mkdir -p /tutorials/twitter/data
    hdfs dfs -put tweets.txt /tutorials/twitter/data/tweets.txt
 ```
 
-<span data-ttu-id="4ec19-150">Questi comandi archiviano i dati in un percorso accessibile a tutti i nodi del cluster.</span><span class="sxs-lookup"><span data-stu-id="4ec19-150">These commands store the data in a location that all nodes in the cluster can access.</span></span>
+<span data-ttu-id="794db-150">Questi comandi archiviano dati hello in una posizione che possono accedere tutti i nodi nel cluster hello.</span><span class="sxs-lookup"><span data-stu-id="794db-150">These commands store hello data in a location that all nodes in hello cluster can access.</span></span>
 
-## <a name="run-the-hiveql-job"></a><span data-ttu-id="4ec19-151">Eseguire il processo di HiveQL</span><span class="sxs-lookup"><span data-stu-id="4ec19-151">Run the HiveQL job</span></span>
+## <a name="run-hello-hiveql-job"></a><span data-ttu-id="794db-151">Eseguire il processo di HiveQL hello</span><span class="sxs-lookup"><span data-stu-id="794db-151">Run hello HiveQL job</span></span>
 
-1. <span data-ttu-id="4ec19-152">Usare il comando seguente per creare un file contenente istruzioni HiveQL:</span><span class="sxs-lookup"><span data-stu-id="4ec19-152">Use the following command to create a file containing HiveQL statements:</span></span>
+1. <span data-ttu-id="794db-152">Utilizzare hello seguente di un file contenente le istruzioni HiveQL toocreate comando:</span><span class="sxs-lookup"><span data-stu-id="794db-152">Use hello following command toocreate a file containing HiveQL statements:</span></span>
 
    ```bash
    nano twitter.hql
    ```
 
-    <span data-ttu-id="4ec19-153">Usare il testo seguente come contenuto del file:</span><span class="sxs-lookup"><span data-stu-id="4ec19-153">Use the following text as the contents of the file:</span></span>
+    <span data-ttu-id="794db-153">Utilizzare hello segue testo come contenuto di hello del file hello:</span><span class="sxs-lookup"><span data-stu-id="794db-153">Use hello following text as hello contents of hello file:</span></span>
 
    ```hiveql
    set hive.exec.dynamic.partition = true;
    set hive.exec.dynamic.partition.mode = nonstrict;
    -- Drop table, if it exists
    DROP TABLE tweets_raw;
-   -- Create it, pointing toward the tweets logged from Twitter
+   -- Create it, pointing toward hello tweets logged from Twitter
    CREATE EXTERNAL TABLE tweets_raw (
        json_response STRING
    )
    STORED AS TEXTFILE LOCATION '/tutorials/twitter/data';
-   -- Drop and recreate the destination table
+   -- Drop and recreate hello destination table
    DROP TABLE tweets;
    CREATE TABLE tweets
    (
@@ -238,8 +238,8 @@ ms.lasthandoff: 08/18/2017
        profile_image_url STRING,
        json_response STRING
    );
-   -- Select tweets from the imported data, parse the JSON,
-   -- and insert into the tweets table
+   -- Select tweets from hello imported data, parse hello JSON,
+   -- and insert into hello tweets table
    FROM tweets_raw
    INSERT OVERWRITE TABLE tweets
    SELECT
@@ -299,16 +299,16 @@ ms.lasthandoff: 08/18/2017
    WHERE (length(json_response) > 500);
    ```
 
-2. <span data-ttu-id="4ec19-154">Premere **Ctrl + X**, quindi **Y** per salvare il file.</span><span class="sxs-lookup"><span data-stu-id="4ec19-154">Press **Ctrl + X**, then press **Y** to save the file.</span></span>
-3. <span data-ttu-id="4ec19-155">Usare il comando riportato di seguito per eseguire lo script HiveQL contenuto nel file:</span><span class="sxs-lookup"><span data-stu-id="4ec19-155">Use the following command to run the HiveQL contained in the file:</span></span>
+2. <span data-ttu-id="794db-154">Premere **Ctrl + X**, quindi premere **Y** file hello toosave.</span><span class="sxs-lookup"><span data-stu-id="794db-154">Press **Ctrl + X**, then press **Y** toosave hello file.</span></span>
+3. <span data-ttu-id="794db-155">Utilizzare hello comando toorun hello che hiveql contenute nel file hello seguenti:</span><span class="sxs-lookup"><span data-stu-id="794db-155">Use hello following command toorun hello HiveQL contained in hello file:</span></span>
 
    ```bash
    beeline -u 'jdbc:hive2://headnodehost:10001/;transportMode=http' -i twitter.hql
    ```
 
-    <span data-ttu-id="4ec19-156">Questo comando esegue il file **twitter.hql**.</span><span class="sxs-lookup"><span data-stu-id="4ec19-156">This command runs the the **twitter.hql** file.</span></span> <span data-ttu-id="4ec19-157">Dopo il completamento della query, viene visualizzato un prompt `jdbc:hive2//localhost:10001/>`.</span><span class="sxs-lookup"><span data-stu-id="4ec19-157">Once the query completes, you see a `jdbc:hive2//localhost:10001/>` prompt.</span></span>
+    <span data-ttu-id="794db-156">Questo comando viene eseguito hello hello **twitter.hql** file.</span><span class="sxs-lookup"><span data-stu-id="794db-156">This command runs hello hello **twitter.hql** file.</span></span> <span data-ttu-id="794db-157">Una volta completata la query hello, vedrai un `jdbc:hive2//localhost:10001/>` prompt dei comandi.</span><span class="sxs-lookup"><span data-stu-id="794db-157">Once hello query completes, you see a `jdbc:hive2//localhost:10001/>` prompt.</span></span>
 
-4. <span data-ttu-id="4ec19-158">Dal prompt dei comandi Beeline usare la query seguente per verificare che i dati siano stati importati:</span><span class="sxs-lookup"><span data-stu-id="4ec19-158">From the beeline prompt, use the following query to verify that data was imported:</span></span>
+4. <span data-ttu-id="794db-158">Dal prompt dei comandi beeline hello, utilizzare hello tooverify query che è stati importati i dati seguenti:</span><span class="sxs-lookup"><span data-stu-id="794db-158">From hello beeline prompt, use hello following query tooverify that data was imported:</span></span>
 
    ```hiveql
    SELECT name, screen_name, count(1) as cc
@@ -318,14 +318,14 @@ ms.lasthandoff: 08/18/2017
        ORDER BY cc DESC LIMIT 10;
    ```
 
-    <span data-ttu-id="4ec19-159">Viene restituito un massimo di 10 tweet contenenti la parola **Azure** nel testo del messaggio.</span><span class="sxs-lookup"><span data-stu-id="4ec19-159">This query returns a maximum of 10 tweets that contain the word **Azure** in the message text.</span></span>
+    <span data-ttu-id="794db-159">Questa query restituisce un massimo di 10 TWEET che contengono la parola hello **Azure** nel testo del messaggio hello.</span><span class="sxs-lookup"><span data-stu-id="794db-159">This query returns a maximum of 10 tweets that contain hello word **Azure** in hello message text.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="4ec19-160">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="4ec19-160">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="794db-160">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="794db-160">Next steps</span></span>
 
-<span data-ttu-id="4ec19-161">Si è appreso come trasformare un set di dati JSON non strutturato in una tabella Hive strutturata.</span><span class="sxs-lookup"><span data-stu-id="4ec19-161">You have learned how to transform an unstructured JSON dataset into a structured Hive table.</span></span> <span data-ttu-id="4ec19-162">Per altre informazioni su Hive in HDInsight, vedere i documenti seguenti:</span><span class="sxs-lookup"><span data-stu-id="4ec19-162">To learn more about Hive on HDInsight, see the following documents:</span></span>
+<span data-ttu-id="794db-161">Si è appreso come tootransform un set di dati non strutturati JSON in una tabella Hive strutturata.</span><span class="sxs-lookup"><span data-stu-id="794db-161">You have learned how tootransform an unstructured JSON dataset into a structured Hive table.</span></span> <span data-ttu-id="794db-162">toolearn ulteriori informazioni su Hive in HDInsight, vedere hello seguenti documenti:</span><span class="sxs-lookup"><span data-stu-id="794db-162">toolearn more about Hive on HDInsight, see hello following documents:</span></span>
 
-* [<span data-ttu-id="4ec19-163">Introduzione all'uso di HDInsight</span><span class="sxs-lookup"><span data-stu-id="4ec19-163">Get started with HDInsight</span></span>](hdinsight-hadoop-linux-tutorial-get-started.md)
-* [<span data-ttu-id="4ec19-164">Analizzare i dati sui ritardi dei voli con HDInsight</span><span class="sxs-lookup"><span data-stu-id="4ec19-164">Analyze flight delay data using HDInsight</span></span>](hdinsight-analyze-flight-delay-data-linux.md)
+* [<span data-ttu-id="794db-163">Introduzione all'uso di HDInsight</span><span class="sxs-lookup"><span data-stu-id="794db-163">Get started with HDInsight</span></span>](hdinsight-hadoop-linux-tutorial-get-started.md)
+* [<span data-ttu-id="794db-164">Analizzare i dati sui ritardi dei voli con HDInsight</span><span class="sxs-lookup"><span data-stu-id="794db-164">Analyze flight delay data using HDInsight</span></span>](hdinsight-analyze-flight-delay-data-linux.md)
 
 [curl]: http://curl.haxx.se
 [curl-download]: http://curl.haxx.se/download.html

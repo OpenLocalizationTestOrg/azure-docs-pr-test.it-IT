@@ -1,0 +1,47 @@
+---
+title: "Modelli di connettività di ExpressRoute: tooMicrosoft Azure tramite il provider di servizi di rete, gli scambi e provider Ethernet | Documenti Microsoft"
+description: "Questo articolo descrive modalità diverse di hello di connettività di rete del cliente hello e servizi Microsoft Azure, Office 365 e Dynamics 365. I clienti possono usare provider MPLS, Cloud Exchange ed Ethernet."
+documentationcenter: na
+services: expressroute
+author: cherylmc
+manager: timlt
+editor: 
+ms.assetid: 
+ms.service: expressroute
+ms.devlang: na
+ms.topic: get-started-article
+ms.tgt_pltfrm: na
+ms.workload: infrastructure-services
+ms.date: 02/09/2017
+ms.author: cherylmc
+ms.openlocfilehash: 2682e6e45b2892869068f132bedb4bb08e3f89a9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.translationtype: MT
+ms.contentlocale: it-IT
+ms.lasthandoff: 10/06/2017
+---
+# <a name="expressroute-connectivity-models"></a><span data-ttu-id="96cad-104">Modelli di connettività di ExpressRoute</span><span class="sxs-lookup"><span data-stu-id="96cad-104">ExpressRoute connectivity models</span></span>
+<span data-ttu-id="96cad-105">È possibile creare una connessione tra la rete locale e cloud Microsoft hello in tre modi diversi, [CloudExchange condivisione percorso](#CloudExchange), [connessione Ethernet](#Ethernet)e [(IPVPN) any per qualsiasi connessione](#IPVPN).</span><span class="sxs-lookup"><span data-stu-id="96cad-105">You can create a connection between your on-premises network and hello Microsoft cloud in three different ways, [CloudExchange Co-location](#CloudExchange), [Point-to-point Ethernet Connection](#Ethernet), and [Any-to-any (IPVPN) Connection](#IPVPN).</span></span> <span data-ttu-id="96cad-106">I provider di connettività possono fornire uno o più modelli di connettività.</span><span class="sxs-lookup"><span data-stu-id="96cad-106">Connectivity providers can offer one or more connectivity models.</span></span> <span data-ttu-id="96cad-107">Per lavorare con il modello connettività provider toopick hello adatto per l'utente.</span><span class="sxs-lookup"><span data-stu-id="96cad-107">You can work with your connectivity provider toopick hello model that works best for you.</span></span>
+<br><br>
+
+![Diagramma dei modelli di connettività di ExpressRoute](./media/expressroute-connectivity-models/expressroute-connectivity-models-diagram.png)
+
+## <span data-ttu-id="96cad-109"><a name="CloudExchange"></a>Percorso condiviso in una struttura Cloud Exchange</span><span class="sxs-lookup"><span data-stu-id="96cad-109"><a name="CloudExchange"></a>Co-located at a cloud exchange</span></span>
+<span data-ttu-id="96cad-110">Se sono posizionati in una struttura con uno scambio di cloud, è possibile ordinare toohello connessioni incrociate virtuale Microsoft cloud tramite Ethernet exchange del provider di hello condivisione percorso.</span><span class="sxs-lookup"><span data-stu-id="96cad-110">If you are co-located in a facility with a cloud exchange, you can order virtual cross-connections toohello Microsoft cloud through hello co-location provider’s Ethernet exchange.</span></span> <span data-ttu-id="96cad-111">I provider di condivisione percorso offrono connessioni incrociate livello 2 o gestito Layer 3 connessioni incrociate tra l'infrastruttura nella funzionalità di condivisione percorso hello e cloud Microsoft hello.</span><span class="sxs-lookup"><span data-stu-id="96cad-111">Co-location providers can offer either Layer 2 cross-connections, or managed Layer 3 cross-connections between your infrastructure in hello co-location facility and hello Microsoft cloud.</span></span>
+
+## <span data-ttu-id="96cad-112"><a name="Ethernet"></a>Connessioni Ethernet da punto a punto</span><span class="sxs-lookup"><span data-stu-id="96cad-112"><a name="Ethernet"></a>Point-to-point Ethernet connections</span></span>
+<span data-ttu-id="96cad-113">È possibile connettere il toohello Data Center o uffici locali Microsoft cloud tramite collegamenti Ethernet Point-to.</span><span class="sxs-lookup"><span data-stu-id="96cad-113">You can connect your on-premises datacenters/offices toohello Microsoft cloud through point-to-point Ethernet links.</span></span> <span data-ttu-id="96cad-114">Provider Ethernet Point to Point può offrire le connessioni di livello 2 o gestiti Layer 3 connessioni tra il sito e hello cloud Microsoft.</span><span class="sxs-lookup"><span data-stu-id="96cad-114">Point-to-point Ethernet providers can offer Layer 2 connections, or managed Layer 3 connections between your site and hello Microsoft cloud.</span></span>
+
+## <span data-ttu-id="96cad-115"><a name="IPVPN"></a>Reti (IPVPN) any-to-any</span><span class="sxs-lookup"><span data-stu-id="96cad-115"><a name="IPVPN"></a>Any-to-any (IPVPN) networks</span></span>
+<span data-ttu-id="96cad-116">È possibile integrare la rete WAN con hello cloud Microsoft.</span><span class="sxs-lookup"><span data-stu-id="96cad-116">You can integrate your WAN with hello Microsoft cloud.</span></span> <span data-ttu-id="96cad-117">I provider IPVPN (in genere VPN MPLS) forniscono connettività any-to-any tra le succursali e i data center.</span><span class="sxs-lookup"><span data-stu-id="96cad-117">IPVPN providers (typically MPLS VPN) offer any-to-any connectivity between your branch offices and datacenters.</span></span> <span data-ttu-id="96cad-118">Hello Microsoft cloud può essere toomake WAN a tooyour interconnessi Cerca solo come qualsiasi altra succursale.</span><span class="sxs-lookup"><span data-stu-id="96cad-118">hello Microsoft cloud can be interconnected tooyour WAN toomake it look just like any other branch office.</span></span> <span data-ttu-id="96cad-119">I provider WAN offrono in genere connettività gestita di livello 3.</span><span class="sxs-lookup"><span data-stu-id="96cad-119">WAN providers typically offer managed Layer 3 connectivity.</span></span> <span data-ttu-id="96cad-120">Caratteristiche e funzionalità di ExpressRoute sono tutti identici per tutti di hello sopra i modelli di connettività.</span><span class="sxs-lookup"><span data-stu-id="96cad-120">ExpressRoute capabilities and features are all identical across all of hello above connectivity models.</span></span> 
+
+## <a name="next-steps"></a><span data-ttu-id="96cad-121">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="96cad-121">Next steps</span></span>
+* <span data-ttu-id="96cad-122">Informazioni sulle connessioni e i domini di routing ExpressRoute.</span><span class="sxs-lookup"><span data-stu-id="96cad-122">Learn about ExpressRoute connections and routing domains.</span></span> <span data-ttu-id="96cad-123">Vedere [Circuiti e domini di routing ExpressRoute](expressroute-circuit-peerings.md).</span><span class="sxs-lookup"><span data-stu-id="96cad-123">See [ExpressRoute circuits and routing domains](expressroute-circuit-peerings.md).</span></span>
+* <span data-ttu-id="96cad-124">Informazioni sulle funzionalità di ExpressRoute.</span><span class="sxs-lookup"><span data-stu-id="96cad-124">Learn about ExpressRoute features.</span></span> <span data-ttu-id="96cad-125">Vedere hello [Panoramica tecnica su ExpressRoute](expressroute-introduction.md)</span><span class="sxs-lookup"><span data-stu-id="96cad-125">See hello [ExpressRoute Technical Overview](expressroute-introduction.md)</span></span>
+* <span data-ttu-id="96cad-126">Trovare un provider di servizi.</span><span class="sxs-lookup"><span data-stu-id="96cad-126">Find a service provider.</span></span> <span data-ttu-id="96cad-127">Vedere [Partner e località di peering per Azure ExpressRoute](expressroute-locations.md).</span><span class="sxs-lookup"><span data-stu-id="96cad-127">See [ExpressRoute partners and peering locations](expressroute-locations.md).</span></span>
+* <span data-ttu-id="96cad-128">Verificare che vengano soddisfatti tutti i prerequisiti.</span><span class="sxs-lookup"><span data-stu-id="96cad-128">Ensure that all prerequisites are met.</span></span> <span data-ttu-id="96cad-129">Vedere [Prerequisiti per ExpressRoute](expressroute-prerequisites.md).</span><span class="sxs-lookup"><span data-stu-id="96cad-129">See [ExpressRoute prerequisites](expressroute-prerequisites.md).</span></span>
+* <span data-ttu-id="96cad-130">Consultare i requisiti di toohello per [Routing](expressroute-routing.md), [NAT](expressroute-nat.md), e [QoS](expressroute-qos.md).</span><span class="sxs-lookup"><span data-stu-id="96cad-130">Refer toohello requirements for [Routing](expressroute-routing.md), [NAT](expressroute-nat.md), and [QoS](expressroute-qos.md).</span></span>
+* <span data-ttu-id="96cad-131">Configurare la connessione ExpressRoute.</span><span class="sxs-lookup"><span data-stu-id="96cad-131">Configure your ExpressRoute connection.</span></span>
+  * [<span data-ttu-id="96cad-132">Creare un circuito ExpressRoute</span><span class="sxs-lookup"><span data-stu-id="96cad-132">Create an ExpressRoute circuit</span></span>](expressroute-howto-circuit-portal-resource-manager.md)
+  * [<span data-ttu-id="96cad-133">Configurare il routing</span><span class="sxs-lookup"><span data-stu-id="96cad-133">Configure routing</span></span>](expressroute-howto-routing-portal-resource-manager.md)
+  * [<span data-ttu-id="96cad-134">Collegare un circuito ExpressRoute di tooan rete virtuale</span><span class="sxs-lookup"><span data-stu-id="96cad-134">Link a VNet tooan ExpressRoute circuit</span></span>](expressroute-howto-linkvnet-portal-resource-manager.md)

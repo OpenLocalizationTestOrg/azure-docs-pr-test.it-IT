@@ -1,6 +1,6 @@
 ---
-title: Documentazione del registro contenitori di Azure - Esercitazioni e informazioni di riferimento sulle API | Documentazione Microsoft
-description: Informazioni su come creare e gestire registri di contenitore per archiviare le immagini di distribuzione con un servizio di registro Docker gestito. Esercitazioni, informazioni di riferimento sulle API e altro ancora.
+title: aaaAzure contenitore del Registro di sistema documentazione, esercitazioni, riferimenti alle API | Documenti Microsoft
+description: Informazioni su come toocreate e mantenere contenitore registri toostore la distribuzione di immagini con un servizio del Registro di sistema Docker gestito. Esercitazioni, informazioni di riferimento sulle API e altro ancora.
 services: container-registry
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 3962f34170cf3a19fe51b2f90b49fa21e01fc6cc
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d759eb2b00b59797cfdf8ce3b4071317a574c2b8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-container-registry-documentation"></a>Documentazione sul Registro del servizio contenitore di Azure
 
-Informazioni su come usare il servizio contenitore di Azure per archiviare e gestire immagini per tutti i tipi di distribuzioni di contenitori. Esercitazioni, informazioni di riferimento sulle API REST e altri documenti in cui viene illustrato come creare e gestire registri di contenitore con questo servizio di registro Docker gestito.
+Informazioni su come toouse contenitore del Registro di sistema toostore e gestire le immagini per tutti i tipi di distribuzioni di contenitore. Esercitazioni, riferimento all'API REST e altra documentazione illustrano come toocreate e gestire i registri di contenitore con questo gestiti servizio Registro di sistema di Docker.
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -52,7 +52,7 @@ Informazioni su come usare il servizio contenitore di Azure per archiviare e ges
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Introduzione alla creazione di un registro con il portale</h3>
+                        <h3>Introduzione alla creazione di un registro di sistema con il portale di hello</h3>
                     </div>
                 </div>
             </div>
@@ -70,7 +70,7 @@ Informazioni su come usare il servizio contenitore di Azure per archiviare e ges
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Introduzione alla creazione di un registro con l'interfaccia della riga di comando</h3>
+                        <h3>Introduzione alla creazione di un registro di sistema con hello CLI</h3>
                     </div>
                 </div>
             </div>
@@ -81,7 +81,7 @@ Informazioni su come usare il servizio contenitore di Azure per archiviare e ges
 
 ---
  
-<h2>Riferimento</h2>
+<h2>riferimento</h2>
 <ul class="panelContent cardsW">
     <li>
         <div class="cardSize">

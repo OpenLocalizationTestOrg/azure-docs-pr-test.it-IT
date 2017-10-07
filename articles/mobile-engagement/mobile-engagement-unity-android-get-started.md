@@ -1,6 +1,6 @@
 ---
-title: Introduzione ad Azure Mobile Engagement per la distribuzione di Unity in Android
-description: "Informazioni sull'uso di Azure Mobile Engagement con funzionalità di analisi e notifiche push per le app Unity distribuite in dispositivi iOS."
+title: aaaGet avviato con Azure Mobile Engagement per la distribuzione di Unity Android
+description: Informazioni su come toouse Azure Mobile Engagement con Analitica e le notifiche Push per App Unity distribuzione tooiOS dispositivi.
 services: mobile-engagement
 documentationcenter: unity
 author: piyushjo
@@ -14,111 +14,111 @@ ms.devlang: dotnet
 ms.topic: hero-article
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: bf0b758159d475b4ed7eadb84227e4824e11ba86
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c4d34691daeb7544b11c2d6895b2474af0f902b4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-with-azure-mobile-engagement-for-unity-android-deployment"></a><span data-ttu-id="b8b83-103">Introduzione ad Azure Mobile Engagement per la distribuzione di Unity in Android</span><span class="sxs-lookup"><span data-stu-id="b8b83-103">Get Started with Azure Mobile Engagement for Unity Android deployment</span></span>
+# <a name="get-started-with-azure-mobile-engagement-for-unity-android-deployment"></a><span data-ttu-id="9254d-103">Introduzione ad Azure Mobile Engagement per la distribuzione di Unity in Android</span><span class="sxs-lookup"><span data-stu-id="9254d-103">Get Started with Azure Mobile Engagement for Unity Android deployment</span></span>
 [!INCLUDE [Hero tutorial switcher](../../includes/mobile-engagement-hero-tutorial-switcher.md)]
 
-<span data-ttu-id="b8b83-104">Questo argomento descrive come usare Azure Mobile Engagement per ottenere informazioni sull'uso dell'app e sull'invio di notifiche push a utenti segmentati di un'applicazione Unity durante lo sviluppo in un dispositivo Android.</span><span class="sxs-lookup"><span data-stu-id="b8b83-104">This topic shows you how to use Azure Mobile Engagement to understand your app usage and how to send push notifications to segmented users of a Unity application when deploying to an Android device.</span></span>
-<span data-ttu-id="b8b83-105">Questa esercitazione fa uso della classica esercitazione Roll-a-ball di Unity come punto di partenza.</span><span class="sxs-lookup"><span data-stu-id="b8b83-105">This tutorial uses the classic Unity Roll a Ball tutorial as the starting point.</span></span> <span data-ttu-id="b8b83-106">Seguire i passaggi dell' [esercitazione Roll-a-ball](mobile-engagement-unity-roll-a-ball.md) prima di procedere con l'integrazione di Mobile Engagement dimostrata nell'esercitazione seguente.</span><span class="sxs-lookup"><span data-stu-id="b8b83-106">You should follow the steps in this [tutorial](mobile-engagement-unity-roll-a-ball.md) before proceeding with the Mobile Engagement integration we showcase in the tutorial below.</span></span> 
+<span data-ttu-id="9254d-104">In questo argomento illustra come toouse Azure Mobile Engagement toounderstand sull'utilizzo delle app e toosend push agli utenti di toosegmented notifiche di un'applicazione di Unity durante la distribuzione di dispositivo Android tooan.</span><span class="sxs-lookup"><span data-stu-id="9254d-104">This topic shows you how toouse Azure Mobile Engagement toounderstand your app usage and how toosend push notifications toosegmented users of a Unity application when deploying tooan Android device.</span></span>
+<span data-ttu-id="9254d-105">Questa esercitazione viene utilizzato hello classico Unity rollback un'esercitazione palla come punto di partenza hello.</span><span class="sxs-lookup"><span data-stu-id="9254d-105">This tutorial uses hello classic Unity Roll a Ball tutorial as hello starting point.</span></span> <span data-ttu-id="9254d-106">È opportuno seguire passaggi hello in questo [esercitazione](mobile-engagement-unity-roll-a-ball.md) prima di procedere con l'integrazione di Mobile Engagement è illustrare nell'esercitazione hello seguente hello.</span><span class="sxs-lookup"><span data-stu-id="9254d-106">You should follow hello steps in this [tutorial](mobile-engagement-unity-roll-a-ball.md) before proceeding with hello Mobile Engagement integration we showcase in hello tutorial below.</span></span> 
 
-<span data-ttu-id="b8b83-107">Per completare questa esercitazione, è necessario disporre di:</span><span class="sxs-lookup"><span data-stu-id="b8b83-107">This tutorial requires the following:</span></span>
+<span data-ttu-id="9254d-107">Questa esercitazione richiede il seguente hello:</span><span class="sxs-lookup"><span data-stu-id="9254d-107">This tutorial requires hello following:</span></span>
 
-* [<span data-ttu-id="b8b83-108">Editor di Unity</span><span class="sxs-lookup"><span data-stu-id="b8b83-108">Unity Editor</span></span>](http://unity3d.com/get-unity)
-* [<span data-ttu-id="b8b83-109">Mobile Engagement Unity SDK</span><span class="sxs-lookup"><span data-stu-id="b8b83-109">Mobile Engagement Unity SDK</span></span>](https://aka.ms/azmeunitysdk)
-* <span data-ttu-id="b8b83-110">Google Android SDK</span><span class="sxs-lookup"><span data-stu-id="b8b83-110">Google Android SDK</span></span>
+* [<span data-ttu-id="9254d-108">Editor di Unity</span><span class="sxs-lookup"><span data-stu-id="9254d-108">Unity Editor</span></span>](http://unity3d.com/get-unity)
+* [<span data-ttu-id="9254d-109">Mobile Engagement Unity SDK</span><span class="sxs-lookup"><span data-stu-id="9254d-109">Mobile Engagement Unity SDK</span></span>](https://aka.ms/azmeunitysdk)
+* <span data-ttu-id="9254d-110">Google Android SDK</span><span class="sxs-lookup"><span data-stu-id="9254d-110">Google Android SDK</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="b8b83-111">Per completare l'esercitazione, è necessario disporre di un account Azure attivo.</span><span class="sxs-lookup"><span data-stu-id="b8b83-111">To complete this tutorial, you must have an active Azure account.</span></span> <span data-ttu-id="b8b83-112">Se non si dispone di un account, è possibile creare un account di valutazione gratuita in pochi minuti.</span><span class="sxs-lookup"><span data-stu-id="b8b83-112">If you don't have an account, you can create a free trial account in just a couple of minutes.</span></span> <span data-ttu-id="b8b83-113">Per informazioni dettagliate, vedere la pagina relativa alla [versione di valutazione gratuita di Azure](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A0E0E5C02&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fen-us%2Fdocumentation%2Farticles%2Fmobile-engagement-unity-android-get-started).</span><span class="sxs-lookup"><span data-stu-id="b8b83-113">For details, see [Azure Free Trial](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A0E0E5C02&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fen-us%2Fdocumentation%2Farticles%2Fmobile-engagement-unity-android-get-started).</span></span>
+> <span data-ttu-id="9254d-111">toocomplete questa esercitazione, è necessario disporre di un account di Azure attivo.</span><span class="sxs-lookup"><span data-stu-id="9254d-111">toocomplete this tutorial, you must have an active Azure account.</span></span> <span data-ttu-id="9254d-112">Se non si dispone di un account, è possibile creare un account di valutazione gratuita in pochi minuti.</span><span class="sxs-lookup"><span data-stu-id="9254d-112">If you don't have an account, you can create a free trial account in just a couple of minutes.</span></span> <span data-ttu-id="9254d-113">Per informazioni dettagliate, vedere la pagina relativa alla [versione di valutazione gratuita di Azure](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A0E0E5C02&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fen-us%2Fdocumentation%2Farticles%2Fmobile-engagement-unity-android-get-started).</span><span class="sxs-lookup"><span data-stu-id="9254d-113">For details, see [Azure Free Trial](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A0E0E5C02&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fen-us%2Fdocumentation%2Farticles%2Fmobile-engagement-unity-android-get-started).</span></span>
 > 
 > 
 
-## <span data-ttu-id="b8b83-114"><a id="setup-azme"></a>Configurare Mobile Engagement per l'app Android</span><span class="sxs-lookup"><span data-stu-id="b8b83-114"><a id="setup-azme"></a>Setup Mobile Engagement for your Android app</span></span>
+## <span data-ttu-id="9254d-114"><a id="setup-azme"></a>Configurare Mobile Engagement per l'app Android</span><span class="sxs-lookup"><span data-stu-id="9254d-114"><a id="setup-azme"></a>Setup Mobile Engagement for your Android app</span></span>
 [!INCLUDE [Create Mobile Engagement App in Portal](../../includes/mobile-engagement-create-app-in-portal-new.md)]
 
-## <span data-ttu-id="b8b83-115"><a id="connecting-app"></a>Connettere l'app al back-end di Mobile Engagement</span><span class="sxs-lookup"><span data-stu-id="b8b83-115"><a id="connecting-app"></a>Connect your app to the Mobile Engagement backend</span></span>
-### <a name="import-the-unity-package"></a><span data-ttu-id="b8b83-116">Importare il pacchetto Unity</span><span class="sxs-lookup"><span data-stu-id="b8b83-116">Import the Unity package</span></span>
-1. <span data-ttu-id="b8b83-117">Scaricare il [pacchetto Unity per Mobile Engagement](https://aka.ms/azmeunitysdk) e salvarlo nel computer locale.</span><span class="sxs-lookup"><span data-stu-id="b8b83-117">Download the [Mobile Engagement Unity package](https://aka.ms/azmeunitysdk) and save it to your local machine.</span></span> 
-2. <span data-ttu-id="b8b83-118">Passare a **Assets -> Import Package -> Custom Package** (Asset -> Importa pacchetto -> Pacchetto personalizzato) e selezionare il pacchetto scaricato nel passaggio precedente.</span><span class="sxs-lookup"><span data-stu-id="b8b83-118">Go to **Assets -> Import Package -> Custom Package** and select the package you downloaded in the above step.</span></span> 
+## <span data-ttu-id="9254d-115"><a id="connecting-app"></a>La connessione back-end Mobile Engagement toohello app</span><span class="sxs-lookup"><span data-stu-id="9254d-115"><a id="connecting-app"></a>Connect your app toohello Mobile Engagement backend</span></span>
+### <a name="import-hello-unity-package"></a><span data-ttu-id="9254d-116">Importa pacchetto di Unity hello</span><span class="sxs-lookup"><span data-stu-id="9254d-116">Import hello Unity package</span></span>
+1. <span data-ttu-id="9254d-117">Scaricare hello [pacchetto Unity Engagement Mobile](https://aka.ms/azmeunitysdk) e salvarlo tooyour di computer locale.</span><span class="sxs-lookup"><span data-stu-id="9254d-117">Download hello [Mobile Engagement Unity package](https://aka.ms/azmeunitysdk) and save it tooyour local machine.</span></span> 
+2. <span data-ttu-id="9254d-118">Andare troppo**risorse -> Importa pacchetto -> pacchetto personalizzato** e selezionare hello pacchetto scaricato in hello prima passo.</span><span class="sxs-lookup"><span data-stu-id="9254d-118">Go too**Assets -> Import Package -> Custom Package** and select hello package you downloaded in hello above step.</span></span> 
    
     ![][70] 
-3. <span data-ttu-id="b8b83-119">Assicurarsi che tutti i file siano selezionati e fare clic sul pulsante **Import** .</span><span class="sxs-lookup"><span data-stu-id="b8b83-119">Make sure all files are selected and click **Import** button.</span></span> 
+3. <span data-ttu-id="9254d-119">Assicurarsi che tutti i file siano selezionati e fare clic sul pulsante **Import** .</span><span class="sxs-lookup"><span data-stu-id="9254d-119">Make sure all files are selected and click **Import** button.</span></span> 
    
     ![][71] 
-4. <span data-ttu-id="b8b83-120">Al termine dell'importazione verranno visualizzati i file dell'SDK importati nel progetto.</span><span class="sxs-lookup"><span data-stu-id="b8b83-120">Once Import is successful, you will see the imported SDK files in your project.</span></span>  
+4. <span data-ttu-id="9254d-120">Dopo l'importazione ha esito positivo, verranno visualizzati i file SDK hello importato nel progetto.</span><span class="sxs-lookup"><span data-stu-id="9254d-120">Once Import is successful, you will see hello imported SDK files in your project.</span></span>  
    
     ![][72] 
 
-### <a name="update-the-engagementconfiguration"></a><span data-ttu-id="b8b83-121">Aggiornare EngagementConfiguration</span><span class="sxs-lookup"><span data-stu-id="b8b83-121">Update the EngagementConfiguration</span></span>
-1. <span data-ttu-id="b8b83-122">Aprire il file di script **EngagementConfiguration** dalla cartella dell'SDK e aggiornare **ANDROID\_CONNECTION\_STRING** con la stringa di connessione ottenuta in precedenza dal portale di Azure.</span><span class="sxs-lookup"><span data-stu-id="b8b83-122">Open up the **EngagementConfiguration** script file from the SDK folder and update the **ANDROID\_CONNECTION\_STRING** with the connection string you obtained earlier from the Azure portal.</span></span>  
+### <a name="update-hello-engagementconfiguration"></a><span data-ttu-id="9254d-121">Aggiornare hello EngagementConfiguration</span><span class="sxs-lookup"><span data-stu-id="9254d-121">Update hello EngagementConfiguration</span></span>
+1. <span data-ttu-id="9254d-122">Aprire la console di hello **EngagementConfiguration** file script da hello cartella e aggiornamento SDK hello **ANDROID\_connessione\_stringa** con stringa di connessione hello ottenuto in precedenza da hello portale di Azure.</span><span class="sxs-lookup"><span data-stu-id="9254d-122">Open up hello **EngagementConfiguration** script file from hello SDK folder and update hello **ANDROID\_CONNECTION\_STRING** with hello connection string you obtained earlier from hello Azure portal.</span></span>  
    
     ![][73]
-2. <span data-ttu-id="b8b83-123">Salvare il file.</span><span class="sxs-lookup"><span data-stu-id="b8b83-123">Save the file</span></span> 
-3. <span data-ttu-id="b8b83-124">Eseguire **File -> Engagement -> Generate Android Manifest** (File -> Engagement -> Genera manifesto di Android).</span><span class="sxs-lookup"><span data-stu-id="b8b83-124">Execute **File -> Engagement -> Generate Android Manifest**.</span></span> <span data-ttu-id="b8b83-125">Si tratta del plug-in aggiunto da Mobile Engagement SDK. Facendo clic su di esso verranno aggiornate automaticamente le impostazioni del progetto.</span><span class="sxs-lookup"><span data-stu-id="b8b83-125">This is the plugin added by the Mobile Engagement SDK and clicking on it will automatically update your project settings.</span></span> 
+2. <span data-ttu-id="9254d-123">Salvare il file hello</span><span class="sxs-lookup"><span data-stu-id="9254d-123">Save hello file</span></span> 
+3. <span data-ttu-id="9254d-124">Eseguire **File -> Engagement -> Generate Android Manifest** (File -> Engagement -> Genera manifesto di Android).</span><span class="sxs-lookup"><span data-stu-id="9254d-124">Execute **File -> Engagement -> Generate Android Manifest**.</span></span> <span data-ttu-id="9254d-125">Si tratta di plug-in hello aggiunto da Mobile Engagement SDK hello e facendo clic su di essa verrà aggiornata automaticamente le impostazioni del progetto.</span><span class="sxs-lookup"><span data-stu-id="9254d-125">This is hello plugin added by hello Mobile Engagement SDK and clicking on it will automatically update your project settings.</span></span> 
    
     ![][74]
 
 > [!IMPORTANT]
-> <span data-ttu-id="b8b83-126">Assicurarsi di eseguire questa operazione ogni volta che si aggiorna il file **EngagementConfiguration**. In caso contrario, le modifiche non saranno applicate all'app.</span><span class="sxs-lookup"><span data-stu-id="b8b83-126">Make sure to execute this every time you update the **EngagementConfiguration** file otherwise your changes will not be reflected in the app.</span></span> 
+> <span data-ttu-id="9254d-126">Imposta come tooexecute che ogni volta che si aggiorna hello **EngagementConfiguration** file in caso contrario non rifletteranno le modifiche nell'app hello.</span><span class="sxs-lookup"><span data-stu-id="9254d-126">Make sure tooexecute this every time you update hello **EngagementConfiguration** file otherwise your changes will not be reflected in hello app.</span></span> 
 > 
 > 
 
-### <a name="configure-the-app-for-basic-tracking"></a><span data-ttu-id="b8b83-127">Configurare l'app per il rilevamento di base</span><span class="sxs-lookup"><span data-stu-id="b8b83-127">Configure the app for basic tracking</span></span>
-1. <span data-ttu-id="b8b83-128">Aprire lo script **PlayerController** collegato all'oggetto Player per la modifica.</span><span class="sxs-lookup"><span data-stu-id="b8b83-128">Open up the **PlayerController** script attached to the Player object for editing.</span></span> 
-2. <span data-ttu-id="b8b83-129">Aggiungere l'istruzione using seguente:</span><span class="sxs-lookup"><span data-stu-id="b8b83-129">Add the following using statement:</span></span>
+### <a name="configure-hello-app-for-basic-tracking"></a><span data-ttu-id="9254d-127">Configurare app hello per il rilevamento di base</span><span class="sxs-lookup"><span data-stu-id="9254d-127">Configure hello app for basic tracking</span></span>
+1. <span data-ttu-id="9254d-128">Aprire la console di hello **PlayerController** script associato l'oggetto lettore toohello per la modifica.</span><span class="sxs-lookup"><span data-stu-id="9254d-128">Open up hello **PlayerController** script attached toohello Player object for editing.</span></span> 
+2. <span data-ttu-id="9254d-129">Aggiungere hello seguente istruzione using:</span><span class="sxs-lookup"><span data-stu-id="9254d-129">Add hello following using statement:</span></span>
    
         using Microsoft.Azure.Engagement.Unity;
-3. <span data-ttu-id="b8b83-130">Aggiungere quanto segue al metodo `Start()`:</span><span class="sxs-lookup"><span data-stu-id="b8b83-130">Add the following to the `Start()` method</span></span>
+3. <span data-ttu-id="9254d-130">Aggiungere hello seguente toohello `Start()` (metodo)</span><span class="sxs-lookup"><span data-stu-id="9254d-130">Add hello following toohello `Start()` method</span></span>
    
         EngagementAgent.Initialize();
         EngagementAgent.StartActivity("Home");
 
-### <a name="deploy-and-run-the-app"></a><span data-ttu-id="b8b83-131">Distribuire ed eseguire l'app</span><span class="sxs-lookup"><span data-stu-id="b8b83-131">Deploy and run the app</span></span>
-<span data-ttu-id="b8b83-132">Assicurarsi che Android SDK sia installato nel computer prima di provare a distribuire l'app Unity nel dispositivo.</span><span class="sxs-lookup"><span data-stu-id="b8b83-132">Make sure that you have Android SDK installed on your machine before attempting to deploy this Unity app to your device.</span></span> 
+### <a name="deploy-and-run-hello-app"></a><span data-ttu-id="9254d-131">Distribuire ed eseguire l'applicazione hello</span><span class="sxs-lookup"><span data-stu-id="9254d-131">Deploy and run hello app</span></span>
+<span data-ttu-id="9254d-132">Assicurarsi di disporre di Android SDK installati nel computer prima di tentare di toodeploy tooyour dispositivo app Unity.</span><span class="sxs-lookup"><span data-stu-id="9254d-132">Make sure that you have Android SDK installed on your machine before attempting toodeploy this Unity app tooyour device.</span></span> 
 
-1. <span data-ttu-id="b8b83-133">Connettere un dispositivo Android al computer.</span><span class="sxs-lookup"><span data-stu-id="b8b83-133">Connect an Android device to your machine.</span></span> 
-2. <span data-ttu-id="b8b83-134">Aprire **File -> Build Settings** (File -> Impostazioni compilazione)</span><span class="sxs-lookup"><span data-stu-id="b8b83-134">Open up **File -> Build Settings**</span></span> 
+1. <span data-ttu-id="9254d-133">Connettere una macchina tooyour dispositivo Android.</span><span class="sxs-lookup"><span data-stu-id="9254d-133">Connect an Android device tooyour machine.</span></span> 
+2. <span data-ttu-id="9254d-134">Aprire **File -> Build Settings** (File -> Impostazioni compilazione)</span><span class="sxs-lookup"><span data-stu-id="9254d-134">Open up **File -> Build Settings**</span></span> 
    
     ![][40]
-3. <span data-ttu-id="b8b83-135">Selezionare **Android** e quindi fare clic su **Switch Platform** (Cambia piattaforma)</span><span class="sxs-lookup"><span data-stu-id="b8b83-135">Select **Android** and then click on **Switch Platform**</span></span>
+3. <span data-ttu-id="9254d-135">Selezionare **Android** e quindi fare clic su **Switch Platform** (Cambia piattaforma)</span><span class="sxs-lookup"><span data-stu-id="9254d-135">Select **Android** and then click on **Switch Platform**</span></span>
    
     ![][51]
    
     ![][52]
-4. <span data-ttu-id="b8b83-136">Fare clic su **Player Settings** e fornire un identificatore del bundle valido.</span><span class="sxs-lookup"><span data-stu-id="b8b83-136">Click on **Player settings** and provide a valid Bundle Identifier.</span></span> 
+4. <span data-ttu-id="9254d-136">Fare clic su **Player Settings** e fornire un identificatore del bundle valido.</span><span class="sxs-lookup"><span data-stu-id="9254d-136">Click on **Player settings** and provide a valid Bundle Identifier.</span></span> 
    
     ![][53]
-5. <span data-ttu-id="b8b83-137">Infine, fare clic su **Build And Run**</span><span class="sxs-lookup"><span data-stu-id="b8b83-137">Finally click on **Build And Run**</span></span>
+5. <span data-ttu-id="9254d-137">Infine, fare clic su **Build And Run**</span><span class="sxs-lookup"><span data-stu-id="9254d-137">Finally click on **Build And Run**</span></span>
    
     ![][54]
-6. <span data-ttu-id="b8b83-138">Potrebbe essere necessario specificare un nome della cartella in cui archiviare il pacchetto Android.</span><span class="sxs-lookup"><span data-stu-id="b8b83-138">You may be asked to provide a folder name to store the Android package.</span></span> 
-7. <span data-ttu-id="b8b83-139">Se tutto va bene, il pacchetto verrà distribuito nel dispositivo connesso e il gioco Unity sarà disponibile nel telefono.</span><span class="sxs-lookup"><span data-stu-id="b8b83-139">If everything goes fine, then the package will be deployed to your connected device and you should see your Unity game on your phone!</span></span> 
+6. <span data-ttu-id="9254d-138">Potrebbe essere richiesto di un pacchetto Android cartella nome toostore hello tooprovide.</span><span class="sxs-lookup"><span data-stu-id="9254d-138">You may be asked tooprovide a folder name toostore hello Android package.</span></span> 
+7. <span data-ttu-id="9254d-139">Se tutto va bene, pacchetto hello verrà distribuito tooyour connesso dispositivo e si dovrebbe essere visualizzato il gioco Unity sul telefono.</span><span class="sxs-lookup"><span data-stu-id="9254d-139">If everything goes fine, then hello package will be deployed tooyour connected device and you should see your Unity game on your phone!</span></span> 
 
-## <span data-ttu-id="b8b83-140"><a id="monitor"></a>Connettere l'app con monitoraggio in tempo reale</span><span class="sxs-lookup"><span data-stu-id="b8b83-140"><a id="monitor"></a>Connect app with real-time monitoring</span></span>
+## <span data-ttu-id="9254d-140"><a id="monitor"></a>Connettere l'app con monitoraggio in tempo reale</span><span class="sxs-lookup"><span data-stu-id="9254d-140"><a id="monitor"></a>Connect app with real-time monitoring</span></span>
 [!INCLUDE [Connect app with real-time monitoring](../../includes/mobile-engagement-connect-app-with-monitor.md)]
 
-## <span data-ttu-id="b8b83-141"><a id="integrate-push"></a>Abilitare le notifiche push e la messaggistica in-app</span><span class="sxs-lookup"><span data-stu-id="b8b83-141"><a id="integrate-push"></a>Enable push notifications and in-app messaging</span></span>
+## <span data-ttu-id="9254d-141"><a id="integrate-push"></a>Abilitare le notifiche push e la messaggistica in-app</span><span class="sxs-lookup"><span data-stu-id="9254d-141"><a id="integrate-push"></a>Enable push notifications and in-app messaging</span></span>
 [!INCLUDE [Enable Google Cloud Messaging](../../includes/mobile-engagement-enable-google-cloud-messaging.md)]
 
-### <a name="update-the-engagementconfiguration"></a><span data-ttu-id="b8b83-142">Aggiornare EngagementConfiguration</span><span class="sxs-lookup"><span data-stu-id="b8b83-142">Update the EngagementConfiguration</span></span>
-1. <span data-ttu-id="b8b83-143">Aprire il file di script **EngagementConfiguration** dalla cartella dell'SDK e aggiornare **ANDROID\_GOOGLE\_NUMBER** con il **numero di progetto Google** ottenuto in precedenza dal portale per sviluppatori di Google Cloud.</span><span class="sxs-lookup"><span data-stu-id="b8b83-143">Open up the **EngagementConfiguration** script file from the SDK folder and update the **ANDROID\_GOOGLE\_NUMBER** with the **Google Project Number** you obtained earlier from the Google Cloud Developer portal.</span></span> <span data-ttu-id="b8b83-144">Si tratta di un valore stringa, assicurarsi quindi che sia racchiuso tra virgolette doppie.</span><span class="sxs-lookup"><span data-stu-id="b8b83-144">This is a string value so make sure to enclose it in double quotes.</span></span> 
+### <a name="update-hello-engagementconfiguration"></a><span data-ttu-id="9254d-142">Aggiornare hello EngagementConfiguration</span><span class="sxs-lookup"><span data-stu-id="9254d-142">Update hello EngagementConfiguration</span></span>
+1. <span data-ttu-id="9254d-143">Aprire la console di hello **EngagementConfiguration** file script da hello cartella e aggiornamento SDK hello **ANDROID\_GOOGLE\_numero** con hello **progetto Google Numero** è ottenuto in precedenza dal portale per sviluppatori di Google Cloud hello.</span><span class="sxs-lookup"><span data-stu-id="9254d-143">Open up hello **EngagementConfiguration** script file from hello SDK folder and update hello **ANDROID\_GOOGLE\_NUMBER** with hello **Google Project Number** you obtained earlier from hello Google Cloud Developer portal.</span></span> <span data-ttu-id="9254d-144">Si tratta di una stringa di valore per rendere tooenclose che è racchiuso tra virgolette doppie.</span><span class="sxs-lookup"><span data-stu-id="9254d-144">This is a string value so make sure tooenclose it in double quotes.</span></span> 
    
     ![][75]
-2. <span data-ttu-id="b8b83-145">Salvare il file.</span><span class="sxs-lookup"><span data-stu-id="b8b83-145">Save the file.</span></span> 
-3. <span data-ttu-id="b8b83-146">Eseguire **File -> Engagement -> Generate Android Manifest** (File -> Engagement -> Genera manifesto di Android).</span><span class="sxs-lookup"><span data-stu-id="b8b83-146">Execute **File -> Engagement -> Generate Android Manifest**.</span></span> <span data-ttu-id="b8b83-147">Si tratta del plug-in aggiunto da Mobile Engagement SDK. Facendo clic su di esso verranno aggiornate automaticamente le impostazioni del progetto.</span><span class="sxs-lookup"><span data-stu-id="b8b83-147">This is the plugin added by the Mobile Engagement SDK and clicking on it will automatically update your project settings.</span></span> 
+2. <span data-ttu-id="9254d-145">Salvare il file hello.</span><span class="sxs-lookup"><span data-stu-id="9254d-145">Save hello file.</span></span> 
+3. <span data-ttu-id="9254d-146">Eseguire **File -> Engagement -> Generate Android Manifest** (File -> Engagement -> Genera manifesto di Android).</span><span class="sxs-lookup"><span data-stu-id="9254d-146">Execute **File -> Engagement -> Generate Android Manifest**.</span></span> <span data-ttu-id="9254d-147">Si tratta di plug-in hello aggiunto da Mobile Engagement SDK hello e facendo clic su di essa verrà aggiornata automaticamente le impostazioni del progetto.</span><span class="sxs-lookup"><span data-stu-id="9254d-147">This is hello plugin added by hello Mobile Engagement SDK and clicking on it will automatically update your project settings.</span></span> 
    
     ![][74]
 
-### <a name="configure-the-app-to-receive-notifications"></a><span data-ttu-id="b8b83-148">Configurare l'app per la ricezione di notifiche</span><span class="sxs-lookup"><span data-stu-id="b8b83-148">Configure the app to receive notifications</span></span>
-1. <span data-ttu-id="b8b83-149">Aprire lo script **PlayerController** collegato all'oggetto Player per la modifica.</span><span class="sxs-lookup"><span data-stu-id="b8b83-149">Open up the **PlayerController** script attached to the Player object for editing.</span></span> 
-2. <span data-ttu-id="b8b83-150">Aggiungere quanto segue al metodo `Start()` :</span><span class="sxs-lookup"><span data-stu-id="b8b83-150">Add the following to the `Start()` method</span></span>
+### <a name="configure-hello-app-tooreceive-notifications"></a><span data-ttu-id="9254d-148">Configurare le notifiche di hello app tooreceive</span><span class="sxs-lookup"><span data-stu-id="9254d-148">Configure hello app tooreceive notifications</span></span>
+1. <span data-ttu-id="9254d-149">Aprire la console di hello **PlayerController** script associato l'oggetto lettore toohello per la modifica.</span><span class="sxs-lookup"><span data-stu-id="9254d-149">Open up hello **PlayerController** script attached toohello Player object for editing.</span></span> 
+2. <span data-ttu-id="9254d-150">Aggiungere hello seguente toohello `Start()` (metodo)</span><span class="sxs-lookup"><span data-stu-id="9254d-150">Add hello following toohello `Start()` method</span></span>
    
         EngagementReachAgent.Initialize();
-3. <span data-ttu-id="b8b83-151">Ora che l'app è aggiornata, distribuire ed eseguire l'app in un dispositivo in base alle istruzioni riportate di seguito.</span><span class="sxs-lookup"><span data-stu-id="b8b83-151">Now that the app is updated, deploy and run the app on a device per the instructions provided below.</span></span> 
+3. <span data-ttu-id="9254d-151">Ora che hello app viene aggiornata, distribuire ed eseguire l'applicazione hello in un dispositivo per istruzioni hello riportate di seguito.</span><span class="sxs-lookup"><span data-stu-id="9254d-151">Now that hello app is updated, deploy and run hello app on a device per hello instructions provided below.</span></span> 
 
 [!INCLUDE [Send notification from portal](../../includes/mobile-engagement-android-send-push-from-portal.md)]
 

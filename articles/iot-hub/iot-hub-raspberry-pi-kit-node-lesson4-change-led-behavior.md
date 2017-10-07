@@ -1,6 +1,6 @@
 ---
-title: 'Connettere Raspberry Pi (Node) ad Azure IoT: lezione 4: Modificare l''app | Documentazione Microsoft'
-description: Personalizzare i messaggi per modificare il comportamento di accensione e spegnimento del LED.
+title: 'Connettersi Raspberry Pi (nodo) tooAzure IoT - lezione 4: modificare app | Documenti Microsoft'
+description: Personalizzare hello toochange di messaggi hello LED di attivare e disattivare il comportamento.
 services: iot-hub
 documentationcenter: 
 author: shizn
@@ -17,30 +17,30 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 3/21/2017
 ms.author: xshi
-ms.openlocfilehash: b2ae23ac9cc1723936c4b4e1900b95cdcde744df
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 99b542fcb8639add0f5a0f7a49dd8abd0e224a51
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="change-the-on-and-off-behavior-of-the-led"></a><span data-ttu-id="af6bb-104">Modificare il comportamento di accensione e spegnimento del LED</span><span class="sxs-lookup"><span data-stu-id="af6bb-104">Change the on and off behavior of the LED</span></span>
-## <a name="what-you-will-do"></a><span data-ttu-id="af6bb-105">Contenuto dell'esercitazione</span><span class="sxs-lookup"><span data-stu-id="af6bb-105">What you will do</span></span>
-<span data-ttu-id="af6bb-106">Personalizzare i messaggi per modificare il comportamento di accensione e spegnimento del LED.</span><span class="sxs-lookup"><span data-stu-id="af6bb-106">Customize the messages to change the LED’s on and off behavior.</span></span> <span data-ttu-id="af6bb-107">In caso di problemi cercare le soluzioni nella pagina sulla [risoluzione dei problemi](iot-hub-raspberry-pi-kit-node-troubleshooting.md).</span><span class="sxs-lookup"><span data-stu-id="af6bb-107">If you have any problems, seek solutions on the [troubleshooting page](iot-hub-raspberry-pi-kit-node-troubleshooting.md).</span></span>
+# <a name="change-hello-on-and-off-behavior-of-hello-led"></a><span data-ttu-id="a6c95-104">Modificare hello e disattivare il comportamento di hello LED</span><span class="sxs-lookup"><span data-stu-id="a6c95-104">Change hello on and off behavior of hello LED</span></span>
+## <a name="what-you-will-do"></a><span data-ttu-id="a6c95-105">Contenuto dell'esercitazione</span><span class="sxs-lookup"><span data-stu-id="a6c95-105">What you will do</span></span>
+<span data-ttu-id="a6c95-106">Personalizzare hello toochange di messaggi hello LED di attivare e disattivare il comportamento.</span><span class="sxs-lookup"><span data-stu-id="a6c95-106">Customize hello messages toochange hello LED’s on and off behavior.</span></span> <span data-ttu-id="a6c95-107">Se si verificano problemi, cercare soluzioni in hello [risoluzione dei problemi di pagina](iot-hub-raspberry-pi-kit-node-troubleshooting.md).</span><span class="sxs-lookup"><span data-stu-id="a6c95-107">If you have any problems, seek solutions on hello [troubleshooting page](iot-hub-raspberry-pi-kit-node-troubleshooting.md).</span></span>
 
-## <a name="what-you-will-learn"></a><span data-ttu-id="af6bb-108">Contenuto dell'esercitazione</span><span class="sxs-lookup"><span data-stu-id="af6bb-108">What you will learn</span></span>
-<span data-ttu-id="af6bb-109">Usare funzioni aggiuntive di Node.js per modificare il comportamento di accensione e spegnimento del LED.</span><span class="sxs-lookup"><span data-stu-id="af6bb-109">Use additional Node.js functions to change the LED’s on and off behavior.</span></span>
+## <a name="what-you-will-learn"></a><span data-ttu-id="a6c95-108">Contenuto dell'esercitazione</span><span class="sxs-lookup"><span data-stu-id="a6c95-108">What you will learn</span></span>
+<span data-ttu-id="a6c95-109">Utilizzare hello toochange funzioni di Node.js aggiuntiva LED di attivare e disattivare il comportamento.</span><span class="sxs-lookup"><span data-stu-id="a6c95-109">Use additional Node.js functions toochange hello LED’s on and off behavior.</span></span>
 
-## <a name="what-you-need"></a><span data-ttu-id="af6bb-110">Elementi necessari</span><span class="sxs-lookup"><span data-stu-id="af6bb-110">What you need</span></span>
-<span data-ttu-id="af6bb-111">È necessario aver completato la sezione [Eseguire l'applicazione di esempio per ricevere messaggi da cloud a dispositivo](iot-hub-raspberry-pi-kit-node-lesson4-send-cloud-to-device-messages.md).</span><span class="sxs-lookup"><span data-stu-id="af6bb-111">You must have successfully completed [Run a sample application on Raspberry Pi to receive cloud-to-device messages](iot-hub-raspberry-pi-kit-node-lesson4-send-cloud-to-device-messages.md).</span></span>
+## <a name="what-you-need"></a><span data-ttu-id="a6c95-110">Elementi necessari</span><span class="sxs-lookup"><span data-stu-id="a6c95-110">What you need</span></span>
+<span data-ttu-id="a6c95-111">È necessario avere completato correttamente [eseguire un'applicazione di esempio in tooreceive Raspberry Pi messaggi da cloud a dispositivo](iot-hub-raspberry-pi-kit-node-lesson4-send-cloud-to-device-messages.md).</span><span class="sxs-lookup"><span data-stu-id="a6c95-111">You must have successfully completed [Run a sample application on Raspberry Pi tooreceive cloud-to-device messages](iot-hub-raspberry-pi-kit-node-lesson4-send-cloud-to-device-messages.md).</span></span>
 
-## <a name="add-nodejs-functions"></a><span data-ttu-id="af6bb-112">Aggiungere funzioni di Node.js</span><span class="sxs-lookup"><span data-stu-id="af6bb-112">Add Node.js functions</span></span>
-1. <span data-ttu-id="af6bb-113">Aprire l'applicazione di esempio in Visual Studio Code usando i comandi seguenti:</span><span class="sxs-lookup"><span data-stu-id="af6bb-113">Open the sample application in Visual Studio code by running the following commands:</span></span>
+## <a name="add-nodejs-functions"></a><span data-ttu-id="a6c95-112">Aggiungere funzioni di Node.js</span><span class="sxs-lookup"><span data-stu-id="a6c95-112">Add Node.js functions</span></span>
+1. <span data-ttu-id="a6c95-113">Aprire l'applicazione di esempio hello nel codice di Visual Studio eseguendo hello seguenti comandi:</span><span class="sxs-lookup"><span data-stu-id="a6c95-113">Open hello sample application in Visual Studio code by running hello following commands:</span></span>
    
    ```bash
    cd Lesson4
    code .
    ```
-2. <span data-ttu-id="af6bb-114">Aprire il file `app.js` e quindi aggiungere le funzioni seguenti alla fine:</span><span class="sxs-lookup"><span data-stu-id="af6bb-114">Open the `app.js` file, and then add the following functions at the end:</span></span>
+2. <span data-ttu-id="a6c95-114">Aprire hello `app.js` file e quindi aggiungere hello seguenti funzioni alla fine di hello:</span><span class="sxs-lookup"><span data-stu-id="a6c95-114">Open hello `app.js` file, and then add hello following functions at hello end:</span></span>
    
    ```javascript
    function turnOnLED() {
@@ -53,7 +53,7 @@ ms.lasthandoff: 07/11/2017
    ```
    
    ![File app.js con funzioni aggiunte](media/iot-hub-raspberry-pi-lessons/lesson4/updated_app_js.png)
-3. <span data-ttu-id="af6bb-116">Aggiungere le condizioni seguenti prima di quella predefinita nel blocco switch-case della funzione `receiveMessageCallback`:</span><span class="sxs-lookup"><span data-stu-id="af6bb-116">Add the following conditions before the default one in the switch-case block of the `receiveMessageCallback` function:</span></span>
+3. <span data-ttu-id="a6c95-116">Aggiungere hello seguente condizioni prima di quello predefinito di hello in blocco switch case hello di hello `receiveMessageCallback` funzione:</span><span class="sxs-lookup"><span data-stu-id="a6c95-116">Add hello following conditions before hello default one in hello switch-case block of hello `receiveMessageCallback` function:</span></span>
    
    ```javascript
    case 'on':
@@ -64,8 +64,8 @@ ms.lasthandoff: 07/11/2017
      break;
    ```
    
-   <span data-ttu-id="af6bb-117">A questo punto è stata configurata l'applicazione di esempio per rispondere a più istruzioni tramite messaggi.</span><span class="sxs-lookup"><span data-stu-id="af6bb-117">Now you’ve configured the sample application to respond to more instructions through messages.</span></span> <span data-ttu-id="af6bb-118">L'istruzione "on" accende il LED, mentre l'istruzione "off" lo spegne.</span><span class="sxs-lookup"><span data-stu-id="af6bb-118">The "on" instruction turns on the LED, and the "off" instruction turns off the LED.</span></span>
-4. <span data-ttu-id="af6bb-119">Aprire il file gulpfile.js e quindi aggiungere una nuova funzione prima della funzione `sendMessage`:</span><span class="sxs-lookup"><span data-stu-id="af6bb-119">Open the gulpfile.js file, and then add a new function before the function `sendMessage`:</span></span>
+   <span data-ttu-id="a6c95-117">Ora è configurata hello applicazione toorespond toomore le istruzioni di esempio tramite i messaggi.</span><span class="sxs-lookup"><span data-stu-id="a6c95-117">Now you’ve configured hello sample application toorespond toomore instructions through messages.</span></span> <span data-ttu-id="a6c95-118">Hello "on" istruzione attiva hello LED e hello "off" istruzione Disattiva hello LED.</span><span class="sxs-lookup"><span data-stu-id="a6c95-118">hello "on" instruction turns on hello LED, and hello "off" instruction turns off hello LED.</span></span>
+4. <span data-ttu-id="a6c95-119">Aprire il file gulpfile.js hello e quindi aggiungere una nuova funzione prima della funzione hello `sendMessage`:</span><span class="sxs-lookup"><span data-stu-id="a6c95-119">Open hello gulpfile.js file, and then add a new function before hello function `sendMessage`:</span></span>
    
    ```javascript
    var buildCustomMessage = function (messageId) {
@@ -80,26 +80,26 @@ ms.lasthandoff: 07/11/2017
    ```
    
    ![File gulpfile.js con funzione aggiunta](media/iot-hub-raspberry-pi-lessons/lesson4/updated_gulpfile.png)
-5. <span data-ttu-id="af6bb-121">Nella funzione `sendMessage` sostituire la riga `var message = buildMessage(sentMessageCount);` con la nuova riga illustrata nel frammento seguente:</span><span class="sxs-lookup"><span data-stu-id="af6bb-121">In the `sendMessage` function, replace the line `var message = buildMessage(sentMessageCount);` with the new line shown in the following snippet:</span></span>
+5. <span data-ttu-id="a6c95-121">In hello `sendMessage` di funzione, sostituire la riga hello `var message = buildMessage(sentMessageCount);` con una nuova riga hello mostrata nel seguente frammento di codice hello:</span><span class="sxs-lookup"><span data-stu-id="a6c95-121">In hello `sendMessage` function, replace hello line `var message = buildMessage(sentMessageCount);` with hello new line shown in hello following snippet:</span></span>
    
    ```javascript
    var message = buildCustomMessage(sentMessageCount);
    ```
-6. <span data-ttu-id="af6bb-122">Salvare tutte le modifiche.</span><span class="sxs-lookup"><span data-stu-id="af6bb-122">Save all the changes.</span></span>
+6. <span data-ttu-id="a6c95-122">Salvare tutte le modifiche di hello.</span><span class="sxs-lookup"><span data-stu-id="a6c95-122">Save all hello changes.</span></span>
 
-### <a name="deploy-and-run-the-sample-application"></a><span data-ttu-id="af6bb-123">Distribuire ed eseguire l'applicazione di esempio</span><span class="sxs-lookup"><span data-stu-id="af6bb-123">Deploy and run the sample application</span></span>
-<span data-ttu-id="af6bb-124">Distribuire ed eseguire l'applicazione di esempio nel dispositivo Pi eseguendo questo comando:</span><span class="sxs-lookup"><span data-stu-id="af6bb-124">Deploy and run the sample application on Pi by running the following command:</span></span>
+### <a name="deploy-and-run-hello-sample-application"></a><span data-ttu-id="a6c95-123">Distribuire ed eseguire l'applicazione di esempio hello</span><span class="sxs-lookup"><span data-stu-id="a6c95-123">Deploy and run hello sample application</span></span>
+<span data-ttu-id="a6c95-124">Distribuire ed eseguire l'applicazione di esempio hello Pi eseguendo hello comando seguente:</span><span class="sxs-lookup"><span data-stu-id="a6c95-124">Deploy and run hello sample application on Pi by running hello following command:</span></span>
 
 ```bash
 gulp deploy && gulp run
 ```
 
-<span data-ttu-id="af6bb-125">Il LED deve rimanere acceso per due secondi e quindi spento per altri due secondi.</span><span class="sxs-lookup"><span data-stu-id="af6bb-125">You should see the LED turn on for two seconds, and then turn off for another two seconds.</span></span> <span data-ttu-id="af6bb-126">L'ultimo messaggio "stop" arresta l'esecuzione dell'applicazione di esempio.</span><span class="sxs-lookup"><span data-stu-id="af6bb-126">The last "stop" message stops the sample application from running.</span></span>
+<span data-ttu-id="a6c95-125">Si noterà accendere hello LED per due secondi e quindi disattivare per un altro due secondi.</span><span class="sxs-lookup"><span data-stu-id="a6c95-125">You should see hello LED turn on for two seconds, and then turn off for another two seconds.</span></span> <span data-ttu-id="a6c95-126">il messaggio "stop" ultimo Hello arresta l'applicazione di esempio hello esecuzione.</span><span class="sxs-lookup"><span data-stu-id="a6c95-126">hello last "stop" message stops hello sample application from running.</span></span>
 
 ![Applicazione di esempio con messaggi di accensione e spegnimento](media/iot-hub-raspberry-pi-lessons/lesson4/gulp_on_and_off.png)
 
-<span data-ttu-id="af6bb-128">Congratulazioni.</span><span class="sxs-lookup"><span data-stu-id="af6bb-128">Congratulations!</span></span> <span data-ttu-id="af6bb-129">I messaggi inviati dall'hub IoT al dispositivo Pi sono stati personalizzati.</span><span class="sxs-lookup"><span data-stu-id="af6bb-129">You’ve successfully customized the messages that are sent to Pi from your IoT hub.</span></span>
+<span data-ttu-id="a6c95-128">Congratulazioni.</span><span class="sxs-lookup"><span data-stu-id="a6c95-128">Congratulations!</span></span> <span data-ttu-id="a6c95-129">È stato personalizzato correttamente i messaggi hello inviati tooPi dall'hub IoT.</span><span class="sxs-lookup"><span data-stu-id="a6c95-129">You’ve successfully customized hello messages that are sent tooPi from your IoT hub.</span></span>
 
-### <a name="summary"></a><span data-ttu-id="af6bb-130">Riepilogo</span><span class="sxs-lookup"><span data-stu-id="af6bb-130">Summary</span></span>
-<span data-ttu-id="af6bb-131">Questa sezione facoltativa illustra come personalizzare i messaggi per consentire all'applicazione di esempio di controllare il comportamento di accensione e spegnimento del LED in modo diverso.</span><span class="sxs-lookup"><span data-stu-id="af6bb-131">This optional section demonstrates how to customize messages so that the sample application can control the on and off behavior of the LED in a different way.</span></span>
+### <a name="summary"></a><span data-ttu-id="a6c95-130">Riepilogo</span><span class="sxs-lookup"><span data-stu-id="a6c95-130">Summary</span></span>
+<span data-ttu-id="a6c95-131">Questa sezione facoltativa viene illustrata la modalità toocustomize dei messaggi in modo che l'applicazione di esempio hello può controllare hello e disattivare il comportamento di hello LED in modo diverso.</span><span class="sxs-lookup"><span data-stu-id="a6c95-131">This optional section demonstrates how toocustomize messages so that hello sample application can control hello on and off behavior of hello LED in a different way.</span></span>
 

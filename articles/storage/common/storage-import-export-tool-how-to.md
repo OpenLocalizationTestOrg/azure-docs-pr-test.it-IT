@@ -1,6 +1,6 @@
 ---
-title: Uso dello strumento Importazione/Esportazione di Azure | Documentazione Microsoft
-description: Informazioni su come usare lo strumento Importazione/Esportazione per preparare i dischi rigidi per un processo di importazione o per ripristinare un processo di importazione o esportazione.
+title: hello aaaUsing strumento di importazione/esportazione di Azure | Documenti Microsoft
+description: Informazioni su come toouse hello strumento di importazione/esportazione tooprepare dischi rigido per un processo di importazione, ripristinare un processo di importazione o esportazione.
 author: muralikk
 manager: syadav
 editor: tysonn
@@ -14,27 +14,27 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/15/2017
 ms.author: muralikk
-ms.openlocfilehash: 20a720833842f9579fd4fccaa39e964def48197e
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: f5403ad482cfefbf099dbd06bf96edf8540fe51b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="using-the-azure-importexport-tool"></a><span data-ttu-id="9a143-103">Uso dello strumento di importazione/esportazione di Azure</span><span class="sxs-lookup"><span data-stu-id="9a143-103">Using the Azure Import/Export Tool</span></span> 
+# <a name="using-hello-azure-importexport-tool"></a><span data-ttu-id="ed265-103">Utilizzando lo strumento di importazione/esportazione di Azure hello</span><span class="sxs-lookup"><span data-stu-id="ed265-103">Using hello Azure Import/Export Tool</span></span> 
 
-<span data-ttu-id="9a143-104">Lo strumento Importazione/Esportazione di Azure (WAImportExport.exe) consente di creare e gestire i processi per il servizio Importazione/Esportazione di Azure e trasferire così grandi quantità di dati da e verso l'archiviazione BLOB di Azure.</span><span class="sxs-lookup"><span data-stu-id="9a143-104">The Azure Import/Export Tool (WAImportExport.exe) is used to create and manage jobs for the Azure Import/Export service, enabling you to transfer large amounts of data into or out of Azure Blob Storage.</span></span>
+<span data-ttu-id="ed265-104">Hello dello strumento di importazione/esportazione di Azure (WAImportExport.exe) viene utilizzato toocreate e gestire i processi per il servizio di importazione/esportazione di Azure hello, consentendo tootransfer grandi quantità di dati interno o all'esterno di archiviazione Blob di Azure.</span><span class="sxs-lookup"><span data-stu-id="ed265-104">hello Azure Import/Export Tool (WAImportExport.exe) is used toocreate and manage jobs for hello Azure Import/Export service, enabling you tootransfer large amounts of data into or out of Azure Blob Storage.</span></span>
 
-<span data-ttu-id="9a143-105">Questa documentazione riguarda la versione più recente dello strumento di importazione/esportazione di Azure.</span><span class="sxs-lookup"><span data-stu-id="9a143-105">This documentation is for the most recent version of the Azure Import/Export Tool.</span></span> <span data-ttu-id="9a143-106">Per informazioni sull'utilizzo del modello di distribuzione classica, vedere [Using the Azure Import/Export Tool v1](storage-import-export-tool-how-to-v1.md) (Uso dello strumento di importazione/esportazione di Azure - versione 1).</span><span class="sxs-lookup"><span data-stu-id="9a143-106">For information about using the classic deployment model, see [Using the Azure Import/Export Tool v1](storage-import-export-tool-how-to-v1.md).</span></span>
+<span data-ttu-id="ed265-105">Questa documentazione è per la versione più recente di hello di hello strumento di importazione/esportazione di Azure.</span><span class="sxs-lookup"><span data-stu-id="ed265-105">This documentation is for hello most recent version of hello Azure Import/Export Tool.</span></span> <span data-ttu-id="ed265-106">Per informazioni sull'utilizzo del modello di distribuzione classica hello, vedere [hello tramite lo strumento di importazione/esportazione di Azure v1](storage-import-export-tool-how-to-v1.md).</span><span class="sxs-lookup"><span data-stu-id="ed265-106">For information about using hello classic deployment model, see [Using hello Azure Import/Export Tool v1](storage-import-export-tool-how-to-v1.md).</span></span>
 
-<span data-ttu-id="9a143-107">Gli articoli seguenti mostrano come:</span><span class="sxs-lookup"><span data-stu-id="9a143-107">The following articles show you how to:</span></span>  
+<span data-ttu-id="ed265-107">Hello articoli seguenti illustrano come fare per:</span><span class="sxs-lookup"><span data-stu-id="ed265-107">hello following articles show you how to:</span></span>  
 
-- <span data-ttu-id="9a143-108">Installare e configurare lo strumento di importazione/esportazione di Azure.</span><span class="sxs-lookup"><span data-stu-id="9a143-108">Install and set up the Azure Import/Export Tool.</span></span>
-- <span data-ttu-id="9a143-109">Preparare i dischi rigidi per un processo di importazione di dati dalle unità dell'utente all'archivio BLOB di Azure.</span><span class="sxs-lookup"><span data-stu-id="9a143-109">Prepare your hard drives for a job where you import data from your drives to Azure Blob Storage.</span></span>
-- <span data-ttu-id="9a143-110">Esaminare lo stato di un processo con i file di log di copia.</span><span class="sxs-lookup"><span data-stu-id="9a143-110">Review the status of a job with Copy Log Files.</span></span> 
-- <span data-ttu-id="9a143-111">Ripristinare un processo di importazione.</span><span class="sxs-lookup"><span data-stu-id="9a143-111">Repair an import job.</span></span> 
-- <span data-ttu-id="9a143-112">Ripristinare un processo di esportazione.</span><span class="sxs-lookup"><span data-stu-id="9a143-112">Repair an export job.</span></span> 
-- <span data-ttu-id="9a143-113">Risolvere i problemi relativi allo strumento di importazione/esportazione di Azure.</span><span class="sxs-lookup"><span data-stu-id="9a143-113">Troubleshoot the Azure Import/Export Tool.</span></span> 
+- <span data-ttu-id="ed265-108">Installare e configurare hello strumento di importazione/esportazione di Azure.</span><span class="sxs-lookup"><span data-stu-id="ed265-108">Install and set up hello Azure Import/Export Tool.</span></span>
+- <span data-ttu-id="ed265-109">Preparare le unità disco rigido per un processo in cui si importano dati dal tooAzure di unità di archiviazione Blob.</span><span class="sxs-lookup"><span data-stu-id="ed265-109">Prepare your hard drives for a job where you import data from your drives tooAzure Blob Storage.</span></span>
+- <span data-ttu-id="ed265-110">Esaminare lo stato di hello di un processo con il file di Log di copia.</span><span class="sxs-lookup"><span data-stu-id="ed265-110">Review hello status of a job with Copy Log Files.</span></span> 
+- <span data-ttu-id="ed265-111">Ripristinare un processo di importazione.</span><span class="sxs-lookup"><span data-stu-id="ed265-111">Repair an import job.</span></span> 
+- <span data-ttu-id="ed265-112">Ripristinare un processo di esportazione.</span><span class="sxs-lookup"><span data-stu-id="ed265-112">Repair an export job.</span></span> 
+- <span data-ttu-id="ed265-113">Risoluzione dei problemi hello strumento di importazione/esportazione di Azure.</span><span class="sxs-lookup"><span data-stu-id="ed265-113">Troubleshoot hello Azure Import/Export Tool.</span></span> 
 
-## <a name="next-steps"></a><span data-ttu-id="9a143-114">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="9a143-114">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="ed265-114">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="ed265-114">Next steps</span></span>
 
-* <span data-ttu-id="9a143-115">[Setting up the WAImportExport tool](storage-import-export-tool-setup.md) (Configurazione dello strumento WAImportExport)</span><span class="sxs-lookup"><span data-stu-id="9a143-115">[Setting up the WAImportExport tool](storage-import-export-tool-setup.md)</span></span>
+* [<span data-ttu-id="ed265-115">Impostazione dello strumento WAImportExport hello</span><span class="sxs-lookup"><span data-stu-id="ed265-115">Setting up hello WAImportExport tool</span></span>](storage-import-export-tool-setup.md)

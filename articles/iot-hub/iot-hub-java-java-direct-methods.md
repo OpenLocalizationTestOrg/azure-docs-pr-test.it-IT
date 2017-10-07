@@ -1,6 +1,6 @@
 ---
-title: Usare metodi diretti dell'Hub IoT di Azure (Java) | Microsoft Docs
-description: Come usare metodi diretti dell'Hub IoT di Azure. Usare Azure IoT SDK per dispositivi per Java per implementare un'app per dispositivo simulato che include un metodo diretto e Azure IoT SDK per servizi per Java per implementare un'app del servizio che richiama il metodo diretto.
+title: IoT Hub Azure aaaUse diretta di metodi (linguaggio) | Documenti Microsoft
+description: Toouse IoT Hub Azure diretto come metodi. Usare il dispositivo di Azure IoT hello SDK per Java tooimplement un'app dispositivo simulato che include un metodo diretto e hello Azure IoT servizio SDK per Java tooimplement un'applicazione di servizio che richiama metodo diretto hello.
 services: iot-hub
 documentationcenter: 
 author: dominicbetts
@@ -14,47 +14,47 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/08/2017
 ms.author: dobett
-ms.openlocfilehash: 6243a1a8cc971c53c797182b2beb6f594d2ac5f7
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: b6f2f4a64535ab649a3965cd9c5a19bebaf88eef
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-direct-methods-java"></a><span data-ttu-id="a8c63-104">Usare metodi diretti (Java)</span><span class="sxs-lookup"><span data-stu-id="a8c63-104">Use direct methods (Java)</span></span>
+# <a name="use-direct-methods-java"></a><span data-ttu-id="aee50-104">Usare metodi diretti (Java)</span><span class="sxs-lookup"><span data-stu-id="aee50-104">Use direct methods (Java)</span></span>
 
 [!INCLUDE [iot-hub-selector-c2d-methods](../../includes/iot-hub-selector-c2d-methods.md)]
 
-<span data-ttu-id="a8c63-105">In questa esercitazione vengono create due app console Java:</span><span class="sxs-lookup"><span data-stu-id="a8c63-105">In this tutorial, you create two Java console apps:</span></span>
+<span data-ttu-id="aee50-105">In questa esercitazione vengono create due app console Java:</span><span class="sxs-lookup"><span data-stu-id="aee50-105">In this tutorial, you create two Java console apps:</span></span>
 
-* <span data-ttu-id="a8c63-106">**invoke-direct-method**, un'app back-end Java che chiama un metodo nell'app per dispositivo simulato e visualizza la risposta.</span><span class="sxs-lookup"><span data-stu-id="a8c63-106">**invoke-direct-method**, a Java back-end app that calls a method in the simulated device app and displays the response.</span></span>
-* <span data-ttu-id="a8c63-107">**simulated-device**, un'app Java che simula la connessione di un dispositivo all'hub IoT con l'identità del dispositivo creata.</span><span class="sxs-lookup"><span data-stu-id="a8c63-107">**simulated-device**, a Java app that simulates a device connecting to your IoT hub with the device identity you create.</span></span> <span data-ttu-id="a8c63-108">Questa app risponde al metodo diretto richiamato dal back-end.</span><span class="sxs-lookup"><span data-stu-id="a8c63-108">This app responds to the direct invoked from the back end.</span></span>
+* <span data-ttu-id="aee50-106">**metodo direct Invoke**, un'applicazione di back-end Java che chiama un metodo in app dispositivo simulato hello e Visualizza la risposta hello.</span><span class="sxs-lookup"><span data-stu-id="aee50-106">**invoke-direct-method**, a Java back-end app that calls a method in hello simulated device app and displays hello response.</span></span>
+* <span data-ttu-id="aee50-107">**dispositivo simulato**, un'applicazione Java che simula un dispositivo di connessione hub IoT tooyour con l'identità del dispositivo hello create.</span><span class="sxs-lookup"><span data-stu-id="aee50-107">**simulated-device**, a Java app that simulates a device connecting tooyour IoT hub with hello device identity you create.</span></span> <span data-ttu-id="aee50-108">Questa app risponde toohello richiamato direttamente dal back-end hello.</span><span class="sxs-lookup"><span data-stu-id="aee50-108">This app responds toohello direct invoked from hello back end.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="a8c63-109">Per informazioni sugli SDK che consentono di compilare le applicazioni da eseguire nei dispositivi e i back-end della soluzione, vedere [Azure IoT SDK][lnk-hub-sdks].</span><span class="sxs-lookup"><span data-stu-id="a8c63-109">For information about the SDKs that you can use to build applications to run on devices and your solution back end, see [Azure IoT SDKs][lnk-hub-sdks].</span></span>
+> <span data-ttu-id="aee50-109">Per informazioni su hello SDK che è possibile utilizzare toobuild toorun di applicazioni in dispositivi e la soluzione di back-end, vedere [Azure IoT SDK][lnk-hub-sdks].</span><span class="sxs-lookup"><span data-stu-id="aee50-109">For information about hello SDKs that you can use toobuild applications toorun on devices and your solution back end, see [Azure IoT SDKs][lnk-hub-sdks].</span></span>
 
-<span data-ttu-id="a8c63-110">Per completare questa esercitazione, sono necessari:</span><span class="sxs-lookup"><span data-stu-id="a8c63-110">To complete this tutorial, you need:</span></span>
+<span data-ttu-id="aee50-110">toocomplete questa esercitazione, è necessario:</span><span class="sxs-lookup"><span data-stu-id="aee50-110">toocomplete this tutorial, you need:</span></span>
 
-* <span data-ttu-id="a8c63-111">Java SE 8.</span><span class="sxs-lookup"><span data-stu-id="a8c63-111">Java SE 8.</span></span> <br/> <span data-ttu-id="a8c63-112">[Preparare l'ambiente di sviluppo][lnk-dev-setup] descrive come installare Java per questa esercitazione in Windows o Linux.</span><span class="sxs-lookup"><span data-stu-id="a8c63-112">[Prepare your development environment][lnk-dev-setup] describes how to install Java for this tutorial on either Windows or Linux.</span></span>
-* <span data-ttu-id="a8c63-113">Maven 3.</span><span class="sxs-lookup"><span data-stu-id="a8c63-113">Maven 3.</span></span>  <br/> <span data-ttu-id="a8c63-114">[Preparare l'ambiente di sviluppo][lnk-dev-setup] descrive come installare [Maven][lnk-maven] per questa esercitazione in Windows o Linux.</span><span class="sxs-lookup"><span data-stu-id="a8c63-114">[Prepare your development environment][lnk-dev-setup] describes how to install [Maven][lnk-maven] for this tutorial on either Windows or Linux.</span></span>
-* <span data-ttu-id="a8c63-115">[Versione di Node.js: 0.10.0 o successiva](http://nodejs.org).</span><span class="sxs-lookup"><span data-stu-id="a8c63-115">[Node.js version 0.10.0 or later](http://nodejs.org).</span></span>
+* <span data-ttu-id="aee50-111">Java SE 8.</span><span class="sxs-lookup"><span data-stu-id="aee50-111">Java SE 8.</span></span> <br/> <span data-ttu-id="aee50-112">[Preparare l'ambiente di sviluppo] [ lnk-dev-setup] viene descritto come tooinstall Java per questa esercitazione su Windows o Linux.</span><span class="sxs-lookup"><span data-stu-id="aee50-112">[Prepare your development environment][lnk-dev-setup] describes how tooinstall Java for this tutorial on either Windows or Linux.</span></span>
+* <span data-ttu-id="aee50-113">Maven 3.</span><span class="sxs-lookup"><span data-stu-id="aee50-113">Maven 3.</span></span>  <br/> <span data-ttu-id="aee50-114">[Preparare l'ambiente di sviluppo] [ lnk-dev-setup] viene descritto come tooinstall [Maven] [ lnk-maven] per questa esercitazione su Windows o Linux.</span><span class="sxs-lookup"><span data-stu-id="aee50-114">[Prepare your development environment][lnk-dev-setup] describes how tooinstall [Maven][lnk-maven] for this tutorial on either Windows or Linux.</span></span>
+* <span data-ttu-id="aee50-115">[Versione di Node.js: 0.10.0 o successiva](http://nodejs.org).</span><span class="sxs-lookup"><span data-stu-id="aee50-115">[Node.js version 0.10.0 or later](http://nodejs.org).</span></span>
 
 [!INCLUDE [iot-hub-get-started-create-hub](../../includes/iot-hub-get-started-create-hub.md)]
 
 [!INCLUDE [iot-hub-get-started-create-device-identity](../../includes/iot-hub-get-started-create-device-identity.md)]
 
-## <a name="create-a-simulated-device-app"></a><span data-ttu-id="a8c63-116">Creare un'app di dispositivo simulato</span><span class="sxs-lookup"><span data-stu-id="a8c63-116">Create a simulated device app</span></span>
+## <a name="create-a-simulated-device-app"></a><span data-ttu-id="aee50-116">Creare un'app di dispositivo simulato</span><span class="sxs-lookup"><span data-stu-id="aee50-116">Create a simulated device app</span></span>
 
-<span data-ttu-id="a8c63-117">In questa sezione viene creata un'app console Java che risponde a un metodo chiamato dal back-end della soluzione.</span><span class="sxs-lookup"><span data-stu-id="a8c63-117">In this section, you create a Java console app that responds to a method called by the solution back end.</span></span>
+<span data-ttu-id="aee50-117">In questa sezione si crea un'applicazione console Java che risponde tooa metodo chiamato dalla soluzione hello nuovamente finale.</span><span class="sxs-lookup"><span data-stu-id="aee50-117">In this section, you create a Java console app that responds tooa method called by hello solution back end.</span></span>
 
-1. <span data-ttu-id="a8c63-118">Creare una cartella vuota denominata iot-java-direct-method.</span><span class="sxs-lookup"><span data-stu-id="a8c63-118">Create an empty folder called iot-java-direct-method.</span></span>
+1. <span data-ttu-id="aee50-118">Creare una cartella vuota denominata iot-java-direct-method.</span><span class="sxs-lookup"><span data-stu-id="aee50-118">Create an empty folder called iot-java-direct-method.</span></span>
 
-1. <span data-ttu-id="a8c63-119">Nella cartella iot-java-direct-method creare un progetto Maven denominato **simulated-device** usando il comando seguente al prompt dei comandi.</span><span class="sxs-lookup"><span data-stu-id="a8c63-119">In the iot-java-direct-method folder, create a Maven project called **simulated-device** using the following command at your command prompt.</span></span> <span data-ttu-id="a8c63-120">Il comando seguente è un lungo comando singolo:</span><span class="sxs-lookup"><span data-stu-id="a8c63-120">The following command is a single, long command:</span></span>
+1. <span data-ttu-id="aee50-119">Nella cartella metodo diretto di java iot hello, creare un progetto di Maven denominato **dispositivo simulato** utilizzando hello seguente comando al prompt dei comandi.</span><span class="sxs-lookup"><span data-stu-id="aee50-119">In hello iot-java-direct-method folder, create a Maven project called **simulated-device** using hello following command at your command prompt.</span></span> <span data-ttu-id="aee50-120">Hello comando seguente è un comando singolo, condizione:</span><span class="sxs-lookup"><span data-stu-id="aee50-120">hello following command is a single, long command:</span></span>
 
     `mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=simulated-device -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false`
 
-1. <span data-ttu-id="a8c63-121">Al prompt dei comandi passare alla cartella simulated-device.</span><span class="sxs-lookup"><span data-stu-id="a8c63-121">At your command prompt, navigate to the simulated-device folder.</span></span>
+1. <span data-ttu-id="aee50-121">Al prompt dei comandi, passare cartella dispositivo simulato toohello.</span><span class="sxs-lookup"><span data-stu-id="aee50-121">At your command prompt, navigate toohello simulated-device folder.</span></span>
 
-1. <span data-ttu-id="a8c63-122">In un editor di testo aprire il file pom.xml nella cartella simulated-device e aggiungere le dipendenze seguenti al nodo **dependencies** .</span><span class="sxs-lookup"><span data-stu-id="a8c63-122">Using a text editor, open the pom.xml file in the simulated-device folder and add the following dependencies to the **dependencies** node.</span></span> <span data-ttu-id="a8c63-123">Questa dipendenza consente di usare il pacchetto iot-device-client nell'app per comunicare con l'hub IoT:</span><span class="sxs-lookup"><span data-stu-id="a8c63-123">This dependency enables you to use the iot-device-client package in your app to communicate with your IoT hub:</span></span>
+1. <span data-ttu-id="aee50-122">Utilizzando un editor di testo, di aprire file pom.xml hello nella cartella dispositivo simulato hello e aggiungere hello seguente dipendenze toohello **dipendenze** nodo.</span><span class="sxs-lookup"><span data-stu-id="aee50-122">Using a text editor, open hello pom.xml file in hello simulated-device folder and add hello following dependencies toohello **dependencies** node.</span></span> <span data-ttu-id="aee50-123">Questa dipendenza consente si toouse hello client di dispositivi iot pacchetto in toocommunicate l'app con l'hub IoT:</span><span class="sxs-lookup"><span data-stu-id="aee50-123">This dependency enables you toouse hello iot-device-client package in your app toocommunicate with your IoT hub:</span></span>
 
     ```xml
     <dependency>
@@ -65,9 +65,9 @@ ms.lasthandoff: 08/18/2017
     ```
 
     > [!NOTE]
-    > <span data-ttu-id="a8c63-124">È possibile cercare la versione più recente di **iot-device-client** usando la [ricerca di Maven][lnk-maven-device-search].</span><span class="sxs-lookup"><span data-stu-id="a8c63-124">You can check for the latest version of **iot-device-client** using [Maven search][lnk-maven-device-search].</span></span>
+    > <span data-ttu-id="aee50-124">È possibile verificare la versione più recente di hello di **client di dispositivi iot** utilizzando [ricerca Maven][lnk-maven-device-search].</span><span class="sxs-lookup"><span data-stu-id="aee50-124">You can check for hello latest version of **iot-device-client** using [Maven search][lnk-maven-device-search].</span></span>
 
-1. <span data-ttu-id="a8c63-125">Aggiungere il nodo **build** seguente dopo il nodo **dependencies**.</span><span class="sxs-lookup"><span data-stu-id="a8c63-125">Add the following **build** node after the **dependencies** node.</span></span> <span data-ttu-id="a8c63-126">Questa configurazione indica a Maven di usare Java 1.8 per compilare l'app:</span><span class="sxs-lookup"><span data-stu-id="a8c63-126">This configuration instructs Maven to use Java 1.8 to build the app:</span></span>
+1. <span data-ttu-id="aee50-125">Aggiungere il seguente hello **compilare** nodo dopo hello **dipendenze** nodo.</span><span class="sxs-lookup"><span data-stu-id="aee50-125">Add hello following **build** node after hello **dependencies** node.</span></span> <span data-ttu-id="aee50-126">Questa configurazione indica Maven toouse Java toobuild 1.8 hello app:</span><span class="sxs-lookup"><span data-stu-id="aee50-126">This configuration instructs Maven toouse Java 1.8 toobuild hello app:</span></span>
 
     ```xml
     <build>
@@ -85,11 +85,11 @@ ms.lasthandoff: 08/18/2017
     </build>
     ```
 
-1. <span data-ttu-id="a8c63-127">Salvare e chiudere il file pom.xml.</span><span class="sxs-lookup"><span data-stu-id="a8c63-127">Save and close the pom.xml file.</span></span>
+1. <span data-ttu-id="aee50-127">Salvare e chiudere il file di pom.xml hello.</span><span class="sxs-lookup"><span data-stu-id="aee50-127">Save and close hello pom.xml file.</span></span>
 
-1. <span data-ttu-id="a8c63-128">Usando un editor di testo, aprire il file simulated-device\src\main\java\com\mycompany\app\App.java.</span><span class="sxs-lookup"><span data-stu-id="a8c63-128">Using a text editor, open the simulated-device\src\main\java\com\mycompany\app\App.java file.</span></span>
+1. <span data-ttu-id="aee50-128">Per aprire il file di simulated-device\src\main\java\com\mycompany\app\App.java hello, utilizzando un editor di testo.</span><span class="sxs-lookup"><span data-stu-id="aee50-128">Using a text editor, open hello simulated-device\src\main\java\com\mycompany\app\App.java file.</span></span>
 
-1. <span data-ttu-id="a8c63-129">Aggiungere al file le istruzioni **import** seguenti:</span><span class="sxs-lookup"><span data-stu-id="a8c63-129">Add the following **import** statements to the file:</span></span>
+1. <span data-ttu-id="aee50-129">Aggiungere il seguente hello **importare** file toohello istruzioni:</span><span class="sxs-lookup"><span data-stu-id="aee50-129">Add hello following **import** statements toohello file:</span></span>
 
     ```java
     import com.microsoft.azure.sdk.iot.device.*;
@@ -100,7 +100,7 @@ ms.lasthandoff: 08/18/2017
     import java.util.Scanner;
     ```
 
-1. <span data-ttu-id="a8c63-130">Aggiungere le variabili a livello di classe seguenti alla classe **App** .</span><span class="sxs-lookup"><span data-stu-id="a8c63-130">Add the following class-level variables to the **App** class.</span></span> <span data-ttu-id="a8c63-131">Sostituzione di `{youriothubname}` con il nome dell'hub IoT e di `{yourdevicekey}` con il valore della chiave del dispositivo generato nella sezione *Creare un'identità del dispositivo*:</span><span class="sxs-lookup"><span data-stu-id="a8c63-131">Replacing `{youriothubname}` with your IoT hub name, and `{yourdevicekey}` with the device key value you generated in the *Create a device identity* section:</span></span>
+1. <span data-ttu-id="aee50-130">Aggiungere hello seguenti variabili a livello di classe toohello **App** classe.</span><span class="sxs-lookup"><span data-stu-id="aee50-130">Add hello following class-level variables toohello **App** class.</span></span> <span data-ttu-id="aee50-131">Sostituzione di `{youriothubname}` con il nome di hub IoT, e `{yourdevicekey}` con il valore della chiave di hello dispositivo è stato generato in hello *creare un'identità del dispositivo* sezione:</span><span class="sxs-lookup"><span data-stu-id="aee50-131">Replacing `{youriothubname}` with your IoT hub name, and `{yourdevicekey}` with hello device key value you generated in hello *Create a device identity* section:</span></span>
 
     ```java
     private static String connString = "HostName={youriothubname}.azure-devices.net;DeviceId=myDeviceID;SharedAccessKey={yourdevicekey}";
@@ -110,21 +110,21 @@ ms.lasthandoff: 08/18/2017
     private static final int METHOD_NOT_DEFINED = 404;
     ```
 
-    <span data-ttu-id="a8c63-132">Questa app di esempio usa la variabile **protocol** quando crea un'istanza di un oggetto **DeviceClient**.</span><span class="sxs-lookup"><span data-stu-id="a8c63-132">This sample app uses the **protocol** variable when it instantiates a **DeviceClient** object.</span></span> <span data-ttu-id="a8c63-133">Attualmente per usare i metodi diretti è necessario usare il protocollo MQTT.</span><span class="sxs-lookup"><span data-stu-id="a8c63-133">Currently, to use direct methods you must use the MQTT protocol.</span></span>
+    <span data-ttu-id="aee50-132">Questa app di esempio utilizza hello **protocollo** variabile quando si crea un'istanza di un **DeviceClient** oggetto.</span><span class="sxs-lookup"><span data-stu-id="aee50-132">This sample app uses hello **protocol** variable when it instantiates a **DeviceClient** object.</span></span> <span data-ttu-id="aee50-133">Attualmente, toouse diretta metodi è necessario utilizzare il protocollo MQTT hello.</span><span class="sxs-lookup"><span data-stu-id="aee50-133">Currently, toouse direct methods you must use hello MQTT protocol.</span></span>
 
-1. <span data-ttu-id="a8c63-134">Per restituire un codice di stato all'hub IoT, aggiungere la classe annidata seguente alla classe **App**:</span><span class="sxs-lookup"><span data-stu-id="a8c63-134">To return a status code to your IoT hub, add the following nested class to the **App** class:</span></span>
+1. <span data-ttu-id="aee50-134">tooreturn un hub IoT tooyour codice di stato, aggiungere il seguente hello annidati classe toohello **App** classe:</span><span class="sxs-lookup"><span data-stu-id="aee50-134">tooreturn a status code tooyour IoT hub, add hello following nested class toohello **App** class:</span></span>
 
     ```java
     protected static class DirectMethodStatusCallback implements IotHubEventCallback
     {
       public void execute(IotHubStatusCode status, Object context)
       {
-        System.out.println("IoT Hub responded to device method operation with status " + status.name());
+        System.out.println("IoT Hub responded toodevice method operation with status " + status.name());
       }
     }
     ```
 
-1. <span data-ttu-id="a8c63-135">Per gestire le chiamate al metodo diretto dal back-end della soluzione, aggiungere la classe annidata seguente alla classe **App**:</span><span class="sxs-lookup"><span data-stu-id="a8c63-135">To handle the direct method invocations from the solution back end, add the following nested class to the **App** class:</span></span>
+1. <span data-ttu-id="aee50-135">le chiamate dirette del metodo di hello toohandle dal back-end soluzione hello, aggiungere il seguente di hello annidati classe toohello **App** classe:</span><span class="sxs-lookup"><span data-stu-id="aee50-135">toohandle hello direct method invocations from hello solution back end, add hello following nested class toohello **App** class:</span></span>
 
     ```java
     protected static class DirectMethodCallback implements com.microsoft.azure.sdk.iot.device.DeviceTwin.DeviceMethodCallback
@@ -153,7 +153,7 @@ ms.lasthandoff: 08/18/2017
     }
     ```
 
-1. <span data-ttu-id="a8c63-136">Per creare un **DeviceClient** e rimanere in ascolto delle chiamate al metodo diretto, aggiungere un metodo **main** alla classe **App**:</span><span class="sxs-lookup"><span data-stu-id="a8c63-136">To create a **DeviceClient** and listen for direct method invocations, add a **main** method to the **App** class:</span></span>
+1. <span data-ttu-id="aee50-136">toocreate un **DeviceClient** e attendere le chiamate dirette del metodo, aggiungere un **principale** metodo toohello **App** classe:</span><span class="sxs-lookup"><span data-stu-id="aee50-136">toocreate a **DeviceClient** and listen for direct method invocations, add a **main** method toohello **App** class:</span></span>
 
     ```java
     public static void main(String[] args)
@@ -167,7 +167,7 @@ ms.lasthandoff: 08/18/2017
       {
         client.open();
         client.subscribeToDeviceMethod(new DirectMethodCallback(), null, new DirectMethodStatusCallback(), null);
-        System.out.println("Subscribed to direct methods. Waiting...");
+        System.out.println("Subscribed toodirect methods. Waiting...");
       }
       catch (Exception e)
       {
@@ -176,7 +176,7 @@ ms.lasthandoff: 08/18/2017
         System.out.println("Shutting down...");
       }
 
-      System.out.println("Press any key to exit...");
+      System.out.println("Press any key tooexit...");
       Scanner scanner = new Scanner(System.in);
       scanner.nextLine();
       scanner.close();
@@ -185,23 +185,23 @@ ms.lasthandoff: 08/18/2017
     }
     ```
 
-1. <span data-ttu-id="a8c63-137">Salvare e chiudere il file simulated-device\src\main\java\com\mycompany\app\App.java.</span><span class="sxs-lookup"><span data-stu-id="a8c63-137">Save and close the simulated-device\src\main\java\com\mycompany\app\App.java file</span></span>
+1. <span data-ttu-id="aee50-137">Salvare e chiudere il file di simulated-device\src\main\java\com\mycompany\app\App.java hello</span><span class="sxs-lookup"><span data-stu-id="aee50-137">Save and close hello simulated-device\src\main\java\com\mycompany\app\App.java file</span></span>
 
-1. <span data-ttu-id="a8c63-138">Compilare l'app **simulated-device** e correggere eventuali errori.</span><span class="sxs-lookup"><span data-stu-id="a8c63-138">Build the **simulated-device** app and correct any errors.</span></span> <span data-ttu-id="a8c63-139">Al prompt dei comandi passare alla cartella simulated-device ed eseguire il comando seguente:</span><span class="sxs-lookup"><span data-stu-id="a8c63-139">At your command prompt, navigate to the simulated-device folder and run the following command:</span></span>
+1. <span data-ttu-id="aee50-138">Compilare hello **dispositivo simulato** app e correggere eventuali errori.</span><span class="sxs-lookup"><span data-stu-id="aee50-138">Build hello **simulated-device** app and correct any errors.</span></span> <span data-ttu-id="aee50-139">Al prompt dei comandi, passare cartella dispositivo simulato toohello e hello esecuzione comando seguente:</span><span class="sxs-lookup"><span data-stu-id="aee50-139">At your command prompt, navigate toohello simulated-device folder and run hello following command:</span></span>
 
     `mvn clean package -DskipTests`
 
-## <a name="call-a-direct-method-on-a-device"></a><span data-ttu-id="a8c63-140">Chiamare un metodo diretto in un dispositivo</span><span class="sxs-lookup"><span data-stu-id="a8c63-140">Call a direct method on a device</span></span>
+## <a name="call-a-direct-method-on-a-device"></a><span data-ttu-id="aee50-140">Chiamare un metodo diretto in un dispositivo</span><span class="sxs-lookup"><span data-stu-id="aee50-140">Call a direct method on a device</span></span>
 
-<span data-ttu-id="a8c63-141">In questa sezione viene creata un'app console Java che richiama un metodo diretto e quindi visualizza la risposta.</span><span class="sxs-lookup"><span data-stu-id="a8c63-141">In this section, you create a Java console app that invokes a direct method and then displays the response.</span></span> <span data-ttu-id="a8c63-142">Quest'app console si connette all'hub IoT per richiamare il metodo diretto.</span><span class="sxs-lookup"><span data-stu-id="a8c63-142">This console app connects to your IoT Hub to invoke the direct method.</span></span>
+<span data-ttu-id="aee50-141">In questa sezione si crea un'applicazione console Java che richiama un metodo diretto e quindi Visualizza la risposta hello.</span><span class="sxs-lookup"><span data-stu-id="aee50-141">In this section, you create a Java console app that invokes a direct method and then displays hello response.</span></span> <span data-ttu-id="aee50-142">Questa app console si connette tooyour IoT Hub tooinvoke hello dirette del metodo.</span><span class="sxs-lookup"><span data-stu-id="aee50-142">This console app connects tooyour IoT Hub tooinvoke hello direct method.</span></span>
 
-1. <span data-ttu-id="a8c63-143">Nella cartella iot-java-direct-method creare un progetto Maven denominato **invoke-direct-method** usando il comando seguente al prompt dei comandi.</span><span class="sxs-lookup"><span data-stu-id="a8c63-143">In the iot-java-direct-method folder, create a Maven project called **invoke-direct-method** using the following command at your command prompt.</span></span> <span data-ttu-id="a8c63-144">Il comando seguente è un lungo comando singolo:</span><span class="sxs-lookup"><span data-stu-id="a8c63-144">The following command is a single, long command:</span></span>
+1. <span data-ttu-id="aee50-143">Nella cartella metodo diretto di java iot hello, creare un progetto di Maven denominato **direct-metodo invoke** utilizzando hello seguente comando al prompt dei comandi.</span><span class="sxs-lookup"><span data-stu-id="aee50-143">In hello iot-java-direct-method folder, create a Maven project called **invoke-direct-method** using hello following command at your command prompt.</span></span> <span data-ttu-id="aee50-144">Hello comando seguente è un comando singolo, condizione:</span><span class="sxs-lookup"><span data-stu-id="aee50-144">hello following command is a single, long command:</span></span>
 
     `mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=invoke-direct-method -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false`
 
-1. <span data-ttu-id="a8c63-145">Al prompt dei comandi passare alla cartella invoke-direct-method.</span><span class="sxs-lookup"><span data-stu-id="a8c63-145">At your command prompt, navigate to the invoke-direct-method folder.</span></span>
+1. <span data-ttu-id="aee50-145">Al prompt dei comandi, passare cartella direct-metodo invoke toohello.</span><span class="sxs-lookup"><span data-stu-id="aee50-145">At your command prompt, navigate toohello invoke-direct-method folder.</span></span>
 
-1. <span data-ttu-id="a8c63-146">In un editor di testo aprire il file pom.xml nella cartella invoke-direct-method e aggiungere la dipendenza seguente al nodo **dependencies**.</span><span class="sxs-lookup"><span data-stu-id="a8c63-146">Using a text editor, open the pom.xml file in the invoke-direct-method folder and add the following dependency to the **dependencies** node.</span></span> <span data-ttu-id="a8c63-147">Questa dipendenza consente di usare il pacchetto iot-service-client nell'app per comunicare con l'hub IoT:</span><span class="sxs-lookup"><span data-stu-id="a8c63-147">This dependency enables you to use the iot-service-client package in your app to communicate with your IoT hub:</span></span>
+1. <span data-ttu-id="aee50-146">Utilizzando un editor di testo, di aprire file pom.xml hello nella cartella di direct-metodo invoke hello e aggiungere hello seguente dipendenza toohello **dipendenze** nodo.</span><span class="sxs-lookup"><span data-stu-id="aee50-146">Using a text editor, open hello pom.xml file in hello invoke-direct-method folder and add hello following dependency toohello **dependencies** node.</span></span> <span data-ttu-id="aee50-147">Questa dipendenza consente si toouse hello client di servizi iot pacchetto in toocommunicate l'app con l'hub IoT:</span><span class="sxs-lookup"><span data-stu-id="aee50-147">This dependency enables you toouse hello iot-service-client package in your app toocommunicate with your IoT hub:</span></span>
 
     ```xml
     <dependency>
@@ -213,9 +213,9 @@ ms.lasthandoff: 08/18/2017
     ```
 
     > [!NOTE]
-    > <span data-ttu-id="a8c63-148">È possibile cercare la versione più recente di **iot-service-client** usando la [ricerca di Maven][lnk-maven-service-search].</span><span class="sxs-lookup"><span data-stu-id="a8c63-148">You can check for the latest version of **iot-service-client** using [Maven search][lnk-maven-service-search].</span></span>
+    > <span data-ttu-id="aee50-148">È possibile verificare la versione più recente di hello di **client di servizi iot** utilizzando [ricerca Maven][lnk-maven-service-search].</span><span class="sxs-lookup"><span data-stu-id="aee50-148">You can check for hello latest version of **iot-service-client** using [Maven search][lnk-maven-service-search].</span></span>
 
-1. <span data-ttu-id="a8c63-149">Aggiungere il nodo **build** seguente dopo il nodo **dependencies**.</span><span class="sxs-lookup"><span data-stu-id="a8c63-149">Add the following **build** node after the **dependencies** node.</span></span> <span data-ttu-id="a8c63-150">Questa configurazione indica a Maven di usare Java 1.8 per compilare l'app:</span><span class="sxs-lookup"><span data-stu-id="a8c63-150">This configuration instructs Maven to use Java 1.8 to build the app:</span></span>
+1. <span data-ttu-id="aee50-149">Aggiungere il seguente hello **compilare** nodo dopo hello **dipendenze** nodo.</span><span class="sxs-lookup"><span data-stu-id="aee50-149">Add hello following **build** node after hello **dependencies** node.</span></span> <span data-ttu-id="aee50-150">Questa configurazione indica Maven toouse Java toobuild 1.8 hello app:</span><span class="sxs-lookup"><span data-stu-id="aee50-150">This configuration instructs Maven toouse Java 1.8 toobuild hello app:</span></span>
 
     ```xml
     <build>
@@ -233,11 +233,11 @@ ms.lasthandoff: 08/18/2017
     </build>
     ```
 
-1. <span data-ttu-id="a8c63-151">Salvare e chiudere il file pom.xml.</span><span class="sxs-lookup"><span data-stu-id="a8c63-151">Save and close the pom.xml file.</span></span>
+1. <span data-ttu-id="aee50-151">Salvare e chiudere il file di pom.xml hello.</span><span class="sxs-lookup"><span data-stu-id="aee50-151">Save and close hello pom.xml file.</span></span>
 
-1. <span data-ttu-id="a8c63-152">In un editor di testo aprire il file invoke-direct-method\src\main\java\com\mycompany\app\App.java.</span><span class="sxs-lookup"><span data-stu-id="a8c63-152">Using a text editor, open the invoke-direct-method\src\main\java\com\mycompany\app\App.java file.</span></span>
+1. <span data-ttu-id="aee50-152">Per aprire il file di invoke-direct-method\src\main\java\com\mycompany\app\App.java hello, utilizzando un editor di testo.</span><span class="sxs-lookup"><span data-stu-id="aee50-152">Using a text editor, open hello invoke-direct-method\src\main\java\com\mycompany\app\App.java file.</span></span>
 
-1. <span data-ttu-id="a8c63-153">Aggiungere al file le istruzioni **import** seguenti:</span><span class="sxs-lookup"><span data-stu-id="a8c63-153">Add the following **import** statements to the file:</span></span>
+1. <span data-ttu-id="aee50-153">Aggiungere il seguente hello **importare** file toohello istruzioni:</span><span class="sxs-lookup"><span data-stu-id="aee50-153">Add hello following **import** statements toohello file:</span></span>
 
     ```java
     import com.microsoft.azure.sdk.iot.service.devicetwin.DeviceMethod;
@@ -248,7 +248,7 @@ ms.lasthandoff: 08/18/2017
     import java.util.concurrent.TimeUnit;
     ```
 
-1. <span data-ttu-id="a8c63-154">Aggiungere le variabili a livello di classe seguenti alla classe **App** .</span><span class="sxs-lookup"><span data-stu-id="a8c63-154">Add the following class-level variables to the **App** class.</span></span> <span data-ttu-id="a8c63-155">Sostituire `{youriothubconnectionstring}` con la stringa di connessione dell'hub IoT indicata nella sezione *Creare un hub IoT*:</span><span class="sxs-lookup"><span data-stu-id="a8c63-155">Replace `{youriothubconnectionstring}` with your IoT hub connection string you noted in the *Create an IoT Hub* section:</span></span>
+1. <span data-ttu-id="aee50-154">Aggiungere hello seguenti variabili a livello di classe toohello **App** classe.</span><span class="sxs-lookup"><span data-stu-id="aee50-154">Add hello following class-level variables toohello **App** class.</span></span> <span data-ttu-id="aee50-155">Sostituire `{youriothubconnectionstring}` con la stringa di connessione hub IoT è stata annotata nella hello *creare un IoT Hub* sezione:</span><span class="sxs-lookup"><span data-stu-id="aee50-155">Replace `{youriothubconnectionstring}` with your IoT hub connection string you noted in hello *Create an IoT Hub* section:</span></span>
 
     ```java
     public static final String iotHubConnectionString = "{youriothubconnectionstring}";
@@ -257,10 +257,10 @@ ms.lasthandoff: 08/18/2017
     public static final String methodName = "writeLine";
     public static final Long responseTimeout = TimeUnit.SECONDS.toSeconds(30);
     public static final Long connectTimeout = TimeUnit.SECONDS.toSeconds(5);
-    public static final String payload = "a line to be written";
+    public static final String payload = "a line toobe written";
     ```
 
-1. <span data-ttu-id="a8c63-156">Per richiamare il metodo sul dispositivo simulato, aggiungere il codice seguente al metodo **main**:</span><span class="sxs-lookup"><span data-stu-id="a8c63-156">To invoke the method on the simulated device, add the following code to the **main** method:</span></span>
+1. <span data-ttu-id="aee50-156">metodo hello tooinvoke sul dispositivo simulato hello, aggiungere hello seguente codice toohello **principale** metodo:</span><span class="sxs-lookup"><span data-stu-id="aee50-156">tooinvoke hello method on hello simulated device, add hello following code toohello **main** method:</span></span>
 
     ```java
     System.out.println("Starting sample...");
@@ -286,39 +286,39 @@ ms.lasthandoff: 08/18/2017
     System.out.println("Shutting down sample...");
     ```
 
-1. <span data-ttu-id="a8c63-157">Salvare e chiudere il file invoke-direct-method\src\main\java\com\mycompany\app\App.java</span><span class="sxs-lookup"><span data-stu-id="a8c63-157">Save and close the invoke-direct-method\src\main\java\com\mycompany\app\App.java file</span></span>
+1. <span data-ttu-id="aee50-157">Salvare e chiudere il file di invoke-direct-method\src\main\java\com\mycompany\app\App.java hello</span><span class="sxs-lookup"><span data-stu-id="aee50-157">Save and close hello invoke-direct-method\src\main\java\com\mycompany\app\App.java file</span></span>
 
-1. <span data-ttu-id="a8c63-158">Compilare l'app **invoke-direct-method** e correggere eventuali errori.</span><span class="sxs-lookup"><span data-stu-id="a8c63-158">Build the **invoke-direct-method** app and correct any errors.</span></span> <span data-ttu-id="a8c63-159">Al prompt dei comandi passare alla cartella invoke-direct-method ed eseguire il comando seguente:</span><span class="sxs-lookup"><span data-stu-id="a8c63-159">At your command prompt, navigate to the invoke-direct-method folder and run the following command:</span></span>
+1. <span data-ttu-id="aee50-158">Compilare hello **direct-metodo invoke** app e correggere eventuali errori.</span><span class="sxs-lookup"><span data-stu-id="aee50-158">Build hello **invoke-direct-method** app and correct any errors.</span></span> <span data-ttu-id="aee50-159">Al prompt dei comandi, passare cartella direct-metodo invoke toohello e hello esecuzione comando seguente:</span><span class="sxs-lookup"><span data-stu-id="aee50-159">At your command prompt, navigate toohello invoke-direct-method folder and run hello following command:</span></span>
 
     `mvn clean package -DskipTests`
 
-## <a name="run-the-apps"></a><span data-ttu-id="a8c63-160">Eseguire le app</span><span class="sxs-lookup"><span data-stu-id="a8c63-160">Run the apps</span></span>
+## <a name="run-hello-apps"></a><span data-ttu-id="aee50-160">Eseguire App hello</span><span class="sxs-lookup"><span data-stu-id="aee50-160">Run hello apps</span></span>
 
-<span data-ttu-id="a8c63-161">A questo punto è possibile eseguire le app console.</span><span class="sxs-lookup"><span data-stu-id="a8c63-161">You are now ready to run the console apps.</span></span>
+<span data-ttu-id="aee50-161">Si è ora pronto toorun hello console app.</span><span class="sxs-lookup"><span data-stu-id="aee50-161">You are now ready toorun hello console apps.</span></span>
 
-1. <span data-ttu-id="a8c63-162">Eseguire questo comando al prompt dei comandi nella cartella simulated-device per iniziare ad ascoltare le chiamate ai metodi dell'hub IoT:</span><span class="sxs-lookup"><span data-stu-id="a8c63-162">At a command prompt in the simulated-device folder, run the following command to begin listening for method calls from your IoT hub:</span></span>
-
-    `mvn exec:java -Dexec.mainClass="com.mycompany.app.App"`
-
-    ![App del dispositivo simulato dell'hub IoT per Java per ascoltare le chiamate al metodo diretto][8]
-
-1. <span data-ttu-id="a8c63-164">Eseguire questo comando al prompt dei comandi nella cartella invoke-direct-method per chiamare un metodo sul dispositivo simulato dell'hub IoT:</span><span class="sxs-lookup"><span data-stu-id="a8c63-164">At a command prompt in the invoke-direct-method folder, run the following command to call a method on your simulated device from your IoT hub:</span></span>
+1. <span data-ttu-id="aee50-162">Al prompt dei comandi nella cartella dispositivo simulato hello eseguire hello in attesa di chiamate al metodo dall'hub IoT toobegin di comando seguente:</span><span class="sxs-lookup"><span data-stu-id="aee50-162">At a command prompt in hello simulated-device folder, run hello following command toobegin listening for method calls from your IoT hub:</span></span>
 
     `mvn exec:java -Dexec.mainClass="com.mycompany.app.App"`
 
-    ![App del servizio hub IoT per Java per chiamare un metodo diretto][7]
+    ![IoT Hub Java simulato dispositivo app toolisten per chiamate dirette del metodo][8]
 
-1. <span data-ttu-id="a8c63-166">Il dispositivo simulato risponde alla chiamata al metodo diretto:</span><span class="sxs-lookup"><span data-stu-id="a8c63-166">The simulated device responds to the direct method call:</span></span>
+1. <span data-ttu-id="aee50-164">Al prompt dei comandi nella cartella direct-metodo invoke hello eseguire hello successivo comando toocall un metodo nel dispositivo simulato dall'hub IoT:</span><span class="sxs-lookup"><span data-stu-id="aee50-164">At a command prompt in hello invoke-direct-method folder, run hello following command toocall a method on your simulated device from your IoT hub:</span></span>
 
-    ![L'app del dispositivo simulato dell'hub IoT per Java risponde alla chiamata al metodo diretto][9]
+    `mvn exec:java -Dexec.mainClass="com.mycompany.app.App"`
 
-## <a name="next-steps"></a><span data-ttu-id="a8c63-168">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="a8c63-168">Next steps</span></span>
+    ![IoT Hub Java servizio app toocall un metodo diretto][7]
 
-<span data-ttu-id="a8c63-169">In questa esercitazione è stato configurato un nuovo hub IoT nel Portale di Azure ed è stata quindi creata un'identità del dispositivo nel registro di identità dell'hub IoT.</span><span class="sxs-lookup"><span data-stu-id="a8c63-169">In this tutorial, you configured a new IoT hub in the Azure portal, and then created a device identity in the IoT hub's identity registry.</span></span> <span data-ttu-id="a8c63-170">Questa identità del dispositivo è stata usata per consentire all'app del dispositivo simulato di reagire ai metodi richiamati dal cloud.</span><span class="sxs-lookup"><span data-stu-id="a8c63-170">You used this device identity to enable the simulated device app to react to methods invoked by the cloud.</span></span> <span data-ttu-id="a8c63-171">È stata anche creata un'applicazione che richiama i metodi sul dispositivo e visualizza la risposta dal dispositivo.</span><span class="sxs-lookup"><span data-stu-id="a8c63-171">You also created an app that invokes methods on the device and displays the response from the device.</span></span>
+1. <span data-ttu-id="aee50-166">dispositivo simulato Hello risponde toohello chiamata al metodo diretta:</span><span class="sxs-lookup"><span data-stu-id="aee50-166">hello simulated device responds toohello direct method call:</span></span>
 
-<span data-ttu-id="a8c63-172">Per esplorare altri scenari IoT, vedere [Pianificare processi in più dispositivi][lnk-devguide-jobs].</span><span class="sxs-lookup"><span data-stu-id="a8c63-172">To explore other IoT scenarios, see [Schedule jobs on multiple devices][lnk-devguide-jobs].</span></span>
+    ![IoT Hub Java dispositivo simulato app risponde chiamata al metodo diretto toohello][9]
 
-<span data-ttu-id="a8c63-173">Per informazioni su come estendere la soluzione IoT e pianificare le chiamate al metodo su più dispositivi, vedere l'esercitazione [Pianificare e trasmettere processi][lnk-tutorial-jobs].</span><span class="sxs-lookup"><span data-stu-id="a8c63-173">To learn how to extend your IoT solution and schedule method calls on multiple devices, see the [Schedule and broadcast jobs][lnk-tutorial-jobs] tutorial.</span></span>
+## <a name="next-steps"></a><span data-ttu-id="aee50-168">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="aee50-168">Next steps</span></span>
+
+<span data-ttu-id="aee50-169">In questa esercitazione, è configurato un nuovo hub IoT in hello portale di Azure e quindi creata un'identità del dispositivo nel Registro di sistema dell'hub IoT hello identità.</span><span class="sxs-lookup"><span data-stu-id="aee50-169">In this tutorial, you configured a new IoT hub in hello Azure portal, and then created a device identity in hello IoT hub's identity registry.</span></span> <span data-ttu-id="aee50-170">È stato utilizzato questo dispositivo identità tooenable hello simulato dispositivo app tooreact toomethods richiamato dal cloud hello.</span><span class="sxs-lookup"><span data-stu-id="aee50-170">You used this device identity tooenable hello simulated device app tooreact toomethods invoked by hello cloud.</span></span> <span data-ttu-id="aee50-171">È stato creato anche un'applicazione che richiama metodi sul dispositivo hello e Visualizza la risposta hello dal dispositivo hello.</span><span class="sxs-lookup"><span data-stu-id="aee50-171">You also created an app that invokes methods on hello device and displays hello response from hello device.</span></span>
+
+<span data-ttu-id="aee50-172">tooexplore altri scenari IoT, vedere [pianificare i processi su più dispositivi][lnk-devguide-jobs].</span><span class="sxs-lookup"><span data-stu-id="aee50-172">tooexplore other IoT scenarios, see [Schedule jobs on multiple devices][lnk-devguide-jobs].</span></span>
+
+<span data-ttu-id="aee50-173">toolearn come tooextend il metodo di pianificazione e di soluzione IoT chiama su più dispositivi, vedere hello [pianificazione e i processi di broadcast] [ lnk-tutorial-jobs] esercitazione.</span><span class="sxs-lookup"><span data-stu-id="aee50-173">toolearn how tooextend your IoT solution and schedule method calls on multiple devices, see hello [Schedule and broadcast jobs][lnk-tutorial-jobs] tutorial.</span></span>
 
 <!-- Images. -->
 [7]: ./media/iot-hub-java-java-direct-methods/invoke-method.png

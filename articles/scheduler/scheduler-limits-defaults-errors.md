@@ -1,5 +1,5 @@
 ---
-title: "Limiti e impostazioni predefinite dell'Utilità di pianificazione"
+title: aaaScheduler limiti e i valori predefiniti
 description: "Limiti e impostazioni predefinite dell'Utilità di pianificazione"
 services: scheduler
 documentationcenter: .NET
@@ -14,35 +14,35 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 08/18/2016
 ms.author: deli
-ms.openlocfilehash: db6b1c196cb468f41c7a7ce34758de346b522abb
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6fe0600d3ce3249d5aab1b877369b175316b5437
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="scheduler-limits-and-defaults"></a><span data-ttu-id="d9658-103">Limiti e impostazioni predefinite dell'Utilità di pianificazione</span><span class="sxs-lookup"><span data-stu-id="d9658-103">Scheduler Limits and Defaults</span></span>
-## <a name="scheduler-quotas-limits-defaults-and-throttles"></a><span data-ttu-id="d9658-104">Quote, limiti, impostazioni predefinite e limiti dell'utilità di pianificazione</span><span class="sxs-lookup"><span data-stu-id="d9658-104">Scheduler Quotas, Limits, Defaults, and Throttles</span></span>
+# <a name="scheduler-limits-and-defaults"></a><span data-ttu-id="45e05-103">Limiti e impostazioni predefinite dell'Utilità di pianificazione</span><span class="sxs-lookup"><span data-stu-id="45e05-103">Scheduler Limits and Defaults</span></span>
+## <a name="scheduler-quotas-limits-defaults-and-throttles"></a><span data-ttu-id="45e05-104">Quote, limiti, impostazioni predefinite e limiti dell'utilità di pianificazione</span><span class="sxs-lookup"><span data-stu-id="45e05-104">Scheduler Quotas, Limits, Defaults, and Throttles</span></span>
 [!INCLUDE [scheduler-limits-table](../../includes/scheduler-limits-table.md)]
 
-## <a name="the-x-ms-request-id-header"></a><span data-ttu-id="d9658-105">L'intestazione x-ms-request-id</span><span class="sxs-lookup"><span data-stu-id="d9658-105">The x-ms-request-id Header</span></span>
-<span data-ttu-id="d9658-106">Ogni richiesta effettuata per il servizio dell’Utilità di pianificazione restituisce un'intestazione di risposta denominata**x-ms-request-id**.</span><span class="sxs-lookup"><span data-stu-id="d9658-106">Every request made against the Scheduler service returns a response header named**x-ms-request-id**.</span></span> <span data-ttu-id="d9658-107">Questa intestazione contiene un valore opaco che identifica in modo univoco la richiesta.</span><span class="sxs-lookup"><span data-stu-id="d9658-107">This header contains an opaque value that uniquely identifies the request.</span></span>
+## <a name="hello-x-ms-request-id-header"></a><span data-ttu-id="45e05-105">Hello x-ms-request-id intestazione</span><span class="sxs-lookup"><span data-stu-id="45e05-105">hello x-ms-request-id Header</span></span>
+<span data-ttu-id="45e05-106">Ogni richiesta effettuata hello servizio Utilità di pianificazione restituisce un'intestazione di risposta denominata**x-ms-request-id**. Questa intestazione contiene un valore opaco che identifica in modo univoco la richiesta hello.</span><span class="sxs-lookup"><span data-stu-id="45e05-106">Every request made against hello Scheduler service returns a response header named**x-ms-request-id**. This header contains an opaque value that uniquely identifies hello request.</span></span>
 
-<span data-ttu-id="d9658-108">Se una richiesta fallisce sistematicamente e si è verificato che la richiesta è formulata in modo appropriato, si può usare questo valore per riportare l'errore a Microsoft.</span><span class="sxs-lookup"><span data-stu-id="d9658-108">If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft.</span></span> <span data-ttu-id="d9658-109">Nel report includere il valore di x-ms-request-id, l'ora approssimativa in cui è stata eseguita la richiesta, l'identificativo della sottoscrizione, la raccolta processi e/o il processo e il tipo di operazione tentata con la richiesta.</span><span class="sxs-lookup"><span data-stu-id="d9658-109">In your report, include the value of x-ms-request-id, the approximate time that the request was made, the identifier of the subscription, job collection, and/or job, and the type of operation that the request attempted.</span></span>
+<span data-ttu-id="45e05-107">Se una richiesta è costantemente esito negativo e si sono verificate che hello corretta formulazione è, è possibile utilizzare questo errore tooMicrosoft di valore tooreport hello.</span><span class="sxs-lookup"><span data-stu-id="45e05-107">If a request is consistently failing and you have verified that hello request is properly formulated, you may use this value tooreport hello error tooMicrosoft.</span></span> <span data-ttu-id="45e05-108">Nel report, includere il valore di hello di x-ms-request-id, hello ora approssimativa in cui è stata effettuata la richiesta di hello, hello identificatore di sottoscrizione hello, raccolta di processi e/o processo e tipo di operazione hello richiesta ha tentato di hello.</span><span class="sxs-lookup"><span data-stu-id="45e05-108">In your report, include hello value of x-ms-request-id, hello approximate time that hello request was made, hello identifier of hello subscription, job collection, and/or job, and hello type of operation that hello request attempted.</span></span>
 
-## <a name="see-also"></a><span data-ttu-id="d9658-110">Vedere anche</span><span class="sxs-lookup"><span data-stu-id="d9658-110">See Also</span></span>
- [<span data-ttu-id="d9658-111">Che cos'è l'Utilità di pianificazione?</span><span class="sxs-lookup"><span data-stu-id="d9658-111">What is Scheduler?</span></span>](scheduler-intro.md)
+## <a name="see-also"></a><span data-ttu-id="45e05-109">Vedere anche</span><span class="sxs-lookup"><span data-stu-id="45e05-109">See Also</span></span>
+ [<span data-ttu-id="45e05-110">Che cos'è l'Utilità di pianificazione?</span><span class="sxs-lookup"><span data-stu-id="45e05-110">What is Scheduler?</span></span>](scheduler-intro.md)
 
- [<span data-ttu-id="d9658-112">Concetti, terminologia e gerarchia di entità dell'Utilità di pianificazione di Azure</span><span class="sxs-lookup"><span data-stu-id="d9658-112">Azure Scheduler concepts, terminology, and entity hierarchy</span></span>](scheduler-concepts-terms.md)
+ [<span data-ttu-id="45e05-111">Concetti, terminologia e gerarchia di entità dell'Utilità di pianificazione di Azure</span><span class="sxs-lookup"><span data-stu-id="45e05-111">Azure Scheduler concepts, terminology, and entity hierarchy</span></span>](scheduler-concepts-terms.md)
 
- [<span data-ttu-id="d9658-113">Introduzione all'uso dell'Utilità di pianificazione di Azure nel portale di Azure</span><span class="sxs-lookup"><span data-stu-id="d9658-113">Get started using Scheduler in the Azure portal</span></span>](scheduler-get-started-portal.md)
+ [<span data-ttu-id="45e05-112">Introduzione all'uso dell'utilità di pianificazione nel portale di Azure hello</span><span class="sxs-lookup"><span data-stu-id="45e05-112">Get started using Scheduler in hello Azure portal</span></span>](scheduler-get-started-portal.md)
 
- [<span data-ttu-id="d9658-114">Piani e fatturazione nell'utilità di pianificazione di Azure</span><span class="sxs-lookup"><span data-stu-id="d9658-114">Plans and billing in Azure Scheduler</span></span>](scheduler-plans-billing.md)
+ [<span data-ttu-id="45e05-113">Piani e fatturazione nell'utilità di pianificazione di Azure</span><span class="sxs-lookup"><span data-stu-id="45e05-113">Plans and billing in Azure Scheduler</span></span>](scheduler-plans-billing.md)
 
- [<span data-ttu-id="d9658-115">Informazioni di riferimento sull'API REST dell'Utilità di pianificazione di Azure</span><span class="sxs-lookup"><span data-stu-id="d9658-115">Azure Scheduler REST API reference</span></span>](https://msdn.microsoft.com/library/mt629143)
+ [<span data-ttu-id="45e05-114">Informazioni di riferimento sull'API REST dell'Utilità di pianificazione di Azure</span><span class="sxs-lookup"><span data-stu-id="45e05-114">Azure Scheduler REST API reference</span></span>](https://msdn.microsoft.com/library/mt629143)
 
- [<span data-ttu-id="d9658-116">Informazioni di riferimento sui cmdlet PowerShell dell'Utilità di pianificazione di Azure</span><span class="sxs-lookup"><span data-stu-id="d9658-116">Azure Scheduler PowerShell cmdlets reference</span></span>](scheduler-powershell-reference.md)
+ [<span data-ttu-id="45e05-115">Informazioni di riferimento sui cmdlet PowerShell dell'Utilità di pianificazione di Azure</span><span class="sxs-lookup"><span data-stu-id="45e05-115">Azure Scheduler PowerShell cmdlets reference</span></span>](scheduler-powershell-reference.md)
 
- [<span data-ttu-id="d9658-117">Livelli elevati di disponibilità e affidabilità dell'Utilità di pianificazione di Azure</span><span class="sxs-lookup"><span data-stu-id="d9658-117">Azure Scheduler high-availability and reliability</span></span>](scheduler-high-availability-reliability.md)
+ [<span data-ttu-id="45e05-116">Livelli elevati di disponibilità e affidabilità dell'Utilità di pianificazione di Azure</span><span class="sxs-lookup"><span data-stu-id="45e05-116">Azure Scheduler high-availability and reliability</span></span>](scheduler-high-availability-reliability.md)
 
- [<span data-ttu-id="d9658-118">Autenticazione in uscita dell'Utilità di pianificazione di Azure</span><span class="sxs-lookup"><span data-stu-id="d9658-118">Azure Scheduler outbound authentication</span></span>](scheduler-outbound-authentication.md)
+ [<span data-ttu-id="45e05-117">Autenticazione in uscita dell'Utilità di pianificazione di Azure</span><span class="sxs-lookup"><span data-stu-id="45e05-117">Azure Scheduler outbound authentication</span></span>](scheduler-outbound-authentication.md)
 

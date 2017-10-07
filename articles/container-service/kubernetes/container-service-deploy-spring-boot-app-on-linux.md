@@ -1,6 +1,6 @@
 ---
-title: Distribuire un'app Web Spring Boot su Linux nel servizio contenitore di Azure | Microsoft Docs
-description: Questa esercitazione illustra in modo dettagliato la procedura per la distribuzione di un'applicazione Spring Boot come app Web Linux in Microsoft Azure.
+title: aaaDeploy un'App Web di avvio molla su Linux nel servizio contenitore di Azure | Documenti Microsoft
+description: In questa esercitazione viene tuttavia hello passaggi toodeploy un'applicazione di avvio molla come un'app web di Linux in Microsoft Azure.
 services: container-service
 documentationcenter: java
 author: rmcmurray
@@ -15,115 +15,115 @@ ms.topic: article
 ms.date: 08/04/2017
 ms.author: asirveda;robmcm
 ms.custom: mvc
-ms.openlocfilehash: 5f0b470bd46cfeaf00b3092dbe9db507ed50f622
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 2c44be1c7f66a38f48239001f0be9e90c7e6edef
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="deploy-a-spring-boot-application-on-linux-in-the-azure-container-service"></a><span data-ttu-id="16941-103">Distribuire un'applicazione Spring Boot in Linux nel servizio contenitore di Azure</span><span class="sxs-lookup"><span data-stu-id="16941-103">Deploy a Spring Boot application on Linux in the Azure Container Service</span></span>
+# <a name="deploy-a-spring-boot-application-on-linux-in-hello-azure-container-service"></a><span data-ttu-id="23e94-103">Distribuire un'applicazione di avvio molla su Linux in hello servizio contenitore di Azure</span><span class="sxs-lookup"><span data-stu-id="23e94-103">Deploy a Spring Boot application on Linux in hello Azure Container Service</span></span>
 
-<span data-ttu-id="16941-104">**[Spring Framework]** è una soluzione open source che consente agli sviluppatori Java di creare applicazioni di livello enterprise.</span><span class="sxs-lookup"><span data-stu-id="16941-104">The **[Spring Framework]** is an open-source solution that helps Java developers create enterprise-level applications.</span></span> <span data-ttu-id="16941-105">Uno dei progetti più comuni che si basa su questa piattaforma è [Spring Boot], che fornisce un approccio semplificato per la creazione di applicazioni Java autonome.</span><span class="sxs-lookup"><span data-stu-id="16941-105">One of the more-popular projects that is built on top of that platform is [Spring Boot], which provides a simplified approach for creating stand-alone Java applications.</span></span>
+<span data-ttu-id="23e94-104">Hello  **[Spring Framework]**  è una soluzione open source che consente agli sviluppatori Java di creare applicazioni di livello aziendale.</span><span class="sxs-lookup"><span data-stu-id="23e94-104">hello **[Spring Framework]** is an open-source solution that helps Java developers create enterprise-level applications.</span></span> <span data-ttu-id="23e94-105">Uno dei progetti comuni a più di hello che viene compilato in cui piattaforma è [avvio Spring], che fornisce un approccio semplificato per la creazione di applicazioni Java autonome.</span><span class="sxs-lookup"><span data-stu-id="23e94-105">One of hello more-popular projects that is built on top of that platform is [Spring Boot], which provides a simplified approach for creating stand-alone Java applications.</span></span>
 
-<span data-ttu-id="16941-106">**[Docker]** è una soluzione open source che consente agli sviluppatori di automatizzare la distribuzione, il ridimensionamento e la gestione delle applicazioni in esecuzione nei contenitori.</span><span class="sxs-lookup"><span data-stu-id="16941-106">**[Docker]** is open-source solutions that helps developers automate the deployment, scaling, and management of their applications that are running in containers.</span></span>
+<span data-ttu-id="23e94-106">**[Docker]**  è soluzioni open source che consente agli sviluppatori di automatizzare la distribuzione di hello, scalabilità e gestione delle applicazioni in esecuzione nei contenitori.</span><span class="sxs-lookup"><span data-stu-id="23e94-106">**[Docker]** is open-source solutions that helps developers automate hello deployment, scaling, and management of their applications that are running in containers.</span></span>
 
-<span data-ttu-id="16941-107">Questa esercitazione illustra l'uso di Docker per sviluppare e distribuire un'applicazione Spring Boot a un host Linux nel [servizio contenitore di Azure].</span><span class="sxs-lookup"><span data-stu-id="16941-107">This tutorial walks you through using Docker to develop and deploy a Spring Boot application to a Linux host in the [Azure Container Service (ACS)].</span></span>
+<span data-ttu-id="23e94-107">In questa esercitazione illustra tramite Docker toodevelop e distribuire un host di Linux Spring avvio applicazione tooa in hello [servizio contenitore di Azure (ACS)].</span><span class="sxs-lookup"><span data-stu-id="23e94-107">This tutorial walks you through using Docker toodevelop and deploy a Spring Boot application tooa Linux host in hello [Azure Container Service (ACS)].</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="16941-108">Prerequisiti</span><span class="sxs-lookup"><span data-stu-id="16941-108">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="23e94-108">Prerequisiti</span><span class="sxs-lookup"><span data-stu-id="23e94-108">Prerequisites</span></span>
 
-<span data-ttu-id="16941-109">Per completare la procedura di questa esercitazione, sono necessari i prerequisiti seguenti:</span><span class="sxs-lookup"><span data-stu-id="16941-109">In order to complete the steps in this tutorial, you need to have the following prerequisites:</span></span>
+<span data-ttu-id="23e94-109">In ordine toocomplete hello passaggi di questa esercitazione, è necessario hello toohave seguenti prerequisiti:</span><span class="sxs-lookup"><span data-stu-id="23e94-109">In order toocomplete hello steps in this tutorial, you need toohave hello following prerequisites:</span></span>
 
-* <span data-ttu-id="16941-110">Sottoscrizione di Azure; se non si ha una sottoscrizione di Azure, è possibile attivare i [vantaggi per i sottoscrittori di MSDN] oppure iscriversi per ottenere un [account Azure gratuito].</span><span class="sxs-lookup"><span data-stu-id="16941-110">An Azure subscription; if you don't already have an Azure subscription, you can activate your [MSDN subscriber benefits] or sign up for a [free Azure account].</span></span>
-* <span data-ttu-id="16941-111">[Interfaccia della riga di comando di Azure].</span><span class="sxs-lookup"><span data-stu-id="16941-111">The [Azure Command-Line Interface (CLI)].</span></span>
-* <span data-ttu-id="16941-112">Un [Java Developer Kit (JDK)] aggiornato.</span><span class="sxs-lookup"><span data-stu-id="16941-112">An up-to-date [Java Developer Kit (JDK)].</span></span>
-* <span data-ttu-id="16941-113">Lo strumento di compilazione [Maven] di Apache (versione 3).</span><span class="sxs-lookup"><span data-stu-id="16941-113">Apache's [Maven] build tool (Version 3).</span></span>
-* <span data-ttu-id="16941-114">Un client [Git].</span><span class="sxs-lookup"><span data-stu-id="16941-114">A [Git] client.</span></span>
-* <span data-ttu-id="16941-115">Un client [Docker].</span><span class="sxs-lookup"><span data-stu-id="16941-115">A [Docker] client.</span></span>
+* <span data-ttu-id="23e94-110">Sottoscrizione di Azure; se non si ha una sottoscrizione di Azure, è possibile attivare i [vantaggi per i sottoscrittori di MSDN] oppure iscriversi per ottenere un [account Azure gratuito].</span><span class="sxs-lookup"><span data-stu-id="23e94-110">An Azure subscription; if you don't already have an Azure subscription, you can activate your [MSDN subscriber benefits] or sign up for a [free Azure account].</span></span>
+* <span data-ttu-id="23e94-111">Hello [Azure interfaccia della riga di comando (CLI)].</span><span class="sxs-lookup"><span data-stu-id="23e94-111">hello [Azure Command-Line Interface (CLI)].</span></span>
+* <span data-ttu-id="23e94-112">Un [Java Developer Kit (JDK)] aggiornato.</span><span class="sxs-lookup"><span data-stu-id="23e94-112">An up-to-date [Java Developer Kit (JDK)].</span></span>
+* <span data-ttu-id="23e94-113">Lo strumento di compilazione [Maven] di Apache (versione 3).</span><span class="sxs-lookup"><span data-stu-id="23e94-113">Apache's [Maven] build tool (Version 3).</span></span>
+* <span data-ttu-id="23e94-114">Un client [Git].</span><span class="sxs-lookup"><span data-stu-id="23e94-114">A [Git] client.</span></span>
+* <span data-ttu-id="23e94-115">Un client [Docker].</span><span class="sxs-lookup"><span data-stu-id="23e94-115">A [Docker] client.</span></span>
 
 > [!NOTE]
 >
-> <span data-ttu-id="16941-116">A causa dei requisiti di virtualizzazione di questa esercitazione, non è possibile seguire la procedura illustrata in questo articolo in una macchina virtuale. È necessario usare un computer fisico in cui sono abilitate le funzionalità di virtualizzazione.</span><span class="sxs-lookup"><span data-stu-id="16941-116">Due to the virtualization requirements of this tutorial, you cannot follow the steps in this article on a virtual machine; you must use a physical computer with virtualization features enabled.</span></span>
+> <span data-ttu-id="23e94-116">A causa di requisiti della virtualizzazione toohello di questa esercitazione, non è possibile seguire i passaggi di hello in questo articolo in una macchina virtuale; è necessario utilizzare un computer fisico con le funzionalità di virtualizzazione abilitate.</span><span class="sxs-lookup"><span data-stu-id="23e94-116">Due toohello virtualization requirements of this tutorial, you cannot follow hello steps in this article on a virtual machine; you must use a physical computer with virtualization features enabled.</span></span>
 >
 
-## <a name="create-the-spring-boot-on-docker-getting-started-web-app"></a><span data-ttu-id="16941-117">Creare l'app Web introduttiva di Spring Boot in Docker</span><span class="sxs-lookup"><span data-stu-id="16941-117">Create the Spring Boot on Docker Getting Started web app</span></span>
+## <a name="create-hello-spring-boot-on-docker-getting-started-web-app"></a><span data-ttu-id="23e94-117">Creare hello avvio molla nell'applicazione web di Guida introduttiva di Docker</span><span class="sxs-lookup"><span data-stu-id="23e94-117">Create hello Spring Boot on Docker Getting Started web app</span></span>
 
-<span data-ttu-id="16941-118">I passaggi seguenti illustrano i passaggi necessari per creare una semplice applicazione Web Spring Boot e testarla localmente.</span><span class="sxs-lookup"><span data-stu-id="16941-118">The following steps walk you through the steps that are required to create a simple Spring Boot web application and test it locally.</span></span>
+<span data-ttu-id="23e94-118">Hello passaggi seguenti consentono di eseguire passaggi di hello che sono necessari toocreate una semplice applicazione web di avvio molla ed eseguirne il test in locale.</span><span class="sxs-lookup"><span data-stu-id="23e94-118">hello following steps walk you through hello steps that are required toocreate a simple Spring Boot web application and test it locally.</span></span>
 
-1. <span data-ttu-id="16941-119">Aprire un prompt dei comandi e creare una directory locale in cui contenere l'applicazione, quindi passare a tale directory. Ad esempio:</span><span class="sxs-lookup"><span data-stu-id="16941-119">Open a command-prompt and create a local directory to hold your application, and change to that directory; for example:</span></span>
+1. <span data-ttu-id="23e94-119">Aprire un prompt dei comandi e creare toohold una directory locale dell'applicazione e spostarsi nella directory toothat; Per esempio:</span><span class="sxs-lookup"><span data-stu-id="23e94-119">Open a command-prompt and create a local directory toohold your application, and change toothat directory; for example:</span></span>
    ```
    md C:\SpringBoot
    cd C:\SpringBoot
    ```
-   <span data-ttu-id="16941-120">- o-</span><span class="sxs-lookup"><span data-stu-id="16941-120">-- or --</span></span>
+   <span data-ttu-id="23e94-120">- o-</span><span class="sxs-lookup"><span data-stu-id="23e94-120">-- or --</span></span>
    ```
    md /users/robert/SpringBoot
    cd /users/robert/SpringBoot
    ```
 
-1. <span data-ttu-id="16941-121">Clonare il progetto di esempio [Spring Boot on Docker Getting Started] (Introduzione a Spring Boot in Docker) nella directory appena creata, ad esempio:</span><span class="sxs-lookup"><span data-stu-id="16941-121">Clone the [Spring Boot on Docker Getting Started] sample project into the directory you created; for example:</span></span>
+1. <span data-ttu-id="23e94-121">Hello clone [avvio molla su Docker Introduzione] progetto di esempio nella directory hello è stato creato; ad esempio:</span><span class="sxs-lookup"><span data-stu-id="23e94-121">Clone hello [Spring Boot on Docker Getting Started] sample project into hello directory you created; for example:</span></span>
    ```
    git clone https://github.com/spring-guides/gs-spring-boot-docker.git
    ```
 
-1. <span data-ttu-id="16941-122">Passare alla directory del progetto completato. Ad esempio:</span><span class="sxs-lookup"><span data-stu-id="16941-122">Change directory to the completed project; for example:</span></span>
+1. <span data-ttu-id="23e94-122">Cambiare il progetto completato toohello directory; Per esempio:</span><span class="sxs-lookup"><span data-stu-id="23e94-122">Change directory toohello completed project; for example:</span></span>
    ```
    cd gs-spring-boot-docker/complete
    ```
 
-1. <span data-ttu-id="16941-123">Compilare il file JAR usando Maven. Ad esempio:</span><span class="sxs-lookup"><span data-stu-id="16941-123">Build the JAR file using Maven; for example:</span></span>
+1. <span data-ttu-id="23e94-123">Compilare i file JAR hello utilizzando Maven; Per esempio:</span><span class="sxs-lookup"><span data-stu-id="23e94-123">Build hello JAR file using Maven; for example:</span></span>
    ```
    mvn package
    ```
 
-1. <span data-ttu-id="16941-124">Dopo aver creato l'app Web, passare alla directory `target` in cui si trova il file JAR e avviare l'app Web. Ad esempio:</span><span class="sxs-lookup"><span data-stu-id="16941-124">Once the web app has been created, change directory to the `target` directory where the JAR file is located and start the web app; for example:</span></span>
+1. <span data-ttu-id="23e94-124">Una volta hello web app è stata creata, cambiare directory toohello `target` directory in cui si trova il file JAR hello e avvia l'app web hello; ad esempio:</span><span class="sxs-lookup"><span data-stu-id="23e94-124">Once hello web app has been created, change directory toohello `target` directory where hello JAR file is located and start hello web app; for example:</span></span>
    ```
    cd target
    java -jar gs-spring-boot-docker-0.1.0.jar
    ```
 
-1. <span data-ttu-id="16941-125">Testare l'app Web esplorandola localmente tramite un Web browser.</span><span class="sxs-lookup"><span data-stu-id="16941-125">Test the web app by browsing to it locally using a web browser.</span></span> <span data-ttu-id="16941-126">Ad esempio, se è disponibile un cURL e il server Tomcat è configurato per l'esecuzione sulla porta 80:</span><span class="sxs-lookup"><span data-stu-id="16941-126">For example, if you have curl available and you configured the Tomcat server to run on port 80:</span></span>
+1. <span data-ttu-id="23e94-125">Testare l'app web hello esplorando tooit localmente tramite un web browser.</span><span class="sxs-lookup"><span data-stu-id="23e94-125">Test hello web app by browsing tooit locally using a web browser.</span></span> <span data-ttu-id="23e94-126">Ad esempio, se dispone di curl disponibile e configurato hello Tomcat server toorun sulla porta 80:</span><span class="sxs-lookup"><span data-stu-id="23e94-126">For example, if you have curl available and you configured hello Tomcat server toorun on port 80:</span></span>
    ```
    curl http://localhost
    ```
 
-1. <span data-ttu-id="16941-127">Dovrebbe essere visualizzato il messaggio seguente: **Hello Docker World!**</span><span class="sxs-lookup"><span data-stu-id="16941-127">You should see the following message displayed: **Hello Docker World!**</span></span>
+1. <span data-ttu-id="23e94-127">Dovrebbe essere hello segue messaggio visualizzato: **Docker Hello World!**</span><span class="sxs-lookup"><span data-stu-id="23e94-127">You should see hello following message displayed: **Hello Docker World!**</span></span>
 
    ![Esplorare l'app di esempio in locale][SB01]
 
-## <a name="create-an-azure-container-registry-to-use-as-a-private-docker-registry"></a><span data-ttu-id="16941-129">Creare un Registro contenitori di Azure da usare come registro Docker privato</span><span class="sxs-lookup"><span data-stu-id="16941-129">Create an Azure Container Registry to use as a Private Docker Registry</span></span>
+## <a name="create-an-azure-container-registry-toouse-as-a-private-docker-registry"></a><span data-ttu-id="23e94-129">Creare un toouse del Registro di sistema di Azure contenitore privato Docker Registro di sistema</span><span class="sxs-lookup"><span data-stu-id="23e94-129">Create an Azure Container Registry toouse as a Private Docker Registry</span></span>
 
-<span data-ttu-id="16941-130">La procedura seguente illustra come usare il portale di Azure per creare un Registro contenitori di Azure.</span><span class="sxs-lookup"><span data-stu-id="16941-130">The following steps walk you through using the Azure portal to create an Azure Container Registry.</span></span>
+<span data-ttu-id="23e94-130">Hello passaggi seguenti consentono l'utilizzo di hello toocreate portale Azure del Registro di sistema un contenitore di Azure.</span><span class="sxs-lookup"><span data-stu-id="23e94-130">hello following steps walk you through using hello Azure portal toocreate an Azure Container Registry.</span></span>
 
 > [!NOTE]
 >
-> <span data-ttu-id="16941-131">Se si vuole usare l'interfaccia della riga di comando di Azure anziché il portale di Azure, seguire i passaggi in [Creare un registro per contenitori Docker privati usando l'interfaccia della riga di comando di Azure 2.0](../../container-registry/container-registry-get-started-azure-cli.md).</span><span class="sxs-lookup"><span data-stu-id="16941-131">If you want to use the Azure CLI instead of the Azure portal, follow the steps in [Create a private Docker container registry using the Azure CLI 2.0](../../container-registry/container-registry-get-started-azure-cli.md).</span></span>
+> <span data-ttu-id="23e94-131">Se si vuole toouse hello CLI di Azure anziché hello portale di Azure, seguire i passaggi di hello in [creare un registro di sistema contenitore Docker privata mediante hello Azure CLI 2.0](../../container-registry/container-registry-get-started-azure-cli.md).</span><span class="sxs-lookup"><span data-stu-id="23e94-131">If you want toouse hello Azure CLI instead of hello Azure portal, follow hello steps in [Create a private Docker container registry using hello Azure CLI 2.0](../../container-registry/container-registry-get-started-azure-cli.md).</span></span>
 >
 
-1. <span data-ttu-id="16941-132">Aprire il [portale di Azure] ed effettuare l'accesso.</span><span class="sxs-lookup"><span data-stu-id="16941-132">Browse to the [Azure portal] and sign in.</span></span>
+1. <span data-ttu-id="23e94-132">Sfoglia toohello [portale di Azure] ed eseguire l'accesso.</span><span class="sxs-lookup"><span data-stu-id="23e94-132">Browse toohello [Azure portal] and sign in.</span></span>
 
-   <span data-ttu-id="16941-133">Dopo aver effettuato l'accesso all'account nel portale di Azure, è possibile seguire la procedura illustrata nell'articolo [Creare un registro per contenitori Docker privati con il portale di Azure], parafrasata per semplicità nei passaggi seguenti.</span><span class="sxs-lookup"><span data-stu-id="16941-133">Once you have signed in to your account on the Azure portal, you can follow the steps in the [Create a private Docker container registry using the Azure portal] article, which are paraphrased in the following steps for the sake of expediency.</span></span>
+   <span data-ttu-id="23e94-133">Dopo l'accesso account tooyour in hello portale di Azure, è possibile seguire i passaggi di hello in hello [creare un registro di sistema contenitore Docker privata tramite il portale di Azure hello] articolo, sono tratto in hello alla procedura seguente per hello efficienza di convenienza.</span><span class="sxs-lookup"><span data-stu-id="23e94-133">Once you have signed in tooyour account on hello Azure portal, you can follow hello steps in hello [Create a private Docker container registry using hello Azure portal] article, which are paraphrased in hello following steps for hello sake of expediency.</span></span>
 
-1. <span data-ttu-id="16941-134">Fare clic sull'icona di menu **+ Nuovo**, su **Contenitori** e quindi su **Registro contenitori di Azure**.</span><span class="sxs-lookup"><span data-stu-id="16941-134">Click the menu icon for **+ New**, then click **Containers**, and then click **Azure Container Registry**.</span></span>
+1. <span data-ttu-id="23e94-134">Fare clic sull'icona di menu hello per **+ nuovo**, quindi fare clic su **contenitori**, quindi fare clic su **Registro di sistema di Azure contenitore**.</span><span class="sxs-lookup"><span data-stu-id="23e94-134">Click hello menu icon for **+ New**, then click **Containers**, and then click **Azure Container Registry**.</span></span>
    
    ![Creare un nuovo Registro contenitori di Azure][AR01]
 
-1. <span data-ttu-id="16941-136">Quando viene visualizzata la pagina delle informazioni per il modello di Registro contenitori di Azure, fare clic su **Crea**.</span><span class="sxs-lookup"><span data-stu-id="16941-136">When the information page for the Azure Container Registry template is displayed, click **Create**.</span></span> 
+1. <span data-ttu-id="23e94-136">Quando viene visualizzata la pagina informazioni hello per il modello del Registro di sistema di Azure contenitore hello, fare clic su **crea**.</span><span class="sxs-lookup"><span data-stu-id="23e94-136">When hello information page for hello Azure Container Registry template is displayed, click **Create**.</span></span> 
 
    ![Creare un nuovo Registro contenitori di Azure][AR02]
 
-1. <span data-ttu-id="16941-138">Quando viene visualizzata la pagina **Crea registro contenitori**, immettere **Nome registro** e **Gruppo di risorse**, scegliere **Abilita** per **Utente amministratore** e quindi fare clic su **Crea**.</span><span class="sxs-lookup"><span data-stu-id="16941-138">When the **Create container registry** page is displayed, enter your **Registry name** and **Resource group**, choose **Enable** for the **Admin user**, and then click **Create**.</span></span>
+1. <span data-ttu-id="23e94-138">Quando hello **Registro di sistema contenitore crea** viene visualizzata la pagina, immettere il **del Registro di sistema** e **gruppo di risorse**, scegliere **abilitare** per Hello **utente Admin**, quindi fare clic su **crea**.</span><span class="sxs-lookup"><span data-stu-id="23e94-138">When hello **Create container registry** page is displayed, enter your **Registry name** and **Resource group**, choose **Enable** for hello **Admin user**, and then click **Create**.</span></span>
 
    ![Configurare le impostazioni del Registro contenitori di Azure][AR03]
 
-1. <span data-ttu-id="16941-140">Una volta creato il registro contenitori, passare al registro contenitori stesso nel portale di Azure e quindi fare clic su **Chiavi di accesso**.</span><span class="sxs-lookup"><span data-stu-id="16941-140">Once your container registry has been created, navigate to your container registry in the Azure portal, and then click **Access Keys**.</span></span> <span data-ttu-id="16941-141">Prendere nota del nome utente e della password per i passaggi successivi.</span><span class="sxs-lookup"><span data-stu-id="16941-141">Take note of the username and password for the next steps.</span></span>
+1. <span data-ttu-id="23e94-140">Dopo aver creato il Registro di sistema del contenitore, passare tooyour contenitore del Registro di sistema hello portale di Azure e quindi fare clic su **chiavi di accesso**.</span><span class="sxs-lookup"><span data-stu-id="23e94-140">Once your container registry has been created, navigate tooyour container registry in hello Azure portal, and then click **Access Keys**.</span></span> <span data-ttu-id="23e94-141">Prendere nota del nome utente di hello e una password per i passaggi successivi hello.</span><span class="sxs-lookup"><span data-stu-id="23e94-141">Take note of hello username and password for hello next steps.</span></span>
 
    ![Chiavi di accesso al Registro contenitori di Azure][AR04]
 
-## <a name="configure-maven-to-use-your-azure-container-registry-access-keys"></a><span data-ttu-id="16941-143">Configurare Maven per l'uso delle chiavi di accesso del Registro contenitori di Azure</span><span class="sxs-lookup"><span data-stu-id="16941-143">Configure Maven to use your Azure Container Registry access keys</span></span>
+## <a name="configure-maven-toouse-your-azure-container-registry-access-keys"></a><span data-ttu-id="23e94-143">Configurare le chiavi di accesso del Registro di sistema di Azure contenitore di Maven toouse</span><span class="sxs-lookup"><span data-stu-id="23e94-143">Configure Maven toouse your Azure Container Registry access keys</span></span>
 
-1. <span data-ttu-id="16941-144">Passare alla directory di configurazione dell'installazione di Maven e aprire il file *settings.xml* con un editor di testo.</span><span class="sxs-lookup"><span data-stu-id="16941-144">Navigate to the configuration directory for your Maven installation and open the *settings.xml* file with a text editor.</span></span>
+1. <span data-ttu-id="23e94-144">Passare toohello directory di configurazione per l'installazione di Maven e aprire hello *Settings* file con un editor di testo.</span><span class="sxs-lookup"><span data-stu-id="23e94-144">Navigate toohello configuration directory for your Maven installation and open hello *settings.xml* file with a text editor.</span></span>
 
-1. <span data-ttu-id="16941-145">Aggiungere le impostazioni di accesso al Registro contenitori di Azure dalla sezione precedente di questa esercitazione alla raccolta `<servers>` nel file *settings.xml* file. Ad esempio:</span><span class="sxs-lookup"><span data-stu-id="16941-145">Add your Azure Container Registry access settings from the previous section of this tutorial to the `<servers>` collection in the *settings.xml* file; for example:</span></span>
+1. <span data-ttu-id="23e94-145">Aggiungere le impostazioni di accesso del Registro di sistema di Azure contenitore dalla sezione precedente di hello di questa esercitazione toohello `<servers>` insieme in hello *Settings* file; ad esempio:</span><span class="sxs-lookup"><span data-stu-id="23e94-145">Add your Azure Container Registry access settings from hello previous section of this tutorial toohello `<servers>` collection in hello *settings.xml* file; for example:</span></span>
 
    ```xml
    <servers>
@@ -135,9 +135,9 @@ ms.lasthandoff: 08/18/2017
    </servers>
    ```
 
-1. <span data-ttu-id="16941-146">Passare alla directory del progetto completato per l'applicazione Spring Boot (ad esempio, "*C:\SpringBoot\gs-spring-boot-docker\complete*" o "*/users/robert/SpringBoot/gs-spring-boot-docker/complete*") e aprire il file *pom.xml* con un editor di testo.</span><span class="sxs-lookup"><span data-stu-id="16941-146">Navigate to the completed project directory for your Spring Boot application, (for example: "*C:\SpringBoot\gs-spring-boot-docker\complete*" or "*/users/robert/SpringBoot/gs-spring-boot-docker/complete*"), and open the *pom.xml* file with a text editor.</span></span>
+1. <span data-ttu-id="23e94-146">Passare a directory di progetto toohello completato per l'applicazione di avvio molla, (ad esempio: "*C:\SpringBoot\gs-spring-boot-docker\complete*"o"*/users/robert/SpringBoot/gs-spring-boot-docker / completamento*") e aprire hello *pom.xml* file con un editor di testo.</span><span class="sxs-lookup"><span data-stu-id="23e94-146">Navigate toohello completed project directory for your Spring Boot application, (for example: "*C:\SpringBoot\gs-spring-boot-docker\complete*" or "*/users/robert/SpringBoot/gs-spring-boot-docker/complete*"), and open hello *pom.xml* file with a text editor.</span></span>
 
-1. <span data-ttu-id="16941-147">Aggiornare la raccolta `<properties>` nel file *pom.xml* con il valore del server di accesso per il Registro contenitori di Azure dalla sezione precedente di questa esercitazione. Ad esempio:</span><span class="sxs-lookup"><span data-stu-id="16941-147">Update the `<properties>` collection in the *pom.xml* file with the login server value for your Azure Container Registry from the previous section of this tutorial; for example:</span></span>
+1. <span data-ttu-id="23e94-147">Hello aggiornamento `<properties>` insieme in hello *pom.xml* file con valore hello di server di accesso per il Registro di sistema contenitore di Azure dalla sezione precedente di hello di questa esercitazione; ad esempio:</span><span class="sxs-lookup"><span data-stu-id="23e94-147">Update hello `<properties>` collection in hello *pom.xml* file with hello login server value for your Azure Container Registry from hello previous section of this tutorial; for example:</span></span>
 
    ```xml
    <properties>
@@ -146,7 +146,7 @@ ms.lasthandoff: 08/18/2017
    </properties>
    ```
 
-1. <span data-ttu-id="16941-148">Aggiornare la raccolta `<plugins>` nel file *pom.xml* in modo che `<plugin>` contenga l'indirizzo del server di accesso e il nome del registro per il Registro contenitori di Azure dalla sezione precedente di questa esercitazione.</span><span class="sxs-lookup"><span data-stu-id="16941-148">Update the `<plugins>` collection in the *pom.xml* file so that the `<plugin>` contains the login server address and registry name for your Azure Container Registry from the previous section of this tutorial.</span></span> <span data-ttu-id="16941-149">ad esempio:</span><span class="sxs-lookup"><span data-stu-id="16941-149">For example:</span></span>
+1. <span data-ttu-id="23e94-148">Hello aggiornamento `<plugins>` insieme in hello *pom.xml* file in modo che hello `<plugin>` contiene hello server indirizzo e del Registro di sistema nome di accesso per il Registro di sistema contenitore di Azure dalla sezione precedente di hello di questa esercitazione.</span><span class="sxs-lookup"><span data-stu-id="23e94-148">Update hello `<plugins>` collection in hello *pom.xml* file so that hello `<plugin>` contains hello login server address and registry name for your Azure Container Registry from hello previous section of this tutorial.</span></span> <span data-ttu-id="23e94-149">ad esempio:</span><span class="sxs-lookup"><span data-stu-id="23e94-149">For example:</span></span>
 
    ```xml
    <plugin>
@@ -169,7 +169,7 @@ ms.lasthandoff: 08/18/2017
    </plugin>
    ```
 
-1. <span data-ttu-id="16941-150">Passare alla directory del progetto completato per l'applicazione Spring Boot ed eseguire il comando seguente per ricompilare l'applicazione ed effettuare il push del contenitore nel Registro contenitori di Azure:</span><span class="sxs-lookup"><span data-stu-id="16941-150">Navigate to the completed project directory for your Spring Boot application and run the following command to rebuild the application and push the container to your Azure Container Registry:</span></span>
+1. <span data-ttu-id="23e94-150">Directory del progetto toohello completato per l'applicazione di avvio Spring passare ed eseguire seguito comando toorebuild hello applicazione hello e push hello contenitore tooyour del Registro di sistema di Azure contenitore:</span><span class="sxs-lookup"><span data-stu-id="23e94-150">Navigate toohello completed project directory for your Spring Boot application and run hello following command toorebuild hello application and push hello container tooyour Azure Container Registry:</span></span>
 
    ```
    mvn package docker:build -DpushImage 
@@ -177,128 +177,128 @@ ms.lasthandoff: 08/18/2017
 
 > [!NOTE]
 >
-> <span data-ttu-id="16941-151">Quando si effettua il push del contenitore Docker in Azure, è possibile che venga visualizzato un messaggio di errore simile a uno dei seguenti, anche se il contenitore Docker è stato creato correttamente:</span><span class="sxs-lookup"><span data-stu-id="16941-151">When you are pushing your Docker container to Azure, you may receive an error message that is similar to one of the following even though your Docker container was created successfully:</span></span>
+> <span data-ttu-id="23e94-151">Quando si effettua il push del tooAzure contenitore Docker, si potrebbe ricevere un messaggio di errore è simile tooone di hello seguente anche se è stato creato il contenitore Docker:</span><span class="sxs-lookup"><span data-stu-id="23e94-151">When you are pushing your Docker container tooAzure, you may receive an error message that is similar tooone of hello following even though your Docker container was created successfully:</span></span>
 >
-> * `[ERROR] Failed to execute goal com.spotify:docker-maven-plugin:0.4.11:build (default-cli) on project gs-spring-boot-docker: Exception caught: no basic auth credentials`
+> * `[ERROR] Failed tooexecute goal com.spotify:docker-maven-plugin:0.4.11:build (default-cli) on project gs-spring-boot-docker: Exception caught: no basic auth credentials`
 >
-> * `[ERROR] Failed to execute goal com.spotify:docker-maven-plugin:0.4.11:build (default-cli) on project gs-spring-boot-docker: Exception caught: Incomplete Docker registry authorization credentials. Please provide all of username, password, and email or none.`
+> * `[ERROR] Failed tooexecute goal com.spotify:docker-maven-plugin:0.4.11:build (default-cli) on project gs-spring-boot-docker: Exception caught: Incomplete Docker registry authorization credentials. Please provide all of username, password, and email or none.`
 >
-> <span data-ttu-id="16941-152">In questo caso, è possibile che sia necessario accedere all'account Azure dalla riga di comando di Docker. Ad esempio:</span><span class="sxs-lookup"><span data-stu-id="16941-152">If this happens, you may need to sign in to your Azure account from the Docker command line; for example:</span></span>
+> <span data-ttu-id="23e94-152">In questo caso, potrebbe essere necessario toosign in tooyour account Azure dalla riga di comando di Docker hello; Per esempio:</span><span class="sxs-lookup"><span data-stu-id="23e94-152">If this happens, you may need toosign in tooyour Azure account from hello Docker command line; for example:</span></span>
 >
 > `docker login -u wingtiptoysregistry -p "AbCdEfGhIjKlMnOpQrStUvWxYz" wingtiptoysregistry.azurecr.io`
 >
-> <span data-ttu-id="16941-153">È quindi possibile effettuare il push del contenitore dalla riga di comando. Ad esempio:</span><span class="sxs-lookup"><span data-stu-id="16941-153">You can then push your container from the command line; for example:</span></span>
+> <span data-ttu-id="23e94-153">È quindi possibile distribuire il contenitore dalla riga di comando hello; Per esempio:</span><span class="sxs-lookup"><span data-stu-id="23e94-153">You can then push your container from hello command line; for example:</span></span>
 >
 > `docker push wingtiptoysregistry.azurecr.io/gs-spring-boot-docker`
 >
 
-## <a name="create-a-web-app-on-linux-on-azure-app-service-using-your-container-image"></a><span data-ttu-id="16941-154">Creare un'app Web in Linux nel servizio app di Azure usando l'immagine del contenitore</span><span class="sxs-lookup"><span data-stu-id="16941-154">Create a web app on Linux on Azure App Service using your container image</span></span>
+## <a name="create-a-web-app-on-linux-on-azure-app-service-using-your-container-image"></a><span data-ttu-id="23e94-154">Creare un'app Web in Linux nel servizio app di Azure usando l'immagine del contenitore</span><span class="sxs-lookup"><span data-stu-id="23e94-154">Create a web app on Linux on Azure App Service using your container image</span></span>
 
-1. <span data-ttu-id="16941-155">Aprire il [portale di Azure] ed effettuare l'accesso.</span><span class="sxs-lookup"><span data-stu-id="16941-155">Browse to the [Azure portal] and sign in.</span></span>
+1. <span data-ttu-id="23e94-155">Sfoglia toohello [portale di Azure] ed eseguire l'accesso.</span><span class="sxs-lookup"><span data-stu-id="23e94-155">Browse toohello [Azure portal] and sign in.</span></span>
 
-1. <span data-ttu-id="16941-156">Fare clic sull'icona di menu **+ Nuovo**, su **Web e dispositivi mobili**, quindi su **App Web in Linux**.</span><span class="sxs-lookup"><span data-stu-id="16941-156">Click the menu icon for **+ New**, then click **Web + Mobile**, and then click **Web App on Linux**.</span></span>
+1. <span data-ttu-id="23e94-156">Fare clic sull'icona di menu hello per **+ nuovo**, quindi fare clic su **Web e dispositivi mobili**, quindi fare clic su **App Web in Linux**.</span><span class="sxs-lookup"><span data-stu-id="23e94-156">Click hello menu icon for **+ New**, then click **Web + Mobile**, and then click **Web App on Linux**.</span></span>
    
-   ![Creare una nuova app Web nel portale di Azure][LX01]
+   ![Creare una nuova app web nel portale di Azure hello][LX01]
 
-1. <span data-ttu-id="16941-158">Quando viene visualizzata la pagina **App Web in Linux**, immettere le informazioni seguenti:</span><span class="sxs-lookup"><span data-stu-id="16941-158">When the **Web App on Linux** page is displayed, enter the following information:</span></span>
+1. <span data-ttu-id="23e94-158">Quando hello **App Web in Linux** viene visualizzata la pagina, immettere hello le seguenti informazioni:</span><span class="sxs-lookup"><span data-stu-id="23e94-158">When hello **Web App on Linux** page is displayed, enter hello following information:</span></span>
 
-   <span data-ttu-id="16941-159">a.</span><span class="sxs-lookup"><span data-stu-id="16941-159">a.</span></span> <span data-ttu-id="16941-160">Immettere un nome univoco per il **Nome app**, ad esempio: "*wingtiptoyslinux*".</span><span class="sxs-lookup"><span data-stu-id="16941-160">Enter a unique name for the **App name**; for example: "*wingtiptoyslinux*."</span></span>
+   <span data-ttu-id="23e94-159">a.</span><span class="sxs-lookup"><span data-stu-id="23e94-159">a.</span></span> <span data-ttu-id="23e94-160">Immettere un nome univoco per hello **nome App**, ad esempio: "*wingtiptoyslinux*."</span><span class="sxs-lookup"><span data-stu-id="23e94-160">Enter a unique name for hello **App name**; for example: "*wingtiptoyslinux*."</span></span>
 
-   <span data-ttu-id="16941-161">b.</span><span class="sxs-lookup"><span data-stu-id="16941-161">b.</span></span> <span data-ttu-id="16941-162">Scegliere una **Sottoscrizione** dall'elenco a discesa.</span><span class="sxs-lookup"><span data-stu-id="16941-162">Choose your **Subscription** from the drop-down list.</span></span>
+   <span data-ttu-id="23e94-161">b.</span><span class="sxs-lookup"><span data-stu-id="23e94-161">b.</span></span> <span data-ttu-id="23e94-162">Scegliere il **sottoscrizione** dall'elenco a discesa hello.</span><span class="sxs-lookup"><span data-stu-id="23e94-162">Choose your **Subscription** from hello drop-down list.</span></span>
 
-   <span data-ttu-id="16941-163">c.</span><span class="sxs-lookup"><span data-stu-id="16941-163">c.</span></span> <span data-ttu-id="16941-164">Selezionare un **Gruppo di risorse** esistente o specificare un nome per creare uno nuovo.</span><span class="sxs-lookup"><span data-stu-id="16941-164">Choose an existing **Resource Group**, or specify a name to create a new resource group.</span></span>
+   <span data-ttu-id="23e94-163">c.</span><span class="sxs-lookup"><span data-stu-id="23e94-163">c.</span></span> <span data-ttu-id="23e94-164">Scegliere un oggetto esistente **gruppo di risorse**, oppure specificare un toocreate nome nuovo gruppo di risorse.</span><span class="sxs-lookup"><span data-stu-id="23e94-164">Choose an existing **Resource Group**, or specify a name toocreate a new resource group.</span></span>
 
-   <span data-ttu-id="16941-165">d.</span><span class="sxs-lookup"><span data-stu-id="16941-165">d.</span></span> <span data-ttu-id="16941-166">Fare clic su **Configura contenitore** e immettere le informazioni seguenti:</span><span class="sxs-lookup"><span data-stu-id="16941-166">Click **Configure container** and enter the following information:</span></span>
+   <span data-ttu-id="23e94-165">d.</span><span class="sxs-lookup"><span data-stu-id="23e94-165">d.</span></span> <span data-ttu-id="23e94-166">Fare clic su **Configura contenitore** e immettere hello le seguenti informazioni:</span><span class="sxs-lookup"><span data-stu-id="23e94-166">Click **Configure container** and enter hello following information:</span></span>
 
-      * <span data-ttu-id="16941-167">Scegliere **Registro di sistema privato**.</span><span class="sxs-lookup"><span data-stu-id="16941-167">Choose **Private registry**.</span></span>
+      * <span data-ttu-id="23e94-167">Scegliere **Registro di sistema privato**.</span><span class="sxs-lookup"><span data-stu-id="23e94-167">Choose **Private registry**.</span></span>
 
-      * <span data-ttu-id="16941-168">**Immagine e tag facoltativo**: specificare il nome del contenitore dai passaggi precedenti, ad esempio: "*wingtiptoysregistry.azurecr.io/gs-spring-boot-docker:latest*"</span><span class="sxs-lookup"><span data-stu-id="16941-168">**Image and optional tag**: Specify your container name from earlier; for example: "*wingtiptoysregistry.azurecr.io/gs-spring-boot-docker:latest*"</span></span>
+      * <span data-ttu-id="23e94-168">**Immagine e tag facoltativo**: specificare il nome del contenitore dai passaggi precedenti, ad esempio: "*wingtiptoysregistry.azurecr.io/gs-spring-boot-docker:latest*"</span><span class="sxs-lookup"><span data-stu-id="23e94-168">**Image and optional tag**: Specify your container name from earlier; for example: "*wingtiptoysregistry.azurecr.io/gs-spring-boot-docker:latest*"</span></span>
 
-      * <span data-ttu-id="16941-169">**URL server**: specificare l'URL del registro dai passaggi precedenti, ad esempio: "*https://wingtiptoysregistry.azurecr.io*"</span><span class="sxs-lookup"><span data-stu-id="16941-169">**Server URL**: Specify your registry URL from earlier; for example: "*https://wingtiptoysregistry.azurecr.io*"</span></span>
+      * <span data-ttu-id="23e94-169">**URL server**: specificare l'URL del registro dai passaggi precedenti, ad esempio: "*https://wingtiptoysregistry.azurecr.io*"</span><span class="sxs-lookup"><span data-stu-id="23e94-169">**Server URL**: Specify your registry URL from earlier; for example: "*https://wingtiptoysregistry.azurecr.io*"</span></span>
 
-      * <span data-ttu-id="16941-170">**Nome utente di accesso** e **Password**: specificare le credenziali di accesso dalle **Chiavi di accesso** usate nei passaggi precedenti.</span><span class="sxs-lookup"><span data-stu-id="16941-170">**Login username** and **Password**: Specify your login credentials from your **Access Keys** that you used in previous steps.</span></span>
+      * <span data-ttu-id="23e94-170">**Nome utente di accesso** e **Password**: specificare le credenziali di accesso dalle **Chiavi di accesso** usate nei passaggi precedenti.</span><span class="sxs-lookup"><span data-stu-id="23e94-170">**Login username** and **Password**: Specify your login credentials from your **Access Keys** that you used in previous steps.</span></span>
    
-   <span data-ttu-id="16941-171">e.</span><span class="sxs-lookup"><span data-stu-id="16941-171">e.</span></span> <span data-ttu-id="16941-172">Dopo aver immesso tutte le informazioni precedenti, fare clic su **OK**.</span><span class="sxs-lookup"><span data-stu-id="16941-172">Once you have entered all of the above information, click **OK**.</span></span>
+   <span data-ttu-id="23e94-171">e.</span><span class="sxs-lookup"><span data-stu-id="23e94-171">e.</span></span> <span data-ttu-id="23e94-172">Dopo aver immesso tutte hello sopra informazioni, fare clic su **OK**.</span><span class="sxs-lookup"><span data-stu-id="23e94-172">Once you have entered all of hello above information, click **OK**.</span></span>
 
    ![Configurare le impostazioni dell'app Web][LX02]
 
-1. <span data-ttu-id="16941-174">Fare clic su **Crea**.</span><span class="sxs-lookup"><span data-stu-id="16941-174">Click **Create**.</span></span>
+1. <span data-ttu-id="23e94-174">Fare clic su **Crea**.</span><span class="sxs-lookup"><span data-stu-id="23e94-174">Click **Create**.</span></span>
 
 > [!NOTE]
 >
-> <span data-ttu-id="16941-175">Azure eseguirà automaticamente il mapping delle richieste Internet al server Tomcat incorporato in esecuzione sulla porta standard 80 o 8080.</span><span class="sxs-lookup"><span data-stu-id="16941-175">Azure will automatically map Internet requests to embedded Tomcat server that is running on the standard ports of 80 or 8080.</span></span> <span data-ttu-id="16941-176">Se tuttavia il server Tomcat incorporato è stato configurato per l'esecuzione su una porta personalizzata, è necessario aggiungere all'app Web una variabile di ambiente che definisce la porta del server Tomcat incorporato.</span><span class="sxs-lookup"><span data-stu-id="16941-176">However, if you configured your embedded Tomcat server to run on a custom port, you need to add an environment variable to your web app that defines the port for your embedded Tomcat server.</span></span> <span data-ttu-id="16941-177">A tale scopo, seguire questa procedura:</span><span class="sxs-lookup"><span data-stu-id="16941-177">To do so, use the following steps:</span></span>
+> <span data-ttu-id="23e94-175">Azure eseguirà automaticamente il mapping Internet richieste tooembedded Tomcat server in cui viene eseguito su porte standard di hello di 80 o 8080.</span><span class="sxs-lookup"><span data-stu-id="23e94-175">Azure will automatically map Internet requests tooembedded Tomcat server that is running on hello standard ports of 80 or 8080.</span></span> <span data-ttu-id="23e94-176">Tuttavia, se è stato configurato l'incorporato toorun server Tomcat su una porta personalizzata, è necessario tooadd un'app web tooyour variabile di ambiente che definisce la porta hello del server Tomcat incorporato.</span><span class="sxs-lookup"><span data-stu-id="23e94-176">However, if you configured your embedded Tomcat server toorun on a custom port, you need tooadd an environment variable tooyour web app that defines hello port for your embedded Tomcat server.</span></span> <span data-ttu-id="23e94-177">toodo in tal caso, utilizzare hello alla procedura seguente:</span><span class="sxs-lookup"><span data-stu-id="23e94-177">toodo so, use hello following steps:</span></span>
 >
-> 1. <span data-ttu-id="16941-178">Aprire il [portale di Azure] ed effettuare l'accesso.</span><span class="sxs-lookup"><span data-stu-id="16941-178">Browse to the [Azure portal] and sign in.</span></span>
+> 1. <span data-ttu-id="23e94-178">Sfoglia toohello [portale di Azure] ed eseguire l'accesso.</span><span class="sxs-lookup"><span data-stu-id="23e94-178">Browse toohello [Azure portal] and sign in.</span></span>
 > 
-> 2. <span data-ttu-id="16941-179">Fare clic sull'icona per **Servizi app**.</span><span class="sxs-lookup"><span data-stu-id="16941-179">Click the icon for **App Services**.</span></span> <span data-ttu-id="16941-180">(Vedere l'elemento 1 nell'immagine seguente.)</span><span class="sxs-lookup"><span data-stu-id="16941-180">(See item #1 in the image below.)</span></span>
+> 2. <span data-ttu-id="23e94-179">Fare clic sull'icona hello **servizi App**.</span><span class="sxs-lookup"><span data-stu-id="23e94-179">Click hello icon for **App Services**.</span></span> <span data-ttu-id="23e94-180">(Vedere il #1 immagine hello riportata di seguito).</span><span class="sxs-lookup"><span data-stu-id="23e94-180">(See item #1 in hello image below.)</span></span>
 >
-> 3. <span data-ttu-id="16941-181">Selezionare l'app Web dall'elenco.</span><span class="sxs-lookup"><span data-stu-id="16941-181">Select your web app from the list.</span></span> <span data-ttu-id="16941-182">(Elemento 2 nell'immagine seguente.)</span><span class="sxs-lookup"><span data-stu-id="16941-182">(Item #2 in the image below.)</span></span>
+> 3. <span data-ttu-id="23e94-181">Selezionare l'app web dall'elenco di hello.</span><span class="sxs-lookup"><span data-stu-id="23e94-181">Select your web app from hello list.</span></span> <span data-ttu-id="23e94-182">(Voce #2 dell'immagine hello riportata di seguito).</span><span class="sxs-lookup"><span data-stu-id="23e94-182">(Item #2 in hello image below.)</span></span>
 >
-> 4. <span data-ttu-id="16941-183">Fare clic su **Impostazioni applicazione**.</span><span class="sxs-lookup"><span data-stu-id="16941-183">Click **Application Settings**.</span></span> <span data-ttu-id="16941-184">(Elemento 3 nell'immagine seguente.)</span><span class="sxs-lookup"><span data-stu-id="16941-184">(Item #3 in the image below.)</span></span>
+> 4. <span data-ttu-id="23e94-183">Fare clic su **Impostazioni applicazione**.</span><span class="sxs-lookup"><span data-stu-id="23e94-183">Click **Application Settings**.</span></span> <span data-ttu-id="23e94-184">(Voce #3 dell'immagine di hello riportata di seguito).</span><span class="sxs-lookup"><span data-stu-id="23e94-184">(Item #3 in hello image below.)</span></span>
 >
-> 5. <span data-ttu-id="16941-185">Nella sezione **Impostazioni app** aggiungere una nuova variabile di ambiente denominata **PORT** e immettere il numero di porta personalizzato come valore.</span><span class="sxs-lookup"><span data-stu-id="16941-185">In the **App settings** section, add a new environment variable named **PORT** and enter your custom port number for the value.</span></span> <span data-ttu-id="16941-186">(Elemento 4 nell'immagine seguente.)</span><span class="sxs-lookup"><span data-stu-id="16941-186">(Item #4 in the image below.)</span></span>
+> 5. <span data-ttu-id="23e94-185">In hello **impostazioni App** sezione, aggiungere una nuova variabile di ambiente denominata **porta** e immettere il numero di porta personalizzato per il valore di hello.</span><span class="sxs-lookup"><span data-stu-id="23e94-185">In hello **App settings** section, add a new environment variable named **PORT** and enter your custom port number for hello value.</span></span> <span data-ttu-id="23e94-186">(Voce #4 dell'immagine di hello riportata di seguito).</span><span class="sxs-lookup"><span data-stu-id="23e94-186">(Item #4 in hello image below.)</span></span>
 >
-> 6. <span data-ttu-id="16941-187">Fare clic su **Salva**.</span><span class="sxs-lookup"><span data-stu-id="16941-187">Click **Save**.</span></span> <span data-ttu-id="16941-188">(Elemento 5 nell'immagine seguente.)</span><span class="sxs-lookup"><span data-stu-id="16941-188">(Item #5 in the image below.)</span></span>
+> 6. <span data-ttu-id="23e94-187">Fare clic su **Salva**.</span><span class="sxs-lookup"><span data-stu-id="23e94-187">Click **Save**.</span></span> <span data-ttu-id="23e94-188">(Voce #5 dell'immagine di hello riportata di seguito).</span><span class="sxs-lookup"><span data-stu-id="23e94-188">(Item #5 in hello image below.)</span></span>
 >
-> ![Salvataggio di un numero di porta personalizzato nel portale di Azure][LX03]
+> ![Salvataggio di un numero di porta personalizzato in hello portale di Azure][LX03]
 >
 
 <!--
-##  OPTIONAL: Configure the embedded Tomcat server to run on a different port
+##  OPTIONAL: Configure hello embedded Tomcat server toorun on a different port
 
-The embedded Tomcat server in the sample Spring Boot application is configured to run on port 8080 by default. However, if you want to run the embedded Tomcat server to run on a different port, such as port 80 for local testing, you can configure the port by using the following steps.
+hello embedded Tomcat server in hello sample Spring Boot application is configured toorun on port 8080 by default. However, if you want toorun hello embedded Tomcat server toorun on a different port, such as port 80 for local testing, you can configure hello port by using hello following steps.
 
-1. Go to the *resources* directory (or create the directory if it does not exist); for example:
+1. Go toohello *resources* directory (or create hello directory if it does not exist); for example:
    ```shell
    cd src/main/resources
    ```
 
-1. Open the *application.yml* file in a text editor if it exists, or create a new YAML file if it does not exist.
+1. Open hello *application.yml* file in a text editor if it exists, or create a new YAML file if it does not exist.
 
-1. Modify the **server** setting so that the server runs on port 80; for example:
+1. Modify hello **server** setting so that hello server runs on port 80; for example:
    ```yaml
    server:
       port: 80
    ```
 
-1. Save and close the *application.yml* file.
+1. Save and close hello *application.yml* file.
 -->
 
-## <a name="next-steps"></a><span data-ttu-id="16941-190">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="16941-190">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="23e94-190">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="23e94-190">Next steps</span></span>
 
-<span data-ttu-id="16941-191">Per altre informazioni sull'uso delle applicazioni Spring Boot in Azure, vedere gli articoli seguenti:</span><span class="sxs-lookup"><span data-stu-id="16941-191">For more information about using Spring Boot applications on Azure, see the following articles:</span></span>
+<span data-ttu-id="23e94-191">Per ulteriori informazioni sull'utilizzo di applicazioni di avvio Spring in Azure, vedere hello seguenti articoli:</span><span class="sxs-lookup"><span data-stu-id="23e94-191">For more information about using Spring Boot applications on Azure, see hello following articles:</span></span>
 
-* [<span data-ttu-id="16941-192">Distribuire un'applicazione Spring Boot nel servizio app di Azure</span><span class="sxs-lookup"><span data-stu-id="16941-192">Deploy a Spring Boot Application to the Azure App Service</span></span>](../../app-service/app-service-deploy-spring-boot-web-app-on-azure.md)
-* [<span data-ttu-id="16941-193">Distribuire un'applicazione Spring Boot in un cluster Kubernetes nel servizio contenitore di Azure</span><span class="sxs-lookup"><span data-stu-id="16941-193">Deploy a Spring Boot Application on a Kubernetes Cluster in the Azure Container Service</span></span>](container-service-deploy-spring-boot-app-on-kubernetes.md)
+* [<span data-ttu-id="23e94-192">Distribuire un servizio App di Azure di toohello Spring avvio applicazione</span><span class="sxs-lookup"><span data-stu-id="23e94-192">Deploy a Spring Boot Application toohello Azure App Service</span></span>](../../app-service/app-service-deploy-spring-boot-web-app-on-azure.md)
+* [<span data-ttu-id="23e94-193">Distribuire un'applicazione di avvio Spring in un Kubernetes Cluster in hello servizio contenitore di Azure</span><span class="sxs-lookup"><span data-stu-id="23e94-193">Deploy a Spring Boot Application on a Kubernetes Cluster in hello Azure Container Service</span></span>](container-service-deploy-spring-boot-app-on-kubernetes.md)
 
-<span data-ttu-id="16941-194">Per altre informazioni su come usare Azure con Java, vedere il [Centro per sviluppatori Java di Azure] e gli [strumenti Java per Visual Studio Team Services].</span><span class="sxs-lookup"><span data-stu-id="16941-194">For more information about using Azure with Java, see the [Azure Java Developer Center] and the [Java Tools for Visual Studio Team Services].</span></span>
+<span data-ttu-id="23e94-194">Per ulteriori informazioni sull'uso di Azure con Java, vedere hello [Centro per sviluppatori Java di Azure] hello e [Java Tools per Visual Studio Team Services].</span><span class="sxs-lookup"><span data-stu-id="23e94-194">For more information about using Azure with Java, see hello [Azure Java Developer Center] and hello [Java Tools for Visual Studio Team Services].</span></span>
 
-<span data-ttu-id="16941-195">Per maggiori dettagli sul progetto di esempio di Spring Boot in Docker, vedere [Spring Boot on Docker Getting Started] (Introduzione a Spring Boot in Docker).</span><span class="sxs-lookup"><span data-stu-id="16941-195">For further details about the Spring Boot on Docker sample project, see [Spring Boot on Docker Getting Started].</span></span>
+<span data-ttu-id="23e94-195">Per ulteriori dettagli sull'hello Spring avvio nel progetto di esempio Docker, vedere [avvio molla su Docker Introduzione].</span><span class="sxs-lookup"><span data-stu-id="23e94-195">For further details about hello Spring Boot on Docker sample project, see [Spring Boot on Docker Getting Started].</span></span>
 
-<span data-ttu-id="16941-196">Per informazioni sulla Guida introduttiva con le proprie applicazioni Spring Boot, vedere **Spring Initializr** (Inizializzazione di SpringBoot) all'indirizzo https://start.spring.io/.</span><span class="sxs-lookup"><span data-stu-id="16941-196">For help with getting started with your own Spring Boot applications, see the **Spring Initializr** at https://start.spring.io/.</span></span>
+<span data-ttu-id="23e94-196">Per informazioni sulla Guida introduttiva a applicazioni Spring avvio, vedere hello **Initializr Spring** in https://start.spring.io/.</span><span class="sxs-lookup"><span data-stu-id="23e94-196">For help with getting started with your own Spring Boot applications, see hello **Spring Initializr** at https://start.spring.io/.</span></span>
 
-<span data-ttu-id="16941-197">Per altre informazioni sul come iniziare a creare una semplice applicazione Spring Boot, vedere Spring Initializr all'indirizzo https://start.spring.io/.</span><span class="sxs-lookup"><span data-stu-id="16941-197">For more information about getting started with creating a simple Spring Boot application, see the Spring Initializr at https://start.spring.io/.</span></span>
+<span data-ttu-id="23e94-197">Per ulteriori informazioni sulle attività iniziali con la creazione di una semplice applicazione di avvio molla, vedere hello Spring Initializr in https://start.spring.io/.</span><span class="sxs-lookup"><span data-stu-id="23e94-197">For more information about getting started with creating a simple Spring Boot application, see hello Spring Initializr at https://start.spring.io/.</span></span>
 
-<span data-ttu-id="16941-198">Per altri esempi sull'uso delle immagini personalizzate di Docker con Azure, vedere [Uso di un'immagine Docker personalizzata per App Web di Azure in Linux].</span><span class="sxs-lookup"><span data-stu-id="16941-198">For additional examples for how to use custom Docker images with Azure, see [Using a custom Docker image for Azure Web App on Linux].</span></span>
+<span data-ttu-id="23e94-198">Per altri esempi per la modalità toouse immagini Docker personalizzato con Azure, vedere [utilizzando un'immagine Docker personalizzata per l'App Web di Azure in Linux].</span><span class="sxs-lookup"><span data-stu-id="23e94-198">For additional examples for how toouse custom Docker images with Azure, see [Using a custom Docker image for Azure Web App on Linux].</span></span>
 
 <!-- URL List -->
 
-<span data-ttu-id="16941-199">[Interfaccia della riga di comando di Azure]: /cli/azure/overview</span><span class="sxs-lookup"><span data-stu-id="16941-199">[Azure Command-Line Interface (CLI)]: /cli/azure/overview</span></span>
-<span data-ttu-id="16941-200">[servizio contenitore di Azure]: https://azure.microsoft.com/services/container-service/</span><span class="sxs-lookup"><span data-stu-id="16941-200">[Azure Container Service (ACS)]: https://azure.microsoft.com/services/container-service/</span></span>
-<span data-ttu-id="16941-201">[Centro per sviluppatori Java di Azure]: https://azure.microsoft.com/develop/java/</span><span class="sxs-lookup"><span data-stu-id="16941-201">[Azure Java Developer Center]: https://azure.microsoft.com/develop/java/</span></span>
-<span data-ttu-id="16941-202">[portale di Azure]: https://portal.azure.com/</span><span class="sxs-lookup"><span data-stu-id="16941-202">[Azure portal]: https://portal.azure.com/</span></span>
-<span data-ttu-id="16941-203">[Creare un registro per contenitori Docker privati con il portale di Azure]: /azure/container-registry/container-registry-get-started-portal</span><span class="sxs-lookup"><span data-stu-id="16941-203">[Create a private Docker container registry using the Azure portal]: /azure/container-registry/container-registry-get-started-portal</span></span>
-<span data-ttu-id="16941-204">[Uso di un'immagine Docker personalizzata per App Web di Azure in Linux]: /azure/app-service-web/app-service-linux-using-custom-docker-image</span><span class="sxs-lookup"><span data-stu-id="16941-204">[Using a custom Docker image for Azure Web App on Linux]: /azure/app-service-web/app-service-linux-using-custom-docker-image</span></span>
-<span data-ttu-id="16941-205">[Docker]: https://www.docker.com/</span><span class="sxs-lookup"><span data-stu-id="16941-205">[Docker]: https://www.docker.com/</span></span>
-<span data-ttu-id="16941-206">[account Azure gratuito]: https://azure.microsoft.com/pricing/free-trial/</span><span class="sxs-lookup"><span data-stu-id="16941-206">[free Azure account]: https://azure.microsoft.com/pricing/free-trial/</span></span>
-<span data-ttu-id="16941-207">[Git]: https://github.com/</span><span class="sxs-lookup"><span data-stu-id="16941-207">[Git]: https://github.com/</span></span>
-<span data-ttu-id="16941-208">[Java Developer Kit (JDK)]: http://www.oracle.com/technetwork/java/javase/downloads/</span><span class="sxs-lookup"><span data-stu-id="16941-208">[Java Developer Kit (JDK)]: http://www.oracle.com/technetwork/java/javase/downloads/</span></span>
-<span data-ttu-id="16941-209">[strumenti Java per Visual Studio Team Services]: https://java.visualstudio.com/</span><span class="sxs-lookup"><span data-stu-id="16941-209">[Java Tools for Visual Studio Team Services]: https://java.visualstudio.com/</span></span>
-<span data-ttu-id="16941-210">[Maven]: http://maven.apache.org/</span><span class="sxs-lookup"><span data-stu-id="16941-210">[Maven]: http://maven.apache.org/</span></span>
-<span data-ttu-id="16941-211">[vantaggi per i sottoscrittori di MSDN]: https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/</span><span class="sxs-lookup"><span data-stu-id="16941-211">[MSDN subscriber benefits]: https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/</span></span>
-<span data-ttu-id="16941-212">[Spring Boot]: http://projects.spring.io/spring-boot/</span><span class="sxs-lookup"><span data-stu-id="16941-212">[Spring Boot]: http://projects.spring.io/spring-boot/</span></span>
-<span data-ttu-id="16941-213">[Spring Boot on Docker Getting Started]: https://github.com/spring-guides/gs-spring-boot-docker (Introduzione a Spring Boot in Docker)</span><span class="sxs-lookup"><span data-stu-id="16941-213">[Spring Boot on Docker Getting Started]: https://github.com/spring-guides/gs-spring-boot-docker</span></span>
-<span data-ttu-id="16941-214">[Spring Framework]: https://spring.io/</span><span class="sxs-lookup"><span data-stu-id="16941-214">[Spring Framework]: https://spring.io/</span></span>
+[Azure interfaccia della riga di comando (CLI)]: /cli/azure/overview
+[servizio contenitore di Azure (ACS)]: https://azure.microsoft.com/services/container-service/
+[Centro per sviluppatori Java di Azure]: https://azure.microsoft.com/develop/java/
+[portale di Azure]: https://portal.azure.com/
+[creare un registro di sistema contenitore Docker privata tramite il portale di Azure hello]: /azure/container-registry/container-registry-get-started-portal
+[utilizzando un'immagine Docker personalizzata per l'App Web di Azure in Linux]: /azure/app-service-web/app-service-linux-using-custom-docker-image
+[Docker]: https://www.docker.com/
+[account Azure gratuito]: https://azure.microsoft.com/pricing/free-trial/
+[Git]: https://github.com/
+[Java Developer Kit (JDK)]: http://www.oracle.com/technetwork/java/javase/downloads/
+[Java Tools per Visual Studio Team Services]: https://java.visualstudio.com/
+[Maven]: http://maven.apache.org/
+[vantaggi per i sottoscrittori di MSDN]: https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/
+[avvio Spring]: http://projects.spring.io/spring-boot/
+[avvio molla su Docker Introduzione]: https://github.com/spring-guides/gs-spring-boot-docker (Introduzione a Spring Boot in Docker)
+[Spring Framework]: https://spring.io/
 
 <!-- IMG List -->
 

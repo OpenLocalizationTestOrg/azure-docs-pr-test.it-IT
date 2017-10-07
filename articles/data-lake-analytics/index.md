@@ -1,6 +1,6 @@
 ---
-title: Documentazione di Azure Data Lake Analytics - Esercitazioni e informazioni di riferimento sulle API | Documentazione Microsoft
-description: Informazioni su come eseguire analisi di Big Data con Data Lake Analytics. Le esercitazioni illustrano come eseguire analisi batch, in tempo reale e interattive e come scrivere query U-SQL.
+title: aaaAzure Data Lake Analitica documentazione - esercitazioni, riferimenti alle API | Documenti Microsoft
+description: "Informazioni su come eseguire analisi di Big Data con Data Lake Analytics. Le esercitazioni illustrano come toorun batch, in tempo reale e interattivo analitica e la modalità query toowrite U-SQL."
 services: data-lake-analytics
 author: saveenr
 manager: saveenr
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 050965185c0c4b2d6880b74592e640be85678c06
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 515ad4c2a9023e970f1da05785bf3583d37cfccf
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="data-lake-analytics-documentation"></a>Documentazione di Data Lake Analytics
 
-Informazioni su come usare Data Lake Analytics per eseguire processi di analisi su Big Data con scalabilità a set di dati di dimensioni molto grandi. Esercitazioni e altri documenti in cui viene illustrato come creare e gestire processi di analisi in tempo reale e interattive e come creare query tramite il linguaggio U-SQL.
+Informazioni su come i processi di analisi dei dati big Data Lake Analitica toorun toouse tale set di dati toomassive scala. Altra documentazione ed esercitazioni illustrano come toocreate e gestire batch, in tempo reale e processi analitica interattivo e modalità tooquery utilizzando hello linguaggio U-SQL.
 
 <ul class="panelContent cardsFTitle">
     <li>

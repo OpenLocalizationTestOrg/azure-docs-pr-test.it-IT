@@ -1,6 +1,6 @@
 ---
-title: Usare trigger e associazioni in Funzioni di Azure | Microsoft Docs
-description: Informazioni su come usare trigger e associazioni in Funzioni di Azure per connettere l'esecuzione del codice a eventi online e servizi basati su cloud.
+title: aaaWork con trigger e le associazioni in funzioni di Azure | Documenti Microsoft
+description: Informazioni su come toouse attiva e le associazioni in funzioni di Azure tooconnect l'eventi tooonline esecuzione di codice e i servizi basati su cloud.
 services: functions
 documentationcenter: na
 author: lindydonna
@@ -16,56 +16,56 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 05/30/2017
 ms.author: donnam
-ms.openlocfilehash: cc41debb2523df77be4db05817a4c7ac55604439
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: eb2ebfca172fcc8c0f479adbcfec99e90fc33615
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-functions-triggers-and-bindings-concepts"></a><span data-ttu-id="b1bd0-104">Concetti di Trigger e associazioni di Funzioni di Azure</span><span class="sxs-lookup"><span data-stu-id="b1bd0-104">Azure Functions triggers and bindings concepts</span></span>
-<span data-ttu-id="b1bd0-105">Funzioni di Azure consente di scrivere codice in risposta agli eventi in Azure e in altri servizi, tramite *trigger* e *associazioni*.</span><span class="sxs-lookup"><span data-stu-id="b1bd0-105">Azure Functions allows you to write code in response to events in Azure and other services, through *triggers* and *bindings*.</span></span> <span data-ttu-id="b1bd0-106">In questo articolo viene fornita una panoramica concettuale di trigger e associazioni per tutti i linguaggi di programmazione supportati.</span><span class="sxs-lookup"><span data-stu-id="b1bd0-106">This article is a conceptual overview of triggers and bindings for all supported programming languages.</span></span> <span data-ttu-id="b1bd0-107">Le funzionalità comuni a tutte le associazioni sono descritte di seguito.</span><span class="sxs-lookup"><span data-stu-id="b1bd0-107">Features that are common to all bindings are described here.</span></span>
+# <a name="azure-functions-triggers-and-bindings-concepts"></a><span data-ttu-id="55b31-104">Concetti di Trigger e associazioni di Funzioni di Azure</span><span class="sxs-lookup"><span data-stu-id="55b31-104">Azure Functions triggers and bindings concepts</span></span>
+<span data-ttu-id="55b31-105">Funzioni di Azure consente toowrite codice in risposta tooevents in Azure e altri servizi, tramite *trigger* e *associazioni*.</span><span class="sxs-lookup"><span data-stu-id="55b31-105">Azure Functions allows you toowrite code in response tooevents in Azure and other services, through *triggers* and *bindings*.</span></span> <span data-ttu-id="55b31-106">In questo articolo viene fornita una panoramica concettuale di trigger e associazioni per tutti i linguaggi di programmazione supportati.</span><span class="sxs-lookup"><span data-stu-id="55b31-106">This article is a conceptual overview of triggers and bindings for all supported programming languages.</span></span> <span data-ttu-id="55b31-107">Funzionalità comuni tooall associazioni sono descritte di seguito.</span><span class="sxs-lookup"><span data-stu-id="55b31-107">Features that are common tooall bindings are described here.</span></span>
 
-## <a name="overview"></a><span data-ttu-id="b1bd0-108">Panoramica</span><span class="sxs-lookup"><span data-stu-id="b1bd0-108">Overview</span></span>
+## <a name="overview"></a><span data-ttu-id="55b31-108">Panoramica</span><span class="sxs-lookup"><span data-stu-id="55b31-108">Overview</span></span>
 
-<span data-ttu-id="b1bd0-109">I trigger e le associazioni sono un modo dichiarativo per definire come viene invocata una funzione e con quali dati opera.</span><span class="sxs-lookup"><span data-stu-id="b1bd0-109">Triggers and bindings are a declarative way to define how a function is invoked and what data it works with.</span></span> <span data-ttu-id="b1bd0-110">Un *trigger* definisce come viene richiamata una funzione.</span><span class="sxs-lookup"><span data-stu-id="b1bd0-110">A *trigger* defines how a function is invoked.</span></span> <span data-ttu-id="b1bd0-111">Una funzione deve avere esattamente un trigger.</span><span class="sxs-lookup"><span data-stu-id="b1bd0-111">A function must have exactly one trigger.</span></span> <span data-ttu-id="b1bd0-112">I trigger hanno dei dati associati, ovvero in genere il payload che ha attivato la funzione.</span><span class="sxs-lookup"><span data-stu-id="b1bd0-112">Triggers have associated data, which is usually the payload that triggered the function.</span></span> 
+<span data-ttu-id="55b31-109">I trigger e le associazioni sono toodefine una modalità dichiarativa per la modalità in cui viene richiamata una funzione e i dati che funziona con.</span><span class="sxs-lookup"><span data-stu-id="55b31-109">Triggers and bindings are a declarative way toodefine how a function is invoked and what data it works with.</span></span> <span data-ttu-id="55b31-110">Un *trigger* definisce come viene richiamata una funzione.</span><span class="sxs-lookup"><span data-stu-id="55b31-110">A *trigger* defines how a function is invoked.</span></span> <span data-ttu-id="55b31-111">Una funzione deve avere esattamente un trigger.</span><span class="sxs-lookup"><span data-stu-id="55b31-111">A function must have exactly one trigger.</span></span> <span data-ttu-id="55b31-112">I trigger sono associati dati, ovvero in genere payload hello che ha attivato la funzione hello.</span><span class="sxs-lookup"><span data-stu-id="55b31-112">Triggers have associated data, which is usually hello payload that triggered hello function.</span></span> 
 
-<span data-ttu-id="b1bd0-113">Le *associazioni* di input e output forniscono una modalità dichiarativa per connettersi ai dati dall'interno del codice.</span><span class="sxs-lookup"><span data-stu-id="b1bd0-113">Input and output *bindings* provide a declarative way to connect to data from within your code.</span></span> <span data-ttu-id="b1bd0-114">Analogamente ai trigger, specificare le stringhe di connessione e le altre proprietà nella configurazione della funzione.</span><span class="sxs-lookup"><span data-stu-id="b1bd0-114">Similar to triggers, you specify connection strings and other properties in your function configuration.</span></span> <span data-ttu-id="b1bd0-115">Le associazioni sono facoltative e una funzione può avere più associazioni di input e output.</span><span class="sxs-lookup"><span data-stu-id="b1bd0-115">Bindings are optional and a function can have multiple input and output bindings.</span></span> 
+<span data-ttu-id="55b31-113">Input e output *associazioni* forniscono un toodata tooconnect modalità dichiarativa dall'interno del codice.</span><span class="sxs-lookup"><span data-stu-id="55b31-113">Input and output *bindings* provide a declarative way tooconnect toodata from within your code.</span></span> <span data-ttu-id="55b31-114">Tootriggers simile, specificare le stringhe di connessione e altre proprietà nella configurazione di funzione.</span><span class="sxs-lookup"><span data-stu-id="55b31-114">Similar tootriggers, you specify connection strings and other properties in your function configuration.</span></span> <span data-ttu-id="55b31-115">Le associazioni sono facoltative e una funzione può avere più associazioni di input e output.</span><span class="sxs-lookup"><span data-stu-id="55b31-115">Bindings are optional and a function can have multiple input and output bindings.</span></span> 
 
-<span data-ttu-id="b1bd0-116">Usando i trigger e le associazioni, è possibile scrivere codice più generico e non impostare come hardcoded i dettagli dei servizi con cui interagisce.</span><span class="sxs-lookup"><span data-stu-id="b1bd0-116">Using triggers and bindings, you can write code that is more generic and does not hardcode the details of the services with which it interacts.</span></span> <span data-ttu-id="b1bd0-117">I dati provenienti dai servizi diventano semplicemente valori di input per il codice della funzione.</span><span class="sxs-lookup"><span data-stu-id="b1bd0-117">Data coming from services simply become input values for your function code.</span></span> <span data-ttu-id="b1bd0-118">Per restituire i dati a un altro servizio (ad esempio la creazione di una nuova riga nell'archiviazione tabelle di Azure), usare il valore restituito del metodo.</span><span class="sxs-lookup"><span data-stu-id="b1bd0-118">To output data to another service (such as creating a new row in Azure Table Storage), use the return value of the method.</span></span> <span data-ttu-id="b1bd0-119">In alternativa, se è necessario restituire più valori, usare un oggetto di supporto.</span><span class="sxs-lookup"><span data-stu-id="b1bd0-119">Or, if you need to output multiple values, use a helper object.</span></span> <span data-ttu-id="b1bd0-120">I trigger e le associazioni presentano una proprietà **nome**, che è un identificatore che si usa nel codice per accedere all'associazione.</span><span class="sxs-lookup"><span data-stu-id="b1bd0-120">Triggers and bindings have a **name** property, which is an identifier you use in your code to access the binding.</span></span>
+<span data-ttu-id="55b31-116">Tramite i trigger e le associazioni, è possibile scrivere codice che è più generico e non impostare come hardcoded i dettagli di hello dei servizi di hello con cui interagisce.</span><span class="sxs-lookup"><span data-stu-id="55b31-116">Using triggers and bindings, you can write code that is more generic and does not hardcode hello details of hello services with which it interacts.</span></span> <span data-ttu-id="55b31-117">I dati provenienti dai servizi diventano semplicemente valori di input per il codice della funzione.</span><span class="sxs-lookup"><span data-stu-id="55b31-117">Data coming from services simply become input values for your function code.</span></span> <span data-ttu-id="55b31-118">servizio di tooanother toooutput dati (ad esempio creando una nuova riga nell'archiviazione tabelle di Azure), utilizzare il valore restituito di hello del metodo hello.</span><span class="sxs-lookup"><span data-stu-id="55b31-118">toooutput data tooanother service (such as creating a new row in Azure Table Storage), use hello return value of hello method.</span></span> <span data-ttu-id="55b31-119">In alternativa, se è necessario toooutput più valori, utilizzare un oggetto di supporto.</span><span class="sxs-lookup"><span data-stu-id="55b31-119">Or, if you need toooutput multiple values, use a helper object.</span></span> <span data-ttu-id="55b31-120">I trigger e le associazioni presentano un **nome** proprietà, che è un identificatore è utilizzare nell'associazione di hello tooaccess codice.</span><span class="sxs-lookup"><span data-stu-id="55b31-120">Triggers and bindings have a **name** property, which is an identifier you use in your code tooaccess hello binding.</span></span>
 
-<span data-ttu-id="b1bd0-121">È possibile configurare i trigger e le associazioni nella scheda **Integrazione** nel portale delle Funzioni di Azure.</span><span class="sxs-lookup"><span data-stu-id="b1bd0-121">You can configure triggers and bindings in the **Integrate** tab in the Azure Functions portal.</span></span> <span data-ttu-id="b1bd0-122">Dietro le quinte, l'interfaccia utente modifica un file denominato file *function.json* nella directory della funzione.</span><span class="sxs-lookup"><span data-stu-id="b1bd0-122">Under the covers, the UI modifies a file called *function.json* file in the function directory.</span></span> <span data-ttu-id="b1bd0-123">È possibile modificare questo file passando all'**Editor avanzato**.</span><span class="sxs-lookup"><span data-stu-id="b1bd0-123">You can edit this file by changing to the **Advanced editor**.</span></span>
+<span data-ttu-id="55b31-121">È possibile configurare i trigger e le associazioni in hello **integrazione** scheda nel portale di Azure funzioni hello.</span><span class="sxs-lookup"><span data-stu-id="55b31-121">You can configure triggers and bindings in hello **Integrate** tab in hello Azure Functions portal.</span></span> <span data-ttu-id="55b31-122">In realtà hello, hello dell'interfaccia utente modifica un file denominato *function.json* file nella directory di funzione hello.</span><span class="sxs-lookup"><span data-stu-id="55b31-122">Under hello covers, hello UI modifies a file called *function.json* file in hello function directory.</span></span> <span data-ttu-id="55b31-123">È possibile modificare questo file modificando toohello **editor avanzato**.</span><span class="sxs-lookup"><span data-stu-id="55b31-123">You can edit this file by changing toohello **Advanced editor**.</span></span>
 
-<span data-ttu-id="b1bd0-124">La tabella seguente mostra i trigger e le associazioni supportate con le Funzioni di Azure.</span><span class="sxs-lookup"><span data-stu-id="b1bd0-124">The following table shows the triggers and bindings that are supported with Azure Functions.</span></span> 
+<span data-ttu-id="55b31-124">Hello nella tabella seguente mostra i trigger di hello e associazioni che sono supportate con le funzioni di Azure.</span><span class="sxs-lookup"><span data-stu-id="55b31-124">hello following table shows hello triggers and bindings that are supported with Azure Functions.</span></span> 
 
 [!INCLUDE [Full bindings table](../../includes/functions-bindings.md)]
 
-### <a name="example-queue-trigger-and-table-output-binding"></a><span data-ttu-id="b1bd0-125">Esempio: trigger di coda e tabella di associazione di output</span><span class="sxs-lookup"><span data-stu-id="b1bd0-125">Example: queue trigger and table output binding</span></span>
+### <a name="example-queue-trigger-and-table-output-binding"></a><span data-ttu-id="55b31-125">Esempio: trigger di coda e tabella di associazione di output</span><span class="sxs-lookup"><span data-stu-id="55b31-125">Example: queue trigger and table output binding</span></span>
 
-<span data-ttu-id="b1bd0-126">Si supponga di voler scrivere una nuova riga in archiviazione tabelle di Azure ogni volta che viene visualizzato un messaggio nuovo in archiviazione code di Azure.</span><span class="sxs-lookup"><span data-stu-id="b1bd0-126">Suppose you want to write a new row to Azure Table Storage whenever a new message appears in Azure Queue Storage.</span></span> <span data-ttu-id="b1bd0-127">Questo scenario può essere implementato tramite un trigger della coda di Azure e una tabella di associazione di output.</span><span class="sxs-lookup"><span data-stu-id="b1bd0-127">This scenario can be implemented using an Azure Queue trigger and a Table output binding.</span></span> 
+<span data-ttu-id="55b31-126">Si supponga toowrite un tooAzure riga nuova archiviazione tabella ogni volta che viene visualizzato un nuovo messaggio nella coda di archiviazione di Azure.</span><span class="sxs-lookup"><span data-stu-id="55b31-126">Suppose you want toowrite a new row tooAzure Table Storage whenever a new message appears in Azure Queue Storage.</span></span> <span data-ttu-id="55b31-127">Questo scenario può essere implementato tramite un trigger della coda di Azure e una tabella di associazione di output.</span><span class="sxs-lookup"><span data-stu-id="55b31-127">This scenario can be implemented using an Azure Queue trigger and a Table output binding.</span></span> 
 
-<span data-ttu-id="b1bd0-128">Un trigger della coda richiede le informazioni seguenti nella scheda **Integrazione**:</span><span class="sxs-lookup"><span data-stu-id="b1bd0-128">A queue trigger requires the following information in the **Integrate** tab:</span></span>
+<span data-ttu-id="55b31-128">Un trigger di coda richiede le seguenti informazioni in hello hello **integrazione** scheda:</span><span class="sxs-lookup"><span data-stu-id="55b31-128">A queue trigger requires hello following information in hello **Integrate** tab:</span></span>
 
-* <span data-ttu-id="b1bd0-129">Il nome dell'impostazione dell'app che contiene la stringa di connessione dell'account di archiviazione per la coda</span><span class="sxs-lookup"><span data-stu-id="b1bd0-129">The name of the app setting that contains the storage account connection string for the queue</span></span>
-* <span data-ttu-id="b1bd0-130">Il nome della coda</span><span class="sxs-lookup"><span data-stu-id="b1bd0-130">The queue name</span></span>
-* <span data-ttu-id="b1bd0-131">L'identificatore nel codice per leggere il contenuto del messaggio in coda, ad esempio `order`.</span><span class="sxs-lookup"><span data-stu-id="b1bd0-131">The identifier in your code to read the contents of the queue message, such as `order`.</span></span>
+* <span data-ttu-id="55b31-129">nome di Hello dell'impostazione di app hello che contiene una stringa di connessione account di archiviazione di hello per coda hello</span><span class="sxs-lookup"><span data-stu-id="55b31-129">hello name of hello app setting that contains hello storage account connection string for hello queue</span></span>
+* <span data-ttu-id="55b31-130">nome della coda Hello</span><span class="sxs-lookup"><span data-stu-id="55b31-130">hello queue name</span></span>
+* <span data-ttu-id="55b31-131">Hello, ad esempio l'identificatore del contenuto di hello tooread codice del messaggio della coda hello `order`.</span><span class="sxs-lookup"><span data-stu-id="55b31-131">hello identifier in your code tooread hello contents of hello queue message, such as `order`.</span></span>
 
-<span data-ttu-id="b1bd0-132">Per scrivere in archiviazione tabelle di Azure, usare un'associazione di output con i dettagli seguenti:</span><span class="sxs-lookup"><span data-stu-id="b1bd0-132">To write to Azure Table Storage, use an output binding with the following details:</span></span>
+<span data-ttu-id="55b31-132">toowrite tooAzure archiviazione tabelle, utilizzare un'associazione di output con hello seguenti dettagli:</span><span class="sxs-lookup"><span data-stu-id="55b31-132">toowrite tooAzure Table Storage, use an output binding with hello following details:</span></span>
 
-* <span data-ttu-id="b1bd0-133">Il nome dell'impostazione dell'app che contiene la stringa di connessione dell'account di archiviazione per la tabella</span><span class="sxs-lookup"><span data-stu-id="b1bd0-133">The name of the app setting that contains the storage account connection string for the table</span></span>
-* <span data-ttu-id="b1bd0-134">Il nome della tabella</span><span class="sxs-lookup"><span data-stu-id="b1bd0-134">The table name</span></span>
-* <span data-ttu-id="b1bd0-135">L'identificatore nel codice per creare elementi di output o il valore restituito dalla funzione.</span><span class="sxs-lookup"><span data-stu-id="b1bd0-135">The identifier in your code to create output items, or the return value from the function.</span></span>
+* <span data-ttu-id="55b31-133">nome di Hello dell'impostazione di app hello che contiene una stringa di connessione account di archiviazione di hello per tabella hello</span><span class="sxs-lookup"><span data-stu-id="55b31-133">hello name of hello app setting that contains hello storage account connection string for hello table</span></span>
+* <span data-ttu-id="55b31-134">nome della tabella Hello</span><span class="sxs-lookup"><span data-stu-id="55b31-134">hello table name</span></span>
+* <span data-ttu-id="55b31-135">Identificatore Hello in toocreate il codice di output elementi o hello il valore restituito dalla funzione hello.</span><span class="sxs-lookup"><span data-stu-id="55b31-135">hello identifier in your code toocreate output items, or hello return value from hello function.</span></span>
 
-<span data-ttu-id="b1bd0-136">Le associazioni usano le impostazioni app per le stringhe di connessione per applicare la migliore pratica in base alla quale *function.json* non contiene i segreti di servizio.</span><span class="sxs-lookup"><span data-stu-id="b1bd0-136">Bindings use app settings for connection strings to enforce the best practice that *function.json* does not contain service secrets.</span></span>
+<span data-ttu-id="55b31-136">Associazioni utilizzano le impostazioni dell'app per hello tooenforce di connessione stringhe best practice che *function.json* non contiene i segreti di servizio.</span><span class="sxs-lookup"><span data-stu-id="55b31-136">Bindings use app settings for connection strings tooenforce hello best practice that *function.json* does not contain service secrets.</span></span>
 
-<span data-ttu-id="b1bd0-137">Quindi, usare gli identificatori che vengono forniti per l'integrazione con archiviazione di Azure nel codice.</span><span class="sxs-lookup"><span data-stu-id="b1bd0-137">Then, use the identifiers you provided to integrate with Azure Storage in your code.</span></span>
+<span data-ttu-id="55b31-137">Quindi, utilizzare gli identificatori di hello toointegrate fornite con l'archiviazione di Azure nel codice.</span><span class="sxs-lookup"><span data-stu-id="55b31-137">Then, use hello identifiers you provided toointegrate with Azure Storage in your code.</span></span>
 
 ```cs
 #r "Newtonsoft.Json"
 
 using Newtonsoft.Json.Linq;
 
-// From an incoming queue message that is a JSON object, add fields and write to Table Storage
-// The method return value creates a new row in Table Storage
+// From an incoming queue message that is a JSON object, add fields and write tooTable Storage
+// hello method return value creates a new row in Table Storage
 public static Person Run(JObject order, TraceWriter log)
 {
     return new Person() { 
@@ -85,8 +85,8 @@ public class Person
 ```
 
 ```javascript
-// From an incoming queue message that is a JSON object, add fields and write to Table Storage
-// The second parameter to context.done is used as the value for the new row
+// From an incoming queue message that is a JSON object, add fields and write tooTable Storage
+// hello second parameter toocontext.done is used as hello value for hello new row
 module.exports = function (context, order) {
     order.PartitionKey = "Orders";
     order.RowKey = generateRandomId(); 
@@ -100,7 +100,7 @@ function generateRandomId() {
 }
 ```
 
-<span data-ttu-id="b1bd0-138">Ecco il *function.json* che corrisponde al codice precedente.</span><span class="sxs-lookup"><span data-stu-id="b1bd0-138">Here is the *function.json* that corresponds to the preceding code.</span></span> <span data-ttu-id="b1bd0-139">Si noti che si può usare la stessa configurazione, indipendentemente dal linguaggio di implementazione della funzione.</span><span class="sxs-lookup"><span data-stu-id="b1bd0-139">Note that the same configuration can be used, regardless of the language of the function implementation.</span></span>
+<span data-ttu-id="55b31-138">Ecco hello *function.json* toohello precedente codice corrispondente.</span><span class="sxs-lookup"><span data-stu-id="55b31-138">Here is hello *function.json* that corresponds toohello preceding code.</span></span> <span data-ttu-id="55b31-139">Si noti che è possibile utilizzare configurazione stesso, indipendentemente dal linguaggio hello di implementazione della funzione hello di hello.</span><span class="sxs-lookup"><span data-stu-id="55b31-139">Note that hello same configuration can be used, regardless of hello language of hello function implementation.</span></span>
 
 ```json
 {
@@ -122,21 +122,21 @@ function generateRandomId() {
   ]
 }
 ```
-<span data-ttu-id="b1bd0-140">Per visualizzare e modificare i contenuti della *funzione .json* nel portale di Azure, fare clic sull'opzione **Editor avanzato** nella scheda **Integrazione** della funzione.</span><span class="sxs-lookup"><span data-stu-id="b1bd0-140">To view and edit the contents of *function.json* in the Azure portal, click the **Advanced editor** option on the **Integrate** tab of your function.</span></span>
+<span data-ttu-id="55b31-140">contenuto di hello tooview e modifica di *function.json* in hello portale di Azure, fare clic su hello **editor avanzato** opzione hello **integrazione** scheda della funzione.</span><span class="sxs-lookup"><span data-stu-id="55b31-140">tooview and edit hello contents of *function.json* in hello Azure portal, click hello **Advanced editor** option on hello **Integrate** tab of your function.</span></span>
 
-<span data-ttu-id="b1bd0-141">Per altri esempi di codice e informazioni dettagliate sull'integrazione con archiviazione di Azure, vedere [Associazioni del BLOB del servizio di archiviazione di Funzioni di Azure](functions-bindings-storage.md).</span><span class="sxs-lookup"><span data-stu-id="b1bd0-141">For more code examples and details on integrating with Azure Storage, see [Azure Functions triggers and bindings for Azure Storage](functions-bindings-storage.md).</span></span>
+<span data-ttu-id="55b31-141">Per altri esempi di codice e informazioni dettagliate sull'integrazione con archiviazione di Azure, vedere [Associazioni del BLOB del servizio di archiviazione di Funzioni di Azure](functions-bindings-storage.md).</span><span class="sxs-lookup"><span data-stu-id="55b31-141">For more code examples and details on integrating with Azure Storage, see [Azure Functions triggers and bindings for Azure Storage](functions-bindings-storage.md).</span></span>
 
-### <a name="binding-direction"></a><span data-ttu-id="b1bd0-142">Direzione dell'associazione</span><span class="sxs-lookup"><span data-stu-id="b1bd0-142">Binding direction</span></span>
+### <a name="binding-direction"></a><span data-ttu-id="55b31-142">Direzione dell'associazione</span><span class="sxs-lookup"><span data-stu-id="55b31-142">Binding direction</span></span>
 
-<span data-ttu-id="b1bd0-143">Tutti i trigger e le associazioni hanno una proprietà `direction`:</span><span class="sxs-lookup"><span data-stu-id="b1bd0-143">All triggers and bindings have a `direction` property:</span></span>
+<span data-ttu-id="55b31-143">Tutti i trigger e le associazioni hanno una proprietà `direction`:</span><span class="sxs-lookup"><span data-stu-id="55b31-143">All triggers and bindings have a `direction` property:</span></span>
 
-- <span data-ttu-id="b1bd0-144">Per i trigger, la direzione è sempre `in`</span><span class="sxs-lookup"><span data-stu-id="b1bd0-144">For triggers, the direction is always `in`</span></span>
-- <span data-ttu-id="b1bd0-145">Le associazioni di input e di output usano `in` e `out`</span><span class="sxs-lookup"><span data-stu-id="b1bd0-145">Input and output bindings use `in` and `out`</span></span>
-- <span data-ttu-id="b1bd0-146">Alcune associazioni supportano una direzione speciale `inout`.</span><span class="sxs-lookup"><span data-stu-id="b1bd0-146">Some bindings support a special direction `inout`.</span></span> <span data-ttu-id="b1bd0-147">Se si usa `inout`, solo l'**Editor avanzato** è disponibile nelle scheda **Integrazione**.</span><span class="sxs-lookup"><span data-stu-id="b1bd0-147">If you use `inout`, only the **Advanced editor** is available in the **Integrate** tab.</span></span>
+- <span data-ttu-id="55b31-144">Per i trigger, è sempre direzione hello`in`</span><span class="sxs-lookup"><span data-stu-id="55b31-144">For triggers, hello direction is always `in`</span></span>
+- <span data-ttu-id="55b31-145">Le associazioni di input e di output usano `in` e `out`</span><span class="sxs-lookup"><span data-stu-id="55b31-145">Input and output bindings use `in` and `out`</span></span>
+- <span data-ttu-id="55b31-146">Alcune associazioni supportano una direzione speciale `inout`.</span><span class="sxs-lookup"><span data-stu-id="55b31-146">Some bindings support a special direction `inout`.</span></span> <span data-ttu-id="55b31-147">Se si utilizza `inout`, solo hello **editor avanzato** è disponibile in hello **integrazione** scheda.</span><span class="sxs-lookup"><span data-stu-id="55b31-147">If you use `inout`, only hello **Advanced editor** is available in hello **Integrate** tab.</span></span>
 
-## <a name="using-the-function-return-type-to-return-a-single-output"></a><span data-ttu-id="b1bd0-148">Uso del tipo restituito della funzione per restituire un singolo output</span><span class="sxs-lookup"><span data-stu-id="b1bd0-148">Using the function return type to return a single output</span></span>
+## <a name="using-hello-function-return-type-tooreturn-a-single-output"></a><span data-ttu-id="55b31-148">Utilizzando tooreturn tipo restituito di funzione hello un singolo output</span><span class="sxs-lookup"><span data-stu-id="55b31-148">Using hello function return type tooreturn a single output</span></span>
 
-<span data-ttu-id="b1bd0-149">Nell'esempio precedente viene illustrato come usare il valore restituito della funzione per offrire l'output a un'associazione, che si può fare tramite il parametro nome speciale `$return`.</span><span class="sxs-lookup"><span data-stu-id="b1bd0-149">The preceding example shows how to use the function return value to provide output to a binding, which is achieved by using the special name parameter `$return`.</span></span> <span data-ttu-id="b1bd0-150">(Questa opzione è supportata solo nei linguaggi che dispongono di un valore restituito, ad esempio C#, JavaScript e F#). Se una funzione dispone di più associazioni di output, usare `$return` per una sola delle associazioni di output.</span><span class="sxs-lookup"><span data-stu-id="b1bd0-150">(This is only supported in languages that have a return value, such as C#, JavaScript, and F#.) If a function has multiple output bindings, use `$return` for only one of the output bindings.</span></span> 
+<span data-ttu-id="55b31-149">Hello esempio precedente viene illustrato come toouse hello funzione valore restituito tooprovide output tooa binding, che è possibile utilizzare il parametro di nome speciale hello `$return`.</span><span class="sxs-lookup"><span data-stu-id="55b31-149">hello preceding example shows how toouse hello function return value tooprovide output tooa binding, which is achieved by using hello special name parameter `$return`.</span></span> <span data-ttu-id="55b31-150">(Questa opzione è supportata solo nei linguaggi che dispongono di un valore restituito, ad esempio C#, JavaScript e F#). Se una funzione include più associazioni di output, utilizzare `$return` per solo una delle associazioni di output di hello.</span><span class="sxs-lookup"><span data-stu-id="55b31-150">(This is only supported in languages that have a return value, such as C#, JavaScript, and F#.) If a function has multiple output bindings, use `$return` for only one of hello output bindings.</span></span> 
 
 ```json
 // excerpt of function.json
@@ -148,7 +148,7 @@ function generateRandomId() {
 }
 ```
 
-<span data-ttu-id="b1bd0-151">Gli esempi seguenti mostrano come i tipi restituiti vengono usati con le associazioni di output in C#, JavaScript e F#.</span><span class="sxs-lookup"><span data-stu-id="b1bd0-151">The examples below show how return types are used with output bindings in C#, JavaScript, and F#.</span></span>
+<span data-ttu-id="55b31-151">esempi di Hello seguente mostra come restituiscono tipi vengono utilizzati con le associazioni di output in c#, JavaScript e F #.</span><span class="sxs-lookup"><span data-stu-id="55b31-151">hello examples below show how return types are used with output bindings in C#, JavaScript, and F#.</span></span>
 
 ```cs
 // C# example: use method return value for output binding
@@ -171,7 +171,7 @@ public static Task<string> Run(WorkItem input, TraceWriter log)
 ```
 
 ```javascript
-// JavaScript: return a value in the second parameter to context.done
+// JavaScript: return a value in hello second parameter toocontext.done
 module.exports = function (context, input) {
     var json = JSON.stringify(input);
     context.log('Node.js script processed queue message', json);
@@ -187,11 +187,11 @@ let Run(input: WorkItem, log: TraceWriter) =
     json
 ```
 
-## <a name="binding-datatype-property"></a><span data-ttu-id="b1bd0-152">Proprietà Binding dataType</span><span class="sxs-lookup"><span data-stu-id="b1bd0-152">Binding dataType property</span></span>
+## <a name="binding-datatype-property"></a><span data-ttu-id="55b31-152">Proprietà Binding dataType</span><span class="sxs-lookup"><span data-stu-id="55b31-152">Binding dataType property</span></span>
 
-<span data-ttu-id="b1bd0-153">In .NET usare i tipi per definire il tipo di dati per i dati di input.</span><span class="sxs-lookup"><span data-stu-id="b1bd0-153">In .NET, use the types to define the data type for input data.</span></span> <span data-ttu-id="b1bd0-154">Ad esempio, usare `string` da associare al testo di un trigger di coda e una matrice di byte da leggere in formato binario.</span><span class="sxs-lookup"><span data-stu-id="b1bd0-154">For instance, use `string` to bind to the text of a queue trigger and a byte array to read as binary.</span></span>
+<span data-ttu-id="55b31-153">In .NET, utilizzare hello tipi toodefine hello data type per dati di input.</span><span class="sxs-lookup"><span data-stu-id="55b31-153">In .NET, use hello types toodefine hello data type for input data.</span></span> <span data-ttu-id="55b31-154">Ad esempio, utilizzare `string` toobind toohello testo di un trigger di coda e un tooread di matrice di byte in formato binario.</span><span class="sxs-lookup"><span data-stu-id="55b31-154">For instance, use `string` toobind toohello text of a queue trigger and a byte array tooread as binary.</span></span>
 
-<span data-ttu-id="b1bd0-155">Per le lingue che vengono digitate in modo dinamico, ad esempio JavaScript, usare la proprietà `dataType` nella definizione di associazione.</span><span class="sxs-lookup"><span data-stu-id="b1bd0-155">For languages that are dynamically typed such as JavaScript, use the `dataType` property in the binding definition.</span></span> <span data-ttu-id="b1bd0-156">Ad esempio, per leggere il contenuto di una richiesta HTTP in formato binario, usare il tipo `binary`:</span><span class="sxs-lookup"><span data-stu-id="b1bd0-156">For example, to read the content of an HTTP request in binary format, use the type `binary`:</span></span>
+<span data-ttu-id="55b31-155">Per le lingue che vengono digitate in modo dinamico, ad esempio JavaScript, usare hello `dataType` proprietà nella definizione di associazioni hello.</span><span class="sxs-lookup"><span data-stu-id="55b31-155">For languages that are dynamically typed such as JavaScript, use hello `dataType` property in hello binding definition.</span></span> <span data-ttu-id="55b31-156">Ad esempio, tooread hello contenuto di una richiesta HTTP in formato binario, utilizzare il tipo di hello `binary`:</span><span class="sxs-lookup"><span data-stu-id="55b31-156">For example, tooread hello content of an HTTP request in binary format, use hello type `binary`:</span></span>
 
 ```json
 {
@@ -202,16 +202,16 @@ let Run(input: WorkItem, log: TraceWriter) =
 }
 ```
 
-<span data-ttu-id="b1bd0-157">Altre opzioni per `dataType` sono `stream` e `string`.</span><span class="sxs-lookup"><span data-stu-id="b1bd0-157">Other options for `dataType` are `stream` and `string`.</span></span>
+<span data-ttu-id="55b31-157">Altre opzioni per `dataType` sono `stream` e `string`.</span><span class="sxs-lookup"><span data-stu-id="55b31-157">Other options for `dataType` are `stream` and `string`.</span></span>
 
-## <a name="resolving-app-settings"></a><span data-ttu-id="b1bd0-158">Risoluzione di impostazioni app</span><span class="sxs-lookup"><span data-stu-id="b1bd0-158">Resolving app settings</span></span>
-<span data-ttu-id="b1bd0-159">Come procedura consigliata, i segreti e le stringhe di connessione devono essere gestiti tramite le impostazioni dell'app, invece dei file di configurazione.</span><span class="sxs-lookup"><span data-stu-id="b1bd0-159">As a best practice, secrets and connection strings should be managed using app settings, rather than configuration files.</span></span> <span data-ttu-id="b1bd0-160">Ciò limita l'accesso a questi segreti e rende sicuro archiviare *function.json* in un repository di controllo sorgente pubblico.</span><span class="sxs-lookup"><span data-stu-id="b1bd0-160">This limits access to these secrets and makes it safe to store *function.json* in a public source control repository.</span></span>
+## <a name="resolving-app-settings"></a><span data-ttu-id="55b31-158">Risoluzione di impostazioni app</span><span class="sxs-lookup"><span data-stu-id="55b31-158">Resolving app settings</span></span>
+<span data-ttu-id="55b31-159">Come procedura consigliata, i segreti e le stringhe di connessione devono essere gestiti tramite le impostazioni dell'app, invece dei file di configurazione.</span><span class="sxs-lookup"><span data-stu-id="55b31-159">As a best practice, secrets and connection strings should be managed using app settings, rather than configuration files.</span></span> <span data-ttu-id="55b31-160">Questo limita accesso toothese segreti e rende sicuro toostore *function.json* in un repository di controllo del codice sorgente pubblico.</span><span class="sxs-lookup"><span data-stu-id="55b31-160">This limits access toothese secrets and makes it safe toostore *function.json* in a public source control repository.</span></span>
 
-<span data-ttu-id="b1bd0-161">Le impostazioni dell'app sono utili anche ogni volta che si desidera modificare la configurazione in base all'ambiente.</span><span class="sxs-lookup"><span data-stu-id="b1bd0-161">App settings are also useful whenever you want to change configuration based on the environment.</span></span> <span data-ttu-id="b1bd0-162">Ad esempio, in un ambiente di test, si potrebbe voler monitorare un contenitore di archiviazione BLOB o di coda diverso.</span><span class="sxs-lookup"><span data-stu-id="b1bd0-162">For example, in a test environment, you may want to monitor a different queue or blob storage container.</span></span>
+<span data-ttu-id="55b31-161">Le impostazioni dell'App sono utili anche ogni volta che si desidera configurazione toochange basata sull'ambiente hello.</span><span class="sxs-lookup"><span data-stu-id="55b31-161">App settings are also useful whenever you want toochange configuration based on hello environment.</span></span> <span data-ttu-id="55b31-162">In un ambiente di test, ad esempio, è consigliabile toomonitor un diverso contenitore di archiviazione blob o coda.</span><span class="sxs-lookup"><span data-stu-id="55b31-162">For example, in a test environment, you may want toomonitor a different queue or blob storage container.</span></span>
 
-<span data-ttu-id="b1bd0-163">Le impostazioni dell'app vengono risolte ogni volta che un valore è racchiuso tra simboli di percentuale, ad esempio `%MyAppSetting%`.</span><span class="sxs-lookup"><span data-stu-id="b1bd0-163">App settings are resolved whenever a value is enclosed in percent signs, such as `%MyAppSetting%`.</span></span> <span data-ttu-id="b1bd0-164">Si noti che la proprietà `connection` di trigger e associazioni è un caso speciale e risolve automaticamente i valori come impostazioni dell'app.</span><span class="sxs-lookup"><span data-stu-id="b1bd0-164">Note that the `connection` property of triggers and bindings is a special case and automatically resolves values as app settings.</span></span> 
+<span data-ttu-id="55b31-163">Le impostazioni dell'app vengono risolte ogni volta che un valore è racchiuso tra simboli di percentuale, ad esempio `%MyAppSetting%`.</span><span class="sxs-lookup"><span data-stu-id="55b31-163">App settings are resolved whenever a value is enclosed in percent signs, such as `%MyAppSetting%`.</span></span> <span data-ttu-id="55b31-164">Si noti che hello `connection` proprietà delle associazioni e i trigger è un caso speciale e risolve automaticamente i valori come impostazioni dell'app.</span><span class="sxs-lookup"><span data-stu-id="55b31-164">Note that hello `connection` property of triggers and bindings is a special case and automatically resolves values as app settings.</span></span> 
 
-<span data-ttu-id="b1bd0-165">L'esempio seguente è un trigger di coda che usa un'impostazione dell'app `%input-queue-name%` per definire la coda di trigger.</span><span class="sxs-lookup"><span data-stu-id="b1bd0-165">The following example is a queue trigger that uses an app setting `%input-queue-name%` to define the queue to trigger on.</span></span>
+<span data-ttu-id="55b31-165">esempio Hello è un trigger di coda che utilizza un'impostazione app `%input-queue-name%` toodefine hello coda tootrigger in.</span><span class="sxs-lookup"><span data-stu-id="55b31-165">hello following example is a queue trigger that uses an app setting `%input-queue-name%` toodefine hello queue tootrigger on.</span></span>
 
 ```json
 {
@@ -227,23 +227,23 @@ let Run(input: WorkItem, log: TraceWriter) =
 }
 ```
 
-## <a name="trigger-metadata-properties"></a><span data-ttu-id="b1bd0-166">Proprietà dei metadati di trigger</span><span class="sxs-lookup"><span data-stu-id="b1bd0-166">Trigger metadata properties</span></span>
+## <a name="trigger-metadata-properties"></a><span data-ttu-id="55b31-166">Proprietà dei metadati di trigger</span><span class="sxs-lookup"><span data-stu-id="55b31-166">Trigger metadata properties</span></span>
 
-<span data-ttu-id="b1bd0-167">Oltre al payload dei dati offerto da un trigger (ad esempio, il messaggio di coda che ha attivato una funzione), molti trigger forniscono i valori dei metadati aggiuntivi.</span><span class="sxs-lookup"><span data-stu-id="b1bd0-167">In addition to the data payload provided by a trigger (such as the queue message that triggered a function), many triggers provide additional metadata values.</span></span> <span data-ttu-id="b1bd0-168">Questi valori possono essere usati come parametri di input in C# e F# o come proprietà nell'oggetto `context.bindings` in JavaScript.</span><span class="sxs-lookup"><span data-stu-id="b1bd0-168">These values can be used as input parameters in C# and F# or properties on the `context.bindings` object in JavaScript.</span></span> 
+<span data-ttu-id="55b31-167">In aggiunta toohello payload dei dati forniti da un trigger (ad esempio hello coda dei messaggi che ha attivato una funzione), molti trigger fornire i valori di metadati aggiuntivi.</span><span class="sxs-lookup"><span data-stu-id="55b31-167">In addition toohello data payload provided by a trigger (such as hello queue message that triggered a function), many triggers provide additional metadata values.</span></span> <span data-ttu-id="55b31-168">Questi valori possono essere utilizzati come parametri di input in c# e F # o proprietà hello `context.bindings` oggetto in JavaScript.</span><span class="sxs-lookup"><span data-stu-id="55b31-168">These values can be used as input parameters in C# and F# or properties on hello `context.bindings` object in JavaScript.</span></span> 
 
-<span data-ttu-id="b1bd0-169">Ad esempio, un trigger di coda supporta le proprietà seguenti:</span><span class="sxs-lookup"><span data-stu-id="b1bd0-169">For example, a queue trigger supports the following properties:</span></span>
+<span data-ttu-id="55b31-169">Ad esempio, un trigger di coda supporta hello le proprietà seguenti:</span><span class="sxs-lookup"><span data-stu-id="55b31-169">For example, a queue trigger supports hello following properties:</span></span>
 
-* <span data-ttu-id="b1bd0-170">QueueTrigge: attivazione del contenuto del messaggio, se una stringa valida</span><span class="sxs-lookup"><span data-stu-id="b1bd0-170">QueueTrigger - triggering message content if a valid string</span></span>
-* <span data-ttu-id="b1bd0-171">DequeueCount</span><span class="sxs-lookup"><span data-stu-id="b1bd0-171">DequeueCount</span></span>
-* <span data-ttu-id="b1bd0-172">ExpirationTime</span><span class="sxs-lookup"><span data-stu-id="b1bd0-172">ExpirationTime</span></span>
-* <span data-ttu-id="b1bd0-173">ID</span><span class="sxs-lookup"><span data-stu-id="b1bd0-173">Id</span></span>
-* <span data-ttu-id="b1bd0-174">InsertionTime</span><span class="sxs-lookup"><span data-stu-id="b1bd0-174">InsertionTime</span></span>
-* <span data-ttu-id="b1bd0-175">NextVisibleTime</span><span class="sxs-lookup"><span data-stu-id="b1bd0-175">NextVisibleTime</span></span>
-* <span data-ttu-id="b1bd0-176">PopReceipt</span><span class="sxs-lookup"><span data-stu-id="b1bd0-176">PopReceipt</span></span>
+* <span data-ttu-id="55b31-170">QueueTrigge: attivazione del contenuto del messaggio, se una stringa valida</span><span class="sxs-lookup"><span data-stu-id="55b31-170">QueueTrigger - triggering message content if a valid string</span></span>
+* <span data-ttu-id="55b31-171">DequeueCount</span><span class="sxs-lookup"><span data-stu-id="55b31-171">DequeueCount</span></span>
+* <span data-ttu-id="55b31-172">ExpirationTime</span><span class="sxs-lookup"><span data-stu-id="55b31-172">ExpirationTime</span></span>
+* <span data-ttu-id="55b31-173">ID</span><span class="sxs-lookup"><span data-stu-id="55b31-173">Id</span></span>
+* <span data-ttu-id="55b31-174">InsertionTime</span><span class="sxs-lookup"><span data-stu-id="55b31-174">InsertionTime</span></span>
+* <span data-ttu-id="55b31-175">NextVisibleTime</span><span class="sxs-lookup"><span data-stu-id="55b31-175">NextVisibleTime</span></span>
+* <span data-ttu-id="55b31-176">PopReceipt</span><span class="sxs-lookup"><span data-stu-id="55b31-176">PopReceipt</span></span>
 
-<span data-ttu-id="b1bd0-177">I dettagli delle proprietà dei metadati per ogni trigger sono descritti nell'argomento di riferimento corrispondente.</span><span class="sxs-lookup"><span data-stu-id="b1bd0-177">Details of metadata properties for each trigger are described in the corresponding reference topic.</span></span> <span data-ttu-id="b1bd0-178">La documentazione è disponibile anche nella scheda **Integrazione** del portale nella sezione **Documentazione** sotto l'area di configurazione dell'associazione.</span><span class="sxs-lookup"><span data-stu-id="b1bd0-178">Documentation is also available in the **Integrate** tab of the portal, in the **Documentation** section below the binding configuration area.</span></span>  
+<span data-ttu-id="55b31-177">Dettagli delle proprietà dei metadati per tutti i trigger sono descritti nell'argomento di riferimento corrispondente hello.</span><span class="sxs-lookup"><span data-stu-id="55b31-177">Details of metadata properties for each trigger are described in hello corresponding reference topic.</span></span> <span data-ttu-id="55b31-178">La documentazione è disponibile anche in hello **integrazione** scheda della finestra del portale hello hello **documentazione** sezione sotto l'area di configurazione dell'associazione hello.</span><span class="sxs-lookup"><span data-stu-id="55b31-178">Documentation is also available in hello **Integrate** tab of hello portal, in hello **Documentation** section below hello binding configuration area.</span></span>  
 
-<span data-ttu-id="b1bd0-179">Ad esempio, poiché i trigger BLOB presentano alcuni ritardi, è possibile usare un trigger della coda per l'esecuzione della funzione (vedere [Trigger del BLOB del servizio di archiviazione](functions-bindings-storage-blob.md#storage-blob-trigger).</span><span class="sxs-lookup"><span data-stu-id="b1bd0-179">For example, since blob triggers have some delays, you can use a queue trigger to run your function (see [Blob Storage Trigger](functions-bindings-storage-blob.md#storage-blob-trigger).</span></span> <span data-ttu-id="b1bd0-180">Il messaggio della coda contiene il filename del BLOB da attivare.</span><span class="sxs-lookup"><span data-stu-id="b1bd0-180">The queue message would contain the blob filename to trigger on.</span></span> <span data-ttu-id="b1bd0-181">Con l'uso della proprietà dei metadati `queueTrigger`, è possibile specificareper intero questo comportamento nella configurazione, invece che nel codice.</span><span class="sxs-lookup"><span data-stu-id="b1bd0-181">Using the `queueTrigger` metadata property, you can specify this behavior all in your configuration, rather than your code.</span></span>
+<span data-ttu-id="55b31-179">Ad esempio, poiché i trigger di blob presentano alcuni ritardi, è possibile utilizzare un toorun trigger coda la funzione (vedere [Trigger di archiviazione Blob](functions-bindings-storage-blob.md#storage-blob-trigger).</span><span class="sxs-lookup"><span data-stu-id="55b31-179">For example, since blob triggers have some delays, you can use a queue trigger toorun your function (see [Blob Storage Trigger](functions-bindings-storage-blob.md#storage-blob-trigger).</span></span> <span data-ttu-id="55b31-180">messaggio della coda di Hello conterrebbe hello blob filename tootrigger in.</span><span class="sxs-lookup"><span data-stu-id="55b31-180">hello queue message would contain hello blob filename tootrigger on.</span></span> <span data-ttu-id="55b31-181">Utilizzo di hello `queueTrigger` proprietà dei metadati, è possibile specificare questo comportamento in configurazione, anziché il codice.</span><span class="sxs-lookup"><span data-stu-id="55b31-181">Using hello `queueTrigger` metadata property, you can specify this behavior all in your configuration, rather than your code.</span></span>
 
 ```json
   "bindings": [
@@ -263,15 +263,15 @@ let Run(input: WorkItem, log: TraceWriter) =
   ]
 ```
 
-<span data-ttu-id="b1bd0-182">Le proprietà dei metadati da un trigger possono anche essere usate in una *espressione dell'associazione* per un'altra associazione, come descritto nella sezione seguente.</span><span class="sxs-lookup"><span data-stu-id="b1bd0-182">Metadata properties from a trigger can also be used in a *binding expression* for another binding, as described in the following section.</span></span>
+<span data-ttu-id="55b31-182">Proprietà di metadati da un trigger possono essere utilizzate anche un *espressione dell'associazione* per l'associazione di un altro, come hello descritto nella sezione seguente.</span><span class="sxs-lookup"><span data-stu-id="55b31-182">Metadata properties from a trigger can also be used in a *binding expression* for another binding, as described in hello following section.</span></span>
 
-## <a name="binding-expressions-and-patterns"></a><span data-ttu-id="b1bd0-183">Modelli ed espressioni di associazione</span><span class="sxs-lookup"><span data-stu-id="b1bd0-183">Binding expressions and patterns</span></span>
+## <a name="binding-expressions-and-patterns"></a><span data-ttu-id="55b31-183">Modelli ed espressioni di associazione</span><span class="sxs-lookup"><span data-stu-id="55b31-183">Binding expressions and patterns</span></span>
 
-<span data-ttu-id="b1bd0-184">Una delle funzionalità più potenti di trigger e associazioni sono le *espressioni di associazione*.</span><span class="sxs-lookup"><span data-stu-id="b1bd0-184">One of the most powerful features of triggers and bindings is *binding expressions*.</span></span> <span data-ttu-id="b1bd0-185">All'interno dell'associazione, è possibile definire delle espressioni di modello che possono quindi essere usate in altre associazioni o nel codice.</span><span class="sxs-lookup"><span data-stu-id="b1bd0-185">Within your binding, you can define pattern expressions which can then be used in other bindings or your code.</span></span> <span data-ttu-id="b1bd0-186">I metadati del trigger possono essere usati anche nelle espressioni di associazione, come illustrato nell'esempio nella sezione precedente.</span><span class="sxs-lookup"><span data-stu-id="b1bd0-186">Trigger metadata can also be used in binding expressions, as show in the sample in the preceding section.</span></span>
+<span data-ttu-id="55b31-184">Una delle funzionalità più potenti di hello di trigger e le associazioni è *espressioni di associazione*.</span><span class="sxs-lookup"><span data-stu-id="55b31-184">One of hello most powerful features of triggers and bindings is *binding expressions*.</span></span> <span data-ttu-id="55b31-185">All'interno dell'associazione, è possibile definire delle espressioni di modello che possono quindi essere usate in altre associazioni o nel codice.</span><span class="sxs-lookup"><span data-stu-id="55b31-185">Within your binding, you can define pattern expressions which can then be used in other bindings or your code.</span></span> <span data-ttu-id="55b31-186">Metadati di trigger possono essere utilizzati anche nell'associazione di espressioni, come illustrato nell'esempio hello nella precedente sezione hello.</span><span class="sxs-lookup"><span data-stu-id="55b31-186">Trigger metadata can also be used in binding expressions, as show in hello sample in hello preceding section.</span></span>
 
-<span data-ttu-id="b1bd0-187">Ad esempio, si supponga che si desidera ridimensionare le immagini in un contenitore di archiviazione BLOB specifico, simile al modello di **ridimensionamento immagine** nella pagina **Nuova funzione**.</span><span class="sxs-lookup"><span data-stu-id="b1bd0-187">For example, suppose you want to resize images in particular blob storage container, similar to the **Image Resizer** template in the **New Function** page.</span></span> <span data-ttu-id="b1bd0-188">Passare a **Nuova funzione** -> Linguaggio **C#** -> Scenario **Esempi** -> **ImageResizer-CSharp**.</span><span class="sxs-lookup"><span data-stu-id="b1bd0-188">Go to **New Function** -> Language **C#** -> Scenario **Samples** -> **ImageResizer-CSharp**.</span></span> 
+<span data-ttu-id="55b31-187">Ad esempio, si supponga di voler tooresize immagini nel contenitore di archiviazione blob specifico, simile toohello **dimensioni immagine** modello hello **nuova funzione** pagina.</span><span class="sxs-lookup"><span data-stu-id="55b31-187">For example, suppose you want tooresize images in particular blob storage container, similar toohello **Image Resizer** template in hello **New Function** page.</span></span> <span data-ttu-id="55b31-188">Andare troppo**nuova funzione** -> lingua **c#** -> Scenario **esempi** -> **ImageResizer CSharp**.</span><span class="sxs-lookup"><span data-stu-id="55b31-188">Go too**New Function** -> Language **C#** -> Scenario **Samples** -> **ImageResizer-CSharp**.</span></span> 
 
-<span data-ttu-id="b1bd0-189">Ecco la definizione di *function.json*:</span><span class="sxs-lookup"><span data-stu-id="b1bd0-189">Here is the *function.json* definition:</span></span>
+<span data-ttu-id="55b31-189">Ecco hello *function.json* definizione:</span><span class="sxs-lookup"><span data-stu-id="55b31-189">Here is hello *function.json* definition:</span></span>
 
 ```json
 {
@@ -294,10 +294,10 @@ let Run(input: WorkItem, log: TraceWriter) =
 }
 ```
 
-<span data-ttu-id="b1bd0-190">Si noti che il parametro `filename` viene usato nella definizione del trigger BLOB e anche nell'associazione output di BLOB.</span><span class="sxs-lookup"><span data-stu-id="b1bd0-190">Notice that the `filename` parameter is used in both the blob trigger definition as well as the blob output binding.</span></span> <span data-ttu-id="b1bd0-191">Questo parametro può essere usato anche nel codice della funzione.</span><span class="sxs-lookup"><span data-stu-id="b1bd0-191">This parameter can also be used in function code.</span></span>
+<span data-ttu-id="55b31-190">Si noti che hello `filename` parametro viene utilizzato nella definizione del trigger blob hello nonché a blob hello associazione di output.</span><span class="sxs-lookup"><span data-stu-id="55b31-190">Notice that hello `filename` parameter is used in both hello blob trigger definition as well as hello blob output binding.</span></span> <span data-ttu-id="55b31-191">Questo parametro può essere usato anche nel codice della funzione.</span><span class="sxs-lookup"><span data-stu-id="55b31-191">This parameter can also be used in function code.</span></span>
 
 ```csharp
-// C# example of binding to {filename}
+// C# example of binding too{filename}
 public static void Run(Stream image, string filename, Stream imageSmall, TraceWriter log)  
 {
     log.Info($"Blob trigger processing: {filename}");
@@ -309,8 +309,8 @@ public static void Run(Stream image, string filename, Stream imageSmall, TraceWr
 <!-- Blocked by bug https://github.com/Azure/Azure-Functions/issues/248 -->
 
 
-### <a name="random-guids"></a><span data-ttu-id="b1bd0-192">GUID casuali</span><span class="sxs-lookup"><span data-stu-id="b1bd0-192">Random GUIDs</span></span>
-<span data-ttu-id="b1bd0-193">Funzioni di Azure fornisce una sintassi utile per la generazione di GUID nelle associazioni, tramite l'espressione dell'associazione `{rand-guid}`.</span><span class="sxs-lookup"><span data-stu-id="b1bd0-193">Azure Functions provides a convenience syntax for generating GUIDs in your bindings, through the `{rand-guid}` binding expression.</span></span> <span data-ttu-id="b1bd0-194">Nell'esempio seguente questa operazione viene usata per generare un nome del BLOB univoco:</span><span class="sxs-lookup"><span data-stu-id="b1bd0-194">The following example uses this to generate a unique blob name:</span></span> 
+### <a name="random-guids"></a><span data-ttu-id="55b31-192">GUID casuali</span><span class="sxs-lookup"><span data-stu-id="55b31-192">Random GUIDs</span></span>
+<span data-ttu-id="55b31-193">Funzioni di Azure fornisce una sintassi pratici per la generazione di GUID nelle associazioni, tramite hello `{rand-guid}` espressione dell'associazione.</span><span class="sxs-lookup"><span data-stu-id="55b31-193">Azure Functions provides a convenience syntax for generating GUIDs in your bindings, through hello `{rand-guid}` binding expression.</span></span> <span data-ttu-id="55b31-194">Hello esempio seguente viene utilizzato questo toogenerate un nome univoco di blob:</span><span class="sxs-lookup"><span data-stu-id="55b31-194">hello following example uses this toogenerate a unique blob name:</span></span> 
 
 ```json
 {
@@ -321,9 +321,9 @@ public static void Run(Stream image, string filename, Stream imageSmall, TraceWr
 }
 ```
 
-### <a name="current-time"></a><span data-ttu-id="b1bd0-195">Ora corrente</span><span class="sxs-lookup"><span data-stu-id="b1bd0-195">Current time</span></span>
+### <a name="current-time"></a><span data-ttu-id="55b31-195">Ora corrente</span><span class="sxs-lookup"><span data-stu-id="55b31-195">Current time</span></span>
 
-<span data-ttu-id="b1bd0-196">È possibile usare l'espressione di associazione `DateTime`, che viene risolta in `DateTime.UtcNow`.</span><span class="sxs-lookup"><span data-stu-id="b1bd0-196">You can use the binding expression `DateTime`, which resolves to `DateTime.UtcNow`.</span></span>
+<span data-ttu-id="55b31-196">È possibile utilizzare l'espressione di associazione hello `DateTime`, che viene risolta troppo`DateTime.UtcNow`.</span><span class="sxs-lookup"><span data-stu-id="55b31-196">You can use hello binding expression `DateTime`, which resolves too`DateTime.UtcNow`.</span></span>
 
 ```json
 {
@@ -334,11 +334,11 @@ public static void Run(Stream image, string filename, Stream imageSmall, TraceWr
 }
 ```
 
-## <a name="bind-to-custom-input-properties-in-a-binding-expression"></a><span data-ttu-id="b1bd0-197">Associare le proprietà di input personalizzate in un'espressione di associazione</span><span class="sxs-lookup"><span data-stu-id="b1bd0-197">Bind to custom input properties in a binding expression</span></span>
+## <a name="bind-toocustom-input-properties-in-a-binding-expression"></a><span data-ttu-id="55b31-197">Associare le proprietà di input toocustom in un'espressione di associazione</span><span class="sxs-lookup"><span data-stu-id="55b31-197">Bind toocustom input properties in a binding expression</span></span>
 
-<span data-ttu-id="b1bd0-198">Le espressioni di associazione possono anche fare riferimento alle proprietà definite nel payload del trigger stesso.</span><span class="sxs-lookup"><span data-stu-id="b1bd0-198">Binding expressions can also reference properties that are defined in the trigger payload itself.</span></span> <span data-ttu-id="b1bd0-199">Ad esempio, si potrebbe voler associare in modo dinamico ad un file di archiviazione BLOB un filename fornito da un webhook.</span><span class="sxs-lookup"><span data-stu-id="b1bd0-199">For example, you may want to dynamically bind to a blob storage file from a filename provided in a webhook.</span></span>
+<span data-ttu-id="55b31-198">Associazione di espressioni può anche fare riferimento alle proprietà che sono definite nel payload di hello trigger stesso.</span><span class="sxs-lookup"><span data-stu-id="55b31-198">Binding expressions can also reference properties that are defined in hello trigger payload itself.</span></span> <span data-ttu-id="55b31-199">Ad esempio, è consigliabile toodynamically file di archiviazione blob di tooa binding da un nome specificato in un webhook.</span><span class="sxs-lookup"><span data-stu-id="55b31-199">For example, you may want toodynamically bind tooa blob storage file from a filename provided in a webhook.</span></span>
 
-<span data-ttu-id="b1bd0-200">Ad esempio, la seguente *function.json* usa una proprietà denominata `BlobName` dal payload del trigger:</span><span class="sxs-lookup"><span data-stu-id="b1bd0-200">For example, the following *function.json* uses a property called `BlobName` from the trigger payload:</span></span>
+<span data-ttu-id="55b31-200">Ad esempio, hello seguente *function.json* Usa una proprietà denominata `BlobName` dal payload trigger hello:</span><span class="sxs-lookup"><span data-stu-id="55b31-200">For example, hello following *function.json* uses a property called `BlobName` from hello trigger payload:</span></span>
 
 ```json
 {
@@ -365,7 +365,7 @@ public static void Run(Stream image, string filename, Stream imageSmall, TraceWr
 }
 ```
 
-<span data-ttu-id="b1bd0-201">A tale scopo in C# e F #, è necessario definire un POCO che definisce i campi che saranno deserializzati nel payload del trigger.</span><span class="sxs-lookup"><span data-stu-id="b1bd0-201">To accomplish this in C# and F#, you must define a POCO that defines the fields that will be deserialized in the trigger payload.</span></span>
+<span data-ttu-id="55b31-201">tooaccomplish questo in c# e F #, è necessario definire un POCO che definisce i campi di hello che verranno deserializzati payload trigger hello.</span><span class="sxs-lookup"><span data-stu-id="55b31-201">tooaccomplish this in C# and F#, you must define a POCO that defines hello fields that will be deserialized in hello trigger payload.</span></span>
 
 ```csharp
 using System.Net;
@@ -387,7 +387,7 @@ public static HttpResponseMessage Run(HttpRequestMessage req, BlobInfo info, str
 }
 ```
 
-<span data-ttu-id="b1bd0-202">In JavaScript, viene eseguita automaticamente la deserializzazione di JSON ed è possibile usare direttamente le proprietà.</span><span class="sxs-lookup"><span data-stu-id="b1bd0-202">In JavaScript, JSON deserialization is automatically performed and you can use the properties directly.</span></span>
+<span data-ttu-id="55b31-202">In JavaScript, viene eseguita automaticamente la deserializzazione JSON ed è possibile utilizzare direttamente le proprietà di hello.</span><span class="sxs-lookup"><span data-stu-id="55b31-202">In JavaScript, JSON deserialization is automatically performed and you can use hello properties directly.</span></span>
 
 ```javascript
 module.exports = function (context, info) {
@@ -405,23 +405,23 @@ module.exports = function (context, info) {
 }
 ```
 
-## <a name="configuring-binding-data-at-runtime"></a><span data-ttu-id="b1bd0-203">Configurazione dell'associazione di dati in fase di runtime</span><span class="sxs-lookup"><span data-stu-id="b1bd0-203">Configuring binding data at runtime</span></span>
+## <a name="configuring-binding-data-at-runtime"></a><span data-ttu-id="55b31-203">Configurazione dell'associazione di dati in fase di runtime</span><span class="sxs-lookup"><span data-stu-id="55b31-203">Configuring binding data at runtime</span></span>
 
-<span data-ttu-id="b1bd0-204">In C# e altri linguaggi .NET, è possibile usare un metodo di associazione imperativa anziché dichiarativa in *function.json*.</span><span class="sxs-lookup"><span data-stu-id="b1bd0-204">In C# and other .NET languages, you can use an imperative binding pattern, as opposed to the declarative bindings in *function.json*.</span></span> <span data-ttu-id="b1bd0-205">L'associazione imperativa è utile quando i parametri di associazione devono essere calcolati in fase di runtime invece che in fase di progettazione.</span><span class="sxs-lookup"><span data-stu-id="b1bd0-205">Imperative binding is useful when binding parameters need to be computed at runtime rather than design time.</span></span> <span data-ttu-id="b1bd0-206">Per altre informazioni, vedere [Associazione in fase di runtime tramite le associazioni imperative](functions-reference-csharp.md#imperative-bindings) nel riferimento per sviluppatori C#.</span><span class="sxs-lookup"><span data-stu-id="b1bd0-206">To learn more, see [Binding at runtime via imperative bindings](functions-reference-csharp.md#imperative-bindings) in the C# developer reference.</span></span>
+<span data-ttu-id="55b31-204">In c# e altri linguaggi .NET, è possibile utilizzare un modello di associazione imperativa, come toohello anziché associazioni dichiarativa *function.json*.</span><span class="sxs-lookup"><span data-stu-id="55b31-204">In C# and other .NET languages, you can use an imperative binding pattern, as opposed toohello declarative bindings in *function.json*.</span></span> <span data-ttu-id="55b31-205">Associazione imperativo è utile quando i parametri di associazione necessario toobe calcolato in fase di runtime anziché di progettazione.</span><span class="sxs-lookup"><span data-stu-id="55b31-205">Imperative binding is useful when binding parameters need toobe computed at runtime rather than design time.</span></span> <span data-ttu-id="55b31-206">toolearn informazioni, vedere [associazione in fase di esecuzione tramite i binding imperativo](functions-reference-csharp.md#imperative-bindings) nella Guida di riferimento per sviluppatori hello in c#.</span><span class="sxs-lookup"><span data-stu-id="55b31-206">toolearn more, see [Binding at runtime via imperative bindings](functions-reference-csharp.md#imperative-bindings) in hello C# developer reference.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="b1bd0-207">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="b1bd0-207">Next steps</span></span>
-<span data-ttu-id="b1bd0-208">Per altre informazioni su questi elementi, vedere gli articoli indicati di seguito:</span><span class="sxs-lookup"><span data-stu-id="b1bd0-208">For more information on a specific binding, see the following articles:</span></span>
+## <a name="next-steps"></a><span data-ttu-id="55b31-207">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="55b31-207">Next steps</span></span>
+<span data-ttu-id="55b31-208">Per ulteriori informazioni su una particolare associazione, vedere hello seguenti articoli:</span><span class="sxs-lookup"><span data-stu-id="55b31-208">For more information on a specific binding, see hello following articles:</span></span>
 
-- [<span data-ttu-id="b1bd0-209">HTTP e webhook</span><span class="sxs-lookup"><span data-stu-id="b1bd0-209">HTTP and webhooks</span></span>](functions-bindings-http-webhook.md)
-- [<span data-ttu-id="b1bd0-210">Timer</span><span class="sxs-lookup"><span data-stu-id="b1bd0-210">Timer</span></span>](functions-bindings-timer.md)
-- [<span data-ttu-id="b1bd0-211">Archiviazione code</span><span class="sxs-lookup"><span data-stu-id="b1bd0-211">Queue storage</span></span>](functions-bindings-storage-queue.md)
-- [<span data-ttu-id="b1bd0-212">Archiviazione BLOB</span><span class="sxs-lookup"><span data-stu-id="b1bd0-212">Blob storage</span></span>](functions-bindings-storage-blob.md)
-- [<span data-ttu-id="b1bd0-213">Archiviazione tabelle</span><span class="sxs-lookup"><span data-stu-id="b1bd0-213">Table storage</span></span>](functions-bindings-storage-table.md)
-- [<span data-ttu-id="b1bd0-214">Hub eventi</span><span class="sxs-lookup"><span data-stu-id="b1bd0-214">Event Hub</span></span>](functions-bindings-event-hubs.md)
-- [<span data-ttu-id="b1bd0-215">Bus di servizio</span><span class="sxs-lookup"><span data-stu-id="b1bd0-215">Service Bus</span></span>](functions-bindings-service-bus.md)
-- [<span data-ttu-id="b1bd0-216">Cosmos DB</span><span class="sxs-lookup"><span data-stu-id="b1bd0-216">Cosmos DB</span></span>](functions-bindings-documentdb.md)
-- [<span data-ttu-id="b1bd0-217">SendGrid</span><span class="sxs-lookup"><span data-stu-id="b1bd0-217">SendGrid</span></span>](functions-bindings-sendgrid.md)
-- [<span data-ttu-id="b1bd0-218">Twilio</span><span class="sxs-lookup"><span data-stu-id="b1bd0-218">Twilio</span></span>](functions-bindings-twilio.md)
-- [<span data-ttu-id="b1bd0-219">Hub di notifica</span><span class="sxs-lookup"><span data-stu-id="b1bd0-219">Notification Hubs</span></span>](functions-bindings-notification-hubs.md)
-- [<span data-ttu-id="b1bd0-220">App per dispositivi mobili</span><span class="sxs-lookup"><span data-stu-id="b1bd0-220">Mobile Apps</span></span>](functions-bindings-mobile-apps.md)
-- [<span data-ttu-id="b1bd0-221">File esterno</span><span class="sxs-lookup"><span data-stu-id="b1bd0-221">External file</span></span>](functions-bindings-external-file.md)
+- [<span data-ttu-id="55b31-209">HTTP e webhook</span><span class="sxs-lookup"><span data-stu-id="55b31-209">HTTP and webhooks</span></span>](functions-bindings-http-webhook.md)
+- [<span data-ttu-id="55b31-210">Timer</span><span class="sxs-lookup"><span data-stu-id="55b31-210">Timer</span></span>](functions-bindings-timer.md)
+- [<span data-ttu-id="55b31-211">Archiviazione code</span><span class="sxs-lookup"><span data-stu-id="55b31-211">Queue storage</span></span>](functions-bindings-storage-queue.md)
+- [<span data-ttu-id="55b31-212">Archiviazione BLOB</span><span class="sxs-lookup"><span data-stu-id="55b31-212">Blob storage</span></span>](functions-bindings-storage-blob.md)
+- [<span data-ttu-id="55b31-213">Archiviazione tabelle</span><span class="sxs-lookup"><span data-stu-id="55b31-213">Table storage</span></span>](functions-bindings-storage-table.md)
+- [<span data-ttu-id="55b31-214">Hub eventi</span><span class="sxs-lookup"><span data-stu-id="55b31-214">Event Hub</span></span>](functions-bindings-event-hubs.md)
+- [<span data-ttu-id="55b31-215">Bus di servizio</span><span class="sxs-lookup"><span data-stu-id="55b31-215">Service Bus</span></span>](functions-bindings-service-bus.md)
+- [<span data-ttu-id="55b31-216">Cosmos DB</span><span class="sxs-lookup"><span data-stu-id="55b31-216">Cosmos DB</span></span>](functions-bindings-documentdb.md)
+- [<span data-ttu-id="55b31-217">SendGrid</span><span class="sxs-lookup"><span data-stu-id="55b31-217">SendGrid</span></span>](functions-bindings-sendgrid.md)
+- [<span data-ttu-id="55b31-218">Twilio</span><span class="sxs-lookup"><span data-stu-id="55b31-218">Twilio</span></span>](functions-bindings-twilio.md)
+- [<span data-ttu-id="55b31-219">Hub di notifica</span><span class="sxs-lookup"><span data-stu-id="55b31-219">Notification Hubs</span></span>](functions-bindings-notification-hubs.md)
+- [<span data-ttu-id="55b31-220">App per dispositivi mobili</span><span class="sxs-lookup"><span data-stu-id="55b31-220">Mobile Apps</span></span>](functions-bindings-mobile-apps.md)
+- [<span data-ttu-id="55b31-221">File esterno</span><span class="sxs-lookup"><span data-stu-id="55b31-221">External file</span></span>](functions-bindings-external-file.md)

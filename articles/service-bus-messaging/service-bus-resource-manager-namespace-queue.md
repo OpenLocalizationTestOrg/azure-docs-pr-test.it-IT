@@ -1,5 +1,5 @@
 ---
-title: Creare uno spazio dei nomi del bus di servizio di Azure e una coda tramite il modello di Azure Resource Manager | Documentazione Microsoft
+title: spazio dei nomi Service Bus di Azure aaaCreate e mettere in coda utilizzando il modello di gestione risorse di Azure | Documenti Microsoft
 description: Creare uno spazio dei nomi e una coda del bus di servizio tramite il modello di Azure Resource Manager
 services: service-bus-messaging
 documentationcenter: .net
@@ -14,62 +14,62 @@ ms.tgt_pltfrm: dotnet
 ms.workload: na
 ms.date: 08/07/2017
 ms.author: sethm;shvija
-ms.openlocfilehash: 4358130a2c8e897a0fdd1f9560f766d6e22db4d2
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: f230878b7c557bdd80d74da0de5a85ba4ee99ef1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-a-service-bus-namespace-and-a-queue-using-an-azure-resource-manager-template"></a><span data-ttu-id="7bef5-103">Creare uno spazio dei nomi e una coda del bus di servizio tramite il modello di Azure Resource Manager</span><span class="sxs-lookup"><span data-stu-id="7bef5-103">Create a Service Bus namespace and a queue using an Azure Resource Manager template</span></span>
+# <a name="create-a-service-bus-namespace-and-a-queue-using-an-azure-resource-manager-template"></a><span data-ttu-id="fdbea-103">Creare uno spazio dei nomi e una coda del bus di servizio tramite il modello di Azure Resource Manager</span><span class="sxs-lookup"><span data-stu-id="fdbea-103">Create a Service Bus namespace and a queue using an Azure Resource Manager template</span></span>
 
-<span data-ttu-id="7bef5-104">Questo articolo illustra come usare un modello di Azure Resource Manager per creare uno spazio dei nomi e una coda del bus di servizio all'interno dello spazio dei nomi.</span><span class="sxs-lookup"><span data-stu-id="7bef5-104">This article shows how to use an Azure Resource Manager template that creates a Service Bus namespace and a queue within that namespace.</span></span> <span data-ttu-id="7bef5-105">Verrà illustrato come definire le risorse da distribuire e i parametri specificati quando viene eseguita la distribuzione.</span><span class="sxs-lookup"><span data-stu-id="7bef5-105">You will learn how to define which resources are deployed and how to define parameters that are specified when the deployment is executed.</span></span> <span data-ttu-id="7bef5-106">È possibile usare questo modello per le proprie distribuzioni o personalizzarlo in base alle esigenze.</span><span class="sxs-lookup"><span data-stu-id="7bef5-106">You can use this template for your own deployments, or customize it to meet your requirements.</span></span>
+<span data-ttu-id="fdbea-104">In questo articolo viene illustrato come toouse un modello di gestione risorse di Azure che crea uno spazio dei nomi del Bus di servizio e una coda nello spazio dei nomi.</span><span class="sxs-lookup"><span data-stu-id="fdbea-104">This article shows how toouse an Azure Resource Manager template that creates a Service Bus namespace and a queue within that namespace.</span></span> <span data-ttu-id="fdbea-105">Si apprenderà come toodefine quali risorse vengono distribuite come toodefine parametri e che vengono specificati quando è eseguita la distribuzione di hello.</span><span class="sxs-lookup"><span data-stu-id="fdbea-105">You will learn how toodefine which resources are deployed and how toodefine parameters that are specified when hello deployment is executed.</span></span> <span data-ttu-id="fdbea-106">È possibile utilizzare questo modello per la propria distribuzioni o personalizzarlo toomeet esigenze.</span><span class="sxs-lookup"><span data-stu-id="fdbea-106">You can use this template for your own deployments, or customize it toomeet your requirements.</span></span>
 
-<span data-ttu-id="7bef5-107">Per altre informazioni sulla creazione di modelli, vedere [Creazione di modelli di Azure Resource Manager][Authoring Azure Resource Manager templates].</span><span class="sxs-lookup"><span data-stu-id="7bef5-107">For more information about creating templates, please see [Authoring Azure Resource Manager templates][Authoring Azure Resource Manager templates].</span></span>
+<span data-ttu-id="fdbea-107">Per altre informazioni sulla creazione di modelli, vedere [Creazione di modelli di Azure Resource Manager][Authoring Azure Resource Manager templates].</span><span class="sxs-lookup"><span data-stu-id="fdbea-107">For more information about creating templates, please see [Authoring Azure Resource Manager templates][Authoring Azure Resource Manager templates].</span></span>
 
-<span data-ttu-id="7bef5-108">Per il modello completo, vedere il [modello dello spazio dei nomi e della coda del bus di servizio][Service Bus namespace and queue template] su GitHub.</span><span class="sxs-lookup"><span data-stu-id="7bef5-108">For the complete template, see the [Service Bus namespace and queue template][Service Bus namespace and queue template] on GitHub.</span></span>
+<span data-ttu-id="fdbea-108">Per il modello di hello completo, vedere hello [modello dello spazio dei nomi e coda di Service Bus] [ Service Bus namespace and queue template] su GitHub.</span><span class="sxs-lookup"><span data-stu-id="fdbea-108">For hello complete template, see hello [Service Bus namespace and queue template][Service Bus namespace and queue template] on GitHub.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="7bef5-109">Questi modelli di Azure Resource Manager sono disponibili per il download e la distribuzione.</span><span class="sxs-lookup"><span data-stu-id="7bef5-109">The following Azure Resource Manager templates are available for download and deployment.</span></span>
+> <span data-ttu-id="fdbea-109">Hello seguenti modelli di gestione risorse di Azure sono disponibile per il download e distribuzione.</span><span class="sxs-lookup"><span data-stu-id="fdbea-109">hello following Azure Resource Manager templates are available for download and deployment.</span></span>
 > 
-> * [<span data-ttu-id="7bef5-110">Creare uno spazio dei nomi del bus di servizio con coda e regola di autorizzazione</span><span class="sxs-lookup"><span data-stu-id="7bef5-110">Create a Service Bus namespace with queue and authorization rule</span></span>](service-bus-resource-manager-namespace-auth-rule.md)
-> * [<span data-ttu-id="7bef5-111">Creare uno spazio dei nomi del bus di servizio con argomento e sottoscrizione</span><span class="sxs-lookup"><span data-stu-id="7bef5-111">Create a Service Bus namespace with topic and subscription</span></span>](service-bus-resource-manager-namespace-topic.md)
-> * [<span data-ttu-id="7bef5-112">Creare uno spazio dei nomi del bus di servizio</span><span class="sxs-lookup"><span data-stu-id="7bef5-112">Create a Service Bus namespace</span></span>](service-bus-resource-manager-namespace.md)
-> * [<span data-ttu-id="7bef5-113">Creare uno spazio dei nomi del bus di servizio con argomento, sottoscrizione e regola</span><span class="sxs-lookup"><span data-stu-id="7bef5-113">Create a Service Bus namespace with topic, subscription, and rule</span></span>](service-bus-resource-manager-namespace-topic-with-rule.md)
+> * [<span data-ttu-id="fdbea-110">Creare uno spazio dei nomi del bus di servizio con coda e regola di autorizzazione</span><span class="sxs-lookup"><span data-stu-id="fdbea-110">Create a Service Bus namespace with queue and authorization rule</span></span>](service-bus-resource-manager-namespace-auth-rule.md)
+> * [<span data-ttu-id="fdbea-111">Creare uno spazio dei nomi del bus di servizio con argomento e sottoscrizione</span><span class="sxs-lookup"><span data-stu-id="fdbea-111">Create a Service Bus namespace with topic and subscription</span></span>](service-bus-resource-manager-namespace-topic.md)
+> * [<span data-ttu-id="fdbea-112">Creare uno spazio dei nomi del bus di servizio</span><span class="sxs-lookup"><span data-stu-id="fdbea-112">Create a Service Bus namespace</span></span>](service-bus-resource-manager-namespace.md)
+> * [<span data-ttu-id="fdbea-113">Creare uno spazio dei nomi del bus di servizio con argomento, sottoscrizione e regola</span><span class="sxs-lookup"><span data-stu-id="fdbea-113">Create a Service Bus namespace with topic, subscription, and rule</span></span>](service-bus-resource-manager-namespace-topic-with-rule.md)
 > 
-> <span data-ttu-id="7bef5-114">Per verificare gli ultimi modelli, visitare la raccolta [Modelli di avvio rapido di Azure][Azure Quickstart Templates] e cercare "service bus".</span><span class="sxs-lookup"><span data-stu-id="7bef5-114">To check for the latest templates, visit the [Azure Quickstart Templates][Azure Quickstart Templates] gallery and search for "Service Bus."</span></span>
+> <span data-ttu-id="fdbea-114">toocheck per i modelli più recenti di hello, visitare hello [modelli di avvio rapido di Azure] [ Azure Quickstart Templates] raccolta e cercare "Bus di servizio".</span><span class="sxs-lookup"><span data-stu-id="fdbea-114">toocheck for hello latest templates, visit hello [Azure Quickstart Templates][Azure Quickstart Templates] gallery and search for "Service Bus."</span></span>
 > 
 > 
 
-## <a name="what-will-you-deploy"></a><span data-ttu-id="7bef5-115">Distribuzione</span><span class="sxs-lookup"><span data-stu-id="7bef5-115">What will you deploy?</span></span>
+## <a name="what-will-you-deploy"></a><span data-ttu-id="fdbea-115">Distribuzione</span><span class="sxs-lookup"><span data-stu-id="fdbea-115">What will you deploy?</span></span>
 
-<span data-ttu-id="7bef5-116">Questo modello consente di distribuire uno spazio dei nomi del bus di servizio con una coda.</span><span class="sxs-lookup"><span data-stu-id="7bef5-116">With this template, you will deploy a Service Bus namespace with a queue.</span></span>
+<span data-ttu-id="fdbea-116">Questo modello consente di distribuire uno spazio dei nomi del bus di servizio con una coda.</span><span class="sxs-lookup"><span data-stu-id="fdbea-116">With this template, you will deploy a Service Bus namespace with a queue.</span></span>
 
-<span data-ttu-id="7bef5-117">Le [code del bus di servizio](service-bus-queues-topics-subscriptions.md#queues) consentono un recapito dei messaggi di tipo FIFO (First In, First Out) a uno o più consumer concorrenti.</span><span class="sxs-lookup"><span data-stu-id="7bef5-117">[Service Bus queues](service-bus-queues-topics-subscriptions.md#queues) offer First In, First Out (FIFO) message delivery to one or more competing consumers.</span></span>
+<span data-ttu-id="fdbea-117">[Le code del Bus di servizio](service-bus-queues-topics-subscriptions.md#queues) offrono First In, tooone di recapito di messaggi FIFO (First Out) o più consumer concorrenti.</span><span class="sxs-lookup"><span data-stu-id="fdbea-117">[Service Bus queues](service-bus-queues-topics-subscriptions.md#queues) offer First In, First Out (FIFO) message delivery tooone or more competing consumers.</span></span>
 
-<span data-ttu-id="7bef5-118">Per eseguire automaticamente la distribuzione, fare clic sul pulsante seguente:</span><span class="sxs-lookup"><span data-stu-id="7bef5-118">To run the deployment automatically, click the following button:</span></span>
+<span data-ttu-id="fdbea-118">toorun hello automaticamente la distribuzione, fare clic su hello seguente pulsante:</span><span class="sxs-lookup"><span data-stu-id="fdbea-118">toorun hello deployment automatically, click hello following button:</span></span>
 
-<span data-ttu-id="7bef5-119">[![Distribuzione in Azure](./media/service-bus-resource-manager-namespace-queue/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-servicebus-create-queue%2Fazuredeploy.json)</span><span class="sxs-lookup"><span data-stu-id="7bef5-119">[![Deploy to Azure](./media/service-bus-resource-manager-namespace-queue/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-servicebus-create-queue%2Fazuredeploy.json)</span></span>
+<span data-ttu-id="fdbea-119">[![Distribuire tooAzure](./media/service-bus-resource-manager-namespace-queue/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-servicebus-create-queue%2Fazuredeploy.json)</span><span class="sxs-lookup"><span data-stu-id="fdbea-119">[![Deploy tooAzure](./media/service-bus-resource-manager-namespace-queue/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-servicebus-create-queue%2Fazuredeploy.json)</span></span>
 
-## <a name="parameters"></a><span data-ttu-id="7bef5-120">Parametri</span><span class="sxs-lookup"><span data-stu-id="7bef5-120">Parameters</span></span>
+## <a name="parameters"></a><span data-ttu-id="fdbea-120">parameters</span><span class="sxs-lookup"><span data-stu-id="fdbea-120">Parameters</span></span>
 
-<span data-ttu-id="7bef5-121">Gestione risorse di Azure permette di definire i parametri per i valori da specificare durante la distribuzione del modello.</span><span class="sxs-lookup"><span data-stu-id="7bef5-121">With Azure Resource Manager, you define parameters for values you want to specify when the template is deployed.</span></span> <span data-ttu-id="7bef5-122">Il modello include una sezione denominata `Parameters` che contiene tutti i valori dei parametri.</span><span class="sxs-lookup"><span data-stu-id="7bef5-122">The template includes a section called `Parameters` that contains all of the parameter values.</span></span> <span data-ttu-id="7bef5-123">È necessario definire un parametro per i valori che variano in base al progetto distribuito o all'ambiente in cui viene distribuito il progetto.</span><span class="sxs-lookup"><span data-stu-id="7bef5-123">You should define a parameter for those values that will vary based on the project you are deploying or based on the environment you are deploying to.</span></span> <span data-ttu-id="7bef5-124">Non definire i parametri per i valori che rimangono invariati.</span><span class="sxs-lookup"><span data-stu-id="7bef5-124">Do not define parameters for values that will always stay the same.</span></span> <span data-ttu-id="7bef5-125">Ogni valore di parametro nel modello viene usato per definire le risorse distribuite.</span><span class="sxs-lookup"><span data-stu-id="7bef5-125">Each parameter value is used in the template to define the resources that are deployed.</span></span>
+<span data-ttu-id="fdbea-121">Con Gestione risorse di Azure, si definiscono i parametri per i valori si desidera toospecify quando viene distribuito il modello di hello.</span><span class="sxs-lookup"><span data-stu-id="fdbea-121">With Azure Resource Manager, you define parameters for values you want toospecify when hello template is deployed.</span></span> <span data-ttu-id="fdbea-122">modello Hello include una sezione denominata `Parameters` che contiene tutti i valori di parametro hello.</span><span class="sxs-lookup"><span data-stu-id="fdbea-122">hello template includes a section called `Parameters` that contains all of hello parameter values.</span></span> <span data-ttu-id="fdbea-123">È necessario definire un parametro per i valori che variano in base progetto hello che si distribuisce o Hello che si distribuisce ambiente di hello.</span><span class="sxs-lookup"><span data-stu-id="fdbea-123">You should define a parameter for those values that will vary based on hello project you are deploying or based on hello environment you are deploying to.</span></span> <span data-ttu-id="fdbea-124">Non definire parametri per i valori che saranno sempre hello stesso.</span><span class="sxs-lookup"><span data-stu-id="fdbea-124">Do not define parameters for values that will always stay hello same.</span></span> <span data-ttu-id="fdbea-125">Ogni valore del parametro viene utilizzato in hello modello toodefine hello le risorse distribuite.</span><span class="sxs-lookup"><span data-stu-id="fdbea-125">Each parameter value is used in hello template toodefine hello resources that are deployed.</span></span>
 
-<span data-ttu-id="7bef5-126">Il modello definisce i parametri seguenti.</span><span class="sxs-lookup"><span data-stu-id="7bef5-126">The template defines the following parameters.</span></span>
+<span data-ttu-id="fdbea-126">modello di Hello definisce hello seguenti parametri.</span><span class="sxs-lookup"><span data-stu-id="fdbea-126">hello template defines hello following parameters.</span></span>
 
-### <a name="servicebusnamespacename"></a><span data-ttu-id="7bef5-127">serviceBusNamespaceName</span><span class="sxs-lookup"><span data-stu-id="7bef5-127">serviceBusNamespaceName</span></span>
-<span data-ttu-id="7bef5-128">Nome dello spazio dei nomi del bus di servizio da creare.</span><span class="sxs-lookup"><span data-stu-id="7bef5-128">The name of the Service Bus namespace to create.</span></span>
+### <a name="servicebusnamespacename"></a><span data-ttu-id="fdbea-127">serviceBusNamespaceName</span><span class="sxs-lookup"><span data-stu-id="fdbea-127">serviceBusNamespaceName</span></span>
+<span data-ttu-id="fdbea-128">nome Hello del toocreate di spazio dei nomi Service Bus hello.</span><span class="sxs-lookup"><span data-stu-id="fdbea-128">hello name of hello Service Bus namespace toocreate.</span></span>
 
 ```json
 "serviceBusNamespaceName": {
 "type": "string",
 "metadata": { 
-    "description": "Name of the Service Bus namespace" 
+    "description": "Name of hello Service Bus namespace" 
     }
 }
 ```
 
-### <a name="servicebusqueuename"></a><span data-ttu-id="7bef5-129">serviceBusQueueName</span><span class="sxs-lookup"><span data-stu-id="7bef5-129">serviceBusQueueName</span></span>
-<span data-ttu-id="7bef5-130">Nome della coda creata nello spazio dei nomi del bus di servizio.</span><span class="sxs-lookup"><span data-stu-id="7bef5-130">The name of the queue created in the Service Bus namespace.</span></span>
+### <a name="servicebusqueuename"></a><span data-ttu-id="fdbea-129">serviceBusQueueName</span><span class="sxs-lookup"><span data-stu-id="fdbea-129">serviceBusQueueName</span></span>
+<span data-ttu-id="fdbea-130">nome Hello della coda di hello creata nello spazio dei nomi Service Bus hello.</span><span class="sxs-lookup"><span data-stu-id="fdbea-130">hello name of hello queue created in hello Service Bus namespace.</span></span>
 
 ```json
 "serviceBusQueueName": {
@@ -77,8 +77,8 @@ ms.lasthandoff: 08/18/2017
 }
 ```
 
-### <a name="servicebusapiversion"></a><span data-ttu-id="7bef5-131">serviceBusApiVersion</span><span class="sxs-lookup"><span data-stu-id="7bef5-131">serviceBusApiVersion</span></span>
-<span data-ttu-id="7bef5-132">Versione API del bus di servizio del modello.</span><span class="sxs-lookup"><span data-stu-id="7bef5-132">The Service Bus API version of the template.</span></span>
+### <a name="servicebusapiversion"></a><span data-ttu-id="fdbea-131">serviceBusApiVersion</span><span class="sxs-lookup"><span data-stu-id="fdbea-131">serviceBusApiVersion</span></span>
+<span data-ttu-id="fdbea-132">versione di API di Service Bus Hello del modello di hello.</span><span class="sxs-lookup"><span data-stu-id="fdbea-132">hello Service Bus API version of hello template.</span></span>
 
 ```json
 "serviceBusApiVersion": {
@@ -86,8 +86,8 @@ ms.lasthandoff: 08/18/2017
 }
 ```
 
-## <a name="resources-to-deploy"></a><span data-ttu-id="7bef5-133">Risorse da distribuire</span><span class="sxs-lookup"><span data-stu-id="7bef5-133">Resources to deploy</span></span>
-<span data-ttu-id="7bef5-134">Crea uno spazio dei nomi del bus di servizio standard di tipo **Messaggistica**con una coda.</span><span class="sxs-lookup"><span data-stu-id="7bef5-134">Creates a standard Service Bus namespace of type **Messaging**, with a queue.</span></span>
+## <a name="resources-toodeploy"></a><span data-ttu-id="fdbea-133">Risorse toodeploy</span><span class="sxs-lookup"><span data-stu-id="fdbea-133">Resources toodeploy</span></span>
+<span data-ttu-id="fdbea-134">Crea uno spazio dei nomi del bus di servizio standard di tipo **Messaggistica**con una coda.</span><span class="sxs-lookup"><span data-stu-id="fdbea-134">Creates a standard Service Bus namespace of type **Messaging**, with a queue.</span></span>
 
 ```json
 "resources ": [{
@@ -114,16 +114,16 @@ ms.lasthandoff: 08/18/2017
     }]
 ```
 
-## <a name="commands-to-run-deployment"></a><span data-ttu-id="7bef5-135">Comandi per eseguire la distribuzione</span><span class="sxs-lookup"><span data-stu-id="7bef5-135">Commands to run deployment</span></span>
+## <a name="commands-toorun-deployment"></a><span data-ttu-id="fdbea-135">Comandi toorun distribuzione</span><span class="sxs-lookup"><span data-stu-id="fdbea-135">Commands toorun deployment</span></span>
 [!INCLUDE [app-service-deploy-commands](../../includes/app-service-deploy-commands.md)]
 
-## <a name="powershell"></a><span data-ttu-id="7bef5-136">PowerShell</span><span class="sxs-lookup"><span data-stu-id="7bef5-136">PowerShell</span></span>
+## <a name="powershell"></a><span data-ttu-id="fdbea-136">PowerShell</span><span class="sxs-lookup"><span data-stu-id="fdbea-136">PowerShell</span></span>
 
 ```powershell
 New-AzureRmResourceGroupDeployment -ResourceGroupName \<resource-group-name\> -TemplateFile <https://raw.githubusercontent.com/azure/azure-quickstart-templates/master/201-servicebus-create-queue/azuredeploy.json>
 ```
 
-## <a name="azure-cli"></a><span data-ttu-id="7bef5-137">Interfaccia della riga di comando di Azure</span><span class="sxs-lookup"><span data-stu-id="7bef5-137">Azure CLI</span></span>
+## <a name="azure-cli"></a><span data-ttu-id="fdbea-137">Interfaccia della riga di comando di Azure</span><span class="sxs-lookup"><span data-stu-id="fdbea-137">Azure CLI</span></span>
 
 ```azurecli
 azure config mode arm
@@ -131,15 +131,15 @@ azure config mode arm
 azure group deployment create \<my-resource-group\> \<my-deployment-name\> --template-uri <https://raw.githubusercontent.com/azure/azure-quickstart-templates/master/201-servicebus-create-queue/azuredeploy.json>
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="7bef5-138">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="7bef5-138">Next steps</span></span>
-<span data-ttu-id="7bef5-139">Dopo aver creato e distribuito le risorse con Azure Resource Manager, è possibile imparare a gestire queste risorse. Leggere gli articoli seguenti:</span><span class="sxs-lookup"><span data-stu-id="7bef5-139">Now that you've created and deployed resources using Azure Resource Manager, learn how to manage these resources by viewing these articles:</span></span>
+## <a name="next-steps"></a><span data-ttu-id="fdbea-138">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="fdbea-138">Next steps</span></span>
+<span data-ttu-id="fdbea-139">Dopo aver creato e distribuito risorse usando Gestione risorse di Azure, consultare come toomanage queste risorse visualizzando questi articoli:</span><span class="sxs-lookup"><span data-stu-id="fdbea-139">Now that you've created and deployed resources using Azure Resource Manager, learn how toomanage these resources by viewing these articles:</span></span>
 
-* [<span data-ttu-id="7bef5-140">Gestire Bus di servizio con PowerShell</span><span class="sxs-lookup"><span data-stu-id="7bef5-140">Manage Service Bus with PowerShell</span></span>](service-bus-manage-with-ps.md)
-* [<span data-ttu-id="7bef5-141">Gestire le risorse del bus di servizio con Service Bus Explorer</span><span class="sxs-lookup"><span data-stu-id="7bef5-141">Manage Service Bus resources with the Service Bus Explorer</span></span>](https://github.com/paolosalvatori/ServiceBusExplorer/releases)
+* [<span data-ttu-id="fdbea-140">Gestire Bus di servizio con PowerShell</span><span class="sxs-lookup"><span data-stu-id="fdbea-140">Manage Service Bus with PowerShell</span></span>](service-bus-manage-with-ps.md)
+* [<span data-ttu-id="fdbea-141">Gestire le risorse di Service Bus con hello Service Bus Explorer</span><span class="sxs-lookup"><span data-stu-id="fdbea-141">Manage Service Bus resources with hello Service Bus Explorer</span></span>](https://github.com/paolosalvatori/ServiceBusExplorer/releases)
 
 [Authoring Azure Resource Manager templates]: ../azure-resource-manager/resource-group-authoring-templates.md
 [Service Bus namespace and queue template]: https://github.com/Azure/azure-quickstart-templates/blob/master/201-servicebus-create-queue/
 [Azure Quickstart Templates]: https://azure.microsoft.com/documentation/templates/?term=service+bus
 [Learn more about Service Bus queues]: service-bus-queues-topics-subscriptions.md
 [Using Azure PowerShell with Azure Resource Manager]: ../azure-resource-manager/powershell-azure-resource-manager.md
-[Using the Azure CLI for Mac, Linux, and Windows with Azure Resource Management]: ../azure-resource-manager/xplat-cli-azure-resource-manager.md
+[Using hello Azure CLI for Mac, Linux, and Windows with Azure Resource Management]: ../azure-resource-manager/xplat-cli-azure-resource-manager.md

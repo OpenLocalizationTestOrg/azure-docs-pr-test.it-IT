@@ -1,6 +1,6 @@
 ---
-title: Documentazione di Azure SQL Data Warehouse - Esercitazioni e informazioni di riferimento sulle API | Documentazione Microsoft
-description: Informazioni su come usare SQL Data Warehouse, l'unione di SQL Server con l'elaborazione parallela massiva. La documentazione illustra come caricare, analizzare, gestire ed esportare dati.
+title: aaaAzure documentazione di SQL Data Warehouse - esercitazioni, riferimenti alle API | Documenti Microsoft
+description: Informazioni su come toouse SQL Data Warehouse, la combinazione di SQL Server con massiva elaborazione parallela. Documentazione viene illustrato come tooload, analizzare, gestire ed esportare dati.
 services: sql-data-warehouse
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: b9f5bc85d6fca466be7abbe67b400856e1635459
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a3deb9fe2dbd29cdc250510ca7368b4d71422658
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="sql-data-warehouse-documentation"></a>Documentazione di SQL Data Warehouse
 
-Informazioni su come usare SQL Data Warehouse, l'unione del database relazionale di SQL Server con l'elaborazione parallela massiva. Esercitazioni e altri documenti in cui viene illustrato come caricare dati in Warehouse, per poi analizzarli, gestirli ed esportarli.
+Informazioni su come toouse SQL Data Warehouse, che combina database relazionale di SQL Server hello con l'elaborazione parallela massiva. Altra documentazione ed esercitazioni mostrano come tooload dati nel warehouse hello, quindi analizzare, gestire ed esportarlo.
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -71,7 +71,7 @@ Informazioni su come usare SQL Data Warehouse, l'unione del database relazionale
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Introduzione alla creazione di un'istanza di SQL Data Warehouse con il portale di Azure</h3>
+                        <h3>Introduzione alla creazione di un Data Warehouse di SQL utilizzando hello portale di Azure</h3>
                     </div>
                 </div>
             </div>
@@ -82,7 +82,7 @@ Informazioni su come usare SQL Data Warehouse, l'unione del database relazionale
 
 ---
 
-<h2>Riferimento</h2>
+<h2>riferimento</h2>
 <ul class="panelContent cardsW">
     <li>
         <div class="cardSize">

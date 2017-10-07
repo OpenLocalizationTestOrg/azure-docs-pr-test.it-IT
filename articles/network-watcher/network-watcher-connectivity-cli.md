@@ -1,6 +1,6 @@
 ---
-title: "Controllare la connettività con Azure Network Watcher - Interfaccia della riga di comando di Azure 2.0 | Microsoft Docs"
-description: "Questa pagina descrive come eseguire il controllo della connettività con Network Watcher usando l'interfaccia della riga di comando di Azure 2.0"
+title: "connettività aaaCheck con Watcher di rete di Azure - CLI di Azure 2.0 | Documenti Microsoft"
+description: "Questa pagina viene illustrato come verificare di connettività toouse con Watcher di rete mediante Azure CLI 2.0"
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -13,37 +13,37 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 07/11/2017
 ms.author: gwallace
-ms.openlocfilehash: c1deaa40bfda0bf3858ad56d3d6a90df34351278
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: e94e0fad03fd36ebf4e1fdf9e3cfee934b289deb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="check-connectivity-with-azure-network-watcher-using-azure-cli-20"></a><span data-ttu-id="c4ba2-103">Controllare la connettività con Azure Network Watcher usando l'interfaccia della riga di comando di Azure 2.0</span><span class="sxs-lookup"><span data-stu-id="c4ba2-103">Check connectivity with Azure Network Watcher using Azure CLI 2.0</span></span>
+# <a name="check-connectivity-with-azure-network-watcher-using-azure-cli-20"></a><span data-ttu-id="e5c0b-103">Controllare la connettività con Azure Network Watcher usando l'interfaccia della riga di comando di Azure 2.0</span><span class="sxs-lookup"><span data-stu-id="e5c0b-103">Check connectivity with Azure Network Watcher using Azure CLI 2.0</span></span>
 
 > [!div class="op_single_selector"]
-> - [<span data-ttu-id="c4ba2-104">PowerShell</span><span class="sxs-lookup"><span data-stu-id="c4ba2-104">PowerShell</span></span>](network-watcher-connectivity-powershell.md)
-> - [<span data-ttu-id="c4ba2-105">Interfaccia della riga di comando 2.0</span><span class="sxs-lookup"><span data-stu-id="c4ba2-105">CLI 2.0</span></span>](network-watcher-connectivity-cli.md)
-> - [<span data-ttu-id="c4ba2-106">API REST di Azure</span><span class="sxs-lookup"><span data-stu-id="c4ba2-106">Azure REST API</span></span>](network-watcher-connectivity-rest.md)
+> - [<span data-ttu-id="e5c0b-104">PowerShell</span><span class="sxs-lookup"><span data-stu-id="e5c0b-104">PowerShell</span></span>](network-watcher-connectivity-powershell.md)
+> - [<span data-ttu-id="e5c0b-105">Interfaccia della riga di comando 2.0</span><span class="sxs-lookup"><span data-stu-id="e5c0b-105">CLI 2.0</span></span>](network-watcher-connectivity-cli.md)
+> - [<span data-ttu-id="e5c0b-106">API REST di Azure</span><span class="sxs-lookup"><span data-stu-id="e5c0b-106">Azure REST API</span></span>](network-watcher-connectivity-rest.md)
 
-<span data-ttu-id="c4ba2-107">Informazioni su come usare la connettività per verificare se è possibile stabilire una connessione TCP diretta da una macchina virtuale a uno specifico endpoint.</span><span class="sxs-lookup"><span data-stu-id="c4ba2-107">Learn how to use connectivity to verify if a direct TCP connection from a virtual machine to a given endpoint can be established.</span></span>
+<span data-ttu-id="e5c0b-107">Informazioni su come è possibile stabilire toouse connettività tooverify se una connessione TCP diretta da una macchina virtuale di tooa dato endpoint.</span><span class="sxs-lookup"><span data-stu-id="e5c0b-107">Learn how toouse connectivity tooverify if a direct TCP connection from a virtual machine tooa given endpoint can be established.</span></span>
 
-## <a name="before-you-begin"></a><span data-ttu-id="c4ba2-108">Prima di iniziare</span><span class="sxs-lookup"><span data-stu-id="c4ba2-108">Before you begin</span></span>
+## <a name="before-you-begin"></a><span data-ttu-id="e5c0b-108">Prima di iniziare</span><span class="sxs-lookup"><span data-stu-id="e5c0b-108">Before you begin</span></span>
 
-<span data-ttu-id="c4ba2-109">Questo articolo presuppone che l'utente disponga delle risorse seguenti:</span><span class="sxs-lookup"><span data-stu-id="c4ba2-109">This article assumes you have the following resources:</span></span>
+<span data-ttu-id="e5c0b-109">Questo articolo si presuppone di che aver hello seguenti risorse:</span><span class="sxs-lookup"><span data-stu-id="e5c0b-109">This article assumes you have hello following resources:</span></span>
 
-* <span data-ttu-id="c4ba2-110">Un'istanza di Network Watcher nell'area di cui si vuole controllare la connettività.</span><span class="sxs-lookup"><span data-stu-id="c4ba2-110">An instance of Network Watcher in the region you want to check connectivity.</span></span>
+* <span data-ttu-id="e5c0b-110">Un'istanza del controllo di rete nell'area di hello desiderato toocheck connettività.</span><span class="sxs-lookup"><span data-stu-id="e5c0b-110">An instance of Network Watcher in hello region you want toocheck connectivity.</span></span>
 
-* <span data-ttu-id="c4ba2-111">Macchine virtuali con cui controllare la connettività.</span><span class="sxs-lookup"><span data-stu-id="c4ba2-111">Virtual machines to check connectivity with.</span></span>
+* <span data-ttu-id="e5c0b-111">Connettività toocheck di macchine virtuali con.</span><span class="sxs-lookup"><span data-stu-id="e5c0b-111">Virtual machines toocheck connectivity with.</span></span>
 
 [!INCLUDE [network-watcher-preview](../../includes/network-watcher-public-preview-notice.md)]
 
 > [!IMPORTANT]
-> <span data-ttu-id="c4ba2-112">Il controllo della connettività richiede un'estensione macchina virtuale `AzureNetworkWatcherExtension`.</span><span class="sxs-lookup"><span data-stu-id="c4ba2-112">Connectivity check requires a virtual machine extension `AzureNetworkWatcherExtension`.</span></span> <span data-ttu-id="c4ba2-113">Per installare l'estensione in una VM Windows, vedere [Estensione macchina virtuale agente Azure Network Watcher per Windows](../virtual-machines/windows/extensions-nwa.md) e per una VM Linux VM vedere [Estensione macchina virtuale Azure Network Watcher Agent per Linux](../virtual-machines/linux/extensions-nwa.md).</span><span class="sxs-lookup"><span data-stu-id="c4ba2-113">For installing the extension on a Windows VM visit [Azure Network Watcher Agent virtual machine extension for Windows](../virtual-machines/windows/extensions-nwa.md) and for Linux VM visit [Azure Network Watcher Agent virtual machine extension for Linux](../virtual-machines/linux/extensions-nwa.md).</span></span>
+> <span data-ttu-id="e5c0b-112">Il controllo della connettività richiede un'estensione macchina virtuale `AzureNetworkWatcherExtension`.</span><span class="sxs-lookup"><span data-stu-id="e5c0b-112">Connectivity check requires a virtual machine extension `AzureNetworkWatcherExtension`.</span></span> <span data-ttu-id="e5c0b-113">Per l'installazione dell'estensione hello in una macchina virtuale di Windows, visitare [estensione della macchina virtuale Azure rete Watcher agente per Windows](../virtual-machines/windows/extensions-nwa.md) e per la visita di VM Linux [estensione della macchina virtuale Azure rete Watcher agente per Linux](../virtual-machines/linux/extensions-nwa.md).</span><span class="sxs-lookup"><span data-stu-id="e5c0b-113">For installing hello extension on a Windows VM visit [Azure Network Watcher Agent virtual machine extension for Windows](../virtual-machines/windows/extensions-nwa.md) and for Linux VM visit [Azure Network Watcher Agent virtual machine extension for Linux](../virtual-machines/linux/extensions-nwa.md).</span></span>
 
-## <a name="register-the-preview-capability"></a><span data-ttu-id="c4ba2-114">Registrare la funzionalità in anteprima</span><span class="sxs-lookup"><span data-stu-id="c4ba2-114">Register the preview capability</span></span> 
+## <a name="register-hello-preview-capability"></a><span data-ttu-id="e5c0b-114">Registrare la funzionalità di anteprima hello</span><span class="sxs-lookup"><span data-stu-id="e5c0b-114">Register hello preview capability</span></span> 
 
-<span data-ttu-id="c4ba2-115">Il controllo della connettività è attualmente disponibile in anteprima pubblica; per usare questa funzionalità, è necessario averne eseguito la registrazione.</span><span class="sxs-lookup"><span data-stu-id="c4ba2-115">Connectivity check is currently in public preview, to use this feature it needs to be registered.</span></span> <span data-ttu-id="c4ba2-116">A tale scopo, usare l'esempio di interfaccia della riga di comando seguente:</span><span class="sxs-lookup"><span data-stu-id="c4ba2-116">To do this, run the following CLI sample</span></span>
+<span data-ttu-id="e5c0b-115">Verifica della connettività è attualmente in anteprima pubblica, toouse questa funzionalità che è necessario toobe registrato.</span><span class="sxs-lookup"><span data-stu-id="e5c0b-115">Connectivity check is currently in public preview, toouse this feature it needs toobe registered.</span></span> <span data-ttu-id="e5c0b-116">toodo, hello esecuzione seguente esempio CLI</span><span class="sxs-lookup"><span data-stu-id="e5c0b-116">toodo this, run hello following CLI sample</span></span>
 
 ```azurecli 
 az feature register --namespace Microsoft.Network --name AllowNetworkWatcherConnectivityCheck
@@ -51,13 +51,13 @@ az feature register --namespace Microsoft.Network --name AllowNetworkWatcherConn
 az provider register --namespace Microsoft.Network 
 ``` 
 
-<span data-ttu-id="c4ba2-117">Per verificare se la registrazione è riuscita, eseguire questo comando dell'interfaccia della riga di comando:</span><span class="sxs-lookup"><span data-stu-id="c4ba2-117">To verify the registration was successful, run the following CLI command:</span></span>
+<span data-ttu-id="e5c0b-117">la registrazione di hello tooverify è stata completata correttamente, eseguire il comando CLI seguente hello:</span><span class="sxs-lookup"><span data-stu-id="e5c0b-117">tooverify hello registration was successful, run hello following CLI command:</span></span>
 
 ```azurecli
 az feature show --namespace Microsoft.Network --name AllowNetworkWatcherConnectivityCheck 
 ```
 
-<span data-ttu-id="c4ba2-118">Se la funzionalità è stata registrata correttamente, l'output deve corrispondere a quanto segue:</span><span class="sxs-lookup"><span data-stu-id="c4ba2-118">If the feature was properly registered, the output should match the following:</span></span> 
+<span data-ttu-id="e5c0b-118">Se è stato registrato correttamente funzionalità hello, output di hello devono corrispondere seguente hello:</span><span class="sxs-lookup"><span data-stu-id="e5c0b-118">If hello feature was properly registered, hello output should match hello following:</span></span> 
 
 ```json
 {
@@ -70,19 +70,19 @@ az feature show --namespace Microsoft.Network --name AllowNetworkWatcherConnecti
 }
 ``` 
 
-## <a name="check-connectivity-to-a-virtual-machine"></a><span data-ttu-id="c4ba2-119">Controllare la connettività a una macchina virtuale</span><span class="sxs-lookup"><span data-stu-id="c4ba2-119">Check connectivity to a virtual machine</span></span>
+## <a name="check-connectivity-tooa-virtual-machine"></a><span data-ttu-id="e5c0b-119">Verificare la connettività tooa virtual machine</span><span class="sxs-lookup"><span data-stu-id="e5c0b-119">Check connectivity tooa virtual machine</span></span>
 
-<span data-ttu-id="c4ba2-120">Questo esempio controlla la connettività a una macchina virtuale di destinazione sulla porta 80.</span><span class="sxs-lookup"><span data-stu-id="c4ba2-120">This example checks connectivity to a destination virtual machine over port 80.</span></span>
+<span data-ttu-id="e5c0b-120">Questo esempio viene verificata la connettività tooa macchina virtuale di destinazione sulla porta 80.</span><span class="sxs-lookup"><span data-stu-id="e5c0b-120">This example checks connectivity tooa destination virtual machine over port 80.</span></span>
 
-### <a name="example"></a><span data-ttu-id="c4ba2-121">Esempio</span><span class="sxs-lookup"><span data-stu-id="c4ba2-121">Example</span></span>
+### <a name="example"></a><span data-ttu-id="e5c0b-121">Esempio</span><span class="sxs-lookup"><span data-stu-id="e5c0b-121">Example</span></span>
 
 ```azurecli
 az network watcher test-connectivity --resource-group ContosoRG --source-resource MultiTierApp0 --dest-resource Database0 --dest-port 80
 ```
 
-### <a name="response"></a><span data-ttu-id="c4ba2-122">Response</span><span class="sxs-lookup"><span data-stu-id="c4ba2-122">Response</span></span>
+### <a name="response"></a><span data-ttu-id="e5c0b-122">Response</span><span class="sxs-lookup"><span data-stu-id="e5c0b-122">Response</span></span>
 
-<span data-ttu-id="c4ba2-123">La risposta seguente è relativa all'esempio precedente.</span><span class="sxs-lookup"><span data-stu-id="c4ba2-123">The following response is from the previous example.</span></span>  <span data-ttu-id="c4ba2-124">In questa risposta `ConnectionStatus` è **Unreachable**.</span><span class="sxs-lookup"><span data-stu-id="c4ba2-124">In this response, the `ConnectionStatus` is **Unreachable**.</span></span> <span data-ttu-id="c4ba2-125">Si noti che tutti i probe inviati presentano un errore.</span><span class="sxs-lookup"><span data-stu-id="c4ba2-125">You can see that all the probes sent failed.</span></span> <span data-ttu-id="c4ba2-126">Si è verificato un problema di connettività nell'appliance virtuale a causa di un valore `NetworkSecurityRule` configurato dall'utente per bloccare il traffico in ingresso sulla porta 80, denominato **UserRule_Port80**.</span><span class="sxs-lookup"><span data-stu-id="c4ba2-126">The connectivity failed at the virtual appliance due to a user-configured `NetworkSecurityRule` named **UserRule_Port80**, configured to block incoming traffic on port 80.</span></span> <span data-ttu-id="c4ba2-127">Queste informazioni possono essere usate per analizzare i problemi di connessione.</span><span class="sxs-lookup"><span data-stu-id="c4ba2-127">This information can be used to research connection issues.</span></span>
+<span data-ttu-id="e5c0b-123">Hello seguente risposta è tratto dall'esempio precedente hello.</span><span class="sxs-lookup"><span data-stu-id="e5c0b-123">hello following response is from hello previous example.</span></span>  <span data-ttu-id="e5c0b-124">Nella risposta, hello `ConnectionStatus` è **non raggiungibile**.</span><span class="sxs-lookup"><span data-stu-id="e5c0b-124">In this response, hello `ConnectionStatus` is **Unreachable**.</span></span> <span data-ttu-id="e5c0b-125">Si noterà che tutti hello probe inviati non riuscite.</span><span class="sxs-lookup"><span data-stu-id="e5c0b-125">You can see that all hello probes sent failed.</span></span> <span data-ttu-id="e5c0b-126">connettività Hello non riuscita nel dispositivo virtuale hello tooa scadenza configurata dall'utente `NetworkSecurityRule` denominato **UserRule_Port80**, configurato tooblock il traffico in entrata sulla porta 80.</span><span class="sxs-lookup"><span data-stu-id="e5c0b-126">hello connectivity failed at hello virtual appliance due tooa user-configured `NetworkSecurityRule` named **UserRule_Port80**, configured tooblock incoming traffic on port 80.</span></span> <span data-ttu-id="e5c0b-127">Queste informazioni possono essere utilizzati tooresearch i problemi di connessione.</span><span class="sxs-lookup"><span data-stu-id="e5c0b-127">This information can be used tooresearch connection issues.</span></span>
 
 ```json
 {
@@ -151,19 +151,19 @@ Nic0/ipConfigurations/ipconfig1",
 }
 ```
 
-## <a name="validate-routing-issues"></a><span data-ttu-id="c4ba2-128">Problemi relativi alla convalida del routing</span><span class="sxs-lookup"><span data-stu-id="c4ba2-128">Validate routing issues</span></span>
+## <a name="validate-routing-issues"></a><span data-ttu-id="e5c0b-128">Problemi relativi alla convalida del routing</span><span class="sxs-lookup"><span data-stu-id="e5c0b-128">Validate routing issues</span></span>
 
-<span data-ttu-id="c4ba2-129">L'esempio verifica la connettività tra una macchina virtuale e un endpoint remoto.</span><span class="sxs-lookup"><span data-stu-id="c4ba2-129">The example checks connectivity between a virtual machine and a remote endpoint.</span></span>
+<span data-ttu-id="e5c0b-129">esempio Hello controlla la connettività tra una macchina virtuale e un endpoint remoto.</span><span class="sxs-lookup"><span data-stu-id="e5c0b-129">hello example checks connectivity between a virtual machine and a remote endpoint.</span></span>
 
-### <a name="example"></a><span data-ttu-id="c4ba2-130">Esempio</span><span class="sxs-lookup"><span data-stu-id="c4ba2-130">Example</span></span>
+### <a name="example"></a><span data-ttu-id="e5c0b-130">Esempio</span><span class="sxs-lookup"><span data-stu-id="e5c0b-130">Example</span></span>
 
 ```azurecli
 az network watcher test-connectivity --resource-group ContosoRG --source-resource MultiTierApp0 --dest-address 13.107.21.200 --dest-port 80
 ```
 
-### <a name="response"></a><span data-ttu-id="c4ba2-131">Response</span><span class="sxs-lookup"><span data-stu-id="c4ba2-131">Response</span></span>
+### <a name="response"></a><span data-ttu-id="e5c0b-131">Response</span><span class="sxs-lookup"><span data-stu-id="e5c0b-131">Response</span></span>
 
-<span data-ttu-id="c4ba2-132">Nell'esempio seguente `connectionStatus` è **Unreachable**.</span><span class="sxs-lookup"><span data-stu-id="c4ba2-132">In the following example, the `connectionStatus` is shown as **Unreachable**.</span></span> <span data-ttu-id="c4ba2-133">I dettagli relativi a `hops` sotto `issues` indicano che il traffico è stato bloccato a causa di un valore `UserDefinedRoute`.</span><span class="sxs-lookup"><span data-stu-id="c4ba2-133">In the `hops` details, you can see under `issues` that the traffic was blocked due to a `UserDefinedRoute`.</span></span>
+<span data-ttu-id="e5c0b-132">Nell'esempio seguente di hello, hello `connectionStatus` viene visualizzato come **non raggiungibile**.</span><span class="sxs-lookup"><span data-stu-id="e5c0b-132">In hello following example, hello `connectionStatus` is shown as **Unreachable**.</span></span> <span data-ttu-id="e5c0b-133">In hello `hops` informazioni dettagliate, è possibile visualizzare in `issues` che è stato bloccato scadenza traffico hello tooa `UserDefinedRoute`.</span><span class="sxs-lookup"><span data-stu-id="e5c0b-133">In hello `hops` details, you can see under `issues` that hello traffic was blocked due tooa `UserDefinedRoute`.</span></span>
 
 ```json
 {
@@ -209,19 +209,19 @@ pNic0/ipConfigurations/ipconfig1",
 }
 ```
 
-## <a name="check-website-latency"></a><span data-ttu-id="c4ba2-134">Controllare la latenza del sito Web</span><span class="sxs-lookup"><span data-stu-id="c4ba2-134">Check website latency</span></span>
+## <a name="check-website-latency"></a><span data-ttu-id="e5c0b-134">Controllare la latenza del sito Web</span><span class="sxs-lookup"><span data-stu-id="e5c0b-134">Check website latency</span></span>
 
-<span data-ttu-id="c4ba2-135">L'esempio seguente controlla la connettività a un sito Web.</span><span class="sxs-lookup"><span data-stu-id="c4ba2-135">The following example checks the connectivity to a website.</span></span>
+<span data-ttu-id="e5c0b-135">Hello esempio controlla sito Web di tooa connettività hello.</span><span class="sxs-lookup"><span data-stu-id="e5c0b-135">hello following example checks hello connectivity tooa website.</span></span>
 
-### <a name="example"></a><span data-ttu-id="c4ba2-136">Esempio</span><span class="sxs-lookup"><span data-stu-id="c4ba2-136">Example</span></span>
+### <a name="example"></a><span data-ttu-id="e5c0b-136">Esempio</span><span class="sxs-lookup"><span data-stu-id="e5c0b-136">Example</span></span>
 
 ```azurecli
 az network watcher test-connectivity --resource-group ContosoRG --source-resource MultiTierApp0 --dest-address http://bing.com --dest-port 80
 ```
 
-### <a name="response"></a><span data-ttu-id="c4ba2-137">Response</span><span class="sxs-lookup"><span data-stu-id="c4ba2-137">Response</span></span>
+### <a name="response"></a><span data-ttu-id="e5c0b-137">Response</span><span class="sxs-lookup"><span data-stu-id="e5c0b-137">Response</span></span>
 
-<span data-ttu-id="c4ba2-138">Nella risposta seguente il valore indicato per `connectionStatus` è **Reachable**.</span><span class="sxs-lookup"><span data-stu-id="c4ba2-138">In the following response, you can see the `connectionStatus` shows as **Reachable**.</span></span> <span data-ttu-id="c4ba2-139">In caso di esito positivo della connessione vengono forniti i valori della latenza.</span><span class="sxs-lookup"><span data-stu-id="c4ba2-139">When a connection is successful, latency values are provided.</span></span>
+<span data-ttu-id="e5c0b-138">In hello seguente risposta, è possibile vedere hello `connectionStatus` viene illustrato come **raggiungibile**.</span><span class="sxs-lookup"><span data-stu-id="e5c0b-138">In hello following response, you can see hello `connectionStatus` shows as **Reachable**.</span></span> <span data-ttu-id="e5c0b-139">In caso di esito positivo della connessione vengono forniti i valori della latenza.</span><span class="sxs-lookup"><span data-stu-id="e5c0b-139">When a connection is successful, latency values are provided.</span></span>
 
 ```json
 {
@@ -255,19 +255,19 @@ pNic0/ipConfigurations/ipconfig1",
 }
 ```
 
-## <a name="check-connectivity-to-a-storage-endpoint"></a><span data-ttu-id="c4ba2-140">Controllare la connettività a un endpoint di archiviazione</span><span class="sxs-lookup"><span data-stu-id="c4ba2-140">Check connectivity to a storage endpoint</span></span>
+## <a name="check-connectivity-tooa-storage-endpoint"></a><span data-ttu-id="e5c0b-140">Controllare la connettività tooa archiviazione endpoint</span><span class="sxs-lookup"><span data-stu-id="e5c0b-140">Check connectivity tooa storage endpoint</span></span>
 
-<span data-ttu-id="c4ba2-141">L'esempio seguente controlla la connettività da una macchina virtuale a un account di archiviazione BLOB.</span><span class="sxs-lookup"><span data-stu-id="c4ba2-141">The following example checks the connectivity from a virtual machine to a blog storage account.</span></span>
+<span data-ttu-id="e5c0b-141">Hello esempio seguente verifica la connettività di hello da un account di archiviazione blog tooa macchina virtuale.</span><span class="sxs-lookup"><span data-stu-id="e5c0b-141">hello following example checks hello connectivity from a virtual machine tooa blog storage account.</span></span>
 
-### <a name="example"></a><span data-ttu-id="c4ba2-142">Esempio</span><span class="sxs-lookup"><span data-stu-id="c4ba2-142">Example</span></span>
+### <a name="example"></a><span data-ttu-id="e5c0b-142">Esempio</span><span class="sxs-lookup"><span data-stu-id="e5c0b-142">Example</span></span>
 
 ```azurecli
 az network watcher test-connectivity --resource-group ContosoRG --source-resource MultiTierApp0 --dest-address https://contosoexamplesa.blob.core.windows.net/
 ```
 
-### <a name="response"></a><span data-ttu-id="c4ba2-143">Response</span><span class="sxs-lookup"><span data-stu-id="c4ba2-143">Response</span></span>
+### <a name="response"></a><span data-ttu-id="e5c0b-143">Response</span><span class="sxs-lookup"><span data-stu-id="e5c0b-143">Response</span></span>
 
-<span data-ttu-id="c4ba2-144">Il codice JSON seguente è la risposta di esempio generata dall'esecuzione del cmdlet precedente.</span><span class="sxs-lookup"><span data-stu-id="c4ba2-144">The following json is the example response from running the previous cmdlet.</span></span> <span data-ttu-id="c4ba2-145">Poiché il controllo ha esito positivo, il valore indicato per la proprietà `connectionStatus` è **Reachable**.</span><span class="sxs-lookup"><span data-stu-id="c4ba2-145">As the check is successful, the `connectionStatus` property shows as **Reachable**.</span></span>  <span data-ttu-id="c4ba2-146">Vengono forniti i dettagli sul numero di hop necessari per raggiungere il BLOB di archiviazione e la latenza.</span><span class="sxs-lookup"><span data-stu-id="c4ba2-146">You are provided the details regarding the number of hops required to reach the storage blob and latency.</span></span>
+<span data-ttu-id="e5c0b-144">Hello json seguente è la risposta di esempio hello dall'esecuzione di cmdlet precedente hello.</span><span class="sxs-lookup"><span data-stu-id="e5c0b-144">hello following json is hello example response from running hello previous cmdlet.</span></span> <span data-ttu-id="e5c0b-145">Come controllo hello ha esito positivo, hello `connectionStatus` vengono visualizzate le proprietà come **raggiungibile**.</span><span class="sxs-lookup"><span data-stu-id="e5c0b-145">As hello check is successful, hello `connectionStatus` property shows as **Reachable**.</span></span>  <span data-ttu-id="e5c0b-146">Vengono fornite informazioni hello riguardanti hello numero di hop tooreach obbligatorio hello archiviazione blob e latenza.</span><span class="sxs-lookup"><span data-stu-id="e5c0b-146">You are provided hello details regarding hello number of hops required tooreach hello storage blob and latency.</span></span>
 
 ```json
 {
@@ -300,8 +300,8 @@ az network watcher test-connectivity --resource-group ContosoRG --source-resourc
 }
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="c4ba2-147">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="c4ba2-147">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="e5c0b-147">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="e5c0b-147">Next steps</span></span>
 
-<span data-ttu-id="c4ba2-148">Per altre informazioni su come automatizzare le acquisizioni di pacchetti tramite gli avvisi della macchina virtuale, leggere l'articolo su come [creare un'acquisizione di pacchetti attivata da un avviso](network-watcher-alert-triggered-packet-capture.md).</span><span class="sxs-lookup"><span data-stu-id="c4ba2-148">Learn how to automate packet captures with Virtual machine alerts by viewing [Create an alert triggered packet capture](network-watcher-alert-triggered-packet-capture.md)</span></span>
+<span data-ttu-id="e5c0b-148">Informazioni su come acquisizioni di pacchetti tooautomate con gli avvisi di macchina virtuale visualizzando [creare un'acquisizione pacchetto attivati avvisi](network-watcher-alert-triggered-packet-capture.md)</span><span class="sxs-lookup"><span data-stu-id="e5c0b-148">Learn how tooautomate packet captures with Virtual machine alerts by viewing [Create an alert triggered packet capture](network-watcher-alert-triggered-packet-capture.md)</span></span>
 
-<span data-ttu-id="c4ba2-149">Per stabilire se un traffico specificato è consentito all'interno o all'esterno di una macchina virtuale, vedere [Check IP flow verify](network-watcher-check-ip-flow-verify-portal.md) (Controllare la verifica del flusso IP).</span><span class="sxs-lookup"><span data-stu-id="c4ba2-149">Find if certain traffic is allowed in or out of your VM by visiting [Check IP flow verify](network-watcher-check-ip-flow-verify-portal.md)</span></span>
+<span data-ttu-id="e5c0b-149">Per stabilire se un traffico specificato è consentito all'interno o all'esterno di una macchina virtuale, vedere [Check IP flow verify](network-watcher-check-ip-flow-verify-portal.md) (Controllare la verifica del flusso IP).</span><span class="sxs-lookup"><span data-stu-id="e5c0b-149">Find if certain traffic is allowed in or out of your VM by visiting [Check IP flow verify](network-watcher-check-ip-flow-verify-portal.md)</span></span>

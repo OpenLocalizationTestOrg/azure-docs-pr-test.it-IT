@@ -1,6 +1,6 @@
 ---
-title: Documentazione di Estensione database di SQL Server di Azure - Esercitazioni | Documentazione Microsoft
-description: Informazioni su come usare Estensione database di SQL Server per eseguire la migrazione dei dati non attivi in modo sicuro ad Azure senza modificare le query o le applicazioni. Esercitazioni e altri documenti.
+title: aaaAzure documentazione di SQL Server estensione Database - esercitazioni | Documenti Microsoft
+description: Informazioni su come toouse dati ad accesso sporadico toomigrate di estensione Database di SQL Server in modo sicuro tooAzure senza modificare una query o applicazioni. Esercitazioni e altri documenti.
 services: sql-server-stretch-database
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: bb5e0fa9981133a77c235a42be369b3bbacb4ac0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2b009d80224a62d940ec8b11de22ad8c0865d869
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 #<a name="sql-server-stretch-database-documentation"></a>Documentazione di Estensione database di SQL Server
 
-Informazioni su come usare Estensione database di SQL Server per eseguire la migrazione dei dati non attivi in modo trasparente e sicuro al cloud di Azure. Le esercitazioni e gli altri documenti consentono di configurare una disponibilità conveniente per i database con dati usati raramente senza dover modificare le query o le applicazioni esistenti.
+Informazioni su come toouse SQL Server estensione Database i dati ad accesso sporadico toomigrate in modo trasparente e sicuro toohello cloud di Azure. Esercitazioni e altra documentazione consentono di che impostare la disponibilità conveniente per i database con raramente utilizzati dati senza richiedere modifiche tooexisting query o alle applicazioni.
 
 
 <ul class="panelContent cardsFTitle">
@@ -89,7 +89,7 @@ Informazioni su come usare Estensione database di SQL Server per eseguire la mig
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Introduzione alla procedura guidata per Estensione database di SQL Server</h3>
+                        <h3>Iniziare a usare una procedura guidata di SQL Server estensione Database hello</h3>
                     </div>
                 </div>
             </div>

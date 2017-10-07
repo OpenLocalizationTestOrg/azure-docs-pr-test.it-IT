@@ -1,6 +1,6 @@
 ---
-title: Associazioni della tabella di archiviazione di Funzioni di Azure | Documentazione Microsoft
-description: Informazioni su come usare le associazioni di Archiviazione di Azure in Funzioni di Azure.
+title: associazioni di tabella di archiviazione funzioni aaaAzure | Documenti Microsoft
+description: Comprendere come le associazioni di archiviazione di Azure toouse nelle funzioni di Azure.
 services: functions
 documentationcenter: na
 author: christopheranderson
@@ -16,32 +16,32 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 10/28/2016
 ms.author: chrande
-ms.openlocfilehash: bb01be3ee044f60376e0c9c2de7b3dd34f3b7aca
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 90c2a73329139d4ab3504bc0e2c90370133158bf
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-functions-storage-table-bindings"></a><span data-ttu-id="6eee9-104">Associazioni della tabella di archiviazione di Funzioni di Azure</span><span class="sxs-lookup"><span data-stu-id="6eee9-104">Azure Functions Storage table bindings</span></span>
+# <a name="azure-functions-storage-table-bindings"></a><span data-ttu-id="fdce4-104">Associazioni della tabella di archiviazione di Funzioni di Azure</span><span class="sxs-lookup"><span data-stu-id="fdce4-104">Azure Functions Storage table bindings</span></span>
 [!INCLUDE [functions-selector-bindings](../../includes/functions-selector-bindings.md)]
 
-<span data-ttu-id="6eee9-105">Questo articolo illustra come configurare e scrivere il codice delle associazioni delle tabelle di Archiviazione di Azure in Funzioni di Azure.</span><span class="sxs-lookup"><span data-stu-id="6eee9-105">This article explains how to configure and code Azure Storage table bindings in Azure Functions.</span></span> <span data-ttu-id="6eee9-106">Funzioni di Azure supporta le associazioni di input e output per le tabelle di Archiviazione di Azure.</span><span class="sxs-lookup"><span data-stu-id="6eee9-106">Azure Functions supports input and output bindings for Azure Storage tables.</span></span>
+<span data-ttu-id="fdce4-105">Questo articolo spiega come codice di archiviazione di Azure e tooconfigure tabella associazioni nelle funzioni di Azure.</span><span class="sxs-lookup"><span data-stu-id="fdce4-105">This article explains how tooconfigure and code Azure Storage table bindings in Azure Functions.</span></span> <span data-ttu-id="fdce4-106">Funzioni di Azure supporta le associazioni di input e output per le tabelle di Archiviazione di Azure.</span><span class="sxs-lookup"><span data-stu-id="fdce4-106">Azure Functions supports input and output bindings for Azure Storage tables.</span></span>
 
-<span data-ttu-id="6eee9-107">L'associazione delle tabelle di archiviazione supporta gli scenari seguenti:</span><span class="sxs-lookup"><span data-stu-id="6eee9-107">The Storage table binding supports the following scenarios:</span></span>
+<span data-ttu-id="fdce4-107">associazione di Hello archiviazione tabella supporta hello seguenti scenari:</span><span class="sxs-lookup"><span data-stu-id="fdce4-107">hello Storage table binding supports hello following scenarios:</span></span>
 
-* <span data-ttu-id="6eee9-108">**Leggere una singola riga in una funzione C# o Node.js**: impostare `partitionKey` e `rowKey`.</span><span class="sxs-lookup"><span data-stu-id="6eee9-108">**Read a single row in a C# or Node.js function** - Set `partitionKey` and `rowKey`.</span></span> <span data-ttu-id="6eee9-109">Le proprietà `filter` e `take` non vengono usate in questo scenario.</span><span class="sxs-lookup"><span data-stu-id="6eee9-109">The `filter` and `take` properties are not used in this scenario.</span></span>
-* <span data-ttu-id="6eee9-110">**Leggere più righe in una funzione C#**: il runtime di Funzioni specifica un oggetto `IQueryable<T>` associato alla tabella.</span><span class="sxs-lookup"><span data-stu-id="6eee9-110">**Read multiple rows in a C# function** - The Functions runtime provides an `IQueryable<T>` object bound to the table.</span></span> <span data-ttu-id="6eee9-111">Il tipo `T` deve derivare da `TableEntity` o implementare `ITableEntity`.</span><span class="sxs-lookup"><span data-stu-id="6eee9-111">Type `T` must derive from `TableEntity` or implement `ITableEntity`.</span></span> <span data-ttu-id="6eee9-112">Le proprietà `partitionKey`, `rowKey`, `filter` e `take` non vengono usate in questo scenario. È possibile usare l'oggetto `IQueryable` per qualsiasi operazione di filtro necessaria.</span><span class="sxs-lookup"><span data-stu-id="6eee9-112">The `partitionKey`, `rowKey`, `filter`, and `take` properties are not used in this scenario; you can use the `IQueryable` object to do any filtering required.</span></span> 
-* <span data-ttu-id="6eee9-113">**Leggere più righe in una funzione Node**: impostare le proprietà `filter` e `take`.</span><span class="sxs-lookup"><span data-stu-id="6eee9-113">**Read multiple rows in a Node function** - Set the `filter` and `take` properties.</span></span> <span data-ttu-id="6eee9-114">Non impostare `partitionKey` o `rowKey`.</span><span class="sxs-lookup"><span data-stu-id="6eee9-114">Don't set `partitionKey` or `rowKey`.</span></span>
-* <span data-ttu-id="6eee9-115">**Scrivere una o più righe in una funzione C#**: il runtime di Funzioni specifica un oggetto `ICollector<T>` o `IAsyncCollector<T>` associato alla tabella, dove `T` indica lo schema delle entità da aggiungere.</span><span class="sxs-lookup"><span data-stu-id="6eee9-115">**Write one or more rows in a C# function** - The Functions runtime provides an `ICollector<T>` or `IAsyncCollector<T>` bound to the table, where `T` specifies the schema of the entities you want to add.</span></span> <span data-ttu-id="6eee9-116">In genere, ma non necessariamente, il tipo `T` deriva da `TableEntity` o implementa `ITableEntity`.</span><span class="sxs-lookup"><span data-stu-id="6eee9-116">Typically, type `T` derives from `TableEntity` or implements `ITableEntity`, but it doesn't have to.</span></span> <span data-ttu-id="6eee9-117">Le proprietà `partitionKey`, `rowKey`, `filter` e `take` non vengono usate in questo scenario.</span><span class="sxs-lookup"><span data-stu-id="6eee9-117">The `partitionKey`, `rowKey`, `filter`, and `take` properties are not used in this scenario.</span></span>
+* <span data-ttu-id="fdce4-108">**Leggere una singola riga in una funzione C# o Node.js**: impostare `partitionKey` e `rowKey`.</span><span class="sxs-lookup"><span data-stu-id="fdce4-108">**Read a single row in a C# or Node.js function** - Set `partitionKey` and `rowKey`.</span></span> <span data-ttu-id="fdce4-109">Hello `filter` e `take` proprietà non vengono utilizzate in questo scenario.</span><span class="sxs-lookup"><span data-stu-id="fdce4-109">hello `filter` and `take` properties are not used in this scenario.</span></span>
+* <span data-ttu-id="fdce4-110">**Lettura di più righe in una funzione c#** -hello funzioni runtime fornisce un `IQueryable<T>` oggetto associato toohello tabella.</span><span class="sxs-lookup"><span data-stu-id="fdce4-110">**Read multiple rows in a C# function** - hello Functions runtime provides an `IQueryable<T>` object bound toohello table.</span></span> <span data-ttu-id="fdce4-111">Il tipo `T` deve derivare da `TableEntity` o implementare `ITableEntity`.</span><span class="sxs-lookup"><span data-stu-id="fdce4-111">Type `T` must derive from `TableEntity` or implement `ITableEntity`.</span></span> <span data-ttu-id="fdce4-112">Hello `partitionKey`, `rowKey`, `filter`, e `take` proprietà non vengono utilizzate in questo scenario, è possibile utilizzare hello `IQueryable` oggetto toodo eventuali filtri necessari.</span><span class="sxs-lookup"><span data-stu-id="fdce4-112">hello `partitionKey`, `rowKey`, `filter`, and `take` properties are not used in this scenario; you can use hello `IQueryable` object toodo any filtering required.</span></span> 
+* <span data-ttu-id="fdce4-113">**Lettura di più righe in una funzione di nodo** - hello impostare `filter` e `take` proprietà.</span><span class="sxs-lookup"><span data-stu-id="fdce4-113">**Read multiple rows in a Node function** - Set hello `filter` and `take` properties.</span></span> <span data-ttu-id="fdce4-114">Non impostare `partitionKey` o `rowKey`.</span><span class="sxs-lookup"><span data-stu-id="fdce4-114">Don't set `partitionKey` or `rowKey`.</span></span>
+* <span data-ttu-id="fdce4-115">**Scrivere una o più righe in una funzione c#** -hello funzioni runtime fornisce un `ICollector<T>` o `IAsyncCollector<T>` tabella toohello associato, in cui `T` specifica dello schema hello di entità hello desiderato tooadd.</span><span class="sxs-lookup"><span data-stu-id="fdce4-115">**Write one or more rows in a C# function** - hello Functions runtime provides an `ICollector<T>` or `IAsyncCollector<T>` bound toohello table, where `T` specifies hello schema of hello entities you want tooadd.</span></span> <span data-ttu-id="fdce4-116">In genere, ma non necessariamente, il tipo `T` deriva da `TableEntity` o implementa `ITableEntity`.</span><span class="sxs-lookup"><span data-stu-id="fdce4-116">Typically, type `T` derives from `TableEntity` or implements `ITableEntity`, but it doesn't have to.</span></span> <span data-ttu-id="fdce4-117">Hello `partitionKey`, `rowKey`, `filter`, e `take` proprietà non vengono utilizzate in questo scenario.</span><span class="sxs-lookup"><span data-stu-id="fdce4-117">hello `partitionKey`, `rowKey`, `filter`, and `take` properties are not used in this scenario.</span></span>
 
 [!INCLUDE [intro](../../includes/functions-bindings-intro.md)]
 
 <a name="input"></a>
 
-## <a name="storage-table-input-binding"></a><span data-ttu-id="6eee9-118">Associazione di input della tabella di archiviazione</span><span class="sxs-lookup"><span data-stu-id="6eee9-118">Storage table input binding</span></span>
-<span data-ttu-id="6eee9-119">L'associazione di input nella tabella di archiviazione di Azure consente di usare una tabella di archiviazione nella funzione.</span><span class="sxs-lookup"><span data-stu-id="6eee9-119">The Azure Storage table input binding enables you to use a storage table in your function.</span></span> 
+## <a name="storage-table-input-binding"></a><span data-ttu-id="fdce4-118">Associazione di input della tabella di archiviazione</span><span class="sxs-lookup"><span data-stu-id="fdce4-118">Storage table input binding</span></span>
+<span data-ttu-id="fdce4-119">Hello associazione di input nella tabella di archiviazione di Azure consente toouse nella funzione di una tabella di archiviazione.</span><span class="sxs-lookup"><span data-stu-id="fdce4-119">hello Azure Storage table input binding enables you toouse a storage table in your function.</span></span> 
 
-<span data-ttu-id="6eee9-120">L'input della tabella di archiviazione in una funzione usa gli oggetti JSON seguenti nella matrice `bindings` di function.json:</span><span class="sxs-lookup"><span data-stu-id="6eee9-120">The Storage table input to a function uses the following JSON objects in the `bindings` array of function.json:</span></span>
+<span data-ttu-id="fdce4-120">funzione di archiviazione tabella tooa input Hello utilizza hello seguendo gli oggetti JSON in hello `bindings` matrice function.json:</span><span class="sxs-lookup"><span data-stu-id="fdce4-120">hello Storage table input tooa function uses hello following JSON objects in hello `bindings` array of function.json:</span></span>
 
 ```json
 {
@@ -49,38 +49,38 @@ ms.lasthandoff: 07/11/2017
     "type": "table",
     "direction": "in",
     "tableName": "<Name of Storage table>",
-    "partitionKey": "<PartitionKey of table entity to read - see below>",
-    "rowKey": "<RowKey of table entity to read - see below>",
-    "take": "<Maximum number of entities to read in Node.js - optional>",
+    "partitionKey": "<PartitionKey of table entity tooread - see below>",
+    "rowKey": "<RowKey of table entity tooread - see below>",
+    "take": "<Maximum number of entities tooread in Node.js - optional>",
     "filter": "<OData filter expression for table input in Node.js - optional>",
     "connection": "<Name of app setting - see below>",
 }
 ```
 
-<span data-ttu-id="6eee9-121">Tenere presente quanto segue:</span><span class="sxs-lookup"><span data-stu-id="6eee9-121">Note the following:</span></span> 
+<span data-ttu-id="fdce4-121">Si noti hello segue:</span><span class="sxs-lookup"><span data-stu-id="fdce4-121">Note hello following:</span></span> 
 
-* <span data-ttu-id="6eee9-122">Usare `partitionKey` e `rowKey` insieme per leggere una singola entità.</span><span class="sxs-lookup"><span data-stu-id="6eee9-122">Use `partitionKey` and `rowKey` together to read a single entity.</span></span> <span data-ttu-id="6eee9-123">Queste proprietà sono facoltative.</span><span class="sxs-lookup"><span data-stu-id="6eee9-123">These properties are optional.</span></span> 
-* <span data-ttu-id="6eee9-124">`connection` deve contenere il nome di un'impostazione app che contiene una stringa di connessione di archiviazione.</span><span class="sxs-lookup"><span data-stu-id="6eee9-124">`connection` must contain the name of an app setting that contains a storage connection string.</span></span> <span data-ttu-id="6eee9-125">Nel portale di Azure l'editor standard disponibile nella scheda **Integra** configura automaticamente questa impostazione app quando si crea un account di archiviazione o si seleziona un account già esistente.</span><span class="sxs-lookup"><span data-stu-id="6eee9-125">In the Azure portal, the standard editor in the **Integrate** tab configures this app setting for you when you create a Storage account or selects an existing one.</span></span> <span data-ttu-id="6eee9-126">È anche possibile [configurare questa impostazione dell'app manualmente](functions-how-to-use-azure-function-app-settings.md#settings).</span><span class="sxs-lookup"><span data-stu-id="6eee9-126">You can also [configure this app setting manually](functions-how-to-use-azure-function-app-settings.md#settings).</span></span>  
+* <span data-ttu-id="fdce4-122">Utilizzare `partitionKey` e `rowKey` tooread insieme una singola entità.</span><span class="sxs-lookup"><span data-stu-id="fdce4-122">Use `partitionKey` and `rowKey` together tooread a single entity.</span></span> <span data-ttu-id="fdce4-123">Queste proprietà sono facoltative.</span><span class="sxs-lookup"><span data-stu-id="fdce4-123">These properties are optional.</span></span> 
+* <span data-ttu-id="fdce4-124">`connection`deve contenere il nome di hello di un'impostazione di app che contiene una stringa di connessione di archiviazione.</span><span class="sxs-lookup"><span data-stu-id="fdce4-124">`connection` must contain hello name of an app setting that contains a storage connection string.</span></span> <span data-ttu-id="fdce4-125">Nel portale di Azure hello, hello editor standard di hello **integrazione** scheda configura questa impostazione di app per utente quando si crea uno spazio di archiviazione dell'account o si seleziona uno esistente.</span><span class="sxs-lookup"><span data-stu-id="fdce4-125">In hello Azure portal, hello standard editor in hello **Integrate** tab configures this app setting for you when you create a Storage account or selects an existing one.</span></span> <span data-ttu-id="fdce4-126">È anche possibile [configurare questa impostazione dell'app manualmente](functions-how-to-use-azure-function-app-settings.md#settings).</span><span class="sxs-lookup"><span data-stu-id="fdce4-126">You can also [configure this app setting manually](functions-how-to-use-azure-function-app-settings.md#settings).</span></span>  
 
 <a name="inputusage"></a>
 
-## <a name="input-usage"></a><span data-ttu-id="6eee9-127">Uso dell'input</span><span class="sxs-lookup"><span data-stu-id="6eee9-127">Input usage</span></span>
-<span data-ttu-id="6eee9-128">Nelle funzioni C# l'associazione all'entità, o alle entità, della tabella di input viene eseguita usando un parametro denominato nella firma funzione, ad esempio `<T> <name>`.</span><span class="sxs-lookup"><span data-stu-id="6eee9-128">In C# functions, you bind to the input table entity (or entities) by using a named parameter in your function signature, like `<T> <name>`.</span></span>
-<span data-ttu-id="6eee9-129">`T` è il tipo di dati in cui si vogliono deserializzare i dati e `paramName` è il nome specificato nell'[associazione di input](#input).</span><span class="sxs-lookup"><span data-stu-id="6eee9-129">Where `T` is the data type that you want to deserialize the data into, and `paramName` is the name you specified in the [input binding](#input).</span></span> <span data-ttu-id="6eee9-130">Nelle funzioni Node.js si accede all'entità (o alle entità) della tabella di input usando `context.bindings.<name>`.</span><span class="sxs-lookup"><span data-stu-id="6eee9-130">In Node.js functions, you access the input table entity (or entities) using `context.bindings.<name>`.</span></span>
+## <a name="input-usage"></a><span data-ttu-id="fdce4-127">Uso dell'input</span><span class="sxs-lookup"><span data-stu-id="fdce4-127">Input usage</span></span>
+<span data-ttu-id="fdce4-128">In c# le funzioni, associare toohello input tabella (o più entità) tramite un parametro denominato nella firma di funzione, come `<T> <name>`.</span><span class="sxs-lookup"><span data-stu-id="fdce4-128">In C# functions, you bind toohello input table entity (or entities) by using a named parameter in your function signature, like `<T> <name>`.</span></span>
+<span data-ttu-id="fdce4-129">Dove `T` è che si desidera toodeserialize hello dati del tipo di dati hello e `paramName` è il nome di hello è specificato in hello [associazione di input](#input).</span><span class="sxs-lookup"><span data-stu-id="fdce4-129">Where `T` is hello data type that you want toodeserialize hello data into, and `paramName` is hello name you specified in hello [input binding](#input).</span></span> <span data-ttu-id="fdce4-130">Nelle funzioni di Node.js, accedere hello input tabella entità o entità mediante `context.bindings.<name>`.</span><span class="sxs-lookup"><span data-stu-id="fdce4-130">In Node.js functions, you access hello input table entity (or entities) using `context.bindings.<name>`.</span></span>
 
-<span data-ttu-id="6eee9-131">I dati di input possono essere deserializzati in funzioni Node.js o C#.</span><span class="sxs-lookup"><span data-stu-id="6eee9-131">The input data can be deserialized in Node.js or C# functions.</span></span> <span data-ttu-id="6eee9-132">Gli oggetti deserializzati hanno le proprietà `RowKey` e `PartitionKey`.</span><span class="sxs-lookup"><span data-stu-id="6eee9-132">The deserialized objects have `RowKey` and `PartitionKey` properties.</span></span>
+<span data-ttu-id="fdce4-131">dati di input Hello possono essere deserializzati in funzioni di Node.js o c#.</span><span class="sxs-lookup"><span data-stu-id="fdce4-131">hello input data can be deserialized in Node.js or C# functions.</span></span> <span data-ttu-id="fdce4-132">oggetti Hello deserializzato `RowKey` e `PartitionKey` proprietà.</span><span class="sxs-lookup"><span data-stu-id="fdce4-132">hello deserialized objects have `RowKey` and `PartitionKey` properties.</span></span>
 
-<span data-ttu-id="6eee9-133">Nelle funzioni C# è anche possibile eseguire l'associazione a uno dei seguenti tipi e il runtime di Funzioni tenterà di deserializzare i dati della tabella usando quel tipo:</span><span class="sxs-lookup"><span data-stu-id="6eee9-133">In C# functions, you can also bind to any of the following types, and the Functions runtime will attempt to deserialize the table data using that type:</span></span>
+<span data-ttu-id="fdce4-133">In c# le funzioni, è anche possibile associare tooany dei seguenti tipi di hello e di funzioni hello runtime tenterà deserializzare troppo mediante quel tipo di dati della tabella hello:</span><span class="sxs-lookup"><span data-stu-id="fdce4-133">In C# functions, you can also bind tooany of hello following types, and hello Functions runtime will attempt too deserialize hello table data using that type:</span></span>
 
-* <span data-ttu-id="6eee9-134">Qualsiasi tipo che implementa `ITableEntity`</span><span class="sxs-lookup"><span data-stu-id="6eee9-134">Any type that implements `ITableEntity`</span></span>
+* <span data-ttu-id="fdce4-134">Qualsiasi tipo che implementa `ITableEntity`</span><span class="sxs-lookup"><span data-stu-id="fdce4-134">Any type that implements `ITableEntity`</span></span>
 * `IQueryable<T>`
 
 <a name="inputsample"></a>
 
-## <a name="input-sample"></a><span data-ttu-id="6eee9-135">Esempio di input</span><span class="sxs-lookup"><span data-stu-id="6eee9-135">Input sample</span></span>
-<span data-ttu-id="6eee9-136">Si supponga di avere il seguente function.json che usa un trigger della coda per leggere una singola riga della tabella.</span><span class="sxs-lookup"><span data-stu-id="6eee9-136">Supposed you have the following function.json, which uses a queue trigger to read a single table row.</span></span> <span data-ttu-id="6eee9-137">Il JSON specifica `PartitionKey` 
-`RowKey`.</span><span class="sxs-lookup"><span data-stu-id="6eee9-137">The JSON specifies `PartitionKey` 
-`RowKey`.</span></span> <span data-ttu-id="6eee9-138">`"rowKey": "{queueTrigger}"` indica che la chiave di riga proviene dalla stringa di messaggio della coda.</span><span class="sxs-lookup"><span data-stu-id="6eee9-138">`"rowKey": "{queueTrigger}"` indicates that the row key comes from the queue message string.</span></span>
+## <a name="input-sample"></a><span data-ttu-id="fdce4-135">Esempio di input</span><span class="sxs-lookup"><span data-stu-id="fdce4-135">Input sample</span></span>
+<span data-ttu-id="fdce4-136">Si supponga di che aver hello function.json, che utilizza un tooread trigger coda una riga nella tabella seguente.</span><span class="sxs-lookup"><span data-stu-id="fdce4-136">Supposed you have hello following function.json, which uses a queue trigger tooread a single table row.</span></span> <span data-ttu-id="fdce4-137">Specifica Hello JSON `PartitionKey`  
+ `RowKey`.</span><span class="sxs-lookup"><span data-stu-id="fdce4-137">hello JSON specifies `PartitionKey` 
+`RowKey`.</span></span> <span data-ttu-id="fdce4-138">`"rowKey": "{queueTrigger}"`indica che la chiave di riga hello proviene dalla stringa di messaggio hello coda.</span><span class="sxs-lookup"><span data-stu-id="fdce4-138">`"rowKey": "{queueTrigger}"` indicates that hello row key comes from hello queue message string.</span></span>
 
 ```json
 {
@@ -106,15 +106,15 @@ ms.lasthandoff: 07/11/2017
 }
 ```
 
-<span data-ttu-id="6eee9-139">Vedere l'esempio specifico del linguaggio che legge una singola entità di tabella.</span><span class="sxs-lookup"><span data-stu-id="6eee9-139">See the language-specific sample that reads a single table entity.</span></span>
+<span data-ttu-id="fdce4-139">Vedere l'esempio specifico del linguaggio hello che legge una tabella singola entità.</span><span class="sxs-lookup"><span data-stu-id="fdce4-139">See hello language-specific sample that reads a single table entity.</span></span>
 
-* [<span data-ttu-id="6eee9-140">C#</span><span class="sxs-lookup"><span data-stu-id="6eee9-140">C#</span></span>](#inputcsharp)
-* [<span data-ttu-id="6eee9-141">F#</span><span class="sxs-lookup"><span data-stu-id="6eee9-141">F#</span></span>](#inputfsharp)
-* [<span data-ttu-id="6eee9-142">Node.js</span><span class="sxs-lookup"><span data-stu-id="6eee9-142">Node.js</span></span>](#inputnodejs)
+* [<span data-ttu-id="fdce4-140">C#</span><span class="sxs-lookup"><span data-stu-id="fdce4-140">C#</span></span>](#inputcsharp)
+* [<span data-ttu-id="fdce4-141">F#</span><span class="sxs-lookup"><span data-stu-id="fdce4-141">F#</span></span>](#inputfsharp)
+* [<span data-ttu-id="fdce4-142">Node.js</span><span class="sxs-lookup"><span data-stu-id="fdce4-142">Node.js</span></span>](#inputnodejs)
 
 <a name="inputcsharp"></a>
 
-### <a name="input-sample-in-c"></a><span data-ttu-id="6eee9-143">Esempio di input in C#</span><span class="sxs-lookup"><span data-stu-id="6eee9-143">Input sample in C#</span></span> #
+### <a name="input-sample-in-c"></a><span data-ttu-id="fdce4-143">Esempio di input in C#</span><span class="sxs-lookup"><span data-stu-id="fdce4-143">Input sample in C#</span></span> #
 ```csharp
 public static void Run(string myQueueItem, Person personEntity, TraceWriter log)
 {
@@ -132,7 +132,7 @@ public class Person
 
 <a name="inputfsharp"></a>
 
-### <a name="input-sample-in-f"></a><span data-ttu-id="6eee9-144">Esempio di input in F#</span><span class="sxs-lookup"><span data-stu-id="6eee9-144">Input sample in F#</span></span> #
+### <a name="input-sample-in-f"></a><span data-ttu-id="fdce4-144">Esempio di input in F#</span><span class="sxs-lookup"><span data-stu-id="fdce4-144">Input sample in F#</span></span> #
 ```fsharp
 [<CLIMutable>]
 type Person = {
@@ -148,7 +148,7 @@ let Run(myQueueItem: string, personEntity: Person) =
 
 <a name="inputnodejs"></a>
 
-### <a name="input-sample-in-nodejs"></a><span data-ttu-id="6eee9-145">Esempio di input in Node.js</span><span class="sxs-lookup"><span data-stu-id="6eee9-145">Input sample in Node.js</span></span>
+### <a name="input-sample-in-nodejs"></a><span data-ttu-id="fdce4-145">Esempio di input in Node.js</span><span class="sxs-lookup"><span data-stu-id="fdce4-145">Input sample in Node.js</span></span>
 ```javascript
 module.exports = function (context, myQueueItem) {
     context.log('Node.js queue trigger function processed work item', myQueueItem);
@@ -159,10 +159,10 @@ module.exports = function (context, myQueueItem) {
 
 <a name="output"></a>
 
-## <a name="storage-table-output-binding"></a><span data-ttu-id="6eee9-146">Associazione di output della tabella di archiviazione</span><span class="sxs-lookup"><span data-stu-id="6eee9-146">Storage table output binding</span></span>
-<span data-ttu-id="6eee9-147">L'associazione di output della tabella di Archiviazione di Azure consente di scrivere entità in una tabella di archiviazione della funzione.</span><span class="sxs-lookup"><span data-stu-id="6eee9-147">The Azure Storage table output binding enables you to write entities to a Storage table in your function.</span></span> 
+## <a name="storage-table-output-binding"></a><span data-ttu-id="fdce4-146">Associazione di output della tabella di archiviazione</span><span class="sxs-lookup"><span data-stu-id="fdce4-146">Storage table output binding</span></span>
+<span data-ttu-id="fdce4-147">associazione consente di tabella di archiviazione tooa entità toowrite nella funzione di output Hello tabella di archiviazione di Azure.</span><span class="sxs-lookup"><span data-stu-id="fdce4-147">hello Azure Storage table output binding enables you toowrite entities tooa Storage table in your function.</span></span> 
 
-<span data-ttu-id="6eee9-148">L'output della tabella di archiviazione per una funzione usa gli oggetti JSON seguenti nella matrice `bindings` di function.json:</span><span class="sxs-lookup"><span data-stu-id="6eee9-148">The Storage table output for a function uses the following JSON objects in the `bindings` array of function.json:</span></span>
+<span data-ttu-id="fdce4-148">Hello output di tabella di archiviazione per una funzione utilizza i seguenti oggetti JSON in hello hello `bindings` matrice function.json:</span><span class="sxs-lookup"><span data-stu-id="fdce4-148">hello Storage table output for a function uses hello following JSON objects in hello `bindings` array of function.json:</span></span>
 
 ```json
 {
@@ -170,33 +170,33 @@ module.exports = function (context, myQueueItem) {
     "type": "table",
     "direction": "out",
     "tableName": "<Name of Storage table>",
-    "partitionKey": "<PartitionKey of table entity to write - see below>",
-    "rowKey": "<RowKey of table entity to write - see below>",
+    "partitionKey": "<PartitionKey of table entity toowrite - see below>",
+    "rowKey": "<RowKey of table entity toowrite - see below>",
     "connection": "<Name of app setting - see below>",
 }
 ```
 
-<span data-ttu-id="6eee9-149">Tenere presente quanto segue:</span><span class="sxs-lookup"><span data-stu-id="6eee9-149">Note the following:</span></span> 
+<span data-ttu-id="fdce4-149">Si noti hello segue:</span><span class="sxs-lookup"><span data-stu-id="fdce4-149">Note hello following:</span></span> 
 
-* <span data-ttu-id="6eee9-150">Usare `partitionKey` e `rowKey` insieme per scrivere una singola entità.</span><span class="sxs-lookup"><span data-stu-id="6eee9-150">Use `partitionKey` and `rowKey` together to write a single entity.</span></span> <span data-ttu-id="6eee9-151">Queste proprietà sono facoltative.</span><span class="sxs-lookup"><span data-stu-id="6eee9-151">These properties are optional.</span></span> <span data-ttu-id="6eee9-152">È possibile specificare `PartitionKey` e `RowKey` anche quando si creano gli oggetti entità nel codice della funzione.</span><span class="sxs-lookup"><span data-stu-id="6eee9-152">You can also specify `PartitionKey` and `RowKey` when you create the entity objects in your function code.</span></span>
-* <span data-ttu-id="6eee9-153">`connection` deve contenere il nome di un'impostazione app che contiene una stringa di connessione di archiviazione.</span><span class="sxs-lookup"><span data-stu-id="6eee9-153">`connection` must contain the name of an app setting that contains a storage connection string.</span></span> <span data-ttu-id="6eee9-154">Nel portale di Azure l'editor standard disponibile nella scheda **Integra** configura automaticamente questa impostazione app quando si crea un account di archiviazione o si seleziona un account già esistente.</span><span class="sxs-lookup"><span data-stu-id="6eee9-154">In the Azure portal, the standard editor in the **Integrate** tab configures this app setting for you when you create a Storage account or selects an existing one.</span></span> <span data-ttu-id="6eee9-155">È anche possibile [configurare questa impostazione dell'app manualmente](functions-how-to-use-azure-function-app-settings.md#settings).</span><span class="sxs-lookup"><span data-stu-id="6eee9-155">You can also [configure this app setting manually](functions-how-to-use-azure-function-app-settings.md#settings).</span></span> 
+* <span data-ttu-id="fdce4-150">Utilizzare `partitionKey` e `rowKey` toowrite insieme una singola entità.</span><span class="sxs-lookup"><span data-stu-id="fdce4-150">Use `partitionKey` and `rowKey` together toowrite a single entity.</span></span> <span data-ttu-id="fdce4-151">Queste proprietà sono facoltative.</span><span class="sxs-lookup"><span data-stu-id="fdce4-151">These properties are optional.</span></span> <span data-ttu-id="fdce4-152">È inoltre possibile specificare `PartitionKey` e `RowKey` quando si crea hello oggetti entità nel codice di funzione.</span><span class="sxs-lookup"><span data-stu-id="fdce4-152">You can also specify `PartitionKey` and `RowKey` when you create hello entity objects in your function code.</span></span>
+* <span data-ttu-id="fdce4-153">`connection`deve contenere il nome di hello di un'impostazione di app che contiene una stringa di connessione di archiviazione.</span><span class="sxs-lookup"><span data-stu-id="fdce4-153">`connection` must contain hello name of an app setting that contains a storage connection string.</span></span> <span data-ttu-id="fdce4-154">Nel portale di Azure hello, hello editor standard di hello **integrazione** scheda configura questa impostazione di app per utente quando si crea uno spazio di archiviazione dell'account o si seleziona uno esistente.</span><span class="sxs-lookup"><span data-stu-id="fdce4-154">In hello Azure portal, hello standard editor in hello **Integrate** tab configures this app setting for you when you create a Storage account or selects an existing one.</span></span> <span data-ttu-id="fdce4-155">È anche possibile [configurare questa impostazione dell'app manualmente](functions-how-to-use-azure-function-app-settings.md#settings).</span><span class="sxs-lookup"><span data-stu-id="fdce4-155">You can also [configure this app setting manually](functions-how-to-use-azure-function-app-settings.md#settings).</span></span> 
 
 <a name="outputusage"></a>
 
-## <a name="output-usage"></a><span data-ttu-id="6eee9-156">Uso dell'output</span><span class="sxs-lookup"><span data-stu-id="6eee9-156">Output usage</span></span>
-<span data-ttu-id="6eee9-157">Nelle funzioni C# è possibile eseguire l'associazione all'output della tabella usando il parametro denominato `out` nella firma funzione, ad esempio `out <T> <name>`, dove `T` è il tipo di dati in cui si vuole serializzare i dati e `paramName` è il nome specificato nell'[associazione di output](#output).</span><span class="sxs-lookup"><span data-stu-id="6eee9-157">In C# functions, you bind to the table output by using the named `out` parameter in your function signature, like `out <T> <name>`, where `T` is the data type that you want to serialize the data into, and `paramName` is the name you specified in the [output binding](#output).</span></span> <span data-ttu-id="6eee9-158">Nelle funzioni Node.js si accede all'output della tabella usando `context.bindings.<name>`.</span><span class="sxs-lookup"><span data-stu-id="6eee9-158">In Node.js functions, you access the table output using `context.bindings.<name>`.</span></span>
+## <a name="output-usage"></a><span data-ttu-id="fdce4-156">Uso dell'output</span><span class="sxs-lookup"><span data-stu-id="fdce4-156">Output usage</span></span>
+<span data-ttu-id="fdce4-157">In c# le funzioni, associare output tabella toohello utilizzando hello denominato `out` parametro nella firma di funzione, ad esempio `out <T> <name>`, dove `T` è che si desidera tooserialize hello dati del tipo di dati hello e `paramName` è hello nome specificato in hello [associazione di output](#output).</span><span class="sxs-lookup"><span data-stu-id="fdce4-157">In C# functions, you bind toohello table output by using hello named `out` parameter in your function signature, like `out <T> <name>`, where `T` is hello data type that you want tooserialize hello data into, and `paramName` is hello name you specified in hello [output binding](#output).</span></span> <span data-ttu-id="fdce4-158">Nelle funzioni di Node.js, si accede tabella di hello output utilizzando `context.bindings.<name>`.</span><span class="sxs-lookup"><span data-stu-id="fdce4-158">In Node.js functions, you access hello table output using `context.bindings.<name>`.</span></span>
 
-<span data-ttu-id="6eee9-159">È possibile serializzare gli oggetti nelle funzioni Node.js o C#.</span><span class="sxs-lookup"><span data-stu-id="6eee9-159">You can serialize objects in Node.js or C# functions.</span></span> <span data-ttu-id="6eee9-160">Nelle funzioni C# è anche possibile definire associazioni con i seguenti tipi:</span><span class="sxs-lookup"><span data-stu-id="6eee9-160">In C# functions, you can also bind to the following types:</span></span>
+<span data-ttu-id="fdce4-159">È possibile serializzare gli oggetti nelle funzioni Node.js o C#.</span><span class="sxs-lookup"><span data-stu-id="fdce4-159">You can serialize objects in Node.js or C# functions.</span></span> <span data-ttu-id="fdce4-160">In c# le funzioni, è anche possibile associare toohello seguenti tipi:</span><span class="sxs-lookup"><span data-stu-id="fdce4-160">In C# functions, you can also bind toohello following types:</span></span>
 
-* <span data-ttu-id="6eee9-161">Qualsiasi tipo che implementa `ITableEntity`</span><span class="sxs-lookup"><span data-stu-id="6eee9-161">Any type that implements `ITableEntity`</span></span>
-* <span data-ttu-id="6eee9-162">`ICollector<T>` (per restituire più entità,</span><span class="sxs-lookup"><span data-stu-id="6eee9-162">`ICollector<T>` (to output multiple entities.</span></span> <span data-ttu-id="6eee9-163">vedere l'[esempio](#outcsharp)).</span><span class="sxs-lookup"><span data-stu-id="6eee9-163">See [sample](#outcsharp).)</span></span>
-* <span data-ttu-id="6eee9-164">`IAsyncCollector<T>` (versione asincrona di `ICollector<T>`)</span><span class="sxs-lookup"><span data-stu-id="6eee9-164">`IAsyncCollector<T>` (async version of `ICollector<T>`)</span></span>
-* <span data-ttu-id="6eee9-165">`CloudTable` (uso di Azure Storage SDK.</span><span class="sxs-lookup"><span data-stu-id="6eee9-165">`CloudTable` (using the Azure Storage SDK.</span></span> <span data-ttu-id="6eee9-166">vedere l'[esempio](#readmulti)).</span><span class="sxs-lookup"><span data-stu-id="6eee9-166">See [sample](#readmulti).)</span></span>
+* <span data-ttu-id="fdce4-161">Qualsiasi tipo che implementa `ITableEntity`</span><span class="sxs-lookup"><span data-stu-id="fdce4-161">Any type that implements `ITableEntity`</span></span>
+* <span data-ttu-id="fdce4-162">`ICollector<T>`(toooutput più entità.</span><span class="sxs-lookup"><span data-stu-id="fdce4-162">`ICollector<T>` (toooutput multiple entities.</span></span> <span data-ttu-id="fdce4-163">vedere l'[esempio](#outcsharp)).</span><span class="sxs-lookup"><span data-stu-id="fdce4-163">See [sample](#outcsharp).)</span></span>
+* <span data-ttu-id="fdce4-164">`IAsyncCollector<T>` (versione asincrona di `ICollector<T>`)</span><span class="sxs-lookup"><span data-stu-id="fdce4-164">`IAsyncCollector<T>` (async version of `ICollector<T>`)</span></span>
+* <span data-ttu-id="fdce4-165">`CloudTable`(tramite hello Azure Storage SDK.</span><span class="sxs-lookup"><span data-stu-id="fdce4-165">`CloudTable` (using hello Azure Storage SDK.</span></span> <span data-ttu-id="fdce4-166">vedere l'[esempio](#readmulti)).</span><span class="sxs-lookup"><span data-stu-id="fdce4-166">See [sample](#readmulti).)</span></span>
 
 <a name="outputsample"></a>
 
-## <a name="output-sample"></a><span data-ttu-id="6eee9-167">Esempio di output</span><span class="sxs-lookup"><span data-stu-id="6eee9-167">Output sample</span></span>
-<span data-ttu-id="6eee9-168">L'esempio di *function.json* e *run.csx* seguente illustra come scrivere più entità di tabella.</span><span class="sxs-lookup"><span data-stu-id="6eee9-168">The following *function.json* and *run.csx* example shows how to write multiple table entities.</span></span>
+## <a name="output-sample"></a><span data-ttu-id="fdce4-167">Esempio di output</span><span class="sxs-lookup"><span data-stu-id="fdce4-167">Output sample</span></span>
+<span data-ttu-id="fdce4-168">esempio Hello *function.json* e *run.csx* esempio viene illustrato come toowrite più entità di tabella.</span><span class="sxs-lookup"><span data-stu-id="fdce4-168">hello following *function.json* and *run.csx* example shows how toowrite multiple table entities.</span></span>
 
 ```json
 {
@@ -218,15 +218,15 @@ module.exports = function (context, myQueueItem) {
 }
 ```
 
-<span data-ttu-id="6eee9-169">Vedere l'esempio specifico del linguaggio che crea più entità di tabella.</span><span class="sxs-lookup"><span data-stu-id="6eee9-169">See the language-specific sample that creates multiple table entities.</span></span>
+<span data-ttu-id="fdce4-169">Vedere l'esempio specifico del linguaggio hello che crea più entità di tabella.</span><span class="sxs-lookup"><span data-stu-id="fdce4-169">See hello language-specific sample that creates multiple table entities.</span></span>
 
-* [<span data-ttu-id="6eee9-170">C#</span><span class="sxs-lookup"><span data-stu-id="6eee9-170">C#</span></span>](#outcsharp)
-* [<span data-ttu-id="6eee9-171">F#</span><span class="sxs-lookup"><span data-stu-id="6eee9-171">F#</span></span>](#outfsharp)
-* [<span data-ttu-id="6eee9-172">Node.JS</span><span class="sxs-lookup"><span data-stu-id="6eee9-172">Node.js</span></span>](#outnodejs)
+* [<span data-ttu-id="fdce4-170">C#</span><span class="sxs-lookup"><span data-stu-id="fdce4-170">C#</span></span>](#outcsharp)
+* [<span data-ttu-id="fdce4-171">F#</span><span class="sxs-lookup"><span data-stu-id="fdce4-171">F#</span></span>](#outfsharp)
+* [<span data-ttu-id="fdce4-172">Node.JS</span><span class="sxs-lookup"><span data-stu-id="fdce4-172">Node.js</span></span>](#outnodejs)
 
 <a name="outcsharp"></a>
 
-### <a name="output-sample-in-c"></a><span data-ttu-id="6eee9-173">Esempio di output in C#</span><span class="sxs-lookup"><span data-stu-id="6eee9-173">Output sample in C#</span></span> #
+### <a name="output-sample-in-c"></a><span data-ttu-id="fdce4-173">Esempio di output in C#</span><span class="sxs-lookup"><span data-stu-id="fdce4-173">Output sample in C#</span></span> #
 ```csharp
 public static void Run(string input, ICollector<Person> tableBinding, TraceWriter log)
 {
@@ -253,7 +253,7 @@ public class Person
 ```
 <a name="outfsharp"></a>
 
-### <a name="output-sample-in-f"></a><span data-ttu-id="6eee9-174">Esempio di output in F#</span><span class="sxs-lookup"><span data-stu-id="6eee9-174">Output sample in F#</span></span> #
+### <a name="output-sample-in-f"></a><span data-ttu-id="fdce4-174">Esempio di output in F#</span><span class="sxs-lookup"><span data-stu-id="fdce4-174">Output sample in F#</span></span> #
 ```fsharp
 [<CLIMutable>]
 type Person = {
@@ -263,7 +263,7 @@ type Person = {
 }
 
 let Run(input: string, tableBinding: ICollector<Person>, log: TraceWriter) =
-    for i = 1 to 10 do
+    for i = 1 too10 do
         log.Info(sprintf "Adding Person entity %d" i)
         tableBinding.Add(
             { PartitionKey = "Test"
@@ -273,7 +273,7 @@ let Run(input: string, tableBinding: ICollector<Person>, log: TraceWriter) =
 
 <a name="outnodejs"></a>
 
-### <a name="output-sample-in-nodejs"></a><span data-ttu-id="6eee9-175">Esempio di output in Node.js</span><span class="sxs-lookup"><span data-stu-id="6eee9-175">Output sample in Node.js</span></span>
+### <a name="output-sample-in-nodejs"></a><span data-ttu-id="fdce4-175">Esempio di output in Node.js</span><span class="sxs-lookup"><span data-stu-id="fdce4-175">Output sample in Node.js</span></span>
 ```javascript
 module.exports = function (context) {
 
@@ -293,8 +293,8 @@ module.exports = function (context) {
 
 <a name="readmulti"></a>
 
-## <a name="sample-read-multiple-table-entities-in-c"></a><span data-ttu-id="6eee9-176">Esempio: Leggere più entità di tabella in C#</span><span class="sxs-lookup"><span data-stu-id="6eee9-176">Sample: Read multiple table entities in C#</span></span>  #
-<span data-ttu-id="6eee9-177">Il codice di esempio di *function.json* e di C# seguente legge le entità per una chiave di partizione specificata nel messaggio della coda.</span><span class="sxs-lookup"><span data-stu-id="6eee9-177">The following *function.json* and C# code example reads entities for a partition key that is specified in the queue message.</span></span>
+## <a name="sample-read-multiple-table-entities-in-c"></a><span data-ttu-id="fdce4-176">Esempio: Leggere più entità di tabella in C#</span><span class="sxs-lookup"><span data-stu-id="fdce4-176">Sample: Read multiple table entities in C#</span></span>  #
+<span data-ttu-id="fdce4-177">esempio Hello *function.json* ed esempio di codice c# legge le entità per una chiave di partizione specificato nel messaggio della coda hello.</span><span class="sxs-lookup"><span data-stu-id="fdce4-177">hello following *function.json* and C# code example reads entities for a partition key that is specified in hello queue message.</span></span>
 
 ```json
 {
@@ -318,7 +318,7 @@ module.exports = function (context) {
 }
 ```
 
-<span data-ttu-id="6eee9-178">Il codice C# aggiunge un riferimento ad Azure Storage SDK in modo che il tipo di entità possa derivare da `TableEntity`.</span><span class="sxs-lookup"><span data-stu-id="6eee9-178">The C# code adds a reference to the Azure Storage SDK so that the entity type can derive from `TableEntity`.</span></span>
+<span data-ttu-id="fdce4-178">codice c# di Hello aggiunge toohello un riferimento Azure Storage SDK in modo che il tipo di entità hello può derivare da `TableEntity`.</span><span class="sxs-lookup"><span data-stu-id="fdce4-178">hello C# code adds a reference toohello Azure Storage SDK so that hello entity type can derive from `TableEntity`.</span></span>
 
 ```csharp
 #r "Microsoft.WindowsAzure.Storage"
@@ -339,6 +339,6 @@ public class Person : TableEntity
 }
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="6eee9-179">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="6eee9-179">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="fdce4-179">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="fdce4-179">Next steps</span></span>
 [!INCLUDE [next steps](../../includes/functions-bindings-next-steps.md)]
 

@@ -1,6 +1,6 @@
 ---
-title: Apache Sqoop con Hadoop - Azure HDInsight | Microsoft Docs
-description: Informazioni su come usare Apache Sqoop per importare ed esportare tra Hadoop in HDInsight e un database SQL di Azure.
+title: aaaApache Sqoop con Hadoop - HDInsight di Azure | Documenti Microsoft
+description: Informazioni su come toouse tooimport Sqoop Apache e l'esportazione tra Hadoop in HDInsight e un Database di SQL Azure.
 editor: cgronlun
 manager: jhubbard
 services: hdinsight
@@ -17,57 +17,57 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/19/2017
 ms.author: larryfr
-ms.openlocfilehash: 35dcbb91e6af1480685c9fd5b829c54277c1c605
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: b256285659bbcf18ff05e220ccdf51c21eb8fbf7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-apache-sqoop-to-import-and-export-data-between-hadoop-on-hdinsight-and-sql-database"></a><span data-ttu-id="30789-104">Usare Apache Sqoop per importare ed esportare dati tra Hadoop su HDInsight e un database SQL</span><span class="sxs-lookup"><span data-stu-id="30789-104">Use Apache Sqoop to import and export data between Hadoop on HDInsight and SQL Database</span></span>
+# <a name="use-apache-sqoop-tooimport-and-export-data-between-hadoop-on-hdinsight-and-sql-database"></a><span data-ttu-id="9e487-104">Utilizzare Apache Sqoop tooimport ed esportare dati tra Hadoop in HDInsight e il Database SQL</span><span class="sxs-lookup"><span data-stu-id="9e487-104">Use Apache Sqoop tooimport and export data between Hadoop on HDInsight and SQL Database</span></span>
 
 [!INCLUDE [sqoop-selector](../../includes/hdinsight-selector-use-sqoop.md)]
 
-<span data-ttu-id="30789-105">Informazioni su come usare Apache Sqoop per eseguire importazioni ed esportazioni tra un cluster Hadoop in Azure HDInsight e un database SQL di Azure o un database Microsoft SQL Server.</span><span class="sxs-lookup"><span data-stu-id="30789-105">Learn how to use Apache Sqoop to import and export between a Hadoop cluster in Azure HDInsight and Azure SQL Database or Microsoft SQL Server database.</span></span> <span data-ttu-id="30789-106">La procedura descritta in questo documento usa il comando `sqoop` direttamente dal nodo head del cluster Hadoop.</span><span class="sxs-lookup"><span data-stu-id="30789-106">The steps in this document use the `sqoop` command directly from the headnode of the Hadoop cluster.</span></span> <span data-ttu-id="30789-107">Usare SSH per connettersi al nodo head ed eseguire i comandi di questo documento.</span><span class="sxs-lookup"><span data-stu-id="30789-107">You use SSH to connect to the head node and run the commands in this document.</span></span>
+<span data-ttu-id="9e487-105">Informazioni su come toouse Sqoop Apache tooimport ed esportazione tra un Hadoop cluster HDInsight di Azure e Database di SQL Azure o Microsoft SQL Server.</span><span class="sxs-lookup"><span data-stu-id="9e487-105">Learn how toouse Apache Sqoop tooimport and export between a Hadoop cluster in Azure HDInsight and Azure SQL Database or Microsoft SQL Server database.</span></span> <span data-ttu-id="9e487-106">passaggi di Hello hello di utilizzare questo documento `sqoop` direttamente dal nodo head hello del cluster Hadoop hello.</span><span class="sxs-lookup"><span data-stu-id="9e487-106">hello steps in this document use hello `sqoop` command directly from hello headnode of hello Hadoop cluster.</span></span> <span data-ttu-id="9e487-107">Nodo head di SSH tooconnect toohello e di eseguire comandi hello in questo documento.</span><span class="sxs-lookup"><span data-stu-id="9e487-107">You use SSH tooconnect toohello head node and run hello commands in this document.</span></span>
 
 > [!IMPORTANT]
-> <span data-ttu-id="30789-108">I passaggi descritti in questo documento funzionano solo con i cluster HDInsight che usano Linux.</span><span class="sxs-lookup"><span data-stu-id="30789-108">The steps in this document only work with HDInsight clusters that use Linux.</span></span> <span data-ttu-id="30789-109">Linux è l'unico sistema operativo usato in HDInsight versione 3.4 o successiva.</span><span class="sxs-lookup"><span data-stu-id="30789-109">Linux is the only operating system used on HDInsight version 3.4 or greater.</span></span> <span data-ttu-id="30789-110">Per altre informazioni, vedere la sezione relativa al [ritiro di HDInsight in Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).</span><span class="sxs-lookup"><span data-stu-id="30789-110">For more information, see [HDInsight retirement on Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).</span></span>
+> <span data-ttu-id="9e487-108">Hello passaggi descritti in questo documento funzionano solo con i cluster HDInsight che utilizzano Linux.</span><span class="sxs-lookup"><span data-stu-id="9e487-108">hello steps in this document only work with HDInsight clusters that use Linux.</span></span> <span data-ttu-id="9e487-109">Linux è hello solo sistema operativo utilizzato in HDInsight versione 3.4 o successiva.</span><span class="sxs-lookup"><span data-stu-id="9e487-109">Linux is hello only operating system used on HDInsight version 3.4 or greater.</span></span> <span data-ttu-id="9e487-110">Per altre informazioni, vedere la sezione relativa al [ritiro di HDInsight in Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).</span><span class="sxs-lookup"><span data-stu-id="9e487-110">For more information, see [HDInsight retirement on Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).</span></span>
 
-## <a name="install-freetds"></a><span data-ttu-id="30789-111">Installare FreeTDS</span><span class="sxs-lookup"><span data-stu-id="30789-111">Install FreeTDS</span></span>
+## <a name="install-freetds"></a><span data-ttu-id="9e487-111">Installare FreeTDS</span><span class="sxs-lookup"><span data-stu-id="9e487-111">Install FreeTDS</span></span>
 
-1. <span data-ttu-id="30789-112">Connettersi al cluster HDInsight usando SSH.</span><span class="sxs-lookup"><span data-stu-id="30789-112">Use SSH to connect to the HDInsight cluster.</span></span> <span data-ttu-id="30789-113">Ad esempio, il comando seguente si connette al nodo head primario di un cluster denominato `mycluster`:</span><span class="sxs-lookup"><span data-stu-id="30789-113">For example, the following command connects to the primary headnode of a cluster named `mycluster`:</span></span>
+1. <span data-ttu-id="9e487-112">Utilizzare cluster di HDInsight toohello tooconnect SSH.</span><span class="sxs-lookup"><span data-stu-id="9e487-112">Use SSH tooconnect toohello HDInsight cluster.</span></span> <span data-ttu-id="9e487-113">Ad esempio, hello comando seguente si connette toohello nodo head primario di un cluster denominato `mycluster`:</span><span class="sxs-lookup"><span data-stu-id="9e487-113">For example, hello following command connects toohello primary headnode of a cluster named `mycluster`:</span></span>
 
     ```bash
     ssh CLUSTERNAME-ssh.azurehdinsight.net
     ```
 
-    <span data-ttu-id="30789-114">Per altre informazioni, vedere [Usare SSH con HDInsight](hdinsight-hadoop-linux-use-ssh-unix.md).</span><span class="sxs-lookup"><span data-stu-id="30789-114">For more information, see [Use SSH with HDInsight](hdinsight-hadoop-linux-use-ssh-unix.md).</span></span>
+    <span data-ttu-id="9e487-114">Per altre informazioni, vedere [Usare SSH con HDInsight](hdinsight-hadoop-linux-use-ssh-unix.md).</span><span class="sxs-lookup"><span data-stu-id="9e487-114">For more information, see [Use SSH with HDInsight](hdinsight-hadoop-linux-use-ssh-unix.md).</span></span>
 
-2. <span data-ttu-id="30789-115">Immettere il comando seguente per installare FreeTDS:</span><span class="sxs-lookup"><span data-stu-id="30789-115">Use the following command to install FreeTDS:</span></span>
+2. <span data-ttu-id="9e487-115">Utilizzare hello tooinstall comando disporre di FreeTDS seguenti:</span><span class="sxs-lookup"><span data-stu-id="9e487-115">Use hello following command tooinstall FreeTDS:</span></span>
 
     ```bash
     sudo apt --assume-yes install freetds-dev freetds-bin
     ```
 
-    <span data-ttu-id="30789-116">FreeTDS viene usato in diversi passaggi per connettersi al database SQL.</span><span class="sxs-lookup"><span data-stu-id="30789-116">FreeTDS is used in several steps to connect to SQL Database.</span></span>
+    <span data-ttu-id="9e487-116">Disporre di FreeTDS viene usato in vari passaggi tooconnect tooSQL Database.</span><span class="sxs-lookup"><span data-stu-id="9e487-116">FreeTDS is used in several steps tooconnect tooSQL Database.</span></span>
 
-## <a name="create-the-table-in-sql-database"></a><span data-ttu-id="30789-117">Creare la tabella nel database SQL</span><span class="sxs-lookup"><span data-stu-id="30789-117">Create the table in SQL Database</span></span>
+## <a name="create-hello-table-in-sql-database"></a><span data-ttu-id="9e487-117">Creare la tabella hello nel Database SQL</span><span class="sxs-lookup"><span data-stu-id="9e487-117">Create hello table in SQL Database</span></span>
 
 > [!IMPORTANT]
-> <span data-ttu-id="30789-118">Se si usa il cluster HDInsight e il database SQL creato in [Creare cluster e database SQL](hdinsight-use-sqoop.md), saltare i passaggi descritti in questa sezione.</span><span class="sxs-lookup"><span data-stu-id="30789-118">If you are using the HDInsight cluster and SQL Database created in [Create cluster and SQL database](hdinsight-use-sqoop.md), skip the steps in this section.</span></span> <span data-ttu-id="30789-119">Il database e la tabella sono stati creati come parte della procedura del documento [Creare cluster e database SQL](hdinsight-use-sqoop.md).</span><span class="sxs-lookup"><span data-stu-id="30789-119">The database and table were created as part of the steps in the [Create cluster and SQL database](hdinsight-use-sqoop.md) document.</span></span>
+> <span data-ttu-id="9e487-118">Se si utilizza il cluster di HDInsight hello e Database SQL creato nel [creare cluster e il database SQL](hdinsight-use-sqoop.md), ignorare i passaggi di hello in questa sezione.</span><span class="sxs-lookup"><span data-stu-id="9e487-118">If you are using hello HDInsight cluster and SQL Database created in [Create cluster and SQL database](hdinsight-use-sqoop.md), skip hello steps in this section.</span></span> <span data-ttu-id="9e487-119">Hello database e tabella sono stati creati i passaggi da parte di hello in hello [creare cluster e il database SQL](hdinsight-use-sqoop.md) documento.</span><span class="sxs-lookup"><span data-stu-id="9e487-119">hello database and table were created as part of hello steps in hello [Create cluster and SQL database](hdinsight-use-sqoop.md) document.</span></span>
 
-1. <span data-ttu-id="30789-120">Nella sessione SSH usare il comando seguente per connettersi al server del database SQL.</span><span class="sxs-lookup"><span data-stu-id="30789-120">From the SSH session, use the following command to connect to the SQL Database server.</span></span>
+1. <span data-ttu-id="9e487-120">Dalla sessione SSH hello, utilizzare hello seguente server di Database SQL toohello tooconnect comando.</span><span class="sxs-lookup"><span data-stu-id="9e487-120">From hello SSH session, use hello following command tooconnect toohello SQL Database server.</span></span>
 
         TDSVER=8.0 tsql -H <serverName>.database.windows.net -U <adminLogin> -P <adminPassword> -p 1433 -D sqooptest
 
-    <span data-ttu-id="30789-121">L'output che si riceve è simile al testo seguente:</span><span class="sxs-lookup"><span data-stu-id="30789-121">You receive output similar to the following text:</span></span>
+    <span data-ttu-id="9e487-121">Viene visualizzato toohello simili di output il testo seguente:</span><span class="sxs-lookup"><span data-stu-id="9e487-121">You receive output similar toohello following text:</span></span>
 
         locale is "en_US.UTF-8"
         locale charset is "UTF-8"
         using default charset "UTF-8"
-        Default database being set to sqooptest
+        Default database being set toosqooptest
         1>
 
-2. <span data-ttu-id="30789-122">Al prompt di `1>` immettere la query seguente:</span><span class="sxs-lookup"><span data-stu-id="30789-122">At the `1>` prompt, enter the following query:</span></span>
+2. <span data-ttu-id="9e487-122">In hello `1>` richiesto, immettere hello seguente query:</span><span class="sxs-lookup"><span data-stu-id="9e487-122">At hello `1>` prompt, enter hello following query:</span></span>
 
     ```sql
     CREATE TABLE [dbo].[mobiledata](
@@ -87,51 +87,51 @@ ms.lasthandoff: 08/03/2017
     GO
     ```
 
-    <span data-ttu-id="30789-123">Dopo aver immesso l'istruzione `GO`, vengono valutate le istruzioni precedenti.</span><span class="sxs-lookup"><span data-stu-id="30789-123">When the `GO` statement is entered, the previous statements are evaluated.</span></span> <span data-ttu-id="30789-124">Innanzitutto, verrà creata la tabella **mobiledata** a cui verrà aggiunto un indice cluster (richiesto dal Database SQL).</span><span class="sxs-lookup"><span data-stu-id="30789-124">First, the **mobiledata** table is created, then a clustered index is added to it (required by SQL Database.)</span></span>
+    <span data-ttu-id="9e487-123">Quando hello `GO` istruzione viene immessa, le istruzioni precedenti hello vengono valutate.</span><span class="sxs-lookup"><span data-stu-id="9e487-123">When hello `GO` statement is entered, hello previous statements are evaluated.</span></span> <span data-ttu-id="9e487-124">In primo luogo, hello **mobiledata** viene creata una tabella, quindi un indice cluster viene aggiunto tooit (obbligatorio dal Database SQL).</span><span class="sxs-lookup"><span data-stu-id="9e487-124">First, hello **mobiledata** table is created, then a clustered index is added tooit (required by SQL Database.)</span></span>
 
-    <span data-ttu-id="30789-125">Per verificare la corretta creazione della tabella, usare la query seguente:</span><span class="sxs-lookup"><span data-stu-id="30789-125">Use the following query to verify that the table has been created:</span></span>
+    <span data-ttu-id="9e487-125">Hello utilizzare query tooverify che hello nella tabella seguente è stata creata:</span><span class="sxs-lookup"><span data-stu-id="9e487-125">Use hello following query tooverify that hello table has been created:</span></span>
 
     ```sql
     SELECT * FROM information_schema.tables
     GO
     ```
 
-    <span data-ttu-id="30789-126">L'output sarà simile al seguente testo:</span><span class="sxs-lookup"><span data-stu-id="30789-126">You see output similar to the following text:</span></span>
+    <span data-ttu-id="9e487-126">Vedrai toohello simili di output il testo seguente:</span><span class="sxs-lookup"><span data-stu-id="9e487-126">You see output similar toohello following text:</span></span>
 
         TABLE_CATALOG   TABLE_SCHEMA    TABLE_NAME      TABLE_TYPE
         sqooptest       dbo     mobiledata      BASE TABLE
 
-3. <span data-ttu-id="30789-127">Per uscire dall'utilità tsql, immettere `exit` al prompt di `1>`.</span><span class="sxs-lookup"><span data-stu-id="30789-127">Enter `exit` at the `1>` prompt to exit the tsql utility.</span></span>
+3. <span data-ttu-id="9e487-127">Immettere `exit` in hello `1>` richiedere utilità di tooexit hello tsql.</span><span class="sxs-lookup"><span data-stu-id="9e487-127">Enter `exit` at hello `1>` prompt tooexit hello tsql utility.</span></span>
 
-## <a name="sqoop-export"></a><span data-ttu-id="30789-128">Esportazione con Sqoop</span><span class="sxs-lookup"><span data-stu-id="30789-128">Sqoop export</span></span>
+## <a name="sqoop-export"></a><span data-ttu-id="9e487-128">Esportazione con Sqoop</span><span class="sxs-lookup"><span data-stu-id="9e487-128">Sqoop export</span></span>
 
-1. <span data-ttu-id="30789-129">Dalla connessione SSH al cluster, usare il comando seguente per verificare che Sqoop possa visualizzare il database SQL:</span><span class="sxs-lookup"><span data-stu-id="30789-129">From the SSH connection to the cluster, use the following command to verify that Sqoop can see your SQL Database:</span></span>
+1. <span data-ttu-id="9e487-129">Da cluster toohello connessione SSH hello utilizzare hello successivo comando tooverify che Sqoop possa vedere il Database SQL:</span><span class="sxs-lookup"><span data-stu-id="9e487-129">From hello SSH connection toohello cluster, use hello following command tooverify that Sqoop can see your SQL Database:</span></span>
 
     ```bash
     sqoop list-databases --connect jdbc:sqlserver://<serverName>.database.windows.net:1433 --username <adminLogin> -P
     ```
-    <span data-ttu-id="30789-130">Quando richiesto, immettere la password per l’accesso al database SQL.</span><span class="sxs-lookup"><span data-stu-id="30789-130">When prompted, enter the password for the SQL Database login.</span></span>
+    <span data-ttu-id="9e487-130">Quando richiesto, immettere la password di hello per l'accesso al Database SQL hello.</span><span class="sxs-lookup"><span data-stu-id="9e487-130">When prompted, enter hello password for hello SQL Database login.</span></span>
 
-    <span data-ttu-id="30789-131">Questo comando restituisce un elenco di database, compreso il database **sqooptest** creato in precedenza.</span><span class="sxs-lookup"><span data-stu-id="30789-131">This command returns a list of databases, including the **sqooptest** database that you created earlier.</span></span>
+    <span data-ttu-id="9e487-131">Questo comando restituisce un elenco di database, tra cui hello **sqooptest** database creato in precedenza.</span><span class="sxs-lookup"><span data-stu-id="9e487-131">This command returns a list of databases, including hello **sqooptest** database that you created earlier.</span></span>
 
-2. <span data-ttu-id="30789-132">Per esportare dati dalla tabella **hivesampletable** alla tabella **mobiledata**, usare il comando seguente:</span><span class="sxs-lookup"><span data-stu-id="30789-132">To export data from **hivesampletable** to the **mobiledata** table, use the following command:</span></span>
+2. <span data-ttu-id="9e487-132">dati tooexport **hivesampletable** toohello **mobiledata** tabella, utilizzare hello comando seguente:</span><span class="sxs-lookup"><span data-stu-id="9e487-132">tooexport data from **hivesampletable** toohello **mobiledata** table, use hello following command:</span></span>
 
     ```bash
     sqoop export --connect 'jdbc:sqlserver://<serverName>.database.windows.net:1433;database=sqooptest' --username <adminLogin> -P --table 'mobiledata' --export-dir 'wasb:///hive/warehouse/hivesampletable' --fields-terminated-by '\t' -m 1
     ```
 
-    <span data-ttu-id="30789-133">Questo comando indica a Sqoop di connettersi al database **sqooptest**.</span><span class="sxs-lookup"><span data-stu-id="30789-133">This command instructs Sqoop to connect to the **sqooptest** database.</span></span> <span data-ttu-id="30789-134">Sqoop esporta quindi i dati da **wasb:///hive/warehouse/hivesampletable** nella tabella **mobiledata**.</span><span class="sxs-lookup"><span data-stu-id="30789-134">Sqoop then exports data from **wasb:///hive/warehouse/hivesampletable** to the **mobiledata** table.</span></span>
+    <span data-ttu-id="9e487-133">Questo comando indica Sqoop tooconnect toohello **sqooptest** database.</span><span class="sxs-lookup"><span data-stu-id="9e487-133">This command instructs Sqoop tooconnect toohello **sqooptest** database.</span></span> <span data-ttu-id="9e487-134">Sqoop quindi Esporta dati da **wasb: / / / hive/warehouse/hivesampletable** toohello **mobiledata** tabella.</span><span class="sxs-lookup"><span data-stu-id="9e487-134">Sqoop then exports data from **wasb:///hive/warehouse/hivesampletable** toohello **mobiledata** table.</span></span>
 
     > [!IMPORTANT]
-    > <span data-ttu-id="30789-135">Usare `wasb:///` se l'archivio predefinito per il cluster è un account di archiviazione di Azure.</span><span class="sxs-lookup"><span data-stu-id="30789-135">Use `wasb:///` if the default storage for your cluster is an Azure Storage account.</span></span> <span data-ttu-id="30789-136">Usare `adl:///` se è un Azure Data Lake Store.</span><span class="sxs-lookup"><span data-stu-id="30789-136">Use `adl:///` if it is an Azure Data Lake Store.</span></span>
+    > <span data-ttu-id="9e487-135">Utilizzare `wasb:///` se hello predefinito per il cluster è un account di archiviazione di Azure.</span><span class="sxs-lookup"><span data-stu-id="9e487-135">Use `wasb:///` if hello default storage for your cluster is an Azure Storage account.</span></span> <span data-ttu-id="9e487-136">Usare `adl:///` se è un Azure Data Lake Store.</span><span class="sxs-lookup"><span data-stu-id="9e487-136">Use `adl:///` if it is an Azure Data Lake Store.</span></span>
 
-3. <span data-ttu-id="30789-137">Al termine dell'esecuzione del comando, usare il comando seguente per connettersi al database tramite TSQL:</span><span class="sxs-lookup"><span data-stu-id="30789-137">After the command completes, use the following command to connect to the database using TSQL:</span></span>
+3. <span data-ttu-id="9e487-137">Al termine del comando hello, usare hello database toohello tooconnect di comando tramite TSQL seguente:</span><span class="sxs-lookup"><span data-stu-id="9e487-137">After hello command completes, use hello following command tooconnect toohello database using TSQL:</span></span>
 
     ```bash
     TDSVER=8.0 tsql -H <serverName>.database.windows.net -U <adminLogin> -P -p 1433 -D sqooptest
     ```
 
-    <span data-ttu-id="30789-138">Una volta connessi, utilizzare le istruzioni seguenti per verificare che i dati siano stati esportati nella tabella **mobiledata** :</span><span class="sxs-lookup"><span data-stu-id="30789-138">Once connected, use the following statements to verify that the data was exported to the **mobiledata** table:</span></span>
+    <span data-ttu-id="9e487-138">Una volta connessi, utilizzare hello seguente tooverify istruzioni che hello dati è stato esportato toohello **mobiledata** tabella:</span><span class="sxs-lookup"><span data-stu-id="9e487-138">Once connected, use hello following statements tooverify that hello data was exported toohello **mobiledata** table:</span></span>
 
     ```sql
     SET ROWCOUNT 50;
@@ -139,41 +139,41 @@ ms.lasthandoff: 08/03/2017
     GO
     ```
 
-    <span data-ttu-id="30789-139">Dovrebbe essere visualizzato un elenco di dati della tabella.</span><span class="sxs-lookup"><span data-stu-id="30789-139">You should see a listing of data in the table.</span></span> <span data-ttu-id="30789-140">Digitare `exit` per uscire dall'utilità tsql.</span><span class="sxs-lookup"><span data-stu-id="30789-140">Type `exit` to exit the tsql utility.</span></span>
+    <span data-ttu-id="9e487-139">Verrà visualizzato un elenco di dati nella tabella hello.</span><span class="sxs-lookup"><span data-stu-id="9e487-139">You should see a listing of data in hello table.</span></span> <span data-ttu-id="9e487-140">Tipo `exit` utilità di tooexit hello tsql.</span><span class="sxs-lookup"><span data-stu-id="9e487-140">Type `exit` tooexit hello tsql utility.</span></span>
 
-## <a name="sqoop-import"></a><span data-ttu-id="30789-141">Importazione con Sqoop</span><span class="sxs-lookup"><span data-stu-id="30789-141">Sqoop import</span></span>
+## <a name="sqoop-import"></a><span data-ttu-id="9e487-141">Importazione con Sqoop</span><span class="sxs-lookup"><span data-stu-id="9e487-141">Sqoop import</span></span>
 
-1. <span data-ttu-id="30789-142">Usare il comando seguente per importare i dati dalla tabella **mobiledata** nel database SQL alla directory **wasb:///tutorials/usesqoop/importeddata** in HDInsight:</span><span class="sxs-lookup"><span data-stu-id="30789-142">Use the following command to import data from the **mobiledata** table in SQL Database, to the **wasb:///tutorials/usesqoop/importeddata** directory on HDInsight:</span></span>
+1. <span data-ttu-id="9e487-142">Comando che segue hello di utilizzare dati tooimport hello **mobiledata** tabella nel Database SQL, toohello **wasb: / / / esercitazioni/usesqoop/importeddata** directory HDInsight:</span><span class="sxs-lookup"><span data-stu-id="9e487-142">Use hello following command tooimport data from hello **mobiledata** table in SQL Database, toohello **wasb:///tutorials/usesqoop/importeddata** directory on HDInsight:</span></span>
 
     ```bash
     sqoop import --connect 'jdbc:sqlserver://<serverName>.database.windows.net:1433;database=sqooptest' --username <adminLogin> --password <adminPassword> --table 'mobiledata' --target-dir 'wasb:///tutorials/usesqoop/importeddata' --fields-terminated-by '\t' --lines-terminated-by '\n' -m 1
     ```
 
-    <span data-ttu-id="30789-143">I campi nei dati sono separati da un carattere di tabulazione e le righe terminano con un carattere di nuova riga.</span><span class="sxs-lookup"><span data-stu-id="30789-143">The fields in the data are separated by a tab character, and the lines are terminated by a new-line character.</span></span>
+    <span data-ttu-id="9e487-143">i campi di Hello nei dati hello sono separati da un carattere di tabulazione e righe hello vengono terminate da un carattere di nuova riga.</span><span class="sxs-lookup"><span data-stu-id="9e487-143">hello fields in hello data are separated by a tab character, and hello lines are terminated by a new-line character.</span></span>
 
-2. <span data-ttu-id="30789-144">Una volta completata l'importazione, usare il comando seguente per elencare i dati della nuova directory:</span><span class="sxs-lookup"><span data-stu-id="30789-144">Once the import has completed, use the following command to list out the data in the new directory:</span></span>
+2. <span data-ttu-id="9e487-144">Una volta completata l'importazione di hello, utilizzare hello toolist comando dati hello nella nuova directory hello seguenti:</span><span class="sxs-lookup"><span data-stu-id="9e487-144">Once hello import has completed, use hello following command toolist out hello data in hello new directory:</span></span>
 
     ```bash
     hdfs dfs -text /tutorials/usesqoop/importeddata/part-m-00000
     ```
 
-## <a name="using-sql-server"></a><span data-ttu-id="30789-145">Uso di SQL Server</span><span class="sxs-lookup"><span data-stu-id="30789-145">Using SQL Server</span></span>
+## <a name="using-sql-server"></a><span data-ttu-id="9e487-145">Uso di SQL Server</span><span class="sxs-lookup"><span data-stu-id="9e487-145">Using SQL Server</span></span>
 
-<span data-ttu-id="30789-146">È inoltre possibile usare Sqoop per importare ed esportare dati da SQL Server nel data center o in una macchina virtuale ospitata in Azure.</span><span class="sxs-lookup"><span data-stu-id="30789-146">You can also use Sqoop to import and export data from SQL Server, either in your data center or on a Virtual Machine hosted in Azure.</span></span> <span data-ttu-id="30789-147">Le differenze tra l'uso del database SQL e SQL Server sono:</span><span class="sxs-lookup"><span data-stu-id="30789-147">The differences between using SQL Database and SQL Server are:</span></span>
+<span data-ttu-id="9e487-146">È inoltre possibile utilizzare Sqoop tooimport ed esportare dati da SQL Server, nel data center o in una macchina virtuale ospitata in Azure.</span><span class="sxs-lookup"><span data-stu-id="9e487-146">You can also use Sqoop tooimport and export data from SQL Server, either in your data center or on a Virtual Machine hosted in Azure.</span></span> <span data-ttu-id="9e487-147">Hello differenze tra l'utilizzo di Database SQL e SQL Server sono:</span><span class="sxs-lookup"><span data-stu-id="9e487-147">hello differences between using SQL Database and SQL Server are:</span></span>
 
-* <span data-ttu-id="30789-148">HDInsight e SQL Server devono trovarsi nella stessa rete virtuale di Azure.</span><span class="sxs-lookup"><span data-stu-id="30789-148">Both HDInsight and SQL Server must be on the same Azure Virtual Network.</span></span>
+* <span data-ttu-id="9e487-148">HDInsight sia SQL Server deve essere in hello stessa rete virtuale di Azure.</span><span class="sxs-lookup"><span data-stu-id="9e487-148">Both HDInsight and SQL Server must be on hello same Azure Virtual Network.</span></span>
 
-    <span data-ttu-id="30789-149">Per avere un esempio, vedere il documento [Connettere HDInsight alla rete locale](./connect-on-premises-network.md).</span><span class="sxs-lookup"><span data-stu-id="30789-149">For an example, see the [Connect HDInsight to your on-premises network](./connect-on-premises-network.md) document.</span></span>
+    <span data-ttu-id="9e487-149">Per un esempio, vedere hello [rete locale di connettersi a HDInsight tooyour](./connect-on-premises-network.md) documento.</span><span class="sxs-lookup"><span data-stu-id="9e487-149">For an example, see hello [Connect HDInsight tooyour on-premises network](./connect-on-premises-network.md) document.</span></span>
 
-    <span data-ttu-id="30789-150">Per altre informazioni sull'uso di HDInsight con le reti virtuali di Azure, vedere il documento [Estendere HDInsight con la rete virtuale di Azure](hdinsight-extend-hadoop-virtual-network.md).</span><span class="sxs-lookup"><span data-stu-id="30789-150">For more information on using HDInsight with an Azure Virtual Network, see the [Extend HDInsight with Azure Virtual Network](hdinsight-extend-hadoop-virtual-network.md) document.</span></span> <span data-ttu-id="30789-151">Per altre informazioni su Rete virtuale di Azure, vedere il documenti di [panoramica sulle reti virtuali](../virtual-network/virtual-networks-overview.md).</span><span class="sxs-lookup"><span data-stu-id="30789-151">For more information on Azure Virtual Network, see the [Virtual Network Overview](../virtual-network/virtual-networks-overview.md) document.</span></span>
+    <span data-ttu-id="9e487-150">Per ulteriori informazioni sull'uso di HDInsight con una rete virtuale di Azure, vedere hello [estendere HDInsight con la rete virtuale di Azure](hdinsight-extend-hadoop-virtual-network.md) documento.</span><span class="sxs-lookup"><span data-stu-id="9e487-150">For more information on using HDInsight with an Azure Virtual Network, see hello [Extend HDInsight with Azure Virtual Network](hdinsight-extend-hadoop-virtual-network.md) document.</span></span> <span data-ttu-id="9e487-151">Per ulteriori informazioni sulla rete virtuale di Azure, vedere hello [Panoramica di rete virtuale](../virtual-network/virtual-networks-overview.md) documento.</span><span class="sxs-lookup"><span data-stu-id="9e487-151">For more information on Azure Virtual Network, see hello [Virtual Network Overview](../virtual-network/virtual-networks-overview.md) document.</span></span>
 
-* <span data-ttu-id="30789-152">SQL Server deve essere configurato per consentire l'autenticazione SQL.</span><span class="sxs-lookup"><span data-stu-id="30789-152">SQL Server must be configured to allow SQL authentication.</span></span> <span data-ttu-id="30789-153">Per altre informazioni, consultare il documento [Scegliere una modalità di autenticazione](https://msdn.microsoft.com/ms144284.aspx).</span><span class="sxs-lookup"><span data-stu-id="30789-153">For more information, see the [Choose an Authentication Mode](https://msdn.microsoft.com/ms144284.aspx) document.</span></span>
+* <span data-ttu-id="9e487-152">SQL Server deve essere tooallow configurata l'autenticazione di SQL.</span><span class="sxs-lookup"><span data-stu-id="9e487-152">SQL Server must be configured tooallow SQL authentication.</span></span> <span data-ttu-id="9e487-153">Per ulteriori informazioni, vedere hello [Choose an Authentication Mode](https://msdn.microsoft.com/ms144284.aspx) documento.</span><span class="sxs-lookup"><span data-stu-id="9e487-153">For more information, see hello [Choose an Authentication Mode](https://msdn.microsoft.com/ms144284.aspx) document.</span></span>
 
-* <span data-ttu-id="30789-154">Potrebbe essere necessario configurare SQL Server affinché accetti le connessioni remote.</span><span class="sxs-lookup"><span data-stu-id="30789-154">You may have to configure SQL Server to accept remote connections.</span></span> <span data-ttu-id="30789-155">Per altre informazioni, vedere il documento [Come risolvere i problemi di connessione al motore di database di SQL Server](http://social.technet.microsoft.com/wiki/contents/articles/2102.how-to-troubleshoot-connecting-to-the-sql-server-database-engine.aspx).</span><span class="sxs-lookup"><span data-stu-id="30789-155">For more information, see the [How to troubleshoot connecting to the SQL Server database engine](http://social.technet.microsoft.com/wiki/contents/articles/2102.how-to-troubleshoot-connecting-to-the-sql-server-database-engine.aspx) document.</span></span>
+* <span data-ttu-id="9e487-154">È possibile connessioni remote tooaccept di tooconfigure SQL Server.</span><span class="sxs-lookup"><span data-stu-id="9e487-154">You may have tooconfigure SQL Server tooaccept remote connections.</span></span> <span data-ttu-id="9e487-155">Per ulteriori informazioni, vedere hello [come motore di database tootroubleshoot toohello di connessione SQL Server](http://social.technet.microsoft.com/wiki/contents/articles/2102.how-to-troubleshoot-connecting-to-the-sql-server-database-engine.aspx) documento.</span><span class="sxs-lookup"><span data-stu-id="9e487-155">For more information, see hello [How tootroubleshoot connecting toohello SQL Server database engine](http://social.technet.microsoft.com/wiki/contents/articles/2102.how-to-troubleshoot-connecting-to-the-sql-server-database-engine.aspx) document.</span></span>
 
-* <span data-ttu-id="30789-156">Creare il database **sqooptest** in SQL Server usando un'utilità, ad esempio **SQL Server Management Studio** o **tsql**.</span><span class="sxs-lookup"><span data-stu-id="30789-156">Create the **sqooptest** database in SQL Server using a utility such as **SQL Server Management Studio** or **tsql**.</span></span> <span data-ttu-id="30789-157">La procedura per usare l'interfaccia della riga di comando di Azure funzionano solo per il database SQL di Azure.</span><span class="sxs-lookup"><span data-stu-id="30789-157">The steps for using the Azure CLI only work for Azure SQL Database.</span></span>
+* <span data-ttu-id="9e487-156">Creare hello **sqooptest** database in SQL Server utilizzando un'utilità, ad esempio **SQL Server Management Studio** o **tsql**.</span><span class="sxs-lookup"><span data-stu-id="9e487-156">Create hello **sqooptest** database in SQL Server using a utility such as **SQL Server Management Studio** or **tsql**.</span></span> <span data-ttu-id="9e487-157">procedura di Hello per l'utilizzo di hello CLI di Azure funziona solo per Database SQL di Azure.</span><span class="sxs-lookup"><span data-stu-id="9e487-157">hello steps for using hello Azure CLI only work for Azure SQL Database.</span></span>
 
-    <span data-ttu-id="30789-158">Usare le seguenti istruzioni Transact-SQL per creare la tabella **mobiledata**:</span><span class="sxs-lookup"><span data-stu-id="30789-158">Use the following Transact-SQL statements to create the **mobiledata** table:</span></span>
+    <span data-ttu-id="9e487-158">Hello utilizzare hello toocreate di istruzioni Transact-SQL seguente **mobiledata** tabella:</span><span class="sxs-lookup"><span data-stu-id="9e487-158">Use hello following Transact-SQL statements toocreate hello **mobiledata** table:</span></span>
 
     ```sql
     CREATE TABLE [dbo].[mobiledata](
@@ -190,25 +190,25 @@ ms.lasthandoff: 08/03/2017
     [sessionpagevieworder] [bigint])
     ```
 
-* <span data-ttu-id="30789-159">Quando ci si connette a SQL Server da HDInsight, è necessario usare l'indirizzo IP del Server SQL.</span><span class="sxs-lookup"><span data-stu-id="30789-159">When connecting to the SQL Server from HDInsight, you may have to use the IP address of the SQL Server.</span></span> <span data-ttu-id="30789-160">Ad esempio:</span><span class="sxs-lookup"><span data-stu-id="30789-160">For example:</span></span>
+* <span data-ttu-id="9e487-159">Durante la connessione SQL Server toohello da HDInsight, è possibile indirizzo IP di hello toouse di hello SQL Server.</span><span class="sxs-lookup"><span data-stu-id="9e487-159">When connecting toohello SQL Server from HDInsight, you may have toouse hello IP address of hello SQL Server.</span></span> <span data-ttu-id="9e487-160">ad esempio:</span><span class="sxs-lookup"><span data-stu-id="9e487-160">For example:</span></span>
 
     ```bash
     sqoop import --connect 'jdbc:sqlserver://10.0.1.1:1433;database=sqooptest' --username <adminLogin> --password <adminPassword> --table 'mobiledata' --target-dir 'wasb:///tutorials/usesqoop/importeddata' --fields-terminated-by '\t' --lines-terminated-by '\n' -m 1
     ```
 
-## <a name="limitations"></a><span data-ttu-id="30789-161">Limitazioni</span><span class="sxs-lookup"><span data-stu-id="30789-161">Limitations</span></span>
+## <a name="limitations"></a><span data-ttu-id="9e487-161">Limitazioni</span><span class="sxs-lookup"><span data-stu-id="9e487-161">Limitations</span></span>
 
-* <span data-ttu-id="30789-162">Esportazione di massa: con HDInsight basato su Linux, attualmente il connettore Sqoop, usato per esportare dati in Microsoft SQL Server o nel database SQL di Azure, non supporta inserimenti di massa.</span><span class="sxs-lookup"><span data-stu-id="30789-162">Bulk export - With Linux-based HDInsight, the Sqoop connector used to export data to Microsoft SQL Server or Azure SQL Database does not currently support bulk inserts.</span></span>
+* <span data-ttu-id="9e487-162">Eseguire l'esportazione bulk - HDInsight basati su Linux con, hello Sqoop connettore utilizzato tooexport dati tooMicrosoft SQL Server o Database SQL di Azure attualmente non supporta inserimenti bulk.</span><span class="sxs-lookup"><span data-stu-id="9e487-162">Bulk export - With Linux-based HDInsight, hello Sqoop connector used tooexport data tooMicrosoft SQL Server or Azure SQL Database does not currently support bulk inserts.</span></span>
 
-* <span data-ttu-id="30789-163">Invio in batch: con HDInsight basato su Linux, quando si usa il comando `-batch` durante gli inserimenti, Sqoop esegue più inserimenti invece di suddividere in batch le operazioni di inserimento.</span><span class="sxs-lookup"><span data-stu-id="30789-163">Batching - With Linux-based HDInsight, When using the `-batch` switch when performing inserts, Sqoop makes multiple inserts instead of batching the insert operations.</span></span>
+* <span data-ttu-id="9e487-163">Divisione in batch - con HDInsight basati su Linux, quando si utilizza hello `-batch` passare quando l'esecuzione di inserimenti, Sqoop rende più inserimenti anziché l'invio in batch le operazioni di inserimento hello.</span><span class="sxs-lookup"><span data-stu-id="9e487-163">Batching - With Linux-based HDInsight, When using hello `-batch` switch when performing inserts, Sqoop makes multiple inserts instead of batching hello insert operations.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="30789-164">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="30789-164">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="9e487-164">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="9e487-164">Next steps</span></span>
 
-<span data-ttu-id="30789-165">In questa esercitazione si è appreso come usare Sqoop.</span><span class="sxs-lookup"><span data-stu-id="30789-165">Now you have learned how to use Sqoop.</span></span> <span data-ttu-id="30789-166">Per altre informazioni, vedere:</span><span class="sxs-lookup"><span data-stu-id="30789-166">To learn more, see:</span></span>
+<span data-ttu-id="9e487-165">Ora si è appreso come toouse Sqoop.</span><span class="sxs-lookup"><span data-stu-id="9e487-165">Now you have learned how toouse Sqoop.</span></span> <span data-ttu-id="9e487-166">toolearn informazioni, vedere:</span><span class="sxs-lookup"><span data-stu-id="9e487-166">toolearn more, see:</span></span>
 
-* <span data-ttu-id="30789-167">[Usare Oozie con HDInsight][hdinsight-use-oozie]: usare un'azione di Sqoop nel flusso di lavoro di Oozie.</span><span class="sxs-lookup"><span data-stu-id="30789-167">[Use Oozie with HDInsight][hdinsight-use-oozie]: Use Sqoop action in an Oozie workflow.</span></span>
-* <span data-ttu-id="30789-168">[Analizzare i dati sui ritardi dei voli con HDInsight][hdinsight-analyze-flight-data]: usare Hive per analizzare i dati sui ritardi dei voli e quindi usare Sqoop per esportare dati in un database SQL di Azure.</span><span class="sxs-lookup"><span data-stu-id="30789-168">[Analyze flight delay data using HDInsight][hdinsight-analyze-flight-data]: Use Hive to analyze flight delay data, and then use Sqoop to export data to an Azure SQL database.</span></span>
-* <span data-ttu-id="30789-169">[Caricare dati in HDInsight][hdinsight-upload-data]: altri metodi per caricare dati in HDInsight e nell'archivio BLOB di Azure.</span><span class="sxs-lookup"><span data-stu-id="30789-169">[Upload data to HDInsight][hdinsight-upload-data]: Find other methods for uploading data to HDInsight/Azure Blob storage.</span></span>
+* <span data-ttu-id="9e487-167">[Usare Oozie con HDInsight][hdinsight-use-oozie]: usare un'azione di Sqoop nel flusso di lavoro di Oozie.</span><span class="sxs-lookup"><span data-stu-id="9e487-167">[Use Oozie with HDInsight][hdinsight-use-oozie]: Use Sqoop action in an Oozie workflow.</span></span>
+* <span data-ttu-id="9e487-168">[Analizzare i dati di ritardo volo tramite HDInsight][hdinsight-analyze-flight-data]: utilizzare Hive volo tooanalyze ritardare dati e quindi utilizzare il database SQL di Azure tooan di Sqoop tooexport dati.</span><span class="sxs-lookup"><span data-stu-id="9e487-168">[Analyze flight delay data using HDInsight][hdinsight-analyze-flight-data]: Use Hive tooanalyze flight delay data, and then use Sqoop tooexport data tooan Azure SQL database.</span></span>
+* <span data-ttu-id="9e487-169">[Caricare dati tooHDInsight][hdinsight-upload-data]: trovare altri metodi per il caricamento di archiviazione Blob di dati tooHDInsight/Azure.</span><span class="sxs-lookup"><span data-stu-id="9e487-169">[Upload data tooHDInsight][hdinsight-upload-data]: Find other methods for uploading data tooHDInsight/Azure Blob storage.</span></span>
 
 [hdinsight-versions]:  hdinsight-component-versioning.md
 [hdinsight-provision]: hdinsight-hadoop-provision-linux-clusters.md

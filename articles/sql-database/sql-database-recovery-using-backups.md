@@ -1,6 +1,6 @@
 ---
-title: Ripristinare un database SQL di Azure da un backup | Microsoft Docs
-description: Informazioni sul ripristino temporizzato, che consente di ripristinare un database SQL di Azure a un momento precedente (fino a 35 giorni).
+title: un database SQL di Azure da un backup aaaRestore | Documenti Microsoft
+description: Informazioni sul ripristino punto nel tempo, che consente di tooroll back un punto precedente tooa di Database SQL di Azure nel tempo (in alto too35 giorni).
 services: sql-database
 documentationcenter: 
 author: CarlRabeler
@@ -15,69 +15,69 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/15/2017
 ms.author: carlrab
-ms.openlocfilehash: 20b33edbb3fade08c0f25e2fd5089b7ebf285fdd
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 84ecc306a2072445c10dbf1e9d7cf3d1b43860cf
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="recover-an-azure-sql-database-using-automated-database-backups"></a>Ripristinare un database SQL di Azure mediante i backup automatici del database
 Il database SQL prevede queste opzioni per il ripristino del database mediante [backup automatici del database](sql-database-automated-backups.md) e [backup nella conservazione a lungo termine](sql-database-long-term-retention.md). È possibile ripristinare un backup di database in:
 
-* Un nuovo database nello stesso server logico ripristinato in una temporizzazione specificata entro il periodo di conservazione. 
-* Un database nello stesso server logico ripristinato all'ora di eliminazione per un database eliminato.
-* Un nuovo database in qualsiasi server logico in qualsiasi area ripristinato ai backup giornalieri più recenti nell'archiviazione BLOB con replica geografica (RA-GRS).
+* Un nuovo database nello stesso server logico recuperato hello specificato tooa temporizzazione entro il periodo di memorizzazione hello. 
+* Un database hello stesso server logico recuperato toohello ora di eliminazione per un database eliminato.
+* Un nuovo database in qualsiasi server logico in qualsiasi area recuperato toohello punto di backup giornaliero più recente di hello nell'archiviazione blob di replica geografica (RA-GRS).
 
 > [!IMPORTANT]
 > Non è possibile sovrascrivere un database esistente durante il ripristino.
 >
 
-I [backup automatici del database](sql-database-automated-backups.md) possono anche essere usati per creare una [copia del database](sql-database-copy.md) in qualsiasi server logico di qualsiasi area. 
+È inoltre possibile utilizzare [database backup automatici](sql-database-automated-backups.md) toocreate un [copia del database](sql-database-copy.md) in qualsiasi server logico in qualsiasi area. 
 
 ## <a name="recovery-time"></a>Tempo di ripristino
-Il tempo di ripristino di un database tramite i backup automatici del database dipende da numerosi fattori: 
+Hello toorestore ora ripristino un database tramite backup automatizzati del database è stato interessato da diversi fattori: 
 
-* Le dimensioni del database
-* Il livello di prestazioni del database
-* Il numero dei log delle transazioni interessate
-* La quantità di attività che deve essere ripetuta per il ripristino al punto di ripristino
-* La larghezza di banda di rete se il ripristino avviene in un'area diversa 
-* Il numero di richieste simultanee di ripristino in corso di elaborazione nell'area di destinazione. 
+* dimensioni di Hello del database hello
+* livello di prestazioni Hello del database hello
+* numero di Hello dei log delle transazioni coinvolte
+* quantità di Hello di attività che deve toobe riprodotti toorecover toohello punto di ripristino
+* larghezza di banda Hello se Ripristina hello è tooa altra area geografica 
+* numero di Hello di richieste simultanee ripristino elaborate nell'area di destinazione hello. 
   
-  Per un database molto grande e/o attivo il ripristino potrebbe richiedere diverse ore. Nel caso di un'interruzione prolungata in un'area, è possibile che in altre aree vengano elaborate molte richieste di ripristino geografico. In presenza di numerose richieste, i tempi di recupero dei database in tale area possono aumentare. Per la maggior parte dei database, il ripristino richiede al massimo 12 ore.
+  Per un database molto grandi e/o attivo, il ripristino di hello potrebbe richiedere diverse ore. Nel caso di un'interruzione prolungata in un'area, è possibile che in altre aree vengano elaborate molte richieste di ripristino geografico. Quando sono presenti numerose richieste, può aumentare il tempo di recupero hello per i database in tale area. Per la maggior parte dei database, il ripristino richiede al massimo 12 ore.
   
-Non è disponibile una funzionalità incorporata per il ripristino in blocco. Lo script [Database SQL di Azure: Full Server Recovery](https://gallery.technet.microsoft.com/Azure-SQL-Database-Full-82941666) è un esempio di un modo per eseguire questa operazione.
+Non è il ripristino di massa non toodo funzionalità incorporata. Hello [Database SQL di Azure: Server di recupero con registrazione completa](https://gallery.technet.microsoft.com/Azure-SQL-Database-Full-82941666) script è un esempio di un modo per eseguire questa attività.
 
 > [!IMPORTANT]
-> Per eseguire il ripristino tramite i backup automatici, è necessario essere un membro del ruolo di collaboratore di SQL Server o proprietario della sottoscrizione. Per il ripristino, è possibile usare il portale di Azure, PowerShell o l'API REST. Non è possibile usare Transact-SQL. 
+> toorecover utilizzando backup automatici, è necessario essere un membro del ruolo di collaboratore di SQL Server hello nella sottoscrizione hello o essere proprietario della sottoscrizione hello. È possibile ripristinare utilizzando hello portale di Azure, PowerShell o hello API REST. Non è possibile usare Transact-SQL. 
 > 
 
 ## <a name="point-in-time-restore"></a>Ripristino temporizzato
 
-È possibile ripristinare un database esistente a un punto specifico nel tempo come un nuovo database nello stesso server logico tramite il portale di Azure, [PowerShell](https://docs.microsoft.com/en-us/powershell/module/azurerm.sql/restore-azurermsqldatabase) o l'[API REST](https://msdn.microsoft.com/library/azure/mt163685.aspx). 
+È possibile ripristinare un database esistente tooan precedente punto nel tempo come un nuovo database nei hello stesso server logico tramite il portale di Azure, di hello [PowerShell](https://docs.microsoft.com/en-us/powershell/module/azurerm.sql/restore-azurermsqldatabase), o hello [API REST](https://msdn.microsoft.com/library/azure/mt163685.aspx). 
 
 > [!TIP]
-> Per uno script di PowerShell di esempio che illustra come eseguire un ripristino temporizzato di un database, vedere [Ripristinare un database SQL tramite PowerShell](scripts/sql-database-restore-database-powershell.md).
+> Per uno script di PowerShell di esempio che illustra come tooperform un punto nel tempo ripristino di un database, vedere [ripristinare un database SQL tramite PowerShell](scripts/sql-database-restore-database-powershell.md).
 >
 
-Il database può essere ripristinato a qualsiasi livello di prestazioni o di servizio, come database singolo o in un pool elastico. Assicurarsi di disporre di risorse sufficienti sul server logico o nel pool elastico in cui si sta ripristinando il database. Al termine, il database ripristinato è un normale database online completamente accessibile alle tariffe normali in base al livello di prestazioni e di servizio. Non è previsto alcun addebito fino al completamento del ripristino del database.
+database Hello può essere ripristinato tooany livello di servizio o di prestazioni di livello e come un singolo database o in un pool elastico. Assicurarsi di disporre di risorse sufficienti sul server logico hello o hello pool elastico toowhich si ripristinano database hello. Al termine dell'operazione, il database ripristinato hello è un database normale, completamente accessibile, in linea. database ripristinato Hello viene addebitato in base alle tariffe normale in base al livello di prestazioni e di servizio. Si è previsto alcun addebito fino al completamento del ripristino del database hello.
 
-In genere si ripristina un database a un punto precedente per scopi di ripristino. Quando si esegue questa operazione, è possibile considerare il database ripristinato come una sostituzione per il database originale o usarlo per recuperare i dati e quindi aggiornare il database originale. 
+È in genere ripristinare un database tooan punti precedenti per scopi di ripristino. Quando si esegue questa operazione, è possibile trattare hello database ripristinato come una sostituzione per il database originale hello o utilizzarlo tooretrieve dati da e quindi aggiornare il database originale di hello. 
 
-* ***Sostituzione del database***: se il database ripristinato è da intendersi come una sostituzione per il database originale, è necessario verificare che il livello di prestazioni e/o il livello di servizio sia appropriato e ridimensionare il database se necessario. È possibile rinominare il database originale e quindi assegnare al database ripristinato il nome originale usando il comando ALTER DATABASE in T-SQL. 
-* ***Ripristino dei dati***: se si prevede di recuperare dati dal database ripristinato in caso di errore dell'applicazione o dell'utente, è necessario scrivere ed eseguire gli script di ripristino per estrarre i dati dal database ripristinato e inserirli nel database originale. Anche se il completamento dell'operazione di ripristino può richiedere molto tempo, il database in fase di ripristino è visibile nell'elenco dei database per tutto il processo. Se si elimina il database durante il ripristino, l'operazione verrà annullata e non verrà addebitata per il database il cui ripristino non è stato completato. 
+* ***Sostituzione del database:*** se il database ripristinato hello è inteso come una sostituzione per il database originale hello, è necessario verificare il livello di prestazioni hello e/o livello di servizio appropriati e ridimensionare il database di hello, se necessario. È possibile rinominare il database originale hello e quindi assegnare hello ripristinato hello originale nome del database tramite comando ALTER DATABASE hello in T-SQL. 
+* ***Ripristino dei dati:*** se si prevede di dati tooretrieve toorecover database hello ripristinato da un errore utente o dell'applicazione, è necessario toowrite ed eseguire hello necessarie ripristino script tooextract dati da hello ripristinata database toohello database originale. Anche se l'operazione di ripristino hello può richiedere un toocomplete molto tempo, è visibile nell'elenco di database hello in tutto il processo di ripristino hello hello il ripristino di database. Se si elimina il database di hello durante il ripristino di hello, viene annullata l'operazione di ripristino hello e non vengono addebitate le spese per database hello che non viene completato il ripristino di hello. 
 
 ### <a name="azure-portal"></a>Portale di Azure
 
-Per eseguire il ripristino a un determinato momento nel tempo tramite il portale di Azure, aprire la pagina per il database e fare clic su **Ripristina** nella barra degli strumenti.
+toorecover tooa punto nel tempo usando hello portale di Azure, pagina hello open per il database e fare clic su **ripristinare** sulla barra degli strumenti hello.
 
 ![ripristino a un determinato momento nel tempo](./media/sql-database-recovery-using-backups/point-in-time-recovery.png)
 
 ## <a name="deleted-database-restore"></a>Ripristino di un database eliminato
-Il ripristino di un database eliminato consente di ripristinare un database all'ora di eliminazione per un database eliminato sullo stesso server logico, usando il portale di Azure, [PowerShell](https://docs.microsoft.com/en-us/powershell/module/azurerm.sql/restore-azurermsqldatabase) o l'[API REST (createMode=Restore)](https://msdn.microsoft.com/library/azure/mt163685.aspx). 
+È possibile ripristinare un tempo di eliminazione toohello database eliminati per un database eliminato su hello stesso server logico utilizzando hello portale di Azure [PowerShell](https://docs.microsoft.com/en-us/powershell/module/azurerm.sql/restore-azurermsqldatabase), o hello [REST (createMode = Ripristina)](https://msdn.microsoft.com/library/azure/mt163685.aspx). 
 
 > [!TIP]
-> Per uno script di PowerShell di esempio che illustra come ripristinare un database eliminato, vedere [Ripristinare un database SQL tramite PowerShell](scripts/sql-database-restore-database-powershell.md).
+> Per un esempio di PowerShell eseguire lo script che mostra come toorestore un database eliminato, vedere [ripristinare un database SQL tramite PowerShell](scripts/sql-database-restore-database-powershell.md).
 >
 
 > [!IMPORTANT]
@@ -86,7 +86,7 @@ Il ripristino di un database eliminato consente di ripristinare un database all'
 
 ### <a name="azure-portal"></a>Portale di Azure
 
-Per ripristinare un database eliminato durante il [periodo di conservazione](sql-database-service-tiers.md) tramite il portale di Azure, aprire la pagina per il server e nell'area Operazioni fare clic su **Database eliminati**.
+toorecover un eliminati database durante il relativo [periodo di memorizzazione](sql-database-service-tiers.md) usando hello portale di Azure, pagina hello open per il server e nell'area di operazioni di hello, fare clic su **database eliminati**.
 
 ![deleted-database-restore-1](./media/sql-database-recovery-using-backups/deleted-database-restore-1.png)
 
@@ -94,28 +94,28 @@ Per ripristinare un database eliminato durante il [periodo di conservazione](sql
 ![deleted-database-restore-2](./media/sql-database-recovery-using-backups/deleted-database-restore-2.png)
 
 ## <a name="geo-restore"></a>Ripristino geografico
-Il ripristino geografico consente di ripristinare un database SQL presente su un server in qualsiasi area di Azure usando gli ultimi backup completi e differenziali con replica geografica. Il ripristino geografico usa un backup con ridondanza geografica come origine e può essere usato per ripristinare un database anche se il database o il data center è inaccessibile a causa di un'interruzione del servizio. 
+È possibile ripristinare un database SQL in qualsiasi server in qualsiasi area di Azure da hello più recente con replica geografica backup completi e differenziali. Ripristino a livello geografico utilizza un backup con ridondanza geografica come origine e può essere utilizzato toorecover un database anche se database hello o Data Center non è accessibile a causa di un'interruzione di tooan. 
 
-Il ripristino geografico è l'opzione di ripristino predefinita quando il database non è disponibile a causa di un evento imprevisto nell'area in cui è ospitato. Se si verifica un evento imprevisto su larga scala che determina la mancata disponibilità dell'applicazione di database, è possibile ripristinare un database dai backup con replica geografica in un server in un'altra area. Esiste un ritardo tra il momento in cui un backup differenziale viene creato e quando ne viene eseguita la replica geografica in un BLOB di Azure in un'area diversa. Questo ritardo può essere al massimo di un'ora, quindi, in caso di emergenza, può verificarsi una perdita massima di un'ora di dati. La figura seguente mostra il ripristino del database dall'ultimo backup disponibile in un'altra area.
+Ripristino a livello geografico è recovery-opzione predefinita hello quando il database è disponibile a causa di un evento imprevisto nell'area di hello in cui è ospitato il database di hello. Se un evento imprevisto su larga scala nei risultati di un'area non disponibilità dell'applicazione di database, è possibile ripristinare un database dal server di tooa i backup di replica geografica hello in qualsiasi altra area. Si verifica un ritardo tra quando viene eseguito un backup differenziale e quando è replicato geograficamente tooan Azure blob in un'area diversa. Questo ritardo può essere backup tooan ora, in tal caso, se si verifica un'emergenza, è possibile che di perdita di dati ora tooone. Hello seguente figura mostra il ripristino del database hello dall'ultimo backup disponibile hello in un'altra area.
 
 ![Ripristino geografico](./media/sql-database-geo-restore/geo-restore-2.png)
 
 > [!TIP]
-> Per uno script di PowerShell di esempio che illustra come eseguire un ripristino geografico, vedere [Ripristinare un database SQL tramite PowerShell](scripts/sql-database-restore-database-powershell.md).
+> Per un esempio di PowerShell eseguire lo script che mostra come tooperform un ripristino a livello geografico, vedere [ripristinare un database SQL tramite PowerShell](scripts/sql-database-restore-database-powershell.md).
 > 
 
-Il ripristino temporizzato in un database di replica geografica secondaria non è attualmente supportato. Il ripristino temporizzato può essere eseguito solo in un database primario. Per informazioni dettagliate sull'uso del ripristino geografico in caso di un'interruzione del servizio, vedere [Ripristinare un database SQL di Azure o eseguire il failover in un database secondario](sql-database-disaster-recovery.md).
+Il ripristino temporizzato in un database di replica geografica secondaria non è attualmente supportato. Il ripristino temporizzato può essere eseguito solo in un database primario. Per informazioni dettagliate sull'utilizzo di ripristino a livello geografico toorecover da un'interruzione del servizio, vedere [recuperare da un'interruzione](sql-database-disaster-recovery.md).
 
 > [!IMPORTANT]
-> Il ripristino da backup è la più semplice delle soluzioni di ripristino di emergenza disponibili nel database SQL con il massimo valore per RPO e tempo di recupero stimato. Per soluzioni che usano i database Basic, il ripristino geografico è spesso una soluzione ragionevole di ripristino di emergenza con un ERT di 12 ore. Per soluzioni che usano i database Standard o Premium di dimensioni maggiori, che richiedono tempi di ripristino inferiori, è consigliabile usare la [replica geografica attiva](sql-database-geo-replication-overview.md). La replica geografica attiva offre un obiettivo del punto di ripristino e un tempo di recupero stimato decisamente inferiori perché richiede solo l'avvio di un failover in un database secondario con replica continua. Per altre informazioni sulle opzioni di continuità aziendale, vedere [Overview of business continuity](sql-database-business-continuity.md) (Panoramica sulla continuità aziendale).
+> Ripristino da backup è più semplice di emergenza hello hello soluzioni di ripristino disponibili nel Database SQL con hello RPO più lungo e tempo di ripristino di stima (ERT). Per soluzioni che usano i database Basic, il ripristino geografico è spesso una soluzione ragionevole di ripristino di emergenza con un ERT di 12 ore. Per soluzioni che usano i database Standard o Premium di dimensioni maggiori, che richiedono tempi di ripristino inferiori, è consigliabile usare la [replica geografica attiva](sql-database-geo-replication-overview.md). Replica geografica attiva offre molto inferiore RPO ed ERT quanto sono necessarie solo per avviare un database secondario viene replicata continuamente tooa di failover. Per altre informazioni sulle opzioni di continuità aziendale, vedere [Overview of business continuity](sql-database-business-continuity.md) (Panoramica sulla continuità aziendale).
 > 
 
 ### <a name="azure-portal"></a>Portale di Azure
 
-Per geo-ripristinare un database durante il [periodo di conservazione](sql-database-service-tiers.md) tramite il portale di Azure, aprire la pagina Database SQL e quindi fare clic su **Aggiungi**. Nel casella di testo **Seleziona origine** selezionare **Backup**. Specificare il backup da cui eseguire il ripristino nell'area e nel server di propria scelta. 
+toogeo-ripristinare un database durante il relativo [periodo di memorizzazione](sql-database-service-tiers.md) utilizzando hello portale di Azure, aprire una pagina di database SQL di hello e quindi fare clic su **Aggiungi**. In hello **Seleziona origine** casella di testo, selezionare **Backup**. Specificare hello di backup da cui recovery hello tooperform nell'area di hello e nel server di hello di propria scelta. 
 
 ## <a name="programmatically-performing-recovery-using-automated-backups"></a>Esecuzione a livello di codice del ripristino tramite backup automatici
-Come indicato in precedenza, oltre al portale di Azure, il ripristino di database può essere eseguito a livello di codice usando Azure PowerShell o l'API REST. Le tabelle seguenti descrivono il set di comandi disponibili.
+Come illustrato in precedenza, è inoltre toohello portale di Azure, il ripristino del database può essere eseguita a livello di programmazione mediante Azure PowerShell o hello API REST. Hello le tabelle seguenti vengono descritti i set di hello di comandi disponibili.
 
 ### <a name="powershell"></a>PowerShell
 | Cmdlet | Descrizione |
@@ -130,7 +130,7 @@ Come indicato in precedenza, oltre al portale di Azure, il ripristino di databas
 | API | Descrizione |
 | --- | --- |
 | [REST (createMode=Recovery)](https://msdn.microsoft.com/library/azure/mt163685.aspx) |Ripristina un database |
-| [Get Create or Update Database Status](https://msdn.microsoft.com/library/azure/mt643934.aspx) |Restituisce lo stato durante un'operazione di ripristino |
+| [Get Create or Update Database Status](https://msdn.microsoft.com/library/azure/mt643934.aspx) |Restituisce lo stato di hello durante un'operazione di ripristino |
 |  | |
 
 ## <a name="summary"></a>Riepilogo
@@ -138,7 +138,7 @@ I backup automatici proteggono i database da errori dell'utente e delle applicaz
 
 ## <a name="next-steps"></a>Passaggi successivi
 * Per la panoramica e gli scenari della continuità aziendale, vedere [Continuità aziendale del database SQL di Azure](sql-database-business-continuity.md)
-* Per informazioni sui backup automatici del database SQL di Azure, vedere [Backup automatici del database SQL](sql-database-automated-backups.md)
-* Per altre informazioni, vedere l'articolo sulla [conservazione dei backup a lungo termine](sql-database-long-term-retention.md)
-* Per la configurazione, la gestione e il ripristino dalla conservazione a lungo termine di backup automatici in un insieme di credenziali di Servizi di ripristino di Azure tramite il portale di Azure, vedere l'articolo [Configurare e ripristinare dalla conservazione dei backup a lungo termine del database SQL di Azure](sql-database-long-term-backup-retention-configure.md). 
-* Per altre informazioni sulle opzioni di ripristino più veloci, vedere [Panoramica: Replica geografica attiva per il database SQL di Azure](sql-database-geo-replication-overview.md).  
+* toolearn sui backup di Database di SQL Azure automatizzati, vedere [backup automatici di Database SQL](sql-database-automated-backups.md)
+* toolearn sulla conservazione dei backup a lungo termine, vedere [conservazione dei backup a lungo termine](sql-database-long-term-retention.md)
+* tooconfigure, gestire e ripristinare da conservazione a lungo termine dei backup automatizzati in un insieme di credenziali di servizi di ripristino di Azure utilizzando hello Azure portale, vedere [Configura e a lungo termine utilizza backup memorizzazione](sql-database-long-term-backup-retention-configure.md). 
+* toolearn sulle opzioni di ripristino più veloce, vedere [replica geografica attiva](sql-database-geo-replication-overview.md)  

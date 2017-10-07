@@ -1,6 +1,6 @@
 ---
-title: Appliance cloud StorSimple aggiornamento 3| Microsoft Docs
-description: Informazioni su come creare, distribuire e gestire un'appliance cloud StorSimple in una rete virtuale di Microsoft Azure. Si applica a StorSimple aggiornamento 3 e versioni successive.
+title: aaaStorSimple Cloud Appliance Update 3 | Documenti Microsoft
+description: Informazioni su come toocreate, distribuire e gestire un'applicazione Cloud StorSimple in una rete virtuale di Microsoft Azure. (Si applica tooStorSimple Update 3 e versioni successive).
 services: storsimple
 documentationcenter: 
 author: alkohli
@@ -14,253 +14,253 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 07/10/2017
 ms.author: alkohli
-ms.openlocfilehash: e7f58c8c1414f41d1d43e98b2faa327165f6eb75
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: ba60a629f1f4b8f0d4566eeb45bae8696f50d0af
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="deploy-and-manage-a-storsimple-cloud-appliance-in-azure-update-3-and-later"></a>Distribuire e gestire un'appliance cloud StorSimple in Azure (aggiornamento 3 e versioni successive)
 
 ## <a name="overview"></a>Panoramica
 
-L'appliance cloud StorSimple serie 8000 è una funzionalità aggiuntiva disponibile con la soluzione Microsoft Azure StorSimple. L'appliance cloud StorSimple viene eseguita in una macchina virtuale in una rete virtuale di Microsoft Azure e può essere usata per clonare i dati ed eseguirne il backup dagli host.
+Dispositivo di StorSimple 8000 Series Cloud Hello è una funzionalità aggiuntiva fornita con la soluzione di Microsoft Azure StorSimple. Hello StorSimple Appliance di Cloud viene eseguito in una macchina virtuale in una rete virtuale di Microsoft Azure e utilizzarlo tooback backup e clone dati dagli host.
 
-Questo articolo illustra il processo dettagliato per distribuire e gestire un'appliance cloud StorSimple in Azure. Dopo avere letto l'articolo, si sarà in grado di:
+In questo articolo descrive toodeploy processo dettagliato di hello e gestire un dispositivo StorSimple per Cloud in Azure. Dopo avere letto l'articolo, si sarà in grado di:
 
-* Comprendere le differenze tra appliance cloud e dispositivo fisico.
-* Creare e configurare l'appliance cloud.
-* Connettersi all'appliance cloud.
-* Usare l'appliance cloud.
+* Comprendere in che modo appliance di cloud hello differisce dal dispositivo fisico hello.
+* Essere in grado di toocreate e configurare l'accessorio cloud hello.
+* Connettere il dispositivo di cloud toohello.
+* Informazioni su come toowork con hello cloud a dispositivo.
 
-Questa esercitazione si applica a tutte le appliance cloud StorSimple con aggiornamento 3 e successivi.
+Questa esercitazione si applica hello tooall StorSimple Appliance di Cloud esegue l'aggiornamento 3 e versioni successive.
 
 #### <a name="cloud-appliance-model-comparison"></a>Confronto tra i modelli dell'appliance cloud
 
-L'appliance cloud StorSimple è disponibile in due modelli, Standard 8010 (in precedenza noto come 1100) e Premium 8020 (introdotto nell'aggiornamento 2). La tabella seguente presenta un confronto tra i due modelli.
+Hello StorSimple Appliance di Cloud è disponibile in due modelli, un standard 8010: spazio (precedentemente noto come hello 1100) e un premium 8020 (introdotta in Update 2). Hello nella tabella seguente viene presentato un confronto tra due modelli di hello.
 
 | Modello del dispositivo | 8010<sup>1</sup> | 8020 |
 | --- | --- | --- |
 | **Capacità massima** |30 TB |64 TB |
 | **Macchina virtuale di Azure** |Standard_A3 (4 core, 7 GB di memoria)| Standard_DS3 (4 core, 14 GB di memoria)|
-| **Aree di disponibilità** |Tutte le aree di Azure |Le aree di Azure che supportano Archiviazione Premium e VM DS3 di Azure<br></br>Usare [questo elenco](https://azure.microsoft.com/regions/services/) per verificare se nella propria area sono disponibili sia le **macchine virtuali serie DS** che l'**archiviazione su disco**. |
-| **Tipo di archiviazione** |Usa l'Archiviazione Standard di Azure<br></br> Altre informazioni su come [creare un account di archiviazione Standard](../storage/common/storage-create-storage-account.md) |Usa l'Archiviazione Standard di Azure<sup>2</sup> <br></br>Informazioni su come [creare un account di archiviazione Premium](../storage/common/storage-premium-storage.md) |
+| **Aree di disponibilità** |Tutte le aree di Azure |Le aree di Azure che supportano Archiviazione Premium e VM DS3 di Azure<br></br>Utilizzare [questo elenco](https://azure.microsoft.com/regions/services/) toosee se entrambi **macchine virtuali > serie DS** e **archiviazione > lo spazio su disco** sono disponibili nel proprio paese. |
+| **Tipo di archiviazione** |Usa l'Archiviazione Standard di Azure<br></br> Informazioni su come troppo[creare un account di archiviazione Standard](../storage/common/storage-create-storage-account.md) |Usa l'Archiviazione Standard di Azure<sup>2</sup> <br></br>Informazioni su come troppo[creare un account di archiviazione Premium](../storage/common/storage-premium-storage.md) |
 | **Indicazioni relative al carico di lavoro** |Recupero a livello di elemento per i file dai backup |Scenari di sviluppo e test basati su cloud <br></br>Bassa latenza e carichi di lavoro a prestazioni superiori<br></br>Dispositivo secondario per il ripristino di emergenza |
 
-<sup>1</sup> *precedentemente noto come 1100*.
+<sup>1</sup> *precedentemente noto come hello 1100*.
 
-<sup>2</sup> *Entrambi i modelli 8010 e 8020 usano l'archiviazione di Azure Standard per il livello cloud. La differenza è solo nel livello locale nel dispositivo*.
+<sup>2</sup> *entrambi hello 8010: spazio e 8020 utilizzare l'archiviazione di Azure Standard per hello cloud livello hello differenza esiste solo nel livello di locale hello all'interno di dispositivo hello*.
 
-## <a name="how-the-cloud-appliance-differs-from-the-physical-device"></a>Differenze tra appliance cloud e dispositivo fisico
+## <a name="how-hello-cloud-appliance-differs-from-hello-physical-device"></a>Differenze di appliance di cloud hello dal dispositivo fisico hello
 
-L'appliance cloud StorSimple è una versione esclusivamente software di StorSimple che viene eseguita in un singolo nodo in una macchina virtuale di Microsoft Azure. L'appliance cloud supporta gli scenari di ripristino di emergenza in cui il dispositivo fisico non è disponibile. L'appliance cloud può essere usata nel recupero a livello di elemento da backup, nel ripristino di emergenza locale e in scenari di sviluppo e test basati su cloud.
+Hello StorSimple Appliance di Cloud è una versione solo software di StorSimple, eseguita in un singolo nodo in una macchina virtuale di Microsoft Azure. dispositivo cloud Hello supporta scenari di ripristino di emergenza in cui il dispositivo fisico non è disponibile. dispositivo cloud Hello è appropriato per l'utilizzo in un recupero a livello di elemento dal backup, ripristino di emergenza locale e scenari di sviluppo e test basati su cloud.
 
-#### <a name="differences-from-the-physical-device"></a>Differenze rispetto al dispositivo fisico
+#### <a name="differences-from-hello-physical-device"></a>Differenze rispetto a dispositivo fisico hello
 
-La tabella seguente illustra alcune differenze chiave tra l'appliance cloud StorSimple e il dispositivo fisico StorSimple.
+Hello nella tabella seguente mostra alcune differenze fondamentali tra hello StorSimple Appliance di Cloud e il dispositivo fisico StorSimple hello.
 
 |  | Dispositivo fisico | Appliance cloud |
 | --- | --- | --- |
-| **Posizione** |Si trova nel data center. |Viene eseguito in Azure. |
+| **Posizione** |Si trova nel Data Center hello. |Viene eseguito in Azure. |
 | **Interfacce di rete** |Ha sei interfacce di rete: da DATA 0 a DATA 5. |Ha una sola interfaccia di rete: DATA 0. |
-| **Registrazione** |La registrazione viene eseguita durante il passaggio della configurazione iniziale. |La registrazione è un'attività separata. |
-| **Chiave DEK del servizio** |Rigenerare la chiave nel dispositivo fisico e quindi aggiornare l'appliance cloud con la nuova chiave. |Non è possibile rigenerare la chiave dall'appliance cloud. |
+| **Registrazione** |Registrato durante il passaggio di configurazione iniziale di hello. |La registrazione è un'attività separata. |
+| **Chiave DEK del servizio** |Rigenerare sul dispositivo fisico hello e quindi aggiornare il dispositivo di cloud hello con chiave nuova hello. |Impossibile rigenerare dal dispositivo cloud hello. |
 | **Tipi di volume supportati** |Supporta volumi sia aggiunti in locale che a livelli. |Supporta solo volumi a livelli. |
 
-## <a name="prerequisites-for-the-cloud-appliance"></a>Prerequisiti per l'appliance cloud
+## <a name="prerequisites-for-hello-cloud-appliance"></a>Prerequisiti per il dispositivo di cloud hello
 
-Le sezioni seguenti illustrano i prerequisiti di configurazione per l'appliance cloud StorSimple. Prima di distribuire un'appliance cloud, esaminare le considerazioni relative alla sicurezza per il relativo uso.
+Hello le sezioni seguenti vengono illustrati i prerequisiti di configurazione hello per il dispositivo StorSimple per Cloud. Prima di distribuire un'applicazione cloud, esaminare le considerazioni sulla sicurezza hello per l'utilizzo di un'applicazione cloud.
 
 [!INCLUDE [StorSimple Cloud Appliance security](../../includes/storsimple-8000-cloud-appliance-security.md)]
 
 #### <a name="azure-requirements"></a>Requisiti di Azure
 
-Prima di effettuare il provisioning dell'appliance cloud, è necessario eseguire queste operazioni preliminari nell'ambiente Azure:
+Prima eseguire il provisioning di appliance di cloud hello, è necessario hello toomake seguente preparati nell'ambiente Azure:
 
-* Assicurarsi che un dispositivo fisico StorSimple serie 8000 (modello 8100 o 8600) sia stato distribuito e sia in esecuzione nel data center. Registrare questo dispositivo con lo stesso servizio Gestione dispositivi StorSimple per cui si intende creare un'appliance cloud StorSimple.
-* Per l'appliance cloud, [configurare una rete virtuale in Azure](../virtual-network/virtual-networks-create-vnet-arm-pportal.md). Se si usa l'archiviazione Premium, sarà necessario creare una rete virtuale in un'area di Azure che supporta l'archiviazione Premium. Le aree con Archiviazione Premium corrispondono alla riga relativa all'archiviazione su disco nell'[elenco dei servizi di Azure in base all'area](https://azure.microsoft.com/regions/services/).
-* È consigliabile usare il server DNS predefinito fornito da Azure anziché specificare il nome di un proprio server DNS. Se il nome del server DNS non è valido o se il server DNS non riesce a risolvere correttamente l'indirizzo IP, non sarà possibile creare l'appliance cloud.
+* Assicurarsi che un dispositivo fisico StorSimple serie 8000 (modello 8100 o 8600) sia stato distribuito e sia in esecuzione nel data center. Registrare il dispositivo con hello stesso servizio di gestione di dispositivi StorSimple che intendi toocreate a StorSimple Appliance di Cloud per.
+* Per il dispositivo di cloud hello, [configurare una rete virtuale in Azure](../virtual-network/virtual-networks-create-vnet-arm-pportal.md). Se si usa l'archiviazione Premium, sarà necessario creare una rete virtuale in un'area di Azure che supporta l'archiviazione Premium. aree di archiviazione Premium Hello sono aree corrispondenti toohello riga per l'archiviazione su disco in hello [elenco di servizi di Azure dall'area](https://azure.microsoft.com/regions/services/).
+* È consigliabile usare server DNS predefinito di hello fornita da Azure anziché specificare nome del server DNS. Se il nome del server DNS non è valido o se hello server DNS non è in grado di tooresolve indirizzi correttamente, la creazione di hello del dispositivo cloud hello non riesce.
 * Le opzioni point-to-site e da sito a sito non sono obbligatorie, ma facoltative. Se si desidera, è possibile configurarle per scenari più avanzati.
-* È possibile creare nella rete virtuale [macchine virtuali di Azure](../virtual-machines/virtual-machines-windows-quick-create-portal.md) (server host) che possono usare i volumi esposti dall'appliance cloud. Tali server devono soddisfare i seguenti requisiti:
+* È possibile creare [macchine virtuali di Azure](../virtual-machines/virtual-machines-windows-quick-create-portal.md) (server host) nella rete virtuale hello che puoi usare volumi hello esposti dal dispositivo cloud hello. Questi server devono soddisfare i seguenti requisiti hello:
 
   * Svolgere il ruolo di macchine virtuali Windows o Linux nelle quali è installato il software iSCSI Initiator
-  * Essere eseguiti nella stessa rete virtuale dell'appliance cloud
-  * Potersi connettere alla destinazione iSCSI dell'appliance cloud tramite l'indirizzo IP interno dell'appliance cloud
-  * Assicurarsi di aver configurato il supporto per il traffico iSCSI e cloud nella stessa rete virtuale.
+  * Essere in esecuzione in hello stessa rete virtuale appliance di cloud hello.
+  * Essere in grado di tooconnect toohello della destinazione iSCSI del dispositivo cloud hello tramite indirizzo IP interno hello del dispositivo cloud hello.
+  * Assicurarsi di aver configurato il supporto per iSCSI e cloud di traffico su hello stessa rete virtuale.
 
 #### <a name="storsimple-requirements"></a>Requisiti di StorSimple
 
-Prima di creare un'appliance cloud, effettuare gli aggiornamenti seguenti nel servizio Gestione dispositivi StorSimple:
+Apportare hello seguente servizio di gestione di dispositivi StorSimple tooyour aggiornamenti prima di creare un'applicazione cloud:
 
-* Aggiungere [record controllo di accesso](storsimple-8000-manage-acrs.md) per le VM che svolgeranno il ruolo di server host per l'appliance cloud.
-* Usare un [account di archiviazione](storsimple-8000-manage-storage-accounts.md#add-a-storage-account) nella stessa area dell'appliance cloud. Gli account di archiviazione posti in aree diverse possono causare una riduzione delle prestazioni. Con l'appliance cloud è possibile usare un account di archiviazione Standard o Premium. Altre informazioni su come creare un [account di archiviazione Standard](../storage/common/storage-create-storage-account.md) o un [account di archiviazione Premium](../storage/common/storage-premium-storage.md)
-* Per la creazione dell'appliance cloud usare un account di archiviazione diverso rispetto a quello usato per i dati. Se si utilizza lo stesso account di archiviazione, si potrebbe verificare una riduzione delle prestazioni.
+* Aggiungere [record di controllo di accesso](storsimple-8000-manage-acrs.md) per le macchine virtuali hello che sono server del corso toobe hello host per l'applicazione cloud.
+* Utilizzare un [account di archiviazione](storsimple-8000-manage-storage-accounts.md#add-a-storage-account) in hello appliance di cloud hello stessa area. Gli account di archiviazione posti in aree diverse possono causare una riduzione delle prestazioni. È possibile utilizzare un account Standard o di archiviazione Premium con dispositivo cloud hello. Ulteriori informazioni su come toocreate un [account di archiviazione Standard](../storage/common/storage-create-storage-account.md) o [account di archiviazione Premium](../storage/common/storage-premium-storage.md)
+* Utilizzare un account di archiviazione diversi per la creazione di cloud accessorio da hello quello utilizzato per i dati. Utilizzo di hello stesso account di archiviazione può comportare una riduzione delle prestazioni.
 
-Prima di iniziare, verificare quanto segue:
+Assicurarsi di aver hello le seguenti informazioni prima di iniziare:
 
 * Account del portale di Azure con credenziali di accesso.
-* Copia della chiave di crittografia dei dati del servizio dal dispositivo fisico registrato nel servizio Gestione dispositivi StorSimple.
+* Una copia di hello chiave DEK del servizio dal dispositivo fisico registrazione del servizio di gestione di dispositivi StorSimple toohello.
 
-## <a name="create-and-configure-the-cloud-appliance"></a>Creare e configurare l'appliance cloud
+## <a name="create-and-configure-hello-cloud-appliance"></a>Creare e configurare il dispositivo di cloud hello
 
-Prima di eseguire queste procedure, verificare che siano stati soddisfatti i [prerequisiti per l'appliance cloud](#prerequisites-for-the-cloud-appliance).
+Prima di eseguire queste procedure, assicurarsi di aver soddisfatto hello [prerequisiti per il dispositivo di cloud hello](#prerequisites-for-the-cloud-appliance).
 
-Seguire questa procedura per creare un'appliance cloud StorSimple.
+Eseguire hello seguendo i passaggi toocreate un'applicazione Cloud StorSimple.
 
 ### <a name="step-1-create-a-cloud-appliance"></a>Passaggio 1: Creare un'appliance cloud
 
-Seguire questa procedura per creare l'appliance cloud StorSimple.
+Eseguire hello seguendo i passaggi toocreate hello StorSimple Appliance di Cloud.
 
 [!INCLUDE [Create a cloud appliance](../../includes/storsimple-8000-create-cloud-appliance-u2.md)]
 
-Se la creazione dell'appliance cloud ha esito negativo in questo passaggio, potrebbe non essere disponibile la connettività a Internet. Per altre informazioni, vedere la sezione su come [risolvere gli errori di connettività Internet](#troubleshoot-internet-connectivity-errors) durante la creazione di un'appliance cloud.
+Se la creazione di hello del dispositivo cloud hello non riesce in questo passaggio, non è possibile toohello connettività Internet. Per ulteriori informazioni, visitare troppo[risoluzione dei problemi di connettività Internet](#troubleshoot-internet-connectivity-errors) durante la creazione di un'applicazione cloud.
 
-### <a name="step-2-configure-and-register-the-cloud-appliance"></a>Passaggio 2: Configurare e registrare l'appliance cloud
+### <a name="step-2-configure-and-register-hello-cloud-appliance"></a>Passaggio 2: Configurare e registrare il dispositivo di cloud hello
 
-Prima di iniziare questa procedura, verificare di avere una copia della chiave di crittografia dei dati del servizio. La chiave di crittografia dei dati del servizio viene creata durante la registrazione del primo dispositivo fisico StorSimple nel servizio Gestione dispositivi StorSimple. Le istruzioni prevedono che venga salvata in una posizione sicura. Se non si dispone di una copia della chiave DEK del servizio, è necessario contattare il supporto tecnico Microsoft e richiedere assistenza.
+Prima di iniziare questa procedura, assicurarsi di disporre di una copia della chiave DEK del servizio hello. chiave di crittografia di Hello servizio dati viene creato quando il primo dispositivo fisico StorSimple è stato registrato con il servizio di gestione di dispositivi StorSimple hello. È stato toosave istruzioni riportate in una posizione sicura. Se non si dispone di una copia della chiave DEK del servizio hello, è necessario contattare il supporto Microsoft per assistenza.
 
-Seguire questa procedura per configurare e registrare l'appliance cloud StorSimple.
+Eseguire i seguenti passaggi tooconfigure hello e registrare il dispositivo StorSimple per Cloud.
 
 [!INCLUDE [Configure and register a cloud appliance](../../includes/storsimple-8000-configure-register-cloud-appliance.md)]
 
-### <a name="step-3-optional-modify-the-device-configuration-settings"></a>Passaggio 3: (Facoltativo) Modificare le impostazioni di configurazione del dispositivo
+### <a name="step-3-optional-modify-hello-device-configuration-settings"></a>Passaggio 3: Impostazioni di configurazione dispositivo hello modifica (facoltativo)
 
-La sezione seguente illustra le impostazioni di configurazione del dispositivo che sono necessarie per l'appliance cloud StorSimple se si vuole usare CHAP o StorSimple Snapshot Manager o se si vuole modificare la password amministratore del dispositivo.
+Hello nella sezione seguente vengono descritte le impostazioni di configurazione dispositivo hello necessari per hello StorSimple Appliance di Cloud, se si desidera toouse CHAP, gestione Snapshot StorSimple o modificare una password amministratore del dispositivo hello.
 
-#### <a name="configure-the-chap-initiator"></a>Configurare l'iniziatore dell'autenticazione CHAP
+#### <a name="configure-hello-chap-initiator"></a>Configurare l'iniziatore CHAP hello
 
-Questo parametro contiene le credenziali che l'appliance cloud (destinazione) prevede di ricevere dagli iniziatori (server) che tentano di accedere ai volumi. Gli iniziatori forniscono un nome utente e una password CHAP per identificarsi nel dispositivo durante l'autenticazione. Per informazioni dettagliate sulla procedura, vedere [Configurare CHAP per il dispositivo StorSimple](storsimple-8000-configure-chap.md#unidirectional-or-one-way-authentication).
+Questo parametro contiene le credenziali di hello previste per il dispositivo a cloud (destinazione) da iniziatori hello (server) che siano tentando di volumi hello tooaccess. iniziatori Hello forniscono un nome utente e una tooidentify password CHAP stessi tooyour dispositivo durante il processo di autenticazione. Per informazioni dettagliate, visitare troppo[configurare CHAP per il dispositivo](storsimple-8000-configure-chap.md#unidirectional-or-one-way-authentication).
 
-#### <a name="configure-the-chap-target"></a>Configurare la destinazione dell'autenticazione CHAP
+#### <a name="configure-hello-chap-target"></a>Configurare la destinazione CHAP hello
 
-Questo parametro contiene le credenziali usate dall'appliance cloud quando un iniziatore abilitato per CHAP richiede l'autenticazione reciproca o bidirezionale. L'appliance cloud usa un nome utente e una password per l'autenticazione CHAP inversa per identificarsi nell'iniziatore durante il processo di autenticazione.
-
-> [!NOTE]
-> Le impostazioni della destinazione CHAP sono impostazioni globali. Quando vengono applicate, tutti i volumi connessi all'appliance cloud usano l'autenticazione CHAP.
-
-Per informazioni dettagliate sulla procedura, vedere [Configurare CHAP per il dispositivo StorSimple](storsimple-8000-configure-chap.md#bidirectional-or-mutual-authentication).
-
-#### <a name="configure-the-storsimple-snapshot-manager-password"></a>Configurare la password di Gestione snapshot StorSimple
-
-Il software di Gestione snapshot StorSimple si trova nell'host di Windows e consente agli amministratori di gestire i backup del dispositivo StorSimple sotto forma di snapshot locali e cloud.
+Questo parametro contiene le credenziali di hello che il cloud utilizzato quando un iniziatore abilitata l'autenticazione CHAP richiede l'autenticazione reciproca o bidirezionale. Il dispositivo di cloud utilizza un nome utente e dell'autenticazione CHAP inversa password tooidentify toohello iniziatore durante il processo di autenticazione.
 
 > [!NOTE]
-> Per l'appliance cloud, l'host Windows è una macchina virtuale di Azure.
+> Le impostazioni della destinazione CHAP sono impostazioni globali. Quando queste impostazioni vengono applicate, tutti i volumi di hello connessa l'autenticazione CHAP toohello cloud accessorio utilizzare.
 
-Quando si configura un dispositivo in StorSimple Snapshot Manager, viene richiesto di specificare l'indirizzo IP del dispositivo StorSimple e la password per autenticare il dispositivo di archiviazione. Per informazioni dettagliate sulla procedura, vedere [Configurare la password di StorSimple Snapshot Manager](storsimple-8000-change-passwords.md#set-the-storsimple-snapshot-manager-password).
+Per informazioni dettagliate, visitare troppo[configurare CHAP per il dispositivo](storsimple-8000-configure-chap.md#bidirectional-or-mutual-authentication).
 
-#### <a name="change-the-device-administrator-password"></a>Configurare la password dell’amministratore del dispositivo
+#### <a name="configure-hello-storsimple-snapshot-manager-password"></a>Configurare password gestione Snapshot StorSimple hello
 
-Quando si usa l'interfaccia di Windows PowerShell per accedere all'appliance cloud, è necessario immettere una password amministratore del dispositivo. Per la sicurezza dei dati, per poter usare l'appliance cloud è prima necessario modificare la password. Per informazioni dettagliate sulla procedura, vedere [Configurare la password dell'amministratore del dispositivo](../storsimple/storsimple-8000-change-passwords.md#change-the-device-administrator-password).
+Software di gestione Snapshot StorSimple risiede nell'host di Windows e consente agli amministratori di backup toomanage del dispositivo StorSimple in forma di hello di locale e gli snapshot cloud.
 
-## <a name="connect-remotely-to-the-cloud-appliance"></a>Connettersi in remoto all'appliance cloud
+> [!NOTE]
+> Per il dispositivo di cloud hello, l'host di Windows è una macchina virtuale di Azure.
 
-Per impostazione predefinita, l'accesso remoto all'appliance cloud tramite l'interfaccia di Windows PowerShell non è abilitato. È necessario abilitare la gestione remota prima nell'appliance cloud e quindi nel client usato per accedervi.
+Quando si configura un dispositivo in Gestione Snapshot StorSimple hello, viene chiesto tooprovide hello StorSimple dispositivo IP indirizzo e la password tooauthenticate il dispositivo di archiviazione. Per informazioni dettagliate, visitare troppo[password configurare Gestione Snapshot StorSimple](storsimple-8000-change-passwords.md#set-the-storsimple-snapshot-manager-password).
 
-La procedura in due passaggi seguente illustra come connettersi in remoto all'appliance cloud.
+#### <a name="change-hello-device-administrator-password"></a>Password amministratore del dispositivo hello modifica
+
+Quando si utilizza tooaccess di interfaccia di Windows PowerShell hello hello appliance di cloud, è necessario tooenter una password amministratore del dispositivo. Per sicurezza hello dei dati, è necessario modificare la password prima di poter utilizzare il dispositivo di cloud hello. Per informazioni dettagliate, visitare troppo[password amministratore del dispositivo configura](../storsimple/storsimple-8000-change-passwords.md#change-the-device-administrator-password).
+
+## <a name="connect-remotely-toohello-cloud-appliance"></a>Connettersi in remoto il dispositivo di cloud toohello
+
+Dispositivo cloud tooyour di accesso remoto tramite l'interfaccia di Windows PowerShell hello non è abilitato per impostazione predefinita. È necessario abilitare gestione remota nel dispositivo cloud hello prima e quindi su hello client utilizzato appliance di cloud tooaccess hello.
+
+Hello seguendo la procedura in due passaggi viene descritto come tooconnect in modalità remota tooyour cloud dello strumento.
 
 ### <a name="step-1-configure-remote-management"></a>Passaggio 1: Configurare la gestione remota
 
-Seguire questa procedura per configurare la gestione remota per l'appliance cloud StorSimple.
+Eseguire hello seguendo i passaggi tooconfigure la gestione remota del dispositivo StorSimple per Cloud.
 
 [!INCLUDE [Configure remote management via HTTP for cloud appliance](../../includes/storsimple-8000-configure-remote-management-http-device.md)]
 
-### <a name="step-2-remotely-access-the-cloud-appliance"></a>Passaggio 2: Accedere in remoto all'appliance cloud
+### <a name="step-2-remotely-access-hello-cloud-appliance"></a>Passaggio 2: Accedere in remoto il dispositivo di cloud hello
 
-Dopo aver abilitato la gestione remota nell'appliance cloud, usare la comunicazione remota di Windows PowerShell per connettersi all'appliance da un'altra macchina virtuale all'interno della stessa rete virtuale. Ad esempio, è possibile connettersi dalla VM host che è stata configurata e usata per connettere iSCSI. Nella maggior parte delle distribuzioni, per accedere alla VM host verrà aperto un endpoint pubblico che potrà essere usato per accedere all'appliance cloud.
+Dopo aver abilitato la gestione remota nel dispositivo cloud hello, utilizzare strumento di Windows PowerShell remoting tooconnect toohello da un'altra macchina virtuale all'interno di hello stessa rete virtuale. Ad esempio, è possibile connettersi dalla macchina virtuale che è configurato e utilizzato tooconnect iSCSI dell'host hello. Nella maggior parte delle distribuzioni, tooaccess un endpoint pubblico verrà aperto l'host macchina virtuale che è possibile utilizzare per l'accesso a dispositivo cloud hello.
 
 > [!WARNING]
-> **Per una maggiore sicurezza, si consiglia di utilizzare HTTPS quando ci si connette agli endpoint e di eliminare gli endpoint dopo aver completato la sessione remota in PowerShell.**
+> **Per una sicurezza ottimale, è consigliabile utilizzare HTTPS durante la connessione toohello endpoint e quindi eliminare gli endpoint di hello dopo aver completato la sessione remota di PowerShell.**
 
-Eseguire le procedure descritte in [Connettersi in remoto al dispositivo StorSimple](storsimple-8000-remote-connect.md) per configurare la comunicazione remota per l'appliance cloud.
+È necessario seguire procedure hello in [connette in remoto il dispositivo di StorSimple tooyour](storsimple-8000-remote-connect.md) tooset di gestione remota per il dispositivo a cloud.
 
-## <a name="connect-directly-to-the-cloud-appliance"></a>Connettersi direttamente all'appliance cloud
+## <a name="connect-directly-toohello-cloud-appliance"></a>Connettersi direttamente toohello appliance di cloud
 
-È anche possibile connettersi direttamente all'appliance cloud. Per connettersi direttamente all'appliance cloud da un altro computer all'esterno della rete virtuale o dell'ambiente Microsoft Azure, è necessario creare endpoint aggiuntivi.
+È inoltre possibile connettere direttamente toohello appliance di cloud. tooconnect direttamente dispositivo da un altro computer all'esterno del cloud toohello hello ambiente di Microsoft Azure hello esterno o di rete virtuale, è necessario creare endpoint aggiuntivi.
 
-Seguire questa procedura per creare un endpoint pubblico per l'appliance cloud.
+Eseguire i seguenti passaggi toocreate un endpoint pubblico sul dispositivo per cloud hello hello.
 
 [!INCLUDE [Create public endpoints on a cloud appliance](../../includes/storsimple-8000-create-public-endpoints-cloud-appliance.md)]
 
-Si consiglia di connettersi da un'altra macchina virtuale presente all'interno della stessa rete virtuale; in questo modo si riduce il numero di endpoint pubblici nella rete virtuale. In questo caso, ci si connette alla macchina virtuale tramite una sessione Desktop remoto e si configura tale macchina virtuale per l'uso come qualsiasi altro client Windows in una rete locale. Non è necessario aggiungere il numero della porta pubblica perché la porta è già nota.
+È consigliabile connettersi da un'altra macchina virtuale all'interno di hello stesso virtuale perché questa pratica riduce il numero di hello di endpoint pubblici nella rete virtuale di rete. In questo caso, la connessione macchina virtuale toohello tramite una sessione Desktop remoto e quindi configurare tale macchina virtuale da usare come si farebbe con qualsiasi altro client di Windows in una rete locale. Numero di porta pubblica hello tooappend non è necessario perché la porta hello è già nota.
 
-## <a name="work-with-the-storsimple-cloud-appliance"></a>Usare l'appliance cloud StorSimple
+## <a name="work-with-hello-storsimple-cloud-appliance"></a>Lavorare con hello StorSimple Appliance di Cloud
 
-Ora che è stata creata e configurata l'appliance cloud StorSimple, si può iniziare a usarla. In un'appliance cloud è possibile usare contenitori di volumi, volumi e criteri di backup così come in un dispositivo fisico StorSimple. L'unica differenza è che è necessario assicurarsi di selezionare l'appliance cloud nell'elenco dei dispositivi. Per le procedure dettagliate per le varie attività di gestione dell'appliance cloud, vedere l'articolo su come [usare il servizio Gestione dispositivi StorSimple per gestire un'appliance cloud](storsimple-8000-manager-service-administration.md).
+Dopo aver creato e configurato hello StorSimple Appliance di Cloud, si è toostart pronto utilizzo. In un'appliance cloud è possibile usare contenitori di volumi, volumi e criteri di backup così come in un dispositivo fisico StorSimple. Hello unica differenza è che è necessario verificare di aver selezionato il dispositivo di cloud hello dall'elenco dei dispositivi toomake. Fare riferimento troppo[utilizzare toomanage servizio di gestione di dispositivi StorSimple hello un'applicazione cloud](storsimple-8000-manager-service-administration.md) per le procedure dettagliate di gestione diverse attività per dispositivo cloud hello hello.
 
-Le sezioni seguenti illustrano alcune differenze riscontrabili quando si usa l'appliance cloud.
+Hello nelle sezioni seguenti vengono illustrano alcune delle differenze di hello che si verifica quando si lavora con dispositivo cloud hello.
 
 ### <a name="maintain-a-storsimple-cloud-appliance"></a>Gestire un'appliance cloud StorSimple
 
-Dato che si tratta di un dispositivo esclusivamente software, la gestione dell'appliance cloud è minima rispetto a quella di un dispositivo fisico.
+Poiché si tratta di un dispositivo basato solo su software, manutenzione per il dispositivo cloud hello è minimo quando confrontati toomaintenance per dispositivo fisico hello.
 
-Non è possibile aggiornare un'appliance cloud. Usare l'ultima versione del software per creare una nuova appliance cloud.
+Non è possibile aggiornare un'appliance cloud. Usare hello l'ultima versione del software toocreate nuovi accessori di cloud.
 
 
 ### <a name="storage-accounts-for-a-cloud-appliance"></a>Account di archiviazione per un'appliance cloud
 
-Vengono creati account di archiviazione che verranno usati dal servizio Gestione dispositivi StorSimple, dall'appliance cloud e dal dispositivo fisico. Quando si creano gli account di archiviazione, è consigliabile usare un identificatore di area come nome descrittivo, in modo che l'area sia coerente in tutti i componenti di sistema. Per un'appliance cloud, è importante che tutti i componenti si trovino nella stessa area per evitare problemi di prestazioni.
+Gli account di archiviazione vengono creati per l'utilizzo tramite il servizio di gestione di dispositivi StorSimple hello, appliance di cloud hello e dispositivo fisico hello. Quando si creano gli account di archiviazione, è consigliabile utilizzare un identificatore di area nel nome descrittivo hello. In questo modo otterrai che tale area hello sia coerente in tutti i componenti di sistema hello. Per un'applicazione cloud, è importante che tutti i componenti di hello presenti hello agli stessi problemi di prestazioni tooprevent area.
 
-Per una procedura dettagliata, vedere [Aggiungere un account di archiviazione](storsimple-8000-manage-storage-accounts.md#add-a-storage-account).
+Per una procedura dettagliata, vedere troppo[aggiungere un account di archiviazione](storsimple-8000-manage-storage-accounts.md#add-a-storage-account).
 
 ### <a name="deactivate-a-storsimple-cloud-appliance"></a>Disattivare un'appliance cloud StorSimple
 
-Quando si disattiva un'appliance cloud, vengono eliminate la VM e le risorse create durante il provisioning. Dopo la disattivazione dell'appliance cloud, non è possibile ripristinarne lo stato precedente. Prima di disattivare l'appliance cloud, assicurarsi di arrestare o eliminare i client e gli host che dipendono da essa.
+Quando si disattiva un'applicazione cloud, l'azione di hello Elimina hello macchina virtuale e le risorse di hello create quando è stato eseguito il provisioning. Dopo la disattivazione di appliance di cloud hello, non può essere ripristinato lo stato precedente tooits. Prima di disattivare il dispositivo di cloud hello, assicurarsi che toostop o eliminare i client e gli host che dipendono da esso.
 
-La disattivazione di un'appliance cloud determina le azioni seguenti:
+Disattivazione di un'applicazione cloud produce hello seguenti azioni:
 
-* L'appliance cloud viene rimossa.
-* Il disco del sistema operativo e i dischi dati creati per l'appliance cloud vengono rimossi.
-* Il servizio ospitato e la rete virtuale creata durante il provisioning vengono mantenuti. Se non si utilizzano, è necessario eliminarli manualmente.
-* Gli snapshot cloud creati per l'appliance cloud vengono mantenuti.
+* dispositivo cloud Hello è stato rimosso.
+* disco Hello del sistema operativo e i dischi dati creati per il dispositivo di hello cloud vengono rimossi.
+* il servizio ospitato Hello e rete virtuale creati durante il provisioning vengono mantenuti. Se non si utilizzano, è necessario eliminarli manualmente.
+* Gli snapshot cloud creati per il dispositivo di hello cloud vengono mantenuti.
 
-Per una procedura dettagliata, vedere [Disattivare ed eliminare un dispositivo StorSimple](storsimple-8000-deactivate-and-delete-device.md).
+Per una procedura dettagliata, vedere troppo[disattivare ed eliminare il dispositivo StorSimple](storsimple-8000-deactivate-and-delete-device.md).
 
-Non appena viene visualizzata come disattivata nel pannello del servizio Gestione dispositivi StorSimple, l'appliance cloud può essere eliminata dall'elenco dei dispositivi nel pannello **Dispositivi**.
+Non appena il dispositivo di cloud hello risulta disattivato nel Pannello di servizio di gestione di dispositivi StorSimple hello, è possibile eliminare dispositivo cloud hello dall'elenco di dispositivi in hello **dispositivi** blade.
 
 ### <a name="start-stop-and-restart-a-cloud-appliance"></a>Avviare, arrestare e riavviare un'appliance cloud
-A differenza del dispositivo fisico StorSimple, per un'appliance cloud StorSimple non è disponibile un pulsante di accensione o spegnimento. In alcuni casi, tuttavia, potrebbe essere necessario arrestare e riavviare l'appliance cloud.
+A differenza di dispositivo fisico StorSimple hello, non vi è alcun risparmio energia o spegnimento toopush pulsante in un dispositivo di StorSimple Cloud. Tuttavia, potrebbe essere casi in cui è necessario toostop e riavviare appliance di cloud hello.
 
-Il modo più semplice per avviare, arrestare e riavviare un'appliance cloud consiste nell'usare il pannello del servizio Macchine virtuali. Passare al servizio Macchine virtuali. Nell'elenco delle VM identificare quella corrispondente all'appliance cloud (con lo stesso nome) e fare clic sul nome della VM. Quando si visualizza il pannello della macchina virtuale, lo stato dell'appliance cloud è **In esecuzione** perché l'appliance viene avviata per impostazione predefinita al termine della creazione. È possibile avviare, arrestare e riavviare una macchina virtuale in qualsiasi momento.
+Hello il modo più semplice per è toostart, arrestare e riavviare un'applicazione cloud è tramite hello pannello servizio macchine virtuali. Passare il servizio di Virtual machine hello. Hello l'elenco di macchine virtuali, identificare dispositivo hello VM corrispondente tooyour cloud (nome) e fare clic sul nome di macchina virtuale hello. Quando si esamina il pannello delle macchine virtuali, è stato appliance di cloud hello **esecuzione** perché viene avviato per impostazione predefinita dopo averlo creato. È possibile avviare, arrestare e riavviare una macchina virtuale in qualsiasi momento.
 
 [!INCLUDE [Stop and restart cloud appliance](../../includes/storsimple-8000-stop-restart-cloud-appliance.md)]
 
-### <a name="reset-to-factory-defaults"></a>Ripristino delle impostazioni di fabbrica
-Se si decide di ripristinare l'appliance cloud, disattivarla ed eliminarla e quindi crearne una nuova.
+### <a name="reset-toofactory-defaults"></a>Reimposta valori predefiniti toofactory
+Se si decide che si desidera toostart su con il dispositivo di cloud, disattivare ed eliminarla e quindi crearne uno nuovo.
 
-## <a name="fail-over-to-the-cloud-appliance"></a>Effettuare il failover nell'appliance cloud
-Il ripristino di emergenza è uno dei principali scenari per cui è stata progettata l'appliance cloud StorSimple. In questo scenario il dispositivo fisico StorSimple o il data center completo potrebbe non essere disponibile. Fortunatamente, è possibile usare un'appliance cloud per ripristinare le operazioni in una posizione alternativa. Durante il ripristino di emergenza, la proprietà dei contenitori di volumi del dispositivo di origine viene trasferita all'appliance cloud.
+## <a name="fail-over-toohello-cloud-appliance"></a>Eseguire il failover toohello appliance di cloud
+Ripristino di emergenza (ripristino di emergenza) è uno di hello gli scenari principali che hello StorSimple Appliance di Cloud è stato progettato per. In questo scenario, il dispositivo StorSimple fisico hello o intero Data Center potrebbe non essere disponibile. Fortunatamente, è possibile utilizzare le operazioni toorestore appliance di cloud in un percorso alternativo. Durante il ripristino di emergenza, i contenitori di volumi hello hello dispositivo di origine modificare la proprietà e sono trasferiti toohello appliance di cloud.
 
-Per il ripristino di emergenza devono essere soddisfatti i prerequisiti seguenti:
+prerequisiti di Hello per ripristino di emergenza sono:
 
-* L'appliance cloud è stata creata e configurata.
-* Tutti i volumi all'interno del contenitore sono offline.
-* Al contenitore di volumi di cui si effettua il failover è associato uno snapshot cloud.
+* dispositivo di Hello cloud viene creato e configurato.
+* Tutti i volumi nel contenitore di volumi hello hello sono offline.
+* contenitore di volumi Hello che si esegue il failover, è associato uno snapshot nel cloud.
 
 > [!NOTE]
-> * Quando si usa un'appliance cloud come dispositivo secondario per il ripristino di emergenza, tenere presente che il modello 8010 ha 30 TB di spazio di archiviazione Standard e il modello 8020 ha 64 TB di spazio di archiviazione Premium. La capacità superiore dell'appliance cloud 8020 potrebbe essere più adatta per uno scenario di ripristino di emergenza.
+> * Quando si utilizza un'applicazione cloud come dispositivo secondario hello per ripristino di emergenza, tenere presente che hello 8010: spazio di archiviazione Standard di 30 TB, che 8020 ha 64 TB di spazio di archiviazione Premium. dispositivo di Hello maggiore capacità 8020 cloud potrebbe essere più adatto per uno scenario di ripristino di emergenza.
 
-Per una procedura dettagliata, vedere la sezione relativa al [failover in un'appliance cloud](storsimple-8000-device-failover-cloud-appliance.md).
+Per una procedura dettagliata, vedere troppo[failover appliance di cloud tooa](storsimple-8000-device-failover-cloud-appliance.md).
 
-## <a name="delete-the-cloud-appliance"></a>Eliminare l'appliance cloud
-Se si vuole interrompere l'addebito di ore di calcolo per l'uso di un'appliance cloud StorSimple precedentemente configurata e usata, è necessario arrestare l'appliance cloud. L'arresto dell'appliance cloud determina la deallocazione della VM. Questa azione interromperà l'addebito di costi nella sottoscrizione. Continueranno a essere addebitati, invece, i costi di archiviazione per i dischi dati e del sistema operativo.
+## <a name="delete-hello-cloud-appliance"></a>Eliminare il dispositivo di cloud hello
+Se già configurato e usato un dispositivo di StorSimple Cloud ma decide toostop essere addebitati costi di calcolo per l'uso, è necessario interrompere appliance di cloud hello. Arresto appliance di cloud hello dealloca hello macchina virtuale. Questa azione interromperà l'addebito di costi nella sottoscrizione. costi di archiviazione Hello per hello del sistema operativo e i dischi dati tuttavia continuerà.
 
-Per interrompere tutti gli addebiti, è necessario eliminare l'appliance cloud. Per eliminare i backup creati dall'appliance cloud, è possibile disattivare o eliminare il dispositivo. Per altre informazioni, vedere [Disattivare ed eliminare un dispositivo StorSimple](storsimple-8000-deactivate-and-delete-device.md).
+gli addebiti toostop tutti hello, è necessario eliminare il dispositivo di cloud hello. backup di hello toodelete creati dal dispositivo di hello cloud, è possibile disattivare o eliminare il dispositivo hello. Per altre informazioni, vedere [Disattivare ed eliminare un dispositivo StorSimple](storsimple-8000-deactivate-and-delete-device.md).
 
 [!INCLUDE [Delete a cloud appliance](../../includes/storsimple-8000-delete-cloud-appliance.md)]
 
 ## <a name="troubleshoot-internet-connectivity-errors"></a>Risolvere gli errori di connettività Internet
-Se durante la creazione di un'appliance cloud non è disponibile connettività a Internet, il passaggio della creazione ha esito negativo. Per risolvere gli errori di connettività Internet, seguire questa procedura nel portale di Azure:
+Durante la creazione di un'applicazione cloud hello se è presente alcun toohello connettività Internet, il passaggio di creazione di hello ha esito negativo. tootroubleshoot gli errori di connettività Internet, eseguire hello in hello portale di Azure come segue:
 
-1. [Creare una macchina virtuale Windows Server 2012 in Azure](/articles/virtual-machines/windows/quick-create-portal.md). Questa macchina virtuale dovrà usare lo stesso account di archiviazione, la stessa rete virtuale e la stessa subnet usati dall'appliance cloud. Se esiste già un host Windows Server in Azure che usa lo stesso account di archiviazione, la stessa rete virtuale e la stessa subnet, è anche possibile risolvere i problemi di connettività Internet usando tale host.
-2. Eseguire l'accesso remoto alla macchina virtuale creata nel passaggio precedente.
-3. Aprire una finestra di comando nella macchina virtuale (premere tasto WINDOWS + R e quindi digitare `cmd`).
-4. Al prompt eseguire questo comando:
+1. [Creare una macchina virtuale Windows Server 2012 in Azure](/articles/virtual-machines/windows/quick-create-portal.md). Questa macchina virtuale deve utilizzare hello stesso account di archiviazione, rete virtuale e subnet dal dispositivo per il cloud. Se è presente un host Windows Server in Azure tramite hello stesso account di archiviazione, rete virtuale e subnet, si consente inoltre la connettività Internet hello tootroubleshoot.
+2. Registro remoto nella macchina virtuale hello creato nel passaggio precedente hello.
+3. Aprire una finestra di comando macchina virtuale hello (Win + R, quindi digitare `cmd`).
+4. Eseguire hello seguente cmd al prompt dei comandi hello.
 
     `nslookup windows.net`
-5. Se `nslookup` ha esito negativo, l'errore di connettività Internet impedisce la registrazione dell'appliance cloud nel servizio Gestione dispositivi StorSimple.
-6. Apportare alla rete virtuale le modifiche necessarie affinché l'appliance cloud possa accedere a siti di Azure come _windows.net_.
+5. Se `nslookup` ha esito negativo, quindi impedisce appliance di cloud hello tramite la registrazione del servizio di gestione di dispositivi StorSimple toohello errore di connettività Internet.
+6. Apportare modifiche di hello necessario tooyour tooensure di rete virtuale che hello appliance di cloud è in grado di tooaccess siti di Microsoft Azure, ad esempio _windows.net_.
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Informazioni su come [usare il servizio Gestione dispositivi StorSimple per gestire un'appliance cloud](storsimple-8000-manager-service-administration.md).
-* Informazioni su come [Ripristinare un volume StorSimple da un set di backup](storsimple-8000-restore-from-backup-set-u2.md).
+* Informazioni su come troppo[utilizzare toomanage servizio di gestione di dispositivi StorSimple hello un'applicazione cloud](storsimple-8000-manager-service-administration.md).
+* Comprendere come troppo[ripristinare un volume StorSimple da un set di backup](storsimple-8000-restore-from-backup-set-u2.md).

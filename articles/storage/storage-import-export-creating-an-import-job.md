@@ -1,6 +1,6 @@
 ---
-title: Creare un processo di importazione per Importazione/Esportazione di Azure | Documentazione Microsoft
-description: Informazioni su come creare un'importazione per il servizio Importazione/Esportazione di Microsoft Azure.
+title: aaaCreate un processo di importazione per importazione/esportazione di Azure | Documenti Microsoft
+description: Informazioni su come toocreate un'importazione per hello servizio importazione/esportazione di Microsoft Azure.
 author: muralikk
 manager: syadav
 editor: syadav
@@ -14,96 +14,96 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: muralikk
-ms.openlocfilehash: d373d2a0e601f2796719fc5efb8761f276ab24d9
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: da974c33a3688bb5e2412c8bfcbeca704096c2fc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="creating-an-import-job-for-the-azure-importexport-service"></a>Creazione di un processo di importazione per Importazione/Esportazione di Azure
+# <a name="creating-an-import-job-for-hello-azure-importexport-service"></a>Creazione di un processo di importazione per hello servizio importazione/esportazione di Azure
 
-La creazione di un processo di importazione per il servizio di Importazione/Esportazione di Microsoft Azure utilizzando l'API REST prevede i passaggi seguenti:
+La creazione di un processo di importazione per il servizio di importazione/esportazione di Microsoft Azure hello utilizzando hello API REST prevede hello alla procedura seguente:
 
--   Preparazione delle unità con lo strumento Importazione/Esportazione di Azure.
+-   Preparazione delle unità con hello strumento di importazione/esportazione di Azure.
 
--   Ottenimento della posizione a cui si desidera spedire l'unità.
+-   Ottenere hello percorso toowhich tooship hello unità.
 
--   Creazione del processo di importazione.
+-   Creazione del processo di importazione hello.
 
--   Spedizione delle unità vuote a Microsoft tramite un vettore supportato.
+-   Shipping hello unità tooMicrosoft tramite un servizio vettore supportato.
 
--   Aggiornamento del processo di importazione con i dettagli di spedizione.
+-   Aggiornamento del processo di importazione hello con hello Dettagli spedizione.
 
- Vedere [Uso del servizio Importazione/Esportazione di Microsoft Azure per trasferire i dati nell'archiviazione BLOB](storage-import-export-service.md) per una panoramica del servizio Importazione/Esportazione e un'esercitazione che illustra come usare il [portale di Azure](https://portal.azure.com/) per creare e gestire i processi di importazione ed esportazione.
+ Vedere [tramite servizio di importazione/esportazione di Microsoft Azure hello, dati tooTransfer tooBlob archiviazione](storage-import-export-service.md) per una panoramica del servizio di importazione/esportazione hello e un'esercitazione che illustra come hello toouse [portale di Azure](https://portal.azure.com/) toocreate e gestire l'importazione e i processi di esportazione.
 
-## <a name="preparing-drives-with-the-azure-importexport-tool"></a>Preparazione delle unità con lo strumento di Importazione/Esportazione di Azure
+## <a name="preparing-drives-with-hello-azure-importexport-tool"></a>Preparazione delle unità con hello strumento di importazione/esportazione di Azure
 
-I passaggi per preparare le unità per un processo di importazione sono uguali se si crea il processo tramite il portale o l'API REST.
+Hello passaggi tooprepare unità per un processo di importazione sono hello stesso se si crea hello portale hello jobvia o tramite hello API REST.
 
-Di seguito è riportata una breve panoramica della preparazione dell'unità. Per istruzioni complete, vedere il [Riferimento dello strumento di importazione/esportazione di Azure](storage-import-export-tool-how-to-v1.md). È possibile scaricare lo strumento Importazione/Esportazione di Azure [qui](http://go.microsoft.com/fwlink/?LinkID=301900).
+Di seguito è riportata una breve panoramica della preparazione dell'unità. Fare riferimento toohello [Azure importazione ExportTool riferimento](storage-import-export-tool-how-to-v1.md) per istruzioni complete. È possibile scaricare lo strumento di importazione/esportazione di Azure hello [qui](http://go.microsoft.com/fwlink/?LinkID=301900).
 
 La preparazione dell'unità comporta:
 
--   Identificazione dei dati da importare.
+-   Identificazione hello toobe di dati importati.
 
--   Identificazione dei BLOB di destinazione in Archiviazione di Azure.
+-   Identificazione dei blob di destinazione hello in archiviazione di Azure.
 
--   Uso dello strumento Importazione/Esportazione di Azure per copiare i dati in uno o più dischi rigidi.
+-   Utilizzo di hello strumento di importazione/esportazione di Azure toocopy tooone i dati o più dischi rigidi.
 
- Lo strumento Importazione/Esportazione di Azure genererà anche un file manifesto per ciascuna unità preparata. Contiene un file manifesto:
+ Hello strumento di importazione/esportazione di Azure genererà inoltre un file manifesto per ognuna delle unità hello preparata. Contiene un file manifesto:
 
--   Enumerazione di tutti i file destinati al caricamento e il mapping tra questi file sui BLOB.
+-   Enumerazione di tutti i file hello destinato al caricamento e il mapping di hello da tooblobs questi file.
 
--   Checksum dei segmenti di ciascun file.
+-   Checksum dei segmenti di hello di ogni file.
 
--   Informazioni sui metadati e proprietà da associare a ogni BLOB.
+-   Informazioni su tooassociate hello di proprietà e i metadati con ogni blob.
 
--   Elenco delle azioni da intraprendere se un BLOB che viene caricato ha lo stesso nome di un BLOB esistente nel contenitore. Le opzioni possibili sono: a) sovrascrivere il BLOB con il file, b) mantenere il BLOB esistente e ignorare il caricamento del file, c) aggiungere un suffisso al nome in modo che non sia in conflitto con altri file.
+-   Un elenco di hello azione tootake se dispone di un blob che è in fase di caricamento hello stesso nome di un blob esistente nel contenitore hello. Le opzioni possibili sono: a) sovrascrivere il blob hello con file hello, b) mantenere il blob esistente hello e ignorare il caricamento di file hello, c) aggiungere un nome di toohello suffisso in modo che non è in conflitto con altri file.
 
 ## <a name="obtaining-your-shipping-location"></a>Acquisizione della località di spedizione
 
-Prima di creare un processo di importazione, è necessario ottenere il nome e l'indirizzo di una posizione di spedizione chiamando l'operazione [List Locations](/rest/api/storageimportexport/listlocations) (Elenca posizioni). `List Locations` restituirà un elenco di posizione con gli indirizzi postali. È possibile selezionare una posizione dall'elenco restituito e spedire i dischi rigidi a tale indirizzo. È anche possibile usare l'operazione `Get Location` per ottenere direttamente l'indirizzo di spedizione di una posizione specifica.
+Prima di creare un processo di importazione, è necessario tooobtain il nome di un'ubicazione di spedizione e l'indirizzo dal chiamante hello [List Locations](/rest/api/storageimportexport/listlocations) operazione. `List Locations` restituirà un elenco di località con gli indirizzi postali. È possibile selezionare un'ubicazione hello elenco restituito e spedire il tuo indirizzo toothat unità disco rigido. È inoltre possibile utilizzare hello `Get Location` hello tooobtain operazione indirizzo per una determinata ubicazione di spedizione direttamente.
 
- Seguire i passaggi sotto per ottenere la posizione di spedizione:
+ Seguire i passaggi di hello sotto tooobtain ubicazione di spedizione hello:
 
--   Identificare il nome della località dell'account di archiviazione. Si può trovare questo valore nel campo **Posizione** nel **dashboard** dell'account di archiviazione del portale di Azure oppure lo si può cercare usando l'operazione dell'API Gestione dei servizi [Get Storage Account Properties](/rest/api/storagerp/storageaccounts#StorageAccounts_GetProperties).
+-   Identificare il nome di hello del percorso hello dell'account di archiviazione. Questo valore è reperibile nella hello **percorso** campo dell'account di archiviazione hello **Dashboard** nel portale di Azure o eseguendo una query utilizzando Gestione servizio hello operazione API hello [ottenere archiviazione Proprietà dell'account](/rest/api/storagerp/storageaccounts#StorageAccounts_GetProperties).
 
--   Recuperare la posizione disponibile per elaborare questo account di archiviazione chiamando l'operazione `Get Location`.
+-   Recuperare questo account di archiviazione di percorso hello tooprocess disponibile dal chiamante hello `Get Location` operazione.
 
--   Se la proprietà `AlternateLocations` della posizione contiene la posizione stessa, è possibile usare questa posizione. In caso contrario, chiamare di nuovo l'operazione `Get Location` con una delle posizione alternative. La località originale potrebbe essere chiusa temporaneamente per manutenzione.
+-   Se hello `AlternateLocations` proprietà della posizione di hello contiene percorso hello stesso, quindi è corretto toouse questo percorso. In caso contrario, chiamare hello `Get Location` operazione con una delle posizioni alternative hello. percorso originale Hello potrebbe essere chiusa temporaneamente per la manutenzione.
 
-## <a name="creating-the-import-job"></a>Creazione del processo di importazione
-Per creare il processo di importazione, chiamare l'operazione [Put Job](/rest/api/storageimportexport/jobs#Jobs_CreateOrUpdate) (Inserisci processo). Sarà necessario specificare le informazioni seguenti:
+## <a name="creating-hello-import-job"></a>Creazione del processo di importazione hello
+processo di importazione hello toocreate, chiamata hello [Put Job](/rest/api/storageimportexport/jobs#Jobs_CreateOrUpdate) operazione. È necessario hello tooprovide le seguenti informazioni:
 
--   Un nome per il processo.
+-   Un nome per il processo di hello.
 
--   nome dell'account di archiviazione.
+-   nome di account di archiviazione Hello.
 
--   Il nome della posizione di spedizione, ottenuto nel passaggio precedente.
+-   Hello shipping nome dell'ubicazione, ottenuta nel passaggio precedente hello.
 
 -   Un tipo di processo (importazione).
 
--   L'indirizzo mittente dove inviare le unità al termine del processo di importazione.
+-   indirizzo del mittente Hello dove hello unità devono essere inviate una volta completato il processo di importazione hello.
 
--   Elenco delle unità nel processo. Per ogni unità, è necessario includere le seguenti informazioni ottenute durante la fase di preparazione dell'unità:
+-   elenco di Hello di unità nel processo di hello. Per ogni unità, è necessario includere le seguenti informazioni che è state ottenute durante il passaggio di Preparazione unità hello hello:
 
-    -   ID dell'unità
+    -   Id dell'unità Hello
 
-    -   La chiave di BitLocker
+    -   chiave di BitLocker Hello
 
-    -   Il percorso relativo del file manifesto nel disco rigido
+    -   percorso relativo del file manifesto Hello sul disco rigido hello
 
-    -   Hash MD5 del file manifesto codificato in base 16
+    -   file manifesto MD5 hash con codifica in base 16 Hello
 
 ## <a name="shipping-your-drives"></a>Spedizione delle unità
-È necessario spedire le unità all'indirizzo ottenuto nel passaggio precedente e fornire il numero di tracciabilità del pacchetto nel servizio di Importazione/Esportazione.
+È necessario fornire l'indirizzo toohello unità che ottenuta nel passaggio precedente hello ed è necessario fornire hello servizio importazione/esportazione con numero di pacchetti hello rilevamento hello.
 
 > [!NOTE]
 >  È necessario spedire le unità con un vettore supportato, che fornirà un numero di tracciabilità per il pacchetto.
 
-## <a name="updating-the-import-job-with-your-shipping-information"></a>Aggiornamento del processo di importazione con le informazioni sulla spedizione
-Dopo avere ottenuto il numero di tracciabilità, chiamare l'operazione [Update Job Properties](/api/storageimportexport/jobs#Jobs_Update) (Aggiorna proprietà processo) per aggiornare il nome del vettore, il numero di tracciabilità per il processo e il numero di account del vettore per la spedizione per reso. Facoltativamente è possibile specificare il numero di unità e la data di spedizione.
+## <a name="updating-hello-import-job-with-your-shipping-information"></a>Aggiornamento del processo di importazione di hello con le informazioni di spedizione
+Dopo aver ottenuto il numero di tracciabilità, chiamare hello [Update Job Properties](/api/storageimportexport/jobs#Jobs_Update) hello tooupdate operazione shipping nome del gestore telefonico, il numero di tracciabilità hello per processo hello e numero di conto hello vettore per la spedizione di ritorno. È facoltativamente possibile specificare il numero di hello di unità e hello nonché data di spedizione.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-* [Uso dell'API REST del servizio Importazione/Esportazione](storage-import-export-using-the-rest-api.md)
+* [Tramite l'API REST del servizio importazione/esportazione hello](storage-import-export-using-the-rest-api.md)

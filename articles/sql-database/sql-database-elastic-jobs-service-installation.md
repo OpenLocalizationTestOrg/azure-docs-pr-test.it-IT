@@ -1,6 +1,6 @@
 ---
-title: Installazione dei processi di database elastici | Documentazione Microsoft
-description: "Installazione dettagliata della funzionalità dei processi elastici."
+title: i processi di database elastico aaaInstalling | Documenti Microsoft
+description: "Eseguire l'installazione della funzionalità processi elastico hello."
 services: sql-database
 documentationcenter: 
 manager: jhubbard
@@ -15,122 +15,122 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/24/2016
 ms.author: ddove
-ms.openlocfilehash: e7a2d6dbcefbb31d76257eaf96ccc235d7a29416
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0349f66a4428f81d00d43681d7f2177f273ec032
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="installing-elastic-database-jobs-overview"></a>Installazione dei processi di database elastici (panoramica)
-I [**Processi di database elastici**](sql-database-elastic-jobs-overview.md) possono essere installati tramite PowerShell o tramite il portale di Azure classico. È possibile ottenere l'accesso solo per creare e gestire processi utilizzando l'API PowerShell solo se si installa il pacchetto di PowerShell. Inoltre, le API PowerShell forniscono molte più funzionalità rispetto al portale in questo momento.
+[**I processi di Database elastici** ](sql-database-elastic-jobs-overview.md) può essere installato tramite PowerShell o tramite hello Portal.You classico di Azure potrà accedere a toocreate e gestire processi mediante l'API di PowerShell hello solo se si installa il pacchetto di PowerShell hello. Inoltre, hello APIs di PowerShell fornisce molte più funzionalità rispetto a portale hello in questo momento.
 
-Se sono già stati installati i **processi di database elastici** tramite il portale da un **pool elastico**, l'ultima anteprima di Powershell include gli script per aggiornare l'installazione esistente. È consigliabile aggiornare l'installazione alla versione più recente dei componenti dei **Processi di database elastici** per trarre vantaggio dalle nuove funzionalità esposte tramite le API di PowerShell.
+Se è già stato installato **i processi di Database elastico** tramite hello portale da un oggetto esistente **pool elastico**, anteprima più recente di Powershell hello include script tooupgrade l'installazione esistente. È altamente consigliabile tooupgrade toohello l'installazione più recente **i processi di Database elastico** componenti vantaggio tootake ordine delle nuove funzionalità vengono esposte tramite hello APIs di PowerShell.
 
 ## <a name="prerequisites"></a>Prerequisiti
 * Una sottoscrizione di Azure. Per una versione di valutazione gratuita, vedere [Versione di valutazione gratuita](https://azure.microsoft.com/pricing/free-trial/).
-* Azure PowerShell. Installare la versione più recente tramite l’ [installazione guidata piattaforma Web](http://go.microsoft.com/fwlink/p/?linkid=320376). Per informazioni dettagliate, vedere [Come installare e configurare Azure PowerShell](/powershell/azure/overview).
-* [Utilità della riga di comando NuGet](https://nuget.org/nuget.exe) viene utilizzata per installare il pacchetto dei processi di database elastici. Per altre informazioni, vedere http://docs.nuget.org/docs/start-here/installing-nuget.
+* Azure PowerShell. Installare hello utilizzando la versione più recente hello [installazione guidata piattaforma Web](http://go.microsoft.com/fwlink/p/?linkid=320376). Per informazioni dettagliate, vedere [come tooinstall e configurare Azure PowerShell](/powershell/azure/overview).
+* [Utilità della riga di comando di NuGet](https://nuget.org/nuget.exe) è usato tooinstall hello Database elastico processi pacchetto. Per altre informazioni, vedere http://docs.nuget.org/docs/start-here/installing-nuget.
 
-## <a name="download-and-import-the-elastic-database-jobs-powershell-package"></a>Scaricare e importare il pacchetto di PowerShell dei processi di database elastici
-1. Avviare la finestra di comando Microsoft Azure PowerShell e passare alla directory in cui è stato scaricata l’utilità della riga di comando NuGet (nuget.exe).
-2. Scaricare e importare il pacchetto **Processi di database elastici** nella directory corrente con il comando seguente:
+## <a name="download-and-import-hello-elastic-database-jobs-powershell-package"></a>Scaricare e importare hello Database elastico processi PowerShell pacchetto
+1. Avviare la finestra di comando di Microsoft Azure PowerShell e passare toohello directory in cui è stato scaricato NuGet utilità della riga di comando (nuget.exe).
+2. Scaricare e importare **i processi di Database elastico** pacchetto nella directory corrente di hello con hello comando seguente:
    
         PS C:\>.\nuget install Microsoft.Azure.SqlDatabase.Jobs -prerelease
    
-    I file **Processi di database elastici**vengono inseriti in una directory locale in una cartella denominata **Microsoft.Azure.SqlDatabase.Processi.x.x.xxxx.x** dove *x.x.xxxx.x* rappresenta il numero di versione. I cmdlet di PowerShell (inclusi i client .dlls richiesti) si trovano nella sottodirectory **Strumenti\ProcessiDatabaseElastici** e gli script di PowerShell per installare, aggiornare e disinstallare si trovano anch’essi nella sottodirectory **Strumenti**.
-3. Passare alla sottodirectory strumenti sotto la cartella Microsoft.Azure.SqlDatabase.Processi.x.x.xxx.x digitando strumenti cd, ad esempio:
+    Hello **i processi di Database elastico** i file si trovano nella directory locale di hello in una cartella denominata **Microsoft.Azure.SqlDatabase.Jobs.x.x.xxxx.x** in *x.x.xxxx.x* riflette il numero di versione di hello. cmdlet di PowerShell Hello (inclusi DLL client richieste) si trovano in hello **tools\ElasticDatabaseJobs** sottodirectory hello tooinstall gli script di PowerShell, aggiornare e disinstallare anche si trovano in hello  **strumenti** sottodirectory.
+3. Passare sottodirectory strumenti toohello nella cartella Microsoft.Azure.SqlDatabase.Jobs.x.x.xxx.x hello digitando cd strumenti, ad esempio:
    
         PS C:\*Microsoft.Azure.SqlDatabase.Jobs.x.x.xxxx.x*>cd tools
 
-4. Eseguire lo script .\InstallElasticDatabaseJobsCmdlets.ps1 per copiare la directory ProcessiDatabaseElastici in $home\Documenti\WindowsPowerShell\Moduli. Il modulo da utilizzare, verrà automaticamente importato, ad esempio:
+4. Eseguire ElasticDatabaseJobs directory di hello.\InstallElasticDatabaseJobsCmdlets.ps1 script toocopy hello in $home\Documents\WindowsPowerShell\Modules. Verranno inoltre automaticamente importate modulo hello da utilizzare, ad esempio:
    
         PS C:\*Microsoft.Azure.SqlDatabase.Jobs.x.x.xxxx.x*\tools>Unblock-File .\InstallElasticDatabaseJobsCmdlets.ps1
         PS C:\*Microsoft.Azure.SqlDatabase.Jobs.x.x.xxxx.x*\tools>.\InstallElasticDatabaseJobsCmdlets.ps1
 
-## <a name="install-the-elastic-database-jobs-components-using-powershell"></a>Installare i componenti dei processi di database elastici utilizzando PowerShell
-1. Avviare una finestra di comando di Microsoft Azure PowerShell e passare alla \sottodirectory strumenti sotto la cartella Microsoft.Azure.SqlDatabase.Processi.x.x.xxx.x: digitare cd\strumenti
+## <a name="install-hello-elastic-database-jobs-components-using-powershell"></a>Installare i componenti di processi di Database elastico hello utilizzando PowerShell
+1. Avviare una finestra di comando di Microsoft Azure PowerShell e passare sottodirectory \tools toohello nella cartella Microsoft.Azure.SqlDatabase.Jobs.x.x.xxx.x hello: digitare cd \tools
    
         PS C:\*Microsoft.Azure.SqlDatabase.Jobs.x.x.xxxx.x*>cd tools
 
-2. Eseguire lo script PowerShell .\InstallElasticDatabaseJobs.ps1 e fornire valori per le variabili richieste. Questo script crea i componenti descritti in [Componenti e prezzi dei processi di database elastici](sql-database-elastic-jobs-overview.md#components-and-pricing) con la configurazione del servizio Cloud di Azure per utilizzare correttamente i componenti dipendenti.
+2. Eseguire lo script di PowerShell.\InstallElasticDatabaseJobs.ps1 hello e fornire valori per le variabili di richieste. Questo script crea componenti hello descritti in [componenti e sui prezzi dei processi di Database elastico](sql-database-elastic-jobs-overview.md#components-and-pricing) configurazione servizio Cloud di Azure hello tooappropriately fanno uso dei componenti dipendenti hello.
 
         PS C:\*Microsoft.Azure.SqlDatabase.Jobs.x.x.xxxx.x*\tools>Unblock-File .\InstallElasticDatabaseJobs.ps1
         PS C:\*Microsoft.Azure.SqlDatabase.Jobs.x.x.xxxx.x*\tools>.\InstallElasticDatabaseJobs.ps1
 
-Quando si esegue questo comando, viene visualizzata una finestra in cui vengono richiesti **Nome utente** e **Password**. Non si tratta delle credenziali di Azure. Immettere il nome utente e password che saranno le credenziali di amministratore che si desidera creare per il nuovo server.
+Quando si esegue questo comando, viene visualizzata una finestra in cui vengono richiesti **Nome utente** e **Password**. Non si tratta le credenziali di Azure, immettere nome utente hello e una password che saranno le credenziali di amministratore hello da toocreate per nuovo server hello.
 
-I parametri forniti in questa chiamata di esempio possono essere modificati per le impostazioni desiderate. Di seguito vengono fornite ulteriori informazioni sul comportamento di ciascun parametro:
+parametri di Hello forniti nella chiamata di questo esempio possono essere modificati per le impostazioni desiderate. esempio Hello vengono fornite ulteriori informazioni sul comportamento di hello di ogni parametro:
 
 <table style="width:100%">
   <tr>
-    <th>Parametro</th>
+    <th>.</th>
     <th>Description</th>
   </tr>
 
 <tr>
     <td>ResourceGroupName</td>
-    <td>Fornisce il nome del gruppo di risorse di Azure creato per contenere i componenti di Azure appena creati. Questo parametro viene impostato su "__ElasticDatabaseJob". È consigliabile non modificare questo valore.</td>
+    <td>Fornisce nome gruppo di risorse di Azure hello creato hello toocontain nuovo componenti di Azure. Per impostazione predefinita questo parametro troppo "__ElasticDatabaseJob". Non è consigliabile toochange questo valore.</td>
     </tr>
 
 </tr>
 
     <tr>
     <td>ResourceGroupLocation</td>
-    <td>Fornisce la posizione di Azure da utilizzare per i componenti di Azure appena creati. Questo parametro viene impostato per il percorso Stati Uniti centrali.</td>
+    <td>Fornisce hello Azure percorso toobe utilizzato per hello nuovo componenti di Azure. Questo parametro toohello posizione centrale USA per impostazione predefinita.</td>
 </tr>
 
 <tr>
     <td>ServiceWorkerCount</td>
-    <td>Fornisce il numero di ruoli di lavoro del servizio da installare. Questo parametro viene impostato su 1. Per ridimensionare il servizio e per garantire un'elevata disponibilità, è possibile utilizzare un numero maggiore di ruoli di lavoro. È consigliabile utilizzare "2" per le distribuzioni che richiedono un'elevata disponibilità del servizio.</td>
+    <td>Fornisce il numero di hello del servizio worker tooinstall. Questo parametro per impostazione predefinita too1. Un numero elevato di thread di lavoro può essere utilizzato tooscale out hello servizio e tooprovide la disponibilità elevata. È consigliabile toouse "2" per le distribuzioni che richiedono la disponibilità elevata del servizio hello.</td>
     </tr>
 
 </tr>
     <tr>
     <td>ServiceVmSize</td>
-    <td>Fornisce le dimensioni della macchina virtuale per l'utilizzo all'interno del servizio Cloud. Questo parametro viene impostato su A0. Sono accettati valori di parametri di A0/A1/A2/A3 che fanno si che il ruolo di lavoro utilizzi una dimensione Extrapiccola/Piccola/Media/Grande, rispettivamente. Per altre informazioni sulle dimensioni dei ruoli di lavoro, vedere [Componenti e prezzi dei processi di database elastici](sql-database-elastic-jobs-overview.md#components-and-pricing).</td>
+    <td>Fornisce dimensioni delle macchine Virtuali hello per l'utilizzo della hello servizio Cloud. Questo parametro per impostazione predefinita tooA0. Vengono accettati i valori di parametri di A3/A0/A1/A2, causando il lavoro hello ruolo toouse una dimensione molto piccola/piccole, medie e grandi, rispettivamente. Per altre informazioni sulle dimensioni dei ruoli di lavoro, vedere [Componenti e prezzi dei processi di database elastici](sql-database-elastic-jobs-overview.md#components-and-pricing).</td>
 </tr>
 
 </tr>
     <tr>
     <td>SqlServerDatabaseSlo</td>
-    <td>Fornisce l'obiettivo del livello di servizio per un'edizione Standard. Questo parametro viene impostato su S0. Sono accettati i valori dei parametri S0/S1/S2/S3 che fanno si che il Database SQL di Azure utilizzi il rispettivo SLO. Per ulteriori informazioni sugli SLO del database SQL, vedere [Componenti e prezzi dei processi di database elastici](sql-database-elastic-jobs-overview.md#components-and-pricing).</td>
+    <td>Fornisce l'obiettivo del livello di servizio hello per un'edizione Standard. Questo parametro per impostazione predefinita tooS0. Vengono accettati i valori dei parametri di S0/S1, S2 o S3 determinando hello Database SQL di Azure toouse hello rispettivo SLO. Per ulteriori informazioni sugli SLO del database SQL, vedere [Componenti e prezzi dei processi di database elastici](sql-database-elastic-jobs-overview.md#components-and-pricing).</td>
 </tr>
 
 </tr>
     <tr>
     <td>SqlServerAdministratorUserName</td>
-    <td>Fornisce il nome utente dell’amministratore per il server del Database SQL di Azure appena creato. Se omesso, si aprirà una finestra di credenziali di PowerShell per la richiesta di credenziali.</td>
+    <td>Fornisce il nome utente amministratore di hello per hello appena creati server di Database SQL di Azure. Quando non viene specificato, è possibile che il tooprompt credenziali hello verrà aperta una finestra di PowerShell le credenziali.</td>
 </tr>
 
 </tr>
     <tr>
     <td>SqlServerAdministratorPassword</td>
-    <td>Fornisce la password dell’amministratore per il server del Database SQL di Azure appena creato. Se omesso, si aprirà una finestra di credenziali di PowerShell per richiedere le credenziali.</td>
+    <td>Fornisce la password di amministratore di hello per hello appena creati server di Database SQL di Azure. Quando non viene specificato, è possibile che il tooprompt credenziali hello verrà aperta una finestra di PowerShell le credenziali.</td>
 </tr>
 </table>
 
-Per i sistemi che mirano ad avere un numero elevato di processi in esecuzione in parallelo su un numero elevato di database, si consiglia di specificare  parametri come ad esempio: ServiceWorkerCount - 2 - ServiceVmSize A2 - SqlServerDatabaseSlo S2.
+Per i sistemi che con un numero elevato di processi in esecuzione in parallelo rispetto a un numero elevato di database di destinazione, è consigliabile, ad esempio parametri toospecify: ServiceWorkerCount - 2 - ServiceVmSize A2 - SqlServerDatabaseSlo S2.
 
     PS C:\*Microsoft.Azure.SqlDatabase.Jobs.dll.x.x.xxx.x*\tools>Unblock-File .\InstallElasticDatabaseJobs.ps1
     PS C:\*Microsoft.Azure.SqlDatabase.Jobs.dll.x.x.xxx.x*\tools>.\InstallElasticDatabaseJobs.ps1 -ServiceWorkerCount 2 -ServiceVmSize A2 -SqlServerDatabaseSlo S2
 
 ## <a name="update-an-existing-elastic-database-jobs-components-installation-using-powershell"></a>Aggiornare un'installazione dei componenti dei processi di database elastici esistente tramite PowerShell
-**Processi di database elastici** possono essere aggiornati all'interno di un'installazione esistente per la scalabilità e la disponibilità elevata. Questo processo consente aggiornamenti futuri del codice del servizio senza dover eliminare e ricreare il database di controllo. Questo processo può anche essere utilizzato all'interno della stessa versione per modificare la dimensione della macchina virtuale di servizio o il numero del ruolo di lavoro del server.
+**Processi di database elastici** possono essere aggiornati all'interno di un'installazione esistente per la scalabilità e la disponibilità elevata. Questo processo consente gli aggiornamenti futuri del codice di servizio senza dovere toodrop e ricreare il database di controllo hello. Questo processo può inoltre essere utilizzato all'interno di hello stesso conteggio della versione toomodify hello servizio VM dimensioni o hello server worker.
 
-Per aggiornare la dimensione della macchina virtuale di un'installazione, eseguire lo script seguente con i parametri aggiornati ai valori di propria scelta.
+tooupdate hello dimensione della macchina virtuale un'installazione, hello eseguire lo script con parametri seguente toohello valori aggiornati delle prescelto.
 
     PS C:\*Microsoft.Azure.SqlDatabase.Jobs.dll.x.x.xxx.x*\tools>Unblock-File .\UpdateElasticDatabaseJobs.ps1
     PS C:\*Microsoft.Azure.SqlDatabase.Jobs.dll.x.x.xxx.x*\tools>.\UpdateElasticDatabaseJobs.ps1 -ServiceVmSize A1 -ServiceWorkerCount 2
 
 <table style="width:100%">
   <tr>
-  <th>Parametro</th>
+  <th>.</th>
   <th>Description</th>
 </tr>
 
   <tr>
     <td>ResourceGroupName</td>
-    <td>Identifica il nome del gruppo di risorse di Azure utilizzato quando i componenti dei processi di database elastici sono stati inizialmente installati. Questo parametro viene impostato su "__ElasticDatabaseJob". Poiché non è consigliabile modificare questo valore, non è necessario specificare questo parametro.</td>
+    <td>Identifica nome gruppo di risorse di Azure hello utilizzato quando i componenti dei processi di Database elastico hello sono stati inizialmente installati. Per impostazione predefinita questo parametro troppo "__ElasticDatabaseJob". Perché non è consigliabile toochange questo valore, non dovrebbe essere toospecify questo parametro.</td>
     </tr>
 </tr>
 
@@ -138,44 +138,44 @@ Per aggiornare la dimensione della macchina virtuale di un'installazione, esegui
 
   <tr>
     <td>ServiceWorkerCount</td>
-    <td>Fornisce il numero di ruoli di lavoro del servizio da installare.  Questo parametro viene impostato su 1.  Per ridimensionare il servizio e per garantire un'elevata disponibilità, è possibile utilizzare un numero maggiore di ruoli di lavoro.  È consigliabile utilizzare "2" per le distribuzioni che richiedono un'elevata disponibilità del servizio.</td>
+    <td>Fornisce il numero di hello del servizio worker tooinstall.  Questo parametro per impostazione predefinita too1.  Un numero elevato di thread di lavoro può essere utilizzato tooscale out hello servizio e tooprovide la disponibilità elevata.  È consigliabile toouse "2" per le distribuzioni che richiedono la disponibilità elevata del servizio hello.</td>
 </tr>
 
 </tr>
 
     <tr>
     <td>ServiceVmSize</td>
-    <td>Fornisce le dimensioni della macchina virtuale per l'utilizzo all'interno del servizio Cloud. Questo parametro viene impostato su A0. Sono accettati valori di parametri di A0/A1/A2/A3 che fanno si che il ruolo di lavoro utilizzi una dimensione Extrapiccola/Piccola/Media/Grande, rispettivamente. Per altre informazioni sulle dimensioni dei ruoli di lavoro, vedere [Componenti e prezzi dei processi di database elastici](sql-database-elastic-jobs-overview.md#components-and-pricing).</td>
+    <td>Fornisce dimensioni delle macchine Virtuali hello per l'utilizzo della hello servizio Cloud. Questo parametro per impostazione predefinita tooA0. Vengono accettati i valori di parametri di A3/A0/A1/A2, causando il lavoro hello ruolo toouse una dimensione molto piccola/piccole, medie e grandi, rispettivamente. Per altre informazioni sulle dimensioni dei ruoli di lavoro, vedere [Componenti e prezzi dei processi di database elastici](sql-database-elastic-jobs-overview.md#components-and-pricing).</td>
 </tr>
 
 </table>
 
-## <a name="install-the-elastic-database-jobs-components-using-the-portal"></a>Installare i componenti dei processi di database elastici utilizzando il portale
-Dopo aver creato un [pool elastico](sql-database-elastic-pool-manage-portal.md), è possibile installare componenti dei **processi di database elastici** per abilitare l'esecuzione di attività amministrative su ogni database nel pool elastico. A differenza di quando si utilizzano le API PowerShell dei **processi di database elastici** , l'interfaccia del portale è attualmente limitata solamente all’esecuzione su un pool esistente.
+## <a name="install-hello-elastic-database-jobs-components-using-hello-portal"></a>Installare i componenti di processi di Database elastico hello utilizzando hello portale
+Dopo aver [creato un pool elastico](sql-database-elastic-pool-manage-portal.md), è possibile installare **i processi di Database elastico** esecuzione tooenable componenti delle attività amministrative in tutti i database nel pool elastico hello. A differenza di quando utilizzare hello **i processi di Database elastico** APIs di PowerShell, interfaccia portale hello è attualmente soggetta a restrizioni tooonly per eseguire un pool esistente.
 
-**Tempo previsto per il completamento:** 10 minuti
+**Toocomplete tempo stimato:** 10 minuti.
 
-1. Nella vista dashboard del pool elastico, tramite il [portale di Azure](https://portal.azure.com/#) fare clic su **Crea processo**.
-2. Se si sta creando un processo per la prima volta, è necessario installare **processi di database elastici** facendo clic su **ANTEPRIMA TERMINI**.
-3. Accettare i termini selezionando la casella di controllo.
-4. Nella vista "Installa servizi", fare clic su **CREDENZIALI PROCESSO**.
+1. Dalla visualizzazione dashboard hello del pool elastico di hello tramite hello [portale Azure](https://portal.azure.com/#) , fare clic su **processo di creazione**.
+2. Se si sta creando un processo per hello prima volta, è necessario installare **i processi di Database elastico** facendo **condizioni per l'anteprima**.
+3. Accettare le condizioni di hello facendo hello casella di controllo.
+4. Nella visualizzazione hello "Installazione servizi", fare clic su **processo CREDENZIALI**.
    
-    ![Installazione dei servizi][1]
-5. Digitare un nome utente e una password per un amministratore del database. Come parte dell'installazione, viene creato un nuovo server di database SQL di Azure. All'interno di questo nuovo server, viene creato un nuovo database, noto come database di controllo, che viene utilizzato per contenere i metadati per i processi di database elastici. Il nome utente e la password creati in questo caso vengono utilizzati per l'accesso al database di controllo. Una credenziale separata viene utilizzata per l'esecuzione di script sui database all'interno del pool.
+    ![Installazione di servizi di hello][1]
+5. Digitare un nome utente e una password per un amministratore del database. Come parte dell'installazione di hello, viene creato un nuovo server di Database SQL di Azure. All'interno di questo nuovo server, un nuovo database, noto come database del controllo hello, viene creato e utilizzato i metadati di hello toocontain per i processi di Database elastico. nome utente Hello e la password creati in questo caso vengono utilizzati a scopo di hello di registrazione nel database del controllo toohello. Una credenziale separata viene usata per l'esecuzione di script sul database hello pool hello.
    
     ![Creare nome utente e password][2]
-6. Fare clic sul pulsante OK. I componenti vengono creati automaticamente in pochi minuti in un nuovo [gruppo di risorse](../azure-resource-manager/resource-group-overview.md). Il nuovo gruppo di risorse viene bloccato sulla schermata iniziale, come illustrato di seguito. Una volta creati, i processi di database elastici (Servizio cloud, database SQL, Bus di servizio e Archiviazione) vengono creati tutti nel gruppo.
+6. Fare clic su pulsante OK hello. i componenti di Hello vengono creati automaticamente in pochi minuti in un nuovo [gruppo di risorse](../azure-resource-manager/resource-group-overview.md). è stato aggiunto il nuovo gruppo di risorse Hello toohello avviare discussioni, come illustrato di seguito. Tutti i processi di database elastico, una volta create (servizio Cloud, Database SQL, Bus di servizio e archiviazione) vengono creati nel gruppo di hello.
    
     ![gruppo di risorse nella schermata iniziale][3]
-7. Se si tenta di creare o gestire un processo mentre si installano i processi di database elastici, nel momento in cui vengono fornite le **credenziali** verrà visualizzato il messaggio seguente.
+7. Se si tenta di toocreate o gestire un processo durante l'installazione, i processi di database elastico quando si specifica **credenziali** hello seguente messaggio verrà visualizzato.
    
     ![Distribuzione ancora in corso][4]
 
-Se è necessaria la disinstallazione, eliminare il gruppo di risorse. Vedere [Come disinstallare i componenti dei processi di database elastici](sql-database-elastic-jobs-uninstall.md).
+Se la disinstallazione è necessario, eliminare il gruppo di risorse di hello. Vedere [come toouninstall hello Database elastico processo componenti](sql-database-elastic-jobs-uninstall.md).
 
 ## <a name="next-steps"></a>Passaggi successivi
-Assicurarsi che una credenziale con i diritti appropriati per l'esecuzione di script venga creata in ogni database nel gruppo e vedere [Protezione del Database SQL](sql-database-manage-logins.md)per ulteriori informazioni.
-Per un’introduzione, vedere [Creazione e gestione di processi di database elastici](sql-database-elastic-jobs-create-and-manage.md) .
+Verificare che una credenziale con diritti di hello appropriati per l'esecuzione dello script viene creato in ogni database nel gruppo di hello, per ulteriori informazioni, vedere [la protezione del Database SQL](sql-database-manage-logins.md).
+Vedere [creazione e gestione dei processi di un Database elastico](sql-database-elastic-jobs-create-and-manage.md) tooget avviato.
 
 <!--Image references-->
 [1]: ./media/sql-database-elastic-jobs-service-installation/screen-1.png

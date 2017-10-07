@@ -1,6 +1,6 @@
 ---
-title: Installare l'aggiornamento 0.5 nell'array virtuale StorSimple | Microsoft Docs
-description: Descrive come usare l'interfaccia utente Web dell'array virtuale StorSimple per applicare aggiornamenti tramite il portale di Azure e gli hotfix
+title: Aggiornamento 0,5 in StorSimple Virtual Array aaaInstall | Documenti Microsoft
+description: Viene descritto come toouse hello Array virtuale StorSimple web aggiornamenti dell'interfaccia utente tooapply utilizzando hello Azure portale e l'aggiornamento rapido (metodo)
 services: storsimple
 documentationcenter: NA
 author: alkohli
@@ -14,107 +14,107 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 05/10/2017
 ms.author: alkohli
-ms.openlocfilehash: c47da5b90c16e2d5b5709e2a6affc026238b9468
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c38daa85daa0086e67cf0206d76cb19d9c8b21b3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="install-update-05-on-your-storsimple-virtual-array"></a>Installare l'aggiornamento 0.5 nell'array virtuale StorSimple
 
 ## <a name="overview"></a>Panoramica
 
-Questo articolo descrive i passaggi necessari per installare l'aggiornamento 0.5 nell'array virtuale StorSimple tramite l'interfaccia utente Web locale e il portale di Azure. È necessario applicare aggiornamenti software o hotfix per mantenere StorSimple Virtual Array sempre aggiornato.
+Questo articolo descrive hello passaggi necessari tooinstall aggiornamento 0,5 nell'Array virtuale StorSimple tramite l'interfaccia utente web locale hello e tramite hello portale di Azure. È necessario tooapply software aggiornamenti o hotfix tookeep l'Array virtuale StorSimple aggiornato.
 
-Prima di applicare un aggiornamento, si consiglia di portare offline i volumi o le condivisioni, prima nell'host e poi nel dispositivo. Questa operazione consente di eliminare qualsiasi rischio di danneggiamento dei dati. Quando i volumi o le condivisioni sono offline, è consigliabile eseguire anche un backup manuale del dispositivo.
+Prima di applicare un aggiornamento, è consigliabile eseguire volumi hello o condivisioni offline in hello innanzitutto l'host e quindi hello dispositivo. Questa operazione consente di eliminare qualsiasi rischio di danneggiamento dei dati. Dopo aver hello volumi o condivisioni sono offline, è inoltre necessario eseguire il manuale di un backup del dispositivo hello.
 
 > [!IMPORTANT]
-> - L'aggiornamento 0.5 corrisponde alla versione del software **10.0.10290.0** nel dispositivo. Per informazioni sulle novità in questo aggiornamento, vedere le [note sulla versione per l'aggiornamento 0.5](storsimple-virtual-array-update-05-release-notes.md).
+> - Aggiornamento 0,5 corrisponde troppo**10.0.10290.0** versione del software nel dispositivo. Per informazioni sulle novità in questo aggiornamento, visitare troppo[note sulla versione di aggiornamento 0,5](storsimple-virtual-array-update-05-release-notes.md).
 >
-> - Se si esegue l'aggiornamento 0.2 o versione successiva, è consigliabile installare gli aggiornamenti tramite il portale di Azure. Se si esegue l'aggiornamento 0.1 o una versione del software disponibile a livello generale, è necessario usare il metodo hotfix tramite l'interfaccia utente Web locale per installare l'aggiornamento 0.5.
+> - Se si esegue l'aggiornamento 0,2 o versioni successive, è consigliabile installare aggiornamenti hello tramite hello portale di Azure. Se si esegue l'aggiornamento 0,1 o versioni del software GA, è necessario utilizzare il metodo di aggiornamento rapido hello tramite tooinstall di interfaccia utente web locale hello aggiornamento 0,5.
 >
-> - Tenere presente che l'installazione di un aggiornamento o un hotfix potrebbe riavviare il dispositivo. Dato che l'array virtuale StorSimple è un dispositivo a nodo singolo, gli eventuali I/O in corso vengono interrotti e il dispositivo registra un periodo di inattività.
+> - Tenere presente che l'installazione di un aggiornamento o un hotfix potrebbe riavviare il dispositivo. Dato che hello Array virtuale StorSimple è un dispositivo singolo nodo, viene interrotta qualsiasi i/o in corso e il dispositivo si verifica nel tempo di inattività.
 
-## <a name="use-the-azure-portal"></a>Usare il portale di Azure
+## <a name="use-hello-azure-portal"></a>Utilizzare hello portale di Azure
 
-Se si esegue l'aggiornamento 0.2 o versione successiva, è consigliabile installare gli aggiornamenti tramite il portale di Azure. La procedura del portale richiede all'utente di analizzare, scaricare e installare gli aggiornamenti. Questa procedura di aggiornamento richiede circa 7 minuti per il completamento. Seguire questa procedura per installare l'aggiornamento o l'hotfix.
+Se l'esecuzione di Update 0,2 e versioni successive, è consigliabile installare gli aggiornamenti tramite hello portale di Azure. procedure portale Hello richiede hello utente tooscan, scaricare e installare gli aggiornamenti di hello. Questa procedura accetta toocomplete circa 7 minuti. Eseguire l'esempio hello passaggi tooinstall hello aggiornamento o un hotfix.
 
 [!INCLUDE [storsimple-virtual-array-install-update-via-portal](../../includes/storsimple-virtual-array-install-update-via-portal-04.md)]
 
-Al termine dell'installazione, passare al servizio Gestione dispositivi StorSimple. Selezionare **Dispositivi** e quindi selezionare e fare clic sul dispositivo appena aggiornato. Passare a **Impostazioni > Gestisci > Device Updates** (Aggiornamenti dispositivi). La versione del software visualizzata dovrebbe essere **10.0.10290.0**.
+Dopo aver hello installazione è completata, passare tooyour servizio di gestione di dispositivi StorSimple. Selezionare **dispositivi** selezionare e fare clic su dispositivo hello hai appena aggiornato. Andare troppo**Impostazioni > Gestisci > gli aggiornamenti del dispositivo**. la versione software Hello visualizzato deve essere **10.0.10290.0**.
 
-## <a name="use-the-local-web-ui"></a>Usare l'interfaccia utente Web locale
+## <a name="use-hello-local-web-ui"></a>Utilizzare l'interfaccia utente web locale hello
 
-Quando si usa l'interfaccia utente Web locale, è necessario eseguire due passaggi:
+Quando si utilizza l'interfaccia utente web locale hello, sono disponibili due passaggi:
 
-* Scaricare l'aggiornamento o l'hotfix
-* Installare l'aggiornamento o l'hotfix
+* Scaricare l'aggiornamento di hello o un hotfix di hello
+* Installare l'aggiornamento di hello o un hotfix di hello
 
-### <a name="download-the-update-or-the-hotfix"></a>Scaricare l'aggiornamento o l'hotfix
+### <a name="download-hello-update-or-hello-hotfix"></a>Scaricare l'aggiornamento di hello o un hotfix di hello
 
-Eseguire i passaggi seguenti per scaricare l'aggiornamento del software da Microsoft Update Catalog.
+Eseguire hello dopo l'aggiornamento software di passaggi toodownload hello da hello Microsoft Update Catalog.
 
-#### <a name="to-download-the-update-or-the-hotfix"></a>Per scaricare l'aggiornamento o l'hotfix
+#### <a name="toodownload-hello-update-or-hello-hotfix"></a>hotfix di aggiornamento o hello hello toodownload
 
-1. Avviare Internet Explorer e accedere al sito [http://catalog.update.microsoft.com](http://catalog.update.microsoft.com).
+1. Avviare Internet Explorer e passare troppo[http://catalog.update.microsoft.com](http://catalog.update.microsoft.com).
 
-2. Se si usa Microsoft Update Catalog nel computer per la prima volta, fare clic su **Installa** quando viene richiesto di installare il componente aggiuntivo Microsoft Update Catalog.
+2. Se questa è la prima volta tramite Microsoft Update Catalog hello in questo computer, fare clic su **installare** quando richiesta tooinstall hello componente aggiuntivo di Microsoft Update Catalog.
 
-3. Nella casella di ricerca di Microsoft Update Catalog, immettere il numero dell'hotfix da scaricare riportato nella Knowledge Base (KB). Immettere **4021576** per l'aggiornamento 0.5 e quindi fare clic su **Cerca**.
+3. Nella casella di ricerca hello di hello Microsoft Update Catalog, immettere il numero di articolo della Knowledge Base (KB) hello di hotfix hello desiderato toodownload. Immettere **4021576** per l'aggiornamento 0.5 e quindi fare clic su **Cerca**.
    
-    Verrà visualizzato l'elenco degli hotfix, tra cui l'**aggiornamento 0.5 per l'array virtuale StorSimple**.
+    Hello hotfix elenco viene visualizzato, ad esempio, **StorSimple Virtual Array aggiornamento 0,5**.
    
     ![Cercare nel catalogo](./media/storsimple-virtual-array-install-update-05/download1.png)
 
 4. Fare clic su **Download**. 
 
-5. Dovrebbero venire visualizzati due file per il download, con estensione *msu* e *cab*. Scaricare ognuno dei file in una cartella. Inoltre, la cartella può essere copiata in una condivisione di rete raggiungibile dal dispositivo.
+5. Due toodownload di file, verrà visualizzato un *msu* e *CAB* file. Scaricare ciascun tali tooa cartella dei file. cartella Hello può essere copiati tooa condivisione di rete che sia raggiungibile dal dispositivo hello.
 
-6. Aprire la cartella in cui si trovano i file.
-    ![File nel pacchetto](./media/storsimple-virtual-array-install-update-05/update05folder.png)
+6. Aprire la cartella hello in cui si trovano i file hello.
+    ![File di pacchetto hello](./media/storsimple-virtual-array-install-update-05/update05folder.png)
 
     Verranno visualizzati:
-    -  Un file di pacchetto autonomo Microsoft Update `WindowsTH-KB3011067-x64`. Questo file viene usato per aggiornare il software del dispositivo.
-    - Un file di pacchetto dell'agente di monitoraggio Geneva `GenevaMonitoringAgentPackageInstaller`. Questo file viene usato per aggiornare l'agente del servizio di monitoraggio e diagnostica (MDS). Fare doppio clic sul file con estensione cab. Verrà visualizzato un file con estensione msi. Selezionare il file, fare clic con il pulsante destro del mouse e quindi scegliere **Estrai**. Si userà il file con estensione _msi_ file per aggiornare l'agente.
+    -  Un file di pacchetto autonomo Microsoft Update `WindowsTH-KB3011067-x64`. Questo file è un software di dispositivo hello tooupdate utilizzato.
+    - Un file di pacchetto dell'agente di monitoraggio Geneva `GenevaMonitoringAgentPackageInstaller`. Questo file è utilizzato tooupdate hello monitoraggio e diagnostica (MDS) agente del servizio. Fare doppio clic sul file cab hello. Verrà visualizzato un file con estensione msi. File hello selezionare pulsante destro del mouse, quindi **estrarre** file hello. Si utilizzerà hello _con estensione msi_ agente hello tooupdate.
 
         ![Estrarre il file di aggiornamento dell'agente del servizio di monitoraggio e diagnostica (MDS)](./media/storsimple-virtual-array-install-update-05/extract-geneva-monitoring-agent-installer.png)
         
     
 
-### <a name="install-the-update-or-the-hotfix"></a>Installare l'aggiornamento o l'hotfix
+### <a name="install-hello-update-or-hello-hotfix"></a>Installare l'aggiornamento di hello o un hotfix di hello
 
-Prima dell'installazione di un aggiornamento o un hotfix, assicurarsi di avere scaricato l'aggiornamento o l'hotfix in locale o sull'host, altrimenti che siano accessibili tramite una condivisione di rete.
+Installazione di un hotfix o aggiornamento precedente toohello, assicurarsi che si dispone di hello aggiornamento o hotfix hello scaricato localmente nell'host o accessibile tramite una condivisione di rete.
 
-Usare questo metodo per installare gli aggiornamenti in un dispositivo che esegue GA o versioni del software con l'aggiornamento 0.1. Questa procedura di aggiornamento richiede un massimo di 2 minuti per il completamento. Seguire questa procedura per installare l'aggiornamento o l'hotfix.
+Utilizzare questo metodo tooinstall Aggiorna su un dispositivo che esegue GA o aggiornare le versioni di software 0,1. Questa procedura richiede minore toocomplete 2 minuti. Eseguire l'esempio hello passaggi tooinstall hello aggiornamento o un hotfix.
 
-#### <a name="to-install-the-update-or-the-hotfix"></a>Per installare l'aggiornamento o l'hotfix
+#### <a name="tooinstall-hello-update-or-hello-hotfix"></a>hotfix di aggiornamento o hello hello tooinstall
 
-1. Nell'interfaccia utente Web locale, accedere a **Manutenzione** > **Aggiornamento software**.
+1. In hello interfaccia utente web locale, andare troppo**manutenzione** > **aggiornamento Software**.
    
     ![aggiornamento dispositivo](./media/storsimple-virtual-array-install-update-05/update1m.png)
 
-2. In **Percorso del file di aggiornamento**, immettere il nome del file dell'aggiornamento o dell'hotfix. È possibile anche cercare il file di installazione dell'aggiornamento o dell'hotfix, se posizionato in una condivisione di rete. Fare clic su **Apply**.
+2. In **percorso del file di aggiornamento**, immettere il nome di file hello per l'aggiornamento di hello o hello hotfix. È inoltre possibile esplorare i file di installazione di un hotfix o aggiornamento toohello se inserito in una condivisione di rete. Fare clic su **Apply**.
    
     ![aggiornamento dispositivo](./media/storsimple-virtual-array-install-update-05/update2m.png)
 
-3. Verrà visualizzato un avviso. Dato che si tratta di un dispositivo a nodo singolo, dopo l'applicazione dell'aggiornamento il dispositivo si riavvia con un conseguente periodo di inattività. Fare clic sull'icona del segno di spunta
+3. Verrà visualizzato un avviso. Dato questo è un dispositivo singolo nodo, dopo che viene applicato l'aggiornamento di hello, hello dispositivo si riavvia e vi sia tempo di inattività. Fare clic sull'icona di controllo di hello.
    
    ![aggiornamento dispositivo](./media/storsimple-virtual-array-install-update-05/update3m.png)
 
-4. L'aggiornamento si avvia. Dopo l'aggiornamento il dispositivo si riavvia in automatico. In questo periodo di tempo l'interfaccia utente locale non è accessibile.
+4. avvio dell'aggiornamento Hello. Dopo aver completato l'aggiornamento dispositivo hello, viene riavviato. Hello dell'interfaccia utente locale non è accessibile in tale intervallo di tempo.
    
     ![aggiornamento dispositivo](./media/storsimple-virtual-array-install-update-05/update5m.png)
 
-5. Al termine del riavvio si viene indirizzati alla pagina **di accesso** . Per verificare se il software del dispositivo è stato aggiornato, nell'interfaccia utente Web locale passare a **Manutenzione** > **Aggiornamento software**. Dovrebbe essere visualizzata la versione del software **10.0.0.0.0.10290.0** per l'aggiornamento 0.5.
+5. Dopo aver completato il riavvio di hello, che viene visualizzata toohello **Accedi** pagina. tooverify dispone di aggiornamento software per dispositivi hello nel web locale hello dell'interfaccia utente, andare troppo**manutenzione** > **aggiornamento Software**. la versione software Hello visualizzato deve essere **10.0.0.0.0.10290.0** per l'aggiornamento di 0,5.
    
    > [!NOTE]
-   > Le versioni del software vengono riportate in modo leggermente diverso nell'interfaccia utente Web locale e nel portale di Azure. Ad esempio, l'interfaccia utente Web locale indica **10.0.0.0.0.10290**, mentre il portale di Azure indica **10.0.10290.0** per la stessa versione.
+   > I report versioni del software hello in modo leggermente diverso nell'interfaccia utente web locale hello hello portale di Azure. Ad esempio, hello report dell'interfaccia utente web locale **10.0.0.0.0.10290** e i report del portale Azure hello **10.0.10290.0** per hello stessa versione.
    
     ![aggiornamento dispositivo](./media/storsimple-virtual-array-install-update-05/update6m.png)
 
-6. Il passaggio successivo consiste nell'aggiornare l'agente del servizio di monitoraggio e diagnostica (MDS). Nella pagina **Software Update** (Aggiornamento software), passare a **Update file path** (Aggiorna percorso file) e cercare il file `GenevaMonitoringAgentPackageInstaller.msi`. Ripetere i passaggi da 2 a 4. Dopo il riavvio dell'array virtuale, accedere all'interfaccia utente Web locale.
+6. passaggio successivo Hello è l'agente tooupdate hello MDS. In hello **aggiornamento Software** pagina, visitare toohello **percorso del file di aggiornamento** ed esplorare toohello `GenevaMonitoringAgentPackageInstaller.msi` file. Ripetere i passaggi da 2 a 4. Dopo il riavvio di array virtuale hello, effettuano l'interfaccia utente web locale hello.
 
-L'aggiornamento è ora completato.
+aggiornamento di Hello è stata completata.
 
 ## <a name="next-steps"></a>Passaggi successivi
 

@@ -1,5 +1,5 @@
 ---
-title: Come configurare gli output dei dati per i processi di Analisi di flusso | Microsoft Docs
+title: Genera dati tooconfigure aaaHow per i processi di flusso Analitica | Documenti Microsoft
 description: Configurare gli output per i processi di Analisi di flusso | segmento del percorso di apprendimento.
 keywords: output dei dati, spostamento dei dati
 documentationcenter: 
@@ -15,37 +15,37 @@ ms.tgt_pltfrm: na
 ms.workload: data-services
 ms.date: 04/26/2017
 ms.author: samacha
-ms.openlocfilehash: 1ffa517469da1a8d79917b9747abc97ca3bef463
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: c5d89e9e9f9211d3e778580c071dd53d56aed9fe
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-configure-data-outputs-for-stream-analytics-jobs"></a>Come configurare gli output dei dati per i processi di Analisi di flusso
+# <a name="how-tooconfigure-data-outputs-for-stream-analytics-jobs"></a>La modalità di output tooconfigure dati per i processi di flusso Analitica
 
-I processi di Analisi di flusso di Azure possono essere connessi a uno o più output dei dati, che definisce una connessione a un sink di dati esistente. Dato che il processo di Analisi di flusso elabora e trasforma i dati in entrata, un flusso di eventi di output dei dati viene scritto nell'output del processo.
+I processi di flusso Analitica Azure possono essere connesso tooone o più output di dati, che definiscono un sink di dati esistente tooan connessione. Durante il processo di flusso Analitica elabora e trasforma i dati in ingresso, un flusso di dati di eventi di output viene scritto l'output del processo tooyour.
 
-È possibile usare gli output dei dati di Analisi di flusso per creare dashboard o avvisi in tempo reale, attivare i flussi di lavoro degli spostamenti dei dati o semplicemente archiviare i dati per una successiva elaborazione batch. L'analisi di flusso dispone dell'integrazione di prima classe con diversi servizi di Azure, che sono documentati in dettaglio di seguito.
+Output di dati di flusso Analitica può essere utilizzato toosource di dashboard in tempo reale o avvisi, trigger flussi di lavoro lo spostamento dei dati o semplicemente i dati di archiviazione per l'elaborazione batch in un secondo momento. L'analisi di flusso dispone dell'integrazione di prima classe con diversi servizi di Azure, che sono documentati in dettaglio di seguito.
 
-Per aggiungere un output al processo di analisi di flusso:
+tooadd un processo di flusso Analitica tooyour output:
 
-1. Nel [portale di Azure](https://portal.azure.com), aprire il processo e fare clic su **Output** e quindi fare clic su **Aggiungi** nel pannello Output che viene visualizzato.
+1. In hello [portale di Azure](https://portal.azure.com), aprire il processo e fare clic su **output** e quindi fare clic su **Aggiungi** nel Pannello di output di hello che viene visualizzato.
    
     ![Aggiungere output](./media/stream-analytics-add-outputs/1-stream-analytics-add-outputs.png)  
    
-2. Fornire un nome descrittivo per l'output nella finestra di **Alias di output** . Questo nome verrà utilizzato nella query del processo in un secondo momento per fare riferimento all'output.  
+2. Specificare un nome descrittivo per l'output di hello **Alias di Output** casella. Questo nome può essere utilizzato nella query del processo in un secondo momento nell'output di toohello toorefer.  
    
-    Compilare il resto delle proprietà di connessione necessarie per connettersi all'output.  Questi campi variano in base al tipo di output e vengono definiti in modo dettagliato di seguito.  
+    Compilare il resto di hello dell'output di hello necessario connessione proprietà tooconnect tooyour.  Questi campi variano in base al tipo di output e vengono definiti in modo dettagliato di seguito.  
    
     ![Scegliere il tipo di spostamento dei dati](./media/stream-analytics-add-outputs/2-stream-analytics-add-outputs.png)  
    
-3. A seconda del tipo di output, può essere necessario specificare la modalità di serializzazione o formattazione dei dati. Di seguito sono descritte le impostazioni di serializzazione specifiche per ogni tipo di output.
+3. In base al tipo di output di hello, potrebbe essere necessario toospecify come dati hello viene serializzati o formattati. le impostazioni di serializzazione specifici Hello per ogni tipo di output sono documentate di seguito.
    
-    Compilare il resto delle proprietà di connessione necessarie per connettersi all'origine dati. Questi campi variano in base al tipo di origine e di input e vengono descritti in modo dettagliato nell'articolo relativo alla [creazione di un processo](stream-analytics-create-a-job.md).  
+    Compilare il resto di hello di origine dei dati tooyour proprietà tooconnect hello necessarie per la connessione. Questi campi variano in base al tipo del tipo di input e di origine e sono definiti in modo dettagliato in hello [articolo Crea processo](stream-analytics-create-a-job.md).  
 
 > [!Note]
 >
-> Qualsiasi elemento output aggiunto al processo, deve esistere prima che il processo venga avviato e gli eventi avviino il flusso. Ad esempio, se si utilizza l'archiviazione Blob come output, il processo non creerà un account di archiviazione automaticamente. Deve essere creato dall'utente prima che venga avviato il processo ASA.
+> Qualsiasi processo di aggiunta toohello elemento di output, deve esistere prima hello processo viene avviato e gli eventi di inizio propagazione. Ad esempio, se si utilizza l'archiviazione Blob come output, il processo di hello non creerà un account di archiviazione automaticamente. È necessario che toobe creato dall'utente hello prima dell'avvio del processo ASA hello.
 > 
  
 
@@ -53,7 +53,7 @@ Per aggiungere un output al processo di analisi di flusso:
 Per assistenza, provare il [Forum di Analisi di flusso di Azure](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureStreamAnalytics)
 
 ## <a name="next-steps"></a>Passaggi successivi
-* [Introduzione ad Analisi dei flussi di Azure](stream-analytics-introduction.md)
+* [Introduzione tooAzure flusso Analitica](stream-analytics-introduction.md)
 * [Introduzione all'uso di Analisi dei flussi di Azure](stream-analytics-real-time-fraud-detection.md)
 * [Ridimensionare i processi di Analisi dei flussi di Azure](stream-analytics-scale-jobs.md)
 * [Informazioni di riferimento sul linguaggio di query di Analisi dei flussi di Azure](https://msdn.microsoft.com/library/azure/dn834998.aspx)

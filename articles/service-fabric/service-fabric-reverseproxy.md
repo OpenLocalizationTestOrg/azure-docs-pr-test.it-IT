@@ -1,6 +1,6 @@
 ---
-title: Proxy inverso di Azure Service Fabric | Microsoft Docs
-description: Usare un proxy inverso di Service Fabric per comunicare con i microservizi dall'interno e dall'esterno del cluster.
+title: proxy inverso aaaAzure Service Fabric | Documenti Microsoft
+description: Utilizza un proxy inverso dell'infrastruttura servizio per la comunicazione toomicroservices dall'interno e all'esterno del cluster di hello.
 services: service-fabric
 documentationcenter: .net
 author: BharatNarasimman
@@ -14,102 +14,102 @@ ms.tgt_pltfrm: na
 ms.workload: required
 ms.date: 08/08/2017
 ms.author: bharatn
-ms.openlocfilehash: 7897458e9e4a0bbe185bd3f7b4c133c1b26769f9
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 0e7835a64ccd74293c7bdd8b41deae414c83dffa
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="reverse-proxy-in-azure-service-fabric"></a>Proxy inverso in Azure Service Fabric
-Il proxy inverso disponibile in Azure Service Fabric comunica con i microservizi nel cluster Service Fabric che espongono endpoint HTTP.
+proxy inverso Hello compilato in Azure Service Fabric indirizzi microservizi nel cluster di Service Fabric hello che espone gli endpoint HTTP.
 
 ## <a name="microservices-communication-model"></a>Modello di comunicazione di microservizi
-I microservizi in Service Fabric vengono in genere eseguiti su un sottoinsieme di macchine virtuali nel cluster e possono spostarsi da una macchina virtuale a un'altra per diversi motivi. Gli endpoint per microservizi possono quindi cambiare in modo dinamico. Il modello tipico di comunicazione con il microservizio è il ciclo di risoluzione seguente:
+Microservizi nell'infrastruttura del servizio in genere eseguiti su un sottoinsieme di macchine virtuali nel cluster hello e spostarsi da una macchina virtuale tooanother per vari motivi. In tal caso, gli endpoint di hello per microservizi può essere modificato dinamicamente. Hello tipico modello toocommunicate toohello microservizio è seguente hello risolvere ciclo:
 
-1. Risolvere la posizione del servizio inizialmente tramite il servizio Naming.
-2. Connettersi al servizio.
-3. Determinare la causa degli errori di connessione e risolvere nuovamente la posizione del servizio quando necessario.
+1. Risolvere il percorso del servizio hello inizialmente tramite servizio di denominazione hello.
+2. Connettere il servizio toohello.
+3. Determinare hello causa degli errori di connessione e risolvere nuovo percorso del servizio di hello quando necessario.
 
-Questo processo implica in genere il wrapping delle librerie di comunicazione lato client in un ciclo di nuovi tentativi che implementa la risoluzione del servizio e i criteri di ripetizione.
+Questo processo è in genere implica il wrapping delle librerie di comunicazione client-side in un ciclo di tentativi che implementa criteri di risoluzione e ripetere servizi hello.
 Per altre informazioni, vedere [Connettersi e comunicare con i servizi](service-fabric-connect-and-communicate-with-services.md).
 
-### <a name="communicating-by-using-the-reverse-proxy"></a>Comunicare tramite il proxy inverso
-Il proxy inverso in Service Fabric viene eseguito in tutti i nodi del cluster. Esegue l'intero processo di risoluzione del servizio per conto di un client e quindi inoltra la richiesta del client. I client in esecuzione nel cluster possono quindi usare le librerie di comunicazione HTTP lato client per comunicare con il servizio di destinazione tramite il proxy inverso in esecuzione in locale nello stesso nodo.
+### <a name="communicating-by-using-hello-reverse-proxy"></a>La comunicazione tramite proxy inverso hello
+proxy inverso di Hello nell'infrastruttura del servizio viene eseguito su tutti i nodi nel cluster hello hello. Consente di processo di risoluzione hello intero servizio per conto del client e inoltra la richiesta di hello del client. In tal caso, i client in esecuzione nel cluster hello possono usare qualsiasi servizio di destinazione di sul lato client HTTP comunicazione librerie tootalk toohello mediante un proxy inverso di hello che viene eseguito localmente su hello stesso nodo.
 
 ![Comunicazione interna][1]
 
-## <a name="reaching-microservices-from-outside-the-cluster"></a>Raggiungere i microservizi dall'esterno del cluster
-Il modello di comunicazione esterna predefinito per i microservizi è un modello di consenso esplicito nei casi in cui non è possibile accedere direttamente a ogni servizio dai client esterni. Il servizio [Azure Load Balancer](../load-balancer/load-balancer-overview.md) è un limite di rete tra microservizi e client esterni che esegue la conversione degli indirizzi di rete e inoltra le richieste esterne agli endpoint IP:port interni. Per rendere un endpoint del microservizio direttamente accessibile ai client esterni, è prima di tutto necessario configurare il servizio Load Balancer per l'inoltro del traffico a ogni porta usata dal servizio nel cluster. La maggior parte dei microservizi, in particolare i microservizi con stato, non è inoltre presente in tutti i nodi del cluster. I microservizi possono spostarsi tra i nodi in caso di failover. In questi casi, il servizio Load Balancer non può determinare in modo efficace la posizione del nodo di destinazione delle repliche a cui deve inoltrare il traffico.
+## <a name="reaching-microservices-from-outside-hello-cluster"></a>Raggiungere microservizi dal cluster hello esterno
+modello di comunicazione esterna Hello predefinito per microservizi è un modello di consenso esplicito in ogni servizio può accedervi direttamente da client esterni. [Il bilanciamento del carico Azure](../load-balancer/load-balancer-overview.md), che è un limite di rete tra microservizi e i client esterni, esegue la conversione degli indirizzi di rete e che esegue l'inoltro esterno richiede toointernal creato endpoint. toomake client di tooexternal direttamente accessibile del microservizio un endpoint, è innanzitutto necessario configurare il bilanciamento del carico tooforward traffico tooeach porta che hello servizio utilizza cluster hello. Inoltre, la maggior parte delle microservizi, soprattutto con stato microservizi, non in tempo reale su tutti i nodi del cluster di hello. Hello microservizi possono spostare tra i nodi di failover. In questi casi, bilanciamento del carico non è possibile determinare in modo efficace percorso hello del nodo di destinazione hello di hello repliche toowhich inoltra il traffico.
 
-### <a name="reaching-microservices-via-the-reverse-proxy-from-outside-the-cluster"></a>Raggiungere i microservizi tramite il proxy inverso dall'esterno del cluster
-Invece di configurare la porta di un singolo servizio in Load Balancer, è possibile configurare solo la porta del proxy inverso in Load Balancer. Questa configurazione consente ai client all'esterno del cluster di raggiungere i servizi all'interno tramite il proxy inverso senza configurazioni aggiuntive.
+### <a name="reaching-microservices-via-hello-reverse-proxy-from-outside-hello-cluster"></a>Raggiungere microservizi attraverso il proxy inverso hello dal cluster hello esterno
+Anziché configurare una porta hello di un singolo servizio di bilanciamento del carico, è possibile configurare solo hello porta proxy inverso hello nel servizio di bilanciamento del carico. Questa configurazione consente ai client esterni a cluster hello raggiungere servizi all'interno di cluster hello tramite proxy inverso di hello senza alcuna configurazione aggiuntiva.
 
 ![Comunicazione esterna][0]
 
 > [!WARNING]
-> Quando si configura la porta del proxy inverso nel servizio Load Balancer, tutti i microservizi nel cluster che espone un endpoint HTTP sono indirizzabili dall'esterno del cluster.
+> Quando si configura la porta del proxy inverso hello in servizio di bilanciamento del carico, sono indirizzabili da all'esterno del cluster hello microservizi tutti i cluster hello che espongono un endpoint HTTP.
 >
 >
 
 
-## <a name="uri-format-for-addressing-services-by-using-the-reverse-proxy"></a>Formato URI di indirizzamento dei servizi tramite il proxy inverso
-Il proxy inverso usa un formato URI (Uniform Resource Identifier) specifico per identificare la partizione del servizio a cui deve essere inoltrata la richiesta in ingresso:
+## <a name="uri-format-for-addressing-services-by-using-hello-reverse-proxy"></a>Formato dell'URI per l'indirizzamento di servizi mediante un proxy inverso hello
+Usa proxy inverso di Hello che deve essere inoltrata un'URI specifico identifier (URI) formato tooidentify hello partizione toowhich hello in arrivo richiesta di servizio:
 
 ```
 http(s)://<Cluster FQDN | internal IP>:Port/<ServiceInstanceName>/<Suffix path>?PartitionKey=<key>&PartitionKind=<partitionkind>&ListenerName=<listenerName>&TargetReplicaSelector=<targetReplicaSelector>&Timeout=<timeout_in_seconds>
 ```
 
-* **http(s):** il proxy inverso può essere configurato per accettare il traffico HTTP o HTTPS. Per l'inoltro di HTTPS, fare riferimento a [Connect to a secure service with the reverse proxy](service-fabric-reverseproxy-configure-secure-communication.md) (Connettersi a un servizio protetto con il proxy inverso) dopo aver configurato il proxy inverso per l'ascolto su HTTPS.
-* **Nome di dominio completo del cluster | IP interno:** Per i client esterni è possibile configurare il proxy inverso in modo che sia raggiungibile tramite il dominio del cluster, ad esempio mycluster.eastus.cloudapp.azure.com. Per impostazione predefinita, il proxy inverso è in esecuzione in ogni nodo. Per il traffico interno, il proxy inverso può essere raggiunto sugli host locali o all'indirizzo IP di qualsiasi nodo interno, ad esempio, 10.0.0.1.
-* **Porta:** la porta che è stata specificata per il proxy inverso, ad esempio 19081.
-* **ServiceInstanceName:** nome completo dell'istanza del servizio distribuito che si sta provando a raggiungere senza lo schema "fabric:/". Ad esempio, per raggiungere il servizio *fabric:/myapp/myservice/*, si usa *myapp/myservice*.
+* **http (s):** proxy inverso hello può essere configurato tooaccept HTTP o il traffico HTTPS. Per l'inoltro di HTTPS, fare riferimento troppo[connessione servizio protetto tooa con proxy inverso hello](service-fabric-reverseproxy-configure-secure-communication.md) dopo aver toolisten il programma di installazione di proxy inverso su HTTPS.
+* **Nome del cluster nome di dominio completo (FQDN) | indirizzo IP interno:** per i client esterni, è possibile configurare proxy inverso hello in modo che sia raggiungibile tramite dominio cluster hello, ad esempio mycluster.eastus.cloudapp.azure.com. Per impostazione predefinita, i proxy inverso hello viene eseguito in ogni nodo. Per il traffico interno, proxy inverso hello può essere raggiunto in localhost o in qualsiasi indirizzo IP nodo interno, ad esempio 10.0.0.1.
+* **Porta:** porta hello, ad esempio 19081, che è stato specificato per il proxy inverso hello.
+* **ServiceInstanceName:** hello di nome completo dell'istanza di servizio hello distribuito che si sta tentando di tooreach senza hello "fabric: /" dello schema. Ad esempio, tooreach hello *fabric: / myapp/myservice/* servizio, si utilizzerebbe *myapp/myservice*.
 
-    Il nome dell'istanza del servizio fa distinzione tra maiuscole e minuscole. L'uso di maiuscole/minuscole per il nome dell'istanza del servizio nell'URL fa sì che le richieste abbiano esito negativo con errore 404 (Non trovato).
-* **Suffix path:** percorso effettivo dell'URL, ad esempio *myapi/values/add/3*, per il servizio a cui ci si vuole connettere.
-* **PartitionKey:** per un servizio partizionato, questa è la chiave di partizione calcolata della partizione che si vuole raggiungere. Si noti che questo *non* è il GUID dell'ID di partizione. Questo parametro non è obbligatorio per i servizi che usano lo schema di partizione singleton.
-* **PartitionKind:** lo schema di partizione del servizio. Può essere "Int64Range" o "Named". Questo parametro non è obbligatorio per i servizi che usano lo schema di partizione singleton.
-* **ListenerName** Gli endpoint del servizio hanno la forma {"Endpoints":{"Listener1":"Endpoint1","Listener2":"Endpoint2" ...}}. Quando il servizio espone più endpoint, questa forma indica gli endpoint a cui deve essere inoltrata la richiesta del client. Può essere omessa se il servizio ha un solo listener.
-* **TargetReplicaSelector** Specifica la modalità di selezione della replica o dell'istanza di destinazione.
-  * Quando il servizio di destinazione è con stato, TargetReplicaSelector può essere uno dei valori seguenti: "PrimaryReplica", "RandomSecondaryReplica" o "RandomReplica". Il valore predefinito quando non viene specificato questo parametro è "PrimaryReplica".
-  * Quando il servizio di destinazione è senza stato, il proxy inverso sceglie un'istanza casuale della partizione del servizio a cui inoltrare la richiesta.
-* **Timeout:** specifica il timeout per la richiesta HTTP creata dal proxy inverso al servizio per conto della richiesta del client. Il valore predefinito è 60 secondi. Questo è un parametro facoltativo.
+    nome dell'istanza del servizio Hello è tra maiuscole e minuscole. Utilizzando una maiuscole/minuscole del nome di istanza servizio hello nell'URL hello determina hello richieste toofail con 404 (non trovato).
+* **Percorso di suffisso:** si tratta di percorso URL effettivo hello, ad esempio *myapi/valori/Aggiungi/3*, per il servizio di hello che si desidera tooconnect per.
+* **PartitionKey:** per un servizio partizionato, si tratta di chiave di partizione calcolata hello della partizione hello che si desidera tooreach. Si noti che questo *non* hello GUID dell'ID di partizione. Questo parametro non è obbligatorio per i servizi che utilizzano lo schema di partizione singleton hello.
+* **PartitionKind:** schema di partizione del servizio hello. Può essere "Int64Range" o "Named". Questo parametro non è obbligatorio per i servizi che utilizzano lo schema di partizione singleton hello.
+* **ListenerName** endpoint hello dal servizio hello sono hello formato {"Endpoint": {"Listener1": "Endpoint1", "Listener2": "Endpoint2"...}}. Quando il servizio di hello espone più endpoint, endpoint hello identifica tale richiesta hello del client deve essere inoltrato a. Può essere omesso se hello servizio dispone di un solo listener.
+* **TargetReplicaSelector** specifica come replica di destinazione hello o istanza deve essere selezionata.
+  * Quando il servizio di destinazione hello è con stato, può essere uno dei seguenti hello hello TargetReplicaSelector: 'PrimaryReplica', 'RandomSecondaryReplica' o 'RandomReplica'. Quando questo parametro viene omesso, il valore predefinito di hello è 'PrimaryReplica'.
+  * Quando il servizio di destinazione hello è senza stato, proxy inverso prende un'istanza di hello partizione tooforward hello richiesta al servizio per casuale.
+* **Timeout:** specifica hello timeout per la richiesta HTTP hello creato dal servizio di toohello hello proxy inverso per conto di richiesta di hello del client. valore predefinito di Hello è 60 secondi. Questo è un parametro facoltativo.
 
 ### <a name="example-usage"></a>Esempio di utilizzo
-Si prenda come esempio il servizio *fabric:/MyApp/MyService* che apre un listener HTTP nell'URL seguente:
+Ad esempio, è opportuno hello *fabric: / MyApp/MyService* servizio che consente di aprire un listener HTTP sull'hello URL seguente:
 
 ```
 http://10.0.0.5:10592/3f0d39ad-924b-4233-b4a7-02617c6308a6-130834621071472715/
 ```
 
-Di seguito sono indicate le risorse per il servizio:
+Di seguito sono risorse hello per il servizio di hello:
 
 * `/index.html`
 * `/api/users/<userId>`
 
-Se il servizio usa lo schema di partizionamento singleton, i parametri della stringa di query *PartitionKey* e *PartitionKind* non sono obbligatori e il servizio può essere raggiunto tramite gateway nei modi seguenti:
+Se il servizio di hello utilizza singleton hello schema di partizionamento, hello *PartitionKey* e *PartitionKind* parametri di stringa di query non sono necessari e servizio hello può essere raggiunto tramite gateway hello come:
 
 * Esternamente: `http://mycluster.eastus.cloudapp.azure.com:19081/MyApp/MyService`
 * Internamente: `http://localhost:19081/MyApp/MyService`
 
-Se il servizio usa lo schema di partizionamento Uniform Int64, è necessario usare i parametri della stringa di query *PartitionKey* e *PartitionKind* per raggiungere una partizione del servizio:
+Se il servizio di hello utilizza hello Int64 uniformi schema di partizionamento, hello *PartitionKey* e *PartitionKind* i parametri di stringa di query devono essere utilizzato tooreach una partizione del servizio hello:
 
 * Esternamente: `http://mycluster.eastus.cloudapp.azure.com:19081/MyApp/MyService?PartitionKey=3&PartitionKind=Int64Range`
 * Internamente: `http://localhost:19081/MyApp/MyService?PartitionKey=3&PartitionKind=Int64Range`
 
-Per raggiungere le risorse esposte dal servizio, è sufficiente inserire il percorso della risorsa dopo il nome del servizio nell'URL:
+risorse hello tooreach che espone il servizio di hello, posizionare semplicemente percorso della risorsa hello dopo il nome del servizio hello hello URL:
 
 * Esternamente: `http://mycluster.eastus.cloudapp.azure.com:19081/MyApp/MyService/index.html?PartitionKey=3&PartitionKind=Int64Range`
 * Internamente: `http://localhost:19081/MyApp/MyService/api/users/6?PartitionKey=3&PartitionKind=Int64Range`
 
-Il gateway inoltrerà quindi queste richieste all'URL del servizio:
+gateway Hello inoltrerà quindi URL del servizio toohello queste richieste:
 
 * `http://10.0.0.5:10592/3f0d39ad-924b-4233-b4a7-02617c6308a6-130834621071472715/index.html`
 * `http://10.0.0.5:10592/3f0d39ad-924b-4233-b4a7-02617c6308a6-130834621071472715/api/users/6`
 
 ## <a name="special-handling-for-port-sharing-services"></a>Gestione speciale per servizi di condivisione porta
-Il gateway applicazione di Azure prova a risolvere di nuovo un indirizzo del servizio e ripetere la richiesta quando non è possibile raggiungere un servizio. Questo è uno dei principali vantaggi del gateway applicazione, dal momento che il codice client non necessita di implementare la propria risoluzione del servizio e il proprio ciclo di risoluzione.
+Gateway applicazione Azure tenta tooresolve un servizio risolvere nuovamente e ripetere la richiesta di hello quando un servizio non è raggiungibile. Si tratta dei principali vantaggi di Gateway applicazione perché il codice client non necessario tooimplement risoluzione per il proprio servizio e risolvere il ciclo.
 
-Quando un servizio non può essere raggiunto, la replica o l'istanza del servizio si è in genere spostata in un nodo diverso come parte del ciclo di vita normale. In questo caso, il gateway applicazione potrebbe ricevere un errore di connessione di rete che indica che un endpoint non è più aperto sull'indirizzo risolto in origine.
+In genere, quando un servizio non è raggiungibile, l'istanza del servizio hello o la replica è stato spostato tooa nodo diverso come parte del ciclo di vita normale. In questo caso, Gateway applicazione potrebbe ricevere un rete connessione errore che indica che un endpoint non aperto più hello risolto originariamente indirizzo.
 
 Tuttavia, le repliche o le istanze del servizio possono condividere un processo host e una porta quando ospitate da un server Web basato su http.sys, tra cui:
 
@@ -117,39 +117,39 @@ Tuttavia, le repliche o le istanze del servizio possono condividere un processo 
 * [WebListener ASP.NET Core](https://docs.asp.net/latest/fundamentals/servers.html#weblistener)
 * [Katana](https://www.nuget.org/packages/Microsoft.AspNet.WebApi.OwinSelfHost/)
 
-In questa circostanza è probabile che il server Web sia disponibile nel processo host e che risponda alle richieste, ma la replica o l'istanza del servizio risolto non è più disponibile nell'host. In questo caso il gateway riceve una risposta HTTP 404 dal server Web. Un errore HTTP 404 presenta quindi due significati distinti:
+In questo caso, è probabile che il server web hello è disponibile nel processo host hello e risponde toorequests ma hello risolto l'istanza del servizio o di replica non è più disponibile nell'host di hello. In questo caso, i gateway hello riceverà una risposta HTTP 404 dal server web hello. Un errore HTTP 404 presenta quindi due significati distinti:
 
-- Caso n. 1: l'indirizzo del servizio è corretto, ma la risorsa richiesta dall'utente non esiste.
-- Caso n. 2: l'indirizzo del servizio non è corretto ed è possibile che la risorsa richiesta dall'utente esista su un nodo diverso.
+- Caso #1: indirizzo del servizio hello è corretto, ma la risorsa hello che hello l'utente ha richiesto non esiste.
+- Caso &#2;: indirizzo del servizio hello è corretto e potrebbe esistere risorsa hello hello richiesto dall'utente in un nodo diverso.
 
-Nel primo caso si tratta di una normale situazione HTTP 404, che viene considerata come un errore dell'utente. Nel secondo caso, tuttavia, l'utente ha richiesto una risorsa che non esiste. Il gateway applicazione non è riuscito a individuarla perché il servizio stesso è stato spostato. Il gateway applicazione deve risolvere di nuovo l'indirizzo e ripetere la richiesta.
+Hello primo caso è un normale HTTP 404, che è considerata un errore dell'utente. Tuttavia, nel secondo caso hello utente hello ha richiesto una risorsa che esiste. Gateway applicazione è stato Impossibile toolocate che è stato spostato perché hello servizio stesso. Applicazione esigenze tooresolve hello indirizzo Gateway nuovamente e ripetere la richiesta hello.
 
-Il gateway applicazione necessita quindi di un modo per distinguere tra questi due casi. Per eseguire questa distinzione, è necessario un suggerimento dal server.
+Gateway applicazione deve pertanto un toodistinguish modo tra questi due casi. toomake che distinzione, un suggerimento dal server hello è necessario.
 
-* Per impostazione predefinita, il gateway applicazione presuppone la sussistenza del caso n. 2 e prova a risolvere di nuovo l'indirizzo e inviare nuovamente la richiesta.
-* Per indicare il caso n. 1 al gateway applicazione, il servizio deve restituire l'intestazione della risposta HTTP seguente:
+* Per impostazione predefinita, il Gateway applicazione presuppone caso &#2; e tenta nuovamente di richiesta hello tooresolve e il problema.
+* tooindicate caso &#1; tooApplication Gateway, il servizio di hello deve restituire hello intestazione risposta HTTP seguenti:
 
   `X-ServiceFabric : ResourceNotFound`
 
-L'intestazione della risposta HTTP indica una situazione HTTP 404 normale, in cui la risorsa richiesta non esiste e il gateway applicazione non prova a risolvere di nuovo l'indirizzo del servizio.
+L'intestazione della risposta HTTP indica una situazione di HTTP 404 normale in cui hello risorsa richiesta non esiste e il Gateway applicazione non tenterà nuovamente indirizzo del servizio tooresolve hello.
 
 ## <a name="setup-and-configuration"></a>Installazione e configurazione
 
 ### <a name="enable-reverse-proxy-via-azure-portal"></a>Abilitare il proxy inverso tramite il portale di Azure
 
-Il portale di Azure fornisce un'opzione per abilitare il proxy inverso durante la creazione di un nuovo cluster di Service Fabric.
-In **Crea cluster di Service Fabric**, Passaggio 2: Configurazione cluster, Configurazione del tipo di nodo, selezionare la casella di controllo "Abilita proxy inverso".
-Per la configurazione di un proxy inverso sicuro, è possibile specificare un certificato SSL nel Passaggio 3: Sicurezza, Configurare le impostazioni di sicurezza del cluster, selezionare la casella di controllo "Includi un certificato SSL per il proxy inverso" e immettere i dettagli del certificato.
+Portale di Azure fornisce un proxy inverso di opzione tooenable durante la creazione di un nuovo cluster di Service Fabric.
+In **cluster di Service Fabric crea**, passaggio 2: configurazione del Cluster, configurazione del tipo di nodo, selezionare la casella di controllo di hello troppo "Abilitazione proxy inverso".
+Per la configurazione di proxy inverso sicura, è possibile specificare il certificato SSL nel passaggio 3: protezione, configurare le impostazioni di sicurezza cluster, la casella di controllo selezionare hello troppo "Include un certificato SSL per il proxy inverso" e immettere i dettagli del certificato hello.
 
 ### <a name="enable-reverse-proxy-via-azure-resource-manager-templates"></a>Abilitare il proxy inverso tramite modelli di Azure Resource Manager
 
-È possibile usare il [modello di Azure Resource Manager](service-fabric-cluster-creation-via-arm.md) per abilitare il proxy inverso in Service Fabric per il cluster.
+È possibile utilizzare hello [modello di Azure Resource Manager](service-fabric-cluster-creation-via-arm.md) tooenable hello proxy inverso nell'infrastruttura del servizio per cluster hello.
 
-Per esempi del modello di Azure Resource Manager per la configurazione del proxy inverso sicuro con un certificato e la gestione del rollover dei certificati, vedere [Configure HTTPS Reverse Proxy in a secure cluster](https://github.com/ChackDan/Service-Fabric/tree/master/ARM Templates/ReverseProxySecureSample#configure-https-reverse-proxy-in-a-secure-cluster) (Configurare il proxy inverso HTTPS in un cluster sicuro).
+Fare riferimento troppo[Proxy inverso HTTPS di configurare in un cluster protetto](https://github.com/ChackDan/Service-Fabric/tree/master/ARM Templates/ReverseProxySecureSample#configure-https-reverse-proxy-in-a-secure-cluster) per Gestione risorse di Azure tooconfigure proxy inverso protetta con un rollover dei certificati di certificato e la gestione degli esempi di modello.
 
-Ottenere prima di tutto il modello per il cluster da distribuire. È possibile usare i modelli di esempio o creare un modello di Resource Manager. È quindi possibile abilitare il proxy inverso seguendo questa procedura:
+In primo luogo, si ottiene il modello di hello per cluster hello che si desidera toodeploy. È possibile utilizzare i modelli di esempio hello o creare un modello di gestione risorse personalizzato. Quindi, è possibile abilitare i proxy inverso hello utilizzando hello alla procedura seguente:
 
-1. Definire una porta per il proxy inverso nella [sezione dei parametri](../azure-resource-manager/resource-group-authoring-templates.md) del modello.
+1. Definire una porta per il proxy inverso hello in hello [sezione parametri](../azure-resource-manager/resource-group-authoring-templates.md) del modello di hello.
 
     ```json
     "SFReverseProxyPort": {
@@ -160,9 +160,9 @@ Ottenere prima di tutto il modello per il cluster da distribuire. È possibile u
         }
     },
     ```
-2. Specificare la porta per ogni oggetto nodetype nella sezione **Cluster** [Tipo di risorsa](../azure-resource-manager/resource-group-authoring-templates.md).
+2. Specificare la porta hello per tutti gli oggetti di tipo di nodo hello in hello **Cluster** [sezione tipo di risorsa](../azure-resource-manager/resource-group-authoring-templates.md).
 
-    La porta è identificata dal nome del parametro reverseProxyEndpointPort.
+    porta Hello è identificata dal nome del parametro hello, reverseProxyEndpointPort.
 
     ```json
     {
@@ -182,7 +182,7 @@ Ottenere prima di tutto il modello per il cluster da distribuire. È possibile u
         ...
     }
     ```
-3. Per fare riferimento al proxy inverso dall'esterno del cluster di Azure, configurare le regole di Azure Load Balancer per la porta specificata nel passaggio 1.
+3. hello tooaddress proxy inverso da hello all'esterno del cluster di Azure, imposta le regole di bilanciamento del carico di Azure hello per la porta hello specificata nel passaggio 1.
 
     ```json
     {
@@ -226,7 +226,7 @@ Ottenere prima di tutto il modello per il cluster da distribuire. È possibile u
         ]
     }
     ```
-4. Per configurare i certificati SSL sulla porta per il proxy inverso, aggiungere il certificato alla proprietà ***reverseProxyCertificate*** nella sezione **Cluster** [Tipo di risorsa](../resource-group-authoring-templates.md).
+4. i certificati SSL tooconfigure sulla porta hello di proxy inverso hello, aggiungere hello certificato toohello ***reverseProxyCertificate*** proprietà hello **Cluster** [sezionetipodirisorsa](../resource-group-authoring-templates.md).
 
     ```json
     {
@@ -249,8 +249,8 @@ Ottenere prima di tutto il modello per il cluster da distribuire. È possibile u
     }
     ```
 
-### <a name="supporting-a-reverse-proxy-certificate-thats-different-from-the-cluster-certificate"></a>Supporto di un certificato di proxy inverso diverso dal certificato di cluster
- Se il certificato di proxy inverso è diverso dal certificato che protegge il cluster, il certificato specificato in precedenza deve essere installato nella macchina virtuale e aggiunto all'elenco di controllo di accesso, in modo che Service Fabric possa accedervi. Questa operazione può essere eseguita tramite la sezione di **virtualMachineScaleSets** [Tipo di risorsa](../resource-group-authoring-templates.md). Per l'installazione, aggiungere il certificato a osProfile. La sezione del modello relativa all'estensione può aggiornare il certificato nell'elenco di controllo di accesso.
+### <a name="supporting-a-reverse-proxy-certificate-thats-different-from-hello-cluster-certificate"></a>Supporto di un certificato di proxy inverso che è diverso dal certificato cluster hello
+ Se il certificato di proxy inverso hello è diverso dal certificato hello che protegge cluster hello, quindi hello specificato in precedenza certificato deve essere installato nella macchina virtuale hello e aggiunti toohello elenco di controllo di accesso (ACL) in modo che possano Service Fabric diritti di accesso. Questa operazione può essere eseguita in hello **virtualMachineScaleSets** [sezione tipo di risorsa](../resource-group-authoring-templates.md). Per l'installazione, aggiungere tale osProfile toohello certificato. sezione di estensione Hello del modello di hello è possibile aggiornare il certificato di hello in hello ACL.
 
   ```json
   {
@@ -302,11 +302,11 @@ Ottenere prima di tutto il modello per il cluster da distribuire. È possibile u
     }
   ```
 > [!NOTE]
-> Quando si usano certificati diversi dal certificato del cluster per abilitare il proxy inverso in un cluster esistente, installare il certificato di proxy inverso e aggiornare l'elenco di controllo di accesso sul cluster prima di abilitare il proxy inverso. Completare la distribuzione del [modello di Azure Resource Manager](service-fabric-cluster-creation-via-arm.md) usando le impostazioni indicate in precedenza prima di avviare una distribuzione per abilitare il proxy inverso nei passaggi 1-4.
+> Quando si usano i certificati che sono diversi da hello cluster certificato tooenable hello proxy inverso di un cluster esistente, installare il certificato di proxy inverso hello e aggiornare hello ACL nel cluster hello prima di abilitare proxy inverso hello. Hello completo [modello di Azure Resource Manager](service-fabric-cluster-creation-via-arm.md) distribuzione usando le impostazioni di hello menzionate in precedenza prima di avviare un proxy inverso di distribuzione tooenable hello in passaggi 1-4.
 
 ## <a name="next-steps"></a>Passaggi successivi
 * Vedere un esempio di comunicazione HTTP tra i servizi in un [progetto di esempio in GitHub](https://github.com/Azure-Samples/service-fabric-dotnet-getting-started).
-* [Forwarding to secure HTTP service with the reverse proxy](service-fabric-reverseproxy-configure-secure-communication.md) (Inoltro per la protezione del servizio HTTP con il proxy inverso)
+* [Servizio HTTP toosecure di inoltro con proxy inverso hello](service-fabric-reverseproxy-configure-secure-communication.md)
 * [Chiamate di procedura remota con i Reliable Services remoti](service-fabric-reliable-services-communication-remoting.md)
 * [Web API che usa OWIN in Reliable Services](service-fabric-reliable-services-communication-webapi.md)
 * [Comunicazione di WCF tramite Reliable Services](service-fabric-reliable-services-communication-wcf.md)

@@ -1,6 +1,6 @@
 ---
-title: Come usare l'archiviazione BLOB (archiviazione di oggetti) da Ruby | Microsoft Docs
-description: Archiviare i dati non strutturati nel cloud con l'archivio BLOB (archivio di oggetti) di Azure.
+title: aaaHow toouse Blob archiviazione (oggetto) da Ruby | Documenti Microsoft
+description: Archiviare dati non strutturati nel cloud hello con archiviazione Blob di Azure (archiviazione di oggetti).
 services: storage
 documentationcenter: ruby
 author: mmacy
@@ -14,21 +14,21 @@ ms.devlang: ruby
 ms.topic: article
 ms.date: 12/08/2016
 ms.author: marsma
-ms.openlocfilehash: 7f7d0c52b2b50a360711477e8e0eafc07ddcf374
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 638826777f5a7ae8330fd67cdbb51d5eee1736a5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-blob-storage-from-ruby"></a>Come usare l'archiviazione BLOB da Ruby
+# <a name="how-toouse-blob-storage-from-ruby"></a>Come toouse archiviazione Blob da Ruby
 [!INCLUDE [storage-selector-blob-include](../../includes/storage-selector-blob-include.md)]
 
 [!INCLUDE [storage-try-azure-tools-queues](../../includes/storage-try-azure-tools-blobs.md)]
 
 ## <a name="overview"></a>Panoramica
-L'archiviazione BLOB di Azure è un servizio che archivia dati non strutturati nel cloud come oggetti/BLOB. Archivio BLOB può archiviare qualsiasi tipo di dati di testo o binari, ad esempio un documento, un file multimediale o un programma di installazione di un'applicazione. L'archivio BLOB è anche denominato archivio di oggetti.
+Archiviazione Blob di Azure è un servizio che archivia i dati non strutturati nel cloud hello come oggetti/BLOB. Archivio BLOB può archiviare qualsiasi tipo di dati di testo o binari, ad esempio un documento, un file multimediale o un programma di installazione di un'applicazione. Archiviazione BLOB è anche archiviazione di oggetti di cui viene fatto riferimento tooas.
 
-Questa guida illustra scenari comuni relativi all'uso dell'archiviazione BLOB. Gli esempi sono scritti utilizzando l'API Ruby. Gli scenari presentati includono **caricamento, visualizzazione in elenchi, download** ed **eliminazione** di BLOB.
+Questa guida viene illustrato come tooperform scenari comuni di utilizzo dell'archiviazione Blob. esempi di Hello vengono scritti utilizzando hello API Ruby. Hello scenari trattati includono **caricamento, visualizzazione di elenchi, download,** e **eliminazione** BLOB.
 
 [!INCLUDE [storage-blob-concepts-include](../../includes/storage-blob-concepts-include.md)]
 
@@ -37,50 +37,50 @@ Questa guida illustra scenari comuni relativi all'uso dell'archiviazione BLOB. G
 ## <a name="create-a-ruby-application"></a>Creare un'applicazione Ruby
 Creare un'applicazione Ruby. Per istruzioni, vedere l'articolo relativo all'[applicazione Web Ruby on Rails in una VM di Azure](../virtual-machines/linux/classic/virtual-machines-linux-classic-ruby-rails-web-app.md).
 
-## <a name="configure-your-application-to-access-storage"></a>Configurare l'applicazione per l'accesso all'archiviazione
-Per usare l'archiviazione di Azure, è necessario scaricare e usare il pacchetto Ruby Azure, che comprende un set di pratiche librerie che comunicano con i servizi di archiviazione REST.
+## <a name="configure-your-application-tooaccess-storage"></a>Configurare l'archiviazione di tooaccess di applicazione
+toouse archiviazione di Azure, è necessario toodownload e utilizzare hello Ruby pacchetto di azure, che include un set di librerie di praticità che comunicano con servizi REST di archiviazione hello.
 
-### <a name="use-rubygems-to-obtain-the-package"></a>Utilizzare RubyGems per ottenere il pacchetto
+### <a name="use-rubygems-tooobtain-hello-package"></a>Utilizzare un pacchetto di hello tooobtain RubyGems
 1. Usare un'interfaccia della riga di comando, ad esempio **PowerShell** (Windows), **Terminal** (Mac) o **Bash** (Unix).
-2. Digitare "gem install azure" nella finestra di comando per installare la gemma e le dipendenze.
+2. Digitare "indicatore installa azure" dipendenze e l'indicatore di hello comando finestra tooinstall hello.
 
-### <a name="import-the-package"></a>Importare il pacchetto
-Usando l'editor di testo preferito aggiungere quanto segue alla parte superiore del file Ruby dove si intende usare l'archiviazione:
+### <a name="import-hello-package"></a>Importa pacchetto di hello
+Utilizzando un editor di testo, aggiungere hello toohello cima hello Ruby file in cui si intende toouse archiviazione seguente:
 
 ```ruby
 require "azure"
 ```
 
 ## <a name="set-up-an-azure-storage-connection"></a>Configurare una connessione di Archiviazione di Azure
-Il modulo di Azure leggerà le variabili di ambiente **AZURE\_STORAGE\_ACCOUNT** e **AZURE\_STORAGE\_ACCESS_KEY** per ottenere le informazioni necessarie per la connessione all'account di archiviazione di Azure. Se queste variabili di ambiente non sono impostate, sarà necessario specificare le informazioni relative all'account prima di usare **Azure::BLOB::BlobService** con il codice seguente:
+modulo Hello azure verrà lette le variabili di ambiente hello **AZURE\_archiviazione\_ACCOUNT** e **AZURE\_archiviazione\_ACCESS_KEY** per le informazioni richieste tooconnect tooyour account di archiviazione Azure. Se non vengono impostate queste variabili di ambiente, è necessario specificare le informazioni sull'account hello prima di utilizzare **Azure::Blob::BlobService** con hello seguente codice:
 
 ```ruby
 Azure.config.storage_account_name = "<your azure storage account>"
 Azure.config.storage_access_key = "<your azure storage access key>"
 ```
 
-Per ottenere questi valori da un account di archiviazione classico o di Resource Manager nel portale di Azure:
+tooobtain questi valori da un classico o Gestione risorse di archiviazione di account nel portale di Azure hello:
 
-1. Accedere al [Portale di Azure](https://portal.azure.com).
-2. Passare all'account di archiviazione che si desidera utilizzare.
-3. Nel pannello Impostazioni a destra fare clic su **Chiavi di accesso**.
-4. Nel pannello Chiavi di accesso visualizzato notare la chiave di accesso 1 e la chiave di accesso 2. È possibile usare una di queste indifferentemente.
-5. Fare clic sull'icona Copia per copiare la chiave negli Appunti.
+1. Accedi toohello [portale di Azure](https://portal.azure.com).
+2. Passare l'account di archiviazione toohello da toouse.
+3. Nel pannello delle impostazioni hello in hello destra, fare clic su **chiavi di accesso**.
+4. Nel pannello chiavi accesso hello che viene visualizzato, si noterà la chiave di accesso hello 1 e 2 di chiave di accesso. È possibile usare una di queste indifferentemente.
+5. Fare clic su hello Copia icona toocopy hello toohello chiave Appunti.
 
-Per ottenere questi valori da un account di archiviazione classico nel portale di Azure classico:
+tooobtain questi valori da un'archiviazione classico account nel portale di Azure classico hello:
 
-1. Accedere al [portale di Azure classico](https://manage.windowsazure.com).
-2. Passare all'account di archiviazione che si desidera utilizzare.
-3. Fare clic su **GESTISCI CHIAVI DI ACCESSO** nella parte inferiore del riquadro di spostamento.
-4. Nella finestra di dialogo popup saranno visualizzati il nome dell'account di archiviazione, la chiave di accesso primaria e la chiave di accesso secondaria. Per la chiave di accesso è possibile usare sia la chiave primaria che secondaria.
-5. Fare clic sull'icona Copia per copiare la chiave negli Appunti.
+1. Accedi toohello [portale di Azure classico](https://manage.windowsazure.com).
+2. Passare l'account di archiviazione toohello da toouse.
+3. Fare clic su **GESTISCI CHIAVI di accesso** nella parte inferiore di hello del riquadro di spostamento hello.
+4. Nella finestra di dialogo popup hello, si noterà nome account di archiviazione hello, chiave di accesso primaria e chiave di accesso secondaria. Per la chiave di accesso, è possibile utilizzare hello primario o quello secondario hello.
+5. Fare clic su hello Copia icona toocopy hello toohello chiave Appunti.
 
 ## <a name="create-a-container"></a>Creare un contenitore
 [!INCLUDE [storage-container-naming-rules-include](../../includes/storage-container-naming-rules-include.md)]
 
-L'oggetto **Azure::BLOB::BlobService** consente di lavorare con contenitori e BLOB. Per creare un contenitore, usare il metodo **create\_container()**.
+Hello **Azure::Blob::BlobService** oggetto consente di collaborare con i contenitori e BLOB. toocreate un contenitore, utilizzare hello **creare\_container()** metodo.
 
-L'esempio di codice seguente crea un contenitore o stampa l'eventuale errore.
+Hello esempio di codice seguente crea un contenitore o Visualizza errore hello eventuale.
 
 ```ruby
 azure_blob_service = Azure::Blob::BlobService.new
@@ -91,32 +91,32 @@ rescue
 end
 ```
 
-Se si desidera rendere pubblici i file nel contenitore è possibile impostare le autorizzazioni del contenitore.
+Se si desidera file hello toomake nel contenitore hello pubblico, è possibile impostare le autorizzazioni del contenitore hello.
 
-È possibile modificare solo la chiamata <strong>create\_container()</strong> per passare l'opzione **:public\_access\_level**:
+È possibile modificare solo hello <strong>creare\_container()</strong> chiamata toopass hello **: pubblica\_accesso\_livello** opzione:
 
 ```ruby
 container = azure_blob_service.create_container("test-container",
     :public_access_level => "<public access level>")
 ```
 
-I valori validi per l'opzione **:public\_access\_level** sono:
+I valori validi per hello **: pubblica\_accesso\_livello** opzione sono:
 
-* **blob:** specifica l'accesso in lettura pubblico per i BLOB. I dati BLOB all'interno di questo contenitore possono essere letti tramite richiesta anonima, ma i dati del contenitore non sono disponibili. I client non possono enumerare i BLOB all'interno del contenitore tramite richiesta anonima.
-* **container:** specifica l'accesso in lettura pubblico completo per i dati di contenitori e BLOB. I client possono enumerare i BLOB all'interno del contenitore tramite richiesta anonima, ma non sono in grado di enumerare i contenitori all'interno dell'account di archiviazione.
+* **blob:** specifica l'accesso in lettura pubblico per i BLOB. I dati BLOB all'interno di questo contenitore possono essere letti tramite richiesta anonima, ma i dati del contenitore non sono disponibili. I client non è possibile enumerare i BLOB all'interno del contenitore di hello tramite una richiesta anonima.
+* **container:** specifica l'accesso in lettura pubblico completo per i dati di contenitori e BLOB. I client possono enumerare i BLOB all'interno del contenitore di hello tramite una richiesta anonima, ma non è possibile enumerare i contenitori nell'account di archiviazione hello.
 
-In alternativa, è possibile modificare il livello di accesso di un contenitore usando il metodo **set\_container\_acl()** per specificare il livello di accesso pubblico.
+In alternativa, è possibile modificare il livello di accesso pubblico hello di un contenitore utilizzando **impostare\_contenitore\_acl()** a livello di metodo toospecify hello accesso pubblico.
 
-Nell'esempio di codice seguente viene modificato il livello di accesso pubblico al **contenitore**:
+Hello modifiche hello livello di accesso pubblico troppo di esempio di codice seguente**contenitore**:
 
 ```ruby
 azure_blob_service.set_container_acl('test-container', "container")
 ```
 
 ## <a name="upload-a-blob-into-a-container"></a>Caricare un BLOB in un contenitore
-Per caricare contenuto in un BLOB, usare il metodo **create\_block\_blob()** per crearne uno, usando un file o una stringa come contenuto del BLOB.
+blob tooa contenuto tooupload, utilizzare hello **creare\_blocco\_blob()** blob hello toocreate di metodo, utilizzare un file o stringa come contenuto di hello del blob hello.
 
-Il codice seguente consentirà di caricare il file **test.png** come nuovo BLOB denominato "image-blob" nel contenitore.
+esempio di codice Hello Carica file hello **test.png** come un nuovo blob denominato "image-" blob nel contenitore hello.
 
 ```ruby
 content = File.open("test.png", "rb") { |file| file.read }
@@ -125,11 +125,11 @@ blob = azure_blob_service.create_block_blob(container.name,
 puts blob.name
 ```
 
-## <a name="list-the-blobs-in-a-container"></a>Elencare i BLOB in un contenitore
-Per elencare i contenitori, usare il metodo **list_containers()**.
-Per elencare i BLOB all'interno di un contenitore, usare il metodo **list\_blobs()**.
+## <a name="list-hello-blobs-in-a-container"></a>Elenco di BLOB hello in un contenitore
+utilizzare contenitori hello toolist **list_containers()** metodo.
+toolist hello BLOB all'interno di un contenitore, usare **elenco\_blobs()** metodo.
 
-L'output sarà costituito dagli URL di tutti i BLOB in tutti i contenitori relativi all'account.
+Restituisce gli URL di hello di tutti i BLOB hello in tutti i contenitori di hello per conto di hello.
 
 ```ruby
 containers = azure_blob_service.list_containers()
@@ -142,9 +142,9 @@ end
 ```
 
 ## <a name="download-blobs"></a>Scaricare BLOB
-Per scaricare i BLOB, usare il metodo **get\_blob()** per recuperare il contenuto.
+BLOB toodownload, utilizzare hello **ottenere\_blob()** contenuto hello tooretrieve di metodo.
 
-Nell'esempio seguente viene illustrato l'uso di **get\_blob()** per scaricare il contenuto di "image-blob" e scriverlo in un file locale.
+Hello esempio di codice seguente viene illustrato come utilizzare **ottenere\_blob()** toodownload contenuto di "immagine blob" hello e scriverlo tooa file locale.
 
 ```ruby
 blob, content = azure_blob_service.get_blob(container.name,"image-blob")
@@ -152,16 +152,16 @@ File.open("download.png","wb") {|f| f.write(content)}
 ```
 
 ## <a name="delete-a-blob"></a>Eliminare un BLOB
-Per eliminare un BLOB, infine, usare il metodo **delete\_blob()**. Nell'esempio seguente viene illustrato come eliminare un BLOB.
+Infine, toodelete un blob, utilizzare hello **eliminare\_blob()** metodo. Hello esempio di codice riportato di seguito viene illustrato come toodelete un blob.
 
 ```ruby
 azure_blob_service.delete_blob(container.name, "image-blob")
 ```
 
 ## <a name="next-steps"></a>Passaggi successivi
-Seguire i collegamenti seguenti per ulteriori informazioni sulle attività di archiviazione più complesse.
+toolearn sulle attività di archiviazione più complesse, vedere i collegamenti seguenti:
 
 * [Blog del team di Archiviazione di Azure](http://blogs.msdn.com/b/windowsazurestorage/)
 * [Azure SDK per Ruby](https://github.com/WindowsAzure/azure-sdk-for-ruby) su GitHub
-* [Trasferire dati con l'utilità della riga di comando AzCopy](storage-use-azcopy.md)
+* [Trasferimento dati con l'utilità della riga di comando di AzCopy hello](storage-use-azcopy.md)
 

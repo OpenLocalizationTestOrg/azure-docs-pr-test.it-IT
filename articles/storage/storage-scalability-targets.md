@@ -1,6 +1,6 @@
 ---
-title: Obiettivi di ridimensionamento e prestazioni di Archiviazione di Azure | Microsoft Docs
-description: "Scopri gli obiettivi di scalabilità e prestazioni di Archiviazione di Azure, incluse la capacità, la velocità di richiesta e la larghezza di banda in entrata e in uscita sia per gli account di archiviazione standard che premium. Comprendere obiettivi di prestazioni per le partizioni all'interno di ciascun servizio Archiviazione di Azure."
+title: "aaaAzure obiettivi di scalabilità e prestazioni | Documenti Microsoft"
+description: "Informazioni sulle destinazioni di scalabilità e prestazioni hello per l'archiviazione di Azure, tra cui capacità, velocità di richiesta e della larghezza di banda in ingresso e in uscita per entrambi gli account di archiviazione standard e premium. Comprendere obiettivi di prestazioni per le partizioni all'interno di ognuno dei servizi di archiviazione di Azure hello."
 services: storage
 documentationcenter: na
 author: robinsh
@@ -14,32 +14,32 @@ ms.tgt_pltfrm: na
 ms.workload: storage
 ms.date: 07/12/2017
 ms.author: robinsh
-ms.openlocfilehash: ed90e5d63e4c93f9c5054b02d2b4457b44caf6eb
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 98de116a01b64f3418808a5f626b6c70d8d432e3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-storage-scalability-and-performance-targets"></a>Obiettivi di scalabilità e prestazioni per Archiviazione di Azure
 ## <a name="overview"></a>Panoramica
-In questo argomento vengono descritti gli obiettivi di scalabilità e prestazioni per Archiviazione di Microsoft Azure. Per un riepilogo degli altri limiti di Azure, vedere [Sottoscrizione di Azure e limiti, quote e vincoli dei servizi](../azure-subscription-service-limits.md).
+In questo argomento vengono descritti argomenti di scalabilità e prestazioni di hello per archiviazione di Microsoft Azure. Per un riepilogo degli altri limiti di Azure, vedere [Sottoscrizione di Azure e limiti, quote e vincoli dei servizi](../azure-subscription-service-limits.md).
 
 > [!NOTE]
-> Tutti gli account di archiviazione vengono eseguiti sulla nuova topologia di rete flat e supportano gli obiettivi di scalabilità e prestazioni descritti di seguito, indipendentemente dal momento in cui sono stati creati. Per ulteriori informazioni sull'architettura di rete flat di Archiviazione di Azure e sulla scalabilità, vedere [Archiviazione di Microsoft Azure: servizio di archiviazione cloud a elevata disponibilità con coerenza assoluta](http://blogs.msdn.com/b/windowsazurestorage/archive/2011/11/20/windows-azure-storage-a-highly-available-cloud-storage-service-with-strong-consistency.aspx).
+> Tutti gli account di archiviazione eseguiti sulla nuova topologia di rete lineare hello e supportano obiettivi di scalabilità e prestazioni di hello indicati di seguito, indipendentemente dal momento in cui sono stati creati. Per ulteriori informazioni sull'architettura di rete lineare di archiviazione di Azure hello e sulla scalabilità, vedere [archiviazione di Microsoft Azure: A elevata disponibilità servizio di archiviazione Cloud con verifica coerenza sicuro](http://blogs.msdn.com/b/windowsazurestorage/archive/2011/11/20/windows-azure-storage-a-highly-available-cloud-storage-service-with-strong-consistency.aspx).
 > 
 > [!IMPORTANT]
-> Gli obiettivi di scalabilità e prestazioni elencati di seguito sono di fascia alta, ma possono essere conseguiti. In tutti i casi, la velocità e la larghezza di banda richieste e ottenute dall’account di archiviazione dipendono dalla dimensione degli oggetti archiviati, dai modelli di accesso utilizzati e dal tipo di carico di lavoro eseguito dall’applicazione. Assicurarsi di eseguire il test del servizio per determinare se le prestazioni soddisfano i requisiti. Se possibile, evitare picchi improvvisi nella frequenza di traffico e assicurarsi che questo sia ben distribuito tra le partizioni.
+> obiettivi di scalabilità e prestazioni di Hello elencati di seguito sono di fascia alta, ma possono comunque essere raggiunti. In tutti i casi, la richiesta di hello velocità e larghezza di banda ottenuto dall'account di archiviazione dipende dalle dimensioni hello degli oggetti archiviati, criteri di accesso hello utilizzate e tipo di carico di lavoro che esegue l'applicazione hello. Essere tootest che il servizio toodetermine se le relative prestazioni soddisfano i requisiti. Se possibile, evitare picchi improvvisi nella frequenza di hello del traffico e verificare che il traffico sia ben distribuito tra partizioni.
 > 
-> Quando l'applicazione raggiunge il limite in termini di carico di lavoro che può essere gestito da una partizione, Archiviazione di Azure inizierà a restituire il codice di errore 503 (Server occupato) o 500 (Timeout operazione). In questo caso, l'applicazione deve utilizzare un criterio di backoff esponenziale per i nuovi tentativi. Il backoff esponenziale consente di ridurre il carico sulla partizione e di uniformare i picchi di traffico verso tale partizione.
+> Quando l'applicazione raggiunge il limite di hello di ciò che è possibile gestire una partizione per il carico di lavoro, archiviazione di Azure inizierà tooreturn codice di errore 503 (Server occupato) o codice di errore 500 risposte (Timeout operazione). In questo caso, un'applicazione hello debba utilizzare criteri di backoff esponenziale per i tentativi. backoff esponenziale Hello consente carico hello hello partizione toodecrease e tooease out picchi nella partizione toothat traffico.
 > 
 > 
 
-Se le esigenze dell'applicazione superano gli obiettivi di scalabilità di un singolo account di archiviazione, è possibile compilare l'applicazione in modo che sia possibile usare più account di archiviazione e partizionare i dati tra gli account. Per informazioni sui prezzi in base al volume, vedere la pagina relativa ai [prezzi di Archiviazione di Azure](https://azure.microsoft.com/pricing/details/storage/) .
+Dell'applicazione hello deve superare obiettivi di scalabilità hello di un singolo account di archiviazione, è possibile compilare l'applicazione toouse più account di archiviazione e il partizionamento di oggetti dati in tali account di archiviazione. Per informazioni sui prezzi in base al volume, vedere la pagina relativa ai [prezzi di Archiviazione di Azure](https://azure.microsoft.com/pricing/details/storage/) .
 
 ## <a name="scalability-targets-for-blobs-queues-tables-and-files"></a>Obiettivi di scalabilità per BLOB, code, tabelle e file
 [!INCLUDE [azure-storage-limits](../../includes/azure-storage-limits.md)]
 
-<!-- conceptual info about disk limits -- applies to unmanaged and managed -->
+<!-- conceptual info about disk limits -- applies toounmanaged and managed -->
 ## <a name="scalability-targets-for-virtual-machine-disks"></a>Obiettivi di scalabilità per i dischi della macchina virtuale
 [!INCLUDE [azure-storage-limits-vm-disks](../../includes/azure-storage-limits-vm-disks.md)]
 
@@ -58,20 +58,20 @@ Per altri dettagli, vedere [Dimensioni per le macchine virtuali Windows](../virt
 [!INCLUDE [azure-storage-limits-azure-resource-manager](../../includes/azure-storage-limits-azure-resource-manager.md)]
 
 ## <a name="partitions-in-azure-storage"></a>Partizioni in Archiviazione di Azure
-Ogni oggetto che contiene i dati archiviati in Archiviazione di Azure (BLOB, messaggi, entità e file) appartiene a una partizione ed è identificato da una chiave di partizione. La partizione determina il modo in cui Archiviazione di Azure bilancia il carico di BLOB, messaggi, entità e i file tra i server per soddisfare le esigenze di traffico di tali oggetti. La chiave di partizione è univoca e viene usata per trovare un BLOB, un messaggio o un'entità.
+Ogni oggetto che contiene i dati archiviati in archiviazione di Azure (BLOB, messaggi, le entità e file) appartiene la partizione tooa ed è identificato da una chiave di partizione. partizione Hello determina la modalità di archiviazione di Azure bilancia il carico BLOB, messaggi, le entità e i file tra requisiti di tali oggetti server toomeet hello traffico. chiave di partizione Hello è univoca ed è utilizzato toolocate un blob, un messaggio o l'entità.
 
-Nella tabella precedente [Obiettivi di scalabilità per gli account di archiviazione Standard](#standard-storage-accounts) elenca gli obiettivi di prestazioni di una singola partizione per ogni servizio.
+tabella Hello illustrata in precedenza [obiettivi di scalabilità per gli account di archiviazione Standard](#standard-storage-accounts) elenchi hello obiettivi di prestazioni per una singola partizione per ogni servizio.
 
-Le partizioni influiscono sul bilanciamento del carico e sulla scalabilità per ognuno dei servizi di archiviazione nei modi seguenti:
+Le partizioni influiscono sul bilanciamento del carico e scalabilità per ognuno dei servizi di archiviazione hello in hello seguenti modi:
 
-* **BLOB**: la chiave di partizione per un BLOB è il nome account + il nome del contenitore + il nome del BLOB. Ciò significa che ogni BLOB può avere una partizione specifica se il caricamento nel BLOB la richiede. I BLOB possono essere distribuiti in più server per aumentare il numero di istanze di accesso, ma ogni BLOB può essere gestito da un solo server. Sebbene i BLOB possano essere raggruppati logicamente in contenitori di BLOB, non vi sono implicazioni sul partizionamento derivanti da questo raggruppamento.
-* **File**: la chiave di partizione per un file è il nome dell'account + il nome della condivisione file. Ciò significa che tutti i file di una condivisione file sono presenti anche in una singola partizione.
-* **Messaggi**: la chiave di partizione per un messaggio è il nome account + il nome della coda, in modo che tutti i messaggi in una coda vengano raggruppati in una singola partizione e serviti da un singolo server. Code diverse possono essere elaborate da server differenti per bilanciare il carico per quante code un account di archiviazione possa disporre.
-* **Entità**: la chiave di partizione per un'entità è il nome account + il nome della tabella + la chiave di partizione, dove la chiave di partizione è il valore della proprietà richiesta **PartitionKey** definita dall'utente per l'entità. Tutte le entità con lo stesso valore di chiave di partizione vengono raggruppate nella stessa partizione e vengono gestite nello stesso server partizioni. Si tratta di un punto importante da considerare nella progettazione dell'applicazione. L'applicazione deve bilanciare i vantaggi di scalabilità della distribuzione delle entità in più partizioni con i vantaggi di accesso ai dati derivanti dal raggruppamento di entità in una singola partizione.  
+* **BLOB**: chiave di partizione hello per un blob è il nome di account + nome contenitore + nome blob. Ciò significa che ogni blob può avere una propria partizione se il carico sul blob hello lo richiede. I BLOB possono essere distribuiti in più server in ordine tooscale out toothem di accesso, ma un singolo blob può essere utilizzato solo da un singolo server. Sebbene i BLOB possano essere raggruppati logicamente in contenitori di BLOB, non vi sono implicazioni sul partizionamento derivanti da questo raggruppamento.
+* **File**: chiave di partizione hello per un file è account nome + file di nome di condivisione. Ciò significa che tutti i file di una condivisione file sono presenti anche in una singola partizione.
+* **Messaggi**: chiave di partizione hello per un messaggio è il nome di account hello + nome di coda, pertanto tutti i messaggi in una coda vengono raggruppati in un'unica partizione ed eseguiti da un singolo server. Code diverse possono essere elaborate da server diversi toobalance hello caricare per tuttavia molti code potrebbe essere un account di archiviazione.
+* **Entità**: chiave di partizione hello per un'entità è il nome di account + nome di tabella + chiave di partizione in cui la chiave di partizione hello è il valore di hello di hello necessarie-definito dall'utente **PartitionKey** proprietà per l'entità hello. Tutte le entità con hello stesso valore di chiave di partizione vengono raggruppate in hello stessa partizione ed eseguita da hello stessa partizione server. Si tratta di un toounderstand punto importante nella progettazione dell'applicazione. L'applicazione deve bilanciare i vantaggi di scalabilità hello di distribuzione delle entità in più partizioni con hello correlati all'accesso ai dati di raggruppamento di entità in una singola partizione.  
 
-Un vantaggio chiave derivante dal raggruppamento di un set di entità in una tabella in una singola partizione consiste nella possibilità di eseguire operazioni batch atomiche tra le entità nella stessa partizione, in quanto una partizione è presente in un singolo server. Quindi, per eseguire operazioni batch su un gruppo di entità, considerare la possibilità di raggruppare le entità con la stessa chiave di partizione. 
+Toogrouping un vantaggio chiave un set di entità in una tabella in una singola partizione è che le operazioni batch atomiche tooperform possibili tra le entità nella stessa partizione, in quanto non esiste una partizione in un unico server hello. Pertanto, se si desiderano tooperform operazioni batch su un gruppo di entità, si consiglia di raggrupparli con hello stessa chiave di partizione. 
 
-Dall'altro lato, le entità che si trovano nella stessa tabella, ma che hanno chiavi di partizioni diverse, possono avere il carico bilanciato in server differenti, rendendo possibile una scalabilità maggiore.
+In hello invece, le entità che sono nella stessa tabella, ma dispongono di chiavi di partizione diverso di hello possono essere con carico bilanciato in server differenti, rendendo possibili toohave maggiore scalabilità.
 
 Suggerimenti dettagliati per la progettazione della strategia di partizionamento per le tabelle sono disponibili [qui](https://msdn.microsoft.com/library/azure/hh508997.aspx).
 

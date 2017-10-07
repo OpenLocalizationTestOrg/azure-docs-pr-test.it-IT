@@ -1,6 +1,6 @@
 ---
-title: Partizionamento dei servizi di Service Fabric | Microsoft Docs
-description: Illustra come partizionare i servizi con stato di Service Fabric. Le partizioni consentono di archiviare i dati nei computer locali, in modo da poter ridimensionare dati e calcolo allo stesso tempo.
+title: servizi di Service Fabric aaaPartitioning | Documenti Microsoft
+description: Viene descritto come servizi con stati di toopartition Service Fabric. Partizioni consente l'archiviazione dei dati sul computer locale hello in modo da dati e calcolo possono essere ridimensionate, insieme.
 services: service-fabric
 documentationcenter: .net
 author: msfussell
@@ -14,132 +14,132 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/30/2017
 ms.author: msfussell
-ms.openlocfilehash: 3c1e80305cb65f41a6981b99f69e8b87f89599ac
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6ead48716c08f4212535202ee69d169067d5c6d8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="partition-service-fabric-reliable-services"></a>Partizionare Reliable Services di Service Fabric
-Questo articolo offre un'introduzione ai concetti di base del partizionamento di Reliable Services di Azure Service Fabric. Il codice sorgente usato nell'articolo è disponibile anche in [GitHub](https://github.com/Azure-Samples/service-fabric-dotnet-getting-started/tree/classic/Services/AlphabetPartitions).
+Questo articolo fornisce un'introduzione toohello concetti di base di servizi di Azure Service Fabric affidabili di partizionamento. Hello codice sorgente utilizzato nell'articolo hello disponibile anche su [GitHub](https://github.com/Azure-Samples/service-fabric-dotnet-getting-started/tree/classic/Services/AlphabetPartitions).
 
 ## <a name="partitioning"></a>Partizionamento
-Il partizionamento non è una procedura specifica di Service Fabric, bensì si tratta di un modello di base per la creazione di servizi scalabili. Più in generale, si può pensare al partizionamento come alla divisione dello stato (dati) e del calcolo in unità accessibili più piccole per migliorare la scalabilità e le prestazioni. Una forma molto conosciuta di partizionamento è il [partizionamento dei dati][wikipartition], noto anche come partizionamento orizzontale.
+Il partizionamento non è univoco tooService dell'infrastruttura. bensì si tratta di un modello di base per la creazione di servizi scalabili. In senso più ampio, è possibile considerare di partizionamento come concetto della divisione di stato (dati) e di calcolo di prestazioni e scalabilità di tooimprove accessibile unità più piccole. Una forma molto conosciuta di partizionamento è il [partizionamento dei dati][wikipartition], noto anche come partizionamento orizzontale.
 
 ### <a name="partition-service-fabric-stateless-services"></a>Partizionamento dei servizi senza stato di Service Fabric
 Per i servizi senza stato un partizionamento può essere considerato un'unità logica contenente una o più istanze di un servizio. La figura 1 illustra un servizio senza stato con cinque istanze distribuite in un cluster usando una partizione.
 
 ![Servizio senza stato](./media/service-fabric-concepts-partitioning/statelessinstances.png)
 
-Sono disponibili due tipi di soluzioni di servizio senza stato. La prima è un servizio che rende persistente lo stato esternamente, ad esempio in un database SQL di Azure (come un sito Web che archivia informazioni e dati sulle sessioni), e la seconda include servizi solo di calcolo (ad esempio, una calcolatrice o l'anteprima di un'immagine) che non gestiscono alcuno stato persistente.
+Sono disponibili due tipi di soluzioni di servizio senza stato. Hello prima uno è un servizio che rende persistente lo stato esternamente, ad esempio in un database SQL di Azure (ad esempio, un sito Web che archivia i dati e le informazioni sulla sessione hello). Hello secondo è solo calcolo servizi (come anteprima una calcolatrice o immagine) che non si gestiscono qualsiasi stato persistente.
 
-In entrambi i casi, il partizionamento di un servizio senza stato è uno scenario molto raro e la scalabilità e la disponibilità in genere si ottengono aggiungendo altre istanze. I soli casi in cui è opportuno considerare più partizioni per le istanze di un servizio senza stato sono quelli in cui è necessario soddisfare speciali richieste di routing,
+In entrambi i casi, il partizionamento di un servizio senza stato è uno scenario molto raro e la scalabilità e la disponibilità in genere si ottengono aggiungendo altre istanze. Hello solo tempo tooconsider più partizioni per le istanze del servizio senza stato è quando è necessario toomeet speciali routing delle richieste.
 
-ad esempio, quando gli utenti con ID compresi in un determinato intervallo devono essere gestiti solo da una particolare istanza del servizio. È possibile partizionare un servizio senza stato anche quando, ad esempio, è presente un back-end molto partizionato, come un database SQL partizionato, e si vuole controllare quale istanza del servizio deve scrivere nella partizione di database oppure eseguire altre operazioni di preparazione nel servizio senza stato che richiedono le stesse informazioni sul partizionamento usate nel back-end. Tali tipi di scenario possono essere risolti anche in modo diverso e non richiedono necessariamente il partizionamento del servizio.
+ad esempio, quando gli utenti con ID compresi in un determinato intervallo devono essere gestiti solo da una particolare istanza del servizio. Un altro esempio di quando è possibile partizionare un servizio senza stato è quando si dispone di un back-end realmente partizionato (ad esempio un database SQL partizionato) e si desidera toocontrol quale istanza del servizio deve scrivere toohello partizioni di database, o eseguire altre operazioni di preparazione all'interno di Hello servizio senza stato che richiede hello stesso le informazioni di partizionamento come viene utilizzato nel back-end hello. Tali tipi di scenario possono essere risolti anche in modo diverso e non richiedono necessariamente il partizionamento del servizio.
 
-La parte restante di questa procedura dettagliata riguarda i servizi con stato.
+resto Hello di questa procedura dettagliata si concentra sui servizi con stato.
 
 ### <a name="partition-service-fabric-stateful-services"></a>Partizionamento dei servizi con stato di Service Fabric
-L'infrastruttura di servizi facilita lo sviluppo di servizi con stato scalabili offrendo un modo straordinario per partizionare lo stato (dati). Concettualmente, si può pensare al partizionamento di un servizio con stato come a un'unità di scala estremamente affidabile nelle [repliche](service-fabric-availability-services.md) distribuite e bilanciate nei nodi del cluster.
+Service Fabric rende servizi con stato scalabili toodevelop facile offrendo un modo di prima classe toopartition stato (dati). Concettualmente, si pensi a una partizione di un servizio con stato come unità di scala che è altamente affidabile tramite [repliche](service-fabric-availability-services.md) che vengono distribuiti e bilanciati tra i nodi di hello in un cluster.
 
-Il partizionamento, nell'ambito dei servizi con stato di Service Fabric, fa riferimento al processo che determina come una particolare partizione del servizio sia responsabile di una parte dello stato completo del servizio. Come accennato in precedenza, la partizione è un set di [repliche](service-fabric-availability-services.md). Un'importante caratteristica dell'infrastruttura di servizi è che inserisce le partizioni in nodi diversi, consentendo loro di crescere fino al limite di risorse di un nodo. Quando i dati richiedono uno spazio maggiore, le partizioni crescono e Service Fabric le ribilancia tra i nodi assicurando un uso continuo ed efficiente delle risorse hardware.
+Il partizionamento nel contesto di hello di servizi di Service Fabric con stati, si riferisce toohello processo di individuazione che una partizione specifica del servizio è responsabile di una parte di hello stato completo nello stato del servizio hello. Come accennato in precedenza, la partizione è un set di [repliche](service-fabric-availability-services.md). Un aspetto interessante di Service Fabric è che le partizioni hello viene inserito in nodi diversi. In questo modo il limite di risorse del nodo di toogrow tooa. Quando sono necessari dati hello aumento delle dimensioni, partizioni di aumento delle dimensioni e Service Fabric eseguito il ribilanciamento delle partizioni tra i nodi. In questo modo hello continua utilizzo efficiente delle risorse hardware.
 
-Si supponga, ad esempio, di iniziare con un cluster a 5 nodi e un servizio configurato per includere 10 partizioni e una destinazione di tre repliche. In questo caso, Service Fabric bilancerebbe e distribuirebbe le repliche nel cluster e risulterebbero due [repliche](service-fabric-availability-services.md) primarie per nodo.
-Se poi fosse necessario scalare orizzontalmente il cluster fino a 10 nodi, Service Fabric ribilancerebbe le [repliche](service-fabric-availability-services.md) primarie tra tutti i 10 nodi. Analogamente, se si tornasse a 5 nodi, Service Fabric ribilancerebbe tutte le repliche tra i 5 nodi.  
+toogive ad esempio, affermare che iniziano con un cluster di 5 nodi e un servizio che viene configurato toohave 10 partizioni e una destinazione di tre repliche. In questo caso, Service Fabric potrebbe bilanciare repliche hello cluster hello - e distribuire alla fine si avrebbero primario due [repliche](service-fabric-availability-services.md) per ogni nodo.
+Se è necessario ora tooscale out too10 i nodi del cluster di hello, Service Fabric sarebbe ribilanciare primario hello [repliche](service-fabric-availability-services.md) in tutti i nodi di 10. Analogamente, se è ridimensionata nodi too5 indietro, Service Fabric sarebbe ribilanciare tutte le repliche di hello nei nodi hello 5.  
 
-La figura 2 illustra la distribuzione di 10 partizioni prima e dopo il ridimensionamento del cluster.
+Figura 2 mostra hello distribuzione 10 partizioni prima e dopo il ridimensionamento cluster hello.
 
 ![Servizio con stato](./media/service-fabric-concepts-partitioning/partitions.png)
 
-La scalabilità orizzontale è quindi garantita perché le richieste dei client vengono distribuite tra i computer, le prestazioni generali dell'applicazione vengono migliorate e la contesa in caso di accesso a blocchi di dati viene ridotta.
+Di conseguenza, hello scalabilità orizzontale è possibile ottenere poiché le richieste dai client vengono distribuite tra più computer, un miglioramento delle prestazioni complessive dell'applicazione hello e viene ridotto il conflitto su toochunks accesso dei dati.
 
 ## <a name="plan-for-partitioning"></a>Pianificazione del partizionamento
-Prima di implementare un servizio, è sempre consigliabile considerare la strategia di partizionamento richiesta dalla scalabilità orizzontale. Esistono diversi modi, ma tutti si concentrano sugli scopi dell'applicazione. Nell'ambito di questo articolo verranno illustrati alcuni degli aspetti più importanti.
+Prima di implementare un servizio, è necessario considerare sempre hello strategia che è necessario tooscale out di partizionamento. Esistono diversi modi, ma tutti gli elementi concentrarsi su quale applicazione hello deve tooachieve. Per il contesto di hello di questo articolo, si prendano in considerazione alcune hello aspetti più importanti.
 
-Un valido approccio consiste nel considerare la struttura dello stato che deve essere partizionato come primo passaggio.
+Un buon approccio è toothink sulla struttura hello dello stato di hello necessarie toobe partizionata, come primo passaggio hello.
 
-Un semplice esempio viene riportato di seguito. Per compilare un servizio per un sondaggio a livello di stato, è possibile creare una partizione per ogni città dello stato e quindi archiviare i voti per ogni persona della città nella partizione corrispondente a tale città. La figura 3 illustra un gruppo di persone e la città in cui risiedono.
+Un semplice esempio viene riportato di seguito. Se fosse un servizio per un sondaggio countywide toobuild, è possibile creare una partizione per ogni città regione hello. Quindi, si potrebbe archiviare hello voti per ogni persona città hello nella partizione hello corrispondente toothat città. Figura 3 viene illustrato un set di utenti e hello città in cui risiedono.
 
 ![Partizione semplice](./media/service-fabric-concepts-partitioning/cities.png)
 
-Poiché la popolazione delle città varia considerevolmente, si potrebbero avere alcune partizioni contenenti una grande quantità di dati (ad esempio, Seattle) e altre con dati in quantità molto piccole (ad esempio, Kirkland). Quale impatto hanno quindi partizioni con quantità di dati non uniformi?
+Come il popolamento di città hello varia notevolmente, si rischia di con alcune partizioni che contengono una grande quantità di dati (ad esempio, Seattle) e le altre partizioni con stato molto piccolo (ad esempio Kirkland). Cos'è impatto hello della presenza di partizioni con una quantità non uniforme di stato?
 
-Tornando all'esempio, si può osservare facilmente che la partizione con i voti per Seattle avrà più traffico di quella di Kirkland. Per impostazione predefinita, Service Fabric assicura che in ogni nodo sia presente all'incirca lo stesso numero di repliche primarie e secondarie, perciò si potrebbero avere nodi contenenti repliche che gestiscono più traffico e altre che gestiscono meno traffico. In un cluster è preferibile evitare le aree sensibili e non sensibili di questo genere.
+Se si pensa esempio hello nuovamente, è possibile visualizzare facilmente che partizione hello contenente hello voti per Seattle consentirà di ottenere più traffico Kirkland hello uno. Per impostazione predefinita, Service Fabric garantisce che sia presente su hello stesso numero di repliche primarie e secondarie in ogni nodo. perciò si potrebbero avere nodi contenenti repliche che gestiscono più traffico e altre che gestiscono meno traffico. Preferibilmente si tooavoid a caldo e freddi aree come segue in un cluster.
 
-Per evitarle, si consiglia di effettuare due azioni nell'ambito del partizionamento:
+In ordine tooavoid questo, è necessario eseguire due operazioni, da un punto di vista di partizionamento:
 
-* Cercare di partizionare lo stato in modo che venga distribuito uniformemente tra tutte le partizioni.
-* Segnalare il carico da ognuna delle repliche per il servizio. Per informazioni su come fare, vedere l'articolo relativo a [metriche e carico](service-fabric-cluster-resource-manager-metrics.md). Service Fabric consente di segnalare il carico utilizzato dai servizi, ad esempio la quantità di memoria o il numero di record. In base alle metriche segnalate, Service Fabric rileva che alcune partizioni gestiscono carichi maggiori di altre e ribilancia il cluster spostando le repliche in nodi più adatti, per evitare il sovraccarico dei nodi in generale.
+* Provare a stato hello toopartition in modo che viene distribuito uniformemente tra tutte le partizioni.
+* Caricamento di report da ognuna delle repliche hello per servizio hello. Per informazioni su come fare, vedere l'articolo relativo a [metriche e carico](service-fabric-cluster-resource-manager-metrics.md). Service Fabric fornisce hello. funzionalità il carico di tooreport utilizzato da servizi, ad esempio quantità di memoria o un numero di record. In base alle metriche di hello segnalate, Service Fabric rileva che alcune partizioni servono carichi più elevati rispetto ad altri ed eseguito il ribilanciamento cluster hello mobile repliche toomore adatto nodi, in modo che complessivo non è sottoposto a overload alcun nodo.
 
-A volte non è possibile sapere quanti dati saranno presenti in una determinata partizione e quindi si consiglia di eseguire entrambe le operazioni, adottando prima una strategia di partizionamento che distribuisca i dati in modo uniforme nelle partizioni e poi creando un report del carico.  Il primo metodo consente di evitare le situazioni descritte nell'esempio delle votazioni, il secondo invece di ridurre le differenze temporanee nell'accesso o nel carico nel corso del tempo.
+A volte non è possibile sapere quanti dati saranno presenti in una determinata partizione Pertanto una raccomandazione generale è toodo entrambi - prima di tutto, adottando una strategia di partizionamento che distribuisce hello dati in modo uniforme tra partizioni hello e i secondi, dal carico di report.  primo metodo Hello impedisce situazioni descritte hello voto di esempio, anche se hello secondo consente di arrotondare i temporanee differenze in access o di carico nel tempo.
 
-Un altro aspetto della pianificazione delle partizioni è la scelta del numero corretto di partizioni con cui iniziare.
+Un altro aspetto della pianificazione di partizione è numero corretto di hello toochoose di toobegin partizioni con.
 Dal punto di vista di Service Fabric, nulla impedisce di iniziare con un numero di partizioni maggiore di quello anticipato per lo scenario.
-Infatti ipotizzare il numero massimo di partizioni è un valido approccio.
+In realtà, presupponendo che il numero massimo di hello di partizioni è un approccio valido.
 
-Raramente saranno necessarie più partizioni di quelle scelte inizialmente. Poiché non sarà più possibile modificare in seguito il conteggio delle partizioni, sarà necessario adottare alcuni approcci avanzati, ad esempio la creazione di una nuova istanza del servizio dello stesso tipo di servizio, e implementare una logica lato client che instradi le richieste all'istanza del servizio corretta in base alle conoscenze lato client che il codice client deve avere.
+Raramente saranno necessarie più partizioni di quelle scelte inizialmente. Come è possibile modificare il numero di partizioni hello dopo hello, sarebbe necessario tooapply alcuni approcci partizione avanzate, ad esempio la creazione di una nuova istanza del servizio di hello stesso tipo di servizio. È inoltre necessario tooimplement logica sul lato client che indirizza hello richiede l'istanza del servizio corretto toohello, in base alle informazioni sul lato client che il codice client deve gestire.
 
-Un altro aspetto da considerare per la pianificazione del partizionamento sono le risorse del computer disponibili. Poiché lo stato deve essere accessibile e archiviato, è necessario rispettare i limiti seguenti:
+Un'altra considerazione per il partizionamento di pianificazione è risorse del computer disponibile hello. Quando lo stato di hello esigenze toobe accessibili e archiviati, si sta toofollow associato:
 
 * Larghezza di banda della rete
 * Memoria di sistema
 * Archiviazione su disco
 
-Cosa accade quindi se si presentano vincoli relativi alle risorse in un cluster in esecuzione? Per soddisfare i nuovi requisiti, sarà sufficiente scalare orizzontalmente il cluster.
+Ma cosa accade se si verificano i vincoli di risorse in un cluster in esecuzione? risposte Hello sono che è semplicemente possibile scalare orizzontalmente hello cluster tooaccommodate hello nuovi requisiti.
 
-[La guida alla pianificazione della capacità](service-fabric-capacity-planning.md) contiene indicazioni per determinare quanti nodi sono necessari al cluster.
+[Guida alla pianificazione della capacità di Hello](service-fabric-capacity-planning.md) offre indicazioni per il toodetermine il numero di nodi del cluster è necessario.
 
 ## <a name="get-started-with-partitioning"></a>Introduzione al partizionamento
-Questa sezione descrive come iniziare a partizionare il servizio.
+In questa sezione viene descritto come tooget iniziare con il partizionamento del servizio.
 
 In primo luogo Service Fabric consente di scegliere tra tre schemi di partizione:
 
 * Partizionamento con intervallo (noto anche come UniformInt64Partition).
 * Partizionamento denominato. Le applicazioni che usano questo modello in genere hanno dati che possono essere inseriti in un bucket, in un set associato. Aree, codici postali, gruppi di clienti o altri limiti aziendali sono alcuni esempi comuni di campi dati usati come chiavi di partizione denominata.
-* Partizionamento singleton. Le partizioni singleton in genere vengono usate quando il servizio non richiede alcun routing aggiuntivo. I servizi senza stato, ad esempio, usano questo schema di partizionamento per impostazione predefinita.
+* Partizionamento singleton. Partizioni singleton vengono utilizzate in genere quando il servizio di hello non richiede alcun aggiuntive di routing. I servizi senza stato, ad esempio, usano questo schema di partizionamento per impostazione predefinita.
 
-Gli schemi di partizionamento denominato e singleton sono forme particolari di partizioni con intervalli. Per impostazione predefinita, i modelli di Visual Studio per Service Fabric usano il partizionamento con intervallo perché è quello più comune e utile. La parte restante di questo articolo riguarda lo schema di partizionamento con intervallo.
+Gli schemi di partizionamento denominato e singleton sono forme particolari di partizioni con intervalli. Per impostazione predefinita, i modelli di Visual Studio hello per l'utilizzo di Service Fabric intervallo incluso il partizionamento, perché è hello uno più comune e utile. resto Hello di questo articolo illustra lo schema di partizionamento nell'intervallo di hello.
 
 ### <a name="ranged-partitioning-scheme"></a>Schema di partizionamento con intervallo
-Viene usato per specificare un intervallo di numeri interi (identificato da una chiave minima e una chiave massima) e un numero di partizioni (n). Crea n partizioni, ognuna responsabile di un intervallo secondario non sovrapposto dell'intervallo di chiavi di partizione generale. Ad esempio, uno schema di partizionamento con intervallo con una chiave minima 0, una chiave massima 99 e un conteggio pari a 4 creerà quattro partizioni come mostrato di seguito.
+Si tratta di toospecify usato un numero intero intervalli (identificate da una chiave inferiore e chiave superiore) e un numero di partizioni (n). Crea partizioni n, ognuno responsabile di un intervallo secondario non sovrapposti di hello complessiva intervalli di chiavi di partizione. Ad esempio, uno schema di partizionamento con intervallo con una chiave minima 0, una chiave massima 99 e un conteggio pari a 4 creerà quattro partizioni come mostrato di seguito.
 
 ![Partizionamento per intervalli](./media/service-fabric-concepts-partitioning/range-partitioning.png)
 
-Un approccio comune consiste nel creare un hash basato su una chiave univoca nel set di dati. Sono esempi comuni di chiavi un Vehicle Identification Number (VIN), l'ID di un dipendente o una stringa univoca. Usando questa chiave univoca è possibile quindi generare un codice hash, modulo dell'intervallo di chiavi, da usare come chiave. È possibile specificare limiti massimi e minimi dell'intervallo di chiavi consentite.
+Un approccio comune è un hash basato su una chiave univoca nel set di dati hello toocreate. Sono esempi comuni di chiavi un Vehicle Identification Number (VIN), l'ID di un dipendente o una stringa univoca. Usando questa chiave univoca, si potrebbe quindi generare un codice hash, l'intervallo di chiavi di modulo hello, toouse come chiave. È possibile specificare hello superiore e inferiore di hello chiave intervallo consentito.
 
 ### <a name="select-a-hash-algorithm"></a>Selezionare un algoritmo di hash
-Una parte importante della generazione di un hash è rappresentata dalla selezione dell'algoritmo di hash. È necessario valutare se l'obiettivo sia raggruppare chiavi simili una accanto all'altra (hash sensibile alla località) o se l'attività debba essere distribuita su larga scala su tutte le partizioni (hash di distribuzione), che è l'obiettivo più comune.
+Una parte importante della generazione di un hash è rappresentata dalla selezione dell'algoritmo di hash. Una considerazione importante è se obiettivo hello toogroup chiavi simili vicini (sensibili hashing località), o se l'attività deve essere distribuito su vasta scala tra tutte le partizioni (distribuzione hash), che sono più comuni.
 
-Un valido algoritmo di hash di distribuzione si distingue perché è facile da elaborare, presenta pochi conflitti e distribuisce le chiavi in modo uniforme. [FNV-1](https://en.wikipedia.org/wiki/Fowler%E2%80%93Noll%E2%80%93Vo_hash_function) è un valido esempio di algoritmo di hash efficiente.
+sono riportate le caratteristiche di Hello di un algoritmo di hash di distribuzione valido che è facile toocompute dispone di alcuni conflitti e distribuisce chiavi di hello in modo uniforme. Un buon esempio di un algoritmo hash efficiente è hello [FNV 1](https://en.wikipedia.org/wiki/Fowler%E2%80%93Noll%E2%80%93Vo_hash_function) algoritmo hash.
 
-Un'ottima risorsa per le scelte di algoritmi di codice di hash generali è rappresentata dalla [pagina Wikipedia sulle funzioni hash](http://en.wikipedia.org/wiki/Hash_function).
+Un'ottima risorsa per le scelte di algoritmo di hash generale codice è hello [pagina di Wikipedia sulle funzioni hash](http://en.wikipedia.org/wiki/Hash_function).
 
 ## <a name="build-a-stateful-service-with-multiple-partitions"></a>Compilare un servizio con stato con più partizioni
-Ora verrà creato il primo servizio con stato affidabile con più partizioni. In questo esempio si compilerà un'applicazione molto semplice in cui archiviare tutti i cognomi che iniziano con la stessa lettera nella stessa partizione.
+Ora verrà creato il primo servizio con stato affidabile con più partizioni. In questo esempio, si creerà un'applicazione molto semplice in cui si desidera toostore tutti i cognomi che iniziano con hello stessa lettera di hello stessa partizione.
 
-Prima di scrivere il codice, considerare le partizioni e le chiavi di partizione. Sono necessarie 26 partizioni, una per ogni lettera dell'alfabeto, ma per quanto riguarda le chiavi minime e massime?
-Poiché è necessaria esattamente una partizione per ogni lettera, è possibile usare 0 come chiave minima e 25 come chiave massima, perché ogni lettera corrisponde alla propria chiave.
+Prima di scrivere alcun codice, è necessario toothink sulle partizioni hello e le chiavi di partizione. È necessario 26 partizioni (uno per ogni lettera nell'alfabeto hello), ma su hello superiore e inferiore delle chiavi?
+Come si desidera letteralmente toohave una partizione per ogni lettera, è possibile usare 0 come chiave bassa hello e 25 come chiave alta hello, ogni lettera è la propria chiave.
 
 > [!NOTE]
-> Questo è uno scenario semplificato, perché nella realtà la distribuzione non sarebbe uniforme. I cognomi che iniziano con la lettera "S" o "M" sono più comuni di quelli che iniziano con "X" o "Y".
+> Si tratta di uno scenario semplificato, come in realtà distribuzione hello sarebbe non uniforme. Cognome inizia con la lettera di hello "S" o "M" sono più comuni di quelli hello a partire da "X" o "Y".
 > 
 > 
 
 1. Aprire **Visual Studio** > **File** > **Nuovo** > **Progetto**.
-2. Nella finestra di dialogo **Nuovo progetto** scegliere l'applicazione Service Fabric.
-3. Assegnare al progetto il nome "AlphabetPartitions".
-4. Nella finestra di dialogo **Create a Service** (Crea un servizio) scegliere il servizio **con stato** e assegnargli il nome "Alphabet.Processing", come nell'immagine seguente.
+2. In hello **nuovo progetto** finestra di dialogo, scegliere un'applicazione hello Service Fabric.
+3. Denominare il progetto di hello "AlphabetPartitions".
+4. In hello **creare un servizio** finestra di dialogo scegliere **Stateful** del servizio e chiamarlo "Alphabet.Processing", come illustrato nell'immagine di hello riportata di seguito.
        ![Finestra di dialogo Nuovo servizio in Visual Studio][1]
 
   <!--  ![Stateful service screenshot](./media/service-fabric-concepts-partitioning/createstateful.png)-->
 
-5. Impostare il numero di partizioni. Aprire il file Applicationmanifest.xml che si trova nella cartella ApplicationPackageRoot del progetto AlphabetPartitions e impostare il parametro Processing_PartitionCount su 26, come mostrato sotto.
+5. Impostare il numero di hello di partizioni. File ApplicationManifest XML hello aprire si trova in hello cartella ApplicationPackageRoot parametro hello AlphabetPartitions progetto e aggiornare hello Processing_PartitionCount too26 come illustrato di seguito.
    
     ```xml
     <Parameter Name="Processing_PartitionCount" DefaultValue="26" />
     ```
    
-    È anche necessario aggiornare le proprietà LowKey e HighKey dell'elemento StatefulService in ApplicationManifest.xml come illustrato di seguito.
+    È inoltre necessario hello tooupdate LowKey e le proprietà di HighKey elemento StatefulService hello in hello ApplicationManifest.xml come illustrato di seguito.
    
     ```xml
     <Service Name="Processing">
@@ -148,25 +148,25 @@ Poiché è necessaria esattamente una partizione per ogni lettera, è possibile 
       </StatefulService>
     </Service>
     ```
-6. Per rendere accessibile il servizio, aprire un endpoint su una porta aggiungendo l'elemento endpoint di ServiceManifest.xml (nella cartella PackageRoot) per il servizio Alphabet.Processing, come mostrato sotto:
+6. Per toobe servizio hello accessibile, aprire un endpoint su una porta aggiungendo l'elemento dell'endpoint hello di ServiceManifest.xml (che si trova nella cartella PackageRoot hello) per hello Alphabet.Processing servizio come illustrato di seguito:
    
     ```xml
     <Endpoint Name="ProcessingServiceEndpoint" Port="8089" Protocol="http" Type="Internal" />
     ```
    
-    Il servizio ora è configurato per l'ascolto di un endpoint interno con 26 partizioni.
-7. In seguito è necessario eseguire l'override del metodo `CreateServiceReplicaListeners()` della classe Processing.
+    Servizio hello è ora configurato toolisten tooan interno di endpoint con 26 partizioni.
+7. Successivamente, è necessario toooverride hello `CreateServiceReplicaListeners()` metodo della classe di elaborazione hello.
    
    > [!NOTE]
-   > Per questo esempio, si presume che venga usato un semplice oggetto HttpCommunicationListener. Per ulteriori informazioni sulla comunicazione Reliable Service, vedere [Modello di comunicazione Reliable Service](service-fabric-reliable-services-communication.md).
+   > Per questo esempio, si presume che venga usato un semplice oggetto HttpCommunicationListener. Per ulteriori informazioni sulla comunicazione affidabile di servizio, vedere [modello di comunicazione affidabile servizio hello](service-fabric-reliable-services-communication.md).
    > 
    > 
-8. Un modello consigliato per l'URL su cui è in ascolto una replica è il formato seguente: `{scheme}://{nodeIp}:{port}/{partitionid}/{replicaid}/{guid}`,
-    che consente di configurare il listener di comunicazione perché rimanga in ascolto degli endpoint corretti e con questo modello.
+8. Un modello consigliato per l'URL di hello che una replica è in ascolto su è hello seguente formato: `{scheme}://{nodeIp}:{port}/{partitionid}/{replicaid}/{guid}`.
+    Pertanto si desidera tooconfigure il listener di comunicazione toolisten sugli endpoint corretto hello e con questo modello.
    
-    Poiché è possibile che più repliche di questo servizio siano ospitate sullo stesso computer, questo indirizzo deve essere univoco per la replica ed è per questo motivo che nell'URL sono presenti un ID partizione e un ID replica. HttpListener può essere in ascolto di più indirizzi sulla stessa porta, purché il prefisso dell'URL sia univoco.
+    Più repliche di questo servizio possono essere ospitate su hello stesso computer, quindi questo indirizzo deve toobe toohello univoco replica. Ecco perché l'ID di partizione + ID replica si trovano hello URL. HttpListener può restare in ascolto su più indirizzi in hello che stessa porta come prefisso di URL hello è univoco.
    
-    Il GUID aggiuntivo è presente per un caso avanzato in cui anche le repliche secondarie sono in ascolto delle richieste di sola lettura. In questo caso, è opportuno assicurarsi che venga usato un nuovo indirizzo univoco quando si passa dalla replica primaria a quelle secondarie per obbligare i client a risolvere nuovamente l'indirizzo. In questo caso viene usato '+' come indirizzo per fare in modo che la replica sia in ascolto in tutti gli host disponibili (IP, FQDM, localhost, e così via) Il codice seguente mostra un esempio.
+    Hello che GUID aggiuntiva è disponibile per un case avanzato in cui le repliche secondarie sono anche in attesa per le richieste di sola lettura. Quando è il caso di hello, è opportuno che un nuovo indirizzo univoco viene utilizzato durante la transizione da indirizzo di toosecondary primaria tooforce client toore risoluzione hello toomake. '+' viene utilizzato come indirizzo hello in modo che hello replica è in ascolto in tutto il codice hello (IP, FQDM, localhost e così via), gli host disponibili riportato di seguito viene illustrato un esempio.
    
     ```CSharp
     protected override IEnumerable<ServiceReplicaListener> CreateServiceReplicaListeners()
@@ -192,9 +192,9 @@ Poiché è necessaria esattamente una partizione per ogni lettera, è possibile 
     }
     ```
    
-    È anche importante notare che l'URL pubblicato è leggermente diverso dal prefisso dell'URL di ascolto.
-    L'URL in ascolto viene assegnato a HttpListener. L'URL pubblicato è l'URL che viene pubblicato nel servizio Naming dell'infrastruttura di servizi, usato per l'individuazione dei servizi. I client richiederanno questo indirizzo con questo servizio di individuazione. Poiché l'indirizzo ottenuto dai client deve avere l'IP o il nome FQDN effettivo del nodo per connettersi, è necessario sostituire "+" con l'IP o il nome FQDN del nodo, come mostrato sotto.
-9. L'ultimo passaggio consiste nell'aggiungere la logica di elaborazione al servizio, come mostrato sotto.
+    È inoltre importante notare che hello pubblicati URL è leggermente diversa dal prefisso URL ascolto hello.
+    URL di ascolto Hello viene tooHttpListener. Hello che URL pubblicato è hello URL pubblicato toohello servizio Naming Service Fabric, che viene utilizzato per l'individuazione del servizio. I client richiederanno questo indirizzo con questo servizio di individuazione. indirizzo Hello che i client recuperano esigenze toohave hello effettivo IP o nome di dominio completo del nodo hello in ordine tooconnect. Pertanto è necessario tooreplace '+' con hello del nodo IP o FQDN come illustrato sopra.
+9. ultimo passaggio Hello è hello tooadd logica toohello servizio come illustrato di seguito di elaborazione.
    
     ```CSharp
     private async Task ProcessInternalRequest(HttpListenerContext context, CancellationToken cancelRequest)
@@ -238,19 +238,19 @@ Poiché è necessaria esattamente una partizione per ogni lettera, è possibile 
     }
     ```
    
-    `ProcessInternalRequest` legge i valori del parametro della stringa di query usato per chiamare la partizione e chiama `AddUserAsync` per aggiungere il cognome al dizionario attendibile `dictionary`.
-10. Ora si aggiungerà un servizio senza stato al progetto per verificare se sia possibile chiamare una determinata partizione.
+    `ProcessInternalRequest`i valori hello query stringa parametro utilizzato toocall hello partizione e chiamate di hello letture `AddUserAsync` dizionario affidabile toohello tooadd hello lastname `dictionary`.
+10. Aggiungere un toosee di progetto di servizio senza stato toohello come chiamare una determinata partizione.
     
-    Questo servizio viene usato come semplice interfaccia Web che accetta il cognome come parametro della stringa di query, determina la chiave di partizione e la invia al servizio Alphabet.Processing per l'elaborazione.
-11. Nella finestra di dialogo **Create a Service** (Crea un servizio) scegliere il servizio **senza stato** e assegnargli il nome "Alphabet.Web", come illustrato di seguito.
+    Questo servizio funge da una semplice interfaccia web che accetta lastname hello come parametro di stringa di query, determina la chiave di partizione hello e invia toohello Alphabet.Processing servizio per l'elaborazione.
+11. In hello **creare un servizio** finestra di dialogo scegliere **Stateless** del servizio e chiamarlo "Alphabet.Web", come illustrato di seguito.
     
     ![Schermata di servizio senza stato](./media/service-fabric-concepts-partitioning/createnewstateless.png).
-12. Aggiornare le informazioni sull'endpoint nel file ServiceManifest.xml del servizio Alphabet.WebApi per aprire una porta, come mostrato sotto.
+12. Aggiornare le informazioni di endpoint hello in ServiceManifest.xml hello di hello Alphabet.WebApi servizio tooopen di una porta, come illustrato di seguito.
     
     ```xml
     <Endpoint Name="WebApiServiceEndpoint" Protocol="http" Port="8081"/>
     ```
-13. È necessario restituire una raccolta di ServiceInstanceListener nella classe Web. Anche in questo caso è possibile scegliere di implementare un semplice HttpCommunicationListener.
+13. È necessario un insieme di ServiceInstanceListeners classe hello Web tooreturn. È possibile scegliere nuovamente tooimplement HttpCommunicationListener un semplice.
     
     ```CSharp
     protected override IEnumerable<ServiceInstanceListener> CreateServiceInstanceListeners()
@@ -259,14 +259,14 @@ Poiché è necessaria esattamente una partizione per ogni lettera, è possibile 
     }
     private ICommunicationListener CreateInputListener(ServiceContext context)
     {
-        // Service instance's URL is the node's IP & desired port
+        // Service instance's URL is hello node's IP & desired port
         EndpointResourceDescription inputEndpoint = context.CodePackageActivationContext.GetEndpoint("WebApiServiceEndpoint")
         string uriPrefix = String.Format("{0}://+:{1}/alphabetpartitions/", inputEndpoint.Protocol, inputEndpoint.Port);
         var uriPublished = uriPrefix.Replace("+", FabricRuntime.GetNodeContext().IPAddressOrFQDN);
         return new HttpCommunicationListener(uriPrefix, uriPublished, this.ProcessInputRequest);
     }
     ```
-14. Ora è necessario implementare la logica di elaborazione. HttpCommunicationListener chiama `ProcessInputRequest` quando arriva una richiesta. Ora aggiungere il codice seguente.
+14. È ora necessario logica di elaborazione tooimplement hello. Hello chiamate HttpCommunicationListener `ProcessInputRequest` quando arriva una richiesta. Pertanto proseguire e aggiungere codice hello riportato di seguito.
     
     ```CSharp
     private async Task ProcessInputRequest(HttpListenerContext context, CancellationToken cancelRequest)
@@ -290,7 +290,7 @@ Poiché è necessaria esattamente una partizione per ogni lettera, è possibile 
             string result = await this.httpClient.GetStringAsync(primaryReplicaUriBuilder.Uri);
     
             output = String.Format(
-                    "Result: {0}. <p>Partition key: '{1}' generated from the first letter '{2}' of input value '{3}'. <br>Processing service partition ID: {4}. <br>Processing service replica address: {5}",
+                    "Result: {0}. <p>Partition key: '{1}' generated from hello first letter '{2}' of input value '{3}'. <br>Processing service partition ID: {4}. <br>Processing service replica address: {5}",
                     result,
                     partitionKey,
                     firstLetterOfLastName,
@@ -304,7 +304,7 @@ Poiché è necessaria esattamente una partizione per ogni lettera, è possibile 
         {
             if (output != null)
             {
-                output = output + "added to Partition: " + primaryReplicaAddress;
+                output = output + "added tooPartition: " + primaryReplicaAddress;
                 byte[] outBytes = Encoding.UTF8.GetBytes(output);
                 response.OutputStream.Write(outBytes, 0, outBytes.Length);
             }
@@ -312,7 +312,7 @@ Poiché è necessaria esattamente una partizione per ogni lettera, è possibile 
     }
     ```
     
-    Analisi dettagliata: il codice legge la prima lettera del parametro della stringa di query `lastname` in un char. Quindi determina la chiave di partizione di questa lettera sottraendo il valore esadecimale di `A` dal valore esadecimale della prima lettera dei cognomi.
+    Analisi dettagliata: codice Hello legge prima lettera di hello del parametro di stringa di query hello `lastname` in char. Quindi, determina la chiave di partizione hello per questa lettera sottraendo hello valore esadecimale `A` dal valore esadecimale hello prima lettera degli hello cognomi.
     
     ```CSharp
     string lastname = context.Request.QueryString["lastname"];
@@ -321,19 +321,19 @@ Poiché è necessaria esattamente una partizione per ogni lettera, è possibile 
     ```
     
     Si ricordi che in questo esempio si usano 26 partizioni con una chiave per ogni partizione.
-    A questo punto è necessario ottenere la partizione del servizio `partition` per la chiave usando il metodo `ResolveAsync` nell'oggetto `servicePartitionResolver`. `servicePartitionResolver` viene definito come mostrato di seguito.
+    Successivamente, si ottiene partizione del servizio hello `partition` per questa chiave utilizzando hello `ResolveAsync` metodo hello `servicePartitionResolver` oggetto. `servicePartitionResolver` viene definito come mostrato di seguito.
     
     ```CSharp
     private readonly ServicePartitionResolver servicePartitionResolver = ServicePartitionResolver.GetDefault();
     ```
     
-    Il metodo `ResolveAsync` accetta l'URI del servizio, la chiave di partizione e un token di annullamento come parametri. L'URI del servizio di elaborazione è `fabric:/AlphabetPartitions/Processing`. A questo punto è necessario ottenere l'endpoint della partizione.
+    Hello `ResolveAsync` metodo accetta hello URI del servizio, la chiave di partizione hello e un token di annullamento come parametri. Hello URI del servizio per il servizio di elaborazione hello è `fabric:/AlphabetPartitions/Processing`. Quindi, ci occuperemo endpoint hello della partizione hello.
     
     ```CSharp
     ResolvedServiceEndpoint ep = partition.GetEndpoint()
     ```
     
-    Infine si compilano l'URL dell'endpoint e la stringa di query e si chiama il servizio di elaborazione.
+    Infine, è compilare l'URL dell'endpoint hello più querystring hello e chiamare hello servizio di elaborazione.
     
     ```CSharp
     JObject addresses = JObject.Parse(ep.Address);
@@ -345,8 +345,8 @@ Poiché è necessaria esattamente una partizione per ogni lettera, è possibile 
     string result = await this.httpClient.GetStringAsync(primaryReplicaUriBuilder.Uri);
     ```
     
-    Una volta completata l'elaborazione, si scrive l'output.
-15. L'ultimo passaggio consiste nel testare il servizio. Visual Studio usa i parametri dell'applicazione per la distribuzione locale e cloud. Per testare il servizio in locale con 26 partizioni, è necessario aggiornare il file `Local.xml` nella cartella ApplicationParameters del progetto AlphabetPartitions, come mostrato di seguito:
+    Al termine dell'elaborazione di hello, output di hello è write-back.
+15. ultimo passaggio Hello è servizio di hello tootest. Visual Studio usa i parametri dell'applicazione per la distribuzione locale e cloud. servizio di hello tootest con 26 partizioni in locale, è necessario hello tooupdate `Local.xml` file nella cartella ApplicationParameters hello del progetto AlphabetPartitions hello, come illustrato di seguito:
     
     ```xml
     <Parameters>
@@ -354,17 +354,17 @@ Poiché è necessaria esattamente una partizione per ogni lettera, è possibile 
       <Parameter Name="WebApi_InstanceCount" Value="1" />
     </Parameters>
     ```
-16. Al termine del processo di distribuzione, è possibile controllare il servizio e tutte le partizioni in Service Fabric Explorer.
+16. Una volta terminata la distribuzione, è possibile controllare il servizio di hello e tutte le relative partizioni in hello Service Fabric Explorer.
     
     ![Schermata di Service Fabric Explorer](./media/service-fabric-concepts-partitioning/sfxpartitions.png)
-17. Per testare la logica di partizionamento, immettere `http://localhost:8081/?lastname=somename`in un browser. Ogni cognome che inizia con la stessa lettera risulta archiviato nella stessa partizione.
+17. In un browser, è possibile testare la logica di partizionamento immettendo hello `http://localhost:8081/?lastname=somename`. Si noterà che ciascun cognome che inizia con hello stessa lettera di vengono archiviato in hello stessa partizione.
     
     ![Schermata del browser](./media/service-fabric-concepts-partitioning/samplerunning.png)
 
-L'intero codice sorgente dell'esempio è disponibile in [GitHub](https://github.com/Azure-Samples/service-fabric-dotnet-getting-started/tree/classic/Services/AlphabetPartitions).
+è disponibili sul Hello intero codice sorgente dell'esempio hello [GitHub](https://github.com/Azure-Samples/service-fabric-dotnet-getting-started/tree/classic/Services/AlphabetPartitions).
 
 ## <a name="next-steps"></a>Passaggi successivi
-Per informazioni sui concetti relativi a Service Fabric, vedere gli articoli seguenti:
+Per informazioni sui concetti di Service Fabric, vedere l'esempio hello:
 
 * [Disponibilità dei servizi di Service Fabric](service-fabric-availability-services.md)
 * [Scalabilità dei servizi di Service Fabric](service-fabric-concepts-scalability.md)

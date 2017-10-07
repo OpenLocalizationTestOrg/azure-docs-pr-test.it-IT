@@ -1,6 +1,6 @@
 ---
-title: Distribuzione dell'applicazione Azure Service Fabric | Microsoft Docs
-description: Come distribuire e rimuovere applicazioni in Service Fabric con PowerShell.
+title: distribuzione di applicazioni di Service Fabric aaaAzure | Documenti Microsoft
+description: Come toodeploy e rimuovere le applicazioni nell'infrastruttura del servizio tramite PowerShell.
 services: service-fabric
 documentationcenter: .net
 author: rwike77
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/01/2017
 ms.author: ryanwi
-ms.openlocfilehash: edef23a8cdab7fd0bef54456f0caabb9db273bf9
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3de9c6a937ee7b29bf9ec86d6e9e631487797507
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="deploy-and-remove-applications-using-powershell"></a>Distribuire e rimuovere applicazioni con PowerShell
 > [!div class="op_single_selector"]
@@ -30,43 +30,43 @@ ms.lasthandoff: 07/11/2017
 
 <br/>
 
-Dopo aver creato il [pacchetto di un tipo di applicazione][10], è possibile distribuirlo in un cluster di Azure Service Fabric. La distribuzione prevede i tre passaggi seguenti:
+Dopo aver creato il [pacchetto di un tipo di applicazione][10], è possibile distribuirlo in un cluster di Azure Service Fabric. Distribuzione coinvolge hello tre passaggi:
 
-1. Caricamento del pacchetto dell'applicazione nell'archivio di immagini
-2. Registrare il tipo di applicazione
-3. Creare l'istanza dell'applicazione
+1. Caricare l'archivio di immagini toohello pacchetto applicazione hello
+2. Registrare il tipo di applicazione hello
+3. Creare l'istanza dell'applicazione hello
 
-Dopo che un'applicazione è stata distribuita e un'istanza è in esecuzione nel cluster, è possibile eliminare l'istanza dell'applicazione e il tipo di applicazione corrispondente. Per rimuovere completamente un'applicazione dal cluster, sono necessari i passaggi seguenti:
+Dopo che un'applicazione viene distribuita e cluster hello è in esecuzione un'istanza, è possibile eliminare l'istanza dell'applicazione hello e il relativo tipo di applicazione. Rimuovi toocompletely un'applicazione dal cluster hello prevede hello alla procedura seguente:
 
-1. Rimuovere (o eliminare) l'istanza dell'applicazione in esecuzione
-2. Annullare la registrazione del tipo di applicazione se non è più necessario
-3. Rimuovere il pacchetto applicazione da Image Store.
+1. Rimuovere hello esegue l'istanza dell'applicazione (o eliminare)
+2. Annullare la registrazione del tipo di applicazione hello se non è più necessario
+3. Rimuovere il pacchetto di applicazione hello dall'archivio immagini hello
 
-Se si usa [Visual Studio per eseguire la distribuzione e il debug delle applicazioni](service-fabric-publish-app-remote-cluster.md) nel cluster di sviluppo locale, tutti i passaggi precedenti vengono gestiti automaticamente tramite uno script di PowerShell.  Questo script è disponibile nella cartella *Scripts* del progetto dell'applicazione. Questo articolo illustra le operazioni eseguite da tali script per consentirne l'esecuzione anche all'esterno di Visual Studio. 
+Se si utilizza [Visual Studio per la distribuzione e debug di applicazioni](service-fabric-publish-app-remote-cluster.md) nel cluster di sviluppo locale, tutti i passaggi precedenti di hello vengono gestite automaticamente tramite uno script di PowerShell.  Questo script è presente in hello *script* nella cartella del progetto di applicazione hello. In questo articolo vengono fornite informazioni su cosa fa lo script in modo che sia possibile eseguire hello stesse operazioni all'esterno di Visual Studio. 
  
-## <a name="connect-to-the-cluster"></a>Connettersi al cluster
-Prima di eseguire qualsiasi comando PowerShell incluso in questo articolo, iniziare sempre usando [Connect-ServiceFabricCluster](/powershell/module/servicefabric/connect-servicefabriccluster?view=azureservicefabricps) per connettersi al cluster di Service Fabric. Per connettersi al cluster di sviluppo locale eseguire le operazioni seguenti:
+## <a name="connect-toohello-cluster"></a>Connettere il cluster toohello
+Prima di eseguire qualsiasi comando di PowerShell in questo articolo, iniziano sempre con [Connect-ServiceFabricCluster](/powershell/module/servicefabric/connect-servicefabriccluster?view=azureservicefabricps) tooconnect toohello cluster di Service Fabric. cluster di sviluppo locale di toohello di tooconnect, eseguire hello seguente:
 
 ```powershell
 PS C:\>Connect-ServiceFabricCluster
 ```
 
-Per alcuni esempi di connessione a un cluster remoto o a un cluster protetto mediante Azure Active Directory, certificati X509 o Windows Active Directory, vedere [Connettersi a un cluster sicuro](service-fabric-connect-to-secure-cluster.md).
+Per esempi di connessione remota tooa del cluster o cluster protetti tramite Azure Active Directory, X509 certificati o Active Directory di Windows vedere [Connetti tooa sicura cluster](service-fabric-connect-to-secure-cluster.md).
 
-## <a name="upload-the-application-package"></a>Caricare il pacchetto applicazione
-Quando si carica il pacchetto dell’applicazione, la si inserisce in un percorso accessibile ai componenti interni di Service Fabric.
-Se si desidera verificare il pacchetto dell'applicazione in locale, usare il cmdlet [Test-ServiceFabricApplicationPackage](/powershell/module/servicefabric/test-servicefabricapplicationpackage?view=azureservicefabricps).
+## <a name="upload-hello-application-package"></a>Caricare il pacchetto di applicazione hello
+Caricamento del pacchetto dell'applicazione hello lo inserisce in un percorso accessibile dai componenti interni di Service Fabric.
+Se si desidera pacchetto dell'applicazione hello di tooverify localmente, utilizzare hello [Test ServiceFabricApplicationPackage](/powershell/module/servicefabric/test-servicefabricapplicationpackage?view=azureservicefabricps) cmdlet.
 
-Il comando [Copy-ServiceFabricApplicationPackage](/powershell/module/servicefabric/copy-servicefabricapplicationpackage?view=azureservicefabricps) consente di caricare il pacchetto dell'applicazione nell'archivio di immagini del cluster.
-Il cmdlet **Get-ImageStoreConnectionStringFromClusterManifest** , che fa parte del modulo PowerShell Service Fabric SDK, viene usato per ottenere la stringa di connessione dell'archivio immagini.  Per importare il modulo SDK, eseguire:
+Hello [copia ServiceFabricApplicationPackage](/powershell/module/servicefabric/copy-servicefabricapplicationpackage?view=azureservicefabricps) comando caricamenti hello archivio di immagini cluster toohello pacchetto di applicazione.
+Hello **Get ImageStoreConnectionStringFromClusterManifest** cmdlet, che fa parte del modulo PowerShell di Service Fabric SDK hello, è immagine hello tooget utilizzati archiviare la stringa di connessione.  modulo SDK di hello di tooimport, eseguire:
 
 ```powershell
 Import-Module "$ENV:ProgramFiles\Microsoft SDKs\Service Fabric\Tools\PSModule\ServiceFabricSDK\ServiceFabricSDK.psm1"
 ```
 
-Si supponga di compilare e assemblare un'applicazione denominata *MyApplication* in Visual Studio 2015. Per impostazione predefinita, il nome del tipo di applicazione elencato nel file ApplicationManifest.xml è "MyApplicationType".  Il pacchetto dell'applicazione, che contiene il manifesto dell'applicazione necessario, i manifesti dei servizi e i pacchetti di codice, configurazione e dati, si trova in *C:\Users\<username\>\Documents\Visual Studio 2015\Projects\MyApplication\MyApplication\pkg\Debug*. 
+Si supponga di compilare e assemblare un'applicazione denominata *MyApplication* in Visual Studio 2015. Per impostazione predefinita, nome del tipo applicazione hello elencati in ApplicationManifest.xml hello è "MyApplicationType".  Hello pacchetto di applicazione, che contiene un manifesto dell'applicazione hello, i manifesti del servizio e i pacchetti di configurazione/codice/dati, si trova *C:\Users\<username\>\Documents\Visual 2015\Projects\ Studio MyApplication\MyApplication\pkg\Debug*. 
 
-Il comando seguente elenca il contenuto del pacchetto dell'applicazione:
+Hello comando riportato di seguito elenca hello contenuto del pacchetto di applicazione hello:
 
 ```powershell
 PS C:\> $path = 'C:\Users\<user\>\Documents\Visual Studio 2015\Projects\MyApplication\MyApplication\pkg\Debug'
@@ -96,13 +96,13 @@ C:\USERS\USER\DOCUMENTS\VISUAL STUDIO 2015\PROJECTS\MYAPPLICATION\MYAPPLICATION\
             Settings.xml
 ```
 
-Se il pacchetto dell'applicazione è di grandi dimensioni e/o dispone di molti file, è possibile [comprimerlo](service-fabric-package-apps.md#compress-a-package). La compressione riduce le dimensioni e il numero di file.
-L'effetto collaterale è che la registrazione e l'annullamento della registrazione del tipo di applicazione sono più veloci. Il tempo di caricamento potrebbe attualmente risultare più lento, specialmente se si include il tempo per comprimere il pacchetto. 
+Se il pacchetto di applicazione hello è di grandi dimensioni e/o dispone di molti file, è possibile [comprimerli](service-fabric-package-apps.md#compress-a-package). la compressione di Hello riduce hello dimensioni e il numero di hello dei file.
+effetto collaterale Hello è che la registrazione e annullamento della registrazione di hello tipo di applicazione sono più veloci. Tempo di caricamento può risultare più lenta attualmente, specialmente se si include pacchetto hello toocompress della fase di hello. 
 
-Per comprimere un pacchetto, usare il medesimo comando [Copy-ServiceFabricApplicationPackage](/powershell/module/servicefabric/copy-servicefabricapplicationpackage?view=azureservicefabricps). La compressione può avere luogo separatamente dal caricamento, tramite il flag `SkipCopy`, oppure contemporaneamente. L'applicazione della compressione a un pacchetto compresso è no-op.
-Per decomprimere un pacchetto compresso, usare il medesimo comando [Copy-ServiceFabricApplicationPackage](/powershell/module/servicefabric/copy-servicefabricapplicationpackage?view=azureservicefabricps) con lo switch `UncompressPackage`.
+un pacchetto, utilizzare toocompress hello stesso [copia ServiceFabricApplicationPackage](/powershell/module/servicefabric/copy-servicefabricapplicationpackage?view=azureservicefabricps) comando. La compressione può essere eseguita separato dal caricamento con hello `SkipCopy` flag o insieme hello operazione di caricamento. L'applicazione della compressione a un pacchetto compresso è no-op.
+un pacchetto compresso, utilizzare toouncompress hello stesso [copia ServiceFabricApplicationPackage](/powershell/module/servicefabric/copy-servicefabricapplicationpackage?view=azureservicefabricps) con hello `UncompressPackage` passare.
 
-Il cmdlet seguente comprime il pacchetto senza copiarlo nell'archivio immagini. Ora il pacchetto include i file compressi per i pacchetti `Code` e `Config`. I manifesti dell'applicazione e del servizio non sono compressi in quanto necessari per numerose operazioni interne, come la condivisione dei pacchetti e l'estrazione del nome e della versione del tipo di applicazione per determinate convalide. La compressione dei manifesti renderebbe inefficienti tali operazioni.
+Hello cmdlet seguente comprime i pacchetti hello senza copiarlo toohello archivio di immagini. pacchetto di Hello include ora i file ZIP per hello `Code` e `Config` pacchetti. Hello hello servizio manifesti dell'applicazione e non compressi, perché sono necessari per molte operazioni interne (ad esempio la condivisione, l'applicazione nome e la versione estrazione del tipo per alcune convalide di pacchetto). Compressione manifesti hello renderebbe queste operazioni inefficienti.
 
 ```
 PS C:\> Copy-ServiceFabricApplicationPackage -ApplicationPackagePath $path -CompressPackage -SkipCopy
@@ -118,8 +118,8 @@ C:\USERS\USER\DOCUMENTS\VISUAL STUDIO 2015\PROJECTS\MYAPPLICATION\MYAPPLICATION\
        ServiceManifest.xml
 ```
 
-Per i pacchetti di applicazione di grandi dimensioni, la compressione richiede tempo. Per ottenere risultati ottimali, usare un'unità SSD rapida. Anche i tempi di compressione e la dimensione del pacchetto compresso variano in base al contenuto del pacchetto.
-Ad esempio, ecco le statistiche della compressione per alcuni pacchetti, che mostrano le dimensioni del pacchetto iniziale e di quello compresso, insieme al tempo di compressione.
+Per i pacchetti di applicazione di grandi dimensioni, la compressione di hello richiede tempo. Per ottenere risultati ottimali, usare un'unità SSD rapida. Hello la compressione e la dimensione di hello del pacchetto compresso hello anche variano in base al contenuto del pacchetto hello.
+Ad esempio, ecco le statistiche della compressione per alcuni pacchetti, che mostrano iniziale hello e hello dimensione compressa del pacchetto, con il tempo di compressione hello.
 
 |Dimensioni iniziali (MB)|Numero di file|Tempo di compressione|Dimensioni pacchetto compresso (MB)|
 |----------------:|---------:|---------------:|---------------------------:|
@@ -129,44 +129,44 @@ Ad esempio, ecco le statistiche della compressione per alcuni pacchetti, che mos
 |2048|1000|00:01:04.3775554|1231|
 |5012|100|00:02:45.2951288|3074|
 
-Una volta compresso, un pacchetto può essere caricato in uno o più cluster di Service Fabric in base alle necessità. Il meccanismo di distribuzione è lo stesso per i pacchetti compressi e non. Se il pacchetto è compresso, viene archiviato come tale nell'archivio immagini del cluster e viene decompresso nel nodo prima dell'esecuzione dell'applicazione.
+Una volta che un pacchetto compresso, può essere caricato tooone o più Service Fabric cluster come necessario. il meccanismo di distribuzione Hello è lo stesso per i pacchetti compressi e non compressi. Se il pacchetto di hello è compresso, viene archiviata come tale nell'archivio di immagini cluster hello ed è non compressi in nodo hello prima di eseguita un'applicazione hello.
 
 
-L'esempio seguente carica il pacchetto nell'archivio di immagini, in una cartella denominata "MyApplicationV1":
+Hello esempio Carica archivio immagine toohello pacchetti hello in una cartella denominata "MyApplicationV1":
 
 ```powershell
 PS C:\> Copy-ServiceFabricApplicationPackage -ApplicationPackagePath $path -ApplicationPackagePathInImageStore MyApplicationV1 -ImageStoreConnectionString (Get-ImageStoreConnectionStringFromClusterManifest(Get-ServiceFabricClusterManifest)) -TimeoutSec 1800
 ```
 
-Il cmdlet **Get-ImageStoreConnectionStringFromClusterManifest** , che fa parte del modulo PowerShell Service Fabric SDK, viene usato per ottenere la stringa di connessione dell'archivio immagini.  Per importare il modulo SDK, eseguire:
+Hello **Get ImageStoreConnectionStringFromClusterManifest** cmdlet, che fa parte del modulo PowerShell di Service Fabric SDK hello, è immagine hello tooget utilizzati archiviare la stringa di connessione.  modulo SDK di hello di tooimport, eseguire:
 
 ```powershell
 Import-Module "$ENV:ProgramFiles\Microsoft SDKs\Service Fabric\Tools\PSModule\ServiceFabricSDK\ServiceFabricSDK.psm1"
 ```
 
-Se non si specifica il parametro *-ApplicationPackagePathInImageStore*, il pacchetto dell'applicazione viene copiato nella cartella "Debug" dell'archivio immagini.
+Se non si specifica hello *- ApplicationPackagePathInImageStore* parametro, il pacchetto di applicazione hello viene copiato nella cartella "Debug" hello in archivio immagini hello.
 
-Il tempo necessario per caricare un pacchetto varia in base a diversi fattori. Tra questi, ad esempio, il numero di file nel pacchetto, le dimensioni del pacchetto stesso e dei file singoli. Anche la velocità di rete tra il computer di origine e il cluster di Service Fabric influisce sul tempo di caricamento. Il timeout predefinito per [Copy-ServiceFabricApplicationPackage](/powershell/module/servicefabric/copy-servicefabricapplicationpackage?view=azureservicefabricps) è di 30 minuti.
-In base ai fattori descritti, potrebbe essere necessario aumentare il timeout. Se si sta eseguendo la compressione del pacchetto nella chiamata di copia, è necessario considerare anche il tempo di compressione.
+Hello tempo tooupload un pacchetto diverso in base a più fattori. Alcuni di questi fattori sono il numero di hello di file nel pacchetto di hello, dimensione del pacchetto hello e delle dimensioni del file hello. velocità della rete tra il computer di origine hello e cluster di Service Fabric hello Hello influisce anche sull'ora di caricamento hello. Hello timeout predefinito per [copia ServiceFabricApplicationPackage](/powershell/module/servicefabric/copy-servicefabricapplicationpackage?view=azureservicefabricps) è 30 minuti.
+A seconda del hello fattori descritti, è possibile tooincrease hello timeout. Se la compressione di pacchetti hello in hello copia chiamata, è necessario tooalso prendere in considerazione il tempo di compressione hello.
 
-Per informazioni agguntive sull'archivio di immagini e ImageStoreConnectionString, vedere [Understand the image store connection string](service-fabric-image-store-connection-string.md) (Comprendere la stringa di connessione dell'archivio di immagini).
+Vedere [comprendere una stringa di connessione di archivio immagine hello](service-fabric-image-store-connection-string.md) informazioni supplementari sull'archivio di immagini hello e immagine archiviare una stringa di connessione.
 
-## <a name="register-the-application-package"></a>Registrare il pacchetto applicazione
-Quando si registra il pacchetto dell'applicazione, il tipo e la versione dell'applicazione dichiarati nel manifesto di quest'ultima diventano disponibili per l'uso. Il sistema leggerà il pacchetto caricato al passaggio precedente, lo verificherà, ne elaborerà il contenuto e infine copierà il pacchetto elaborato in un percorso di sistema interno.  
+## <a name="register-hello-application-package"></a>Registrare il pacchetto di applicazione hello
+tipo di applicazione Hello e versione dichiarati nel manifesto dell'applicazione hello diventano disponibile per l'utilizzo quando il pacchetto di applicazione hello viene registrato. sistema Hello legge pacchetto hello caricato nel passaggio precedente hello, verifica i pacchetti hello, elabora i contenuti del pacchetto hello e Copia percorso di sistema interno tooan pacchetto hello elaborato.  
 
-Eseguire il cmdlet [Register-ServiceFabricApplicationType](/powershell/module/servicefabric/register-servicefabricapplicationtype?view=azureservicefabricps) per registrare il tipo di applicazione nel cluster e renderlo disponibile per la distribuzione:
+Eseguire hello [registro ServiceFabricApplicationType](/powershell/module/servicefabric/register-servicefabricapplicationtype?view=azureservicefabricps) tooregister cmdlet hello tipo di applicazione in cluster hello e renderlo disponibile per la distribuzione:
 
 ```powershell
 PS C:\> Register-ServiceFabricApplicationType MyApplicationV1
 Register application type succeeded
 ```
 
-"MyApplicationV1" è la cartella nell'archivio immagini in cui si trova il pacchetto dell'applicazione. Il tipo di applicazione con il nome "MyApplicationType" e la versione "1.0.0" (entrambi si trovano nel manifesto dell'applicazione) è registrato nel cluster.
+"MyApplicationV1" è la cartella hello in archivio immagini hello in cui si trova il pacchetto di applicazione hello. tipo di applicazione Hello con nome "MyApplicationType" e la versione "1.0.0" (entrambi trovati nel manifesto dell'applicazione hello) è stato registrato nel cluster hello.
 
-Il comando [Register-ServiceFabricApplicationType](/powershell/module/servicefabric/register-servicefabricapplicationtype?view=azureservicefabricps) restituirà il controllo solo dopo che il sistema avrà registrato correttamente il pacchetto dell'applicazione. La durata della registrazione dipende dalla dimensione e dal contenuto del pacchetto. Se necessario, è possibile usare il parametro **-TimeoutSec** per specificare un intervallo di tempo più esteso per il timeout. Il timeout predefinito è di 60 secondi.
+Hello [registro ServiceFabricApplicationType](/powershell/module/servicefabric/register-servicefabricapplicationtype?view=azureservicefabricps) comando restituisce solo dopo che il sistema di hello dispone di pacchetto dell'applicazione hello registrato correttamente. Registrazione accetta quanto tempo dipende dalla dimensione hello e il contenuto del pacchetto di applicazione hello. Se necessario, hello **- TimeoutSec** parametro può essere utilizzato toosupply un timeout più lungo (timeout di hello predefinito è 60 secondi).
 
-Se si dispone di un pacchetto dell'applicazione di grandi dimensioni o se si verificano timeout, usare il parametro **-Async**. Il comando restituisce un valore quando il cluster accetta il comando di registrazione e l'elaborazione continua come da richiesta.
-Il comando [Get-ServiceFabricApplicationType](/powershell/module/servicefabric/get-servicefabricapplicationtype?view=azureservicefabricps) elenca tutte le versioni del tipo di applicazione registrate correttamente e il loro stato di registrazione. È possibile usare questo comando per determinare quando viene eseguita la registrazione.
+Se si dispone di un'applicazione di grandi dimensioni del pacchetto o se si verificano i timeout, utilizzare hello **- Async** parametro. comando Hello restituisce quando cluster hello accetta comando register hello e l'elaborazione di hello continua in base alle esigenze.
+Hello [Get ServiceFabricApplicationType](/powershell/module/servicefabric/get-servicefabricapplicationtype?view=azureservicefabricps) comando Elenca tutte le versioni di tipo applicazione registrata correttamente e il relativo stato di registrazione. È possibile utilizzare questo comando toodetermine quando viene eseguita la registrazione di hello.
 
 ```powershell
 PS C:\> Get-ServiceFabricApplicationType
@@ -177,8 +177,8 @@ Status                 : Available
 DefaultParameters      : { "Stateless1_InstanceCount" = "-1" }
 ```
 
-## <a name="create-the-application"></a>Creazione dell'applicazione
-È possibile creare un'istanza di un'applicazione da qualsiasi versione del tipo di applicazione registrata mediante il cmdlet [New-ServiceFabricApplication](/powershell/module/servicefabric/new-servicefabricapplication?view=azureservicefabricps). Il nome di ogni applicazione deve iniziare con lo schema *"fabric:"* e deve essere univoco per ogni istanza dell'applicazione. Vengono creati anche i servizi predefiniti specificati nel manifesto dell'applicazione del tipo di applicazione di destinazione.
+## <a name="create-hello-application"></a>Creare un'applicazione hello
+È possibile creare un'istanza di un'applicazione da qualsiasi versione di tipo di applicazione che è stato registrato correttamente tramite hello [New ServiceFabricApplication](/powershell/module/servicefabric/new-servicefabricapplication?view=azureservicefabricps) cmdlet. nome Hello di ogni applicazione deve iniziare con hello *"fabric:"* dello schema e deve essere univoco per ogni istanza dell'applicazione. Vengono creati anche i servizi predefiniti definiti nel manifesto dell'applicazione hello del tipo di applicazione di destinazione hello.
 
 ```powershell
 PS C:\> New-ServiceFabricApplication fabric:/MyApp MyApplicationType 1.0.0
@@ -190,7 +190,7 @@ ApplicationParameters  : {}
 ```
 Per qualsiasi versione di un tipo di applicazione registrato, è possibile creare più istanze dell'applicazione. Ogni istanza viene eseguita in isolamento, con un proprio processo e una propria directory di lavoro.
 
-Per vedere quali app e servizi sono in esecuzione nel cluster, eseguire i cmdlet [Get-ServiceFabricApplication](/powershell/servicefabric/vlatest/get-servicefabricapplication) e [Get-ServiceFabricService](/powershell/module/servicefabric/get-servicefabricservice?view=azureservicefabricps):
+toosee denominato App e servizi sono in esecuzione in cluster hello, eseguire hello [Get ServiceFabricApplication](/powershell/servicefabric/vlatest/get-servicefabricapplication) e [Get ServiceFabricService](/powershell/module/servicefabric/get-servicefabricservice?view=azureservicefabricps) cmdlet:
 
 ```powershell
 PS C:\> Get-ServiceFabricApplication  
@@ -214,7 +214,7 @@ HealthState            : Ok
 ```
 
 ## <a name="remove-an-application"></a>Rimuovere un'applicazione
-Quando un'istanza dell'applicazione non è più necessaria, è possibile rimuoverla definitivamente per nome usando il cmdlet [Remove-ServiceFabricApplication](/powershell/module/servicefabric/remove-servicefabricapplication?view=azureservicefabricps). [Remove-ServiceFabricApplication](/powershell/module/servicefabric/remove-servicefabricapplication?view=azureservicefabricps) rimuove automaticamente anche tutti i servizi appartenenti all'applicazione, nonché il relativo stato di servizio. 
+Quando un'istanza di applicazione non è più necessario, è possibile rimuoverlo in modo permanente in base al nome utilizzando hello [Remove ServiceFabricApplication](/powershell/module/servicefabric/remove-servicefabricapplication?view=azureservicefabricps) cmdlet. [Remove-ServiceFabricApplication](/powershell/module/servicefabric/remove-servicefabricapplication?view=azureservicefabricps) rimuove automaticamente tutti i servizi che appartengono toohello applicazione nonché, in modo permanente la rimozione di tutti gli stati di servizio. 
 
 > [!WARNING]
 > Tale operazione non può essere annullata e lo stato dell'applicazione non può essere recuperato.
@@ -231,9 +231,9 @@ PS C:\> Get-ServiceFabricApplication
 ```
 
 ## <a name="unregister-an-application-type"></a>Annullare la registrazione di un tipo di applicazione
-Quando una determinata versione di un tipo di applicazione non è più necessaria, è consigliabile annullare la registrazione del tipo di applicazione usando il cmdlet [Unregister-ServiceFabricApplicationType](/powershell/module/servicefabric/unregister-servicefabricapplicationtype?view=azureservicefabricps). L'annullamento della registrazione dei tipi di applicazione inutilizzati rilascia lo spazio di archiviazione utilizzato dell'archivio di immagini. È possibile annullare la registrazione di un tipo di applicazione solo se non sono state create istanze di applicazioni basate su di esso o non vi sono aggiornamenti di applicazioni in sospeso che vi fanno riferimento.
+Quando una particolare versione di un tipo di applicazione non è più necessario, si deve annullare la registrazione di tipo di applicazione hello utilizzando hello [Unregister-ServiceFabricApplicationType](/powershell/module/servicefabric/unregister-servicefabricapplicationtype?view=azureservicefabricps) cmdlet. Annullamento della registrazione dell'applicazione non utilizzati tipi versioni spazio di archiviazione utilizzato dall'archivio immagini hello. È possibile annullare la registrazione di un tipo di applicazione solo se non sono state create istanze di applicazioni basate su di esso o non vi sono aggiornamenti di applicazioni in sospeso che vi fanno riferimento.
 
-Eseguire [Get-ServiceFabricApplicationType](/powershell/module/servicefabric/get-servicefabricapplicationtype?view=azureservicefabricps) per vedere i tipi di applicazione attualmente registrati nel cluster:
+Eseguire [Get ServiceFabricApplicationType](/powershell/module/servicefabric/get-servicefabricapplicationtype?view=azureservicefabricps) i tipi di applicazione hello toosee attualmente registrato nel cluster di hello:
 
 ```powershell
 PS C:\> Get-ServiceFabricApplicationType
@@ -244,14 +244,14 @@ Status                 : Available
 DefaultParameters      : { "Stateless1_InstanceCount" = "-1" }
 ```
 
-Eseguire [Unregister-ServiceFabricApplicationType](/powershell/module/servicefabric/unregister-servicefabricapplicationtype?view=azureservicefabricps) per annullare la registrazione di un tipo di applicazione specifico:
+Eseguire [Unregister-ServiceFabricApplicationType](/powershell/module/servicefabric/unregister-servicefabricapplicationtype?view=azureservicefabricps) toounregister un tipo specifico di applicazione:
 
 ```powershell
 PS C:\> Unregister-ServiceFabricApplicationType MyApplicationType 1.0.0
 ```
 
-## <a name="remove-an-application-package-from-the-image-store"></a>Rimuovere il pacchetto di un'applicazione dall'archivio di immagini
-Quando il pacchetto di un'applicazione non è più necessario, è possibile eliminarlo dall'archivio di immagini per liberare risorse di sistema.
+## <a name="remove-an-application-package-from-hello-image-store"></a>Rimuovere un pacchetto di applicazioni dall'archivio immagini hello
+Quando un pacchetto di applicazione non è più necessario, è possibile eliminarlo dal hello immagine archivio toofree le risorse di sistema.
 
 ```powershell
 PS C:\>Remove-ServiceFabricApplicationPackage -ApplicationPackagePathInImageStore MyApplicationV1 -ImageStoreConnectionString (Get-ImageStoreConnectionStringFromClusterManifest(Get-ServiceFabricClusterManifest))
@@ -259,19 +259,19 @@ PS C:\>Remove-ServiceFabricApplicationPackage -ApplicationPackagePathInImageStor
 
 ## <a name="troubleshooting"></a>Risoluzione dei problemi
 ### <a name="copy-servicefabricapplicationpackage-asks-for-an-imagestoreconnectionstring"></a>Copy-ServiceFabricApplicationPackage chiede un parametro ImageStoreConnectionString
-Nell'ambiente Service Fabric SDK dovrebbero già essere configurate le impostazioni predefinite corrette. Tuttavia, se necessario, ImageStoreConnectionString per tutti i comandi deve corrispondere al valore che viene usato dal cluster Service Fabric. È possibile trovare ImageStoreConnectionString nel manifesto del cluster, recuperato tramite i comandi [Get-ServiceFabricClusterManifest](/powershell/module/servicefabric/get-servicefabricclustermanifest?view=azureservicefabricps) e Get-ImageStoreConnectionStringFromClusterManifest:
+ambiente di Service Fabric SDK Hello dovrebbe già disporre hello corretto impostare valori predefiniti. Ma se necessario, hello ImageStoreConnectionString per tutti i comandi debba corrispondere valore hello tale hello dell'infrastruttura del servizio cluster utilizza. È possibile trovare hello ImageStoreConnectionString nel manifesto del cluster hello, recuperati tramite hello [Get ServiceFabricClusterManifest](/powershell/module/servicefabric/get-servicefabricclustermanifest?view=azureservicefabricps) e i comandi Get-ImageStoreConnectionStringFromClusterManifest:
 
 ```powershell
 PS C:\> Get-ImageStoreConnectionStringFromClusterManifest(Get-ServiceFabricClusterManifest)
 ```
 
-Il cmdlet **Get-ImageStoreConnectionStringFromClusterManifest** , che fa parte del modulo PowerShell Service Fabric SDK, viene usato per ottenere la stringa di connessione dell'archivio immagini.  Per importare il modulo SDK, eseguire:
+Hello **Get ImageStoreConnectionStringFromClusterManifest** cmdlet, che fa parte del modulo PowerShell di Service Fabric SDK hello, è immagine hello tooget utilizzati archiviare la stringa di connessione.  modulo SDK di hello di tooimport, eseguire:
 
 ```powershell
 Import-Module "$ENV:ProgramFiles\Microsoft SDKs\Service Fabric\Tools\PSModule\ServiceFabricSDK\ServiceFabricSDK.psm1"
 ```
 
-ImageStoreConnectionString è disponibile nel manifesto del cluster:
+Hello ImageStoreConnectionString viene trovato nel manifesto del cluster hello:
 
 ```xml
 <ClusterManifest xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Name="Server-Default-SingleNode" Version="1.0" xmlns="http://schemas.microsoft.com/2011/01/fabric">
@@ -285,22 +285,21 @@ ImageStoreConnectionString è disponibile nel manifesto del cluster:
     [...]
 ```
 
-Per informazioni agguntive sull'archivio di immagini e ImageStoreConnectionString, vedere [Understand the image store connection string](service-fabric-image-store-connection-string.md) (Comprendere la stringa di connessione dell'archivio di immagini).
+Vedere [comprendere una stringa di connessione di archivio immagine hello](service-fabric-image-store-connection-string.md) informazioni supplementari sull'archivio di immagini hello e immagine archiviare una stringa di connessione.
 
 ### <a name="deploy-large-application-package"></a>Distribuire un pacchetto dell'applicazione di grandi dimensioni
 Problema: [Copy-ServiceFabricApplicationPackage](/powershell/module/servicefabric/copy-servicefabricapplicationpackage?view=azureservicefabricps) raggiunge il timeout per un pacchetto dell'applicazione di grandi dimensioni (nell'ordine di GB).
 Soluzione:
-- Specificare un timeout maggiore per il comando [Copy-ServiceFabricApplicationPackage](/powershell/module/servicefabric/copy-servicefabricapplicationpackage?view=azureservicefabricps), con il parametro `TimeoutSec`. Il timeout è di 30 minuti per impostazione predefinita.
-- Controllare la connessione di rete tra il computer di origine e il cluster. Se la connessione è lenta, provare a usare una macchina con una connessione di rete più veloce.
-Se il computer client si trova in un'area diversa dal cluster, si consiglia di usare un computer cliente in un'area più vicina o nella stessa area del cluster.
-- Controllare se si stiano raggiungendo le limitazioni esterne. Ad esempio, quando l'archivio immagini è configurato per usare l'archiviazione di Azure, il caricamento potrebbe essere limitato.
+- Specificare un timeout maggiore per il comando [Copy-ServiceFabricApplicationPackage](/powershell/module/servicefabric/copy-servicefabricapplicationpackage?view=azureservicefabricps), con il parametro `TimeoutSec`. Per impostazione predefinita, il timeout di hello è 30 minuti.
+- Controllare la connessione di rete hello tra il computer di origine e il cluster. Se hello connessione è lenta, considerare l'utilizzo di un computer con una connessione di rete migliorata.
+Se hello client macchina si trova in un'altra area di cluster hello, considerare l'uso di un computer client in un'area più vicino o stesso come cluster hello.
+- Controllare se si stiano raggiungendo le limitazioni esterne. Ad esempio, quando l'archivio immagini hello è configurato toouse azure storage, caricamento può essere limitato.
 
-Problema: Il pacchetto è stato caricato completamente ma si è verificato un timeout di [Register-ServiceFabricApplicationType](/powershell/module/servicefabric/register-servicefabricapplicationtype?view=azureservicefabricps).
-Soluzione:
-- [Comprimere il pacchetto](service-fabric-package-apps.md#compress-a-package) prima di copiarlo nell'archivio immagini.
-La compressione riduce le dimensioni e il numero di file, cosa che a sua volta riduce il traffico e le operazioni di Service Fabric. L'operazione di caricamento potrebbe risultare più lenta (specialmente se si include il tempo di compressione), ma registrazione e relativo annullamento del tipo dell'applicazione saranno più veloci.
+Problema: Il pacchetto è stato caricato completamente ma si è verificato un timeout di [Register-ServiceFabricApplicationType](/powershell/module/servicefabric/register-servicefabricapplicationtype?view=azureservicefabricps). Soluzione:
+- [Comprimere il pacchetto di hello](service-fabric-package-apps.md#compress-a-package) prima della copia toohello archivio di immagini.
+la compressione di Hello riduce le dimensioni di hello e hello diversi file, che a sua volta riduce hello quantità di traffico e di lavoro di Service Fabric devono eseguire. operazione di caricamento Hello potrebbe risultare più lenta (in particolare se si include il tempo di compressione hello), ma il tipo di applicazione hello registrare e annullare la registrazione sono più veloci.
 - Specificare un timeout maggiore per il comando [Register-ServiceFabricApplicationType](/powershell/module/servicefabric/register-servicefabricapplicationtype?view=azureservicefabricps), con il parametro `TimeoutSec`.
-- Specificare lo switch `Async` per [Register-ServiceFabricApplicationType](/powershell/module/servicefabric/register-servicefabricapplicationtype?view=azureservicefabricps). Il comando viene completato quando il cluster accetta il comando e la registrazione del tipo di applicazione continua in modo asincrono. Per questo motivo, in questo caso non è necessario specificare un timeout maggiore. Il comando [Get-ServiceFabricApplicationType](/powershell/module/servicefabric/get-servicefabricapplicationtype?view=azureservicefabricps) elenca tutte le versioni del tipo di applicazione registrate correttamente e il loro stato di registrazione. È possibile usare questo comando per determinare quando viene eseguita la registrazione.
+- Specificare lo switch `Async` per [Register-ServiceFabricApplicationType](/powershell/module/servicefabric/register-servicefabricapplicationtype?view=azureservicefabricps). comando Hello restituisce quando cluster hello accetta comandi hello e registrazione di hello del tipo di applicazione hello continua in modo asincrono. Per questo motivo, non è toospecify è necessario un timeout superiore in questo caso. Hello [Get ServiceFabricApplicationType](/powershell/module/servicefabric/get-servicefabricapplicationtype?view=azureservicefabricps) comando Elenca tutte le versioni di tipo applicazione registrata correttamente e il relativo stato di registrazione. È possibile utilizzare questo comando toodetermine quando viene eseguita la registrazione di hello.
 
 ```powershell
 PS C:\> Get-ServiceFabricApplicationType
@@ -314,10 +313,10 @@ DefaultParameters      : { "Stateless1_InstanceCount" = "-1" }
 ### <a name="deploy-application-package-with-many-files"></a>Distribuire un pacchetto di applicazione con numerosi file
 Problema: Si verifica un timeout di [Register-ServiceFabricApplicationType](/powershell/module/servicefabric/register-servicefabricapplicationtype?view=azureservicefabricps) per un pacchetto di applicazione con molti file (nell'ordine di migliaia).
 Soluzione:
-- [Comprimere il pacchetto](service-fabric-package-apps.md#compress-a-package) prima di copiarlo nell'archivio immagini. La compressione riduce il numero dei file.
+- [Comprimere il pacchetto di hello](service-fabric-package-apps.md#compress-a-package) prima della copia toohello archivio di immagini. la compressione di Hello riduce il numero di hello di file.
 - Specificare un timeout maggiore per il comando [Register-ServiceFabricApplicationType](/powershell/module/servicefabric/register-servicefabricapplicationtype?view=azureservicefabricps), con il parametro `TimeoutSec`.
-- Specificare lo switch `Async` per [Register-ServiceFabricApplicationType](/powershell/module/servicefabric/register-servicefabricapplicationtype?view=azureservicefabricps). Il comando viene completato quando il cluster accetta il comando e la registrazione del tipo di applicazione continua in modo asincrono.
-Per questo motivo, in questo caso non è necessario specificare un timeout maggiore. Il comando [Get-ServiceFabricApplicationType](/powershell/module/servicefabric/get-servicefabricapplicationtype?view=azureservicefabricps) elenca tutte le versioni del tipo di applicazione registrate correttamente e il loro stato di registrazione. È possibile usare questo comando per determinare quando viene eseguita la registrazione.
+- Specificare lo switch `Async` per [Register-ServiceFabricApplicationType](/powershell/module/servicefabric/register-servicefabricapplicationtype?view=azureservicefabricps). comando Hello restituisce quando cluster hello accetta comandi hello e registrazione di hello del tipo di applicazione hello continua in modo asincrono.
+Per questo motivo, non è toospecify è necessario un timeout superiore in questo caso. Hello [Get ServiceFabricApplicationType](/powershell/module/servicefabric/get-servicefabricapplicationtype?view=azureservicefabricps) comando Elenca tutte le versioni di tipo applicazione registrata correttamente e il relativo stato di registrazione. È possibile utilizzare questo comando toodetermine quando viene eseguita la registrazione di hello.
 
 ```powershell
 PS C:\> Get-ServiceFabricApplicationType
@@ -337,6 +336,6 @@ DefaultParameters      : { "Stateless1_InstanceCount" = "-1" }
 
 [Modellare un'applicazione in Service Fabric](service-fabric-application-model.md)
 
-<!--Link references--In actual articles, you only need a single period before the slash-->
+<!--Link references--In actual articles, you only need a single period before hello slash-->
 [10]: service-fabric-application-model.md
 [11]: service-fabric-application-upgrade.md

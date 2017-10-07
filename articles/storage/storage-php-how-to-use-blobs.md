@@ -1,6 +1,6 @@
 ---
-title: Come usare l'archiviazione BLOB (archiviazione di oggetti) da PHP | Microsoft Docs
-description: Archiviare i dati non strutturati nel cloud con l'archivio BLOB (archivio di oggetti) di Azure.
+title: aaaHow toouse blob archiviazione (oggetto) da PHP | Documenti Microsoft
+description: Archiviare dati non strutturati nel cloud hello con archiviazione Blob di Azure (archiviazione di oggetti).
 documentationcenter: php
 services: storage
 author: mmacy
@@ -14,44 +14,44 @@ ms.devlang: PHP
 ms.topic: article
 ms.date: 12/08/2016
 ms.author: marsma
-ms.openlocfilehash: 2c356d7faafa8ef4591087b5b1f949b9374732be
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 331405e583c17c4f71acacdc0078b2bc71efbef0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-blob-storage-from-php"></a>Come usare l'archiviazione BLOB da PHP
+# <a name="how-toouse-blob-storage-from-php"></a>Toouse come blob di archiviazione da PHP
 [!INCLUDE [storage-selector-blob-include](../../includes/storage-selector-blob-include.md)]
 
 [!INCLUDE [storage-try-azure-tools-queues](../../includes/storage-try-azure-tools-blobs.md)]
 
 ## <a name="overview"></a>Panoramica
-L'archiviazione BLOB di Azure è un servizio che archivia dati non strutturati nel cloud come oggetti/BLOB. Archivio BLOB può archiviare qualsiasi tipo di dati di testo o binari, ad esempio un documento, un file multimediale o un programma di installazione di un'applicazione. L'archivio BLOB è anche denominato archivio di oggetti.
+Archiviazione Blob di Azure è un servizio che archivia i dati non strutturati nel cloud hello come oggetti/BLOB. Archivio BLOB può archiviare qualsiasi tipo di dati di testo o binari, ad esempio un documento, un file multimediale o un programma di installazione di un'applicazione. Archiviazione BLOB è anche archiviazione di oggetti di cui viene fatto riferimento tooas.
 
-Questa guida illustra diversi scenari di utilizzo comuni del servizio BLOB di Azure. Gli esempi sono scritti in PHP e usano [Azure SDK per PHP][download]. Gli scenari illustrati includono **caricamento**, **visualizzazione in elenchi**, **download** e **eliminazione** di BLOB. Per ulteriori informazioni sui BLOB, vedere la sezione [Passaggi successivi](#next-steps) .
+Questa guida viene illustrato come gli scenari comuni di tooperform utilizzando hello Azure servizio blob. esempi di Hello sono scritti in PHP e utilizzare hello [Azure SDK per PHP][download]. Hello scenari trattati includono **caricamento**, **elenco**, **download**, e **eliminazione** BLOB. Per ulteriori informazioni sui blob, vedere hello [passaggi successivi](#next-steps) sezione.
 
 [!INCLUDE [storage-blob-concepts-include](../../includes/storage-blob-concepts-include.md)]
 
 [!INCLUDE [storage-create-account-include](../../includes/storage-create-account-include.md)]
 
 ## <a name="create-a-php-application"></a>Creare un'applicazione PHP
-Per creare un'applicazione PHP che accede al servizio BLOB di Azure, è sufficiente fare riferimento alle classi in Azure SDK per PHP dall'interno del codice. Per creare l'applicazione, è possibile usare qualsiasi strumento di sviluppo, incluso il Blocco note.
+Hello solo requisito per la creazione di un'applicazione PHP che accede al servizio blob di Azure hello è hello che fanno riferimento a delle classi in hello Azure SDK per PHP all'interno del codice. È possibile utilizzare qualsiasi toocreate di strumenti di sviluppo dell'applicazione, inclusi il blocco note.
 
 In questa guida si useranno le funzionalità del servizio che possono essere chiamate in un'applicazione PHP in locale o nel codice in esecuzione in un ruolo Web, in un ruolo di lavoro o in un sito Web di Azure.
 
-## <a name="get-the-azure-client-libraries"></a>Acquisire le librerie client di Azure
+## <a name="get-hello-azure-client-libraries"></a>Recuperare le librerie Client di hello Azure
 [!INCLUDE [get-client-libraries](../../includes/get-client-libraries.md)]
 
-## <a name="configure-your-application-to-access-the-blob-service"></a>Configurare l'applicazione per l'accesso al servizio BLOB
-Per usare le API del servizio BLOB di Azure, è necessario:
+## <a name="configure-your-application-tooaccess-hello-blob-service"></a>Configurare il servizio di applicazione tooaccess hello blob
+toouse hello Azure API del servizio blob, è necessario:
 
-1. Fare riferimento al file autoloader mediante l'istruzione [require_once].
+1. File di riferimento autoloader hello utilizzando hello [require_once] istruzione, e
 2. Fare riferimento a tutte le eventuali classi utilizzabili.
 
-Nell'esempio seguente viene indicato come includere il file autoloader e fare riferimento alla classe **ServicesBuilder** .
+Hello esempio seguente viene illustrato come tooinclude hello hello di file e riferimento autoloader **ServicesBuilder** classe.
 
 > [!NOTE]
-> Gli esempi in questo articolo presuppongono che siano state installate le librerie client PHP per Azure tramite Composer. Se le librerie sono state installate manualmente, sarà necessario fare riferimento al file autoloader `WindowsAzure.php` .
+> esempi di Hello in questo articolo presuppongono installate le librerie Client di PHP per Azure tramite Composer hello. Se le librerie di hello è stato installato manualmente, è necessario tooreference hello `WindowsAzure.php` autoloader file.
 >
 >
 
@@ -60,10 +60,10 @@ require_once 'vendor/autoload.php';
 use WindowsAzure\Common\ServicesBuilder;
 ```
 
-Nei seguenti esempi l'istruzione `require_once` verrà sempre visualizzata, ma si fa riferimento solo alle classi necessarie per eseguire l'esempio.
+Negli esempi di hello riportato di seguito, hello `require_once` istruzione verrà sempre visualizzata, ma solo hello classi necessarie per tooexecute esempio hello viene fatto riferimento.
 
 ## <a name="set-up-an-azure-storage-connection"></a>Configurare una connessione di archiviazione di Azure
-Per creare un'istanza di un client del servizio BLOB di Azure, è necessario innanzitutto disporre di una stringa di connessione valida. Il formato della stringa di connessione del servizio BLOB è:
+tooinstantiate un client del servizio blob di Azure, è innanzitutto necessario una stringa di connessione valido. formato stringa di connessione del servizio blob hello Hello è:
 
 Per accedere a un servizio attivo:
 
@@ -71,20 +71,20 @@ Per accedere a un servizio attivo:
 DefaultEndpointsProtocol=[http|https];AccountName=[yourAccount];AccountKey=[yourKey]
 ```
 
-Per accedere alla memoria dell'emulatore:
+Per l'accesso a emulatore di archiviazione hello:
 
 ```php
 UseDevelopmentStorage=true
 ```
 
-Per creare un client di servizio di Azure, è necessario usare la classe **ServicesBuilder** . È possibile:
+toocreate qualsiasi client del servizio di Azure, è necessario hello toouse **ServicesBuilder** classe. È possibile:
 
-* passare la stringa di connessione direttamente a essa o
-* utilizzare **CloudConfigurationManager (CCM)** per cercare la stringa di connessione in più origini esterne:
+* Passare la connessione hello stringa direttamente tooit o
+* Hello utilizzare **CloudConfigurationManager (CCM)** toocheck origini dati esterne di più origini per la stringa di connessione hello:
   * per impostazione predefinita viene fornito con il supporto per un'origine esterna - ovvero le variabili ambientali
-  * è possibile aggiungere nuove origini estendendo la classe **ConnectionStringSource**
+  * È possibile aggiungere nuove origini estendendo hello **ConnectionStringSource** classe.
 
-Per gli esempi illustrati in questo articolo, la stringa di connessione verrà passata direttamente.
+Per esempi di hello descritti di seguito, la stringa di connessione hello verrà passata direttamente.
 
 ```php
 require_once 'vendor/autoload.php';
@@ -97,7 +97,7 @@ $blobRestProxy = ServicesBuilder::getInstance()->createBlobService($connectionSt
 ## <a name="create-a-container"></a>Creare un contenitore
 [!INCLUDE [storage-container-naming-rules-include](../../includes/storage-container-naming-rules-include.md)]
 
-Un oggetto **BlobRestProxy** consente di creare un contenitore BLOB con il metodo **createContainer**. Quando si crea un contenitore, è possibile impostare le opzioni per il contenitore, anche se tale operazione non è necessaria. (Nell'esempio seguente viene illustrato come impostare l'elenco ACL del contenitore e i metadati del contenitore.)
+Oggetto **BlobRestProxy** oggetto consente di creare un contenitore blob con hello **createContainer** metodo. Quando si crea un contenitore, è possibile impostare opzioni di contenitore hello, ma non è necessario. (esempio di hello seguente mostra come contenitore hello tooset accesso (ACL) di elenco di controllo e i metadati del contenitore).
 
 ```php
 require_once 'vendor\autoload.php';
@@ -119,16 +119,16 @@ $createContainerOptions = new CreateContainerOptions();
 // PublicAccessType::CONTAINER_AND_BLOBS and PublicAccessType::BLOBS_ONLY.
 // CONTAINER_AND_BLOBS:
 // Specifies full public read access for container and blob data.
-// proxys can enumerate blobs within the container via anonymous
-// request, but cannot enumerate containers within the storage account.
+// proxys can enumerate blobs within hello container via anonymous
+// request, but cannot enumerate containers within hello storage account.
 //
 // BLOBS_ONLY:
 // Specifies public read access for blobs. Blob data within this
 // container can be read via anonymous request, but container data is not
-// available. proxys cannot enumerate blobs within the container via
+// available. proxys cannot enumerate blobs within hello container via
 // anonymous request.
-// If this value is not specified in the request, container data is
-// private to the account owner.
+// If this value is not specified in hello request, container data is
+// private toohello account owner.
 $createContainerOptions->setPublicAccess(PublicAccessType::CONTAINER_AND_BLOBS);
 
 // Set container metadata.
@@ -149,12 +149,12 @@ catch(ServiceException $e){
 }
 ```
 
-Con la chiamata a **setPublicAccess(PublicAccessType::CONTAINER\_AND\_BLOBS)** il contenitore e i dati BLOB diventano accessibili tramite richieste anonime. Con la chiamata a **setPublicAccess(PublicAccessType::BLOBS_ONLY)**, invece, solo i dati BLOB diventano accessibili tramite richieste anonime. Per altre informazioni sugli ACL contenitore, vedere [Set container ACL (REST API)][container-acl] (Configurare ACL contenitore - API REST).
+La chiamata **setPublicAccess (PublicAccessType::CONTAINER\_AND\_BLOB)** rende hello dati blob e contenitore accessibili tramite richieste anonime. Con la chiamata a **setPublicAccess(PublicAccessType::BLOBS_ONLY)**, invece, solo i dati BLOB diventano accessibili tramite richieste anonime. Per altre informazioni sugli ACL contenitore, vedere [Set container ACL (REST API)][container-acl] (Configurare ACL contenitore - API REST).
 
 Per altre informazioni sui codici errore del servizio BLOB, vedere [Blob Service Error Codes][error-codes] (Codici errore del servizio BLOB).
 
 ## <a name="upload-a-blob-into-a-container"></a>Caricare un BLOB in un contenitore
-Per caricare un file come BLOB, usare il metodo **BlobRestProxy->createBlockBlob**. Questa operazione consentirà di creare il BLOB se non esistente o di sovrascriverlo se esistente. Nell'esempio di codice seguente si presuppone che il contenitore sia già stato creato e che usi [fopen][fopen] per aprire il file come flusso.
+un file come un blob, utilizzare hello tooupload **BlobRestProxy -> createBlockBlob** metodo. Se non esiste o lo sovrascrive in caso affermativo, questa operazione crea blob hello. Hello esempio di codice seguente presuppone che tale contenitore hello è già stato creato e Usa [fopen] [ fopen] file hello tooopen come flusso.
 
 ```php
 require_once 'vendor/autoload.php';
@@ -183,10 +183,10 @@ catch(ServiceException $e){
 }
 ```
 
-Si noti che l'esempio precedente consente di caricare un BLOB come flusso. Un BLOB può tuttavia essere caricato anche come stringa, ad esempio mediante la funzione [file\_get\_contents][file_get_contents]. A tale scopo utilizzare l'esempio precedente, modificare `$content = fopen("c:\myfile.txt", "r");` con `$content = file_get_contents("c:\myfile.txt");`.
+Si noti che hello precedente esempio carica un blob come un flusso. Tuttavia, un blob può essere caricato anche sotto forma di stringa, ad esempio, tramite hello [file\_ottenere\_contenuto] [ file_get_contents] (funzione). toodo questo hello precedente esempio, impostare `$content = fopen("c:\myfile.txt", "r");` troppo`$content = file_get_contents("c:\myfile.txt");`.
 
-## <a name="list-the-blobs-in-a-container"></a>Elencare i BLOB in un contenitore
-Per elencare i BLOB in un contenitore, usare il metodo **BlobRestProxy->listBlobs** con un ciclo **foreach** per eseguire il ciclo nel risultato. Il codice seguente mostra il nome di ogni BLOB come output in un contenitore e mostra il relativo URI al browser.
+## <a name="list-hello-blobs-in-a-container"></a>Elenco di BLOB hello in un contenitore
+BLOB di hello toolist in un contenitore, usare hello **BlobRestProxy -> listBlobs** metodo con un **foreach** ciclo tooloop attraverso il risultato di hello. Hello codice riportato di seguito Visualizza nome hello di ciascun blob come output in un contenitore e il browser toohello URI.
 
 ```php
 require_once 'vendor/autoload.php';
@@ -219,7 +219,7 @@ catch(ServiceException $e){
 ```
 
 ## <a name="download-a-blob"></a>Scaricare un BLOB
-Per scaricare un BLOB, chiamare il metodo **BlobRestProxy->getBlob**, quindi chiamare il metodo **getContentStream** nell'oggetto **GetBlobResult** risultante.
+toodownload un blob, chiamata hello **BlobRestProxy -> getBlob** (metodo), quindi chiamata hello **getContentStream** metodo hello risultante **GetBlobResult** oggetto.
 
 ```php
 require_once 'vendor/autoload.php';
@@ -246,10 +246,10 @@ catch(ServiceException $e){
 }
 ```
 
-Si noti che con l'esempio precedente si ottiene un BLOB come risorsa di flusso (comportamento predefinito). È tuttavia possibile usare la funzione [stream\_get\_contents][stream-get-contents] per convertire il flusso restituito in una stringa.
+Si noti che esempio hello precedente Ottiene un blob come una risorsa di flusso (comportamento predefinito di hello). Tuttavia, è possibile utilizzare hello [flusso\_ottenere\_contenuto] [ stream-get-contents] hello tooconvert funzione ha restituito una stringa tooa di flusso.
 
 ## <a name="delete-a-blob"></a>Eliminare un BLOB
-Per eliminare un BLOB, passare il nome del contenitore e il nome del BLOB a **BlobRestProxy->deleteBlob**.
+toodelete un blob, passare il nome di contenitore hello e il nome di blob troppo**BlobRestProxy -> deleteBlob**.
 
 ```php
 require_once 'vendor/autoload.php';
@@ -276,7 +276,7 @@ catch(ServiceException $e){
 ```
 
 ## <a name="delete-a-blob-container"></a>Eliminare un contenitore BLOB
-Per eliminare un contenere di BLOB, infine, passare il nome del contenitore a **BlobRestProxy->deleteContainer**.
+Infine, toodelete un contenitore blob, passare il nome di contenitore hello troppo**BlobRestProxy -> deleteContainer**.
 
 ```php
 require_once 'vendor/autoload.php';
@@ -302,14 +302,14 @@ catch(ServiceException $e){
 ```
 
 ## <a name="next-steps"></a>Passaggi successivi
-A questo punto, dopo aver appreso le nozioni di base del servizio BLOB di Azure, usare i collegamenti seguenti per altre informazioni su attività di archiviazione più complesse.
+Ora che si è appreso i concetti di base di hello di hello servizio blob di Azure, seguire questi toolearn collegamenti sulle attività di archiviazione più complesse.
 
-* [Blog del team di Archiviazione di Azure](http://blogs.msdn.com/b/windowsazurestorage/)
-* Vedere l' [esempio PHP relativo al BLOB in blocchi](https://github.com/WindowsAzure/azure-sdk-for-php-samples/blob/master/storage/BlockBlobExample.php).
-* Vedere l' [esempio PHP relativo al BLOB di pagine](https://github.com/WindowsAzure/azure-sdk-for-php-samples/blob/master/storage/PageBlobExample.php).
-* [Trasferire dati con l'utilità della riga di comando AzCopy](storage-use-azcopy.md)
+* Visitare hello [blog del team di archiviazione di Azure](http://blogs.msdn.com/b/windowsazurestorage/)
+* Vedere hello [esempio blob di blocco PHP](https://github.com/WindowsAzure/azure-sdk-for-php-samples/blob/master/storage/BlockBlobExample.php).
+* Vedere hello [esempio blob di pagina PHP](https://github.com/WindowsAzure/azure-sdk-for-php-samples/blob/master/storage/PageBlobExample.php).
+* [Trasferimento dati con l'utilità della riga di comando di AzCopy hello](storage-use-azcopy.md)
 
-Per ulteriori informazioni, vedere anche il [Centro per sviluppatori di PHP](/develop/php/).
+Per ulteriori informazioni, vedere anche hello [Centro sviluppatori PHP](/develop/php/).
 
 [download]: http://go.microsoft.com/fwlink/?LinkID=252473
 [container-acl]: http://msdn.microsoft.com/library/azure/dd179391.aspx

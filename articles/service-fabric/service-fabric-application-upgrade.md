@@ -1,6 +1,6 @@
 ---
-title: Aggiornamento delle applicazioni di Service Fabric | Documentazione Microsoft
-description: "Questo articolo fornisce un'introduzione all'aggiornamento di un'applicazione di Service Fabric, inclusa la scelta delle modalità di aggiornamento e dei controlli di integrità eseguiti."
+title: aggiornamento dell'applicazione Fabric aaaService | Documenti Microsoft
+description: "Questo articolo fornisce un'introduzione tooupgrading un'applicazione di Service Fabric, tra cui scegliere le modalità di aggiornamento e di eseguire controlli di integrità."
 services: service-fabric
 documentationcenter: .net
 author: mani-ramaswamy
@@ -14,52 +14,52 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 8/9/2017
 ms.author: subramar
-ms.openlocfilehash: 4c2752bee8e9a859b23dbf47662d15798b551bb5
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 6f649ef4a5c0afab682522bcba7d2d66a4268ead
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="service-fabric-application-upgrade"></a>Aggiornamento di un'applicazione di infrastruttura di servizi
-Un'applicazione di Azure Service Fabric è una raccolta di servizi. Durante un aggiornamento, Service Fabric confronta il nuovo [manifesto dell'applicazione](service-fabric-application-model.md#describe-an-application) con la versione precedente e determina quali servizi dell'applicazione richiedono aggiornamenti. Service Fabric confronta i numeri di versione nel manifesto del servizio con quelli della versione precedente. Se un servizio non è cambiato, non viene aggiornato.
+Un'applicazione di Azure Service Fabric è una raccolta di servizi. Durante un aggiornamento, Service Fabric Confronta hello nuovo [manifesto dell'applicazione](service-fabric-application-model.md#describe-an-application) con la versione precedente di hello e determina quali servizi in un'applicazione hello richiedono gli aggiornamenti. Versione di hello numeri nel servizio hello manifesti con numeri di versione di hello nella versione precedente di hello viene confrontata Service Fabric. Se un servizio non è cambiato, non viene aggiornato.
 
 ## <a name="rolling-upgrades-overview"></a>Panoramica degli aggiornamenti in sequenza
-In un aggiornamento in sequenza di un'applicazione l'operazione viene eseguita in fasi. In ogni fase l'aggiornamento viene applicato a un subset di nodi del cluster denominato dominio di aggiornamento. In questo modo l'applicazione continua a essere disponibile durante l'aggiornamento. È possibile che durante l'aggiornamento il cluster contenga una combinazione di versioni precedenti e nuove.
+In un aggiornamento dell'applicazione in sequenza, l'aggiornamento di hello viene eseguita in fasi. In ogni fase, l'aggiornamento di hello è applicato tooa subset di nodi nel cluster di hello, denominato di un dominio di aggiornamento. Di conseguenza, un'applicazione hello rimane disponibile per tutta l'aggiornamento di hello. Durante l'aggiornamento di hello, cluster hello può contenere una combinazione di versioni nuove e precedenti hello.
 
-Per questo motivo è necessario che le due versioni siano compatibili con le versioni precedenti e successive. In caso contrario, l'amministratore di applicazioni deve organizzare un aggiornamento in più fasi per mantenere la disponibilità. In un aggiornamento a più fasi come primo passaggio si esegue l'aggiornamento a una versione intermedia dell'applicazione che sia compatibile con la versione precedente. Come secondo passaggio si esegue l'aggiornamento alla versione finale, non più compatibile con la versione di pre-aggiornamento ma compatibile con la versione intermedia.
+Per questo motivo, le versioni di hello due devono essere avanti e indietro compatibile. Se non sono compatibili, l'amministratore dell'applicazione hello è responsabile della gestione temporanea di una disponibilità toomaintain aggiornamento multifase. In un aggiornamento di più fasi, innanzitutto hello aggiornamento tooan versione intermedia dell'applicazione hello compatibile con la versione precedente di hello. secondo passaggio Hello è tooupgrade hello versione finale che interrompe la compatibilità con la versione di hello pre-aggiornamento, ma è compatibile con la versione intermedia hello.
 
-I domini di aggiornamento vengono specificati nel manifesto del cluster quando si configura il cluster. I domini di aggiornamento non ricevono gli aggiornamenti in un ordine particolare. Un dominio di aggiornamento è un'unità logica di distribuzione per un'applicazione. I domini di aggiornamento consentono ai servizi di garantire disponibilità elevata durante un aggiornamento.
+Domini di aggiornamento vengono specificati nel manifesto del cluster hello quando si configura il cluster hello. I domini di aggiornamento non ricevono gli aggiornamenti in un ordine particolare. Un dominio di aggiornamento è un'unità logica di distribuzione per un'applicazione. Domini di aggiornamento consentono hello servizi tooremain la disponibilità elevata durante un aggiornamento.
 
-Gli aggiornamenti non in sequenza sono possibili qualora l'aggiornamento venga applicato a tutti i nodi del cluster, ad esempio nel caso in cui l'applicazione disponga di un solo dominio di aggiornamento. Questo approccio non è consigliato perché durante l'aggiornamento il servizio rimane inattivo e non disponibile. Azure, inoltre, non offre alcuna garanzia per i casi in cui un cluster è configurato con un solo dominio di aggiornamento.
+Gli aggiornamenti in sequenza non sono possibili se l'aggiornamento di hello è applicato tooall i nodi cluster hello, che è il caso di hello quando un'applicazione hello ha solo un dominio di aggiornamento. Questo approccio è sconsigliato, perché il servizio hello diventa inattiva e non è disponibile al momento di hello dell'aggiornamento. Azure, inoltre, non offre alcuna garanzia per i casi in cui un cluster è configurato con un solo dominio di aggiornamento.
 
 ## <a name="health-checks-during-upgrades"></a>Controlli di integrità durante gli aggiornamenti
-Per un aggiornamento devono essere impostati criteri di integrità oppure possono essere usati valori predefiniti. Un aggiornamento viene considerato riuscito quando tutti i domini di aggiornamento vengono aggiornati entro i valori di timeout specificati e risultano integri.  Un dominio di aggiornamento integro significa che ha superato tutti i controlli di integrità specificati nei criteri di integrità. Un criterio di integrità, ad esempio, può richiedere che tutti i servizi all'interno di un'istanza dell'applicazione siano *integri*, secondo quanto definito per l'integrità da Service Fabric.
+Per un aggiornamento, criteri di integrità impostare toobe oppure possono essere utilizzati i valori predefiniti. Un aggiornamento è denominato esito positivo quando tutti i domini di aggiornamento vengono aggiornati all'interno di hello di timeout specificato, e quando aggiornare tutti i domini sono considerati integro.  Un dominio di aggiornamento integro, significa che tale dominio di aggiornamento hello superato tutti i controlli di integrità di hello specificati nei criteri di integrità hello. Un criterio di integrità, ad esempio, può richiedere che tutti i servizi all'interno di un'istanza dell'applicazione siano *integri*, secondo quanto definito per l'integrità da Service Fabric.
 
-I criteri e i controlli di integrità durante l'aggiornamento da parte dell’infrastruttura di servizi sono indipendenti dai servizi e dalle applicazioni. In altre parole, non vengono eseguiti test specifici per i servizi.  Ad esempio il servizio potrebbe avere un requisito di velocità effettiva, ma Service Fabric non dispone delle informazioni per verificare la velocità effettiva. Per informazioni sui controlli che vengono eseguiti, vedere gli [articoli sull'integrità](service-fabric-health-introduction.md) . I controlli eseguiti durante l'aggiornamento includono test di verifica che il pacchetto dell'applicazione sia stato copiato correttamente, che l'istanza sia stata avviata e così via.
+I criteri e i controlli di integrità durante l'aggiornamento da parte dell’infrastruttura di servizi sono indipendenti dai servizi e dalle applicazioni. In altre parole, non vengono eseguiti test specifici per i servizi.  Ad esempio, il servizio potrebbe essere un requisito della velocità effettiva, ma non dispone della velocità effettiva di hello informazioni toocheck Service Fabric. Fare riferimento toohello [articoli integrità](service-fabric-health-introduction.md) per i controlli di hello che vengono eseguiti. controlli di Hello che si verificano durante un test di aggiornamento sono per se il pacchetto di applicazione hello è stato copiato correttamente, se l'istanza di hello è stata avviata e così via.
 
-L'integrità dell'applicazione è un'aggregazione delle entità figlio dell'applicazione. In breve, Service Fabric valuta l'integrità dell'applicazione tramite l'integrità segnalata per l'applicazione. In questo modo, può valutare anche l'integrità di tutti i servizi relativi all'applicazione. In alternativa, Service Fabric può valutare l'integrità dei servizi aggregando l'integrità degli elementi figlio, ad esempio la replica dei servizi. Se il criterio di integrità dell'applicazione è soddisfatto, l'aggiornamento può continuare. In caso contrario, l'aggiornamento dell'applicazione ha esito negativo.
+integrità applicazione Hello è un'aggregazione di entità figlio hello di un'applicazione hello. In breve, Service Fabric valuta l'integrità di hello applicazione hello tramite integrità hello segnalato a un'applicazione hello. Valuta inoltre integrità hello di tutti i servizi di hello per un'applicazione hello in questo modo. Service Fabric ulteriormente valuta l'integrità di hello di servizi dell'applicazione hello aggregando integrità hello dei relativi elementi figlio, ad esempio di replica del servizio hello. Una volta che i criteri di integrità dell'applicazione hello viene soddisfatto, l'aggiornamento di hello può continuare. Se i criteri di integrità hello viene violato, l'aggiornamento dell'applicazione hello ha esito negativo.
 
 ## <a name="upgrade-modes"></a>Modalità di aggiornamento
-La modalità consigliata per l'aggiornamento dell'applicazione è la modalità monitorata, il metodo più comune. che esegue l'aggiornamento di un dominio di aggiornamento e, se vengono superati tutti i controlli di integrità (in base ai criteri specificati), passa automaticamente al dominio di aggiornamento successivo.  In caso di esito negativo e/o di timeout dei controlli di integrità, viene eseguito il rollback dell'aggiornamento del dominio di aggiornamento oppure la modalità cambia in UnmonitoredManual. È possibile configurare l'aggiornamento in modo che venga scelta una di queste due modalità per gli aggiornamenti non riusciti. 
+Hello modalità consigliata per l'aggiornamento dell'applicazione è hello monitorato, che rappresenta la modalità hello comunemente utilizzato. Modalità monitorata esegue un aggiornamento hello nel dominio di un aggiornamento, e se i controlli di integrità di tutti i passata (per ogni criterio di hello specificato), sposta nel dominio di aggiornamento successivo toohello automaticamente.  Se i controlli di integrità non riescono e/o vengono raggiunti i timeout, l'aggiornamento di hello di rollback per il dominio di aggiornamento hello o modalità hello è toounmonitored modificate manuale. È possibile configurare i toochoose aggiornamento hello una di queste due modalità per gli aggiornamenti non riusciti. 
 
-La modalità UnmonitoredManual richiede l'intervento manuale dopo ogni aggiornamento eseguito in un dominio di aggiornamento per passare al dominio di aggiornamento successivo. Non viene eseguito alcun controllo di integrità su Service Fabric. L'amministratore esegue i controlli di integrità o di stato previsti prima di avviare l'aggiornamento nel dominio di aggiornamento successivo.
+Non monitorato in modalità manuale è necessario un intervento manuale dopo ogni aggiornamento in un dominio di aggiornamento, tookick disattivare l'aggiornamento di hello in hello dominio di aggiornamento successivo. Non viene eseguito alcun controllo di integrità su Service Fabric. messaggio per l'amministratore esegue controlli di integrità o lo stato di hello prima di avviare l'aggiornamento di hello in hello dominio di aggiornamento successivo.
 
 ## <a name="upgrade-default-services"></a>Aggiornare i servizi predefiniti
-I servizi predefiniti all'interno dell'applicazione Service Fabric possono essere aggiornati durante il processo di aggiornamento di un'applicazione. I servizi predefiniti sono definiti nel [manifesto dell'applicazione](service-fabric-application-model.md#describe-an-application). Le regole standard di aggiornamento dei servizi predefiniti sono:
+Servizi predefiniti all'interno dell'applicazione di Service Fabric possono essere aggiornati durante il processo di aggiornamento di un'applicazione hello. Servizi predefiniti definiti in hello [manifesto dell'applicazione](service-fabric-application-model.md#describe-an-application). Hello regole standard di aggiornamento dei servizi predefiniti sono:
 
-1. I servizi predefiniti nel nuovo [manifesto dell'applicazione](service-fabric-application-model.md#describe-an-application) che non esistono nel cluster vengono creati.
+1. Servizi in hello nuovo predefiniti [manifesto dell'applicazione](service-fabric-application-model.md#describe-an-application) che non sono presenti nel cluster hello vengono creati.
 > [!TIP]
-> È necessario impostare [EnableDefaultServicesUpgrade](service-fabric-cluster-fabric-settings.md#fabric-settings-that-you-can-customize) su true per abilitare le regole seguenti. Questa funzionalità è supportata dalla versione 5.5.
+> [EnableDefaultServicesUpgrade](service-fabric-cluster-fabric-settings.md#fabric-settings-that-you-can-customize) esigenze toobe impostare hello tooenable tootrue alle regole. Questa funzionalità è supportata dalla versione 5.5.
 
-2. I servizi predefiniti che esistono sia nel [manifesto dell'applicazione](service-fabric-application-model.md#describe-an-application) precedente sia nella nuova versione vengono aggiornati. Le descrizioni dei servizi della nuova versione sovrascrivono quelle già presenti nel cluster. L'aggiornamento di un'applicazione subisce automaticamente il rollback in caso di errore dell'aggiornamento del servizio predefinito.
-3. I servizi predefiniti del [manifesto dell'applicazione](service-fabric-application-model.md#describe-an-application) precedente che non sono presenti nella nuova versione vengono eliminati. **Si noti che questa eliminazione dei servizi predefiniti non è reversibile.**
+2. I servizi predefiniti che esistono sia nel [manifesto dell'applicazione](service-fabric-application-model.md#describe-an-application) precedente sia nella nuova versione vengono aggiornati. Le descrizioni del servizio nella nuova versione di hello sovrascriverebbe quelli già presente nel cluster hello. L'aggiornamento di un'applicazione subisce automaticamente il rollback in caso di errore dell'aggiornamento del servizio predefinito.
+3. Servizi in hello precedente predefiniti [manifesto dell'applicazione](service-fabric-application-model.md#describe-an-application) ma non nella nuova versione di hello vengono eliminati. **Si noti che questa eliminazione dei servizi predefiniti non è reversibile.**
 
-In caso di rollback dell'aggiornamento di un'applicazione, i servizi predefiniti vengono riportati allo stato precedente l'avvio dell'aggiornamento. I servizi eliminati non possono in alcun caso essere creati.
+In caso di un'applicazione l'aggiornamento viene eseguito il rollback, servizi predefiniti sono stato ripristinato toohello prima di avviata l'aggiornamento. I servizi eliminati non possono in alcun caso essere creati.
 
 ## <a name="application-upgrade-flowchart"></a>Diagramma di flusso di aggiornamento di un'applicazione
-Il diagramma di flusso che segue questo paragrafo aiuta a capire il processo di aggiornamento di un'applicazione di Service Fabric. In particolare, il flusso descrive in che modo i valori di timeout, ad esempio *HealthCheckStableDuration*, *HealthCheckRetryTimeout* e *UpgradeHealthCheckInterval*, consentono di verificare se l'aggiornamento in un dominio di aggiornamento viene considerato riuscito o non riuscito.
+diagramma di flusso Hello dopo il paragrafo consentono di comprendere hello processo di aggiornamento di un'applicazione di Service Fabric. In particolare, viene descritto il flusso di hello hello come valori di timeout, tra cui *HealthCheckStableDuration*, *HealthCheckRetryTimeout*, e *UpgradeHealthCheckInterval*, consentono di controllare quando l'aggiornamento di hello nel dominio di un aggiornamento viene considerato un esito positivo o un errore.
 
-![Processo di aggiornamento per un'applicazione di Service Fabric][image]
+![processo di aggiornamento Hello per un'applicazione di Service Fabric][image]
 
 ## <a name="next-steps"></a>Passaggi successivi
 [Esercitazione sull'aggiornamento di un'applicazione di Service Fabric tramite Visual Studio](service-fabric-application-upgrade-tutorial.md) descrive la procedura di aggiornamento di un'applicazione con Visual Studio.
@@ -68,10 +68,10 @@ Il diagramma di flusso che segue questo paragrafo aiuta a capire il processo di 
 
 Controllare l’aggiornamento dell'applicazione tramite [Parametri di aggiornamento](service-fabric-application-upgrade-parameters.md).
 
-Rendere compatibili gli aggiornamenti dell'applicazione imparando a usare [Serializzazione dei dati](service-fabric-application-upgrade-data-serialization.md).
+Apportare aggiornamenti applicazione compatibile da learning come toouse [la serializzazione dei dati](service-fabric-application-upgrade-data-serialization.md).
 
-Per informazioni su come usare funzionalità avanzate durante l'aggiornamento dell'applicazione, vedere [Argomenti avanzati](service-fabric-application-upgrade-advanced.md).
+Informazioni su come toouse funzionalità avanzate durante l'aggiornamento dell'applicazione riferendosi troppo[argomenti avanzati](service-fabric-application-upgrade-advanced.md).
 
-Per informazioni su come risolvere problemi comuni negli aggiornamenti dell'applicazione, vedere i passaggi indicati in [Risoluzione dei problemi relativi agli aggiornamenti dell'applicazione](service-fabric-application-upgrade-troubleshooting.md).
+Risolvere i problemi comuni negli aggiornamenti dell'applicazione riferendosi passaggi toohello [risoluzione dei problemi gli aggiornamenti dell'applicazione](service-fabric-application-upgrade-troubleshooting.md).
 
 [image]: media/service-fabric-application-upgrade/service-fabric-application-upgrade-flowchart.png

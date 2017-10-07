@@ -1,6 +1,6 @@
 ---
-title: Creare un'applicazione Java Reliable Actors di Azure Service Fabric in Linux | Microsoft Docs
-description: Informazioni su come creare e distribuire un'applicazione Java Reliable Actors di Service Fabric in cinque minuti.
+title: un'applicazione Java di Azure Service Fabric attori affidabile in Linux aaaCreate | Documenti Microsoft
+description: Informazioni su come toocreate e distribuire un'applicazione di attori affidabile Java Service Fabric in cinque minuti.
 services: service-fabric
 documentationcenter: java
 author: rwike77
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 08/23/2017
 ms.author: ryanwi
-ms.openlocfilehash: baf948587ede31fe3d5b4f6f0981269b4cfe4d3d
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 11496b767811c89969c65d1682d843448eb6a922
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-your-first-java-service-fabric-reliable-actors-application-on-linux"></a>Creare la prima applicazione Java Reliable Actors di Service Fabric in Linux
 > [!div class="op_single_selector"]
@@ -28,15 +28,15 @@ ms.lasthandoff: 08/29/2017
 >
 >
 
-Questa guida introduttiva consente di creare in pochi minuti la prima applicazione Java di Azure Service Fabric in un ambiente di sviluppo Linux.  Al termine, si avrà una semplice applicazione Java con un singolo servizio in esecuzione nel cluster di sviluppo locale.  
+Questa guida introduttiva consente di creare in pochi minuti la prima applicazione Java di Azure Service Fabric in un ambiente di sviluppo Linux.  Al termine, sarà necessario una semplice applicazione di servizio singolo Java in esecuzione nel cluster di sviluppo locale hello.  
 
 ## <a name="prerequisites"></a>Prerequisiti
-Prima di iniziare, installare Service Fabric SDK e l'interfaccia della riga di comando di Service Fabric e configurare un cluster di sviluppo nell'[ambiente di sviluppo Linux](service-fabric-get-started-linux.md). Se si usa Mac OS X, è possibile [configurare un ambiente di sviluppo Linux in una macchina virtuale usando Vagrant](service-fabric-get-started-mac.md).
+Prima di iniziare, installare Service Fabric SDK hello, hello servizio infrastruttura CLI e del programma di installazione in un cluster di sviluppo del [ambiente di sviluppo di Linux](service-fabric-get-started-linux.md). Se si usa Mac OS X, è possibile [configurare un ambiente di sviluppo Linux in una macchina virtuale usando Vagrant](service-fabric-get-started-mac.md).
 
-È consigliabile installare anche l'[interfaccia della riga di comando di Service Fabric](service-fabric-cli.md).
+È anche possibile hello tooinstall [servizio infrastruttura CLI](service-fabric-cli.md).
 
-### <a name="install-and-set-up-the-generators-for-java"></a>Installare e configurare i generatori per Java
-Service Fabric offre gli strumenti di scaffolding che consentono di creare un'applicazione Java di Service Fabric dal terminale tramite il generatore di modelli Yeoman. Seguire questa procedura per assicurarsi che nella macchina virtuale sia disponibile il generatore di modelli Yeoman di Service Fabric per Java.
+### <a name="install-and-set-up-hello-generators-for-java"></a>Installare e configurare i generatori di hello per Java
+Service Fabric offre gli strumenti di scaffolding che consentono di creare un'applicazione Java di Service Fabric dal terminale tramite il generatore di modelli Yeoman. Eseguire procedure hello sotto tooensure che aver generatore di modello yeoman hello Service Fabric per Java utilizzo nel computer.
 1. Installare nodejs e NPM nella macchina virtuale
 
   ```bash
@@ -48,85 +48,85 @@ Service Fabric offre gli strumenti di scaffolding che consentono di creare un'ap
   ```bash
   sudo npm install -g yo
   ```
-3. Installare il generatore di applicazioni Java Yeo di Service Fabric da NPM
+3. Installare generatore di applicazione di servizio Fabric Yeo Java hello da NPM
 
   ```bash
   sudo npm install -g generator-azuresfjava
   ```
 
-## <a name="create-the-application"></a>Creazione dell'applicazione
-Un'applicazione di Service Fabric contiene uno o più servizi, ognuno dei quali contribuisce alle funzionalità dell'applicazione con un ruolo specifico. Il generatore installato nell'ultima sezione semplifica la creazione del primo servizio e l'aggiunta di altri servizi in un secondo momento.  È anche possibile creare, compilare e distribuire applicazioni Java di Service Fabric usando un plug-in per Eclipse. Vedere [Creare e distribuire la prima applicazione Java usando Eclipse](service-fabric-get-started-eclipse.md). Per questa guida introduttiva, usare Yeoman per creare un'applicazione con un unico servizio per archiviare e ottenere un valore del contatore.
+## <a name="create-hello-application"></a>Creare un'applicazione hello
+Un'applicazione di Service Fabric contiene uno o più servizi, ognuno con un ruolo specifico nell'offerta di funzionalità dell'applicazione hello. Generatore di Hello è installato nell'ultima sezione hello, rende facile toocreate il primo servizio e tooadd più avanti.  È anche possibile creare, compilare e distribuire applicazioni Java di Service Fabric usando un plug-in per Eclipse. Vedere [Creare e distribuire la prima applicazione Java usando Eclipse](service-fabric-get-started-eclipse.md). Per questa Guida introduttiva usare Yeoman toocreate un'applicazione con un unico servizio che consente di archiviare e ottiene un valore del contatore.
 
 1. In un terminale digitare ``yo azuresfjava``.
 2. Assegnare un nome all'applicazione.
-3. Scegliere il tipo del primo servizio e assegnargli un nome. Per questa esercitazione, scegliere un servizio Reliable Actor. Per altre informazioni sugli altri tipi di servizi, vedere [Panoramica dei modelli di programmazione di Service Fabric](service-fabric-choose-framework.md).
+3. Scegliere il tipo di hello del primo servizio e il nome. Per questa esercitazione, scegliere un servizio Reliable Actor. Per ulteriori informazioni su hello altri tipi di servizi, vedere [Cenni preliminari sul modello di programmazione di Service Fabric](service-fabric-choose-framework.md).
    ![Generatore Yeoman di Service Fabric per Java][sf-yeoman]
 
-## <a name="build-the-application"></a>Compilare l'applicazione.
-I modelli Yeoman di Service Fabric includono uno script di compilazione per [Gradle](https://gradle.org/), che può essere usato per compilare l'applicazione dal terminale.
-Le dipendenze Java di Service Fabric vengono recuperate da Maven. Per compilare e usare le applicazioni Java di Service Fabric, è necessario verificare che siano installati JDK e Gradle. Se non sono ancora installati, è possibile eseguire questi comandi per installare JDK (openjdk-8-jdk) e Gradle:
+## <a name="build-hello-application"></a>Compilare un'applicazione hello
+modelli di servizio dell'infrastruttura Yeoman Hello includono uno script di compilazione per [Gradle](https://gradle.org/), che è possibile utilizzare un'applicazione hello toobuild da hello terminal.
+Le dipendenze Java di Service Fabric vengono recuperate da Maven. toobuild e attività per le applicazioni Java di infrastruttura servizio hello, è necessario tooensure che si disponga di JDK e Gradle installato. Se non è ancora installato, è possibile eseguire hello seguito tooinstall JDK(openjdk-8-jdk) e Gradle -
 
   ```bash
   sudo apt-get install openjdk-8-jdk-headless
   sudo apt-get install gradle
   ```
 
-Per compilare l'applicazione e creare il pacchetto, eseguire questo comando:
+toobuild e pacchetto applicazione hello, eseguire hello seguente:
 
   ```bash
   cd myapp
   gradle
   ```
 
-## <a name="deploy-the-application"></a>Distribuire l'applicazione
-Dopo aver compilato l'applicazione, è possibile distribuirla nel cluster locale.
+## <a name="deploy-hello-application"></a>Distribuire un'applicazione hello
+Una volta creata l'applicazione hello, è possibile distribuire cluster locale toohello.
 
-1. Connettersi al cluster locale di Service Fabric.
+1. Connettere il cluster di Service Fabric locale toohello.
 
     ```bash
     sfctl cluster select --endpoint http://localhost:19080
     ```
 
-2. Eseguire lo script di installazione messo a disposizione nel modello per copiare il pacchetto dell'applicazione nell'archivio immagini del cluster, registrare il tipo di applicazione e creare un'istanza dell'applicazione.
+2. Eseguire script di installazione di hello fornito in hello modello toocopy applicazione hello pacchetto archivio immagini toohello del cluster, registrare il tipo di applicazione hello e creare un'istanza di un'applicazione hello.
 
     ```bash
     ./install.sh
     ```
 
-La distribuzione dell'applicazione compilata è uguale a quella di qualsiasi altra applicazione di Service Fabric. Per istruzioni dettagliate, vedere la documentazione sulla [gestione di un'applicazione di Service Fabric con l'interfaccia della riga di comando di Service Fabric](service-fabric-application-lifecycle-sfctl.md).
+Distribuire un'applicazione hello compilato è hello stesso come qualsiasi altra applicazione di Service Fabric. Vedere la documentazione di hello su [la gestione di un'applicazione di Service Fabric con hello servizio infrastruttura CLI](service-fabric-application-lifecycle-sfctl.md) per istruzioni dettagliate.
 
-I parametri per questi comandi si trovano nei manifesti generati nel pacchetto dell'applicazione.
+I parametri toothese comandi sono disponibili nei manifesti hello generato all'interno del pacchetto di applicazione hello.
 
-Dopo la distribuzione dell'applicazione, aprire un browser e passare a [Service Fabric Explorer](service-fabric-visualizing-your-cluster.md) all'indirizzo [http://localhost:19080/Explorer](http://localhost:19080/Explorer).
-Espandere quindi il nodo **Applicazioni**, nel quale sarà ora presente una voce per il tipo di applicazione e un'altra per la prima istanza del tipo.
+Dopo la distribuzione di un'applicazione hello, aprire un browser e passare a [Service Fabric Explorer](service-fabric-visualizing-your-cluster.md) in [http://localhost:19080/Esplora](http://localhost:19080/Explorer).
+Espandere quindi hello **applicazioni** nodo e notare che è ora disponibile una voce per il tipo di applicazione e un altro per hello prima istanza di quel tipo.
 
-## <a name="start-the-test-client-and-perform-a-failover"></a>Avviare il client di test ed eseguire un failover
-Gli attori non eseguono alcuna operazione in modo indipendente, ma richiedono un altro servizio o client per l'invio dei messaggi. Il modello Actor include un semplice script di test che è possibile usare per interagire con il servizio Actor.
+## <a name="start-hello-test-client-and-perform-a-failover"></a>Avviare il client di prova hello ed eseguire un failover
+Gli attori non eseguire alcuna operazione in modo autonomo, richiedono un altro servizio o client di toosend tali messaggi. modello attore Hello include uno script di test semplice che è possibile utilizzare toointeract con servizio actor hello.
 
-1. Eseguire lo script tramite l'utilità delle espressioni di controllo per visualizzare l'output del servizio Actor.  Lo script di test chiama il metodo `setCountAsync()` nell'attore per incrementare un contatore, chiama il metodo `getCountAsync()` nell'attore per ottenere il nuovo valore del contatore e visualizza tale valore nella console.
+1. Eseguire script hello utilizzando hello espressioni di controllo utilità toosee hello output del servizio actor hello.  script di test hello chiama hello `setCountAsync()` metodo hello attore tooincrement un contatore, chiama hello `getCountAsync()` metodo hello attore tooget hello nuovo valore del contatore e consente di visualizzare tale valore toohello console.
 
     ```bash
     cd myactorsvcTestClient
     watch -n 1 ./testclient.sh
     ```
 
-2. In Service Fabric Explorer individuare il nodo che ospita la replica primaria del servizio Actor. Nello screenshot seguente si tratta del nodo 3. La replica di servizi primaria gestisce le operazioni di lettura e scrittura.  Le modifiche allo stato del servizio vengono quindi replicate nelle repliche secondarie, in esecuzione nei nodi 0 e 1 nello screenshot seguente.
+2. In Service Fabric Explorer, individuare hello nodo hosting hello replica primaria per il servizio actor hello. Nella schermata di hello riportata di seguito, è il nodo 3. Hello servizio primario replica gestisce operazioni lettura e scrittura.  Modifiche di stato del servizio vengono quindi replicate out toohello repliche secondarie, in esecuzione su 0 e 1 nella schermata di hello sotto i nodi.
 
-    ![Ricerca della replica primaria in Service Fabric Explorer][sfx-primary]
+    ![Trovare la replica primaria hello in Service Fabric Explorer][sfx-primary]
 
-3. In **Nodi** fare clic sul nodo trovato nel passaggio precedente e quindi scegliere **Disattiva (riavvio)** dal menu Azioni. Questa azione consente di riavviare il nodo che esegue la replica di servizi primaria e di forzare il failover in una delle repliche secondarie in esecuzione in un altro nodo.  Questa replica secondaria viene alzata di livello a primaria, un'altra replica secondaria viene creata in un nodo diverso e la replica primaria inizia a eseguire operazioni di lettura/scrittura. Durante il riavvio del nodo, osservare l'output dal client di test e notare che l'incremento del contatore prosegue nonostante il failover.
+3. In **nodi**, fare clic sul nodo hello è stata individuata nel passaggio precedente hello, scegliere **Deactivate (riavvio)** dal menu Azioni hello. Questa azione riavvia il nodo hello esegue hello servizio primario replica e forza un tooone failover delle repliche secondarie di hello in esecuzione in un altro nodo.  Replica secondaria è tooprimary innalzate di livello, viene creata un'altra replica secondaria su un nodo diverso e la replica primaria hello inizia le operazioni di lettura/scrittura tootake. Come hello riavvii di nodo, espressioni di controllo di output di hello dalla hello client di prova e prendere nota di tale contatore hello continua tooincrement nonostante hello failover.
 
-## <a name="remove-the-application"></a>Rimuovere l'applicazione
-Usare lo script di disinstallazione incluso nel modello per eliminare l'istanza dell'applicazione, annullare la registrazione del pacchetto dell'applicazione e rimuovere tale pacchetto dall'archivio immagini del cluster.
+## <a name="remove-hello-application"></a>Rimuovere un'applicazione hello
+Utilizzare script di disinstallazione hello fornito nell'istanza di applicazione hello toodelete modello hello, annullare la registrazione del pacchetto dell'applicazione hello e rimuovere il pacchetto di applicazione hello dall'archivio di immagini del cluster hello.
 
 ```bash
 ./uninstall.sh
 ```
 
-In Service Fabric Explorer si noterà che l'applicazione e il tipo di applicazione non sono più visualizzati nel nodo **Applicazioni**.
+In Esplora Service Fabric è visualizzato che un'applicazione hello e tipo di applicazione non è più in hello **applicazioni** nodo.
 
 ## <a name="service-fabric-java-libraries-on-maven"></a>Librerie Java di Service Fabric in Maven
-Le librerie Java di Service Fabric sono ospitate in Maven. È possibile aggiungere le dipendenze nel file ``pom.xml`` o ``build.gradle`` dei progetti per usare le librerie Java di Service Fabric da **mavenCentral**.
+Le librerie Java di Service Fabric sono ospitate in Maven. È possibile aggiungere le dipendenze di hello in hello ``pom.xml`` o ``build.gradle`` di raccolte di Service Fabric Java toouse di progetti da **mavenCentral**.
 
 ### <a name="actors"></a>Actor
 
@@ -173,7 +173,7 @@ Supporto di servizi senza stato di Service Fabric per l'applicazione.
 ### <a name="others"></a>Altro
 #### <a name="transport"></a>Trasporto
 
-Supporto del livello trasporto per l'applicazione Java di Service Fabric. Non è necessario aggiungere esplicitamente questa dipendenza alle applicazioni Reliable Actors o Services, a meno che non si esegua la programmazione al livello trasporto.
+Supporto del livello trasporto per l'applicazione Java di Service Fabric. Non è necessario tooexplicitly aggiungere questa dipendenza tooyour Reliable Actor o applicazioni di servizio, a meno che la programmazione a livello di trasporto hello.
 
   ```XML
   <dependency>
@@ -194,7 +194,7 @@ Supporto del livello trasporto per l'applicazione Java di Service Fabric. Non è
 
 #### <a name="fabric-support"></a>Supporto di Fabric
 
-Supporto a livello di sistema per Service Fabric, che comunica con il runtime nativo di Service Fabric. Non è necessario aggiungere esplicitamente questa dipendenza alle applicazioni Reliable Actors o Services. Viene recuperata automaticamente da Maven quando si includono le altre dipendenze riportate sopra.
+Supporto di livello di sistema per l'infrastruttura del servizio, che comunica toonative runtime di Service Fabric. Non è necessario tooexplicitly aggiungere questa dipendenza tooyour Reliable Actor o applicazioni di servizio. Si ottiene recuperato automaticamente da Maven, quando si includono hello altre dipendenze precedente.
 
   ```XML
   <dependency>
@@ -213,14 +213,14 @@ Supporto a livello di sistema per Service Fabric, che comunica con il runtime na
   }
   ```
 
-## <a name="migrating-old-service-fabric-java-applications-to-be-used-with-maven"></a>Migrazione di applicazioni Java di Service Fabric precedenti da usare con Maven
-Le librerie Java di Service Fabric sono state recentemente spostate da Service Fabric Java SDK al repository di Maven. Benché le nuove applicazioni generate con Yeoman o Eclipse genereranno i progetti aggiornati più recenti (in grado di interagire con Maven), è possibile aggiornare le applicazioni Java esistenti di Service Fabric senza stato o actor, che in precedenza usavano Service Fabric Java SDK, in modo che usino le dipendenze Java di Service Fabric da Maven. Seguire la procedura riportata [qui](service-fabric-migrate-old-javaapp-to-use-maven.md) per assicurare che l'applicazione precedente funzioni con Maven.
+## <a name="migrating-old-service-fabric-java-applications-toobe-used-with-maven"></a>La migrazione precedente toobe di applicazioni Java di infrastruttura del servizio utilizzato con Maven
+È stato spostato nella librerie di Service Fabric Java recente dal repository tooMaven Service Fabric Java SDK. Mentre le nuove applicazioni hello generati usando Yeoman o Eclipse, genererà progetti aggiornati più recente (che saranno in grado di toowork con Maven), è possibile aggiornare l'infrastruttura esistente di servizio senza stato o applicazioni Java attore che usavano hello servizio Fabric SDK per Java in precedenza, le dipendenze di Service Fabric Java hello toouse Maven. Seguire i passaggi di hello indicati [qui](service-fabric-migrate-old-javaapp-to-use-maven.md) tooensure precedente applicazione funziona con Maven.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
 * [Creare la prima applicazione Java di Service Fabric in Linux usando Eclipse](service-fabric-get-started-eclipse.md)
 * [Altre informazioni su Reliable Actors](service-fabric-reliable-actors-introduction.md)
-* [Interagire con un cluster di Service Fabric usando l'interfaccia della riga di comando di Service Fabric](service-fabric-cli.md)
+* [Interagire con i cluster di Service Fabric usando hello servizio infrastruttura CLI](service-fabric-cli.md)
 * Informazioni sulle [opzioni di supporto di Service Fabric](service-fabric-support.md)
 * [Introduzione all'interfaccia della riga di comando di Service Fabric](service-fabric-cli.md)
 

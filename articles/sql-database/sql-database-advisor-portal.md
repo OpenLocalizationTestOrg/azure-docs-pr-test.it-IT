@@ -1,6 +1,6 @@
 ---
-title: Applicare le raccomandazioni per le prestazioni - Database SQL di Azure | Microsoft Docs
-description: "È possibile usare il portale di Azure per trovare raccomandazioni per le prestazioni che consentono di ottimizzare le prestazioni del database SQL di Azure o per correggere eventuali problemi individuati nel carico di lavoro."
+title: consigli relativi alle prestazioni aaaApply - Database SQL di Azure | Documenti Microsoft
+description: "È possibile utilizzare hello toofind portale Azure suggerimenti relativi alle prestazioni che è possibile ottimizzare le prestazioni del Database SQL di Azure o toocorrect un problema identificato nel carico di lavoro."
 services: sql-database
 documentationcenter: 
 author: stevestein
@@ -15,131 +15,131 @@ ms.tgt_pltfrm: na
 ms.workload: data-management
 ms.date: 07/05/2017
 ms.author: sstein
-ms.openlocfilehash: 018afaa8b08bd001e55693390e80c8e2c4f33a30
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0b2234840fc3254d235db9e7d18f5bc912851c6d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="find-and-apply-performance-recommendations"></a>Trovare e applicare raccomandazioni per le prestazioni
 
-È possibile usare il portale di Azure per trovare raccomandazioni per le prestazioni che consentono di ottimizzare le prestazioni del database SQL di Azure o per correggere eventuali problemi individuati nel carico di lavoro. La pagina **Raccomandazioni per le prestazioni** nel portale di Azure consente di trovare le raccomandazioni principali in base all'impatto potenziale. 
+È possibile utilizzare hello toofind portale Azure suggerimenti relativi alle prestazioni che è possibile ottimizzare le prestazioni del Database SQL di Azure o toocorrect un problema identificato nel carico di lavoro. **Indicazione delle prestazioni** pagina nel portale di Azure consente principale indicazioni in base a impatto potenziale hello toofind. 
 
 ## <a name="viewing-recommendations"></a>Visualizzazione delle raccomandazioni
 
-Per visualizzare e applicare le raccomandazioni, sono necessarie le autorizzazioni di [controllo degli accessi in base al ruolo](../active-directory/role-based-access-control-what-is.md) corrette in Azure. Le autorizzazioni **Lettore** e **Collaboratore Database SQL** sono necessarie per visualizzare le raccomandazioni, mentre le autorizzazioni **Proprietario** e **Collaboratore Database SQL** sono necessarie per eseguire qualsiasi operazione, creare o eliminare indici e annullare la creazione di un indice.
+tooview e applicare i consigli relativi alle prestazioni, è necessario hello corretto [controllo di accesso basato sui ruoli](../active-directory/role-based-access-control-what-is.md) autorizzazioni in Azure. **Lettore**, **collaboratore DB SQL** le autorizzazioni sono necessarie tooview indicazioni, e **proprietario**, **collaboratore DB SQL** sono necessarie le autorizzazioni tooexecute eventuali azioni; creare o eliminare gli indici e annullare la creazione dell'indice.
 
-Usare la procedura seguente per trovare raccomandazioni per le prestazioni nel portale di Azure:
+Consigli relativi alle prestazioni toofind i passaggi da utilizzare hello seguenti nel portale di Azure:
 
-1. Accedere al [portale di Azure](https://portal.azure.com/).
-2. Passare ad **Altri servizi** > **Database SQL** e selezionare il database.
-3. Fare clic su **Raccomandazione per le prestazioni** per visualizzare le raccomandazioni disponibili per il database selezionato.
+1. Accedi toohello [portale di Azure](https://portal.azure.com/).
+2. Andare troppo**più servizi** > **database SQL**e selezionare il database.
+3. Passare troppo**raccomandazione prestazioni** tooview le indicazioni disponibili per il database selezionato hello.
 
-Le raccomandazioni per le prestazioni vengono visualizzate in una tabella simile a quella illustrata nella figura seguente:
+Consigli relativi alle prestazioni sono shonw in hello tabella simile toohello illustrato nella seguente illustrazione hello:
 
-![Consigli](./media/sql-database-advisor-portal/recommendations.png)
+![Raccomandazioni](./media/sql-database-advisor-portal/recommendations.png)
 
-Le raccomandazioni vengono ordinate in base all'impatto potenziale sulle prestazioni nelle categorie seguenti:
+Indicazioni vengono ordinate in base il potenziale impatto sulle prestazioni in hello seguenti categorie:
 
 | Impatto | Descrizione |
 |:--- |:--- |
-| Alto |Le indicazioni ad alto impatto devono fornire l'impatto più significativo sulle prestazioni. |
-| Medio |Le raccomandazioni a impatto medio devono migliorare le prestazioni, ma non sostanzialmente. |
+| Alto |Indicazioni di alto impatto devono fornire l'impatto più significativo sulle prestazioni di hello. |
+| Media |Le raccomandazioni a impatto medio devono migliorare le prestazioni, ma non sostanzialmente. |
 | Basso |Le raccomandazioni a basso impatto devono offrire prestazioni migliori, ma i miglioramenti potrebbero non essere significativi. |
 
 
 > [!NOTE]
-> Il database SQL di Azure deve monitorare le attività almeno per un giorno per poter individuare alcune raccomandazioni. Il database SQL di Azure può ottimizzare più facilmente modelli di query coerenti anziché picchi irregolari casuali di attività. Se non sono disponibili raccomandazioni, nella pagina **Raccomandazione per le prestazioni** viene visualizzato un messaggio che ne spiega il motivo.
+> Database SQL di Azure richiede attività toomonitor almeno per un giorno in ordine tooidentify alcune raccomandazioni. Hello Database SQL di Azure può ottimizzare più facilmente modelli di query coerente anziché casuale irregolare picchi di attività. Se indicazioni non sono disponibili corrently, hello **raccomandazione prestazioni** pagina fornisce un messaggio che spiega il motivo.
 > 
 
-È anche possibile visualizzare lo stato delle ultime operazioni storiche. Selezionare un'indicazione o lo stato per visualizzare altri dettagli.
+Inoltre, è possibile visualizzare lo stato di hello di operazioni storiche hello. Selezionare un suggerimento o lo stato di toosee ulteriori dettagli.
 
-Di seguito è riportato un esempio della raccomandazione "Crea indice" nel portale di Azure.
+Di seguito è riportato un esempio di "Creazione dell'indice di" azione consigliata nell'hello portale di Azure.
 
 ![Creare un indice](./media/sql-database-advisor-portal/sql-database-performance-recommendation.png)
 
 ## <a name="applying-recommendations"></a>Applicazione delle raccomandazioni
-Il database SQL di Azure offre il controllo completo sull'attivazione delle raccomandazioni tramite una delle tre opzioni seguenti: 
+Database SQL di Azure offre controllo completo su come indicazioni vengono abilitati usando una qualsiasi delle tre opzioni seguenti hello: 
 
 * Applicare le singole indicazioni una alla volta.
-* Abilitare l'ottimizzazione automatica per applicare automaticamente le raccomandazioni.
-* Per implementare una raccomandazione manualmente, eseguire lo script T-SQL consigliato nel database.
+* Abilita hello tooautomatically ottimizzazione automatica applica indicazioni.
+* tooimplement un'indicazione di eseguire manualmente, hello consigliato script T-SQL nel database.
 
-Selezionare una raccomandazione per visualizzarne i dettagli e quindi fare clic su **Visualizza script** per esaminare in dettaglio come viene creata la raccomandazione.
+Selezionare qualsiasi tooview raccomandazione i dettagli e quindi fare clic su **visualizzare script** tooreview hello dettagli esatti di modalità di creazione di raccomandazione hello.
 
-Il database rimane online mentre viene applicata la raccomandazione. Un database non viene mai portato offline per l'uso di una raccomandazione per le prestazioni o per l'ottimizzazione automatica.
+database Hello rimane online durante raccomandazione hello viene applicato, l'utilizzo di suggerimento di prestazioni o l'ottimizzazione automatica mai richiede un database offline.
 
 ### <a name="apply-an-individual-recommendation"></a>Applicare una singola indicazione
 È possibile leggere e accettare le indicazioni una alla volta.
 
-1. Nel pannello **Raccomandazioni** selezionare una raccomandazione.
-2. Nel pannello **Dettagli** fare clic sul pulsante **Applica**.
+1. In hello **indicazioni** pannello, selezionare una raccomandazione.
+2. In hello **dettagli** fare clic su pannello **applica** pulsante.
    
     ![Applica suggerimento](./media/sql-database-advisor-portal/apply.png)
 
-La raccomandazione selezionata verrà applicata nel database.
+Indicazione selezionata verrà applicata nel database di hello.
 
-### <a name="removing-recommendations-from-the-list"></a>Rimozione delle raccomandazioni dall'elenco
-Se l'elenco di raccomandazioni contiene voci che si vuole rimuovere dall'elenco, ignorare la raccomandazione:
+### <a name="removing-recommendations-from-hello-list"></a>Rimozione di indicazioni dall'elenco di hello
+Se l'elenco di suggerimenti contiene elementi che si desidera tooremove dall'elenco di hello, è possibile ignorare l'indicazione di hello:
 
-1. Selezionare una raccomandazione nell'elenco **Raccomandazioni** per aprire i dettagli.
-2. Fare clic su **Ignora** nel pannello **Dettagli**.
+1. Selezionare una raccomandazione nell'elenco di hello di **indicazioni** dettagli hello tooopen.
+2. Fare clic su **ignorare** su hello **dettagli** blade.
 
-Se si vuole, è possibile aggiungere nuovamente gli elementi ignorati all'elenco **Raccomandazioni** :
+Se si desidera, è possibile aggiungere elementi eliminati, eseguire il backup toohello **indicazioni** elenco:
 
-1. Nel pannello **Raccomandazioni** fare clic su **Visualizza rimosse**.
-2. Selezionare un elemento ignorato nell'elenco per visualizzarne i dettagli.
-3. Facoltativamente, fare clic su **Annulla rimozione** per aggiungere nuovamente l'indice all'elenco principale di **Raccomandazioni**.
+1. In hello **indicazioni** fare clic su pannello **visualizzazione scartati**.
+2. Selezionare un elemento rimosso dall'hello elenco tooview i dettagli.
+3. Facoltativamente, fare clic su **Annulla Elimina** tooadd hello indice toohello indietro elenco principale di **indicazioni**.
 
 
 ### <a name="enable-automatic-tuning"></a>Abilitare l'ottimizzazione automatica
-È possibile impostare il database SQL di Azure in modo che implementi automaticamente le raccomandazioni. Man mano che le indicazioni vengono rese disponibili, verranno applicate automaticamente. Come per tutte le raccomandazioni gestite dal servizio, se l'impatto sulle prestazioni è negativo le raccomandazioni verranno annullate.
+È possibile impostare automaticamente indicazioni tooimplement di hello Database SQL di Azure. Man mano che le indicazioni vengono rese disponibili, verranno applicate automaticamente. Come con tutte le indicazioni gestite da hello servizio se l'impatto sulle prestazioni di hello è raccomandazione hello negativo verrà annullata.
 
-1. Nel pannello **Raccomandazioni** fare clic su **Automatizza**:
+1. In hello **indicazioni** pannello, fare clic su **automatizzare**:
    
     ![Impostazioni di Advisor](./media/sql-database-advisor-portal/settings.png)
-2. Selezionare le azioni da automatizzare:
+2. Selezionare le azioni tooautomate:
    
     ![Indici consigliati](./media/sql-database-advisor-portal/automation.png)
 
-### <a name="manually-run-the-recommended-t-sql-script"></a>Eseguire manualmente lo script T-SQL consigliato
-Selezionare qualsiasi raccomandazione e quindi fare clic su **Visualizza script**. Eseguire questo script nel database per applicare manualmente l'indicazione.
+### <a name="manually-run-hello-recommended-t-sql-script"></a>Eseguire manualmente hello consigliato script T-SQL
+Selezionare qualsiasi raccomandazione e quindi fare clic su **Visualizza script**. Eseguire questo script per il database toomanually applicare l'indicazione di hello.
 
-*Gli indici eseguiti manualmente non vengono monitorati e convalidati per l'impatto sulle prestazioni da parte del servizio* , quindi è consigliabile monitorarli dopo la creazione per verificare che offrano miglioramenti delle prestazioni e modificarli o eliminarli se necessario. Per informazioni dettagliate sulla creazione di indici, vedere [CREAZIONE INDICE (Transact-SQL)](https://msdn.microsoft.com/library/ms188783.aspx).
+*Gli indici che vengono eseguiti manualmente non monitorati e convalidati per verificarne l'impatto sulle prestazioni dal servizio hello* pertanto è consigliabile monitorare tali indici dopo la creazione tooverify forniscono i miglioramenti delle prestazioni e regolare o eliminarli se necessario. Per informazioni dettagliate sulla creazione di indici, vedere [CREAZIONE INDICE (Transact-SQL)](https://msdn.microsoft.com/library/ms188783.aspx).
 
 ### <a name="canceling-recommendations"></a>Annullamento delle raccomandazioni
 Le raccomandazioni con stato **In sospeso**, **Verifica** o **Operazione completata** possono essere annullate. Le raccomandazioni con stato **In esecuzione** non possono essere annullate.
 
-1. Selezionare una raccomandazione nell'area **Cronologia ottimizzazione** per aprire il pannello dei **dettagli della raccomandazione**.
-2. Fare clic su **Annulla** per interrompere il processo di applicazione della raccomandazione.
+1. Selezionare un'indicazione in hello **cronologia ottimizzazione** hello tooopen area **dettagli indicazioni** blade.
+2. Fare clic su **Annulla** processo hello tooabort dell'applicazione hello dell'indicazione.
 
 ## <a name="monitoring-operations"></a>Monitoraggio delle operazioni
-L'applicazione di un'indicazione potrebbe non avvenire in tempo reale. Il portale fornisce dettagli sullo stato della raccomandazione. Di seguito sono indicati gli stati possibili di un indice:
+L'applicazione di un'indicazione potrebbe non avvenire in tempo reale. portale Hello fornisce informazioni dettagliate relative allo stato di hello della raccomandazione. di seguito Hello sono stati possibili di un indice di:
 
 | Stato | Descrizione |
 |:--- |:--- |
 | In sospeso |Il comando di applicazione della raccomandazione è stato ricevuto ed è pianificato per l'esecuzione. |
-| In esecuzione |La raccomandazione viene applicata. |
-| Verifica |La raccomandazione è stata applicata e il servizio sta valutando i vantaggi. |
-| Operazione completata |La raccomandazione è stata applicata e i vantaggi sono stati misurati. |
-| Errore |Si è verificato un errore durante il processo di applicazione della raccomandazione. Può trattarsi di un problema temporaneo o eventualmente di una modifica dello schema della tabella e lo script non è più valido. |
-| Ripristino |La raccomandazione è stata applicata, ma è stata considerata non efficiente e verrà ripristinata automaticamente. |
-| Ripristinato |La raccomandazione è stata ripristinata. |
+| In esecuzione |indicazione di Hello viene applicata. |
+| Verifica |Indicazione è stata applicata e servizio hello misurati vantaggi hello. |
+| Success |La raccomandazione è stata applicata e i vantaggi sono stati misurati. |
+| Errore |Si è verificato un errore durante il processo di hello dell'applicazione hello dell'indicazione. Può trattarsi di un problema temporaneo o eventualmente una tabella toohello delle modifiche dello schema e script hello non è più valido. |
+| Ripristino |indicazione di Hello è stato applicato, ma è stato considerato non ad alte prestazioni e viene viene ripristinato automaticamente. |
+| Ripristinato |indicazione di Hello è stata annullata. |
 
-Fare clic su una raccomandazione in-process nell'elenco per visualizzare altri dettagli:
+Fare clic su una raccomandazione in-process hello elenco toosee ulteriori dettagli:
 
 ![Indici consigliati](./media/sql-database-advisor-portal/operations.png)
 
 ### <a name="reverting-a-recommendation"></a>Ripristino di una raccomandazione
-Se sono state usate le raccomandazioni per le prestazioni per applicare la raccomandazione, ovvero non è stato eseguito manualmente lo script T-SQL, la raccomandazione verrà annullata automaticamente se viene rilevato un impatto negativo sulle prestazioni. Se per qualsiasi motivo si vuole semplicemente annullare una raccomandazione, procedere come segue:
+Se è stata utilizzata la raccomandazione hello hello prestazioni indicazioni tooapply (ovvero che non è stato eseguito manualmente script hello T-SQL) verrà automaticamente ripristinata, se trova toobe impatto sulle prestazioni di hello negativo. Se per qualsiasi motivo si desidera semplicemente toorevert una raccomandazione non è seguito hello:
 
-1. Selezionare una raccomandazione applicata nell'area **Cronologia ottimizzazione** .
-2. Fare clic su **Ripristina** nel pannello dei **dettagli della raccomandazione**.
+1. Selezionare una raccomandazione applicata in hello **ottimizzazione cronologia** area.
+2. Fare clic su **Revert** su hello **dettagli sulle raccomandazioni** blade.
 
 ![Indici consigliati](./media/sql-database-advisor-portal/details.png)
 
 ## <a name="monitoring-performance-impact-of-index-recommendations"></a>Monitoraggio dell'impatto sulle prestazioni delle indicazioni relative agli indici
-Dopo aver implementato correttamente le raccomandazioni (attualmente, solo raccomandazioni relative alle operazioni sugli indici e alle query con parametri), fare clic su **Informazioni dettagliate query** nel pannello dei dettagli delle raccomandazioni per aprire [Informazioni dettagliate prestazioni query](sql-database-query-performance.md) ed esaminare l'impatto sulle prestazioni delle query principali.
+Dopo aver indicazioni sono correttamente implementate (attualmente, operazioni sugli indici e parametrizzare solo i suggerimenti di query) è possibile fare clic su **informazioni dettagliate Query** su hello raccomandazione dettagli pannello tooopen [Query Informazioni dettagliate prestazioni](sql-database-query-performance.md) per verificarne l'impatto sulle prestazioni hello per le prime query.
 
 ![Monitorare l'impatto sulle prestazioni](./media/sql-database-advisor-portal/query-insights.png)
 
@@ -147,11 +147,11 @@ Dopo aver implementato correttamente le raccomandazioni (attualmente, solo racco
 Il database SQL di Azure fornisce raccomandazioni per migliorare le prestazioni del database SQL. Questa funzionalità offre script T-SQL, nonché opzioni singole e completamente automatizzate, e risulta molto utile per ottimizzare il database e quindi per migliorare le prestazioni delle query.
 
 ## <a name="next-steps"></a>Passaggi successivi
-Monitorare le raccomandazioni e continuare ad applicarle in modo da migliorare le prestazioni. I carichi di lavoro dei database sono dinamici e cambiano in modo continuo. Il database SQL di Azure continuerà a monitorare e fornire raccomandazioni potenzialmente utili per migliorare le prestazioni del database. 
+Monitorare le raccomandazioni e continuare tooapply li toorefine prestazioni. I carichi di lavoro dei database sono dinamici e cambiano in modo continuo. Database SQL di Azure continuerà toomonitor e fornire indicazioni che possono potenzialmente migliorare le prestazioni del database. 
 
-* Vedere [Ottimizzazione automatica](sql-database-automatic-tuning.md) per altre informazioni sull'ottimizzazione automatica nel database SQL di Azure.
+* Vedere [ottimizzazione automatica](sql-database-automatic-tuning.md) toolearn ulteriori informazioni sugli hello ottimizzazione automatica nel Database SQL di Azure.
 * Vedere le [Raccomandazioni per le prestazioni](sql-database-advisor.md) per una panoramica delle raccomandazioni per le prestazioni per il database SQL di Azure.
-* Vedere l'articolo [Informazioni dettagliate prestazioni query](sql-database-query-performance.md) per informazioni sull'analisi dell'impatto sulle prestazioni delle query principali.
+* Vedere [informazioni dettagliate prestazioni Query](sql-database-query-performance.md) toolearn sulla visualizzazione impatto sulle prestazioni hello per le prime query.
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 * [Archivio query](https://msdn.microsoft.com/library/dn817826.aspx)

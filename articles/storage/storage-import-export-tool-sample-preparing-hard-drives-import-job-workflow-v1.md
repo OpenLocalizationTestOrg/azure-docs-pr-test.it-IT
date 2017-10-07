@@ -1,6 +1,6 @@
 ---
-title: Flusso di lavoro di esempio per la preparazione dei dischi rigidi per un processo di importazione in Importazione/Esportazione di Azure - versione 1 | Documentazione Microsoft
-description: "Viene illustrata una procedura dettagliata e completa per la preparazione delle unità per un processo di importazione nel servizio Importazione/Esportazione di Azure."
+title: processo - v1 di importazione aaaSample del flusso di lavoro tooprep dischi rigidi per un'importazione/esportazione di Azure | Documenti Microsoft
+description: "Una procedura dettagliata per il processo completo di hello la preparazione dell'unità per un processo di importazione in hello servizio importazione/esportazione di Azure, vedere."
 author: muralikk
 manager: syadav
 editor: tysonn
@@ -14,16 +14,16 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: muralikk
-ms.openlocfilehash: 313f8c1f3962a943b4c98c530c324ff28aa84c10
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: f836fc6104d8b4ad5660cb110a62f61b40b0b7ff
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="sample-workflow-to-prepare-hard-drives-for-an-import-job"></a>Flusso di lavoro campione per preparare i dischi rigidi per un processo di importazione
-In questo argomento viene illustrato il processo completo di preparazione delle unità per un processo di importazione.  
+# <a name="sample-workflow-tooprepare-hard-drives-for-an-import-job"></a>Unità disco rigido tooprepare del flusso di lavoro di esempio per un processo di importazione
+In questo argomento illustra hello processo completo di preparazione delle unità per un processo di importazione.  
   
-In questo esempio verranno importati i seguenti dati di un account di archiviazione Windows Azure denominato `mystorageaccount`:  
+Questo esempio vengono importati dati seguenti in un account di archiviazione Windows Azure denominato hello `mystorageaccount`:  
   
 |Percorso|Descrizione|  
 |--------------|-----------------|  
@@ -32,7 +32,7 @@ In questo esempio verranno importati i seguenti dati di un account di archiviazi
 |K:\Temp\FavoriteMovie.ISO|Un'immagine di disco Blu-ray™, 25 GB.|  
 |\\\bigshare\john\music|Una raccolta di file musicali in una condivisione di rete, 10 GB in totale.|  
   
-Il processo importerà questi dati nelle seguenti destinazioni nell'account di archiviazione:  
+Questi dati verrà importati il processo di importazione Hello in seguito le destinazioni nell'account di archiviazione hello hello:  
   
 |Sorgente|BLOB o directory virtuale di destinazione|  
 |------------|-------------------------------------------|  
@@ -41,13 +41,13 @@ Il processo importerà questi dati nelle seguenti destinazioni nell'account di a
 |K:\Temp\FavoriteMovie.ISO|https://mystorageaccount.blob.core.windows.net/favorite/FavoriteMovies.ISO|  
 |\\\bigshare\john\music|https://mystorageaccount.blob.core.windows.net/music|  
   
-Con questo mapping, il file `H:\Video\Drama\GreatMovie.mov` verrà importato nel BLOB `https://mystorageaccount.blob.core.windows.net/video/Drama/GreatMovie.mov`.  
+Con questo mapping, hello file `H:\Video\Drama\GreatMovie.mov` sarà blob importati toohello `https://mystorageaccount.blob.core.windows.net/video/Drama/GreatMovie.mov`.  
   
-Successivamente, per determinare il numero di dischi rigidi necessari, calcolare la dimensione dei dati:  
+Successivamente, toodetermine il numero di dischi rigido necessari, calcolo hello dimensioni dei dati hello:  
   
 `5TB + 30GB + 25GB + 10GB = 5TB + 65GB`  
   
-Per questo esempio, dovrebbero essere sufficienti due dischi rigidi da 3 TB. Tuttavia, poiché la directory di origine `H:\Video` include 5 TB di dati e la capacità del singolo disco rigido è di soli 3 TB, è necessario suddividere `H:\Video` in due directory di dimensioni minori prima di eseguire lo strumento di importazione/esportazione di Microsoft Azure: `H:\Video1` e `H:\Video2`. Questo passaggio genera le seguenti directory di origine:  
+Per questo esempio, dovrebbero essere sufficienti due dischi rigidi da 3 TB. Tuttavia, poiché la directory di origine hello `H:\Video` include 5TB di dati e la capacità del disco rigido è di soli 3TB, è necessario toobreak `H:\Video` in due directory di dimensioni minori prima di eseguire lo strumento di importazione/esportazione di Microsoft Azure di hello: `H:\Video1` e `H:\Video2`. Questo passaggio vengono generate hello seguenti directory di origine:  
   
 |Percorso|Dimensione|BLOB o directory virtuale di destinazione|  
 |--------------|----------|-------------------------------------------|  
@@ -57,9 +57,9 @@ Per questo esempio, dovrebbero essere sufficienti due dischi rigidi da 3 TB. Tut
 |K:\Temp\FavoriteMovies.ISO|25 GB|https://mystorageaccount.blob.core.windows.net/favorite/FavoriteMovies.ISO|  
 |\\\bigshare\john\music|10 GB|https://mystorageaccount.blob.core.windows.net/music|  
   
- Si noti che anche se la directory `H:\Video` è stata suddivisa in due, queste ultime puntano alla stessa directory virtuale di destinazione nell'account di archiviazione. In questo modo, tutti i file video verranno conservati in un singolo contenitore `video` nell'account di archiviazione.  
+ Si noti che anche se hello `H:\Video`directory è stata divisa directory tootwo, puntano toohello stessa directory virtuale di destinazione nell'account di archiviazione hello. In questo modo, tutti i file video sono conservati in un unico `video` contenitore nell'account di archiviazione hello.  
   
- Successivamente, le directory di origine indicate in precedenza vengono distribuite uniformemente nei due dischi rigidi:  
+ Successivamente, hello sopra origine directory sono uniformemente distribuite toohello due dischi rigidi:  
   
 ||||  
 |-|-|-|  
@@ -70,7 +70,7 @@ Per questo esempio, dovrebbero essere sufficienti due dischi rigidi da 3 TB. Tut
 ||K:\Temp\BlueRay.ISO||  
 ||\\\bigshare\john\music||  
   
-Inoltre, è possibile impostare i metadati seguenti per tutti i file:  
+Inoltre, è possibile impostare hello i metadati per tutti i file seguenti:  
   
 -   **UploadMethod:** servizio Importazione/Esportazione di Windows Azure  
   
@@ -78,7 +78,7 @@ Inoltre, è possibile impostare i metadati seguenti per tutti i file:
   
 -   **CreationDate:** 10/1/2013  
   
-Per impostare i metadati per i file importati, creare un file di testo, `c:\WAImportExport\SampleMetadata.txt`, con il contenuto seguente:  
+tooset metadati per i file hello importato, creare un file di testo, `c:\WAImportExport\SampleMetadata.txt`, con hello seguente contenuto:  
   
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>  
@@ -89,7 +89,7 @@ Per impostare i metadati per i file importati, creare un file di testo, `c:\WAIm
 </Metadata>  
 ```
   
-È inoltre possibile impostare alcune proprietà per il BLOB `FavoriteMovie.ISO`:  
+È inoltre possibile impostare alcune proprietà per hello `FavoriteMovie.ISO` blob:  
   
 -   **Content-Type:** application/octet-stream  
   
@@ -97,7 +97,7 @@ Per impostare i metadati per i file importati, creare un file di testo, `c:\WAIm
   
 -   **Cache-Control:** no-cache  
   
-Per impostare queste proprietà, creare un file di testo, `c:\WAImportExport\SampleProperties.txt`:  
+tooset queste proprietà, creare un file di testo, `c:\WAImportExport\SampleProperties.txt`:  
   
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>  
@@ -108,30 +108,30 @@ Per impostare queste proprietà, creare un file di testo, `c:\WAImportExport\Sam
 </Properties>  
 ```
   
-A questo punto è possibile eseguire lo strumento di importazione/esportazione di Azure per preparare i due dischi rigidi. Si noti che:  
+Si è ora pronto toorun hello strumento di importazione/esportazione di Azure tooprepare hello due unità disco rigido. Si noti che:  
   
--   La prima unità viene montata come unità X.  
+-   Hello prima unità viene montata come unità X.  
   
--   La seconda unità viene montata come unità Y.  
+-   Hello seconda unità viene montata come unità Y.  
   
--   La chiave per l'account di archiviazione `mystorageaccount` è `8ImTigJhIwvL9VEIQKB/zbqcXbxrIHbBjLIfOt0tyR98TxtFvUM/7T0KVNR6KRkJrh26u5I8hTxTLM2O1aDVqg==`.  
+-   chiave di Hello per l'account di archiviazione hello `mystorageaccount` è `8ImTigJhIwvL9VEIQKB/zbqcXbxrIHbBjLIfOt0tyR98TxtFvUM/7T0KVNR6KRkJrh26u5I8hTxTLM2O1aDVqg==`.  
 
 ## <a name="preparing-disk-for-import-when-data-is-pre-loaded"></a>Preparazione del disco per l'importazione con dati precaricati
  
- Se i dati da importare sono già presenti sul disco, usare il flag /skipwrite. I valori di /t e /srcdir devono puntare entrambi al disco in preparazione per l'importazione. Se non tutti i dati su disco devono essere trasferiti nella stessa directory virtuale di destinazione o root dell'account di archiviazione, eseguire il medesimo comando separatamente per ciascuna directory, mantenendo identico il valore di /id nelle varie esecuzioni.
+ Se toobe dati hello importato è già presente nel disco hello, utilizzare /skipwrite flag hello. Valore di /t e /srcdir deve puntare toohello disco viene preparato per l'importazione. Se non tutti hello dati su disco hello deve toogo toohello stessa directory virtuale di destinazione o alla radice dell'account di archiviazione hello, esecuzione hello stesso comando per ogni directory separatamente mantenere il valore di hello del /id lo stesso in tutte le esecuzioni.
 
 >[!NOTE] 
->Non specificare /format in quanto comporterà l'eliminazione dei dati su disco. È possibile specificare /encrypt o /bk a seconda che il disco sia già crittografato o meno. 
+>Non specificare /format come che verrà cancellare i dati di hello sul disco hello. È possibile specificare / crittografare o /bk a seconda se il disco di hello è già crittografato o meno. 
 >
 
 ```
-    When data is already present on the disk for each drive run the following command.
+    When data is already present on hello disk for each drive run hello following command.
     WAImportExport.exe PrepImport /j:FirstDrive.jrn /id:Video1 /logdir:c:\logs /sk:8ImTigJhIwvL9VEIQKB/zbqcXbxrIHbBjLIfOt0tyR98TxtFvUM/7T0KVNR6KRkJrh26u5I8hTxTLM2O1aDVqg== /t:x /format /encrypt /srcdir:x:\Video1 /dstdir:video/ /MetadataFile:c:\WAImportExport\SampleMetadata.txt /skipwrite
 ```
 
 ## <a name="copy-sessions---first-drive"></a>Copiare le sessioni - prima unità
 
-Per la prima unità, eseguire due volte lo strumento di importazione/esportazione di Azure per copiare le due directory di origine:  
+Per la prima unità hello, eseguire lo strumento di importazione/esportazione di Azure due volte i hello toocopy due origine hello directory:  
 
 **Prima sessione di copia**
   
@@ -147,7 +147,7 @@ WAImportExport.exe PrepImport /j:FirstDrive.jrn /id:Photo /srcdir:H:\Photo /dstd
 
 ## <a name="copy-sessions---second-drive"></a>Copiare le sessioni - seconda unità
  
-Per la seconda unità, eseguire tre volte lo strumento di importazione/esportazione di Azure, una volta per ciascuna delle due directory di origine e una volta per il file di immagine Blu-Ray™ autonomo:  
+Per hello seconda unità, eseguire hello strumento di importazione/esportazione di Azure tre volte, una volta per hello ogni directory di origine e una volta per hello autonoma Blu-Ray™ file di immagine):  
   
 **Prima sessione di copia** 
 
@@ -169,7 +169,7 @@ WAImportExport.exe PrepImport /j:SecondDrive.jrn /id:BlueRayIso /srcfile:K:\Temp
 
 ## <a name="copy-session-completion"></a>Completamento della sessione di copia
 
-Dopo aver completato le sessioni di copia, è possibile disconnettere le due unità dal computer di copia e spedirle al data center di Windows Azure appropriato. I due file journal, `FirstDrive.jrn` e `SecondDrive.jrn`, dovranno essere caricati durante la creazione del processo di importazione nel [portale di gestione di Windows Azure](https://manage.windowsazure.com/).  
+Dopo aver completato le sessioni di copia hello, è possibile disconnettere hello due unità dal computer di hello copia e spedirle toohello appropriato centro dati di Windows Azure. Carica file journal hello due, `FirstDrive.jrn` e `SecondDrive.jrn`, quando si crea il processo di importazione hello in hello [il portale di gestione di Windows Azure](https://manage.windowsazure.com/).  
   
 ## <a name="next-steps"></a>Passaggi successivi
 

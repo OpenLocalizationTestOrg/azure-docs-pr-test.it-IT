@@ -1,6 +1,6 @@
 ---
-title: Uso di ElasticSearch come archivio di traccia delle applicazioni di Service Fabric | Documentazione Microsoft
-description: Descrive in che modo le applicazioni di Service Fabric possono usare ElasticSearch e Kibana per archiviare, indicizzare ed eseguire ricerche nelle tracce (log) delle applicazioni.
+title: aaaUsing Elasticsearch come archivio di analisi applicazione di Service Fabric | Documenti Microsoft
+description: "Descrive come è possono utilizzare le applicazioni di Service Fabric toostore Elasticsearch e Kibana, indicizzazione e ricerca tramite tracce di applicazione (log)"
 services: service-fabric
 documentationcenter: .net
 author: karolz-ms
@@ -15,64 +15,64 @@ ms.workload: NA
 ms.date: 04/07/2017
 ms.author: karolz@microsoft.com
 redirect_url: /azure/service-fabric/service-fabric-diagnostics-event-aggregation-eventflow
-ms.openlocfilehash: 2d2ceceea131b41ad1a1735aaa2a859d035ab098
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b5977c54e69319e3caa376e44a02f971b66a3254
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="use-elasticsearch-as-a-service-fabric-application-trace-store"></a>Usare ElasticSearch come archivio di traccia delle applicazioni di Service Fabric
 ## <a name="introduction"></a>Introduzione
 Questo articolo descrive le modalità in cui le applicazioni di [Azure Service Fabric](https://azure.microsoft.com/documentation/services/service-fabric/) possono usare **ElasticSearch** e **Kibana** per l'archiviazione delle tracce, l'indicizzazione e la ricerca. [ElasticSearch](https://www.elastic.co/guide/index.html) è un motore di ricerca e analisi open source, distribuito e scalabile in tempo reale, nonché particolarmente adatto per questa attività, che può essere installato in macchine virtuali Windows o Linux con Microsoft Azure. Elasticsearch può elaborare in modo efficiente tracce *strutturate* create con tecnologie come **Event Tracing for Windows (ETW)**.
 
-ETW viene usato dal runtime di Service Fabric per ottenere informazioni di diagnostica (tracce) ed è anche il metodo consigliato alle applicazioni di Service Fabric per ottenere le rispettive informazioni di diagnostica. L'uso dello stesso meccanismo consente la correlazione tra le tracce fornite dal runtime e dall'applicazione e facilita la risoluzione dei problemi. I modelli di progetto di Service Fabric in Visual Studio include un'API di registrazione, basata sulla classe .NET **EventSource**, che genera tracce ETW per impostazione predefinita. Per una panoramica generale sulla definizione delle tracce delle applicazioni di Service Fabric con ETW, vedere [Monitorare e diagnosticare servizi in una configurazione di sviluppo con computer locale](service-fabric-diagnostics-how-to-monitor-and-diagnose-services-locally.md).
+ETW è usato da informazioni di diagnostica toosource runtime Service Fabric (tracce). È hello metodo consigliato per Service Fabric applicazioni toosource le informazioni di diagnostica, troppo. Utilizzo di hello consente stesso meccanismo per la correlazione tra tracce fornito dal runtime e fornita dall'applicazione e facilita la risoluzione dei problemi semplificata. Modelli di progetto Service Fabric in Visual Studio includono un'API di registrazione (in base a hello .NET **EventSource** classe) che emette le tracce ETW per impostazione predefinita. Per una panoramica generale sulla definizione delle tracce delle applicazioni di Service Fabric con ETW, vedere [Monitorare e diagnosticare servizi in una configurazione di sviluppo con computer locale](service-fabric-diagnostics-how-to-monitor-and-diagnose-services-locally.md).
 
-Per poter essere visualizzate in ElasticSearch, le tracce devono essere acquisite nei nodi del cluster di Service Fabric in tempo reale, mentre è in esecuzione l'applicazione, e inviate all'endpoint ElasticSearch. Per l'acquisizione di tracce sono disponibili due opzioni principali:
+Per tooshow tracce hello backup in Elasticsearch, hanno bisogno toobe acquisiti nei nodi del cluster di Service Fabric hello in tempo reale (quando è in esecuzione un'applicazione hello) e inviati tooan Elasticsearch endpoint. Per l'acquisizione di tracce sono disponibili due opzioni principali:
 
 * **Acquisizione di tracce in-process**  
-  L'applicazione, o più esattamente il processo del servizio, è responsabile dell'invio dei dati di diagnostica all'archivio di traccia (ElasticSearch).
+  un'applicazione Hello o più precisamente, processo del servizio, è responsabile per l'invio all'archivio di analisi hello dati di diagnostica toohello (Elasticsearch).
 * **Acquisizione di tracce out-of-process**  
-  Un agente separato acquisisce le tracce dal processo (o dai processi) di servizio e le invia all'archivio di traccia.
+  Un agente distinto è acquisire tracce da servizio hello o più processi e inviarli toohello archivio di analisi.
 
-Di seguito si descrive come configurare ElasticSearch in Azure, si illustrano i vantaggi e gli svantaggi di entrambe le opzioni di acquisizione e si spiega come configurare un servizio di Service Fabric per inviare dati a ElasticSearch.
+Di seguito, viene descritto come tooset backup Elasticsearch in Azure, discutere i professionisti hello e gli svantaggi di entrambe le opzioni di acquisizione e spiegano come tooconfigure un'infrastruttura di servizio del servizio toosend dati tooElasticsearch.
 
 ## <a name="set-up-elasticsearch-on-azure"></a>Configurare ElasticSearch in Azure
-L'uso dei [**modelli di Azure Resource Manager**](../azure-resource-manager/resource-group-overview.md) costituisce il modo più semplice per configurare il servizio ElasticSearch in Azure. Un [modello di avvio rapido di Azure Resource Manager per ElasticSearch](https://github.com/Azure/azure-quickstart-templates/tree/master/elasticsearch) è disponibile nel repository dei modelli di avvio rapido di Azure. Questo modello usa account di archiviazione separati per le unità di scala (gruppi di nodi) e può effettuare il provisioning di nodi client e server distinti con configurazioni diverse e un numero variabile di dischi dati collegati.
+Hello tooset modo più semplice il servizio Elasticsearch hello in Azure viene eseguita tramite [ **modelli di gestione risorse di Azure**](../azure-resource-manager/resource-group-overview.md). Un [modello di avvio rapido di Azure Resource Manager per ElasticSearch](https://github.com/Azure/azure-quickstart-templates/tree/master/elasticsearch) è disponibile nel repository dei modelli di avvio rapido di Azure. Questo modello usa account di archiviazione separati per le unità di scala (gruppi di nodi) e può effettuare il provisioning di nodi client e server distinti con configurazioni diverse e un numero variabile di dischi dati collegati.
 
-In questo caso viene usato un altro modello, denominato **ES-MultiNode** dal [repository degli strumenti di diagnostica di Azure](https://github.com/Azure/azure-diagnostics-tools). Questo modello è più semplice da usare e crea un cluster Elasticsearch protetto dall'autenticazione di base HTTP. Prima di procedere, scaricare nel computer locale il repository disponibile in GitHub (clonando il repository o scaricando un file con estensione zip). Il modello ES-MultiNode si trova nella cartella con lo stesso nome.
+Qui, si utilizza un modello diverso, denominato **ES MultiNode** da hello [archivio degli strumenti di diagnostica Azure](https://github.com/Azure/azure-diagnostics-tools). Questo modello è più facile toouse e viene creato un cluster Elasticsearch protetto dall'autenticazione di base HTTP. Prima di continuare, scaricare repository hello dalla macchina tooyour GitHub (per la clonazione del repository hello o download di un file zip). Hello ES MultiNode modello si trova nella cartella hello con hello stesso nome.
 
-### <a name="prepare-a-machine-to-run-elasticsearch-installation-scripts"></a>Preparare un computer per l'esecuzione degli script di installazione di ElasticSearch
-Il modo più semplice per usare il modello ES-MultiNode è quello di eseguire uno script di Azure PowerShell fornito denominato `CreateElasticSearchCluster`. Per usare lo script, è necessario installare i moduli di PowerShell e uno strumento denominato **openssl**. indispensabile per la creazione di una chiave SSH che può essere usata per amministrare il cluster ElasticSearch in modalità remota.
+### <a name="prepare-a-machine-toorun-elasticsearch-installation-scripts"></a>Preparare un toorun macchina Elasticsearch gli script di installazione
+Hello modello di hello ES MultiNode toouse modo più semplice è tramite uno script di PowerShell di Azure fornito denominato `CreateElasticSearchCluster`. toouse questo script, è necessario uno strumento denominato e moduli tooinstall **openssl**. Hello quest'ultimo è necessaria per la creazione di una chiave SSH che può essere utilizzati tooadminister Elasticsearch cluster in modalità remota.
 
-`CreateElasticSearchCluster` è progettato per semplificare l'uso del modello ES-MultiNode da un computer Windows. È possibile usare il modello in un computer non Windows, ma questo scenario non rientra nell'ambito di questo articolo.
+`CreateElasticSearchCluster`script è progettato per facilitare l'utilizzo con il modello di hello ES MultiNode da un computer Windows. È possibile toouse hello al modello in un computer non Windows, ma tale scenario esula dall'ambito di hello di questo articolo.
 
 1. Se non sono già stati installati, installare i [**moduli di Azure PowerShell**](http://aka.ms/webpi-azps). Quando richiesto, fare clic su **Esegui** e su **Installa**. È richiesto Azure PowerShell 1.3 o versioni successive.
-2. Lo strumento **openssl** è incluso nella distribuzione di [**Git per Windows**](http://www.git-scm.com/downloads). Se non è già stato fatto, installare [Git per Windows](http://www.git-scm.com/downloads) . accettando le opzioni di installazione predefinite.
-3. Supponendo che Git sia già installato, ma non incluso nel percorso di sistema, aprire una finestra di Microsoft Azure PowerShell ed eseguire i comandi seguenti:
+2. Hello **openssl** lo strumento è incluso nella distribuzione hello di [ **Git per Windows**](http://www.git-scm.com/downloads). Se non è già stato fatto, installare [Git per Windows](http://www.git-scm.com/downloads) . le opzioni di installazione predefinite hello sono OK.
+3. Supponendo che Git è stato installato ma non inclusi nel percorso di sistema hello, aprire una finestra di Microsoft Azure PowerShell ed eseguire hello seguenti comandi:
    
     ```powershell
     $ENV:PATH += ";<Git installation folder>\usr\bin"
     $ENV:OPENSSL_CONF = "<Git installation folder>\usr\ssl\openssl.cnf"
     ```
    
-    Sostituire `<Git installation folder>` con il percorso Git nel computer locale. Il percorso predefinito è **"C:\Programmi\Git"**. Si noti il carattere punto e virgola all'inizio del primo percorso.
-4. Assicurarsi di essere connessi ad Azure (tramite il cmdlet [`Add-AzureRmAccount`](https://msdn.microsoft.com/library/mt619267.aspx) ) e di avere selezionato la sottoscrizione da usare per creare il cluster Elasticsearch. Per verificare che sia selezionata la sottoscrizione corretta, è possibile usare i cmdlet `Get-AzureRmContext` e `Get-AzureRmSubscription`.
-5. Se non è già stato fatto, passare dalla directory corrente alla cartella ES-MultiNode.
+    Sostituire hello `<Git installation folder>` con percorso di hello Git nel computer; valore predefinito di hello è **"C:\Programmi\Microsoft Files\Git"**. Si noti il carattere punto e virgola hello all'inizio di hello del primo percorso hello.
+4. Verificare che si è connessi tooAzure (tramite [ `Add-AzureRmAccount` ](https://msdn.microsoft.com/library/mt619267.aspx) cmdlet) e di aver selezionato una sottoscrizione di hello che deve essere utilizzato il cluster di ricerca elastico toocreate. Per verificare che sia selezionata la sottoscrizione corretta, è possibile usare i cmdlet `Get-AzureRmContext` e `Get-AzureRmSubscription`.
+5. Se non è già fatto, Modifica cartella toohello ES MultiNode della directory corrente hello.
 
-### <a name="run-the-createelasticsearchcluster-script"></a>Eseguire lo script CreateElasticSearchCluster
-Prima di eseguire lo script, aprire il file `azuredeploy-parameters.json` e verificare o specificare i valori per i parametri dello script. Vengono forniti i parametri seguenti:
+### <a name="run-hello-createelasticsearchcluster-script"></a>Eseguire script CreateElasticSearchCluster hello
+Prima di eseguire script hello, aprire hello `azuredeploy-parameters.json` file e verificare o fornire valori per parametri di script hello. viene fornito Hello seguenti parametri:
 
 | Nome parametro | Description |
 | --- | --- |
-| dnsNameForLoadBalancerIP |Nome usato per creare il nome DNS visibile pubblicamente per il cluster Elasticsearch aggiungendo il dominio dell'area di Azure al nome fornito. Ad esempio, se il valore del parametro è "myBigCluster" e l'area di Azure scelta è Stati Uniti occidentali, il nome DNS risultante per il cluster sarà myBigCluster.westus.cloudapp.azure.com. <br /><br />Questo nome viene usato anche come radice per i nomi di molti elementi associati al cluster Elasticsearch, ad esempio i nomi dei nodi dati. |
-| adminUsername |Nome dell'account amministratore per la gestione del cluster Elasticsearch; le chiavi SSH corrispondenti vengono generate automaticamente. |
-| dataNodeCount |Numero di nodi nel cluster ElasticSearch. La versione corrente dello script non fa distinzione tra nodi dati e di query, tutti i nodi eseguiranno entrambi i ruoli. Il valore predefinito è 3 nodi. |
-| dataDiskSize |Dimensioni dei dischi dati (in GB) allocati per ogni nodo dati. Ogni nodo riceve 4 dischi dati dedicati esclusivamente al servizio Elasticsearch. |
-| region |Nome dell'area di Azure in cui dovrà trovarsi il cluster ElasticSearch. |
-| esUserName |Nome utente configurato per l'accesso al cluster Elasticsearch (soggetto all'autenticazione HTTP di base). La password non fa parte del file dei parametri e deve essere specificata quando viene richiamato lo script `CreateElasticSearchCluster` . |
-| vmSizeDataNodes |Dimensioni della macchina virtuale di Azure per i nodi del cluster ElasticSearch. Il valore predefinito è Standard_D2. |
+| dnsNameForLoadBalancerIP |Hello nome toocreate utilizzati hello visibili pubblicamente nome DNS cluster ricerca elastico hello (aggiungendo toohello fornito di dominio di hello regione di Azure). Ad esempio, se il valore del parametro è "myBigCluster" e area di Azure hello scelto è Stati Uniti occidentali, hello risultante nome DNS cluster hello è myBigCluster.westus.cloudapp.azure.com. <br /><br />Questo nome funge anche da un nome radice per tutti gli elementi associati hello ricerca elastico cluster, ad esempio i nomi dei nodi di dati. |
+| adminUsername |nome di Hello dell'account di amministratore hello per la gestione dei cluster di ricerca elastico hello (chiavi SSH corrispondenti vengono generate automaticamente). |
+| dataNodeCount |numero di Hello di nodi nel cluster ricerca elastico hello. la versione corrente di Hello dello script di hello non distingue tra nodi di dati e query. tutti i nodi riprodurre entrambi ruoli. Nodi too3 valori predefiniti. |
+| dataDiskSize |dimensione di Hello dei dischi di dati (in GB) allocata per ogni nodo di dati. Ogni nodo riceve 4 dischi dati, in modo esclusivo dedicato tooElastic servizio di ricerca. |
+| region |nome Hello dell'area di Azure in cui deve essere collocato cluster ricerca elastico hello. |
+| esUserName |Hello nome utente dell'utente hello che viene configurato toohave accesso tooES cluster (soggetto tooHTTP l'autenticazione di base). Hello password non fa parte del file di parametri e deve essere specificata quando `CreateElasticSearchCluster` script viene richiamato. |
+| vmSizeDataNodes |dimensioni di macchina virtuale di Azure per i nodi del cluster ricerca elastico Hello. TooStandard_D2 impostazioni predefinite. |
 
-A questo punto è possibile eseguire lo script. Eseguire il comando seguente:
+Si è ora script hello toorun pronto. Eseguire hello comando seguente:
 
 ```powershell
 CreateElasticSearchCluster -ResourceGroupName <es-group-name> -Region <azure-region> -EsPassword <es-password>
@@ -80,88 +80,88 @@ CreateElasticSearchCluster -ResourceGroupName <es-group-name> -Region <azure-reg
 
 dove 
 
-| Nome del parametro di script | Description |
+| Nome del parametro di script | Descrizione |
 | --- | --- |
-| `<es-group-name>` |Nome del gruppo di risorse di Azure che conterrà tutte le risorse cluster Elasticsearch. |
-| `<azure-region>` |Nome dell'area di Azure in cui si deve creare il cluster Elasticsearch. |
-| `<es-password>` |Password per l'utente di Elasticsearch. |
+| `<es-group-name>` |nome Hello hello Azure del gruppo di risorse che conterrà tutte le risorse cluster ricerca elastico. |
+| `<azure-region>` |nome Hello dell'area di Azure in cui deve essere creato il cluster di ricerca elastico hello hello. |
+| `<es-password>` |password di Hello per hello elastico ricerca utente. |
 
 > [!NOTE]
-> Se il cmdlet Test-AzureResourceGroup restituisce un messaggio NullReferenceException, significa che non è ancora stato eseguito l'accesso ad Azure (`Add-AzureRmAccount`).
+> Se si verifica un'eccezione NullReferenceException dal cmdlet hello AzureResourceGroup di Test, è stata dimenticata toolog su tooAzure (`Add-AzureRmAccount`).
 > 
 > 
 
-Se viene restituito un errore dell'esecuzione dello script e si stabilisce che l'errore è stato causato da un valore di parametro del modello errato, correggere il file dei parametri ed eseguire di nuovo lo script con il nome di un gruppo di risorse diverso. È anche possibile riusare lo stesso nome di gruppo di risorse e fare in modo che lo script elimini quello precedente aggiungendo il parametro `-RemoveExistingResourceGroup` alla chiamata dello script.
+Se si verifica un errore dell'esecuzione dello script hello e si stabilisce che l'errore hello è stato causato da un valore di parametro di modello errato, correggere il file di parametro hello ed eseguire script hello nuovamente con il nome di un gruppo di risorse diverso. È inoltre possibile riutilizzare hello stesso nome del gruppo di risorse e dispone di script hello pulizia hello precedente aggiungendo hello `-RemoveExistingResourceGroup` chiamata dello script toohello di parametro.
 
-### <a name="result-of-running-the-createelasticsearchcluster-script"></a>Risultato dell'esecuzione dello script CreateElasticSearchCluster
-Dopo aver eseguito lo script `CreateElasticSearchCluster` verranno creati gli elementi principali seguenti. In questo esempio si suppone che sia stato usato "myBigCluster" come valore del parametro `dnsNameForLoadBalancerIP` e che l'area in cui è stato creato il cluster sia Stati Uniti occidentali.
+### <a name="result-of-running-hello-createelasticsearchcluster-script"></a>Risultato dell'esecuzione di script CreateElasticSearchCluster hello
+Dopo aver eseguito hello `CreateElasticSearchCluster` script, verrà creato hello segue gli elementi principali. In questo esempio si presuppone che si usa "myBigCluster" come valore di hello di hello `dnsNameForLoadBalancerIP` parametro e tale area hello in cui è stato creato il cluster hello è Stati Uniti occidentali.
 
 | Elemento | Nome, percorso e note |
 | --- | --- |
-| Chiave SSH per l'amministrazione remota |File myBigCluster.key, nella directory da cui è stato eseguito CreateElasticSearchCluster. <br /><br />Questo file di chiave può essere usato per connettersi al nodo amministratore e, tramite questo nodo, ai nodi dati del cluster. |
-| Nodo amministratore |myBigCluster admin.westus.cloudapp.azure.com  <br /><br />VM dedicata per l'amministrazione remota del cluster Elasticsearch, l'unica che consenta connessioni SSH esterne. Viene eseguita nella stessa rete virtuale di tutti i nodi del cluster Elasticsearch, ma non esegue servizi Elasticsearch. |
-| Nodi dati |myBigCluster1 … myBigCluster*N* <br /><br />Nodi di dati che eseguono servizi Elasticsearch e Kibana. È possibile connettersi tramite SSH a ogni nodo, ma solo tramite il nodo amministratore. |
-| Cluster Elasticsearch |http://myBigCluster.westus.cloudapp.azure.com/es/ <br /><br />Endpoint primario per il cluster Elasticsearch (si noti il suffisso /es). È protetto mediante l'autenticazione HTTP di base. Le credenziali sono i parametri esUserName/esPassword del modello ES-MultiNode precedentemente specificati. Il cluster ha anche installato il plug-in head (http://myBigCluster.westus.cloudapp.azure.com/es/_plugin/head) per l'amministrazione del cluster di base. |
-| Servizio Kibana |http://myBigCluster.westus.cloudapp.azure.com <br /><br />Il servizio Kibana è configurato per visualizzare i dati del cluster Elasticsearch creato. È protetto con le stesse credenziali di autenticazione del cluster stesso. |
+| Chiave SSH per l'amministrazione remota |file myBigCluster.key (nella directory hello da quale hello è stato eseguito CreateElasticSearchCluster). <br /><br />Questo file di chiave può essere utilizzato tooconnect toohello admin nodo e (tramite nodo Amministrazione hello) toodata nodi nel cluster hello. |
+| Nodo amministratore |myBigCluster admin.westus.cloudapp.azure.com  <br /><br />Una macchina virtuale dedicata per l'amministrazione remota del cluster di Elasticsearch - hello solo uno che consenta le connessioni SSH esterne. Viene eseguito nella stessa rete virtuale come tutti i nodi del cluster Elasticsearch hello, ma non eseguita servizi Elasticsearch hello. |
+| Nodi dati |myBigCluster1 … myBigCluster*N* <br /><br />Nodi di dati che eseguono servizi Elasticsearch e Kibana. È possibile connettersi tramite SSH tooeach nodo, ma solo tramite nodo Amministrazione hello. |
+| Cluster Elasticsearch |http://myBigCluster.westus.cloudapp.azure.com/es/ <br /><br />Hello endpoint primario per il cluster di Elasticsearch hello (suffisso /es di hello nota). È protetta da autenticazione HTTP di base (hello credenziali hello specificato esUserName/esPassword parametri di modello hello ES MultiNode). cluster Hello presenta inoltre hello head plug-in installati (http://myBigCluster.westus.cloudapp.azure.com/es/_plugin/head) per l'amministrazione del cluster di base. |
+| Servizio Kibana |http://myBigCluster.westus.cloudapp.azure.com <br /><br />Hello Kibana servizio impostare dati tooshow da hello Elasticsearch cluster creato. È protetta da hello stesse credenziali di autenticazione come hello del cluster stesso. |
 
 ## <a name="in-process-versus-out-of-process-trace-capturing"></a>Acquisizione di tracce in-process e out-of-process
-Nell'introduzione sono state citate le due principali modalità di raccolta dei dati di diagnostica: in-process e out-of-process. Ognuna presenta vantaggi e svantaggi.
+Introduzione di hello, accennato in due modi fondamentali per la raccolta dei dati di diagnostica: in-process e out-of-process. Ognuna presenta vantaggi e svantaggi.
 
-I vantaggi dell' **acquisizione di tracce in-process** includono:
+Vantaggi di hello **nel processo di acquisizione traccia** includono:
 
 1. *Facilità di configurazione e distribuzione*
    
-   * La configurazione della modalità di raccolta dei dati di diagnostica è solo una parte del processo di configurazione dell'applicazione ed è facile mantenerla sempre "sincronizzata" con il resto dell'applicazione.
+   * configurazione di Hello di raccolta dati di diagnostica è solo parte della configurazione dell'applicazione hello. È facile tooalways keep "sincronizzato" con hello il resto dell'applicazione hello.
    * È facile ottenere la configurazione per ogni applicazione o servizio.
-   * L'acquisizione di tracce out-of-process richiede in genere una distribuzione separata e la configurazione dell'agente di diagnostica, che costituisce un'attività amministrativa aggiuntiva e, quindi, una potenziale fonte di errori. Nella maggior parte dei casi, la tecnologia specifica dell'agente consente una sola istanza dell'agente per ogni macchina virtuale (nodo). In questo modo, la configurazione relativa alla raccolta dei dati di diagnostica viene condivisa tra tutte le applicazioni e i servizi in esecuzione sul nodo.
+   * Acquisizione traccia out-of-process richiede in genere una distribuzione separata e la configurazione dell'agente, diagnostica hello è un'attività amministrativa extra e una potenziale fonte di errori. tecnologia di agente specifico Hello consente spesso di solo un'istanza dell'agente di hello per ogni macchina virtuale (nodo). Ciò significa che la configurazione per la raccolta hello della configurazione di diagnostica hello viene condiviso tra tutte le applicazioni e servizi in esecuzione su tale nodo.
 2. *Flessibilità*
    
-   * L'applicazione può inviare i dati ogni volta che è necessario, purché sia disponibile una libreria client che supporta il sistema di archiviazione dati di destinazione. Nuovi sink possono essere aggiunti secondo le esigenze.
+   * un'applicazione Hello può inviare dati di hello ogni volta che è necessario toogo, purché vi è una libreria client che supporta il sistema di archiviazione dati hello di destinazione. Nuovi sink possono essere aggiunti secondo le esigenze.
    * È possibile implementare complesse regole di acquisizione, filtro e aggregazione dati.
-   * L'acquisizione di tracce out-of-process è spesso limitata dai sink di dati supportati dall'agente. Alcuni agenti sono estendibili.
-3. *Accesso al contesto e ai dati di applicazione interni*
+   * Un'acquisizione della traccia out-of-process è spesso limitato dal sink dati hello che hello agente supporta. Alcuni agenti sono estendibili.
+3. *Contesto e accedere ai dati di applicazione toointernal*
    
-   * Il sottosistema di diagnostica in esecuzione nel processo dell'applicazione o del servizio può facilmente aumentare le tracce con informazioni contestuali.
-   * Nell'approccio out-of-process i dati devono essere inviati a un agente tramite un meccanismo di comunicazione interprocesso, ad esempio Event Tracing for Windows (ETW). Questo meccanismo può imporre limitazioni aggiuntive.
+   * sottosistema di diagnostica Hello in esecuzione nel processo di applicazioni o servizi hello possibile integrare facilmente le tracce di hello con informazioni contestuali.
+   * Nell'approccio a out-of-process hello, hello devono essere inviati dati agente tooan tramite un meccanismo di comunicazione tra processi, ad esempio Event Tracing for Windows. Questo meccanismo può imporre limitazioni aggiuntive.
 
-I vantaggi dell' **acquisizione di tracce out-of-process** includono:
+Vantaggi di hello **acquisizione traccia out-of-process** includono:
 
-1. *Possibilità di monitorare l'applicazione e raccogliere dump di arresto anomalo del sistema*
+1. *un'applicazione hello toomonitor possibilità Hello e raccogliere i dump di arresto anomalo*
    
-   * L'acquisizione di tracce in-process può non riuscire se l'applicazione si avvia o si arresta in modo anomalo. Un agente indipendente ha maggiori possibilità di acquisire informazioni cruciali sulla risoluzione dei problemi.<br /><br />
+   * Acquisizione traccia in-process può essere esito negativo se un'applicazione hello toostart o arresti anomali. Un agente indipendente ha maggiori possibilità di acquisire informazioni cruciali sulla risoluzione dei problemi.<br /><br />
 2. *Maturità, affidabilità e prestazioni comprovate*
    
-   * Un agente sviluppato da un fornitore di piattaforme, ad esempio l'agente Diagnostica di Microsoft Azure, viene sottoposto a test rigorosi e avanzate misure di protezione.
-   * Con l'acquisizione di tracce in-process, è necessario prestare attenzione per assicurarsi che l'attività di invio dei dati di diagnostica da parte di un processo dell'applicazione non interferisca con le attività principali dell'applicazione e non introduca problemi di temporizzazione o prestazioni. Un agente indipendente in esecuzione è meno soggetto a questi problemi ed è progettato appositamente per limitare l'impatto sul sistema.
+   * Un agente sviluppato da un fornitore di piattaforma (ad esempio, un agente di Microsoft Azure Diagnostics) è stata toorigorous oggetto test e la protezione avanzata di battaglia.
+   * Con la traccia nel processo di acquisizione, prestare attenzione tooensure attività hello di invio dei dati di diagnostica da un processo dell'applicazione non interferire con l'attività principale dell'applicazione hello o introdurre problemi di temporizzazione o prestazioni. Un agente in modo indipendente in esecuzione è meno soggetto a problemi toothese ed è specificamente progettato toolimit impatto sul sistema hello.
 
-È possibile combinare e trarre vantaggio da entrambi gli approcci. In realtà, potrebbe essere la soluzione migliore per molte applicazioni.
+È possibile toocombine e trarre vantaggio da entrambi gli approcci. Infatti, potrebbe essere la soluzione migliore di hello per molte applicazioni.
 
-In questo caso viene usata la **libreria Microsoft.Diagnostic.Listeners** e l'acquisizione di tracce in-process per l'invio di dati da un'applicazione di Service Fabric a un cluster Elasticsearch.
+In questo caso, utilizziamo hello **Microsoft.Diagnostic.Listeners libreria** e di traccia in-process hello acquisizione dei dati toosend da un cluster di Service Fabric application tooan Elasticsearch.
 
-## <a name="use-the-listeners-library-to-send-diagnostic-data-to-elasticsearch"></a>Usare la libreria Listeners per inviare dati di diagnostica a ElasticSearch
-La libreria Microsoft.Diagnostic.Listeners fa parte dell'applicazione di Service Fabric di esempio PartyCluster. Per usarla:
+## <a name="use-hello-listeners-library-toosend-diagnostic-data-tooelasticsearch"></a>Utilizzare hello listener libreria toosend dati di diagnostica tooElasticsearch
+libreria Microsoft.Diagnostic.Listeners Hello è parte dell'applicazione di Service Fabric esempio PartyCluster. toouse è:
 
-1. Scaricare l' [esempio di Party Cluster](https://github.com/Azure-Samples/service-fabric-dotnet-management-party-cluster) da GitHub.
-2. Copiare i progetti Microsoft.Diagnostics.Listeners e Microsoft.Diagnostics.Listeners.Fabric (le cartelle intere) dalla directory di esempio PartyCluster alla cartella della soluzione relativa all'applicazione che dovrà inviare i dati a ElasticSearch.
-3. Aprire la soluzione di destinazione, fare clic con il pulsante destro del mouse sul nodo della soluzione in Esplora soluzioni e scegliere **Aggiungi progetto esistente**. Aggiungere il progetto Microsoft.Diagnostics.Listeners alla soluzione. Ripetere lo stesso passaggio per il progetto Microsoft.Diagnostics.Listeners.Fabric.
-4. Aggiungere un riferimento dai progetti di servizio ai due progetti aggiunti: ogni servizio che dovrà inviare dati a ElasticSearch deve fare riferimento a Microsoft.Diagnostics.EventListeners e Microsoft.Diagnostics.EventListeners.Fabric.
+1. Scaricare [: esempio hello PartyCluster](https://github.com/Azure-Samples/service-fabric-dotnet-management-party-cluster) da GitHub.
+2. Copiare hello Microsoft.Diagnostics.Listeners e Microsoft.Diagnostics.Listeners.Fabric progetti (intere cartelle) dalla cartella di soluzione toohello per la directory esempio hello PartyCluster dell'applicazione hello che dovrebbe toosend hello dati tooElasticsearch .
+3. Aprire una soluzione di destinazione hello, fare doppio clic su nodo della soluzione in Esplora soluzioni hello hello e scegliere **Aggiungi progetto esistente**. Aggiunge una soluzione hello Microsoft.Diagnostics.Listeners progetto toohello. Ripetere il passaggio hello stesso per il progetto Microsoft.Diagnostics.Listeners.Fabric hello.
+4. Aggiungere un riferimento al progetto da uno o più progetti toohello due aggiunto progetti di servizi di. (Ogni servizio che si suppone toosend dati tooElasticsearch deve fare riferimento a Microsoft.Diagnostics.EventListeners e Microsoft.Diagnostics.EventListeners.Fabric).
    
-    ![Riferimenti di progetto alle librerie Microsoft.Diagnostics.EventListeners e Microsoft.Diagnostics.EventListeners.Fabric][1]
+    ![Progetto fa riferimento a tooMicrosoft.Diagnostics.EventListeners e librerie Microsoft.Diagnostics.EventListeners.Fabric][1]
 
 ### <a name="service-fabric-general-availability-release-and-microsoftdiagnosticstracing-nuget-package"></a>Versione di disponibilità generale di Service Fabric e pacchetto NuGet Microsoft.Diagnostics.Tracing
-Il framework di destinazione delle applicazioni compilate con la versione di disponibilità generale di Service Fabric (2.0.135, rilasciata il 31 marzo 2016) è **.NET Framework 4.5.2**. Questa è la versione più recente di .NET Framework supportata da Azure al momento del rilascio della versione di disponibilità generale. Questa versione del framework, purtroppo, non include alcune API EventListener richieste dalla libreria Microsoft.Diagnostics.Listeners. Poiché EventSource, il componente di base per la registrazione delle API in applicazioni di Service Fabric, ed EventListener sono strettamente collegati, ogni progetto che usa la libreria Microsoft.Diagnostics.Listeners deve usare anche un'implementazione alternativa di EventSource, inclusa nel **pacchetto NuGet Microsoft.Diagnostics.Tracing** creato da Microsoft. Questo pacchetto è totalmente compatibile con la versione di EventSource inclusa nel framework e quindi non dovrebbero essere necessarie modifiche al codice oltre a quelle riguardanti lo spazio dei nomi a cui viene fatto riferimento.
+Il framework di destinazione delle applicazioni compilate con la versione di disponibilità generale di Service Fabric (2.0.135, rilasciata il 31 marzo 2016) è **.NET Framework 4.5.2**. Questa versione è hello versione più recente di .NET Framework supportata da Azure in fase di hello della versione di hello GA hello. Sfortunatamente, questa versione di hello framework non dispone di alcune APIs EventListener tale libreria deve Microsoft.Diagnostics.Listeners hello. Poiché sono strettamente collegati EventSource (componente hello che costituisce la base hello di registrazione API nelle applicazioni di infrastruttura) ed EventListener, ogni progetto che utilizza hello Microsoft.Diagnostics.Listeners libreria deve utilizzare un'implementazione alternativa del EventSource. Questa implementazione è fornita dalla hello **pacchetto Microsoft.Diagnostics.Tracing Nuget**, creati da Microsoft. pacchetto Hello è completamente compatibile con EventSource incluso nel framework di hello, pertanto alcuna modifica del codice non dovrebbe essere necessario oltre a cui viene fatto riferimento dello spazio dei nomi.
 
-Per iniziare a usare l'implementazione Microsoft.Diagnostics.Tracing della classe EventSource, seguire questi passaggi per ogni progetto di servizio che deve inviare dati a ElasticSearch:
+toostart utilizzando hello Microsoft.Diagnostics.Tracing implementazione della classe EventSource hello, seguire questi passaggi per ogni progetto di servizio che deve toosend dati tooElasticsearch:
 
-1. Fare clic con il pulsante destro del mouse sul progetto di servizio e scegliere **Gestisci pacchetti NuGet**.
-2. Passare all'origine del pacchetto nuget.org, se non è già selezionato, e cercare "**Microsoft.Diagnostics.Tracing**".
-3. Installare il pacchetto `Microsoft.Diagnostics.Tracing.EventSource` e le relative dipendenze.
-4. Aprire il file **ServiceEventSource.cs** o **ActorEventSource.cs** nel progetto di servizio e sostituire la direttiva `using System.Diagnostics.Tracing` all'inizio del file con la direttiva `using Microsoft.Diagnostics.Tracing`.
+1. Fare clic sul progetto di servizio hello e scegliere **Gestisci pacchetti Nuget**.
+2. Passare l'origine del pacchetto nuget.org toohello (se non è già selezionata) e cercare "**Microsoft.Diagnostics.Tracing**".
+3. Installare hello `Microsoft.Diagnostics.Tracing.EventSource` pacchetto (e le relative dipendenze).
+4. Aprire hello **ServiceEventSource.cs** o **ActorEventSource.cs** file nel progetto di servizio e sostituire hello `using System.Diagnostics.Tracing` direttiva sopra file hello con hello `using Microsoft.Diagnostics.Tracing` direttiva.
 
-Questi passaggi non saranno più necessari quando **.NET Framework 4.6** sarà supportato da Microsoft Azure.
+Questi passaggi non sono necessari una volta hello **.NET Framework 4.6** è supportata da Microsoft Azure.
 
 ### <a name="elasticsearch-listener-instantiation-and-configuration"></a>Creazione dell'istanza e configurazione del listener ElasticSearch
-Il passaggio finale per l'invio dei dati di diagnostica a Elasticsearch consiste nel creare un'istanza di `ElasticSearchListener` e configurarla con i dati di connessione a Elasticsearch. Il listener acquisisce automaticamente tutti gli eventi generati tramite le classi EventSource definite nel progetto di servizio. Deve essere attivo nel corso della durata del servizio, quindi la posizione migliore in cui crearlo è il codice di inizializzazione del servizio. Ecco come può apparire il codice di inizializzazione per un servizio senza stato dopo le modifiche necessarie. Le aggiunte sono evidenziate nei commenti a partire da `****`:
+Hello passaggio finale per l'invio di dati di diagnostica tooElasticsearch è toocreate un'istanza di `ElasticSearchListener` e configurarlo con i dati di connessione Elasticsearch. listener Hello acquisisce automaticamente tutti gli eventi generati tramite classi EventSource definite nel progetto di servizio hello. È necessario che toobe alive nel corso della durata hello del servizio di hello, in modo migliore hello inserire toocreate è presente nel codice di inizializzazione servizio hello. Ecco come codice di inizializzazione hello per un servizio senza stato può apparire dopo le modifiche necessarie hello (aggiunte indicata nei commenti a partire da `****`):
 
 ```csharp
 using System;
@@ -171,7 +171,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.ServiceFabric.Services.Runtime;
 
-// **** Add the following directives
+// **** Add hello following directives
 using Microsoft.Diagnostics.EventListeners;
 using Microsoft.Diagnostics.EventListeners.Fabric;
 
@@ -180,7 +180,7 @@ namespace Stateless1
     internal static class Program
     {
         /// <summary>
-        /// This is the entry point of the service host process.
+        /// This is hello entry point of hello service host process.
         /// </summary>        
         private static void Main()
         {
@@ -194,10 +194,10 @@ namespace Stateless1
                     esListener = new ElasticSearchListener(configProvider, new FabricHealthReporter("ElasticSearchEventListener"));
                 }
 
-                // The ServiceManifest.XML file defines one or more service type names.
-                // Registering a service maps a service type name to a .NET type.
+                // hello ServiceManifest.XML file defines one or more service type names.
+                // Registering a service maps a service type name tooa .NET type.
                 // When Service Fabric creates an instance of this service type,
-                // an instance of the class is created in this host process.
+                // an instance of hello class is created in this host process.
 
                 ServiceRuntime.RegisterServiceAsync("Stateless1Type", 
                     context => new Stateless1(context)).GetAwaiter().GetResult();
@@ -207,7 +207,7 @@ namespace Stateless1
                 // Prevents this host process from terminating so services keep running.
                 Thread.Sleep(Timeout.Infinite);
 
-                // **** Ensure that the ElasticSearchListner instance is not garbage-collected prematurely
+                // **** Ensure that hello ElasticSearchListner instance is not garbage-collected prematurely
                 GC.KeepAlive(esListener);
             }
             catch (Exception e)
@@ -220,7 +220,7 @@ namespace Stateless1
 }
 ```
 
-I dati di connessione di Elasticsearch devono essere inseriti in una sezione separata nel file cscfg (**PackageRoot\Config\Settings.xml**). Il nome della sezione deve corrispondere al valore passato al costruttore `FabricConfigurationProvider` , ad esempio:
+Dati di connessione Elasticsearch dovrebbero essere inseriti in una sezione distinta nel file di configurazione del servizio hello (**PackageRoot\Config\Settings.xml**). nome Hello della sezione di hello deve corrispondere il valore di toohello passato toohello `FabricConfigurationProvider` costruttore, ad esempio:
 
 ```xml
 <Section Name="ElasticSearchEventListener">
@@ -230,10 +230,10 @@ I dati di connessione di Elasticsearch devono essere inseriti in una sezione sep
   <Parameter Name="indexNamePrefix" Value="myapp" />
 </Section>
 ```
-I valori dei parametri `serviceUri`, `userName` e `password` corrispondono rispettivamente all'indirizzo dell'endpoint cluster Elasticsearch, al nome utente e alla password Elasticsearch. `indexNamePrefix` è il prefisso per gli indici di Elasticsearch; la libreria Microsoft.Diagnostics.Listeners crea quotidianamente un nuovo indice per i propri dati.
+i valori di Hello `serviceUri`, `userName` e `password` parametri corrispondono toohello Elasticsearch indirizzo dell'endpoint del cluster, Elasticsearch nome di utente e password, rispettivamente. `indexNamePrefix`è un prefisso per gli indici Elasticsearch; hello libreria Microsoft.Diagnostics.Listeners Hello crea un nuovo indice per i propri dati ogni giorno.
 
 ### <a name="verification"></a>Verifica
-L'operazione è terminata. A questo punto, ogni volta che il servizio viene eseguito, inizia a inviare tracce al servizio Elasticsearch specificato nella configurazione. È possibile verificare questo aprendo la UI Kibana associata all'istanza di Elasticsearch di destinazione. In questo esempio l'indirizzo della pagina è http://myBigCluster.westus.cloudapp.azure.com/. Verificare che gli indici con il prefisso del nome scelto per l' `ElasticSearchListener` istanza siano stati effettivamente creati e popolati con i dati.
+L'operazione è terminata. A questo punto, ogni volta che viene eseguito il servizio di hello, viene avviato l'invio del servizio di Elasticsearch toohello tracce specificato nella configurazione di hello. È possibile verificarlo hello apertura che kibana UI associata hello destinazione Elasticsearch istanza. In questo esempio, l'indirizzo della pagina hello è http://myBigCluster.westus.cloudapp.azure.com/. Verificare che gli indici con prefisso del nome hello scelto per hello `ElasticSearchListener` istanza effettivamente creato e popolato con i dati.
 
 ![Eventi di Kibana che mostrano l'applicazione PartyCluster][2]
 

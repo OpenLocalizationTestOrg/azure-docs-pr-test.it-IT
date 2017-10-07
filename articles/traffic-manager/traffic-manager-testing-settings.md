@@ -1,5 +1,5 @@
 ---
-title: Verificare le impostazioni di Gestione traffico di Azure | Microsoft Docs
+title: le impostazioni di gestione traffico di Azure aaaVerify | Documenti Microsoft
 description: Questo articolo contiene le informazioni necessarie per verificare le impostazioni di Gestione traffico.
 services: traffic-manager
 documentationcenter: 
@@ -14,60 +14,60 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 03/16/2017
 ms.author: kumud
-ms.openlocfilehash: aadff1806a7cb22347283143563467366e857569
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c670be6cf55e140c7ab63d5d526de08e14774d2a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="verify-traffic-manager-settings"></a>Verificare le impostazioni di Gestione traffico
 
-Per verificare le impostazioni di Gestione traffico, è necessario disporre di più client, ubicati in diverse posizioni, da cui eseguire i test. Arrestare quindi uno alla volta gli endpoint del profilo di Gestione traffico.
+tootest le impostazioni di gestione traffico, è necessario toohave più client, in varie posizioni, da cui è possibile eseguire i test. Quindi, connettere gli endpoint hello nel profilo di Traffic Manager, uno alla volta.
 
-* Impostare una durata (TTL) DNS bassa, ad esempio 30 secondi, per consentire una rapida propagazione delle modifiche.
-* Conoscere gli indirizzi IP dei servizi cloud e dei siti Web di Azure nel profilo in corso di verifica.
-* Utilizzare gli strumenti che consentono di risolvere un nome DNS per un indirizzo IP e visualizzare tale indirizzo.
+* Impostare bassa hello valore TTL del DNS in modo che le modifiche vengono propagate rapidamente (ad esempio, 30 secondi).
+* Conoscere gli indirizzi IP di servizi cloud di Azure e siti Web nel profilo hello che si esegue il test di hello.
+* Utilizzare gli strumenti che consentono di risolvere un indirizzo IP tooan del nome DNS e visualizzazione tale indirizzo.
 
-Eseguire un controllo per verificare che i nomi DNS vengano risolti negli indirizzi IP degli endpoint nel profilo. La risoluzione dei nomi deve avvenire in modo coerente con il metodo di routing del traffico definito nel profilo di Gestione traffico. Per risolvere i nomi DNS è possibile usare strumenti come **nslookup** o **dig**.
+Si stanno archiviando toosee che i nomi DNS hello risolvere tooIP indirizzi degli endpoint di hello nel profilo. risoluzione nomi Hello deve essere coerente con metodo di routing del traffico hello definito nel profilo di gestione traffico hello. È possibile utilizzare strumenti hello come **nslookup** o **esaminare** tooresolve i nomi DNS.
 
-Per testare il profilo di Gestione traffico, vedere gli esempi seguenti.
+Hello negli esempi seguenti consentono di testare il profilo di Traffic Manager.
 
 ### <a name="check-traffic-manager-profile-using-nslookup-and-ipconfig-in-windows"></a>Controllare il profilo di Gestione traffico in Windows con nslookup e ipconfig
 
 1. Aprire un comando o prompt Windows PowerShell come amministratore.
-2. Digitare `ipconfig /flushdns` per scaricare la cache del resolver DNS.
-3. Digitare `nslookup <your Traffic Manager domain name>`. Il comando seguente, ad esempio, controlla il nome di dominio con il prefisso *myapp.contoso*
+2. Tipo `ipconfig /flushdns` tooflush hello cache del resolver DNS.
+3. Digitare `nslookup <your Traffic Manager domain name>`. Ad esempio, hello comando controlli hello nome di dominio con prefisso hello seguente *myapp.contoso*
 
         nslookup myapp.contoso.trafficmanager.net
 
-    Un risultato tipico visualizza le informazioni seguenti:
+    Un risultato tipico Mostra hello le seguenti informazioni:
 
-    + Nome DNS e indirizzo IP del server DNS a cui si accede per risolvere questo nome di dominio di Gestione traffico.
-    + Nome del dominio di Gestione traffico digitato nella riga di comando dopo "nslookup" e indirizzo IP in cui viene risolto il dominio di Gestione traffico. Il secondo indirizzo IP è quello più importante da verificare. Deve corrispondere a un indirizzo VIP per uno dei servizi cloud o dei siti Web nel profilo di Gestione traffico in fase di verifica.
+    + Hello nome DNS e indirizzo IP del server DNS di hello viene accessibili tooresolve questo nome di dominio di Traffic Manager.
+    + nome di dominio di Traffic Manager Hello digitato nella riga di comando hello dopo "nslookup" e il dominio di Traffic Manager hello hello IP indirizzo toowhich viene risolto. secondo indirizzo IP di Hello è un toocheck importante hello. Deve corrispondere a un pubblico indirizzo IP virtuale (VIP) per uno dei servizi cloud hello o siti Web inclusi nel profilo di Traffic Manager si sta testando hello.
 
-## <a name="how-to-test-the-failover-traffic-routing-method"></a>Come testare il metodo di routing del traffico failover
-
-1. Lasciare tutti gli endpoint attivi.
-2. Usando un unico client, richiedere la risoluzione DNS per il nome di dominio aziendale mediante nslookup o un'utilità simile.
-3. Verificare che l'indirizzo IP risolto corrisponda all'endpoint primario.
-4. Arrestare l'endpoint primario o rimuovere il file di monitoraggio in modo che Gestione traffico consideri l'applicazione inattiva.
-5. Attendere la durata (TTL) DNS del profilo di Gestione traffico più altri due minuti. Ad esempio, se la durata TTL del DNS è 300 secondi (5 minuti), è necessario attendere sette minuti.
-6. Scaricare la cache del client DNS e richiedere una risoluzione DNS usando nslookup. In Windows è possibile scaricare la cache DNS con il comando ipconfig /flushdns.
-7. Verificare che l'indirizzo IP risolto corrisponda all'endpoint secondario.
-8. Ripetere la procedura arrestando gli endpoint uno dopo l'altro. Verificare che il DNS restituisca l'indirizzo IP del successivo endpoint dell'elenco. Quando tutti gli endpoint sono inattivi, si dovrebbe ottenere nuovamente l'indirizzo IP dell'endpoint primario.
-
-## <a name="how-to-test-the-weighted-traffic-routing-method"></a>Come testare il metodo di routing del traffico ponderato
+## <a name="how-tootest-hello-failover-traffic-routing-method"></a>Come metodo di routing del traffico tootest hello failover
 
 1. Lasciare tutti gli endpoint attivi.
 2. Usando un unico client, richiedere la risoluzione DNS per il nome di dominio aziendale mediante nslookup o un'utilità simile.
-3. Verificare che l'indirizzo IP risolto corrisponda a uno degli endpoint.
+3. Assicurarsi che hello risolto l'indirizzo IP corrispondente endpoint primario hello.
+4. Arrestare l'endpoint primario oppure rimuovere hello monitoraggio file in modo che Traffic Manager presume che l'applicazione hello è inattivo.
+5. Attendere hello DNS Time-to-Live (TTL) del profilo di Traffic Manager hello più altri due minuti. Ad esempio, se la durata TTL del DNS è 300 secondi (5 minuti), è necessario attendere sette minuti.
+6. Scaricare la cache del client DNS e richiedere una risoluzione DNS usando nslookup. In Windows, è possibile scaricare la cache DNS con il comando hello ipconfig /flushdns.
+7. Assicurarsi che hello risolto l'indirizzo IP individua l'endpoint secondario.
+8. Ripetere il processo hello, arrestare, a sua volta ogni endpoint. Verificare che hello DNS restituisce l'indirizzo IP hello dell'endpoint successivo hello nell'elenco di hello. Quando tutti gli endpoint sono inattivi, si dovrebbe ottenere nuovamente l'indirizzo IP hello del endpoint primario hello.
+
+## <a name="how-tootest-hello-weighted-traffic-routing-method"></a>Come tootest hello ponderati in metodo di routing del traffico
+
+1. Lasciare tutti gli endpoint attivi.
+2. Usando un unico client, richiedere la risoluzione DNS per il nome di dominio aziendale mediante nslookup o un'utilità simile.
+3. Assicurarsi che hello risolto l'indirizzo IP corrispondente a uno degli endpoint.
 4. Scaricare la cache del client DNS e continuare a ripetere i passaggi 2 e 3 per ciascun endpoint. Vengono visualizzati i diversi indirizzi IP restituiti per ognuno degli endpoint.
 
-## <a name="how-to-test-the-performance-traffic-routing-method"></a>Come testare il metodo di routing del traffico delle prestazioni
+## <a name="how-tootest-hello-performance-traffic-routing-method"></a>Come metodo di routing del traffico prestazioni hello tootest
 
-Per verificare in modo efficace il metodo di routing del traffico delle prestazioni, è necessario che i client si trovino in diverse parti del mondo. È possibile creare client in diverse aree di Azure utilizzabili per testare i servizi. Se si dispone di una rete globale, è possibile accedere in remoto a client ubicati in altri paesi ed eseguire quindi i test da tali client.
+tooeffectively testare un metodo di routing del traffico di prestazioni, è necessario disporre di client in diverse parti di hello world. È possibile creare i client in diverse aree di Azure che possono essere utilizzati tootest i servizi. Se si dispone di una rete globale, è possibile accedere tooclients in altre parti di hello world in modalità remota ed eseguire i test da qui.
 
-In alternativa, sono disponibili servizi gratuiti di analisi approfondita e DNS basati su Web. Alcuni di questi strumenti consentono di verificare la risoluzione del nome DNS da diverse località del mondo. Per alcuni esempi, eseguire una ricerca con le parole chiave "Ricerca DNS". È possibile usare servizi di terze parti come Gomez o Keynote per confermare che i profili distribuiscano il traffico nel modo previsto.
+In alternativa, sono disponibili servizi gratuiti di analisi approfondita e DNS basati su Web. Alcuni di questi strumenti consentono hello possibilità toocheck nomi DNS da diverse posizioni in tutto il mondo hello. Per alcuni esempi, eseguire una ricerca con le parole chiave "Ricerca DNS". Servizi di terze parti, ad esempio Gomez o Keynote possono essere utilizzato tooconfirm che dei profili distribuiscano il traffico come previsto.
 
 ## <a name="next-steps"></a>Passaggi successivi
 

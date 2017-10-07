@@ -1,6 +1,6 @@
 ---
-title: Note sulla versione dell'aggiornamento 0.2 di StorSimple 8000 | Microsoft Docs
-description: "Vengono descritte le nuove funzionalità e correzioni, i problemi e le soluzioni alternative disponibili per la versione di gennaio 2015 di Microsoft Azure StorSimple. (aggiornamento 0.2)."
+title: aaaStorSimple 8000 aggiornamento 0,2 note sulla versione | Documenti Microsoft
+description: "Vengono descritte le nuove funzionalità hello e correzioni di problemi aperti e disponibili soluzioni alternative per hello gennaio 2015 release di Microsoft Azure StorSimple (aggiornamento 0,2)."
 services: storsimple
 documentationcenter: NA
 author: SharS
@@ -14,61 +14,61 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 05/16/2016
 ms.author: v-sharos
-ms.openlocfilehash: 2fc50f7faddb4b61ea5e7d328469fc3cc0eb6f3e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1cee795df0b53d9b9276bc33074cf1a7aa188835
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="storsimple-8000-series-update-02-release-notes---january-2015"></a>Note sulla versione dell'aggiornamento 0.2 di StorSimple serie 8000 - Gennaio 2015
 ## <a name="overview"></a>Panoramica
-Le seguenti note sulla versione identificano i problemi critici aperti per la versione di gennaio 2015 di StorSimple di Microsoft Azure. Contengono inoltre un elenco degli aggiornamenti software e firmware di StorSimple inclusi in questa versione. Si tratta della seconda versione dopo la versione di rilascio di StorSimple serie 8000 resa disponibile a livello generale a luglio 2014.
+Hello note sulla versione seguenti identificare hello problemi critici aperti per hello gennaio 2015 release di Microsoft Azure StorSimple. Contengono inoltre un elenco di hello StorSimple software e aggiornamenti del firmware inclusi in questa versione. Si tratta secondo rilascio hello dopo hello StorSimple 8000 Series versione è stata eseguita in genere disponibili nel luglio 2014.
 
-Questo aggiornamento non modifica la versione del software del dispositivo rispetto all'aggiornamento di ottobre,  che continua a essere la versione 6.3.9600.17312. L'immagine utilizzata per l'immagine del dispositivo virtuale è stata modificata in questa versione. Di conseguenza, tutti i nuovi dispositivi virtuali creati dopo il 20 gennaio 2015 visualizzeranno la versione come 6.3.9600.17361.  
+Questo aggiornamento non modifica versione software del dispositivo fisico hello dall'aggiornamento di ottobre hello. Continua toobe versione 6.3.9600.17312. immagine di Hello usata dall'immagine del dispositivo virtuale hello è stata modificata in questa versione. Pertanto, tutti hello nuovi dispositivi virtuali creati dopo il 20/1/2015 sarà versione hello 6.3.9600.17361.  
 
-Esaminare le seguenti informazioni contenute nelle note sulla versione per l'aggiornamento di gennaio 2015.
+Verificare le seguenti informazioni contenute nelle note sulla versione di hello per l'aggiornamento di gennaio 2015 hello hello.
 
 > [!IMPORTANT]
-> * Questo aggiornamento non è disponibile tramite Windows Update e non può essere installato come gli altri aggiornamenti. Il dispositivo non riceverà questo aggiornamento neanche se gli aggiornamenti sono stati applicati tramite il portale di Azure classico. Questo aggiornamento verrà applicato solo ai dispositivi virtuali creati dopo il 20 gennaio 2015. 
-> * La versione di gennaio di StorSimple non contiene aggiornamenti per il dispositivo fisico StorSimple. Anche se è possibile applicare gli aggiornamenti di Windows disponibili al dispositivo virtuale, incluse le ultime correzioni rapide per la protezione, nella versione per il dispositivo virtuale non apparirà alcuna modifica.
+> * Questo aggiornamento non è disponibile tramite Windows Update e non può essere installato come gli altri aggiornamenti. Il dispositivo non riceverà questo aggiornamento anche se è stato applicato gli aggiornamenti di hello utilizzando hello portale di Azure classico. Questo aggiornamento si applica solo a dispositivi toovirtual creati dopo il 20 gennaio 2015. 
+> * Hello versione di gennaio di StorSimple non contiene alcun dispositivo fisico di aggiornamenti toohello StorSimple. È comunque possibile applicare Windows aggiornamenti toohello virtuale periferiche disponibili, tra cui sicurezza recente correzioni, ma non verrà visualizzato una modifica nella versione per il dispositivo fisico StorSimple di hello.
 > 
 > 
 
-## <a name="whats-new-in-the-january-release"></a>Novità nella versione di gennaio
-Questo aggiornamento contiene una correzione relativa ai volumi che passano alla modalità offline sul dispositivo virtuale  (vedere [Problemi corretti in questa versione](#issues-fixed-in-the-january-release)).  
+## <a name="whats-new-in-hello-january-release"></a>Novità nella versione di gennaio hello
+Questo aggiornamento contiene una correzione relativi volumi toohello che passano offline nel dispositivo virtuale hello. (vedere [Problemi corretti in questa versione](#issues-fixed-in-the-january-release)).  
 
-Questo aggiornamento non contiene nuove funzionalità.  
+aggiornamento di Hello non contiene nuove funzionalità o funzionalità.  
 
-## <a name="issues-fixed-in-the-january-release"></a>Problemi risolti nella versione di gennaio
-Nella tabella seguente viene descritto il problema risolto in questo aggiornamento.
+## <a name="issues-fixed-in-hello-january-release"></a>Problemi risolti nella versione di gennaio hello
+Hello nella tabella seguente descrive il problema hello che è stato risolto in questo aggiornamento.
 
-| No. | Funzionalità | Problema | Si applica a un dispositivo fisico | Si applica a un dispositivo virtuale |
+| No. | Funzionalità | Problema | Si applica toophysical dispositivo | Si applica toovirtual dispositivo |
 | --- | --- | --- | --- | --- |
-| 1 |Volumi che passano offline |Quando le latenze elevate del cloud persistono per diversi minuti, i volumi del dispositivo virtuale StorSimple passano offline negli host. Questa correzione aumenta la soglia per le latenze del cloud, riducendo così al minimo le situazioni che causano il passaggio dei volumi offline sugli host. |No |Sì |
+| 1 |Volumi che passano offline |Quando persistenza delle latenze cloud per alcuni minuti, i volumi del dispositivo virtuale StorSimple hello passano offline negli host hello. Questa correzione aumenta la soglia hello per le latenze cloud, riducendo così al minimo le situazioni hello che provocherebbero toogo offline di hello volumi negli host. |No |Sì |
 
-## <a name="known-issues-in-the-january-release"></a>Problemi noti risolti nella versione di gennaio
-Nella tabella seguente viene fornito un riepilogo dei problemi noti in questa versione.
+## <a name="known-issues-in-hello-january-release"></a>Problemi noti nella versione di gennaio hello
+Hello nella tabella seguente fornisce un riepilogo dei problemi noti in questa versione.
 
-| No. | Funzionalità | Problema | Commenti/Soluzione alternativa | Si applica a un dispositivo fisico | Si applica a un dispositivo virtuale |
+| No. | Funzionalità | Problema | Commenti/Soluzione alternativa | Si applica toophysical dispositivo | Si applica toovirtual dispositivo |
 | --- | --- | --- | --- | --- | --- |
-| 1 |Ripristino delle impostazioni predefinite |In alcuni casi, quando si esegue un ripristino delle impostazioni predefinite, il dispositivo StorSimple potrebbe bloccarsi e l'utente potrebbe visualizzare il messaggio: **Ripristino delle impostazioni predefinite in corso (fase 8)**. Ciò si verifica se si preme CTRL + C mentre il cmdlet è in esecuzione. |Non premere CTRL + C dopo l'avvio di un ripristino delle impostazioni predefinite. Se si è già in questo stato, contattare il supporto tecnico Microsoft per i passaggi successivi. |Sì |No |
-| 2 |Quorum disco |In rari casi, se la maggior parte dei dischi nello chassis EBOD di un dispositivo 8600 è disconnessa generando un’assenza di quorum disco, il pool di archiviazione sarà offline  e rimarrà in tale stato anche se i dischi vengono riconnessi. |Sarà necessario riavviare il dispositivo. Se il problema persiste, contattare il supporto tecnico Microsoft per i passaggi successivi. |Sì |No |
-| 3 |Errori di snapshot nel cloud |In rari casi, uno snapshot cloud potrebbe non riuscire a causa dell’errore **Raggiunto il limite massimo di backup**. Ciò si verifica se si superano i 255 cloni online sullo stesso dispositivo, dallo stesso volume originale eliminato. | |Sì |Sì |
-| 4 |ID controller non corretto |Quando viene eseguita la sostituzione di un controller, il controller 0 potrebbe essere visualizzato come controller 1. Durante la sostituzione del controller, quando l'immagine viene caricata dal nodo peer, l'ID del controller può presentarsi inizialmente come ID del controller peer.  In rari casi, questo comportamento può verificarsi anche dopo un riavvio del sistema. |Non è necessaria alcuna azione da parte dell’utente. Questa situazione si risolverà dopo la sostituzione del controller. |Sì |No |
-| 5 |Grafici di monitoraggio del dispositivo |Nel servizio StorSimple Manager, i grafici di monitoraggio del dispositivo non funzionano quando l’autenticazione di base o NTLM è abilitata nella configurazione del server proxy per il dispositivo. |Modificare la configurazione del proxy Web per il dispositivo registrato con il servizio StorSimple Manager in modo che l'autenticazione sia impostata su NESSUNA. A tale scopo, eseguire il cmdlet Set-HcsWebProxy di Windows PowerShell per StorSimple. |Sì |Sì |
-| 6 |Account di archiviazione |L’utilizzo del servizio di archiviazione per eliminare l'account di archiviazione non è supportato. Tale operazione causerebbe una situazione in cui non è possibile recuperare i dati dell'utente. | |Sì |Sì |
-| 7 |Failover del dispositivo |I failover multipli di un contenitore di volumi dallo stesso dispositivo di origine verso dispositivi di destinazione diversi non sono supportati. |Il failover da un singolo dispositivo inattivo a più dispositivi causerà la perdita della proprietà dei dati dei contenitori di volumi sul primo dispositivo sottoposto a failover. Dopo un tale failover, questi contenitori di volumi appariranno o si comporteranno in maniera diversa quando vengono visualizzati nel portale di Azure classico. |Sì |No |
-| 8 |Installazione |Durante l’installazione dell'adattatore StorSimple per SharePoint è necessario fornire un IP del dispositivo affinché l'installazione possa essere completata correttamente. | |Sì |No |
-| 9 |Proxy Web |Se nella configurazione del proxy Web è specificato il protocollo HTTPS, la comunicazione tra dispositivo e servizio ne sarà interessata e il dispositivo verrà portato offline. Nel processo, inoltre, verranno generati pacchetti di supporto, consumando risorse significative sul dispositivo. |Assicurarsi che l'URL del proxy Web abbia HTTP come protocollo specificato. Vedere altre informazioni su come [configurare il proxy Web per il dispositivo](storsimple-configure-web-proxy.md). |Sì |No |
-| 10 |Proxy Web |Se si configura e si abilita il proxy Web su un dispositivo registrato, è necessario riavviare il controller attivo sul dispositivo. | |Sì |No |
-| 11 |Elevata latenza del cloud ed elevato carico di lavoro I/O |Quando il dispositivo StorSimple rileva una combinazione di latenze cloud molto elevate (nell’ordine di secondi) e carico di lavoro I/O elevato, i volumi del dispositivo entrano in uno stato con funzionalità ridotte e gli I/O potrebbero non riuscire a causa di un errore di "dispositivo non pronto". |In questo caso è necessario riavviare manualmente i controller del dispositivo o eseguire un failover del dispositivo per risolvere  il problema. |Sì |No |
+| 1 |Ripristino delle impostazioni predefinite |In alcuni casi, quando si esegue un ripristino delle impostazioni predefinite, hello dispositivo StorSimple può bloccarsi e visualizzare questo messaggio: **reimpostazione toofactory è in corso (fase 8).** Ciò avviene se si preme CTRL + C mentre hello cmdlet è in corso. |Non premere CTRL + C dopo l'avvio di un ripristino delle impostazioni predefinite. Se si è già in questo stato, contattare il supporto tecnico Microsoft per i passaggi successivi. |Sì |No |
+| 2 |Quorum disco |In rari casi, se la maggior parte hello dei dischi nell'enclosure EBOD hello di un dispositivo 8600 si disconnette e il quorum dischi non è disponibile, quindi il pool di archiviazione hello sarà offline. E rimarrà offline anche se hello dischi vengono riconnessi. |Sarà necessario dispositivo hello tooreboot. Se hello problema persiste, contattare il supporto Microsoft per i passaggi successivi. |Sì |No |
+| 3 |Errori di snapshot nel cloud |In rari casi, uno snapshot nel cloud potrebbe non riuscire con l'errore hello **limite massimo di backup raggiunto**. Questo errore si verifica se si superano 255 cloni online sullo hello stesso dispositivo, da hello stesso volume originale eliminato. | |Sì |Sì |
+| 4 |ID controller non corretto |Quando viene eseguita la sostituzione di un controller, il controller 0 potrebbe essere visualizzato come controller 1. Durante la sostituzione del controller, quando hello immagine viene caricata dal nodo peer hello, ID controller hello è inoltre possibile scaricare inizialmente come ID del controller peer hello  In rari casi, questo comportamento può verificarsi anche dopo un riavvio del sistema. |Non è necessaria alcuna azione da parte dell’utente. Questa situazione si risolverà da solo dopo la sostituzione dei controller hello è stata completata. |Sì |No |
+| 5 |Grafici di monitoraggio del dispositivo |Nel servizio StorSimple Manager hello, grafici di monitoraggio del dispositivo hello non funzionano quando base o l'autenticazione NTLM è abilitata nella configurazione del server proxy hello per dispositivo hello. |Modificare una configurazione del proxy web hello per hello dispositivo registrato con il servizio StorSimple Manager in modo che l'autenticazione è impostata tooNONE. toodo, hello hello eseguire Windows PowerShell per il cmdlet Set-HcsWebProxy di StorSimple. |Sì |Sì |
+| 6 |Account di archiviazione |Utilizzando l'account di archiviazione di hello toodelete servizio di archiviazione hello è uno scenario non supportato. Questo conduce tooa situazione in cui non è possibile recuperare i dati utente. | |Sì |Sì |
+| 7 |Failover del dispositivo |Failover multipli di un contenitore del volume da hello dispositivi di destinazione toodifferent origine dispositivo stesso non è supportata. |Il failover da un singolo messaggi non recapitabili toomultiple dispositivi renderà i contenitori di volumi hello nel primo dispositivo sottoposto a failover hello perdere la proprietà dei dati. Dopo un failover, questi contenitori di volumi o di un comportamento diverso quando vengono visualizzati nel portale di Azure classico hello. |Sì |No |
+| 8 |Installazione |Durante l'adattatore StorSimple per l'installazione di SharePoint, è necessario tooprovide IP di un dispositivo affinché hello installazione toofinish correttamente. | |Sì |No |
+| 9 |Proxy Web |Se la configurazione del proxy web è HTTPS come hello specificato protocollo, la comunicazione del dispositivo al servizio ne risentirà e dispositivo hello passerà alla modalità offline. Verranno inoltre generati pacchetti di supporto nel processo di hello, usando risorse significative sul dispositivo. |Verificare che URL del proxy web hello disponga di HTTP hello protocollo specificato. Visualizzare ulteriori informazioni su come troppo[configurare il proxy web per il dispositivo](storsimple-configure-web-proxy.md). |Sì |No |
+| 10 |Proxy Web |Se si configurano e abilitare il proxy web su un dispositivo registrato, è necessario controller attivo di hello toorestart sul dispositivo. | |Sì |No |
+| 11 |Elevata latenza del cloud ed elevato carico di lavoro I/O |Quando il dispositivo StorSimple rileva una combinazione di cloud ad alta latenza (ordine di secondi) e un elevato carico di lavoro dei / o, i volumi del dispositivo hello entrano in uno stato danneggiato e hello i/o potrebbe verificarsi un errore "dispositivo non pronto". |Si verrà necessario controller del dispositivo toomanually riavvio hello o eseguire un toorecover di failover del dispositivo da questa situazione. |Sì |No |
 
-## <a name="physical-device-updates-in-the-january-release"></a>Aggiornamenti del dispositivo fisico nella versione di gennaio
-Questo aggiornamento non contiene altre modifiche per il dispositivo StorSimple.
+## <a name="physical-device-updates-in-hello-january-release"></a>Aggiornamenti del dispositivo fisico in versione di gennaio hello
+Questo aggiornamento non contiene qualsiasi altro dispositivo StorSimple toohello le modifiche.
 
-## <a name="serial-attached-scsi-sas-controller-and-firmware-updates-in-the-january-release"></a>Aggiornamenti firmware e controller SAS (Serial Attached SCSI) presenti nella versione di gennaio
-Questa versione non contiene aggiornamenti per il controller SAS (Serial Attached SCSI) o il firmware. L'aggiornamento del driver era nella versione di ottobre 2014. 
+## <a name="serial-attached-scsi-sas-controller-and-firmware-updates-in-hello-january-release"></a>Serie-attached SCSI (SAS) controller e del firmware gli aggiornamenti in rilasci di gennaio hello
+Questa versione non contiene alcun controller di aggiornamenti toohello seriale-attached SCSI (SAS) o firmware hello. durante l'aggiornamento del driver Hello hello ottobre, versione 2014. 
 
-## <a name="virtual-device-updates-in-the-january-release"></a>Aggiornamenti del dispositivo virtuale nella versione di gennaio
-Questa versione contiene un'immagine aggiornata per il dispositivo virtuale. Di conseguenza, tutti i dispositivi virtuali creati dopo il 20 gennaio 2015 visualizzeranno la versione del software come 6.3.9600.17361.
+## <a name="virtual-device-updates-in-hello-january-release"></a>Aggiornamenti del dispositivo virtuale in versione di gennaio hello
+Questa versione contiene un'immagine per dispositivo virtuale hello aggiornata. Tutti i dispositivi virtuali hello creati dopo il 20 gennaio 2015 sarà 6.3.9600.17361 versione software hello.
 

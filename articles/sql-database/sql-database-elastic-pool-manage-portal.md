@@ -1,6 +1,6 @@
 ---
 title: 'Portale di Azure: creare e gestire un pool elastico di database SQL | Microsoft Docs'
-description: "Informazioni su come usare il portale di Azure e le funzionalità di intelligence predefinite del database SQL per gestire, monitorare e dimensionare in modo adeguato un pool elastico scalabile per ottimizzare le prestazioni del database e gestire i costi."
+description: Informazioni su come toouse hello portale di Azure e toomanage intelligence predefinite del Database SQL, monitoraggio e prestazioni del database toooptimize un pool elastico scalabile le dimensioni appropriate e gestire i costi.
 keywords: 
 services: sql-database
 documentationcenter: 
@@ -16,20 +16,20 @@ ms.author: ninarn
 ms.workload: data-management
 ms.topic: article
 ms.tgt_pltfrm: NA
-ms.openlocfilehash: 4ffd1db31f42967dc7f07aa979898dddbb333641
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e0de952bc0c91177f64c04363630783d72435741
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-and-manage-an-elastic-pool-with-the-azure-portal"></a>Creare e gestire un pool elastico con il portale di Azure
-Questo argomento illustra come creare e gestire [pool elastici](sql-database-elastic-pool.md) scalabili con il portale di Azure. È anche possibile creare e gestire un pool elastico di Azure con [PowerShell](sql-database-elastic-pool-manage-powershell.md), l'API REST o [C#](sql-database-elastic-pool-manage-csharp.md). È anche possibile creare e spostare database verso e dai pool elastici usando [Transact-SQL](sql-database-elastic-pool-manage-tsql.md).
+# <a name="create-and-manage-an-elastic-pool-with-hello-azure-portal"></a>Creare e gestire un pool elastico con hello portale di Azure
+In questo argomento illustra come toocreate e gestire scalabile [pool elastici](sql-database-elastic-pool.md) con hello portale di Azure. È anche possibile creare e gestire un pool elastico Azure con [PowerShell](sql-database-elastic-pool-manage-powershell.md), hello l'API REST o [c#](sql-database-elastic-pool-manage-csharp.md). È anche possibile creare e spostare database verso e dai pool elastici usando [Transact-SQL](sql-database-elastic-pool-manage-tsql.md).
 
 ## <a name="create-an-elastic-pool"></a>Creare un pool elastico 
 
-Esistono due modi per creare un pool elastico. È possibile farlo da zero se si conosce la configurazione del pool da usare oppure iniziare con una raccomandazione fornita dal servizio. Il database SQL integra informazioni in base alle quali viene suggerita una configurazione del pool elastico nel caso risulti più conveniente secondo i dati di telemetria relativi all'uso precedente dei database.
+Esistono due modi per creare un pool elastico. È possibile farlo da zero se si conosce il programma di installazione di hello pool desiderato oppure iniziare con un suggerimento dal servizio hello. Database SQL prevede intelligence predefinite in cui si consiglia l'installazione di un pool elastico, se è più conveniente in base alle hello oltre telemetria per i database.
 
-È possibile creare più pool in un server, ma non aggiungere database da diversi server nello stesso pool. 
+È possibile creare più pool su un server, ma non è possibile aggiungere i database da server diversi in hello stesso pool. 
 
 > [!NOTE]
 > I pool elastici sono disponibili a livello generale in tutte le aree di Azure tranne India occidentale, dove sono attualmente in anteprima.  I pool elastici verranno resi disponibili a livello generale in quest'area non appena possibile.
@@ -37,120 +37,120 @@ Esistono due modi per creare un pool elastico. È possibile farlo da zero se si 
 
 ### <a name="step-1-create-an-elastic-pool"></a>Passaggio 1: creare un pool elastico
 
-La creazione di un pool elastico da un pannello **server** esistente nel portale è il modo più semplice per trasferire i database esistenti in un pool elastico.
+Creazione di un pool elastico da un oggetto esistente **server** pannello nel portale di hello è hello più semplice modo toomove database esistenti in un pool elastico.
 
 > [!NOTE]
-> È anche possibile creare un pool elastico cercando **pool elastico SQL** nel **Marketplace** o facendo clic su **+Aggiungi** nel pannello **Pool elastici SQL**. È possibile specificare un server nuovo o esistente nel flusso di lavoro dei provisioning del pool.
+> È inoltre possibile creare un pool elastico eseguendo una ricerca **pool elastico SQL** in hello **Marketplace** o facendo clic su **+ Aggiungi** in hello **pool elastico SQL**Sfoglia blade. Si è in grado di toospecify un server nuovo o esistente tramite il provisioning del flusso di lavoro del pool.
 >
 >
 
-1. Nel [portale di Azure](http://portal.azure.com/) fare clic su **Altri servizi** **>** **SQL Server** e selezionare il server che contiene i database da aggiungere a un pool elastico.
+1. In hello [portale di Azure](http://portal.azure.com/), fare clic su **più servizi**  **>**  **istanze di SQL Server**, quindi fare clic su server hello contenente hello database da pool elastico di tooadd tooan.
 2. Fare clic su **Nuovo pool**.
 
-    ![Aggiungere un pool a un server](./media/sql-database-elastic-pool-create-portal/new-pool.png)
+    ![Aggiungere pool tooa server](./media/sql-database-elastic-pool-create-portal/new-pool.png)
 
     **-OPPURE-**
 
-    Potrebbe essere visualizzato un messaggio che informa che sono disponibili pool elastici consigliati per il server. Fare clic sul messaggio per visualizzare i pool consigliati in base ai dati di telemetria cronologici relativi all'utilizzo del database e quindi fare clic sul livello per visualizzare altri dettagli e personalizzare il pool. Per informazioni su come vengono create le raccomandazioni, vedere [Informazioni sulle raccomandazioni per i pool](#understand-elastic-pool-recommendations) più avanti in questo argomento.
+    Verrà visualizzato un messaggio indicante che vi sono consigliate pool elastici per server hello. Fare clic su hello toosee di messaggio hello consigliato pool in base alle telemetria cronologici del database, quindi scegliere hello livello toosee ulteriori dettagli e personalizzare il pool di hello. Vedere [comprendere raccomandazioni per i pool](#understand-elastic-pool-recommendations) più avanti in questo argomento per la modalità hello è stata generata.
 
     ![pool consigliato](./media/sql-database-elastic-pool-create-portal/recommended-pool.png)
 
-3. Verrà visualizzato il pannello **Pool elastico** in cui verranno specificate le impostazioni per il pool. Se è stata scelta l'opzione **Nuovo pool** nel passaggio precedente, il piano tariffario sarà **Standard** per impostazione predefinita e non sarà selezionato alcun database. È possibile creare un pool vuoto o specificare un set di database esistenti del server da spostare nel pool. Se si sta creando un pool consigliato, il piano tariffario, le impostazioni delle prestazioni e l'elenco di database consigliati appariranno prepopolati ma potranno essere modificati.
+3. Hello **pool elastico** pannello viene visualizzato, che è possibile specificare le impostazioni di hello per il pool. Se fa clic su **nuovo pool** nel passaggio precedente hello, hello tariffario è **Standard** per impostazione predefinita e nessun database selezionato. È possibile creare un pool vuoto o specificare un set di database esistenti da tale toomove server nel pool di hello. Se si sta creando un pool consigliati, hello consigliato tariffario, le impostazioni delle prestazioni e sono popolati automaticamente l'elenco dei database, ma è comunque possibile modificarle.
 
     ![Configurare un pool elastico](./media/sql-database-elastic-pool-create-portal/configure-elastic-pool.png)
 
-4. Specificare un nome per il pool elastico o lasciare il valore predefinito.
+4. Specificare un nome per il pool elastico hello o lasciare il campo come valore predefinito di hello.
 
 ### <a name="step-2-choose-a-pricing-tier"></a>Passaggio 2: Scegliere un piano tariffario
 
-Il piano tariffario del pool determina le funzionalità disponibili per i database elastici nel pool e il numero massimo di eDTU (MAX eDTU) e la memoria (GB) disponibili per ciascun database. Per altre informazioni, vedere Livelli di servizio.
+Hello piano tariffario del pool determina hello funzionalità elastics toohello disponibile nel pool di hello e hello il numero massimo di Edtu (numero massimo di eDTU) e spazio di archiviazione (GB) disponibile tooeach database. Per altre informazioni, vedere Livelli di servizio.
 
-Per modificare il piano tariffario per il pool, fare clic su **Piano tariffario**, scegliere il piano e quindi fare clic su **Seleziona**.
+Fare clic su toochange hello piano tariffario per il pool di hello **tariffario**, fare clic su hello tariffario desiderato e quindi fare clic su **selezionare**.
 
 > [!IMPORTANT]
-> Dopo aver scelto il piano tariffario e aver eseguito il commit delle modifiche facendo clic su **OK** nell'ultimo passaggio, non sarà più possibile modificare il piano tariffario del pool. Per modificare il piano tariffario per un pool di database elastici esistente, creare un pool elastico nel piano tariffario desiderato ed eseguire la migrazione dei database in questo nuovo pool.
+> Dopo aver scelto hello a livello di prezzo e confermare le modifiche facendo clic **OK** nell'ultimo passaggio hello, non sarà in grado di toochange hello piano tariffario del pool di hello. toochange hello piano tariffario per un pool elastico esistente, creare un pool elastico piano tariffario desiderato hello ed eseguire la migrazione hello database toothis nuovo pool.
 >
 
 ![Selezione di un livello di prezzo](./media/sql-database-elastic-pool-create-portal/pricing-tier.png)
 
-### <a name="step-3-configure-the-pool"></a>Passaggio 3: Configurare il pool
+### <a name="step-3-configure-hello-pool"></a>Passaggio 3: Configurare i pool di hello
 
-Dopo avere impostato il piano tariffario, fare clic su Configura pool dove è possibile aggiungere i database, impostare le eDTU e lo spazio di archiviazione (in GB) del pool, nonché il numero minimo e massimo di eDTU per i database elastici nel pool.
+Dopo avere impostato hello a livello di prezzo, fare clic su Configura pool in cui si aggiungono i database, set di Edtu del pool e spazio di archiviazione (GB pool) e si imposta hello min e max numero di Edtu per elastics hello nel pool di hello.
 
 1. Fare clic su **Configura pool**
-2. Selezionare i database da aggiungere al pool. Questo passaggio è facoltativo durante la creazione del pool. È possibile aggiungere i database dopo aver creato il pool.
-    Per aggiungere i database, fare clic su **Aggiungi database**, selezionare i database da aggiungere e quindi fare clic sul pulsante **Seleziona**.
+2. Selezionare il database di hello da tooadd toohello pool. Questo passaggio è facoltativo durante la creazione di pool hello. È possibile aggiungere i database dopo aver creato il pool di hello.
+    Fare clic su database tooadd, **Aggiungi database**, fare clic su hello database che si desidera tooadd e quindi fare clic su hello **selezionare** pulsante.
 
     ![Aggiungi database](./media/sql-database-elastic-pool-create-portal/add-databases.png)
 
-    Se i dati di telemetria cronologici relativi all'utilizzo disponibili per i database correnti sono sufficienti, il grafico **Utilizzo di eDTU e GB** e il grafico a barre **Utilizzo di eDTU effettivo** vengono aggiornati per semplificare le decisioni relative alla configurazione. Il servizio potrebbe anche visualizzare un messaggio di raccomandazione per facilitare la scelta delle dimensioni corrette per il pool. Vedere la sezione [Indicazioni dinamiche](#understand-elastic-pool-recommendations).
+    Se si lavora con i database di hello dispongono di dati di telemetria sufficienti all'utilizzo storico, hello **stimato eDTU e GB utilizzo** grafico e hello **utilizzo di eDTU effettivo** grafico a barre toohelp di aggiornamento della configurazione decisioni. Inoltre, servizio hello può fornire un toohelp di messaggi di raccomandazioni per le dimensioni appropriate hello pool. Vedere la sezione [Indicazioni dinamiche](#understand-elastic-pool-recommendations).
 
-3. Usare i controlli nella pagina **Configura pool** per esaminare le impostazioni e configurare il pool. Vedere la sezione relativa ai [limiti dei pool elastici](sql-database-elastic-pool.md#edtu-and-storage-limits-for-elastic-pools) per altri dettagli sui limiti per ogni livello di servizio e le [considerazioni su prezzi e prestazioni per i pool elastici](sql-database-elastic-pool.md) per istruzioni dettagliate sul corretto ridimensionamento di un pool elastico. Per altre informazioni sulle impostazioni del pool, vedere [Proprietà del pool elastico](sql-database-elastic-pool.md#database-properties-for-pooled-databases).
+3. Utilizzare i controlli di hello in hello **configurare pool** pagina tooexplore impostazioni e configurare il pool. Vedere la sezione relativa ai [limiti dei pool elastici](sql-database-elastic-pool.md#edtu-and-storage-limits-for-elastic-pools) per altri dettagli sui limiti per ogni livello di servizio e le [considerazioni su prezzi e prestazioni per i pool elastici](sql-database-elastic-pool.md) per istruzioni dettagliate sul corretto ridimensionamento di un pool elastico. Per altre informazioni sulle impostazioni del pool, vedere [Proprietà del pool elastico](sql-database-elastic-pool.md#database-properties-for-pooled-databases).
 
     ![Configurare un pool elastico](./media/sql-database-elastic-pool-create-portal/configure-performance.png)
 
-4. Fare clic su **Seleziona** in the **Configure Pool** .
-5. Fare clic su **OK** per creare il pool.
+4. Fare clic su **selezionare** in hello **configurare Pool** pannello dopo la modifica delle impostazioni.
+5. Fare clic su **OK** pool hello toocreate.
 
 ## <a name="understand-elastic-pool-recommendations"></a>Informazioni sulle indicazioni per i pool elastici
 
-Il servizio di database SQL valuta la cronologia di utilizzo e suggerisce uno o più pool quando questo approccio è più conveniente rispetto all'uso di singoli database. Ogni raccomandazione viene configurata con un subset univoco di database del server che meglio si adatta al pool.
+Hello servizio Database SQL valuta la cronologia di utilizzo e propone di uno o più pool quando è più conveniente rispetto all'uso di singoli database. Ogni raccomandazione è configurato con un subset di database del server hello che meglio si adattano pool hello univoco.
 
 ![pool consigliato](./media/sql-database-elastic-pool-create-portal/recommended-pool.png)  
 
-La raccomandazione per il pool include:
+indicazione di pool Hello è costituito da:
 
-- Piano tariffario per il pool (Basic, Standard, Premium o Premium RS)
+- Un piano tariffario per il pool di hello (Basic, Standard, Premium o Premium RS)
 - **eDTU POOL** appropriato, detto anche eDTU max per pool.
-- **MAX eDTU** e **Min eDTU** per ogni database.
-- Elenco di database consigliati per il pool.
+- Hello **eDTU MAX** e **Min eDTU** per ogni database
+- elenco di Hello di database consigliati per il pool di hello
 
 > [!IMPORTANT]
-> Il servizio prende in considerazione la telemetria degli ultimi 30 giorni per la raccomandazione dei pool. Per far sì che un database possa essere considerato un candidato per un pool elastico, deve esistere da almeno 7 giorni. I database che si trovano già in pool elastici non vengono considerati come possibili candidati, in linea con i consigli relativi ai pool elastici.
+> servizio Hello considerando hello ultimi 30 giorni di dati di telemetria quando consigliando pool. Per un toobe database considerato un candidato valido per un pool elastico, deve esistere per almeno sette giorni. I database che si trovano già in pool elastici non vengono considerati come possibili candidati, in linea con i consigli relativi ai pool elastici.
 >
 
-Il servizio valuta le risorse necessarie e la convenienza dello spostamento di singoli database in ogni livello di servizio nei pool dello stesso livello. Ad esempio, vengono valutati tutti i database Standard in un server per l’utilizzo in un pool elastico Standard. Ciò significa che il servizio non effettua consigli relativi a livelli diversi, ad esempio lo spostamento di un database Standard in un pool Premium.
+servizio Hello valuta le risorse necessarie ed economicità di hello mobile singolo database in ogni livello di servizio nel pool di hello stesso livello. Ad esempio, vengono valutati tutti i database Standard in un server per l’utilizzo in un pool elastico Standard. Ciò significa servizio hello non indicazioni tra livelli, ad esempio lo spostamento di un database Standard in un pool Premium.
 
-Dopo aver aggiunto i database al pool, le indicazioni verranno generate dinamicamente in base all'uso storico dei database selezionati. Queste indicazioni vengono visualizzate nel grafico relativo all'uso di eDTU e GB, oltre che come banner nella parte superiore del pannello **Configura pool**. Queste indicazioni sono concepite per facilitare la creazione di un pool elastico ottimizzato per database specifici.
+Dopo l'aggiunta di pool di database toohello, indicazioni generate dinamicamente in base all'utilizzo storico hello dei database hello che è stato selezionato. Questi suggerimenti vengono visualizzati nel hello eDTU e GB del grafico di utilizzo in un banner di raccomandazione nella parte superiore di hello di hello **configurare pool** blade. Queste raccomandazioni sono tooassist desiderato è la creazione di un pool elastico ottimizzato per i database specifici.
 
 ![Indicazioni dinamiche](./media/sql-database-elastic-pool-create-portal/dynamic-recommendation.png)
 
 ## <a name="manage-and-monitor-an-elastic-pool"></a>Gestire e monitorare un pool elastico
 
-È possibile usare il portale di Azure per monitorare e gestire un pool elastico e i database nel pool. Dal portale è possibile monitorare l'utilizzo di un pool elastico e dei database al suo interno. È anche possibile apportare un set di modifiche al pool elastico e inviare tutte le modifiche contemporaneamente. Le modifiche includono l'aggiunta o la rimozione di database, la modifica delle impostazioni del pool elastico o la modifica delle impostazioni del database.
+È possibile utilizzare hello toomonitor portale Azure e gestire i database di hello nel pool di hello e un pool elastico. Dal portale di hello, è possibile monitorare l'utilizzo di un pool elastico e il database di hello all'interno di tale pool hello. È possibile creare un set di modifiche pool elastico tooyour e inviare tutte le modifiche in hello stesso tempo. Le modifiche includono l'aggiunta o la rimozione di database, la modifica delle impostazioni del pool elastico o la modifica delle impostazioni del database.
 
-L'immagine seguente illustra un esempio di pool elastico. La visualizzazione include:
+Hello seguente grafico mostra un pool elastico di esempio. visualizzazione di Hello include:
 
-*  Grafici per il monitoraggio dell'utilizzo delle risorse da parte del pool elastico e dei database al suo interno.
-*  Il pulsante **Configura pool** per apportare modifiche al pool elastico.
-*  Il pulsante **Crea database** per creare un database e aggiungerlo al pool elastico corrente.
+*  Grafici per il monitoraggio dell'utilizzo delle risorse del pool elastico hello sia i database hello contenuti nel pool di hello.
+*  Hello **configura** toomake pulsante pool Cambia pool elastico toohello.
+*  Hello **Crea database** pulsante che consente di creare un database e lo aggiunge pool elastico corrente toohello.
 *  Processi elastici che consentono di gestire un numero elevato di database tramite l'esecuzione di script Transact SQL in tutti i database in un elenco.
 
 ![Visualizzazione del pool][2]
 
-È possibile passare a un pool specifico per visualizzarne l'utilizzo delle risorse. Per impostazione predefinita, il pool è configurato per mostrare l'utilizzo di eDTU e risorse di archiviazione relativo all'ultima ora. È possibile configurare il grafico per mostrare diverse metriche in diversi intervalli di tempo.
+È possibile passare tooa pool specifico toosee il relativo utilizzo delle risorse. Per impostazione predefinita, il pool di hello è tooshow configurato sull'utilizzo di archiviazione e di eDTU per hello ultima ora. grafico Hello può essere configurato tooshow metriche su diversi intervalli di tempo.
 
-1. Selezionare un pool elastico da usare.
-2. In **Monitoraggio pool elastico** è presente un grafico con l'etichetta **Utilizzo risorse**. Fare clic sul grafico.
+1. Selezionare un pool elastico di toowork con.
+2. In **Monitoraggio pool elastico** è presente un grafico con l'etichetta **Utilizzo risorse**. Fare clic su grafico hello.
 
     ![Monitoraggio di pool elastici][3]
 
-    Verrà visualizzato il pannello **Metrica** con una visualizzazione dettagliata delle metriche specificate nell'intervallo di tempo indicato.   
+    Hello **metrica** pannello viene aperto, che mostra una visualizzazione dettagliata di hello specificati metriche su finestra temporale specificata hello.   
 
     ![Blade delle metriche][9]
 
-### <a name="to-customize-the-chart-display"></a>Per personalizzare la visualizzazione del grafico
+### <a name="toocustomize-hello-chart-display"></a>visualizzazione del grafico hello toocustomize
 
-È possibile modificare il grafico e il pannello Metrica per visualizzare altre metriche, ad esempio la percentuale di CPU, la percentuale di IO dei dati e la percentuale di IO del log usata.
+È possibile modificare il grafico hello e hello blade metriche toodisplay altre metriche quali Percentuale CPU, percentuale dei / o di dati e percentuale dei / o di log utilizzata.
 
-1. Nel pannello Metrica fare clic su **Modifica**.
+1. Nel pannello metriche hello, fare clic su **modifica**.
 
     ![Fare clic su Modifica][6]
 
-2. Nel pannello **Modifica grafico** selezionare un intervallo di tempo, ad esempio ora precedente, oggi o settimana precedente, oppure fare clic su **personalizzato** per impostare un qualsiasi intervallo di tempo nelle due settimane precedenti. Selezionare il tipo di grafico (a barre o a linee), quindi selezionare le risorse da monitorare.
+2. In hello **Modifica grafico** pannello selezionare un intervallo di tempo (passati oggi, ora o settimana precedente), oppure fare clic su **personalizzato** tooselect qualsiasi data intervallo hello ultime due settimane. Selezionare tipo di grafico hello (riga o barra), quindi selezionare toomonitor risorse hello.
 
    > [!Note]
-   > Solo le metriche con la stessa unità di misura possono essere visualizzate nel grafico nello stesso momento. Se ad esempio si seleziona "eDTU percentage" (Percentuale eDTU), sarà possibile selezionare solo altre metriche con percentuale come unità di misura.
+   > Solo le metriche con hello stessa unità di misura possono essere visualizzati in hello del grafico in hello stesso tempo. Ad esempio, se si seleziona "percentuale di eDTU" quindi è possibile solo selezionare altre metriche percentuale come unità di misura di hello.
    >
 
     ![Fare clic su Modifica](./media/sql-database-elastic-pool-manage-portal/edit-chart.png)
@@ -161,81 +161,81 @@ L'immagine seguente illustra un esempio di pool elastico. La visualizzazione inc
 
 È possibile monitorare anche i singoli database per potenziali problemi.
 
-1. In **Monitoraggio database elastico**è disponibile un grafico che mostra le metriche relative a cinque database. Per impostazione predefinita, il grafico mostra i primi cinque database nel pool per utilizzo di eDTU medio nell'ora precedente. Fare clic sul grafico.
+1. In **Monitoraggio database elastico**è disponibile un grafico che mostra le metriche relative a cinque database. Per impostazione predefinita, hello il grafico visualizza hello primi 5 database nel pool di hello per utilizzo di eDTU medio in hello ora precedente. Fare clic su grafico hello.
 
     ![Monitoraggio di pool elastici][4]
 
-2. Verrà visualizzato il pannello **Utilizzo risorse database**, che fornisce una visualizzazione dettagliata dell'utilizzo del database nel pool. La griglia nella parte inferiore del pannello consente di selezionare fino a cinque database nel pool per visualizzarne l'uso nel grafico. È anche possibile personalizzare le metriche e l'intervallo di tempo visualizzati nel grafico facendo clic su **Modifica grafico**.
+2. Hello **utilizzo delle risorse di Database** pannello viene visualizzato. Ciò offre una visualizzazione dettagliata di utilizzo del database nel pool di hello hello. Griglia hello nella parte inferiore di hello del pannello hello, è possibile selezionare tutti i database in hello pool toodisplay il relativo utilizzo in grafico hello (backup dei database too5). È inoltre possibile personalizzare finestra metrica e l'ora visualizzata nel grafico hello facendo clic, hello **Modifica grafico**.
 
     ![Pannello Utilizzo risorse database][8]
 
-### <a name="to-customize-the-view"></a>Per personalizzare la visualizzazione
+### <a name="toocustomize-hello-view"></a>visualizzazione di hello toocustomize
 
-1. Nel pannello **Utilizzo risorse database** fare clic su **Modifica grafico**.
+1. In hello **utilizzo delle risorse del Database** pannello, fare clic su **Modifica grafico**.
 
     ![Fare clic su Modifica grafico](./media/sql-database-elastic-pool-manage-portal/db-utilization-blade.png)
 
-2. Nel pannello **Modifica grafico** selezionare un intervallo di tempo, ad esempio ora precedente o ultime 24 ore, oppure fare clic su **personalizzato** per selezionare un giorno diverso nelle 2 settimane precedenti.
+2. In hello **modifica** pannello del grafico, selezionare un intervallo di tempo (passati ora o ultime 24 ore) o fare clic su **personalizzato** tooselect un giorno diverso in hello oltre toodisplay 2 settimane.
 
     ![Fare clic su personalizzato](./media/sql-database-elastic-pool-manage-portal/editchart-date-time.png)
 
-3. Fare clic sull'elenco a discesa **Confronta database per** e selezionare una metrica diversa da usare per il confronto dei database.
+3. Fare clic su hello **confronto dei database da** tooselect elenco a discesa un toouse metrica diversi durante il confronto dei database.
 
-    ![Modificare il grafico](./media/sql-database-elastic-pool-manage-portal/edit-comparison-metric.png)
+    ![Modifica grafico hello](./media/sql-database-elastic-pool-manage-portal/edit-comparison-metric.png)
 
-### <a name="to-select-databases-to-monitor"></a>Per selezionare i database da monitorare
+### <a name="tooselect-databases-toomonitor"></a>tooselect database toomonitor
 
-Nell'elenco dei database del pannello **Utilizzo risorse database** è possibile trovare database specifici scorrendo le pagine dell'elenco o digitando il nome di un database. Usare la casella di controllo per selezionare il database.
+Nell'elenco di database hello in hello **utilizzo delle risorse di Database** pannello, è possibile trovare determinati database, verificare tramite pagine hello nell'elenco di hello o immettere il nome di un database hello. Utilizzare hello casella di controllo tooselect hello database.
 
-![Cercare i database da monitorare][7]
+![Ricerca per i database toomonitor][7]
 
 
-## <a name="add-an-alert-to-an-elastic-pool-resource"></a>Aggiungere un avviso a una risorsa di pool elastico
+## <a name="add-an-alert-tooan-elastic-pool-resource"></a>Aggiungere una risorsa del pool elastico tooan avviso
 
-È possibile aggiungere regole a un pool elastico per l'invio di messaggi di posta elettronica a persone oppure stringhe di avviso a endpoint di URL quando il pool elastico raggiunge la soglia d'uso impostata.
+È possibile aggiungere regole tooan pool elastico che inviano gli endpoint tooURL stringhe toopeople o un avviso di posta elettronica quando il pool elastico hello raggiunga una soglia di utilizzo impostato.
 
-**Per aggiungere un avviso a una risorsa qualsiasi:**
+**una risorsa tooany avviso tooadd:**
 
-1. Fare clic sul grafico **Utilizzo risorse** per aprire il pannello **Metrica**. Fare clic su **Aggiungi avviso** e inserire le informazioni nel pannello **Aggiungi una regola di avviso**. La **risorsa** viene impostata automaticamente come il pool corrente.
-2. Inserire un **Nome** e una **Descrizione** che serviranno a identificare l'avviso per l'utente e i destinatari.
-3. Scegliere una **Metrica** in base alla quale creare un avviso dall'elenco.
+1. Fare clic su hello **utilizzo delle risorse** hello tooopen grafico **metrica** pannello, fare clic su **Aggiungi avviso**e quindi immettere le informazioni di hello in hello **aggiungere un avviso regola** blade (**risorse** viene impostata automaticamente pool hello toobe si lavora con).
+2. Digitare un **nome** e **descrizione** che identifica tooyou avviso hello e destinatari hello.
+3. Scegliere un **metrica** che si desidera tooalert dall'elenco di hello.
 
-    Il grafico mostra in modo dinamico l'utilizzo delle risorse per la metrica selezionata in modo da scegliere una soglia.
+    Hello dinamicamente Mostra utilizzo delle risorse per tale metrica toohelp che si sceglie una soglia.
 
 4. Scegliere una **Condizione**, ad esempio maggiore di, minore di e così via, e una **Soglia**.
-5. Scegliere un **Periodo** di tempo entro il quale la regola della metrica deve essere soddisfatta prima dell'attivazione dell'avviso.
+5. Scegliere un **periodo** di tempo che hello metrica regola deve essere soddisfatti prima di allarmi hello.
 6. Fare clic su **OK**.
 
 Per altre informazioni, vedere [Usare il portale di Azure per creare avvisi per il database SQL di Azure](sql-database-insights-alerts-portal.md).
 
 ## <a name="move-a-database-into-an-elastic-pool"></a>Spostare un database in un pool elastico
 
-È possibile aggiungere o rimuovere i database da un pool esistente. I database possono trovarsi in altri pool. Tuttavia, è possibile aggiungere solo i database che sono nello stesso server logico.
+È possibile aggiungere o rimuovere i database da un pool esistente. database Hello possono trovarsi in altri pool. Tuttavia, è possibile aggiungere solo i database che sono su hello stesso server logico.
 
-1. Nel pannello del pool, in **Database elastici** fare clic su **Configura pool**.
+1. Nel Pannello di hello per il pool di hello in **i database elastici** fare clic su **configurare pool**.
 
     ![Fare clic su Configura pool][1]
 
-2. Nel pannello **Configura pool** fare clic su **Aggiungi al pool**.
+2. In hello **configurare pool** pannello, fare clic su **aggiungere toopool**.
 
-    ![Fare clic su Aggiungi al pool](./media/sql-database-elastic-pool-manage-portal/add-to-pool.png)
+    ![Fare clic su Aggiungi toopool](./media/sql-database-elastic-pool-manage-portal/add-to-pool.png)
 
 
-3. Nel pannello **Aggiungi database** selezionare uno o più database da aggiungere al pool. Quindi fare clic su **Seleziona**.
+3. In hello **aggiungere database** pannello, database selezionare hello o pool di database tooadd toohello. Quindi fare clic su **Seleziona**.
 
-    ![Selezionare i database da aggiungere](./media/sql-database-elastic-pool-manage-portal/add-databases-pool.png)
+    ![Selezione database tooadd](./media/sql-database-elastic-pool-manage-portal/add-databases-pool.png)
 
-    Il pannello **Configura pool** mostra il database selezionato per l'aggiunta, con lo stato impostato su **In sospeso**.
+    Hello **configurare pool** pannello ora elenchi hello database selezionato toobe aggiunto, con il relativo stato impostato troppo**in sospeso**.
 
     ![Aggiunte di pool in sospeso](./media/sql-database-elastic-pool-manage-portal/pending-additions.png)
 
-3. Nel pannello **Configura pool** fare clic su **Salva**.
+3. In hello **pannello pool configura**, fare clic su **salvare**.
 
     ![Fare clic su Salva.](./media/sql-database-elastic-pool-manage-portal/click-save.png)
 
 ## <a name="move-a-database-out-of-an-elastic-pool"></a>Spostare un database da un pool elastico
 
-1. Nel pannello **Configura pool** selezionare uno o più database da rimuovere.
+1. In hello **configurare pool** pannello, database selezionare hello o tooremove di database.
 
     ![elenchi di database](./media/sql-database-elastic-pool-manage-portal/select-pools-removal.png)
 
@@ -243,41 +243,41 @@ Per altre informazioni, vedere [Usare il portale di Azure per creare avvisi per 
 
     ![elenchi di database](./media/sql-database-elastic-pool-manage-portal/click-remove.png)
 
-    Il pannello **Configura pool** mostra il database selezionato per la rimozione, con lo stato impostato su **In sospeso**.
+    Hello **configurare pool** pannello ora elenchi hello database selezionato toobe rimossa con il relativo stato impostato troppo**in sospeso**.
 
     ![anteprima aggiunta e rimozione database](./media/sql-database-elastic-pool-manage-portal/pending-removal.png)
 
-3. Nel pannello **Configura pool** fare clic su **Salva**.
+3. In hello **pannello pool configura**, fare clic su **salvare**.
 
     ![Fare clic su Salva.](./media/sql-database-elastic-pool-manage-portal/click-save.png)
 
 ## <a name="change-performance-settings-of-an-elastic-pool"></a>Modificare le impostazioni delle prestazioni di un pool elastico
 
-Durante il monitoraggio dell'utilizzo delle risorse di un pool elastico possono rendersi necessarie alcune modifiche, ad esempio dei limiti di archiviazione o di prestazioni. Si potrebbe voler modificare le impostazioni del database nel pool. È possibile modificare la configurazione del pool in qualsiasi momento per ottenere il miglior compromesso tra prestazioni e costi. Per altre informazioni, vedere [Quando usare un pool elastico](sql-database-elastic-pool.md).
+Durante il monitoraggio di utilizzo delle risorse di hello di un pool elastico, si potrebbe scoprire che sono necessarie alcune modifiche. Forse pool hello richiede una modifica nei limiti di archiviazione o di prestazioni hello. Probabilmente si desidera toochange impostazioni hello nel pool di hello. È possibile modificare il programma di installazione di hello del pool di hello in qualsiasi momento tooget hello migliore bilanciamento delle prestazioni e costi. Per altre informazioni, vedere [Quando usare un pool elastico](sql-database-elastic-pool.md).
 
-Per modificare i limiti di archiviazione o eDTU per il pool e il numero di eDTU per il database:
+toochange hello Edtu o archiviazione di limiti per ogni pool e di Edtu per database:
 
-1. Aprire il pannello **Configura pool** .
+1. Aprire hello **configurare pool** blade.
 
-    In **Impostazioni pool elastico** usare i dispositivi di scorrimento per modificare le impostazioni del pool.
+    In **le impostazioni del pool elastico**, utilizzare le impostazioni del pool hello toochange uno dispositivo di scorrimento.
 
     ![Utilizzo delle risorse del pool elastico](./media/sql-database-elastic-pool-manage-portal/resize-pool.png)
 
-2. Alla modifica dell'impostazione, viene visualizzato il relativo costo mensile stimato.
+2. Quando viene modificata l'impostazione di hello, hello visualizzata hello mensile costo stimato del cambiamento di hello.
 
     ![Aggiornamento di un pool elastico e nuovi costi mensili](./media/sql-database-elastic-pool-manage-portal/pool-change-edtu.png)
 
 ## <a name="latency-of-elastic-pool-operations"></a>Latenza delle operazioni dei pool elastici
-* La modifica del numero minimo di eDTU per database o del numero massimo di eDTU per database in genere viene completata entro 5 minuti.
-* La modifica del numero di eDTU per pool dipende dallo spazio totale usato da tutti i database nel pool. Le modifiche richiedono una media di 90 minuti o meno per 100 GB. Ad esempio, se lo spazio totale utilizzato da tutti i database nel pool è pari a 200 GB, la latenza prevista per la modifica del numero di eDTU del pool per ogni pool è di 3 ore o meno.
+* Modifica hello min Edtu per database o un numero massimo di Edtu per ogni database in genere viene completata entro 5 minuti o meno.
+* Modifica hello Edtu per pool dipende dalla quantità totale di hello dello spazio utilizzato da tutti i database nel pool di hello. Le modifiche richiedono una media di 90 minuti o meno per 100 GB. Ad esempio, se lo spazio totale hello utilizzato da tutti i database nel pool di hello è 200 GB, quindi hello prevista latenza per la modifica hello pool eDTU per pool è 3 ore o minore.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-- Per informazioni sui pool elastici, vedere [Pool elastico del database SQL](sql-database-elastic-pool.md).
+- quali un pool elastico, vedere toounderstand [pool elastico SQL Database](sql-database-elastic-pool.md).
 - Per indicazioni sull'uso dei pool elastici, vedere le [considerazioni su prezzo e prestazioni per i pool elastici](sql-database-elastic-pool.md).
-- Per usare i processi elastici per eseguire script Transact-SQL su qualsiasi numero di database nel pool, vedere la [panoramica dei processi elastici](sql-database-elastic-jobs-overview.md).
-- Per eseguire query su un numero qualsiasi di database nel pool, vedere la [panoramica delle query elastiche](sql-database-elastic-query-overview.md).
-- Per eseguire transazioni su un numero qualsiasi di database nel pool, vedere [Transazioni elastiche](sql-database-elastic-transactions-overview.md).
+- toouse processi elastico toorun Transact-SQL script su qualsiasi numero di database nel pool di hello, vedere [Panoramica processi elastico](sql-database-elastic-jobs-overview.md).
+- tooquery in qualsiasi numero di database nel pool di hello, vedere [panoramica delle query elastico](sql-database-elastic-query-overview.md).
+- Per le transazioni di un numero qualsiasi di database nel pool di hello, vedere [transazioni elastiche](sql-database-elastic-transactions-overview.md).
 
 
 <!--Image references-->

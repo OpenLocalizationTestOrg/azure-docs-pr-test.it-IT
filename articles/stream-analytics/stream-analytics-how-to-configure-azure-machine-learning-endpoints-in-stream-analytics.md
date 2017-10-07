@@ -1,5 +1,5 @@
 ---
-title: Usare gli endpoint di Azure Machine Learning in Analisi di flusso | Documentazione Microsoft
+title: gli endpoint di Azure Machine Learning aaaUse nel flusso Analitica | Documenti Microsoft
 description: Funzioni definite dall'utente di Machine Learning in Analisi di flusso
 keywords: 
 documentationcenter: 
@@ -15,40 +15,40 @@ ms.tgt_pltfrm: na
 ms.workload: data-services
 ms.date: 03/28/2017
 ms.author: jeffstok
-ms.openlocfilehash: d3a46190dd802bf31ea03ef38304d58e6e63b66d
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 013b841ee85b1e0b6d8139a9ba0dde88fc3f8ad0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="machine-learning-integration-in-stream-analytics"></a>Integrazione di Machine Learning in Analisi di flusso
-Analisi di flusso supporta funzioni definite dall'utente che chiamano gli endpoint di Azure Machine Learning. Il supporto dell'API REST per questa funzionalità è illustrato in dettaglio nella [libreria delle API REST di Analisi di flusso](https://msdn.microsoft.com/library/azure/dn835031.aspx). Questo articolo fornisce le informazioni supplementari necessarie per la corretta implementazione di questa funzionalità in Analisi di flusso. È stata pubblicata anche un'esercitazione che è disponibile [qui](stream-analytics-machine-learning-integration-tutorial.md).
+Flusso Analitica supporta funzioni definite dall'utente che richiamano gli endpoint di Machine Learning tooAzure. Supporto delle API REST per questa funzionalità è descritta in dettaglio in hello [libreria dell'API REST di flusso Analitica](https://msdn.microsoft.com/library/azure/dn835031.aspx). Questo articolo fornisce le informazioni supplementari necessarie per la corretta implementazione di questa funzionalità in Analisi di flusso. È stata pubblicata anche un'esercitazione che è disponibile [qui](stream-analytics-machine-learning-integration-tutorial.md).
 
 ## <a name="overview-azure-machine-learning-terminology"></a>Panoramica: Terminologia di Azure Machine Learning
-Microsoft Azure Machine Learning fornisce uno strumento di trascinamento collaborativo che consente di compilare, testare e distribuire soluzioni di analisi predittiva ai dati. Questo strumento si chiama *Azure Machine Learning Studio*. e viene usato per interagire con le risorse di Machine Learning ed eseguire facilmente la compilazione, il test e l'iterazione del progetto. Di seguito sono riportate le risorse e le rispettive definizioni.
+Microsoft Azure Machine Learning fornisce uno strumento di collaborazione, trascinamento e rilascio, è possibile utilizzare toobuild, testare e distribuire soluzioni analitica predittiva sui dati. Questo strumento viene chiamato hello *Azure Machine Learning Studio*. studio Hello è toointeract utilizzati con hello risorse Machine Learning e compilare con facilità, test e alla progettazione di eseguire l'iterazione. Di seguito sono riportate le risorse e le rispettive definizioni.
 
-* **Area di lavoro**: l' *area di lavoro* è un contenitore che include tutte le altre risorse di Machine Learning per poterle gestire e controllare.
-* **Esperimento**: gli *esperimenti* vengono creati dagli esperti di gestione dati per utilizzare i set di dati ed eseguire il training di un modello di Machine Learning.
-* **Endpoint**: gli *endpoint* sono gli oggetti di Azure Machine Learning usati per accettare le funzionalità come input, applicare un modello di apprendimento automatico specificato e restituire un output con punteggio.
+* **Area di lavoro**: hello *dell'area di lavoro* è un contenitore che include tutte le altre risorse Machine Learning in un contenitore per la gestione e controllo.
+* **Sperimentazione**: *esperimenti* vengono create dal DataSet tooutilize gli esperti di dati e di eseguire il training di un modello di machine learning.
+* **Endpoint**: *endpoint* sono hello Azure Machine Learning caratteristiche tootake dell'oggetto utilizzato come input, applicare un modello di apprendimento automatico specificato e restituire l'output con punteggio.
 * **Servizio Web di assegnazione dei punteggi**: un *servizio Web di assegnazione dei punteggi* è una raccolta di endpoint, come indicato sopra.
 
-Ogni endpoint ha API per l'esecuzione batch e per l'esecuzione sincrona. Analisi di flusso usa l'esecuzione sincrona. Il servizio specifico è detto [servizio di richiesta/risposta](../machine-learning/machine-learning-consume-web-services.md) in Azure ML Studio.
+Ogni endpoint ha API per l'esecuzione batch e per l'esecuzione sincrona. Analisi di flusso usa l'esecuzione sincrona. nome del servizio specifico Hello è un [servizio richiesta/risposta](../machine-learning/machine-learning-consume-web-services.md) in Azure ml studio.
 
 ## <a name="machine-learning-resources-needed-for-stream-analytics-jobs"></a>Risorse di Machine Learning necessarie per i processi di analisi di flusso
-Ai fini dell'elaborazione dei processi di Analisi di flusso, per la corretta esecuzione sono necessari un endpoint di richiesta/risposta, una [chiave API](../machine-learning/machine-learning-connect-to-azure-machine-learning-web-service.md)e una definizione swagger. Analisi di flusso ha un endpoint aggiuntivo che crea l'URL per l'endpoint swagger, cerca l'interfaccia e restituisce all'utente una definizione UDF predefinita.
+Ai fini di hello di Analitica di flusso del processo di elaborazione, un endpoint di tipo richiesta/risposta, un [apikey](../machine-learning/machine-learning-connect-to-azure-machine-learning-web-service.md), e una definizione swagger tutti necessari per la corretta esecuzione. Flusso Analitica dispone di un endpoint aggiuntivo che costruisce l'url dell'endpoint swagger hello, Cerca l'interfaccia hello e restituisce un utente di toohello definizione di funzione definita dall'utente predefinito.
 
 ## <a name="configure-a-stream-analytics-and-machine-learning-udf-via-rest-api"></a>Configurare una funzione definita dall'utente di Analisi di flusso e di Machine Learning con l'API REST
-Usando le API REST è possibile configurare il processo per chiamare le funzioni di Azure Machine Learning. Attenersi alla procedura seguente:
+Mediante le API REST è possibile configurare le funzioni di linguaggio macchina Azure toocall di processo. come indicato di seguito sono riportati i passaggi di Hello:
 
 1. Creare un processo di Analisi di flusso.
 2. Definire un input
 3. Definire un output
 4. Creare una funzione definita dall'utente
-5. Scrivere una trasformazione di Analisi di flusso che chiami la funzione definita dall'utente
-6. Avviare il processo
+5. Scrivere una trasformazione di flusso Analitica che chiama hello funzione definita dall'utente
+6. Avviare il processo di hello
 
 ## <a name="creating-a-udf-with-basic-properties"></a>Creazione di una funzione definita dall'utente con proprietà di base
-Il codice di esempio seguente crea una funzione definita dall'utente scalare denominata *newudf* che viene associata a un endpoint di Azure Machine Learning. Si noti che l'*endpoint* (URI del servizio) è disponibile nella pagina della Guida dell'API per il servizio scelto e la *chiave API* nella pagina principale dei servizi.
+Ad esempio, hello codice di esempio seguente viene creata una funzione scalare definita dall'utente denominato *newudf* che associa l'endpoint di Azure Machine Learning tooan. Si noti che hello *endpoint* (URI del servizio) sono disponibili nella pagina della Guida hello API per hello scelto servizio e hello *apiKey* sono reperibili nella pagina principale di servizi di hello.
 
 ````
     PUT : /subscriptions/<subscriptionId>/resourceGroups/<resourceGroup>/providers/Microsoft.StreamAnalytics/streamingjobs/<streamingjobName>/functions/<udfName>?api-version=<apiVersion>  
@@ -75,7 +75,7 @@ Corpo della richiesta di esempio:
 ````
 
 ## <a name="call-retrievedefaultdefinition-endpoint-for-default-udf"></a>Chiamare l'endpoint RetrieveDefaultDefinition per la funzione definita dall'utente predefinita
-Una volta creata la struttura della funzione definita dall'utente, è necessaria la definizione completa della funzione. L'endpoint RetreiveDefaultDefinition consente di ottenere la definizione predefinita per una funzione scalare associata a un endpoint di Azure Machine Learning. Per il payload seguente è necessario ottenere la definizione di definizione definita dall'utente predefinita per una funzione scalare associata a un endpoint di Azure Machine Learning. Il payload non specifica l'endpoint effettivo perché è già stato fornito durante la richiesta PUT. Analisi di flusso chiama l'endpoint fornito nella richiesta se viene specificato in modo esplicito. In caso contrario, usa quello a cui si è fatto riferimento in origine. Qui la funzione definita dall'utente accetta un singolo parametro di stringa (una frase) e restituisce un singolo output di tipo stringa indicante l'etichetta "sentiment" per tale frase.
+Una volta hello scheletro che funzione definita dall'utente viene creata una definizione completa di hello di hello che funzione definita dall'utente è necessaria. endpoint RetreiveDefaultDefinition Hello consente di ottenere definizione default hello per una funzione scalare che è l'endpoint di Azure Machine Learning tooan associato. payload Hello seguente richiede definizione di funzione definita dall'utente tooget hello default per una funzione scalare che è l'endpoint di Azure Machine Learning tooan associato. Non consente di specificare endpoint effettivo hello perché è già stato specificato durante la richiesta PUT. Flusso Analitica chiama endpoint hello fornito nella richiesta di hello se viene fornito in modo esplicito. In caso contrario, viene utilizzato hello uno stato a cui fa riferimento. Di seguito hello accetta definita un'unica stringa parametro (una frase) e restituisce un singolo output di tipo stringa che indica l'etichetta "sentiment" hello per la frase.
 
 ````
 POST : /subscriptions/<subscriptionId>/resourceGroups/<resourceGroup>/providers/Microsoft.StreamAnalytics/streamingjobs/<streamingjobName>/functions/<udfName>/RetrieveDefaultDefinition?api-version=<apiVersion>
@@ -133,8 +133,8 @@ Un output di esempio dovrebbe essere simile al seguente.
     }
 ````
 
-## <a name="patch-udf-with-the-response"></a>Inserire la risposta nella funzione definita dall'utente
-Ora è necessario inserire la risposta precedente nella funzione definita dall'utente, come illustrato di seguito.
+## <a name="patch-udf-with-hello-response"></a>Patch di funzione definita dall'utente con risposta hello
+Ora hello funzione definita dall'utente devono essere aggiornati con risposta precedente hello, come illustrato di seguito.
 
 ````
 PATCH : /subscriptions/<subscriptionId>/resourceGroups/<resourceGroup>/providers/Microsoft.StreamAnalytics/streamingjobs/<streamingjobName>/functions/<udfName>?api-version=<apiVersion>
@@ -180,8 +180,8 @@ Corpo della richiesta (output da RetrieveDefaultDefinition):
     }
 ````
 
-## <a name="implement-stream-analytics-transformation-to-call-the-udf"></a>Implementare una trasformazione di Analisi di flusso per chiamare la funzione definita dall'utente
-Cercare ora nella funzione definita dall'utente (denominata qui scoreTweet) ogni evento di input e scrivere una risposta per ogni evento in un output.  
+## <a name="implement-stream-analytics-transformation-toocall-hello-udf"></a>Implementare flusso Analitica trasformazione toocall hello funzione definita dall'utente
+Ora eseguire una query hello (qui denominata scoreTweet) per ogni evento di input e scrivere una risposta per l'output di tooan tale evento.  
 
 ````
     {
@@ -198,7 +198,7 @@ Cercare ora nella funzione definita dall'utente (denominata qui scoreTweet) ogni
 Per assistenza, provare il [Forum di Analisi di flusso di Azure](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureStreamAnalytics)
 
 ## <a name="next-steps"></a>Passaggi successivi
-* [Introduzione ad Analisi dei flussi di Azure](stream-analytics-introduction.md)
+* [Introduzione tooAzure flusso Analitica](stream-analytics-introduction.md)
 * [Introduzione all'uso di Analisi dei flussi di Azure](stream-analytics-real-time-fraud-detection.md)
 * [Ridimensionare i processi di Analisi dei flussi di Azure](stream-analytics-scale-jobs.md)
 * [Informazioni di riferimento sul linguaggio di query di Analisi dei flussi di Azure](https://msdn.microsoft.com/library/azure/dn834998.aspx)

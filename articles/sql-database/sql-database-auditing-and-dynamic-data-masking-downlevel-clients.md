@@ -1,5 +1,5 @@
 ---
-title: Controllo tabelle, reindirizzamento TDS ed endpoint IP per il database SQL di Azure | Microsoft Docs
+title: aaaTable controllo, il reindirizzamento TDS e gli endpoint IP per Database SQL di Azure | Documenti Microsoft
 description: Informazioni su controllo, reindirizzamento TDS e modifiche apportate all'endpoint IP quando si implementa il controllo delle tabelle in un database SQL di Azure.
 services: sql-database
 documentationcenter: 
@@ -15,42 +15,42 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/31/2017
 ms.author: giladm
-ms.openlocfilehash: d4a7e6658ec65a70bd7e07859e2a69acee58b7b5
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 966c23f92fab6fa459a515ad841bb2d5f75436aa
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="sql-database----downlevel-clients-support-and-ip-endpoint-changes-for-table-auditing"></a>Database SQL: supporto dei client di livello inferiore e modifiche all'endpoint IP per il controllo tabelle
 
 > [!IMPORTANT]
-> Questo documento si applica solo controllo tabelle che ora è **obsoleto**.<br>
-> Usare il nuovo metodo [Controllo BLOB](sql-database-auditing.md), per cui **non** è necessario modificare la stringa di connessione del client di livello inferiore. Altre informazioni sul controllo dei BLOB sono disponibili in [Introduzione al controllo del database SQL](sql-database-auditing.md).
+> Questo documento si applica solo controllo tooTable, ovvero **obsoleta**.<br>
+> Usare hello nuovo [servizio controllo Blob](sql-database-auditing.md) (metodo), che **non** è necessario modificare le stringa di connessione client di livello inferiore. Altre informazioni sul controllo dei BLOB sono disponibili in [Introduzione al controllo del database SQL](sql-database-auditing.md).
 
-Il [controllo del database](sql-database-auditing.md) funziona automaticamente con i client SQL che supportano il reindirizzamento TDS. Si noti che il reindirizzamento non è applicabile quando si usa il metodo di controllo BLOB.
+Il [controllo del database](sql-database-auditing.md) funziona automaticamente con i client SQL che supportano il reindirizzamento TDS. Si noti che il reindirizzamento non si applica quando si utilizza il metodo di servizio controllo Blob hello.
 
 ## <a id="subheading-1"></a>Supporto dei client di livello inferiore
-Qualsiasi client che implementa TDS 7.4 deve supportare anche il reindirizzamento. Rappresentano un'eccezione JDBC 4.0, in cui non è del tutto supportata la funzionalità di reindirizzamento, e Tedious per Node.JS, in cui non è implementato il reindirizzamento.
+Qualsiasi client che implementa TDS 7.4 deve supportare anche il reindirizzamento. Eccezioni toothis includono JDBC 4.0 non è supportato completamente le funzionalità di reindirizzamento di hello e Tedious per Node.JS in cui non è stato implementato il reindirizzamento.
 
-Per i "client di livello inferiore", ad esempio quelli che supportano la versione 7.3 di TDS e inferiori, il nome di dominio completo del server nella stringa di connessione deve essere modificato:
+Per "I client legacy", vale a dire che supporta TDS versione 7.3 e hello seguito - nome FQDN del server nella stringa di connessione hello deve essere modificati:
 
-Nome di dominio completo del server originale nella stringa di connessione: <*server name*>.database.windows.net
+FQDN server originale nella stringa di connessione hello: <*nome server*>. database.windows.net
 
-Nome di dominio completo del server modificato nella stringa di connessione: <*server name*>.database.**secure**.windows.net
+FQDN server modificato nella stringa di connessione hello: <*nome server*> database. **protezione**. windows.net
 
 Un elenco parziale di "client di livello inferiore" include:
 
 * .NET 4.0 e versioni precedenti,
 * ODBC 10.0 e versioni precedenti.
-* JDBC (mentre JDBC supporta TDS 7.4, la funzionalità di reindirizzamento TDS non è del tutto supportata)
+* JDBC (mentre JDBC supporta TDS 7.4, hello funzionalità di reindirizzamento TDS non è completamente supportata)
 * Tedious (per Node.JS)
 
-**Nota:** la modifica del nome di dominio completo del server citata in precedenza può risultare utile per applicare un criterio di controllo a livello di server SQL senza la necessità di una procedura di configurazione in ogni database (attenuazione temporanea).
+**Nota:** hello sopra Modifica nome FDQN di server può essere utile anche per applicare un criterio di controllo a livello di Server SQL senza la necessità di una configurazione passaggio in ogni database (attenuazione temporaneo).
 
 ## <a id="subheading-2"></a>Modifiche all'endpoint IP quando si abilita il Controllo
-Si noti che quando si abilita il controllo delle tabelle, l'endpoint IP del database viene modificato. Se si dispone di impostazioni del firewall restrittive, aggiornarle.
+Si noti che, quando si abilita il controllo tabella, vengono modificati endpoint IP hello del database. Se si dispone di impostazioni del firewall restrittive, aggiornarle.
 
-Il nuovo endpoint IP del database dipenderà dall'area del database:
+endpoint IP Hello per nuovi database dipenderà dalla regione del database di hello:
 
 | Area del database | Endpoint IP possibili |
 | --- | --- |

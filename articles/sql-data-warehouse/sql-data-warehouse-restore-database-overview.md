@@ -1,6 +1,6 @@
 ---
-title: Ripristinare un'istanza di Azure Data Warehouse - Ridondanza geografica e locale | Documentazione Microsoft
-description: Panoramica delle opzioni di ripristino del database per ripristinare un database in Azure SQL Data Warehouse.
+title: aaaRestore un Azure data warehouse - locale e con ridondanza geografica | Documenti Microsoft
+description: Panoramica delle opzioni di ripristino di database di hello per il ripristino di un database in Azure SQL Data Warehouse.
 services: sql-data-warehouse
 documentationcenter: NA
 author: Lakshmi1812
@@ -15,11 +15,11 @@ ms.workload: data-services
 ms.custom: backup-restore
 ms.date: 10/31/2016
 ms.author: lakshmir;barbkess
-ms.openlocfilehash: ea42b7135d0695b66d569095e70bb3d9f8b9594b
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: a96b898372b29d420e1416ca93a172ff8af47fc7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="sql-data-warehouse-restore"></a>Ripristino di SQL Data Warehouse
 > [!div class="op_single_selector"]
@@ -30,10 +30,10 @@ ms.lasthandoff: 08/03/2017
 > 
 > 
 
-SQL Data Warehouse offre ripristini locali e geografici come parte delle sue funzionalità di ripristino di emergenza del data warehouse. È possibile i backup del dati warehouse per ripristinare il data warehouse a un punto di ripristino nell'area primaria o usare i backup con ridondanza geografica per ripristinarlo a un'area geografica diversa. Questo articolo illustra le specifiche del ripristino di un data warehouse.
+SQL Data Warehouse offre ripristini locali e geografici come parte delle sue funzionalità di ripristino di emergenza del data warehouse. Utilizzare dati warehouse backup toorestore il ripristino di data warehouse tooa punto nell'area primaria hello oppure utilizzare l'area geografica diversa tooa backup con ridondanza geografica toorestore. Questo articolo illustra le specifiche di hello del ripristino di un data warehouse.
 
 ## <a name="what-is-a-data-warehouse-restore"></a>Cos'è un ripristino del data warehouse?
-Un ripristino del data warehouse consiste in un nuovo data warehouse creato da un backup di un data warehouse esistente o eliminato. Il data warehouse ripristinato ricrea il data warehouse di backup in un momento specifico. Poiché SQL Data Warehouse è un sistema distribuito, il ripristino del data warehouse viene creato da molti file di backup archiviati nei blob di Azure. 
+Un ripristino del data warehouse consiste in un nuovo data warehouse creato da un backup di un data warehouse esistente o eliminato. warehouse di dati ripristinati Hello ricrea warehouse dati di backup hello in un momento specifico. Poiché SQL Data Warehouse è un sistema distribuito, il ripristino del data warehouse viene creato da molti file di backup archiviati nei blob di Azure. 
 
 Il ripristino del database è un elemento essenziale di qualsiasi strategia di continuità aziendale e di ripristino di emergenza perché ricrea i dati dopo un caso di danneggiamento o eliminazione accidentale.
 
@@ -43,41 +43,41 @@ Per altre informazioni, vedere:
 * [Panoramica sulla continuità aziendale](../sql-database/sql-database-business-continuity.md)
 
 ## <a name="data-warehouse-restore-points"></a>Punti di ripristino del data warehouse
-Come vantaggio dell'uso di Archiviazione Premium di Azure, SQL Data Warehouse usa gli snapshot dei BLOB di Archiviazione di Azure per eseguire il backup del data warehouse primario. Ogni snapshot ha un punto di ripristino che rappresenta l'ora di inizio dello snapshot. Per ripristinare un data warehouse, scegliere un punto di ripristino ed eseguire un comando di ripristino.  
+Il vantaggio dell'utilizzo di archiviazione Premium di Azure SQL Data Warehouse utilizza il Blob di archiviazione di Azure degli snapshot toobackup hello primario del data warehouse. Ogni snapshot è un punto di ripristino che rappresenta il tempo di hello snapshot hello avviato. toorestore un data warehouse, scegliere un punto di ripristino e inviare un comando di ripristino.  
 
-SQL Data Warehouse ripristina sempre il backup in un nuovo data warehouse. È possibile mantenere il data warehouse ripristinato e quello corrente, oppure eliminare uno di questi. Se si desidera sostituire il data warehouse corrente con il data warehouse ripristinato, è possibile rinominarlo.
+SQL Data Warehouse viene sempre ripristinato hello tooa backup nuovo data warehouse. È possibile mantenere hello ripristinato del data warehouse e hello corrente o eliminare uno di essi. Se si desidera tooreplace hello corrente del data warehouse con hello ripristino del data warehouse, è possibile rinominarlo.
 
-Se è necessario ripristinare un data warehouse eliminate o messo in pausa, è possibile [creare un ticket di supporto](sql-data-warehouse-get-started-create-support-ticket.md). 
+Se è necessario toorestore eliminate o in pausa data warehouse, è possibile [creare un ticket di supporto](sql-data-warehouse-get-started-create-support-ticket.md). 
 
 <!-- 
 ### Can I restore a deleted data warehouse?
 
-Yes, you can restore the last available restore point.
+Yes, you can restore hello last available restore point.
 
-Yes, for the next seven calendar days. When you delete a data warehouse, SQL Data Warehouse actually keeps the data warehouse and its snapshots for seven days just in case you need the data. After seven days, you won't be able to restore to any of the restore points. -->
+Yes, for hello next seven calendar days. When you delete a data warehouse, SQL Data Warehouse actually keeps hello data warehouse and its snapshots for seven days just in case you need hello data. After seven days, you won't be able toorestore tooany of hello restore points. -->
 
 ## <a name="geo-redundant-restore"></a>Ripristino con ridondanza geografica
-È possibile ripristinare il data warehouse in qualsiasi area che supporta Azure SQL Data Warehouse con il livello di prestazioni scelto. Si noti che le capacità DWU 9000 e 18000 non sono supportate in tutte le aree durante l'anteprima.
+È possibile ripristinare l'area tooany warehouse di dati che supporta Azure SQL Data Warehouse con il livello di prestazioni scelto. Si noti che DWU 9000 e 18000 non sono supportate in tutte le aree durante l'anteprima di hello.
 
 > [!NOTE]
-> Per eseguire un ripristino con ridondanza geografica, è necessario non avere rifiutato esplicitamente questa funzionalità.
+> ripristino di un con ridondanza geografica tooperform che è necessario non stata esplicitamente questa funzionalità.
 > 
 > 
 
 ## <a name="restore-timeline"></a>Sequenza temporale del ripristino
-È possibile ripristinare un database a qualsiasi punto di ripristino disponibile degli ultimi sette giorni. Gli snapshot vengono eseguiti ogni quattro-otto ore e sono disponibili per sette giorni. Quando uno snapshot supera i sette giorni di vita, scade e il relativo punto di ripristino non è più disponibile.
+È possibile ripristinare un punto di ripristino disponibile tooany di database all'interno di hello negli ultimi sette giorni. Gli snapshot avviare ogni quattro ore tooeight e sono disponibili sette giorni. Quando uno snapshot supera i sette giorni di vita, scade e il relativo punto di ripristino non è più disponibile.
 
 ## <a name="restore-costs"></a>Costi di ripristino
-Il costo di archiviazione per il data warehouse ripristinato viene fatturato alla tariffa di archiviazione Premium di Azure. 
+costi di archiviazione Hello per hello ripristinato data warehouse viene fatturato alla tariffa di archiviazione di Azure Premium hello. 
 
-Se si mette in pausa un data warehouse ripristinato, l'archiviazione viene fatturata alla tariffa di archiviazione Premium di Azure. Il vantaggio con la messa in pausa è che le risorse di elaborazione DWU non vengono fatturate.
+Se si sospende un ripristinato data warehouse, viene addebitata per l'archiviazione con frequenza di archiviazione di Azure Premium hello. Il vantaggio di Hello della sospensione è che non vengono addebitate le risorse di elaborazione DWU hello.
 
 Per altre informazioni sui prezzi di SQL Data Warehouse, vedere [Prezzi di SQL Data Warehouse](https://azure.microsoft.com/pricing/details/sql-data-warehouse/).
 
 ## <a name="uses-for-restore"></a>Usi della funzionalità di ripristino
-L'uso primario per il ripristino del data warehouse consiste nel recuperare i dati dopo averli perduti o danneggiati accidentalmente.
+uso principale Hello ripristino dei dati del warehouse è toorecover dati dopo la perdita di dati accidentali.
 
-Inoltre, è possibile usare la funzionalità di ripristino del data warehouse per conservare una copia di backup per più di sette giorni. Dopo aver ripristinato la copia di backup, il data warehouse diventa disponibile online e può essere messo in pausa per un periodo imprecisato al fine di risparmiare sui costi. Il database messo in pausa comporta costi di archiviazione alla frequenza dell'archiviazione Premium di Azure. 
+Inoltre, è possibile utilizzare dati warehouse ripristino tooretain una copia di backup per più di sette giorni. Una volta ripristinato il backup di hello, in base a cui si dispone di data warehouse di hello online e possibile sospenderla indefinitamente toosave calcolo dei costi. database sospeso Hello comporta costi di archiviazione con frequenza di archiviazione di Azure Premium hello. 
 
 ## <a name="related-topics"></a>Argomenti correlati
 ### <a name="scenarios"></a>Scenari
@@ -85,11 +85,11 @@ Inoltre, è possibile usare la funzionalità di ripristino del data warehouse pe
 
 <!-- ### Tasks -->
 
-Per eseguire il ripristino di un data warehouse, eseguire il ripristino con:
+tooperform un data warehouse di ripristino, eseguire il ripristino utilizzando:
 
-* Portale di Azure (vedere [Ripristinare un data warehouse con il portale di Azure](sql-data-warehouse-restore-database-portal.md))
+* Azure portale, vedere [ripristino configurazione di un data warehouse utilizzando hello portale di Azure](sql-data-warehouse-restore-database-portal.md)
 * Cmdlet di PowerShell )vedere [Ripristinare un data warehouse con i cmdlet di PowerShell](sql-data-warehouse-restore-database-powershell.md))
-* API REST (vedere [Ripristinare un data warehouse con le API REST](sql-data-warehouse-restore-database-rest-api.md))
+* API REST, vedere [ripristino configurazione di un data warehouse utilizzando le API REST hello](sql-data-warehouse-restore-database-rest-api.md)
 
 <!-- ### Tutorials -->
 

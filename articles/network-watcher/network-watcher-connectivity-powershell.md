@@ -1,6 +1,6 @@
 ---
-title: "Controllare la connettività con Azure Network Watcher - PowerShell | Microsoft Docs"
-description: "Questa pagina descrive come testare la connettività con Network Watcher usando PowerShell"
+title: "connettività aaaCheck con Watcher di rete di Azure - PowerShell | Documenti Microsoft"
+description: "Questa pagina viene illustrato come la connettività tootest con Watcher di rete con PowerShell"
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -13,11 +13,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 07/11/2017
 ms.author: gwallace
-ms.openlocfilehash: a8f936cd23838759dc30b04688d3c6544e4895cc
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 4bcb90a72f178445c38b7bd7fc5054c5d0c200bb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="check-connectivity-with-azure-network-watcher-using-powershell"></a>Controllare la connettività con Azure Network Watcher usando PowerShell
 
@@ -27,37 +27,37 @@ ms.lasthandoff: 08/18/2017
 > - [Interfaccia della riga di comando 2.0](network-watcher-connectivity-cli.md)
 > - [API REST di Azure](network-watcher-connectivity-rest.md)
 
-Informazioni su come usare la connettività per verificare se è possibile stabilire una connessione TCP diretta da una macchina virtuale a uno specifico endpoint.
+Informazioni su come è possibile stabilire toouse connettività tooverify se una connessione TCP diretta da una macchina virtuale di tooa dato endpoint.
 
 ## <a name="before-you-begin"></a>Prima di iniziare
 
-Questo articolo presuppone che l'utente disponga delle risorse seguenti:
+Questo articolo si presuppone di che aver hello seguenti risorse:
 
-* Un'istanza di Network Watcher nell'area di cui si vuole controllare la connettività.
+* Un'istanza del controllo di rete nell'area di hello desiderato toocheck connettività.
 
-* Macchine virtuali con cui controllare la connettività.
+* Connettività toocheck di macchine virtuali con.
 
 [!INCLUDE [network-watcher-preview](../../includes/network-watcher-public-preview-notice.md)]
 
 > [!IMPORTANT]
-> Il controllo della connettività richiede un'estensione macchina virtuale `AzureNetworkWatcherExtension`. Per installare l'estensione in una VM Windows, vedere [Estensione macchina virtuale agente Azure Network Watcher per Windows](../virtual-machines/windows/extensions-nwa.md) e per una VM Linux VM vedere [Estensione macchina virtuale Azure Network Watcher Agent per Linux](../virtual-machines/linux/extensions-nwa.md).
+> Il controllo della connettività richiede un'estensione macchina virtuale `AzureNetworkWatcherExtension`. Per l'installazione dell'estensione hello in una macchina virtuale di Windows, visitare [estensione della macchina virtuale Azure rete Watcher agente per Windows](../virtual-machines/windows/extensions-nwa.md) e per la visita di VM Linux [estensione della macchina virtuale Azure rete Watcher agente per Linux](../virtual-machines/linux/extensions-nwa.md).
 
-## <a name="register-the-preview-capability"></a>Registrare la funzionalità in anteprima
+## <a name="register-hello-preview-capability"></a>Registrare la funzionalità di anteprima hello
 
-La connettività è attualmente disponibile in anteprima pubblica; per usare questa funzionalità, è necessario averne eseguito la registrazione. A tale scopo, eseguire questo esempio di PowerShell:
+La connettività è attualmente in anteprima pubblica, toouse questa funzionalità che è necessario toobe registrato. toodo, hello esecuzione seguente esempio di PowerShell:
 
 ```powershell
 Register-AzureRmProviderFeature -FeatureName AllowNetworkWatcherConnectivityCheck  -ProviderNamespace Microsoft.Network
 Register-AzureRmResourceProvider -ProviderNamespace Microsoft.Network
 ```
 
-Per verificare se la registrazione è riuscita, eseguire questo esempio di Powershell:
+la registrazione di hello tooverify è stata completata correttamente, eseguire hello seguente esempio di Powershell:
 
 ```powershell
 Get-AzureRmProviderFeature -FeatureName AllowNetworkWatcherConnectivityCheck  -ProviderNamespace  Microsoft.Network
 ```
 
-Se la funzionalità è stata registrata correttamente, l'output deve corrispondere a quanto segue:
+Se è stato registrato correttamente funzionalità hello, output di hello devono corrispondere seguente hello:
 
 ```
 FeatureName         ProviderName      RegistrationState
@@ -65,9 +65,9 @@ FeatureName         ProviderName      RegistrationState
 AllowNetworkWatcherConnectivityCheck  Microsoft.Network Registered
 ```
 
-## <a name="check-connectivity-to-a-virtual-machine"></a>Controllare la connettività a una macchina virtuale
+## <a name="check-connectivity-tooa-virtual-machine"></a>Verificare la connettività tooa virtual machine
 
-Questo esempio controlla la connettività a una macchina virtuale di destinazione sulla porta 80.
+Questo esempio viene verificata la connettività tooa macchina virtuale di destinazione sulla porta 80.
 
 ### <a name="example"></a>Esempio
 
@@ -89,7 +89,7 @@ Test-AzureRmNetworkWatcherConnectivity -NetworkWatcher $networkWatcher -SourceId
 
 ### <a name="response"></a>Response
 
-La risposta seguente è relativa all'esempio precedente.  In questa risposta `ConnectionStatus` è **Unreachable**. Si noti che tutti i probe inviati presentano un errore. Si è verificato un problema di connettività nell'appliance virtuale a causa di un valore `NetworkSecurityRule` configurato dall'utente per bloccare il traffico in ingresso sulla porta 80, denominato **UserRule_Port80**. Queste informazioni possono essere usate per analizzare i problemi di connessione.
+Hello seguente risposta è tratto dall'esempio precedente hello.  Nella risposta, hello `ConnectionStatus` è **non raggiungibile**. Si noterà che tutti hello probe inviati non riuscite. connettività Hello non riuscita nel dispositivo virtuale hello tooa scadenza configurata dall'utente `NetworkSecurityRule` denominato **UserRule_Port80**, configurato tooblock il traffico in entrata sulla porta 80. Queste informazioni possono essere utilizzati tooresearch i problemi di connessione.
 
 ```
 ConnectionStatus : Unreachable
@@ -162,7 +162,7 @@ Hops             : [
 
 ## <a name="validate-routing-issues"></a>Problemi relativi alla convalida del routing
 
-L'esempio verifica la connettività tra una macchina virtuale e un endpoint remoto.
+esempio Hello controlla la connettività tra una macchina virtuale e un endpoint remoto.
 
 ### <a name="example"></a>Esempio
 
@@ -182,7 +182,7 @@ Test-AzureRmNetworkWatcherConnectivity -NetworkWatcher $networkWatcher -SourceId
 
 ### <a name="response"></a>Response
 
-Nell'esempio seguente `ConnectionStatus` è **Unreachable**. I dettagli relativi a `Hops` sotto `Issues` indicano che il traffico è stato bloccato a causa di un valore `UserDefinedRoute`. 
+Nell'esempio seguente di hello, hello `ConnectionStatus` viene visualizzato come **non raggiungibile**. In hello `Hops` informazioni dettagliate, è possibile visualizzare in `Issues` che è stato bloccato scadenza traffico hello tooa `UserDefinedRoute`. 
 
 ```
 ConnectionStatus : Unreachable
@@ -227,7 +227,7 @@ Hops             : [
 
 ## <a name="check-website-latency"></a>Controllare la latenza del sito Web
 
-L'esempio seguente controlla la connettività a un sito Web.
+Hello esempio controlla sito Web di tooa connettività hello.
 
 ### <a name="example"></a>Esempio
 
@@ -247,7 +247,7 @@ Test-AzureRmNetworkWatcherConnectivity -NetworkWatcher $networkWatcher -SourceId
 
 ### <a name="response"></a>Response
 
-Nella risposta seguente il valore indicato per `ConnectionStatus` è **Reachable**. In caso di esito positivo della connessione vengono forniti i valori della latenza.
+In hello seguente risposta, è possibile vedere hello `ConnectionStatus` viene illustrato come **raggiungibile**. In caso di esito positivo della connessione vengono forniti i valori della latenza.
 
 ```
 ConnectionStatus : Reachable
@@ -278,9 +278,9 @@ Hops             : [
                    ]
 ```
 
-## <a name="check-connectivity-to-a-storage-endpoint"></a>Controllare la connettività a un endpoint di archiviazione
+## <a name="check-connectivity-tooa-storage-endpoint"></a>Controllare la connettività tooa archiviazione endpoint
 
-L'esempio seguente testa la connettività da una macchina virtuale a un account di archiviazione BLOB.
+Hello di esempio seguente verifica la connettività di hello da un account di archiviazione blog tooa macchina virtuale.
 
 ### <a name="example"></a>Esempio
 
@@ -300,7 +300,7 @@ Test-AzureRmNetworkWatcherConnectivity -NetworkWatcher $networkWatcher -SourceId
 
 ### <a name="response"></a>Response
 
-Il codice JSON seguente è la risposta di esempio generata dall'esecuzione del cmdlet precedente. Poiché la destinazione è raggiungibile, la proprietà `ConnectionStatus` risulta **Reachable**.  Vengono forniti i dettagli sul numero di hop necessari per raggiungere il BLOB di archiviazione e la latenza.
+Hello json seguente è la risposta di esempio hello dall'esecuzione di cmdlet precedente hello. Come destinazione di hello è raggiungibile, hello `ConnectionStatus` vengono visualizzate le proprietà come **raggiungibile**.  Vengono fornite informazioni hello riguardanti hello numero di hop tooreach obbligatorio hello archiviazione blob e latenza.
 
 ```
 ConnectionStatus : Reachable
@@ -335,7 +335,7 @@ Hops             : [
 
 Per stabilire se un traffico specificato è consentito all'interno o all'esterno di una macchina virtuale, vedere [Check IP flow verify](network-watcher-check-ip-flow-verify-portal.md) (Controllare la verifica del flusso IP).
 
-Se il traffico risulta bloccato e non dovrebbe esserlo, vedere [Gestire i gruppi di sicurezza di rete](../virtual-network/virtual-network-manage-nsg-arm-portal.md) per individuare il gruppo di sicurezza di rete e le relative regole di sicurezza definite.
+Se il traffico viene bloccato e non può essere, vedere [gestire gruppi di sicurezza di rete](../virtual-network/virtual-network-manage-nsg-arm-portal.md) tootrack verso il basso hello rete sicurezza e gruppo di regole di sicurezza definiti.
 
 <!-- Image references -->
 

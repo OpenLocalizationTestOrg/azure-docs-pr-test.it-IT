@@ -1,6 +1,6 @@
 ---
-title: Configurare MPIO sull'host Linux StorSimple | Microsoft Docs
-description: Configurare MPIO in dispositivi StorSimple connessi all'host Linux che esegue CentOS 6.6
+title: aaaConfigure MPIO nell'host StorSimple Linux | Documenti Microsoft
+description: Configurare MPIO nell'host di Linux tooa StorSimple connessi che eseguono 6.6 CentOS
 services: storsimple
 documentationcenter: NA
 author: alkohli
@@ -14,68 +14,68 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 12/01/2016
 ms.author: alkohli
-ms.openlocfilehash: add539351066f9ff94febeebfd5334773b360e8f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d9f7e02903243494c909313fb2c33ac690764274
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="configure-mpio-on-a-storsimple-host-running-centos"></a>Configurare MPIO in un host di StorSimple che esegue CentOS
-Questo articolo illustra i passaggi necessari a configurare l'I/O a percorsi multipli (MPIO) nel server host CentOS 6.6. Il server host è connesso al dispositivo Microsoft Azure StorSimple per la disponibilità elevata attraverso gli iniziatori iSCSI. L'articolo descrive in dettaglio il rilevamento automatico dei dispositivi con percorsi multipli e la configurazione specifica solo per i volumi StorSimple.
+Questo articolo spiega hello passaggi necessari tooconfigure Multipath i/o (MPIO) sul server host Centos 6.6. server host Hello è dispositivo Microsoft Azure StorSimple tooyour connessi per la disponibilità elevata tramite gli iniziatori iSCSI. Vengono descritti in dettaglio hello l'individuazione automatica dei dispositivi a percorsi multipli e installazione specifiche di hello solo per i volumi StorSimple.
 
-Questa procedura è applicabile a tutti i modelli di dispositivi della serie StorSimple 8000.
+Questa procedura è applicabile tooall i modelli di hello di dispositivi della serie StorSimple 8000.
 
 > [!NOTE]
-> Questa procedura non può essere usata per un dispositivo virtuale StorSimple. Per altre informazioni, vedere Come configurare i server host per il dispositivo virtuale.
+> Questa procedura non può essere usata per un dispositivo virtuale StorSimple. Per ulteriori informazioni, vedere come tooconfigure ospitano server per il dispositivo virtuale.
 > 
 > 
 
 ## <a name="about-multipathing"></a>Informazioni sui percorsi multipli
-La funzionalità di percorsi multipli consente di configurare più percorsi I/O tra un server host e un dispositivo di archiviazione. I percorsi I/O sono connessioni SAN fisiche che possono includere cavi, switch, interfacce di rete e controller separati. I percorsi multipli aggregano i percorsi I/O per configurare un nuovo dispositivo associato a tutti i percorsi aggregati.
+Hello percorsi multipli consente tooconfigure più percorsi i/o tra un server host e un dispositivo di archiviazione. I percorsi I/O sono connessioni SAN fisiche che possono includere cavi, switch, interfacce di rete e controller separati. Percorsi multipli aggrega i percorsi i/o di hello, tooconfigure un nuovo dispositivo associato a tutti i percorsi di hello aggregato.
 
-Lo scopo dei percorsi multipli è duplice:
+scopo di Hello di percorsi multipli è duplice:
 
-* **Disponibilità elevata**: fornisce un percorso alternativo se qualsiasi elemento del percorso I/O (ad esempio un cavo, uno switch, l'interfaccia di rete o il controller) non riesce.
-* **Bilanciamento del carico**: a seconda della configurazione del dispositivo di archiviazione, è possibile migliorare le prestazioni rilevando carichi sui percorsi I/O e in modo dinamico con il ribilanciamento di tali carichi.
+* **Disponibilità elevata**: fornisce un percorso alternativo se qualsiasi elemento del percorso dei / o hello (ad esempio un cavo, switch, l'interfaccia di rete o controller) ha esito negativo.
+* **Il bilanciamento del carico**: a seconda della configurazione di hello del dispositivo di archiviazione, è possibile migliorare le prestazioni di hello rilevando carichi nei percorsi di hello i/o e tali carichi il ribilanciamento in modo dinamico.
 
 ### <a name="about-multipathing-components"></a>Informazioni sui componenti dei percorsi multipli
 I percorsi multipli in Linux sono costituiti da componenti kernel e spazio utente come elencato di seguito.
 
-* **Kernel**: il componente principale è il *mapper dei dispositivi* che reindirizza l'I/O e supporta il failover per i percorsi e i gruppi di percorsi.
+* **Kernel**: il componente principale di hello è hello *dispositivo mapper* che reindirizza i/o e supporta il failover per i percorsi e i gruppi di percorso.
 
-* **Spazio utente**: si tratta di *strumenti per percorsi multipli* che gestiscono i dispositivi a percorsi multipli, indicando il modulo a percorsi multipli del mapper dei dispositivi le operazioni da eseguire. Questi strumenti sono:
+* **Spazio utente**: si tratta di *multipath strumenti* che gestiscono i dispositivi con percorsi multipli, indicando modulo a percorsi multipli di hello dispositivo mapper quali toodo. strumenti di Hello è costituito da:
    
    * **Multipath**: elenca e configura i dispositivi a percorsi multipli.
-   * **Multipathd**: daemon che esegue i percorsi multipli e monitora i percorsi.
-   * **Devmap-name**: fornisce un nome significativo del dispositivo a udev per devmap.
-   * **Kpartx**: mappa devmap lineari alle partizioni del dispositivo per rendere partizionabili le mappe a percorsi multipli.
-   * **Multipath.conf**: file di configurazione per daemon a percorsi multipli usato per sovrascrivere la tabella di configurazione predefinita.
+   * **Multipathd**: daemon che esegue i percorsi di hello multipath e monitoraggi.
+   * **Nome di Devmap**: offre un significativo tooudev nome del dispositivo per devmaps.
+   * **Kpartx**: devmaps lineare toodevice partizioni toomake multipath mappe partizionabile viene eseguito il mapping.
+   * **Multipath.conf**: file di configurazione per percorsi multipli daemon che è usato toooverwrite hello configurazione incorporati tabella.
 
-### <a name="about-the-multipathconf-configuration-file"></a>Informazioni sul file di configurazione multipath.conf
-Il file di configurazione `/etc/multipath.conf` rende configurabili dall'utente molte delle funzionalità dei percorsi multipli. Il comando `multipath` e il daemon kernel `multipathd` usano le informazioni ricavate da questo file. Il file viene consultato solo durante la configurazione dei dispositivi a percorsi multipli. Assicurarsi che tutte le modifiche vengano apportate prima di eseguire il comando `multipath` . Se successivamente si modifica il file, è necessario arrestare e avviare multipathd nuovamente per rendere effettive le modifiche.
+### <a name="about-hello-multipathconf-configuration-file"></a>Sul file di configurazione multipath.conf hello
+file di configurazione Hello `/etc/multipath.conf` vengono apportate diverse hello Multipath funzionalità configurabile dall'utente. Hello `multipath` comando e hello daemon kernel `multipathd` utilizzare informazioni contenute in questo file. file Hello viene consultato solo durante la configurazione di hello di dispositivi a percorsi multipli hello. Assicurarsi che tutte le modifiche vengono apportate prima di eseguire hello `multipath` comando. Se si modifica il file hello in seguito, sarà anche necessario toostop e avviare multipathd nuovamente per effetto di tootake modifiche hello.
 
-Il file multipath.conf è composto da cinque sezioni:
+Hello multipath.conf include cinque sezioni:
 
-- **System level defaults** *(defaults)*: è possibile ignorare i valori predefiniti a livello di sistema.
-- **Blacklisted devices** *(blacklist)*: è possibile specificare l'elenco dei dispositivi che il mapper dei dispositivi non deve controllare.
-- **Blacklist exceptions** *(blacklist_exceptions)*: è possibile identificare i dispositivi specifici da considerare come dispositivi a percorsi multipli anche se elencati nella blacklist.
-- **Storage controller specific settings** *(devices)*: è possibile specificare impostazioni di configurazione che verranno applicate ai dispositivi con informazioni sul fornitore e sul prodotto.
-- **Device specific settings** *(multipaths)*: è possibile usare questa sezione per ottimizzare le impostazioni di configurazione per le singole unità logiche.
+- **System level defaults***(defaults)*: è possibile ignorare i valori predefiniti a livello di sistema.
+- **Disattivato dispositivi** *(nera)*: È possibile specificare hello elenco di dispositivi che non devono essere controllati da BizTalk mapper di dispositivo.
+- **Disattivare le eccezioni** *(blacklist_exceptions)*: È possibile identificare considerati i dispositivi a percorsi multipli, anche se è elencato nella blacklist hello toobe di dispositivi specifici.
+- **Impostazioni specifiche di controller di archiviazione** *(dispositivi)*: È possibile specificare le impostazioni di configurazione che verrà applicato toodevices che le informazioni di prodotto e fornitore.
+- **Impostazioni specifiche di dispositivo** *(multipaths)*: È possibile utilizzare le impostazioni di configurazione hello toofine ottimizzare questa sezione per singoli LUN.
 
-## <a name="configure-multipathing-on-storsimple-connected-to-linux-host"></a>Configurare percorsi multipli in dispositivi StorSimple connessi all'host Linux
-Un dispositivo StorSimple connesso a un host Linux può essere configurato per l'elevata disponibilità e il bilanciamento del carico. Ad esempio, se l'host Linux ha due interfacce connesse alla SAN e il dispositivo ha due interfacce connesse alla SAN in modo che queste interfacce siano tutte nella stessa subnet, saranno disponibili quattro percorsi. Tuttavia, se ogni interfaccia DATA sull'interfaccia del dispositivo e dell'host si trova in una diversa subnet IP (non instradabile), saranno disponibili solo due percorsi. È possibile configurare percorsi multipli per trovare automaticamente tutti i percorsi disponibili, scegliere un algoritmo di bilanciamento del carico per tali percorsi, applicare impostazioni di configurazione specifiche per i volumi solo StorSimple, quindi abilitare e verificare i percorsi multipli.
+## <a name="configure-multipathing-on-storsimple-connected-toolinux-host"></a>Configurare percorsi multipli sull'host connesso tooLinux StorSimple
+Un host di Linux tooa dispositivo connesso StorSimple può essere configurato per la disponibilità elevata e bilanciamento del carico. Ad esempio, se host Linux hello ha due interfacce toohello connesso SAN e hello dispositivo ha due interfacce connessi toohello SAN ad presenti queste interfacce hello stessa subnet, quindi esisterà 4 percorsi disponibili. Tuttavia, se ogni interfaccia di dati nell'interfaccia di dispositivi e host hello in un'altra subnet IP (e non instradabili), quindi solo 2 i percorsi saranno disponibili. È possibile configurare percorsi multipli tooautomatically individuare tutti i percorsi disponibili hello, scegliere un algoritmo di bilanciamento del carico per tali percorsi, applicare impostazioni di configurazione specifiche per i volumi StorSimple-only, abilitare e verificare i percorsi multipli.
 
-La procedura seguente descrive come configurare i percorsi multipli quando un dispositivo StorSimple con due interfacce di rete viene connesso a un host con due interfacce di rete.
+Hello procedura riportata di seguito viene descritto come percorsi multipli tooconfigure quando un dispositivo StorSimple con due interfacce di rete viene connessa tooa host con due interfacce di rete.
 
 ## <a name="prerequisites"></a>Prerequisiti
-Questa sezione illustra nel dettaglio i prerequisiti di configurazione per il server CentOS e il dispositivo StorSimple.
+Questa sezione descrive i prerequisiti di configurazione hello per server CentOS e il dispositivo StorSimple.
 
 ### <a name="on-centos-host"></a>Sull'host CentOS
 1. Assicurarsi che l'host CentOS abbia due interfacce di rete abilitate. Digitare:
    
     `ifconfig`
    
-    L'esempio seguente mostra l'output che si ottiene quando sull'host sono presenti due interfacce di rete (`eth0` e `eth1`).
+    Hello riportato di seguito output di hello quando due interfacce di rete (`eth0` e `eth1`) sono presenti nell'host di hello.
    
         [root@centosSS ~]# ifconfig
         eth0  Link encap:Ethernet  HWaddr 00:15:5D:A2:33:41  
@@ -106,21 +106,21 @@ Questa sezione illustra nel dettaglio i prerequisiti di configurazione per il se
           TX packets:12 errors:0 dropped:0 overruns:0 carrier:0
           collisions:0 txqueuelen:0
           RX bytes:720 (720.0 b)  TX bytes:720 (720.0 b)
-2. Installare *iSCSI-initiator-utils* sul server CentOS. Seguire questa procedura per installare *iSCSI-initiator-utils*.
+2. Installare *iSCSI-initiator-utils* sul server CentOS. Eseguire i seguenti passaggi tooinstall hello *utilità di iniziatore iSCSI*.
    
    1. Accedere come `root` all'host CentOS.
-   2. Installare *iSCSI-initiator-utils*. Digitare:
+   2. Installare hello *utilità di iniziatore iSCSI*. Digitare:
       
        `yum install iscsi-initiator-utils`
-   3. Dopo aver correttamente installato *iSCSI-initiator-utils* , avviare il servizio iSCSI. Digitare:
+   3. Dopo aver hello *utilità di iniziatore iSCSI* è stato installato, avviare il servizio iSCSI hello. Digitare:
       
        `service iscsid start`
       
-       A volte, `iscsid` potrebbe non avviarsi e può rendersi necessaria l'opzione `--force`
-   4. Per assicurarsi che l'iniziatore iSCSI sia abilitato durante la fase di avvio, usare il comando `chkconfig` per abilitare il servizio.
+       In alcuni casi, `iscsid` possono avviare e non è effettivamente hello `--force` opzione potrebbe essere necessaria.
+   4. che l'iniziatore iSCSI è abilitato durante la fase di avvio, utilizzare hello tooensure `chkconfig` servizio hello tooenable di comando.
       
        `chkconfig iscsi on`
-   5. Per verificare che sia stato correttamente configurato, eseguire il comando:
+   5. tooverify che è stato corretto del programma di installazione, eseguire il comando di hello:
       
        `chkconfig --list | grep iscsi`
       
@@ -129,80 +129,80 @@ Questa sezione illustra nel dettaglio i prerequisiti di configurazione per il se
            iscsi   0:off   1:off   2:on3:on4:on5:on6:off
            iscsid  0:off   1:off   2:on3:on4:on5:on6:off
       
-       Nell'esempio precedente, è possibile vedere che l'ambiente iSCSI verrà eseguito in fase di avvio su livelli di esecuzione 2, 3, 4 e 5.
+       Da hello esempio precedente, si noterà che l'ambiente iSCSI verrà eseguito in fase di avvio su livelli fase 2, 3, 4 e 5.
 3. Installare *device-mapper-multipath*. Digitare:
    
     `yum install device-mapper-multipath`
    
-    Viene avviata l'installazione. Digitare **Y** per continuare quando viene richiesto di confermare.
+    verrà avviata l'installazione di Hello. Tipo **Y** toocontinue alla richiesta di conferma.
 
 ### <a name="on-storsimple-device"></a>Sul dispositivo StorSimple
 Il dispositivo StorSimple deve avere:
 
-* Almeno due interfacce abilitate per iSCSI. Per verificare che le due interfacce siano abilitate per iSCSI sul dispositivo StorSimple, seguire questa procedura nel portale di Azure classico del dispositivo StorSimple:
+* Almeno due interfacce abilitate per iSCSI. tooverify che due interfacce siano abilitate per iSCSI sul dispositivo StorSimple, eseguire hello nel portale di Azure classico per il dispositivo StorSimple hello come segue:
   
-  1. Accedere al portale classico del dispositivo StorSimple.
-  2. Selezionare il servizio StorSimple Manager, fare clic su **Dispositivi** e scegliere lo specifico dispositivo StorSimple. Fare clic su **Configura** e verificare le impostazioni di interfaccia di rete. Di seguito è riportata una schermata con due interfacce di rete abilitate per iSCSI. Entrambe le interfacce di rete da 10 GbE, DATA 2 e DATA 3, sono abilitate per iSCSI.
+  1. Accedere al portale classico di hello per il dispositivo StorSimple.
+  2. Selezionare il servizio StorSimple Manager, fare clic su **dispositivi** e scegliere il dispositivo StorSimple specifico di hello. Fare clic su **configura** e verificare le impostazioni dell'interfaccia di rete hello. Di seguito è riportata una schermata con due interfacce di rete abilitate per iSCSI. Entrambe le interfacce di rete da 10 GbE, DATA 2 e DATA 3, sono abilitate per iSCSI.
      
       ![Configurazione DATA 2 StorSimple MPIO](./media/storsimple-configure-mpio-on-linux/IC761347.png)
      
       ![Configurazione DATA 3 StorSimple MPIO](./media/storsimple-configure-mpio-on-linux/IC761348.png)
      
-      Nella pagina **Configura**
+      In hello **configura** pagina
      
-     1. Assicurarsi che entrambe le interfacce di rete siano abilitate per iSCSI. Il campo **Abilitato per iSCSI** deve essere impostato su **Sì**.
-     2. Assicurarsi che le interfacce di rete abbiano la stessa velocità, cioè 1 GbE o 10 GbE.
-     3. Prendere nota degli indirizzi IPv4 delle interfacce abilitate per iSCSI e salvarli per un uso successivo nell'host.
-* Le interfacce iSCSI sul dispositivo StorSimple devono essere raggiungibili dal server CentOS.
-      Per verificarlo, è necessario fornire gli indirizzi IP delle interfacce di rete abilitate per iSCSI StorSimple nel server host. I comandi usati e l'output corrispondente con DATA2 (10.126.162.25) e DATA3 (10.126.162.26) sono illustrati di seguito:
+     1. Assicurarsi che entrambe le interfacce di rete siano abilitate per iSCSI. Hello **abilitato per iSCSI** campo deve essere impostato troppo**Sì**.
+     2. Verificare che le interfacce di rete hello abbiano hello stessa velocità, entrambi devono essere da 1 GbE o 10 GbE.
+     3. Si noti indirizzi IPv4 hello delle interfacce abilitate per iSCSI hello e salvare per un utilizzo successivo nell'host di hello.
+* interfacce iSCSI Hello nel dispositivo StorSimple devono essere raggiungibile dal server CentOS hello.
+      tooverify, gli indirizzi IP di hello tooprovide le interfacce di rete abilitate per iSCSI StorSimple è necessario nel server host. i comandi usati Hello e hello output corrispondente con DATA2 (10.126.162.25) e DATA3 (10.126.162.26) è illustrato di seguito:
   
         [root@centosSS ~]# iscsiadm -m discovery -t sendtargets -p 10.126.162.25:3260
         10.126.162.25:3260,1 iqn.1991-05.com.microsoft:storsimple8100-shx0991003g44mt-target
         10.126.162.26:3260,1 iqn.1991-05.com.microsoft:storsimple8100-shx0991003g44mt-target
 
 ### <a name="hardware-configuration"></a>Configurazione hardware
-Si consiglia di connettere le due interfacce di rete iSCSI in percorsi distinti per la ridondanza. La figura seguente illustra la configurazione hardware consigliata per la disponibilità elevata e il bilanciamento del carico dei percorsi multipli per il server CentOS e il dispositivo StorSimple.
+È consigliabile connettersi hello due iSCSI interfacce di rete su percorsi diversi per la ridondanza. Hello seguente figura configurazione hardware consigliata hello per la disponibilità elevata e bilanciamento del carico percorsi multipli per il server di CentOS e un dispositivo StorSimple.
 
-![Configurazione hardware MPIO per StorSimple all'host Linux](./media/storsimple-configure-mpio-on-linux/MPIOHardwareConfigurationStorSimpleToLinuxHost2M.png)
+![Configurazione hardware di MPIO per StorSimple tooLinux host](./media/storsimple-configure-mpio-on-linux/MPIOHardwareConfigurationStorSimpleToLinuxHost2M.png)
 
-Come illustrato nella figura precedente:
+Come illustrato nella figura precedente hello:
 
 * Il dispositivo StorSimple ha una configurazione attiva-passiva con due controller.
-* Due commutatori SAN sono connesse ai controller dei dispositivi.
+* Due commutatori di rete SAN sono connessi tooyour controller del dispositivo.
 * Due iniziatori iSCSI sono abilitati nel dispositivo StorSimple.
 * Due interfacce di rete sono abilitate sull'host CentOS.
 
-La configurazione sopra indicata restituirà 4 percorsi separati tra il dispositivo e l'host se l'host e le interfacce di dati sono instradabili.
+Se le interfacce di hello host e i dati siano instradabili, Hello sopra configurazione genererà 4 percorsi separati tra l'host del dispositivo e hello.
 
 > [!IMPORTANT]
-> * È consigliabile non combinare interfacce di rete da 1 GbE e da 10 GbE per i percorsi multipli. Quando si usano due interfacce di rete, devono essere di tipo identico.
+> * È consigliabile non combinare interfacce di rete da 1 GbE e da 10 GbE per i percorsi multipli. Quando si usano due interfacce di rete, entrambe le interfacce hello devono essere hello stesso tipo.
 > * Sul dispositivo StorSimple, DATA0, DATA1, DATA4 e DATA5 sono interfacce da 1 GbE mentre DATA2 e DATA3 sono interfacce di rete da 10 GbE.|
 > 
 > 
 
 ## <a name="configuration-steps"></a>Procedura di configurazione
-La procedura di configurazione per i percorsi multipli implica la configurazione dei percorsi disponibili per il rilevamento automatico, specificando l'algoritmo di bilanciamento del carico da usare, abilitando i percorsi multipli e infine verificando la configurazione. Ognuno dei passaggi precedenti viene illustrato nel dettaglio nelle sezioni seguenti.
+passaggi di configurazione Hello per percorsi multipli implicano i percorsi disponibili per l'individuazione automatica, specificare hello bilanciamento del carico algoritmo toouse, consentendo a percorsi multipli e infine verifica configurazione hello hello di configurazione. Ognuno di questi passaggi è illustrato in dettaglio nelle sezioni che seguono hello.
 
 ### <a name="step-1-configure-multipathing-for-automatic-discovery"></a>Passaggio 1: Configurare percorsi multipli per il rilevamento automatico
-I dispositivi supportati da percorsi multipli possono essere individuati e configurati automaticamente.
+i dispositivi supportati multipath Hello possono essere individuati automaticamente e configurati.
 
 1. Inizializzare il file `/etc/multipath.conf` . Digitare:
    
      `mpathconf --enable`
    
-    Il comando precedente creerà un file `sample/etc/multipath.conf` .
+    Hello sopra comando creerà un `sample/etc/multipath.conf` file.
 2. Avviare il servizio a percorsi multipli. Digitare:
    
     `service multipathd start`
    
-    Viene visualizzato l'output seguente:
+    Verrà visualizzato hello seguente output:
    
     `Starting multipathd daemon:`
 3. Abilitare il rilevamento automatico dei percorsi multipli. Digitare:
    
     `mpathconf --find_multipaths y`
    
-    Verrà modificata la sezione delle impostazioni predefinite del file `multipath.conf` , come illustrato di seguito:
+    Verrà modificato hello sezione Impostazioni predefinite del `multipath.conf` come illustrato di seguito:
    
         defaults {
         find_multipaths yes
@@ -211,12 +211,12 @@ I dispositivi supportati da percorsi multipli possono essere individuati e confi
         }
 
 ### <a name="step-2-configure-multipathing-for-storsimple-volumes"></a>Passaggio 2: Configurare i percorsi multipli per volumi StorSimple
-Per impostazione predefinita, tutti i dispositivi sono elencati nella blacklist del file multipath.conf neri e verranno ignorati. È necessario creare eccezioni di blacklist per consentire percorsi multipli per volumi dai dispositivi StorSimple.
+Per impostazione predefinita, tutti i dispositivi sono elencati nel file multipath.conf hello neri e verranno ignorati. È necessario toocreate blacklist eccezioni tooallow Multipath per volumi da dispositivi StorSimple.
 
-1. Modificare il file `/etc/mulitpath.conf` . Digitare:
+1. Modifica hello `/etc/mulitpath.conf` file. Digitare:
    
     `vi /etc/multipath.conf`
-2. Trovare la sezione blacklist_exceptions nel file multipath.conf. Il dispositivo StorSimple deve essere elencato come eccezione di blacklist in questa sezione. È possibile rimuovere il commento dalle righe pertinenti in questo file per modificarlo, come mostrato di seguito (usare solo il modello specifico del dispositivo in uso):
+2. Nella sezione hello blacklist_exceptions nel file multipath.conf hello. Il dispositivo StorSimple deve toobe elencato come eccezione blacklist in questa sezione. È possibile rimuovere il commento rilevanti righe toomodify questo file, come illustrato di seguito (utilizzare solo hello modello specifico di dispositivo hello in uso):
    
         blacklist_exceptions {
             device {
@@ -230,12 +230,12 @@ Per impostazione predefinita, tutti i dispositivi sono elencati nella blacklist 
            }
 
 ### <a name="step-3-configure-round-robin-multipathing"></a>Passaggio 3: Configurare percorsi multipli round robin
-Questo algoritmo di bilanciamento del carico usa tutti i percorsi multipli disponibili per il controller attivo in modo bilanciato e round robin.
+Questo algoritmo di bilanciamento del carico utilizza tutti i controller attivo di hello toohello multipaths disponibile in modo bilanciato e round robin.
 
-1. Modificare il file `/etc/multipath.conf` . Digitare:
+1. Modifica hello `/etc/multipath.conf` file. Digitare:
    
     `vi /etc/multipath.conf`
-2. Nella sezione `defaults` impostare `path_grouping_policy` su `multibus`. `path_grouping_policy` specifica il criterio di raggruppamento dei percorsi predefinito da applicare ai percorsi multipli non specificati. La sezione delle impostazioni predefinite avrà l'aspetto seguente.
+2. In hello `defaults` sezione, hello set `path_grouping_policy` troppo`multibus`. Hello `path_grouping_policy` multipaths toounspecified hello predefinito percorso raggruppamento criteri tooapply specifica. sezione Impostazioni predefinite di Hello apparirà come illustrato di seguito.
    
         defaults {
                 user_friendly_names yes
@@ -243,7 +243,7 @@ Questo algoritmo di bilanciamento del carico usa tutti i percorsi multipli dispo
         }
 
 > [!NOTE]
-> I valori più comuni di `path_grouping_policy` includono:
+> valori più comuni di Hello `path_grouping_policy` includono:
 > 
 > * failover = 1 percorso per ogni gruppo prioritario
 > * multibus = tutti i percorsi validi in 1 gruppo prioritario
@@ -251,62 +251,62 @@ Questo algoritmo di bilanciamento del carico usa tutti i percorsi multipli dispo
 > 
 
 ### <a name="step-4-enable-multipathing"></a>Passaggio 4: Abilitare i percorsi multipli
-1. Riavviare il daemon `multipathd` . Digitare:
+1. Riavviare hello `multipathd` daemon. Digitare:
    
     `service multipathd restart`
-2. Si otterrà un output come quello illustrato di seguito:
+2. output di Hello saranno come indicato di seguito:
    
         [root@centosSS ~]# service multipathd start
         Starting multipathd daemon:  [OK]
 
 ### <a name="step-5-verify-multipathing"></a>Passaggio 5: Verificare i percorsi multipli
-1. Assicurarsi prima di tutto che venga stabilita la connessione iSCSI con il dispositivo StorSimple come indicato di seguito:
+1. Assicurarsi innanzitutto che viene stabilita la connessione iSCSI con dispositivo StorSimple hello come indicato di seguito:
    
    a. Trovare il dispositivo StorSimple. Digitare:
       
     ```
-    iscsiadm -m discovery -t sendtargets -p  <IP address of network interface on the device>:<iSCSI port on StorSimple device>
+    iscsiadm -m discovery -t sendtargets -p  <IP address of network interface on hello device>:<iSCSI port on StorSimple device>
     ```
     
-    Quando l'indirizzo IP per DATA0 è 10.126.162.25 e viene aperta la porta 3260 sul dispositivo StorSimple per il traffico iSCSI in uscita, l'output è il seguente:
+    output di Hello quando l'indirizzo IP DATA0 è 10.126.162.25 e porta 3260 viene aperta nel dispositivo StorSimple hello per il traffico in uscita iSCSI è come illustrato di seguito:
     
     ```
     10.126.162.25:3260,1 iqn.1991-05.com.microsoft:storsimple8100-shx0991003g00dv-target
     10.126.162.26:3260,1 iqn.1991-05.com.microsoft:storsimple8100-shx0991003g00dv-target
     ```
 
-    Copiare il nome qualificato iSCSI del dispositivo StorSimple, `iqn.1991-05.com.microsoft:storsimple8100-shx0991003g00dv-target`, dall'output precedente.
+    Hello Copia nome IQN del dispositivo StorSimple `iqn.1991-05.com.microsoft:storsimple8100-shx0991003g00dv-target`, da hello output precedente.
 
-   b. Connettersi al dispositivo usando il nome qualificato iSCSI di destinazione. In questo caso, la destinazione iSCSI è il dispositivo StorSimple. Digitare:
+   b. Collegare il dispositivo di toohello tramite iSCSI di destinazione. dispositivo StorSimple Hello è una destinazione iSCSI di hello qui. Digitare:
 
     ```
     iscsiadm -m node --login -T <IQN of iSCSI target>
     ```
 
-    La figura seguente mostra l'output con un nome qualificato iSCSI `iqn.1991-05.com.microsoft:storsimple8100-shx0991003g00dv-target`. L'output indica che è stata effettuata la connessione alle due interfacce di rete abilitate per iSCSI sul dispositivo.
+    Hello esempio seguente viene illustrato l'output con una nome qualificato iSCSI di destinazione di `iqn.1991-05.com.microsoft:storsimple8100-shx0991003g00dv-target`. output di Hello indica che sono stati connessi toohello due interfacce di rete abilitate per iSCSI sul dispositivo.
 
     ```
-    Logging in to [iface: eth0, target: iqn.1991-05.com.microsoft:storsimple8100-shx0991003g00dv-target, portal: 10.126.162.25,3260] (multiple)
-    Logging in to [iface: eth1, target: iqn.1991-05.com.microsoft:storsimple8100-shx0991003g00dv-target, portal: 10.126.162.25,3260] (multiple)
-    Logging in to [iface: eth0, target: iqn.1991-05.com.microsoft:storsimple8100-shx0991003g00dv-target, portal: 10.126.162.26,3260] (multiple)
-    Logging in to [iface: eth1, target: iqn.1991-05.com.microsoft:storsimple8100-shx0991003g00dv-target, portal: 10.126.162.26,3260] (multiple)
-    Login to [iface: eth0, target: iqn.1991-05.com.microsoft:storsimple8100-shx0991003g00dv-target, portal: 10.126.162.25,3260] successful.
-    Login to [iface: eth1, target: iqn.1991-05.com.microsoft:storsimple8100-shx0991003g00dv-target, portal: 10.126.162.25,3260] successful.
-    Login to [iface: eth0, target: iqn.1991-05.com.microsoft:storsimple8100-shx0991003g00dv-target, portal: 10.126.162.26,3260] successful.
-    Login to [iface: eth1, target: iqn.1991-05.com.microsoft:storsimple8100-shx0991003g00dv-target, portal: 10.126.162.26,3260] successful.
+    Logging in too[iface: eth0, target: iqn.1991-05.com.microsoft:storsimple8100-shx0991003g00dv-target, portal: 10.126.162.25,3260] (multiple)
+    Logging in too[iface: eth1, target: iqn.1991-05.com.microsoft:storsimple8100-shx0991003g00dv-target, portal: 10.126.162.25,3260] (multiple)
+    Logging in too[iface: eth0, target: iqn.1991-05.com.microsoft:storsimple8100-shx0991003g00dv-target, portal: 10.126.162.26,3260] (multiple)
+    Logging in too[iface: eth1, target: iqn.1991-05.com.microsoft:storsimple8100-shx0991003g00dv-target, portal: 10.126.162.26,3260] (multiple)
+    Login too[iface: eth0, target: iqn.1991-05.com.microsoft:storsimple8100-shx0991003g00dv-target, portal: 10.126.162.25,3260] successful.
+    Login too[iface: eth1, target: iqn.1991-05.com.microsoft:storsimple8100-shx0991003g00dv-target, portal: 10.126.162.25,3260] successful.
+    Login too[iface: eth0, target: iqn.1991-05.com.microsoft:storsimple8100-shx0991003g00dv-target, portal: 10.126.162.26,3260] successful.
+    Login too[iface: eth1, target: iqn.1991-05.com.microsoft:storsimple8100-shx0991003g00dv-target, portal: 10.126.162.26,3260] successful.
     ```
 
-    Se in questo caso vengono visualizzati due percorsi e una sola interfaccia host, sarà necessario abilitare entrambe le interfacce sull'host per iSCSI. Consultare le [istruzioni dettagliate nella documentazione Linux](https://access.redhat.com/documentation/Red_Hat_Enterprise_Linux/5/html/Online_Storage_Reconfiguration_Guide/iscsioffloadmain.html).
+    Se viene visualizzato un solo host interfaccia e i due percorsi, è necessario tooenable entrambe le interfacce hello nell'host per iSCSI. È possibile seguire hello [dettagliate nella documentazione di Linux](https://access.redhat.com/documentation/Red_Hat_Enterprise_Linux/5/html/Online_Storage_Reconfiguration_Guide/iscsioffloadmain.html).
 
-2. Un volume viene esposto al server CentOS dal dispositivo StorSimple. Per altre informazioni, vedere la procedura [Passaggio 6: Creare un volume](storsimple-deployment-walkthrough.md#step-6-create-a-volume) nel portale di Azure classico dal dispositivo StorSimple.
+2. Server CentOS toohello esposto dal dispositivo StorSimple hello è un volume. Per ulteriori informazioni, vedere [passaggio 6: creare un volume](storsimple-deployment-walkthrough.md#step-6-create-a-volume) tramite hello portale di Azure classico nel dispositivo StorSimple.
 
-3. Verificare i percorsi disponibili. Digitare:
+3. Verificare i percorsi disponibili hello. Digitare:
 
       ```
       multipath –l
       ```
 
-      L'esempio seguente illustra l'output di due interfacce di rete su un dispositivo StorSimple connesso a una singola interfaccia di rete host con due percorsi disponibili.
+      Hello di esempio seguente viene illustrato l'output di hello per le due interfacce di rete su un'interfaccia di rete StorSimple dispositivo connesso tooa singolo host con due percorsi disponibili.
 
         ```
         mpathb (36486fd20cc081f8dcd3fccb992d45a68) dm-3 MSFT,STORSIMPLE 8100
@@ -316,7 +316,7 @@ Questo algoritmo di bilanciamento del carico usa tutti i percorsi multipli dispo
         `- 6:0:0:1 sdd 8:48 active undef running
         ```
 
-        The following example shows the output for two network interfaces on a StorSimple device connected to two host network interfaces with four available paths.
+        hello following example shows hello output for two network interfaces on a StorSimple device connected tootwo host network interfaces with four available paths.
 
         ```
         mpathb (36486fd27a23feba1b096226f11420f6b) dm-2 MSFT,STORSIMPLE 8100
@@ -328,57 +328,57 @@ Questo algoritmo di bilanciamento del carico usa tutti i percorsi multipli dispo
         `- 16:0:0:0 sde 8:64 active undef running
         ```
 
-        After the paths are configured, refer to the specific instructions on your host operating system (Centos 6.6) to mount and format this volume.
+        After hello paths are configured, refer toohello specific instructions on your host operating system (Centos 6.6) toomount and format this volume.
 
 ## <a name="troubleshoot-multipathing"></a>Risoluzione dei problemi relativi ai percorsi multipli
 Questa sezione contiene alcuni suggerimenti utili in caso di problemi durante la configurazione dei percorsi multipli.
 
-D: Le modifiche apportate al file `multipath.conf` non hanno effetto.
+D: Non vengono visualizzati le modifiche di hello in `multipath.conf` file diventino effettive.
 
-A. Se sono state apportate modifiche al file `multipath.conf` , è necessario riavviare il servizio di percorsi multipli. Digitare il seguente comando:
+R. Se sono state apportate toohello eventuali modifiche `multipath.conf` file, sarà necessario del servizio di toorestart hello percorsi multipli. Digitare hello comando seguente:
 
     service multipathd restart
 
-D: Sono state abilitate due interfacce di rete sul dispositivo StorSimple e due interfacce di rete sull'host. Nell'elenco dei percorsi disponibili sono visibili solo due percorsi, mentre dovrebbero essercene quattro.
+D: È stata attivata due interfacce di rete nel dispositivo StorSimple hello e due interfacce di rete sull'host hello. Quando elencano i percorsi disponibili hello, viene visualizzato solo due percorsi. Previsto toosee quattro percorsi disponibili.
 
-A. Assicurarsi che i due percorsi siano nella stessa subnet e instradabili. Se le interfacce di rete si trovano su VLAN diverse e non sono instradabili, verranno visualizzati solo due percorsi. Un modo per verificare questa condizione è assicurarsi che sia possibile raggiungere entrambe le interfacce host da un'interfaccia di rete nel dispositivo StorSimple. Sarà necessario [contattare il supporto tecnico Microsoft](storsimple-contact-microsoft-support.md) perché questa verifica può essere eseguita solo in una sessione di supporto.
+R. Assicurarsi che siano percorsi hello due su hello stessa subnet e instradabile. Se sono interfacce di rete hello su VLAN diversi e non è instradabile, verrà visualizzato solo due percorsi. Unidirezionale tooverify equivale toomake assicurarsi che entrambe le interfacce host hello da un'interfaccia di rete nel dispositivo StorSimple hello può raggiungere. È necessario troppo[contattare il supporto Microsoft](storsimple-contact-microsoft-support.md) come questa verifica può essere eseguita solo tramite una sessione di supporto.
 
 D: Nell'elenco dei percorsi disponibili non è visualizzato alcun output.
 
-A. In genere, la mancata visualizzazione di percorsi multipli suggerisce un problema con il daemon di percorsi multipli ed è probabile che qualsiasi problema riguardi il file `multipath.conf` .
+R. In genere, non possono visualizzare tutti i percorsi con percorsi multipli suggerisce un problema con il daemon di percorsi multipli hello ed è probabile che qualsiasi problema risiede nella hello `multipath.conf` file.
 
-Potrebbe anche essere opportuno verificare che si possano visualizzare alcuni dischi dopo aver eseguito la connessione alla destinazione, perché se non si riceve alcuna risposta dagli elenchi dei percorsi multipli è probabile che non sia presente alcun disco.
+Sarebbe inoltre controllare che è possibile visualizzare alcuni dischi dopo la connessione di destinazione, toohello come alcuna risposta da elenchi di percorsi multipli hello non potrebbe inoltre risultare che non includa alcun disco.
 
-* Per ripetere la scansione del bus iSCSI, usare il comando seguente:
+* Utilizzare hello bus SCSI hello toorescan di comando seguente:
   
     `$ rescan-scsi-bus.sh `(parte del pacchetto sg3_utils)
-* Digitare i comandi seguenti:
+* Digitare hello seguenti comandi:
   
     `$ dmesg | grep sd*`
      
-     Oppure
+     Or
   
     `$ fdisk –l`
   
     Verranno restituite informazioni dettagliate sui dischi aggiunti di recente.
-* Per determinare se si tratta di un disco StorSimple, usare i comandi seguenti:
+* Se si tratta di un disco di StorSimple, toodetermine utilizzare hello seguenti comandi:
   
     `cat /sys/block/<DISK>/device/model`
   
     Verrà restituita una stringa, che determinerà se si tratta di un disco StorSimple.
 
-Una causa meno probabile, ma possibile, potrebbe anche essere un PID iSCSI non aggiornato. Per disconnettersi dalle sessioni iSCSI usare il comando seguente:
+Una causa meno probabile, ma possibile, potrebbe anche essere un PID iSCSI non aggiornato. Utilizzare hello successivo comando toolog off da sessioni iSCSI hello:
 
     iscsiadm -m node --logout -p <Target_IP>
 
-Ripetere questo comando per tutte le interfacce di rete connesse nella destinazione iSCSI, ovvero il dispositivo StorSimple. Dopo aver effettuato la disconnessione da tutte le sessioni iSCSI, usare il nome qualificato iSCSI di destinazione per ristabilire la sessione iSCSI. Digitare il seguente comando:
+Ripetere questo comando per tutte le interfacce di rete connessa hello in destinazione iSCSI hello, che è il dispositivo StorSimple. Dopo aver eseguito l'accesso da tutte le sessioni iSCSI di hello, utilizzare una sessione iSCSI hello iSCSI destinazione IQN tooreestablish hello. Digitare hello comando seguente:
 
     iscsiadm -m node --login -T <TARGET_IQN>
 
 
 D: Come è possibile verificare che il dispositivo sia incluso nell'elenco dei dispositivi consentiti?
 
-A. Per verificare che il dispositivo sia incluso nell'elenco dei dispositivi consentiti, usare il comando interattivo di risoluzione dei problemi seguente:
+R. Se il dispositivo è abilitata, tooverify utilizzare hello comando interattivo sulla risoluzione dei problemi seguente:
 
     multipathd –k
     multipathd> show devices
@@ -417,7 +417,7 @@ A. Per verificare che il dispositivo sia incluso nell'elenco dei dispositivi con
     dm-3 devnode blacklisted, unmonitored
 
 
-Per altre informazioni, vedere come [usare il comando interattivo di risoluzione dei problemi per i percorsi multipli](http://www.centos.org/docs/5/html/5.1/DM_Multipath/multipath_config_confirm.html).
+Per ulteriori informazioni, visitare troppo[utilizzare risoluzione dei problemi di un comando interattivo per percorsi multipli](http://www.centos.org/docs/5/html/5.1/DM_Multipath/multipath_config_confirm.html).
 
 ## <a name="list-of-useful-commands"></a>Elenco di comandi utili
 | Digitare  | Comando | Descrizione |
@@ -425,24 +425,24 @@ Per altre informazioni, vedere come [usare il comando interattivo di risoluzione
 | **iSCSI** |`service iscsid start` |Avviare il servizio iSCSI |
 | &nbsp; |`service iscsid stop` |Arrestare il servizio iSCSI |
 | &nbsp; |`service iscsid restart` |Riavviare il servizio iSCSI |
-| &nbsp; |`iscsiadm -m discovery -t sendtargets -p <TARGET_IP>` |Individuare le destinazioni disponibili all'indirizzo specificato |
-| &nbsp; |`iscsiadm -m node --login -T <TARGET_IQN>` |Accedere alla destinazione iSCSI |
-| &nbsp; |`iscsiadm -m node --logout -p <Target_IP>` |Disconnettersi dalla destinazione iSCSI |
+| &nbsp; |`iscsiadm -m discovery -t sendtargets -p <TARGET_IP>` |Individuare le destinazioni disponibili in hello specificato indirizzo |
+| &nbsp; |`iscsiadm -m node --login -T <TARGET_IQN>` |Accedere alla destinazione iSCSI toohello |
+| &nbsp; |`iscsiadm -m node --logout -p <Target_IP>` |Disconnettersi dalla destinazione iSCSI hello |
 | &nbsp; |`cat /etc/iscsi/initiatorname.iscsi` |Stampare il nome dell'iniziatore iSCSI |
-| &nbsp; |`iscsiadm –m session –s <sessionid> -P 3` |Controllare lo stato della sessione e del volume iSCSI individuati nell'host |
-| &nbsp; |`iscsi –m session` |Mostra tutte le sessioni iSCSI stabilite tra l'host e il dispositivo StorSimple |
+| &nbsp; |`iscsiadm –m session –s <sessionid> -P 3` |Controllare lo stato di hello di sessione iSCSI hello e volume individuato nell'host di hello |
+| &nbsp; |`iscsi –m session` |Mostra tutte le sessioni iSCSI hello stabilite tra host hello e il dispositivo StorSimple hello |
 |  | | |
 | **Percorsi multipli** |`service multipathd start` |Avviare il daemon a percorsi multipli |
 | &nbsp; |`service multipathd stop` |Arrestare il daemon a percorsi multipli |
 | &nbsp; |`service multipathd restart` |Riavviare il daemon a percorsi multipli |
-| &nbsp; |`chkconfig multipathd on` </br> Oppure </br> `mpathconf –with_chkconfig y` |Abilitare l'avvio del daemon a percorsi multipli all'avvio del computer |
-| &nbsp; |`multipathd –k` |Avviare la console interattiva per la risoluzione dei problemi |
+| &nbsp; |`chkconfig multipathd on` </br> OPPURE </br> `mpathconf –with_chkconfig y` |Abilitare toostart daemon a percorsi multipli in fase di avvio |
+| &nbsp; |`multipathd –k` |Avviare la console interattiva di hello per la risoluzione dei problemi |
 | &nbsp; |`multipath –l` |Elencare le connessioni e i dispositivi a percorsi multipli |
 | &nbsp; |`mpathconf --enable` |Creare un file mulitpath.conf di esempio in `/etc/mulitpath.conf` |
 |  | | |
 
 ## <a name="next-steps"></a>Passaggi successivi
-Nella configurazione di MPIO sull'host Linux può anche essere necessario consultare i seguenti documenti relativi a CentOS 6.6:
+Come si configura MPIO nell'host di Linux, è necessario anche toohello toorefer CentoS 6.6 documenti seguenti:
 
 * [Configurazione di MPIO su CentOS](http://www.centos.org/docs/5/html/5.1/DM_Multipath/setup_procedure.html)
 * [Guida alla formazione Linux](http://linux-training.be/files/books/LinuxAdm.pdf)

@@ -1,6 +1,6 @@
 ---
-title: Utilizzare un'applicazione gestita di Azure in Marketplace| Microsoft Docs
-description: Descrive come creare un'applicazione gestita di Azure disponibile tramite Marketplace.
+title: Applicazione gestita da Azure Marketplace aaaConsume | Documenti Microsoft
+description: "Describeshow toocreate un'applicazione gestita da Azure che è disponibile tramite Marketplace hello."
 services: azure-resource-manager
 author: ravbhatnagar
 manager: rjmax
@@ -10,44 +10,44 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.date: 07/11/2017
 ms.author: gauravbh; tomfitz
-ms.openlocfilehash: baf456740bddd562391ed64d707f990c8921d710
-ms.sourcegitcommit: 422efcbac5b6b68295064bd545132fcc98349d01
+ms.openlocfilehash: 9ae6e11a3f63eb58a9f3199364b5606a7afe5618
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="consume-azure-managed-applications-in-the-marketplace"></a>Utilizzare un'applicazione gestita di Azure in Marketplace
+# <a name="consume-azure-managed-applications-in-hello-marketplace"></a>Utilizzare Azure dalle applicazioni di hello Marketplace gestito
 
-Come illustrato nell'articolo [Panoramica di Applicazione gestita di Azure](managed-application-overview.md), gli scenari nell'esperienza end-to-end sono due. Nel primo l'editore o il fornitore vuole creare un'applicazione gestita che verrà usata dai clienti. Il secondo è relativo al cliente finale o all'utente dell'applicazione gestita. Questo articolo riguarda il secondo scenario. Descrive come è possibile distribuire un'applicazione gestita da Microsoft Azure Marketplace.
+Come descritto in hello [panoramica delle applicazioni gestite](managed-application-overview.md) articolo, esistono due scenari hello fine tooend esperienza. Uno è publisher hello o fornitore che desiderano toocreate un'applicazione gestita per l'utilizzo da parte dei clienti. Hello è secondo cliente finale hello o consumer hello di un'applicazione hello gestito. Questo articolo descrive il secondo scenario hello. Viene descritto come è possibile distribuire un'applicazione gestita da Microsoft Azure Marketplace hello.
 
-## <a name="create-from-the-marketplace"></a>Creare da Marketplace
+## <a name="create-from-hello-marketplace"></a>Il nome di hello Marketplace
 
-La distribuzione di un'applicazione gestita da Marketplace è simile alla distribuzione di qualsiasi tipo di risorse da Marketplace. 
+La distribuzione di un'applicazione gestita da hello Marketplace è simile toodeploying qualsiasi tipo di risorse da hello Marketplace. 
 
-Nel portale selezionare **+ Nuovo** e cercare il tipo di soluzione da distribuire. Selezionare l'opzione appropriata tra quelle disponibili.
+Nel portale di hello selezionare **+ nuovo** e cercare hello tipo di soluzione toodeploy. Selezionare opzioni hello hello uno che è necessario.
 
 ![cercare le soluzioni](./media/managed-application-consume-marketplace/search-apps.png)
 
-Esaminare il riepilogo dell'applicazione e selezionare **Crea**.
+Rivedere il riepilogo di hello di un'applicazione hello e selezionare **crea**.
 
 ![creare l'applicazione gestita](./media/managed-application-consume-marketplace/create-marketplace-managed-app.png)
 
-Come per qualsiasi altra soluzione, vengono visualizzati i campi per cui fornire i valori. Questi campi variano a seconda del tipo di applicazione gestita creata. 
+Come qualsiasi altra soluzione, vengono visualizzate con valori di campi tooprovide per. Questi campi variano in base a tipo hello di creazione di applicazioni gestite. 
 
 ## <a name="view-support-information"></a>Visualizzare le informazioni di supporto
 
-Dopo avere distribuito l'applicazione gestita, visualizzare le informazioni di supporto per l'applicazione. Nel pannello dell'applicazione gestita sono elencate le informazioni di supporto.
+Dopo aver distribuito l'applicazione gestita, consente di visualizzare informazioni di supporto hello per un'applicazione hello. Nel Pannello di hello applicazione gestita, le informazioni di supporto hello sono elencate.
 
 ![support](./media/managed-application-consume-marketplace/support.png)
 
 ## <a name="view-publisher-permissions"></a>Visualizzare le autorizzazioni dell'editore
 
-Al fornitore che gestisce l'applicazione viene concesso l'accesso alle risorse. Per esaminare queste autorizzazioni, selezionare **Autorizzazioni**.
+fornitore Hello che gestisce l'applicazione viene concessa tooyour di accedere alle risorse. Selezionare le autorizzazioni, toosee **autorizzazioni**.
 
 ![autorizzazioni](./media/managed-application-consume-marketplace/authorizations.png)
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-* Per informazioni sulla pubblicazione di un'applicazione gestita in Marketplace, vedere [Applicazioni gestite di Azure Marketplace](managed-application-author-marketplace.md).
-* Per pubblicare le applicazioni gestite disponibili solo per gli utenti dell'organizzazione, vedere [Creare e pubblicare un'applicazione gestita del catalogo di servizi](managed-application-publishing.md).
-* Per usare le applicazioni gestite disponibili solo per gli utenti dell'organizzazione, vedere [Utilizzare un'applicazione gestita del catalogo di servizi](managed-application-consumption.md).
+* Per informazioni sulla pubblicazione di un'applicazione gestita in hello Marketplace, vedere [applicazioni gestite di Azure Marketplace](managed-application-author-marketplace.md).
+* toopublish gestite le applicazioni che sono solo disponibili toousers nell'organizzazione, vedere [creare e pubblicare l'applicazione di servizio catalogo gestita](managed-application-publishing.md).
+* tooconsume gestite le applicazioni che sono solo disponibili toousers nell'organizzazione, vedere [utilizzare un'applicazione del servizio catalogo gestiti](managed-application-consumption.md).

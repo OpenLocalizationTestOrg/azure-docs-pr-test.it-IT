@@ -1,5 +1,5 @@
 ---
-title: Replica dei dati in Archiviazione di Azure | Documentazione Microsoft
+title: replica aaaData in archiviazione di Azure | Documenti Microsoft
 description: "I dati nell'account di archiviazione di Microsoft Azure vengono replicati per durabilità e disponibilità elevata. Le opzioni di replica includono archiviazione con ridondanza locale (LRS), archiviazione con ridondanza della zona (ZRS), archiviazione con ridondanza geografica (GRS) e archiviazione con ridondanza geografica e accesso in lettura (RA-GRS)."
 services: storage
 documentationcenter: 
@@ -14,36 +14,36 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/15/2017
 ms.author: marsma
-ms.openlocfilehash: b9354484ff5b81e2561d017d039bf2c07a21a423
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 539bc54f57fe8cb661665d2788961a0783b5ae7e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-storage-replication"></a>Replica di Archiviazione di Azure
 
-I dati nell'account di archiviazione di Microsoft Azure vengono sempre replicati per assicurarne la durabilità e la disponibilità elevata. La replica copia i dati nello stesso data center o in uno secondario, a seconda dell'opzione di replica scelta. Consente di proteggere i dati e mantiene operativa l'applicazione in caso di errori hardware temporanei. Se i dati vengono replicati in un secondo data center, la replica li protegge da un errore irreversibile nella posizione primaria.
+dati Hello in di Microsoft Azure è sempre l'account di archiviazione replicata tooensure durabilità e disponibilità elevata. Copia la replica dei dati, all'interno hello stesso data center o tooa secondo data center, a seconda dell'opzione di replica scelto. Replica protegge i dati e mantiene l'applicazione tempo nell'evento hello di errori hardware temporanei. Se i dati vengono replicati tooa secondo data center, è protetto da un errore irreversibile nel percorso primario hello.
 
-Garantisce infine che l'account di archiviazione soddisfi il [Contratto di servizio per Archiviazione](https://azure.microsoft.com/support/legal/sla/storage/) anche in caso di errori. Altre informazioni sulla garanzia di durabilità e disponibilità di Archiviazione di Azure sono reperibili nel Contratto di servizio.
+La replica garantisce che l'account di archiviazione soddisfi hello [contratto a livello di servizio (SLA) per l'archiviazione](https://azure.microsoft.com/support/legal/sla/storage/) anche in faccia hello di errori. Vedere hello contratto di servizio per informazioni sull'archiviazione di Azure garantisce la durabilità e la disponibilità.
 
-Quando si crea un account di archiviazione, è possibile selezionare una delle opzioni di replica seguenti:
+Quando si crea un account di archiviazione, è possibile selezionare una delle seguenti opzioni di replica hello:
 
 * [Archiviazione con ridondanza locale (LRS)](#locally-redundant-storage)
 * [Archiviazione con ridondanza della zona (ZRS).](#zone-redundant-storage)
 * [Archiviazione con ridondanza geografica (GRS)](#geo-redundant-storage)
 * [Archiviazione con ridondanza geografica e accesso in lettura (RA-GRS).](#read-access-geo-redundant-storage)
 
-L'archiviazione con ridondanza geografica e accesso in lettura (RA-GRS) è l'opzione predefinita quando si crea un account di archiviazione.
+Archiviazione con ridondanza geografica e accesso in lettura (RA-GRS) è l'opzione predefinita di hello quando si crea un account di archiviazione.
 
-Nella tabella seguente è riportata una breve panoramica delle differenze tra i vari tipi di archiviazione, mentre nelle sezioni successive verranno forniti altri dettagli su ogni tipo di replica.
+Hello nella tabella seguente fornisce una rapida panoramica delle differenze di hello tra LRS, ZRS, GRS e RA-GRS, mentre ogni tipo di replica in modo più dettagliato nelle sezioni successive.
 
 | Strategia di replica | Archiviazione con ridondanza locale | ZRS | Archiviazione con ridondanza geografica | RA-GRS |
 |:--- |:--- |:--- |:--- |:--- |
 | I dati vengono replicati in più data center. |No |Sì |Sì |Sì |
-| I dati possono essere letti da una posizione secondaria oltre che da quella primaria. |No |No |No |Sì |
+| Dati possono essere letti da una posizione secondaria, nonché la posizione primaria hello. |No |No |No |Sì |
 | Numero di copie di dati mantenute in nodi distinti |3 |3 |6 |6 |
 
-Per informazioni sui prezzi delle varie opzioni di ridondanza, vedere [Prezzi di Archiviazione di Azure](https://azure.microsoft.com/pricing/details/storage/) .
+Vedere [prezzi di archiviazione di Azure](https://azure.microsoft.com/pricing/details/storage/) per informazioni sui prezzi per le opzioni di ridondanza diversi hello.
 
 > [!NOTE]
 > Archiviazione Premium supporta solo l'archiviazione con ridondanza locale. Per informazioni su Archiviazione Premium, vedere [Archiviazione Premium: archiviazione ad alte prestazioni per carichi di lavoro delle macchine virtuali di Azure](storage-premium-storage.md).
@@ -54,42 +54,42 @@ Per informazioni sui prezzi delle varie opzioni di ridondanza, vedere [Prezzi di
 >
 
 ## <a name="locally-redundant-storage"></a>Archiviazione con ridondanza locale
-L'archiviazione con ridondanza locale (LRS) replica i dati tre volte all'interno di un'unità di scala di archiviazione, che è ospitata in un data center nell'area in cui è stato creato l'account di archiviazione. Una richiesta di scrittura viene restituita correttamente dopo che è stata scritta in tutte e tre le repliche. Queste tre repliche risiedono ognuna in domini di errore e domini di aggiornamento distinti all'interno di un'unità di scala di archiviazione.
+Archiviazione localmente ridondante (LRS) consente di replicare i dati tre volte all'interno di un'unità di scala di archiviazione, che è ospitato in un Data Center nell'area di hello in cui viene creato l'account di archiviazione. Una richiesta di scrittura viene restituita correttamente solo dopo che è stato scritto tooall tre repliche. Queste tre repliche risiedono ognuna in domini di errore e domini di aggiornamento distinti all'interno di un'unità di scala di archiviazione.
 
-Un'unità di scala di archiviazione è una raccolta di rack di nodi di archiviazione. Un dominio di errore è un gruppo di nodi che rappresentano un'unità di errore fisica e possono essere considerati come nodi appartenenti allo stesso rack fisico. Un dominio di aggiornamento è un gruppo di nodi che vengono aggiornati contemporaneamente durante il processo di aggiornamento del servizio (implementazione). Le tre repliche vengono distribuite tra domini di aggiornamento e domini di errore all'interno di un'unità di scala di archiviazione per assicurare la disponibilità dei dati anche in caso di errori hardware che influiscono su un singolo rack o quando i nodi vengono aggiornati durante un'implementazione.
+Un'unità di scala di archiviazione è una raccolta di rack di nodi di archiviazione. Un dominio di errore (FD) è un gruppo di nodi che rappresentano un'unità fisica di errore e possono essere considerati come nodi appartenenti toohello stesso rack fisico. Un dominio di aggiornamento (UD) è un gruppo di nodi che vengono aggiornati contemporaneamente durante il processo di hello di un aggiornamento del servizio (implementazione). Hello tre repliche vengono distribuite tra domini di aggiornamento e domini di errore all'interno di un archivio scala unità tooensure che i dati sono disponibili anche se un errore hardware influisce su un singolo rack o quando i nodi vengono aggiornati durante un'implementazione.
 
-L'archiviazione con ridondanza locale è l'opzione più economica e offre meno durata rispetto alle altre opzioni. In caso di emergenza a livello di data center (incendio, saturazione e così via) tutte e tre le repliche potrebbero essere perse o non essere recuperabili. Per ridurre questo rischio, per la maggior parte delle applicazioni è consigliabile l'archiviazione con ridondanza geografica (GRS).
+Ridondanza locale è più economica hello e offre opzioni di tooother di durabilità confrontate minimi. Nell'evento hello di una Data Center di emergenza (incendi, inondazioni e così via) tutte e tre le repliche potrebbero essere perse o irreversibili. Archiviazione con ridondanza geografica (GRS) toomitigate questo rischio, è consigliabile per la maggior parte delle applicazioni.
 
 L'archiviazione con ridondanza locale potrebbe comunque essere utile in determinati scenari:
 
 * Fornisce la larghezza di banda massima più alta delle opzioni di replica di Archiviazione di Azure.
 * Se l'applicazione archivia dati che possono essere ricostruiti facilmente, è consigliabile scegliere l'archiviazione con ridondanza locale.
-* Per alcune applicazioni è necessario replicare i dati solo all'interno di un paese a causa di requisiti di governance dei dati. Un'area abbinata può trovarsi in un altro paese. Per altre informazioni sulle coppie di aree, vedere [Aree di Azure](https://azure.microsoft.com/regions/).
+* Alcune applicazioni sono dati tooreplicating limitato solo all'interno di un paese a causa di requisiti di governance toodata. Un'area abbinata può trovarsi in un altro paese. Per altre informazioni sulle coppie di aree, vedere [Aree di Azure](https://azure.microsoft.com/regions/).
 
 ## <a name="zone-redundant-storage"></a>Archiviazione con ridondanza della zona
-L'archiviazione con ridondanza della zona (ZRS) replica i dati in modo asincrono nei data center all'interno di uno o due aree oltre a memorizzare tre repliche come nell'archiviazione con ridondanza locale, fornendo così una durabilità maggiore rispetto a quest'ultima. I dati archiviati nell'archiviazione con ridondanza della zona sono assicurati anche se il data center principale non è disponibile o recuperabile.
-I clienti che intendono usare l'archiviazione con ridondanza della zona devono tenere presente che:
+Archiviazione con ridondanza della zona (ZRS), i dati vengono replicati in modo asincrono tra più Data Center all'interno di uno o due aree in aggiunta simile repliche toostoring tre del tooLRS, fornendo una durabilità maggiore rispetto a ridondanza locale. Dati archiviati in una zona sono durevoli, anche se i data center principale hello è disponibile o è irreversibile.
+I clienti che pianificano toouse ZRS tenere presente che:
 
 * L'archiviazione con ridondanza della zona è disponibile solo per i BLOB in blocchi negli account di archiviazione di uso generale e supportata esclusivamente nelle versioni del servizio di archiviazione 2014-02-14 e successive.
-* Poiché la replica asincrona implica un ritardo, in caso di un'emergenza locale è possibile che le modifiche non ancora replicate nell'area secondaria vadano perse se non è possibile recuperare i dati dall'area primaria.
-* La replica potrebbe non essere disponibile fino a quando Microsoft non avvia il failover all'area secondaria.
-* Gli account di archiviazione con ridondanza della zona non possono essere convertiti in un secondo momento in account di archiviazione con ridondanza locale o di archiviazione con ridondanza geografica. Allo stesso modo, non è possibile convertire un account di archiviazione con ridondanza locale o di archiviazione con ridondanza geografica in un account di archiviazione con ridondanza della zona.
+* Poiché la replica asincrona implica un ritardo, in caso di hello un'emergenza locale che è possibile che le modifiche che non sono ancora stato replicato toohello secondario andranno perse se non è possibile recuperare dati hello da hello primario.
+* replica Hello potrebbe non essere disponibile fino a quando non Microsoft Avvia failover toohello secondario.
+* Impossibile convertire l'account ZRS successive tooLRS o archiviazione con ridondanza geografica. Analogamente, un account di archiviazione con ridondanza locale o di archiviazione con ridondanza geografica è non può essere convertito di account ZRS tooa.
 * Gli account di archiviazione con ridondanza della zona non dispongono di metriche o funzionalità di registrazione.
 
 ## <a name="geo-redundant-storage"></a>Archiviazione con ridondanza geografica
-Con l'archiviazione con ridondanza geografica (GRS) i dati vengono replicati in un'area secondaria a centinaia di chilometri di distanza dall'area primaria. Se per l'account di archiviazione è stata abilitata l'archiviazione con ridondanza geografica, la durabilità dei dati è assicurata anche in caso di un'interruzione completa dell'alimentazione locale o in situazioni di emergenza in cui l'area primaria non è recuperabile.
+Archiviazione con ridondanza geografica (GRS) consente di replicare i dati tooa area secondaria a centinaia di miglia di distanza area primaria hello. Se l'account di archiviazione con ridondanza geografica abilitata, i dati sono durevoli anche in caso di hello di una completa interruzione dell'alimentazione locale o di emergenza in cui hello area primaria non è recuperabile.
 
-Per un account di archiviazione con l'archiviazione con ridondanza geografica abilitata, il commit di un aggiornamento viene eseguito prima nell'area primaria, dove viene replicato per tre volte. Quindi l'aggiornamento viene replicato in modo asincrono nell'area secondaria, dove viene inoltre replicato tre volte.
+Per un account di archiviazione con ridondanza geografica abilitata, l'area primaria toohello eseguito il commit prima, dove viene replicato per tre volte è un aggiornamento. Quindi l'aggiornamento di hello viene replicato in modo asincrono toohello area secondaria, in cui viene replicato anche tre volte.
 
-Con l'archiviazione con ridondanza geografica, entrambe le aree primaria e secondaria gestiscono repliche tra domini di errore e domini di aggiornamento separati all'interno di un'unità di scala di archiviazione, come descritto per l'archiviazione con ridondanza locale.
+Con l'archiviazione con ridondanza geografica, entrambe le aree primarie e secondarie hello gestire repliche tra domini di errore e l'aggiornamento di domini all'interno di un'unità di scala di archiviazione come descritto con ridondanza locale.
 
 Considerazioni:
 
-* Poiché la replica asincrona implica un ritardo, in caso di un'emergenza a livello di area è possibile che le modifiche non ancora replicate nell'area secondaria vadano perse se non è possibile recuperare i dati dall'area primaria.
-* La replica non è disponibile a meno che Microsoft non avvii il failover all'area secondaria. Se Microsoft avvia un failover nell'area secondaria, al termine del failover si avrà accesso in lettura e scrittura a tali dati. Per altre informazioni, vedere le [indicazioni sul ripristino di emergenza](storage-disaster-recovery-guidance.md). 
-* Per consentire a un'applicazione la lettura dall'area secondaria, l'utente deve abilitare l'archiviazione con ridondanza geografica e accesso in lettura (RA-GRS).
+* Poiché la replica asincrona implica un ritardo, in caso di hello di situazioni di emergenza che è possibile che le modifiche apportate non sono ancora state replicate area secondaria toohello andranno persa se non è possibile recuperare dati hello dall'area primaria hello.
+* replica Hello è disponibile solo se Microsoft avvia area secondaria toohello di failover. Se Microsoft ha avviato un'area secondaria toohello di failover, si avrà accesso in lettura e scrittura dati toothat dopo il failover hello è stata completata. Per altre informazioni, vedere le [indicazioni sul ripristino di emergenza](storage-disaster-recovery-guidance.md). 
+* Se un'applicazione desidera tooread dall'area secondaria hello, utente hello debba abilitare RA-GRS.
 
-L'area primaria viene selezionata durante la creazione di un account di archiviazione. L'area secondaria viene invece determinata in base a quella primaria e non è possibile modificarla. Nella tabella seguente vengono illustrate le associazioni di aree primarie e secondarie:
+Quando si crea un account di archiviazione, selezionare l'area primaria hello account hello. area secondaria Hello viene determinato in base area primaria hello e non può essere modificato. Hello nella tabella seguente mostra hello associazioni di aree primarie e secondarie.
 
 | Primario | Secondario |
 | --- | --- |
@@ -129,64 +129,64 @@ L'area primaria viene selezionata durante la creazione di un account di archivia
 Per informazioni aggiornate sulle aree supportate da Azure, vedere [Aree di Azure](https://azure.microsoft.com/regions/).
 
 >[!NOTE]  
-> L'area secondaria di US Gov Virginia è US Gov Texas. In precedenza, US Gov Virginia usava come area secondaria US Gov Iowa. È in corso la migrazione degli account di archiviazione che usano ancora US Gov Iowa all'area secondaria US Gov Texas. 
+> L'area secondaria di US Gov Virginia è US Gov Texas. In precedenza, US Gov Virginia usava come area secondaria US Gov Iowa. Gli account di archiviazione ancora sfruttando ci Gov Iowa come un'area secondaria vengono migrati Texas Gov tooUS come area secondaria. 
 > 
 > 
 
 ## <a name="read-access-geo-redundant-storage"></a>Archiviazione con ridondanza geografica e accesso in lettura
-L'archiviazione con ridondanza geografica e accesso in lettura(RA-GRS) massimizza la disponibilità dell'account di archiviazione fornendo l'accesso in sola lettura ai dati nella posizione secondaria, oltre alla replica tra due aree assicurata dall'archiviazione con ridondanza geografica.
+Archiviazione con ridondanza geografica e accesso in lettura (RA-GRS) ottimizza la disponibilità dell'account di archiviazione, fornendo i dati di accesso in sola lettura toohello nella posizione secondaria hello, inoltre toohello replica tra due aree fornito dalla funzionalità GRS.
 
-Se si abilita l'accesso in sola lettura ai dati nell'area secondaria, i dati saranno disponibili in un endpoint secondario, oltre che nell'endpoint primario dell'account di archiviazione. L'endpoint secondario è simile a quello primario, ma al nome dell'account viene aggiunto il suffisso `–secondary` . Se ad esempio l'endpoint primario per il servizio BLOB è `myaccount.blob.core.windows.net`, l'endpoint secondario sarà `myaccount-secondary.blob.core.windows.net`. Le chiavi di accesso per l'account di archiviazione sono identiche per gli endpoint primario e secondario.
+Quando si abilita dati di accesso in sola lettura tooyour nell'area secondaria hello, i dati sono disponibili in un endpoint secondario, nell'endpoint primario toohello di aggiunta dell'account di archiviazione. endpoint secondario Hello è endpoint primario a toohello simile, ma aggiunge il suffisso hello `–secondary` toohello nome dell'account. Ad esempio, se l'endpoint primario per il servizio Blob di hello è `myaccount.blob.core.windows.net`, l'endpoint secondario è `myaccount-secondary.blob.core.windows.net`. Hello i tasti di scelta per l'account di archiviazione sono hello stesso per entrambi hello endpoint primario e secondario.
 
 Considerazioni:
 
-* L'applicazione deve gestire l'endpoint con cui interagire quando usa l'archiviazione con ridondanza geografica e accesso in lettura.
-* Poiché la replica asincrona implica un ritardo, in caso di un'emergenza a livello di area è possibile che le modifiche non ancora replicate nell'area secondaria vadano perse se non è possibile recuperare i dati dall'area primaria.
-* Se Microsoft avvia un failover nell'area secondaria, al termine del failover si avrà accesso in lettura e scrittura a tali dati. Per altre informazioni, vedere le [indicazioni sul ripristino di emergenza](storage-disaster-recovery-guidance.md). 
-* L'archiviazione con ridondanza geografica e accesso in lettura è pensata per rispondere a requisiti di disponibilità elevata. Per linee guida sulla scalabilità, consultare l'[elenco di controllo delle prestazioni](storage-performance-checklist.md).
+* L'applicazione ha toomanage endpoint a cui interagisce con quando si utilizza RA-GRS.
+* Poiché la replica asincrona implica un ritardo, in caso di hello di situazioni di emergenza che è possibile che le modifiche apportate non sono ancora state replicate area secondaria toohello andranno persa se non è possibile recuperare dati hello dall'area primaria hello.
+* Se Microsoft avvia area secondaria toohello di failover, si avrà accesso in lettura e scrittura dati toothat dopo il failover hello è stata completata. Per altre informazioni, vedere le [indicazioni sul ripristino di emergenza](storage-disaster-recovery-guidance.md). 
+* L'archiviazione con ridondanza geografica e accesso in lettura è pensata per rispondere a requisiti di disponibilità elevata. Per materiale sussidiario per la scalabilità, vedere l'articolo hello [elenco di controllo delle prestazioni](storage-performance-checklist.md).
 
 ## <a name="frequently-asked-questions"></a>Domande frequenti
 
 <a id="howtochange"></a>
-#### <a name="1-how-can-i-change-the-geo-replication-type-of-my-storage-account"></a>1. Come si può modificare il tipo di replica geografica dell'account di archiviazione?
+#### <a name="1-how-can-i-change-hello-geo-replication-type-of-my-storage-account"></a>1. Come è possibile modificare tipo di replica geografica hello personale dell'account di archiviazione?
 
-   Si può modificare il tipo di replica geografica dell'account di archiviazione, scegliendo tra archiviazione con ridondanza locale, archiviazione con ridondanza geografica e archiviazione con ridondanza geografica e accesso in lettura (RA-GRS) tramite il [portale di Azure](https://portal.azure.com/), [Azure PowerShell](storage-powershell-guide-full.md) o a livello di programmazione usando una delle numerose librerie dei client di archiviazione disponibili. Si noti che gli account di archiviazione con ridondanza della zona non possono essere convertiti in account di archiviazione con ridondanza locale o di archiviazione con ridondanza geografica. Allo stesso modo, non è possibile convertire un account di archiviazione con ridondanza locale o di archiviazione con ridondanza geografica in un account di archiviazione con ridondanza della zona.
+   È possibile modificare tipo di replica geografica hello dell'account di archiviazione tra ridondanza locale, l'archiviazione con ridondanza geografica, e RA-GRS utilizzando hello [portale di Azure](https://portal.azure.com/), [Azure Powershell](storage-powershell-guide-full.md) o a livello di programmazione utilizzando uno dei nostri molti Client di archiviazione Librerie. Si noti che gli account di archiviazione con ridondanza della zona non possono essere convertiti in account di archiviazione con ridondanza locale o di archiviazione con ridondanza geografica. Analogamente, un account di archiviazione con ridondanza locale o di archiviazione con ridondanza geografica è non può essere convertito di account ZRS tooa.
 
 <a id="changedowntime"></a>
-#### <a name="2-will-there-be-any-down-time-if-i-change-the-replication-type-of-my-storage-account"></a>2. Sono previsti tempi di inattività quando si cambia il tipo di replica dell'account di archiviazione?
+#### <a name="2-will-there-be-any-down-time-if-i-change-hello-replication-type-of-my-storage-account"></a>2. Vi sarà qualsiasi tempo di inattività se si cambia il tipo di replica hello personale dell'account di archiviazione?
 
    No, non si verificheranno tempi di inattività.
 
 <a id="changecost"></a>
-#### <a name="3-will-there-be-any-additional-cost-if-i-change-the-replication-type-of-my-storage-account"></a>3. Sono previsti costi aggiuntivi quando si cambia il tipo di replica dell'account di archiviazione?
+#### <a name="3-will-there-be-any-additional-cost-if-i-change-hello-replication-type-of-my-storage-account"></a>3. Vi sarà alcun costo aggiuntivo se si cambia il tipo di replica hello personale dell'account di archiviazione?
 
-   Sì. Il passaggio dall'archiviazione con ridondanza locale all'archiviazione con ridondanza geografica (o con ridondanza geografica e accesso in lettura, RA-GRS) per l'account di archiviazione comporta un addebito aggiuntivo sul traffico in uscita associato alla copia dei dati esistenti dalla posizione primaria alla posizione secondaria. Dopo la copia dei dati iniziali non sono previsti ulteriori addebiti in uscita per la replica geografica dei dati dalla posizione primaria a quella secondaria. I dettagli sui costi per la larghezza di banda sono disponibili nella [pagina dei prezzi di Archiviazione di Azure](https://azure.microsoft.com/pricing/details/storage/blobs/). Se si passa dall'archiviazione con ridondanza geografica all'archiviazione con ridondanza locale non sono previsti costi aggiuntivi, ma i dati verranno eliminati dalla posizione secondaria.
+   Sì. Se si passa dall'archiviazione con ridondanza locale tooGRS (o RA-GRS) dell'account di archiviazione, è necessario comporta un costo aggiuntivo coinvolti nella copia di dati esistenti dal percorso secondario di posizione primaria toohello in uscita. Una volta la copia di dati iniziale hello è senza ulteriori costi aggiuntivi in uscita per la replica dei dati di hello dalla posizione primaria toosecondary hello geografica. i dettagli di Hello per i costi di larghezza di banda sono reperibile in hello [pagina prezzi di archiviazione di Azure](https://azure.microsoft.com/pricing/details/storage/blobs/). Se passa dall'archiviazione con ridondanza geografica tooLRS, non sono previsti costi aggiuntivi, ma i dati verranno eliminati dal percorso secondario hello.
 
 <a id="ragrsbenefits"></a>
 #### <a name="4-how-can-ra-grs-help-me"></a>4. Qual è l'utilità di RA-GRS?
    
-   Con l'archiviazione con ridondanza geografica i dati vengono replicati in un'area secondaria a centinaia di chilometri di distanza dall'area primaria. In questo caso, la durabilità dei dati è assicurata anche in caso di un'interruzione completa dell'alimentazione locale o in situazioni di emergenza in cui l'area primaria non è recuperabile. L'archiviazione RA-GRS include, oltre a questo, la possibilità di leggere i dati dalla posizione secondaria. Per alcune idee su come sfruttare questa possibilità, consultare [Progettazione di applicazioni a disponibilità elevata con archiviazione RA-GRS](storage-designing-ha-apps-with-ragrs.md). 
+   Archiviazione di archiviazione con ridondanza geografica fornisce la replica dei dati da un'area secondaria tooa primario centinaia di miglia di distanza area primaria hello. In tal caso, i dati sono durevoli anche in caso di hello di una completa interruzione dell'alimentazione locale o di emergenza in cui hello area primaria non è recuperabile. Archiviazione RA-GRS include questo oltre ad aggiungere dati hello tooread possibilità di hello dalla posizione secondaria hello. Per alcune idee su come tooleverage questa capacità, consultare troppo[progettazione altamente disponibile di applicazioni mediante spazio di memorizzazione RA-GRS](storage-designing-ha-apps-with-ragrs.md). 
 
 <a id="lastsynctime"></a>
-#### <a name="5-is-there-a-way-for-me-to-figure-out-how-long-it-takes-to-replicate-my-data-from-the-primary-to-the-secondary-region"></a>5. Esiste un modo per determinare il tempo necessario per replicare i dati dall'area primaria a quella secondaria?
+#### <a name="5-is-there-a-way-for-me-toofigure-out-how-long-it-takes-tooreplicate-my-data-from-hello-primary-toohello-secondary-region"></a>5. Esiste un modo per me toofigure out quanto tempo servirebbe tooreplicate dei dati dall'area secondaria di hello toohello primaria?
    
-   Se si usa l'archiviazione RA-GRS, è possibile controllare l'ora dell'ultima sincronizzazione dell'account di archiviazione. Ora ultima sincronizzazione è un valore di data/ora GMT. Tutte le scritture nell'area primaria precedenti all'ora dell'ultima sincronizzazione sono state scritte correttamente nella posizione secondaria, vale a dire che sono disponibili per la lettura dalla posizione secondaria. Le scritture nell'area primaria successive all'ora dell'ultima sincronizzazione possono essere o meno già disponibili per la lettura. È possibile eseguire query su questo valore tramite il [portale di Azure](https://portal.azure.com/), [Azure PowerShell](storage-powershell-guide-full.md) o a livello di programmazione usando l'API REST o una delle librerie dei client di archiviazione. 
+   Se si utilizza l'archiviazione RA-GRS, è possibile controllare hello ora dell'ultima sincronizzazione dell'account di archiviazione. Ora dell'ultima sincronizzazione è un valore di data/ora GMT. tutte le scritture primarie prima di hello ora dell'ultima sincronizzazione sono stati scritti correttamente toohello posizione secondaria, che significa che sono disponibili toobe leggere dal percorso secondario hello. Le scritture primarie dopo hello ora dell'ultima sincronizzazione può o non sia disponibile per le letture ancora. È possibile eseguire query di questo valore utilizzando hello [portale di Azure](https://portal.azure.com/), [Azure PowerShell](storage-powershell-guide-full.md), o livello di programmazione tramite hello API REST o una delle librerie Client di archiviazione hello. 
 
 <a id="outage"></a>
-#### <a name="6-how-can-i-switch-to-the-secondary-region-if-there-is-an-outage-in-the-primary-region"></a>6. Come si fa a passare all'area secondaria se si verifica un'interruzione nell'area primaria?
+#### <a name="6-how-can-i-switch-toohello-secondary-region-if-there-is-an-outage-in-hello-primary-region"></a>6. Come è possibile passare area secondaria toohello se è presente un'interruzione del servizio nell'area primaria hello?
    
-   Consultare l'articolo [Cosa fare se si verifica un'interruzione di Archiviazione di Azure](storage-disaster-recovery-guidance.md) per altri dettagli.
+   Consultare l'articolo toohello [quali toodo se si verifica un'interruzione di servizio di archiviazione Azure](storage-disaster-recovery-guidance.md) per altri dettagli.
 
 <a id="rpo-rto"></a>
-#### <a name="7-what-is-the-rpo-and-rto-with-grs"></a>7. Quali sono gli obiettivi RPO e RTO con l'archiviazione con ridondanza geografica?
+#### <a name="7-what-is-hello-rpo-and-rto-with-grs"></a>7. Che cos'è hello RPO e RTO con archiviazione con ridondanza geografica?
    
-   Obiettivo del punto di ripristino (RPO, Recovery Point Objective): nel caso dell'archiviazione con ridondanza geografica e dell'archiviazione con ridondanza geografica e accesso in lettura, il servizio di archiviazione esegue la replica geografica asincrona dalla posizione primaria a quella secondaria. Se si verifica una grave emergenza a livello locale ed è necessario eseguire il failover, le modifiche differenziali non ancora replicate geograficamente potrebbero andare perse. Il numero di minuti di potenziale perdita di dati è detto RPO e corrisponde al punto nel tempo in cui è possibile ripristinare i dati. In genere il nostro RPO è inferiore a 15 minuti, anche se attualmente non è previsto alcun contratto di servizio sulla durata della replica geografica.
+   Obiettivo del punto di ripristino (RPO): GRS e RA-GRS, archiviazione hello servizio in modo asincrono dati hello geografica replica dal percorso secondario di hello toohello primario. Se è presente un errore grave internazionale e toobe eseguita dispone di un failover, le modifiche delta recenti non sono stati replicati geograficamente vadano perse. numero di Hello di minuti della potenziali perdita di dati è tooas cui hello RPO (ovvero punto hello nei dati toowhich temporale può essere ripristinato). In genere il nostro RPO è inferiore a 15 minuti, anche se attualmente non è previsto alcun contratto di servizio sulla durata della replica geografica.
 
-   Obiettivo del punto di ripristino (RPO, Recovery Point Objective): è una misura del tempo necessario per eseguire il failover e riportare online l'account di archiviazione se si rende necessario un failover. Il tempo necessario per eseguire il failover include quanto segue:
-    * Tempo necessario per svolgere analisi e determinare se è possibile recuperare i dati nella posizione primaria o se è necessario eseguire un failover.
-    * Failover dell'account mediante modifica delle voci relative al DNS primario in modo che puntino alla posizione secondaria.
+   Obiettivo tempo di ripristino (RTO): Questa è una misura di tempo impiegato ci toodo hello failover e tornare account di archiviazione hello online se si dispone di un failover toodo. Hello ora toodo hello failover include seguente hello:
+    * tempo di Hello ci ha tooinvestigate e determinare se è possibile ripristinare i dati di hello nella posizione primaria hello o se è necessario toodo un failover.
+    * Account di failover hello modificando hello primario DNS voci toopoint toohello posizione secondaria.
 
-   Prendiamo molto seriamente la responsabilità di salvaguardare i dati degli utenti, pertanto se esiste la possibilità di recuperare i dati il failover non verrà eseguito e ci concentreremo sul recupero dei dati nella posizione primaria. In futuro, intendiamo fornire un'API che consenta agli utenti di attivare il failover a livello di account e dunque di controllare personalmente l'obiettivo RTO, ma attualmente non è disponibile.
+   È responsabilità del hello di mantenere i dati molto grave, pertanto se è presente qualsiasi possibilità di ripristino dei dati di hello, verrà consigliabile evitare di effettuare il failover hello e concentrare l'attenzione sul ripristino di dati hello nella posizione primaria hello. In futuro hello, contiamo tooallow tooprovide un'API si tootrigger un failover a un livello di account, che quindi consentirebbe toocontrol hello RTO personalmente, ma questo non è ancora disponibile.
    
 ## <a name="next-steps"></a>Passaggi successivi
 * [Progettazione di applicazioni a disponibilità elevata con archiviazione RA-GRS](storage-designing-ha-apps-with-ragrs.md)

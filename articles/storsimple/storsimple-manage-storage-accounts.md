@@ -1,6 +1,6 @@
 ---
-title: Gestire l'account di archiviazione StorSimple | Microsoft Docs
-description: Viene illustrato come utilizzare la pagina Configura di StorSimple Manager per aggiungere, modificare, eliminare o ruotare le chiavi di protezione per un account di archiviazione.
+title: aaaManage l'account di archiviazione StorSimple | Documenti Microsoft
+description: "Viene illustrato come è possibile utilizzare hello tooadd pagina Configura StorSimple Manager, modificare, eliminare o le chiavi di sicurezza hello Ruota per un account di archiviazione."
 services: storsimple
 documentationcenter: NA
 author: SharS
@@ -14,33 +14,33 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 04/29/2016
 ms.author: v-sharos
-ms.openlocfilehash: 68b767c9c93f2daff476a21029b9813f347590b5
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 78f408818ee8532dfaac445200048145547c987c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-the-storsimple-manager-service-to-manage-your-storage-account"></a>Utilizzare il servizio StorSimple Manager per gestire l’account di archiviazione
+# <a name="use-hello-storsimple-manager-service-toomanage-your-storage-account"></a>Utilizzare toomanage servizio StorSimple Manager di hello account di archiviazione
 ## <a name="overview"></a>Panoramica
-La pagina **Configura** presenta tutti i parametri di servizio globali che possono essere creati nel servizio StorSimple Manager. Questi parametri possono essere applicati a tutti i dispositivi connessi al servizio e includono:
+Hello **configura** pagina presenta tutti i parametri di servizio globale hello che possono essere creati in hello servizio StorSimple Manager. Questi parametri possono essere applicati tooall hello dispositivi toohello servizio connesso e includono:
 
 * Account di archiviazione 
 * Modelli di larghezza di banda 
 * Record di controllo di accesso 
 
-In questa esercitazione viene illustrato come utilizzare la pagina **Configura** per aggiungere, modificare o eliminare gli account di archiviazione o ruotare le chiavi di protezione per un account di archiviazione.
+In questa esercitazione viene illustrato come utilizzare hello **configura** pagina tooadd, modificare o eliminare gli account di archiviazione o ruotare le chiavi di sicurezza hello per un account di archiviazione.
 
  ![Pagina Configura](./media/storsimple-manage-storage-accounts/HCS_ConfigureService.png)  
 
-Gli account di archiviazione contengono le credenziali utilizzate dal dispositivo per accedere all'account di archiviazione con il provider di servizi cloud. Per gli account di archiviazione di Microsoft Azure, queste sono le credenziali, ad esempio il nome dell'account e la chiave di accesso primaria. 
+Gli account di archiviazione contengono le credenziali hello hello tooaccess di dispositivo utilizza l'account di archiviazione con il provider del servizio cloud. Per gli account di archiviazione di Microsoft Azure, queste sono le credenziali quali nome dell'account hello e chiave di accesso primaria hello. 
 
-Nella pagina **Configura** tutti gli account di archiviazione creati per la sottoscrizione di fatturazione vengono visualizzati in un formato tabulare che contiene le informazioni seguenti:
+In hello **configura** pagina archiviazione di tutti gli account creati per hello fatturazione sottoscrizione vengono visualizzati in formato tabulare che contiene le seguenti informazioni hello:
 
-* **Nome** : il nome univoco assegnato all'account al momento della creazione.
-* **SSL abilitato** : se SSL è abilitato e la comunicazione tra dispositivo e cloud avviene tramite il canale protetto.
-* **Utilizzato da** : il numero di volumi che utilizzano l’account di archiviazione.
+* **Nome** : hello account toohello nome univoco assegnato al momento della creazione.
+* **SSL abilitato** : indica se hello SSL è abilitato e la comunicazione da dispositivo a cloud è su canale sicuro hello.
+* **Utilizzato da** : numero di volumi che usano l'account di archiviazione hello hello.
 
-Le attività più comuni relative agli account di archiviazione che possono essere eseguite nella pagina **Configura** sono:
+attività più comuni di Hello correlate toostorage account che possono essere eseguite su hello **configura** sono:
 
 * Aggiungere un account di archiviazione 
 * Modificare un account di archiviazione 
@@ -50,21 +50,21 @@ Le attività più comuni relative agli account di archiviazione che possono esse
 ## <a name="types-of-storage-accounts"></a>Tipi di account di archiviazione
 Esistono tre tipi di account di archiviazione che è possibile utilizzare con il dispositivo StorSimple.
 
-* **Account di archiviazione generati automaticamente** : come suggerito dal nome, questo tipo di account di archiviazione viene generato automaticamente quando viene inizialmente creato il servizio. Per altre informazioni sulla creazione di questo account di archiviazione, vedere il [Passaggio 1: Creare un nuovo servizio](storsimple-deployment-walkthrough-u1.md#step-1-create-a-new-service) in [Distribuire il dispositivo StorSimple locale](storsimple-deployment-walkthrough.md). 
-* **Account di archiviazione nella sottoscrizione del servizio** : sono gli account di archiviazione di Azure associati alla stessa sottoscrizione del servizio. Per ulteriori informazioni su come vengono creati questi account di archiviazione, vedere [Informazioni sugli account di archiviazione di Azure](../storage/common/storage-create-storage-account.md). 
-* **Account di archiviazione esterni alla sottoscrizione al servizio** : sono gli account di archiviazione di Azure non associati al servizio e probabilmente esistenti prima che il servizio fosse creato.
+* **Gli account di archiviazione generato automaticamente** : come suggerisce il nome di hello, questo tipo di account di archiviazione viene generato automaticamente quando viene creato il servizio di hello. toolearn ulteriori informazioni su come viene creato l'account di archiviazione, vedere [passaggio 1: creare un nuovo servizio](storsimple-deployment-walkthrough-u1.md#step-1-create-a-new-service) in [distribuire il dispositivo StorSimple locale](storsimple-deployment-walkthrough.md). 
+* **Account di archiviazione nella sottoscrizione al servizio hello** : si tratta degli account di archiviazione di Azure hello associati hello stessa sottoscrizione di quella del servizio hello. toolearn ulteriori informazioni su come creare questi account di archiviazione, vedere [informazioni sugli account di archiviazione di Azure](../storage/common/storage-create-storage-account.md). 
+* **Account di archiviazione all'esterno di sottoscrizione del servizio hello** : si tratta degli account di archiviazione di Azure hello non sono associati al servizio e probabilmente hello era presente prima di servizio è stato creato.
 
 ## <a name="add-a-storage-account"></a>Aggiungere un account di archiviazione
-È possibile aggiungere un account di archiviazione fornendo un nome descrittivo univoco e le credenziali di accesso collegate all'account di archiviazione (con il provider del servizio cloud specificato). È inoltre possibile scegliere di abilitare la modalità SSL (Secure Socket Layer) per creare un canale protetto per la comunicazione di rete tra il dispositivo e il cloud.
+È possibile aggiungere un account di archiviazione fornendo un univoco descrittivo accesso credenziali di nome e che sono collegati toohello account di archiviazione (provider di servizi cloud specificato hello). È anche possibile hello l'abilitazione di un canale sicuro per la comunicazione di rete tra il cloud di dispositivo e hello toocreate modalità di hello sicura sockets layer (SSL).
 
-È possibile creare più account per un provider del servizio cloud specificato. Tenere presente, tuttavia, che dopo aver creato un account di archiviazione non è possibile modificare il provider di servizi cloud.
+È possibile creare più account per un provider del servizio cloud specificato. Tenere presente, tuttavia, dopo aver creato un account di archiviazione, è possibile modificare il provider di servizi cloud hello.
 
-Durante il salvataggio dell'account di archiviazione, il servizio tenta di comunicare con il provider di servizi cloud. Le credenziali e i dati di accesso forniti verranno autenticati in questa fase. L’account di archiviazione viene creato solo se l'autenticazione ha esito positivo. Se l'autenticazione non riesce, verrà visualizzato un messaggio di errore appropriato.
+Durante il salvataggio dell'account di archiviazione hello, servizio hello tenta toocommunicate con provider di servizi cloud. credenziali di Hello e dati di accesso hello fornito verrà essere autenticati in questo momento. Solo se hello autenticazione ha esito positivo, viene creato un account di archiviazione. Se l'autenticazione di hello non riesce, verrà visualizzato un messaggio di errore appropriato.
 
-Gli account di archiviazione di Resource Manager creati nel portale di Azure sono supportati anche con StorSimple. Gli account di archiviazione di Resource Manager non sono visualizzati nell'elenco a discesa per la selezione. Quando si cerca di creare un contenitore di volumi, solo gli account di archiviazione creati nel portale di Azure classico vengono visualizzati. Gli account di archiviazione di Resource Manager devono essere aggiunti tramite la procedura di aggiunta di account di archiviazione descritta di seguito.
+Gli account di archiviazione di Resource Manager creati nel portale di Azure sono supportati anche con StorSimple. Gestione risorse di account di archiviazione non verranno riportata nell'elenco a discesa hello per la selezione durante il tentativo di un contenitore di volumi, toocreate Hello hello solo archiviazione, verranno visualizzati gli account creati nel portale di Azure classico hello. Account di archiviazione di gestione risorse sarà necessario toobe aggiunti utilizzando hello procedure tooadd un account di archiviazione descritto di seguito.
 
 > [!NOTE]
-> La procedura per l'aggiunta di un account di archiviazione varia in base alla versione del software StorSimple in uso. Assicurarsi di seguire la procedura corretta per la versione di StorSimple a disposizione.
+> procedura di Hello per l'aggiunta di un account di archiviazione varia in base a una versione del software StorSimple hello in uso. Impossibile verificare toofollow hello stored procedure corretta per la versione di StorSimple.
 > 
 > 
 
@@ -73,74 +73,74 @@ Gli account di archiviazione di Resource Manager creati nel portale di Azure son
 [!INCLUDE [add-a-storage-account](../../includes/storsimple-configure-new-storage-account.md)]
 
 ## <a name="edit-a-storage-account"></a>Modificare un account di archiviazione
-È possibile modificare un account di archiviazione utilizzato da un contenitore di volumi. Se si modifica un account di archiviazione in uso, l'unico campo disponibile per la modifica è la chiave di accesso dell'account di archiviazione. È possibile fornire la nuova chiave di accesso di archiviazione e salvare le impostazioni aggiornate.
+È possibile modificare un account di archiviazione utilizzato da un contenitore di volumi. Se si modifica un account di archiviazione è attualmente in uso, hello solo campo disponibile toomodify è la chiave di accesso hello hello account di archiviazione. È possibile fornire una nuova chiave di accesso archiviazione hello e salvare le impostazioni di hello aggiornato.
 
-#### <a name="to-edit-a-storage-account"></a>Per modificare un account di archiviazione
-1. Nella pagina di destinazione del servizio, selezionare il servizio, fare doppio clic sul nome del servizio, quindi fare clic su **Configura**.
+#### <a name="tooedit-a-storage-account"></a>tooedit un account di archiviazione
+1. Nella pagina di destinazione del servizio hello, selezionare il servizio, fare doppio clic sul nome del servizio hello e quindi fare clic su **configura**.
 2. Fare clic su **Aggiungi/modifica account di archiviazione**.
-3. Nella finestra di dialogo **Aggiungi/modifica account di archiviazione** :
+3. In hello **Aggiungi/Modifica account di archiviazione** la finestra di dialogo:
    
-   1. Nell'elenco a discesa di **Account di archiviazione**, scegliere un account esistente da modificare. È possibile scegliere anche gli account di archiviazione generati automaticamente in fase di creazione del servizio.
-   2. Se necessario, è possibile modificare la selezione **Abilita modalità SSL** .
-   3. È possibile ruotare le chiavi di accesso dell’account di archiviazione. Vedere [Rotazione delle chiavi degli account di archiviazione](#key-rotation-of-storage-accounts) per ulteriori informazioni su come eseguire la rotazione delle chiavi.
-   4. Fare clic sull'icona del segno di spunta ![icona del segno di spunta](./media/storsimple-manage-storage-accounts/HCS_CheckIcon.png) per salvare le impostazioni. Le impostazioni verranno aggiornate nella pagina **Configura** . Fare clic su **Salva** per salvare le impostazioni appena aggiornate.
+   1. Nell'elenco a discesa hello di **gli account di archiviazione**, scegliere un account esistente che si desidera toomodify. Questo può anche includere gli account di archiviazione hello che sono stati generati automaticamente quando il servizio di hello prima di tutto è stato creato.
+   2. Se necessario, è possibile modificare hello **Abilita modalità SSL** selezione.
+   3. È possibile scegliere toorotate le chiavi di accesso di account di archiviazione. Vedere [rotazione di account di archiviazione delle chiavi](#key-rotation-of-storage-accounts) per ulteriori informazioni su come tooperform rotazione delle chiavi.
+   4. Fare clic sull'icona di controllo hello ![il segno di spunta](./media/storsimple-manage-storage-accounts/HCS_CheckIcon.png) impostazioni hello toosave. le impostazioni di Hello verranno aggiornate in hello **configura** pagina. Fare clic su **salvare** toosave hello appena le impostazioni aggiornate.
       
       ![Modificare un account di archiviazione](./media/storsimple-manage-storage-accounts/HCs_AddEditStorageAccount.png)
 
 ## <a name="delete-a-storage-account"></a>Eliminare un account di archiviazione
 > [!IMPORTANT]
-> È possibile eliminare un account di archiviazione solo se non viene utilizzato da un contenitore di volumi. Se un account di archiviazione viene utilizzato da un contenitore di volumi, eliminare prima il contenitore di volumi e poi l'account di archiviazione associato.
+> È possibile eliminare un account di archiviazione solo se non viene utilizzato da un contenitore di volumi. Se un account di archiviazione è utilizzato da un contenitore di volumi, prima di eliminare il contenitore di volumi hello e quindi eliminare l'account di archiviazione hello associata.
 > 
 > 
 
-#### <a name="to-delete-a-storage-account"></a>Per eliminare un account di archiviazione
-1. Nella pagina di destinazione del servizio StorSimple Manager, selezionare il servizio, fare doppio clic sul nome del servizio, quindi fare clic su **Configura**.
-2. Nell'elenco tabulare di account di archiviazione, passare il mouse sull'account che si desidera eliminare.
-3. Un'icona di eliminazione (**x**) verrà visualizzata nella colonna all'estrema destra di tale account di archiviazione. Fare clic sull’icona **x** per eliminare le credenziali.
-4. Quando viene richiesta la conferma, fare clic su **Sì** per continuare con l'eliminazione. L’elenco tabulare verrà aggiornato per riflettere le modifiche.
+#### <a name="toodelete-a-storage-account"></a>toodelete un account di archiviazione
+1. Nella pagina di destinazione del servizio StorSimple Manager hello, selezionare il servizio, fare doppio clic sul nome del servizio hello e quindi fare clic su **configura**.
+2. Nell'elenco tabulare di hello di account di archiviazione, passare il mouse su account hello che si desidera toodelete.
+3. Un'icona di eliminazione (**x**) verrà visualizzato nella colonna destra estrema hello per tale account di archiviazione. Fare clic su hello **x** credenziali hello toodelete di icona.
+4. Quando viene richiesta la conferma, fare clic su **Sì** toocontinue con l'eliminazione di hello. Elenco tabulare Hello saranno aggiornate tooreflect hello soggetti a modifiche.
 
 ## <a name="key-rotation-of-storage-accounts"></a>Rotazione delle chiavi degli account di archiviazione
 Per motivi di sicurezza, la rotazione delle chiavi è spesso un requisito nei centri dati. 
 
 > [!NOTE]
-> Le seguenti informazioni per la rotazione delle chiavi e la procedura di rotazione si applicano solo agli account di archiviazione di Microsoft Azure. Se si usa un altro provider di servizi cloud, è possibile gestire le chiavi degli account di archiviazione tramite il dashboard di tale provider.
+> procedura di rotazione di informazioni e hello rotazione delle chiavi di Hello applica tooMicrosoft solo gli account di archiviazione di Azure. Se si usa un altro provider di servizi cloud, è possibile gestire le chiavi degli account di archiviazione tramite il dashboard di tale provider.
 > 
 > 
 
-Ogni sottoscrizione di Microsoft Azure può essere associata a uno o più account di archiviazione. L'accesso a tali account di archiviazione è controllato dalle chiavi di sottoscrizione e di accesso associate a ogni account di archiviazione. 
+Ogni sottoscrizione di Microsoft Azure può essere associata a uno o più account di archiviazione. account di accesso al toothese Hello è controllato da sottoscrizione hello e chiavi di accesso per ogni account di archiviazione. 
 
-Quando si crea un account di archiviazione, Microsoft Azure genera due chiavi di accesso alle risorse di archiviazione da 512 bit, che vengono utilizzate per l'autenticazione quando si accede all'account di archiviazione. Fornendo due chiavi di accesso alle risorse di archiviazione, Azure consente di rigenerare le chiavi senza interruzioni per il servizio di archiviazione o l'accesso a tale servizio. La chiave in uso è la chiave *primaria* e la chiave di backup è indicata come chiave *secondaria*. Una di queste due chiavi deve essere specificata quando il dispositivo StorSimple di Microsoft Azure accede al provider di servizi di archiviazione cloud.
+Quando si crea un account di archiviazione, Microsoft Azure genera due chiavi di accesso di archiviazione a 512 bit utilizzati per l'autenticazione quando si accede all'account di archiviazione hello. Presenza di due chiavi di accesso di archiviazione consente chiavi hello tooregenerate senza servizio di archiviazione tooyour interruzione o del servizio di accesso toothat. chiave che è attualmente in uso Hello è hello *primario* chiave e hello chiave di backup è hello cui tooas *secondario* chiave. Una di queste due chiavi deve essere specificata quando il dispositivo StorSimple di Microsoft Azure accede al provider di servizi di archiviazione cloud.
 
 ## <a name="what-is-key-rotation"></a>Che cos'è la rotazione delle chiavi?
-In genere, le applicazioni utilizzano solo una delle chiavi per accedere ai dati. Dopo un determinato periodo di tempo, è possibile impostare alcune applicazioni perché utilizzino la seconda chiave. Dopo avere impostato le applicazioni per la chiave secondaria, è possibile ritirare la prima chiave e quindi generare una nuova chiave. Utilizzando due chiavi in questo modo le applicazioni possono accedere ai dati senza tempi di inattività.
+In genere, le applicazioni utilizzano solo uno di hello chiavi tooaccess i dati. Dopo un determinato periodo di tempo, è possibile che le applicazioni passare seconda chiave di toousing hello. Dopo avere impostato la chiave secondaria toohello di applicazioni, è possibile ritirare prima chiave hello e quindi generare una nuova chiave. L'utilizzo di due chiavi hello in questo modo consente i dati di applicazioni access toohello senza tempi di inattività.
 
-Le chiavi degli account di archiviazione vengono sempre archiviate nel servizio in formato crittografato. Tuttavia, possono essere reimpostate tramite il servizio StorSimple Manager. Il servizio consente di ottenere la chiave primaria e la chiave secondaria per tutti gli account di archiviazione nella stessa sottoscrizione, inclusi gli account creati nel servizio di archiviazione  e gli account di archiviazione predefiniti generati in fase di creazione del servizio StorSimple Manager. Il servizio StorSimple Manager otterrà sempre queste chiavi dal portale di Azure classico e le archivierà in modo crittografato.
+chiavi dell'account di archiviazione Hello vengono sempre archiviate nel servizio hello in formato crittografato. Tuttavia, possono essere reimpostate mediante hello servizio StorSimple Manager. servizio di Hello può ottenere la chiave primaria di hello e chiave secondaria per tutti gli account di archiviazione nella stessa sottoscrizione, inclusi quelli creati nel servizio di archiviazione hello, nonché gli account di archiviazione predefinito hello generato hello di hello hello quando il servizio StorSimple Manager servizio di creazione. servizio StorSimple Manager Hello otterrà sempre queste chiavi dal portale di Azure classico hello e quindi archiviarli in modo crittografato.
 
 ## <a name="rotation-workflow"></a>Flusso di lavoro di rotazione
-Un amministratore di Microsoft Azure può rigenerare oppure modificare la chiave primaria o secondaria accedendo direttamente all'account di archiviazione (tramite il servizio di archiviazione di Microsoft Azure). Il servizio StorSimple Manager non consente di visualizzare la modifica automaticamente.
+Un amministratore di Microsoft Azure può rigenerare o modificare una chiave primaria o secondaria hello accedendo direttamente all'account di archiviazione hello (tramite il servizio di archiviazione di Microsoft Azure hello). Hello servizio StorSimple Manager non rileva automaticamente questa modifica.
 
-Per informare il servizio StorSimple Manager della modifica, sarà necessario accedere al servizio StorSimple Manager, accedere all'account di archiviazione e quindi sincronizzare la chiave primaria o secondaria (a seconda di quale è stata modificata). Quindi, il servizio ottiene la chiave più recente, la crittografa e la invia al dispositivo.
+servizio StorSimple Manager di hello tooinform Roc hello, sarà necessario servizio StorSimple Manager di hello tooaccess, accedere hello account di archiviazione e quindi sincronizzare hello chiave primaria o secondaria (a seconda di quale è stata cambiata). servizio di Hello quindi Ottiene la chiave più recente di hello, consente di crittografare le chiavi di hello e invia hello crittografati dispositivo toohello chiave.
 
-#### <a name="to-synchronize-keys-for-storage-accounts-in-the-same-subscription-as-the-service-azure-only"></a>Per sincronizzare le chiavi per gli account di archiviazione nella stessa sottoscrizione del servizio (solo Azure)
-1. Nella pagina **Servizi** fare clic sulla scheda **Configura**.
+#### <a name="toosynchronize-keys-for-storage-accounts-in-hello-same-subscription-as-hello-service-azure-only"></a>toosynchronize chiavi per gli account di archiviazione in hello stessa sottoscrizione del servizio hello (solo Azure)
+1. In hello **servizi** pagina, fare clic su hello **configura** scheda.
 2. Fare clic su **Aggiungi/modifica account di archiviazione**.
-3. Nella finestra di dialogo procedere come segue:
+3. Nella finestra di dialogo hello hello seguenti:
    
-   1. Selezionare l'account di archiviazione con la chiave che si desidera sincronizzare. Le chiavi degli account di archiviazione vengono visualizzate in forma crittografata.
-   2. Nel servizio StorSimple Manager, è necessario aggiornare la chiave precedentemente modificata nel servizio di archiviazione di Microsoft Azure. Se la chiave di accesso primaria è stata modificata (rigenerata), fare clic su **Sincronizza chiave primaria**. Se è stata modificata la chiave secondaria, fare clic su **Sincronizza chiave secondaria**.
+   1. Selezionare hello account di archiviazione con chiave hello che si desidera toosynchronize. chiavi dell'account di archiviazione Hello vengono crittografate quando vengono visualizzati.
+   2. In hello servizio StorSimple Manager, è necessario chiave hello tooupdate che è stato modificato in precedenza nel servizio di archiviazione di Microsoft Azure hello. Se la chiave di accesso primaria hello è stata cambiata (rigenerata), fare clic su **Sincronizza chiave primaria**. Se la chiave secondaria hello è stata modificata, fare clic su **Sincronizza chiave secondaria**.
       
       ![sincronizzare le chiavi](./media/storsimple-manage-storage-accounts/HCS_KeyRotationStorageAccountSameSubscriptionAsService.png)
 
-#### <a name="to-synchronize-keys-for-storage-accounts-outside-of-the-service-subscription"></a>Per sincronizzare le chiavi per gli account di archiviazione esterni alla sottoscrizione del servizio
-1. Nella pagina **Servizi** fare clic sulla scheda **Configura**.
+#### <a name="toosynchronize-keys-for-storage-accounts-outside-of-hello-service-subscription"></a>toosynchronize chiavi per gli account di archiviazione all'esterno di sottoscrizione del servizio hello
+1. In hello **servizi** pagina, fare clic su hello **configura** scheda.
 2. Fare clic su **Aggiungi/modifica account di archiviazione**.
-3. Nella finestra di dialogo procedere come segue:
+3. Nella finestra di dialogo hello hello seguenti:
    
-   1. Selezionare l'account di archiviazione con la chiave di accesso che si desidera aggiornare.
-   2. Sarà necessario aggiornare la chiave di accesso di archiviazione nel servizio StorSimple Manager. In questo caso, è possibile visualizzare la chiave di accesso di archiviazione. Immettere la nuova chiave nella casella **Chiave di accesso dell'account di archiviazione**. 
+   1. Selezionare hello account di archiviazione con la chiave di accesso hello che si desidera tooupdate.
+   2. Sarà necessario chiave di accesso di archiviazione tooupdate hello in hello servizio StorSimple Manager. In questo caso, è possibile visualizzare chiave di accesso di archiviazione hello. Immettere una nuova chiave hello in hello **Storage Account Access Key**casella y. 
    3. Salvare le modifiche. La chiave di accesso dell’account di archiviazione appare aggiornata.
 
 ## <a name="next-steps"></a>Passaggi successivi
 * Ulteriori informazioni sulla [sicurezza di StorSimple](storsimple-security.md).
-* Ulteriori informazioni sull’ [utilizzo del servizio StorSimple Manager per amministrare il dispositivo StorSimple](storsimple-manager-service-administration.md).
+* Altre informazioni, vedere [utilizzando hello tooadminister servizio StorSimple Manager dispositivo StorSimple](storsimple-manager-service-administration.md).
 

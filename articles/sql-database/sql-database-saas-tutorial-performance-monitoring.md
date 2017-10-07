@@ -1,6 +1,6 @@
 ---
-title: "Monitorare le prestazioni di più database SQL di Azure in un'app SaaS multi-tenant | Microsoft Docs"
-description: Monitorare e gestire le prestazioni di database e pool nell'app SaaS Wingtip del database SQL di Azure
+title: prestazioni aaaMonitor di molti database SQL di Azure in un'applicazione SaaS multi-tenant | Documenti Microsoft
+description: Monitorare e gestire le prestazioni di database e i pool di app di Azure SQL Database Wingtip SaaS hello
 keywords: esercitazione database SQL
 services: sql-database
 documentationcenter: 
@@ -16,73 +16,73 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/26/2017
 ms.author: sstein
-ms.openlocfilehash: 42f727aa40e744916b1a8adf634c10d55880bef0
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: f0d7ba456c485b7de249a56abac3cf4be3857285
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="monitor-performance-of-the-wingtip-saas-application"></a>Monitorare le prestazioni dell'applicazione SaaS Wingtip
+# <a name="monitor-performance-of-hello-wingtip-saas-application"></a>Monitorare le prestazioni dell'applicazione SaaS Wingtip hello
 
-In questa esercitazione vengono illustrati diversi scenari di gestione delle prestazioni chiave usati nelle applicazioni SaaS. Usando un generatore di carico per simulare l'attività in tutti i database tenant, vengono illustrate le funzionalità di monitoraggio e avviso predefinite del database SQL e dei pool elastici.
+In questa esercitazione vengono illustrati diversi scenari di gestione delle prestazioni chiave usati nelle applicazioni SaaS. Usa un'attività di toosimulate generatore di carico in tutti i database tenant, vengono illustrate funzionalità di monitoraggio incorporate hello e le funzionalità di avvisi di Database SQL e i pool elastici.
 
-L'app SaaS Wingtip usa un modello di dati a tenant singolo, in cui ogni sede di eventi (tenant) ha un database proprio. Come molte applicazioni SaaS, il modello di carico di lavoro tenant previsto è imprevedibile e sporadico. In altre parole, le vendite di biglietti possono verificarsi in qualsiasi momento. Per sfruttare i vantaggi di questo modello di utilizzo tipico dei database, i database tenant sono distribuiti in pool di database elastici. I pool elastici consentono di ottimizzare il costo di una soluzione condividendo le risorse tra molti database. Con questo tipo di modello, è importante monitorare l'utilizzo dei database e delle risorse del pool per assicurarsi che i carichi siano bilanciati in modo ragionevole tra i pool. È anche necessario assicurarsi che i singoli database dispongano delle risorse appropriate e che i pool non si avvicinino ai limiti di [eDTU](sql-database-what-is-a-dtu.md). Questa esercitazione illustra alcuni modi per monitorare e gestire i database e i pool, nonché come adottare misure correttive in risposta a variazioni del carico di lavoro.
+app SaaS Wingtip Hello utilizza un modello di dati single-tenant, in cui per ogni sessione (tenant) ha il proprio database. Come molte applicazioni SaaS, hello previsto modello di carico di lavoro tenant è imprevedibile e sporadico. In altre parole, le vendite di biglietti possono verificarsi in qualsiasi momento. tootake vantaggio di questo modello di utilizzo tipico di database, i database vengono distribuiti nel pool di database elastici tenant. Pool elastici ottimizzare costi hello di una soluzione di condivisione risorse tra più database. Con questo tipo di modello, è importante toomonitor database e tooensure di utilizzo di risorse del pool che carica ragionevolmente sono bilanciati da una serie. È inoltre necessario tooensure che singoli database dispongano risorse adeguate, e che i pool non raggiunge le [eDTU](sql-database-what-is-a-dtu.md) limiti. In questa esercitazione vengono illustrati modi toomonitor e gestire database e i pool e come tootake azione correttiva in risposta toovariations nel carico di lavoro.
 
 In questa esercitazione si apprenderà come:
 
 > [!div class="checklist"]
 
-> * Simulare l'utilizzo nei database tenant tramite l'esecuzione di un generatore di carico specificato
-> * Monitorare la risposta dei database tenant a un aumento del carico di lavoro
-> * Potenziare il pool elastico in risposta al carico maggiore per i database
-> * Eseguire il provisioning di un secondo pool elastico per bilanciare il carico delle attività dei database
+> * Simulare l'utilizzo nel database tenant hello eseguendo un generatore di carico specificato
+> * I database tenant hello Monitor come rispondono toohello aumento del carico
+> * Applicare la scalabilità verticale hello pool elastico nel caricamento del database maggiore toohello risposta
+> * Eseguire il provisioning di una seconda attività di database di saldo tooload pool elastico
 
 
-Per completare questa esercitazione, verificare che siano soddisfatti i prerequisiti seguenti:
+toocomplete completamento di questa esercitazione, assicurarsi che i hello seguenti prerequisiti:
 
-* L'app SaaS Wingtip viene distribuita. Per distribuire in meno di cinque minuti, vedere [Distribuire ed esplorare l'applicazione SaaS Wingtip](sql-database-saas-tutorial.md)
+* app SaaS Wingtip Hello viene distribuita. toodeploy in meno di cinque minuti, vedere [Distribuisci ed esplorare l'applicazione SaaS Wingtip hello](sql-database-saas-tutorial.md)
 * Azure PowerShell è installato. Per informazioni dettagliate, vedere [Introduzione ad Azure PowerShell](https://docs.microsoft.com/powershell/azure/get-started-azureps)
 
-## <a name="introduction-to-saas-performance-management-patterns"></a>Introduzione ai modelli di gestione delle prestazioni SaaS
+## <a name="introduction-toosaas-performance-management-patterns"></a>Modelli di gestione delle prestazioni tooSaaS introduzione
 
-La gestione delle prestazioni dei database comprende la compilazione e l'analisi dei dati sulle prestazioni, quindi l'adozione delle misure appropriate adattando i parametri in modo da mantenere tempi di risposta accettabili per l'applicazione. Quando si ospitano più tenant, i pool di database elastici rappresentano una soluzione conveniente per fornire e gestire le risorse per un gruppo di database con carichi di lavoro imprevedibili. Con determinati modelli di carico di lavoro, anche solo due database S3 possono trarre vantaggio dalla gestione in un pool.
+La gestione delle prestazioni del database consiste di compilazione e l'analisi dei dati delle prestazioni e quindi reazione toothis dati modificando i parametri toomaintain tempi di risposta accettabili per l'applicazione. Quando si ospitano più tenant, pool di database elastici sono tooprovide un modo economico e gestire le risorse per un gruppo di database con carichi di lavoro imprevedibile. Con determinati modelli di carico di lavoro, anche solo due database S3 possono trarre vantaggio dalla gestione in un pool.
 
 ![diagramma](./media/sql-database-saas-tutorial-performance-monitoring/app-diagram.png)
 
-I pool e i database nei pool devono essere monitorati per assicurarsi che rimangano entro intervalli di prestazioni accettabili. Ottimizzare la configurazione del pool per soddisfare le esigenze del carico di lavoro aggregato di tutti i database, assicurandosi che le unità eDTU del pool siano appropriate per il carico di lavoro complessivo. Impostare il minimo e il massimo per le unità eDTU per ogni database su valori appropriati per i requisiti specifici di ogni applicazione.
+I pool e dei database hello in pool, devono essere monitorato tooensure rimangono all'interno di intervalli accettabili di prestazioni. Ottimizzare hello pool toomeet hello esigenze di configurazione del carico di aggregazione hello di tutti i database, garantendo che siano appropriate per hello hello Edtu del pool di carico di lavoro complessivo. Regola hello per ogni database min e per ogni database eDTU max valori tooappropriate i valori per i requisiti specifici dell'applicazione.
 
 ### <a name="performance-management-strategies"></a>Strategie per la gestione delle prestazioni
 
-* Per evitare di dover monitorare manualmente le prestazioni, è consigliabile **impostare l'attivazione di avvisi quando i database o i pool escono dai normali intervalli**.
-* Per rispondere alle fluttuazioni a breve termine del livello di prestazioni aggregate di un pool, è possibile **scegliere un livello superiore o inferiore di eDTU per il pool**. Se la fluttuazione si verifica a intervalli regolari o prevedibili, **è possibile pianificare il ridimensionamento automatico del pool**. Ad esempio, ridurre il numero di eDTU quando il carico di lavoro è notoriamente leggero, ad esempio durante la notte o nei fine settimana.
-* Per rispondere a fluttuazioni a lungo termine o a modifiche del numero di database, **è possibile spostare singoli database in altri pool**.
-* Per rispondere ad aumenti a breve termine del carico per *singoli* database, **è possibile rimuovere singoli database da un pool e assegnare loro un livello di prestazioni singolo**. Quando il carico si riduce di nuovo, il database può essere reinserito nel pool. Quando questo tipo di comportamento è noto in anticipo, i database possono essere spostati preventivamente per assicurarsi che abbiano sempre le risorse necessarie ed evitare effetti sugli altri database nel pool. Se si tratta di un requisito prevedibile, come nel caso di un picco di vendite di biglietti per un evento di grande richiamo, questo comportamento di gestione può essere integrato nell'applicazione.
+* tooavoid con toomanually monitoraggio delle prestazioni, è più efficace troppo**impostare gli avvisi che attivano quando i database o i pool Cometa fuori intervalli normali**.
+* le fluttuazioni tooshort termine toorespond hello aggregazione livello di prestazioni di un pool di hello **livello di eDTU del pool può essere scalata verso l'alto o verso il basso**. Se si verifica a intervalli regolari o prevedibili, questo fluttuazione **ridimensionamento pool hello può essere pianificato toooccur automaticamente**. Ad esempio, ridurre il numero di eDTU quando il carico di lavoro è notoriamente leggero, ad esempio durante la notte o nei fine settimana.
+* numero di database, di hello fluttuazioni toolonger termine toorespond o modifiche in **singoli database possono essere spostati in altri pool**.
+* termine tooshort toorespond un aumento *singoli* caricamento del database **singoli database possono essere eseguiti da un pool e assegnati un livello di prestazioni singoli**. Una volta che viene ridotto carico hello, database hello può quindi essere restituito toohello pool. Quando è noto in anticipo, database possono essere spostati preventivamente tooensure hello database sono sempre inclusi hello risorse che necessarie e tooavoid impatto su altri database nel pool di hello. Se questo requisito è stimabile, ad esempio un evento che ha rilevato un urgente di vendite ticket per un evento comune, questo comportamento di gestione può essere integrato in un'applicazione hello.
 
-Il [portale di Azure](https://portal.azure.com) include funzionalità di monitoraggio e avviso predefinite per la maggior parte delle risorse. Per il database SQL, il monitoraggio e gli avvisi sono disponibili per database e pool. Le funzionalità di monitoraggio e avviso predefinite sono specifiche delle risorse, quindi è comodo usarle per un numero limitato di risorse, mentre non sono altrettanto utili quando si usano molte risorse.
+Hello [portale di Azure](https://portal.azure.com) fornisce avvisi nella maggior parte delle risorse e monitoraggio incorporati. Per il database SQL, il monitoraggio e gli avvisi sono disponibili per database e pool. Questo incorporati di monitoraggio e avviso sono specifici delle risorse, pertanto è comodo toouse per un numero limitato di risorse, ma non è molto utile quando si utilizzano molte risorse.
 
-Per gli scenari con volumi elevati in cui si lavora con molte risorse, si può usare [Log Analytics (OMS)](sql-database-saas-tutorial-log-analytics.md). Si tratta di un servizio di Azure separato che fornisce funzionalità di analisi per log di diagnostica e dati di telemetria raccolti in un'area di lavoro di Log Analytics. Log Analytics consente di raccogliere dati di telemetria da molti servizi e supporta l'esecuzione di query e l'impostazione di avvisi.
+Per gli scenari con volumi elevati in cui si lavora con molte risorse, si può usare [Log Analytics (OMS)](sql-database-saas-tutorial-log-analytics.md). Si tratta di un servizio di Azure separato che fornisce funzionalità di analisi per log di diagnostica e dati di telemetria raccolti in un'area di lavoro di Log Analytics. Log Analitica possibile raccogliere dati di telemetria da diversi servizi e tooquery utilizzato e impostare gli avvisi.
 
-## <a name="get-the-wingtip-application-source-code-and-scripts"></a>Ottenere il codice sorgente e gli script dell'applicazione Wingtip
+## <a name="get-hello-wingtip-application-source-code-and-scripts"></a>Ottenere gli script e codice sorgente dell'applicazione hello Wingtip
 
-Gli script dell'app SaaS Wingtip e il codice sorgente dell'applicazione sono disponibili nel repository GitHub [WingtipSaaS](https://github.com/Microsoft/WingtipSaaS). [Procedura per scaricare gli script dell'app SaaS Wingtip](sql-database-wtp-overview.md#download-and-unblock-the-wingtip-saas-scripts).
+Hello Wingtip SaaS script e codice sorgente dell'applicazione sono disponibili in hello [WingtipSaaS](https://github.com/Microsoft/WingtipSaaS) repository github. [I passaggi di script di SaaS Wingtip hello toodownload](sql-database-wtp-overview.md#download-and-unblock-the-wingtip-saas-scripts).
 
 ## <a name="provision-additional-tenants"></a>Eseguire il provisioning di altri tenant
 
-Anche se i pool possono essere una soluzione conveniente anche con solo due database S3, con l'aumentare del numero di database inseriti nel pool migliora anche il risparmio consentito dalla ripartizione dei costi. Per comprendere meglio il funzionamento della gestione e del monitoraggio delle prestazioni su larga scala, per questa esercitazione è necessario distribuire almeno 20 database.
+I pool possono essere conveniente con due database S3, hello più database che si trovano in hello pool hello più economica hello Media effettiva diventa. Per comprendere meglio il funzionamento della gestione e del monitoraggio delle prestazioni su larga scala, per questa esercitazione è necessario distribuire almeno 20 database.
 
-Se è già stato effettuato il provisioning di un batch di tenant in un'esercitazione precedente, saltare la sezione [Simulare l'utilizzo in tutti i database tenant](#simulate-usage-on-all-tenant-databases).
+Se già stato eseguito il provisioning un batch di tenant in un'esercitazione precedente, ignorare toohello [simulare l'utilizzo in tutti i database tenant](#simulate-usage-on-all-tenant-databases) sezione.
 
-1. Aprire …\\Learning Modules\\Performance Monitoring and Management\\*Demo-PerformanceMonitoringAndManagement.ps1* in *PowerShell ISE*. Mantenere lo script aperto durante l'esecuzione dei vari scenari presentati in questa esercitazione.
+1. Apri... \\Moduli learning\\gestione e monitoraggio delle prestazioni\\*Demo PerformanceMonitoringAndManagement.ps1* in hello *PowerShell ISE*. Mantenere lo script aperto durante l'esecuzione dei vari scenari presentati in questa esercitazione.
 1. Impostare **$DemoScenario** = **1**, **Effettuare il provisioning di un batch di tenant**
-1. Premere **F5** per eseguire lo script.
+1. Premere **F5** script hello toorun.
 
-Lo script distribuirà 17 tenant in meno di cinque minuti.
+script Hello distribuirà 17 tenant in meno di cinque minuti.
 
-Lo script *New-TenantBatch* usa un set annidato o collegato di modelli di [Resource Manager](../azure-resource-manager/index.md) che creano un batch di tenant, che copia per impostazione predefinita il database **basetenantdb** nel server di catalogo per creare i nuovi database tenant, quindi li registra nel catalogo e infine li inizializza con il nome del tenant e il tipo di sede. Questo comportamento è coerente con il modo in cui l'app effettua il provisioning di un nuovo tenant. Tutte le modifiche apportate a *basetenantdb* vengono applicate agli eventuali nuovi tenant di cui viene effettuato il provisioning in seguito. Vedere l'[esercitazione sulla gestione dello schema](sql-database-saas-tutorial-schema-management.md) per informazioni su come apportare modifiche allo schema di database tenant *esistenti*, incluso il database *basetenantdb*.
+Hello *New TenantBatch* script utilizza un set di nidificata o collegato [Gestione risorse](../azure-resource-manager/index.md) modelli per la creazione di un batch di tenant, che per impostazione predefinita consente di copiare database hello **basetenantdb** hello catalogo server toocreate hello nuovo database tenant, quindi viene registrata nel catalogo di hello e infine li inizializza con il tipo di nome e la sede tenant hello. Ciò è coerente con la modalità di hello hello app esegue il provisioning di un nuovo tenant. Tutte le modifiche apportate troppo*basetenantdb* vengono applicati tooany stato successivamente eseguito il provisioning di nuovi tenant. Vedere hello [esercitazione la gestione dello Schema](sql-database-saas-tutorial-schema-management.md) toosee come schema toomake cambia troppo*esistente* tenant database (inclusi hello *basetenantdb* database).
 
 ## <a name="simulate-usage-on-all-tenant-databases"></a>Simulare l'utilizzo in tutti i database tenant
 
-È disponibile lo script *Demo-PerformanceMonitoringAndManagement.ps1* che simula un carico di lavoro eseguito su tutti i database tenant. Il carico viene generato usando uno degli scenari di caricamento disponibili:
+Hello *Demo PerformanceMonitoringAndManagement.ps1* script viene specificato che simula un carico di lavoro in esecuzione su tutti i database tenant. carico Hello viene generato utilizzando uno degli scenari di hello carico disponibili:
 
 | Demo | Scenario |
 |:--|:--|
@@ -92,140 +92,140 @@ Lo script *New-TenantBatch* usa un set annidato o collegato di modelli di [Resou
 | 5 | Generare un carico normale e un carico elevato in un singolo tenant (circa 95 DTU)|
 | 6 | Generare un carico non bilanciato su più pool|
 
-Il generatore di carico applica un carico di solo CPU *sintetico* a ogni database tenant. Il generatore avvia un processo per ogni database tenant, che chiama periodicamente una stored procedure che genera il carico. I livelli di carico (espressi in eDTU), la durata e gli intervalli sono diversi per i vari database, in modo da simulare un'attività imprevedibile dei tenant.
+Generatore di carico Hello si applica un *sintetica* database tenant tooevery di carico solo della CPU. Generatore di Hello avvia un processo per ogni database tenant, che chiama periodicamente una stored procedure che genera l'errore carico hello. all'interno di intervalli, la durata e livelli di carico hello (in Edtu) in tutti i database, simulando attività tenant imprevedibile.
 
-1. Aprire …\\Learning Modules\\Performance Monitoring and Management\\*Demo-PerformanceMonitoringAndManagement.ps1* in *PowerShell ISE*. Mantenere lo script aperto durante l'esecuzione dei vari scenari presentati in questa esercitazione.
+1. Apri... \\Moduli learning\\gestione e monitoraggio delle prestazioni\\*Demo PerformanceMonitoringAndManagement.ps1* in hello *PowerShell ISE*. Mantenere lo script aperto durante l'esecuzione dei vari scenari presentati in questa esercitazione.
 1. Impostare **$DemoScenario** = **2**, *Generare un carico di intensità normale*.
-1. Premere **F5** per applicare un carico a tutti i database tenant.
+1. Premere **F5** tooapply tooall un carico ai database tenant.
 
-Wingtip è un'app SaaS e i carichi di lavoro per le app SaaS reali sono in genere sporadici e imprevedibili. Per simulare questa situazione, il generatore produce un carico casuale distribuito tra tutti i tenant. Servono alcuni minuti perché emerga il modello di carico, quindi eseguire il generatore di carico per 3-5 minuti prima di provare a monitorare il carico come descritto nelle sezioni seguenti.
+Wingtip è un'applicazione SaaS e carico di lavoro reale hello in un'app SaaS è in genere sporadici e imprevedibili. toosimulate questo hello carico generatore genera un carico casuale distribuito tra tutti i tenant. Hello carico modello tooemerge, eseguire il generatore di carico hello per 3-5 minuti prima di tentare il carico di hello toomonitor in hello le sezioni seguenti sono necessari alcuni minuti.
 
 > [!IMPORTANT]
-> Il generatore di carico esegue una serie di processi nella sessione di PowerShell locale. Mantenere aperta la scheda *Demo-PerformanceMonitoringAndManagement.ps1*. Se si chiude la scheda o si sospende il computer, il generatore di carico si arresta. Il generatore di carico rimane in uno stato di *chiamata del processo* in cui genera il carico in tutti i nuovi tenant di cui viene effettuato il provisioning dopo l'avvio del generatore. Usare *CTRL+C* per arrestare la chiamata di nuovi processi e chiudere lo script. L'esecuzione del generatore di carico continuerà, ma solo nei tenant esistenti.
+> Generatore di carico Hello è in esecuzione come una serie di processi nella sessione di PowerShell locale. Mantenere hello *Demo PerformanceMonitoringAndManagement.ps1* scheda aperta. Se si chiude la scheda hello o sospende la macchina, il generatore di carico hello arresta. Generatore di carico Hello rimane in un *chiamata processo* stato in cui genera carico eventuali nuovi tenant sottoposti a provisioning dopo l'avvio del generatore di hello. Utilizzare *Ctrl-C* toostop il richiamo di nuovi processi e script di uscita hello. Generatore di carico Hello continuerà toorun, ma solo per i tenant esistenti.
 
-## <a name="monitor-resource-usage-using-the-azure-portal"></a>Monitorare l'utilizzo delle risorse usando il portale di Azure
+## <a name="monitor-resource-usage-using-hello-azure-portal"></a>Monitorare l'utilizzo di risorse utilizzando hello portale di Azure
 
-Per monitorare l'utilizzo delle risorse risultante dal carico applicato, aprire il portale per il pool che contiene i database tenant:
+utilizzo delle risorse di hello toomonitor risultati hello caricare viene applicato, aprire il pool di portale toohello hello che contiene i database tenant hello:
 
-1. Aprire il [portale di Azure](https://portal.azure.com) e passare al server *tenants1-&lt;UTENTE&gt;*.
-1. Scorrere verso il basso e individuare i pool elastici, quindi fare clic su **Pool1**. Questo pool contiene tutti i database tenant creati finora.
+1. Aprire hello [portale di Azure](https://portal.azure.com) ed esplorare toohello *tenants1 -&lt;utente&gt;*  server.
+1. Scorrere verso il basso e individuare i pool elastici, quindi fare clic su **Pool1**. Questo pool contiene tutti i database di tenant hello creati finora.
 
-Osservare i grafici **Monitoraggio pool elastico** e **Monitoraggio database elastico**.
+Osservare hello **monitoraggio pool elastico** e **monitoraggio di database elastico** grafici.
 
-L'utilizzo delle risorse del pool è l'utilizzo aggregato di tutti i database nel pool. Il grafico relativo ai database mostra i cinque database principali:
+Hello utilizzo delle risorse del pool è hello utilizzo di database di aggregazione per tutti i database nel pool di hello. Hello database Mostra hello cinque database interessanti:
 
 ![](./media/sql-database-saas-tutorial-performance-monitoring/pool1.png)
 
-Dato che il pool include altri database oltre ai primi cinque, l'utilizzo del pool mostra un livello di attività non rappresentato nel grafico per i primi cinque database. Per altri dettagli, fare clic su **Utilizzo risorse database**:
+Poiché sono presenti altri database nel pool di hello oltre hello primi cinque, utilizzo pool hello Mostra l'attività che non vengono riportate nel grafico di hello primi cinque database. Per altri dettagli, fare clic su **Utilizzo risorse database**:
 
 ![](./media/sql-database-saas-tutorial-performance-monitoring/database-utilization.png)
 
 
-## <a name="set-performance-alerts-on-the-pool"></a>Impostare avvisi sulle prestazioni per il pool
+## <a name="set-performance-alerts-on-hello-pool"></a>Impostare avvisi sulle prestazioni nel pool di hello
 
-Impostare un avviso per il pool da attivare quando l'utilizzo è \>75%, come indicato di seguito:
+Impostare un avviso per il pool hello che attiva \>75% l'utilizzo come indicato di seguito:
 
-1. Aprire *Pool1* (nel server *tenants1-\<utente\>*) nel [portale di Azure](https://portal.azure.com).
+1. Aprire *Pool1* (su hello *tenants1 -\<utente\>*  server) in hello [portale di Azure](https://portal.azure.com).
 1. Fare clic su **Regole di avviso** e quindi fare clic su **+ Aggiungi avviso**:
 
    ![aggiungere un avviso](media/sql-database-saas-tutorial-performance-monitoring/add-alert.png)
 
 1. Specificare un nome, ad esempio **DTU elevate**.
-1. Impostare i valori seguenti:
+1. Impostare hello seguenti valori:
    * **Metrica = Percentuale eDTU**
    * **Condizione = maggiore di** .
    * **Soglia = 75**.
-   * **Periodo = Negli ultimi 30 minuti**.
-1. Aggiungere un indirizzo e-mail alla casella *Indirizzi di posta elettronica aggiuntivi dell'amministratore* e fare clic su **OK**.
+   * **Periodo = su hello ultimi 30 minuti**.
+1. Aggiungere un toohello indirizzo di posta elettronica *amministratore aggiuntive email(s)* casella e fare clic su **OK**.
 
    ![impostare l'avviso](media/sql-database-saas-tutorial-performance-monitoring/alert-rule.png)
 
 
 ## <a name="scale-up-a-busy-pool"></a>Potenziare un pool con carico eccessivo
 
-Se il livello di carico aggregato per un pool aumenta fino a superarne la capacità massima e raggiunge il 100% di utilizzo delle unità eDTU, ciò ha effetti sulle prestazioni dei database con potenziale rallentamento dei tempi di risposta alle query per tutti i database nel pool.
+Se il livello di carico di aggregazione hello aumenta in un punto di toohello pool che potenzia pool hello e viene raggiunto il 100% eDTU, quindi le prestazioni dei singoli database è interessato, potenzialmente rallentare i tempi di risposta delle query per tutti i database nel pool di hello.
 
-**Come soluzione a breve termine**, valutare la possibilità di aumentare le prestazioni del pool per fornire risorse aggiuntive oppure di rimuovere database dal pool, spostandoli in altri pool o fuori dal pool in un livello di servizio autonomo.
+**A breve termine**, prendere in considerazione l'aumento di risorse aggiuntive di hello pool tooprovide o rimozione di database dal pool hello (spostarli tooother pool, o all'esterno di livello di servizio autonomo hello pool tooa).
 
-**Nel lungo termine**, prendere in considerazione l'ottimizzazione delle query o dell'utilizzo degli indici per migliorare le prestazioni dei database. A seconda di quanto un'applicazione è sensibile agli effetti dei problemi di prestazioni, è buona norma potenziare un pool prima di raggiungere il 100% di utilizzo delle eDTU. Usare un avviso per ricevere segnalazioni con il dovuto anticipo.
+**Lungo termine**, prendere in considerazione l'ottimizzazione delle query o un indice delle prestazioni del database tooimprove utilizzo. A seconda di hello tooperformance sensibilità dell'applicazione emette relativo tooscale prassi migliori un pool di backup prima di raggiungere l'utilizzo di eDTU 100%. Utilizzare un avviso toowarn è in anticipo.
 
-È possibile simulare le condizioni di carico eccessivo per un pool aumentando il carico prodotto dal generatore di carico. Creando picchi più frequenti e di lunga durata per i database si aumenta il carico aggregato del pool senza modificare i requisiti dei singoli database. È facile aumentare le prestazioni del pool nel portale o da PowerShell. In questo esercizio viene usato il portale.
+È possibile simulare un pool occupato dall'incremento del carico hello prodotta dal generatore di hello. Senza modificare i requisiti di hello di singoli database hello, causando hello database tooburst più di frequente e per il carico di aggregazione hello più lungo, incremento nel pool di hello. Ridimensionamento del pool di hello facilmente viene eseguito nel portale di hello o da PowerShell. Questo esercizio Usa il portale di hello.
 
-1. Impostare *$DemoScenario* = **3**, _Generare un carico con picchi più lunghi e più frequenti per ogni database_ per aumentare l'intensità del carico aggregato del pool senza modificare il carico di picco necessario per ogni database.
-1. Premere **F5** per applicare un carico a tutti i database tenant.
+1. Impostare *$DemoScenario* = **3**, _carico genera con burst più frequenti e più tempo per ogni database_ intensità hello tooincrease di carico di aggregazione hello pool di Hello senza modificare il carico di picco hello necessario per ogni database.
+1. Premere **F5** tooapply tooall un carico ai database tenant.
 
-1. Passare a **Pool1** nel portale di Azure.
+1. Andare troppo**Pool1** in hello portale di Azure.
 
-Monitorare il maggiore utilizzo di eDTU del pool nel grafico superiore. Sono necessari alcuni minuti prima di vedere gli effetti del nuovo carico di lavoro maggiore, ma presto il pool dovrebbe raggiungere il massimo utilizzo e, dato che il nuovo modello di carico è costante, si verificherà presto un sovraccarico del pool.
+Hello monitoraggio maggiore utilizzo di eDTU del pool nel grafico superiore hello. Sono necessari alcuni minuti per hello nuovo maggiore carico tookick, ma rapidamente dovrebbe pool hello iniziare utilizzo max toohit e come carico hello steadies nel nuovo modello di hello, esegue l'overload rapidamente pool hello.
 
-1. Per aumentare le prestazioni del pool, fare clic su **Configura pool** nella parte superiore della pagina **Pool1**.
-1. Impostare **eDTU pool** su **100**. La modifica del numero di eDTU del pool non cambia le impostazioni per i singoli database, che è ancora pari a un massimo di 50 eDTU per database. Le impostazioni per i singoli database sono visibili sul lato destro della pagina **Configura pool**.
-1. Fare clic su **Salva** per inviare la richiesta di ridimensionamento del pool.
+1. Fare clic su tooscale pool hello, **configurare pool** nella parte superiore di hello di hello **Pool1** pagina.
+1. Regolare hello **eDTU Pool** impostazione troppo**100**. La modifica di eDTU del pool hello non modifica le impostazioni per ogni database hello (che è ancora 50 eDTU massimo per database). È possibile visualizzare le impostazioni per ogni database hello sul lato destro hello di hello **configurare pool** pagina.
+1. Fare clic su **salvare** pool hello tooscale di toosubmit hello richiesta.
 
-Tornare a **Pool1** > **Panoramica** per visualizzare i grafici di monitoraggio. Monitorare l'effetto dell'assegnazione di altre risorse al pool, anche se, con pochi database e un carico casuale, non sempre è facile notare conseguenze lampanti finché non si prolunga l'esecuzione per un periodo minimo. Mentre si analizzano i grafici tenere che presente che il valore 100% nel grafico superiore rappresenta ora 100 eDTU, mentre 100% nel grafico inferiore corrisponde ancora a 50 eDTU perché il numero massimo di eDTU per database è ancora 50.
+Tornare indietro troppo**Pool1** > **Panoramica** hello tooview grafici di monitoraggio. Monitorare l'effetto di hello della specifica del pool di hello maggiore quantità di risorse (anche se con un carico casuale e alcuni database non è sempre toosee facile concludere finché non viene eseguito per un certo tempo). Mentre si sta esaminando hello grafici tenere presente il 100% in hello superiore ora grafico rappresenta 100 Edtu, mentre in hello inferiore grafico 100% è ancora 50 Edtu come hello max per ogni database è ancora 50 Edtu.
 
-I database rimango online e pienamente disponibili durante l'intero processo. All'ultimo momento, quando ogni database è pronto per essere abilitato con il nuovo numero di eDTU del pool, le eventuali connessioni attive vengono interrotte. Il codice delle applicazioni dovrebbe sempre essere scritto in modo da prevedere tentativi di riattivazione delle connessioni interrotte, quindi l'applicazione si riconnetterà al database nel pool potenziato.
+I database rimangono completamente disponibili durante il processo di hello e online. In hello ultimo momento di ogni database è pronto toobe abilitata con hello nuovo numero di eDTU pool, tutte le connessioni attive vengono interrotte. Il codice dell'applicazione deve sempre scritto connessioni tooretry eliminato, quindi si riconnetterà toohello database nel pool di hello con scalabilità verticale.
 
 ## <a name="load-balance-between-pools"></a>Bilanciare il carico tra i pool
 
-In alternativa al potenziamento del pool, è possibile creare un secondo pool e spostare database in questo pool per bilanciare il carico tra i due. A questo scopo, il nuovo pool deve essere creato nello stesso server del primo.
+Come un'alternativa tooscaling pool hello, creare un pool di secondo e spostare i database in cui vengono toobalance hello caricare tra hello due pool. Questo nuovo pool di hello devono essere creati in toodo hello prima hello nello stesso server.
 
-1. Nel [portale di Azure](https://portal.azure.com) aprire il server **tenants1-&lt;UTENTE&gt;**.
-1. Fare clic su **+ Nuovo pool** per creare un pool nel server corrente.
-1. Nel modello **Pool di database elastici**:
+1. In hello [portale di Azure](https://portal.azure.com)aprire hello **tenants1 -&lt;utente&gt;**  server.
+1. Fare clic su **+ nuovo pool** toocreate un pool di server corrente hello.
+1. In hello **pool di database elastici** modello:
 
-    1. Impostare **Nome** su *Pool2*.
-    1. Lasciare il piano tariffario **Pool Standard**.
+    1. Impostare **nome** troppo*Pool2*.
+    1. Lasciare hello tariffario come **Pool Standard**.
     1. Fare clic su **Configura pool**.
-    1. Impostare **eDTU pool** su *50 eDTU*.
-    1. Fare clic su **Aggiungi database** per visualizzare un elenco di database nel server che possono essere aggiunti a *Pool2*.
-    1. Selezionare 10 database per spostarli nel nuovo pool e quindi fare clic su **Seleziona**. Se si è eseguito il generatore di carico, al servizio è già noto che il profilo delle prestazioni richiede un pool di dimensioni superiori alle 50 eDTU predefinite e viene suggerito di iniziare con un'impostazione di 100 eDTU.
+    1. Impostare **eDTU Pool** troppo*eDTU 50*.
+    1. Fare clic su **aggiungere database** toosee un elenco di database nel server di hello che può essere aggiunto troppo*Pool2*.
+    1. Selezionare qualsiasi toomove 10 database queste toohello nuovo pool e quindi fare clic su **selezionare**. Se si è in esecuzione il generatore di carico hello, servizio hello già sa che il profilo di prestazioni richiede un più ampio pool di dimensioni predefinite del 50 eDTU hello e consiglia di iniziare con un'impostazione di eDTU 100.
 
     ![Suggerimento](media/sql-database-saas-tutorial-performance-monitoring/configure-pool.png)
 
-    1. Per questa esercitazione, lasciare l'impostazione predefinita di 50 eDTU e fare di nuovo clic su **Seleziona**.
-    1. Fare clic su **OK** per creare il nuovo pool e spostarvi i database selezionati.
+    1. Per questa esercitazione, lasciare l'impostazione predefinita di hello nella finestra di 50 Edtu e fare clic su **selezionare** nuovamente.
+    1. Selezionare **OK** toocreate hello nuovo pool e toomove hello nei database selezionati al suo interno.
 
-La creazione del pool e lo spostamento dei database richiedono alcuni minuti. Quando i database vengono spostati, rimangono online e completamente accessibili fino all'ultimo momento, quando viene chiusa qualsiasi connessione aperta. Purché esista una logica per i tentativi, i client si connetteranno quindi al database nel nuovo pool.
+Creazione di pool di hello e lo spostamento di database hello richiede alcuni minuti. Come i database vengono spostati che rimangono in linea e completamente accessibili fino a quando l'ultimo momento hello a quel punto vengono chiuse tutte le connessioni aperte. Se si dispone di una logica di tentativi, i client si connettono quindi toohello database nel nuovo pool di hello.
 
-Passare a **Pool2** (nel server *tenants1*) per aprire il pool e monitorarne le prestazioni. Se non viene visualizzato, attendere il completamento del provisioning del nuovo pool.
+Sfoglia troppo**Pool2** (su hello *tenants1* server) tooopen hello pool e monitorarne le prestazioni. Se non è visualizzata, attendere per il provisioning di hello nuovo pool toocomplete.
 
 Si nota ora una riduzione dell'utilizzo delle risorse di *Pool1* e un carico simile per *Pool2*.
 
 ## <a name="manage-performance-of-a-single-database"></a>Gestire le prestazioni di un database singolo
 
-Se un singolo database in un pool è sottoposto a un carico elevato prolungato, a seconda della configurazione del pool, potrebbe tendenzialmente usare in modo predominante molte delle risorse nel pool con effetti sugli altri database. Se è probabile che questo tipo di attività continui per un certo tempo, è possibile spostare temporaneamente il database fuori dal pool. In questo modo il database può avere a disposizione le risorse aggiuntive necessarie ed essere isolato dagli altri database.
+Se un singolo database in un pool di cui si verifichi un elevato carico, a seconda della configurazione del pool di hello, può tendono risorse hello toodominate nel pool di hello e l'impatto di altri database. Se l'attività hello è probabilmente toocontinue per un certo tempo, hello database può essere spostato temporaneamente fuori pool hello. In questo modo hello di hello database toohave risorse aggiuntive necessarie e isola da hello altri database.
 
-Questo esercizio simula l'effetto di un carico elevato per Contoso Concert Hall in concomitanza con l'inizio della vendita dei biglietti per un concerto di grande richiamo.
+Questo esercizio simula l'effetto di hello di Contoso insieme Hall sottoposto a un carico elevato quando i ticket in vendita per un insieme comune.
 
-1. Aprire lo script …\\*Demo-PerformanceMonitoringAndManagement.ps1*.
+1. Aprire hello... \\ *Demo PerformanceMonitoringAndManagement.ps1* script.
 1. Impostare **$DemoScenario = 5, Generare un carico normale e un carico elevato in un singolo tenant (circa 95 DTU).**
 1. Impostare **$SingleTenantDatabaseName = contosoconcerthall**
-1. Eseguire lo script con **F5**.
+1. Eseguire tramite script hello **F5**.
 
 
-1. Nel [portale di Azure](https://portal.azure.com) aprire **Pool1**.
-1. Esaminare il grafico **Monitoraggio pool elastico** e cercare il maggiore utilizzo di eDTU del pool. Dopo un paio di minuti, il carico elevato dovrebbe iniziare a comparire e il pool dovrebbe raggiungere velocemente l'utilizzo al 100%.
-1. Esaminare i dati in **Monitoraggio database elastico** che mostrano i database più attivi nell'ultima ora. Il database *contosoconcerthall* dovrebbe essere presto visualizzato come uno dei cinque database più attivi.
-1. **Fare clic sul** **grafico** Monitoraggio database elastico. Viene aperta la pagina **Utilizzo risorse database** in cui è possibile monitorare i singoli database. Ciò consente di isolare i dati per il database *contosoconcerthall*.
-1. Nell'elenco di database fare clic su **contosoconcerthall**.
-1. Fare clic su **Piano tariffario (piano DTU)** per aprire la pagina **Configura prestazioni** in cui è possibile impostare un livello di prestazioni autonomo per il database.
-1. Fare clic sulla scheda **Standard** per aprire le opzioni di scalabilità nel livello Standard.
-1. Scorrere il **dispositivo di scorrimento DTU** verso destra per selezionare **100 DTU**. Si noti che questa impostazione corrisponde all'obiettivo di servizio, **S3**.
-1. Fare clic su **Applica** per spostare il database fuori dal pool e impostarlo come database *S3 Standard*.
-1. Dopo aver completato il ridimensionamento, monitorare l'effetto sul database contosoconcerthall e su Pool1 nei pannelli del pool elastico e del database.
+1. In hello [portale di Azure](https://portal.azure.com) aprire **Pool1**.
+1. Controllare hello **monitoraggio pool elastico** del grafico e cercare hello maggiore utilizzo di eDTU del pool. Dopo un minuto o due, inizieranno tookick in carichi più elevati hello e rapidamente dovrebbe essere che il pool di hello raggiunge l'utilizzo del 100%.
+1. Controllare hello **monitoraggio di database elastico** visualizzazione che mostra i database più interessanti hello hello ora precedente. Hello *contosoconcerthall* database non appena vengono visualizzate come uno dei database di hello cinque più interessanti.
+1. **Fare clic su monitoraggio di database elastico hello** **grafico** e aprirla hello **utilizzo delle risorse di Database** pagina in cui è possibile monitorare i database hello. Ciò consente di isolare visualizzazione hello per hello *contosoconcerthall* database.
+1. Elenco di hello dei database, fare clic su **contosoconcerthall**.
+1. Fare clic su **tariffario (scala Dtu)** tooopen hello **configurare prestazioni** pagina in cui è possibile impostare un livello di prestazioni autonome per database hello.
+1. Fare clic su hello **Standard** scheda Opzioni di scalabilità hello tooopen nel livello Standard hello.
+1. Diapositiva hello **dispositivo di scorrimento DTU** tooright tooselect **100** Dtu. Notare che questo corrisponde l'obiettivo di servizio toohello, **S3**.
+1. Fare clic su **applica** toomove hello database dal pool hello e renderlo un *S3 Standard* database.
+1. Dopo il ridimensionamento è completata, monitoraggio hello effetto sul database contosoconcerthall hello e Pool1 in pannelli di pool e il database elastici hello.
 
-Quando il carico elevato per il database contosoconcerthall diminuisce, è necessario reinserirlo tempestivamente nel pool per ridurre i costi. Se non è chiaro quando ciò accade, è possibile impostare un avviso nel database che verrà attivato quando l'utilizzo di DTU scende sotto il massimo consentito per ogni database nel pool. Lo spostamento di un database in un pool è descritto nell'esercizio 5.
+Una volta che un carico elevato sul database contosoconcerthall hello hello diminuisce è necessario immediatamente restituirla toohello pool tooreduce il costo. Se non è chiaro che verrà eseguito quando è stato possibile impostare un avviso nel database di hello che verrà attivata quando l'utilizzo DTU scende di sotto di hello per ogni database max pool hello. Lo spostamento di un database in un pool è descritto nell'esercizio 5.
 
 ## <a name="other-performance-management-patterns"></a>Altri modelli di gestione delle prestazioni
 
-**Scalabilità preventiva** Nell'esercizio precedente è stato illustrato come ridimensionare un database isolato quando si conosce il database su cui intervenire. Se il responsabile della gestione di Contoso Concert Hall avesse informato Wingtips dell'imminente vendita di biglietti, sarebbe stato possibile rimuovere preventivamente il database dal pool. In caso contrario, sarebbe stato probabilmente necessario un avviso per il pool o il database per ricevere una segnalazione della situazione. È meglio evitare di venire a conoscenza di un problema di questo tipo quando gli altri tenant nel pool si lamentano del calo di prestazioni. Se il tenant può prevedere il tempo per cui saranno necessarie risorse aggiuntive, inoltre, è possibile configurare un runbook di Automazione di Azure per spostare il database fuori dal pool e reinserirlo in base a una pianificazione definita.
+**Scalabilità preventiva** nell'esercizio hello precedente in cui si esplorata come tooscale un database isolato, sapendo quali toolook database per. Se Gestione hello di Contoso insieme Hall era informata Wingtips di vendita ticket imminente hello, database hello potrebbe essere stati spostati all'esterno pool hello preventivamente. In caso contrario, probabile che richiede un avviso in pool hello o hello database toospot Qual era il problema. Se non vuoi toolearn informazioni da hello altri tenant nel pool che segnala che di hello di riduzione delle prestazioni. E se il tenant hello possibile stimare quanti sono necessari ulteriori risorse, è possibile configurare un database di automazione di Azure runbook toomove hello fuori pool hello e quindi di nuovo su una pianificazione definita.
 
-**Scalabilità self-service dei tenant** Dato che la scalabilità richiede attività facilmente richiamabili tramite l'API di gestione, è possibile integrare in modo semplice funzioni di scalabilità dei database tenant nell'applicazione che interagisce con i tenant e offrirle come funzionalità del servizio SaaS. Ad esempio, fare in modo che i tenant possano amministrare in autonomia l'aumento o la riduzione delle prestazioni, eventualmente collegando anche queste operazioni in modo diretto alla fatturazione.
+**Tenant self-service scalabilità** perché il ridimensionamento è un'attività denominata facilmente tramite l'API di gestione di hello, è possibile facilmente compilare il possibilità hello database tenant tooscale nell'applicazione Web tenant e offrirlo come una funzionalità del servizio SaaS. Ad esempio, consentire ai tenant self-administer scalabilità verticale e, forse collegati direttamente fatturazione tootheir!
 
-**Aumento e riduzione delle prestazioni per un pool con una pianificazione in base ai modelli di utilizzo**
+**Scalabilità verticale e un pool ai modelli di utilizzo toomatch pianificazione**
 
-Se l'utilizzo aggregato dei tenant segue modelli prevedibili, è possibile usare Automazione di Azure per aumentare e ridurre le prestazioni di un pool con una pianificazione. Ad esempio, ridurre le prestazioni dopo le 18 e aumentarle di nuovo prima delle 6 nei giorni della settimana in cui è noto che si verifica un calo delle risorse richieste.
+In cui l'utilizzo tenant aggregazione segue modelli di utilizzo stimabile, è possibile utilizzare su e giù tooscale di automazione di Azure un pool in base alla pianificazione. Ad esempio, ridurre le prestazioni dopo le 18 e aumentarle di nuovo prima delle 6 nei giorni della settimana in cui è noto che si verifica un calo delle risorse richieste.
 
 
 
@@ -234,17 +234,17 @@ Se l'utilizzo aggregato dei tenant segue modelli prevedibili, è possibile usare
 In questa esercitazione si apprenderà come:
 
 > [!div class="checklist"]
-> * Simulare l'utilizzo nei database tenant tramite l'esecuzione di un generatore di carico specificato
-> * Monitorare la risposta dei database tenant a un aumento del carico di lavoro
-> * Potenziare il pool elastico in risposta al carico maggiore per i database
-> * Eseguire il provisioning di un secondo pool elastico per bilanciare il carico delle attività dei database
+> * Simulare l'utilizzo nel database tenant hello eseguendo un generatore di carico specificato
+> * I database tenant hello Monitor come rispondono toohello aumento del carico
+> * Applicare la scalabilità verticale hello pool elastico nel caricamento del database maggiore toohello risposta
+> * Eseguire il provisioning di un'attività di database hello secondo del saldo tooload pool elastico
 
 [Esercitazione sul ripristino di un tenant singolo](sql-database-saas-tutorial-restore-single-tenant.md)
 
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
-* Altre [esercitazioni basate sulla distribuzione dell'applicazione SaaS Wingtip](sql-database-wtp-overview.md#sql-database-wingtip-saas-tutorials)
+* Ulteriori [esercitazioni in cui si basano su una distribuzione di applicazioni SaaS Wingtip hello](sql-database-wtp-overview.md#sql-database-wingtip-saas-tutorials)
 * [Pool elastici SQL](sql-database-elastic-pool.md)
 * [Automazione di Azure](../automation/automation-intro.md)
 * [Log Analytics](sql-database-saas-tutorial-log-analytics.md) - Esercitazione sulla configurazione e l'uso di Log Analytics

@@ -1,6 +1,6 @@
 ---
 title: 'Esercitazione: Integrazione di Azure Active Directory con UserVoice | Microsoft Docs'
-description: Informazioni su come configurare l'accesso Single Sign-On tra Azure Active Directory e UserVoice.
+description: Informazioni su come tooconfigure single sign-on tra Azure Active Directory e UserVoice.
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -14,187 +14,187 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/21/2017
 ms.author: jeedes
-ms.openlocfilehash: fcfda1c2ecb162fb93b70574a18bd745b72ee4db
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 9eade8435ae6c6a3821bbbec9ab7c27ed7ad91ee
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-uservoice"></a>Esercitazione: Integrazione di Azure Active Directory con UserVoice
 
-Questa esercitazione descrive come integrare UserVoice con Azure Active Directory (Azure AD).
+In questa esercitazione, è illustrato come toointegrate UserVoice con Azure Active Directory (Azure AD).
 
-L'integrazione di UserVoice con Azure AD offre i vantaggi seguenti:
+Integrazione di UserVoice con Azure AD fornisce hello seguenti vantaggi:
 
-- È possibile controllare in Azure AD chi può accedere a UserVoice.
-- È possibile abilitare gli utenti per l'accesso automatico a UserVoice (Single Sign-On) con i propri account Azure AD.
-- È possibile gestire gli account da una posizione centrale: il portale di Azure.
+- È possibile controllare in Azure AD che ha accesso tooUserVoice.
+- È possibile abilitare l'utenti tooautomatically get connesso tooUserVoice (Single Sign-On) con i propri account Azure AD.
+- È possibile gestire gli account in un'unica posizione centrale - hello portale di Azure.
 
-Per altre informazioni sull'integrazione di app SaaS con Azure AD, vedere [Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory](active-directory-appssoaccess-whatis.md).
+Se si desiderano tooknow ulteriori informazioni sull'integrazione dell'applicazione SaaS con Azure AD, vedere [novità di accesso alle applicazioni e single sign-on con Azure Active Directory](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-Per configurare l'integrazione di Azure AD con UserVoice, sono necessari gli elementi seguenti:
+integrazione di Azure AD con UserVoice tooconfigure, è necessario hello seguenti elementi:
 
 - Sottoscrizione di Azure AD.
 - Sottoscrizione di UserVoice abilitata per l'accesso Single Sign-On
 
 > [!NOTE]
-> Non è consigliabile usare un ambiente di produzione per testare i passaggi di questa esercitazione.
+> hello tootest i passaggi in questa esercitazione, è consigliabile utilizzare un ambiente di produzione.
 
-A questo scopo, è consigliabile seguire le indicazioni seguenti:
+passaggi di hello tootest in questa esercitazione, è necessario seguire questi suggerimenti:
 
 - Non usare l'ambiente di produzione a meno che non sia necessario.
 - Se non è disponibile un ambiente di valutazione di Azure AD, è possibile [ottenere una versione di valutazione di un mese](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Descrizione dello scenario
-In questa esercitazione viene eseguito il test dell'accesso Single Sign-On di Azure AD in un ambiente di test. Lo scenario descritto in questa esercitazione prevede i due blocchi predefiniti seguenti:
+In questa esercitazione viene eseguito il test dell'accesso Single Sign-On di Azure AD in un ambiente di test. scenario di Hello descritto in questa esercitazione è composto da due componenti principali:
 
-1. Aggiunta di UserVoice dalla raccolta
+1. Aggiunta di UserVoice dalla raccolta hello
 2. Configurazione e test dell'accesso Single Sign-On di Azure AD
 
-## <a name="adding-uservoice-from-the-gallery"></a>Aggiunta di UserVoice dalla raccolta
-Per configurare l'integrazione di UserVoice in Azure AD, è necessario aggiungere UserVoice dalla raccolta al proprio elenco di app SaaS gestite.
+## <a name="adding-uservoice-from-hello-gallery"></a>Aggiunta di UserVoice dalla raccolta hello
+integrazione hello tooconfigure di UserVoice in Azure AD, è necessario tooadd UserVoice dall'elenco di tooyour hello raccolta di App SaaS gestite.
 
-**Per aggiungere UserVoice dalla raccolta, seguire questa procedura:**
+**tooadd UserVoice dalla raccolta di hello, eseguire hello alla procedura seguente:**
 
-1. Nel **[portale di Azure](https://portal.azure.com)** fare clic sull'icona di **Azure Active Directory** nel riquadro di spostamento sinistro. 
+1. In hello  **[portale di Azure](https://portal.azure.com)**via hello del Pannello di navigazione a sinistra, fare clic su **Azure Active Directory** icona. 
 
-    ![Pulsante Azure Active Directory][1]
+    ![pulsante di Hello Azure Active Directory][1]
 
-2. Passare ad **Applicazioni aziendali**. Andare quindi a **Tutte le applicazioni**.
+2. Passare troppo**applicazioni aziendali**. Quindi andare troppo**tutte le applicazioni**.
 
-    ![Pannello Applicazioni aziendali][2]
+    ![Pannello di applicazioni Enterprise Hello][2]
     
-3. Fare clic sul pulsante **Nuova applicazione** nella parte superiore della finestra di dialogo per aggiungere una nuova applicazione.
+3. tooadd nuova applicazione, fare clic su **nuova applicazione** pulsante nella parte superiore di hello della finestra di dialogo.
 
-    ![Pulsante Nuova applicazione][3]
+    ![Nuovo pulsante dell'applicazione Hello][3]
 
-4. Nella casella di ricerca digitare **UserVoice**, selezionare **UserVoice** nel pannello dei risultati e quindi fare clic sul pulsante **Aggiungi** per aggiungere l'applicazione.
+4. Nella casella di ricerca hello, digitare **UserVoice**selezionare **UserVoice** dal pannello risultati quindi fare clic su **Aggiungi** pulsante applicazione hello tooadd.
 
-    ![UserVoice nell'elenco dei risultati](./media/active-directory-saas-uservoice-tutorial/tutorial_uservoice_addfromgallery.png)
+    ![Nell'elenco risultati hello UserVoice](./media/active-directory-saas-uservoice-tutorial/tutorial_uservoice_addfromgallery.png)
 
 ## <a name="configure-and-test-azure-ad-single-sign-on"></a>Configurare e testare l'accesso Single Sign-On di Azure AD
 
 In questa sezione viene configurato e testato l'accesso Single Sign-On di Azure AD con UserVoice in base a un utente di test di nome "Britta Simon".
 
-Per il funzionamento dell'accesso Single Sign-On, Azure AD deve conoscere qual è l'utente di UserVoice che corrisponde a un utente di Azure AD. In altre parole, deve essere stabilita una relazione di collegamento tra un utente di Azure AD e l'utente correlato in UserVoice.
+Per toowork di accesso singolo, Azure AD deve tooknow quale utente controparte hello in UserVoice è tooa utente in Azure AD. In altre parole, una relazione di collegamento tra un utente di Azure Active Directory e l'utente correlato di hello in UserVoice richiede toobe stabilita.
 
-Per stabilire la relazione di collegamento, in UserVoice assegnare il valore di **nome utente** in Azure AD come valore di **Username** (Nome utente).
+In UserVoice, assegnare il valore di hello di hello **nome utente** in Azure AD come valore hello hello **Username** tooestablish relazione di collegamento hello.
 
-Per configurare e testare l'accesso Single Sign-On di Azure AD con UserVoice, è necessario completare i blocchi predefiniti seguenti:
+tooconfigure e prova AD Azure single sign-on con UserVoice, è necessario hello toocomplete seguenti blocchi predefiniti:
 
-1. **[Configurare l'accesso Single Sign-On di Azure AD](#configure-azure-ad-single-sign-on)**: per consentire agli utenti di usare questa funzionalità.
-2. **[Creare un utente di test di Azure AD](#create-an-azure-ad-test-user)**: per testare l'accesso Single Sign-On di Azure AD con l'utente Britta Simon.
-3. **[Creare un utente di test di UserVoice](#create-a-uservoice-test-user)**: per avere una controparte di Britta Simon in UserVoice collegata alla rappresentazione dell'utente in Azure AD.
-4. **[Assegnare l'utente test di Azure AD](#assign-the-azure-ad-test-user)**: per abilitare Britta Simon all'uso dell'accesso Single Sign-On di Azure AD.
-5. **[Testare l'accesso Single Sign-On](#test-single-sign-on)** per verificare se la configurazione funziona.
+1. **[Configurare Azure Active Directory Single Sign-On](#configure-azure-ad-single-sign-on)**  -tooenable il toouse utenti questa funzionalità.
+2. **[Creare un utente prova AD Azure](#create-an-azure-ad-test-user)**  -tootest AD Azure single sign-on con Britta Simon.
+3. **[Creare un utente test UserVoice](#create-a-uservoice-test-user)**  -toohave un equivalente di Britta Simon in UserVoice che è la rappresentazione toohello collegato Azure AD dell'utente.
+4. **[Assegnare l'utente test hello Azure AD](#assign-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD accesso single sign-on.
+5. **[Testare single sign-on](#test-single-sign-on)**  -tooverify hello se funzionamento della configurazione.
 
 ### <a name="configure-azure-ad-single-sign-on"></a>Configurare l'accesso Single Sign-On di Azure AD
 
-In questa sezione viene abilitato l'accesso Single Sign-On di Azure AD nel portale di Azure e viene configurato l'accesso Single Sign-On nell'applicazione UserVoice.
+In questa sezione, si abilita Azure AD single sign-on in hello portale di Azure e configurare l'accesso single sign-on nell'applicazione UserVoice.
 
-**Per configurare Single Sign-On di Azure AD con UserVoice, seguire questa procedura:**
+**Azure AD tooconfigure single sign-on con UserVoice, eseguire hello alla procedura seguente:**
 
-1. Nella pagina di integrazione dell'applicazione **UserVoice** del portale di Azure fare clic su **Single Sign-On**.
+1. Nel portale di Azure su hello hello **UserVoice** pagina di integrazione dell'applicazione, fare clic su **Single sign-on**.
 
     ![Collegamento per la configurazione dell'accesso Single Sign-On][4]
 
-2. Nella finestra di dialogo **Single Sign-On** selezionare **Accesso basato su SAML** per **Modalità** per abilitare l'accesso Single Sign-On.
+2. In hello **Single sign-on** finestra di dialogo Seleziona **modalità** come **basato su SAML Sign-on** tooenable single sign-on.
  
     ![Finestra di dialogo Single Sign-On](./media/active-directory-saas-uservoice-tutorial/tutorial_uservoice_samlbase.png)
 
-3. Nella sezione **URL e dominio UserVoice** seguire questa procedura:
+3. In hello **UserVoice dominio e gli URL** seguire hello alla procedura seguente:
 
     ![Informazioni sull'accesso Single Sign-On per URL e dominio di UserVoice](./media/active-directory-saas-uservoice-tutorial/tutorial_uservoice_url.png)
 
-    a. Nella casella di testo **URL di accesso** digitare l'URL usando il modello seguente: `https://<tenantname>.UserVoice.com`.
+    a. In hello **Sign-on URL** casella di testo, digitare un URL utilizzando hello seguente modello:`https://<tenantname>.UserVoice.com`
 
-    b. Nella casella di testo **Identificatore** digitare l'URL adottando il modello seguente: `https://<tenantname>.UserVoice.com`
+    b. In hello **identificatore** casella di testo, digitare un URL utilizzando hello seguente modello:`https://<tenantname>.UserVoice.com`
 
     > [!NOTE] 
-    > Poiché questi non sono i valori reali, Aggiornare questi valori con l'identificatore e l'URL di accesso effettivi. Per ottenere questi valori, contattare il [team di supporto clienti di UserVoice](https://www.uservoice.com/).
+    > Poiché questi non sono i valori reali, Aggiornare questi valori con hello effettivo URL di accesso e l'identificatore. Contatto [team di supporto Client di UserVoice](https://www.uservoice.com/) tooget questi valori.
 
-4. Nella sezione **Certificato di firma SAML** copiare il valore **IDENTIFICAZIONE PERSONALE** del certificato.
+4. In hello **certificato di firma SAML** sezione, hello copia **identificazione personale** valore del certificato.
 
-    ![Collegamento di download del certificato](./media/active-directory-saas-uservoice-tutorial/tutorial_uservoice_certificate.png) 
+    ![collegamento al download del certificato Hello](./media/active-directory-saas-uservoice-tutorial/tutorial_uservoice_certificate.png) 
 
 5. Fare clic sul pulsante **Salva** .
 
     ![Pulsante Salva di Configura accesso Single Sign-On](./media/active-directory-saas-uservoice-tutorial/tutorial_general_400.png)
 
-6. Nella sezione **Configurazione di UserVoice** fare clic su **Configura UserVoice** per aprire la finestra **Configura accesso**. Copiare i valori **Sign-Out URL (URL di disconnessione) e SAML Single Sign-On Service URL (URL servizio Single Sign-On SAML)** dalla sezione **Quick Reference** (Riferimento rapido).
+6. In hello **UserVoice configurazione** fare clic su **configurare UserVoice** tooopen **Configura sign-on** finestra. Hello copia **Sign-Out URL e SAML Single Sign-On Service URL** da hello **sezione di riferimento rapido.**
 
     ![Configurazione di UserVoice](./media/active-directory-saas-uservoice-tutorial/tutorial_uservoice_configure.png) 
 
-7. In un'altra finestra del browser Web accedere al sito aziendale di UserVoice come amministratore.
+7. In una finestra del web browser, accedere come amministratore nel sito aziendale UserVoice di tooyour.
 
-8. Sulla barra degli strumenti in alto fare clic su **Impostazioni**, quindi selezionare **Portale Web** nel menu.
+8. Nella barra degli strumenti hello in primo piano hello, fare clic su **impostazioni**, quindi selezionare **portale Web** dal menu di hello.
    
     ![Sezione Impostazioni sul lato dell'app](./media/active-directory-saas-uservoice-tutorial/ic777519.png "Impostazioni")
 
-9. Nelle sezione **User authentication** (Autenticazione utente) della scheda **Web portal** (Portale Web) fare clic su **Edit** (Modifica) per aprire la finestra di dialogo **Edit User Authentication** (Modifica autenticazione utente).
+9. In hello **portale Web** scheda hello **l'autenticazione utente** fare clic su **modifica** tooopen hello **Edit User Authentication** finestra di dialogo pagina.
    
     ![Scheda Portale Web](./media/active-directory-saas-uservoice-tutorial/ic777520.png "Portale Web")
 
-10. Nella finestra di dialogo **Edit User Authentication** seguire questa procedura:
+10. In hello **Edit User Authentication** finestra di dialogo eseguire hello alla procedura seguente:
    
     ![Modificare l'autenticazione utente](./media/active-directory-saas-uservoice-tutorial/ic777521.png "Modificare l'autenticazione utente")
    
     a. Fare clic su **Single Sign-On (SSO)**.
  
-    b. Incollare il valore dell'**URL del servizio Single Sign-On SAML** copiato dal portale di Azure nella casella di testo **SSO Remote Sign-In** (Accesso remoto SSO).
+    b. Hello Incolla **SAML Single Sign-On Service URL** valore, che è stato copiato dal portale di Azure hello in hello **SSO Remote Sign-In** casella di testo.
 
-    c. Incollare il valore dell'**URL di disconnessione** copiato dal portale di Azure nella casella di testo **SSO Remote Sign-Out** (Disconnessione remota SSO).
+    c. Hello Incolla **Sign-Out URL** valore, che è stato copiato dal portale di Azure hello in hello **textbox SSO Remote Sign-Out**.
  
-    d. Nella casella di testo **Current certificate SHA1 fingerprint** (Impronta digitale SHA1 certificato corrente) incollare il valore **Identificazione personale** del certificato copiato dal portale di Azure.
+    d. Hello Incolla **identificazione personale** valore, dal portale di Azure in cui è stato copiato il **corrente impronta digitale SHA1 di certificato** casella di testo.
     
     e. Fare clic su **Salva le impostazioni di autenticazione**.
 
 > [!TIP]
-> Un riepilogo delle istruzioni è disponibile all'interno del [portale di Azure](https://portal.azure.com) durante la configurazione dell'app.  Dopo aver aggiunto l'app dalla sezione **Active Directory > Applicazioni aziendali** è sufficiente fare clic sulla scheda **Single Sign-On** e accedere alla documentazione incorporata tramite la sezione **Configurazione** nella parte inferiore. Altre informazioni sulla funzione di documentazione incorporata sono disponibili in [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985) (Documentazione incorporata di Azure AD).
+> È ora possibile leggere una versione di queste istruzioni all'interno di hello concisa [portale di Azure](https://portal.azure.com), mentre si stanno impostando app hello!  Dopo l'aggiunta di questa app da hello **Active Directory > applicazioni aziendali** fare semplicemente clic su hello **Single Sign-On** scheda e l'accesso hello incorporato documentazione tramite hello  **Configurazione** sezione nella parte inferiore di hello. È possibile leggere altre informazioni sulla funzionalità di documentazione embedded hello qui: [AD Azure incorporato documentazione]( https://go.microsoft.com/fwlink/?linkid=845985)
 > 
 
 ### <a name="create-an-azure-ad-test-user"></a>Creare un utente test di Azure AD
 
-Questa sezione descrive come creare un utente test denominato Britta Simon nel portale di Azure.
+obiettivo di Hello di questa sezione è un utente di test nel portale di Azure chiamato Britta Simon hello toocreate.
 
    ![Creare un utente test di Azure AD][100]
 
-**Per creare un utente test in Azure AD, eseguire la procedura seguente:**
+**un utente di prova in Azure AD, toocreate eseguire hello alla procedura seguente:**
 
-1. Nel portale di Azure fare clic sul pulsante **Azure Active Directory** nel riquadro sinistro.
+1. Nel portale di Azure, nel riquadro di sinistra hello, hello fare clic su hello **Azure Active Directory** pulsante.
 
-    ![Pulsante Azure Active Directory](./media/active-directory-saas-uservoice-tutorial/create_aaduser_01.png)
+    ![pulsante di Hello Azure Active Directory](./media/active-directory-saas-uservoice-tutorial/create_aaduser_01.png)
 
-2. Per visualizzare l'elenco di utenti, passare a **Utenti e gruppi** e quindi fare clic su **Tutti gli utenti**.
+2. elenco di hello toodisplay di utenti, andare troppo**utenti e gruppi**, quindi fare clic su **tutti gli utenti**.
 
-    ![Collegamenti "Utenti e gruppi" e "Tutti gli utenti"](./media/active-directory-saas-uservoice-tutorial/create_aaduser_02.png)
+    ![Hello "Utenti e gruppi" e i collegamenti di "Tutti gli utenti"](./media/active-directory-saas-uservoice-tutorial/create_aaduser_02.png)
 
-3. Per aprire la finestra di dialogo **Utente** fare clic su **Aggiungi** nella parte superiore della finestra di dialogo **Tutti gli utenti**.
+3. hello tooopen **utente** la finestra di dialogo, fare clic su **Aggiungi** nella parte superiore di hello di hello **tutti gli utenti** la finestra di dialogo.
 
-    ![Pulsante Aggiungi](./media/active-directory-saas-uservoice-tutorial/create_aaduser_03.png)
+    ![pulsante Aggiungi Hello](./media/active-directory-saas-uservoice-tutorial/create_aaduser_03.png)
 
-4. Nella finestra di dialogo **Utente** seguire questa procedura:
+4. In hello **utente** finestra di dialogo eseguire hello alla procedura seguente:
 
-    ![Finestra di dialogo Utente](./media/active-directory-saas-uservoice-tutorial/create_aaduser_04.png)
+    ![finestra di dialogo utente Hello](./media/active-directory-saas-uservoice-tutorial/create_aaduser_04.png)
 
-    a. Nella casella **Nome** digitare **BrittaSimon**.
+    a. In hello **nome** digitare **BrittaSimon**.
 
-    b. Nella casella **Nome utente** digitare l'indirizzo di posta elettronica dell'utente Britta Simon.
+    b. In hello **nome utente** casella Tipo hello di indirizzo di posta elettronica dell'utente Britta Simon.
 
-    c. Selezionare la casella di controllo **Mostra password** e quindi prendere nota del valore visualizzato nella casella **Password**.
+    c. Seleziona hello **Show Password** casella di controllo e quindi annotare i valori hello visualizzati in hello **Password** casella.
 
     d. Fare clic su **Crea**.
  
 ### <a name="create-a-uservoice-test-user"></a>Creare un utente di test per UserVoice
 
-Per consentire agli utenti di Azure AD di accedere a UserVoice, è necessario eseguirne il provisioning in UserVoice. Nel caso di UserVoice, il provisioning è un'attività manuale.
+toolog agli utenti di Azure AD tooenable in tooUserVoice, è necessario eseguirne il provisioning in UserVoice. Nel caso di hello di UserVoice, il provisioning è un'attività manuale.
 
-### <a name="to-provision-a-user-account-perform-the-following-steps"></a>Per eseguire il provisioning di un account utente, seguire questa procedura:
-1. Accedere al tenant di **UserVoice** .
+### <a name="tooprovision-a-user-account-perform-hello-following-steps"></a>tooprovision un account utente, eseguire hello alla procedura seguente:
+1. Accedi tooyour **UserVoice** tenant.
 
-2. Passare a **Impostazioni**.
+2. Andare troppo**impostazioni**.
    
     ![Impostazioni](./media/active-directory-saas-uservoice-tutorial/ic777811.png "Impostazioni")
 
@@ -208,42 +208,42 @@ Per consentire agli utenti di Azure AD di accedere a UserVoice, è necessario es
    
     ![Aggiungere amministratori](./media/active-directory-saas-uservoice-tutorial/ic777813.png "Aggiungere amministratori")
 
-6. Nella finestra di dialogo **Invita amministratori** seguire questa procedura:
+6. In hello **Invite admins** finestra di dialogo, eseguire hello alla procedura seguente:
    
     ![Invitare gli amministratori](./media/active-directory-saas-uservoice-tutorial/ic777814.png "Invitare gli amministratori")
    
-    a. Nella casella di testo Emails digitare l'indirizzo di posta elettronica dell'account di cui si vuole eseguire il provisioning e quindi fare clic su **Add**.
+    a. Nella casella di testo con messaggi di posta elettronica di hello digitare l'indirizzo di posta elettronica hello di hello account desiderato tooprovision, quindi fare clic su **Aggiungi**.
    
     b. Fare clic su **Invita**.
 
 > [!NOTE]
-> È possibile usare qualsiasi altro strumento o API di creazione di account utente fornita da UserVoice per eseguire il provisioning degli account utente Azure AD.
+> È possibile usare qualsiasi altro UserVoice utente account strumento di creazione o le API fornite da UserVoice tooprovision account utente di AAD.
 
-### <a name="assign-the-azure-ad-test-user"></a>Assegnare l'utente test di Azure AD
+### <a name="assign-hello-azure-ad-test-user"></a>Assegnare l'utente test hello Azure AD
 
-In questa sezione Britta Simon viene abilitata per l'uso dell'accesso Single Sign-On di Azure concedendo l'accesso a UserVoice.
+In questa sezione per abilitare Britta Simon toouse single sign-on Azure concessione dell'accesso tooUserVoice.
 
-![Assegnare il ruolo utente][200] 
+![Assegnazione del ruolo utente hello][200] 
 
-**Per assegnare Britta Simon a UserVoice, seguire questa procedura:**
+**tooassign Britta Simon tooUserVoice, eseguire hello alla procedura seguente:**
 
-1. Nel portale di Azure aprire la visualizzazione delle applicazioni e quindi la visualizzazione delle directory e passare ad **Applicazioni aziendali**, quindi fare clic su **Tutte le applicazioni**.
+1. Nel portale di Azure hello, aprire la visualizzazione di applicazioni hello, quindi selezionare Visualizza directory toohello e andare troppo**applicazioni aziendali** quindi fare clic su **tutte le applicazioni**.
 
     ![Assegna utente][201] 
 
-2. Nell'elenco delle applicazioni selezionare **UserVoice**.
+2. Nell'elenco di applicazioni hello, selezionare **UserVoice**.
 
-    ![Collegamento UserVoice nell'elenco delle applicazioni](./media/active-directory-saas-uservoice-tutorial/tutorial_uservoice_app.png)  
+    ![collegamento di UserVoice Hello nell'elenco delle applicazioni hello](./media/active-directory-saas-uservoice-tutorial/tutorial_uservoice_app.png)  
 
-3. Scegliere **Utenti e gruppi** dal menu a sinistra.
+3. Dal menu hello hello sinistra, fare clic su **utenti e gruppi**.
 
-    ![Collegamento "Utenti e gruppi"][202]
+    ![collegamento di "Utenti e gruppi" Hello][202]
 
 4. Fare clic sul pulsante **Aggiungi**. Selezionare quindi **Utenti e gruppi** nella finestra di dialogo **Aggiungi assegnazione**.
 
-    ![Riquadro Aggiungi assegnazione][203]
+    ![riquadro assegnazione aggiungere Hello][203]
 
-5. Nella finestra di dialogo **Utenti e gruppi** selezionare **Britta Simon** nell'elenco Utenti.
+5. In **utenti e gruppi** finestra di dialogo Seleziona **Britta Simon** nell'elenco di utenti hello.
 
 6. Fare clic sul pulsante **Seleziona** nella finestra di dialogo **Utenti e gruppi**.
 
@@ -251,14 +251,14 @@ In questa sezione Britta Simon viene abilitata per l'uso dell'accesso Single Sig
     
 ### <a name="test-single-sign-on"></a>Testare l'accesso Single Sign-On
 
-In questa sezione viene testata la configurazione dell'accesso Single Sign-On di Azure AD usando il pannello di accesso.
+In questa sezione si test configurazione di Azure AD single sign-on utilizzando hello Pannello di accesso.
 
-Quando si fa clic sul riquadro UserVoice nel pannello di accesso, si dovrebbe accedere automaticamente all'applicazione UserVoice.
-Per altre informazioni sul pannello di accesso, vedere [Introduzione al Pannello di accesso](active-directory-saas-access-panel-introduction.md). 
+Quando si fa clic su riquadro UserVoice hello in hello Pannello di accesso, è necessario ottenere automaticamente firmato in tooyour UserVoice applicazione.
+Per ulteriori informazioni su hello Pannello di accesso, vedere [introduzione toohello Pannello di accesso](active-directory-saas-access-panel-introduction.md). 
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
-* [Elenco di esercitazioni sulla procedura di integrazione delle app SaaS con Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [Elenco di esercitazioni sulla tooIntegrate App SaaS con Azure Active Directory](active-directory-saas-tutorial-list.md)
 * [Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory](active-directory-appssoaccess-whatis.md)
 
 

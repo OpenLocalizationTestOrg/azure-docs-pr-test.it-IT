@@ -1,6 +1,6 @@
 ---
-title: Come configurare l'autenticazione Google per un'applicazione dei servizi app
-description: Informazioni su come configurare l'autenticazione Google per un'applicazione dei servizi app.
+title: autenticazione di Google tooconfigure aaaHow per l'applicazione di servizi App
+description: Informazioni su come l'autenticazione di Google tooconfigure per l'applicazione di servizi di App.
 services: app-service
 documentationcenter: 
 author: mattchenderson
@@ -14,46 +14,46 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 10/01/2016
 ms.author: mahender
-ms.openlocfilehash: d6c1707f67d986487e5a45e76ffc9a02ddf16eb1
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 9175c40b78c859e9e191504c41cd0bb9a3380ccd
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-configure-your-app-service-application-to-use-google-login"></a>Come configurare l'applicazione del servizio app per usare l'account di accesso di Google
+# <a name="how-tooconfigure-your-app-service-application-toouse-google-login"></a>Come tooconfigure l'account di Google accesso toouse di applicazione di servizio App
 [!INCLUDE [app-service-mobile-selector-authentication](../../includes/app-service-mobile-selector-authentication.md)]
 
-Questo argomento descrive come configurare il servizio app di Azure per usare Google come provider di autenticazione.
+In questo argomento illustra come tooconfigure Azure App Service toouse Google come provider di autenticazione.
 
-Per completare la procedura descritta in questo argomento, è necessario avere un account Google con un indirizzo di posta elettronica verificato. Per creare un nuovo account Google, visitare il sito Web all'indirizzo [accounts.google.com](http://go.microsoft.com/fwlink/p/?LinkId=268302).
+toocomplete hello in questa procedura, è necessario disporre di un account di Google che dispone di un indirizzo di posta elettronica verificato. toocreate un nuovo account di Google, andare troppo[accounts.google.com](http://go.microsoft.com/fwlink/p/?LinkId=268302).
 
-## <a name="register"> </a>Registrare l'applicazione con Google
-1. Accedere al [portale di Azure], e passare all'applicazione. Copiare l' **URL**, che verrà usato in seguito per configurare l'app Google.
-2. Passare al sito Web delle [API di Google](http://go.microsoft.com/fwlink/p/?LinkId=268303)accedere con le credenziali dell'account Google, fare clic su **Crea progetto**, specificare un valore in **Nome progetto**, quindi fare clic su **Crea**.
+## <a name="register"></a>Registrare l'applicazione con Google
+1. Accesso toohello [portale di Azure]e passare tooyour applicazione. Copia il **URL**, che si utilizza tooconfigure successive dell'app di Google.
+2. Passare toohello [API Google](http://go.microsoft.com/fwlink/p/?LinkId=268303) sito Web, accedere con le credenziali dell'account Google, fare clic su **Crea progetto**, fornire un **nome progetto**, quindi fare clic su  **Creare**.
 3. In **API Social** fare clic **Google+ API** e quindi su **Abilita**.
-4. Nel riquadro di spostamento a sinistra scegliere **Credenziali** > **Schermata consenso OAuth**, quindi selezionare il proprio **Indirizzo email**, immettere un **Nome del prodotto** e fare clic su **Salva**.
-5. Nella scheda **Credenziali** fare clic su **Crea credenziali**  > **ID client OAuth**, quindi selezionare **Applicazione web**.
-6. Incollare l'**URL** del servizio app copiato in precedenza in **Origini JavaScript autorizzate** e quindi incollare l'URI di reindirizzamento in **URI di reindirizzamento autorizzati**. L'URI di reindirizzamento corrisponde all'URL dell'applicazione con l'aggiunta del percorso */.auth/login/google/callback*. Ad esempio: `https://contoso.azurewebsites.net/.auth/login/google/callback`. Assicurarsi che sia in uso lo schema HTTPS. Fare quindi clic su **Crea**.
-7. Fare clic sulla schermata successiva e annotare i valori di ID client e Segreto client.
+4. Nel riquadro di spostamento, sinistro hello **credenziali** > **schermata consenso OAuth**, quindi selezionare il **indirizzo di posta elettronica**, immettere un **Product Name**, fare clic su **salvare**.
+5. In hello **credenziali** scheda, fare clic su **creare credenziali** > **ID client OAuth**, quindi selezionare **applicazione Web**.
+6. Incolla hello servizio App **URL** è copiato in precedenza in **Authorized JavaScript Origins**, quindi incollare il reindirizzamento URI in **autorizzato l'URI di reindirizzamento**. URI di reindirizzamento URL hello dell'applicazione con il percorso di hello, Hello */.auth/login/google/callback*. ad esempio `https://contoso.azurewebsites.net/.auth/login/google/callback`. Assicurarsi che si sta utilizzando lo schema HTTPS hello. Fare quindi clic su **Crea**.
+7. Nella schermata successiva hello, prendere nota dei valori di hello del client hello segreto ID e client.
 
     > [!IMPORTANT]
-    > Il segreto client è un'importante credenziale di sicurezza. Non condividere questo valore con altri e non distribuirlo all'interno di un'applicazione client.
+    > segreto client hello è un'importante credenziale di sicurezza. Non condividere questo valore con altri e non distribuirlo all'interno di un'applicazione client.
 
 
-## <a name="secrets"> </a>Aggiungere le informazioni di Google all'applicazione
-1. Nel [portale di Azure], passare all'applicazione. Fare clic su **Impostazioni** e quindi su **Autenticazione/Autorizzazione**.
-2. Se la funzionalità di autenticazione/autorizzazione non è abilitata, impostare l'opzione in modo da **abilitarla**.
-3. Fare clic su **Google**. Incollare i valori ID App e Segreto app ottenuti in precedenza e facoltativamente abilitare tutti gli ambiti richiesti dall'applicazione. Fare quindi clic su **OK**.
+## <a name="secrets"></a>Tooyour Google Aggiungi applicazione
+1. In hello [portale di Azure], passare tooyour applicazione. Fare clic su **Impostazioni** e quindi su **Autenticazione/Autorizzazione**.
+2. Se l'autenticazione di hello / non è abilitata la funzionalità di autorizzazione, l'opzione di hello troppo**su**.
+3. Fare clic su **Google**. Incollare i valori ID dell'App e segreto dell'applicazione hello cui ottenuto in precedenza e facoltativamente abilitare tutti gli ambiti che richiede l'applicazione. Fare quindi clic su **OK**.
    
    ![][1]
    
-   Per impostazione predefinita, il servizio app fornisce l'autenticazione ma non limita l'accesso alle API e al contenuto del sito solo agli utenti autorizzati. È necessario autorizzare gli utenti nel codice dell'app.
-4. (Facoltativo) Per consentire l'accesso al sito solo agli utenti autenticati da Google, impostare il parametro **Azione da eseguire quando la richiesta non è autenticata** su **Google**. Per poter utilizzare questa funzione, tuttavia, è necessario che tutte le richieste vengano autenticate e che le richieste non autenticate vengano reindirizzate a Google per l'autenticazione.
-5. Fare clic su **Save**.
+   Per impostazione predefinita, App servizio fornisce l'autenticazione, ma non limita l'accesso autorizzato tooyour contenuto del sito e le API. È necessario autorizzare gli utenti nel codice dell'app.
+4. (Facoltativo) toorestrict tooyour sito tooonly gli utenti di accesso autenticati da Google, impostare **tootake azione quando la richiesta non è autenticata** troppo**Google**. Questa operazione richiede che tutte le richieste di essere autenticato e tutte le richieste non autenticate vengono reindirizzate tooGoogle per l'autenticazione.
+5. Fare clic su **Salva**.
 
-È ora possibile usare un account Google per l'autenticazione nell'app.
+Si è ora pronto toouse Google per l'autenticazione nell'app.
 
-## <a name="related-content"> </a>Contenuti correlati
+## <a name="related-content"></a>Contenuti correlati
 [!INCLUDE [app-service-mobile-related-content-get-started-users](../../includes/app-service-mobile-related-content-get-started-users.md)]
 
 <!-- Anchors. -->

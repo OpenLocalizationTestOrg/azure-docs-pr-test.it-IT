@@ -1,5 +1,5 @@
 ---
-title: Impostare gli avvisi in Application Insights di Azure | Microsoft Docs
+title: Avvisi aaaSet in Azure Application Insights | Documenti Microsoft
 description: "Ricevere notifiche su tempi di risposta più lenti, eccezioni e altre prestazioni o modifiche nell'uso delle app Web."
 services: application-insights
 documentationcenter: 
@@ -13,86 +13,86 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/14/2017
 ms.author: bwren
-ms.openlocfilehash: c8386ffc5d68260eeb75edf7efb77db1163dcef8
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: e160cb173e68fda2e6d97f29da342c46b7ac4f19
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="set-alerts-in-application-insights"></a>Impostare gli avvisi in Application Insights
-[Application Insights di Azure][start] può informare di eventuali cambiamenti nelle prestazioni e nelle metriche di utilizzo dell'app Web in uso. 
+[Azure Application Insights] [ start] può inviare un avviso toochanges nelle metriche delle prestazioni o l'utilizzo nell'app web. 
 
-Application Insights esegue il monitoraggio dell'app attiva in un'[ampia varietà di piattaforme][platforms] per consentire di diagnosticare i problemi di prestazioni e acquisire informazioni sui modelli di utilizzo.
+Application Insights consente di monitorare l'app in tempo reale in un [ampia gamma di piattaforme] [ platforms] toohelp diagnosticare problemi di prestazioni e comprendere i modelli di utilizzo.
 
 Esistono tre tipologie di avvisi:
 
 * Gli **avvisi delle metriche** indicano quando una qualsiasi metrica supera un valore di soglia per un determinato periodo, ad esempio i tempi di risposta, il numero di eccezioni, l'uso della CPU o il numero di visualizzazioni della pagina. 
-* I [**test Web**][availability] indicano quando il sito non è disponibile in Internet o risponde lentamente. [Altre informazioni][availability].
-* Gli avvisi della [**diagnostica proattiva**](app-insights-proactive-diagnostics.md) vengono configurati automaticamente per informare su schemi di prestazioni insoliti.
+* [**Test Web** ] [ availability] indicano quando non è disponibile nel hello sito internet o risponde lentamente. [Altre informazioni][availability].
+* [**La funzionalità diagnostica proattiva** ](app-insights-proactive-diagnostics.md) vengono configurate automaticamente toonotify di modelli di prestazioni insoliti.
 
 L'articolo è incentrato sugli avvisi delle metriche.
 
 ## <a name="set-a-metric-alert"></a>Impostare un avviso metrica
-Aprire il pannello Regole di avviso e usare il pulsante Aggiungi. 
+Pannello regole di avviso hello aprire, quindi utilizzare hello pulsante Aggiungi. 
 
-![Nel pannello Regole di avviso scegliere Aggiungi avviso. Impostare l'app come la risorsa da misurare, specificare un nome per l'avviso e scegliere una metrica.](./media/app-insights-alerts/01-set-metric.png)
+![Nel pannello regole di avviso hello, scegliere Aggiungi avviso. Impostare l'app come hello toomeasure risorse, fornire un nome per l'avviso hello e scegliere una metrica.](./media/app-insights-alerts/01-set-metric.png)
 
-* Impostare la risorsa prima delle altre proprietà. **Scegliere la risorsa "(components)"** per impostare avvisi sulle metriche relative a prestazioni e utilizzo.
-* Il nome assegnato all'avviso deve essere univoco all'interno del gruppo di risorse (non solo dell'applicazione).
-* Prendere nota delle unità in cui viene chiesto di immettere il valore soglia.
-* Se si seleziona la casella "Invia messaggio di posta elettronica a proprietari...", vengono inviati avvisi tramite posta elettronica a chiunque abbia accesso a questo gruppo di risorse. Per espandere il set di utenti, aggiungerli al [gruppo di risorse o a una sottoscrizione](app-insights-resources-roles-access-control.md) (non la risorsa).
-* Se si specifica "Indirizzi di posta elettronica aggiuntivi", gli avvisi vengono inviati agli utenti o gruppi corrispondenti (indipendentemente dalla selezione della casella "Invia messaggio di posta elettronica a proprietari..."). 
-* Impostare un [indirizzo di webhook](../monitoring-and-diagnostics/insights-webhooks-alerts.md) se è stata impostata un'app Web che risponde agli avvisi. L'app viene chiamata sia quando l'avviso viene attivato sia quando viene risolto. Si noti però che attualmente i parametri di query non vengono passati come proprietà webhook.
-* È possibile disabilitare o abilitare l'avviso usando i pulsanti nella parte superiore del pannello.
+* Impostare altre proprietà di risorsa hello prima hello. **Scegliere la risorsa hello "(componenti)"** se si desidera tooset avvisi sulle metriche delle prestazioni o sull'utilizzo.
+* nome Hello che è possibile assegnare toohello avviso deve essere univoco nel gruppo di risorse hello (non solo l'applicazione).
+* Essere unità hello toonote attenzione in cui viene chiesto di valore di soglia tooenter hello.
+* Se si seleziona la casella hello "... per i proprietari di posta elettronica", gli avvisi vengono inviati tramite tooeveryone di posta elettronica con gruppo di risorse toothis di accesso. tooexpand questo set di utenti, aggiungerli toohello [gruppo di risorse o sottoscrizione](app-insights-resources-roles-access-control.md) (non hello risorsa).
+* Se si specifica "Ulteriori messaggi di posta elettronica", gli avvisi vengono inviati toothose persone o gruppi (se è stata selezionata hello "email proprietari..." casella). 
+* Impostare un [webhook indirizzo](../monitoring-and-diagnostics/insights-webhooks-alerts.md) se è stata impostata un'app web che risponde tooalerts. Viene chiamato quando viene attivato l'avviso hello e quando viene risolto. Si noti però che attualmente i parametri di query non vengono passati come proprietà webhook.
+* È possibile disabilitare o abilitare hello avviso: hello pulsanti nella parte superiore di hello del pannello hello.
 
-*Il pulsante Aggiungi avviso non è visibile.* 
+*Pulsante di hello Aggiungi avviso non è presente.* 
 
-* Si sta usando un account aziendale? È possibile impostare gli avvisi se si ha l'accesso come proprietario o come collaboratore a questa risorsa dell'applicazione. Dare un'occhiata al pannello Controllo di accesso. [Informazioni sul controllo di accesso][roles].
+* Si sta usando un account aziendale? È possibile impostare avvisi se si dispone di risorse di applicazione toothis accesso proprietario o collaboratore. Esaminare il pannello di controllo di accesso hello. [Informazioni sul controllo di accesso][roles].
 
 > [!NOTE]
-> Nel pannello degli avvisi si nota che è già presente un avviso configurato: [Diagnostica proattiva](app-insights-proactive-failure-diagnostics.md). L'avviso automatico monitora una particolare metrica, la frequenza di errori delle richieste. A meno che non si decida di disabilitare l'avviso proattivo, non è necessario impostare un proprio avviso relativo alla frequenza di errori delle richieste. 
+> Nel pannello avvisi hello, vedrai che è già presente un avviso set di: [diagnostica proattiva](app-insights-proactive-failure-diagnostics.md). Avviso automatico Hello controlla una particolare metrica, percentuale errori. A meno che non si decide di avviso proattivo di hello toodisable, non è necessario tooset avviso al tasso di errore di richiesta. 
 > 
 > 
 
 ## <a name="see-your-alerts"></a>Visualizzare gli avvisi
 Si riceve un messaggio di posta elettronica quando lo stato dell'avviso passa da inattivo ad attivo e viceversa. 
 
-Lo stato corrente di ogni avviso viene visualizzato nel pannello delle regole di avviso.
+stato corrente di Hello di ogni avviso viene visualizzato nel pannello regole di avviso hello.
 
-Nell'elenco a discesa Avvisi è disponibile un riepilogo delle attività recenti:
+È un riepilogo delle attività recenti negli avvisi hello elenco a discesa:
 
 ![Menu a discesa degli avvisi](./media/app-insights-alerts/010-alert-drop.png)
 
-La cronologia delle modifiche di stato si trova nel Log attività:
+cronologia Hello modifiche di stato è hello Log attività:
 
-![Nel pannello Panoramica fare clic su Impostazioni, Log di controllo](./media/app-insights-alerts/09-alerts.png)
+![Nel pannello della panoramica hello, fare clic su impostazioni, i log di controllo](./media/app-insights-alerts/09-alerts.png)
 
 ## <a name="how-alerts-work"></a>Funzionamento degli avvisi
-* Un avviso può avere tre stati: "Mai attivato", "Attivato" e "Risolto". Lo stato Attivato indica che la condizione specificata aveva valore true al momento dell'ultima valutazione.
-* Quando lo stato di un avviso viene modificato, viene generata una notifica. Se la condizione dell'avviso era già impostata su true durante la creazione dell'avviso, è possibile che non si riceva alcuna notifica finché la condizione non viene impostata su false.
-* Ogni notifica genera un messaggio di posta elettronica se è stata selezionata la casella dei messaggi di posta elettronica o sono stati specificati indirizzi di posta elettronica. È anche possibile esaminare l'elenco di riepilogo a discesa Notifiche.
+* Un avviso può avere tre stati: "Mai attivato", "Attivato" e "Risolto". Attivato indica hello condizione specificata è true, quando l'ultima valutazione.
+* Quando lo stato di un avviso viene modificato, viene generata una notifica. (Se la condizione dell'avviso hello era già true al momento della creazione avviso hello, si potrebbe ottenere una notifica fino a quando non diventa false condizione hello.)
+* Ogni notifica genera un messaggio di posta elettronica se hello messaggi di posta elettronica casella selezionata o indirizzi di posta elettronica fornito. È anche possibile esaminare hello notifiche riepilogo.
 * Un avviso viene valutato ogni volta che arriva una metrica, ma non altrimenti.
-* La valutazione aggrega la metrica per il periodo precedente e quindi la confronta con la soglia per determinare il nuovo stato.
-* Il periodo scelto specifica l'intervallo per il quale vengono aggregate le metriche. Non influisce sulla frequenza con cui viene valutato l'avviso: ciò dipende dalla frequenza di arrivo delle metriche.
-* Se per un periodo di tempo non arrivano dati per una determinata metrica, il divario comporta diversi effetti sulla valutazione dell'avviso e sui grafici in Esplora metriche. Se in Esplora metriche non viene visualizzato alcun dato per un periodo più lungo dell'intervallo di campionamento del grafico, il grafico mostra un valore pari a 0. Un avviso basato sulla metrica stessa non viene valutato nuovamente e lo stato dell'avviso rimane invariato. 
+* valutazione Hello aggrega metrica hello su hello precedente e confronta quindi toohello soglia toodetermine hello nuovo stato.
+* Specifica il periodo di Hello prescelto intervallo hello durante il quale le metriche vengono aggregate. Non influisce sulla frequenza hello avviso valutazione: che dipende dalla frequenza di hello di arrivo delle metriche.
+* Se nessun dato arriva per una determinata metrica per un certo tempo, diversi effetti sulla valutazione degli avvisi e nei grafici hello in Esplora metrica gap hello. In Esplora metrica, se non viene visualizzato alcun dato per più di intervallo di campionamento del grafico hello hello grafico mostra un valore pari a 0. Ma un avviso in base a hello stessa metrica non verranno rivalutate e hello subisce lo stato dell'avviso. 
   
-    Quando infine arrivano i dati, il grafico viene riportato su un valore diverso da zero. L'avviso viene valutato in base ai dati disponibili per il periodo specificato. Se il nuovo punto dati è l'unico disponibile nel periodo, la funzione di aggregazione si basa solo su quel punto dati.
-* Un avviso può spesso passare velocemente dallo stato di avviso a quello integro e viceversa, anche se si imposta un periodo prolungato. Questa situazione può verificarsi se il valore della metrica si aggira intorno alla soglia. Non esiste alcuna isteresi nella soglia: la transizione allo stato di avviso si verifica in corrispondenza dello stesso valore della transizione allo stato integro.
+    Quando si arrivano alla fine dei dati, grafico hello passa valore diverso da zero tooa indietro. avviso di Hello valuta in base ai dati hello disponibili per il periodo di hello specificato. Se il nuovo punto di dati hello hello unico disponibile nel periodo di hello, hello aggregazione si basa solo da che punto dati.
+* Un avviso può spesso passare velocemente dallo stato di avviso a quello integro e viceversa, anche se si imposta un periodo prolungato. Questa situazione può verificarsi se il valore della metrica hello si aggira intorno soglia hello. Non vi è alcun isteresi nella soglia hello: hello transizione tooalert avviene a hello hello transizione toohealthy lo stesso valore.
 
-## <a name="what-are-good-alerts-to-set"></a>Quali sono gli avvisi corretti da impostare?
-Dipende dall'applicazione. Per iniziare, è consigliabile non impostare un numero eccessivo di metriche. Esaminare i grafici delle metriche mentre l'app è in esecuzione per acquisire informazioni sul comportamento normale. Questa procedura consente di trovare un modo per migliorare le prestazioni. Impostare quindi gli avvisi per ricevere le notifiche quando le metriche superano la zona normale. 
+## <a name="what-are-good-alerts-tooset"></a>Quali sono avvisi buona tooset?
+Dipende dall'applicazione. toostart con, è ottimale tooset non un numero eccessivo di metriche. Tempo esaminando i grafici metrica durante l'esecuzione dell'app, tooget un'idea di come si comporta normalmente. Questo metodo consente di individuare i modi tooimprove le prestazioni. Quindi configurare avvisi tootell si quando metriche hello andare fuori zona normale hello. 
 
 Gli avvisi più diffusi includono:
 
-* Le [metriche del browser][client], soprattutto i **tempi di caricamento delle pagine** del browser, sono ottimali per le applicazioni Web. Se la pagina contiene molti script, è consigliabile cercare le **eccezioni del browser**. Per ottenere queste metriche e questi avvisi, è necessario configurare il [monitoraggio delle pagine Web][client].
-* Il **tempo di risposta del server** per il lato server delle applicazioni Web. Oltre a impostare gli avvisi, prestare attenzione a questa metrica per vedere se varia in modo sproporzionato in caso di frequenza elevata delle richieste: la variazione può indicare l'esaurimento delle risorse da parte dell'app. 
-* **Eccezioni del server** : per visualizzarle, è necessario effettuare alcuni passaggi di [configurazione aggiuntivi](app-insights-asp-net-exceptions.md).
+* Le [metriche del browser][client], soprattutto i **tempi di caricamento delle pagine** del browser, sono ottimali per le applicazioni Web. Se la pagina contiene molti script, è consigliabile cercare le **eccezioni del browser**. In ordine tooget queste metriche e gli avvisi, è necessario tooset [pagina monitoraggio][client].
+* **Tempo di risposta server** per hello sul lato server applicazioni web. Nonché configurare gli avvisi, tenere sotto controllo la metrica toosee se eccessivamente varia con frequenza elevata di richieste: variazione potrebbe indicare che l'app sta esaurendo le risorse. 
+* **Eccezioni del server** -toosee loro, si dispone di alcune toodo [impostazioni aggiuntive](app-insights-asp-net-exceptions.md).
 
-Non dimenticare che la [diagnostica proattiva sulla frequenza errori](app-insights-proactive-failure-diagnostics.md) monitora automaticamente la frequenza con cui l'applicazione risponde alle richieste con codici di errore. 
+Non dimenticare che [diagnostica Frequenza errori proattiva](app-insights-proactive-failure-diagnostics.md) automaticamente hello frequenza con cui l'app risponde toorequests con codici di errore. 
 
 ## <a name="automation"></a>Automazione
-* [Usare PowerShell per automatizzare la configurazione degli avvisi](app-insights-powershell-alerts.md)
-* [Usare webhook per automatizzare la risposta agli avvisi](../monitoring-and-diagnostics/insights-webhooks-alerts.md)
+* [Utilizzare PowerShell tooautomate impostazione di avvisi](app-insights-powershell-alerts.md)
+* [Usare i webhook tooautomate risponde tooalerts](../monitoring-and-diagnostics/insights-webhooks-alerts.md)
 
 ## <a name="video"></a>Video
 

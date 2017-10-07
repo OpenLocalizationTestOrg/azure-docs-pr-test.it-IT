@@ -1,5 +1,5 @@
 ---
-title: Contatori delle prestazioni in Application Insights | Documentazione Microsoft
+title: contatori aaaPerformance in Application Insights | Documenti Microsoft
 description: Sistema di monitoraggio e contatori delle prestazioni .NET personalizzati in Application Insights.
 services: application-insights
 documentationcenter: 
@@ -13,45 +13,45 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/11/2016
 ms.author: bwren
-ms.openlocfilehash: 038d6e051be8112b9264e7efa6485965d11e32c8
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 0a51c225f1d1124c9e7fe89f34e747cb26a3589e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="system-performance-counters-in-application-insights"></a>Contatori delle prestazioni di sistema in Application Insights
-Windows offre un'ampia gamma di [contatori delle prestazioni](http://www.codeproject.com/Articles/8590/An-Introduction-To-Performance-Counters), ad esempio su occupazione della CPU, memoria, disco e utilizzo di rete. È anche possibile definire contatori personalizzati. [Application Insights](app-insights-overview.md) può mostrare questi contatori delle prestazioni se l'applicazione viene eseguita in IIS in un host locale o in una macchina virtuale a cui si ha accesso come amministratore. I grafici indicano le risorse disponibili per l'applicazione live e possono aiutare a identificare un eventuale carico sbilanciato tra istanze del server.
+Windows offre un'ampia gamma di [contatori delle prestazioni](http://www.codeproject.com/Articles/8590/An-Introduction-To-Performance-Counters), ad esempio su occupazione della CPU, memoria, disco e utilizzo di rete. È anche possibile definire contatori personalizzati. [Application Insights](app-insights-overview.md) consente di visualizzare i contatori delle prestazioni se l'applicazione è in esecuzione in IIS in un toowhich di host o macchina virtuale locale si dispone dell'accesso amministrativo. grafici di Hello indicano un'applicazione in tempo reale hello risorse tooyour disponibili e possono semplificare tooidentify sbilanciamento del carico tra le istanze del server.
 
-I contatori delle prestazioni sono visualizzati nel pannello Server, che include una tabella segmentata in base all'istanza del server.
+I contatori delle prestazioni vengono visualizzati nel Pannello di server hello, che include una tabella che Segmenta dall'istanza del server.
 
 ![Contatori delle prestazioni segnalati in Application Insights](./media/app-insights-performance-counters/counters-by-server-instance.png)
 
-I contatori delle prestazioni non sono disponibili per App Web di Azure. Tuttavia, è possibile [inviare i dati del servizio Diagnostica di Azure ad Application Insights](app-insights-azure-diagnostics.md).
+I contatori delle prestazioni non sono disponibili per App Web di Azure. Ma è possibile [inviare informazioni di diagnostica Azure tooApplication](app-insights-azure-diagnostics.md).)
 
 ## <a name="view-counters"></a>Visualizzare i contatori
-Il pannello Server mostra un set predefinito di contatori delle prestazioni. 
+Pannello server Hello viene illustrato un set predefinito di contatori delle prestazioni. 
 
-Per visualizzare altri contatori, modificare i grafici nel pannello Server oppure aprire un altro riquadro [Esplora metriche](app-insights-metrics-explorer.md) e aggiungere nuovi grafici. 
+toosee altri contatori, modificare i grafici di hello nel pannello server hello o aprire una nuova [Esplora metriche](app-insights-metrics-explorer.md) pannello e aggiungere nuovi grafici. 
 
-I contatori disponibili sono elencati come metriche quando si modifica un grafico.
+contatori di Hello disponibili sono elencati come metriche quando si modifica un grafico.
 
 ![Contatori delle prestazioni segnalati in Application Insights](./media/app-insights-performance-counters/choose-performance-counters.png)
 
-Per visualizzare tutti i grafici più utili in un'unica posizione, creare un [dashboard](app-insights-dashboards.md) e aggiungervi i grafici.
+creare tutti i grafici più utili in un'unica posizione, toosee un [dashboard](app-insights-dashboards.md) e aggiungerli tooit.
 
 ## <a name="add-counters"></a>Aggiungere contatori
-Se il contatore delle prestazioni desiderato non appare nell'elenco delle metriche, significa che non viene raccolto da Application Insights SDK nel server Web. È possibile configurare l'SDK a questo scopo.
+Se il contatore delle prestazioni hello desiderato non è visualizzato nell'elenco di hello delle metriche, sono perché hello Application Insights SDK non è raccolta nel server web. È possibile configurarlo toodo così.
 
-1. È possibile identificare i contatori disponibili nel server usando questo comando di PowerShell nel server:
+1. Scoprire quali i contatori sono disponibili nel server tramite questo comando di PowerShell nel server di hello:
    
     `Get-Counter -ListSet *`
    
     Vedere [`Get-Counter`](https://technet.microsoft.com/library/hh849685.aspx).
 2. Aprire ApplicationInsights.config.
    
-   * Se Application Insights è stato aggiunto all'app durante lo sviluppo, modificare ApplicationInsights.config nel progetto e quindi distribuirlo di nuovo nei server.
-   * Se è stato usato Status Monitor per instrumentare un'app Web al runtime, trovare ApplicationInsights.config nella directory radice dell'app in IIS. Aggiornarlo qui in ogni istanza del server.
-3. Modificare la direttiva dell'agente di raccolta delle prestazioni:
+   * Se si aggiungono Application Insights tooyour app durante lo sviluppo, modificare Applicationinsights nel progetto e quindi ridistribuirlo tooyour server.
+   * Se si utilizza monitoraggio stato tooinstrument un'app web in fase di esecuzione, è possibile trovare Applicationinsights nella directory radice hello dell'app hello in IIS. Aggiornarlo qui in ogni istanza del server.
+3. Modifica della direttiva di agente di raccolta dati prestazioni hello:
    
 ```XML
    
@@ -66,14 +66,14 @@ Se il contatore delle prestazioni desiderato non appare nell'elenco delle metric
 
 È possibile acquisire contatori standard e quelli implementati manualmente. `\Objects\Processes` è un esempio di contatore standard, disponibile in tutti i sistemi Windows. `\Sales(photo)\# Items Sold` è un esempio di contatore personalizzato che può essere implementato in un servizio Web. 
 
-Il formato è `\Category(instance)\Counter"` oppure, per categorie non associate a istanze, solo `\Category\Counter`.
+formato hello è `\Category(instance)\Counter"`, o per le categorie che non includono istanze, semplicemente `\Category\Counter`.
 
-`ReportAs` è necessario per i nomi dei contatori che non corrispondono a `[a-zA-Z()/-_ \.]+`, ovvero che contengono caratteri che non sono inclusi in questi set: lettere, parentesi tonde, barra, trattino, carattere di sottolineatura, spazio e punto.
+`ReportAs`è necessario per i nomi dei contatori che non corrispondono a `[a-zA-Z()/-_ \.]+` -, ovvero contengono caratteri che non si trovano in hello set seguenti: lettere, arrotondare tra parentesi quadre, barra (/), trattino, carattere di sottolineatura, spazio, punto.
 
-Se si specifica un'istanza, questa verrà raccolta come dimensione "CounterInstanceName" della metrica indicata.
+Se si specifica un'istanza, verranno raccolti come una dimensione "CounterInstanceName" di hello riportato metrica.
 
 ### <a name="collecting-performance-counters-in-code"></a>Raccogliere contatori delle prestazioni nel codice
-Per raccogliere i contatori delle prestazioni di sistema e inviarli ad Application Insights, è possibile adattare il frammento di codice seguente:
+le prestazioni del sistema toocollect contatori e inviarle tooApplication Insights, è possibile adattare frammento hello seguente:
 
 
 ``` C#
@@ -84,7 +84,7 @@ Per raccogliere i contatori delle prestazioni di sistema e inviarli ad Applicati
     perfCollectorModule.Initialize(TelemetryConfiguration.Active);
 ```
 
-In alternativa, è possibile eseguire la stessa operazione con le metriche personalizzate create:
+Oppure è possibile eseguire la stessa cosa con metriche personalizzate creato hello:
 
 ``` C#
     var perfCollectorModule = new PerformanceCollectorModule();
@@ -96,28 +96,28 @@ In alternativa, è possibile eseguire la stessa operazione con le metriche perso
 ## <a name="performance-counters-in-analytics"></a>Contatori delle prestazioni in Analytics
 È possibile cercare e visualizzare report dei contatori delle prestazioni in [Analytics](app-insights-analytics.md).
 
-Lo schema **performanceCounters** espone `category`, il nome `counter` e il nome `instance` per ogni contatore delle prestazioni.  Nei dati di telemetria per ogni applicazione verranno visualizzati solo i contatori per l'applicazione specifica. Ad esempio, per visualizzare quali contatori sono disponibili: 
+Hello **performanceCounters** schema espone hello `category`, `counter` nome, e `instance` nome di ogni contatore delle prestazioni.  Nei dati di telemetria hello per ogni applicazione, verrà visualizzato solo i contatori di hello per tale applicazione. Ad esempio, toosee i contatori sono disponibili: 
 
 ![Contatori delle prestazioni in Application Insights - Analisi](./media/app-insights-performance-counters/analytics-performance-counters.png)
 
-"Istanza" qui fa riferimento all'istanza del contatore delle prestazioni e non all'istanza del ruolo o del server. Il nome dell'istanza del contatore delle prestazioni segmenta in genere i contatori, come quello per il tempo del processore, in base al nome del processo o dell'applicazione.
+("Instance" qui si riferisce toohello istanza del contatore delle prestazioni, non hello istanza macchina ruolo o del server. nome dell'istanza del contatore delle prestazioni Hello in genere i segmenti di contatori, ad esempio il tempo del processore in base al nome hello del processo di hello o dell'applicazione.)
 
-Per ottenere un grafico della memoria disponibile nel periodo recente: 
+un grafico di memoria disponibile nel periodo recente hello tooget: 
 
 ![Timechart delle metriche in Application Insights - Analisi](./media/app-insights-performance-counters/analytics-available-memory.png)
 
-Come altri dati di telemetria, **performanceCounters** contiene anche una colonna `cloud_RoleInstance` che indica l'identità dell'istanza del server host in cui viene eseguita l'app. Ad esempio, per confrontare le prestazioni dell'applicazione su computer diversi: 
+Come altri dati di telemetria, **performanceCounters** contiene anche una colonna `cloud_RoleInstance` che indica l'identità di hello hello server dell'istanza dell'host in cui l'app è in esecuzione. Ad esempio, toocompare hello prestazioni dell'app in computer diversi hello: 
 
 ![Prestazioni segmentate per istanze del ruolo in Application Insights - Analisi](./media/app-insights-performance-counters/analytics-metrics-role-instance.png)
 
 ## <a name="aspnet-and-application-insights-counts"></a>Conteggi di ASP.NET e Application Insights
-*Qual è la differenza tra il tasso di eccezione e le metriche delle eccezioni?*
+*Qual è la differenza hello tra velocità eccezione hello e metriche eccezioni?*
 
-* *Tasso di eccezione* è un contatore delle prestazioni del sistema. Il CLR consente di contare tutte le eccezioni gestite e non gestite generate e divide il totale in un intervallo di campionamento per la lunghezza dell'intervallo. SDK di Application Insights raccoglie questo risultato e lo invia al portale.
-* *Eccezioni* è un conteggio dei report TrackException ricevuti dal portale nell'intervallo di campionamento del grafico. Include solo le eccezioni gestite in cui sono state scritte chiamate TrackException nel codice e non include [le eccezioni non gestite](app-insights-asp-net-exceptions.md). 
+* *Tasso di eccezione* è un contatore delle prestazioni del sistema. Hello CLR conta hello gestite le eccezioni non gestite che vengono generate e divide totale hello in un intervallo di campionamento per lunghezza hello dell'intervallo di hello. raccoglie il risultato Hello Application Insights SDK e lo invia toohello portale.
+* *Eccezioni* è un conteggio di hello TrackException report ricevuti dal portale hello nell'intervallo di campionamento hello del grafico hello. Include solo hello gestite le eccezioni in cui è stato scritto TrackException chiama nel codice e non include tutti [le eccezioni non gestite](app-insights-asp-net-exceptions.md). 
 
 ## <a name="alerts"></a>Avvisi
-Come per altre metriche, è possibile [impostare un avviso](app-insights-alerts.md) per ricevere una notifica se un contatore delle prestazioni supera un limite specificato. Aprire il pannello Avvisi e fare clic su Aggiungi avviso.
+Ad esempio altre metriche, è possibile [impostare un avviso](app-insights-alerts.md) toowarn se un contatore delle prestazioni è di fuori di un limite specificato. Aprire il pannello di avvisi hello e fare clic su Aggiungi avviso.
 
 ## <a name="next"></a>Passaggi successivi
 * [Rilevamento delle dipendenze](app-insights-asp-net-dependencies.md)

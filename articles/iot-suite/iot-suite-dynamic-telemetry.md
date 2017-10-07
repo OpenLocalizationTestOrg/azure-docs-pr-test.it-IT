@@ -1,6 +1,6 @@
 ---
-title: Usare la telemetria dinamica | Documentazione Microsoft
-description: Seguire questa esercitazione per imparare a usare la telemetria dinamica con la soluzione preconfigurata per il monitoraggio remoto di Azure IoT Suite.
+title: dati di telemetria dinamica aaaUse | Documenti Microsoft
+description: Seguire questa esercitazione toolearn come dati di telemetria dinamica toouse con monitoraggio remoto di hello Azure IoT Suite preconfigurato soluzione.
 services: 
 suite: iot-suite
 documentationcenter: 
@@ -15,19 +15,19 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/24/2017
 ms.author: dobett
-ms.openlocfilehash: 0114f27f9b8ae76e1170d04ddf66e2c4bf20686a
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 06cb2a370b67b4950efdfa4c7d906ac92106f4a0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-dynamic-telemetry-with-the-remote-monitoring-preconfigured-solution"></a>Usare la telemetria dinamica con la soluzione preconfigurata per il monitoraggio remoto
+# <a name="use-dynamic-telemetry-with-hello-remote-monitoring-preconfigured-solution"></a>Utilizzare i dati di telemetria dinamico con hello soluzione preconfigurata di monitoraggio remoto
 
-La telemetria dinamica consente di visualizzare eventuali dati di telemetria inviati alla soluzione preconfigurata per il monitoraggio remoto. I dispositivi simulati distribuiti con la soluzione preconfigurata inviano dati di telemetria su temperatura e umidità visualizzabili nel dashboard. Se si personalizzano i dispositivi simulati esistenti, si creano nuovi dispositivi simulati o si collegano i dispositivi fisici alla soluzione preconfigurata, è possibile inviare altri valori di telemetria, ad esempio temperatura esterna, RPM o velocità del vento. È quindi possibile visualizzare questi dati di telemetria aggiuntivi nel dashboard.
+Telemetria dinamica consente si toovisualize qualsiasi toohello telemetria inviato soluzione preconfigurata di monitoraggio remoto. dispositivi di Hello simulato distribuiti con la soluzione hello preconfigurato inviano temperatura e umidità telemetria, è possibile visualizzare nel dashboard di hello. Se si personalizzano dispositivi simulati esistenti, creare nuovi dispositivi simulati o connettere i dispositivi fisici toohello preconfigurato soluzione è possibile inviare altri valori di dati di telemetria come temperatura esterno hello, RPM o velocità del vento. È quindi possibile visualizzare questi dati di telemetria aggiuntive nel dashboard di hello.
 
-Questa esercitazione usa un semplice dispositivo simulato Node.js facilmente modificabile per provare la telemetria dinamica.
+Questa esercitazione viene utilizzato un semplice dispositivo simulato Node. js che è possibile modificare facilmente tooexperiment con dati di telemetria dinamica.
 
-Per completare questa esercitazione, sono necessari gli elementi seguenti:
+toocomplete questa esercitazione, è necessario:
 
 * Una sottoscrizione di Azure attiva. Se non si dispone di un account, è possibile creare un account di valutazione gratuita in pochi minuti. Per informazioni dettagliate, vedere la pagina relativa alla [versione di valutazione gratuita di Azure][lnk_free_trial].
 * [Node.js][lnk-node] 0.12.x o versione successiva.
@@ -40,10 +40,10 @@ Per completare questa esercitazione, sono necessari gli elementi seguenti:
 
 ## <a name="add-a-telemetry-type"></a>Aggiungere un tipo di dati di telemetria
 
-Il passaggio successivo consiste nella sostituzione dei dati di telemetria generati dal dispositivo simulato Node.js con un nuovo set di valori:
+passaggio successivo Hello è telemetria hello tooreplace generato dal dispositivo simulato hello di Node. js con un nuovo set di valori:
 
-1. Arrestare il dispositivo simulato Node.js digitando **Ctrl+C** al prompt dei comandi o nella shell.
-2. Nel file remote_monitoring.js è possibile visualizzare i valori dei dati di base per la telemetria su temperatura, umidità e temperatura esterna esistente. Aggiungere un valore di dati di base per **rpm** come indicato di seguito:
+1. Arresto hello Node.js dispositivo simulato digitando **Ctrl + C** nel prompt dei comandi o della shell.
+2. Nel file remote_monitoring.js hello, è possibile visualizzare i valori di dati di base hello per temperatura esistente hello e umidità, dati di telemetria temperatura esterno. Aggiungere un valore di dati di base per **rpm** come indicato di seguito:
 
     ```nodejs
     // Sensors data
@@ -53,7 +53,7 @@ Il passaggio successivo consiste nella sostituzione dei dati di telemetria gener
     var rpm = 200;
     ```
 
-3. Il dispositivo simulato Node.js usa la funzione **generateRandomIncrement** nel file remote_monitoring.js per aggiungere un incremento casuale ai valori di dati di base. Impostare in modo casuale il valore **rpm** aggiungendo una riga di codice dopo le sequenze casuali esistenti come mostrato di seguito:
+3. dispositivo simulato di Hello Node.js utilizza hello **generateRandomIncrement** in hello remote_monitoring.js file tooadd toohello un incremento casuale dati di base di valori di funzione. Scegliere in modo casuale hello **rpm** valore aggiungendo una riga di codice dopo casuali esistente hello come indicato di seguito:
 
     ```nodejs
     temperature += generateRandomIncrement();
@@ -62,7 +62,7 @@ Il passaggio successivo consiste nella sostituzione dei dati di telemetria gener
     rpm += generateRandomIncrement();
     ```
 
-4. Aggiungere il nuovo valore rpm per il payload JSON che il dispositivo invia all'hub IoT:
+4. Aggiungere hello nuovo rpm valore toohello JSON payload hello dispositivo invia tooIoT Hub:
 
     ```nodejs
     var data = JSON.stringify({
@@ -74,20 +74,20 @@ Il passaggio successivo consiste nella sostituzione dei dati di telemetria gener
     });
     ```
 
-5. Avviare l'esecuzione del dispositivo simulato Node.js usando il comando seguente:
+5. Eseguire dispositivo simulato Node.js hello utilizzando hello comando seguente:
 
     `node remote_monitoring.js`
 
-6. Osservare il nuovo tipo di dati di telemetria RPM visualizzato sul grafico nel dashboard:
+6. Osservare hello nuovo RPM telemetria tipo che verrà visualizzato nel grafico hello nel dashboard di hello:
 
-![Aggiungere RPM al dashboard][image3]
+![Aggiungere dashboard toohello RPM][image3]
 
 > [!NOTE]
-> Per visualizzare la modifica immediatamente, potrebbe essere necessario disabilitare e quindi abilitare il dispositivo Node.js nella pagina **Devices** (Dispositivi) nel dashboard.
+> È possibile toodisable necessario e quindi abilitare dispositivo Node.js hello hello **dispositivi** pagina Modifica hello di hello dashboard toosee immediatamente.
 
-## <a name="customize-the-dashboard-display"></a>Personalizzare la schermata del dashboard
+## <a name="customize-hello-dashboard-display"></a>Personalizzare la visualizzazione dashboard hello
 
-Il messaggio **Device-Info** può includere i metadati relativi ai dati di telemetria che il dispositivo può inviare all'hub IoT. Questi metadati possono specificare i tipi di dati di telemetria che il dispositivo invia. Modificare il valore **deviceMetaData** nel file remote_monitoring.js per includere una definizione **Telemetry** dopo la definizione **Commands**. Il frammento di codice seguente illustra la definizione **Commands**. Assicurarsi di aggiungere una `,` dopo la definizione **Commands**:
+Hello **informazioni sul dispositivo** messaggio può includere i metadati sulla telemetria di hello dispositivo hello può inviare tooIoT Hub. Questi metadati è possono specificare i tipi di dati di telemetria hello hello dispositivo invia. Modificare hello **deviceMetaData** valore hello remote_monitoring.js file tooinclude un **telemetria** definizione dopo hello **comandi** definizione. Hello frammento di codice seguente viene illustrato hello **comandi** definizione (tooadd assicurarsi di essere un `,` dopo hello **comandi** definizione):
 
 ```nodejs
 'Commands': [{
@@ -119,10 +119,10 @@ Il messaggio **Device-Info** può includere i metadati relativi ai dati di telem
 ```
 
 > [!NOTE]
-> La soluzione di monitoraggio remoto non fa distinzione tra maiuscole e minuscole per confrontare la definizione dei metadati con i dati nel flusso di telemetria.
+> soluzione di monitoraggio remoto Hello utilizza una definizione di metadati di distinzione tra maiuscole toocompare hello con i dati nel flusso di dati di telemetria hello.
 
 
-L'aggiunta di una definizione **Telemetry** , come mostrato nel frammento di codice precedente, non cambia il comportamento del dashboard. Tuttavia, i metadati possono includere anche un attributo **DisplayName** per personalizzare la visualizzazione nel dashboard. Aggiornare la definizione dei metadati **Telemetry** come illustrato nel codice seguente:
+Aggiunta di un **telemetria** definizione come illustrato nella precedente hello frammento di codice non modifica il comportamento di hello del dashboard hello. Tuttavia, è possono anche includere metadati hello un **DisplayName** toocustomize hello visualizzato nel dashboard di hello dell'attributo. Hello aggiornamento **telemetria** definizione dei metadati, come illustrato nel seguente frammento di codice hello:
 
 ```nodejs
 'Telemetry': [
@@ -144,18 +144,18 @@ L'aggiunta di una definizione **Telemetry** , come mostrato nel frammento di cod
 ]
 ```
 
-La schermata seguente illustra in che modo questo cambiamento modifica la legenda del grafico nel dashboard:
+Hello schermata seguente mostra in che modo questa modifica modifica legenda del grafico hello dashboard hello:
 
-![Personalizzare la legenda del grafico][image4]
+![Personalizzare una legenda del grafico hello][image4]
 
 > [!NOTE]
-> Per visualizzare la modifica immediatamente, potrebbe essere necessario disabilitare e quindi abilitare il dispositivo Node.js nella pagina **Devices** (Dispositivi) nel dashboard.
+> È possibile toodisable necessario e quindi abilitare dispositivo Node.js hello hello **dispositivi** pagina Modifica hello di hello dashboard toosee immediatamente.
 
-## <a name="filter-the-telemetry-types"></a>Filtrare i tipi di dati di telemetria
+## <a name="filter-hello-telemetry-types"></a>Filtrare i tipi di dati di telemetria hello
 
-Per impostazione predefinita, il grafico nel dashboard mostra ogni serie di dati nel flusso di telemetria. È possibile usare i metadati **Device-Info** per disattivare la visualizzazione di tipi di dati di telemetria specifici nel grafico. 
+Per impostazione predefinita, il grafico di hello dashboard hello Mostra ogni serie di dati nel flusso di dati di telemetria hello. È possibile utilizzare hello **informazioni sul dispositivo** toosuppress metadati hello la visualizzazione dei tipi di dati di telemetria specifico sul grafico hello. 
 
-Per far sì che il grafico mostri solo i dati di telemetria su temperatura e umidità, omettere **ExternalTemperature** dai metadati **Device-Info** **Telemetry** nel modo seguente:
+grafico hello toomake Mostra solo temperatura e umidità dati di telemetria, omettere **ExternalTemperature** da hello **informazioni sul dispositivo** **telemetria** metadati come indicato di seguito:
 
 ```nodejs
 'Telemetry': [
@@ -177,22 +177,22 @@ Per far sì che il grafico mostri solo i dati di telemetria su temperatura e umi
 ]
 ```
 
-La **temperatura esterna** non viene più visualizzata sul grafico:
+Hello **temperatura esterni** non vengono più visualizzati sul grafico hello:
 
-![Filtrare i dati di telemetria nel dashboard][image5]
+![Filtrare i dati di telemetria relativi hello dashboard hello][image5]
 
-Questa modifica interessa solo la visualizzazione del grafico. Tuttavia, i valori dei dati **ExternalTemperature** vengono comunque memorizzati e resi disponibili per qualsiasi elaborazione back-end.
+Questa modifica interessa solo visualizzazione grafico hello. Hello **ExternalTemperature** i valori dei dati vengono comunque memorizzati e resi disponibili per operazioni di elaborazione back-end.
 
 > [!NOTE]
-> Per visualizzare la modifica immediatamente, potrebbe essere necessario disabilitare e quindi abilitare il dispositivo Node.js nella pagina **Devices** (Dispositivi) nel dashboard.
+> È possibile toodisable necessario e quindi abilitare dispositivo Node.js hello hello **dispositivi** pagina Modifica hello di hello dashboard toosee immediatamente.
 
 ## <a name="handle-errors"></a>Gestire gli errori
 
-Per visualizzare un flusso di dati sul grafico, il relativo attributo **Type** nei metadati **Device-Info** deve corrispondere al tipo di dati dei valori di telemetria. Se ad esempio i metadati specificano che l'attributo **Type** dei dati sull'umidità è **int** ma nel flusso di dati di telemetria è indicato **double**, i dati di telemetria sull'umidità non saranno visualizzati nel grafico. Tuttavia, i valori **Humidity** vengono comunque memorizzati e resi disponibili per qualsiasi elaborazione back-end.
+Per un toodisplay del flusso di dati nel grafico hello, il relativo **tipo** in hello **informazioni sul dispositivo** metadati devono corrispondere il tipo di dati hello dei valori di dati di telemetria hello. Ad esempio, se hello metadati specificano tale hello **tipo** di umidità sono dati **int** e **doppie** viene rilevato nel flusso di dati di telemetria hello telemetria umidità hello non non visualizzare nel grafico hello. Tuttavia, hello **umidità** valori ancora archiviati e rese disponibili per qualsiasi elaborazione back-end.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Ora che si è appreso come usare la telemetria dinamica, è possibile consultare altre informazioni su come le soluzioni preconfigurate possono usare le informazioni sul dispositivo in [Metadati di informazioni sul dispositivo nella soluzione preconfigurata per il monitoraggio remoto][lnk-devinfo].
+Ora che si è visto come telemetria dinamica toouse, sono disponibili ulteriori informazioni su come hello preconfigurato soluzioni utilizzare informazioni sul dispositivo: [metadati informazioni del dispositivo in Monitoraggio remoto hello preconfigurato soluzione] [ lnk-devinfo].
 
 [lnk-devinfo]: iot-suite-remote-monitoring-device-info.md
 

@@ -1,6 +1,6 @@
 ---
-title: Personalizzare la pagina di accesso in Azure Active Directory | Microsoft Docs
-description: Informazioni su come aggiungere informazioni personalizzate distintive dell'azienda alla pagina di accesso di Azure
+title: aaaCustomize accesso pagina hello Azure Active Directory | Documenti Microsoft
+description: Informazioni su come tooadd una pagina toohello Accedi Azure branding aziendale
 services: active-directory
 documentationcenter: 
 author: curtand
@@ -14,70 +14,70 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/04/2017
 ms.author: curtand
-ms.openlocfilehash: 27590c018ea55e9793246c7a4cab10f934ea502b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 151521e3b9cbc6a438a589735058fbff78443cf8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="add-company-branding-to-your-sign-in-page-in-the-azure-active-directory"></a>Aggiungere informazioni personalizzate distintive dell'azienda alla pagina di accesso in Azure Active Directory
-Per evitare confusione, molte aziende vogliono applicare un aspetto coerente a tutti i siti Web e servizi che gestiscono. Azure Active Directory offre questa funzionalità consentendo di personalizzare l'aspetto delle pagine di accesso, in modo da includere il logo e le combinazioni di colori personalizzate dell'azienda. La pagina di accesso è la pagina visualizzata quando si accede a Office 365 o ad altre applicazioni basate sul Web che usano Azure AD come provider di identità. Interagire con questa pagina per immettere le credenziali.
+# <a name="add-company-branding-tooyour-sign-in-page-in-hello-azure-active-directory"></a>Aggiungere informazioni personalizzate distintive tooyour nella pagina di accesso in hello Azure Active Directory della società
+tooavoid confusione, molte società desidera tooapply un aspetto coerente in tutti i siti Web di hello e i servizi gestiti. Azure Active Directory fornisce questa funzionalità, consentendo l'aspetto di hello toocustomize di hello nella pagina di accesso con il logo della società e combinazioni di colori personalizzati. pagina di accesso Hello è hello pagina viene visualizzata quando si accede tooOffice 365 o altre applicazioni basate su web che usano Azure AD come provider di identità. Si interagiscono con tooenter questa pagina delle credenziali.
 
-Se si vuole mostrare il marchio, i colori e altri elementi personalizzabili dell'azienda in questa pagina, vedere le immagini seguenti per capire la differenza tra le due esperienze.
+Se si desidera tooshow il marchio dell'azienda, colori e altri elementi personalizzabili in questa pagina, vedere hello seguenti immagini toounderstand hello differenza due esperienze hello.
 
-Lo screenshot seguente mostra un esempio della pagina di accesso di Office 365 in un computer desktop **prima** di una personalizzazione:
+Hello illustrato nella schermata e di esempio per Office 365 hello nella pagina di accesso in un computer desktop seguenti **prima** una personalizzazione:
 
 ![Pagina di accesso di Office 365 prima della personalizzazione](./media/active-directory-branding-custom-signon-azure-portal/sign-in-page-before-customization.png)
 
-Lo screenshot seguente mostra un esempio della pagina di accesso di Office 365 in un computer desktop **dopo** una personalizzazione:
+Hello illustrato nella schermata e di esempio per Office 365 hello nella pagina di accesso in un computer desktop seguenti **dopo** una personalizzazione:
 
 ![Pagina di accesso di Office 365 dopo la personalizzazione](./media/active-directory-branding-custom-signon-azure-portal/sign-in-page-after-customization.png)
 
-## <a name="customizing-the-sign-in-page"></a>Personalizzazione della pagina di accesso
-Di solito si usa la pagina di accesso se è necessario accedere con un browser alle app e ai servizi cloud sottoscritti dall'organizzazione.
+## <a name="customizing-hello-sign-in-page"></a>Personalizzazione pagina di accesso hello
+In genere, se è necessario l'accesso basato su browser tooyour cloud App e servizi sottoscritti dall'organizzazione, utilizzare hello nella pagina di accesso.
 
-Se sono state apportate modifiche alla pagina di accesso, potrebbe trascorrere fino a un'ora prima che le modifiche vengano visualizzate.
+Se è stato applicato le modifiche tooyour nella pagina di accesso, può richiedere tooan orari per tooappear modifiche hello.
 
 Una pagina di accesso personalizzata viene visualizzata solo quando si visita un servizio con un URL specifico del tenant, ad esempio https://outlook.com/**contoso**.com o https://mail.**contoso**.com.
 
 Quando si visita un servizio con URL non specifici del tenant (ad esempio, https://mail.office365.com), viene visualizzata una pagina di accesso non personalizzata. In questo caso, la personalizzazione viene visualizzata dopo avere immesso il proprio ID utente o avere selezionato un riquadro utente.
 
 > [!NOTE]
-> * Il nome di dominio deve essere visualizzato come "Attivo" nella sezione **Domini** del portale di Azure in cui è stata configurata la personalizzazione. Per altre informazioni, vedere l'argomento relativo all' [aggiunta di nomi di dominio personalizzati](active-directory-domains-add-azure-portal.md).
-> * La personalizzazione della pagina di accesso non si applica alla pagina di accesso degli utenti di Microsoft. Se si accede con un account Microsoft, potrebbe essere visualizzato un elenco personalizzato di riquadri utente reso disponibile da Azure AD, ma le informazioni di personalizzazione dell'organizzazione non vengono applicate alla pagina di accesso degli account Microsoft.
+> * Il nome di dominio deve risultare "Attivo" nella hello **domini** hello di parte del portale di Azure in cui è stata configurata la personalizzazione. Per altre informazioni, vedere l'argomento relativo all' [aggiunta di nomi di dominio personalizzati](active-directory-domains-add-azure-portal.md).
+> * Personalizzazione pagina di accesso non si estende su toohello consumer firmare nella pagina di Microsoft. Se si accede con un account Microsoft, si potrebbe visualizzare un elenco personalizzato di sezioni utente sottoposto a rendering da Azure AD, ma hello personalizzazione dell'organizzazione non è applicabile toohello Microsoft account-pagina di accesso.
 >
 >
 
-Nella pagina di accesso, la casella di controllo **Mantieni l'accesso** consente a un utente di rimanere connesso quando chiude e riapre il browser.
+Nella pagina accesso hello **Mantieni l'accesso** casella di controllo permette tooremain un utente connesso quando viene chiuso e riaprire il browser.
 
    ![Mantieni l'accesso](./media/active-directory-branding-custom-signon-azure-portal/01.png)
 
-Non influisce sulla durata della sessione. È possibile nascondere la casella di controllo nella pagina di accesso di Azure Active Directory.
-La visualizzazione della casella di controllo dipende dall'impostazione dell'opzione **Mantieni l'accesso disabilitato**.
+Non influisce sulla durata della sessione. È possibile nascondere una casella di controllo hello hello Azure Active Directory nella pagina di accesso.
+Se non viene visualizzata la casella hello dipende dall'impostazione di hello di **Mantieni l'accesso disabilitato**.
 
    ![Mantieni l'accesso](./media/active-directory-branding-custom-signon-azure-portal/02.png)
 
-Per nascondere la casella di controllo, impostare questa opzione su **Sì**.
+toohide hello casella di controllo, configurare questa impostazione troppo**Sì**.
 
 > [!NOTE]
-> Alcune funzionalità di SharePoint Online e di Office 2010 dipendono dalla possibilità per gli utenti di selezionare questa casella. Se si configura questa impostazione come nascosta, gli utenti potrebbero visualizzare prompt aggiuntivi e imprevisti con una richiesta di accesso.
+> Alcune funzionalità di SharePoint Online e Office 2010 dipendono dagli utenti in grado di toocheck questa casella. Se si configura questa impostazione toohidden, gli utenti potrebbero notare aggiuntive e impreviste prompt toosign-in.
 >
 >
 
-**Per aggiungere informazioni personalizzate distintive dell'azienda alla directory:**
+**directory tooadd aziendale personalizzazione tooyour:**
 
-1. Accedere al [portale di Azure](https://portal.azure.com) con un account di amministratore globale per la directory.
-2. Selezionare **Altri servizi**, immettere **Utenti e gruppi** nella casella di testo e quindi premere **INVIO**.
+1. Accedi toohello [portale di Azure](https://portal.azure.com) con un account che sia un amministratore globale per la directory di hello.
+2. Selezionare **più servizi**, immettere **utenti e gruppi** nella casella di testo hello e quindi selezionare **invio**.
 
    ![Apertura di Gestione utenti](./media/active-directory-branding-custom-signon-azure-portal/user-management.png)
-3. Nel pannello **Utenti e gruppi** selezionare **Informazioni personalizzate distintive dell'azienda**.
-4. Nel pannello **Utenti e gruppi - Informazioni personalizzate distintive dell'azienda** selezionare il comando **Modifica**.
+3. In hello **utenti e gruppi** pannello seleziona **personalizzazione specifica della società**.
+4. In hello **utenti e gruppi - personalizzazione specifica della società** blade, seleziona hello **modifica** comando.
 
     ![Modificare le informazioni personalizzate](./media/active-directory-branding-custom-signon-azure-portal/edit-branding.png)
-5. Modificare gli elementi da personalizzare. Tutti gli elementi sono facoltativi.
-6. Fare clic su **Save**.
+5. Modificare gli elementi di hello desiderati toocustomize. Tutti gli elementi sono facoltativi.
+6. Fare clic su **Salva**.
 
-Può trascorrere fino a un'ora prima che qualsiasi modifica apportata per la personalizzazione della pagina di accesso venga visualizzata.
+Potrebbe essere necessaria fino tooan ora per tutte le modifiche apportate toohello Accedi pagina tooappear personalizzazione.
 
 ## <a name="next-steps"></a>Passaggi successivi
 [Aggiungere informazioni personalizzate distintive dell'azienda specifiche della lingua](active-directory-branding-localize-azure-portal.md)

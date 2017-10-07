@@ -1,6 +1,6 @@
 ---
-title: Guida introduttiva ad Azure Cloud Shell (anteprima) | Microsoft Docs
-description: Guida introduttiva per Azure Cloud Shell
+title: Guida introduttiva di aaaAzure Cloud Shell (anteprima) | Documenti Microsoft
+description: Avvio rapido per hello Shell di Cloud di Azure
 services: 
 documentationcenter: 
 author: jluk
@@ -14,20 +14,20 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/10/2017
 ms.author: juluk
-ms.openlocfilehash: 75676eb0ab784e2adbfd27b170c1dee5599b74ac
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: e60700b92c10c331910dd8bb3c627fe1a024091c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="quickstart-for-using-the-azure-cloud-shell"></a>Guida introduttiva all'uso di Azure Cloud Shell
+# <a name="quickstart-for-using-hello-azure-cloud-shell"></a>Guida introduttiva per l'utilizzo di hello Shell di Cloud di Azure
 
-Questo documento illustra dettagliatamente come usare Azure Cloud Shell nel [portale di Azure](https://ms.portal.azure.com/).
+Questo documento illustra in dettaglio come toouse hello Azure Cloud Shell in hello [portale di Azure](https://ms.portal.azure.com/).
 
 ## <a name="start-cloud-shell"></a>Avviare Cloud Shell
-1. Avviare **Cloud Shell** dalla barra di spostamento in alto nel portale di Azure <br>
+1. Avviare **Shell Cloud** dal riquadro di spostamento superiore hello di hello portale di Azure <br>
 ![](media/shell-icon.png)
-2. Selezionare una sottoscrizione per creare un account di archiviazione e una condivisione file di Azure
+2. Selezionare una sottoscrizione toocreate un account di archiviazione e condivisione di file di Azure
 3. Fare clic su "Create storage" (Crea risorsa di archiviazione)
 
 > [!TIP]
@@ -47,21 +47,21 @@ Creare un nuovo gruppo di risorse negli Stati Uniti occidentali denominato "MyRG
 `az group create -l westus -n MyRG` <br>
 
 ### <a name="create-a-linux-vm"></a>Creare una macchina virtuale Linux
-Creare una VM Ubuntu nel nuovo gruppo di risorse. L'interfaccia della riga di comando di Azure 2.0 creerà chiavi SSH con cui configurerà la macchina virtuale. <br>
+Creare una VM Ubuntu nel nuovo gruppo di risorse. Hello Azure CLI 2.0 verrà create le chiavi SSH e hello installazione VM con essi. <br>
 `az vm create -n my_vm_name -g MyRG --image UbuntuLTS --generate-ssh-keys`
 
 > [!NOTE]
-> Per impostazione predefinita, le chiavi pubbliche e private usate per autenticare la VM vengono inserite in `/User/.ssh/id_rsa` e `/User/.ssh/id_rsa.pub` dall'interfaccia della riga di comando di Azure 2.0. La cartella .ssh è persistente nell'immagine da 5 GB della condivisione file di Azure collegata.
+> Hello tooauthenticate chiavi pubbliche e private usate la macchina virtuale vengono inseriti in `/User/.ssh/id_rsa` e `/User/.ssh/id_rsa.pub` dall'interfaccia CLI di Azure 2.0 per impostazione predefinita. La cartella .ssh è persistente nell'immagine da 5 GB della condivisione file di Azure collegata.
 
 Il nome utente in questa VM sarà quello usato in Cloud Shell ($User@Azure:).
 
 ### <a name="ssh-into-your-linux-vm"></a>Usare SSH per connettersi alla VM Linux
-1. Cercare il nome della VM nella barra di ricerca del portale di Azure
+1. Cercare il nome della macchina virtuale nella barra di ricerca del portale Azure hello
 2. Fare clic su "Connetti" ed eseguire: `ssh username@ipaddress`
 
 ![](media/sshcmd-copy.png)
 
-Quando viene stabilita la connessione SSH, verrà visualizzato il prompt di benvenuto di Ubuntu.
+Al momento di stabilire una connessione SSH hello, dovrebbe essere prompt di hello Ubuntu iniziale.
 ![](media/ubuntu-welcome.png)
 
 ## <a name="cleaning-up"></a>+ Cleaning up 

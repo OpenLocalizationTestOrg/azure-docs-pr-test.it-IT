@@ -1,5 +1,5 @@
 ---
-title: Creare ruoli personalizzati di controllo degli accessi in base al ruolo e assegnarli a utenti interni ed esterni in Azure | Microsoft Docs
+title: ruoli di controllo di accesso basato sui ruoli personalizzati aaaCreate e assegnare toointernal e gli utenti esterni in Azure | Documenti Microsoft
 description: Assegnare ruoli personalizzati di controllo degli accessi in base al ruolo creati con PowerShell e l'interfaccia della riga di comando per utenti interni ed esterni
 services: active-directory
 documentationcenter: 
@@ -14,54 +14,54 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 05/10/2017
 ms.author: a-crradu
-ms.openlocfilehash: d687f94bebfd0b6c1ec0690da798be5409640954
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 26793a66d6ca2f771338eed87d10ce2b3b431841
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 ## <a name="intro-on-role-based-access-control"></a>Introduzione al controllo degli accessi in base al ruolo
 
-La funzionalità di controllo degli accessi in base al ruolo, disponibile solo nel portale di Azure, consente ai proprietari di una sottoscrizione di assegnare ruoli granulari ad altri utenti, i quali possono gestire ambiti di risorse specifici nel proprio ambiente.
+Controllo di accesso basato sui ruoli è una funzionalità di sola portale Azure consentendo ai proprietari di una sottoscrizione di hello tooassign ruoli granulari tooother gli utenti possono gestire gli ambiti di risorsa specifico nel proprio ambiente.
 
-Il controllo degli accessi in base al ruolo consente una migliore gestione della sicurezza nelle organizzazioni di grandi dimensioni e nelle piccole e medie imprese che si avvalgono di collaboratori esterni, fornitori o freelance che hanno necessità di accedere a risorse specifiche nell'ambiente, ma non necessariamente all'intera infrastruttura o agli ambiti correlati alla fatturazione. Il controllo degli accessi in base al ruolo consente la flessibilità di possedere una sottoscrizione di Azure gestita dall'account di amministratore (ruolo di amministratore del servizio a livello di sottoscrizione) e di invitare più utenti a usare la stessa sottoscrizione ma senza i diritti amministrativi. Dal punto di vista della gestione e della fatturazione, la funzionalità di controllo degli accessi in base al ruolo è senza dubbio un'opzione molto efficiente in termini di gestione e tempo per l'uso di Azure in vari scenari.
+RBAC consente una migliore gestione della sicurezza per organizzazioni di grandi dimensioni e per piccole e medie imprese di utilizzo con collaboratori esterni, i fornitori o collaboratori esterni che devono accedere alle risorse di toospecific nell'ambiente di ma non necessariamente toohello intera infrastruttura o qualsiasi ambiti correlati alla fatturazione. RBAC hello flessibilità di proprietario di una sottoscrizione di Azure gestita da account di amministratore hello (ruolo di amministratore del servizio a livello di sottoscrizione) e sono più utenti invitati toowork in hello ma senza stessa sottoscrizione qualsiasi amministrativi diritti per tale. Da una gestione e la prospettiva di fatturazione, funzionalità RBAC hello dimostra toobe un'opzione efficiente time e della gestione per l'utilizzo di Azure in vari scenari.
 
 ## <a name="prerequisites"></a>Prerequisiti
-L'uso del controllo degli accessi in base al ruolo nell'ambiente di Azure richiede:
+L'utilizzo nell'ambiente Azure hello RBAC richiede:
 
-* Una sottoscrizione di Azure autonoma assegnata all'utente come proprietario (ruolo di sottoscrizione)
-* Il ruolo di proprietario della sottoscrizione di Azure
-* L'accesso al [portale di Azure](https://portal.azure.com)
-* Verificare che i provider di risorse seguenti siano registrati per la sottoscrizione dell'utente: **Microsoft.Authorization**. Per altre informazioni su come registrare i provider di risorse, vedere [Provider, aree, versioni API e schemi di Resource Manager](/azure-resource-manager/resource-manager-supported-services.md).
+* Un computer autonomo con sottoscrizione di Azure toohello utente assegnato come proprietario (ruolo di sottoscrizione)
+* Ruolo di proprietario hello di hello sottoscrizione di Azure
+* Avere accesso toohello [portale di Azure](https://portal.azure.com)
+* Verificare che hello toohave seguendo i provider di risorse registrato per la sottoscrizione utente hello: **Microsoft**. Per ulteriori informazioni su come tooregister hello i provider di risorse, vedere [i provider di gestione delle risorse, aree, le versioni dell'API e schemi](/azure-resource-manager/resource-manager-supported-services.md).
 
 > [!NOTE]
-> Le sottoscrizioni di Office 365 o le licenze di Azure Active Directory, ad esempio l'accesso ad Azure Active Directory, fornite dal portale di Office 365 non danno diritto all'uso del controllo degli accessi in base al ruolo.
+> Le sottoscrizioni di Office 365 o di licenze di Azure Active Directory (ad esempio: accesso tooAzure Active Directory) fornito da hello Office 365 portal non qualità usa tale controllo.
 
 ## <a name="how-can-rbac-be-used"></a>Modalità d'uso del controllo degli accessi in base al ruolo
-Il controllo degli accessi in base al ruolo può essere applicato in tre ambiti diversi in Azure. Dal livello più alto al più basso, gli ambiti sono i seguenti:
+Il controllo degli accessi in base al ruolo può essere applicato in tre ambiti diversi in Azure. Da hello massimo ambito toohello uno più basso, sono i seguenti:
 
 * Sottoscrizione (più alto)
 * Gruppo di risorse
-* Ambito delle risorse (più basso) che fornisce autorizzazioni mirate per un singolo ambito di risorse di Azure
+* Ambito di risorsa (hello più basso livello di accesso offerta autorizzazioni destinazione tooan ambito di singole risorse di Azure)
 
-## <a name="assign-rbac-roles-at-the-subscription-scope"></a>Assegnare i ruoli di controllo degli accessi in base al ruolo all'ambito della sottoscrizione
+## <a name="assign-rbac-roles-at-hello-subscription-scope"></a>Assegnare i ruoli RBAC ambito della sottoscrizione hello
 Ecco due esempi comuni di uso del controllo degli accessi in base al ruolo:
 
-* Utenti esterni alle organizzazioni (non inclusi nel tenant di Azure Active Directory dell'utente amministratore) invitati a gestire risorse specifiche o l'intera sottoscrizione
-* Collaborazione con utenti all'interno dell'organizzazione (inclusi nel tenant di Azure Active Directory dell'utente), ma appartenenti a team o gruppi diversi che necessitano di un accesso granulare all'intera sottoscrizione o a determinati ambiti o gruppi di risorse nell'ambiente
+* Con utenti esterni di organizzazioni hello (non fa parte del tenant di Azure Active Directory dell'utente admin hello) invitato toomanage determinate risorse o la sottoscrizione intera hello
+* Utilizzo con utenti all'interno dell'organizzazione hello (fanno parte del tenant di Azure Active Directory dell'utente hello) ma parte del team diversi o gruppi a cui è necessario un accesso granulare entrambi toohello intera sottoscrizione o gruppi di risorse toocertain o la risorsa gli ambiti in hello ambiente
 
 ## <a name="grant-access-at-a-subscription-level-for-a-user-outside-of-azure-active-directory"></a>Concedere l'accesso a livello di sottoscrizione per un utente all'esterno di Azure Active Directory
-I ruoli di controllo degli accessi in base al ruolo possono essere concessi solo dai **proprietari** della sottoscrizione; l'utente amministratore deve essere registrato con un nome utente che ha preassegnato questo ruolo o che ha creato la sottoscrizione di Azure.
+Ruoli RBAC possono essere concessa solo da **proprietari** della sottoscrizione hello pertanto l'utente amministratore hello necessario accedere con un nome utente che dispone di questo ruolo pre-assegnato o ha creato hello sottoscrizione di Azure.
 
-Dopo avere eseguito l'accesso come amministratore dal portale di Azure selezionare "Sottoscrizioni" e scegliere quella desiderata.
-![Pannello delle sottoscrizioni nel portale di Azure](./media/role-based-access-control-create-custom-roles-for-internal-external-users/0.png) Per impostazione predefinita, se l'utente amministratore ha acquistato la sottoscrizione di Azure, l'utente verrà visualizzato come **amministratore dell'account**, vale a dire con il ruolo di sottoscrizione. Per altri dettagli sui ruoli di sottoscrizione di Azure, vedere [Aggiungere o modificare i ruoli di amministratore di Azure che gestiscono la sottoscrizione o i servizi](/billing/billing-add-change-azure-subscription-administrator.md).
+Dal portale di Azure hello, dopo aver Accedi come amministratore, selezionare "Sottoscrizioni" e scegliere hello desiderato uno.
+![Pannello di sottoscrizione nel portale di Azure](./media/role-based-access-control-create-custom-roles-for-internal-external-users/0.png) per impostazione predefinita, se l'utente amministratore hello ha acquistato hello sottoscrizione di Azure, utente hello viene visualizzata come **amministratore dell'Account**, questo corso ruolo sottoscrizione hello. Per ulteriori informazioni sui ruoli di hello sottoscrizione di Azure, vedere [aggiungere o modificare ruoli di amministratore di Azure che gestiscono la sottoscrizione hello o servizi](/billing/billing-add-change-azure-subscription-administrator.md).
 
-In questo esempio l'utente "alflanigan@outlook.com" è **Proprietario** della sottoscrizione nella "versione di valutazione gratuita" nel tenant AAD "Default tenant Azure". Poiché questo utente ha creato la sottoscrizione di Azure con l'account Microsoft iniziale "Outlook" (account Microsoft = Outlook, Live e così via), il nome di dominio predefinito per tutti gli altri utenti aggiunti in questo tenant sarà **"@alflaniganuoutlook.onmicrosoft.com"**. Per impostazione predefinita, la sintassi del nuovo dominio è costituita dalla combinazione di nome utente e nome dominio dell'utente che ha creato il tenant con l'aggiunta dell'estensione **".onmicrosoft.com"**.
-Inoltre gli utenti possono accedere con un nome di dominio personalizzato nel tenant dopo averlo aggiunto e verificato per il nuovo tenant. Per altre informazioni su come verificare un nome di dominio personalizzato in un tenant di Azure Active Directory, vedere [Aggiungere un nome di dominio personalizzato alla directory](/active-directory/active-directory-add-domain).
+In questo esempio hello utente "alflanigan@outlook.com" è hello **proprietario** sottoscrizione in hello AAD di hello "Versione di valutazione gratuita" tenant "Default tenant di Azure". Poiché questo utente creatore hello di hello sottoscrizione di Azure con hello iniziale Account Microsoft "Outlook" (Account Microsoft = Outlook, in tempo reale e così via) nome di dominio hello predefinito per tutti gli altri utenti aggiunti in questo tenant sarà **"@alflaniganuoutlook.onmicrosoft.com"**. Per impostazione predefinita, sintassi hello del nuovo dominio hello è formata dalla combinazione di nome hello di nome utente e dominio dell'utente hello che ha creato il tenant hello e aggiunta estensione hello **". c o m"**.
+Inoltre, gli utenti possono Accedi con un nome di dominio personalizzato nel tenant di hello dopo l'aggiunta e verifica per il nuovo tenant di hello. Per ulteriori informazioni su come tooverify un nome di dominio personalizzato in un tenant di Azure Active Directory, vedere [aggiungere una directory tooyour nome di dominio personalizzato](/active-directory/active-directory-add-domain).
 
-In questo esempio la directory "Default tenant Azure" contiene solo gli utenti con il nome di dominio "@alflanigan.onmicrosoft.com".
+In questo esempio, la directory hello "tenant predefinito Azure" contiene solo gli utenti con il nome di dominio hello "@alflanigan.onmicrosoft.com".
 
-Dopo avere selezionato la sottoscrizione, l'utente amministratore deve fare clic su **Controllo di accesso (IAM)** e quindi su **Aggiungi nuovo ruolo**.
+Dopo aver selezionato la sottoscrizione hello, è necessario fare clic su utente admin hello **il controllo di accesso (IAM)** e quindi **aggiungere un nuovo ruolo**.
 
 
 
@@ -75,15 +75,15 @@ Dopo avere selezionato la sottoscrizione, l'utente amministratore deve fare clic
 
 ![aggiungere un nuovo utente nella funzione IAM di controllo di accesso nel portale di Azure](./media/role-based-access-control-create-custom-roles-for-internal-external-users/2.png)
 
-Il passaggio successivo consiste nel selezionare il ruolo da assegnare e l'utente a cui verrà assegnato il ruolo di controllo degli accessi in base al ruolo. Nel menu a discesa **Ruolo** l'utente amministratore vede solo i ruoli predefiniti di controllo degli accessi in base al ruolo disponibili in Azure. Per altre descrizioni di ogni ruolo e dei relativi ambiti assegnabili, vedere [Ruoli predefiniti per il controllo degli accessi in base al ruolo di Azure](/active-directory/role-based-access-built-in-roles.md).
+passaggio successivo Hello è tooselect hello ruolo toobe assegnato e utente hello che verrà assegnato al ruolo RBAC hello. In hello **ruolo** utente admin hello di menu a discesa Visualizza solo hello RBAC ruoli predefiniti che sono disponibili in Azure. Per altre descrizioni di ogni ruolo e dei relativi ambiti assegnabili, vedere [Ruoli predefiniti per il controllo degli accessi in base al ruolo di Azure](/active-directory/role-based-access-built-in-roles.md).
 
-L'utente amministratore deve quindi aggiungere l'indirizzo e-mail dell'utente esterno. Per l'utente esterno il comportamento previsto è quello di non essere visibile nel tenant esistente. Dopo che è stato invitato, l'utente esterno sarà visibile in **Sottoscrizioni > Controllo di accesso (IAM)** con tutti gli utenti correnti assegnati attualmente a un ruolo di controllo degli accessi in base al ruolo nell'ambito della sottoscrizione.
-
-
+l'utente amministratore Hello deve quindi l'indirizzo di posta elettronica hello tooadd dell'utente esterno hello. Hello previsto è il comportamento per hello utente esterno toonot compaiano in hello tenant esistente. Dopo che è stato invitato l'utente esterno hello, saranno visibile in **sottoscrizioni > controllo di accesso (IAM)** con tutti gli utenti correnti hello che sono attualmente assegnati a un ruolo RBAC hello ambito della sottoscrizione.
 
 
 
-![aggiungere autorizzazioni al nuovo ruolo di controllo degli accessi in base al ruolo](./media/role-based-access-control-create-custom-roles-for-internal-external-users/3.png)
+
+
+![aggiungere le autorizzazioni toonew RBAC ruolo](./media/role-based-access-control-create-custom-roles-for-internal-external-users/3.png)
 
 
 
@@ -91,10 +91,10 @@ L'utente amministratore deve quindi aggiungere l'indirizzo e-mail dell'utente es
 
 ![elenco di ruoli di controllo degli accessi in base al ruolo a livello di sottoscrizione](./media/role-based-access-control-create-custom-roles-for-internal-external-users/4.png)
 
-L'utente "chessercarlton@gmail.com" è stato inviato ad essere un **proprietario** per la sottoscrizione nella "versione di valutazione gratuita". Dopo avere inviato l'invito, l'utente esterno riceverà una conferma tramite posta elettronica con un collegamento di attivazione.
+utente Hello "chessercarlton@gmail.com" è stato invitato toobe un **proprietario** per hello sottoscrizione "Versione di valutazione gratuita". Dopo l'invio di invito hello utente esterno hello riceverà una conferma tramite posta elettronica con un collegamento di attivazione.
 ![Invito tramite posta elettronica per il ruolo di controllo degli accessi in base al ruolo](./media/role-based-access-control-create-custom-roles-for-internal-external-users/5.png)
 
-Essendo esterno all'organizzazione, il nuovo utente non dispone degli attributi esistenti nella directory "Default tenant Azure". Questi verranno creati previo consenso dell'utente esterno alla registrazione nella directory associata alla sottoscrizione per cui gli è stato assegnato un ruolo.
+Da organizzazione toohello esterno, hello nuovo utente non dispone gli attributi esistenti nella directory "Tenant di Azure predefinita" hello. Verranno creati previo consenso toobe registrate nella directory hello associata alla sottoscrizione hello che egli è stato assegnato un ruolo utente esterno hello.
 
 
 
@@ -102,7 +102,7 @@ Essendo esterno all'organizzazione, il nuovo utente non dispone degli attributi 
 
 ![messaggio di invito tramite posta elettronica per il ruolo di controllo degli accessi in base al ruolo](./media/role-based-access-control-create-custom-roles-for-internal-external-users/6.png)
 
-L'utente esterno diventa visibile nel tenant di Azure Active Directory da questo momento in poi come utente esterno e può essere visualizzato sia nel portale di Azure sia nel portale classico.
+utente esterno Hello Mostra in hello tenant di Azure Active Directory in come utente esterno e possono essere visualizzato nel portale di Azure hello e nel portale classico hello.
 
 
 
@@ -116,47 +116,47 @@ L'utente esterno diventa visibile nel tenant di Azure Active Directory da questo
 
 ![pannello utenti azure active directory portale di Azure classico](./media/role-based-access-control-create-custom-roles-for-internal-external-users/8.png)
 
-Nella visualizzazione **Utenti** in entrambi i portali gli utenti esterni possono essere riconosciuti da:
+In hello **utenti** vista in entrambi i portali hello perché gli utenti esterni può essere riconosciuto da:
 
-* Il tipo di icona diverso nel portale di Azure
-* Il punto di origine diverso nel portale classico
+* tipo di icona diversa Hello in hello portale di Azure
+* Hello diverso punti nel portale classico hello di determinazione dell'origine
 
-Tuttavia, la concessione dell'accesso come **Proprietario** o **Collaboratore** a un utente esterno nell'ambito della **sottoscrizione**, non consente l'accesso alla directory dell'utente amministratore, a meno che ciò non sia consentito dall'opzione di **amministrazione globale**. Nelle proprietà dell'utente è possibile identificare il **tipo di utente** che dispone di due parametri comuni, **Membro** e **Guest**. Un membro è un utente registrato nella directory, mentre un utente guest è un utente invitato nella directory da un'origine esterna. Per altre informazioni, vedere [Procedura per aggiungere utenti di Collaborazione B2B ad Azure Active Directory da parte degli amministratori](/active-directory/active-directory-b2b-admin-add-users).
+Tuttavia, la concessione **proprietario** o **collaboratore** accesso tooan esterno utente hello **sottoscrizione** ambito, non consentire hello accesso toohello amministrazione della directory dell'utente, a meno che non hello **amministratore globale** lo consente. In proprietà utente hello, hello **tipo utente** che presenta due parametri comuni, **membro** e **Guest** possono essere identificati. Un membro è un utente a cui viene registrato nella directory di hello mentre un utente guest è una directory toohello utente oltre agli inviti inviati da un'origine esterna. Per altre informazioni, vedere [Procedura per aggiungere utenti di Collaborazione B2B ad Azure Active Directory da parte degli amministratori](/active-directory/active-directory-b2b-admin-add-users).
 
 > [!NOTE]
-> Assicurarsi che dopo avere immesso le credenziali nel portale, l'utente esterno selezioni la directory corretta a cui accedere. Lo stesso utente può avere accesso a più directory e selezionarne una facendo clic sul nome utente nella parte superiore destra nel portale di Azure e quindi scegliere la directory appropriata nell'elenco a discesa.
+> Assicurarsi che dopo aver immesso le credenziali di hello nel portale di hello, gli utenti esterni hello Seleziona directory corretta di hello toosign in. Hello stesso utente può dispone di accesso toomultiple directory e possono selezionare uno di essi facendo clic sul nome utente hello in hello lato superiore destro nel portale di Azure hello e quindi scegliere la directory appropriata hello dall'elenco a discesa hello.
 
-Pur essendo un utente guest nella directory, l'utente esterno può gestire tutte le risorse per la sottoscrizione di Azure, ma non è in grado di accedere alla directory.
-
-
+Pur essendo guest nella directory di hello, utente esterno hello possibile gestire tutte le risorse per hello sottoscrizione di Azure, ma Impossibile accedere alla directory hello.
 
 
 
-![accesso limitato ad Azure Active Directory nel portale di Azure](./media/role-based-access-control-create-custom-roles-for-internal-external-users/9.png)
 
-Azure Active Directory e una sottoscrizione di Azure non hanno una relazione padre-figlio come quella che hanno altre risorse di Azure, ad esempio le macchine virtuali, le reti virtuali, le app Web, le risorse di archiviazione e così via, con una sottoscrizione di Azure. Tutte queste ultime vengono create, gestite e fatturate in una sottoscrizione di Azure, mentre una sottoscrizione di Azure viene usata per gestire l'accesso a una directory di Azure. Per altre informazioni, vedere [Associare le sottoscrizioni di Azure ad Azure Active Directory](/active-directory/active-directory-how-subscriptions-associated-directory).
 
-Da tutti i ruoli predefiniti di controllo degli accessi in base al ruolo, **Proprietario** e **Collaboratore** offrono l'accesso completo a livello di gestione a tutte le risorse nell'ambiente, ma il ruolo Collaboratore non può creare ed eliminare nuovi ruoli di controllo degli accessi in base al ruolo. Altri ruoli predefiniti, come **Collaboratore Macchina Virtuale**, offrono l'accesso completo a livello di gestione solo alle risorse indicate dal nome, indipendentemente dal **gruppo di risorse** in cui sono state create.
+![portale di Azure active directory tooazure con restrizioni di accesso](./media/role-based-access-control-create-custom-roles-for-internal-external-users/9.png)
 
-L'assegnazione del ruolo predefinito di controllo degli accessi in base al ruolo **Collaboratore Macchina Virtuale** a livello di sottoscrizione implica che all'utente a cui è stato assegnato il ruolo seguente:
+Azure Active Directory e una sottoscrizione di Azure non hanno una relazione padre-figlio come quella che hanno altre risorse di Azure, ad esempio le macchine virtuali, le reti virtuali, le app Web, le risorse di archiviazione e così via, con una sottoscrizione di Azure. Hello tutti quest'ultimo viene creato, gestiti e fatturati in una sottoscrizione di Azure, mentre una sottoscrizione di Azure viene utilizzato toomanage hello accesso tooan directory Azure. Per ulteriori informazioni, vedere [sottoscrizione di Azure è tooAzure correlati AD](/active-directory/active-directory-how-subscriptions-associated-directory).
 
-* Può visualizzare tutte le macchine virtuali indipendentemente dalla data di distribuzione e dai gruppi di risorse di appartenenza
-* Ha accesso completo a livello di gestione alle macchine virtuali nella sottoscrizione
-* Non può visualizzare gli altri tipi di risorse nella sottoscrizione
+Da tutti hello RBAC ruoli predefiniti, **proprietario** e **collaboratore** offrono l'accesso di gestione complete risorse tooall in ambiente hello, hello differenza corso che non è possibile creare un collaboratore e delete nuovo Ruoli RBAC. come Hello altri ruoli predefiniti **collaboratore alla macchina virtuale** offrono l'accesso di gestione completa solo le risorse toohello indicate dal nome hello, indipendentemente dal hello **gruppo di risorse** la creazione in.
+
+L'assegnazione hello ruolo incorporato e RBAC di **collaboratore alla macchina virtuale** a livello di sottoscrizione, significa che tale ruolo hello assegnati all'utente di hello:
+
+* Può visualizzare tutte le macchine virtuali indipendentemente dal loro distribuzione data e hello gruppi di risorse di che fanno parte
+* Dispone di macchine virtuali di gestione complete accesso toohello nella sottoscrizione hello
+* Non è possibile visualizzare altri tipi di risorse nella sottoscrizione di hello
 * Non può applicare modifiche dalla prospettiva della fatturazione
 
 > [!NOTE]
-> Il controllo degli accessi in base al ruolo non concede l'accesso al portale classico poiché è una funzionalità disponibile solo nel portale di Azure.
+> ACCESSI da un'unica funzionalità del portale Azure, non concede portale classico toohello di accesso.
 
-## <a name="assign-a-built-in-rbac-role-to-an-external-user"></a>Assegnare un ruolo predefinito di controllo degli accessi in base al ruolo a un utente esterno
-Per uno scenario diverso in questo test, l'utente esterno "alflanigan@gmail.com" viene aggiunto come **Collaboratore Macchina virtuale**.
+## <a name="assign-a-built-in-rbac-role-tooan-external-user"></a>Assegnare un RBAC ruolo tooan esterno utente predefiniti
+Per uno scenario diverso in questo test, hello utente esterno "alflanigan@gmail.com" viene aggiunto come un **collaboratore alla macchina virtuale**.
 
 
 
 
 ![ruolo predefinito collaboratore macchina virtuale](./media/role-based-access-control-create-custom-roles-for-internal-external-users/11.png)
 
-Il comportamento normale per questo utente esterno con questo ruolo predefinito è visualizzare e gestire solo le macchine virtuali e solo le risorse di Resource Manager adiacenti necessarie durante la distribuzione. Per impostazione predefinita, questi ruoli limitati consentono l'accesso solo alle risorse corrispondenti create nel portale di Azure, indipendentemente dal fatto che alcune possano essere distribuite anche nel portale classico, ad esempio le macchine virtuali.
+un comportamento normale per questo utente esterno con questo ruolo incorporato Hello è toosee e gestire solo le macchine virtuali e i relativi adiacenti Gestione risorse solo le risorse necessarie durante la distribuzione. Per impostazione predefinita, questi ruoli limitati consentono l'accesso solo le risorse corrispondenti tootheir create nel portale di Azure hello, indipendentemente dal fatto che alcune può ancora essere distribuito nel portale classico di hello (ad esempio: le macchine virtuali).
 
 
 
@@ -164,16 +164,16 @@ Il comportamento normale per questo utente esterno con questo ruolo predefinito 
 
 ![Panoramica del ruolo Collaboratore macchina virtuale nel portale di Azure](./media/role-based-access-control-create-custom-roles-for-internal-external-users/12.png)
 
-## <a name="grant-access-at-a-subscription-level-for-a-user-in-the-same-directory"></a>Concedere l'accesso a livello di sottoscrizione per un utente nella stessa directory
-Il flusso del processo è identico all'aggiunta di un utente esterno sia dal punto di vista dell'amministratore che concede il ruolo di controllo degli accessi in base al ruolo sia dal punto di vista dell'utente a cui viene concesso l'accesso al ruolo. La differenza è che l'utente invitato non riceverà gli inviti tramite posta elettronica e tutti gli ambiti di risorse nella sottoscrizione saranno disponibili nel dashboard dopo l'accesso.
+## <a name="grant-access-at-a-subscription-level-for-a-user-in-hello-same-directory"></a>Concedere accesso a livello di sottoscrizione per un utente in hello stessa directory
+flusso del processo Hello è identica tooadding un utente esterno, sia da hello prospettiva concessione hello RBAC ruolo di amministratore, nonché utente hello concessa ruolo toohello di accesso. differenza Hello è che utente hello invitato non riceverà gli inviti di qualsiasi messaggio di posta elettronica come tutti gli ambiti di risorsa hello in sottoscrizione hello saranno disponibili nel dashboard di hello dopo l'accesso.
 
-## <a name="assign-rbac-roles-at-the-resource-group-scope"></a>Assegnare ruoli di controllo degli accessi in base al ruolo nell'ambito del gruppo di risorse
-L'assegnazione di un ruolo di controllo degli accessi in base al ruolo nell'ambito del **gruppo di risorse** prevede un processo identico per l'assegnazione del ruolo a livello di sottoscrizione per entrambi i tipi di utenti: esterni o interni (appartenenti alla stessa directory). Gli utenti a cui viene assegnato il ruolo di controllo degli accessi in base al ruolo vedono nel proprio ambiente solo il gruppo di risorse per cui gli è stato assegnato l'accesso dall'icona **Gruppi di risorse** nel portale di Azure.
+## <a name="assign-rbac-roles-at-hello-resource-group-scope"></a>Assegnare ruoli RBAC nell'ambito del gruppo di risorse hello
+L'assegnazione di un ruolo RBAC un **gruppo di risorse** ambito è un processo identico per l'assegnazione di ruolo hello a livello di sottoscrizione hello, per entrambi i tipi di utenti - esterni o interni (hello in parte stessa directory). Hello gli utenti a cui vengono assegnati il ruolo di RBAC hello è toosee nel proprio ambiente solo il gruppo di risorse hello che sia stato assegnato l'accesso da hello **gruppi di risorse** icona in hello portale di Azure.
 
-## <a name="assign-rbac-roles-at-the-resource-scope"></a>Assegnare ruoli di controllo degli accessi in base al ruolo nell'ambito delle risorse
-Il processo di assegnazione di un ruolo di controllo degli accessi in base al ruolo nell'ambito delle risorse in Azure è identico per l'assegnazione del ruolo a livello di sottoscrizione o di gruppo di risorse, seguendo lo stesso flusso di lavoro per entrambi gli scenari. Anche in questo caso, gli utenti assegnati al ruolo di controllo degli accessi in base al ruolo possono vedere solo gli elementi per cui gli è stato assegnato l'accesso nella scheda **Tutte le risorse** o direttamente nel dashboard.
+## <a name="assign-rbac-roles-at-hello-resource-scope"></a>Assegnare i ruoli RBAC ambito risorsa hello
+L'assegnazione di un ruolo RBAC a un ambito di risorse in Azure è un processo per l'assegnazione di ruolo hello a livello di sottoscrizione hello o a livello di gruppo di risorse hello identico, seguente hello stesso flusso di lavoro per entrambi gli scenari. Nuovamente, gli utenti di hello che vengono assegnati hello RBAC ruolo possono visualizzare solo gli elementi hello che sono stati assegnati l'accesso a, entrambi in hello **tutte le risorse** scheda o direttamente nei loro dashboard.
 
-Un aspetto importante per il controllo degli accessi in base al ruolo nell'ambito del gruppo di risorse o delle risorse è che gli utenti devono eseguire l'accesso alla directory corretta.
+Un aspetto importante per RBAC sia nell'ambito di gruppo di risorse o risorse è per directory corretta di hello utenti toomake toohello verificare toosign-in.
 
 
 
@@ -182,9 +182,9 @@ Un aspetto importante per il controllo degli accessi in base al ruolo nell'ambit
 ![accesso alla directory nel portale di Azure](./media/role-based-access-control-create-custom-roles-for-internal-external-users/13.png)
 
 ## <a name="assign-rbac-roles-for-an-azure-active-directory-group"></a>Assegnare ruoli di controllo degli accessi in base al ruolo per un gruppo di Azure Active Directory
-Tutti gli scenari che usano il controllo degli accessi in base al ruolo nei tre ambiti diversi in Azure offrono il privilegio di gestione, distribuzione e amministrazione di varie risorse come utente assegnato, senza la necessità di gestire una sottoscrizione personale. Indipendentemente dal fatto che venga assegnato il ruolo di controllo degli accessi in base al ruolo nell'ambito di una sottoscrizione, di un gruppo di risorse o delle risorse, tutte le risorse create successivamente dagli utenti assegnati vengono fatturate per la sottoscrizione di Azure a cui gli utenti hanno accesso. In questo modo gli utenti con autorizzazioni di amministratore per la fatturazione per l'intera sottoscrizione di Azure hanno una panoramica completa sul consumo, indipendentemente da chi gestisce le risorse.
+Tutti gli scenari di hello utilizzando RBAC hello tre diversi ambiti privilegi hello Azure offerta di gestione, distribuzione e amministrazione delle varie risorse come un utente assegnato senza hello necessario della gestione di una sottoscrizione personale. Tutte le risorse di hello create più avanti dagli utenti di hello assegnato vengono fatturate in hello una sottoscrizione di Azure in cui gli utenti di hello hanno accesso al ruolo RBAC hello indipendentemente dal fatto che viene assegnato per una sottoscrizione, un gruppo di risorse o un ambito di risorsa. In questo modo, hello gli utenti che dispongono delle autorizzazioni di amministratore per la sottoscrizione Azure intera di fatturazione è una panoramica completa sul consumo di hello, indipendentemente dal fatto che che gestisce le risorse di hello.
 
-Per le organizzazioni di dimensioni maggiori, i ruoli di controllo degli accessi in base al ruolo possono essere applicati allo stesso modo per i gruppi di Azure Active Directory considerando la prospettiva che l'utente amministratore intenda concedere l'accesso granulare a team o a interi reparti, non singolarmente per ogni utente; si tratta quindi di un'opzione molto efficiente in termini di gestione e tempo. Per illustrare questo esempio, il ruolo **Collaboratore** è stato aggiunto a uno dei gruppi nel tenant a livello di sottoscrizione.
+Per le organizzazioni più grandi, è possono applicare ruoli RBAC in hello allo stesso modo per gruppi di Azure Active Directory si considera di tale utente amministratore hello prospettiva hello vuole toogrant un accesso granulare hello per team o reparti interi, non singolarmente per ogni utente, pertanto possibilità di valutazione è molto tempo e la gestione efficiente. tooillustrate questo esempio, hello **collaboratore** ruolo è stato aggiunto tooone dei gruppi di hello nel tenant di hello a livello di sottoscrizione hello.
 
 
 
@@ -194,16 +194,16 @@ Per le organizzazioni di dimensioni maggiori, i ruoli di controllo degli accessi
 
 Questi gruppi sono gruppi di sicurezza di cui viene eseguito il provisioning e la gestione solo all'interno di Azure Active Directory.
 
-## <a name="create-a-custom-rbac-role-to-open-support-requests-using-powershell"></a>Creare un ruolo personalizzato di controllo degli accessi in base al ruolo per aprire richieste di supporto usando PowerShell
-I ruoli predefiniti di controllo degli accessi in base al ruolo disponibili in Azure assicurano determinati livelli di autorizzazione in base alle risorse disponibili nell'ambiente. Se tuttavia nessuno di questi ruoli è adatto alle esigenze dell'utente amministratore, è possibile limitare ulteriormente l'accesso creando ruoli personalizzati di controllo degli accessi in base al ruolo.
+## <a name="create-a-custom-rbac-role-tooopen-support-requests-using-powershell"></a>Creare un supporto di tooopen ruolo RBAC personalizzato richieste tramite PowerShell
+ruoli RBAC incorporati Hello che sono disponibili in Azure verificare alcuni livelli di autorizzazione basate sulle risorse disponibili di hello in ambiente hello. Tuttavia, se nessuno di questi ruoli sono adatti alle esigenze dell'utente dell'amministratore di hello, è accesso toolimit di hello opzione ulteriormente creando ruoli RBAC personalizzati.
 
-Per la creazione di ruoli personalizzati è necessario usare un ruolo predefinito, modificarlo e importarlo di nuovo nell'ambiente. Il download e l'upload del ruolo vengono gestiti usando PowerShell o l'interfaccia della riga di comando.
+Creazione di ruoli RBAC personalizzati richiede un ruolo incorporato e tootake, modificarlo e importarlo in ambiente hello. download di Hello e il caricamento del ruolo hello vengono gestiti tramite PowerShell o CLI.
 
-È importante comprendere i prerequisiti per la creazione di un ruolo personalizzato che può concedere l'accesso granulare a livello di sottoscrizione e consentire all'utente invitato la flessibilità di aprire richieste di supporto.
+È importante toounderstand prerequisiti a hello di creazione di un ruolo personalizzato che possono concedere un accesso granulare a livello di sottoscrizione hello e consentono inoltre di hello invitato hello flessibilità di apertura di richieste di supporto.
 
-In questo esempio è stato personalizzato il ruolo predefinito **Lettore**, che consente agli utenti di accedere di visualizzare tutti gli ambiti di risorse ma non di modificarli o di crearne uno nuovo, per consentire all'utente di aprire richieste di supporto.
+Per questo ruolo predefiniti di esempio hello **lettore** che consente agli utenti accesso tooview tutte le risorse hello ambiti ma non tooedit li o crearne di nuovi è stato personalizzato tooallow hello utente hello possibile aprire le richieste di assistenza.
 
-La prima azione di esportazione del ruolo **Lettore** deve essere completata in PowerShell con autorizzazioni elevate come amministratore.
+Hello prima azione di esportazione hello **lettore** ruolo esigenze toobe completata in PowerShell è stato eseguito con autorizzazioni elevate come amministratore.
 
 ```
 Login-AzureRMAccount
@@ -220,7 +220,7 @@ Get-AzureRMRoleDefinition -Name "Reader" | ConvertTo-Json | Out-File C:\rbacrole
 
 ![Screenshot di PowerShell per il ruolo Lettore di controllo degli accessi in base al ruolo](./media/role-based-access-control-create-custom-roles-for-internal-external-users/15.png)
 
-È quindi necessario estrarre il modello JSON del ruolo.
+È quindi necessario modello JSON di hello tooextract del ruolo hello.
 
 
 
@@ -230,44 +230,44 @@ Get-AzureRMRoleDefinition -Name "Reader" | ConvertTo-Json | Out-File C:\rbacrole
 
 Un tipico ruolo di controllo degli accessi in base al ruolo è composto da tre sezioni principali, **Actions**, **NotActions** e **AssignableScopes**.
 
-Nella sezione **Azione** vengono elencate tutte le operazioni consentite per questo ruolo. È importante tenere presente che ogni azione viene assegnata da un provider di risorse. In questo caso per la creazione di ticket di supporto è necessario che sia elencato il provider di risorse **Microsoft.Support**.
+In hello **azione** sezione sono elencati tutti hello operazioni consentite per questo ruolo. È importante toounderstand che ogni azione viene assegnato da un provider di risorse. In questo caso, per la creazione di hello ticket di supporto **Microsoft. support** provider di risorse deve essere elencato.
 
-Per poter visualizzare tutti i provider di risorse disponibili e registrati nella sottoscrizione, è possibile usare PowerShell.
+toosee in grado di toobe tutti hello i provider di risorse disponibili e registrati nella sottoscrizione, è possibile utilizzare PowerShell.
 ```
 Get-AzureRMResourceProvider
 
 ```
-Inoltre è possibile cercare di tutti i cmdlet di PowerShell disponibili per gestire i provider di risorse.
+Inoltre, è possibile controllare per hello tutti hello disponibile PowerShell cmdlet toomanage hello provider di risorse.
     ![Screenshot di PowerShell per la gestione dei provider di risorse](./media/role-based-access-control-create-custom-roles-for-internal-external-users/17.png)
 
-Per limitare tutte le azioni di uno specifico ruolo di controllo degli accessi in base al ruolo, i provider di risorse sono elencati nella sezione **NotActions**.
-Infine è obbligatorio che il ruolo di controllo degli accessi in base al ruolo contenga gli ID di sottoscrizione espliciti in cui viene usato. Gli ID di sottoscrizione sono elencati in **AssignableScopes**; in caso contrario non sarà possibile importare il ruolo nella sottoscrizione.
+toorestrict tutti hello azioni per un particolare ruolo RBAC resource provider sono elencati nella sezione hello **NotActions**.
+Infine, è obbligatoria che tale ruolo RBAC hello contiene sottoscrizione esplicita hello ID in cui viene utilizzato. Hello gli ID di sottoscrizione sono elencati sotto hello **AssignableScopes**, in caso contrario non sarà possibile ruolo hello tooimport nella sottoscrizione.
 
-Dopo la creazione e la personalizzazione del ruolo di controllo degli accessi in base al ruolo, è necessario reimportarlo nell'ambiente.
+Dopo la creazione e personalizzazione hello RBAC ruolo, è necessario ambiente hello indietro importati toobe.
 
 ```
 New-AzureRMRoleDefinition -InputFile "C:\rbacrole2.json"
 
 ```
 
-In questo esempio il nome personalizzato per questo ruolo di controllo degli accessi in base al ruolo è "Reader support tickets access level" che consente all'utente di visualizzare tutti gli elementi nella sottoscrizione e di aprire le richieste di supporto.
+In questo esempio, nome personalizzato per questo ruolo RBAC il hello è "lettore supporto ticket livello di accesso" consentendo hello utente tooview tutti gli elementi nella sottoscrizione di hello e anche le richieste di assistenza tooopen.
 
 > [!NOTE]
-> Esistono solo due ruoli predefiniti di controllo degli accessi in base al ruolo che consentono di aprire richieste di supporto: **Proprietario** e **Collaboratore**. Per consentire a un utente di aprire richieste di supporto, è necessario che gli sia stato assegnato un ruolo di controllo degli accessi in base al ruolo solo nell'ambito della sottoscrizione perché tutte le richieste di supporto vengono create in base a una sottoscrizione di Azure.
+> sono Hello solo due ruoli RBAC incorporati che consentono l'azione hello di apertura di richieste di supporto **proprietario** e **collaboratore**. Per un utente toobe in grado di tooopen le richieste di assistenza, egli deve essere assegnato un RBAC ruolo solo nell'ambito di sottoscrizione hello, poiché tutte le richieste di supporto vengono create in base a una sottoscrizione di Azure.
 
-Questo nuovo ruolo personalizzato è stato assegnato a un utente della stessa directory.
-
-
-
-
-
-![screenshot del ruolo di controllo degli accessi in base al ruolo importati nel portale di Azure](./media/role-based-access-control-create-custom-roles-for-internal-external-users/18.png)
+Questo nuovo ruolo personalizzato è stato assegnato l'utente tooan hello stessa directory.
 
 
 
 
 
-![screenshot dell'assegnazione dei ruoli di controllo degli accessi in base al ruolo importati personalizzati all'utente della stessa directory](./media/role-based-access-control-create-custom-roles-for-internal-external-users/19.png)
+![schermata del ruolo RBAC personalizzata importata nel portale di Azure hello](./media/role-based-access-control-create-custom-roles-for-internal-external-users/18.png)
+
+
+
+
+
+![schermata di assegnazione personalizzato toouser ruolo RBAC importati in hello stessa directory](./media/role-based-access-control-create-custom-roles-for-internal-external-users/19.png)
 
 
 
@@ -275,7 +275,7 @@ Questo nuovo ruolo personalizzato è stato assegnato a un utente della stessa di
 
 ![screenshot delle autorizzazioni per il ruolo personalizzato importato di controllo degli accessi in base al ruolo](./media/role-based-access-control-create-custom-roles-for-internal-external-users/20.png)
 
-Altri dettagli nell'esempio evidenziano i limiti di questo ruolo personalizzato, come indicato di seguito:
+esempio Hello è stata ulteriormente i limiti di hello tooemphasize dettagliate di questo ruolo RBAC personalizzato come indicato di seguito:
 * Può creare nuove richieste di supporto
 * Non può creare nuovi ambiti di risorse, ad esempio la macchina virtuale
 * Non può creare nuovi gruppi di risorse
@@ -290,20 +290,20 @@ Altri dettagli nell'esempio evidenziano i limiti di questo ruolo personalizzato,
 
 
 
-![screenshot del ruolo personalizzato di controllo degli accessi in base al ruolo che non può creare VM](./media/role-based-access-control-create-custom-roles-for-internal-external-users/22.png)
+![schermata del ruolo RBAC personalizzato non è possibile toocreate macchine virtuali](./media/role-based-access-control-create-custom-roles-for-internal-external-users/22.png)
 
 
 
 
 
-![screenshot del ruolo personalizzato di controllo degli accessi in base al ruolo che non può creare nuovi gruppi di risorse](./media/role-based-access-control-create-custom-roles-for-internal-external-users/23.png)
+![schermata del ruolo RBAC personalizzato non è possibile toocreate RGs nuovo](./media/role-based-access-control-create-custom-roles-for-internal-external-users/23.png)
 
-## <a name="create-a-custom-rbac-role-to-open-support-requests-using-azure-cli"></a>Creare un ruolo personalizzato di controllo degli accessi in base al ruolo per aprire richieste di supporto usando l'interfaccia della riga di comando di Azure
-Per l'esecuzione su un Mac e senza dover accedere a PowerShell, l'interfaccia della riga di comando di Azure è la soluzione adatta.
+## <a name="create-a-custom-rbac-role-tooopen-support-requests-using-azure-cli"></a>Creare un supporto di tooopen ruolo RBAC personalizzato richieste tramite l'interfaccia CLI di Azure
+In esecuzione su un Mac e senza accesso tooPowerShell, CLI di Azure è toogo modo hello.
 
-I passaggi per creare un ruolo personalizzato sono gli stessi, con l'unica eccezione che quando si usa l'interfaccia della riga di comando non è possibile scaricare il ruolo in un modello JSON, ma è possibile visualizzarlo nell'interfaccia della riga di comando.
+Hello passaggi toocreate un ruolo personalizzato sono hello stesso, con l'unica eccezione hello che usa CLI ruolo hello non è possibile scaricare un modello JSON, ma possono essere visualizzati in hello CLI.
 
-In questo esempio è stato scelto il ruolo predefinito **Lettore di backup**.
+Per questo esempio ho scelto ruolo incorporato e hello di **lettore Backup**.
 
 ```
 
@@ -317,7 +317,7 @@ azure role show "backup reader" --json
 
 ![Screenshot dell'interfaccia della riga di comando del ruolo di lettore backup](./media/role-based-access-control-create-custom-roles-for-internal-external-users/24.png)
 
-Modificando il ruolo in Visual Studio dopo la copia delle proprietà in un modello JSON, il provider di risorse **Microsoft.Support** è stato aggiunto nelle sezioni **Azioni** in modo che questo utente possa aprire le richieste di supporto pur continuando a essere un lettore per gli insiemi di credenziali di backup. Anche in questo caso è necessario aggiungere l'ID sottoscrizione in cui verrà usato questo ruolo nella sezione **AssignableScopes**.
+Modifica ruolo hello in Visual Studio dopo la copia memorizzando hello in un modello JSON, hello **Microsoft. support** provider di risorse è stata aggiunta in hello **azioni** sezioni in modo che l'utente può aprire richieste di assistenza continuando toobe un lettore per gli insiemi di credenziali backup hello. Caso è necessario tooadd ID di sottoscrizione hello in cui verrà utilizzato questo ruolo in hello **AssignableScopes** sezione.
 
 ```
 
@@ -331,7 +331,7 @@ azure role create --inputfile <path>
 
 ![Screenshot dell'interfaccia della riga di comando di importazione del ruolo personalizzato di controllo degli accessi in base al ruolo](./media/role-based-access-control-create-custom-roles-for-internal-external-users/25.png)
 
-Il nuovo ruolo è ora disponibile nel portale di Azure e il processo di assegnazione è lo stesso descritto negli esempi precedenti.
+nuovo ruolo Hello è ora disponibile nel portale di Azure hello e processo di tutte le assegnazioni di hello è hello stesso, come negli esempi precedenti hello.
 
 
 
@@ -339,7 +339,7 @@ Il nuovo ruolo è ora disponibile nel portale di Azure e il processo di assegnaz
 
 ![Screenshot del portale di Azure del ruolo personalizzato di controllo degli accessi in base al ruolo creato usando l'interfaccia della riga di comando 1.0](./media/role-based-access-control-create-custom-roles-for-internal-external-users/26.png)
 
-Al momento della build 2017 aggiornata, Azure Cloud Shell è disponibile a livello generale. Azure Cloud Shell è complementare all'ambiente IDE e al portale di Azure. Con questo servizio si ottiene una shell basata su browser autenticata e ospitata in Azure che è possibile usare al posto dell'interfaccia della riga di comando installata nel computer.
+A partire da hello 2017 di compilazione più recente, hello Shell di Cloud di Azure è disponibile. Shell Cloud Azure è un complemento tooIDE hello portale di Azure. Con questo servizio si ottiene una shell basata su browser autenticata e ospitata in Azure che è possibile usare al posto dell'interfaccia della riga di comando installata nel computer.
 
 
 

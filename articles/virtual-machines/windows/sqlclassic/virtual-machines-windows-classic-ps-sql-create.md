@@ -1,6 +1,6 @@
 ---
-title: Creare una macchina virtuale SQL Server in Azure PowerShell (distribuzione classica) | Microsoft Docs
-description: "Fornisce procedure e script di PowerShell per la creazione di una macchina virtuale di Azure con le immagini della galleria di macchine virtuali SQL Server. In questo argomento viene usata la modalità di distribuzione classica."
+title: aaaCreate una macchina virtuale di SQL Server in Azure PowerShell (versione classica) | Documenti Microsoft
+description: "Fornisce procedure e script di PowerShell per la creazione di una macchina virtuale di Azure con le immagini della galleria di macchine virtuali SQL Server. In questo argomento Usa la modalità di distribuzione classica hello."
 services: virtual-machines-windows
 documentationcenter: na
 author: rothja
@@ -14,25 +14,25 @@ ms.tgt_pltfrm: vm-windows-sql-server
 ms.workload: iaas-sql-server
 ms.date: 08/07/2017
 ms.author: jroth
-ms.openlocfilehash: c3bd4329e8a22ce8503d6593560d29c2a3135e83
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: b14d5d9bc192fa0a21126395ee20ffd06b3bf47d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="provision-a-sql-server-virtual-machine-using-azure-powershell-classic"></a>Effettuare il provisioning di una macchina virtuale di SQL Server con Azure PowerShell (classico)
 
-In questo articolo viene descritta la procedura per creare una macchina virtuale SQL Server in Azure usando i cmdlet di PowerShell.
+In questo articolo viene descritta la procedura per la modalità toocreate una macchina virtuale di SQL Server in Azure utilizzando hello i cmdlet di PowerShell.
 
 > [!IMPORTANT] 
-> Azure offre due diversi modelli di distribuzione per creare e usare le risorse: [Gestione risorse e la distribuzione classica](../../../azure-resource-manager/resource-manager-deployment-model.md). Questo articolo illustra l'uso del modello di distribuzione classica. Microsoft consiglia di usare il modello di Gestione risorse per le distribuzioni più recenti.
+> Azure offre due diversi modelli di distribuzione per creare e usare le risorse: [Gestione risorse e la distribuzione classica](../../../azure-resource-manager/resource-manager-deployment-model.md). In questo articolo viene illustrato l'utilizzo del modello di distribuzione classica hello. Si consiglia di utilizzano il modello di gestione risorse hello più nuove distribuzioni.
 
-Per la versione di Resource Manager di questo argomento, vedere [Effettuare il provisioning di una macchina virtuale di SQL Server con Azure PowerShell (Resource Manager)](../sql/virtual-machines-windows-ps-sql-create.md).
+Per la versione di hello Gestione risorse di questo argomento, vedere [il provisioning di una macchina virtuale di SQL Server tramite Gestione risorse di Azure PowerShell](../sql/virtual-machines-windows-ps-sql-create.md).
 
 ### <a name="install-and-configure-powershell"></a>Installare e configurare PowerShell:
 1. Se non si dispone di un account Azure, provare la [versione di valutazione gratuita di Azure](https://azure.microsoft.com/pricing/free-trial/).
-2. [Scaricare e installare i comandi di Azure PowerShell più recenti](/powershell/azure/overview).
-3. Avviare Windows PowerShell e connetterlo alla sottoscrizione di Azure mediante il comando **Add-AzureAccount** .
+2. [Scaricare e installare i comandi di PowerShell di Azure più recenti hello](/powershell/azure/overview).
+3. Avviare Windows PowerShell e connetterla tooyour sottoscrizione di Azure con hello **Add-AzureAccount** comando.
 
    ```powershell
    Add-AzureAccount
@@ -40,15 +40,15 @@ Per la versione di Resource Manager di questo argomento, vedere [Effettuare il p
 
 ## <a name="determine-your-target-azure-region"></a>Determinare l'area di destinazione di Azure
 
-La macchina virtuale di SQL Server verrà ospitata in un servizio cloud che si trova un'area di Azure specifica. I passaggi seguenti consentono di determinare l'area, l'account di archiviazione e il servizio cloud che verranno usati nel resto dell'esercitazione.
+La macchina virtuale di SQL Server verrà ospitata in un servizio cloud che si trova un'area di Azure specifica. Hello seguente procedura consente di toodetermine è l'area geografica, un account di archiviazione e un servizio cloud che verrà utilizzato per il resto di hello di esercitazione hello.
 
-1. Determinare il data center che si desidera usare per ospitare la macchina virtuale di SQL Server. Il comando PowerShell seguente visualizza un elenco di nomi di aree disponibili.
+1. Determinare i data center di hello che si desidera toouse toohost la macchina virtuale di SQL Server. il comando PowerShell seguente viene visualizzato un elenco di nomi delle aree disponibili.
 
    ```powershell
    (Get-AzureLocation).Name
    ```
 
-2. Dopo che è stata identificata la località preferita, impostare una variabile denominata **$dcLocation** su quell'area. Il comando seguente, ad esempio, imposta l'area su "Stati Uniti orientali":
+2. Dopo aver identificato il percorso desiderato, impostare una variabile denominata **$dcLocation** toothat area. Ad esempio, hello comando set hello area troppo seguente "Stati Uniti orientali":
 
    ```powershell
    $dcLocation = "East US"
@@ -56,29 +56,29 @@ La macchina virtuale di SQL Server verrà ospitata in un servizio cloud che si t
 
 ## <a name="set-your-subscription-and-storage-account"></a>Impostare l'account di archiviazione e la sottoscrizione
 
-1. Determinare la sottoscrizione di Azure da usare per la nuova macchina virtuale.
+1. Determinare hello sottoscrizione Azure, si utilizzerà per hello nuova macchina virtuale.
 
    ```powershell
    (Get-AzureSubscription).SubscriptionName
    ```
 
-2. Assegnare la sottoscrizione di Azure di destinazione alla variabile **$subscr** . Quindi, impostarla come la sottoscrizione di Azure corrente.
+2. Assegnare il toohello di sottoscrizione di Azure di destinazione **$subscr** variabile. Quindi, impostarla come la sottoscrizione di Azure corrente.
 
    ```powershell
    $subscr="<subscription name>"
    Select-AzureSubscription -SubscriptionName $subscr –Current
    ```
 
-3. Verificare la presenza di account di archiviazione esistenti. Lo script seguente consente di visualizzare tutti gli account di archiviazione presenti nell'area selezionata:
+3. Verificare la presenza di account di archiviazione esistenti. Hello lo script seguente consente di visualizzare tutti gli account di archiviazione presenti nel proprio paese scelto:
 
    ```powershell
    (Get-AzureStorageAccount | where { $_.GeoPrimaryLocation -eq $dcLocation }).StorageAccountName
    ```
 
    > [!NOTE]
-   > Se è necessario un nuovo account di archiviazione, creare prima un nome account di archiviazione tutto in minuscolo con il comando New-AzureStorageAccount come nell'esempio seguente: `New-AzureStorageAccount -StorageAccountName "<storage account name>" -Location $dcLocation`
+   > Se è necessario un nuovo account di archiviazione, creare innanzitutto un nome di account di archiviazione tutto minuscolo con il comando New-AzureStorageAccount hello come hello di esempio seguente:`New-AzureStorageAccount -StorageAccountName "<storage account name>" -Location $dcLocation`
 
-4. Assegnare il nome dell'account di archiviazione di destinazione a **$staccount**. Usare quindi **Set-AzureSubscription** per impostare la sottoscrizione e l'account di archiviazione corrente.
+4. Assegnare hello destinazione storage account name toohello **$staccount**. Utilizzare quindi **Set-AzureSubscription** tooset hello sottoscrizione e l'account di archiviazione corrente.
 
    ```powershell
    $staccount="<storage account name>"
@@ -87,13 +87,13 @@ La macchina virtuale di SQL Server verrà ospitata in un servizio cloud che si t
 
 ## <a name="select-a-sql-server-virtual-machine-image"></a>Selezionare un'immagine di macchina virtuale di SQL Server
 
-1. Trovare l'elenco delle immagini delle macchine virtuali di SQL Server disponibili nella raccolta. Queste immagini hanno la proprietà **ImageFamily** che inizia con "SQL". La query seguente consente di visualizzare la famiglia di immagini disponibile che include SQL Server preinstallato.
+1. Individuare l'elenco di hello di immagini di macchine virtuali di SQL Server disponibili dalla raccolta hello. Queste immagini hanno la proprietà **ImageFamily** che inizia con "SQL". esempio Hello query consente di visualizzare hello immagine famiglia disponibili tooyou che SQL Server è preinstallato.
 
    ```powershell
    Get-AzureVMImage | where { $_.ImageFamily -like "SQL*" } | select ImageFamily -Unique | Sort-Object -Property ImageFamily
    ```
 
-2. Nella famiglia di immagini di macchina virtuale trovata potrebbero esserci più immagini pubblicate. Usare lo script seguente per trovare il nome dell'immagine di macchina virtuale pubblicata più recente per la famiglia di immagini selezionata (ad esempio **SQL Server 2016 RTM Enterprise in Windows Server 2012 R2**):
+2. Quando si individua una famiglia di immagine di macchina virtuale hello, in questo gruppo possono essere più immagini pubblicate. Lo script seguente hello utilizzare viene toofind hello più recente pubblicata immagine nome della macchina virtuale per l'intera famiglia di immagine selezionata (ad esempio **SQL Server 2016 RTM Enterprise in Windows Server 2012 R2**):
 
    ```powershell
    $family="<ImageFamily value>"
@@ -103,44 +103,44 @@ La macchina virtuale di SQL Server verrà ospitata in un servizio cloud che si t
    echo "   $image"
    ```
 
-## <a name="create-the-virtual-machine"></a>Creare la macchina virtuale
+## <a name="create-hello-virtual-machine"></a>Creare una macchina virtuale hello
 
-Infine, creare la macchina virtuale con PowerShell.
+Infine, creare macchine virtuali hello con PowerShell:
 
-1. Creare un servizio cloud per ospitare la nuova macchina virtuale. Si noti che è anche possibile usare un servizio cloud esistente. Creare una nuova variabile **$svcname** con il nome breve del servizio cloud.
+1. Creare un cloud servizio toohost hello nuova macchina virtuale. Si noti che è anche possibile toouse un servizio cloud esistente. Creare una nuova variabile **$svcname** nome breve di hello del servizio cloud hello.
 
    ```powershell
    $svcname = "<cloud service name>"
    New-AzureService -ServiceName $svcname -Label $svcname -Location $dcLocation
    ```
 
-2. Specificare il nome della macchina virtuale e le dimensioni. Per altre informazioni sulle dimensioni della macchina virtuale, vedere [Dimensioni delle macchine virtuali in Azure](../sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+2. Specificare il nome di macchina virtuale hello e una dimensione. Per altre informazioni sulle dimensioni della macchina virtuale, vedere [Dimensioni delle macchine virtuali in Azure](../sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
 
    ```powershell
    $vmname="<machine name>"
-   $vmsize="<Specify one: Large, ExtraLarge, A5, A6, A7, A8, A9, or see the link to the other VM sizes>"
+   $vmsize="<Specify one: Large, ExtraLarge, A5, A6, A7, A8, A9, or see hello link toohello other VM sizes>"
    $vm1=New-AzureVMConfig -Name $vmname -InstanceSize $vmsize -ImageName $image
    ```
 
-3. Specificare l'account amministratore locale e la password.
+3. Specificare la password e account di amministratore locale hello.
 
    ```powershell
-   $cred=Get-Credential -Message "Type the name and password of the local administrator account."
+   $cred=Get-Credential -Message "Type hello name and password of hello local administrator account."
    $vm1 | Add-AzureProvisioningConfig -Windows -AdminUsername $cred.GetNetworkCredential().Username -Password $cred.GetNetworkCredential().Password
    ```
 
-4. Eseguire lo script seguente per creare la macchina virtuale.
+4. Eseguire hello seguente macchina virtuale di script toocreate hello.
 
    ```powershell
    New-AzureVM –ServiceName $svcname -VMs $vm1
    ```
 
 > [!NOTE]
-> Per le opzioni di configurazione e le spiegazioni aggiuntive, vedere la sezione **Compilare il set di comandi** in [Uso di Azure PowerShell per creare e preconfigurare macchine virtuali basate su Windows](../classic/create-powershell.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json).
+> Per informazioni aggiuntive e le opzioni di configurazione, vedere hello **compilare il set di comandi** sezione [toocreate usare Azure PowerShell e preconfigurare macchine virtuali basate su Windows](../classic/create-powershell.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json).
 
 ## <a name="example-powershell-script"></a>Script di PowerShell di esempio
 
-Lo script seguente costituisce un esempio di uno script completo che crea una macchina virtuale **SQL Server 2016 RTM Enterprise in Windows Server 2012 R2**. Se si usa questo script, è necessario personalizzare le variabili iniziali sulla base dei passaggi precedenti di questo argomento.
+Hello script riportato di seguito viene fornito un esempio di uno script completo che consente di creare un **SQL Server 2016 RTM Enterprise in Windows Server 2012 R2** macchina virtuale. Se si usa questo script, è necessario personalizzare le variabili di hello iniziale in base ai passaggi precedenti di hello in questo argomento.
 
 ```powershell
 # Customize these variables based on your settings and requirements:
@@ -152,55 +152,55 @@ $svcname = "mycloudservice"
 $vmname="myvirtualmachine"
 $vmsize="A5"
 
-# Set the current subscription and storage account
-# Comment out the New-AzureStorageAccount line if the account already exists
+# Set hello current subscription and storage account
+# Comment out hello New-AzureStorageAccount line if hello account already exists
 Select-AzureSubscription -SubscriptionName $subscr –Current
 New-AzureStorageAccount -StorageAccountName $staccount -Location $dcLocation
 Set-AzureSubscription -SubscriptionName $subscr -CurrentStorageAccountName $staccount
 
-# Select the most recent VM image in this image family:
+# Select hello most recent VM image in this image family:
 $image=Get-AzureVMImage | where { $_.ImageFamily -eq $family } | sort PublishedDate -Descending | select -ExpandProperty ImageName -First 1
 
-# Create the new cloud service; comment out this line if cloud service exists already:
+# Create hello new cloud service; comment out this line if cloud service exists already:
 New-AzureService -ServiceName $svcname -Label $svcname -Location $dcLocation
 
-# Create the VM config:
+# Create hello VM config:
 $vm1=New-AzureVMConfig -Name $vmname -InstanceSize $vmsize -ImageName $image
 
 # Set administrator credentials:
-$cred=Get-Credential -Message "Type the name and password of the local administrator account."
+$cred=Get-Credential -Message "Type hello name and password of hello local administrator account."
 $vm1 | Add-AzureProvisioningConfig -Windows -AdminUsername $cred.GetNetworkCredential().Username -Password $cred.GetNetworkCredential().Password
 
-# Create the SQL Server VM:
+# Create hello SQL Server VM:
 New-AzureVM –ServiceName $svcname -VMs $vm1
 ```
 
 ## <a name="connect-with-remote-desktop"></a>Connettersi a Desktop remoto
 
-1. Creare i file con estensione rdp nella cartella documenti dell'utente corrente per avviare queste macchine virtuali e completare l'installazione:
+1. Creare i file RDP hello toolaunch di cartella documenti dell'utente corrente hello il programma di installazione toocomplete queste macchine virtuali:
 
    ```powershell
    $documentspath = [environment]::getfolderpath("mydocuments")
    Get-AzureRemoteDesktopFile -ServiceName $svcname -Name $vmname -LocalPath "$documentspath\vm1.rdp"
    ```
 
-2. Nella directory dei documenti avviare il file con estensione rdp. Connettersi con il nome utente e la password dell'amministratore specificati in precedenza (ad esempio, se è stato specificato il nome utente VMAdmin, specificare "\VMAdmin" come utente e fornire la password).
+2. Nella directory documenti hello, avviare il file RDP hello. La connessione con nome utente dell'amministratore hello e la password specificati in precedenza (ad esempio, se il nome utente è stato VMAdmin, specificare "\VMAdmin" come utente hello e fornire la password di hello).
 
    ```powershell
    cd $documentspath
    .\vm1.rdp
    ```
 
-## <a name="complete-the-configuration-of-the-sql-server-machine-for-remote-access"></a>Completare la configurazione del computer SQL Server per l'accesso remoto
+## <a name="complete-hello-configuration-of-hello-sql-server-machine-for-remote-access"></a>Configurazione di hello completo di hello macchina di SQL Server per l'accesso remoto
 
-Dopo aver eseguito l'accesso al computer con desktop remoto, configurare SQL Server in base alle istruzioni presenti in [Procedura per la configurazione della connettività di SQL Server in una macchina virtuale di Azure](virtual-machines-windows-classic-sql-connect.md#steps-for-configuring-sql-server-connectivity-in-an-azure-vm).
+Dopo l'accesso toohello computer con desktop remoto, configurare SQL Server in base alle istruzioni hello [passaggi per la configurazione della connettività di SQL Server in una macchina virtuale di Azure](virtual-machines-windows-classic-sql-connect.md#steps-for-configuring-sql-server-connectivity-in-an-azure-vm).
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Per istruzioni aggiuntive sul provisioning delle macchine virtuali con PowerShell, vedere la [documentazione delle macchine virtuali](../classic/create-powershell.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json).
+È possibile trovare istruzioni aggiuntive per il provisioning di macchine virtuali con PowerShell in hello [macchine virtuali-documentazione](../classic/create-powershell.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json).
 
-In molti casi, il passaggio successivo consiste nella migrazione dei database in questa nuova macchina virtuale di SQL Server. Per linee guida sulla migrazione dei database, vedere [Migrazione di un database a SQL Server in una VM di Azure](../sql/virtual-machines-windows-migrate-sql.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fsqlclassic%2ftoc.json).
+In molti casi, la fase successiva hello è toomigrate toothis il database nuova VM SQL Server. Per istruzioni sulla migrazione di database, vedere [la migrazione di un Server in una macchina virtuale Azure di tooSQL Database](../sql/virtual-machines-windows-migrate-sql.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fsqlclassic%2ftoc.json).
 
-Se si è interessati anche all'uso del portale di Azure per creare macchine virtuali di SQL Server, vedere [Effettuare il provisioning di una macchina virtuale di SQL Server nel portale di Azure](../sql/virtual-machines-windows-portal-sql-server-provision.md). Si noti che l'esercitazione che illustra il portale descrive la creazione di macchine virtuali mediante il modello consigliato di Gestione risorse anziché il modello classico impiegato in questo argomento di PowerShell.
+Se inoltre si è interessati all'uso hello toocreate portale Azure macchine virtuali di SQL, vedere [Provisioning di una macchina virtuale di SQL Server in Azure](../sql/virtual-machines-windows-portal-sql-server-provision.md). Si noti che esercitazione hello che tramite il portale di hello crea le macchine virtuali utilizzando percorsi hello modello consigliato di gestione risorse, anziché modello classico di hello utilizzato in questo argomento di PowerShell.
 
-Oltre a queste risorse, è consigliabile esaminare [altri argomenti relativi all'esecuzione di SQL Server in Macchine virtuali di Azure](../sql/virtual-machines-windows-sql-server-iaas-overview.md).
+Inoltre le risorse toothese, che è consigliabile consultare [su altri argomenti relativi a SQL Server in macchine virtuali di Azure toorunning](../sql/virtual-machines-windows-sql-server-iaas-overview.md).

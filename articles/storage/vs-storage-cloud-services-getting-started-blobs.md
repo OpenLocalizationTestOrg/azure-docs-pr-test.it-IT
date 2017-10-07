@@ -1,6 +1,6 @@
 ---
-title: Introduzione all'archiviazione BLOB e ai Servizi connessi di Visual Studio (servizi cloud) | Documentazione Microsoft
-description: Informazioni su come iniziare a usare il servizio di archiviazione BLOB in un progetto di servizio di cloud in Visual Studio dopo aver eseguito la connessione a un account di archiviazione con i servizi connessi di Visual Studio.
+title: aaaGet avviato con Visual Studio e di archiviazione blob di servizi connessi (servizi cloud) | Documenti Microsoft
+description: "La modalità di avvio tooget utilizzo dell'archiviazione Blob di Azure in un progetto di servizio cloud in Visual Studio dopo la connessione di account di archiviazione tooa utilizzando Visual Studio di servizi connessi"
 services: storage
 documentationcenter: 
 author: TomArcher
@@ -14,21 +14,21 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/02/2016
 ms.author: tarcher
-ms.openlocfilehash: e154c81ef3765a3c006b3c27a979be881f14d0ee
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 62fb7fcff0a90008859ebe23755f13ef0555e380
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-with-azure-blob-storage-and-visual-studio-connected-services-cloud-services-projects"></a>Introduzione all’archiviazione BLOB di Azure e ai servizi connessi di Visual Studio (progetti servizi cloud)
 [!INCLUDE [storage-try-azure-tools-blobs](../../includes/storage-try-azure-tools-blobs.md)]
 
 ## <a name="overview"></a>Panoramica
-Questo articolo descrive come iniziare a usare l'archiviazione BLOB di Azure dopo aver creato o fatto riferimento a un account di archiviazione di Azure usando la finestra di dialogo di Visual Studio per l' **aggiunta dei servizi connessi** in un progetto di servizi cloud di Visual Studio. Vi mostreremo come accedere e creare contenitori di BLOB e come eseguire attività comuni quali caricare, elencare e scaricare BLOB. Negli esempi, scritti in C\#, viene usata la [libreria client di Archiviazione di Microsoft Azure per .NET](https://msdn.microsoft.com/library/azure/dn261237.aspx).
+Questo articolo descrive la modalità di avvio tooget con archiviazione Blob di Azure dopo aver creato o a cui fa riferimento a un account di archiviazione di Azure tramite Visual Studio hello **aggiungere servizi connessi** progetto di servizi di finestra di dialogo in un cloud di Visual Studio. Vi mostreremo come tooaccess e creare contenitori blob e come attività comuni tooperform caricamento, visualizzazione e il download di BLOB. Hello esempi sono scritti in C\# e utilizzare hello [Microsoft Azure Storage Client Library per .NET](https://msdn.microsoft.com/library/azure/dn261237.aspx).
 
-L'archiviazione BLOB di Azure è un servizio per l'archiviazione di quantità elevate di dati non strutturati a cui è possibile accedere da qualsiasi parte del mondo tramite HTTP o HTTPS. Un singolo BLOB può avere qualsiasi dimensione. I BLOB possono essere costituiti da immagini, file audio e video, dati non elaborati e file di documento.
+Archiviazione Blob di Azure è un servizio per l'archiviazione di grandi quantità di dati non strutturati che è possibile accedere da qualsiasi in HelloWorld tramite HTTP o HTTPS. Un singolo BLOB può avere qualsiasi dimensione. I BLOB possono essere costituiti da immagini, file audio e video, dati non elaborati e file di documento.
 
-I BLOB di archiviazione si trovano nei contenitori esattamente come i file si trovano nelle cartelle. Dopo aver creato una risorsa di archiviazione, è possibile creare uno o più contenitori nello spazio di archiviazione. Ad esempio, in una risorsa di archiviazione denominata "Raccoglitore" è possibile creare contenitori denominati "immagini" per archiviare immagini e un altro contenitore denominato "audio" per archiviare file audio. Dopo la creazione dei contenitori, sarà possibile caricarvi singoli file BLOB.
+I BLOB di archiviazione si trovano nei contenitori esattamente come i file si trovano nelle cartelle. Dopo aver creato uno spazio di archiviazione, creare uno o più contenitori in archiviazione hello. Ad esempio, nell'archiviazione chiamato "Raccoglitore", è possibile creare contenitori nel servizio di archiviazione hello chiamato immagini toostore "immagini" e un altro denominato "audio" toostore file audio. Dopo aver creato i contenitori di hello, è possibile caricare blob singoli file toothem.
 
 * Per altre informazioni sulla modifica dei BLOB a livello di codice, vedere [Introduzione all'archiviazione BLOB di Azure con .NET](storage-dotnet-how-to-use-blobs.md).
 * Per informazioni generali sull'Archiviazione di Azure, vedere [la documentazione relativa all'archiviazione](https://azure.microsoft.com/documentation/services/storage/).
@@ -36,46 +36,46 @@ I BLOB di archiviazione si trovano nei contenitori esattamente come i file si tr
 * Per altre informazioni sulla programmazione delle applicazioni ASP.NET, vedere [ASP.NET](http://www.asp.net).
 
 ## <a name="access-blob-containers-in-code"></a>Accesso ai contenitori BLOB nel codice
-Per accedere ai BLOB a livello di codice nei progetti di servizio cloud, è necessario aggiungere gli elementi seguenti, se non sono già presenti.
+tooprogrammatically Accedi ai BLOB in progetti di servizi cloud, è necessario hello tooadd seguenti elementi, se non sono già presenti.
 
-1. Aggiungere le seguenti dichiarazioni dello spazio dei nomi del codice all'inizio del file C# in cui si vuole accedere ad Archiviazione di Azure a livello di codice:
+1. Aggiungere hello seguente di codice lo spazio dei nomi dichiarazioni toohello superiore di qualsiasi file c# in cui si desidera tooprogrammatically accesso di archiviazione di Azure.
    
         using Microsoft.Framework.Configuration;
         using Microsoft.WindowsAzure.Storage;
         using Microsoft.WindowsAzure.Storage.Blob;
         using System.Threading.Tasks;
         using LogLevel = Microsoft.Framework.Logging.LogLevel;
-2. Ottenere un oggetto **CloudStorageAccount** che rappresenta le informazioni sull'account di archiviazione. Utilizzare il codice seguente per ottenere la stringa di connessione di archiviazione e le informazioni sull'account di archiviazione dalla configurazione del servizio di Azure.
+2. Ottenere un oggetto **CloudStorageAccount** che rappresenta le informazioni sull'account di archiviazione. Hello utilizzare seguente tooget codice hello la stringa di connessione di archiviazione e informazioni sull'account di archiviazione dalla configurazione del servizio Azure hello.
    
         CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
         CloudConfigurationManager.GetSetting("<storage account name>_AzureStorageConnectionString"));
-3. Ottenere un oggetto **CloudBlobClient** per fare riferimento a un contenitore esistente nell'account di archiviazione.
+3. Ottenere un **CloudBlobClient** tooreference un contenitore esistente nell'account di archiviazione dell'oggetto.
    
         // Create a blob client.
         CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
-4. Ottenere un oggetto **CloudBlobContainer** per fare riferimento a un contenitore BLOB specifico.
+4. Ottenere un **CloudBlobContainer** tooreference un contenitore di blob specifico dell'oggetto.
    
-        // Get a reference to a container named "mycontainer."
+        // Get a reference tooa container named "mycontainer."
         CloudBlobContainer container = blobClient.GetContainerReference("mycontainer");
 
 > [!NOTE]
-> Usare tutto il codice illustrato nella procedura precedente prima del codice illustrato nelle sezioni seguenti.
+> Utilizzare tutto il codice hello illustrato nella procedura precedente di hello davanti codice hello di hello le sezioni seguenti.
 > 
 > 
 
 ## <a name="create-a-container-in-code"></a>Creazione di un contenitore nel codice
 > [!NOTE]
-> Alcune API che eseguono chiamate ad Archiviazione di Azure in ASP.NET sono asincrone. Per altre informazioni, vedere [Programmazione asincrona con Async e Await](http://msdn.microsoft.com/library/hh191443.aspx) . Il codice nell'esempio seguente presuppone che si stiano usando metodi di programmazione asincroni.
+> Alcune API che eseguono chiamate tooAzure archiviazione in ASP.NET sono asincrone. Per ulteriori informazioni, vedere [Programmazione asincrona con Async e Await](http://msdn.microsoft.com/library/hh191443.aspx) . codice Hello in hello di esempio seguente si presuppone che si utilizzano i metodi di programmazione asincrono.
 > 
 > 
 
-Per creare un contenitore nell'account di archiviazione, è sufficiente eseguire una chiamata a **CreateIfNotExistsAsync** come nel codice seguente:
+toocreate un contenitore nell'account di archiviazione, è sufficiente toodo è aggiungere una chiamata troppo**CreateIfNotExistsAsync** come hello seguente codice:
 
     // If "mycontainer" doesn't exist, create it.
     await container.CreateIfNotExistsAsync();
 
 
-Per rendere i file all'interno del contenitore disponibili a tutti, è possibile impostare il contenitore come pubblico utilizzando il codice seguente.
+toomake hello i file all'interno hello contenitore disponibili tooeveryone, è possibile impostare hello contenitore toobe pubblica utilizzando hello seguente codice.
 
     await container.SetPermissionsAsync(new BlobContainerPermissions
     {
@@ -83,26 +83,26 @@ Per rendere i file all'interno del contenitore disponibili a tutti, è possibile
     });
 
 
-I BLOB in un contenitore pubblico sono visibili a tutti gli utenti di Internet, tuttavia è possibile modificarli o eliminarli solo se si dispone della chiave di accesso appropriata.
+Chiunque sia connesso a Internet hello possa vedere i BLOB in un contenitore pubblico, ma è possibile modificarli o eliminarli solo se si dispone di hello chiave di accesso appropriati.
 
 ## <a name="upload-a-blob-into-a-container"></a>Caricare un BLOB in un contenitore
-Archiviazione di Azure supporta BLOB in blocchi e BLOB di pagine. Nella maggior parte dei casi è consigliabile utilizzare il tipo di BLOB in blocchi.
+Archiviazione di Azure supporta BLOB in blocchi e BLOB di pagine. Nella maggior parte delle hello blob in blocchi è consigliata toouse tipo hello.
 
-Per caricare un file in un BLOB in blocchi, ottenere un riferimento a un contenitore e utilizzarlo per ottenere un riferimento a un BLOB in blocchi. Dopo aver ottenuto un riferimento al BLOB, sarà possibile caricarvi qualsiasi flusso di dati chiamando il metodo **UploadFromStream** . Questa operazione crea il BLOB, se non già esistente, o lo sovrascrive, se già esistente. Nell'esempio seguente viene illustrato come caricare un BLOB in un contenitore e si presuppone che il contenitore sia già stato creato.
+tooupload un blob in blocchi file tooa, ottenere un riferimento a un contenitore e usarlo tooget un riferimento di blob di blocco. Dopo aver creato un riferimento di blob, è possibile caricare qualsiasi flusso di dati tooit dal chiamante hello **UploadFromStream** metodo. Questa operazione crea blob hello se non esiste in precedenza o sovrascritto se esiste. Hello seguente esempio viene illustrato come tooupload un blob in un contenitore e si presuppone che il contenitore hello è già stato creato.
 
-    // Retrieve a reference to a blob named "myblob".
+    // Retrieve a reference tooa blob named "myblob".
     CloudBlockBlob blockBlob = container.GetBlockBlobReference("myblob");
 
-    // Create or overwrite the "myblob" blob with contents from a local file.
+    // Create or overwrite hello "myblob" blob with contents from a local file.
     using (var fileStream = System.IO.File.OpenRead(@"path\myfile"))
     {
         blockBlob.UploadFromStream(fileStream);
     }
 
-## <a name="list-the-blobs-in-a-container"></a>Elencare i BLOB in un contenitore
-Per elencare i BLOB in un contenitore, ottenere prima un riferimento al contenitore. Sarà quindi possibile utilizzare il metodo **ListBlobs** del contenitore per recuperare i BLOB e/o le directory in esso contenuti. Per accedere all'insieme avanzato di proprietà e metodi per un oggetto **IListBlobItem** restituito, è necessario eseguirne il cast in un oggetto **CloudBlockBlob**, **CloudPageBlob** o **CloudBlobDirectory**. Se il tipo è sconosciuto, è possibile usare un controllo del tipo per determinare quello in cui viene eseguito il cast. Nel codice seguente viene illustrato come recuperare e visualizzare l'URI di ogni elemento nel contenitore **photos** :
+## <a name="list-hello-blobs-in-a-container"></a>Elenco di BLOB hello in un contenitore
+BLOB di hello toolist in un contenitore, prima di ottenere un riferimento di contenitore. È quindi possibile utilizzare del contenitore hello **ListBlobs** BLOB hello tooretrieve di metodo e/o directory all'interno di esso. set completo di proprietà e metodi per un tipo restituito di hello tooaccess **IListBlobItem**, è necessario eseguirne il cast tooa **CloudBlockBlob**, **CloudPageBlob**, o  **CloudBlobDirectory** oggetto. Se il tipo di hello è sconosciuto, è possibile utilizzare un toodetermine di controllo di tipo quali toocast a. Hello codice seguente viene illustrato come tooretrieve e output di hello URI di ogni elemento nel hello **foto** contenitore:
 
-    // Loop over items within the container and output the length and URI.
+    // Loop over items within hello container and output hello length and URI.
     foreach (IListBlobItem item in container.ListBlobs(null, false))
     {
         if (item.GetType() == typeof(CloudBlockBlob))
@@ -127,7 +127,7 @@ Per elencare i BLOB in un contenitore, ottenere prima un riferimento al contenit
         }
     }
 
-Come illustrato nell'esempio di codice precedente, il servizio BLOB include anche il concetto di directory all'interno di contenitori. È quindi possibile organizzare i BLOB in una struttura più simile a quella delle cartelle. Si consideri, ad esempio, il seguente set di BLOB in blocchi in un contenitore denominato **photos**:
+Come illustrato nell'esempio di codice hello precedente, il concetto di hello di directory all'interno di contenitori, servizio blob hello. È quindi possibile organizzare i BLOB in una struttura più simile a quella delle cartelle. Si consideri ad esempio hello seguente set di BLOB in blocchi in un contenitore denominato **foto**:
 
     photo1.jpg
     2010/architecture/description.txt
@@ -138,22 +138,22 @@ Come illustrato nell'esempio di codice precedente, il servizio BLOB include anch
     2011/architecture/description.txt
     2011/photo7.jpg
 
-Quando si chiama **ListBlobs** sul contenitore (come nell'esempio precedente), la raccolta restituita conterrà gli oggetti **CloudBlobDirectory** e **CloudBlockBlob** che rappresentano le directory e i BLOB contenuti al primo livello. Ecco l'output restituito:
+Quando si chiama **ListBlobs** nel contenitore di hello (come nell'esempio precedente del hello), raccolta hello restituita contiene **CloudBlobDirectory** e **CloudBlockBlob** oggetti che rappresenta la directory hello e BLOB contenuti al livello superiore di hello. Di seguito è riportato l'output risultante hello:
 
     Directory: https://<accountname>.blob.core.windows.net/photos/2010/
     Directory: https://<accountname>.blob.core.windows.net/photos/2011/
     Block blob of length 505623: https://<accountname>.blob.core.windows.net/photos/photo1.jpg
 
 
-Facoltativamente, è possibile impostare su **true** il parametro **UseFlatBlobListing** del metodo **ListBlobs**. In questo modo tutti i BLOB verranno restituiti come **CloudBlockBlob**, indipendentemente dalla directory. Ecco la chiamata a **ListBlobs**:
+Facoltativamente, è possibile impostare hello **UseFlatBlobListing** parametro di hello **ListBlobs** metodo **true**. In questo modo tutti i BLOB verranno restituiti come **CloudBlockBlob**, indipendentemente dalla directory. Ecco la chiamata di hello troppo**ListBlobs**:
 
-    // Loop over items within the container and output the length and URI.
+    // Loop over items within hello container and output hello length and URI.
     foreach (IListBlobItem item in container.ListBlobs(null, true))
     {
        ...
     }
 
-e i relativi risultati:
+e di seguito sono riportati i risultati di hello:
 
     Block blob of length 4: https://<accountname>.blob.core.windows.net/photos/2010/architecture/description.txt
     Block blob of length 314618: https://<accountname>.blob.core.windows.net/photos/2010/architecture/photo3.jpg
@@ -167,20 +167,20 @@ e i relativi risultati:
 Per altre informazioni, vedere [CloudBlobContainer.ListBlobs](https://msdn.microsoft.com/library/azure/dd135734.aspx).
 
 ## <a name="download-blobs"></a>Scaricare BLOB
-Per scaricare BLOB, recuperare prima un riferimento al BLOB e quindi chiamare il metodo **DownloadToStream** . Nell'esempio seguente il metodo **DownloadToStream** viene utilizzato per trasferire il contenuto del BLOB a un oggetto stream che è quindi possibile rendere persistente in un file locale.
+BLOB toodownload, recuperare innanzitutto un riferimento di blob e quindi chiamare hello **metodi DownloadToStream** metodo. esempio Hello utilizza hello **metodi DownloadToStream** metodo tootransfer hello blob contenuto tooa oggetto flusso che può quindi rendere persistente tooa file locale.
 
-    // Get a reference to a blob named "photo1.jpg".
+    // Get a reference tooa blob named "photo1.jpg".
     CloudBlockBlob blockBlob = container.GetBlockBlobReference("photo1.jpg");
 
-    // Save blob contents to a file.
+    // Save blob contents tooa file.
     using (var fileStream = System.IO.File.OpenWrite(@"path\myfile"))
     {
         blockBlob.DownloadToStream(fileStream);
     }
 
-È anche possibile utilizzare il metodo **DownloadToStream** per scaricare il contenuto di un BLOB come stringa di testo.
+È inoltre possibile utilizzare hello **metodi DownloadToStream** contenuto hello toodownload di metodo di un blob come una stringa di testo.
 
-    // Get a reference to a blob named "myblob.txt"
+    // Get a reference tooa blob named "myblob.txt"
     CloudBlockBlob blockBlob2 = container.GetBlockBlobReference("myblob.txt");
 
     string text;
@@ -191,36 +191,36 @@ Per scaricare BLOB, recuperare prima un riferimento al BLOB e quindi chiamare il
     }
 
 ## <a name="delete-blobs"></a>Eliminare BLOB
-Per eliminare un BLOB, ottenere prima un riferimento al BLOB, poi chiamare il metodo **Delete** .
+un blob, toodelete innanzitutto ottenere un riferimento di blob e quindi chiamare il **eliminare** metodo.
 
-    // Get a reference to a blob named "myblob.txt".
+    // Get a reference tooa blob named "myblob.txt".
     CloudBlockBlob blockBlob = container.GetBlockBlobReference("myblob.txt");
 
-    // Delete the blob.
+    // Delete hello blob.
     blockBlob.Delete();
 
 
 ## <a name="list-blobs-in-pages-asynchronously"></a>Elencare BLOB nelle pagine in modalità asincrona
-Se si sta elencando un numero elevato di BLOB oppure si vuole controllare il numero di risultati restituiti in un'operazione di elenco, è possibile elencare i BLOB nelle pagine dei risultati. Questo esempio spiega come restituire i risultati nelle pagine in modalità asincrona, in modo che l'esecuzione non venga bloccata durante l'attesa della restituzione di un set di risultati di grandi dimensioni.
+Elencare un numero elevato di BLOB, se si desidera toocontrol hello numero di risultati che restituito in un'unica operazione di elenco, è possibile elencare i BLOB di pagine di risultati. Questo esempio mostra la vista tooreturn dei risultati nelle pagine in modo asincrono, in modo che non l'esecuzione viene bloccata durante l'attesa tooreturn un ampio set di risultati.
 
-Questo esempio illustra un elenco di BLOB lineare, ma è anche possibile eseguire un elenco gerarchico semplicemente impostando il parametro **useFlatBlobListing** del metodo **ListBlobsSegmentedAsync** su **false**.
+Questo esempio viene illustrato un semplice elenco di blob, ma è anche possibile eseguire un elenco gerarchico, impostazione hello **useFlatBlobListing** parametro di hello **ListBlobsSegmentedAsync** metodo troppo **false**.
 
-Poiché il metodo di esempio chiama un metodo asincrono, deve essere prefissato con la parola chiave **async** e restituire un oggetto **Attività**. La parola chiave di attesa specificata per il metodo **ListBlobsSegmentedAsync** sospende l'esecuzione del metodo di esempio fino al completamento dell'attività di elenco.
+Poiché l'esempio hello chiama un metodo asincrono, devono essere preceduto da hello **async** (parola chiave) e deve restituire un **attività** oggetto. Hello await (parola chiave) specificato per hello **ListBlobsSegmentedAsync** metodo sospende l'esecuzione del metodo di esempio hello fino al completamento hello elenco attività.
 
     async public static Task ListBlobsSegmentedInFlatListing(CloudBlobContainer container)
     {
-        // List blobs to the console window, with paging.
+        // List blobs toohello console window, with paging.
         Console.WriteLine("List blobs in pages:");
 
         int i = 0;
         BlobContinuationToken continuationToken = null;
         BlobResultSegment resultSegment = null;
 
-        // Call ListBlobsSegmentedAsync and enumerate the result segment returned, while the continuation token is non-null.
-        // When the continuation token is null, the last page has been returned and execution can exit the loop.
+        // Call ListBlobsSegmentedAsync and enumerate hello result segment returned, while hello continuation token is non-null.
+        // When hello continuation token is null, hello last page has been returned and execution can exit hello loop.
         do
         {
-            // This overload allows control of the page size. You can return all remaining results by passing null for the maxResults parameter,
+            // This overload allows control of hello page size. You can return all remaining results by passing null for hello maxResults parameter,
             // or by calling a different overload.
             resultSegment = await container.ListBlobsSegmentedAsync("", true, BlobListingDetails.All, 10, continuationToken, null, null);
             if (resultSegment.Results.Count<IListBlobItem>() > 0) { Console.WriteLine("Page {0}:", ++i); }
@@ -230,7 +230,7 @@ Poiché il metodo di esempio chiama un metodo asincrono, deve essere prefissato 
             }
             Console.WriteLine();
 
-            //Get the continuation token.
+            //Get hello continuation token.
             continuationToken = resultSegment.ContinuationToken;
         }
         while (continuationToken != null);

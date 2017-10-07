@@ -1,5 +1,5 @@
 ---
-title: Conservazione e archiviazione dei dati in Azure Application Insights | Microsoft Docs
+title: aaaData conservazione e archiviazione in Azure Application Insights | Documenti Microsoft
 description: Informativa sulla conservazione e sulla privacy
 services: application-insights
 documentationcenter: 
@@ -13,155 +13,155 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/07/2017
 ms.author: bwren
-ms.openlocfilehash: ddb9fa516da66da0484619439848583a29e1f5c1
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 7823431d03a57db5268d2724a0604e40666009f8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="data-collection-retention-and-storage-in-application-insights"></a>Raccolta, conservazione e archiviazione di dati in Application Insights
 
 
-Quando si installa [Azure Application Insights][start] SDK nell'app, vengono inviati i dati di telemetria sull'app nel cloud. Naturalmente, gli sviluppatori responsabili vogliono sapere esattamente quali dati vengono inviati, cosa accade ai dati e come possono mantenerne il controllo. In particolare, devono sapere se possono essere inviati dati sensibili, dove vengono archiviati e quale livello di sicurezza viene applicato. 
+Quando si installa [Azure Application Insights] [ start] SDK nell'applicazione, invia dati di telemetria sul toohello app Cloud. Naturalmente, gli sviluppatori responsabili desiderino tooknow esattamente quali dati vengono inviati, cosa accade toohello dati e come è possibile mantenere il controllo. In particolare, devono sapere se possono essere inviati dati sensibili, dove vengono archiviati e quale livello di sicurezza viene applicato. 
 
-Innanzitutto, chiariamo alcuni aspetti:
+Prima di tutto, risposta breve hello:
 
-* È improbabile che i moduli di telemetria standard che seguono un comportamento predefinito possano inviare dati sensibili al servizio. I dati di telemetria riguardano metriche di carico, prestazioni e utilizzo, report di eccezioni e altri dati di diagnostica. I principali dati utente visibili nei report di diagnostica sono URL, ma l'app non deve in ogni caso inserire dati sensibili in testo normale in un URL.
-* È possibile scrivere codice che invia dati di telemetria personalizzati aggiuntivi per agevolare la diagnostica e il monitoraggio dell'utilizzo. Questa flessibilità è un'eccellente funzionalità di Application Insights. Sarebbe possibile, per errore, scrivere il codice in modo che includa dati personali e altri dati sensibili. Se quindi l'applicazione usa questo tipo di dati, è consigliabile applicare un processo di revisione completo a tutto il codice creato.
-* Durante lo sviluppo e il test dell'app, è facile controllare ciò che viene inviato dall’SDK. I dati vengono visualizzati nelle finestre di output del debug dell’IDE e del browser. 
-* I dati vengono archiviati nei server di [Microsoft Azure](http://azure.com) negli Stati Uniti o in Europa. L'app può essere eseguita ovunque. Azure offre [processi di sicurezza efficaci e soddisfa una vasta gamma di standard di conformità](https://azure.microsoft.com/support/trust-center/). Solo lo sviluppatore dell’app e il team designato hanno accesso ai dati. Il personale Microsoft può avere accesso limitato ai dati solo in determinate circostanze con il consenso dello sviluppatore. I dati sono crittografati durante il transito, anche se non lo sono nel server.
+* i moduli standard telemetria Hello eseguite "hello" sono servizio toohello di toosend improbabile che i dati sensibili. dati di telemetria Hello si occupa di carico, le metriche delle prestazioni e utilizzo, i report di eccezione e altri dati di diagnostica. dati utente principale di Hello visibili nei report di diagnostica hello sono URL; ma l'app in ogni caso non deve inserire i dati riservati in testo normale in un URL.
+* È possibile scrivere codice che invia dati di telemetria personalizzati aggiuntivi toohelp durante la diagnostica e utilizzo di monitoraggio. Questa flessibilità è un'eccellente funzionalità di Application Insights. Sarebbe possibile, per errore, questo codice in modo che includa personale toowrite e altri dati sensibili. Se l'applicazione funziona con tali dati, è necessario applicare un codice di hello tooall processi di analisi accurata che scritto.
+* Durante lo sviluppo e test dell'app, è facile tooinspect ciò che viene inviato da hello SDK. Hello dati visualizzati in hello debug la finestra di output di hello IDE e del browser. 
+* dati Hello viene mantenuti nella [Microsoft Azure](http://azure.com) server USA hello o Europa. L'app può essere eseguita ovunque. Azure offre [processi di sicurezza efficaci e soddisfa una vasta gamma di standard di conformità](https://azure.microsoft.com/support/trust-center/). Solo utente e il team designato sono tooyour accedere ai dati. Lo staff Microsoft possa avere limitato accesso tooit solo in determinate circostanze limitati con la conoscenza. La crittografia in transito, ma non in server hello.
 
-Nella parte restante di questo articolo verranno elaborate ulteriormente queste risposte. Questa parte è progettata per essere indipendente dal resto, pertanto è possibile mostrarla ai colleghi che non fanno parte del proprio team.
+rest Hello di questo articolo vengono illustrate meglio queste risposte. Si è progettato toobe indipendenti, in modo che è possibile visualizzarlo toocolleagues che non fanno parte del proprio team.
 
 ## <a name="what-is-application-insights"></a>Informazioni su Azure Application Insights
-[Azure Application Insights][start] è un servizio Microsoft che consente di migliorare le prestazioni e l'usabilità di un'applicazione live. Esegue il monitoraggio dell'applicazione per tutto il tempo che è in esecuzione, sia durante il test che dopo la pubblicazione o la distribuzione. Application Insights crea grafici e tabelle che illustrano, ad esempio, in quali ore del giorno si ottengono più utenti, i tempi di risposta dell'app e come funzionano i servizi esterni da cui dipende. Se sono presenti arresti anomali del sistema, errori o problemi di prestazioni, è possibile cercare i dati di telemetria in dettaglio per diagnosticare la causa. Inoltre, il servizio invierà messaggi di posta elettronica in caso di modifiche della disponibilità e delle prestazioni dell'app.
+[Azure Application Insights] [ start] è un servizio fornito da Microsoft che consente di migliorare le prestazioni di hello e facilità di utilizzo dell'applicazione in tempo reale. Esegue il monitoraggio dell'applicazione è in esecuzione, sia durante il test e dopo aver pubblicato o distribuito, tutto il tempo hello. Application Insights consente di creare grafici e tabelle cui viene illustrato, ad esempio, le ore del giorno, la maggior parte degli utenti, come app reattiva hello è e come servita da qualsiasi esterno anche i servizi dipende. Se sono presenti arresti anomali del sistema, errori o problemi di prestazioni, è possibile cercare tra i dati di telemetria hello causa hello toodiagnose di dettaglio. E servizio hello invierà messaggi di posta elettronica se sono state apportate modifiche nella disponibilità hello e le prestazioni dell'app.
 
-Per ottenere questa funzionalità, installare Application Insights SDK nell'applicazione, che diventa parte del codice. Quando l'app è in esecuzione, l’SDK monitora il funzionamento e invia i dati di telemetria al servizio Application Insights. Si tratta di un servizio cloud ospitato da [Microsoft Azure](http://azure.com). Application Insights funziona tuttavia per tutte le applicazioni, non solo quelle ospitate in Azure.
+In ordine tooget questa funzionalità, si installa un Application Insights SDK nell'applicazione, che diventa parte del codice. Quando l'app è in esecuzione, hello SDK consente di monitorare il funzionamento e invia dati di telemetria toohello Application Insights servizio. Si tratta di un servizio cloud ospitato da [Microsoft Azure](http://azure.com). Application Insights funziona tuttavia per tutte le applicazioni, non solo quelle ospitate in Azure.
 
-![L’SDK nell'app invia dati di telemetria al servizio Application Insights.](./media/app-insights-data-retention-privacy/01-scheme.png)
+![Hello SDK nell'applicazione invia dati di telemetria toohello servizio Application Insights.](./media/app-insights-data-retention-privacy/01-scheme.png)
 
-Il servizio Application Insights archivia e analizza i dati di telemetria. Per visualizzare l'analisi o eseguire una ricerca nei dati di telemetria archiviati, accedere con il proprio account Azure e aprire la risorsa Application Insights per l'applicazione. È anche possibile condividere l'accesso ai dati con altri membri del team o con determinati sottoscrittori di Azure.
+servizio di Application Insights Hello archivia e analizza i dati di telemetria hello. analisi di hello toosee o eseguire una ricerca nei hello archiviati dati di telemetria, accedi tooyour account Azure e la risorsa di Application Insights hello aperto per l'applicazione. È inoltre possibile accedere ai dati toohello della condivisione con altri membri del team o con i sottoscrittori di Azure specificati.
 
-È possibile fare in modo che i dati vengano esportati dal servizio Application Insights, ad esempio in un database o in strumenti esterni. A ogni strumento è possibile assegnare una chiave speciale ottenuta dal servizio, che può essere revocata se necessario. 
+È possibile disporre i dati esportati da hello servizio Application Insights, ad esempio tooa database o tooexternal strumenti. Ogni strumento è fornire con un tasto speciale che ottengono dal servizio hello. Se necessario, è possibile revocare la chiave Hello. 
 
-Sono disponibili Application Insights SDK per una gamma di tipi di applicazioni: servizi Web ospitati nei server J2EE o ASP.NET o in Azure; client Web, ovvero il codice in esecuzione in una pagina Web; app desktop e servizi; app per dispositivi, ad esempio Windows Phone, iOS e Android. Tutti inviano i dati di telemetria allo stesso servizio.
+Application Insights SDK sono disponibili per una gamma di tipi di applicazioni: servizi web ospitati nei propri server J2EE o ASP.NET o in Azure; client Web - e hello codice in esecuzione in una pagina web. applicazioni desktop e servizi. App per dispositivi, ad esempio Windows Phone, iOS e Android. Inviano dati di telemetria toohello stesso servizio.
 
 ## <a name="what-data-does-it-collect"></a>Quali dati raccoglie?
-### <a name="how-is-the-data-is-collected"></a>Come vengono raccolti?
+### <a name="how-is-hello-data-is-collected"></a>Come è dati hello viene raccolto?
 Esistono tre origini dati:
 
-* L'SDK, che viene integrato nell'app [in fase di sviluppo](app-insights-asp-net.md) o [in esecuzione](app-insights-monitor-performance-live-website-now.md). Sono disponibili diversi SDK per diversi tipi di applicazione. È inoltre disponibile un [SDK per le pagine Web](app-insights-javascript.md), che viene caricato nel browser dell'utente finale insieme alla pagina.
+* Hello SDK, che si integra con l'app sia [in fase di sviluppo](app-insights-asp-net.md) o [in fase di esecuzione](app-insights-monitor-performance-live-website-now.md). Sono disponibili diversi SDK per diversi tipi di applicazione. È inoltre disponibile un [SDK per le pagine web](app-insights-javascript.md), che carica in hello-browser dell'utente finale con la pagina hello.
   
-  * Ogni SDK include un numero di [moduli](app-insights-configuration-with-applicationinsights-config.md), che utilizzano tecniche diverse per raccogliere tipi diversi di dati di telemetria.
-  * Se si installa l’SDK in fase di sviluppo, è possibile utilizzare l'API per inviare dati di telemetria personalizzati, oltre ai moduli standard. Tali dati di telemetria personalizzati possono includere qualsiasi tipo di dati si voglia inviare.
-* In alcuni server Web sono disponibili anche agenti che vengono eseguiti insieme all'applicazione e inviano dati di telemetria su CPU, memoria e occupazione della rete. Ad esempio, macchine virtuali di Azure, host Docker e [server J2EE](app-insights-java-agent.md) possono disporre di tali agenti.
-* [test di disponibilità](app-insights-monitor-web-app-availability.md) sono processi eseguiti da Microsoft che inviano richieste all'app Web a intervalli regolari. I risultati vengono inviati al servizio Application Insights.
+  * Ogni SDK include un numero di [moduli](app-insights-configuration-with-applicationinsights-config.md), che utilizzano tecniche diverse toocollect diversi tipi di dati di telemetria.
+  * Se si installa il SDK di hello in fase di sviluppo, è possibile utilizzare il toosend API propri dati di telemetria, nei moduli standard toohello di addizione. Questi dati di telemetria personalizzati possono includere gli eventuali dati da toosend.
+* In alcuni server web, sono disponibili anche agenti che eseguono insieme app hello e inviare dati di telemetria sulla CPU, memoria e occupazione di rete. Ad esempio, macchine virtuali di Azure, host Docker e [server J2EE](app-insights-java-agent.md) possono disporre di tali agenti.
+* [Test disponibilità](app-insights-monitor-web-app-availability.md) processi eseguiti da Microsoft che inviano richieste tooyour web app a intervalli regolari. risultati di Hello vengono inviati toohello servizio di Application Insights.
 
 ### <a name="what-kinds-of-data-are-collected"></a>Quali tipi di dati vengono raccolti?
-Le categorie principali sono:
+categorie principali di Hello sono:
 
-* [Dati di telemetria del server Web](app-insights-asp-net.md): richieste HTTP,  URI, tempo impiegato per elaborare la richiesta, codice di risposta, indirizzo IP del client, ID sessione.
+* [Dati di telemetria del server Web](app-insights-asp-net.md): richieste HTTP,  URI richiesta di tempo impiegato tooprocess hello, codice di risposta, indirizzo IP del client. ID sessione.
 * [Pagine Web](app-insights-javascript.md): numero di pagine, utenti e sessioni, tempo di caricamento della pagina, eccezioni, chiamate AJAX.
 * Contatori delle prestazioni: memoria, CPU, IO, occupazione della rete.
 * Contesto client e server: sistema operativo, impostazioni locali, tipo di dispositivo, browser, risoluzione dello schermo.
 * [Eccezioni](app-insights-asp-net-exceptions.md) e arresti anomali: **dump dello stack**, ID compilazione, tipo di CPU. 
-* [Dipendenze](app-insights-asp-net-dependencies.md): chiamate ai servizi esterni, ad esempio REST, SQL, AJAX; URI o stringa di connessione, durata, esito positivo, comando.
+* [Dipendenze](app-insights-asp-net-dependencies.md) -chiama tooexternal servizi, ad esempio REST, SQL, AJAX. URI o stringa di connessione, durata, esito positivo, comando.
 * [Test di disponibilità](app-insights-monitor-web-app-availability.md) : durata del test e passaggi, risposte.
 * [Log di traccia](app-insights-asp-net-trace-logs.md) e [telemetria personalizzata](app-insights-api-custom-events-metrics.md) - **tutto ciò che viene codificato nei log o nella telemetria**.
 
 [Maggiori dettagli](#data-sent-by-application-insights).
 
 ## <a name="how-can-i-verify-whats-being-collected"></a>Come è possibile verificare cosa viene raccolto?
-Se si sviluppa l'app con Visual Studio, eseguire l'app in modalità di debug (F5). I dati di telemetria vengono visualizzati nella finestra di output. Da qui, è possibile copiarli e formattarli come JSON per semplificare l'ispezione. 
+Se si sta sviluppando hello app con Visual Studio, eseguire l'applicazione hello in modalità di debug (F5). dati di telemetria Hello viene visualizzato nella finestra di Output di hello. Da qui, è possibile copiarli e formattarli come JSON per semplificare l'ispezione. 
 
 ![](./media/app-insights-data-retention-privacy/06-vs.png)
 
-È inoltre disponibile una visualizzazione più leggibile nella finestra di diagnostica.
+Nella finestra di diagnostica hello è inoltre disponibile una visualizzazione più leggibile.
 
 Per le pagine Web, aprire la finestra di debug del browser.
 
-![Premere F12 e aprire la scheda Rete.](./media/app-insights-data-retention-privacy/08-browser.png)
+![Premere F12 e aprire la scheda di rete hello.](./media/app-insights-data-retention-privacy/08-browser.png)
 
-### <a name="can-i-write-code-to-filter-the-telemetry-before-it-is-sent"></a>È possibile scrivere codice per filtrare i dati di telemetria prima che vengano inviati?
+### <a name="can-i-write-code-toofilter-hello-telemetry-before-it-is-sent"></a>È possibile scrivere dati di telemetria hello toofilter codice prima che venga inviata?
 Questo sarebbe possibile scrivendo un [plug-in del processore di telemetria](app-insights-api-filtering-sampling.md).
 
-## <a name="how-long-is-the-data-kept"></a>Per quanto tempo vengono conservati i dati?
-I punti dati non elaborati, ovvero gli elementi di dati su cui è possibile eseguire query in Analytics e ispezionabili in Ricerca, vengono conservati per un massimo di 90 giorni. Per conservare i dati più a lungo, è possibile usare l' [esportazione continua](app-insights-export-telemetry.md) per copiarli in un account di archiviazione.
+## <a name="how-long-is-hello-data-kept"></a>Quanto tempo sono dati hello conservati?
+Punti dati non elaborati (vale a dire, gli elementi che è possibile eseguire una query in Analitica e controllare nella ricerca) vengono conservati per impostare i giorni too90. Se è necessario tookeep dati più lungo, è possibile utilizzare [l'esportazione continua](app-insights-export-telemetry.md) toocopy è tooa account di archiviazione.
 
 I dati aggregati, ovvero conteggi, medie e altri dati statistici visualizzati in Esplora metriche, vengono conservati con livello di dettaglio di 1 minuto per 90 giorni.
 
-## <a name="who-can-access-the-data"></a>Chi può accedere ai dati?
-I dati sono visibili all'utente e, se si usa un account aziendale, ai membri del team dell'utente. 
+## <a name="who-can-access-hello-data"></a>Chi può accedere a dati hello?
+dati Hello sono visibile tooyou e, se si dispone di un account aziendale, i membri del team. 
 
-Possono essere esportati dall'utente e dai membri del team e possono essere copiati in altri percorsi e passati ad altri utenti.
+Possono essere esportato da utenti e i membri del team e può essere copiato tooother percorsi e passate tooother persone.
 
-#### <a name="what-does-microsoft-do-with-the-information-my-app-sends-to-application-insights"></a>In che modo Microsoft usa le informazioni inviate dall'app ad Application Insights?
-Microsoft usa i dati solo al fine di fornire il servizio all'utente.
+#### <a name="what-does-microsoft-do-with-hello-information-my-app-sends-tooapplication-insights"></a>Operazioni eseguite Microsoft fare con informazioni hello l'applicazione invia tooApplication Insights?
+Microsoft utilizza i dati di hello solo in ordine tooprovide hello servizio tooyou.
 
-## <a name="where-is-the-data-held"></a>Dove vengono archiviati i dati?
-* Negli USA o in Europa. È possibile selezionare la località quando si crea una nuova risorsa di Application Insights. 
+## <a name="where-is-hello-data-held"></a>In cui viene mantenuti dati hello?
+* USA hello o Europa. Quando si crea una nuova risorsa di Application Insights, è possibile selezionare il percorso di hello. 
 
 
-#### <a name="does-that-mean-my-app-has-to-be-hosted-in-the-usa-or-europe"></a>Significa che l'app deve essere ospitata negli Stati Uniti o in Europa?
-* No. L'applicazione può essere eseguita ovunque, nel proprio host locale o nel Cloud.
+#### <a name="does-that-mean-my-app-has-toobe-hosted-in-hello-usa-or-europe"></a>Significa che l'applicazione ha toobe ospitati in hello USA o Europa?
+* No. L'applicazione può eseguire in qualsiasi posizione, nel proprio host locale o nel Cloud hello.
 
 ## <a name="how-secure-is-my-data"></a>Quanto sono sicuri i dati?
-Application Insights è un servizio di Azure. I criteri di sicurezza sono descritti nel [white paper su sicurezza, privacy e conformità di Azure](http://go.microsoft.com/fwlink/?linkid=392408).
+Application Insights è un servizio di Azure. Criteri di sicurezza descritti in hello [white paper Azure sicurezza, Privacy e conformità](http://go.microsoft.com/fwlink/?linkid=392408).
 
-I dati vengono archiviati nei server di Microsoft Azure. Per gli account nel portale di Azure, le restrizioni relative all'account sono illustrate nel [documento relativo a sicurezza, privacy e conformità di Azure](http://go.microsoft.com/fwlink/?linkid=392408).
+Hello dati vengono archiviati nel server di Microsoft Azure. Per gli account nel portale di Azure hello, le restrizioni di account sono descritti in hello [documento Azure sicurezza, Privacy e conformità](http://go.microsoft.com/fwlink/?linkid=392408).
 
-L'accesso ai dati da parte del personale Microsoft è limitato. Il personale Microsoft può accedere ai dati solo previa autorizzazione dell'utente e se deve fornire supporto per l'uso di Application Insights. 
+Accesso ai dati tooyour da personale Microsoft è limitato. È accedere ai dati solo con l'autorizzazione e se è necessario toosupport l'utilizzo di Application Insights. 
 
-I dati in forma aggregata in tutte le applicazioni dei clienti, ad esempio le frequenze dei dati e le dimensioni medie delle tracce, vengono usati per migliorare Application Insights.
+Dati di aggregazione di tutte le applicazioni di tutti i nostri clienti (ad esempio velocità dei dati e le dimensioni medie delle tracce) sono utilizzati tooimprove Application Insights.
 
 #### <a name="could-someone-elses-telemetry-interfere-with-my-application-insights-data"></a>È possibile che i dati di telemetria di altri utenti interferiscano con i dati di Application Insights?
-È possibile che altri utenti inviino dati di telemetria aggiuntivi all'account dell'utente usando la chiave di strumentazione, disponibile nel codice delle pagine Web. Con una quantità sufficiente di dati aggiuntivi, è possibile che le metriche dell'utente non rappresentino correttamente le prestazioni e l'utilizzo dell'app.
+Impossibile inviano account tooyour telemetria aggiuntive utilizzando la chiave di strumentazione hello, che può essere trovata nel codice hello delle pagine web. Con una quantità sufficiente di dati aggiuntivi, è possibile che le metriche dell'utente non rappresentino correttamente le prestazioni e l'utilizzo dell'app.
 
-Se si condivide codice con altri progetti, è necessario ricordare di rimuovere la chiave di strumentazione.
+Condividere codice con altri progetti, ricordare tooremove della chiave di strumentazione.
 
-## <a name="is-the-data-encrypted"></a>I dati vengono crittografati?
-Non all'interno dei server, attualmente.
+## <a name="is-hello-data-encrypted"></a>Dati hello è crittografati?
+Non in server hello al momento.
 
 Tutti i dati vengono crittografati durante lo spostamento tra data center.
 
-#### <a name="is-the-data-encrypted-in-transit-from-my-application-to-application-insights-servers"></a>I dati vengono crittografati durante il transito dall'applicazione ai server di Application Insights?
-Sì, viene usato HTTPS per l'invio dei dati al portale da quasi tutti gli SDK, inclusi i server Web, i dispositivi e le pagine Web HTTPS. L'unica eccezione è costituita dai dati inviati da semplici pagine Web HTTP. 
+#### <a name="is-hello-data-encrypted-in-transit-from-my-application-tooapplication-insights-servers"></a>Dati hello sono crittografati in transito verso il server di applicazioni tooApplication Insights?
+Sì, utilizziamo portale toohello di https toosend dati da quasi tutti gli SDK, tra cui server web, dispositivi e le pagine web HTTPS. Hello unica eccezione è dati inviati dal normale le pagine web HTTP. 
 
 ## <a name="personally-identifiable-information"></a>Informazioni personali
-#### <a name="could-personally-identifiable-information-pii-be-sent-to-application-insights"></a>È possibile che vengano inviate informazioni personali ad Application Insights?
+#### <a name="could-personally-identifiable-information-pii-be-sent-tooapplication-insights"></a>È possibile informazioni identificabili personalmente (PII) inviare tooApplication Insights?
 Sì, è possibile. 
 
 Indicazioni generali:
 
-* La maggior parte dei dati di telemetria standard, ovvero i dati di telemetria inviati senza scrittura di codice da parte dell'utente, non include informazioni personali esplicite. Potrebbe essere tuttavia possibile identificare individui tramite deduzione da raccolte di eventi.
+* La maggior parte dei dati di telemetria standard, ovvero i dati di telemetria inviati senza scrittura di codice da parte dell'utente, non include informazioni personali esplicite. Tuttavia, potrebbe essere possibile tooidentify individui dall'inferenza da una raccolta di eventi.
 * I messaggi di eccezione e di traccia potrebbero contenere informazioni personali
-* I dati di telemetria personalizzati, ovvero chiamate quali TrackEvent scritte nel codice dall'utente mediante API o tracce del log, possono includere qualsiasi dato scelto dall'utente.
+* Dati di telemetria personalizzati - chiamate, ad esempio TrackEvent scritto nel codice utilizzando le tracce di API o log hello - può contenere dati che scelto.
 
-La tabella alla fine del documento include descrizioni più dettagliate dei dati raccolti.
+tabella Hello alla fine di hello di questo documento contiene una descrizione più dettagliata di hello dati raccolti.
 
-#### <a name="am-i-responsible-for-complying-with-laws-and-regulations-in-regard-to-pii"></a>La responsabilità relativa alla conformità alle leggi e alle normative in ambito di informazioni personali è a carico dell'utente?
-Sì. È responsabilità dell'utente assicurare che la raccolta e l'uso dei dati siano conformi alle leggi e alle normative e alle condizioni di Microsoft Online Services.
+#### <a name="am-i-responsible-for-complying-with-laws-and-regulations-in-regard-toopii"></a>Si è tenuto a rispettarlo leggi e normative di considerare tooPII?
+Sì. È la responsabilità tooensure hello raccolta e utilizzo dei dati hello conforme a leggi e normative e alle condizioni di hello Microsoft Online Services.
 
-È consigliabile informare i clienti in modo appropriato in merito ai dati raccolti dall'applicazione e al relativo uso.
+È necessario notificare ai clienti in modo appropriato l'applicazione consente di raccogliere dati di hello e modalità di utilizzo dati hello.
 
 #### <a name="can-my-users-turn-off-application-insights"></a>Gli utenti possono disattivare Application Insights?
-Non direttamente. Non viene fornita alcuna opzione che gli utenti possono usare per disattivare Application Insights.
+Non direttamente. Non è disponibile un parametro che gli utenti possono operare tooturn off Application Insights.
 
-È tuttavia possibile implementare una funzionalità di questo tipo nell'applicazione. Tutti gli SDK includono un'impostazione dell'API che disattiva la raccolta di dati di telemetria. 
+È tuttavia possibile implementare una funzionalità di questo tipo nell'applicazione. Hello tutti gli SDK includono un'impostazione di API che consente di disattivare la raccolta dati di telemetria. 
 
 #### <a name="my-application-is-unintentionally-collecting-sensitive-information-can-application-insights-scrub-this-data-so-it-isnt-retained"></a>L'applicazione raccoglie involontariamente informazioni riservate. Application Insights può eliminare questi dati in modo che non vengano conservati?
-Application Insights non filtra o elimina i dati. È consigliabile gestire i dati in modo appropriato ed evitare di inviare tali dati ad Application Insights.
+Application Insights non filtra o elimina i dati. Si deve gestire dati hello in modo appropriato ed evitare l'invio di tali tooApplication dati Insights.
 
 ## <a name="data-sent-by-application-insights"></a>Dati inviati da Application Insights
-Gli SDK sono diversi per le piattaforme specifiche e sono disponibili vari componenti da installare. Vedere [Application Insights: panoramica][start]. Ogni componente invia dati diversi.
+SDK Hello variano tra le piattaforme e sono presenti numerosi componenti che è possibile installare. (Vedere troppo[Application Insights - Panoramica][start].) Ogni componente invia dati diversi.
 
 #### <a name="classes-of-data-sent-in-different-scenarios"></a>Classi di dati inviati nei diversi scenari
 | Azione | Classi di dati raccolte (vedere la tabella seguente) |
 | --- | --- |
-| [Aggiungere Application Insights SDK a un progetto Web .NET][greenbrown] |ServerContext<br/>Inferred<br/>Perf counters<br/>Requests<br/>**Eccezioni**<br/>Session<br/>users |
+| [Aggiungi progetto web di Application Insights SDK tooa .NET][greenbrown] |ServerContext<br/>Inferred<br/>Perf counters<br/>Requests<br/>**Eccezioni**<br/>Session<br/>users |
 | [Installare Status Monitor in IIS][redfield] |Dipendenze<br/>ServerContext<br/>Inferred<br/>Perf counters |
-| [Aggiungere Application Insights SDK a un'app Web Java][java] |ServerContext<br/>Inferred<br/>Richiesta<br/>Sessione<br/>users |
-| [Aggiungere JavaScript SDK a una pagina Web][client] |ClientContext  <br/>Inferred<br/>Page<br/>ClientPerf<br/>Ajax |
+| [Aggiungere app web di Application Insights SDK tooa Java][java] |ServerContext<br/>Inferred<br/>Richiesta<br/>Sessione<br/>users |
+| [Aggiungi pagina tooweb SDK per JavaScript][client] |ClientContext  <br/>Inferred<br/>Page<br/>ClientPerf<br/>Ajax |
 | [Definire le proprietà predefinite][apiproperties] |**Properties** in tutti gli eventi standard e personalizzati |
 | [Chiamare TrackMetric][api] |Valori numerici<br/>**Proprietà** |
 | [Chiamare Track*][api] |Nome evento<br/>**Proprietà** |
@@ -170,7 +170,7 @@ Gli SDK sono diversi per le piattaforme specifiche e sono disponibili vari compo
 
 Per informazioni sugli [SDK per altre piattaforme][platforms], vedere i relativi documenti.
 
-#### <a name="the-classes-of-collected-data"></a>Classi dei dati raccolti
+#### <a name="hello-classes-of-collected-data"></a>classi di Hello dei dati raccolti
 | Classe di dati raccolti | Include (elenco non completo) |
 | --- | --- |
 | **Properties** |**Qualsiasi dato, in base al codice** |
@@ -183,7 +183,7 @@ Per informazioni sugli [SDK per altre piattaforme][platforms], vedere i relativi
 | Eventi |Nome e valore dell'evento. |
 | PageViews |URL e nome della pagina o della schermata. |
 | Client perf |URL/nome pagina, tempo di caricamento del browser. |
-| Ajax |Chiamate HTTP dalla pagina Web al server |
+| Ajax |Chiamate HTTP da una pagina web tooserver |
 | Requests |URL, durata, codice di risposta. |
 | Dependencies |Tipo (SQL, HTTP, ...), stringa di connessione o URI, sincrono/asincrono, durata, esito positivo, istruzione SQL (con Monitoraggio stato) |
 | **Eccezioni** |Tipo, **messaggio**, stack di chiamate, file di origine e numero di riga, ID thread. |
@@ -193,7 +193,7 @@ Per informazioni sugli [SDK per altre piattaforme][platforms], vedere i relativi
 | Disponibilità |Codice di risposta del test Web, durata di ogni passo del test, nome del test, timestamp, esito positivo, tempo di risposta, posizione del test |
 | Diagnostica di SDK |Messaggio di traccia o eccezione |
 
-È possibile [disattivare alcuni dei dati modificando ApplicationInsights.config][config]
+È possibile [disattivare alcuni dati hello modificando Applicationinsights][config]
 
 ## <a name="credits"></a>Credits
 Questo prodotto include dati GeoLite2 creati da MaxMind, disponibile nel sito [http://www.maxmind.com](http://www.maxmind.com).

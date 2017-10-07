@@ -1,5 +1,5 @@
 ---
-title: Informazioni sui token utente in Collaborazione B2B di Azure AD | Microsoft Docs
+title: i token utente aaaUnderstand in collaborazione B2B di Azure AD | Documenti Microsoft
 description: Informazioni di riferimento sui token utente per Collaborazione B2B in Azure Active Directory
 services: active-directory
 documentationcenter: 
@@ -15,15 +15,15 @@ ms.tgt_pltfrm: NA
 ms.workload: identity
 ms.date: 05/25/2017
 ms.author: sasubram
-ms.openlocfilehash: 57b170539513953bd6a01ab4dd362a65cf905496
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 968af1c8d1ab6f4b3f50a82f6c998da3955ac364
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="understand-user-tokens-in-azure-ad-b2b-collaboration"></a>Informazioni sui token utente in Collaborazione B2B di Azure AD
 
-Se si vuole conoscere l'aspetto del token per un utente di collaborazione B2B, di seguito sono riportati i dettagli del token di connessione e del contenuto del token per Azure Active Directory (Azure AD) Guest e un account di Microsoft Guest nel tenant delle risorse per tenantid 04dcc6ab-388a-4559-b527-fbec656300ea. Per vedere i contenuti del token JSON Web (JWT), usare [https://jwt.io/](https://jwt.io/) o [http://calebb.net](http://calebb.net/).
+Se si desidera tooknow quali token hello è simile per un utente di collaborazione B2B, ecco i dettagli di token portante hello e token contenuto per un guest di Azure Active Directory (Azure AD) e il guest Microsoft account nel tenant di risorsa hello (per l'ID tenant 04dcc6ab-388a-4559-b527-fbec656300ea). usare contenuto JSON Web Token (JWT) hello toosee [https://jwt.io/](https://jwt.io/) o [http://calebb.net](http://calebb.net/).
 
 ## <a name="azure-ad-guest-token"></a>Token del guest di Azure AD
 ```
@@ -42,7 +42,7 @@ Vedere gli altri articoli su Azure AD B2B Collaboration.
 
 * [Che cos'è Azure AD B2B Collaboration?](active-directory-b2b-what-is-azure-ad-b2b.md)
 * [Proprietà dell'utente di Collaborazione B2B](active-directory-b2b-user-properties.md)
-* [Aggiunta di un utente di Collaborazione B2B a un ruolo](active-directory-b2b-add-guest-to-role.md)
+* [Aggiunta di un ruolo di tooa utente collaborazione B2B](active-directory-b2b-add-guest-to-role.md)
 * [Delegare gli inviti a Collaborazione B2B](active-directory-b2b-delegate-invitations.md)
 * [Gruppi dinamici e Collaborazione B2B](active-directory-b2b-dynamic-groups.md)
 * [Codici ed esempi di PowerShell per Collaborazione B2B](active-directory-b2b-code-samples.md)

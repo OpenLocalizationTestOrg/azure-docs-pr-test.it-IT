@@ -1,6 +1,6 @@
 ---
-title: La pagina dell'applicazione non viene visualizzata correttamente per un'applicazione proxy di applicazione | Microsoft Docs
-description: Linee guida per i casi in cui la pagina non viene visualizzata correttamente in un'applicazione proxy di applicazione integrata con Azure AD
+title: pagina aaaApplication non viene visualizzato correttamente per un'applicazione Proxy dell'applicazione | Documenti Microsoft
+description: "Quando la pagina hello non vengono visualizzati correttamente in un'applicazione di Proxy di applicazione è stata integrata con Azure AD"
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -13,28 +13,28 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
-ms.openlocfilehash: cac4c333e59ef9a0f28a2f93a7afee22eeafd54e
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: f4abaa4e94c512868f2085affe59cac443784a56
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="application-page-does-not-display-correctly-for-an-application-proxy-application"></a>La pagina dell'applicazione non viene visualizzata correttamente per un'applicazione proxy di applicazione
 
-Questo articolo semplifica la risoluzione dei problemi relativi ad applicazioni proxy di applicazione di Azure Active Directory quando è possibile passare alla pagina, ma questa non viene visualizzata correttamente.
+Questo articolo è utile tootroubleshoot problemi con applicazioni di Proxy dell'applicazione Azure Active Directory quando si passa toohello pagina, ma un elemento nella pagina di hello non sembra corretto.
 
 ## <a name="overview"></a>Panoramica
-Quando si pubblica un'app proxy di applicazione, solo le pagine all'interno della radice sono accessibili quando si accede all'applicazione. Se la pagina non viene visualizzata correttamente, l'URL interno radice usato per l'applicazione potrebbe non includere alcune risorse della pagina. Per risolvere questo problema, assicurarsi di aver pubblicato *tutte* le risorse per la pagina come parte dell'applicazione.
+Quando si pubblica un'app di Proxy dell'applicazione, solo le pagine nella cartella principale sono accessibili quando si accede a un'applicazione hello. Se non è la corretta visualizzazione pagina hello, hello radice URL interno utilizzato per un'applicazione hello potrebbero mancare alcune risorse di pagina. tooresolve, assicurarsi di aver pubblicato *tutti* hello risorse per la pagina hello come parte dell'applicazione.
 
-Per verificare che il problema sia questo, aprire lo strumento di individuazione di rete, ad esempio Fiddler o altri strumenti F12 in Internet Explorer/Edge, caricare la pagina e cercare eventuali errori 404. Questi errori indicano che le pagine non possono essere trovate e potrebbero dover essere pubblicate.
+È possibile verificare questo problema hello aprendo l'individuazione di rete (ad esempio Fiddler o F12 strumenti in Internet Explorer o Edge), il caricamento della pagina hello e cercare 404 errori. Che indica le pagine di hello che attualmente non è state trovate e potrebbe essere ancora necessario toobe pubblicato.
 
-Come esempio di questo caso, si supponga di aver pubblicato un'applicazione per il calcolo delle spese usando l'URL interno <http://myapps/expenses>, mentre l'app usa il foglio di stile <http://myapps/style.css>. In questo caso, il foglio di stile non viene pubblicato nell'applicazione e di conseguenza il caricamento dell'app genera un errore 404 mentre tenta di caricare style.css. In questo esempio il problema può essere risolto pubblicando l'applicazione con l'URL interno <http://myapp/>.
+Si supponga ad esempio di questo caso, è stata pubblicata un'applicazione di spese utilizzando un URL interno di <http://myapps/expenses>, ma hello app utilizza hello stylesheet <http://myapps/style.css>. In questo caso, hello foglio di stile non è pubblicato nell'applicazione, pertanto il caricamento delle app spese hello generano un errore durante il tentativo tooload style.css 404. In questo esempio, hello problema potrebbe essere risolto tramite la pubblicazione di un URL interno di un'applicazione hello <http://myapp/> invece.
 
 ## <a name="problems-with-publishing-as-one-application"></a>Problemi relativi alla pubblicazione come singola applicazione
 
-Se non è possibile pubblicare tutte le risorse all'interno della stessa applicazione, è necessario pubblicare più applicazioni e abilitare i collegamenti tra loro.
+Se non è possibile toopublish tutte le risorse all'interno di hello stessa applicazione, è necessario toopublish più applicazioni e abilitare i collegamenti tra di essi.
 
-A questo scopo, è consigliabile usare la soluzione con [domini personalizzati](https://docs.microsoft.com/azure/active-directory/active-directory-application-proxy-custom-domains). Con questa soluzione, tuttavia, è necessario essere il proprietario del certificato per il dominio e che le applicazioni usino nomi di domino completi (FQDN). Per altre opzioni, vedere la [documentazione per la risoluzione dei problemi relativi a collegamenti interrotti](https://microsoft-my.sharepoint.com/personal/harshja_microsoft_com/_layouts/15/guestaccess.aspx?guestaccesstoken=IxuG3mFVbnPWI3Yn4Qi7wCNi8VIfHS5mwPt5quh8DMw%3d&docid=2_14558cd6ddea34c1c9887dc640feb5831&rev=1).
+toodo in tal caso, si consiglia di utilizzare hello [domini personalizzati](https://docs.microsoft.com/azure/active-directory/active-directory-application-proxy-custom-domains) soluzione. Tuttavia, questa soluzione richiede che il certificato di hello si è proprietari del dominio e le applicazioni utilizzano nomi di dominio completo (FQDN). Per altre opzioni, vedere hello [risolvere collegamenti non funzionanti documentazione](https://microsoft-my.sharepoint.com/personal/harshja_microsoft_com/_layouts/15/guestaccess.aspx?guestaccesstoken=IxuG3mFVbnPWI3Yn4Qi7wCNi8VIfHS5mwPt5quh8DMw%3d&docid=2_14558cd6ddea34c1c9887dc640feb5831&rev=1).
 
 ## <a name="next-steps"></a>Passaggi successivi
 [Pubblicare applicazioni mediante il proxy di applicazione AD Azure](application-proxy-publish-azure-portal.md)

@@ -1,6 +1,6 @@
 ---
-title: Introduzione alla connessione di dispositivi simulati all'hub IoT di Azure | Microsoft Docs
-description: "Informazioni su come creare dispositivi IoT simulati e connetterli all'hub IoT di Azure. I dispositivi possono inviare dati di telemetria all'hub IoT e l'hub IoT può monitorare e gestire i dispositivi."
+title: Introduzione alla connessione dispositivi simulati tooAzure IoT Hub | Documenti Microsoft
+description: "Informazioni su come toocreate simulati i dispositivi IoT e connetterli tooAzure IoT Hub. I dispositivi è possono inviare dati di telemetria tooIoT Hub e Iot Hub è possibile monitorare e gestire i dispositivi."
 services: iot-hub
 documentationcenter: 
 author: dominicbetts
@@ -14,15 +14,15 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/02/2017
 ms.author: dobett
-ms.openlocfilehash: 436b3057509a831837159e814490959a2d7455a4
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2c9b76477d12c853abd93aa96043417a013daaef
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-iot-hub-get-started-with-simulated-devices-tutorials"></a>Hub IoT di Azure - Esercitazioni introduttive per i dispositivi simulati
 
-Queste esercitazioni presentano l'hub IoT Azure e gli SDK per dispositivi. Le esercitazioni concernono scenari IoT comuni per illustrare le funzionalità dell'hub IoT. Le esercitazioni spiegano anche come combinare l'hub IoT con altri servizi di Azure e strumenti per creare soluzioni IoT più potenti. Le esercitazioni elencate nella tabella seguente illustrano come creare dispositivi IoT simulati.
+Queste esercitazioni vengono fornite informazioni si tooAzure IoT Hub e il dispositivo di hello SDK. esercitazioni di Hello riguardano IoT scenari toodemonstrate hello funzionalità comuni dell'IoT Hub. Hello esercitazioni viene inoltre illustrano come toocombine IoT Hub con altri Azure dei servizi e toobuild degli strumenti più potenti soluzioni IoT. le esercitazioni Hello elencate nella tabella seguente hello illustrano come toocreate simulati i dispositivi IoT.
 
 | Linguaggio di programmazione |
 |----------------------|
@@ -31,7 +31,7 @@ Queste esercitazioni presentano l'hub IoT Azure e gli SDK per dispositivi. Le es
 | [Node.js][Sim_Nd]    |
 | [Python][Sim_Pyth]   |
 
-È anche possibile usare un gateway IoT Edge per consentire ai dispositivi simulati di connettersi all'hub IoT.
+Inoltre, è possibile utilizzare un bordo IoT gateway tooenable simulato dispositivi tooconnect tooyour IoT hub.
 
 | Linguaggio di programmazione | Piattaforma           |
 |----------------------|------------------- |

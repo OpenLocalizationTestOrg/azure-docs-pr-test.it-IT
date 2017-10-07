@@ -1,6 +1,6 @@
 ---
-title: Aggiungere nuovi utenti ad Azure Active Directory | Documentazione Microsoft
-description: Illustra come aggiungere nuovi utenti o modificare le informazioni sugli utenti in Azure Active Directory.
+title: aaaAdd nuovi utenti tooAzure Active Directory | Documenti Microsoft
+description: Viene illustrato come tooadd nuovi utenti o modificare le informazioni utente in Azure Active Directory.
 services: active-directory
 documentationcenter: 
 author: curtand
@@ -15,38 +15,38 @@ ms.topic: article
 ms.date: 06/27/2017
 ms.author: curtand;jeffsta
 ms.reviewer: jeffsta
-ms.openlocfilehash: bfe0c556d94d50207a23d2e3984371fb602e9406
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c4a156ea31b81202bb0d0ac224afbfc3f1785532
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="add-new-users-to-azure-active-directory"></a>Aggiungere nuovi utenti in Azure Active Directory
+# <a name="add-new-users-tooazure-active-directory"></a>Aggiungere nuovi utenti tooAzure Active Directory
 > [!div class="op_single_selector"]
 > * [Portale di Azure](active-directory-users-create-azure-portal.md)
 > * [portale di Azure classico](active-directory-create-users.md)
 >
 >
 
-Questo articolo illustra come aggiungere nuovi utenti all'organizzazione in Azure Active Directory, ovvero Azure AD. 
+Questo articolo spiega come tooadd nuovi utenti dell'organizzazione in hello Azure Active Directory (Azure AD). 
 
-1. Accedere al [portale di Azure](https://portal.azure.com) con un account di amministratore globale per la directory.
-2. Selezionare **Altri servizi**, immettere **Utenti e gruppi** nella casella di testo e quindi premere **INVIO**.
+1. Accedi toohello [portale di Azure](https://portal.azure.com) con un account che sia un amministratore globale per la directory di hello.
+2. Selezionare **più servizi**, immettere **utenti e gruppi** nella casella di testo hello e quindi selezionare **invio**.
 
    ![Apertura del pannello Utenti e gruppi](./media/active-directory-users-create-azure-portal/create-users-user-management.png)
-3. Nel pannello **Utenti e gruppi** selezionare **Tutti gli utenti** e quindi selezionare **Aggiungi**.
+3. In hello **utenti e gruppi** pannello seleziona **tutti gli utenti**, quindi selezionare **Aggiungi**.
 
-   ![Selezione del comando Aggiungi](./media/active-directory-users-create-azure-portal/create-users-add-command.png)
-4. Immettere dettagli per gli utenti, ad esempio **nome** e **nome utente**. La parte del nome di dominio del nome utente deve essere il nome di dominio "foo.onmicrosoft.com" del nome di dominio predefinito iniziale o un nome di dominio verificato, non federato, ad esempio "contoso.com".
-5. Copiare o comunque annotare la password generata in modo da poterla fornire all'utente al termine del processo.
-6. Facoltativamente, è possibile aprire e inserire le informazioni contenute nel pannello **Profilo**, **Gruppi** o **Ruolo della directory** per l'utente. Per altre informazioni sui ruoli utente e di amministratore, vedere [Assegnazione dei ruoli di amministratore in Azure Active Directory](active-directory-assign-admin-roles.md).
-7. Nel pannello **Utente** selezionare **Crea**.
-8. Distribuire in modo sicuro la password generata al nuovo utente per consentirgli l'accesso.
+   ![Comando Aggiungi hello](./media/active-directory-users-create-azure-portal/create-users-add-command.png)
+4. Immettere i dettagli per l'utente hello, ad esempio **nome** e **nome utente**. parte di nome di dominio di Hello del nome utente hello deve essere il nome di dominio "foo.onmicrosoft.com" hello predefinita iniziale dominio nome o un nome di dominio verificato, non federati, ad esempio "contoso.com".
+5. Generato password utente in modo che è possibile fornirlo toohello utente al termine questo processo di copia o hello nota in caso contrario.
+6. Facoltativamente, è possibile aprire e compilare informazioni hello in hello **profilo** blade, hello **gruppi** pannello o hello **ruolo della Directory** pannello per l'utente hello. Per altre informazioni sui ruoli utente e di amministratore, vedere [Assegnazione dei ruoli di amministratore in Azure Active Directory](active-directory-assign-admin-roles.md).
+7. In hello **utente** pannello seleziona **crea**.
+8. Consente di distribuire in modo sicuro generato hello password toohello nuovo utente in modo che hello utente possa accedere.
 
 ### <a name="next-steps"></a>Passaggi successivi
 * [Aggiungere un utente esterno](active-directory-users-create-external-azure-portal.md)
-* [Reimpostare la password di un utente nel nuovo portale di Azure](active-directory-users-reset-password-azure-portal.md)
+* [Reimpostare la password dell'utente nel nuovo portale di Azure hello](active-directory-users-reset-password-azure-portal.md)
 * [Modificare le informazioni di lavoro di un utente](active-directory-users-work-info-azure-portal.md)
 * [Gestire i profili utente](active-directory-users-profile-azure-portal.md)
 * [Eliminare un utente in Azure AD](active-directory-users-delete-user-azure-portal.md)
-* [Assegnare un utente a un ruolo in Azure AD](active-directory-users-assign-role-azure-portal.md)
+* [Assegnare un ruolo di utente tooa in Azure AD](active-directory-users-assign-role-azure-portal.md)

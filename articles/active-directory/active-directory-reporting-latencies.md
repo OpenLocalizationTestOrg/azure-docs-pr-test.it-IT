@@ -1,6 +1,6 @@
 ---
-title: Latenze dei report di Azure Active Directory | Microsoft Docs
-description: Tempo necessario per la visualizzazione in Azure Active Directory degli eventi dei report
+title: Active Directory Reporting latenze aaaAzure | Documenti Microsoft
+description: "Quantità di tempo impiegato per la segnalazione di eventi tooshow backup in Azure Active Directory"
 services: active-directory
 documentationcenter: 
 author: dhanyahk
@@ -14,14 +14,14 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 05/04/2017
 ms.author: dhanyahk;markvi
-ms.openlocfilehash: 9443a00232420d58dea52ed01f31a4ef964a1620
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 14367d21dfb28359f991037cc924d416420be456
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-active-directory-report-latencies"></a>Latenze dei report di Azure Active Directory
-*Questo documento fa parte della [guida alla creazione di report in Azure Active Directory](active-directory-reporting-guide.md).*
+*Questa documentazione fa parte di hello [Azure Active Directory Reporting Guida](active-directory-reporting-guide.md).*
 
 | Report | Minima | Media | Massima |
 | --- | --- | --- | --- |

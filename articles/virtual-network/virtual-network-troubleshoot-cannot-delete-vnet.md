@@ -1,6 +1,6 @@
 ---
-title: Impossibile eliminare una rete virtuale in Azure | Microsoft Docs
-description: "Informazioni su come risolvere il problema in cui non è possibile eliminare una rete virtuale in Azure."
+title: aaaCannot eliminare una rete virtuale in Azure | Documenti Microsoft
+description: "Informazioni su come tootroubleshoot hello problema in cui non è possibile eliminare una rete virtuale in Azure."
 services: virtual-network
 documentationcenter: na
 author: chadmath
@@ -14,70 +14,70 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 07/17/2017
 ms.author: genli
-ms.openlocfilehash: 55c42a91bb1c5fad289b975ffae8ce4d6e7343dd
-ms.sourcegitcommit: 422efcbac5b6b68295064bd545132fcc98349d01
+ms.openlocfilehash: a9050ab238ccb0380fd46130430222efb8f42388
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="troubleshooting-failed-to-delete-a-virtual-network-in-azure"></a>Risoluzione dei problemi: Impossibile eliminare una rete virtuale in Azure
+# <a name="troubleshooting-failed-toodelete-a-virtual-network-in-azure"></a>Risoluzione dei problemi: Impossibile toodelete una rete virtuale in Azure
 
-Quando si tenta di eliminare una rete virtuale in Microsoft Azure, è possibile che si riceva un errore. Questo articolo illustra la procedura per risolvere questo tipo di problema. 
+È possibile ricevere errori quando si tenta di toodelete una rete virtuale in Microsoft Azure. Questo articolo fornisce la risoluzione dei problemi toohelp passaggi risolvere il problema. 
 
 [!INCLUDE [support-disclaimer](../../includes/support-disclaimer.md)]
 
 ## <a name="troubleshooting-guidance"></a>Guida alla risoluzione dei problemi 
 
-1. [Verificare se nella rete virtuale è in esecuzione un gateway di rete virtuale](#check-whether-a-virtual-network-gateway-is-running-in-the-virtual-network).
-2. [Verificare se nella rete virtuale è in esecuzione un gateway applicazione](#check-whether-an-application-gateway-is-running-in-the-virtual-network).
-3. [Verificare se nella rete virtuale è abilitato il servizio Azure Active Directory Domain Service](#check-whether-azure-active-directory-domain-service-is-enabled-in-the-virtual-network).
-4. [Verificare se la rete virtuale è connessa ad altre risorse](#check-whether-the-virtual-network-is-connected-to-other-resource).
-5. [Verificare se nella rete virtuale è ancora in esecuzione una macchina virtuale](#check-whether-a-virtual-machine-is-still-running-in-the-virtual-network).
-6. [Verificare se la rete virtuale è bloccata in fase di migrazione](#check-whether-the-virtual-network-is-stuck-in-migration).
+1. [Verificare se un gateway di rete virtuale è in esecuzione nella rete virtuale hello](#check-whether-a-virtual-network-gateway-is-running-in-the-virtual-network).
+2. [Verificare se un gateway applicazione è in esecuzione nella rete virtuale hello](#check-whether-an-application-gateway-is-running-in-the-virtual-network).
+3. [Controllare se il servizio di dominio Azure Active Directory è abilitato nella rete virtuale hello](#check-whether-azure-active-directory-domain-service-is-enabled-in-the-virtual-network).
+4. [Controllare se la rete virtuale hello è connesso tooother risorse](#check-whether-the-virtual-network-is-connected-to-other-resource).
+5. [Controllare se una macchina virtuale è ancora in esecuzione nella rete virtuale hello](#check-whether-a-virtual-machine-is-still-running-in-the-virtual-network).
+6. [Controllare se la rete virtuale hello è bloccata nella migrazione](#check-whether-the-virtual-network-is-stuck-in-migration).
 
 ## <a name="troubleshooting-steps"></a>Passaggi per la risoluzione dei problemi
 
-### <a name="check-whether-a-virtual-network-gateway-is-running-in-the-virtual-network"></a>Verificare se nella rete virtuale è in esecuzione un gateway di rete virtuale
+### <a name="check-whether-a-virtual-network-gateway-is-running-in-hello-virtual-network"></a>Verificare se un gateway di rete virtuale è in esecuzione nella rete virtuale hello
 
-Per rimuovere la rete virtuale, è necessario rimuovere prima il gateway di rete virtuale.
+rete virtuale hello tooremove, è necessario rimuovere prima il gateway di rete virtuale hello.
 
-In caso di reti virtuali classiche, accedere alla pagina **Panoramica** della rete virtuale classica nel portale di Azure. Se il gateway è in esecuzione nella rete virtuale, nella sezione **Connessioni VPN** verrà visualizzato l'indirizzo IP del gateway. 
+Per le reti virtuali classiche, visitare toohello **Panoramica** pagina della rete virtuale classica di hello nel portale di Azure hello. In hello **le connessioni VPN** sezione, se il gateway hello è in esecuzione nella rete virtuale hello, verrà visualizzato hello IP indirizzo del gateway hello. 
 
 ![Verificare se il gateway è in esecuzione](media/virtual-network-troubleshoot-cannot-delete-vnet/classic-gateway.png)
 
-In caso di reti virtuali, accedere alla pagina **Panoramica** della rete virtuale. Controllare i **dispositivi connessi** associati al gateway di rete virtuale.
+Per le reti virtuali, visitare toohello **Panoramica** pagina della rete virtuale hello. Controllare **i dispositivi connessi** per gateway di rete virtuale hello.
 
-![Controllare il dispositivo collegato](media/virtual-network-troubleshoot-cannot-delete-vnet/vnet-gateway.png)
+![Controllo dispositivo connesso hello](media/virtual-network-troubleshoot-cannot-delete-vnet/vnet-gateway.png)
 
-Prima di poter rimuovere il gateway, è necessario rimuovere eventuali oggetti **Connessione** presenti nel gateway. 
+Prima di poter rimuovere gateway hello, rimuovere innanzitutto qualsiasi **connessione** oggetti nel gateway hello. 
 
-### <a name="check-whether-an-application-gateway-is-running-in-the-virtual-network"></a>Verificare se nella rete virtuale è in esecuzione un gateway applicazione
+### <a name="check-whether-an-application-gateway-is-running-in-hello-virtual-network"></a>Verificare se un gateway applicazione è in esecuzione nella rete virtuale hello
 
-Accedere alla pagina **Panoramica** della rete virtuale. Controllare i **dispositivi connessi** associati al gateway applicazione.
+Passare toohello **Panoramica** pagina della rete virtuale hello. Controllare hello **i dispositivi connessi** per il gateway applicazione hello.
 
-![Controllare il dispositivo collegato](media/virtual-network-troubleshoot-cannot-delete-vnet/app-gateway.png)
+![Controllo dispositivo connesso hello](media/virtual-network-troubleshoot-cannot-delete-vnet/app-gateway.png)
 
-Se è presente un gateway applicazione, è necessario rimuoverlo prima di poter eliminare la rete virtuale.
+Se è presente un gateway applicazione, è necessario rimuovere prima di poter eliminare la rete virtuale hello.
 
-### <a name="check-whether-azure-active-directory-domain-service-is-enabled-in-the-virtual-network"></a>Verificare se nella rete virtuale è abilitato il servizio Azure Active Directory Domain Service
+### <a name="check-whether-azure-active-directory-domain-service-is-enabled-in-hello-virtual-network"></a>Controllare se il servizio di dominio Azure Active Directory è abilitato nella rete virtuale hello
 
-Se Active Directory Domain Service è abilitato e connesso alla rete virtuale, non è possibile eliminare la rete virtuale. 
+Se hello servizi di dominio Active Directory è abilitata e connessa toohello rete virtuale, è possibile eliminare questa rete virtuale. 
 
-![Controllare il dispositivo collegato](media/virtual-network-troubleshoot-cannot-delete-vnet/enable-domain-services.png)
+![Controllo dispositivo connesso hello](media/virtual-network-troubleshoot-cannot-delete-vnet/enable-domain-services.png)
 
-Per disabilitare il servizio, seguire questa procedura:
+toodisable hello servizio, seguire questi passaggi:
 
-1. Passare al [portale di Azure classico](https://manage.windowsazure.com).
-2. Nel riquadro sinistro selezionare **Active Directory**.
-3. Selezionare la directory di Azure Active Directory (Azure AD) in cui è abilitato Active Directory Domain Service.
-4. Selezionare la scheda **Configura** .
-5. In **Servizi di dominio** impostare l'opzione **Abilita Servizi di dominio per la directory** su **No**.  
+1. Passare toohello [portale di Azure classico](https://manage.windowsazure.com).
+2. Nel riquadro sinistro hello selezionare **Active Directory**.
+3. Selezionare la directory di Azure Active Directory (Azure AD) hello con Active Directory Domain Services abilitato.
+4. Seleziona hello **configura** scheda.
+5. In **servizi di dominio**, modificare hello **Abilita servizi di dominio per questa directory** opzione troppo**n**.  
 
-### <a name="check-whether-the-virtual-network-is-connected-to-other-resource"></a>Verificare se la rete virtuale è connessa ad altre risorse
+### <a name="check-whether-hello-virtual-network-is-connected-tooother-resource"></a>Controllare se la rete virtuale hello è connesso tooother risorse
 
-Controllare i collegamenti del circuito, le connessioni e i peering di rete virtuale, poiché questi elementi possono impedire l'eliminazione di una rete virtuale. 
+Controllare i collegamenti del circuito, le connessioni e i peering di rete virtuale, Uno di questi può causare un toofail l'eliminazione di rete virtuale. 
 
-Di seguito è riportato l'ordine di eliminazione consigliato:
+Hello ordine consigliata l'eliminazione è come segue:
 
 1. Connessioni del gateway
 2. Gateway
@@ -85,13 +85,13 @@ Di seguito è riportato l'ordine di eliminazione consigliato:
 4. Peering di rete virtuale
 5. Ambiente del servizio app
 
-### <a name="check-whether-a-virtual-machine-is-still-running-in-the-virtual-network"></a>Verificare se nella rete virtuale è ancora in esecuzione una macchina virtuale
+### <a name="check-whether-a-virtual-machine-is-still-running-in-hello-virtual-network"></a>Controllare se una macchina virtuale è ancora in esecuzione nella rete virtuale hello
 
-Assicurarsi che nella rete virtuale non si trovi alcuna macchina virtuale.
+Assicurarsi che nessuna macchina virtuale sia nella rete virtuale hello.
 
-### <a name="check-whether-the-virtual-network-is-stuck-in-migration"></a>Verificare se la rete virtuale è bloccata in stato di migrazione
+### <a name="check-whether-hello-virtual-network-is-stuck-in-migration"></a>Controllare se la rete virtuale hello è bloccata nella migrazione
 
-Se la rete virtuale è bloccata in uno stato di migrazione, non può essere eliminata. Eseguire il comando seguente per interrompere la migrazione e quindi eliminare la rete virtuale.
+Se la rete virtuale hello è bloccata in uno stato di migrazione, non può essere eliminata. Esecuzione della migrazione hello tooabort comando hello e quindi eliminare la rete virtuale di hello.
 
     Move-AzureVirtualNetwork -VirtualNetworkName "Name" -Abort
 

@@ -1,6 +1,6 @@
 ---
-title: Failover e ripristino di emergenza per StorSimple | Microsoft Docs
-description: Informazioni su come eseguire il failover del dispositivo StorSimple su se stesso, su un altro dispositivo fisico o su un dispositivo virtuale.
+title: ripristino di emergenza e failover aaaStorSimple | Documenti Microsoft
+description: Informazioni su come toofail il tooitself dispositivo StorSimple, un altro dispositivo fisico o un dispositivo virtuale.
 services: storsimple
 documentationcenter: 
 author: alkohli
@@ -14,168 +14,168 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 09/16/2016
 ms.author: alkohli
-ms.openlocfilehash: bf92ffdb16b86c4033cc96ae2abb060d90f9505e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 00ce365f8a9095d1f0292e665d7f9eaa844b44ae
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="failover-and-disaster-recovery-for-your-storsimple-device"></a>Failover e ripristino di emergenza per il dispositivo StorSimple
 ## <a name="overview"></a>Panoramica
-Questa esercitazione descrive i passaggi necessari per eseguire il failover di un dispositivo StorSimple in caso di emergenza. Un failover consentirà di migrare i dati da un dispositivo di origine nel centro dati a un altro dispositivo fisico o virtuale che si trova nella stessa o in un’altra area geografica. 
+Questa esercitazione descrive hello passaggi necessari toofail su un dispositivo StorSimple nell'evento hello un'emergenza. Un failover consentirà toomigrate i dati da un dispositivo di origine in hello datacenter tooanother fisico o in un dispositivo virtuale si trovano in hello stesso o in una posizione geografica diversa. 
 
-Il ripristino di emergenza viene gestito tramite la funzionalità di failover del dispositivo e viene inizializzato nella pagina **Dispositivi** . In questa pagina sono riportati tutti i dispositivi StorSimple connessi al servizio StorSimple Manager. Per ogni dispositivo, vengono visualizzati nome descrittivo, stato, capacità fornita e massima, tipo e modello.
+Ripristino di emergenza (ripristino di emergenza) viene gestito tramite funzionalità di failover di hello dispositivo e può essere avviato da hello **dispositivi** pagina. Questa pagina raccoglie servizio tutti hello StorSimple dispositivi connessi tooyour StorSimple Manager. Per ogni dispositivo, nome descrittivo hello, stato, capacità disponibile e massima, tipo e il modello vengono visualizzati.
 
 ![Pagina Dispositivi](./media/storsimple-device-failover-disaster-recovery/IC740972.png)
 
-Le indicazioni fornite in questa esercitazione si applicano ai dispositivi fisici e virtuali StorSimple in tutte le versioni del software.
+linee guida di Hello in questa esercitazione si applicano dispositivi fisici e virtuali tooStorSimple tra tutte le versioni di software.
 
 ## <a name="disaster-recovery-dr-and-device-failover"></a>Ripristino di emergenza (DR) e failover del dispositivo
-In uno scenario di ripristino di emergenza, il dispositivo principale smette di funzionare. In questo caso, è possibile spostare i dati del cloud associati al dispositivo guasto in un altro dispositivo usando il dispositivo principale come *origine* e specificando l'altro dispositivo come *destinazione*. È possibile selezionare uno o più contenitori di volumi per eseguire la migrazione al dispositivo di destinazione. Questo processo viene definito *failover*. 
+In uno scenario di ripristino di emergenza di emergenza nel dispositivo primario hello smette di funzionare. In questo caso, è possibile spostare i dati di cloud hello associati hello tooanother dispositivo utilizzando il dispositivo primario hello come hello *origine* e specificando un altro dispositivo come hello *destinazione*. È possibile selezionare uno o più volumi contenitori toomigrate toohello dispositivo di destinazione. Questo processo è noto tooas hello *failover*. 
 
-Durante il failover, i contenitori di volumi del dispositivo di origine cambiano proprietà e vengono trasferiti al dispositivo di destinazione. Una volta modificata la proprietà dei contenitori di volumi, questi vengono eliminati dal dispositivo di origine. Al termine dell'eliminazione, è possibile eseguire il failback del dispositivo di destinazione.
+Durante il failover hello, i contenitori di volumi hello hello dispositivo di origine modificare la proprietà e sono trasferiti toohello dispositivo di destinazione. Una volta contenitori dei volumi hello modificare la proprietà, questi vengono eliminati dal dispositivo di origine hello. Una volta completata l'eliminazione di hello, il dispositivo di destinazione hello quindi può essere eseguito nuovamente.
 
-In genere, dopo un ripristino di emergenza, il backup più recente viene usato per ripristinare i dati nel dispositivo di destinazione. Tuttavia, se sono presenti più criteri di backup per lo stesso volume, viene scelto il criterio di backup con il maggior numero di volumi e per il ripristino dei dati nel dispositivo di destinazione viene usato il backup più recente per tale criterio.
+In genere dopo un ripristino di emergenza, il backup più recente di hello è dispositivo di destinazione toohello dati hello toorestore utilizzato. Tuttavia, se sono presenti più criteri di backup per hello stesso volume, quindi verrà prelevato criteri di backup hello con numero più grande di hello di volumi e backup più recente di hello da quei criteri toorestore utilizzati hello dati nel dispositivo di destinazione hello.
 
-Ad esempio, si supponga che esistano due criteri di backup (uno predefinito e uno personalizzato) *defaultPol* e *customPol* con i dettagli seguenti:
+Ad esempio, se sono presenti due criteri di backup (un valore predefinito e uno personalizzato) *defaultPol*, *customPol* con hello seguenti dettagli:
 
 * *defaultPol*: un solo volume, *vol1*, con esecuzione giornaliera a partire dalle 22:30.
 * *customPol*: quattro volumi, *vol1*, *vol2*, *vol3* e *vol4*, con esecuzione giornaliera a partire dalle 22:00.
 
-In questo caso verrà usato *criterioPersonalizzato* perché include più volumi e viene data priorità alla coerenza per arresto anomalo del sistema. Per il ripristino dei dati viene usato il backup più recente per questo criterio.
+In questo caso verrà usato *criterioPersonalizzato* perché include più volumi e viene data priorità alla coerenza per arresto anomalo del sistema. backup più recente di Hello da questi criteri viene utilizzato toorestore dati.
 
 ## <a name="considerations-for-device-failover"></a>Considerazioni per il failover del dispositivo
-In caso di emergenza, è possibile eseguire il failover del dispositivo StorSimple:
+In caso di hello un'emergenza, è possibile scegliere toofail failover del dispositivo StorSimple:
 
-* In un dispositivo fisico 
-* Nel dispositivo stesso
-* In un dispositivo virtuale
+* dispositivo fisico tooa 
+* tooitself
+* dispositivo virtuale tooa
 
-Per qualsiasi tipo di failover del dispositivo, tenere presente quanto segue:
+Per un failover del dispositivo, tenere in seguito hello presente:
 
-* Per il ripristino di emergenza è necessario che tutti i volumi all'interno dei contenitori di volumi siano offline e che i contenitori di volumi siano associati a uno snapshot nel cloud. 
-* I dispositivi di destinazione disponibili per il ripristino di emergenza sono dispositivi con spazio sufficiente ad accogliere i contenitori di volumi selezionati. 
-* I dispositivi connessi al servizio che non soddisfano i criteri di spazio sufficiente non saranno disponibili come dispositivi di destinazione.
-* Dopo un ripristino di emergenza, per un intervallo di tempo limitato, le prestazioni di accesso ai dati possono essere influenzate in modo significativo, dal momento che il dispositivo dovrà accedere ai dati dal cloud e memorizzarli in locale.
+* Hello prerequisiti per ripristino di emergenza prevedono che tutti i volumi di hello all'interno di contenitori di volumi hello siano offline e contenitori di volumi hello sono associato un snapshot nel cloud. 
+* dispositivi di destinazione disponibili Hello per il ripristino di emergenza sono dispositivi che dispongono di sufficiente spazio tooaccommodate hello contenitori del volume selezionati. 
+* servizio Hello i dispositivi che sono connessi tooyour ma non soddisfano i criteri hello di sufficiente spazio non saranno disponibile come dispositivi di destinazione.
+* Dopo un ripristino di emergenza, per una durata limitata, può influire sulle prestazioni di accesso ai dati hello in modo significativo, come dispositivo hello sarà anche necessario tooaccess hello dati dal cloud hello e archiviate in locale.
 
 #### <a name="device-failover-across-software-versions"></a>Failover del dispositivo in tutte le versioni del software
-Un servizio StorSimple Manager in una distribuzione potrebbe avere più dispositivi, fisici e virtuali, che eseguono diverse versioni del software. In base alla versione del software, i tipi di volume nei dispositivi possono essere diversi. Ad esempio, un dispositivo che esegue l’Aggiornamento 2 o versione successiva avrebbe volumi aggiunti in locale e a livelli (con archiviazione in un sottoinsieme a livelli). Un dispositivo che esegue un pre-aggiornamento 2 d'altra parte può avere volumi di archiviazione a livelli. 
+Un servizio StorSimple Manager in una distribuzione potrebbe avere più dispositivi, fisici e virtuali, che eseguono diverse versioni del software. Seconda versione del software hello, tipi di volumi hello nei dispositivi hello anche siano diversi. Ad esempio, un dispositivo che esegue l’Aggiornamento 2 o versione successiva avrebbe volumi aggiunti in locale e a livelli (con archiviazione in un sottoinsieme a livelli). Un dispositivo pre-aggiornamento 2 in hello invece può avere a più livelli e dei volumi di archiviazione. 
 
-Utilizzare la seguente tabella per determinare se è possibile eseguire il failover a un altro dispositivo che esegue una versione diversa del software e il comportamento dei tipi di volume durante il ripristino di emergenza.
+Utilizzare hello seguente toodetermine tabella se è possibile eseguire il failover tooanother dispositivo in esecuzione un comportamento di versione e hello software diversi tipi di volume durante il ripristino di emergenza.
 
 | Failover da | Consentito per il dispositivo fisico | Consentito per il dispositivo virtuale |
 | --- | --- | --- |
-| Aggiornamento 2 a pre-aggiornamento 1 (versione, 0.1, 0.2, 0.3) |No |No |
-| Aggiornamento 2 a Aggiornamento 1 (1, 1.1, 1.2) |Sì  <br></br>se utilizza volumi aggiunti localmente o a livelli o una combinazione dei due, il failover dei volumi viene sempre eseguito come un volume a livelli. |Sì <br></br>se utilizza volumi aggiunti in locale, il failover viene eseguito come volume a livelli. |
-| Aggiornamento 2 a Aggiornamento 2 (versione successiva) |Sì <br></br>se utilizza volumi aggiunti in locale o a livelli o una combinazione dei due, il failover viene sempre eseguito come il tipo di volume iniziale: volume a livelli come volume a livelli e volume aggiunto localmente come volume aggiunto localmente. |Sì <br></br>se utilizza volumi aggiunti in locale, il failover viene eseguito come volume a livelli. |
+| Update 2. toopre-Update 1 (versione 0,1, 0,2, 0,3) |No |No |
+| Aggiornamento 2 tooUpdate 1 (1, 1.1, 1.2) |Sì <br></br>Se utilizza localmente bloccato o a livelli di volumi o una combinazione di due, hello volumi vengono sempre eseguiti il failover come tipo a livelli. |Sì<br></br>se utilizza volumi aggiunti in locale, il failover viene eseguito come volume a livelli. |
+| Aggiornamento 2 tooUpdate 2 (o versione successiva) |Sì<br></br>In volumi localmente bloccati o a più livelli o una combinazione di due volumi hello vengono sempre eseguiti il failover come hello; tipo di volume di avvio a livelli a più livelli e aggiunti in locale nel sistema locale è bloccato. |Sì<br></br>se utilizza volumi aggiunti in locale, il failover viene eseguito come volume a livelli. |
 
 #### <a name="partial-failover-across-software-versions"></a>Failover parziale in tutte le versioni del software
-Se si prevede di eseguire un failover parziale usando un dispositivo di origine StorSimple che esegue il pre-aggiornamento 1 in una destinazione che esegue Aggiornamento 1 o versione successiva, attenersi alle istruzioni che seguono. 
+Seguire queste linee guida se si intende tooperform un failover parziale usando un dispositivo di origine di StorSimple che esegue destinazione 1 tooa pre-aggiornamento esecuzione di Update 1 o versione successiva. 
 
 | Origine del failover parziale | Consentito per il dispositivo fisico | Consentito per il dispositivo virtuale |
 | --- | --- | --- |
-| Da pre-aggiornamento 1 (versione 0.1, 0.2, 0.3) a Aggiornamento 1 o versione successiva |Sì, vedere la procedura consigliata di seguito. |Sì, vedere la procedura consigliata di seguito. |
+| Pre-aggiornamento 1 (versione 0,1, 0,2, 0,3) tooUpdate 1 o versione successiva |Per il suggerimento prassi migliori di hello Sì, vedere di seguito. |Per il suggerimento prassi migliori di hello Sì, vedere di seguito. |
 
 > [!TIP]
-> In Aggiornamento 1 e versioni successive è stata eseguita una modifica ai metadati del cloud e al formato dati. Per questa ragione, non è consigliabile eseguire un failover parziale da pre-aggiornamento 1 a Aggiornamento 1 o versioni successive. Se è necessario eseguire un failover parziale, è consigliabile applicare prima Aggiornamento 1 o versioni successive in entrambi i dispositivi (origine e destinazione) e quindi procedere con il failover. 
+> In Aggiornamento 1 e versioni successive è stata eseguita una modifica ai metadati del cloud e al formato dati. Di conseguenza, non è consigliabile un failover parziale da pre-aggiornamento 1 tooUpdate 1 o versioni successive. Se è necessario un failover parziale tooperform, è consigliabile che è applicare prima l'Update 1 o versioni successive in entrambi i dispositivi hello (origine e destinazione) e quindi procedere con il failover hello. 
 > 
 > 
 
-## <a name="fail-over-to-another-physical-device"></a>Failover su un altro dispositivo fisico
-Eseguire i passaggi seguenti per ripristinare il dispositivo su un dispositivo fisico di destinazione.
+## <a name="fail-over-tooanother-physical-device"></a>Eseguire il failover al dispositivo fisico tooanother
+Eseguire hello seguendo i passaggi toorestore il dispositivo di destinazione di tooa dispositivo fisico.
 
-1. Verificare che il contenitore del volume di cui si desidera eseguire il failover sia associato alle snapshot cloud.
-2. Nella pagina **Dispositivi** fare clic sulla scheda **Contenitori dei volumi**.
-3. Selezionare un contenitore di volumi di cui si desidera eseguire il failover a un altro dispositivo. Fare clic sul contenitore di volumi per visualizzare l'elenco dei volumi presenti nel contenitore. Selezionare un volume e fare clic su **Offline** per passare il volume offline. Ripetere questo processo per tutti i volumi nel contenitore di volumi.
-4. Ripetere il passaggio precedente per tutti i contenitori di volumi di cui si desidera eseguire il failover a un altro dispositivo.
-5. Nella pagina **Dispositivi**, fare clic su **Failover**.
-6. Nella procedura guidata visualizzata, in **Scegliere i contenitori dei volumi per il failover**:
+1. Verificare il contenitore del volume hello desiderato toofail siano associati snapshot nel cloud.
+2. In hello **dispositivi** pagina, fare clic su hello **contenitori di volumi** scheda.
+3. Selezionare un contenitore di volumi di cui si desidera toofail su tooanother dispositivo. Fare clic su elenco hello toodisplay hello volumi contenitore di volumi all'interno del contenitore. Selezionare un volume e fare clic su **non in linea** tootake offline volume hello. Ripetere questo processo per tutti i volumi di hello hello contenitore del volume.
+4. Passaggio di ripetizione hello precedente per tutti i contenitori dei volumi di hello desideri toofail su tooanother dispositivo.
+5. In hello **dispositivi** pagina, fare clic su **Failover**.
+6. Nella procedura guidata hello visualizzata nell'area **scegliere toofail contenitore volume su**:
    
-   1. Nell'elenco dei contenitori di volumi, selezionare i contenitori di volumi di cui si desidera eseguire il failover.
-      **Vengono visualizzati solo i contenitori di volumi con gli snapshot del cloud e i volumi offline associati.**
-   2. In **Scegli un dispositivo di destinazione** per i volumi dei contenitori selezionati, selezionare un dispositivo di destinazione dall'elenco a discesa dei dispositivi disponibili. Solo i dispositivi dotati di capacità disponibile vengono visualizzati nell'elenco a discesa.
-   3. Infine, esaminare tutte le impostazioni di failover in **Conferma failover**. Fare clic sull'icona del segno di spunta ![Icona del segno di spunta](./media/storsimple-device-failover-disaster-recovery/IC740895.png).
-7. Viene creato un processo di failover che può essere monitorato tramite la pagina **Processi** . Se nel contenitore del volume di cui è stato eseguito il failover sono presenti volumi locali, i singoli processi di ripristino per ogni volume locale (non per i volumi a livelli) saranno visibili nel contenitore. Per il completamento di questi processi di ripristino può essere necessario molto tempo. È probabile che venga completato prima il processo di failover. Si noti che questi volumi presentano garanzie locali solo dopo il completamento dei processi di ripristino. Dopo aver completato il failover, andare alla pagina **Dispositivi** .                                            
+   1. Nell'elenco di hello dei contenitori di volumi, selezionare i contenitori di volumi hello desiderato toofail su.
+      **Hello solo contenitori di volumi con snapshot cloud associati e i volumi offline sono visualizzati.**
+   2. In **scegliere un dispositivo di destinazione** per volumi di hello nei contenitori hello selezionato, selezionare un dispositivo di destinazione dall'elenco a discesa hello dei dispositivi disponibili. Nell'elenco a discesa hello vengono visualizzati solo i dispositivi di hello con capacità disponibile hello.
+   3. Esaminare infine tutte le impostazioni di failover hello in **confermare il failover**. Fare clic sull'icona di controllo hello ![icona controllo](./media/storsimple-device-failover-disaster-recovery/IC740895.png).
+7. Viene creato un processo di failover che possono essere monitorati tramite hello **processi** pagina. Se il contenitore del volume hello che è stato eseguito il failover con volumi locali, si noterà i processi di ripristino di singole per ogni volume locale (non per i volumi a livelli) nel contenitore hello. I processi di ripristino potrebbe richiedere toocomplete un certo tempo. È probabile che il processo di failover hello può essere completata in precedenza. Si noti che questi volumi avrà garanzie locale solo dopo il completamento dei processi di ripristino hello. Dopo aver completato il failover hello, visitare toohello **dispositivi** pagina.                                            
    
-   1. Selezionare il dispositivo utilizzato come dispositivo di destinazione per il processo di failover.
-   2. Andare alla pagina **Contenitori di volumi** . Dovrebbero essere elencati tutti i contenitori di volumi,  insieme ai volumi del dispositivo precedente.
+   1. Selezionare il dispositivo hello che è stato usato come dispositivo di destinazione hello per il processo di failover di hello.
+   2. Passare toohello **contenitori di volumi** pagina. Tutti i contenitori di volumi di hello, insieme ai volumi hello dispositivo precedente hello, dovrebbero essere elencati.
 
 ## <a name="failover-using-a-single-device"></a>Failover con un solo dispositivo
-Se si dispone di un solo dispositivo ed è necessario eseguire un failover, eseguire i passaggi seguenti.
+Eseguire hello procedura seguente se si dispone di un singolo tooperform dispositivo ed è necessario un failover.
 
-1. Acquisire snapshot nel cloud di tutti i volumi nel dispositivo.
-2. Ripristinare le impostazioni predefinite del dispositivo. Seguire le istruzioni dettagliate in [come ripristinare le impostazioni predefinite di un dispositivo StorSimple](storsimple-manage-device-controller.md#reset-the-device-to-factory-default-settings).
+1. Creare snapshot cloud di tutti i volumi di hello nel dispositivo.
+2. Reimpostare le impostazioni predefinite del dispositivo toofactory. Seguire hello dettagliate in [come impostazioni predefinite tooreset un toofactory dispositivo StorSimple](storsimple-manage-device-controller.md#reset-the-device-to-factory-default-settings).
 3. Configurare il dispositivo e registrarlo nuovamente con il servizio StorSimple Manager.
-4. Nella pagina **Dispositivi** il dispositivo precedente dovrà essere visualizzato come **Offline**. Il dispositivo appena registrato deve essere visualizzato come **Online**.
-5. Per il nuovo dispositivo, completare innanzitutto la configurazione minima del dispositivo. 
+4. In hello **dispositivi** pagina, dovrebbe risultare dispositivo precedente hello **Offline**. Hello dispositivo appena registrato dovrebbe risultare **Online**.
+5. Prima di nuovo dispositivo hello, completa la configurazione minima di hello del dispositivo di hello. 
    
    > [!IMPORTANT]
-   > **Se non viene prima completata la configurazione minima, il ripristino di emergenza avrà esito negativo a causa di un bug nell'implementazione corrente. Questo problema verrà risolto in una versione successiva.**
+   > **Se la configurazione minima di hello non viene completata prima di tutto, il ripristino di emergenza avrà esito negativo a causa di un bug nell'implementazione corrente di hello. Questo problema verrà risolto in una versione successiva.**
    > 
    > 
-6. Selezionare il dispositivo precedente (stato offline) e fare clic su **Failover**. Nella procedura guidata che viene visualizzata, eseguire il failover di questo dispositivo e specificare come dispositivo di destinazione il dispositivo appena registrato. Per istruzioni dettagliate, fare riferimento a [Failover su un altro dispositivo fisico](#fail-over-to-another-physical-device).
-7. Verrà creato un processo di ripristino del dispositivo che è possibile monitorare da **Processi** .
-8. Al termine il processo, accedere al nuovo dispositivo e andare alla pagina **Contenitori di volumi** . Tutti i contenitori di volumi del dispositivo precedente dovrebbero essere stati migrati al nuovo dispositivo.
+6. Selezionare il dispositivo precedente hello (stato non in linea) e fare clic su **Failover**. Nella procedura guidata hello presentato, il failover il dispositivo e specificare il dispositivo di destinazione hello come dispositivo appena registrato hello. Per istruzioni dettagliate, vedere troppo[failover dispositivo fisico tooanother](#fail-over-to-another-physical-device).
+7. Verrà creato un processo di ripristino del dispositivo che è possibile monitorare da hello **processi** pagina.
+8. Al termine il processo di hello, accedere di nuovo dispositivo hello e passare toohello **contenitori di volumi** pagina. Tutti i contenitori di volumi di hello dispositivo precedente hello dovrebbero ora essere migrati toohello nuovo dispositivo.
 
-## <a name="fail-over-to-a-storsimple-virtual-device"></a>Failover su un dispositivo virtuale StorSimple
-Prima di eseguire questa procedura, è necessario disporre di un dispositivo StorSimple virtuale creato e configurato. Se esegue l'Aggiornamento 2, considerare l'utilizzo di un dispositivo virtuale 8020 per il ripristino di emergenza che dispone di 64 TB e utilizza l'archiviazione Premium. 
+## <a name="fail-over-tooa-storsimple-virtual-device"></a>Dispositivo virtuale StorSimple tooa il failover
+È necessario disporre di un StorSimple dispositivo virtuale creato e configurato toorunning precedenti in questa procedura. Se in esecuzione Update 2, considerare l'utilizzo di un dispositivo virtuale 8020 per hello ripristino di emergenza che dispone di 64 TB e utilizza l'archiviazione Premium. 
 
-Eseguire i passaggi seguenti per ripristinare il dispositivo su un dispositivo virtuale StorSimple di destinazione.
+Eseguire hello seguendo i passaggi toorestore hello dispositivo tooa destinazione dispositivo virtuale StorSimple.
 
-1. Verificare che il contenitore del volume di cui si desidera eseguire il failover sia associato alle snapshot cloud.
-2. Nella pagina **Dispositivi** fare clic sulla scheda **Contenitori dei volumi**.
-3. Selezionare un contenitore di volumi di cui si desidera eseguire il failover a un altro dispositivo. Fare clic sul contenitore di volumi per visualizzare l'elenco dei volumi presenti nel contenitore. Selezionare un volume e fare clic su **Offline** per passare il volume offline. Ripetere questo processo per tutti i volumi nel contenitore di volumi.
-4. Ripetere il passaggio precedente per tutti i contenitori di volumi di cui si desidera eseguire il failover a un altro dispositivo.
-5. Nella pagina **Dispositivi**, fare clic su **Failover**.
-6. Nella procedura guidata visualizzata, sotto **Scegli contenitore di volumi per il failover**, completare le operazioni seguenti:
+1. Verificare il contenitore del volume hello desiderato toofail siano associati snapshot nel cloud.
+2. In hello **dispositivi** pagina, fare clic su hello **contenitori di volumi** scheda.
+3. Selezionare un contenitore di volumi di cui si desidera toofail su tooanother dispositivo. Fare clic su elenco hello toodisplay hello volumi contenitore di volumi all'interno del contenitore. Selezionare un volume e fare clic su **non in linea** tootake offline volume hello. Ripetere questo processo per tutti i volumi di hello hello contenitore del volume.
+4. Passaggio di ripetizione hello precedente per tutti i contenitori dei volumi di hello desideri toofail su tooanother dispositivo.
+5. In hello **dispositivi** pagina, fare clic su **Failover**.
+6. Nella procedura guidata hello visualizzata nell'area **scegliere toofailover contenitore volume**, completare hello seguente:
    
-    a. Nell'elenco dei contenitori di volumi, selezionare i contenitori di volumi di cui si desidera eseguire il failover.
+    a. Nell'elenco di hello dei contenitori di volumi, selezionare i contenitori di volumi hello desiderato toofail su.
    
-    **Vengono visualizzati solo i contenitori di volumi con gli snapshot del cloud e i volumi offline associati.**
+    **Hello solo contenitori di volumi con snapshot cloud associati e i volumi offline sono visualizzati.**
    
-    b. In **Scegli un dispositivo di destinazione per i volumi dei contenitori selezionati**, selezionare un dispositivo virtuale dall'elenco a discesa dei dispositivi disponibili. **Solo i dispositivi dotati di capacità sufficiente vengono visualizzati nell'elenco a discesa.**  
-7. Infine, esaminare tutte le impostazioni di failover in **Conferma failover**. Fare clic sull'icona del segno di spunta ![Icona del segno di spunta](./media/storsimple-device-failover-disaster-recovery/IC740895.png).
-8. Dopo aver completato il failover, andare alla pagina **Dispositivi** .
+    b. In **scegliere un dispositivo di destinazione per hello volumi nei contenitori selezionato hello**, selezionare hello dispositivo virtuale StorSimple dall'elenco a discesa hello dei dispositivi disponibili. **Nell'elenco a discesa hello vengono visualizzati solo i dispositivi di hello che dispongano di capacità sufficiente.**  
+7. Esaminare infine tutte le impostazioni di failover hello in **confermare il failover**. Fare clic sull'icona di controllo hello ![icona controllo](./media/storsimple-device-failover-disaster-recovery/IC740895.png).
+8. Dopo aver completato il failover hello, visitare toohello **dispositivi** pagina.
    
-    a. Selezionare il dispositivo virtuale StorSimple utilizzato come dispositivo di destinazione per il processo di failover.
+    a. Selezionare hello dispositivo virtuale StorSimple che è stato usato come dispositivo di destinazione hello per il processo di failover di hello.
    
-    b. Andare alla pagina **Contenitori di volumi** . Dovrebbero essere elencati tutti i contenitori di volumi,  insieme ai volumi del dispositivo precedente.
+    b. Passare toohello **contenitori di volumi** pagina. Tutti i contenitori di volumi di hello, insieme ai volumi hello dispositivo precedente hello dovrebbero ora essere elencati.
 
-![Video disponibile](./media/storsimple-device-failover-disaster-recovery/Video_icon.png) **Video disponibile**
+![Video disponibile](./media/storsimple-device-failover-disaster-recovery/Video_icon.png)**Video disponibile**
 
-Per guardare un video che illustra come è possibile ripristinare un dispositivo fisico in cui si è verificato un errore in un dispositivo virtuale nel cloud, fare clic [qui](https://azure.microsoft.com/documentation/videos/storsimple-and-disaster-recovery/).
+Fare clic su un video che illustra come ripristinare una periferica virtuale tooa di dispositivo fisico nel cloud hello, toowatch [qui](https://azure.microsoft.com/documentation/videos/storsimple-and-disaster-recovery/).
 
 ## <a name="failback"></a>Failback
-Nell'aggiornamento 3 e versioni successive, StorSimple supporta anche il failback. Al completamento del processo di failover, si verifica quanto segue:
+Nell'aggiornamento 3 e versioni successive, StorSimple supporta anche il failback. Al termine del failover hello, hello seguenti azioni:
 
-* I contenitori di volumi oggetto di failover vengono eliminati dal dispositivo di origine.
-* Sul dispositivo di origine viene avviato un processo in background per ogni contenitore del volume (failover). Se si tenta di eseguire il failback mentre è in corso il processo, verrà visualizzata una notifica. Per avviare il failback, è necessario attendere il completamento del processo. 
+* contenitori di volumi Hello che è stati eseguiti il failover vengono rimossi dal dispositivo di origine hello.
+* Un processo in background per ogni contenitore del volume (failover) viene avviato sul dispositivo di origine hello. Se si tenta di toofailback mentre è in corso il processo di hello, si riceverà un effetto toothat di notifica. Sarà necessario toowait fino al processo hello failback hello toostart completo. 
   
-    Il tempo necessario per completare l'eliminazione dei contenitori dei volumi dipende da vari fattori, ad esempio la quantità e la data dei dati, il numero di backup e la larghezza di banda disponibile per l'operazione. Se si prevede di effettuare failover/failback di test, si consiglia di testare i contenitori dei volumi con meno dati (GB). Nella maggior parte dei casi è possibile avviare il failback 24 ore dopo il completamento del failover. 
+    Hello ora toocomplete hello l'eliminazione di contenitori del volume dipende da vari fattori, ad esempio quantità di dati, l'età di dati hello, numero di backup e hello larghezza di banda disponibile per l'operazione di hello. Se si prevede di effettuare failover/failback di test, si consiglia di testare i contenitori dei volumi con meno dati (GB). Nella maggior parte dei casi, è possibile avviare il failback hello 24 ore dopo il failover hello è stato completato. 
 
 ## <a name="frequently-asked-questions"></a>Domande frequenti
-D: **Cosa accade se il ripristino di emergenza non riesce o viene eseguito solo parzialmente?**
+D: **Cosa accade se hello ripristino di emergenza non riesce o ha esito positivo parziale?**
 
-R. Se il ripristino di emergenza non riesce, si consiglia di tentare nuovamente. La seconda volta, il ripristino di emergenza conosce le operazioni eseguite e il punto in cui il processo si è bloccato. Il processo viene quindi ripreso da quel punto in poi. 
+R. Se ha esito negativo hello ripristino di emergenza, è consigliabile provare nuovamente. Hello seconda volta, ripristino di emergenza sappia quali tutti sono state eseguite e quando il processo di hello bloccato hello prima volta. il processo di ripristino di emergenza Hello avvia da quel punto in poi. 
 
-D: **È possibile eliminare un dispositivo mentre è in corso il failover?**
+D: **È possibile eliminare un dispositivo durante l'esecuzione di failover del dispositivo hello?**
 
-R. Non è possibile eliminare un dispositivo durante un ripristino di emergenza. Il dispositivo può essere eliminato solo al termine del processo.
+R. Non è possibile eliminare un dispositivo durante un ripristino di emergenza. Al termine hello ripristino di emergenza, è possibile eliminare solo il dispositivo.
 
-D:    **Quando viene avviata l'operazione di Garbage Collection nel dispositivo di origine, in modo da eliminare i dati locali sul dispositivo di origine?**
+D:    **Quando di garbage collection hello viene avviata nel dispositivo di origine hello in modo che i dati locali di hello sul dispositivo di origine verranno eliminati?**
 
-R. L'operazione di Garbage Collection sul dispositivo di origine verrà attivata solo una volta ripulito il dispositivo. La pulizia riguarda gli oggetti sottoposti a failover dal dispositivo di origine, come volumi, oggetti di backup (non dati), contenitori di volumi e criteri.
+R. Garbage collection verrà abilitata nel dispositivo di origine hello solo dopo che è completamente eliminata dispositivo hello. pulizia Hello include pulitura degli oggetti che hanno eseguito il failover hello dispositivo di origine, ad esempio volumi, oggetti backup (non di dati), i contenitori dei volumi e criteri.
 
-D: **Cosa accade se il processo di eliminazione associato ai contenitori di volumi nel dispositivo di origine non riesce?**
+D: **Cosa accade se hello Elimina processo associato a contenitori del volume nel dispositivo di origine hello hello ha esito negativo?**
 
-R.  In caso di errori del processo di eliminazione, è necessario attivare l'eliminazione dei contenitori di volumi manualmente. Nella pagina **Dispositivi** selezionare il dispositivo di origine e fare clic su **Contenitori dei volumi**. Selezionare i contenitori di volumi precedentemente sottoposti a failover e fare clic sul pulsante di **eliminazione**in fondo alla pagina. Dopo avere eliminato dal dispositivo di origine tutti i contenitori dei volumi sottoposti a failover, è possibile avviare il failback.
+R.  Se hello Elimina ha esito negativo processo, è necessario l'eliminazione di hello trigger toomanually hello dei contenitori di volumi. In hello **dispositivi** pagina, selezionare il dispositivo di origine e fare clic su **contenitori di volumi**. Contenitori di volumi selezionare hello che è stato eseguito il failover e in basso hello hello pagina, fare clic su **eliminare**. Dopo avere eliminato hello tutti i contenitori di volumi nel dispositivo di origine hello il failover, è possibile avviare il failback hello.
 
 ## <a name="business-continuity-disaster-recovery-bcdr"></a>Ripristino di emergenza di continuità aziendale (BCDR)
-Uno scenario di ripristino di emergenza di continuità aziendale (BCDR) si verifica quando l'intero data center di Azure smette di funzionare. Può influire sul servizio StorSimple Manager e sui dispositivi StorSimple associati.
+Uno scenario di ripristino di emergenza la continuità aziendale si verifica quando hello intero Data Center di Azure smette di funzionare. Ciò può influire sul servizio StorSimple Manager e hello associati dispositivi StorSimple.
 
-Se sono presenti dispositivi StorSimple registrati prima del verificarsi di un problema grave, per questi dispositivi StorSimple potrebbe essere necessario eseguire una reimpostazione di fabbrica. Dopo l'emergenza, il dispositivo StorSimple verrà visualizzato come offline. Il dispositivo StorSimple deve essere eliminato dal portale e deve essere eseguita una reimpostazione di fabbrica, seguita da una registrazione aggiornata.
+Se sono presenti dispositivi StorSimple registrati prima che si è verificato un problema grave, questi dispositivi StorSimple potrebbe essere necessario reimposta una factory tooundergo. Dopo l'emergenza hello, il dispositivo di StorSimple hello verrà visualizzato come offline. dispositivo StorSimple Hello deve essere eliminato dal portale hello e, è necessario eseguire un ripristino delle impostazioni predefinite, seguito da una nuova registrazione.
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Dopo aver eseguito un failover, può essere necessario [disattivare o eliminare il dispositivo StorSimple](storsimple-deactivate-and-delete-device.md).
-* Per informazioni sull’utilizzo del servizio StorSimple Manager, passare a [utilizzare il servizio StorSimple Manager per amministrare il dispositivo StorSimple](storsimple-manager-service-administration.md).
+* Dopo aver eseguito un failover, potrebbe essere troppo[disattivare o eliminare il dispositivo StorSimple](storsimple-deactivate-and-delete-device.md).
+* Per informazioni su come toouse hello StorSimple Manager service, andare troppo[utilizzare hello tooadminister servizio StorSimple Manager dispositivo StorSimple](storsimple-manager-service-administration.md).
 

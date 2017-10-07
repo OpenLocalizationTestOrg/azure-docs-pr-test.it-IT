@@ -1,6 +1,6 @@
 ---
-title: Funzioni del modello di Azure Resource Manager - Stringa | Documentazione Microsoft
-description: Informazioni sulle funzioni da usare in un modello di Azure Resource Manager per operare con le stringhe.
+title: funzioni di modello di gestione risorse aaaAzure - stringa | Documenti Microsoft
+description: Viene descritto toouse funzioni hello in un toowork del modello di gestione risorse di Azure con le stringhe.
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -14,15 +14,15 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/01/2017
 ms.author: tomfitz
-ms.openlocfilehash: 3e5c9ca546629f782a3d722b49f5fbaf5147e823
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 27f7f6a52cbe4e9915718184433e92ca92999346
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="string-functions-for-azure-resource-manager-templates"></a>Funzioni di stringa nei modelli di Azure Resource Manager
 
-Gestione risorse fornisce le funzioni seguenti per usare le stringhe:
+Gestione risorse offre hello funzioni per l'utilizzo con le stringhe seguenti:
 
 * [base64](#base64)
 * [base64ToJson](#base64tojson)
@@ -59,21 +59,21 @@ Gestione risorse fornisce le funzioni seguenti per usare le stringhe:
 ## <a name="base64"></a>base64
 `base64(inputString)`
 
-Restituisce la rappresentazione base64 della stringa di input.
+Restituisce hello rappresentazione base64 della stringa di input hello.
 
-### <a name="parameters"></a>Parametri
+### <a name="parameters"></a>parameters
 
 | Parametro | Obbligatorio | Tipo | Descrizione |
 |:--- |:--- |:--- |:--- |
-| inputString |Sì |string |Il valore da restituire come rappresentazione base64. |
+| inputString |Sì |string |Hello valore tooreturn come rappresentazione base64. |
 
 ### <a name="return-value"></a>Valore restituito
 
-Stringa contenente la rappresentazione base64.
+Stringa contenente una rappresentazione base64 hello.
 
 ### <a name="examples"></a>esempi
 
-L'esempio seguente mostra come usare la funzione base64.
+Hello di esempio seguente viene illustrato come toouse hello funzione base64.
 
 ```json
 {
@@ -112,7 +112,7 @@ L'esempio seguente mostra come usare la funzione base64.
 }
 ```
 
-L'output dell'esempio precedente con i valori predefiniti è:
+Hello output di hello precedente esempio con i valori predefiniti di hello è:
 
 | Nome | Tipo | Valore |
 | ---- | ---- | ----- |
@@ -125,13 +125,13 @@ L'output dell'esempio precedente con i valori predefiniti è:
 ## <a name="base64tojson"></a>base64ToJson
 `base64tojson`
 
-Converte una rappresentazione base64 in un oggetto JSON.
+Converte un oggetto JSON tooa rappresentazione base64.
 
-### <a name="parameters"></a>Parametri
+### <a name="parameters"></a>parameters
 
 | Parametro | Obbligatorio | Tipo | Descrizione |
 |:--- |:--- |:--- |:--- |
-| base64Value |Sì |string |Rappresentazione base64 da convertire in un oggetto JSON. |
+| base64Value |Sì |string |Hello base64 rappresentazione tooconvert tooa oggetto JSON. |
 
 ### <a name="return-value"></a>Valore restituito
 
@@ -139,7 +139,7 @@ Oggetto JSON.
 
 ### <a name="examples"></a>esempi
 
-L'esempio seguente usa la funzione base64ToJson per convertire un valore base64:
+Hello seguente utilizza hello base64ToJson funzione tooconvert un valore base64:
 
 ```json
 {
@@ -178,7 +178,7 @@ L'esempio seguente usa la funzione base64ToJson per convertire un valore base64:
 }
 ```
 
-L'output dell'esempio precedente con i valori predefiniti è:
+Hello output di hello precedente esempio con i valori predefiniti di hello è:
 
 | Nome | Tipo | Valore |
 | ---- | ---- | ----- |
@@ -191,21 +191,21 @@ L'output dell'esempio precedente con i valori predefiniti è:
 ## <a name="base64tostring"></a>base64ToString
 `base64ToString(base64Value)`
 
-Converte una rappresentazione base64 in una stringa.
+Converte una stringa di tooa rappresentazione base 64.
 
-### <a name="parameters"></a>Parametri
+### <a name="parameters"></a>parameters
 
 | Parametro | Obbligatorio | Tipo | Descrizione |
 |:--- |:--- |:--- |:--- |
-| base64Value |Sì |string |Rappresentazione base64 da convertire in stringa. |
+| base64Value |Sì |string |stringa di tooa tooconvert rappresentazione base64 Hello. |
 
 ### <a name="return-value"></a>Valore restituito
 
-Stringa del valore base64 convertito.
+Valore base64 di convertire una stringa di hello.
 
 ### <a name="examples"></a>esempi
 
-L'esempio seguente usa la funzione base64ToString per convertire un valore base64:
+Hello seguente utilizza hello base64ToString funzione tooconvert un valore base64:
 
 ```json
 {
@@ -244,7 +244,7 @@ L'esempio seguente usa la funzione base64ToString per convertire un valore base6
 }
 ```
 
-L'output dell'esempio precedente con i valori predefiniti è:
+Hello output di hello precedente esempio con i valori predefiniti di hello è:
 
 | Nome | Tipo | Valore |
 | ---- | ---- | ----- |
@@ -259,21 +259,21 @@ L'output dell'esempio precedente con i valori predefiniti è:
 ## <a name="concat"></a>concat
 `concat (arg1, arg2, arg3, ...)`
 
-Combina più valori stringa e restituisce la stringa concatenata oppure combina più matrici e restituisce la matrice concatenata.
+Consente di combinare più valori di stringa e restituisce la stringa concatenata hello, o combina più array di e matrice hello concatenato.
 
-### <a name="parameters"></a>Parametri
+### <a name="parameters"></a>parameters
 
 | Parametro | Obbligatorio | Tipo | Descrizione |
 |:--- |:--- |:--- |:--- |
-| arg1 |Sì |Stringa o matrice |Il primo valore per la concatenazione. |
-| Argomenti aggiuntivi |No |string |Altri valori in ordine sequenziale per la concatenazione. |
+| arg1 |Sì |Stringa o matrice |primo valore Hello per la concatenazione. |
+| argomenti aggiuntivi |No |string |Altri valori in ordine sequenziale per la concatenazione. |
 
 ### <a name="return-value"></a>Valore restituito
 Stringa o matrice di valori concatenati.
 
 ### <a name="examples"></a>esempi
 
-L'esempio seguente illustra come combinare due valori stringa e restituisce una stringa concatenata.
+Hello di esempio seguente viene illustrato come toocombine due valori stringa e restituire una stringa concatenata.
 
 ```json
 {
@@ -295,13 +295,13 @@ L'esempio seguente illustra come combinare due valori stringa e restituisce una 
 }
 ```
 
-L'output dell'esempio precedente con i valori predefiniti è il seguente:
+Hello output di hello precedente esempio con i valori predefiniti di hello è:
 
 | Nome | Tipo | Valore |
 | ---- | ---- | ----- |
 | concatOutput | String | prefix-5yj4yjf5mbg72 |
 
-L'esempio seguente illustra come combinare due matrici.
+Hello di esempio seguente viene illustrato come toocombine due matrici.
 
 ```json
 {
@@ -336,7 +336,7 @@ L'esempio seguente illustra come combinare due matrici.
 }
 ```
 
-L'output dell'esempio precedente con i valori predefiniti è il seguente:
+Hello output di hello precedente esempio con i valori predefiniti di hello è:
 
 | Nome | Tipo | Valore |
 | ---- | ---- | ----- |
@@ -353,16 +353,16 @@ Verifica se una matrice contiene un valore, se un oggetto contiene una chiave o 
 
 | Parametro | Obbligatorio | Tipo | Descrizione |
 |:--- |:--- |:--- |:--- |
-| Contenitore |Sì |matrice, oggetto o stringa |Valore che contiene il valore da trovare. |
-| itemToFind |Sì |stringa o numero intero |Valore da trovare. |
+| Contenitore |Sì |matrice, oggetto o stringa |valore di Hello contenente toofind valore hello. |
+| itemToFind |Sì |stringa o numero intero |toofind valore Hello. |
 
 ### <a name="return-value"></a>Valore restituito
 
-**True** se l'elemento viene individuato; in caso contrario, restituisce **False**.
+**True** se l'elemento hello è stato trovato; in caso contrario, **False**.
 
 ### <a name="examples"></a>esempi
 
-L'esempio seguente mostra come usare la funzione contains con tipi diversi:
+Hello esempio seguente viene illustrato come toouse contiene con tipi diversi:
 
 ```json
 {
@@ -413,7 +413,7 @@ L'esempio seguente mostra come usare la funzione contains con tipi diversi:
 }
 ```
 
-L'output dell'esempio precedente con i valori predefiniti è il seguente:
+Hello output di hello precedente esempio con i valori predefiniti di hello è:
 
 | Nome | Tipo | Valore |
 | ---- | ---- | ----- |
@@ -429,13 +429,13 @@ L'output dell'esempio precedente con i valori predefiniti è il seguente:
 ## <a name="datauri"></a>dataUri
 `dataUri(stringToConvert)`
 
-Converte un valore in un URI di dati.
+Converte i dati tooa valore URI.
 
-### <a name="parameters"></a>Parametri
+### <a name="parameters"></a>parameters
 
 | Parametro | Obbligatorio | Tipo | Descrizione |
 |:--- |:--- |:--- |:--- |
-| stringToConvert |Sì |string |Valore da convertire in un URI di dati. |
+| stringToConvert |Sì |string |Hello tooconvert tooa dati valore URI. |
 
 ### <a name="return-value"></a>Valore restituito
 
@@ -443,7 +443,7 @@ Stringa formattata come URI di dati.
 
 ### <a name="examples"></a>esempi
 
-L'esempio seguente converte un valore in un URI di dati e converte un URI di dati in una stringa:
+Hello di esempio seguente converte i dati tooa valore URI e converte i dati stringa tooa URI:
 
 ```json
 {
@@ -473,7 +473,7 @@ L'esempio seguente converte un valore in un URI di dati e converte un URI di dat
 }
 ```
 
-L'output dell'esempio precedente con i valori predefiniti è:
+Hello output di hello precedente esempio con i valori predefiniti di hello è:
 
 | Nome | Tipo | Valore |
 | ---- | ---- | ----- |
@@ -485,21 +485,21 @@ L'output dell'esempio precedente con i valori predefiniti è:
 ## <a name="datauritostring"></a>dataUriToString
 `dataUriToString(dataUriToConvert)`
 
-Converte un valore formattato come URI di dati in una stringa.
+Converte un URI di dati in un formato stringa del valore tooa.
 
-### <a name="parameters"></a>Parametri
+### <a name="parameters"></a>parameters
 
 | Parametro | Obbligatorio | Tipo | Descrizione |
 |:--- |:--- |:--- |:--- |
-| dataUriToConvert |Sì |string |Valore dell'URI di dati da convertire. |
+| dataUriToConvert |Sì |string |dati Hello tooconvert valore URI. |
 
 ### <a name="return-value"></a>Valore restituito
 
-Stringa contenente il valore convertito.
+Stringa contenente hello valore convertito.
 
 ### <a name="examples"></a>esempi
 
-L'esempio seguente converte un valore in un URI di dati e converte un URI di dati in una stringa:
+Hello di esempio seguente converte i dati tooa valore URI e converte i dati stringa tooa URI:
 
 ```json
 {
@@ -529,7 +529,7 @@ L'esempio seguente converte un valore in un URI di dati e converte un URI di dat
 }
 ```
 
-L'output dell'esempio precedente con i valori predefiniti è:
+Hello output di hello precedente esempio con i valori predefiniti di hello è:
 
 | Nome | Tipo | Valore |
 | ---- | ---- | ----- |
@@ -547,15 +547,15 @@ Determina se una matrice, un oggetto o una stringa sono vuoti.
 
 | Parametro | Obbligatorio | Tipo | Descrizione |
 |:--- |:--- |:--- |:--- |
-| itemToTest |Sì |matrice, oggetto o stringa |Valore da controllare per verificare se è vuoto. |
+| itemToTest |Sì |matrice, oggetto o stringa |Hello toocheck valore se è vuota. |
 
 ### <a name="return-value"></a>Valore restituito
 
-**True** se il valore è vuoto; in caso contrario, restituisce **False**.
+Restituisce **True** se il valore di hello è vuota; in caso contrario, **False**.
 
 ### <a name="examples"></a>esempi
 
-L'esempio seguente controlla se una matrice, un oggetto e una stringa sono vuoti.
+Hello di esempio seguente controlla se una matrice, un oggetto e una stringa sono vuote.
 
 ```json
 {
@@ -594,7 +594,7 @@ L'esempio seguente controlla se una matrice, un oggetto e una stringa sono vuoti
 }
 ```
 
-L'output dell'esempio precedente con i valori predefiniti è il seguente:
+Hello output di hello precedente esempio con i valori predefiniti di hello è:
 
 | Nome | Tipo | Valore |
 | ---- | ---- | ----- |
@@ -607,22 +607,22 @@ L'output dell'esempio precedente con i valori predefiniti è il seguente:
 ## <a name="endswith"></a>endsWith
 `endsWith(stringToSearch, stringToFind)`
 
-Determina se una stringa termina con un valore. Il confronto non fa distinzione tra maiuscole e minuscole.
+Determina se una stringa termina con un valore. confronto di Hello è tra maiuscole e minuscole.
 
-### <a name="parameters"></a>Parametri
+### <a name="parameters"></a>parameters
 
 | Parametro | Obbligatorio | Tipo | Descrizione |
 |:--- |:--- |:--- |:--- |
-| stringToSearch |Sì |string |Valore che contiene l'elemento da cercare. |
-| stringToFind |Sì |string |Valore da trovare. |
+| stringToSearch |Sì |string |valore di Hello contenente toofind elemento hello. |
+| stringToFind |Sì |string |toofind valore Hello. |
 
 ### <a name="return-value"></a>Valore restituito
 
-**True** se l'ultimo carattere o i caratteri della stringa corrispondono al valore; in caso contrario, restituisce **False**.
+**True** se hello ultimo o più caratteri della stringa hello corrisponde a quello hello; in caso contrario, **False**.
 
 ### <a name="examples"></a>esempi
 
-L'esempio seguente mostra come usare le funzioni startsWith ed endsWith:
+Hello di esempio seguente viene illustrato come toouse hello startsWith ed endsWith funzioni:
 
 ```json
 {
@@ -658,7 +658,7 @@ L'esempio seguente mostra come usare le funzioni startsWith ed endsWith:
 }
 ```
 
-L'output dell'esempio precedente con i valori predefiniti è:
+Hello output di hello precedente esempio con i valori predefiniti di hello è:
 
 | Nome | Tipo | Valore |
 | ---- | ---- | ----- |
@@ -674,21 +674,21 @@ L'output dell'esempio precedente con i valori predefiniti è:
 ## <a name="first"></a>first
 `first(arg1)`
 
-Restituisce il primo carattere della stringa o il primo elemento della matrice.
+Restituisce hello primo carattere della stringa hello o primo elemento della matrice hello.
 
-### <a name="parameters"></a>Parametri
+### <a name="parameters"></a>parameters
 
 | Parametro | Obbligatorio | Tipo | Descrizione |
 |:--- |:--- |:--- |:--- |
-| arg1 |Sì |stringa o matrice |Valore per recuperare il primo elemento o carattere. |
+| arg1 |Sì |stringa o matrice |carattere o Hello valore tooretrieve hello primo elemento. |
 
 ### <a name="return-value"></a>Valore restituito
 
-Stringa del primo carattere o il tipo del primo elemento in una matrice (stringa, numero intero, matrice o oggetto).
+Una stringa di caratteri hello o il tipo di hello (string, int, matrice o oggetto) del primo elemento di hello in una matrice.
 
 ### <a name="examples"></a>esempi
 
-L'esempio seguente mostra come usare la prima funzione con una matrice e una stringa.
+Hello esempio seguente viene illustrato come toouse hello prima funzione con una matrice e una stringa.
 
 ```json
 {
@@ -715,7 +715,7 @@ L'esempio seguente mostra come usare la prima funzione con una matrice e una str
 }
 ```
 
-L'output dell'esempio precedente con i valori predefiniti è il seguente:
+Hello output di hello precedente esempio con i valori predefiniti di hello è:
 
 | Nome | Tipo | Valore |
 | ---- | ---- | ----- |
@@ -727,22 +727,22 @@ L'output dell'esempio precedente con i valori predefiniti è il seguente:
 ## <a name="indexof"></a>indexOf
 `indexOf(stringToSearch, stringToFind)`
 
-Restituisce la prima posizione di un valore all'interno di una stringa. Il confronto non fa distinzione tra maiuscole e minuscole.
+Restituisce hello prima posizione di un valore all'interno di una stringa. confronto di Hello è tra maiuscole e minuscole.
 
-### <a name="parameters"></a>Parametri
+### <a name="parameters"></a>parameters
 
 | Parametro | Obbligatorio | Tipo | Descrizione |
 |:--- |:--- |:--- |:--- |
-| stringToSearch |Sì |string |Valore che contiene l'elemento da cercare. |
-| stringToFind |Sì |string |Valore da trovare. |
+| stringToSearch |Sì |string |valore di Hello contenente toofind elemento hello. |
+| stringToFind |Sì |string |toofind valore Hello. |
 
 ### <a name="return-value"></a>Valore restituito
 
-Numero intero che rappresenta la posizione dell'elemento da trovare. Il valore è in base zero. Se l'elemento non viene trovato, viene restituito -1.
+Valore intero che rappresenta la posizione hello di hello elemento toofind. il valore di Hello è in base zero. Se l'elemento hello non viene trovato, viene restituito -1.
 
 ### <a name="examples"></a>esempi
 
-L'esempio seguente mostra come usare le funzioni indexOf e lastIndexOf:
+Hello di esempio seguente viene illustrato come toouse hello indexOf e lastIndexOf funzioni:
 
 ```json
 {
@@ -774,7 +774,7 @@ L'esempio seguente mostra come usare le funzioni indexOf e lastIndexOf:
 }
 ```
 
-L'output dell'esempio precedente con i valori predefiniti è:
+Hello output di hello precedente esempio con i valori predefiniti di hello è:
 
 | Nome | Tipo | Valore |
 | ---- | ---- | ----- |
@@ -789,21 +789,21 @@ L'output dell'esempio precedente con i valori predefiniti è:
 ## <a name="last"></a>last
 `last (arg1)`
 
-Restituisce il primo carattere della stringa o l'ultimo elemento della matrice.
+Restituisce l'ultimo carattere della stringa hello, o hello l'ultimo elemento della matrice hello.
 
-### <a name="parameters"></a>Parametri
+### <a name="parameters"></a>parameters
 
 | Parametro | Obbligatorio | Tipo | Descrizione |
 |:--- |:--- |:--- |:--- |
-| arg1 |Sì |stringa o matrice |Valore per recuperare l'ultimo elemento o carattere. |
+| arg1 |Sì |stringa o matrice |carattere o Hello valore tooretrieve hello ultimo elemento. |
 
 ### <a name="return-value"></a>Valore restituito
 
-Stringa dell'ultimo carattere o il tipo dell'ultimo elemento in una matrice (stringa, numero intero, matrice o oggetto).
+Stringa di caratteri ultimo hello o il tipo di hello (string, int, matrice o oggetto) di hello ultimo elemento matrice.
 
 ### <a name="examples"></a>esempi
 
-L'esempio seguente mostra come usare l'ultima funzione con una matrice e una stringa.
+Hello esempio seguente viene illustrato come toouse hello ultima funzione con una matrice e una stringa.
 
 ```json
 {
@@ -830,7 +830,7 @@ L'esempio seguente mostra come usare l'ultima funzione con una matrice e una str
 }
 ```
 
-L'output dell'esempio precedente con i valori predefiniti è il seguente:
+Hello output di hello precedente esempio con i valori predefiniti di hello è:
 
 | Nome | Tipo | Valore |
 | ---- | ---- | ----- |
@@ -842,22 +842,22 @@ L'output dell'esempio precedente con i valori predefiniti è il seguente:
 ## <a name="lastindexof"></a>lastIndexOf
 `lastIndexOf(stringToSearch, stringToFind)`
 
-Restituisce l'ultima posizione di un valore all'interno di una stringa. Il confronto non fa distinzione tra maiuscole e minuscole.
+Restituisce hello ultima posizione di un valore all'interno di una stringa. confronto di Hello è tra maiuscole e minuscole.
 
-### <a name="parameters"></a>Parametri
+### <a name="parameters"></a>parameters
 
 | Parametro | Obbligatorio | Tipo | Descrizione |
 |:--- |:--- |:--- |:--- |
-| stringToSearch |Sì |string |Valore che contiene l'elemento da cercare. |
-| stringToFind |Sì |string |Valore da trovare. |
+| stringToSearch |Sì |string |valore di Hello contenente toofind elemento hello. |
+| stringToFind |Sì |string |toofind valore Hello. |
 
 ### <a name="return-value"></a>Valore restituito
 
-Numero intero che rappresenta l'ultima posizione dell'elemento da trovare. Il valore è in base zero. Se l'elemento non viene trovato, viene restituito -1.
+Valore intero che rappresenta l'ultima posizione di hello di hello elemento toofind. il valore di Hello è in base zero. Se l'elemento hello non viene trovato, viene restituito -1.
 
 ### <a name="examples"></a>esempi
 
-L'esempio seguente mostra come usare le funzioni indexOf e lastIndexOf:
+Hello di esempio seguente viene illustrato come toouse hello indexOf e lastIndexOf funzioni:
 
 ```json
 {
@@ -889,7 +889,7 @@ L'esempio seguente mostra come usare le funzioni indexOf e lastIndexOf:
 }
 ```
 
-L'output dell'esempio precedente con i valori predefiniti è:
+Hello output di hello precedente esempio con i valori predefiniti di hello è:
 
 | Nome | Tipo | Valore |
 | ---- | ---- | ----- |
@@ -904,13 +904,13 @@ L'output dell'esempio precedente con i valori predefiniti è:
 ## <a name="length"></a>length
 `length(string)`
 
-Restituisce il numero di caratteri in una stringa o di elementi in una matrice.
+Restituisce il numero di hello di caratteri in una stringa o elementi in una matrice.
 
-### <a name="parameters"></a>Parametri
+### <a name="parameters"></a>parameters
 
 | Parametro | Obbligatorio | Tipo | Descrizione |
 |:--- |:--- |:--- |:--- |
-| arg1 |Sì |stringa o matrice |Matrice da usare per ottenere il numero di elementi oppure stringa da usare per ottenere il numero di caratteri. |
+| arg1 |Sì |stringa o matrice |Hello toouse matrice per ottenere il numero di hello di elementi o hello toouse stringa per ottenere il numero di hello di caratteri. |
 
 ### <a name="return-value"></a>Valore restituito
 
@@ -918,7 +918,7 @@ Numero intero
 
 ### <a name="examples"></a>esempi
 
-L'esempio seguente mostra come usare la funzione length con una matrice e una stringa:
+Hello seguente esempio viene illustrato come lunghezza toouse con una matrice e la stringa:
 
 ```json
 {
@@ -952,7 +952,7 @@ L'esempio seguente mostra come usare la funzione length con una matrice e una st
 }
 ```
 
-L'output dell'esempio precedente con i valori predefiniti è il seguente:
+Hello output di hello precedente esempio con i valori predefiniti di hello è:
 
 | Nome | Tipo | Valore |
 | ---- | ---- | ----- |
@@ -964,25 +964,25 @@ L'output dell'esempio precedente con i valori predefiniti è il seguente:
 ## <a name="padleft"></a>padLeft
 `padLeft(valueToPad, totalLength, paddingCharacter)`
 
-Restituisce una stringa allineata a destra mediante l'aggiunta di caratteri a sinistra, fino a raggiungere la lunghezza totale specificata.
+Restituisce una stringa allineata a destra mediante l'aggiunta di caratteri toohello sinistra fino a raggiungere la lunghezza totale specificata hello.
 
-### <a name="parameters"></a>Parametri
+### <a name="parameters"></a>parameters
 
 | Parametro | Obbligatorio | Tipo | Descrizione |
 |:--- |:--- |:--- |:--- |
-| valueToPad |Sì |Stringa o numero intero |Il valore per eseguire l'allineamento a destra. |
-| totalLength |Sì |int |Numero totale di caratteri della stringa restituita. |
-| paddingCharacter |No |Carattere singolo |Il carattere da utilizzare per la spaziatura interna a sinistra, fino a raggiungere la lunghezza totale. Il valore predefinito è uno spazio. |
+| valueToPad |Sì |stringa o numero intero |valore tooright Hello-align. |
+| totalLength |Sì |int |numero totale di Hello di caratteri in hello stringa restituita. |
+| paddingCharacter |No |Carattere singolo |Hello toouse carattere di riempimento a sinistra fino a raggiunta la lunghezza totale hello. valore predefinito di Hello è uno spazio. |
 
-Se la stringa originale è più lunga rispetto al numero di caratteri di riempimento, non vengono aggiunti caratteri.
+Se la stringa originale hello è più lungo hello numero di caratteri toopad, non vengono aggiunti caratteri.
 
 ### <a name="return-value"></a>Valore restituito
 
-Stringa contenente come minimo il numero di caratteri specificati.
+Una stringa con almeno hello numero di caratteri specificati.
 
 ### <a name="examples"></a>esempi
 
-L'esempio seguente mostra come il valore del parametro fornito dall'utente viene completato aggiungendo il carattere zero finché la stringa non raggiunge il numero totale di caratteri. 
+Hello di esempio seguente viene illustrato come toopad hello valore del parametro fornito dall'utente tramite l'aggiunta di hello carattere zero finché raggiunge il numero totale di hello di caratteri. 
 
 ```json
 {
@@ -1004,7 +1004,7 @@ L'esempio seguente mostra come il valore del parametro fornito dall'utente viene
 }
 ```
 
-L'output dell'esempio precedente con i valori predefiniti è:
+Hello output di hello precedente esempio con i valori predefiniti di hello è:
 
 | Nome | Tipo | Valore |
 | ---- | ---- | ----- |
@@ -1021,17 +1021,17 @@ Restituisce una nuova stringa con tutte le istanze di una stringa sostituita con
 
 | Parametro | Obbligatorio | Tipo | Descrizione |
 |:--- |:--- |:--- |:--- |
-| originalString |Sì |string |Valore che contiene tutte le istanze di una stringa sostituita con un'altra stringa. |
-| oldString |Sì |string |Stringa da rimuovere dalla stringa originale. |
-| newString |Sì |string |Stringa da aggiungere al posto della stringa rimossa. |
+| originalString |Sì |string |valore Hello con tutte le istanze di una stringa sostituita da un'altra stringa. |
+| oldString |Sì |string |toobe stringa Hello rimossa dalla stringa originale hello. |
+| newString |Sì |string |tooadd stringa Hello al posto di hello rimosso stringa. |
 
 ### <a name="return-value"></a>Valore restituito
 
-Stringa con i caratteri sostituiti.
+Una stringa con hello sostituito caratteri.
 
 ### <a name="examples"></a>esempi
 
-L'esempio seguente illustra come rimuovere tutti i trattini dalla stringa fornita dall'utente e come sostituire parte della stringa con un'altra stringa.
+Hello di esempio seguente viene illustrato come tooremove tutti i trattini dalla stringa di hello fornito dall'utente e come parte di tooreplace di hello stringa con un'altra stringa.
 
 ```json
 {
@@ -1057,7 +1057,7 @@ L'esempio seguente illustra come rimuovere tutti i trattini dalla stringa fornit
 }
 ```
 
-L'output dell'esempio precedente con i valori predefiniti è:
+Hello output di hello precedente esempio con i valori predefiniti di hello è:
 
 | Nome | Tipo | Valore |
 | ---- | ---- | ----- |
@@ -1069,14 +1069,14 @@ L'output dell'esempio precedente con i valori predefiniti è:
 ## <a name="skip"></a>skip
 `skip(originalValue, numberToSkip)`
 
-Restituisce una stringa con tutti i caratteri dopo il numero specificato di caratteri o una matrice con tutti gli elementi dopo il numero specificato di elementi.
+Restituisce una stringa con tutti i caratteri di hello dopo hello specificato numero di caratteri o una matrice con tutti gli elementi di hello dopo hello numero specificato di elementi.
 
-### <a name="parameters"></a>Parametri
+### <a name="parameters"></a>parameters
 
 | Parametro | Obbligatorio | Tipo | Descrizione |
 |:--- |:--- |:--- |:--- |
-| originalValue |Sì |stringa o matrice |Stringa o matrice da usare per i valori da ignorare. |
-| numberToSkip |Sì |int |Numero di elementi o caratteri da ignorare. Se il valore è minore o uguale a 0, vengono restituiti tutti gli elementi o i caratteri nel valore. Se il valore è maggiore della lunghezza della stringa o della matrice, viene restituita una stringa o una matrice vuota. |
+| originalValue |Sì |stringa o matrice |Hello toouse matrice o stringa per l'omissione. |
+| numberToSkip |Sì |int |numero di Hello di tooskip elementi o i caratteri. Se questo valore è 0 o meno, tutti gli elementi di hello o vengono restituiti i caratteri nel valore hello. Se è maggiore della lunghezza della stringa o matrice hello hello, viene restituita una matrice vuota o una stringa. |
 
 ### <a name="return-value"></a>Valore restituito
 
@@ -1084,7 +1084,7 @@ Stringa o matrice.
 
 ### <a name="examples"></a>esempi
 
-L'esempio seguente ignora il numero di elementi specificato nella matrice e il numero di caratteri specificato in una stringa.
+Hello seguente esempio Ignora hello numero specificato di elementi nella matrice hello e hello numero specificato di caratteri in una stringa.
 
 ```json
 {
@@ -1126,7 +1126,7 @@ L'esempio seguente ignora il numero di elementi specificato nella matrice e il n
 }
 ```
 
-L'output dell'esempio precedente con i valori predefiniti è il seguente:
+Hello output di hello precedente esempio con i valori predefiniti di hello è:
 
 | Nome | Tipo | Valore |
 | ---- | ---- | ----- |
@@ -1138,14 +1138,14 @@ L'output dell'esempio precedente con i valori predefiniti è il seguente:
 ## <a name="split"></a>split
 `split(inputString, delimiter)`
 
-Restituisce una matrice di stringhe che contiene le sottostringhe della stringa di input delimitate dai delimitatori specificati.
+Restituisce una matrice di stringhe contenente le sottostringhe di hello di hello stringa di input che sono delimitate da hello specificato delimitatori.
 
-### <a name="parameters"></a>Parametri
+### <a name="parameters"></a>parameters
 
 | Parametro | Obbligatorio | Tipo | Descrizione |
 |:--- |:--- |:--- |:--- |
-| inputString |Sì |string |Stringa da dividere. |
-| delimiter |Sì |Stringa o matrice di stringhe |Il delimitatore da usare per dividere la stringa. |
+| inputString |Sì |string |toosplit stringa Hello. |
+| delimiter |Sì |Stringa o matrice di stringhe |Hello toouse delimitatore per suddividere la stringa hello. |
 
 ### <a name="return-value"></a>Valore restituito
 
@@ -1153,7 +1153,7 @@ Matrice di stringhe.
 
 ### <a name="examples"></a>esempi
 
-L'esempio seguente mostra come suddividere la stringa di input usando una virgola, oppure una virgola o un punto e virgola.
+Hello esempio suddivide hello stringa di input con una virgola e con una virgola o un punto e virgola.
 
 ```json
 {
@@ -1186,7 +1186,7 @@ L'esempio seguente mostra come suddividere la stringa di input usando una virgol
 }
 ```
 
-L'output dell'esempio precedente con i valori predefiniti è:
+Hello output di hello precedente esempio con i valori predefiniti di hello è:
 
 | Nome | Tipo | Valore |
 | ---- | ---- | ----- |
@@ -1198,22 +1198,22 @@ L'output dell'esempio precedente con i valori predefiniti è:
 ## <a name="startswith"></a>startsWith
 `startsWith(stringToSearch, stringToFind)`
 
-Determina se una stringa inizia con un valore. Il confronto non fa distinzione tra maiuscole e minuscole.
+Determina se una stringa inizia con un valore. confronto di Hello è tra maiuscole e minuscole.
 
-### <a name="parameters"></a>Parametri
+### <a name="parameters"></a>parameters
 
 | Parametro | Obbligatorio | Tipo | Descrizione |
 |:--- |:--- |:--- |:--- |
-| stringToSearch |Sì |string |Valore che contiene l'elemento da cercare. |
-| stringToFind |Sì |string |Valore da trovare. |
+| stringToSearch |Sì |string |valore di Hello contenente toofind elemento hello. |
+| stringToFind |Sì |string |toofind valore Hello. |
 
 ### <a name="return-value"></a>Valore restituito
 
-**True** se il primo carattere o i caratteri della stringa corrispondono al valore; in caso contrario, restituisce **False**.
+**True** se hello primo carattere o caratteri di stringa hello corrisponde a quello hello; in caso contrario, **False**.
 
 ### <a name="examples"></a>esempi
 
-L'esempio seguente mostra come usare le funzioni startsWith ed endsWith:
+Hello di esempio seguente viene illustrato come toouse hello startsWith ed endsWith funzioni:
 
 ```json
 {
@@ -1249,7 +1249,7 @@ L'esempio seguente mostra come usare le funzioni startsWith ed endsWith:
 }
 ```
 
-L'output dell'esempio precedente con i valori predefiniti è:
+Hello output di hello precedente esempio con i valori predefiniti di hello è:
 
 | Nome | Tipo | Valore |
 | ---- | ---- | ----- |
@@ -1265,21 +1265,21 @@ L'output dell'esempio precedente con i valori predefiniti è:
 ## <a name="string"></a>string
 `string(valueToConvert)`
 
-Converte il valore specificato in una stringa.
+Converte hello specificato tooa stringa del valore.
 
-### <a name="parameters"></a>Parametri
+### <a name="parameters"></a>parameters
 
 | Parametro | Obbligatorio | Tipo | Descrizione |
 |:--- |:--- |:--- |:--- |
-| valueToConvert |Sì | Qualsiasi |Valore da convertire in stringa. È possibile convertire qualsiasi tipo di valore, inclusi gli oggetti e le matrici. |
+| valueToConvert |Sì | Qualsiasi |Hello valore tooconvert toostring. È possibile convertire qualsiasi tipo di valore, inclusi gli oggetti e le matrici. |
 
 ### <a name="return-value"></a>Valore restituito
 
-Stringa del valore convertito.
+Stringa del valore di hello convertito.
 
 ### <a name="examples"></a>esempi
 
-L'esempio seguente mostra come convertire diversi tipi di valori di stringa:
+Hello di esempio seguente viene illustrato come tooconvert diversi tipi di valori toostrings:
 
 ```json
 {
@@ -1324,7 +1324,7 @@ L'esempio seguente mostra come convertire diversi tipi di valori di stringa:
 }
 ```
 
-L'output dell'esempio precedente con i valori predefiniti è:
+Hello output di hello precedente esempio con i valori predefiniti di hello è:
 
 | Nome | Tipo | Valore |
 | ---- | ---- | ----- |
@@ -1337,23 +1337,23 @@ L'output dell'esempio precedente con i valori predefiniti è:
 ## <a name="substring"></a>substring
 `substring(stringToParse, startIndex, length)`
 
-Restituisce una sottostringa che inizia nella posizione del carattere specificato e contiene il numero di caratteri specificato.
+Restituisce una sottostringa che inizia in hello specificato la posizione del carattere e hello contiene un numero specificato di caratteri.
 
-### <a name="parameters"></a>Parametri
+### <a name="parameters"></a>parameters
 
 | Parametro | Obbligatorio | Tipo | Descrizione |
 |:--- |:--- |:--- |:--- |
-| stringToParse |Sì |string |La stringa originale da cui estrarre la sottostringa. |
-| startIndex |No |int |La posizione del carattere iniziale in base zero della sottostringa. |
-| length |No |int |Il numero di caratteri della sottostringa. Deve fare riferimento a una posizione nella stringa. |
+| stringToParse |Sì |string |stringa di Hello originale da cui hello estrarre la sottostringa. |
+| startIndex |No |int |Hello in base zero posizione iniziale del carattere per sottostringa hello. |
+| length |No |int |numero di Hello di caratteri per la sottostringa hello. Deve fare riferimento posizione tooa stringa hello. |
 
 ### <a name="return-value"></a>Valore restituito
 
-La sottostringa.
+sottostringa Hello.
 
 ### <a name="remarks"></a>Osservazioni
 
-La funzione ha esito negativo se la sottostringa si estende oltre la fine della stringa. L'esempio seguente ha esito negativo e visualizza l'errore "I parametri index e length devono fare riferimento a una posizione all'interno della stringa. Parametro index: '0', parametro length: '11', lunghezza del parametro string: '10'.".
+funzione Hello non riesce quando sottostringa hello si estende oltre la fine hello della stringa hello. Hello di esempio seguente ha esito negativo con hello errore "parametri index e lenght hello devono fare riferimento posizione tooa stringa hello. Hello parametro index: '0', parametro della lunghezza di hello: lunghezza del parametro della stringa hello di hello '11': '10'. ".
 
 ```json
 "parameters": {
@@ -1366,7 +1366,7 @@ La funzione ha esito negativo se la sottostringa si estende oltre la fine della 
 
 ### <a name="examples"></a>esempi
 
-L'esempio seguente estrae una sottostringa da un parametro.
+Hello di esempio seguente estrae una sottostringa da un parametro.
 
 ```json
 {
@@ -1388,7 +1388,7 @@ L'esempio seguente estrae una sottostringa da un parametro.
 }
 ```
 
-L'output dell'esempio precedente con i valori predefiniti è:
+Hello output di hello precedente esempio con i valori predefiniti di hello è:
 
 | Nome | Tipo | Valore |
 | ---- | ---- | ----- |
@@ -1400,14 +1400,14 @@ L'output dell'esempio precedente con i valori predefiniti è:
 ## <a name="take"></a>take
 `take(originalValue, numberToTake)`
 
-Restituisce una stringa con il numero specificato di caratteri dall'inizio della stringa o una matrice con il numero specificato di elementi dall'inizio della matrice.
+Restituisce una stringa con hello numero specificato di caratteri dall'inizio di hello di hello stringa o una matrice con hello numero specificato di elementi dall'inizio di hello della matrice hello.
 
-### <a name="parameters"></a>Parametri
+### <a name="parameters"></a>parameters
 
 | Parametro | Obbligatorio | Tipo | Descrizione |
 |:--- |:--- |:--- |:--- |
-| originalValue |Sì |stringa o matrice |Stringa o matrice da cui prendere gli elementi. |
-| numberToTake |Sì |int |Numero di elementi o caratteri da prendere. Se il valore è minore o uguale a 0, viene restituita una stringa o un matrice vuota. Se il valore è maggiore della lunghezza della stringa o matrice specificata, vengono restituiti tutti gli elementi nella stringa o nella matrice. |
+| originalValue |Sì |stringa o matrice |Hello stringa o matrice di elementi di hello tootake da. |
+| numberToTake |Sì |int |numero di Hello di tootake elementi o i caratteri. Se il valore è minore o uguale a 0, viene restituita una stringa o un matrice vuota. Se è maggiore della lunghezza di hello di hello matrice o stringa specificato, vengono restituiti tutti gli elementi hello hello matrice o stringa. |
 
 ### <a name="return-value"></a>Valore restituito
 
@@ -1415,7 +1415,7 @@ Stringa o matrice.
 
 ### <a name="examples"></a>esempi
 
-L'esempio seguente prende il numero specificato di elementi dalla matrice e di caratteri dalla stringa.
+Hello seguente esempio accetta hello numero specificato di elementi dalla matrice hello e i caratteri di una stringa.
 
 ```json
 {
@@ -1457,7 +1457,7 @@ L'esempio seguente prende il numero specificato di elementi dalla matrice e di c
 }
 ```
 
-L'output dell'esempio precedente con i valori predefiniti è il seguente:
+Hello output di hello precedente esempio con i valori predefiniti di hello è:
 
 | Nome | Tipo | Valore |
 | ---- | ---- | ----- |
@@ -1469,21 +1469,21 @@ L'output dell'esempio precedente con i valori predefiniti è il seguente:
 ## <a name="tolower"></a>toLower
 `toLower(stringToChange)`
 
-Converte la stringa specificata in caratteri minuscoli.
+Converte hello specificato toolower case della stringa.
 
-### <a name="parameters"></a>Parametri
+### <a name="parameters"></a>parameters
 
 | Parametro | Obbligatorio | Tipo | Descrizione |
 |:--- |:--- |:--- |:--- |
-| stringToChange |Sì |string |Il valore da convertire in lettere minuscole. |
+| stringToChange |Sì |string |Hello valore tooconvert toolower i casi. |
 
 ### <a name="return-value"></a>Valore restituito
 
-La stringa convertita in lettere minuscole.
+la stringa Hello convertito toolower case.
 
 ### <a name="examples"></a>esempi
 
-L'esempio seguente converte il valore del parametro in lettere maiuscole e minuscole.
+Hello di esempio seguente converte un parametro valore toolower case e a tooupper case.
 
 ```json
 {
@@ -1509,7 +1509,7 @@ L'esempio seguente converte il valore del parametro in lettere maiuscole e minus
 }
 ```
 
-L'output dell'esempio precedente con i valori predefiniti è:
+Hello output di hello precedente esempio con i valori predefiniti di hello è:
 
 | Nome | Tipo | Valore |
 | ---- | ---- | ----- |
@@ -1521,21 +1521,21 @@ L'output dell'esempio precedente con i valori predefiniti è:
 ## <a name="toupper"></a>toUpper
 `toUpper(stringToChange)`
 
-Converte la stringa specificata in lettere maiuscole.
+Converte hello specificato tooupper case della stringa.
 
-### <a name="parameters"></a>Parametri
+### <a name="parameters"></a>parameters
 
 | Parametro | Obbligatorio | Tipo | Descrizione |
 |:--- |:--- |:--- |:--- |
-| stringToChange |Sì |string |Il valore da convertire in lettere maiuscole. |
+| stringToChange |Sì |string |Hello valore tooconvert tooupper i casi. |
 
 ### <a name="return-value"></a>Valore restituito
 
-La stringa convertita in lettere maiuscole.
+la stringa Hello convertito tooupper case.
 
 ### <a name="examples"></a>esempi
 
-L'esempio seguente converte il valore del parametro in lettere maiuscole e minuscole.
+Hello di esempio seguente converte un parametro valore toolower case e a tooupper case.
 
 ```json
 {
@@ -1561,7 +1561,7 @@ L'esempio seguente converte il valore del parametro in lettere maiuscole e minus
 }
 ```
 
-L'output dell'esempio precedente con i valori predefiniti è:
+Hello output di hello precedente esempio con i valori predefiniti di hello è:
 
 | Nome | Tipo | Valore |
 | ---- | ---- | ----- |
@@ -1573,21 +1573,21 @@ L'output dell'esempio precedente con i valori predefiniti è:
 ## <a name="trim"></a>Trim
 `trim (stringToTrim)`
 
-Rimuove tutti i caratteri di spazi vuoti iniziali e finali dalla stringa specificata.
+Rimuove tutte iniziali e finali dei caratteri di spazio da hello stringa specificata.
 
-### <a name="parameters"></a>Parametri
+### <a name="parameters"></a>parameters
 
 | Parametro | Obbligatorio | Tipo | Descrizione |
 |:--- |:--- |:--- |:--- |
-| stringToTrim |Sì |string |Il valore da tagliare. |
+| stringToTrim |Sì |string |tootrim valore Hello. |
 
 ### <a name="return-value"></a>Valore restituito
 
-La stringa senza spazi vuoti iniziali e finali.
+stringa Hello senza caratteri spazi vuoti iniziali e finali.
 
 ### <a name="examples"></a>esempi
 
-L'esempio seguente elimina i caratteri spazi vuoti dal parametro.
+Hello esempio seguente vengono eliminate hello spazi vuoti dal parametro hello.
 
 ```json
 {
@@ -1609,7 +1609,7 @@ L'esempio seguente elimina i caratteri spazi vuoti dal parametro.
 }
 ```
 
-L'output dell'esempio precedente con i valori predefiniti è:
+Hello output di hello precedente esempio con i valori predefiniti di hello è:
 
 | Nome | Tipo | Valore |
 | ---- | ---- | ----- |
@@ -1620,44 +1620,44 @@ L'output dell'esempio precedente con i valori predefiniti è:
 ## <a name="uniquestring"></a>uniqueString
 `uniqueString (baseString, ...)`
 
-Crea una stringa hash deterministica in base ai valori forniti come parametri. 
+Crea una stringa hash deterministica in base ai valori hello forniti come parametri. 
 
-### <a name="parameters"></a>Parametri
+### <a name="parameters"></a>parameters
 
 | Parametro | Obbligatorio | Tipo | Descrizione |
 |:--- |:--- |:--- |:--- |
-| baseString |Sì |string |Il valore usato nella funzione hash per creare una stringa univoca. |
-| parametri aggiuntivi in base alle esigenze |No |string |È possibile aggiungere tutte le stringhe necessarie per creare il valore che specifica il livello di univocità. |
+| baseString |Sì |string |il valore di Hello utilizzato hello hash funzione toocreate una stringa univoca. |
+| parametri aggiuntivi in base alle esigenze |No |string |È possibile aggiungere il numero di stringhe come valore di hello toocreate necessari che specifica il livello di hello di univocità. |
 
 ### <a name="remarks"></a>Osservazioni
 
-Questa funzione è utile quando è necessario creare un nome univoco per una risorsa. È possibile specificare i valori dei parametri che limitano l'ambito di univocità per il risultato. È possibile specificare se il nome è univoco nella sottoscrizione, nel gruppo di risorse o nella distribuzione. 
+Questa funzione è utile quando è necessario un nome univoco per una risorsa toocreate. Fornire i valori dei parametri che consentono di limitare l'ambito di hello di univocità per i risultati di hello. È possibile specificare se il nome di hello è univoco verso il basso toosubscription, gruppo di risorse o distribuzione. 
 
-Il valore restituito non è una stringa casuale, ma il risultato di una funzione hash. Il valore restituito ha una lunghezza di 13 caratteri. Non è globalmente univoco. È possibile combinare il valore con un prefisso dalla convenzione di denominazione scelta per creare un nome significativo. L'esempio seguente illustra il formato del valore restituito. Il valore effettivo varia in base ai parametri forniti.
+Hello restituito non è una stringa casuale di valore, ma piuttosto hello risultato di una funzione hash. Hello ha restituito il valore è 13 caratteri. Non è globalmente univoco. È il valore hello toocombine con un prefisso dal toocreate convenzione di denominazione un nome significativo. Hello esempio seguente viene illustrato il formato di hello di hello ha restituito il valore. valore effettivo Hello varia in base hello parametri fornito.
 
     tcvhiyu5h2o5o
 
-Gli esempi seguenti mostrano come usare uniqueString per creare un valore univoco per livelli di uso comune.
+Hello seguono esempi Mostra come valore toouse uniqueString toocreate univoco per comunemente utilizzati livelli.
 
-Con ambito univoco nella sottoscrizione
+Toosubscription con ambito univoco
 
 ```json
 "[uniqueString(subscription().subscriptionId)]"
 ```
 
-Con ambito univoco nel gruppo di risorse
+Univoco tooresource con ambito gruppo
 
 ```json
 "[uniqueString(resourceGroup().id)]"
 ```
 
-Con ambito univoco nella distribuzione per un gruppo di risorse
+Toodeployment con ambito univoco per un gruppo di risorse
 
 ```json
 "[uniqueString(resourceGroup().id, deployment().name)]"
 ```
 
-Nell'esempio seguente viene illustrato come creare un nome univoco per un account di archiviazione in base al gruppo di risorse. All'interno del gruppo di risorse, il nome non è univoco se costruito allo stesso modo.
+Hello di esempio seguente mostra come toocreate un nome univoco per un account di archiviazione in base al gruppo di risorse. All'interno di hello gruppo di risorse, non è univoco se costruito hello Nome hello allo stesso modo.
 
 ```json
 "resources": [{ 
@@ -1672,7 +1672,7 @@ Stringa contenente 13 caratteri.
 
 ### <a name="examples"></a>esempi
 
-Nell'esempio seguente restituisce risultati da uniqueString:
+Hello di esempio seguente restituisce risultati dalla uniquestring:
 
 ```json
 {
@@ -1697,30 +1697,30 @@ Nell'esempio seguente restituisce risultati da uniqueString:
 ## <a name="uri"></a>Uri
 `uri (baseUri, relativeUri)`
 
-Crea un URI assoluto combinando la baseUri e la stringa relativeUri.
+Crea un URI assoluto combinando baseUri hello e stringa relativeUri hello.
 
-### <a name="parameters"></a>Parametri
+### <a name="parameters"></a>parameters
 
 | Parametro | Obbligatorio | Tipo | Descrizione |
 |:--- |:--- |:--- |:--- |
-| baseUri |Sì |string |La stringa URI di base. |
-| relativeUri |Sì |string |La stringa URI relativa da aggiungere alla stringa di URI di base. |
+| baseUri |Sì |string |stringa uri di base Hello. |
+| relativeUri |Sì |string |Hello uri relativo tooadd toohello uri di base stringa. |
 
-Il valore per il parametro **baseUri** può includere un file specifico, ma solo il percorso di base viene usato per costruire l'URI. Ad esempio, se si trasmette `http://contoso.com/resources/azuredeploy.json` come parametro baseUri, viene restituito l'URI di base `http://contoso.com/resources/`.
+valore per hello Hello **baseUri** parametro può includere un file specifico, ma solo hello percorso verrà utilizzato durante la costruzione di hello URI. Ad esempio, passare `http://contoso.com/resources/azuredeploy.json` come hello baseUri parametro, verrà generato un URI di base `http://contoso.com/resources/`.
 
 ### <a name="return-value"></a>Valore restituito
 
-Stringa che rappresenta l'URI assoluto dei valori di base e relativi.
+Stringa che rappresenta hello URI assoluto per i valori di base e relativi hello.
 
 ### <a name="examples"></a>esempi
 
-Nell'esempio seguente viene illustrato come costruire un collegamento a un modello annidato in base al valore del modello padre.
+Hello di esempio seguente viene illustrato come tooconstruct un modello annidato tooa di collegamento in base a valore hello del modello padre hello.
 
 ```json
 "templateLink": "[uri(deployment().properties.templateLink.uri, 'nested/azuredeploy.json')]"
 ```
 
-L'esempio seguente mostra come usare uri, uriComponent e uriComponentToString:
+Hello seguente come esempio viene illustrato un componente URI, toouse uri e uriComponentToString:
 
 ```json
 {
@@ -1749,7 +1749,7 @@ L'esempio seguente mostra come usare uri, uriComponent e uriComponentToString:
 }
 ```
 
-L'output dell'esempio precedente con i valori predefiniti è:
+Hello output di hello precedente esempio con i valori predefiniti di hello è:
 
 | Nome | Tipo | Valore |
 | ---- | ---- | ----- |
@@ -1768,15 +1768,15 @@ Codifica un URI.
 
 | Parametro | Obbligatorio | Tipo | Descrizione |
 |:--- |:--- |:--- |:--- |
-| stringToEncode |Sì |string |Valore da codificare. |
+| stringToEncode |Sì |string |tooencode valore Hello. |
 
 ### <a name="return-value"></a>Valore restituito
 
-Stringa del valore URI codificato.
+Valore codificato in una stringa di hello URI.
 
 ### <a name="examples"></a>esempi
 
-L'esempio seguente mostra come usare uri, uriComponent e uriComponentToString:
+Hello seguente come esempio viene illustrato un componente URI, toouse uri e uriComponentToString:
 
 ```json
 {
@@ -1805,7 +1805,7 @@ L'esempio seguente mostra come usare uri, uriComponent e uriComponentToString:
 }
 ```
 
-L'output dell'esempio precedente con i valori predefiniti è:
+Hello output di hello precedente esempio con i valori predefiniti di hello è:
 
 | Nome | Tipo | Valore |
 | ---- | ---- | ----- |
@@ -1825,7 +1825,7 @@ Restituisce una stringa di un valore URI codificato.
 
 | Parametro | Obbligatorio | Tipo | Descrizione |
 |:--- |:--- |:--- |:--- |
-| uriEncodedString |Sì |string |Valore URI codificato da convertire in stringa. |
+| uriEncodedString |Sì |string |stringa di tooa tooconvert di valore con codifica URI Hello. |
 
 ### <a name="return-value"></a>Valore restituito
 
@@ -1833,7 +1833,7 @@ Stringa decodificata del valore URI codificato.
 
 ### <a name="examples"></a>esempi
 
-L'esempio seguente mostra come usare uri, uriComponent e uriComponentToString:
+Hello seguente come esempio viene illustrato un componente URI, toouse uri e uriComponentToString:
 
 ```json
 {
@@ -1862,7 +1862,7 @@ L'esempio seguente mostra come usare uri, uriComponent e uriComponentToString:
 }
 ```
 
-L'output dell'esempio precedente con i valori predefiniti è:
+Hello output di hello precedente esempio con i valori predefiniti di hello è:
 
 | Nome | Tipo | Valore |
 | ---- | ---- | ----- |
@@ -1872,8 +1872,8 @@ L'output dell'esempio precedente con i valori predefiniti è:
 
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Per una descrizione delle sezioni in un modello di Azure Resource Manager, vedere [Creazione di modelli di Azure Resource Manager](resource-group-authoring-templates.md).
-* Per unire più modelli, vedere [Uso di modelli collegati con Azure Resource Manager](resource-group-linked-templates.md).
-* Per eseguire un'iterazione di un numero di volte specificato durante la creazione di un tipo di risorsa, vedere [Creare più istanze di risorse in Gestione risorse di Azure](resource-group-create-multiple.md).
-* Per informazioni su come distribuire il modello che è stato creato, vedere [Distribuire un'applicazione con un modello di Azure Resource Manager](resource-group-template-deploy.md).
+* Per una descrizione delle sezioni hello in un modello di gestione risorse di Azure, vedere [modelli Authoring Azure Resource Manager](resource-group-authoring-templates.md).
+* toomerge più modelli, vedere [con modelli collegati con Azure Resource Manager](resource-group-linked-templates.md).
+* tooiterate un numero specificato di volte durante la creazione di un tipo di risorsa, vedere [creare più istanze delle risorse in Azure Resource Manager](resource-group-create-multiple.md).
+* toosee come modello hello toodeploy è stato creato, vedere [distribuire un'applicazione con il modello di gestione risorse di Azure](resource-group-template-deploy.md).
 

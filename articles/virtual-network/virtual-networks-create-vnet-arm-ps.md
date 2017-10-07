@@ -1,6 +1,6 @@
 ---
-title: Creare una rete virtuale - Azure PowerShell | Documentazione Microsoft
-description: Informazioni su come creare una rete virtuale mediante PowerShell.
+title: una rete virtuale - Azure PowerShell aaaCreate | Documenti Microsoft
+description: Informazioni su come toocreate un virtuale di rete con PowerShell.
 services: virtual-network
 documentationcenter: 
 author: jimdial
@@ -16,19 +16,19 @@ ms.workload: infrastructure-services
 ms.date: 01/03/2017
 ms.author: jdial
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: e7072ddf51570d46578111e2e392e3cbea53f2aa
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8d6e395a77f71de9f94b6304b05450e46b47544f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-virtual-network-using-powershell"></a>Creare una rete virtuale usando PowerShell
 
 [!INCLUDE [virtual-networks-create-vnet-intro](../../includes/virtual-networks-create-vnet-intro-include.md)]
 
-Azure offre due modelli di distribuzione, ovvero Azure Resource Manager e la distribuzione classica. Microsoft consiglia di creare le risorse tramite il modello di distribuzione Resource Manager. Per altre informazioni sulle differenze tra i due modelli, leggere l'articolo [Understand Azure deployment models](../azure-resource-manager/resource-manager-deployment-model.md) (Informazioni sui modelli di distribuzione di Azure).
+Azure offre due modelli di distribuzione, ovvero Azure Resource Manager e la distribuzione classica. Si consiglia di creare risorse modello di distribuzione di gestione risorse di hello. altre informazioni sulle toolearn hello le differenze tra hello due modelli, leggere hello [modelli di distribuzione Azure comprendere](../azure-resource-manager/resource-manager-deployment-model.md) articolo.
  
-Questo articolo illustra come creare una rete virtuale tramite il modello di distribuzione Resource Manager usando PowerShell. È anche possibile creare una rete virtuale tramite Resource Manager usando altri strumenti oppure tramite il modello di distribuzione classica selezionando un'opzione diversa dall'elenco seguente:
+In questo articolo viene illustrato come una rete virtuale tramite la distribuzione di gestione risorse di hello toocreate modello tramite PowerShell. È anche possibile creare una rete virtuale tramite Gestione risorse di usare altri strumenti o creare una rete virtuale tramite il modello di distribuzione classica hello selezionando un'opzione diversa da hello seguente elenco:
 
 > [!div class="op_single_selector"]
 > * [Portale](virtual-networks-create-vnet-arm-pportal.md)
@@ -43,9 +43,9 @@ Questo articolo illustra come creare una rete virtuale tramite il modello di dis
 
 ## <a name="create-a-virtual-network"></a>Crea rete virtuale
 
-Per creare una rete virtuale usando PowerShell, completare i passaggi seguenti:
+toocreate i passaggi da una rete virtuale usando PowerShell, hello completo seguente:
 
-1. Installare e configurare Azure PowerShell seguendo i passaggi descritti nell'articolo [Come installare e configurare Azure PowerShell](/powershell/azure/overview).
+1. Installare e configurare Azure PowerShell, seguendo i passaggi hello hello [come tooInstall e configurare Azure PowerShell](/powershell/azure/overview) articolo.
 
 2. Se necessario, creare un nuovo gruppo di risorse, come mostrato di seguito. Per questo scenario, creare un gruppo di risorse denominato *TestRG*. Per altre informazioni sui gruppi di risorse, vedere [Panoramica di Azure Resource Manager](../azure-resource-manager/resource-group-overview.md).
 
@@ -84,7 +84,7 @@ Per creare una rete virtuale usando PowerShell, completare i passaggi seguenti:
         DhcpOptions                : {}
         Subnets                    : []
         VirtualNetworkPeerings     : []
-4. Archiviare l'oggetto di rete virtuale in una variabile:
+4. Oggetto di rete virtuale archivio hello in una variabile:
 
     ```powershell
     $vnet = Get-AzureRmVirtualNetwork -ResourceGroupName TestRG -Name TestVNet
@@ -94,7 +94,7 @@ Per creare una rete virtuale usando PowerShell, completare i passaggi seguenti:
    > È possibile combinare i passaggi 3 e 4 eseguendo `$vnet = New-AzureRmVirtualNetwork -ResourceGroupName TestRG -Name TestVNet -AddressPrefix 192.168.0.0/16 -Location centralus`.
    > 
 
-5. Aggiungere una subnet alla nuova variabile di rete virtuale:
+5. Aggiungere una subnet toohello nuova variabile di rete virtuale:
 
     ```powershell
     Add-AzureRmVirtualNetworkSubnetConfig -Name FrontEnd `
@@ -124,14 +124,14 @@ Per creare una rete virtuale usando PowerShell, completare i passaggi seguenti:
                                 ]
         VirtualNetworkPeerings     : []
 
-6. Ripetere il passaggio 5 riportato in precedenza per ogni subnet che si desidera creare. Il comando seguente crea la subnet *BackEnd* per lo scenario:
+6. Ripetere il passaggio 5 riportato sopra per ogni subnet desiderate toocreate. il comando seguente Hello crea hello *back-end* subnet per uno scenario di hello:
 
     ```powershell
     Add-AzureRmVirtualNetworkSubnetConfig -Name BackEnd `
     -VirtualNetwork $vnet -AddressPrefix 192.168.2.0/24
     ```
 
-7. Quando si crea una subnet, questa rimane solo nella variabile locale usata per recuperare la rete virtuale creata nel passaggio 4. Per salvare le modifiche in Azure, eseguire il comando seguente:
+7. Anche se si crea una subnet, sono attualmente presenti in hello tooretrieve di utilizzata variabile locale hello rete virtuale creato nel passaggio 4 riportato sopra. toosave hello modifiche tooAzure, eseguire hello comando seguente:
 
     ```powershell
     Set-AzureRmVirtualNetwork -VirtualNetwork $vnet
@@ -176,8 +176,8 @@ Per creare una rete virtuale usando PowerShell, completare i passaggi seguenti:
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Leggere le informazioni su come connettere:
+Informazioni su come tooconnect:
 
-- Una macchina virtuale (VM) a una rete virtuale nell'articolo [Creare una VM Windows](../virtual-machines/virtual-machines-windows-ps-create.md). Anziché creare una rete virtuale e una subnet, come illustrato nelle procedure degli articoli, è possibile selezionare una rete virtuale e una subnet esistenti a cui connettere una VM.
-- La rete virtuale ad altre reti virtuali nell'articolo [Connettere reti virtuali](../vpn-gateway/vpn-gateway-vnet-vnet-rm-ps.md).
-- La rete virtuale a una rete locale tramite una rete privata virtuale (VPN) da sito a sito o il circuito ExpressRoute negli articoli [Connect a VNet to an on-premises network using a site-to-site VPN](../vpn-gateway/vpn-gateway-howto-multi-site-to-site-resource-manager-portal.md) (Connettere una rete virtuale a una rete locale tramite una VPN da sito a sito) e [Collegare una rete virtuale a un circuito ExpressRoute](../expressroute/expressroute-howto-linkvnet-arm.md).
+- Una rete virtuale tooa di macchina virtuale (VM) leggendo hello [creare una macchina virtuale Windows](../virtual-machines/virtual-machines-windows-ps-create.md) articolo. Anziché creare una rete virtuale e subnet nei passaggi hello degli articoli hello, è possibile selezionare una rete virtuale esistente e subnet tooconnect una macchina virtuale.
+- Hello reti virtuali di rete virtuale tooother leggendo hello [connettere reti virtuali](../vpn-gateway/vpn-gateway-vnet-vnet-rm-ps.md) articolo.
+- rete locale tooan rete virtuale Hello utilizza una rete privata virtuale (VPN) da sito a sito o un circuito ExpressRoute. Ulteriori informazioni, leggere hello [connettere una rete locale tooan di rete virtuale tramite una VPN site-to-site](../vpn-gateway/vpn-gateway-howto-multi-site-to-site-resource-manager-portal.md) e [collegare un circuito ExpressRoute di tooan rete virtuale](../expressroute/expressroute-howto-linkvnet-arm.md) articoli.

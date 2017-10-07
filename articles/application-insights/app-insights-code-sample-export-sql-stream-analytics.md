@@ -1,6 +1,6 @@
 ---
-title: Esportare in SQL da Azure Application Insights | Documentazione Microsoft
-description: Eseguire l'esportazione continua dei dati Application Insights in SQL tramite l'analisi di flusso.
+title: Esportare tooSQL da Azure Application Insights | Documenti Microsoft
+description: Esportare in modo continuo tooSQL di dati di Application Insights con flusso Analitica.
 services: application-insights
 documentationcenter: 
 author: noamben
@@ -13,89 +13,89 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/06/2015
 ms.author: bwren
-ms.openlocfilehash: d51e80509ffb63cef0d01133a2295d58757d5b1a
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 58b579499113751a088dc7e66cbec71529773322
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="walkthrough-export-to-sql-from-application-insights-using-stream-analytics"></a>Procedura dettagliata: Eseguire l'esportazione in SQL da Application Insights tramite l'analisi di flusso
-Questo articolo illustra come spostare i dati di telemetria da [Azure Application Insights][start] in un database SQL di Azure usando l'[esportazione continua][export] e l'[analisi di flusso di Azure](https://azure.microsoft.com/services/stream-analytics/). 
+# <a name="walkthrough-export-toosql-from-application-insights-using-stream-analytics"></a>Procedura dettagliata: Esportare tooSQL da Application Insights con flusso Analitica
+Questo articolo viene illustrato come toomove i dati di telemetria da [Azure Application Insights] [ start] in un database SQL di Azure tramite [esportazione continua] [ export] e [Analitica di flusso di Azure](https://azure.microsoft.com/services/stream-analytics/). 
 
-L'esportazione continua sposta i dati di telemetria in Archiviazione di Azure in formato JSON. Gli oggetti JSON verranno analizzati con l'analisi di flusso di Azure e verranno create righe in una tabella di database.
+L'esportazione continua sposta i dati di telemetria in Archiviazione di Azure in formato JSON. Viene l'analisi degli oggetti JSON hello utilizzando Azure flusso Analitica e creare le righe in una tabella di database.
 
-Più in generale, l'esportazione continua consente di eseguire la propria analisi dei dati di telemetria che le app inviano ad Application Insights. È possibile adattare questo esempio di codice per eseguire altre operazioni con i dati di telemetria esportati, come l’aggregazione dei dati.
+(Più in generale, l'esportazione continua è hello modo toodo la propria analisi dei dati di telemetria hello App Insights tooApplication di trasmissione. È possibile adattare questa toodo di esempio di codice altre operazioni con i dati di telemetria hello esportata, ad esempio aggregazione dei dati.)
 
-Si inizierà dal presupposto che si abbia già l'app che si vuole monitorare.
+Si inizierà con il presupposto hello che si disponga già di app hello da toomonitor.
 
-In questo esempio verranno usati i dati relativi alle visualizzazioni pagina, ma gli stessi criteri possono essere estesi facilmente ad altri tipi di dati, ad esempio eccezioni ed eventi personalizzati. 
+In questo esempio, si utilizzerà dati della visualizzazione pagina hello, ma hello stesso modello può essere estesa facilmente tooother i tipi di dati, ad esempio gli eventi personalizzati e le eccezioni. 
 
-## <a name="add-application-insights-to-your-application"></a>Aggiunta di Application Insights all'applicazione
-Attività iniziali
+## <a name="add-application-insights-tooyour-application"></a>Aggiungere l'applicazione tooyour Application Insights
+tooget avviato:
 
 1. [Installare Application Insights per le pagine Web](app-insights-javascript.md). 
    
-    In questo esempio viene considerata l'elaborazione dei dati di visualizzazione della pagina dai browser client, ma è possibile anche impostare Application Insights per il lato server dell'app [Java](app-insights-java-get-started.md) o [ASP.NET](app-insights-asp-net.md) ed elaborare la richiesta, la dipendenza e altri dati di telemetria del server.
+    (In questo esempio sarà dedicata all'elaborazione di dati della visualizzazione pagina dal browser client hello, ma è anche possibile configurare Application Insights per hello sul lato server il [Java](app-insights-java-get-started.md) o [ASP.NET](app-insights-asp-net.md) app e processo di richiesta dipendenze e altri dati di telemetria di server.)
 2. Pubblicare l'app e controllare i dati di telemetria visualizzati nella risorsa di Application Insights.
 
 ## <a name="create-storage-in-azure"></a>Creare l'archivio in Azure
-L'esportazione continua invia sempre i dati a un account di Archiviazione di Azure, pertanto è prima necessario creare l'archivio.
+L'esportazione continua restituisce sempre l'account di archiviazione Azure tooan di dati, pertanto è necessario innanzitutto archiviazione hello toocreate.
 
-1. Creare un account di archiviazione per la sottoscrizione nel [portale di Azure][portal].
+1. Creare un account di archiviazione nella sottoscrizione in hello [portale di Azure][portal].
    
     ![Nel portale di Azure scegliere Nuovo, Dati, Archiviazione Selezionare Classica, scegliere Crea. Specificare un nome di archiviazione.](./media/app-insights-code-sample-export-sql-stream-analytics/040-store.png)
 2. Creare un contenitore
    
-    ![Nel nuovo archivio selezionare Contenitori, fare clic sul riquadro Contenitori e quindi su Aggiungi](./media/app-insights-code-sample-export-sql-stream-analytics/050-container.png)
-3. Copiare la chiave di accesso alle risorse di archiviazione.
+    ![In hello nuova risorsa di archiviazione, selezionare i contenitori, fare clic su riquadro contenitori hello, quindi su Aggiungi](./media/app-insights-code-sample-export-sql-stream-analytics/050-container.png)
+3. Chiave di accesso di archiviazione hello copia
    
-    Sarà presto necessaria per configurare l'input per il servizio di analisi di flusso.
+    È necessario prima tooset hello toohello input flusso analitica servizio.
    
-    ![Nella risorsa di archiviazione aprire Impostazioni, Chiavi ed eseguire una copia della chiave di accesso primaria](./media/app-insights-code-sample-export-sql-stream-analytics/21-storage-key.png)
+    ![Nel servizio di archiviazione hello, aprire le impostazioni, chiavi e richiedere una copia della chiave di accesso primaria hello](./media/app-insights-code-sample-export-sql-stream-analytics/21-storage-key.png)
 
-## <a name="start-continuous-export-to-azure-storage"></a>Avviare l'esportazione continua nell'archiviazione di Azure
-1. Nel portale di Azure passare alla risorsa di Application Insights creata per la propria applicazione.
+## <a name="start-continuous-export-tooazure-storage"></a>Avviare l'esportazione continua tooAzure archiviazione
+1. Nel portale di Azure hello, Sfoglia risorsa di Application Insights toohello creata per l'applicazione.
    
     ![Scegliere Sfoglia, Application Insights e quindi l'applicazione](./media/app-insights-code-sample-export-sql-stream-analytics/060-browse.png)
 2. Creare un'esportazione continua.
    
     ![Scegliere Impostazioni, Esportazione continua, Aggiungi](./media/app-insights-code-sample-export-sql-stream-analytics/070-export.png)
 
-    Selezionare l'account di archiviazione creato in precedenza:
+    Selezionare l'account di archiviazione hello creato in precedenza:
 
-    ![Impostare la destinazione di esportazione](./media/app-insights-code-sample-export-sql-stream-analytics/080-add.png)
+    ![Set di destinazione dell'esportazione hello](./media/app-insights-code-sample-export-sql-stream-analytics/080-add.png)
 
-    Impostare i tipi di eventi da visualizzare:
+    Impostare i tipi di evento hello da toosee:
 
     ![Scegliere i tipi di eventi](./media/app-insights-code-sample-export-sql-stream-analytics/085-types.png)
 
 
 1. Lasciare che alcuni dati si accumulino. Attendere che gli utenti usino l'applicazione per qualche tempo. Verranno restituiti i dati di telemetria e sarà possibile esaminare i grafici statistici in [Esplora metriche](app-insights-metrics-explorer.md) e i singoli eventi in [Ricerca diagnostica](app-insights-diagnostic-search.md). 
    
-    I dati verranno inoltre esportati nell'archivio. 
-2. Esaminare i dati esportati, nel portale (scegliere **Esplora**, selezionare l'account di archiviazione, quindi **Contenitori**) o in Visual Studio. In Visual Studio, scegliere **Visualizza/Cloud Explorer**e aprire Azure/Archiviazione. (Se non si dispone di tale opzione del menu, è necessario installare l’SDK di Azure: aprire la finestra di dialogo Nuovo progetto, aprire Visual C#/Cloud/Ottieni Microsoft Azure SDK per .NET).
+    E inoltre dati hello esporterà tooyour archiviazione. 
+2. Controllare i dati di hello esportata, nel portale di hello - Scegli **Sfoglia**, selezionare l'account di archiviazione, quindi **contenitori** - o in Visual Studio. In Visual Studio, scegliere **Visualizza/Cloud Explorer**e aprire Azure/Archiviazione. (Se non si dispone di questa opzione, è necessario tooinstall hello Azure SDK: aprire finestra di dialogo Nuovo progetto hello e Visual c# / Cloud / ottenere Microsoft Azure SDK per .NET.)
    
     ![In Visual Studio aprire Esplora server, Azure, Archiviazione](./media/app-insights-code-sample-export-sql-stream-analytics/087-explorer.png)
    
-    Prendere nota della parte comune del nome del percorso, derivata dal nome dell’applicazione e dalla chiave di strumentazione. 
+    Prendere nota di parte in comune hello del nome di percorso hello, che viene derivato dalla chiave di nome e la strumentazione dell'applicazione hello. 
 
-Gli eventi vengono scritti nei file BLOB in formato JSON. Ogni file può contenere uno o più eventi. A questo punto sarà possibile leggere i dati degli eventi e filtrare i campi preferiti. È possibile eseguire una serie di operazioni sui dati, ma lo scopo di questo articolo è usare l'analisi di flusso per spostare i dati in un database SQL. Sarà quindi più semplice eseguire molte query interessanti.
+gli eventi di Hello vengono scritti i file tooblob in formato JSON. Ogni file può contenere uno o più eventi. In modo desideriamo tooread hello dati dell'evento e filtro campi hello desiderato. Sono disponibili tutti i tipi di operazioni che è possibile farlo con dati hello, ma il piano è oggi database SQL toouse flusso Analitica toomove hello dati tooa. In questo modo sarà facile toorun moltissimi interessanti di query.
 
 ## <a name="create-an-azure-sql-database"></a>Creare un database SQL di Azure
-Iniziando di nuovo dalla sottoscrizione nel [portale di Azure][portal], creare il database (e un nuovo server, se necessario) in cui si scriveranno i dati.
+Ancora una volta a partire dalla sottoscrizione in [portale di Azure][portal], creare database hello (e un nuovo server, a meno che non si dispone già uno) toowhich si scriverà dati hello.
 
 ![Nuovo, Dati, SQL](./media/app-insights-code-sample-export-sql-stream-analytics/090-sql.png)
 
-Assicurarsi che il server di database consenta di accedere ai servizi di Azure:
+Verificare che il server di database hello consente l'accesso tooAzure servizi:
 
-![Sfoglia, Server, il proprio server, Impostazioni, Firewall, Consenti l'accesso a Servizi di Azure](./media/app-insights-code-sample-export-sql-stream-analytics/100-sqlaccess.png)
+![Sfoglia, server, il server, le impostazioni, Firewall, consentire l'accesso a tooAzure](./media/app-insights-code-sample-export-sql-stream-analytics/100-sqlaccess.png)
 
 ## <a name="create-a-table-in-azure-sql-db"></a>Creare una tabella nel database SQL di Azure
-Connettersi al database creato nella sezione precedente con lo strumento di gestione preferito. In questa procedura dettagliata verranno usati gli [strumenti di gestione di SQL Server](https://msdn.microsoft.com/ms174173.aspx) (SSMS).
+La connessione a database toohello creato nella sezione precedente di hello con lo strumento di gestione preferiti. In questa procedura dettagliata verranno usati gli [strumenti di gestione di SQL Server](https://msdn.microsoft.com/ms174173.aspx) (SSMS).
 
 ![](./media/app-insights-code-sample-export-sql-stream-analytics/31-sql-table.png)
 
-Creare una nuova query ed eseguire il codice T-SQL seguente:
+Creare una nuova query ed eseguire hello T-SQL seguente:
 
 ```SQL
 
@@ -137,64 +137,64 @@ CREATE CLUSTERED INDEX [pvTblIdx] ON [dbo].[PageViewsTable]
 
 ![](./media/app-insights-code-sample-export-sql-stream-analytics/34-create-table.png)
 
-In questo esempio vengono usati i dati delle visualizzazioni pagina. Per visualizzare gli altri dati disponibili, esaminare l'output JSON e vedere il [modello di dati di esportazione](app-insights-export-data-model.md).
+In questo esempio vengono usati i dati delle visualizzazioni pagina. toosee hello altri dati disponibili, esaminare l'output JSON e vedere hello [Esporta modello di dati](app-insights-export-data-model.md).
 
 ## <a name="create-an-azure-stream-analytics-instance"></a>Creare un'istanza di analisi di flusso di Azure
-Nel [portale di Azure classico](https://manage.windowsazure.com/)selezionare il servizio di analisi di flusso di Azure e creare un nuovo processo di analisi di flusso:
+Da hello [portale di Azure classico](https://manage.windowsazure.com/), selezionare il servizio di Azure flusso Analitica hello e creare un nuovo processo di flusso Analitica:
 
 ![](./media/app-insights-code-sample-export-sql-stream-analytics/37-create-stream-analytics.png)
 
 ![](./media/app-insights-code-sample-export-sql-stream-analytics/38-create-stream-analytics-form.png)
 
-Quando viene creato il nuovo processo, espanderne i dettagli:
+Quando viene creato il nuovo processo di hello, espandere i dettagli:
 
 ![](./media/app-insights-code-sample-export-sql-stream-analytics/41-sa-job.png)
 
 #### <a name="set-blob-location"></a>Impostare il percorso BLOB
-Impostarlo in modo da accettare l'input dal BLOB di esportazione continua:
+Impostarlo input tootake dal blob di esportazione continua:
 
 ![](./media/app-insights-code-sample-export-sql-stream-analytics/42-sa-wizard1.png)
 
-A questo punto è necessaria la chiave di accesso primaria dell'account di archiviazione, di cui si è preso nota in precedenza. Impostarla come chiave dell'account di archiviazione.
+A questo punto è necessario hello chiave di accesso primaria dall'Account di archiviazione, annotati in precedenza. Impostare come hello chiave Account di archiviazione.
 
 ![](./media/app-insights-code-sample-export-sql-stream-analytics/46-sa-wizard2.png)
 
 #### <a name="set-path-prefix-pattern"></a>Impostare lo schema prefisso percorso
 ![](./media/app-insights-code-sample-export-sql-stream-analytics/47-sa-wizard3.png)
 
-Assicurarsi di impostare il formato della data su **AAAA-MM-GG** (con i **trattini**).
+È troppo hello tooset che il formato di data**AAAA-MM-GG** (con **trattini**).
 
-Lo schema prefisso percorso specifica il modo in cui l'analisi di flusso trova i file di input nell'archivio. È necessario configurarlo in modo che corrisponda alla modalità di archiviazione dei dati dell'esportazione continua. Impostarlo come segue:
+Hello modello prefisso del percorso specifica come flusso Analitica Trova file di input hello nel servizio di archiviazione hello. È necessario tooset è toohow toocorrespond esportazione continua archivia dati hello. Impostarlo come segue:
 
     webapplication27_12345678123412341234123456789abcdef0/PageViews/{date}/{time}
 
 Esempio:
 
-* `webapplication27` è il nome della risorsa di Application Insights, **tutto minuscolo**. 
-* `1234...` è la chiave di strumentazione della risorsa di Application Insights **con i trattini rimossi**. 
-* `PageViews` è il tipo di dati da analizzare. I tipi disponibili dipendono dal filtro impostato nell'esportazione continua. Esaminare i dati esportati per vedere gli altri tipi disponibili e vedere il [modello di dati di esportazione](app-insights-export-data-model.md).
+* `webapplication27`è il nome di hello della risorsa di Application Insights, hello **tutti in lettere minuscole**. 
+* `1234...`è la chiave di strumentazione hello di hello risorsa di Application Insights **con rimossi trattini**. 
+* `PageViews`hello tipo di dati desiderato tooanalyze. tipi di Hello disponibili dipendono dal filtro hello impostato nell'esportazione continua. Esaminare altri tipi disponibili di hello toosee di dati esportati hello e vedere hello [Esporta modello di dati](app-insights-export-data-model.md).
 * `/{date}/{time}` è uno schema scritto letteralmente.
 
-Per ottenere il nome e la chiave di strumentazione (iKey) della risorsa di Application Insights, aprire Essentials nella relativa pagina di panoramica o aprire le impostazioni.
+nome hello tooget iKey della risorsa di Application Insights, aprire Essentials nella relativa pagina di panoramica e aprire le impostazioni.
 
 #### <a name="finish-initial-setup"></a>Completare l'installazione iniziale
-Verificare il formato di serializzazione:
+Verificare il formato di serializzazione hello:
 
 ![Confermare e chiudere la procedura guidata](./media/app-insights-code-sample-export-sql-stream-analytics/48-sa-wizard4.png)
 
-Chiudere la procedura guidata e attendere il completamento dell'installazione.
+Chiudere la procedura guidata hello e attendere hello toocomplete di programma di installazione.
 
 > [!TIP]
-> Utilizzare la funzione di esempio per verificare di aver impostato correttamente il percorso di input. In caso di errore: verificare che ci siano dati nell’archiviazione per l’intervallo di tempo esemplificativo che si seleziona. Modificare la definizione di input e controllare di impostare l'account di archiviazione, il prefisso del percorso e il formato di data corretto.
+> Utilizzare toocheck funzione di esempio hello che hello percorso di input è stato impostato correttamente. In caso di errore: verifica della presenza dei dati nel servizio di archiviazione per l'intervallo di tempo esempio hello scelto hello. Modifica definizione input hello e controllare impostare account di archiviazione hello, prefisso di percorso e Data formato correttamente.
 > 
 > 
 
 ## <a name="set-query"></a>Impostare la query
-Aprire la sezione delle query:
+Aprire sezione query hello:
 
 ![In Analisi di flusso selezionare Query](./media/app-insights-code-sample-export-sql-stream-analytics/51-query.png)
 
-Sostituire la query predefinita con:
+Sostituire query predefinita hello con:
 
 ```SQL
 
@@ -232,37 +232,37 @@ Sostituire la query predefinita con:
 
 ```
 
-Tenere presente che le prime proprietà sono specifiche dei dati relativi alle visualizzazioni pagina. Le esportazioni di altri tipi di dati di telemetria avranno proprietà diverse. Vedere il [Riferimento dettagliato al modello di dati per i valori e i tipi di proprietà](app-insights-export-data-model.md)
+Si noti che innanzitutto hello alcune proprietà sono specifiche toopage visualizzare i dati. Le esportazioni di altri tipi di dati di telemetria avranno proprietà diverse. Vedere hello [dettagliate di riferimento del modello di dati per i tipi di proprietà hello e valori.](app-insights-export-data-model.md)
 
-## <a name="set-up-output-to-database"></a>Configurare l'output nel database
-Selezionare SQL come output.
+## <a name="set-up-output-toodatabase"></a>Impostare toodatabase di output
+Selezionare SQL come output di hello.
 
 ![In Analisi di flusso selezionare Output](./media/app-insights-code-sample-export-sql-stream-analytics/53-store.png)
 
-Specificare il database SQL.
+Specificare il database SQL di hello.
 
-![Inserire i dettagli del database](./media/app-insights-code-sample-export-sql-stream-analytics/55-output.png)
+![Specificare dettagli hello del database](./media/app-insights-code-sample-export-sql-stream-analytics/55-output.png)
 
-Chiudere la procedura guidata e attendere la notifica di configurazione dell'output.
+Chiudere la procedura guidata hello e attende una notifica che l'output di hello è stata impostata.
 
 ## <a name="start-processing"></a>Avviare l'elaborazione
-Avviare il processo dalla barra delle azioni:
+Avviare il processo di hello dalla barra delle azioni hello:
 
 ![In Analisi di flusso fare clic su Avvia.](./media/app-insights-code-sample-export-sql-stream-analytics/61-start.png)
 
-È possibile scegliere se avviare l'elaborazione dei dati a partire dai dati correnti o se includere i dati precedenti. La seconda opzione è utile se l'esportazione continua è già stata eseguita per un determinato periodo di tempo.
+È possibile scegliere se l'elaborazione di toostart hello dati a partire da ora o toostart con i dati precedenti. Hello quest'ultimo è utile se si è avuto l'esportazione continua è già in esecuzione per un periodo di tempo.
 
 ![In Analisi di flusso fare clic su Avvia.](./media/app-insights-code-sample-export-sql-stream-analytics/63-start.png)
 
-Dopo alcuni minuti, tornare agli strumenti di gestione di SQL Server e controllare il flusso dei dati. Usare ad esempio una query simile alla seguente:
+Dopo alcuni minuti, tornare indietro tooSQL strumenti di gestione di Server e guardare hello i dati trasmessi. Usare ad esempio una query simile alla seguente:
 
     SELECT TOP 100 *
     FROM [dbo].[PageViewsTable]
 
 
 ## <a name="related-articles"></a>Articoli correlati
-* [Esportare in PowerBI usando l'analisi di flusso](app-insights-export-power-bi.md)
-* [Riferimento dettagliato al modello di dati per i valori e i tipi di proprietà.](app-insights-export-data-model.md)
+* [Esportare tooPowerBI tramite flusso Analitica](app-insights-export-power-bi.md)
+* [Riferimento per i tipi di proprietà hello e i valori del modello di dati dettagliati.](app-insights-export-data-model.md)
 * [Esportazione continua in Application Insights](app-insights-export-telemetry.md)
 * [Application Insights](https://azure.microsoft.com/services/application-insights/)
 

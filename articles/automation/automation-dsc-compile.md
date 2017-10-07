@@ -1,6 +1,6 @@
 ---
-title: Compilazione di configurazioni in Azure Automation DSC | Documentazione Microsoft
-description: Questo articolo descrive come compilare configurazioni Desired State Configuration (DSC) per l'automazione di Azure.
+title: configurazioni aaaCompiling in Automation DSC per Azure | Documenti Microsoft
+description: Questo articolo viene descritto come le configurazioni di configurazione DSC (Desired State) toocompile per l'automazione di Azure.
 services: automation
 documentationcenter: na
 author: eslesar
@@ -13,20 +13,20 @@ ms.tgt_pltfrm: powershell
 ms.workload: na
 ms.date: 02/07/2017
 ms.author: magoedte; eslesar
-ms.openlocfilehash: 1aadd604e676659475f00760af3b0bdfb13a4792
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b195311318a2d7431c4d6b29f4b9a5f3a0a0a9a5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="compiling-configurations-in-azure-automation-dsc"></a>Compilazione di configurazioni in Azure Automation DSC
 
-È possibile compilare configurazioni dello stato desiderato (DSC, Desired State Configuration) in due modi con Automazione di Azure: nel portale di Azure e con Windows PowerShell. La tabella seguente consente di determinare quando usare ciascun metodo in base alle caratteristiche specifiche:
+È possibile compilare le configurazioni di configurazione DSC (Desired State) in due modi con automazione di Azure: nel portale di Azure hello e con Windows PowerShell. Hello nella tabella seguente consentono di determinare quando il metodo in base alle caratteristiche di hello di ogni toouse:
 
 ### <a name="azure-portal"></a>Portale di Azure
 
 * Metodo più semplice con interfaccia utente interattiva
-* Modulo per specificare valori di parametri semplici
+* Valori dei parametri semplice tooprovide modulo
 * Facilità di controllo dello stato dei processi
 * Accesso autenticato con l'accesso di Azure
 
@@ -36,29 +36,29 @@ ms.lasthandoff: 07/11/2017
 * Possibilità di inclusione in una soluzione automatizzata con più passaggi
 * Possibilità di specificare valori di parametri semplici e complessi
 * Possibilità di controllare lo stato dei processi
-* Obbligo per il client di supporto dei cmdlet di PowerShell
+* Toosupport client necessari i cmdlet di PowerShell
 * Passaggio di ConfigurationData
 * Compilazione di configurazioni che usano credenziali
 
-Una volta scelto il metodo di compilazione, è possibile seguire le rispettive procedure indicate sotto per iniziare la compilazione.
+Dopo aver scelto un metodo di compilazione, è possibile seguire procedure rispettivi di hello sotto toostart la compilazione.
 
-## <a name="compiling-a-dsc-configuration-with-the-azure-portal"></a>Compilazione di una configurazione DSC con il portale di Azure
+## <a name="compiling-a-dsc-configuration-with-hello-azure-portal"></a>La compilazione di una configurazione DSC con hello portale di Azure
 
 1. Nell'account di Automazione fare clic su **Configurazioni DSC**.
-2. Fare clic su una configurazione per aprirne il pannello.
+2. Fare clic su una configurazione tooopen il pannello.
 3. Fare clic su **Compila**.
-4. Se la configurazione non ha alcun parametro, verrà richiesto di confermare se compilarla. Se la configurazione contiene parametri, verrà aperto il pannello **Compila configurazione** in cui sarà possibile specificare i valori dei parametri. Per altri dettagli sui parametri, vedere la sezione [**Parametri di base**](#basic-parameters) più avanti.
-5. Viene aperto il pannello **Processo di compilazione** in cui è possibile tenere traccia dello stato del processo di compilazione e delle configurazioni dei nodi (documenti di configurazione MOF) che sono state inserite nel server di pull di Azure Automation DSC.
+4. Se la configurazione hello non ha alcun parametro, si tooconfirm richiesta se si desidera toocompile è. Se la configurazione hello include parametri, hello **configurazione compilazione** pannello verrà aperta, pertanto è possibile fornire i valori dei parametri. Vedere hello [ **parametri di base** ](#basic-parameters) sezione riportata di seguito per ulteriori informazioni sui parametri.
+5. Hello **processo di compilazione** pannello viene aperto in modo che è possibile tenere traccia dello stato del processo di compilazione hello e hello configurazioni del nodo (documenti di configurazione MOF) ha causato toobe sul Server di Pull DSC di Azure Automation hello.
 
 ## <a name="compiling-a-dsc-configuration-with-windows-powershell"></a>Compilazione di una configurazione DSC con Windows PowerShell
 
-È possibile usare [`Start-AzureRmAutomationDscCompilationJob`](/powershell/module/azurerm.automation/start-azurermautomationdsccompilationjob) per avviare la compilazione con Windows PowerShell. Il codice di esempio seguente avvia la compilazione di una configurazione DSC denominata **SampleConfig**.
+È possibile utilizzare [ `Start-AzureRmAutomationDscCompilationJob` ](/powershell/module/azurerm.automation/start-azurermautomationdsccompilationjob) toostart la compilazione con Windows PowerShell. Hello codice di esempio seguente viene avviata la compilazione di una configurazione DSC denominata **SampleConfig**.
 
 ```powershell
 Start-AzureRmAutomationDscCompilationJob -ResourceGroupName "MyResourceGroup" -AutomationAccountName "MyAutomationAccount" -ConfigurationName "SampleConfig"
 ```
 
-`Start-AzureRmAutomationDscCompilationJob` restituisce un oggetto processo di compilazione che è possibile usare per tenere traccia dello stato. È quindi possibile usare questo oggetto processo di compilazione con [`Get-AzureRmAutomationDscCompilationJob`](/powershell/module/azurerm.automation/get-azurermautomationdsccompilationjob) per determinare lo stato del processo di compilazione e con [`Get-AzureRmAutomationDscCompilationJobOutput`](/powershell/module/azurerm.automation/get-azurermautomationdsccompilationjoboutput) per visualizzarne i flussi (output). Il codice di esempio seguente avvia la compilazione della configurazione **SampleConfig** , attende che venga completata e quindi ne visualizza i flussi.
+`Start-AzureRmAutomationDscCompilationJob`oggetto che è possibile utilizzare tootrack lo stato del processo restituisce una compilazione. È quindi possibile utilizzare questo oggetto processo di compilazione con [ `Get-AzureRmAutomationDscCompilationJob` ](/powershell/module/azurerm.automation/get-azurermautomationdsccompilationjob) stato hello toodetermine del processo di compilazione, hello e [ `Get-AzureRmAutomationDscCompilationJobOutput` ](/powershell/module/azurerm.automation/get-azurermautomationdsccompilationjoboutput) tooview dei flussi (output). Hello codice di esempio seguente viene avviata la compilazione di hello **SampleConfig** configurazione, è in attesa fino a quando non è stata completata e quindi Visualizza dei flussi.
 
 ```powershell
 $CompilationJob = Start-AzureRmAutomationDscCompilationJob -ResourceGroupName "MyResourceGroup" -AutomationAccountName "MyAutomationAccount" -ConfigurationName "SampleConfig"
@@ -73,9 +73,9 @@ $CompilationJob | Get-AzureRmAutomationDscCompilationJobOutput –Stream Any
 ```
 
 ## <a name="basic-parameters"></a>Parametri di base
-La dichiarazione dei parametri nelle configurazioni DSC, inclusi i tipi e le proprietà dei parametri, funziona esattamente come nei runbook di Automazione di Azure. Per altre informazioni sui parametri dei runbook, vedere [Avvio di un Runbook in Automazione di Azure](automation-starting-a-runbook.md) .
+Dichiarazione di parametro nelle configurazioni DSC, inclusi i tipi di parametro e le proprietà, works hello stesso come runbook di automazione di Azure. Vedere [avvio di un runbook in automazione di Azure](automation-starting-a-runbook.md) toolearn ulteriori informazioni sui parametri di runbook.
 
-L'esempio seguente usa due parametri denominati **FeatureName** e **IsPresent**, per determinare i valori delle proprietà nella configurazione del nodo **ParametersExample.sample**, generati durante la compilazione.
+esempio Hello utilizza due parametri denominati **FeatureName** e **IsPresent**, i valori hello toodetermine delle proprietà in hello **ParametersExample.sample** nodo configurazione, generata durante la compilazione.
 
 ```powershell
 Configuration ParametersExample
@@ -106,17 +106,17 @@ Configuration ParametersExample
 }
 ```
 
-È possibile compilare configurazioni DSC che usano parametri di base nel portale di Automation DSC per Azure o con Azure PowerShell:
+È possibile compilare le configurazioni DSC che utilizzano parametri di base nel portale di Azure Automation DSC hello o con Azure PowerShell:
 
 ### <a name="portal"></a>di Microsoft Azure
 
-Nel portale è possibile immettere i valori dei parametri dopo avere fatto clic su **Compila**.
+Nel portale di hello, è possibile immettere i valori dei parametri dopo aver fatto clic **compilare**.
 
 ![testo alternativo](./media/automation-dsc-compile/DSC_compiling_1.png)
 
 ### <a name="powershell"></a>PowerShell
 
-PowerShell richiede i parametri in un elemento [hashtable](http://technet.microsoft.com/library/hh847780.aspx) dove la chiave corrisponde al nome del parametro e il valore è uguale al valore del parametro.
+PowerShell richiede i parametri in un [hashtable](http://technet.microsoft.com/library/hh847780.aspx) dove hello chiave corrisponde a nome del parametro hello e valore hello è uguale a valore del parametro hello.
 
 ```powershell
 $Parameters = @{
@@ -130,12 +130,12 @@ Start-AzureRmAutomationDscCompilationJob -ResourceGroupName "MyResourceGroup" -A
 Per informazioni sul passaggio di PSCredentials come parametri, vedere <a href="#credential-assets">**Asset credenziali**</a> più avanti.
 
 ## <a name="configurationdata"></a>ConfigurationData
-**ConfigurationData** consente di separare la configurazione strutturale dalla configurazione specifica di qualsiasi ambiente mentre si usa PowerShell DSC. Vedere il blog relativo alla [distinzione tra "cosa" e "dove" in PowerShell DSC](http://blogs.msdn.com/b/powershell/archive/2014/01/09/continuous-deployment-using-dsc-with-minimal-change.aspx) per altre informazioni su **ConfigurationData**.
+**ConfigurationData** consente la configurazione strutturale di tooseparate da qualsiasi configurazione dell'ambiente specifico durante l'utilizzo di PowerShell DSC. Vedere [separazione "Novità" da "Dove" in PowerShell DSC](http://blogs.msdn.com/b/powershell/archive/2014/01/09/continuous-deployment-using-dsc-with-minimal-change.aspx) toolearn ulteriori informazioni sulla **ConfigurationData**.
 
 > [!NOTE]
-> È possibile usare **ConfigurationData** quando si compila in Azure Automation DSC con Azure PowerShell, ma non nel portale di Azure.
+> È possibile utilizzare **ConfigurationData** durante la compilazione in Automation DSC per Azure con Azure PowerShell, ma non nel portale di Azure hello.
 
-La configurazione DSC di esempio seguente usa **ConfigurationData** con le parole chiave **$ConfigurationData** e **$AllNodes**. Per questo esempio sarà necessario anche il [modulo **xWebAdministration**](https://www.powershellgallery.com/packages/xWebAdministration/):
+Hello configurazione DSC di esempio seguente viene utilizzato **ConfigurationData** tramite hello **$ConfigurationData** e **$AllNodes** parole chiave. È anche necessario hello [ **xWebAdministration** modulo](https://www.powershellgallery.com/packages/xWebAdministration/) per questo esempio:
 
 ```powershell
 Configuration ConfigurationDataSample
@@ -156,7 +156,7 @@ Configuration ConfigurationDataSample
 }
 ```
 
-È possibile compilare la configurazione DSC precedente con PowerShell. Il cmdlet di PowerShell seguente aggiunge due configurazioni di nodo al server di pull di Automation DSC per Azure, **ConfigurationDataSample.MyVM1** e **ConfigurationDataSample.MyVM3**:
+È possibile compilare una configurazione di DSC hello sopra con PowerShell. Hello sotto PowerShell aggiunge due nodo configurazioni toohello Server di Pull DSC di Azure Automation: **ConfigurationDataSample.MyVM1** e **ConfigurationDataSample.MyVM3**:
 
 ```powershell
 $ConfigData = @{
@@ -183,9 +183,9 @@ $ConfigData = @{
 Start-AzureRmAutomationDscCompilationJob -ResourceGroupName "MyResourceGroup" -AutomationAccountName "MyAutomationAccount" -ConfigurationName "ConfigurationDataSample" -ConfigurationData $ConfigData
 ```
 
-## <a name="assets"></a>asset
+## <a name="assets"></a>Asset
 
-I riferimenti agli asset sono gli stessi nelle configurazioni di Azure Automation DSC e nei runbook. Per altre informazioni, vedere quanto segue:
+I riferimenti di asset vengono hello stesso nei runbook e le configurazioni DSC di automazione di Azure. Vedere hello seguenti per ulteriori informazioni:
 
 * [Certificati](automation-certificates.md)
 * [Connessioni](automation-connections.md)
@@ -194,13 +194,13 @@ I riferimenti agli asset sono gli stessi nelle configurazioni di Azure Automatio
 
 ### <a name="credential-assets"></a>Asset credenziali
 
-Anche se le configurazioni DSC in Automazione di Azure possono fare riferimento ad asset di credenziali con **Get-AzureRmAutomationCredential**, gli asset di credenziali possono essere passati anche con i parametri, se necessario. Se una configurazione accetta un parametro di tipo **PSCredential** , è necessario passare il nome stringa di un asset di credenziali di Automazione di Azure come valore di tale parametro, invece di un oggetto PSCredential. In background, l'asset credenziali di Automazione di Azure con tale nome verrà recuperato e passato alla configurazione.
+Anche se le configurazioni DSC in Automazione di Azure possono fare riferimento ad asset di credenziali con **Get-AzureRmAutomationCredential**, gli asset di credenziali possono essere passati anche con i parametri, se necessario. Se una configurazione accetta un parametro di **PSCredential** digitare, quindi è necessario nome di stringa hello toopass di un asset delle credenziali di automazione di Azure come valore del parametro che, anziché un oggetto PSCredential. Background hello, asset delle credenziali di automazione di Azure hello con tale nome verrà recuperato e passato toohello configurazione.
 
-Per garantire la sicurezza delle credenziali nelle configurazioni dei nodi (documenti di configurazione MOF), è necessario crittografare le credenziali nel file MOF delle configurazioni dei nodi. Automazione di Azure va oltre e crittografa l'intero file MOF. Attualmente è però necessario comunicare a PowerShell DSC che l'output delle credenziali in testo normale durante la generazione dei file MOF delle configurazioni dei nodi è corretto, perché PowerShell DSC non sa che dopo la generazione Automazione di Azure crittograferà l'intero file MOF tramite un processo di compilazione.
+Mantenendo le credenziali protette in configurazioni del nodo (documenti di configurazione MOF) richiede la crittografia delle credenziali hello nel file MOF di configurazione nodo hello. Automazione di Azure accetta ulteriormente questo passaggio e crittografa tutto il file MOF hello. Tuttavia, attualmente è necessario indicare PowerShell DSC è accettabile per le credenziali toobe output in formato testo normale durante la generazione del file MOF di configurazione nodo, perché DSC PowerShell non riconosce che è possibile che automazione di Azure verrà crittografia intero file MOF hello dopo il generazione tramite un processo di compilazione.
 
-Per comunicare a PowerShell DSC che l'output delle credenziali in testo normale nei file MOF delle configurazioni dei nodi generati è corretto, è possibile usare [**ConfigurationData**](#configurationdata). È consigliabile passare `PSDscAllowPlainTextPassword = $true` tramite **ConfigurationData** per il nome di ogni blocco di nodi visualizzato nella configurazione DSC che usa le credenziali.
+È possibile indicare che è per le credenziali toobe restituiti in testo normale nella configurazione del nodo hello generato i file MOF DSC PowerShell utilizzando [ **ConfigurationData**](#configurationdata). È necessario passare `PSDscAllowPlainTextPassword = $true` tramite **ConfigurationData** per nome di ogni nodo del blocco che viene visualizzato nella configurazione DSC hello e utilizza le credenziali.
 
-L'esempio seguente mostra una configurazione DSC che usa un asset credenziali di Automazione.
+Hello seguente viene illustrata una configurazione DSC che utilizza un asset delle credenziali di automazione.
 
 ```powershell
 Configuration CredentialSample
@@ -219,7 +219,7 @@ Configuration CredentialSample
 }
 ```
 
-È possibile compilare la configurazione DSC precedente con PowerShell. Il cmdlet di PowerShell seguente aggiunge due configurazioni del nodo al server di pull di Automation DSC per Azure, **CredentialSample.MyVM1** e **CredentialSample.MyVM2**.
+È possibile compilare una configurazione di DSC hello sopra con PowerShell. Hello sotto PowerShell aggiunge due nodo configurazioni toohello Server di Pull DSC di Azure Automation: **CredentialSample.MyVM1** e **CredentialSample.MyVM2**.
 
 ```powershell
 $ConfigData = @{
@@ -243,31 +243,31 @@ Start-AzureRmAutomationDscCompilationJob -ResourceGroupName "MyResourceGroup" -A
 ## <a name="importing-node-configurations"></a>Importazione delle configurazioni di nodo
 
 È anche possibile importare configurazioni di nodo (MOF) compilate all'esterno di Azure. Uno dei vantaggi di questa operazione consiste nel fatto che le configurazioni di nodo possono essere firmate.
-Una configurazione del nodo firmata viene verificata in locale in un nodo gestito dall'agente DSC, garantendo che la configurazione applicata al nodo provenga da una fonte autorizzata.
+Una configurazione di un nodo con segno viene verificata in locale in un nodo gestito da agente hello DSC, garantendo che la configurazione di hello viene applicato toohello nodo proviene da un'origine autorizzata.
 
 > [!NOTE]
 > È possibile importare configurazioni firmate nell'account di Automazione di Azure, che tuttavia attualmente non supporta la compilazione di configurazioni firmate.
 
 > [!NOTE]
-> Il file di configurazione del nodo deve essere superiore a 1 MB per consentire l'importazione in Automazione di Azure.
+> Un file di configurazione del nodo deve essere non maggiore di 1 MB tooallow è toobe importati in automazione di Azure.
 
-Altre informazioni su come firmare le configurazioni del nodo firmate sono reperibili all'indirizzo: https://msdn.microsoft.com/en-us/powershell/wmf/5.1/dsc-improvements#how-to-sign-configuration-and-module.
+È possibile ottenere informazioni come configurazioni del nodo toosign in https://msdn.microsoft.com/en-us/powershell/wmf/5.1/dsc-improvements#how-to-sign-configuration-and-module.
 
-### <a name="importing-a-node-configuration-in-the-azure-portal"></a>Importazione di una configurazione del nodo nel portale di Azure
+### <a name="importing-a-node-configuration-in-hello-azure-portal"></a>Importare una configurazione del nodo in hello portale di Azure
 
 1. Nell'account di Automazione fare clic su **Configurazioni del nodo DSC**.
 
     ![Configurazioni del nodo DSC](./media/automation-dsc-compile/node-config.png)
-2. Nel pannello **Configurazioni del nodo DSC** fare clic su **Add a NodeConfiguration** (Aggiungi una configurazione nodo).
-3. Nel pannello **Importa** fare clic sull'icona della cartella accanto alla casella di testo **Node Configuration File** (File di configurazione nodo) per cercare un file di configurazione del nodo (MOF) nel computer locale.
+2. In hello **configurazioni del nodo DSC** pannello, fare clic su **aggiungere un NodeConfiguration**.
+3. In hello **importazione** pannello, fare clic su hello cartella icona Avanti toohello **File di configurazione nodo** toobrowse casella di testo per un file di configurazione del nodo (MOF) nel computer locale.
 
     ![Cercare il file locale](./media/automation-dsc-compile/import-browse.png)
-4. Immettere un nome nella casella di testo **Nome configurazione**. Il nome deve corrispondere al nome della configurazione da cui è stata compilata la configurazione del nodo.
+4. Immettere un nome in hello **nome configurazione** casella di testo. Questo nome deve corrispondere il nome di hello della configurazione di hello da cui è stata compilata la configurazione di un nodo hello.
 5. Fare clic su **OK**.
 
 ### <a name="importing-a-node-configuration-with-powershell"></a>Importazione di una configurazione del nodo con PowerShell
 
-È possibile usare il cmdlet [Import-AzureRmAutomationDscNodeConfiguration](/powershell/module/azurerm.automation/import-azurermautomationdscnodeconfiguration) per importare una configurazione del nodo nell'account di automazione.
+È possibile utilizzare hello [importazione AzureRmAutomationDscNodeConfiguration](/powershell/module/azurerm.automation/import-azurermautomationdscnodeconfiguration) tooimport cmdlet una configurazione del nodo nell'account di automazione.
 
 ```powershell
 Import-AzureRmAutomationDscNodeConfiguration -AutomationAccountName "MyAutomationAccount" -ResourceGroupName "MyResourceGroup" -ConfigurationName "MyNodeConfiguration" -Path "C:\MyConfigurations\TestVM1.mof"

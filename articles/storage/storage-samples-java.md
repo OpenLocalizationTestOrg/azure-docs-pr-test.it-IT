@@ -1,6 +1,6 @@
 ---
-title: Esempi di Archiviazione di Azure che usano Java | Documentazione Microsoft
-description: Visualizzare, scaricare ed eseguire codici di esempio e applicazioni per l'Archiviazione di Azure. Individuare esempi introduttivi per BLOB, code, tabelle e file usando le librerie client di archiviazione Java.
+title: esempi di archiviazione aaaAzure Usa Java | Documenti Microsoft
+description: Visualizzare, scaricare ed eseguire codici di esempio e applicazioni per l'Archiviazione di Azure. Individuare introduzione esempi per BLOB, code, tabelle e file, utilizzando le librerie client di archiviazione di hello Java.
 services: storage
 documentationcenter: na
 author: seguler
@@ -14,17 +14,17 @@ ms.tgt_pltfrm: na
 ms.workload: storage
 ms.date: 01/12/2017
 ms.author: seguler
-ms.openlocfilehash: 98e6022062b4ef5b5c71b54a0e94775b925d216b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e3b8fbe86e82dd58c2a13a3c68760cbf6e9a6e4b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-storage-samples-using-java"></a>Esempi di Archiviazione di Azure che usano Java
 
 ## <a name="java-sample-index"></a>Indice degli esempi Java
 
-La tabella seguente fornisce una panoramica del repository di esempi e degli scenari presentati in ogni esempio. Fare clic sui collegamenti per visualizzare il codice di esempio corrispondente in GitHub.
+Hello nella tabella seguente viene fornita una panoramica di esempi del repository e hello scenari analizzate in ogni esempio. Fare clic su hello collegamenti tooview hello corrispondente codice di esempio in GitHub.
 
 <table style="font-size:90%"><thead><tr><th style="font-size:110%">Endpoint</th><th style="font-size:110%">Scenario</th><th style="font-size:110%">Codice di esempio</th></tr></thead><tbody> 
 <tr> 
@@ -197,13 +197,13 @@ La tabella seguente fornisce una panoramica del repository di esempi e degli sce
 
 ## <a name="azure-code-samples-library"></a>Libreria di esempi di codice per Azure
 
-Per visualizzare la libreria completa, accedere alla libreria [Esempi di codice di Azure](https://azure.microsoft.com/resources/samples/?service=storage), nella quale sono disponibili esempi per Archiviazione di Azure scaricabili ed eseguibili in locale. La libreria degli esempi di codice fornisce il codice di esempio in formato .zip. In alternativa, è possibile esplorare e clonare l'archivio GitHub per ogni esempio.
+libreria di esempio completo di hello tooview, andare toohello [esempi di codice di Azure](https://azure.microsoft.com/resources/samples/?service=storage) libreria che sono inclusi esempi per l'archiviazione di Azure che è possibile scaricare ed eseguire in locale. Libreria di esempio di codice Hello fornisce il codice di esempio in formato zip. In alternativa, è possibile esplorare e clonare il repository GitHub hello per ogni esempio.
 
 [!INCLUDE [storage-java-samples-include](../../includes/storage-java-samples-include.md)]
 
 ## <a name="getting-started-guides"></a>Guide introduttive
 
-Per istruzioni su come installare e iniziare a utilizzare le librerie client di Archiviazione di Azure, consultare le seguenti guide.
+Estrarre hello seguenti guide se si sta cercando di istruzioni su come tooinstall e iniziare a utilizzare hello le librerie Client di archiviazione di Azure.
 
 * [Getting Started with Azure Blob Service in Java](storage-java-how-to-use-blob-storage.md) (Introduzione al servizio BLOB di Azure in Java)
 * [Getting Started with Azure Queue Service in Java](storage-java-how-to-use-queue-storage.md) (Introduzione al servizio di accodamento di Azure in Java)

@@ -1,6 +1,6 @@
 ---
-title: Come configurare un accesso Single Sign-On basato su password per un'applicazione non inclusa nella raccolta | Microsoft Docs
-description: "Come configurare un'applicazione personalizzata per un accesso Single Sign-On sicuro basato su password quando non è elencata nella raccolta delle applicazioni di Azure AD"
+title: aaaHow tooconfigure password single sign-on per un applicationn non raccolta | Documenti Microsoft
+description: "Come tooconfigure un'applicazione non raccolta personalizzata per proteggere basato su password single sign-on quando non è elencato nella raccolta di applicazioni Azure AD hello"
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -13,179 +13,179 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
-ms.openlocfilehash: f629ec99824199306ebf825901beaa99d83d434d
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: e3d0e658f792a0a63110a198811edc66acd6ccf4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-configure-password-single-sign-on-for-a-non-gallery-application"></a>Come configurare un accesso Single Sign-On basato su password per un'applicazione non inclusa nella raccolta
+# <a name="how-tooconfigure-password-single-sign-on-for-a-non-gallery-application"></a>Come password tooconfigure single sign-on per un'applicazione non-raccolta
 
-Oltre alle applicazioni della raccolta di Azure AD, è anche possibile aggiungere un'**applicazione non inclusa nella raccolta**. Tramite questa funzionalità, è possibile aggiungere qualsiasi applicazione che esiste già nell'organizzazione o qualsiasi applicazione di terze parti che potrebbe essere usata da un fornitore che non fa parte della [raccolta di applicazioni di Azure AD](https://docs.microsoft.com/azure/active-directory/active-directory-appssoaccess-whatis#get-started-with-the-azure-ad-application-gallery).
+Inoltre scelte toohello trovato all'interno della raccolta applicazione hello Azure AD, è inoltre hello opzione tooadd un **applicazione non raccolta** quando un'applicazione hello desiderato non è elencata. Mediante questa funzionalità, è possibile aggiungere qualsiasi applicazione che esiste già all'interno dell'organizzazione o in qualsiasi applicazione di terze parti che è possibile utilizzare da un fornitore che non fa già parte di hello [raccolta di applicazioni Azure AD](https://docs.microsoft.com/azure/active-directory/active-directory-appssoaccess-whatis#get-started-with-the-azure-ad-application-gallery).
 
-Dopo aver aggiunto un'applicazione non inclusa nella raccolta, è possibile configurare il metodo Single Sign-On usato da questa applicazione selezionando l'elemento di navigazione **Single Sign-On** in un'applicazione aziendale nel [Portale di Azure](https://portal.azure.com/).
+Dopo aver aggiunto un'applicazione non raccolta, è quindi possibile configurare hello metodo Single sign-on questa applicazione usa selezionando hello **Single Sign-on** elemento di navigazione in un'applicazione aziendale in hello [portale di Azure ](https://portal.azure.com/).
 
-Uno dei metodi di accesso disponibili è l'opzione [Accesso Single Sign-On basato su password](https://docs.microsoft.com/azure/active-directory/active-directory-appssoaccess-whatis#how-does-single-sign-on-with-azure-active-directory-work). Con il metodo di **aggiungere un'applicazione non inclusa nella raccolta**, è possibile integrare qualsiasi applicazione che usa un campo di input per il nome utente e la password basati su HTML, anche se non è inclusa nel set di applicazioni preintegrate.
+Uno dei hello Single Sign-on metodi disponibili tooyou è hello [basato su Password Single Sign-on](https://docs.microsoft.com/azure/active-directory/active-directory-appssoaccess-whatis#how-does-single-sign-on-with-azure-active-directory-work) opzione. Con hello **aggiungere un'applicazione non raccolta** esperienza, è possibile integrare qualsiasi applicazione che esegue il rendering di un nome utente basato su HTML e la password anche se non è il set di applicazioni preintegrate campo, di input.
 
-A tale scopo viene usata una tecnologia di scraping delle pagine che fa parte dell'estensione del pannello di accesso. Ciò consente di rilevare automaticamente i campi di input di nome utente e password e archiviarli in modo sicuro per l'istanza dell'applicazione specifica. Eseguire quindi in modo sicuro la riproduzione di nomi utente e password per tali campi quando un utente passa all'applicazione nel pannello di accesso dell'applicazione.
+Hello questo procedimento funziona consiste in una pagina scraping tecnologia che fa parte di hello estensione del Pannello di accesso che consente di elaborare tooauto-rileva i campi di input nome utente e password, archiviarli in modo sicuro per l'istanza dell'applicazione specifici. Quindi riprodurre in modo sicuro i nomi utente e i campi di toothose password quando un utente si sposta toothat applicazioni nel Pannello di accesso dell'applicazione hello.
 
-Questo è un modo efficace per iniziare rapidamente l'integrazione di qualsiasi tipo di applicazione in Azure AD e consente di:
+Questo è un ottimo modo tooget avviato l'integrazione di qualsiasi tipo di applicazione in Azure AD rapidamente e consente di:
 
--   Integrare **qualsiasi applicazione disponibile** con il tenant di Azure AD, se usa un campo di input di nome utente e password in formato HTML
+-   Integrare **qualsiasi applicazione HelloWorld** con il tenant di Azure AD, purché il rendering di un nome utente e password campo di input HTML
 
--   Abilitare l'**accesso Single Sign-On per gli utenti** archiviando e riproducendo in modo sicuro i nomi utente e password per l'applicazione integrata con Azure AD
+-   Abilitare **Single Sign-on per gli utenti** archiviandoli in modo sicuro e riproduzione di nomi utente e password per l'applicazione hello è stata integrata con Azure AD
 
--   **Rilevare automaticamente i campi di input** per qualsiasi applicazione e rilevare manualmente tali campi usando l'estensione del browser per il pannello di accesso, non vengono trovati dal rilevamento automatico
+-   **Rilevamento automatico di input** campi per qualsiasi applicazione e consentono di toomanually rilevare tali campi utilizzando hello estensione Browser del Pannello di accesso, nel caso in cui non viene trovato il rilevamento automatico
 
--   **Supportare applicazioni che richiedono più campi di accesso** per applicazioni che richiedono non solo i campi di nome utente e password per accedere
+-   **Supporto di applicazioni che richiedono più campi Accedi** per applicazioni che richiedono più di un semplice nome utente e password campi toosign in
 
--   **Personalizzare le etichette** dei campi di input di nome utente e password visualizzati nel [pannello di accesso all'applicazione](https://docs.microsoft.com/azure/active-directory/active-directory-saas-access-panel-introduction) quando si immettono le credenziali
+-   **Personalizzare le etichette di hello** hello nome utente e password dei campi di input utente di vedere in hello [Pannello di accesso dell'applicazione](https://docs.microsoft.com/azure/active-directory/active-directory-saas-access-panel-introduction) quando si immettono le proprie credenziali
 
--   Consentire agli **utenti** di immettere i nomi utente e le password per tutti gli account di applicazioni esistenti digitati manualmente nel [pannello di accesso all'applicazione](https://docs.microsoft.com/azure/active-directory/active-directory-saas-access-panel-introduction)
+-   Consenti il **utenti** tooprovide i propri nomi utente e password per tutti gli account esistenti dell'applicazione che sta digitando manualmente su hello [Pannello di accesso dell'applicazione](https://docs.microsoft.com/azure/active-directory/active-directory-saas-access-panel-introduction)
 
--   Consentire a un **membro del gruppo aziendale** di specificare i nome utente e le password assegnati a un utente tramite la funzionalità di [accesso all'applicazione self-service](https://docs.microsoft.com/azure/active-directory/active-directory-self-service-application-access)
+-   Consentire un **membro del gruppo aziendale hello** toospecify hello utente e password utente tooa da assegnato utilizzando hello [accesso all'applicazione Self-Service](https://docs.microsoft.com/azure/active-directory/active-directory-self-service-application-access) funzionalità
 
--   Consentire a un **amministratore** di specificare i nomi utente e le password assegnati a un utente tramite la funzionalità di credenziali di aggiornamento quando [viene assegnato un utente a un'applicazione](#_How_to_configure_1)
+-   Consentire un **amministratore** funzionalità quando i nomi utente hello toospecify e le password assegnate tooa utente con credenziali di aggiornamento hello [l'assegnazione di un'applicazione tooan utente](#_How_to_configure_1)
 
--   Consentire un **amministratore** di specificare i nomi utente e le password condivisi usati da un gruppo di utenti tramite la funzionalità di credenziali di aggiornamento quando [viene assegnato un gruppo a un'applicazione](#assign-an-application-to-a-group-directly)
+-   Consentire un **amministratore** toospecify hello condiviso username o password utilizzata da un gruppo di persone con le credenziali di aggiornamento hello funzionalità quando [l'assegnazione di un'applicazione di gruppo tooan](#assign-an-application-to-a-group-directly)
 
-Di seguito viene illustrato come abilitare l'[accesso Single Sign-On basato su password](https://docs.microsoft.com/azure/active-directory/active-directory-appssoaccess-whatis#how-does-single-sign-on-with-azure-active-directory-work) per un'applicazione aggiunta usando il metodo di **aggiungere un'applicazione non inclusa nella raccolta**.
+Di seguito viene descritto come abilitare [basato su Password Single Sign-on](https://docs.microsoft.com/azure/active-directory/active-directory-appssoaccess-whatis#how-does-single-sign-on-with-azure-active-directory-work) tooany applicazione aggiungere utilizzando hello **aggiungere un'applicazione non raccolta** esperienza.
 
 ## <a name="overview-of-steps-required"></a>Panoramica dei passaggi necessari
 
-Per configurare un'applicazione della raccolta di Azure AD è necessario:
+un'applicazione dalla raccolta di Azure AD hello tooconfigure è necessario:
 
 -   [Aggiungere un'applicazione non inclusa nella raccolta](#add-a-non-gallery-application)
 
--   [Configurare l'applicazione per un accesso Single Sign-On basato su password](#configure-the-application-for-password-single-sign-on)
+-   [Configurare un'applicazione hello password single sign-on](#configure-the-application-for-password-single-sign-on)
 
--   [Assegnare l'applicazione a un utente o un gruppo](#assign-the-application-to-a-user-or-a-group)
+-   [Assegnare l'utente tooa dell'applicazione hello o un gruppo](#assign-the-application-to-a-user-or-a-group)
 
-    -   [Assegnare un utente direttamente a un'applicazione](#assign-a-user-to-an-application-directly)
+    -   [Assegnare un'applicazione tooan utente direttamente](#assign-a-user-to-an-application-directly)
 
-    -   [Assegnare un'applicazione direttamente a un gruppo ](#assign-an-application-to-a-group-directly)
+    -   [Assegnare un gruppo di applicazioni tooa direttamente](#assign-an-application-to-a-group-directly)
 
 ## <a name="add-a-non-gallery-application"></a>Aggiungere un'applicazione non inclusa nella raccolta
 
-Per aggiungere un'applicazione dalla raccolta di Azure AD, seguire questa procedura:
+un'applicazione dalla raccolta di Azure AD, hello tooadd procedura hello riportata di seguito:
 
-1.  Aprire il [portale di Azure](https://portal.azure.com) e accedere come **Amministratore globale** o **Coamministratore**.
+1.  Aprire hello [portale Azure](https://portal.azure.com) e accedere come un **amministratore globale** o **Co-amministratore**
 
-2.  Aprire l'**estensione Azure Active Directory** facendo clic su **Altri servizi** nella parte inferiore del menu di navigazione principale a sinistra.
+2.  Aprire hello **estensione di Azure Active Directory** facendo **più servizi** nella parte inferiore di hello del menu di navigazione a sinistra principale hello.
 
-3.  Digitare "**Azure Active Directory**" nella casella di ricerca filtro e selezionare l'elemento **Azure Active Directory**.
+3.  Digitare **"Azure Active Directory**" nella casella di ricerca di filtro hello e seleziona hello **Azure Active Directory** elemento.
 
-4.  Fare clic su **Applicazioni aziendali** nel menu di navigazione a sinistra di Azure Active Directory.
+4.  Fare clic su **applicazioni aziendali** dal menu di navigazione a sinistra di hello Azure Active Directory.
 
-5.  Fare clic sul pulsante **Aggiungi** nell'angolo superiore destro del pannello **Applicazioni aziendali**.
+5.  Fare clic su hello **Aggiungi** pulsante nell'angolo superiore destro di hello in hello **applicazioni aziendali** pannello
 
 6.  Fare clic su**Applicazione non nella raccolta**.
 
-7.  Immettere il nome dell'applicazione nella casella di testo **Nome**. Fare clic su **Aggiungi**.
+7.  Immettere il nome di hello dell'applicazione in hello **nome** casella di testo. Fare clic su **Aggiungi**.
 
-Dopo un breve periodo di tempo, sarà possibile visualizzare il pannello di configurazione dell'applicazione.
+Dopo un breve periodo, è il pannello di configurazione dell'applicazione in grado di toosee hello.
 
-## <a name="configure-the-application-for-password-single-sign-on"></a>Configurare l'applicazione per un accesso Single Sign-On basato su password
+## <a name="configure-hello-application-for-password-single-sign-on"></a>Configurare un'applicazione hello password single sign-on
 
-Per configurare un accesso Single Sign-On per un'applicazione, seguire i passaggi seguenti:
+tooconfigure single sign-on per un'applicazione, attenersi alla procedura hello riportata di seguito:
 
-1.  Aprire il [**portale di Azure**](https://portal.azure.com/) e accedere come **Amministratore globale** o **Coamministratore**.
+1.  Aprire hello [ **portale Azure** ](https://portal.azure.com/) e accedere come un **amministratore globale** o **Co-amministratore.**
 
-2.  Aprire l'**estensione Azure Active Directory** facendo clic su **Altri servizi** nella parte inferiore del menu di navigazione principale a sinistra.
+2.  Aprire hello **estensione di Azure Active Directory** facendo **più servizi** nella parte inferiore di hello del menu di navigazione a sinistra principale hello.
 
-3.  Digitare "**Azure Active Directory**" nella casella di ricerca filtro e selezionare l'elemento **Azure Active Directory**.
+3.  Digitare **"Azure Active Directory**" nella casella di ricerca di filtro hello e seleziona hello **Azure Active Directory** elemento.
 
-4.  Fare clic su **Applicazioni aziendali** nel menu di navigazione a sinistra di Azure Active Directory.
+4.  Fare clic su **applicazioni aziendali** dal menu di navigazione a sinistra di hello Azure Active Directory.
 
-5.  Fare clic su **Tutte le applicazioni** per visualizzare un elenco di tutte le applicazioni.
+5.  Fare clic su **tutte le applicazioni** tooview un elenco di tutte le applicazioni.
 
-  * Se l'applicazione non è inclusa nell'elenco, usare il controllo **Filtro** all'inizio dell'elenco **Tutte le applicazioni** e impostare l'opzione **Mostra** su **Tutte le applicazioni**.
+  * Se non viene visualizzata l'applicazione hello da visualizzare qui, utilizzare hello **filtro** controllo nella parte superiore di hello di hello **elenco di tutte le applicazioni** e set hello **Mostra** opzione troppo **Tutte le applicazioni.**
 
-6.  Selezionare l'applicazione per cui si vuole configurare l'accesso Single Sign-On.
+6.  Selezionare l'applicazione hello tooconfigure single sign-on.
 
-7.  Dopo il caricamento dell'applicazione, fare clic su **Single Sign-On** nel menu di navigazione a sinistra dell'applicazione.
+7.  Una volta che un'applicazione hello caricato, fare clic su hello **Single sign-on** dal menu di navigazione a sinistra dell'applicazione hello.
 
-8.  Selezionare la modalità **Accesso basato su password**.
+8.  Modalità di selezione hello **basato su Password Sign-on.**
 
-9.  Immettere l'**URL di accesso**. Questo è l'URL in cui gli utenti immettono il nome utente e la password per accedere. Verificare che i campi di accesso siano visibili nell'URL.
+9.  Immettere hello **Sign-on URL**. Si tratta hello URL in cui gli utenti immettono il nome utente e password toosign in a. Verificare i campi di accesso hello sono visibili nell'URL hello.
 
-10. Assegnare gli utenti all'applicazione.
+10. Assegnare gli utenti dell'applicazione toohello.
 
-11. È anche possibile specificare le credenziali per conto dell'utente selezionando le righe degli utenti e facendo clic su **Aggiorna credenziali**, quindi immettendo il nome utente e la password per conto degli utenti. In caso contrario, verrà richiesto agli utenti di immettere le credenziali all'avvio.
+11. Inoltre, è anche possibile fornire credenziali per conto dell'utente hello selezionando le righe di hello di utenti hello e facendo clic su **credenziali di aggiornamento** e l'immissione di nome utente hello e una password per conto degli utenti hello. In caso contrario, gli utenti in tooenter richiesta hello credenziali stessi all'avvio.
 
-## <a name="assign-a-user-to-an-application-directly"></a>Assegnare un utente direttamente a un'applicazione
+## <a name="assign-a-user-tooan-application-directly"></a>Assegnare un'applicazione tooan utente direttamente
 
-Per assegnare uno o più utenti direttamente a un'applicazione, seguire la procedura seguente:
+tooassign uno o più applicazioni tooan utenti direttamente, procedura hello riportata di seguito:
 
-1.  Aprire il [**portale di Azure**](https://portal.azure.com/) e accedere come **Amministratore globale**.
+1.  Aprire hello [ **portale Azure** ](https://portal.azure.com/) e accedere come un **amministratore globale.**
 
-2.  Aprire l'**estensione Azure Active Directory** facendo clic su **Altri servizi** nella parte inferiore del menu di navigazione principale a sinistra.
+2.  Aprire hello **estensione di Azure Active Directory** facendo **più servizi** nella parte inferiore di hello del menu di navigazione a sinistra principale hello.
 
-3.  Digitare "**Azure Active Directory**" nella casella di ricerca filtro e selezionare l'elemento **Azure Active Directory**.
+3.  Digitare **"Azure Active Directory**" nella casella di ricerca di filtro hello e seleziona hello **Azure Active Directory** elemento.
 
-4.  Fare clic su **Applicazioni aziendali** nel menu di navigazione a sinistra di Azure Active Directory.
+4.  Fare clic su **applicazioni aziendali** dal menu di navigazione a sinistra di hello Azure Active Directory.
 
-5.  Fare clic su **Tutte le applicazioni** per visualizzare un elenco di tutte le applicazioni.
+5.  Fare clic su **tutte le applicazioni** tooview un elenco di tutte le applicazioni.
 
-  * Se l'applicazione non è inclusa nell'elenco, usare il controllo **Filtro** all'inizio dell'elenco **Tutte le applicazioni** e impostare l'opzione **Mostra** su **Tutte le applicazioni**.
+  * Se non viene visualizzata l'applicazione hello da visualizzare qui, utilizzare hello **filtro** controllo nella parte superiore di hello di hello **elenco di tutte le applicazioni** e set hello **Mostra** opzione troppo **Tutte le applicazioni.**
 
-6.  Selezionare nell'elenco l'applicazione che si vuole assegnare a un utente.
+6.  Selezionare l'applicazione hello da un elenco di utenti toofrom hello tooassign.
 
-7.  Dopo il caricamento dell'applicazione, fare clic su **Utenti e gruppi** nel menu di navigazione a sinistra dell'applicazione.
+7.  Una volta che un'applicazione hello caricato, fare clic su **utenti e gruppi** dal menu di navigazione a sinistra dell'applicazione hello.
 
-8.  Fare clic sul pulsante **Aggiungi** nella parte superiore dell'elenco **Utenti e gruppi** per aprire il pannello **Aggiungi assegnazione**.
+8.  Fare clic su hello **Aggiungi** pulsante sopra hello **utenti e gruppi** hello tooopen elenco **Aggiungi** blade.
 
-9.  Fare clic sul selettore **Utenti e gruppi** nel pannello **Aggiungi assegnazione**.
+9.  Fare clic su hello **utenti e gruppi** selettore di hello **Aggiungi** blade.
 
-10. Nella casella di ricerca **Cerca per nome o indirizzo di posta** digitare il **nome completo**  o l'**indirizzo di posta elettronica** dell'utente oggetto dell'assegnazione.
+10. Tipo di hello **nome completo** o **indirizzo di posta elettronica** dell'utente hello si è interessati nell'assegnazione di hello **ricerca per nome o indirizzo di posta** casella di ricerca.
 
-11. Passare il puntatore sull'**utente** nell'elenco per visualizzare una **casella di controllo**. Fare clic sulla casella di controllo accanto alla foto o al logo del profilo dell'utente per aggiungere l'utente all'elenco **Selezionato**.
+11. Passare il mouse su hello **utente** in hello elenco tooreveal un **casella di controllo**. Fare clic su tooadd di foto o logo profilo hello casella di controllo successivo toohello dell'utente il toohello utente **selezionati** elenco.
 
-12. **Facoltativo:** se si vuole **aggiungere più di un utente**, digitare un altro **nome completo** o **indirizzo di posta elettronica** nella casella di ricerca **Cerca per nome o indirizzo di posta** e fare clic sulla casella di controllo per aggiungere l'utente all'elenco **selezionato**.
+12. **Facoltativo:** se si desidera troppo**aggiungere più di un utente**, in un altro tipo di **nome completo** o **indirizzo di posta elettronica** in hello **Cerca per nome o l'indirizzo di posta elettronica** casella di ricerca e fare clic su questo toohello utente hello casella di controllo tooadd **selezionati** elenco.
 
-13. Dopo avere selezionato gli utenti, fare clic sul pulsante **Seleziona** per aggiungerli all'elenco di utenti e gruppi da assegnare all'applicazione.
+13. Al termine della selezione utenti, fare clic su hello **selezionare** tooadd pulsante li toohello elenco di utenti e gruppi toobe assegnato toohello applicazione.
 
-14. **Facoltativo:** fare clic sul selettore **Seleziona ruolo** nel pannello **Aggiungi assegnazione** per scegliere un ruolo da assegnare agli utenti selezionati.
+14. **Facoltativo:** fare clic su hello **selezionare il ruolo** selettore di hello **Aggiungi** pannello tooselect un ruolo tooassign toohello utenti selezionati.
 
-15. Fare clic sul pulsante **Assegna** per assegnare l'applicazione agli utenti selezionati.
+15. Fare clic su hello **assegnare** pulsante tooassign hello applicazione toohello gli utenti selezionati.
 
-## <a name="assign-an-application-to-a-group-directly"></a>Assegnare un'applicazione direttamente a un gruppo
+## <a name="assign-an-application-tooa-group-directly"></a>Assegnare un gruppo di applicazioni tooa direttamente
 
-Per assegnare uno o più gruppi direttamente a un'applicazione, seguire la procedura seguente:
+tooassign uno o più gruppi di applicazioni tooan direttamente, seguire hello passaggi riportati di seguito:
 
-1.  Aprire il [**Portale di Azure**](https://portal.azure.com/) e accedere come **Amministratore globale**.
+1.  Aprire hello [ **portale Azure** ](https://portal.azure.com/) e accedere come un **amministratore globale.**
 
-2.  Aprire l'**estensione Azure Active Directory** facendo clic su **Altri servizi** nella parte inferiore del menu di navigazione principale a sinistra.
+2.  Aprire hello **estensione di Azure Active Directory** facendo **più servizi** nella parte inferiore di hello del menu di navigazione a sinistra principale hello.
 
-3.  Digitare "**Azure Active Directory**" nella casella di ricerca filtro e selezionare l'elemento **Azure Active Directory**.
+3.  Digitare **"Azure Active Directory**" nella casella di ricerca di filtro hello e seleziona hello **Azure Active Directory** elemento.
 
-4.  Fare clic su **Applicazioni aziendali** nel menu di navigazione a sinistra di Azure Active Directory.
+4.  Fare clic su **applicazioni aziendali** dal menu di navigazione a sinistra di hello Azure Active Directory.
 
-5.  Fare clic su **Tutte le applicazioni** per visualizzare un elenco di tutte le applicazioni.
+5.  Fare clic su **tutte le applicazioni** tooview un elenco di tutte le applicazioni.
 
-  * Se l'applicazione non è inclusa nell'elenco, usare il controllo **Filtro** all'inizio dell'elenco **Tutte le applicazioni** e impostare l'opzione **Mostra** su **Tutte le applicazioni**.
+  * Se non viene visualizzata l'applicazione hello da visualizzare qui, utilizzare hello **filtro** controllo nella parte superiore di hello di hello **elenco di tutte le applicazioni** e set hello **Mostra** opzione troppo **Tutte le applicazioni.**
 
-6.  Selezionare nell'elenco l'applicazione che si vuole assegnare a un utente.
+6.  Selezionare l'applicazione hello da un elenco di utenti toofrom hello tooassign.
 
-7.  Dopo il caricamento dell'applicazione, fare clic su **Utenti e gruppi** nel menu di navigazione a sinistra dell'applicazione.
+7.  Una volta che un'applicazione hello caricato, fare clic su **utenti e gruppi** dal menu di navigazione a sinistra dell'applicazione hello.
 
-8.  Fare clic sul pulsante **Aggiungi** nella parte superiore dell'elenco **Utenti e gruppi** per aprire il pannello **Aggiungi assegnazione**.
+8.  Fare clic su hello **Aggiungi** pulsante sopra hello **utenti e gruppi** hello tooopen elenco **Aggiungi** blade.
 
-9.  Fare clic sul selettore **Utenti e gruppi** nel pannello **Aggiungi assegnazione**.
+9.  Fare clic su hello **utenti e gruppi** selettore di hello **Aggiungi** blade.
 
-10. Nella casella di ricerca **Cerca per nome o indirizzo di posta** digitare il **nome completo del gruppo** a cui si vuole eseguire l'assegnazione.
+10. Tipo di hello **nome del gruppo completo** del gruppo di hello si è interessati nell'assegnazione di hello **ricerca per nome o indirizzo di posta** casella di ricerca.
 
-11. Posizionare il puntatore sul **gruppo** nell'elenco per visualizzare una **casella di controllo**. Fare clic sulla casella di controllo accanto alla foto o al logo del profilo del gruppo per aggiungere il gruppo all'elenco **selezionato**.
+11. Passare il mouse su hello **gruppo** in hello elenco tooreveal un **casella di controllo**. Fare clic su tooadd di foto o logo profilo hello casella di controllo successivo toohello del gruppo toohello l'utente **selezionati** elenco.
 
-12. **Facoltativo:** se si vuole **aggiungere più di un gruppo**, digitare un altro **nome completo di gruppo** nella casella di ricerca **Cerca per nome o indirizzo di posta** e fare clic sulla casella di controllo per aggiungere il gruppo all'elenco **selezionato**.
+12. **Facoltativo:** se si desidera troppo**aggiungere più di un gruppo**, in un altro tipo di **nome del gruppo completo** in hello **ricerca per nome o indirizzo di posta** casella di ricerca Fare clic su hello casella di controllo tooadd toohello questo gruppo **selezionati** elenco.
 
-13. Dopo avere selezionato i gruppi, fare clic sul pulsante **Seleziona** per aggiungerli all'elenco di utenti e gruppi da assegnare all'applicazione.
+13. Al termine della selezione gruppi, fare clic su hello **selezionare** tooadd pulsante li toohello elenco di utenti e gruppi toobe assegnato toohello applicazione.
 
-14. **Facoltativo:** fare clic sul selettore **Seleziona ruolo** nel pannello **Aggiungi assegnazione** per scegliere un ruolo da assegnare ai gruppi selezionati.
+14. **Facoltativo:** fare clic su hello **selezionare il ruolo** selettore di hello **Aggiungi** pannello tooselect un toohello tooassign ruolo gruppi di sicurezza selezionato.
 
-15. Fare clic sul pulsante **Assegna** per assegnare l'applicazione ai gruppi selezionati.
+15. Fare clic su hello **assegnare** pulsante tooassign hello applicazione toohello gruppi selezionati.
 
-Dopo un breve periodo di tempo, gli utenti selezionati saranno in grado di avviare queste applicazioni nel riquadro di accesso.
+Dopo un breve periodo, gli utenti di hello selezionato toolaunch in grado di queste applicazioni in hello Pannello di accesso.
 
 ## <a name="next-steps"></a>Passaggi successivi
-[Fornire l'accesso Single Sign-On alle app con il proxy di applicazione](active-directory-application-proxy-sso-using-kcd.md)
+[Fornire le applicazioni single sign-on tooyour con Proxy dell'applicazione](active-directory-application-proxy-sso-using-kcd.md)

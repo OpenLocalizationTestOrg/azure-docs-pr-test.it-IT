@@ -1,6 +1,6 @@
 ---
 title: 'Esercitazione: Integrazione di Azure Active Directory con Nexonia | Microsoft Docs'
-description: Informazioni su come configurare l'accesso Single Sign-On tra Azure Active Directory e Nexonia.
+description: Informazioni su come tooconfigure single sign-on tra Azure Active Directory e Nexonia.
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,113 +13,113 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/1/2017
 ms.author: jeedes
-ms.openlocfilehash: 1370fa64c2ddc25d3121c567ceea4828b1e50921
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3778804084a7989414260bae5654cf76e9ccca6d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-nexonia"></a>Esercitazione: Integrazione di Azure Active Directory con Nexonia
 
-In questa esercitazione è descritto come integrare Nexonia con Azure Active Directory (Azure AD).
+In questa esercitazione, è illustrato come toointegrate Nexonia con Azure Active Directory (Azure AD).
 
-L'integrazione di Nexonia con Azure AD offre i vantaggi seguenti:
+Integrazione Nexonia con Azure AD fornisce hello seguenti vantaggi:
 
-- È possibile controllare in Azure AD chi può accedere a Nexonia
-- È possibile abilitare gli utenti per l'accesso automatico a Nexonia (Single Sign-On) con i propri account Azure AD
-- È possibile gestire gli account in un'unica posizione centrale: il portale di Azure.
+- È possibile controllare in Azure AD che ha accesso tooNexonia
+- È possibile abilitare l'utenti tooautomatically get connesso tooNexonia (Single Sign-On) con i propri account Azure AD
+- È possibile gestire gli account in un'unica posizione centrale - hello portale di Azure
 
-Per altre informazioni sull'integrazione di app SaaS con Azure Active Directory, vedere: [Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory](active-directory-appssoaccess-whatis.md).
+Se si desiderano tooknow ulteriori informazioni sull'integrazione dell'applicazione SaaS con Azure AD, vedere. [Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-Per configurare l'integrazione di Azure AD con Nexonia, sono necessari gli elementi seguenti:
+integrazione di Azure AD con Nexonia tooconfigure, è necessario hello seguenti elementi:
 
 - Sottoscrizione di Azure AD.
 - Sottoscrizione di Nexonia abilitata per l'accesso Single Sign-On
 
 > [!NOTE]
-> Non è consigliabile usare un ambiente di produzione per testare i passaggi di questa esercitazione.
+> hello tootest i passaggi in questa esercitazione, è consigliabile utilizzare un ambiente di produzione.
 
-A questo scopo, è consigliabile seguire le indicazioni seguenti:
+passaggi di hello tootest in questa esercitazione, è necessario seguire questi suggerimenti:
 
 - Non usare l'ambiente di produzione a meno che non sia necessario.
 - Se non si dispone di un ambiente di prova di Azure AD, è possibile ottenere una versione di valutazione di un mese [qui](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Descrizione dello scenario
-In questa esercitazione viene eseguito il test dell'accesso Single Sign-On di Azure AD in un ambiente di test. Lo scenario descritto in questa esercitazione prevede i due blocchi predefiniti seguenti:
+In questa esercitazione viene eseguito il test dell'accesso Single Sign-On di Azure AD in un ambiente di test. scenario di Hello descritto in questa esercitazione è composto da due componenti principali:
 
-1. Aggiunta di Nexonia dalla raccolta
+1. Aggiunta di Nexonia dalla raccolta hello
 2. Configurazione e test dell'accesso Single Sign-On di Azure AD
 
-## <a name="adding-nexonia-from-the-gallery"></a>Aggiunta di Nexonia dalla raccolta
-Per configurare l'integrazione di Nexonia in Azure AD, è necessario aggiungerla dalla raccolta al proprio elenco di app SaaS gestite.
+## <a name="adding-nexonia-from-hello-gallery"></a>Aggiunta di Nexonia dalla raccolta hello
+integrazione hello tooconfigure di Nexonia in Azure AD, è necessario tooadd Nexonia dall'elenco di tooyour hello raccolta di App SaaS gestite.
 
-**Per aggiungere Nexonia dalla raccolta, seguire questa procedura:**
+**tooadd Nexonia dalla raccolta di hello, eseguire hello alla procedura seguente:**
 
-1. Nel **[portale di Azure](https://portal.azure.com)** fare clic sull'icona di **Azure Active Directory** nel riquadro di spostamento sinistro. 
+1. In hello  **[portale di Azure](https://portal.azure.com)**via hello del Pannello di navigazione a sinistra, fare clic su **Azure Active Directory** icona. 
 
     ![Active Directory][1]
 
-2. Passare ad **Applicazioni aziendali**. Andare quindi a **Tutte le applicazioni**.
+2. Passare troppo**applicazioni aziendali**. Quindi andare troppo**tutte le applicazioni**.
 
     ![Applicazioni][2]
     
-3. Fare clic sul pulsante **Nuova applicazione** nella parte superiore della finestra di dialogo per aggiungere una nuova applicazione.
+3. tooadd nuova applicazione, fare clic su **nuova applicazione** pulsante nella parte superiore di hello della finestra di dialogo.
 
     ![Applicazioni][3]
 
-4. Nella casella di ricerca digitare **Nexonia**.
+4. Nella casella di ricerca hello, digitare **Nexonia**.
 
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-nexonia-tutorial/tutorial_nexonia_search.png)
 
-5. Nel pannello dei risultati selezionare **Nexonia** e quindi fare clic sul pulsante **Aggiungi** per aggiungere l'applicazione.
+5. Nel riquadro dei risultati hello, selezionare **Nexonia**, quindi fare clic su **Aggiungi** pulsante applicazione hello tooadd.
 
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-nexonia-tutorial/tutorial_nexonia_addfromgallery.png)
 
 ##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>Configurazione e test dell'accesso Single Sign-On di Azure AD
 In questa sezione viene configurato e testato l'accesso Single Sign-On di Azure AD con Nexonia in base a un utente test di nome "Britta Simon".
 
-Per il funzionamento dell'accesso Single Sign-On, Azure AD deve conoscere qual è l'utente di Nexonia che corrisponde a un utente di Azure AD. In altre parole, deve essere stabilita una relazione di collegamento tra un utente di Azure AD e l'utente correlato in Nexonia.
+Per toowork di accesso singolo, Azure AD deve tooknow quale utente controparte hello in Nexonia è tooa utente in Azure AD. In altre parole, una relazione di collegamento tra un utente di Azure Active Directory e l'utente correlato di hello in Nexonia deve toobe stabilita.
 
-Per stabilire la relazione di collegamento, in Nexonia assegnare il valore di **nome utente** in Azure AD come valore dell'attributo **Username**.
+In Nexonia, assegnare il valore di hello di hello **nome utente** in Azure AD come valore hello hello **Username** tooestablish relazione di collegamento hello.
 
-Per configurare e testare l'accesso Single Sign-On di Azure AD con Nexonia, è necessario completare i blocchi predefiniti seguenti:
+tooconfigure e prova AD Azure single sign-on con Nexonia, è necessario hello toocomplete seguenti blocchi predefiniti:
 
-1. **[Configurazione dell'accesso Single Sign-On di Azure AD](#configuring-azure-ad-single-sign-on)** : per abilitare gli utenti all'uso di questa funzionalità.
-2. **[Creazione di un utente test di Azure AD](#creating-an-azure-ad-test-user)** : per testare l'accesso Single Sign-On di Azure AD con l'utente Britta Simon.
-3. **[Creazione di un utente test di Nexonia](#creating-a-nexonia-test-user)**: per avere una controparte di Britta Simon in Nexonia collegata alla relativa rappresentazione in Azure AD dell'utente.
-4. **[Assegnazione dell'utente test di Azure AD](#assigning-the-azure-ad-test-user)** : per abilitare Britta Simon all'uso dell'accesso Single Sign-On di Azure AD.
-5. **[Testing Single Sign-On](#testing-single-sign-on)** : per verificare se la configurazione funziona.
+1. **[Configurazione di Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)**  -tooenable il toouse utenti questa funzionalità.
+2. **[Creazione di un utente prova AD Azure](#creating-an-azure-ad-test-user)**  -tootest AD Azure single sign-on con Britta Simon.
+3. **[Creazione di un utente test Nexonia](#creating-a-nexonia-test-user)**  -toohave un equivalente di Britta Simon in Nexonia che è la rappresentazione toohello collegato Azure AD dell'utente.
+4. **[Assegnazione utente di prova hello Azure AD](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD accesso single sign-on.
+5. **[Test di Single Sign-On](#testing-single-sign-on)**  -tooverify hello se funzionamento della configurazione.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Configurazione dell'accesso Single Sign-On di Azure AD
 
-In questa sezione viene abilitato l'accesso Single Sign-On di Azure AD nel portale di Azure e viene configurato l'accesso Single Sign-On nell'applicazione Nexonia.
+In questa sezione, si abilita Azure AD single sign-on in hello portale di Azure e configurare l'accesso single sign-on nell'applicazione Nexonia.
 
 >[!Note]
->In caso di problemi di integrazione, fare riferimento a questo [collegamento](https://docs.microsoft.com/azure/active-directory/application-sign-in-problem-federated-sso-gallery?WT.mc_id=UI_AAD_Enterprise_Apps_SupportOrTroubleshooting) per una guida alla risoluzione dei problemi. Se non è stata trovata una soluzione, creare una richiesta di supporto dal portale di Azure.
+>Se si presentano problemi di integrazione di hello, fare riferimento a questo [collegamento](https://docs.microsoft.com/azure/active-directory/application-sign-in-problem-federated-sso-gallery?WT.mc_id=UI_AAD_Enterprise_Apps_SupportOrTroubleshooting) Guida della risoluzione dei problemi. Se non sono ancora trovati soluzione hello, quindi generare la richiesta di supporto hello dal portale di Azure.
 
-**Per configurare l'accesso Single Sign-On di Azure AD con Nexonia, seguire questa procedura:**
+**Azure AD tooconfigure single sign-on con Nexonia, eseguire hello alla procedura seguente:**
 
-1. Nella pagina di integrazione dell'applicazione **Nexonia** del portale di Azure fare clic su **Single Sign-On**.
+1. Nel portale di Azure su hello hello **Nexonia** pagina di integrazione dell'applicazione, fare clic su **Single sign-on**.
 
     ![Configura accesso Single Sign-On][4]
 
-2. Nella finestra di dialogo **Single Sign-On** selezionare **Accesso basato su SAML** per **Modalità** per abilitare l'accesso Single Sign-On.
+2. In hello **Single sign-on** finestra di dialogo Seleziona **modalità** come **basato su SAML Sign-on** tooenable single sign-on.
  
     ![Configura accesso Single Sign-On](./media/active-directory-saas-nexonia-tutorial/tutorial_nexonia_samlbase.png)
 
-3. Nella sezione **URL e dominio Nexonia** seguire questa procedura:
+3. In hello **Nexonia dominio e gli URL** seguire hello alla procedura seguente:
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-nexonia-tutorial/tutorial_nexonia_url.png)
 
-    Nella casella di testo **URL di risposta** digitare l'URL usando il modello seguente: `https://system.nexonia.com/assistant/saml.do?orgCode=<organizationcode>`
+    In hello **URL di risposta** casella di testo, digitare un URL utilizzando hello seguente modello:`https://system.nexonia.com/assistant/saml.do?orgCode=<organizationcode>`
 
     > [!NOTE] 
-    > Poiché non è reale, è necessario aggiornare questo valore con l'URL di risposta effettivo. Per ottenere tale valore, contattare il team di supporto di [Nexonia](https://nexonia.zendesk.com/hc/requests/new). 
+    > Poiché non è reale, Aggiornare questo valore con l'URL di risposta effettivo hello. Contatto [team di supporto Nexonia](https://nexonia.zendesk.com/hc/requests/new) tooget questo valore. 
 
 
-4. Nella sezione **Certificato di firma SAML** fare clic su **Certificato (Base64)** e quindi salvare il file del certificato nel computer.
+4. In hello **certificato di firma SAML** fare clic su **certificato (Base64)** e quindi salvare il file di certificato hello nel computer in uso.
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-nexonia-tutorial/tutorial_nexonia_certificate.png) 
 
@@ -127,78 +127,78 @@ In questa sezione viene abilitato l'accesso Single Sign-On di Azure AD nel porta
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-nexonia-tutorial/tutorial_general_400.png)
 
-6. Nella sezione **Configurazione di Nexonia** fare clic su **Configura Nexonia** per aprire la finestra **Configura accesso**. Copiare l'**URL di disconnessione, l'ID di entità SAML e l'URL del servizio Single Sign-On SAML** dalla sezione **Riferimento rapido.**
+6. In hello **Nexonia configurazione** fare clic su **configurare Nexonia** tooopen **Configura sign-on** finestra. Hello copia **Sign-Out URL, l'ID entità SAML e SAML Single Sign-On Service URL** da hello **sezione di riferimento rapido.**
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-nexonia-tutorial/tutorial_nexonia_configure.png) 
 
-7. Per ottenere l'accesso Single Sign-On configurato per l'applicazione, contattare il [team di supporto di Nexonia](https://nexonia.zendesk.com/hc/requests/new) e fornire i seguenti elementi:
+7. tooget SSO è configurato per l'applicazione, contattare [team di supporto Nexonia](https://nexonia.zendesk.com/hc/requests/new) e fornire loro seguente hello:
 
-    • **Certificato**
+    • hello scaricato **certificato**
 
-    • **ID entità SAML**
+    • hello **ID entità SAML**
 
-    • **URL servizio Single Sign-On SAML**
+    • hello **SAML Single Sign-On Service URL**
 
-    • **URL di disconnessione**
+    • hello **Sign-Out URL**
 
 > [!TIP]
-> Un riepilogo delle istruzioni è disponibile all'interno del [portale di Azure](https://portal.azure.com) durante la configurazione dell'app.  Dopo aver aggiunto l'app dalla sezione **Active Directory > Applicazioni aziendali** è sufficiente fare clic sulla scheda **Single Sign-On** e accedere alla documentazione incorporata tramite la sezione **Configurazione** nella parte inferiore. Altre informazioni sulla funzione di documentazione incorporata sono disponibili in [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985) (Documentazione incorporata di Azure AD).
+> È ora possibile leggere una versione di queste istruzioni all'interno di hello concisa [portale di Azure](https://portal.azure.com), mentre si stanno impostando app hello!  Dopo l'aggiunta di questa app da hello **Active Directory > applicazioni aziendali** fare semplicemente clic su hello **Single Sign-On** scheda e l'accesso hello incorporato documentazione tramite hello  **Configurazione** sezione nella parte inferiore di hello. È possibile leggere altre informazioni sulla funzionalità di documentazione embedded hello qui: [AD Azure incorporato documentazione]( https://go.microsoft.com/fwlink/?linkid=845985)
 > 
 
 
 ### <a name="creating-an-azure-ad-test-user"></a>Creazione di un utente test di Azure AD
-Questa sezione descrive come creare un utente test denominato Britta Simon nel portale di Azure.
+obiettivo di Hello di questa sezione è un utente di test nel portale di Azure chiamato Britta Simon hello toocreate.
 
 ![Creare un utente di Azure AD][100]
 
-**Per creare un utente test in Azure AD, eseguire la procedura seguente:**
+**un utente di prova in Azure AD, toocreate eseguire hello alla procedura seguente:**
 
-1. Nel **portale di Azure** fare clic sull'icona di **Azure Active Directory** nel riquadro di spostamento sinistro.
+1. In hello **portale di Azure**via hello riquadro di spostamento a sinistra, fare clic su **Azure Active Directory** icona.
 
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-nexonia-tutorial/create_aaduser_01.png) 
 
-2. Passare a **Utenti e gruppi** e fare clic su **Tutti gli utenti** per visualizzare l'elenco di utenti.
+2. elenco di hello toodisplay di utenti, andare troppo**utenti e gruppi** e fare clic su **tutti gli utenti**.
     
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-nexonia-tutorial/create_aaduser_02.png) 
 
-3. Nella parte superiore della finestra di dialogo fare clic su **Aggiungi** per aprire la finestra di dialogo **Utente**.
+3. hello tooopen **utente** finestra di dialogo, fare clic su **Aggiungi** nella parte superiore di hello della finestra di dialogo hello.
  
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-nexonia-tutorial/create_aaduser_03.png) 
 
-4. Nella pagina della finestra di dialogo **Utente** seguire questa procedura:
+4. In hello **utente** finestra di dialogo eseguire hello alla procedura seguente:
  
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-nexonia-tutorial/create_aaduser_04.png) 
 
-    a. Nella casella di testo **Nome** digitare **BrittaSimon**.
+    a. In hello **nome** casella tipo **BrittaSimon**.
 
-    b. Nella casella di testo **Nome utente** digitare l'**indirizzo di posta elettronica** di BrittaSimon.
+    b. In hello **nome utente** casella di testo, hello tipo **indirizzo di posta elettronica** di BrittaSimon.
 
-    c. Selezionare **Mostra password** e prendere nota del valore della **Password**.
+    c. Selezionare **Show Password** e annotare il valore di hello di hello **Password**.
 
     d. Fare clic su **Crea**.
  
 ### <a name="creating-a-nexonia-test-user"></a>Creazione di un utente test di Nexonia
 
-In questa sezione viene creato un utente di nome Britta Simon in Nexonia. Collaborare con il [team di supporto di Nexonia](https://nexonia.zendesk.com/hc/requests/new) per aggiungere gli utenti alla piattaforma Nexonia. Gli utenti devono essere creati e attivati prima di usare l'accesso Single Sign-On.
+In questa sezione viene creato un utente di nome Britta Simon in Nexonia. Lavorare con [team di supporto Nexonia](https://nexonia.zendesk.com/hc/requests/new) utenti hello tooadd nella piattaforma Nexonia hello. Gli utenti devono essere creati e attivati prima di usare l'accesso Single Sign-On.
 
 
-### <a name="assigning-the-azure-ad-test-user"></a>Assegnazione dell'utente test di Azure AD
+### <a name="assigning-hello-azure-ad-test-user"></a>Assegnazione utente test hello Azure AD
 
-In questa sezione Britta Simon viene abilitata per l'uso dell'accesso Single Sign-On di Azure con la concessione dell'accesso a Nexonia.
+In questa sezione per abilitare Britta Simon toouse single sign-on Azure concessione dell'accesso tooNexonia.
 
 ![Assegna utente][200] 
 
-**Per assegnare Britta Simon a Nexonia, seguire questa procedura:**
+**tooassign Britta Simon tooNexonia, eseguire hello alla procedura seguente:**
 
-1. Nel portale di Azure aprire la visualizzazione delle applicazioni e quindi la visualizzazione delle directory e passare ad **Applicazioni aziendali**, quindi fare clic su **Tutte le applicazioni**.
+1. Nel portale di Azure hello, aprire la visualizzazione di applicazioni hello, quindi selezionare Visualizza directory toohello e andare troppo**applicazioni aziendali** quindi fare clic su **tutte le applicazioni**.
 
     ![Assegna utente][201] 
 
-2. Selezionare **Nexonia** dall'elenco di applicazioni.
+2. Nell'elenco di applicazioni hello, selezionare **Nexonia**.
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-nexonia-tutorial/tutorial_nexonia_app.png) 
 
-3. Scegliere **Utenti e gruppi** dal menu a sinistra.
+3. Dal menu hello hello sinistra, fare clic su **utenti e gruppi**.
 
     ![Assegna utente][202] 
 
@@ -206,7 +206,7 @@ In questa sezione Britta Simon viene abilitata per l'uso dell'accesso Single Sig
 
     ![Assegna utente][203]
 
-5. Nella finestra di dialogo **Utenti e gruppi** selezionare **Britta Simon** nell'elenco Utenti.
+5. In **utenti e gruppi** finestra di dialogo Seleziona **Britta Simon** nell'elenco di utenti hello.
 
 6. Fare clic sul pulsante **Seleziona** nella finestra di dialogo **Utenti e gruppi**.
 
@@ -214,14 +214,14 @@ In questa sezione Britta Simon viene abilitata per l'uso dell'accesso Single Sig
     
 ### <a name="testing-single-sign-on"></a>Test dell'accesso Single Sign-On
 
-In questa sezione viene testata la configurazione dell'accesso Single Sign-On di Azure AD usando il pannello di accesso.
+In questa sezione si test configurazione di Azure AD single sign-on utilizzando hello Pannello di accesso.
 
-Quando si fa clic sul riquadro Nexonia nel pannello di accesso, si dovrebbe accedere automaticamente all'applicazione Nexonia.
+Quando si fa clic su riquadro Nexonia hello in hello Pannello di accesso, è necessario ottenere automaticamente firmato in tooyour Nexonia applicazione.
 Per altre informazioni sul pannello di accesso, vedere [Introduzione al Pannello di accesso](https://msdn.microsoft.com/library/dn308586).
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
-* [Elenco di esercitazioni sulla procedura di integrazione delle app SaaS con Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [Elenco di esercitazioni sulla tooIntegrate App SaaS con Azure Active Directory](active-directory-saas-tutorial-list.md)
 * [Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory](active-directory-appssoaccess-whatis.md)
 
 

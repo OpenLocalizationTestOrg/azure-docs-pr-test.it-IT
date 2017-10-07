@@ -16,11 +16,11 @@ ms.topic: get-started-article
 ms.date: 08/07/2017
 ms.author: joflore
 ms.custom: it-pro
-ms.openlocfilehash: 07c7f3ad066c735054cb339f6e09aa4d7d23f23a
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 4fed3a1c690fd6423ee5d3e5baef690d8896fbe9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="quickstart-azure-ad-self-service-password-reset"></a>Guida introduttiva: Reimpostazione self-service della password di Azure AD
 
@@ -29,71 +29,71 @@ ms.lasthandoff: 08/18/2017
 
 ## <a name="rapidly-deploy-self-service-password-reset"></a>Distribuire rapidamente la reimpostazione self-service della password
 
-La reimpostazione self-service della password (SSPR) offre agli amministratori IT una modalità semplice per consentire agli utenti di reimpostare o sbloccare le password o gli account. Il sistema include report dettagliati per tenere traccia del momento in cui gli utenti usano il sistema, oltre a notifiche per segnalare usi impropri.
+Reimpostazione della password self-service (SSPR) offre un semplice significa che per tooreset di utenti tooempower gli amministratori IT o sbloccare le password o account. Hello sistema include tootrack report dettagliati quando gli utenti utilizzano il sistema di hello e notifiche tooalert si toomisuse o evitare eventuali abusi.
 
-Questa guida presuppone che sia già disponibile un tenant di valutazione o con licenza di Azure AD. Per informazioni sulla configurazione di Azure AD, vedere l'[introduzione ad Azure AD](https://azure.microsoft.com/trial/get-started-active-directory/).
+Questa guida presuppone che sia già disponibile un tenant di valutazione o con licenza di Azure AD. Se è necessario informazioni sull'impostazione di Azure AD, vedere l'articolo hello [introduzione AD Azure](https://azure.microsoft.com/trial/get-started-active-directory/).
 
 1. Nel tenant di Azure AD esistente, selezionare **"Reimpostazione password"**
 
-2. Nella schermata **"Proprietà"** scegliere una delle opzioni seguenti in "Reimpostazione password self-service abilitata"
-    * Nessuno: nessuno può usare la reimpostazione password self-service
-    * Un gruppo: solo i membri di un gruppo specifico di Azure AD scelti dall'amministratore possono usare la reimpostazione password self-service
-    * Tutti: tutti gli utenti con account nel tenant di Azure AD possono usare la reimpostazione password self-service
+2. Da hello **"Proprietà"** schermata opzione hello "Self Service Password reimpostato Enabled" scegliere uno dei seguenti hello
+    * Nessuno - Nessuna uno è una funzionalità SSPR toouse in grado di
+    * Un gruppo, solo i membri di un annuncio di Azure specifico gruppo che si sceglie sono in grado di toouse SSPR funzionalità
+    * Tutti gli utenti - tutti gli utenti con account nel tenant di Azure AD sono funzionalità SSPR toouse in grado di
 
-3. Nella schermata **"Metodi di autenticazione"** scegliere
-    * Numero di metodi da reimpostare: è supportato un minimo di uno o un massimo di due
-    * Metodi disponibili per gli utenti: ne è necessario almeno uno, ma è consigliabile avere a disposizione un'opzione aggiuntiva
-        * **Posta elettronica** invia un messaggio con un codice all'indirizzo di posta elettronica di autenticazione configurato dell'utente
-        * **Cellulare** consente all'utente di ricevere una chiamata o un SMS con un codice al numero di telefono cellulare configurato
-        * **Telefono ufficio** chiama l'utente fornendo un codice al numero di telefono dell'ufficio configurato
-        * Per **Domande di sicurezza** è necessario scegliere
-            * Numero di domande necessarie per la registrazione: è il requisito minimo per la registrazione. Un utente può decidere di rispondere a più domande per creare un pool di domande da cui scegliere. Possono essere impostate da 3 a 5 domande. Il valore deve essere maggiore o uguale al numero di domande necessarie per la reimpostazione.
-                * È possibile aggiungere domande personalizzate facendo clic sul pulsante "Personalizzata" quando si seleziona Domande di sicurezza
-            * Numero di domande necessarie per la reimpostazione: può essere impostato su un valore compreso da 3 a 5. Si tratta delle domande cui rispondere prima di consentire la reimpostazione o lo sblocco della password di un utente.
+3. Da hello **"Metodi di autenticazione"** schermata scegliere
+    * Numero di metodi richiesto tooreset: È supportato un minimo di uno o a un massimo di due
+    * Toousers disponibili metodi - è necessario almeno un ma mai di influisce negativamente sulle toohave un'opzione aggiuntiva disponibile
+        * **Messaggio di posta elettronica** invia un messaggio di posta elettronica a un utente toohello codice configurata dell'indirizzo di posta elettronica di autenticazione
+        * **Cellulare** offre hello utente hello scelta tooreceive una chiamata o di testo con un codice di tootheir configurato il numero di telefono cellulare
+        * **Telefono ufficio** utente hello chiamate con un codice di tootheir configurato numero di telefono dell'ufficio
+        * **Domande di sicurezza** richiede toochoose
+            * Numero di domande richiesto tooregister: minimo hello per la registrazione ha esito positivo, vale a dire un utente può scegliere tooanswer toocreate più un pool di domande toopull da. Questa opzione può essere impostata da 3 a 5 e deve essere maggiore o uguale toohello numero di domande necessarie tooreset.
+                * Fare clic sul pulsante "Custom" hello quando la selezione delle domande di sicurezza è possono aggiungere alle domande più comuni
+            * Numero di domande necessarie tooreset - può essere impostato da 3 a 5 domande toobe ha risposto correttamente prima di consentire un toobe di password utenti, reimpostare o sbloccato.
 
-4. CONSIGLIATO: **"Personalizzazione"** consente di modificare il collegamento "Contattare l'amministratore" in modo che punti a una pagina o a un indirizzo di posta elettronica definito
+4. CONSIGLIATO: **"Personalizzazione"** consente toochange hello "Contattare l'amministratore di" collegamento toopoint tooa pagina o l'indirizzo email è definire
 
-5. FACOLTATIVO: La schermata **"Registrazione"** offre agli amministratori le opzioni seguenti:
-    * Richiedere agli utenti di registrarsi all'accesso
-    * Numero di giorni prima che agli utenti venga chiesto di riconfermare le informazioni di autenticazione
+5. Facoltativo: hello **"Registration"** schermata offre agli amministratori opzioni hello per:
+    * Richiedi tooregister gli utenti durante l'accesso
+    * Numero di giorni prima che gli utenti frequenti tooreconfirm le informazioni di autenticazione
 
-6. FACOLTATIVO: La schermata **"Notifica"** offre agli amministratori le opzioni seguenti:
+6. Facoltativo: hello **"Notifica"** schermata offre agli amministratori le opzioni di hello per:
     * Inviare notifiche agli utenti al momento della reimpostazione della password
     * Inviare una notifica a tutti gli amministratori quando altri amministratori reimpostano le proprie password
 
-**A questo punto è stata configurata la reimpostazione password self-service per il tenant di Azure AD**. È possibile interrompere la procedura o proseguire con la configurazione della sincronizzazione delle password con un dominio AD locale.
+**A questo punto è stata configurata la reimpostazione password self-service per il tenant di Azure AD**. È possibile interrompere la procedura o continuare a tooconfigure sincronizzazione delle password tooan locale dominio di Active Directory.
 
 > [!NOTE]
-> Testare la reimpostazione password self-service con un utente e non con un amministratore, perché Microsoft applica requisiti di autenticazione avanzata per gli account di tipo amministratore di Azure. Per altre informazioni sui criteri delle password amministratore, vedere l'[articolo sui criteri delle password](active-directory-passwords-policy.md#administrator-password-policy-differences).
+> Testare la reimpostazione password self-service con un utente e non con un amministratore, perché Microsoft applica requisiti di autenticazione avanzata per gli account di tipo amministratore di Azure. Per altre informazioni sui criteri password di amministratore hello, vedere il nostro [articolo criteri password](active-directory-passwords-policy.md#administrator-password-policy-differences).
 
-## <a name="configure-synchronization-to-existing-identity-source"></a>Configurare la sincronizzazione con un'origine delle identità esistente
+## <a name="configure-synchronization-tooexisting-identity-source"></a>Configurare l'origine di sincronizzazione tooexisting identità
 
-Per abilitare la sincronizzazione delle identità locali con Azure AD è necessario installare e configurare [Azure AD Connect](./connect/active-directory-aadconnect.md) in un server dell'organizzazione. Questa applicazione gestisce la sincronizzazione di utenti e gruppi dall'origine delle identità esistente al tenant di Azure AD.
+tooenable tooAzure sincronizzazione identità Active Directory in locale, è necessario tooinstall e configurare [Azure AD Connect](./connect/active-directory-aadconnect.md) in un server all'interno dell'organizzazione. Questa applicazione gestisce la sincronizzazione utenti e gruppi dal tenant di Azure AD tooyour esistente origine identità.
 
-* [Eseguire l'aggiornamento da DirSync o Azure AD Sync ad Azure AD Connect](./connect/active-directory-aadconnect-dirsync-deprecated.md)
+* [Eseguire l'aggiornamento da DirSync o Azure AD Sync tooAzure AD Connect](./connect/active-directory-aadconnect-dirsync-deprecated.md)
 * [Introduzione alle impostazioni rapide per Azure AD Connect](./connect/active-directory-aadconnect-get-started-express.md)
-* [Configurare il writeback delle password](active-directory-passwords-writeback.md#configuring-password-writeback) per riscrivere le password da Azure AD alla directory locale.
+* [Configurare il writeback delle password](active-directory-passwords-writeback.md#configuring-password-writeback) password toowrite da Azure AD eseguire il backup di directory locale tooyour.
 
 ## <a name="disabling-self-service-password-reset"></a>Disabilitazione della reimpostazione self-service della password
 
-Per disabilitare la reimpostazione self-service della password è sufficiente aprire il tenant di Azure AD e passare a **Reimpostazione password > Proprietà** e scegliere **Nessuno** in **Reimpostazione password self-service abilitata**
+La disabilitazione di reimpostazione della password self-service è semplice come l'apertura di tenant di Azure AD e in uscita troppo**di reimpostazione della Password > proprietà** > scegliere **Nessuno** in **reimpostazione Password Self-Service Abilitato**
 
 ### <a name="learn-more"></a>Altre informazioni
-I collegamenti seguenti forniscono altre informazioni sull'uso della reimpostazione della password con Azure AD
+Hello seguenti collegamenti fornisce ulteriori informazioni sull'uso di Azure AD di reimpostazione della password
 
-* [**Licenze**](active-directory-passwords-licensing.md): configurare le licenze di Azure AD
-* [**Dati** ](active-directory-passwords-data.md): informazioni sui dati necessari e su come vengono usati per la gestione delle password
-* [**Implementazione**](active-directory-passwords-best-practices.md): pianificare e distribuire agli utenti la reimpostazione password self-service usando le istruzioni disponibili in questo articolo
-* [**Personalizzazione**](active-directory-passwords-customize.md) - personalizzare l'aspetto dell'esperienza della reimpostazione password self-service per l'azienda.
-* [**Criteri**](active-directory-passwords-policy.md) - comprendere e impostare i criteri password di Azure AD
+* [**Licenze**](active-directory-passwords-licensing.md) - configurare le licenze di Azure AD
+* [**Dati** ](active-directory-passwords-data.md) : comprendere hello i dati necessari e come utilizzarlo per la gestione delle password
+* [**Implementazione** ](active-directory-passwords-best-practices.md) -pianificare e distribuire agli utenti di tooyour SSPR utilizzando istruzioni hello disponibili qui
+* [**Personalizzare** ](active-directory-passwords-customize.md) -personalizzare hello aspetto di hello SSPR esperienza per l'azienda.
+* [**Criteri**](active-directory-passwords-policy.md): comprendere e impostare i criteri password di Azure AD
 * [**Creazione di report**](active-directory-passwords-reporting.md) - verificare se, quando e dove gli utenti accedono alla reimpostazione password self-service
-* [**Approfondimento tecnico**](active-directory-passwords-how-it-works.md): approfondimento sul funzionamento
-* [**Domande frequenti**](active-directory-passwords-faq.md) - Come Perché? Cosa? Dove? Chi? Quando? - Risposte alle domande di maggiore interesse
-* [**Risoluzione dei problemi**](active-directory-passwords-troubleshoot.md): informazioni su come risolvere i problemi comuni con la reimpostazione password self-service
+* [**Approfondimento tecnico** ](active-directory-passwords-how-it-works.md) -Vai dietro hello pannelli toounderstand come funziona
+* [**Domande frequenti**](active-directory-passwords-faq.md) - Come Perché? Cosa? Dove? Chi? Quando? -Risposte tooquestions si desiderava sempre tooask
+* [**Risoluzione dei problemi** ](active-directory-passwords-troubleshoot.md) -informazioni su come tooresolve comuni problemi che vedremo con SSPR
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-In questa guida introduttiva è stato illustrato come configurare la reimpostazione self-service della password per gli utenti. Per passare al portale di Azure per completare questa procedura, seguire il collegamento seguente per il portale.
+In questa Guida rapida, si è appreso come la reimpostazione della password self-service tooconfigure per gli utenti. toocontinue toohello Azure toocomplete portale, seguono questi passaggi hello collegamento sotto toohello portale.
 
 > [!div class="nextstepaction"]
 > [Abilitare la reimpostazione self-service delle password](https://aad.portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/PasswordReset)

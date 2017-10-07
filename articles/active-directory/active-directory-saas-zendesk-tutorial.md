@@ -1,6 +1,6 @@
 ---
 title: 'Esercitazione: Integrazione di Azure Active Directory con Zendesk | Microsoft Docs'
-description: Informazioni su come configurare l'accesso Single Sign-On tra Azure Active Directory e Zendesk.
+description: Informazioni su come tooconfigure single sign-on tra Azure Active Directory e Zendesk.
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,140 +13,140 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/28/2017
 ms.author: jeedes
-ms.openlocfilehash: 51c06d838c5ed6286dfb99ea25faaaf33bad5f3c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 46ccd57a4adeb810af459caaa1e592cf2b62cb8c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-zendesk"></a>Esercitazione: Integrazione di Azure Active Directory con Zendesk
 
-Questa esercitazione descrive come integrare Zendesk con Azure Active Directory (Azure AD).
+In questa esercitazione, è illustrato come toointegrate Zendesk con Azure Active Directory (Azure AD).
 
-L'integrazione di Zendesk con Azure AD offre i vantaggi seguenti:
+Integrazione di Zendesk con Azure AD fornisce hello seguenti vantaggi:
 
-- È possibile controllare in Azure AD chi può accedere a Zendesk
-- È possibile abilitare gli utenti per l'accesso automatico a Zendesk (Single Sign-On) con i propri account Azure AD
-- È possibile gestire gli account in un'unica posizione centrale: il portale di Azure.
+- È possibile controllare in Azure AD che ha accesso tooZendesk
+- È possibile abilitare l'utenti tooautomatically get connesso tooZendesk (Single Sign-On) con i propri account Azure AD
+- È possibile gestire gli account in un'unica posizione centrale - hello portale di Azure
 
-Per altre informazioni sull'integrazione di app SaaS con Azure AD, vedere [Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory](active-directory-appssoaccess-whatis.md).
+Se si desiderano tooknow ulteriori informazioni sull'integrazione dell'applicazione SaaS con Azure AD, vedere [novità di accesso alle applicazioni e single sign-on con Azure Active Directory](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-Per configurare l'integrazione di Azure AD con Zendesk, sono necessari gli elementi seguenti:
+integrazione di Azure AD con Zendesk tooconfigure, è necessario hello seguenti elementi:
 
 - Sottoscrizione di Azure AD.
 - Zendesk abilitata per l'accesso Single Sign-On
 
 
 > [!NOTE]
-> Non è consigliabile usare un ambiente di produzione per testare i passaggi di questa esercitazione.
+> hello tootest i passaggi in questa esercitazione, è consigliabile utilizzare un ambiente di produzione.
 
 
-A questo scopo, è consigliabile seguire le indicazioni seguenti:
+passaggi di hello tootest in questa esercitazione, è necessario seguire questi suggerimenti:
 
 - Non usare l'ambiente di produzione a meno che non sia necessario.
 - Se non si dispone di un ambiente di prova di Azure AD, è possibile ottenere una versione di valutazione di un mese [qui](https://azure.microsoft.com/pricing/free-trial/).
 
 
 ## <a name="scenario-description"></a>Descrizione dello scenario
-In questa esercitazione viene eseguito il test dell'accesso Single Sign-On di Azure AD in un ambiente di test. Lo scenario descritto in questa esercitazione prevede i due blocchi predefiniti seguenti:
+In questa esercitazione viene eseguito il test dell'accesso Single Sign-On di Azure AD in un ambiente di test. scenario di Hello descritto in questa esercitazione è composto da due componenti principali:
 
-1. Aggiunta di Zendesk dalla raccolta
+1. Aggiunta di Zendesk dalla raccolta hello
 2. Configurazione e test dell'accesso Single Sign-On di Azure AD
 
 
-## <a name="adding-zendesk-from-the-gallery"></a>Aggiunta di Zendesk dalla raccolta
-Per configurare l'integrazione di Zendesk in Azure AD, è necessario aggiungerla dalla raccolta al proprio elenco di app SaaS gestite.
+## <a name="adding-zendesk-from-hello-gallery"></a>Aggiunta di Zendesk dalla raccolta hello
+integrazione hello tooconfigure di Zendesk in Azure AD, è necessario tooadd Zendesk dall'elenco di tooyour hello raccolta di App SaaS gestite.
 
-**Per aggiungere Zendesk dalla raccolta, seguire questa procedura:**
+**tooadd Zendesk dalla raccolta di hello, eseguire hello alla procedura seguente:**
 
-1. Nel **[portale di Azure](https://portal.azure.com)** fare clic sull'icona di **Azure Active Directory** nel riquadro di spostamento sinistro. 
+1. In hello  **[portale Azure](https://portal.azure.com)**via hello del Pannello di navigazione a sinistra, fare clic su **Azure Active Directory** icona. 
 
     ![Active Directory][1]
 
-2. Passare ad **Applicazioni aziendali**. Andare quindi a **Tutte le applicazioni**.
+2. Passare troppo**applicazioni aziendali**. Quindi andare troppo**tutte le applicazioni**.
 
     ![Applicazioni][2]
     
-3. Fare clic sul pulsante **Nuova applicazione** nella parte superiore della finestra di dialogo.
+3. Fare clic su **nuova applicazione** pulsante nella parte superiore di hello della finestra di dialogo hello.
 
     ![Applicazioni][3]
 
-4. Nella casella di ricerca digitare **Zendesk**.
+4. Nella casella di ricerca hello, digitare **Zendesk**.
 
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-zendesk-tutorial/tutorial_zendesk_search.png)
 
-5. Nel pannello dei risultati selezionare **Zendesk** e quindi fare clic sul pulsante **Aggiungi** per aggiungere l'applicazione.
+5. Nel riquadro dei risultati hello, selezionare **Zendesk**, quindi fare clic su **Aggiungi** pulsante applicazione hello tooadd.
 
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-zendesk-tutorial/tutorial_zendesk_addfromgallery.png)
 
 ##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>Configurazione e test dell'accesso Single Sign-On di Azure AD
 In questa sezione viene configurato e testato l'accesso Single Sign-On di Azure AD con Zendesk in base a un utente test di nome "Britta Simon".
 
-Per il funzionamento dell'accesso Single Sign-On, Azure AD deve conoscere qual è l'utente di Zendesk che corrisponde a un utente di Azure AD. In altre parole, deve essere stabilita una relazione di collegamento tra un utente di Azure AD e l'utente correlato in Zendesk.
+Per toowork di accesso singolo, Azure AD deve tooknow quale utente controparte hello in Zendesk è tooa utente in Azure AD. In altre parole, una relazione di collegamento tra un utente di Azure Active Directory e l'utente correlato di hello in Zendesk richiede toobe stabilita.
 
-La relazione di collegamento viene stabilita assegnando al valore di **nome utente** in Azure AD lo stesso valore di **Username** (Nome utente) in Zendesk.
+Questa relazione di collegamento viene stabilita tramite l'assegnazione valore hello di hello **nome utente** in Azure AD come valore hello hello **Username** in Zendesk.
 
-Per configurare e testare l'accesso Single Sign-On di Azure AD con Zendesk, è necessario completare i blocchi predefiniti seguenti:
+tooconfigure e test Azure single sign-on AD con Zendesk, è necessario hello toocomplete seguenti blocchi predefiniti:
 
-1. **[Configurazione dell'accesso Single Sign-On di Azure AD](#configuring-azure-ad-single-sign-on)** : per abilitare gli utenti all'utilizzo di questa funzionalità.
-2. **[Creazione di un utente test di Azure AD](#creating-an-azure-ad-test-user)** : per testare l'accesso Single Sign-On di Azure AD con l'utente Britta Simon.
-3. **[Creazione di un utente di test di Zendesk](#creating-a-zendesk-test-user)**: per avere una controparte di Britta Simon in Zendesk collegata alla relativa rappresentazione in Azure AD dell'utente.
-4. **[Assegnazione dell'utente test di Azure AD](#assigning-the-azure-ad-test-user)** : per abilitare Britta Simon all'uso dell'accesso Single Sign-On di Azure AD.
-5. **[Testing Single Sign-On](#testing-single-sign-on)** : per verificare se la configurazione funziona.
+1. **[Configurazione di Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)**  -tooenable il toouse utenti questa funzionalità.
+2. **[Creazione di un utente prova AD Azure](#creating-an-azure-ad-test-user)**  -tootest AD Azure single sign-on con Britta Simon.
+3. **[Creazione di un utente test Zendesk](#creating-a-zendesk-test-user)**  -toohave un equivalente di Britta Simon in Zendesk che è la rappresentazione toohello collegato Azure AD dell'utente.
+4. **[Assegnazione utente di prova hello Azure AD](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD accesso single sign-on.
+5. **[Test di Single Sign-On](#testing-single-sign-on)**  -tooverify hello se funzionamento della configurazione.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Configurazione dell'accesso Single Sign-On di Azure AD
 
-In questa sezione viene abilitato l'accesso Single Sign-On di Azure AD nel portale di Azure e viene configurato l'accesso Single Sign-On nell'applicazione Zendesk.
+In questa sezione, si abilita Azure AD single sign-on in hello portale di Azure e configurare l'accesso single sign-on nell'applicazione Zendesk.
 
-**Per configurare Single Sign-On di Azure AD con Zendesk, seguire questa procedura:**
+**Azure AD tooconfigure single sign-on con Zendesk, eseguire hello alla procedura seguente:**
 
-1. Nella pagina di integrazione dell'applicazione **Zendesk** del portale di Azure fare clic su **Single Sign-On**.
+1. Nel portale di Azure su hello hello **Zendesk** pagina di integrazione dell'applicazione, fare clic su **Single sign-on**.
 
     ![Configura accesso Single Sign-On][4]
 
-2. Nella finestra di dialogo **Single Sign-On** selezionare **Accesso basato su SAML** per **Modalità** per abilitare l'accesso Single Sign-On.
+2. In hello **Single sign-on** finestra di dialogo Seleziona **modalità** come **basato su SAML Sign-on** tooenable single sign-on.
  
     ![Configura accesso Single Sign-On](./media/active-directory-saas-zendesk-tutorial/tutorial_zendesk_samlbase.png)
 
-3. Nella sezione **Zendesk Domain and URLs** (URL e dominio Zendesk) seguire questa procedura:
+3. In hello **Zendesk dominio e gli URL** seguire hello alla procedura seguente:
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-zendesk-tutorial/tutorial_zendesk_url.png)
 
-    a. Nella casella di testo **URL di accesso** digitare il valore usando il modello seguente: `https://<subdomain>.zendesk.com`
+    a. In hello **Sign-on URL** casella di testo, valore di tipo hello utilizzando hello modello:`https://<subdomain>.zendesk.com`
 
-    b. Nella casella di testo **Identificatore** digitare il valore adottando il modello seguente: `https://<subdomain>.zendesk.com`
+    b. In hello **identificatore** casella di testo, valore di tipo hello utilizzando hello modello:`https://<subdomain>.zendesk.com`
 
     > [!NOTE] 
-    > Poiché questi non sono i valori reali, è necessario aggiornarli con l'URL identificatore e l'URL di accesso effettivi. Per ottenere questi valori, contattare il [team di supporto di Zendesk](https://support.zendesk.com/hc/articles/203663676-Using-SAML-for-single-sign-on-Professional-and-Enterprise). 
+    > Poiché questi non sono i valori reali, Aggiornare questi valori con URL hello effettivo Sign-on e URL dell'identificatore. Contatto [team di supporto di Zendesk](https://support.zendesk.com/hc/articles/203663676-Using-SAML-for-single-sign-on-Professional-and-Enterprise) tooget questi valori. 
 
-4. Zendesk prevede che le asserzioni SAML abbiano un formato specifico. Non sono presenti attributi SAML obbligatori ma facoltativamente è possibile aggiungere un attributo dalla sezione **Attributi utente** sezione seguendo questa procedura: 
+4. Zendesk prevede asserzioni SAML hello in un formato specifico. Non sono presenti attributi SAML obbligatori ma facoltativamente è possibile aggiungere un attributo da **gli attributi utente** sezione hello seguente passaggi seguenti: 
 
      ![Configura accesso Single Sign-On](./media/active-directory-saas-zendesk-tutorial/tutorial_zendesk_attributes1.png)
 
-    a. Fare clic sulla casella di controllo **View and edit all the other attributes** (Visualizza e modifica tutti gli altri attributi).
+    a. Fare clic su hello **visualizzare e modificare tutti gli altri attributi di hello** casella di controllo.
      
     ![Configura accesso Single Sign-On](./media/active-directory-saas-zendesk-tutorial/tutorial_zendesk_attributes2.png)
    
-    b. Fare clic su **Aggiungi attributo** per aprire la finestra di dialogo **Aggiungi attributo**.
+    b. Fare clic su hello **Aggiungi attributo** tooopen **Aggiungi attributo** finestra di dialogo.
     
     ![Configura accesso Single Sign-On](./media/active-directory-saas-zendesk-tutorial/tutorial_attribute_05.png)
 
-    c. Nella casella di testo **Nome** digitare il nome dell'attributo (ad esempio **emailaddress**).
+    c. In hello **nome** casella di testo, nome dell'attributo di tipo hello (ad esempio **emailaddress**).
     
-    d. Nell'elenco **Valore** selezionare il valore dell'attributo (ad esempio **user.mail**).
+    d. Da hello **valore** elenco, il valore di attributo selezionare hello (come **user.mail**).
     
     e. Fare clic su **Ok**
  
     > [!NOTE] 
-    > Usare gli attributi dell'estensione per aggiungere attributi che non sono in Azure AD per impostazione predefinita. Fare clic su [User attributes that can be set in SAML](https://support.zendesk.com/hc/en-us/articles/203663676-Using-SAML-for-single-sign-on-Professional-and-Enterprise-) (Attributi utente che possono essere impostati in SAML) per ottenere l'elenco completo degli attributi accettati da **Zendesk**. 
+    > Utilizzare gli attributi tooadd gli attributi dell'estensione che non sono in Azure AD per impostazione predefinita. Fare clic su [gli attributi utente che possono essere impostati in SAML](https://support.zendesk.com/hc/en-us/articles/203663676-Using-SAML-for-single-sign-on-Professional-and-Enterprise-) tooget elenco completo di hello di SAML attributi che **Zendesk** accetta. 
 
-5. Nella sezione **Certificato di firma SAML** copiare il valore **IDENTIFICAZIONE PERSONALE** del certificato.
+5. In hello **certificato di firma SAML** sezione, hello copia **identificazione personale** valore del certificato.
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-zendesk-tutorial/tutorial_zendesk_certificate.png) 
 
-6. Nella sezione **Zendesk Configuration** (Configurazione di Zendesk) fare clic su **Configure Zendesk** (Configura Zendesk) per aprire la finestra **Configura accesso**. Copiare l'**URL servizio Single Sign-On SAML e l'URL di disconnessione** dalla sezione **Riferimento rapido**.
+6. In hello **Zendesk configurazione** fare clic su **configurare Zendesk** tooopen **Configura sign-on** finestra. Hello copia **Sign-Out URL e SAML Single Sign-On Service URL** da hello **sezione di riferimento rapido.**
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-zendesk-tutorial/tutorial_zendesk_configure.png) 
 
@@ -154,99 +154,99 @@ In questa sezione viene abilitato l'accesso Single Sign-On di Azure AD nel porta
 
 8. Fare clic su **Admin**.
 
-9. Nel riquadro di spostamento sinistro fare clic su **Impostazioni** e quindi su **Sicurezza**.
+9. Nel riquadro di spostamento a sinistra di hello, fare clic su **impostazioni**, quindi fare clic su **sicurezza**.
 
-10. Nella pagina **Sicurezza** eseguire la procedura seguente: 
+10. In hello **sicurezza** eseguire hello alla procedura seguente: 
    
      ![Sicurezza](./media/active-directory-saas-zendesk-tutorial/ic773089.png "Sicurezza")
 
     ![Single Sign-On](./media/active-directory-saas-zendesk-tutorial/ic773090.png "Single Sign-On")
 
-     a. Fare clic sulla scheda **Amministratore e agenti**.
+     a. Fare clic su hello **Admin & agenti** scheda.
 
      b. Selezionare **Single sign-on (SSO) e SAML** e quindi **SAML**.
 
-     c. Nella casella di testo **SAML SSO URL** (URL SSO SAML) incollare il valore dell'**URL del servizio Single Sign-On SAML** copiato dal portale di Azure. 
+     c. In **URL SSO SAML** casella di testo, hello Incolla valore **SAML Single Sign-On Service URL** che è stato copiato dal portale di Azure. 
 
-     d. Nella casella di testo **Remote Log Out URL** (URL di disconnessione remota) incollare il valore dell'**URL di disconnessione** copiato dal portale di Azure.
+     d. In **URL disconnessione remota** casella di testo, hello Incolla valore **Sign-Out URL** che è stato copiato dal portale di Azure.
         
-     e. Nella casella di testo **Certificate Fingerprint** (Impronta digitale certificato) incollare il valore **Identificazione personale** del certificato copiato dal portale di Azure.
+     e. In **Certificate Fingerprint** casella di testo, incollare hello **identificazione personale** valore del certificato che è stato copiato dal portale di Azure.
      
      f. Fare clic su **Save**.
 
 ### <a name="creating-an-azure-ad-test-user"></a>Creazione di un utente test di Azure AD
-Questa sezione descrive come creare un utente test denominato Britta Simon nel portale di Azure.
+obiettivo di Hello di questa sezione è un utente di test nel portale di Azure chiamato Britta Simon hello toocreate.
 
 ![Creare un utente di Azure AD][100]
 
-**Per creare un utente test in Azure AD, eseguire la procedura seguente:**
+**un utente di prova in Azure AD, toocreate eseguire hello alla procedura seguente:**
 
-1. Nel **portale di Azure** fare clic sull'icona di **Azure Active Directory** nel riquadro di spostamento sinistro.
+1. In hello **portale di Azure**via hello riquadro di spostamento a sinistra, fare clic su **Azure Active Directory** icona.
 
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-zendesk-tutorial/create_aaduser_01.png) 
 
-2. Passare a **Utenti e gruppi** e fare clic su **Tutti gli utenti** per visualizzare l'elenco di utenti.
+2. elenco di hello toodisplay utenti andare troppo**utenti e gruppi** e fare clic su **tutti gli utenti**.
     
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-zendesk-tutorial/create_aaduser_02.png) 
 
-3. Nella parte superiore della finestra di dialogo fare clic su **Aggiungi** per aprire la finestra di dialogo **Utente**.
+3. Nella parte superiore di hello della finestra di dialogo hello, fare clic su **Aggiungi** tooopen hello **utente** finestra di dialogo.
  
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-zendesk-tutorial/create_aaduser_03.png) 
 
-4. Nella pagina della finestra di dialogo **Utente** seguire questa procedura:
+4. In hello **utente** finestra di dialogo eseguire hello alla procedura seguente:
  
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-zendesk-tutorial/create_aaduser_04.png) 
 
-    a. Nella casella di testo **Nome** digitare **BrittaSimon**.
+    a. In hello **nome** casella tipo **BrittaSimon**.
 
-    b. Nella casella di testo **Nome utente** digitare l'**indirizzo di posta elettronica** di BrittaSimon.
+    b. In hello **nome utente** casella di testo, hello tipo **indirizzo di posta elettronica** di BrittaSimon.
 
-    c. Selezionare **Mostra password** e prendere nota del valore della **Password**.
+    c. Selezionare **Show Password** e annotare il valore di hello di hello **Password**.
 
     d. Fare clic su **Crea**. 
 
 ### <a name="creating-a-zendesk-test-user"></a>Creazione di un utente test Zendesk
 
-Per consentire agli utenti di Azure AD di accedere a **Zendesk**, è necessario eseguirne il provisioning in **Zendesk**.  
-Il comportamento si basa sul ruolo assegnato nelle applicazioni:
+Azure AD tooenable utenti toolog in **Zendesk**, è necessario eseguirne il provisioning in **Zendesk**.  
+A seconda del ruolo di hello nelle App hello, hello è previsto il comportamento:
 
  1. All'accesso viene eseguito automaticamente il provisioning degli account dell'**utente finale**.
- 2. Il provisioning degli account **Agente** e **Amministratore** devono essere eseguiti manualmente in **Zendesk** prima dell'accesso.
+ 2. **Agente** e **Admin** account necessitano toobe manualmente il provisioning **Zendesk** prima dell'accesso.
  
-**Per eseguire il provisioning di un account utente, seguire questa procedura:**
+**tooprovision un account utente, eseguire hello alla procedura seguente:**
 
-1. Accedere al tenant di **Zendesk** .
+1. Accedi tooyour **Zendesk** tenant.
 
-2. Selezionare la scheda **Customer List** .
+2. Seleziona hello **un elenco di clienti** scheda.
 
-3. Selezionare la scheda **User** e fare clic su **Add**.
+3. Seleziona hello **utente** scheda e fare clic su **Aggiungi**.
    
     ![Aggiungere un utente](./media/active-directory-saas-zendesk-tutorial/ic773632.png "Aggiungere un utente")
-4. Digitare l'indirizzo di posta elettronica di un account Azure AD esistente di cui si vuole eseguire il provisioning e quindi fare clic su **Save**.
+4. Digitare l'indirizzo di posta elettronica hello di un account di Azure AD esistente si desidera tooprovision e quindi fare clic su **salvare**.
    
     ![Nuovo utente](./media/active-directory-saas-zendesk-tutorial/ic773633.png "Nuovo utente")
 
 > [!NOTE]
-> È possibile usare qualsiasi altro strumento o API di creazione di account utente fornita da Zendesk per eseguire il provisioning degli account utente Azure AD.
+> È possibile usare qualsiasi altro Zendesk utente account strumento di creazione o qualsiasi API fornita da Zendesk tooprovision account utente di AAD.
 
 
-### <a name="assigning-the-azure-ad-test-user"></a>Assegnazione dell'utente test di Azure AD
+### <a name="assigning-hello-azure-ad-test-user"></a>Assegnazione utente test hello Azure AD
 
-In questa sezione Britta Simon viene abilitata per l'uso dell'accesso Single Sign-On di Azure concedendole l'accesso a Zendesk.
+In questa sezione per abilitare Britta Simon toouse single sign-on Azure concessione dell'accesso tooZendesk.
 
 ![Assegna utente][200] 
 
-**Per assegnare Britta Simon a Zendesk, seguire questa procedura:**
+**tooassign Britta Simon tooZendesk, eseguire hello alla procedura seguente:**
 
-1. Nel portale di Azure aprire la visualizzazione delle applicazioni e quindi la visualizzazione delle directory e passare ad **Applicazioni aziendali**, quindi fare clic su **Tutte le applicazioni**.
+1. Nel portale di Azure hello, aprire la visualizzazione di applicazioni hello, quindi selezionare Visualizza directory toohello e andare troppo**applicazioni aziendali** quindi fare clic su **tutte le applicazioni**.
 
     ![Assegna utente][201] 
 
-2. Nell'elenco di applicazioni selezionare **Zendesk**.
+2. Nell'elenco di applicazioni hello, selezionare **Zendesk**.
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-zendesk-tutorial/tutorial_zendesk_app.png) 
 
-3. Scegliere **Utenti e gruppi** dal menu a sinistra.
+3. Dal menu hello hello sinistra, fare clic su **utenti e gruppi**.
 
     ![Assegna utente][202] 
 
@@ -254,7 +254,7 @@ In questa sezione Britta Simon viene abilitata per l'uso dell'accesso Single Sig
 
     ![Assegna utente][203]
 
-5. Nella finestra di dialogo **Utenti e gruppi** selezionare **Britta Simon** nell'elenco Utenti.
+5. In **utenti e gruppi** finestra di dialogo Seleziona **Britta Simon** nell'elenco di utenti hello.
 
 6. Fare clic sul pulsante **Seleziona** nella finestra di dialogo **Utenti e gruppi**.
 
@@ -262,14 +262,14 @@ In questa sezione Britta Simon viene abilitata per l'uso dell'accesso Single Sig
     
 ### <a name="testing-single-sign-on"></a>Test dell'accesso Single Sign-On
 
-In questa sezione viene testata la configurazione dell'accesso Single Sign-On di Azure AD usando il pannello di accesso.
+In questa sezione si test configurazione di Azure AD single sign-on utilizzando hello Pannello di accesso.
 
-Quando si fa clic sul riquadro di Zendesk nel riquadro di accesso, si dovrebbe accedere automaticamente all'applicazione Zendesk.
-Per altre informazioni sul pannello di accesso, vedere [Introduzione al Pannello di accesso](active-directory-saas-access-panel-introduction.md).
+Quando si fa clic su riquadro Zendesk hello in hello Pannello di accesso, è necessario ottenere tooyour automaticamente firmato in Zendesk applicazione.
+Per ulteriori informazioni su hello Pannello di accesso, vedere [introduzione toohello Pannello di accesso](active-directory-saas-access-panel-introduction.md).
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
-* [Elenco di esercitazioni sulla procedura di integrazione delle app SaaS con Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [Elenco di esercitazioni sulla tooIntegrate App SaaS con Azure Active Directory](active-directory-saas-tutorial-list.md)
 * [Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory](active-directory-appssoaccess-whatis.md)
 
 

@@ -1,6 +1,6 @@
 ---
-title: Gestire ruoli del database e utenti in Azure Analysis Services | Microsoft Docs
-description: Informazioni su come gestire ruoli del database e utenti in un server Analysis Services in Azure.
+title: ruoli e utenti in Azure Analysis Services del database aaaManage | Documenti Microsoft
+description: Informazioni su come toomanage database ruoli e utenti in un server Analysis Services in Azure.
 services: analysis-services
 documentationcenter: 
 author: minewiskan
@@ -15,46 +15,46 @@ ms.tgt_pltfrm: NA
 ms.workload: na
 ms.date: 08/15/2017
 ms.author: owend
-ms.openlocfilehash: d0bc7d7514f111b4bbde33bd60ae21264bd797fc
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 2ad069a6bcce11bc43347625cb32ec400d48af18
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="manage-database-roles-and-users"></a>Gestire ruoli del database e utenti
 
-A livello di database modello, tutti gli utenti devono appartenere a un ruolo. I ruoli definiscono gli utenti con determinate autorizzazioni per il database modello. Qualsiasi gruppo di sicurezza o utente aggiunto a un ruolo deve avere un account in un tenant di Azure AD nella stessa sottoscrizione del server.
+A livello di database modello hello, tutti gli utenti devono appartenere tooa ruolo. I ruoli definiscono gli utenti con determinate autorizzazioni per database modello hello. Qualsiasi utente o gruppo di protezione aggiunta tooa ruolo deve includere un account in un tenant di Azure AD in hello stessa sottoscrizione server hello.
 
-La modalità di definizione dei ruoli varia a seconda dello strumento in uso, ma l'effetto è lo stesso.
+Come definire i ruoli è diverso a seconda dello strumento hello che è utilizzato, ma è hello effetto hello stesso.
 
 Le autorizzazioni di ruoli includono:
-*  **Amministratore**: utenti che dispongono di autorizzazioni complete per il database. I ruoli del database con autorizzazioni di amministratore sono diversi dagli amministratori di server.
-*  **Elabora**: utenti che possono connettersi ed eseguire operazioni di elaborazione nel database e analizzare i dati del database modello.
-*  **Lettura**: utenti che possono usare un'applicazione client per connettersi e analizzare i dati del database modello.
+*  **Amministratore** -gli utenti hanno le autorizzazioni complete per il database di hello. I ruoli del database con autorizzazioni di amministratore sono diversi dagli amministratori di server.
+*  **Processo** -gli utenti possono connettersi tooand eseguire operazioni di elaborazione nel database di hello e analizzare i dati del database modello.
+*  **Lettura** -gli utenti possono usare un client applicazione tooconnect tooand analizzare i dati del database modello.
 
-Quando si crea un progetto di modello tabulare, si creano ruoli e si aggiungono utenti o gruppi a questi ruoli usando Gestione ruoli in SSDT. Quando si esegue la distribuzione in un server, si usano SQL Server Management Studio (SSMS), [i cmdlet di PowerShell per Analysis Services](https://msdn.microsoft.com/library/hh758425.aspx) o [Tabular Model Scripting Language](https://msdn.microsoft.com/library/mt614797.aspx) (TMSL) per aggiungere o rimuovere ruoli e membri utente.
+Quando si crea un progetto di modello tabulare, creare i ruoli e aggiungere utenti o gruppi di ruoli toothose tramite Gestione ruoli in SSDT. Quando è distribuito tooa server, utilizzare SQL Server Management Studio, [i cmdlet di PowerShell per Analysis Services](https://msdn.microsoft.com/library/hh758425.aspx), o [linguaggio di Scripting del modello tabulare](https://msdn.microsoft.com/library/mt614797.aspx) tooadd (TMSL) o rimuovere ruoli e membri di un utente.
 
-## <a name="to-add-or-manage-roles-and-users-in-ssdt"></a>Per aggiungere o gestire ruoli e utenti in SSDT  
+## <a name="tooadd-or-manage-roles-and-users-in-ssdt"></a>tooadd o gestire ruoli e utenti in SSDT  
   
 1.  In SSDT > **Esplora modelli tabulari** fare clic con il pulsante destro del mouse su **Ruoli**.  
   
 2.  In **Gestione ruoli** fare clic su **Nuovo**.  
   
-3.  Digitare un nome per il ruolo.  
+3.  Digitare un nome per il ruolo di hello.  
   
-     Per impostazione predefinita, il nome del ruolo predefinito è numerato in modo incrementale per ogni nuovo ruolo. È consigliabile digitare un nome che identifichi con precisione il tipo di membro, ad esempio responsabili finanze o esperti di risorse umane.  
+     Per impostazione predefinita, il nome di hello del ruolo predefinito di hello è numerato in modo incrementale per ogni nuovo ruolo. È consigliabile che si digita un nome che identifichi il tipo membro hello, ad esempio responsabili finanze o esperti di risorse umane.  
   
-4.  Selezionare una delle seguenti autorizzazioni:  
+4.  Selezionare una di queste autorizzazioni hello:  
   
     |Autorizzazione|Descrizione|  
     |----------------|-----------------|  
-    |**Nessuno**|I membri non possono modificare lo schema del modello e non possono eseguire query sui dati.|  
-    |**Lettura**|I membri possono eseguire query su dati, in base ai filtri di riga, ma non possono modificare lo schema del modello.|  
-    |**Lettura ed elaborazione**|I membri possono eseguire query su dati in base ai filtri a livello di riga ed eseguire operazioni Elabora ed Elabora tutto, ma non possono modificare lo schema del modello.|  
-    |**Processo**|I membri possono eseguire operazioni Elabora ed Elabora tutto. Non possono modificare lo schema del modello ed eseguire query sui dati.|  
-    |**Amministratore**|I membri possono modificare lo schema del modello ed eseguire query su tutti i dati.|   
+    |**Nessuno**|I membri non è possibile modificare lo schema del modello hello e non è possibile eseguire query sui dati.|  
+    |**Lettura**|I membri possono eseguire query dati (in base ai filtri di riga), ma non è possibile modificare lo schema del modello hello.|  
+    |**Lettura ed elaborazione**|I membri possono eseguire una query dei dati (in base ai filtri a livello di riga) e l'esecuzione di operazioni elabora ed elabora tutto, ma non è possibile modificare lo schema del modello hello.|  
+    |**Processo**|I membri possono eseguire operazioni Elabora ed Elabora tutto. Non è possibile modificare lo schema del modello hello e non è possibile eseguire query sui dati.|  
+    |**Amministratore**|I membri possono modificare lo schema del modello hello e tutti i dati di query.|   
   
-5.  Se il ruolo che si sta creando dispone delle autorizzazioni Lettura o Lettura ed elaborazione, è possibile aggiungere filtri di riga usando una formula DAX. Fare clic sulla scheda **Filtri di riga**, quindi selezionare una tabella, quindi scegliere il campo **Filtro DAX** e quindi digitare una formula DAX.
+5.  Se il ruolo di hello sono creazione è di lettura o autorizzazione di lettura ed elaborazione, è possibile aggiungere filtri di riga tramite una formula DAX. Fare clic su hello **i filtri di riga** scheda, quindi selezionare una tabella, quindi fare clic su hello **filtro DAX** campo e quindi digitare una formula DAX.
   
 6.  Fare clic su **Membri** > **Aggiungi esterno**.  
   
@@ -62,11 +62,11 @@ Quando si crea un progetto di modello tabulare, si creano ruoli e si aggiungono 
  
      ![Ruoli e utenti in Esplora modelli tabulari](./media/analysis-services-database-users/aas-roles-tmexplorer.png)
 
-9. Eseguire la distribuzione in un server di Azure Analysis Services.
+9. Distribuire il server Azure Analysis Services tooyour.
 
 
-## <a name="to-add-or-manage-roles-and-users-in-ssms"></a>Per aggiungere o gestire ruoli e utenti in SSMS
-Per aggiungere ruoli e utenti a un database modello distribuito, è necessario connettersi al server come amministratore del server o già in un ruolo del database con autorizzazioni di amministratore.
+## <a name="tooadd-or-manage-roles-and-users-in-ssms"></a>tooadd o gestire ruoli e utenti in SQL Server Management Studio
+tooadd ruoli e utenti tooa distribuita database modello, è necessario essere connessi toohello server come un amministratore del Server o già in un ruolo del database con autorizzazioni di amministratore.
 
 1. In Esplora oggetti fare clic con il pulsante destro del mouse su **Ruoli** > **Nuovo ruolo**.
 
@@ -75,22 +75,22 @@ Per aggiungere ruoli e utenti a un database modello distribuito, è necessario c
 3. Selezionare un'autorizzazione.
    |Autorizzazione|Descrizione|  
    |----------------|-----------------|  
-   |**Controllo completo (amministratore)**|I membri possono modificare lo schema del modello, eseguire operazioni di elaborazione e query su tutti i dati.| 
-   |**Elabora database**|I membri possono eseguire operazioni Elabora ed Elabora tutto. Non possono modificare lo schema del modello ed eseguire query sui dati.|  
-   |**Lettura**|I membri possono eseguire query su dati, in base ai filtri di riga, ma non possono modificare lo schema del modello.|  
+   |**Controllo completo (amministratore)**|I membri possono modificare schema del modello hello, elaborare ed eseguire query su tutti i dati.| 
+   |**Elabora database**|I membri possono eseguire operazioni Elabora ed Elabora tutto. Non è possibile modificare lo schema del modello hello e non è possibile eseguire query sui dati.|  
+   |**Lettura**|I membri possono eseguire query dati (in base ai filtri di riga), ma non è possibile modificare lo schema del modello hello.|  
   
 4. Fare clic su **Appartenenza**, quindi immettere un utente o un gruppo nel tenant di Azure AD dall'indirizzo e-mail.
 
      ![Add user](./media/analysis-services-database-users/aas-roles-adduser-ssms.png)
 
-5. Se il ruolo che si sta creando dispone dell'autorizzazione Lettura, è possibile aggiungere filtri di riga usando una formula DAX. Fare clic su **Filtri di riga**, selezionare una tabella e quindi digitare una formula DAX nel campo **Filtro DAX**. 
+5. Se il ruolo di hello che si sta creando dispone dell'autorizzazione di lettura, è possibile aggiungere filtri di riga tramite una formula DAX. Fare clic su **i filtri di riga**, selezionare una tabella e quindi digitare una formula DAX in hello **filtro DAX** campo. 
 
-## <a name="to-add-roles-and-users-by-using-a-tmsl-script"></a>Per aggiungere ruoli e utenti usando uno script TMSL
-È possibile eseguire uno script TMSL nella finestra XMLA in SSMS o usando PowerShell. Usare il comando [CreateOrReplace](https://docs.microsoft.com/sql/analysis-services/tabular-models-scripting-language-commands/createorreplace-command-tmsl) e l'oggetto [Ruoli](https://docs.microsoft.com/sql/analysis-services/tabular-models-scripting-language-objects/roles-object-tmsl).
+## <a name="tooadd-roles-and-users-by-using-a-tmsl-script"></a>tooadd ruoli e utenti usando uno script TMSL
+È possibile eseguire uno script TMSL nella finestra XMLA di hello in SQL Server Management Studio o PowerShell. Hello utilizzare [CreateOrReplace](https://docs.microsoft.com/sql/analysis-services/tabular-models-scripting-language-commands/createorreplace-command-tmsl) comando e hello [ruoli](https://docs.microsoft.com/sql/analysis-services/tabular-models-scripting-language-objects/roles-object-tmsl) oggetto.
 
 **Script di esempio del linguaggio di scripting del modello tabulare**
 
-In questo esempio, un gruppo e un utente esterno B2B vengono aggiunti al ruolo analista con autorizzazioni Lettura per il database SalesBI. Sia il gruppo che l'utente esterno devono trovarsi nello stesso tenant di Azure AD.
+In questo esempio, un utente esterno B2B e un gruppo vengono aggiunti ruolo analista toohello con autorizzazioni di lettura per il database SalesBI hello. Entrambi hello utente esterno e gruppo deve trovarsi nello stesso tenant di Azure AD.
 
 ```
 {
@@ -101,7 +101,7 @@ In questo esempio, un gruppo e un utente esterno B2B vengono aggiunti al ruolo a
     },
     "role": {
       "name": "Users",
-      "description": "All allowed users to query the model",
+      "description": "All allowed users tooquery hello model",
       "modelPermission": "read",
       "members": [
         {
@@ -118,23 +118,23 @@ In questo esempio, un gruppo e un utente esterno B2B vengono aggiunti al ruolo a
 }
 ```
 
-## <a name="to-add-roles-and-users-by-using-powershell"></a>Per aggiungere ruoli e utenti usando PowerShell
-Il modulo [SqlServer](https://msdn.microsoft.com/library/hh758425.aspx) fornisce cmdlet di gestione database specifici dell'attività, oltre al cmdlet Invoke-ASCmd per utilizzo generico che accetta una query o uno script TMSL (Tabular Model Scripting Language). I cmdlet seguenti vengono usati per la gestione di utenti e ruoli del database.
+## <a name="tooadd-roles-and-users-by-using-powershell"></a>tooadd ruoli e utenti tramite PowerShell
+Hello [SqlServer](https://msdn.microsoft.com/library/hh758425.aspx) modulo fornisce database specifici di attività Gestione cmdlet e hello generiche cmdlet Invoke-ASCmd che accetta un query Tabular Model Scripting Language (TMSL) o uno script. Hello seguendo i cmdlet utilizzato per gestire utenti e ruoli del database.
   
 |Cmdlet|Descrizione|
 |------------|-----------------| 
-|[Add-RoleMember](https://msdn.microsoft.com/library/hh510167.aspx)|Aggiunge un membro a un ruolo del database.| 
+|[Add-RoleMember](https://msdn.microsoft.com/library/hh510167.aspx)|Aggiungere un ruolo del database membro tooa.| 
 |[Remove-RoleMember](https://msdn.microsoft.com/library/hh510173.aspx)|Rimuove un membro da un ruolo del database.|   
 |[Invoke-ASCmd](https://msdn.microsoft.com/library/hh479579.aspx)|Esegue uno script TMSL.|
 
 ## <a name="row-filters"></a>Filtri di riga  
 I filtri di riga definiscono le righe di una tabella su cui i membri di uno specifico ruolo possono eseguire query. Vengono definiti per ogni tabella in un modello usando formule DAX.  
   
-I filtri di riga possono essere definiti solo per i ruoli con le autorizzazioni Lettura e Lettura ed elaborazione. Per impostazione predefinita, se non si definisce un filtro di riga per una determinata tabella, i membri possono eseguire query su tutte le righe della tabella a meno che non vengano applicati filtri incrociati da un'altra tabella.
+I filtri di riga possono essere definiti solo per i ruoli con le autorizzazioni Lettura e Lettura ed elaborazione. Per impostazione predefinita, se un filtro di riga non è definito per una determinata tabella, i membri possono eseguire una query tutte le righe nella tabella hello a meno che non applicato il filtro incrociato da un'altra tabella.
   
- I filtri di riga richiedono una formula DAX, che deve restituire un valore TRUE/FALSE, per definire le righe su cui i membri del ruolo specifico possono eseguire query. Non è possibile eseguire query su righe non incluse nella formula DAX. Ad esempio, nel caso della tabella Customers con l'espressione di filtri di riga seguente, *=Customers [Country] = 'USA'*, i membri del ruolo Sales possono visualizzare solo i clienti negli Stati Uniti.  
+ I filtri di riga richiedono una formula DAX, che deve restituire tooa valore TRUE o FALSE, le righe di hello toodefine che i membri di tale particolare ruolo possono eseguire query. Impossibile recuperare le righe non incluse nella formula DAX hello. Ad esempio, hello tabella Customers con hello espressione i filtri di riga, seguente *= clienti [Paese] = 'USA'*, i membri del ruolo Sales hello è possono visualizzare solo i clienti in hello USA.  
   
-I filtri di riga si applicano alle righe specificate e alle righe correlate. Quando una tabella contiene più relazioni, i filtri applicano la sicurezza per la relazione che è attiva. I filtri di riga vengono intersecati con altri filtri di riga definiti per le tabelle correlate, ad esempio:  
+I filtri di riga applicano toohello specificato righe e le righe correlate. Quando una tabella dispone di più relazioni, filtri si applicano la protezione per relazione hello che è attiva. I filtri di riga vengono intersecati con altri filtri di riga definiti per le tabelle correlate, ad esempio:  
   
 |Table|Espressione DAX|  
 |-----------|--------------------|  
@@ -142,9 +142,9 @@ I filtri di riga si applicano alle righe specificate e alle righe correlate. Qua
 |ProductCategory|=ProductCategory[Name]="Bicycles"|  
 |Transazioni|=Transactions[Year]=2016|  
   
- I membri possono eseguire query sulle righe di dati, in cui il cliente si trova negli Stati Uniti, la categoria del prodotto è biciclette e l'anno è il 2016. Gli utenti non possono eseguire query sulle transazioni all'esterno degli Stati Uniti, non relative alle biciclette o all'anno 2016, a meno che non siano membri di un altro ruolo che prevede queste autorizzazioni.
+ effetto Hello è i membri possono eseguire una query le righe di dati in cui hello cliente si trova negli Stati Uniti hello, categoria di prodotto hello è quella delle biciclette e anno hello è 2016. Gli utenti non è possibile eseguire una query transazioni di fuori di Stati Uniti hello, transazioni che non sono biciclette o le transazioni non 2016 a meno che non sono membri di un altro ruolo che garantisce tali autorizzazioni.
   
- È possibile usare il filtro, *=FALSE()*, per negare l'accesso a tutte le righe di un'intera tabella.
+ È possibile utilizzare il filtro di hello, *=FALSE()*, righe di tooall toodeny accesso per un'intera tabella.
 
 ## <a name="next-steps"></a>Passaggi successivi
   [Gestire gli amministratori di server](analysis-services-server-admins.md)   

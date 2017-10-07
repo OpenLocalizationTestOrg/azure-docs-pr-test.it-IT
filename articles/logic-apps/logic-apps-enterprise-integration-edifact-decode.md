@@ -1,6 +1,6 @@
 ---
-title: Decodificare messaggi EDIFACT - App per la logica di Azure | Documentazione Microsoft
-description: "Convalidare le proprietà EDI e generare i riconoscimenti con il decodificatore di messaggi EDIFACT in Enterprise Integration Pack in App per la logica di Azure"
+title: i messaggi EDIFACT aaaDecode - App Azure per la logica | Documenti Microsoft
+description: Convalida EDI e generare i riconoscimenti con decodificatore messaggio EDIFACT di hello in hello Enterprise Integration Pack per le app di logica di Azure
 services: logic-apps
 documentationcenter: .net,nodejs,java
 author: padmavc
@@ -14,22 +14,22 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/27/2017
 ms.author: LADocs; padmavc
-ms.openlocfilehash: e3787b48037360bf6066ddce2bacba6842213b2d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 94faebdec4e4ffc8ad76ad1609495ddf9f002250
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="decode-edifact-messages-for-azure-logic-apps-with-the-enterprise-integration-pack"></a>Messaggi Decode EDIFACT in App per la logica di Azure con Enterprise Integration Pack
+# <a name="decode-edifact-messages-for-azure-logic-apps-with-hello-enterprise-integration-pack"></a>Decodificare i messaggi EDIFACT per le app di Azure logica con hello Enterprise Integration Pack
 
-Il connettore di messaggi EDIFACT convalida le proprietà EDI e specifiche del partner, suddivide gli interscambi in set di transazioni o mantiene gli interscambi interi, nonché genera riconoscimenti per le transazioni elaborate. Per usare questo connettore, è necessario aggiungerlo a un trigger esistente nell'app per la logica.
+Con connettore di messaggi hello decodificare EDIFACT, si può convalidare EDI e proprietà specifiche del partner, suddividere gli interscambi in set di transazioni o mantenere gli interscambi intera e generare riconoscimenti per transazioni elaborate. toouse questo connettore, è necessario aggiungere hello connettore tooan trigger nell'app logica esistente.
 
 ## <a name="before-you-start"></a>Prima di iniziare
 
-Sono necessari gli elementi seguenti:
+Ecco gli elementi di hello che è necessario:
 
 * Un account Azure, che è possibile [creare gratuitamente](https://azure.microsoft.com/free)
-* Un [account di integrazione](logic-apps-enterprise-integration-create-integration-account.md) già definito e associato alla sottoscrizione di Azure. Per usare il connettore di messaggi Decode EDIFACT è necessario un account di integrazione. 
+* Un [account di integrazione](logic-apps-enterprise-integration-create-integration-account.md) già definito e associato alla sottoscrizione di Azure. È necessario disporre di un connettore di messaggio integrazione account toouse hello decodificare EDIFACT. 
 * Almeno due [partner](logic-apps-enterprise-integration-partners.md) già definiti nell'account di integrazione.
 * Un [contratto EDIFACT](logic-apps-enterprise-integration-edifact.md) già definito nell'account di integrazione.
 
@@ -37,13 +37,13 @@ Sono necessari gli elementi seguenti:
 
 1. [Creare un'app per la logica](logic-apps-create-a-logic-app.md).
 
-2. Il connettore di messaggi Decode EDIFACT non dispone di trigger, pertanto è necessario aggiungerne uno per avviare l'app per la logica, ad esempio un trigger di richiesta. In Progettazione app per la logica aggiungere un trigger e un'azione all'app per la logica.
+2. connettore di messaggi Hello decodificare EDIFACT non dispone di trigger, pertanto è necessario aggiungere un trigger per avviare l'app di logica, ad esempio un trigger di richiesta. Nella finestra di progettazione logica App hello, aggiungere un trigger e quindi aggiungere un'app di logica di azione tooyour.
 
-3. Nella casella di ricerca, digitare "EDIFACT" come filtro. Selezionare **Decodifica il messaggio EDIFACT**.
+3. Nella casella di ricerca hello, immettere "EDIFACT" come filtro. Selezionare **Decodifica il messaggio EDIFACT**.
    
     ![ricerca di EDIFACT](./media/logic-apps-enterprise-integration-edifact-decode/edifactdecodeimage1.png)
 
-3. Se non sono state create in precedenza le connessioni all'account di integrazione, a questo punto viene richiesto di creare la connessione. Denominare la connessione e selezionare l'account di integrazione al quale connettersi.
+3. Se è stato creato in precedenza tutte le connessioni tooyour account di integrazione, viene chiesto toocreate ora tale connessione. Nome della connessione, quindi selezionare account di integrazione hello che si desidera tooconnect.
    
     ![creare un account di integrazione](./media/logic-apps-enterprise-integration-edifact-decode/edifactdecodeimage2.png)
 
@@ -52,13 +52,13 @@ Sono necessari gli elementi seguenti:
     | Proprietà | Dettagli |
     | --- | --- |
     | Nome connessione * |Immettere un nome per la connessione. |
-    | Account di integrazione * |Immettere un nome per l'account di integrazione. Verificare che l'account di integrazione e l'app per la logica si trovino nella stessa località di Azure. |
+    | Account di integrazione * |Immettere un nome per l'account di integrazione. Assicurarsi che l'app di account e la logica di integrazione siano hello nello stesso percorso di Azure. |
 
-4. Dopo aver completato la creazione della connessione, scegliere **Crea**. I dettagli della connessione dovrebbero essere simili a quelli dell'esempio seguente:
+4. Al termine della creazione della connessione toofinish, scegliere **crea**. Dettagli relativi alla connessione dovrebbero essere simile toothis esempio:
 
     ![dettagli dell'account di integrazione](./media/logic-apps-enterprise-integration-edifact-decode/edifactdecodeimage3.png)  
 
-5. Dopo aver creato la connessione, come illustrato in questo esempio, selezionare il messaggio con file flat EDIFACT da decodificare.
+5. Dopo aver creata la connessione, come illustrato in questo esempio, selezionare toodecode messaggio file flat di hello EDIFACT.
 
     ![connessione all'account di integrazione creata](./media/logic-apps-enterprise-integration-edifact-decode/edifactdecodeimage4.png)  
 
@@ -68,37 +68,37 @@ Sono necessari gli elementi seguenti:
 
 ## <a name="edifact-decoder-details"></a>Dettagli decodificatore EDIFACT
 
-Il connettore Decode EDIFACT esegue queste attività: 
+connettore di decodificare EDIFACT Hello esegue queste attività: 
 
-* Convalida la busta in base all'accordo tra partner commerciali.
-* Risolve il contratto associando qualificatore del mittente e identificatore e qualificatore del ricevitore e identificatore.
-* Suddivide un interscambio in più transazioni quando l'interscambio ha più di una transazione basata sulla configurazione delle impostazioni di ricezione dell'accordo.
-* Disassembla l'interscambio.
+* Convalida la busta hello contro l'accordo tra partner commerciali.
+* Risolve l'accordo hello associando qualificatore mittente hello & identificatore qualificatore ricevitore e identificatore.
+* Suddivide un interscambio in più transazioni quando interscambio hello ha più di una transazione in base hello del contratto di configurazione delle impostazioni di ricezione.
+* Disassembla l'interscambio hello.
 * Convalida le proprietà EDI e specifiche del partner, comprese:
-  * Convalida della struttura della busta dell'interscambio
-  * Convalida dello schema della busta in base allo schema di controllo
-  * Convalida dello schema degli elementi dati del set di transazioni rispetto allo schema del messaggio
+  * Convalida della struttura di busta interscambio hello
+  * Convalida dello schema della busta hello rispetto allo schema di controllo hello
+  * Convalida dello schema di elementi di dati di set di transazioni hello rispetto allo schema di messaggio hello
   * Convalida EDI eseguita sugli elementi dati del set di transazioni.
-* Verifica che i numeri di controllo di un set di interscambio, gruppo e di transazioni non siano duplicati (se configurata). 
-  * Controlla il numero di controllo dell'interscambio rispetto agli interscambi ricevuti in precedenza. 
-  * Controlla il numero di controllo del gruppo con gli altri numeri di controllo del gruppo dell'interscambio. 
-  * Controlla il numero di controllo del set di transazioni con gli altri numeri di controllo del set transazioni in tale gruppo.
-* Suddivide l'interscambio in set di transazioni o mantiene l'intero interscambio:
+* Verifica che hello interscambio, gruppo e transazioni set di numeri di controllo non siano duplicati (se configurata) 
+  * Verifica numero di controllo di interscambio hello con gli interscambi ricevuti in precedenza. 
+  * Verifica numero di controllo gruppo hello con gli altri numeri di controllo di gruppo nell'interscambio hello. 
+  * Controlla il numero di controllo del set di transazioni hello con gli altri numeri di controllo set transazioni in tale gruppo.
+* Suddivide hello interscambio in set di transazioni o mantiene hello intero interscambio:
   * Suddivide l'interscambio in set di transazioni - sospende i set di transazioni in caso di errore: suddivide l'interscambio in set di transazioni e analizza ogni set di transazioni. 
-  L'azione X12 Decode restituisce solo i set di transazioni che non sono stati convalidati in `badMessages` e restituisce i restanti set di transazioni in `goodMessages`.
+  azione di decodifica Hello X12 restituisce solo i set di transazioni che non superano la convalida troppo`badMessages`e restituisce hello transazioni rimanenti imposta troppo`goodMessages`.
   * Suddivide l'interscambio in set di transazioni - sospende l'interscambio in caso di errore: suddivide l'interscambio in set di transazioni e analizza ogni set di transazioni. 
-  Se la convalida di uno o più set di transazioni dell'interscambio non riesce, l'azione X12 Decode restituisce tutti i set di transazioni in quell'interscambio in `badMessages`.
-  * Mantiene l'interscambio - sospende i set transazioni in caso di errore: mantiene l'interscambio ed elabora l'intero interscambio in batch. 
-  L'azione X12 Decode restituisce solo i set di transazioni che non sono stati convalidati in `badMessages` e restituisce i restanti set di transazioni in `goodMessages`.
-  * Mantiene l'interscambio - sospende l'interscambio in caso di errore: mantiene l'interscambio ed elabora l'intero interscambio in batch. 
-  Se la convalida di uno o più set di transazioni dell'interscambio non riesce, l'azione X12 Decode restituisce tutti i set di transazioni in quell'interscambio in `badMessages`.
+  Se i set di convalida non riuscita di interscambio hello uno o più transazioni, l'azione Decode hello X12 output tutti hello set di transazioni nell'interscambio troppo`badMessages`.
+  * Mantieni interscambio - Sospendi set transazioni in caso di errore: interscambio hello Preserve e processo hello intero interscambio in batch. 
+  azione di decodifica Hello X12 restituisce solo i set di transazioni che non superano la convalida troppo`badMessages`e restituisce hello transazioni rimanenti imposta troppo`goodMessages`.
+  * Mantieni interscambio - Sospendi interscambio in caso di errore: interscambio hello Preserve e processo hello intero interscambio in batch. 
+  Se i set di convalida non riuscita di interscambio hello uno o più transazioni, l'azione Decode hello X12 output tutti hello set di transazioni nell'interscambio troppo`badMessages`.
 * Genera un riconoscimento tecnico (controllo) e/o funzionale (se configurata).
-  * Un riconoscimento tecnico o CONTRL ACK segnala i risultati di un controllo sintattico dell'interscambio completo ricevuto.
+  * Un riconoscimento tecnico o hello ACK CONTRL segnala i risultati di hello di un controllo sintattico dell'interscambio ricevuto hello completo.
   * Un riconoscimento funzionale riconosce l'accettazione o il rifiuto di un interscambio o un gruppo ricevuto.
 
 ## <a name="view-swagger-file"></a>Visualizzare il file Swagger
-Per visualizzare i dettagli di Swagger per il connettore EDIFACT, vedere [EDIFACT](/connectors/edifact/).
+vedere i dettagli di Swagger hello tooview per connettore EDIFACT hello, [EDIFACT](/connectors/edifact/).
 
 ## <a name="next-steps"></a>Passaggi successivi
-[Altre informazioni su Enterprise Integration Pack](logic-apps-enterprise-integration-overview.md "Informazioni su Enterprise Integration Pack") 
+[Altre informazioni su Enterprise Integration Pack hello](logic-apps-enterprise-integration-overview.md "apprendere Enterprise Integration Pack") 
 

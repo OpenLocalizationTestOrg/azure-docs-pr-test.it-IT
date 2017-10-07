@@ -1,6 +1,6 @@
 ---
-title: File Leggimi dell'ambiente del servizio app di Azure
-description: Elenca la documentazione che descrive l'ambiente del servizio app di Azure
+title: file Leggimi di ambiente del servizio App aaaAzure
+description: Elenca la documentazione di hello che descrive l'ambiente del servizio App di Azure
 services: app-service
 documentationcenter: na
 author: ccompy
@@ -13,11 +13,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/13/2017
 ms.author: ccompy
-ms.openlocfilehash: 5b1362854dbc3b0098718bd2ea3cffb06366000c
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 6edc74804ded7497e70c31c9e08252257add4415
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="app-service-environment-documentation"></a>Documentazione relativa all'ambiente del servizio app
  Ambiente del servizio app di Azure è una funzionalità del servizio app di Azure che fornisce un ambiente completamente isolato e dedicato per l'esecuzione sicura di app del servizio app di Azure su vasta scala. Questa funzionalità può ospitare [app Web][webapps], [app per dispositivi mobili][mobileapps], [app per le API][APIApps] e [Funzioni][Functions].
@@ -29,20 +29,20 @@ Gli ambienti del servizio app sono ideali per i carichi di lavoro dell'applicazi
 
 I clienti possono creare più ambienti del servizio app sia in una singola area di Azure che in più aree di Azure. Questa versatilità rende gli ambienti del servizio app ideali per i livelli applicazione con scalabilità orizzontale senza stato, nel supportare i carichi di lavoro RPS elevati.
 
-Gli ambienti del servizio app sono isolati per eseguire solo le applicazioni di un singolo cliente e sono sempre distribuiti in una rete virtuale di Azure. I clienti hanno il controllo con granularità fine del traffico di rete in ingresso e in uscita dell'applicazione tramite [gruppi di sicurezza di rete][NSGs]. Le applicazioni possono anche stabilire connessioni protette ad alta velocità su reti virtuali con risorse aziendali locali.
+ASEs sono isolati toorunning solo le applicazioni di un singolo cliente e vengono sempre distribuiti in una rete virtuale di Azure. I clienti hanno il controllo con granularità fine del traffico di rete in ingresso e in uscita dell'applicazione tramite [gruppi di sicurezza di rete][NSGs]. Le applicazioni inoltre possono stabilire connessioni protette ad alta velocità sulle risorse di reti virtuali tooon tra più sedi aziendali.
 
-Spesso le app devono accedere a risorse aziendali, ad esempio database e servizi Web interni. Le app in esecuzione in ambienti del servizio app possono accedere alle risorse tramite VPN [da sito a sito][SiteToSite] e connessioni [Azure ExpressRoute][ExpressRoute].
+App è spesso necessitano tooaccess alle risorse aziendali, ad esempio servizi web e database interni. Le app in esecuzione in ambienti del servizio app possono accedere alle risorse tramite VPN [da sito a sito][SiteToSite] e connessioni [Azure ExpressRoute][ExpressRoute].
 
 * [Che cos'è un ambiente del servizio app?][Intro]
 * [Creare un ambiente del servizio app][MakeExternalASE]
 * [Creare un ambiente del servizio app con bilanciamento del carico interno][MakeILBASE]
 * [Usare un ambiente del servizio app][UsingASE]
-* [Considerazioni sulla rete e ambiente del servizio app][ASENetwork]
+* [Considerazioni sulla rete e hello ambiente del servizio App][ASENetwork]
 * [Creare un ambiente del servizio app da un modello][MakeASEfromTemplate]
 
 
 ## <a name="videos"></a>Video
-Master Modern PaaS for the Enterprise with Azure App Service (Gestire una PaaS aziendale moderna con il Servizio app di Azure)
+Master moderno PaaS per hello Enterprise con il servizio App di Azure
 >[!VIDEO https://channel9.msdn.com/Events/Ignite/2016/BRK3205/player]
 
 Deploying Highly Scalable and Secure Apps (Distribuzione di app altamente scalabili e sicure)

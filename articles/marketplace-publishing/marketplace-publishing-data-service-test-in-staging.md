@@ -1,6 +1,6 @@
 ---
-title: Testare l'offerta di servizi dati per il Marketplace | Microsoft Docs
-description: Informazioni su come testare l'offerta del servizio dati per Azure Marketplace.
+title: aaaTesting offrono il servizio dati per hello Marketplace | Documenti Microsoft
+description: Comprendere in che modo tootest offrono il servizio dati per hello Azure Marketplace.
 services: marketplace-publishing
 documentationcenter: 
 author: HannibalSII
@@ -14,86 +14,86 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/26/2016
 ms.author: hascipio; avikova
-ms.openlocfilehash: 56a8aad7484fed18b74200ffa7acf22363625a15
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1b9c7027d8e0818b9bdee5cfca971bab25dd1959
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="testing-your-data-service-offer-in-staging"></a>Test dell'offerta del servizio dati in gestione temporanea
 > [!IMPORTANT]
-> **In questo momento non stiamo più caricando nuovi editori di servizi dati. I nuovi servizi dati non saranno approvati per l'elencazione.** Se si dispone di un'applicazione aziendale SaaS che si vuole pubblicare in AppSource, è possibile trovare altre informazioni [qui](https://appsource.microsoft.com/partners). Se si dispone di un'applicazione IaaS o di un servizio per gli sviluppatori che si vuole pubblicare in Azure Marketplace, è possibile trovare altre informazioni [qui](https://azure.microsoft.com/marketplace/programs/certified/).
+> **In questo momento non stiamo più caricando nuovi editori di servizi dati. I nuovi servizi dati non saranno approvati per l'elencazione.** Se si dispone di un'applicazione SaaS di business si desidera toopublish in AppSource è possibile trovare ulteriori informazioni [qui](https://appsource.microsoft.com/partners). Se si utilizzano applicazioni IaaS sviluppatore del servizio si sarebbe ad esempio toopublish in Azure Marketplace è possibile trovare ulteriori informazioni [qui](https://azure.microsoft.com/marketplace/programs/certified/).
 > 
 > 
 
-Dopo aver completato i primi due passaggi della [creazione di un account per il Dashboard venditori](marketplace-publishing-accounts-creation-registration.md) e della [creazione dell'offerta del servizio dati nel portale di pubblicazione](marketplace-publishing-data-service-creation.md), si è pronti per rendere disponibile l'offerta in Azure Marketplace. Questo argomento illustra il primo passaggio intermedio denominato "Gestione temporanea"
+Dopo aver completato i primi due passaggi di hello di [creazione dell'account di Microsoft Developer](marketplace-publishing-accounts-creation-registration.md) e [creazione l'offerta di servizio dati nel portale di pubblicazione](marketplace-publishing-data-service-creation.md) si è pronti per rendere disponibili in hello l'offerta Azure Marketplace. In questo argomento verrà illustrati hello prima, intermedia, passaggio denominato "gestione temporanea"
 
-Per gestione temporanea si intende la distribuzione dell'offerta in un ambiente "sandbox" privato, in cui è possibile testarne e verificarne le funzionalità prima di eseguirne il push in produzione. L'offerta verrà visualizzata nella gestione temporanea esattamente come verrebbe mostrata a un cliente che l'ha distribuita.
+Indica l'offerta in una "sandbox" in cui è possibile testare e verificare le funzionalità prima di pubblicarlo tooproduction privata di distribuzione di gestione temporanea. offerta Hello apparirà come avverrebbe tooa cliente che ha distribuito di gestione temporanea.
 
-## <a name="step-1-pushing-your-offer-to-staging"></a>Passaggio 1. Push dell'offerta nella gestione temporanea
-Il push dell'offerta nella gestione temporanea consente di testare l'offerta prima che diventi disponibile ai sottoscrittori futuri.  È possibile visualizzare come l'offerta verrà visualizzata e funzionerà per coloro che effettuano la sottoscrizione ai dati.  
+## <a name="step-1-pushing-your-offer-toostaging"></a>Passaggio 1. Push toostaging l'offerta
+Inserendo l'offerta toostaging consente offerta hello tootest prima che diventi disponibile toofuture sottoscrittori.  È possibile visualizzare come l'offerta la corretta visualizzazione e per quelli tooyour dati di sottoscrizione.  
 
   ![disegno](media/marketplace-publishing-data-service-test-in-staging/step-1.1.png)
 
-1. Accedere al [portale di pubblicazione](https://publish.windowsazure.com)
-2. Selezionare **Servizi dati** nella finestra di navigazione a sinistra
-3. Selezionare l'offerta di cui si desidera effettuare il push in gestione temporanea. Verrà visualizzata la schermata precedente.
-4. Fare clic sul pulsante **Push gestione temporanea** .  
-5. Se sono presenti problemi con l'offerta che devono essere risolti prima del push nella gestione temporanea, verrà visualizzato un elenco.  Correggere questi elementi facendo clic su ogni elemento nell'elenco. Quando tutte le correzioni sono state apportate, fare clic nuovamente sul pulsante **Push gestione temporanea** .
+1. Account di accesso in hello [portale di pubblicazione](https://publish.windowsazure.com)
+2. Selezionare **Data Services** nella finestra di navigazione a sinistra di hello
+3. Selezionare l'offerta desiderata toopush toostaging. Si noterà hello schermata.
+4. Fare clic su **Push tooStaging** pulsante.  
+5. Se si verificano problemi con hello offerta necessari toobe completato toostaging toopushing precedente, verrà visualizzato un elenco visualizzato.  Correggere questi elementi facendo clic su ogni elemento nell'elenco di hello. Quando tutte le correzioni apportate, fare clic su **Push tooStaging** nuovamente clic sul pulsante.
 
-Se non sono presenti problemi con l'offerta, si noterà la finestra popup di seguito.  
+Se non esistono problemi con l'offerta finestra popup hello seguente verrà visualizzato.  
 
-Se non si prevede/non si è stati approvati per la presentazione dell'offerta nel portale di Azure (attualmente dispone di capacità limitate), chiudere semplicemente la finestra popup.
+Se non si pianificazione/non approvato toosurface l'offerta nel portale di Azure (attualmente dispone di capacità limitata), quindi finestra popup hello appena Chiudi.
 
-Per testare il servizio dati nel portale di Azure (oltre al portale di DataMarket), è necessario un ID di sottoscrizione di Azure con cui eseguire il test.  Questo ID di sottoscrizione identificherà l'account consentito per testare l'offerta.  
+tootest i dati del servizio nel portale di Azure (nel portale di DataMarket toohello di addizione), sarà necessario tootest un ID sottoscrizione di Azure con.  L'ID sottoscrizione identificherà account hello che verrà consentito tootest l'offerta.  
 
-Tagliare e incollare l'ID di sottoscrizione e fare clic sul segno di spunta per continuare.
+Tagliare e incollare l'ID sottoscrizione e fare clic su hello toocontinue di segno di spunta.
 
   ![disegno](media/marketplace-publishing-data-service-test-in-staging/step-1.2.png)
 
 > [!NOTE]
-> Questi ID di sottoscrizione di Azure sono necessari per il testing e la gestione temporanea nel [portale di gestione di Azure](https://manage.windowsazure.com). Non sono necessari per eseguire il test in Azure Marketplace.
+> Questi ID le sottoscrizioni di Azure sono necessari per il testing e di gestione temporanea in hello [il portale di gestione di Azure](https://manage.windowsazure.com). Non sono necessari tootest in Azure Marketplace.
 > 
 > 
 
-La schermata successiva visualizzata mostra che la pubblicazione ha luogo visualizzando l'icona "In corso" evidenziata in giallo di seguito. Il push in gestione temporanea richiede tra 10 e 15 minuti.  Se richiede più tempo, prima di aggiornare il browser (premere F5 in Internet Explorer).  In rari casi in cui l'offerta è ancora in fase di push in gestione temporanea dopo un'ora, fare clic sul collegamento dei contatti per comunicarci che è presente un problema.
+Hello che viene visualizzato nella schermata successiva che la pubblicazione viene eseguita mediante la visualizzazione di hello "In corso" icona evidenziata giallo riportata di seguito. Push toostaging accetta tra 10 minuti too15.  Se richiede più tempo, prima di aggiornare il browser (premere F5 in Internet Explorer).  In casi rari hello in cui l'offerta viene comunque eseguita toostaging dopo un'ora, fare clic su contatto hello ci toolet inviarci che si verifica un problema di collegamento.
 
   ![disegno](media/marketplace-publishing-data-service-test-in-staging/step-1.3.png)
 
-Quando il push in gestione temporanea viene completato, l'icona "In corso" smette di muoversi e lo stato viene aggiornato in "Gestione temporanea".  È ora possibile testare l'offerta.  
+Al termine di hello Push tooStaging hello "In corso" icona verrà interrotta lo spostamento e verrà aggiornato lo stato di hello troppo "staging".  Si sono ora pronti tootest l'offerta.  
 
 ## <a name="step-2-test-your-staged-offer-in-datamarket"></a>Passaggio 2. Testare l'offerta in gestione temporanea in DataMarket
-Fare clic sul collegamento che segue il testo **"Visualizza l’offerta di servizio in..."** per visualizzare la schermata che il sottoscrittore potrà vedere quando l'offerta passerà alla produzione e verrà visualizzata nel DataMarket.
+Fare clic sul collegamento hello dopo il testo hello **"vedere il servizio di offerta...."** schermata di hello toodisplay hello sottoscrittore verrà visualizzato quando l'offerta passa tooproduction e verrà visualizzato in DataMarket.
 
   ![disegno](media/marketplace-publishing-data-service-test-in-staging/step-2.2.png)
 
-Testare o verificare ognuno dei 12 elementi contrassegnati in precedenza affinché tutti i logo, prezzi/transazioni, testi, immagini, documentazione e collegamenti siano corretti e funzionino in modo appropriato.  Questo è il momento opportuno per assicurarsi che i valori di test specificati durante la creazione dell'offerta siano stati sostituiti con valori effettivi.
+Testare o verificare tutti gli elementi 12 hello contrassegnato sopra tooensure tutti i logo, prezzi/transazioni, testo, immagini, documentazione e collegamenti siano corrette e funzionino correttamente.  Si tratta di un tooensure tempestivamente eventuali valori di test che immessi durante la creazione dell'offerta sono stati sostituiti con i valori effettivi.
 
 1. Logo offerta
 2. Nome offerta
-3. Nome server di pubblicazione/collegamento al sito Web della società
+3. Sito Web della società tooyour/collegamento del relativo nome di server di pubblicazione
 4. Categorie di ricerca per l'offerta
-5. Collegamento di supporto dell'offerta per agevolare i sottoscrittori
+5. Sottoscrittori tooassist collegamento di supporto dell'offerta
 6. Descrizione contestuale dell'offerta
 7. Piano dell’offerta che descrive i dettagli di fatturazione
-8. Collegamento al codice di implementazione
+8. Collegamento tooimplementation codice
 9. Immagini di esempio che illustrano l'utilizzo dei dati dell’offerta
-10. Metadati di input/output per ogni servizio all'interno dell'offerta
+10. Metadati di Input/Output per ogni servizio all'interno di offerta hello
 11. Condizioni di utilizzo dell'offerta
-12. Anteprima dei dati dell'offerta
+12. Anteprima dei dati dell'offerta hello
 
-Infine, controllare che il servizio funzioni nel Datamarket facendo clic sul collegamento "ESPLORA QUESTO SET DI DATI".  Verrà aperta una nuova finestra dello strumento chiamiamo "Service Explorer", in modo che sia possibile visualizzare in anteprima i risultati di una query sul servizio.  In questa finestra, è possibile immettere i parametri necessari e vedere i risultati visualizzati da una query sul servizio.   Inoltre, viene visualizzato l'URL per la Query.  
+Infine, controllare il servizio hello funzionerà tramite hello Datamarket facendo clic sul collegamento hello "Esplora set di dati".  Verrà aperta una nuova finestra dello strumento hello è chiamare "Service Explorer" in modo che è possibile visualizzare l'anteprima risultati hello di una query per il servizio.  In questa finestra, è possibile immettere hello parametri necessari e visualizzare i risultati di hello visualizzati da una query sul servizio.   Inoltre, visualizzato è hello URL per la Query.  
 
 > [!NOTE]
-> Assicurarsi di esaminare la descrizione testuale del servizio visualizzato nella parte superiore.  Se l'offerta è costituita da più di un servizio, fare clic sulle schede nella parte inferiore per passare al servizio successivo da esaminare e testare.
+> Impossibile verificare tooreview hello descrizione testuale del servizio hello visualizzato nella parte superiore di hello.  E se l'offerta è costituito da più di un servizio di chiamata, fare clic sulle schede hello in hello inferiore tooswitch toohello successivo servizio tooreview e al test.
 > 
 > 
 
 ## <a name="next-step"></a>Passaggio successivo
 Se si riscontrano problemi e serve assistenza per risolverli, contattare il [Supporto di pubblicazione di Azure](http://go.microsoft.com/fwlink/?LinkId=272975).
 
-Se si è soddisfatti e pronti per la pubblicazione dell'offerta, leggere la documentazione [Richiedere l’approvazione per il push in produzione](marketplace-publishing-push-to-production.md) .
+Se si è soddisfatti e toopublish pronto l'offerta leggere hello [richiesta approvazione tooPush tooProduction](marketplace-publishing-push-to-production.md) documentazione.
 
 ## <a name="see-also"></a>Vedere anche
-* [Guida introduttiva: Come pubblicare un'offerta in Azure Marketplace](marketplace-publishing-getting-started.md)
+* [Guida introduttiva: Come toopublish un toohello offerta Azure Marketplace](marketplace-publishing-getting-started.md)
 

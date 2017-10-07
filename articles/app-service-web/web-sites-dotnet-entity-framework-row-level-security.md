@@ -1,6 +1,6 @@
 ---
 title: 'Esercitazione: App Web con database multi-tenant che usa Entity Framework e la sicurezza a livello di riga'
-description: Informazioni su come sviluppare un'app Web ASP.NET MVC 5 con un back-end del database SQL multi-tenant che usa Entity Framework e la sicurezza a livello di riga.
+description: Informazioni su come toodevelop un MVC ASP.NET 5 web app con multi-tenant backent, Database SQL mediante Entity Framework e la sicurezza a livello di riga.
 metakeywords: azure asp.net mvc entity framework multi tenant row level security rls sql database
 services: app-service\web
 documentationcenter: .net
@@ -14,30 +14,30 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 04/25/2016
 ms.author: thmullan
-ms.openlocfilehash: ba1bb3d84b462dfebbb2564569517d7336bf54fd
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1b715e01807032c3f6497c374ce427dd762af141
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-web-app-with-a-multi-tenant-database-using-entity-framework-and-row-level-security"></a>Esercitazione: App Web con database multi-tenant che usa Entity Framework e la sicurezza a livello di riga
-Questa esercitazione illustra come sviluppare un'app Web multi-tenant con un modello di tenancy di tipo "[database condiviso, schema condiviso](https://msdn.microsoft.com/library/aa479086.aspx)" usando Entity Framework e la [sicurezza a livello di riga](https://msdn.microsoft.com/library/dn765131.aspx). In questo modello un database singolo contiene dati per molti tenant e ogni riga in ogni tabella è associata a un "ID tenant". La sicurezza a livello di riga, una nuova funzionalità del database SQL di Azure, consente di impedire ai tenant di accedere ai dati degli altri tenant. È necessaria solo una piccola modifica all'applicazione. Centralizzando la logica di accesso al tenant entro il database stesso, la sicurezza a livello di riga semplifica il codice dell'applicazione e riduce il rischio di diffusione accidentale dei dati tra i tenant.
+Questa esercitazione viene illustrato come toobuild multi-tenant web app con una "[database condiviso, schema condiviso](https://msdn.microsoft.com/library/aa479086.aspx)" modello di tenancy, mediante Entity Framework e [sicurezza a livello di riga](https://msdn.microsoft.com/library/dn765131.aspx). In questo modello un database singolo contiene dati per molti tenant e ogni riga in ogni tabella è associata a un "ID tenant". Sicurezza a livello di riga (riga), una nuova funzionalità per il Database di SQL Azure, viene utilizzato tooprevent tenant l'accesso ai dati reciproci. Ciò richiede solo una singola, applicazione di toohello di modifica di piccole dimensioni. Centralizzando hello tenant accesso logica all'interno di database hello stesso, riga semplifica il codice dell'applicazione hello e riduce il rischio di hello accidentale di perdita di dati tra i tenant.
 
-È possibile iniziare con la semplice applicazione Contact Manager disponibile in [Creare un'app ASP.NET MVC con autenticazione e database SQL e distribuirla nel servizio app di Azure](web-sites-dotnet-deploy-aspnet-mvc-app-membership-oauth-sql-database.md). L'applicazione consente attualmente a tutti gli utenti (tenant) di visualizzare tutti i contatti:
+Iniziamo con una semplice applicazione Contact Manager hello da [crea un'applicazione ASP.NET MVP con l'autenticazione e i database di SQL Server e distribuire App servizio tooAzure](web-sites-dotnet-deploy-aspnet-mvc-app-membership-oauth-sql-database.md). Diritto a questo punto, un'applicazione hello consente tutti gli utenti (tenant) toosee tutti i contatti:
 
 ![Applicazione Contact Manager prima dell'abilitazione della sicurezza a livello di riga](./media/web-sites-dotnet-entity-framework-row-level-security/ContactManagerApp-Before.png)
 
-Con qualche modifica è possibile aggiungere il supporto per il multi-tenancy, in modo che gli utenti possano visualizzare solo i propri contatti.
+Con poche modifiche di piccola, si verrà aggiunto il supporto per multi-tenancy, in modo che gli utenti siano in grado di toosee solo hello i contatti che appartengono toothem.
 
-## <a name="step-1-add-an-interceptor-class-in-the-application-to-set-the-sessioncontext"></a>Passaggio 1: Aggiungere una classe Interceptor nell'applicazione per configurare SESSION_CONTEXT
-È necessario apportare una modifica all'applicazione. Poiché tutti gli utenti dell'applicazione si connettono al database usando la stessa stringa di connessione, ovvero lo stesso accesso SQL, non è attualmente possibile per un criterio di sicurezza a livello di riga conoscere l'utente in base a cui applicare il filtro. Questo approccio è molto comune in applicazioni Web perché consente il pooling efficiente delle connessioni, ma richiede un altro modo per identificare l'utente attuale dell'applicazione Web nel database. La soluzione consiste nel fare in modo che l'applicazione configuri una coppia chiave-valore per l'UserId corrente in [SESSION_CONTEXT](https://msdn.microsoft.com/library/mt590806) immediatamente dopo l'apertura della connessione e prima dell'esecuzione di query. SESSION_CONTEXT è un archivio di coppie chiave-valore con ambito sessione e il criterio della sicurezza a livello di riga userà il valore UserId archiviato per identificare l'utente corrente.
+## <a name="step-1-add-an-interceptor-class-in-hello-application-tooset-hello-sessioncontext"></a>Passaggio 1: Aggiungere una classe dell'intercettore in hello tooset di applicazione hello SESSION_CONTEXT
+È presente una modifica applicazione dobbiamo toomake. Perché tutti gli utenti dell'applicazione di connettersi utilizzando database toohello hello stessa stringa di connessione (ad esempio stesso account di accesso SQL), non è attualmente possibile per cui l'utente deve filtrare per un tooknow di criteri di riga. Questo approccio è molto comune nelle applicazioni web perché consente di pool di connessioni efficiente, ma significa che è necessario un altro modo tooidentify hello utente corrente dell'applicazione all'interno del database hello. Hello soluzione è toohave hello applicazione set una coppia chiave-valore per hello UserId corrente in hello [SESSION_CONTEXT](https://msdn.microsoft.com/library/mt590806) immediatamente dopo l'apertura di una connessione, prima di eseguire le query. SESSION_CONTEXT è un archivio chiave-valore con ambito sessione e i criteri di riga verranno utilizzati hello in essa archiviati UserId tooidentify utente corrente di hello.
 
-Verrà aggiunto un [intercettore](https://msdn.microsoft.com/data/dn469464.aspx), in particolare [DbConnectionInterceptor](https://msdn.microsoft.com/library/system.data.entity.infrastructure.interception.idbconnectioninterceptor), una nuova funzionalità di Entity Framework (EF) 6, per configurare automaticamente il valore UserId attuale in SESSION_CONTEXT eseguendo un'istruzione T-SQL ogni volta che EF apre una connessione.
+Si aggiungerà un [intercettore](https://msdn.microsoft.com/data/dn469464.aspx) (in particolare, un [DbConnectionInterceptor](https://msdn.microsoft.com/library/system.data.entity.infrastructure.interception.idbconnectioninterceptor)), una nuova funzionalità in Entity Framework (EF) 6, tooautomatically set hello UserId corrente in hello SESSION_CONTEXT eseguendo un Istruzione T-SQL ogni volta che EF apre una connessione.
 
-1. Aprire il progetto ContactManager in Visual Studio.
-2. Fare clic con il pulsante destro del mouse sulla cartella Modelli in Esplora soluzioni, quindi scegliere Aggiungi > Classe.
-3. Assegnare alla nuova classe il nome "SessionContextInterceptor.cs" e fare clic su Aggiungi.
-4. Sostituire i contenuti di SessionContextInterceptor.cs con il codice seguente.
+1. Aprire il progetto di ContactManager hello in Visual Studio.
+2. Pulsante destro del mouse sulla cartella Modelli hello in hello Esplora soluzioni e scegliere Aggiungi > classe.
+3. Nome nuova classe hello "SessionContextInterceptor.cs" e fare clic su Aggiungi.
+4. Sostituire il contenuto di hello del SessionContextInterceptor.cs con hello seguente codice.
 
 ```
 using System;
@@ -55,7 +55,7 @@ namespace ContactManager.Models
     {
         public void Opened(DbConnection connection, DbConnectionInterceptionContext interceptionContext)
         {
-            // Set SESSION_CONTEXT to current UserId whenever EF opens a connection
+            // Set SESSION_CONTEXT toocurrent UserId whenever EF opens a connection
             try
             {
                 var userId = System.Web.HttpContext.Current.User.Identity.GetUserId();
@@ -179,41 +179,41 @@ namespace ContactManager.Models
 }
 ```
 
-È necessaria solo una modifica all'applicazione. Sviluppare e pubblicare l'applicazione.
+Che è richiesta di modifica di hello unica applicazione. Vado avanti e compilare e pubblicare un'applicazione hello.
 
-## <a name="step-2-add-a-userid-column-to-the-database-schema"></a>Passaggio 2: Aggiungere una colonna UserId allo schema del database
-È ora necessario aggiungere una colonna UserId alla tabella Contacts per associare ogni riga a un utente (tenant). Lo schema verrà modificato direttamente nel database, quindi non è necessario includere questo campo nel modello di dati EF.
+## <a name="step-2-add-a-userid-column-toohello-database-schema"></a>Passaggio 2: Aggiungere uno schema di database toohello colonna ID utente
+Successivamente, è necessario un tooassociate tabella contatti di UserId colonna toohello tooadd ogni riga a un utente (tenant). Si comporta la modifica dello schema hello direttamente nel database di hello, in modo che non abbiamo tooinclude questo campo nel nostro modello di dati di Entity Framework.
 
-Connettersi direttamente al database, usando SQL Server Management Studio o Visual Studio, quindi eseguire l'istruzione T-SQL seguente:
+Connessione diretta, toohello database utilizzando SQL Server Management Studio o Visual Studio e quindi eseguire hello T-SQL seguente:
 
 ```
 ALTER TABLE Contacts ADD UserId nvarchar(128)
     DEFAULT CAST(SESSION_CONTEXT(N'UserId') AS nvarchar(128))
 ```
 
-Una colonna UserId verrà aggiunta alla tabella Contacts. Usare il tipo di dati nvarchar(128) per la corrispondenza con i valori UserId archiviati nella tabella AspNetUsers, quindi creare un vincolo DEFAULT che configurerà automaticamente l'UserId per le righe appena inserite in modo che corrisponda all'UserId attualmente archiviato in SESSION_CONTEXT.
+Aggiunge una tabella di contatti toohello colonna ID utente. Utilizziamo hello hello nvarchar (128) dati tipo toomatch che degli ID utente archiviati nella tabella AspNetUsers hello e creare un vincolo DEFAULT che verrà impostato automaticamente hello UserId per le righe appena inserite toobe hello UserId attualmente archiviati nel SESSION_CONTEXT.
 
-La tabella avrà un aspetto analogo al seguente:
+Tabella hello ora simile al seguente:
 
 ![Tabella Contacts SSMS](./media/web-sites-dotnet-entity-framework-row-level-security/SSMS-Contacts.png)
 
-Quando vengono creati, ai nuovi contatti viene assegnato automaticamente il valore UserId corretto. Per finalità di demo, assegnare tuttavia alcuni dei contatti esistenti a un utente esistente.
+Quando vengono creati nuovi contatti, essi verrà assegnati automaticamente hello correggere UserId. A scopo dimostrativo, tuttavia, si assegna alcuni di questi tooan contatti esistenti utente esistente.
 
-Se nell'applicazione sono già stati creati utenti, ad esempio tramite account locali, Google o Facebook, sarà possibile visualizzarli nella tabella AspNetUsers. Nella schermata seguente è attualmente presente solo un utente.
+Se sono stati creati alcuni utenti in un'applicazione hello già (ad esempio, utilizzo locale, Google o Facebook account), verranno visualizzati nella tabella AspNetUsers hello. Schermata di hello riportata di seguito, prevede un solo utente finora.
 
 ![Tabella AspNetUsers SSMS](./media/web-sites-dotnet-entity-framework-row-level-security/SSMS-AspNetUsers.png)
 
-Copiare l'ID per user1@contoso.com e incollarlo nell'istruzione T-SQL seguente. Eseguire questa istruzione per associare tre contatti con l'UserId.
+Hello copia Id per user1@contoso.come incollarlo in istruzione hello T-SQL riportata di seguito. Eseguire questa istruzione tooassociate tre, di hello contatti con l'ID utente.
 
 ```
 UPDATE Contacts SET UserId = '19bc9b0d-28dd-4510-bd5e-d6b6d445f511'
 WHERE ContactId IN (1, 2, 5)
 ```
 
-## <a name="step-3-create-a-row-level-security-policy-in-the-database"></a>Passaggio 3: Creare un criterio di sicurezza a livello di riga nel database
-Il passaggio finale consiste nel creare un criterio di sicurezza che usa il valore UserId in SESSION_CONTEXT per filtrare automaticamente i risultati restituiti dalle query.
+## <a name="step-3-create-a-row-level-security-policy-in-hello-database"></a>Passaggio 3: Creare un criterio di sicurezza a livello di riga nel database di hello
+passaggio finale Hello è toocreate un criterio di sicurezza che utilizza hello UserId SESSION_CONTEXT tooautomatically filtro hello risultati restituiti dalle query.
 
-Mentre si è connessi al database, eseguire l'istruzione T-SQL seguente:
+Mentre il database toohello ancora connessi, eseguire hello T-SQL seguente:
 
 ```
 CREATE SCHEMA Security
@@ -234,18 +234,18 @@ go
 
 ```
 
-Questo codice esegue tre operazioni. Prima di tutto crea un nuovo schema, come procedura consigliata per centralizzare e limitare l'accesso agli oggetti del criterio di sicurezza a livello di riga. Quindi crea una funzione predicato che restituirà '1' quando il valore UserId di una riga corrisponde all'UserId in SESSION_CONTEXT. Crea infine un criterio di sicurezza che aggiunge questa funzione come filtro e come predicato di blocco nella tabella Contacts. Il predicato di filtro provoca la restituzione da parte delle query solo delle righe appartenenti all'utente corrente e il predicato di blocco funge da protezione per evitare che l'applicazione inserisca accidentalmente una riga per l'utente errato.
+Questo codice esegue tre operazioni. Viene innanzitutto creato un nuovo schema come procedura consigliata per la centralizzazione e limitare gli oggetti di access toohello di riga. Successivamente, viene creata una funzione di predicato che restituisce '1' quando hello ID utente di una riga corrisponde hello UserId in SESSION_CONTEXT. Infine, viene creato un criterio di sicurezza che aggiunga questa funzione come predicato di un filtro e di blocco per la tabella Contacts hello. predicato del filtro Hello determina tooreturn query solo le righe a cui appartengano l'utente corrente toohello predicato di blocco hello funge da un'applicazione di hello salvaguardia tooprevent mai accidentalmente inserire una riga per l'utente errato hello.
 
-Eseguire l'applicazione e accedere come user1@contoso.com. L'utente vede solo i contatti assegnati a questo UserId in precedenza:
+Eseguire un'applicazione hello e accedere come user1@contoso.com. Questo utente viene visualizzata solo i contatti di hello è assegnato toothis UserId:
 
 ![Applicazione Contact Manager prima dell'abilitazione della sicurezza a livello di riga](./media/web-sites-dotnet-entity-framework-row-level-security/ContactManagerApp-After.png)
 
-Per una convalida aggiuntiva, provare a registrare un nuovo utente. Il nuovo utente non vedrà alcun contatto, perché nessun contatto è stato assegnato a questo utente. Se l'utente crea un nuovo contatto, questo contatto gli verrà assegnato e potrà visualizzarlo.
+toovalidate questo ulteriormente, provare a registrare un nuovo utente. I contatti, non verranno visualizzati perché non sono stati assegnati toothem. Se si crea un nuovo contatto, sarà assegnato toothem e solo saranno in grado di toosee è.
 
 ## <a name="next-steps"></a>Passaggi successivi
-L'operazione è terminata. La semplice app Web Contact Manager è stata convertita in un multi-tenant in cui ogni utente ha il proprio elenco contatti. Usando la sicurezza a livello di riga si evita la complessità derivante dall'applicare la logica di accesso al tenant nel codice dell'applicazione. Questa trasparenza consente all'applicazione di concentrarsi sul problema aziendale effettivo e riduce anche il rischio di divulgazione accidentale dei dati con la crescita della codebase dell'applicazione.
+L'operazione è terminata. Hello semplice contattare Manager web app è stata convertita in un multi-tenant, uno in cui ogni utente dispone di un proprio elenco di contatti. Tramite la sicurezza a livello di riga, è stata evitare complessità hello di applicare la logica di accesso ai tenant nel codice dell'applicazione. La trasparenza consente toofocus applicazione hello sul problema aziendale reale di hello in questione e riduce inoltre il rischio di hello della perdita accidentale di dati come un'applicazione hello codebase aumenta.
 
-Questa esercitazione offre solo un'idea delle possibilità della sicurezza a livello di riga. È ad esempio possibile avere una logica di accesso più avanzata o granulare e archiviare più del solo valore UserId corrente in SESSION_CONTEXT. È anche possibile [integrare la sicurezza a livello di riga con le librerie client del database elastico](../sql-database/sql-database-elastic-tools-multi-tenant-row-level-security.md) per supportare partizioni multi-tenant in un livello dati con scalabilità orizzontale.
+In questa esercitazione dispone solo area di hello graffiato di ciò che è possibile con una riga. Ad esempio, è possibile toohave più sofisticate o logica di accesso granulare e toostore possibili è molto più hello UserId corrente in hello SESSION_CONTEXT. È inoltre possibile troppo[integrare di riga con le librerie client gli strumenti di database elastico hello](../sql-database/sql-database-elastic-tools-multi-tenant-row-level-security.md) toosupport partizioni di multi-tenant in un livello di dati di scalabilità orizzontale.
 
-Microsoft si impegna anche a migliorare continuamente la sicurezza a livello di riga. In caso di domande, idee o suggerimenti, inviare commenti. I commenti e suggerimenti degli utenti sono molto apprezzati.
+Oltre a queste possibilità, stiamo lavorando anche toomake ancora migliore di riga. Se si dispone di domande, suggerimenti o operazioni si desidera toosee, Saremmo lieti di sapere nei commenti hello. I commenti e suggerimenti degli utenti sono molto apprezzati.
 

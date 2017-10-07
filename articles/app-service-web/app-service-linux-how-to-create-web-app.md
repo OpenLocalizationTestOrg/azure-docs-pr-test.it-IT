@@ -1,5 +1,5 @@
 ---
-title: Creare un'app Web di Azure eseguita in Linux | Documentazione Microsoft
+title: aaaCreate di Azure web app in esecuzione in Linux | Documenti Microsoft
 description: Flusso di lavoro per la creazione di un'app Web per App Web di Aure in Linux.
 keywords: Servizio app di Azure, app Web, Linux, OSS
 services: app-service
@@ -15,39 +15,39 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/16/2017
 ms.author: naziml;wesmc
-ms.openlocfilehash: 49091d4a85bed23927850f9c0bbc5ea8b6e8c9e1
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: de1bd030345d5e2a8024012067b5bcaa2cca09dc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-an-azure-web-app-running-on-linux"></a>Creare un'app Web di Azure eseguita in Linux
 
 [!INCLUDE [app-service-linux-preview](../../includes/app-service-linux-preview.md)]
 
 
-## <a name="use-the-azure-portal-to-create-your-web-app"></a>Usare il portale di Azure per creare l'app Web
-È possibile avviare la creazione dell'app Web in Linux dal [portale di Azure](https://portal.azure.com), come illustrato nell'immagine seguente:
+## <a name="use-hello-azure-portal-toocreate-your-web-app"></a>Usare l'app web di hello toocreate portale di Azure
+È possibile iniziare a creare app web in Linux hello [portale di Azure](https://portal.azure.com) come illustrato nella seguente immagine hello:
 
-![Avviare la creazione di un'app Web nel portale di Azure][1]
+![Avviare la creazione di un'app web nel portale di Azure hello][1]
 
-Viene quindi aperto il **pannello Crea**, come illustrato nell'immagine seguente:
+Successivamente, hello **pannello Crea** verrà visualizzata come illustrato nella seguente immagine hello:
 
-![Pannello Crea][2]
+![pannello Crea Hello][2]
 
 1. Assegnare all'app Web un nome.
-2. Scegliere un gruppo di risorse esistente oppure crearne uno nuovo. Vedere le aree disponibili nella [sezione sulle limitazioni](app-service-linux-intro.md).
-3. Scegliere un piano di servizio app di Azure esistente o crearne uno nuovo. Vedere le note sul piano di servizio app nella [sezione sulle limitazioni](app-service-linux-intro.md).
-4. Scegliere lo stack di applicazioni che si intende da usare. È possibile scegliere tra diverse versioni di Node.js, PHP, .Net Core e Ruby.
+2. Scegliere un gruppo di risorse esistente oppure crearne uno nuovo. (Vedere le aree disponibili in hello [sezione limitazioni](app-service-linux-intro.md).)
+3. Scegliere un piano di servizio app di Azure esistente o crearne uno nuovo. (Vedere le note di piano di servizio App in hello [sezione limitazioni](app-service-linux-intro.md).)
+4. Scegliere un'applicazione hello stack che si desidera toouse. È possibile scegliere tra diverse versioni di Node.js, PHP, .Net Core e Ruby.
 
-Dopo avere creato l'app, è possibile cambiare lo stack di applicazioni dalle impostazioni dell'applicazione, come illustrato nell'immagine seguente:
+Dopo aver creato l'applicazione hello, è possibile modificare stack dell'applicazione hello da impostazioni applicazione hello, come illustrato nella seguente immagine hello:
 
 ![Impostazioni dell'applicazione][3]
 
 ## <a name="deploy-your-web-app"></a>Distribuire l'app Web
-Scegliendo le **opzioni di distribuzione** dal portale di gestione è possibile usare un repository Git o GitHub locale per distribuire l'applicazione. Le istruzioni rimanenti sono analoghe a quelle per un'app Web non Linux. Per distribuire l'app, è possibile seguire le istruzioni indicate nella [distribuzione Git locale](app-service-deploy-local-git.md) o nella [distribuzione continua](app-service-continuous-deployment.md).
+Scelta di **opzioni di distribuzione** da offre portale di gestione hello hello opzione toouse locale Git o GitHub repository toodeploy l'applicazione. Hello restanti istruzioni hello sono simili toothose per un'app web non Linux. È possibile seguire le istruzioni hello [distribuzione Git locale](app-service-deploy-local-git.md) o [distribuzione continua](app-service-continuous-deployment.md) toodeploy l'app.
 
-È anche possibile usare l'FTP per caricare l'applicazione nel sito. È possibile ottenere l'endpoint FTP per l'app Web dalla sezione Log di diagnostica, come illustrato nell'immagine seguente:
+È anche possibile utilizzare tooupload FTP del sito tooyour applicazione. È possibile ottenere endpoint FTP hello per le app web da diagnostica di hello sezione registri come illustrato nella seguente immagine hello:
 
 ![Log di diagnostica][4]
 

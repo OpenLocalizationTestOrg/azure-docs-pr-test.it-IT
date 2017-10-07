@@ -1,6 +1,6 @@
 ---
-title: Domande frequenti sulle macchine virtuali Windows in Azure | Microsoft Docs
-description: Offre le risposte ad alcune delle domande comuni sulle macchine virtuali Windows create con un modello di Gestione risorse.
+title: aaaFAQ sulle macchine virtuali di Windows in Azure | Documenti Microsoft
+description: Fornisce le risposte toosome di domande frequenti di hello sulle macchine virtuali di Windows create con il modello di gestione risorse hello.
 services: virtual-machines-windows
 documentationcenter: 
 author: cynthn
@@ -15,80 +15,80 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/10/2017
 ms.author: cynthn
-ms.openlocfilehash: 64354c0064d3602c5d214d687cbc6bf73415f831
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: ee366a04bda347ce2be07bde4fc6bad306cc1da9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="frequently-asked-question-about-windows-virtual-machines"></a>Domande frequenti sulle Macchine virtuali Windows
-Questo articolo analizza alcune delle domande più comuni sulle macchine virtuali Windows create in Azure mediante il modello di distribuzione di Gestione risorse. Per la versione di Linux di questo argomento, vedere [Domande frequenti sulle Macchine virtuali Linux](../linux/faq.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+Questo articolo illustra alcune domande comuni sulle macchine virtuali di Windows create in Azure tramite il modello di distribuzione di gestione risorse di hello. La versione di Linux hello di questo argomento, vedere [domande frequenti sulle macchine virtuali Linux](../linux/faq.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 
 ## <a name="what-can-i-run-on-an-azure-vm"></a>Cosa è possibile eseguire in una VM di Azure?
-Tutti i sottoscrittori possono eseguire software del server in una macchina virtuale Azure. Per informazioni sui criteri di supporto per l'esecuzione del software server Microsoft in Azure, vedere [Supporto di software server Microsoft per le macchine virtuali Microsoft Azure](https://support.microsoft.com/kb/2721672)
+Tutti i sottoscrittori possono eseguire software del server in una macchina virtuale Azure. Per informazioni sui criteri di supporto hello per il software server Microsoft in esecuzione in Azure, vedere [supporto del software server Microsoft per macchine virtuali di Azure](https://support.microsoft.com/kb/2721672)
 
-Alcune versioni di Windows 7, Windows 8.1 e Windows 10 sono disponibili agli abbonati MSDN Azure con benefici e agli abbonati MSDN sviluppo e test con pagamento in base al consumo, per attività di sviluppo e test. Per ulteriori informazioni, incluse le istruzioni e limitazioni, vedere [Immagini Client Windows per gli abbonati MSDN](http://azure.microsoft.com/blog/2014/05/29/windows-client-images-on-azure/). 
+Alcune versioni di Windows 7, Windows 8.1 e Windows 10 sono disponibili tooMSDN Azure sottoscrittori di benefit e i sottoscrittori MSDN sviluppo e Test pagamento a consumo, per le attività di sviluppo e test. Per ulteriori informazioni, incluse le istruzioni e limitazioni, vedere [Immagini Client Windows per gli abbonati MSDN](http://azure.microsoft.com/blog/2014/05/29/windows-client-images-on-azure/). 
 
 ## <a name="how-much-storage-can-i-use-with-a-virtual-machine"></a>Quanta memoria è possibile utilizzare con una macchina virtuale?
-Ogni disco dati può essere fino a 1 TB. Il numero di dischi dati che è possibile utilizzare dipende dalla dimensione della macchina virtuale. Per informazioni dettagliate, vedere [Dimensioni delle macchine virtuali](sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+Ogni disco dati può essere backup too1 TB. numero di Hello di dischi di dati che è possibile utilizzare dipende dalle dimensioni hello della macchina virtuale hello. Per informazioni dettagliate, vedere [Dimensioni delle macchine virtuali](sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
 
-Azure Managed Disks è la nuova offerta di archiviazione su disco consigliata per l'uso con Macchine virtuali di Azure per l'archiviazione permanente dei dati. Puoi usare più dischi gestiti con ogni macchina virtuale. Il servizio Managed Disks offre due tipi di opzioni di archiviazione durevole: Managed Disks Premium e Standard. Per informazioni sui prezzi, vedere [Prezzi di Managed Disks](https://azure.microsoft.com/pricing/details/managed-disks).
+I dischi di Azure gestiti sono hello disco consigliato e nuove offerte di archiviazione per l'utilizzo con macchine virtuali di Azure per l'archiviazione permanente dei dati. Puoi usare più dischi gestiti con ogni macchina virtuale. Il servizio Managed Disks offre due tipi di opzioni di archiviazione durevole: Managed Disks Premium e Standard. Per informazioni sui prezzi, vedere [Prezzi di Managed Disks](https://azure.microsoft.com/pricing/details/managed-disks).
 
-Gli account di archiviazione di Azure offrono inoltre spazio di archiviazione per il disco del sistema operativo e per qualsiasi disco di dati. Ogni disco è un file con estensione vhd archiviato come BLOB di pagine. Per informazioni sui prezzi, vedere [Dettagli prezzi di archiviazione](https://azure.microsoft.com/pricing/details/storage/).
+Gli account di archiviazione di Azure possono anche offrire archiviazione per disco del sistema operativo hello e per eventuali dischi dati. Ogni disco è un file con estensione vhd archiviato come BLOB di pagine. Per informazioni sui prezzi, vedere [Dettagli prezzi di archiviazione](https://azure.microsoft.com/pricing/details/storage/).
 
 ## <a name="how-can-i-access-my-virtual-machine"></a>Come si accede alla macchina virtuale?
-Stabilire una connessione remota mediante la Connessione desktop remoto (RDP) per una VM Windows. Per istruzioni, vedere [Come connettersi e accedere a una macchina virtuale di Azure che esegue Windows](connect-logon.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). Sono supportate al massimo due connessioni simultanee, a meno che il server non sia configurato come host sessione Servizi Desktop remoto.  
+Stabilire una connessione remota mediante la Connessione desktop remoto (RDP) per una VM Windows. Per istruzioni, vedere [come tooconnect e tooan virtuali di Azure di accesso del computer che eseguono Windows](connect-logon.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). Sono supportati un massimo di due connessioni simultanee, a meno che non hello server è configurato come un host di sessione di Servizi Desktop remoto.  
 
-In caso di problemi con il Desktop remoto, vedere [Risolvere i problemi di connessioni Desktop remoto a una macchina virtuale di Azure che esegue Windows](troubleshoot-rdp-connection.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). 
+Se si verificano problemi con Desktop remoto, vedere [tooa connessioni Desktop remoto di risoluzione dei problemi basato su Windows Azure Virtual Machine](troubleshoot-rdp-connection.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). 
 
-Se si ha familiarità con Hyper-V, è possibile che si stia cercando uno strumento simile a VMConnect. Azure non offre uno strumento simile, poiché l'accesso da console a una macchina virtuale non è supportato.
+Se si ha familiarità con Hyper-V, si potrebbe cercando un tooVMConnect simile dello strumento. Azure non offre uno strumento simile perché macchina virtuale di tooa accesso console non è supportato.
 
-## <a name="can-i-use-the-temporary-disk-the-d-drive-by-default-to-store-data"></a>È possibile utilizzare il disco temporaneo (l'unità D: per impostazione predefinita) per archiviare i dati?
-Non usare il disco temporaneo per archiviare i dati. Si tratta solo di memorie temporanee, pertanto si rischierebbe di perdere dati che non possono essere recuperati. La perdita di dati può verificarsi quando si sposta la macchina virtuale in un host diverso. Il ridimensionamento di una macchina virtuale, l'aggiornamento dell'host o un errore hardware nell'host sono alcuni dei motivi che potrebbero portare a spostare una macchina virtuale.
+## <a name="can-i-use-hello-temporary-disk-hello-d-drive-by-default-toostore-data"></a>È possibile utilizzare i dati di toostore disco temporaneo (Buongiorno unità d: per impostazione predefinita) hello?
+Non utilizzare dati di toostore hello disco temporaneo. Si tratta solo di memorie temporanee, pertanto si rischierebbe di perdere dati che non possono essere recuperati. Perdita di dati può verificarsi quando macchina virtuale hello Sposta tooa un host diverso. Ridimensionamento di una macchina virtuale, l'aggiornamento host hello o un errore hardware nell'host di hello è riportati alcuni dei motivi hello che potrebbe spostare una macchina virtuale.
 
-Se si dispone di un'applicazione che deve utilizzare la lettera di unità D:, è possibile riassegnare le lettere di unità in modo che il disco temporaneo ne usi una diversa da D:. Per le istruzioni, vedere [Modificare la lettera di unità di un disco temporaneo di Windows](change-drive-letter.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json).
+Se si dispone di un'applicazione che richiede una lettera di unità d: hello toouse, è possibile riassegnare le lettere di unità in modo che hello disco temporaneo viene utilizzato un valore diverso da d. Per istruzioni, vedere [lettera di unità di modifica hello del disco temporaneo di Windows hello](change-drive-letter.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json).
 
 
-## <a name="how-can-i-change-the-drive-letter-of-the-temporary-disk"></a>Come modificare la lettera di unità del disco temporaneo?
-È possibile modificare la lettera di unità spostando il file di paging e riassegnando le lettere di unità, ma è necessario assicurarsi di che eseguire i passaggi in un ordine specifico. Per le istruzioni, vedere [Modificare la lettera di unità di un disco temporaneo di Windows](change-drive-letter.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json).
+## <a name="how-can-i-change-hello-drive-letter-of-hello-temporary-disk"></a>Come è possibile modificare la lettera di unità hello del disco temporaneo hello?
+È possibile modificare la lettera di unità hello per lo spostamento del file pagina hello e riassegnando le lettere di unità, ma è necessario toomake che si hello passaggi in un ordine specifico. Per istruzioni, vedere [lettera di unità di modifica hello del disco temporaneo di Windows hello](change-drive-letter.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json).
 
-## <a name="can-i-add-an-existing-vm-to-an-availability-set"></a>È possibile aggiungere una VM esistente a un set di disponibilità?
-No. Se si desidera che la VM faccia parte di un set di disponibilità, è necessario creare la VM all'interno del set. Attualmente non è possibile aggiungere una VM a un set di disponibilità dopo la sua creazione.
+## <a name="can-i-add-an-existing-vm-tooan-availability-set"></a>È possibile aggiungere un set di disponibilità tooan VM esistente?
+No. Se si desidera la parte toobe VM di un set di disponibilità, è necessario toocreate hello VM all'interno di hello set. Attualmente non è disponibile un tooadd modo una macchina virtuale tooan set di disponibilità dopo che è stato creato.
 
-## <a name="can-i-upload-a-virtual-machine-to-azure"></a>È possibile caricare una macchina virtuale in Azure?
-Sì. Per istruzioni, vedere [Migrazione di macchine virtuali locali in Azure](on-prem-to-azure.md).
+## <a name="can-i-upload-a-virtual-machine-tooazure"></a>È possibile caricare tooAzure una macchina virtuale?
+Sì. Per istruzioni, vedere [migrazione locale macchine virtuali tooAzure](on-prem-to-azure.md).
 
-## <a name="can-i-resize-the-os-disk"></a>È possibile ridimensionare il disco del sistema operativo?
-Sì. Per istruzioni, vedere [Come espandere l'unità del sistema operativo di una macchina virtuale in un gruppo di risorse di Azure](expand-os-disk.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+## <a name="can-i-resize-hello-os-disk"></a>È possibile ridimensionare disco del sistema operativo hello?
+Sì. Per istruzioni, vedere [come tooexpand hello unità del sistema operativo di una macchina virtuale in un gruppo di risorse di Azure](expand-os-disk.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
 
 ## <a name="can-i-copy-or-clone-an-existing-azure-vm"></a>È possibile copiare o clonare una VM di Azure esistente?
-Sì. Usando immagini gestite, è possibile creare un'immagine di una macchina virtuale e quindi usare l'immagine per creare diverse nuove macchine virtuali. Per istruzioni, vedere [Creare un'immagine personalizzata di una macchina virtuale](tutorial-custom-images.md).
+Sì. Utilizzo di immagini gestite, è possibile creare un'immagine di una macchina virtuale e quindi utilizzare hello immagine toobuild più nuove macchine virtuali. Per istruzioni, vedere [Creare un'immagine personalizzata di una macchina virtuale](tutorial-custom-images.md).
 
 ## <a name="why-am-i-not-seeing-canada-central-and-canada-east-regions-through-azure-resource-manager"></a>Perché non si vedono le aree del Canada centrale e del Canada orientale tramite Azure Resource Manager?
 
-Le due nuove aree del Canada centrale e del Canada orientale non vengono registrate automaticamente per la creazione della macchina virtuale per le sottoscrizioni di Azure esistenti. La registrazione viene eseguita automaticamente quando si distribuisce una macchina virtuale tramite il portale di Azure in qualsiasi altra area di Azure Resource Manager. Dopo aver distribuito una macchina virtuale in qualsiasi altra area di Azure le nuove aree dovrebbero essere disponibili per le macchine virtuali successive.
+Hello due nuove aree di centrale Canada e Canada orientale non vengono registrate automaticamente per la creazione della macchina virtuale per le sottoscrizioni di Azure esistente. Questa registrazione viene eseguita automaticamente quando una macchina virtuale viene distribuita tramite hello tooany portale Azure altre aree di gestione risorse di Azure. Dopo una macchina virtuale è distribuita tooany altre aree di Azure, nuove aree hello devono essere disponibili per le macchine virtuali successive.
 
 ## <a name="does-azure-support-linux-vms"></a>Le VM di Linux sono supportate da Azure?
-Sì. Per creare rapidamente una VM Linux di prova, vedere [Creare una VM Linux in Azure usando il portale](../linux/quick-create-portal.md).
+Sì. tooquickly creare una VM Linux di tootry out, vedere [creare una VM Linux in Azure mediante portale hello](../linux/quick-create-portal.md).
 
-## <a name="can-i-add-a-nic-to-my-vm-after-its-created"></a>È possibile aggiungere un NIC alla VM dopo la sua creazione?
-Sì, ora è possibile. La macchina virtuale deve prima essere arrestata e deallocata. È possibile a questo punto aggiungere o rimuovere una scheda di interfaccia di rete (a meno che non sia l'ultima nella macchina virtuale). 
+## <a name="can-i-add-a-nic-toomy-vm-after-its-created"></a>È possibile aggiungere un toomy NIC VM dopo averla creata?
+Sì, ora è possibile. Hello VM prima esigenze toobe arrestate deallocate. È possibile aggiungere o rimuovere una scheda di rete (a meno che non è hello ultimo NIC hello VM). 
 
 ## <a name="are-there-any-computer-name-requirements"></a>Esistono requisiti relativi al nome del computer?
-Sì. Il nome del computer non può contenere più di 15 caratteri. Vedere [Naming conventions rules and restrictions](/architecture/best-practices/naming-conventions#naming-rules-and-restrictions?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) (Regole e restrizioni per le convenzioni di denominazione) per altre informazioni sulla denominazione delle risorse.
+Sì. nome del computer Hello può contenere un massimo di 15 caratteri. Vedere [Naming conventions rules and restrictions](/architecture/best-practices/naming-conventions#naming-rules-and-restrictions?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) (Regole e restrizioni per le convenzioni di denominazione) per altre informazioni sulla denominazione delle risorse.
 
 ## <a name="are-there-any-resource-group-name-requirements"></a>Vi sono requisiti relativi al nome del gruppo di risorse?
-Sì. Il nome del gruppo di risorse non può contenere più di 90 caratteri. Vedere [Naming conventions rules and restrictions](/architecture/best-practices/naming-conventions#naming-rules-and-restrictions?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) (Regole e restrizioni per le convenzioni di denominazione) per altre informazioni sui gruppi di risorse.
+Sì. nome del gruppo di risorse Hello può contenere un massimo di 90 caratteri. Vedere [Naming conventions rules and restrictions](/architecture/best-practices/naming-conventions#naming-rules-and-restrictions?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) (Regole e restrizioni per le convenzioni di denominazione) per altre informazioni sui gruppi di risorse.
 
-## <a name="what-are-the-username-requirements-when-creating-a-vm"></a>Quali requisiti devono avere i nomi utente durante la creazione di una VM?
+## <a name="what-are-hello-username-requirements-when-creating-a-vm"></a>Quali sono i requisiti di nome utente hello durante la creazione di una macchina virtuale?
 
 I nomi utente possono contenere un massimo di 20 caratteri e non possono terminare con un punto ("."). 
 
 
-I nomi utente seguenti non sono consentiti:
+non è consentita Hello nomi utente di seguenti:
 <table>
     <tr>
-        <td style="text-align:center">administrator </td><td style="text-align:center"> admin </td><td style="text-align:center"> user </td><td style="text-align:center"> user1</td>
+        <td style="text-align:center">entità </td><td style="text-align:center"> admin </td><td style="text-align:center"> user </td><td style="text-align:center"> user1</td>
     </tr>
     <tr>
         <td style="text-align:center">test </td><td style="text-align:center"> user2 </td><td style="text-align:center"> test1 </td><td style="text-align:center"> user3</td>
@@ -112,15 +112,15 @@ I nomi utente seguenti non sono consentiti:
     </tr>
 </table>
 
-## <a name="what-are-the-password-requirements-when-creating-a-vm"></a>Quali requisiti devono avere le password durante la creazione di una VM?
-Le password devono contenere da 12 a 123 caratteri e soddisfare 3 dei seguenti 4 requisiti di complessità:
+## <a name="what-are-hello-password-requirements-when-creating-a-vm"></a>Quali sono i requisiti della password hello durante la creazione di una macchina virtuale?
+Le password devono essere 12 123 caratteri e soddisfare 3 fuori hello dopo 4 requisiti di complessità:
 
 * Devono contenere caratteri minuscoli
 * Devono contenere caratteri maiuscoli
 * Devono contenere almeno un numero
 * Devono contenere un carattere speciale (REGEX.CONFRONTA [\W_])
 
-Le password seguenti non sono consentite:
+Hello seguendo le password non è consentito:
 
 <table>
     <tr>

@@ -1,6 +1,6 @@
 ---
-title: 'Connettere Raspberry Pi (C) ad Azure IoT: lezione 1: Ottenere gli strumenti (Ubuntu) | Documentazione Microsoft'
-description: Scaricare e installare il software e gli strumenti necessari per la prima applicazione di esempio per Pi in Ubuntu.
+title: 'Connect Raspberry PI (C) tooAzure IoT - lezione 1: ottenere gli strumenti (Ubuntu) | Documenti Microsoft'
+description: Scaricare e installare gli strumenti necessari hello e software per l'applicazione di esempio per Pi prima hello in Ubuntu.
 services: iot-hub
 documentationcenter: 
 author: shizn
@@ -17,13 +17,13 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 3/21/2017
 ms.author: xshi
-ms.openlocfilehash: 28ebba82e90d91470518cd830c96e6da39d8b9b4
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 794928b5da63521cb0a72cb54256f2ad9724ec84
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-the-tools-ubuntu-1604"></a>Ottenere gli strumenti (Ubuntu 16.04)
+# <a name="get-hello-tools-ubuntu-1604"></a>Ottenere strumenti hello (Ubuntu 16.04)
 
 > [!div class="op_single_selector"]
 > * [Windows 7 o versione successiva](iot-hub-raspberry-pi-kit-c-lesson1-get-the-tools-win32.md)
@@ -31,29 +31,29 @@ ms.lasthandoff: 07/11/2017
 > * [macOS 10.10](iot-hub-raspberry-pi-kit-c-lesson1-get-the-tools-mac.md)
 
 ## <a name="what-you-will-do"></a>Contenuto dell'esercitazione
-Scaricare gli strumenti di sviluppo e il software per la prima applicazione di esempio per Raspberry Pi 3. In caso di problemi, cercare le soluzioni nella pagina sulla [risoluzione dei problemi](iot-hub-raspberry-pi-kit-c-troubleshooting.md).
+Scaricare strumenti di sviluppo hello e software di hello per l'applicazione di esempio per i 3 Pi Raspberry prima hello. Se si verificano problemi, cercare soluzioni in hello [risoluzione dei problemi di pagina](iot-hub-raspberry-pi-kit-c-troubleshooting.md).
 
 > [!NOTE]
-> Anche se il linguaggio di programmazione della logica principale è C, le lezioni fanno uso di strumenti Node.js per individuare i dispositivi e compilare e distribuire applicazioni di esempio.
+> Sebbene hello linguaggio della logica principale hello di programmazione C, Node.js tools e vengono utilizzati nei dispositivi toodiscover lezioni di hello, compilare e distribuire applicazioni di esempio.
 
 ## <a name="what-you-will-learn"></a>Contenuto dell'esercitazione
 Contenuto dell'articolo:
 
-* Come installare Git e Node.js
-  * [Git](https://git-scm.com) è un sistema distribuito di controllo delle versioni open source. L'applicazione di esempio per questo articolo è archiviata in Git.
+* Come tooinstall Git e Node.js
+  * [Git](https://git-scm.com) è un sistema distribuito di controllo delle versioni open source. applicazione di esempio Hello per questo articolo viene archiviata in Git.
   * [Node.js](https://nodejs.org/en/) è un runtime JavaScript con un ampio ecosistema di pacchetti.
-* Come usare NPM per installare altri strumenti di sviluppo Node.js.
-  * La versione minima richiesta di Node.js è 4.5 LTS.
-  * [NPM](https://www.npmjs.com) è uno degli strumenti di gestione pacchetti per Node.js.
+* Come toouse NPM tooinstall aggiuntive Node.js gli strumenti di sviluppo.
+  * Hello versione minima richiesta di Node.js è 4.5 LTS.
+  * [NPM](https://www.npmjs.com) è uno dei hello gestori di pacchetti per Node.js.
 
 ## <a name="what-you-need"></a>Elementi necessari
-Per completare questa operazione saranno necessari:
+toocomplete questa operazione, è necessario:
 
-* Una connessione Internet per scaricare gli strumenti di sviluppo e il software.
+* Un toodownload connessione Internet hello gli strumenti di sviluppo e hello software.
 * Un computer che esegue Ubuntu 16.04 o versione successiva.
 
 ## <a name="install-git-nodejs-and-npm"></a>Installare Git, Node.js e NPM
-Usare la scelta rapida da tastiera `Ctrl + Alt + T` per aprire un terminale ed eseguire questi comandi:
+Utilizzare hello tasto di scelta rapida `Ctrl + Alt + T` tooopen un hello terminal ed eseguire seguenti comandi:
 
 ```bash
 sudo apt-get update
@@ -63,22 +63,22 @@ sudo apt-get install git
 ```
 
 ## <a name="install-additional-nodejs-development-tools"></a>Installare altri strumenti di sviluppo Node.js
-Usare [gulp.js](http://gulpjs.com) per automatizzare la distribuzione dell'applicazione di esempio in Pi. Usare [device-discovery-cli](https://github.com/Azure/device-discovery-cli) per recuperare informazioni di rete sui dispositivi IoT.
+Utilizzare [file gulp.js](http://gulpjs.com) distribuzione hello tooautomate di tooPi applicazione di esempio hello. Hello utilizzare [dispositivo-individuazione-cli](https://github.com/Azure/device-discovery-cli) tooretrieve informazioni di rete sui dispositivi IoT.
 
-Installare `gulp` e `device-discovery-cli` eseguendo questo comando nel terminale:
+Installare `gulp` e `device-discovery-cli` eseguendo hello comando terminal hello seguente:
 
 ```bash
 sudo npm install -g device-discovery-cli gulp
 ```
 
-Se si verificano problemi durante l'installazione in Ubuntu di Node.js e di questi strumenti di sviluppo aggiuntivi, vedere la [guida alla risoluzione dei problemi](iot-hub-raspberry-pi-kit-c-troubleshooting.md) per le soluzioni alle problematiche comuni.
+Se si verificano problemi di installazione di Node.js e questi strumenti di sviluppo aggiuntive in Ubuntu, vedere hello [risoluzione dei problemi guida](iot-hub-raspberry-pi-kit-c-troubleshooting.md) per soluzioni ai problemi di toocommon.
 
 ## <a name="install-visual-studio-code"></a>Installare Visual Studio Code
-[Scaricare](https://code.visualstudio.com/docs/setup/linux) e installare Visual Studio Code. Visual Studio Code è un editor di codice sorgente leggero, ma potente per Windows, Linux e macOS. Più avanti nell'esercitazione si userà questo editor per modificare il codice di esempio.
+[Scaricare](https://code.visualstudio.com/docs/setup/linux) e installare Visual Studio Code. Visual Studio Code è un editor di codice sorgente leggero, ma potente per Windows, Linux e macOS. Utilizzare questo editor in un secondo momento nel codice di esempio di hello tooedit esercitazione hello.
 
 ## <a name="summary"></a>Riepilogo
-Sono stati installati gli strumenti di sviluppo e il software necessari per la prima applicazione di esempio. L'attività successiva consiste nella creazione, distribuzione ed esecuzione dell'applicazione di esempio nel dispositivo Pi.
+È stato installato Strumenti di sviluppo hello necessarie e software per la prima applicazione di esempio hello. attività successiva Hello è toocreate, distribuire ed eseguire l'applicazione di esempio hello in Pi.
 
 ## <a name="next-steps"></a>Passaggi successivi
-[Creare e distribuire l'applicazione per il lampeggiamento](iot-hub-raspberry-pi-kit-c-lesson1-deploy-blink-app.md)
+[Creare e distribuire un'applicazione hello blink](iot-hub-raspberry-pi-kit-c-lesson1-deploy-blink-app.md)
 

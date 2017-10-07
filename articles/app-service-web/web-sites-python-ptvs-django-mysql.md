@@ -1,6 +1,6 @@
 ---
-title: Django e MySQL in Azure con Python Tools 2.2 per Visual Studio
-description: Informazioni su come usare Python Tools per Visual Studio per creare un'app Web Django che archivia i dati in un'istanza di database MySQL e per distribuirla in App Web del servizio app di Azure.
+title: aaaDjango e MySQL in Azure con Python Tools 2.2 per Visual Studio
+description: Informazioni su come toouse hello Python Tools per Visual Studio toocreate un'app web Django che archivia i dati in un'istanza di database MySQL e distribuirlo tooAzure App del servizio Web App.
 services: app-service\web
 documentationcenter: python
 author: huguesv
@@ -14,63 +14,63 @@ ms.devlang: python
 ms.topic: article
 ms.date: 07/07/2016
 ms.author: huvalo
-ms.openlocfilehash: fd85337ecdc638a4c18065a0ce94f697da8197f1
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 1597c391d20c8e8ef629b4e4d05c9eb64c83bffc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="django-and-mysql-on-azure-with-python-tools-22-for-visual-studio"></a>Django e MySQL in Azure con Python Tools 2.2 per Visual Studio
 [!INCLUDE [tabs](../../includes/app-service-web-get-started-nav-tabs.md)]
 
-In questa esercitazione si userà [Python Tools per Visual Studio](https://www.visualstudio.com/vs/python) al fine di creare una semplice app Web per sondaggi con uno dei modelli di esempio PTVS. Si apprenderà come usare un servizio MySQL ospitato in Azure, come configurare l'app Web per l'uso di MySQL e come pubblicare l'app Web in [App Web del servizio app di Azure](http://go.microsoft.com/fwlink/?LinkId=529714).
+In questa esercitazione si utilizzerà [Python Tools per Visual Studio](https://www.visualstudio.com/vs/python) toocreate una semplice app web utilizzando uno dei modelli di esempio hello PTVS esegue il polling. Si apprenderà come toouse ospitato un servizio MySQL in Azure e come tooconfigure hello web app toouse MySQL come toopublish hello app web troppo[App Web di servizio App di Azure](http://go.microsoft.com/fwlink/?LinkId=529714).
 
 > [!NOTE]
-> Le informazioni contenute in questa esercitazione sono disponibili anche nel video seguente:
+> Hello informazioni contenute in questa esercitazione sono disponibili anche in hello video seguente:
 > 
 > [PTVS 2.1: Django app with MySQL][video] (PTVS 2.1: app Django con MySQL)
 > 
 > 
 
-Vedere il [Centro per sviluppatori Python] per altri articoli che trattano lo sviluppo di app Web del servizio app di Azure con PTVS usando i framework Web di Bottle, Flask e Django con i servizi di archiviazione tabelle di Azure, MySQL e Database SQL. Sebbene questo articolo sia incentrato sul servizio app, i passaggi sono simili a quelli previsti per lo sviluppo dei [servizi cloud di Azure].
+Vedere hello [Centro per sviluppatori Python] per ulteriori articoli che coprono lo sviluppo di App del servizio Web App di Azure con PTVS utilizzando Bottle pallone e Django web Framework, con i servizi di archiviazione tabelle di Azure, MySQL e SQL Database. Durante questo articolo è incentrato sul servizio App, i passaggi di hello sono simili durante lo sviluppo di [servizi Cloud di Azure].
 
 ## <a name="prerequisites"></a>Prerequisiti
 * Visual Studio 2015
 * [Python 2.7 a 32 bit] o [Python 3.4 a 32 bit]
 * [Python Tools 2.2 per Visual Studio]
-* [VSIX degli esempi di Python Tools 2.2 per Visual Studio]
+* [Python Tools 2.2 per Visual Studio esempi VSIX]
 * [Strumenti di Azure SDK per Visual Studio 2015]
 * Django 1.9 o versione successiva
 
 [!INCLUDE [create-account-and-websites-note](../../includes/create-account-and-websites-note.md)]
 
-<!-- This note should not render as part of the the previous include. -->
+<!-- This note should not render as part of hello hello previous include. -->
 
 > [!NOTE]
-> Per iniziare a usare il servizio app di Azure prima di registrarsi per ottenere un account Azure, andare a [Prova il servizio app](https://azure.microsoft.com/try/app-service/), dove è possibile creare un'app Web iniziale temporanea nel servizio app. Non è necessario fornire una carta di credito né impegnarsi in alcun modo.
+> Se si desidera tooget avviato con il servizio App di Azure prima di effettuare l'iscrizione per un account Azure, andare troppo[tenta di servizio App](https://azure.microsoft.com/try/app-service/), in cui è possibile creare subito un'app web di breve durata starter nel servizio App. Non è necessario fornire una carta di credito né impegnarsi in alcun modo.
 > 
 > 
 
-## <a name="create-the-project"></a>Creare il progetto
-In questa sezione verrà creato un progetto di Visual Studio usando un modello di esempio. Verrà creato un ambiente virtuale e verranno installati i pacchetti necessari. Si creerà un database locale usando sqlite, quindi verrà eseguita l'applicazione in locale.
+## <a name="create-hello-project"></a>Creare hello progetto
+In questa sezione verrà creato un progetto di Visual Studio usando un modello di esempio. Verrà creato un ambiente virtuale e verranno installati i pacchetti necessari. Si creerà un database locale usando sqlite, Quindi viene eseguita un'applicazione hello in locale.
 
 1. In Visual Studio selezionare **File**, **Nuovo progetto**.
-2. I modelli di progetto di [VSIX degli esempi di Python Tools 2.2 per Visual Studio] sono disponibili in **Python**, **Esempi**. Selezionare **Polls Django Web Project** e fare clic su OK per creare il progetto.
+2. modelli di progetto da hello Hello [Python Tools 2.2 per Visual Studio esempi VSIX] sono disponibili in **Python**, **esempi**. Selezionare **progetto Web di polling Django** e fare clic su OK toocreate hello progetto.
    
     ![Finestra di dialogo Nuovo progetto](./media/web-sites-python-ptvs-django-mysql/PollsDjangoNewProject.png)
-3. Verrà richiesto di installare pacchetti esterni. Selezionare **Installa in un ambiente virtuale**.
+3. Sarà richiesto tooinstall i pacchetti esterni. Selezionare **Installa in un ambiente virtuale**.
    
     ![Finestra di dialogo dei pacchetti esterni](./media/web-sites-python-ptvs-django-mysql/PollsDjangoExternalPackages.png)
-4. Selezionare **Python 2.7** o **Python 3.4** come interprete di base.
+4. Selezionare **Python 2.7** o **Python 3.4** come interprete base hello.
    
     ![Finestra di dialogo Aggiungi ambiente virtuale](./media/web-sites-python-ptvs-django-mysql/PollsCommonAddVirtualEnv.png)
-5. In **Esplora soluzioni** fare clic con il pulsante destro del mouse sul nodo del progetto, scegliere **Python** e quindi selezionare**Django Migrate** (Migrazione Django).  Selezionare quindi **Django Create Superuser**(Creazione SuperUser Django).
-6. Verrà aperta una console di gestione Django e verrà creato un database sqlite database nella cartella del progetto. Seguire le istruzioni visualizzate per creare un utente.
-7. Verificare che l'applicazione funzioni premendo `F5`.
-8. Fare clic su **Log in** sulla barra di spostamento in alto.
+5. In **Esplora**, fare clic sul nodo del progetto hello e selezionare **Python**, quindi selezionare **Django eseguire la migrazione**.  Selezionare quindi **Django Create Superuser**(Creazione SuperUser Django).
+6. Questo verrà aprire una Console di gestione Django e creare un database sqlite nella cartella di progetto hello. Seguire hello richieste toocreate un utente.
+7. Verificare che l'applicazione hello funzioni premendo `F5`.
+8. Fare clic su **Accedi** hello barra di spostamento superiore hello.
    
     ![Barra di spostamento di Django](./media/web-sites-python-ptvs-django-mysql/PollsDjangoCommonBrowserLocalMenu.png)
-9. Immettere le credenziali per l'utente creato al momento della sincronizzazione del database.
+9. Immettere le credenziali di hello per utente hello creato quando è possibile sincronizzare database hello.
    
     ![Form di accesso](./media/web-sites-python-ptvs-django-mysql/PollsDjangoCommonBrowserLocalLogin.png)
 10. Fare clic su **Create Sample Polls**.
@@ -81,26 +81,26 @@ In questa sezione verrà creato un progetto di Visual Studio usando un modello d
      ![Votazione nei poll di esempio](./media/web-sites-python-ptvs-django-mysql/PollsDjangoSqliteBrowser.png)
 
 ## <a name="create-a-mysql-database"></a>Creare un database MySQL
-Per il database verrà creato un database ospitato MySQL di ClearDB in Azure.
+Per il database di hello, si creerà un database di hosting MySQL di ClearDB in Azure.
 
 In alternativa, è possibile creare una propria macchina virtuale in esecuzione in Azure, quindi installare e amministrare MySQL manualmente.
 
 Per creare un database con un piano gratuito, attenersi alla procedura seguente.
 
-1. Accedere al [Portale di Azure].
-2. Nella parte superiore del riquadro di spostamento fare clic su **NUOVO**, quindi su **Dati e archiviazione** e infine su **Database MySQL**.
-3. Configurare il nuovo database MySQL creando un nuovo gruppo di risorse e selezionare il percorso appropriato.
-4. Dopo aver creato il database MySQL, fare clic su **Proprietà** nel pannello del database.
-5. Usare il pulsante Copia per inserire il valore della **STRINGA DI CONNESSIONE** negli Appunti.
+1. Accedi toohello [portale Azure].
+2. Nella parte superiore del riquadro di spostamento hello hello, fare clic su **NEW**, quindi fare clic su **dati e archiviazione**, quindi fare clic su **MySQL Database**.
+3. Configurare il nuovo database di MySQL hello creando un nuovo gruppo di risorse e selezionare hello percorso appropriato per tale.
+4. Una volta creato il database di MySQL hello, fare clic su **proprietà** nel pannello database hello.
+5. Utilizzare il valore hello copia pulsante tooput hello di **stringa di connessione** negli Appunti hello.
 
-## <a name="configure-the-project"></a>Configurare il progetto
-In questa sezione verrà configurata l'app Web per usare il database MySQL appena creato. Verranno anche installati i pacchetti Python aggiuntivi necessari per usare i database MySQL con Django, quindi l'app Web verrà eseguita in locale.
+## <a name="configure-hello-project"></a>Configurare hello progetto
+In questa sezione, è possibile configurare i database web app toouse hello MySQL che appena creato. Verrà installato anche database di MySQL toouse obbligatorio Python pacchetti aggiuntivi con Django. Quindi, puoi eseguire app web hello in locale.
 
-1. In Visual Studio aprire **settings.py**dalla cartella *NomeProgetto* . Incollare temporaneamente la stringa di connessione nell'editor. La stringa di connessione è nel formato seguente:
+1. In Visual Studio, aprire **settings.py**, da hello *ProjectName* cartella. Incollare temporaneamente la stringa di connessione hello nell'editor di hello. stringa di connessione Hello è nel formato seguente:
    
         Database=<NAME>;Data Source=<HOST>;User Id=<USER>;Password=<PASSWORD>
    
-    Modificare il database predefinito **ENGINE** in modo che usi MySQL e impostare i valori relativi a **NAME**, **USER**, **PASSWORD** e **HOST** da **CONNECTIONSTRING**.
+    Database predefinito di modifica hello **motore** toouse MySQL e set hello valori per **nome**, **utente**, **PASSWORD** e  **HOST** da hello **CONNECTIONSTRING**.
    
         DATABASES = {
             'default': {
@@ -112,39 +112,39 @@ In questa sezione verrà configurata l'app Web per usare il database MySQL appen
                 'PORT': '',
             }
         }
-2. In Esplora soluzioni, under **Python Environments**, fare clic con il pulsante destro del mouse sull'ambiente virtuale e selezionare **Install Python Package**.
-3. Installare il pacchetto `mysqlclient` usando **pip**.
+2. In Esplora soluzioni in **ambienti Python**, fare clic su ambiente virtuale hello e selezionare **Installa pacchetto Python**.
+3. Installare il pacchetto di hello `mysqlclient` utilizzando **pip**.
    
     ![Finestra di dialogo per l'installazione del pacchetto](./media/web-sites-python-ptvs-django-mysql/PollsDjangoMySQLInstallPackage.png)
-4. In **Esplora soluzioni** fare clic con il pulsante destro del mouse sul nodo del progetto, scegliere **Python** e quindi selezionare**Django Migrate** (Migrazione Django).  Selezionare quindi **Django Create Superuser**(Creazione SuperUser Django).
+4. In **Esplora**, fare clic sul nodo del progetto hello e selezionare **Python**, quindi selezionare **Django eseguire la migrazione**.  Selezionare quindi **Django Create Superuser**(Creazione SuperUser Django).
    
-    Verranno in tal modo create le tabelle per il database MySQL creato nella sezione precedente. Seguire le istruzioni per creare un utente, che non deve necessariamente corrispondere all'utente nel database sqlite creato nella prima sezione di questo articolo.
-5. Eseguire l'applicazione con `F5`. I sondaggi creati con **Create Sample Polls** e i dati inviati mediante voto verranno serializzati nel database MySQL.
+    Per creare tabelle hello di database MySQL hello creato nella sezione precedente hello. Seguire hello richieste toocreate un utente, che non dispone di utente hello toomatch nel database sqlite hello creato nella prima sezione di hello di questo articolo.
+5. Eseguire un'applicazione hello con `F5`. Esegue il polling creati con **creare sondaggi esempio** e hello i dati inviati dal voto verranno serializzati nel database di MySQL hello.
 
-## <a name="publish-the-web-app-to-azure-app-service"></a>Pubblicare l'app Web nel servizio app di Azure
-L'SDK .NET di Azure offre un modo semplice di distribuire l'app Web nel servizio app di Azure.
+## <a name="publish-hello-web-app-tooazure-app-service"></a>Pubblicare hello web app tooAzure servizio App
+Hello Azure .NET SDK fornisce un modo semplice di toodeploy il tooAzure app web del servizio App.
 
-1. In **Esplora soluzioni** fare clic con il pulsante destro del mouse sul nodo di progetto e scegliere **Pubblica**.
+1. In **Esplora**, fare clic sul nodo del progetto hello e selezionare **pubblica**.
    
     ![Finestra di dialogo Pubblica sito Web](./media/web-sites-python-ptvs-django-mysql/PollsCommonPublishWebSiteDialog.png)
 2. Fare clic su **Servizio app di Microsoft Azure**.
-3. Fare clic su **Nuovo** per creare una nuova app Web.
-4. Compilare i campi seguenti, quindi fare clic su **Crea**:
+3. Fare clic su **New** toocreate una nuova app web.
+4. Compilare hello seguente i campi e fare clic su **crea**:
    
    * **Nome dell'app Web**
    * **Piano di servizio app**
    * **Gruppo di risorse**
    * **Area**
-   * Lasciare **Server database** impostato su **Nessun database**.
+   * Lasciare **server di Database** impostare troppo**alcun database**
 5. Accettare tutte le altre impostazioni predefinite e fare clic su **Pubblica**.
-6. L'app Web pubblicata verrà aperto automaticamente nel Web browser. L'app Web dovrebbe funzionare come previsto, usando il database **MySQL** ospitato in Azure.
+6. Web browser verrà aperto automaticamente toohello pubblicato web app. Dovrebbe essere funzionante di hello web app come previsto, utilizzando hello **MySQL** database ospitato in Azure.
    
     ![Web browser](./media/web-sites-python-ptvs-django-mysql/PollsDjangoAzureBrowser.png)
    
-    Congratulazioni. La pubblicazione in Azure dell'app Web basata su MySQL è stata completata.
+    Congratulazioni. È stato pubblicato correttamente il tooAzure app web basate su MySQL.
 
 ## <a name="next-steps"></a>Passaggi successivi
-Usare i collegamenti seguenti per altre informazioni su Python Tools per Visual Studio, Django e MySQL.
+Seguire questi toolearn collegamenti ulteriori informazioni sugli strumenti Python per Visual Studio, Django e MySQL.
 
 * [Documentazione di Python Tools per Visual Studio]
   * [Progetti Web]
@@ -153,19 +153,19 @@ Usare i collegamenti seguenti per altre informazioni su Python Tools per Visual 
 * [Documentazione di Django]
 * [MySQL]
 
-Per ulteriori informazioni, vedere il [Centro per sviluppatori di Python](/develop/python/).
+Per ulteriori informazioni, vedere hello [Centro per sviluppatori Python](/develop/python/).
 
 <!--Link references-->
 
 [Centro per sviluppatori Python]: /develop/python/
-[servizi cloud di Azure]: ../cloud-services/cloud-services-python-ptvs.md
+[servizi Cloud di Azure]: ../cloud-services/cloud-services-python-ptvs.md
 
 <!--External Link references-->
 
-[Portale di Azure]: https://portal.azure.com
+[portale Azure]: https://portal.azure.com
 [Python Tools for Visual Studio]: https://www.visualstudio.com/vs/python/
 [Python Tools 2.2 per Visual Studio]: http://go.microsoft.com/fwlink/?LinkID=624025
-[VSIX degli esempi di Python Tools 2.2 per Visual Studio]: http://go.microsoft.com/fwlink/?LinkID=624025
+[Python Tools 2.2 per Visual Studio esempi VSIX]: http://go.microsoft.com/fwlink/?LinkID=624025
 [Strumenti di Azure SDK per Visual Studio 2015]: http://go.microsoft.com/fwlink/?LinkId=518003
 [Python 2.7 a 32 bit]: http://go.microsoft.com/fwlink/?LinkId=517190
 [Python 3.4 a 32 bit]: http://go.microsoft.com/fwlink/?LinkId=517191

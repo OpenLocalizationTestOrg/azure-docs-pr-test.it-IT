@@ -1,6 +1,6 @@
 ---
-title: Considerazioni sulla sicurezza e sulla privacy in Cloud App Discovery | Documentazione Microsoft
-description: Questo argomento illustra le considerazioni sulla sicurezza e sulla privacy correlate a Cloud App Discovery.
+title: aaaCloud considerazioni sulla Privacy e sulla sicurezza di individuazione di App | Documenti Microsoft
+description: Questo argomento descrive la sicurezza hello e sulla privacy considerazioni correlate tooCloud App Discovery.
 services: active-directory
 documentationcenter: 
 author: MarkusVi
@@ -14,68 +14,68 @@ ms.topic: article
 ms.date: 07/05/2017
 ms.author: markvi
 ms.reviewer: nigu
-ms.openlocfilehash: 1510b7a91d7eea4d16d781299bc9948da4324c51
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 33659e85bd2cf4294e443512e69a85401f7c53f8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="cloud-app-discovery-security-and-privacy-considerations"></a>Considerazioni sulla sicurezza e sulla privacy in Cloud App Discovery
-Microsoft si impegna a proteggere la privacy e i dati degli utenti, mettendo a disposizione software e servizi che aiutino a gestire la sicurezza dell'organizzazione.  
-Microsoft è a conoscenza della necessità di investimenti e competenze per la progettazione di rigorose misure di sicurezza quando si affidano i dati a terzi.
-Microsoft è conforme alle più rigorose linee guida sulla sicurezza e sulla conformità in tutte le fasi, dalle procedure consigliate per il ciclo di vita dello sviluppo di software sicuro alla gestione di un servizio.  
+Microsoft è eseguito il commit tooprotecting la privacy degli utenti e proteggere i dati, offrendo al contempo software e servizi che consentono di gestire la sicurezza hello dell'organizzazione.  
+È possibile riconoscere che, quando si affidano i dati tooothers, tale trust richiede investimenti finalizzati alla progettazione di sicurezza rigorose e competenze tooback è.
+Microsoft aderisce linee guida di sicurezza e conformità toostrict dal software sicuro lo sviluppo del ciclo di vita consigliate toooperating un servizio.  
 La sicurezza e la protezione dei dati sono altamente prioritarie per Microsoft.
 
 Questo argomento descrive le modalità di raccolta, elaborazione e protezione dei dati in Azure Active Directory Cloud App Discovery.
 
 ## <a name="overview"></a>Panoramica
 Cloud App Discovery è una funzionalità di Azure AD ed è ospitata in Microsoft Azure.  
-Cloud App Discovery Endpoint Agent viene usato per raccogliere dati di individuazione applicazioni da computer gestiti dal reparto IT.  
-I dati raccolti vengono inviati in modo sicuro su un canale crittografato al servizio Azure AD Cloud App Discovery.  
-I dati di Cloud App Discovery per l'organizzazione saranno quindi visibili nel portale di Azure. 
+agente di endpoint Cloud App Discovery Hello è toocollect utilizzati dati di individuazione dell'applicazione dai computer gestiti IT.  
+Hello i dati raccolti vengono inviati in modo sicuro tramite un servizio di Azure AD Cloud App Discovery di toohello canale crittografato.  
+Hello dati di Cloud App Discovery per un'organizzazione sono quindi visibile nel portale di Azure hello. 
 
 ![Funzionamento di Cloud App Discovery](./media/active-directory-cloudappdiscovery-security-and-privacy-considerations/cad01.png) 
 
-Le sezioni seguenti seguono il flusso di informazioni e illustrano il modo in cui viene protetto durante il trasferimento dall'organizzazione al servizio Cloud App Discovery e infine al portale di Cloud App Discovery.
+Hello nelle sezioni seguenti illustrano flusso hello di informazioni e descrivono viene protetto durante lo spostamento dal servizio Cloud App Discovery toohello di organizzazione e infine il portale di Cloud App Discovery toohello.
 
 ## <a name="collecting-data-from-your-organization"></a>Raccolta di dati dall'organizzazione
-Per usare la funzionalità Cloud App Discovery di Azure Active Directory per ottenere informazioni approfondite sulle applicazioni usate dai dipendenti dell'organizzazione, sarà prima di tutto necessario distribuire Cloud App Discovery Endpoint Agent di Azure AD nei computer dell'organizzazione.
+In Cloud App discovery funzionalità tooget informazioni approfondite del ordine toouse Azure Active Directory relative hello applicazioni usate dai dipendenti dell'organizzazione, è necessario toofirst distribuire hello Azure AD Cloud App Discovery endpoint agent toomachines all'interno dell'organizzazione.
 
-Gli amministratori del tenant di Azure Active Directory o i rispettivi delegati possono scaricare il pacchetto di installazione dell'agente dal portale di Azure. L'agente può essere installato manualmente oppure può essere installato in più computer dell'organizzazione tramite SCCM o Criteri di gruppo.
+Gli amministratori di tenant di Azure Active Directory hello (o un loro delegato) possono scaricare pacchetto di installazione dell'agente di hello da hello portale di Azure. agente Hello può essere manualmente installato o installato in più computer nell'organizzazione di hello tramite SCCM o criteri di gruppo.
 
 Per altre istruzioni sulle opzioni di distribuzione, vedere la [guida alla distribuzione di Criteri di gruppo in Cloud App Discovery](http://social.technet.microsoft.com/wiki/contents/articles/30965.cloud-app-discovery-group-policy-deployment-guide.aspx).
 
 
-### <a name="data-collected-by-the-agent"></a>Dati raccolti dall'agente
-Le informazioni incluse nell'elenco seguente vengono raccolte dall'agente quando viene stabilita una connessione a un'applicazione Web. Le informazioni vengono raccolte solo per le applicazioni configurate dall'amministratore per l'individuazione.  
-È possibile modificare l'elenco di app cloud di cui l'agente effettua il monitoraggio tramite il pannello Cloud App Discovery nel [portale di Microsoft Azure](https://portal.azure.com/), facendo clic su **Impostazioni**->**Raccolta dati**->**Elenco Raccolta di app**. Per informazioni dettagliate, vedere [Introduzione a Cloud App Discovery](http://social.technet.microsoft.com/wiki/contents/articles/30962.getting-started-with-cloud-app-discovery.aspx)
+### <a name="data-collected-by-hello-agent"></a>Dati raccolti dall'agente hello
+Hello descritte nell'elenco di hello seguito raccolti dall'agente di hello quando una connessione viene effettuata tooa applicazione Web. Hello informazioni vengono raccolte solo per le applicazioni, tale messaggio per l'amministratore ha configurato per l'individuazione.  
+È possibile modificare l'elenco di hello delle App cloud hello monitoraggi agente tramite Pannello di Cloud App Discovery hello in hello Microsoft [portale di Azure](https://portal.azure.com/)in **impostazioni**->**dati Raccolta**->**elenco raccolta di App**. Per informazioni dettagliate, vedere [Introduzione a Cloud App Discovery](http://social.technet.microsoft.com/wiki/contents/articles/30962.getting-started-with-cloud-app-discovery.aspx)
 
 
 **Categoria di informazioni**: informazioni utente  
 **Descrizione**:  
-Il nome utente di Windows del processo che ha effettuato una richiesta all'applicazione Web di destinazione (ad esempio DOMINIO\nomeutente), oltre al SID (Security Identifier) di Windows dell'utente.
+nome utente di Windows Hello del processo di hello apportate a un'applicazione Web di destinazione toohello richiesta (ad esempio: dominio omeutente) nonché l'ID di sicurezza Windows (SID) dell'utente hello hello.
 
 **Categoria delle informazioni**: informazioni sui processi  
 **Descrizione**:  
-Nome del processo che ha effettuato la richiesta all'applicazione Web di destinazione (ad esempio "iexplore.exe").
+nome Hello del processo di hello che ha effettuato l'applicazione Web di destinazione di hello richiesta toohello (ad esempio: "iexplore.exe")
 
 **Categoria delle informazioni**: informazioni sui computer  
 **Descrizione**:  
-Nome NetBIOS del computer in cui è installato l'agente.
+nome NetBIOS del Hello computer in cui hello è installato l'agente.
 
 **Categoria delle informazioni**: informazioni sul traffico app  
 **Descrizione**: 
 
-Informazioni sulla connessione
+Hello le seguenti informazioni di connessione:
 
-* Indirizzi IP di origine (computer locale) e destinazione e numeri di porta
-* Indirizzo IP pubblico dell'organizzazione attraverso cui viene trasmessa la richiesta.
-* Ora della richiesta.
-* Volume del traffico inviato e ricevuto.
-* Versione IP (4 o 6)
-* Solo per connessioni TLS: nome host di destinazione dall'estensione Indicazione nome server o dal certificato del server.
+* origine Hello (computer locale) e gli indirizzi IP di destinazione e i numeri di porta
+* indirizzo IP pubblico Hello dell'organizzazione hello tramite cui hello richiesta si estende.
+* Hello ora di hello richiesta
+* volume Hello del traffico inviato e ricevuto
+* versione di Hello IP (4 o 6)
+* Per solo le connessioni TLS: nome host di destinazione hello dall'estensione di indicazione nome Server hello o certificato hello del server.
 
-Informazioni HTTP seguenti:
+Hello informazioni HTTP seguenti:
 
 * Metodo (GET, POST e così via)
 * Protocollo (HTTP/1.1 e così via)
@@ -86,77 +86,77 @@ Informazioni HTTP seguenti:
 * Informazioni sull'URL di referrer (esclusa la stringa di query)
 
 > [!NOTE]
-> Le informazioni HTTP precedenti vengono raccolte per tutte le connessioni non crittografate.
-> Per le connessioni TLS queste informazioni vengono acquisite solo se l'impostazione Ispezione approfondita è attivata nel portale. Questa impostazione è attivata per impostazione predefinita.
+> Hello informazioni HTTP precedenti verrà raccolti per tutte le connessioni non crittografate.
+> Per le connessioni TLS, queste informazioni vengono acquisite solo quando è l'impostazione 'Ispezione approfondita' hello nel portale di hello. impostazione di Hello è impostata su 'ON' per impostazione predefinita.
 > Per informazioni dettagliate, vedere di seguito e vedere [Introduzione a Cloud App Discovery](http://social.technet.microsoft.com/wiki/contents/articles/30962.getting-started-with-cloud-app-discovery.aspx)
 > 
 > 
 
-Oltre ai dati sull'attività di rete, l'agente raccoglie anche informazioni anonime sulla configurazione software e hardware, segnalazioni errori e informazioni sull'uso dell'agente.
+Inoltre toohello dati che l'agente di hello raccoglie hello dell'attività di rete, inoltre raccoglie informazioni anonime sulla configurazione hardware e software hello segnalazioni degli errori e informazioni sull'utilizzo dell'agente di hello.
 
 
-### <a name="how-the-agent-works"></a>Funzionamento dell'agente
-L'installazione dell'agente include due componenti:
+### <a name="how-hello-agent-works"></a>Funzionamento dell'agente di hello
+installazione dell'agente Hello include due componenti:
 
 * Un componente per la modalità utente
 * Un componente per il driver della modalità kernel (driver della Piattaforma filtro Windows)
 
-Quando l'agente viene installato per la prima volta, archivia nel computer un certificato attendibile specifico del computer e lo usa quindi per stabilire una connessione sicura al servizio Cloud App Discovery.  
-L'agente recupera periodicamente la configurazione dei criteri dal servizio Cloud App Discovery tramite questa connessione sicura.  
-I criteri includono ad esempio informazioni sulle applicazioni cloud da monitorare e sulla necessità di abilitare o meno l'aggiornamento automatico.
+Alla prima installazione di agente hello archivia un certificato attendibile di specifiche del computer nel computer di hello cui si utilizza quindi tooestablish una connessione sicura con il servizio Cloud App Discovery hello.  
+agente Hello recupera periodicamente la configurazione dei criteri da hello servizio Cloud App Discovery tramite questa connessione sicura.  
+criteri di Hello includono informazioni quali toomonitor applicazioni cloud e indica se l'aggiornamento automatico deve essere abilitato, tra l'altro.
 
-Quando il traffico Web viene inviato e ricevuto nel computer da Chrome o da Internet Explorer, l'agente di Cloud App Discovery analizza il traffico ed estrae i metadati pertinenti (vedere la sezione **Dati raccolti dall'agente** precedente).  
-L'agente carica ogni minuto i metadati raccolti nel servizio Cloud App Discovery usando un canale crittografato.
+Come il traffico Web inviato e ricevuto nel computer di hello da Internet Explorer e Chrome, agente di Cloud App Discovery hello analizza il traffico hello ed estrae hello metadati rilevanti (vedere hello **dati raccolti dall'agente hello** sezione sopra).  
+Ogni minuto, agente hello carica hello raccolti metadati toohello servizio Cloud App Discovery tramite un canale crittografato.
 
-Il componente driver intercetta il traffico crittografato e si inserisce nel flusso crittografato. Per altri dettagli, vedere la sezione **Intercettazione dei dati da connessioni crittografate (Ispezione approfondita)** più avanti.
+Hello driver componente intercetta il traffico crittografato hello e si inserisce nel flusso crittografato hello. Altre informazioni, vedere hello **intercettazione dei dati da connessioni crittografate (ispezione approfondita)** sezione riportata di seguito.
 
 ### <a name="respecting-user-privacy"></a>Rispetto della privacy degli utenti
-Il nostro obiettivo consiste nell'offrire agli amministratori gli strumenti necessari per trovare un equilibrio tra informazioni dettagliate sull'utilizzo delle applicazioni e la privacy degli utenti, in base alle esigenze dell'organizzazione. Per questo scopo, nella pagina Impostazioni del portale sono disponibili le manopole seguenti:
+L'obiettivo è tooprovide amministratori hello strumenti tooset hello equilibrio informazioni dettagliate nell'applicazione dell'utilizzo e privacy degli utenti come appropriato per l'organizzazione. fine toothat, forniamo hello manopole nella pagina Impostazioni hello hello portale seguente:
 
-* **Raccolta dati**: gli amministratori possono scegliere di specificare le applicazioni o le categorie di applicazioni per cui ottenere i dati relativi all'individuazione.
-* **Ispezione approfondita**: gli amministratori possono scegliere di specificare se è l'agente a raccogliere i dati relativi al traffico HTTP per le connessioni SSL/TLS (operazione anche chiamata **ispezione approfondita**). Per altre informazioni, vedere la sezione successiva.
-* **Opzioni per il consenso**: gli amministratori possono usare il portale di Cloud app Discovery per scegliere se informare gli utenti che l'agente effettua la raccolta dei dati e se richiedere il consenso dell'utente prima che l'agente inizi a raccogliere i dati utente.
+* **Raccolta dei dati**: gli amministratori possono scegliere toospecify quali applicazioni o categorie di applicazione si desiderano i dati di individuazione tooget in.
+* **Ispezione approfondita**: se agente hello raccoglie il traffico HTTP per le connessioni SSL/TLS, gli amministratori possono scegliere toospecify (noto anche come **'Ispezione approfondita'**). Ulteriori informazioni su questo nella sezione successiva hello.
+* **Opzioni di consenso**: gli amministratori possono utilizzare hello Cloud App Discovery portale toochoose se gli utenti toonotify hello di raccolta dei dati dall'agente di hello, e se l'utente toorequire acconsentire prima dell'avvio di agente di hello la raccolta dei dati utente.
 
-Cloud App Discovery Endpoint Agent raccoglie solo le informazioni indicate nella sezione **Dati raccolti dall'agente** precedente.
+agente di endpoint Cloud App Discovery Hello raccoglie le informazioni di hello descritte in hello **dati raccolti dall'agente hello** sezione precedente.
 
 ### <a name="intercepting-data-from-encrypted-connections-deep-inspection"></a>Intercettazione dei dati da connessioni crittografate (Ispezione approfondita)
-Come accennato in precedenza, gli amministratori possono configurare l'agente in modo che effettui il monitoraggio dei dati da connessioni crittografate ('Ispezione approfondita'). Il protocollo TLS ([Transport Layer Security](https://msdn.microsoft.com/library/windows/desktop/aa380516%28v=vs.85%29.aspx)) è uno dei protocolli Internet utilizzati più di frequente. La crittografia delle comunicazioni tramite protocollo TLS, consente ai clienti di stabilire un canale di comunicazione sicuro e privato con un server Web. Il protocollo TLS fornisce la protezione essenziale per passare le credenziali di autenticazione e impedire la divulgazione di informazioni riservate.
+Come menzionato in precedenza, gli amministratori possono configurare hello agente toomonitor dati connessioni crittografate ('ispezione approfondita'). TLS ([Transport Layer Security](https://msdn.microsoft.com/library/windows/desktop/aa380516%28v=vs.85%29.aspx)) è uno dei hello un protocolli più comuni in uso nel hello Internet oggi. Per la crittografia delle comunicazioni con TLS, un client può stabilire un canale di comunicazione protetta e privata con un server web. TLS fornisce protezione essenziale per passare le credenziali di autenticazione ed evitare la diffusione di informazioni riservate hello.
 
-Anche se il canale crittografato protetto end-to-end offerto da TLS consente di tutelare la sicurezza e la privacy, questo protocollo viene spesso usato per scopi dannosi o non autorizzati. È per questo motivo che in realtà TLS viene spesso definito come il "protocollo universale di bypass del firewall". Il problema dipende dal fatto che la maggior parte dei firewall non è in grado di esaminare le comunicazioni TLS perché i dati a livello di applicazione sono crittografati con SSL. Gli autori di attacchi che conoscono questa limitazione sfruttano quindi il protocollo TLS per recapitare payload dannosi agli utenti nella certezza che persino i firewall a livello di applicazione più intelligenti non riconoscono TLS e devono semplicemente inoltrare le comunicazioni TLS tra host. Spesso gli utenti finali sfruttano il protocollo TLS per ignorare i controlli di accesso applicati da firewall e server proxy aziendali, usandolo per connettersi a proxy pubblici e per il tunneling tramite il firewall di protocolli non TLS che altrimenti verrebbero bloccati da appositi criteri.
+Mentre hello end-to-end canale crittografato protetto fornita da TLS consente la protezione della privacy e sicurezza importanti, protocollo hello è spesso sfruttato per scopi dannosi o nefandi. Molto in tal caso, infatti, che TLS viene spesso definito tooas hello "universal firewall-bypass protocollo". radice Hello problema hello è che la maggior parte dei firewall sono la comunicazione TLS tooinspect non è possibile perché i dati a livello di applicazione hello sono crittografati con SSL. Pertanto, gli utenti malintenzionati spesso sfruttano certi che anche hello più intelligente a livello di applicazione i firewall sono completamente nascosta tooTLS e devono inoltrare semplicemente la comunicazione TLS tra host utente tooa payload dannoso toodeliver TLS. Gli utenti finali spesso sfruttare i controlli di accesso toobypass TLS imposti da server proxy, utilizzarlo tooconnect toopublic proxy e firewall aziendali e dei protocolli non TLS attraverso il firewall hello che in caso contrario potrebbero essere bloccati dai criteri di tunneling.
 
-L'ispezione approfondita consente all'agente di App Cloud Discovery di fungere da intermediario attendibile. Quando viene effettuata una richiesta client per accedere a una risorsa protetta tramite HTTPS, il driver Endpoint Agent intercetta la connessione e stabilisce una nuova connessione al server di destinazione per recuperare il certificato SSL per conto del client. L'agente verifica quindi che il certificato sia attendibile (controllando che non sia stato revocato ed effettuando altre verifiche del certificato) e, se i controlli vengono superati Endpoint Agent copia le informazioni dal certificato del server per crearne uno proprio, noto come certificato di intercettazione, usando tali informazioni. Il certificato di intercettazione viene quindi firmato immediatamente da Endpoint Agent con un certificato radice, che viene infine installato nell'archivio certificati attendibili di Windows. Il certificato radice autofirmato è contrassegnato come non esportabile e viene sottoposto ad ACL per gli amministratori. Non deve mai lasciare il computer in cui è stato creato. Quando l'applicazione client dell'utente finale riceve il certificato di intercettazione, lo considererà attendibile perché riuscirà a convalidare la catena di certificati fino al certificato radice. Questo processo è quasi completamente trasparente dal punto di vista dell'utente finale, ma occorre tenere presente alcuni aspetti, come descritto di seguito.
+Ispezione approfondita consente tooact agente Cloud App Discovery di hello come un attendibile man-in-the-middle. Quando viene effettuata una richiesta client tooaccess HTTPS la risorsa protetta, il driver di agente di Endpoint hello intercetta connessione hello e stabilisce un nuovo tooretrieves di server di destinazione toohello connessione il proprio certificato SSL per conto del client hello. agente di Hello verifica quindi che il certificato di hello può essere considerati attendibili (il controllo non è stato revocato e l'esecuzione di altri controlli di certificato) e se questi passi, hello agente Endpoint hello informazioni vengono copiate dal certificato del server hello e crea il proprio certificato del server, noto come certificato intercettazione - utilizzo di tali informazioni. certificato di intercettazione Hello è firmato il volo dall'agente di endpoint hello con un certificato radice, che viene installato nell'archivio certificati attendibili di Windows hello. Questo certificato radice autofirmato è contrassegnato come non esportabile e ACL era tooadministrators. Si tratta di toonever previsto lasciare hello macchina in cui è stato creato. Quando l'applicazione client hello dell'utente finale riceve il certificato di intercettazione hello, correttamente è possibile convalidare la catena di certificati hello tutti hello modo toohello autorità di certificazione, verrà considerato attendibile. Questo processo è quasi completamente trasparente dal punto di vista dell'utente finale, ma occorre tenere presente alcuni aspetti, come descritto di seguito.
 
-Quando l'ispezione approfondita è abilitata, Cloud App Discovery Endpoint Agent può decrittografare e ispezionare le comunicazioni crittografate tramite TLS, consentendo così al servizio di ridurre i dati non significativi e fornendo informazioni dettagliate sull'utilizzo delle app cloud crittografate.
+Abilitando l'opzione ispezione approfondita, hello Cloud App Discovery Endpoint Agent può decrittografare e controllare le comunicazioni TLS crittografato, consentendo il rumore di tooreduce servizio hello e forniscono informazioni dettagliate sull'utilizzo di hello delle applicazioni cloud crittografato hello.
 
 #### <a name="a-word-of-caution"></a>Precisazione importante
-Prima di attivare l'ispezione approfondita si consiglia di comunicare le proprie intenzioni all'ufficio legale e al reparto risorse umane per ottenerne il consenso. Per ovvi motivi l'ispezione delle comunicazioni crittografate private di un utente finale può comportare problemi di tutela della privacy. Prima di implementare l'ispezione approfondita in un ambiente di produzione, assicurarsi che i criteri relativi alla sicurezza e alle modalità di utilizzo delle informazioni accettati in ambito aziendale siano stati aggiornati in modo da indicare che le comunicazioni crittografate verranno ispezionate. Può inoltre essere necessario implementare le notifiche utente ed escludere i siti ritenuti sensibili (ad esempio quelli bancari o medici) se si configura Cloud App Discovery per includerli nel monitoraggio. Come indicato in precedenza, gli amministratori possono usare il portale di Cloud App Discovery per scegliere se informare gli utenti che l'agente effettua la raccolta dei dati e se richiedere il consenso dell'utente prima che l'agente inizi a raccogliere i dati dell'utente.
+Prima di abilitare l'opzione ispezione approfondita, si consiglia di comunicare le proprie intenzioni tooyour legali e reparti delle risorse Umane e ottenere il proprio consenso. Per ovvi motivi l'ispezione delle comunicazioni crittografate private di un utente finale può comportare problemi di tutela della privacy. Prima di una produzione roll-out di ispezione approfondita, verificare che la sicurezza azienda e sono stati aggiornati i criteri di utilizzo accettabile verrà esaminato tooindicate che comunicazioni crittografate. Notifica all'utente e esenzione di siti considerati sensibili (ad esempio bancari e medici) potrebbe inoltre essere necessari se si configura Cloud App Discovery toomonitor li. Come indicato in precedenza, gli amministratori possono utilizzare hello Cloud App Discovery portale toochoose se gli utenti toonotify hello di raccolta dei dati dall'agente di hello, e se l'utente toorequire acconsentire prima dell'avvio di agente di hello la raccolta dei dati utente.
 
 ### <a name="known-issues-and-drawbacks"></a>Problemi noti e svantaggi
-In alcuni casi, l'intercettazione TLS potrebbe influire negativamente sull'esperienza dell'utente finale:
+Esistono alcuni casi in cui intercettazione TLS potrebbe compromettere l'esperienza dell'utente finale hello:
 
-* Con i certificati di convalida estesa, la barra degli indirizzi del Web browser assume un colore verde per indicare che si sta visitando un sito Web attendibile. L'ispezione TLS non può duplicare la convalida estesa del certificato rilasciato al client, quindi i siti Web che usano i certificati di convalida estesa funzionano normalmente ma la barra degli indirizzi non risulterà verde.  
-* L'associazione della chiave pubblica, nota anche come associazione del certificato, è progettata per proteggere gli utenti da attacchi man-in-the-middle e autorità di certificazione non autorizzate. Quando il certificato radice di un sito aggiunto non corrisponde a una delle Autorità di certificazione valide note, il browser impedisce la connessione e restituisce un errore. Dal momento che l'intercettazione TLS è di fatto paragonabile a un attacco man-in-the-middle, queste connessioni non riusciranno.
-* Se gli utenti fanno clic sull'icona con il lucchetto nella barra degli indirizzi del browser per ispezionare le informazioni del sito, non visualizzeranno una catena che termina con l'autorità di certificazione usata per firmare il certificato del sito Web ma una catena di certificati che termina con l'archivio certificati attendibili di Windows.
+* I certificati di convalida estesa estesa sottoposti a rendering barra degli indirizzi hello di hello web browser verde tooact come un indizio visivo che visitato un sito attendibile. Ispezione TLS non è possibile duplicare EV nel certificato hello che emette toohello client, siti web che utilizzano i certificati di convalida estesa funzionerà normalmente ma sulla barra degli indirizzi di hello non visualizzerà verde.  
+* Pubblica chiavi blocco (nota anche come aggiunta di certificati) sono progettati toohelp impedire gli attacchi man-in-the-middle e non autorizzati di autorità di certificazione. Quando il certificato radice hello per un sito aggiunto non corrisponde a uno di hello noto dell'autorità di certificazione valido, il browser hello Rifiuta connessione hello con un errore. Dal momento che l'intercettazione TLS è di fatto paragonabile a un attacco man-in-the-middle, queste connessioni non riusciranno.
+* Se gli utenti fanno clic sull'icona di lucchetto hello hello browser barra browser tooinspect hello sito informazioni sull'indirizzo, non vedrà una catena che termina con l'autorità di certificazione hello utilizzato certificato del sito Web di hello toosign, ma invece una catena di certificati che termina con hello Windows archivio certificati attendibili.
 
-Per ridurre il riprodursi di questi problemi, viene tenuta traccia dei servizi cloud e delle applicazioni client che in genere usano la convalida estesa o l'associazione della chiave pubblica e indicano a Endpoint Agent di evitare di intercettare le connessioni interessate. Anche in questi casi, si continueranno a ricevere report sull'utilizzo di queste app cloud e sul volume di dati trasferiti, ma poiché non viene effettuata l'ispezione approfondita, non saranno disponibili dettagli sul modo in cui le app sono state usate.
+le occorrenze di hello tooreduce di questi problemi, è tenere traccia dei servizi cloud e applicazioni client note toouse estese convalida o l'aggiunta di chiavi pubblica e indicano hello agente Endpoint tooavoid intercettano le connessioni interessate. Anche in questi casi, si riceverà comunque i report di usare hello di queste applicazioni cloud e hello del volume di dati trasferiti, tuttavia, poiché non sono complete controllato, non i dettagli sulla modalità di utilizzo delle App hello saranno disponibili.
 
-## <a name="sending-data-to-cloud-app-discovery"></a>Invio di dati a Cloud App Discovery
-Dopo la raccolta da parte dell'agente, i metadati vengono memorizzati nella cache del computer per al massimo un minuto o fino a quando i dati memorizzati nella cache non raggiungono una dimensione pari a 5 MB. Vengono quindi compressi e inviati tramite una connessione sicura al servizio Cloud App Discovery.
+## <a name="sending-data-toocloud-app-discovery"></a>L'invio di dati tooCloud App Discovery
+Una volta che i metadati sono stati raccolti dall'agente di hello, viene memorizzato nel computer di hello per backup tooone minuto o fino a quando hello dati memorizzati nella cache raggiungono dimensioni pari a 5MB. Vengono quindi compressi e inviato a un servizio Cloud App Discovery di toohello connessione sicura.
 
-Se l'agente non riesce a comunicare con il servizio Cloud App Discovery per qualsiasi motivo, i metadati raccolti vengono archiviati in una cache dei file locale, a cui possono accedere solo gli utenti con privilegi elevati nel computer, ad esempio il gruppo Administrators.  
-L'agente prova automaticamente a inviare di nuovo i metadati memorizzati nella cache fino a che non vengono ricevuti correttamente dal servizio Cloud App Discovery.
+Se l'agente di hello è Impossibile toocommunicate con hello servizio Cloud App Discovery per qualsiasi motivo, hello metadati raccolti vengono archiviati in una cache di file locale che è accessibile solo da utenti con privilegi nel computer di hello (ad esempio, gruppo di amministratori hello).  
+agente Hello automaticamente tentativi tooresend hello metadati memorizzati nella cache fino a quando non è stato ricevuto correttamente dal servizio Cloud App Discovery hello.
 
-## <a name="receiving-the-data-at-the-service-end"></a>Ricezione dei dati sul lato servizio
-Gli agenti eseguono l'autenticazione per il servizio Cloud App Discovery usando il certificato di autenticazione client specifico del computer indicato in precedenza e inoltrano i dati su un canale crittografato.  
-La pipeline di analisi del servizio Cloud App Discovery elabora i metadati separatamente per ogni cliente, partizionandoli logicamente in tutte le fasi della pipeline di analisi.
-I metadati analizzati sono alla base dei diversi report disponibili nel portale.
+## <a name="receiving-hello-data-at-hello-service-end"></a>Ricezione di dati alla fine di servizio hello hello
+gli agenti di Hello autenticare toohello Cloud App Discovery servizio tramite certificato di autenticazione client specifico di hello computer indicato in precedenza e inoltra i dati tramite un canale crittografato.  
+analitica del servizio Cloud App Discovery Hello della pipeline dei metadati di processi per ogni cliente separatamente, suddividendoli in modo logico in tutte le fasi della pipeline analitica hello.
+Hello analizzati metadati unità hello vari report nel portale di hello.
 
-I metadati non elaborati e i metadati analizzati vengono archiviati per un massimo di 180 giorni. I clienti possono anche scegliere di acquisire i metadati analizzati nell'account di archiviazione BLOB di Azure desiderato.
-Ciò risulta utile per l'analisi offline dei metadati, oltre che per la conservazione più duratura dei dati.
+Hello metadati non elaborati e metadati hello analizzato vengono archiviati per impostare i giorni too180. Inoltre, i clienti possono scegliere toocapture hello analizzato metadati in un account di archiviazione blob di Azure di loro scelta.
+Ciò è utile per analizzare i metadati offline nonché più conservazione dei dati di hello.
 
-## <a name="accessing-the-data-using-the-azure-portal"></a>Accesso ai dati mediante il portale di Azure
-Nel tentativo di proteggere i metadati raccolti, per impostazione predefinita solo gli amministratori globali del tenant possono accedere alla funzionalità Cloud App Discovery del portale di Azure.  
-Gli amministratori possono tuttavia scegliere di delegare l'accesso ad altri utenti o gruppi.
+## <a name="accessing-hello-data-using-hello-azure-portal"></a>Accesso ai dati di hello con hello portale di Azure
+Nei metadati di hello tookeep impegno raccolti sicura, per impostazione predefinita solo gli amministratori globali del tenant hello hanno funzionalità Cloud App Discovery toohello di accesso nel portale di Azure hello.  
+Tuttavia, gli amministratori possono scegliere toodelegate questo accesso tooother gli utenti o gruppi.
 
 > [!NOTE]
 > Per informazioni dettagliate, vedere [Introduzione a Cloud App Discovery](http://social.technet.microsoft.com/wiki/contents/articles/30962.getting-started-with-cloud-app-discovery.aspx)
@@ -164,7 +164,7 @@ Gli amministratori possono tuttavia scegliere di delegare l'accesso ad altri ute
 > 
 
 
-Qualsiasi utente che accede ai dati nel portale deve avere una licenza per Azure AD Premium.
+Qualsiasi utente l'accesso ai hello dati nel portale di hello devono avere una licenza con una licenza Azure AD Premium.
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 * [Come individuare app cloud non autorizzate usate nell'organizzazione](active-directory-cloudappdiscovery-whatis.md)

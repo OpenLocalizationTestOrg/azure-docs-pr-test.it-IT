@@ -1,6 +1,6 @@
 ---
-title: Analizzare ed elaborare documenti JSON con Hive in HDInsight | Microsoft Docs
-description: Informazioni su come usare e analizzare i documenti JSON usando Hive in HDInsight.
+title: aaaAnalyze e JSON processo documenti con Hive in HDInsight | Documenti Microsoft
+description: Informazioni su come toouse JSON documenti e analizzarli mediante Hive in HDInsight.
 services: hdinsight
 documentationcenter: 
 author: mumian
@@ -15,15 +15,15 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 04/26/2017
 ms.author: jgao
-ms.openlocfilehash: bd136afebeceb0cd9c24cfc5f15601caa80a755e
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: b4b20172e8553f91a446615dc52f2ea2ef24cd04
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="process-and-analyze-json-documents-using-hive-in-hdinsight"></a>Elaborare e analizzare documenti JSON usando Hive in HDInsight
 
-Informazioni su come elaborare e analizzare file JSON usando Hive in HDInsight. Nell'esercitazione viene usato il documento JSON seguente:
+Informazioni su come tooprocess e analizzare i file JSON utilizzando Hive in HDInsight. Hello seguente documento JSON utilizzato nell'esercitazione hello:
 
     {
         "StudentId": "trgfg-5454-fdfdg-4346",
@@ -60,12 +60,12 @@ Informazioni su come elaborare e analizzare file JSON usando Hive in HDInsight. 
         ]
     }
 
-Il file è disponibile in wasb://processjson@hditutorialdata.blob.core.windows.net/. Per altre informazioni sull'uso dell'archivio BLOB di Azure con HDInsight, vedere [Usare un archivio BLOB di Azure compatibile con HDFS con Hadoop in HDInsight](hdinsight-hadoop-use-blob-storage.md). È possibile copiare il file nel contenitore predefinito del cluster.
+file Hello è reperibile in wasb://processjson@hditutorialdata.blob.core.windows.net/. Per altre informazioni sull'uso dell'archivio BLOB di Azure con HDInsight, vedere [Usare un archivio BLOB di Azure compatibile con HDFS con Hadoop in HDInsight](hdinsight-hadoop-use-blob-storage.md). È possibile copiare contenitore predefinito di hello file toohello del cluster.
 
-In questa esercitazione viene usata la console di Hive.  Per istruzioni sull'apertura della console Hive, vedere [Usare Hive con Hadoop in HDInsight con Desktop remoto](hdinsight-hadoop-use-hive-remote-desktop.md).
+In questa esercitazione, utilizzare una console di Hive hello.  Per istruzioni di apertura hello Hive console, vedere [utilizzare Hive con Hadoop in HDInsight con Desktop remoto](hdinsight-hadoop-use-hive-remote-desktop.md).
 
 ## <a name="flatten-json-documents"></a>Rendere flat i documenti JSON
-I metodi elencati nella sezione seguente presuppongono che il documento JSON sia in una singola riga. È quindi necessario rendere flat il documento JSON in una stringa. Se il documento JSON è già flat, è possibile saltare questo passaggio e passare alla sezione successiva relativa all'analisi dei dati JSON.
+metodi di Hello elencati nella sezione successiva hello richiedono hello del documento JSON in una singola riga. Pertanto, è necessario unire stringa tooa documento JSON di hello. Se il documento JSON è già bidimensionale, è possibile ignorare questo passaggio e passare la sezione successiva toohello retta sui dati di analisi di JSON.
 
     DROP TABLE IF EXISTS StudentsRaw;
     CREATE EXTERNAL TABLE StudentsRaw (textcol string) STORED AS TEXTFILE LOCATION "wasb://processjson@hditutorialdata.blob.core.windows.net/";
@@ -84,102 +84,102 @@ I metodi elencati nella sezione seguente presuppongono che il documento JSON sia
 
     SELECT * FROM StudentsOneLine
 
-Il file JSON non elaborato è disponibile in **wasb://processjson@hditutorialdata.blob.core.windows.net/**. La tabella Hive *StudentsRaw* punta al documento JSON non elaborato e non flat.
+Hello file JSON non elaborato si trova in  **wasb://processjson@hditutorialdata.blob.core.windows.net/** . Hello *StudentsRaw* tabella Hive punta toohello documento JSON non convertito non elaborato.
 
-La tabella Hive *StudentsOneLine* archivia i dati nel file system predefinito di HDInsight nel percorso */json/students/*.
+Hello *StudentsOneLine* tabella Hive archivia i dati di hello in file system predefinito HDInsight in hello hello */jsonstudenti/* percorso.
 
-L'istruzione INSERT popola la tabella StudentOneLine con i dati JSON flat.
+istruzione INSERT Hello tabella viene popolata hello StudentOneLine con i dati JSON hello bidimensionale.
 
-L'istruzione SELECT restituirà solo una riga.
+istruzione SELECT Hello dovrà restituire una sola riga.
 
-Ecco l'output dell'istruzione SELECT:
+Ecco l'output di hello dell'istruzione SELECT hello:
 
-![Rendere flat il documento JSON.][image-hdi-hivejson-flatten]
+![Conversione del documento JSON hello.][image-hdi-hivejson-flatten]
 
 ## <a name="analyze-json-documents-in-hive"></a>Analizzare i documenti JSON in Hive
-Hive offre tre meccanismi diversi per l'esecuzione di query nei documenti JSON:
+Hive fornisce tre diversi meccanismi toorun query su documenti JSON:
 
-* Usare la funzione definita dall'utente GET\_JSON\_OBJECT UDF.
-* Usare la funzione definita dall'utente JSON_TUPLE.
+* Utilizzare GET hello\_JSON\_oggetto funzione definita dall'utente (funzione definita dall'utente)
+* Utilizzare hello JSON_TUPLE funzione definita dall'utente
 * Usare l'interfaccia SerDe personalizzata.
 * Scrivere una funzione definita dall'utente personalizzata usando Python o altri linguaggi. Vedere [questo articolo][hdinsight-python] sull'esecuzione del codice Python personalizzato con Hive.
 
-### <a name="use-the-getjsonobject-udf"></a>Usare la funzione definita dall'utente GET\_JSON_OBJECT
-Hive offre una funzione definita dall'utente predefinita denominata [get json object](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+UDF#LanguageManualUDF-get_json_object) in grado di eseguire query JSON in fase di esecuzione. Questo metodo accetta due argomenti, ovvero il nome della tabella e il nome del metodo che include il documento JSON flat e il campo JSON da analizzare. L'esempio seguente illustra il funzionamento di questa funzione definita dall'utente.
+### <a name="use-hello-getjsonobject-udf"></a>Hello utilizzare GET\_JSON_OBJECT funzione definita dall'utente
+Hive offre una funzione definita dall'utente predefinita denominata [get json object](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+UDF#LanguageManualUDF-get_json_object) in grado di eseguire query JSON in fase di esecuzione. Questo metodo accetta due argomenti: nome della tabella hello e nome del metodo, che ha hello bidimensionale JSON hello e documenti JSON campo che deve toobe analizzato. Esaminiamo un esempio toosee funzionamento di questa funzione definita dall'utente.
 
-Ottenere il nome e il cognome di ogni studente
+Ottenere hello nome e cognome di ogni studente
 
     SELECT
       GET_JSON_OBJECT(StudentsOneLine.json_body,'$.StudentDetails.FirstName'),
       GET_JSON_OBJECT(StudentsOneLine.json_body,'$.StudentDetails.LastName')
     FROM StudentsOneLine;
 
-Questo è l'output ottenuto quando si esegue la query nella finestra della console.
+Ecco output di hello quando si esegue questa query nella finestra della console.
 
 ![Funzione definita dall'utente get_json_object][image-hdi-hivejson-getjsonobject]
 
-La funzione definita dall'utente get-json_object presenta alcune limitazioni.
+Esistono alcune limitazioni di get-json_object hello funzione definita dall'utente.
 
-* Poiché ogni campo della query richiede una nuova analisi della query, si ha un impatto sulle prestazioni.
-* GET\_JSON_OBJECT() restituisce la rappresentazione di stringa di una matrice. Per convertirla in una matrice Hive, è necessario usare espressioni regolari per sostituire le parentesi quadre ('[' e ']') e quindi chiamare anche una suddivisione per ottenere la matrice.
+* Poiché ogni campo nella query hello richiede vuoti query hello, influisce sulle prestazioni di hello.
+* OTTENERE\_JSON_OBJECT() restituisce la rappresentazione di stringa hello di una matrice. tooconvert questa matrice di matrice tooa Hive, aver toouse espressioni regolari tooreplace hello parentesi quadre "[' e ']' e quindi anche chiamata divisione matrice hello tooget.
 
-Il wiki relativo a Hive consiglia quindi di usare json_tuple, come illustrato più avanti.  
+Ecco perché hello Hive wiki consiglia l'uso di json_tuple.  
 
-### <a name="use-the-jsontuple-udf"></a>Usare la funzione definita dall'utente JSON_TUPLE
-L'altra funzione definita dall'utente disponibile in Hive è denominata [json_tuple](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+UDF#LanguageManualUDF-json_tuple) e offre prestazioni migliori rispetto a [get_ json _object](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+UDF#LanguageManualUDF-get_json_object). Questo metodo accetta un insieme di chiavi e una stringa JSON e restituisce una tupla di valori usando una funzione. La query seguente restituisce l'ID dello studente e il livello dal documento JSON:
+### <a name="use-hello-jsontuple-udf"></a>Utilizzare hello JSON_TUPLE funzione definita dall'utente
+L'altra funzione definita dall'utente disponibile in Hive è denominata [json_tuple](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+UDF#LanguageManualUDF-json_tuple) e offre prestazioni migliori rispetto a [get_ json _object](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+UDF#LanguageManualUDF-get_json_object). Questo metodo accetta un insieme di chiavi e una stringa JSON e restituisce una tupla di valori usando una funzione. Hello query seguente restituisce id dello studente hello e livello di hello da un documento JSON hello:
 
     SELECT q1.StudentId, q1.Grade
       FROM StudentsOneLine jt
       LATERAL VIEW JSON_TUPLE(jt.json_body, 'StudentId', 'Grade') q1
         AS StudentId, Grade;
 
-Output dello script nella console di Hive:
+output di Hello dello script nella console di Hive hello:
 
 ![Funzione definita dall'utente json_tuple][image-hdi-hivejson-jsontuple]
 
-JSON\_TUPLE usa la sintassi di tipo [lateral view](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+LateralView) in Hive, che consente a json\_tuple di creare una tabella virtuale applicando la funzione UDT a ogni riga della tabella originale.  I documenti JSON complessi diventano troppo difficili da gestire a causa dell'uso ripetuto di LATERAL VIEW. JSON_TUPLE non è in grado di gestire documenti JSON annidati.
+JSON\_TUPLA utilizza hello [laterali vista](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+LateralView) sintassi nell'Hive, che consente di json\_tupla toocreate una tabella virtuale applicando hello UDT funzione tooeach riga della tabella originale hello.  Documenti JSON complessi diventare troppo difficile da gestire a causa di hello ripetuto l'utilizzo di visualizzazione laterale. JSON_TUPLE non è in grado di gestire documenti JSON annidati.
 
 ### <a name="use-custom-serde"></a>Usare l'interfaccia SerDe personalizzata
-SerDe è la scelta migliore per l'analisi di documenti JSON annidati, perché consente di definire lo schema JSON e di usarlo per analizzare i documenti. In questa esercitazione viene usata una delle interfacce SerDe più diffuse, sviluppata da [rcongiu](https://github.com/rcongiu).
+SerDe sia hello migliore per l'analisi dei documenti JSON annidati, ma consente toodefine hello JSON schema e utilizzare hello schema tooparse hello documenti. In questa esercitazione, utilizzare uno dei hello SerDe più comuni che è stato sviluppato da [Roberto Congiu](https://github.com/rcongiu).
 
-**Per usare l'interfaccia SerDe personalizzata:**
+**toouse hello SerDe personalizzato:**
 
-1. Installare [Java SE Development Kit 7u55 JDK 1.7.0_55](http://www.oracle.com/technetwork/java/javase/downloads/java-archive-downloads-javase7-521261.html#jdk-7u55-oth-JPR). Se si usa la distribuzione Windows di HDInsight, scegliere la versione Windows X64 del JDK.
+1. Installare [Java SE Development Kit 7u55 JDK 1.7.0_55](http://www.oracle.com/technetwork/java/javase/downloads/java-archive-downloads-javase7-521261.html#jdk-7u55-oth-JPR). Scegliere hello JDK versione X64 di Windows hello se si sta utilizzando la distribuzione di Windows hello di HDInsight toobe
    
    > [!WARNING]
    > JDK 1.8 non funziona con questa SerDe.
    > 
    > 
    
-    Al termine dell'installazione, aggiungere una nuova variabile di ambiente utente:
+    Al termine dell'installazione di hello, aggiungere una nuova variabile di ambiente utente:
    
-   1. Aprire **Visualizza impostazioni di sistema avanzate** dalla schermata di Windows.
+   1. Aprire **Visualizza impostazioni di sistema avanzate** dalla schermata di Windows hello.
    2. Fare clic su **Variabili di ambiente**.  
-   3. Aggiungere una nuova variabile di ambiente **JAVA_HOME** che punta a **C:\Programmi\Java\jdk1.7.0_55** o al percorso di installazione del JDK.
+   3. Aggiungere un nuovo **JAVA_HOME** variabile di ambiente punta troppo**Files\Java\jdk1.7.0_55 c:\Programmi\Microsoft** o punto in cui è installato il pacchetto JDK.
       
       ![Configurazione dei valori di configurazione corretti per JDK][image-hdi-hivejson-jdk]
 2. Installare [Maven 3.3.1](http://mirror.olnevhost.net/pub/apache/maven/maven-3/3.3.1/binaries/apache-maven-3.3.1-bin.zip)
    
-    Aggiungere la cartella Bin al percorso scegliendo Pannello di controllo-->Modifica le variabili di ambiente relative al sistema per l'account, quindi scegliere Variabili di ambiente. La schermata seguente illustra come eseguire questa operazione.
+    Aggiungi percorso tooyour della cartella bin hello passando tooControl pannello--> Modifica le variabili di sistema di hello per le variabili di ambiente account. Hello cattura di schermata seguente illustra come toodo questo.
    
     ![Configurazione di Maven][image-hdi-hivejson-maven]
-3. Clonare il progetto dal sito GitHub [Hive-JSON-SerDe](https://github.com/sheetaldolas/Hive-JSON-Serde/tree/master) . Per eseguire questa operazione, fare clic sul pulsante "Download Zip", come illustrato nella schermata seguente.
+3. Progetto hello clone da [Hive-JSON-SerDe](https://github.com/sheetaldolas/Hive-JSON-Serde/tree/master) sito github. È possibile farlo facendo clic sul pulsante "Download Zip" hello come illustrato nella seguente schermata hello.
    
-    ![Clonazione del progetto][image-hdi-hivejson-serde]
+    ![La clonazione progetto hello][image-hdi-hivejson-serde]
 
-4: Passare alla cartella in cui è stato scaricato il pacchetto e quindi digitare "mvn package". Verranno creati i file jar necessari, che verranno quindi copiati nel cluster.
+4: go toohello cartella in cui è stato scaricato il pacchetto e quindi il tipo "mvn pacchetto". Si deve creare hello file jar necessarie che è quindi possibile copiare su toohello cluster.
 
-5: Passare alla cartella di destinazione nella cartella radice in cui è stato scaricato il pacchetto. Caricare il file json-serde-1.1.9.9-Hive13-jar-with-dependencies.jar nel nodo head del cluster. È in genere consigliabile inserirlo sotto la cartella dei file binari di Hive, ad esempio C:\apps\dist\hive-0.13.0.2.1.11.0-2316\bin o in una cartella analoga.
+5: cartella di destinazione toohello andare nella cartella radice hello in cui è stato scaricato il pacchetto di hello. Caricare file json-serde-1.1.9.9-Hive13-jar-with-dependencies.jar hello toohead-nodo del cluster. In genere inserirlo nella cartella di hello hive binari: C:\apps\dist\hive-0.13.0.2.1.11.0-2316\bin o simile.
 
-6: Al prompt di Hive digitare "add jar /path/to/json-serde-1.1.9.9-Hive13-jar-with-dependencies.jar". Poiché in questo esempio il file jar si trova nella cartella C:\apps\dist\hive-0.13.x\bin, è possibile aggiungere direttamente il file jar con il nome, come illustrato di seguito:
+6: nel prompt dei comandi hive hello, digitare "Aggiungi jar /path/to/json-serde-1.1.9.9-Hive13-jar-with-dependencies.jar". Poiché in questo caso, jar hello nella cartella C:\apps\dist\hive-0.13.x\bin hello, è possibile aggiungere direttamente jar hello con nome hello, come illustrato:
 
     add jar json-serde-1.1.9.9-Hive13-jar-with-dependencies.jar;
 
-   ![Aggiunta di JAR al progetto][image-hdi-hivejson-addjar]
+   ![Aggiunta di file JAR tooyour progetto][image-hdi-hivejson-addjar]
 
-A questo punto è possibile usare SerDe per eseguire le query sul documento JSON.
+A questo punto, si è pronti toouse hello SerDe toorun query documento JSON hello.
 
-L'istruzione seguente crea una tabella con uno schema definito:
+Hello istruzione crea una tabella con uno schema definito:
 
     DROP TABLE json_table;
     CREATE EXTERNAL TABLE json_table (
@@ -202,52 +202,52 @@ L'istruzione seguente crea una tabella con uno schema definito:
     ) ROW FORMAT SERDE 'org.openx.data.jsonserde.JsonSerDe'
     LOCATION '/json/students';
 
-Per elencare il nome e il cognome dello studente
+toolist hello nome e cognome di hello studente
 
     SELECT StudentDetails.FirstName, StudentDetails.LastName FROM json_table;
 
-Questo è il risultato ottenuto dalla console di Hive.
+Di seguito è riportato il risultato di hello dalla console di Hive hello.
 
 ![Query SerDe 1][image-hdi-hivejson-serde_query1]
 
-Per calcolare la somma dei punteggi del documento JSON
+somma di hello toocalculate di punteggi del documento JSON hello
 
     SELECT SUM(scores)
     FROM json_table jt
       lateral view explode(jt.StudentClassCollection.Score) collection as scores;
 
-La query precedente usa la funzione definita dall'utente di tipo [lateral view explode](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+LateralView) per espandere la matrice di punteggi, in modo che sia possibile riepilogarli.
+Hello prima query utilizza [vista laterale esplodere](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+LateralView) tooexpand funzione definita dall'utente hello matrice dei punteggi in modo che essi possono essere sommati.
 
-Questo è l'output ottenuto dalla console di Hive.
+Ecco l'output di hello dalla console di Hive hello.
 
 ![Query SerDe 2][image-hdi-hivejson-serde_query2]
 
-Per trovare le materie in cui un determinato studente ha ottenuto un punteggio superiore a 80:
+toofind cui soggetti uno studente specificato ha raggiunto più di 80 punti:
 
     SELECT  
       jt.StudentClassCollection.ClassId
     FROM json_table jt
       lateral view explode(jt.StudentClassCollection.Score) collection as score  where score > 80;
 
-La query precedente restituisce una matrice Hive, a differenza di get\_json\_object, che restituisce una stringa.
+la query precedente Hello restituisce una matrice di Hive a differenza di get\_json\_oggetto, che restituisce una stringa.
 
 ![Query SerDe 3][image-hdi-hivejson-serde_query3]
 
-Se si vogliono ignorare documenti JSON non validi, come illustrato nella [pagina wiki](https://github.com/sheetaldolas/Hive-JSON-Serde/tree/master) di questo SerDe, è possibile ottenere questo risultato con il codice seguente:  
+Se si desidera tooskil JSON in formato non corretto, quindi come spiegato in hello [pagina wiki](https://github.com/sheetaldolas/Hive-JSON-Serde/tree/master) di questo SerDe è possibile ottenere che digitando hello seguente codice:  
 
     ALTER TABLE json_table SET SERDEPROPERTIES ( "ignore.malformed.json" = "true");
 
 
 
 
-## <a name="summary"></a>Summary
-In conclusione, il tipo di operatore JSON in Hive scelto dipende dallo scenario. Se è disponibile un documento JSON semplice ed è necessario eseguire ricerche in un solo campo, è possibile scegliere di usare la funzione Hive definita dall'utente get\_json\_object. Se è necessario cercare più di una chiave, è possibile usare json_tuple. Se è disponibile un documento annidato, è consigliabile usare il SerDe JSON.
+## <a name="summary"></a>Riepilogo
+In conclusione, hello tipo di operatore JSON nell'Hive scelto dipende dallo scenario. Se si dispone di un documento JSON semplice e avere solo un campo toolook: è possibile scegliere toouse hello Hive UDF get\_json\_oggetto. Se sono presenti toolook chiave più di un, è possibile utilizzare json_tuple. Se si dispone di un documento nidificato, è necessario utilizzare hello SerDe JSON.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
 Per altri articoli correlati, vedere
 
-* [Usare Hive e HiveQL con Hadoop in HDInsight per analizzare un file Apache log4j di esempio](hdinsight-use-hive.md)
+* [Utilizzare Hive e HiveQL con Hadoop in HDInsight tooanalyze un file di esempio Apache log4j](hdinsight-use-hive.md)
 * [Analizzare i dati sui ritardi dei voli mediante Hive in HDInsight](hdinsight-analyze-flight-delay-data.md)
 * [Analizzare i dati Twitter mediante Hive in HDInsight](hdinsight-analyze-twitter-data.md)
 * [Eseguire un processo Hadoop usando Azure Cosmos DB e HDInsight](../documentdb/documentdb-run-hadoop-with-hdinsight.md)

@@ -1,5 +1,5 @@
 ---
-title: API di rilevamento delle anomalie di Machine Learning | Microsoft Docs
+title: API rilevamento anomalie di Machine Learning aaaAzure | Documenti Microsoft
 description: "API di rilevamento delle anomalie è un esempio compilato con Microsoft Azure Machine Learning che consente di rilevare anomalie nei dati della serie temporale con i valori numerici disposti in modo uniforme nel tempo."
 services: machine-learning
 documentationcenter: 
@@ -14,52 +14,52 @@ ms.tgt_pltfrm: na
 ms.workload: multiple
 ms.date: 06/05/2017
 ms.author: alok;rotimpe
-ms.openlocfilehash: 5ddc02905fbb7f9f7c5deb9b970101788d824642
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ce153689b8ddb36b67a2ad3607d846ea83ebcf61
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="machine-learning-anomaly-detection-api"></a>API di rilevamento delle anomalie di Machine Learning
 ## <a name="overview"></a>Panoramica
 [API di rilevamento delle anomalie](https://gallery.cortanaintelligence.com/MachineLearningAPI/Anomaly-Detection-2) è un esempio compilato con Azure Machine Learning che consente di rilevare anomalie nei dati della serie temporale con i valori numerici disposti in modo uniforme nel tempo.
 
-Questa API può rilevare i seguenti tipi di modelli di anomalie nei dati delle serie temporali:
+Questa API può rilevare i seguenti tipi di modelli anomali nei dati della serie temporale hello:
 
 * **Tendenze positive e negative**: ad esempio, quando si monitora l'utilizzo della memoria di elaborazione, una tendenza verso l'alto può risultare interessante perché può indicare una perdita di memoria.
-* **Modifiche dell'intervallo dinamico di valori**: ad esempio, quando si monitorano le eccezioni generate da un servizio cloud, le eventuali modifiche dell'intervallo dinamico di valori possono indicare un'instabilità dell'integrità del servizio.
-* **Picchi e flessioni**: ad esempio, quando si monitora il numero di errori di accesso a un servizio o il numero di transazioni completate in un sito di e-commerce, i picchi o le flessioni possono indicare un comportamento anomalo.
+* **Modifiche dell'intervallo dinamico di valori hello**: ad esempio, durante il monitoraggio delle eccezioni hello generate da un servizio cloud, eventuali modifiche dell'intervallo dinamico di valori hello potrebbero indicare l'instabilità dello stato di hello del servizio di hello, e
+* **Picchi e DIP**: ad esempio, durante il monitoraggio numero hello di errori di accesso in un servizio o il numero di estrazioni in un sito di e-commerce, picchi o DIP potrebbe indicare un comportamento anomalo.
 
-Queste funzionalità di rilevamento di Machine Learning tengono traccia delle modifiche dei valori nel tempo e segnalano quelle in corso sotto forma di punteggi delle anomalie. Non richiedono la sintonizzazione della soglia ad hoc e i punteggi possono essere utilizzati per controllare la frequenza falsa positiva. L'API di rilevamento anomalie è utile in diversi scenari, come il monitoraggio del servizio che tiene traccia degli indicatori KPI nel tempo, il monitoraggio dell'utilizzo mediante metriche, come il numero di ricerche e i numeri di clic, il monitoraggio delle prestazioni nel tempo usando contatori come memoria, CPU, letture di file e così via.
+Queste funzionalità di rilevamento di Machine Learning tengono traccia delle modifiche dei valori nel tempo e segnalano quelle in corso sotto forma di punteggi delle anomalie. Non richiedono ottimizzazione soglia ad hoc e i relativi punteggi possono essere tasso positivo false toocontrol utilizzato. rilevamento di anomalie Hello API risulta utile in diversi scenari, ad esempio il monitoraggio del servizio grazie al rilevamento di indicatori KPI nel tempo, l'utilizzo di monitoraggio tramite metriche, ad esempio numero di ricerche, un numero di clic, il monitoraggio delle prestazioni tramite contatori di memoria, CPU, file legge, e così via nel tempo.
 
-L'offerta per il rilevamento anomalie include strumenti utili per iniziare.
+offerta di rilevamento di anomalie Hello viene fornito con tooget strumenti utili per iniziare.
 
-* L' [applicazione Web](http://anomalydetection-aml.azurewebsites.net/) consente di valutare e visualizzare i risultati delle API di rilevamento anomalie sui dati.
+* Hello [applicazione web](http://anomalydetection-aml.azurewebsites.net/) consente di valutare e visualizzare i risultati di hello di rilevamento di anomalie API sui dati.
 
 > [!NOTE]
 > Provare la **soluzione IT Anomaly Insights** supportata da [questa API](https://gallery.cortanaintelligence.com/MachineLearningAPI/Anomaly-Detection-2)
 > 
-> Per distribuire questa soluzione end-to-end nella sottoscrizione di Azure <a href="https://gallery.cortanaintelligence.com/Solution/Anomaly-Detection-Pre-Configured-Solution-1" target="_blank">**Iniziare da qui >**</a>
+> tooget questa soluzione tooend end distribuito tooyour sottoscrizione di Azure <a href="https://gallery.cortanaintelligence.com/Solution/Anomaly-Detection-Pre-Configured-Solution-1" target="_blank"> **iniziare da qui >**</a>
 > 
 >
 
 ## <a name="api-deployment"></a>Distribuzione API
-Per utilizzare l'API, è necessario distribuirlo alla sottoscrizione di Azure dove verrà ospitato come servizio web di Machine Learning di Azure.  È possibile effettuare questa operazione in [Cortana Intelligence Gallery](https://gallery.cortanaintelligence.com/MachineLearningAPI/Anomaly-Detection-2).  Con questa operazione due servizi Web di AzureML (e le relative risorse) verranno distribuite alla sottoscrizione di Azure, uno per il rilevamento delle anomalie con rilevamento della stagionalità e l'altro senza rilevamento della stagionalità.  Dopo aver completato la distribuzione, sarà possibile gestire le API dalla pagina dei [servizi Web di AzureML](https://services.azureml.net/webservices/).  In questa pagina è possibile trovare le posizioni endpoint, le chiavi API, nonché il codice di esempio per la chiamata all'API.  Le istruzioni più dettagliate sono disponibili [qui](https://docs.microsoft.com/en-us/azure/machine-learning/machine-learning-manage-new-webservice).
+In hello toouse ordine API, è necessario distribuirlo tooyour sottoscrizione di Azure in cui verrà ospitato come servizio web di Azure Machine Learning.  È possibile farlo da hello [Cortana Intelligence Gallery](https://gallery.cortanaintelligence.com/MachineLearningAPI/Anomaly-Detection-2).  Verrà distribuito due servizi Web di Azure ml (e le relative risorse) tooyour sottoscrizione di Azure - uno per il rilevamento di anomalie con rilevamento della stagionalità e uno senza rilevamento della stagionalità.  Una volta completata la distribuzione di hello, sarà in grado di toomanage le API da hello [servizi web di Azure ml](https://services.azureml.net/webservices/) pagina.  In questa pagina, si verrà essere in grado di toofind i percorsi di endpoint, le chiavi API, nonché esempi di codice per chiamare l'API di hello.  Le istruzioni più dettagliate sono disponibili [qui](https://docs.microsoft.com/en-us/azure/machine-learning/machine-learning-manage-new-webservice).
 
-## <a name="scaling-the-api"></a>Scalabilità dell'API
-Per impostazione predefinita, la distribuzione disporrà di un piano di fatturazione di sviluppo/test gratuito che include 1.000 operazioni e 2 ore di calcolo al mese.  È possibile passare a un altro piano in base alle proprie esigenze.  I dettagli sui prezzi dei vari piani sono disponibili [qui](https://azure.microsoft.com/en-us/pricing/details/machine-learning/) in "Prezzi API Web di produzione".
+## <a name="scaling-hello-api"></a>Scala hello API
+Per impostazione predefinita, la distribuzione disporrà di un piano di fatturazione di sviluppo/test gratuito che include 1.000 operazioni e 2 ore di calcolo al mese.  È possibile aggiornare il piano tooanother in base alle esigenze.  Sono disponibili dettagli sui prezzi di hello di piani diversi [qui](https://azure.microsoft.com/en-us/pricing/details/machine-learning/) in "Prezzi di API Web di produzione".
 
 ## <a name="managing-aml-plans"></a>Gestione dei piani AML 
-È possibile gestire il piano di fatturazione [qui](https://services.azureml.net/plans/).  Il nome del piano si basa sul nome del gruppo di risorse scelto durante la distribuzione dell'API, oltre a una stringa univoca per la sottoscrizione.  Le istruzioni su come aggiornare il piano sono disponibili [qui](https://docs.microsoft.com/en-us/azure/machine-learning/machine-learning-manage-new-webservice) nella sezione "Gestione dei piani di fatturazione".
+È possibile gestire il piano di fatturazione [qui](https://services.azureml.net/plans/).  nome del piano di Hello si baserà sul nome del gruppo di risorse hello che scelto durante la distribuzione di API hello e una stringa che rappresenta la sottoscrizione tooyour univoco.  Istruzioni su come tooupgrade il piano sono disponibili [qui](https://docs.microsoft.com/en-us/azure/machine-learning/machine-learning-manage-new-webservice) nella sezione "Gestione dei piani di fatturazione" hello.
 
 ## <a name="api-definition"></a>Definizione dell'API
-Il servizio Web offre un’API basata su REST in HTTPS che può essere usata in modi diversi, ad esempio come applicazione Web o mobile, R, Python, Excel, ecc.  I dati delle serie temporali vengono inviati al servizio tramite una chiamata API REST che esegue una combinazione dei tre tipi di anomalie descritte di seguito.
+servizio web Hello fornisce un'API basata su REST su HTTPS che possono essere utilizzati in modi diversi, ad esempio un web o applicazione per dispositivi mobili, R, Python, Excel, e così via.  Si invia il servizio di toothis ora serie dati tramite una chiamata API REST e l'esecuzione di una combinazione di tipi anomalie tre hello descritto di seguito.
 
-## <a name="calling-the-api"></a>Chiamata all'API
-Per chiamare l'API, è necessario conoscere la posizione endpoint e la chiave API.  Entrambi gli elementi, insieme al codice di esempio per chiamare l'API, sono disponibili nella pagina dei [servizi Web di AzureML](https://services.azureml.net/webservices/).  Passare all'API desiderato e quindi fare clic sulla scheda "Consumo" per individuarli.  Si noti che è possibile chiamare l'API come API Swagger (vale a dire con il parametro URL `format=swagger`) o come un API non Swagger (ovvero senza il parametro URL `format`).  Il codice di esempio usa il formato Swagger.  Di seguito viene riportato un esempio di richiesta e risposta in formato non Swagger.  Questi esempi sono endpoint di stagionalità.  L'endpoint di non stagionalità è simile.
+## <a name="calling-hello-api"></a>Chiamata API hello
+In hello toocall ordine API, sarà necessario posizione dell'endpoint tooknow hello e la chiave API.  Entrambi questi elementi, insieme al codice di esempio per la chiamata API hello, sono disponibili da hello [servizi web di Azure ml](https://services.azureml.net/webservices/) pagina.  Passare API toohello desiderato e quindi fare clic su hello "Consumare" scheda toofind li.  Si noti che è possibile chiamare l'API di hello come un'API Swagger (ad esempio con il parametro URL hello `format=swagger`) o come un non - Swagger API (ad esempio senza hello `format` parametro URL).  codice di esempio Hello utilizza il formato di Swagger hello.  Di seguito viene riportato un esempio di richiesta e risposta in formato non Swagger.  Questi esempi sono endpoint stagionalità toohello.  endpoint non stagionalità Hello è simile.
 
 ### <a name="sample-request-body"></a>Corpo della richiesta di esempio
-La richiesta contiene due oggetti: `Inputs` e `GlobalParameters`.  Nella richiesta di esempio riportata di seguito, alcuni parametri vengono inviati in modo esplicito, mentre per altri questo non avviene (scorrere verso il basso per un elenco completo dei parametri per ogni endpoint).  I parametri che non vengono inviati in modo esplicito nella richiesta useranno i valori predefiniti indicati di seguito.
+richiesta di Hello contiene due oggetti: `Inputs` e `GlobalParameters`.  Nella richiesta di esempio hello riportato di seguito, alcuni parametri vengono inviati in modo esplicito mentre altri no (scorrere verso il basso per un elenco completo dei parametri per ogni endpoint).  Parametri che non vengono inviati in modo esplicito nella richiesta di hello verranno utilizzati i valori predefiniti di hello specificati di seguito.
 
     {
                 "Inputs": {
@@ -81,7 +81,7 @@ La richiesta contiene due oggetti: `Inputs` e `GlobalParameters`.  Nella richies
     }
 
 ### <a name="sample-response"></a>Risposta di esempio
-Si noti che, per visualizzare il campo `ColumnNames`, è necessario includere `details=true` come parametro URL nella richiesta.  Vedere le tabelle di seguito per il significato di ognuno di questi campi.
+Si noti che, in hello toosee ordine `ColumnNames` campo, è necessario includere `details=true` come parametro URL nella richiesta.  Vedere le tabelle di hello sotto per hello significato ciascuno di questi campi.
 
     {
         "Results": {
@@ -102,91 +102,91 @@ Si noti che, per visualizzare il campo `ColumnNames`, è necessario includere `d
 
 
 ## <a name="score-api"></a>API Score
-Questa API viene usata per eseguire il rilevamento anomalie nei dati delle serie temporali non stagionali. L'API esegue una serie di funzionalità di rilevamento anomalie sui dati e restituisce i punteggi delle anomalie. La figura seguente illustra un esempio di anomalie che l'API Score può rilevare. Questa serie temporale presenta due modifiche di livello distinte e 3 picchi. I punti rossi mostrano il momento in cui viene rilevata la modifica di livello, mentre i punti neri indicano i picchi rilevati.
+Hello API di punteggio viene utilizzato per l'esecuzione di rilevamento di anomalie in dati della serie temporale non stagionali. Hello API esegue un numero di rilevatori di anomalie sui dati hello e restituisce i punteggi di anomalie. Figura Hello seguente mostra un esempio di anomalie che hello che può rilevare l'API di punteggio. Questa serie temporale presenta due modifiche di livello distinte e 3 picchi. punti di Hello rosso mostrano il tempo di hello in cui hello modifica del livello viene rilevato, mentre punti hello nero mostrano picchi hello rilevato.
 ![API Score][1]
 
 ### <a name="detectors"></a>Funzionalità di rilevamento
-L'API di rilevamento anomalie supporta funzionalità di rilevamento in 3 categorie generali. Informazioni dettagliate su specifici parametri di input e output per ogni funzionalità di rilevamento sono disponibili nella tabella seguente.
+rilevamento di anomalie Hello API supporta i rilevatori in ampie 3 categorie. Informazioni dettagliate sulla specifici parametri di input e output per ogni tipo di rilevamento sono reperibile in hello nella tabella seguente.
 
 | Categoria di rilevamento | Funzionalità di rilevamento | Descrizione | Parametri di input | Output |
 | --- | --- | --- | --- | --- |
-| Rilevamento picchi |Rilevamento picchi TSpike |Rileva picchi e flessioni in base alla distanza dei valori dal primo e dal terzi quartile |*tspikedetector.sensitivity:* accetta il valore intero nell'intervallo 1-10, predefinito: 3; i valori più elevati accetteranno valori più estremi, riducendo però la sensibilità |TSpike: valori binari, '1' se viene rilevato un picco o una flessione. In caso contrario '0'. |
-| Rilevamento picchi | Rilevamento picchi ZSpike |Rileva picchi e flessioni in base alla distanza dei punti dati dalla loro media |*zspikedetector.sensitivity:* accetta il valore intero nell'intervallo 1-10, predefinito: 3; i valori più elevati accetteranno valori più estremi, riducendo la sensibilità |ZSpike: valori binari, '1' se viene rilevato un picco o una flessione. In caso contrario '0'. | |
-| Rilevamento di tendenza lenta |Rilevamento di tendenza lenta |Rileva la tendenza positiva lenta in base alla sensibilità impostata. |*trenddetector.sensitivity:* soglia relativa al punteggio di rilevamento. Impostazione predefinita: 3,25. I valori compresi tra 3,25 e 5 rappresentano un intervallo di selezione ragionevole. Più alto è il valore, minore sarà la sensibilità |tscore: numero mobile che rappresenta il punteggio dell'anomalia nella tendenza. |
-| Rilevamento della modifica di livello | Rilevamento bidirezionale della modifica di livello |Rileva la modifica di livello verso l'alto e verso il basso in base alla sensibilità impostata. |*bileveldetector.sensitivity:* soglia relativa al punteggio di rilevamento. Impostazione predefinita: 3,25. I valori compresi tra 3,25 e 5 rappresentano un intervallo di selezione ragionevole. Più alto è il valore, minore sarà la sensibilità |rpscore: numero mobile che rappresenta il punteggio dell'anomalia nella modifica di livello verso l'alto e verso il basso. | |
+| Rilevamento picchi |Rilevamento picchi TSpike |Rilevare picchi e DIP in base a hello distante valori sono compresi tra i primo e il terzi quartile |*tspikedetector.Sensitivity:* accetta il valore intero nell'intervallo di hello predefinito di 1 a 10: 3; I valori più alti intercetterà ulteriori valori estremi, rendendo in tal modo meno sensibili |TSpike: valori binari, '1' se viene rilevato un picco o una flessione. In caso contrario '0'. |
+| Rilevamento picchi | Rilevamento picchi ZSpike |Rilevare tali picchi o DIP in base a datapoints hello fino a che punto sono rispetto alla relativa Media |*zspikedetector.Sensitivity:* accettare il valore intero nell'intervallo di hello predefinito di 1 a 10: 3; I valori più alti intercetterà ulteriori valori estremi, rendendo meno sensibili |ZSpike: valori binari, '1' se viene rilevato un picco o una flessione. In caso contrario '0'. | |
+| Rilevamento di tendenza lenta |Rilevamento di tendenza lenta |Rilevare lenta tendenza positiva in base alle hello set sensibilità |*trenddetector.Sensitivity:* soglia sul punteggio di rilevamento (impostazione predefinita: 3.25, 3.25-5 è un intervallo ragionevole di tooselect da; hello superiore hello meno sensibile) |tscore: numero mobile che rappresenta il punteggio dell'anomalia nella tendenza. |
+| Rilevamento della modifica di livello | Rilevamento bidirezionale della modifica di livello |Rilevare la modifica sia verso l'alto e verso il basso livello in base alle hello set sensibilità |*bileveldetector.Sensitivity:* soglia sul punteggio di rilevamento (impostazione predefinita: 3.25, 3.25-5 è un intervallo ragionevole di tooselect da; hello superiore hello meno sensibile) |rpscore: numero mobile che rappresenta il punteggio dell'anomalia nella modifica di livello verso l'alto e verso il basso. | |
 
 ### <a name="parameters"></a>parameters
-Informazioni più dettagliate su questi parametri di input sono elencate nella tabella seguente:
+Informazioni più dettagliate su questi parametri di input sono elencate nella tabella hello riportata di seguito:
 
 | Parametri di input | Descrizione | Impostazione predefinita | Tipo | Intervallo valido | Intervallo consigliato |
 | --- | --- | --- | --- | --- | --- |
 | detectors.historyWindow |Cronologia, in numero di punti dati, usata per il calcolo del punteggio delle anomalie |500 |integer |10-2000 |In base alle serie temporali. |
-| detectors.spikesdips | Se rilevare solo i picchi, le flessioni o entrambi |Entrambi |enumerato |Entrambi, picchi e flessioni |Entrambi |
+| detectors.spikesdips | Se toodetect solo picchi, solo DIP, o entrambi |Entrambi |enumerato |Entrambi, picchi e flessioni |Entrambi |
 | bileveldetector.sensitivity |Sensibilità per il rilevamento delle modifiche di livello bidirezionali. |3.25 |double |Nessuna |3.25-5 (Meno valori, maggiore sensibilità) |
 | trenddetector.sensitivity |Sensibilità per il rilevamento di tendenza positiva. |3.25 |double |Nessuna |3.25-5 (Meno valori, maggiore sensibilità) |
 | tspikedetector.sensitivity |Sensibilità per il rilevamento di picchi TSpike. |3 |integer |1-10 |3-5 (Minori sono i valori, maggiore è la sensibilità) |
 | zspikedetector.sensitivity |Sensibilità per il rilevamento di picchi ZSpike |3 |integer |1-10 |3-5 (Minori sono i valori, maggiore è la sensibilità) |
-| postprocess.tailRows |Numero di punti dati più recenti da mantenere nei risultati di output. |0 |integer |0 (mantiene tutti i punti dati) o specificare il numero di punti da mantenere nei risultati. |N/D |
+| postprocess.tailRows |Numero di dati più recenti hello punta toobe mantenuti nei risultati di output di hello |0 |numero intero |0 (mantenere tutti i punti dati), o specificare un numero di punti tookeep nei risultati |N/D |
 
 ### <a name="output"></a>Output
-L'API esegue tutte le funzionalità di rilevamento sui dati delle serie temporali e restituisce i punteggi delle anomalie e gli indicatori di picco binari per ogni punto temporizzato. La tabella seguente include l'elenco di output dell'API. 
+Hello API alimentato rilevatori di tutti i dati della serie temporale e restituisce i punteggi di anomalie e gli indicatori di picco binario per ogni punto nel tempo. tabella Hello riportata di seguito sono elencati gli output di hello API. 
 
-| Output | Descrizione |
+| outputs | Descrizione |
 | --- | --- |
 | Time |Timestamp di dati non elaborati o dati aggregati (e/o) attribuiti se viene applicata l'aggregazione (e/o) l'attribuzione di dati mancanti. |
 | Dati |Valori di dati non elaborati o dati aggregati (e/o) attribuiti se viene applicata l'aggregazione (e/o) l'attribuzione di dati mancanti. |
-| Tspike |Indicatore binario per indicare se viene rilevato un picco dalla funzionalità di rilevamento di TSpike. |
-| Zspike |Indicatore binario per indicare se viene rilevato un picco dalla funzionalità di rilevamento di ZSpike. |
+| Tspike |Indicatore binarie tooindicate se rileva un picco Rilevatore TSpike |
+| Zspike |Indicatore binarie tooindicate se rileva un picco Rilevatore ZSpike |
 | rpscore |Numero mobile che rappresenta il punteggio dell'anomalia nella modifica di livello bidirezionale. |
-| rpalert |Valore 1/0 che indica la presenza di un'anomalia nella modifica di livello bidirezionale, in base alla sensibilità di input. |
+| rpalert |il valore di 1/0 che indica il livello bidirezionale è modificare anomalie in base a sensibilità input hello |
 | tscore |Numero mobile che rappresenta il punteggio dell'anomalia nella tendenza positiva. |
-| talert |Valore 1/0 che indica la presenza di un'anomalia nella tendenza positiva, in base alla sensibilità di input. |
+| talert |il valore di 1/0 indica vi è anomalie una tendenza positiva in base a sensibilità input hello |
 
 ## <a name="scorewithseasonality-api"></a>API ScoreWithSeasonality
-L'API ScoreWithSeasonality viene usata per eseguire il rilevamento di anomalie in serie temporali che includono modelli stagionali. Questa API è utile per rilevare le deviazioni nei modelli stagionali.  
-La figura seguente illustra un esempio di anomalie rilevate in una serie temporale stagionale. La serie temporale presenta un picco (primo punto nero), due flessioni (secondo punto nero e uno alla fine) e una modifica di livello (punto rosso). Si noti che sia la flessione al centro della serie temporale sia la modifica di livello sono rilevabili solo dopo la rimozione dei componenti stagionali dalla serie.
+Hello API ScoreWithSeasonality viene utilizzato per l'esecuzione di rilevamento di anomalie in serie temporale che dispongono di modelli stagionali. Questa API è deviazioni toodetect utili nei modelli stagionali.  
+Hello figura riportata di seguito viene illustrato un esempio di anomalie, rilevato in una serie temporale stagionali. serie temporale Hello ha un picco (hello 1 punto nero), due DIP (punto nero 2nd hello e uno alla fine di hello) e una modifica del livello (punto rosso). Si noti che entrambi hello dip interno hello delle serie temporali hello e modifica del livello di hello solo presentano dopo la rimozione di componenti stagionali dalla serie hello.
 ![Stagionalità API][2]
 
 ### <a name="detectors"></a>Funzionalità di rilevamento
-I rilevatori nell'endpoint stagionalità sono simili a quelli nell'endpoint non stagionalità, ma con i nomi dei parametri leggermente diversi (elencati di seguito).
+i rilevatori Hello nell'endpoint stagionalità hello sono simile toohello quelli nell'endpoint non stagionalità hello, ma con nomi di parametro leggermente diversi (elencati di seguito).
 
 ### <a name="parameters"></a>parameters
 
-Informazioni più dettagliate su questi parametri di input sono elencate nella tabella seguente:
+Informazioni più dettagliate su questi parametri di input sono elencate nella tabella hello riportata di seguito:
 
 | Parametri di input | Descrizione | Impostazione predefinita | Tipo | Intervallo valido | Intervallo consigliato |
 | --- | --- | --- | --- | --- | --- |
-| preprocess.aggregationInterval |Intervallo in secondi per l'aggregazione di serie temporali di input. |0, non viene eseguita alcuna aggregazione. |integer |0: ignora l'aggregazione. In caso contrario > 0. |Da 5 minuti a 1 giorno, in base alle serie temporali. |
-| preprocess.aggregationFunc |Funzione usata per aggregare i dati nel parametro AggregationInterval specificato. |mean |enumerato |mean, sum, length |N/D |
-| preprocess.replaceMissing |Valori usati per l'attribuzione dei dati mancanti. |lkv (ultimo valore noto) |enumerato |zero, lkv, mean |N/D |
+| preprocess.aggregationInterval |Intervallo in secondi per l'aggregazione di serie temporali di input. |0, non viene eseguita alcuna aggregazione. |integer |0: ignora l'aggregazione. In caso contrario > 0. |giorno too1 5 minuti, dipendente di serie temporali |
+| preprocess.aggregationFunc |Funzione utilizzata per aggregare i dati in hello specificato AggregationInterval |mean |enumerato |mean, sum, length |N/D |
+| preprocess.replaceMissing |Dati mancanti tooimpute utilizzati valori |lkv (ultimo valore noto) |enumerato |zero, lkv, mean |N/D |
 | detectors.historyWindow |Cronologia, in numero di punti dati, usata per il calcolo del punteggio delle anomalie |500 |integer |10-2000 |In base alle serie temporali. |
-| detectors.spikesdips | Se rilevare solo i picchi, le flessioni o entrambi |Entrambi |enumerato |Entrambi, picchi e flessioni |Entrambi |
+| detectors.spikesdips | Se toodetect solo picchi, solo DIP, o entrambi |Entrambi |enumerato |Entrambi, picchi e flessioni |Entrambi |
 | bileveldetector.sensitivity |Sensibilità per il rilevamento delle modifiche di livello bidirezionali. |3.25 |double |Nessuna |3.25-5 (Meno valori, maggiore sensibilità) |
 | postrenddetector.sensitivity |Sensibilità per il rilevamento di tendenza positiva. |3.25 |double |Nessuna |3.25-5 (Meno valori, maggiore sensibilità) |
 | negtrenddetector.sensitivity |Sensibilità per il rilevamento di tendenza negativa. |3.25 |double |Nessuna |3.25-5 (Meno valori, maggiore sensibilità) |
 | tspikedetector.sensitivity |Sensibilità per il rilevamento di picchi TSpike. |3 |integer |1-10 |3-5 (Minori sono i valori, maggiore è la sensibilità) |
 | zspikedetector.sensitivity |Sensibilità per il rilevamento di picchi ZSpike |3 |integer |1-10 |3-5 (Minori sono i valori, maggiore è la sensibilità) |
-| seasonality.enable |Se è necessario eseguire analisi di stagionalità. |true |boolean |true, false |In base alle serie temporali. |
-| seasonality.numSeasonality |Numero massimo di cicli periodici da rilevare. |1 |integer |1, 2 |Da 1 a 2 |
+| seasonality.enable |Se analysis stagionalità toobe avviene |true |boolean |true, false |In base alle serie temporali. |
+| seasonality.numSeasonality |Numero massimo di cicli periodica toobe rilevato |1 |integer |1, 2 |Da 1 a 2 |
 | seasonality.transform |Se i componenti stagionali (e) di tendenza devono essere rimossi prima di applicare il rilevamento delle anomalie. |deseason |enumerato |none, deseason, deseasontrend |N/D |
-| postprocess.tailRows |Numero di punti dati più recenti da mantenere nei risultati di output. |0 |integer |0 (mantiene tutti i punti dati) o specificare il numero di punti da mantenere nei risultati. |N/D |
+| postprocess.tailRows |Numero di dati più recenti hello punta toobe mantenuti nei risultati di output di hello |0 |numero intero |0 (mantenere tutti i punti dati), o specificare un numero di punti tookeep nei risultati |N/D |
 
 ### <a name="output"></a>Output
-L'API esegue tutte le funzionalità di rilevamento sui dati delle serie temporali e restituisce i punteggi delle anomalie e gli indicatori di picco binari per ogni punto temporizzato. La tabella seguente include l'elenco di output dell'API. 
+Hello API alimentato rilevatori di tutti i dati della serie temporale e restituisce i punteggi di anomalie e gli indicatori di picco binario per ogni punto nel tempo. tabella Hello riportata di seguito sono elencati gli output di hello API. 
 
-| Output | Descrizione |
+| outputs | Descrizione |
 | --- | --- |
 | Time |Timestamp di dati non elaborati o dati aggregati (e/o) attribuiti se viene applicata l'aggregazione (e/o) l'attribuzione di dati mancanti. |
 | OriginalData |Valori di dati non elaborati o dati aggregati (e/o) attribuiti se viene applicata l'aggregazione (e/o) l'attribuzione di dati mancanti. |
-| ProcessedData |Uno dei seguenti:  <ul><li>Serie temporali regolate in base alla stagionalità in caso di rilevamento di una stagionalità significativa e di selezione dell'opzione deseason</li><li>Serie temporali regolate in base alla stagionalità e senza tendenza, se è stata rilevata una stagionalità significativa ed è selezionata l'opzione deseasontrend</li><li>In caso contrario, è uguale a OriginalData</li> |
-| Tspike |Indicatore binario per indicare se viene rilevato un picco dalla funzionalità di rilevamento di TSpike. |
-| Zspike |Indicatore binario per indicare se viene rilevato un picco dalla funzionalità di rilevamento di ZSpike. |
+| ProcessedData |Uno dei seguenti hello: <ul><li>Serie temporali regolate in base alla stagionalità in caso di rilevamento di una stagionalità significativa e di selezione dell'opzione deseason</li><li>Serie temporali regolate in base alla stagionalità e senza tendenza, se è stata rilevata una stagionalità significativa ed è selezionata l'opzione deseasontrend</li><li>in caso contrario, è hello come OriginalData</li> |
+| Tspike |Indicatore binarie tooindicate se rileva un picco Rilevatore TSpike |
+| Zspike |Indicatore binarie tooindicate se rileva un picco Rilevatore ZSpike |
 | BiLevelChangeScore |Numero mobile che rappresenta il punteggio dell'anomalia nella modifica di livello |
-| BiLevelChangeAlert |Valore 1/0 che indica la presenza di un'anomalia nella modifica di livello in base alla sensibilità di input |
+| BiLevelChangeAlert |1/0 valore che indica che vi è un'anomalie di modifica del livello in base a sensibilità input hello |
 | PosTrendScore |Numero mobile che rappresenta il punteggio dell'anomalia nella tendenza positiva. |
-| PosTrendAlert |Valore 1/0 che indica la presenza di un'anomalia nella tendenza positiva, in base alla sensibilità di input. |
+| PosTrendAlert |il valore di 1/0 indica vi è anomalie una tendenza positiva in base a sensibilità input hello |
 | NegTrendScore |Numero mobile che rappresenta il punteggio dell'anomalia nella tendenza negativa |
-| NegTrendAlert |Valore 1/0 che indica la presenza di un'anomalia nella tendenza negativa, in base alla sensibilità di input |
+| NegTrendAlert |il valore di 1/0 indica vi è anomalie una tendenza negativa in base a sensibilità input hello |
 
 [1]: ./media/machine-learning-apps-anomaly-detection-api/anomaly-detection-score.png
 [2]: ./media/machine-learning-apps-anomaly-detection-api/anomaly-detection-seasonal.png

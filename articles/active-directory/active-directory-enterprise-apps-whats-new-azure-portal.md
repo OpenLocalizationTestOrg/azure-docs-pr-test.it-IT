@@ -1,5 +1,5 @@
 ---
-title: "Novità della gestione delle applicazioni aziendali in Azure Active Directory | Microsoft Docs"
+title: "Novità di gestione delle applicazioni dell'organizzazione in Azure Active Directory aaa | Documenti Microsoft"
 description: "Informazioni sulle novità della gestione delle applicazioni aziendali in Azure Active Directory."
 services: active-directory
 documentationcenter: 
@@ -15,141 +15,141 @@ ms.workload: identity
 ms.date: 07/13/2017
 ms.author: asteen
 ms.reviewer: asteen
-ms.openlocfilehash: 0c32a6719292aa903aa32dfdc4a31114e7a28346
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 7f4b7b11b256f1e910e557f45f3709d762416f0c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="whats-new-in-enterprise-application-management-in-azure-active-directory"></a>Novità della gestione delle applicazioni aziendali in Azure Active Directory 
 
-Azure Active Directory (Azure AD) dispone di strumenti avanzati per la gestione delle applicazioni che includono nuove caratteristiche e funzionalità mirate a semplificare e a rendere più efficiente la gestione delle app.
+Azure Active Directory (Azure AD) è migliorata strumenti di gestione di applicazioni aziendali, con il nuovo toomake di caratteristiche e funzionalità di gestione delle app più semplice ed efficiente.
 
-Di seguito sono descritti alcuni dei miglioramenti apportati per Azure AD nel [portale di Azure](https://portal.azure.com).
+Ecco alcuni dei miglioramenti hello per Azure AD in hello [portale di Azure](https://portal.azure.com).
 
-- Raccolta di applicazioni migliorata, con un modello semplificato per la creazione di applicazioni e il supporto per tutti i tipi di applicazione già disponibili nel portale classico. 
+- Una raccolta di applicazioni esperienza, con un modello di creazione di applicazioni semplificata e supporto per tutti i tipi di applicazione hello utilizzata per. 
 - Esperienza di avvio rapido completamente nuova che consente di creare rapidamente un progetto pilota dell'applicazione. 
 - Possibilità di configurare i criteri self-service con pochi clic. 
-- Miglioramenti significativi al proxy dell'applicazione, alla configurazione Single Sign-On e all'esperienza "Bring Your Own Applications", per sfruttare al massimo le potenzialità del nuovo portale.
+- Proxy tooapplication miglioramenti, single sign-on, configurazione e portare la propria esperienza di applicazione, consentendo tooget più eseguita rispetto a prima.
 
-## <a name="improvements-to-the-azure-active-directory-application-gallery"></a>Miglioramenti alla raccolta di applicazioni di Azure Active Directory
+## <a name="improvements-toohello-azure-active-directory-application-gallery"></a>Miglioramenti toohello raccolta applicazioni di Azure Active Directory
 
-È possibile aggiungere le applicazioni preferite a prescindere che provengano dalla [raccolta di applicazioni](active-directory-appssoaccess-whatis.md#get-started-with-the-azure-ad-application-gallery), sia applicazioni personalizzate da estendere al cloud o nuove applicazioni in sviluppo.  È possibile iniziare a usare questa nuova esperienza facendo clic su **Aggiungi** nella panoramica **Applicazioni aziendali** o nel riquadro **Tutte le applicazioni**.
+Aggiungere applicazioni preferite, siano essi da hello [raccolta di applicazioni](active-directory-appssoaccess-whatis.md#get-started-with-the-azure-ad-application-gallery), applicazioni personalizzate si estensione cloud toohello o nuove applicazioni che si sta sviluppando.  È possibile iniziare a usare questa nuova esperienza facendo **Aggiungi** su hello **applicazioni aziendali** panoramica o **tutte le applicazioni** pannelli.
  
   ![Aggiunta di un'applicazione](./media/active-directory-enterprise-apps-whats-new-azure-portal/01.png)
 
-All'interno della raccolta verranno visualizzate al centro tutte le applicazioni che supportano il provisioning utenti.  È possibile sfogliare tutte le categorie per trovare le applicazioni di interesse oppure usare l'esperienza di ricerca per trovare rapidamente le applicazioni da integrare.
+Una volta nella raccolta di hello, verrà visualizzato tutte le applicazioni in primo piano che supportano il provisioning utente anteriore e centrale.  È possibile esplorare tutti i tipi di categorie diverse toodrill in applicazioni hello che è rilevante, o è possibile utilizzare hello ricerca esperienza toorapidly trova hello applicazioni da toointegrate.
 
-  ![Raccolta di applicazioni](./media/active-directory-enterprise-apps-whats-new-azure-portal/02.png)
+  ![raccolta di applicazioni Hello](./media/active-directory-enterprise-apps-whats-new-azure-portal/02.png)
 
 ## <a name="add-custom-applications-from-one-place"></a>Aggiungere applicazioni personalizzate da un'unica posizione
 
-Oltre all'aggiunta di applicazioni preintegrate dalla raccolta, nel nuovo portale sono ora disponibili tutte le esperienze di configurazione delle applicazioni personalizzate già presenti nel portale di gestione classico. Nel nuovo portale è possibile eseguire tutte le operazioni per estendere un'applicazione dall'ambiente locale tramite il proxy dell'applicazione, integrare un'applicazione con Single Sign-On federato o basato su password e creare un'applicazione completamente nuova usando il Registro applicazioni.
+Inoltre tooadding pre-integrata applicazioni dalla raccolta di hello, tutte le esperienze di configurazione dell'applicazione personalizzata hello che è stato utilizzato tooin portale di gestione classico hello ora sono possibili nel nuovo portale di hello. Se si estende un'applicazione locale mediante il proxy di applicazione hello, integrare la propria password o l'applicazione SSO federato o creazione di un'applicazione completamente nuova, utilizzo del Registro di sistema dell'applicazione hello, è possibile ottenere tooit da questo un unico sul posto.
 
   ![Aggiunta di una propria applicazione](./media/active-directory-enterprise-apps-whats-new-azure-portal/03.png)
 
  
-**Per iniziare ad aggiungere la propria applicazione**:
+**tooget avviata l'aggiunta di un'applicazione**:
 
-1. Fare clic sul collegamento **Aggiungere la propria applicazione** nella parte superiore della raccolta di applicazioni. 
-2. Verranno visualizzate due opzioni: **Distribuzione di un'applicazione esistente** o **Sviluppo di una nuova applicazione**. Di seguito viene illustrata la differenza tra le due opzioni e come usarle.
+1. Fare clic su hello **aggiungere il propria collegamento** nella parte superiore di hello della raccolta di applicazioni hello. 
+2. Verranno visualizzate due opzioni: **Distribuzione di un'applicazione esistente** o **Sviluppo di una nuova applicazione**. Leggere differenza hello toolearn tra le opzioni di hello due e in che modo toouse li.
 
 ### <a name="deploying-existing-applications"></a>Distribuzione di applicazioni esistenti
 
-1. Se un'applicazione è già in esecuzione e si vuole semplicemente integrarla in Azure AD per l'accesso Single Sign-On o il provisioning, scegliere l'opzione **Distribuzione di un'applicazione esistente**. Scegliere un nome per l'applicazione, quindi fare clic su **Aggiungi**.
-2. L'operazione è terminata. Non è più necessario conoscere tutti i dettagli dell'applicazione sin dall'inizio; ora è possibile definirne il funzionamento usando il menu a sinistra e configurando l'applicazione in base alle esigenze in qualsiasi momento.
+1. Se si dispone di un'applicazione già in esecuzione e si desidera semplicemente toointegrate in Azure AD per single-sign-on o il provisioning, scegliere hello **distribuire un'applicazione esistente** opzione. Scegliere un nome per l'applicazione, quindi fare clic su **Aggiungi**.
+2. L'operazione è terminata. Invece che necessitano di tooknow tutti i dettagli sull'applicazione di hello, è possibile ora impostare come nuova applicazione funziona passando tramite i menu a sinistra di hello e configurazione desiderato di tooyour applicazione hello in qualsiasi momento.
 
   ![Aggiunta di un'applicazione esistente con un clic](./media/active-directory-enterprise-apps-whats-new-azure-portal/04.png)
  
 ### <a name="developing-new-applications"></a>Sviluppo di nuove applicazioni
 
-1. Se si sviluppa una nuova applicazione, esiste un modo semplice per accedere al Registro applicazioni direttamente dalla raccolta:
-2. Fare clic su **Aggiungere la propria applicazione** nella raccolta di applicazioni, quindi scegliere **Sviluppo di una nuova applicazione**. Verrà visualizzato un collegamento rapido a destra dell'esperienza di aggiunta di applicazioni.
+1. Se si sviluppa una nuova applicazione, è un modo semplice per è tooget toohello del Registro di sistema dell'applicazione direttamente dalla raccolta hello:
+2. Fare clic su hello **aggiungere la propria** opzione dalla raccolta di applicazioni, seleziona hello hello **sviluppare un'applicazione esistente** scelta e verrà visualizzato un collegamento rapido destro toohello applicazione aggiungere esperienza.
 
   ![Aggiunta di un'applicazione appena sviluppata in pochi clic](./media/active-directory-enterprise-apps-whats-new-azure-portal/05.png)
 
 
 >[!NOTE]
->Dopo averla aggiunta con il Registro applicazioni, l'applicazione sarà visualizzata nell'elenco di applicazioni aziendali nel quale sarà possibile configurare l'accesso Single Sign-On e gestire i criteri di accesso per la nuova applicazione.
+>Dopo aver aggiunto un'applicazione utilizzando hello del Registro di sistema dell'applicazione, si noterà Mostra fino nell'elenco di hello di applicazioni aziendali in cui sarà in grado di tooconfigure single sign-on e gestire i criteri di accesso per la nuova applicazione.
 
-  ![Gestione dell'accesso alla nuova applicazione in Applicazioni aziendali](./media/active-directory-enterprise-apps-whats-new-azure-portal/06.png)
+  ![La gestione di accesso tooyour nuova applicazione con le applicazioni aziendali](./media/active-directory-enterprise-apps-whats-new-azure-portal/06.png)
 
 
 ## <a name="quick-start-get-going-with-your-new-application-right-away"></a>Avvio rapido: iniziare a usare subito la nuova applicazione 
 
-Dopo aver aggiunto un'applicazione preintegrata o sviluppata dall'utente, è disponibile un'esperienza di avvio rapido personalizzata che consente di iniziare a usare subito l'applicazione. Se si segue sistematicamente ogni opzione, verranno illustrate l'interfaccia utente e la procedura per iniziare a usare un progetto pilota della nuova applicazione nel minor tempo possibile. 
+Dopo aver aggiunto un'applicazione, se essere pre-integrata o un'app, abbiamo creato tooget un'esperienza di avvio rapido personalizzata che senza nella nuova esperienza di applicazioni hello rapidamente. Se si segue sistematicamente ogni opzione, verrà illustrata hello dell'interfaccia utente e spiegano come tooget accade al più presto un progetto pilota della nuova applicazione. 
  
-  ![Esperienza di avvio rapido per la nuova applicazione](./media/active-directory-enterprise-apps-whats-new-azure-portal/07.png)
+  ![le nuove applicazioni Hello quick start esperienza](./media/active-directory-enterprise-apps-whats-new-azure-portal/07.png)
 
- È possibile visitare questa nuova esperienza di avvio rapido in qualsiasi momento e per qualsiasi applicazione, facendo clic su **Avvio rapido** dal menu di navigazione a sinistra dell'applicazione.
+ È possibile visitare questa nuova esperienza di avvio rapido in qualsiasi momento e per qualsiasi applicazione, facendo clic su **introduttiva** dal menu di navigazione a sinistra dell'applicazione hello.
 
 
 ## <a name="updated-application-proxy-configuration"></a>Aggiornamento della configurazione del proxy dell'applicazione
-Si supponga che una delle nuove applicazioni aggiunte venga eseguita nell'ambiente locale e si voglia integrarla con Azure AD.  Una delle caratteristiche interessanti della nuova esperienza di configurazione dell'applicazione nel nuovo portale di Azure AD è che separando la modalità di accesso dell'applicazione dalla configurazione proxy è ora possibile esporre direttamente nel cloud applicazioni federate o con accesso Single Sign-On basato su password in esecuzione nella rete aziendale, senza dover creare più istanze dell'applicazione.
+A questo punto, si pronuncia di nuove applicazioni hello è stato aggiunto è in esecuzione nell'ambiente locale e si desidera toointegrate con Azure AD.  Uno dei hello nuove operazioni più interessanti sulla nuova esperienza di configurazione dell'applicazione hello nel portale di nuovo AD Azure hello è che la suddivisione modalità sign-on dell'applicazione hello rispetto alla configurazione del proxy dell'applicazione, è ora possibile facilmente esporre password SSO o federata applicazioni in esecuzione nel cloud toohello destra alla rete aziendale, senza la necessità di più istanze di un'applicazione hello toocreate.
 
-Ora è anche possibile configurare le nuove applicazioni aggiunte per l'uso con il proxy dell'applicazione di Azure AD direttamente dal nuovo portale, incluse le applicazioni che supportano esperienze di autenticazione di Windows nativa.
+Inoltre toothis, è ora possibile anche configurare le nuove applicazioni hello che aggiunti per l'utilizzo con Proxy dell'applicazione AD Azure hello direttamente dal nuovo portale di hello, incluse le applicazioni che supportano l'autenticazione di Windows nativo cui si verifichi.
 
-  ![Configurazione di un'applicazione per l'uso dell'opzione di autenticazione integrata di Windows](./media/active-directory-enterprise-apps-whats-new-azure-portal/08.png)
+  ![Configurazione di un hello toouse applicazione opzione sign-on di autenticazione integrata di Windows](./media/active-directory-enterprise-apps-whats-new-azure-portal/08.png)
  
 
-Per configurare un'applicazione con autenticazione di Windows nativa con il proxy dell'applicazione:
-1. Fare clic sull'elemento di navigazione Single Sign-On e scegliere **Autenticazione di Windows integrata** dal pannello delle impostazioni di accesso, quindi configurare le impostazioni in base alle esigenze.
-2. Oltre a supportare queste nuove modalità di autenticazione, ora è anche possibile caricare certificati da domini personalizzati per supportare le applicazioni in esecuzione in un endpoint sicuro all'interno dell'organizzazione.  
+tooget avviata la configurazione di un'applicazione di autenticazione di Windows native con Proxy dell'applicazione hello:
+1. Fare clic sull'elemento di navigazione del servizio Single sign-on hello e scegliere **autenticazione integrata di Windows** dal pannello impostazioni sign-on hello e configurare desiderato di tooyour impostazioni hello.
+2. Nella parte superiore di supporto di queste nuove modalità di autenticazione, è ora possibile inoltre caricare certificati dalle applicazioni di toosupport domini personalizzati in esecuzione su un endpoint protetto all'interno dell'organizzazione.  
  
-   ![Caricamento di un certificato da usare con il proxy dell'applicazione](./media/active-directory-enterprise-apps-whats-new-azure-portal/09.png)
+   ![Caricamento di un certificato toobe utilizzato con Proxy dell'applicazione hello](./media/active-directory-enterprise-apps-whats-new-azure-portal/09.png)
 
-3. Per caricare un nuovo certificato per l'applicazione locale preferita, fare clic sull'opzione **Proxy dell'applicazione** nel menu di navigazione a sinistra, fare clic sul selettore **Certificato** e quindi caricare un file di certificato che è possibile usare per crittografare le richieste dall'endpoint del cloud Microsoft all'applicazione.
+3. tooupload un nuovo certificato per l'applicazione locale Preferiti, fare clic su hello **proxy dell'applicazione** opzione dal menu di navigazione a sinistra di hello, fare clic su hello **certificato** selettore e caricare un file di certificato, è possibile utilizzare tooencrypt richieste dall'applicazione tooyour endpoint cloud.
 
 ## <a name="advanced-federated-single-sign-on-configuration"></a>Configurazione dell'accesso Single Sign-On federato avanzato
 
-Per coloro che usano applicazioni federate sono disponibili molte nuove funzionalità nel pannello di configurazione dell'accesso basato su SAML. Ora è possibile personalizzare, aggiungere, rimuovere e mappare completamente gli attributi utente esistenti emessi come attestazioni nei token SAML.
+Per utenti che utilizzano applicazioni federate oggi stesso, esistono numerose nuove funzionalità nel Pannello di configurazione basato su SAML sign-on hello. toostart, ora sono completamente personalizzabili, aggiungere, rimuovere e il mapping di attributi utente esistenti hello rilasciati come attestazioni nei token SAML.
  
-  ![Personalizzazione degli attributi utente del token SAML passati a un'applicazione federata](./media/active-directory-enterprise-apps-whats-new-azure-portal/10.png)
+  ![Personalizzazione degli attributi del token utente SAML hello passato applicazione tooa federata](./media/active-directory-enterprise-apps-whats-new-azure-portal/10.png)
 
 
-Per verificare la nuova configurazione di SSO federato:
-1. Aprire il pannello **Single Sign-On** di un'applicazione federata dal menu di navigazione a sinistra e assicurarsi che sia selezionata la modalità *Accesso basato su SAML**. 
-2. Abilitare quindi la casella di controllo sotto l'intestazione **Attributi utente** per modificare tutti gli attributi inclusi nel token SAML passato all'applicazione.
+toocheck che out hello federata nuova configurazione di SSO:
+1. Aprire un'applicazione federata **accesso single sign-on** pannello da prova spostamento a sinistra menu e assicurarsi che prova '*basato su SAML Sign-on** è selezionata la modalità. 
+2. Una volta, abilitare hello casella hello **gli attributi utente** toomodify intestazione tutti gli attributi di hello incluse nel token SAML di hello passato toothat applicazione.
 
-È anche possibile creare e gestire i certificati usati per l'accesso Single Sign-On federato ed eseguirne il rollover, nonché modificare il destinatario della notifica di scadenza del certificato. Queste nuove opzioni sono disponibili nell'intestazione **Certificati** dello stesso pannello Single Sign-On.
+È possibile inoltre creare, rollover e gestire i certificati utilizzati per single sign-on federato, nonché modificare che riceve la notifica quando il certificato su tooexpire. Si noterà che queste opzioni di nuovo in hello **certificati** titolo su hello stesso pannello servizio Single sign-on.
  
   ![Creazione di un nuovo certificato, personalizzazione della notifica e-mail di scadenza e delle opzioni di firma del certificato](./media/active-directory-enterprise-apps-whats-new-azure-portal/11.png)
 
 ### <a name="relay-state-paramenter"></a>Parametro Stato dell'inoltro
-Il set di parametri URL SAML supportati include ora il parametro **Stato dell'inoltro**, ovvero la pagina che verrà visualizzata all'interno di un'applicazione federata al termine della procedura di accesso. Si tratta di un'impostazione molto utile per indirizzare gli utenti a una pagina specifica dell'applicazione per iniziare a usarla rapidamente.
+Infine, abbiamo inoltre esteso set hello dei parametri URL SAML sostegno hello tooinclude **parametro di stato di inoltro**, ovvero pagina hello agli utenti verranno visualizzata all'interno di un'applicazione federata una volta che accedi hello sono stata completata. Ciò si rivela utile impostando tooconfigure se si desidera toosend specifici utenti tooa inserirli all'interno di tooget applicazione hello accade rapidamente.
 
-  ![Impostazione del parametro Stato dell'inoltro SAML](./media/active-directory-enterprise-apps-whats-new-azure-portal/12.png)
+  ![Se si imposta il parametro di stato di inoltro SAML hello](./media/active-directory-enterprise-apps-whats-new-azure-portal/12.png)
  
-**Per impostare il parametro Stato dell'inoltro**:
+**parametro di stato di inoltro hello tooset**:
 
-1. Abilitare la casella di controllo **Mostra impostazioni URL avanzate** sotto l'intestazione **URL e dominio** nel pannello di configurazione dell'accesso Single Sign-On. 
-2. Verrà quindi visualizzato un set di nuove caselle di input URL che consentono di definire queste impostazioni URL SAML.
+1. Abilitare hello **Mostra URL impostazioni avanzate** la casella di controllo in hello **dominio e gli URL** titolo su hello single-sign-on Pannello di configurazione. 
+2. Una volta fatto questo, verrà visualizzato che un set di nuovo URL di input verranno visualizzate finestre che consentirà tooset questa e altre impostazioni dell'URL di SAML.
 
 ## <a name="bring-your-own-password-sso-applications"></a>Applicazioni con Single Sign-On basato su password con funzionalità "Bring Your Own Applications"
 
-Non tutte le applicazioni supportano la federazione per impostazione predefinita. È ad esempio possibile che una delle nuove applicazioni aggiunte abbia una schermata di accesso personalizzata per la quale si usano nome utente e password. È comunque possibile integrare questi tipi di applicazioni con Azure AD usando la funzionalità **Bring Your Own Applications** ora disponibile per la configurazione nel nuovo portale.
+Sappiamo che non tutte le applicazioni supporta la federazione subito casella hello. Ad esempio, potrebbe essere una delle nuove applicazioni hello che è stato aggiunto ha una schermata di accesso personalizzata che gli utenti usano un nome utente e password toosign in a. È comunque possibile integrare questi tipi di applicazioni con Azure AD usando la **portare le proprie applicazioni** funzionalità, è ora disponibile per si tooconfigure nel nuovo portale di hello.
  
   ![Integrazione con Azure AD di applicazioni personalizzate con insieme di credenziali delle password](./media/active-directory-enterprise-apps-whats-new-azure-portal/13.png)
 
-**Per verificare la funzionalità 'Bring Your Own Applications'**:
+**toocheck funzione 'Portare le proprie applicazioni' hello**:
 
-1. Dopo aver impostato la modalità Single Sign-On per la nuova applicazione personalizzata aggiunta ad **Accesso basato su password**, immettere l'URL in cui l'applicazione visualizza la schermata di accesso e fare clic su **Salva**.  
-2. Dopo questa operazione, dall'URL verrà creata automaticamente una casella di input per nome utente e password e sarà possibile usare Azure AD per la trasmissione sicura delle password all'applicazione tramite l'estensione del browser del pannello di accesso.
+1. Dopo aver impostato hello modalità single sign-on per una nuova applicazione personalizzata aggiunti troppo**basato su Password Sign-on**immettere hello URL in cui un'applicazione hello viene visualizzata la schermata di accesso, quindi scegliere **salvare**.  
+2. Una volta tale scopo, si verrà automaticamente cercare come URL per un nome utente e password casella di input e consentono di toouse AD Azure toosecurely trasmettere applicazione toothat le password utilizzando l'estensione browser del Pannello di accesso hello.
 
 ## <a name="configure-self-service-application-access"></a>Configurare l'accesso alle applicazioni self-service
 
-Dopo aver aggiunto un numero elevato di nuove applicazioni, può essere opportuno consentire agli utenti di esplorare e aggiungere tali applicazioni ai propri pannelli di accesso senza dover contattare l'amministratore. Questa nuova versione consente di configurare e gestire l'accesso alle applicazioni self-service direttamente dal nuovo portale.
+Dopo aver aggiunto un numero elevato di nuove applicazioni, potrebbe essere tooallow il toobrowse gli utenti che desideri aggiungere pannelli di accesso personalizzati tootheir tali applicazioni, senza la necessità di toobother è un amministratore. A questo punto, con questa versione più recente, è possibile configurare e gestire l'accesso all'applicazione self-service direttamente dal nuovo portale di hello.
 
   ![Configurazione dell'accesso alle applicazioni self-service per un'applicazione con Single Sign-On basato su password](./media/active-directory-enterprise-apps-whats-new-azure-portal/14.png)
  
-**Per configurare e gestire l'accesso alle applicazioni self-service**:
+**tooconfigure e gestire l'accesso all'applicazione self-service**:
 
-1. Per iniziare è possibile selezionare l'opzione **Self-service** dal menu di navigazione a sinistra dell'applicazione e impostare l'opzione **Consentire agli utenti di richiedere l'accesso a questa applicazione?** su '**Sì**'. 
-2. Sarà così possibile definire i responsabili dell'approvazione dell'accesso all'applicazione e il gruppo al quale verranno aggiunti gli utenti self-service. Se l'applicazione è configurata per l'accesso Single Sign-On con password, verrà visualizzata anche un'altra opzione che consente eventualmente di autorizzare tali responsabili dell'approvazione alla gestione delle password assegnate all'applicazione.
+1. tooget avviato, è possibile selezionare hello **self-service** opzione da un'applicazione hello del menu di navigazione a sinistra e impostare hello **consentire agli utenti dell'applicazione di toothis accesso toorequest?** opzione troppo ' **Sì**'. 
+2. Ciò consentirà tooconfigure chi è autorizzato l'applicazione di toothis tooapprove accesso e gli utenti self-service che gruppo verranno aggiunto. Inoltre, se un'applicazione hello è configurata per la password single-sign-on, verrà anche visualizzato un'altra opzione che consente facoltativamente Consenti tali responsabili approvazione toomanage hello password assegnati toohello applicazione.
 
 ##<a name="feedback"></a>Commenti e suggerimenti
 
-Speriamo che gli utenti usino il nuovo Azure AD e inviino commenti e suggerimenti. È possibile inviare commenti e idee per apportare miglioramenti nella sezione **Portale di amministrazione** del [forum dei commenti](https://feedback.azure.com/forums/169401-azure-active-directory/category/162510-admin-portal).  Microsoft accoglie i suggerimenti degli utenti per definire nuove funzionalità ogni giorno.
+Ci auguriamo che è simile all'utilizzo di hello migliorata l'esperienza di Azure AD. Tenere feedback hello in arrivo. Inviare commenti e suggerimenti e idee per analisi utilizzo software hello **portale di amministrazione** sezione del nostro [forum sul feedback su](https://feedback.azure.com/forums/169401-azure-active-directory/category/162510-admin-portal).  Si sta entusiasti compilazione curiosi di nuovo ogni giorno e tooshape le linee guida e definire cosa creiamo successivamente.
 
 ## <a name="next-steps"></a>Passaggi successivi
 

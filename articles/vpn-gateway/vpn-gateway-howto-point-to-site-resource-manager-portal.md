@@ -1,6 +1,6 @@
 ---
-title: 'Connettere un computer a una rete virtuale da punto a sito con l''autenticazione del certificato: portale di Azure | Microsoft Docs'
-description: Connettere in modo sicuro un computer alla rete virtuale di Azure creando una connessione gateway VPN da punto a sito con l'autenticazione del certificato. Questo articolo si applica al modello di distribuzione Resource Manager e usa il portale di Azure.
+title: 'Connettere una rete virtuale tooa computer Point-to-Site e certificato di autenticazione: portale di Azure | Documenti Microsoft'
+description: Consente di connettersi in modo sicuro un tooyour computer rete virtuale di Azure tramite la creazione di una connessione di gateway VPN Point-to-Site utilizzando l'autenticazione del certificato. In questo articolo si applica al modello di distribuzione di gestione delle risorse toohello e utilizza hello portale di Azure.
 services: vpn-gateway
 documentationcenter: na
 author: cherylmc
@@ -15,15 +15,15 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 08/10/2017
 ms.author: cherylmc
-ms.openlocfilehash: 5c8e99f3ba52ef5d6f9f99ac24891c38e8970fff
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 1419d6b4c160140b62d656b25bd02f6af7fd6655
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="configure-a-point-to-site-connection-to-a-vnet-using-certificate-authentication-azure-portal"></a>Configurare una connessione da punto a sito a una rete virtuale usando l'autenticazione del certificato: portale di Azure
+# <a name="configure-a-point-to-site-connection-tooa-vnet-using-certificate-authentication-azure-portal"></a>Configurare un tooa connessione Point-to-Site rete virtuale utilizzando l'autenticazione del certificato: portale di Azure
 
-Questo articolo illustra come creare una rete virtuale con una connessione da punto a sito nel modello di distribuzione Resource Manager usando il portale di Azure. Questa configurazione usa i certificati per autenticare il client di connessione. È anche possibile creare questa configurazione usando strumenti o modelli di distribuzione diversi selezionando un'opzione differente nell'elenco seguente:
+In questo articolo viene illustrato come una rete virtuale con una connessione Point-to-Site nel modello di distribuzione di gestione delle risorse hello utilizzando toocreate hello portale di Azure. Questa configurazione utilizza hello tooauthenticate certificati connessione del client. È inoltre possibile creare questa configurazione tramite uno strumento di distribuzione diverso o un modello di distribuzione selezionando un'opzione diversa da hello seguente elenco:
 
 > [!div class="op_single_selector"]
 > * [Portale di Azure](vpn-gateway-howto-point-to-site-resource-manager-portal.md)
@@ -32,42 +32,42 @@ Questo articolo illustra come creare una rete virtuale con una connessione da pu
 >
 >
 
-Un gateway VPN da punto a sito (P2S) consente di creare una connessione sicura alla rete virtuale da un singolo computer client. Le connessioni VPN da punto a sito sono utili per connettersi alla rete virtuale da una posizione remota, ad esempio nel caso di telecomunicazioni da casa o durante una riunione. Una VPN P2S è anche una soluzione utile da usare al posto di una VPN da sito a sito quando solo pochi client devono connettersi a una rete virtuale. 
+Un gateway VPN da punto a sito (P2S) consente di creare una rete virtuale tooyour di connessione protetta da un computer client. Le connessioni VPN Point-to-Site sono utili quando si desidera tooconnect tooyour rete virtuale da una posizione remota, ad esempio quando sono il telelavoro da casa o di una conferenza. Una VPN P2S è anche un toouse soluzione utile anziché una VPN da sito a sito quando si dispone solo alcuni client che richiedono tooconnect tooa rete virtuale. 
 
-P2S usa Secure Socket Tunneling Protocol (SSTP), un protocollo VPN basato su SSL. Una connessione VPN P2S viene stabilita avviandola dal computer client.
+Usa P2S hello SSTP Secure Socket Tunneling Protocol (), che è un protocollo di rete VPN basata su SSL. Viene stabilita una connessione di VPN P2S avviandolo dal computer client hello.
 
 ![Diagramma da punto a sito](./media/vpn-gateway-howto-point-to-site-resource-manager-portal/point-to-site-connection-diagram.png)
 
-Le connessioni da punto a sito con l'autenticazione del certificato richiedono gli elementi seguenti:
+Connessioni di autenticazione Point-to-Site certificato requisiti hello:
 
 * Un gateway VPN RouteBased.
-* La chiave pubblica (file CER) per un certificato radice, caricato in Azure. Il certificato, dopo essere stato caricato, viene considerato un certificato attendibile e viene usato per l'autenticazione.
-* Un certificato client generato dal certificato radice e installato in ogni computer client che si connetterà alla rete virtuale. Questo certificato viene usato per l'autenticazione client.
-* Un pacchetto di configurazione del client VPN. Il pacchetto di configurazione del client VPN contiene le informazioni necessarie per la connessione del client alla rete virtuale. Il pacchetto configura il client VPN esistente, nativo del sistema operativo Windows. Ogni client che si connette deve essere configurato usando il pacchetto di configurazione.
+* Hello chiave pubblica (file con estensione cer) per un certificato radice, ovvero tooAzure caricato. Una volta caricato il certificato di hello, viene considerato un certificato attendibile e viene utilizzato per l'autenticazione.
+* Un certificato client è generato dal certificato radice hello e installato in ogni computer client che si connetteranno toohello rete virtuale. Questo certificato viene usato per l'autenticazione client.
+* Un pacchetto di configurazione del client VPN. pacchetto di configurazione client VPN Hello contiene le informazioni necessarie hello per hello client tooconnect toohello rete virtuale. pacchetto di Hello Configura hello esistente client VPN è toohello nativo del sistema operativo Windows. Ogni client che si connette devono essere configurate tramite il pacchetto di configurazione di hello.
 
-Le connessioni da punto a sito non richiedono un dispositivo VPN o un indirizzo IP pubblico locale. La connessione VPN viene creata tramite SSTP (Secure Sockets Tunneling Protocol). Sul lato server sono supportate le versioni 1.0, 1.1 e 1.2 di SSTP. Il client decide quale versione usare. Per Windows 8.1 e versioni successive, SSTP usa per impostazione predefinita la versione 1.2.
+Le connessioni da punto a sito non richiedono un dispositivo VPN o un indirizzo IP pubblico locale. connessione VPN Hello viene creato tramite SSTP (Secure Socket Tunneling Protocol). Sul lato server hello è supporta le versioni SSTP 1.0, 1.1 e 1.2. client Hello decide quali toouse versione. Per Windows 8.1 e versioni successive, SSTP usa per impostazione predefinita la versione 1.2.
 
-Per altre informazioni sulla connettività da punto a sito, consultare le [Domande frequenti sulla connettività da punto a sito](#faq) alla fine di questo articolo.
+Per ulteriori informazioni sulle connessioni Point-to-Site, vedere hello [Point-to-Site domande frequenti su](#faq) alla fine di hello di questo articolo.
 
 #### <a name="example"></a>Valori di esempio
 
-È possibile usare i valori seguenti per creare un ambiente di test o fare riferimento a questi valori per comprendere meglio gli esempi di questo articolo:
+È possibile utilizzare hello seguente valori toocreate un ambiente di test, o fare riferimento a valori toothese toobetter comprendere esempi hello in questo articolo:
 
 * **Nome della rete virtuale:** VNet1
 * **Spazio indirizzi:** 192.168.0.0/16<br>Per questo esempio, viene usato un solo spazio indirizzi. È possibile avere più di uno spazio indirizzi per la rete virtuale.
 * **Nome subnet:** FrontEnd
 * **Intervallo di indirizzi subnet:** 192.168.1.0/24
-* **Sottoscrizione:** se si hanno più sottoscrizioni, verificare di usare quella corretta.
+* **Sottoscrizione:** se si dispone di più di una sottoscrizione, verificare che si sta utilizzando hello corretto.
 * **Gruppo di risorse:** TestRG
 * **Località:** Stati Uniti orientali
 * **GatewaySubnet:** 192.168.200.0/24<br>
-* **Server DNS:** (facoltativo) indirizzo IP del server DNS che si vuole usare per la risoluzione dei nomi.
+* **Server DNS:** (facoltativo) l'indirizzo IP del server DNS hello che si vuole toouse per la risoluzione dei nomi.
 * **Nome gateway di rete virtuale:** VNet1GW
 * **Tipo di gateway:** VPN
 * **Tipo VPN:** Basato su route
 * **Nome indirizzo IP pubblico:** VNet1GWpip
 * **Tipo di connessione:** Da punto a sito
-* **Pool di indirizzi client:** 172.16.201.0/24<br>I client VPN che si connettono alla rete virtuale con questa connessione da punto a sito ricevono un indirizzo IP dal pool di indirizzi client.
+* **Pool di indirizzi client:** 172.16.201.0/24<br>I client VPN che si connettono a una rete virtuale usando questa connessione Point-to-Site toohello ricevono un indirizzo IP dal pool di indirizzi hello client.
 
 ## <a name="createvnet"></a>1. Crea rete virtuale
 
@@ -77,13 +77,13 @@ Prima di iniziare, verificare di possedere una sottoscrizione di Azure. Se non s
 
 ## <a name="gatewaysubnet"></a>2. Aggiungere una subnet del gateway
 
-Prima di connettere la rete virtuale a un gateway, è necessario creare la subnet del gateway per la rete virtuale con cui si vuole stabilire la connessione. Il servizio del gateway usa gli indirizzi IP specificati nella subnet del gateway. Se possibile, creare una subnet del gateway con un blocco CIDR di /28 o /27 per fornire indirizzi IP sufficienti a soddisfare altri requisiti di configurazione futuri.
+Prima della connessione del gateway di rete virtuale tooa, è necessario innanzitutto subnet del gateway hello toocreate per hello toowhich di rete virtuale si desidera tooconnect. il servizio gateway Hello utilizza indirizzi IP hello specificati nella subnet del gateway hello. Se possibile, creare una subnet del gateway con un blocco CIDR di /28 o /27 tooprovide sufficiente IP risolve i requisiti di configurazione futura aggiuntiva tooaccommodate.
 
 [!INCLUDE [vpn-gateway-add-gwsubnet-rm-portal](../../includes/vpn-gateway-add-gwsubnet-p2s-rm-portal-include.md)]
 
 ## <a name="dns"></a>3. Specificare un server DNS (facoltativo)
 
-Dopo aver creato la rete virtuale, è possibile aggiungere l'indirizzo IP di un server DNS per gestire la risoluzione dei nomi. Il server DNS è facoltativo per questa configurazione, ma obbligatorio per la risoluzione dei nomi. Se si specifica un valore, non verrà creato un nuovo server DNS. L'indirizzo IP del server DNS specificato deve essere un server DNS in grado di risolvere i nomi per le risorse a cui ci si connette. Per questo esempio, è stato usato un indirizzo IP privato, ma è probabile che non si tratti dell'indirizzo IP del server DNS. Assicurarsi di usare valori personalizzati.
+Dopo aver creato la rete virtuale, è possibile aggiungere l'indirizzo IP hello una DNS server toohandle di risoluzione dei nomi. server DNS Hello è facoltativo per questa configurazione, ma è obbligatorio se si desidera la risoluzione dei nomi. Se si specifica un valore, non verrà creato un nuovo server DNS. Hello indirizzo IP del server DNS specificato deve essere in grado di risolvere nomi hello per le risorse di hello a che ci si connette un server DNS. In questo esempio è stato usato un indirizzo IP privato, ma è probabile che non si tratta di indirizzo IP di hello del server DNS. Essere toouse che i valori personalizzati.
 
 [!INCLUDE [vpn-gateway-add-dns-rm-portal](../../includes/vpn-gateway-add-dns-rm-portal-include.md)]
 
@@ -93,9 +93,9 @@ Dopo aver creato la rete virtuale, è possibile aggiungere l'indirizzo IP di un 
 
 ## <a name="generatecert"></a>5. Generare i certificati
 
-I certificati vengono usati da Azure per autenticare i client che si connettono a una rete virtuale tramite una connessione VPN da punto a sito. Dopo avere ottenuto un certificato radice, è necessario [caricare](#uploadfile) le informazioni della chiave pubblica in Azure. Il certificato radice viene quindi considerato "attendibile" da Azure per la connessione da punto a sito alla rete virtuale. È anche possibile generare i certificati client dal certificato radice considerato attendibile e quindi installarli in ogni computer client. Il certificato client viene usato per l'autenticazione del client all'avvio di una connessione alla rete virtuale. 
+I certificati utilizzati dai client di Azure tooauthenticate connessione tooa rete virtuale tramite una connessione VPN Point-to-Site. Una volta ottenuto un certificato radice, è [caricare](#uploadfile) hello tooAzure informazioni sulla chiave pubblica. certificato radice Hello viene quindi considerato 'trusted' da Azure per la connessione in rete virtuale di P2S toohello. Inoltre generare i certificati client da hello certificato radice attendibile e quindi installarli in ogni computer client. certificato client hello è client hello tooauthenticate utilizzato quando avvia toohello una connessione tra reti virtuali. 
 
-### <a name="getcer"></a>1. Ottenere il file CER per il certificato radice
+### <a name="getcer"></a>1. Ottenere il file con estensione cer hello per il certificato radice hello
 
 [!INCLUDE [root-certificate](../../includes/vpn-gateway-p2s-rootcert-include.md)]
 
@@ -103,65 +103,65 @@ I certificati vengono usati da Azure per autenticare i client che si connettono 
 
 [!INCLUDE [generate-client-cert](../../includes/vpn-gateway-p2s-clientcert-include.md)]
 
-## <a name="addresspool"></a>6. Aggiungere il pool di indirizzi client
+## <a name="addresspool"></a>6. Aggiungere pool di indirizzi hello client
 
-Il pool di indirizzi client è un intervallo di indirizzi IP privati specificati dall'utente. I client che si connettono tramite VPN da punto a sito ricevono un indirizzo IP da questo intervallo. Usare un intervallo di indirizzi IP privati che non si sovrapponga con la posizione locale da cui viene effettuata la connessione o con la rete virtuale a cui ci si vuole connettere.
+pool di indirizzi Hello client è un intervallo di indirizzi IP privati specificati. i client di Hello che si connettono tramite una VPN Point-to-Site ricevono un indirizzo IP da questo intervallo. Utilizzare un intervallo di indirizzi IP privato che non si sovrapponga con percorso locale hello che ci si connette da o rete virtuale che si desidera tooconnect per hello.
 
-1. Dopo avere creato il gateway di rete virtuale, andare alla sezione **Impostazioni** della pagina della rete virtuale. Nella sezione **Impostazioni** fare clic su **Configurazione da punto a sito** per aprire la pagina **Configurazione da punto a sito**.
+1. Dopo aver creato il gateway di rete virtuale hello, passare toohello **impostazioni** sezione della pagina di gateway di rete virtuale hello. In hello **impostazioni** fare clic su **configurazionePoint-to-site** tooopen hello **punto-a-configurazione del sito-** pagina.
 
   ![Pagina Configurazione da punto a sito](./media/vpn-gateway-howto-point-to-site-resource-manager-portal/gatewayblade.png)
-2. Nella pagina **Configurazione da punto a sito** è possibile eliminare l'intervallo compilato automaticamente e quindi aggiungere l'intervallo di indirizzi IP privati da usare. Fare clic su **Salva** per convalidare e salvare le impostazioni.
+2. In hello **punto-a-configurazione del sito-** pagina, è possibile eliminare l'intervallo di hello riempimento automatico, quindi aggiungere hello privata intervallo di indirizzi IP che si desidera toouse. Fare clic su **salvare** toovalidate e salvare le impostazioni di hello.
 
   ![Pool di indirizzi client](./media/vpn-gateway-howto-point-to-site-resource-manager-portal/ipaddresspool.png)
 
-## <a name="uploadfile"></a>7. Caricare i dati del certificato pubblico per il certificato radice
+## <a name="uploadfile"></a>7. Caricare i dati di un certificato pubblico certificato radice hello
 
-Dopo la creazione del gateway, si caricano le informazioni sulla chiave pubblica per il certificato radice in Azure. Al termine del caricamento dei dati del certificato pubblico, Azure li può usare per autenticare i client che hanno installato un certificato client generato dal certificato radice attendibile. È possibile caricare fino a 20 certificati radice attendibili aggiuntivi.
+Dopo hello gateway è stato creato, caricare informazioni sulla chiave pubblica hello per tooAzure certificato radice di hello. Dopo aver caricati i dati di un certificato pubblico hello, Azure può usarlo tooauthenticate client che hanno installato un certificato client generato da hello certificato radice attendibile. È possibile caricare totale tooa dei certificati radice attendibili aggiuntivi di 20.
 
-1. I certificati vengono aggiunti nella pagina **Configurazione da punto a sito** nella sezione **Certificato radice**.  
-2. Verificare di avere esportato il certificato radice come file X.509 con codifica in base 64 (CER). È necessario esportare il certificato in questo formato per poterlo aprire con un editor di testo.
-3. Aprire il certificato con un editor di testo, ad esempio il Blocco note. Durante la copia dei dati del certificato, assicurarsi di copiare il testo come unica riga continua senza ritorni a capo o avanzamenti riga. Potrebbe essere necessario modificare la visualizzazione nell'editor di testo in "Show Symbol/Show all characters" (Mostra simbolo/Mostra tutti i caratteri) per visualizzare i ritorni a capo e gli avanzamenti riga. Copiare solo la sezione seguente come un'unica riga continua:
+1. I certificati vengono aggiunti alla hello **configurazionePoint-to-site** pagina hello **certificato radice** sezione.  
+2. Assicurarsi che sia stato esportato certificato radice hello come file x. 509 (. cer) con codifica Base 64. È necessario il certificato hello tooexport nel formato in modo è possibile aprire il certificato di hello con l'editor di testo.
+3. Aprire il certificato di hello con un editor di testo, ad esempio Blocco note. Quando si copiano i dati del certificato hello, assicurarsi di copiare testo hello come un'unica riga continua senza ritorni a capo o avanzamenti riga. Potrebbe essere necessario toomodify la visualizzazione nel too'Show editor di testo hello simbolo/Mostra avanzamenti di riga e restituisce un ritorno a capo hello toosee di tutti i caratteri. Copiare solo hello seguente sezione come una linea continua:
 
   ![Dati del certificato](./media/vpn-gateway-howto-point-to-site-resource-manager-portal/copycert.png)
-4. Incollare i dati del certificato nel campo **Public Certificate Data** (Dati del certificato pubblico). **Dare un nome** al certificato e fare quindi clic su **Salva**. È possibile aggiungere fino a 20 certificati radice attendibili.
+4. Incollare i dati del certificato hello in hello **dati del certificato pubblico** campo. **Nome** hello certificato e quindi fare clic su **salvare**. È possibile aggiungere i certificati radice attendibili too20.
 
   ![Caricamento del certificato](./media/vpn-gateway-howto-point-to-site-resource-manager-portal/rootcertupload.png)
 
-## <a name="clientconfig"></a>8. Generare e installare il pacchetto di configurazione del client VPN
+## <a name="clientconfig"></a>8. Generare e installare il pacchetto di configurazione client VPN di hello
 
-Per connettersi a una rete virtuale usando la VPN da punto a sito, ogni client deve installare un pacchetto di configurazione del client che configura il client VPN nativo con le impostazioni e i file necessari per connettersi alla rete virtuale. Il pacchetto di configurazione del client VPN configura il client VPN Windows nativo, non installa un client VPN nuovo o diverso.
+tooconnect tooa virtuale usando una VPN Point-to-Site, è necessario installare ogni client di un pacchetto di configurazione di client che consente di configurare i client VPN nativo hello con le impostazioni di hello e file di rete virtuale di toohello tooconnect necessarie. pacchetto di configurazione client VPN Hello configura i client VPN di Windows nativo hello, non installa un client VPN di nuovo o diverso.
 
-È possibile usare lo stesso pacchetto di configurazione del client VPN in ogni computer client, a condizione che la versione corrisponda all'architettura del client. Per l'elenco dei sistemi operativi client supportati, vedere [Domande frequenti sulla connettività da punto a sito](#faq) alla fine di questo articolo.
+È possibile utilizzare hello stessa configurazione del client VPN del pacchetto in ogni computer client, come versione di hello corrisponda architettura hello per client hello. Per hello l'elenco dei sistemi operativi client supportati, vedere hello [connessioniPoint-to-Sitedomande frequenti su](#faq) alla fine di hello di questo articolo.
 
-### <a name="step-1---generate-and-download-the-client-configuration-package"></a>Passaggio 1: Generare e scaricare il pacchetto di configurazione del client
+### <a name="step-1---generate-and-download-hello-client-configuration-package"></a>Passaggio 1: generare e scaricare il pacchetto di configurazione client hello
 
-1. Nella pagina **Configurazione da punto a sito** fare clic su **Scarica client VPN** per aprire la pagina **Scarica client VPN**. La generazione del pacchetto richiede un paio di minuti.
+1. In hello **configurazionePoint-to-site** pagina, fare clic su **client VPN scaricare** tooopen hello **client VPN scaricare** pagina. Accetta un o due minuti per hello pacchetto toogenerate.
 
   ![Download del client VPN 1](./media/vpn-gateway-howto-point-to-site-resource-manager-portal/downloadvpnclient1.png)
-2. Selezionare il pacchetto corretto per il client e quindi fare clic su **Scarica**. Salvare il file del pacchetto di configurazione. Il pacchetto di configurazione del client VPN viene installato in ogni computer client che si connette alla rete virtuale.
+2. Selezionare pacchetto di hello corretto per il client e quindi fare clic su **scaricare**. Salvare il file di pacchetto di hello configurazione. Installare il pacchetto di configurazione client VPN di hello in ogni computer client che si connette la rete virtuale toohello.
 
   ![Download del client VPN 2](./media/vpn-gateway-howto-point-to-site-resource-manager-portal/vpnclient.png)
 
-### <a name="step-2---install-the-client-configuration-package"></a>Passaggio 2: Installare il pacchetto di configurazione del client
+### <a name="step-2---install-hello-client-configuration-package"></a>Passaggio 2: pacchetto di configurazione installazione hello client
 
-1. Copiare il file di configurazione in locale nel computer che si vuole connettere alla rete virtuale. 
-2. Fare doppio clic sul file con estensione exe per installare il pacchetto nel computer client. Dato che è stato creato dall'utente, il pacchetto di configurazione non è firmato e potrebbe essere visualizzato un avviso. Se viene visualizzato un popup Windows SmartScreen, fare clic su **Altre informazioni** (a sinistra) e quindi su **Esegui comunque** per installare il pacchetto.
-3. Installare il pacchetto nel computer client. Se viene visualizzato un popup Windows SmartScreen, fare clic su **Altre informazioni** (a sinistra) e quindi su **Esegui comunque** per installare il pacchetto.
-4. Nel computer client passare a **Impostazioni di rete** e fare clic su **VPN**. La connessione VPN viene visualizzata con il nome della rete virtuale a cui si connette.
+1. File di configurazione hello Copia localmente toohello computer, che si desidera rete virtuale di tooconnect tooyour. 
+2. Fare doppio clic sul pacchetto hello tooinstall hello .exe file nel computer client hello. Poiché è stato creato il pacchetto di configurazione di hello, che non è firmata e venga visualizzato un avviso. Se viene visualizzato un popup Windows SmartScreen, fare clic su **informazioni** (sul lato sinistro hello), quindi **eseguire comunque** pacchetto hello tooinstall.
+3. Installare i pacchetti hello in computer client hello. Se viene visualizzato un popup Windows SmartScreen, fare clic su **informazioni** (sul lato sinistro hello), quindi **eseguire comunque** pacchetto hello tooinstall.
+4. In un computer client hello passare troppo**le impostazioni di rete** e fare clic su **VPN**. connessione VPN Hello Mostra il nome di hello della rete virtuale hello che si connette a.
 
 ## <a name="installclientcert"></a>9. Installare un certificato client esportato
 
-Se si vuole creare una connessione da punto a sito da un computer client diverso da quello usato per generare i certificati client, è necessario installare un certificato client. Quando si installa un certificato client, è necessaria la password che è stata creata durante l'esportazione del certificato client. In genere è sufficiente fare doppio clic sul certificato e installarlo.
+Se si desidera un P2S toocreate connessione da un computer client diverso hello è utilizzato i certificati di toogenerate hello client, è necessario tooinstall un certificato client. Quando si installa un certificato client, è necessario password hello creata quando è stato esportato il certificato di client hello. In genere, è sufficiente fare doppio clic sul certificato hello e installarlo.
 
-Verificare che il certificato client sia stato esportato come PFX con l'intera catena di certificati (impostazione predefinita). In caso contrario, le informazioni del certificato radice non sono presenti nel computer client e il client non potrà essere autenticato correttamente. Per altre informazioni, vedere [Installare un certificato client esportato](vpn-gateway-certificates-point-to-site.md#install).
+Verificare che il certificato di client hello è stato esportato come un file pfx con hello intera catena di certificati (ovvero hello (impostazione predefinita). In caso contrario, non è presente nel computer client hello informazioni del certificato radice hello e client hello non saranno in grado di tooauthenticate correttamente. Per altre informazioni, vedere [Installare un certificato client esportato](vpn-gateway-certificates-point-to-site.md#install).
 
-## <a name="connect"></a>10. Connect to Azure
+## <a name="connect"></a>10. Connettersi tooAzure
 
-1. Per connettersi alla rete virtuale, nel computer client passare alle connessioni VPN e individuare quella creata, che ha lo stesso nome della rete virtuale locale. Fare clic su **Connetti**. È possibile che venga visualizzato un messaggio popup che fa riferimento all'uso del certificato. Fare clic su **Continua** per usare privilegi elevati.
+1. tooconnect tooyour rete virtuale, computer client hello passare tooVPN connessioni e individuare la connessione VPN hello creato. Il file è denominato hello stesso nome della rete virtuale. Fare clic su **Connetti**. Che fa riferimento il certificato di hello toousing viene visualizzato un messaggio popup. Fare clic su **continua** toouse privilegi elevati.
 
-2. Nella pagina **Stato connessione** fare clic su **Connetti** per avviare la connessione. Se viene visualizzato un **Seleziona certificato** dello schermo, verificare che il certificato client visualizzato sia quello che si desidera utilizzare per la connessione. In caso contrario, usare la freccia a discesa per selezionare il certificato corretto e quindi fare clic su **OK**.
+2. In hello **connessione** pagina di stato, fare clic su **Connetti** connessione hello toostart. Se viene visualizzato un **Seleziona certificato** schermata, verificare che hello certificato client visualizzato sia hello uno che si desidera toouse tooconnect. In caso contrario, utilizzare hello freccia tooselect hello corretto certificato e quindi fare clic su **OK**.
 
-  ![Connessione del client VPN ad Azure](./media/vpn-gateway-howto-point-to-site-resource-manager-portal/clientconnect.png)
+  ![I client VPN si connette tooAzure](./media/vpn-gateway-howto-point-to-site-resource-manager-portal/clientconnect.png)
 3. Verrà stabilita la connessione.
 
   ![Connessione stabilita](./media/vpn-gateway-howto-point-to-site-resource-manager-portal/connected.png)
@@ -172,8 +172,8 @@ Verificare che il certificato client sia stato esportato come PFX con l'intera c
 
 ## <a name="verify"></a>11. Verificare la connessione
 
-1. Per verificare che la connessione VPN è attiva, aprire un prompt dei comandi con privilegi elevati ed eseguire *ipconfig/all*.
-2. Visualizzare i risultati. Si noti che l'indirizzo IP ricevuto è uno degli indirizzi compresi nel pool di indirizzi del client VPN da punto a sito specificato al momento della configurazione. I risultati sono simili a questo esempio:
+1. tooverify che la connessione VPN sia attiva, aprire un prompt dei comandi con privilegi elevati ed eseguire *ipconfig/all*.
+2. Visualizzare i risultati di hello. Si noti che l'indirizzo IP hello che è stato ricevuto uno degli indirizzi hello all'interno di hello Point-to-Site VPN Client Pool di indirizzi specificato nella configurazione. risultati di Hello sono simili toothis esempio:
 
   ```
   PPP adapter VNet1:
@@ -188,45 +188,45 @@ Verificare che il certificato client sia stato esportato come PFX con l'intera c
       NetBIOS over Tcpip..............: Enabled
   ```
 
-## <a name="connectVM"></a>Connettersi a una macchina virtuale
+## <a name="connectVM"></a>Connettere la macchina virtuale di tooa
 
-[!INCLUDE [Connect to a VM](../../includes/vpn-gateway-connect-vm-p2s-include.md)]
+[!INCLUDE [Connect tooa VM](../../includes/vpn-gateway-connect-vm-p2s-include.md)]
 
 ## <a name="add"></a>Aggiungere o rimuovere certificati radice attendibili
 
-È possibile aggiungere e rimuovere certificati radice attendibili da Azure. Quando si rimuove un certificato radice, i client con un certificato generato da tale radice non potranno eseguire l'autenticazione e quindi non potranno connettersi. Per consentire ai client di eseguire l'autenticazione e connettersi, è necessario installare un nuovo certificato client generato da un certificato radice considerato attendibile (caricato) in Azure.
+È possibile aggiungere e rimuovere certificati radice attendibili da Azure. Quando si rimuove un certificato radice, i client che dispongono di un certificato generato da tale radice non sarà in grado di tooauthenticate e pertanto non essere in grado di tooconnect. Se si desidera tooauthenticate un client e la connessione, è necessario tooinstall un nuovo certificato client generato da un certificato radice attendibile tooAzure (caricato).
 
-### <a name="to-add-a-trusted-root-certificate"></a>Per aggiungere un certificato radice attendibile
+### <a name="tooadd-a-trusted-root-certificate"></a>tooadd un certificato radice attendibile
 
-In Azure è possibile aggiungere fino a 20 file CER di certificato radice trusted. Per istruzioni, vedere la sezione relativa al [caricamento di un certificato radice attendibile](#uploadfile) in questo articolo.
+È possibile aggiungere backup too20 attendibili radice certificato con estensione cer file tooAzure. Per istruzioni, vedere la sezione hello [caricare un certificato radice attendibile](#uploadfile) in questo articolo.
 
-### <a name="to-remove-a-trusted-root-certificate"></a>Per rimuovere un certificato radice attendibile
+### <a name="tooremove-a-trusted-root-certificate"></a>tooremove un certificato radice attendibile
 
-1. Per rimuovere un certificato radice attendibile, passare alla pagina **Configurazione da punto a sito** per il gateway di rete virtuale.
-2. Nella sezione **Certificato radice** della pagina individuare il certificato che si vuole rimuovere.
-3. Fare clic sui puntini di sospensione accanto al certificato e quindi fare clic su "Rimuovi".
+1. un certificato radice attendibile, tooremove passare toohello **configurazionePoint-to-site** pagina per il gateway di rete virtuale.
+2. In hello **certificato radice** sezione della pagina di hello, individuare il certificato di hello che si vuole tooremove.
+3. Fare clic su Avanti toohello certificato di hello i puntini di sospensione e quindi fare clic su 'Remove'.
 
 ## <a name="revokeclient"></a>Revocare un certificato client
 
-È possibile revocare i certificati client. L'elenco di revoche di certificati consente di negare in modo selettivo la connettività da punto a sito basata sui singoli certificati client. Questa operazione è diversa rispetto alla rimozione di un certificato radice attendibile. Se si rimuove un file con estensione cer del certificato radice attendibile da Azure, viene revocato l'accesso per tutti i certificati client generati o firmati dal certificato radice revocato. La revoca di un certificato client, anziché del certificato radice, consente di continuare a usare gli altri certificati generati dal certificato radice per l'autenticazione.
+È possibile revocare i certificati client. certificato Hello elenco di revoche di certificati consente tooselectively negare connettività Point-to-Site in base a singoli certificati client. Questa operazione è diversa rispetto alla rimozione di un certificato radice attendibile. Se si rimuove un CER del certificato radice attendibile da Azure, comporta la revoca l'accesso per tutti i certificati client generato firmato dall'autorità di certificazione revocata hello hello. Revoca di un certificato client, anziché certificato radice hello consente hello altri certificati che sono stati generati da hello radice certificato toocontinue toobe utilizzato per l'autenticazione.
 
-La regola generale è quella di usare il certificato radice per gestire l'accesso a livello di team o organizzazione, usando i certificati client revocati per il controllo di accesso con granularità fine su singoli utenti.
+pratica comune Hello è accesso toouse hello radice certificato toomanage livelli team o dell'organizzazione, durante l'utilizzo dei certificati client revocati per il controllo di accesso con granularità fine per utenti singoli.
 
-### <a name="to-revoke-a-client-certificate"></a>Per revocare un certificato client
+### <a name="toorevoke-a-client-certificate"></a>toorevoke un certificato client
 
-È possibile revocare un certificato client aggiungendo l'identificazione personale all'elenco di revoche di certificati.
+È possibile revocare un certificato client tramite l'aggiunta di elenco di revoche toohello hello identificazione personale.
 
-1. Ottenere l'identificazione personale del certificato client. Per altre informazioni, vedere [Procedura: recuperare l'identificazione personale di un certificato](https://msdn.microsoft.com/library/ms734695.aspx).
-2. Copiare le informazioni in un editor di testo e rimuovere tutti gli spazi in modo che sia una stringa continua.
-3. Passare al gateway di rete virtuale nella pagina **Configurazione da punto a sito** che è stata usata anche per [caricare un certificato radice attendibile](#uploadfile).
-4. Nella sezione **Certificati revocati** immettere un nome descrittivo per il certificato (non deve corrispondere necessariamente alle credenziali del certificato).
-5. Copiare e incollare la stringa di identificazione personale nel campo **Identificazione personale**.
-6. L'identificazione personale viene convalidata e aggiunta automaticamente all'elenco di revoche. Verrà visualizzato un messaggio che segnala che è in corso l'aggiornamento dell'elenco. 
-7. Dopo aver completato l'aggiornamento, il certificato non può più essere usato per la connessione. Ai client che provano a connettersi con questo certificato verrà visualizzato un messaggio che informa che il certificato non è più valido.
+1. Recuperare l'identificazione personale del certificato client di hello. Per ulteriori informazioni, vedere [come tooretrieve hello identificazione personale del certificato](https://msdn.microsoft.com/library/ms734695.aspx).
+2. Copiare l'editor di testo hello informazioni tooa e rimuovere tutti gli spazi in modo che sia una stringa continua.
+3. Passare il gateway di rete virtuale toohello **punto-a-configurazione del sito-** pagina. Si tratta di hello stessa pagina in cui è stato utilizzato troppo[caricare un certificato radice attendibile](#uploadfile).
+4. In hello **i certificati revocati** sezione, immettere un nome descrittivo per il certificato di hello (che non ha Credenziali del certificato hello toobe).
+5. Copiare e incollare toohello stringa di identificazione personale hello **identificazione personale** campo.
+6. identificazione personale Hello convalida e viene aggiunto automaticamente toohello elenco di revoche di certificati. Viene visualizzato un messaggio nella schermata di hello che hello Aggiorna l'elenco. 
+7. Dopo l'aggiornamento è stata completata, il certificato di hello non può più essere utilizzato tooconnect. I client che tentano di tooconnect usando questo certificato, ricevono un messaggio che informa che il certificato hello non è più valido.
 
 ## <a name="faq"></a>Domande frequenti sulla connettività da punto a sito
 
 [!INCLUDE [Point-to-Site FAQ](../../includes/vpn-gateway-point-to-site-faq-include.md)]
 
 ## <a name="next-steps"></a>Passaggi successivi
-Dopo aver completato la connessione, è possibile aggiungere macchine virtuali alle reti virtuali. Per altre informazioni, vedere [Macchine virtuali](https://docs.microsoft.com/azure/#pivot=services&panel=Compute). Per altre informazioni sulla rete e sulle macchine virtuali, vedere [Panoramica di rete delle macchine virtuali Linux e Azure](../virtual-machines/linux/azure-vm-network-overview.md).
+Una volta completata la connessione, è possibile aggiungere macchine virtuali tooyour le reti virtuali. Per altre informazioni, vedere [Macchine virtuali](https://docs.microsoft.com/azure/#pivot=services&panel=Compute). toounderstand informazioni sulle reti e macchine virtuali, vedere [Cenni preliminari sulla rete di Azure e VM Linux](../virtual-machines/linux/azure-vm-network-overview.md).

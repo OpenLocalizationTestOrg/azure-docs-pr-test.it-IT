@@ -1,6 +1,6 @@
 ---
-title: Come compilare campi specifici per un'applicazione personalizzata | Microsoft Docs
-description: Materiale sussidiario su come compilare campi specifici quando si registra un'applicazione personalizzata con Azure AD
+title: toofill aaaHow i campi specifici per un'applicazione sviluppata | Documenti Microsoft
+description: Informazioni aggiuntive su come toofill out specifici campi quando si registra un'applicazione sviluppata personalizzata con Azure AD
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -13,49 +13,49 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
-ms.openlocfilehash: 04fd35f238e4dd05486f85b0b16c2ab0c5ae9f30
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 7e07bc45c58542edb3863db5aad7c845f1a1772e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-fill-out-specific-fields-for-a-custom-developed-application"></a>Come compilare campi specifici per un'applicazione personalizzata
+# <a name="how-toofill-out-specific-fields-for-a-custom-developed-application"></a>Come toofill i campi specifici per un'applicazione personalizzata
 
-Questo articolo include una breve descrizione di tutti i campi disponibili nel modulo di registrazione dell'applicazione del [Portale di Azure](https://portal.azure.com).
+In questo articolo è fornita una breve descrizione di tutti i campi disponibili hello nel modulo di registrazione applicazione hello in hello [portale di Azure](https://portal.azure.com).
 
 ## <a name="register-a-new-application"></a>Registrare una nuova applicazione
 
--   Per registrare una nuova applicazione, passare al [Portale di Azure](https://portal.azure.com).
+-   tooregister una nuova applicazione, passare toohello [portale di Azure](https://portal.azure.com).
 
--   Nel riquadro di spostamento sinistro fare clic su **Azure Active Directory**.
+-   Dal riquadro di spostamento a sinistra di hello, fare clic su **Azure Active Directory.**
 
 -   Scegliere **Registrazioni per l'app** e fare clic su **Aggiungi**.
 
--   Si apre il modulo di registrazione dell'applicazione.
+-   Aprire il modulo di registrazione applicazione hello.
 
-## <a name="fields-in-the-application-registration-form"></a>Campi nel modulo di registrazione dell'applicazione
+## <a name="fields-in-hello-application-registration-form"></a>Campi nel modulo di registrazione applicazione hello
 
 
 | Campo            | Descrizione                                                                              |
 |------------------|------------------------------------------------------------------------------------------|
-| Nome             | Il nome dell'applicazione. Deve essere minimo di quattro caratteri.                |
+| Nome             | nome di Hello dell'applicazione hello. Deve essere minimo di quattro caratteri.                |
 | Tipo di applicazione | **App Web/API Web**: un'applicazione Web, un'API Web o entrambe 
 | |**Nativa**: un'applicazione che può essere installata in un computer o dispositivo utente           |
-| URL di accesso      | L'URL a cui possono accedere gli utenti per usare l'applicazione                                  |
+| URL di accesso      | URL di Hello in cui gli utenti possono accedere in toouse dell'applicazione                                  |
 
-Dopo aver compilato i campi sopra elencati, registrare l'applicazione nel Portale di Azure. Verrà visualizzata la pagina dell'applicazione. Il pulsante **Impostazioni** del riquadro dell'applicazione apre la pagina Impostazioni, che include più campi per personalizzare l'applicazione. La tabella seguente illustra tutti i campi nella pagina Impostazioni. Si noti che viene visualizzato solo un sottoinsieme di questi campi, a seconda se è stata creata un'applicazione Web o un'applicazione nativa.
+Dopo avere compilato hello sopra i campi, un'applicazione hello essere registrato nel portale di Azure hello e si reindirizzati toohello pagina dell'applicazione. Hello **impostazioni** nel riquadro applicazione hello apre la pagina Impostazioni di hello, che dispone di più campi per l'utente toocustomize l'applicazione. tabella di Hello seguente descrive tutti i campi nella pagina Impostazioni hello hello. Si noti che viene visualizzato solo un sottoinsieme di questi campi, a seconda se è stata creata un'applicazione Web o un'applicazione nativa.
 
 | Campo           | Descrizione                                                                                                                                                                                                                                                                                                     |
 |-----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| ID applicazione  | Quando si registra un'applicazione, Azure AD assegna un ID all'applicazione. L'ID dell'applicazione può essere usato per identificare in modo univoco l'applicazione nelle richieste di autenticazione ad Azure AD, nonché per accedere a risorse, ad esempio l'API Graph.                                                          |
-| URI dell'ID dell'app      | Deve essere un URI univoco, in genere nel formato **https://&lt;nome\_tenant&gt;/&lt;nome\_applicazione&gt;.** L'URI viene usato durante il flusso di concessione delle autorizzazioni, come identificatore univoco per specificare la risorsa per cui deve essere emesso il token. Diventa anche l'attestazione "aud" nel token di accesso emesso. |
-| Carica nuovo logo | Questo campo consente di caricare un logo per l'applicazione. Il logo deve essere in formato bmp, jpg o png e la dimensione del file deve essere inferiore a 100 KB. Le dimensioni dell'immagine devono essere 215 x 215 pixel, con le dimensioni dell'immagine centrale di 94 x 94 pixel.                                                       |
-| URL della home page   | Questo è l'URL di accesso specificato durante la registrazione dell'applicazione.                                                                                                                                                                                                                                              |
-| URL di chiusura sessione      | Questo è l'URL del punto di uscita singolo. Azure AD invia una richiesta di disconnessione a questo URL quando l'utente cancella la sessione di Azure AD usando qualsiasi altra applicazione registrata.                                                                                                                                       |
-| Multi-tenant  | Questa opzione specifica se l'applicazione può essere usata da più tenant. In genere, ciò significa che le organizzazioni esterne possono usare l'applicazione registrandola nel proprio tenant e concedendo accesso ai dati dell'organizzazione.                                                                   |
-| URL di risposta      | Gli URL di risposta sono gli endpoint a cui Azure AD restituisce tutti i token richiesti dall'applicazione.                                                                                                                                                                                                          |
-| URI di reindirizzamento   | Per le applicazioni native, questo è il punto in cui l'utente deve essere inviato in seguito a un'autorizzazione riuscita. Azure AD verifica che l'URI di reindirizzamento specificato dall'applicazione nella richiesta OAuth 2.0 corrisponda a uno dei valori registrati nel portale.                                                            |
-| Chiavi            | È possibile creare chiavi per accedere a livello di codice ad API Web protette da Azure AD senza alcuna interazione dell'utente. Nella pagina \*\*Chiavi\*\* immettere una descrizione e una data di scadenza della chiave e fare clic su Salva per generare la chiave. Assicurarsi di salvarla in un luogo sicuro, poiché non sarà possibile accedervi successivamente.             |
+| ID applicazione  | Quando si registra un'applicazione, Azure AD assegna un ID all'applicazione. ID applicazione Hello può essere utilizzato toouniquely identificare l'applicazione in tooAzure le richieste di autenticazione AD, nonché risorse tooaccess come hello API Graph.                                                          |
+| URI dell'ID dell'app      | Deve essere un URI univoco, in genere di modulo hello **https://&lt;tenant\_nome&gt;/&lt;applicazione\_nome&gt;.** Durante il flusso di concessione di autorizzazione hello, viene utilizzato come identificatore univoco toospecify hello risorsa quale token hello deve essere emesso per. Anch'essa diventa hello 'aud' attestazione nel token di accesso hello rilasciato. |
+| Carica nuovo logo | È possibile utilizzare questo tooupload un logo per l'applicazione. logo di Hello devono essere in formato BMP, jpg o PNG e dimensioni del file hello devono essere minore di 100KB. dimensioni di Hello per immagine hello devono essere 215 x 215 pixel, con dimensioni dell'immagine centrale di 94 x 94 pixel.                                                       |
+| URL della home page   | Si tratta di hello sign-on URL specificato durante la registrazione dell'applicazione.                                                                                                                                                                                                                                              |
+| URL di chiusura sessione      | L'URL di disconnessione di disconnessione singola hello. Azure AD invierà un URL della richiesta di disconnessione toothis utente hello Cancella la sessione con Azure AD con qualsiasi altra applicazione registrata.                                                                                                                                       |
+| Multi-tenant  | Consente di specificare se un'applicazione hello può essere utilizzata da più tenant. In genere, ciò significa che le organizzazioni esterne è possono utilizzare l'applicazione la registrazione al proprio tenant e la concessione di dati dell'organizzazione accesso tootheir.                                                                   |
+| URL di risposta      | URL di risposta Hello sono endpoint hello in Azure AD restituisce tutti i token che richiede l'applicazione.                                                                                                                                                                                                          |
+| URI di reindirizzamento   | Per le applicazioni native, è in utente hello sia inviato toofollowing di autorizzazione ha esito positivo. Fornisce l'applicazione in hello OAuth 2.0 richiesta corrisponde a uno dei valori hello registrato nel portale di hello URI di reindirizzamento di Azure verifica Active Directory che hello.                                                            |
+| Chiavi            | È possibile creare chiavi tooprogrammatically accedere ad API web protette da Azure AD senza alcuna interazione dell'utente. Da hello \* \*chiavi\* \* immettere una data di scadenza chiave di descrizione e hello e salvare toogenerate hello chiave. Assicurarsi che toosave in un punto sicuro, come, non sarà in grado di tooaccess posticipato.             |
 
 ## <a name="next-steps"></a>Passaggi successivi
 [Gestione di applicazioni con Azure Active Directory](active-directory-enable-sso-scenario.md)

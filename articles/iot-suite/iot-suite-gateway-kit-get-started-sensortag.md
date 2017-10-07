@@ -1,6 +1,6 @@
 ---
-title: Connettere un gateway ad Azure IoT Suite con un Intel NUC | Microsoft Docs
-description: Usare il kit gateway commerciale di Microsoft IoT e la soluzione di monitoraggio remoto preconfigurato. Usare il gateway Azure IoT Edge per abilitare un dispositivo SensorTag da connettere alla soluzione di monitoraggio remoto, inviare dati di telemetria al cloud e rispondere ai metodi richiamati dal dashboard della soluzione.
+title: aaaConnect tooAzure un gateway IoT Suite utilizzando un NUC Intel | Documenti Microsoft
+description: Utilizzare hello Microsoft IoT commerciale Gateway Kit e hello preconfigurato soluzione di monitoraggio remoto. Utilizzo di una soluzione di monitoraggio remoto toohello SensorTag dispositivo tooconnect hello Azure IoT Edge gateway tooenable, cloud toohello telemetria di inviare e rispondere toomethods richiamato dal dashboard di soluzione hello.
 services: 
 suite: iot-suite
 documentationcenter: 
@@ -14,37 +14,37 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/24/2017
 ms.author: dobett
-ms.openlocfilehash: bda16be1094276fcecef1e708f9d7db307d94a89
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 6f98ee3c1e2311a8644da9d72d40e671e7cbcf00
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="connect-your-azure-iot-edge-gateway-to-the-remote-monitoring-preconfigured-solution-and-send-telemetry-from-a-sensortag"></a>Collegare il gateway Azure IoT Edge alla soluzione preconfigurata di monitoraggio remoto e inviare dati di telemetria da un SensorTag
+# <a name="connect-your-azure-iot-edge-gateway-toohello-remote-monitoring-preconfigured-solution-and-send-telemetry-from-a-sensortag"></a>Connettere la soluzione preconfigurata di monitoraggio remoto di Azure IoT Edge gateway toohello e inviare dati di telemetria da un SensorTag
 
 [!INCLUDE [iot-suite-gateway-kit-selector](../../includes/iot-suite-gateway-kit-selector.md)]
 
-In questa esercitazione viene illustrato come usare Azure IoT Edge per inviare dati relativi alla temperatura e all'umidità dal dispositivo SensorTag alla soluzione preconfigurata di monitoraggio remoto. Il SensorTag si connette al gateway Intel NUC tramite Bluetooth. L'esercitazione usa:
+Questa esercitazione viene illustrato come toouse Azure IoT Edge toosend temperatura e umidità dati monitoraggio remoto di SensorTag dispositivo toohello preconfigurato soluzione. Hello SensorTag si connette il gateway di Intel NUC toohello tramite Bluetooth. esercitazione Hello utilizza:
 
-- Azure IoT Edge per implementare un gateway di esempio.
-- La soluzione preconfigurata di monitoraggio remoto IoT Suite come back-end basato su cloud.
+- Azure IoT Edge tooimplement un gateway di esempio.
+- monitoraggio remoto IoT Suite Hello preconfigurato soluzione come hello basato su cloud back-end.
 
 ## <a name="overview"></a>Panoramica
 
-In questa esercitazione si completa la procedura seguente:
+In questa esercitazione è completare hello alla procedura seguente:
 
-- Distribuire un'istanza della soluzione preconfigurata di monitoraggio remoto nella sottoscrizione di Azure. Questo passaggio distribuisce e configura automaticamente più servizi di Azure.
-- Configurare il dispositivo di gateway Intel NUC per la comunicazione con il computer e la soluzione di monitoraggio remoto.
-- Configurare il gateway Intel NUC per ricevere i dati di telemetria da un dispositivo SensorTag e inviarli al dashboard di monitoraggio remoto.
+- Distribuire un'istanza di hello remoto monitoraggio soluzione preconfigurata tooyour sottoscrizione di Azure. Questo passaggio distribuisce e configura automaticamente più servizi di Azure.
+- Consente di impostare il toocommunicate dispositivo gateway di Intel NUC con il computer e una soluzione di monitoraggio remoto hello.
+- Imposta i dati di telemetria Intel NUC tooreceive gateway da un dispositivo SensorTag e inviarla toohello dashboard di monitoraggio remoto.
 
 [!INCLUDE [iot-suite-gateway-kit-prerequisites](../../includes/iot-suite-gateway-kit-prerequisites.md)]
 
-[SensorTag BLE di Texas Instruments][lnk-sensortag]. Questa esercitazione consente di recuperare i dati di telemetria sul Bluetooth dal dispositivo SensorTag.
+[SensorTag BLE di Texas Instruments][lnk-sensortag]. In questa esercitazione consente di recuperare i dati di telemetria tramite Bluetooth dal dispositivo SensorTag hello.
 
 [!INCLUDE [iot-suite-provision-remote-monitoring](../../includes/iot-suite-provision-remote-monitoring.md)]
 
 > [!WARNING]
-> La soluzione di monitoraggio remoto esegue il provisioning di un set di servizi di Azure nella sottoscrizione di Azure. La distribuzione riflette un'architettura enterprise reale. Per evitare costi di consumo di Azure non necessari, eliminare l'istanza della soluzione preconfigurata in azureiotsuite.com al completamento. Se la soluzione preconfigurata occorre nuovamente, è possibile ricrearla facilmente. Per altre informazioni sulla riduzione del consumo durante l'esecuzione della soluzione di monitoraggio remoto, vedere [Configuring Azure IoT Suite preconfigured solutions for demo purposes][lnk-demo-config] (Configurazione di soluzioni preconfigurate di Azure IoT Suite per scopi dimostrativi).
+> Hello remoto disposizioni soluzione monitoraggio di un set di servizi di Azure nella sottoscrizione di Azure. distribuzione di Hello riflette un'architettura aziendale reale. tooavoid addebiti di consumo di Azure, eliminare l'istanza di soluzione hello preconfigurato azureiotsuite.com dopo aver con esso. Se è necessario hello nuovamente la soluzione preconfigurata, è possibile ricrearla facilmente. Per ulteriori informazioni sulla riduzione del consumo durante l'esecuzione di soluzioni di monitoraggio remoto hello, vedere [configurazione Azure IoT Suite preconfigurato soluzioni per scopi dimostrativi][lnk-demo-config].
 
 [!INCLUDE [iot-suite-gateway-kit-view-solution](../../includes/iot-suite-gateway-kit-view-solution.md)]
 
@@ -52,56 +52,56 @@ In questa esercitazione si completa la procedura seguente:
 
 ## <a name="configure-bluetooth-connectivity"></a>Configurare la connettività Bluetooth
 
-Configurare Bluetooth in Intel NUC per abilitare il dispositivo SensorTag a connettersi e a inviare dati di telemetria.
+Configurare la funzione Bluetooth nel dispositivo tooconnect di hello Intel NUC tooenable hello SensorTag e inviare dati di telemetria.
 
-### <a name="find-the-mac-address-of-the-sensortag"></a>Trovare l'indirizzo MAC del SensorTag
+### <a name="find-hello-mac-address-of-hello-sensortag"></a>Trovare l'indirizzo MAC hello di hello SensorTag
 
-1. Nella shell su Intel NUC, eseguire il comando seguente per sbloccare il servizio Bluetooth:
+1. Nella shell di hello in hello NUC Intel, eseguire hello comando toounblock hello Bluetooth servizio:
 
     ```bash
     sudo rfkill unblock bluetooth
     ```
 
-1. Eseguire i comandi seguenti per avviare il servizio Bluetooth su Intel NUC e immettere la shell di Bluetooth:
+1. La seguente esecuzione hello comandi toostart hello Bluetooth servizio hello NUC Intel e immettere shell Bluetooth hello:
 
     ```bash
     sudo systemctl start bluetooth
     bluetoothctl
     ```
 
-1. Eseguire il comando seguente per accendere il controller Bluetooth:
+1. Eseguire hello toopower comando sul controller Bluetooth hello seguenti:
 
     ```bash
     power on
     ```
 
-    Quando il controller è attivo, viene visualizzato un messaggio **Changing power on succeeded** (La modifica dell'accensione ha avuto esito positivo).
+    Quando il controller hello è attiva, viene visualizzato un messaggio **la modifica di alimentazione in cui ha avuto esito positivo**.
 
-1. Eseguire il comando seguente per avviare l'analisi per i dispositivi Bluetooth circostanti:
+1. Eseguire hello tooscan di comando per i dispositivi Bluetooth circostanti seguenti:
 
     ```bash
     scan on
     ```
 
-1. Premere il pulsante di accensione di SensorTag per renderlo individuabile. Il LED verde lampeggia.
+1. Premere hello power pulsante toomake SensorTag hello è individuabile. fa lampeggiare il LED verde Hello.
 
-1. Quando viene visualizzato un messaggio nella shell in base al quale il controller ha individuato il SensorTag, prendere nota dell'indirizzo MAC del dispositivo. L'indirizzo MAC è simile a **A0:E6:F8:B5:F6:00**. Quando si configura il gateway, più avanti nell'esercitazione, è necessario l'indirizzo MAC.
+1. Quando viene visualizzato un messaggio nella shell di hello tale controller hello ha individuato hello SensorTag, prendere nota dell'indirizzo MAC del dispositivo hello hello. Hello indirizzo MAC è simile a **A0:E6:F8:B5:F6:00**. Indirizzo MAC hello è necessario più avanti nell'esercitazione di hello quando si configura gateway hello.
 
-1. Eseguire il comando seguente per disattivare l'analisi del Bluetooth:
+1. Eseguire hello successivo comando tooturn la scansione Bluetooth:
 
     ```bash
     scan off
     ```
 
-1. Eseguire il comando seguente per verificare che è possibile connettersi al dispositivo SensorTag:
+1. Eseguire hello dopo che è possibile collegare il dispositivo di SensorTag toohello tooverify di comando:
 
     ```bash
     connect <SensorTag MAC address>
     ```
 
-    Se ci si connette correttamente, la shell visualizzerà il messaggio **Connessione riuscita** e stamperà informazioni sul dispositivo SensorTag. Se non è possibile connettersi, controllare che il SensorTag sia ancora acceso.
+    Se ci si connette correttamente, la shell hello Mostra messaggio hello **connessione riuscita** e Visualizza informazioni sul dispositivo SensorTag hello. Se non è possibile connettersi, controllare hello che sensortag è ancora attiva.
 
-1. Ora è possibile disconnettersi da SensorTag e chiudere la shell del Bluetooth eseguendo i comandi seguenti:
+1. È ora possibile disconnettersi dalle hello SensorTag e uscire dalla shell Bluetooth hello eseguendo hello seguenti comandi:
 
     ```bash
     disconnect
@@ -110,18 +110,18 @@ Configurare Bluetooth in Intel NUC per abilitare il dispositivo SensorTag a conn
 
 [!INCLUDE [iot-suite-gateway-kit-prepare-nuc-software](../../includes/iot-suite-gateway-kit-prepare-nuc-software.md)]
 
-## <a name="build-the-custom-iot-edge-module"></a>Compilare il modulo IoT Edge personalizzato
+## <a name="build-hello-custom-iot-edge-module"></a>Compilazione del modulo IoT bordo personalizzato hello
 
-È ora possibile compilare il modulo IoT Edge personalizzato che consente al gateway di inviare messaggi alla soluzione di monitoraggio remoto. Per altre informazioni sulla configurazione di un gateway e sui moduli IoT Edge, vedere [Concetti di Azure IoT Edge][lnk-gateway-concepts].
+È ora possibile compilare moduli IoT Edge personalizzata hello che consente di hello gateway toosend messaggi toohello soluzione di monitoraggio remoto. Per altre informazioni sulla configurazione di un gateway e sui moduli IoT Edge, vedere [Concetti di Azure IoT Edge][lnk-gateway-concepts].
 
-Scaricare il codice sorgente per i moduli personalizzati di IoT Edge da GitHub tramite i comandi seguenti:
+Scaricare il codice sorgente di hello per i moduli di IoT bordo personalizzati hello da GitHub utilizzando hello seguenti comandi:
 
 ```bash
 cd ~
 git clone https://github.com/Azure-Samples/iot-remote-monitoring-c-intel-nuc-gateway-getting-started.git
 ```
 
-Compilare il modulo personalizzato IoT Edge tramite i comandi seguenti:
+Compilazione del modulo IoT bordo personalizzato hello utilizzando hello seguenti comandi:
 
 ```bash
 cd ~/iot-remote-monitoring-c-intel-nuc-gateway-getting-started/basic
@@ -130,22 +130,22 @@ sed -i -e 's/\r$//' build.sh
 ./build.sh
 ```
 
-Lo script di compilazione inserisce il modulo di IoT Edge libsensor2remotemonitoring.so personalizzato nella cartella di compilazione.
+script di compilazione Hello inserisce modulo IoT Edge di hello libsensor2remotemonitoring.so personalizzato nella cartella di compilazione hello.
 
-## <a name="configure-and-run-the-iot-edge-gateway"></a>Configurare ed eseguire il gateway IoT Edge
+## <a name="configure-and-run-hello-iot-edge-gateway"></a>Configurare ed eseguire hello gateway perimetrale IoT
 
-È ora possibile configurare il gateway IoT Edge per inviare dati di telemetria dal dispositivo SensorTag al dashboard di monitoraggio remoto. Per altre informazioni sulla configurazione di un gateway e sui moduli IoT Edge, vedere [Concetti di Azure IoT Edge][lnk-gateway-concepts].
+È ora possibile configurare hello telemetria di IoT Edge gateway toosend dal dispositivo SensorTag per tooyour dashboard di monitoraggio remoto. Per altre informazioni sulla configurazione di un gateway e sui moduli IoT Edge, vedere [Concetti di Azure IoT Edge][lnk-gateway-concepts].
 
 > [!TIP]
-> In questa esercitazione, si usa l'editor di testo standard `vi` in Intel NUC. Se non è stato usato `vi` in precedenza, è necessario completare un'esercitazione introduttiva, ad esempio [Unix - The vi Editor Tutorial][lnk-vi-tutorial] per familiarizzare con questo editor. In alternativa, è possibile installare l'editor [nano](https://www.nano-editor.org/) più semplice tramite il comando `smart install nano -y`.
+> In questa esercitazione è utilizzare standard di hello `vi` editor di testo in hello NUC Intel. Se non è stato utilizzato `vi` prima, si consiglia di completare un'esercitazione introduttiva, ad esempio [Unix - hello vi Editor esercitazione] [ lnk-vi-tutorial] toofamiliarize familiarità con questo editor. In alternativa, è possibile installare più semplice hello [nano](https://www.nano-editor.org/) editor utilizzando il comando hello `smart install nano -y`.
 
-Aprire il file di configurazione di esempio nell'editor **vi** usando il comando seguente:
+File di configurazione di esempio hello Open in hello **vi** editor utilizzando hello comando seguente:
 
 ```bash
 vi ~/iot-remote-monitoring-c-intel-nuc-gateway-getting-started/basic/remote_monitoring.json
 ```
 
-Individuare le righe seguenti nella configurazione per il modulo IoTHub:
+Individuare hello seguendo le linee nella configurazione di hello per il modulo di hub IOT hello:
 
 ```json
 "args": {
@@ -155,9 +155,9 @@ Individuare le righe seguenti nella configurazione per il modulo IoTHub:
 }
 ```
 
-Sostituire i valori segnaposto con le informazioni dell'hub IoT create e salvate all'inizio di questa esercitazione. Il valore per IoTHubName è simile a **yourrmsolution37e08** e il valore per IoTSuffix è in genere **azure-devices.net**.
+Sostituire i segnaposto hello valori con informazioni di IoT Hub è stato creato e salvato in hello hello inizino di questa esercitazione. il valore di Hello per IoTHubName simile **yourrmsolution37e08**, e il valore di hello per IoTSuffix è in genere **azure devices.net**.
 
-Individuare le righe seguenti nella configurazione per il modulo di mapping:
+Individuare hello seguendo le linee nella configurazione di hello per il modulo di mapping hello:
 
 ```json
 args": [
@@ -169,9 +169,9 @@ args": [
 ]
 ```
 
-Sostituire il segnaposto **macAddress** con l'indirizzo MAC del SensorTag di cui si è preso nota in precedenza. Sostituire i segnaposti **deviceID** e **deviceKey** con gli ID e le chiavi per i due dispositivi creati in precedenza nella soluzione di monitoraggio remoto.
+Sostituire hello **macAddress** segnaposto con hello indirizzo MAC del SensorTag è indicato in precedenza. Sostituire hello **deviceID** e **deviceKey** segnaposto con ID hello e le chiavi per i dispositivi hello due creato in precedenza nella soluzione di monitoraggio remoto hello.
 
-Individuare le righe seguenti nella configurazione per il modulo di SensorTag:
+Individuare hello seguendo le linee nella configurazione di hello per modulo SensorTag hello:
 
 ```json
 "args": {
@@ -181,40 +181,40 @@ Individuare le righe seguenti nella configurazione per il modulo di SensorTag:
 }
 ```
 
-Sostituire il segnaposto **device\_mac\_address** con l'indirizzo MAC del SensorTag di cui si è preso nota in precedenza.
+Sostituire hello **dispositivo\_mac\_indirizzo** segnaposto con hello indirizzo MAC del SensorTag è indicato in precedenza.
 
 Salvare le modifiche.
 
-Ora è possibile eseguire il gateway usando i comandi seguenti:
+È ora possibile eseguire il gateway di hello tramite hello seguenti comandi:
 
 ```bash
 cd ~/iot-remote-monitoring-c-intel-nuc-gateway-getting-started/basic
 /usr/share/azureiotgatewaysdk/samples/ble_gateway/ble_gateway remote_monitoring.json
 ```
 
-Il gateway IoT Edge avvia Intel NUC e invia i dati di telemetria dal SensorTag alla soluzione di monitoraggio remoto:
+Hello gateway perimetrale IoT inizia hello NUC Intel e invia i dati di telemetria dalla soluzione di monitoraggio remoto toohello SensorTag hello:
 
-![Il gateway IoT Edge invia i dati di telemetria dal SensorTag][img-telemetry]
+![Gateway di confine IoT invia dati di telemetria da hello SensorTag][img-telemetry]
 
-Premere **CTRL-C** per uscire dal programma in qualsiasi momento.
+Premere **Ctrl-C** programma hello tooexit in qualsiasi momento.
 
-## <a name="view-the-telemetry"></a>Visualizzare i dati di telemetria
+## <a name="view-hello-telemetry"></a>Visualizzazione hello telemetria
 
-Ora il gateway invia i dati di telemetria dal dispositivo SensorTag alla soluzione di monitoraggio remoto. È possibile visualizzare i dati di telemetria nel dashboard della soluzione. È anche possibile inviare comandi al dispositivo SensorTag tramite il gateway dal dashboard della soluzione.
+gateway Hello ora invia dati di telemetria da hello SensorTag dispositivo toohello soluzione di monitoraggio remoto. È possibile visualizzare i dati di telemetria hello nel dashboard di soluzione hello. È anche possibile inviare dispositivo SensorTag tooyour di comandi tramite gateway hello dal dashboard di soluzione hello.
 
-- Passare al dashboard della soluzione.
-- Selezionare il dispositivo configurato nel gateway che rappresenta il SensorTag nell'elenco a discesa **Dispositivo da visualizzare**.
-- I dati di telemetria dal dispositivo SensorTag vengono visualizzati nel dashboard.
+- Passare il dashboard di soluzione toohello.
+- Dispositivo hello selezionare configurato nel gateway hello che rappresenta Ciao SensorTag hello **tooView dispositivo** elenco a discesa.
+- Consente di visualizzare dati di telemetria Hello dal dispositivo SensorTag hello nel dashboard di hello.
 
-![Visualizzare i dati di telemetria dai dispositivi SensorTag][img-telemetry-display]
+![Visualizzare i dati di telemetria dai dispositivi SensorTag hello][img-telemetry-display]
 
 > [!WARNING]
-> Se si lascia la soluzione di monitoraggio remoto in esecuzione nell'account Azure, verrà addebitato il tempo dell'esecuzione. Per altre informazioni sulla riduzione del consumo durante l'esecuzione della soluzione di monitoraggio remoto, vedere [Configuring Azure IoT Suite preconfigured solutions for demo purposes][lnk-demo-config] (Configurazione di soluzioni preconfigurate di Azure IoT Suite per scopi dimostrativi). Al termine, eliminare la soluzione preconfigurata dall'account Azure.
+> Se si lascia in esecuzione nell'account di Azure di soluzione di monitoraggio remoto hello, verrà addebitato per volta hello che è in esecuzione. Per ulteriori informazioni sulla riduzione del consumo durante l'esecuzione di soluzioni di monitoraggio remoto hello, vedere [configurazione Azure IoT Suite preconfigurato soluzioni per scopi dimostrativi][lnk-demo-config]. Eliminare la soluzione hello preconfigurato dall'account di Azure al termine dell'utilizzo.
 
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Visitare il [Centro per sviluppatori Azure IoT](https://azure.microsoft.com/develop/iot/) per altri esempi e documentazione su Azure IoT.
+Visitare hello [Centro per sviluppatori Azure IoT](https://azure.microsoft.com/develop/iot/) per ulteriori esempi e documentazione su Azure IoT.
 
 [img-telemetry]: ./media/iot-suite-gateway-kit-get-started-sensortag/appoutput.png
 

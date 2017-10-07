@@ -1,5 +1,5 @@
 ---
-title: "Accessi da indirizzi IP con attività sospetta"
+title: "gli indirizzi di aggiuntivi da IP aaaSign con attività sospetta"
 description: "Un report che include dei tentativi di accesso che sono stati eseguiti da indirizzi IP in cui è stata notata un'attività sospetta."
 services: active-directory
 documentationcenter: 
@@ -14,14 +14,14 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/04/2016
 ms.author: saah; kenhoff
-ms.openlocfilehash: d4168f2a674a90237ff5fa1c51518a711a1c2897
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3b959269eb792083af0a0795d319d9712cb4c5ab
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="sign-ins-from-ip-addresses-with-suspicious-activity"></a>Accessi da indirizzi IP con attività sospetta
-Questo report mostra accessi da indirizzi IP in cui è stata rilevata un'attività sospetta. In questo caso un'attività sospetta è definita da un numero insolitamente elevato di accessi non riusciti in rapporto agli accessi con esito positivo, che potrebbe indicare che un indirizzo IP è stato usato per scopi dannosi.
+Questo report mostra accessi da indirizzi IP in cui è stata rilevata un'attività sospetta. Attività sospette in questo caso è definito toobe accessi toosuccessful accessi, che potrebbero indicare un indirizzo IP viene utilizzato per scopi dannosi non riuscita di un rapporto di insolitamente elevato.
 
 ![Accessi da indirizzi IP con attività sospetta](./media/active-directory-reporting-sign-ins-from-ip-addresses-with-suspicious-activity/signInsFromIPAddressesWithSuspiciousActivity.PNG)
 

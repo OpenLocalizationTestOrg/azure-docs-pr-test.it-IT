@@ -1,6 +1,6 @@
 ---
-title: Implementare il ripristino di emergenza usando il backup e il ripristino in Gestione API di Azure | Documentazione Microsoft
-description: Informazioni su come usare il backup e il ripristino per eseguire il ripristino di emergenza in Gestione API di Azure.
+title: ripristino di emergenza aaaImplement tramite backup e ripristino in Gestione API di Azure | Documenti Microsoft
+description: Informazioni su come toouse di backup e ripristino di emergenza tooperform in Gestione API di Azure.
 services: api-management
 documentationcenter: 
 author: steved0x
@@ -14,60 +14,60 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: apimpm
-ms.openlocfilehash: 07c0265490cfae733133b6e0c938f90f9b392da4
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 058bfb579e3a3f51fb1dac8ea37eb4fdbc83a4ad
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-implement-disaster-recovery-using-service-backup-and-restore-in-azure-api-management"></a>Come implementare il ripristino di emergenza usando il backup e il ripristino dei servizi in Gestione API di Azure
-Scegliendo di pubblicare e gestire le API tramite Gestione API di Azure è possibile sfruttare molte funzionalità di tolleranza di errore e di infrastruttura che sarebbe altrimenti necessario progettare, implementare e gestire. La piattaforma di Azure permette di mitigare una vasta gamma di potenziali errori a un costo nettamente inferiore.
+# <a name="how-tooimplement-disaster-recovery-using-service-backup-and-restore-in-azure-api-management"></a>Come tooimplement il ripristino di emergenza tramite servizio di backup e ripristino in Gestione API di Azure
+Per la scelta toopublish e gestire le API tramite Gestione API di Azure consente di usufruire di molte errore tolleranza di errore e l'infrastruttura di funzionalità che altrimenti sarebbe toodesign, implementare e gestire. Hello piattaforma Azure riduce gran parte di potenziali errori a una frazione del costo di hello.
 
-Per risolvere i problemi di disponibilità che colpiscono l'area in cui è ospitato il servizio di Gestione API, è necessario essere pronti a ripristinare il servizio in un'area diversa in qualsiasi momento. In base ai propri obiettivi in termini di disponibilità e tempi di ripristino, è consigliabile riservare un servizio di backup in una o più aree e provare a mantenere sincronizzati la configurazione e il contenuto con il servizio attivo. La funzionalità di backup e ripristino dei servizi fornisce il blocco predefinito necessario per implementare la propria strategia di ripristino di emergenza.
+toorecover da problemi di disponibilità hello regione in cui il servizio Gestione API di hosting si deve essere pronta tooreconstitute il servizio in un'area diversa in qualsiasi momento. A seconda di obiettivi di disponibilità e obiettivo tempo di ripristino si tooreserve un servizio di backup in una o più aree e provare toomaintain loro configurazione e la sincronizzazione con servizi attivi hello contenuto. backup del servizio Hello e funzionalità di ripristino fornisce hello, i blocchi necessari per implementare la strategia di ripristino di emergenza.
 
-Questa guida descrive come autenticare le richieste di Gestione risorse di Azure e come eseguire il backup e ripristinare le istanze del servizio Gestione API.
+Questa guida viene illustrato come le richieste tooauthenticate Gestione risorse di Azure e come toobackup e ripristinare le istanze del servizio Gestione API.
 
 > [!NOTE]
-> Il processo di backup e ripristino di un'istanza del servizio Gestione API per il ripristino di emergenza può essere usato anche per la replica delle istanze del servizio Gestione API per scenari quali la gestione temporanea.
+> Hello processo di backup e ripristino di un'istanza del servizio Gestione API per il ripristino di emergenza può essere utilizzato anche per la replica delle istanze del servizio Gestione API per scenari come la gestione temporanea.
 >
-> Si noti che ogni backup scade dopo 30 giorni. Se si tenta di ripristinare un backup dopo la scadenza del periodo di 30 giorni, il ripristino avrà esito negativo e verrà visualizzato il messaggio `Cannot restore: backup expired` .
+> Si noti che ogni backup scade dopo 30 giorni. Se si tenta di toorestore una copia di backup dopo il periodo di scadenza 30 giorni hello è scaduto, ripristino hello avrà esito negativo con un `Cannot restore: backup expired` messaggio.
 >
 >
 
 ## <a name="authenticating-azure-resource-manager-requests"></a>Autenticazione delle richieste di Gestione risorse di Azure
 > [!IMPORTANT]
-> L'API REST per il backup e ripristino usa Gestione risorse di Azure e include un meccanismo di autenticazione diverso rispetto alle API REST per la gestione delle entità di Gestione API. I passaggi descritti in questa sezione descrivono come autenticare le richieste di Gestione risorse di Azure. Per altre informazioni, vedere [Autenticazione delle richieste di Gestione risorse di Azure](http://msdn.microsoft.com/library/azure/dn790557.aspx).
+> Hello API REST per il backup e ripristino Usa Gestione risorse di Azure e presenta un meccanismo di autenticazione diverso rispetto ai hello API REST per gestire le entità di gestione API. Hello in questa sezione viene descritta la modalità Azure Resource Manager tooauthenticate richieste. Per altre informazioni, vedere [Autenticazione delle richieste di Gestione risorse di Azure](http://msdn.microsoft.com/library/azure/dn790557.aspx).
 >
 >
 
-Tutte le attività che è possibile eseguire sulle risorse tramite Gestione risorse di Azure devono essere autenticate con Azure Active Directory usando la procedura seguente.
+Tutte le attività hello che vengono eseguite sulle risorse usando hello Azure Resource Manager deve essere autenticate con Azure Active Directory tramite hello alla procedura seguente.
 
-* Aggiungere un'applicazione al tenant di Azure Active Directory.
-* Impostare le autorizzazioni per l'applicazione aggiunta.
-* Ottenere il token per autenticare le richieste a Gestione risorse di Azure.
+* Aggiungere un tenant di Azure Active Directory toohello dell'applicazione.
+* Impostare le autorizzazioni per un'applicazione hello che è stato aggiunto.
+* Ottenere il token di hello per autenticare le richieste tooAzure Gestione risorse.
 
-Il primo passaggio consiste nel creare un'applicazione Azure Active Directory. Accedere al [portale di Azure classico](http://manage.windowsazure.com/) usando la sottoscrizione che include l'istanza del servizio Gestione API e passare alla scheda **Applicazioni** per la directory predefinita di Azure Active Directory.
+primo passaggio Hello è toocreate un'applicazione Azure Active Directory. Accedere hello [portale di Azure classico](http://manage.windowsazure.com/) mediante sottoscrizione hello che contiene il servizio Gestione API dell'istanza e passare toohello **applicazioni** scheda per il valore predefinito di Azure Active Directory.
 
 > [!NOTE]
-> Se la directory predefinita di Azure Active Directory non è visibile nel proprio account, contattare l'amministratore della sottoscrizione di Azure perché conceda le autorizzazioni necessarie per l'account.
+> Se directory predefinita di hello Azure Active Directory non è visibile tooyour account, l'amministratore di hello contatto di hello toogrant di sottoscrizione di Azure hello richiesto tooyour autorizzazioni account.
 
 ![Creare un'applicazione Azure Active Directory][api-management-add-aad-application]
 
-Fare clic su **Aggiungi**, **Aggiungi un'applicazione che l'organizzazione sta sviluppando**, quindi scegliere **Applicazione client nativa**. Immettere un nome descrittivo e fare clic sulla freccia Avanti. Immettere un URL di segnaposto, ad esempio `http://resources` per **URI di reindirizzamento**, che è un campo obbligatorio, ma il valore non viene usato in seguito. Selezionare la casella di controllo per salvare l'applicazione.
+Fare clic su **Aggiungi**, **Aggiungi un'applicazione che l'organizzazione sta sviluppando**, quindi scegliere **Applicazione client nativa**. Immettere un nome descrittivo e fare clic sulla freccia avanti hello. Immettere un URL di segnaposto, ad esempio `http://resources` per hello **URI di reindirizzamento**, come è un campo obbligatorio, ma il valore di hello non viene usato in un secondo momento. Fare clic su un'applicazione hello toosave hello casella di controllo.
 
-Dopo il salvataggio dell'applicazione, fare clic su **Configura**, scorrere verso il basso fino alla sezione **Autorizzazioni per altre applicazioni** e fare clic su **Aggiungi applicazione**.
+Dopo aver salvata un'applicazione hello, fare clic su **configura**, scorrere verso il basso toohello **autorizzazioni tooother applicazioni** sezione e fare clic su **aggiungere applicazione**.
 
 ![Aggiungere autorizzazioni][api-management-aad-permissions-add]
 
-Selezionare **Windows** **API di gestione del servizio Microsoft Azure** e fare clic sulla casella di controllo per aggiungere l'applicazione.
+Selezionare **Windows** **API di gestione del servizio di Azure** e fare clic su un'applicazione hello tooadd hello casella di controllo.
 
 ![Aggiungere autorizzazioni][api-management-aad-permissions]
 
-Fare clic su **Autorizzazioni delegate** accanto all'applicazione di **Windows** **API di gestione del servizio Microsoft Azure** appena aggiunta, selezionare la casella per **Accesso a Gestione del servizio Azure (anteprima)** e fare clic su **Salva**.
+Fare clic su **autorizzazioni delegate** accanto a hello appena aggiunto **Windows** **API di gestione del servizio di Azure** applicazione hello casella per **accesso Azure Gestione dei servizi (anteprima)**, fare clic su **salvare**.
 
 ![Aggiungere autorizzazioni][api-management-aad-delegated-permissions]
 
-Prima di richiamare le API che generano il backup e ripristino, è necessario ottenere un token. L'esempio seguente usa il pacchetto NuGet [Microsoft.IdentityModel.Clients.ActiveDirectory](https://www.nuget.org/packages/Microsoft.IdentityModel.Clients.ActiveDirectory) per recuperare il token.
+Tooinvoking precedente hello API che generano hello backup e ripristino, è necessario tooget un token. esempio Hello utilizza hello [ActiveDirectory](https://www.nuget.org/packages/Microsoft.IdentityModel.Clients.ActiveDirectory) token di hello tooretrieve pacchetto nuget.
 
 ```c#
 using Microsoft.IdentityModel.Clients.ActiveDirectory;
@@ -83,7 +83,7 @@ namespace GetTokenResourceManagerRequests
             var result = authenticationContext.AcquireToken("https://management.azure.com/", {application id}, new Uri({redirect uri});
 
             if (result == null) {
-                throw new InvalidOperationException("Failed to obtain the JWT token");
+                throw new InvalidOperationException("Failed tooobtain hello JWT token");
             }
 
             Console.WriteLine(result.AccessToken);
@@ -94,105 +94,105 @@ namespace GetTokenResourceManagerRequests
 }
 ```
 
-Sostituire `{tentand id}`, `{application id}` e `{redirect uri}` usando le istruzioni seguenti.
+Sostituire `{tentand id}`, `{application id}`, e `{redirect uri}` utilizzando hello attenendosi alle istruzioni.
 
-Sostituire `{tenant id}` con l'ID tenant dell'applicazione Azure Active Directory appena creata. È possibile accedere all'ID facendo clic su **Visualizza endpoint**.
+Sostituire `{tenant id}` con l'id tenant hello di hello applicazione Azure Active Directory appena creata. È possibile accedere id hello facendo **visualizzare endpoint**.
 
 ![Endpoint][api-management-aad-default-directory]
 
 ![Endpoint][api-management-endpoint]
 
-Sostituire `{application id}` e `{redirect uri}` usando l'**ID client** e l'URL dalla sezione **URI di reindirizzamento** dalla scheda **Configura** dell'applicazione Azure Active Directory.
+Sostituire `{application id}` e `{redirect uri}` utilizzando hello **Id Client** e hello URL da hello **Redirect Uris** sezione dall'applicazione Azure Active Directory **Configura**  scheda.
 
 ![Risorse][api-management-aad-resources]
 
-Dopo avere specificato i valori, l'esempio di codice dovrebbe restituire un token simile all'esempio seguente.
+Una volta specificati i valori hello, esempio di codice hello deve restituire un token toohello simile esempio seguente.
 
-![Token][api-management-arm-token]
+![token][api-management-arm-token]
 
-Prima di chiamare le operazioni di backup e ripristino descritte nelle sezioni seguenti, impostare l'intestazione della richiesta di autorizzazione per la chiamata REST.
+Prima di chiamare il metodo hello backup e ripristinare le operazioni descritte nelle sezioni che seguono hello, impostare l'intestazione della richiesta hello autorizzazione per la chiamata REST.
 
 ```c#
 request.Headers.Add(HttpRequestHeader.Authorization, "Bearer " + token);
 ```
 
 ## <a name="step1"> </a>Backup di un servizio di Gestione API
-Per eseguire il backup di un servizio di gestione API, emettere la seguente richiesta HTTP:
+tooback backup un hello problema del servizio Gestione API richiesta HTTP seguente:
 
 `POST https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/backup?api-version={api-version}`
 
 dove:
 
-* `subscriptionId` : ID della sottoscrizione contenente il servizio di Gestione API di cui si sta tentando di eseguire il backup.
-* `resourceGroupName`: una stringa nel formato "Api-Default-{service-region}", dove `service-region` identifica l'area di Azure in cui è ospitato il servizio di Gestione API di cui si sta tentando di eseguire il backup, ad esempio `North-Central-US`.
-* `serviceName` : il nome del servizio di Gestione API di cui sta eseguendo il backup specificato quando è stato creato.
+* `subscriptionId`-id della sottoscrizione hello contenente il servizio di gestione API hello che si sta tentando di toobackup
+* `resourceGroupName`-stringa nel formato hello "Api - predefinito-{servizio region}" dove `service-region` identifica hello regione di Azure in cui è ospitato il servizio Gestione API che si sta tentando di toobackup hello, ad esempio,`North-Central-US`
+* `serviceName`-nome hello del servizio Gestione API effettuare un backup di specificata in fase di creazione di hello hello
 * `api-version` - sostituire con `2014-02-14`
 
-Nel corpo della richiesta, specificare il nome dell'account di archiviazione, la chiave di accesso, il nome del contenitore BLOB e il nome del backup di destinazione di Azure:
+Nel corpo della richiesta di hello hello specificare nome account di archiviazione di Azure di destinazione hello, chiave di accesso, nome del contenitore blob e nome backup:
 
 ```
 '{  
-    storageAccount : {storage account name for the backup},  
-    accessKey : {access key for the account},  
+    storageAccount : {storage account name for hello backup},  
+    accessKey : {access key for hello account},  
     containerName : {backup container name},  
     backupName : {backup blob name}  
 }'
 ```
 
-Impostare il valore dell'intestazione della richiesta `Content-Type` su `application/json`.
+Impostare il valore di hello di hello `Content-Type` intestazione della richiesta troppo`application/json`.
 
-Il backup è un'operazione a lunga esecuzione che potrebbe richiedere diversi minuti per essere completata.  Se la richiesta viene eseguita correttamente e il processo di backup viene avviato, si riceverà un codice di stato risposta `202 Accepted` con un'intestazione `Location`.  Effettuare richieste "GET" all'URL nell'intestazione `Location` per conoscere lo stato dell'operazione. Durante l'esecuzione del backup si continuerà a ricevere il codice di stato "202 - Accettato". Il codice risposta `200 OK` indicherà il completamento dell'operazione di backup.
+Copia di backup è un'operazione a esecuzione prolungata che potrebbero essere necessari più toocomplete minuti.  Se hello richiesta ha esito positivo e processo di backup hello è stata avviata, riceverai un `202 Accepted` codice di stato di risposta con un `Location` intestazione.  Verificare 'GET' richiede URL di toohello in hello `Location` toofind intestazione stato hello dell'operazione di hello. Mentre è in corso il backup di hello continuerà tooreceive un codice di stato "202 accettato". Un codice di risposta `200 OK` indicherà il completamento dell'operazione di backup hello.
 
-Quando si crea una richiesta di backup, occorre notare i vincoli seguenti.
+Nota: hello seguenti vincoli quando si effettua una richiesta di backup.
 
-* Il **contenitore** specificato nel corpo della richiesta **deve esistere**.
+* **Contenitore** specificato nel corpo della richiesta hello **deve esistere**.
 * Mentre il backup è in corso, **non tentare di eseguire alcuna operazione di gestione dei servizi** , ad esempio l'aggiornamento o il downgrade di SKU, la modifica di nomi di dominio e così via.
-* Il ripristino di un **backup è garantito solo per 30 giorni** dal momento della sua creazione.
-* I **dati di utilizzo** usati per creare report analitici **non sono inclusi** nel backup. Usare l'[API REST di Gestione API di Azure][Azure API Management REST API] per recuperare periodicamente i report analitici e custodirli al sicuro.
-* La frequenza con cui si eseguono i backup dei servizi influenzerà i propri obiettivi relativi ai punti di ripristino. Per ridurla al minimo, si consiglia di implementare backup regolari e di eseguire backup su richiesta dopo aver apportato modifiche importanti al servizio di Gestione API.
-* Le **modifiche** apportate alla configurazione del servizio (ad esempio alle API, ai criteri, all'aspetto del portale per sviluppatori) durante l'esecuzione del processo di backup **potrebbero non essere incluse nel backup e potrebbero quindi andare perse**.
+* Ripristino di un **backup è garantito solo per 30 giorni** dall'istante hello della creazione.
+* **Dati di utilizzo** utilizzata per creare report analitica **non è incluso** nel backup hello. Utilizzare [API REST gestione API di Azure] [ Azure API Management REST API] tooperiodically recuperare i report di analitica per motivi di sicurezza.
+* frequenza di Hello con cui si esegue il backup del servizio avrà effetto sull'obiettivo del punto di ripristino. è consigliabile implementare backup regolari, nonché l'esecuzione di backup su richiesta dopo aver apportato importante toominimize modifica tooyour servizio di gestione API.
+* **Le modifiche** toohello effettuata configurazione del servizio (ad esempio, API, criteri, aspetto del portale per sviluppatori) durante l'operazione di backup è in corso **potrebbero non essere inclusi nel backup hello e pertanto andranno persi**.
 
-## <a name="step2"> </a>Ripristino di un servizio di Gestione API
-Per ripristinare un servizio di Gestione API da un backup creato in precedenza, creare la seguente richiesta HTTP:
+## <a name="step2"></a>Ripristino di un servizio di Gestione API
+un servizio di gestione API da un backup creato in precedenza toorestore apportare hello seguente richiesta HTTP:
 
 `POST https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/restore?api-version={api-version}`
 
 dove:
 
-* `subscriptionId` : ID della sottoscrizione contenente il servizio di Gestione API in cui si sta ripristinando un backup.
-* `resourceGroupName`: una stringa nel formato "Api-Default-{service-region}", dove `service-region` identifica l'area di Azure in cui è ospitato il servizio di Gestione API in cui si ripristinando un backup, ad esempio `North-Central-US`.
-* `serviceName` : il nome del servizio di Gestione API in cui si sta effettuando il ripristino specificato quando è stato creato.
+* `subscriptionId`-id della sottoscrizione hello contenente si ripristina un backup nel servizio di gestione API hello
+* `resourceGroupName`-stringa nel formato hello "Api - predefinito-{servizio region}" dove `service-region` identifica hello regione di Azure in cui è ospitato hello si ripristina un backup nel servizio di gestione API, ad esempio,`North-Central-US`
+* `serviceName`-nome hello di hello gestione API del servizio in fase di ripristino specificato in fase di hello della creazione
 * `api-version` - sostituire con `2014-02-14`
 
-Nel corpo della richiesta, specificare la posizione del file di backup, ad esempio il nome dell'account di archiviazione, la chiave di accesso, il nome del contenitore BLOB e il nome del backup di Azure:
+Nel corpo della richiesta di hello hello specificare percorso file di backup hello, ad esempio nome account di archiviazione di Azure, chiave di accesso, nome del contenitore blob e nome backup:
 
 ```
 '{  
-    storageAccount : {storage account name for the backup},  
-    accessKey : {access key for the account},  
+    storageAccount : {storage account name for hello backup},  
+    accessKey : {access key for hello account},  
     containerName : {backup container name},  
     backupName : {backup blob name}  
 }'
 ```
 
-Impostare il valore dell'intestazione della richiesta `Content-Type` su `application/json`.
+Impostare il valore di hello di hello `Content-Type` intestazione della richiesta troppo`application/json`.
 
-Il ripristino è un'operazione a lunga esecuzione che potrebbe richiedere 30 minuti o più per essere completata.  Se la richiesta viene eseguita correttamente e il processo di ripristino viene avviato, si riceverà un codice di stato risposta `202 Accepted` con un'intestazione `Location`.  Effettuare richieste "GET" all'URL nell'intestazione `Location` per conoscere lo stato dell'operazione. Durante l'esecuzione del ripristino si continuerà a ricevere il codice di stato "202 - Accettato". Il codice risposta `200 OK` indicherà il completamento dell'operazione di ripristino.
+Il ripristino è un'operazione a esecuzione prolungata che potrebbe essere too30 o altre toocomplete minuti.  Se hello richiesta è stata completata ed è stato avviato il processo di ripristino hello si riceverà un `202 Accepted` codice di stato di risposta con un `Location` intestazione.  Verificare 'GET' richiede URL di toohello in hello `Location` toofind intestazione stato hello dell'operazione di hello. Durante l'esecuzione di restore hello continuerà tooreceive '202 accettato' codice di stato. Un codice di risposta `200 OK` indicherà il completamento dell'operazione di ripristino hello.
 
 > [!IMPORTANT]
-> Lo **SKU** del servizio in cui si effettua il ripristino **deve corrispondere** allo SKU del servizio sottoposto a backup da ripristinare.
+> **Hello SKU** del servizio hello in fase di ripristino **deve corrispondere** hello SKU di hello backup del servizio in corso il ripristino.
 >
-> Le **modifiche** apportate alla configurazione del servizio (ad esempio alle API, ai criteri, all'aspetto del portale per sviluppatori) durante l'operazione di ripristino **potrebbero essere sovrascritte**.
+> **Le modifiche** toohello effettuata configurazione del servizio (ad esempio, API, criteri, aspetto del portale per sviluppatori) durante l'operazione di ripristino è in corso **potrebbero essere sovrascritti**.
 >
 >
 
 ## <a name="next-steps"></a>Passaggi successivi
-Consultare i blog Microsoft seguenti per due diverse procedure dettagliate del processo di backup e ripristino.
+Estrarre hello seguente blog di Microsoft per le due procedure dettagliate diverse del processo di backup/ripristino hello.
 
 * [Replicare account di Gestione API di Azure](https://www.returngis.net/en/2015/06/replicate-azure-api-management-accounts/)
-  * Grazie a Gisela per il contributo fornito per questo articolo.
+  * Grazie a tooGisela per articolo toothis contributo.
 * [Gestione API di Azure: Backup e ripristino della configurazione](http://blogs.msdn.com/b/stuartleeks/archive/2015/04/29/azure-api-management-backing-up-and-restoring-configuration.aspx)
-  * L'approccio descritto da Stuart corrisponde alle linee guida ufficiali, ma è molto interessante.
+  * approccio Hello dettagliata Stuart non corrisponde a informazioni aggiuntive ufficiale hello ma è molto interessante.
 
 [Backup an API Management service]: #step1
 [Restore an API Management service]: #step2

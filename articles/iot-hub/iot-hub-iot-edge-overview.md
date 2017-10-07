@@ -1,6 +1,6 @@
 ---
-title: Panoramica di Azure IoT Edge | Microsoft Docs
-description: Descrive i concetti principali dell'architettura di Azure IoT Edge, come gateway, moduli e broker.
+title: aaaOverview del bordo IoT di Azure | Documenti Microsoft
+description: Viene descritto hello architetturale concetti chiave di Azure IoT Edge come gateway, i moduli e istanze di Service Broker.
 services: iot-hub
 documentationcenter: 
 author: dominicbetts
@@ -13,52 +13,52 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/02/2017
 ms.author: dobett
-ms.openlocfilehash: ecdd56c91a8fc2011b3d7abe93b9d27c1e1e0bef
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 32debc0d4f40cfd7f2cce7cf8c76b12ec18ee2dc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-iot-edge-architectural-concepts"></a>Concetti dell'architettura di Azure IoT Edge
 
-Prima di esaminare il codice di esempio o di creare un gateway sul campo usando IoT Edge, è necessario conoscere i concetti principali che supportano l'architettura di IoT Edge.
+Prima di esaminare qualsiasi codice di esempio o creare proprio gateway di campo tramite IoT Edge, è necessario comprendere i concetti chiave hello che supportano l'architettura di hello del bordo IoT.
 
 ## <a name="iot-edge-modules"></a>Moduli di IoT Edge
 
-Per compilare un gateway con Azure IoT Edge, è necessario creare e assemblare i *moduli di IoT Edge*. I moduli usano *messaggi* per scambiarsi dati tra loro. Un modulo riceve un messaggio, esegue un'azione su di esso, lo trasforma facoltativamente in un nuovo messaggio e quindi lo pubblica per l'elaborazione da parte di altri moduli. Alcuni moduli potrebbero produrre solo nuovi messaggi e non elaborare mai i messaggi in arrivo. Una catena di moduli crea una pipeline di elaborazione dei dati in cui ogni modulo esegue una trasformazione sui dati in un punto nella pipeline.
+Per compilare un gateway con Azure IoT Edge, è necessario creare e assemblare i *moduli di IoT Edge*. Utilizzano i moduli *messaggi* tooexchange dati tra loro. Un modulo riceve un messaggio, esegue un'azione su di esso, facoltativamente, li trasforma in un nuovo messaggio e pubblica quindi per tooprocess altri moduli. Alcuni moduli potrebbero produrre solo nuovi messaggi e non elaborare mai i messaggi in arrivo. Una catena di moduli crea una pipeline di elaborazione dei dati con ogni modulo eseguendo una trasformazione sui dati hello in un determinato punto nella pipeline.
 
 ![Catena di moduli nel gateway compilati con Azure IoT Edge][1]
 
-IoT Edge contiene i componenti seguenti:
+Bordo IoT contiene hello seguenti componenti:
 
 * Moduli già scritti che eseguono funzioni di gateway comuni.
-* Le interfacce che uno sviluppatore può usare per scrivere i moduli personalizzati.
-* L'infrastruttura necessaria per distribuire ed eseguire un set di moduli.
+* interfacce Hello un sviluppatore possono utilizzare moduli personalizzati toowrite.
+* Hello infrastruttura necessarie toodeploy ed eseguire un set di moduli.
 
-L'SDK offre un livello di astrazione che consente di compilare gateway da eseguire in vari sistemi operativi e piattaforme.
+Hello SDK fornisce un livello di astrazione che consente di toobuild gateway toorun in vari sistemi operativi e piattaforme.
 
 ![Livello di astrazione di Azure IoT Edge][2]
 
 ## <a name="messages"></a>Messaggi
 
-Nonostante sia più semplice concettualizzare il funzionamento di un gateway come una trasmissione di messaggi tra moduli, ciò non lo riflette con precisione. I moduli di IoT Edge usano un broker per comunicare tra loro. I moduli pubblicano i messaggi nel broker tramite modelli di messaggistica, ad esempio bus o pubblicazione/sottoscrizione, e consentono al broker di instradare il messaggio ai moduli a esso connessi.
+Sebbene pensa moduli passando tooeach altri messaggi è un modo pratico di tooconceptualize funzionamento di un gateway, non in modo accurato riflette cosa accade. I moduli di IoT Edge utilizzano un toocommunicate broker tra loro. I moduli pubblicano broker toohello messaggi (tramite modelli di messaggistica, ad esempio, bus o di pubblicazione/sottoscrizione) e quindi consentono hello broker route hello messaggio toohello moduli connesso tooit.
 
-Un modulo usa la funzione **Broker_Publish** per pubblicare un messaggio nel broker. Il broker recapita i messaggi a un modulo richiamando una funzione di callback. Un messaggio è costituito da un set di proprietà chiave/valore e contenuto passato come blocco di memoria.
+Un modulo Usa hello **Broker_Publish** funzione toopublish un broker toohello messaggi. broker di Hello recapita modulo tooa messaggi richiamando una funzione di callback. Un messaggio è costituito da un set di proprietà chiave/valore e contenuto passato come blocco di memoria.
 
-![Ruolo del broker in Azure IoT Edge][3]
+![ruolo Hello di Service Broker in Azure IoT Edge hello][3]
 
 ## <a name="message-routing-and-filtering"></a>Routing e filtro dei messaggi
 
-Per indirizzare i messaggi ai moduli di IoT Edge corretti, è possibile procedere in due modi:
+Esistono due modi toodirect messaggi toohello corretto IoT bordo i moduli:
 
-* È possibile passare un set di collegamenti al broker in modo che conosca l'origine e il sink di ogni modulo.
-* Un modulo può filtrare le proprietà del messaggio.
+* È possibile passare un set di collegamenti possono essere passati broker toohello in modo da Service broker hello hello origine e sink per ogni modulo.
+* Un modulo è possibile filtrare per proprietà hello del messaggio hello.
 
-Un modulo deve agire unicamente sui messaggi a esso destinati. I collegamenti e il filtro dei messaggi creano una pipeline dei messaggi.
+Un modulo deve agire solo su un messaggio se il messaggio hello destinato. I collegamenti e il filtro dei messaggi creano una pipeline dei messaggi.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Per vedere l'applicazione di questi concetti in un esempio eseguibile, vedere [Esplorare l'architettura di Azure IoT Edge in Linux][lnk-hello-world].
+toosee questi concetti applicati in un esempio è possibile eseguire, vedere [architettura esplorare Azure IoT Edge][lnk-hello-world].
 
 <!-- Images -->
 [1]: media/iot-hub-iot-edge-overview/modules.png

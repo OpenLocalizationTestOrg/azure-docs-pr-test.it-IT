@@ -1,5 +1,5 @@
 ---
-title: "Aggiornamenti dello schema del 1° agosto 2015 in anteprima: App per la logica di Azure | Microsoft Docs"
+title: aaaSchema Aggiorna anteprima di agosto-1-2015 - App Azure per la logica | Documenti Microsoft
 description: Creare definizioni JSON per App per la logica di Azure con la versione dello schema 2015-08-01-preview
 author: stepsic-microsoft-com
 manager: anneta
@@ -15,38 +15,38 @@ ms.topic: article
 ms.custom: H1Hack27Feb2017
 ms.date: 05/31/2016
 ms.author: LADocs; stepsic
-ms.openlocfilehash: 35d7a56d5607dcc18a4407c65b92962d3d0dcd1d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 950cd18a27aa1859c4f0b6116de3fb8699d746c4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="schema-updates-for-azure-logic-apps---august-1-2015-preview"></a>Aggiornamenti dello schema per App per la logica di Azure: anteprima del 1° agosto 2015
 
-La nuova versione dello schema e dell'API per App per la logica di Azure include importanti miglioramenti che rendono le app per la logica più affidabili e facili da usare:
+Questo nuovo schema e l'API di versione per App di logica di Azure include importanti miglioramenti che App per la logica di rendere più affidabile e facile toouse:
 
-*   Il tipo di azione **APIApp** viene aggiornato e sostituito con un nuovo tipo di azione [**APIConnection**](#api-connections).
-*   **Repeat** viene rinominato come [**Foreach**](#foreach).
-*   L'[app per le API **Listener HTTP**](#http-listener) non è più necessaria.
+*   Hello **APIApp** tipo di azione è aggiornato tooa nuova [ **APIConnection** ](#api-connections) tipo di azione.
+*   **Ripetere** viene rinominato troppo[**Foreach**](#foreach).
+*   Hello [ **HTTP Listener** App per le API](#http-listener) non è più necessario.
 *   La chiamata a flussi di lavoro figlio usa un [nuovo schema](#child-workflows).
 
 <a name="api-connections"></a>
-## <a name="move-to-api-connections"></a>Passare alle connessioni API
+## <a name="move-tooapi-connections"></a>Spostare le connessioni tooAPI
 
-Il cambiamento più importante riguarda il fatto che non è più necessario distribuire app per le API nella sottoscrizione di Azure per poter usare le API. Ecco in che modo è possibile usare le API:
+cambiamento Hello è che non è più necessario toodeploy App per le API alla sottoscrizione di Azure è possibile utilizzare le API. Esistono metodi hello che è possibile utilizzare le API:
 
 * API gestite
 * API Web personalizzate
 
-Ciascun metodo viene gestito in modo leggermente diverso perché prevede modelli di gestione e hosting diversi. Un vantaggio di questo modello è che non si è più vincolati a risorse che vengono distribuite nel gruppo di risorse di Azure. 
+Ciascun metodo viene gestito in modo leggermente diverso perché prevede modelli di gestione e hosting diversi. Uno dei vantaggi di questo modello è non sta non è più vincolata tooresources che vengono distribuite nel gruppo di risorse di Azure. 
 
 ### <a name="managed-apis"></a>API gestite
 
 Microsoft gestisce alcune API per conto dell'utente, ad esempio Office 365, Salesforce, Twitter e FTP. È possibile usare alcune API gestite così come sono, ad esempio Bing Translate, mentre altre richiedono una configurazione. Questa configurazione è detta *connessione*.
 
-Quando si usa Office 365, ad esempio, è necessario creare una connessione contenente il token di accesso a Office 365. Il token è archiviato in modo sicuro e aggiornato in modo che l'app per la logica possa sempre chiamare l'API di Office 365. In alternativa, per connettersi al server SQL o FTP è necessario creare una connessione che includa la stringa di connessione. 
+Quando si usa Office 365, ad esempio, è necessario creare una connessione contenente il token di accesso a Office 365. Questo token in modo sicuro è archiviato e aggiornato in modo che l'app logica può chiamare sempre il metodo hello API di Office 365. In alternativa, se si desidera tooconnect tooyour FTP o SQL server, è necessario creare una connessione con la stringa di connessione hello. 
 
-In questa definizione, queste azioni sono denominate `APIConnection`. Di seguito è riportato un esempio di connessione che chiama Office 365 per inviare un messaggio di posta elettronica:
+In questa definizione, queste azioni sono denominate `APIConnection`. Di seguito è riportato un esempio di una connessione che chiama un messaggio di posta elettronica di Office 365 toosend:
 
 ```
 {
@@ -75,17 +75,17 @@ In questa definizione, queste azioni sono denominate `APIConnection`. Di seguito
 }
 ```
 
-L'oggetto `host` è la porzione di input univoca per le connessioni API e contiene due parti: `api` e `connection`.
+Hello `host` oggetto è parte di input connessioni tooAPI univoco, che contiene due parti: `api` e `connection`.
 
-`api` contiene l'URL di runtime della posizione in cui è ospitata l'API gestita. Per visualizzare tutte le API gestite disponibili, è possibile chiamare `GET https://management.azure.com/subscriptions/{subid}/providers/Microsoft.Web/managedApis/?api-version=2015-08-01-preview`.
+Hello `api` ha runtime hello URL dell'API che gestita con una diversa in cui è ospitato. È possibile visualizzare tutti hello disponibili API gestite chiamando `GET https://management.azure.com/subscriptions/{subid}/providers/Microsoft.Web/managedApis/?api-version=2015-08-01-preview`.
 
-Quando si usa un'API, questa può presentare o meno *parametri di connessione* definiti. Se non sono definiti, non è richiesta alcuna *connessione*. Se sono definiti, è necessario creare una connessione. La connessione creata ha il nome scelto. Poi si fa riferimento al nome nell'oggetto `connection` all'interno dell'oggetto `host`. Per creare una connessione in un gruppo di risorse, chiamare:
+Quando si utilizza un'API, hello API potrebbe o potrebbe non disporre *parametri di connessione* definito. Se non hello API, nessun *connessione* è obbligatorio. In caso di hello API, è necessario creare una connessione. nome di hello prescelto connessione Hello creato. Per fare riferimento nome hello in hello `connection` oggetto all'interno di hello `host` oggetto. una connessione in un gruppo di risorse, chiamata toocreate:
 
 ```
 PUT https://management.azure.com/subscriptions/{subid}/resourceGroups/{rgname}/providers/Microsoft.Web/connections/{name}?api-version=2015-08-01-preview
 ```
 
-Con il corpo seguente:
+Con hello corpo seguente:
 
 ```
 {
@@ -94,7 +94,7 @@ Con il corpo seguente:
       "id": "/subscriptions/{subid}/providers/Microsoft.Web/managedApis/azureblob"
     },
     "parameterValues": {
-        "accountName": "{The name of the storage account -- the set of parameters is different for each API}"
+        "accountName": "{hello name of hello storage account -- hello set of parameters is different for each API}"
     }
   },
   "location": "{Logic app's location}"
@@ -104,7 +104,7 @@ Con il corpo seguente:
 ### <a name="deploy-managed-apis-in-an-azure-resource-manager-template"></a>Distribuire API gestite in un modello di Azure Resource Manager
 
 È possibile creare un'applicazione completa in un modello di Azure Resource Manager, purché non sia necessario l'accesso interattivo.
-Se è necessario l'accesso, è possibile impostare tutto con il modello di Azure Resource Manager, ma sarà comunque necessario visitare il portale per autorizzare le connessioni. 
+Se l'accesso è obbligatorio, è possibile impostare tutti gli elementi con il modello di gestione risorse di Azure hello, ma è comunque necessario connessioni di hello toovisit hello tooauthorize portale. 
 
 ```
     "resources": [{
@@ -194,13 +194,13 @@ Se è necessario l'accesso, è possibile impostare tutto con il modello di Azure
     }]
 ```
 
-Come si vede in questo esempio, le connessioni non sono altro che risorse presenti nel gruppo di risorse. Fanno riferimento alle API gestite disponibili nella sottoscrizione dell'utente.
+È possibile visualizzare in questo esempio le connessioni hello sono solo le risorse che risiedono nel gruppo di risorse. Fanno riferimento a tooyou disponibili di API gestita hello nella sottoscrizione.
 
 ### <a name="your-custom-web-apis"></a>API Web personalizzate
 
-Se si usano API personalizzate, non quelle gestite da Microsoft, usare l'azione **HTTP** predefinita per chiamarle. Per un'esperienza ideale, si consiglia di esporre un endpoint swagger per l'API. Questo endpoint consente alla finestra di progettazione di app per la logica di eseguire il rendering degli input e degli output per l'API. Senza Swagger, la finestra di progettazione può mostrare gli input e gli output solo come oggetti JSON opachi.
+Se si utilizzano le tue API, quelli non gestiti da Microsoft, utilizzare incorporato hello **HTTP** toocall azione li. Per un'esperienza ideale, si consiglia di esporre un endpoint swagger per l'API. Questo endpoint consente gli input di hello progettazione applicazione logica toorender hello e output per l'API. Senza Swagger, progettazione hello può mostrare solo hello input e output come oggetti JSON opachi.
 
-Di seguito è riportato un esempio che mostra la nuova proprietà `metadata.apiDefinitionUrl` :
+Ecco un hello di esempio che mostra nuova `metadata.apiDefinitionUrl` proprietà:
 
 ```
 {
@@ -219,13 +219,13 @@ Di seguito è riportato un esempio che mostra la nuova proprietà `metadata.apiD
 }
 ```
 
-Se l'API Web è ospitata in Servizio app di Azure, verrà visualizzata automaticamente nell'elenco di azioni disponibili nella finestra di progettazione. In caso contrario, è necessario incollare direttamente l'URL. Per poter essere usato nella finestra di progettazione di app per la logica, l'endpoint Swagger deve essere non autenticato, anche se è possibile proteggere l'API stessa con qualsiasi metodo supportato da Swagger.
+Se si ospita l'API Web nel servizio App di Azure, l'API Web viene visualizzato automaticamente nell'elenco di hello di azioni disponibili nella finestra di progettazione hello. In caso contrario, sono presenti toopaste URL hello direttamente. endpoint Swagger Hello deve essere non autenticate toobe utilizzabile in hello progettazione applicazione logica, anche se è possibile proteggere hello stessa interfaccia API con qualsiasi metodo che supporta Swagger.
 
 ### <a name="call-deployed-api-apps-with-2015-08-01-preview"></a>Chiamare le app per le API già distribuite con 2015-08-01-preview
 
-Se in precedenza è stata distribuita un'app per le API, è possibile chiamare l'app usando l'azione **HTTP**.
+Se già stato distribuito un'App per le API, è possibile chiamare l'applicazione hello con hello **HTTP** azione.
 
-Ad esempio, se si usa Dropbox per elencare i file, la definizione della versione dello schema **2014-12-01-preview** può essere simile a quanto segue:
+Ad esempio, se si utilizzano file toolist dell'area di sincronizzazione, il **2014-12-01-preview** definizione di versione dello schema potrebbe essere simile al seguente:
 
 ```
 {
@@ -266,7 +266,7 @@ Ad esempio, se si usa Dropbox per elencare i file, la definizione della versione
 }
 ```
 
-È possibile costruire l'azione HTTP equivalente come nell'esempio seguente, mentre la sezione parameters della definizione dell'app per la logica rimane invariata:
+È possibile costruire azione HTTP equivalente hello simile a questo esempio, mentre sezione parametri hello di definizione dell'app logica hello rimane invariato:
 
 ```
 {
@@ -298,18 +298,18 @@ La tabella seguente illustra le singole proprietà:
 | Proprietà dell'azione | Descrizione |
 | --- | --- |
 | `type` |`Http` anziché `APIapp` |
-| `metadata.apiDefinitionUrl` |Per usare questa azione nella finestra di progettazione di app per la logica, includere l'endpoint dei metadati, costituito da: `{api app host.gateway}/api/service/apidef/{last segment of the api app host.id}/?api-version=2015-01-14&format=swagger-2.0-standard` |
-| `inputs.uri` |Costituito da: `{api app host.gateway}/api/service/invoke/{last segment of the api app host.id}/{api app operation}?api-version=2015-01-14` |
+| `metadata.apiDefinitionUrl` |toouse in hello progettazione applicazione logica, questa azione includono l'endpoint dei metadati hello, che viene creato da:`{api app host.gateway}/api/service/apidef/{last segment of hello api app host.id}/?api-version=2015-01-14&format=swagger-2.0-standard` |
+| `inputs.uri` |Costituito da: `{api app host.gateway}/api/service/invoke/{last segment of hello api app host.id}/{api app operation}?api-version=2015-01-14` |
 | `inputs.method` |Sempre `POST` |
-| `inputs.body` |Identica ai parametri dell'app per le API |
-| `inputs.authentication` |Identica all'autenticazione dell'app per le API |
+| `inputs.body` |Parametri dell'App toohello identici API |
+| `inputs.authentication` |L'autenticazione di App per le API di toohello identico |
 
-Questo approccio dovrebbe funzionare per tutte le azioni delle app per le API. Tenere tuttavia presente che queste app per le api precedenti non sono più supportate. È quindi consigliabile passare a una delle altre due opzioni precedenti, un'API gestita o l'hosting dell'API Web personalizzata.
+Questo approccio dovrebbe funzionare per tutte le azioni delle app per le API. Tenere tuttavia presente che queste app per le api precedenti non sono più supportate. È pertanto consigliabile spostare tooone di hello due altre opzioni precedenti, un'API gestita o ospita l'API Web personalizzato.
 
 <a name="foreach"></a>
-## <a name="renamed-repeat-to-foreach"></a>"Repeat" rinominato come "foreach"
+## <a name="renamed-repeat-tooforeach"></a>Rinominare 'repeat' too'foreach'
 
-In base ai commenti e suggerimenti ricevuti dai clienti per la versione dello schema precedente, **Ripeti** generava confusione e non era chiaramente identificabile come ciclo **Foreach** . Di conseguenza, `repeat` è stato rinominato in `foreach`. Ad esempio, in precedenza si sarebbe scritto:
+Per la versione di schema hello precedente, è pervenuta quantità i suggerimenti dei clienti che **ripetere** creava notevole confusione e che non è stata correttamente acquisire **ripetere** fosse effettivamente un ciclo foreach. Di conseguenza, è stata rinominata `repeat` troppo`foreach`. Ad esempio, in precedenza si sarebbe scritto:
 
 ```
 {
@@ -343,11 +343,11 @@ Ora si scriverebbe:
 }
 ```
 
-In precedenza veniva usata la funzione `@repeatItem()` per fare riferimento all'elemento corrente sottoposto a iterazione. Questa funzione è ora semplificata a `@item()`. 
+funzione Hello `@repeatItem()` è stato utilizzato in precedenza tooreference elemento corrente di hello scorsa. Questa funzione è ora semplificata troppo`@item()`. 
 
 ### <a name="reference-outputs-from-foreach"></a>Fare riferimento agli output da "foreach"
 
-Per maggiore semplicità, non viene eseguito il wrapping degli output dalle azioni `foreach` in un oggetto denominato `repeatItems`. Mentre gli output dall'esempio di `repeat` precedente erano:
+Per semplificare le operazioni, gli output hello `foreach` azioni non sono incapsulate in un oggetto denominato `repeatItems`. Mentre hello di output di hello precedente `repeat` esempio fosse:
 
 ```
 {
@@ -387,7 +387,7 @@ Ora tali output sono:
 ]
 ```
 
-Prima per ottenere il corpo dell'azione facendo riferimento agli output, era necessario eseguire:
+In precedenza, il tooget toohello corpo dell'azione di hello quando si fa riferimento a questi output:
 
 ```
 {
@@ -423,19 +423,19 @@ Ora, invece, è possibile eseguire:
 }
 ```
 
-Con queste modifiche, le funzioni `@repeatItem()`, `@repeatBody()` e `@repeatOutputs()` sono state rimosse.
+Con queste modifiche, hello funzioni `@repeatItem()`, `@repeatBody()`, e `@repeatOutputs()` vengono rimossi.
 
 <a name="http-listener"></a>
 ## <a name="native-http-listener"></a>Listener HTTP nativo
 
-Le funzionalità del listener HTTP ora sono predefinite. Non è quindi più necessario distribuire un'app per le API del listener HTTP. Per informazioni dettagliate, vedere [App per la logica come endpoint che è possibile chiamare](../logic-apps/logic-apps-http-endpoint.md). 
+Hello funzionalità HTTP Listener sono ora incorporate. Pertanto, non è più necessario toodeploy un'App per le API del Listener HTTP. Vedere [hello dettagli completi per informazioni su come toomake il qui callable di logica app endpoint](../logic-apps/logic-apps-http-endpoint.md). 
 
-Con queste modifiche, è stata rimossa la funzione `@accessKeys()`, che è stata sostituita con la funzione `@listCallbackURL()` per ottenere l'endpoint, se necessario. Ora è anche necessario definire almeno un trigger nell'app per la logica. Per eseguire il comando `/run` sul flusso di lavoro, è necessario avere un trigger `manual`, `apiConnectionWebhook` o `httpWebhook`.
+Con queste modifiche, sono state rimosse hello `@accessKeys()` funzione, pertanto abbiamo sostituito con hello `@listCallbackURL()` funzione per ottenere l'endpoint di hello quando necessario. Ora è anche necessario definire almeno un trigger nell'app per la logica. Se si desidera troppo`/run` hello del flusso di lavoro, è necessario disporre di uno di questi trigger: `manual`, `apiConnectionWebhook`, o `httpWebhook`.
 
 <a name="child-workflows"></a>
 ## <a name="call-child-workflows"></a>Chiamare flussi di lavoro figlio
 
-In precedenza, per la chiamata a flussi di lavoro figlio era necessario passare al flusso di lavoro, ottenere il token di accesso e incollare il token nella definizione dell'app per la logica in cui si vuole chiamare tale flusso di lavoro figlio. Con il nuovo schema, il motore di app per la logica genera automaticamente una firma di accesso condiviso in fase di esecuzione per il flusso di lavoro figlio, quindi non è necessario incollare segreti nella definizione. Di seguito è fornito un esempio:
+In precedenza, la chiamata di flussi di lavoro figlio, è necessario passare toohello del flusso di lavoro, ottenere il token di accesso di hello e concatenamento dei token di hello nella definizione di applicazione hello logica in cui si desidera toocall tale flusso di lavoro figlio. Con nuovo schema hello, hello logica App motore genera automaticamente una firma di accesso condiviso in fase di esecuzione per hello del flusso di lavoro figlio in modo da non avere troppo incollato alcun dato segreto definizione hello. Di seguito è fornito un esempio:
 
 ```
 "mynestedwf": {
@@ -461,20 +461,20 @@ In precedenza, per la chiamata a flussi di lavoro figlio era necessario passare 
 }
 ```
 
-Un secondo miglioramento è l'accesso completo alla richiesta in ingresso per i flussi di lavoro figlio. Ciò significa che è possibile passare parametri nella sezione *queries* e nell'oggetto *headers* e che è possibile definire completamente l'intero corpo.
+Un secondo miglioramento è che verrà ugualmente figlio hello richiesta in ingresso toohello accesso completo di flussi di lavoro. Ciò significa che è possibile passare parametri hello *query* sezione e in hello *intestazioni* oggetto e che è possibile definire completamente hello intero corpo.
 
-Infine, è stato necessario apportare modifiche al flusso di lavoro figlio. Mentre in precedenza era possibile chiamare direttamente un flusso di lavoro figlio, ora occorre definire un endpoint trigger nel flusso di lavoro che l'elemento padre possa chiamare. In genere, si aggiungerà un trigger con il tipo `manual` da usare nella definizione dell'elemento padre. Si noti che la proprietà `host` in particolare include un `triggerName`, perché è sempre necessario specificare quale trigger viene richiamato.
+Infine, sono presenti flussi di lavoro figlio toohello le modifiche necessarie. Mentre in precedenza è possibile chiamare direttamente un flusso di lavoro figlio, a questo punto è necessario definire un endpoint di trigger nel flusso di lavoro di hello per toocall padre hello. In genere, si aggiunge un trigger con `manual` digitare e quindi utilizzare tale trigger nella definizione di hello padre. Hello nota `host` proprietà di un `triggerName` perché è sempre necessario specificare i trigger di cui si sta chiamando.
 
 ## <a name="other-changes"></a>Altre modifiche
 
 ### <a name="new-queries-property"></a>Nuova proprietà "queries"
 
-Tutti i tipi di azione ora supportano un nuovo input denominato `queries`. Questo input può essere un oggetto strutturato e non è più necessario assemblare la stringa manualmente.
+Tutti i tipi di azione ora supportano un nuovo input denominato `queries`. L'input può essere un oggetto strutturato, anziché dover stringa hello tooassemble manualmente.
 
-### <a name="renamed-parse-function-to-json"></a>Funzione "parse()" rinominata come "json()"
+### <a name="renamed-parse-function-toojson"></a>Rinominato too'json() funzione 'Parse ()' '
 
-Verranno aggiunti a breve altri tipi di contenuti, quindi la funzione `parse()` è stata rinominata `json()`.
+Si sta aggiungendo a breve, i tipi di contenuto più in modo hello è stato rinominato `parse()` funzione troppo`json()`.
 
 ## <a name="coming-soon-enterprise-integration-apis"></a>Presto disponibile: API Enterprise Integration
 
-Non sono ancora disponibili versioni gestite delle API Enterprise Integration, ad esempio AS2. Per il momento è possibile usare le API di BizTalk distribuite tramite l'azione HTTP. Per informazioni dettagliate, vedere "Using your already deployed API apps" (Uso delle app per le API già distribuite) nella [guida di orientamento all'integrazione](http://www.zdnet.com/article/microsoft-outlines-its-cloud-and-server-integration-roadmap-for-2016/). 
+Non è gestite versioni ancora hello Enterprise Integration API, ad esempio AS2. Nel frattempo, è possibile utilizzare le APIs BizTalk distribuito esistente tramite hello azione HTTP. Per informazioni dettagliate, vedere "Utilizzo delle App già distribuite API" in hello [roadmap integrazione](http://www.zdnet.com/article/microsoft-outlines-its-cloud-and-server-integration-roadmap-for-2016/). 

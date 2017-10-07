@@ -1,6 +1,6 @@
 ---
-title: Connettore Generic LDAP | Documentazione Microsoft
-description: Questo articolo descrive come configurare il connettore Generic LDAP di Microsoft.
+title: Connettore LDAP aaaGeneric | Documenti Microsoft
+description: Questo articolo viene descritto come connettore LDAP generico tooconfigure Microsoft.
 services: active-directory
 documentationcenter: 
 author: AndKjell
@@ -14,37 +14,37 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/12/2017
 ms.author: billmath
-ms.openlocfilehash: adb174526bc377f484be5fb0a71b28e8daaaa6fd
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 25031b4da196bd073902b04b0705762bfa0118b9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="generic-ldap-connector-technical-reference"></a>Documentazione tecnica sul connettore Generic LDAP
-Questo articolo descrive il connettore Generic LDAP ed è applicabile ai prodotti seguenti:
+Questo articolo descrive hello connettore LDAP generico. articolo Hello applica toohello i seguenti prodotti:
 
 * Microsoft Identity Manager 2016 (MIM2016)
 * Forefront Identity Manager 2010 R2 (FIM2010R2)
   * È necessario usare l'hotfix 4.1.3671.0 o versione successiva ( [KB3092178](https://support.microsoft.com/kb/3092178)).
 
-Per MIM2016 e FIM2010R2 il connettore è disponibile come download dall' [Area download Microsoft](http://go.microsoft.com/fwlink/?LinkId=717495).
+Per MIM2016 e FIM2010R2, è disponibile come download hello hello connettore [Microsoft Download Center](http://go.microsoft.com/fwlink/?LinkId=717495).
 
-Quando si fa riferimento alle RFC IETF, questo documento usa il formato (RFC [numero RFC]/[sezione nel documento RFC]), ad esempio, (RFC 4512/4.3).
-Altre informazioni sono disponibili all'indirizzo http://tools.ietf.org/html/rfc4500 (è necessario sostituire 4500 con il numero di RFC corretto).
+Quando si fa riferimento RFC tooIETF, questo documento viene utilizzato il formato di hello (RFC [RFC number] / [sezione nel documento RFC]), ad esempio (RFC 4512/4.3).
+Per ulteriori informazioni in http://tools.ietf.org/html/rfc4500 (necessario tooreplace 4500 con numero RFC corretto hello).
 
-## <a name="overview-of-the-generic-ldap-connector"></a>Panoramica del connettore Generic LDAP
-Il connettore Generic LDAP consente di integrare il servizio di sincronizzazione con il server LDAP v3.
+## <a name="overview-of-hello-generic-ldap-connector"></a>Panoramica di hello connettore LDAP generico
+Connettore LDAP generico Hello consente si toointegrate hello servizio di sincronizzazione con un server LDAP v3.
 
-Determinate operazioni e gli elementi dello schema, ad esempio quelli necessari per eseguire l'importazione delta, non sono specificati nelle RFC IETF. Per queste operazioni sono supportate solo le directory LDAP specificate in modo esplicito.
+Determinate operazioni e gli elementi dello schema, ad esempio quelli necessari importazione delta tooperform, non sono specificati in hello IETF RFC. Per queste operazioni sono supportate solo le directory LDAP specificate in modo esplicito.
 
-A livello generale, le funzionalità seguenti sono supportate dalla versione corrente del connettore:
+Dal punto di vista di alto livello, hello seguenti caratteristiche è supportata dalla versione corrente di hello del connettore hello:
 
 | Funzionalità | Supporto |
 | --- | --- |
-| Origine dati connessa |Il connettore è supportato con i server LDAP v3 (conforme a RFC 4510). È stato testato con quanto segue:  <li>Microsoft Active Directory Lightweight Directory Services (AD LDS)</li><li>Catalogo globale Microsoft Active Directory</li><li>389 Directory Server</li><li>Apache Directory Server</li><li>IBM Tivoli DS</li><li>Isode Directory</li><li>NetIQ eDirectory</li><li>Novell eDirectory</li><li>Open DJ</li><li>Open DS</li><li>Open LDAP (openldap.org)</li><li>Oracle (in precedenza Sun) Directory Server Enterprise Edition</li><li>RadiantOne Virtual Directory Server (VDS)</li><li>Sun One Directory Server</li>**Directory rilevanti non supportate:** <li>Servizi di dominio Microsoft Active Directory (AD DS) [Usare invece Active Directory Connector]</li><li>Oracle Internet Directory (OID)</li> |
+| Origine dati connessa |Connettore Hello è supportato con tutti i server di v3 LDAP (compatibile con RFC 4510). È stato testato con seguenti hello: <li>Microsoft Active Directory Lightweight Directory Services (AD LDS)</li><li>Catalogo globale Microsoft Active Directory</li><li>389 Directory Server</li><li>Apache Directory Server</li><li>IBM Tivoli DS</li><li>Isode Directory</li><li>NetIQ eDirectory</li><li>Novell eDirectory</li><li>Open DJ</li><li>Open DS</li><li>Open LDAP (openldap.org)</li><li>Oracle (in precedenza Sun) Directory Server Enterprise Edition</li><li>RadiantOne Virtual Directory Server (VDS)</li><li>Sun One Directory Server</li>**Directory rilevanti non supportate:** <li>Servizi di dominio Active Directory Microsoft (AD DS) [utilizzare hello predefinite di Active Directory Connector invece]</li><li>Oracle Internet Directory (OID)</li> |
 | Scenari |<li>Gestione del ciclo di vita degli oggetti</li><li>Gestione di gruppi</li><li>Gestione delle password</li> |
-| Operazioni |Le operazioni seguenti sono supportate in tutte le directory LDAP:  <li>Importazione completa</li><li>Esportazione</li>Le operazioni seguenti sono supportate solo nelle directory specificate:<li>Importazione delta</li><li>Imposta password, Cambia password</li> |
-| Schema |<li>Lo schema viene rilevato dallo schema LDAP (RFC3673 e RFC4512/4.2)</li><li>Supporta classi strutturali, classi aux e la classe di oggetti extensibleObject (RFC4512/4.3)</li> |
+| Operazioni |Hello dopo le operazioni è supportata in tutte le directory LDAP: <li>Importazione completa</li><li>Esporta</li>Hello dopo le operazioni è supportata solo nelle directory specificate:<li>Importazione delta</li><li>Imposta password, Cambia password</li> |
+| Schema |<li>Schema viene rilevato dallo schema LDAP hello (RFC3673 e RFC4512/4.2)</li><li>Supporta classi strutturali, classi aux e la classe di oggetti extensibleObject (RFC4512/4.3)</li> |
 
 ### <a name="delta-import-and-password-management-support"></a>Supporto per l'importazione delta e la gestione delle password
 Directory supportate per l'importazione delta e la gestione delle password:
@@ -93,31 +93,31 @@ Directory supportate per l'importazione delta e la gestione delle password:
   * Supporta l'impostazione e la modifica delle password
 
 ### <a name="prerequisites"></a>Prerequisiti
-Prima di usare il connettore, verificare che nel server di sincronizzazione sia disponibile quanto segue:
+Prima di utilizzare connettore hello, verificare di che aver seguito hello sul server di sincronizzazione hello:
 
 * Microsoft .NET 4.5.2 Framework o versione successiva
 
-### <a name="detecting-the-ldap-server"></a>Rilevamento del server LDAP
-Il connettore si basa su varie tecniche per rilevare e identificare il server LDAP. Il connettore usa Root DSE, il nome del fornitore e la versione e controlla lo schema per trovare oggetti univoci e attributi la cui esistenza è nota in alcuni server LDAP. Questi dati, se trovati, vengono usati per popolare le opzioni di configurazione del connettore.
+### <a name="detecting-hello-ldap-server"></a>Rilevamento server LDAP hello
+Hello connettore si basa su varie tecniche toodetect e identificare i server LDAP hello. Usa connettore Hello hello DSE radice, nome/versione del fornitore, e analizza gli oggetti univoci hello dello schema toofind attributi noti tooexist in alcuni server LDAP. Questi dati, se trovato, viene utilizzato toopre-opzioni di configurazione hello in hello connettore compilate.
 
 ### <a name="connected-data-source-permissions"></a>Autorizzazioni dell'origine dati connessa
-Per eseguire le operazioni di importazione ed esportazione degli oggetti nella directory connessa, l'account del connettore deve avere autorizzazioni sufficienti. Il connettore deve avere autorizzazioni di scrittura per poter esportare e autorizzazioni di lettura per importare. La configurazione delle autorizzazioni viene eseguita nelle esperienze di gestione della directory di destinazione stessa.
+tooperform importare ed esportare le operazioni sugli oggetti hello directory connessa hello, l'account del connettore hello necessario disporre delle autorizzazioni sufficienti. connettore di Hello deve tooexport in grado di toobe di autorizzazioni di scrittura e lettura autorizzazioni toobe in grado di tooimport. Configurazione di autorizzazioni viene eseguita all'interno delle esperienze di gestione di hello della directory di destinazione hello stesso.
 
 ### <a name="ports-and-protocols"></a>Porte e protocolli
-Il connettore usa il numero di porta specificato nella configurazione, che per impostazione predefinita è 389 per LDAP e 636 per LDAPS.
+connettore Hello utilizza il numero di porta hello specificato nella configurazione di hello, che per impostazione predefinita è 389 per LDAP e 636 per LDAP.
 
 Per LDAPS è necessario usare SSL 3.0 o TLS. SSL 2.0 non è supportato e non può essere attivato.
 
 ### <a name="required-controls-and-features"></a>Funzionalità e controlli necessari
-I controlli e le funzionalità LDAP seguenti devono essere disponibili nel server LDAP per il funzionamento corretto del connettore:   
+Hello LDAP seguenti controlli o le funzionalità devono essere disponibili nel server LDAP hello per hello connettore toowork correttamente:  
 `1.3.6.1.4.1.4203.1.5.3` Filtri True/False
 
-Il filtro True/False spesso non viene segnalato come supportato dalle directory LDAP e potrebbe essere visualizzato nella **Global Page** in **Mandatory Features Not Found**. Viene usato per creare filtri **OR** nelle query LDAP, ad esempio quando si importano più tipi di oggetto. Se è possibile importare più di un tipo di oggetto, il server LDAP supporta questa funzionalità.
+filtro True/False Hello spesso non viene segnalato supportata dalla directory LDAP e potrebbe essere visualizzata in hello **pagina globale** in **obbligatorio non trovate funzionalità**. È utilizzato toocreate **o** filtri nella query LDAP, ad esempio durante l'importazione di più tipi di oggetto. Se è possibile importare più di un tipo di oggetto, il server LDAP supporta questa funzionalità.
 
-Se si usa una directory in cui un identificatore univoco è l'ancoraggio, dovrà essere disponibile anche quanto segue. Per altre informazioni, vedere la sezione [Configurare gli ancoraggi](#configure-anchors):  
+Se si utilizza una directory in cui un identificatore univoco è seguente hello di hello ancoraggio deve essere disponibile (per ulteriori informazioni, vedere hello [configurare Anchor](#configure-anchors) sezione):  
 `1.3.6.1.4.1.4203.1.5.1` Tutti gli attributi operativi
 
-Se la directory ha più oggetti di quanti sia possibile inserirne in una sola chiamata alla directory, è consigliabile usare il paging. Per il funzionamento del paging, è necessaria una delle opzioni seguenti:
+Se la directory hello dispone di più oggetti di ciò che è possibile inserire in una chiamata toohello directory, è consigliabile toouse paging. Per il paging toowork, è necessario uno degli hello le opzioni seguenti:
 
 **Opzione 1:**  
 `1.2.840.113556.1.4.319` pagedResultsControl
@@ -126,122 +126,122 @@ Se la directory ha più oggetti di quanti sia possibile inserirne in una sola ch
 `2.16.840.1.113730.3.4.9` VLVControl  
 `1.2.840.113556.1.4.473` SortControl
 
-Se entrambe le opzioni sono abilitate nella configurazione del connettore, viene usato pagedResultsControl.
+Se entrambe le opzioni sono abilitate nella configurazione del connettore hello, pagedResultsControl viene utilizzato.
 
 `1.2.840.113556.1.4.417` ShowDeletedControl
 
-ShowDeletedControl viene usato solo con il metodo di importazione delta USNChanged per poter visualizzare gli oggetti eliminati.
+ShowDeletedControl viene utilizzato solo con hello USNChanged delta Importa metodo toobe toosee in grado di eliminare oggetti.
 
-Il connettore prova a rilevare le opzioni presenti nel server. Se le opzioni non possono essere rilevate, viene visualizzato un avviso nella pagina globale delle proprietà del connettore. Non tutti i server LDAP presentano tutti i controlli o le funzionalità che supportano e anche se è presente questo avviso, il connettore potrebbe funzionare senza problemi.
+connettore Hello tenta opzioni hello toodetect presente nel server di hello. Se le opzioni di hello non possono essere rilevate, un avviso è presente nella pagina globale hello proprietà connettore hello. Non tutti i server LDAP presenti tutti i controlli o le funzionalità supportano e anche se questo avviso non è presente, hello connettore potrebbe funzionare senza problemi.
 
 ### <a name="delta-import"></a>Importazione delta
-L'importazione delta è disponibile solo quando è stata rilevata una directory di supporto. Attualmente vengono usati i metodi seguenti:
+L'importazione delta è disponibile solo quando è stata rilevata una directory di supporto. è attualmente in uso Hello dei seguenti metodi:
 
 * LDAP Accesslog. Vedere [http://www.openldap.org/doc/admin24/overlays.html#Access Logging](http://www.openldap.org/doc/admin24/overlays.html#Access Logging)
 * LDAP Changelog. Vedere [http://tools.ietf.org/html/draft-good-ldap-changelog-04](http://tools.ietf.org/html/draft-good-ldap-changelog-04)
-* TimeStamp. Per Novell/NetIQ eDirectory il connettore usa l'ultima data/ora per ottenere gli oggetti creati e aggiornati. Novell/NetIQ eDirectory non fornisce un modo equivalente per  recuperare gli oggetti eliminati. Questa opzione può essere usata anche se nessun altro metodo di importazione delta è attivo nel server LDAP. Questa opzione non consente di importare gli oggetti eliminati.
+* TimeStamp. Per/NetIQ Novell eDirectory, hello connettore utilizza ultima data/ora tooget creati e aggiornati gli oggetti. / NetIQ Novell eDirectory non fornisce che un equivalente significa tooretrieve eliminate oggetti. Questa opzione può essere utilizzata anche se nessun altro metodo di importazione delta è attivo nel server LDAP hello. Questa opzione non è in grado di tooimport eliminate oggetti.
 * USNChanged. Vedere: [https://msdn.microsoft.com/library/ms677627.aspx](https://msdn.microsoft.com/library/ms677627.aspx)
 
 ### <a name="not-supported"></a>Non supportate
-Le funzionalità LDAP seguenti non sono supportate:
+Hello seguenti LDAP caratteristiche non è supportato:
 
 * Riferimenti LDAP tra server (RFC 4511/4.1.10)
 
 ## <a name="create-a-new-connector"></a>Creare un nuovo connettore
-Per creare un connettore Generic LDAP, in **Synchronization Service** selezionare **Management Agent** e quindi **Create**. Selezionare il connettore **Generic LDAP (Microsoft)** .
+tooCreate un connettore LDAP generico, in **servizio di sincronizzazione** selezionare **agente di gestione** e **crea**. Seleziona hello **LDAP generico (Microsoft)** connettore.
 
 ![CreateConnector](./media/active-directory-aadconnectsync-connector-genericldap/createconnector.png)
 
 ### <a name="connectivity"></a>Connettività
-Nella pagina Connectivity (Connettività) è necessario specificare le informazioni relative a host, porta e binding. A seconda del valore di Binding selezionato, potrebbero essere fornite altre informazioni nelle sezioni seguenti.
+Nella pagina connettività hello, è necessario specificare hello Host, porta e informazioni di associazione. A seconda di quale associazione è selezionata, ulteriori informazioni potrebbero essere fornite nell'hello le sezioni seguenti.
 
 ![Connettività](./media/active-directory-aadconnectsync-connector-genericldap/connectivity.png)
 
-* L'impostazione Connection Timeout viene usata solo per la prima connessione al server quando viene rilevato lo schema.
+* impostazione di Timeout della connessione di Hello viene utilizzata solo per il primo server di toohello connessione di hello quando vengono rilevati schema hello.
 * Se il valore di Binding è Anonymous, non vengono usati né nome utente/password né il certificato.
 * Per gli altri valori di Binding immettere le informazioni in nome utente/password o selezionare un certificato.
-* Se si usa Kerberos per l'autenticazione, fornire anche le informazioni per l'area autenticazione o il dominio dell'utente.
+* Se si utilizza Kerberos tooauthenticate, quindi fornire anche hello dell'area di autenticazione o dominio dell'utente hello.
 
-La casella di testo **Attribute Aliases** viene usata per gli attributi definiti nello schema con la sintassi RFC4522. Questi attributi non possono essere rilevati durante il rilevamento dello schema ed è necessario l'intervento dell'utente per consentire al connettore di identificarli. È ad esempio necessario immettere quanto segue nella casella relativa agli alias dell'attributo per identificare correttamente l'attributo userCertificate come attributo binario:
+Hello **attributo alias** casella di testo viene utilizzata per gli attributi definiti nello schema di hello con sintassi RFC4522. Questi attributi non possono essere rilevati durante il rilevamento dello schema e hello connettore deve consentire tooidentify tali attributi. Ad esempio hello seguenti devono essere immessi in hello attributo alias casella toocorrectly identificare attributo userCertificate hello come un attributo binario.
 
 `userCertificate;binary`
 
-Di seguito è riportato un esempio del possibile aspetto di questa configurazione:
+esempio Hello è un esempio di come questa configurazione potrebbe essere simile:
 
 ![Connettività](./media/active-directory-aadconnectsync-connector-genericldap/connectivityattributes.png)
 
-Selezionare la casella di controllo **Include operational attributes in schema** per includere anche gli attributi creati dal server. Sono d esempio inclusi gli attributi relativi all'ora di creazione e dell'ultimo aggiornamento dell'oggetto.
+Seleziona hello **includono attributi operativi nello schema** tooalso casella di controllo includono gli attributi creati dal server hello. Tra gli attributi, ad esempio quando l'oggetto hello è stato creato e ora dell'ultimo aggiornamento.
 
-Selezionare **Include extensible attributes in schemA** (Includi attributi estensibili nello schema) se vengono usati oggetti estensibili (RFC4512/4.3). L'abilitazione di questa opzione consente l'uso di tutti gli attributi in tutti gli oggetti. Se si seleziona questa opzione, le dimensioni dello schema diventano molto estese, quindi a meno che la directory connessa non usi questa funzionalità, è consigliabile lasciare deselezionata l'opzione.
+Selezionare **includono attributi estendibili nello schema** se vengono utilizzati gli oggetti estensibili (RFC4512/4.3) e l'abilitazione di questa opzione consente a toobe ogni attributo utilizzato in tutti gli oggetti. Se si seleziona questa opzione rende schema hello molto grandi in modo a meno che non utilizza directory connessa hello questa funzionalità hello si consiglia di opzione hello tookeep deselezionata.
 
 ### <a name="global-parameters"></a>Global Parameters
-Nella pagina Global Parameters configurare il DN per il log delle modifiche delta e altre funzionalità LDAP. La pagina è già popolata con le informazioni fornite dal server LDAP.
+Nella pagina parametri globali hello, configurare funzionalità aggiuntive di LDAP e di registro delle modifiche delta toohello hello DN. pagina Hello è già popolato con informazioni hello fornite dai server LDAP hello.
 
 ![Connettività](./media/active-directory-aadconnectsync-connector-genericldap/globalparameters.png)
 
-La sezione superiore mostra le informazioni fornite dal server, ad esempio il nome del server. Il connettore verifica anche che i controlli obbligatori siano presenti in Root DSE. Se questi controlli non sono elencati, viene visualizzato un avviso. Alcune directory LDAP non elencano tutte le funzioni in Root DSE ed è possibile che il connettore funzioni senza problemi anche se è presente un avviso.
+Nella sezione superiore Hello Mostra le informazioni fornite da server hello stesso, ad esempio nome hello del server di hello. Hello connettore verifica inoltre che i controlli obbligatorio hello siano presenti in hello DSE radice. Se questi controlli non sono elencati, viene visualizzato un avviso. Alcune directory LDAP non elencare tutte le funzioni hello DSE radice e è possibile che hello senza problemi di funzionamento del connettore anche se è presente un avviso.
 
-Le caselle di controllo **Supported Controls** (Controlli supportati) controllano il comportamento di alcune operazioni:
+Hello **supportati controlli** caselle di controllo controllano il comportamento di hello per alcune operazioni:
 
-* Se si seleziona l'eliminazione di un albero, viene eliminata una gerarchia con una chiamata LDAP. Se si deseleziona l'eliminazione di un albero, il connettore esegue un'operazione di eliminazione ricorsiva, se necessario.
-* Se si selezionano i risultati di paging, il connettore esegue un'importazione con paging usando le dimensioni specificate nei passaggi di esecuzione.
-* VLVControl e SortControl sono un'alternativa a pagedResultsControl per leggere i dati dalla directory LDAP.
-* Se tutte e tre le opzioni (pagedResultsControl, VLVControl e SortControl) sono deselezionate, il connettore importa tutti gli oggetti in una sola operazione, che potrebbe non riuscire se la directory è di grandi dimensioni.
-* ShowDeletedControl viene usata solo quando il metodo di importazione delta è USNChanged.
+* Se si seleziona l'eliminazione di un albero, viene eliminata una gerarchia con una chiamata LDAP. Con l'opzione Elimina albero deselezionato, connettore hello non un'eliminazione ricorsiva se necessario.
+* Con i risultati di paging selezionati, hello connettore non un'importazione di paging con dimensioni hello specificate in passaggi hello eseguire.
+* Hello VLVControl e SortControl è un dati di tooread pagedResultsControl toohello alternativa dalla directory LDAP hello.
+* Se tutte le opzioni disponibili (pagedResultsControl VLVControl e SortControl) sono deselezionate quindi hello connettore Importa tutti gli oggetti in un'unica operazione, che potrebbe non riuscire se è una directory di grandi dimensioni.
+* ShowDeletedControl viene utilizzato solo quando il metodo di importazione Delta hello è USNChanged.
 
-Il DN del log delle modifiche è il contesto dei nomi usato dal log delle modifiche differenziali, ad esempio **cn=changelog**. Questo valore deve essere specificato per poter eseguire l'importazione differenziale.
+registro delle modifiche Hello DN è il contesto di denominazione hello utilizzato dal log delle modifiche delta hello, ad esempio **cn = changelog**. Questo valore deve essere specificato importazione delta toodo in grado di toobe.
 
-Di seguito è riportato un elenco di DN del log delle modifiche predefiniti:
+Hello seguito è riportato un elenco di log di modifica predefinito DNs:
 
 | Directory | Log delle modifiche delta |
 | --- | --- |
 | Microsoft AD LDS e Catalogo globale Active Directory |Rilevato automaticamente. USNChanged. |
 | Apache Directory Server |Non disponibile. |
-| Directory 389 |Log delle modifiche. Valore predefinito da usare: **cn=changelog** |
-| IBM Tivoli DS |Log delle modifiche. Valore predefinito da usare: **cn=changelog** |
-| Isode Directory |Log delle modifiche. Valore predefinito da usare: **cn=changelog** |
-| Novell/NetIQ eDirectory |Non disponibile. TimeStamp. Il connettore usa data/ora dell'ultimo aggiornamento per ottenere i record aggiunti e aggiornati. |
-| Open DJ/DS |Log delle modifiche.  Valore predefinito da usare: **cn=changelog** |
-| Open LDAP |Log di accesso. Valore predefinito da usare: **cn=accesslog** |
-| Oracle DSEE |Log delle modifiche. Valore predefinito da usare: **cn=changelog** |
-| RadiantOne VDS |Directory virtuale. Dipende dalla directory connessa a VDS. |
-| Sun One Directory Server |Log delle modifiche. Valore predefinito da usare: **cn=changelog** |
+| Directory 389 |Log delle modifiche. Valore toouse predefinito: **cn = log delle modifiche** |
+| IBM Tivoli DS |Log delle modifiche. Valore toouse predefinito: **cn = log delle modifiche** |
+| Isode Directory |Log delle modifiche. Valore toouse predefinito: **cn = log delle modifiche** |
+| Novell/NetIQ eDirectory |Non disponibile. TimeStamp. Hello connettore utilizza ultima data/ora aggiornate tooget aggiunti e aggiornati i record. |
+| Open DJ/DS |Log delle modifiche.  Valore toouse predefinito: **cn = log delle modifiche** |
+| Open LDAP |Log di accesso. Valore toouse predefinito: **cn = accesslog** |
+| Oracle DSEE |Log delle modifiche. Valore toouse predefinito: **cn = log delle modifiche** |
+| RadiantOne VDS |Directory virtuale. Dipende tooVDS directory connessa hello. |
+| Sun One Directory Server |Log delle modifiche. Valore toouse predefinito: **cn = log delle modifiche** |
 
-L'attributo password è il nome dell'attributo che il connettore dovrà usare per impostare la password nelle operazioni di modifica e impostazione della password.
-Per impostazione predefinita, questo valore è **userPassword** , ma può essere modificato quando necessario per un particolare sistema LDAP.
+l'attributo password Hello è il nome di hello di hello attributo hello connettore deve utilizzare password hello tooset modifica della password e le operazioni di impostazione di password.
+Questo valore è per impostazione predefinita impostato troppo**userPassword** ma può essere modificata quando sono necessari per un determinato sistema LDAP.
 
-Nell'elenco delle partizioni aggiuntive è possibile aggiungere altri spazi dei nomi non rilevati automaticamente. Questa impostazione può essere ad esempio usata se diversi server costituiscono un cluster logico e devono quindi essere importati contemporaneamente. Così come Active Directory può includere più domini in una foresta, ma tutti i domini condividono uno schema, lo stesso approccio può essere simulato immettendo gli spazi dei nomi aggiuntivi in questa casella. Ogni spazio dei nomi può eseguire l'importazione da diversi server e viene configurato anche nella pagina di configurazione delle partizioni e delle gerarchie. Usare CTRL+INVIO per ottenere una nuova riga.
+Nell'elenco partizioni aggiuntive hello è tooadd possibili spazi dei nomi aggiuntivi rilevati automaticamente. Ad esempio, questa impostazione può essere utilizzata se diversi server costituiscono un cluster logico, che deve essere importato in hello contemporaneamente. Come Active Directory può avere più domini in una foresta, ma tutti i domini di condividono uno schema, hello stesso può essere simulato immettendo hello altri spazi dei nomi in questa casella. Ogni spazio dei nomi è possibile importare da server diversi e viene ulteriormente configurata nella pagina Configura partizioni e gerarchie di hello. Utilizzare Ctrl + Invio tooget una nuova riga.
 
 ### <a name="configure-provisioning-hierarchy"></a>Configurare una gerarchia di provisioning
-Questa pagina viene usata per associare il componente DN, ad esempio OU, al tipo di oggetto di cui deve essere eseguito il provisioning, ad esempio organizationalUnit.
+Questa pagina è toomap utilizzati hello DN componente, ad esempio unità Organizzativa, toohello tipo di oggetto che deve essere effettuato il provisioning, ad esempio organizationalUnit.
 
 ![Gerarchia di provisioning](./media/active-directory-aadconnectsync-connector-genericldap/provisioninghierarchy.png)
 
-Configurando una gerarchia di provisioning, è possibile configurare il connettore per creare automaticamente una struttura quando necessario. Ad esempio, se è presente uno spazio dei nomi dc=contoso,dc=com e viene eseguito il provisioning di un nuovo oggetto cn=Joe, ou=Seattle, c=US, dc=contoso, dc=com, il connettore può creare un oggetto di tipo paese per US e un'unità organizzativa (organizationalUnit) per Seattle, se non sono già presenti nella directory.
+Configurando una gerarchia di provisioning, è possibile configurare hello connettore tooautomatically creare una struttura quando necessario. Ad esempio, se è presente un controller di dominio dello spazio dei nomi = contoso, dc = com e un nuovo oggetto cn = Joe, ou = Seattle, c = US, dc = contoso, dc = com viene eseguito il provisioning, quindi hello connettore è possibile creare un oggetto del paese di tipo per gli Stati Uniti e un'unità organizzativa per Seattle se non sono già presente nella directory hello.
 
 ### <a name="configure-partitions-and-hierarchies"></a>Configurare partizioni e gerarchie
-Nella pagina Configure Partitions and Hierarchies selezionare tutti gli spazi dei nomi con gli oggetti da importare ed esportare.
+Nella pagina partizioni e gerarchie hello selezionare tutti gli spazi dei nomi con oggetti Prevedi tooimport ed esportazione.
 
 ![Partitions](./media/active-directory-aadconnectsync-connector-genericldap/partitions.png)
 
-Per ogni spazio dei nomi è anche possibile configurare le impostazioni di connettività che sostituiscono i valori specificati nella schermata Connectivity (Connettività). Se questi valori vengono lasciati sul valore vuoto predefinito, vengono usate le informazioni dalla schermata Connectivity (Connettività).
+Per ogni spazio dei nomi, è anche possibile tooconfigure le impostazioni di connettività che sostituirebbe valori hello specificati nella schermata di connettività hello. Se questi valori vengono lasciati tootheir immettere un valore vuoto, hello dalla schermata di connettività hello vengono utilizzate.
 
-È anche possibile selezionare i contenitori e le OU in cui il connettore deve esportare e importare.
+È inoltre possibile tooselect i contenitori e unità organizzative hello connettore deve importare ed esportare per.
 
-Quando si esegue una ricerca, l'operazione viene eseguita in tutti i contenitori della partizione. Se è presente un numero elevato di contenitori ciò comporta un peggioramento delle prestazioni.
+Quando si esegue una ricerca di che questa operazione viene eseguita in tutti i contenitori nella partizione hello. Nei casi in cui sono presenti un numero elevato di contenitori di questo comportamento provoca una riduzione delle tooperformance.
 
 >[!NOTE]
-A partire dall'aggiornamento di marzo 2017 del connettore Generic LDAP le ricerche possono essere limitate nell'ambito solo ai contenitori selezionati. Questa operazione può essere eseguita selezionando la casella di controllo "Search only in selected containers" ("Cerca solo in contenitori selezionati") come illustrato nell'immagine seguente.
+A partire da toohello di aggiornamento di marzo 2017 hello LDAP generico ricerche connettore possono essere limitate in contenitori di ambito tooonly hello selezionato. Questa operazione può essere eseguita selezionando la casella di controllo hello "Cerca solo nei contenitori selezionati" come illustrato nell'immagine di hello riportata di seguito.
 
 ![Eseguire la ricerca solo in contenitori selezionati](./media/active-directory-aadconnectsync-connector-genericldap/partitions-only-selected-containers.png)
 
 ### <a name="configure-anchors"></a>Configurare gli ancoraggi
-Questa pagina ha  sempre un valore preconfigurato e non può essere modificato. Se il fornitore del server è stato identificato, l'ancoraggio potrebbe essere popolato con un attributo non modificabile, ad esempio, il GUID di un oggetto. Se non è stato rilevato o non ha un attributo non modificabile, il connettore usa un DN (nome distinto) come ancoraggio.
+Questa pagina ha  sempre un valore preconfigurato e non può essere modificato. Se è stato identificato fornitore hello del server, ancoraggio hello potrebbe essere popolato con un attributo non modificabile, hello esempio GUID per un oggetto. Se non è stata rilevata o se è noto toonot hanno un attributo non modificabile, quindi il connettore di hello utilizza nome distinto (DN) del punto di ancoraggio hello.
 
 ![ancoraggi](./media/active-directory-aadconnectsync-connector-genericldap/anchors.png)
 
 
-Di seguito è riportato un elenco di server LDAP e l' ancoraggio usato:
+di seguito Hello è un elenco di server LDAP e ancoraggio hello in uso:
 
 | Directory | Attributo di ancoraggio |
 | --- | --- |
@@ -258,14 +258,14 @@ Di seguito è riportato un elenco di server LDAP e l' ancoraggio usato:
 | Sun One Directory Server |dn |
 
 ## <a name="other-notes"></a>Altre note
-Questa sezione fornisce informazioni di aspetti specifici di questo connettore o che, per altri motivi, è importante conoscere.
+In questa sezione fornisce informazioni di aspetti specifici toothis connettore o per altri motivi tooknow importanti.
 
 ### <a name="delta-import"></a>Importazione delta
-La filigrana delta in Open LDAP è la data/ora UTC. Per questo motivo, è necessario sincronizzare gli orologi tra il servizio di sincronizzazione FIM e Open LDAP. In caso contrario, potrebbero essere omesse alcune voci nel log delle modifiche delta.
+filigrana delta Hello in LDAP Open è data/ora UTC. Per questo motivo, gli orologi di hello tra il servizio di sincronizzazione FIM e hello aprire LDAP devono essere sincronizzati. In caso contrario, potrebbero essere omesse alcune voci nel log delle modifiche delta hello.
 
-Per Novell eDirectory l'importazione differenziale non rileva le eliminazioni di oggetti. Per questo motivo è necessario eseguire un'importazione completa periodicamente per trovare tutti gli oggetti eliminati.
+Per Novell eDirectory, importazione delta hello è rilevate non elimina qualsiasi oggetto. Per questo motivo, è necessario toorun una procedura completa di importare periodicamente gli oggetti eliminati toofind tutti.
 
-Per le directory con un log delle modifiche differenziali basato su data/ora, è consigliabile eseguire un'importazione completa a intervalli regolari. Questo processo consente al motore di sincronizzazione di trovare eventuali differenze tra il server LDAP e gli elementi attualmente presenti nello spazio del connettore.
+Per le directory con un delta log basato su data e ora di modifica, è altamente consigliabile toorun un'importazione completa in periodici momenti. Questo processo consente toofind motore di sincronizzazione hello e dissimilarities tra server LDAP hello e novità nello spazio connettore hello.
 
 ## <a name="troubleshooting"></a>Risoluzione dei problemi
-* Per informazioni su come abilitare la registrazione per risolvere i problemi relativi al connettore, vedere l'articolo relativo a [come abilitare la traccia ETW per i connettori](http://go.microsoft.com/fwlink/?LinkId=335731).
+* Per informazioni su come tootroubleshoot tooenable registrazione hello connettore, vedere hello [come tooEnable traccia ETW per i connettori](http://go.microsoft.com/fwlink/?LinkId=335731).

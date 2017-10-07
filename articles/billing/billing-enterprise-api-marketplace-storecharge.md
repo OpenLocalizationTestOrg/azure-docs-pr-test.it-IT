@@ -1,6 +1,6 @@
 ---
-title: API per clienti Enterprise per la fatturazione di Azure - Spese per il Marketplace | Microsoft Docs
-description: Informazioni sulle API di creazione di report che consentono ai clienti Enterprise di Azure di estrarre i dati sull'uso a livello di codice.
+title: aaaAzure API Enterprise fatturazione - spese Marketplace | Documenti Microsoft
+description: Informazioni sulle API di creazione di report che consentono di dati relativi al consumo toopull clienti Azure Enterprise a livello di codice hello.
 services: 
 documentationcenter: 
 author: aedwin
@@ -15,18 +15,18 @@ ms.tgt_pltfrm: na
 ms.workload: billing
 ms.date: 04/25/2017
 ms.author: aedwin
-ms.openlocfilehash: 5539623f7ae35e14b6dafe6fdf9efe4bcaba4fd3
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: cdf2836b52df06a4bf5ed71a476fe33662c5363c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="reporting-apis-for-enterprise-customers---marketplace-store-charge"></a>API di creazione report per clienti Enterprise - Spese per il Marketplace Store
 
-L'API per spese per il Marketplace Store restituisce le spese giornaliere dettagliate in base all'uso correlate al Marketplace per il periodo di fatturazione specificato o per le date di inizio e fine indicate (le spese una tantum non sono incluse).
+Hello Marketplace archivio addebito API restituisce hello basata sull'utilizzo di marketplace addebiti suddivisione giorno per hello specificato il periodo di fatturazione o date di inizio e fine (non sono inclusi i costi di una volta).
 
 ##<a name="request"></a>Richiesta 
-Le proprietà di intestazione comuni che devono essere aggiunte vengono specificate [qui](billing-enterprise-api.md). Se non viene specificato alcun periodo di fatturazione, vengono restituiti i dati per il periodo di fatturazione corrente. Gli intervalli di tempo personalizzati possono essere specificati con i parametri di data di inizio di fine nel formato aaaa-MM-gg e l'intervallo di tempo massimo supportato è 36 mesi.  
+Sono specificate proprietà di intestazione comuni che richiedono toobe aggiunto [qui](billing-enterprise-api.md). Se non viene specificato un periodo di fatturazione, dati di fatturazione corrente hello periodo viene quindi restituiti. Gli intervalli di tempo personalizzato possono essere specificati con inizio hello e terminano i parametri di data che sono in fase di hello formato AAAA-MM-GG, hello massimo supportato è compreso tra 36 mesi.  
 
 |Metodo | URI della richiesta|
 |-|-|
@@ -35,7 +35,7 @@ Le proprietà di intestazione comuni che devono essere aggiunte vengono specific
 |GET|https://consumption.azure.com/v2/enrollments/{enrollmentNumber}/marketplacechargesbycustomdate?startTime=2017-01-01&endTime=2017-01-10|
 
 > [!Note]
-> Per usare la versione di anteprima dell'API, sostituire v2 con v1 nell'URL precedente.
+> versione di anteprima hello toouse dell'API, sostituire v2 con v1 in hello sopra URL.
 >
 
 ## <a name="response"></a>Response
@@ -76,29 +76,29 @@ Le proprietà di intestazione comuni che devono essere aggiunte vengono specific
 
 |Nome proprietà| Tipo| Descrizione
 |-|-|-|
-|id|string|ID univoco per la voce di spese per il Marketplace|
-|subscriptionGuid|Guid|GUID della sottoscrizione|
-|subscriptionName|string|Nome della sottoscrizione|
-|meterId|string|ID per il contatore generato|
-|usageStartDate|DateTime|Ora di inizio per il record di uso|
-|usageEndDate|DateTime|Ora di fine per il record di uso|
-|offerName|string|Nome dell'offerta|
-|resourceGroup|string|Gruppo di risorse|
+|id|string|Id univoco per l'elemento di addebito hello marketplace|
+|subscriptionGuid|Guid|Hello Guid della sottoscrizione|
+|subscriptionName|string|Nome della sottoscrizione Hello|
+|meterId|string|ID per hello generato misuratore|
+|usageStartDate|DateTime|Ora di inizio per i record di utilizzo hello|
+|usageEndDate|DateTime|Ora di fine per il record di utilizzo hello|
+|offerName|string|nome dell'offerta Hello|
+|resourceGroup|string|risorsa Hello gruppo|
 |instanceId|string|ID istanza|
 |additionalInfo|string|Stringa JSON per informazioni aggiuntive|
 |tags|string|Stringa JSON di tag|
-|orderNumber|string|Numero di ordine|
-|unitOfMeasure|string|Unità di misura per il contatore|
-|costCenter|string|Centro di costo|
-|accountId|int|ID account|
-|accountName|string |Nome dell'account|
-|accountOwnerId|string|ID del proprietario dell'account|
-|departmentId|int|ID reparto|
-|departmentName|string|Nome del reparto|
-|publisherName|string|Nome del nome dell'autore|
-|planName|string|Nome del piano|
+|orderNumber|string|numero di ordine Hello|
+|unitOfMeasure|string|Unità di misura del misuratore hello|
+|costCenter|string|centro di costo Hello|
+|accountId|int|account Hello Id|
+|accountName|string |Nome dell'Account Hello|
+|accountOwnerId|string|Hello Id proprietario di Account|
+|departmentId|int|reparto di Hello Id|
+|departmentName|string|nome del reparto Hello|
+|publisherName|string|nome dell'autore Hello|
+|planName|string|nome del piano di Hello|
 |consumedQuantity|decimal|Quantità consumata durante il periodo di tempo|
-|resourceRate|decimal|Prezzo unitario per il contatore|
+|resourceRate|decimal|Prezzo unitario per metro hello|
 |extendedCost|decimal|Spesa prevista in base alla quantità usata e al costo esteso|
 <br/>
 ## <a name="see-also"></a>Vedere anche

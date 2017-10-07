@@ -1,6 +1,6 @@
 ---
 title: 'Esercitazione: Integrazione di Azure Active Directory con Benefitsolver | Microsoft Docs'
-description: Informazioni su come usare Benefitsolver con Azure Active Directory per abilitare l'accesso Single Sign-On, il provisioning automatizzato e altro ancora.
+description: Informazioni su come toouse Benefitsolver con Azure Active Directory tooenable single sign-on, il provisioning automatizzato e molto altro!
 services: active-directory
 author: jeevansd
 documentationcenter: na
@@ -13,132 +13,132 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 02/17/2017
 ms.author: jeedes
-ms.openlocfilehash: 8a13dd5ebd872f86247158379b28bc291a9c9d83
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 5bb8511ef9be1e386956188a93e899d6ebe56ed5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-benefitsolver"></a>Esercitazione: Integrazione di Azure Active Directory con Benefitsolver
-Questa esercitazione descrive l'integrazione di Azure e Benefitsolver.  
+obiettivo di Hello di questa esercitazione è l'integrazione di hello tooshow di Azure e Benefitsolver.  
 
-Per lo scenario descritto in questa esercitazione si presuppone che l'utente disponga di quanto segue:
+scenario Hello descritto in questa esercitazione si presuppone che si disponga già di hello seguenti elementi:
 
 * Sottoscrizione di Azure valida
 * Sottoscrizione di Benefitsolver abilitata per l'accesso Single Sign-On (SSO)
 
-Al termine dell'esercitazione, gli utenti di Azure AD assegnati a Benefitsolver potranno eseguire l'accesso Single Sign-On all'applicazione seguendo le istruzioni riportate in [Introduzione al Pannello di accesso](active-directory-saas-access-panel-introduction.md).
+Dopo aver completato questa esercitazione, gli utenti di hello Azure AD assegnati tooBenefitsolver saranno in grado di toosingle sign in un'applicazione hello utilizzando hello [introduzione toohello Pannello di accesso](active-directory-saas-access-panel-introduction.md).
 
-Lo scenario descritto in questa esercitazione include i blocchi predefiniti seguenti:
+scenario di Hello descritto in questa esercitazione è costituito da hello seguenti blocchi predefiniti:
 
-1. Abilitazione dell'integrazione dell'applicazione per Benefitsolver
+1. Abilitare l'integrazione dell'applicazione hello per Benefitsolver
 2. Configurazione dell'accesso Single Sign-On (SSO)
 3. Configurazione del provisioning utente
 4. Assegnazione degli utenti
 
 ![Scenario](./media/active-directory-saas-benefitsolver-tutorial/IC804820.png "Scenario")
 
-## <a name="enabling-the-application-integration-for-benefitsolver"></a>Abilitazione dell'integrazione dell'applicazione per Benefitsolver
-Questa sezione descrive come abilitare l'integrazione dell'applicazione per Benefitsolver.
+## <a name="enabling-hello-application-integration-for-benefitsolver"></a>Abilitare l'integrazione dell'applicazione hello per Benefitsolver
+obiettivo di Hello di questa sezione è toooutline come integrazione dell'applicazione hello tooenable per Benefitsolver.
 
-### <a name="to-enable-the-application-integration-for-benefitsolver-perform-the-following-steps"></a>Per abilitare l'integrazione dell'applicazione per Benefitsolver, seguire questa procedura:
-1. Nel portale di Azure classico fare clic su **Active Directory**nel riquadro di spostamento sinistro.
+### <a name="tooenable-hello-application-integration-for-benefitsolver-perform-hello-following-steps"></a>integrazione dell'applicazione hello tooenable per Benefitsolver, eseguire hello alla procedura seguente:
+1. Nel portale di Azure classico, nel riquadro di spostamento sinistro hello hello fare clic su **Active Directory**.
    
    ![Active Directory](./media/active-directory-saas-benefitsolver-tutorial/IC700993.png "Active Directory")
-2. Nell'elenco **Directory** selezionare la directory per la quale si desidera abilitare l'integrazione delle directory.
-3. Per aprire la visualizzazione applicazioni, nella visualizzazione directory fare clic su **Applications** nel menu superiore.
+2. Da hello **Directory** elenco, directory hello selezionare per il quale si desidera l'integrazione di directory tooenable.
+3. visualizzazione di applicazioni hello tooopen, nella visualizzazione directory hello, fare clic su **applicazioni** nel menu superiore hello.
    
    ![Applicazioni](./media/active-directory-saas-benefitsolver-tutorial/IC700994.png "Applicazioni")
-4. Fare clic su **Add** nella parte inferiore della pagina.
+4. Fare clic su **Aggiungi** nella parte inferiore di hello della pagina hello.
    
    ![Aggiungere un'applicazione](./media/active-directory-saas-benefitsolver-tutorial/IC749321.png "Aggiungere un'applicazione")
-5. Nella finestra di dialogo **Come procedere** fare clic su **Aggiungere un'applicazione dalla raccolta**.
+5. In hello **cosa si desidera toodo** finestra di dialogo, fare clic su **aggiungere un'applicazione dalla raccolta di hello**.
    
    ![Aggiungere un'applicazione dalla raccolta](./media/active-directory-saas-benefitsolver-tutorial/IC749322.png "Aggiungere un'applicazione dalla raccolta")
-6. Nella **casella di ricerca** digitare **Benefitsolver**.
+6. In hello **casella di ricerca**, tipo **Benefitsolver**.
    
    ![Raccolta di applicazioni](./media/active-directory-saas-benefitsolver-tutorial/IC804821.png "Raccolta di applicazioni")
-7. Nel riquadro dei risultati selezionare **Benefitsolver** e quindi fare clic su **Completa** per aggiungere l'applicazione.
+7. Nel riquadro risultati hello selezionare **Benefitsolver**, quindi fare clic su **completa** tooadd un'applicazione hello.
    
    ![Benefitssolver](./media/active-directory-saas-benefitsolver-tutorial/IC804822.png "Benefitssolver")
    
 ## <a name="configure-single-sign-on"></a>Configura accesso Single Sign-On
 
-Questa sezione descrive come consentire agli utenti di eseguire l'autenticazione a Benefitsolver tramite il proprio account in Azure AD usando la federazione basata sul protocollo SAML.  
+obiettivo di Hello di questa sezione è toooutline come tooenable utenti tooauthenticate tooBenefitsolver con il proprio account in Azure AD usando la federazione basata sul protocollo SAML hello.  
 
-L'applicazione Benefitsolver prevede un formato specifico per le asserzioni SAML. È quindi necessario aggiungere mapping di attributi personalizzati alla configurazione di **Attributi token SAML**. 
+L'applicazione Benefitsolver prevede asserzioni SAML hello in un formato specifico, che richiede il tooyour mapping di attributi personalizzati tooadd **attributi token saml** configurazione. 
 
-La schermata seguente illustra un esempio relativo a questa operazione.
+Hello seguente schermata mostra un esempio per questo oggetto.
 
 ![Attributi](./media/active-directory-saas-benefitsolver-tutorial/IC804823.png "Attributi")
 
-**Per configurare l'accesso Single Sign-On, seguire questa procedura:**
+**tooconfigure accesso single sign-on, eseguire hello alla procedura seguente:**
 
-1. Nella pagina di integrazione dell'applicazione **Benefitsolver** del portale di Azure classico fare clic su **Configura accesso Single Sign-On** per aprire la finestra di dialogo **Configura accesso Single Sign-On**.
+1. Nel portale di Azure classico, in hello hello **Benefitsolver** pagina di integrazione dell'applicazione, fare clic su **configurare single sign-on** tooopen hello **configurare Single Sign-On** finestra di dialogo.
    
    ![Configurare l'accesso Single Sign-On](./media/active-directory-saas-benefitsolver-tutorial/IC804824.png "Configurare l'accesso Single Sign-On")
-2. Nella pagina **Stabilire come si desidera che gli utenti accedano a Benefitsolver** selezionare **Single Sign-On di Microsoft Azure AD** e quindi fare clic su **Avanti**.
+2. In hello **come si sarebbe ad esempio utenti toosign su tooBenefitsolver** selezionare **Microsoft Azure AD Single Sign-On**e quindi fare clic su **Avanti**.
    
    ![Configurare l'accesso Single Sign-On](./media/active-directory-saas-benefitsolver-tutorial/IC804825.png "Configurare l'accesso Single Sign-On")
-3. Nella pagina **Configurare le impostazioni dell'app** seguire questa procedura:
+3. In hello **Configura impostazioni App** eseguire hello alla procedura seguente:
    
    ![Configurare le impostazioni dell'app](./media/active-directory-saas-benefitsolver-tutorial/IC804826.png "Configurare le impostazioni dell'app")
    
-   1. Nella casella di testo **URL di accesso** digitare **http://azure.benefitsolver.com**.
-   2. Nella casella di testo **URL di risposta** digitare **https://www.benefitsolver.com/benefits/BenefitSolverView?page_name=single_signon_saml**.  
+   1. In hello **URL di accesso** casella tipo **http://azure.benefitsolver.com**.
+   2. In hello **URL di risposta** casella tipo **https://www.benefitsolver.com/benefits/BenefitSolverView?page_name=single_signon_saml**.  
    3. Fare clic su **Avanti**.
-4. Nella pagina **Configura accesso Single Sign-On in Benefitsolver** fare clic su **Download metadati** per scaricare il file di metadati e quindi salvarlo nel computer.
+4. In hello **configurare single sign-on a Benefitsolver** pagina, toodownload i metadati, fare clic su **Scarica metadati**e quindi salvare il file di metadati hello in locale nel computer.
    
    ![Configurare l'accesso Single Sign-On](./media/active-directory-saas-benefitsolver-tutorial/IC804827.png "Configurare l'accesso Single Sign-On")
-5. Inviare il file di metadati scaricato al team di supporto di Benefitsolver.
+5. Il team di supporto Benefitsolver hello scaricato metadati file tooyour di trasmissione.
    
    >[!NOTE]
-   >Il team di supporto di Benefitsolver si occuperà dell'effettiva configurazione dell'accesso Single Sign-On. Una volta completata l'abilitazione dell'accesso Single Sign-On per la sottoscrizione, si riceverà una notifica.
+   >Il team di supporto Benefitsolver dispone di configurazione di SSO toodo hello effettivo. Una volta completata l'abilitazione dell'accesso Single Sign-On per la sottoscrizione, si riceverà una notifica.
    >
 
-6. Nel portale di Azure classico selezionare la conferma della configurazione dell'accesso Single Sign-On e quindi fare clic su **Complete** per chiudere la finestra di dialogo **Configura accesso Single Sign-On**.
+6. Nel portale di Azure classico hello, selezionare hello conferma della configurazione di single sign-on e quindi fare clic su **completa** tooclose hello **configurare Single Sign-On** finestra di dialogo.
    
    ![Configurare l'accesso Single Sign-On](./media/active-directory-saas-benefitsolver-tutorial/IC804828.png "Configurare l'accesso Single Sign-On")
-7. Nel menu in alto fare clic su **Attributi** to open the **SAML Token Attributi** .
+7. Scegliere dal menu hello in primo piano hello **attributi** tooopen hello **attributi Token SAML** finestra di dialogo.
    
    ![Attributi](./media/active-directory-saas-benefitsolver-tutorial/IC795920.png "Attributi")
-8. Per aggiungere i mapping di attributi obbligatori, eseguire la procedura seguente:
+8. mapping di attributi tooadd hello necessario, eseguire hello alla procedura seguente:
    
    ![Attributi](./media/active-directory-saas-benefitsolver-tutorial/IC804823.png "Attributi")
    
    | Nome attributo | Valore attributo |
    | --- | --- |
-   | ClientID |È necessario ottenere questo valore dal team di supporto di Benefitsolver. |
-   | ClientKey |È necessario ottenere questo valore dal team di supporto di Benefitsolver. |
-   | LogoutURL |È necessario ottenere questo valore dal team di supporto di Benefitsolver. |
-   | EmployeeID |È necessario ottenere questo valore dal team di supporto di Benefitsolver. |
+   | ClientID |È necessario tooget questo valore dal team di supporto Benefitsolver. |
+   | ClientKey |È necessario tooget questo valore dal team di supporto Benefitsolver. |
+   | LogoutURL |È necessario tooget questo valore dal team di supporto Benefitsolver. |
+   | EmployeeID |È necessario tooget questo valore dal team di supporto Benefitsolver. |
    
-   1. Per ogni riga di dati nella tabella precedente, fare clic su **aggiungi attributo utente**.
-   2. Nella casella di testo **Nome attributo** , digitare il nome dell'attributo indicato per quella riga.
-   3. Nella casella di testo **Valore attributo** , selezionare il valore dell'attributo indicato per la riga.
-   4. Fare clic su **Completa**.
+   1. Per ogni riga di dati della tabella hello precedente, fare clic su **Aggiungi attributo utente**.
+   2. In hello **nome dell'attributo** casella di testo, nome dell'attributo di tipo hello mostrato per la riga.
+   3. In hello **valore dell'attributo** casella di testo, il valore di attributo hello selezionare mostrato per la riga.
+   4. Fare clic su **Complete**.
 9. Fare clic su **Applica modifiche**.
 
 ## <a name="configure-user-provisioning"></a>Configura provisioning utenti
-Per consentire agli utenti di Azure AD di accedere a Benefitsolver, è necessario eseguirne il provisioning in Benefitsolver.  
+In ordine tooenable Azure AD utenti toolog in Benefitsolver, è necessario eseguirne il provisioning in Benefitsolver.  
 
-Nel caso di Benefitsolver, i dati dei dipendenti si trovano nell'applicazione popolata tramite un file di censimento del sistema HRIS, in genere durante la notte.  
+Nel caso di hello di Benefitsolver, i dati dei dipendenti sono nell'applicazione compilata tramite un file di censimento dal sistema HRIS (in genere durante la notte).  
 
 >[!NOTE]
->È possibile usare qualsiasi altro strumento o API di creazione di account utente fornita da Benefitsolver per eseguire il provisioning degli account utente di Azure AD. 
+>È possibile usare qualsiasi altro Benefitsolver utente account strumento di creazione o le API fornite da Benefitsolver tooprovision account utente di AAD. 
 > 
 
 ## <a name="assigning-users"></a>Assegnazione degli utenti
-Per testare la configurazione, è necessario concedere l'accesso all'applicazione agli utenti di Azure AD a cui si vuole consentirne l'uso, assegnando tali utenti all'applicazione.
+tootest della configurazione, è necessario toogrant hello Azure AD utenti tooallow utilizzando il tooit di accesso dell'applicazione tramite l'assegnazione.
 
-### <a name="to-assign-users-to-benefitsolver-perform-the-following-steps"></a>Per assegnare gli utenti a Benefitsolver, seguire questa procedura:
-1. Nel portale di Azure classico creare un account di test.
-2. Nel * * Benefitsolver * * pagina di integrazione dell'applicazione, fare clic su **assegnare gli utenti**.
+### <a name="tooassign-users-toobenefitsolver-perform-hello-following-steps"></a>tooassign tooBenefitsolver di utenti, eseguire hello alla procedura seguente:
+1. Nel portale di Azure classico hello, creare un account di prova.
+2. In hello * * Benefitsolver * * pagina di integrazione dell'applicazione, fare clic su **assegnare gli utenti**.
    
    ![Assegnare utenti](./media/active-directory-saas-benefitsolver-tutorial/IC804829.png "Assegnare utenti")
-3. Selezionare l'utente di test, fare clic su **Assegna** e quindi su **Sì** per confermare l'assegnazione.
+3. Selezionare l'utente test, fare clic su **assegnare**, quindi fare clic su **Sì** tooconfirm l'assegnazione.
    
    ![Sì](./media/active-directory-saas-benefitsolver-tutorial/IC767830.png "Sì")
 
-Per testare le impostazioni di Single Sign-On, aprire il pannello di accesso. Per altre informazioni sul pannello di accesso, vedere [Introduzione al Pannello di accesso](active-directory-saas-access-panel-introduction.md).
+Se si desiderano tootest le impostazioni di single sign-on, aprire Pannello di accesso hello. Per ulteriori dettagli su hello Pannello di accesso, vedere [introduzione toohello Pannello di accesso](active-directory-saas-access-panel-introduction.md).
 

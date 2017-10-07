@@ -1,5 +1,5 @@
 ---
-title: Esercitazioni per l'integrazione di app SaaS con Azure AD | Microsoft Docs
+title: esercitazioni sull'integrazione di App per l'utilizzo con Azure AD aaaSaaS | Documenti Microsoft
 description: Configurare l'integrazione dell'accesso Single Sign-On di Azure Active Directory con diverse applicazioni software come un servizio di terze parti.
 services: active-directory
 documentationcenter: 
@@ -15,19 +15,19 @@ ms.date: 06/21/2017
 ms.author: joflore
 ms.custom: it-pro
 ms.reviewer: jeedes
-ms.openlocfilehash: 5bedead730e0538c4cad464a9aee7f97a5a8c3ef
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: d99ec50ac2db52ab0f8547b2caaac19fd3a5a0d9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="saas-application-integration-with-azure-active-directory"></a>Integrazione dell’applicazione SaaS con Azure Active Directory
 
-Per semplificare l'integrazione delle le applicazioni cloud [(SaaS)](https://azure.microsoft.com/overview/what-is-saas/) abilitate con Azure Active Directory, è stata creata una raccolta di esercitazioni che illustrano ogni passaggio della configurazione.
+toohelp integrare l'abilitata per il cloud [(SaaS)](https://azure.microsoft.com/overview/what-is-saas/) applicazioni con Azure Active Directory, è stato sviluppato un insieme di esercitazioni che illustrano la configurazione.
 
-Nel punto in cui sono disponibili informazioni di provisioning utente, è stata inclusa un'esercitazione di applicazione per il provisioning dell'utente nella colonna destra, accanto all'esercitazione di applicazione.
+In cui sono disponibili informazioni di provisioning utente, è stato incluso un'esercitazione di applicazione per il provisioning nella colonna destra hello, esercitazione successiva di applicazione toohello degli utenti.
 
-Per un elenco completo delle app SaaS già integrate in Azure AD, vedere il [Marketplace di Active Directory](https://azuremarketplace.microsoft.com/marketplace/apps/category/azure-active-directory-apps).
+Per hello l'elenco completo delle App SaaS che sono stati preintegrato in Azure AD, vedere hello [Active Directory Marketplace](https://azuremarketplace.microsoft.com/marketplace/apps/category/azure-active-directory-apps).
 
 ## <a name="saas-tutorials"></a>Esercitazioni SaaS
 
@@ -68,7 +68,7 @@ Per un elenco completo delle app SaaS già integrate in Azure AD, vedere il [Mar
 | ![Logo](./media/active-directory-saas-tutorial-list/active-directory-saas-autotaskworkplace-tutorial.png)| [Autotask](active-directory-saas-autotaskworkplace-tutorial.md)|
 | ![Logo](./media/active-directory-saas-tutorial-list/SaaSApp_BambooHR.png)| [Bamboo HR](active-directory-saas-bamboo-hr-tutorial.md)|
 | ![Logo](./media/active-directory-saas-tutorial-list/saasapp_bambubysproutsocial.png)| [Bambu di Sprout Social](active-directory-saas-bambubysproutsocial-tutorial.md)|
-| ![Logo](./media/active-directory-saas-tutorial-list/active-directory-saas-bcinthecloud-tutorial.png)| [BC nel Cloud](active-directory-saas-bcinthecloud-tutorial.md)
+| ![Logo](./media/active-directory-saas-tutorial-list/active-directory-saas-bcinthecloud-tutorial.png)| [BC in hello Cloud](active-directory-saas-bcinthecloud-tutorial.md)
 | ![Logo](./media/active-directory-saas-tutorial-list/active-directory-saas-beeline-tutorial.png)| [BeeLine](active-directory-saas-beeline-tutorial.md)|
 | ![Logo](./media/active-directory-saas-tutorial-list/active-directory-saas-benefithub-tutorial.png)| [BenefitHub](active-directory-saas-benefithub-tutorial.md)
 | ![Logo](./media/active-directory-saas-tutorial-list/SaaSApp_Benefitssolver.png)| [Benefitsolver](active-directory-saas-benefitsolver-tutorial.md)|
@@ -339,7 +339,7 @@ Per un elenco completo delle app SaaS già integrate in Azure AD, vedere il [Mar
 | ![Logo](./media/active-directory-saas-tutorial-list/active-directory-saas-symantec-tutorial.png)| [Symantec Web Security Service (WSS)](active-directory-saas-symantec-tutorial.md)||
 | ![Logo](./media/active-directory-saas-tutorial-list/SaaSApp_Syncplicity.png)| [Syncplicity](active-directory-saas-syncplicity-tutorial.md)|
 | ![Logo](./media/active-directory-saas-tutorial-list/SaaSApp_Synergi.png)| [Synergi](active-directory-saas-synergi-tutorial.md)|
-| ![Logo](./media/active-directory-saas-tutorial-list/saasapp_tandeexpress.png)| [T&E Express](active-directory-saas-tyeexpress-tutorial.md)|
+| ![Logo](./media/active-directory-saas-tutorial-list/saasapp_tandeexpress.png)| [T&amp;E Express](active-directory-saas-tyeexpress-tutorial.md)|
 | ![Logo](./media/active-directory-saas-tutorial-list/SaaSApp_TableauOnline.png)| [Tableau Online](active-directory-saas-tableauonline-tutorial.md)|
 | ![Logo](./media/active-directory-saas-tutorial-list/SaaSApp_Tableau.png)| [Tableau Server](active-directory-saas-tableauserver-tutorial.md)|
 | ![Logo](./media/active-directory-saas-tutorial-list/active-directory-saas-talentlms-tutorial.png)| [TalentLMS](active-directory-saas-talentlms-tutorial.md)|
@@ -349,7 +349,7 @@ Per un elenco completo delle app SaaS già integrate in Azure AD, vedere il [Mar
 | ![Logo](./media/active-directory-saas-tutorial-list/saasapp_teamphoria.png)| [Teamphoria](active-directory-saas-teamphoria-tutorial.md)|
 | ![Logo](./media/active-directory-saas-tutorial-list/SaaSApp_TeamSeer.png)| [TeamSeer](active-directory-saas-teamseer-tutorial.md)|
 | ![Logo](./media/active-directory-saas-tutorial-list/SaaSApp_Teamwork.png)| [Teamwork](active-directory-saas-teamwork-tutorial.md)
-| ![Logo](./media/active-directory-saas-tutorial-list/active-directory-saas-thefundingportal-tutorial.png)| [The Funding Portal](active-directory-saas-thefundingportal-tutorial.md)|
+| ![Logo](./media/active-directory-saas-tutorial-list/active-directory-saas-thefundingportal-tutorial.png)| [Hello Funding portale](active-directory-saas-thefundingportal-tutorial.md)|
 | ![Logo](./media/active-directory-saas-tutorial-list/active-directory-saas-thirdlight-tutorial.png)| [ThirdLight](active-directory-saas-thirdlight-tutorial.md)|
 | ![Logo](./media/active-directory-saas-tutorial-list/active-directory-saas-thoughtworks-mingle-tutorial.png)| [Thoughtworks Mingle](active-directory-saas-thoughtworks-mingle-tutorial.md)|
 | ![Logo](./media/active-directory-saas-tutorial-list/active-directory-saas-thousandeyes-tutorial.png)| [ThousandEyes](active-directory-saas-thousandeyes-tutorial.md)|
@@ -403,4 +403,4 @@ Per un elenco completo delle app SaaS già integrate in Azure AD, vedere il [Mar
 ## <a name="related-articles"></a>Articoli correlati
 
 * [Indice di articoli per la gestione di applicazioni in Azure Active Directory](active-directory-apps-index.md)
-* [Elenco di esercitazioni pratiche sulla procedura di integrazione delle applicazioni SaaS](active-directory-saas-tutorial-list.md)
+* [Elenco di esercitazioni sulla tooIntegrate App SaaS](active-directory-saas-tutorial-list.md)

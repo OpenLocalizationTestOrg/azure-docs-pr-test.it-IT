@@ -1,6 +1,6 @@
 ---
-title: Abilitare la sincronizzazione offline per l'app per dispositivi mobili di Azure (Cordova) | Documentazione Microsoft
-description: Informazioni su come usare le app mobili del servizio app per memorizzare nella cache e sincronizzare i dati offline in un'applicazione Cordova
+title: aaaEnable sincronizzazione offline per l'App Mobile di Azure (Cordova) | Documenti Microsoft
+description: Informazioni su come toouse App del servizio Mobile App toocache e sincronizzazione dati offline nella propria applicazione Cordova
 documentationcenter: cordova
 author: ggailey777
 manager: syntaxc4
@@ -14,36 +14,36 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 10/30/2016
 ms.author: glenga
-ms.openlocfilehash: 45e80ca672dfdb6defc6e5c1aac3d29f5479125c
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 4e6ae96c3d96dac8ebb3749354b83a04686831b7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="enable-offline-sync-for-your-cordova-mobile-app"></a>Abilitare la sincronizzazione offline per l'app per dispositivi mobili Cordova
 [!INCLUDE [app-service-mobile-selector-offline](../../includes/app-service-mobile-selector-offline.md)]
 
-Questa esercitazione descrive la funzionalità di sincronizzazione offline delle app per dispositivi mobili di Azure per Cordova. La sincronizzazione offline consente agli utenti finali di interagire con un'app&mdash;visualizzando, aggiungendo e modificando i dati&mdash;anche se non è disponibile una connessione di rete. Le modifiche vengono archiviate in un database locale.  Quando il dispositivo torna online, vengono sincronizzate con il servizio remoto.
+In questa esercitazione introduce funzionalità di sincronizzazione non in linea hello di App mobili di Azure per Cordova. Sincronizzazione non in linea consente toointeract gli utenti finali con un'app mobile&mdash;visualizzazione, aggiunta o modifica dei dati&mdash;anche quando è presente alcuna connessione di rete. Le modifiche vengono archiviate in un database locale.  Una volta dispositivo hello è tornata in linea, queste modifiche vengono sincronizzate con servizio remoto hello.
 
-Questa esercitazione si basa sulla soluzione di avvio rapido Cordova per le app per dispositivi mobili create quando si completa l'esercitazione sull' [avvio rapido di Apache Cordova]. In questa esercitazione viene aggiornata la soluzione di avvio rapido per aggiungere le funzionalità offline delle app per dispositivi mobili di Azure.  Viene anche evidenziato il codice specifico per le funzionalità offline nell'app.
+In questa esercitazione si basa sull'hello Cordova delle Guide rapide soluzione per App per dispositivi mobili creati quando si completa hello esercitazione [avvio rapido di Apache Cordova]. In questa esercitazione è aggiornare hello delle Guide rapide tooadd offline caratteristiche della soluzione di App mobili di Azure.  È inoltre evidenziati codice specifico per la linea hello in app hello.
 
-Per altre informazioni sulla funzionalità di sincronizzazione offline, vedere l'argomento [Sincronizzazione di dati offline nelle app per dispositivi mobili di Azure]. Per informazioni dettagliate sull'utilizzo delle API, vedere la [documentazione per le API](https://azure.github.io/azure-mobile-apps-js-client).
+toolearn sulle funzionalità di sincronizzazione non in linea hello, vedere l'argomento hello [sincronizzazione dati Offline nelle App mobili di Azure]. Per informazioni dettagliate sull'utilizzo di API, vedere hello [documentazione dell'API](https://azure.github.io/azure-mobile-apps-js-client).
 
-## <a name="add-offline-sync-to-the-quickstart-solution"></a>Aggiungere la sincronizzazione offline alla soluzione di avvio rapido
-È necessario aggiungere dall'app il codice di sincronizzazione offline. La sincronizzazione offline richiede il plug-in cordova-sqlite-storage, che viene aggiunto automaticamente all'app quando il plug-in App per dispositivi mobili di Azure è incluso nel progetto. Il progetto di avvio rapido include entrambi questi plug-in.
+## <a name="add-offline-sync-toohello-quickstart-solution"></a>Aggiungi soluzione di sincronizzazione non in linea toohello Guida introduttiva
+aggiungere il codice di sincronizzazione non in linea Hello toohello app. Sincronizzazione non in linea richiede plug-in cordova-sqlite-archiviazione hello, che viene aggiunto automaticamente app tooyour quando plug-in App mobili di Azure hello è incluso nel progetto hello. progetto di avvio rapido Hello include entrambi questi plug-in.
 
-1. In Esplora soluzioni di Visual Studio,aprire index.js e sostituire il codice seguente
+1. In Esplora soluzioni di Visual Studio, aprire index.js e sostituire hello seguente di codice
 
-        var client,            // Connection to the Azure Mobile App backend
-           todoItemTable;      // Reference to a table endpoint on backend
+        var client,            // Connection toohello Azure Mobile App backend
+           todoItemTable;      // Reference tooa table endpoint on backend
 
     con questo codice:
 
-        var client,            // Connection to the Azure Mobile App backend
-           todoItemTable,      // Reference to a table endpoint on backend
-           syncContext;        // Reference to offline data sync context
+        var client,            // Connection toohello Azure Mobile App backend
+           todoItemTable,      // Reference tooa table endpoint on backend
+           syncContext;        // Reference toooffline data sync context
 
-2. Sostituire quindi il codice seguente:
+2. Successivamente, sostituire hello seguente codice:
 
         client = new WindowsAzure.MobileServiceClient('http://yourmobileapp.azurewebsites.net');
 
@@ -62,136 +62,136 @@ Per altre informazioni sulla funzionalità di sincronizzazione offline, vedere l
           }
         });
 
-        // Get the sync context from the client
+        // Get hello sync context from hello client
         syncContext = client.getSyncContext();
 
-    Le aggiunte di codice precedenti inizializzano l'archivio locale e definiscono una tabella locale che corrisponde ai valori di colonna usati nel back-end di Azure. Non è necessario includere tutti i valori delle colonne in questo codice.  Il campo `version` viene gestito dal back-end per dispositivi mobili e viene usato per la risoluzione dei conflitti.
+    inizializzare l'archivio locale hello Hello aggiunte di codice precedente e definire una tabella locale che corrisponde a valori di colonna hello utilizzati in di Azure back-end. (Non è necessario tooinclude tutti i valori di colonna in questo codice.)  Hello `version` campo gestito dal back-end mobile hello e viene utilizzato per la risoluzione dei conflitti.
 
-    Per ottenere un riferimento al contesto di sincronizzazione, chiamare **getSyncContext**. Il contesto di sincronizzazione aiuta a mantenere le relazioni tra tabelle rilevando le modifiche apportate da un'app client in tutte le tabelle ed eseguendone il push quando viene chiamato `.push()` .
+    Ottenere un contesto di sincronizzazione toohello riferimento chiamando **getSyncContext**. Hello contesto di sincronizzazione consente di mantenere le relazioni tra tabelle e di rilevamento e il push delle modifiche in tutte le tabelle modificato quando un'app client `.push()` viene chiamato.
 
-3. Aggiornare l'URL dell'applicazione con l'URL dell'applicazione App per dispositivi mobili.
+3. Aggiornare l'URL dell'applicazione Mobile App tooyour URL applicazione hello.
 
 4. Quindi, sostituire il codice:
 
-        todoItemTable = client.getTable('todoitem'); // todoitem is the table name
+        todoItemTable = client.getTable('todoitem'); // todoitem is hello table name
 
     con questo codice:
 
-        // Initialize the sync context with the store
+        // Initialize hello sync context with hello store
         syncContext.initialize(store).then(function () {
 
-        // Get the local table reference.
+        // Get hello local table reference.
         todoItemTable = client.getSyncTable('todoitem');
 
         syncContext.pushHandler = {
             onConflict: function (pushError) {
-                // Handle the conflict.
+                // Handle hello conflict.
                 console.log("Sync conflict! " + pushError.getError().message);
-                // Update failed, revert to server's copy.
+                // Update failed, revert tooserver's copy.
                 pushError.cancelAndDiscard();
               },
               onError: function (pushError) {
-                  // Handle the error
-                  // In the simulated offline state, you get "Sync error! Unexpected connection failure."
+                  // Handle hello error
+                  // In hello simulated offline state, you get "Sync error! Unexpected connection failure."
                   console.log("Sync error! " + pushError.getError().message);
               }
         };
 
-        // Call a function to perform the actual sync
+        // Call a function tooperform hello actual sync
         syncBackend();
 
-        // Refresh the todoItems
+        // Refresh hello todoItems
         refreshDisplay();
 
-        // Wire up the UI Event Handler for the Add Item
+        // Wire up hello UI Event Handler for hello Add Item
         $('#add-item').submit(addItemHandler);
         $('#refresh').on('click', refreshDisplay);
 
-    Il codice precedente inizializza il contesto di sincronizzazione e quindi chiama getSyncTable (invece di getTable) per ottenere un riferimento alla tabella locale.
+    Hello precedente codice inizializza il contesto di sincronizzazione hello e quindi chiama tooget getSyncTable (anziché getTable) una tabella di riferimento toohello locale.
 
-    Questo codice usa il database locale per tutte le operazioni di creazione, lettura, aggiornamento ed eliminazione (CRUD, Create, Read, Update, Delete) sulle tabelle.
+    Il database locale di hello utilizza codice per tutti creare, leggere, aggiornare ed eliminazione (CRUD) nella tabella.
 
-    In questo esempio si esegue una semplice gestione degli errori nei conflitti di sincronizzazione. Una vera applicazione gestirà i diversi errori come condizioni di rete, conflitti di server e altro. Per esempi di codice, vedere l' [esempio di sincronizzazione offline].
+    In questo esempio si esegue una semplice gestione degli errori nei conflitti di sincronizzazione. Un'applicazione reale si gestisce hello diversi errori, ad esempio le condizioni della rete, server è in conflitto e altri. Per esempi di codice, vedere hello [esempio di sincronizzazione non in linea].
 
-5. Successivamente, aggiungere questa funzione per eseguire la sincronizzazione effettiva.
+5. Successivamente, aggiungere la sincronizzazione di funzione tooperform hello effettivo.
 
         function syncBackend() {
 
-          // Sync local store to Azure table when app loads, or when login complete.
+          // Sync local store tooAzure table when app loads, or when login complete.
           syncContext.push().then(function () {
               // Push completed
 
           });
 
-          // Pull items from the Azure table after syncing to Azure.
+          // Pull items from hello Azure table after syncing tooAzure.
           syncContext.pull(new WindowsAzure.Query('todoitem'));
         }
 
-    Decidere quando effettuare il push delle modifiche nel back-end dell'app per dispositivi mobili chiamando **syncContext.push()**. Ad esempio, è possibile chiamare **syncBackend** in un gestore eventi associato a un pulsante di sincronizzazione.
+    Si decide quando toopush cambia back-end App Mobile toohello chiamando **syncContext.push()**. Ad esempio, è possibile chiamare **syncBackend** in un evento gestore tooa legati sincronizzazione pulsante.
 
 ## <a name="offline-sync-considerations"></a>Considerazioni sulla sincronizzazione offline
 
-Nell'esempio, il metodo **push** di **syncContext** viene chiamato solo all'avvio dell'app nella funzione di callback per l'accesso.  In un'applicazione vera e propria è anche possibile attivare questa funzionalità di sincronizzazione manualmente o quando lo stato della rete cambia.
+Nell'esempio hello hello **push** metodo **syncContext** viene chiamato solo all'avvio dell'app in funzione di callback hello per account di accesso.  In un'applicazione reale, è possibile apportare questa funzionalità di sincronizzazione attivata manualmente o quando cambia stato rete hello.
 
-Quando viene effettuato il pull in una tabella con aggiornamenti locali in sospeso rilevati dal contesto, tale operazione attiva automaticamente un'operazione push. Quando si aggiornano, aggiungono e completano elementi in questo esempio, è possibile omettere la chiamata **push** esplicita, perché potrebbe essere ridondante.
+Quando viene eseguita un'operazione di pull in una tabella che è in sospeso aggiornamenti locali registrati dal contesto hello, che pull operazione automaticamente i trigger di push. Quando l'aggiornamento, l'aggiunta e il completamento di elementi in questo esempio, è possibile omettere hello esplicita **push** chiamare, perché potrebbe essere ridondante.
 
-Nel codice fornito viene eseguita una query su tutti i record presenti nella tabella TodoItem remota, ma è anche possibile filtrare i record passando un ID query e una query a **push**. Per altre informazioni, vedere la sezione *Sincronizzazione incrementale* in [Sincronizzazione di dati offline nelle app per dispositivi mobili di Azure].
+Nel codice hello fornito, tutti i record nella tabella todoItem remoto hello esecuzione di query, ma è anche possibile toofilter record passando un id di query e una query troppo**push**. Per ulteriori informazioni, vedere la sezione hello *sincronizzazione incrementale* in [sincronizzazione dati Offline nelle App mobili di Azure].
 
 ## <a name="optional-disable-authentication"></a>(Facoltativo) Disabilitare l'autenticazione
 
-Se non si vuole configurare l'autenticazione prima di testare la sincronizzazione offline, impostare come commento la funzione di callback per l'accesso, ma lasciare il codice all'interno della funzione di callback in cui sono stati rimossi i commenti.  Dopo l'impostazione come commento delle righe di accesso, il codice sarà come segue:
+Se si non desidera tooset autenticazione prima di testare la sincronizzazione non in linea, impostare come commento la funzione di callback hello per account di accesso, ma lasciare hello codice all'interno di rimuovere la funzione di callback hello.  Dopo l'impostazione come commento le righe di account di accesso hello, codice hello seguente:
 
-      // Login to the service.
+      // Login toohello service.
       // client.login('twitter')
       //    .then(function () {
         syncContext.initialize(store).then(function () {
-          // Leave the rest of the code in this callback function  uncommented.
+          // Leave hello rest of hello code in this callback function  uncommented.
                 ...
         });
       // }, handleError);
 
-A questo punto, l'app viene sincronizzata con il back-end di Azure quando si esegue l'app.
+A questo punto, hello app esegue la sincronizzazione con il back-end Azure quando si esegue l'applicazione hello hello.
 
-## <a name="run-the-client-app"></a>Eseguire l'app client
-Con la sincronizzazione offline abilitata, è possibile eseguire l'applicazione client almeno una volta in ogni piattaforma per popolare il database di archiviazione locale. Più avanti viene simulato uno scenario offline e vengono modificati i dati nell'archivio locale mentre l'app è offline.
+## <a name="run-hello-client-app"></a>Eseguire app di hello client
+Con questo punto è abilitata la sincronizzazione non in linea, è possibile eseguire un'applicazione hello client almeno una volta in ogni piattaforma per popolare il database di archivio locale hello. In un secondo momento, simulare uno scenario offline e modificare i dati di hello nell'archivio locale hello mentre l'applicazione hello è offline.
 
-## <a name="optional-test-the-sync-behavior"></a>(Facoltativo) Testare il comportamento di sincronizzazione
-In questa sezione viene modificato il progetto client per simulare uno scenario offline usando un URL di applicazione non valido per il back-end. Quando si aggiungono o si modificano elementi di dati, queste modifiche vengono conservate nell'archivio locale, ma non vengono sincronizzate con l'archivio dati back-end fino a quando non viene ristabilita la connessione.
+## <a name="optional-test-hello-sync-behavior"></a>(Facoltativo) Testare il comportamento di sincronizzazione hello
+In questa sezione è modificare hello client progetto toosimulate uno scenario offline tramite un URL dell'applicazione non valido per il back-end. Quando si aggiunge o modifica gli elementi di dati, queste modifiche vengono mantenute nell'archivio locale, ma non sono sincronizzati toohello archivio di dati back-end fino a quando non viene ristabilita la connessione di hello.
 
-1. In Esplora soluzioni aprire il file di progetto index.js e modificare l'URL dell'applicazione, in modo che punti a un URL non valido, come nel codice seguente:
+1. Nel hello Esplora soluzioni, aprire il file di progetto index.js hello e modificare hello applicazione URL toopoint a un URL non valido, ad esempio hello seguente codice:
 
         client = new WindowsAzure.MobileServiceClient('http://yourmobileapp.azurewebsites.net-fail');
 
-2. Nel file Index. HTML aggiornare l'elemento `<meta>` CSP con lo stesso URL non valido.
+2. In index.html, aggiornare hello CSP `<meta>` elemento con hello stesso URL non valido.
 
         <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: http://yourmobileapp.azurewebsites.net-fail; style-src 'self'; media-src *">
 
-3. Compilare ed eseguire l'app client e notare che un'eccezione viene registrata nella console quando l'app prova a sincronizzarsi con il back-end dopo l'accesso. Gli eventuali nuovi elementi aggiunti esistono solo nell'archivio locale fino a quando non ne viene effettuato il push nel back-end dell'app per dispositivi mobili. L'app client si comporta come se fosse connessa al back-end.
+3. Compilare ed eseguire app client hello e si noti che un'eccezione viene registrata nella console di hello quando hello app tenta di sincronizzarsi con back-end hello dopo l'accesso. I nuovi elementi che aggiunti esistono solo nell'archivio locale di hello fino a quando queste vengono inviate back-end mobile toohello. app client Hello si comporta come se fosse connesso toohello di back-end.
 
-4. Chiudere l'app e riavviarla per verificare che i nuovi elementi creati siano salvati in modo permanente nell'archivio locale.
+4. Chiudere l'applicazione hello e riavviarlo tooverify che è stato creato in base ai nuovi elementi hello siano archivio locale toohello persistente.
 
-5. (Facoltativo) Usare Visual Studio per visualizzare la tabella di database SQL di Azure per verificare che i dati nel database back-end non siano cambiati.
+5. (Facoltativo) Utilizzare Visual Studio tooview toosee di tabella del Database SQL di Azure che hello dati nel database back-end hello non vengono modificati.
 
-    In Visual Studio aprire **Esplora server**. Passare al database in **Azure**->**Database SQL**. Fare clic con il pulsante destro del mouse sul database e scegliere **Apri in Esplora oggetti di SQL Server**. È ora possibile passare alla tabella di database SQL e al relativo contenuto.
+    In Visual Studio aprire **Esplora server**. Esplorare database tooyour **Azure**->**database SQL**. Fare clic con il pulsante destro del mouse sul database e scegliere **Apri in Esplora oggetti di SQL Server**. È possibile cercare tooyour tabella di database SQL e il relativo contenuto.
 
-## <a name="optional-test-the-reconnection-to-your-mobile-backend"></a>(Facoltativo) Testare la riconnessione al back-end mobile
+## <a name="optional-test-hello-reconnection-tooyour-mobile-backend"></a>(Facoltativo) Test hello riconnessione tooyour mobile back-end
 
-In questa sezione, l'app viene riconnessa al back-end del'app per dispositivi mobili, azione che simula il ritorno dell'app allo stato online. Quando si esegue l'accesso, i dati verranno sincronizzati con il back-end dell'app per dispositivi mobili.
+In questa sezione si riconnette hello app toohello mobile back-end, che simula l'applicazione hello proveniente da uno stato online. Quando si accede, i dati sono back-end mobile tooyour sincronizzati.
 
-1. Riaprire index. js e ripristinare l'URL dell'applicazione.
-2. Riaprire index.htnl e correggere l'URL dell'applicazione nell'elemento `<meta>` CSP.
-3. Ricompilare ed eseguire l'app client. L'app prova a eseguire la sincronizzazione con il back-end dell'app per dispositivi mobili dopo l'accesso. Verificare che non vengano registrate eccezioni nella console di debug.
-4. (Facoltativo) Visualizzare i dati aggiornati usando Esplora oggetti di SQL Server o uno strumento REST come Fiddler. Si noti che i dati sono stati sincronizzati tra il database di back-end e l'archivio locale.
+1. Riaprire index.js e ripristinare l'URL dell'applicazione hello.
+2. Riaprire index.html e correggere l'URL dell'applicazione hello in hello CSP `<meta>` elemento.
+3. Ricompilare ed eseguire l'applicazione client hello. app Hello tenta toosync con back-end dell'app mobile hello dopo l'accesso. Verificare che nessuna eccezione vengono registrata nella console di debug hello.
+4. (Facoltativo) Hello visualizzazione aggiornata dei dati utilizzando Esplora oggetti di SQL Server o uno strumento REST come Fiddler. Si noti hello dati sono stati sincronizzati tra i database di back-end hello e archivio locale hello.
 
-    Si noti che i dati sono stati sincronizzati tra il database e l'archivio locale e includono gli elementi aggiunti mentre l'app era disconnessa.
+    Avviso hello dati sincronizzati tra database hello e archivio locale hello e contiene elementi hello che aggiunti mentre l'app è stata disconnessa.
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
-* [Sincronizzazione di dati offline nelle app per dispositivi mobili di Azure]
+* [sincronizzazione dati Offline nelle App mobili di Azure]
 * [Visual Studio Tools per Apache Cordova]
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Nell'[esempio di sincronizzazione offline] sono disponibili informazioni sulle funzionalità di sincronizzazione offline più avanzate, ad esempio la risoluzione dei conflitti.
-* Vedere le informazioni di riferimento sull'API di sincronizzazione offline nella [documentazione per l'API](https://azure.github.io/azure-mobile-apps-js-client).
+* Esaminare più avanzate funzionalità di sincronizzazione non in linea, ad esempio la risoluzione dei conflitti in hello [esempio di sincronizzazione non in linea]
+* Esaminare la sincronizzazione non in linea hello riferimento all'API in hello [documentazione dell'API](https://azure.github.io/azure-mobile-apps-js-client).
 
 <!-- ##Summary -->
 
@@ -199,12 +199,12 @@ In questa sezione, l'app viene riconnessa al back-end del'app per dispositivi mo
 
 <!-- URLs. -->
 [avvio rapido di Apache Cordova]: app-service-mobile-cordova-get-started.md
-[esempio di sincronizzazione offline]: https://github.com/Azure-Samples/app-service-mobile-cordova-client-conflict-handling
-[Sincronizzazione di dati offline nelle app per dispositivi mobili di Azure]: app-service-mobile-offline-data-sync.md
+[esempio di sincronizzazione non in linea]: https://github.com/Azure-Samples/app-service-mobile-cordova-client-conflict-handling
+[sincronizzazione dati Offline nelle App mobili di Azure]: app-service-mobile-offline-data-sync.md
 [Cloud Cover: Offline Sync in Azure Mobile Services]: http://channel9.msdn.com/Shows/Cloud+Cover/Episode-155-Offline-Storage-with-Donna-Malayeri
 [Adding Authentication]: app-service-mobile-cordova-get-started-users.md
 [authentication]: app-service-mobile-cordova-get-started-users.md
-[Work with the .NET backend server SDK for Azure Mobile Apps]: app-service-mobile-dotnet-backend-how-to-use-server-sdk.md
+[Work with hello .NET backend server SDK for Azure Mobile Apps]: app-service-mobile-dotnet-backend-how-to-use-server-sdk.md
 [Visual Studio Community 2015]: http://www.visualstudio.com/
 [Visual Studio Tools per Apache Cordova]: https://www.visualstudio.com/en-us/features/cordova-vs.aspx
 [Apache Cordova SDK]: app-service-mobile-cordova-how-to-use-client-library.md

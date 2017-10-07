@@ -1,6 +1,6 @@
 ---
-title: Configurare Azure AD Privileged Identity Management | Documentazione Microsoft
-description: Argomento che descrive Azure AD Privileged Identity Management e illustra come usare PIM per migliorare la sicurezza del cloud.
+title: Azure AD Privileged Identity Management aaaConfigure | Documenti Microsoft
+description: "Un argomento che spiega che cos'è Azure AD Privileged Identity Management e come toouse PIM tooimprove la protezione del cloud."
 services: active-directory
 documentationcenter: 
 author: billmath
@@ -15,29 +15,29 @@ ms.topic: article
 ms.date: 05/04/2017
 ms.author: billmath
 ms.custom: pim ; H1Hack27Feb2017
-ms.openlocfilehash: eb7059368cb80be7dd625f9dc6ad2aab1bad709a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: dbe49fe4a0f6e5b46ed5a17fc7e8dcdacafe3846
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="what-is-azure-ad-privileged-identity-management"></a>Che cos'è Azure AD Privileged Identity Management?
-Con Azure Active Directory (AD) Privileged Identity Management è possibile gestire, il controllo e monitorare l'accesso all'interno dell'organizzazione. È incluso l'accesso alle risorse in Azure AD e altri Microsoft Online Services, ad esempio Office 365 o Microsoft Intune.  
+Con Azure Active Directory (AD) Privileged Identity Management è possibile gestire, il controllo e monitorare l'accesso all'interno dell'organizzazione. Ciò include tooresources di accesso di Azure AD e altri Microsoft online services quali Office 365 o Microsoft Intune.  
 
 > [!NOTE]
-> Privileged Identity Management è disponibile per l'intera organizzazione quando si conferisce agli amministratori la licenza della versione Premium P2 di Azure Active Directory. Per altre informazioni, vedere [Edizioni di Azure Active Directory](active-directory-editions.md).
+> Quando gli amministratori con versione di hello P2 Premium di Azure Active Directory è una licenza, Privileged Identity Management è disponibile tooyour intera organizzazione. Per altre informazioni, vedere [Edizioni di Azure Active Directory](active-directory-editions.md).
 
-Le organizzazioni desiderano ridurre al minimo il numero di utenti che hanno accesso a informazioni o risorse protette per ridurre le probabilità che un utente malintenzionato acceda al sistema. Tuttavia, gli utenti devono comunque eseguire operazioni con privilegi nelle app Azure, Office 365 o SaaS. Le organizzazioni assegnano agli utenti l'accesso con privilegi in Azure AD senza monitorare le attività svolte con i privilegi amministrativi. Gestione identità con privilegi di Azure AD consente di risolvere questo rischio.  
+Le organizzazioni desidera che il numero di hello toominimize di persone che hanno accesso toosecure informazioni o risorse, in quanto che riduce le possibilità di hello di un utente malintenzionato di accedere. Tuttavia, gli utenti devono comunque toocarry operazioni privilegiate nelle app di Azure, Office 365 o SaaS. Le organizzazioni assegnano agli utenti l'accesso con privilegi in Azure AD senza monitorare le attività svolte con i privilegi amministrativi. Azure AD Privileged Identity Management consente tooresolve questo rischio.  
 
 Azure AD Privileged Identity Management consente di effettuare le operazioni seguenti:  
 
 * Individuare gli utenti amministratori di Azure AD
-* Abilitare l'accesso come amministratore Just-In-Time su richiesta ai Microsoft Online Services, ad esempio Office 365 e Intune
+* Abilitare le connessioni, "just in time" accesso amministrativo tooMicrosoft Online Services quali Office 365 e Intune
 * Ottenere report sulla cronologia degli accessi degli amministratori e sulle modifiche alle assegnazioni degli amministratori
-* Ricevere avvisi relativi all'accesso a un ruolo con privilegi
-* Richiedere l'approvazione per l'attivazione (Anteprima)
+* Ottenere avvisi relativi al ruolo con privilegi di accesso tooa
+* Richiedi approvazione tooactivate (anteprima)
 
-Azure AD Privileged Identity Management è in grado di gestire i ruoli aziendali predefiniti di Azure Active Directory che includono (senza limitazioni):  
+Azure AD Privileged Identity Management è possibile gestire i ruoli dell'organizzazione di hello incorporato Azure AD, inclusi (ma non è limitato a):  
 
 * Amministratore globale
 * Amministratore fatturazione
@@ -46,69 +46,69 @@ Azure AD Privileged Identity Management è in grado di gestire i ruoli aziendali
 * Amministratore password
 
 ## <a name="just-in-time-administrator-access"></a>Accesso amministratore just-in-time
-In passato si poteva assegnare un utente a un ruolo amministrativo tramite il portale di Azure classico o Windows PowerShell. Di conseguenza l'utente diventa **amministratore permanente**, sempre attivo nel ruolo assegnato. Azure AD Privileged Identity Management introduce il concetto di **amministratore idoneo**. Gli amministratori idonei devono essere utenti che necessitano dell'accesso con privilegi in modo occasionale, non con cadenza quotidiana. Il ruolo è inattivo fino a quando l'utente che necessita dell'accesso non completa un processo di attivazione e diventa amministratore attivo per un periodo di tempo predeterminato.
+In passato, è possibile assegnare un ruolo di amministratore utente tooan tramite hello portale di Azure classico o Windows PowerShell. Di conseguenza, tale utente diventa un **amministratore permanente**, sempre attiva nel ruolo hello assegnato. Azure AD Privileged Identity Management è stato introdotto il concetto di hello di un **admin idonei**. Gli amministratori idonei devono essere utenti che necessitano dell'accesso con privilegi in modo occasionale, non con cadenza quotidiana. ruolo Hello è inattivo fino a quando l'utente hello richiede l'accesso, quindi il completamento di un processo di attivazione e diventare amministratore attivo per un periodo di tempo prestabilito.
 
 ## <a name="enable-privileged-identity-management-for-your-directory"></a>Abilitare Privileged Identity Management per la directory
-È possibile iniziare a usare Azure AD Privileged Identity Management nel [portale di Azure](https://portal.azure.com/).
+Iniziare a usare Azure AD Privileged Identity Management nel hello [portale di Azure](https://portal.azure.com/).
 
 > [!NOTE]
-> Per abilitare Azure AD Privileged Identity Management per una directory, è necessario essere un amministratore globale, ad esempio @yourdomain.com e non un account Microsoft, ad esempio @outlook.com.
+> È necessario essere un amministratore globale con un account aziendale (ad esempio, @yourdomain.com), non un account Microsoft (ad esempio, @outlook.com), tooenable Azure AD Privileged Identity Management per una directory.
 
-1. Accedere al [portale di Azure](https://portal.azure.com/) come amministratore globale della directory.
-2. Se l'organizzazione ha più directory, selezionare il proprio nome utente nell'angolo superiore destro del portale di Azure. Selezionare la directory in cui si userà Azure AD Privileged Identity Management.
-3. Selezionare **Altri servizi** e usare la casella di testo Filtro per cercare **Azure AD Privileged Identity Management**.
-4. Selezionare **Aggiungi al dashboard** e quindi fare clic su **Crea**. Verrà aperta l'applicazione Privileged Identity Management.
+1. Accedi toohello [portale di Azure](https://portal.azure.com/) come amministratore globale della directory.
+2. Se l'organizzazione dispone di più di una directory, selezionare il nome utente in hello nell'angolo superiore destro di hello portale di Azure. Selezionare la directory di hello in cui si userà Azure AD Privileged Identity Management.
+3. Selezionare **più servizi** e utilizzare hello filtro textbox toosearch per **Azure AD Privileged Identity Management**.
+4. Controllare **Pin toodashboard** e quindi fare clic su **crea**. verrà visualizzata la finestra di Hello applicazione Privileged Identity Management.
 
-Se si è la prima persona che usa Azure AD Privileged Identity Management nella directory, la [procedura guidata relativa alla sicurezza](active-directory-privileged-identity-management-security-wizard.md) illustrerà in dettaglio l'esperienza di assegnazione iniziale. Al termine della procedura guidata si diventa automaticamente primo **amministratore della sicurezza** e **amministratore dei ruoli con privilegi** della directory.
+Se si sta hello prima persona toouse Azure AD Privileged Identity Management nella directory, hello [guidata impostazioni di sicurezza](active-directory-privileged-identity-management-security-wizard.md) illustra esperienza iniziale assegnazione hello. Dopo che diventa automaticamente anche hello innanzitutto **amministratore della sicurezza** e **amministratore del ruolo con privilegi** della directory hello.
 
-Solo l'amministratore dei ruoli con privilegi può gestire l'accesso per gli altri amministratori. È possibile [consentire ad altri utenti di eseguire operazioni di gestione in PIM](active-directory-privileged-identity-management-how-to-give-access-to-pim.md).
+Solo l'amministratore dei ruoli con privilegi può gestire l'accesso per gli altri amministratori. È possibile [assegna toomanage di possibilità hello altri utenti nelle PIM](active-directory-privileged-identity-management-how-to-give-access-to-pim.md).
 
 ## <a name="privileged-identity-management-admin-dashboard"></a>Dashboard amministratore di Privileged Identity Management
 In Azure AD Privileged Identity Management è disponibile un dashboard dell'amministratore che visualizza informazioni importanti, tra cui:
 
-* Avvisi che segnalano opportunità di miglioramento della sicurezza
-* Numero di utenti assegnati a ogni ruolo con privilegi  
-* Numero di amministratori permanenti e idonei
+* Avvisi che segnalano sicurezza tooimprove opportunità
+* numero di Hello degli utenti viene assegnato il ruolo con privilegi di tooeach  
+* numero di Hello del gruppo amministratori idonei e permanenti
 * Un grafo di attivazioni del ruolo con privilegi nella directory
 
 ![Dashboard PIM - Schermata][2]
 
 ## <a name="privileged-role-management"></a>Gestione dei ruoli con privilegi
-Con Azure AD Privileged Identity Management è possibile gestire gli amministratori tramite l'aggiunta o la rimozione di amministratori permanenti o idonei a ogni ruolo.
+Con Azure AD Privileged Identity Management, è possibile gestire gli amministratori di hello aggiungendo o rimuovendo ruolo tooeach amministratori permanenti o idoneo.
 
 ![Aggiunta/Rimozione di amministratori PIM - Schermata][3]
 
-## <a name="configure-the-role-activation-settings"></a>Configurare le impostazioni di attivazione del ruolo
-L'uso delle [impostazioni del ruolo](active-directory-privileged-identity-management-how-to-change-default-settings.md) consente di configurare le proprietà di attivazione del ruolo idoneo, ad esempio:
+## <a name="configure-hello-role-activation-settings"></a>Configurare le impostazioni di attivazione di hello ruolo
+Utilizzando hello [le impostazioni del ruolo](active-directory-privileged-identity-management-how-to-change-default-settings.md) è possibile configurare proprietà di attivazione ruolo idonei hello tra cui:
 
-* Durata del periodo di attivazione del ruolo
-* Notifica di attivazione del ruolo
-* Informazioni che l'utente deve specificare durante il processo di attivazione del ruolo
+* durata Hello del periodo di attivazione di hello ruolo
+* notifica di attivazione del ruolo Hello
+* informazioni di Hello un utente devono tooprovide durante il processo di attivazione del ruolo hello
 * Ticket di servizio o numero dell'evento imprevisto
 * [Requisiti del flusso di lavoro di approvazione - Anteprima](./privileged-identity-management/azure-ad-pim-approval-workflow.md)
 
 ![Impostazioni di PIM - Attivazione dell'amministratore - Schermata][4]
 
-Nell'immagine notare che i pulsanti per **Multi-Factor Authentication** sono disabilitati. Per determinati ruoli con privilegi elevati, è necessaria l'autenticazione MFA per una protezione avanzata.
+Si noti che nell'immagine di hello, hello pulsanti che consentono di **multi-Factor Authentication** sono disabilitati. Per determinati ruoli con privilegi elevati, è necessaria l'autenticazione MFA per una protezione avanzata.
 
 ## <a name="role-activation"></a>Attivazione del ruolo
-Per [attivare un ruolo](active-directory-privileged-identity-management-how-to-activate-role.md), un amministratore idoneo richiede una "attivazione" con vincoli di tempo per il ruolo. È possibile richiedere l'attivazione usando l'opzione **Attiva il mio ruolo** in Gestione identità con privilegi di Azure AD.
+troppo[attivare un ruolo](active-directory-privileged-identity-management-how-to-activate-role.md), un amministratore idoneo richiede una scadenza "attivazione" per il ruolo di hello. attivazione di Hello può essere richieste mediante hello **attivare il ruolo** opzione in Azure AD Privileged Identity Management.
 
-Un amministratore che vuole attivare un ruolo deve inizializzare Azure AD Privileged Identity Management nel portale di Azure.
+Un amministratore che desidera tooactivate un ruolo deve tooinitialize Azure AD Privileged Identity Management nel portale di Azure hello.
 
-L'attivazione del ruolo è personalizzabile. Nelle impostazioni di PIM è possibile impostare la durata dell'attivazione e le informazioni che l'amministratore deve specificare per attivare il ruolo.
+L'attivazione del ruolo è personalizzabile. Nelle impostazioni di PIM hello, è possibile determinare la lunghezza hello dell'attivazione hello e quali salve informazioni ruolo di hello tooactivate tooprovide.
 
 ![Richiesta di attivazione del ruolo dell'amministratore PIM - Schermata][5]
 
 ## <a name="review-role-activity"></a>Verificare l'attività del ruolo
-È possibile verificare l'uso dei ruoli con privilegi da parte di dipendenti e amministratori in due modi. La prima opzione consiste nell'uso della [Cronologia di controllo dei ruoli della directory](active-directory-privileged-identity-management-how-to-use-audit-log.md). La cronologia di controllo registra le modifiche rilevate nelle assegnazioni dei ruoli con privilegi e nella cronologia di attivazione dei ruoli.
+Esistono due modi tootrack utilizzano dipendenti e gli amministratori con privilegi di ruoli. utilizza prima opzione Hello [cronologia controlli ruoli della Directory](active-directory-privileged-identity-management-how-to-use-audit-log.md). cronologia controlli Hello registra il rilevamento delle modifiche nelle assegnazioni di ruolo con privilegi e della cronologia di attivazione di ruolo.
 
 ![Cronologia di attivazione PIM - Schermata][6]
 
-La seconda opzione consiste nel configurare [verifiche di accesso](active-directory-privileged-identity-management-how-to-start-security-review.md)regolari. Queste verifiche di accesso possono essere eseguite e assegnate da un revisore, ad esempio il responsabile del team, o dai dipendenti stessi. Questo è il modo migliore per monitorare gli utenti che necessitano ancora dell'accesso e gli utenti che non devono più accedere.
+seconda opzione Hello è tooset backup regolari [accedere revisioni](active-directory-privileged-identity-management-how-to-start-security-review.md). Questi controlli di accesso possono essere eseguiti da e assegnati revisore (ad esempio, un team di gestione) o dipendenti hello è possono esaminare se stessi. Si tratta di hello migliore modo toomonitor che richiede comunque l'accesso e che non esegue più.
 
 ## <a name="azure-ad-pim-at-subscription-expiration"></a>Azure AD PIM alla scadenza della sottoscrizione
-Prima di essere disponibile a livello generale, Azure AD PIM è stato disponibile in anteprima, senza controlli di licenza per un tenant per la visualizzazione dell'anteprima di Azure AD PIM.  Azure AD PIM è ora disponibile a livello generale ed è quindi necessario assegnare licenze di valutazione gratuita o a pagamento agli amministratori del tenant per continuare a usare PIM.  Se l'organizzazione non acquista Azure AD Premium P2 o in caso di scadenza della versione di valutazione gratuita, le funzionalità di Azure AD PIM non saranno più disponibili nel tenant.  Per altre informazioni, vedere [Azure AD PIM subscription requirements](./privileged-identity-management/subscription-requirements.md) (Requisiti della sottoscrizione di Azure AD PIM)
+Controlla il precedente tooreaching generale disponibilità PIM AD Azure è stato in anteprima e si sono verificati alcuna licenza toopreview un tenant Azure AD PIM.  Ora che Azure AD PIM ha raggiunto la disponibilità generale, le licenze di valutazione o a pagamento devono essere assegnate toohello gli amministratori di hello tenant toocontinue usare PIM.  Se l'organizzazione non acquistare Azure AD Premium P2 o la versione di valutazione scade, principalmente tutte le funzionalità di Azure AD PIM hello non saranno disponibili nel tenant.  È possibile leggere altre in hello [requisiti di sottoscrizione di Azure AD PIM](./privileged-identity-management/subscription-requirements.md)
 
 ## <a name="next-steps"></a>Passaggi successivi
 [!INCLUDE [active-directory-privileged-identity-management-toc](../../includes/active-directory-privileged-identity-management-toc.md)]

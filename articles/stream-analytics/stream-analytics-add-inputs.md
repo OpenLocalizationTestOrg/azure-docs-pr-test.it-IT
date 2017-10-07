@@ -1,6 +1,6 @@
 ---
-title: Aggiungere un input di dati ai processi di analisi di flusso | Microsoft Docs
-description: Informazioni su come associare un'origine dati al processo di analisi di flusso come input di dati di streaming proveniente dall'hub eventi o dati di riferimento provenienti dall'archiviazione BLOB.
+title: aaaAdd un tipo di dati di input i processi di flusso Analitica tooyour | Documenti Microsoft
+description: Informazioni su come toohook backup un tooyour di origine dati Analitica di flusso di processo come flusso dati di input dai dati di riferimento o hub eventi dall'archiviazione BLOB.
 keywords: input di dati, flusso di dati
 documentationcenter: 
 services: stream-analytics
@@ -15,68 +15,68 @@ ms.tgt_pltfrm: na
 ms.workload: data-services
 ms.date: 03/28/2017
 ms.author: samacha
-ms.openlocfilehash: 8bdbcf78f2892cbd1e1cc09cef220dff08dd9490
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 674000268fcdf9bc000af3e2f166cb66f1366922
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="add-a-streaming-data-input-or-reference-data-to-a-stream-analytics-job"></a>Aggiungere un input di dati di streaming o dati di riferimento a un processo di analisi di flusso
-Informazioni su come associare un'origine dati al processo di Analisi di flusso come input di dati di streaming provenienti da Hub eventi o dati di riferimento provenienti dall'archivio BLOB.
+# <a name="add-a-streaming-data-input-or-reference-data-tooa-stream-analytics-job"></a>Aggiungere un flusso dati di input o riferimento dati tooa Analitica flusso processo
+Informazioni su come toohook backup un tooyour di origine dati Analitica di flusso di processo come flusso dati di input dai dati di riferimento o hub eventi dall'archiviazione Blob.
 
-I processi di analisi di flusso di Azure possono essere connessi a uno o più input di dati, che definiscono una connessione a un'origine dati esistente. Quando i dati vengono inviati a tale origine dati, vengono usati dal processo di Analisi di flusso ed elaborati in tempo reale come flussi di dati. L'analisi di flusso si integra perfettamente con gli [Hub eventi di Azure](https://azure.microsoft.com/services/event-hubs/) e con l'[archivio BLOB di Azure](../storage/blobs/storage-dotnet-how-to-use-blobs.md) all'interno e all'esterno della sottoscrizione del processo.
+I processi di flusso Analitica Azure possono essere connesso tooone dati di input o altre, ciascuno dei quali definisce un'origine dati esistente tooan di connessione. Come origine dati toothat vengono inviati dati, è utilizzata dal processo di flusso Analitica hello ed elaborato in tempo reale come flusso di dati. Flusso Analitica dispone di prima classe integrazione con [hub eventi di Azure](https://azure.microsoft.com/services/event-hubs/) e [archiviazione Blob di Azure](../storage/blobs/storage-dotnet-how-to-use-blobs.md) all'interno e all'esterno di sottoscrizione del processo di hello.
 
-Questo articolo è un passaggio nel [percorso di apprendimento di analisi di flusso](/documentation/learning-paths/stream-analytics/).
+In questo articolo è un passaggio hello [percorso di apprendimento Analitica flusso](/documentation/learning-paths/stream-analytics/).
 
 ## <a name="data-input-streaming-data-and-reference-data"></a>Input di dati: dati di streaming e dati di riferimento
 Esistono due tipi di input distinti in Analisi di flusso: dati di riferimento e flussi di dati.
 
-* **Flussi di dati**: I processi di analisi di flusso devono includere almeno un input del flusso dei dati che deve essere utilizzato e trasformato dal processo stesso. L'archivio BLOB di Azure e Hub eventi di Azure sono supportati come origini di input del flusso dei dati. Gli Hub eventi di Azure vengono usati per raccogliere flussi di eventi da più dispositivi, servizi e applicazioni connessi. Si può usare l'archivio BLOB di Azure come origine di input per l'inserimento di dati in blocco come flusso.  
-* **Dati di riferimento**: l’analisi di flusso supporta un secondo tipo di input ausiliario denominato dati di riferimento.  Al contrario dei dati in continua evoluzione, questi dati sono statici o cambiano molto lentamente.  In genere vengono utilizzati per l'esecuzione di ricerche e correlazioni con flussi di dati per creare un set di dati più ampio.  L'archivio BLOB di Azure attualmente è l'unica origine di input supportata per i dati di riferimento.  
+* **Flussi di dati**: i processi di flusso Analitica devono includere almeno un dati flusso input toobe utilizzati e trasformati da processo hello. L'archivio BLOB di Azure e Hub eventi di Azure sono supportati come origini di input del flusso dei dati. Hub eventi di Azure sono flussi di eventi toocollect utilizzati da dispositivi connessi, servizi e applicazioni. Si può usare l'archivio BLOB di Azure come origine di input per l'inserimento di dati in blocco come flusso.  
+* **Dati di riferimento**: l’analisi di flusso supporta un secondo tipo di input ausiliario denominato dati di riferimento.  Come toodata anziché in movimento, i dati sono statici o a modifica lenta.  In genere utilizzato per l'esecuzione di ricerche e correlazioni con flussi di dati toocreate un set di dati più completo.  Archiviazione Blob di Azure è attualmente origine di input hello è supportato solo per i dati di riferimento.  
 
-Per aggiungere un input al processo di analisi di flusso:
+un processo di flusso Analitica tooyour input tooadd:
 
-1. Nel Portale di Azure fare clic su **Input** e poi scegliere **Aggiungere un input** nel processo di analisi di flusso.
+1. Nel portale di Azure hello fare clic su **input** e quindi fare clic su **aggiungere un Input** nel processo di flusso Analitica.
    
     ![Portale di Azure classico - aggiungere un input.](./media/stream-analytics-add-inputs/1-stream-analytics-add-inputs.png)  
    
-    Nel portale di Azure fare clic sul riquadro **Input** nel processo di analisi di flusso.  
+    In hello portale di Azure, fare clic su hello **input** riquadro nel processo di flusso Analitica.  
    
     ![Portale di Azure - aggiungere un input di dati.](./media/stream-analytics-add-inputs/7-stream-analytics-add-inputs.png)  
-2. Specificare il tipo di input: **Flusso dei dati** o **Dati di riferimento**.
+2. Specificare il tipo di hello dell'input hello: entrambi **flusso di dati** o **dati di riferimento**.
    
-    ![Aggiungere l'input di dati corretto, di flusso o di riferimento](./media/stream-analytics-add-inputs/2-stream-analytics-add-inputs.png)  
+    ![Aggiungere i dati corretti hello di input, flusso o fare riferimento a](./media/stream-analytics-add-inputs/2-stream-analytics-add-inputs.png)  
    
-    ![Aggiungere l'input di dati corretto, di flusso o di riferimento](./media/stream-analytics-add-inputs/8-stream-analytics-add-inputs.png)  
-3. Se si crea un input del flusso di dati, specificare il tipo di origine per l'input.  Questo passaggio può essere ignorato durante la creazione dei dati di riferimento, poiché al momento è supportato soltanto l’archivio BLOB.
+    ![Aggiungere i dati corretti hello di input, flusso o fare riferimento a](./media/stream-analytics-add-inputs/8-stream-analytics-add-inputs.png)  
+3. Se la creazione di un input del flusso di dati, specificare il tipo di origine hello per l'input hello.  Questo passaggio può essere ignorato durante la creazione dei dati di riferimento, poiché al momento è supportato soltanto l’archivio BLOB.
    
     ![Aggiungere l'input di dati del flusso di dati](./media/stream-analytics-add-inputs/3-stream-analytics-add-inputs.png)  
    
     ![Aggiungere l'input di dati del flusso di dati](./media/stream-analytics-add-inputs/9-stream-analytics-add-inputs.png)  
-4. Fornire un nome descrittivo per l'input nella finestra di Alias di Input.  Questo nome verrà utilizzare nella query del processo in un secondo momento per fare riferimento all'input.
+4. Specificare un nome descrittivo per questo hello input nella casella di Alias di Input.  Questo nome verrà utilizzato nella query del processo in un secondo momento nel toorefer toohello input.
    
-    Compilare il resto delle proprietà di connessione necessarie per connettersi all'origine dati. Questi campi variano in base al tipo di origine e di input e vengono definiti in modo dettagliato [qui](stream-analytics-create-a-job.md).  
+    Compilare il resto di hello di origine dei dati tooyour proprietà tooconnect hello necessarie per la connessione. Questi campi variano in base al tipo di origine e di input e vengono definiti in modo dettagliato [qui](stream-analytics-create-a-job.md).  
    
     ![Aggiungere l'input di dati dell'hub eventi](./media/stream-analytics-add-inputs/4-stream-analytics-add-inputs.png)  
-5. Specificare le impostazioni di serializzazione per i dati di input:
+5. Specificare le impostazioni di serializzazione hello per dati di input hello:
    
-   * Per assicurarsi che le query funzionino nel modo previsto, specificare il **Formato di serializzazione eventi** dei dati in arrivo.  I formati di serializzazione supportati sono JSON, CSV e Avro.
-   * Verificare la **Codifica** per i dati.  Al momento UTF-8 è l'unico formato di codifica supportato.
+   * toomake che le query funzionino come hello previsto, specificare hello **il formato di serializzazione di eventi** dei dati in arrivo.  I formati di serializzazione supportati sono JSON, CSV e Avro.
+   * Verificare hello **codifica** per i dati di hello.  UTF-8 è hello formato di codifica è supportata solo in questo momento.
      
-     ![Impostazioni di serializzazione dei dati per l'input di dati](./media/stream-analytics-add-inputs/5-stream-analytics-add-inputs.png)  
+     ![Impostazioni di serializzazione di dati per l'input di dati hello](./media/stream-analytics-add-inputs/5-stream-analytics-add-inputs.png)  
      
-     ![Impostazioni di serializzazione dei dati per l'input di dati](./media/stream-analytics-add-inputs/10-stream-analytics-add-inputs.png)  
-6. Dopo aver completato la creazione dell’input, l’analisi di flusso verificherà che è possibile connettersi all'origine di input.  È possibile visualizzare lo stato dell'operazione di connessione di prova nell'hub di notifica.
+     ![Impostazioni di serializzazione di dati per l'input di dati hello](./media/stream-analytics-add-inputs/10-stream-analytics-add-inputs.png)  
+6. Dopo aver completato la creazione di input hello, flusso Analitica verificherà che è possibile connettere l'origine di input toohello.  È possibile visualizzare lo stato di hello di hello operazione di connessione di Test nell'hub di notifica hello.
    
-    ![Verificare la connessione dell'input dei flussi di dati](./media/stream-analytics-add-inputs/6-stream-analytics-add-inputs.png)  
+    ![Test della connessione di hello flusso di dati di input](./media/stream-analytics-add-inputs/6-stream-analytics-add-inputs.png)  
    
-    ![Verificare la connessione dell'input dei flussi di dati](./media/stream-analytics-add-inputs/11-stream-analytics-add-inputs.png)  
+    ![Test della connessione di hello flusso di dati di input](./media/stream-analytics-add-inputs/11-stream-analytics-add-inputs.png)  
 
 ## <a name="get-help-with-streaming-data-inputs"></a>Ottenere aiuto per gli input dei dati di streaming
 Per ulteriore assistenza, provare il [Forum di Analisi dei flussi di Azure](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureStreamAnalytics)
 
 ## <a name="next-steps"></a>Passaggi successivi
-* [Introduzione ad Analisi dei flussi di Azure](stream-analytics-introduction.md)
+* [Introduzione tooAzure flusso Analitica](stream-analytics-introduction.md)
 * [Introduzione all'uso di Analisi dei flussi di Azure](stream-analytics-real-time-fraud-detection.md)
 * [Ridimensionare i processi di Analisi dei flussi di Azure](stream-analytics-scale-jobs.md)
 * [Informazioni di riferimento sul linguaggio di query di Analisi dei flussi di Azure](https://msdn.microsoft.com/library/azure/dn834998.aspx)

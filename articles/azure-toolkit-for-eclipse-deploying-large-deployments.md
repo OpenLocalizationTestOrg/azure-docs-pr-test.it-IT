@@ -1,6 +1,6 @@
 ---
-title: Distribuire distribuzioni di grandi dimensioni
-description: Informazioni su come distribuire le distribuzioni di grandi dimensioni usando il Toolkit di Azure per Eclipse.
+title: aaaDeploying distribuzioni di grandi dimensioni
+description: Informazioni su come le distribuzioni di grandi dimensioni toodeploy utilizzando hello Azure Toolkit per Eclipse.
 services: 
 documentationcenter: java
 author: rmcmurray
@@ -14,27 +14,27 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 04/14/2017
 ms.author: robmcm
-ms.openlocfilehash: e12e379e2b6727653e2377b1760c3745596a1e9c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6b1d2a7a5e49c78154fc856a221e64ca8dcfbe9a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="deploying-large-deployments"></a>Distribuire distribuzioni di grandi dimensioni
-Se la distribuzione è troppo grande per essere contenuta nella cartella approot predefinita, è possibile usare una risorsa di archiviazione locale come la cartella radice di distribuzione per il JDK e il server dell'applicazione.
+Se la distribuzione è troppo grande toobe contenuta nella cartella approot predefinita di hello, è possibile utilizzare una risorsa di archiviazione locale come cartella radice di distribuzione hello per il JDK e server applicazioni.
 
-## <a name="to-use-a-local-storage-resource-as-the-deployment-root-folder-for-large-deployments"></a>Per utilizzare una risorsa di archiviazione locale come la cartella radice di distribuzione per distribuzioni di grandi dimensioni
-1. Creare una nuova una risorsa di archiviazione locale Il nome della risorsa non è rilevante. Le risorse di archiviazione sono definite a livello di ruolo. Il modo più rapido per accedere alla finestra di dialogo di configurazione dell'archiviazione locale, da cui è possibile creare una nuova risorsa di archiviazione locale, è quello di usare la procedura seguente: fare clic con il pulsante destro del mouse sul ruolo nella visualizzazione **Project Explorer** (Esplora progetti), espandendo il nodo del progetto di Azure se non viene visualizzato il ruolo, quindi fare clic su **Azure** e su **Archiviazione locale**. Nella finestra di dialogo **Archiviazione locale** fare clic su **Aggiungi** per creare una nuova risorsa di archiviazione locale.
+## <a name="toouse-a-local-storage-resource-as-hello-deployment-root-folder-for-large-deployments"></a>toouse una risorsa di archiviazione locale come cartella radice di distribuzione hello per le distribuzioni di grandi dimensioni
+1. Creare una nuova una risorsa di archiviazione locale nome Hello della risorsa di hello non è rilevante. Risorse di archiviazione sono definite a livello di ruolo hello. Hello più rapido modo tooaccess hello archiviazione locale finestra di dialogo configurazione, da cui è possibile creare una nuova risorsa di archiviazione locale, è tramite hello alla procedura seguente: ruolo di hello pulsante destro del mouse in hello **Esplora progetti** vista (espandere il Azure nodo del progetto se non viene visualizzato il ruolo di hello), fare clic su **Azure**, quindi fare clic su **archiviazione locale**. All'interno di hello **archiviazione locale** finestra di dialogo, fare clic su **Aggiungi** toocreate una nuova risorsa di archiviazione locale.
 
-2. Impostare le dimensioni desiderate ad almeno 2048 MB (qualunque valore inferiore potrebbe causare gli stessi problemi di dimensioni del file che si riscontrerebbero nella cartella approot).
+2. Hello set desiderato di dimensioni tooat almeno 2048 MB (un valore minore potrebbe causare hello stessi problemi di dimensioni di file si riscontrerebbero in hello approot).
 
-3. Assicurarsi di selezionare **Pulire i contenuti quando l'istanza del ruolo viene riciclata** ; ciò impedirà alla logica di avvio della distribuzione di imbattersi in conflitti con i file esistenti nella risorsa quando l'istanza del ruolo viene riciclata.
+3. Verificare che **pulire contenuto hello quando l'istanza del ruolo hello viene riciclato** è selezionato; Ciò consentirà di impedire l'esecuzione in è in conflitto con i file preesistenti nella risorsa hello logica di avvio della distribuzione di hello quando hello ruolo istanza viene riciclata.
 
-4. Assicurarsi che il valore di **Environment variable storing the resource's directory path after deployment** (Variabile di ambiente per l'archiviazione del percorso della directory della risorsa dopo la distribuzione) sia impostato sulla stringa **DEPLOYROOT**. La finestra di dialogo della risorsa di archiviazione locale sarà simile a quella seguente.
+4. Verificare che hello **l'archiviazione variabile di ambiente hello percorso della directory della risorsa dopo la distribuzione** valore viene impostato stringa toohello **DEPLOYROOT**. La finestra di dialogo di risorse di archiviazione locale avrà un aspetto simile toohello seguente.
 
    ![][ic667943]
 
-In alternativa, se si usa **DEPLOYROOT** come *nome* della risorsa locale e non si modifica il nome della variabile di ambiente generata automaticamente (che verrà impostato su **DEPLOYROOT_PATH** in questo caso), questo nome andrà bene anche per l'applicazione.
+In alternativa, se si utilizza **DEPLOYROOT** come hello *nome* di risorsa locale e non modificare il nome variabile di ambiente generato automaticamente hello (che verrà impostato troppo **DEPLOYROOT_PATH** in questo caso), che viene utilizzata per l'applicazione.
 
 Altre informazioni sulla creazione di una risorsa di archiviazione locale sono reperibili in [Proprietà dell'archiviazione locale][Local storage properties].
 
@@ -43,16 +43,16 @@ Altre informazioni sulla creazione di una risorsa di archiviazione locale sono r
 
 [Creare un'applicazione Hello World per Azure in Eclipse][Creating a Hello World Application for Azure in Eclipse]
 
-[Installazione di Azure Toolkit for Eclipse][Installing the Azure Toolkit for Eclipse] 
+[L'installazione di hello Azure Toolkit per Eclipse][Installing hello Azure Toolkit for Eclipse] 
 
-Per altre informazioni su come usare Azure con Java, vedere il [Centro per sviluppatori Java di Azure][Azure Java Developer Center].
+Per ulteriori informazioni sull'uso di Azure con Java, vedere hello [Centro per sviluppatori Java di Azure][Azure Java Developer Center].
 
 <!-- URL List -->
 
 [Azure Java Developer Center]: http://go.microsoft.com/fwlink/?LinkID=699547
 [Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkID=699529
 [Creating a Hello World Application for Azure in Eclipse]: http://go.microsoft.com/fwlink/?LinkID=699533
-[Installing the Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkId=699546
+[Installing hello Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkId=699546
 [Local storage properties]: http://go.microsoft.com/fwlink/?LinkID=699525#local_storage_properties
 
 <!-- IMG List -->

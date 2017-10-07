@@ -1,6 +1,6 @@
 ---
-title: Creazione di un'app Web PHP-MySQL in Servizio app di Azure e distribuzione tramite FTP
-description: Esercitazione che illustra come creare un'app Web PHP che archivia i dati in MySQL e come usare la distribuzione FTP in Azure."
+title: aaaCreate PHP-MySQL web app in Azure App Service e la distribuzione tramite FTP
+description: Un'esercitazione che illustra come toocreate PHP web app che archivia i dati in uso e MySQL tooAzure di distribuzione FTP.
 services: app-service\web
 documentationcenter: php
 author: rmcmurray
@@ -14,66 +14,66 @@ ms.devlang: PHP
 ms.topic: article
 ms.date: 04/25/2017
 ms.author: robmcm
-ms.openlocfilehash: d428dffc6b810a692be0ec39a5f9cca05f5439e3
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 4d3b56a8ac63d0eba0dc0aec1b62e6d12f601bf1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-php-mysql-web-app-in-azure-app-service-and-deploy-using-ftp"></a>Creazione di un'app Web PHP-MySQL in Servizio app di Azure e distribuzione tramite FTP
-Questa esercitazione illustra come creare un'app Web di Azure PHP-MySQL e distribuirla tramite FTP. A tale scopo, si presuppone che nel computer siano installati [PHP][install-php], [MySQL][install-mysql], un server Web e un client FTP. Le istruzioni di questa esercitazione possono essere eseguite in qualsiasi sistema operativo, tra cui Windows, Mac e Linux. Dopo aver completato questa guida, si disporrà dell'app Web PHP/MySQL in esecuzione in Azure.
+Questa esercitazione Mostra l'app web toocreate PHP, MySQL e la modalità toodeploy tramite FTP. A tale scopo, si presuppone che nel computer siano installati [PHP][install-php], [MySQL][install-mysql], un server Web e un client FTP. istruzioni di Hello in questa esercitazione possono essere seguite su qualsiasi sistema operativo, tra cui Windows, Mac e Linux. Dopo aver completato questa guida, si disporrà dell'app Web PHP/MySQL in esecuzione in Azure.
 
 Si acquisiranno le nozioni seguenti:
 
-* Creare un'app Web e un database MySQL mediante il portale di Azure. Poiché PHP è abilitato in App Web di Azure per impostazione predefinita, non è necessario completare operazioni speciali per eseguire il codice PHP.
-* Pubblicare l'applicazione in Azure tramite FTP.
+* Come toocreate un'app web e MySQL database utilizzando hello portale di Azure. Poiché per impostazione predefinita, PHP è abilitato nelle App Web, niente di speciale è obbligatorio toorun codice PHP.
+* Come toopublish tooAzure applicazione utilizzando FTP.
 
-Seguendo questa esercitazione, verrà creata una semplice app Web di registrazione in PHP, ospitata in un'app Web. Di seguito è riportata una schermata dell'applicazione completata:
+Seguendo questa esercitazione, verrà creata una semplice app Web di registrazione in PHP, un'applicazione Hello verrà ospitata in un'App Web. Di seguito viene riportata una schermata dell'applicazione hello completata:
 
 ![Sito Web PHP di Azure][running-app]
 
 > [!NOTE]
-> Per iniziare a utilizzare Servizio app di Azureprima di registrare un account di Azure, andare alla pagina di [prova di Servizio app](https://azure.microsoft.com/try/app-service/), dove è possibile creare immediatamente un'app Web temporanea in Servizio app. Non è necessario fornire una carta di credito né impegnarsi in alcun modo. 
+> Se si desidera tooget avviato con il servizio App di Azure prima di effettuare l'iscrizione per un account, Vai troppo[tenta di servizio App](https://azure.microsoft.com/try/app-service/), in cui è possibile creare subito un'app web di breve durata starter nel servizio App. Non è necessario fornire una carta di credito né impegnarsi in alcun modo. 
 > 
 > 
 
 ## <a name="create-a-web-app-and-set-up-ftp-publishing"></a>Creare un'app Web e configurare la pubblicazione FTP
-Per creare un'app Web e un database MySQL, attenersi alla procedura seguente:
+Seguire questi passaggi toocreate un'app web e un database MySQL:
 
-1. Eseguire l'accesso al [portale di Azure][management-portal].
-2. Fare clic sull'icona **+Nuovo** nella parte superiore sinistra del portale di Azure.
+1. Account di accesso toohello [portale Azure][management-portal].
+2. Fare clic su hello **+ nuovo** sull'icona nella parte superiore di hello a sinistra della hello portale di Azure.
    
     ![Creazione di un nuovo sito Web di Azure][new-website]
-3. Nella casella di ricerca digitare **App Web e MySQL** e fare clic su **App Web e MySQL**.
+3. In tipo di ricerca hello **Web app + MySQL** e fare clic su **Web app + MySQL**.
    
     ![Creazione personalizzata di un nuovo sito Web][custom-create]
-4. Fare clic su **Create**. Immettere un nome di servizio app univoco, un nome valido per il gruppo di risorse e un nuovo piano di servizio.
+4. Fare clic su **Crea**. Immettere un nome di servizio app univoco, un nome valido per il gruppo di risorse hello e un nuovo piano di servizio.
    
     ![Gruppo di risorse denominato ADF.][resource-group]
-5. Immettere i valori per il nuovo database e accettare termini e condizioni.
+5. Immettere i valori per il nuovo database, tra cui accettano toohello legali.
    
     ![Creazione di un nuovo database MySQL][new-mysql-db]
-6. Una volta creata l'app Web, verrà visualizzato il pannello del nuovo servizio app.
+6. Quando hello web app è stata creata, verrà visualizzato il pannello nuova app servizio hello.
 7. Fare clic su **Impostazioni** > **Credenziali di distribuzione**. 
    
     ![Reimpostare le credenziali di distribuzione][set-deployment-credentials]
-8. Per abilitare la pubblicazione FTP è necessario specificare un nome utente e una password. Salvare le credenziali e prendere nota del nome utente e della password creati.
+8. tooenable pubblicazione tramite FTP, è necessario fornire un nome utente e una password. Salvare le credenziali di hello e prendere nota del nome utente hello e la password creata.
    
     ![Creazione di credenziali di pubblicazione][portal-ftp-username-password]
 
 ## <a name="build-and-test-your-app-locally"></a>Creare e verificare l'applicazione in locale
-L'applicazione di registrazione è una semplice applicazione PHP che consente di registrarsi per un evento specificando il proprio nome e l'indirizzo di posta elettronica. Le informazioni sui registranti precedenti vengono visualizzate in una tabella. Le informazioni sulle registrazioni vengono archiviate in un database MySQL. L'applicazione è costituita da due file:
+applicazione di registrazione Hello è una semplice applicazione PHP che consente di tooregister per un evento, fornendo il nome e l'indirizzo e-mail. Le informazioni sui registranti precedenti vengono visualizzate in una tabella. Le informazioni sulle registrazioni vengono archiviate in un database MySQL. app Hello è costituita da due file:
 
 * **index.php**: consente di visualizzare un modulo per la registrazione e una tabella contenente informazioni sui registranti.
-* **createtable.php**: consente di creare la tabella MySQL per l'applicazione. Questo file verrà utilizzato una volta sola.
+* **CreateTable.PHP**: Crea tabella di MySQL hello per un'applicazione hello. Questo file verrà utilizzato una volta sola.
 
-Per creare ed eseguire l'app in locale, attenersi alla procedura seguente. Si noti che per questi passaggi si presuppone che nel computer locale siano già stati configurati PHP, MySQL e un server Web e che sia stata abilitata l'[estensione PDO per MySQL][pdo-mysql].
+toobuild e app hello esecuzione in locale, eseguire le operazioni di hello riportato di seguito. Si noti che questi passaggi presuppongono che si dispone di PHP, MySQL e un server web configurato nel computer locale, e che è stata attivata hello [estensione PDO per MySQL][pdo-mysql].
 
-1. Creare un database MySQL denominato `registration`. A tale scopo, immettere al prompt dei comandi MySQL il comando seguente:
+1. Creare un database MySQL denominato `registration`. È possibile farlo dal prompt dei comandi di MySQL hello con questo comando:
    
         mysql> create database registration;
 2. Nella directory radice del server Web creare una cartella denominata `registration` e al suo interno creare due file: uno denominato `createtable.php` e l'altro denominato `index.php`.
-3. Aprire il file `createtable.php` in un editor di testo o IDE e aggiungere il codice seguente. Questo codice verrà usato per creare la tabella `registration_tbl` nel database `registration`.
+3. Aprire hello `createtable.php` file in un editor di testo o un IDE e aggiungere codice hello riportato di seguito. Questo codice sarà utilizzato toocreate hello `registration_tbl` tabella hello `registration` database.
    
         <?php
         // DB connection info
@@ -99,11 +99,11 @@ Per creare ed eseguire l'app in locale, attenersi alla procedura seguente. Si no
         ?>
    
    > [!NOTE]
-   > È necessario aggiornare i valori per <code>$user</code> e <code>$pwd</code> con il nome utente di MySQL locale e la password.
+   > È necessario che i valori hello tooupdate per <code>$user</code> e <code>$pwd</code> con il nome utente di MySQL locale e la password.
    > 
    > 
-4. Aprire un Web browser e passare a [http://localhost/registration/createtable.php][localhost-createtable]. Verrà creata la tabella `registration_tbl` nel database.
-5. Aprire il file **index.php** in un editor di testo o IDE e aggiungere il codice HTML e CSS di base per la pagina (il codice PHP verrà aggiunto nei passaggi successivi).
+4. Aprire un web browser e passare troppo[http://localhost/registration/createtable.php][localhost-createtable]. Verrà creata hello `registration_tbl` tabella nel database di hello.
+5. Aprire hello **index.php** file in un editor di testo o un IDE e aggiungere hello base codice HTML e CSS per la pagina hello (hello codice PHP aggiunto nei passaggi successivi).
    
         <html>
         <head>
@@ -124,7 +124,7 @@ Per creare ed eseguire l'app in locale, attenersi alla procedura seguente. Si no
         </head>
         <body>
         <h1>Register here!</h1>
-        <p>Fill in your name and email address, then click <strong>Submit</strong> to register.</p>
+        <p>Fill in your name and email address, then click <strong>Submit</strong> tooregister.</p>
         <form method="post" action="index.php" enctype="multipart/form-data" >
               Name  <input type="text" name="name" id="name"/></br>
               Email <input type="text" name="email" id="email"/></br>
@@ -135,14 +135,14 @@ Per creare ed eseguire l'app in locale, attenersi alla procedura seguente. Si no
         ?>
         </body>
         </html>
-6. All'interno dei tag PHP, aggiungere il codice PHP per la connessione al database.
+6. All'interno dei tag PHP hello, aggiungere il codice PHP per la connessione database toohello.
    
         // DB connection info
         $host = "localhost";
         $user = "user name";
         $pwd = "password";
         $db = "registration";
-        // Connect to database.
+        // Connect toodatabase.
         try {
             $conn = new PDO( "mysql:host=$host;dbname=$db", $user, $pwd);
             $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
@@ -152,10 +152,10 @@ Per creare ed eseguire l'app in locale, attenersi alla procedura seguente. Si no
         }
    
    > [!NOTE]
-   > Nuovamente, sarà necessario aggiornare i valori per <code>$user</code> e <code>$pwd</code> con il nome utente di MySQL locale e la password.
+   > Nuovamente, sarà necessario valori hello tooupdate per <code>$user</code> e <code>$pwd</code> con il nome utente di MySQL locale e la password.
    > 
    > 
-7. Dopo il codice di connessione al database, aggiungere il codice per l'inserimento delle informazioni di registrazione nel database.
+7. Il seguente codice di connessione database hello, aggiungere il codice per l'inserimento di informazioni di registrazione nel database di hello.
    
         if(!empty($_POST)) {
         try {
@@ -176,7 +176,7 @@ Per creare ed eseguire l'app in locale, attenersi alla procedura seguente. Si no
         }
         echo "<h3>Your're registered!</h3>";
         }
-8. Infine, dopo il codice sopra riportato, aggiungere il codice per recuperare i dati dal database.
+8. Infine, il seguente codice hello precedente, aggiungere il codice per recuperare dati dal database hello.
    
         $sql_select = "SELECT * FROM registration_tbl";
         $stmt = $conn->query($sql_select);
@@ -197,37 +197,37 @@ Per creare ed eseguire l'app in locale, attenersi alla procedura seguente. Si no
             echo "<h3>No one is currently registered.</h3>";
         }
 
-A questo punto è possibile passare a [http://localhost/registration/index.php][localhost-index] per testare l'applicazione.
+È possibile cercare troppo[http://localhost/registration/index.php] [ localhost-index] tootest hello app.
 
 ## <a name="get-mysql-and-ftp-connection-information"></a>Recupero di informazioni sulla connessione a MySQL ed FTP
-Per connettersi al database MySQL in esecuzione in App Web, saranno necessarie le informazioni sulla connessione. Per recuperare le informazioni sulla connessione a MySQL, attenersi alla procedura seguente:
+database MySQL tooconnect toohello in cui è in esecuzione in applicazioni Web, sarà necessario hello informazioni di connessione. tooget informazioni di connessione MySQL, seguire questi passaggi:
 
-1. Nel pannello dell'app Web del servizio app fare clic sul collegamento Gruppo di risorse:
+1. Servizio app hello pannello app web fare clic sul collegamento di gruppo di risorse hello:
    
     ![Selezionare Gruppo di risorse][select-resourcegroup]
-2. Dal gruppo di risorse, fare clic sul database:
+2. Il gruppo di risorse, fare clic su database hello:
    
     ![Selezionare il database][select-database]
-3. Nel riepilogo del database selezionare **Impostazioni** > **Proprietà**.
+3. Database hello riepilogo, selezionare **impostazioni** > **proprietà**.
    
     ![Selezionare le proprietà][select-properties]
-4. Prendere nota dei valori di `Database`, `Host`, `User Id` e `Password`.
+4. Prendere nota dei valori di hello per `Database`, `Host`, `User Id`, e `Password`.
    
     ![Proprietà nota][note-properties]
-5. Dall'app Web fare clic sul collegamento **Scarica profilo di pubblicazione** nell'angolo in basso a destra della pagina:
+5. Dall'app web, fare clic su hello **Scarica profilo di pubblicazione** collegamento hello angolo in basso a destra della pagina hello:
    
     ![Scarica profilo di pubblicazione][download-publish-profile]
-6. Aprire il file `.publishsettings` in un editor XML. 
-7. Trovare l'elemento `<publishProfile >` con `publishMethod="FTP"` che abbia un aspetto simile al seguente:
+6. Aprire hello `.publishsettings` file in un editor XML. 
+7. Trovare hello `<publishProfile >` elemento con `publishMethod="FTP"` che ricerca toothis simile:
    
         <publishProfile publishMethod="FTP" publishUrl="ftp://[mysite].azurewebsites.net/site/wwwroot" ftpPassiveMode="True" userName="[username]" userPWD="[password]" destinationAppUrl="http://[name].antdf0.antares-test.windows-int.net" 
             ...
         </publishProfile>
 
-Prendere nota degli attributi `publishUrl`, `userName` e `userPWD`.
+Prendere nota di hello `publishUrl`, `userName`, e `userPWD` gli attributi.
 
 ## <a name="publish-your-app"></a>Pubblicare l'app
-Dopo aver verificato l'app in locale è possibile pubblicarla nell'app Web tramite FTP. È tuttavia necessario aggiornare innanzitutto le informazioni di connessione al database nell'applicazione. Usando le informazioni di connessione al database ottenute in precedenza (nella sezione **Recuperare le informazioni sulla connessione a MySQL ed FTP**) aggiornare le informazioni seguenti in **entrambi** i file `createdatabase.php` e `index.php` con i valori appropriati:
+Dopo aver testato l'app localmente, è possibile pubblicare app web tooyour tramite FTP. Tuttavia, è necessario innanzitutto informazioni di connessione di database tooupdate hello in un'applicazione hello. Utilizzando le informazioni di connessione database hello ottenuti in precedenza (in hello **le informazioni di connessione FTP e di ottenere MySQL** sezione), aggiornamento hello le seguenti informazioni in **entrambi** hello `createdatabase.php` e `index.php` i file con hello valori appropriati:
 
     // DB connection info
     $host = "value of Data Source";
@@ -235,19 +235,19 @@ Dopo aver verificato l'app in locale è possibile pubblicarla nell'app Web trami
     $pwd = "value of Password";
     $db = "value of Database";
 
-A questo punto è possibile pubblicare l'app tramite FTP.
+È ora pronto toopublish app tramite FTP.
 
 1. Aprire il client FTP preferito.
-2. Immettere nel client FTP la *parte di nome host* dell'attributo `publishUrl` precedentemente annotato.
-3. Immettere gli attributi `userName` e `userPWD` precedentemente annotati, senza modifiche, nel client FTP.
+2. Immettere hello *parte del nome host* da hello `publishUrl` attributo è indicato in precedenza nel client FTP.
+3. Immettere hello `userName` e `userPWD` invariata attributi è indicato in precedenza nel client FTP.
 4. Stabilire una connessione.
 
-Dopo aver effettuato la connessione si sarà in grado di caricare e scaricare i file in base alle proprie esigenze. Assicurarsi di caricare i file nella directory radice, ossia `/site/wwwroot`.
+Dopo avere stabilito la connessione verrà essere in grado di tooupload e scaricare i file in base alle esigenze. Assicurarsi che si sta caricando file toohello radice, ovvero `/site/wwwroot`.
 
-Dopo aver caricato `index.php` e `createtable.php`, passare a **http://[nome sito].azurewebsites.net/createtable.php** per creare la tabella MySQL per l'applicazione, quindi passare a **http://[nome sito].azurewebsites.net/index.php** per iniziare a usare l'applicazione.
+Dopo il caricamento sia `index.php` e `createtable.php`, Sfoglia troppo**http://[site name].azurewebsites.net/createtable.php** toocreate hello MySQL per un'applicazione hello di tabella, quindi individuare troppo**http://[site nome ].azurewebsites.net/index.php** toobegin utilizzando un'applicazione hello.
 
 ## <a name="next-steps"></a>Passaggi successivi
-Per ulteriori informazioni, vedere il [Centro per sviluppatori di PHP](/develop/php/).
+Per ulteriori informazioni, vedere hello [Centro sviluppatori PHP](/develop/php/).
 
 [install-php]: http://www.php.net/manual/en/install.php
 [install-mysql]: http://dev.mysql.com/doc/refman/5.6/en/installing.html

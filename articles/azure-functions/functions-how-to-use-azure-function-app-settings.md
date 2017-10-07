@@ -1,6 +1,6 @@
 ---
-title: Configurare le impostazioni dell'app per le funzioni di Azure | Microsoft Docs
-description: Informazioni su come configurare le impostazioni dell'app per le funzioni di Azure.
+title: le impostazioni dell'App di Azure funzione aaaConfigure | Documenti Microsoft
+description: Informazioni su come tooconfigure Azure funzionare le impostazioni dell'app.
 services: 
 documentationcenter: .net
 author: rachelappel
@@ -14,38 +14,38 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/23/2017
 ms.author: glenga
-ms.openlocfilehash: 3b23011f66592151d517d61bf806da8743f38e03
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 539e203ac449061ef3ceae5e93df3bdbb326e43b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-manage-a-function-app-in-the-azure-portal"></a>Come gestire un'app per le funzioni nel portale di Azure 
+# <a name="how-toomanage-a-function-app-in-hello-azure-portal"></a>Come un'app di funzione nel portale di Azure hello toomanage 
 
-In Funzioni di Azure un'app per le funzioni fornisce il contesto di esecuzione per le singole funzioni. I comportamenti dell'app per le funzioni si applicano a tutte le funzioni ospitate da un'app per le funzioni specifica. In questo argomento viene descritto come configurare e gestire le app per le funzioni nel portale di Azure.
+Nelle funzioni di Azure, un'app di funzione fornisce il contesto di esecuzione hello per le singole funzioni. I comportamenti di app di funzione applicano funzioni di tooall ospitate da un'app di funzione specificata. Questo argomento viene descritto come tooconfigure e gestire le app di funzione in hello portale di Azure.
 
-Innanzitutto passare al [portale di Azure](http://portal.azure.com) e accedere all'account di Azure. Nella barra di ricerca nella parte superiore del portale digitare il nome dell'app per le funzioni e selezionarla dall'elenco. Dopo aver selezionato l'app per le funzioni, viene visualizzata la pagina seguente:
+toobegin, andare toohello [portale di Azure](http://portal.azure.com) ed eseguire l'accesso tooyour account Azure. Nella barra di ricerca hello nella parte superiore di hello del portale hello, digitare il nome di hello dell'app in funzione e selezionarlo dall'elenco di hello. Dopo aver selezionato l'app di funzione, viene visualizzato hello pagina seguente:
 
-![Panoramica dell'app per le funzioni nel portale di Azure](./media/functions-how-to-use-azure-function-app-settings/azure-function-app-main.png)
+![Panoramica della funzione app nel portale di Azure hello](./media/functions-how-to-use-azure-function-app-settings/azure-function-app-main.png)
 
 ## <a name="manage-app-service-settings"></a>Scheda delle impostazioni dell'app per le funzioni
 
-![Panoramica dell'app per le funzioni nel portale di Azure.](./media/functions-how-to-use-azure-function-app-settings/azure-function-app-settings-tab.png)
+![Panoramica della funzione app nel portale di Azure hello.](./media/functions-how-to-use-azure-function-app-settings/azure-function-app-settings-tab.png)
 
-Nella scheda **Impostazioni** è possibile aggiornare la versione di runtime di Funzioni usata dall'app per le funzioni. È anche possibile gestire le chiavi host usate per limitare l'accesso HTTP a tutte le funzioni ospitate dall'app per le funzioni.
+Hello **impostazioni** scheda è dove è possibile aggiornare versione del runtime funzioni hello usato dall'app (funzione). È inoltre possibile gestire hello host chiavi utilizzate toorestrict HTTP tooall funzioni di accesso ospitate da app di funzione hello.
 
-Funzioni supporta sia i piani di hosting a consumo che i piani di hosting del servizio app. Per altre informazioni vedere [Scegliere il piano di servizio corretto per Funzioni di Azure](functions-scale.md). Per una migliore prevedibilità nel piano di consumo, Funzioni consente di limitare l'uso della piattaforma impostando una quota di uso giornaliera, in secondi di gigabyte. Quando la quota di uso giornaliera viene raggiunta, l'app per le funzioni viene arrestata. In questo caso può essere riattivata dallo stesso contesto dell'impostazione della quota di spesa giornaliera. Vedere la [pagina prezzi di Funzioni di Azure](http://azure.microsoft.com/pricing/details/functions/) per altre informazioni sulla fatturazione.   
+Funzioni supporta sia i piani di hosting a consumo che i piani di hosting del servizio app. Per ulteriori informazioni, vedere [piano di servizio corretto scegliere hello per le funzioni di Azure](functions-scale.md). Per una migliore prevedibilità nel piano di consumo hello, funzioni consente di limitare l'utilizzo di piattaforma impostando una quota di utilizzo giornaliero, in secondi di gigabyte. Una volta raggiunto quota di utilizzo giornaliero hello, app di funzione hello è stato arrestato. Un'app di funzione arrestata in seguito a raggiungere hello spesa quota può essere riattivata da hello stabilire hello quotidianamente spesa quota stesso contesto. Vedere hello [funzioni Azure pagina dei prezzi](http://azure.microsoft.com/pricing/details/functions/) per i dettagli sulla fatturazione.   
 
 ## <a name="platform-features-tab"></a>Scheda delle funzionalità della piattaforma
 
 ![Scheda delle funzionalità della piattaforma per l'app per le funzioni.](./media/functions-how-to-use-azure-function-app-settings/azure-function-app-features-tab.png)
 
-Le app per le funzioni vengono eseguite e gestite dalla piattaforma Servizio app di Azure. Di conseguenza, le app per le funzioni hanno accesso alla maggior parte delle funzionalità di piattaforma di hosting Web di base di Azure. Nella scheda **Funzionalità della piattaforma** è possibile accedere a molte funzionalità della piattaforma del servizio app che è possibile usare nelle app per le funzioni. 
+Funzione App eseguite in e vengono mantenute, dalla piattaforma Azure App Service hello. Di conseguenza, le app di funzione hanno accesso toomost funzionalità hello di piattaforma di hosting web di base di Azure. Hello **funzionalità della piattaforma** scheda è dove è possibile accedere hello molte funzionalità della piattaforma di servizio App che è possibile utilizzare nelle app di funzione hello. 
 
 > [!NOTE]
-> Non tutte le funzionalità del servizio app sono disponibili quando un'app per le funzioni viene eseguita nel piano di hosting a consumo.
+> Non tutte le funzionalità di servizio App sono disponibili quando si esegue un'app di funzione nel piano di hosting consumo hello.
 
-La restante parte di questo argomento illustra le seguenti funzionalità di servizio app nel portale di Azure utili per Funzioni:
+rest Hello di questo argomento è incentrato su hello seguenti caratteristiche di servizio App in hello portale di Azure che sono utili per le funzioni:
 
 + [Editor del servizio app](#editor)
 + [Impostazioni dell'applicazione](#settings) 
@@ -56,21 +56,21 @@ La restante parte di questo argomento illustra le seguenti funzionalità di serv
 + [Autenticazione](#auth)
 + [Definizione dell'API](#swagger)
 
-Per altre informazioni su come usare le impostazioni del servizio app, vedere [Configurare le impostazioni di del servizio app di Azure](../app-service-web/web-sites-configure.md).
+Per ulteriori informazioni su come toowork con le impostazioni di servizio App, vedere [configurare le impostazioni di Azure App Service](../app-service-web/web-sites-configure.md).
 
 ### <a name="editor"></a>Editor del servizio app
 
 | | |
 |-|-|
-| ![Editor del servizio app per l'app per le funzioni.](./media/functions-how-to-use-azure-function-app-settings/function-app-appsvc-editor.png)  | L'editor del servizio app è un editor avanzato, disponibile nel portale, che si può usare per modificare i file di configurazione JSON e i file del codice nello stesso modo. Quando si sceglie questa opzione, viene aperta una scheda separata del browser con un editor di base. Ciò consente di realizzare l'integrazione con l'archivio Git, eseguire il codice e il relativo debug e modificare le impostazioni dell'app per le funzioni. Questo editor offre un ambiente di sviluppo migliorato per le funzioni confrontato con il pannello dell'app per le funzioni predefinito.    |
+| ![Editor del servizio app per l'app per le funzioni.](./media/functions-how-to-use-azure-function-app-settings/function-app-appsvc-editor.png)  | Hello editor di servizio App è un editor avanzato nel portale, che è possibile utilizzare i file di configurazione JSON toomodify e file di codice simili. Quando si sceglie questa opzione, viene aperta una scheda separata del browser con un editor di base. Questo consente toointegrate con codice di debug, esecuzione e repository Git hello e modificare le impostazioni dell'app di funzione. Questo editor fornisce un ambiente di sviluppo avanzato per le funzioni confrontato con pannello app di funzione predefinita hello.    |
 
-![Editor del servizio app](./media/functions-how-to-use-azure-function-app-settings/configure-function-app-appservice-editor.png)
+![Hello editor di servizio App](./media/functions-how-to-use-azure-function-app-settings/configure-function-app-appservice-editor.png)
 
 ### <a name="settings"></a>Impostazioni dell'applicazione
 
 | | |
 |-|-|
-| ![Impostazioni delle applicazioni per l'app per le funzioni.](./media/functions-how-to-use-azure-function-app-settings/function-app-application-settings.png) | Nel pannello **Impostazioni applicazione** del servizio app è possibile configurare e gestire le versioni di framework, il debug remoto, le impostazioni dell'app e le stringhe di connessione. Quando l'app per le funzioni si integra con altri servizi di terze parti e di Azure, qui è possibile modificare tali impostazioni. |
+| ![Impostazioni delle applicazioni per l'app per le funzioni.](./media/functions-how-to-use-azure-function-app-settings/function-app-application-settings.png) | Servizio App Hello **le impostazioni dell'applicazione** pannello è possibile configurare e gestire le versioni di framework, il debug remoto, le impostazioni dell'app e le stringhe di connessione. Quando l'app per le funzioni si integra con altri servizi di terze parti e di Azure, qui è possibile modificare tali impostazioni. |
 
 ![Configurare le impostazioni dell'applicazione](./media/functions-how-to-use-azure-function-app-settings/configure-function-app-settings.png)
 
@@ -78,7 +78,7 @@ Per altre informazioni su come usare le impostazioni del servizio app, vedere [C
 
 | | |
 |-|-|
-| ![Console dell'app per le funzioni nel portale di Azure](./media/functions-how-to-use-azure-function-app-settings/function-app-console.png) | La console nel portale è uno strumento ideale per gli sviluppatori quando si desidera interagire con l'app per le funzioni dalla riga di comando. I comandi comuni includono la creazione e lo spostamento di file e directory, nonché l'esecuzione di script e file batch. |
+| ![Console di app di funzione in hello portale di Azure](./media/functions-how-to-use-azure-function-app-settings/function-app-console.png) | console di Hello nel portale è uno strumento ideale per sviluppatori quando si preferisce toointeract con l'app di funzione dalla riga di comando hello. I comandi comuni includono la creazione e lo spostamento di file e directory, nonché l'esecuzione di script e file batch. |
 
 ![Console dell'app per le funzioni](./media/functions-how-to-use-azure-function-app-settings/configure-function-console.png)
 
@@ -86,7 +86,7 @@ Per altre informazioni su come usare le impostazioni del servizio app, vedere [C
 
 | | |
 |-|-|
-| ![App per le funzioni Kudu nel portale di Azure](./media/functions-how-to-use-azure-function-app-settings/function-app-advanced-tools.png) | Gli strumenti avanzati per il servizio app, noto anche come Kudu, consentono l'accesso alle funzionalità amministrative avanzate dell'app per le funzioni. Dalla Kudu è possibile gestire informazioni di sistema, impostazioni dell'app, variabili di ambiente, estensioni del sito, intestazioni HTTP e variabili del server. È anche possibile avviare **Kudu** selezionando l'endpoint SCM per l'app per le funzioni, ad esempio`https://<myfunctionapp>.scm.azurewebsites.net/` |
+| ![Funzione app Kudu in hello portale di Azure](./media/functions-how-to-use-azure-function-app-settings/function-app-advanced-tools.png) | Hello strumenti avanzati per il servizio App (noto anche come Kudu) forniscono accesso tooadvanced le funzionalità amministrative dell'app in funzione. Dalla Kudu è possibile gestire informazioni di sistema, impostazioni dell'app, variabili di ambiente, estensioni del sito, intestazioni HTTP e variabili del server. È anche possibile avviare **Kudu** esplorando toohello endpoint di Gestione controllo servizi per l'app di funzione, ad esempio`https://<myfunctionapp>.scm.azurewebsites.net/` |
 
 ![Configurare Kudu](./media/functions-how-to-use-azure-function-app-settings/configure-function-app-kudu.png)
 
@@ -95,14 +95,14 @@ Per altre informazioni su come usare le impostazioni del servizio app, vedere [C
 
 | | |
 |-|-|
-| ![Opzioni di distribuzione dell'app per le funzioni nel portale di Azure](./media/functions-how-to-use-azure-function-app-settings/function-app-deployment-source.png) | Funzioni consente di sviluppare il codice della funzione sul computer locale. È quindi possibile caricare il progetto dell'app per le funzioni locale in Azure. Oltre al caricamento FTP tradizionale, Funzioni consente di distribuire l'app per le funzioni usando le soluzioni di integrazione continua più diffusi, come GitHub, VSTS, Dropbox, Bitbucket e altre. Per altre informazioni, vedere [Distribuzione continua per Funzioni di Azure](functions-continuous-deployment.md). Per caricare manualmente tramite FTP o Git locale, è necessario anche [configurare le credenziali di distribuzione](functions-continuous-deployment.md#credentials). |
+| ![Opzioni di distribuzione di app di funzione in hello portale di Azure](./media/functions-how-to-use-azure-function-app-settings/function-app-deployment-source.png) | Funzioni consente di sviluppare il codice della funzione sul computer locale. È quindi possibile caricare il tooAzure di progetto app di funzione locale. Inoltre tootraditional di caricamento tramite FTP, le funzioni consentono di distribuire un'applicazione di funzione con soluzioni di integrazione continua comuni, come GitHub, Visual Studio Team Services, Dropbox, Bitbucket e altri. Per altre informazioni, vedere [Distribuzione continua per Funzioni di Azure](functions-continuous-deployment.md). tooupload manualmente tramite FTP o Git locale, è anche necessario [configurare le credenziali di distribuzione](functions-continuous-deployment.md#credentials). |
 
 
 ### <a name="cors"></a>CORS
 
 | | |
 |-|-|
-| ![CORS di app per le funzioni nel portale di Azure](./media/functions-how-to-use-azure-function-app-settings/function-app-cors.png) | Per impedire l'esecuzione di codici dannosi nei servizi, il servizio app consente di bloccare le chiamate alle app per le funzioni da origini esterne. Funzioni supporta la condivisione di risorse tra le origini, CORS per consentire la definizione di un "elenco" di origini consentite da cui le funzioni possono accettare le richieste remote.  |
+| ![Funzione app CORS in hello portale di Azure](./media/functions-how-to-use-azure-function-app-settings/function-app-cors.png) | esecuzione di codice dannoso tooprevent nei servizi, i blocchi di servizio App chiama tooyour funzione app da origini esterne. Funzioni supporta risorse multiorigine (CORS) toolet si definisce un "elenco" di consentite le origini da cui le funzioni possono accettare richieste remote di condivisione.  |
 
 ![Configurare CORS per l'app per le funzioni](./media/functions-how-to-use-azure-function-app-settings/configure-function-app-cors.png)
 
@@ -110,7 +110,7 @@ Per altre informazioni su come usare le impostazioni del servizio app, vedere [C
 
 | | |
 |-|-|
-| ![Autenticazione dell'app per le funzioni nel portale di Azure](./media/functions-how-to-use-azure-function-app-settings/function-app-authentication.png) | Quando le funzioni usano un trigger HTTP, è possibile richiedere innanzitutto l'autenticazione delle chiamate. Servizio app supporta l'autenticazione di Azure Active Directory e consente di accedere ai provider social, quali Facebook, Microsoft e Twitter. Per informazioni dettagliate sulla configurazione di specifici provider di autenticazione, vedere [Autenticazione e autorizzazione nel servizio app di Azure](../app-service/app-service-authentication-overview.md). |
+| ![Autenticazione dell'app nel portale di Azure hello (funzione)](./media/functions-how-to-use-azure-function-app-settings/function-app-authentication.png) | Quando le funzioni utilizzano un trigger HTTP, è possibile richiedere chiamate toofirst essere autenticato. Servizio app supporta l'autenticazione di Azure Active Directory e consente di accedere ai provider social, quali Facebook, Microsoft e Twitter. Per informazioni dettagliate sulla configurazione di specifici provider di autenticazione, vedere [Autenticazione e autorizzazione nel servizio app di Azure](../app-service/app-service-authentication-overview.md). |
 
 ![Configurare l'autenticazione per un'app per le funzioni](./media/functions-how-to-use-azure-function-app-settings/configure-function-app-authentication.png)
 
@@ -119,7 +119,7 @@ Per altre informazioni su come usare le impostazioni del servizio app, vedere [C
 
 | | |
 |-|-|
-| ![Definizione dello swagger API dell'app per le funzioni nel portale di Azure](./media/functions-how-to-use-azure-function-app-settings/function-app-api-definition.png) | Funzioni supporta Swagger per consentire ai client di usare più facilmente le funzioni attivate da HTTP. Per altre informazioni sulla creazione di definizioni API con Swagger, visitare [Introduzione alle app per le API, ad ASP.NET e a Swagger in Azure](../app-service-api/app-service-api-dotnet-get-started.md). È anche possibile usare Proxy di Funzioni per definire una singola superficie API per le funzioni multiple. Per altre informazioni, vedere [Uso di proxy in Funzioni di Azure](functions-proxies.md). |
+| ![Funzione app API swagger di definizione di hello portale di Azure](./media/functions-how-to-use-azure-function-app-settings/function-app-api-definition.png) | Funzioni supporta Swagger tooallow client toomore utilizzare facilmente le funzioni di attivazione HTTP. Per altre informazioni sulla creazione di definizioni API con Swagger, visitare [Introduzione alle app per le API, ad ASP.NET e a Swagger in Azure](../app-service-api/app-service-api-dotnet-get-started.md). Inoltre, è possibile utilizzare funzioni proxy toodefine una superficie API singola per più funzioni. Per altre informazioni, vedere [Uso di proxy in Funzioni di Azure](functions-proxies.md). |
 
 ![Configurare l'API per l'app per le funzioni](./media/functions-how-to-use-azure-function-app-settings/configure-function-app-apidef.png)
 

@@ -1,6 +1,6 @@
 ---
-title: Pubblicare un contenitore Docker usando Azure Toolkit for IntelliJ | Microsoft Docs
-description: Informazioni su come pubblicare un'app Web in Microsoft Azure come contenitore Docker usando il Toolkit di Azure per IntelliJ.
+title: un contenitore Docker utilizzando aaaPublish hello Azure Toolkit per IntelliJ | Documenti Microsoft
+description: Informazioni su come toopublish un tooMicrosoft app web Azure come un contenitore Docker usando hello Azure Toolkit per IntelliJ.
 services: 
 documentationcenter: java
 author: rmcmurray
@@ -14,189 +14,189 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 04/14/2017
 ms.author: robmcm
-ms.openlocfilehash: 96680319a6c4c0f0a4673cd6303a5b172f428797
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: bee94cb269ea707ae7ad55232e23e915aec48c34
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="publish-a-web-app-as-a-docker-container-by-using-the-azure-toolkit-for-intellij"></a>Pubblicare un'app Web come contenitore Docker usando Azure Toolkit for IntelliJ
+# <a name="publish-a-web-app-as-a-docker-container-by-using-hello-azure-toolkit-for-intellij"></a>Pubblicare un'app web come un contenitore Docker usando hello Azure Toolkit per IntelliJ
 
-I contenitori Docker sono un metodo molto diffuso per la distribuzione di applicazioni Web. L'uso dei contenitori Docker permette agli sviluppatori di consolidare tutti i file di progetto e le dipendenze in un unico pacchetto per la distribuzione in un server. Azure Toolkit for IntelliJ semplifica questo processo per gli sviluppatori Java aggiungendo la funzionalità *Publish as Docker Container* (Pubblica come contenitore Docker) per la distribuzione in Microsoft Azure. Questo articolo illustra la procedura da seguire per pubblicare le applicazioni in Azure come contenitori Docker.
+I contenitori Docker sono un metodo molto diffuso per la distribuzione di applicazioni Web. Usando i contenitori di Docker, gli sviluppatori possono consolidare tutti i relativi file di progetto e le dipendenze in un singolo pacchetto tooa come server di distribuzione. Hello Azure Toolkit per IntelliJ semplifica questo processo per gli sviluppatori Java aggiungendo *pubblica come contenitore Docker* funzionalità per tooMicrosoft distribuzione Azure. In questo articolo illustra hello passaggi necessari toopublish tooAzure le applicazioni come contenitori Docker.
 
 > [!NOTE]
 >
-> Altre informazioni su Docker sono disponibili nel [sito Web Docker].
+> Ulteriori informazioni su Docker sono disponibili sul hello [sito Web di Docker].
 >
 
 [!INCLUDE [azure-toolkit-for-intellij-prerequisites](../includes/azure-toolkit-for-intellij-prerequisites.md)]
 
-## <a name="publish-your-web-app-to-azure-by-using-a-docker-container"></a>Pubblicare l'app Web in Azure usando un contenitore Docker
+## <a name="publish-your-web-app-tooazure-by-using-a-docker-container"></a>Pubblicare il tooAzure app web con un contenitore Docker
 
 > [!NOTE]
-> * Per pubblicare l'app Web, è necessario creare un elemento pronto per la distribuzione. Per altre informazioni, vedere la sezione [Altre informazioni sulla creazione di elementi](#artifacts).
+> * toopublish l'app web, è necessario creare un elemento pronto per la distribuzione. toolearn informazioni, vedere hello [ulteriori informazioni sulla creazione di elementi](#artifacts) sezione.
 >
-> * Dopo aver completato la distribuzione guidata almeno una volta, la maggior parte delle impostazioni viene usata come impostazioni predefinite all'esecuzione successiva.
+> * Dopo aver completato la creazione guidata distribuzione hello almeno una volta, la maggior parte delle impostazioni vengono utilizzata come impostazioni predefinite quando si esegue nuovamente la procedura guidata hello.
 >
 
 1. Aprire il progetto dell'app Web in IntelliJ.
 
-2. Per avviare la procedura guidata **Publish as Docker Container** (Pubblica come contenitore Docker), eseguire una di queste operazioni:
+2. hello toostart **pubblica come contenitore Docker** procedura guidata, effettuare una delle seguenti hello:
 
-   * Fare clic sul progetto con il pulsante destro del mouse nella finestra degli strumenti **Project** (Progetto), fare clic su **Azure** e quindi fare clic su **Publish as Docker Container** (Pubblica come contenitore Docker):
+   * In hello **progetto** finestra degli strumenti, mouse sul progetto, fare clic su **Azure**, quindi fare clic su **pubblica come contenitore Docker**:
 
-      ![Comando Publish as Docker Container (Pubblica come contenitore Docker)][PUB01]
+      ![Hello pubblica come comando contenitore Docker][PUB01]
 
-   * Sulla barra degli strumenti di IntelliJ fare clic sul pulsante **Publish Group** (Pubblica gruppo) e quindi fare clic su **Publish as Docker Container** (Pubblica come contenitore Docker):
+   * Sulla barra degli strumenti IntelliJ hello, fare clic su hello **gruppo pubblica** pulsante e quindi fare clic su **pubblica come contenitore Docker**:
 
-      ![Comando Publish as Docker Container][PUB02] (Pubblica come contenitore Docker)  
-    Verrà visualizzata la procedura guidata **Deploy Docker Container on Azure** (Distribuisci contenitore Docker in Azure).
+      ![Hello pubblica come comando contenitore Docker][PUB02]  
+    Hello **distribuire contenitore Docker in Azure** apre la procedura guidata.
 
-   ![Procedura guidata Deploy Docker Container on Azure (Distribuisci contenitore Docker in Azure)][PUB03]
+   ![Hello contenitore Docker Distribuisci nella procedura guidata di Azure][PUB03]
 
-3. Nella finestra **Type an image name, select the artifact's path and check a Docker host to be used** (Digitare un nome immagine, scegliere il percorso dell'elemento e selezionare un host Docker da usare) seguire questa procedura: 
+3. In hello **digitare un nome di immagine, selezionare il percorso dell'elemento hello e verificare un toobe host Docker utilizzato** finestra hello seguenti: 
 
-   a. Nella casella **Docker image name** (Nome immagine Docker) immettere un nome univoco per l'host Docker. La procedura guidata crea automaticamente un nome, ma è possibile modificarlo. 
+   a. In hello **nome immagine Docker** , immettere un nome univoco per l'host Docker. (hello verrà creata automaticamente un nome, ma è possibile modificarlo). 
 
-   b. Nell'area **Hosts** (Host) vengono visualizzati tutti gli host Docker già creati. Eseguire una di queste operazioni: 
-      * Se è disponibile un host Docker esistente, è possibile distribuirvi l'app Web.
-      * Per creare un host Docker, fare clic sul segno più verde (**+**).  
-       Verrà visualizzata la finestra di dialogo **Create Docker Host** (Crea host Docker). 
+   b. Hello **host** area vengono visualizzati tutti gli host Docker che è già stato creato. Effettuare una delle seguenti hello: 
+      * Se si dispone di un host Docker esistente, è possibile distribuire il tooit app web.
+      * toocreate un host Docker, fare clic su verde hello sul segno più (**+**).  
+       Hello **creare Host Docker** verrà visualizzata la finestra di dialogo. 
 
       ![Procedura guidata Deploy Docker Container on Azure (Distribuisci contenitore Docker in Azure)][PUB04a]
 
-4. Nella finestra **Configure the new virtual machine** (Configura la nuova macchina virtuale) specificare le informazioni seguenti sull'host Docker. La procedura guidata genera automaticamente la maggior parte delle informazioni, ma è possibile modificarle. 
+4. In hello **configurare hello nuova macchina virtuale** finestra, fornire le seguenti informazioni sull'host Docker hello. (la maggior parte delle informazioni hello hello generato automaticamente, ma è possibile modificare ciascuno di essi). 
 
-   a. Nella casella **Name** (Nome) immettere un nome univoco per l'host Docker. Questo non è lo stesso nome immagine Docker specificato in precedenza. 
+   a. In hello **nome** , immettere un nome univoco per l'host Docker hello. (È hello non uguali a quelli hello Nome immagine con Docker specificato in precedenza). 
     
-   b. Nella casella **Subscription** (Sottoscrizione) immettere la sottoscrizione di Azure usata per l'host. 
+   b. In hello **sottoscrizione** immettere hello sottoscrizione di Azure in uso per l'host. 
       
-   c. Nella casella **Region** (Area) immettere l'area geografica in cui si trova l'host.
+   c. In hello **area** , immettere l'area geografica di hello in cui si trova nell'host.
       
-   d. Nella scheda **OS and Size** (Sistema operativo e dimensioni) seguire questa procedura:      
-      * **Host OS** (Sistema operativo host): specificare il sistema operativo della macchina virtuale in cui è presente l'host. 
-      * **Size** (Dimensioni): immettere le dimensioni della macchina virtuale per l'host.   
+   d. In hello **del sistema operativo e le dimensioni** scheda, hello seguenti:      
+      * **Host del sistema operativo**: immettere hello del sistema operativo per la macchina virtuale hello che contiene l'host. 
+      * **Dimensioni**: immettere una dimensione di macchina virtuale hello per l'host.   
        
-   e. Nella scheda **Resource Group** (Gruppo di risorse) selezionare una delle opzioni seguenti:      
+   e. In hello **gruppo di risorse** selezionare hello seguenti:      
       * **New resource group** (Nuovo gruppo di risorse): consente di creare un nuovo gruppo di risorse per l'host.
       * **Existing resource group** (Gruppo di risorse esistente): consente di specificare un gruppo di risorse dal proprio account Azure. 
        
-   f. Nella scheda **Network** (Rete) selezionare una delle opzioni seguenti:      
+   f. In hello **rete** selezionare hello seguenti:      
       * **New virtual network** (Nuova rete virtuale): consente di creare una nuova rete virtuale per l'host.
       * **Existing virtual network** (Rete virtuale esistente): consente di specificare una rete virtuale esistente dal proprio account Azure. 
        
-   g. Nella scheda **Storage** (Archiviazione) selezionare una delle opzioni seguenti:      
+   g. In hello **archiviazione** selezionare hello seguenti:      
       * **New storage account** (Nuovo account di archiviazione): consente di creare un nuovo account di archiviazione per l'host.
       * **Existing storage account** (Account di archiviazione esistente): consente di specificare un account di archiviazione esistente dal proprio account Azure.
        
 5. Fare clic su **Avanti**.  
-     Verrà visualizzata la finestra **Configure log in credentials and port settings** (Configurare le credenziali di accesso e le impostazioni delle porte).
+     Hello **configurare log nelle credenziali e le impostazioni delle porte** verrà visualizzata la finestra.
 
-      ![Finestra Configure log in credentials and port settings (Configurare le credenziali di accesso e le impostazioni delle porte)][PUB05]
+      ![log Configura Hello nella finestra di impostazioni di porta e credenziali][PUB05]
 
-6. Selezionare una delle opzioni seguenti:
+6. Selezionare una delle seguenti opzioni hello:
 
       * **Import credentials from Azure Key Vault** (Importa credenziali da Azure Key Vault): consente di specificare un set di credenziali salvato in precedenza e archiviato nella sottoscrizione di Azure.
 
           > [!NOTE]
-          > Un insieme di credenziali delle chiavi di Azure creato con un'entità servizio o un account specifico non è automaticamente accessibile da un altro account o entità servizio che condivide la sottoscrizione. Per consentire a un altro account oppure a un'altra entità servizio di usare l'insieme di credenziali delle chiavi, è necessario usare il portale di Azure per aggiungere l'account o l'entità servizio.
+          > Un insieme di credenziali chiave Azure creato con un account specifico o un'entità servizio non è accessibile automaticamente da un altro account o entità servizio che condivide sottoscrizione hello. insieme di credenziali di un altro account o un servizio principale toouse hello chiave tooallow, è necessario utilizzare hello account hello tooadd portale Azure o un'entità servizio.
 
-      * **New log in credentials** (Nuove credenziali di accesso): consente di creare un nuovo set di credenziali di accesso. Se si seleziona questa opzione, seguire questa procedura:
+      * **New log in credentials** (Nuove credenziali di accesso): consente di creare un nuovo set di credenziali di accesso. Se si seleziona questa opzione, hello seguenti:
 
-        a. Nella scheda **VM Credentials** (Credenziali VM) specificare le informazioni seguenti per le credenziali di accesso alla macchina virtuale dell'host Docker: * **Username** (Nome utente): nome utente delle credenziali di accesso alla macchina virtuale.
-             * **Password** e **Confirm** (Conferma): consente di specificare la password per accedere alla macchina virtuale.
-             * **SSH**: immettere le impostazioni Secure Shell (SSH) per l'host Docker. È possibile selezionare una delle opzioni seguenti: **None** (Nessuna): specifica che la macchina virtuale non consente le connessioni SSH.
-                * **Auto-generate** (Genera automaticamente): crea automaticamente le impostazioni necessarie per la connessione tramite SSH.
-                * **Import from directory** (Importa da directory): consente di specificare una directory che contiene un set di impostazioni SSH salvate in precedenza. La directory deve contenere i due file seguenti:
+        a. In hello **credenziali VM** scheda, fornire le seguenti informazioni per le credenziali di accesso di macchina virtuale hello dell'host Docker hello: * **Username**: immettere un nome utente hello per l'account di accesso di macchina virtuale credenziali.
+             * **Password** e **conferma**: immettere la password di hello per le credenziali di accesso di macchina virtuale.
+             * **SSH**: immettere le impostazioni di hello Secure Shell (SSH) per l'host Docker. È possibile selezionare una delle seguenti opzioni hello: * **Nessuna**: Specifica che la macchina virtuale non consente le connessioni SSH.
+                * **Generare automaticamente**: crea automaticamente hello le impostazioni necessarie per la connessione via SSH.
+                * **Importa da directory**: consente di toospecify una directory che contiene un set di impostazioni SSH salvate in precedenza. directory Hello deve contenere i seguenti due file hello:
                 
-                  * *id_rsa*: Contains the RSA identification for a user.
-                  * *id_rsa.pub*: Contains the RSA public key that is used for authentication.
+                  * *id_rsa*: Contains hello RSA identification for a user.
+                  * *id_rsa.pub*: Contains hello RSA public key that is used for authentication.
             
-        b. Nella scheda **Docker Daemon Access** (Accesso daemon Docker) specificare le informazioni seguenti:
+        b. In hello **Docker Daemon accesso** scheda, fornire hello le seguenti informazioni:
 
           ![Creare un host Docker][PUB06]
     
-             * **Docker Daemon port**: Enter the unique TCP port for your Docker host.
-             * **TLS Security**: Enter the Transport Layer Security settings for your Docker host. You can choose from the following options:
+             * **Docker Daemon port**: Enter hello unique TCP port for your Docker host.
+             * **TLS Security**: Enter hello Transport Layer Security settings for your Docker host. You can choose from hello following options:
                 * **None**: Specifies that your virtual machine does not allow TLS connections.
-                * **Auto-generate**: Automatically creates the requisite settings for connecting via TLS.
-                * **Import from directory**: Specifies a directory that contains a set of previously saved TLS settings. The directory must contain the following six files: 
-                   * *ca.pem* and *ca-key.pem*: Contain the certificate and public key for the TLS Certificate Authority.
+                * **Auto-generate**: Automatically creates hello requisite settings for connecting via TLS.
+                * **Import from directory**: Specifies a directory that contains a set of previously saved TLS settings. hello directory must contain hello following six files: 
+                   * *ca.pem* and *ca-key.pem*: Contain hello certificate and public key for hello TLS Certificate Authority.
                    * *cert.pem* and *key.pem*: Contain client certificate and public key which will be used for TLS authentication.
-                   * *server.pem* and *server-key.pem*: Contain the client certificate and public key that is used for TLS authentication.
+                   * *server.pem* and *server-key.pem*: Contain hello client certificate and public key that is used for TLS authentication.
 
-7. Dopo aver immesso le informazioni richieste, fare clic su **Finish** (Fine).  
-    Verrà visualizzata nuovamente la procedura guidata **Deploy Docker Container on Azure** (Distribuisci contenitore Docker in Azure).
+7. Dopo avere immesso le informazioni necessarie hello, fare clic su **fine**.  
+    Hello **distribuire contenitore Docker in Azure** procedura guidata viene visualizzata di nuovo.
 
    ![Procedura guidata Deploy Docker Container on Azure (Distribuisci contenitore Docker in Azure)][PUB07]
 
 8. Fare clic su **Avanti**.  
-    Verrà visualizzata la finestra **Configure the Docker container to be created** (Configurare il contenitore Docker da creare).
+    Hello **configurare hello Docker contenitore toobe creato** verrà visualizzata la finestra.
 
-   ![Finestra Configure the Docker container to be created (Configurare il contenitore Docker da creare)][PUB08]
+   ![finestra di Hello Configura hello Docker contenitore toobe creato][PUB08]
 
-9. Nella finestra **Configure the Docker container to be created** (Configurare il contenitore Docker da creare) specificare le informazioni seguenti: 
+9. In hello **configurare hello Docker contenitore toobe creato** finestra forniscono hello le seguenti informazioni: 
 
-   a. Nella casella **Docker container name** (Nome contenitore Docker) immettere un nome univoco per il contenitore Docker.
+   a. In hello **nome del contenitore Docker** , immettere un nome univoco per il contenitore Docker.
 
-   b. Scegliere una delle immagini Docker seguenti: 
+   b. Scegliere una delle seguenti immagini Docker hello: 
 
       * **Predefined Docker image** (Immagine Docker predefinita): consente di specificare un'immagine preesistente in Azure. 
 
         > [!NOTE]
-        > L'elenco di immagini Docker in questa casella è costituito da diverse immagini per cui Azure Toolkit è stato configurato per l'applicazione automatica delle patch, in modo che l'elemento venga distribuito automaticamente. 
+        > elenco di Hello delle immagini Docker in questa casella è costituito da diverse immagini che hello Azure Toolkit è stato configurato toopatch in modo che l'elemento viene distribuita automaticamente. 
 
       * **Custom Dockerfile** (Dockerfile personalizzato): consente di specificare un Dockerfile salvato in precedenza nel computer locale.
 
         > [!NOTE]
-        > Questa è una funzionalità più avanzata per gli sviluppatori che intendono distribuire i propri Dockerfile. È tuttavia compito degli sviluppatori che usano questa opzione garantire che i propri Dockerfile vengano compilati correttamente. Dato che Azure Toolkit non esegue la convalida del contenuto in un Dockerfile personalizzato, in caso di problemi con il Dockerfile la distribuzione può avere esito negativo. Per Azure Toolkit il Dockerfile personalizzato deve contenere un elemento app Web e prova quindi ad aprire una connessione HTTP. Pubblicando un diverso tipo di elemento, gli sviluppatori potrebbero ricevere errori non gravi dopo la distribuzione.
+        > Questa è una funzionalità più avanzata per gli sviluppatori che desiderano toodeploy i propri Dockerfile. È invece backup toodevelopers che utilizzano questo tooensure opzione i Dockerfile compilato correttamente. Hello Azure Toolkit non in grado di convalidare il contenuto di hello in un Dockerfile personalizzato, la distribuzione di hello potrebbe non riuscire se hello Dockerfile presenta problemi. Inoltre, poiché hello Azure Toolkit si aspetta hello personalizzato Dockerfile toocontain un artefatto di app web, viene effettuato un tentativo tooopen una connessione HTTP. Pubblicando un diverso tipo di elemento, gli sviluppatori potrebbero ricevere errori non gravi dopo la distribuzione.
 
-   c. Nella casella **Port settings** (Impostazioni porta) specificare l'associazione univoca della porta TCP per il contenitore Docker. 
+   c. In hello **le impostazioni delle porte** immettere hello univoco TCP binding delle porte per il contenitore Docker. 
 
-10. Al termine della procedura, fare clic su **Finish** (Fine). 
+10. Dopo aver completato i passaggi precedenti, hello, fare clic su **fine**. 
 
-Azure Toolkit inizia a distribuire l'app Web in Azure in un contenitore Docker. A meno che non sia stato configurato IntelliJ per la distribuzione in background, viene visualizzato l'indicatore di stato **Deploying to Azure** (Distribuzione in Azure). 
+Hello Azure Toolkit inizia il tooAzure app web in un contenitore Docker. A meno che non è stato configurato toobe IntelliJ distribuito in background hello, un **distribuzione tooAzure** viene visualizzato l'indicatore di stato. 
 
-![Indicatore di stato della distribuzione][PUB09]
+![indicatore di stato di distribuzione Hello][PUB09]
 
 <a name="artifacts"></a>
 ## <a name="additional-information-about-creating-artifacts"></a>Altre informazioni sulla creazione di elementi
 
-Per creare un elemento pronto per la distribuzione, seguire questa procedura:
+hello toocreate un elemento, pronto per la distribuzione seguenti:
 
 1. Aprire il progetto dell'app Web in IntelliJ.
 
 2. Fare clic su **File** e quindi fare clic su **Project Structure** (Struttura del progetto).
 
-   ![Comando Project Structure (Struttura del progetto)][ART01]
+   ![Hello comando struttura del progetto][ART01]
 
-3. Per aggiungere un elemento, fare clic sul simbolo più di colore verde (**+**) e quindi scegliere **Web Application: Archive** (Applicazione Web: archivio).
+3. tooadd un elemento, fare clic su verde hello sul segno più (**+**), quindi fare clic su **applicazione Web: archivio**.
 
-   ![Comando "Web Application: Archive" (Applicazione Web: archivio)][ART02]
+   ![il comando "Archivio Web applicazione:" Hello][ART02]
 
-4. Nella casella **Name** (Nome) immettere un nome per l'elemento, senza l'estensione *war*, quindi fare clic su **OK**.
+4. In hello **nome** , immettere un nome per l'elemento (non includono hello *.war* estensione), quindi fare clic su **OK**.
 
-   ![Casella Name (Nome) dell'elemento][ART03]
+   ![casella nome di elemento Hello][ART03]
 
-Per altre informazioni sulla creazione di elementi in IntelliJ, vedere [Configuring Artifacts] (Configurazione di elementi) sul sito Web JetBrains.
+Per ulteriori informazioni sulla creazione di elementi in IntelliJ, vedere [configurando elementi] nel sito Web JetBrains hello.
 
 ## <a name="next-steps"></a>Passaggi successivi
-Per altre informazioni sui Toolkit di Azure per gli IDE di Java, vedere le risorse seguenti:
+Per ulteriori informazioni su hello Azure Toolkit per ambienti Java, vedere hello seguenti risorse:
 
 * [Toolkit di Azure per Eclipse]
-  * [Novità di Azure Toolkit for Eclipse]
-  * [Installare il Toolkit di Azure per Eclipse.]
-  * [Istruzioni di accesso per Azure Toolkit for Eclipse]
+  * [Novità di hello Azure Toolkit per Eclipse]
+  * [L'installazione di hello Azure Toolkit per Eclipse]
+  * [Istruzioni di accesso per hello Azure Toolkit per Eclipse]
   * [Creare un'app Web Hello World per Azure in Eclipse]
 * [Toolkit di Azure per IntelliJ]
-  * [Novità di Azure Toolkit for IntelliJ]
-  * [Installazione del Toolkit di Azure per IntelliJ]
-  * [Istruzioni di accesso per Azure Toolkit for IntelliJ]
+  * [Novità di hello Azure Toolkit per IntelliJ]
+  * [Installazione di hello Azure Toolkit per IntelliJ]
+  * [Accesso le istruzioni per hello Azure Toolkit per IntelliJ]
   * [Creare un'App Web Hello World per Azure in IntelliJ]
 
-Per altre informazioni su come usare Azure con Java, vedere il [Centro per sviluppatori Java di Azure] e gli [strumenti Java per Visual Studio Team Services].
+Per ulteriori informazioni sull'uso di Azure con Java, vedere hello [Centro per sviluppatori Java di Azure] hello e [Java Tools per Visual Studio Team Services].
 
-Per altre risorse per Docker, vedere il [sito Web Docker] ufficiale.
+Per altre risorse per Docker, vedere ufficiale hello [sito Web di Docker].
 
 <!-- URL List -->
 
@@ -204,18 +204,18 @@ Per altre risorse per Docker, vedere il [sito Web Docker] ufficiale.
 [Toolkit di Azure per IntelliJ]: ./azure-toolkit-for-intellij.md
 [Creare un'app Web Hello World per Azure in Eclipse]: ./app-service-web/app-service-web-eclipse-create-hello-world-web-app.md
 [Creare un'App Web Hello World per Azure in IntelliJ]: ./app-service-web/app-service-web-intellij-create-hello-world-web-app.md
-[Installare il Toolkit di Azure per Eclipse.]: ./azure-toolkit-for-eclipse-installation.md
-[Installazione del Toolkit di Azure per IntelliJ]: ./azure-toolkit-for-intellij-installation.md
-[Istruzioni di accesso per Azure Toolkit for Eclipse]: ./azure-toolkit-for-eclipse-sign-in-instructions.md
-[Istruzioni di accesso per Azure Toolkit for IntelliJ]: ./azure-toolkit-for-intellij-sign-in-instructions.md
-[Novità di Azure Toolkit for Eclipse]: ./azure-toolkit-for-eclipse-whats-new.md
-[Novità di Azure Toolkit for IntelliJ]: ./azure-toolkit-for-intellij-whats-new.md
+[L'installazione di hello Azure Toolkit per Eclipse]: ./azure-toolkit-for-eclipse-installation.md
+[Installazione di hello Azure Toolkit per IntelliJ]: ./azure-toolkit-for-intellij-installation.md
+[Istruzioni di accesso per hello Azure Toolkit per Eclipse]: ./azure-toolkit-for-eclipse-sign-in-instructions.md
+[Accesso le istruzioni per hello Azure Toolkit per IntelliJ]: ./azure-toolkit-for-intellij-sign-in-instructions.md
+[Novità di hello Azure Toolkit per Eclipse]: ./azure-toolkit-for-eclipse-whats-new.md
+[Novità di hello Azure Toolkit per IntelliJ]: ./azure-toolkit-for-intellij-whats-new.md
 
 [Centro per sviluppatori Java di Azure]: https://azure.microsoft.com/develop/java/
-[strumenti Java per Visual Studio Team Services]: https://java.visualstudio.com/
+[Java Tools per Visual Studio Team Services]: https://java.visualstudio.com/
 
-[sito Web Docker]: https://www.docker.com/
-[Configuring Artifacts]: https://www.jetbrains.com/help/idea/2016.1/configuring-artifacts.html (Configurazione di elementi)
+[sito Web di Docker]: https://www.docker.com/
+[configurando elementi]: https://www.jetbrains.com/help/idea/2016.1/configuring-artifacts.html (Configurazione di elementi)
 
 <!-- IMG List -->
 

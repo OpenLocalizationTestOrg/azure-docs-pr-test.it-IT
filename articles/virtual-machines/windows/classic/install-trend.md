@@ -1,6 +1,6 @@
 ---
-title: Installare Trend Micro Deep Security in una macchina virtuale | Microsoft Docs
-description: In questo articolo viene descritto come installare e configurare la sicurezza Trend Micro su una macchina virtuale creata con il modello di distribuzione classica in Azure.
+title: Trend Micro Deep Security in una macchina virtuale aaaInstall | Documenti Microsoft
+description: Questo articolo viene descritto come tooinstall e configurare Trend Micro security in una macchina virtuale creata con modello di distribuzione classica hello in Azure.
 services: virtual-machines-windows
 documentationcenter: 
 author: iainfoulds
@@ -15,76 +15,76 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/30/2017
 ms.author: iainfou
-ms.openlocfilehash: 911b8f12472dcbda3e6bfeb8c97bf1d04a63e1dd
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: dc5492db07a37a2296df5da673183a14c6d5b1f2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-install-and-configure-trend-micro-deep-security-as-a-service-on-a-windows-vm"></a>Come installare e configurare Trend Micro Deep Security come servizio in una macchina virtuale di Windows
+# <a name="how-tooinstall-and-configure-trend-micro-deep-security-as-a-service-on-a-windows-vm"></a>Come tooinstall e configurare Trend Micro Deep Security come servizio in una macchina virtuale Windows
 > [!IMPORTANT]
-> Azure offre due diversi modelli di distribuzione per creare e usare le risorse: [Gestione risorse e la distribuzione classica](../../../resource-manager-deployment-model.md). Questo articolo illustra l'uso del modello di distribuzione classica. Microsoft consiglia di usare il modello di Gestione risorse per le distribuzioni più recenti.
+> Azure offre due diversi modelli di distribuzione per creare e usare le risorse: [Gestione risorse e la distribuzione classica](../../../resource-manager-deployment-model.md). In questo articolo viene illustrato l'utilizzo del modello di distribuzione classica hello. Si consiglia di utilizzano il modello di gestione risorse hello più nuove distribuzioni.
 
-Questo articolo illustra come installare e configurare Trend Micro Deep Security as a Service in una macchina virtuale (VM) nuova o esistente che esegue Windows Server. Deep Security as a Service offre protezione antimalware, un firewall, un sistema di prevenzione delle intrusioni e il monitoraggio dell'integrità.
+In questo articolo illustra come tooinstall e configurare Trend Micro Deep Security come servizio in una nuova o esistente macchina virtuale (VM) che esegue Windows Server. Deep Security as a Service offre protezione antimalware, un firewall, un sistema di prevenzione delle intrusioni e il monitoraggio dell'integrità.
 
-Il client viene installato come estensione di sicurezza usando l'agente di macchine virtuali. In una nuova macchina virtuale è necessario installare Deep Security Agent, in quanto l'agente di macchine virtuali viene creato automaticamente tramite il portale di Azure.
+Hello client viene installato come un'estensione di sicurezza tramite hello agente della macchina virtuale. In una nuova macchina virtuale, installare hello Deep Security Agent, come hello che agente della macchina virtuale viene creato automaticamente da hello portale di Azure.
 
-Una macchina virtuale esistente creata tramite il portale classico, l'interfaccia della riga di comando di Azure o PowerShell potrebbe non disporre di un agente di macchine virtuali. In una macchina virtuale esistente priva dell'agente di macchine virtuali, è necessario prima di tutto scaricare l'agente e installarlo. In questo articolo vengono descritte entrambe le situazioni.
+Una macchina virtuale esistente creata tramite portale classico hello, hello CLI di Azure o PowerShell potrebbe non disporre di un agente di macchine Virtuali. Per una macchina virtuale esistente che non dispone di hello agente della macchina virtuale, è necessario toodownload ed è necessario prima installarlo. In questo articolo vengono descritte entrambe le situazioni.
 
-Se si dispone di una sottoscrizione Trend Micro per una soluzione locale, è possibile usarla per proteggere le macchine virtuali di Azure. Se non si è ancora clienti, è possibile iscriversi per una sottoscrizione di valutazione. Per altre informazioni su questa soluzione, vedere il post di blog Trend Micro relativo all' [estensione dell'agente di macchine virtuali di Microsoft Azure per Deep Security](http://go.microsoft.com/fwlink/p/?LinkId=403945).
+Se si dispone di una sottoscrizione corrente da Trend Micro per una soluzione locale, è possibile utilizzare toohelp proteggere macchine virtuali di Azure. Se non si è ancora clienti, è possibile iscriversi per una sottoscrizione di valutazione. Per ulteriori informazioni su questa soluzione, vedere hello Trend Micro post di blog [Microsoft Azure VM agente di estensione per Deep Security](http://go.microsoft.com/fwlink/p/?LinkId=403945).
 
-## <a name="install-the-deep-security-agent-on-a-new-vm"></a>Installare Deep Security Agent in una nuova VM
+## <a name="install-hello-deep-security-agent-on-a-new-vm"></a>Installare hello Deep Security Agent in una nuova macchina virtuale
 
-Il [portale di Azure classico](http://portal.azure.com) consente di installare l'estensione per la sicurezza di Trend Micro quando si usa un'immagine da **Marketplace** per creare la macchina virtuale. Quando si crea un'unica macchina virtuale, l'uso del portale è un metodo semplice per aggiungere la protezione di Trend Micro.
+Hello [portale di Azure](http://portal.azure.com) consente di installare l'estensione di sicurezza Trend Micro hello quando si utilizza un'immagine da hello **Marketplace** macchina virtuale di toocreate hello. Se si sta creando una singola macchina virtuale, l'uso del portale di hello è una protezione tooadd facilmente da Trend Micro.
 
-L'uso di una voce di **Marketplace** determina l'avvio di una procedura guidata che consente di configurare la macchina virtuale. Usare il terzo pannello della procedura guidata, **Impostazioni**, per installare l'estensione per la sicurezza di Trend Micro.  Per istruzioni generali, vedere [Creare una macchina virtuale con Windows nel portale di Azure](tutorial.md).
+Con una voce da hello **Marketplace** apre una procedura guidata che consente di imposta la macchina virtuale hello. Utilizzare hello **impostazioni** blade, pannello di terzo hello della procedura guidata hello, hello tooinstall estensione di sicurezza Trend Micro.  Per istruzioni generali, vedere [creare una macchina virtuale Windows in esecuzione in Azure portal hello](tutorial.md).
 
-Quando si raggiunge il pannello **Impostazioni** della procedura guidata, seguire questa procedura:
+Quando si ottengono toohello **impostazioni** pannello della procedura guidata hello hello i passaggi seguenti:
 
-1. Fare clic su **Estensioni**, quindi fare clic su **Aggiungi estensione** nel riquadro successivo.
+1. Fare clic su **estensioni**, quindi fare clic su **aggiungere estensione** nel riquadro successivo di hello.
 
-   ![Iniziare ad aggiungere l'estensione][1]
+   ![Iniziare ad aggiungere l'estensione hello][1]
 
-2. Selezionare **Deep Security Agent** nel riquadro **Nuova risorsa**. Nel riquadro Deep Security Agent fare clic su **Crea**.
+2. Selezionare **Deep Security Agent** in hello **nuova risorsa** riquadro. Nel riquadro di hello Deep Security Agent, fare clic su **crea**.
 
    ![Identificare Deep Security Agent][2]
 
-3. Immettere l'**identificatore del tenant** e la **password di attivazione del tenant** per l'estensione. Se lo si desidera, è possibile immettere un **identificatore dei criteri di sicurezza**. Fare quindi clic su **OK** per aggiungere il client.
+3. Immettere hello **identificatore del Tenant** e **Password di attivazione Tenant** per estensione hello. Se lo si desidera, è possibile immettere un **identificatore dei criteri di sicurezza**. Quindi, fare clic su **OK** client hello tooadd.
 
    ![Immettere i dettagli relativi all'estensione][3]
 
-## <a name="install-the-deep-security-agent-on-an-existing-vm"></a>Installare Deep Security Agent in una VM esistente
-Per installare l'agente in una VM esistente, è necessario quanto segue:
+## <a name="install-hello-deep-security-agent-on-an-existing-vm"></a>Installare hello Deep Security Agent in una macchina virtuale esistente
+agente di hello tooinstall in una macchina virtuale esistente, è necessario hello seguenti elementi:
 
-* Il modulo Azure PowerShell 0.8.2 o versioni successive installato nel computer locale. È possibile controllare la versione di Azure PowerShell installata con il comando **Get-Module azure | format-table version** . Per istruzioni e un collegamento alla versione più recente, vedere l'argomento relativo alla [modalità di installazione e configurazione di Azure PowerShell](/powershell/azure/overview). Effettuare l'accesso alla sottoscrizione di Azure usando `Add-AzureAccount`.
-* L'agente di macchine virtuali installato nella macchina virtuale di destinazione.
+* modulo di Azure PowerShell Hello, versione 0.8.2 o successive, installato nel computer locale. È possibile controllare la versione hello di Azure PowerShell che è stato installato tramite hello **Get-Module azure | versione formato tabella** comando. Per istruzioni e una versione più recente toohello di collegamento, vedere [come tooinstall e configurare Azure PowerShell](/powershell/azure/overview). Accedi con sottoscrizione di Azure tooyour `Add-AzureAccount`.
+* Agente VM installato nella macchina virtuale di destinazione hello Hello.
 
-Verificare innanzitutto che l'agente di macchine virtuali sia già installato. Specificare il nome del servizio cloud e il nome della macchina virtuale, quindi eseguire i comandi seguenti a un prompt dei comandi di Azure PowerShell di livello amministratore. Sostituire tutti gli elementi all'interno delle virgolette, inclusi i caratteri < e >.
+Verificare innanzitutto che hello che agente VM è già installato. Specificare nome del servizio cloud hello e nome della macchina virtuale e quindi eseguire hello seguenti comandi in un prompt dei comandi di Azure PowerShell a livello di amministratore. Sostituire tutto il contenuto all'interno di virgolette hello, tra cui hello < e > caratteri.
 
     $CSName = "<cloud service name>"
     $VMName = "<virtual machine name>"
     $vm = Get-AzureVM -ServiceName $CSName -Name $VMName
     write-host $vm.VM.ProvisionGuestAgent
 
-Se non si conosce il nome del servizio cloud e della macchina virtuale, eseguire **Get-AzureVM** per visualizzare tali informazioni per tutte le macchine virtuali nella sottoscrizione corrente.
+Se non si conosce il nome di macchina virtuale e servizio cloud hello, eseguire **Get-AzureVM** toodisplay che le informazioni su tutti hello macchine virtuali nella sottoscrizione corrente.
 
-Se il comando **write-host** restituisce **True**, l'agente di macchine virtuali è installato. Se restituisce **False**, nel post di blog di Azure relativo all' [agente di macchine virtuali ed estensioni, parte 2](http://go.microsoft.com/fwlink/p/?LinkId=403947)sono disponibili istruzioni e un collegamento per il download.
+Se hello **write-host** comando restituisce **True**, hello è installato l'agente di macchine Virtuali. Se restituisce **False**, vedere le istruzioni di hello e toohello un collegamento Scarica nel post di blog di Azure hello [agente VM ed estensioni - parte 2](http://go.microsoft.com/fwlink/p/?LinkId=403947).
 
-Se l'agente di macchine virtuali è installato, eseguire questi comandi.
+Se è installato l'agente VM hello, eseguire questi comandi.
 
     $Agent = Get-AzureVMAvailableExtension TrendMicro.DeepSecurity -ExtensionName TrendMicroDSA
 
     Set-AzureVMExtension -Publisher TrendMicro.DeepSecurity –Version $Agent.Version -ExtensionName TrendMicroDSA -VM $vm | Update-AzureVM
 
 ## <a name="next-steps"></a>Passaggi successivi
-Per l'avvio dell'agente sono necessari alcuni minuti dopo l'installazione. In seguito è necessario attivare Deep Security sulla macchina virtuale in modo che venga gestita da un Deep Security Manager. Per altre istruzioni, vedere gli articoli seguenti:
+Sono necessari alcuni minuti per toostart agente hello in esecuzione quando viene installato. Successivamente, è necessario tooactivate Deep Security nella macchina virtuale hello in modo da poter essere gestito da un gestore protezione completa. Vedere i seguenti articoli per le istruzioni aggiuntive hello:
 
 * Articolo di Trend Micro sulla [sicurezza cloud immediata per Microsoft Azure](http://go.microsoft.com/fwlink/?LinkId=404101)
-* Uno [Script di Windows PowerShell di esempio](http://go.microsoft.com/fwlink/?LinkId=404100) per configurare la macchina virtuale.
-* [Istruzioni](http://go.microsoft.com/fwlink/?LinkId=404099) per l'esempio
+* Oggetto [script Windows PowerShell di esempio](http://go.microsoft.com/fwlink/?LinkId=404100) macchina virtuale di hello tooconfigure
+* [Istruzioni](http://go.microsoft.com/fwlink/?LinkId=404099) per esempio hello
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
-[Come accedere a una macchina virtuale che esegue Windows Server]
+[Come toolog nella macchina virtuale tooa che esegue Windows Server]
 
 [Estensioni VM e funzionalità di Azure]
 
@@ -94,5 +94,5 @@ Per l'avvio dell'agente sono necessari alcuni minuti dopo l'installazione. In se
 [3]: ./media/install-trend/SecurityAgentDetails.png
 
 <!-- Link references -->
-[Come accedere a una macchina virtuale che esegue Windows Server]:connect-logon.md
+[Come toolog nella macchina virtuale tooa che esegue Windows Server]:connect-logon.md
 [Estensioni VM e funzionalità di Azure]: http://go.microsoft.com/fwlink/p/?linkid=390493&clcid=0x409

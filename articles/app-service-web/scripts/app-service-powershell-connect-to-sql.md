@@ -1,6 +1,6 @@
 ---
-title: Esempio di script di Azure PowerShell - Connettere un'app Web a un database SQL | Microsoft Docs
-description: Esempio di script di Azure PowerShell - Connettere un'app Web a un database SQL
+title: aaaAzure Script di PowerShell di esempio - connettersi a un database SQL di web app tooa | Documenti Microsoft
+description: 'Script di Azure PowerShell di esempio: la connessione a un database SQL tooa app web'
 services: app-service\web
 documentationcenter: 
 author: syntaxc4
@@ -16,25 +16,25 @@ ms.workload: web
 ms.date: 03/20/2017
 ms.author: cfowler
 ms.custom: mvc
-ms.openlocfilehash: 5312bf6b81d1cc48490b71c3f77323cca23e1559
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 8f80b940378d020cbcaec2c1bbc28bae1a3ef35a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="connect-a-web-app-to-a-sql-database"></a>Connettere un'App Web a un database SQL
+# <a name="connect-a-web-app-tooa-sql-database"></a>La connessione a un database SQL tooa app web
 
-Questo scenario illustra come creare un database SQL di Azure e un'App Web di Azure. Il database SQL viene quindi collegato all'App Web usando le impostazioni dell'app.
+In questo scenario si apprenderà come toocreate un database SQL di Azure e un Azure web app. Quindi si procederà al collegamento hello SQL database toohello web app con le impostazioni dell'app.
 
-Se necessario, installare Azure PowerShell usando l'istruzione presente nella [Guida di Azure PowerShell](/powershell/azure/overview) e quindi eseguire `Login-AzureRmAccount` per creare una connessione con Azure.
+Se necessario, installare Azure PowerShell utilizzando l'istruzione hello trovato in hello hello [Guida di Azure PowerShell](/powershell/azure/overview), quindi eseguire `Login-AzureRmAccount` toocreate una connessione con Azure.
 
 ## <a name="sample-script"></a>Script di esempio
 
-[!code-powershell[principale](../../../powershell_scripts/app-service/connect-to-sql/connect-to-sql.ps1?highlight=13 "Connettere un'app Web a un database SQL")]
+[!code-powershell[main](../../../powershell_scripts/app-service/connect-to-sql/connect-to-sql.ps1?highlight=13 "Connect a web app tooa SQL database")]
 
 ## <a name="clean-up-deployment"></a>Pulire la distribuzione 
 
-Dopo aver eseguito lo script di esempio, usare il comando seguente per rimuovere il gruppo di risorse, l'App Web e tutte le risorse correlate.
+Dopo l'esecuzione di script di esempio hello, hello comando seguente può essere utilizzato tooremove gruppo di risorse hello, app web e tutte le relative risorse.
 
 ```powershell
 Remove-AzureRmResourceGroup -Name myResourceGroup -Force
@@ -42,7 +42,7 @@ Remove-AzureRmResourceGroup -Name myResourceGroup -Force
 
 ## <a name="script-explanation"></a>Spiegazione dello script
 
-Questo script usa i comandi seguenti. Ogni comando della tabella include collegamenti alla documentazione specifica del comando.
+Questo script utilizza hello i comandi seguenti. Ogni comando in documentazione specifica toocommand hello tabella collegamenti.
 
 | Comando | Note |
 |---|---|
@@ -56,6 +56,6 @@ Questo script usa i comandi seguenti. Ogni comando della tabella include collega
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Per altre informazioni sul modulo Azure PowerShell, vedere la [documentazione di Azure PowerShell](/powershell/azure/overview).
+Per ulteriori informazioni sul modulo di Azure PowerShell hello, vedere [documentazione di Azure PowerShell](/powershell/azure/overview).
 
-Altri esempi di Azure PowerShell per app Web del servizio app di Azure sono disponibili in [Azure PowerShell samples](../app-service-powershell-samples.md) (Esempi di Azure PowerShell).
+Esempi aggiuntivi di Azure Powershell per App Web di servizio App di Azure sono reperibile in hello [esempi di Azure PowerShell](../app-service-powershell-samples.md).

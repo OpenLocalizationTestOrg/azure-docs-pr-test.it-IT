@@ -1,5 +1,5 @@
 ---
-title: Gestire l'accesso alla fatturazione di Azure tramite i ruoli | Microsoft Docs
+title: aaaManage tooAzure di accesso tramite ruoli di fatturazione | Documenti Microsoft
 description: 
 services: 
 documentationcenter: 
@@ -15,67 +15,67 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/22/2017
 ms.author: vikdesai
-ms.openlocfilehash: c70904097f139bc2178feed83f1cf1274f3c738d
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 5937fac5ffa5ca204eb03a1dcbc5e800b3d5eb74
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="manage-access-to-billing-information-for-azure-using-role-based-access-control"></a>Gestire l'accesso alle informazioni di fatturazione per Azure tramite il controllo di accesso basato sui ruoli
+# <a name="manage-access-toobilling-information-for-azure-using-role-based-access-control"></a>Gestire le informazioni di accesso toobilling per Azure tramite il controllo di accesso basato sui ruoli
 
-È possibile concedere l'accesso alle informazioni di fatturazione di Azure ai membri del team assegnando uno dei ruoli utente seguenti alla sottoscrizione: amministratore dell'account, amministratore del servizio, coamministratore, proprietario, collaboratore, lettore e lettore della fatturazione. Questi hanno accesso alle informazioni di fatturazione nel [portale di Azure](https://portal.azure.com/) e possono usare le [API di fatturazione](billing-usage-rate-card-overview.md) per ottenere le fatture a livello di programmazione, dopo aver scelto questa modalità, e i dettagli di uso. Per altre informazioni su chi può concedere ruoli e i compiti per ogni ruolo, vedere [Ruoli in Controllo degli accessi in base al ruolo di Azure](../active-directory/role-based-access-built-in-roles.md).
+È possibile concedere l'accesso per Azure toomembers informazioni fatturazione del team tramite l'assegnazione di uno di hello sottoscrizione tooyour di ruoli utente di seguenti: Account amministratore, amministratore del servizio, coamministratore, proprietario, collaboratore, lettore e lettore fatturazione. Hanno accesso toobilling informazioni in hello [portale di Azure](https://portal.azure.com/), e possono usare hello [fatturazione API](billing-usage-rate-card-overview.md) tooprogrammatically Visualizza fatture (una volta scelto-in) e informazioni di utilizzo. Per altre informazioni su chi può concedere ruoli e i compiti per ogni ruolo, vedere [Ruoli in Controllo degli accessi in base al ruolo di Azure](../active-directory/role-based-access-built-in-roles.md).
 
-## <a name="opt-in"></a> Consentire ad altri utenti di accedere alle fatture
+## <a name="opt-in"></a>Consentendo a utenti aggiuntivi tooaccess fatture
 
-L'amministratore dell'account deve concedere il consenso esplicito tramite il [portale di Azure](https://portal.azure.com/) che concede ad altri utenti di accedere alle fatture e tramite le API.
+Hello amministratore dell'Account deve acconsentire esplicitamente all'invio tramite hello [portale di Azure](https://portal.azure.com/) Consenti tooinvoices accesso ad altri utenti e tramite l'API.
 
-1. In qualità di amministratore dell'account, selezionare la sottoscrizione dal [pannello Sottoscrizioni](https://portal.azure.com/#blade/Microsoft_Azure_Billing/SubscriptionsBlade) nel portale di Azure.
+1. Come amministratore dell'Account di hello, selezionare la sottoscrizione da hello [pannello sottoscrizioni](https://portal.azure.com/#blade/Microsoft_Azure_Billing/SubscriptionsBlade) nel portale di Azure.
 
-1. Selezionare **Fatture** e quindi **Access to invoices** (Accesso alle fatture).
+1. Selezionare **fatture** e quindi **accedere tooinvoices**.
 
-    ![Lo screenshot mostra come delegare l'accesso alle fatture](./media/billing-manage-access/AA-optin.png)
+    ![Schermata illustrata toodelegate accesso tooinvoices](./media/billing-manage-access/AA-optin.png)
 
-1. Impostare su **On** l'accesso, quindi salvare le modifiche per consentire agli utenti nei ruoli con ambito della sottoscrizione di scaricare la fattura.
+1. Attivare **su** accesso hello seguita da salvare le modifiche di hello, gli utenti tooallow nella fattura toodownload ruoli con ambito di sottoscrizione.
 
-    ![Lo screenshot mostra le impostazioni on-off per delegare l'accesso alla fattura](./media/billing-manage-access/AA-optinAllow.png)
+    ![Schermata mostra tooinvoice accesso toodelegate-off](./media/billing-manage-access/AA-optinAllow.png)
 
-Il consenso esplicito permette all'amministratore del servizio, al coamministratore, al proprietario, al collaboratore, al lettore e al lettore della fatturazione nella sottoscrizione di scaricare le fatture PDF nel portale di Azure. Tuttavia, le fatture redatte prima di dicembre 2016 sono disponibili solo per l'amministratore dell'account attualmente.
+Acconsentito esplicitamente tradizionale di amministratore del servizio, coamministratore, proprietario, collaboratore, lettore e fatturazione lettore hello sottoscrizione toodownload PDF fatture hello portale di Azure. Tuttavia, più vecchi di dicembre 2016 sono disponibile toohello solo amministratore dell'Account per il momento.
 
-L'amministratore dell'account può anche impostare una configurazione in modo da ricevere le fatture tramite posta elettronica. Per altre informazioni, vedere [Ottenere la fatturazione tramite posta elettronica](billing-download-azure-invoice-daily-usage-date.md).
+Hello amministratore dell'Account è anche possibile configurare le fatture toohave inviate tramite posta elettronica. vedere, più toolearn [ottenere la fattura nel messaggio di posta elettronica](billing-download-azure-invoice-daily-usage-date.md).
 
-## <a name="adding-users-to-the-billing-reader-role"></a>Aggiunta di utenti al ruolo di lettore della fatturazione
+## <a name="adding-users-toohello-billing-reader-role"></a>Aggiunta del ruolo di lettore fatturazione toohello utenti
 
-Il ruolo di lettore della fatturazione dispone di accesso in sola lettura alle informazioni di fatturazione della sottoscrizione nel portale di Azure e nessun accesso ai servizi, ad esempio macchine virtuali e account di archiviazione. Assegnare il ruolo di lettore della fatturazione a un utente che richiede l'accesso alle informazioni di fatturazione della sottoscrizione, ma non la possibilità di gestire i servizi di Azure. Questo ruolo è appropriato per gli utenti che in un'organizzazione eseguono solo la gestione finanziaria e dei costi per le sottoscrizioni di Azure.
+ruolo di lettore fatturazione Hello dispone di accesso in sola lettura toosubscription le informazioni di fatturazione nel portale di Azure e non tooservices di accesso, ad esempio le macchine virtuali e gli account di archiviazione. Assegnare hello fatturazione lettore ruolo toosomeone che deve accedere alle informazioni di fatturazione sottoscrizione toohello ma non hello possibilità toomanage Azure servizi. Questo ruolo è appropriato per gli utenti che in un'organizzazione eseguono solo la gestione finanziaria e dei costi per le sottoscrizioni di Azure.
 
-1. Selezionare la sottoscrizione dal [pannello delle Sottoscrizioni](https://portal.azure.com/#blade/Microsoft_Azure_Billing/SubscriptionsBlade) nel portale di Azure.
+1. Selezionare la sottoscrizione da hello [pannello sottoscrizioni](https://portal.azure.com/#blade/Microsoft_Azure_Billing/SubscriptionsBlade) nel portale di Azure.
 
 1. Selezionare **Controllo di accesso (IAM)** e quindi fare clic su **Aggiungi**.
 
-    ![Schermate che mostrano l'IAM nel pannello della sottoscrizione](./media/billing-manage-access/select-iam.PNG)
+    ![Schermata mostra IAM nel Pannello di sottoscrizione hello](./media/billing-manage-access/select-iam.PNG)
 
-1. Scegliere **Billing Reader** (Lettore della fatturazione) nella pagina **Selezionare un ruolo**.
+1. Scegliere **lettore fatturazione** in hello **selezionare un ruolo** pagina.
 
-    ![Schermate che mostrano il lettore della fatturazione nella visualizzazione del popup](./media/billing-manage-access/select-roles.PNG)
+    ![Schermata mostra fatturazione lettore nella visualizzazione popup hello](./media/billing-manage-access/select-roles.PNG)
 
-1. Digitare il messaggio di posta elettronica per l'utente che si desidera invitare, quindi fare clic su **OK** per inviare l'invito.
+1. Tipo di messaggio di posta elettronica hello per utente hello tooinvite desiderato, quindi fare clic su **OK** invito hello toosend.
 
-    ![Schermata che mostra come immettere il messaggio di posta elettronica per invitare un utente](./media/billing-manage-access/add-user.PNG)
+    ![Schermata che mostra tooenter tooinvite di posta elettronica a un utente](./media/billing-manage-access/add-user.PNG)
 
-1. Seguire le istruzioni nel messaggio di posta elettronica di invito per accedere come un lettore della fatturazione.
+1. Seguire le istruzioni toolog di posta elettronica di invito hello in come un lettore di fatturazione.
 
-    ![Schermata che mostra ciò che vede il lettore della fatturazione nel portale di Azure](./media/billing-manage-access/billing-reader-view.png)
+    ![Schermata che mostra cosa hello fatturazione lettura possa vedere nel portale di Azure](./media/billing-manage-access/billing-reader-view.png)
 
 > [!NOTE]
-> La funzionalità Fatturazione per lettore è disponibile in anteprima e non supporta ancora le sottoscrizioni enterprise (EA) o i cloud non globali.
+> funzionalità di fatturazione lettore Hello è disponibile in anteprima e non supporta ancora le sottoscrizioni enterprise (EA) o il cloud non globali.
 
-## <a name="adding-users-to-other-roles"></a>Aggiunta di utenti ad altri ruoli
+## <a name="adding-users-tooother-roles"></a>Aggiunta di utenti tooother ruoli
 
-Gli utenti in altri ruoli, ad esempio proprietario o collaboratore, possono accedere non solo alle informazioni di fatturazione, ma anche ai servizi di Azure. Per gestire questi ruoli, vedere [Aggiungere o modificare i ruoli di amministratore di Azure che gestiscono la sottoscrizione o i servizi](billing-add-change-azure-subscription-administrator.md).
+Gli utenti in altri ruoli, ad esempio proprietario o collaboratore, possono accedere non solo alle informazioni di fatturazione, ma anche ai servizi di Azure. toomanage questi ruoli, vedere [aggiungere o modificare ruoli di amministratore di Azure che gestiscono la sottoscrizione hello o servizi](billing-add-change-azure-subscription-administrator.md).
 
-## <a name="who-can-access-the-account-centerhttpsaccountwindowsazurecom"></a>Chi può accedere al [Centro account](https://account.windowsazure.com)?
+## <a name="who-can-access-hello-account-centerhttpsaccountwindowsazurecom"></a>Chi può accedere hello [centro Account](https://account.windowsazure.com)?
 
-Solo l'amministratore dell'account può accedere al Centro account. L'amministratore dell'account è il proprietario legale della sottoscrizione. Per impostazione predefinita, la persona che ha effettuato l'accesso o ha acquistato la sottoscrizione di Azure è l'amministratore dell'account, a meno che non la [proprietà della sottoscrizione non venga trasferita](billing-subscription-transfer.md) a un altro utente. L'amministratore dell'account può creare e annullare le sottoscrizioni, modificare l'indirizzo di fatturazione per una sottoscrizione e gestire i criteri di accesso alla sottoscrizione.
+Centro Account toohello può accedere solo hello amministratore dell'Account. Hello amministratore dell'Account è hello legittimo proprietario sottoscrizione hello. Per impostazione predefinita, hello persona iscritti a o acquistati hello sottoscrizione di Azure è hello amministratore dell'Account, a meno che non hello [la proprietà di sottoscrizione è stata trasferita](billing-subscription-transfer.md) toosomebody else. Hello amministratore dell'Account può creare sottoscrizioni, annullare sottoscrizioni, modificare l'indirizzo di fatturazione hello per una sottoscrizione e gestire i criteri di accesso per la sottoscrizione di hello.
 
 ## <a name="need-help-contact-support"></a>Richiesta di assistenza Contattare il supporto tecnico.
 
-Per altre domande, è possibile [contattare il supporto tecnico](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade) per ottenere una rapida risoluzione del problema.
+Se è ancora più domande, [contattare il supporto tecnico](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade) tooget risolta il problema.

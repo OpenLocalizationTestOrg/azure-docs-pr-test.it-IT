@@ -1,6 +1,6 @@
 ---
-title: Come assegnare gli utenti alle applicazioni | Microsoft Docs
-description: Comprendere come vengono assegnati gli utenti a un'applicazione nel tenant
+title: aaaHow tooAssign utenti tooapplications | Documenti Microsoft
+description: Comprendere come gli utenti vengano assegnati tooan applicazione nel tenant
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -13,49 +13,49 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
-ms.openlocfilehash: 916238ba402a2555bac620d7f08e02799d981ae0
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 4df60c7d723140d0d1bbd6ba8b34aa4e762d1138
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-assign-users-to-applications"></a>Come assegnare gli utenti alle applicazioni
+# <a name="how-tooassign-users-tooapplications"></a>Come tooassign utenti tooapplications
 
-Questo articolo consente di comprendere come vengono assegnati gli utenti a un'applicazione nel tenant.
+Questo articolo è utile toounderstand come gli utenti vengano assegnati tooan applicazione nel tenant.
 
-## <a name="how-do-users-get-assigned-to-an-application-in-azure-ad"></a>Come vengono assegnati gli utenti a un'applicazione in Azure AD?
+## <a name="how-do-users-get-assigned-tooan-application-in-azure-ad"></a>Come gli utenti vengano assegnati tooan applicazione in Azure AD?
 
-Un utente deve prima essere assegnato a un'applicazione per potervi accedere. L'assegnazione può essere eseguita da un amministratore, da un delegato aziendale o, talvolta, dall'utente stesso. Di seguito vengono descritti i modi in cui gli utenti possono essere assegnati alle applicazioni:
+Per un utente tooaccess un'applicazione, è necessario innanzitutto assegnare tooit in qualche modo. Assegnazione può essere eseguita da un amministratore, un delegato di business o in alcuni casi, utente hello autonomamente. Di seguito descrive gli utenti possono ottenere assegnati tooapplications modi di hello:
 
-1.  Un amministratore [assegna un utente](https://docs.microsoft.com/azure/active-directory/active-directory-coreapps-assign-user-azure-portal) direttamente all'applicazione
+1.  Un amministratore [assegna un utente](https://docs.microsoft.com/azure/active-directory/active-directory-coreapps-assign-user-azure-portal) toohello applicazione direttamente
 
-2.  Un amministratore [assegna un gruppo](https://docs.microsoft.com/azure/active-directory/active-directory-coreapps-assign-user-azure-portal), del quale l'utente è membro, all'applicazione, inclusi:
+2.  Un amministratore [assegna un gruppo](https://docs.microsoft.com/azure/active-directory/active-directory-coreapps-assign-user-azure-portal) utente hello è un membro dell'applicazione toohello, tra cui:
 
   * Un gruppo che è stato sincronizzato da locale
 
-  * Un gruppo di sicurezza statico creato nel cloud
+  * Un gruppo di sicurezza statico creato in un cloud hello
 
-  * Un [gruppo di sicurezza dinamico](https://docs.microsoft.com/azure/active-directory/active-directory-groups-dynamic-membership-azure-portal) creato nel cloud
+  * Oggetto [gruppo di sicurezza dinamica](https://docs.microsoft.com/azure/active-directory/active-directory-groups-dynamic-membership-azure-portal) create in un cloud hello
 
-  * Un gruppo di Office 365 creato nel cloud
+  * Un gruppo di Office 365 creato nel cloud hello
 
-  * Il gruppo [Tutti gli utenti](https://docs.microsoft.com/azure/active-directory/active-directory-accessmanagement-dedicated-groups)
+  * Hello [tutti gli utenti](https://docs.microsoft.com/azure/active-directory/active-directory-accessmanagement-dedicated-groups) gruppo
 
-3.  Un amministratore abilita l'[Accesso all'applicazione self-service](https://docs.microsoft.com/azure/active-directory/active-directory-self-service-application-access) per consentire all'utente di aggiungere un'applicazione usando la funzionalità **Aggiungi app** del [Pannello di accesso dell'applicazione](https://docs.microsoft.com/azure/active-directory/active-directory-saas-access-panel-introduction) **senza l'approvazione aziendale**
+3.  Un amministratore abilita [accesso all'applicazione Self-Service](https://docs.microsoft.com/azure/active-directory/active-directory-self-service-application-access) tooallow tooadd un utente un'applicazione utilizzando hello [Pannello di accesso dell'applicazione](https://docs.microsoft.com/azure/active-directory/active-directory-saas-access-panel-introduction) **Aggiungi App** funzionalità **senza l'approvazione di business**
 
-4.  Un amministratore abilita l'[Accesso all'applicazione self-service](https://docs.microsoft.com/azure/active-directory/active-directory-self-service-application-access) per consentire all'utente di aggiungere un'applicazione usando la funzionalità **Aggiungi app** del [Pannello di accesso dell'applicazione](https://docs.microsoft.com/azure/active-directory/active-directory-saas-access-panel-introduction), ma solo **con l'approvazione previa di una serie di responsabili approvazione aziendali selezionati**
+4.  Un amministratore abilita [accesso all'applicazione Self-Service](https://docs.microsoft.com/azure/active-directory/active-directory-self-service-application-access) tooallow tooadd un utente un'applicazione utilizzando hello [Pannello di accesso dell'applicazione](https://docs.microsoft.com/azure/active-directory/active-directory-saas-access-panel-introduction) **Aggiungi App** funzionalità, ma solo w **i-esimo preventiva approvazione da un set selezionato di responsabili approvazione di business**
 
-5.  Un amministratore abilita la [Gestione gruppi self-service](https://docs.microsoft.com/azure/active-directory/active-directory-accessmanagement-self-service-group-management) per consentire a un utente di partecipare a un gruppo assegnato a un'applicazione **senza l'approvazione aziendale**
+5.  Un amministratore abilita [gestione dei gruppi Self-Service](https://docs.microsoft.com/azure/active-directory/active-directory-accessmanagement-self-service-group-management) tooallow toojoin un utente un gruppo che un'applicazione è troppo**senza l'approvazione di business**
 
-6.  Un amministratore abilita la [Gestione gruppi self-service](https://docs.microsoft.com/azure/active-directory/active-directory-accessmanagement-self-service-group-management) per consentire a un utente di partecipare a un gruppo assegnato a un'applicazione, ma solo **con l'approvazione previa di una serie di responsabili approvazione aziendali selezionati**
+6.  Un amministratore abilita [gestione dei gruppi Self-Service](https://docs.microsoft.com/azure/active-directory/active-directory-accessmanagement-self-service-group-management) tooallow toojoin un utente un gruppo che un'applicazione viene assegnata a, ma solo **previa autorizzazione da un set selezionato di responsabili approvazione di business**
 
-7.  Un amministratore assegna una licenza direttamente a un utente per un'applicazione prodotta per esempio da [Microsoft Office 365](http://products.office.com/)
+7.  Un amministratore assegna un utente tooa licenza direttamente per la prima applicazione di terze parti, ad esempio [Microsoft Office 365](http://products.office.com/)
 
-8.  Un amministratore assegna una licenza a un gruppo del quale l'utente è membro a un'applicazione prodotta per esempio da [Microsoft Office 365](http://products.office.com/)
+8.  Un amministratore assegna a un gruppo di licenze tooa che hello utente è membro tooa prima applicazione di terze parti, ad esempio [Microsoft Office 365](http://products.office.com/)
 
-9.  Un [amministratore dà il consenso a un'applicazione](https://docs.microsoft.com/azure/active-directory/develop/active-directory-devhowto-multi-tenant-overview#understanding-user-and-admin-consent) per essere usata da tutti gli utenti e quindi un utente effettua l'accesso all'applicazione
+9.  Un [amministratore acconsente applicazione tooan](https://docs.microsoft.com/azure/active-directory/develop/active-directory-devhowto-multi-tenant-overview#understanding-user-and-admin-consent) toobe utilizzato da tutti gli utenti e quindi un utente accede toohello applicazione
 
-10. Un utente [dà il consenso a un'applicazione](https://docs.microsoft.com/azure/active-directory/develop/active-directory-devhowto-multi-tenant-overview#understanding-user-and-admin-consent) da solo effettuando l'accesso all'applicazione
+10. Un utente [acconsente applicazione tooan](https://docs.microsoft.com/azure/active-directory/develop/active-directory-devhowto-multi-tenant-overview#understanding-user-and-admin-consent) stesse effettuando l'accesso dell'applicazione toohello
 
 ## <a name="next-steps"></a>Passaggi successivi
 [Gestione di applicazioni con Azure Active Directory](active-directory-enable-sso-scenario.md)

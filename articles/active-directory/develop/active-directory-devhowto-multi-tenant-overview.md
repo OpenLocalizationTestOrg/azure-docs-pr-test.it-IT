@@ -1,5 +1,5 @@
 ---
-title: "Come compilare un'app che può consentire l'accesso a qualsiasi utente di Azure AD | Documentazione Microsoft"
+title: "aaaHow toobuild un'applicazione che può accedere qualsiasi utente di Azure AD | Documenti Microsoft"
 description: Istruzioni dettagliate per la creazione di un'applicazione che consenta a un utente di accedere da qualsiasi tenant Azure Active Directory, nota anche come applicazione multi-tenant.
 services: active-directory
 documentationcenter: 
@@ -15,61 +15,61 @@ ms.workload: identity
 ms.date: 04/26/2017
 ms.author: dastrock
 ms.custom: aaddev
-ms.openlocfilehash: f1c79fa7e3b0e160487b5941741f6a6c677c6b81
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 123ea8125fa3c308ce0f124cc58e85ec28d476d5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-sign-in-any-azure-active-directory-ad-user-using-the-multi-tenant-application-pattern"></a>Come consentire l'accesso a qualsiasi utente di Azure Active Directory (AD) usando il modello di applicazione multi-tenant
-Se si offre un'applicazione Software as a Service a molte organizzazioni, è possibile configurare l'applicazione in modo da consentire accessi da qualsiasi tenant di Azure AD.  In Azure AD questa operazione viene definita impostazione dell'applicazione multi-tenant.  Gli utenti in qualsiasi tenant Azure AD saranno in grado di accedere all'applicazione dopo il consenso ad usare il loro account con l'applicazione.  
+# <a name="how-toosign-in-any-azure-active-directory-ad-user-using-hello-multi-tenant-application-pattern"></a>Come toosign in qualsiasi utente di Azure Active Directory (AD) usando hello modello di applicazione multi-tenant
+Se si offrono un Software come un toomany di applicazione di servizio organizzazioni, è possibile configurare l'applicazione tooaccept accessi da un tenant di Azure AD.  In Azure AD questa operazione viene definita impostazione dell'applicazione multi-tenant.  Gli utenti in un tenant di Azure AD saranno in grado di toosign tooyour applicazione dopo il consenso toouse il proprio account con l'applicazione.  
 
-Se si dispone di un'applicazione esistente che ha un proprio sistema di account, o supporta altri tipi di accesso da altri provider di cloud, l'aggiunta dell'accesso di Azure AD da un qualsiasi tenant è semplice. Registrare l'app, aggiungere il codice di accesso tramite OAuth2, OpenID Connect o SAML e inserire un pulsante "Accedi con Microsoft" all'applicazione. Fare clic sul pulsante seguente per ottenere altre informazioni sulla personalizzazione dell'applicazione.
+Se si dispone di un'applicazione esistente che ha un proprio sistema di account, o supporta altri tipi di accesso da altri provider di cloud, l'aggiunta dell'accesso di Azure AD da un qualsiasi tenant è semplice. Registrare l'app, aggiungere il codice di accesso tramite OAuth2, OpenID Connect o SAML e inserire un pulsante "Accedi con Microsoft" all'applicazione. Fare clic su hello seguente pulsante toolearn ulteriori informazioni sulla personalizzazione dell'applicazione.
 
 [![Pulsante di accesso][AAD-Sign-In]][AAD-App-Branding]
 
-Questo articolo presuppone che l'utente abbia già familiarità con la creazione di un'applicazione single-tenant per Azure AD.  In caso contrario, tornare alla [home page della Guida per sviluppatori][AAD-Dev-Guide] e provare una delle procedure di avvio rapido.
+Questo articolo presuppone che l'utente abbia già familiarità con la creazione di un'applicazione single-tenant per Azure AD.  Se non si testa il backup toohello [home page di Guida per sviluppatori] [ AAD-Dev-Guide] e provare a uno dei nostri introduttive!
 
-Quattro semplici passaggi consentono di convertire l'applicazione in un'applicazione multi-tenant di Azure AD:
+Esistono quattro semplici passaggi tooconvert l'applicazione in un'app multi-tenant di Azure AD:
 
-1. Aggiornare la registrazione dell'applicazione in modo che sia multi-tenant
-2. Aggiornare il codice per l'invio delle richieste all'endpoint /common 
-3. Aggiornare il codice per gestire più valori dell'autorità di certificazione
+1. Aggiornare applicazione registrazione toobe multi-tenant
+2. Aggiornare il toohello /common di codice toosend richieste endpoint 
+3. Aggiornare il codice toohandle più valori dell'autorità di certificazione
 4. Informarsi sul consenso dell'utente e dell'amministratore e apportare le modifiche appropriate al codice
 
-Esaminiamo in dettaglio ogni passaggio. È anche possibile passare direttamente a [questo elenco di esempi multi-tenant][AAD-Samples-MT].
+Esaminiamo in dettaglio ogni passaggio. È inoltre possibile passare direttamente troppo[questo elenco di esempi di multi-tenant][AAD-Samples-MT].
 
-## <a name="update-registration-to-be-multi-tenant"></a>Aggiornare la registrazione in modo che sia multi-tenant
-Per impostazione predefinita, le registrazioni di API o app Web in Azure AD sono single-tenant.  È possibile rendere la registrazione multi-tenant individuando l'opzione corrispondente nella pagina delle proprietà della registrazione dell'applicazione nel [portale di Azure][AZURE-portal] e impostandola su "Sì".
+## <a name="update-registration-toobe-multi-tenant"></a>Aggiornare il registrazione toobe multi-tenant
+Per impostazione predefinita, le registrazioni di API o app Web in Azure AD sono single-tenant.  È possibile apportare la registrazione multi-tenant individuando passare hello "multi-tenant" nella pagina delle proprietà hello della registrazione dell'applicazione in hello [portale di Azure] [ AZURE-portal] e l'impostazione troppo "Yes".
 
-Si noti anche che, per poter rendere un'applicazione multi-tenant in Azure AD, l'URI dell'ID app dell'applicazione deve essere univoco a livello globale. L'URI dell'ID App è uno dei modi in cui un'applicazione viene identificata nei messaggi di protocollo.  Per un'applicazione single-tenant, è sufficiente che l'URI dell'ID App sia univoco all'interno del tenant.  Per un'applicazione multi-tenant, è necessario che sia univoco a livello globale in modo da Azure AD possa trovare l'applicazione in tutti i tenant.  L'univocità globale viene applicata richiedendo che l'URI dell'ID App abbia un nome host corrispondente a un dominio verificato del tenant di Azure AD.  Ad esempio, se il nome del tenant è contoso.onmicrosoft.com, l'URI ID app sarà `https://contoso.onmicrosoft.com/myapp`.  Se il tenant ha un dominio verificato `contoso.com`, l'URI ID app valido sarà `https://contoso.com/myapp`.  L'impostazione di un'applicazione come multi-tenant avrà esito negativo se l'URI dell'ID App non segue questo modello.
+Si noti inoltre, prima di effettuare un'applicazione multi-tenant, Azure AD richiede hello URI ID App toobe applicazione hello globalmente univoco. URI ID App Hello è uno dei modi hello che un'applicazione viene identificata nei messaggi di protocollo.  Per un'applicazione single-tenant, è sufficiente per hello URI ID App toobe univoco all'interno di tale tenant.  Per un'applicazione multi-tenant, deve essere globalmente univoco in modo da Azure AD è possibile trovare un'applicazione hello tra tutti i tenant.  Richiedendo hello URI ID App toohave un nome host che corrisponde a un dominio verificato del tenant di Azure AD hello, viene applicata l'univocità globale.  Ad esempio, se il nome di hello del tenant stato contoso.onmicrosoft.com valido URI ID App sarà `https://contoso.onmicrosoft.com/myapp`.  Se il tenant ha un dominio verificato `contoso.com`, l'URI ID app valido sarà `https://contoso.com/myapp`.  L'impostazione di un'applicazione come multi-tenant avrà esito negativo se hello URI ID App non segue questo modello.
 
-Per impostazione predefinita, le registrazioni client native sono multi-tenant.  Non è necessario intraprendere alcuna azione per rendere multi-tenant una registrazione nativa dell'applicazione client.
+Per impostazione predefinita, le registrazioni client native sono multi-tenant.  Non è necessario tootake qualsiasi toomake azione native client applicazione registrazione multi-tenant.
 
-## <a name="update-your-code-to-send-requests-to-common"></a>Aggiornare il codice per l'invio delle richieste all'endpoint /common
-In un'applicazione single-tenant le richieste di accesso vengono inviate all'endpoint di accesso del tenant. Ad esempio, per contoso.onmicrosoft.com l'endpoint sarà:
+## <a name="update-your-code-toosend-requests-toocommon"></a>Aggiornare il codice toosend richieste troppo comuni
+In un'applicazione single-tenant, le richieste di accesso vengono inviate a endpoint di accesso toohello del tenant. Ad esempio, contoso.onmicrosoft.com potrebbe essere endpoint hello:
 
     https://login.microsoftonline.com/contoso.onmicrosoft.com
 
-Le richieste inviate all'endpoint del tenant possono eseguire l'accesso degli utenti (o guest) in questo tenant alle applicazioni in questo tenant.  Con un'applicazione multi-tenant, l'applicazione non determina in anticipo il tenant di provienienza dell'utente, pertanto non è possibile inviare richieste all'endpoint del tenant.  Al contrario, le richieste vengono inviate a un endpoint che esegue il multiplexing tra tutti i tenant di Azure Active Directory:
+Le richieste inviate endpoint tooa del tenant possono accedere gli utenti (o Guest) in tale tooapplications tenant nel tenant.  Con un'applicazione multi-tenant, un'applicazione hello non conosce in anticipo quale utente hello tenant è, pertanto non è possibile inviare richieste endpoint tooa del tenant.  Al contrario, le richieste vengono inviate tooan endpoint che il demultiplexing tra tenant tutti Azure Active Directory:
 
     https://login.microsoftonline.com/common
 
-Quando Azure AD riceve una richiesta sull'endpoint /common, consente l'accesso dell'utente e quindi individua il tenant di provenienza dell'utente.  L'endpoint /common funziona con tutti i protocolli di autenticazione supportati da Azure AD: OpenID Connect, OAuth 2.0, SAML 2.0 e WS-Federation.
+Quando Azure AD riceve una richiesta in hello/endpoint comune, effettua l'accesso utente hello e come una conseguenza consente di individuare quale utente hello tenant si trova.  Hello/endpoint comune funziona con tutti i protocolli di autenticazione hello è supportati da Azure AD: OpenID Connect, OAuth 2.0, SAML 2.0 e WS-Federation.
 
-La risposta di accesso all'applicazione di accesso contiene un token che rappresenta l'utente.  Il valore dell'autorità di certificazione nel token indica a un'applicazione il tenant di provenienza dell'utente.  Quando l'endpoint /common restituisce una risposta, il valore dell'autorità di certificazione nel token corrisponderà al tenant dell'utente.  È importante notare che l'endpoint /common non è un tenant o un'autorità di certificazione, ma è semplicemente un multiplexer.  Quando si usa l'endpoint /common, è necessario aggiornare la logica dell'applicazione per la convalida dei token in modo da tenerne conto. 
+risposta di accesso toohello un'applicazione Hello quindi contiene un token che rappresenta utente hello.  valore dell'autorità emittente Hello nel token hello indica un'applicazione quale utente hello tenant da.  Quando restituisce una risposta da hello/endpoint comuni, il valore dell'autorità emittente hello nel token hello corrisponderà tenant toohello dell'utente.  È importante toonote hello/endpoint comune non è un tenant e non è un'autorità di certificazione, è semplicemente un multiplexer.  Quando si usa /common, logica hello in token toovalidate applicazione deve tootake toobe aggiornare questo conto. 
 
-Come indicato in precedenza, le applicazioni multi-tenant devono offrire anche un'esperienza di accesso coerente per gli utenti, adeguandosi alle linee guida di personalizzazione delle applicazioni di Azure AD. Fare clic sul pulsante seguente per ottenere altre informazioni sulla personalizzazione dell'applicazione.
+Come indicato in precedenza applicazioni multi-tenant devono anche fornire un'esperienza di accesso coerente per gli utenti, seguente hello linee guida del marchio dell'applicazione di Azure AD. Fare clic su hello seguente pulsante toolearn ulteriori informazioni sulla personalizzazione dell'applicazione.
 
 [![Pulsante di accesso][AAD-Sign-In]][AAD-App-Branding]
 
-È ora possibile esaminare in modo più dettagliato l'uso dell'endpoint /common e l'implementazione del codice.
+Esaminiamo ora utilizzare hello di hello /common endpoint e l'implementazione del codice in modo più dettagliato.
 
-## <a name="update-your-code-to-handle-multiple-issuer-values"></a>Aggiornare il codice per gestire più valori dell'autorità di certificazione
+## <a name="update-your-code-toohandle-multiple-issuer-values"></a>Aggiornare il codice toohandle più valori dell'autorità di certificazione
 Le applicazioni Web e le API Web ricevono e convalidano i token da Azure AD.  
 
 > [!NOTE]
-> Le applicazioni client native richiedono e ricevono i token da Azure AD e li inviano alle API in cui vengono convalidati.  Le applicazioni native non convalidano i token e devono gestirli come opachi.
+> Mentre le applicazioni client native richiedere e ricevano token da Azure AD, vengono in tal caso toosend li tooAPIs, in cui vengono convalidate.  Le applicazioni native non convalidano i token e devono gestirli come opachi.
 > 
 > 
 
@@ -77,106 +77,106 @@ Passiamo ora al modo in cui un'applicazione convalida i token ricevuti da Azure 
 
     https://login.microsoftonline.com/contoso.onmicrosoft.com
 
-e lo usa per creare un URL di metadati, in questo caso OpenID Connect, come:
+e utilizzarla tooconstruct come un URL di metadati (in questo caso, OpenID Connect):
 
     https://login.microsoftonline.com/contoso.onmicrosoft.com/.well-known/openid-configuration
 
-per scaricare due informazioni critiche che vengono usate per convalidare i token: il valore dell'autorità di certificazione e le chiavi di firma del tenant.  Ogni tenant di Azure AD ha un valore univoco dell'autorità di certificazione del formato:
+toodownload due importanti parti di informazioni e i token utilizzati toovalidate: firma del tenant hello chiavi e il valore dell'autorità di certificazione.  Ogni tenant di Azure AD ha un valore univoco dell'autorità di certificazione del modulo hello:
 
     https://sts.windows.net/31537af4-6d77-4bb9-a681-d2394888ea26/
 
-dove il valore GUID è la versione sicura di ridenominazione dell'ID tenant del tenant.  Se si fa clic sul collegamento dei metadati precedente per `contoso.onmicrosoft.com`, è possibile visualizzare il valore dell'autorità di certificazione nel documento.
+valore GUID hello dove è hello rename-versione dell'ID tenant hello del tenant hello.  Se si fa clic sul precedente collegamento di metadati per hello `contoso.onmicrosoft.com`, è possibile visualizzare il valore dell'autorità di certificazione nel documento hello.
 
-Quando un'applicazione single-tenant convalida un token, controlla la firma del token con le chiavi di firma del documento di metadati. In questo modo è possibile verificare che il valore dell'autorità di certificazione nel token corrisponda a quello che è stato trovato nel documento di metadati.
+Quando un'applicazione single-tenant convalida un token, controlla firma hello del token di hello contro hello chiavi dal documento di metadati hello di firma. In questo modo si toomake del valore di autorità emittente che hello hello corrispondenze token hello uno che è stato trovato nel documento di metadati hello.
 
-Poiché l'endpoint /common non corrisponde a un tenant e non è un'autorità di certificazione, il valore dell'autorità di certificazione nei metadati per /common ha un URL basato su modello anziché un valore effettivo:
+Poiché hello/comuni endpoint non corrisponde a tooa tenant e non è un'autorità di certificazione, quando si esamina il valore dell'autorità emittente hello nei metadati hello comune è un URL basato su modelli anziché un valore effettivo:
 
     https://sts.windows.net/{tenantid}/
 
-Un'applicazione multi-tenant non può quindi convalidare i token semplicemente confrontando il valore dell'autorità di certificazione nei metadati con il valore `issuer` nel token.  Un'applicazione multi-tenant richiede una logica per decidere quali valori di autorità di certificazione sono validi, in base alla parte ID del tenant del valore dell'autorità di certificazione.  
+Pertanto, un'applicazione multi-tenant non è possibile convalidare i token solo confrontando il valore dell'autorità emittente hello nei metadati hello con hello `issuer` valore nel token hello.  Un'applicazione multi-tenant deve logica toodecide i valori dell'autorità di certificazione non sono validi e che non, basata su tenant hello parte ID del valore dell'autorità emittente hello.  
 
-Se ad esempio un'applicazione multi-tenant consente l'accesso solo da tenant specifici che hanno eseguito l'accesso ai servizi, è necessario verificare il valore dell'autorità di certificazione o il valore di attestazione `tid` nel token per assicurarsi che sia incluso nel relativo elenco di sottoscrittori.  Se un'applicazione multi-tenant gestisce solo persone e non adotta decisioni di accesso basate su tenant, è possibile ignorare il valore dell'autorità di certificazione.
+Ad esempio, se un'applicazione multi-tenant consente solo accesso da un tenant specifico che hanno effettuato l'iscrizione ai servizi, quindi deve verificare il valore di autorità emittente hello o hello `tid` valore in hello token toomake tenant sia nel proprio elenco di attestazione sottoscrittori.  Se un'applicazione multi-tenant solo occupa utenti singoli e non decisioni qualsiasi accesso in base ai tenant, è possibile ignorare il valore di autorità emittente hello completamente.
 
-Negli esempi multi-tenant nella sezione [Contenuti correlati](#related-content) alla fine di questo articolo la convalida dell'autorità di certificazione è disattivata per consentire l'accesso a qualsiasi tenant di Azure AD.
+Negli esempi di multi-tenant hello in hello [contenuto correlato](#related-content) sezione alla fine di hello di questo articolo, la convalida dell'autorità di certificazione è disabilitato tooenable qualsiasi toosign tenant di Azure AD in.
 
-Esaminiamo l'esperienza utente per gli utenti che accedono ad applicazioni multi-tenant.
+Ora esaminiamo esperienza utente hello per gli utenti che accedono applicazioni toomulti tenant.
 
 ## <a name="understanding-user-and-admin-consent"></a>Informazioni sul consenso dell'utente e dell'amministratore
-Per fare in modo che un utente possa accedere a un'applicazione in Azure AD, l'applicazione deve essere rappresentata nel tenant dell'utente.  Ciò consente alle organizzazioni di eseguire operazioni come applicare criteri univoci quando gli utenti dal tenant accedono all'applicazione.  Per un'applicazione single-tenant questa registrazione è semplice. È l'azione che viene eseguita quando si registra l'applicazione nel [portale di Azure][AZURE-portal].
+Per un utente toosign tooan applicazione in Azure AD, l'applicazione hello deve essere rappresentata nel tenant dell'utente hello.  Ciò consente l'organizzazione hello toodo operazioni quali applicare i criteri univoci quando gli utenti dal tenant l'accesso toohello applicazione.  Per un'applicazione single-tenant, la registrazione è semplice. è hello che si verifica quando si registra un'applicazione hello in hello [portale di Azure][AZURE-portal].
 
-Per un'applicazione multi-tenant, la registrazione iniziale per l'applicazione si trova nel tenant di Azure AD usato dallo sviluppatore.  Quando un utente di un tenant diverso accede all'applicazione per la prima volta, Azure AD richiede il consenso alle autorizzazioni richieste dall'applicazione.  Se fornisce il consenso, viene creata una rappresentazione dell'applicazione denominata *entità servizio* nel tenant dell'utente ed è possibile procedere con l'accesso. Viene anche creata una delega nella directory che registra il consenso dell'utente all'applicazione. Vedere [Oggetti applicazione e oggetti entità servizio][AAD-App-SP-Objects] per informazioni dettagliate sugli oggetti applicazione ed entità servizio dell'applicazione e su come interagiscono tra loro.
+Per un'applicazione multi-tenant, la registrazione iniziale per un'applicazione hello hello risiede nel tenant di Azure AD hello usato dallo sviluppatore hello.  Quando un utente da un tenant diverso accede toohello applicazione hello per la prima volta, Azure AD richiede le autorizzazioni toohello tooconsent richieste dall'applicazione hello.  Se si acconsente, quindi una rappresentazione di un'applicazione hello chiamato un *dell'entità servizio* viene creato in hello tenant dell'utente e di accesso può continuare. Viene inoltre creata una delega nella directory hello che registra l'applicazione toohello di consenso dell'utente hello. Vedere [oggetti applicazione e oggetti entità servizio] [ AAD-App-SP-Objects] per informazioni dettagliate su oggetti applicazione ed entità servizio dell'applicazione hello e come interagiscono tooeach altri.
 
-![Consenso per l'app a livello singolo][Consent-Single-Tier] 
+![Applicazione toosingle a livello di consenso][Consent-Single-Tier] 
 
-Questa esperienza di consenso è interessata dalle autorizzazioni richieste dall'applicazione.  Azure AD supporta due tipi di autorizzazioni, delegate e solo app:
+Questa esperienza di consenso è indipendente dalle autorizzazioni hello richieste dall'applicazione hello.  Azure AD supporta due tipi di autorizzazioni, delegate e solo app:
 
-* Un'autorizzazione delegata concede a un'applicazione la possibilità di agire come utente connesso per un sottoinsieme di operazioni che l'utente può eseguire.  Ad esempio, è possibile concedere a un'applicazione l'autorizzazione delegata per la lettura del calendario dell'utente connesso.
-* Un'autorizzazione solo app viene concessa direttamente all'identità dell'applicazione.  Ad esempio, è possibile concedere a un'applicazione l'autorizzazione solo app per leggere l'elenco di utenti in un tenant, indipendentemente dall'utente che ha eseguito l'accesso all'applicazione.
+* Un'autorizzazione delegata concede un tooact possibilità di applicazione hello come utente connesso per un sottoinsieme di utenti di hello hello operazioni eseguibili.  Ad esempio, è possibile concedere un hello tooread di applicazione hello autorizzazione delegata firmato nel calendario dell'utente.
+* Un'autorizzazione solo app viene concessa direttamente toohello identità dell'applicazione hello.  Ad esempio, è possibile concedere un applicazione hello autorizzazione solo app tooread hello elenco di utenti in un tenant, indipendentemente dal fatto che ha effettuato l'accesso dell'applicazione toohello.
 
-Alcune autorizzazioni possono essere concesse da un utente normale, mentre altre richiedono il consenso dell'amministratore tenant. 
+Alcune autorizzazioni possono essere stato fornito il consenso tooby un utente normale, mentre altri richiedono il consenso dell'amministratore tenant. 
 
 ### <a name="admin-consent"></a>Consenso dell'amministratore
-Le autorizzazioni solo app richiedono il consenso dell'amministratore tenant.  Se l'applicazione richiede un'autorizzazione solo per app e un utente tenta di accedere all'applicazione, verrà visualizzato un messaggio di errore che informa che l'utente non è in grado di fornire il consenso.
+Le autorizzazioni solo app richiedono il consenso dell'amministratore tenant.  Se l'applicazione richiede un'autorizzazione solo app e un utente tenta di toosign toohello applicazione, verrà visualizzato un messaggio di errore indicante che l'utente di hello non è in grado di tooconsent.
 
-Alcune autorizzazioni delegate richiedono anche il consenso dell'amministratore tenant.  Ad esempio, il writeback in Azure AD come utente connesso richiede il consenso dell'amministratore tenant.  Come le autorizzazioni solo app, se un utente comune tenta di accedere a un'applicazione che richiede un'autorizzazione delegata che necessita del consenso dell'amministratore, verrà visualizzato un errore nell'applicazione.  La richiesta del consenso di amministratore da parte di un'applicazione è determinata dallo sviluppatore che ha pubblicato la risorsa ed è presente nella documentazione per la risorsa.  Collegamenti ad argomenti che descrivono le autorizzazioni disponibili per le API Graph di Azure AD e API Graph di Microsoft sono disponibili nella sezione [Contenuti correlati](#related-content) di questo articolo.
+Alcune autorizzazioni delegate richiedono anche il consenso dell'amministratore tenant.  Hello possibilità toowrite indietro tooAzure Active Directory come hello effettuato l'accesso utente, ad esempio, è necessario il consenso dell'amministratore tenant.  Ad esempio le autorizzazioni solo app, se un utente ordinario tenta toosign tooan applicazione che richiede un'autorizzazione delegata che richiede il consenso dell'amministratore, l'applicazione riceverà un errore.  Richiede un'autorizzazione o meno consenso dell'amministratore è determinata dallo sviluppatore hello pubblicati risorse hello e può essere disponibili nella documentazione di hello per risorsa hello.  I collegamenti che descrive le autorizzazioni disponibili hello hello API Azure AD Graph e Microsoft Graph API da cui hello tootopics [contenuto correlato](#related-content) sezione di questo articolo.
 
-Se l'applicazione usa autorizzazioni che richiedono il consenso dell'amministratore, è necessario che sia presente un movimento, ad esempio un pulsante o un collegamento, con cui l'amministratore può avviare l'azione.  La richiesta inviata dall'applicazione per questa azione è una richiesta di autorizzazione OAuth2/OpenID Connect standard, ma che include anche il parametro `prompt=admin_consent` della stringa di query.  Dopo che l'amministratore ha fornito il consenso e l'entità servizio è stata creata nel tenant del cliente, le successive richieste di accesso non richiedono il parametro `prompt=admin_consent`. Poiché l'amministratore ha deciso che le autorizzazioni richieste sono accettabili, a nessun altro utente nel tenant verrà richiesto il consenso da questo punto in poi.
+Se l'applicazione utilizza le autorizzazioni che richiedono di consenso dell'amministratore, è necessario un movimento, ad esempio un pulsante o collegamento cui salve possibile avviare l'azione di hello toohave.  richiesta di Hello inviato dall'applicazione per questa azione è una richiesta di autorizzazione OAuth2/OpenID Connect normale, ma che include anche hello `prompt=admin_consent` parametro della stringa di query.  Una volta salve ha accettato le condizioni e dell'entità servizio hello viene creato nel tenant del cliente hello, le successive richieste di accesso non è necessario hello `prompt=admin_consent` parametro. Poiché il messaggio per l'amministratore ha deciso di hello richieste le autorizzazioni sono accettabili, nessun altro utente nel tenant di hello verranno richiesto il consenso da tale punto in avanti.
 
-Il parametro `prompt=admin_consent` può essere usato anche dalle applicazioni che richiedono autorizzazioni che non necessitano del consenso dell'amministratore. Questa operazione viene eseguita quando l'applicazione richiede un'esperienza in cui il tenant amministratore "si iscrive" una volta e a nessun altro utente viene richiesto il consenso da tale punto in poi.
+Hello `prompt=admin_consent` parametro può essere utilizzato anche dalle applicazioni che richiedono le autorizzazioni che non necessitano di consenso dell'amministratore. Questa operazione viene eseguita quando l'applicazione hello richiede un'esperienza in tenant salve "effettua l'iscrizione" una volta e nessun agli utenti verrà chiesto il consenso da tale punto in.
 
-Se un'applicazione richiede l'autorizzazione dell'amministratore, e un amministratore accede ma il parametro `prompt=admin_consent` non viene inviato, l'amministratore darà correttamente il consenso all'applicazione **solo per l'account utente**.  Gli utenti normali non saranno ancora in grado di eseguire l'accesso e fornire il consenso all'applicazione.  Questa condizione è utile se si vuole assegnare all'amministratore tenant la possibilità di esplorare l'applicazione prima di consentire l'accesso ad altri utenti.
+Se un'applicazione richiede autorizzazioni di amministratore e un amministratore accede nel ma hello `prompt=admin_consent` parametro non viene inviato, salve verrà correttamente consenso all'applicazione toohello **solo per l'account utente**.  Gli utenti standard non sarà ancora in grado di toosign in e applicazione toohello consenso.  Ciò è utile se si desidera toogive hello tenant amministratore hello possibilità tooexplore l'applicazione prima di consentire l'accesso ad altri utenti.
 
-Un amministratore tenant può disabilitare la possibilità che gli utenti normali possano il consenso alle applicazioni.  Se questa funzionalità è disabilitata, è necessario impostare il consenso dell'amministratore come obbligatorio sempre per l'applicazione nel tenant.  Se si vuole testare l'applicazione con il consenso dell'utente normale disabilitato, è possibile trovare l'opzione di configurazione nella sezione di configurazione del tenant di Azure AD del [portale di Azure][AZURE-portal].
+Un amministratore tenant è possibile disabilitare il possibilità hello per tooapplications tooconsent degli utenti normali.  Se questa funzionalità è disabilitata, è sempre necessaria per toobe applicazione hello impostare nel tenant di hello consenso dell'amministratore.  Se si desidera tootest l'applicazione con il consenso utente normale disabilitato, è possibile trovare hello opzione di configurazione nel tenant di Azure AD hello sezione di configurazione di hello [portale di Azure][AZURE-portal].
 
 > [!NOTE]
-> Alcune applicazioni offrono un'esperienza in cui gli utenti normali sono inizialmente in grado di fornire il consenso e successivamente l'applicazione può coinvolgere l'amministratore e richiedere le autorizzazioni che necessitano del consenso dell'amministratore.  Non è attualmente possibile eseguire questa operazione con una singola registrazione all'applicazione in Azure AD.  L'imminente endpoint Azure AD v2 consente alle applicazioni di richiedere le autorizzazioni in fase di esecuzione, anziché al momento della registrazione abilitando questo scenario.  Per altre informazioni, vedere la [Guida per gli sviluppatori del modello di app di Azure AD versione 2][AAD-V2-Dev-Guide].
+> Alcune applicazioni desidera un'esperienza in cui gli utenti normali sono in grado di tooconsent inizialmente e può implicare la successiva applicazione hello amministratore hello e richiedere le autorizzazioni che richiedono di consenso dell'amministratore.  Non è toodo alcun modo ciò con la registrazione di una singola applicazione in Azure AD oggi.  endpoint v2 Hello future Azure AD consente applicazioni toorequest autorizzazioni in fase di esecuzione, invece che al momento della registrazione, in modo da consentire questo scenario.  Per ulteriori informazioni, vedere hello [Guida per sviluppatori di Azure AD App modello v2][AAD-V2-Dev-Guide].
 > 
 > 
 
 ### <a name="consent-and-multi-tier-applications"></a>Consenso e applicazioni multilivello
-L'applicazione può avere più livelli, ognuno rappresentato dalla propria registrazione in Azure AD.  Un esempio è un'applicazione nativa che esegue una chiamata a un'API Web o un'applicazione Web che esegue una chiamata a un'API Web.  In entrambi i casi, il client (app nativa o app Web) richiede le autorizzazioni per eseguire la chiamata alla risorsa (API Web).  Per fare in modo il client venga autorizzato correttamente nel tenant del cliente, tutte le risorse a cui richiede le autorizzazioni devono esistere già nel tenant del cliente.  Se questa condizione non viene soddisfatta, Azure AD restituirà un errore indicante che prima deve essere aggiunta la risorsa.
+L'applicazione può avere più livelli, ognuno rappresentato dalla propria registrazione in Azure AD.  Un esempio è un'applicazione nativa che esegue una chiamata a un'API Web o un'applicazione Web che esegue una chiamata a un'API Web.  In entrambi i casi, hello client (app native o web) richiede autorizzazioni toocall hello risorsa (API web).  Per hello client toobe autorizzato correttamente nel tenant del cliente, tutte le risorse toowhich, richiede autorizzazioni deve esistere già nel tenant del cliente hello.  Se questa condizione non viene soddisfatta, Azure AD verrà restituito un errore che hello risorsa deve essere aggiunto per primo.
 
 **Più livelli in un tenant singolo**
 
-Può trattarsi di un problema se l'applicazione logica è costituita da due o più registrazioni di applicazioni, ad esempio un client e una risorsa separati.  Come ottenere prima la risorsa nel tenant del cliente?  Azure AD si occupa di questo caso, concedendo al client e alla risorsa l'autorizzazione in un unico passaggio. L'utente visualizza la somma totale delle autorizzazioni richieste dal client e dalla risorsa nella pagina del consenso.  Per abilitare questo comportamento, la registrazione dell'applicazione della risorsa deve includere l'ID app del client come `knownClientApplications` nel manifesto dell'applicazione.  ad esempio:
+Può trattarsi di un problema se l'applicazione logica è costituita da due o più registrazioni di applicazioni, ad esempio un client e una risorsa separati.  Come ottenere risorse hello nel tenant del cliente hello prima?  Azure AD sono inclusi in questo caso abilitando client e acconsentito toobe risorse in un unico passaggio. utente Hello vede hello somma totale della autorizzazioni hello richiesto dal client hello e risorsa nella pagina di consenso hello.  tooenable questo comportamento, registrazione dell'applicazione della risorsa hello deve includere l'ID App del client hello come un `knownClientApplications` nel manifesto dell'applicazione.  ad esempio:
 
     knownClientApplications": ["94da0930-763f-45c7-8d26-04d5938baab2"]
 
-Questa proprietà può essere aggiornata tramite il [manifesto dell'applicazione][AAD-App-Manifest] della risorsa. Ciò viene illustrato in un client nativo multilivello che esegue la chiamata all'esempio di API Web nella sezione [Contenuti correlati](#related-content) alla fine di questo articolo. Il diagramma seguente fornisce una panoramica del consenso per un'app multilivello registrata in un singolo tenant:
+Questa proprietà può essere aggiornata tramite risorsa hello [manifesto dell'applicazione][AAD-App-Manifest]. Come illustrato in un client nativo multilivello chiamata di esempio di API web in hello [contenuto correlato](#related-content) sezione alla fine di hello di questo articolo. Hello diagramma seguente viene fornita una panoramica dell'autorizzazione per un'applicazione multilivello registrata in un singolo tenant:
 
-![Consenso per l'app client nota multilivello][Consent-Multi-Tier-Known-Client] 
+![App client note toomulti a livello di consenso][Consent-Multi-Tier-Known-Client] 
 
 **Più livelli in tenant multipli**
 
-Un caso simile si verifica se i diversi livelli di un'applicazione vengono registrati in tenant diversi.  Ad esempio, si consideri il caso della creazione di un'applicazione client nativa che esegue la chiamata all'API di Office 365 Exchange Online.  Per sviluppare l'applicazione nativa e successivamente eseguire l'applicazione nativa nel tenant del cliente, è necessario che sia presente l'entità servizio Exchange Online.  In questo caso lo sviluppatore e il cliente devono acquistare Exchange Online per creare l'entità servizio nei tenant.  
+Un caso simile si verifica se livelli diversi di hello di un'applicazione vengono registrati nel tenant diversi.  Ad esempio, si consideri il caso hello di compilazione di un'applicazione client nativa che chiama hello API di Office 365 Exchange Online.  toodevelop hello nativi dell'applicazione e versioni successive per hello applicazione nativa toorun nel tenant del cliente, l'entità servizio Exchange Online hello deve essere presente.  In questo caso, hello developer e cliente deve acquistare Exchange Online per toobe dell'entità servizio hello creato nei relativi tenant.  
 
-Nel caso di un'API creata da un'organizzazione diversa da Microsoft, lo sviluppatore dell'API deve includere un modo che consenta ai clienti di fornire il consenso per l'applicazione nei tenant dei clienti. La progettazione consigliata è affinché lo sviluppatore di una terza parte compili l'API in modo tale che possa fungere anche da client Web per implementare l'iscrizione:
+Nel caso di hello di un'API compilata da un'organizzazione diversa da Microsoft, hello di hello API sviluppatore tooprovide un modo per la propria applicazione hello tooconsent di clienti in tenant dei clienti. Hello consiglia di progettazione per hello 3rd party developer toobuild hello API in modo che può inoltre fungere da un client web per tooimplement iscrizione:
 
-1. Seguire le sezioni precedenti per verificare che l'API implementi i requisiti del codice/registrazione dell'applicazione multi-tenant
-2. Oltre a esporre gli ambiti/ruoli dell'API, verificare che la registrazione comprenda l'autorizzazione di Azure AD "Accedi e leggi il profilo di un altro utente" (fornita per impostazione predefinita)
-3. Implementare una pagina di iscrizione/accesso nel client Web, seguendo le linee guida del [consenso dell'amministratore](#admin-consent) descritte in precedenza 
-4. Quando l'utente acconsente all'applicazione, vengono creati i collegamenti all'entità servizio e alla delega di consenso nel tenant e l'applicazione nativa è in grado di ottenere i token per l'API
+1. Seguire hello hello di tooensure nelle sezioni precedenti API implementa i requisiti di registrazione o codice hello applicazione multi-tenant
+2. Garantisce inoltre tooexposing hello API ambiti/ruoli, registrazione di hello include hello "Accedi e Leggi il profilo utente" autorizzazione di Azure AD (fornito per impostazione predefinita)
+3. Implementare una pagina di accesso-in/iscrizione nel client web hello seguente hello [consenso dell'amministratore](#admin-consent) linee guida descritte in precedenza 
+4. Una volta toohello applicazione di consenso dell'utente di hello, hello servizio principale e il consenso delega vengono creati collegamenti al proprio tenant e un'applicazione nativa hello è possibile ottenere i token per hello API
 
-Il diagramma seguente fornisce una panoramica del consenso per un'app multilivello registrata in diversi tenant:
+Hello seguente diagramma viene fornita una panoramica dell'autorizzazione per un'applicazione multilivello registrata nel tenant diversi:
 
-![Consenso per l'app di terze parti multilivello][Consent-Multi-Tier-Multi-Party] 
+![Applicazione di più parti toomulti a livello di consenso][Consent-Multi-Tier-Multi-Party] 
 
 ### <a name="revoking-consent"></a>Revoca del consenso
-Gli utenti e gli amministratori possono revocare il consenso all'applicazione in qualsiasi momento:
+Utenti e amministratori possono revocare consenso tooyour applicazione in qualsiasi momento:
 
-* Gli utenti revocano l'accesso alle singole applicazioni rimuovendole dall'elenco [Applicazioni riquadro di accesso][AAD-Access-Panel].
-* Gli amministratori revocano l'accesso alle applicazioni rimuovendole da Azure AD usando la sezione di gestione di Azure AD del [portale di Azure][AZURE-portal].
+* Gli utenti revoke accesso tooindividual applicazioni rimuovendole dal loro [applicazioni del Pannello di accesso] [ AAD-Access-Panel] elenco.
+* Gli amministratori revocare l'accesso tooapplications rimuovendole da Azure AD usando la sezione relativa alla gestione hello Azure AD di hello [portale di Azure][AZURE-portal].
 
-Se un amministratore fornisce il consenso a un'applicazione per tutti gli utenti in un tenant, gli utenti non possono revocare l'accesso singolarmente.  Solo l'amministratore può revocare l'accesso e soltanto per l'intera applicazione.
+Se un amministratore acconsente tooan applicazione per tutti gli utenti in un tenant, gli utenti non è possibile revocare singolarmente l'accesso.  Solo amministratore hello possibile revocare l'accesso e solo per l'intera applicazione hello.
 
 ### <a name="consent-and-protocol-support"></a>Supporto del consenso e dei protocolli
-Il consenso è supportato in Azure AD tramite i protocolli OAuth, OpenID Connect, WS-Federation e SAML.  I protocolli WS-Federation e SAML non supportano il parametro `prompt=admin_consent` e il consenso dell'amministratore è possibile solo tramite OAuth e OpenID Connect.
+Consenso è supportato in Azure AD tramite hello OAuth, OpenID Connect, WS-Federation e protocolli SAML.  Hello protocolli SAML e WS-Federation non supportano hello `prompt=admin_consent` parametro, pertanto il consenso dell'amministratore è possibile solo tramite OAuth e OpenID Connect.
 
 ## <a name="multi-tenant-applications-and-caching-access-tokens"></a>Applicazioni multi-tenant e memorizzazione nella cache dei token di accesso
-Le applicazioni multi-tenant possono anche ottenere i token di accesso per eseguire chiamate alle API protette da Azure AD.  Un errore comune quando si usa Active Directory Authentication Library (ADAL) con un'applicazione multi-tenant è quello di richiedere inizialmente un token per un utente tramite /common, ricevere una risposta e quindi richiedere un token successivo per lo stesso utente usando sempre /common.  Poiché la risposta da Azure AD proviene da un tenant, non /common, la libreria ADAL memorizza nella cache il token come proveniente dal tenant. Nella chiamata successiva a /common per ottenere un token di accesso per l'utente non è presente la voce della cache e all'utente viene richiesto di accedere di nuovo.  Per evitare questo errore della cache, assicurarsi che le chiamate successive per un utente già connesso vengano eseguite all'endpoint del tenant.
+Applicazioni multi-tenant è anche possono ottenere i token di accesso toocall API che sono protetti da Azure AD.  Un errore comune quando si utilizza hello Active Directory Authentication Library (ADAL) con un'applicazione multi-tenant, è richiesta tooinitially un token per un utente tramite /common, ricevere una risposta, quindi richiedere un token per l'utente stesso anch'esso tramite /common successive.  Poiché viene hello risposta da Azure AD da un tenant, non/comune, ADAL memorizza nella cache il token hello come proveniente da tenant hello. Hello successive chiamare tooget troppo comune o un token di accesso per la voce della cache di hello utente mancati riscontri hello e utente hello è richiesta toosign in nuovamente.  cache di hello tooavoid mancante, verificare che le successive chiamate per un utente già connesso vengono effettuate endpoint toohello del tenant.
 
 ## <a name="next-steps"></a>Passaggi successivi
-Questo articolo illustra come compilare un'applicazione che consente a un utente di accedere da qualsiasi tenant Azure Active Directory. Dopo aver abilitato l'accesso Single Sign-On tra l'app e Azure Active Directory, è anche possibile aggiornare l'applicazione per accedere alle API esposte dalle risorse di Microsoft, come Office 365. Pertanto, è possibile offrire un'esperienza personalizzata nell'applicazione, ad esempio mostrando informazioni contestuali per gli utenti, ad esempio l'immagine del profilo o il successivo appuntamento nel calendario. Per altre informazioni sulle chiamate API ai servizi di Azure Active Directory e Office 365 come Exchange, SharePoint, OneDrive, OneNote, pianificazione, Excel e altri ancora, visitare: [API di Microsoft Graph][MSFT-Graph-overview].
+In questo articolo, si è appreso come toobuild un'applicazione che può accedere un utente di qualsiasi tenant di Azure Active Directory. Dopo l'abilitazione di Single Sign-On tra l'applicazione e Azure Active Directory, è inoltre possibile aggiornare il tooaccess applicazione API esposte dalle risorse di Microsoft, come Office 365. Pertanto è possibile offrire un'esperienza personalizzata nell'applicazione, ad esempio che mostra le informazioni contestuali toohello utenti, ad esempio le immagine del profilo o loro successivo appuntamento del calendario. toolearn più su come rendere API chiama tooAzure Active Directory e servizi Office 365 come Exchange, SharePoint, OneDrive, OneNote, Planner, Excel e altre informazioni, visitare: [Microsoft Graph API][MSFT-Graph-overview].
 
 
 ## <a name="related-content"></a>Contenuti correlati
@@ -185,11 +185,11 @@ Questo articolo illustra come compilare un'applicazione che consente a un utente
 * [Guida per sviluppatori di Azure AD][AAD-Dev-Guide]
 * [Oggetti applicazione e oggetti entità servizio][AAD-App-SP-Objects]
 * [Integrazione di applicazioni con Azure Active Directory][AAD-Integrating-Apps]
-* [Panoramica del framework di consenso][AAD-Consent-Overview]
+* [Panoramica di hello il Framework di consenso][AAD-Consent-Overview]
 * [Ambiti di autorizzazione di Microsoft API Graph][MSFT-Graph-permision-scopes]
 * [Ambiti di autorizzazione di Azure AD API Graph][AAD-Graph-Perm-Scopes]
 
-La sezione dei commenti di seguito consente di fornire commenti e suggerimenti utili per migliorare e organizzare i contenuti disponibili.
+Utilizzare hello seguendo i commenti e suggerimenti tooprovide di sezione commenti e consentono di ridefinire e definire il contenuto.
 
 <!--Reference style links IN USE -->
 [AAD-Access-Panel]:  https://myapps.microsoft.com

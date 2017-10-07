@@ -1,6 +1,6 @@
 ---
-title: Monitoraggio di Funzioni di Azure | Documentazione Microsoft
-description: Informazioni su come monitorare Funzioni di Azure.
+title: Funzioni di Azure aaaMonitoring | Documenti Microsoft
+description: Informazioni su come toomonitor delle funzioni di Azure.
 services: functions
 documentationcenter: na
 author: wesmc7777
@@ -16,30 +16,30 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 11/03/2016
 ms.author: wesmc
-ms.openlocfilehash: b70214593b1417265387f42306a633bb0df2920e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 254348d1cefce925654bd9532715b6def571e0ec
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="monitoring-azure-functions"></a>Monitoraggio di Funzioni di Azure
 
-## <a name="overview"></a>Overview 
+## <a name="overview"></a>Panoramica 
 
 
-La scheda **Monitoraggio** per ogni funzione consente di esaminare ogni esecuzione di una funzione.
+Hello **monitoraggio** scheda per ogni funzione consente tooreview ogni esecuzione di una funzione.
 
 ![Scheda Monitoraggio di Funzioni di Azure](./media/functions-monitoring/monitor-tab.png) 
 
-La selezione di un'esecuzione consente di verificare la durata, i dati di input, gli errori e i file di log associati. Ciò risulta utile per il debug e per l'ottimizzazione delle prestazioni delle funzioni.
+Fare clic su un'esecuzione consente si tooreview hello durata, dati di input, gli errori e i file di log associati. Ciò risulta utile per il debug e per l'ottimizzazione delle prestazioni delle funzioni.
 
 
 > [!IMPORTANT]
-> Quando si usa il [piano di hosting a consumo](functions-overview.md#pricing) per Funzioni di Azure, il riquadro **Monitoraggio** nel pannello di panoramica dell'app per le funzioni non mostrerà alcun dato. La piattaforma, infatti, ridimensiona e gestisce automaticamente le istanze di calcolo, quindi queste metriche non sono significative per un piano a consumo. Per monitorare l'utilizzo delle app per le funzioni, è necessario usare invece le indicazioni disponibili in questo articolo.
+> Quando si utilizza hello [consumo piano di hosting](functions-overview.md#pricing) per le funzioni di Azure, hello **monitoraggio** riquadro nel pannello della panoramica App funzione hello non mostreranno alcun dato. In questo modo piattaforma hello viene ridimensionata in modo dinamico e gestisce le istanze di calcolo, pertanto queste metriche non sono significative in un piano di utilizzo. utilizzo di hello toomonitor delle app di funzione, si dovrebbero usare invece indicazioni hello in questo articolo.
 > 
-> Lo screenshot seguente mostra un esempio:
+> Hello cattura di schermata seguente viene illustrato un esempio:
 > 
-> ![Monitoraggio nel pannello principale delle risorse](./media/functions-monitoring/app-service-overview-monitoring.png)
+> ![Il monitoraggio nel Pannello di risorse principale hello](./media/functions-monitoring/app-service-overview-monitoring.png)
 
 
 
@@ -47,24 +47,24 @@ La selezione di un'esecuzione consente di verificare la durata, i dati di input,
 
 Il monitoraggio in tempo reale è disponibile selezionando il **flusso eventi live**, come illustrato di seguito. 
 
-![Opzione flusso eventi live per la scheda Monitoraggio](./media/functions-monitoring/monitor-tab-live-event-stream.png)
+![Opzione di flusso di eventi per la scheda Monitoraggio hello Live](./media/functions-monitoring/monitor-tab-live-event-stream.png)
 
-Il flusso eventi live verrà visualizzato come grafico in una nuova scheda del browser, come illustrato di seguito. 
+flusso di eventi in tempo reale di Hello verrà rappresentata in una nuova scheda del browser come illustrato di seguito. 
 
 ![Esempio di flusso eventi live](./media/functions-monitoring/live-event-stream.png)
 
 
 > [!NOTE]
-> A causa di un problema noto, è possibile che il popolamento dei dati abbia esito negativo. Se si verifica questo problema, potrebbe essere necessario chiudere la scheda del browser che include il flusso eventi live e quindi fare di nuovo clic su **flusso eventi live** per consentire il popolamento corretto dei dati del flusso di eventi. 
+> Si verifica un problema noto che potrebbe causare il toobe toofail dati popolata. Se ciò si verifica, potrebbe essere necessario tooclose hello browser scheda contenente hello in tempo reale flusso di eventi e quindi fare clic su **flusso di eventi in tempo reale** nuovamente tooallow è tooproperly popolare i dati di flusso di eventi. 
 
-Il flusso eventi live produrrà un grafico delle statistiche seguenti per la funzione:
+flusso di eventi in tempo reale di Hello verrà graph hello statistiche per la funzione seguente:
 
 * Esecuzioni avviate al secondo
 * Esecuzioni completate al secondo
 * Esecuzioni non riuscite al secondo
 * Tempo di esecuzione medio in millisecondi
 
-Queste statistiche sono in tempo reale, ma la creazione effettiva dei grafici relativi ai dati dell'esecuzione potrebbe comportare circa 10 secondi di latenza.
+Queste statistiche sono in tempo reale, ma hello effettiva rappresentazione grafica dei dati di esecuzione hello dispone di latenza di circa 10 secondi.
 
 
 
@@ -74,53 +74,53 @@ Queste statistiche sono in tempo reale, ma la creazione effettiva dei grafici re
 ## <a name="monitoring-log-files-from-a-command-line"></a>Monitoraggio dei file di log da una riga di comando
 
 
-È possibile trasmettere i file di log a una sessione della riga di comando su una workstation locale usando l'interfaccia della riga di comando di Azure o PowerShell.
+È possibile trasmettere sessione della riga di comando tooa i file di log in una workstation locale usando hello Azure interfaccia della riga di comando (CLI) o PowerShell.
 
-### <a name="monitoring-function-app-log-files-with-the-azure-cli"></a>Monitoraggio dei file di log dell'app per le funzioni con l'interfaccia della riga di comando di Azure
+### <a name="monitoring-function-app-log-files-with-hello-azure-cli"></a>Monitoraggio file di log di app di funzione con hello CLI di Azure
 
-Per iniziare, [installare l'interfaccia della riga di comando di Azure](../cli-install-nodejs.md)
+avviata, tooget [installare hello CLI di Azure](../cli-install-nodejs.md)
 
-Accedere all'account di Azure usando il comando seguente o una delle altre opzioni illustrate in [Accedere ad Azure dall'interfaccia della riga di comando di Azure](../xplat-cli-connect.md).
+Accedere al proprio account Azure con i seguenti hello comando o uno qualsiasi di hello altre opzioni descritte, [Accedi tooAzure da hello Azure CLI](../xplat-cli-connect.md).
 
     azure login
 
-Usare il comando seguente per abilitare la modalità Gestione dei servizi dell'interfaccia della riga di comando di Azure:
+Comando che segue hello di utilizzare la modalità di Gestione servizio CLI di Azure (ASM) tooenable:.
 
     azure config mode asm
 
-Se sono presenti più sottoscrizioni, usare i comandi seguenti per elencare le sottoscrizioni e impostare la sottoscrizione corrente sulla sottoscrizione che include l'app per le funzioni.
+Se si dispone di più sottoscrizioni, usare hello toolist i comandi seguenti, i set di hello sottoscrizione toohello sottoscrizione corrente che contiene l'app di funzione e le sottoscrizioni.
 
     azure account list
     azure account set <subscriptionNameOrId>
 
-Il comando seguente consentirà di trasmettere i file di log dell'app per le funzioni alla riga di comando:
+Hello comando riportato di seguito verrà al flusso di file di log hello della riga di comando funzione app toohello:
 
     azure site log tail -v <function app name>
 
 ### <a name="monitoring-function-app-log-files-with-powershell"></a>Monitoraggio dei file di log delle app per le funzioni tramite PowerShell
 
-Per iniziare, [installare e configurare Azure PowerShell](/powershell/azure/overview).
+avviata, tooget [installare e configurare Azure PowerShell](/powershell/azure/overview).
 
-Aggiungere il proprio account di Azure usando il comando seguente:
+Aggiungere l'account di Azure eseguendo hello comando seguente:
 
     PS C:\> Add-AzureAccount
 
-Se sono presenti più sottoscrizioni, è possibile elencarle per nome con il comando seguente, in modo da verificare che sia attualmente selezionata la sottoscrizione corretta in base alla proprietà `IsCurrent`:
+Se si dispone di più sottoscrizioni, è possibile elencarli in base al nome con hello successivo comando toosee se hello corretto sottoscrizione è hello attualmente selezionato in base a `IsCurrent` proprietà:
 
     PS C:\> Get-AzureSubscription
 
-Se è necessario impostare la sottoscrizione attiva sulla sottoscrizione che include l'app per le funzioni, usare il comando seguente:
+Se è necessario tooset hello sottoscrizione attiva toohello quello contenente l'app di funzione, utilizzare hello comando seguente:
 
     PS C:\> Get-AzureSubscription -SubscriptionName "MyFunctionAppSubscription" | Select-AzureSubscription
 
-Trasmettere i log alla sessione di PowerShell con il comando seguente:
+Sessione di PowerShell tooyour per i log di hello flusso con hello comando seguente:
 
     PS C:\> Get-AzureWebSiteLog -Name MyFunctionApp -Tail
 
-Per altre informazioni, vedere [Procedura: Eseguire lo streaming dei log per le app Web](../app-service-web/web-sites-enable-diagnostic-log.md#streamlogs). 
+Per ulteriori informazioni, vedere troppo[come: flusso di log per le app web](../app-service-web/web-sites-enable-diagnostic-log.md#streamlogs). 
 
 ## <a name="next-steps"></a>Passaggi successivi
-Per altre informazioni, vedere le seguenti risorse:
+Per ulteriori informazioni, vedere hello seguenti risorse:
 
 * [Test di Funzioni di Azure](functions-test-a-function.md)
 * [Scalabilità di Funzioni di Azure](functions-scale.md)

@@ -1,6 +1,6 @@
 ---
 title: 'Esercitazione: Integrazione di Azure Active Directory con Jobscience | Documentazione Microsoft'
-description: Informazioni su come configurare l'accesso Single Sign-On tra Azure Active Directory e Jobscience.
+description: Informazioni su come tooconfigure single sign-on tra Azure Active Directory e Jobscience.
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,109 +13,109 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/12/2017
 ms.author: jeedes
-ms.openlocfilehash: 66bec35a8f17482433dbf02827b90620d1cff378
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 4a4c78aad6d324795a15a9569542afc23b4716d1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-jobscience"></a>Esercitazione: Integrazione di Azure Active Directory con Jobscience
 
-Questa esercitazione descrive come integrare Jobscience con Azure Active Directory (Azure AD).
+In questa esercitazione, è illustrato come toointegrate Jobscience con Azure Active Directory (Azure AD).
 
-L'integrazione di Jobscience con Azure AD offre i vantaggi seguenti:
+Integrazione di Jobscience con Azure AD fornisce hello seguenti vantaggi:
 
-- È possibile controllare in Azure AD chi può accedere a Jobscience
-- È possibile abilitare gli utenti per l'accesso automatico a Jobscience (Single Sign-On) con gli account Azure AD
-- È possibile gestire gli account in un'unica posizione centrale: il portale di Azure.
+- È possibile controllare in Azure AD che ha accesso tooJobscience
+- È possibile abilitare l'utenti tooautomatically get connesso tooJobscience (Single Sign-On) con i propri account Azure AD
+- È possibile gestire gli account in un'unica posizione centrale - hello portale di Azure
 
-Per altre informazioni sull'integrazione di app SaaS con Azure AD, vedere [Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory](active-directory-appssoaccess-whatis.md).
+Se si desiderano tooknow ulteriori informazioni sull'integrazione dell'applicazione SaaS con Azure AD, vedere [novità di accesso alle applicazioni e single sign-on con Azure Active Directory](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-Per configurare l'integrazione di Azure AD con Jobscience, sono necessari gli elementi seguenti:
+integrazione di Azure AD con Jobscience tooconfigure, è necessario hello seguenti elementi:
 
 - Sottoscrizione di Azure AD.
 - Sottoscrizione di Jobscience abilitata per l'accesso Single Sign-On
 
 > [!NOTE]
-> Non è consigliabile usare un ambiente di produzione per testare i passaggi di questa esercitazione.
+> hello tootest i passaggi in questa esercitazione, è consigliabile utilizzare un ambiente di produzione.
 
-A questo scopo, è consigliabile seguire le indicazioni seguenti:
+passaggi di hello tootest in questa esercitazione, è necessario seguire questi suggerimenti:
 
 - Non usare l'ambiente di produzione a meno che non sia necessario.
 - Se non si dispone di un ambiente di prova di Azure AD, è possibile ottenere una versione di valutazione di un mese: [offerta prova](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Descrizione dello scenario
-In questa esercitazione viene eseguito il test dell'accesso Single Sign-On di Azure AD in un ambiente di test. Lo scenario descritto in questa esercitazione prevede i due blocchi predefiniti seguenti:
+In questa esercitazione viene eseguito il test dell'accesso Single Sign-On di Azure AD in un ambiente di test. scenario di Hello descritto in questa esercitazione è composto da due componenti principali:
 
-1. Aggiunta di Jobscience dalla raccolta
+1. Aggiunta di Jobscience dalla raccolta hello
 2. Configurazione e test dell'accesso Single Sign-On di Azure AD
 
-## <a name="adding-jobscience-from-the-gallery"></a>Aggiunta di Jobscience dalla raccolta
-Per configurare l'integrazione di Jobscience in Azure AD, è necessario aggiungere Jobscience dalla raccolta all'elenco di app SaaS gestite.
+## <a name="adding-jobscience-from-hello-gallery"></a>Aggiunta di Jobscience dalla raccolta hello
+integrazione hello tooconfigure di Jobscience in Azure AD, è necessario tooadd Jobscience dall'elenco di tooyour hello raccolta di App SaaS gestite.
 
-**Per aggiungere Jobscience dalla raccolta, seguire questa procedura:**
+**tooadd Jobscience dalla raccolta di hello, eseguire hello alla procedura seguente:**
 
-1. Nel **[portale di Azure](https://portal.azure.com)** fare clic sull'icona di **Azure Active Directory** nel riquadro di spostamento sinistro. 
+1. In hello  **[portale di Azure](https://portal.azure.com)**via hello del Pannello di navigazione a sinistra, fare clic su **Azure Active Directory** icona. 
 
     ![Active Directory][1]
 
-2. Passare ad **Applicazioni aziendali**. Andare quindi a **Tutte le applicazioni**.
+2. Passare troppo**applicazioni aziendali**. Quindi andare troppo**tutte le applicazioni**.
 
     ![Applicazioni][2]
     
-3. Fare clic sul pulsante **Nuova applicazione** nella parte superiore della finestra di dialogo per aggiungere una nuova applicazione.
+3. tooadd nuova applicazione, fare clic su **nuova applicazione** pulsante nella parte superiore di hello della finestra di dialogo.
 
     ![Applicazioni][3]
 
-4. Nella casella di ricerca digitare **Jobscience**.
+4. Nella casella di ricerca hello, digitare **Jobscience**.
 
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-jobscience-tutorial/tutorial_jobscience_search.png)
 
-5. Nel pannello dei risultati selezionare **Jobscience** e quindi fare clic sul pulsante **Aggiungi** per aggiungere l'applicazione.
+5. Nel riquadro dei risultati hello, selezionare **Jobscience**, quindi fare clic su **Aggiungi** pulsante applicazione hello tooadd.
 
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-jobscience-tutorial/tutorial_jobscience_addfromgallery.png)
 
 ##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>Configurazione e test dell'accesso Single Sign-On di Azure AD
 In questa sezione viene configurato e testato l'accesso Single Sign-On di Azure AD con Jobscience in base a un utente test di nome "Britta Simon".
 
-Per il funzionamento dell'accesso Single Sign-On, Azure AD deve individuare l'utente di Jobscience corrispondente a un utente di Azure AD. In altre parole, deve essere stabilita una relazione di collegamento tra un utente di Azure AD e l'utente correlato in Jobscience.
+Per toowork di accesso singolo, Azure AD deve tooknow quale utente controparte hello in Jobscience è tooa utente in Azure AD. In altre parole, una relazione di collegamento tra un utente di Azure Active Directory e l'utente correlato di hello in Jobscience richiede toobe stabilita.
 
-Per stabilire la relazione di collegamento, in Jobscience assegnare il valore di **nome utente** in Azure AD come valore di **Username** (Nome utente).
+In Jobscience, assegnare il valore di hello di hello **nome utente** in Azure AD come valore hello hello **Username** tooestablish relazione di collegamento hello.
 
-Per configurare e testare l'accesso Single Sign-On di Azure AD con Jobscience, è necessario completare i blocchi predefiniti seguenti:
+tooconfigure e test Azure single sign-on AD con Jobscience, è necessario hello toocomplete seguenti blocchi predefiniti:
 
-1. **[Configurazione dell'accesso Single Sign-On di Azure AD](#configuring-azure-ad-single-sign-on)** : per abilitare gli utenti all'utilizzo di questa funzionalità.
-2. **[Creazione di un utente test di Azure AD](#creating-an-azure-ad-test-user)** : per testare l'accesso Single Sign-On di Azure AD con l'utente Britta Simon.
-3. **[Creazione di un utente test di Jobscience](#creating-a-jobscience-test-user)**: per avere una controparte di Britta Simon in Jobscience collegata alla rappresentazione dell'utente in Azure AD.
-4. **[Assegnazione dell'utente test di Azure AD](#assigning-the-azure-ad-test-user)** : per abilitare Britta Simon all'uso dell'accesso Single Sign-On di Azure AD.
-5. **[Testing Single Sign-On](#testing-single-sign-on)** : per verificare se la configurazione funziona.
+1. **[Configurazione di Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)**  -tooenable il toouse utenti questa funzionalità.
+2. **[Creazione di un utente prova AD Azure](#creating-an-azure-ad-test-user)**  -tootest AD Azure single sign-on con Britta Simon.
+3. **[Creazione di un utente test Jobscience](#creating-a-jobscience-test-user)**  -toohave un equivalente di Britta Simon in Jobscience che è la rappresentazione toohello collegato Azure AD dell'utente.
+4. **[Assegnazione utente di prova hello Azure AD](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD accesso single sign-on.
+5. **[Test di Single Sign-On](#testing-single-sign-on)**  -tooverify hello se funzionamento della configurazione.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Configurazione dell'accesso Single Sign-On di Azure AD
 
-In questa sezione viene abilitato l'accesso Single Sign-On di Azure AD nel portale di Azure e viene configurato l'accesso Single Sign-On nell'applicazione Jobscience.
+In questa sezione, si abilita Azure AD single sign-on in hello portale di Azure e configurare l'accesso single sign-on nell'applicazione Jobscience.
 
-**Per configurare l'accesso Single Sign-On di Azure AD con Jobscience, seguire questa procedura:**
+**Azure AD tooconfigure single sign-on con Jobscience, eseguire hello alla procedura seguente:**
 
-1. Nella pagina di integrazione dell'applicazione **Jobscience** del portale di Azure fare clic su **Single Sign-On**.
+1. Nel portale di Azure su hello hello **Jobscience** pagina di integrazione dell'applicazione, fare clic su **Single sign-on**.
 
     ![Configura accesso Single Sign-On][4]
 
-2. Nella finestra di dialogo **Single Sign-On** selezionare **Accesso basato su SAML** per **Modalità** per abilitare l'accesso Single Sign-On.
+2. In hello **Single sign-on** finestra di dialogo Seleziona **modalità** come **basato su SAML Sign-on** tooenable single sign-on.
  
     ![Configura accesso Single Sign-On](./media/active-directory-saas-jobscience-tutorial/tutorial_jobscience_samlbase.png)
 
-3. Nella sezione **URL e dominio Jobscience** seguire questa procedura:
+3. In hello **Jobscience dominio e gli URL** seguire hello alla procedura seguente:
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-jobscience-tutorial/tutorial_jobscience_url.png)
 
-    Nella casella di testo **URL di accesso** digitare l'URL usando il criterio seguente: `http://<company name>.my.salesforce.com`
+    In hello **Sign-on URL** casella di testo, digitare un URL utilizzando hello seguente modello:`http://<company name>.my.salesforce.com`
     
     > [!NOTE] 
-    > Poiché non è reale, è necessario aggiornare questo valore con l'URL di accesso effettivo. Ottenere questo valore dal [team di supporto clienti di Jobscience](https://www.jobscience.com/support) o dal profilo SSO che verrà creato come descritto più avanti nell'esercitazione. 
+    > Poiché non è reale, Aggiorna il valore con hello URL effettivo Sign-On. Ottenere questo valore per [team di supporto Client di Jobscience](https://www.jobscience.com/support) o dal profilo SSO hello si creeranno descritta più avanti nell'esercitazione di hello. 
  
-4. Nella sezione **Certificato di firma SAML** fare clic su **Certificato (Base64)** e quindi salvare il file del certificato nel computer.
+4. In hello **certificato di firma SAML** fare clic su **certificato (Base64)** e quindi salvare il file di certificato hello nel computer in uso.
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-jobscience-tutorial/tutorial_jobscience_certificate.png) 
 
@@ -123,171 +123,171 @@ In questa sezione viene abilitato l'accesso Single Sign-On di Azure AD nel porta
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-jobscience-tutorial/tutorial_general_400.png)
 
-6. Nella sezione **Configurazione di Jobscience** fare clic su **Configura Jobscience** per visualizzare la finestra **Configura accesso**. Copiare l'**URL di disconnessione, l'ID di entità SAML e l'URL del servizio Single Sign-On SAML** dalla sezione **Riferimento rapido.**
+6. In hello **Jobscience configurazione** fare clic su **configurare Jobscience** tooopen **Configura sign-on** finestra. Hello copia **Sign-Out URL, l'ID entità SAML e SAML Single Sign-On Service URL** da hello **sezione di riferimento rapido.**
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-jobscience-tutorial/tutorial_jobscience_configure.png) 
 
-7. Accedere al sito aziendale di Jobscience come amministratore.
+7. Accedi tooyour sito della società Jobscience come amministratore.
 
-8. Passare a **Setup**.
+8. Andare troppo**installazione**.
    
    ![Installazione](./media/active-directory-saas-jobscience-tutorial/IC784358.png "Installazione")
 
-9. Nella sezione **Administer** (Amministra) del riquadro di spostamento sinistro fare clic su **Domain Management** (Gestione dominio) per espandere la sezione correlata e quindi fare clic su **My Domain** (Dominio personale) per aprire la pagina **My Domain** (Dominio personale). 
+9. Nel riquadro di spostamento a sinistra, hello hello **Amministra** fare clic su **Gestione dominio** tooexpand hello sezione correlata e quindi fare clic su **My Domain** hello tooopen  **Il mio dominio** pagina. 
    
    ![My Domain](./media/active-directory-saas-jobscience-tutorial/ic767825.png "My Domain")
 
-10. Per verificare che il dominio sia stato configurato correttamente, verificare che sia presente in "**Step 4 Deployed to Users**" (Passaggio 4 Distribuzione agli utenti) e quindi verificare le selezioni in "**My Domain Settings**" (Impostazioni dominio personale).
+10. tooverify che il dominio è stato configurato correttamente, assicurarsi che sia in "**passaggio 4 distribuito tooUsers**" ed esaminare il "**impostazioni dominio personali**".
 
-    ![Domain Deployed to User](./media/active-directory-saas-jobscience-tutorial/ic784377.png "Domain Deployed to User")
+    ![Dominio distribuito tooUser](./media/active-directory-saas-jobscience-tutorial/ic784377.png "tooUser distribuite del dominio")
 
-11. Nel sito aziendale Jobscience fare clic su **Security Controls** (Controlli di sicurezza) e quindi fare clic su **Single Sign-On Settings** (Impostazioni Single Sign-On).
+11. Nel sito della società Jobscience hello scegliere **controlli di sicurezza**, quindi fare clic su **Single Sign-On Settings**.
     
     ![Security Controls](./media/active-directory-saas-jobscience-tutorial/ic784364.png "Security Controls")
 
-12. Nella sezione **Single Sign-On Settings** , eseguire la procedura seguente:
+12. In hello **Single Sign-On Settings** seguire hello alla procedura seguente:
     
-    ![Impostazioni di Single Sign-On](./media/active-directory-saas-jobscience-tutorial/ic781026.png "Impostazioni di Single Sign-On")
+    ![Single Sign-On Settings](./media/active-directory-saas-jobscience-tutorial/ic781026.png "Single Sign-On Settings")
     
     a. Selezionare **Abilitato SAML**.
 
     b. Fare clic su **New**.
 
-13. Nella finestra di dialogo **SAML Single Sign-On Setting Edit** seguire questa procedura:
+13. In hello **SAML Single Sign-On Setting Edit** finestra di dialogo, eseguire hello alla procedura seguente:
     
     ![SAML Single Sign-On Setting](./media/active-directory-saas-jobscience-tutorial/ic784365.png "SAML Single Sign-On Setting")
     
-    a. Nella casella di testo **Name** digitare un nome per la configurazione.
+    a. In hello **nome** casella di testo, digitare un nome per la configurazione.
 
-    b. Nella casella di testo **Issuer** (Autorità emittente) incollare il valore dell'**ID entità SAML** copiato dal portale di Azure.
+    b. In **dell'autorità di certificazione** casella di testo, hello Incolla valore **ID entità SAML**, che è stato copiato dal portale di Azure.
 
-    c. Nella casella di testo **Entity Id** (ID entità) digitare `https://salesforce-jobscience.com`
+    c. In hello **Id entità** casella di testo, tipo`https://salesforce-jobscience.com`
 
-    d. Fare clic su **Browse** per caricare il certificato di Azure AD.
+    d. Fare clic su **Sfoglia** tooupload il certificato di Azure AD.
 
-    e. In **SAML Identity Type** (Tipo di identità SAML) selezionare **Assertion contains the Federation ID from the User object** (L'asserzione contiene l'ID federazione dell'oggetto utente).
+    e. Come **tipo di identità SAML**selezionare **l'asserzione contiene l'ID di federazione di hello dall'oggetto utente hello**.
 
-    f. In **SAML Identity Location** (Percorso identità SAML) selezionare **Identity is in the NameIdentfier element of the Subject statement** (L'identità è nell'elemento NameIdentfier dell'istruzione Subject).
+    f. Come **SAML Identity Location**selezionare **identità si trova nell'elemento NameIdentfier hello di hello Subject statement**.
 
-    g. Nella casella di testo **Identity Provider Login URL** (URL accesso provider di identità) incollare il valore dell'**URL del servizio Single Sign-On SAML** copiato dal portale di Azure.
+    g. In **Identity Provider Login URL** casella di testo, hello Incolla valore **SAML Single Sign-On Service URL**, che è stato copiato dal portale di Azure.
 
-    h. Nella casella di testo **Identity Provider Logout URL** (URL disconnessione provider di identità) incollare il valore dell'**URL di disconnessione** copiato dal portale di Azure.
+    h. In **Identity Provider Logout URL** casella di testo, hello Incolla valore **Sign-Out URL**, che è stato copiato dal portale di Azure.
 
     i. Fare clic su **Salva**.
 
-14. Nella sezione **Administer** (Amministra) del riquadro di spostamento sinistro fare clic su **Domain Management** (Gestione dominio) per espandere la sezione correlata e quindi fare clic su **My Domain** (Dominio personale) per aprire la pagina **My Domain** (Dominio personale). 
+14. Nel riquadro di spostamento a sinistra, hello hello **Amministra** fare clic su **Gestione dominio** tooexpand hello sezione correlata e quindi fare clic su **My Domain** hello tooopen  **Il mio dominio** pagina. 
     
     ![My Domain](./media/active-directory-saas-jobscience-tutorial/ic767825.png "My Domain")
 
-15. Nella sezione **Login Page Branding** (Personalizzazione pagina di accesso) della pagina **My Domain** (Dominio personale) fare clic su **Edit** (Modifica).
+15. In hello **My Domain** pagina hello **personalizzazione pagina di accesso** fare clic su **modifica**.
     
     ![Login Page Branding](./media/active-directory-saas-jobscience-tutorial/ic767826.png "Login Page Branding")
 
-16. Nella sezione**Authentication Service** (Servizio autenticazione) della pagina **Login Page Branding** (Personalizzazione pagina di accesso) viene visualizzato il nome delle **impostazioni SAML SSO**. Selezionarlo e quindi fare clic su **Save**.
+16. In hello **personalizzazione pagina di accesso** pagina hello **servizio di autenticazione** sezione, il nome di hello del **SAML SSO Settings** viene visualizzato. Selezionarlo e quindi fare clic su **Save**.
     
     ![Login Page Branding](./media/active-directory-saas-jobscience-tutorial/ic784366.png "Login Page Branding")
 
-17. Per ottenere l'URL di accesso Single Sign-On avviato dal provider di servizi, fare clic su **Single Sign-On Settings** (Impostazioni Single Sign-On) nella sezione di menu **Security Controls** (Controlli di sicurezza).
+17. hello tooget SP ha avviato l'accesso Single Sign, fare clic su URL di accesso su hello **impostazioni Single Sign-On** in hello **controlli di sicurezza** sezione del menu.
 
     ![Security Controls](./media/active-directory-saas-jobscience-tutorial/ic784368.png "Security Controls")
     
-    Fare clic sul profilo SSO creato nel passaggio precedente. Questa pagina mostra l'URL di accesso Single Sign-On della società, ad esempio [https://companyname.my.salesforce.com?so=companyid](https://companyname.my.salesforce.com?so=companyid).    
+    Fare clic su profilo SSO hello creato nel passaggio hello precedente. Questa pagina vengono visualizzati hello Single Sign in URL per l'azienda (ad esempio, [https://companyname.my.salesforce.com?so=companyid](https://companyname.my.salesforce.com?so=companyid).    
 
 > [!TIP]
-> Un riepilogo delle istruzioni è disponibile all'interno del [portale di Azure](https://portal.azure.com) durante la configurazione dell'app.  Dopo aver aggiunto l'app dalla sezione **Active Directory > Applicazioni aziendali** è sufficiente fare clic sulla scheda **Single Sign-On** e accedere alla documentazione incorporata tramite la sezione **Configurazione** nella parte inferiore. Altre informazioni sulla funzione di documentazione incorporata sono disponibili in [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985) (Documentazione incorporata di Azure AD).
+> È ora possibile leggere una versione di queste istruzioni all'interno di hello concisa [portale di Azure](https://portal.azure.com), mentre si stanno impostando app hello!  Dopo l'aggiunta di questa app da hello **Active Directory > applicazioni aziendali** fare semplicemente clic su hello **Single Sign-On** scheda e l'accesso hello incorporato documentazione tramite hello  **Configurazione** sezione nella parte inferiore di hello. È possibile leggere altre informazioni sulla funzionalità di documentazione embedded hello qui: [AD Azure incorporato documentazione]( https://go.microsoft.com/fwlink/?linkid=845985)
 > 
 
 ### <a name="creating-an-azure-ad-test-user"></a>Creazione di un utente test di Azure AD
-Questa sezione descrive come creare un utente test denominato Britta Simon nel portale di Azure.
+obiettivo di Hello di questa sezione è un utente di test nel portale di Azure chiamato Britta Simon hello toocreate.
 
 ![Creare un utente di Azure AD][100]
 
-**Per creare un utente test in Azure AD, eseguire la procedura seguente:**
+**un utente di prova in Azure AD, toocreate eseguire hello alla procedura seguente:**
 
-1. Nel **portale di Azure** fare clic sull'icona di **Azure Active Directory** nel riquadro di spostamento sinistro.
+1. In hello **portale di Azure**via hello riquadro di spostamento a sinistra, fare clic su **Azure Active Directory** icona.
 
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-jobscience-tutorial/create_aaduser_01.png) 
 
-2. Passare a **Utenti e gruppi** e fare clic su **Tutti gli utenti** per visualizzare l'elenco di utenti.
+2. elenco di hello toodisplay di utenti, andare troppo**utenti e gruppi** e fare clic su **tutti gli utenti**.
     
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-jobscience-tutorial/create_aaduser_02.png) 
 
-3. Nella parte superiore della finestra di dialogo fare clic su **Aggiungi** per aprire la finestra di dialogo **Utente**.
+3. hello tooopen **utente** finestra di dialogo, fare clic su **Aggiungi** nella parte superiore di hello della finestra di dialogo hello.
  
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-jobscience-tutorial/create_aaduser_03.png) 
 
-4. Nella pagina della finestra di dialogo **Utente** seguire questa procedura:
+4. In hello **utente** finestra di dialogo eseguire hello alla procedura seguente:
  
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-jobscience-tutorial/create_aaduser_04.png) 
 
-    a. Nella casella di testo **Nome** digitare **BrittaSimon**.
+    a. In hello **nome** casella tipo **BrittaSimon**.
 
-    b. Nella casella di testo **Nome utente** digitare l'**indirizzo di posta elettronica** di BrittaSimon.
+    b. In hello **nome utente** casella di testo, hello tipo **indirizzo di posta elettronica** di BrittaSimon.
 
-    c. Selezionare **Mostra password** e prendere nota del valore della **Password**.
+    c. Selezionare **Show Password** e annotare il valore di hello di hello **Password**.
 
     d. Fare clic su **Crea**.
  
 ### <a name="creating-a-jobscience-test-user"></a>Creazione di un utente test di Jobscience
 
-Per consentire agli utenti di Azure AD di accedere a Jobscience, è necessario eseguirne il provisioning in Jobscience. Nel caso di Jobscience, il provisioning è un'attività manuale.
+In ordine tooenable Azure AD utenti toolog in tooJobscience, è necessario eseguirne il provisioning in Jobscience. Nel caso di hello di Jobscience, il provisioning è un'attività manuale.
 
 >[!NOTE]
->È possibile usare qualsiasi altro strumento o API di creazione di account utente offerta da Jobscience per eseguire il provisioning degli account utente di Azure Active Directory.
+>È possibile usare qualsiasi altro Jobscience utente account strumento di creazione o le API fornite da Jobscience tooprovision Azure Active Directory gli account utente.
 >  
         
-**Per configurare il provisioning utenti, seguire questa procedura:**
+**tooconfigure provisioning degli utenti, eseguire hello alla procedura seguente:**
 
-1. Accedere al sito aziendale di **Jobscience** come amministratore.
+1. Accedi tooyour **Jobscience** sito aziendale come amministratore.
 
-2. Passare a Setup (Installazione).
+2. Passare tooSetup.
    
    ![Installazione](./media/active-directory-saas-jobscience-tutorial/ic784358.png "Installazione")
-3. Passare a **Manage Users (Gestisci utenti) \> Users (Utenti)**.
+3. Andare troppo**Gestisci utenti \> utenti**.
    
    ![Utenti](./media/active-directory-saas-jobscience-tutorial/ic784369.png "Utenti")
 4. Fare clic su **Nuovo utente**.
    
    ![Tutti gli utenti](./media/active-directory-saas-jobscience-tutorial/ic784370.png "Tutti gli utenti")
-5. Nella finestra di dialogo **Edit User** seguire la procedura seguente:
+5. In hello **modifica utente** finestra di dialogo, eseguire hello alla procedura seguente:
    
-   ![User Edit](./media/active-directory-saas-jobscience-tutorial/ic784371.png "User Edit")
+   ![Modifica dell'utente](./media/active-directory-saas-jobscience-tutorial/ic784371.png "Modifica dell'utente")
    
-   a. Nella casella di testo **First Name** (Nome) digitare il nome dell'utente, ad esempio Britta.
+   a. In hello **nome** casella di testo, digitare un nome dell'utente hello come Laura.
    
-   b. Nella casella **Last Name** (Cognome) digitare il cognome dell'utente, ad esempio Simon.
+   b. In hello **cognome** casella di testo, specificare un cognome dell'utente hello come Simon.
    
-   c. Nella casella di testo **Alias** digitare un nome alias dell'utente, ad esempio brittas.
+   c. In hello **Alias** casella di testo, digitare un nome di alias dell'utente hello come brittas.
 
-   d. Nella casella di testo **Email** digitare l'indirizzo di posta elettronica dell'utente, ad esempio Brittasimon@contoso.com.
+   d. In hello **posta elettronica** casella di testo, digitare hello di indirizzo di posta elettronica dell'utente come Brittasimon@contoso.com.
 
-   e. Nella casella di testo **User Name** (Nome utente) digitare il nome utente dell'utente, ad esempio Brittasimon@contoso.com.
+   e. In hello **nome utente** , digitare un nome utente dell'utente come Brittasimon@contoso.com.
 
-   f. Nella casella di testo **Nick Name** (Nome alternativo) digitare un nome alternativo dell'utente, ad esempio Simon.
+   f. In hello **nome alternativo** casella di testo, digitare un nome alternativo dell'utente come Simon.
 
    g. Fare clic su **Salva**.
 
     
 > [!NOTE]
-> Il titolare dell'account Azure Active Directory riceve un messaggio di posta elettronica con un collegamento da selezionare per confermare l'account e attivarlo.
+> titolare dell'account di Azure Active Directory Hello riceve un messaggio di posta elettronica e segue il proprio account tooconfirm un collegamento prima che diventi attivo.
 
-### <a name="assigning-the-azure-ad-test-user"></a>Assegnazione dell'utente test di Azure AD
+### <a name="assigning-hello-azure-ad-test-user"></a>Assegnazione utente test hello Azure AD
 
-In questa sezione Britta Simon viene abilitata per l'uso dell'accesso Single Sign-On di Azure concedendole l'accesso a Jobscience.
+In questa sezione per abilitare Britta Simon toouse single sign-on Azure concessione dell'accesso tooJobscience.
 
 ![Assegna utente][200] 
 
-**Per assegnare Britta Simon a Jobscience, seguire questa procedura:**
+**tooassign Britta Simon tooJobscience, eseguire hello alla procedura seguente:**
 
-1. Nel portale di Azure aprire la visualizzazione delle applicazioni e quindi la visualizzazione delle directory e passare ad **Applicazioni aziendali**, quindi fare clic su **Tutte le applicazioni**.
+1. Nel portale di Azure hello, aprire la visualizzazione di applicazioni hello, quindi selezionare Visualizza directory toohello e andare troppo**applicazioni aziendali** quindi fare clic su **tutte le applicazioni**.
 
     ![Assegna utente][201] 
 
-2. Nell'elenco di applicazioni selezionare **Jobscience**.
+2. Nell'elenco di applicazioni hello, selezionare **Jobscience**.
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-jobscience-tutorial/tutorial_jobscience_app.png) 
 
-3. Scegliere **Utenti e gruppi** dal menu a sinistra.
+3. Dal menu hello hello sinistra, fare clic su **utenti e gruppi**.
 
     ![Assegna utente][202] 
 
@@ -295,7 +295,7 @@ In questa sezione Britta Simon viene abilitata per l'uso dell'accesso Single Sig
 
     ![Assegna utente][203]
 
-5. Nella finestra di dialogo **Utenti e gruppi** selezionare **Britta Simon** nell'elenco Utenti.
+5. In **utenti e gruppi** finestra di dialogo Seleziona **Britta Simon** nell'elenco di utenti hello.
 
 6. Fare clic sul pulsante **Seleziona** nella finestra di dialogo **Utenti e gruppi**.
 
@@ -303,14 +303,14 @@ In questa sezione Britta Simon viene abilitata per l'uso dell'accesso Single Sig
     
 ### <a name="testing-single-sign-on"></a>Test dell'accesso Single Sign-On
 
-In questa sezione viene testata la configurazione dell'accesso Single Sign-On di Azure AD usando il pannello di accesso.
+In questa sezione si test configurazione di Azure AD single sign-on utilizzando hello Pannello di accesso.
 
-Quando si fa clic sul riquadro Jobscience nel pannello di accesso, si dovrebbe accedere automaticamente all'applicazione Jobscience.
-Per altre informazioni sul pannello di accesso, vedere [Introduzione al Pannello di accesso](active-directory-saas-access-panel-introduction.md).
+Quando si fa clic su riquadro Jobscience hello in hello Pannello di accesso, è necessario ottenere automaticamente firmato in tooyour Jobscience applicazione.
+Per ulteriori informazioni su hello Pannello di accesso, vedere [introduzione toohello Pannello di accesso](active-directory-saas-access-panel-introduction.md).
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
-* [Elenco di esercitazioni sulla procedura di integrazione delle app SaaS con Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [Elenco di esercitazioni sulla tooIntegrate App SaaS con Azure Active Directory](active-directory-saas-tutorial-list.md)
 * [Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory](active-directory-appssoaccess-whatis.md)
 
 <!--Image references-->

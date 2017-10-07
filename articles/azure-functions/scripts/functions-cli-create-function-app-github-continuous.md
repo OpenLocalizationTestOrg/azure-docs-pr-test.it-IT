@@ -1,5 +1,5 @@
 ---
-title: Creare un'app per le funzioni e distribuire codice di funzione da GitHub | Documentazione Microsoft
+title: aaaCreate un'App di funzione e distribuire codice della funzione da GitHub | Documenti Microsoft
 description: Creare un'app per le funzioni e distribuire codice di funzione da GitHub
 services: functions
 ms.service: functions
@@ -10,15 +10,15 @@ ms.author: cfowler
 ms.date: 04/27/2017
 ms.topic: sample
 ms.custom: mvc
-ms.openlocfilehash: 67eb41d89328ab57741c419d8b718e19b947dab1
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 4d44204b899b32af464260db51ed98bcf00eb2bc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-an-app-service"></a>Creare un servizio app
 
-Questo script di esempio crea un'app per le funzioni usando il [piano a consumo](../functions-scale.md#consumption-plan) con le relative risorse correlate e distribuisce in modo continuo il codice di funzione da un archivio GitHub. In questo esempio è necessario:
+Questo script di esempio crea un'app di funzione usando hello [piano il consumo](../functions-scale.md#consumption-plan) con le relative risorse correlate e distribuisce continuamente il codice della funzione da un repository di GitHub. In questo esempio è necessario:
 
 * Un archivio GitHub contenente il codice di funzione per il quale si hanno autorizzazioni amministrative.
 * [Token di accesso personale](https://help.github.com/articles/creating-an-access-token-for-command-line-use) per il proprio account GitHub.
@@ -27,19 +27,19 @@ Questo script di esempio crea un'app per le funzioni usando il [piano a consumo]
 
 [!INCLUDE [cloud-shell-try-it.md](../../../includes/cloud-shell-try-it.md)]
 
-Se si sceglie di installare e usare l'interfaccia della riga di comando in locale, per questo argomento è necessario eseguire la versione 2.0 o successiva dell'interfaccia della riga di comando di Azure. Eseguire `az --version` per trovare la versione. Se è necessario eseguire l'installazione o l'aggiornamento, vedere [Installare l'interfaccia della riga di comando di Azure 2.0]( /cli/azure/install-azure-cli). 
+Se si sceglie tooinstall e utilizza hello CLI in locale, in questo argomento è necessario che si esegue hello Azure CLI versione 2.0 o versione successiva. Eseguire `az --version` versione hello toofind. Se è necessario tooinstall o l'aggiornamento, vedere [installare Azure CLI 2.0]( /cli/azure/install-azure-cli). 
 
 ## <a name="sample-script"></a>Script di esempio
 
 Questo esempio crea un'app per le funzioni di Azure e distribuisce il codice di funzione da GitHub.
 
-[!code-azurecli-interactive[main](../../../cli_scripts/azure-functions/deploy-function-app-with-function-github-continuous/deploy-function-app-with-function-github-continuous.sh?highlight=3-4 "Servizio di Azure")]
+[!code-azurecli-interactive[main](../../../cli_scripts/azure-functions/deploy-function-app-with-function-github-continuous/deploy-function-app-with-function-github-continuous.sh?highlight=3-4 "Azure Service")]
 
 [!INCLUDE [cli-script-clean-up](../../../includes/cli-script-clean-up.md)]
 
 ## <a name="script-explanation"></a>Spiegazione dello script
 
-Ogni comando della tabella include collegamenti alla documentazione specifica del comando. Questo script usa i comandi seguenti:
+Ogni comando in documentazione specifica toocommand hello tabella collegamenti. Questo script utilizza seguente hello:
 
 | Comando | Note |
 |---|---|
@@ -50,6 +50,6 @@ Ogni comando della tabella include collegamenti alla documentazione specifica de
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Per altre informazioni sull'interfaccia della riga di comando di Azure, vedere la [documentazione sull'interfaccia della riga di comando di Azure](https://docs.microsoft.com/cli/azure/overview).
+Per ulteriori informazioni su hello CLI di Azure, vedere [documentazione CLI di Azure](https://docs.microsoft.com/cli/azure/overview).
 
-Altri esempi di script dell'interfaccia della riga di comando di Funzioni di Azure sono disponibili nella [documentazione di Funzioni di Azure](../functions-cli-samples.md).
+Ulteriori esempi di script di Azure funzioni CLI sono reperibile in hello [documentazione di Azure funzioni](../functions-cli-samples.md).

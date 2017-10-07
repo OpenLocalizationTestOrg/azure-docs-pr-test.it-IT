@@ -1,6 +1,6 @@
 ---
 title: 'Servizi di dominio di Azure Active Directory: Abilitare il supporto per il servizio profilo utente di SharePoint | Documentazione Microsoft'
-description: Configurare i domini gestiti dei servizi di dominio di Azure Active Directory per supportare la sincronizzazione dei profili per SharePoint Server
+description: Configurare la sincronizzazione dei profili toosupport domini gestiti Azure Active Directory Domain Services per SharePoint Server
 services: active-directory-ds
 documentationcenter: 
 author: mahesh-unnikrishnan
@@ -14,33 +14,33 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/06/2017
 ms.author: maheshu
-ms.openlocfilehash: c3c923b5c9cd652f0c5b0ec98c1cda740f180122
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 9de4f810380309e8f6436fc24412701645978f1b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="configure-a-managed-domain-to-support-profile-synchronization-for-sharepoint-server"></a>Configurare un dominio gestito per supportare la sincronizzazione dei profili per SharePoint Server
-SharePoint Server include un servizio profili utente utilizzato per la sincronizzazione dei profili utente. Per impostare il servizio profili utente, è necessario concedere le autorizzazioni appropriate in un dominio di Active Directory. Per ulteriori informazioni, vedere [Concedere a Servizi di dominio di Active Directory le autorizzazioni per la sincronizzazione dei profili in SharePoint Server 2013](https://technet.microsoft.com/library/hh296982.aspx).
+# <a name="configure-a-managed-domain-toosupport-profile-synchronization-for-sharepoint-server"></a>Configurare la sincronizzazione di profilo toosupport un dominio gestito di SharePoint Server
+SharePoint Server include un servizio profili utente utilizzato per la sincronizzazione dei profili utente. tooset backup hello servizio profili utente, le autorizzazioni appropriate necessario toobe concesse per un dominio Active Directory. Per ulteriori informazioni, vedere [Concedere a Servizi di dominio di Active Directory le autorizzazioni per la sincronizzazione dei profili in SharePoint Server 2013](https://technet.microsoft.com/library/hh296982.aspx).
 
-In questo articolo viene illustrato come è possibile configurare domini gestiti di servizi di dominio Azure AD per distribuire il servizio di sincronizzazione dei profili utente di SharePoint Server.
+In questo articolo viene illustrato come è possibile configurare i servizio di sincronizzazione dei profili utente di SharePoint Server di servizi di dominio Active Directory di Azure domini gestiti toodeploy hello.
 
-## <a name="the-aad-dc-service-accounts-group"></a>Il gruppo 'AAD DC Service Accounts'
-Un gruppo di sicurezza denominato '**AAD DC Service Accounts**' è disponibile all'interno dell'unità organizzativa 'Utenti' nel dominio gestito. È possibile visualizzare questo gruppo nello snap-in MMC **Utenti e computer di Active Directory** nel dominio gestito.
+## <a name="hello-aad-dc-service-accounts-group"></a>gruppo 'Account di servizio controller di dominio di AAD' Hello
+Un gruppo di sicurezza denominato '**gli account del servizio controller di dominio AAD**' è disponibile all'interno di hello 'Utenti' unità organizzativa nel dominio gestito. È possibile visualizzare questo gruppo di hello **Active Directory Users and Computers** snap-in MMC nel dominio gestito.
 
 ![Il gruppo di sicurezza AAD DC Service Accounts](./media/active-directory-domain-services-admin-guide/aad-dc-service-accounts.png)
 
-Ai membri di questo gruppo di sicurezza vengono delegati i privilegi seguenti:
-- Il privilegio 'Replica modifiche directory' nella directory principale DSE del dominio gestito.
-- Il privilegio 'Replica modifiche Directory' nel contesto di denominazione della configurazione (cn = contenitore di configurazione) del dominio gestito.
+I membri di questo gruppo di sicurezza sono delegata hello seguenti privilegi:
+- il privilegio 'Replica delle modifiche di Directory' Hello nella directory principale di hello DSE di hello gestiti dominio.
+- il privilegio 'Replica delle modifiche di Directory' nel contesto dei nomi di configurazione hello Hello (cn = contenitore della configurazione) di hello gestito dominio.
 
-Questo gruppo di sicurezza è anche membro del gruppo predefinito **Accesso compatibile precedente a Windows 2000**.
+Questo gruppo di sicurezza è anche un membro del gruppo incorporato hello **l'accesso compatibile precedente a Windows 2000**.
 
 ![Il gruppo di sicurezza AAD DC Service Accounts](./media/active-directory-domain-services-admin-guide/aad-dc-service-accounts-properties.png)
 
 
-## <a name="enable-your-managed-domain-to-support-sharepoint-server-user-profile-sync"></a>Abilitare il dominio gestito per supportare la sincronizzazione di profili utente di SharePoint Server
-È possibile aggiungere l'account di servizio utilizzato per la sincronizzazione dei profili utente di SharePoint per il gruppo **AAD DC Service Accounts**. Di conseguenza, l'account di sincronizzazione ottiene i privilegi adeguati per replicare le modifiche alla directory. Questo passaggio di configurazione consente il corretto funzionamento della sincronizzazione dei profili utente di SharePoint Server.
+## <a name="enable-your-managed-domain-toosupport-sharepoint-server-user-profile-sync"></a>Abilitare la sincronizzazione dei profili utente di SharePoint Server di toosupport dominio gestito
+È possibile aggiungere l'account di servizio hello usato per toohello sincronizzazione profilo utente di SharePoint **gli account del servizio controller di dominio AAD** gruppo. Di conseguenza, l'account di sincronizzazione hello Ottiene directory toohello modifiche tooreplicate di privilegi adeguati. Questo passaggio di configurazione consente correttamente toowork sincronizzazione profilo utente di SharePoint Server.
 
 ![AAD DC Service Accounts - aggiunta di membri](./media/active-directory-domain-services-admin-guide/aad-dc-service-accounts-add-member.png)
 

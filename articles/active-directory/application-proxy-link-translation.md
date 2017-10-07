@@ -1,6 +1,6 @@
 ---
-title: Convertire collegamenti e URL - Proxy di app di Azure AD| Microsoft Docs
-description: Tratta i fondamenti dei connettori del proxy applicazione di Azure AD.
+title: aaaTranslate collegamenti e gli URL Azure AD App Proxy | Documenti Microsoft
+description: Nozioni fondamentali di hello include informazioni sui connettori Proxy di applicazione di Azure AD.
 services: active-directory
 documentationcenter: 
 author: kgremban
@@ -15,78 +15,78 @@ ms.date: 08/10/2017
 ms.author: kgremban
 ms.reviewer: harshja
 ms.custom: it-pro
-ms.openlocfilehash: 57218346d236b376d2227e0ffaea6c6dd5ebe855
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 7ec2b9fb01617067cf5d676037877bf72c19217b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="redirect-hardcoded-links-for-apps-published-with-azure-ad-application-proxy"></a>Reindirizzare i collegamenti hardcoded per le app pubblicate con il proxy di app di Azure AD
 
-Il proxy di applicazione di Azure AD rende disponibili le app locali per gli utenti remoti o che usano i propri dispositivi. Alcune app, tuttavia, sono state sviluppate con collegamenti locali incorporati nel codice HTML. Questi collegamenti non funzionano correttamente quando l'app viene usato in remoto. Quando si dispone di diverse applicazioni locali che si puntano a vicenda, gli utenti si aspettano che i collegamenti continuino a lavorare quando non si trovano in ufficio. 
+Proxy dell'applicazione AD Azure rende il toousers di disponibili App locale o remoto con i propri dispositivi. Alcune applicazioni, tuttavia, sono state sviluppate con collegamenti locali incorporati in hello HTML. Questi collegamenti non funzionano correttamente quando l'applicazione hello viene usato in remoto. Quando si dispone di più sedi applicazioni punto tooeach altri, gli utenti si aspettano hello collegamenti tookeep funziona se non si trovano nell'ufficio hello. 
 
-Il modo migliore per assicurarsi che i collegamenti funzionino all'interno e all'esterno della rete aziendale consiste nel configurare gli URL esterni delle app in modo che corrispondano con gli URL interni. Usare [domini personalizzati](active-directory-application-proxy-custom-domains.md) per configurare l'URL esterno in modo che abbia il nome di dominio aziendale anziché il proxy di applicazione predefinito.
+Hello migliore modo toomake verificare che il collegamento funzioni hello stesso sia all'interno e all'esterno della rete aziendale sia tooconfigure hello URL esterni di toobe l'App stessa hello come i relativi URL interno. Utilizzare [domini personalizzati](active-directory-application-proxy-custom-domains.md) tooconfigure il toohave URL esterno anziché dominio proxy di applicazione predefinito hello assegnare un nome del dominio aziendale.
 
-Se non è possibile usare i domini personalizzati nel tenant, allora la funzionalità di traslazione del collegamento del Proxy dell'applicazione mantiene i collegamenti in funzione indipendentemente in dalla posizione degli utenti. Quando si hanno applicazioni che puntano direttamente a endpoint o porte interne, è possibile mappare questi URL interni agli URL del proxy di applicazione esterno pubblicato. Quando è abilitata la traslazione del collegamento e il Proxy dell'applicazione ricerca tramite HTML, CSS e seleziona i tag di JavaScript per i collegamenti interni pubblicati. Quindi il servizio di Proxy dell'applicazione ne esegue la traslazione in modo che gli utenti ottengano un'esperienza senza interruzioni.
+Se non è possibile utilizzare i domini personalizzati nel tenant, funzionalità di traduzione di collegamento hello del Proxy dell'applicazione mantiene i collegamenti di lavorare indipendentemente in cui gli utenti. Quando si dispongono di applicazioni che fanno riferimento direttamente toointernal endpoint o porte, è possibile associare questi toohello URL interno pubblicato URL Proxy dell'applicazione esterna. Quando è abilitata la traslazione del collegamento e il Proxy dell'applicazione ricerca tramite HTML, CSS e seleziona i tag di JavaScript per i collegamenti interni pubblicati. Quindi hello servizio Proxy applicazione li converte in modo che gli utenti di ottenere un'esperienza senza interruzioni.
 
 >[!NOTE]
->La funzionalità di conversione dei collegamenti è per i tenant che, per qualsiasi motivo, non possono usare i domini personalizzati per avere gli stessi URL interni ed esterni per le app. Prima di abilitare questa funzionalità, verificare se i [domini personalizzati nel proxy di applicazione di Azure AD](active-directory-application-proxy-custom-domains.md) possono fare al caso.
+>Hello funzionalità di traduzione di collegamento è per i tenant che, per qualsiasi motivo, non è possibile usare i domini personalizzati toohave hello stesso URL interni ed esterni per le app. Prima di abilitare questa funzionalità, verificare se i [domini personalizzati nel proxy di applicazione di Azure AD](active-directory-application-proxy-custom-domains.md) possono fare al caso.
 >
->Oppure, se l'applicazione che deve essere configurata con la traslazione del collegamento è SharePoint, vedere [Configurare i mapping di accesso alternativo per SharePoint 2013](https://technet.microsoft.com/library/cc263208.aspx) per un altro approccio ai collegamenti di mapping.
+>In alternativa, se un'applicazione hello è necessario tooconfigure con conversione dei collegamenti di SharePoint, vedere [configurare i mapping di accesso alternativo per SharePoint 2013](https://technet.microsoft.com/library/cc263208.aspx) per i collegamenti di un altro approccio toomapping.
 
 ## <a name="how-link-translation-works"></a>Come funziona la conversione dei collegamenti
 
-Dopo l'autenticazione, quando il server proxy passa i dati dell'applicazione all'utente, il proxy di applicazione esegue l'analisi dell'applicazione alla ricerca dei collegamenti hardcoded e li sostituisce con i rispettivi URL esterni pubblicati.
+Dopo l'autenticazione, quando il server proxy hello passa utente toohello dati dell'applicazione hello, Proxy applicazione esegue l'analisi di un'applicazione hello per i collegamenti hardcoded e li sostituisce con i rispettivi URL esterni pubblicato.
 
-Il Proxy dell'applicazione presuppone che le applicazioni vengano codificate in UTF-8. Se non è questo il caso, specificare il tipo di codifica in un'intestazione di risposta http, ad esempio `Content-Type:text/html;charset=utf-8`.
+Il Proxy dell'applicazione presuppone che le applicazioni vengano codificate in UTF-8. Se non è questo caso di hello, specificare il tipo di codifica hello in un'intestazione di risposta http, ad esempio `Content-Type:text/html;charset=utf-8`.
 
 ### <a name="which-links-are-affected"></a>Quali collegamenti sono interessati?
 
-La funzionalità di conversione dei collegamenti cerca solo i collegamenti che si trovano nel tag di codice nel corpo di un'app. Il proxy di applicazione ha una funzione separata per la conversione dei cookie o URL in intestazioni. 
+funzionalità di traduzione di collegamento Hello è solo per i collegamenti contenuti nel tag di codice nel corpo di hello di un'app. Il proxy di applicazione ha una funzione separata per la conversione dei cookie o URL in intestazioni. 
 
 Esistono due tipi comuni di collegamenti interni nelle applicazioni locali:
 
-- I **collegamenti interni relativi** che puntano a una risorsa condivisa in una struttura di file locale come `/claims/claims.html`. Questi collegamenti sono attivati automaticamente nelle app che vengono pubblicate tramite il proxy di applicazione e continuano a funzionare con o senza la conversione dei collegamenti. 
-- I **collegamenti interni hardcoded** ad altre applicazioni locali come `http://expenses` o i file pubblicati come `http://expenses/logo.jpg`. La funzionalità di conversione dei collegamenti opera sui collegamenti interni hardcoded e li converte, in modo che puntino agli URL esterni che gli utenti remoti devono usare.
+- **I collegamenti interni relativi** tooa tale punto condiviso in una struttura di file locale come risorsa `/claims/claims.html`. Questi collegamenti vengono attivati automaticamente nelle App che vengono pubblicate tramite Proxy di applicazione e continuare toowork con o senza conversione dei collegamenti. 
+- **I collegamenti interni hardcoded** tooother locale App come `http://expenses` o i file come pubblicati `http://expenses/logo.jpg`. funzionalità di traduzione di collegamento Hello funziona per i collegamenti interni hardcoded e li modifica toopoint toohello URL esterni che gli utenti remoti devono toogo tramite.
 
-### <a name="how-do-apps-link-to-each-other"></a>In che modo le app si collegano tra loro?
+### <a name="how-do-apps-link-tooeach-other"></a>Come App collegano tooeach altri?
 
-La conversione dei collegamenti è abilitata per ogni applicazione, perciò si ha il controllo dell'esperienza utente a livello di app. Attivare la conversione dei collegamenti per un'app quando si desidera che siano convertiti i collegamenti *da* tale app e non i collegamenti *a* tale app. 
+Conversione dei collegamenti è abilitato per ogni applicazione, in modo da disporre di un controllo esperienza utente hello a livello di hello per app. Attivare la conversione dei collegamenti per un'app quando si desidera che i collegamenti di hello *da* tradotte toobe tale app, non collegamenti *a* tale app. 
 
-Ad esempio, si supponga di avere tre applicazioni pubblicate mediante il proxy di applicazione e che tutte siano collegate tra loro: Benefits, Expenses e Travel. C'è una quarta app, Feedback, che non viene pubblicata tramite il proxy di applicazione.
+Ad esempio, si supponga che le tre applicazioni pubblicate mediante il Proxy di applicazione che tutti i collegamenti tooeach altri: vantaggi e spese di viaggio. C'è una quarta app, Feedback, che non viene pubblicata tramite il proxy di applicazione.
 
-Quando si abilita la conversione dei collegamenti per l'app Benefits, i collegamenti a Expenses e Travel sono reindirizzati agli URL esterni per tali app, ma il collegamento a Feedback non viene reindirizzato perché non esiste alcun URL esterno. I collegamenti da Expenses e Travel a Benefits non funzionano perché la conversione dei collegamenti non è stata abilitata per queste due app.
+Quando si abilita la conversione dei collegamenti per app vantaggi hello, viaggi e hello collegamenti tooExpenses sono toohello reindirizzato URL esterni per le app, ma tooFeedback collegamento hello non viene reindirizzata perché non esiste alcun URL esterno. Collegamenti dai viaggi e spese non funzionano tooBenefits indietro, in quanto la traduzione di collegamento non è stata abilitata per queste due app.
 
-![Collegamenti da Benefits ad altre app quando è abilitata la conversione dei collegamenti](./media/application-proxy-link-translation/one_app.png)
+![Collegamenti da vantaggi tooother App quando è abilitata la conversione di collegamento](./media/application-proxy-link-translation/one_app.png)
 
 ### <a name="which-links-arent-translated"></a>Quali collegamenti non vengono convertiti?
 
-Per migliorare prestazioni e sicurezza, alcuni collegamenti non vengono convertiti:
+sicurezza e prestazioni tooimprove, alcuni collegamenti non vengono tradotti:
 
 - Collegamenti non interni ai tag di codice. 
 - Collegamenti non in HTML, CSS o JavaScript. 
-- Collegamenti interni aperti da altri programmi. I collegamenti inviati tramite posta elettronica o messaggistica istantanea o inclusi in altri documenti non vengono convertiti. Gli utenti devono sapere di passare all'URL esterno.
+- Collegamenti interni aperti da altri programmi. I collegamenti inviati tramite posta elettronica o messaggistica istantanea o inclusi in altri documenti non vengono convertiti. gli utenti di Hello devono URL esterno di tooknow toogo toohello.
 
-Se è necessario supportare uno di questi due scenari, usare gli stessi URL interni ed esterni, al posto della conversione dei collegamenti.  
+Se è necessario toosupport uno di questi due scenari, utilizzare hello stesso URL interni ed esterni invece di conversione dei collegamenti.  
 
 ## <a name="enable-link-translation"></a>Abilitare la conversione dei collegamenti
 
 Per iniziare con la conversione dei collegamenti, è sufficiente fare clic su un pulsante:
 
-1. Accedere al [portale di Azure](https://portal.azure.com) come amministratore.
-2. Passare ad **Azure Active Directory** > **Applicazioni aziendali** > **Tutte le applicazioni** > selezionare l'app che si desidera gestire > **Proxy di applicazione**.
-3. Impostare l'opzione di **conversione URL nel corpo dell'applicazione** su **Sì**.
+1. Accedi toohello [portale di Azure](https://portal.azure.com) come amministratore.
+2. Andare troppo**Azure Active Directory** > **applicazioni aziendali** > **tutte le applicazioni** > app hello selezionare da toomanage > **Proxy dell'applicazione**.
+3. Attivare **tradurre gli URL nel corpo di applicazione** troppo**Sì**.
 
-   ![Selezionare Sì per convertire gli URL nel corpo dell'applicazione](./media/application-proxy-link-translation/select_yes.png).
-4. Selezionare **Salva** per applicare le modifiche.
+   ![Selezionare Sì tootranslate URL nel corpo di applicazione](./media/application-proxy-link-translation/select_yes.png).
+4. Selezionare **salvare** tooapply le modifiche.
 
-Ora, quando gli utenti accedono a questa applicazione, il proxy esegue automaticamente un'analisi per individuare gli URL interni che sono stati pubblicati tramite il proxy di applicazione nel tenant.
+Quando gli utenti accedono a questa applicazione, proxy hello analizzi automaticamente per gli URL interni che sono stati pubblicati tramite il Proxy di applicazione per il tenant.
 
 ## <a name="send-feedback"></a>Invia commenti
 
-Abbiamo bisogno dell'intervento dell'utente per rendere questa funzionalità operante per tutte le app. Cerchiamo oltre 30 tag in HTML e CSS e stiamo prendendo in considerazione quali casi JavaScript supportare. Se si hanno esempi di collegamenti generati che non vengono convertiti, inviare un frammento di codice all'area [commenti sul proxy di applicazione](mailto:aadapfeedback@microsoft.com). 
+Vogliamo toomake la Guida in linea questo lavoro funzionalità per tutte le app. È cercare oltre 30 tag in HTML e CSS e intende quali toosupport casi JavaScript. Se si dispone di un esempio di collegamenti generati che non sono tradotta, inviare un frammento di codice troppo[commenti e suggerimenti Proxy di applicazione](mailto:aadapfeedback@microsoft.com). 
 
 ## <a name="next-steps"></a>Passaggi successivi
-[Usare i domini personalizzati con il proxy di applicazione Azure AD](active-directory-application-proxy-custom-domains.md) per avere gli stessi URL interni ed esterni
+[Usare i domini personalizzati con Proxy dell'applicazione AD Azure](active-directory-application-proxy-custom-domains.md) toohave hello stesso URL interni ed esterni
 
 [Configurare i mapping di accesso alternativo per for SharePoint 2013](https://technet.microsoft.com/library/cc263208.aspx)

@@ -1,6 +1,6 @@
 ---
-title: Creare un'app ASP.NET in Azure con un database SQL | Microsoft Docs
-description: "Informazioni su come ottenere un'app ASP.NET che è possibile usare in Azure con connessione a un database SQL."
+title: un'applicazione ASP.NET in Azure con il Database SQL aaaBuild | Documenti Microsoft
+description: Informazioni su come tooget un ASP.NET app Usa Azure, con tooa connessione Database SQL.
 services: app-service\web
 documentationcenter: nodejs
 author: cephalin
@@ -15,15 +15,15 @@ ms.topic: tutorial
 ms.date: 06/09/2017
 ms.author: cephalin
 ms.custom: mvc
-ms.openlocfilehash: c22b8ef4866fe2f1ae32c7cb9158fc7866788b26
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: d21c2bc404bfe038608c17e5a94d96847153002c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="build-an-aspnet-app-in-azure-with-sql-database"></a>Creare un'app ASP.NET in Azure con un database SQL
 
-Le [app Web di Azure](https://docs.microsoft.com/azure/app-service-web/app-service-web-overview) forniscono un servizio di hosting Web ad alta scalabilità e con funzioni di auto-correzione. Questa esercitazione illustra come distribuire un'app Web ASP.NET basata sui dati in Azure e connetterla al [database SQL di Azure](../sql-database/sql-database-technical-overview.md). Al termine sarà disponibile un'applicazione ASP.NET in esecuzione nel [Servizio app di Azure](../app-service/app-service-value-prop-what-is.md) e connessa al database SQL.
+Le [app Web di Azure](https://docs.microsoft.com/azure/app-service-web/app-service-web-overview) forniscono un servizio di hosting Web ad alta scalabilità e con funzioni di auto-correzione. In questa esercitazione Mostra come toodeploy un ASP.NET basati sui dati web app in Azure e connetterla troppo[Database SQL di Azure](../sql-database/sql-database-technical-overview.md). Al termine, si dispone di un'applicazione ASP.NET in esecuzione in [Azure App Service](../app-service/app-service-value-prop-what-is.md) e tooSQL Database connesso.
 
 ![Applicazione ASP.NET pubblicata nell'app Web di Azure](./media/app-service-web-tutorial-dotnet-sqldatabase/azure-app-in-browser.png)
 
@@ -31,17 +31,17 @@ In questa esercitazione si apprenderà come:
 
 > [!div class="checklist"]
 > * Creare un database SQL in Azure
-> * Connettere un'app ASP.NET al database SQL
-> * Distribuire l'app in Azure
-> * Aggiornare il modello di dati e ridistribuire l'app
-> * Eseguire lo streaming dei log da Azure al terminale
-> * Gestire l'app nel portale di Azure
+> * Connettersi a un tooSQL app ASP.NET Database
+> * Distribuire hello app tooAzure
+> * Modello di dati hello e ridistribuire l'applicazione hello
+> * Registri di flusso di Azure tooyour terminal
+> * Gestire app hello in hello portale di Azure
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-Per completare questa esercitazione:
+toocomplete questa esercitazione:
 
-* Installare [Visual Studio 2017](https://www.visualstudio.com/downloads/) con i carichi di lavoro seguenti:
+* Installare [Visual Studio 2017](https://www.visualstudio.com/downloads/) con hello carichi di lavoro seguente:
   - **Sviluppo Web e ASP.NET**
   - **Sviluppo di Azure**
 
@@ -49,29 +49,29 @@ Per completare questa esercitazione:
 
 [!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)]
 
-## <a name="download-the-sample"></a>Scaricare l'esempio
+## <a name="download-hello-sample"></a>Scaricare l'esempio hello
 
-[Scaricare il progetto di esempio](https://github.com/Azure-Samples/dotnet-sqldb-tutorial/archive/master.zip).
+[Scaricare il progetto di esempio hello](https://github.com/Azure-Samples/dotnet-sqldb-tutorial/archive/master.zip).
 
-Estrarre (decomprimere) il file *dotnet-sqldb-tutorial-master.zip*.
+Estrarre (decomprimere) hello *master.zip dotnet-sqldb-esercitazione* file.
 
-Il progetto di esempio contiene un'app CRUD (create-read-update-delete) [ASP.NET MVC](https://www.asp.net/mvc) di base che usa [Code First di Entity Framework](/aspnet/mvc/overview/getting-started/getting-started-with-ef-using-mvc/creating-an-entity-framework-data-model-for-an-asp-net-mvc-application).
+progetto di esempio Hello contiene un basic [ASP.NET MVC](https://www.asp.net/mvc) CRUD (create-lettura-aggiornamento-eliminazione) app usando [Entity Framework Code First](/aspnet/mvc/overview/getting-started/getting-started-with-ef-using-mvc/creating-an-entity-framework-data-model-for-an-asp-net-mvc-application).
 
-### <a name="run-the-app"></a>Esecuzione dell'app
+### <a name="run-hello-app"></a>Eseguire app hello
 
-Aprire il file *dotnet-sqldb-tutorial-master/DotNetAppSqlDb.sln* in Visual Studio. 
+Aprire hello *dotnet-sqldb-esercitazione-master/DotNetAppSqlDb.sln* file in Visual Studio. 
 
-Digitare `Ctrl+F5` per eseguire l'app senza debug. L'app viene visualizzata nel browser predefinito. Selezionare il collegamento **Crea nuovo** e creare due elementi *Attività*. 
+Tipo `Ctrl+F5` toorun hello app senza debug. Hello app viene visualizzata nel browser predefinito. Seleziona hello **Crea nuovo** collegare e creare un paio *attività* elementi. 
 
 ![Finestra di dialogo Nuovo progetto ASP.NET](media/app-service-web-tutorial-dotnet-sqldatabase/local-app-in-browser.png)
 
-Testare i collegamenti **Modifica**, **Dettagli** ed **Elimina**.
+Hello test **modifica**, **dettagli**, e **eliminare** collegamenti.
 
-L'app usa un contesto di database per connettersi al database. Nell'esempio il contesto di database usa una stringa di connessione denominata `MyDbConnection`. La stringa di connessione è impostata nel file *Web.config* e il file *Models\MyDatabaseContext.cs* include un riferimento alla stringa. Il nome della stringa di connessione è usato più avanti nell'esercitazione per connettere l'app Web di Azure a un database SQL di Azure. 
+app Hello Usa un tooconnect di contesto di database con database hello. In questo esempio, il contesto di database hello utilizza una stringa di connessione denominata `MyDbConnection`. stringa di connessione Hello è impostato in hello *Web. config* file e cui viene fatto riferimento in hello *Models/MyDatabaseContext.cs* file. nome di stringa di connessione Hello viene utilizzato più avanti in hello tooconnect esercitazione hello Azure web app tooan Database SQL di Azure. 
 
-## <a name="publish-to-azure-with-sql-database"></a>Pubblicare in Azure con il database SQL
+## <a name="publish-tooazure-with-sql-database"></a>Pubblicare tooAzure con il Database SQL
 
-In **Esplora soluzioni** fare clic con il pulsante destro del mouse sul progetto **DotNetAppSqlDb** e selezionare **Pubblica**.
+In hello **Esplora**, fare doppio clic sui **DotNetAppSqlDb** del progetto e selezionare **pubblica**.
 
 ![Pubblicare da Esplora soluzioni](./media/app-service-web-tutorial-dotnet-sqldatabase/solution-explorer-publish.png)
 
@@ -79,19 +79,19 @@ Verificare che **Servizio app di Microsoft Azure** sia selezionato e fare clic s
 
 ![Pubblicare dalla pagina di panoramica progetto](./media/app-service-web-tutorial-dotnet-sqldatabase/publish-to-app-service.png)
 
-La pubblicazione apre la finestra di dialogo **Crea servizio app** che consente di creare tutte le risorse di Azure necessarie per eseguire l'app Web ASP.NET in Azure.
+Pubblicazione apre hello **Crea servizio App** finestra di dialogo, che consente di creare tutti hello risorse di Azure è necessario toorun app web ASP.NET in Azure.
 
-### <a name="sign-in-to-azure"></a>Accedere ad Azure
+### <a name="sign-in-tooazure"></a>Accedi tooAzure
 
-Nella finestra di dialogo **Crea servizio App** fare clic su **Aggiungi un account** e quindi accedere alla sottoscrizione di Azure. Se si è già connessi a un account Microsoft, verificare che l'account contenga la sottoscrizione di Azure. Se l'account Microsoft a cui si è connessi non include la sottoscrizione di Azure, fare clic su di esso per aggiungere l'account corretto.
+In hello **Crea servizio App** finestra di dialogo, fare clic su **aggiungere un account**, quindi accedi tooyour sottoscrizione di Azure. Se si è già connessi a un account Microsoft, verificare che l'account contenga la sottoscrizione di Azure. Se hello Microsoft account connesso non dispone di sottoscrizione di Azure, scegliere account di tooadd hello corretto.
    
-![Accedere ad Azure](./media/app-service-web-tutorial-dotnet-sqldatabase/sign-in-azure.png)
+![Accedi tooAzure](./media/app-service-web-tutorial-dotnet-sqldatabase/sign-in-azure.png)
 
-Dopo avere eseguito l'accesso, è possibile creare tutte le risorse necessarie per l'app Web di Azure in questa finestra di dialogo.
+Una volta effettuato l'accesso, si è pronti toocreate che tutte le risorse che necessarie per l'app web di Azure in questa finestra di dialogo di hello.
 
-### <a name="configure-the-web-app-name"></a>Configurare il nome dell'app Web
+### <a name="configure-hello-web-app-name"></a>Nome dell'applicazione web hello configurare
 
-È possibile mantenere il nome dell'app Web generato o modificarlo in un altro nome univoco (i caratteri validi sono `a-z`, `0-9` e `-`). Il nome dell'app Web viene usato come parte dell'URL predefinito per l'app (`<app_name>.azurewebsites.net`, dove `<app_name>` è il nome dell'app Web). Il nome dell'app Web deve essere univoco in tutte le app di Azure. 
+È possibile mantenere nome dell'applicazione web hello generato o modificare il nome univoco tooanother (i caratteri validi sono `a-z`, `0-9`, e `-`). nome dell'applicazione web Hello viene utilizzata come parte dell'URL di hello predefinito per l'app (`<app_name>.azurewebsites.net`, dove `<app_name>` è il nome dell'applicazione web). nome dell'applicazione web Hello deve toobe univoco tra tutte le App in Azure. 
 
 ![Finestra di dialogo Crea servizio app](media/app-service-web-tutorial-dotnet-sqldatabase/wan.png)
 
@@ -99,22 +99,22 @@ Dopo avere eseguito l'accesso, è possibile creare tutte le risorse necessarie p
 
 [!INCLUDE [resource-group](../../includes/resource-group.md)]
 
-Accanto a **Gruppo di risorse** fare clic su **Nuovo**.
+Avanti troppo**gruppo di risorse**, fare clic su **New**.
 
-![Accanto a Gruppo di risorse fare clic su Nuovo.](media/app-service-web-tutorial-dotnet-sqldatabase/new_rg2.png)
+![TooResource successivo gruppo, fare clic su nuovo.](media/app-service-web-tutorial-dotnet-sqldatabase/new_rg2.png)
 
-Assegnare al gruppo di risorse il nome **myResourceGroup**.
+Nome gruppo di risorse hello **myResourceGroup**.
 
 > [!NOTE]
-> Non fare clic su **Crea**. È prima necessario configurare un database SQL in un passaggio successivo.
+> Non fare clic su **Crea**. È necessario innanzitutto tooset di un Database SQL in un passaggio successivo.
 
 ### <a name="create-an-app-service-plan"></a>Creare un piano di servizio app
 
 [!INCLUDE [app-service-plan](../../includes/app-service-plan.md)]
 
-Accanto a **Piano di servizio app** fare clic su **Nuovo**. 
+Avanti troppo**piano di servizio App**, fare clic su **New**. 
 
-Nella finestra di dialogo **Configura piano di servizio app** configurare il nuovo piano di servizio app con le impostazioni seguenti:
+In hello **configurare il piano di servizio App** finestra di dialogo, configurare il nuovo piano di servizio App hello con hello seguenti impostazioni:
 
 ![Creare un piano di servizio app](./media/app-service-web-tutorial-dotnet-sqldatabase/configure-app-service-plan.png)
 
@@ -132,35 +132,35 @@ Selezionare **Esplora altri servizi di Azure**.
 
 ![Configurare il nome dell'app Web](media/app-service-web-tutorial-dotnet-sqldatabase/web-app-name.png)
 
-Nella scheda **Servizi** fare clic sull'icona **+** accanto a **Database SQL**. 
+In hello **servizi** scheda, fare clic su hello  **+**  icona Avanti troppo**Database SQL**. 
 
-![Nella scheda Servizi fare clic sull'icona + accanto a Database SQL.](media/app-service-web-tutorial-dotnet-sqldatabase/sql.png)
+![Nella scheda Servizi hello, fare clic sull'icona + hello tooSQL successivo Database.](media/app-service-web-tutorial-dotnet-sqldatabase/sql.png)
 
-nella finestra di dialogo **Configura database SQL** fare clic su **Nuovo** accanto a **SQL Server**. 
+In hello **configurare il Database SQL** finestra di dialogo, fare clic su **New** Avanti troppo**SQL Server**. 
 
-Viene generato un nome di server univoco. Questo nome viene usato come parte dell'URL predefinito per il server logico `<server_name>.database.windows.net`. Deve essere univoco in tutte le istanze di server logico in Azure. Sebbene sia possibile modificare il nome del server, per questa esercitazione mantenere il valore generato.
+Viene generato un nome di server univoco. Questo nome viene utilizzato come parte dell'URL di hello predefinito per il server logico, `<server_name>.database.windows.net`. Deve essere univoco in tutte le istanze di server logico in Azure. È possibile modificare il nome di server hello, ma per questa esercitazione, mantenere il valore di hello generato.
 
 Aggiungere un nome utente e una password di amministratore e quindi selezionare **OK**. Per i requisiti di complessità delle password, vedere [Criteri password](/sql/relational-databases/security/password-policy).
 
-Prendere nota del nome utente e della password. Saranno necessari per gestire l'istanza del server logico in seguito.
+Prendere nota del nome utente e della password. Sono necessari server logico di hello toomanage istanza in un secondo momento.
 
 ![Creare un'istanza di SQL Server](media/app-service-web-tutorial-dotnet-sqldatabase/configure-sql-database-server.png)
 
 ### <a name="create-a-sql-database"></a>Creare un database SQL
 
-Nella finestra di dialogo **Configura database SQL**: 
+In hello **configurare il Database SQL** finestra di dialogo: 
 
-* Mantenere il **Nome database** generato predefinito.
-* In **Nome stringa di connessione** digitare *MyDbConnection*. Questo nome deve corrispondere alla stringa di connessione cui viene fatto riferimento in *Models\MyDatabaseContext.cs*.
+* Mantenere l'impostazione predefinita, hello generata **nome del Database**.
+* In **Nome stringa di connessione** digitare *MyDbConnection*. Questo nome deve corrispondere una stringa di connessione hello a cui fa riferimento in *Models/MyDatabaseContext.cs*.
 * Selezionare **OK**.
 
 ![Configurare il database SQL](media/app-service-web-tutorial-dotnet-sqldatabase/configure-sql-database.png)
 
-La finestra di dialogo **Crea servizio app** mostra le risorse create. Fare clic su **Crea**. 
+Hello **Crea servizio App** finestra di dialogo Mostra risorse hello è stato creato. Fare clic su **Crea**. 
 
-![Risorse create](media/app-service-web-tutorial-dotnet-sqldatabase/app_svc_plan_done.png)
+![risorse Hello che è stato creato](media/app-service-web-tutorial-dotnet-sqldatabase/app_svc_plan_done.png)
 
-Dopo aver creato le risorse di Azure, la procedura guidata pubblica l'app ASP.NET in Azure. Il browser predefinito viene avviato con l'URL dell'app distribuita. 
+Al termine della procedura guidata hello creazione hello risorse di Azure, vengono pubblicati i tooAzure app ASP.NET. Il browser predefinito viene avviato con app di hello URL toohello distribuito. 
 
 Aggiungere alcune attività.
 
@@ -168,53 +168,53 @@ Aggiungere alcune attività.
 
 Congratulazioni. L'applicazione ASP.NET basata sui dati è in esecuzione nel Servizio app di Azure.
 
-## <a name="access-the-sql-database-locally"></a>Accedere al database SQL locale
+## <a name="access-hello-sql-database-locally"></a>Accedere localmente hello Database SQL
 
-Visual Studio consente di esplorare e gestire facilmente il nuovo database SQL in **Esplora oggetti di SQL Server**.
+Visual Studio consente di esplorare e gestire il nuovo Database SQL facilmente nel hello **Esplora oggetti di SQL Server**.
 
 ### <a name="create-a-database-connection"></a>Creare una connessione al database
 
-Dal menu **Visualizza** selezionare **Esplora oggetti di SQL Server**.
+Da hello **vista** dal menu **Esplora oggetti di SQL Server**.
 
-Nella parte superiore di **Esplora oggetti di SQL Server** fare clic sul pulsante **Aggiungi istanza di SQL Server**.
+Nella parte superiore di hello di **Esplora oggetti di SQL Server**, fare clic su hello **aggiungere SQL Server** pulsante.
 
-### <a name="configure-the-database-connection"></a>Configurare la connessione al database
+### <a name="configure-hello-database-connection"></a>Configurare una connessione al database hello
 
-Nella finestra di dialogo **Connetti** espandere il nodo **Azure**. Vengono visualizzate tutte le istanze del database SQL di Azure.
+In hello **Connetti** finestra di dialogo espandere hello **Azure** nodo. Vengono visualizzate tutte le istanze del database SQL di Azure.
 
-Selezionare il database SQL `DotNetAppSqlDb`. La connessione creata in precedenza viene inserita automaticamente nella parte inferiore.
+Seleziona hello `DotNetAppSqlDb` Database SQL. connessione Hello creata in precedenza viene inserito automaticamente nella parte inferiore di hello.
 
-Digitare la password di amministratore di database creata in precedenza e fare clic su **Connetti**.
+Digitare hello password di amministratore di database creato in precedenza e fare clic su **Connetti**.
 
 ![Configurare la connessione al database da Visual Studio](./media/app-service-web-tutorial-dotnet-sqldatabase/connect-to-sql-database.png)
 
 ### <a name="allow-client-connection-from-your-computer"></a>Consentire la connessione client dal computer
 
-Viene visualizzata la finestra di dialogo **Crea nuova regola del firewall**. Per impostazione predefinita, l'istanza del database SQL consente solo le connessioni da servizi di Azure, ad esempio dall'app Web di Azure. Per connettersi al database, creare una regola del firewall nell'istanza del database SQL. La regola del firewall autorizza l'indirizzo IP pubblico del computer locale.
+Hello **creare una nuova regola firewall** è aperta una finestra di dialogo. Per impostazione predefinita, l'istanza del database SQL consente solo le connessioni da servizi di Azure, ad esempio dall'app Web di Azure. tooconnect tooyour del database, creare una regola del firewall nell'istanza di Database SQL di hello. regola del firewall Hello consente hello indirizzo IP del computer locale.
 
-Nella finestra di dialogo è già specificato l'indirizzo IP pubblico del computer.
+finestra di dialogo Hello è già stato compilato con indirizzo IP pubblico del computer.
 
 Assicurarsi che l'opzione **Aggiungi IP client** sia selezionata e fare clic su **OK**. 
 
 ![Impostare il firewall per l'istanza del database SQL](./media/app-service-web-tutorial-dotnet-sqldatabase/sql-set-firewall.png)
 
-Dopo che Visual Studio ha completato la creazione dell'impostazione del firewall per l'istanza del database SQL, la connessione viene visualizzata in **Esplora oggetti di SQL Server**.
+Una volta terminato Visual Studio creazione hello impostazione del firewall per l'istanza del Database SQL, la connessione viene visualizzato nella **Esplora oggetti di SQL Server**.
 
-In questa posizione è possibile eseguire le operazioni di database più comuni, ad esempio eseguire query, creare visualizzazioni e stored procedure e così via. 
+In questo caso, è possibile eseguire hello più comuni operazioni di database, ad esempio le query eseguite, creano visualizzazioni e stored procedure e altro ancora. 
 
-Fare clic con il pulsante destro del mouse sulla tabella `Todoes` e selezionare **Visualizza dati**. 
+Fare clic su hello `Todoes` tabella e selezionare **Visualizza dati**. 
 
 ![Esplorare gli oggetti del database SQL](./media/app-service-web-tutorial-dotnet-sqldatabase/explore-sql-database.png)
 
 ## <a name="update-app-with-code-first-migrations"></a>Aggiornare l'app con Migrazioni Code First
 
-Per aggiornare il database e l'app Web in Azure è possibile usare gli strumenti noti di Visual Studio. In questo passaggio si usa Migrazioni Code First di Entity Framework per apportare una modifica allo schema del database e pubblicarlo in Azure.
+È possibile utilizzare strumenti comuni di hello in Visual Studio tooupdate l'app web e il database in Azure. In questo passaggio utilizzare migrazioni Code First in Entity Framework toomake tooyour modifica uno schema di database e pubblicarlo tooAzure.
 
 Per altre informazioni sull'uso di Migrazioni Code First di Entity Framework, vedere [Getting Started with Entity Framework 6 Code First using MVC 5](https://docs.microsoft.com/aspnet/mvc/overview/getting-started/getting-started-with-ef-using-mvc/creating-an-entity-framework-data-model-for-an-asp-net-mvc-application) (Introduzione a Code First di Entity Framework 6 con MVC 5).
 
 ### <a name="update-your-data-model"></a>Aggiornare il modello di dati
 
-Aprire _Models\Todo.cs_ nell'editor di codice. Aggiungere la proprietà seguente alla classe `ToDo`:
+Aprire _Models\Todo.cs_ nell'editor di codice hello. Aggiungere hello seguente proprietà toohello `ToDo` classe:
 
 ```csharp
 public bool Done { get; set; }
@@ -222,11 +222,11 @@ public bool Done { get; set; }
 
 ### <a name="run-code-first-migrations-locally"></a>Eseguire Migrazioni Code First in locale
 
-Eseguire alcuni comandi per eseguire gli aggiornamenti del database locale. 
+Eseguire alcuni comandi toomake aggiornamenti tooyour database locale. 
 
-Nel menu **Strumenti** fare clic su **Gestione pacchetti NuGet** > **Console di Gestione pacchetti**.
+Da hello **strumenti** menu, fare clic su **Gestione pacchetti NuGet** > **Package Manager Console**.
 
-Nella finestra Console di Gestione pacchetti abilitare le migrazioni Code First:
+Nella finestra della Console di gestione pacchetti hello, abilitare le migrazioni Code First:
 
 ```PowerShell
 Enable-Migrations
@@ -238,23 +238,23 @@ Aggiungere una migrazione:
 Add-Migration AddProperty
 ```
 
-Aggiornare il database locale:
+Aggiornamento del database locale hello:
 
 ```PowerShell
 Update-Database
 ```
 
-Digitare `Ctrl+F5` per eseguire l'app. Testare i collegamenti Modifica, Dettagli e Crea.
+Tipo `Ctrl+F5` toorun hello app. Hello test, modificare, informazioni dettagliate, nonché creare collegamenti.
 
-Se l'applicazione viene caricata senza errori, l'esecuzione di Migrazioni Code First è stata completata. La pagina tuttavia può apparire sempre uguale perché la logica dell'applicazione non usa ancora la nuova proprietà. 
+Se un'applicazione hello viene caricata senza errori, migrazioni Code First è stata completata. Tuttavia, ha un aspetto ancora la pagina hello stesso poiché la logica dell'applicazione non utilizza ancora la nuova proprietà. 
 
-### <a name="use-the-new-property"></a>Usare la nuova proprietà
+### <a name="use-hello-new-property"></a>Utilizzare hello nuova proprietà
 
-Apportare alcune modifiche al codice per usare la proprietà `Done`. Per motivi di semplicità in questa esercitazione vengono modificate solo le visualizzazioni `Index` e `Create` per visualizzare la proprietà.
+Apportare alcune modifiche nel hello toouse codice `Done` proprietà. Per semplicità in questa esercitazione, sarà solo hello toochange `Index` e `Create` viste proprietà hello toosee nell'azione.
 
 Aprire _Controllers\TodosController.cs_.
 
-Trovare il metodo `Create()` e aggiungere `Done` all'elenco delle proprietà nell'attributo `Bind`. Al termine, la firma del metodo `Create()` è simile al codice seguente:
+Trovare hello `Create()` (metodo) e aggiungere `Done` toohello elenco delle proprietà hello `Bind` attributo. Al termine, il `Create()` firma del metodo è simile a hello seguente codice:
 
 ```csharp
 public ActionResult Create([Bind(Include = "id,Description,CreatedDate,Done")] Todo todo)
@@ -262,7 +262,7 @@ public ActionResult Create([Bind(Include = "id,Description,CreatedDate,Done")] T
 
 Aprire _Views\Todos\Create.cshtml_.
 
-Nel codice Razor viene visualizzato un elemento `<div class="form-group">` che usa `model.Description` e quindi un altro elemento `<div class="form-group">` che usa `model.CreatedDate`. Immediatamente dopo questi due elementi, aggiungere un altro elemento `<div class="form-group">` che usa `model.Done`:
+Nel codice Razor hello, vedrai un `<div class="form-group">` elemento che utilizza `model.Description`e quindi un'altra `<div class="form-group">` elemento che utilizza `model.CreatedDate`. Immediatamente dopo questi due elementi, aggiungere un altro elemento `<div class="form-group">` che usa `model.Done`:
 
 ```csharp
 <div class="form-group">
@@ -278,7 +278,7 @@ Nel codice Razor viene visualizzato un elemento `<div class="form-group">` che u
 
 Aprire _Views\Todos\Index.cshtml_.
 
-cercare l'elemento `<th></th>` vuoto. Immediatamente sopra l'elemento, aggiungere il codice Razor seguente:
+Ricerca di hello vuoto `<th></th>` elemento. Sopra questo elemento, aggiungere hello codice Razor seguenti:
 
 ```csharp
 <th>
@@ -286,7 +286,7 @@ cercare l'elemento `<th></th>` vuoto. Immediatamente sopra l'elemento, aggiunger
 </th>
 ```
 
-Trovare l'elemento `<td>` che contiene i metodi helper `Html.ActionLink()`. Immediatamente sopra l'elemento, aggiungere il codice Razor seguente:
+Trovare hello `<td>` elemento contenente hello `Html.ActionLink()` metodi di supporto. Sopra questo elemento, aggiungere hello codice Razor seguenti:
 
 ```csharp
 <td>
@@ -294,25 +294,25 @@ Trovare l'elemento `<td>` che contiene i metodi helper `Html.ActionLink()`. Imme
 </td>
 ```
 
-Le modifiche verranno visualizzate nelle visualizzazioni `Index` e `Create`. 
+Che sono tutte le necessarie modifiche hello toosee hello `Index` e `Create` viste. 
 
-Digitare `Ctrl+F5` per eseguire l'app.
+Tipo `Ctrl+F5` toorun hello app.
 
-È ora possibile aggiungere un'attività e selezionare **Fine**. L'attività viene visualizzata come completata nella home page. Tenere presente che la visualizzazione `Edit` non mostra il campo `Done` poiché non è stata modificata la visualizzazione `Edit`.
+È ora possibile aggiungere un'attività e selezionare **Fine**. L'attività viene visualizzata come completata nella home page. Tenere presente che hello `Edit` visualizzazione non mostra hello `Done` campo, perché non si sono modificati hello `Edit` visualizzazione.
 
 ### <a name="enable-code-first-migrations-in-azure"></a>Abilitare Migrazioni Code First in Azure
 
-Dopo aver completato la modifica al codice, inclusa la migrazione del database, la modifica viene pubblicata nell'app Web di Azure e viene eseguito l'aggiornamento del database SQL con Migrazioni Code First.
+Ora che il codice delle modifiche, inclusa la migrazione di database, si pubblicarla tooyour Azure web app e aggiorna il Database SQL con le migrazioni Code First troppo.
 
 Fare di nuovo clic con il pulsante destro del mouse sul progetto e selezionare **Pubblica**.
 
-Fare clic su **Impostazioni** per aprire la procedura guidata di pubblicazione.
+Fare clic su **impostazioni** tooopen hello pubblicazione guidata.
 
 ![Aprire le impostazioni di pubblicazione](./media/app-service-web-tutorial-dotnet-sqldatabase/publish-settings.png)
 
-Nella procedura guidata fare clic su **Avanti**.
+Nella procedura guidata hello, fare clic su **Avanti**.
 
-Assicurarsi che la stringa di connessione per il database SQL sia popolata in **MyDatabaseContext (MyDbConnection)**. Potrebbe essere necessario selezionare il database **myToDoAppDb** dall'elenco a discesa. 
+Verificare che la stringa di connessione hello per il Database SQL viene popolato in **MyDatabaseContext (MyDbConnection)**. Potrebbe essere necessario hello tooselect **myToDoAppDb** database dall'elenco a discesa hello. 
 
 Selezionare **Esegui migrazione primo codice (inizia all'avvio dell'applicazione)**, quindi fare clic su **Salva**.
 
@@ -322,59 +322,59 @@ Selezionare **Esegui migrazione primo codice (inizia all'avvio dell'applicazione
 
 Dopo aver abilitato Migrazioni Code First nell'app Web di Azure pubblicare le modifiche al codice.
 
-Nella pagina di pubblicazione fare clic su **Pubblica**.
+In hello pagina pubblica, fare clic su **pubblica**.
 
 Provare di nuovo ad aggiungere attività e selezionare **Fine**. Le attività verranno visualizzate nella home page come completate.
 
 ![App Web di Azure dopo la migrazione Code First](./media/app-service-web-tutorial-dotnet-sqldatabase/this-one-is-done.png)
 
-Tutte le attività esistenti rimangono visualizzate. Quando si pubblica nuovamente l'applicazione ASP.NET, i dati esistenti nel database SQL non vengono persi. Inoltre, solo Migrazioni Code First modifica lo schema dei dati lasciando intatti i dati esistenti.
+Tutte le attività esistenti rimangono visualizzate. Quando si pubblica nuovamente l'applicazione ASP.NET, i dati esistenti nel database SQL non vengono persi. Inoltre, migrazioni Code First cambia solo schema dati hello e lascia intatti i dati esistenti.
 
 
 ## <a name="stream-application-logs"></a>Eseguire lo streaming dei log delle applicazioni
 
-È possibile eseguire lo streaming dei messaggi di traccia direttamente dall'app Web di Azure in Visual Studio.
+È possibile trasmettere i messaggi di traccia direttamente il tooVisual app web di Azure Studio.
 
 Aprire _Controllers\TodosController.cs_.
 
-Ogni azione inizia con un metodo `Trace.WriteLine()`. Questo codice viene aggiunto per illustrare come aggiungere messaggi di traccia all'app Web di Azure.
+Ogni azione inizia con un metodo `Trace.WriteLine()`. Questo codice viene aggiunto tooshow è la modalità tooadd traccia dei messaggi tooyour Azure web app.
 
 ### <a name="open-server-explorer"></a>Aprire Esplora server
 
-Dal menu **Visualizza** selezionare **Esplora server**. È possibile configurare la registrazione per l'app Web di Azure in **Esplora server**. 
+Da hello **vista** dal menu **Esplora Server**. È possibile configurare la registrazione per l'app Web di Azure in **Esplora server**. 
 
 ### <a name="enable-log-streaming"></a>Abilitare lo streaming dei log
 
 In **Esplora server** espandere **Azure** > **Servizio app**.
 
-Espandere il gruppo di risorse **myResourceGroup** creato al momento della creazione dell'app Web di Azure.
+Espandere hello **myResourceGroup** gruppo di risorse creato al momento della creazione hello Azure web app.
 
 Fare clic con il pulsante destro del mouse sull'app Web di Azure e scegliere **Visualizza log in streaming**.
 
 ![Abilitare lo streaming dei log](./media/app-service-web-tutorial-dotnet-sqldatabase/stream-logs.png)
 
-Lo streaming dei log viene eseguito nella finestra **Output**. 
+Hello registri vengono ora trasmessi in hello **Output** finestra. 
 
 ![Streaming dei log nella finestra Output](./media/app-service-web-tutorial-dotnet-sqldatabase/log-streaming-pane.png)
 
-I messaggi di traccia tuttavia non sono ancora visibili. Ciò avviene perché la prima volta che si seleziona **Visualizza log in streaming** l'app Web di Azure imposta il livello di traccia su `Error` che comporta soltanto la registrazione degli eventi di errore (con il metodo `Trace.TraceError()`).
+Tuttavia, non viene visualizzato uno dei messaggi di traccia hello ancora. Questo perché quando si seleziona prima **Visualizza log di Streaming**, l'app web di Azure consente di impostare il livello di traccia hello troppo`Error`, che registra solo gli eventi di errore (con hello `Trace.TraceError()` (metodo)).
 
 ### <a name="change-trace-levels"></a>Modificare i livelli di traccia
 
-Per modificare i livelli di traccia per generare altri messaggi di traccia, tornare a **Esplora server**.
+traccia hello toochange livelli toooutput altri messaggi di traccia, passare nuovamente troppo**Esplora Server**.
 
 Fare di nuovo clic con il pulsante destro del mouse sull'app Web di Azure e selezionare **Impostazioni**.
 
-Nell'elenco a discesa **Registrazione applicazioni (file system)** selezionare **Dettagli**. Fare clic su **Salva**.
+In hello **registrazione delle applicazioni (File System)** elenco a discesa Seleziona **Verbose**. Fare clic su **Salva**.
 
-![Modificare il livello di traccia in Dettagli](./media/app-service-web-tutorial-dotnet-sqldatabase/trace-level-verbose.png)
+![Modificare tooVerbose livello di traccia](./media/app-service-web-tutorial-dotnet-sqldatabase/trace-level-verbose.png)
 
 > [!TIP]
-> È possibile provare i diversi livelli di traccia per verificare i tipi di messaggi visualizzati per ogni livello. Ad esempio, il livello **Informazioni** include tutti i log creati da `Trace.TraceInformation()`, `Trace.TraceWarning()` e `Trace.TraceError()`, ma non i log creati da `Trace.WriteLine()`.
+> È possibile sperimentare toosee livelli diversi di traccia vengono visualizzati i tipi di messaggi per ogni livello. Ad esempio, hello **informazioni** livello include tutti i log creati da `Trace.TraceInformation()`, `Trace.TraceWarning()`, e `Trace.TraceError()`, ma non i log creati da `Trace.WriteLine()`.
 >
 >
 
-Nel browser provare a fare clic all'interno dell'applicazione dell'elenco attività in Azure. Viene eseguito lo streaming dei messaggi di traccia nella finestra **Output** in Visual Studio.
+Nel browser, fare clic su intorno a un'applicazione elenco attività hello in Azure. i messaggi di traccia Hello ora vengono trasmessi toohello **Output** finestra in Visual Studio.
 
 ```
 Application: 2017-04-06T23:30:41  PID[8132] Verbose     GET /Todos/Index
@@ -387,23 +387,23 @@ Application: 2017-04-06T23:30:54  PID[8132] Verbose     GET /Todos/Index
 
 ### <a name="stop-log-streaming"></a>Arrestare lo streaming dei log
 
-Per arrestare il servizio di streaming dei log, fare clic sul pulsante **Interrompi monitoraggio** nella finestra **Output**.
+toostop hello servizio flusso di log, fare clic su hello **interrompere il monitoraggio** pulsante hello **Output** finestra.
 
 ![Arrestare lo streaming dei log](./media/app-service-web-tutorial-dotnet-sqldatabase/stop-streaming.png)
 
 ## <a name="manage-your-azure-web-app"></a>Gestire l'app Web di Azure
 
-Accedere al [portale di Azure](https://portal.azure.com) per visualizzare l'app Web creata. 
+Passare toohello [portale di Azure](https://portal.azure.com) toosee hello web app è stato creato. 
 
 
 
-Nel menu a sinistra fare clic su **Servizi app** e quindi sul nome dell'app Web di Azure.
+Scegliere dal menu a sinistra hello **servizio App**, quindi fare clic su nome hello dell'app web di Azure.
 
-![Passare all'app Web di Azure nel portale](./media/app-service-web-tutorial-dotnet-sqldatabase/access-portal.png)
+![Spostamento del portale tooAzure web app](./media/app-service-web-tutorial-dotnet-sqldatabase/access-portal.png)
 
 Viene visualizzata la pagina dell'app Web. 
 
-Per impostazione predefinita, il portale visualizza la pagina **Panoramica**. che offre una visualizzazione dello stato dell'app. In questa pagina è anche possibile eseguire attività di gestione di base come esplorare, arrestare, avviare, riavviare ed eliminare. Le schede sul lato sinistro della pagina mostrano le diverse pagine di configurazione che è possibile aprire. 
+Per impostazione predefinita, il portale di hello Mostra hello **Panoramica** pagina. che offre una visualizzazione dello stato dell'app. In questa pagina è anche possibile eseguire attività di gestione di base come esplorare, arrestare, avviare, riavviare ed eliminare. schede di Hello sul lato sinistro di hello della pagina hello mostrano è possibile aprire le pagine di configurazione diverso hello. 
 
 ![Pagina del servizio app nel portale di Azure](./media/app-service-web-tutorial-dotnet-sqldatabase/web-app-blade.png)
 
@@ -417,13 +417,13 @@ In questa esercitazione si è appreso come:
 
 > [!div class="checklist"]
 > * Creare un database SQL in Azure
-> * Connettere un'app ASP.NET al database SQL
-> * Distribuire l'app in Azure
-> * Aggiornare il modello di dati e ridistribuire l'app
-> * Eseguire lo streaming dei log da Azure al terminale
-> * Gestire l'app nel portale di Azure
+> * Connettersi a un tooSQL app ASP.NET Database
+> * Distribuire hello app tooAzure
+> * Modello di dati hello e ridistribuire l'applicazione hello
+> * Registri di flusso di Azure tooyour terminal
+> * Gestire app hello in hello portale di Azure
 
-Passare all'esercitazione successiva per apprendere come eseguire il mapping di un nome DNS personalizzato all'app Web.
+Spostare toolearn esercitazione successiva toohello come toomap un DNS personalizzato denominati toohello web app.
 
 > [!div class="nextstepaction"]
-> [Eseguire il mapping di un nome DNS personalizzato esistente ad app Web di Azure](app-service-web-tutorial-custom-domain.md)
+> [Eseguire il mapping di un esistente personalizzato DNS nome tooAzure App Web](app-service-web-tutorial-custom-domain.md)

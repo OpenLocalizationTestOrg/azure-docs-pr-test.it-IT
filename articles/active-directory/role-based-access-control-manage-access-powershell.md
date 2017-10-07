@@ -1,6 +1,6 @@
 ---
-title: Gestire il controllo degli accessi in base al ruolo con Azure PowerShell | Documentazione Microsoft
-description: Come gestire il controllo degli accessi in base al ruolo con Azure PowerShell, come elencare ruoli, assegnare ruoli ed eliminare assegnazioni di ruoli.
+title: aaaManage Role-Based Access Control (RBAC) with Azure PowerShell | Documenti Microsoft
+description: Come toomanage RBAC con Azure PowerShell, inclusi l'elenco di ruoli, l'assegnazione dei ruoli e l'eliminazione di assegnazioni di ruolo.
 services: active-directory
 documentationcenter: 
 author: andredm7
@@ -14,11 +14,11 @@ ms.workload: identity
 ms.date: 07/12/2017
 ms.author: andredm
 ms.reviewer: rqureshi
-ms.openlocfilehash: d7b11df21650b5cb27f9c3dd8306f8d12664185e
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: fa44991113e75b345177867b0bede38de4373e04
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="manage-role-based-access-control-with-azure-powershell"></a>Gestire il controllo degli accessi in base al ruolo con Azure PowerShell
 > [!div class="op_single_selector"]
@@ -26,16 +26,16 @@ ms.lasthandoff: 08/29/2017
 > * [Interfaccia della riga di comando di Azure](role-based-access-control-manage-access-azure-cli.md)
 > * [API REST](role-based-access-control-manage-access-rest.md)
 
-È possibile usare il controllo degli accessi in base al ruolo (RBAC) nel portale di Azure e nell'API di Azure Resource Manager per gestire con estrema precisione l'accesso alla propria sottoscrizione. Con questa funzionalità è possibile concedere l'accesso a utenti, gruppi o entità servizio di Active Directory assegnando loro dei ruoli in un determinato ambito.
+Controllo di accesso basato sui ruoli (RBAC) è possibile utilizzare in hello portale di Azure e sottoscrizione tooyour di API di gestione risorse di Azure toomanage accesso a un livello con granularità fine. Con questa funzionalità, è possibile concedere l'accesso per utenti, gruppi o entità servizio Active Directory assegnando toothem alcuni ruoli a un particolare ambito.
 
-Prima di usare PowerShell per gestire il controllo degli accessi in base al ruolo, è necessario avere i prerequisiti seguenti:
+Prima di poter utilizzare PowerShell toomanage RBAC, è necessario hello seguenti prerequisiti:
 
-* Azure PowerShell 0.8.8 o versione successiva. Per installare la versione più recente e associarla alla sottoscrizione di Azure, vedere [Come installare e configurare Azure PowerShell](/powershell/azure/overview).
-* Cmdlet di Azure Resource Manager Installare i [cmdlet di Azure Resource Manager](/powershell/azure/overview) in PowerShell.
+* Azure PowerShell 0.8.8 o versione successiva. versione più recente di tooinstall hello e associare con la sottoscrizione di Azure, vedere [come tooinstall e configurare Azure PowerShell](/powershell/azure/overview).
+* Cmdlet di Azure Resource Manager Installare hello [i cmdlet di Azure Resource Manager](/powershell/azure/overview) in PowerShell.
 
 ## <a name="list-roles"></a>Elenco dei ruoli
 ### <a name="list-all-available-roles"></a>Elencare tutti i ruoli disponibili
-Per elencare i ruoli del controllo degli accessi in base al ruolo disponibili per l'assegnazione e controllare le operazioni a cui concedono l'accesso, usare `Get-AzureRmRoleDefinition`.
+ruoli RBAC toolist disponibili per l'assegnazione e tooinspect hello operazioni toowhich concedere l'accesso, utilizzare `Get-AzureRmRoleDefinition`.
 
 ```
 Get-AzureRmRoleDefinition | FT Name, Description
@@ -44,7 +44,7 @@ Get-AzureRmRoleDefinition | FT Name, Description
 ![Controllo degli accessi in base al ruolo di PowerShell - Get-AzureRmRoleDefinition - Schermata](./media/role-based-access-control-manage-access-powershell/1-get-azure-rm-role-definition1.png)
 
 ### <a name="list-actions-of-a-role"></a>Elencare le azioni di un ruolo
-Per elencare le azioni per un ruolo specifico, usare `Get-AzureRmRoleDefinition <role name>`.
+le azioni di hello toolist per un ruolo specifico, utilizzare `Get-AzureRmRoleDefinition <role name>`.
 
 ```
 Get-AzureRmRoleDefinition Contributor | FL Actions, NotActions
@@ -55,10 +55,10 @@ Get-AzureRmRoleDefinition Contributor | FL Actions, NotActions
 ![Controllo degli accessi in base al ruolo di PowerShell - Get-AzureRmRoleDefinition per un ruolo specifico - Schermata](./media/role-based-access-control-manage-access-powershell/1-get-azure-rm-role-definition2.png)
 
 ## <a name="see-who-has-access"></a>Assegnazioni di accesso
-Per elencare le assegnazioni di accesso al controllo degli accessi in base al ruolo, usare `Get-AzureRmRoleAssignment`.
+utilizzare assegnazioni di accesso RBAC toolist, `Get-AzureRmRoleAssignment`.
 
 ### <a name="list-role-assignments-at-a-specific-scope"></a>Elencare le assegnazioni di ruolo in un ambito specifico
-È possibile elencare le assegnazioni di accesso in base a sottoscrizione, gruppo di risorse o risorsa specificati. Ad esempio, per elencare tutte le assegnazioni attive per un gruppo di risorse, usare `Get-AzureRmRoleAssignment -ResourceGroupName <resource group name>`.
+È possibile visualizzare tutte le assegnazioni di accesso hello per una sottoscrizione specificata, un gruppo di risorse o una risorsa. Ad esempio, toosee hello tutte le assegnazioni active hello per un gruppo di risorse, utilizzare `Get-AzureRmRoleAssignment -ResourceGroupName <resource group name>`.
 
 ```
 Get-AzureRmRoleAssignment -ResourceGroupName Pharma-Sales-ProjectForcast | FL DisplayName, RoleDefinitionName, Scope
@@ -66,8 +66,8 @@ Get-AzureRmRoleAssignment -ResourceGroupName Pharma-Sales-ProjectForcast | FL Di
 
 ![Controllo degli accessi in base al ruolo di PowerShell - Get-AzureRmRoleDefinition per un gruppo di risorse - Schermata](./media/role-based-access-control-manage-access-powershell/4-get-azure-rm-role-assignment1.png)
 
-### <a name="list-roles-assigned-to-a-user"></a>Elencare i ruoli assegnati ad un utente
-Per elencare tutti i ruoli assegnati a un utente specifico e i ruoli assegnati ai gruppi a cui appartiene l'utente, usare `Get-AzureRmRoleAssignment -SignInName <User email> -ExpandPrincipalGroups`.
+### <a name="list-roles-assigned-tooa-user"></a>Elenco ruoli assegnati tooa utente
+toolist tutti i ruoli di hello assegnati tooa specificato utente e ruoli hello che sono assegnati dei gruppi toohello toowhich hello utente appartiene, utilizzare `Get-AzureRmRoleAssignment -SignInName <User email> -ExpandPrincipalGroups`.
 
 ```
 Get-AzureRmRoleAssignment -SignInName sameert@aaddemo.com | FL DisplayName, RoleDefinitionName, Scope
@@ -78,68 +78,68 @@ Get-AzureRmRoleAssignment -SignInName sameert@aaddemo.com -ExpandPrincipalGroups
 ![Controllo degli accessi in base al ruolo di PowerShell - Get-AzureRmRoleDefinition per un utente - Schermata](./media/role-based-access-control-manage-access-powershell/4-get-azure-rm-role-assignment2.png)
 
 ### <a name="list-classic-service-administrator-and-coadmin-role-assignments"></a>Elencare le assegnazioni di ruoli per l'amministratore e i coamministratori del servizio classici
-Per elencare le assegnazioni dell'accesso per l'amministratore e i coamministratori della sottoscrizione classici, usare:
+le assegnazioni di accesso toolist per amministratore classico sottoscrizione hello e coadministrators, utilizzare:
 
     Get-AzureRmRoleAssignment -IncludeClassicAdministrators
 
 ## <a name="grant-access"></a>Concedere l'accesso
 ### <a name="search-for-object-ids"></a>Cercare gli ID oggetto
-Per assegnare un ruolo, è necessario identificare l'oggetto (utente, gruppo o applicazione) e l'ambito.
+tooassign un ruolo, è necessario tooidentify oggetti hello (utente, gruppo o applicazione) e ambito hello.
 
-Se non si conosce l'ID sottoscrizione, è possibile reperire tale informazione nel pannello **Sottoscrizioni** nel portale di Azure. Per informazioni su come eseguire una query per l'ID della sottoscrizione,vedere [Get-AzureSubscription](/powershell/module/azure/get-azuresubscription?view=azuresmps-3.7.0) (Get-AzureSubscription) in MSDN.
+Se non si conosce l'ID sottoscrizione hello, sarà possibile trovarlo in hello **sottoscrizioni** pannello nel portale di Azure hello. toolearn tooquery per l'ID sottoscrizione hello, vedere [Get-AzureSubscription](/powershell/module/azure/get-azuresubscription?view=azuresmps-3.7.0) su MSDN.
 
-Per ottenere l'ID oggetto per un gruppo di Azure AD, usare:
+ID di oggetto hello tooget per un gruppo di Azure AD, usare:
 
     Get-AzureRmADGroup -SearchString <group name in quotes>
 
-Per ottenere l'ID oggetto per un'entità servizio di Azure AD o applicazione, usare:
+ID di oggetto hello tooget per un'entità servizio di Azure AD o l'applicazione, utilizzare:
 
     Get-AzureRmADServicePrincipal -SearchString <service name in quotes>
 
-### <a name="assign-a-role-to-an-application-at-the-subscription-scope"></a>Assegnare un ruolo a un'applicazione nell'ambito della sottoscrizione
-Per concedere l'accesso a un'applicazione nell'ambito della sottoscrizione, usare:
+### <a name="assign-a-role-tooan-application-at-hello-subscription-scope"></a>Assegnare un'applicazione tooan ruolo nell'ambito di sottoscrizione hello
+applicazione di tooan toogrant accesso all'ambito della sottoscrizione hello, utilizzare:
 
     New-AzureRmRoleAssignment -ObjectId <application id> -RoleDefinitionName <role name> -Scope <subscription id>
 
 ![Controllo degli accessi in base al ruolo di PowerShell - New-AzureRmRoleAssignment - Schermata](./media/role-based-access-control-manage-access-powershell/2-new-azure-rm-role-assignment2.png)
 
-### <a name="assign-a-role-to-a-user-at-the-resource-group-scope"></a>Assegnare un ruolo a un utente nell'ambito di un gruppo di risorse
-Per concedere l'accesso a un utente nell'ambito di un gruppo di risorse, usare:
+### <a name="assign-a-role-tooa-user-at-hello-resource-group-scope"></a>Assegnare un utente tooa ruolo nell'ambito del gruppo di risorse hello
+toogrant accesso tooa utente nell'ambito di gruppo di risorse hello, utilizzare:
 
     New-AzureRmRoleAssignment -SignInName <email of user> -RoleDefinitionName <role name in quotes> -ResourceGroupName <resource group name>
 
 ![Controllo degli accessi in base al ruolo di PowerShell - New-AzureRmRoleAssignment - Schermata](./media/role-based-access-control-manage-access-powershell/2-new-azure-rm-role-assignment3.png)
 
-### <a name="assign-a-role-to-a-group-at-the-resource-scope"></a>Assegnare un ruolo a un gruppo nell'ambito delle risorse
-Per concedere l'accesso a un gruppo nell'ambito delle risorse, usare:
+### <a name="assign-a-role-tooa-group-at-hello-resource-scope"></a>Assegnare un gruppo di tooa ruolo nell'ambito di risorsa hello
+gruppo di tooa toogrant accesso nell'ambito di risorsa hello, utilizzare:
 
     New-AzureRmRoleAssignment -ObjectId <object id> -RoleDefinitionName <role name in quotes> -ResourceName <resource name> -ResourceType <resource type> -ParentResource <parent resource> -ResourceGroupName <resource group name>
 
 ![Controllo degli accessi in base al ruolo di PowerShell - New-AzureRmRoleAssignment - Schermata](./media/role-based-access-control-manage-access-powershell/2-new-azure-rm-role-assignment4.png)
 
 ## <a name="remove-access"></a>Rimuovere un accesso
-Per rimuovere l'accesso per utenti, gruppi e applicazioni, usare:
+tooremove l'accesso per l'utilizzo di applicazioni, utenti e gruppi:
 
     Remove-AzureRmRoleAssignment -ObjectId <object id> -RoleDefinitionName <role name> -Scope <scope such as subscription id>
 
 ![Controllo degli accessi in base al ruolo di PowerShell - Remove-AzureRmRoleAssignment - Schermata](./media/role-based-access-control-manage-access-powershell/3-remove-azure-rm-role-assignment.png)
 
 ## <a name="create-a-custom-role"></a>Creare un ruolo personalizzato
-Per creare un ruolo personalizzato, usare il comando ```New-AzureRmRoleDefinition``` . Esistono due metodi per strutturare il ruolo, usare PSRoleDefinitionObject o un modello JSON. 
+toocreate un ruolo personalizzato, utilizzare hello ```New-AzureRmRoleDefinition``` comando. Sono disponibili due metodi di strutturazione ruolo hello, utilizzare PSRoleDefinitionObject o un modello JSON. 
 
 ## <a name="get-actions-for-a-resource-provider"></a>Ottenere le azioni per un provider di risorse
-Quando si creano ruoli personalizzati da zero, è importante conoscere tutte le operazioni possibili dei provider di risorse.
-Utilizzare il comando ```Get-AzureRMProviderOperation``` per ottenere queste informazioni.
-Ad esempio, se si desidera controllare tutte le operazioni disponibili per la macchina virtuale usare questo comando:
+Quando si crea ruoli personalizzati da zero, è importante tooknow tutti hello possibili operazioni dai provider di risorse hello.
+Hello utilizzare ```Get-AzureRMProviderOperation``` comando tooget queste informazioni.
+Ad esempio, se si desidera toocheck tutte le operazioni disponibili hello per la macchina virtuale utilizzano questo comando:
 
 ```
 Get-AzureRMProviderOperation "Microsoft.Compute/virtualMachines/*" | FT OperationName, Operation , Description -AutoSize
 ```
 
 ### <a name="create-role-with-psroledefinitionobject"></a>Creare un ruolo con PSRoleDefinitionObject
-Quando si crea un ruolo personalizzato con PowerShell, è possibile iniziare da zero o usare uno dei [ruoli predefiniti](role-based-access-built-in-roles.md) come punto di partenza. Nell'esempio riportato in questa sezione si inizia con un ruolo predefinito e quindi lo si personalizza con più privilegi. Modificare gli attributi e aggiungere gli attributi *Actions*, *notActions* o *scopes* desiderati e quindi salvare le modifiche come nuovo ruolo.
+Quando si usa PowerShell toocreate un ruolo personalizzato, è possibile iniziare da zero o uno di hello [ruoli predefiniti](role-based-access-built-in-roles.md) come punto di partenza. esempio Hello in questa sezione inizia con un ruolo incorporato e quindi si Personalizza con più privilegi. Modifica hello tooadd gli attributi di hello *azioni*, *notActions*, o *ambiti* desiderato e quindi salvare le modifiche di hello come un nuovo ruolo.
 
-L'esempio seguente inizia con il ruolo *Virtual Machine Contributor* e lo usa per creare un ruolo personalizzato denominato *Virtual Machine Operator*. Il nuovo ruolo concede l'accesso a tutte le operazioni di lettura dei provider di risorse *Microsoft.Compute*, *Microsoft.Storage* e *Microsoft.Network* e concede l'accesso per avviare, riavviare e monitorare le macchine virtuali. Il ruolo personalizzato può essere usato in due sottoscrizioni.
+Hello esempio seguente viene avviato con hello *collaboratore alla macchina virtuale* ruolo e utilizza tale toocreate un ruolo personalizzato chiamato *operatore macchina virtuale*. nuovo ruolo Hello concede accesso tooall leggere le operazioni di *Microsoft. COMPUTE*, *Microsoft.Storage*, e *Network* provider e concede l'accesso alla risorsa toostart, riavviare e monitorare le macchine virtuali. ruolo personalizzata Hello può essere utilizzato in due sottoscrizioni.
 
 ```
 $role = Get-AzureRmRoleDefinition "Virtual Machine Contributor"
@@ -165,14 +165,14 @@ New-AzureRmRoleDefinition -Role $role
 ![Controllo degli accessi in base al ruolo di PowerShell - Get-AzureRmRoleDefinition - Schermata](./media/role-based-access-control-manage-access-powershell/2-new-azurermroledefinition.png)
 
 ### <a name="create-role-with-json-template"></a>Creare un ruolo con il modello JSON
-È possibile usare un modello JSON come definizione di origine per il ruolo personalizzato. Nell'esempio seguente viene creato un ruolo personalizzato che consente di accedere in lettura all'archiviazione e alle risorse di calcolo, di accedere come supporto e di aggiungere tale ruolo a due sottoscrizioni. Creare un nuovo file `C:\CustomRoles\customrole1.json` con il seguente esempio. L'ID deve essere impostato su `null` all'inizio della creazione del ruolo quando viene generato in automatico un nuovo ID. 
+Un modello JSON può essere utilizzato come definizione dell'origine hello per ruolo personalizzata hello. esempio Hello crea un ruolo personalizzato che consente l'accesso in lettura toostorage e le risorse di calcolo, accedere toosupport e aggiunge tale ruolo tootwo sottoscrizioni. Creare un nuovo file `C:\CustomRoles\customrole1.json` con hello di esempio seguente. Hello Id deve essere impostato troppo`null` durante la creazione di un ruolo iniziale come un nuovo ID viene generato automaticamente. 
 
 ```
 {
   "Name": "Custom Role 1",
   "Id": null,
   "IsCustom": true,
-  "Description": "Allows for read access to Azure storage and compute resources and access to support",
+  "Description": "Allows for read access tooAzure storage and compute resources and access toosupport",
   "Actions": [
     "Microsoft.Compute/*/read",
     "Microsoft.Storage/*/read",
@@ -186,18 +186,18 @@ New-AzureRmRoleDefinition -Role $role
   ]
 }
 ```
-Per aggiungere il ruolo alle sottoscrizioni, eseguire il comando PowerShell seguente:
+tooadd hello ruolo toohello sottoscrizioni, eseguire il comando PowerShell seguente hello:
 ```
 New-AzureRmRoleDefinition -InputFile "C:\CustomRoles\customrole1.json"
 ```
 
 ## <a name="modify-a-custom-role"></a>Modificare un ruolo personalizzato
-Così come per la creazione di un ruolo personalizzato, è possibile modificare un ruolo personalizzato esistente usando PSRoleDefinitionObject o un modello JSON.
+Toocreating simile, un ruolo personalizzato, è possibile modificare un ruolo personalizzato esistente utilizza PSRoleDefinitionObject hello o un modello JSON.
 
 ### <a name="modify-role-with-psroledefinitionobject"></a>Modificare un ruolo con PSRoleDefinitionObject
-Per modificare un ruolo personalizzato, usare innanzitutto il comando `Get-AzureRmRoleDefinition` per recuperare la definizione di ruolo. Successivamente, apportare le modifiche desiderate alla definizione del ruolo. Infine, usare il comando `Set-AzureRmRoleDefinition` per salvare la definizione del ruolo modificata.
+toomodify un ruolo personalizzato, utilizzare innanzitutto hello `Get-AzureRmRoleDefinition` la definizione di ruolo hello tooretrieve del comando. In secondo luogo, apportare le modifiche desiderata hello toohello definizione di ruolo. Infine, utilizzare hello `Set-AzureRmRoleDefinition` hello toosave comando Modifica definizione di ruolo.
 
-Nell'esempio seguente viene aggiunta l'operazione `Microsoft.Insights/diagnosticSettings/*` al ruolo personalizzato *Operatore macchina virtuale* .
+esempio Hello aggiunge hello `Microsoft.Insights/diagnosticSettings/*` operazione toohello *operatore macchina virtuale* ruolo personalizzato.
 
 ```
 $role = Get-AzureRmRoleDefinition "Virtual Machine Operator"
@@ -207,7 +207,7 @@ Set-AzureRmRoleDefinition -Role $role
 
 ![Controllo degli accessi in base al ruolo di PowerShell - Set-AzureRmRoleDefinition - Schermata](./media/role-based-access-control-manage-access-powershell/3-set-azurermroledefinition-1.png)
 
-Nell'esempio seguente viene aggiunta una sottoscrizione di Azure agli ambiti assegnabili del ruolo personalizzato *Virtual Machine Operator* .
+esempio Hello aggiunge una sottoscrizione di Azure toohello gli ambiti assegnabili di hello *operatore macchina virtuale* ruolo personalizzato.
 
 ```
 Get-AzureRmSubscription - SubscriptionName Production3
@@ -220,14 +220,14 @@ Set-AzureRmRoleDefinition -Role $role
 ![Controllo degli accessi in base al ruolo di PowerShell - Set-AzureRmRoleDefinition - Schermata](./media/role-based-access-control-manage-access-powershell/3-set-azurermroledefinition-2.png)
 
 ### <a name="modify-role-with-json-template"></a>Modificare un ruolo con il modello JSON
-Usando il modello JSON precedente, è possibile modificare un ruolo personalizzato esistente per aggiungere o rimuovere le azioni. Aggiornare il modello JSON e aggiungere l'azione di lettura per la rete, come illustrato nell'esempio seguente. Le definizioni riportate nel modello non vengono applicate in modo cumulativo a una definizione esistente, vale a dire che il ruolo verrà visualizzato esattamente come specificato nel modello. È anche necessario aggiornare il campo ID con l'ID del ruolo. Se non si è certi di quale sia questo valore, è possibile utilizzare il cmdlet `Get-AzureRmRoleDefinition` per ottenere queste informazioni.
+Modello hello precedente JSON, è possibile modificare un tooadd ruolo personalizzato esistente o rimuovere le azioni. Aggiorna modello JSON hello e aggiungere hello azione di lettura per la rete, come illustrato nell'esempio seguente hello. le definizioni di Hello elencate nel modello di hello non sono definizione esistente tooan applicato in modo cumulativo, vale a dire che viene visualizzata tale ruolo hello esattamente come specificato nel modello di hello. È inoltre necessario tooupdate hello Id campo ID hello del ruolo hello. Se non si è certi che cos'è questo valore, è possibile utilizzare hello `Get-AzureRmRoleDefinition` tooget cmdlet queste informazioni.
 
 ```
 {
   "Name": "Custom Role 1",
   "Id": "acce7ded-2559-449d-bcd5-e9604e50bad1",
   "IsCustom": true,
-  "Description": "Allows for read access to Azure storage and compute resources and access to support",
+  "Description": "Allows for read access tooAzure storage and compute resources and access toosupport",
   "Actions": [
     "Microsoft.Compute/*/read",
     "Microsoft.Storage/*/read",
@@ -243,15 +243,15 @@ Usando il modello JSON precedente, è possibile modificare un ruolo personalizza
 }
 ```
 
-Per aggiornare il ruolo esistente, eseguire il comando PowerShell seguente:
+tooupdate hello ruolo esistente, eseguire il comando PowerShell seguente hello:
 ```
 Set-AzureRmRoleDefinition -InputFile "C:\CustomRoles\customrole1.json"
 ```
 
 ## <a name="delete-a-custom-role"></a>Eliminare un ruolo personalizzato
-Per eliminare un ruolo personalizzato, usare il comando `Remove-AzureRmRoleDefinition` .
+toodelete un ruolo personalizzato, utilizzare hello `Remove-AzureRmRoleDefinition` comando.
 
-Nell'esempio seguente viene rimosso il ruolo personalizzato *Operatore macchina virtuale* .
+esempio Hello rimuove hello *operatore macchina virtuale* ruolo personalizzato.
 
 ```
 Get-AzureRmRoleDefinition "Virtual Machine Operator"
@@ -262,9 +262,9 @@ Get-AzureRmRoleDefinition "Virtual Machine Operator" | Remove-AzureRmRoleDefinit
 ![Controllo degli accessi in base al ruolo di PowerShell - Remove-AzureRmRoleDefinition - Schermata](./media/role-based-access-control-manage-access-powershell/4-remove-azurermroledefinition.png)
 
 ## <a name="list-custom-roles"></a>Elencare ruoli personalizzati
-Per elencare i ruoli disponibili per l'assegnazione a un ambito, usare il comando `Get-AzureRmRoleDefinition` .
+i ruoli di hello toolist che sono disponibili per l'assegnazione a un ambito, usano hello `Get-AzureRmRoleDefinition` comando.
 
-L'esempio seguente elenca tutti i ruoli disponibili per l'assegnazione nella sottoscrizione selezionata.
+Hello di esempio seguente vengono elencati tutti i ruoli che sono disponibili per l'assegnazione nella sottoscrizione hello selezionato.
 
 ```
 Get-AzureRmRoleDefinition | FT Name, IsCustom
@@ -272,7 +272,7 @@ Get-AzureRmRoleDefinition | FT Name, IsCustom
 
 ![Controllo degli accessi in base al ruolo di PowerShell - Get-AzureRmRoleDefinition - Schermata](./media/role-based-access-control-manage-access-powershell/5-get-azurermroledefinition-1.png)
 
-Nell'esempio seguente il ruolo personalizzato *Virtual Machine Operator* non è disponibile nella sottoscrizione *Production4* perché la sottoscrizione non è inclusa in **AssignableScopes** per il ruolo.
+Nell'esempio seguente di hello, hello *operatore macchina virtuale* ruolo personalizzato non è disponibile in hello *Production4* sottoscrizione perché tale sottoscrizione non è in hello  **AssignableScopes** del ruolo hello.
 
 ![Controllo degli accessi in base al ruolo di PowerShell - Get-AzureRmRoleDefinition - Schermata](./media/role-based-access-control-manage-access-powershell/5-get-azurermroledefinition2.png)
 

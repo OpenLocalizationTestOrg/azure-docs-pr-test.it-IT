@@ -1,6 +1,6 @@
 ---
-title: Modelli di applicazione in Gestione API di Azure | Microsoft Docs
-description: Informazioni su come personalizzare il contenuto delle pagine Applicazione nel portale per sviluppatori in Gestione API di Azure.
+title: modelli aaaApplication in Gestione API di Azure | Documenti Microsoft
+description: Informazioni su come toocustomize hello contenuto delle pagine di applicazione hello nel portale per sviluppatori hello in Gestione API di Azure.
 services: api-management
 documentationcenter: 
 author: miaojiang
@@ -14,28 +14,28 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/09/2017
 ms.author: apimpm
-ms.openlocfilehash: 6d2d44465800219f16866a621d4822614ac9e1dd
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: f4dc078be7163b047ca2e640a9065ba9e5ba709e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="application-templates-in-azure-api-management"></a>Modelli di applicazione in Gestione API di Azure
-In Gestione API di Azure è possibile personalizzare le pagine del portale per sviluppatori usando un set di modelli che ne configurano il contenuto. La sintassi [DotLiquid](http://dotliquidmarkup.org/) usata insieme all'editor di propria scelta, ad esempio [DotLiquid for Designers](https://github.com/dotliquid/dotliquid/wiki/DotLiquid-for-Designers), e a un set di [risorse stringa](api-management-template-resources.md#strings) localizzate, [risorse Glifo](api-management-template-resources.md#glyphs) e [controlli di pagina](api-management-page-controls.md) offre una grande flessibilità nella configurazione personalizzata del contenuto delle pagine attraverso questi modelli.  
+Gestione API di Azure fornisce che si hello contenuto hello toocustomize di possibilità di pagine del portale per sviluppatori tramite un set di modelli che consentono di configurare i propri contenuti. Utilizzando [DotLiquid](http://dotliquidmarkup.org/) sintassi e hello editor di propria scelta, ad esempio [DotLiquid per i progettisti](https://github.com/dotliquid/dotliquid/wiki/DotLiquid-for-Designers), e un set specificato di localizzato [risorse di stringa](api-management-template-resources.md#strings), [ Risorse glifo](api-management-template-resources.md#glyphs), e [pagina controlli](api-management-page-controls.md), una grande flessibilità tooconfigure hello alcuni contenuti sono di pagine hello secondo necessità utilizzando questi modelli.  
   
- I modelli in questa sezione consentono di personalizzare il contenuto delle pagine Applicazione del portale per sviluppatori.  
+ i modelli di Hello in questa sezione consentono di contenuto di hello toocustomize di pagine dell'applicazione hello nel portale per sviluppatori hello.  
   
 -   [Elenco applicazioni](#ProductList)  
   
 -   [Applicazione](#Application)  
   
 > [!NOTE]
->  La documentazione seguente include alcuni modelli predefiniti di esempio. A causa dei continui miglioramenti che vengono apportati, questi modelli sono però soggetti a modifiche. È possibile visualizzare i modelli predefiniti direttamente nel portale per sviluppatori accedendo ai singoli modelli desiderati. Per altre informazioni sull'uso dei modelli, vedere [Come personalizzare il portale per sviluppatori di Gestione API di Azure con i modelli](https://azure.microsoft.com/documentation/articles/api-management-developer-portal-templates/).  
+>  Modelli predefiniti di esempio sono inclusi in hello seguente documentazione, ma sono soggetto toochange scadenza toocontinuous miglioramenti. È possibile visualizzare i modelli predefiniti in tempo reale di hello nel portale per sviluppatori di hello passando singoli modelli toohello desiderato. Per ulteriori informazioni sull'utilizzo dei modelli, vedere [come toocustomize hello portale di gestione API per gli sviluppatori utilizzando i modelli](https://azure.microsoft.com/documentation/articles/api-management-developer-portal-templates/).  
   
 ##  <a name="ProductList"></a> Elenco applicazioni  
- Il modello **Elenco applicazioni** consente di personalizzare il corpo della pagina dell'elenco delle applicazioni nel portale per sviluppatori.  
+ Hello **elenco di applicazioni** modello consente il corpo di hello toocustomize della pagina di elenco dell'applicazione hello nel portale per sviluppatori hello.  
   
- ![Modelli della pagina Elenco applicazioni nel portale per sviluppatori](./media/api-management-application-templates/APIM-Application-List-Page-Developer-Portal-Templates.png "Modelli della pagina Elenco applicazioni nel portale per sviluppatori di Gestione API")  
+ ![Modelli della pagina Elenco applicazioni nel portale per sviluppatori](./media/api-management-application-templates/APIM-Application-List-Page-Developer-Portal-Templates.png "Modelli della pagina Elenco applicazioni APIM nel portale per sviluppatori")  
   
 ### <a name="default-template"></a>Modello predefinito  
   
@@ -70,7 +70,7 @@ In Gestione API di Azure è possibile personalizzare le pagine del portale per s
 ```  
   
 ### <a name="controls"></a>Controlli  
- Il modello `Product list` può usare i [controlli di pagina](api-management-page-controls.md) seguenti.  
+ Hello `Product list` modello può utilizzare l'esempio hello [pagina controlli](api-management-page-controls.md).  
   
 -   [paging-control](api-management-page-controls.md#paging-control)  
   
@@ -78,9 +78,9 @@ In Gestione API di Azure è possibile personalizzare le pagine del portale per s
   
 |Proprietà|Tipo|Descrizione|  
 |--------------|----------|-----------------|  
-|Paging|Entità [Paging](api-management-template-data-model-reference.md#Paging).|Le informazioni di paging per la raccolta di applicazioni.|  
-|Applicazioni|Raccolta di entità [Applicazione](api-management-template-data-model-reference.md#Application).|Le applicazioni visibili all'utente corrente.|  
-|CategoryName|string|La categoria dell'applicazione.|  
+|Paging|Entità [Paging](api-management-template-data-model-reference.md#Paging).|Hello paging le informazioni per la raccolta di applicazioni hello.|  
+|Applicazioni|Raccolta di entità [Applicazione](api-management-template-data-model-reference.md#Application).|utente corrente toohello visibile applicazioni Hello.|  
+|CategoryName|string|categoria di Hello dell'applicazione.|  
   
 ### <a name="sample-template-data"></a>Dati del modello di esempio  
   
@@ -134,9 +134,9 @@ In Gestione API di Azure è possibile personalizzare le pagine del portale per s
 ```  
   
 ##  <a name="Application"></a> Applicazione  
- Il modello **Applicazione** consente di personalizzare il corpo della pagina dell'applicazione nel portale per sviluppatori.  
+ Hello **applicazione** modello consente il corpo di hello toocustomize della pagina dell'applicazione hello nel portale per sviluppatori hello.  
   
- ![Modelli della pagina Applicazione nel portale per sviluppatori](./media/api-management-application-templates/APIM-Application-Page-Developer-Portal-Templates.png "Modelli della pagina Applicazione nel portale per sviluppatori di Gestione API")  
+ ![Modelli della pagina Applicazione nel portale per sviluppatori](./media/api-management-application-templates/APIM-Application-Page-Developer-Portal-Templates.png "Modelli della pagina Applicazione APIM nel portale per sviluppatori")  
   
 ### <a name="default-template"></a>Modello predefinito  
   
@@ -177,7 +177,7 @@ In Gestione API di Azure è possibile personalizzare le pagine del portale per s
 ```  
   
 ### <a name="controls"></a>Controlli  
- Il modello `Application` non consente l'uso di [controlli di pagina](api-management-page-controls.md).  
+ Hello `Application` modello non consente l'uso di hello di qualsiasi [pagina controlli](api-management-page-controls.md).  
   
 ### <a name="data-model"></a>Modello di dati  
  Entità [Applicazione](api-management-template-data-model-reference.md#Application).  
@@ -220,4 +220,4 @@ In Gestione API di Azure è possibile personalizzare le pagine del portale per s
 ```
 
 ## <a name="next-steps"></a>Passaggi successivi
-Per ulteriori informazioni sull'uso dei modelli, vedere [Come personalizzare il portale per sviluppatori di Gestione API usando i modelli](api-management-developer-portal-templates.md).
+Per ulteriori informazioni sull'utilizzo dei modelli, vedere [come toocustomize hello portale di gestione API per gli sviluppatori utilizzando i modelli](api-management-developer-portal-templates.md).

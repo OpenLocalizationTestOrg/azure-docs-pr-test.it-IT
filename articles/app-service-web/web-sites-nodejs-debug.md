@@ -1,6 +1,6 @@
 ---
-title: Come eseguire il debug di un'app Web Node.js nel servizio app di Azure
-description: Informazioni su come eseguire il debug di un'app Web Node.js nel servizio app di Azure.
+title: aaaHow toodebug un'app web Node.js in Azure App Service
+description: Informazioni su come toodebug un Node.js web app in Azure App Service.
 tags: azure-portal
 services: app-service\web
 documentationcenter: nodejs
@@ -15,123 +15,123 @@ ms.devlang: nodejs
 ms.topic: article
 ms.date: 08/17/2016
 ms.author: tarcher
-ms.openlocfilehash: 5e302a4c58a171d40e43a22c34c724e868019ec8
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 888ec5c3f92cfc3aeea4ea86005b9b6a0d1306ea
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-debug-a-nodejs-web-app-in-azure-app-service"></a>Come eseguire il debug di un'app Web Node.js nel servizio app di Azure
-Azure offre diagnostica integrata per agevolare il debug di applicazioni Node.js ospitate in App Web del [servizio app di Azure](http://go.microsoft.com/fwlink/?LinkId=529714) . In questo articolo verrà illustrato come abilitare la registrazione di stdout e stderr, visualizzare informazioni sugli errori nel browser, nonché come scaricare e visualizzare i file di log.
+# <a name="how-toodebug-a-nodejs-web-app-in-azure-app-service"></a>Come toodebug un Node.js web app in Azure App Service
+Azure offre tooassist di diagnostica con il debug di applicazioni Node.js ospitate in [Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714) App Web. In questo articolo si apprenderà come registrazione tooenable di stdout e stderr, informazioni di errore visualizzato nel browser hello e la modalità di toodownload e visualizzare i file di log.
 
-La diagnostica per le applicazioni Node.js ospitate in Azure viene fornita da [IISNode]. In questo articolo vengono illustrate le impostazioni più comuni per la raccolta delle informazioni di diagnostica; non sono invece incluse informazioni dettagliate sull'utilizzo di IISNode. Per ulteriori informazioni sull'utilizzo di IISNode, vedere il [file Readme di IISNode] su GitHub.
+La diagnostica per le applicazioni Node.js ospitate in Azure viene fornita da [IISNode]. Anche se in questo articolo illustra le impostazioni più comuni di hello per raccogliere le informazioni di diagnostica, non fornisce un riferimento completo per l'utilizzo di IISNode. Per ulteriori informazioni sull'uso di IISNode, vedere hello [IISNode Readme] su GitHub.
 
 <a id="enablelogging"></a>
 
 ## <a name="enable-logging"></a>Abilitazione della registrazione
 Per impostazione predefinita, un'app web servizio App acquisisce solo le informazioni di diagnostica relative distribuzioni, ad esempio quando si distribuisce un'app web utilizzando Git. Tali informazioni sono utili in caso di problemi durante la distribuzione, ad esempio quando non si riesce a installare un modulo cui viene fatto riferimento in **package.json**oppure se si usa uno script di distribuzione personalizzato.
 
-Per abilitare la registrazione di flussi stdout e stderr, è necessario creare un file **IISNode.yml** nella radice dell'applicazione Node.js e aggiungere quanto segue:
+hello tooenable registrazione di flussi di stdout e stderr, è necessario creare un **IISNode.yml** file alla radice dell'applicazione Node.js hello e aggiungere hello seguenti:
 
     loggingEnabled: true
 
-In tal modo la registrazione di stderr e stdout dall'applicazione Node.js verrà abilitata.
+In questo modo la registrazione di hello di stderr e stdout dall'applicazione Node.js.
 
-È inoltre possibile utilizzare il file **IISNode.yml** per controllare se in caso di errore al browser vengono restituiti errori descrittivi o dello sviluppatore. Per abilitare gli errori dello sviluppatore, aggiungere la riga seguente al file **IISNode.yml** :
+Hello **IISNode.yml** file può anche essere toocontrol utilizzati se descrittivi errori o per sviluppatori restituiti toohello browser quando si verifica un errore. individuare errori degli sviluppatori tooenable, aggiungere hello seguente riga toohello **IISNode.yml** file:
 
     devErrorsEnabled: true
 
-Dopo aver abilitato questa opzione, IISNode restituirà gli ultimi 64 KB di informazioni inviate a stderr anziché un errore descrittivo, quale "si è verificato un errore interno del server".
+Dopo aver abilitata questa opzione, IISNode restituirà hello ultimo 64 KB di informazioni inviate toostderr anziché un errore descrittivo, ad esempio "si è verificato un errore interno del server".
 
 > [!NOTE]
-> devErrorsEnabled è utile per diagnosticare problemi che si verificano durante lo sviluppo, tuttavia se viene abilitato in un ambiente di produzione è possibile che gli eventuali errori di sviluppo vengano inviati agli utenti finali.
+> Anche devErrorsEnabled è utile quando si diagnosticano problemi durante lo sviluppo, abilitarlo in un ambiente di produzione può comportare errori di sviluppo inviati agli utenti di tooend.
 > 
 > 
 
-Se il **IISNode.yml** non esisteva già nell'applicazione, sarà necessario riavviare il sito Web dopo aver pubblicato l'applicazione aggiornata. Se si intende solo modificare le impostazioni in un file **IISNode.yml** già pubblicato, il riavvio non è richiesto.
+Se hello **IISNode.yml** file non esiste già all'interno dell'applicazione, è necessario riavviare l'app web dopo la pubblicazione di un'applicazione hello aggiornato. Se si intende solo modificare le impostazioni in un file **IISNode.yml** già pubblicato, il riavvio non è richiesto.
 
 > [!NOTE]
-> Se il sito Web è stato creato con gli strumenti da riga di comando di Azure o i cmdlet di Azure PowerShell, verrà creato automaticamente un file **IISNode.yml** predefinito.
+> Se l'app web è stato creato utilizzando gli strumenti da riga di comando di hello Azure o i cmdlet PowerShell di Azure, valore predefinito è **IISNode.yml** file viene creato automaticamente.
 > 
 > 
 
-Per riavviare l'app Web, selezionarla nel [portale di Azure](https://portal.azure.com)e quindi fare clic sul pulsante **RIAVVIA** :
+toorestart hello web app, app web selezionare hello in hello [portale Azure](https://portal.azure.com), quindi fare clic su **riavviare** pulsante:
 
 ![Pulsante Restart][restart-button]
 
-Se nell'ambiente di sviluppo sono installati gli strumenti da riga di comando di Azure, è possibile utilizzare il comando seguente per riavviare il sito Web:
+Se gli strumenti da riga di comando di hello Azure sono installati nell'ambiente di sviluppo, è possibile utilizzare hello comando toorestart hello web app seguenti:
 
     azure site restart [sitename]
 
 > [!NOTE]
-> Anche se loggingEnabled e devErrorsEnabled sono le opzioni di configurazione più utilizzate di IISNode.yml per acquisire informazioni diagnostiche, è possibile utilizzare IISNode.yml per configurare numerose opzioni per l'ambiente host. Per un elenco completo delle opzioni di configurazione, vedere il file [iisnode_schema.xml](https://github.com/tjanczuk/iisnode/blob/master/src/config/iisnode_schema.xml).
+> Mentre loggingEnabled e devErrorsEnabled sono le opzioni di configurazione IISNode.yml hello più comunemente usato per l'acquisizione di informazioni di diagnostica, IISNode.yml può essere utilizzato tooconfigure un'ampia gamma di opzioni per l'ambiente di hosting. Per un elenco completo delle opzioni di configurazione di hello, vedere hello [iisnode_schema.xml](https://github.com/tjanczuk/iisnode/blob/master/src/config/iisnode_schema.xml) file.
 > 
 > 
 
 <a id="viewlogs"></a>
 
 ## <a name="accessing-logs"></a>Accesso ai log
-È possibile accedere ai log di diagnostica in tre modi, ovvero utilizzando il protocollo FTP (File Transfer Protocol), scaricando un archivio ZIP oppure sotto forma di flusso aggiornato in diretta del log (noto anche come tail). Per il download dell'archivio ZIP dei file di log o per la visualizzazione del flusso in diretta sono necessari gli strumenti da riga di comando di Azure, che è possibile installare tramite il comando seguente:
+I log di diagnostica possono avvenire in tre modi; Utilizzando hello protocollo FTP (File Transfer), il download di un archivio Zip, o come attivo aggiornato flusso del log hello (noto anche come finale). Download di archivio di Zip hello hello dei file di log o la visualizzazione flusso live hello richiedono strumenti da riga di comando di hello Azure. È possibile installarli utilizzando hello comando seguente:
 
     npm install azure-cli -g
 
-Dopo l'installazione, è possibile accedere agli strumenti tramite il comando 'azure'. È prima necessario configurare gli strumenti da riga di comando per l'uso della sottoscrizione di Azure. Per informazioni su come eseguire questa attività, vedere la sezione **Come scaricare e importare impostazioni di pubblicazione** dell'articolo [Come utilizzare gli strumenti da riga di comando](../xplat-cli-connect.md) .
+Una volta installato, è possano accedere agli strumenti di hello comando hello 'azure'. Hello strumenti da riga di comando deve essere innanzitutto configurato toouse la sottoscrizione di Azure. Per informazioni su come tooaccomplish questa attività, vedere hello **come di toodownload e importare le impostazioni di pubblicazione** sezione di hello [come tooUse hello strumenti da riga di comando di Azure](../xplat-cli-connect.md) articolo.
 
 ### <a name="ftp"></a>FTP
-Per accedere alle informazioni diagnostiche tramite FTP, visitare il [portale di Azure](https://portal.azure.com), selezionare l’app Web e scegliere **DASHBOARD**. Nella sezione relativa ai **collegamenti rapidi** fare clic sui collegamenti **REGISTRI DI DIAGNOSTICA FTP** e **REGISTRI DI DIAGNOSTICA FTPS** per accedere ai log tramite il protocollo FTP.
+informazioni di diagnostica hello tooaccess tramite FTP, visitare hello [portale Azure](https://portal.azure.com), selezionare l'app web, quindi hello **DASHBOARD**. In hello **collegamenti rapidi** sezione hello **registri di diagnostica FTP** e **registri di diagnostica FTPS** collegamenti forniscono accesso toohello log utilizzando il protocollo FTP hello.
 
 > [!NOTE]
-> Se in precedenza non sono stati configurati nome utente e password per FTP o per la distribuzione, è possibile eseguire questa operazione nella pagina di gestione **Avvio rapido** selezionando **Imposta credenziali di distribuzione**.
+> Se non è stato precedentemente configurato nome utente e password per il FTP o distribuzione, è possibile farlo da hello **delle Guide rapide** pagina di gestione selezionando **impostare le credenziali di distribuzione**.
 > 
 > 
 
-L'URL FTP restituito nel dashboard si riferisce alla directory **LogFiles** , che conterrà le seguenti sottodirectory:
+Hello FTP URL restituito nel dashboard di hello è per hello **LogFiles** directory, che conterrà hello seguente sottodirectory:
 
-* [Metodo di distribuzione](web-sites-deploy.md) : se si utilizza un metodo di distribuzione, ad esempio Git, verrà creata una directory con lo stesso nome, che conterrà le informazioni correlate alle distribuzioni.
+* [Metodo di distribuzione](web-sites-deploy.md) -se si utilizza un metodo di distribuzione, ad esempio Git, una directory di hello stesso nome, verrà creato e contiene le informazioni correlate toodeployments.
 * nodejs: contiene le informazioni di stdout e stderr acquisite da tutte le istanze dell'applicazione, quando loggingEnabled è impostato su true.
 
 ### <a name="zip-archive"></a>Archivio ZIP
-Per scaricare un archivio ZIP dei log di diagnostica, utilizzare il seguente comando degli strumenti da riga di comando di Azure:
+un archivio Zip dei log di diagnostica hello, utilizzare hello comando seguente da strumenti da riga di comando di Azure hello toodownload:
 
     azure site log download [sitename]
 
-Nella directory corrente verrà scaricato un file **diagnostics.zip** . Questo archivio contiene la seguente struttura di directory:
+Questo verrà scaricato un **diagnostics.zip** nella directory corrente hello. Questo archivio contiene hello seguente struttura di directory:
 
 * deployments: log delle informazioni sulle distribuzioni dell'applicazione
 * LogFiles
   
-  * [Metodo di distribuzione](web-sites-deploy.md) : se si utilizza un metodo di distribuzione, ad esempio Git, verrà creata una directory con lo stesso nome, che conterrà le informazioni correlate alle distribuzioni.
+  * [Metodo di distribuzione](web-sites-deploy.md) -se si utilizza un metodo di distribuzione, ad esempio Git, una directory di hello stesso nome, verrà creato e contiene le informazioni correlate toodeployments.
   * nodejs: contiene le informazioni di stdout e stderr acquisite da tutte le istanze dell'applicazione, quando loggingEnabled è impostato su true.
 
 ### <a name="live-stream-tail"></a>Flusso in diretta (tail)
-Per visualizzare un flusso in diretta delle informazioni dei log di diagnostica, usare il seguente comando degli strumenti da riga di comando di Azure:
+tooview un flusso di informazioni di log di diagnostica, utilizzare hello comando seguente da strumenti da riga di comando di Azure hello in tempo reale:
 
     azure site log tail [sitename]
 
-Verrà restituito un flusso di eventi log che vengono aggiornati non appena si verificano nel server. Questo flusso restituirà le informazioni relative alla distribuzione, oltre alle informazioni di stdout e stderr, quando loggingEnabled è impostato su true.
+Verrà restituito un flusso di eventi di log che vengono aggiornate quando si verificano nel server di hello. Questo flusso restituirà le informazioni relative alla distribuzione, oltre alle informazioni di stdout e stderr, quando loggingEnabled è impostato su true.
 
 <a id="nextsteps"></a>
 
 ## <a name="next-steps"></a>Passaggi successivi
-In questo articolo è stato illustrato come abilitare e accedere alle informazioni di diagnostica in Azure. Queste informazioni sono utili per comprendere problemi che si verificano nell'applicazione, tuttavia è possibile che indichino un problema relativo a un modulo in uso oppure che segnalino che la versione di Node.js utilizzata in Siti Web di Azure è diversa da quella dell'ambiente di distribuzione.
+In questo articolo si è appreso come tooenable e alle informazioni di diagnostica per Azure. Mentre questo è utile per informazioni sui problemi con l'applicazione, può puntare tooa problema con un modulo in uso o la versione di hello di Node.js utilizzato dal servizio App dell'App Web è diverso da quello hello quello utilizzato nella distribuzione ambiente.
 
 Per informazioni sull'uso di moduli in Azure, vedere [Uso di moduli Node.js con applicazioni Azure](../nodejs-use-node-modules-azure-apps.md).
 
 Per informazioni sulla specifica di una versione di Node.js per l'applicazione, vedere [Specifica di una versione di Node.js in un'applicazione Azure].
 
-Per ulteriori informazioni, vedere anche il [Centro per sviluppatori di Node.js](/develop/nodejs/).
+Per ulteriori informazioni, vedere anche hello [Centro per sviluppatori di Node.js](/develop/nodejs/).
 
 ## <a name="whats-changed"></a>Modifiche apportate
-* Per una guida relativa al passaggio da Siti Web al servizio app, vedere [Servizio app di Azure e impatto sui servizi di Azure esistenti](http://go.microsoft.com/fwlink/?LinkId=529714)
+* Per una Guida toohello modifica da siti Web tooApp servizio vedere: [relativo impatto sui servizi di Azure esistente e servizio App di Azure](http://go.microsoft.com/fwlink/?LinkId=529714)
 
 > [!NOTE]
-> Per iniziare a usare Servizio app di Azure prima di registrarsi per ottenere un account Azure, andare a [Prova il servizio app](https://azure.microsoft.com/try/app-service/), dove è possibile creare un'app Web iniziale temporanea nel servizio app. Non è necessario fornire una carta di credito né impegnarsi in alcun modo.
+> Se si desidera tooget avviato con il servizio App di Azure prima di effettuare l'iscrizione per un account Azure, andare troppo[tenta di servizio App](https://azure.microsoft.com/try/app-service/), in cui è possibile creare subito un'app web di breve durata starter nel servizio App. Non è necessario fornire una carta di credito né impegnarsi in alcun modo.
 > 
 > 
 
 [IISNode]: https://github.com/tjanczuk/iisnode
-[file Readme di IISNode]: https://github.com/tjanczuk/iisnode#readme
-[How to Use The Azure Command-Line Interface]:../cli-install-nodejs.md
+[IISNode Readme]: https://github.com/tjanczuk/iisnode#readme
+[How tooUse hello Azure Command-Line Interface]:../cli-install-nodejs.md
 [Using Node.js Modules with Azure Applications]: ../nodejs-use-node-modules-azure-apps.md
 [Specifica di una versione di Node.js in un'applicazione Azure]: ../nodejs-specify-node-version-azure-apps.md
 

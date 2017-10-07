@@ -1,6 +1,6 @@
 ---
-title: Distribuire un modello di Azure con un token di firma di accesso condiviso e PowerShell | Microsoft Docs
-description: Usare Azure Resource Manager e Azure PowerShell per distribuire risorse in Azure da un modello protetto con un token di firma di accesso condiviso.
+title: modello di Azure con il token SAS e PowerShell aaaDeploy | Documenti Microsoft
+description: "Utilizzare Gestione risorse di Azure e Azure PowerShell tooAzure toodeploy risorse da un modello che è protetta con token di firma di accesso condiviso."
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -14,26 +14,26 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 04/19/2017
 ms.author: tomfitz
-ms.openlocfilehash: 1e3cea027b599e2b1af1ced0fdf14e2cc8a0db82
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b95e096591d6213f8ef79235c8cd85705c4b79ea
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="deploy-private-resource-manager-template-with-sas-token-and-azure-powershell"></a>Distribuire un modello di Resource Manager privato con un token di firma di accesso condiviso e Azure PowerShell
 
-Quando il modello si trova in un account di archiviazione, è possibile limitare l'accesso al modello e fornire un token di firma di accesso condiviso in fase di distribuzione. Questo articolo illustra come usare Azure PowerShell con modelli di Resource Manager per fornire un token di firma di accesso condiviso durante la distribuzione. 
+Quando il modello si trova in un account di archiviazione, è possibile limitare il modello di toohello access e fornire un token di firma di accesso condiviso durante la distribuzione. Questo argomento viene illustrato come toouse Azure PowerShell con Gestione risorse modelli tooprovide un token di firma di accesso condiviso durante la distribuzione. 
 
-## <a name="add-private-template-to-storage-account"></a>Aggiungere un modello privato all'account di archiviazione
+## <a name="add-private-template-toostorage-account"></a>Aggiungere modello privata toostorage account
 
-È possibile aggiungere i modelli a un account di archiviazione e collegarli durante la distribuzione con un token SAS.
+È possibile aggiungere l'account di archiviazione di modelli tooa e collegarla toothem durante la distribuzione con un token di firma di accesso condiviso.
 
 > [!IMPORTANT]
-> Attenendosi alla seguente procedura, il BLOB contenente il modello sarà accessibile solo da parte del proprietario dell'account. Tuttavia, quando si crea un token di firma di accesso condiviso per il BLOB, quest'ultimo sarà accessibile a tutti gli utenti con quell'URI. Se l'URI viene intercettato da un altro utente, quest'ultimo sarà in grado di accedere al modello. Utilizzare un token di firma di accesso condiviso è un buon metodo per limitare l'accesso ai modelli, ma è necessario non includere direttamente nel modello dati sensibili come le password.
+> Seguendo i passaggi di hello riportati di seguito, blob hello contenente il modello di hello è proprietario dell'account hello tooonly accessibile. Tuttavia, quando si crea un token di firma di accesso condiviso per il blob hello, blob hello è accessibile tooanyone con quell'URI. Se un altro utente intercetta hello URI, tale utente è il modello di hello in grado di tooaccess. Usando un token di firma di accesso condiviso è un buon metodo per limitare l'accesso tooyour modelli, ma non è necessario includere dati riservati, quali le password direttamente nel modello di hello.
 > 
 > 
 
-L'esempio seguente configura un contenitore dell'account di archiviazione privato e carica un modello:
+Hello seguente esempio viene configurato un contenitore di account di archiviazione privato e carica un modello:
    
 ```powershell
 # create a storage account for templates
@@ -47,12 +47,12 @@ Set-AzureStorageBlobContent -Container templates -File c:\MyTemplates\storage.js
 ```
 
 ## <a name="provide-sas-token-during-deployment"></a>Fornire il token SAS in fase di distribuzione
-Per distribuire un modello privato in un account di archiviazione, generare un token di firma di accesso condiviso e includerlo nell'URI del modello. Impostare l'ora di scadenza in modo da garantire un tempo sufficiente per completare la distribuzione.
+toodeploy un modello privato in un account di archiviazione, generare un token di firma di accesso condiviso e includerlo in hello URI per il modello di hello. Impostare tooallow ora di scadenza hello sufficiente distribuzione hello toocomplete.
    
 ```powershell
 Set-AzureRmCurrentStorageAccount -ResourceGroupName ManageGroup -Name {your-unique-name}
 
-# get the URI with the SAS token
+# get hello URI with hello SAS token
 $templateuri = New-AzureStorageBlobSASToken -Container templates -Blob storage.json -Permission r `
   -ExpiryTime (Get-Date).AddHours(2.0) -FullUri
 
@@ -65,8 +65,8 @@ Per un esempio sull'uso di un token di firma di accesso condiviso con modelli co
 
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Per un'introduzione alla distribuzione dei modelli, vedere [Distribuire le risorse con i modelli di Resource Manager e Azure PowerShell](resource-group-template-deploy.md).
+* Per i modelli di toodeploying un'introduzione, vedere [distribuire le risorse e modelli di gestione risorse di Azure PowerShell](resource-group-template-deploy.md).
 * Per uno script di esempio completo che consente di distribuire un modello, vedere lo [script di distribuzione di modelli di Resource Manager](resource-manager-samples-powershell-deploy.md)
-* Per definire i parametri nel modello, vedere [Creazione di modelli](resource-group-authoring-templates.md#parameters).
-* Per indicazioni su come le aziende possono usare Resource Manager per gestire efficacemente le sottoscrizioni, vedere [Azure enterprise scaffold - prescriptive subscription governance](resource-manager-subscription-governance.md) (Scaffolding aziendale Azure - Governance prescrittiva per le sottoscrizioni).
+* toodefine i parametri di modello, vedere [creazione di modelli](resource-group-authoring-templates.md#parameters).
+* Per istruzioni su come le aziende possono usare tooeffectively Gestione risorse di gestione di sottoscrizioni, vedere [lo scaffolding di Azure enterprise - governance sottoscrizione rigorosa](resource-manager-subscription-governance.md).
 

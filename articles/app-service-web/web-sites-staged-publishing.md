@@ -1,6 +1,6 @@
 ---
-title: Configurare ambienti di staging per le app Web nel Servizio app di Azure | Documentazione Microsoft
-description: Informazioni su come utilizzare la pubblicazione per fasi per le app Web in Azure App Service."
+title: aaaSet di gestione temporanea di ambienti per le app web in Azure App Service | Documenti Microsoft
+description: Informazioni su come toouse staging pubblicazione per le app web in Azure App Service.
 services: app-service
 documentationcenter: 
 author: cephalin
@@ -15,66 +15,66 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/16/2016
 ms.author: cephalin
-ms.openlocfilehash: ca27c55eaaceb3109b1450c550330dfc416fdf55
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 338424100a20bf823323313fb6699e439f367421
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="set-up-staging-environments-in-azure-app-service"></a>Configurare gli ambienti di gestione temporanea nel Servizio app di Azure
 <a name="Overview"></a>
 
-Quando si distribuisce l'app Web, il back-end per dispositivi mobili, l'app Web su Linux e l'App per le API al [servizio app](http://go.microsoft.com/fwlink/?LinkId=529714), è possibile eseguire la distribuzione in uno slot di distribuzione distinto, invece che in quello predefinito, se la modalità del piano di servizio app usata è **Standard** o **Premium**. Gli slot di distribuzione sono in realtà app dal vivo con nomi host specifici. È possibile scambiare il contenuto dell'app e gli elementi delle configurazioni tra i due slot di distribuzione, incluso lo slot di produzione. La distribuzione dell'applicazione in uno slot di distribuzione presenta i seguenti vantaggi:
+Quando si distribuisce l'app web, l'app web su Linux, back-end per dispositivi mobili e app per le API troppo[servizio App](http://go.microsoft.com/fwlink/?LinkId=529714), è possibile distribuire uno slot di distribuzione separata tooa anziché slot di produzione predefinito hello durante l'esecuzione in hello **Standard**o **Premium** modalità del piano di servizio App. Gli slot di distribuzione sono in realtà app dal vivo con nomi host specifici. Gli elementi di contenuto e le configurazioni di App possono essere scambiati tra i due slot di distribuzione, compreso hello slot di produzione. Distribuzione di slot di distribuzione di applicazione tooa ha hello seguenti vantaggi:
 
-* È possibile convalidare le modifiche alle app in uno slot di distribuzione temporaneo prima di scambiarlo con quello di produzione.
-* La distribuzione preliminare di un'app in uno slot e la successiva implementazione in un ambiente di produzione garantiscono che tutte le istanze dello slot vengano effettivamente eseguite prima di passare alla fase di produzione. Ciò consente di evitare i tempi di inattività al momento della distribuzione dell'app. Il reindirizzamento del traffico è lineare e nessuna richiesta viene eliminata in seguito alle operazioni di scambio. L'intero flusso di lavoro può essere automatizzata tramite la configurazione di [scambio automatico](#Auto-Swap) quando non è necessario spazio di pre-swapping convalida.
-* Dopo uno scambio, lo slot con l'app gestita temporaneamente include l'app di produzione precedente. Se le modifiche applicate nello slot di produzione non risultano corrette, è possibile ripetere immediatamente lo scambio dei due slot per recuperare l'ultimo sito con i dati corretti.
+* È possibile convalidare modifiche all'applicazione in uno slot di distribuzione di gestione temporanea prima di scambiarlo con lo slot di produzione hello.
+* Distribuzione di uno slot tooa app prima che lo scambio alla produzione assicura che tutte le istanze di slot hello sono riscaldate prima viene scambiato nell'ambiente di produzione. Ciò consente di evitare i tempi di inattività al momento della distribuzione dell'app. Hello reindirizzamento del traffico è seamless e nessuna richiesta viene eliminata in seguito a operazioni di scambio. L'intero flusso di lavoro può essere automatizzata tramite la configurazione di [scambio automatico](#Auto-Swap) quando non è necessario spazio di pre-swapping convalida.
+* Dopo uno scambio, slot hello con app con installazione di appoggio in precedenza può hello precedente dell'applicazione di produzione. Se le modifiche di hello scambiate nello slot di produzione hello non corrisponda a quello desiderato, è possibile eseguire hello che stesso scambio immediatamente il backup tooget "ultimo noto buona sito".
 
-Ciascuna modalità di piano App Service supporta un numero diverso di slot di distribuzione. Per conoscere il numero di slot supportati dalla modalità della propria app, vedere [Tariffe del servizio app](https://azure.microsoft.com/pricing/details/app-service/).
+Ciascuna modalità di piano App Service supporta un numero diverso di slot di distribuzione. supporta la modalità dell'app toofind numero hello di slot, vedere [prezzi del servizio App](https://azure.microsoft.com/pricing/details/app-service/).
 
-* Se l'app dispone di più slot, non è possibile cambiare la modalità.
+* Quando l'applicazione ha più slot, è possibile modificare la modalità hello.
 * Gli slot non di produzione non sono scalabili.
-* La gestione delle risorse collegate non è supportata per gli slot non di produzione. Solo nel [portale di Azure](http://go.microsoft.com/fwlink/?LinkId=529715) , è possibile evitare questo impatto potenziale su uno slot di produzione spostando temporaneamente lo slot non di produzione in una modalità di piano servizio app differente. Si noti che lo slot non di produzione deve ancora una volta condividere la stessa modalità dello slot di produzione per potere eseguire lo scambio tra i due slot.
+* La gestione delle risorse collegate non è supportata per gli slot non di produzione. In hello [portale Azure](http://go.microsoft.com/fwlink/?LinkId=529715) solo, è possibile evitare il potenziale impatto su uno slot di produzione spostando temporaneamente hello slot non di produzione tooa servizio App piano modalità diversa. Si noti che lo slot non di produzione hello deve condividere nuovamente hello stessa modalità con lo slot di produzione hello prima che è possibile scambiare gli slot di due hello.
 
 <a name="Add"></a>
 
 ## <a name="add-a-deployment-slot"></a>Aggiungere uno slot di distribuzione
-Per abilitare più slot di distribuzione, l'app deve essere in esecuzione in modalità **Standard** o **Premium**.
+app Hello deve essere eseguita in hello **Standard** o **Premium** modalità in ordine per si tooenable più slot di distribuzione.
 
-1. Nel [Portale di Azure](https://portal.azure.com/) aprire il pannello della [risorsa](../azure-resource-manager/resource-group-portal.md#manage-resources) dell'app.
-2. Scegliere l'opzione **Slot di distribuzione**, quindi fare clic su **Aggiungi slot**.
+1. In hello [portale Azure](https://portal.azure.com/), Apri l'app [pannello della risorsa](../azure-resource-manager/resource-group-portal.md#manage-resources).
+2. Scegliere hello **gli slot di distribuzione** opzione, quindi fare clic su **Aggiungi Slot**.
    
     ![Aggiungi nuovo slot di distribuzione][QGAddNewDeploymentSlot]
    
    > [!NOTE]
-   > Se l'app non è già in modalità **Standard** o **Premium**, si riceverà un messaggio di errore che indica le modalità supportate per l'abilitazione della pubblicazione per fasi. A questo punto è possibile selezionare **Aggiorna** e spostarsi alla scheda **Scalabilità** dell'app prima di continuare.
+   > Se l'applicazione hello non sia già in hello **Standard** o **Premium** modalità, si riceverà un messaggio che indica la modalità di hello è supportato per l'abilitazione della pubblicazione di gestione temporanea. A questo punto, si dispone di hello opzione tooselect **aggiornamento** e passare toohello **scala** scheda dell'app prima di continuare.
    > 
    > 
-3. Nel pannello **Aggiungi uno slot** assegnare un nome allo slot e selezionare se clonare la configurazione dell'app da uno slot di distribuzione esistente. Fare clic sul segno di spunta per continuare.
+3. In hello **aggiungere uno slot** pannello, assegnare un nome di uno slot hello e selezionare se tooclone configurazione delle app da un altro slot di distribuzione esistente. Fare clic su hello toocontinue di segno di spunta.
    
     ![Origine della configurazione][ConfigurationSource1]
    
-    La prima volta che si aggiunge uno slot, sono disponibili solo due opzioni: clonare la configurazione dallo slot predefinito in produzione oppure no.
-    Dopo aver creato vari slot, sarà possibile clonare la configurazione da uno slot diverso da quello in produzione:
+    Hello prima volta che si aggiunge uno slot, si avrà solo due opzioni: configurazione clone dallo slot di hello predefinito nell'ambiente di produzione o non è affatto.
+    Dopo aver creato gli slot diverse, sarà in grado di tooclone configurazione da uno slot diverso da hello nell'ambiente di produzione:
    
     ![Origini della configurazione][MultipleConfigurationSources]
-4. Nel pannello delle risorse dell'app fare clic su **Slot di distribuzione**, quindi fare clic su uno slot di distribuzione per aprire il pannello delle risorse dello slot, con un set di metriche e una configurazione come qualsiasi altra app. Il nome dello slot è indicato in alto nel pannello per ricordare all'utente che sta visualizzando lo slot di distribuzione.
+4. Nel pannello della risorsa dell'applicazione, fare clic su **gli slot di distribuzione**, quindi fare clic su un tooopen slot di distribuzione pannello della risorsa che dello slot, con un set di configurazione come qualsiasi altra app e sulle metriche. Hello nome dello slot hello viene visualizzato nella parte superiore di hello di hello pannello tooremind che si sta visualizzando hello slot di distribuzione.
    
     ![Titolo slot di distribuzione][StagingTitle]
-5. Fare clic sull'URL dell'app nel pannello dello slot. Tenere presente che lo slot di distribuzione dispone di un nome host specifico ed è inoltre un'app attiva. Per limitare l'accesso pubblico allo slot di distribuzione, vedere [Blocco dell'accesso Web agli slot di distribuzione non di produzione nell'app Web del servizio app](http://ruslany.net/2014/04/azure-web-sites-block-web-access-to-non-production-deployment-slots/).
+5. Fare clic su URL app hello nel pannello hello dello slot. Si noti lo slot di distribuzione hello ha il proprio nome host ed è anche un'applicazione in tempo reale. lo slot di distribuzione toohello accesso pubblico toolimit, vedere [App del servizio Web App: slot di distribuzione di produzione toonon accesso web blocco](http://ruslany.net/2014/04/azure-web-sites-block-web-access-to-non-production-deployment-slots/).
 
-Non è presente alcun contenuto dopo la creazione dello slot di distribuzione. È possibile distribuire lo slot da un'area diversa dell'archivio o da un altro archivio. È anche possibile modificare la configurazione dello slot. Usare le credenziali del profilo di pubblicazione o di distribuzione associate allo slot di distribuzione per gli aggiornamenti dei contenuti.  È ad esempio possibile [pubblicare in questo slot con git](app-service-deploy-local-git.md).
+Non è presente alcun contenuto dopo la creazione dello slot di distribuzione. È possibile distribuire slot toohello da un repository di completamente diverso, o un ramo del repository diversi. È inoltre possibile modificare hello configurazione dello slot. Hello utilizzare pubblicazione le credenziali di distribuzione o del profilo associate hello slot di distribuzione per gli aggiornamenti del contenuto.  Ad esempio, è possibile [pubblicare toothis slot con git](app-service-deploy-local-git.md).
 
 <a name="AboutConfiguration"></a>
 
 ## <a name="configuration-for-deployment-slots"></a>Configurazione per gli slot di distribuzione ##
-Quando si clona la configurazione da un altro slot di distribuzione, la configurazione clonata è modificabile. Inoltre, alcuni elementi della configurazione seguiranno il contenuto nello scambio (non specifici dello slot) mentre altri elementi della configurazione resteranno nello stesso slot dopo uno scambio (specifici dello slot). Negli elenchi seguenti sono riportati gli elementi di configurazione che verranno modificati al momento dello scambio degli slot.
+Quando si clona una configurazione da un altro slot di distribuzione, configurazione clonato hello è modificabile. Inoltre, alcuni elementi di configurazione seguirà contenuto hello in uno scambio (non slot specifico) mentre altri elementi di configurazione verranno mantenuta nel hello stesso slot dopo uno scambio (slot specifico). Hello elenchi seguenti vengono illustrati configurazione hello che verrà modificata durante lo scambio di slot.
 
 **Impostazioni che vengono scambiate**:
 
 * Impostazioni generali, quali la versione del framework, 32/64 bit, i socket Web
-* Impostazioni app (possono essere configurate per adattarsi a uno slot)
-* Stringhe di connessione (possono essere configurate per adattarsi a uno slot)
+* Impostazioni dell'App (può essere configurato toostick tooa slot)
+* Stringhe di connessione (può essere configurato toostick tooa slot)
 * Mapping dei gestori
 * Impostazioni di monitoraggio e diagnostica
 * Contenuto WebJobs
@@ -87,91 +87,91 @@ Quando si clona la configurazione da un altro slot di distribuzione, la configur
 * Impostazioni di scalabilità
 * Utilità di pianificazione WebJobs
 
-Per configurare un'impostazione app o una stringa di connessione in modo da adattarla a uno (non scambiata), accedere al pannello **Impostazioni applicazione** di uno slot specifico, quindi selezionare la casella **Impostazione slot** per gli elementi di configurazione che devono adattarsi allo slot. Si noti che contrassegnando un elemento della configurazione come specifico dello slot, si determina che non può essere scambiato tra tutti gli slot di distribuzione associati all'app.
+app impostazione o connessione stringa toostick tooa slot (non invertito), hello accesso tooconfigure **le impostazioni dell'applicazione** pannello per una specificato slot, quindi seleziona hello **impostazione Slot** casella per hello elementi di configurazione che è necessario utilizzare slot hello. Si noti che il contrassegno di un elemento di configurazione come slot specifico ha l'effetto di hello definizione di tale elemento come non sostituibili tra tutti gli slot di distribuzione hello associati hello app.
 
 ![Impostazioni di slot][SlotSettings]
 
 <a name="Swap"></a>
 
 ## <a name="swap-deployment-slots"></a>Swap degli slot di distribuzione 
-È possibile scambiare gli slot di distribuzione nella visualizzazione **Panoramica** o **Slot di distribuzione** del pannello delle risorse dell'app.
+È possibile scambiare gli slot di distribuzione di hello **Panoramica** o **gli slot di distribuzione** visualizzazione del pannello della risorsa dell'applicazione.
 
 > [!IMPORTANT]
-> Prima di scambiare un'app da uno slot di distribuzione alla produzione, accertarsi che tutte le impostazioni non specifiche dello slot siano configurate esattamente nel modo desiderato nello slot di destinazione.
+> Prima che lo scambio di un'app da uno slot di distribuzione nell'ambiente di produzione, assicurarsi che tutte le impostazioni specifiche di slot non sono configurate esattamente come si desidera toohave nella destinazione dello scambio hello.
 > 
 > 
 
-1. Per scambiare gli slot di distribuzione, fare clic sul pulsante **Scambia** nella barra dei comandi dell'app o di uno slot di distribuzione.
+1. tooswap gli slot di distribuzione, fare clic su hello **scambiare** pulsante nella barra dei comandi di hello dell'applicazione hello o nella barra dei comandi hello di uno slot di distribuzione.
    
     ![Pulsante Swap][SwapButtonBar]
 
-2. Assicurarsi che l'origine e la destinazione dello scambio siano impostati correttamente. In genere, la destinazione dello scambio è lo slot di produzione. Fare clic su **OK** per completare l'operazione. Una volta terminata l'operazione, gli slot di distribuzione sono stati scambiati.
+2. Verificare che tale destinazione hello scambio origine e lo scambio siano impostate correttamente. In genere, destinazione dello scambio hello è slot di produzione hello. Fare clic su **OK** operazione hello toocomplete. Al termine dell'operazione di hello, gli slot di distribuzione hello sono stati invertiti.
 
     ![Scambio completo](./media/web-sites-staged-publishing/SwapImmediately.png)
 
-    Per il tipo **Scambio con anteprima** vedere [Scambio con anteprima (swap multifase)](#Multi-Phase).  
+    Per hello **scambio con anteprima** Scambia tipo, vedere [scambio con anteprima (scambio multifase)](#Multi-Phase).  
 
 <a name="Multi-Phase"></a>
 
 ## <a name="swap-with-preview-multi-phase-swap"></a>Scambio con anteprima (swap multifase)
 
 Lo scambio con anteprima o swap multifase semplifica la convalida degli elementi di configurazione di uno slot specifico, ad esempio le stringhe di connessione.
-Per i carichi di lavoro mission-critical, è possibile convalidare il comportamento previsto dell'app quando viene applicata la configurazione dello slot di produzione ed è necessario eseguire questa convalida *prima* dello scambio dell'app in produzione. Lo scambio con anteprima è ciò che serve.
+Per i carichi di lavoro mission-critical, si desidera toovalidate che hello app si comporta come previsto quando viene applicata la configurazione dello slot di produzione hello, ed è necessario eseguire tale convalida *prima* app hello viene scambiato nell'ambiente di produzione. Lo scambio con anteprima è ciò che serve.
 
 > [!NOTE]
 > Lo scambio con anteprima non è supportato nelle applicazioni Web in Linux.
 
-Quando si usa l'opzione **Scambio con anteprima** (vedere [Swap degli slot di distribuzione](#Swap)), il servizio app effettua le seguenti operazioni:
+Quando si utilizza hello **scambio con anteprima** opzione (vedere [scambiare gli slot di distribuzione](#Swap)), servizio App hello seguenti:
 
-- Mantiene invariato lo slot di destinazione in modo che non interessi il carico di lavoro esistente in questo slot, ad esempio, la produzione.
-- Applica gli elementi di configurazione dello slot di destinazione allo slot di origine, incluse le impostazioni delle app e le stringhe di connessione specifiche dello slot.
-- Riavvia i processi di lavoro nello slot di origine usando questi elementi di configurazione menzionati.
-- Al completamento dello scambio: lo slot di origine pre-riscaldato viene spostato nello slot di destinazione. Lo slot di destinazione viene spostato nello slot di origine come in uno scambio manuale.
-- In caso di annullamento dello scambio: gli elementi di configurazione dello slot di origine vengono riapplicati allo slot di origine.
+- Non è compromessa mantiene hello destinazione slot invariato così carico di lavoro esistente in tale slot (ad esempio produzione).
+- Si applica agli elementi di configurazione di hello di hello slot toohello origine slot di destinazione, incluse le stringhe di connessione specifica slot hello e le impostazioni dell'app.
+- Riavvia i processi di lavoro hello nello slot di origine hello utilizzando tali elementi di configurazione menzionati in precedenza.
+- Quando si completa scambio hello: slot di origine remota warmed hello passa in uno slot di destinazione hello. slot di destinazione Hello viene spostato in uno slot di origine hello come uno scambio manuale.
+- Quando si annulla swap hello: consente di riapplicare gli elementi di configurazione hello dello slot di origine di hello origine slot toohello.
 
-È possibile visualizzare in anteprima il funzionamento esatto dell'app con la configurazione dello slot di destinazione. Al termine della convalida, completare lo scambio in un passaggio separato. Questo passaggio ha anche il vantaggio che lo slot di origine è già riscaldato con la configurazione desiderata e i client non subiranno tempi di inattività.  
+È possibile visualizzare l'anteprima esattamente come applicazione hello comporterà con la configurazione dello slot di destinazione hello. Dopo aver completato la convalida, è completare lo scambio di hello in un passaggio separato. Questo passaggio è hello vantaggio che lo slot di origine hello già riscaldato con la configurazione desiderata hello e i client non subiscono alcun tempo di inattività.  
 
-Degli esempi per i cmdlet PowerShell di Azure disponibili per lo swap multifase sono inclusi nei cmdlet PowerShell di Azure per la sezione relativa agli slot di distribuzione.
+Esempi per cmdlet di Azure PowerShell disponibili per lo scambio multifase hello sono inclusi in hello cmdlet PowerShell di Azure per sezione slot di distribuzione.
 
 <a name="Auto-Swap"></a>
 
 ## <a name="configure-auto-swap"></a>Configurare lo scambio automatico
-Lo scambio automatico semplifica gli scenari DevOps nei quali si vuole distribuire continuamente l'app senza avvio a freddo e senza tempi di inattività per i clienti finali dell'app. Quando uno slot di distribuzione viene configurato per lo scambio automatico in produzione, ogni volta che si esegue il push dell'aggiornamento del codice in tale slot, il servizio app eseguirà automaticamente lo scambio dell'app in produzione dopo che è stato eseguito il riscaldamento nello slot.
+Semplifica lo scambio automatico DevOps scenari in cui si desidera toocontinuously distribuisce l'app con zero a freddo e tempi di inattività per i clienti finali dell'app hello. Quando uno slot di distribuzione è configurato per lo scambio automatico nell'ambiente di produzione, ogni volta che si esegue il push slot toothat di aggiornamento di codice, il servizio App automaticamente scambiare app hello nell'ambiente di produzione dopo che è già stato riscaldato nello slot di hello.
 
 > [!IMPORTANT]
-> AZURE.IMPORTANTE Quando si abilita lo scambio automatico per uno slot, assicurarsi che la configurazione dello slot corrisponda esattamente alla configurazione dello slot desiderata per lo slot di destinazione (in genere lo slot di produzione).
+> Quando si abilita scambio automatico per uno slot, verificare che la configurazione dello slot di hello è esattamente configurazione hello per lo slot di destinazione di hello (in genere slot di produzione di hello).
 > 
 > 
 
 > [!NOTE]
 > Lo scambio automatico non è supportato nelle applicazioni Web in Linux.
 
-La configurazione dello scambio automatico per uno slot è semplice. Attenersi ai passaggi indicati di seguito:
+La configurazione dello scambio automatico per uno slot è semplice. Attenersi alla procedura hello riportata di seguito:
 
 1. In **Slot di distribuzione** selezionare uno slot non di produzione e scegliere **Impostazioni applicazione** nel pannello delle risorse di questo slot.  
    
     ![][Autoswap1]
-2. Selezionare **On** per **Scambio automatico**, scegliere lo slot di destinazione desiderato in **Slot scambio automatico**, quindi fare clic su **Salva** nella barra dei comandi. Assicurarsi che la configurazione dello slot corrisponda esattamente alla configurazione desiderata per lo slot di destinazione.
+2. Selezionare **su** per **scambio automatico**, selezionare uno slot di destinazione desiderato hello **Slot di scambio automatico**, fare clic su **salvare** nella barra dei comandi di hello. Assicurarsi di configurazione per lo slot di hello è esattamente hello destinata agli slot di destinazione hello.
    
-    Dopo il completamento dell'operazione, nella scheda **Notifiche** verrà visualizzata la scritta verde lampeggiante **OPERAZIONE RIUSCITA**.
+    Hello **notifiche** scheda lampeggia una verde **successo** al termine dell'operazione di hello.
    
     ![][Autoswap2]
    
    > [!NOTE]
-   > Per verificare lo scambio automatico per l'app, è possibile selezionare prima uno slot di destinazione non di produzione in **Scambia automaticamente slot** per acquisire familiarità con la funzionalità.  
+   > tootest scambio automatico per l'app, è possibile selezionare prima uno slot di destinazione non di produzione in **Slot di scambio automatico** toobecome familiarità con la funzione hello.  
    > 
    > 
-3. Eseguire un push del codice in tale slot di distribuzione. Lo scambio automatico verrà eseguito poco dopo e l'aggiornamento verrà riflesso nell'URL dello slot di destinazione.
+3. Eseguire uno slot di distribuzione toothat push di codice. Verrà eseguito lo scambio automatico dopo un breve periodo di tempo e aggiornamento hello verrà riflesse nell'URL di slot di destinazione.
 
 <a name="Rollback"></a>
 
-## <a name="to-rollback-a-production-app-after-swap"></a>Per eseguire il rollback di un'app di produzione dopo lo scambio
-Se vengono identificati errori nel sito di produzione dopo lo scambio di uno slot, ripristinare i due slot allo stato precedente scambiandoli immediatamente.
+## <a name="toorollback-a-production-app-after-swap"></a>toorollback un'app di produzione dopo lo scambio
+Se vengono rilevati errori nell'ambiente di produzione dopo uno scambio di slot, il rollup slot hello tootheir indietro pre-swap stati per lo scambio di slot hello due stesso immediatamente.
 
 <a name="Warm-up"></a>
 
 ## <a name="custom-warm-up-before-swap"></a>Riscaldamento personalizzato prima dello scambio
-Alcune app potrebbero richiedere azioni di riscaldamento personalizzate. L'elemento di configurazione `applicationInitialization` in web.config consente di specificare le azioni di inizializzazione personalizzate da eseguire prima che venga ricevuta una richiesta. L'operazione di scambio attenderà il completamento del riscaldamento personalizzato. Di seguito è riportato un frammento web.config di esempio.
+Alcune app potrebbero richiedere azioni di riscaldamento personalizzate. Hello `applicationInitialization` consente di elemento di configurazione in Web. config è toospecify l'inizializzazione personalizzata azioni toobe eseguita prima che venga ricevuta una richiesta. operazione di scambio Hello attenderà questo toocomplete riscaldamento personalizzato. Di seguito è riportato un frammento web.config di esempio.
 
     <applicationInitialization>
         <add initializationPage="/" hostName="[app hostname]" />
@@ -180,8 +180,8 @@ Alcune app potrebbero richiedere azioni di riscaldamento personalizzate. L'eleme
 
 <a name="Delete"></a>
 
-## <a name="to-delete-a-deployment-slot"></a>Per eliminare uno slot di distribuzione##
-Nel pannello di uno slot di distribuzione aprire il pannello dello slot di distribuzione, fare clic su **Panoramica** (la pagina predefinita), quindi fare clic su **Elimina** nella barra dei comandi.  
+## <a name="toodelete-a-deployment-slot"></a>toodelete uno slot di distribuzione
+Nel Pannello di hello per uno slot di distribuzione, pannello dello slot di distribuzione hello aperto, fare clic su **Panoramica** (pagina predefinita di hello), fare clic su **eliminare** nella barra dei comandi di hello.  
 
 ![Per eliminare uno slot di distribuzione][DeleteStagingSiteButton]
 
@@ -190,9 +190,9 @@ Nel pannello di uno slot di distribuzione aprire il pannello dello slot di distr
 <a name="PowerShell"></a>
 
 ## <a name="azure-powershell-cmdlets-for-deployment-slots"></a>Cmdlet Azure PowerShell per gli slot di distribuzione
-Azure PowerShell è un modulo che fornisce i cmdlet per gestire Azure tramite Windows PowerShell, tra cui il supporto per la gestione degli slot di distribuzione in Servizio app di Azure.
+Azure PowerShell è un modulo che fornisce i cmdlet toomanage Azure tramite Windows PowerShell, incluso il supporto per la gestione di slot di distribuzione in Azure App Service.
 
-* Per informazioni sull'installazione e la configurazione di Azure PowerShell e sull'autenticazione di Azure PowerShell con l'abbonamento di Microsoft Azure, vedere l'argomento relativo alla [procedura di installazione e configurazione di Azure PowerShell](/powershell/azure/overview).  
+* Per informazioni sull'installazione e configurazione di Azure PowerShell e sull'autenticazione di Azure PowerShell con la sottoscrizione di Azure, vedere [come tooinstall e configurare Microsoft Azure PowerShell](/powershell/azure/overview).  
 
 - - -
 ### <a name="create-a-web-app"></a>Creare un'app Web
@@ -207,7 +207,7 @@ New-AzureRmWebAppSlot -ResourceGroupName [resource group name] -Name [app name] 
 ```
 
 - - -
-### <a name="initiate-a-swap-with-review-multi-phase-swap-and-apply-destination-slot-configuration-to-source-slot"></a>Avviare uno scambio con anteprima (swap multifase) e applicare la configurazione dello slot di destinazione allo slot di origine
+### <a name="initiate-a-swap-with-review-multi-phase-swap-and-apply-destination-slot-configuration-toosource-slot"></a>Avviare uno scambio con revisione (scambio multifase) e applicare slot toosource configurazione dello slot di destinazione
 ```
 $ParametersObject = @{targetSlot  = "[slot name – e.g. “production”]"}
 Invoke-AzureRmResourceAction -ResourceGroupName [resource group name] -ResourceType Microsoft.Web/sites/slots -ResourceName [app name]/[slot name] -Action applySlotConfig -Parameters $ParametersObject -ApiVersion 2015-07-01
@@ -238,39 +238,39 @@ Remove-AzureRmResource -ResourceGroupName [resource group name] -ResourceType Mi
 <a name="CLI"></a>
 
 ## <a name="azure-command-line-interface-azure-cli-commands-for-deployment-slots"></a>Comandi dell'interfaccia della riga di comando di Azure per gli slot di distribuzione
-L'interfaccia della riga di comando di Azure fornisce comandi multipiattaforma che è possibile usare con Azure, incluso il supporto per la gestione degli slot di distribuzione del servizio app.
+Hello CLI di Azure fornisce comandi multipiattaforma per l'utilizzo di Azure, incluso il supporto per la gestione di slot di distribuzione di servizio App.
 
-* Per istruzioni sull'installazione e la configurazione dell'interfaccia della riga di comando di Azure, incluse le informazioni su come collegarla alla sottoscrizione di Azure, vedere [Installare e configurare l'interfaccia della riga di comando di Azure](../cli-install-nodejs.md).
-* Per l'elenco dei comandi disponibili per il servizio app di Azure, chiamare `azure site -h`.
+* Per istruzioni sull'installazione e configurazione hello CLI di Azure, incluse le informazioni su come tooconnect CLI di Azure tooyour sottoscrizione di Azure, vedere [installare e configurare hello Azure CLI](../cli-install-nodejs.md).
+* comandi di hello toolist disponibili per il servizio App di Azure in hello CLI di Azure, chiamare `azure site -h`.
 
 > [!NOTE] 
 > Per i comandi dell'[interfaccia della riga di comando di Azure 2.0](https://github.com/Azure/azure-cli) relativi agli slot di distribuzione, vedere [az appservice web deployment slot](/cli/azure/appservice/web/deployment/slot).
 
 - - -
 ### <a name="azure-site-list"></a>azure site list
-Per informazioni sulle app nell'attuale sottoscrizione, chiamare **azure site list**, come nell'esempio seguente.
+Per informazioni sulle App hello nella sottoscrizione corrente hello, chiamare **elenco del sito azure**, come illustrato nell'esempio seguente hello.
 
 `azure site list webappslotstest`
 
 - - -
 ### <a name="azure-site-create"></a>azure site create
-Per creare uno slot di distribuzione, chiamare **azure site create** e specificare il nome di un'app esistente e il nome dello slot da creare, come nell'esempio seguente.
+toocreate uno slot di distribuzione, chiamare **sito azure creare** e specificare il nome di hello di un'app esistente e il nome di hello di hello slot toocreate, come in hello di esempio seguente.
 
 `azure site create webappslotstest --slot staging`
 
-Per abilitare il controllo del codice sorgente per il nuovo slot, utilizzare l'opzione **- git** , come nell'esempio seguente.
+controllo del codice sorgente per hello nuovo slot di, utilizzare hello tooenable **- git** opzione, come in hello di esempio seguente.
 
 `azure site create --git webappslotstest --slot staging`
 
 - - -
 ### <a name="azure-site-swap"></a>azure site swap
-Per applicare lo slot di distribuzione aggiornato al sito di produzione, utilizzare il comando **azure site swap** per eseguire un'operazione di scambio, come nell'esempio seguente. L'app di produzione non sarà caratterizzata da tempi di inattività, né subirà un avvio a freddo.
+toomake hello dell'applicazione di produzione hello slot di distribuzione aggiornato, utilizzare hello **scambio sito azure** comando tooperform un'operazione di scambio, come in hello di esempio seguente. applicazione di produzione Hello non verifichino tempi di inattività, né verrà sottoposta ad a un avvio a freddo.
 
 `azure site swap webappslotstest`
 
 - - -
 ### <a name="azure-site-delete"></a>azure site delete
-Per eliminare uno slot di distribuzione non più necessario, usare il comando **azure site delete** , come nell'esempio seguente.
+toodelete uno slot di distribuzione che non è più necessario, utilizzare hello **eliminazione sito azure** comando, come in hello di esempio seguente.
 
 `azure site delete webappslotstest --slot staging`
 
@@ -281,9 +281,9 @@ Per eliminare uno slot di distribuzione non più necessario, usare il comando **
 > 
 
 ## <a name="next-steps"></a>Passaggi successivi
-[Blocco dell'accesso Web agli slot di distribuzione non di produzione nell'app Web del servizio app di Azure](http://ruslany.net/2014/04/azure-web-sites-block-web-access-to-non-production-deployment-slots/)
-[Introduzione al servizio app in Linux](./app-service-linux-intro.md)
-[Versione di valutazione gratuita di Microsoft Azure](https://azure.microsoft.com/pricing/free-trial/)
+[Azure App Service Web App: consente di bloccare gli slot di distribuzione di produzione toonon di accesso web](http://ruslany.net/2014/04/azure-web-sites-block-web-access-to-non-production-deployment-slots/)
+[tooApp introduzione del servizio in Linux](./app-service-linux-intro.md)
+[versione di valutazione gratuita di Microsoft Azure](https://azure.microsoft.com/pricing/free-trial/)
 
 <!-- IMAGES -->
 [QGAddNewDeploymentSlot]:  ./media/web-sites-staged-publishing/QGAddNewDeploymentSlot.png

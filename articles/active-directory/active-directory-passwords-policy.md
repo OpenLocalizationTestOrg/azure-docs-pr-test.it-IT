@@ -16,23 +16,23 @@ ms.topic: article
 ms.date: 07/17/2017
 ms.author: joflore
 ms.custom: it-pro
-ms.openlocfilehash: 4b35c5d126375735f070a7fe2331896c524b5a61
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: af7cb13794bf3a9fee91d355f788aa5c2246e57c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="password-policies-and-restrictions-in-azure-active-directory"></a>Restrizioni e criteri password in Azure Active Directory
 
-Questo articolo descrive i criteri password e i requisiti di complessità associati agli account utente archiviati nel tenant di Azure AD.
+Questo articolo descrive i criteri password hello e i requisiti di complessità associati agli account utente archiviati nel tenant di Azure AD.
 
 ## <a name="administrator-password-policy-differences"></a>Differenze tra i criteri password degli amministratori
 
 Microsoft consente di applicare criteri avanzati di reimpostazione della password con **doppio controllo** predefiniti per tutti i ruoli di amministratore di Azure, ad esempio amministratore globale, amministratore del supporto tecnico, amministratore password e così via.
 
-In questo modo gli amministratori sono esentati dall'uso di domande di sicurezza e viene richiesta l'applicazione di quanto segue.
+Questo disabilita gli amministratori di usare le domande di sicurezza e applica la seguente hello.
 
-I criteri a doppio controllo, che richiedono due elementi di dati di autenticazione (indirizzo e-mail **e** numero di telefono), si applicano nelle situazioni seguenti
+Due controllare criteri, che richiedono due tipi di dati di autenticazione (indirizzo di posta elettronica **e** il numero di telefono), si applica in hello seguenti circostanze
 
 * Tutti i ruoli di amministratore di Azure
   * Amministratore del supporto tecnico
@@ -60,84 +60,84 @@ I criteri a doppio controllo, che richiedono due elementi di dati di autenticazi
 * Identità sincronizzate da Azure AD Connect nella directory locale
 
 ### <a name="exceptions"></a>Eccezioni
-I criteri a un controllo, che richiedono un elemento di dati di autenticazione (indirizzo e-mail **o** numero di telefono), si applicano nelle situazioni seguenti
+I criteri a un controllo, che richiedono una parte di dati di autenticazione (indirizzo di posta elettronica **o** il numero di telefono), si applica in hello seguenti circostanze
 
 * Primi 30 giorni di una versione di valutazione **OPPURE**
 * Dominio personalizzato non presente (*.onmicrosoft.com) **E** identità non sincronizzate da Azure AD
 
 
-## <a name="userprincipalname-policies-that-apply-to-all-user-accounts"></a>Criteri UserPrincipalName che si applicano a tutti gli account utente
+## <a name="userprincipalname-policies-that-apply-tooall-user-accounts"></a>Criteri UserPrincipalName che si applicano gli account utente tooall
 
-A ogni account utente che deve eseguire l'accesso ad Azure AD è necessario che sia associato un valore di attributo UPN. La tabella seguente illustra i criteri che si applicano sia agli account utente di Active Directory presenti in locale sincronizzati nel cloud sia agli account utente presenti solo nel cloud.
+Ogni account utente che deve toosign in tooAzure Active Directory deve avere un valore di attributo nome principale (UPN) univoco utente associato all'account. tabella Hello seguente contorni hello criteri che si applicano tooboth locale gli account utente di Active Directory sincronizzati toohello cloud e account utente solo toocloud.
 
 | Proprietà | Requisiti di UserPrincipalName |
 | --- | --- |
 | Caratteri consentiti |<ul> <li>A-Z</li> <li>a - z</li><li>0 – 9</li> <li> . - \_ ! \# ^ \~</li></ul> |
-| Caratteri non consentiti |<ul> <li>Qualsiasi carattere "@" che non separa il nome utente dal dominio.</li> <li>Non può contenere un punto "." subito prima del simbolo "@"</li></ul> |
-| Vincoli di lunghezza |<ul> <li>La lunghezza totale non deve superare i 113 caratteri</li><li>64 caratteri prima del simbolo "@"</li><li>48 caratteri dopo il simbolo "@"</li></ul> |
+| Caratteri non consentiti |<ul> <li>Qualsiasi ' @' carattere che non è separando il nome utente hello dal dominio hello.</li> <li>Non può contenere un carattere punto '.' immediatamente precedente hello ' @' simbolo</li></ul> |
+| Vincoli di lunghezza |<ul> <li>La lunghezza totale non deve superare i 113 caratteri</li><li>64 caratteri prima hello ' @' simbolo</li><li>48 caratteri dopo hello ' @' simbolo</li></ul> |
 
-## <a name="password-policies-that-apply-only-to-cloud-user-accounts"></a>Criteri password che si applicano solo agli account utente del cloud
+## <a name="password-policies-that-apply-only-toocloud-user-accounts"></a>Criteri password che si applicano solo gli account utente di toocloud
 
-La tabella seguente descrive le impostazioni di criteri password disponibili che possono essere applicate agli account utente creati e gestiti in Azure AD.
+Hello nella tabella seguente descrive le impostazioni di criteri password disponibili hello che possono essere applicati toouser che vengono create e gestite in Azure AD.
 
 | Proprietà | Requisiti |
 | --- | --- |
 | Caratteri consentiti |<ul><li>A-Z</li><li>a - z</li><li>0 – 9</li> <li>@ # $ % ^ & * - _ ! + = [ ] { } &#124; \ : ‘ , . ? / ` ~ “ ( ) ;</li></ul> |
-| Caratteri non consentiti |<ul><li>Caratteri Unicode</li><li>Spazi</li><li> **Solo password complesse**: non possono contenere un punto "." subito prima del simbolo "@".</li></ul> |
-| Restrizioni per le password |<ul><li>minimo 8 caratteri e massimo 16 caratteri</li><li>**Solo le password complesse**: è necessario rispettare 3 su 4 delle istruzioni seguenti:<ul><li>Caratteri minuscoli</li><li>Caratteri maiuscoli</li><li>Numeri (0-9)</li><li>Simboli (vedere le restrizioni per le password sopra citate)</li></ul></li></ul> |
-| Durata di validità della password |<ul><li>Valore predefinito: **90** giorni </li><li>Il valore è configurabile mediante il cmdlet Set-MsolPasswordPolicy del modulo di Azure Active Directory per Windows PowerShell.</li></ul> |
-| Notifica della scadenza della password |<ul><li>Valore predefinito: **14** giorni (prima della scadenza della password)</li><li>Il valore è configurabile tramite il cmdlet Set-MsolPasswordPolicy.</li></ul> |
-| Scadenza della password |<ul><li>Valore predefinito: **false** giorni (indica che la scadenza password è abilitata) </li><li>Il valore può essere configurato per singoli account utente mediante il cmdlet Set-MsolUser. </li></ul> |
+| Caratteri non consentiti |<ul><li>Caratteri Unicode</li><li>Spazi</li><li> **Le password complesse**: non può contenere un carattere punto '.' immediatamente precedente hello ' @' simbolo</li></ul> |
+| Restrizioni per le password |<ul><li>minimo 8 caratteri e massimo 16 caratteri</li><li>**Le password complesse**: richiede 3 su 4 seguenti hello:<ul><li>Caratteri minuscoli</li><li>Caratteri maiuscoli</li><li>Numeri (0-9)</li><li>Simboli (vedere le restrizioni per le password sopra citate)</li></ul></li></ul> |
+| Durata di validità della password |<ul><li>Valore predefinito: **90** giorni </li><li>Valore è configurabile tramite il cmdlet Set-MsolPasswordPolicy hello da hello modulo di Azure Active Directory per Windows PowerShell.</li></ul> |
+| Notifica della scadenza della password |<ul><li>Valore predefinito: **14** giorni (prima della scadenza della password)</li><li>Valore è configurabile tramite il cmdlet Set-MsolPasswordPolicy hello.</li></ul> |
+| Scadenza della password |<ul><li>Valore predefinito: **false** giorni (indica che la scadenza password è abilitata) </li><li>Valore può essere configurato per singoli account utente utilizzando i cmdlet Set-MsolUser hello. </li></ul> |
 | Cronologia di **modifica** della password |L'ultima password **non può** essere riusata alla **modifica** della password. |
 | Cronologia di **reimpostazione** della password | L'ultima password **può** essere riusata alla **reimpostazione** della password dimenticata. |
-| Blocco account |Dopo 10 tentativi di accesso non riusciti (password errata), l'utente verrà bloccato per un minuto. Altri tentativi di accesso non riusciti bloccano l'utente per periodi sempre più lunghi. |
+| Blocco account |Dopo 10 Accedi tentativi (password errata), utente hello verrà bloccato per un minuto. Ulteriormente corretto tentativi di accesso utente hello blocco per aumentare la durata. |
 
 ## <a name="set-password-expiration-policies-in-azure-active-directory"></a>Impostare i criteri di scadenza della password in Azure Active Directory
 
-In qualità di amministratore globale per un servizio cloud Microsoft, è possibile usare il Modulo di Microsoft Azure Active Directory per Windows PowerShell per impostare password utente che non scadono. È inoltre possibile utilizzare cmdlet Windows PowerShell per rimuovere la configurazione senza scadenza, o per vedere quali password utente vengono impostate senza scadenza. Queste indicazioni si applicano ad altri provider, ad esempio Microsoft Intune e Office 365, che si basano sempre su Microsoft Azure Active Directory per i servizi di identità e directory.
+Un amministratore globale per un servizio cloud Microsoft può utilizzare hello modulo dei Microsoft Azure Active Directory per Windows PowerShell tooset backup delle password utente non tooexpire. È anche possibile utilizzare i cmdlet tooremove hello-non scade mai configurazione o toosee tooexpire non vengono impostate le password utente di Windows PowerShell. Questa guida si applica tooother provider, ad esempio Microsoft Intune e Office 365, che si basano su Microsoft Azure Active Directory anche per i servizi di identità e directory.
 
 > [!NOTE]
-> Solo le password degli account utente per cui non è usata la sincronizzazione della directory possono essere configurate per non scadere. Per altre informazioni sulla sincronizzazione delle directory, vedere [Integrare le directory locali con Azure Active Directory](https://docs.microsoft.com/azure/active-directory/connect/active-directory-aadconnect).
+> Le password sole per gli account utente che non sono sincronizzati tramite sincronizzazione della directory possono essere configurati toonot scadenza. Per altre informazioni sulla sincronizzazione delle directory, vedere [Integrare le directory locali con Azure Active Directory](https://docs.microsoft.com/azure/active-directory/connect/active-directory-aadconnect).
 >
 >
 
 ## <a name="set-or-check-password-policies-using-powershell"></a>Impostare o verificare i criteri password tramite PowerShell
 
-Per iniziare, è necessario [scaricare e installare il modulo di Azure AD PowerShell](https://docs.microsoft.com/powershell/module/Azuread/?view=azureadps-2.0). Al termine dell'installazione è possibile eseguire la procedura seguente per configurare ogni campo.
+tooget avviato, è necessario troppo[scaricare e installare il modulo di Azure AD PowerShell hello](https://docs.microsoft.com/powershell/module/Azuread/?view=azureadps-2.0). Dopo aver installato, è possibile eseguire operazioni di hello seguenti tooconfigure ogni campo.
 
-### <a name="how-to-check-expiration-policy-for-a-password"></a>Come controllare i criteri di scadenza per una password
-1. Connettersi a Windows PowerShell utilizzando le credenziali aziendali di amministratore.
-2. Eseguire uno di questi comandi:
+### <a name="how-toocheck-expiration-policy-for-a-password"></a>Come criteri di scadenza toocheck una password
+1. Connettersi tooWindows PowerShell utilizzando le credenziali di amministratore della società.
+2. Eseguire uno dei seguenti comandi hello:
 
-   * Per vedere se la password di un singolo utente è impostata per non scadere mai, eseguire il cmdlet seguente usando il nome principale utente (UPN) (ad esempio, aprilr@contoso.onmicrosoft.com) o l'ID utente dell'utente che si desidera controllare: `Get-MSOLUser -UserPrincipalName <user ID> | Select PasswordNeverExpires`
-   * Per visualizzare l'impostazione "Nessuna scadenza per la Password" per tutti gli utenti, eseguire il cmdlet seguente: `Get-MSOLUser | Select UserPrincipalName, PasswordNeverExpires`
+   * toosee se la password di un utente è impostata toonever scadenza, eseguire hello seguente cmdlet utilizzando hello nome principale utente (UPN) (ad esempio, aprilr@contoso.onmicrosoft.com) o hello ID utente dell'utente hello desiderato toocheck:`Get-MSOLUser -UserPrincipalName <user ID> | Select PasswordNeverExpires`
+   * toosee hello impostazione "Nessuna scadenza Password" per tutti gli utenti, eseguire hello seguente cmdlet:`Get-MSOLUser | Select UserPrincipalName, PasswordNeverExpires`
 
-### <a name="set-a-password-to-expire"></a>Impostare una scadenza della password
+### <a name="set-a-password-tooexpire"></a>Impostare una password tooexpire
 
-1. Connettersi a Windows PowerShell utilizzando le credenziali aziendali di amministratore.
-2. Eseguire uno di questi comandi:
+1. Connettersi tooWindows PowerShell utilizzando le credenziali di amministratore della società.
+2. Eseguire uno dei seguenti comandi hello:
 
-   * Per impostare la password di un utente in modo che scada, eseguire questo cmdlet usando il nome dell'entità utente (UPN) o l'ID dell'utente: `Set-MsolUser -UserPrincipalName <user ID> -PasswordNeverExpires $false`
-   * Per impostare le password di tutti gli utenti dell'organizzazione in modo che scadano, usare il cmdlet seguente: `Get-MSOLUser | Set-MsolUser -PasswordNeverExpires $false`
+   * password hello tooset di un utente in modo che hello scadenza della password, eseguire hello seguente cmdlet utilizzando hello nome principale utente (UPN) o hello l'ID dell'utente hello:`Set-MsolUser -UserPrincipalName <user ID> -PasswordNeverExpires $false`
+   * le password hello tooset di tutti gli utenti dell'organizzazione hello in modo che scadono, utilizzano hello seguente cmdlet:`Get-MSOLUser | Set-MsolUser -PasswordNeverExpires $false`
 
-### <a name="set-a-password-to-never-expire"></a>Impostare una password senza scadenza
+### <a name="set-a-password-toonever-expire"></a>Scadenza set toonever una password
 
-1. Connettersi a Windows PowerShell utilizzando le credenziali aziendali di amministratore.
-2. Eseguire uno di questi comandi:
+1. Connettersi tooWindows PowerShell utilizzando le credenziali di amministratore della società.
+2. Eseguire uno dei seguenti comandi hello:
 
-   * Per impostare la password di un utente senza scadenza, eseguire il cmdlet seguente usando il nome principale utente (UPN) o l'ID utente dell'utente: `Set-MsolUser -UserPrincipalName <user ID> -PasswordNeverExpires $true`
-   * Per impostare le password degli utenti in un'organizzazione in modo che non scadano mai, eseguire il cmdlet seguente: `Get-MSOLUser | Set-MsolUser -PasswordNeverExpires $true`
+   * password hello tooset di un utente toonever scadenza, eseguire hello seguente cmdlet utilizzando hello nome principale utente (UPN) o l'ID dell'utente hello hello:`Set-MsolUser -UserPrincipalName <user ID> -PasswordNeverExpires $true`
+   * le password hello tooset di tutti gli utenti di hello in un'organizzazione di toonever scadenza, eseguire hello seguente cmdlet:`Get-MSOLUser | Set-MsolUser -PasswordNeverExpires $true`
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-I collegamenti seguenti forniscono altre informazioni sull'uso della reimpostazione della password con Azure AD
+Hello seguenti collegamenti fornisce ulteriori informazioni sull'uso di Azure AD di reimpostazione della password
 
 * [**Guida introduttiva**](active-directory-passwords-getting-started.md) - Iniziare a usare la gestione self-service delle password di Azure AD 
-* [**Licenze**](active-directory-passwords-licensing.md): configurare le licenze di Azure AD
-* [**Dati** ](active-directory-passwords-data.md): informazioni sui dati necessari e su come vengono usati per la gestione delle password
-* [**Implementazione**](active-directory-passwords-best-practices.md): pianificare e distribuire agli utenti la reimpostazione password self-service usando le istruzioni disponibili in questo articolo
-* [**Personalizzazione**](active-directory-passwords-customize.md): personalizzare l'aspetto dell'esperienza della reimpostazione password self-service per l'azienda.
-* [**Reporting** ](active-directory-passwords-reporting.md): verificare se, quando e dove gli utenti accedono alla reimpostazione password self-service
-* [**Approfondimento tecnico**](active-directory-passwords-how-it-works.md): approfondimento sul funzionamento
-* [**Domande frequenti**](active-directory-passwords-faq.md) - Come Perché? Cosa? Dove? Chi? Quando? - Risposte alle domande di maggiore interesse
-* [**Risoluzione dei problemi**](active-directory-passwords-troubleshoot.md): informazioni su come risolvere i problemi comuni con la reimpostazione password self-service
+* [**Licenze**](active-directory-passwords-licensing.md) - configurare le licenze di Azure AD
+* [**Dati** ](active-directory-passwords-data.md) : comprendere hello i dati necessari e come utilizzarlo per la gestione delle password
+* [**Implementazione** ](active-directory-passwords-best-practices.md) -pianificare e distribuire agli utenti di tooyour SSPR utilizzando istruzioni hello disponibili qui
+* [**Personalizzare** ](active-directory-passwords-customize.md) -personalizzare hello aspetto di hello SSPR esperienza per l'azienda.
+* [**Creazione di report**](active-directory-passwords-reporting.md) - verificare se, quando e dove gli utenti accedono alla reimpostazione password self-service
+* [**Approfondimento tecnico** ](active-directory-passwords-how-it-works.md) -Vai dietro hello pannelli toounderstand come funziona
+* [**Domande frequenti**](active-directory-passwords-faq.md) - Come Perché? Cosa? Dove? Chi? Quando? -Risposte tooquestions si desiderava sempre tooask
+* [**Risoluzione dei problemi** ](active-directory-passwords-troubleshoot.md) -informazioni su come tooresolve comuni problemi che vedremo con SSPR

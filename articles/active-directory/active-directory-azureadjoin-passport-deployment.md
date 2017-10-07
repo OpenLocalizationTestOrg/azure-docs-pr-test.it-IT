@@ -1,6 +1,6 @@
 ---
-title: Abilitare Microsoft Windows Hello for Business nell'organizzazione | Documentazione Microsoft
-description: Istruzioni per la distribuzione per abilitare Microsoft Passport all'interno dell'organizzazione.
+title: aaaEnable Microsoft Windows Hello for Business dell'organizzazione | Documenti Microsoft
+description: Tooenable di istruzioni di distribuzione Microsoft Passport all'interno dell'organizzazione.
 services: active-directory
 documentationcenter: 
 keywords: configurare Microsoft Passport, distribuzione di Microsoft Windows Hello for Business
@@ -15,72 +15,72 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/05/2017
 ms.author: markvi
-ms.openlocfilehash: 58943e1e29755c983e55c675dd4fe7b75ac47b34
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6041f5916f606752bc55844b1b2d0a423b913cd3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="enable-microsoft-windows-hello-for-business-in-your-organization"></a>Abilitare Microsoft Windows Hello for Business nell'organizzazione
-Dopo [aver connesso i dispositivi appartenenti a un dominio di Windows 10 ad Azure Active Directory](active-directory-azureadjoin-devices-group-policy.md), seguire questa procedura per abilitare Microsoft Windows Hello for Business nell'organizzazione:
+Dopo aver [collegamento dei dispositivi appartenenti a un dominio Windows 10 con Azure Active Directory](active-directory-azureadjoin-devices-group-policy.md), hello seguenti tooenable Microsoft Windows Hello for Business dell'organizzazione:
 
 1. Distribuire System Center Configuration Manager  
 2. Configurare le impostazioni dei criteri
-3. Configurare il profilo certificato  
+3. Configurare il profilo di certificato hello  
 
 ## <a name="deploy-system-center-configuration-manager"></a>Distribuire System Center Configuration Manager
-Per distribuire certificati utente in base alle chiavi di Windows Hello for Business, è necessario quanto segue:
+i certificati utente toodeploy basati su Windows Hello per le chiavi di Business, è necessario seguente hello:
 
-* **System Center Configuration Manager Current Branch**: è necessario installare la versione 1606 o successiva. Per altre informazioni, vedere la [documentazione di System Center Configuration Manager](https://technet.microsoft.com/library/mt346023.aspx) e il [blog del team di System Center Configuration Manager](http://blogs.technet.com/b/configmgrteam/archive/2015/09/23/now-available-update-for-system-center-config-manager-tp3.aspx).
-* **Infrastruttura a chiave pubblica (PKI)**: per abilitare Microsoft Windows Hello for Business usando i certificati utente, è necessario avere un'infrastruttura PKI. Se non si dispone di un'infrastruttura di questo tipo o non si desidera usarla per i certificati utente, è possibile distribuire un nuovo controller di dominio che abbia installato Windows Server 2016 build 10551 (o versione successiva). Seguire i passaggi per [installare un controller di dominio di replica in un dominio esistente](https://technet.microsoft.com/library/jj574134.aspx) o per [installare una nuova foresta di Active Directory, se si crea un nuovo ambiente](https://technet.microsoft.com/library/jj574166). I file con estensione iso sono disponibili per il download in [Signiant Media Exchange](https://datatransfer.microsoft.com/signiant_media_exchange/spring/main?sdkAccessible=true).
+* **System Center Configuration Manager Current Branch** -è necessario tooinstall versione 1606 o migliori. Per ulteriori informazioni, vedere hello [documentazione per System Center Configuration Manager](https://technet.microsoft.com/library/mt346023.aspx) e [blog del Team di System Center Configuration Manager](http://blogs.technet.com/b/configmgrteam/archive/2015/09/23/now-available-update-for-system-center-config-manager-tp3.aspx).
+* **Infrastruttura a chiave pubblica (PKI)** -tooenable Microsoft Windows Hello for Business utilizzando i certificati utente, è necessario disporre di un'infrastruttura PKI sul posto. Se non si dispone di uno o non si desidera toouse è per i certificati utente, è possibile distribuire un nuovo controller di dominio con Windows Server 2016 compilare 10551 (o versione successiva) installato. Seguire i passaggi di hello troppo[installare un controller di dominio di replica in un dominio esistente](https://technet.microsoft.com/library/jj574134.aspx) o troppo[installare una nuova foresta di Active Directory, se si sta creando un nuovo ambiente](https://technet.microsoft.com/library/jj574166). (hello immagini ISO disponibili per il download [Signiant Media Exchange](https://datatransfer.microsoft.com/signiant_media_exchange/spring/main?sdkAccessible=true).)
 
 ## <a name="configure-policy-settings"></a>Configurare le impostazioni dei criteri
-Per configurare le impostazioni dei criteri di Microsoft Windows Hello for Business, sono disponibili due opzioni:
+hello tooconfigure Microsoft Windows Hello per le impostazioni di criteri di Business, sono disponibili due opzioni:
 
 * Criteri di gruppo in Active Directory 
-* System Center Configuration Manager 
+* Hello System Center Configuration Manager 
 
-Usare Criteri di gruppo in Active Directory è il metodo consigliato per configurare le impostazioni dei criteri di Microsoft Windows Hello for Business. 
+Utilizza criteri di gruppo in Active Directory sono hello consigliato metodo tooconfigure, Microsoft Windows Hello per le impostazioni dei criteri di Business. 
 
-Usare System Center Configuration Manager è il metodo preferito quando lo si usa anche per distribuire i certificati. Questo scenario:
+Con System Center Configuration Manager è il metodo di hello preferito quando si utilizzano anche il toodeploy certificati. Questo scenario:
 
-* Assicura la compatibilità con gli scenari di distribuzione più recenti
-* Richiede Windows 10 versione 1607 o successiva sul lato client.
+* Assicura la compatibilità con gli scenari di distribuzione più recente hello
+* Richiede sul lato client di hello 1607 versione di Windows 10 o versione successiva.
 
 ### <a name="configure-microsoft-windows-hello-for-business-via-group-policy-in-active-directory"></a>Configurare Microsoft Windows Hello for Business tramite Criteri di gruppo in Active Directory
 **Passaggi**:
 
-1. Aprire Server Manager e passare a **Strumenti** > **Gestione Criteri di gruppo**.
-2. Da Gestione Criteri di gruppo passare al nodo corrispondente al dominio in cui abilitare la funzionalità di aggiunta ad Azure AD.
+1. Aprire Server Manager e passare troppo**strumenti** > **Gestione criteri di gruppo**.
+2. Da Gestione criteri di gruppo passare nodo toohello corrispondente toohello dominio in cui si desidera tooenable aggiunta ad Azure AD.
 3. Fare clic con il pulsante destro del mouse su **Oggetti Criteri di gruppo** e scegliere **Nuovo**. Assegnare un nome all'oggetto Criteri di gruppo, ad esempio Abilita Windows Hello for Business. Fare clic su **OK**.
 4. Fare clic con il pulsante destro del mouse sul nuovo oggetto Criteri di gruppo e scegliere **Modifica**.
-5. Passare a **Configurazione computer** > **Criteri** > **Modelli amministrativi** > **Componenti di Windows** > **Windows Hello for Business**.
+5. Passare troppo**configurazione Computer** > **criteri** > **modelli amministrativi** > **Windows Componenti** > **Windows Hello for Business**.
 6. Fare doppio clic su **Abilita Windows Hello for Business** e selezionare **Modifica**.
-7. Selezionare il pulsante di opzione **Abilitato** e fare clic su **Applica**. Fare clic su **OK**.
-8. È ora possibile collegare l'oggetto Criteri di gruppo a una posizione di propria scelta. Per abilitare questo oggetto per tutti i dispositivi appartenenti a un dominio di Windows 10 nell'organizzazione, collegarlo al dominio. ad esempio:
+7. Seleziona hello **abilitato** pulsante di opzione e quindi fare clic su **applica**. Fare clic su **OK**.
+8. È ora possibile collegare hello oggetto Criteri di gruppo tooa nel percorso desiderato. tooenable questo criterio per tutti hello appartenenti a un dominio Windows 10 nei dispositivi dell'organizzazione, dominio toohello di collegamento hello criteri di gruppo. ad esempio:
    * Una specifica unità organizzativa in Active Directory in cui saranno posizionati i computer Windows 10 aggiunti a un dominio.
    * Uno specifico gruppo di sicurezza contenente i computer appartenenti a un dominio di Windows 10 che verranno registrati automaticamente in Azure AD.
 
 ### <a name="configure-windows-hello-for-business-using-system-center-configuration-manager"></a>Configurare Windows Hello for Business mediante System Center Configuration Manager
 **Passaggi**:
 
-1. Aprire **System Center Configuration Manager**, passare ad **Asset e conformità > Impostazioni di conformità > Accesso risorse aziendali > Profili Windows Hello for Business**.
+1. Aprire hello **System Center Configuration Manager**, quindi passare troppo**asset e conformità > Impostazioni di conformità > accesso alle risorse aziendali > Windows Hello per i profili di Business**.
    
     ![Configurare Windows Hello for Business](./media/active-directory-azureadjoin-passport-deployment/01.png)
-2. Nella barra degli strumenti nella parte superiore fare clic su **Crea profilo Windows Hello for Business**.
+2. Nella barra degli strumenti hello in primo piano hello, fare clic su **creare Windows Hello per le aziende profilo**.
    
     ![Configurare Windows Hello for Business](./media/active-directory-azureadjoin-passport-deployment/02.png)
-3. Nella finestra di dialogo **Generale** seguire questa procedura:
+3. In hello **generale** finestra di dialogo, eseguire hello alla procedura seguente:
    
     ![Configurare Windows Hello for Business](./media/active-directory-azureadjoin-passport-deployment/03.png)
    
-    a. Nella casella di testo **Nome** digitare un nome per il profilo, ad esempio **Il mio profilo WHfB**.
+    a. In hello **nome** casella di testo, digitare un nome per il profilo, ad esempio, **profilo WHfB**.
    
     b. Fare clic su **Avanti**.
-4. Nella finestra di dialogo **Piattaforme supportate** selezionare le piattaforme che saranno fornite con questo profilo Windows Hello for Business e fare clic su **Avanti**.
+4. In hello **piattaforme supportate** finestra di dialogo, piattaforme selezionare hello che verranno eseguito il provisioning con questo Windows Hello per il profilo di business e quindi fare clic su **Avanti**.
    
     ![Configurare Windows Hello for Business](./media/active-directory-azureadjoin-passport-deployment/04.png)
-5. Nella finestra di dialogo **Impostazioni** seguire questa procedura:
+5. In hello **impostazioni** finestra di dialogo, eseguire hello alla procedura seguente:
    
     ![Configurare Windows Hello for Business](./media/active-directory-azureadjoin-passport-deployment/05.png)
    
@@ -91,25 +91,25 @@ Usare System Center Configuration Manager è il metodo preferito quando lo si us
     c. Per **Metodo di autenticazione** selezionare **Basata su certificati**.
    
     d. Fare clic su **Avanti**.
-6. Nella finestra di dialogo **Riepilogo** fare clic su **Avanti**.
-7. Nella finestra di dialogo **Completamento** fare clic su **Chiudi**.
-8. Nel barra degli strumenti in alto fare clic su **Distribuisci**.
+6. In hello **riepilogo** finestra di dialogo, fare clic su **Avanti**.
+7. In hello **completamento** finestra di dialogo, fare clic su **Chiudi**.
+8. Nella barra degli strumenti hello in primo piano hello, fare clic su **Distribuisci**.
    
     ![Configurare Windows Hello for Business](./media/active-directory-azureadjoin-passport-deployment/06.png)
 
-## <a name="configure-the-certificate-profile"></a>Configurare il profilo certificato
-Se si usa l'autenticazione basata su certificato per l'autenticazione locale, è necessario configurare e distribuire un profilo del certificato. Questa attività richiede di configurare un server NDES e il ruolo del sito del punto di registrazione certificati in System Center Configuration Manager. Per altre informazioni, vedere [Prerequisiti per i profili certificato in Configuration Manager](https://technet.microsoft.com/library/dn261205.aspx).
+## <a name="configure-hello-certificate-profile"></a>Configurare il profilo di certificato hello
+Se si utilizza l'autenticazione basata su certificato per l'autenticazione locale, è necessario tooconfigure e distribuire un profilo del certificato. Questa attività è necessario tooset un server NDES e il ruolo del sito punto di registrazione certificati in hello System Center Configuration Manager. Per ulteriori informazioni, vedere hello [Prerequisites for Certificate Profiles in Configuration Manager](https://technet.microsoft.com/library/dn261205.aspx).
 
-1. Aprire **System Center Configuration Manager**, quindi passare ad **Asset e conformità > Impostazioni di conformità > Accesso risorse aziendali > Profili certificato**.
+1. Aprire hello **System Center Configuration Manager**, quindi passare troppo**asset e conformità > Impostazioni di conformità > accesso alle risorse aziendali > i profili certificato**.
 2. Selezionare un modello dotato di utilizzo chiavi avanzato (EKU) per l'accesso con smart card.
 
-Nella pagina **Registrazione SCEP** del profilo certificato è necessario scegliere **Installa in Passport for Work oppure genera errore** come **Provider di archiviazione chiavi**.
+In hello **registrazione SCEP** pagina hello profilo del certificato, è necessario toochoose **installare tooPassport per Work oppure genera errore** come hello **Provider di archiviazione chiavi**.
 
 ## <a name="next-steps"></a>Passaggi successivi
-* [Windows 10 per le aziende: modalità d'uso dei dispositivi di lavoro](active-directory-azureadjoin-windows10-devices-overview.md)
-* [Estensione delle funzionalità del cloud ai dispositivi Windows 10 tramite Aggiunta ad Azure Active Directory](active-directory-azureadjoin-user-upgrade.md)
+* [Windows 10 per enterprise hello: i dispositivi toouse modi per lavoro](active-directory-azureadjoin-windows10-devices-overview.md)
+* [Estensione cloud dispositivi tooWindows 10 funzionalità tramite Azure Active Directory Join](active-directory-azureadjoin-user-upgrade.md)
 * [Autenticazione delle identità senza password con Microsoft Passport](active-directory-azureadjoin-passport.md)
 * [Scenari di utilizzo per Aggiunta ad Azure AD](active-directory-azureadjoin-deployment-aadjoindirect.md)
-* [Connettere dispositivi appartenenti a un dominio ad Azure AD per usufruire di Windows 10](active-directory-azureadjoin-devices-group-policy.md)
+* [Connettersi tooAzure dispositivi appartenenti a un dominio Active Directory per Windows 10](active-directory-azureadjoin-devices-group-policy.md)
 * [Configurare Aggiunta di Azure AD](active-directory-azureadjoin-setup.md)
 

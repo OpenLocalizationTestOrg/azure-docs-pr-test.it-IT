@@ -1,6 +1,6 @@
 ---
-title: Aggiungere nuovi utenti ad Azure Active Directory | Documentazione Microsoft
-description: Illustra come aggiungere nuovi utenti o modificare le informazioni sugli utenti in Azure Active Directory.
+title: aaaAdd nuovi utenti tooAzure Active Directory | Documenti Microsoft
+description: Viene illustrato come tooadd nuovi utenti o modificare le informazioni utente in Azure Active Directory.
 services: active-directory
 documentationcenter: 
 author: curtand
@@ -17,67 +17,67 @@ ms.author: curtand
 ms.reviewer: jeffsta
 ms.custom: oldportal;it-pro;
 robots: NOINDEX
-ms.openlocfilehash: ff4b742e772a6062885313e9bb49e55907fe125a
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 72f67ad41022fd19fd94c8e1301943b0db1e57bf
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="add-new-users-or-users-with-microsoft-accounts-to-azure-active-directory"></a>Aggiungere nuovi utenti o utenti con account Microsoft in Azure Active Directory
-Aggiungere utenti per popolare la directory. Questo articolo illustra come aggiungere nuovi utenti dell'organizzazione e come aggiungere utenti con account Microsoft. Per altre informazioni sull'aggiunta di utenti da altre directory in Azure Active Directory o l'aggiunta di utenti da società partner, vedere [Aggiungere utenti da altre directory o società partner in Azure Active Directory](active-directory-create-users-external.md). Gli utenti aggiunti non hanno autorizzazioni di amministratore per impostazione predefinita, ma è possibile assegnare loro dei ruoli in qualsiasi momento.
+# <a name="add-new-users-or-users-with-microsoft-accounts-tooazure-active-directory"></a>Aggiungere nuovi utenti o gli utenti con account di Microsoft tooAzure Active Directory
+Aggiungere gli utenti toopopulate la directory. Questo articolo viene illustrato come tooadd nuovi utenti nell'organizzazione e come tooadd utenti che dispongono di account Microsoft. Per altre informazioni sull'aggiunta di utenti da altre directory in Azure Active Directory o l'aggiunta di utenti da società partner, vedere [Aggiungere utenti da altre directory o società partner in Azure Active Directory](active-directory-create-users-external.md). Gli utenti aggiunti non dispongono delle autorizzazioni di amministratore per impostazione predefinita, ma è possibile assegnare ruoli toothem in qualsiasi momento.
 
 > [!IMPORTANT]
-> Microsoft consiglia di gestire Azure AD usando l'[interfaccia di amministrazione di Azure AD](https://aad.portal.azure.com) nel portale di Azure invece di usare il portale di Azure classico citato nel presente articolo. Per informazioni su come aggiungere un utente nell'interfaccia di amministrazione di Azure AD, vedere [Aggiungere nuovi utenti in Azure Active Directory](active-directory-users-create-azure-portal.md).
+> Si consiglia di gestire Azure AD usando la hello [centro di amministrazione di Azure AD](https://aad.portal.azure.com) in hello portale di Azure anziché hello portale di Azure classico a cui fa riferimento in questo articolo. Per la modalità tooadd un utente nell'interfaccia di amministrazione di hello Azure AD, vedere [aggiungere nuovi utenti tooAzure Active Directory](active-directory-users-create-azure-portal.md).
 
 ## <a name="add-a-user"></a>Aggiungere un utente
-1. Accedere al [portale di Azure classico](https://manage.windowsazure.com) con un account di amministratore globale per la directory.
-2. Selezionare **Active Directory**e quindi il nome della directory dell'organizzazione.
-3. Selezionare la scheda **Utenti** e quindi **Aggiungi utente** nella barra dei comandi.
-4. Nella pagina **Informazioni sull'utente** selezionare in **Tipo di utente** una delle opzioni seguenti.
+1. Accedi toohello [portale di Azure classico](https://manage.windowsazure.com) con un account che sia un amministratore globale per la directory di hello.
+2. Selezionare **Active Directory**, quindi selezionare il nome di hello della directory dell'organizzazione.
+3. Seleziona hello **utenti** scheda e quindi nella barra dei comandi di hello, selezionare **Aggiungi utente**.
+4. In hello **informazioni sull'utente** pagina **tipo di utente**, selezionare:
 
    * **Nuovo utente nell'organizzazione** : consente di aggiungere un nuovo account utente nella directory.
-   * **Utente con account Microsoft esistente** : consente di aggiungere un account utente Microsoft esistente alla directory, ad esempio un account Outlook.
+   * **Utente con un account Microsoft esistente** : aggiunge un consumer account tooyour directory di Microsoft esistente (ad esempio, un account di Outlook)
 5. In base al **Tipo di utente**immettere un nome utente, per un nuovo utente, o un indirizzo di posta elettronica, per un utente con un account Microsoft.
-6. Nella pagina **Profilo** dell'utente specificare nome e cognome, un nome descrittivo e un ruolo utente nell'elenco **Ruoli**. Per altre informazioni sui ruoli utente e di amministratore, vedere [Assegnazione dei ruoli di amministratore in Azure Active Directory](active-directory-assign-admin-roles.md). Specificare eventualmente **Abilita Multi-Factor Authentication** per l'utente.
-7. Nella pagina **Ottieni password temporanea** selezionare **Crea**.
+6. Utente hello **profilo** pagina, fornire un nome e cognome, un nome descrittivo e un ruolo utente da hello **ruoli** elenco. Per altre informazioni sui ruoli utente e di amministratore, vedere [Assegnazione dei ruoli di amministratore in Azure Active Directory](active-directory-assign-admin-roles.md). Specificare se troppo**abilitare multi-Factor Authentication** per utente hello.
+7. In hello **Ottieni password temporanea** selezionare **crea**.
 
 > [!IMPORTANT]
-> Se l'organizzazione usa più di un dominio, è opportuno essere a conoscenza dei problemi seguenti quando si aggiunge un account utente:
+> Se l'organizzazione utilizza più di un dominio, che è necessario conoscere i seguenti problemi quando si aggiunge un account utente di hello:
 >
-> * Per aggiungere account utente con lo stesso nome dell'entità utente (UPN) in tutti i domini, aggiungere **prima** geoffgrisso@contoso.onmicrosoft.com, ad esempio, **seguito da** geoffgrisso@contoso.com.
-> * **Non** aggiungere geoffgrisso@contoso.com prima di aggiungere geoffgrisso@contoso.onmicrosoft.com. Quest'ordine è importante e può essere complesso da annullare.
+> * gli account utente tooadd con hello stesso nome dell'entità utente (UPN) tra i domini, **prima** aggiungere, ad esempio, geoffgrisso@contoso.onmicrosoft.com, **seguito da** geoffgrisso@contoso.com.
+> * **Non** aggiungere geoffgrisso@contoso.com prima di aggiungere geoffgrisso@contoso.onmicrosoft.com. Questo ordine è importante e può essere complesso tooundo.
 >
 >
 
 ## <a name="change-user-information"></a>Modificare le informazioni utente
-È possibile modificare tutti gli attributi utente tranne l'ID oggetto.
+È possibile modificare qualsiasi attributo utente, ad eccezione di ID di oggetto hello.
 
 1. Aprire la directory.
-2. Selezionare la scheda **Utenti** e quindi il nome visualizzato dell'utente che si vuole modificare.
+2. Seleziona hello **utenti** scheda e il nome visualizzato selezionare hello di hello utente desiderato toochange.
 3. Salvare le modifiche e quindi fare clic su **Salva**.
 
-Se l'utente che si sta modificando è sincronizzato con il servizio Active Directory locale, non è possibile modificare le informazioni utente con questa procedura. Per modificare l'utente, usare gli strumenti di gestione del servizio Active Directory locale.
+Se l'utente hello che si desidera modificare è sincronizzato con il servizio Active Directory locale, è possibile modificare le informazioni utente hello mediante questa procedura. utente hello toochange, utilizzare gli strumenti di gestione di Active Directory locale.
 
 ## <a name="guest-user-management-and-limitations"></a>Gestione e limiti dell'utente guest
-Gli account guest rappresentano utenti di altre directory che sono stati invitati alla directory per accedere a documenti di SharePoint, applicazioni o altre risorse di Azure. Un account guest nella directory ha l'attributo UserType sottostante impostato su "Guest". Per gli utenti normali, ovvero i membri della directory, l'attributo UserType è impostato su "Membro".
+Account guest sono utenti da altre directory che sono stati invitati tooyour directory tooaccess SharePoint documenti, applicazioni o altre risorse di Azure. Un account guest nella directory di dispone dell'attributo di UserType sottostante impostato troppo "Guest". Gli utenti standard (in particolare, i membri della directory) hanno l'attributo UserType hello "Member".
 
-Nella directory gli utenti guest hanno un set di diritti limitato. Questi diritti limitano la possibilità per gli utenti guest di trovare informazioni sugli altri utenti nella directory. Gli utenti guest possono comunque interagire con gli utenti e i gruppi associati alle risorse su cui stanno lavorando. Gli utenti guest possono:
+Gli utenti guest dispongono di un set limitato di diritti nella directory hello. Questi diritti limitano il possibilità hello per altri utenti nella directory hello informazioni toodiscover guest. Tuttavia, gli utenti guest ancora possono interagire con gli utenti di hello e gruppi associati alle risorse di hello che cui stai lavorando. Gli utenti guest possono:
 
-* Visualizzare altri utenti e gruppi associati a una sottoscrizione di Azure a cui sono assegnati
-* Visualizzare i membri dei gruppi a cui appartengono
-* Cercare altri utenti nella directory, se conoscono l'indirizzo di posta elettronica completo dell'utente
-* Visualizzare solo un set limitato di attributi degli utenti cercati, ad esempio solo il nome visualizzato, l'indirizzo di posta elettronica, il nome dell'entità utente e la foto di anteprima
-* Ottenere un elenco di domini verificati nella directory
-* Autorizzare applicazioni, concedendo loro lo stesso accesso disponibile per i membri nella propria directory
+* Vedere altri utenti e gruppi associati toowhich una sottoscrizione di Azure che sono state assegnate
+* Visualizzare i membri di gruppi toowhich che appartengono hello
+* Cercare altri utenti nella directory di hello, se si conosce l'indirizzo di posta elettronica completo hello dell'utente hello
+* Vedere solo un set limitato di attributi di utenti hello che sono cercare - toodisplay limitato nome, indirizzo di posta elettronica, nome dell'entità utente (UPN) e foto di anteprima
+* Ottenere un elenco dei domini verificati nella directory hello
+* Consenso tooapplications, concedere loro hello stessi diritti di accesso che dispongono di membri nella directory
 
 ## <a name="set-guest-user-access-policies"></a>Impostare i criteri di accesso degli utenti guest
-La scheda **Configura** di una directory include le opzioni per il controllo dell'accesso per gli utenti guest. Tali opzioni possono essere modificate unicamente da un amministratore globale di directory nel portale di Azure classico. Al momento non è disponibile alcun metodo di PowerShell o API.
+Hello **configura** scheda di una directory include opzioni toocontrol accesso per gli utenti guest. Tali opzioni possono essere modificate unicamente da un amministratore globale di directory nel portale di Azure classico. Al momento non è disponibile alcun metodo di PowerShell o API.
 
-Per aprire la scheda **Configura** nel portale di Azure classico, selezionare **Active Directory** e quindi il nome della directory.
+hello tooopen **configura** scheda hello Azure selezionare portale classico **Active Directory**, quindi selezionare il nome di hello della directory hello.
 
 ![Scheda Configura in Azure Active Directory][1]
 
-Si potranno quindi modificare le opzioni per controllare l'accesso per gli utenti guest.
+È quindi possibile modificare l'accesso toocontrol hello opzioni per gli utenti guest.
 
 ![opzioni di controllo di accesso per gli utenti guest][2]
 

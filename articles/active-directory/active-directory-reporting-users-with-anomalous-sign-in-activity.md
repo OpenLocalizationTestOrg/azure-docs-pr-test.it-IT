@@ -1,5 +1,5 @@
 ---
-title: "Utenti con anomalie dell'attività di accesso"
+title: "aaaUsers con attività anomala"
 description: "Un report che indichi tutti gli account utente per i quali è stata identificata un’attività di accesso anomala."
 services: active-directory
 documentationcenter: 
@@ -14,14 +14,14 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/04/2016
 ms.author: saah;kenhoff
-ms.openlocfilehash: acba4a4d3fa589aa1846f63883e5482e60605b70
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: efc9e21cfc3156b345a84da7527bf749af2b563c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="users-with-anomalous-sign-in-activity"></a>Utenti con anomalie dell'attività di accesso
-Questo è un report aggregato che combina gli accessi sospetti dei report seguenti:
+Si tratta di un rapporto di aggregazione che combina sospetti accessi da hello seguenti report:
 
 <ul><li>Accessi da origini sconosciute</li>
 <li>Accessi dopo più errori</li>

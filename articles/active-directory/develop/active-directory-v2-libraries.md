@@ -1,6 +1,6 @@
 ---
-title: Librerie di autenticazione di Azure Active Directory 2.0 | Microsoft Docs
-description: Librerie client e middleware server compatibili e link a librerie, codice sorgente ed esempi correlati per l'endpoint di Azure Active Directory 2.0.
+title: librerie di autenticazione v 2.0 aaaAzure Active Directory | Documenti Microsoft
+description: Librerie client compatibile e librerie middleware del server e la libreria relativa origine e collegamenti a esempi, per endpoint v 2.0 di Azure Active Directory hello.
 services: active-directory
 documentationcenter: 
 author: dstrockis
@@ -15,45 +15,45 @@ ms.workload: identity
 ms.date: 05/01/2017
 ms.author: dastrock
 ms.custom: aaddev
-ms.openlocfilehash: c8dc0fab1a4da2bf9ae1463cb5e17fc2c2b12e5c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d7affdaac3a087b951d54d96fa68edde2a065172
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-active-directory-v20-authentication-libraries"></a>Librerie di autenticazione di Azure Active Directory 2.0
-L'endpoint di Azure Active Directory (Azure AD) 2.0 supporta i protocolli standard del settore OAuth 2.0 e OpenID Connect 1.0. Con l'endpoint 2.0 è possibile usare varie librerie di Microsoft e altre organizzazioni.
+endpoint di Hello Azure Active Directory (Azure AD) v 2.0 supporta i protocolli OAuth 2.0 e OpenID Connect 1.0 standard del settore hello. È possibile utilizzare varie librerie di Microsoft e di altre organizzazioni con endpoint v 2.0 hello.
 
-Quando si compila un'applicazione che usa l'endpoint 2.0, è consigliabile usare raccolte scritte da esperti del dominio del protocollo che seguono una metodologia Security Development Lifecycle (SDL), come [quella seguita da Microsoft][Microsoft-SDL]. Se si decide di creare manualmente il codice per il supporto dei protocolli, è consigliabile seguire la metodologia SDL e prestare attenzione alle considerazioni sulla sicurezza contenute nelle specifiche degli standard di ogni protocollo.
+Quando si compila un'applicazione che utilizza hello v 2.0 endpoint, è consigliabile utilizzare le librerie che vengono scritti dagli esperti di dominio di protocollo che seguono una metodologia di Security Development Lifecycle (SDL), ad esempio [hello un seguito da Microsoft] [Microsoft-SDL]. Se si decide il supporto per protocolli hello toohand codice, è consigliabile seguire metodologia SDL e prestare particolare attenzione considerazioni sulla sicurezza toohello nelle specifiche di hello standard per ogni protocollo.
 
 ## <a name="types-of-libraries"></a>Tipi di librerie
 Azure AD 2.0 usa due tipi di librerie:
 
-* **Librerie client**. I server e i client nativi usano le librerie client per ottenere i token di accesso per chiamare una risorsa, ad esempio Microsoft Graph.
-* **Librerie middleware server**. Le librerie middleware server vengono usate dalle app Web per l'accesso degli utenti e dalle API Web per convalidare i token inviati da client nativi o altri server.
+* **Librerie client**. Native client e server è possibile utilizzare i token di accesso tooget librerie client per la chiamata a una risorsa, ad esempio Microsoft Graph.
+* **Librerie middleware server**. Le librerie middleware server vengono usate dalle app Web per l'accesso degli utenti API Web utilizzano il server middleware librerie toovalidate token vengono inviati dai client nativo o da altri server.
 
 ## <a name="library-support"></a>Supporto per le librerie
-Dato che è possibile scegliere qualsiasi libreria conforme agli standard quando si usa l'endpoint 2.0, è importante sapere a chi rivolgersi per ottenere supporto. Per richieste relative a problemi e funzionalità nel codice della libreria, contattare il proprietario della libreria. Per richieste relative a problemi e funzionalità nell'implementazione del protocollo sul lato del servizio, contattare Microsoft.
+Poiché quando si utilizza l'endpoint di hello v 2.0, è possibile scegliere qualsiasi libreria conforme agli standard, è importante tooknow dove toogo per il supporto. Per i problemi e richieste di funzionalità nel codice di libreria, contattare il proprietario della libreria hello. Informazioni sui problemi e richieste di funzionalità nell'implementazione del protocollo sul lato servizio hello, contattare Microsoft.
 
 Le librerie dispongono di due categorie di supporto:
 
 * **Librerie supportate da Microsoft**. Microsoft offre aggiornamenti per queste librerie, a cui ha applicato la due diligence SDL.
-* **Librerie compatibili**. Microsoft ha testato queste librerie in scenari di base e ne ha confermato il funzionamento con l'endpoint 2.0. Microsoft non fornisce correzioni per queste librerie e non ha eseguito una verifica su di esse. Le richieste relative a problemi e funzionalità devono essere indirizzate al progetto open source della libreria.
+* **Librerie compatibili**. Microsoft ha testato queste librerie in scenari di base e confermato il funzionamento con endpoint v 2.0 hello. Microsoft non fornisce correzioni per queste librerie e non ha eseguito una verifica su di esse. Problemi e richieste di funzionalità devono essere progetto open source toohello diretto della libreria.
 
-Per un elenco delle librerie che funzionano con l'endpoint 2.0, vedere le sezioni successive di questo articolo.
+Per un elenco di librerie che funzionano con l'endpoint di hello v 2.0, vedere hello nelle sezioni seguenti in questo articolo.
 
 
 ## <a name="microsoft-supported-client-libraries"></a>Librerie client supportate da Microsoft
 
 > [!IMPORTANT]
-> Le librerie di anteprima MSAL sono adatte per essere usate in ambienti di produzione. Per queste librerie viene fornito lo stesso supporto di livello produzione offerto per le librerie di produzione correnti (ADAL). In fase di anteprima è possibile apportare modifiche all'API MSAL, al formato della cache interna e ad altri meccanismi delle librerie senza preavviso, ma queste modifiche dovranno essere replicate durante le correzioni di bug o i miglioramenti delle funzionalità. Possono infatti incidere sull'applicazione. Una modifica al formato della cache, ad esempio, può incidere sugli utenti chiedendo loro di accedere di nuovo. Per aggiornare il codice è possibile che sia necessario modificare l'API. Quando si fornisce la release di disponibilità generale, agli utenti viene chiesto di eseguire l'aggiornamento alla versione di disponibilità generale entro sei mesi, poiché le applicazioni scritte usando una versione di anteprima possono non funzionare più.
+> librerie di anteprima MSAL Hello sono adatte per l'utilizzo in un ambiente di produzione. Offriamo hello stesso supporto di livello di produzione per queste librerie, come la produzione le librerie (ADAL). Durante l'anteprima di hello che possiamo fare modifiche toohello MSAL API, il formato della cache interna, e altri meccanismi di queste librerie senza preavviso e sarà necessario tootake insieme a correzioni di bug o i miglioramenti delle funzionalità. Possono infatti incidere sull'applicazione. Ad esempio, un formato di cache toohello modifica può influire sul utenti, ad esempio richiedere toosign in nuovamente. Una modifica di API può richiedere tooupdate è il codice. Quando si specifica hello versione disponibilità generale si richiederà versione disponibilità generale di tooupdate toohello entro sei mesi, come le applicazioni scritte utilizzando un'anteprima della versione della libreria potrebbe non funzionare.
 
 | Piattaforma | Libreria | Download | Codice sorgente | Esempio | Riferimento
 | --- | --- | --- | --- | --- | --- |
 | .NET Client, Windows Store, UWP, Xamarin iOS e Android | MSAL .NET (anteprima) |[NuGet](https://www.nuget.org/packages/Microsoft.Identity.Client) |[GitHub](https://github.com/AzureAD/microsoft-authentication-library-for-dotnet) | [App desktop](guidedsetups/active-directory-mobileanddesktopapp-windowsdesktop-intro.md) |  |
 | JavaScript | MSAL.js (anteprima) | [GitHub](https://github.com/AzureAD/microsoft-authentication-library-for-js) | [GitHub](https://github.com/AzureAD/microsoft-authentication-library-for-js) | [App a pagina singola](https://github.com/Azure-Samples/active-directory-javascript-singlepageapp-dotnet-webapi-v2) |  |
 | iOS, macOS | MSAL (anteprima) | [GitHub](https://github.com/AzureAD/microsoft-authentication-library-for-objc) |[GitHub](https://github.com/AzureAD/microsoft-authentication-library-for-objc) | [App iOS](https://github.com/Azure-Samples/active-directory-msal-ios-swift) |  |
-| Android | MSAL (anteprima) | [Repository centrale](https://repo1.maven.org/maven2/com/microsoft/identity/client/msal/) |[GitHub](https://github.com/AzureAD/microsoft-authentication-library-for-android) | [App Android](guidedsetups/active-directory-mobileanddesktopapp-android-intro.md) | [JavaDocs](http://javadoc.io/doc/com.microsoft.identity.client/msal) |
+| Android | MSAL (anteprima) | [Hello Repository centrale](https://repo1.maven.org/maven2/com/microsoft/identity/client/msal/) |[GitHub](https://github.com/AzureAD/microsoft-authentication-library-for-android) | [App Android](guidedsetups/active-directory-mobileanddesktopapp-android-intro.md) | [JavaDocs](http://javadoc.io/doc/com.microsoft.identity.client/msal) |
 
 ## <a name="microsoft-supported-server-middleware-libraries"></a>Librerie middleware server supportate da Microsoft
 
@@ -78,12 +78,12 @@ Per un elenco delle librerie che funzionano con l'endpoint 2.0, vedere le sezion
 | Piattaforma | Nome libreria | Versione testata | Codice sorgente | Esempio |
 |:---:|:---:|:---:|:---:|:---:|
 | Java | [Scribe Java scribejava](https://github.com/scribejava/scribejava) | [Versione 3.2.0](https://github.com/scribejava/scribejava/releases/tag/scribejava-3.2.0) | [ScribeJava](https://github.com/scribejava/scribejava/archive/scribejava-3.2.0.zip) | |
-| PHP | [PHP League oauth2-client](https://github.com/thephpleague/oauth2-client) | [Versione 1.4.2](https://github.com/thephpleague/oauth2-client/releases/tag/1.4.2) | [oauth2-client](https://github.com/thephpleague/oauth2-client/archive/1.4.2.zip) | |
+| PHP | [Hello client oauth2 lega PHP](https://github.com/thephpleague/oauth2-client) | [Versione 1.4.2](https://github.com/thephpleague/oauth2-client/releases/tag/1.4.2) | [oauth2-client](https://github.com/thephpleague/oauth2-client/archive/1.4.2.zip) | |
 | Python-Flask |[Flask-OAuthlib](https://github.com/lepture/flask-oauthlib) |0.9.3 |[Flask-OAuthlib](https://github.com/lepture/flask-oauthlib) |[App Web](https://github.com/Azure-Samples/active-directory-python-flask-graphapi-web-v2) |
 | Ruby |[OmniAuth](https://github.com/omniauth/omniauth/wiki) |omniauth:1.3.1</br>omniauth-oauth2:1.4.0 |[OmniAuth](https://github.com/omniauth/omniauth)</br>[OmniAuth OAuth2](https://github.com/intridea/omniauth-oauth2) |  |
 
 ## <a name="related-content"></a>Contenuti correlati
-Per altre informazioni sull'endpoint di Azure AD 2.0, vedere la [panoramica del modello app di Azure AD 2.0][AAD-App-Model-V2-Overview].
+Per ulteriori informazioni sull'endpoint v 2.0 hello Azure AD, vedere hello [Panoramica del modello versione 2.0 di Azure AD app][AAD-App-Model-V2-Overview].
 
 <!--Image references-->
 

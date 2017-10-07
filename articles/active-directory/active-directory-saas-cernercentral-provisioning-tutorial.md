@@ -1,6 +1,6 @@
 ---
 title: 'Esercitazione: Configurazione di Cerner Central per il provisioning utenti automatico con Azure Active Directory | Microsoft Docs'
-description: Informazioni su come configurare Azure Active Directory per effettuare automaticamente il provisioning degli utenti in un elenco in Cerner Central.
+description: Informazioni su come il provisioning di roster tooa gli utenti nel centro Cerner tooconfigure tooautomatically di Azure Active Directory.
 services: active-directory
 documentationcenter: 
 author: asmalser-msft
@@ -14,64 +14,64 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/26/2017
 ms.author: asmalser-msft
-ms.openlocfilehash: 84613b7f8d7bd031d492a62da0bc53be96ac45a3
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: e96da98e783d24e7f34ae924824f909eead75f54
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-configuring-cerner-central-for-automatic-user-provisioning"></a>Esercitazione: Configurazione di Cerner Central per il provisioning utenti automatico
 
-Questa esercitazione descrive le procedure da eseguire in Cerner Central e Azure AD per effettuare automaticamente il provisioning e il deprovisioning degli account utente da Azure AD in un elenco di utenti in Cerner Central. 
+obiettivo di Hello di questa esercitazione è tooshow hello passaggi che è necessario tooperform Cerner centrale e Azure AD tooautomatically il provisioning e il de-provisioning account utente dall'elenco di utenti di Azure AD tooa nella Cerner centrale. 
 
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-Per lo scenario descritto in questa esercitazione si presuppone che l'utente disponga di quanto segue:
+scenario Hello descritto in questa esercitazione si presuppone che si disponga già di hello seguenti elementi:
 
 *   Tenant di Azure Active Directory
 *   Tenant di Cerner Central 
 
 > [!NOTE]
-> Azure Active Directory si integra con Cerner Central usando il protocollo [SCIM](http://www.simplecloud.info/).
+> Azure Active Directory si integra con Cerner centrale utilizzando hello [SCIM](http://www.simplecloud.info/) protocollo.
 
-## <a name="assigning-users-to-cerner-central"></a>Assegnazione di utenti a Cerner Central
+## <a name="assigning-users-toocerner-central"></a>L'assegnazione di utenti tooCerner centrale
 
-Per determinare gli utenti che dovranno ricevere l'accesso alle app selezionate, Azure Active Directory usa il concetto delle "assegnazioni". Nel contesto del provisioning automatico degli account utente, vengono sincronizzati solo gli utenti e i gruppi che sono stati "assegnati" a un'applicazione in Azure AD. 
+Azure Active Directory Usa il concetto di "assegnazioni" toodetermine gli utenti che devono ricevere le app tooselected di accesso. Nel contesto di hello di provisioning dell'account utente automatico, vengono sincronizzati solo gli utenti di hello e i gruppi "assegnati" tooan applicazione in Azure AD. 
 
-Prima di configurare e abilitare il servizio di provisioning, è necessario stabilire quali utenti e/o gruppi in Azure AD rappresentano gli utenti che devono accedere a Cerner Central. Dopo aver stabilito questo, è possibile assegnare tali utenti a Cerner Central seguendo le istruzioni riportate nell'articolo seguente:
+Prima di configurare e abilitare hello provisioning del servizio, è necessario decidere quali utenti e/o i gruppi in Azure AD rappresentano utenti hello bisogno di accesso centrale tooCerner. Una volta deciso, è possibile assegnare questi tooCerner utenti centrale seguendo le istruzioni di hello qui:
 
-[Assegnare un utente o gruppo a un'app aziendale](active-directory-coreapps-assign-user-azure-portal.md)
+[Assegnare un'applicazione aziendale tooan utente o gruppo](active-directory-coreapps-assign-user-azure-portal.md)
 
-### <a name="important-tips-for-assigning-users-to-cerner-central"></a>Suggerimenti importanti per l'assegnazione di utenti a Cerner Central
+### <a name="important-tips-for-assigning-users-toocerner-central"></a>Suggerimenti importanti per l'assegnazione di utenti tooCerner centrale
 
-*   È consigliabile assegnare un singolo utente di Azure AD a Cerner Central per testare la configurazione del provisioning. È possibile assegnare utenti e/o gruppi aggiuntivi in un secondo momento.
+*   È consigliabile che un singolo utente di Azure AD assegnare tooCerner tootest centrale hello configurazione provisioning. È possibile assegnare utenti e/o gruppi aggiuntivi in un secondo momento.
 
-* Al termine del test iniziale per un singolo utente, Cerner Central consiglia di assegnare l'intero elenco di utenti che devono accedere a qualsiasi soluzione Cerner (non solo Cerner Central) per effettuarne il provisioning nell'elenco di utenti di Cerner.  Altre soluzioni Cerner sfruttano questo elenco di utenti.
+* Al termine del test iniziale per un singolo utente, Cerner centrale consiglia di assegnare hello intero elenco utenti destinati tooaccess roster utente del tooCerner toobe provisioning qualsiasi Cerner soluzione (non solo Cerner centrale).  Altre soluzioni Cerner sfruttano questo elenco di utenti nell'elenco di utenti hello.
 
-*   Quando si assegna un utente a Cerner Central, è necessario selezionare il ruolo **Utente** nella finestra di dialogo di assegnazione. Gli utenti con il ruolo "Accesso predefinito" vengono esclusi dal provisioning.
+*   Quando si assegna un tooCerner utente centrale, è necessario selezionare hello **utente** ruolo nella finestra di dialogo assegnazione hello. Gli utenti con ruolo di "accesso predefinita" hello vengono esclusi dal provisioning.
 
 
-## <a name="configuring-user-provisioning-to-cerner-central"></a>Configurazione del provisioning utenti in Cerner Central
+## <a name="configuring-user-provisioning-toocerner-central"></a>Configurazione tooCerner centrale di provisioning dell'utente
 
-Questa sezione illustra la connessione di Azure AD all'elenco di utenti di Cerner Central tramite l'API per il provisioning degli account utente SCIM di Cerner e la configurazione del servizio di provisioning per la creazione, l'aggiornamento e la disabilitazione degli account utente assegnati in Cerner Central in base all'assegnazione di utenti e gruppi in Azure AD.
+In questa sezione in modo semplificato Roster utente del centro del tooCerner Azure AD tramite API di provisioning dell'account utente SCIM della Cerner connessione e configura il provisioning del servizio toocreate hello, aggiornare e disabilitare l'utente assegnato account Cerner centrale in base assegnazione di utenti e gruppi in Azure AD.
 
 > [!TIP]
-> Si può anche scegliere di abilitare l'accesso Single Sign-On basato su SAML per Cerner Central, seguendo le istruzioni disponibili nel [portale di Azure (https://portal.azure.com). L'accesso Single Sign-On può essere configurato indipendentemente dal provisioning automatico, nonostante queste due funzionalità siano complementari. Per altre informazioni, vedere l'[esercitazione sull'accesso Single Sign-On di Cerner Central](active-directory-saas-cernercentral-tutorial.md).
+> È inoltre possibile scegliere tooenabled basato su SAML Single Sign-On per sedi centrali Cerner, attenendosi alle istruzioni hello fornite in [portale di Azure (https://portal.azure.com). L'accesso Single Sign-On può essere configurato indipendentemente dal provisioning automatico, nonostante queste due funzionalità siano complementari. Per ulteriori informazioni, vedere hello [esercitazione centrale Cerner single sign-on](active-directory-saas-cernercentral-tutorial.md).
 
 
-### <a name="to-configure-automatic-user-account-provisioning-to-cerner-central-in-azure-ad"></a>Per configurare il provisioning automatico degli account utente in Cerner Central con Azure AD:
+### <a name="tooconfigure-automatic-user-account-provisioning-toocerner-central-in-azure-ad"></a>account utente automatico tooconfigure provisioning tooCerner centrale in Azure AD:
 
 
-Per effettuare il provisioning degli account utente in Cerner Central, è necessario richiedere un account di sistema di Cerner Central e generare un token di connessione OAuth che possa essere usato da Azure AD per la connessione all'endpoint SCIM di Cerner. È consigliabile anche eseguire l'integrazione in un ambiente sandbox Cerner prima della distribuzione in produzione.
+In ordine tooprovision utente account tooCerner centrale, sarà necessario un account di sistema centrale Cerner da Cerner toorequest e generare un token di connessione OAuth che Azure AD è possibile utilizzare endpoint SCIM del tooCerner tooconnect. È inoltre consigliabile eseguire integrazione hello in un ambiente sandbox Cerner prima di distribuire tooproduction.
 
-1.  Il primo passaggio consiste nel garantire che le persone che gestiscono l'integrazione di Cerner e Azure AD abbiano un account CernerCare, obbligatorio per accedere alla documentazione necessaria per completare le istruzioni. Se necessario, usare gli URL riportati di seguito per creare account CernerCare in ogni ambiente applicabile.
+1.  primo passaggio Hello è persone hello tooensure gestione hello Cerner e integrazione di Azure AD avere un account CernerCare, che è necessario tooaccess hello documentazione necessari toocomplete hello istruzioni. Se necessario, utilizzare l'URL di hello sotto toocreate CernerCare account in ogni ambiente applicabile.
 
    * Sandbox: https://sandboxcernercare.com/accounts/create
 
    * Produzione: https://cernercare.com/accounts/create  
 
-2.  È quindi necessario creare un account di sistema per Azure AD. Usare le istruzioni di seguito per richiedere un account di sistema per gli ambienti sandbox e di produzione.
+2.  È quindi necessario creare un account di sistema per Azure AD. Usare le istruzioni di hello sotto toorequest un Account di sistema per gli ambienti sandbox e di produzione.
 
    * Istruzioni: https://wiki.ucern.com/display/CernerCentral/Requesting+A+System+Account
 
@@ -79,7 +79,7 @@ Per effettuare il provisioning degli account utente in Cerner Central, è necess
 
    * Produzione: https://cernercentral.com/system-accounts/
 
-3.  Generare quindi un token di connessione OAuth per ogni account di sistema. A questo scopo, seguire queste istruzioni.
+3.  Generare quindi un token di connessione OAuth per ogni account di sistema. toodo, seguire hello istruzioni seguenti.
 
    * Istruzioni: https://wiki.ucern.com/display/public/reference/Accessing+Cerner%27s+Web+Services+Using+A+System+Account+Bearer+Token
 
@@ -87,43 +87,43 @@ Per effettuare il provisioning degli account utente in Cerner Central, è necess
 
    * Produzione: https://cernercentral.com/system-accounts/
 
-4. È infine necessario acquisire gli ID dell'area autenticazione dell'elenco utenti sia per l'ambiente sandbox che per quello di produzione in Cerner per completare la configurazione. Per informazioni su come acquisire tale ID, vedere: https://wiki.ucern.com/display/public/reference/Publishing+Identity+Data+Using+SCIM. 
+4. Infine, è necessario tooacquire utente Roster dell'area di autenticazione per entrambi gli ambienti sandbox e di produzione di hello nella configurazione di hello toocomplete Cerner. Per informazioni su come tooacquire questa operazione, vedere: https://wiki.ucern.com/display/public/reference/Publishing+Identity+Data+Using+SCIM. 
 
-5. È ora possibile configurare Azure AD per il provisioning degli account utente in Cerner. Accedere al [portale di Azure](https://portal.azure.com) e passare alla sezione **Azure Active Directory > App aziendali > Tutte le applicazioni**.
+5. È ora possibile configurare tooCerner gli account utente di Azure AD tooprovision. Accedi toohello [portale di Azure](https://portal.azure.com)e passare toohello **Azure Active Directory > App aziendali > tutte le applicazioni** sezione.
 
-6. Se si è già configurato Cerner Central per l'accesso Single Sign-On, cercare l'istanza di Cerner Central usando il campo di ricerca. In caso contrario, selezionare **Aggiungi** e cercare **Cerner Central** nella raccolta di applicazioni. Selezionare Cerner Central nei risultati della ricerca e aggiungerlo all'elenco delle applicazioni.
+6. Se Cerner centrale già stato configurato per single sign-on, la ricerca per l'istanza del sito centrale Cerner usando il campo di ricerca hello. In caso contrario, selezionare **Aggiungi** e cercare **Cerner centrale** nella raccolta di applicazione hello. Selezionare Cerner centrale dai risultati della ricerca hello e aggiungerlo tooyour elenco delle applicazioni.
 
-7.  Selezionare l'istanza di Cerner Central e quindi la scheda **Provisioning**.
+7.  Selezionare l'istanza di Cerner centrale, quindi selezionare hello **Provisioning** scheda.
 
-8.  Impostare **Modalità di provisioning** su **Automatico**.
+8.  Set hello **modalità di Provisioning** troppo**automatica**.
 
    ![Provisioning in Cerner Central](./media/active-directory-saas-cernercentral-provisioning-tutorial/Cerner.PNG)
 
-9.  Compilare i campi seguenti in **Credenziali amministratore**:
+9.  Compilare hello seguenti campi in **credenziali di amministratore**:
 
-   * Nel campo **URL tenant** immettere un URL nel formato seguente, sostituendo "ID-Area-Autenticazione-Roster-Utenti" con l'ID area autenticazione acquisito nel passaggio 4.
+   * In hello **URL Tenant** immettere un URL nel formato hello seguito, sostituendo "Roster-area di autenticazione-ID utente" con ID area di autenticazione hello acquisite nel passaggio &#4;.
 
 > Sandbox: https://user-roster-api.sandboxcernercentral.com/scim/v1/Realms/User-Roster-Realm-ID/ 
 
 > Produzione: https://user-roster-api.cernercentral.com/scim/v1/Realms/User-Roster-Realm-ID/ 
 
-   * Nel campo **Token segreto** immettere il token di connessione OAuth generato nel passaggio 3 e fare clic su **Test connessione**.
+   * In hello **segreto Token** campo immettere i token di connessione OAuth hello generato nel passaggio &#3;, quindi scegliere **Test connessione**.
 
-   * Nel lato superiore destro del portale verrà visualizzata una notifica di esito positivo.
+   * Vedrai una notifica di esito positivo sul lato upperright hello del portale.
 
-10. Immettere l'indirizzo di posta elettronica di una persona o un gruppo che riceverà le notifiche di errore relative al provisioning nel campo **Messaggio di posta elettronica di notifica** e selezionare la casella di controllo seguente.
+10. Immettere l'indirizzo di posta elettronica hello di una persona o il gruppo che deve ricevere le notifiche degli errori di provisioning in hello **notifica tramite posta elettronica** campo e casella di controllo hello riportato di seguito.
 
 11. Fare clic su **Salva**. 
 
-12. Nella sezione **Mapping attributi** esaminare gli attributi di utenti e gruppi che verranno sincronizzati da Azure AD a Cerner Central. Gli attributi selezionati come proprietà **corrispondenti** verranno usati per trovare le corrispondenze con gli account utente e i gruppi in Cerner Central per le operazioni di aggiornamento. Selezionare il pulsante Salva per eseguire il commit delle modifiche.
+12. In hello **mapping degli attributi** sezione, esaminare utente hello e gruppo attributi toobe sincronizzati da Azure AD tooCerner centrale. gli attributi selezionati come Hello **corrispondenza** proprietà sono utilizzate toomatch hello utente account e gruppi nel centro Cerner per operazioni di aggiornamento. Selezionare hello Salva pulsante toocommit tutte le modifiche.
 
-13. Per abilitare il servizio di provisioning di Azure AD per Cerner Central, impostare **Stato del provisioning** su **Sì** nella sezione **Impostazioni**.
+13. tooenable hello servizio provisioning di Azure AD per sedi centrali Cerner, hello modifica **lo stato di Provisioning** troppo**su** in hello **impostazioni** sezione
 
 14. Fare clic su **Salva**. 
 
-Verrà avviata la sincronizzazione iniziale di tutti gli utenti e/o i gruppi assegnati a Cerner Central nella sezione Utenti e gruppi. La sincronizzazione iniziale richiede più tempo delle sincronizzazioni successive, che saranno eseguite circa ogni 20 minuti quando il servizio di provisioning di Azure AD è in esecuzione. È possibile usare la sezione **Dettagli sincronizzazione** per monitorare lo stato di avanzamento e selezionare i collegamenti ai report delle attività di provisioning, che descrivono tutte le azioni eseguite dal servizio di provisioning sull'app Cerner Central.
+Verrà avviata la sincronizzazione iniziale di hello di tutti gli utenti e/o gruppi assegnati tooCerner Central nella sezione utenti e gruppi di hello. la sincronizzazione iniziale Hello accetta più tooperform di sincronizzazioni successive, che si verificano ogni 20 minuti circa, purché hello servizio provisioning di Azure AD è in esecuzione. È possibile utilizzare hello **i dettagli della sincronizzazione** sezione toomonitor lo stato di avanzamento e seguire i collegamenti tooprovisioning attività i report, che descrivono tutte le azioni eseguite da hello provisioning del servizio nella tua app Cerner centrale.
 
-Per altre informazioni sulla lettura dei log di provisioning di Azure AD, vedere l'esercitazione relativa alla [creazione di report sul provisioning automatico degli account utente](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-saas-provisioning-reporting).
+Per ulteriori informazioni sulla modalità di registrazione tooread provisioning di hello Azure AD, vedere [creazione di report per il provisioning utente automatico account](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-saas-provisioning-reporting).
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
@@ -133,4 +133,4 @@ Per altre informazioni sulla lettura dei log di provisioning di Azure AD, vedere
 * [Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory](active-directory-appssoaccess-whatis.md)
 
 ## <a name="next-steps"></a>Passaggi successivi
-* [Informazioni su come esaminare i log e ottenere report sulle attività di provisioning](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-saas-provisioning-reporting).
+* [Informazioni su modalità di registrazione tooreview e ottenere report sull'attività di provisioning](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-saas-provisioning-reporting).

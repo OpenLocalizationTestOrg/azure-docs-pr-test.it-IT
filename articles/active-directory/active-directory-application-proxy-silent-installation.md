@@ -1,6 +1,6 @@
 ---
-title: Installazione automatica del connettore proxy dell'app Azure AD | Microsoft Docs
-description: Viene illustrato come eseguire un'installazione automatica del connettore proxy di applicazione di Azure AD per consentire l'accesso remoto alle applicazioni locali.
+title: aaaSilent installare connettore del Proxy di App di Azure AD | Documenti Microsoft
+description: Descrive come un'installazione automatica di Azure Active Directory Application Proxy Connector tooprovide accesso remoto sicuro tooyour tooperform locale delle app.
 services: active-directory
 documentationcenter: 
 author: kgremban
@@ -15,51 +15,51 @@ ms.date: 08/10/2017
 ms.author: kgremban
 ms.reviewer: harshja
 ms.custom: it-pro
-ms.openlocfilehash: 9e28c89d8f64f0ae3d4150017ca544e606075c45
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: ce796ff45a65ba7d5f0f63c02085bdc6af494548
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="silently-install-the-azure-ad-application-proxy-connector"></a>Installazione automatica del connettore proxy di applicazione di Azure AD
-Può essere necessario inviare uno script di installazione a più server Windows o ai server Windows che non hanno l'interfaccia utente abilitata. In questo argomento viene illustrato come creare uno script di Windows PowerShell che consente l'installazione automatica e la registrazione del connettore proxy di applicazione di Azure AD.
+# <a name="silently-install-hello-azure-ad-application-proxy-connector"></a>Installare automaticamente hello connettore del Proxy dell'applicazione AD Azure
+Si desidera toosend di toobe in grado di creare script di un'installazione toomultiple server o Windows Server tooWindows che non dispongono di interfaccia utente attivata. In questo argomento viene illustrato come creare uno script di Windows PowerShell che consente l'installazione automatica e la registrazione del connettore proxy di applicazione di Azure AD.
 
 Questa funzionalità è utile quando si vuole:
 
-* Installare il connettore in computer senza alcun livello di interfaccia utente o quando non è possibile usare il protocollo RDP del computer.
+* Installare il connettore di hello in computer con nessun livello dell'interfaccia utente o quando non è possibile macchina toohello RDP.
 * Installare e registrare più connettori in una sola volta.
-* Integrare l'installazione e la registrazione del connettore come parte di un'altra procedura.
-* Creare un'immagine server standard che contiene i bit del connettore, ma che non è registrata.
+* Integrare l'installazione del connettore hello e la registrazione come parte di un'altra routine.
+* Creare un'immagine server standard che contiene un connettore di hello bit ma non è registrata.
 
-Il proxy dell’applicazione funziona mediante l'installazione di un servizio di Windows Server slim chiamato connettore all'interno della rete. Per il corretto funzionamento del connettore del proxy di applicazione, è necessario registrarlo nella directory di Azure AD con un account di amministratore globale e una password. Queste informazioni vengono in genere immesse durante l'installazione del connettore in una finestra di dialogo popup. Tuttavia, è possibile usare Windows PowerShell per creare un oggetto credenziale in modo da immettere le informazioni di registrazione. Oppure è possibile creare un token personale e usarlo per immettere le informazioni di registrazione.
+Proxy dell'applicazione funziona con l'installazione di un servizio di Windows Server sottile denominato hello connettore all'interno della rete. Per toowork connettore Proxy dell'applicazione hello dispone toobe registrato con la directory di Azure AD e password di amministratore globale. Queste informazioni vengono in genere immesse durante l'installazione del connettore in una finestra di dialogo popup. Tuttavia, è possibile utilizzare Windows PowerShell toocreate un tooenter oggetto credenziale le informazioni di registrazione. Oppure è possibile creare il proprio token e usarlo tooenter le informazioni di registrazione.
 
-## <a name="install-the-connector"></a>Installare il connettore
-Per installare i file MSI del connettore senza registrare il connettore, procedere come segue:
+## <a name="install-hello-connector"></a>Installare il connettore hello
+Installare i file MSI connettore hello senza registrare hello connettore, come indicato di seguito:
 
 1. Aprire un prompt dei comandi.
-2. Eseguire il comando seguente in cui il parametro /q significa installazione non interattiva. Durante l'installazione non viene richiesto di accettare il contratto di licenza con l'utente finale.
+2. Eseguire hello in cui hello /q significa che l'installazione non interattiva di comando seguente: hello installazione non richiede hello tooaccept contratto di licenza.
    
         AADApplicationProxyConnectorInstaller.exe REGISTERCONNECTOR="false" /q
 
-## <a name="register-the-connector-with-azure-ad"></a>Registrare il connettore in Azure Active Directory
-Esistono due metodi da usare per registrare il connettore:
+## <a name="register-hello-connector-with-azure-ad"></a>Registrare il connettore di hello con Azure AD
+Esistono due metodi è possibile utilizzare il connettore di hello tooregister:
 
-* Registrare il connettore con un oggetto credenziali di Windows PowerShell
-* Registrare il connettore con un token creato offline
+* Registrare il connettore di hello utilizzando un oggetto credenziali di Windows PowerShell
+* Registrare il connettore di hello usando un token creato non in linea
 
-### <a name="register-the-connector-using-a-windows-powershell-credential-object"></a>Registrare il connettore con un oggetto credenziali di Windows PowerShell
-1. Creare l'oggetto credenziali di Windows PowerShell eseguendo questo comando. Sostituire *\<username\>* e *\<password\>* con il nome utente e la password per la directory:
+### <a name="register-hello-connector-using-a-windows-powershell-credential-object"></a>Registrare il connettore di hello utilizzando un oggetto credenziali di Windows PowerShell
+1. Creare l'oggetto credenziali di Windows PowerShell hello eseguendo questo comando. Sostituire  *\<username\>*  e  *\<password\>*  con hello username e password per la directory:
    
         $User = "<username>"
         $PlainPassword = '<password>'
         $SecurePassword = $PlainPassword | ConvertTo-SecureString -AsPlainText -Force
         $cred = New-Object –TypeName System.Management.Automation.PSCredential –ArgumentList $User, $SecurePassword
-2. Passare a **C:\Programmi\Microsoft AAD App Proxy Connector** ed eseguire lo script usando l'oggetto credenziali di PowerShell creato. Sostituire *$cred* con il nome dell'oggetto credenziali di PowerShell creato:
+2. Andare troppo**connettore del Proxy App C:\Program Files\Microsoft AAD** ed eseguire script hello hello PowerShell utilizzando le credenziali dell'oggetto è stato creato. Sostituire *$cred* con nome hello di hello PowerShell le credenziali dell'oggetto è stato creato:
    
         RegisterConnector.ps1 -modulePath "C:\Program Files\Microsoft AAD App Proxy Connector\Modules\" -moduleName "AppProxyPSModule" -Authenticationmode Credentials -Usercredentials $cred
 
-### <a name="register-the-connector-using-a-token-created-offline"></a>Registrare il connettore con un token creato offline
-1. Creare un token offline con la classe AuthenticationContext, utilizzando i valori nel frammento di codice:
+### <a name="register-hello-connector-using-a-token-created-offline"></a>Registrare il connettore di hello usando un token creato non in linea
+1. Creare un token non in linea utilizzando classe AuthenticationContext hello utilizzando i valori hello nel frammento di codice hello:
 
         using System;
         using System.Diagnostics;
@@ -69,22 +69,22 @@ Esistono due metodi da usare per registrare il connettore:
         {
         #region constants
         /// <summary>
-        /// The AAD authentication endpoint uri
+        /// hello AAD authentication endpoint uri
         /// </summary>
         static readonly Uri AadAuthenticationEndpoint = new Uri("https://login.microsoftonline.com/common/oauth2/token?api-version=1.0");
 
         /// <summary>
-        /// The application ID of the connector in AAD
+        /// hello application ID of hello connector in AAD
         /// </summary>
         static readonly string ConnectorAppId = "55747057-9b5d-4bd4-b387-abf52a8bd489";
 
         /// <summary>
-        /// The reply address of the connector application in AAD
+        /// hello reply address of hello connector application in AAD
         /// </summary>
         static readonly Uri ConnectorRedirectAddress = new Uri("urn:ietf:wg:oauth:2.0:oob");
 
         /// <summary>
-        /// The AppIdUri of the registration service in AAD
+        /// hello AppIdUri of hello registration service in AAD
         /// </summary>
         static readonly Uri RegistrationServiceAppIdUri = new Uri("https://proxy.cloudwebappproxy.net/registerapp");
 
@@ -115,11 +115,11 @@ Esistono due metodi da usare per registrare il connettore:
         }
 
 
-2. Dopo aver ottenuto il token, creare una SecureString con il token:
+2. Dopo aver creato il token hello, creare SecureString tramite token hello:
 
    `$SecureToken = $Token | ConvertTo-SecureString -AsPlainText -Force`
 
-3. Eseguire il comando Windows PowerShell seguente, sostituendo \<tenant GUID\> con l'ID della directory:
+3. Hello esecuzione comando di Windows PowerShell seguente, sostituendo \<GUID del tenant\> con l'ID di directory:
 
    `RegisterConnector.ps1 -modulePath "C:\Program Files\Microsoft AAD App Proxy Connector\Modules\" -moduleName "AppProxyPSModule" -Authenticationmode Token -Token $SecureToken -TenantId <tenant GUID>`
 

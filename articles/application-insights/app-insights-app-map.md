@@ -1,6 +1,6 @@
 ---
-title: Mappa delle applicazioni in Azure Application Insights | Microsoft Docs
-description: Una rappresentazione visiva delle dipendenze tra i componenti di app, contrassegnati con avvisi e indicatori KPI.
+title: Mappa in Azure Application Insights aaaApplication | Documenti Microsoft
+description: Rappresentazione grafica delle dipendenze di hello tra i componenti dell'app, etichettata con avvisi e gli indicatori KPI.
 services: application-insights
 documentationcenter: 
 author: SoubhagyaDash
@@ -13,30 +13,30 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/14/2017
 ms.author: bwren
-ms.openlocfilehash: 207526b7a675f92134d045ebefb9a372749bce92
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 96ab753a100ea53ec7d367e3559b6622ab6fd182
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="application-map-in-application-insights"></a>Mappa delle applicazioni in Application Insights
-In [Azure Application Insights](app-insights-overview.md), Mappa delle applicazioni è un layout visivo delle relazioni di dipendenza dei componenti dell'applicazione. Ogni componente mostra gli indicatori KPI, ad esempio carico, prestazioni, errori e avvisi per individuare eventuali componenti che generano un errore o un problema di prestazioni. È possibile fare clic da qualsiasi componente per ottenere una diagnostica più dettagliata, ad esempio sugli eventi di Application Insights. Se l'app usa i servizi di Azure, è possibile anche fare clic sulla diagnostica di Azure, ad esempio per consigli di Advisor su database SQL.
+In [Azure Application Insights](app-insights-overview.md), mapping di applicazioni è un layout visivo hello relazioni di dipendenza dei componenti di applicazione. Ogni componente mostra gli indicatori KPI, ad esempio toohelp carico, prestazioni, errori e avvisi, che si scopre di qualsiasi componente che causa un errore o un problema di prestazioni. È possibile fare clic su tramite toomore qualsiasi componente dettagliate di diagnostica, ad esempio gli eventi di Application Insights. Se l'app Usa i servizi di Azure, è anche possibile fare clic tramite diagnostica tooAzure, ad esempio indicazioni guidata Database SQL.
 
-Come altri tipi di grafico, è possibile aggiungere una mappa delle applicazioni al dashboard di Azure, in cui è completamente funzionale. 
+Come altri tipi di grafico, è possibile aggiungere un toohello mappa applicazione dashboard di Azure, in cui è completamente funzionale. 
 
-## <a name="open-the-application-map"></a>Aprire la mappa delle applicazioni
-Aprire la mappa nel pannello di panoramica dell'applicazione:
+## <a name="open-hello-application-map"></a>Mappa delle applicazioni hello aperto
+Mappa di hello aperto dal pannello della panoramica hello per l'applicazione:
 
 ![aprire la mappa delle app](./media/app-insights-app-map/01.png)
 
 ![mappa delle app](./media/app-insights-app-map/02.png)
 
-La mappa mostra:
+Mostra mappa Hello:
 
 * Test della disponibilità
-* Componente lato client (monitorato con JavaScript SDK)
+* Componente lato client (controllato con hello SDK per JavaScript)
 * Componente lato server
-* Dipendenze dei componenti client e server
+* Dipendenze dei componenti client e server hello
 
 È possibile espandere e comprimere i gruppi di collegamento di dipendenza:
 
@@ -47,9 +47,9 @@ Se si dispone di numerose dipendenze di un tipo (SQL, HTTP e così via), possono
 ![dipendenze raggruppate](./media/app-insights-app-map/03-2.png)
 
 ## <a name="spot-problems"></a>Individuazione di problemi
-Ogni nodo dispone di indicatori di prestazioni rilevanti, ad esempio tassi di carico, prestazioni ed errori per il componente. 
+Ogni nodo dispone di indicatori di prestazioni rilevanti, ad esempio tassi hello di carico, prestazioni ed errori per il componente. 
 
-Le icone di avviso evidenziano possibili problemi. Un avviso di colore arancione indica che si verificano errori nelle richieste, visualizzazioni di pagina o chiamate di dipendenza. Il rosso indica una percentuale di errore superiore al 5%. Se si vuole modificare queste soglie, aprire Opzioni.
+Le icone di avviso evidenziano possibili problemi. Un avviso di colore arancione indica che si verificano errori nelle richieste, visualizzazioni di pagina o chiamate di dipendenza. Il rosso indica una percentuale di errore superiore al 5%. Se si desidera tooadjust queste soglie, aprire Opzioni.
 
 ![icone di errore](./media/app-insights-app-map/04.png)
 
@@ -61,66 +61,66 @@ Se si usa SQL Azure, è presente un'icona che indica quando sono disponibili con
 
 ![Suggerimento di Azure](./media/app-insights-app-map/06.png)
 
-Per ottenere altri dettagli, fare clic su qualsiasi icona:
+Fare clic su qualsiasi icona tooget ulteriori dettagli:
 
 ![Suggerimento di Azure](./media/app-insights-app-map/07.png)
 
 ## <a name="diagnostic-click-through"></a>Diagnostica tramite clic
-Ciascun nodo della mappa permette una diagnostica tramite clic mirati. Le opzioni variano a seconda del tipo del nodo.
+Ogni nodo hello nella mappa hello offre destinazione click-through per la diagnostica. opzioni di Hello variano a seconda di tipo hello del nodo hello.
 
 ![opzioni server](./media/app-insights-app-map/09.png)
 
-Per i componenti ospitati in Azure, le opzioni includono collegamenti diretti a essi.
+Per i componenti sono ospitati in Azure, le opzioni di hello includono toothem collegamenti diretti.
 
 ## <a name="filters-and-time-range"></a>Filtri e intervallo di tempo
-Per impostazione predefinita, la mappa riepiloga tutti i dati disponibili per l'intervallo di tempo scelto. è possibile filtrarlo in modo da includere solo i nomi di operazioni o dipendenze specifici.
+Per impostazione predefinita, la mappa hello riepiloga i dati di hello tutti disponibili per l'intervallo di tempo scelto hello. Ma è possibile filtrare i nomi delle operazioni solo a specifici di tooinclude o dipendenze.
 
-* Nome dell'operazione: include sia le visualizzazioni pagina che i tipi di richiesta lato server. Con questa opzione, la mappa mostra l'indicatore KPI nel nodo lato server/client solo per le operazioni selezionate. Mostra le dipendenze chiamate nel contesto di tali operazioni specifiche.
-* Nome di base delle dipendenze: include le dipendenze del browser AJAX e lato server. Se si segnalano dati di telemetria di dipendenza personalizzati con l'API TrackDependency, questi vengono visualizzati anche qui. È possibile selezionare le dipendenze da mostrare sulla mappa. Attualmente, questa selezione non filtra le richieste lato server o le visualizzazioni di pagina lato client.
+* Nome dell'operazione: include sia le visualizzazioni pagina che i tipi di richiesta lato server. Con questa opzione, hello mappa Mostra hello KPI nel nodo di hello client/server-side per le operazioni di hello selezionato solo. Mostra dipendenze hello chiamate nel contesto di hello di tali operazioni specifiche.
+* Nome di base della dipendenza: sono incluse le dipendenze di browser AJAX hello e le dipendenze sul lato server. Se si segnala telemetria dipendenza personalizzata con hello TrackDependency API, verranno visualizzate anche qui. È possibile selezionare hello dipendenze tooshow nella mappa hello. Attualmente questa selezione non filtra richieste sul lato server hello o visualizzazioni di pagina sul lato client hello.
 
 ![impostare i filtri](./media/app-insights-app-map/11.png)
 
 ## <a name="save-filters"></a>Salvare i filtri
-Per salvare i filtri applicati, bloccare la visualizzazione filtrata su un [dashboard](app-insights-dashboards.md).
+toosave hello i filtri applicati, hello pin filtrati visualizzazione su un [dashboard](app-insights-dashboards.md).
 
-![Aggiungi al dashboard](./media/app-insights-app-map/12.png)
+![PIN toodashboard](./media/app-insights-app-map/12.png)
 
 ## <a name="error-pane"></a>Riquadro dell'errore
-Quando si fa clic su un nodo nella mappa, viene visualizzato un riquadro dell'errore sul lato destro che riassume i problemi relativi a tale nodo. Gli errori vengono prima raggruppati per ID operazione e quindi per ID del problema.
+Quando si fa clic su un nodo nella mappa hello, un riquadro di errore viene visualizzato sul lato destro di hello Riepilogo errori relativi a tale nodo. Gli errori vengono prima raggruppati per ID operazione e quindi per ID del problema.
 
 ![Riquadro dell'errore](./media/app-insights-app-map/error-pane.png)
 
-Per passare all'istanza più recente dell'errore fare clic sull'errore stesso.
+Facendo clic su un errore accetta toohello istanza più recente di questo tipo di errore.
 
 ## <a name="resource-health"></a>Integrità delle risorse
-Per alcuni tipi di risorsa, l'integrità delle risorse viene visualizzata nella parte superiore del riquadro dell'errore. Ad esempio, facendo clic su un nodo SQL verranno visualizzati l'integrità del database ed eventuali avvisi che sono stati attivati.
+Per alcuni tipi di risorsa, l'integrità delle risorse viene visualizzato nella parte superiore di hello del riquadro errore hello. Ad esempio, facendo clic su un nodo SQL verranno visualizzati integrità database hello e eventuali avvisi che sono stati attivati.
 
 ![Integrità delle risorse](./media/app-insights-app-map/resource-health.png)
 
-È possibile fare clic sul nome della risorsa per visualizzare le metriche di panoramica standard per la risorsa.
+È possibile scegliere le metriche hello risorsa nome tooview Panoramica standard per tale risorsa.
 
 ## <a name="end-to-end-system-app-maps"></a>Mappe delle app del sistema end-to-end
 
 *È necessaria la versione 2.3 o successive di SDK*
 
-Se l'applicazione include diversi componenti, ad esempio un servizio back-end oltre all'App Web, è anche possibile visualizzarli tutti in una mappa integrata delle app.
+Se l'applicazione dispone di diversi componenti, ad esempio, un servizio back-end inoltre toohello web app, quindi si può visualizzare tutte nel mapping di un'applicazione integrata.
 
 ![impostare i filtri](./media/app-insights-app-map/multi-component-app-map.png)
 
-La mappa dell'app consente di trovare i nodi del server seguendo le chiamate di dipendenza HTTP inviate tra i server con Application Insights SDK installato. Si presuppone che ogni risorsa di Application Insights contenga un server.
+mappa app Hello consente di trovare i nodi del server seguendo le chiamate di dipendenza HTTP inviate tra i server con hello che Application Insights SDK installato. Ogni risorsa di Application Insights presuppone toocontain un server.
 
 ### <a name="multi-role-app-map-preview"></a>Mappa con app multi-ruolo (anteprima)
 
-La funzionalità di anteprima della mappa dell'app multi-ruolo consente di usare la mappa dell'app con più server che inviano dati alla stessa risorsa o alla stessa chiave di strumentazione di Application Insights. I server nella mappa vengono segmentati in base alla proprietà cloud_RoleName negli elementi di telemetria. Impostare *Multi-role Application Map* (Mappa dell'applicazione multi-ruolo) su *On* (Attivo) nel pannello Anteprime per abilitare questa configurazione.
+Hello anteprima app Multiruolo mappa consente toouse hello app mappa con più server, l'invio di dati toohello stessa risorsa di Application Insights / chiave di strumentazione. I server nella mappa hello sono segmentati per proprietà cloud_RoleName hello sugli elementi di dati di telemetria. Impostare *con più ruoli applicazione mappa* troppo*su* da hello anteprime pannello tooenable questa configurazione.
 
-Questo approccio potrebbe essere necessario in un'applicazione di micro-servizi o in altri scenari in cui si desidera correlare gli eventi tra più server all'interno di una singola risorsa di Application Insights.
+Questo approccio è preferibile in un'applicazione di micro-services o in altri scenari in cui si desidera che gli eventi toocorrelate tra più server all'interno di una singola risorsa di Application Insights.
 
 ## <a name="video"></a>Video
 
 > [!VIDEO https://channel9.msdn.com/events/Connect/2016/112/player] 
 
 ## <a name="feedback"></a>Commenti e suggerimenti
-Inviare commenti e suggerimenti tramite l'apposita opzione del portale.
+Fornire commenti e suggerimenti tramite l'opzione commenti e suggerimenti portale hello.
 
 ![Immagine MapLink-1](./media/app-insights-app-map/13.png)
 

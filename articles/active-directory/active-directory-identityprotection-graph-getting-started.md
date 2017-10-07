@@ -1,6 +1,6 @@
 ---
-title: Introduzione ad Azure Active Directory Identity Protection e a Microsoft Graph | Documentazione Microsoft
-description: Fornisce un'introduzione all'esecuzione di query su Microsoft Graph per ottenere un elenco di eventi di rischio e le relative informazioni da Azure Active Directory.
+title: "aaaGet avviato con la protezione dell'identità Azure Active Directory e Microsoft Graph | Documenti Microsoft"
+description: Fornisce un tooquery Introduzione Microsoft Graph per un elenco di eventi di rischio e le informazioni associate da Azure Active Directory.
 services: active-directory
 keywords: "azure active directory identity protection, evento di rischio, vulnerabilità, criteri di sicurezza, Microsoft Graph"
 documentationcenter: 
@@ -15,60 +15,60 @@ ms.topic: article
 ms.date: 08/17/2017
 ms.author: markvi
 ms.reviewer: nigu
-ms.openlocfilehash: 9b01ff86da6a1fd4a439a6ba59ea15ed6480cdad
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 75b8b7629a0120d8101f6fde0d9163122503d276
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-with-azure-active-directory-identity-protection-and-microsoft-graph"></a>Introduzione ad Azure Active Directory Identity Protection e a Microsoft Graph
-Microsoft Graph è l'endpoint API unificato di Microsoft e la posizione in cui risiedono le API di [Azure Active Directory Identity Protection](active-directory-identityprotection.md) . La prima API, **identityRiskEvents**, consente di eseguire una query in Microsoft Graph per ottenere un elenco di [eventi di rischio](active-directory-identityprotection-risk-events-types.md) e informazioni associate. Questo articolo fornisce un'introduzione all'esecuzione di query su questa API. Per una presentazione più approfondita, la documentazione completa e l'accesso a Graph Explorer, vedere il [sito di Microsoft Graph](https://graph.microsoft.io/).
+Microsoft Graph è hello Microsoft unified endpoint API e hello home di [la protezione di Azure Active Directory identità](active-directory-identityprotection.md) API. prima di Hello API, **identityRiskEvents**, consente tooquery Microsoft Graph per un elenco di [gli eventi di rischio](active-directory-identityprotection-risk-events-types.md) e informazioni associate. Questo articolo fornisce un'introduzione all'esecuzione di query su questa API. Per un'introduzione approfondita, la documentazione completa e accesso toohello Esplora grafico, vedere hello [sito Microsoft Graph](https://graph.microsoft.io/).
 
 > [!IMPORTANT]
-> Microsoft consiglia di gestire Azure AD usando l'[interfaccia di amministrazione di Azure AD](https://aad.portal.azure.com) nel portale di Azure invece di usare il portale di Azure classico citato nel presente articolo.
+> Si consiglia di gestire Azure AD usando la hello [centro di amministrazione di Azure AD](https://aad.portal.azure.com) in hello portale di Azure anziché hello portale di Azure classico a cui fa riferimento in questo articolo.
 
-Per l'accesso ai dati di Identity Protection tramite Microsoft Graph sono disponibili tre passaggi:
+Esistono tre i dati di protezione dell'identità tooaccessing passaggi tramite Microsoft Graph:
 
 1. Aggiungere un'applicazione con un segreto client. 
-2. Usare questo segreto e qualche altra informazione per eseguire l'autenticazione in Microsoft Graph, dove si riceverà un token di autenticazione. 
-3. Usare questo token per inviare richieste all'endpoint API e ottenere dati di Identity Protection.
+2. Utilizzare il segreto e alcuni altri blocchi di informazioni tooauthenticate tooMicrosoft grafico, in cui si riceve un token di autenticazione. 
+3. Usare questo endpoint toohello API le richieste di token toomake e ottenere dati di protezione dell'identità.
 
 Ecco gli elementi che occorre avere prima di iniziare:
 
-* Privilegi di amministratore per creare l'applicazione in Azure AD
-* Nome di dominio del tenant, ad esempio contoso.onmicrosoft.com
+* Applicazione toocreate hello privilegi di amministratore in Azure AD
+* nome Hello del dominio del tenant (ad esempio, contoso.onmicrosoft.com)
 
 ## <a name="add-an-application-with-a-client-secret"></a>Aggiungere un'applicazione con un segreto client
-1. [Accedere](https://manage.windowsazure.com) al portale di Azure classico come amministratore. 
-2. Nel riquadro di spostamento sinistro fare clic su **Active Directory**. 
+1. [Accedi](https://manage.windowsazure.com) tooyour portale di Azure classico come amministratore. 
+2. Nel riquadro di spostamento sinistro hello scegliere **Active Directory**. 
    
     ![Creazione di un'applicazione](./media/active-directory-identityprotection-graph-getting-started/tutorial_general_01.png)
-3. Nell'elenco **Directory** selezionare la directory per la quale si desidera abilitare l'integrazione delle directory.
-4. Scegliere **Applicazioni**dal menu in alto.
+3. Da hello **Directory** elenco, directory hello selezionare per il quale si desidera l'integrazione di directory tooenable.
+4. Scegliere dal menu hello in primo piano hello **applicazioni**.
    
     ![Creazione di un'applicazione](./media/active-directory-identityprotection-graph-getting-started/tutorial_general_02.png)
-5. Fare clic su **Add** nella parte inferiore della pagina.
+5. Fare clic su **Aggiungi** nella parte inferiore di hello della pagina hello.
    
     ![Creazione di un'applicazione](./media/active-directory-identityprotection-graph-getting-started/tutorial_general_03.png)
-6. Nella finestra di dialogo **Come procedere** fare clic su **Aggiungi un'applicazione che l'organizzazione sta sviluppando**.
+6. In hello **cosa si desidera toodo** finestra di dialogo, fare clic su **Aggiungi un'applicazione che l'organizzazione sta sviluppando**.
    
     ![Creazione di un'applicazione](./media/active-directory-identityprotection-graph-getting-started/tutorial_general_04.png)
-7. Nella finestra di dialogo **Informazioni sull'applicazione** seguire questa procedura:
+7. In hello **informazioni sull'applicazione** finestra di dialogo, eseguire hello alla procedura seguente:
    
     ![Creazione di un'applicazione](./media/active-directory-identityprotection-graph-getting-started/tutorial_general_05.png)
    
-    a. Nella casella di testo **Nome** digitare un nome per l'applicazione, ad esempio Applicazione API evento di rischio AADIP.
+    a. In hello **nome** casella di testo, digitare un nome per l'applicazione (ad esempio: applicazione dell'API AADIP rischio evento).
    
     b. Come **Tipo** selezionare **Applicazione Web e/o API Web**.
    
     c. Fare clic su **Avanti**.
-8. Nella finestra di dialogo **Proprietà dell'app** seguire questa procedura:
+8. In hello **proprietà App** finestra di dialogo, eseguire hello alla procedura seguente:
    
     ![Creazione di un'applicazione](./media/active-directory-identityprotection-graph-getting-started/tutorial_general_06.png)
    
-    a. Nella casella di testo **URL di accesso** digitare `http://localhost`.
+    a. In hello **Sign-On URL** casella tipo `http://localhost`.
    
-    b. Nella casella di testo **URI ID app** digitare `http://localhost`.
+    b. In hello **URI ID App** casella tipo `http://localhost`.
    
     c. Fare clic su **Completa**.
 
@@ -76,14 +76,14 @@ A questo punto è possibile configurare l'applicazione.
 
 ![Creazione di un'applicazione](./media/active-directory-identityprotection-graph-getting-started/tutorial_general_07.png)
 
-## <a name="grant-your-application-permission-to-use-the-api"></a>Concedere all'applicazione le autorizzazioni per l'uso dell'API
-1. Nella pagina dell'applicazione scegliere **Configura**dal menu in alto. 
+## <a name="grant-your-application-permission-toouse-hello-api"></a>Concedere il hello toouse di autorizzazione applicazione API
+1. Nella pagina dell'applicazione, nel menu hello nella parte superiore di hello, fare clic su **configura**. 
    
     ![Creazione di un'applicazione](./media/active-directory-identityprotection-graph-getting-started/tutorial_general_08.png)
-2. Nella sezione **Autorizzazioni per altre applicazioni** fare clic su **Aggiungi applicazione**.
+2. In hello **autorizzazioni tooother applicazioni** fare clic su **aggiungere applicazione**.
    
     ![Creazione di un'applicazione](./media/active-directory-identityprotection-graph-getting-started/tutorial_general_09.png)
-3. Nella finestra di dialogo **Autorizzazioni per altre applicazioni** seguire questa procedura:
+3. In hello **autorizzazioni tooother applicazioni** finestra di dialogo, eseguire hello alla procedura seguente:
    
     ![Creazione di un'applicazione](./media/active-directory-identityprotection-graph-getting-started/tutorial_general_10.png)
    
@@ -93,35 +93,35 @@ A questo punto è possibile configurare l'applicazione.
 4. Fare clic su **Autorizzazioni applicazione: 0** e quindi selezionare **Legge tutte le informazioni sugli eventi di rischio dell'identità**.
    
     ![Creazione di un'applicazione](./media/active-directory-identityprotection-graph-getting-started/tutorial_general_11.png)
-5. Fare clic su **Salva** nella parte inferiore della pagina.
+5. Fare clic su **salvare** nella parte inferiore di hello della pagina hello.
    
     ![Creazione di un'applicazione](./media/active-directory-identityprotection-graph-getting-started/tutorial_general_12.png)
 
 ## <a name="get-an-access-key"></a>Ottenere una chiave di accesso
-1. Nella sezione **Chiavi** della pagina dell'applicazione selezionare 1 anno come durata.
+1. Nella pagina dell'applicazione hello **chiavi** , selezionare 1 anno come durata.
    
     ![Creazione di un'applicazione](./media/active-directory-identityprotection-graph-getting-started/tutorial_general_13.png)
-2. Fare clic su **Salva** nella parte inferiore della pagina.
+2. Fare clic su **salvare** nella parte inferiore di hello della pagina hello.
    
     ![Creazione di un'applicazione](./media/active-directory-identityprotection-graph-getting-started/tutorial_general_12.png)
-3. Nella sezione Chiavi copiare il valore della chiave appena creata e quindi incollarla in una posizione sicura.
+3. Nella sezione chiavi hello, copiare il valore di hello della chiave appena creato e quindi incollarlo in un luogo sicuro.
    
     ![Creazione di un'applicazione](./media/active-directory-identityprotection-graph-getting-started/tutorial_general_14.png)
    
    > [!NOTE]
-   > Se si perde la chiave, si dovrà tornare a questa sezione e crearne una nuova. Mantenere la chiave segreta, perché chiunque ne fosse a conoscenza potrà accedere ai dati.
+   > Se si perde la chiave, si hanno tooreturn toothis sezione e creare una nuova chiave. Mantenere la chiave segreta, perché chiunque ne fosse a conoscenza potrà accedere ai dati.
    > 
    > 
-4. Nella sezione **Proprietà** copiare l'**ID client** e conservarlo in un luogo sicuro. 
+4. In hello **proprietà** sezione, hello copia **ID Client**e quindi incollarlo in un luogo sicuro. 
 
-## <a name="authenticate-to-microsoft-graph-and-query-the-identity-risk-events-api"></a>Autenticarsi in Microsoft Graph ed eseguire query sull'API eventi di rischio per le identità
+## <a name="authenticate-toomicrosoft-graph-and-query-hello-identity-risk-events-api"></a>Autenticare tooMicrosoft grafico e hello query identità rischio eventi API
 A questo punto saranno disponibili:
 
-* L'ID client copiato in precedenza
-* La chiave copiata in precedenza
-* Il nome di dominio del tenant
+* ID client hello è stato copiato in precedenza
+* chiave di Hello che è stato copiato in precedenza
+* nome di Hello del dominio del tenant
 
-Per autenticarsi, inviare una richiesta POST a `https://login.microsoft.com` includendo nel corpo i parametri seguenti:
+tooauthenticate, inviare un post richiesta troppo`https://login.microsoft.com` con i seguenti parametri nel corpo di hello hello:
 
 * grant_type: "**client_credentials**"
 * resource: "**https://graph.microsoft.com**"
@@ -129,23 +129,23 @@ Per autenticarsi, inviare una richiesta POST a `https://login.microsoft.com` inc
 * client_secret: <your key>
 
 > [!NOTE]
-> È necessario fornire i valori per i parametri **client_id** e **client_secret**.
+> Sono necessari valori di tooprovide per hello **client_id** hello e **client_secret** parametro.
 > 
 > 
 
 Se la richiesta riesce, verrà restituito un token di autenticazione.  
-Per chiamare l'API, creare un'intestazione con il parametro seguente:
+hello toocall API, creare un'intestazione con hello seguente parametro:
 
     `Authorization`=”<token_type> <access_token>"
 
 
-Quando si esegue l'autenticazione, è possibile trovare il tipo di token e il token di accesso nel token restituito.
+Per l'autenticazione, è possibile trovare il tipo di token hello e token di accesso in hello ha restituito un token.
 
-Inviare questa intestazione come richiesta all'URL dell'API seguente: `https://graph.microsoft.com/beta/identityRiskEvents`
+Inviare questa intestazione come toohello una richiesta API URL seguente:`https://graph.microsoft.com/beta/identityRiskEvents`
 
-La risposta, se la richiesta riesce, è una raccolta di eventi di rischio per le identità e di dati associati nel formato JSON OData, che può essere analizzato e gestito secondo le esigenze.
+risposta Hello, se ha esito positivo, è una raccolta di identità rischi e i dati in formato JSON OData, che può essere analizzato e gestito secondo necessità hello associati.
 
-Ecco il codice di esempio per autenticarsi e chiamare l'API con Powershell.  
+Di seguito è riportato il codice di esempio per l'autenticazione e la chiamata API hello tramite Powershell.  
 Aggiungere semplicemente l'ID client, la chiave e il dominio del tenant.
 
     $ClientID       = "<your client ID here>"        # Should be a ~36 hex character string; insert your info here
@@ -178,10 +178,10 @@ Aggiungere semplicemente l'ID client, la chiave e il dominio del tenant.
 
 
 ## <a name="next-steps"></a>Passaggi successivi
-È appena stata creata la prima chiamata a Microsoft Graph.  
-Ora è possibile eseguire query per ottenere un elenco di eventi di rischio per le identità e usare i dati come si preferisce.
+Complimenti, il primo tooMicrosoft chiamata grafico appena creata.  
+Ora è possibile eseguire una query eventi di rischio di identità e utilizzare dati hello desiderato.
 
-Per altre informazioni su Microsoft Graph e su come creare applicazioni usando l'API Graph, vedere la [documentazione](https://graph.microsoft.io/docs) e molto altro nel [sito di Microsoft Graph](https://graph.microsoft.io/). Assicurarsi inoltre di creare un segnalibro alla pagina dell'API [Azure AD Identity Protection](https://graph.microsoft.io/docs/api-reference/beta/resources/identityprotection_root) che include l'elenco di tutte le API Identity Protection disponibili in Graph. In questa pagina sono visualizzate le nuove modalità aggiunte via via per l'utilizzo di Identity Protection tramite l'API.
+toolearn ulteriori informazioni su Microsoft Graph e come applicazioni toobuild utilizzando hello API Graph, estrarre hello [documentazione](https://graph.microsoft.io/docs) e molto altro ancora su hello [sito Microsoft Graph](https://graph.microsoft.io/). Assicurarsi inoltre che hello toobookmark [API di Azure AD Identity Protection](https://graph.microsoft.io/docs/api-reference/beta/resources/identityprotection_root) pagina che elenca tutti hello identità API di protezione disponibili nel grafico. Quando si aggiungono nuovi modi toowork con la protezione dell'identità tramite l'API, si verrà visualizzato nella pagina.
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 * [Azure Active Directory Identity Protection](active-directory-identityprotection.md)

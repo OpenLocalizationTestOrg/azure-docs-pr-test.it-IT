@@ -1,6 +1,6 @@
 ---
-title: "Considerazioni di progettazione della soluzione ibrida di gestione delle identità di Azure Active Directory - Determinare i requisiti di protezione dei dati | Documentazione Microsoft"
-description: "Quando si pianifica una soluzione ibrida di gestione delle identità, è necessario identificare i requisiti aziendali di protezione dei dati e conoscere le opzioni disponibili per soddisfare adeguatamente tali requisiti."
+title: "Considerazioni sulla progettazione di aaaAzure Active Directory ibrido identità - determinare i requisiti di protezione dati | Documenti Microsoft"
+description: "Quando pianificazione della soluzione di identità ibride, identificare i requisiti di protezione dati hello per l'azienda e le opzioni sono disponibili toobest soddisfare questi requisiti."
 documentationcenter: 
 services: active-directory
 author: billmath
@@ -14,68 +14,68 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 07/18/2017
 ms.author: billmath
-ms.openlocfilehash: 96bf9d4c26a22f718c29804c11681199e775f589
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 189abf9affbc2894c322f362d84222d4e33d472e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="plan-for-enhancing-data-security-through-strong-identity-solution"></a>Pianificare il potenziamento della sicurezza dei dati attraverso soluzioni d’identità avanzate
-La prima azione da compiere per garantire la protezione dei dati è identificare gli utenti che possono accedere ad essi. Nell'ambito di questo processo, è necessario disporre di una soluzione di gestione delle identità in grado di integrarsi con l'infrastruttura aziendale per poter fornire funzionalità di autenticazione e autorizzazione. L'autenticazione e l'autorizzazione vengono spesso confuse e i rispettivi ruoli fraintesi. Come illustrato nella figura seguente, rappresentano in realtà due concetti piuttosto diversi:
+dati hello tooprotect Hello primo passaggio sono identificare chi può accedere a tali dati e come parte di questo processo è necessario toohave una soluzione di identità che si integra con le funzionalità di autenticazione e autorizzazione tooprovide sistema. L'autenticazione e l'autorizzazione vengono spesso confuse e i rispettivi ruoli fraintesi. In realtà sono molto diversi, come illustrato nella figura hello seguente:
 
 ![](./media/hybrid-id-design-considerations/mobile-devicemgt-lifecycle.png)
 
 **Fasi del ciclo di vita di gestione dei dispositivi mobili**
 
-Quando si pianifica una soluzione ibrida di gestione delle identità, è necessario comprendere i requisiti aziendali di protezione dei dati e conoscere le opzioni disponibili per soddisfare adeguatamente tali requisiti.
+Quando si pianifica la soluzione con identità ibrida è necessario comprendere i requisiti di protezione dati hello per l'azienda e le opzioni sono disponibili toobest soddisfano questi requisiti.
 
 > [!NOTE]
-> Dopo aver completato la pianificazione relativa alla sicurezza dei dati, leggere l'articolo [Determinare i requisiti dell'autenticazione a più fattori](active-directory-hybrid-identity-design-considerations-multifactor-auth-requirements.md) per verificare che le selezioni effettuate in merito ai requisiti di autenticazione a più fattori non siano interessate dalle scelte compiute in questa sezione.
+> Dopo aver completato la pianificazione per la protezione dei dati, esaminare [determinare i requisiti di autenticazione a più fattori](active-directory-hybrid-identity-design-considerations-multifactor-auth-requirements.md) tooensure che selezioni riguardanti i requisiti di autenticazione a più fattori non sono interessate dalle decisioni hello la apportate in questa sezione.
 > 
 > 
 
 ## <a name="determine-data-protection-requirements"></a>Determinare i requisiti di protezione dei dati
-Nell'era della mobilità, la maggior parte delle aziende ha un obiettivo comune: consentire agli utenti di essere produttivi con i dispositivi mobili personali, in locale o in remoto, favorendo così la produttività. Se da un lato cercano di perseguire questo obiettivo, dall'altro le aziende devono anche contrastare un numero crescente di minacce esterne, in modo da garantire la sicurezza dei dati e la privacy degli utenti. In questo ambito è possibile che ogni azienda disponga di requisiti differenti. Diverse regole di conformità, che variano in base al settore operativo, possono condurre a decisioni di progettazione diverse. 
+In età hello di mobilità, la maggior parte delle aziende hanno un obiettivo comune: abilitare le toobe utenti produttivi su dispositivi mobili in locale o in remoto da in qualsiasi punto della produttività tooincrease ordine. Anche se potrebbe trattarsi di un obiettivo comune, aziende che dispongono di tale requisito sarà anche preoccupazioni circa hello quantità delle minacce che devono essere affrontati in ordine tookeep dati aziendali sicura e mantenere la privacy dell'utente. Ogni società potrebbe avere requisiti diversi in questo senso; le regole di conformità diverso che variano in base della società di hello settore toowhich agisce verrà causare toodifferent decisioni di progettazione. 
 
-Esistono tuttavia alcuni aspetti di sicurezza di cui è importante tenere sempre conto, indipendentemente dal settore operativo, illustrati nella sezione seguente.
+Tuttavia, esistono alcuni aspetti di sicurezza che devono essere esaminate e convalidati, indipendentemente dal settore hello, che sono descritte nella sezione successiva hello.
 
 ## <a name="data-protection-paths"></a>Percorsi di protezione dei dati
 ![](./media/hybrid-id-design-considerations/data-protection-paths.png)
 
 **Percorsi di protezione dei dati**
 
-Nel diagramma precedente, il componente di identità è il primo a essere verificato prima di eseguire l'accesso ai dati. Mentre si accede ai dati, tuttavia, questi possono trovarsi in vari tipi di stato. Ogni numero del diagramma rappresenta un percorso in cui possono trovarsi i dati in un determinato momento nel tempo. I numeri vengono spiegati di seguito:
+In hello diagramma, il componente di identità hello sarà hello un primo toobe verificato prima dell'accesso a dati. Tuttavia, i dati possono essere in stati diversi durante la fase di hello che è avvenuto. Ogni numero del diagramma rappresenta un percorso in cui possono trovarsi i dati in un determinato momento nel tempo. I numeri vengono spiegati di seguito:
 
-1. Protezione dei dati a livello di dispositivo.
+1. Protezione dei dati a livello di dispositivo hello.
 2. Protezione dei dati in transito.
 3. Protezione dei dati quando sono inattivi in locale.
-4. Protezione dei dati quando sono inattivi nel cloud.
+4. Protezione dei dati inattivi nel cloud hello.
 
-Sebbene i controlli tecnici che consentono la protezione dei dati in ognuna di queste fasi non siano direttamente forniti dalla soluzione ibrida di gestione delle identità, è necessario che questa sia in grado di usare le risorse di gestione delle identità, in locale o nel cloud, per identificare l'utente prima di concedergli l'accesso ai dati. Quando si pianifica una soluzione ibrida di gestione delle identità, assicurarsi che venga fornita una risposta alle domande seguenti, in base ai requisiti aziendali:
+Anche se i controlli tecnici hello che consentono IT tooprotect hello dati su ognuno di tali fasi non sono disponibili direttamente da una soluzione con identità ibrida hello, è necessario che soluzione con identità ibrida hello è in grado di sfruttare sia in locale e cloud utente hello tooidentify delle risorse di gestione di identità prima di concedere accesso ai dati di toohello. Quando pianificazione della soluzione di identità ibrida accertarsi che hello seguenti domande in base ai requisiti dell'organizzazione tooyour:
 
 ## <a name="data-protection-at-rest"></a>Protezione dei dati inattivi
-Indipendentemente dalla posizione dei dati inattivi (sul dispositivo, nel cloud o in locale), è importante eseguire una valutazione per comprendere le esigenze dell'azienda in questo ambito. Assicurarsi che venga fornita una risposta alle domande seguenti:
+Indipendentemente dalla posizione dati hello inattivi (dispositivo, cloud o locale), è importante tooperform un'organizzazione di hello toounderstand di valutazione è necessario in questo senso. Per questa area, verificare che viene richiesto che hello seguenti domande:
 
-* Per l'azienda è importante proteggere i dati inattivi?
-  * In caso affermativo, è possibile integrare la soluzione ibrida di gestione delle identità con l'infrastruttura locale esistente?
-  * In caso affermativo, è possibile integrare la soluzione ibrida di gestione delle identità con i carichi di lavoro presenti nel cloud?
-* Il sistema di gestione delle identità nel cloud è in grado di proteggere le credenziali utente e gli altri dati archiviati nel cloud?
+* L'azienda necessita di tooprotect dati inattivi?
+  * In caso affermativo, è toointegrate in grado di soluzioni di hello identità ibrida con l'infrastruttura locale esistente?
+  * In caso affermativo, è toointegrate soluzione di identità ibrida hello in grado di carichi di lavoro che si trova nel cloud hello?
+* È hello cloud identity management tooprotect in grado di hello credenziali dell'utente e altri dati archiviati nel cloud hello?
 
 ## <a name="data-protection-in-transit"></a>Protezione dei dati in transito
-I dati in transito tra il dispositivo e il data center o tra il dispositivo e il cloud devono essere protetti. Il transito, tuttavia, non presuppone necessariamente un processo di comunicazione con un componente esterno al servizio cloud. È anche possibile, infatti, che i dati vengono spostati internamente, ad esempio tra due reti virtuali. Assicurarsi che venga fornita una risposta alle domande seguenti:
+I dati in transito tra il dispositivo hello e Data Center hello o tra dispositivi hello e cloud hello devono essere protette. Il transito, tuttavia, non presuppone necessariamente un processo di comunicazione con un componente esterno al servizio cloud. È anche possibile, infatti, che i dati vengono spostati internamente, ad esempio tra due reti virtuali. Per questa area, verificare che viene richiesto che hello seguenti domande:
 
-* Per l'azienda è importante proteggere i dati in transito?
-  * In caso affermativo, è possibile integrare la soluzione ibrida di gestione delle identità con controlli sicuri come SSL/TLS?
-* Il sistema di gestione delle identità nel cloud mantiene firmato il traffico all'interno e verso l'archivio di directory (all'interno e tra i data center)?
+* L'azienda necessita di tooprotect dati in transito?
+  * In caso affermativo, è toointegrate in grado di soluzioni di hello identità ibrida con controlli sicuri, ad esempio SSL/TLS?
+* Gestione delle identità cloud hello mantiene hello traffico tooand all'interno dell'archivio di directory hello (all'interno e tra i Data Center) i firmato?
 
 ## <a name="compliance"></a>Conformità
-Le regole, le norme e i requisiti di conformità alle normative variano in base al settore di appartenenza dell'azienda. Le aziende che operano in settori altamente regolamentati devono tener conto di aspetti di gestione delle identità correlati a problemi di conformità. Normative quali Sarbanes-Oxley (SOX), Health Insurance Portability and Accountability Act (HIPAA), Gramm-Leach-Bliley Act (GLBA) e Payment Card Industry Data Security Standard (PCI DSS), infatti, sono molto rigorose in merito alle procedure di identità e accesso. Le caratteristiche di base della soluzione ibrida di gestione delle identità adottata dall'azienda dovranno quindi soddisfare i requisiti previsti da una o più di queste normative. Assicurarsi che venga fornita una risposta alle domande seguenti:
+Norme in materia di controllo e conformi ai requisiti normativi variano secondo settore toohello cui appartiene l'azienda. Le aziende in settori regolamentati elevate necessario risolvere problemi di toocompliance correlati problemi di gestione delle identità. Normative come Sarbanes-Oxley (SOX), hello Health Insurance Portability e Accountability Act (HIPAA), hello Gramm-Leach-Bliley Act (GLBA) e Payment Card Industry Data Security Standard (PCI DSS) hello sono molto rigidi relative identità e accessi. soluzione con identità ibrida Hello che verrà adottata la società deve disporre di funzionalità di base hello che verrà usata per soddisfare i requisiti di hello di uno o più di queste norme. Per questa area, verificare che viene richiesto che hello seguenti domande:
 
-* La soluzione ibrida di gestione delle identità è conforme ai requisiti normativi a cui deve attenersi l'azienda?
-* La soluzione ibrida di gestione delle identità offre le funzionalità necessarie per consentire all'azienda di adeguarsi ai requisiti normativi? 
+* È conforme ai requisiti normativi di hello per l'azienda soluzione con identità ibrida hello?
+* Soluzione con identità ibrida hello fa incorpora una funzionalità che consentono a toobe conformi ai requisiti normativi ai requisiti della società? 
 
 > [!NOTE]
-> Accertarsi di prendere nota di ogni risposta e comprendere la logica che ne sta alla base. [definizione della strategia di protezione dei dati](active-directory-hybrid-identity-design-considerations-data-protection-strategy.md) esamina le opzioni disponibili con i relativi vantaggi e svantaggi.  Una volta fornite le risposte a queste domande, sarà possibile selezionare l'opzione più adatta in base alle esigenze aziendali.
+> Annotare i tootake che ogni risposta e comprendere motivazioni hello delle risposte hello. [Definire la strategia di protezione dati](active-directory-hybrid-identity-design-considerations-data-protection-strategy.md) esaminerà le opzioni di hello disponibili e i vantaggi e svantaggi di ogni opzione.  Una volta fornite le risposte a queste domande, sarà possibile selezionare l'opzione più adatta in base alle esigenze aziendali.
 > 
 > 
 

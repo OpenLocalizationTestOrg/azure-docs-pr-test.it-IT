@@ -1,6 +1,6 @@
 ---
-title: Personalizzare il portale per sviluppatori di Gestione API con i modelli - Azure| Documentazione Microsoft
-description: Informazioni su come personalizzare il portale per sviluppatori di Gestione API di Azure usando i modelli.
+title: portale per sviluppatori di aaaCustomize hello gestione API mediante modelli-Azure | Documenti Microsoft
+description: Informazioni su come toocustomize hello portale per sviluppatori di gestione API di Azure utilizzando i modelli.
 services: api-management
 documentationcenter: 
 author: steved0x
@@ -14,58 +14,58 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/09/2017
 ms.author: apimpm
-ms.openlocfilehash: 40d25726d31d2018785b77d169a8811c565316bf
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b00d5f1534e9466f30ff3920e7aae048feb8b8c4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-customize-the-azure-api-management-developer-portal-using-templates"></a>Come personalizzare il portale per sviluppatori di Gestione API di Azure con i modelli
+# <a name="how-toocustomize-hello-azure-api-management-developer-portal-using-templates"></a>Come toocustomize hello portale per sviluppatori di gestione API di Azure utilizzando i modelli
 
-Per personalizzare il portale per sviluppatori in Gestione API di Azure ci sono tre modalità principali:
+In Gestione API di Azure sono disponibili tre modi principali toocustomize hello portale:
 
-* [Modificare i contenuti di pagine statiche e gli elementi di layout di pagina][modify-content-layout]
-* [Aggiornare gli stili usati per gli elementi della pagina nel portale per sviluppatori][customize-styles]
-* [Modificare i modelli usati per le pagine generate dal portale] [ portal-templates] (come illustrato in questa guida)
+* [Modificare il contenuto di hello di pagine statiche e gli elementi di layout di pagina][modify-content-layout]
+* [Aggiornare gli stili di hello in portale per sviluppatori hello vengono utilizzati per gli elementi di pagina][customize-styles]
+* [Modificare modelli di hello utilizzati per le pagine generate dal portale hello] [ portal-templates] (descritto in questa Guida)
 
-I modelli vengono usati per personalizzare il contenuto delle pagine del portale per sviluppatori generate dal sistema, ad esempio la documentazione delle API, i prodotti, l'autenticazione utente e così via. La sintassi [DotLiquid](http://dotliquidmarkup.org/), insieme a un set fornito di risorse stringa localizzate, icone e controlli di pagina, offre grande flessibilità nella configurazione del contenuto delle pagine nel modo opportuno.
+I modelli sono utilizzati toocustomize hello contenuto di pagine del portale per sviluppatori generato dal sistema (ad esempio documenti di API, prodotti, l'autenticazione utente e così via). Utilizzando [DotLiquid](http://dotliquidmarkup.org/) sintassi e un set specificato di risorse stringa localizzata, icone e i controlli di pagina, è necessario il contenuto di una grande flessibilità tooconfigure hello delle pagine di hello come desiderato.
 
 ## <a name="developer-portal-templates-overview"></a>Panoramica sui modelli del portale per sviluppatori
-La modifica dei modelli viene eseguita dal **portale per sviluppatori** quando vi si accede come amministratore. Per accedervi, aprire prima il Portale di Azure e fare clic su **Portale di pubblicazione** nella barra degli strumenti del servizio dell'istanza di Gestione API.
+Modifica dei modelli viene eseguita tramite hello **portale per sviluppatori** mentre viene effettuato l'accesso come amministratore. tooget esiste prima di tutto aprire hello portale di Azure e fare clic su **portale di pubblicazione** dalla barra degli strumenti del servizio hello dell'istanza di gestione API.
 
 ![Portale di pubblicazione][api-management-management-console]
 
-Quindi fare clic su **Portale per sviluppatori** in alto a destra. 
+Fare clic su **portale per sviluppatori** in alto a destra di hello. 
 
 ![Menu del portale per sviluppatori][api-management-developer-portal-menu]
 
-Per accedere ai modelli del portale per sviluppatori, fare clic sull'icona di personalizzazione a sinistra per visualizzare il menu di personalizzazione e quindi fare clic su **Templates**.
+tooaccess hello modelli portale per sviluppatori, fare clic su hello personalizzare l'icona nel menu di personalizzazione di hello toodisplay sinistro hello e fare clic su **modelli**.
 
 ![Modelli del portale per sviluppatori][api-management-customize-menu]
 
-L'elenco dei modelli include varie categorie di modelli che coprono le diverse pagine del portale per sviluppatori. Ogni modello è diverso, ma i passaggi per modificarli e pubblicare le modifiche sono uguali per tutti. Per modificare un modello, fare clic sul nome del modello.
+elenco di modelli Hello consente di visualizzare diverse categorie di modelli che coprono diverse pagine di hello nel portale per sviluppatori hello. Ogni modello è diverso, ma hello passaggi tooedit li e pubblicare le modifiche di hello sono hello stesso. tooedit un modello, fare clic su nome hello del modello di hello.
 
 ![Modelli del portale per sviluppatori][api-management-templates-menu]
 
-Facendo clic su un modello si passa alla pagina del portale per sviluppatori personalizzabile con il modello selezionato. In questo esempio viene visualizzato il modello **Product list** . Il modello **Product list** controlla l'area dello schermo indicata dal rettangolo rosso. 
+Fare clic su un modello accetta toohello developer pagina del portale è personalizzabile da tale modello. In questo hello esempio **Product list** modello viene visualizzato. Hello **Product list** controlli modello hello area dello schermo hello indicato dal rettangolo rosso hello. 
 
 ![Modello Product list][api-management-developer-portal-templates-overview]
 
-Alcuni modelli, come i modelli **User Profile** , permettono di personalizzare parti diverse della stessa pagina. 
+Alcuni modelli, ad esempio hello **profilo utente** modelli, personalizzare diverse parti di hello stessa pagina. 
 
 ![Modelli User Profile][api-management-user-profile-templates]
 
-L'editor di ogni modello del portale per sviluppatori include due sezioni visualizzate nella parte inferiore della pagina. A sinistra è visualizzato il riquadro di modifica per il modello, mentre a destra è visualizzato il relativo modello di dati. 
+editor Hello per ogni modello di portale per sviluppatori ha due sezioni visualizzate nella parte inferiore di hello della pagina hello. lato sinistro Hello Visualizza hello modifica riquadro per il modello di hello e sul lato destro di hello hello data model per il modello di hello. 
 
-Il riquadro di modifica del modello contiene il markup che controlla l'aspetto e il comportamento della pagina corrispondente nel portale per sviluppatori. Il markup del modello usa la sintassi [DotLiquid](http://dotliquidmarkup.org/) . Uno degli editor più diffusi per DotLiquid è [DotLiquid for Designers](https://github.com/dotliquid/dotliquid/wiki/DotLiquid-for-Designers). Tutte le modifiche apportate al modello in fase di modifica vengono visualizzate in tempo reale nel browser, ma non sono visibili ai clienti finché non si sceglie di [salvare](#to-save-a-template) e [pubblicare](#to-publish-a-template) il modello.
+riquadro di modifica del modello Hello contiene markup hello che controlla l'aspetto di hello e il comportamento di hello pagina corrispondente nel portale per sviluppatori hello. markup Hello nel modello hello utilizza hello [DotLiquid](http://dotliquidmarkup.org/) sintassi. Uno degli editor più diffusi per DotLiquid è [DotLiquid for Designers](https://github.com/dotliquid/dotliquid/wiki/DotLiquid-for-Designers). Qualsiasi modello toohello le modifiche apportate durante la modifica vengono visualizzati in tempo reale nel browser hello, ma sono i clienti tooyour non visibile finché non si [salvare](#to-save-a-template) e [pubblicare](#to-publish-a-template) modello hello.
 
 ![Markup del modello][api-management-template]
 
-Il riquadro **Template data** fornisce una guida al modello di dati per le entità disponibili per l'uso in un determinato modello. La guida consiste nella possibilità di visualizzare i dati attivi attualmente visualizzati nel portale per sviluppatori. Per espandere i riquadri del modello è possibile fare clic sul rettangolo nell'angolo superiore destro del riquadro **Template data** .
+Hello **dati modello** riquadro viene fornita una Guida toohello dati del modello per le entità hello sono disponibili per l'utilizzo in un modello specifico. Questa guida fornisce visualizzando i dati in tempo reale hello attualmente visualizzati nel portale per sviluppatori hello. È possibile espandere i riquadri di modello hello facendo clic sul rettangolo hello nell'angolo superiore destro di hello di hello **dati modello** riquadro.
 
 ![Modello Template data][api-management-template-data]
 
-Nell'esempio precedente sono disponibili due prodotti visualizzati nel portale per gli sviluppatori che sono stati recuperati dai dati visualizzati nel riquadro **Template data** , come illustrato nell'esempio seguente.
+Nell'esempio precedente hello esistono due prodotti visualizzati nel portale per sviluppatori hello che sono stati recuperati dati hello visualizzati in hello **dati modello** riquadro, come illustrato nell'esempio seguente hello.
 
 ```json
 {
@@ -84,7 +84,7 @@ Nell'esempio precedente sono disponibili due prodotti visualizzati nel portale p
         {
             "Id": "56ec64c380ed850042060001",
             "Title": "Starter",
-            "Description": "Subscribers will be able to run 5 calls/minute up to a maximum of 100 calls/week.",
+            "Description": "Subscribers will be able toorun 5 calls/minute up tooa maximum of 100 calls/week.",
             "Terms": "",
             "ProductState": 1,
             "AllowMultipleSubscriptions": false,
@@ -93,7 +93,7 @@ Nell'esempio precedente sono disponibili due prodotti visualizzati nel portale p
         {
             "Id": "56ec64c380ed850042060002",
             "Title": "Unlimited",
-            "Description": "Subscribers have completely unlimited access to the API. Administrator approval is required.",
+            "Description": "Subscribers have completely unlimited access toohello API. Administrator approval is required.",
             "Terms": null,
             "ProductState": 1,
             "AllowMultipleSubscriptions": false,
@@ -103,7 +103,7 @@ Nell'esempio precedente sono disponibili due prodotti visualizzati nel portale p
 }
 ```
 
-Il markup del modello **Product list** elabora i dati per fornire l'output previsto scorrendo la raccolta di prodotti per visualizzare le relative informazioni e un collegamento a ogni singolo prodotto. Si notino gli elementi `<search-control>` e `<page-control>` nel markup. Questi controllano la visualizzazione dei controlli di ricerca e di paging nella pagina. `ProductsStrings|PageTitleProducts` è un riferimento a una stringa localizzata che contiene il testo dell'intestazione `h2` della pagina. Per un elenco delle risorse stringa, i controlli di pagina e le icone disponibili per l'uso nei modelli del portale per sviluppatori, vedere il [riferimento ai modelli del portale per sviluppatori di Gestione API](api-management-developer-portal-templates-reference.md).
+markup Hello in hello **Product list** processi modello hello output hello desiderato dei dati tooprovide scorrendo hello insieme di informazioni toodisplay prodotti e un singolo prodotto tooeach di collegamento. Hello nota `<search-control>` e `<page-control>` elementi nel markup hello. Queste modalità controllano la visualizzazione hello di hello ricerca e i controlli nella pagina hello di paging. `ProductsStrings|PageTitleProducts`è un riferimento a una stringa localizzata contenente hello `h2` testo dell'intestazione di pagina hello. Per un elenco delle risorse stringa, i controlli di pagina e le icone disponibili per l'uso nei modelli del portale per sviluppatori, vedere il [riferimento ai modelli del portale per sviluppatori di Gestione API](api-management-developer-portal-templates-reference.md).
 
 ```html
 <search-control></search-control>
@@ -131,59 +131,59 @@ Il markup del modello **Product list** elabora i dati per fornire l'output previ
 </div>
 ```
 
-## <a name="to-save-a-template"></a>Per salvare un modello
-Per salvare un modello, fare clic sull'icona di salvataggio nell'editor del modello.
+## <a name="toosave-a-template"></a>toosave un modello
+toosave un modello, fare clic su Salva nell'editor dei modelli di hello.
 
 ![Salvare il modello][api-management-save-template]
 
-Le modifiche salvate non sono attive nel portale per sviluppatori fino a quando non vengono pubblicate.
+Le modifiche salvate non sono in tempo reale nel portale per sviluppatori hello finché non vengono pubblicati.
 
-## <a name="to-publish-a-template"></a>Per pubblicare un modello
-I modelli salvati possono essere pubblicati singolarmente o tutti insieme. Per pubblicare un singolo modello, fare clic sull'icona di pubblicazione nell'editor del modello.
+## <a name="toopublish-a-template"></a>toopublish un modello
+I modelli salvati possono essere pubblicati singolarmente o tutti insieme. toopublish un singolo modello, fare clic su pubblica nell'editor dei modelli di hello.
 
 ![Pubblicare il modello][api-management-publish-template]
 
-Fare clic su **Yes** per confermare e rendere il modello attivo nel portale per sviluppatori.
+Fare clic su **Sì** tooconfirm e modello hello in tempo reale nel portale per sviluppatori hello.
 
 ![Confermare la pubblicazione][api-management-publish-template-confirm]
 
-Per pubblicare tutte le versioni dei modelli non ancora pubblicate, fare clic su **Publish** nell'elenco dei modelli. I modelli non pubblicati sono contraddistinti da un asterisco dopo il nome del modello. In questo esempio vengono pubblicati i modelli **Product list** (Elenco prodotti) e **Product** (Prodotto).
+toopublish annullata attualmente tutte le versioni dei modelli, fare clic su **pubblica** nell'elenco di modelli di hello. Modelli non pubblicati sono contraddistinte da un asterisco dopo il nome di modello hello. In questo esempio hello **Product list** e **prodotto** modelli vengono pubblicati.
 
 ![Pubblicare i modelli][api-management-publish-templates]
 
-Fare clic su **Publish customizations** per confermare.
+Fare clic su **pubblicare le personalizzazioni** tooconfirm.
 
 ![Confermare la pubblicazione][api-management-publish-customizations]
 
-I modelli appena pubblicati diventano immediatamente disponibili nel portale per sviluppatori.
+I modelli appena pubblicati diventano effettive immediatamente nel portale per sviluppatori di hello.
 
-## <a name="to-revert-a-template-to-the-previous-version"></a>Per annullare la modifiche alla versione precedente di un modello
-Per annullare la modifiche alla versione pubblicata precedente di un modello, fare clic sull'icona di annullamento nell'editor del modello.
+## <a name="toorevert-a-template-toohello-previous-version"></a>una versione precedente del modello toohello toorevert
+una versione pubblicata precedente modello toohello toorevert, fare clic su Ripristina nell'editor dei modelli di hello.
 
 ![Annullare le modifiche al modello][api-management-revert-template]
 
-Fare clic su **Yes** per confermare.
+Fare clic su **Sì** tooconfirm.
 
 ![Confirm][api-management-revert-template-confirm]
 
-Al termine dell'operazione di annullamento, la versione pubblicata precedente del modello sarà disponibile nel portale per sviluppatori.
+Hello in precedenza la versione pubblicata di un modello è live nel portale per sviluppatori hello dopo hello annullare l'operazione è stata completata.
 
-## <a name="to-restore-a-template-to-the-default-version"></a>Per ripristinare la versione predefinita di un modello
-Il ripristino della versione predefinita di un modello è un processo in due passaggi. Occorre prima di tutto ripristinare i modelli e quindi pubblicare le versioni ripristinate.
+## <a name="toorestore-a-template-toohello-default-version"></a>una versione predefinita di toohello modello toorestore
+Versione predefinita di ripristino modelli tootheir è un processo in due passaggi. Primo modelli hello devono essere ripristinati e quindi versioni hello ripristinato devono essere pubblicate.
 
-Per ripristinare la versione predefinita di un singolo modello, fare clic sull'icona di ripristino nell'editor del modello.
+toorestore una versione predefinita di toohello singolo modello di fare clic su Ripristina nell'editor dei modelli di hello.
 
 ![Annullare le modifiche al modello][api-management-reset-template]
 
-Fare clic su **Yes** per confermare.
+Fare clic su **Sì** tooconfirm.
 
 ![Confirm][api-management-reset-template-confirm]
 
-Per ripristinare le versioni predefinite di tutti i modelli, fare clic su **Restore default templates** nell'elenco dei modelli.
+Fare clic su tutte le versioni predefinite tootheir modelli, toorestore **ripristino configurazione di modelli predefiniti** nell'elenco modello hello.
 
 ![Ripristinare i modelli][api-management-restore-templates]
 
-I modelli ripristinati devono poi essere pubblicati singolarmente o tutti insieme seguendo i passaggi descritti nella sezione [Per pubblicare un modello](#to-publish-a-template).
+Hello ripristinati modelli devono quindi essere pubblicati singolarmente o in un'unica seguendo procedure hello [toopublish un modello](#to-publish-a-template).
 
 ## <a name="next-steps"></a>Passaggi successivi
 Per informazioni di riferimento sui modelli del portale per sviluppatori, le risorse stringa, le icone e i controlli di pagina, vedere il [riferimento ai modelli del portale per sviluppatori di Gestione API](api-management-developer-portal-templates-reference.md).

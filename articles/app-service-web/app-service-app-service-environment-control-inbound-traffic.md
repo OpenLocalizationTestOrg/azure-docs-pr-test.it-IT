@@ -1,6 +1,6 @@
 ---
-title: Come controllare il traffico in ingresso a un ambiente del servizio app
-description: Informazioni su come configurare le regole di sicurezza di rete per controllare il traffico in ingresso a un ambiente del servizio app.
+title: aaaHow tooControl il traffico in ingresso tooan ambiente del servizio App
+description: Informazioni su come tooconfigure rete sicurezza regole toocontrol in ingresso a traffico tooan ambiente del servizio App.
 services: app-service
 documentationcenter: 
 author: ccompy
@@ -14,115 +14,115 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/11/2017
 ms.author: stefsch
-ms.openlocfilehash: ee0a2248a1cd5d76f87b280de05410b94f96c8af
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e7c6e6201db6a1ea77f7a2eee29a3b5445175495
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-control-inbound-traffic-to-an-app-service-environment"></a>Come controllare il traffico in ingresso a un ambiente del servizio app
+# <a name="how-toocontrol-inbound-traffic-tooan-app-service-environment"></a>Come tooControl il traffico in ingresso tooan ambiente del servizio App
 ## <a name="overview"></a>Panoramica
-Un ambiente del servizio app può essere creato **o** in una rete virtuale di Azure Resource Manager **o** in una [rete virtuale][virtualnetwork] del modello di distribuzione classica.  È possibile definire una nuova rete virtuale e una nuova subnet al momento della creazione di un ambiente del servizio app.  In alternativa, è possibile creare un ambiente del servizio app in una rete virtuale e in una subnet preesistenti.  Con una modifica apportata a giugno 2016, gli ambienti del servizio app possono essere distribuiti nelle reti virtuali che usano intervalli di indirizzi pubblici o spazi di indirizzi RFC1918, ovvero indirizzi privati.  Per altre informazioni su come creare un ambiente del servizio app, vedere [Come creare un ambiente del servizio app][HowToCreateAnAppServiceEnvironment].
+Un ambiente del servizio app può essere creato **o** in una rete virtuale di Azure Resource Manager **o** in una [rete virtuale][virtualnetwork] del modello di distribuzione classica.  È possibile definire una nuova rete virtuale e una nuova subnet in fase di hello che viene creato un ambiente del servizio App.  In alternativa, è possibile creare un ambiente del servizio app in una rete virtuale e in una subnet preesistenti.  Con una modifica apportata a giugno 2016, gli ambienti del servizio app possono essere distribuiti nelle reti virtuali che usano intervalli di indirizzi pubblici o spazi di indirizzi RFC1918 (ovvero indirizzi privati).  Per ulteriori informazioni sulla creazione di un ambiente del servizio App vedere [come un ambiente del servizio App tooCreate][HowToCreateAnAppServiceEnvironment].
 
-È sempre necessario creare un ambiente del servizio app all'interno di una subnet perché la subnet fornisce un limite di rete che può essere usato per bloccare il traffico in ingresso proveniente da dispositivi e servizi upstream, in modo che il traffico HTTP e HTTPS sia accettato solo da indirizzi IP upstream specifici.
+Un ambiente del servizio App deve sempre essere creato all'interno di una subnet perché una subnet offre un limite di rete che può essere utilizzato toolock verso il basso il traffico in entrata dietro a monte dispositivi e servizi in modo che il traffico HTTP e HTTPS è accettato solo da specifici a monte Indirizzi IP.
 
-Il traffico in ingresso e in uscita diretto verso e proveniente da una subnet è controllato tramite un [gruppo di sicurezza di rete][NetworkSecurityGroups]. Per controllare il traffico in ingresso è necessario creare regole di sicurezza di rete in un gruppo di sicurezza di rete, quindi assegnare al gruppo di sicurezza di rete la subnet contenente l'ambiente del servizio app.
+Il traffico in ingresso e in uscita diretto verso e proveniente da una subnet è controllato tramite un [gruppo di sicurezza di rete][NetworkSecurityGroups]. Controllare il traffico in entrata richiede la creazione di regole di sicurezza di rete in un gruppo di sicurezza di rete e quindi assegnando hello rete sicurezza gruppo hello subnet contenente hello ambiente del servizio App.
 
-Dopo aver assegnato un gruppo di sicurezza di rete a una subnet, il traffico in ingresso alle app nell'ambiente del servizio app è consentito/bloccato in base alle regole di autorizzazione consentita o negata definite nel gruppo di sicurezza di rete.
+Una volta assegnato un gruppo di sicurezza di rete tooa subnet, il traffico in entrata tooapps nell'ambiente del servizio App è consentita o bloccata in base alle hello hello di negazione e assenso regole definite nel gruppo di sicurezza di rete hello.
 
 [!INCLUDE [app-service-web-to-api-and-mobile](../../includes/app-service-web-to-api-and-mobile.md)]
 
 ## <a name="inbound-network-ports-used-in-an-app-service-environment"></a>Porte di rete in ingresso usate in un ambiente del servizio app
-Prima di bloccare il traffico di rete in ingresso tramite un gruppo di sicurezza di rete, è importante conoscere quali sono le porte di rete obbligatorie e facoltative usate da un ambiente del servizio app.  Il blocco accidentale del traffico ad alcune porte può comportare una perdita di funzionalità nell'ambiente del servizio app.
+Prima di bloccare il traffico di rete in ingresso con un gruppo di sicurezza di rete, è importante tooknow set di hello delle porte di rete obbligatorie e facoltative utilizzate da un ambiente del servizio App.  Chiude involontariamente off porte toosome traffico può comportare la perdita di funzionalità in un ambiente del servizio App.
 
-Di seguito è riportato un elenco delle porte usate da un ambiente del servizio app. Tutte le porte sono di tipo **TCP**, se non indicato diversamente in modo chiaro:
+Hello seguito è riportato un elenco delle porte utilizzate da un ambiente del servizio App. Tutte le porte sono di tipo **TCP**, se non indicato diversamente in modo chiaro:
 
-* 454: **porta obbligatoria** usata dall'infrastruttura di Azure per la gestione e la manutenzione degli ambienti del servizio app tramite SSL.  Non bloccare il traffico indirizzato a questa porta.  Questa porta è sempre associata all'indirizzo VIP pubblico di un ambiente del servizio app.
-* 455: **porta obbligatoria** usata dall'infrastruttura di Azure per la gestione e la manutenzione degli ambienti del servizio app tramite SSL.  Non bloccare il traffico indirizzato a questa porta.  Questa porta è sempre associata all'indirizzo VIP pubblico di un ambiente del servizio app.
-* 80: porta predefinita per il traffico HTTP in ingresso alle app in esecuzione nei piani di servizio app in un ambiente del servizio app.  In un ambiente del servizio app abilitato al bilanciamento del carico interno, questa porta è associata all'indirizzo ILB dell'ambiente.
-* 443: porta predefinita per il traffico SSL in ingresso alle app in esecuzione nei piani del servizio app in un ambiente del servizio app.  In un ambiente del servizio app abilitato al bilanciamento del carico interno, questa porta è associata all'indirizzo ILB dell'ambiente.
-* 21: canale di controllo per il servizio FTP.  Questa porta può essere bloccata, se non si usa un servizio FTP.  In un ambiente del servizio app abilitato al bilanciamento del carico interno, questa porta è associata all'indirizzo ILB per un ambiente.
-* 990: canale di controllo per il servizio FTPS.  Questa porta può essere bloccata, se non si usa un servizio FTPS.  In un ambiente del servizio app abilitato al bilanciamento del carico interno, questa porta è associata all'indirizzo ILB per un ambiente.
-* 10001-10020: canali di dati per il servizio FTP.  Come per il canale di controllo, queste porte possono essere bloccate se non si usa il servizio FTP.  In un ambiente del servizio app abilitato al bilanciamento del carico interno, questa porta può essere associata all'indirizzo ILB dell'ambiente.
-* 4016: porta usata per il debug remoto con Visual Studio 2012.  Questa porta può essere bloccata, se non si usa questa funzionalità.  In un ambiente del servizio app abilitato al bilanciamento del carico interno, questa porta è associata all'indirizzo ILB dell'ambiente.
-* 4018: porta usata per il debug remoto con Visual Studio 2013.  Questa porta può essere bloccata, se non si usa questa funzionalità.  In un ambiente del servizio app abilitato al bilanciamento del carico interno, questa porta è associata all'indirizzo ILB dell'ambiente.
-* 4020: porta usata per il debug remoto con Visual Studio 2015.  Questa porta può essere bloccata, se non si usa questa funzionalità.  In un ambiente del servizio app abilitato al bilanciamento del carico interno, questa porta è associata all'indirizzo ILB dell'ambiente.
+* 454: **porta obbligatoria** usata dall'infrastruttura di Azure per la gestione e la manutenzione degli ambienti del servizio app tramite SSL.  Non bloccano la porta toothis traffico.  Questa porta è sempre associato toohello VIP pubblico di un tipo di base.
+* 455: **porta obbligatoria** usata dall'infrastruttura di Azure per la gestione e la manutenzione degli ambienti del servizio app tramite SSL.  Non bloccano la porta toothis traffico.  Questa porta è sempre associato toohello VIP pubblico di un tipo di base.
+* 80: porta per tooapps di traffico HTTP in ingresso e in esecuzione in piani di servizio App in un ambiente del servizio App predefinita.  In un ASE abilitata al bilanciamento del carico interno, questa porta è hello ASE indirizzo ILB toohello associato.
+* 443: porta per tooapps di traffico SSL in ingresso e in esecuzione in piani di servizio App in un ambiente del servizio App predefinita.  In un ASE abilitata al bilanciamento del carico interno, questa porta è hello ASE indirizzo ILB toohello associato.
+* 21: canale di controllo per il servizio FTP.  Questa porta può essere bloccata, se non si usa un servizio FTP.  In un ASE abilitata al bilanciamento del carico interno, questa porta può essere indirizzi di bilanciamento del carico interno toohello associato per un tipo di base.
+* 990: canale di controllo per il servizio FTPS.  Questa porta può essere bloccata, se non si usa un servizio FTPS.  In un ASE abilitata al bilanciamento del carico interno, questa porta può essere indirizzi di bilanciamento del carico interno toohello associato per un tipo di base.
+* 10001-10020: canali di dati per il servizio FTP.  Come con il canale di controllo di hello, queste porte possono essere bloccate in modo sicuro se non viene utilizzato FTP.  In un ASE abilitata al bilanciamento del carico interno, questa porta può essere associato toohello dell'ASE indirizzo di bilanciamento del carico interno.
+* 4016: porta usata per il debug remoto con Visual Studio 2012.  Questa porta può essere bloccata in modo sicuro se non viene utilizzata la funzione hello.  In un ASE abilitata al bilanciamento del carico interno, questa porta è hello ASE indirizzo ILB toohello associato.
+* 4018: porta usata per il debug remoto con Visual Studio 2013.  Questa porta può essere bloccata in modo sicuro se non viene utilizzata la funzione hello.  In un ASE abilitata al bilanciamento del carico interno, questa porta è hello ASE indirizzo ILB toohello associato.
+* 4020: porta usata per il debug remoto con Visual Studio 2015.  Questa porta può essere bloccata in modo sicuro se non viene utilizzata la funzione hello.  In un ASE abilitata al bilanciamento del carico interno, questa porta è hello ASE indirizzo ILB toohello associato.
 
 ## <a name="outbound-connectivity-and-dns-requirements"></a>Requisiti per DNS e connettività in uscita
-Per un corretto funzionamento dell'ambiente del servizio app, è necessario l'accesso in uscita ai vari endpoint. Un elenco completo degli endpoint esterni usati da un ambiente del servizio app è disponibile nella sezione "Requisiti della connettività di rete" dell'articolo [Configurazione di rete per ExpressRoute](app-service-app-service-environment-network-configuration-expressroute.md#required-network-connectivity) .
+Per un ambiente del servizio App di toofunction correttamente, è inoltre necessario endpoint toovarious accesso in uscita. È un elenco completo di endpoint esterni di hello utilizzato da un ASE nella sezione "Necessaria la connettività di rete" di hello hello [configurazione di rete per ExpressRoute](app-service-app-service-environment-network-configuration-expressroute.md#required-network-connectivity) articolo.
 
-Gli ambienti del servizio app richiedono un'infrastruttura DNS valida configurata per la rete virtuale.  Se per qualsiasi motivo viene modificata la configurazione DNS dopo aver creato un ambiente di servizio app, gli sviluppatori possono forzare un ambiente di servizio app per selezionare la nuova configurazione del DNS.  L'attivazione di un riavvio di ambiente in sequenza con l'icona "Riavvia" disponibile nella parte superiore del pannello di gestione dell'ambiente del servizio app nel [portale di Azure][NewPortal] farà sì che l'ambiente selezioni la nuova configurazione del DNS.
+Gli ambienti del servizio App richiedono un'infrastruttura DNS valida configurata per la rete virtuale hello.  Se per qualsiasi hello motivo la configurazione del DNS viene modificata dopo aver creato un ambiente del servizio App, gli sviluppatori possono forzare toopick un ambiente del servizio App hello configurazione del nuovo DNS.  Attivazione di un riavvio di ambiente in sequenza utilizzando hello icona "Riavvia" si trova nella parte superiore di hello del pannello Gestione di ambiente del servizio App hello in hello [portale di Azure] [ NewPortal] causerà hello ambiente toopick la nuova configurazione DNS di hello.
 
-È anche consigliabile che i server DNS personalizzati nella rete virtuale vengano configurati prima di creare un ambiente del servizio app.  Se la configurazione DNS della rete virtuale viene modificata durante la creazione di un ambiente del servizio app, il processo di creazione dell'ambiente del servizio app avrà esito negativo.  In modo analogo, se esiste un server DNS personalizzato nell’altra estremità di un gateway VPN e il server DNS è irraggiungibile o non disponibile, anche il processo di creazione dell’ambiente del servizio App avrà esito negativo.
+È inoltre consigliabile che qualsiasi server DNS personalizzati in rete virtuale hello è necessario installare prima fase precedente toocreating un ambiente del servizio App.  Se la configurazione DNS della rete virtuale viene modificata durante la creazione di un ambiente del servizio App, si avranno esito negativo processo di creazione dell'ambiente del servizio App di hello.  Infine proposta, se esiste un server DNS personalizzato su hello altra entità finale di un gateway VPN e server DNS hello è hello non è raggiungibile o non disponibile, non sarà possibile eseguire il processo di creazione dell'ambiente del servizio App.
 
 ## <a name="creating-a-network-security-group"></a>Creazione di un gruppo di sicurezza di rete
-Per i dettagli sul funzionamento dei gruppi di sicurezza di rete, vedere le [informazioni][NetworkSecurityGroups] seguenti.  Di seguito sono riportate le informazioni principali relative ai gruppi di sicurezza di rete, con particolare attenzione alla configurazione e all'applicazione di un gruppo di sicurezza di rete a una subnet contenente un ambiente del servizio app.
+Per ottenere informazioni complete sulla sicurezza di rete come gruppi di lavoro, vedere esempio hello [informazioni][NetworkSecurityGroups].  esempio di gestione del servizio Azure Hello seguito ritocchi su Evidenzia dei gruppi di sicurezza di rete, con l'obiettivo di configurazione e applicazione di una subnet di tooa gruppo di sicurezza rete che contiene un ambiente del servizio App.
 
-**Nota:** i gruppi di sicurezza di rete possono essere configurati in modalità grafica con il [portale di Azure](https://portal.azure.com) oppure tramite Azure PowerShell.
+**Nota:** gruppi di sicurezza di rete possono essere configurati tramite graficamente hello [portale Azure](https://portal.azure.com) o tramite Azure PowerShell.
 
-I gruppi di sicurezza di rete vengono inizialmente creati come un'entità autonoma associata a una sottoscrizione. Poiché i gruppi di sicurezza di rete vengono creati in un'area di Azure, assicurarsi di creare il gruppo di sicurezza di rete nella stessa area dell'ambiente del servizio app.
+I gruppi di sicurezza di rete vengono inizialmente creati come un'entità autonoma associata a una sottoscrizione. Poiché in un'area di Azure vengono creati gruppi di sicurezza di rete, verificare che tale gruppo di sicurezza di rete hello viene creato in hello stessa area, come hello ambiente del servizio App.
 
-Di seguito è illustrata la procedura di creazione di un gruppo di sicurezza di rete:
+esempio Hello viene illustrata la creazione di un gruppo di sicurezza di rete:
 
     New-AzureNetworkSecurityGroup -Name "testNSGexample" -Location "South Central US" -Label "Example network security group for an app service environment"
 
-Dopo aver creato il gruppo di sicurezza di rete, vengono aggiunte una o più regole di sicurezza di rete.  Poiché il set di regole può variare nel tempo, è consigliabile lasciare spazi vuoti nello schema di numerazione usato per le priorità delle regole al fine di agevolare l'inserimento di regole aggiuntive in futuro.
+Dopo aver creato un gruppo di sicurezza di rete, uno o più regole di sicurezza di rete vengono aggiunti tooit.  Poiché set hello di regole potrebbe cambiare nel tempo, è consigliabile toospace out hello schema di numerazione utilizzata per regola priorità toomake regole aggiuntive tooinsert facilmente nel tempo.
 
-L'esempio seguente illustra una regola che concede l'accesso in modo esplicito alle porte necessarie per la gestione e la manutenzione dell'ambiente del servizio app da parte dell'infrastruttura di Azure.  Si noti che tutto il traffico di gestione transita attraverso il protocollo SSL ed è protetto tramite certificati client, quindi anche se le porte sono aperte risultano inaccessibili a entità diverse dall'infrastruttura di gestione di Azure.
+esempio Hello riportato di seguito è illustrata una regola che concede porte gestione toohello di accesso necessari per hello toomanage di infrastruttura di Azure e gestione un ambiente del servizio App in modo esplicito.  Si noti che tutto il traffico di gestione flussi tramite SSL ed è protetto dai certificati client, pertanto anche se hello porte siano aperte sono inaccessibili da qualsiasi entità diversa da infrastruttura di gestione di Azure.
 
     Get-AzureNetworkSecurityGroup -Name "testNSGexample" | Set-AzureNetworkSecurityRule -Name "ALLOW AzureMngmt" -Type Inbound -Priority 100 -Action Allow -SourceAddressPrefix 'INTERNET'  -SourcePortRange '*' -DestinationAddressPrefix '*' -DestinationPortRange '454-455' -Protocol TCP
 
 
-Quando si blocca l'accesso alle porte 80 e 443 per "nascondere" un ambiente del servizio app oltre i dispositivi o servizi upstream, è necessario conoscere l'indirizzo IP upstream.  Se, ad esempio, si un firewall per applicazioni Web, il firewall disporrà di uno o più indirizzi IP che userà per l'inoltro del traffico a un ambiente del servizio app downstream.  Sarà necessario usare questo indirizzo IP nel parametro *SourceAddressPrefix* di una regola di sicurezza di rete.
+Quando il blocco di accesso tooport 80 e 443 troppo "hide" un ambiente del servizio App dietro a monte dispositivi o servizi, sarà necessario indirizzo IP di tooknow hello a monte.  Ad esempio, se si utilizza un firewall applicazione web (WAF), hello WAF avrà il proprio indirizzo IP (o gli indirizzi) che verrà utilizzato quando l'inoltro dei dati del traffico tooa downstream ambiente del servizio App.  Sarà necessario toouse questo indirizzo IP in hello *SourceAddressPrefix* parametro di una regola di sicurezza di rete.
 
-Nell'esempio seguente, il traffico in ingresso da un indirizzo IP upstream specifico è consentito in modo esplicito.  L'indirizzo *1.2.3.4* è usato come segnaposto per l'indirizzo IP di un firewall per applicazioni Web upstream.  Modificare il valore in modo che corrisponda all'indirizzo usato dal dispositivo o dal servizio upstream corrente.
+Nell'esempio hello seguente, è consentito in modo esplicito il traffico in ingresso da uno specifico indirizzo IP a monte.  Hello indirizzo *1.2.3.4* viene utilizzato come segnaposto per indirizzo IP hello di un WAF a monte.  Modificare l'indirizzo di hello valore toomatch hello utilizzato da un dispositivo a monte o di un servizio.
 
     Get-AzureNetworkSecurityGroup -Name "testNSGexample" | Set-AzureNetworkSecurityRule -Name "RESTRICT HTTP" -Type Inbound -Priority 200 -Action Allow -SourceAddressPrefix '1.2.3.4/32'  -SourcePortRange '*' -DestinationAddressPrefix '*' -DestinationPortRange '80' -Protocol TCP
     Get-AzureNetworkSecurityGroup -Name "testNSGexample" | Set-AzureNetworkSecurityRule -Name "RESTRICT HTTPS" -Type Inbound -Priority 300 -Action Allow -SourceAddressPrefix '1.2.3.4/32'  -SourcePortRange '*' -DestinationAddressPrefix '*' -DestinationPortRange '443' -Protocol TCP
 
-Se si desidera usufruire del supporto per FTP, è possibile usare le regole seguenti come un modello per concedere l'accesso alla porta di controllo FTP e alle porte dei canali di dati.  Poiché FTP è un protocollo con stato, potrebbe non essere possibile instradare il traffico FTP attraverso un dispositivo proxy o un firewall HTTP/HTTPS tradizionale.  In questo caso sarà necessario impostare *SourceAddressPrefix* su un valore diverso, ad esempio l'intervallo di indirizzi IP per i computer dedicati allo sviluppo o alla distribuzione in cui sono in esecuzione i client FTP. 
+Se si desidera supporto FTP, hello segue le regole può essere utilizzato come una porta di controllo modello toogrant accesso toohello FTP e porte canale dati.  Poiché FTP è un protocollo di stato, potrebbe non essere in grado di tooroute FTP traffico tramite un dispositivo firewall o proxy HTTP/HTTPS tradizionale.  In questo caso sarà necessario hello tooset *SourceAddressPrefix* tooa valore diverso, ad esempio hello IP indirizzo serie di computer di sviluppo o distribuzione su FTP client in esecuzione. 
 
     Get-AzureNetworkSecurityGroup -Name "testNSGexample" | Set-AzureNetworkSecurityRule -Name "RESTRICT FTPCtrl" -Type Inbound -Priority 400 -Action Allow -SourceAddressPrefix '1.2.3.4/32'  -SourcePortRange '*' -DestinationAddressPrefix '*' -DestinationPortRange '21' -Protocol TCP
     Get-AzureNetworkSecurityGroup -Name "testNSGexample" | Set-AzureNetworkSecurityRule -Name "RESTRICT FTPDataRange" -Type Inbound -Priority 500 -Action Allow -SourceAddressPrefix '1.2.3.4/32'  -SourcePortRange '*' -DestinationAddressPrefix '*' -DestinationPortRange '10001-10020' -Protocol TCP
 
-(**Nota:** l'intervallo delle porte dei canali di dati per FTP potrebbero variare durante il periodo di anteprima del servizio.
+(**Nota:** intervallo porte canale dati di hello potrebbe cambiare durante il periodo di anteprima di hello.)
 
-Se si usa la funzionalità di debug remoto con Visual Studio, usare le regole seguenti per concedere l'accesso.  Esiste una regola separata per ogni versione supportata di Visual Studio, dal momento che ogni versione usa una porta diversa per il debug remoto.  Come per l'accesso FTP, il traffico di debug remoto potrebbe non transitare correttamente attraverso un dispositivo proxy o un firewall per applicazioni Web tradizionale.  È quindi possibile impostare *SourceAddressPrefix* sull'intervallo di indirizzi IP dei computer di sviluppo che eseguono Visual Studio.
+Se viene utilizzato il debug remoto con Visual Studio, hello seguendo regole viene illustrato come accedere a toogrant.  Esiste una regola separata per ogni versione supportata di Visual Studio, dal momento che ogni versione usa una porta diversa per il debug remoto.  Come per l'accesso FTP, il traffico di debug remoto potrebbe non transitare correttamente attraverso un dispositivo proxy o un firewall per applicazioni Web tradizionale.  Hello *SourceAddressPrefix* possono invece essere impostate toohello intervallo di indirizzi IP del computer di sviluppo che esegue Visual Studio.
 
     Get-AzureNetworkSecurityGroup -Name "testNSGexample" | Set-AzureNetworkSecurityRule -Name "RESTRICT RemoteDebuggingVS2012" -Type Inbound -Priority 600 -Action Allow -SourceAddressPrefix '1.2.3.4/32'  -SourcePortRange '*' -DestinationAddressPrefix '*' -DestinationPortRange '4016' -Protocol TCP
     Get-AzureNetworkSecurityGroup -Name "testNSGexample" | Set-AzureNetworkSecurityRule -Name "RESTRICT RemoteDebuggingVS2013" -Type Inbound -Priority 700 -Action Allow -SourceAddressPrefix '1.2.3.4/32'  -SourcePortRange '*' -DestinationAddressPrefix '*' -DestinationPortRange '4018' -Protocol TCP
     Get-AzureNetworkSecurityGroup -Name "testNSGexample" | Set-AzureNetworkSecurityRule -Name "RESTRICT RemoteDebuggingVS2015" -Type Inbound -Priority 800 -Action Allow -SourceAddressPrefix '1.2.3.4/32'  -SourcePortRange '*' -DestinationAddressPrefix '*' -DestinationPortRange '4020' -Protocol TCP
 
-## <a name="assigning-a-network-security-group-to-a-subnet"></a>Assegnazione di un gruppo di sicurezza di rete a una subnet
-Un gruppo di sicurezza di rete include una regola di sicurezza predefinita che nega l'accesso a tutto il traffico esterno.  La combinazione delle regole di sicurezza di rete descritte in precedenza e della regola di sicurezza predefinita che blocca il traffico in ingresso determina che solo il traffico proveniente da intervalli di indirizzi di origine associati a un'azione *Consenti* potranno inviare il traffico alle app in esecuzione in un ambiente del servizio app.
+## <a name="assigning-a-network-security-group-tooa-subnet"></a>L'assegnazione di una Subnet di tooa il gruppo di sicurezza di rete
+Un gruppo di sicurezza di rete dispone di una regola di sicurezza predefinita che nega il traffico esterno tooall di accesso.  risultati tramite la combinazione di regole di sicurezza di rete hello descritte in precedenza, Hello e hello regola di sicurezza predefinita che bloccano il traffico in ingresso, che solo il traffico da intervalli di indirizzi di origine è associato un *Consenti* sarà in grado di azione toosend tooapps di traffico in esecuzione in un ambiente del servizio App.
 
-Quando un gruppo di sicurezza di rete è stato popolato con le regole di sicurezza, deve essere assegnato alla subnet contenente l'ambiente del servizio app.  Il comando di assegnazione fa riferimento sia al nome della rete virtuale in cui risiede l'ambiente del servizio app, sia al nome della subnet in cui è stato creato l'ambiente.  
+Dopo un gruppo di sicurezza di rete viene popolato con le regole di sicurezza, è necessario toobe assegnato toohello subnet contenente hello ambiente del servizio App.  comando assegnazione Hello fa riferimento sia nome hello della rete virtuale di hello in cui si trova hello ambiente del servizio App, nonché il nome di hello della subnet di hello in cui è stato creato hello ambiente del servizio App.  
 
-L'esempio seguente illustra l'assegnazione di un gruppo di sicurezza di rete a una subnet e a una rete virtuale:
+esempio Hello riportato di seguito viene illustrato un gruppo di sicurezza di rete viene assegnato tooa subnet e la rete virtuale:
 
     Get-AzureNetworkSecurityGroup -Name "testNSGexample" | Set-AzureNetworkSecurityGroupToSubnet -VirtualNetworkName 'testVNet' -SubnetName 'Subnet-test'
 
-Dopo l'assegnazione del gruppo di sicurezza di rete (si tratta di un'operazione con esecuzione prolungata che potrebbe richiedere alcuni minuti), solo il traffico in ingresso che corrisponde alle regole *Consenti* potrà raggiungere le app nell'ambiente del servizio app.
+Al termine dell'assegnazione del gruppo di sicurezza rete hello (assegnazione hello è operazioni a esecuzione prolungata e può richiedere alcuni minuti toocomplete), solo connessioni in entrata corrispondenti traffico *Consenti* regole completato raggiungerà App in App hello Ambiente del servizio.
 
-Per completezza, di seguito viene mostrato un esempio di come rimuovere e quindi dissociare il gruppo di sicurezza di rete dalla subnet:
+Per hello completezza l'esempio seguente viene illustrato come associare DIS hello rete sicurezza tooremove e pertanto gruppo dalla subnet hello:
 
     Get-AzureNetworkSecurityGroup -Name "testNSGexample" | Remove-AzureNetworkSecurityGroupFromSubnet -VirtualNetworkName 'testVNet' -SubnetName 'Subnet-test'
 
 ## <a name="special-considerations-for-explicit-ip-ssl"></a>Considerazioni speciali su IP SSL esplicito
-Se un'app è configurata con un indirizzo IP SSL esplicito (applicabile *solo* agli ambienti del servizio app con indirizzo VIP pubblico) anziché usare l'indirizzo IP predefinito dell'ambiente del servizio app, il traffico HTTP e HTTPS transita nella subnet tramite un set di porte diverse dalle porte 80 e 443.
+Se un'app è configurata con un indirizzo IP SSL esplicito (applicabile *solo* tooASEs che hanno un VIP pubblico), anziché l'indirizzo IP predefinito di hello di hello ambiente del servizio App, HTTP e HTTPS traffico flussi in subnet hello su un set diverso di porte diverse porte 80 e 443.
 
-La singola coppia di porte usata da ogni indirizzo IP SSL è disponibile nell'interfaccia utente del portale nel pannello relativo all'esperienza utente con i dettagli dell'ambiente del servizio app.  Selezionare "Tutte le impostazioni" --> "Indirizzi IP".  Il pannello "Indirizzi IP" mostra una tabella di tutti gli indirizzi IP SSL configurati in modo esplicito per l'ambiente del servizio app, con la coppia speciale di porte che consente di instradare il traffico HTTP e HTTPS associato a ogni indirizzo IP-SSL.  Questa è la coppia di porte che deve essere utilizzata per i parametri DestinationPortRange quando si configurano le regole in un gruppo di sicurezza di rete.
+coppia di singoli Hello delle porte utilizzate da ogni indirizzo IP SSL è reperibile nell'interfaccia utente del portale hello dal pannello UX di dettagli dell'ambiente del servizio App di hello.  Selezionare "Tutte le impostazioni" --> "Indirizzi IP".  Pannello Hello "indirizzi IP" Mostra una tabella di tutti gli indirizzi IP SSL configurati in modo esplicito per hello ambiente del servizio App, insieme a hello porta speciale coppia tooroute utilizzato traffico HTTP e HTTPS associata a ogni indirizzo IP SSL.  È questa coppia di porta che deve toobe utilizzato per i parametri DestinationPortRange hello durante la configurazione di regole in un gruppo di sicurezza di rete.
 
-Quando un'app in un ambiente del servizio app è configurata in modo da usare l'indirizzo IP SSL, ai clienti esterni non verrà visualizzato il mapping della coppia di porte e non dovranno preoccuparsi di questo aspetto.  Il traffico verso le app transiterà normalmente all'indirizzo IP SSL configurato.  La conversione a una coppia di porte specifica avviene internamente in modo automatico durante l'ultima parte del routing del traffico nella subnet contenente l'ambiente del servizio app. 
+Quando un'app su un ASE è toouse configurato SSL IP, clienti esterni non saranno visibile e non è necessario tooworry sul mapping di coppia porta speciale hello.  App toohello il traffico verrà trasferito in genere indirizzo IP SSL toohello configurato.  coppia di porte speciali di Hello traduzione toohello automaticamente avviene internamente durante la parte finale di hello di routing del traffico in hello contenente subnet di hello ASE. 
 
-## <a name="getting-started"></a>Introduzione
-Per iniziare a usare gli ambienti del servizio app, vedere [Introduzione all'ambiente del servizio app][IntroToAppServiceEnvironment]
+## <a name="getting-started"></a>introduttiva
+tooget avviato con gli ambienti del servizio App, vedere [tooApp introduzione dell'ambiente del servizio][IntroToAppServiceEnvironment]
 
-Tutti gli articoli e le procedure sugli ambienti del servizio app sono disponibili nel [file LEGGIMI per gli ambienti di servizio dell'applicazione](../app-service/app-service-app-service-environments-readme.md).
+Tutti gli articoli e in che modo-per per gli ambienti del servizio App sono disponibili in hello [file Leggimi per gli ambienti del servizio dell'applicazione](../app-service/app-service-app-service-environments-readme.md).
 
-Per informazioni dettagliate sulle app che si connettono in modo sicuro alla risorsa back-end da un ambiente del servizio app, vedere [Connessione sicura alle risorse back-end da un ambiente del servizio app][SecurelyConnecttoBackend]
+Per informazioni dettagliate sugli App che si connettono in modo sicuro toobackend risorse da un ambiente del servizio App, vedere [connessione in modo sicuro le risorse tooBackend da un ambiente del servizio App][SecurelyConnecttoBackend]
 
-Per altre informazioni sulla piattaforma del servizio app di Azure, vedere l'articolo relativo al [servizio app di Azure][AzureAppService].
+Per ulteriori informazioni sulla piattaforma Azure App Service hello, vedere [Azure App Service][AzureAppService].
 
 [!INCLUDE [app-service-web-whats-changed](../../includes/app-service-web-whats-changed.md)]
 

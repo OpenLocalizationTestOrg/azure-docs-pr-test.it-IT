@@ -1,6 +1,6 @@
 ---
-title: Come configurare una nuova applicazione multi-tenant | Microsoft Docs
-description: Informazioni su come configurare un'applicazione multi-tenant e sul funzionamento di tali applicazioni
+title: aaaHow tooconfigure una nuova applicazione multi-tenant | Documenti Microsoft
+description: Informazioni su tooconfigure un'applicazione come applicazioni multi-tenant e multi-tenant funzionamento
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -13,20 +13,20 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
-ms.openlocfilehash: 24e7e0d586dab3f77e643197594c3c4462ff997e
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: db62ea7a7cc5488961258e07e042bc160dbf92c0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-configure-a-new-multi-tenant-application"></a>Come configurare una nuova applicazione multi-tenant
+# <a name="how-tooconfigure-a-new-multi-tenant-application"></a>Come tooconfigure una nuova applicazione multi-tenant
 
-Di seguito è riportato un elenco di argomenti consigliati per altre informazioni sulle applicazioni multi-tenant:
+Di seguito è riportato un elenco di argomenti consigliati toolearn ulteriori informazioni sulle applicazioni multi-tenant:
 
-- Informazioni generali sulla [definizione di applicazione multi-tenant](https://docs.microsoft.com/azure/active-directory/develop/active-directory-dev-glossary#multi-tenant-application)
-- Informazioni generali su [come configurare un'applicazione multi-tenant](https://docs.microsoft.com/azure/active-directory/develop/active-directory-integrating-applications#configuring-multi-tenant-applications)
-- Panoramica dettagliata sull'[uso del framework di consenso di Azure AD per implementare il consenso](https://docs.microsoft.com/azure/active-directory/develop/active-directory-integrating-applications#overview-of-the-consent-framework), necessario per le applicazioni multi-tenant
-- Per altri dettagli, vedere le informazioni sulla [configurazione e sulla codifica end-to-end di un'applicazione multi-tenant](https://docs.microsoft.com/azure/active-directory/develop/active-directory-devhowto-multi-tenant-overview), incluse le informazioni su come eseguire la registrazione, usare l'endpoint "comune", implementare il consenso di "utente" e "amministratore" e implementare scenari più avanzati multilivello
+- Ottenere una conoscenza generale di [significato toobe un'applicazione multi-tenant](https://docs.microsoft.com/azure/active-directory/develop/active-directory-dev-glossary#multi-tenant-application)
+- Ottenere una conoscenza generale di [come tooconfigure un multi-tenant toobe di applicazione](https://docs.microsoft.com/azure/active-directory/develop/active-directory-integrating-applications#configuring-multi-tenant-applications)
+- Ottenere una panoramica dettagliata di [utilizzo framework di consenso di Azure AD hello consenso tooimplement](https://docs.microsoft.com/azure/active-directory/develop/active-directory-integrating-applications#overview-of-the-consent-framework), che è necessario per le applicazioni multi-tenant
+- Per maggiore profondità, informazioni su [come un'applicazione multi-tenant è configurata e codificati end-to-end](https://docs.microsoft.com/azure/active-directory/develop/active-directory-devhowto-multi-tenant-overview), incluso come tooregister, usare endpoint "common" hello, implementare "user" e "admin" consenso, tooimplement come multilivello più avanzate scenari
 
 ## <a name="next-steps"></a>Passaggi successivi
 [Azure AD in Stack Overflow](http://stackoverflow.com/questions/tagged/azure-active-directory)

@@ -1,6 +1,6 @@
 ---
 title: 'Sincronizzazione di Azure AD Connect: gestione degli errori LargeObject causati dall''attributo userCertificate | Microsoft Docs'
-description: In questo argomento vengono illustrati i passaggi per la correzione degli errori LargeObject causati dall'attributo userCertificate.
+description: In questo argomento fornisce i passaggi correttivi hello per gli errori LargeObject causati dall'attributo userCertificate.
 services: active-directory
 documentationcenter: 
 author: cychua
@@ -14,77 +14,77 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/13/2017
 ms.author: billmath
-ms.openlocfilehash: 2a5418ff61e07793fceca5a8207c1c5aa18847b4
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: e547fb5f601b92f6f5154de9997651b1f28c51b4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-ad-connect-sync-handling-largeobject-errors-caused-by-usercertificate-attribute"></a>Sincronizzazione di Azure AD Connect: gestione degli errori LargeObject causati dall'attributo userCertificate
 
-Azure AD applica un limite massimo di **15** valori del certificato nell'attributo **userCertificate**. Se Azure AD Connect esporta un oggetto con più di 15 valori in Azure AD, Azure AD restituisce un errore **LargeObject** con il messaggio:
+Azure AD applica un limite massimo di **15** certificato valori hello **userCertificate** attributo. Se Azure AD Connect consente di esportare un oggetto con più di 15 valori tooAzure AD, Azure AD restituisce un **LargeObject** errore con il messaggio:
 
->*"L'oggetto di cui è stato eseguito il provisioning presenta dimensioni troppo elevate. Ridurre il numero di valori attributo dell'oggetto. L'operazione sarà ritentata durante il successivo ciclo di sincronizzazione...."*
+>*"l'oggetto sottoposto a provisioning hello è troppo grande. Trim numero hello dei valori di attributo per questo oggetto. Hello operazione verrà ritentata in hello successivo ciclo di sincronizzazione..."*
 
-L'errore LargeObject può essere causato da altri attributi di AD. Per verificare che sia effettivamente causato dall'attributo userCertificate, è necessario confrontarlo con l'oggetto in AD locale o in [Ricerca metaverse di Synchronization Service Manager](https://docs.microsoft.com/azure/active-directory/connect/active-directory-aadconnectsync-service-manager-ui-mvsearch).
+Hello LargeObject errore potrebbe essere causato da altri attributi di Active Directory. tooconfirm effettivamente è provocato da attributo userCertificate hello, è necessario tooverify oggetto hello in AD locale o in hello [ricerca Metaverse Synchronization Service Manager](https://docs.microsoft.com/azure/active-directory/connect/active-directory-aadconnectsync-service-manager-ui-mvsearch).
 
-Per ottenere l'elenco di oggetti nel tenant con gli errori LargeObject, usare uno dei metodi seguenti:
+elenco di hello tooobtain degli oggetti nel tenant di LargeObject errori, utilizzare uno dei seguenti metodi hello:
 
- * Se il tenant è abilitato per la sincronizzazione di Azure AD Connect Health, è possibile fare riferimento al [Report degli errori di sincronizzazione](https://docs.microsoft.com/azure/active-directory/connect-health/active-directory-aadconnect-health-sync#object-level-synchronization-error-report-preview) indicato.
+ * Se il tenant è abilitato per Azure AD Connect Health per la sincronizzazione, è possibile fare riferimento toohello [segnalazione di errori di sincronizzazione](https://docs.microsoft.com/azure/active-directory/connect-health/active-directory-aadconnect-health-sync#object-level-synchronization-error-report-preview) fornito.
  
- * La notifica tramite posta elettronica relativa agli errori di sincronizzazione della directory inviata alla fine di ogni ciclo di sincronizzazione contiene l'elenco di oggetti con errori LargeObject. 
- * La [scheda Synchronization Service Manager Operations](https://docs.microsoft.com/azure/active-directory/connect/active-directory-aadconnectsync-service-manager-ui-operations) (Operazioni di Synchronization Service Manager) mostra l'elenco di oggetti con gli errori LargeObject se si sceglie l'esportazione più recente per il funzionamento di Azure AD.
+ * Hello notifica tramite posta elettronica per gli errori di sincronizzazione di directory che viene inviato alla fine di hello di ogni ciclo di sincronizzazione ha elenco hello di oggetti con errori LargeObject. 
+ * Hello [scheda operazioni Synchronization Service Manager](https://docs.microsoft.com/azure/active-directory/connect/active-directory-aadconnectsync-service-manager-ui-operations) Visualizza l'elenco di hello degli oggetti con LargeObject errori se si fa clic su operazione tooAzure AD esportazione più recente di hello.
  
 ## <a name="mitigation-options"></a>Opzioni di mitigazione
-Finché l'errore LargeObject non viene risolto, non è possibile esportare altre modifiche dell'attributo allo stesso oggetto in Azure AD. Per risolvere l'errore, è possibile considerare le seguenti opzioni:
+Fino a quando non viene risolto l'errore LargeObject hello, altri toohello modifiche attributo oggetto stesso non può essere esportato tooAzure Active Directory. Errore di hello tooresolve, è possibile prendere in considerazione hello le opzioni seguenti:
 
- * Aggiornare Azure AD Connect alla build 1.1.524.0 o successiva. Nella build 1.1.524.0 di Azure AD Connect, le regole di sincronizzazione predefinite sono state aggiornate in modo da non esportare gli attributi userCertificate e userSMIMECertificate se gli attributi hanno più di 15 valori. Per informazioni dettagliate sull'aggiornamento di Azure AD Connect, vedere l'articolo [Azure AD Connect: Eseguire l'aggiornamento da una versione precedente alla versione più recente](https://docs.microsoft.com/azure/active-directory/connect/active-directory-aadconnect-upgrade-previous-version).
+ * L'aggiornamento di Azure AD Connect toobuild 1.1.524.0 o successiva. In Azure AD Connect 1.1.524.0 di compilazione, le regole di sincronizzazione di out-of-box hello sono stati aggiornati toonot esportazione attributi userCertificate e userSMIMECertificate se gli attributi di hello hanno valori di più di 15. Per informazioni dettagliate su come tooupgrade Azure AD Connect, fare riferimento tooarticle [Azure AD Connect: l'aggiornamento da una precedente toohello versione più recente](https://docs.microsoft.com/azure/active-directory/connect/active-directory-aadconnect-upgrade-previous-version).
 
- * Implementare una **regola di sincronizzazione in uscita** in Azure AD Connect che esporta un **valore null anziché i valori effettivi per gli oggetti con più di 15 valori per certificato**. Questa opzione è appropriata se non è necessario esportare uno dei valori del certificato in Azure AD per gli oggetti con più di 15 valori. Per informazioni dettagliate su come implementare questa regola di sincronizzazione, fare riferimento alla sezione successiva [Implementing sync rule to limit export of userCertificate attribute](#implementing-sync-rule-to-limit-export-of-usercertificate-attribute) (Implementare la regola di sincronizzazione per limitare l'esportazione dell'attributo userCertificate).
+ * Implementare un **regola di sincronizzazione in uscita** in Azure AD Connect che consente di esportare un **valore anziché i valori effettivi hello per gli oggetti con valori di più di 15 certificato null**. Questa opzione è adatta se uno dei valori esportati toobe tooAzure AD di hello certificato non è necessario per gli oggetti con valori di più di 15. Per informazioni dettagliate su come la sincronizzazione delle regole, vedere la sezione toonext tooimplement [implementazione esportazione toolimit regola di sincronizzazione dell'attributo userCertificate](#implementing-sync-rule-to-limit-export-of-usercertificate-attribute).
 
- * Ridurre il numero di valori del certificato nell'oggetto AD locale, a 15 o a un numero inferiore, rimuovendo i valori che non sono usati dall'organizzazione. Questa operazione è adeguata se il software boat dell'attributo è dovuto a certificati scaduti o non usati. È possibile usare lo [script PowerShell disponibile qui](https://gallery.technet.microsoft.com/Remove-Expired-Certificates-0517e34f) per trovare, eseguire il backup ed eliminare i certificati scaduti in AD locale. Prima di eliminare i certificati, è consigliabile confrontarsi con gli amministratori dell'infrastruttura a chiave pubblica dell'organizzazione.
+ * Ridurre il numero di hello dei valori certificato hello oggetto Active Directory (15 o meno) in locale da rimuovere i valori che non sono più in uso da parte dell'organizzazione. Questo è appropriato se crescita attributo hello è determinato dai certificati scaduti o non utilizzati. È possibile utilizzare hello [qui disponibili script di PowerShell](https://gallery.technet.microsoft.com/Remove-Expired-Certificates-0517e34f) toohelp trovare, eseguire il backup ed eliminare i certificati scaduti in locale Active Directory. Prima di eliminare i certificati di hello, è consigliabile verificare gli amministratori di hello--infrastruttura a chiave pubblica dell'organizzazione.
 
- * Configurare Azure AD Connect per escludere l'attributo userCertificate dall'esportazione in Azure AD. In generale, si sconsiglia questa opzione perché l'attributo potrebbe essere usato da Microsoft Online Services per abilitare scenari specifici. In particolare:
-    * L'attributo userCertificate nell'oggetto Utente viene usato da Exchange Online e dai client di Outlook per la crittografia e la firma dei messaggi. Per altre informazioni su questa funzionalità, vedere l'articolo [S/MIME per la crittografia e firma dei messaggi](https://technet.microsoft.com/library/dn626158(v=exchg.150).aspx).
+ * Configurazione di Azure AD Connect tooexclude hello userCertificate attributo viene esportato tooAzure Active Directory. In generale, è consigliabile scegliere questa opzione non poiché hello attributo può essere utilizzato per scenari specifici di Microsoft Online Services tooenable. In particolare:
+    * attributo userCertificate Hello oggetto User hello viene utilizzato da Exchange Online e i client di Outlook per la crittografia e firma dei messaggi. toolearn informazioni su questa funzionalità, vedere tooarticle [S/MIME per la crittografia e firma dei messaggi](https://technet.microsoft.com/library/dn626158(v=exchg.150).aspx).
 
-    * L'attributo userCertificate sull'oggetto Computer viene usato da Azure AD per consentire ai dispositivi locali aggiunti a un dominio di Windows 10 di connettersi ad Azure AD. Per altre informazioni su questa funzionalità, fare riferimento all'articolo [Connettere dispositivi aggiunti a un dominio ad Azure AD in ambiente Windows 10](https://docs.microsoft.com/azure/active-directory/active-directory-azureadjoin-devices-group-policy).
+    * attributo userCertificate Hello sull'oggetto Computer hello viene utilizzato per i dispositivi appartenenti a un dominio tooconnect tooAzure AD di Azure AD tooallow Windows 10 in locale. toolearn informazioni su questa funzionalità, consultare tooarticle [connessione tooAzure dispositivi appartenenti a un dominio Active Directory per Windows 10 esperienze](https://docs.microsoft.com/azure/active-directory/active-directory-azureadjoin-devices-group-policy).
 
-## <a name="implementing-sync-rule-to-limit-export-of-usercertificate-attribute"></a>Implementazione della regola di sincronizzazione per limitare l'esportazione dell'attributo userCertificate
-Per risolvere l'errore LargeObject causato dall'attributo userCertificate, è possibile implementare una regola di sincronizzazione in uscita in Azure AD Connect che esporta un **valore null anziché i valori effettivi per gli oggetti con più di 15 valori per certificato**. In questa sezione viene descritta la procedura necessaria per implementare la regola di sincronizzazione per l'oggetto **Utente**. La procedura può essere adattata per gli oggetti **Contatto** e **Computer**.
+## <a name="implementing-sync-rule-toolimit-export-of-usercertificate-attribute"></a>Implementazione di esportazione toolimit regola di sincronizzazione dell'attributo userCertificate
+Errore di LargeObject hello tooresolve causato dall'attributo userCertificate hello, è possibile implementare una regola di sincronizzazione in uscita in Azure AD Connect che consente di esportare un **valore anziché i valori effettivi hello per gli oggetti con i valori del certificato più di 15null**. In questa sezione descrive hello passaggi necessari tooimplement hello regola di sincronizzazione per **utente** oggetti. Hello passaggi possono essere adattati per **contatto** e **Computer** oggetti.
 
 > [!IMPORTANT]
-> L'esportazione di un valore null rimuove i valori del certificato esportati precedentemente in modo corretto in Azure AD.
+> Esportazione di un valore null rimuove i valori precedentemente esportato correttamente tooAzure AD certificato.
 
-La procedura può essere riepilogata nel modo seguente:
+passaggi di Hello possono essere riepilogati come:
 
 1. Disabilitare l'utilità di pianificazione della sincronizzazione e verificare che non ci sia alcuna sincronizzazione in corso.
-3. Trovare la regola di sincronizzazione in uscita esistente per l'attributo userCertificate.
-4. Creare la regola di sincronizzazione in uscita necessaria.
-5. Verificare la nuova regola di sincronizzazione in un oggetto esistente con errore LargeObject.
-6. Applicare la nuova regola di sincronizzazione agli oggetti restanti con errore LargeObject.
-7. Verificare che non siano presenti modifiche impreviste in attesa di esportazione in Azure AD.
-8. Esportare le modifiche in Azure AD.
+3. Trovare la regola di sincronizzazione in uscita esistente hello per attributo userCertificate.
+4. Crea regola di sincronizzazione in uscita hello necessario.
+5. Verificare hello nuova regola di sincronizzazione in un oggetto esistente con l'errore LargeObject.
+6. Applicare hello nuova sincronizzazione regola tooremaining oggetti errore LargeObject.
+7. Verificare che non sono presenti modifiche impreviste in attesa toobe esportato tooAzure Active Directory.
+8. Esportare hello modifiche tooAzure Active Directory.
 9. Riattivare l'utilità di pianificazione della sincronizzazione.
 
 ### <a name="step-1-disable-sync-scheduler-and-verify-there-is-no-synchronization-in-progress"></a>Passaggio 1. Disabilitare l'utilità di pianificazione della sincronizzazione e verificare che non ci sia alcuna sincronizzazione in corso
-Verificare che non venga eseguita alcuna sincronizzazione durante l'implementazione di una nuova regola di sincronizzazione per evitare l'esportazione di modifiche accidentali in Azure AD. Per disabilitare l'utilità di pianificazione della sincronizzazione predefinita:
-1. Avviare una sessione di PowerShell nel server di Azure AD Connect.
+Verificare che viene eseguita alcuna sincronizzazione mentre si è al centro hello dell'implementazione di una nuova sincronizzazione tooavoid regola impreviste cambia being esportato tooAzure AD. toodisable hello sincronizzazione predefinite dell'utilità di pianificazione:
+1. Avviare una sessione di PowerShell nel server di Azure AD Connect hello.
 
 2. Disabilitare la sincronizzazione pianificata eseguendo di cmdlet: `Set-ADSyncScheduler -SyncCycleEnabled $false`
 
 > [!Note]
-> I passaggi precedenti sono applicabili solo alle versioni più recenti (1.1.xxx.x) di Azure AD Connect con l'utilità di pianificazione integrata. Se si usano versioni precedenti (1.0.xxx.x) di Azure AD Connect che usano il servizio Utilità di pianificazione di Windows o se si usa l'utilità di pianificazione personalizzata, non comune, per attivare la sincronizzazione periodica, è necessario disabilitarle di conseguenza.
+> Hello passaggi precedenti sono solo toonewer applicabile versioni (1.1.xxx.x) di Azure AD Connect con utilità di pianificazione integrata hello. Se si utilizzano versioni precedenti (1.0.xxx.x) di Azure AD Connect che utilizza l'utilità di pianificazione di Windows, o si utilizza la propria sincronizzazione periodica tootrigger di utilità di pianificazione personalizzata (non comune), è necessario toodisable li conseguenza.
 
-3. Avviare **Synchronization Service Manager** passando ad AVVIA → Servizio di sincronizzazione.
+3. Avviare hello **Synchronization Service Manager** da passare → tooSTART servizio di sincronizzazione.
 
-4. Andare nella scheda **Operazioni** e verificare che nessuna operazione presenti lo stato *"in corso"*.
+4. Passare toohello **operazioni** scheda e verificare che nessuna operazione il cui stato è *"in"corso.*
 
-### <a name="step-2-find-the-existing-outbound-sync-rule-for-usercertificate-attribute"></a>Passaggio 2. Trovare la regola di sincronizzazione in uscita esistente per l'attributo userCertificate
-Una regola di sincronizzazione esistente dovrebbe essere abilitata e configurata per l'esportazione dell'attributo userCertificate per gli oggetti Utente in Azure AD. Individuare questa regola di sincronizzazione per scoprirne la configurazione **precedente** e il **filtro ambito**:
+### <a name="step-2-find-hello-existing-outbound-sync-rule-for-usercertificate-attribute"></a>Passaggio 2. Trovare la regola di sincronizzazione in uscita esistente hello per attributo userCertificate
+Deve essere presente una regola di sincronizzazione esistente che è abilitata e configurato l'attributo userCertificate tooexport per tooAzure oggetti utente Active Directory. Individuare questo toofind regola di sincronizzazione out relativo **precedenza** e **filtro di ambito** configurazione:
 
-1. Avviare l'**editor per le regole di sincronizzazione** passando ad AVVIA → Synchronization Rules Editor (Editor per le regole di sincronizzazione).
+1. Avviare hello **Editor regole di sincronizzazione** da passare tooSTART → Editor regole di sincronizzazione.
 
-2. Configurare i filtri della ricerca con i valori seguenti:
+2. Configurare i filtri di ricerca hello con hello seguenti valori:
 
     | Attributo | Valore |
     | --- | --- |
@@ -94,88 +94,88 @@ Una regola di sincronizzazione esistente dovrebbe essere abilitata e configurata
     | Connector Object Type |**user** |
     | MV attribute |**userCertificate** |
 
-3. Se si usano le regole di sincronizzazione predefinite in Azure AD Connector per esportare l'attributo userCertficiate per gli oggetti Utente, è necessario ritornare alla regola *"Out to AAD – User ExchangeOnline"* ("Per AAD: utente ExchangeOnline").
-4. Annotare il valore **precedence** della regola di sincronizzazione.
-5. Selezionare la regola di sincronizzazione e fare clic su **Modifica**.
-6. Nel finestra di dialogo popup *"Edit Reserved Rule Confirmation"* (Modifica la conferma di regola riservata) fare clic su **No**. Non apportata alcuna modifica a questa regola di sincronizzazione.
-7. Nella schermata di modifica, selezionare la scheda **Scoping filter** (Filtro ambito).
-8. Annotare la configurazione del filtro ambito. Se si usa la regola di sincronizzazione predefinita, devono essere presenti esattamente **un gruppo di filtri ambito contenente due clausole**, tra cui:
+3. Se si utilizza l'attributo OOB (out-of-box) sincronizzazione rules tooAzure Active Directory connector tooexport userCertficiate per gli oggetti utente, è necessario tornare hello *"Out tooAAD – utente ExchangeOnline"* regola.
+4. Annotare hello **precedenza** valore di questa regola di sincronizzazione.
+5. Selezionare la regola di sincronizzazione hello e fare clic su **modifica**.
+6. In hello *"Modifica riservato conferma regola"* finestra di dialogo popup, fare clic su **n**. (Non occorre preoccuparsi, non verrà toomake qualsiasi regola di sincronizzazione toothis modifica).
+7. Nella schermata Modifica hello selezionare hello **definizione ambito filtro** scheda.
+8. Prendere nota delle hello dell'ambito di configurazione del filtro. Se si utilizza una regola di sincronizzazione OOB hello, esattamente occorre **un gruppo di filtri ambito contenente due clausole**, tra cui:
 
     | Attributo | operatore | Valore |
     | --- | --- | --- |
     | sourceObjectType | EQUAL | Utente |
     | cloudMastered | NOTEQUAL | True  |
 
-### <a name="step-3-create-the-outbound-sync-rule-required"></a>Passaggio 3. Creare la regola di sincronizzazione in uscita necessaria
-La nuova regola di sincronizzazione deve avere lo stesso **filtro ambito** e la stessa **priorità elevata** della regola di sincronizzazione esistente. Ciò garantisce che la nuova regola di sincronizzazione si applichi allo stesso set di oggetti della regola di sincronizzazione esistente e sostituisca la regola di sincronizzazione esistente per l'attributo userCertificate. Per creare la regola di sincronizzazione:
-1. Nell'editor per le regole di sincronizzazione, fare clic sul pulsante **Aggiungi nuova regola**.
-2. Nella **scheda Descrizione**, inserire la configurazione seguente:
+### <a name="step-3-create-hello-outbound-sync-rule-required"></a>Passaggio 3. Crea regola di sincronizzazione in uscita hello richiesta
+Hello nuova regola di sincronizzazione deve avere hello stesso **filtro di ambito** e **una precedenza più alta** di hello regola di sincronizzazione esistente. In questo modo si garantisce che hello nuova regola di sincronizzazione si applica toohello stesso set di oggetti come regola di sincronizzazione esistente hello e sostituzioni hello esistente regola di sincronizzazione per l'attributo userCertificate hello. regola di sincronizzazione toocreate hello:
+1. In hello Editor regole di sincronizzazione, fare clic su hello **Aggiungi nuova regola** pulsante.
+2. In hello **scheda Descrizione**, fornire hello seguente configurazione:
 
     | Attributo | Valore | Dettagli |
     | --- | --- | --- |
-    | Nome | *Specificare un nome* | Ad esempio *"Per AAD: esegue l'override personalizzato per userCertificate"* |
+    | Nome | *Specificare un nome* | Ad esempio, *"Out tooAAD – personalizzato eseguire l'override per userCertificate"* |
     | Descrizione | *Inserire una descrizione* | Ad esempio *"Se l'attributo userCertificate contiene più di 15 valori, esportare NULL".* |
-    | Connected System | *Selezionare il connettore di Azure AD* |
+    | Connected System | *Selezionare hello Azure Active Directory Connector* |
     | Connected System Object Type | **user** | |
     | Metaverse Object Type | **person** | |
     | Tipo di collegamento | **Join** | |
-    | Precedenza | *Scegliere un numero compreso tra 1 e 99* | Il numero scelto non deve essere usato da una regola di sincronizzazione esistente e deve avere un valore inferiore, e pertanto priorità più alta, rispetto alla regola di sincronizzazione esistente. |
+    | Precedenza | *Scegliere un numero compreso tra 1 e 99* | non deve essere utilizzato da alcuna regola di sincronizzazione esistente Hello numero scelto e ha un valore più basso (e, pertanto, una precedenza più alta) di hello regola di sincronizzazione esistente. |
 
-3. Andare nella scheda **Filtro ambito** e implementare lo stesso filtro ambito che usa la regola di sincronizzazione esistente.
-4. Ignora la scheda **Join rules** (Regole di unione).
-5. Andare nella scheda **Trasformazioni** per aggiungere una nuova trasformazione tramite la configurazione seguente:
+3. Passare toohello **definizione ambito filtro** scheda e implementare hello utilizza stesso ambito filtro hello esistente regola di sincronizzazione.
+4. Hello Skip **regole di unione** scheda.
+5. Passare toohello **trasformazioni** scheda tooadd una nuova trasformazione tramite seguente configurazione:
 
     | Attributo | Valore |
     | --- | --- |
     | Flow Type |**Expression** |
     | Target Attribute |**userCertificate** |
-    | Source Attribute |*usare l'espressione seguente*: `IIF(IsNullOrEmpty([userCertificate]), NULL, IIF((Count([userCertificate])> 15),AuthoritativeNull,[userCertificate]))` |
+    | Source Attribute |*Hello Usa espressione seguente*:`IIF(IsNullOrEmpty([userCertificate]), NULL, IIF((Count([userCertificate])> 15),AuthoritativeNull,[userCertificate]))` |
     
-6. Per creare la regola di sincronizzazione, fare clic sul pulsante **Aggiungi**.
+6. Fare clic su hello **Aggiungi** regola di sincronizzazione hello toocreate pulsante.
 
-### <a name="step-4-verify-the-new-sync-rule-on-an-existing-object-with-largeobject-error"></a>Passaggio 4. Verificare la nuova regola di sincronizzazione in un oggetto esistente con errore LargeObject
-Si tratta di verificare che la regola di sincronizzazione creata funzioni correttamente in un oggetto di AD esistente con errore LargeObject prima di applicarla ad altri oggetti:
-1. Passare alla scheda **Operazioni** in Synchronization Service Manager.
-2. Selezionare l'operazione di esportazione più recente in Azure AD e fare clic su uno degli oggetti con errori LargeObject.
-3.  Nella schermata di popup Connector Space Object Properties (Proprietà dell'oggetto spazio connettore) fare clic sul pulsante **Anteprima**.
-4. Nella schermata di popup Anteprima selezionare **Sincronizzazione completa** e fare clic su **Anteprima commit**.
-5. Chiudere la schermata Anteprima e la schermata Connector Space Object Properties (Proprietà dell'oggetto spazio connettore).
-6. Passare alla scheda **Connettori** in Synchronization Service Manager.
-7. Fare clic con il tasto destro del mouse sul connettore di **Azure AD** e selezionare **Esegui...**
-8. Nella finestra popup Run Connector (Esegui connettore) selezionare il passaggio **Esporta** e fare clic su **OK**.
-9. Attendere il completamento dell'esportazione in Azure AD e confermare che non siano presenti altri errori LargeObject in questo oggetto specifico.
+### <a name="step-4-verify-hello-new-sync-rule-on-an-existing-object-with-largeobject-error"></a>Passaggio 4. Verificare hello nuova regola di sincronizzazione in un oggetto esistente con l'errore LargeObject
+Si tratta di tooverify che hello sincronizzazione regola creata funzioni correttamente su un oggetto di Active Directory esistente con l'errore LargeObject prima di applicare gli oggetti tooother:
+1. Passare toohello **operazioni** scheda hello Synchronization Service Manager.
+2. Selezionare l'operazione tooAzure AD esportazione più recente di hello e fare clic su uno degli oggetti hello con LargeObject errori.
+3.  Nella schermata popup di hello proprietà oggetto spazio connettore, fare clic su hello **anteprima** pulsante.
+4. Nella schermata di popup di anteprima hello selezionare **completo sincronizzazione** e fare clic su **anteprima Commit**.
+5. Chiudere la schermata di anteprima hello e schermata proprietà oggetto spazio connettore hello.
+6. Passare toohello **connettori** scheda hello Synchronization Service Manager.
+7. Fare clic su hello **AD Azure** connettore e selezionare **Esegui...**
+8. Nel menu a comparsa Run Connector hello, selezionare **esportare** passaggio e fare clic su **OK**.
+9. Attendere per esportazione tooAzure AD toocomplete e confermare che non si è verificato alcun errore LargeObject più su questo oggetto specifico.
 
-### <a name="step-5-apply-the-new-sync-rule-to-remaining-objects-with-largeobject-error"></a>Passaggio 5. Applicare la nuova regola di sincronizzazione agli oggetti restanti con errore LargeObject
-Dopo aver aggiunto la regola di sincronizzazione, è necessario eseguire un passaggio di sincronizzazione completa per il connettore AD:
-1. Passare alla scheda **Connettori** in Synchronization Service Manager.
-2. Fare clic con il tasto destro del mouse sul connettore **AD** e selezionare **Esegui...**
-3. Nella finestra popup Run Connector (Esegui connettore) selezionare il passaggio **Sincronizzazione completa** e fare clic su **OK**.
-4. Attendere il completamento del passaggio Sincronizzazione completa.
-5. Ripetere i passaggi precedenti per i connettori AD restanti se si dispone di più connettori AD. In genere, sono necessari più connettori se si dispone di più directory locali.
+### <a name="step-5-apply-hello-new-sync-rule-tooremaining-objects-with-largeobject-error"></a>Passaggio 5. Applicare hello nuovi sincronizzazione regola tooremaining oggetti errore LargeObject
+Dopo aver aggiunto la regola di sincronizzazione hello, è necessario un passaggio di sincronizzazione completa su Active Directory Connector hello toorun:
+1. Passare toohello **connettori** scheda hello Synchronization Service Manager.
+2. Fare clic su hello **AD** connettore e selezionare **Esegui...**
+3. Nel menu a comparsa Run Connector hello, selezionare **sincronizzazione completa** passaggio e fare clic su **OK**.
+4. Attendere toocomplete passaggio di hello sincronizzazione completa.
+5. Ripetere hello sopra i passaggi per hello rimanente connettori di Active Directory se si dispone di più connettori di Active Directory. In genere, sono necessari più connettori se si dispone di più directory locali.
 
-### <a name="step-6-verify-there-are-no-unexpected-changes-waiting-to-be-exported-to-azure-ad"></a>Passaggio 6. Verificare che non siano presenti modifiche impreviste in attesa di esportazione in Azure AD
-1. Passare alla scheda **Connettori** in Synchronization Service Manager.
-2. Fare clic con il tasto destro del mouse sul connettore di **Azure AD** e selezionare **Search Connector Space** (Spazio connettore di ricerca).
-3. Nella finestra popup Search Connector Space (Spazio connettore di ricerca):
-    1. Impostare Ambito su **Pending Export** (Esportazione in sospeso).
+### <a name="step-6-verify-there-are-no-unexpected-changes-waiting-toobe-exported-tooazure-ad"></a>Passaggio 6. Verificare che non sono presenti modifiche non previsto in attesa toobe esportato tooAzure AD
+1. Passare toohello **connettori** scheda hello Synchronization Service Manager.
+2. Fare clic su hello **AD Azure** connettore e selezionare **spazio connettore ricerca**.
+3. Nel menu a comparsa spazio connettore ricerca hello:
+    1. Impostare l'ambito troppo**esportare in sospeso**.
     2. Selezionare tutte e 3 le caselle di controllo, tra cui **Aggiungi**, **Modifica** ed **Elimina**.
-    3. Fare clic sul pulsante **Cerca** per restituire tutti gli oggetti con modifiche in attesa di essere esportati in Azure AD.
-    4. Verificare che non siano presenti modifiche impreviste. Per esaminare le modifiche per un determinato oggetto, fare doppio clic sull'oggetto.
+    3. Fare clic su **ricerca** tooreturn pulsante tutti gli oggetti con modifiche in attesa toobe esportato tooAzure Active Directory.
+    4. Verificare che non siano presenti modifiche impreviste. le modifiche di hello tooexamine per un determinato oggetto, fare doppio clic sull'oggetto hello.
 
-### <a name="step-7-export-the-changes-to-azure-ad"></a>Passaggio 7. Esportare le modifiche in Azure AD
-Per esportare le modifiche in Azure AD:
-1. Passare alla scheda **Connettori** in Synchronization Service Manager.
-2. Fare clic con il tasto destro del mouse sul connettore di **Azure AD** e selezionare **Esegui...**
-4. Nella finestra popup Run Connector (Esegui connettore) selezionare il passaggio **Esporta** e fare clic su **OK**.
-5. Attendere il completamento dell'esportazione in Azure AD e confermare che non siano presenti altri errori LargeObject.
+### <a name="step-7-export-hello-changes-tooazure-ad"></a>Passaggio 7. Esportazione hello modifiche tooAzure AD
+le modifiche hello tooexport tooAzure AD:
+1. Passare toohello **connettori** scheda hello Synchronization Service Manager.
+2. Fare clic su hello **AD Azure** connettore e selezionare **Esegui...**
+4. Nel menu a comparsa Run Connector hello, selezionare **esportare** passaggio e fare clic su **OK**.
+5. Attendere esportazione tooAzure AD toocomplete e verificare che non sono presenti ulteriori errori LargeObject.
 
 ### <a name="step-8-re-enable-sync-scheduler"></a>Passaggio 8. Riattivare l'utilità di pianificazione della sincronizzazione
-Dopo aver risolto il problema, abilitare nuovamente l'utilità di pianificazione della sincronizzazione predefinita:
+Ora che hello problema viene risolto, abilitare nuovamente l'utilità di pianificazione sincronizzazione predefinite hello:
 1. Avviare una sessione di PowerShell.
 2. Riabilitare la sincronizzazione pianificata eseguendo di cmdlet: `Set-ADSyncScheduler -SyncCycleEnabled $true`
 
 > [!Note]
-> I passaggi precedenti sono applicabili solo alle versioni più recenti (1.1.xxx.x) di Azure AD Connect con l'utilità di pianificazione integrata. Se si usano versioni precedenti (1.0.xxx.x) di Azure AD Connect che usano il servizio Utilità di pianificazione di Windows o se si usa l'utilità di pianificazione personalizzata, non comune, per attivare la sincronizzazione periodica, è necessario disabilitarle di conseguenza.
+> Hello passaggi precedenti sono solo toonewer applicabile versioni (1.1.xxx.x) di Azure AD Connect con utilità di pianificazione integrata hello. Se si utilizzano versioni precedenti (1.0.xxx.x) di Azure AD Connect che utilizza l'utilità di pianificazione di Windows, o si utilizza la propria sincronizzazione periodica tootrigger di utilità di pianificazione personalizzata (non comune), è necessario toodisable li conseguenza.
 
 ## <a name="next-steps"></a>Passaggi successivi
 Altre informazioni su [Integrazione delle identità locali con Azure Active Directory](active-directory-aadconnect.md).

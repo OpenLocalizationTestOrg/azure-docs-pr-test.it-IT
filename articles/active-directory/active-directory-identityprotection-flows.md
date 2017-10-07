@@ -1,6 +1,6 @@
 ---
-title: Esperienze di accesso con Azure AD Identity Protection | Microsoft Docs
-description: "Presenta una panoramica dell'esperienza utente quando Identity Protection ha mitigato o risolto la situazione di rischio di un utente o quando l'autenticazione a più fattori è richiesta da una policy."
+title: esperienze di aaaSign con Azure AD Identity Protection | Documenti Microsoft
+description: "Fornisce una panoramica di esperienza utente hello quando la protezione dell'identità è risolti o aggiornato un utente o quando è necessario effettuare l'autenticazione di multi-factor un criterio."
 services: active-directory
 keywords: "azure active directory identity protection, cloud app discovery, gestione applicazioni, sicurezza, rischio, livello di rischio, vulnerabilità, criteri di sicurezza"
 documentationcenter: 
@@ -15,19 +15,19 @@ ms.topic: article
 ms.date: 07/12/2017
 ms.author: markvi
 ms.reviewer: nigu
-ms.openlocfilehash: e45936280b51fb2e54012a688fceddcc8dabe984
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: fbdca5b86ed93d0a2f2b6df1dd0150da9c0c85c0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="sign-in-experiences-with-azure-ad-identity-protection"></a>Esperienze di accesso con Azure AD Identity Protection
 Con Azure Active Directory Identity Protection è possibile:
 
-* richiedere la registrazione degli utenti per l'autenticazione a più fattori
+* Richiedi tooregister utenti multi-factor Authentication
 * gestire gli accessi rischiosi e gli utenti compromessi
 
-La risposta del sistema a questi problemi ha un impatto sull’esperienza di accesso dell’utente, in quanto non sarà più possibile effettuare l’accesso in modo diretto fornendo semplicemente il nome utente e la password. Saranno necessari passaggi aggiuntivi per consentire all’utente un accesso sicuro al sistema.
+risposta Hello dei problemi di hello sistema toothese ha impatto sull'esperienza di accesso dell'utente, poiché solo direttamente firma-in, fornendo un nome utente e una password non essere possibile più. Ulteriori passaggi sono necessari tooget un utente in modo sicuro allo stato di business.
 
 Questo argomento presenta una panoramica dell'esperienza di accesso dell'utente per tutti i casi possibili.
 
@@ -47,65 +47,65 @@ Questo argomento presenta una panoramica dell'esperienza di accesso dell'utente 
 * Account compromesso bloccato
 
 ## <a name="multi-factor-authentication-registration"></a>Registrazione per l'autenticazione a più fattori
-Sia per il ripristino di un account compromesso che per l'accesso rischioso, la migliore esperienza utente si ottiene quando l'utente può eseguire il ripristino automatico. Se gli utenti sono registrati per l’autenticazione a più fattori, hanno già un numero di telefono associato con l’account che può essere usato per trasmettere le richieste di sicurezza. Non è necessario coinvolgere il supporto tecnico o l'amministratore per ripristinare un account compromesso. È quindi consigliabile fare in modo che gli utenti siano registrati per l'autenticazione a più fattori. 
+Hello un'esperienza utente ottimale sia per, hello flusso di ripristino di un account compromesso hello rischioso flusso di accesso, quando l'utente hello autonomo è possibile ripristinare. Se gli utenti sono registrati per l'autenticazione a più fattori, si dispone già di un numero di telefono associato all'account che possono essere utilizzati toopass problematiche di sicurezza. Alcun modo coinvolta tecnico o l'amministratore della Guida non è necessario toorecover da eventuali compromissioni account. Pertanto, è consigliabile tooget agli utenti registrati per l'autenticazione a più fattori. 
 
 Gli amministratori possono:
 
-* Impostare criteri che richiedono agli utenti di configurare l'account per la verifica di sicurezza aggiuntiva. 
-* Consentire di ignorare la registrazione per l'autenticazione a più fattori per un massimo di 30 giorni, per dare agli utenti un periodo di tolleranza prima della registrazione.
+* impostare un criterio che richiede tooset agli utenti di account per la verifica aggiuntiva di sicurezza. 
+* Consenti registrazione multi-factor authentication per i giorni di too30 ignorata nel caso in cui si desidera che gli utenti toogive prima di registrare un periodo di tolleranza.
 
-**La registrazione per l’autenticazione a più fattori prevede tre passaggi:**
+**registrazione con l'autenticazione a più fattori Hello prevede tre passaggi:**
 
-1. Nel primo passaggio l'utente riceve una notifica della necessità di impostare l'account per l’autenticazione a più fattori. 
+1. Nel primo passaggio hello, utente hello Ottiene una notifica sull'account di hello requisito tooset hello per multi-factor authentication. 
    
     ![Correzione](./media/active-directory-identityprotection-flows/140.png "Correzione")
-2. Per impostare l'autenticazione a più fattori, occorre indicare al sistema in che modo si desidera essere contattati.
+2. autenticazione a più fattori tooset backup, è necessario system hello toolet sapere come si desidera toobe contattato.
    
     ![Correzione](./media/active-directory-identityprotection-flows/141.png "Correzione")
-3. Il sistema invia una richiesta ed è necessario rispondere.
+3. sistema Hello invia una richiesta tooyou ed è necessario toorespond.
    
     ![Correzione](./media/active-directory-identityprotection-flows/142.png "Correzione")
 
 ## <a name="risky-sign-in-recovery"></a>Ripristino di un accesso rischioso
-Se un amministratore ha configurato dei criteri per i rischi di accesso, gli utenti interessati ricevono una notifica quando provano ad accedere. 
+Quando un amministratore ha configurato un criterio per i rischi di accesso, gli utenti di hello interessato vengono informati quando tentano di toosign-in. 
 
-**Il flusso per l'accesso rischioso prevede due passaggi:** 
+**flusso Hello rischiosa Accedi prevede due passaggi:** 
 
-1. L’utente è informato del fatto che qualcosa di insolito è stato rilevato in merito al suo accesso, ad esempio l’accesso da una nuova posizione, dispositivo o app. 
+1. utente di Hello viene informato che qualcosa di sospetto è stato rilevato sulla loro l'accesso in, ad esempio la firma un nuovo percorso, un dispositivo o app. 
    
     ![Correzione](./media/active-directory-identityprotection-flows/120.png "Correzione")
-2. L'utente deve dimostrare la propria identità rispondendo a una richiesta di sicurezza. Se l'utente è registrato per l'autenticazione a più fattori, deve eseguire il round trip di un codice di sicurezza al proprio numero di telefono. Poiché questo è solo un accesso rischioso e non un account compromesso, l’utente non dovrà cambiare la password in questo flusso. 
+2. utente Hello è obbligatorio tooprove la propria identità risolvendo un problema di sicurezza. Se l'utente hello è registrato per l'autenticazione a più fattori devono tooround-trip un numero di telefono tootheir codice di sicurezza. Poiché si tratta di un solo di un accesso rischioso e non un account compromesso, utente hello avrà password hello toochange in questo flusso. 
    
     ![Correzione](./media/active-directory-identityprotection-flows/121.png "Correzione")
 
 ## <a name="risky-sign-in-blocked"></a>Accesso rischioso bloccato
-Gli amministratori possono anche impostare criteri di rischio di accesso per bloccare gli utenti al momento dell'accesso in base al livello di rischio. Per essere sbloccati, gli utenti finali devono contattare un amministratore o il supporto tecnico oppure possono provare a eseguire l'accesso da una posizione o un dispositivo noto. Il ripristino automatico tramite l'autenticazione a più fattori non è possibile in questo caso.
+Gli amministratori possono anche scegliere tooset un rischio di accesso criteri tooblock di utenti al momento dell'accesso in base al livello di rischio hello. tooget sbloccato, gli utenti finali deve contattare un amministratore o al supporto tecnico o tentano l'accesso da una posizione familiare o dispositivo. Il ripristino automatico tramite l'autenticazione a più fattori non è possibile in questo caso.
 
 ![Correzione](./media/active-directory-identityprotection-flows/200.png "Correzione")
 
 ## <a name="compromised-account-recovery"></a>Ripristino di account compromessi
-Dopo che sono stati configurati criteri di sicurezza per il rischio utente, gli utenti che rientrano nel livello di rischio utente specificato nei criteri, e quindi considerati compromessi, devono seguire il flusso di ripristino di utenti compromessi per poter eseguire l'accesso. 
+Quando è stato configurato un criterio di sicurezza utente dei rischi, gli utenti che soddisfano utente hello corre il rischio livello specificato nei criteri di hello (e pertanto vengono considerati compromessi) devono transitare attraverso hello utente compromissione ripristino flusso prima che essi possono Accedi. 
 
-**Il flusso di ripristino di utenti compromessi è composto da tre passaggi:**
+**flusso di ripristino di Hello utente compromissione include tre passaggi:**
 
-1. L'utente viene informato che la sicurezza dell'account è a rischio a causa di attività sospette o di credenziali perse.
+1. Hello utente viene informato che la sicurezza dell'account è a rischio a causa di attività sospette o perdita di credenziali.
    
     ![Correzione](./media/active-directory-identityprotection-flows/101.png "Correzione")
-2. L'utente deve dimostrare la propria identità rispondendo a una richiesta di sicurezza. Se l'utente è registrato per l'autenticazione a più fattori può eseguire il ripristino automatico da eventuali compromissioni. Deve eseguire il round trip di un codice di sicurezza al proprio numero di telefono. 
+2. utente Hello è obbligatorio tooprove la propria identità risolvendo un problema di sicurezza. Se l'utente hello è registrato per l'autenticazione a più fattori è possibile self-ripristinare vengano compromessi. Sarà necessario tooround-trip un numero di telefono tootheir codice di sicurezza. 
    
    ![Correzione](./media/active-directory-identityprotection-flows/110.png "Correzione")
-3. Infine, all'utente viene richiesto di modificare la password perché qualcun altro potrebbe aver avuto accesso all'account. 
+3. Infine, hello utente è forzato toochange la password poiché qualcun altro abbia avuto accesso tootheir account. 
    Sono incluse per riferimento le screenshot di questa esperienza.
    
    ![Correzione](./media/active-directory-identityprotection-flows/111.png "Correzione")
 
 ## <a name="compromised-account-blocked"></a>Account compromesso bloccato
-Per sbloccare un utente bloccato da criteri di sicurezza per il rischio utente, è necessario contattare un amministratore o il supporto tecnico. Il ripristino automatico tramite l'autenticazione a più fattori non è possibile in questo caso.
+un utente che è stato bloccato da un criterio di sicurezza utente dei rischi sbloccato tooget, hello, l'utente deve contattare un amministratore o il supporto tecnico. Il ripristino automatico tramite l'autenticazione a più fattori non è possibile in questo caso.
 
 ![Correzione](./media/active-directory-identityprotection-flows/104.png "Correzione")
 
 ## <a name="reset-password"></a>Reimpostazione delle password
-Se l’accesso degli utenti compromessi è bloccato, un amministratore può generare una password temporanea per consentire l’accesso. Gli utenti dovranno modificare la password all'accesso successivo.
+Se l’accesso degli utenti compromessi è bloccato, un amministratore può generare una password temporanea per consentire l’accesso. Hello gli utenti avranno toochange la propria password durante un successivo accesso in.
 
 ![Correzione](./media/active-directory-identityprotection-flows/160.png "Correzione")
 

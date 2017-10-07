@@ -1,0 +1,297 @@
+---
+title: 'Esercitazione: Integrazione di Azure Active Directory con Image Relay | Microsoft Docs'
+description: Informazioni su come tooconfigure single sign-on tra Azure Active Directory e l'inoltro di immagine.
+services: active-directory
+documentationCenter: na
+author: jeevansd
+manager: femila
+ms.assetid: 65bb5990-07ef-4244-9f41-cd28fc2cb5a2
+ms.service: active-directory
+ms.workload: identity
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 06/22/2017
+ms.author: jeedes
+ms.openlocfilehash: baf39e4437b85c2de5b524984ad5ca39badbab63
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.translationtype: MT
+ms.contentlocale: it-IT
+ms.lasthandoff: 10/06/2017
+---
+# <a name="tutorial-azure-active-directory-integration-with-image-relay"></a>Esercitazione: Integrazione di Azure Active Directory con Image Relay
+
+In questa esercitazione, è illustrato come toointegrate inoltro immagine con Azure Active Directory (Azure AD).
+
+Immagine di inoltro di integrazione con Azure AD fornisce hello seguenti vantaggi:
+
+- È possibile controllare in Azure AD che ha accesso tooImage inoltro
+- È possibile abilitare l'utenti tooautomatically get connesso tooImage inoltro (Single Sign-On) con i propri account Azure AD
+- È possibile gestire gli account in un'unica posizione centrale - hello portale di Azure
+
+Se si desiderano tooknow ulteriori informazioni sull'integrazione dell'applicazione SaaS con Azure AD, vedere [novità di accesso alle applicazioni e single sign-on con Azure Active Directory](active-directory-appssoaccess-whatis.md).
+
+## <a name="prerequisites"></a>Prerequisiti
+
+integrazione di Azure AD con inoltro immagine tooconfigure, è necessario hello seguenti elementi:
+
+- Sottoscrizione di Azure AD.
+- Sottoscrizione di Image Relay abilitata per l'accesso Single Sign-On
+
+> [!NOTE]
+> hello tootest i passaggi in questa esercitazione, è consigliabile utilizzare un ambiente di produzione.
+
+passaggi di hello tootest in questa esercitazione, è necessario seguire questi suggerimenti:
+
+- Non usare l'ambiente di produzione a meno che non sia necessario.
+- Se non si dispone di un ambiente di prova di Azure AD, è possibile ottenere una versione di valutazione di un mese [qui](https://azure.microsoft.com/pricing/free-trial/).
+
+## <a name="scenario-description"></a>Descrizione dello scenario
+In questa esercitazione viene eseguito il test dell'accesso Single Sign-On di Azure AD in un ambiente di test. scenario di Hello descritto in questa esercitazione è composto da due componenti principali:
+
+1. Aggiunta di inoltro immagine dalla raccolta hello
+2. Configurazione e test dell'accesso Single Sign-On di Azure AD
+
+## <a name="adding-image-relay-from-hello-gallery"></a>Aggiunta di inoltro immagine dalla raccolta hello
+integrazione hello tooconfigure di inoltro di immagine in Azure AD, è necessario tooadd inoltro immagine dall'elenco di tooyour hello raccolta di App SaaS gestite.
+
+**tooadd inoltro immagine dalla raccolta di hello, eseguire hello alla procedura seguente:**
+
+1. In hello  **[portale di Azure](https://portal.azure.com)**via hello del Pannello di navigazione a sinistra, fare clic su **Azure Active Directory** icona. 
+
+    ![Active Directory][1]
+
+2. Passare troppo**applicazioni aziendali**. Quindi andare troppo**tutte le applicazioni**.
+
+    ![Applicazioni][2]
+    
+3. tooadd nuova applicazione, fare clic su **nuova applicazione** pulsante nella parte superiore di hello della finestra di dialogo.
+
+    ![Applicazioni][3]
+
+4. Nella casella di ricerca hello, digitare **inoltro immagine**.
+
+    ![Creazione di un utente test di Azure AD](./media/active-directory-saas-imagerelay-tutorial/tutorial_imagerelay_search.png)
+
+5. Nel riquadro dei risultati hello, selezionare **inoltro immagine**, quindi fare clic su **Aggiungi** pulsante applicazione hello tooadd.
+
+    ![Creazione di un utente test di Azure AD](./media/active-directory-saas-imagerelay-tutorial/tutorial_imagerelay_addfromgallery.png)
+
+##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>Configurazione e test dell'accesso Single Sign-On di Azure AD
+In questa sezione viene configurato e testato l'accesso Single Sign-On di Azure AD con Image Relay mediante un utente test di nome "Britta Simon".
+
+Per toowork di accesso singolo, Azure AD deve tooknow quale utente controparte hello in inoltro immagine è tooa utente in Azure AD. In altre parole, una relazione di collegamento tra un utente di Azure AD e l'utente correlato di hello in inoltro immagine richiede toobe stabilita.
+
+Nell'immagine di inoltro, assegnare il valore di hello di hello **nome utente** in Azure AD come valore hello hello **Username** tooestablish relazione di collegamento hello.
+
+tooconfigure e prova AD Azure single sign-on con immagine di inoltro, è necessario hello toocomplete seguenti blocchi predefiniti:
+
+1. **[Configurazione di Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)**  -tooenable il toouse utenti questa funzionalità.
+2. **[Creazione di un utente prova AD Azure](#creating-an-azure-ad-test-user)**  -tootest AD Azure single sign-on con Britta Simon.
+3. **[Creazione di un utente di test di inoltro immagine](#creating-an-image-relay-test-user)**  -toohave un equivalente di Britta Simon nell'inoltro di immagine che è la rappresentazione toohello collegato Azure AD dell'utente.
+4. **[Assegnazione utente di prova hello Azure AD](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD accesso single sign-on.
+5. **[Test di Single Sign-On](#testing-single-sign-on)**  -tooverify hello se funzionamento della configurazione.
+
+### <a name="configuring-azure-ad-single-sign-on"></a>Configurazione dell'accesso Single Sign-On di Azure AD
+
+In questa sezione, si abilita Azure AD single sign-on in hello portale di Azure e configurare l'accesso single sign-on nell'applicazione inoltro immagine.
+
+**Azure AD tooconfigure single sign-on con inoltro immagine, eseguire hello alla procedura seguente:**
+
+1. Nel portale di Azure su hello hello **inoltro immagine** pagina di integrazione dell'applicazione, fare clic su **Single sign-on**.
+
+    ![Configura accesso Single Sign-On][4]
+
+2. In hello **Single sign-on** finestra di dialogo Seleziona **modalità** come **basato su SAML Sign-on** tooenable single sign-on.
+ 
+    ![Configura accesso Single Sign-On](./media/active-directory-saas-imagerelay-tutorial/tutorial_imagerelay_samlbase.png)
+
+3. In hello **URL e il dominio di inoltro immagine** seguire hello alla procedura seguente:
+
+    ![Configura accesso Single Sign-On](./media/active-directory-saas-imagerelay-tutorial/tutorial_imagerelay_url.png)
+
+    a. In hello **Sign-on URL** casella di testo, digitare un URL utilizzando hello seguente modello:`https://<companyname>.imagerelay.com/`
+
+    b. In hello **identificatore** casella di testo, digitare un URL utilizzando hello seguente modello:`https://<companyname>.imagerelay.com/sso/metadata`
+
+    > [!NOTE] 
+    > Poiché questi non sono i valori reali, Aggiornare questi valori con hello effettivo URL di accesso e l'identificatore. Contatto [team di supporto Client di inoltro immagine](http://support.imagerelay.com/) tooget questi valori. 
+ 
+
+
+4. In hello **certificato di firma SAML** fare clic su **Certificate(Base64)** e quindi salvare il file di certificato hello nel computer in uso.
+
+    ![Configura accesso Single Sign-On](./media/active-directory-saas-imagerelay-tutorial/tutorial_imagerelay_certificate.png) 
+
+5. Fare clic sul pulsante **Salva** .
+
+    ![Configura accesso Single Sign-On](./media/active-directory-saas-imagerelay-tutorial/tutorial_general_400.png)
+
+6. In hello **immagine inoltro configurazione** fare clic su **configurare inoltro immagine** tooopen **Configura sign-on** finestra. Hello copia **Sign-Out URL del servizio e SAML Single Sign-On Service URL** da hello **sezione di riferimento rapido.**
+
+    ![Configura accesso Single Sign-On](./media/active-directory-saas-imagerelay-tutorial/tutorial_imagerelay_configure.png) 
+
+7. In un'altra finestra del browser, accedere come amministratore nel sito della società di inoltro immagine tooyour.
+
+8. Nella barra degli strumenti hello in primo piano hello, fare clic su hello **utenti e autorizzazioni** carico di lavoro.
+   
+    ![Configura accesso Single Sign-On](./media/active-directory-saas-imagerelay-tutorial/tutorial_imagerelay_06.png) 
+
+9. Fare clic su **Create New Permission**(Crea nuova autorizzazione).
+   
+    ![Configura accesso Single Sign-On](./media/active-directory-saas-imagerelay-tutorial/tutorial_imagerelay_08.png)
+
+10. In hello **Single Sign On Settings** carico di lavoro, seleziona hello **questo gruppo possono solo Accedi tramite Single Sign-On** casella di controllo e quindi fare clic su **salvare**.
+   
+    ![Configura accesso Single Sign-On](./media/active-directory-saas-imagerelay-tutorial/tutorial_imagerelay_09.png) 
+
+11. Andare troppo**impostazioni Account**.
+   
+    ![Configura accesso Single Sign-On](./media/active-directory-saas-imagerelay-tutorial/tutorial_imagerelay_10.png) 
+
+12. Passare toohello **Single Sign On Settings** carico di lavoro.
+    
+     ![Configura accesso Single Sign-On](./media/active-directory-saas-imagerelay-tutorial/tutorial_imagerelay_11.png)
+
+13. In hello **impostazioni SAML** finestra di dialogo, eseguire hello alla procedura seguente:
+    
+    ![Configura accesso Single Sign-On](./media/active-directory-saas-imagerelay-tutorial/tutorial_imagerelay_12.png)
+    
+    a. In **URL di accesso** casella di testo, hello Incolla valore **URL servizio Single Sign-On** che è stato copiato dal portale di Azure.
+
+    b. In **Logout URL** casella di testo, hello Incolla valore **URL del servizio Single Sign-Out** che è stato copiato dal portale di Azure.
+
+    c. Come **Name Id Format** (Formato ID nome) selezionare**urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress**.
+
+    d. Come **opzioni di associazione per le richieste dal Provider di servizi (immagine inoltro) hello**selezionare **POST associazione**.
+
+    e. In **Certificato X.509** fare clic su **Aggiorna certificato**.
+
+    ![Configura accesso Single Sign-On](./media/active-directory-saas-imagerelay-tutorial/tutorial_imagerelay_17.png)
+
+    f. Aprire il certificato di hello scaricato nel blocco note, copiarne il contenuto di hello e quindi incollarlo nella casella di testo certificato x. 509 hello.
+
+    ![Configura accesso Single Sign-On](./media/active-directory-saas-imagerelay-tutorial/tutorial_imagerelay_18.png)
+
+    g. In **Provisioning utente JIT** sezione, seleziona hello **Abilita Provisioning utenti JIT**.
+
+    ![Configura accesso Single Sign-On](./media/active-directory-saas-imagerelay-tutorial/tutorial_imagerelay_19.png)
+
+    h. Gruppo di autorizzazioni SELECT hello (ad esempio, **SSO base**) che è consentito toosign in solo tramite accesso single sign-on.
+
+    ![Configura accesso Single Sign-On](./media/active-directory-saas-imagerelay-tutorial/tutorial_imagerelay_20.png)
+
+    i. Fare clic su **Salva**.
+
+> [!TIP]
+> È ora possibile leggere una versione di queste istruzioni all'interno di hello concisa [portale di Azure](https://portal.azure.com), mentre si stanno impostando app hello!  Dopo l'aggiunta di questa app da hello **Active Directory > applicazioni aziendali** fare semplicemente clic su hello **Single Sign-On** scheda e l'accesso hello incorporato documentazione tramite hello  **Configurazione** sezione nella parte inferiore di hello. È possibile leggere altre informazioni sulla funzionalità di documentazione embedded hello qui: [AD Azure incorporato documentazione]( https://go.microsoft.com/fwlink/?linkid=845985)
+
+
+### <a name="creating-an-azure-ad-test-user"></a>Creazione di un utente test di Azure AD
+obiettivo di Hello di questa sezione è un utente di test nel portale di Azure chiamato Britta Simon hello toocreate.
+
+![Creare un utente di Azure AD][100]
+
+**un utente di prova in Azure AD, toocreate eseguire hello alla procedura seguente:**
+
+1. In hello **portale di Azure**via hello riquadro di spostamento a sinistra, fare clic su **Azure Active Directory** icona.
+
+    ![Creazione di un utente test di Azure AD](./media/active-directory-saas-imagerelay-tutorial/create_aaduser_01.png) 
+
+2. elenco di hello toodisplay di utenti, andare troppo**utenti e gruppi** e fare clic su **tutti gli utenti**.
+    
+    ![Creazione di un utente test di Azure AD](./media/active-directory-saas-imagerelay-tutorial/create_aaduser_02.png) 
+
+3. hello tooopen **utente** finestra di dialogo, fare clic su **Aggiungi** nella parte superiore di hello della finestra di dialogo hello.
+ 
+    ![Creazione di un utente test di Azure AD](./media/active-directory-saas-imagerelay-tutorial/create_aaduser_03.png) 
+
+4. In hello **utente** finestra di dialogo eseguire hello alla procedura seguente:
+ 
+    ![Creazione di un utente test di Azure AD](./media/active-directory-saas-imagerelay-tutorial/create_aaduser_04.png) 
+
+    a. In hello **nome** casella tipo **BrittaSimon**.
+
+    b. In hello **nome utente** casella di testo, hello tipo **indirizzo di posta elettronica** di BrittaSimon.
+
+    c. Selezionare **Show Password** e annotare il valore di hello di hello **Password**.
+
+    d. Fare clic su **Crea**.
+ 
+### <a name="creating-an-image-relay-test-user"></a>Creazione di un utente test di Image Relay
+
+obiettivo di Hello di questa sezione è toocreate un utente denominato Britta Simon nell'immagine di inoltro.
+
+**un utente denominato Britta Simon nell'immagine di inoltro, toocreate eseguire hello alla procedura seguente:**
+
+1. Sito aziendale di inoltro immagine tooyour Sign-on come amministratore.
+
+2. Andare troppo**utenti e autorizzazioni** e selezionare **Crea utente SSO**.
+   
+    ![Configura accesso Single Sign-On](./media/active-directory-saas-imagerelay-tutorial/tutorial_imagerelay_21.png) 
+
+3. Immettere hello **posta elettronica**, **nome**, **cognome**, e **aziendale** dell'utente hello desiderato tooprovision e gruppo di autorizzazioni select hello (ad esempio, SSO di base) che è il gruppo hello che può accedere solo tramite accesso single sign-on.
+   
+    ![Configura accesso Single Sign-On](./media/active-directory-saas-imagerelay-tutorial/tutorial_imagerelay_22.png) 
+
+4. Fare clic su **Crea**.
+
+### <a name="assigning-hello-azure-ad-test-user"></a>Assegnazione utente test hello Azure AD
+
+In questa sezione per abilitare Britta Simon toouse single sign-on Azure concessione dell'accesso tooImage inoltro.
+
+![Assegna utente][200] 
+
+**tooassign Britta Simon tooImage inoltro, eseguire hello alla procedura seguente:**
+
+1. Nel portale di Azure hello, aprire la visualizzazione di applicazioni hello, quindi selezionare Visualizza directory toohello e andare troppo**applicazioni aziendali** quindi fare clic su **tutte le applicazioni**.
+
+    ![Assegna utente][201] 
+
+2. Nell'elenco di applicazioni hello, selezionare **inoltro immagine**.
+
+    ![Configura accesso Single Sign-On](./media/active-directory-saas-imagerelay-tutorial/tutorial_imagerelay_app.png) 
+
+3. Dal menu hello hello sinistra, fare clic su **utenti e gruppi**.
+
+    ![Assegna utente][202] 
+
+4. Fare clic sul pulsante **Aggiungi**. Selezionare quindi **Utenti e gruppi** nella finestra di dialogo **Aggiungi assegnazione**.
+
+    ![Assegna utente][203]
+
+5. In **utenti e gruppi** finestra di dialogo Seleziona **Britta Simon** nell'elenco di utenti hello.
+
+6. Fare clic sul pulsante **Seleziona** nella finestra di dialogo **Utenti e gruppi**.
+
+7. Fare clic sul pulsante **Assegna** nella finestra di dialogo **Aggiungi assegnazione**.
+    
+### <a name="testing-single-sign-on"></a>Test dell'accesso Single Sign-On
+
+obiettivo di Hello di questa sezione è tootest la configurazione di single sign-on di Azure AD mediante hello Pannello di accesso.    
+
+Quando si fa clic su riquadro immagine inoltro hello in hello Pannello di accesso, è necessario ottenere l'applicazione di inoltro immagine tooyour automaticamente firmato in.
+
+
+## <a name="additional-resources"></a>Risorse aggiuntive
+
+* [Elenco di esercitazioni sulla tooIntegrate App SaaS con Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory](active-directory-appssoaccess-whatis.md)
+
+
+
+<!--Image references-->
+
+[1]: ./media/active-directory-saas-imagerelay-tutorial/tutorial_general_01.png
+[2]: ./media/active-directory-saas-imagerelay-tutorial/tutorial_general_02.png
+[3]: ./media/active-directory-saas-imagerelay-tutorial/tutorial_general_03.png
+[4]: ./media/active-directory-saas-imagerelay-tutorial/tutorial_general_04.png
+
+
+[100]: ./media/active-directory-saas-imagerelay-tutorial/tutorial_general_100.png
+
+[200]: ./media/active-directory-saas-imagerelay-tutorial/tutorial_general_200.png
+[201]: ./media/active-directory-saas-imagerelay-tutorial/tutorial_general_201.png
+[202]: ./media/active-directory-saas-imagerelay-tutorial/tutorial_general_202.png
+[203]: ./media/active-directory-saas-imagerelay-tutorial/tutorial_general_203.png
+

@@ -1,6 +1,6 @@
 ---
 title: 'Esercitazione: Integrazione di Azure Active Directory con Qlik Sense Enterprise | Microsoft Docs'
-description: Informazioni su come configurare l'accesso Single Sign-On tra Azure Active Directory e Qlik Sense Enterprise.
+description: Informazioni su come tooconfigure single sign-on tra Azure Active Directory e Qlik senso Enterprise.
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -14,301 +14,301 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/26/2017
 ms.author: jeedes
-ms.openlocfilehash: 4964634cd5aaf0dbb98c766f5e12700c4d118750
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 153edb3f8cd41790d4e9a74f15cfb806e5e9e3b7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-qlik-sense-enterprise"></a>Esercitazione: Integrazione di Azure Active Directory con Qlik Sense Enterprise
 
-Questa esercitazione descrive come integrare Qlik Sense Enterprise con Azure Active Directory (Azure AD).
+In questa esercitazione, è illustrato come toointegrate Qlik senso Enterprise con Azure Active Directory (Azure AD).
 
-L'integrazione di Qlik Sense Enterprise con Azure AD offre i vantaggi seguenti:
+Integrazione di Enterprise senso Qlik con Azure AD fornisce hello seguenti vantaggi:
 
-- È possibile controllare in Azure AD chi può accedere a Qlik Sense Enterprise.
-- È possibile abilitare gli utenti per l'accesso automatico a Qlik Sense Enterprise (Single Sign-On) con gli account Azure AD personali.
-- È possibile gestire gli account in un'unica posizione centrale: il portale di Azure.
+- È possibile controllare in Azure AD che ha accesso tooQlik senso Enterprise.
+- È possibile abilitare l'utenti tooautomatically get connesso tooQlik senso Enterprise (Single Sign-On) con i propri account Azure AD.
+- È possibile gestire gli account in un'unica posizione centrale - hello portale di Azure.
 
-Per altre informazioni sull'integrazione di app SaaS con Azure AD, vedere [Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory](active-directory-appssoaccess-whatis.md).
+Se si desiderano tooknow ulteriori informazioni sull'integrazione dell'applicazione SaaS con Azure AD, vedere [novità di accesso alle applicazioni e single sign-on con Azure Active Directory](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-Per configurare l'integrazione di Azure AD con Qlik Sense Enterprise, sono necessari gli elementi seguenti:
+integrazione di Azure AD con Enterprise senso Qlik tooconfigure, è necessario hello seguenti elementi:
 
 - Sottoscrizione di Azure AD.
 - Sottoscrizione di Qlik Sense Enterprise abilitata per l'accesso Single Sign-On
 
 > [!NOTE]
-> Non è consigliabile usare un ambiente di produzione per testare i passaggi di questa esercitazione.
+> hello tootest i passaggi in questa esercitazione, è consigliabile utilizzare un ambiente di produzione.
 
-A questo scopo, è consigliabile seguire le indicazioni seguenti:
+passaggi di hello tootest in questa esercitazione, è necessario seguire questi suggerimenti:
 
 - Non usare l'ambiente di produzione a meno che non sia necessario.
 - Se non si dispone di un ambiente di prova di Azure AD, è possibile ottenere una versione di valutazione di un mese: [offerta prova](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Descrizione dello scenario
-In questa esercitazione viene eseguito il test dell'accesso Single Sign-On di Azure AD in un ambiente di test. Lo scenario descritto in questa esercitazione prevede i due blocchi predefiniti seguenti:
+In questa esercitazione viene eseguito il test dell'accesso Single Sign-On di Azure AD in un ambiente di test. scenario di Hello descritto in questa esercitazione è composto da due componenti principali:
 
-1. Aggiunta di Qlik Sense Enterprise dalla raccolta
+1. Aggiunta di Qlik senso Enterprise dalla raccolta hello
 2. Configurazione e test dell'accesso Single Sign-On di Azure AD
 
-## <a name="adding-qlik-sense-enterprise-from-the-gallery"></a>Aggiunta di Qlik Sense Enterprise dalla raccolta
-Per configurare l'integrazione di Qlik Sense Enterprise in Azure AD, è necessario aggiungere Qlik Sense Enterprise dalla raccolta al proprio elenco di app SaaS gestite.
+## <a name="adding-qlik-sense-enterprise-from-hello-gallery"></a>Aggiunta di Qlik senso Enterprise dalla raccolta hello
+integrazione hello tooconfigure di Qlik senso Enterprise in Azure AD, è necessario tooadd Qlik senso Enterprise dall'elenco di tooyour hello raccolta di App SaaS gestite.
 
-**Per aggiungere Qlik Sense Enterprise dalla raccolta, seguire questa procedura:**
+**tooadd Qlik senso Enterprise dalla raccolta di hello, eseguire hello alla procedura seguente:**
 
-1. Nel **[portale di Azure](https://portal.azure.com)** fare clic sull'icona di **Azure Active Directory** nel riquadro di spostamento sinistro. 
+1. In hello  **[portale di Azure](https://portal.azure.com)**via hello del Pannello di navigazione a sinistra, fare clic su **Azure Active Directory** icona. 
 
-    ![Pulsante Azure Active Directory][1]
+    ![pulsante di Hello Azure Active Directory][1]
 
-2. Passare ad **Applicazioni aziendali**. Andare quindi a **Tutte le applicazioni**.
+2. Passare troppo**applicazioni aziendali**. Quindi andare troppo**tutte le applicazioni**.
 
-    ![Pannello Applicazioni aziendali][2]
+    ![Pannello di applicazioni Enterprise Hello][2]
     
-3. Fare clic sul pulsante **Nuova applicazione** nella parte superiore della finestra di dialogo per aggiungere una nuova applicazione.
+3. tooadd nuova applicazione, fare clic su **nuova applicazione** pulsante nella parte superiore di hello della finestra di dialogo.
 
-    ![Pulsante Nuova applicazione][3]
+    ![Nuovo pulsante dell'applicazione Hello][3]
 
-4. Nella casella di ricerca digitare **Qlik Sense Enterprise**, selezionare **Qlik Sense Enterprise** nel pannello dei risultati e quindi fare clic sul pulsante **Aggiungi** per aggiungere l'applicazione.
+4. Nella casella di ricerca hello, digitare **Qlik senso Enterprise**selezionare **Qlik senso Enterprise** dal pannello risultati quindi fare clic su **Aggiungi** pulsante applicazione hello tooadd.
 
-    ![Qlik Sense Enterprise nell'elenco risultati](./media/active-directory-saas-qliksense-enterprise-tutorial/tutorial_qliksense-enterprise_addfromgallery.png)
+    ![Enterprise senso Qlik nell'elenco risultati hello](./media/active-directory-saas-qliksense-enterprise-tutorial/tutorial_qliksense-enterprise_addfromgallery.png)
 
 ## <a name="configure-and-test-azure-ad-single-sign-on"></a>Configurare e testare l'accesso Single Sign-On di Azure AD
 
 In questa sezione viene configurato e testato l'accesso Single Sign-On di Azure AD con Qlik Sense Enterprise con un utente test di nome "Britta Simon".
 
-Per il funzionamento dell'accesso Single Sign-On, Azure AD deve conoscere qual è l'utente di Qlik Sense Enterprise che corrisponde a un utente di Azure AD. In altre parole, deve essere stabilita una relazione di collegamento tra un utente di Azure AD e l'utente correlato in Qlik Sense Enterprise.
+Per toowork di accesso singolo, Azure AD deve tooknow quale utente controparte hello in Qlik senso Enterprise è tooa utente in Azure AD. In altre parole, una relazione di collegamento tra un utente di Azure AD e l'utente correlato di hello in Qlik senso Enterprise richiede toobe stabilita.
 
-Per stabilire la relazione di collegamento, in Qlik Sense Enterprise assegnare il valore del **nome utente** in Azure AD come valore di **Username** (Nome utente).
+In Enterprise senso Qlik, assegnare il valore di hello di hello **nome utente** in Azure AD come valore hello hello **Username** tooestablish relazione di collegamento hello.
 
-Per configurare e testare l'accesso Single Sign-On di Azure AD con Qlik Sense Enterprise, è necessario completare i blocchi predefiniti seguenti:
+tooconfigure e prova AD Azure single sign-on con Qlik senso Enterprise, è necessario hello toocomplete seguenti blocchi predefiniti:
 
-1. **[Configurare l'accesso Single Sign-On di Azure AD](#configure-azure-ad-single-sign-on)**: per consentire agli utenti di usare questa funzionalità.
-2. **[Creare un utente di test di Azure AD](#create-an-azure-ad-test-user)**: per testare l'accesso Single Sign-On di Azure AD con l'utente Britta Simon.
-3. **[Creare un utente di test di Qlik Sense Enterprise](#create-a-qlik-sense-enterprise-test-user)**: per avere una controparte di Britta Simon in Qlik Sense Enterprise collegata alla rappresentazione dell'utente in Azure AD.
-4. **[Assegnare l'utente test di Azure AD](#assign-the-azure-ad-test-user)**: per abilitare Britta Simon all'uso dell'accesso Single Sign-On di Azure AD.
-5. **[Testare l'accesso Single Sign-On](#test-single-sign-on)** per verificare se la configurazione funziona.
+1. **[Configurare Azure Active Directory Single Sign-On](#configure-azure-ad-single-sign-on)**  -tooenable il toouse utenti questa funzionalità.
+2. **[Creare un utente prova AD Azure](#create-an-azure-ad-test-user)**  -tootest AD Azure single sign-on con Britta Simon.
+3. **[Creare un utente test Qlik senso Enterprise](#create-a-qlik-sense-enterprise-test-user)**  -toohave un equivalente di Britta Simon Qlik senso organizzazione che è la rappresentazione toohello collegato Azure AD dell'utente.
+4. **[Assegnare l'utente test hello Azure AD](#assign-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD accesso single sign-on.
+5. **[Testare single sign-on](#test-single-sign-on)**  -tooverify hello se funzionamento della configurazione.
 
 ### <a name="configure-azure-ad-single-sign-on"></a>Configurare l'accesso Single Sign-On di Azure AD
 
-In questa sezione viene abilitato l'accesso Single Sign-On di Azure AD nel portale di Azure e viene configurato l'accesso Single Sign-On nell'applicazione Qlik Sense Enterprise.
+In questa sezione si abilita Azure AD single sign-on in hello portale di Azure e configurare l'accesso single sign-on nell'applicazione Qlik senso Enterprise.
 
-**Per configurare l'accesso Single Sign-On di Azure AD con Qlik Sense Enterprise, seguire questa procedura:**
+**tooconfigure AD Azure single sign-on con Qlik senso Enterprise, eseguire hello alla procedura seguente:**
 
-1. Nella pagina di integrazione dell'applicazione **Qlik Sense Enterprise** del portale di Azure fare clic su **Single Sign-On**.
+1. Nel portale di Azure su hello hello **Qlik senso Enterprise** pagina di integrazione dell'applicazione, fare clic su **Single sign-on**.
 
-    ![Collegamento Configura accesso Single Sign-On][4]
+    ![Collegamento per la configurazione dell'accesso Single Sign-On][4]
 
-2. Nella finestra di dialogo **Single Sign-On** selezionare **Accesso basato su SAML** per **Modalità** per abilitare l'accesso Single Sign-On.
+2. In hello **Single sign-on** finestra di dialogo Seleziona **modalità** come **basato su SAML Sign-on** tooenable single sign-on.
  
     ![Finestra di dialogo Single Sign-On](./media/active-directory-saas-qliksense-enterprise-tutorial/tutorial_qliksense-enterprise_samlbase.png)
 
-3. Nella sezione **URL e dominio Qlik Sense Enterprise** seguire questa procedura:
+3. In hello **Qlik senso Enterprise dominio e gli URL** seguire hello alla procedura seguente:
 
     ![Informazioni su URL e dominio per l'accesso Single Sign-On di Qlik Sense Enterprise](./media/active-directory-saas-qliksense-enterprise-tutorial/tutorial_qliksense-enterprise_url.png)
 
-    a. Nella casella di testo **URL di accesso** digitare l'URL usando il modello seguente: `https://<Qlik Sense Fully Qualifed Hostname>:443//samlauthn/`.
+    a. In hello **Sign-on URL** casella di testo, digitare un URL utilizzando hello seguente modello:`https://<Qlik Sense Fully Qualifed Hostname>:443//samlauthn/`
     
     > [!NOTE]
-    > Si noti la barra finale nell'URI. È obbligatoria.
+    > Si noti hello barra alla fine di hello dell'URI finale. È obbligatoria.
     
-    b. Nella casella di testo **Identificatore** digitare un URL usando il criterio seguente:
+    b. In hello **identificatore** casella di testo, digitare un URL utilizzando hello seguente modello:
     | |
     |--|
     | `https://<Qlik Sense Fully Qualifed Hostname>.qlikpoc.com`|
     | `https://<Qlik Sense Fully Qualifed Hostname>.qliksense.com`|
 
     > [!NOTE] 
-    > Poiché questi non sono i valori reali, Aggiornare questi valori con identificatore e URL di accesso effettivi, illustrati più avanti in questa esercitazione, oppure contattare il [team di supporto clienti di Qlik Sense Enterprise](https://www.qlik.com/us/services/support) per ottenere questi valori. 
+    > Poiché questi non sono i valori reali, Aggiornamento di questi valori con hello effettivo URL Sign-On e l'identificatore, che vengono descritte più avanti in questa esercitazione o contatto [team di supporto Client di Enterprise senso Qlik](https://www.qlik.com/us/services/support) tooget questi valori. 
 
-4. Nella sezione **Certificato di firma SAML** fare clic su **XML di metadati** e quindi salvare il file dei metadati nel computer.
+4. In hello **certificato di firma SAML** fare clic su **Metadata XML** e quindi salvare il file di metadati hello nel computer in uso.
 
-    ![Collegamento di download del certificato](./media/active-directory-saas-qliksense-enterprise-tutorial/tutorial_qliksense-enterprise_certificate.png) 
+    ![collegamento al download del certificato Hello](./media/active-directory-saas-qliksense-enterprise-tutorial/tutorial_qliksense-enterprise_certificate.png) 
 
 5. Fare clic sul pulsante **Salva** .
 
-    ![Pulsante Salva per la configurazione dell'accesso Single Sign-On](./media/active-directory-saas-qliksense-enterprise-tutorial/tutorial_general_400.png)
+    ![Pulsante Salva di Configura accesso Single Sign-On](./media/active-directory-saas-qliksense-enterprise-tutorial/tutorial_general_400.png)
 
-6. Preparare il file XML di metadati della federazione per il caricamento sul server Qlik Sense.
+6. Preparare il file di codice XML dei metadati di federazione hello in modo che è possibile caricare tale server senso tooQlik.
    
     > [!NOTE]
-    > Prima di caricare i metadati IdP sul server Qlik Sense, è necessario modificare il file rimuovendo informazioni in modo da garantire il corretto funzionamento tra Azure AD e il server Qlik Sense.
+    > Prima di caricare hello IdP metadati toohello server Qlik senso, il file hello deve toobe modificato tooremove informazioni tooensure il corretto funzionamento tra Azure AD e ha senso Qlik server.
     
     ![Qlik Sense][qs24]
    
-    a. Aprire il file FederationMetaData.xml scaricato dal portale di Azure in un editor di testo.
+    a. Aprire il file FederationMetadata hello, che è stato scaricato dal portale di Azure in un editor di testo.
    
-    b. Cercare il valore **RoleDescriptor**.  Ci sono quattro voci (due coppie di tag di elementi di apertura e di chiusura).
+    b. Cercare il valore di hello **RoleDescriptor**.  Ci sono quattro voci (due coppie di tag di elementi di apertura e di chiusura).
    
-    c. Eliminare dal file i tag RoleDescriptor e tutte le informazioni in essi racchiuse.
+    c. Eliminare tra i tag di elemento RoleDescriptor hello e tutte le informazioni dal file hello.
    
-    d. Salvare il file e tenerlo a disposizione per usarlo più avanti in questo documento.
+    d. Salvare il file hello e mantenerlo nelle vicinanze per usare più avanti in questo documento.
 
-7. Passare a Qlik Sense Qlik Management Console (QMC) come utente autorizzato a creare configurazioni di proxy virtuali.
+7. Passare toohello Qlik senso Qlik Management Console (QMC) come un utente può creare configurazioni virtuale proxy.
 
-8. In QMC fare clic sulla voce di menu **Virtual Proxies** (Proxy virtuali).
+8. In hello QMC, fare clic su hello **virtuale proxy** voce di menu.
    
     ![Qlik Sense][qs6] 
 
-9. Nella parte inferiore dello schermo fare clic sul pulsante **Create new** (Crea nuovo).
+9. In basso hello hello, fare clic su hello **Crea nuovo** pulsante.
    
     ![Qlik Sense][qs7]
 
-10. Viene visualizzata la schermata per la modifica del proxy virtuale.  Sul lato destro della schermata è disponibile un menu per la visualizzazione delle opzioni di configurazione.
+10. verrà visualizzata la schermata di modifica di Hello virtuale proxy.  In hello lato destro dello schermo hello è un menu di rendere visibili le opzioni di configurazione.
    
     ![Qlik Sense][qs9]
 
-11. Dopo aver selezionato l'opzione di menu Identification (Identificazione), immettere le informazioni di identificazione per la configurazione del proxy virtuale di Azure.
+11. Con l'opzione di menu identificazione hello selezionata, immettere informazioni di identificazione per la configurazione del proxy virtuale Azure hello hello.
     
     ![Qlik Sense][qs8]  
     
-    a. Il campo **Description** (Descrizione) contiene un nome descrittivo per la configurazione del proxy virtuale.  Immettere un valore per la descrizione.
+    a. Hello **descrizione** campo è un nome descrittivo per la configurazione del proxy virtuale hello.  Immettere un valore per la descrizione.
     
-    b. Il campo **Prefix** (Prefisso) identifica l'endpoint proxy virtuale per la connessione a Qlik Sense con l'accesso Single Sign-On di Azure AD.  Immettere un nome di prefisso univoco per il proxy virtuale.
+    b. Hello **prefisso** campo identifica l'endpoint proxy virtuale hello per la connessione tooQlik senso con Azure AD Single Sign-On.  Immettere un nome di prefisso univoco per il proxy virtuale.
     
-    c. **Session inactivity timeout (minutes)** (Timeout di inattività sessione - minuti) indica il timeout per le connessioni tramite il proxy virtuale.
+    c. **Timeout di inattività della sessione (minuti)** timeout hello per le connessioni tramite proxy virtuale.
     
-    d. **Session cookie header name** (Nome intestazione cookie sessione) è il nome del cookie in cui è archiviato l'identificatore della sessione di Qlik Sense ricevuto da un utente dopo il completamento dell'autenticazione.  Il nome deve essere univoco.
+    d. Hello **nome intestazione cookie della sessione** è l'archiviazione di hello cookie nome hello identificatore di sessione per hello sessione senso Qlik un utente riceve dopo l'autenticazione.  Il nome deve essere univoco.
 
-12. Fare clic sull'opzione di menu Authentication (Autenticazione) per renderla visibile.  Verrà visualizzata la schermata Authentication (Autenticazione).
+12. Fare clic su hello autenticazione menu opzione toomake è visibile.  verrà visualizzata la schermata di autenticazione Hello.
     
     ![Qlik Sense][qs10]
     
-    a. L'elenco a discesa **Anonymous access mode** (Modalità accesso anonimo) determina se gli utenti anonimi potranno accedere a Qlik Sense tramite il proxy virtuale.  L'opzione predefinita è No anonymous user (Nessun utente anonimo).
+    a. Hello **modalità di accesso anonimo** elenco a discesa determina se gli utenti anonimi possono accedere senso Qlik tramite proxy virtuale hello.  opzione predefinita di Hello non è l'utente anonimo.
     
-    b. L'elenco a discesa **Authentication method** (Metodo di autenticazione) determina lo schema di autenticazione che verrà usato dal proxy virtuale.  Selezionare SAML nell'elenco a discesa.  Verranno di conseguenza visualizzate altre opzioni.
+    b. Hello **metodo di autenticazione** elenco a discesa determina l'utilizzo di proxy virtuale hello hello autenticazione schema.  Selezionare SAML dall'elenco a discesa hello.  Verranno di conseguenza visualizzate altre opzioni.
     
-    c. Nel campo **SAML host URI** (URI host SAML) specificare il nome host che verrà immesso dagli utenti per accedere a Qlik Sense tramite questo proxy virtuale SAML.  Il nome host è l'URI del server Qlik Sense.
+    c. In hello **il campo URI host SAML**, gli utenti di nome host di input hello immettere tooaccess Qlik senso attraverso questo proxy virtuale SAML.  il nome host Hello è uri hello del server ha senso Qlik hello.
     
-    d. In **SAML entity ID**(ID entità SAML) immettere lo stesso valore inserito nel campo SAML host URI (URI host SAML).
+    d. In hello **ID entità SAML**, immettere hello stesso valore immesso per il campo hello SAML host URI.
     
-    e. **SAML IdP metadata** (Metadati IdP SAML) è il campo modificato nella precedente sezione relativa alla **modifica dei metadati della federazione della configurazione di Azure AD**.  **Prima di caricare i metadati IdP, è necessario modificare il file** rimuovendo informazioni in modo da garantire il corretto funzionamento tra Azure AD e il server Qlik Sense.  **Se il file non è ancora stato modificato, vedere le istruzioni riportate sopra.**  Se il file è stato modificato, fare clic sul pulsante Browse (Sfoglia) e selezionare il file di metadati modificato per caricarlo nella configurazione del proxy virtuale.
+    e. Hello **SAML IdP metadata** file hello modificato in precedenza in hello **modificare i metadati di federazione dalla configurazione di Azure AD** sezione.  **Prima di caricare hello IdP metadata, file hello deve modificare toobe** tooremove informazioni tooensure il corretto funzionamento tra Azure AD e ha senso Qlik server.  **Se il file hello è ancora toobe modificato, fare riferimento toohello istruzioni sopra riportate.**  Se file hello è stato modificato fare clic su pulsante hello e tooupload file di metadati modificati hello selezionare la configurazione del proxy virtuale toohello.
     
-    f. Immettere il nome dell'attributo o il riferimento dello schema per l'attributo SAML che rappresenta l'**ID utente** inviato da Azure AD al server Qlik Sense.  Le informazioni relative al riferimento dello schema sono disponibili nelle schermate dell'app in Azure in seguito alla configurazione.  Per usare il nome di attributo, immettere `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name`.
+    f. Immettere hello di attributo nome o lo schema di riferimento per attributo SAML hello che rappresenta hello **UserID** Azure AD invia toohello server Qlik senso.  Informazioni di riferimento dello schema sono disponibile in hello Azure app schermate post-configurazione.  attributo del nome hello toouse immettere `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name`.
     
-    g. Immettere il valore della **directory utente** che verrà associata agli utenti quando eseguiranno l'autenticazione al server Qlik Sense tramite Azure AD.  I valori hardcoded devono essere racchiusi tra **parentesi quadre []**.  Per usare un attributo inviato nell'asserzione SAML di Azure AD, immettere il nome dell'attributo in questa casella di testo **senza** parentesi quadre.
+    g. Immettere il valore di hello per hello **directory utente** che verranno collegati toousers durante l'autenticazione server senso tooQlik tramite Azure AD.  I valori hardcoded devono essere racchiusi tra **parentesi quadre []**.  un attributo inviato nell'asserzione SAML per Azure AD, hello toouse immettere il nome di hello dell'attributo hello in questa casella di testo **senza** le parentesi quadre.
     
-    h. **SAML signing algorithm** (Algoritmo di firma SAML) imposta la firma del certificato del provider di servizi (in questo caso, il server Qlik Sense) per la configurazione del proxy virtuale.  Se il server Qlik Sense usa un certificato attendibile generato con Microsoft Enhanced RSA and AES Cryptographic Provider, modificare l'algoritmo di firma SAML impostandolo su **SHA-256**.
+    h. Hello **algoritmo di firma SAML** hello di set di configurazione del proxy virtuale hello di firma del certificato del servizio provider (in questo server ha senso Qlik case).  Se il server ha senso Qlik utilizza un certificato attendibile generato utilizzando Microsoft Enhanced RSA e AES Cryptographic Provider, modificare algoritmo di firma SAML hello troppo**SHA-256**.
     
-    i. La sezione SAML attribute mapping (Mapping attributi SAML) consente di inviare a Qlik Sense attributi aggiuntivi, come i gruppi, da usare nelle regole di sicurezza.
+    i. sezione di mapping di attributi SAML Hello consente di attributi aggiuntivi quali gruppi toobe inviati tooQlik senso per l'utilizzo nelle regole di sicurezza.
 
-13. Fare clic sull'opzione di menu **LOAD BALANCING** (BILANCIAMENTO DEL CARICO) per renderla visibile.  Verrà visualizzata la schermata Load balancing (Bilanciamento del carico).
+13. Fare clic su hello **il bilanciamento del carico** toomake opzione di menu è visibile.  verrà visualizzata la schermata di bilanciamento del carico Hello.
     
     ![Qlik Sense][qs11]
 
-14. Fare clic sul pulsante **Add new server node** (Aggiungi nuovo nodo server), selezionare uno o più nodi motore a cui Qlik Sense invierà le sessioni ai fini del bilanciamento del carico e fare clic su **Add** (Aggiungi).
+14. Fare clic su hello **Aggiungi nuovo nodo server** pulsante, selezionare motore o nodi Qlik senso verranno inviato a scopo di bilanciamento del carico di toofor di sessioni e fare clic su hello **Aggiungi** pulsante.
     
     ![Qlik Sense][qs12]
 
-15. Fare clic sull'opzione di menu Advanced (Avanzate) per renderla visibile. Verrà visualizzata la schermata Advanced (Avanzate).
+15. Fare clic su toomake opzione di menu Avanzate hello è visibile. verrà visualizzata la schermata di Hello avanzate.
     
     ![Qlik Sense][qs13]
     
-    Host white list (Elenco host consentiti) identifica i nomi host accettati per la connessione al server Qlik Sense.  **Immettere il nome host che gli utenti specificheranno per la connessione al server Qlik Sense.** Il nome host è lo stesso valore specificato in SAML host URI (URI host SAML) senza https://.
+    elenco vuoto di Hello Host identifica i nomi host che vengono accettati quando ci si connette il server ha senso Qlik toohello.  **Immettere il nome host hello gli utenti specificheranno durante la connessione server senso tooQlik.** nome host Hello è hello stesso valore di hello SAML host uri senza hello https://.
 
-16. Fare clic sul pulsante **Apply** (Applica).
+16. Fare clic su hello **applica** pulsante.
     
     ![Qlik Sense][qs14]
 
-17. Fare clic su OK per accettare il messaggio di avviso che indica che i proxy collegati al proxy virtuale verranno riavviati.
+17. Fare clic su OK tooaccept messaggio di avviso hello indicante proxy proxy virtuale toohello collegato verrà riavviato.
     
     ![Qlik Sense][qs15]
 
-18. Sul lato destro della schermata verrà visualizzato il menu Associated items (Elementi associati).  Fare clic sull'opzione di menu **Proxies** (Proxy).
+18. Sul lato destro di hello della schermata ciao, viene visualizzato dal menu di elementi associati hello.  Fare clic su hello **proxy** opzione di menu.
     
     ![Qlik Sense][qs16]
 
-19. Verrà visualizza la schermata relativa ai proxy.  Fare clic sul pulsante **Link** (Collega) in basso per collegare un proxy al proxy virtuale.
+19. verrà visualizzata la schermata di Hello proxy.  Fare clic su hello **collegamento** pulsante hello inferiore toolink proxy virtuale toohello proxy.
     
     ![Qlik Sense][qs17]
 
-20. Selezionare il nodo proxy che supporterà la connessione proxy virtuale e fare clic sul pulsante **Link** (Collega).  Al termine del collegamento, il proxy verrà incluso nell'elenco dei proxy associati.
+20. Nodo proxy selezionare hello che supporterà questa connessione proxy virtuale e fare clic su hello **collegamento** pulsante.  Dopo aver collegato, proxy hello sarà elencata sotto proxy associati.
     
     ![Qlik Sense][qs18]
   
     ![Qlik Sense][qs19]
 
-21. Dopo circa 5-10 secondi verrà visualizzato il messaggio per l'aggiornamento di QMC.  Fare clic sul pulsante **Refresh QMC** (Aggiorna QMC).
+21. Dopo circa cinque secondi tooten, hello messaggio QMC aggiornamento verranno visualizzati.  Fare clic su hello **QMC aggiornamento** pulsante.
     
     ![Qlik Sense][qs20]
 
-22. Dopo l'aggiornamento di QMC, fare clic sulla voce di menu **Virtual proxies** (Proxy virtuali). La nuova voce del proxy virtuale SAML sarà elencata nella tabella visualizzata.  Fare clic sulla voce del proxy virtuale.
+22. Quando viene aggiornato hello QMC, fare clic su hello **virtuale proxy** voce di menu. nuova voce di proxy virtuale SAML Hello è elencato nella tabella hello nella schermata di hello.  Singolo clic sulla voce proxy virtuale hello.
     
     ![Qlik Sense][qs51]
 
-23. Nella parte inferiore della schermata verrà attivato il pulsante Download SP metadata (Scarica metadati SP).  Fare clic sul pulsante **Download SP metadata** (Scarica metadati SP) per salvare i metadati in un file.
+23. In basso hello hello, pulsante di hello SP scaricare i metadati verrà attivati.  Fare clic su hello **scaricare SP metadata** file tooa di pulsante toosave hello metadati.
     
     ![Qlik Sense][qs52]
 
-24. Aprire il file di metadati SP.  Osservare le voci **entityID** e **AssertionConsumerService**.  Questi valori sono uguali ai valori **Identificatore** e **URL di accesso** nella configurazione dell'applicazione di Azure AD. Incollare questi valori nella sezione **URL e dominio Qlik Sense Enterprise** nella configurazione dell'applicazione di Azure AD se i valori non corrispondono. Sarà quindi necessario sostituire i valori nella configurazione guidata dell'app Azure AD.
+24. File di metadati sp hello aperto.  Osservare hello **entityID** voce e hello **AssertionConsumerService** voce.  Questi valori sono equivalente toohello **identificatore** hello e **URL di accesso** nella configurazione dell'applicazione hello Azure AD. Incollare questi valori in hello **Qlik senso Enterprise dominio e gli URL** sezione di configurazione dell'applicazione hello Azure AD se essi non corrispondono, quindi è necessario sostituirli nella configurazione guidata di Azure AD App hello.
     
     ![Qlik Sense][qs53]
 
 > [!TIP]
-> Un riepilogo delle istruzioni è disponibile all'interno del [portale di Azure](https://portal.azure.com) durante la configurazione dell'app.  Dopo aver aggiunto l'app dalla sezione **Active Directory > Applicazioni aziendali** è sufficiente fare clic sulla scheda **Single Sign-On** e accedere alla documentazione incorporata tramite la sezione **Configurazione** nella parte inferiore. Altre informazioni sulla funzione di documentazione incorporata sono disponibili in [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985) (Documentazione incorporata di Azure AD).
+> È ora possibile leggere una versione di queste istruzioni all'interno di hello concisa [portale di Azure](https://portal.azure.com), mentre si stanno impostando app hello!  Dopo l'aggiunta di questa app da hello **Active Directory > applicazioni aziendali** fare semplicemente clic su hello **Single Sign-On** scheda e l'accesso hello incorporato documentazione tramite hello  **Configurazione** sezione nella parte inferiore di hello. È possibile leggere altre informazioni sulla funzionalità di documentazione embedded hello qui: [AD Azure incorporato documentazione]( https://go.microsoft.com/fwlink/?linkid=845985)
 > 
 
 ### <a name="create-an-azure-ad-test-user"></a>Creare un utente test di Azure AD
-Questa sezione descrive come creare un utente test denominato Britta Simon nel portale di Azure.
+obiettivo di Hello di questa sezione è un utente di test nel portale di Azure chiamato Britta Simon hello toocreate.
 
 ![Creare un utente test di Azure AD][100]
 
-**Per creare un utente test in Azure AD, eseguire la procedura seguente:**
+**un utente di prova in Azure AD, toocreate eseguire hello alla procedura seguente:**
 
-1. Nel portale di Azure fare clic sul pulsante **Azure Active Directory** nel riquadro sinistro.
+1. Nel portale di Azure, nel riquadro di sinistra hello, hello fare clic su hello **Azure Active Directory** pulsante.
 
-   ![Pulsante Azure Active Directory](./media/active-directory-saas-qliksense-enterprise-tutorial/create_aaduser_01.png)
+   ![pulsante di Hello Azure Active Directory](./media/active-directory-saas-qliksense-enterprise-tutorial/create_aaduser_01.png)
 
-2. Per visualizzare l'elenco di utenti, passare a **Utenti e gruppi** e quindi fare clic su **Tutti gli utenti**.
+2. elenco di hello toodisplay di utenti, andare troppo**utenti e gruppi**, quindi fare clic su **tutti gli utenti**.
 
-   ![Collegamenti "Utenti e gruppi" e "Tutti gli utenti"](./media/active-directory-saas-qliksense-enterprise-tutorial/create_aaduser_02.png)
+   ![Hello "Utenti e gruppi" e i collegamenti di "Tutti gli utenti"](./media/active-directory-saas-qliksense-enterprise-tutorial/create_aaduser_02.png)
 
-3. Per aprire la finestra di dialogo **Utente** fare clic su **Aggiungi** nella parte superiore della finestra di dialogo **Tutti gli utenti**.
+3. hello tooopen **utente** la finestra di dialogo, fare clic su **Aggiungi** nella parte superiore di hello di hello **tutti gli utenti** la finestra di dialogo.
 
-   ![Pulsante Aggiungi](./media/active-directory-saas-qliksense-enterprise-tutorial/create_aaduser_03.png)
+   ![pulsante Aggiungi Hello](./media/active-directory-saas-qliksense-enterprise-tutorial/create_aaduser_03.png)
 
-4. Nella finestra di dialogo **Utente** seguire questa procedura:
+4. In hello **utente** finestra di dialogo eseguire hello alla procedura seguente:
 
-   ![Finestra di dialogo Utente](./media/active-directory-saas-qliksense-enterprise-tutorial/create_aaduser_04.png)
+   ![finestra di dialogo utente Hello](./media/active-directory-saas-qliksense-enterprise-tutorial/create_aaduser_04.png)
 
-   a. Nella casella **Nome** digitare **BrittaSimon**.
+   a. In hello **nome** digitare **BrittaSimon**.
 
-   b. Nella casella **Nome utente** digitare l'indirizzo di posta elettronica dell'utente Britta Simon.
+   b. In hello **nome utente** casella Tipo hello di indirizzo di posta elettronica dell'utente Britta Simon.
 
-   c. Selezionare la casella di controllo **Mostra password** e quindi prendere nota del valore visualizzato nella casella **Password**.
+   c. Seleziona hello **Show Password** casella di controllo e quindi annotare i valori hello visualizzati in hello **Password** casella.
 
    d. Fare clic su **Crea**.
  
 ### <a name="create-a-qlik-sense-enterprise-test-user"></a>Creare un utente di test di Qlik Sense Enterprise
 
-In questa sezione viene creato un utente chiamato Britta Simon in Qlik Sense Enterprise. Collaborare con il [team di supporto clienti di Qlik Sense Enterprise](https://www.qlik.com/us/services/support) per aggiungere gli utenti nella piattaforma Qlik Sense Enterprise. Gli utenti devono essere creati e attivati prima di usare l'accesso Single Sign-On. 
+In questa sezione viene creato un utente chiamato Britta Simon in Qlik Sense Enterprise. Lavorare con [team di supporto Client di Enterprise senso Qlik](https://www.qlik.com/us/services/support) per aggiungere gli utenti di hello nella piattaforma Qlik senso Enterprise hello. Gli utenti devono essere creati e attivati prima di usare l'accesso Single Sign-On. 
 
-### <a name="assign-the-azure-ad-test-user"></a>Assegnare l'utente test di Azure AD
+### <a name="assign-hello-azure-ad-test-user"></a>Assegnare l'utente test hello Azure AD
 
-In questa sezione Britta Simon viene abilitata per l'uso dell'accesso Single Sign-On di Azure concedendole l'accesso a Qlik Sense Enterprise.
+In questa sezione per abilitare Britta Simon toouse single sign-on Azure concessione dell'accesso tooQlik senso Enterprise.
 
-![Assegnare il ruolo utente][200] 
+![Assegnazione del ruolo utente hello][200] 
 
-**Per assegnare Britta Simon a Qlik Sense Enterprise, seguire questa procedura:**
+**tooassign Britta Simon tooQlik senso Enterprise, eseguire hello alla procedura seguente:**
 
-1. Nel portale di Azure aprire la visualizzazione delle applicazioni e quindi la visualizzazione delle directory e passare ad **Applicazioni aziendali**, quindi fare clic su **Tutte le applicazioni**.
+1. Nel portale di Azure hello, aprire la visualizzazione di applicazioni hello, quindi selezionare Visualizza directory toohello e andare troppo**applicazioni aziendali** quindi fare clic su **tutte le applicazioni**.
 
     ![Assegna utente][201] 
 
-2. Nell'elenco delle applicazioni selezionare **Qlik Sense Enterprise**.
+2. Nell'elenco di applicazioni hello, selezionare **Qlik senso Enterprise**.
 
-    ![Collegamento di Qlik Sense Enterprise nell'elenco delle applicazioni](./media/active-directory-saas-qliksense-enterprise-tutorial/tutorial_qliksense-enterprise_app.png)  
+    ![collegamento Qlik senso Enterprise Hello nell'elenco delle applicazioni hello](./media/active-directory-saas-qliksense-enterprise-tutorial/tutorial_qliksense-enterprise_app.png)  
 
-3. Scegliere **Utenti e gruppi** dal menu a sinistra.
+3. Dal menu hello hello sinistra, fare clic su **utenti e gruppi**.
 
-    ![Collegamento "Utenti e gruppi"][202]
+    ![collegamento di "Utenti e gruppi" Hello][202]
 
 4. Fare clic sul pulsante **Aggiungi**. Selezionare quindi **Utenti e gruppi** nella finestra di dialogo **Aggiungi assegnazione**.
 
-    ![Riquadro Aggiungi assegnazione][203]
+    ![riquadro assegnazione aggiungere Hello][203]
 
-5. Nella finestra di dialogo **Utenti e gruppi** selezionare **Britta Simon** nell'elenco Utenti.
+5. In **utenti e gruppi** finestra di dialogo Seleziona **Britta Simon** nell'elenco di utenti hello.
 
 6. Fare clic sul pulsante **Seleziona** nella finestra di dialogo **Utenti e gruppi**.
 
@@ -316,13 +316,13 @@ In questa sezione Britta Simon viene abilitata per l'uso dell'accesso Single Sig
     
 ### <a name="test-single-sign-on"></a>Testare l'accesso Single Sign-On
 
-In questa sezione viene testata la configurazione dell'accesso Single Sign-On di Azure AD usando il pannello di accesso.
+In questa sezione si test configurazione di Azure AD single sign-on utilizzando hello Pannello di accesso.
 
-Quando si fa clic sul riquadro Qlik Sense Enterprise nel pannello di accesso, si dovrebbe accedere automaticamente all'applicazione Qlik Sense Enterprise. 
+Quando si fa clic su riquadro Qlik senso Enterprise hello in hello Pannello di accesso, è necessario ottenere applicazione Enterprise senso Qlik tooyour automaticamente firmato-on. 
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
-* [Elenco di esercitazioni sulla procedura di integrazione delle app SaaS con Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [Elenco di esercitazioni sulla tooIntegrate App SaaS con Azure Active Directory](active-directory-saas-tutorial-list.md)
 * [Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory](active-directory-appssoaccess-whatis.md)
 
 <!--Image references-->

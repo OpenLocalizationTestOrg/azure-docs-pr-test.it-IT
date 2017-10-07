@@ -1,6 +1,6 @@
 ---
-title: Azure Authenticator per Android | Documentazione Microsoft
-description: "L'app Microsoft Azure Authenticator può essere usata per eseguire l'accesso alle risorse di lavoro. L'app Azure Authenticator segnala eventuali richieste di verifica a due fattori in sospeso con la visualizzazione di un avviso nel dispositivo mobile."
+title: aaaAzure Authenticator per Android | Documenti Microsoft
+description: "App Microsoft Azure Authenticator può essere utilizzato tooaccess toosign-in risorse di lavoro. app Azure Authenticator Hello notifica di una richiesta di verifica a due fattori in sospeso tramite la visualizzazione di un dispositivo mobile tooyour avviso."
 services: active-directory
 documentationcenter: 
 author: femila
@@ -15,107 +15,107 @@ ms.topic: article
 ms.date: 05/16/2017
 ms.author: femila
 ROBOTS: NOINDEX, NOFOLLOW
-ms.openlocfilehash: 60a5cc2ecc550c76ca3cb1f1d4d20070b3e3b035
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d6cc5c2f6a3a67847ae4076424746f73d7f48411
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-authenticator-for-android"></a>Azure Authenticator per Android
-L'amministratore IT può consigliare di usare Microsoft Azure Authenticator per eseguire l'accesso alle risorse di lavoro. Questa applicazione fornisce due opzioni di accesso:
+L'amministratore IT potrebbe aver consigliato è toouse hello tooaccess toosign-in Microsoft Azure Authenticator alle risorse di lavoro. Questa applicazione fornisce due opzioni di accesso:
 
-* Multi-Factor Authentication permette di proteggere gli account aziendali o dell'istituto di istruzione con una verifica in due passaggi. Si effettua l'accesso usando un elemento noto, ad esempio la password, e si protegge ulteriormente l'account usando un elemento disponibile, ad esempio una chiave di sicurezza fornita dall'app. L'app Azure Authenticator segnala eventuali richieste di verifica a due fattori in sospeso con la visualizzazione di un avviso nel dispositivo mobile. È sufficiente visualizzare la richiesta nell'app e toccare Verifica o Annulla. In alternativa, può essere richiesta l'immissione del passcode visualizzato nell'app.
-* L'account aziendale permette di trasformare il telefono o il tablet Android in un dispositivo attendibile e di fornire l'accesso Single Sign-On (SSO) alle applicazioni aziendali. L'amministratore IT può richiedere l'aggiunta di un account aziendale per accedere alle risorse aziendali. SSO permette di effettuare l'accesso una volta sola e di accedere automaticamente a tutte le applicazioni rese disponibili dall'azienda.
+* Multi-Factor Authentication consente toosecure azienda o dell'istituto di istruzione degli account con verifica in due passaggi. Accedi con un elemento si conosce (ad esempio, la password) e proteggere l'account di hello ulteriormente con un elemento è necessario (una chiave di sicurezza da questa app). app Azure Authenticator Hello notifica di una richiesta di verifica a due fattori in sospeso tramite la visualizzazione di un dispositivo mobile tooyour avviso. È necessario toosimply visualizzazione hello richiesta hello app e toccare verifica o per annullare. In alternativa, potrebbe essere richiesta tooenter hello passcode visualizzato nell'app hello.
+* Account aziendale consente tooturn telefono Android o tablet in un dispositivo attendibile e consentire alle applicazioni toocompany Single Sign-On (SSO). L'amministratore IT potrebbe essere necessario un account aziendale in risorse aziendali di ordine tooaccess tooadd. SSO consente di accedere una sola volta e DISP di accesso a tutte le applicazioni della società ha reso automaticamente disponibile tooyou.
 
-## <a name="installing-the-azure-authenticator-app"></a>Installazione dell'app Azure Authenticator
-È possibile installare l'app Azure Authenticator da Google Play Store.
-La procedura per aggiungere un account aziendale da un dispositivo Samsung Android e da un dispositivo non Samsung Android è leggermente diversa. Di seguito sono fornite le istruzioni per entrambi i casi.
+## <a name="installing-hello-azure-authenticator-app"></a>Installare l'app Azure Authenticator hello
+È possibile installare app Azure Authenticator hello da Google Play Store.
+account aziendale di Hello istruzioni tooadd da vs dispositivo Samsung Android un dispositivo non Samsung Android sono leggermente diversi. di seguito sono elencate le istruzioni di Hello per entrambe.
 
-## <a name="adding-the-work-account-from-samsung-android-device"></a>Aggiunta dell'account aziendale da un dispositivo Samsung Android
-### <a name="adding-the-work-account-through-the-app-home-screen"></a>Aggiunta dell'account aziendale nella schermata iniziale dell'app
-Le istruzioni seguenti sono applicabili a telefoni Samsung GS3 e modelli superiori o tablet Note2 e modelli superiori.
+## <a name="adding-hello-work-account-from-samsung-android-device"></a>Aggiunta dell'account di lavoro hello dal dispositivo Samsung Android
+### <a name="adding-hello-work-account-through-hello-app-home-screen"></a>Aggiunta dell'account di lavoro hello tramite schermata iniziale dell'app hello
+istruzioni che seguono Hello sono applicabili tooSamsung GS3 e sopra telefoni o la nota 2 e versioni successive di Tablet.
 
-1. Nella schermata iniziale dell'app accettare il Contratto di Licenza con l'utente finale.
-2. Nella schermata Attiva account fare clic sul menu di scelta rapida a destra, quindi selezionare **Account aziendale**.
-3. Nella schermata Aggiungi Account, selezionare * * Account lavoro * *.
+1. Nella schermata iniziale di hello dell'applicazione hello, accettare il contratto di licenza hello utente finale (EULA).
+2. Nella schermata Attiva Account hello, fare clic su hello menu di scelta rapida hello destra e seleziona **account aziendale**.
+3. Nella schermata Aggiungi Account di hello, selezionare * * Account lavoro * *.
 4. Nella schermata relativa all'attivazione dell'amministratore del dispositivo fare clic su **Attiva**.
-5. Nella schermata Informativa sulla privacy selezionare la casella di controllo e quindi fare clic su **Conferma**.
-6. Nella schermata Aggiunta all'area di lavoro immettere l'ID utente fornito dall'organizzazione, quindi fare clic su **Aggiungi**.
-7. Per accedere all'app Azure Authenticator, immettere l'****account aziendale e la password, quindi fare clic su **Accedi**.
-8. La schermata successiva che mostra le informazioni relative all'autenticazione a più fattori (MFA) viene presentata per maggiore sicurezza ed è facoltativa. Questa schermata viene visualizzata se l'azienda o l'istituto di istruzione richiede l'autenticazione basata su un secondo fattore per la creazione di account aziendali e include istruzioni per verificare ulteriormente l'account.
-9. Nella schermata Workplace Join viene visualizzato il messaggio "**Aggiunta all'area di lavoro in corso**". L'app Azure Authenticator sta provando ad aggiungere il dispositivo all'area di lavoro.
-10. Nella schermata successiva dovrebbe essere visualizzato il messaggio di completamento dell'aggiunta all'area di lavoro.
+5. Nella schermata informativa sulla Privacy di hello, selezionare la casella di controllo di hello e fare clic su **conferma**.
+6. Nella schermata di hello all'area di lavoro, immettere l'ID utente di hello fornito dall'organizzazione, quindi fare clic su **Join**.
+7. toosign in toohello app Azure Authenticator, immettere il proprio un * * * ccount e la password e fare clic su **Accedi**.
+8. schermata successiva Hello che consente di visualizzare informazioni sull'autenticazione a più fattori (MFA) è per maggiore sicurezza ed è facoltativo. Questa schermata viene visualizzata se l'azienda o l'istituto di istruzione richiede l'autenticazione basata su un secondo fattore per la creazione di account aziendali Vengono fornite istruzioni toofurther verificare il tuo account.
+9. Hello all'area di lavoro dello schermo viene visualizzato il messaggio hello, "**aggiunta area di lavoro**". app Azure authenticator Hello sta tentando di toojoin aziendale tooyour dispositivo.
+10. Dovrebbe essere messaggio hello all'area di lavoro su hello schermata accanto.
 
 > [!NOTE]
 > Nel dispositivo può essere presente un solo account aziendale.
 > 
 > 
 
-### <a name="adding-the-work-account-from-the-settings-menu"></a>Aggiunta dell'account aziendale dal menu Impostazioni
-Dopo l'installazione dell'app Azure Authenticator, è anche possibile creare un account aziendale da Android Account Manager.
+### <a name="adding-hello-work-account-from-hello-settings-menu"></a>Aggiunta dell'account di lavoro hello dal menu Impostazioni hello
+Dopo aver installato l'app Azure Authenticator hello, è anche possibile creare un account aziendale da Android Account Manager di hello.
 
-1. Nel menu Impostazioni passare ad **Account** e fare clic su **Aggiungi account**.
-2. Seguire i passaggi 3-10 della procedura Aggiunta dell'account aziendale nella schermata iniziale dell'app per aggiungere un account aziendale.
+1. Dal menu Impostazioni hello passare troppo**account** e fare clic su **Aggiungi Account**.
+2. Passaggi da 3 a 10 in procedure hello, account di lavoro di hello aggiunta tramite hello schermata iniziale dell'app, tooadd un account aziendale.
 
-## <a name="adding-the-work-account-from-a-non-samsung-android-device"></a>Aggiunta dell'account aziendale da un dispositivo non Samsung Android
-### <a name="adding-the-work-account-through-the-app-home-screen"></a>Aggiunta dell'account aziendale nella schermata iniziale dell'app
-1. Nella schermata iniziale dell'app accettare il Contratto di Licenza con l'utente finale.
-2. Nella schermata Attiva account fare clic sul menu di scelta rapida a destra, quindi selezionare **Account aziendale**.
-3. Nella schermata Account scegliere **Aggiungi account**.
-4. Se viene visualizzata la schermata account, fare clic su **Aggiungi account**. Se in precedenza è già stato creato un account aziendale, verrà visualizzata la schermata Sincronizzazione con l'account aziendale esistente. Per mantenere l'account aziendale, è sufficiente toccare la freccia indietro per tornare alla schermata iniziale. In alternativa, è possibile selezionare l'account da rimuovere e ricreare un nuovo account aziendale. Nella schermata Aggiunta all'area di lavoro immettere l'ID utente fornito dall'organizzazione, quindi fare clic su Aggiungi.
-5. Per accedere all'app Azure Authenticator, immettere l'account aziendale e la password, quindi fare clic su **Accedi**.
-6. La schermata successiva che mostra le informazioni relative all'autenticazione a più fattori (MFA) viene presentata per maggiore sicurezza ed è facoltativa. Questa schermata viene visualizzata se l'azienda o l'istituto di istruzione richiede l'autenticazione basata su un secondo fattore per la creazione di account aziendali e include istruzioni per verificare ulteriormente l'account.
-7. Fare clic su **OK** nella schermata successiva. Non cambiare il nome del certificato.
-   Nella schermata Aggiunta all'area di lavoro viene visualizzato il messaggio "Aggiunta all'area di lavoro in corso". L'app Azure Authenticator sta provando ad aggiungere il dispositivo all'area di lavoro.
-   Nella schermata successiva dovrebbe essere visualizzato il messaggio di completamento dell'aggiunta all'area di lavoro.
+## <a name="adding-hello-work-account-from-a-non-samsung-android-device"></a>Aggiunta dell'account di lavoro hello da un dispositivo non Samsung Android
+### <a name="adding-hello-work-account-through-hello-app-home-screen"></a>Aggiunta dell'account di lavoro hello tramite schermata iniziale dell'app hello
+1. Nella schermata iniziale di hello dell'applicazione hello, accettare il contratto di licenza hello utente finale (EULA).
+2. Nella schermata Attiva Account hello, fare clic su hello menu di scelta rapida hello destra e seleziona **account aziendale**.
+3. Nella schermata account hello, fare clic su **Aggiungi Account**.
+4. Se viene visualizzato sullo schermo gli account di hello, fare clic su **aggiungere account**. Se un account aziendale è già stato creato in precedenza, vedrai una schermata di sincronizzazione con l'account aziendale esistente hello. È possibile mantenere l'account aziendale hello toccando semplicemente la schermata iniziale di hello freccia indietro toohello. In alternativa, è possibile selezionare tooremove account hello e ricreare un nuovo account di lavoro nella schermata di hello all'area di lavoro, immettere l'ID utente hello fornito dall'organizzazione e fare clic su Join.
+5. toosign in toohello app Azure Authenticator, immettere l'account aziendale e una password e fare clic su **Accedi**.
+6. schermata successiva Hello che consente di visualizzare informazioni sull'autenticazione a più fattori (MFA) è per maggiore sicurezza ed è facoltativo. Questa schermata viene visualizzata se l'azienda o l'istituto di istruzione richiede l'autenticazione basata su un secondo fattore per la creazione di account aziendali Vengono fornite istruzioni toofurther verificare il tuo account.
+7. Fare clic su **OK** nella schermata successiva hello. Non modificare il nome di certificato hello.
+   messaggio Hello "Aggiunta area di lavoro". app Azure authenticator Hello sta tentando di toojoin aziendale tooyour dispositivo.
+   Dovrebbe essere messaggio hello all'area di lavoro su hello schermata accanto.
 
 > [!NOTE]
 > Nel dispositivo può essere presente un solo account aziendale.
 > 
 > 
 
-Dopo l'installazione dell'app Azure Authenticator, è anche possibile creare un account aziendale da Android Account Manager.
+Dopo aver installato l'app Azure Authenticator hello, è anche possibile creare un account aziendale da Android Account Manager di hello.
 
-1. Nel menu **Impostazioni** passare a Account e fare clic su **Aggiungi account**.
-2. Seguire i passaggi 2-7 della procedura Aggiunta dell'account aziendale nella schermata** iniziale dell'app per aggiungere un account aziendale.
+1. Da hello **impostazioni** menu passare tooAccounts e fare clic su **Aggiungi Account**.
+2. Passaggi da 2 a 7 in procedure hello, account di lavoro di hello aggiunta tramite hello app home schermata * *, tooadd un account aziendale.
 
-### <a name="how-to-find-out-which-version-is-installed"></a>Come verificare la versione installata
-1. È possibile scoprire la versione dell'app Azure Authenticator e dei servizi associati installati nel dispositivo.
-2. Scegliere **Informazioni su**dal menu a comparsa.
-3. Nella schermata Informazioni su sono visualizzati i servizi dell'app e le versioni installate nel dispositivo.
+### <a name="how-toofind-out-which-version-is-installed"></a>La modalità di installazione toofind la versione
+1. È possibile trovare la versione dell'app Azure Authenticator hello e servizi associati vengono installati nel dispositivo.
+2. Scegliere dal menu a comparsa hello, **su**.
+3. schermata informazioni viene visualizzato servizi hello dell'applicazione hello e le versioni di hello installate sul dispositivo.
 
-### <a name="sending-log-files-to-report-issues"></a>Invio di file di log per segnalare problemi
-1. Seguire le istruzioni sul sito del Supporto Microsoft per segnalare un evento imprevisto con l'app Azure Authenticator, ottenere un numero di richiesta di assistenza e inviare file di log con il numero di richiesta di assistenza assegnato, come mostrato di seguito:
-2. Scegliere **Registrazione**dal menu a comparsa.
-3. Se è già stata aperta una richiesta di assistenza al Supporto Microsoft, prendere nota del numero corrispondente (sarà necessario in un passaggio successivo). Se non è ancora stata creata una richiesta di assistenza e si vuole ricevere assistenza, seguire le indicazioni del [Supporto Microsoft](https://support.microsoft.com/en-us/contactus) per creare una nuova richiesta di assistenza.
-4. Nella schermata di registrazione fare clic su **Invia ora**.
-5. Selezionare il provider di posta elettronica da usare.
-6. Se è già stata inviata una richiesta di assistenza al Supporto Microsoft, contattare il tecnico assegnato al problema in questione per scoprire come inviare i dati del log e fare in modo che vengano associati all'evento imprevisto segnalato. Il tecnico del supporto fornirà le informazioni relative all'indirizzo di posta elettronica e all'oggetto del messaggio. Se non è ancora stata creata una richiesta di assistenza, seguire le indicazioni del Supporto Microsoft per creare una nuova richiesta di assistenza.
-7. Modificare la riga **A** e **Oggetto** con le informazioni ricevute dal Supporto Microsoft.
-8. L'app Azure Authenticator allega il file di log al messaggio di posta elettronica da inviare. Descrivere il problema che si è verificato, aggiornare l'elenco di destinatari, se necessario, quindi inviare il messaggio di posta elettronica.
+### <a name="sending-log-files-tooreport-issues"></a>Tooreport problemi di invio di file di log
+1. Seguire indicazioni hello sul supporto Microsoft tooreport un evento imprevisto con l'app Azure Authenticator hello, ottenere un numero di eventi imprevisti e inviare file di log con hello assegnato il numero di eventi imprevisti, come indicato di seguito:
+2. Scegliere dal menu a comparsa hello, **registrazione**.
+3. Se si dispone di un evento imprevisto aperto con il supporto Microsoft, prendere nota del numero di eventi imprevisti hello (necessario per un passaggio successivo). Se non si è già stato creato un evento imprevisto di supporto e assistenza, seguire indicazioni hello [supporto Microsoft](https://support.microsoft.com/en-us/contactus) tooopen un nuovo evento imprevisto.
+4. Nella schermata di registrazione hello, fare clic su **Invia ora**.
+5. Selezionare il provider di posta elettronica hello da toouse.
+6. Se si dispone già di un evento imprevisto aperto supporto Microsoft, contattare il tecnico assegnato tooyour problema toofind come toosend hello registrare i dati e che vengano associati l'evento imprevisto di hello. Hello tecnico del supporto fornirà informazioni per riga indirizzo e l'oggetto del messaggio di posta elettronica hello. Se si dispone già di una richiesta di assistenza, seguire indicazioni hello supporto Microsoft tooopen un nuovo evento imprevisto.
+7. Modifica hello **a** riga e **soggetto** riga con informazioni hello ricevute dal supporto Microsoft.
+8. app Azure Authenticator Hello collega hello log file toohello messaggio di posta elettronica che mittente. Descrivere hello problema riscontrato, aggiornare l'elenco dei destinatari (facoltativo) e invia il messaggio hello.
 
-### <a name="deleting-the-work-account-and-leaving-your-workplace"></a>Eliminazione dell'account aziendale e uscita dall'area di lavoro
-È possibile rimuovere in qualsiasi momento l'account aziendale creato seguendo questa procedura:
+### <a name="deleting-hello-work-account-and-leaving-your-workplace"></a>L'eliminazione di account di lavoro hello e lasciando l'area di lavoro
+È possibile rimuovere l'account aziendale hello creato in qualsiasi momento come segue:
 
-**Per eliminare l'account aziendale dal menu Impostazioni**
+**account dal menu Impostazioni hello di hello toodelete aziendale**
 
-1. Nello strumento di gestione degli account selezionare **Account aziendale**.
-2. In **Impostazioni generali** nella schermata Account aziendale selezionare **Impostazioni account – Esci dalla rete dell'area di lavoro**.
-3. Selezionare **Esci** nella schermata **Aggiunta all'area di lavoro**.
-4. Fare clic su **OK** quando viene visualizzato il messaggio "Uscire dall'area di lavoro?".
+1. Gestione di account hello, selezionare **account aziendale**.
+2. Nella schermata Account aziendale hello in **impostazioni generali**selezionare **impostazioni Account – Esci alla tua rete aziendale**.
+3. Selezionare **lasciare** su hello **all'area di lavoro** dello schermo.
+4. Fare clic su **OK** per il messaggio hello "Non è possibile tooleave all'area di lavoro" viene visualizzato.
 5. In questo modo si garantisce l'eliminazione dell'account aziendale dall'area di lavoro.
 
 > [!NOTE]
-> È consigliabile non usare l'opzione Rimuovi account per eliminare un account aziendale perché questa opzione potrebbe non funzionare in alcune versioni precedenti di Android.
+> È consigliabile non utilizzare hello Rimuovi Account opzione toodelete un account aziendale come questa opzione potrebbe non funzionare in alcune versioni precedenti di Android.
 > 
 > 
 
-## <a name="uninstalling-the-app"></a>Disinstallazione dell'app
-Su un dispositivo Samsung Android, è necessario rimuovere i privilegi di amministratore del dispositivo nel modo seguente prima di disinstallare 
+## <a name="uninstalling-hello-app"></a>La disinstallazione di app hello
+In un dispositivo Samsung Android, privilegi di amministratore di dispositivo devono essere rimosso toouninstalling precedente come indicato di seguito hello 
 
 1. Nel menu **Impostazioni**, in **Sistema**, selezionare **Sicurezza**.
-2. In **Amministrazione dispositivo** scegliere **Amministratori del dispositivo**. Assicurarsi che la casella di controllo accanto ad **Azure Authenticator** sia deselezionata.
+2. In **Amministrazione dispositivo** scegliere **Amministratori del dispositivo**. Verificare che la casella di hello accanto troppo**Azure Authenticator** è deselezionata.
 
 ## <a name="troubleshooting"></a>Risoluzione dei problemi
-Se viene visualizzato l'errore relativo all'**archivio delle chiavi**, la schermata di blocco potrebbe non essere configurata con un PIN. Per risolvere il problema, disinstallare l'applicazione Azure Authenticator, configurare un PIN per la schermata di blocco e reinstallare l'app.
+Se viene visualizzato hello **errore Keystore**, è possibile che non si dispone di blocco hello schermata set di backup con un PIN. toowork questo problema, disinstallare l'app Azure Authenticator hello, configurare un PIN per la schermata di blocco e reinstallare l'applicazione hello.
 

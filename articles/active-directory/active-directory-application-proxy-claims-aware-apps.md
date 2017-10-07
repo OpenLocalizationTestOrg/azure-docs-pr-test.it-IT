@@ -1,6 +1,6 @@
 ---
-title: App in grado di riconoscere attestazioni - Proxy di applicazione di Azure AD | Documentazione Microsoft
-description: Come pubblicare applicazioni ASP.NET locali che accettano le attestazioni di AD FS per l'accesso remoto sicuro da parte degli utenti.
+title: applicazioni che supportano aaaClaims - Proxy App di Azure AD | Documenti Microsoft
+description: Come toopublish locale le applicazioni ASP.NET che accetta le attestazioni ADFS per l'accesso remoto sicuro dagli utenti.
 services: active-directory
 documentationcenter: 
 author: kgremban
@@ -14,46 +14,46 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/04/2017
 ms.author: kgremban
-ms.openlocfilehash: 5784222608b01509fc4ff84b1a8792cbcfea89e6
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 7be633225de700226c7c94815eb91b3de2b61cb5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="working-with-claims-aware-apps-in-application-proxy"></a>Uso di app in grado di riconoscere attestazioni nel proxy di applicazione
-Le [app in grado di riconoscere attestazioni](https://msdn.microsoft.com/library/windows/desktop/bb736227.aspx) eseguono un reindirizzamento al servizio token di sicurezza. Il servizio token di sicurezza richiede le credenziali all'utente in cambio di un token e quindi reindirizza l'utente all'applicazione. È possibile consentire al proxy di applicazione di usare questi reindirizzamenti in diversi modi. Usare questo articolo per configurare la distribuzione per app in grado di riconoscere attestazioni. 
+[Grado di riconoscere attestazioni app](https://msdn.microsoft.com/library/windows/desktop/bb736227.aspx) eseguire toohello un reindirizzamento la servizio Token di sicurezza (STS). servizio token di sicurezza di Hello richiede le credenziali utente hello in cambio un token e quindi reindirizza un'applicazione hello utente toohello. Esistono alcuni modi tooenable Proxy dell'applicazione toowork con questi reindirizzamenti. Utilizzare la distribuzione di tooconfigure questo articolo per le applicazioni in grado di riconoscere attestazioni. 
 
 ## <a name="prerequisites"></a>Prerequisiti
-Assicurarsi che il servizio token di sicurezza cui viene reindirizzata l'app in grado di riconoscere attestazioni sia disponibile esternamente alla rete locale. Per rendere disponibile il servizio token di sicurezza, è possibile esporlo tramite un proxy o consentire le connessioni esterne. 
+Verificare che tale hello servizio token di sicurezza che hello app grado di riconoscere attestazioni reindirizza toois disponibile di fuori della rete locale. Si può rendere hello servizio token di sicurezza disponibili esporlo tramite un proxy o consentendo di fuori di connessioni. 
 
 ## <a name="publish-your-application"></a>Pubblicare l'applicazione
 
-1. Pubblicare l'applicazione seguendo le istruzioni contenute in [Pubblicare le applicazioni con il proxy di applicazione](application-proxy-publish-azure-portal.md).
-2. Passare alla pagina dell'applicazione nel portale e selezionare **Single Sign-On**.
-3. Se si sceglie **Azure Active Directory** come **Metodo di autenticazione preliminare**, selezionare **Single Sign-On di Azure AD disabilitato** come **Metodo di autenticazione interna**. Se si sceglie **Pass-through** come **Metodo di autenticazione preliminare**, non è necessario apportare alcuna modifica.
+1. Pubblicare l'applicazione in base a istruzioni toohello [pubblicare applicazioni con Proxy dell'applicazione](application-proxy-publish-azure-portal.md).
+2. Passare toohello pagina applicazione hello portale e seleziona **Single sign-on**.
+3. Se si sceglie **Azure Active Directory** come **Metodo di autenticazione preliminare**, selezionare **Single Sign-On di Azure AD disabilitato** come **Metodo di autenticazione interna**. Se si sceglie **pass-through** come il **metodo di preautenticazione**, non è necessario toochange nulla.
 
 ## <a name="configure-adfs"></a>Configurare AD FS
 
-È possibile configurare AD FS per le app in grado di riconoscere attestazioni in due modi diversi. Il primo consiste nell'usare domini personalizzati. Il secondo è con WS-Federation. 
+È possibile configurare AD FS per le app in grado di riconoscere attestazioni in due modi diversi. Hello per primo è l'utilizzo dei domini personalizzati. in secondo luogo, Hello è con WS-Federation. 
 
 ### <a name="option-1-custom-domains"></a>Opzione 1: domini personalizzati
 
-Se tutti gli URL interni per le applicazioni sono nomi di dominio completi (FQDN), è possibile configurare [domini personalizzati](active-directory-application-proxy-custom-domains.md) per le applicazioni. Usare i domini personalizzati per creare URL esterni identici agli URL interni. Se gli URL esterni corrispondono agli URL interni, i reindirizzamenti del servizio token di sicurezza funzionano indipendentemente dal fatto che gli utenti siano in locale o in remoto. 
+Se tutti hello URL interni per le applicazioni sono complete (FQDN) dei nomi di dominio, quindi è possibile configurare [domini personalizzati](active-directory-application-proxy-custom-domains.md) per le applicazioni. Utilizzare hello domini personalizzati toocreate URL esterni che sono hello stesso hello URL interno. Quando l'URL esterni corrispondono gli URL interni, reindirizzamenti STS hello funzionano se gli utenti siano in locale o remoto. 
 
 ### <a name="option-2-ws-federation"></a>Opzione 2: WS-Federation
 
 1. Aprire la console di gestione di AD FS.
-2. Passare a **Attendibilità componente**, fare clic con il pulsante destro del mouse sull'app da pubblicare con il proxy dell'applicazione e quindi scegliere **Proprietà**.  
+2. Andare troppo**Relying Party Trusts**, fare clic su hello app pubblicate con Proxy dell'applicazione e scegliere **proprietà**.  
 
    ![Schermata: clic con il pulsante destro del mouse sul nome dell'app in Attendibilità componente](./media/active-directory-application-proxy-claims-aware-apps/appproxyrelyingpartytrust.png)  
 
-3. Nella scheda **Endpoint** selezionare **WS-Federation** in **Tipo di endpoint**.
-4. In **URL attendibile** specificare l'URL immesso in **URL esterno** nel proxy di applicazione e fare clic su **OK**.  
+3. In hello **endpoint** scheda **tipo di Endpoint**selezionare **WS-Federation**.
+4. In **attendibili URL**, immettere l'URL hello immesso in hello Proxy dell'applicazione in **URL esterno** e fare clic su **OK**.  
 
    ![Schermata: aggiunta di un endpoint e impostazione del valore per URL attendibile](./media/active-directory-application-proxy-claims-aware-apps/appproxyendpointtrustedurl.png)  
 
 ## <a name="next-steps"></a>Passaggi successivi
 * [Abilitare Single Sign-On](application-proxy-sso-overview.md) per le applicazioni che non sono in grado di riconoscere attestazioni
-* [Abilitare le app client native per l'interazione con applicazioni proxy](active-directory-application-proxy-native-client.md)
+* [Abilitare toointeract di App client nativa con applicazioni di proxy](active-directory-application-proxy-native-client.md)
 
 

@@ -1,6 +1,6 @@
 ---
-title: Eliminare un utente da una directory in Azure Active Directory | Microsoft Docs
-description: Descrive come eliminare un utente e tutte le informazioni da Azure Active Directory
+title: un utente da una directory in Azure Active Directory aaaDelete | Documenti Microsoft
+description: Viene illustrato come toodelete un utente e le relative informazioni da Azure Active Directory
 services: active-directory
 documentationcenter: 
 author: curtand
@@ -15,31 +15,31 @@ ms.topic: article
 ms.date: 06/27/2017
 ms.author: curtand;jeffsta
 ms.reviewer: jeffsta
-ms.openlocfilehash: 19a4d2c37c785b3b56a2e0e1b6797ec56dad9835
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e121142479c185fadd796b46aeab02bff4ea8d75
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="delete-a-user-from-a-directory-in-azure-active-directory"></a>Eliminare un utente da una directory in Azure Active Directory
-Questo articolo descrive come eliminare un utente da una directory in Azure Active Directory (Azure AD). Per informazioni sull'aggiunta di nuovi utenti nell'organizzazione, vedere [Aggiungere nuovi utenti ad Azure Active Directory](active-directory-users-create-azure-portal.md).
+Questo articolo viene illustrato come toodelete un utente da una directory in Azure Active Directory (Azure AD). Per informazioni sull'aggiunta di nuova organizzazione tooyour di utenti, vedere [aggiungere nuovi utenti tooAzure Active Directory](active-directory-users-create-azure-portal.md).
 
-## <a name="to-delete-a-user"></a>Per eliminare un utente
-1. Accedere al [portale di Azure](https://portal.azure.com) con un account di amministratore globale per la directory.
-2. Selezionare **Altri servizi**, immettere **Utenti e gruppi** nella casella di testo e quindi premere **INVIO**.
+## <a name="toodelete-a-user"></a>toodelete un utente
+1. Accedi troppo[hello Azure portal](https://portal.azure.com) con un account che sia un amministratore globale per la directory di hello.
+2. Selezionare **più servizi**, immettere **utenti e gruppi** nella casella di testo hello e quindi selezionare **invio**.
 
    ![Apertura di Gestione utenti](./media/active-directory-users-delete-user-azure-portal/create-users-user-management.png)
-3. Nel pannello **Utenti e gruppi** selezionare **Utenti**.
+3. In hello **utenti e gruppi** pannello seleziona **utenti**.
 
-   ![Apertura del pannello Utenti](./media/active-directory-users-delete-user-azure-portal/create-users-open-users-blade.png)
-4. Nel pannello **Utenti e gruppi - Utenti** selezionare un utente nell'elenco.
-5. Nel pannello dell'utente selezionare **Panoramica**, quindi nella barra dei comandi selezionare **Elimina**.
+   ![Pannello utenti hello di apertura](./media/active-directory-users-delete-user-azure-portal/create-users-open-users-blade.png)
+4. In hello **utenti e gruppi di utenti -** pannello, selezionare un utente dall'elenco di hello.
+5. Nel Pannello di hello per l'utente selezionato hello, selezionare **Panoramica**, quindi nella barra dei comandi di hello, selezionare **eliminare**.
 
-    ![Selezione del comando Elimina](./media/active-directory-users-delete-user-azure-portal/create-users-delete-command.png)
+    ![Comando Delete hello](./media/active-directory-users-delete-user-azure-portal/create-users-delete-command.png)
 
 ## <a name="next-steps"></a>Passaggi successivi
-* [Aggiungere o modificare utenti in Azure Active Directory](active-directory-users-create-azure-portal.md)
-* [Reimpostare la password per un utente in Azure Active Directory](active-directory-users-reset-password-azure-portal.md)
-* [Assegnare un utente ai ruoli di amministratore in Azure Active Directory](active-directory-users-assign-role-azure-portal.md)
+* [Aggiungere nuovi utenti tooAzure Active Directory](active-directory-users-create-azure-portal.md)
+* [Reimpostare la password di hello per un utente in Azure Active Directory](active-directory-users-reset-password-azure-portal.md)
+* [Assegnare un utente tooadministrator ruoli in Azure Active Directory](active-directory-users-assign-role-azure-portal.md)
 * [Aggiungere o modificare informazioni sul profilo per un utente in Azure Active Directory](active-directory-users-work-info-azure-portal.md)
 * [Eliminare un utente da una directory in Azure Active Directory](active-directory-users-profile-azure-portal.md)

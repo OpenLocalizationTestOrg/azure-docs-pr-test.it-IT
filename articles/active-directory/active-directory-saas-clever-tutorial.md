@@ -1,6 +1,6 @@
 ---
 title: 'Esercitazione: Integrazione di Azure Active Directory con Clever | Documentazione Microsoft'
-description: Informazioni su come configurare l'accesso Single Sign-On tra Azure Active Directory e Clever.
+description: Informazioni su come tooconfigure single sign-on tra Azure Active Directory e Clever.
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -14,118 +14,118 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/20/2017
 ms.author: jeedes
-ms.openlocfilehash: 84082ff567e37d7fff80be9e089c67cfab911861
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 24430e1e6c750efa5787561aa151201b1fe7d428
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-clever"></a>Esercitazione: Integrazione di Azure Active Directory con Clever
 
-Questa esercitazione descrive come integrare Clever con Azure Active Directory (Azure AD).
+In questa esercitazione, è illustrato come toointegrate Clever con Azure Active Directory (Azure AD).
 
-L'integrazione di Clever con Azure AD offre i vantaggi seguenti:
+Integrazione Clever con Azure AD fornisce hello seguenti vantaggi:
 
-- È possibile controllare in Azure AD chi può accedere a Clever.
-- È possibile abilitare gli utenti per l'accesso automatico a Clever (Single Sign-On) con gli account Azure AD personali.
-- È possibile gestire gli account in un'unica posizione centrale: il portale di Azure.
+- È possibile controllare in Azure AD che ha accesso tooClever.
+- È possibile abilitare l'utenti tooautomatically get connesso tooClever (Single Sign-On) con i propri account Azure AD.
+- È possibile gestire gli account in un'unica posizione centrale - hello portale di Azure.
 
-Per altre informazioni sull'integrazione di app SaaS con Azure AD, vedere [Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory](active-directory-appssoaccess-whatis.md).
+Se si desiderano tooknow ulteriori informazioni sull'integrazione dell'applicazione SaaS con Azure AD, vedere [novità di accesso alle applicazioni e single sign-on con Azure Active Directory](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-Per configurare l'integrazione di Azure AD con Clever, sono necessari gli elementi seguenti:
+integrazione di Azure AD con Clever tooconfigure, è necessario hello seguenti elementi:
 
 - Sottoscrizione di Azure AD.
 - Sottoscrizione di Clever abilitata per l'accesso Single Sign-On
 
 > [!NOTE]
-> Non è consigliabile usare un ambiente di produzione per testare i passaggi di questa esercitazione.
+> hello tootest i passaggi in questa esercitazione, è consigliabile utilizzare un ambiente di produzione.
 
-A questo scopo, è consigliabile seguire le indicazioni seguenti:
+passaggi di hello tootest in questa esercitazione, è necessario seguire questi suggerimenti:
 
 - Non usare l'ambiente di produzione a meno che non sia necessario.
 - Se non è disponibile un ambiente di valutazione di Azure AD, è possibile [ottenere una versione di valutazione di un mese](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Descrizione dello scenario
-In questa esercitazione viene eseguito il test dell'accesso Single Sign-On di Azure AD in un ambiente di test. Lo scenario descritto in questa esercitazione prevede i due blocchi predefiniti seguenti:
+In questa esercitazione viene eseguito il test dell'accesso Single Sign-On di Azure AD in un ambiente di test. scenario di Hello descritto in questa esercitazione è composto da due componenti principali:
 
-1. Aggiunta di Clever dalla raccolta
+1. Aggiunta di Clever dalla raccolta hello
 2. Configurazione e test dell'accesso Single Sign-On di Azure AD
 
-## <a name="adding-clever-from-the-gallery"></a>Aggiunta di Clever dalla raccolta
-Per configurare l'integrazione di Clever in Azure AD, è necessario aggiungere Clever dalla raccolta all'elenco di app SaaS gestite.
+## <a name="adding-clever-from-hello-gallery"></a>Aggiunta di Clever dalla raccolta hello
+integrazione hello tooconfigure di Clever in Azure AD, è necessario tooadd Clever dall'elenco di tooyour hello raccolta di App SaaS gestite.
 
-**Per aggiungere Clever dalla raccolta, seguire questa procedura:**
+**tooadd Clever dalla raccolta di hello, eseguire hello alla procedura seguente:**
 
-1. Nel **[portale di Azure](https://portal.azure.com)** fare clic sull'icona di **Azure Active Directory** nel riquadro di spostamento sinistro. 
+1. In hello  **[portale di Azure](https://portal.azure.com)**via hello del Pannello di navigazione a sinistra, fare clic su **Azure Active Directory** icona. 
 
-    ![Pulsante Azure Active Directory][1]
+    ![pulsante di Hello Azure Active Directory][1]
 
-2. Passare ad **Applicazioni aziendali**. Andare quindi a **Tutte le applicazioni**.
+2. Passare troppo**applicazioni aziendali**. Quindi andare troppo**tutte le applicazioni**.
 
-    ![Pannello Applicazioni aziendali][2]
+    ![Pannello di applicazioni Enterprise Hello][2]
     
-3. Fare clic sul pulsante **Nuova applicazione** nella parte superiore della finestra di dialogo per aggiungere una nuova applicazione.
+3. tooadd nuova applicazione, fare clic su **nuova applicazione** pulsante nella parte superiore di hello della finestra di dialogo.
 
-    ![Pulsante Nuova applicazione][3]
+    ![Nuovo pulsante dell'applicazione Hello][3]
 
-4. Nella casella di ricerca digitare **Clever**, selezionare **Clever** nel pannello dei risultati e quindi fare clic sul pulsante **Aggiungi** per aggiungere l'applicazione.
+4. Nella casella di ricerca hello, digitare **Clever**selezionare **Clever** dal pannello risultati quindi fare clic su **Aggiungi** pulsante applicazione hello tooadd.
 
-    ![Clever nell'elenco risultati](./media/active-directory-saas-clever-tutorial/tutorial_clever_addfromgallery.png)
+    ![Nell'elenco risultati hello intelligente](./media/active-directory-saas-clever-tutorial/tutorial_clever_addfromgallery.png)
 
 ## <a name="configure-and-test-azure-ad-single-sign-on"></a>Configurare e testare l'accesso Single Sign-On di Azure AD
 
 In questa sezione viene configurato e testato l'accesso Single Sign-On di Azure AD con Clever usando un utente di test di nome "Britta Simon".
 
-Per il funzionamento dell'accesso Single Sign-On, Azure AD deve conoscere l'utente controparte di Clever corrispondente a un utente di Azure AD. In altre parole, deve essere stabilita una relazione di collegamento tra un utente di Azure AD e l'utente correlato in Clever.
+Per toowork di accesso singolo, Azure AD deve tooknow quale utente controparte hello in Clever è tooa utente in Azure AD. In altre parole, una relazione di collegamento tra un utente di Azure Active Directory e l'utente correlato di hello in Clever deve toobe stabilita.
 
-Per stabilire la relazione di collegamento, in Clever assegnare il valore del **nome utente** in Azure AD come valore di **Username** (Nome utente).
+In Clever, assegnare il valore di hello di hello **nome utente** in Azure AD come valore hello hello **Username** tooestablish relazione di collegamento hello.
 
-Per configurare e testare l'accesso Single Sign-On di Azure AD con Clever, è necessario completare le procedure di base seguenti:
+tooconfigure e prova AD Azure single sign-on con Clever, è necessario hello toocomplete seguenti blocchi predefiniti:
 
-1. **[Configurare l'accesso Single Sign-On di Azure AD](#configure-azure-ad-single-sign-on)**: per consentire agli utenti di usare questa funzionalità.
-2. **[Creare un utente di test di Azure AD](#create-an-azure-ad-test-user)**: per testare l'accesso Single Sign-On di Azure AD con l'utente Britta Simon.
-3. **[Creare un utente di test di Clever](#create-a-clever-test-user)**: per avere una controparte di Britta Simon in Clever collegata alla rappresentazione dell'utente in Azure AD.
-4. **[Assegnare l'utente test di Azure AD](#assign-the-azure-ad-test-user)**: per abilitare Britta Simon all'uso dell'accesso Single Sign-On di Azure AD.
-5. **[Testare l'accesso Single Sign-On](#test-single-sign-on)** per verificare se la configurazione funziona.
+1. **[Configurare Azure Active Directory Single Sign-On](#configure-azure-ad-single-sign-on)**  -tooenable il toouse utenti questa funzionalità.
+2. **[Creare un utente prova AD Azure](#create-an-azure-ad-test-user)**  -tootest AD Azure single sign-on con Britta Simon.
+3. **[Creare un utente test intelligente](#create-a-clever-test-user)**  -toohave un equivalente di Britta Simon in Clever che è la rappresentazione toohello collegato Azure AD dell'utente.
+4. **[Assegnare l'utente test hello Azure AD](#assign-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD accesso single sign-on.
+5. **[Testare single sign-on](#test-single-sign-on)**  -tooverify hello se funzionamento della configurazione.
 
 ### <a name="configure-azure-ad-single-sign-on"></a>Configurare l'accesso Single Sign-On di Azure AD
 
-In questa sezione viene abilitato l'accesso Single Sign-On di Azure AD nel portale di Azure e viene configurato l'accesso Single Sign-On nell'applicazione Clever.
+In questa sezione, si abilita Azure AD single sign-on in hello portale di Azure e configurare l'accesso single sign-on nell'applicazione appositamente.
 
-**Per configurare l'accesso Single Sign-On di Azure AD con Clever, seguire questa procedura:**
+**Azure AD tooconfigure single sign-on con Clever, eseguire hello alla procedura seguente:**
 
-1. Nella pagina di integrazione dell'applicazione **Clever** del portale di Azure fare clic su **Single Sign-On**.
+1. Nel portale di Azure su hello hello **Clever** pagina di integrazione dell'applicazione, fare clic su **Single sign-on**.
 
-    ![Collegamento Configura accesso Single Sign-On][4]
+    ![Collegamento per la configurazione dell'accesso Single Sign-On][4]
 
-2. Nella finestra di dialogo **Single Sign-On** selezionare **Accesso basato su SAML** per **Modalità** per abilitare l'accesso Single Sign-On.
+2. In hello **Single sign-on** finestra di dialogo Seleziona **modalità** come **basato su SAML Sign-on** tooenable single sign-on.
  
     ![Finestra di dialogo Single Sign-On](./media/active-directory-saas-clever-tutorial/tutorial_clever_samlbase.png)
 
-3. Nella sezione **URL e dominio Clever** seguire questa procedura:
+3. In hello **appositamente dominio e gli URL** seguire hello alla procedura seguente:
 
     ![Informazioni su URL e dominio per l'accesso Single Sign-On di Clever](./media/active-directory-saas-clever-tutorial/tutorial_clever_url.png)
 
-    a. Nella casella di testo **URL di accesso** digitare l'URL usando il modello seguente: `https://clever.com/in/<companyname>`.
+    a. In hello **Sign-on URL** casella di testo, digitare un URL utilizzando hello seguente modello:`https://clever.com/in/<companyname>`
 
-    b. Nella casella di testo **Identificatore** digitare l'URL adottando il modello seguente: `https://clever.com/<companyname>`
+    b. In hello **identificatore** casella di testo, digitare un URL utilizzando hello seguente modello:`https://clever.com/<companyname>`
 
     > [!NOTE] 
-    > Poiché questi non sono i valori reali, Aggiornare questi valori con l'identificatore e l'URL di accesso effettivi. Per ottenere questi valori, contattare il [team di supporto clienti di Clever](https://clever.com/about/contact/).
+    > Poiché questi non sono i valori reali, Aggiornare questi valori con hello effettivo URL di accesso e l'identificatore. Contatto [team di supporto Client intelligenti](https://clever.com/about/contact/) tooget questi valori.
 
-4. Nella sezione **Certificato di firma SAML** fare clic su **XML di metadati** e quindi salvare il file dei metadati nel computer.
+4. In hello **certificato di firma SAML** fare clic su **Metadata XML** e quindi salvare il file di metadati hello nel computer in uso.
 
-    ![Collegamento di download del certificato](./media/active-directory-saas-clever-tutorial/tutorial_clever_certificate.png)
+    ![collegamento al download del certificato Hello](./media/active-directory-saas-clever-tutorial/tutorial_clever_certificate.png)
 
-5. L'applicazione Clever prevede un formato specifico per le asserzioni SAML. È quindi necessario aggiungere mapping di attributi personalizzati alla configurazione di **Attributi token SAML**.
+5. Hello appositamente applicazione prevede di asserzioni SAML hello in un formato specifico, che richiede il tooyour mapping di attributi personalizzati tooadd **attributi Token SAML** configurazione.
 
-    La schermata seguente illustra un esempio relativo a questa operazione.
+    Hello seguente schermata mostra un esempio per questo oggetto.
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-clever-tutorial/tutorial_clever_07.png) 
 
-6. Nella sezione **Attributi utente** della finestra di dialogo **Single Sign-On** configurare l'attributo del token SAML come indicato nell'immagine precedente e seguire questa procedura:
+6. In hello **gli attributi utente** sezione hello **Single sign-on** finestra di dialogo, configurare attributi token SAML, come illustrato nell'immagine di hello precedente ed eseguire hello alla procedura seguente:
     
     | Nome attributo  | Valore attributo |
     | --------------- | -------------------- |    
@@ -133,135 +133,135 @@ In questa sezione viene abilitato l'accesso Single Sign-On di Azure AD nel porta
     | Firstname  | user.givenname |
     | Lastname  | user.surname |    
 
-    a. Fare clic su **Aggiungi attributo** per aprire la finestra di dialogo **Aggiungi attributo**.
+    a. Fare clic su **Aggiungi attributo** tooopen hello **Aggiungi attributo** finestra di dialogo.
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-clever-tutorial/tutorial_attribute_04.png)
     
     ![Configura accesso Single Sign-On](./media/active-directory-saas-clever-tutorial/tutorial_attribute_05.png)
     
-    b. Nella casella di testo **Nome** digitare il nome dell'attributo indicato per la riga.
+    b. In hello **nome** casella di testo, nome dell'attributo di tipo hello mostrato per la riga.
 
-    c. Nell'elenco **Valore** digitare il valore dell'attributo indicato per la riga.
+    c. Da hello **valore** elencare, valore dell'attributo di tipo hello mostrato per la riga.
 
-    d. Lasciare vuota la casella di testo **Spazio dei nomi**.
+    d. Lasciare hello **Namespace** casella di testo vuoto.
     
     d. Fare clic su **OK**.     
 
 5. Fare clic sul pulsante **Salva** .
 
-    ![Pulsante Salva per la configurazione dell'accesso Single Sign-On](./media/active-directory-saas-clever-tutorial/tutorial_general_400.png)
+    ![Pulsante Salva di Configura accesso Single Sign-On](./media/active-directory-saas-clever-tutorial/tutorial_general_400.png)
 
-8. Per generare l'URL dei **metadati**, seguire questa procedura:
+8. hello toogenerate **metadati** url, eseguire hello alla procedura seguente:
 
     a. Fare clic su **Registrazioni per l'app**.
     
     ![Configura accesso Single Sign-On](./media/active-directory-saas-clever-tutorial/tutorial_clever_appregistrations.png)
    
-    b. Fare clic su **Endpoint** per aprire la finestra di dialogo **Endpoint**.  
+    b. Fare clic su **endpoint** tooopen **endpoint** la finestra di dialogo.  
     
     ![Configura accesso Single Sign-On](./media/active-directory-saas-clever-tutorial/tutorial_clever_endpointicon.png)
 
-    c. Fare clic sul pulsante Copia per copiare l'URL del **DOCUMENTO METADATI FEDERAZIONE** e incollarlo nel Blocco note.
+    c. Fare clic su hello copia pulsante toocopy **documento metadati federazione** url e incollarlo nel blocco note.
     
     ![Configura accesso Single Sign-On](./media/active-directory-saas-clever-tutorial/tutorial_clever_endpoint.png)
      
-    d. Passare ora alla pagina delle proprietà di **Clever**, copiare l'**ID applicazione** usando il pulsante **Copia** e incollarlo nel Blocco note.
+    d. Ora passare pagina delle proprietà toohello **Clever** e hello copia **Id applicazione** utilizzando **copia** pulsante e incollarlo nel blocco note.
  
     ![Configura accesso Single Sign-On](./media/active-directory-saas-clever-tutorial/tutorial_clever_appid.png)
 
-    e. Generare l'**URL dei metadati** usando il modello seguente: `<FEDERATION METADATA DOCUMENT url>?appid=<application id>`   
+    e. Generare hello **URL dei metadati** utilizzando hello seguente motivo:`<FEDERATION METADATA DOCUMENT url>?appid=<application id>`   
 
-9. In un'altra finestra del Web browser accedere al sito aziendale di Clever come amministratore.
+9. In una finestra del web browser, accedere come amministratore nel sito della società appositamente tooyour.
 
-10. Nella barra degli strumenti fare clic su **Instant Login**.
+10. Nella barra degli strumenti hello, fare clic su **accesso istantaneo**.
 
     ![Instant Login](./media/active-directory-saas-clever-tutorial/ic798984.png "Instant Login")
 
-11. Nella pagina **Instant Login** seguire questa procedura:
+11. In hello **accesso istantaneo** eseguire hello alla procedura seguente:
       
       ![Instant Login](./media/active-directory-saas-clever-tutorial/ic798985.png "Instant Login")
       
-      a. Digitare un valore in **URL di accesso**.
+      a. Hello tipo **URL di accesso**.
       
       >[!NOTE]
-      >Per **Login URL** usare un valore personalizzato. Per ottenere questo valore, contattare il [team di supporto clienti di Clever](https://clever.com/about/contact/).
+      >Hello **URL di accesso** è un valore personalizzato. Contatto [team di supporto Client intelligenti](https://clever.com/about/contact/) tooget questo valore.
       
       b. Per **Identity System** (Sistema di identità) scegliere **ADFS**.
 
-      c. Digitare l'**URL dei metadati** nella relativa **casella** di testo.
+      c. Hello tipo **URL dei metadati** in hello **URL dei metadati** casella di testo.
       
       d. Fare clic su **Salva**.
 
 > [!TIP]
-> Un riepilogo delle istruzioni è disponibile all'interno del [portale di Azure](https://portal.azure.com) durante la configurazione dell'app.  Dopo aver aggiunto l'app dalla sezione **Active Directory > Applicazioni aziendali** è sufficiente fare clic sulla scheda **Single Sign-On** e accedere alla documentazione incorporata tramite la sezione **Configurazione** nella parte inferiore. Altre informazioni sulla funzione di documentazione incorporata sono disponibili in [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985) (Documentazione incorporata di Azure AD).
+> È ora possibile leggere una versione di queste istruzioni all'interno di hello concisa [portale di Azure](https://portal.azure.com), mentre si stanno impostando app hello!  Dopo l'aggiunta di questa app da hello **Active Directory > applicazioni aziendali** fare semplicemente clic su hello **Single Sign-On** scheda e l'accesso hello incorporato documentazione tramite hello  **Configurazione** sezione nella parte inferiore di hello. È possibile leggere altre informazioni sulla funzionalità di documentazione embedded hello qui: [AD Azure incorporato documentazione]( https://go.microsoft.com/fwlink/?linkid=845985)
 > 
 
 ### <a name="create-an-azure-ad-test-user"></a>Creare un utente test di Azure AD
 
-Questa sezione descrive come creare un utente test denominato Britta Simon nel portale di Azure.
+obiettivo di Hello di questa sezione è un utente di test nel portale di Azure chiamato Britta Simon hello toocreate.
 
    ![Creare un utente test di Azure AD][100]
 
-**Per creare un utente test in Azure AD, eseguire la procedura seguente:**
+**un utente di prova in Azure AD, toocreate eseguire hello alla procedura seguente:**
 
-1. Nel portale di Azure fare clic sul pulsante **Azure Active Directory** nel riquadro sinistro.
+1. Nel portale di Azure, nel riquadro di sinistra hello, hello fare clic su hello **Azure Active Directory** pulsante.
 
-    ![Pulsante Azure Active Directory](./media/active-directory-saas-clever-tutorial/create_aaduser_01.png)
+    ![pulsante di Hello Azure Active Directory](./media/active-directory-saas-clever-tutorial/create_aaduser_01.png)
 
-2. Per visualizzare l'elenco di utenti, passare a **Utenti e gruppi** e quindi fare clic su **Tutti gli utenti**.
+2. elenco di hello toodisplay di utenti, andare troppo**utenti e gruppi**, quindi fare clic su **tutti gli utenti**.
 
-    ![Collegamenti "Utenti e gruppi" e "Tutti gli utenti"](./media/active-directory-saas-clever-tutorial/create_aaduser_02.png)
+    ![Hello "Utenti e gruppi" e i collegamenti di "Tutti gli utenti"](./media/active-directory-saas-clever-tutorial/create_aaduser_02.png)
 
-3. Per aprire la finestra di dialogo **Utente** fare clic su **Aggiungi** nella parte superiore della finestra di dialogo **Tutti gli utenti**.
+3. hello tooopen **utente** la finestra di dialogo, fare clic su **Aggiungi** nella parte superiore di hello di hello **tutti gli utenti** la finestra di dialogo.
 
-    ![Pulsante Aggiungi](./media/active-directory-saas-clever-tutorial/create_aaduser_03.png)
+    ![pulsante Aggiungi Hello](./media/active-directory-saas-clever-tutorial/create_aaduser_03.png)
 
-4. Nella finestra di dialogo **Utente** seguire questa procedura:
+4. In hello **utente** finestra di dialogo eseguire hello alla procedura seguente:
 
-    ![Finestra di dialogo Utente](./media/active-directory-saas-clever-tutorial/create_aaduser_04.png)
+    ![finestra di dialogo utente Hello](./media/active-directory-saas-clever-tutorial/create_aaduser_04.png)
 
-    a. Nella casella **Nome** digitare **BrittaSimon**.
+    a. In hello **nome** digitare **BrittaSimon**.
 
-    b. Nella casella **Nome utente** digitare l'indirizzo di posta elettronica dell'utente Britta Simon.
+    b. In hello **nome utente** casella Tipo hello di indirizzo di posta elettronica dell'utente Britta Simon.
 
-    c. Selezionare la casella di controllo **Mostra password** e quindi prendere nota del valore visualizzato nella casella **Password**.
+    c. Seleziona hello **Show Password** casella di controllo e quindi annotare i valori hello visualizzati in hello **Password** casella.
 
     d. Fare clic su **Crea**.
  
 ### <a name="create-a-clever-test-user"></a>Creare un utente di test di Clever
 
-Per consentire agli utenti di Azure AD di accedere a Clever, è necessario effettuarne il provisioning in Clever.
+toolog agli utenti di Azure AD tooenable in tooClever, è necessario eseguirne il provisioning in Clever.
 
-Nel caso di Clever, collaborare con il [team di supporto clienti di Clever](https://clever.com/about/contact/) per aggiungere gli utenti nella piattaforma Clever. Gli utenti devono essere creati e attivati prima di usare l'accesso Single Sign-On. 
+In caso di Clever, lavorare con [team di supporto Client intelligenti](https://clever.com/about/contact/) per aggiungere gli utenti di hello nella piattaforma appositamente hello. Gli utenti devono essere creati e attivati prima di usare l'accesso Single Sign-On. 
 
 >[!NOTE]
->È possibile usare qualsiasi altro strumento o API di creazione di account utente di Clever per effettuare il provisioning degli account utente di Azure AD.
+>È possibile usare qualsiasi altro strumento di creazione utente appositamente account o le API fornite da tooprovision intelligente degli account utente di Azure AD.
 
-### <a name="assign-the-azure-ad-test-user"></a>Assegnare l'utente test di Azure AD
+### <a name="assign-hello-azure-ad-test-user"></a>Assegnare l'utente test hello Azure AD
 
-In questa sezione Britta Simon viene abilitata per l'uso dell'accesso Single Sign-On di Azure concedendole l'accesso a Clever.
+In questa sezione per abilitare Britta Simon toouse single sign-on Azure concessione dell'accesso tooClever.
 
-![Assegnare il ruolo utente][200] 
+![Assegnazione del ruolo utente hello][200] 
 
-**Per assegnare Britta Simon a Clever, seguire questa procedura:**
+**tooassign Britta Simon tooClever, eseguire hello alla procedura seguente:**
 
-1. Nel portale di Azure aprire la visualizzazione delle applicazioni e quindi la visualizzazione delle directory e passare ad **Applicazioni aziendali**, quindi fare clic su **Tutte le applicazioni**.
+1. Nel portale di Azure hello, aprire la visualizzazione di applicazioni hello, quindi selezionare Visualizza directory toohello e andare troppo**applicazioni aziendali** quindi fare clic su **tutte le applicazioni**.
 
     ![Assegna utente][201] 
 
-2. Nell'elenco delle applicazioni selezionare **Clever**.
+2. Nell'elenco di applicazioni hello, selezionare **Clever**.
 
-    ![Collegamento di Clever nell'elenco delle applicazioni](./media/active-directory-saas-clever-tutorial/tutorial_clever_app.png)  
+    ![Hello Clever collegamento nell'elenco delle applicazioni hello](./media/active-directory-saas-clever-tutorial/tutorial_clever_app.png)  
 
-3. Scegliere **Utenti e gruppi** dal menu a sinistra.
+3. Dal menu hello hello sinistra, fare clic su **utenti e gruppi**.
 
-    ![Collegamento "Utenti e gruppi"][202]
+    ![collegamento di "Utenti e gruppi" Hello][202]
 
 4. Fare clic sul pulsante **Aggiungi**. Selezionare quindi **Utenti e gruppi** nella finestra di dialogo **Aggiungi assegnazione**.
 
-    ![Riquadro Aggiungi assegnazione][203]
+    ![riquadro assegnazione aggiungere Hello][203]
 
-5. Nella finestra di dialogo **Utenti e gruppi** selezionare **Britta Simon** nell'elenco Utenti.
+5. In **utenti e gruppi** finestra di dialogo Seleziona **Britta Simon** nell'elenco di utenti hello.
 
 6. Fare clic sul pulsante **Seleziona** nella finestra di dialogo **Utenti e gruppi**.
 
@@ -269,14 +269,14 @@ In questa sezione Britta Simon viene abilitata per l'uso dell'accesso Single Sig
     
 ### <a name="test-single-sign-on"></a>Testare l'accesso Single Sign-On
 
-In questa sezione viene testata la configurazione dell'accesso Single Sign-On di Azure AD usando il pannello di accesso.
+In questa sezione si test configurazione di Azure AD single sign-on utilizzando hello Pannello di accesso.
 
-Quando si fa clic sul riquadro Clever nel pannello di accesso, si dovrebbe accedere automaticamente all'applicazione Clever.
-Per altre informazioni sul pannello di accesso, vedere [Introduzione al Pannello di accesso](active-directory-saas-access-panel-introduction.md). 
+Quando si fa clic sul riquadro appositamente hello in hello Pannello di accesso, è necessario ottenere automaticamente firmato in tooyour appositamente applicazione.
+Per ulteriori informazioni sul pannello di accesso, vedere [introduzione toohello Pannello di accesso](active-directory-saas-access-panel-introduction.md). 
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
-* [Elenco di esercitazioni sulla procedura di integrazione delle app SaaS con Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [Elenco di esercitazioni sulla tooIntegrate App SaaS con Azure Active Directory](active-directory-saas-tutorial-list.md)
 * [Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory](active-directory-appssoaccess-whatis.md)
 
 <!--Image references-->

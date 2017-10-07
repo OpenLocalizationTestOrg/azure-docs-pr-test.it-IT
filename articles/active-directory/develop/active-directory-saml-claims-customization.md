@@ -1,6 +1,6 @@
 ---
-title: Personalizzazione delle attestazioni rilasciate nel token SAML per le applicazioni preintegrate in Azure Active Directory | Microsoft Docs
-description: Informazioni su come personalizzare le attestazioni rilasciate nel token SAML per le app preintegrate in Azure Active Directory
+title: attestazioni aaaCustomizing rilasciate nel token SAML hello per le app preintegrate in Azure Active Directory | Documenti Microsoft
+description: Informazioni su come toocustomize hello attestazioni rilasciate in hello token SAML per le app preintegrate in Azure Active Directory
 services: active-directory
 documentationcenter: 
 author: jeevansd
@@ -15,66 +15,66 @@ ms.topic: article
 ms.date: 07/11/2017
 ms.author: jeedes
 ms.custom: aaddev
-ms.openlocfilehash: 6d232759630fcc567788a8326b566b659f89d17a
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: a376318929472403e799f02fdd3fbddc91d0a70c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="customizing-claims-issued-in-the-saml-token-for-pre-integrated-apps-in-azure-active-directory"></a>Personalizzazione delle attestazioni rilasciate nel token SAML per le applicazioni preintegrate in Azure Active Directory
-Oggi Azure Active Directory supporta migliaia di applicazioni preintegrate nella raccolta di applicazioni di Azure AD, tra cui oltre 360 che supportano l'accesso Single Sign-On usando il protocollo SAML 2.0. Quando un utente esegue l'autenticazione in un'applicazione con Azure AD usando il protocollo SAML, Azure AD invia un token all'applicazione (via HTTP POST). che l'applicazione convalida e usa per l'accesso dell'utente anziché richiedere l'immissione di nome utente e password. Questi token SAML contengono informazioni sull'utente denominate "attestazioni".
+# <a name="customizing-claims-issued-in-hello-saml-token-for-pre-integrated-apps-in-azure-active-directory"></a>Personalizzazione di attestazioni emesse in hello token SAML per le app preintegrate in Azure Active Directory
+Oggi Azure Active Directory supporta migliaia di applicazioni già integrate nella raccolta di applicazioni AD Azure, tra cui superiori a 360 che supportano l'accesso single sign-on hello protocollo hello SAML 2.0. Quando un utente esegue l'autenticazione tooan applicazione tramite Azure AD usando SAML, Azure AD invia un'applicazione toohello token (mediante un HTTP POST). E quindi, un'applicazione hello convalida e utilizza hello toolog token hello utente anziché richiedere un nome utente e password. I token SAML contengono informazioni sull'utente, hello noto come "attestazioni".
 
-Per quanto riguarda le identità, un'"attestazione" è un insieme di informazioni relative ad un utente dichiarate da un provider di identità all'interno del token rilasciato per tale utente. Nel [token SAML](http://en.wikipedia.org/wiki/SAML_2.0) questi dati sono in genere contenuti nell'istruzione degli attributi SAML. L'ID univoco dell'utente viene in genere rappresentato nel soggetto SAML definito anche identificatore del nome.
+Parlando di identità, un'attestazione"" informazioni relative a un provider di identità su un utente all'interno di hello token rilasciati per tale utente. In [token SAML](http://en.wikipedia.org/wiki/SAML_2.0), questi dati sono in genere sono contenuti nell'istruzione di attributi SAML hello. Hello ID univoco dell'utente viene rappresentato in genere in hello che SAML Subject nota anche come nome di identificatore.
 
-Per impostazione predefinita, Azure Active Directory genera per l'applicazione un token SAML che contiene un'attestazione NameIdentifier, il cui valore nome utente, o nome dell'entità utente, è quello dell'utente in Azure AD. Tale valore identifica in modo univoco l'utente. Il token SAML contiene inoltre ulteriori attestazioni contenenti indirizzo di posta elettronica, nome e cognome dell'utente.
+Per impostazione predefinita, Azure Active Directory rilascia un'applicazione tooyour token SAML che contiene un'attestazione NameIdentifier, con un valore del nome utente dell'utente hello (nome dell'entità utente AKA) in Azure AD. Questo valore può identificare in modo univoco l'utente hello. token SAML Hello contiene inoltre le attestazioni aggiuntive contenente l'indirizzo di posta elettronica dell'utente hello, nome e cognome.
 
-Per visualizzare o modificare le attestazioni generate nel token SAML per l'applicazione, aprire l'applicazione nel portale di Azure. Selezionare la casella di controllo **Visualizza e modifica tutti gli altri attributi utente** nella sezione **Attributi utente** dell'applicazione.
+tooview o modificare attestazioni hello rilasciato in hello applicazione toohello token SAML, un'applicazione hello Apri nel portale di Azure. Selezionare quindi hello **visualizzazione e modificare tutti gli altri attributi utente** casella di controllo in hello **gli attributi utente** sezione dell'applicazione hello.
 
 ![Sezione Attributi utente][1]
 
-I due possibili motivi per cui potrebbe essere necessario modificare le attestazioni rilasciate nel token SAML sono i seguenti:
-* L'applicazione è stata scritta per richiedere un set di URI attestazione o di valori attestazione diverso.
-* L'applicazione è stata distribuita in modo da richiedere un'attestazione NameIdentifier diversa dal nome utente, o nome dell'entità utente, archiviato in Azure Active Directory.
+Esistono due possibili motivi per cui potrebbe essere necessario attestazioni di hello tooedit rilasciate nel token SAML hello:
+* un'applicazione Hello è stato scritto toorequire un diverso set di URI di attestazione o i valori di attestazione.
+* un'applicazione Hello è stata distribuita in modo che richiede un valore diverso da hello username (nome dell'entità utente AKA) archiviati in Azure Active Directory toobe di attestazione NameIdentifier hello.
 
-Per modificare i valori di attestazione predefiniti, selezionare la riga dell'attestazione nella tabella degli attributi del token SAML. Viene visualizzata la sezione **Modifica attributo** dove è possibile modificare il nome e il valore di attestazione nonché lo spazio dei nomi associato all'attestazione.
+È possibile modificare uno dei valori di attestazione predefiniti hello. Selezionare una riga attestazione hello nella tabella di attributi del token SAML hello. Verrà visualizzata hello **Modifica attributo** sezione e quindi è possibile modificare nome attestazione, valore e lo spazio dei nomi associata all'attestazione hello.
 
 ![Modifica attributo utente][2]
 
-È anche possibile rimuovere le attestazioni (ad eccezione di NameIdentifier) usando il menu di scelta rapida, che si apre facendo clic sull'icona **...**.  Si possono inoltre aggiungere nuove attestazioni usando il pulsante **Aggiungi attributo**.
+È inoltre possibile rimuovere attestazioni (ad eccezione della NameIdentifier) utilizzando hello menu di scelta rapida, visualizzato facendo clic su hello **...**  icona.  È inoltre possibile aggiungere nuove attestazioni usando hello **Aggiungi attributo** pulsante.
 
 ![Modifica attributo utente][3]
 
-## <a name="editing-the-nameidentifier-claim"></a>Modifica dell'attestazione NameIdentifier
-Per risolvere il problema relativo alla distribuzione dell'applicazione con un nome utente diverso, fare clic sull'elenco a discesa **Identificatore utente** nella sezione **Attributi utente**. Verrà visualizzata una finestra di dialogo con diverse opzioni:
+## <a name="editing-hello-nameidentifier-claim"></a>La modifica di attestazione NameIdentifier hello
+problema di hello toosolve in cui è stata distribuita un'applicazione hello utilizzando un nome utente diverso, fare clic su hello **identificatore utente** elenco a discesa in hello **gli attributi utente** sezione. Verrà visualizzata una finestra di dialogo con diverse opzioni:
 
 ![Modifica attributo utente][4]
 
-Nell'elenco a discesa selezionare **user.mail** per impostare l'attestazione NameIdentifier in modo che corrisponda all'indirizzo e-mail dell'utente nella directory. In alternativa, selezionare **user.onpremisessamaccountname** per impostare il nome account SAM dell'utente sincronizzato da Azure AD in locale.
+Nell'elenco a discesa hello, selezionare **user.mail** tooset hello NameIdentifier attestazione indirizzo di posta elettronica dell'utente di hello toobe nella directory hello. In alternativa, selezionare **user.onpremisessamaccountname** tooset toohello SAM nome dell'Account utente che è stato sincronizzato da locale AD Azure.
 
-È anche possibile usare la funzione speciale **ExtractMailPrefix()** per rimuovere il suffisso del dominio dall'indirizzo e-mail, dal nome account SAM o dal nome dell'entità utente. In questo modo viene estratta solo la prima parte del nome utente passata, ad esempio "joe_smith" anziché joe_smith@contoso.com.
+È inoltre possibile utilizzare speciale hello **ExtractMailPrefix()** suffisso di funzione tooremove hello dominio dall'indirizzo di posta elettronica hello, nome Account SAM o nome dell'entità utente hello. Ciò consente di estrarre solo prima parte di hello dell'utente hello Nome passati tramite (ad esempio, "joe_smith" invece di joe_smith@contoso.com).
 
 ![Modifica attributo utente][5]
 
-È stata anche aggiunta la funzione **join()** per unire il dominio verificato con il valore dell'identificatore utente. Quando si seleziona la funzione join() in **Identificatore utente** selezionare prima l'identificatore utente come indirizzo e-mail o nome dell'entità utente e selezionare il dominio verificato nel secondo elenco a discesa. Se si seleziona l'indirizzo e-mail con il dominio verificato, AD Azure estrae il nome utente dal primo valore joe_smith di joe_smith@contoso.com e lo aggiunge a contoso.onmicrosoft.com. Vedere l'esempio seguente:
+Ora è stata anche aggiunta hello **join** hello toojoin funzione verificato dominio con valore dell'identificatore utente hello. Quando si seleziona funzione di join hello in hello **identificatore utente** prima istruzione select hello identificatore utente come nome dell'entità di posta elettronica utente o indirizzo e quindi selezionare il dominio verificato in hello secondo discesa. Se si seleziona l'indirizzo di posta elettronica hello con dominio verificato hello e Azure AD estrae hello username da hello primo valore joe_smith da joe_smith@contoso.com e lo aggiunge con contoso.onmicrosoft.com. Vedere hello di esempio seguente:
 
 ![Modifica attributo utente][6]
 
 ## <a name="adding-claims"></a>Aggiunta di attestazioni
-Quando si aggiunge un'attestazione, è possibile specificare il nome dell'attributo (che non deve necessariamente seguire un modello di URI secondo la specifica SAML). Impostare il valore su qualsiasi attributo utente archiviato nella directory.
+Quando si aggiunge un'attestazione, è possibile specificare nome dell'attributo hello (che non deve necessariamente un modello di URI in base alle specifiche SAML hello toofollow). Impostare l'attributo hello valore tooany utente che viene archiviato nella directory hello.
 
 ![Aggiungi attributo utente][7]
 
-Se ad esempio è necessario inviare il reparto dell'organizzazione cui appartiene l'utente come attestazione (si supponga il reparto Vendite), Immettere il nome dell'attestazione come previsto dall'applicazione e quindi selezionare **user.department** come valore.
+Ad esempio, è necessario toosend reparto hello che hello utente appartiene tooin organizzazione come attestazione (ad esempio, le vendite). Immettere il nome di attestazione hello come previsto dall'applicazione hello e quindi selezionare **Department** come valore di hello.
 
 > [!NOTE]
-> Se per un determinato utente non è stato archiviato alcun valore per un attributo selezionato, l'attestazione non verrà rilasciata nel token.
+> Se per un determinato utente è presente alcun valore archiviato per un attributo selezionato, quindi tale attestazione non è vengono rilasciati token di hello.
 
 > [!TIP]
-> **user.onpremisesecurityidentifier** e **user.onpremisesamaccountname** sono supportati solo se si esegue la sincronizzazione dei dati utente da Active Directory in locale usando lo [strumento Azure AD Connect](../active-directory-aadconnect.md).
+> Hello **user.onpremisesecurityidentifier** e **user.onpremisesamaccountname** sono supportate solo quando la sincronizzazione dei dati utente da Active Directory locale usando hello [Azure Strumento di connessione AD](../active-directory-aadconnect.md).
 
 ## <a name="restricted-claims"></a>Attestazioni con restrizioni
 
-Esistono alcune attestazioni con restrizioni in SAML. Se si aggiungono queste attestazioni, Azure AD non le invia. Di seguito sono riportate le attestazioni SAML con restrizioni:
+Esistono alcune attestazioni con restrizioni in SAML. Se si aggiungono queste attestazioni, Azure AD non le invia. Di seguito sono hello SAML limitato set di attestazioni:
 
     | Tipo di attestazione (URI) |
     | ------------------- |
@@ -127,7 +127,7 @@ Esistono alcune attestazioni con restrizioni in SAML. Se si aggiungono queste at
 
 ## <a name="next-steps"></a>Passaggi successivi
 * [Indice di articoli per la gestione di applicazioni in Azure Active Directory](../active-directory-apps-index.md)
-* [Configurazione del servizio Single Sign-On in applicazioni non presenti nella raccolta di applicazioni di Azure Active Directory](../active-directory-saas-custom-apps.md)
+* [Configurazione di single sign-on tooapplications non presenti nella raccolta di hello Azure Active Directory dell'applicazione](../active-directory-saas-custom-apps.md)
 * [Risoluzione dei problemi dell'accesso Single Sign-On basato su SAML](active-directory-saml-debugging.md)
 
 <!--Image references-->

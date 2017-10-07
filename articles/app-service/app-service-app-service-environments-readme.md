@@ -1,6 +1,6 @@
 ---
-title: Ambiente del servizio app | Documentazione Microsoft
-description: "Che cos'è un ambiente del servizio app di Azure? Introduzione all'ambiente del servizio app."
+title: Ambiente del servizio aaaApp | Documenti Microsoft
+description: "Che cos'è un ambiente del servizio app di Azure? Un'introduzione tooApp ambiente del servizio."
 keywords: ambiente del servizio app di azure, rete virtuale, rete protetta
 services: app-service
 documentationcenter: 
@@ -15,11 +15,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/01/2016
 ms.author: stefsch
-ms.openlocfilehash: 1de3f2c513f4f5ce6fd2ab2b57514122955a9a98
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1b59fed4e5a72d4c4805e1dca203747e07e77103
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="app-service-environment-documentation"></a>Documentazione relativa agli ambienti del servizio app
 Un ambiente di servizio app è un'opzione del piano di servizio [Premium][PremiumTier] di Servizio app di Azure che fornisce un ambiente completamente isolato e dedicato all'esecuzione sicura delle app di Servizio di Azure su larga scala, tra cui [app Web][WebApps], [app per dispositivi mobili][MobileApps], e [app per le API][APIApps].  
@@ -31,9 +31,9 @@ Gli ambienti di servizi di app sono ideali per i carichi di lavoro dell'applicaz
 
 I clienti possono creare più ambienti di servizi di applicazione in una singola area di Azure, nonché in più aree di Azure.  Questo rende gli Ambienti di servizio dell’App ideali per i livelli dell’applicazione con scalabilità orizzontale senza stato, nel supportare i carichi di lavoro elevati RPS.
 
-Gli ambienti di servizio dell’App sono isolati per eseguire solo le applicazioni di un singolo cliente e sono sempre distribuiti in una rete virtuale.  I clienti hanno il controllo con granularità fine del traffico di rete in ingresso e in uscita dell'applicazione tramite [gruppi di sicurezza di rete][NetworkSecurityGroups].  Le applicazioni possono anche stabilire connessioni protette ad alta velocità su reti virtuali con risorse aziendali locali.
+Gli ambienti del servizio App sono isolati toorunning solo le applicazioni di un singolo cliente e vengono sempre distribuiti in una rete virtuale.  I clienti hanno il controllo con granularità fine del traffico di rete in ingresso e in uscita dell'applicazione tramite [gruppi di sicurezza di rete][NetworkSecurityGroups].  Le applicazioni inoltre possono stabilire connessioni protette ad alta velocità sulle risorse di reti virtuali tooon tra più sedi aziendali.
 
-Spesso le app devono accedere a risorse aziendali, ad esempio database e servizi Web interni.  Le applicazioni in esecuzione in ambienti del servizio app possono accedere alle risorse raggiungibili tramite connessioni VPN [da sito a sito][SiteToSite] e [Azure ExpressRoute][ExpressRoute].
+App è spesso necessitano tooaccess alle risorse aziendali, ad esempio servizi web e database interni.  Le applicazioni in esecuzione in ambienti del servizio app possono accedere alle risorse raggiungibili tramite connessioni VPN [da sito a sito][SiteToSite] e [Azure ExpressRoute][ExpressRoute].
 
 * [Che cos'è un ambiente del servizio app?](../app-service-web/app-service-app-service-environment-intro.md)
 * [Creazione di un ambiente del servizio app](../app-service-web/app-service-web-how-to-create-an-app-service-environment.md)

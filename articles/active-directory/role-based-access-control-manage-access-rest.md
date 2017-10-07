@@ -1,6 +1,6 @@
 ---
-title: Controllo degli accessi in base al ruolo con REST - Azure AD | Microsoft Docs
-description: Gestione del controllo degli accessi in base al ruolo con l'API REST
+title: Controllo degli accessi basato su aaaRole con altre, Azure AD | Documenti Microsoft
+description: La gestione del controllo di accesso basato sui ruoli con hello API REST
 services: active-directory
 documentationcenter: na
 author: andredm7
@@ -14,41 +14,41 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/16/2017
 ms.author: andredm
-ms.openlocfilehash: a5c19fd87ce1ae3e199bf1dfc8cf82f5653baac2
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: ccd402fd4fe4583288076cac23753dd067694681
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="manage-role-based-access-control-with-the-rest-api"></a>Gestione del controllo degli accessi in base al ruolo con l'API REST
+# <a name="manage-role-based-access-control-with-hello-rest-api"></a>Controllare l'accesso basato sui ruoli con hello API REST
 > [!div class="op_single_selector"]
 > * [PowerShell](role-based-access-control-manage-access-powershell.md)
 > * [Interfaccia della riga di comando di Azure](role-based-access-control-manage-access-azure-cli.md)
 > * [API REST](role-based-access-control-manage-access-rest.md)
 
-Il controllo degli accessi in base al ruolo nel portale di Azure e nell'API di Azure Resource Manager aiuta a gestire l'accesso alla sottoscrizione e alle risorse a un livello estremamente specifico. Con questa funzionalità è possibile concedere l'accesso a utenti, gruppi o entità servizio di Active Directory assegnando loro dei ruoli in un determinato ambito.
+Role-Based Access controllo (RBAC) nel portale di Azure hello e API di gestione risorse di Azure consente di gestire l'accesso tooyour sottoscrizione e le risorse a un livello con granularità fine. Con questa funzionalità, è possibile concedere l'accesso per utenti, gruppi o entità servizio Active Directory assegnando toothem alcuni ruoli a un particolare ambito.
 
 ## <a name="list-all-role-assignments"></a>Elencare tutte le assegnazioni di ruolo
-Elenca tutte le assegnazioni di ruolo all'ambito specificato e agli ambiti secondari.
+Elenca tutte le assegnazioni di ruolo hello in hello specificato ambito e subscopes.
 
-Per elencare le assegnazioni di ruolo, è necessario avere accesso all'operazione `Microsoft.Authorization/roleAssignments/read` nell'ambito. L'accesso a questa operazione viene concesso a tutti i ruoli predefiniti. Per altre informazioni sulle assegnazioni di ruolo e la gestione dell'accesso per le risorse di Azure, vedere [Controllo degli accessi in base al ruolo di Azure](role-based-access-control-configure.md).
+le assegnazioni di ruolo toolist, è necessario avere accesso troppo`Microsoft.Authorization/roleAssignments/read` operazione nell'ambito di hello. Tutti i ruoli predefiniti hello vengono concesse operazione toothis di accesso. Per altre informazioni sulle assegnazioni di ruolo e la gestione dell'accesso per le risorse di Azure, vedere [Controllo degli accessi in base al ruolo di Azure](role-based-access-control-configure.md).
 
 ### <a name="request"></a>Richiesta
-Usare il metodo **GET** con l'URI seguente:
+Hello utilizzare **ottenere** metodo con hello seguente URI:
 
     https://management.azure.com/{scope}/providers/Microsoft.Authorization/roleAssignments?api-version={api-version}&$filter={filter}
 
-All'interno dell'URI, apportare le sostituzioni seguenti per personalizzare la richiesta:
+All'interno di hello URI, effettuare hello seguente le sostituzioni toocustomize la richiesta:
 
-1. Sostituire *{scope}* con l'ambito per il quale elencare le assegnazioni di ruolo. Gli esempi seguenti illustrano come specificare l'ambito per livelli differenti:
+1. Sostituire *{scope}* con ambito hello per i quali si desiderano toolist le assegnazioni di ruolo hello. Hello seguono esempi Mostra come toospecify hello ambito per diversi livelli:
 
    * Sottoscrizione: /subscriptions/{subscription-id}  
    * Gruppo di risorse: /subscriptions/{subscription-id}/resourceGroups/myresourcegroup1  
    * Risorsa: /subscriptions/{subscription-id}/resourceGroups/myresourcegroup1/providers/Microsoft.Web/sites/mysite1  
 2. Sostituire *{api-version}* con 2015-07-01.
-3. Sostituire *{filter}* con la condizione da applicare per filtrare l'elenco di assegnazioni di ruolo:
+3. Sostituire *{filter}* con condizione hello che si desidera l'elenco di assegnazione di ruolo di tooapply toofilter hello:
 
-   * Elencare le assegnazioni di ruolo solo per l'ambito specificato, senza includere le assegnazioni di ruolo negli ambiti secondari: `atScope()`    
+   * Elenco di assegnazioni di ruolo per solo hello specificato ambito, escluse le assegnazioni di ruolo hello in subscopes:`atScope()`    
    * Elencare le assegnazioni di ruolo solo per l'utente, il gruppo o l'applicazione specifici: `principalId%20eq%20'{objectId of user, group, or service principal}'`  
    * Elencare le assegnazioni di ruolo per un utente specifico, incluse quelle ereditate dai gruppi | `assignedTo('{objectId of user}')`
 
@@ -79,23 +79,23 @@ Codice di stato: 200
 ```
 
 ## <a name="get-information-about-a-role-assignment"></a>Ottenere informazioni su un'assegnazione di ruolo
-È possibile ottenere informazioni su una singola assegnazione di ruolo specificata dall'identificatore di assegnazione di ruolo.
+Ottiene informazioni su una singola assegnazione di ruolo specificata dall'identificatore di assegnazione di ruolo hello.
 
-Per ottenere informazioni su un'assegnazione di ruolo, è necessario avere accesso all'operazione `Microsoft.Authorization/roleAssignments/read` . L'accesso a questa operazione viene concesso a tutti i ruoli predefiniti. Per altre informazioni sulle assegnazioni di ruolo e la gestione dell'accesso per le risorse di Azure, vedere [Controllo degli accessi in base al ruolo di Azure](role-based-access-control-configure.md).
+tooget informazioni su un'assegnazione di ruolo, è necessario avere accesso troppo`Microsoft.Authorization/roleAssignments/read` operazione. Tutti i ruoli predefiniti hello vengono concesse operazione toothis di accesso. Per altre informazioni sulle assegnazioni di ruolo e la gestione dell'accesso per le risorse di Azure, vedere [Controllo degli accessi in base al ruolo di Azure](role-based-access-control-configure.md).
 
 ### <a name="request"></a>Richiesta
-Usare il metodo **GET** con l'URI seguente:
+Hello utilizzare **ottenere** metodo con hello seguente URI:
 
     https://management.azure.com/{scope}/providers/Microsoft.Authorization/roleAssignments/{role-assignment-id}?api-version={api-version}
 
-All'interno dell'URI, apportare le sostituzioni seguenti per personalizzare la richiesta:
+All'interno di hello URI, effettuare hello seguente le sostituzioni toocustomize la richiesta:
 
-1. Sostituire *{scope}* con l'ambito per il quale elencare le assegnazioni di ruolo. Gli esempi seguenti illustrano come specificare l'ambito per livelli differenti:
+1. Sostituire *{scope}* con ambito hello per i quali si desiderano toolist le assegnazioni di ruolo hello. Hello seguono esempi Mostra come toospecify hello ambito per diversi livelli:
 
    * Sottoscrizione: /subscriptions/{subscription-id}  
    * Gruppo di risorse: /subscriptions/{subscription-id}/resourceGroups/myresourcegroup1  
    * Risorsa: /subscriptions/{subscription-id}/resourceGroups/myresourcegroup1/providers/Microsoft.Web/sites/mysite1  
-2. Sostituire *{role-assignment-id}* con l'identificatore GUID dell'assegnazione di ruolo.
+2. Sostituire *{role-assignment-id}* con identificatore GUID hello hello assegnazione di ruolo.
 3. Sostituire *{api-version}* con 2015-07-01.
 
 ### <a name="response"></a>Response
@@ -120,26 +120,26 @@ Codice di stato: 200
 ```
 
 ## <a name="create-a-role-assignment"></a>Creare un'assegnazione di ruolo
-È possibile creare un'assegnazione di ruolo nell'ambito specificato per l'entità specificata, concedendo il ruolo specificato.
+Creare un ruolo di assegnazione di hello specificato ambito per hello specificato principale concessione hello del ruolo specificato.
 
-Per creare un'assegnazione di ruolo, è necessario avere accesso all'operazione `Microsoft.Authorization/roleAssignments/write` . Tra i ruoli predefiniti, l'accesso a questa operazione viene concesso soltanto ai ruoli *Proprietario* e *Amministratore Accesso utenti*. Per altre informazioni sulle assegnazioni di ruolo e la gestione dell'accesso per le risorse di Azure, vedere [Controllo degli accessi in base al ruolo di Azure](role-based-access-control-configure.md).
+toocreate un'assegnazione di ruolo, è necessario avere accesso troppo`Microsoft.Authorization/roleAssignments/write` operazione. Di hello ruoli predefiniti, solo *proprietario* e *amministratore di accesso utente* vengono concesse operazione toothis di accesso. Per altre informazioni sulle assegnazioni di ruolo e la gestione dell'accesso per le risorse di Azure, vedere [Controllo degli accessi in base al ruolo di Azure](role-based-access-control-configure.md).
 
 ### <a name="request"></a>Richiesta
-Usare il metodo **PUT** con l'URI seguente:
+Hello utilizzare **inserire** metodo con hello seguente URI:
 
     https://management.azure.com/{scope}/providers/Microsoft.Authorization/roleAssignments/{role-assignment-id}?api-version={api-version}
 
-All'interno dell'URI, apportare le sostituzioni seguenti per personalizzare la richiesta:
+All'interno di hello URI, effettuare hello seguente le sostituzioni toocustomize la richiesta:
 
-1. Sostituire *{scope}* con l'ambito in cui creare le assegnazioni di ruolo. Quando si crea un'assegnazione di ruolo in un ambito padre, tutti gli ambiti figlio ereditano la stessa assegnazione di ruolo. Gli esempi seguenti illustrano come specificare l'ambito per livelli differenti:
+1. Sostituire *{scope}* con ambito hello in corrispondenza del quale si desiderano toocreate le assegnazioni di ruolo hello. Quando si crea un'assegnazione di ruolo a un ambito padre, tutti gli ambiti figlio ereditano hello assegnazione di ruolo stesso. Hello seguono esempi Mostra come toospecify hello ambito per diversi livelli:
 
    * Sottoscrizione: /subscriptions/{subscription-id}  
    * Gruppo di risorse: /subscriptions/{subscription-id}/resourceGroups/myresourcegroup1   
    * Risorsa: /subscriptions/{subscription-id}/resourceGroups/myresourcegroup1/providers/Microsoft.Web/sites/mysite1  
-2. Sostituire *{role-assignment-id}* con un nuovo GUID, che diventa l'identificatore GUID della nuova assegnazione di ruolo.
+2. Sostituire *{role-assignment-id}* con un nuovo GUID, che diventa l'identificatore GUID hello hello nuova assegnazione di ruolo.
 3. Sostituire *{api-version}* con 2015-07-01.
 
-Per il corpo della richiesta, specificare i valori nel formato seguente:
+Corpo della richiesta hello, fornire valori hello hello seguente formato:
 
 ```
 {
@@ -153,8 +153,8 @@ Per il corpo della richiesta, specificare i valori nel formato seguente:
 
 | Nome dell'elemento | Obbligatorio | Tipo | Descrizione |
 | --- | --- | --- | --- |
-| roleDefinitionId |Sì |String |Identificatore del ruolo. Il formato dell'identificatore è: `{scope}/providers/Microsoft.Authorization/roleDefinitions/{role-definition-id-guid}` |
-| principalId |Sì |String |objectId dell'entità di Azure AD (utente, gruppo o entità servizio) a cui deve essere assegnato il ruolo. |
+| roleDefinitionId |Sì |String |Identificatore Hello del ruolo di hello. formato Hello dell'identificatore hello è:`{scope}/providers/Microsoft.Authorization/roleDefinitions/{role-definition-id-guid}` |
+| principalId |Sì |String |objectId dell'entità hello Azure AD (utente, gruppo o entità servizio) viene assegnato il ruolo di hello toowhich. |
 
 ### <a name="response"></a>Response
 Codice di stato: 201
@@ -178,23 +178,23 @@ Codice di stato: 201
 ```
 
 ## <a name="delete-a-role-assignment"></a>Eliminare un'assegnazione di ruolo
-È possibile eliminare un'assegnazione di ruolo nell'ambito specificato.
+Elimina un'assegnazione di ruolo hello specificato ambito.
 
-Per eliminare un'assegnazione di ruolo, è necessario avere accesso all'operazione `Microsoft.Authorization/roleAssignments/delete` . Tra i ruoli predefiniti, l'accesso a questa operazione viene concesso soltanto ai ruoli *Proprietario* e *Amministratore Accesso utenti*. Per altre informazioni sulle assegnazioni di ruolo e la gestione dell'accesso per le risorse di Azure, vedere [Controllo degli accessi in base al ruolo di Azure](role-based-access-control-configure.md).
+toodelete un'assegnazione di ruolo, è necessario disporre di accesso toohello `Microsoft.Authorization/roleAssignments/delete` operazione. Di hello ruoli predefiniti, solo *proprietario* e *amministratore di accesso utente* vengono concesse operazione toothis di accesso. Per altre informazioni sulle assegnazioni di ruolo e la gestione dell'accesso per le risorse di Azure, vedere [Controllo degli accessi in base al ruolo di Azure](role-based-access-control-configure.md).
 
 ### <a name="request"></a>Richiesta
-Usare il metodo **DELETE** con l'URI seguente:
+Hello utilizzare **eliminare** metodo con hello seguente URI:
 
     https://management.azure.com/{scope}/providers/Microsoft.Authorization/roleAssignments/{role-assignment-id}?api-version={api-version}
 
-All'interno dell'URI, apportare le sostituzioni seguenti per personalizzare la richiesta:
+All'interno di hello URI, effettuare hello seguente le sostituzioni toocustomize la richiesta:
 
-1. Sostituire *{scope}* con l'ambito in cui creare le assegnazioni di ruolo. Gli esempi seguenti illustrano come specificare l'ambito per livelli differenti:
+1. Sostituire *{scope}* con ambito hello in corrispondenza del quale si desiderano toocreate le assegnazioni di ruolo hello. Hello seguono esempi Mostra come toospecify hello ambito per diversi livelli:
 
    * Sottoscrizione: /subscriptions/{subscription-id}  
    * Gruppo di risorse: /subscriptions/{subscription-id}/resourceGroups/myresourcegroup1  
    * Risorsa: /subscriptions/{subscription-id}/resourceGroups/myresourcegroup1/providers/Microsoft.Web/sites/mysite1  
-2. Sostituire *{role-assignment-id}* con l'identificatore GUID dell'assegnazione di ruolo.
+2. Sostituire *{role-assignment-id}* con l'id di assegnazione di ruolo hello GUID.
 3. Sostituire *{api-version}* con 2015-07-01.
 
 ### <a name="response"></a>Response
@@ -219,27 +219,27 @@ Codice di stato: 200
 ```
 
 ## <a name="list-all-roles"></a>Elencare tutti i ruoli
-Elenca tutti i ruoli disponibili per l'assegnazione nell'ambito specificato.
+Elenca tutti i ruoli di hello che sono disponibili per l'assegnazione hello specificato ambito.
 
-Per elencare i ruoli, è necessario avere accesso all'operazione `Microsoft.Authorization/roleDefinitions/read` nell'ambito. L'accesso a questa operazione viene concesso a tutti i ruoli predefiniti. Per altre informazioni sulle assegnazioni di ruolo e la gestione dell'accesso per le risorse di Azure, vedere [Controllo degli accessi in base al ruolo di Azure](role-based-access-control-configure.md).
+i ruoli toolist, è necessario avere accesso troppo`Microsoft.Authorization/roleDefinitions/read` operazione nell'ambito di hello. Tutti i ruoli predefiniti hello vengono concesse operazione toothis di accesso. Per altre informazioni sulle assegnazioni di ruolo e la gestione dell'accesso per le risorse di Azure, vedere [Controllo degli accessi in base al ruolo di Azure](role-based-access-control-configure.md).
 
 ### <a name="request"></a>Richiesta
-Usare il metodo **GET** con l'URI seguente:
+Hello utilizzare **ottenere** metodo con hello seguente URI:
 
     https://management.azure.com/{scope}/providers/Microsoft.Authorization/roleDefinitions?api-version={api-version}&$filter={filter}
 
-All'interno dell'URI, apportare le sostituzioni seguenti per personalizzare la richiesta:
+All'interno di hello URI, effettuare hello seguente le sostituzioni toocustomize la richiesta:
 
-1. Sostituire *{scope}* con l'ambito per il quale elencare i ruoli. Gli esempi seguenti illustrano come specificare l'ambito per livelli differenti:
+1. Sostituire *{scope}* con ambito hello per i quali si desiderano toolist ruoli hello. Hello seguono esempi Mostra come toospecify hello ambito per diversi livelli:
 
    * Sottoscrizione: /subscriptions/{subscription-id}  
    * Gruppo di risorse: /subscriptions/{subscription-id}/resourceGroups/myresourcegroup1  
    * Risorsa: /subscriptions/{subscription-id}/resourceGroups/myresourcegroup1/providers/Microsoft.Web/sites/mysite1  
 2. Sostituire *{api-version}* con 2015-07-01.
-3. Sostituire *{filter}* con la condizione da applicare per filtrare l'elenco di ruoli:
+3. Sostituire *{filter}* con condizione hello che si desidera tooapply toofilter hello elenco ruoli:
 
-   * Elencare i ruoli disponibili per l'assegnazione nell'ambito specificato e in tutti i relativi ambiti figlio: `atScopeAndBelow()`
-   * Cercare un ruolo usando l'esatto nome visualizzato: `roleName%20eq%20'{role-display-name}'`. Usare il form con codifica URL dell'esatto nome visualizzato del ruolo. Ad esempio: `$filter=roleName%20eq%20'Virtual%20Machine%20Contributor'` |
+   * Elenco di ruoli disponibili per l'assegnazione hello specificato ambito e i relativi ambiti figlio:`atScopeAndBelow()`
+   * Cercare un ruolo usando l'esatto nome visualizzato: `roleName%20eq%20'{role-display-name}'`. Nome visualizzato hello del ruolo hello nel formato con codifica URL hello utilizzare. Ad esempio: `$filter=roleName%20eq%20'Virtual%20Machine%20Contributor'` |
 
 ### <a name="response"></a>Response
 Codice di stato: 200
@@ -251,7 +251,7 @@ Codice di stato: 200
       "properties": {
         "roleName": "Virtual Machine Contributor",
         "type": "BuiltInRole",
-        "description": "Lets you manage virtual machines, but not access to them, and not the virtual network or storage account they\u2019re connected to.",
+        "description": "Lets you manage virtual machines, but not access toothem, and not hello virtual network or storage account they\u2019re connected to.",
         "assignableScopes": [
           "/"
         ],
@@ -302,23 +302,23 @@ Codice di stato: 200
 ```
 
 ## <a name="get-information-about-a-role"></a>Ottenere informazioni su un ruolo
-È possibile ottenere informazioni su un singolo ruolo specificato dall'identificatore di definizione. Per ottenere informazioni su un singolo ruolo usando il relativo nome visualizzato, vedere [Elencare tutti i ruoli](role-based-access-control-manage-access-rest.md#list-all-roles).
+Ottiene informazioni su un singolo ruolo specificato dall'identificatore hello della definizione di ruolo. informazioni tooget su un singolo ruolo usando il nome visualizzato, vedere [l'elenco di tutti i ruoli](role-based-access-control-manage-access-rest.md#list-all-roles).
 
-Per ottenere informazioni su un ruolo, è necessario avere accesso all'operazione `Microsoft.Authorization/roleDefinitions/read` . L'accesso a questa operazione viene concesso a tutti i ruoli predefiniti. Per altre informazioni sulle assegnazioni di ruolo e la gestione dell'accesso per le risorse di Azure, vedere [Controllo degli accessi in base al ruolo di Azure](role-based-access-control-configure.md).
+tooget informazioni su un ruolo, è necessario avere accesso troppo`Microsoft.Authorization/roleDefinitions/read` operazione. Tutti i ruoli predefiniti hello vengono concesse operazione toothis di accesso. Per altre informazioni sulle assegnazioni di ruolo e la gestione dell'accesso per le risorse di Azure, vedere [Controllo degli accessi in base al ruolo di Azure](role-based-access-control-configure.md).
 
 ### <a name="request"></a>Richiesta
-Usare il metodo **GET** con l'URI seguente:
+Hello utilizzare **ottenere** metodo con hello seguente URI:
 
     https://management.azure.com/{scope}/providers/Microsoft.Authorization/roleDefinitions/{role-definition-id}?api-version={api-version}
 
-All'interno dell'URI, apportare le sostituzioni seguenti per personalizzare la richiesta:
+All'interno di hello URI, effettuare hello seguente le sostituzioni toocustomize la richiesta:
 
-1. Sostituire *{scope}* con l'ambito per il quale elencare le assegnazioni di ruolo. Gli esempi seguenti illustrano come specificare l'ambito per livelli differenti:
+1. Sostituire *{scope}* con ambito hello per i quali si desiderano toolist le assegnazioni di ruolo hello. Hello seguono esempi Mostra come toospecify hello ambito per diversi livelli:
 
    * Sottoscrizione: /subscriptions/{subscription-id}  
    * Gruppo di risorse: /subscriptions/{subscription-id}/resourceGroups/myresourcegroup1  
    * Risorsa: /subscriptions/{subscription-id}/resourceGroups/myresourcegroup1/providers/Microsoft.Web/sites/mysite1  
-2. Sostituire *{role-definition-id}* con l'identificatore GUID della definizione di ruolo.
+2. Sostituire *{role-definition-id}* con identificatore GUID hello hello definizione del ruolo.
 3. Sostituire *{api-version}* con 2015-07-01.
 
 ### <a name="response"></a>Response
@@ -331,7 +331,7 @@ Codice di stato: 200
       "properties": {
         "roleName": "Virtual Machine Contributor",
         "type": "BuiltInRole",
-        "description": "Lets you manage virtual machines, but not access to them, and not the virtual network or storage account they\u2019re connected to.",
+        "description": "Lets you manage virtual machines, but not access toothem, and not hello virtual network or storage account they\u2019re connected to.",
         "assignableScopes": [
           "/"
         ],
@@ -384,24 +384,24 @@ Codice di stato: 200
 ## <a name="create-a-custom-role"></a>Creare un ruolo personalizzato
 È possibile creare un ruolo personalizzato.
 
-Per creare un ruolo personalizzato, è necessario avere accesso all'operazione `Microsoft.Authorization/roleDefinitions/write` in tutti i `AssignableScopes`. Tra i ruoli predefiniti, l'accesso a questa operazione viene concesso soltanto ai ruoli *Proprietario* e *Amministratore Accesso utenti*. Per altre informazioni sulle assegnazioni di ruolo e la gestione dell'accesso per le risorse di Azure, vedere [Controllo degli accessi in base al ruolo di Azure](role-based-access-control-configure.md).
+toocreate un ruolo personalizzato, è necessario avere accesso troppo`Microsoft.Authorization/roleDefinitions/write` operazione su tutti hello `AssignableScopes`. Di hello ruoli predefiniti, solo *proprietario* e *amministratore di accesso utente* vengono concesse operazione toothis di accesso. Per altre informazioni sulle assegnazioni di ruolo e la gestione dell'accesso per le risorse di Azure, vedere [Controllo degli accessi in base al ruolo di Azure](role-based-access-control-configure.md).
 
 ### <a name="request"></a>Richiesta
-Usare il metodo **PUT** con l'URI seguente:
+Hello utilizzare **inserire** metodo con hello seguente URI:
 
     https://management.azure.com/{scope}/providers/Microsoft.Authorization/roleDefinitions/{role-definition-id}?api-version={api-version}
 
-All'interno dell'URI, apportare le sostituzioni seguenti per personalizzare la richiesta:
+All'interno di hello URI, effettuare hello seguente le sostituzioni toocustomize la richiesta:
 
-1. Sostituire *{scope}* con il primo *AssignableScope* del ruolo personalizzato. Gli esempi seguenti illustrano come specificare l'ambito per livelli differenti:
+1. Sostituire *{scope}* con hello prima *AssignableScope* di ruolo personalizzata hello. Hello seguono esempi Mostra come toospecify hello ambito per diversi livelli.
 
    * Sottoscrizione: /subscriptions/{subscription-id}  
    * Gruppo di risorse: /subscriptions/{subscription-id}/resourceGroups/myresourcegroup1  
    * Risorsa: /subscriptions/{subscription-id}/resourceGroups/myresourcegroup1/providers/Microsoft.Web/sites/mysite1  
-2. Sostituire *{role-definition-id}* con un nuovo GUID, che diventa l'identificatore GUID del nuovo ruolo personalizzato.
+2. Sostituire *{role-definition-id}* con un nuovo GUID, che diventa l'identificatore GUID hello del nuovo ruolo personalizzato hello.
 3. Sostituire *{api-version}* con 2015-07-01.
 
-Per il corpo della richiesta, specificare i valori nel formato seguente:
+Corpo della richiesta hello, fornire valori hello hello seguente formato:
 
 ```
 {
@@ -436,13 +436,13 @@ Per il corpo della richiesta, specificare i valori nel formato seguente:
 
 | Nome dell'elemento | Obbligatorio | Tipo | Descrizione |
 | --- | --- | --- | --- |
-| name |Sì |String |Identificatore GUID del ruolo personalizzato. |
-| properties.roleName |Sì |String |Nome visualizzato del ruolo personalizzato. La dimensione massima è di 128 caratteri. |
-| properties.description |No |String |Descrizione del ruolo personalizzato. La dimensione massima è di 1024 caratteri. |
-| properties.type |Sì |String |Impostare su "CustomRole". |
-| properties.permissions.actions |sì |String[] |Matrice di stringhe di azione che specifica le operazioni concesse dal ruolo personalizzato. |
-| properties.permissions.notActions |No |String[] |Matrice di stringhe di azione che specifica le operazioni da escludere dalle operazioni concesse dal ruolo personalizzato. |
-| properties.assignableScopes |Sì |String[] |Matrice di ambiti in cui il ruolo personalizzato può essere usato. |
+| name |Sì |String |Identificatore GUID del ruolo personalizzata hello. |
+| properties.roleName |Sì |String |Nome visualizzato del ruolo personalizzata hello. La dimensione massima è di 128 caratteri. |
+| properties.description |No |String |Descrizione del ruolo personalizzata hello. La dimensione massima è di 1024 caratteri. |
+| properties.type |Sì |String |Impostare troppo "CustomRole". |
+| properties.permissions.actions |sì |String[] |Una matrice di azione di stringhe che specifica le operazioni di hello concesse dal ruolo personalizzata hello. |
+| properties.permissions.notActions |No |String[] |Una matrice di stringhe di azione specifica hello operazioni tooexclude da operazioni di hello concesse dal ruolo personalizzata hello. |
+| properties.assignableScopes |Sì |String[] |Matrice di ambiti in cui hello può essere utilizzato un ruolo personalizzato. |
 
 ### <a name="response"></a>Response
 Codice di stato: 201
@@ -487,24 +487,24 @@ Codice di stato: 201
 ## <a name="update-a-custom-role"></a>Aggiornare un ruolo personalizzato
 È possibile modificare un ruolo personalizzato.
 
-Per modificare un ruolo personalizzato, è necessario avere accesso all'operazione `Microsoft.Authorization/roleDefinitions/write` in tutti i `AssignableScopes`. Tra i ruoli predefiniti, l'accesso a questa operazione viene concesso soltanto ai ruoli *Proprietario* e *Amministratore Accesso utenti*. Per altre informazioni sulle assegnazioni di ruolo e la gestione dell'accesso per le risorse di Azure, vedere [Controllo degli accessi in base al ruolo di Azure](role-based-access-control-configure.md).
+toomodify un ruolo personalizzato, è necessario avere accesso troppo`Microsoft.Authorization/roleDefinitions/write` operazione su tutti hello `AssignableScopes`. Di hello ruoli predefiniti, solo *proprietario* e *amministratore di accesso utente* vengono concesse operazione toothis di accesso. Per altre informazioni sulle assegnazioni di ruolo e la gestione dell'accesso per le risorse di Azure, vedere [Controllo degli accessi in base al ruolo di Azure](role-based-access-control-configure.md).
 
 ### <a name="request"></a>Richiesta
-Usare il metodo **PUT** con l'URI seguente:
+Hello utilizzare **inserire** metodo con hello seguente URI:
 
     https://management.azure.com/{scope}/providers/Microsoft.Authorization/roleDefinitions/{role-definition-id}?api-version={api-version}
 
-All'interno dell'URI, apportare le sostituzioni seguenti per personalizzare la richiesta:
+All'interno di hello URI, effettuare hello seguente le sostituzioni toocustomize la richiesta:
 
-1. Sostituire *{scope}* con il primo *AssignableScope* del ruolo personalizzato. Gli esempi seguenti illustrano come specificare l'ambito per livelli differenti:
+1. Sostituire *{scope}* con hello prima *AssignableScope* di ruolo personalizzata hello. Hello seguono esempi Mostra come toospecify hello ambito per diversi livelli:
 
    * Sottoscrizione: /subscriptions/{subscription-id}  
    * Gruppo di risorse: /subscriptions/{subscription-id}/resourceGroups/myresourcegroup1  
    * Risorsa: /subscriptions/{subscription-id}/resourceGroups/myresourcegroup1/providers/Microsoft.Web/sites/mysite1  
-2. Sostituire *{role-definition-id}* con l'identificatore GUID del ruolo personalizzato.
+2. Sostituire *{role-definition-id}* con identificatore GUID hello di ruolo personalizzata hello.
 3. Sostituire *{api-version}* con 2015-07-01.
 
-Per il corpo della richiesta, specificare i valori nel formato seguente:
+Corpo della richiesta hello, fornire valori hello hello seguente formato:
 
 ```
 {
@@ -539,13 +539,13 @@ Per il corpo della richiesta, specificare i valori nel formato seguente:
 
 | Nome dell'elemento | Obbligatorio | Tipo | Descrizione |
 | --- | --- | --- | --- |
-| name |Sì |String |Identificatore GUID del ruolo personalizzato. |
-| properties.roleName |Sì |String |Nome visualizzato del ruolo personalizzato aggiornato. |
-| properties.description |No |String |Descrizione del ruolo personalizzato aggiornato. |
-| properties.type |Sì |String |Impostare su "CustomRole". |
-| properties.permissions.actions |sì |String[] |Matrice di stringhe di azione che specifica le operazioni alle quali il ruolo personalizzato aggiornato concede l'accesso. |
-| properties.permissions.notActions |No |String[] |Matrice di stringhe di azione che specifica le operazioni da escludere dalle operazione alle quali il ruolo personalizzato aggiornato concede l'accesso. |
-| properties.assignableScopes |Sì |String[] |Matrice di ambiti in cui il ruolo personalizzato aggiornato può essere usato. |
+| name |Sì |String |Identificatore GUID del ruolo personalizzata hello. |
+| properties.roleName |Sì |String |Nome visualizzato del ruolo personalizzata aggiornata hello. |
+| properties.description |No |String |Descrizione di hello aggiornamento ruolo personalizzato. |
+| properties.type |Sì |String |Impostare troppo "CustomRole". |
+| properties.permissions.actions |sì |String[] |Una matrice di stringhe di azione specifica hello toowhich operazioni di hello aggiornato personalizzato ruolo concede l'accesso. |
+| properties.permissions.notActions |No |String[] |Una matrice di azione stringhe specificando tooexclude di operazioni di hello dalle operazioni hello quali hello aggiornato concessioni di ruoli personalizzato. |
+| properties.assignableScopes |Sì |String[] |Matrice di ambiti in cui hello può essere usato ruolo personalizzato aggiornato. |
 
 ### <a name="response"></a>Response
 Codice di stato: 201
@@ -590,21 +590,21 @@ Codice di stato: 201
 ## <a name="delete-a-custom-role"></a>Eliminare un ruolo personalizzato
 È possibile eliminare un ruolo personalizzato.
 
-Per eliminare un ruolo personalizzato, è necessario avere accesso all'operazione `Microsoft.Authorization/roleDefinitions/delete` in tutti i `AssignableScopes`. Tra i ruoli predefiniti, l'accesso a questa operazione viene concesso soltanto ai ruoli *Proprietario* e *Amministratore Accesso utenti*. Per altre informazioni sulle assegnazioni di ruolo e la gestione dell'accesso per le risorse di Azure, vedere [Controllo degli accessi in base al ruolo di Azure](role-based-access-control-configure.md).
+toodelete un ruolo personalizzato, è necessario avere accesso troppo`Microsoft.Authorization/roleDefinitions/delete` operazione su tutti hello `AssignableScopes`. Di hello ruoli predefiniti, solo *proprietario* e *amministratore di accesso utente* vengono concesse operazione toothis di accesso. Per altre informazioni sulle assegnazioni di ruolo e la gestione dell'accesso per le risorse di Azure, vedere [Controllo degli accessi in base al ruolo di Azure](role-based-access-control-configure.md).
 
 ### <a name="request"></a>Richiesta
-Usare il metodo **DELETE** con l'URI seguente:
+Hello utilizzare **eliminare** metodo con hello seguente URI:
 
     https://management.azure.com/{scope}/providers/Microsoft.Authorization/roleDefinitions/{role-definition-id}?api-version={api-version}
 
-All'interno dell'URI, apportare le sostituzioni seguenti per personalizzare la richiesta:
+All'interno di hello URI, effettuare hello seguente le sostituzioni toocustomize la richiesta:
 
-1. Sostituire *{scope}* con l'ambito in cui eliminare la definizione di ruolo. Gli esempi seguenti illustrano come specificare l'ambito per livelli differenti:
+1. Sostituire *{scope}* con ambito hello in corrispondenza del quale si desidera definizione di ruolo toodelete hello. Hello seguono esempi Mostra come toospecify hello ambito per diversi livelli:
 
    * Sottoscrizione: /subscriptions/{subscription-id}  
    * Gruppo di risorse: /subscriptions/{subscription-id}/resourceGroups/myresourcegroup1  
    * Risorsa: /subscriptions/{subscription-id}/resourceGroups/myresourcegroup1/providers/Microsoft.Web/sites/mysite1  
-2. Sostituire *{role-definition-id}* con l'identificatore GUID della definizione di ruolo del ruolo personalizzato.
+2. Sostituire *{role-definition-id}* con id di definizione di ruolo hello GUID del ruolo personalizzata hello.
 3. Sostituire *{api-version}* con 2015-07-01.
 
 ### <a name="response"></a>Response

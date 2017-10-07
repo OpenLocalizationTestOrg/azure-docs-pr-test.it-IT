@@ -1,5 +1,5 @@
 ---
-title: Cosa fare in Azure Application Insights | Microsoft Docs
+title: aaaHow posso... in Azure Application Insights | Documenti Microsoft
 description: Domande frequenti in Application Insights
 services: application-insights
 documentationcenter: 
@@ -13,11 +13,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/04/2017
 ms.author: bwren
-ms.openlocfilehash: ef63e06c0621753e0a706d6efb709b943e38ee42
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 89294c3583b7c4e7998143be6d359f2deb3c8f49
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="how-do-i--in-application-insights"></a>Cosa fare in Application Insights?
 ## <a name="get-an-email-when-"></a>Per ricevere un messaggio di posta elettronica quando...
@@ -31,16 +31,16 @@ Impostare un [avviso](app-insights-alerts.md) per il **tempo di risposta del ser
 
 L'applicazione potrebbe inoltre dare segni di difficoltà tramite la restituzione di codici di errore. Impostare un avviso per le **richieste non riuscite**.
 
-Se si desidera impostare un avviso per le **eccezioni del server**, è necessario effettuare [alcune impostazioni aggiuntive](app-insights-asp-net-exceptions.md) per visualizzare i dati.
+Se si desidera un avviso tooset **eccezioni Server**, potrebbe essere toodo [alcune impostazioni aggiuntive](app-insights-asp-net-exceptions.md) dati toosee degli ordini.
 
 ### <a name="email-on-exceptions"></a>Inviare un messaggio di posta elettronica in caso di eccezioni
 1. [Configurare il monitoraggio delle eccezioni](app-insights-asp-net-exceptions.md)
-2. [Impostare un avviso](app-insights-alerts.md) sulla metrica relativa al conteggio del numero di eccezioni
+2. [Impostare un avviso](app-insights-alerts.md) su hello eccezione conteggio metrica
 
 ### <a name="email-on-an-event-in-my-app"></a>Inviare un messaggio di posta elettronica per un evento generato dall'app
-Si supponga che si desidera ricevere un messaggio di posta elettronica quando si verifica un evento specifico. Application Insights non fornisce direttamente questa funzionalità, ma è possibile [inviare un avviso quando una metrica supera una soglia](app-insights-alerts.md).
+Si supponga che desideri tooget un messaggio di posta elettronica quando si verifica un evento specifico. Application Insights non fornisce direttamente questa funzionalità, ma è possibile [inviare un avviso quando una metrica supera una soglia](app-insights-alerts.md).
 
-Gli avvisi possono essere impostati per [metriche personalizzate](app-insights-api-custom-events-metrics.md#trackmetric), anche se non per gli eventi personalizzati. Scrivere codice per potenziare una metrica quando si verifica l'evento:
+Gli avvisi possono essere impostati per [metriche personalizzate](app-insights-api-custom-events-metrics.md#trackmetric), anche se non per gli eventi personalizzati. Scrivere alcuni tooincrease codice una metrica, quando si verifica l'evento hello:
 
     telemetry.TrackMetric("Alarm", 10);
 
@@ -50,60 +50,60 @@ oppure:
     measurements ["Alarm"] = 10;
     telemetry.TrackEvent("status", null, measurements);
 
-Poiché gli avvisi possono avere due stati, è necessario inviare un valore basso quando si presume che l'avviso sia terminato:
+Poiché gli avvisi hanno due stati, occorre toosend un valore basso quando si considera l'avviso hello toohave terminato:
 
     telemetry.TrackMetric("Alarm", 0.5);
 
-Creare un grafico in [Esplora metriche](app-insights-metrics-explorer.md) per visualizzare l'allarme:
+Creare un grafico in [Esplora metrica](app-insights-metrics-explorer.md) toosee l'allarme:
 
 ![](./media/app-insights-how-do-i/010-alarm.png)
 
-Impostare un avviso da attivare quando la metrica supera un valore medio per un breve periodo:
+Impostare ora toofire un avviso quando la metrica hello supera un valore medio per un breve periodo:
 
 ![](./media/app-insights-how-do-i/020-threshold.png)
 
-Impostare il periodo medio sul valore minimo.
+Impostare hello toohello periodo minimo di una Media.
 
-Verranno ricevuti messaggi di posta elettronica quando la metrica è maggiore o minore della soglia.
+Messaggi di posta elettronica viene visualizzato quando la metrica hello supera il numero sia inferiore alla soglia hello.
 
-Alcune informazioni da considerare:
+Tooconsider alcuni punti:
 
-* Un avviso dispone di due stati: "Avviso" e "Integro". Lo stato viene valutato solo quando viene ricevuta una metrica.
-* Un messaggio di posta elettronica viene inviato solo quando lo stato cambia. Questo è il motivo per cui è necessario inviare sia metriche con valori alti che metriche con valori bassi.
-* Per valutare l'avviso, viene eseguita la media dei valori ricevuti nel periodo precedente. Ciò si verifica ogni volta che viene ricevuta una metrica. Per questo motivo è possibile che i messaggi di posta elettronica vengano inviati più frequentemente rispetto al periodo impostato.
-* Poiché vengono inviati messaggi di posta elettronica sia per avvisi con stato "Avviso" e che per avvisi con stato "Integro", è possibile riconsiderare l'evento unico come una condizione con due stati. Ad esempio, anziché un evento "processo completato", creare una condizione "processo in corso", dove è possibile ricevere messaggi di posta elettronica all'inizio e alla fine di un processo.
+* Un avviso dispone di due stati: "Avviso" e "Integro". stato Hello viene valutato solo quando viene ricevuta una metrica.
+* Un messaggio di posta elettronica viene inviato solo quando cambia lo stato di hello. È per questo motivo è toosend metriche sia alte e basso valore.
+* avviso hello tooevaluate, Media hello viene eseguito di valori hello ricevuto su hello precedente. Ciò si verifica ogni volta che viene ricevuta una metrica, in modo da messaggi di posta elettronica possono essere inviati più frequentemente rispetto al periodo di hello che è impostato.
+* Poiché i messaggi di posta elettronica vengono inviati "avviso" e "Integro", è opportuno tooconsider pensiero nuovamente l'evento monofase come una condizione di due stati. Ad esempio, anziché un evento "processo completato", avere una condizione "processo in corso", in cui si ricevono messaggi di posta elettronica nella hello iniziale e finale di un processo.
 
 ### <a name="set-up-alerts-automatically"></a>Impostare automaticamente gli avvisi
-[Usare PowerShell per creare nuovi avvisi](app-insights-alerts.md#automation)
+[Utilizzare PowerShell toocreate nuovi avvisi](app-insights-alerts.md#automation)
 
-## <a name="use-powershell-to-manage-application-insights"></a>Usare PowerShell per gestire Application Insights
+## <a name="use-powershell-toomanage-application-insights"></a>Usare PowerShell tooManage Application Insights
 * [Creare nuove risorse](app-insights-powershell-script-create-resource.md)
 * [Creare nuovi avvisi](app-insights-alerts.md#automation)
 
 ## <a name="separate-telemetry-from-different-versions"></a>Separare la telemetria da diverse versioni
 
 * Più ruoli in un'app: usare una singola risorsa di Application Insights e filtrare su cloud_Rolename. [Altre informazioni](app-insights-monitor-multi-role-apps.md)
-* Separazione di sviluppo, test e versioni di rilascio: usare diverse risorse di Application Insights. Acquisire le chiavi di strumentazione da web.config. [Altre informazioni](app-insights-separate-resources.md)
+* Separazione di sviluppo, test e versioni di rilascio: usare diverse risorse di Application Insights. Selezionare le chiavi di strumentazione hello da Web. config. [Altre informazioni](app-insights-separate-resources.md)
 * Creazione di rapporti sulle versioni di compilazione: aggiungere una proprietà usando un inizializzatore di telemetria. [Altre informazioni](app-insights-separate-resources.md)
 
 ## <a name="monitor-backend-servers-and-desktop-apps"></a>Monitorare i server back-end e le app desktop
-[Usare il modulo di Windows Server SDK](app-insights-windows-desktop.md).
+[Modulo di Windows Server SDK hello utilizzare](app-insights-windows-desktop.md).
 
 ## <a name="visualize-data"></a>Visualizzare i dati
 #### <a name="dashboard-with-metrics-from-multiple-apps"></a>Dashboard con metriche da più app
-* In [Esplora metriche](app-insights-metrics-explorer.md)personalizzare il grafico e salvarlo come preferito. Aggiungerlo al dashboard di Azure.
+* In [Esplora metriche](app-insights-metrics-explorer.md)personalizzare il grafico e salvarlo come preferito. Aggiungerlo toohello dashboard di Azure.
 
 #### <a name="dashboard-with-data-from-other-sources-and-application-insights"></a>Dashboard con dati provenienti da altre fonti e Application Insights
-* [Esportare dati di telemetria in Power BI](app-insights-export-power-bi.md).
+* [Esportare i dati di telemetria tooPower BI](app-insights-export-power-bi.md).
 
 Or
 
-* Usare SharePoint come dashboard, dove i dati vengono visualizzati in Web part di SharePoint. [Usare l'esportazione continua e l'analisi dei flussi per eseguire l'esportazione in SQL](app-insights-code-sample-export-sql-stream-analytics.md).  Usare PowerView per esaminare il database e creare una Web part di SharePoint per PowerView.
+* Usare SharePoint come dashboard, dove i dati vengono visualizzati in Web part di SharePoint. [Utilizzare l'esportazione continua e Analitica flusso tooexport tooSQL](app-insights-code-sample-export-sql-stream-analytics.md).  Utilizzare PowerView tooexamine hello database e creare una web part di SharePoint per PowerView.
 
 <a name="search-specific-users"></a>
 
 ### <a name="filter-out-anonymous-or-authenticated-users"></a>Filtrare gli utenti anonimi o autenticati
-Se gli utenti effettuano l'accesso, è possibile impostare l' [ID dell'utente autenticato](app-insights-api-custom-events-metrics.md#authenticated-users). Questa operazione non viene eseguita automaticamente.
+Se gli utenti ad accedere, è possibile impostare hello [id utente autenticato](app-insights-api-custom-events-metrics.md#authenticated-users). Questa operazione non viene eseguita automaticamente.
 
 È quindi possibile:
 
@@ -111,31 +111,31 @@ Se gli utenti effettuano l'accesso, è possibile impostare l' [ID dell'utente au
 
 ![](./media/app-insights-how-do-i/110-search.png)
 
-* Filtrare le metriche in base a utenti anonimi o autenticati
+* Filtrare gli utenti anonimi e autenticati tooeither metriche
 
 ![](./media/app-insights-how-do-i/115-metrics.png)
 
 ## <a name="modify-property-names-or-values"></a>Modificare i nomi della proprietà o i valori
-Creare un [filtro](app-insights-api-filtering-sampling.md#filtering). Consente di modificare o filtrare la telemetria prima che venga inviata dall'app ad Application Insights.
+Creare un [filtro](app-insights-api-filtering-sampling.md#filtering). Ciò consente di modificare o filtrare i dati di telemetria prima che venga inviato dal tooApplication app Insights.
 
 ## <a name="list-specific-users-and-their-usage"></a>Elencare utenti specifici e il relativo uso
-Se si desidera [cercare utenti specifici](#search-specific-users), è possibile impostare l'[ID dell'utente autenticato](app-insights-api-custom-events-metrics.md#authenticated-users).
+Se si desidera troppo[cercare utenti specifici](#search-specific-users), è possibile impostare hello [id utente autenticato](app-insights-api-custom-events-metrics.md#authenticated-users).
 
 Se si desidera un elenco di utenti con i dati quali, ad esempio, le pagine visualizzate o la frequenza di accesso, sono disponibili due opzioni:
 
-* [Impostare l'ID dell'utente autenticato](app-insights-api-custom-events-metrics.md#authenticated-users), [eseguire l'esportazione in un database](app-insights-code-sample-export-sql-stream-analytics.md) e usare gli strumenti appropriati per analizzare i dati utente.
-* Se si dispone solo di un numero limitato di utenti, inviare gli eventi o le metriche personalizzati usando i dati di interesse quali, ad esempio, il valore della metrica o il nome dell'evento, quindi impostando l'ID utente come proprietà. Per analizzare le visualizzazioni di pagina, sostituire la chiamata standard JavaScript trackPageView. Per analizzare i dati di telemetria sul lato server, usare un inizializzatore di telemetria per aggiungere l'ID utente a tutti i dati di telemetria del server. È quindi possibile filtrare e segmentare le metriche e le ricerche in base all'ID utente.
+* [Id dell'utente autenticato insieme](app-insights-api-custom-events-metrics.md#authenticated-users), [esportare database tooa](app-insights-code-sample-export-sql-stream-analytics.md) e utilizzare adatto strumenti tooanalyze sono i dati utente.
+* Se si dispone solo di un numero ridotto di utenti, è possibile inviare eventi personalizzati o metriche, usando i dati di hello di interesse come hello valore metrico o nome dell'evento e l'id utente hello impostazione come proprietà. visualizzazioni di pagina tooanalyze, sostituire hello standard JavaScript trackPageView chiamata. dati di telemetria di tooanalyze sul lato server, utilizzare una telemetria inizializzatore tooadd hello utente id tooall telemetria server. È quindi possibile metriche di filtro e di segmento e ricerche basate sull'id utente hello.
 
-## <a name="reduce-traffic-from-my-app-to-application-insights"></a>Ridurre il traffico dall'app ad Application Insights
-* In [ApplicationInsights.config](app-insights-configuration-with-applicationinsights-config.md)disabilitare tutti i moduli non necessari, come gli agenti di raccolta del contatore delle prestazioni.
-* Usare [Campionamento e filtri](app-insights-api-filtering-sampling.md) nell’SDK.
-* Nelle pagine Web limitare il numero di chiamate Ajax segnalato per ogni visualizzazione della pagina. Nel frammento di script dopo `instrumentationKey:...` inserire: `,maxAjaxCallsPerView:3` (o un numero adatto).
-* Se si usa [TrackMetric](app-insights-api-custom-events-metrics.md#trackmetric), calcolare l'aggregazione di batch di valori delle metriche prima di inviare il risultato. Un overload di TrackMetric() esegue questa operazione.
+## <a name="reduce-traffic-from-my-app-tooapplication-insights"></a>Ridurre il traffico da my tooApplication app Insights
+* In [Applicationinsights](app-insights-configuration-with-applicationinsights-config.md), disabilitare tutti i moduli non è necessario, tale agente di raccolta hello contatore delle prestazioni.
+* Utilizzare [campionamento e il filtraggio](app-insights-api-filtering-sampling.md) in hello SDK.
+* Nelle pagine web, limitare il numero di hello di chiamate Ajax segnalati per ogni pagina. Nel frammento di script hello dopo `instrumentationKey:...` , inserire: `,maxAjaxCallsPerView:3` (o un numero).
+* Se si utilizza [TrackMetric](app-insights-api-custom-events-metrics.md#trackmetric), calcolo di aggregazione hello di batch di valori della metrica prima di inviare i risultati di hello. Un overload di TrackMetric() esegue questa operazione.
 
 Altre informazioni su [prezzi e quote](app-insights-pricing.md).
 
 ## <a name="disable-telemetry"></a>Disabilitare telemetria
-Per **avviare e arrestare in modo dinamico** la raccolta e la trasmissione di dati di telemetria dal server:
+troppo**dinamicamente arrestare e avviare** hello raccolta e la trasmissione di dati di telemetria da server hello:
 
 ```
 
@@ -146,18 +146,18 @@ Per **avviare e arrestare in modo dinamico** la raccolta e la trasmissione di da
 
 
 
-Per **disabilitare gli agenti di raccolta standard selezionati** - ad esempio, i contatori delle prestazioni, delle richieste HTTP o delle dipendenze - eliminare o impostare come commento le righe pertinenti in [Applicationinsights.config](app-insights-api-custom-events-metrics.md). È possibile eseguire questa operazione, ad esempio, se si vogliono inviare i propri dati TrackRequest.
+troppo**disabilitare gli agenti di raccolta standard selezionati** : ad esempio, i contatori delle prestazioni, le richieste HTTP o dipendenze, eliminare o impostare come commento le righe rilevanti hello in [Applicationinsights](app-insights-api-custom-events-metrics.md). È possibile farlo, ad esempio, se si desidera toosend TrackRequest dati personalizzati.
 
 ## <a name="view-system-performance-counters"></a>Visualizzare i contatori delle prestazioni di sistema
-Tra le metriche che è possibile visualizzare in Esplora metriche è disponibile un set di contatori delle prestazioni di sistema. Esiste un pannello predefinito denominato **Server** in cui sono visualizzati alcuni set.
+Tra hello metriche è possibile visualizzare in Esplora metriche sono un set di contatori delle prestazioni di sistema. Esiste un pannello predefinito denominato **Server** in cui sono visualizzati alcuni set.
 
 ![Aprire la risorsa Application Insights e fare clic su Server.](./media/app-insights-how-do-i/121-servers.png)
 
 ### <a name="if-you-see-no-performance-counter-data"></a>Se non vengono visualizzati dati dei contatori delle prestazioni
 * **Server IIS** sul proprio computer o in una macchina virtuale. [Installare Status Monitor](app-insights-monitor-performance-live-website-now.md).
-* **Sito Web di Azure** - i contatori delle prestazioni non sono ancora supportati. Esistono diverse metriche che è possibile ottenere come una parte standard del Pannello di controllo del sito Web di Azure.
+* **Sito Web di Azure** - i contatori delle prestazioni non sono ancora supportati. Esistono alcune metriche è possibile ottenere come una parte standard del Pannello di controllo sito web di Azure hello.
 * **Server Unix** - [Installare collectd](app-insights-java-collectd.md)
 
-### <a name="to-display-more-performance-counters"></a>Per visualizzare altri contatori delle prestazioni
-* Innanzitutto [aggiungere un nuovo grafico](app-insights-metrics-explorer.md) e verificare che il contatore sia incluso nel set di base offerto.
-* In caso contrario, [aggiungere il contatore al set raccolto dal modulo del contatore delle prestazioni](app-insights-performance-counters.md).
+### <a name="toodisplay-more-performance-counters"></a>toodisplay più contatori delle prestazioni
+* Prima di tutto, [aggiungere un nuovo grafico](app-insights-metrics-explorer.md) e visualizzare se il contatore hello in hello base impostato da offrire.
+* In caso contrario, [aggiungere hello contatore toohello set raccolti dal modulo del contatore delle prestazioni hello](app-insights-performance-counters.md).

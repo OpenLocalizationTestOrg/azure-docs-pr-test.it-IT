@@ -1,6 +1,6 @@
 ---
-title: Usare i gruppi per gestire l'accesso alle risorse in Azure Active Directory| Microsoft Docs
-description: Come utilizzare i gruppi in Azure Active Directory per gestire l'accesso degli utenti ad applicazioni cloud e locali e alle risorse.
+title: aaaUse gruppi toomanage accesso tooresources in Azure Active Directory | Documenti Microsoft
+description: Gruppi di toouse utente toomanage Azure Active Directory come accedere a risorse e le applicazioni cloud e locali tooon.
 services: active-directory
 documentationcenter: 
 author: curtand
@@ -15,66 +15,66 @@ ms.topic: article
 ms.date: 05/04/2017
 ms.author: curtand
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: cd8125eda7643f0b190d35cbb89edf8b7b4eca30
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 876a356c8095505432e9346721f35c7943819e9d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="manage-access-to-resources-with-azure-active-directory-groups"></a>Gestire l'accesso alle risorse tramite i gruppi di Azure Active Directory
-Azure Active Directory (Azure AD) è una soluzione completa di gestione dell’identità e dell’accesso che fornisce una gamma affidabile di funzionalità per gestire l'accesso alle applicazioni cloud e locali e delle risorse tra cui servizi online di Microsoft quali Office 365 e un mondo di applicazioni non Microsoft SaaS. In questo articolo viene fornita una panoramica, ma se si desidera iniziare a utilizzare subito i gruppi Azure AD, seguire le istruzioni in [Gestione dei gruppi di sicurezza in Azure AD](active-directory-accessmanagement-manage-groups.md). Per altre informazioni su come usare PowerShell per gestire i gruppi in Azure Active Directory, vedere [Cmdlet di Azure Active Directory per la gestione dei gruppi](active-directory-accessmanagement-groups-settings-v2-cmdlets.md).
+# <a name="manage-access-tooresources-with-azure-active-directory-groups"></a>Gestire accesso tooresources con gruppi di Azure Active Directory
+Azure Active Directory (Azure AD) è una completa soluzione di gestione di identità e accessi che fornisce un set affidabile di funzionalità toomanage accesso tooon locale e le applicazioni cloud e risorse, tra cui Microsoft online services quali Office 365 e moltissime applicazioni SaaS non Microsoft. In questo articolo viene fornita una panoramica, ma se si desidera ora gruppi di toostart mediante Azure AD, seguire le istruzioni hello [la gestione di gruppi di sicurezza di Azure AD](active-directory-accessmanagement-manage-groups.md). Se si desidera toosee come è possibile utilizzare PowerShell toomanage i gruppi in Azure Active directory, è possibile leggere ulteriori [cmdlet di Azure Active Directory per la gestione di gruppo](active-directory-accessmanagement-groups-settings-v2-cmdlets.md).
 
 > [!NOTE]
-> Per usare Azure Active Directory, è necessario un account Azure. Se non si dispone di un account, è possibile [iscriversi per un account Azure gratuito](https://azure.microsoft.com/pricing/free-trial/).
+> toouse Azure Active Directory, è necessario un account di Azure. Se non si dispone di un account, è possibile [iscriversi per un account Azure gratuito](https://azure.microsoft.com/pricing/free-trial/).
 >
 >
 
-All'interno di Azure AD, una delle caratteristiche principali è la possibilità di gestire l'accesso alle risorse. Queste risorse possono far parte della directory, come nel caso delle autorizzazioni per gestire oggetti tramite i ruoli nella directory, o delle risorse esterne alla directory, come ad esempio le applicazioni SaaS, i servizi di Azure e i siti di SharePoint o delle risorse locali. Esistono quattro modalità con le quali è possibile assegnare a un utente i diritti di accesso a una risorsa:
+All'interno di Azure AD, una delle funzionalità principali di hello è hello possibilità toomanage accesso tooresources. Queste risorse possono far parte della directory di hello, come nel caso di hello oggetti toomanage autorizzazioni tramite ruoli nella directory hello o risorse che sono directory toohello esterno, ad esempio applicazioni SaaS, servizi di Azure e siti di SharePoint o in locale risorse. Sono disponibili quattro modi che un utente può essere assegnato come risorsa tooa diritti di accesso:
 
 1. Assegnazione diretta
 
-    Agli utenti può essere assegnata direttamente una risorsa dal proprietario della risorsa.
+    Gli utenti possono essere assegnati direttamente tooa risorsa dal proprietario hello di tale risorsa.
 2. Appartenenza al gruppo
 
-    Un gruppo può essere assegnato a una risorsa dal proprietario della risorsa, così facendo, si garantisce ai membri di quel gruppo l'accesso alla risorsa. L’appartenenza al gruppo può quindi essere gestita dal proprietario del gruppo. Il proprietario della risorsa delega in modo efficace l'autorizzazione ad assegnare agli utenti la loro risorsa al proprietario del gruppo.
+    Un gruppo può essere assegnato tooa risorsa dal proprietario della risorsa hello e in tal modo, i membri di tale risorsa del gruppo di accesso toohello hello concessione. Appartenenza al gruppo hello possa essere gestito dal proprietario hello del gruppo di hello. In effetti, i delegati proprietario risorsa hello hello autorizzazione tooassign utenti tootheir toohello proprietario della risorsa del gruppo di hello.
 3. Basato su regole
 
-    Il proprietario della risorsa può utilizzare una regola per esprimere a quali utenti deve essere assegnato l'accesso a una risorsa. Il risultato della regola dipende dagli attributi utilizzati nella regola e, dai relativi valori per utenti specifici, così facendo, il proprietario della risorsa delega in modo efficiente il diritto di gestire l'accesso alle sue risorse alla fonte autorevole per le attribuzioni utilizzate nella regola. Il proprietario della risorsa gestisce ancora la regola stessa e determina quali attributi e valori forniscono l'accesso alle risorse.
+    proprietario della risorsa Hello è possibile utilizzare una regola tooexpress gli utenti a cui devono essere assegnati l'accesso tooa risorse. risultato Hello della regola hello dipende da attributi di hello usati in tale regola e i relativi valori per utenti specifici, e in questo modo, proprietario della risorsa hello delegati in modo efficace hello toomanage destra accesso tootheir risorse toohello origine autorevole per hello attributi utilizzati nella regola hello. proprietario della risorsa Hello ancora gestisce regola hello stessa e determina quali attributi e valori di forniscono accesso tootheir risorse.
 4. Autorità esterna
 
-    L'accesso a una risorsa è derivato da un'origine esterna; ad esempio, un gruppo che è sincronizzato da un'origine attendibile come ad esempio una directory locale o da un'applicazione SaaS, ad esempio WorkDay. Il proprietario della risorsa assegna al gruppo il compito di fornire l'accesso alla risorsa, e la fonte esterna gestisce i membri del gruppo.
+    risorse di tooa accesso Hello sono derivata da un'origine esterna. ad esempio, un gruppo che verrà sincronizzato da un'origine attendibile, ad esempio una directory locale o di un'applicazione SaaS, ad esempio giorno lavorativo. proprietario della risorsa Hello viene assegnata hello gruppo tooprovide accesso toohello e origine esterna hello gestisce i membri del gruppo di hello hello.
 
    ![Panoramica del diagramma di gestione dell’accesso](./media/active-directory-access-management-groups/access-management-overview.png)
 
 ## <a name="watch-a-video-that-explains-access-management"></a>Video che illustra la gestione dell'accesso
 È possibile guardare un breve video che fornisce ulteriori spiegazioni su questo:
 
-**Azure AD: introduzione alle appartenenze dinamiche per i gruppi**
+**Azure AD: Appartenenza toodynamic introduzione per i gruppi**
 
 > [!VIDEO https://channel9.msdn.com/Series/Azure-Active-Directory-Videos-Demos/Azure-AD--Introduction-to-Dynamic-Memberships-for-Groups/player]
 >
 >
 
 ## <a name="how-does-access-management-in-azure-active-directory-work"></a>Come funziona la gestione dell'accesso in Azure Active Directory?
-Il fulcro della soluzione per la gestione dell'accesso alla Azure AD è il gruppo di sicurezza. L’utilizzo di un gruppo di sicurezza per gestire l'accesso alle risorse è un paradigma noto, che consente un modo flessibile e facilmente comprensibile di fornire l'accesso a una risorsa per il gruppo di utenti previsto. Il proprietario della risorsa (o l'amministratore della directory) può assegnare ad un gruppo il compito di fornire un determinato diritto di accesso per le risorse che possiede. Ai membri del gruppo verrà fornito l'accesso, e il proprietario della risorsa può delegare il diritto di gestire l'elenco di membri di un gruppo a un utente, ad esempio un responsabile del reparto o un amministratore dell'helpdesk.
+In hello centro della soluzione di gestione di Azure AD access hello è il gruppo di sicurezza di hello. Utilizzo di un accesso tooresources di sicurezza gruppo toomanage è un paradigma noto, che consente di una risorsa di tooa accesso tooprovide modo flessibile e facilmente comprensibile per il gruppo di hello previsto di utenti. proprietario della risorsa Hello (o messaggio per l'amministratore della directory hello) possibile assegnare tooprovide un gruppo una determinate risorse di destra toohello accesso che sono proprietari. i membri del gruppo di hello Hello verranno forniti accesso hello e proprietario della risorsa hello possibile delegare l'elenco dei membri hello toomanage destra hello di un altro, ad esempio un responsabile del reparto o un amministratore di help desk toosomeone di gruppo.
 
 ![Diagramma di gestione dell’accesso di Azure Active Directory](./media/active-directory-access-management-groups/active-directory-access-management-works.png)
 
-Il proprietario di un gruppo può anche rendere tale gruppo disponibile per le richieste self-service. In questo modo, un utente finale può cercare e trovare il gruppo e chiedere di partecipare, richiedendo in modo efficace l'autorizzazione ad accedere alle risorse gestite tramite il gruppo. Il proprietario del gruppo può impostare il gruppo in modo che le richieste di adesione vengano approvate automaticamente oppure richiedano l'approvazione da parte del proprietario del gruppo. Quando un utente effettua una richiesta di adesione a un gruppo, la richiesta di adesione viene inoltrata ai proprietari del gruppo. Se uno dei proprietari approva la richiesta, l'utente richiedente viene informato e viene poi aggiunto al gruppo. Se uno dei proprietari rifiuta la richiesta, l'utente richiedente riceve una notifica, ma non viene aggiunto al gruppo.
+Hello proprietario di un gruppo può inoltre rendere tale gruppo disponibili per le richieste self-service. In questo modo, un utente finale può cercare e trovare il gruppo di hello. toojoin una richiesta, ricerca in modo efficace le risorse di hello tooaccess autorizzazione gestiti tramite il gruppo di hello il proprietario di Hello del gruppo di hello possibile impostare il gruppo di hello in modo che le richieste di join vengono approvate automaticamente o richiedono l'approvazione dal proprietario hello del gruppo di hello. Quando un utente apporta toojoin una richiesta di un gruppo, la richiesta di join hello viene inoltrata toohello proprietari del gruppo di hello. Se uno dei proprietari di hello Approva richiesta di hello, riceve una notifica utente richiedente hello e utente hello toohello aggiunti a un gruppo. Se uno dei proprietari di hello Nega richiesta hello, richiedente hello riceve una notifica, ma non aggiunti a un gruppo toohello.
 
 ## <a name="getting-started-with-access-management"></a>Introduzione alla gestione dell’accesso
-Informazioni introduttive È consigliabile provare alcune delle attività di base che è possibile eseguire con i gruppi di Microsoft Azure AD. Utilizzare queste funzionalità per fornire accesso specializzato a diversi gruppi di utenti per diverse risorse all'interno dell'organizzazione. Un elenco di passaggi di base sono elencati di seguito.
+Tooget pronto iniziare? È consigliabile provare alcune delle attività di base hello che è possibile eseguire con i gruppi di Azure AD. Utilizzare queste tooprovide funzionalità specializzate access toodifferent gruppi di utenti per diverse risorse nell'organizzazione. Un elenco di passaggi di base sono elencati di seguito.
 
-* [Creazione di una regola semplice per configurare l’appartenenza dinamica per un gruppo](active-directory-accessmanagement-manage-groups.md#how-can-i-manage-the-membership-of-a-group-dynamically)
-* [Utilizzare un gruppo per gestire l'accesso alle applicazioni SaaS](active-directory-accessmanagement-group-saasapps.md)
+* [Creazione di una semplice regola tooconfigure appartenenze dinamiche per un gruppo](active-directory-accessmanagement-manage-groups.md#how-can-i-manage-the-membership-of-a-group-dynamically)
+* [Utilizzo di applicazioni di tooSaaS un gruppo toomanage accesso](active-directory-accessmanagement-group-saasapps.md)
 * [Rendere la modalità self-service disponibile a un gruppo di utenti](active-directory-accessmanagement-self-service-group-management.md)
-* [Sincronizzare un gruppo locale in Azure utilizzando Azure AD Connect](active-directory-aadconnect.md)
+* [La sincronizzazione di un tooAzure di gruppo locali con Azure AD Connect](active-directory-aadconnect.md)
 * [Gestione dei proprietari di un gruppo](active-directory-accessmanagement-managing-group-owners.md)
 
 ## <a name="next-steps"></a>Passaggi successivi
-Ora che si sono comprese le nozioni di base di gestione degli accessi, ecco alcune funzionalità avanzate aggiuntive disponibili in Azure Active Directory per gestire l'accesso alle applicazioni e alle risorse.
+Ora che avere compreso i concetti di base di hello gestione dell'accesso, ecco alcune funzionalità avanzate aggiuntive disponibili in Azure Active Directory per la gestione delle applicazioni di accesso tooyour e risorse.
 
-* [Uso di attributi per la creazione di regole avanzate](active-directory-accessmanagement-groups-with-advanced-rules.md)
+* [Utilizzando attributi toocreate regole avanzate](active-directory-accessmanagement-groups-with-advanced-rules.md)
 * [Gestire i gruppi di sicurezza in Azure AD](active-directory-accessmanagement-manage-groups.md)
 * [Impostare gruppi dedicati in Azure AD](active-directory-accessmanagement-dedicated-groups.md)
 * [Informazioni di riferimento all'API Graph per gruppi](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/groups-operations#GroupFunctions)

@@ -1,6 +1,6 @@
 ---
-title: Documentazione tecnica sull'accesso condizionale in Azure Active Directory | Documentazione Microsoft
-description: Il controllo di accesso condizionale consente ad Azure Active Directory di controllare le condizioni specifiche definite durante l'autenticazione dell'utente e prima di consentire l'accesso all'applicazione. Se tali condizioni vengono soddisfatte, l'utente viene autenticato e gli viene consentito l'accesso all'applicazione.
+title: riferimento tecnico di Active Directory l'accesso condizionale aaaAzure | Documenti Microsoft
+description: "Con il controllo di accesso condizionale, Azure Active Directory verifica specifiche condizioni hello selezionate per l'autenticazione utente hello e prima di consentire l'accesso toohello applicazione. Quando queste condizioni sono soddisfatte, l'utente di hello è autenticato e accesso toohello applicazione consentita."
 services: active-directory.
 documentationcenter: 
 author: MarkusVi
@@ -14,11 +14,11 @@ ms.workload: identity
 ms.date: 08/22/2017
 ms.author: markvi
 ms.reviewer: calebb
-ms.openlocfilehash: ca16a5399f94fd1ab267e0798cade3fd83f75b13
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: ee201405d1d17f130607a95bf455b60cd222dd0c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-active-directory-conditional-access-technical-reference"></a>Documentazione tecnica sull'accesso condizionale di Azure Active Directory
 
@@ -27,16 +27,16 @@ ms.lasthandoff: 08/29/2017
 Le regole di accesso condizionale sono supportate in diversi tipi di applicazioni di Azure AD, inclusi i seguenti:
 
 
-* Applicazioni registrate con il proxy di applicazione di Azure
+* Applicazioni registrate con hello Proxy dell'applicazione Azure
 * App remote di Azure
 * Applicazioni line-of-business e multi-tenant sviluppate registrate con Azure AD
 * Dynamics CRM
-* Applicazioni federate dalla raccolta di applicazioni di Azure AD
+* Alle applicazioni federate dalla raccolta di applicazione hello Azure AD
 * Microsoft Office 365 Yammer
 * Microsoft Office 365 Exchange Online
 * Microsoft Office 365 SharePoint Online (include OneDrive for Business)
 * Microsoft Power BI 
-* Applicazioni con accesso Single Sign-On basato su password dalla raccolta di applicazioni di Azure AD
+* Applicazioni SSO password dalla raccolta applicazione hello Azure AD
 * Visual Studio Team Services
 * Microsoft Teams
 
@@ -49,43 +49,43 @@ Le regole di accesso condizionale sono supportate in diversi tipi di applicazion
 
 
 ## <a name="enable-access-rules"></a>Abilitare le regole di accesso
-Ogni regola può essere abilitata o disabilitata sulla base delle singole applicazioni. Quando le regole sono impostate su **ON** , verranno abilitate e applicate per gli utenti che accedono all'applicazione. Quando sono impostate su **OFF** , non verranno usate e non avranno alcun impatto sull'esperienza di accesso degli utenti.
+Ogni regola può essere abilitata o disabilitata sulla base delle singole applicazioni. Quando le regole sono **ON** verrà abilitate e applicate per gli utenti l'accesso a un'applicazione hello. Quando si trovano **OFF** non verrà utilizzate e non agli utenti di hello impatto firmerà nell'esperienza.
 
-## <a name="applying-rules-to-specific-users"></a>Applicazione di regole a utenti specifici
-Le regole possono essere applicate a specifici set di utenti in base al gruppo di sicurezza impostando **Applica a**. L'opzione **Applica a** può essere impostata su **Tutti gli utenti** o su **Gruppi**. Se è impostata su **Tutti gli utenti**, le regole verranno applicate a qualsiasi utente autorizzato ad accedere all'applicazione. L'opzione **Gruppi** consente di selezionare specifici gruppi di sicurezza e distribuzione. Le regole verranno applicate solo a questi gruppi.
+## <a name="applying-rules-toospecific-users"></a>Utenti di applicare regole toospecific
+Le regole possono essere applicati toospecific a insiemi di utenti in base a gruppo di sicurezza impostando **applica a**. **Applica a** può essere impostato troppo**tutti gli utenti** o **gruppi**. Quando impostato troppo**tutti gli utenti** regole hello applicherà tooany utente con l'applicazione toohello di accesso. Hello **gruppi** opzione consente di sicurezza specifici e toobe di gruppi di distribuzione selezionato, verranno applicate le regole solo per questi gruppi.
 
-Quando si distribuisce una regola, tale regola viene in genere applicata inizialmente a un set limitato di utenti appartenenti a gruppi pilota. Una volta completata, la regola può essere applicata a **Tutti gli utenti**. In questo modo la regola verrà applicata a tutti gli utenti dell'organizzazione.
+Quando si distribuisce una regola, è comune toofirst applica un set limitato di utenti, che sono membri di gruppi di distribuzione pilota. Una volta regola hello completo può essere applicato troppo**tutti gli utenti**. In questo modo regola hello toobe applicata per tutti gli utenti dell'organizzazione hello.
 
-È anche possibile escludere gruppi selezionati dai criteri usando l'opzione **Escludi** . I membri di questi gruppi saranno esentati, anche se appartengono a un gruppo incluso.
+Selezionare i gruppi possono anche essere esentati dai criteri di utilizzo hello **tranne** opzione. I membri di questi gruppi saranno esentati, anche se appartengono a un gruppo incluso.
 
 ## <a name="at-work-networks"></a>Reti di tipo "ufficio"
-Le regole di accesso condizionale che utilizzano una rete di tipo "ufficio" si basano su intervalli di indirizzi IP attendibili configurati in Azure AD oppure utilizzano l'attestazione "rete aziendale". Queste regole includono:
+Le regole di accesso condizionale che utilizzano una rete "al lavoro", si basano su intervalli di indirizzi IP attendibili che sono stati configurati in Azure AD, o l'utilizzo di hello "all'interno della rete aziendale" attestazione da ADFS. Queste regole includono:
 
 * Richiedi autenticazione a più fattori quando non al lavoro
 * Blocca l'accesso quando non al lavoro
 
 Opzioni per specificare le reti di tipo "ufficio"
 
-1. Configurare gli intervalli IP attendibili nella [pagina di configurazione dell'autenticazione Multi-Factor Authentication](../multi-factor-authentication/multi-factor-authentication-whats-next.md). I criteri di accesso condizionale useranno gli intervalli configurati in ogni richiesta di autenticazione e in ogni emissione di token per valutare le regole. 
-2. Configurare l'utilizzo dell'attestazione "rete aziendale" con AD FS; questa opzione può essere utilizzata con la directory federata. Per altre informazioni sulle attestazioni "rete aziendale", vedere [Indirizzi IP attendibili](../multi-factor-authentication/multi-factor-authentication-whats-next.md#trusted-ips).
+1. Configurare intervalli di indirizzi IP attendibili in hello [pagina di configurazione di multi-factor authentication](../multi-factor-authentication/multi-factor-authentication-whats-next.md). Criteri di accesso condizionale utilizzerà gli intervalli hello configurato in ogni richiesta e token di rilascio tooevaluate le regole di autenticazione. 
+2. Configura l'utilizzo di hello all'interno della rete aziendale attestazione, questa opzione può essere utilizzata con le directory federativa, tramite ADFS. toolearn ulteriori informazioni su hello all'interno della rete aziendale attestazioni, vedere [Tusted IPs](../multi-factor-authentication/multi-factor-authentication-whats-next.md#trusted-ips).
 
 
 ## <a name="rules-based-on-application-sensitivity"></a>Regole basate sulla sensibilità dell'applicazione
-Le regole vengono configurate per le singole applicazioni, consentendo la protezione di servizi ad alto valore, senza alcun impatto sull'accesso ad altri servizi. Le regole di accesso condizionale possono essere configurate nella scheda **Configura** dell'applicazione. 
+Le regole sono configurate per ogni applicazione consentendo toobe di servizi di valore elevato hello protetta senza conseguenze per servizi di accesso tooother. Regole di accesso condizionale possono essere configurate in hello **configura** scheda dell'applicazione hello. 
 
 Le regole attualmente disponibili sono le seguenti:
 
 * **Richiedi autenticazione a più fattori**
   
-  * Tutti gli utenti a cui viene applicato questo criterio devono effettuare almeno una volta l'autenticazione a più fattori.
+  * Tutti gli utenti che questo criterio viene applicato toowill essere tooauthenticate richiesto tramite l'autenticazione a più fattori almeno una volta.
 * **Richiedi autenticazione a più fattori quando non al lavoro**
   
-  * Se viene applicato questo criterio, tutti gli utenti devono aver effettuato almeno una volta l'autenticazione a più fattori in caso di accesso al servizio da una posizione remota non lavorativa. Se si spostano da una posizione in sede a una posizione remota, dovranno effettuare l'autenticazione a più fattori all'accesso al servizio.
+  * Se viene applicato il criterio, tutti gli utenti sarà richiesto toohave eseguita almeno una volta autenticazione a più fattori se accedono servizio hello da una postazione remota non lavorative. Se si sposta da un percorso di lavoro tooremote, saranno tooperform richiesto l'autenticazione a più fattori quando si accede hello servizio.
 * **Blocca l'accesso quando non al lavoro** 
   
-  * Quando gli utenti si spostano dalla posizione in sede a una posizione remota, verranno bloccati se viene applicato il criterio "Blocca l'accesso quando non al lavoro".  Nella posizione in sede, saranno nuovamente autorizzati ad accedere.
+  * Quando gli utenti di passare da postazione remota tooa di lavoro, verrà bloccati se il criterio di "Bloccare l'accesso quando non al lavoro" hello è toothem applicato.  Nella posizione in sede, saranno nuovamente autorizzati ad accedere.
 
 ## <a name="related-topics"></a>Argomenti correlati
-* [Protezione dell'accesso a Office 365 e ad altre app connesse ad Azure Active Directory](active-directory-conditional-access.md)
+* [Protezione dell'accesso tooOffice 365 e altre App connessa tooAzure Active Directory](active-directory-conditional-access.md)
 * [Indice di articoli per la gestione di applicazioni in Azure Active Directory](active-directory-apps-index.md)
 

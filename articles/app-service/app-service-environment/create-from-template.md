@@ -1,6 +1,6 @@
 ---
-title: Creare un ambiente del servizio app di Azure usando un modello di Resource Manager
-description: Illustra come creare un ambiente del servizio app di Azure esterno o con bilanciamento del carico interno usando un modello di Resource Manager
+title: aaaCreate un ambiente del servizio App di Azure tramite un modello di gestione risorse
+description: Viene illustrato come toocreate un ambiente esterno o servizio di bilanciamento del carico interno Azure App usando un modello di gestione risorse
 services: app-service
 documentationcenter: na
 author: ccompy
@@ -13,74 +13,74 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/13/2017
 ms.author: ccompy
-ms.openlocfilehash: e6b21086488352c1da914b4656ad1d216fd6de85
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: c8aeedee675a6e931169b725ee916cc7fa8f762f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-an-ase-by-using-an-azure-resource-manager-template"></a>Creare un ambiente del servizio app usando un modello di Azure Resource Manager
 
 ## <a name="overview"></a>Panoramica
-È possibile creare gli ambienti del servizio app di Azure con un endpoint accessibile da Internet o un endpoint di un indirizzo interno di una rete virtuale di Azure. Quando viene creato con un endpoint interno, tale endpoint dispone di un componente Azure denominato servizio di bilanciamento del carico interno (ILB). L'ambiente del servizio app in un indirizzo IP interno è chiamato ambiente del servizio app con bilanciamento del carico interno. L'ambiente del servizio app con un endpoint pubblico è chiamato ambiente del servizio app esterno. 
+È possibile creare gli ambienti del servizio app di Azure con un endpoint accessibile da Internet o un endpoint di un indirizzo interno di una rete virtuale di Azure. Quando viene creato con un endpoint interno, tale endpoint dispone di un componente Azure denominato servizio di bilanciamento del carico interno (ILB). Hello ASE su un indirizzo IP interno viene chiamato un ASE di bilanciamento del carico interno. Hello ASE con un endpoint pubblico viene chiamato un ASE esterno. 
 
-È possibile creare un ambiente del servizio app usando il portale di Azure o un modello di Azure Resource Manager. Questo articolo illustra i passaggi e la sintassi necessari per creare un ambiente del servizio app esterno o con bilanciamento del carico interno con i modelli di Resource Manager. Per informazioni su come creare un ambiente del servizio app nel portale di Azure, vedere [Creare un ambiente del servizio app esterno][MakeExternalASE] o [Creare un ambiente del servizio app con bilanciamento del carico interno][MakeILBASE].
+È possibile creare un ASE utilizzando hello portale di Azure o un modello di gestione risorse di Azure. In questo articolo vengono illustrati i passaggi di hello e la sintassi è necessario toocreate un ASE esterno o bilanciamento del carico interno ASE con modelli di gestione risorse. toolearn toocreate un ASE in hello portale di Azure, vedere [rendere un ASE esterno] [ MakeExternalASE] o [rendere ASE un bilanciamento del carico interno][MakeILBASE].
 
-Quando si crea un ambiente del servizio app nel portale di Azure, è possibile creare contemporaneamente la rete virtuale o scegliere una rete virtuale preesistente in cui eseguire la distribuzione. Quando si crea un modello, è necessario iniziare con: 
+Quando si crea un ASE in hello portale di Azure, è possibile creare la rete virtuale in hello stesso ora oppure scegliere un toodeploy preesistenti di rete virtuale in. Quando si crea un modello, è necessario iniziare con: 
 
 * Una rete virtuale di Resource Manager.
-* una subnet in tale rete virtuale. È consigliabile una subnet per l'ambiente del servizio app con dimensioni di `/25` e 128 indirizzi per supportare la crescita futura. Dopo che l'ambiente del servizio app è stato creato, non è possibile modificarne le dimensioni.
-* L'ID risorsa dalla rete virtuale. È possibile ottenere questa informazione dal portale di Azure nelle proprietà della rete virtuale.
-* La sottoscrizione in cui si vuole eseguire la distribuzione.
-* La località in cui si vuole eseguire la distribuzione.
+* una subnet in tale rete virtuale. Si consiglia una dimensione subnet ASE `/25` con conto della crescita futura tooaccomodate gli indirizzi a 128. Dopo la creazione di ASE hello, è possibile modificare le dimensioni di hello.
+* ID di risorsa Hello da una rete virtuale. È possibile ottenere queste informazioni dal portale di Azure hello in proprietà di rete virtuale.
+* sottoscrizione di Hello da toodeploy in.
+* Hello posizione toodeploy in.
 
-Per automatizzare la creazione dell'ambiente del servizio app:
+tooautomate la creazione di base:
 
-1. Creare l'ambiente del servizio app da un modello. Se si crea un ambiente del servizio app esterno, questo è l'ultimo passaggio. Se si crea un ambiente del servizio app con bilanciamento del carico interno, è necessario eseguire ancora alcune operazioni.
+1. Creare hello ASE da un modello. Se si crea un ambiente del servizio app esterno, questo è l'ultimo passaggio. Se si crea un ASE ILB, esistono alcune altre toodo di operazioni.
 
 2. Dopo avere creato l'ambiente del servizio app con bilanciamento del carico interno, viene caricato un certificato SSL corrispondente al dominio dell'ambiente del servizio app con bilanciamento del carico interno.
 
-3. Il certificato SSL caricato viene assegnato all'ambiente del servizio app ILB come certificato "predefinito".  Questo certificato viene usato per il traffico SSL verso le app nell'ambiente del servizio app con servizio di bilanciamento del carico interno quando usano il dominio radice comune assegnato all'ambiente del servizio app, ad esempio https://someapp.mycustomrootcomain.com.
+3. Hello caricato certificato SSL sia assegnato toohello ASE di bilanciamento del carico interno come il proprio certificato SSL "default".  Questo certificato viene usato per tooapps traffico SSL su hello ASE ILB quando usano hello comuni dominio radice ASE toohello assegnato (ad esempio, https://someapp.mycustomrootcomain.com).
 
 
-## <a name="create-the-ase"></a>Creare l'ambiente del servizio app
+## <a name="create-hello-ase"></a>Creare hello ASE
 Un modello di Resource Manager che crea un ambiente del servizio app e il file dei parametri associati sono disponibili [in un esempio][quickstartasev2create] in GitHub.
 
-Per creare un ambiente del servizio app con bilanciamento del carico interno, usare questi [esempi][quickstartilbasecreate] di modello di Resource Manager. I modelli soddisfano questo caso d'uso. La maggior parte dei parametri del file *azuredeploy.parameters.json* è comune alla creazione degli ambienti del servizio app con bilanciamento del carico interno e degli ambienti del servizio app esterni. L'elenco seguente indica parametri importanti o specifici per la creazione di un ambiente del servizio app con bilanciamento del carico interno:
+Se si desidera toomake ASE un bilanciamento del carico interno, usare questi modelli di gestione risorse [esempi][quickstartilbasecreate]. Questi servizi di ristorazione toothat caso di utilizzo. La maggior parte dei parametri di hello in hello *azuredeploy.parameters.json* file sono comuni toohello la creazione di bilanciamento del carico interno ASEs e ASEs esterno. Hello elenco riportato di seguito chiama un'attenzione particolare i parametri out o che sono univoci, quando si crea un ASE di bilanciamento del carico interno:
 
-* *interalLoadBalancingMode*: impostare nella maggior parte dei casi su 3, a indicare che sia il traffico HTTP/HTTPS sulle porte 80/443 che le porte dei canali di controllo/dati ascoltati dal servizio FTP nell'ambiente del servizio app saranno associati a un indirizzo interno della rete virtuale allocato dal servizio di bilanciamento del carico interno. Se questa proprietà viene impostata su 2, solo le porte correlate al servizio FTP (canali di controllo e dati) vengono associate a un indirizzo del servizio di bilanciamento del carico interno. Il traffico HTTP/HTTPS resta nell'indirizzo VIP pubblico.
-* *dnsSuffix*: questo parametro indica il dominio radice predefinito che viene assegnato all'ambiente del servizio app. Nella variante pubblica del servizio app di Azure, il dominio radice predefinito per tutte le app Web è *azurewebsites.net*. Poiché un ambiente del servizio app con servizio di bilanciamento del carico interno è interno alla rete virtuale di un cliente, non ha senso usare il dominio radice predefinito del servizio pubblico. Un ambiente del servizio app con servizio di bilanciamento del carico interno deve invece avere un dominio radice predefinito appropriato per la rete virtuale interna dell'azienda. Un'azienda Contoso Corporation potrebbe ad esempio usare un dominio radice predefinito *internal-contoso.com* per le app che devono essere risolvibili e accessibili solo nella rete virtuale di Contoso. 
-* *ipSslAddressCount*: questo parametro viene automaticamente impostato sul valore predefinito 0 nel file *azuredeploy.json* perché gli ambienti del servizio app con servizio di bilanciamento del carico interno hanno un solo indirizzo del servizio di bilanciamento del carico interno. Non esistono indirizzi IP SSL per un ambiente del servizio app con bilanciamento del carico interno. Il pool di indirizzi IP SSL per un ambiente del servizio app con bilanciamento del carico interno deve quindi essere impostato su zero. In caso contrario, si verifica un errore di provisioning. 
+* *interalLoadBalancingMode*: nella maggior parte dei casi, impostare questo too3, ovvero sia il traffico sulle porte 80/443 HTTP/HTTPS, e le porte canale dati di controllo/hello resta in attesa del servizio FTP hello tooby su hello ASE, sarà associato tooan allocato al bilanciamento del carico interno rete virtuale indirizzo interno. Se questa proprietà è impostata too2, solo hello FTP relativi al servizio porte (canali di controllo e i dati) sono indirizzi di bilanciamento del carico interno tooan associato. il traffico HTTP/HTTPS Hello rimanga nel VIP pubblico hello.
+* *suffisso DNS*: questo parametro definisce hello predefinito dominio radice ASE toohello assegnato. Nella variante pubblica di hello del servizio App di Azure, dominio radice di hello predefinito per tutte le app web è *azurewebsites.net*. Poiché un ASE di bilanciamento del carico interno è la rete virtuale del cliente tooa interno, può non essere dominio di radice del servizio di rilevamento toouse hello pubblico predefinito. Un ambiente del servizio app con servizio di bilanciamento del carico interno deve invece avere un dominio radice predefinito appropriato per la rete virtuale interna dell'azienda. Ad esempio, Contoso Corporation potrebbe utilizzare un dominio radice predefinito di *contoso.com interna* per le app che sono previsti toobe risolvibile e accessibile solo all'interno di rete virtuale di Contoso. 
+* *ipSslAddressCount*: questo parametro viene impostato automaticamente tooa valore pari a 0 in hello *azuredeploy.json* file perché il bilanciamento del carico interno ASEs avere solo un singolo indirizzo di bilanciamento del carico interno. Non esistono indirizzi IP SSL per un ambiente del servizio app con bilanciamento del carico interno. Di conseguenza, è necessario impostare hello pool di indirizzi IP SSL per un bilanciamento del carico interno di ASE toozero. In caso contrario, si verifica un errore di provisioning. 
 
-Dopo la compilazione di *azuredeploy.parameters.json*, creare l'ambiente del servizio app usando il frammento di codice di PowerShell. Modificare i percorsi dei file per fare in modo che corrispondano alle posizioni dei file dei modelli di Resource Manager nel computer. Indicare i valori per il nome della distribuzione di Resource Manager e il nome del gruppo di risorse:
+Dopo aver hello *azuredeploy.parameters.json* file viene compilato, creare hello ASE utilizzando frammento di codice hello PowerShell. Modificare hello percorsi toomatch hello Gestione risorse file modello percorsi dei file nel computer. Ricorda toosupply i propri valori per nome della distribuzione di gestione delle risorse hello e nome del gruppo di risorse hello:
 
     $templatePath="PATH\azuredeploy.json"
     $parameterPath="PATH\azuredeploy.parameters.json"
 
     New-AzureRmResourceGroupDeployment -Name "CHANGEME" -ResourceGroupName "YOUR-RG-NAME-HERE" -TemplateFile $templatePath -TemplateParameterFile $parameterPath
 
-La creazione dell'ambiente del servizio app richiede circa un'ora. L'ambiente del servizio app viene quindi visualizzato nel portale nell'elenco di ambienti del servizio app per la sottoscrizione che ha attivato la distribuzione.
+Richiede circa un'ora per hello ASE toobe creato. Quindi ASE hello viene visualizzato nel portale di hello in elenco hello ASEs per sottoscrizione hello che ha attivato la distribuzione di hello.
 
-## <a name="upload-and-configure-the-default-ssl-certificate"></a>Caricare e configurare il certificato SSL "predefinito"
-È necessario associare un certificato SSL all'ambiente del servizio app come certificato SSL "predefinito" usato per stabilire le connessioni SSL alle app. Se il suffisso DNS predefinito dell'ambiente del servizio app è *internal-contoso.com*, una connessione a https://some-random-app.internal-contoso.com richiede un certificato SSL valido per **.internal-contoso.com*. 
+## <a name="upload-and-configure-hello-default-ssl-certificate"></a>Caricare e configurare il certificato SSL di "predefinita" hello
+Un certificato SSL deve essere associato a ASE hello come hello "default" certificato SSL usato tooestablish SSL connessioni tooapps. Se è il suffisso DNS predefinito hello del ASE *contoso.com interna*, toohttps://some-random-app.internal-contoso.com una connessione richiede un certificato SSL valido per **.internal contoso.com* . 
 
-Ottenere un certificato SSL valido usando le autorità di certificazione interne, acquistando un certificato da un'autorità di certificazione esterna o usando un certificato autofirmato. Indipendentemente dall'origine del certificato SSL è necessario configurare correttamente gli attributi del certificato seguenti:
+Ottenere un certificato SSL valido usando le autorità di certificazione interne, acquistando un certificato da un'autorità di certificazione esterna o usando un certificato autofirmato. Indipendentemente dall'origine hello del certificato SSL di hello, hello gli attributi di certificato seguenti deve essere configurato correttamente:
 
-* **Soggetto**: questo attributo deve essere impostato su **.your-root-domain-here.com*.
-* **Nome alternativo soggetto**: questo attributo deve includere sia **.your-root-domain-here.com* che **.scm.your-root-domain-here.com*. Le connessioni SSL al sito SCM/Kudu associato a ogni app usano un indirizzo nel formato *your-app-name.scm.your-root-domain-here.com*.
+* **Oggetto**: questo attributo deve essere impostato troppo **.your-radice-dominio-here.com*.
+* **Nome alternativo soggetto**: questo attributo deve includere sia **.your-root-domain-here.com* che **.scm.your-root-domain-here.com*. Toohello connessioni SSL sito SCM/Kudu associata a ciascuna applicazione usa un indirizzo del modulo hello *your-app-name.scm.your-root-domain-here.com*.
 
-Dopo aver ottenuto un certificato SSL valido sono necessari altri due passaggi preliminari. Convertire/Salvare il certificato SSL come file con estensione pfx. Tenere presente che il file con estensione pfx deve includere tutti i certificati intermedi e quelli radice. Proteggerlo con una password.
+Dopo aver ottenuto un certificato SSL valido sono necessari altri due passaggi preliminari. Converti/Salva certificato SSL hello come file con estensione pfx. Tenere presente tale file con estensione pfx hello deve includere tutti intermedi e i certificati radice. Proteggerlo con una password.
 
-Il file con estensione pfx deve essere convertito in una stringa Base 64 perché il certificato SSL viene caricato usando un modello di Resource Manager. Poiché i modelli di Resource Manager sono file di testo, il file PFX deve essere convertito in una stringa Base 64. In questo modo può essere incluso come parametro del modello.
+file con estensione pfx Hello deve toobe convertito in una stringa base64 perché il caricamento del certificato SSL hello utilizzando un modello di gestione risorse. Poiché i modelli di gestione risorse sono file di testo, file con estensione pfx hello deve essere convertite in una stringa base 64. In questo modo può essere incluso come un parametro di modello hello.
 
-Usare il frammento di codice di PowerShell seguente per:
+Utilizzare hello seguente frammento di codice PowerShell:
 
 * Generare un certificato autofirmato.
-* Esportare il certificato come file PFX.
-* Convertire il file PXF in una stringa con codifica Base 64.
-* Salvare la stringa con codifica Base 64 in un file separato. 
+* Esportare il certificato di hello come file con estensione pfx.
+* Convertire i file con estensione pfx hello in una stringa con codifica base64.
+* Salvare file separato tooa stringa con codifica base64 di hello. 
 
-Questo codice PowerShell per la codifica Base 64 è stato adattato dal [blog di script di PowerShell][examplebase64encoding]:
+Questo codice di PowerShell per la codifica base64 è stato adattato dall'hello [script di PowerShell blog][examplebase64encoding]:
 
         $certificate = New-SelfSignedCertificate -certstorelocation cert:\localmachine\my -dnsname "*.internal-contoso.com","*.scm.internal-contoso.com"
 
@@ -94,16 +94,16 @@ Questo codice PowerShell per la codifica Base 64 è stato adattato dal [blog di 
         $fileContentEncoded = [System.Convert]::ToBase64String($fileContentBytes)
         $fileContentEncoded | set-content ($fileName + ".b64")
 
-Dopo avere generato il certificato SSL e averlo convertito in una stringa con codifica Base 64, usare il modello di esempio di Resource Manager disponibile in GitHub, [Configure the default SSL certificate][quickstartconfiguressl] (Configurare il certificato SSL predefinito). 
+Dopo certificato SSL hello è stato generato e convertita una stringa con codifica base64 tooa, usare modello di gestione risorse di esempio hello [certificato SSL predefinito di hello configura] [ quickstartconfiguressl] su GitHub. 
 
-I parametri del file *azuredeploy.parameters.json* sono elencati qui:
+i parametri in hello Hello *azuredeploy.parameters.json* file sono elencati di seguito:
 
-* *appServiceEnvironmentName*: nome dell'ambiente del servizio app con servizio di bilanciamento del carico interno in fase di configurazione.
-* *existingAseLocation*: stringa di testo contenente l'area di Azure in cui è stato distribuito l'ambiente del servizio app con servizio di bilanciamento del carico interno.  Ad esempio "Stati Uniti centro-meridionali".
-* *pfxBlobString*: rappresentazione del file con estensione pfx sotto forma di stringa con codifica Base 64. Usare il frammento di codice visualizzato prima e copiare la stringa contenuta in "exportedcert.pfx.b64". Incollarla come valore dell'attributo *pfxBlobString*.
-* *password*: password usata per la protezione del file con estensione pfx.
-* *certificateThumbprint*: identificazione personale del certificato. Se si recupera questo valore da PowerShell, ad esempio *$certificate.Thumbprint* nel frammento di codice precedente, è possibile usare il valore così com'è. Se si copia il valore dalla finestra di dialogo del certificato di Windows, rimuovere gli spazi estranei. Il valore di *certificateThumbprint* sarà simile a AF3143EB61D43F6727842115BB7F17BBCECAECAE.
-* *certificateName*: identificatore di stringa descrittivo scelto dall'utente per identificare il certificato. Il nome viene usato nell'ambito dell'identificatore univoco di Resource Manager per l'entità *Microsoft.Web/certificates* che rappresenta il certificato SSL. Il nome *deve* terminare con il suffisso seguente: \_yourASENameHere_InternalLoadBalancingASE. Il portale di Azure usa questo suffisso per indicare che il certificato è usato per la protezione di un ambiente del servizio app abilitato al bilanciamento del carico interno.
+* *appServiceEnvironmentName*: nome hello di hello ASE ILB da configurare.
+* *existingAseLocation*: stringa di testo contenente hello regione di Azure in cui hello ASE di bilanciamento del carico interno è stato distribuito.  Ad esempio "Stati Uniti centro-meridionali".
+* *pfxBlobString*: hello rappresentazione di stringa codificata in formato based64 di file con estensione pfx hello. Usare il frammento di codice hello illustrato in precedenza e copiare stringa hello contenuto in "exportedcert.pfx.b64". Incollarlo come valore di hello di hello *pfxBlobString* attributo.
+* *password*: file con estensione pfx hello toosecure hello password utilizzata.
+* *certificateThumbprint*: hello identificazione personale del certificato. Se si recupera il valore da PowerShell (ad esempio, *$certificate. Identificazione personale* da hello frammento di codice precedente), è possibile utilizzare hello valore. Se si copia il valore di hello dalla finestra di dialogo certificato Windows hello, tenere presente toostrip out spazi hello. Hello *certificateThumbprint* dovrebbe essere simile a AF3143EB61D43F6727842115BB7F17BBCECAECAE.
+* *Nomecertificato*: un identificatore di stringa di propria scelta utilizzato certificato hello tooidentity. nome di Hello viene utilizzato come parte di gestione risorse identificatore hello per hello *Microsoft.Web/certificates* entità che rappresenta i certificati SSL hello. nome Hello *deve* terminare con hello successivo suffisso: \_yourASENameHere_InternalLoadBalancingASE. Hello portale di Azure Usa questo suffisso, come un indicatore che hello certificato è usato toosecure un ASE abilitata al bilanciamento del carico interno.
 
 Un esempio abbreviato di *azuredeploy.parameters.json* è illustrato qui:
 
@@ -132,27 +132,27 @@ Un esempio abbreviato di *azuredeploy.parameters.json* è illustrato qui:
          }
     }
 
-Dopo la compilazione di *azuredeploy.parameters.json*, configurare il certificato SSL predefinito usando il frammento di codice di PowerShell. Modificare i percorsi dei file per fare in modo che corrispondano al percorso dei file dei modelli di Resource Manager nel computer. Indicare i valori per il nome della distribuzione di Resource Manager e il nome del gruppo di risorse:
+Dopo aver hello *azuredeploy.parameters.json* file viene compilato, configurare il certificato SSL predefinito di hello utilizzando frammento di codice hello PowerShell. Modificare hello toomatch di percorsi di file in cui si trovano i file modello di gestione risorse di hello nel computer. Ricorda toosupply i propri valori per nome della distribuzione di gestione delle risorse hello e nome del gruppo di risorse hello:
 
      $templatePath="PATH\azuredeploy.json"
      $parameterPath="PATH\azuredeploy.parameters.json"
 
      New-AzureRmResourceGroupDeployment -Name "CHANGEME" -ResourceGroupName "YOUR-RG-NAME-HERE" -TemplateFile $templatePath -TemplateParameterFile $parameterPath
 
-L'applicazione della modifica richiede circa 40 minuti per ogni front-end dell'ambiente del servizio app. Per un ambiente del servizio app di dimensioni predefinite che usa due front-end, ad esempio, l'operazione richiede all'incirca un'ora e 20 minuti. Durante l'esecuzione del modello, l'ambiente del servizio app non può essere ridimensionato.  
+Sono necessari circa 40 minuti per modifica hello tooapply front-end di base. Ad esempio, per ASE con dimensioni predefinite che utilizza due front-end, hello modello ha attorno un'ora e toocomplete di 20 minuti. Durante l'esecuzione di modello hello hello ASE non può essere scalato.  
 
-Quando il modello è completato, le app nell'ambiente del servizio app con bilanciamento del carico interno sono accessibili tramite HTTPS. Le connessioni vengono protette usando il certificato SSL predefinito. Il certificato SSL predefinito viene usato quando le app nell'ambiente del servizio app con servizio di bilanciamento del carico interno vengono indirizzate usando una combinazione di nome applicazione e nome host predefinito. https://mycustomapp.internal-contoso.com, ad esempio, usa il certificato SSL predefinito per **.internal-contoso.com*.
+Al termine del modello di hello, App in hello ASE di bilanciamento del carico interno sono accessibili tramite HTTPS. connessioni Hello sono protette mediante il certificato SSL predefinito di hello. certificato SSL di Hello predefinito viene utilizzato quando l'App in hello ASE di bilanciamento del carico interno vengono indirizzate mediante una combinazione del nome dell'applicazione hello e nome host predefinito di hello. Ad esempio, https://mycustomapp.internal-contoso.com utilizza certificato per SSL predefinito di hello **.internal contoso.com*.
 
-Tuttavia, come per le app eseguite nel servizio multi-tenant pubblico, gli sviluppatori possono configurare nomi host personalizzati per le singole app. Possono anche configurare associazioni di certificati SSL basati su SNI univoche per le singole app.
+Tuttavia, come App eseguibili su servizio multi-tenant pubblico di hello, gli sviluppatori possono configurare i nomi host personalizzati per le singole applicazioni. Possono anche configurare associazioni di certificati SSL basati su SNI univoche per le singole app.
 
 ## <a name="app-service-environment-v1"></a>Ambiente del servizio app 1 ##
-Esistono due versioni dell'ambiente del servizio app: ASEv1 e ASEv2. Le informazioni sopra riportate si basano sulla versione ASEv2. Questa sezione illustra le differenze tra ASEv1 e ASEv2.
+Esistono due versioni dell'ambiente del servizio app: ASEv1 e ASEv2. Hello precedenti informazioni è basato su ASEv2. Questa sezione viene illustrata hello ASEv1 e ASEv2 differenze.
 
-In ASEv1 si gestiscono manualmente tutte le risorse, inclusi front-end, ruoli di lavoro e indirizzi IP usati per la connessione SSL basata su IP. Per poter aumentare il numero di istanze di un piano di servizio app, è necessario aumentare il numero di istanze del pool di lavoro in cui si vuole ospitare il piano.
+In ASEv1, gestire tutte le risorse di hello manualmente. Che include gli indirizzi IP usati per SSL basato su IP front-end hello e processi di lavoro. Prima di è possibile scalare orizzontalmente il piano di servizio App, è necessario proporzioni timeout pool di lavoro hello che si desidera toohost.
 
-ASEv1 usa un modello tariffario diverso rispetto a ASEv2. Nella versione ASEv1, in particolare, si paga per tutti i core allocati, inclusi i core usati per i front-end o i ruoli di lavoro in cui non sono ospitati carichi di lavoro. In ASEv1 la dimensione massima predefinita di un ambiente del servizio app è di 55 host complessivi, inclusi ruoli di lavoro e front-end. Un vantaggio di ASEv1 è quello di poter essere distribuito in una rete virtuale classica e in una rete virtuale di Resource Manager. Per altre informazioni sull'ambiente del servizio app 1, vedere [Introduzione all'ambiente del servizio app 1][ASEv1Intro].
+ASEv1 usa un modello tariffario diverso rispetto a ASEv2. Nella versione ASEv1, in particolare, si paga per tutti i core allocati, inclusi i core usati per i front-end o i ruoli di lavoro in cui non sono ospitati carichi di lavoro. In ASEv1, hello predefinito della scala massima pari a un ASE sono 55 host totale. inclusi ruoli di lavoro e front-end. Un vantaggio tooASEv1 è che possono essere distribuito in una rete virtuale classica e una rete virtuale di gestione risorse. vedere toolearn ulteriori informazioni su ASEv1, [introduzione v1 ambiente del servizio App][ASEv1Intro].
 
-Per creare un ambiente del servizio app 1 usando un modello di Resource Manager, vedere [Creare un ambiente del servizio app con bilanciamento del carico interno 1 con un modello di Resource Manager][ILBASEv1Template].
+toocreate un ASEv1 utilizzando un modello di gestione delle risorse, vedere [crea un v1 ASE di bilanciamento del carico interno con un modello di gestione risorse][ILBASEv1Template].
 
 
 <!--Links-->

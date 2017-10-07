@@ -1,6 +1,6 @@
 ---
-title: Distribuzione dell'archivio Git locale nel servizio app di Azure
-description: Informazioni su come abilitare la distribuzione dell'archivio Git locale nel servizio app di Azure.
+title: aaaLocal distribuzione Git tooAzure servizio App
+description: Informazioni su come tooenable locale Git distribuzione tooAzure servizio App.
 services: app-service
 documentationcenter: 
 author: dariagrigoriu
@@ -14,34 +14,34 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/13/2016
 ms.author: dariagrigoriu
-ms.openlocfilehash: f1c4911670d3aa32e74b3dfebd83cf3dc3830805
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1905e0b7acd58d8dd6496a14f6e4f38f9f8c0212
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="local-git-deployment-to-azure-app-service"></a>Distribuzione dell'archivio Git locale nel servizio app di Azure
-In questa esercitazione viene illustrato come distribuire l'applicazione nel [servizio app di Azure] da un repository Git nel computer locale. Il servizio app supporta questo approccio tramite l'opzione di distribuzione **Archivio Git locale** del [portale di Azure].  
-Molti comandi Git descritti in questo articolo vengono eseguiti automaticamente quando si crea un'app del servizio app usando l'[interfaccia della riga di comando di Azure] come descritto [qui](app-service-web-get-started.md).
+# <a name="local-git-deployment-tooazure-app-service"></a>TooAzure distribuzione Git locale del servizio App
+In questa esercitazione illustra come toodeploy app troppo[Azure App Service] da un archivio Git nel computer locale. Servizio App supporta questo approccio con hello **Git locale** opzione di distribuzione in hello [portale Azure].  
+Molti dei comandi Git hello descritti in questo articolo vengono eseguite automaticamente durante la creazione di un'applicazione di servizio App utilizzando hello [interfaccia della riga di comando di Azure] come descritto [qui](app-service-web-get-started.md).
 
 ## <a name="prerequisites"></a>Prerequisiti
-Per completare questa esercitazione, sono necessari:
+toocomplete questa esercitazione, è necessario:
 
-* Git. È possibile scaricare il file di installazione binario [qui](http://www.git-scm.com/downloads).  
+* Git. È possibile scaricare installazione hello binario [qui](http://www.git-scm.com/downloads).  
 * Conoscenze di base di Git.
 * Un account Microsoft Azure. Se non si ha un account, è possibile [iscriversi per ottenere una versione di valutazione gratuita](https://azure.microsoft.com/pricing/free-trial) oppure [attivare i vantaggi per i sottoscrittori di Visual Studio](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details).
 
 > [!NOTE]
-> Per iniziare a usare il servizio app di Azure prima di registrarsi per ottenere un account Azure, andare a [Prova il servizio app](https://azure.microsoft.com/try/app-service/), dove è possibile creare un'app iniziale temporanea nel servizio app. Non è necessario fornire una carta di credito né impegnarsi in alcun modo.  
+> Se si desidera tooget avviato con il servizio App di Azure prima di effettuare l'iscrizione per un account Azure, andare troppo[tenta di servizio App](https://azure.microsoft.com/try/app-service/), in cui è possibile creare subito un'app di breve durata starter nel servizio App. Non è necessario fornire una carta di credito né impegnarsi in alcun modo.  
 > 
 > 
 
 ## <a name="Step1"></a>Passaggio 1: Creare un repository locale
-Per creare un nuovo repository Git, eseguire le operazioni seguenti.
+Eseguire hello seguenti attività toocreate un nuovo repository Git.
 
-1. Avviare uno strumento da riga di comando, ad esempio **GitBash** (Windows) o **Bash** (shell Unix). Nei sistemi OS X è possibile accedere alla riga di comando tramite l'applicazione **Terminale** .
-2. Passare alla directory in cui deve essere collocato il contenuto da distribuire.
-3. Eseguire il comando seguente per inizializzare un nuovo repository Git:
+1. Avviare uno strumento da riga di comando, ad esempio **GitBash** (Windows) o **Bash** (shell Unix). Nei sistemi di OS X è possibile accedere hello della riga di comando tramite hello **Terminal** dell'applicazione.
+2. Passare toohello directory in cui deve essere collocato toodeploy contenuto hello.
+3. Utilizzare hello comando tooinitialize un nuovo repository Git di seguito:
 
 ```bash  
 git init
@@ -50,82 +50,82 @@ git init
 ## <a name="Step2"></a>Passaggio 2: Eseguire il commit del contenuto
 Il servizio app supporta applicazioni create in diversi linguaggi di programmazione. 
 
-1. Se il repository include già il contenuto ignorare questo passaggio e passare al passaggio 2. Se non include ancora il contenuto, popolare il repository con un file HTML statico come indicato di seguito: 
+1. Se il repository include già contenuto ignorare questo punto e spostare toopoint 2 di seguito. Se non include ancora il contenuto, popolare il repository con un file HTML statico come indicato di seguito: 
    
-   * Usando un editor di testo creare un nuovo file denominato **index.html** nella radice del repository Git
-   * Aggiungere il testo seguente come contenuto del file index.html e salvarlo: *Hello Git!*
-2. Dalla riga di comando verificare che sia selezionata la radice del repository Git. Usare quindi il comando seguente per aggiungere file al repository:
+   * Utilizzando un editor di testo, creare un nuovo file denominato **index.html** nella radice di hello del repository Git hello
+   * Aggiungere hello dopo il testo contenuto hello per index.html hello del file e salvarlo: *Git Hello!*
+2. Da hello della riga di comando, verificare che nella directory radice di hello del repository Git. Utilizzare quindi hello repository tooyour file tooadd di comando seguente:
 
 ```bash  
 git add -A
 ```
-3. In seguito, eseguire il commit delle modifiche al repository con il comando seguente:
+3. Successivamente, eseguire il commit del repository di hello modifiche toohello utilizzando hello comando seguente:
 
 ```bash  
 git commit -m "Hello Azure App Service"
 ```  
 
-## <a name="Step3"></a>Passaggio 3: Abilitare il repository dell'app del servizio app
-Eseguire la procedura seguente per abilitare un repository Git per l'app del servizio app.
+## <a name="Step3"></a>Passaggio 3: Abilitare hello repository di applicazione di servizio App
+Eseguire hello seguendo i passaggi tooenable un repository Git per l'applicazione di servizio App.
 
-1. Accedere al [portale di Azure].
+1. Accedi toohello [portale Azure].
 2. Nel pannello dell'app del servizio app fare clic su **Impostazioni > Origine distribuzione**. Fare clic su **Scegliere l'origine**, quindi su **Repository Git locale** e infine su **OK**.  
    
     ![Repository Git locale](./media/app-service-deploy-local-git/local_git_selection.png)
-3. Se si tratta della prima impostazione di un repository in Azure, è necessario creare le credenziali di accesso, che verranno usate per accedere al repository di Azure e per effettuare il push delle modifiche dal repository Git locale. Dal pannello dell'app fare clic su **Impostazioni > Credenziali per la distribuzione**, quindi configurare il nome utente e la password per la distribuzione. Al termine, fare clic su **Salva**.
+3. Se questa è la prima impostazione del tempo di un archivio in Azure, è necessario toocreate le credenziali di accesso per tale. Utilizzare li toolog in hello Azure repository e push delle modifiche dall'archivio Git locale. Dal pannello dell'app fare clic su **Impostazioni > Credenziali per la distribuzione**, quindi configurare il nome utente e la password per la distribuzione. Al termine, fare clic su **Salva**.
    
     ![](./media/app-service-deploy-local-git/deployment_credentials.png)
 
 ## <a name="Step4"></a>Passaggio 4: Distribuire il progetto
-Eseguire la procedura seguente per pubblicare l'app nel servizio app usando l'archivio Git locale.
+Utilizzare hello seguendo i passaggi toopublish il tooApp app servizio tramite Git locale.
 
-1. Nel pannello dell'app nel portale di Azure fare clic su **Impostazioni > Proprietà** per l'**URL GIT**.
+1. Nel pannello dell'app nel portale di Azure hello, fare clic su **Impostazioni > proprietà** per hello **URL Git**.
    
     ![](./media/app-service-deploy-local-git/git_url.png)
    
-    **URL Git** è il riferimento remoto in cui eseguire la distribuzione dal repository locale. Questo URL verrà utilizzato nella procedura seguente.
-2. Usando la riga di comando verificare che sia selezionata la radice del repository Git locale.
-3. Utilizzare `git remote` per aggiungere il riferimento remoto elencato in **URL Git** dal passaggio 1. Il comando sarà simile al seguente:
+    **URL GIT** è hello riferimento remoto toodeploy toofrom il repository locale. Utilizzare questo URL in hello alla procedura seguente.
+2. Utilizzando hello della riga di comando, verificare che trovano nella radice di hello del repository Git locale.
+3. Utilizzare `git remote` riferimento remoto hello tooadd elencato in **URL Git** ottenuto al passaggio 1. Il comando avrà un aspetto simile toohello seguenti:
    
         git remote add azure https://<username>@localgitdeployment.scm.azurewebsites.net:443/localgitdeployment.git         
    > [!NOTE]
-   > Il comando **remote** consente di aggiungere un riferimento denominato a un repository remoto. In questo esempio viene creato un riferimento denominato 'azure' per il repository dell'app Web.
+   > Hello **remoto** comando aggiunge un repository remoto tooa di riferimento con nome. In questo esempio viene creato un riferimento denominato 'azure' per il repository dell'app Web.
    > 
    > 
-4. Effettuare il push del contenuto nel servizio app usando il nuovo riferimento remoto **azure** creato.
+4. Eseguire il push del contenuto tooApp servizio utilizzando hello nuovo **azure** remoto appena creato.
 
 ```bash  
 git push azure master
 ```
-    You will be prompted for the password you created earlier when you reset your deployment credentials in the Azure Portal. Enter the password (note that Gitbash does not echo asterisks to the console as you type your password). 
-5. Tornare all'app nel portale di Azure. Nel pannello **Distribuzioni** verrà visualizzata una voce di log dell'ultimo push effettuato. 
+    You will be prompted for hello password you created earlier when you reset your deployment credentials in hello Azure Portal. Enter hello password (note that Gitbash does not echo asterisks toohello console as you type your password). 
+5. Tornare tooyour app nel portale di Azure hello. Una voce di log il push più recente deve essere visualizzata in hello **distribuzioni** blade. 
    
     ![](./media/app-service-deploy-local-git/deployment_history.png)
-6. Fare clic sul pulsante **Sfoglia** nella parte superiore del pannello dell'app per verificare che il contenuto sia stato distribuito. 
+6. Fare clic su hello **Sfoglia** pulsante nella parte superiore di hello di hello di tooverify pannello hello dell'app contenuto è stato distribuito. 
 
 ## <a name="Step5"></a>Risoluzione dei problemi
-Di seguito sono riportati gli errori o i problemi che si verificano comunemente durante l'uso di Git per la pubblicazione in un'app del servizio app di Azure:
+di seguito Hello sono errori o problemi comunemente riscontrati durante l'uso di Git toopublish tooan app del servizio App in Azure:
 
 - - -
-**Sintomo**: non è possibile accedere a '[siteURL]'. La connessione a [scmAddress] non è riuscita.
+**Sintomo**: Impossibile tooaccess [siteURL]: Impossibile troppo tooconnect [scmAddress]
 
-**Causa**: questo errore può verificarsi se l'app non è in esecuzione.
+**Causa**: questo errore può verificarsi se l'applicazione hello non è in esecuzione.
 
-**Soluzione**: avviare l'app nel portale di Azure. La distribuzione Git non funziona se l'app non è in esecuzione. 
+**Risoluzione**: inizio hello app nel portale di Azure hello. Distribuzione GIT non funzionerà a meno che non è in esecuzione app hello. 
 
 - - -
 **Sintomo**: non è possibile risolvere il nome dell'host 'nomehost'.
 
-**Causa**: questo errore può verificarsi se le informazioni sull'indirizzo immesse durante la creazione del repository remoto 'azure' non sono corrette.
+**Causa**: questo errore può verificarsi se le informazioni sull'indirizzo hello immessi durante la creazione di hello 'azure' remoto non è corretta.
 
-**Soluzione**: usare il comando `git remote -v` per elencare tutti i repository remoti, insieme agli URL associati. Verificare che l'URL del repository remoto 'azure' sia corretto. Se necessario, rimuovere e ricreare questo repository remoto usando l'URL corretto.
+**Risoluzione**: hello utilizzare `git remote -v` comando toolist tutti i componenti remoti, insieme a URL hello associata. Verificare che l'URL di hello per hello 'azure' remoto sia corretto. Se necessario, rimuovere e ricreare questo remoto hello URL sia corretto.
 
 - - -
 **Sintomo**: non sono stati trovati riferimenti in comune e non ne sono stati specificati. Non viene eseguita alcuna operazione. Forse è necessario specificare un ramo, ad esempio 'master'.
 
-**Causa**: questo errore può verificarsi se non si specifica un ramo quando si effettua un'operazione push in Git e non è stato impostato il valore push.default usato da Git.
+**Causa**: questo errore può verificarsi se non si specifica un ramo, quando si esegue un'operazione di push git e non set hello push.default valore utilizzato da Git.
 
-**Soluzione**: ripetere l'operazione push, specificando il ramo master. Ad esempio:
+**Risoluzione**: operazione hello push nuovamente specificando ramo master hello. ad esempio:
 
 ```bash  
 git push azure master
@@ -133,9 +133,9 @@ git push azure master
 - - -
 **Sintomo**: non sono state trovate corrispondenze per src refspec [nomeramo].
 
-**Causa**: questo errore può verificarsi se si tenta di effettuare il push in un ramo diverso dal master nel repository remoto 'azure'.
+**Causa**: questo errore può verificarsi se si tenta di ramo tooa toopush diverso da quello master in hello 'azure' remoto.
 
-**Soluzione**: ripetere l'operazione push, specificando il ramo master. Ad esempio:
+**Risoluzione**: operazione hello push nuovamente specificando ramo master hello. ad esempio:
 
 ```bash  
 git push azure master
@@ -143,19 +143,19 @@ git push azure master
 - - -
 **Sintomo**: RPC non riuscita; risultato = 22, codice HTTP = 502.
 
-**Causa**: questo errore può verificarsi se si tenta di effettuare il push di un repository Git di grandi dimensioni tramite HTTPS.
+**Causa**: questo errore può verificarsi se si tenta di toopush un repository git di grandi dimensioni tramite HTTPS.
 
-**Soluzione**: modificare la configurazione Git nel computer locale per ingrandire il postBuffer
+**Risoluzione**: modificare la configurazione di git hello in più grande successivo hello toomake macchina locale hello
 
 ```bash  
 git config --global http.postBuffer 524288000
 ```
 - - -
-**Sintomo**: errore. Le modifiche vengono sottoposte a commit nel repository remoto ma l'app Web non viene aggiornata.
+**Sintomo**: errore - repository tooremote eseguito il commit di modifiche ma l'app web non è stato aggiornato.
 
 **Causa**: questo errore può verificarsi se si distribuisce un'app Node.js contenente un file package.json che specifica altri moduli necessari.
 
-**Risoluzione**: i messaggi aggiuntivi contenenti 'npm ERR!' dovrebbero essere registrati prima di questo errore e possono fornire contesto aggiuntivo sul problema. Di seguito sono riportate le cause note di questo errore e del corrispondente messaggio 'npm ERR!' messaggio:
+**Risoluzione**: i messaggi aggiuntivi contenenti 'npm ERR!' deve essere connesso toothis precedente errore e può fornire contesto aggiuntivo in caso di errore hello. esempio Hello è note le cause di questo errore e hello corrispondente 'npm ERR!' messaggio:
 
 * **File package.json in formato non corretto**: npm ERR! Non è stato possibile leggere le dipendenze.
 * **Modulo nativo senza una distribuzione binaria per Windows**:
@@ -168,13 +168,13 @@ git config --global http.postBuffer 524288000
 ## <a name="additional-resources"></a>Risorse aggiuntive
 * [Documentazione su Git](http://git-scm.com/documentation)
 * [Documentazione del progetto Kudu](https://github.com/projectkudu/kudu/wiki)
-* [Distribuzione continua nel servizio app di Azure](app-service-continuous-deployment.md)
-* [Come usare PowerShell per Azure](/powershell/azure/overview)
-* [Come usare l'interfaccia della riga di comando di Azure](../cli-install-nodejs.md)
+* [La distribuzione continua tooAzure servizio App](app-service-continuous-deployment.md)
+* [Come toouse PowerShell per Azure](/powershell/azure/overview)
+* [Come toouse hello interfaccia della riga di comando di Azure](../cli-install-nodejs.md)
 
-[servizio app di Azure]: https://azure.microsoft.com/documentation/articles/app-service-changes-existing-services/
+[Azure App Service]: https://azure.microsoft.com/documentation/articles/app-service-changes-existing-services/
 [Azure Developer Center]: http://www.windowsazure.com/en-us/develop/overview/
-[portale di Azure]: https://portal.azure.com
+[portale Azure]: https://portal.azure.com
 [Git website]: http://git-scm.com
 [Installing Git]: http://git-scm.com/book/en/Getting-Started-Installing-Git
 [interfaccia della riga di comando di Azure]: https://azure.microsoft.com/en-us/documentation/articles/xplat-cli-azure-resource-manager/

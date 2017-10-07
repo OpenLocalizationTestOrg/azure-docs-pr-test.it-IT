@@ -1,6 +1,6 @@
 ---
-title: "Considerazioni di progettazione dell'identità ibrida di Azure Active Directory - Determinare i requisiti di controllo di accesso | Documentazione Microsoft"
-description: "Illustra gli elementi fondamentali dell'identità e specifica i requisiti di accesso alle risorse previsti per gli utenti in un ambiente ibrido."
+title: "Considerazioni sulla progettazione di aaaAzure Active Directory ibrido identità - determinare i requisiti di controllo di accesso | Documenti Microsoft"
+description: "Include informazioni su hello punti chiave di identità e l'identificazione di requisiti di accesso per le risorse per gli utenti in un ambiente ibrido."
 documentationcenter: 
 services: active-directory
 author: billmath
@@ -14,63 +14,63 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 07/18/2017
 ms.author: billmath
-ms.openlocfilehash: 6404940da460461632616fe49f055d50c2a7aba3
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: f0c22629f732a4c13ee7a24456651bec7637c387
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="determine-access-control-requirements-for-your-hybrid-identity-solution"></a>Determinare i requisiti di controllo di accesso per una soluzione di identità ibrida
-Durante la progettazione di una soluzione di identità ibrida, le aziende hanno la possibilità di valutare i requisiti di accesso per le risorse che prevedono di rendere disponibili agli utenti. L'accesso ai dati coinvolge tutti i quattro pilastri dell'identità, ovvero:
+Durante la progettazione di un'organizzazione la soluzione con identità ibrida tooreview questa opportunità può anche usare i requisiti per le risorse di hello che stanno pianificando toomake di accesso disponibile per gli utenti. accesso ai dati Hello tra tutti i quattro punti chiave di identità, che sono:
 
 * Amministrazione
 * Autenticazione
 * Authorization
 * Controllo
 
-La sezione seguente descrive nel dettaglio gli aspetti relativi all'autenticazione e all'autorizzazione, mentre i concetti inerenti alla gestione e al controllo verranno discussi nell'ambito del ciclo di vita delle identità ibride. Per altre informazioni su queste funzionalità, leggere l'articolo sulle modalità per [determinare le attività di gestione delle identità ibride](active-directory-hybrid-identity-design-considerations-hybrid-id-management-tasks.md) .
+sezioni di Hello che segue illustra l'autenticazione e autorizzazione in ulteriori dettagli, amministrazione e il controllo fanno parte del ciclo di vita identità ibrida hello. Per altre informazioni su queste funzionalità, leggere l'articolo sulle modalità per [determinare le attività di gestione delle identità ibride](active-directory-hybrid-identity-design-considerations-hybrid-id-management-tasks.md) .
 
 > [!NOTE]
-> Per altre informazioni su ciascuno dei pilastri, leggere l'articolo relativo ai [quattro pilastri dell'identità e alla gestione delle identità nell'era dell'IT ibrido](http://social.technet.microsoft.com/wiki/contents/articles/15530.the-four-pillars-of-identity-identity-management-in-the-age-of-hybrid-it.aspx) .
+> Lettura [hello quattro punti chiave di identità, gestione delle identità hello età dell'IT ibrido](http://social.technet.microsoft.com/wiki/contents/articles/15530.the-four-pillars-of-identity-identity-management-in-the-age-of-hybrid-it.aspx) per ulteriori informazioni su ognuno di tali colonne.
 > 
 > 
 
 ## <a name="authentication-and-authorization"></a>Autenticazione e autorizzazione
-Sono disponibili vari scenari di autenticazione e autorizzazione, ciascuno dei quali presenta requisiti specifici a cui deve attenersi la soluzione di identità ibrida che l'azienda si appresta ad adottare. Gli scenari che prevedono comunicazioni B2B (Business-to-Business), ad esempio, comportano per gli amministratori IT la necessità di verificare che il metodo di autenticazione e autorizzazione usato dall'azienda consenta la comunicazione con i partner commerciali. Durante la definizione dei requisiti di autenticazione e autorizzazione, accertarsi quindi che venga fornita una risposta alle domande seguenti:
+Esistono diversi scenari di autenticazione e autorizzazione, questi scenari avrà requisiti specifici che devono essere soddisfatti da una soluzione con identità ibrida hello che società hello è tooadopt continua. Scenari che implicano tooBusiness Business (B2B) comunicazione aggiungere una richiesta aggiuntiva per gli amministratori IT poiché sarà necessario tooensure in metodo di autenticazione e autorizzazione di hello utilizzato dall'organizzazione hello grado di comunicare con i partner commerciali. Durante la progettazione di processo per i requisiti di autenticazione e autorizzazione di hello, verificare che hello domande seguenti sono disponibili:
 
 * L'azienda intende autenticare e autorizzare solo gli utenti presenti nel proprio sistema di gestione delle identità?
   * È già stato definito un piano per gli scenari B2B?
-  * In caso affermativo, sono già stati stabiliti i protocolli (SAML, OAuth, Kerberos, token o certificati) da usare per le connessioni tra le aziende?
-* La soluzione di identità ibrida che si intende adottare supporta tali protocolli?
+  * In caso affermativo, è già possibile sapere quali protocolli (SAML, OAuth, Kerberos, token o i certificati) verranno essere tooconnect utilizzate entrambe le aziende?
+* Soluzione con identità ibrida hello che si sta tooadopt supporta i protocolli?
 
-Altri aspetti importanti di cui tener conto sono la posizione dell'archivio di autenticazione che verrà usato dagli utenti e dai partner e il modello amministrativo adottato. Valutare i due modelli seguenti:
+Un altro tooconsider punto importante è in cui verranno collocati i repository di autenticazione hello che verranno utilizzati da utenti e partner e hello modello amministrativo toobe utilizzato. Prendere in considerazione hello le due opzioni principali seguenti:
 
-* Centralizzato: in questo modello le credenziali dell'utente, i criteri e l'amministrazione possono essere centralizzati in locale o nel cloud.
-* Ibrido: in questo modello le credenziali dell'utente, i criteri e l'amministrazione verranno centralizzati in locale e replicati nel cloud.
+* Centralizzata: in hello questo modello le credenziali dell'utente, criteri e l'amministrazione può essere centralizzata locale o nel cloud hello.
+* Ibrida: in hello questo modello le credenziali dell'utente, criteri e amministrazione sarà centralizzata in locale e una replica nel cloud hello.
 
-Il modello adottato da ogni azienda dipenderà dalle rispettive esigenze. È importante quindi rispondere alle domande seguenti per capire dove risiederà il sistema di gestione delle identità e scegliere la modalità amministrativa da usare.
+Il modello di cui l'organizzazione adotteranno variano secondo i requisiti aziendali tootheir, si desidera hello tooanswer seguente domande tooidentify sistema di gestione di identità hello in cui risiederà e hello toouse modalità amministrativa:
 
 * L'azienda dispone già di un sistema locale per la gestione delle identità?
-  * In caso affermativo, prevede di mantenerlo?
-  * Esistono norme o requisiti di conformità a cui deve attenersi l'azienda e in cui si stabilisce dove deve risiedere il sistema di gestione delle identità?
-* L'azienda usa un accesso di tipo Single Sign-On per le app installate in locale o nel cloud?
-  * In caso affermativo, l'adozione di un modello di identità ibrida può avere ripercussioni su questo processo?
+  * In caso affermativo, si prevede tookeep è?
+  * Sono presenti eventuali requisiti di conformità o del regolamento che l'organizzazione deve seguire che stabilisce in cui deve risiedere sistema di gestione di identità hello?
+* L'organizzazione utilizza single sign-on per App che si trova in locale o nel cloud hello?
+  * In caso affermativo, l'adozione di un modello di identità ibrido hello influisce questo processo?
 
 ## <a name="access-control"></a>Controllo dell’accesso
-Sebbene l'autenticazione e l'autorizzazione costituiscano elementi essenziali per consentire l'accesso ai dati aziendali tramite la convalida degli utenti, è altrettanto importante controllare il livello di accesso assegnato agli utenti, nonché il livello di accesso di cui dispongono gli amministratori sulle risorse che devono gestire. Per questo motivo, le soluzioni di identità ibrida devono essere in grado di fornire un accesso granulare alle risorse, funzioni di delega e opzioni di controllo degli accessi in base al ruolo. Assicurarsi che venga fornita una risposta alle domande seguenti relative al controllo di accesso:
+Anche se l'autenticazione e autorizzazione sono dati principali elementi tooenable accesso toocorporate tramite la convalida dell'utente, è anche importante toocontrol hello livello di accesso che questi utenti avranno e livello hello di amministratori di accesso avrà su hello risorse che gestiscono. La soluzione con identità ibrida deve essere in grado di tooprovide accesso granulare tooresources, la delega e controllo di accesso di base al ruolo. Verificare che hello seguente domanda sono disponibili per il controllo di accesso:
 
-* Nell'azienda è presente più di utente con privilegi elevati per la gestione del sistema di identità?
-  * In caso affermativo, è necessario che ogni utente disponga dello stesso livello di accesso?
-* È possibile che sia necessario delegare l'accesso ad altri utenti per la gestione di risorse specifiche?
+* L'azienda ha più di un utente con privilegi elevati toomanage il sistema di identità?
+  * Se Sì, ogni utente necessario hello stesso livello di accesso?
+* Sarebbe necessario toodelegate accesso toousers toomanage specifiche risorse aziendali?
   * In caso affermativo, con quale frequenza si verifica questa situazione?
-* L'azienda prevede di integrare funzionalità di controllo di accesso tra risorse locali e nel cloud?
-* L'azienda potrebbe limitare l'accesso alle risorse in base a determinate condizioni?
-* L'azienda si avvale di una o più applicazioni che richiedono un controllo di accesso personalizzato per alcune risorse?
-  * In caso affermativo, dove si trovano tali app (in locale o nel cloud)?
-  * In caso affermativo, dove si trovano le risorse interessate (in locale o nel cloud)?
+* La società dovrebbe toointegrate funzionalità di controllo di accesso tra sedi locali e cloud risorse?
+* La società dovrebbe toolimit tooresources di accesso in base alle condizioni toosome?
+* La società avrebbe qualsiasi applicazione che deve accedere alle risorse di toosome controllo personalizzato?
+  * In caso affermativo, in cui le applicazioni si trovano (locale o nel cloud hello)?
+  * In caso affermativo, in cui sono quelle le risorse di destinazione si trova (locale o nel cloud hello)?
 
 > [!NOTE]
-> Accertarsi di prendere nota di ogni risposta e comprendere la logica che ne sta alla base. [definizione della strategia di protezione dei dati](active-directory-hybrid-identity-design-considerations-data-protection-strategy.md) esamina le opzioni disponibili con i relativi vantaggi e svantaggi.  Rispondendo a queste domande sarà più facile scegliere l'opzione migliore in base alle specifiche esigenze aziendali.
+> Annotare i tootake che ogni risposta e comprendere motivazioni hello delle risposte hello. [Definire la strategia di protezione dati](active-directory-hybrid-identity-design-considerations-data-protection-strategy.md) esaminerà le opzioni di hello disponibili e i vantaggi e svantaggi di ogni opzione.  Rispondendo a queste domande sarà più facile scegliere l'opzione migliore in base alle specifiche esigenze aziendali.
 > 
 > 
 

@@ -1,6 +1,6 @@
 ---
-title: Quali sono le differenze nell'endpoint 2.0 di Azure AD? | Documentazione Microsoft
-description: Confronto tra gli endpoint originali di Azure AD e gli endpoint della versione 2.0.
+title: "aaaWhat è diverso in endpoint v 2.0 di Azure AD hello? | Microsoft Docs"
+description: Un confronto tra hello originale Azure AD e gli endpoint di hello v 2.0.
 services: active-directory
 documentationcenter: 
 author: dstrockis
@@ -15,51 +15,51 @@ ms.topic: article
 ms.date: 05/01/2017
 ms.author: dastrock
 ms.custom: aaddev
-ms.openlocfilehash: 81de65b0e825dec64383f52b02c5ee56c9434807
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e7ed196f9053fc21db799cd6bc513ba5c2b92885
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="whats-different-about-the-v20-endpoint"></a>Differenze dell'endpoint 2.0.
-Se si ha familiarità con Azure Active Directory o si sono svolte attività di integrazione di app con Azure AD in passato, si noteranno alcune differenze inaspettate nell'endpoint 2.0.  Questo documento descrive tali differenze per una maggiore comprensione da parte dell'utente.
+# <a name="whats-different-about-hello-v20-endpoint"></a>Che cos'è diverso su endpoint v 2.0 hello?
+Se si ha familiarità con Azure Active Directory o sono integrate le app con Azure AD in hello precedente, possono essere presenti alcune differenze nell'endpoint v 2.0 hello che non è normalmente.  Questo documento descrive tali differenze per una maggiore comprensione da parte dell'utente.
 
 > [!NOTE]
-> Non tutti gli scenari e le funzionalità di Azure Active Directory sono supportati dall'endpoint 2.0.  Per determinare se è consigliabile usare l'endpoint 2.0, leggere l'articolo relativo alle [limitazioni della versione 2.0](active-directory-v2-limitations.md).
+> Non tutte le caratteristiche e gli scenari di Azure Active Directory sono supportati dall'endpoint di hello v 2.0.  toodetermine se è necessario utilizzare endpoint v 2.0 hello, conoscenza [limitazioni v 2.0](active-directory-v2-limitations.md).
 >
 
 ## <a name="microsoft-accounts-and-azure-ad-accounts"></a>Account Microsoft e account Azure AD
-L'endpoint 2.0 consente agli sviluppatori di scrivere app che supportano l'accesso da account Microsoft e Azure AD mediante un unico endpoint di autorizzazione.  In questo modo, è possibile scrivere l'app senza tenere conto dell'account usato per l'accesso. Ossia, l'app non contiene informazioni riguardo al tipo di account con cui accede l'utente.  È ovviamente *possibile* inserire nell'app informazioni sul tipo di account usato in una determinata sessione, ma è facoltativo.
+endpoint di Hello v 2.0 consentono agli sviluppatori di App toowrite che accettano Accedi dagli Accounts di Microsoft Azure AD account e, utilizzando un endpoint singolo auth.  In questo modo si hello toowrite possibilità completamente account indipendente; l'app è possibile che non riconosce il tipo di hello di hello utente esegue l'accesso con account.  Naturalmente, si *possibile* rendere la tua app tenere presente il tipo di hello dell'account viene utilizzato in una determinata sessione, ma non è necessario.
 
-Se, ad esempio, l'app chiama [Microsoft Graph](https://graph.microsoft.io), per gli utenti aziendali saranno disponibili funzionalità e dati aggiuntivi, quali i siti di SharePoint o i dati di Directory.  Per numerose azioni, ad esempio la [lettura di un messaggio di posta elettronica dell'utente](https://graph.microsoft.io/docs/api-reference/v1.0/resources/message), il codice può tuttavia essere scritto esattamente nello stesso modo per gli account Microsoft e quelli Azure AD.  
+Ad esempio, se l'app chiama hello [Microsoft Graph](https://graph.microsoft.io), alcune funzionalità aggiuntive e i dati saranno utenti tooenterprise disponibili, ad esempio i siti di SharePoint o i dati di Directory.  Ma per molte azioni, ad esempio [la lettura di posta elettronica dell'utente](https://graph.microsoft.io/docs/api-reference/v1.0/resources/message), codice hello può essere scritti esattamente hello uguale per gli account Microsoft Accounts sia Azure AD.  
 
-L'integrazione dell'app con account Microsoft e Azure AD è ora un processo semplice.  È possibile usare un unico set di endpoint, un'unica libreria e un'unica registrazione dell'app per accedere ai vantaggi di livello consumer e aziendale.  Per altre informazioni sull'endpoint 2.0, consultare [la panoramica](active-directory-appmodel-v2-overview.md).
+L'integrazione dell'app con account Microsoft e Azure AD è ora un processo semplice.  È possibile utilizzare un singolo set di endpoint, una singola libreria e una singola app registrazione toogain accesso tooboth hello aziendali e tecnologie.  toolearn hello v 2.0 endpoint, estrarre ulteriori informazioni sugli [hello Panoramica](active-directory-appmodel-v2-overview.md).
 
 ## <a name="new-app-registration-portal"></a>Nuovo portale di registrazione delle app
-Per registrare un'app che usa l'endpoint 2.0, è necessario accedere a un nuovo portale di registrazione delle app: [apps.dev.microsoft.com](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList).  In questo portale è possibile ottenere un ID applicazione, personalizzare l'aspetto della pagina di accesso dell'app ed eseguire molte altre operazioni.  Per accedere al portale è sufficiente un account con tecnologia Microsoft, personale oppure dell'azienda o dell'istituto di istruzione.
+un'applicazione che funziona con endpoint v 2.0 hello tooregister, è necessario utilizzare un nuovo portale di registrazione di app: [apps.dev.microsoft.com](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList).  Si tratta di hello portale in cui è possibile ottenere un ID applicazione, personalizzare l'aspetto di hello della pagina di accesso dell'applicazione e altro ancora.  È sufficiente portale hello tooaccess è un account Microsoft con tecnologia - account personale o dell'istituto di istruzione/lavoro.
 
 ## <a name="one-app-id-for-all-platforms"></a>ID app univoco per tutte le piattaforme
-Se si usa Azure Active Directory, è possibile che siano state registrate più app diverse per un unico progetto.  Se, ad esempio, sono stati creati sia un sito Web sia un'app per iOS, è stato necessario registrarli separatamente, usando due diversi ID applicazione. Il portale di registrazione delle app Azure AD obbligava a compiere questa distinzione durante la registrazione:
+Se si usa Azure Active Directory, è possibile che siano state registrate più app diverse per un unico progetto.  Ad esempio, se è stata compilata sia un sito Web e un'app iOS, è necessario tooregister li separatamente, con due ID applicazione diverso. portale di registrazione Hello Azure AD app forzato questa distinzione è toomake durante la registrazione:
 
 ![Interfaccia utente della registrazione dell'applicazione precedente](../../media/active-directory-v2-flows/old_app_registration.PNG)
 
-Analogamente, se si disponeva di un sito Web e di un'API Web back-end, è possibile che ogni elemento sia stato registrato come un'app separata in Azure AD.  In alternativa, se si disponeva di un'app per iOS e di un'app per Android, è possibile che siano state registrate due app diverse.  La necessità di registrare ogni singolo componente di un'applicazione determinava tuttavia alcuni comportamenti imprevisti per gli sviluppatori e i rispettivi clienti:
+Analogamente, se si disponeva di un sito Web e di un'API Web back-end, è possibile che ogni elemento sia stato registrato come un'app separata in Azure AD.  In alternativa, se si disponeva di un'app per iOS e di un'app per Android, è possibile che siano state registrate due app diverse.  La registrazione di ogni componente di un'applicazione ha portato toosome comportamenti imprevisti per gli sviluppatori e i relativi clienti:
 
-* Ogni componente veniva visualizzato come un'app separata nel tenant di Azure Active Directory di ogni cliente.
-* Se un amministratore del tenant tentava di applicare criteri a un'app, gestirne l'accesso o eliminarla, doveva quindi eseguire questa operazione per ogni componente dell'app.
-* Se un cliente rilasciava il consenso per un'applicazione, ogni componente veniva visualizzato nella schermata del consenso come applicazione distinta.
+* Ogni componente visualizzate come un'applicazione separata nel tenant di Azure Active Directory hello di ogni cliente.
+* Quando un amministratore tenant tentato tooapply criteri per gestire l'accesso a o eliminare un'app, hanno toodo in questo caso per ogni componente dell'applicazione hello.
+* Quando i clienti acconsentito tooan applicazione, ogni componente viene visualizzato nella schermata di consenso hello come applicazione distinta.
 
-Con l'endpoint 2.0, è ora possibile registrare tutti i componenti del progetto come un'unica app e usare un solo ID applicazione per l'intero progetto.  È possibile aggiungere più "piattaforme" a un progetto e fornire i dati appropriati per ogni piattaforma aggiunta.  Naturalmente, è possibile creare quante app si desidera in base alle esigenze, ma nella maggior parte dei casi è necessario un solo ID applicazione.
+Con endpoint v 2.0 hello, è ora possibile registrare tutti i componenti del progetto come una registrazione singola app e usare un singolo Id applicazione per l'intero progetto.  È possibile aggiungere diversi tooa "piattaforme" ogni progetto e fornire le informazioni necessarie hello per ogni piattaforma che aggiunti.  Naturalmente, è possibile creare quante più App come si desidera che a seconda dei requisiti, ma per la maggior parte di hello dei casi, un solo Id applicazione deve essere necessarie.
 
-L'obiettivo è ottenere un'esperienza di sviluppo e gestione delle app più semplificata e creare una vista più consolidata del progetto al quale si lavora.
+Il nostro obiettivo è che verrà portano tooa più semplificato la gestione delle app e l'esperienza di sviluppo e creare una visualizzazione consolidata più di un singolo progetto se si lavora su.
 
 ## <a name="scopes-not-resources"></a>Ambiti e non risorse
-In Azure Active Directory un'app può comportarsi come una **risorsa** o come un destinatario di token.  Una risorsa può definire diversi **ambiti** o autorizzazioni **oAuth2Permissions** che può riconoscere, consentendo alle app client di richiedere token per la risorsa per un determinato set di ambiti.  Si consideri l'API Graph di Azure AD come esempio di una risorsa:
+In Azure Active Directory un'app può comportarsi come una **risorsa** o come un destinatario di token.  Una risorsa è possibile definire un numero di **ambiti** o **oAuth2Permissions** che riconosce, consentendo di risorse di toothat toorequest token per un determinato set di ambiti di applicazioni client.  Si consideri l'API di Azure AD Graph hello come un esempio di una risorsa:
 
 * Identificatore della risorsa o `AppID URI`: `https://graph.windows.net/`
 * Ambiti o `OAuth2Permissions`: `Directory.Read`, `Directory.Write` e così via  
 
-Quanto descritto si applica all'endpoint 2.0.  Un'app può comunque comportarsi come una risorsa, definire gli ambiti ed essere identificata da un URI.  Le app client possono richiedere ancora l'accesso a questi ambiti,  tuttavia, è stata modificata la modalità con cui un client esegue la richiesta delle autorizzazioni.  In precedenza, l'aspetto di una richiesta di autorizzazione OAuth 2.0 a Azure AD era simile al seguente:
+Tutto ciò vale per l'endpoint di hello hello v 2.0.  Un'app può comunque comportarsi come una risorsa, definire gli ambiti ed essere identificata da un URI.  Le applicazioni client possono richiedere ancora gli ambiti di accesso toothose.  Tuttavia, il modo di hello in cui un client richiede tali autorizzazioni è stato modificato.  In hello precedente, un OAuth 2.0 autorizzare tooAzure richiesta AD stato simile:
 
 ```
 GET https://login.microsoftonline.com/common/oauth2/authorize?
@@ -68,7 +68,7 @@ client_id=2d4d11a2-f814-46a7-890a-274a72a7309e
 ...
 ```
 
-dove il parametro della **risorsa** indicava la risorsa per la quale l'app client richiedeva l'autorizzazione.  Azure AD calcolava le autorizzazioni obbligatorie per l'app in base alla configurazione statica nel portale di Azure e rilasciava i token di conseguenza.  Ora invece, l'aspetto della stessa richiesta di autorizzazione OAuth 2.0 è simile al seguente:
+in cui hello **risorse** parametro indicato richiede l'autorizzazione per quali app client hello di risorse.  Azure AD calcolato autorizzazioni hello richieste dall'applicazione hello in base alla configurazione statico nel portale di Azure hello e token emessi, di conseguenza.  A questo punto, hello stesso OAuth 2.0 autorizzare richiesta ha un aspetto simile:
 
 ```
 GET https://login.microsoftonline.com/common/oauth2/v2.0/authorize?
@@ -77,20 +77,20 @@ client_id=2d4d11a2-f814-46a7-890a-274a72a7309e
 ...
 ```
 
-dove il parametro dell' **ambito** indica per quali risorse e autorizzazioni l'app richiede l'autorizzazione. La risorsa desiderata è ancora presente nella richiesta, semplicemente è inclusa in ognuno dei valori del parametro di ambito.  Tale uso del parametro di ambito consente all'endpoint 2.0 di essere più conforme alla specifica OAuth 2.0 e alle pratiche comuni del settore.  Consente inoltre alle app di eseguire il [consenso incrementale](#incremental-and-dynamic-consent)descritto nella sezione seguente.
+in cui hello **ambito** parametro indica quale app hello risorsa e le autorizzazioni richiede l'autorizzazione per. Hello desiderato risorsa è ancora molto presente nella richiesta di hello - semplicemente è stato incluso in ognuno dei valori di hello del parametro di ambito hello.  Utilizzando il parametro di ambito hello in questo modo consente più conformi alla specifica OAuth 2.0 hello hello v 2.0 endpoint toobe e più strettamente allineato consigliate comuni.  Consente inoltre di App tooperform [consenso incrementale](#incremental-and-dynamic-consent), descritto nella sezione successiva hello.
 
 ## <a name="incremental-and-dynamic-consent"></a>Consenso incrementale e dinamico
-Per le app registrate in Azure AD, in passato era necessario specificare le autorizzazioni OAuth 2.0 obbligatorie nel portale di Azure al momento della creazione dell'app:
+App registrato in Azure AD necessari in precedenza toospecify dispongono delle autorizzazioni necessarie di OAuth 2.0 in hello portale di Azure, al momento della creazione di app:
 
 ![Interfaccia utente della registrazione delle autorizzazioni](../../media/active-directory-v2-flows/app_reg_permissions.PNG)
 
-Le autorizzazioni richieste da un'app venivano configurate **staticamente**.  Se da un lato ciò consentiva che la configurazione dell'app esistesse nel portale di Azure e che il codice fosse chiaro e semplice, dall'altro presentava alcuni problemi per gli sviluppatori:
+un'app necessarie sono state configurate le autorizzazioni di Hello **staticamente**.  Anche se questa configurazione di hello app tooexist consentiti nel portale di Azure hello e mantenuta codice hello utile e semplice, presenta alcuni problemi per gli sviluppatori:
 
-* Era necessario definire in fase di creazione tutte le autorizzazioni che sarebbero state necessarie all'app.  La possibilità di aggiungere le autorizzazioni in fasi successive era un processo difficile.
-* Era necessario definire in anticipo tutte le risorse a cui l'app avrebbe dovuto accedere.  Era difficile creare app che potessero accedere a un numero arbitrario di risorse.
-* Era necessario richiedere al primo accesso dell'utente tutte le autorizzazioni di cui l'app avrebbe avuto bisogno.  In alcuni casi ciò comportava l'esigenza di creare un lungo elenco di autorizzazioni che dovevano essere approvate dall'utente al primo accesso, causando spesso la rinuncia all'iscrizione da parte di quest'ultimo.
+* Un'app aveva tooknow tutte hello autorizzazioni è necessario in fase di creazione di app.  La possibilità di aggiungere le autorizzazioni in fasi successive era un processo difficile.
+* Un'app aveva tooknow tutte le risorse di hello mai acceda anticipatamente.  È difficile toocreate App che accedono a un numero arbitrario di risorse.
+* Un'app aveva toorequest tutte le autorizzazioni di hello che sarebbe necessario al momento hello del primo accesso dell'utente.  In alcuni casi ciò ha portato tooa molto lungo elenco di autorizzazioni che gli utenti finali di approvazione accesso dell'applicazione hello Accedi iniziale sconsigliato.
 
-Nell'endpoint 2.0 è possibile specificare le autorizzazioni necessarie per l'app **dinamicamente**, in fase di esecuzione, durante l'utilizzo regolare dell'app.  A tale scopo, è possibile specificare gli ambiti necessari per l'app in qualsiasi momento, includendoli nel parametro `scope` di una richiesta di autorizzazione:
+Con l'endpoint di hello v 2.0, è possibile specificare autorizzazioni hello esigenze app **dinamicamente**, in fase di esecuzione durante il normale utilizzo dell'app.  toodo in tal caso, è possibile specificare hello definisce l'ambito delle esigenze di app in qualsiasi punto nel tempo includendoli in hello `scope` parametro di una richiesta di autorizzazione:
 
 ```
 GET https://login.microsoftonline.com/common/oauth2/v2.0/authorize?
@@ -99,29 +99,29 @@ client_id=2d4d11a2-f814-46a7-890a-274a72a7309e
 ...
 ```
 
-Il codice precedente richiede l'autorizzazione per l'app di leggere i dati di directory di un utente di Azure AD, nonché di scrivere dati in tale directory.  Se l'utente ha acconsentito a tali autorizzazioni in precedenza per questa particolare app, sarà sufficiente immettere le proprie credenziali ed eseguire l'accesso all'app.  Se l'utente non ha acconsentito a nessuna di queste autorizzazioni, l'endpoint 2.0 chiederà all'utente di fornire il consenso.  Per altre informazioni, leggere l'argomento relativo ad [autorizzazioni, consenso e ambiti](active-directory-v2-scopes.md).
+Hello precedente richiede l'autorizzazione per hello app tooread un utente di Azure AD directory dati, nonché directory tootheir di scrittura dei dati.  Se l'utente di hello ha acconsentito autorizzazioni toothose in hello precedente per questa app specifica, sarà sufficiente immettere le proprie credenziali e accedere ad app hello.  Se l'utente hello non ha accettato le condizioni tooany queste autorizzazioni, endpoint v 2.0 hello chiederà utente hello per le autorizzazioni toothose consenso.  toolearn altre, è possibile leggere fino in [ambiti, autorizzazione e autorizzazioni](active-directory-v2-scopes.md).
 
-Consentendo a un'app di richiedere le autorizzazioni in modo dinamico tramite il parametro `scope` gli sviluppatori hanno il controllo completo dell'esperienza dell'utente.  Se si desidera, è possibile scegliere di agire d'anticipo chiedendo il consenso per tutte le autorizzazioni in un'unica richiesta iniziale.  In alternativa, se l'app richiede un numero elevato di autorizzazioni, è possibile scegliere di raccogliere tali autorizzazioni dall'utente in modo incrementale, man mano che determinate funzionalità dell'app vengono usate.
+Consentire a un'app toorequest autorizzazioni in modo dinamico tramite hello `scope` parametro consente di effettuare un controllo completo esperienza dell'utente.  Se si desidera, è possibile scegliere toofrontload il consenso dell'utente esperienza e chiedere di tutte le autorizzazioni in una richiesta di autorizzazione iniziale.  O se l'app richiede un numero elevato di autorizzazioni, è possibile scegliere toogather tali autorizzazioni utente hello in modo incrementale, come tentano toouse determinate funzionalità dell'app nel tempo.
 
 ## <a name="well-known-scopes"></a>Ambiti conosciuti
 #### <a name="offline-access"></a>Accesso offline
-Per le app che usano l'endpoint 2.0 è possibile che sia necessaria una nuova autorizzazione nota per le app: l'ambito `offline_access`.  Tutte le app dovranno richiedere questa autorizzazione, se devono accedere alle risorse per conto di un utente per un periodo di tempo prolungato, anche se l'utente non sta usando attivamente l'app.  L'utente visualizzerà l'ambito `offline_access` in finestre di dialogo di consenso, quali "Accedere ai dati offline", che dovrà accettare.  La richiesta dell'autorizzazione `offline_access` consentirà all'app Web di ricevere token di aggiornamento di OAuth 2.0 dall'endpoint 2.0.  I token di aggiornamento hanno una durata elevata e possono essere scambiati con nuovi token di accesso di OAuth 2.0 per periodi prolungati di accesso.  
+Le app usando endpoint v 2.0 hello uso può essere necessario hello di una nuova autorizzazione nota per le app - hello `offline_access` ambito.  Tutte le app saranno necessario toorequest questa autorizzazione se sono richieste risorse tooaccess per conto di hello di un utente per un periodo prolungato di tempo, anche quando l'utente hello potrebbe non essere attivamente usando hello app.  Hello `offline_access` ambito verrà visualizzato come utente toohello in consenso dialogs "Accedere ai dati non in linea", l'utente che ha hello deve accettare.  Richiedente hello `offline_access` autorizzazione abiliterà il tooreceive app web OAuth 2.0 refresh_tokens dall'endpoint di hello v 2.0.  I token di aggiornamento hanno una durata elevata e possono essere scambiati con nuovi token di accesso di OAuth 2.0 per periodi prolungati di accesso.  
 
-Se l'app non richiede l'ambito `offline_access`, non riceverà i token di aggiornamento.  Pertanto, se si riscatta un codice di autorizzazione nel flusso del codice di autorizzazione di OAuth 2.0, si riceverà solo un token di accesso dall'endpoint `/token`.  Tale token di accesso rimarrà valido per un breve periodo di tempo (in genere un'ora), per poi scadere.  A questo punto, l'app reindirizza l'utente all'endpoint `/authorize` per recuperare un nuovo codice di autorizzazione.  Durante il reindirizzamento, l'utente può o meno avere esigenza di immettere nuovamente le proprie credenziali o fornire il consenso per le autorizzazioni, a seconda del tipo di app.
+Se l'app non viene richiesta hello `offline_access` ambito, non riceverà refresh_tokens.  Ciò significa che quando si Riscatta un authorization_code nel flusso di codice di autorizzazione OAuth 2.0 hello, si riceveranno solo nuovamente access_token da hello `/token` endpoint.  Tale token di accesso rimarrà valido per un breve periodo di tempo (in genere un'ora), per poi scadere.  A questo punto nel tempo, necessarie per l'app tooredirect hello utente indietro toohello `/authorize` tooretrieve endpoint authorization_code una nuova.  Durante questo reindirizzamento, utente hello può o non venga necessario tooenter nuovamente le proprie credenziali o nuovamente consenso toopermissions, in base al tipo di hello hello di app.
 
-Per altre informazioni su OAuth 2.0, token di aggiornamento e token di accesso, vedere le [informazioni di riferimento sui protocolli della versione 2.0](active-directory-v2-protocols.md).
+altre informazioni sull'estrazione OAuth 2.0, refresh_tokens e access_tokens, hello toolearn [riferimento al protocollo v 2.0](active-directory-v2-protocols.md).
 
 #### <a name="openid-profile-and-email"></a>OpenID, profilo e indirizzo di posta elettronica
-Tradizionalmente, il flusso di accesso più semplice di OpenID Connect in Azure Active Directory fornisce molte informazioni sull'utente nel token ID risultante.  Le attestazioni nel token ID includono, ad esempio, il nome dell'utente, il nome utente preferito, l'indirizzo di posta elettronica, l'ID oggetto e altro ancora.
+In passato, hello più elementare OpenID Connect flusso di accesso con Azure Active Directory fornisce una serie di informazioni sull'utente hello in id_token risultante hello.  le attestazioni Hello in un id_token possono includere nome dell'utente hello, username preferito, indirizzo di posta elettronica, ID di oggetto e altro ancora.
 
-Attualmente vengono limitate le informazioni a cui l'app ha accesso tramite l'ambito `openid`.  L'ambito "openid" consente all'app di far accedere l'utente e di ricevere un identificatore specifico dell'app per l'utente.  Per ottenere informazioni personali sull'utente nell'app, questa dovrà richiedere autorizzazioni aggiuntive all'utente.  Vengono introdotti due nuovi ambiti, `email` e `profile`, che consentono di eseguire questa operazione.
+È ora limitazione informazioni hello che hello sono `openid` ambito consente all'app l'accesso a.  ambito 'openid' Hello solo consentire all'utente di hello app toosign in e un identificatore specifico dell'app per utente hello di ricezione.  Se si desiderano tooobtain informazioni personali (PII) sull'utente hello nell'app, necessarie per l'app toorequest ulteriori autorizzazioni utente hello.  Microsoft sta introducendo due nuovi ambiti: hello `email` e `profile` ambiti, che consentono di toodo così.
 
-L'ambito `email` è molto semplice: consente all'app di accedere all'indirizzo di posta elettronica primario dell'utente tramite l'attestazione `email` nell'id_token.  L'ambito `profile` concede all'app l'accesso a tutte le altre informazioni di base sull'utente, vale a dire il nome, il nome utente preferito, l'ID oggetto e così via.
+Hello `email` ambito è molto semplice: consente l'indirizzo di posta elettronica principale dell'utente le app accesso toohello tramite hello `email` id_token hello di attestazione.  Hello `profile` ambito mette a disposizione il tooall accesso app altre informazioni di base sull'utente hello-loro nome, nome utente preferito, ID di oggetto e così via.
 
-Questo permette di creare il codice dell'app in modo che la divulgazione delle informazioni sia minima, chiedendo all'utente solo il set di informazioni necessario per il funzionamento dell'app.  Per altre informazioni su questi ambiti, vedere l'articolo relativo al [riferimento all'ambito della versione 2.0](active-directory-v2-scopes.md).
+In questo modo è toocode l'app in maniera minima riservatezza: è possibile solo richiedere utente hello set hello di informazioni che l'app richiede toodo relativo processo.  Per ulteriori informazioni su questi ambiti, vedere troppo[hello riferimento a un ambito v 2.0](active-directory-v2-scopes.md).
 
 ## <a name="token-claims"></a>Attestazioni nei token
-Le attestazioni nei token rilasciati dall'endpoint 2.0 non sono identiche a quelle nei token rilasciati dagli endpoint di Azure AD disponibile a livello generale. Le app che eseguono la migrazione al nuovo servizio non devono presupporre che esista un'attestazione particolare nei token ID o di accesso. Per altre informazioni sulle attestazioni specifiche generate nei token 2.0, vedere l'articolo relativo al [riferimento al token della versione 2.0](active-directory-v2-tokens.md).
+Hello attestazioni nei token rilasciati da endpoint v 2.0 hello non saranno identici tootokens emesso dagli endpoint di Azure AD in genere disponibili hello - migrazione toohello nuovo servizio App non deve presupporre che un'attestazione specifica sarà disponibile in id_tokens o access_tokens. toolearn sulle attestazioni specifiche di hello generato nei token v 2.0, vedere hello [riferimento token v 2.0](active-directory-v2-tokens.md).
 
 ## <a name="limitations"></a>Limitazioni
-Esistono alcune limitazioni da tenere in considerazione quando si usa l'endpoint 2.0.  Fare riferimento al [documento relativo alle limitazioni della versione 2.0](active-directory-v2-limitations.md) per verificare se una di queste restrizioni si applica a un particolare scenario.
+Esistono alcune restrizioni toobe considerare quando si utilizza punto v 2.0 hello.  Consultare toohello [doc limitazioni v 2.0](active-directory-v2-limitations.md) toosee se uno qualsiasi di queste restrizioni si applicano tooyour particolare scenario.

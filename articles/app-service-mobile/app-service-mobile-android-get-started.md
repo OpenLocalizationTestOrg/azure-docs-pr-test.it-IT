@@ -1,6 +1,6 @@
 ---
-title: Creare un'app Android in App per dispositivi mobili del servizio app di Azure | Microsoft Docs
-description: Seguire questa esercitazione per iniziare a usare i back-end dell'app per dispositivi mobili per lo sviluppo di Android
+title: un'app Android in App mobili di Azure App Service aaaCreate | Documenti Microsoft
+description: Seguire questa esercitazione tooget introduttive sull'utilizzo di back-end delle app mobili di Azure per lo sviluppo di Android
 services: app-service\mobile
 documentationcenter: android
 author: ggailey777
@@ -14,34 +14,34 @@ ms.devlang: java
 ms.topic: hero-article
 ms.date: 10/01/2016
 ms.author: glenga
-ms.openlocfilehash: 418a5229a084d570bc6cab5925dbd8d30945a3c5
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 0af85a3a4de9fc265976bbe3f34d73effc3807df
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-an-android-app"></a>Creare un'app per Android
 [!INCLUDE [app-service-mobile-selector-get-started](../../includes/app-service-mobile-selector-get-started.md)]
 
 ## <a name="overview"></a>Panoramica
-Questa esercitazione illustra come aggiungere un servizio back-end basato sul cloud a un'app per dispositivi mobili Android mediante un back-end per app per dispositivi mobili di Azure.  Verranno creati un nuovo back-end di app per dispositivi mobili e una semplice app Android di tipo *Todo list* che archivia dati delle app in Azure.
+Questa esercitazione viene illustrato come tooadd un back-end basato su cloud service tooan app per dispositivi mobili Android con un back-end dell'app per dispositivi mobili di Azure.  Verranno creati un nuovo back-end di app per dispositivi mobili e una semplice app Android di tipo *Todo list* che archivia dati delle app in Azure.
 
-Il completamento di questa esercitazione è un prerequisito per tutte le altre esercitazioni Android relative all'uso della funzionalità delle app per dispositivi mobili in Servizio app di Azure.
+Completato questa esercitazione è un prerequisito per tutte le altre esercitazioni sulla funzionalità delle App per dispositivi mobili hello in Azure App Service Android.
 
 ## <a name="prerequisites"></a>Prerequisiti
-Per completare l'esercitazione, sono necessari gli elementi seguenti:
+toocomplete questa esercitazione, è necessario hello seguenti:
 
-* [Android Developer Tools](https://developer.android.com/sdk/index.html), che include l'ambiente di sviluppo integrato di Android Studio e la piattaforma Android più recente.
-* L’SDK Android di Azure Mobile, a cui si fa automaticamente riferimento come parte del progetto della guida introduttiva da scaricare.
+* [Strumenti di sviluppo di Android](https://developer.android.com/sdk/index.html), che include l'ambiente di sviluppo integrato di Android Studio hello e la piattaforma Android più recente di hello.
+* Azure Mobile Android SDK, che viene fatto automaticamente riferimento come parte del progetto di avvio rapido hello scaricato.
 * Un [account Azure attivo](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="create-a-new-azure-mobile-app-backend"></a>Creare un nuovo back-end dell'app per dispositivi mobili di Azure
 [!INCLUDE [app-service-mobile-dotnet-backend-create-new-service](../../includes/app-service-mobile-dotnet-backend-create-new-service.md)]
 
-## <a name="configure-the-server-project"></a>Configurare il progetto server
+## <a name="configure-hello-server-project"></a>Configurare il progetto server di hello
 [!INCLUDE [app-service-mobile-configure-new-backend.md](../../includes/app-service-mobile-configure-new-backend.md)]
 
-## <a name="download-and-run-the-android-app"></a>Scaricare ed eseguire l'app Android
+## <a name="download-and-run-hello-android-app"></a>Scaricare ed eseguire l'applicazione Android hello
 [!INCLUDE [app-service-mobile-android-run-app](../../includes/app-service-mobile-android-run-app.md)]
 
 <!-- URLs -->

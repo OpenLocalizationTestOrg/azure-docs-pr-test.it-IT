@@ -1,6 +1,6 @@
 ---
-title: "Creare un gateway applicazione per l'hosting di più siti | Microsoft Docs"
-description: "Questa pagina contiene istruzioni per creare e configurare un gateway applicazione di Azure per l'hosting di più applicazioni Web nello stesso gateway."
+title: "un gateway applicazione per ospitare più siti aaaCreate | Documenti Microsoft"
+description: "Questa pagina fornisce istruzioni toocreate, configurare un gateway applicazione Azure per ospitare più applicazioni web su hello stesso gateway."
 documentationcenter: na
 services: application-gateway
 author: amsriva
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 12/12/2016
 ms.author: amsriva
-ms.openlocfilehash: d42efa7d359f5c87c14afbfd138328b37c8ae6c2
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: bad9a76be0a73a7026a770630fa7156f6e5940c4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-an-application-gateway-for-hosting-multiple-web-applications"></a>Creare un gateway applicazione per l'hosting di più applicazioni Web
 
@@ -26,52 +26,52 @@ ms.lasthandoff: 07/11/2017
 > * [Portale di Azure](application-gateway-create-multisite-portal.md)
 > * [PowerShell per Azure Resource Manager](application-gateway-create-multisite-azureresourcemanager-powershell.md)
 
-L'hosting di più siti consente di distribuire più applicazioni Web nello stesso gateway applicazione. La presenza dell'intestazione host nella richiesta HTTP in ingresso consente di determinare il listener che riceverà il traffico. Il listener indirizza quindi il traffico al pool back-end appropriato in base alla configurazione della definizione delle regole del gateway. Nelle applicazioni Web abilitate per SSL il gateway applicazione sceglie il listener corretto per il traffico Web in base all'estensione dell'indicazione nome server (SNI). L'hosting di più siti viene comunemente usato per bilanciare il carico delle richieste per diversi domini Web tra vari pool di server back-end. Analogamente, lo stesso gateway applicazione potrebbe ospitare anche più sottodomini dello stesso dominio radice.
+Hosting di più siti consente toodeploy più di una sola applicazione web su hello stesso gateway applicazione. Si basa su presenza dell'intestazione host nella richiesta HTTP in ingresso hello, toodetermine quali listener riceve traffico. listener di Hello indirizza quindi il pool back-end tooappropriate traffico come configurato nella definizione delle regole hello del gateway hello. Nelle applicazioni web SSL abilitato, i gateway applicazione si basa su hello indicazione nome Server (SNI) estensione toochoose hello corretto del listener per il traffico web hello. Viene in genere utilizzata per l'hosting del sito più tooload bilanciamento delle richieste per i pool di server back-end web diversi domini toodifferent. Analogamente, più sottodomini del dominio radice della stessa può essere ospitato su hello hello stesso gateway applicazione.
 
 ## <a name="scenario"></a>Scenario
 
-Nell'esempio seguente, il gateway applicazione gestisce il traffico per contoso.com e fabrikam.com con due pool di server back-end: il pool di server contoso e il pool di server fabrikam. Una configurazione simile potrebbe essere usata per ospitare sottodomini come app.contoso.com e blog.contoso.com.
+Nell'esempio seguente di hello, gateway applicazione gestisce il traffico per contoso.com e fabrikam.com con due pool di server back-end: contoso pool di server e il pool di server di fabrikam. Il programma di installazione simile potrebbe essere sottodomini toohost usato come app.contoso.com e blog.contoso.com.
 
 ![imageURLroute](./media/application-gateway-create-multisite-azureresourcemanager-powershell/multisite.png)
 
 ## <a name="before-you-begin"></a>Prima di iniziare
 
-1. Installare la versione più recente dei cmdlet di Azure PowerShell usando l'Installazione guidata piattaforma Web. È possibile scaricare e installare la versione più recente dalla sezione **Windows PowerShell** della [Pagina di download](https://azure.microsoft.com/downloads/).
-2. È necessario che i server aggiunti al pool back-end per l'uso del gateway applicazione esistano oppure che i relativi endpoint siano stati creati nella rete virtuale in una subnet separata o che sia stato assegnato loro un indirizzo IP/VIP pubblico.
+1. Installare più recente dei cmdlet di Azure PowerShell hello hello utilizzando hello installazione guidata piattaforma Web. È possibile scaricare e installare la versione più recente di hello da hello **Windows PowerShell** sezione di hello [pagina di download](https://azure.microsoft.com/downloads/).
+2. server Hello aggiunto deve essere presente il gateway applicazione hello di toohello pool back-end toouse o i relativi endpoint creato in una rete virtuale di hello in una subnet distinta o con un indirizzo IP/VIP pubblico assegnato.
 
 ## <a name="requirements"></a>Requisiti
 
-* **Pool di server back-end:** elenco di indirizzi IP dei server back-end. Gli indirizzi IP elencati devono appartenere alla subnet della rete virtuale o devono essere indirizzi IP/VIP pubblici. È possibile usare anche FQDN.
-* **Impostazioni del pool di server back-end:** ogni pool ha impostazioni quali porta, protocollo e affinità basata sui cookie. Queste impostazioni sono associate a un pool e vengono applicate a tutti i server nel pool.
-* **Porta front-end:** porta pubblica aperta sul gateway applicazione. Il traffico raggiunge questa porta e quindi viene reindirizzato a uno dei server back-end.
-* **Listener** : ha una porta front-end, un protocollo (Http o Https, con distinzione tra maiuscole e minuscole) e il nome del certificato SSL (se si configura l'offload SSL). Per i gateway applicazione abilitati per più siti vengono aggiunti anche indicatori SNI e nome host.
-* **Regola**: associa il listener e il pool di server back-end e definisce il pool di server back-end a cui deve essere indirizzato il traffico quando raggiunge un listener specifico. Le regole vengono elaborate nell'ordine in cui sono elencate e il traffico verrà indirizzato tramite la prima regola corrispondente indipendentemente dalla specificità. Se ad esempio si dispone di due regole, una che usa un listener di base e una che usa un listener multisito, entrambe sulla stessa porta, la regola con il listener multisito deve essere elencata prima della regola con il listener di base per funzionare come previsto.
+* **Pool di server back-end:** elenco hello di indirizzi IP dei server back-end hello. gli indirizzi IP Hello elencati devono appartenere toohello subnet della rete virtuale o devono essere un indirizzo IP/VIP pubblico. È possibile usare anche FQDN.
+* **Impostazioni del pool di server back-end:** ogni pool ha impostazioni quali porta, protocollo e affinità basata sui cookie. Queste impostazioni sono legato tooa pool e vengono applicati tooall server hello pool.
+* **Porta front-end:** questa porta è una porta pubblica hello aperta sul gateway applicazione hello. Traffico riscontri questa porta, e quindi ottiene reindirizzato tooone dei server back-end hello.
+* **Listener:** listener hello dispone di una porta front-end, un protocollo (Http o Https, questi valori sono distinzione maiuscole/minuscole) e il nome certificato SSL hello (se la configurazione di SSL di offload). Per i gateway applicazione abilitati per più siti vengono aggiunti anche indicatori SNI e nome host.
+* **Regola:** regola hello associa listener hello, pool di server back-end hello e definisce il traffico di hello pool di server back-end deve essere diretto toowhen raggiunge un determinato listener. Le regole vengono elaborate in ordine di hello che sono elencati e il traffico verrà indirizzato tramite hello prima regola che corrisponde indipendentemente dal fatto di specificità. Ad esempio, se si dispone di una regola di utilizzo di un listener di base e una regola di utilizzo di un listener multisito entrambi nella stessa regola di porta, hello con hello listener multisito hello deve essere elencato prima regola hello con listener di base hello affinché hello multisito regola toofunction come previsto.
 
 ## <a name="create-an-application-gateway"></a>Creare un gateway applicazione
 
-Per creare un gateway applicazione, seguire questa procedura:
+di seguito Hello sono passaggi hello necessari toocreate un gateway applicazione.
 
 1. Creare un gruppo di risorse per Gestione risorse.
-2. Creare una rete virtuale, le subnet e un indirizzo IP pubblico per il gateway applicazione.
+2. Creare una rete virtuale, subnet e indirizzo IP pubblico per il gateway applicazione hello.
 3. Creare un oggetto di configurazione del gateway applicazione.
 4. Creare una risorsa del gateway applicazione.
 
 ## <a name="create-a-resource-group-for-resource-manager"></a>Creare un gruppo di risorse per Gestione risorse
 
-Assicurarsi di usare la versione più recente di Azure PowerShell. Altre informazioni sono disponibili in [Uso di Azure PowerShell con Azure Resource Manager](../powershell-azure-resource-manager.md).
+Assicurarsi che si utilizza hello la versione più recente di Azure PowerShell. Altre informazioni sono disponibili in [Uso di Azure PowerShell con Azure Resource Manager](../powershell-azure-resource-manager.md).
 
 ### <a name="step-1"></a>Passaggio 1
 
-Accedere ad Azure
+Accedi tooAzure
 
 ```powershell
 Login-AzureRmAccount
 ```
-Verrà richiesto di eseguire l'autenticazione con le proprie credenziali.
+Si è tooauthenticate richiesta con le credenziali.
 
 ### <a name="step-2"></a>Passaggio 2
 
-Controllare le sottoscrizioni per l'account.
+Controllare le sottoscrizioni di hello per account hello.
 
 ```powershell
 Get-AzureRmSubscription
@@ -79,7 +79,7 @@ Get-AzureRmSubscription
 
 ### <a name="step-3"></a>Passaggio 3
 
-Scegliere le sottoscrizioni ad Azure da usare.
+Scegliere quali di toouse le sottoscrizioni di Azure.
 
 ```powershell
 Select-AzureRmSubscription -Subscriptionid "GUID of subscription"
@@ -99,27 +99,27 @@ In alternativa, è anche possibile creare tag del gruppo di risorse per il gatew
 $resourceGroup = New-AzureRmResourceGroup -Name appgw-RG -Location "West US" -Tags @{Name = "testtag"; Value = "Application Gateway multiple site"}
 ```
 
-Gestione risorse di Azure richiede che tutti i gruppi di risorse specifichino un percorso che viene usato come percorso predefinito per le risorse presenti in tale gruppo di risorse. Assicurarsi che tutti i comandi per creare un gateway applicazione usino lo stesso gruppo di risorse.
+Gestione risorse di Azure richiede che tutti i gruppi di risorse specifichino un percorso Questo percorso viene utilizzato come percorso predefinito di hello per le risorse in tale gruppo di risorse. Assicurarsi che tutti i comandi toocreate un hello di uso di gateway applicazione stesso gruppo di risorse.
 
-Nell'esempio precedente è stato creato un gruppo di risorse denominato **appgw-RG** con la località **Stati Uniti occidentali**.
+Nell'esempio hello sopra, è stato creato un gruppo di risorse denominato **appgw-RG** con un percorso di **Stati Uniti occidentali**.
 
 > [!NOTE]
-> Se è necessario configurare un probe personalizzato per il gateway applicazione, vedere [Creare un probe personalizzato per il gateway applicazione di Azure con PowerShell per Azure Resource Manager](application-gateway-create-probe-ps.md). Per altre informazioni, vedere l'articolo relativo a [probe personalizzati e monitoraggio dell'integrità](application-gateway-probe-overview.md) .
+> Se è necessario tooconfigure un probe personalizzato per il gateway applicazione, vedere [creare un gateway applicazione con probe personalizzati usando PowerShell](application-gateway-create-probe-ps.md). Per altre informazioni, vedere l'articolo relativo a [probe personalizzati e monitoraggio dell'integrità](application-gateway-probe-overview.md) .
 
 ## <a name="create-a-virtual-network-and-subnets"></a>Creare una rete virtuale e le subnet
 
-L'esempio seguente illustra come creare una rete virtuale usando Gestione risorse. In questo passaggio vengono create due subnet. La prima subnet è per il gateway applicazione stesso. Il gateway applicazione richiede una propria subnet che deve contenere le sue istanze. In tale subnet possono essere distribuiti solo altri gateway applicazione. La seconda subnet viene usata per contenere i server back-end dell'applicazione.
+Hello seguente esempio viene illustrato come toocreate una rete virtuale usando Gestione risorse. In questo passaggio vengono create due subnet. prima di subnet Hello è per il gateway applicazione hello stesso. Gateway applicazione richiede il proprio toohold subnet delle istanze. In tale subnet possono essere distribuiti solo altri gateway applicazione. subnet secondo Hello è server back-end di applicazione hello toohold utilizzato.
 
 ### <a name="step-1"></a>Passaggio 1
 
-Assegnare l'intervallo di indirizzi 10.0.0.0/24 alla variabile subnet da usare per contenere il gateway applicazione.
+Assegnare hello indirizzo intervallo 10.0.0.0/24 toohello subnet toobe variabile toohold utilizzati hello gateway applicazione.
 
 ```powershell
 $subnet = New-AzureRmVirtualNetworkSubnetConfig -Name appgatewaysubnet -AddressPrefix 10.0.0.0/24
 ```
 ### <a name="step-2"></a>Passaggio 2
 
-Assegnare l'intervallo di indirizzi 10.0.1.0/24 alla variabile subnet2 da usare per i pool back-end.
+Assegnare hello indirizzo intervallo 10.0.1.0/24 toohello subnet2 variabile toobe utilizzato per il pool di back-end hello.
 
 ```powershell
 $subnet2 = New-AzureRmVirtualNetworkSubnetConfig -Name backendsubnet -AddressPrefix 10.0.1.0/24
@@ -127,7 +127,7 @@ $subnet2 = New-AzureRmVirtualNetworkSubnetConfig -Name backendsubnet -AddressPre
 
 ### <a name="step-3"></a>Passaggio 3
 
-Creare una rete virtuale denominata **appgwvnet** nel gruppo di risorse **appgw-rg** per l'area Stati Uniti occidentali usando il prefisso 10.0.0.0/16 con le subnet 10.0.0.0/24 e 10.0.1.0/24.
+Creare una rete virtuale denominata **appgwvnet** nel gruppo di risorse **appgw-rg** per area Stati Uniti occidentali hello con hello prefisso 10.0.0.0/16 10.0.0.0/24 subnet e 10.0.1.0/24.
 
 ```powershell
 $vnet = New-AzureRmVirtualNetwork -Name appgwvnet -ResourceGroupName appgw-RG -Location "West US" -AddressPrefix 10.0.0.0/16 -Subnet $subnet,$subnet2
@@ -135,30 +135,30 @@ $vnet = New-AzureRmVirtualNetwork -Name appgwvnet -ResourceGroupName appgw-RG -L
 
 ### <a name="step-4"></a>Passaggio 4
 
-Assegnare una variabile di subnet per la creazione di un gateway applicazione nei passaggi successivi.
+Assegnare una variabile di subnet per i passaggi successivi hello, che consente di creare un gateway applicazione.
 
 ```powershell
 $appgatewaysubnet = Get-AzureRmVirtualNetworkSubnetConfig -Name appgatewaysubnet -VirtualNetwork $vnet
 $backendsubnet = Get-AzureRmVirtualNetworkSubnetConfig -Name backendsubnet -VirtualNetwork $vnet
 ```
 
-## <a name="create-a-public-ip-address-for-the-front-end-configuration"></a>Creare un indirizzo IP pubblico per la configurazione front-end
+## <a name="create-a-public-ip-address-for-hello-front-end-configuration"></a>Creare un indirizzo IP pubblico per la configurazione front-end hello
 
-Creare una risorsa IP pubblica denominata **publicIP01** nel gruppo di risorse **appgw-rg** per l'area Stati Uniti occidentali.
+Creare una risorsa IP pubblica **publicIP01** nel gruppo di risorse **appgw-rg** per area Stati Uniti occidentali hello.
 
 ```powershell
 $publicip = New-AzureRmPublicIpAddress -ResourceGroupName appgw-RG -name publicIP01 -location "West US" -AllocationMethod Dynamic
 ```
 
-All'avvio del servizio viene assegnato un indirizzo IP al gateway applicazione.
+Viene assegnato a un indirizzo IP gateway applicazione toohello all'avvio del servizio hello.
 
 ## <a name="create-application-gateway-configuration"></a>Creare la configurazione del gateway applicazione
 
-È necessario impostare tutti gli elementi di configurazione prima di creare il gateway applicazione. La procedura seguente consente di creare gli elementi di configurazione necessari per una risorsa del gateway applicazione.
+Hai tooset backup di tutti gli elementi di configurazione prima di creare i gateway applicazione hello. Hello seguenti passaggi necessari per creare hello gli elementi di configurazione necessari per una risorsa di gateway applicazione.
 
 ### <a name="step-1"></a>Passaggio 1
 
-Creare una configurazione IP del gateway applicazione denominata **gatewayIP01**. All'avvio, il gateway applicazione seleziona un indirizzo IP dalla subnet configurata e instrada il traffico di rete agli indirizzi IP nel pool di indirizzi IP back-end. Tenere presente che ogni istanza ha un indirizzo IP.
+Creare una configurazione IP del gateway applicazione denominata **gatewayIP01**. Avvio di gateway applicazione preleva un indirizzo IP dalla subnet hello configurato e instradare gli indirizzi IP di toohello il traffico di rete nel pool IP back-end hello. Tenere presente che ogni istanza ha un indirizzo IP.
 
 ```powershell
 $gipconfig = New-AzureRmApplicationGatewayIPConfiguration -Name gatewayIP01 -Subnet $appgatewaysubnet
@@ -166,18 +166,18 @@ $gipconfig = New-AzureRmApplicationGatewayIPConfiguration -Name gatewayIP01 -Sub
 
 ### <a name="step-2"></a>Passaggio 2
 
-Configurare i pool di indirizzi IP back-end denominati **pool01** e **pool2** con gli indirizzi IP **134.170.185.46**, **134.170.188.221**, **134.170.185.50** per **pool1** e **134.170.186.46**, **134.170.189.221**, **134.170.186.50** per **pool2**.
+Configurare hello pool di indirizzi IP back-end denominato **pool01** e **pool2** con indirizzi IP **134.170.185.46**, **134.170.188.221**, **134.170.185.50** per **pool1** e **134.170.186.46**, **134.170.189.221**, **134.170.186.50**  per **pool2**.
 
 ```powershell
 $pool1 = New-AzureRmApplicationGatewayBackendAddressPool -Name pool01 -BackendIPAddresses 10.0.1.100, 10.0.1.101, 10.0.1.102
 $pool2 = New-AzureRmApplicationGatewayBackendAddressPool -Name pool02 -BackendIPAddresses 10.0.1.103, 10.0.1.104, 10.0.1.105
 ```
 
-Questo esempio mostra due pool back-end che indirizzano il traffico di rete in base al sito richiesto. Un pool riceve il traffico dal sito "contoso.com" e l'altro riceve il traffico dal sito "fabrikam.com". È necessario sostituire gli indirizzi IP precedenti e aggiungere gli endpoint di indirizzi IP dell'applicazione. Al posto di indirizzi IP interni si potrebbero usare per le istanze back-end anche indirizzi IP pubblici, FQDN o la scheda di interfaccia di rete di una VM. Per specificare FQDN invece di indirizzi IP in PowerShell usare il parametro "-BackendFQDNs".
+In questo esempio, sono disponibili due pool back-end tooroute il traffico di rete basato su sito richiesto hello. Un pool riceve il traffico dal sito "contoso.com" e l'altro riceve il traffico dal sito "fabrikam.com". È necessario hello tooreplace precedente tooadd gli indirizzi IP endpoint dell'indirizzo IP la propria applicazione. Al posto di indirizzi IP interni si potrebbero usare per le istanze back-end anche indirizzi IP pubblici, FQDN o la scheda di interfaccia di rete di una VM. toospecify FQDN anziché gli indirizzi IP in uso di PowerShell "-BackendFQDNs" parametro.
 
 ### <a name="step-3"></a>Passaggio 3
 
-Configurare le impostazioni **poolsetting01** e **poolsetting02** del gateway applicazione per il traffico di rete con carico bilanciato nel pool back-end. In questo esempio vengono configurate diverse impostazioni per i pool back-end. Ogni pool back-end può avere un'impostazione del pool back-end dedicata.
+Configurare impostazioni del gateway applicazione **poolsetting01** e **poolsetting02** hello con bilanciamento del carico del traffico di rete nel pool back-end hello. In questo esempio, configurare le impostazioni del pool back-end diverso per il pool di back-end hello. Ogni pool back-end può avere un'impostazione del pool back-end dedicata.
 
 ```powershell
 $poolSetting01 = New-AzureRmApplicationGatewayBackendHttpSettings -Name "besetting01" -Port 80 -Protocol Http -CookieBasedAffinity Disabled -RequestTimeout 120
@@ -186,7 +186,7 @@ $poolSetting02 = New-AzureRmApplicationGatewayBackendHttpSettings -Name "besetti
 
 ### <a name="step-4"></a>Passaggio 4
 
-Configurare l'indirizzo IP front-end con l'endpoint di indirizzo IP pubblico.
+Configurazione IP front-end hello con endpoint IP pubblico.
 
 ```powershell
 $fipconfig01 = New-AzureRmApplicationGatewayFrontendIPConfig -Name "frontend1" -PublicIPAddress $publicip
@@ -194,7 +194,7 @@ $fipconfig01 = New-AzureRmApplicationGatewayFrontendIPConfig -Name "frontend1" -
 
 ### <a name="step-5"></a>Passaggio 5
 
-Configurare la porta front-end per un gateway applicazione.
+Configurare hello porta front-end per un gateway applicazione.
 
 ```powershell
 $fp01 = New-AzureRmApplicationGatewayFrontendPort -Name "fep01" -Port 443
@@ -202,7 +202,7 @@ $fp01 = New-AzureRmApplicationGatewayFrontendPort -Name "fep01" -Port 443
 
 ### <a name="step-6"></a>Passaggio 6
 
-Configurare due certificati SSL per i due siti Web che verranno supportati in questo esempio: un certificato per il traffico di contoso.com e l'altro per il traffico di fabrikam.com. Questi certificati per i siti Web devono essere rilasciati da un'autorità di certificazione. I certificati autofirmati sono supportati, ma non sono consigliati per il traffico di produzione.
+Configurare due i certificati SSL per i siti Web hello due verrà toosupport in questo esempio. È un certificato per il traffico di contoso.com e altri hello è per il traffico fabrikam.com. Questi certificati per i siti Web devono essere rilasciati da un'autorità di certificazione. I certificati autofirmati sono supportati, ma non sono consigliati per il traffico di produzione.
 
 ```powershell
 $cert01 = New-AzureRmApplicationGatewaySslCertificate -Name contosocert -CertificateFile <file path> -Password <password>
@@ -211,7 +211,7 @@ $cert02 = New-AzureRmApplicationGatewaySslCertificate -Name fabrikamcert -Certif
 
 ### <a name="step-7"></a>Passaggio 7
 
-Configurare due listener per i due siti Web dell'esempio. Questo passaggio configura i listener per l'indirizzo IP pubblico, la porta e l'host usati per ricevere il traffico in ingresso. Il parametro HostName è necessario per il supporto di più siti e deve essere impostato sul sito Web appropriato per cui viene ricevuto il traffico. Il parametro RequireServerNameIndication dovrà essere impostato su true per i siti Web in cui è necessario il supporto per SSL per uno scenario di hosting multiplo. Se è necessario il supporto per SSL, si deve specificare anche il certificato SSL che viene usato per proteggere il traffico per l'applicazione Web. La combinazione di FrontendIPConfiguration, FrontendPort e HostName deve essere univoca per un listener. Ogni listener può supportare un certificato.
+In questo esempio, configurare due listener per hello due siti web. Questo passaggio consente di configurare i listener di hello per host, porta e indirizzo IP pubblico usato tooreceive il traffico in entrata. Parametro HostName è obbligatorio per il supporto del sito e deve essere toohello appropriato siti Web per cui hello ricezione del traffico. Parametro RequireServerNameIndication deve essere impostato tootrue per i siti Web che necessitano di supporto per SSL in uno scenario con più host. Se è richiesto il supporto SSL, è necessario anche toospecify hello SSL certificato traffico toosecure utilizzato per l'applicazione web. combinazione di Hello di FrontendIPConfiguration front-end e il nome host deve essere univoco tooa listener. Ogni listener può supportare un certificato.
 
 ```powershell
 $listener01 = New-AzureRmApplicationGatewayHttpListener -Name "listener01" -Protocol Https -FrontendIPConfiguration $fipconfig01 -FrontendPort $fp01 -HostName "contoso11.com" -RequireServerNameIndication true  -SslCertificate $cert01
@@ -220,7 +220,7 @@ $listener02 = New-AzureRmApplicationGatewayHttpListener -Name "listener02" -Prot
 
 ### <a name="step-8"></a>Passaggio 8
 
-Creare l'impostazione di due regole per le due applicazioni Web di questo esempio. Una regola collega listener, pool back-end e impostazioni HTTP. Questo passaggio configura il gateway applicazione per l'uso di una regola di routing Basic per ogni sito Web. Il traffico verso ogni sito Web viene ricevuto dal rispettivo listener configurato e quindi indirizzato al pool back-end configurato usando le proprietà specificate in BackendHttpSettings.
+Creare due regola impostazione per hello due applicazioni web in questo esempio. Una regola collega listener, pool back-end e impostazioni HTTP. Questo passaggio Configura hello applicazione gateway toouse base regola di routing, uno per ogni sito Web. Sito Web tooeach il traffico viene ricevuto dal relativo listener configurato e viene quindi indirizzato tooits configurato pool back-end, utilizzando le proprietà di hello specificate in hello BackendHttpSettings.
 
 ```powershell
 $rule01 = New-AzureRmApplicationGatewayRequestRoutingRule -Name "rule01" -RuleType Basic -HttpListener $listener01 -BackendHttpSettings $poolSetting01 -BackendAddressPool $pool1
@@ -229,7 +229,7 @@ $rule02 = New-AzureRmApplicationGatewayRequestRoutingRule -Name "rule02" -RuleTy
 
 ### <a name="step-9"></a>Passaggio 9:
 
-Configurare il numero di istanze e le dimensioni per il gateway applicazione.
+Configurare hello numero di istanze e le dimensioni per il gateway applicazione hello.
 
 ```powershell
 $sku = New-AzureRmApplicationGatewaySku -Name "Standard_Medium" -Tier Standard -Capacity 2
@@ -237,20 +237,20 @@ $sku = New-AzureRmApplicationGatewaySku -Name "Standard_Medium" -Tier Standard -
 
 ## <a name="create-application-gateway"></a>Creare il gateway applicazione
 
-Creare un gateway applicazione con tutti gli oggetti di configurazione illustrati nei passaggi precedenti.
+Creare un gateway applicazione con tutti gli oggetti di configurazione da hello passaggi precedenti.
 
 ```powershell
 $appgw = New-AzureRmApplicationGateway -Name appgwtest -ResourceGroupName appgw-RG -Location "West US" -BackendAddressPools $pool1,$pool2 -BackendHttpSettingsCollection $poolSetting01, $poolSetting02 -FrontendIpConfigurations $fipconfig01 -GatewayIpConfigurations $gipconfig -FrontendPorts $fp01 -HttpListeners $listener01, $listener02 -RequestRoutingRules $rule01, $rule02 -Sku $sku -SslCertificates $cert01, $cert02
 ```
 
 > [!IMPORTANT]
-> Il provisioning del gateway applicazione è un'operazione con esecuzione prolungata il cui completamento può richiedere tempo.
+> Provisioning di Gateway applicazione è un'operazione a esecuzione prolungata e potrebbe richiedere alcuni toocomplete ora.
 > 
 > 
 
 ## <a name="get-application-gateway-dns-name"></a>Ottenere il nome DNS del gateway applicazione
 
-Dopo avere creato il gateway, il passaggio successivo prevede la configurazione del front-end per la comunicazione. Quando si usa un IP pubblico, il gateway applicazione richiede un nome DNS assegnato in modo dinamico, non descrittivo. Per assicurarsi che gli utenti finali possano raggiungere il gateway applicazione, è possibile usare un record CNAME per fare riferimento all'endpoint pubblico del gateway applicazione. [Configurazione di un nome di dominio personalizzato in Azure](../cloud-services/cloud-services-custom-domain-name-portal.md). A questo scopo, recuperare i dettagli del gateway applicazione e il nome DNS e l'IP associati, usando l'elemento PublicIPAddress collegato al gateway applicazione. Il nome DNS del gateway applicazione dovrà essere usato per creare un record CNAME che associa le due applicazioni Web a questo nome DNS. Non è consigliabile usare record A perché l'indirizzo VIP può cambiare al riavvio del gateway applicazione.
+Una volta creato il gateway hello passaggio successivo hello è tooconfigure hello front-end per la comunicazione. Quando si usa un IP pubblico, il gateway applicazione richiede un nome DNS assegnato in modo dinamico, non descrittivo. gli utenti finali tooensure possibile raggiungere il gateway di applicazione hello, un record CNAME può essere utilizzati toopoint endpoint pubblico di toohello di gateway applicazione hello. [Configurazione di un nome di dominio personalizzato in Azure](../cloud-services/cloud-services-custom-domain-name-portal.md). toodo, dettagli recuperare di gateway applicazione hello e il relativo nome IP/DNS associato usando hello PublicIPAddress elemento collegato toohello applicazioni gateway. nome DNS del gateway applicazione Hello deve essere utilizzato toocreate un record CNAME, il nome DNS punti hello due web applicazioni toothis. utilizzo di Hello del record non è consigliato poiché hello VIP potrebbe cambiare al riavvio del gateway applicazione.
 
 ```powershell
 Get-AzureRmPublicIpAddress -ResourceGroupName appgw-RG -Name publicIP01
@@ -280,5 +280,5 @@ DnsSettings              : {
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Informazioni su come proteggere i siti Web con [Gateway applicazione: firewall applicazione Web](application-gateway-webapplicationfirewall-overview.md)
+Informazioni su come tooprotect i siti Web con [Gateway applicazione - Firewall applicazione Web](application-gateway-webapplicationfirewall-overview.md)
 

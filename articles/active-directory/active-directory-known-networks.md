@@ -1,6 +1,6 @@
 ---
-title: Reti note nel portale di Azure classico | Documentazione Microsoft
-description: "Configurando le reti note si evita che indirizzi IP di proprietà dell'organizzazione vengano inclusi nei report Accessi da più aree geografiche e Accessi da indirizzi IP con attività sospetta."
+title: Reti aaaKnown nel portale di Azure classico hello | Documenti Microsoft
+description: "Quando si configurano reti note, è possibile evitare gli indirizzi IP che sono di proprietà dell'organizzazione incluso in hello accessi da più aree geografiche e accessi da indirizzi IP con attività sospetta report."
 services: active-directory
 documentationcenter: 
 author: MarkusVi
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/05/2017
 ms.author: markvi
-ms.openlocfilehash: e4d51d1d2f09fca34d749879e21d49f785eac35c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ec636cdda172cd3baeb1e606dd8d6e1949fbc63b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="known-networks"></a>Reti note
 
@@ -29,38 +29,38 @@ ms.lasthandoff: 07/11/2017
 > 
 
 
-È possibile usare i report di utilizzo e accesso di Azure Active Directory per ottenere informazioni sull'integrità e sicurezza della directory dell'organizzazione. Con queste informazioni un amministratore di directory può stabilire meglio dove potrebbero esserci possibili rischi per la sicurezza in modo da poterne pianificare adeguatamente la riduzione.
+È possibile utilizzare l'accesso di Azure Active Directory e utilizzo report toogain visibilità hello integrità e sicurezza della directory dell'organizzazione. Con queste informazioni, un amministratore di directory possa meglio stabilire l'origine di possibili rischi per la sicurezza in modo da poter adeguatamente pianificare toomitigate tali rischi.
 
-È possibile che i report "*Accessi da più aree geografiche*" e "*Accessi da indirizzi IP con attività sospetta*" indichino erroneamente indirizzi IP che sono effettivamente di proprietà dell'organizzazione. 
+È possibile che hello "*accessi da più aree geografiche*"e"*accessi da indirizzi IP con attività sospetta*" report flag in modo errato gli indirizzi IP che sono effettivamente di proprietà del organizzazione. 
 
 Questo può avvenire, ad esempio, nei casi seguenti: 
 
-* L'accesso di un utente dell'ufficio di Boston in modalità remota al data center di San Francisco attiva il report "Accessi da più aree geografiche" 
-* Un utente dell'organizzazione tenta di accedere più volte con una password non corretta, attivando il report "Accessi da indirizzi IP con attività sospetta" 
+* Un utente nel proprio ufficio Boston ha effettuato l'accesso in modalità remota tooyour centro dati San Francisco trigger hello report "Accessi da più aree geografiche" 
+* Un utente dell'organizzazione tenta toosign su più volte con un hello trigger password non corretta per il report "Accessi da indirizzi IP con attività sospetta" 
 
-Per impedire che casi come questi generino report sulla sicurezza fuorvianti, è necessario aggiungere gli intervalli di indirizzi IP noti all'elenco di indirizzi IP pubblici dell'organizzazione.    
+tooprevent questi casi protezione fuorviante la generazione del report, è consigliabile aggiungere note intervalli toohello elenco di indirizzi IP dell'indirizzo IP pubblico dell'organizzazione.    
 
-### <a name="to-add-your-organizations-public-ip-address-ranges-perform-the-following-steps"></a>Per aggiungere gli intervalli di indirizzi IP pubblici dell'organizzazione, seguire questa procedura:
+### <a name="tooadd-your-organizations-public-ip-address-ranges-perform-hello-following-steps"></a>gli intervalli di tooadd indirizzo IP pubblico dell'organizzazione, eseguire hello alla procedura seguente:
 
-1. Accedere al [portale di gestione di Azure](https://manage.windowsazure.com).
+1. Sign-on toohello [portale di gestione di Azure](https://manage.windowsazure.com).
 
-2. Nel riquadro di sinistra fare clic su **Active Directory**. 
+2. Nel riquadro di sinistra hello, fare clic su **Active Directory**. 
 
     ![Reti note](./media/active-directory-known-networks/known-netwoks-01.png)
 
-3. Selezionare la propria directory nella scheda **Directory** .
+3. In hello **Directory** scheda, selezionare la directory.
 
-4. Nel menu in alto fare clic su **Configura**. 
+4. Scegliere dal menu hello in primo piano hello **configura**. 
 
     ![Reti note](./media/active-directory-known-networks/known-netwoks-02.png)
 
-5. Nella scheda Configura passare agli **intervalli di indirizzi IP pubblici dell'organizzazione** 
+5. Nella scheda Configura hello, andare troppo**gli intervalli di indirizzi IP pubblici organizzazioni** 
 
     ![Reti note](./media/active-directory-known-networks/known-netwoks-03.png)
 
 6. Fare clic su **Aggiungi intervalli di indirizzi IP noti**.
 
-7. Aggiungere gli intervalli di indirizzi nella finestra di dialogo visualizzata e quindi fare clic sul segno di spunta al termine dell'operazione. 
+7. Aggiungere gli intervalli di indirizzi nella finestra di dialogo hello visualizzata e quindi fare clic su pulsante di controllo hello al termine. 
 
     ![Reti note](./media/active-directory-known-networks/known-netwoks-04.png)
 

@@ -1,6 +1,6 @@
 ---
-title: Accesso condizionale per gli utenti di Collaborazione B2B di Azure Active Directory | Microsoft Docs
-description: "La Collaborazione B2B di Azure Active Directory supporta l'autenticazione a più fattori (MFA) per l'accesso selettivo alle applicazioni aziendali"
+title: l'accesso per gli utenti di collaborazione B2B di Azure Active Directory aaaConditional | Documenti Microsoft
+description: Collaborazione B2B di Active Directory di Azure supporta multi-factor authentication (MFA) per applicazioni aziendali di accesso selettivo tooyour
 services: active-directory
 documentationcenter: 
 author: sasubram
@@ -15,41 +15,41 @@ ms.tgt_pltfrm: NA
 ms.workload: identity
 ms.date: 05/24/2017
 ms.author: sasubram
-ms.openlocfilehash: d85f711d6551a68d1248ae8ec61e2ecc1ddc8ecd
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3a05be4393f74ff8e87f32432a222a5fbac9af62
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="conditional-access-for-b2b-collaboration-users"></a>Accesso condizionale per gli utenti di Collaborazione B2B
 
 ## <a name="multi-factor-authentication-for-b2b-users"></a>Autenticazione a più fattori per gli utenti B2B
-Con Collaborazione B2B di Azure AD, le organizzazioni possono applicare criteri di autenticazione a più fattori (MFA) per gli utenti B2B. Questi criteri possono essere applicati a livello di tenant, di app o di singolo utente, così come vengono abilitati per dipendenti a tempo pieno e membri dell'organizzazione. I criteri di autenticazione a più fattori (MFA) vengono applicati all'organizzazione delle risorse.
+Con Collaborazione B2B di Azure AD, le organizzazioni possono applicare criteri di autenticazione a più fattori (MFA) per gli utenti B2B. Questi criteri possono essere applicati al tenant di hello, app o il livello di singolo utente, hello allo stesso modo che sono abilitate per i dipendenti a tempo pieno e i membri dell'organizzazione hello. Criteri di autenticazione a più fattori vengono applicati all'organizzazione risorse hello.
 
 Esempio:
-1. Un amministratore o un information worker della società A invita gli utenti della società B in un'applicazione *Foo* della società A.
-2. L'applicazione *Foo* nella società A è configurata per richiedere l'autenticazione a più fattori all'accesso.
-3. Quando l'utente della società B tenta di accedere all'app *Foo* nel tenant della società A, gli viene chiesto di completare una richiesta di autenticazione a più fattori.
-4. L'utente può configurare la propria autenticazione a più fattori con la società A e ne sceglie l'opzione MFA.
+1. Lavoro informazioni o di amministrazione nella società invita l'utente dall'applicazione della società B tooan *Foo* nella società A.
+2. Applicazione *Foo* società A è configurato toorequire MFA accesso.
+3. Quando di tenta app tooaccess utente hello dalla società B *Foo* società hello un tenant, sono frequenti toocomplete una richiesta di autenticazione a più fattori.
+4. Hello utente può impostare i relativi MFA con la società e sceglie l'opzione di autenticazione a più fattori.
 5. Questo scenario funziona per qualsiasi identità, ad esempio di Azure AD o account del servizio gestito, se gli utenti della società B eseguono l'autenticazione usando un ID per social network.
-6. La società A deve avere un numero sufficiente di licenze di Azure AD Premium che supportano l'autenticazione a più fattori. L'utente della società B utilizza la licenza della società A.
+6. La società A deve avere un numero sufficiente di licenze di Azure AD Premium che supportano l'autenticazione a più fattori. utente Hello dalla società B utilizza questa licenza dalla società A.
 
-La tenancy che emette l'invito è sempre responsabile dell'autenticazione a più fattori degli utenti dell'organizzazione partner, anche se l'organizzazione partner ha funzionalità di autenticazione a più fattori.
+tenancy invitando Hello è sempre responsabile per l'autenticazione a più fattori per gli utenti dell'organizzazione partner hello, anche se l'organizzazione partner hello dispone di funzionalità di autenticazione a più fattori.
 
 ### <a name="setting-up-mfa-for-b2b-collaboration-users"></a>Configurazione dell'autenticazione a più fattori per gli utenti di Collaborazione B2B
-La configurazione di MFA per gli utenti di Collaborazione B2B è estremamente semplice, come illustrato nel video seguente:
+toodiscover facilmente tooset di autenticazione a più fattori per gli utenti di collaborazione B2B, vedere vedere hello seguenti video:
 
 >[!VIDEO https://channel9.msdn.com/Blogs/Azure/b2b-conditional-access-setup/Player]
 
 ### <a name="b2b-users-mfa-experience-for-offer-redemption"></a>Esperienza di autenticazione a più fattori per gli utenti di B2B per il riscatto dell'offerta
-Guardare l'animazione seguente per visualizzare l'esperienza di riscatto:
+Estrarre hello esperienza riscatto di animazione toosee hello seguente:
 
 >[!VIDEO https://channel9.msdn.com/Blogs/Azure/MFA-redemption/Player]
 
 ### <a name="mfa-reset-for-b2b-collaboration-users"></a>Reimpostazione dell'autenticazione a più fattori per gli utenti di Collaborazione B2B
-L'amministratore attualmente può richiedere agli utenti di Collaborazione B2B di ripetere l'identificazione solo usando i cmdlet di PowerShell seguenti:
+Attualmente, salve può richiedere tooproof agli utenti di collaborazione B2B di nuovo solo usando hello i cmdlet di PowerShell seguente:
 
-1. Connettersi ad Azure AD
+1. Connettersi AD tooAzure
 
   ```
   $cred = Get-Credential
@@ -66,43 +66,43 @@ L'amministratore attualmente può richiedere agli utenti di Collaborazione B2B d
   PS C:\Users\tjwasserGet-MsolUser | where { $_.StrongAuthenticationMethods} | select UserPrincipalName, @{n="Methods";e={($_.StrongAuthenticationMethods).MethodType}}
   ```
 
-3. Reimpostare il metodo di autenticazione a più fattori per un utente specifico in modo da richiedere all'utente di Collaborazione B2B di impostare di nuovo i metodi di identificazione. Esempio:
+3. Ripristinare nuovamente il metodo di autenticazione a più fattori hello per un utente specifico toorequire hello B2B collaborazione utente tooset prova i metodi. Esempio:
 
   ```
   Reset-MsolStrongAuthenticationMethodByUpn -UserPrincipalName gsamoogle_gmail.com#EXT#@ WoodGroveAzureAD.onmicrosoft.com
   ```
 
-### <a name="why-do-we-perform-mfa-at-the-resource-tenancy"></a>Perché si esegue un'autenticazione a più fattori nella tenancy delle risorse?
+### <a name="why-do-we-perform-mfa-at-hello-resource-tenancy"></a>Perché eseguire autenticazione a più fattori in tenancy risorse hello?
 
-Nella versione corrente, l'autenticazione a più fattori è sempre nella tenancy delle risorse, per motivi di prevedibilità. Ad esempio, si supponga che un utente di Contoso (Sara) riceve un invito da Fabrikam e Fabrikam ha abilitato l'autenticazione a più fattori per gli utenti B2B.
+Nella versione corrente di hello, autenticazione a più fattori è sempre tenancy risorse hello, per motivi di prevedibilità. Si supponga, ad esempio, un utente di Contoso (Sally) è invitato tooFabrikam e Fabrikam è abilitata l'autenticazione a più fattori per gli utenti B2B.
 
-Se Contoso ha abilitato i criteri di autenticazione a più fattori per App1 ma non per App2, esaminando l'attestazione MFA di Contoso nel token si potrebbe riscontrare il problema seguente.
+Se Contoso dispone di criteri di autenticazione a più fattori abilitato per App1, ma non App2, quindi se si esamina hello attestazione Contoso MFA nel token hello, è possibile visualizzare hello problema seguente:
 
 * Giorno 1: un utente con autenticazione a più fattori in Contoso accede ad App1 e non viene quindi visualizzata una richiesta MFA aggiuntiva in Fabrikam.
 
-* Giorno 2: l'utente ha eseguito l'accesso ad App2 in Contoso e quando accede a Fabrikam deve eseguirvi la registrazione al servizio MFA.
+* Il giorno 2: utente hello ha avuto accesso alle App 2 in Contoso, a questo punto quando si accede a Fabrikam, deve registrare per l'autenticazione a più fattori non esiste.
 
-Questo processo può generare confusione e determinare una riduzione del numero di accessi completati.
+Questo processo può generare confusione e provocare toodrop in completamenti di accesso.
 
-In aggiunta, anche se Contoso ha una funzionalità di autenticazione a più fattori, non è sempre probabile che Fabrikam accetti i criteri di autenticazione a più fattori di Contoso.
+Inoltre, anche se Contoso dispone di funzionalità di autenticazione a più fattori, non è sempre hello case hello Fabrikam sarebbe attendibili hello criteri Contoso MFA.
 
 Infine, l'autenticazione a più fattori del tenant delle risorse funziona anche per account del servizio gestito, ID per social network e organizzazioni partner che non hanno configurato l'autenticazione a più fattori.
 
-Di conseguenza, per l'autenticazione a più fattori degli utenti B2B è consigliabile richiedere sempre l'autenticazione a più fattori nel tenant che emette l'invito. Questo requisito potrebbe causare la duplicazione dell'autenticazione a più fattori in alcuni casi, ma l'esperienza degli utenti finali è prevedibile a ogni accesso al tenant che emette l'invito: l'utente deve eseguire la registrazione al servizio MFA con tale tenant.
+Pertanto, hello per l'autenticazione a più fattori per gli utenti B2B si consiglia di tooalways richiedono l'autenticazione a più fattori in hello si invitano tenant. Questo requisito può causare toodouble autenticazione a più fattori in alcuni casi, ma ogni volta che accedono tenant invitando hello, l'esperienza degli utenti finali di hello è stimabile: Sally deve registrare per l'autenticazione a più fattori con tenant invitando hello.
 
 ### <a name="device-based-location-based-and-risk-based-conditional-access-for-b2b-users"></a>Accesso condizionale basato sul dispositivo, sulla posizione e sui rischi per gli utenti B2B
 
-Quando Contoso abilita criteri di accesso condizionale basati sul dispositivo per i dati aziendali, viene impedito l'accesso da dispositivi non gestiti da Contoso e non conformi ai criteri dei dispositivi di Contoso.
+Quando Contoso Abilita criteri di accesso condizionale basato su dispositivo per i dati aziendali, i dispositivi non gestiti da Contoso e non conformi ai criteri di dispositivi Contoso hello viene impedito l'accesso.
 
-Se il dispositivo dell'utente B2B non è gestito da Contoso, l'accesso degli utenti B2B delle organizzazioni partner viene bloccato in qualsiasi contesto vengano applicati i criteri. Contoso, tuttavia, può creare elenchi di esclusione contenenti gli utenti di partner specifici per escluderli dai criteri di accesso condizionale basati sul dispositivo.
+Se il dispositivo dell'utente hello B2B non è gestito da Contoso, accesso di utenti B2B da organizzazioni partner hello è bloccato in qualsiasi contesto di questi criteri vengono applicati. Tuttavia, Contoso è possibile creare elenchi contenenti tooexclude gli utenti partner specifico da hello criteri di accesso condizionale basato su dispositivi di esclusione.
 
 #### <a name="location-based-conditional-access-for-b2b"></a>Accesso condizionale basato sulla posizione per B2B
 
-I criteri di accesso condizionale basati sulla posizione possono essere applicati per gli utenti B2B se l'organizzazione che emette l'invito può creare un intervallo di indirizzi IP attendibili che definisce le organizzazioni partner.
+Se l'organizzazione di invitare hello è in grado di toocreate un intervallo di indirizzi IP attendibile che definisce le organizzazioni partner, i criteri di accesso condizionale in base alla posizione possono essere applicati per gli utenti B2B.
 
 #### <a name="risk-based-conditional-access-for-b2b"></a>Accesso condizionale basato sui rischi per B2B
 
-Attualmente non è possibile applicare criteri di accesso basati sui rischi agli utenti B2B, perché la valutazione dei rischi viene eseguita nell'organizzazione principale dell'utente B2B.
+Attualmente, criteri basati sul rischio di accesso non possono essere applicato tooB2B utenti perché viene eseguita la valutazione dei rischi hello organizzazione principale dell'utente hello B2B.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
@@ -110,8 +110,8 @@ Vedere gli altri articoli su Azure AD B2B Collaboration.
 
 * [Che cos'è Azure AD B2B Collaboration?](active-directory-b2b-what-is-azure-ad-b2b.md)
 * [Procedura per aggiungere utenti di Collaborazione B2B ad Azure Active Directory da parte degli amministratori](active-directory-b2b-admin-add-users.md)
-* [Procedura di aggiunta di utenti di Collaborazione B2B da parte di information worker](active-directory-b2b-iw-add-users.md)
-* [Elementi del messaggio di posta elettronica di invito per la Collaborazione B2B](active-directory-b2b-invitation-email.md)
+* [Procedura per aggiungere utenti di Collaborazione B2B da parte di Information Worker](active-directory-b2b-iw-add-users.md)
+* [elementi Hello di posta elettronica di invito collaborazione B2B di hello](active-directory-b2b-invitation-email.md)
 * [Riscatto dell'invito di Collaborazione B2B](active-directory-b2b-redemption-experience.md)
 * [Licenze per la Collaborazione B2B di Azure AD](active-directory-b2b-licensing.md)
 * [Risoluzione dei problemi di Collaborazione B2B di Azure Active Directory](active-directory-b2b-troubleshooting.md)

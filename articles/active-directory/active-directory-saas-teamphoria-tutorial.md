@@ -1,6 +1,6 @@
 ---
 title: 'Esercitazione: Integrazione di Azure Active Directory con Teamphoria| Documentazione Microsoft'
-description: Informazioni su come configurare l'accesso Single Sign-On tra Azure Active Directory e Teamphoria.
+description: Informazioni su come tooconfigure single sign-on tra Azure Active Directory e Teamphoria.
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,117 +13,117 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/07/2017
 ms.author: jeedes
-ms.openlocfilehash: 2a35efb04d7fe22abc6894c149caf090666ce016
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: f32be9742b76f7fe464036dadc108c62e4a787a7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-teamphoria"></a>Esercitazione: Integrazione di Azure Active Directory con Teamphoria
 
-Questa esercitazione illustra come integrare Teamphoria con Azure Active Directory (Azure AD).
+In questa esercitazione, è illustrato come toointegrate Teamphoria con Azure Active Directory (Azure AD).
 
-L'integrazione di Teamphoria con Azure AD offre i vantaggi seguenti:
+Integrazione Teamphoria con Azure AD fornisce hello seguenti vantaggi:
 
-- È possibile controllare in Azure AD chi può accedere a Teamphoria
-- È possibile abilitare gli utenti per l'accesso automatico a Teamphoria (Single Sign-On) con i propri account Azure AD
-- È possibile gestire gli account da una posizione centrale: il portale di gestione di Azure
+- È possibile controllare in Azure AD che ha accesso tooTeamphoria
+- È possibile abilitare l'utenti tooautomatically get connesso tooTeamphoria (Single Sign-On) con i propri account Azure AD
+- È possibile gestire gli account in un'unica posizione centrale - portale di gestione di Azure hello
 
-Per altre informazioni sull'integrazione di app SaaS con Azure AD, vedere [Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory](active-directory-appssoaccess-whatis.md).
+Se si desiderano tooknow ulteriori informazioni sull'integrazione dell'applicazione SaaS con Azure AD, vedere [novità di accesso alle applicazioni e single sign-on con Azure Active Directory](active-directory-appssoaccess-whatis.md).
 
 <!--## Overview
 
-To enable single sign-on with Teamphoria, it must be configured to use Azure Active Directory as an identity provider. This guide provides information and tips on how to perform this configuration in Teamphoria.
+tooenable single sign-on with Teamphoria, it must be configured toouse Azure Active Directory as an identity provider. This guide provides information and tips on how tooperform this configuration in Teamphoria.
 
 >[!Note]: 
->This embedded guide is brand new in the new Azure portal, and we’d love to hear your thoughts. Use the Feedback ? button at the top of the portal to provide feedback. The older guide for using the [Azure classic portal](https://manage.windowsazure.com) to configure this application can be found [here](https://github.com/Azure/AzureAD-App-Docs/blob/master/articles/en-us/_/sso_configure.md).-->
+>This embedded guide is brand new in hello new Azure portal, and we’d love toohear your thoughts. Use hello Feedback ? button at hello top of hello portal tooprovide feedback. hello older guide for using hello [Azure classic portal](https://manage.windowsazure.com) tooconfigure this application can be found [here](https://github.com/Azure/AzureAD-App-Docs/blob/master/articles/en-us/_/sso_configure.md).-->
 
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-Per configurare l'integrazione di Azure AD con Teamphoria, sono necessari gli elementi seguenti:
+integrazione di Azure AD con Teamphoria tooconfigure, è necessario hello seguenti elementi:
 
 - Sottoscrizione di Azure AD.
 - Sottoscrizione di Teamphoria abilitata per l'accesso Single Sign-On
 
 > [!NOTE]
-> Non è consigliabile usare un ambiente di produzione per testare i passaggi di questa esercitazione.
+> hello tootest i passaggi in questa esercitazione, è consigliabile utilizzare un ambiente di produzione.
 
-A questo scopo, è consigliabile seguire le indicazioni seguenti:
+passaggi di hello tootest in questa esercitazione, è necessario seguire questi suggerimenti:
 
 - Non usare l'ambiente di produzione, a meno che non sia necessario.
 - Se non è disponibile un ambiente di prova di Azure AD, è possibile ottenere una versione di prova di un mese [qui](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Descrizione dello scenario
-In questa esercitazione viene eseguito il test dell'accesso Single Sign-On di Azure AD in un ambiente di test. Lo scenario descritto in questa esercitazione prevede i due blocchi predefiniti seguenti:
+In questa esercitazione viene eseguito il test dell'accesso Single Sign-On di Azure AD in un ambiente di test. scenario di Hello descritto in questa esercitazione è composto da due componenti principali:
 
-1. Aggiunta di Teamphoria dalla raccolta
+1. Aggiunta di Teamphoria dalla raccolta hello
 2. Configurazione e test dell'accesso Single Sign-On di Azure AD
 
-## <a name="adding-teamphoria-from-the-gallery"></a>Aggiungere Teamphoria dalla raccolta
-Per configurare l'integrazione di Teamphoria in Azure AD, è necessario aggiungere Teamphoria dalla raccolta al proprio elenco di app SaaS gestite.
+## <a name="adding-teamphoria-from-hello-gallery"></a>Aggiunta di Teamphoria dalla raccolta hello
+integrazione hello tooconfigure di Teamphoria in Azure AD, è necessario tooadd Teamphoria dall'elenco di tooyour hello raccolta di App SaaS gestite.
 
-**Per aggiungere Teamphoria dalla raccolta, seguire questa procedura:**
+**tooadd Teamphoria dalla raccolta di hello, eseguire hello alla procedura seguente:**
 
-1. Nel **[portale di gestione di Azure](https://portal.azure.com)** fare clic sull'icona di **Azure Active Directory** nel riquadro di spostamento sinistro. 
+1. In hello  **[il portale di gestione di Azure](https://portal.azure.com)**via hello del Pannello di navigazione a sinistra, fare clic su **Azure Active Directory** icona. 
 
     ![Active Directory][1]
 
-2. Passare ad **Applicazioni aziendali**. Andare quindi a **Tutte le applicazioni**.
+2. Passare troppo**applicazioni aziendali**. Quindi andare troppo**tutte le applicazioni**.
 
     ![Applicazioni][2]
     
-3. Fare clic sul pulsante **Aggiungi** nella parte superiore della finestra di dialogo.
+3. Fare clic su **Aggiungi** pulsante nella parte superiore di hello della finestra di dialogo hello.
 
     ![Applicazioni][3]
 
-4. Digitare **Teamphoria** nella casella di ricerca.
+4. Nella casella di ricerca hello, digitare **Teamphoria**.
 
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-teamphoria-tutorial/tutorial_teamphoria_search.png)
 
-5. Nel pannello dei risultati selezionare **Teamphoria** e quindi fare clic sul pulsante **Aggiungi** per aggiungere l'applicazione.
+5. Nel riquadro dei risultati hello, selezionare **Teamphoria**, quindi fare clic su **Aggiungi** pulsante applicazione hello tooadd.
 
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-teamphoria-tutorial/tutorial_teamphoria_addfromgallery.png)
 
 ##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>Configurazione e test dell'accesso Single Sign-On di Azure AD
 In questa sezione viene configurato e testato l'accesso Single Sign-On di Azure AD con Teamphoria usando un utente test di nome "Britta Simon".
 
-Per il funzionamento dell'accesso Single Sign-On, Azure AD deve conoscere l'utente controparte di Teamphoria che corrisponde a un utente di Azure AD. In altre parole, deve essere stabilita una relazione di collegamento tra un utente di Azure AD e l'utente correlato in Teamphoria.
+Per toowork di accesso singolo, Azure AD deve tooknow quale utente controparte hello in Teamphoria è tooa utente in Azure AD. In altre parole, una relazione di collegamento tra un utente di Azure Active Directory e l'utente correlato di hello in Teamphoria deve toobe stabilita.
 
-La relazione di collegamento viene stabilita assegnando il valore del **nome utente** di Azure AD come valore di **Username** (Nome utente) in Teamphoria.
+Questa relazione di collegamento viene stabilita tramite l'assegnazione valore hello di hello **nome utente** in Azure AD come valore hello hello **Username** in Teamphoria.
 
-Per configurare e testare l'accesso Single Sign-On di Azure AD con Teamphoria, è necessario completare i blocchi predefiniti seguenti:
+tooconfigure e prova AD Azure single sign-on con Teamphoria, è necessario hello toocomplete seguenti blocchi predefiniti:
 
-1. **[Configurazione dell'accesso Single Sign-On di Azure AD](#configuring-azure-ad-single-sign-on)** : per abilitare gli utenti all'utilizzo di questa funzionalità.
-2. **[Creazione di un utente test di Azure AD](#creating-an-azure-ad-test-user)** : per testare l'accesso Single Sign-On di Azure AD con l'utente Britta Simon.
-3. **[Creazione di un utente test di Teamphoria](#creating-a-teamphoria-test-user)** : per avere una controparte di Britta Simon in Teamphoria collegata alla relativa rappresentazione in Azure AD.
-4. **[Assegnazione dell'utente test di Azure AD](#assigning-the-azure-ad-test-user)** : per abilitare Britta Simon all'uso dell'accesso Single Sign-On di Azure AD.
-5. **[Testing Single Sign-On](#testing-single-sign-on)** : per verificare se la configurazione funziona.
+1. **[Configurazione di Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)**  -tooenable il toouse utenti questa funzionalità.
+2. **[Creazione di un utente prova AD Azure](#creating-an-azure-ad-test-user)**  -tootest AD Azure single sign-on con Britta Simon.
+3. **[Creazione di un utente test Teamphoria](#creating-a-teamphoria-test-user)**  -toohave un equivalente di Britta Simon in Teamphoria toohello collegato AD Azure rappresentazione in seguito.
+4. **[Assegnazione utente di prova hello Azure AD](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD accesso single sign-on.
+5. **[Test di Single Sign-On](#testing-single-sign-on)**  -tooverify hello se funzionamento della configurazione.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Configurazione dell'accesso Single Sign-On di Azure AD
 
-In questa sezione viene abilitato l'accesso Single Sign-On di Azure AD nel portale di gestione di Azure e viene configurato l'accesso Single Sign-On nell'applicazione Teamphoria.
+In questa sezione, si abilita Azure AD single sign-on nel portale di gestione di Azure hello e configurare l'accesso single sign-on nell'applicazione Teamphoria.
 
-**Per configurare l'accesso Single Sign-On di Azure AD con Teamphoria, seguire questa procedura:**
+**Azure AD tooconfigure single sign-on con Teamphoria, eseguire hello alla procedura seguente:**
 
-1. Nella pagina di integrazione dell'applicazione **Teamphoria** del portale di gestione di Azure fare clic su **Single Sign-On**.
+1. Nel portale di gestione di Azure hello in hello **Teamphoria** pagina di integrazione dell'applicazione, fare clic su **Single sign-on**.
 
     ![Configura accesso Single Sign-On][4]
 
-2. Nella finestra di dialogo **Single Sign-On** in **Modalità** selezionare **Accesso basato su SAML** per abilitare l'accesso Single Sign-On.
+2. In hello **Single sign-on** finestra di dialogo, come **modalità** selezionare **basato su SAML Sign-on** tooenable single sign-on.
  
     ![Configura accesso Single Sign-On](./media/active-directory-saas-teamphoria-tutorial/tutorial_teamphoria_samlbase.png)
 
-3. Nella sezione **URL e dominio Teamphoria** seguire questa procedura:
+3. In hello **Teamphoria dominio e gli URL** seguire hello alla procedura seguente:
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-teamphoria-tutorial/tutorial_teamphoria_url.png)
 
-    a. Nella casella di testo **URL di accesso** digitare l'URL usando il modello seguente: `https://<sub-domain>.teamphoria.com/login`    
+    a. In hello **Sign-on URL** casella di testo, digitare l'URL hello utilizzando hello seguente motivo:`https://<sub-domain>.teamphoria.com/login`  
 
     > [!NOTE] 
-    > Si noti che questi non sono i valori reali. È necessario aggiornare questi valori con l'URL di accesso effettivo. Contattare il [team di supporto clienti di Teamphoria](https://www.teamphoria.com/) per richiedere l'URL di accesso. 
+    > Si noti che queste non sono valori reali hello. Hai tooupdate questi valori con hello URL effettivo Sign-On. Contatto [team di supporto Teamphoria Client](https://www.teamphoria.com/) tooget hello Sign-on URL. 
 
-4. Nella sezione **Certificato di firma SAML** fare clic su **Certificato (Base64)** e quindi salvare il certificato nel computer.
+4. In hello **certificato di firma SAML** fare clic su **certificato (Base64)** e quindi salvare il certificato di hello nel computer in uso.
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-teamphoria-tutorial/tutorial_teamphoria_certificate.png) 
 
@@ -131,91 +131,91 @@ In questa sezione viene abilitato l'accesso Single Sign-On di Azure AD nel porta
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-teamphoria-tutorial/tutorial_general_400.png)
 
-6. Nella sezione **Configurazione di Teamphoria** fare clic su **Configura Teamphoria** per aprire la finestra **Configura accesso**. Copiare l'**URL servizio Single Sign-On SAML** dalla **sezione Riferimento rapido.**
+6. In hello **Teamphoria configurazione** fare clic su **configurare Teamphoria** tooopen **Configura sign-on** finestra. Hello copia **SAML Single Sign-On Service URL** da hello **sezione di riferimento rapido.**
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-teamphoria-tutorial/tutorial_teamphoria_configure.png) 
 
-7. Per configurare l'accesso Single Sign-On sul lato **Teamphoria**, accedere all'applicazione Teamphoria come amministratore.
+7. tooconfigure single sign-on sul **Teamphoria** lato, applicazione Teamphoria tooyour di account di accesso come amministratore.
 
-8. Passare all'opzione **ADMIN SETTINGS** (Impostazioni di amministrazione) nella barra degli strumenti di sinistra e scegliere **SINGLE SIGN-ON** sotto la scheda di configurazione per aprire la finestra di configurazione SSO.
+8. Andare troppo**le impostazioni di amministrazione** opzione nella barra degli strumenti a sinistra di hello e in hello hello scheda Configurazione fare clic su **SINGLE SIGN-ON** finestra di configurazione SSO tooopen hello.
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-teamphoria-tutorial/admin_sso_configure.png)
 
-9. Fare clic sull'opzione **ADD NEW IDENTITY PROVIDER** (Aggiungi nuovo provider di identità) nell'angolo superiore destro per aprire il modulo e aggiungere le impostazioni per l'accesso Single Sign-On.
+9. Fare clic su **Aggiungi nuovo PROVIDER di identità** opzione nel modulo di hello angolo superiore destro tooopen hello per l'aggiunta di impostazioni di hello per SSO.
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-teamphoria-tutorial/add_new_identity_provider.png)
 
-10. Immettere i dettagli nei campi come descritto di seguito.
+10. Immettere i dettagli di hello nei campi hello, come descritto di seguito
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-teamphoria-tutorial/Teamphoria_sso_save.png)
 
-    a. **DISPLAY NAME** (Nome visualizzato): immettere il nome del plug-in visualizzato nella pagina di amministrazione.
+    a. **NOME visualizzato** : immettere il nome visualizzato hello di plug-in hello nella pagina di amministrazione di hello.
 
-    b. **BUTTON NAME** (Nome pulsante): il nome della scheda che verrà visualizzata nella pagina di accesso per l'accesso Single Sign-On.
+    b. **Nome pulsante** : nome hello della scheda hello che verrà visualizzato nella pagina di accesso hello per l'accesso tramite SSO.
 
-    c. **CERTIFICATE** (Certificato): aprire il certificato scaricato in precedenza dal portale di Azure nel blocco note, copiare il contenuto dello stesso e incollarlo qui nella casella.
+    c. **CERTIFICATO** : hello aprire certificato scaricato in precedenza dal portale di Azure nel blocco note, copia hello contenuto di hello hello stesso e incollarlo qui nella casella hello.
 
-    d. **ENTRY POINT** (Punto di ingresso): incollare l'**URL del servizio Single Sign-On SAML** copiato in precedenza dal portale di Azure.
+    d. **PUNTO di ingresso** : hello Incolla **SAML Single Sign-On Service URL** copiati precedenti hello modulo portale di Azure.
 
-    e. Posizionare il selettore dell'opzione su **ON** e fare clic su **SAVE** (Salva).   
+    e. Opzione troppo opzione hello**ON** e fare clic su **salvare**. 
 
 <!--### Next steps
 
-To ensure users can sign-in to Teamphoria after it has been configured to use Azure Active Directory, review the following tasks and topics:
+tooensure users can sign-in tooTeamphoria after it has been configured toouse Azure Active Directory, review hello following tasks and topics:
 
-- User accounts must be pre-provisioned into Teamphoria prior to sign-in. To set this up, see Provisioning.
+- User accounts must be pre-provisioned into Teamphoria prior toosign-in. tooset this up, see Provisioning.
  
-- Users must be assigned access to Teamphoria in Azure AD to sign-in. To assign users, see Users.
+- Users must be assigned access tooTeamphoria in Azure AD toosign-in. tooassign users, see Users.
  
-- To configure access polices for Teamphoria users, see Access Policies.
+- tooconfigure access polices for Teamphoria users, see Access Policies.
  
-- For additional information on deploying single sign-on to users, see [this article](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-appssoaccess-whatis#deploying-azure-ad-integrated-applications-to-users).-->
+- For additional information on deploying single sign-on toousers, see [this article](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-appssoaccess-whatis#deploying-azure-ad-integrated-applications-to-users).-->
 
 
 ### <a name="creating-an-azure-ad-test-user"></a>Creazione di un utente test di Azure AD
-Questa sezione descrive come creare un utente test chiamato Britta Simon nel portale di gestione di Azure.
+obiettivo di Hello di questa sezione è un utente di test nel portale di gestione di Azure hello chiamato Britta Simon toocreate.
 
 ![Creare un utente di Azure AD][100]
 
-**Per creare un utente test in Azure AD, eseguire la procedura seguente:**
+**un utente di prova in Azure AD, toocreate eseguire hello alla procedura seguente:**
 
-1. Nel **portale di gestione di Azure** fare clic sull'icona di **Azure Active Directory** nel riquadro di spostamento sinistro.
+1. In hello **portale di gestione di Azure**via hello riquadro di spostamento a sinistra, fare clic su **Azure Active Directory** icona.
 
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-teamphoria-tutorial/create_aaduser_01.png) 
 
-2. Andare a **Utenti e gruppi** e fare clic su **Tutti gli utenti** per visualizzare l'elenco di utenti.
+2. Andare troppo**utenti e gruppi** e fare clic su **tutti gli utenti** elenco hello toodisplay degli utenti.
     
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-teamphoria-tutorial/create_aaduser_02.png) 
 
-3. Nella parte superiore della finestra di dialogo fare clic su **Aggiungi** per aprire la finestra di dialogo **Utente**.
+3. Nella parte superiore di hello della finestra di dialogo hello fare clic su **Aggiungi** tooopen hello **utente** finestra di dialogo.
  
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-teamphoria-tutorial/create_aaduser_03.png) 
 
-4. Nella pagina della finestra di dialogo **Utente** seguire questa procedura:
+4. In hello **utente** finestra di dialogo eseguire hello alla procedura seguente:
  
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-teamphoria-tutorial/create_aaduser_04.png) 
 
-    a. Nella casella di testo **Nome** digitare **BrittaSimon**.
+    a. In hello **nome** casella tipo **BrittaSimon**.
 
-    b. Nella casella di testo **Nome utente** digitare l'**indirizzo di posta elettronica** di BrittaSimon.
+    b. In hello **nome utente** casella di testo, hello tipo **indirizzo di posta elettronica** di BrittaSimon.
 
-    c. Selezionare **Mostra password** e prendere nota del valore della **Password**.
+    c. Selezionare **Show Password** e annotare il valore di hello di hello **Password**.
 
     d. Fare clic su **Crea**.
  
 ### <a name="creating-a-teamphoria-test-user"></a>Creare un utente test di Teamphoria
 
-Per consentire agli utenti di Azure AD di accedere a Teamphoria, è necessario eseguirne il provisioning in Teamphoria. Nel caso di Teamphoria, il provisioning è un'attività manuale.
+In ordine tooenable Azure AD utenti toolog in Teamphoria, è necessario eseguirne il provisioning in Teamphoria. Nel caso di hello di Teamphoria, il provisioning è un'attività manuale.
 
-**Per effettuare il provisioning di un account utente, seguire questa procedura:**
+**eseguire un account utente, tooprovision hello i passaggi seguenti:**
 
-1. Accedere al sito aziendale di Teamphoria come amministratore.
+1. Accedi tooyour sito della società Teamphoria come amministratore.
 
-2. Fare clic sulle impostazioni **ADMIN** nella barra degli strumenti di sinistra e scegliere **USERS** (Utenti) nella scheda **MANAGE** (Gestisci) per aprire la pagina di amministrazione per gli utenti.
+2. Fare clic su **ADMIN** impostazioni sulla barra degli strumenti a sinistra di hello e in hello **GESTISCI** fare clic su scheda **utenti** pagina di amministrazione di hello tooopen per gli utenti.
 
     ![Aggiungere un dipendente](./media/active-directory-saas-teamphoria-tutorial/admin_manage_users.png)
 
-3. Fare clic sull'opzione **MANUAL INVITE** (Invito manuale).
+3. Fare clic su hello **manuale INVITARE** opzione.
 
     ![Invita persone](./media/active-directory-saas-teamphoria-tutorial/admin_manage_add_users.png)  
 
@@ -223,31 +223,31 @@ Per consentire agli utenti di Azure AD di accedere a Teamphoria, è necessario e
     
     ![Invita persone](./media/active-directory-saas-teamphoria-tutorial/manual_user_invite.png)  
 
-    a. Nella casella di testo **EMAIL ADDRESS** (Indirizzo email) immettere l'**indirizzo email** di Britta Simon.
+    a. In hello **indirizzo di posta elettronica** casella di testo, hello **indirizzo di posta elettronica** di BrittaSimon.
 
-    b. Nella casella di testo **FIRST NAME** (Nome) digitare **Britta**.
+    b. In hello **nome** casella tipo **Laura**.
 
-    c. Nella casella di testo **LAST NAME** (Cognome) digitare **Simon**.
+    c. In hello **cognome** casella tipo **Simon**.
 
-    d. Fare clic su **INVITE 1 USER** (Invita 1 utente). L'utente deve accettare l'invito per essere creato nel sistema.
+    d. Fare clic su **INVITE 1 USER** (Invita 1 utente). L'utente deve tooaccept hello invito tooget creata nel sistema hello.
 
-### <a name="assigning-the-azure-ad-test-user"></a>Assegnazione dell'utente test di Azure AD
+### <a name="assigning-hello-azure-ad-test-user"></a>Assegnazione utente test hello Azure AD
 
-In questa sezione viene concesso a Britta Simon l'accesso a Teamphoria per consentirle di usare l'accesso Single Sign-On di Azure.
+In questa sezione è abilitare Britta Simon toouse single sign-on Azure concedendo tooTeamphoria proprio accesso.
 
 ![Assegna utente][200] 
 
-**Per assegnare Britta Simon a Teamphoria, seguire questa procedura:**
+**tooassign Britta Simon tooTeamphoria, eseguire hello alla procedura seguente:**
 
-1. Nel portale di gestione di Azure aprire la visualizzazione con le applicazioni e quindi passare alla visualizzazione con le directory e andare ad **Applicazioni aziendali**, quindi fare clic su **Tutte le applicazioni**.
+1. Nel portale di gestione di Azure hello, aprire visualizzazione applicazioni hello, quindi selezionare la visualizzazione di directory toohello e andare troppo**applicazioni aziendali** quindi fare clic su **tutte le applicazioni**.
 
     ![Assegna utente][201] 
 
-2. Nell'elenco delle applicazioni selezionare **Teamphoria**.
+2. Nell'elenco di applicazioni hello, selezionare **Teamphoria**.
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-teamphoria-tutorial/tutorial_teamphoria_app.png) 
 
-3. Scegliere **Utenti e gruppi** dal menu a sinistra.
+3. Dal menu hello hello sinistra, fare clic su **utenti e gruppi**.
 
     ![Assegna utente][202] 
 
@@ -255,7 +255,7 @@ In questa sezione viene concesso a Britta Simon l'accesso a Teamphoria per conse
 
     ![Assegna utente][203]
 
-5. Nella finestra di dialogo **Utenti e gruppi** selezionare **Britta Simon** nell'elenco Utenti.
+5. In **utenti e gruppi** finestra di dialogo Seleziona **Britta Simon** nell'elenco di utenti hello.
 
 6. Fare clic sul pulsante **Seleziona** nella finestra di dialogo **Utenti e gruppi**.
 
@@ -263,13 +263,13 @@ In questa sezione viene concesso a Britta Simon l'accesso a Teamphoria per conse
     
 ### <a name="testing-single-sign-on"></a>Test dell'accesso Single Sign-On
 
-In questa sezione viene testata la configurazione dell'accesso Single Sign-On di Azure AD usando il pannello di accesso.
+In questa sezione si test configurazione di Azure AD single sign-on utilizzando hello Pannello di accesso.
 
 Per testare le impostazioni di Single Sign-On, aprire il pannello di accesso. Per altre informazioni sul pannello di accesso, vedere [Introduzione al Pannello di accesso](https://msdn.microsoft.com/library/dn308586). 
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
-* [Elenco di esercitazioni sulla procedura di integrazione delle app SaaS con Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [Elenco di esercitazioni sulla tooIntegrate App SaaS con Azure Active Directory](active-directory-saas-tutorial-list.md)
 * [Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory](active-directory-appssoaccess-whatis.md)
 
 

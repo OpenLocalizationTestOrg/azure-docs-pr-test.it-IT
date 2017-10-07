@@ -1,76 +1,59 @@
 ---
-title: 'Esercitazione su Azure Analysis Services - Lezione 13: Distribuire | Microsoft Docs'
-description: Descrive come distribuire il progetto per l'esercitazione in Azure Analysis Services.
-services: analysis-services
-documentationcenter: 
-author: minewiskan
-manager: erikre
-editor: 
-tags: 
-ms.assetid: 
-ms.service: analysis-services
-ms.devlang: NA
-ms.topic: get-started-article
-ms.tgt_pltfrm: NA
-ms.workload: na
-ms.date: 07/17/2017
-ms.author: owend
-ms.openlocfilehash: 70dbf5786262f75199270aa8009e03b9b48b8559
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
-ms.translationtype: MT
-ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+titolo: aaa "lezione dell'esercitazione di Azure Analysis Services 13: distribuire | Descrizione di "Microsoft Docs: viene descritto come esercitazione hello toodeploy progetto tooAzure Analysis Services.
+servizi: documentationcenter di analysis services: ' autore: manager minewiskan: erikre editor: ' tag: '
+
+ms. AssetID: ms. Service: ms. DevLang analysis services: ms. topic NA: ms. tgt_pltfrm get-started-article: Workload NA: na ms. date: 07/17/2017 Author: owend
 ---
 # <a name="lesson-13-deploy"></a>Lezione 13: Distribuire
 
 [!INCLUDE[analysis-services-appliesto-aas-sql2017-later](../../../includes/analysis-services-appliesto-aas-sql2017-later.md)]
 
-In questa lezione vengono configurate le proprietà della distribuzione, specificando un server di Azure Analysis Services come destinazione per la distribuzione e un nome per il modello. Verrà quindi descritta la procedura per distribuire il modello in tale istanza. Dopo aver distribuito il modello, gli utenti possono connettersi a esso tramite un'applicazione client per la creazione di report. Per altre informazioni, vedere [Distribuire in Azure Analysis Services](https://docs.microsoft.com/azure/analysis-services/analysis-services-deploy).  
+In questa lezione, configurare le proprietà di distribuzione; Specifica un tooand di toodeploy server un nome per il modello di hello Azure Analysis Services. È quindi possibile distribuire istanza toothat di hello del modello. Dopo aver distribuito il modello, gli utenti possono connettersi tooit tramite un'applicazione client di creazione di report. vedere, più toolearn [distribuire tooAzure Analysis Services](https://docs.microsoft.com/azure/analysis-services/analysis-services-deploy).  
   
-Tempo previsto per il completamento della lezione: **5 minuti**  
+Stimato toocomplete ora questa lezione: **5 minuti**  
   
 ## <a name="prerequisites"></a>Prerequisiti  
-Questo argomento fa parte di un'esercitazione sulla creazione di modelli tabulari, con lezioni che è consigliabile completare nell'ordine indicato. Prima di eseguire le attività in questa lezione, è necessario avere completato la lezione precedente: [Lezione 12: Analizzare in Excel](../tutorials/aas-lesson-12-analyze-in-excel.md).  
+Questo argomento fa parte di un'esercitazione sulla creazione di modelli tabulari, con lezioni che è consigliabile completare nell'ordine indicato. Prima di eseguire attività di hello in questa lezione, è necessario avere completato la lezione precedente hello: [lezione 12: analizza in Excel](../tutorials/aas-lesson-12-analyze-in-excel.md).  
 
 > [!IMPORTANT]  
-> È necessario avere [autorizzazioni di amministratore](../analysis-services-server-admins.md) per l'istanza remota del server Analysis Services per eseguire la distribuzione.  
+> È necessario disporre di [le autorizzazioni di amministratore](../analysis-services-server-admins.md) on hello remoto Analysis Services server nell'ordine toodeploy tooit.  
 
 > [!IMPORTANT]  
-> Se il database di esempio AdventureWorksDW2014 è stato installato in un'istanza di SQL Server locale e si distribuisce il modello in un server Azure Analysis Services, è richiesto un [gateway dati locale](../analysis-services-gateway.md).
+> Se è installato il database di esempio hello AdventureWorksDW2014 su un Server SQL locale e si distribuisce il server di Azure Analysis Services tooan modello, un [gateway dati locale](../analysis-services-gateway.md) è obbligatorio.
   
-## <a name="deploy-the-model"></a>Distribuire il modello  
+## <a name="deploy-hello-model"></a>Distribuire il modello di hello  
   
-#### <a name="to-configure-deployment-properties"></a>Per configurare le proprietà di distribuzione  
+#### <a name="tooconfigure-deployment-properties"></a>proprietà di distribuzione tooconfigure  
 
   
-1.  In **Esplora soluzioni** fare clic con il pulsante destro del mouse sul progetto **AW Internet Sales** e quindi scegliere **Proprietà**.  
+1.  In **Esplora**, hello rapida **AW Internet Sales** del progetto e quindi fare clic su **proprietà**.  
   
-2.  Nella finestra di dialogo **Pagine delle proprietà di AW Internet Sales** in **Server di distribuzione** nella proprietà **Server** immettere il server completo.  
+2.  In hello **pagine delle proprietà di AW Internet Sales** nella finestra di dialogo **Server di distribuzione**, in hello **Server** proprietà, digitare hello del server completo.  
 
     ![aas-lesson13-deploy-property](../tutorials/media/aas-lesson13-deploy-property.png)
   
-3.  Nella proprietà **Database** digitare **Adventure Works Internet Sales**.  
+3.  In hello **Database** proprietà, digitare **Adventure Works Internet Sales**.  
   
-4.  Nella proprietà **Nome modello** digitare **Adventure Works Internet Sales Model**.  
+4.  In hello **nome modello** proprietà, digitare **Adventure Works Internet Sales Model**.  
   
 5.  Verificare le selezioni e quindi fare clic su **OK**.  
   
-#### <a name="to-deploy-the-adventure-works-internet-sales"></a>Per distribuire il modello Adventure Works Internet Sales
+#### <a name="toodeploy-hello-adventure-works-internet-sales"></a>hello toodeploy Adventure Works Internet Sales
   
-1.  In **Esplora soluzioni** fare clic con il pulsante destro del mouse sul progetto **AW Internet Sales** e quindi scegliere **Compila**.  
+1.  In **Esplora**, hello rapida **AW Internet Sales** progetto > **compilare**.  
 
-2.  Fare clic con il pulsante destro del mouse sul progetto **AW Internet Sales** e quindi scegliere **Distribuisci**.
+2.  Pulsante destro del mouse hello **AW Internet Sales** progetto > **Distribuisci**.
 
-    Durante la distribuzione in Azure Analysis Services potrebbe essere richiesto di immettere le proprie credenziali. Immettere nome e password dell'account dell'organizzazione, ad esempio nancy@adventureworks.com. Questo account deve essere incluso nel gruppo Admins del server.
+    Quando si distribuisce tooAzure Analysis Services, potrebbe essere richiesta tooenter l'account. Immettere nome e password dell'account dell'organizzazione, ad esempio nancy@adventureworks.com. Questo account deve essere Admins nel server di hello.
   
-    Verrà visualizzata la finestra di dialogo Distribuisci con indicazione dello stato della distribuzione dei metadati e di ogni tabella inclusa nel modello.  
+    finestra di dialogo Distribuisci Hello viene visualizzato e Mostra lo stato di distribuzione hello dei metadati hello e ogni tabella inclusa nel modello di hello.  
     
     ![aas-lesson13-deploy-status](../tutorials/media/aas-lesson13-deploy-status.png)
   
 3. Dopo aver completato correttamente la distribuzione, procedere e fare clic su **Chiudi**.  
   
 ## <a name="conclusion"></a>Conclusione  
-Congratulazioni. Sono state completate le attività di creazione e distribuzione del primo modello tabulare di Analysis Services. In questa esercitazione sono state descritte le procedure per eseguire in modo guidato la maggior parte delle attività più comuni per la creazione di un modello tabulare. Dopo aver distribuito il modello Adventure Works Internet Sales, è possibile usare SQL Server Management Studio per gestire il modello, creare script di elaborazione e un piano di backup. Ora gli utenti possono anche connettersi al modello usando un'applicazione client per la creazione di report, come Microsoft Excel o Power BI.  
+Congratulazioni. Sono state completate le attività di creazione e distribuzione del primo modello tabulare di Analysis Services. Questa esercitazione sono state consentono di eseguire il completamento delle attività più comuni di hello nella creazione di un modello tabulare. Ora che viene distribuito il modello Adventure Works Internet Sales, è possibile utilizzare un modello di hello toomanage di SQL Server Management Studio. creare script di processo e un piano di backup. Gli utenti possono ora connettersi toohello modello utilizzando un'applicazione client di creazione di report, ad esempio Microsoft Excel o Power BI.  
 
 ![aas-lesson13-ssms](../tutorials/media/aas-lesson13-ssms.png)
   

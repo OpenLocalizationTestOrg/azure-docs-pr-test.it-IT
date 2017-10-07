@@ -1,6 +1,6 @@
 ---
-title: Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory | Documentazione Microsoft
-description: Utilizzare Azure Active Directory per abilitare Single Sign-On su tutte le applicazioni Web e SaaS necessarie per l'azienda.
+title: "aaaWhat è l'accesso all'applicazione e servizio single sign-on con Azure Active Directory? | Microsoft Docs"
+description: "Usare Azure Active Directory tooenable single sign-on tooall di hello SaaS e applicazioni web che è necessario per le aziende."
 services: active-directory
 documentationcenter: 
 author: asmalser-msft
@@ -14,187 +14,187 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/13/2017
 ms.author: curyand
-ms.openlocfilehash: 7e7eecb0a5f8bc11aaaef8a97655f381a30a9389
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 429522cbd570ab27359c4630c5a6d7b25b692ec5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="what-is-application-access-and-single-sign-on-with-azure-active-directory"></a>Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory
-Single Sign-On indica la possibilità di accedere a tutte le applicazioni e risorse necessarie per svolgere attività commerciali, effettuando l'accesso solo una volta con un singolo account utente. Una volta effettuato l'accesso, è possibile accedere a tutte le applicazioni senza dover effettuare l’autenticazione (ad esempio, digitare una password) una seconda volta.
+Accesso Single sign-on si intende tooaccess in grado di tutte le applicazioni di hello e risorse che toodo business, è necessario l'accesso una sola volta utilizzando un unico account utente. Una volta effettuato l'accesso, è possibile accedere a tutte hello applicazioni è necessario senza essere tooauthenticate necessari (ad esempio, digitare una password) un secondo momento.
 
-Molte organizzazioni si basano sul software come un servizio (SaaS), ad esempio Office 365, Box e Salesforce, per la produttività dell'utente finale. In passato, il personale IT doveva creare e aggiornare singolarmente gli account utente in ciascuna applicazione SaaS e gli utenti dovevano ricordare una password per ogni applicazione SaaS.
+Molte organizzazioni si basano sul software come un servizio (SaaS), ad esempio Office 365, Box e Salesforce, per la produttività dell'utente finale. In passato, il personale IT deve tooindividually creare e aggiornare gli account utente in ciascuna applicazione SaaS e gli utenti hanno tooremember una password per ogni applicazione SaaS.
 
-Azure Active Directory estende Active Directory locale nel cloud, consentendo agli utenti di utilizzare il proprio account aziendale principale non solo per eseguire l'accesso ai loro dispositivi appartenenti a un dominio e alle risorse della società, ma anche a tutte le applicazioni Web e SaaS necessarie per il proprio lavoro.
+Azure Active Directory estende Active Directory locale in cloud hello, consentendo agli utenti toouse loro primario accesso account aziendale toonot solo i dispositivi appartenenti a un dominio tootheir e alle risorse aziendali, ma anche tutti i web hello e applicazioni SaaS per il proprio lavoro.
 
-Quindi non solo gli utenti non devono più gestire diversi set di nomi utente e password, per l’accesso alle loro applicazioni il provisioning o deprovisioning può essere eseguito automaticamente in base ai membri del gruppo della relativa organizzazione e anche al relativo stato come dipendenti. Azure Active Directory introduce i controlli della governance di sicurezza e accesso che consentono di gestire in modo centralizzato l'accesso degli utenti tra le applicazioni SaaS.
+In modo non solo gli utenti non dispone toomanage più set di nomi utente e password, le applicazioni di accesso può essere eseguito il provisioning o deprovisioning automaticamente in base i membri del gruppo dell'organizzazione e lo stato come un dipendenti. Azure Active Directory presenta la sicurezza e i controlli di governance di accesso che consentono di toocentrally gestiscono l'accesso degli utenti tra le applicazioni SaaS.
 
-Azure AD consente un’integrazione semplice con molte applicazioni SaaS diffuse attualmente; offre la gestione delle identità e degli accessi e consente agli utenti di utilizzare Single Sign-On per le applicazioni direttamente o di individuarle e avviarle da un portale, ad esempio Office 365 o il pannello di accesso di Azure AD.
+Azure AD consente toomany di integrazione di applicazioni SaaS note odierna; fornisce gestione identità e accessi e consente agli utenti toosingle sign-on tooapplications direttamente, oppure individuare e avviarle da un portale, ad esempio Office 365 o hello Pannello di accesso di Azure AD.
 
-L'architettura dell'integrazione è costituita dai quattro principali blocchi predefiniti seguenti:
+architettura di Hello di integrazione hello è costituita da hello quattro blocchi predefiniti principali seguenti:
 
-* Single Sign-On consente agli utenti di accedere alle applicazioni SaaS in base al proprio account aziendale in Azure AD. Single Sign-On consente agli utenti di eseguire l'autenticazione a un'applicazione utilizzando il proprio account aziendale singolo.
-* Il provisioning dell'utente permette il provisioning e il deprovisioning dell’utente nei servizi SaaS di destinazione in base alle modifiche effettuate in Windows Server Active Directory e/o in Azure AD. Un account con provisioning consente all'utente di essere autorizzato a utilizzare un'applicazione, dopo l'autenticazione tramite Single Sign-On.
-* La gestione centralizzata dell’accesso alle applicazioni nel portale di gestione di Azure consente l'accesso alle applicazioni SaaS e la loro gestione da un unico punto, con la possibilità di delegare i processi decisionali e le approvazioni dell’accesso alle applicazioni a tutti gli utenti dell'organizzazione
+* Accesso Single sign-on consente agli utenti tooaccess alle applicazioni SaaS in base al proprio account aziendale in Azure AD. Accesso Single sign-on è quello che consente l'applicazione di tooan tooauthenticate utenti usando il proprio account aziendale single.
+* Il provisioning dell'utente permette il provisioning e il deprovisioning dell’utente nei servizi SaaS di destinazione in base alle modifiche effettuate in Windows Server Active Directory e/o in Azure AD. Un account di provisioning è quello che consente un toouse toobe autorizzato utente un'applicazione, dopo che sono autenticati tramite l'accesso single sign-on.
+* La gestione di accesso centralizzate delle applicazioni in hello portale di gestione di Azure consente l'accesso alle applicazioni SaaS di singolo punto di gestione e, con hello possibilità toodelegate applicazione accesso decisione apportato e approvazioni tooanyone organizzazione hello
 * Segnalazione e monitoraggio unificati delle attività dell'utente in Azure AD
 
 ## <a name="how-does-single-sign-on-with-azure-active-directory-work"></a>Come funziona Single Sign-On con Azure Active Directory (PHP)?
-Quando un utente "accede" a un'applicazione, passa attraverso un processo di autenticazione in cui viene richiesto di dimostrare di essere chi dice di essere. Senza Single Sign-On, questa operazione viene in genere eseguita immettendo una password archiviata nell'applicazione e l'utente è tenuto a conoscere la password.
+Quando un'utente "accesso" tooan applicazione, passano attraverso un processo di autenticazione in cui sono necessari tooprove che che dicono. Senza single sign-on, questa operazione viene in genere eseguita tramite l'immissione di una password viene archiviata in un'applicazione hello e utente hello tooknow richiesto questa password.
 
-Azure AD supporta tre modi diversi per accedere alle applicazioni:
+Azure AD supporta tre diverse modalità toosign in tooapplications:
 
-* **Single Sign-On federato** consente alle applicazioni di reindirizzare ad Azure AD per l'autenticazione dell’utente anziché richiedere la propria password. È supportato per le applicazioni che supportano protocolli quali SAML 2.0, WS-Federation oppure OpenID Connect ed è la modalità più ricca di Single Sign-On.
-* **Single Sign-On basato su password** consente l’archiviazione e la riproduzione delle password delle applicazioni protette utilizzando un'estensione del browser Web o un’app mobile. Questo sfrutta il processo di accesso esistente fornito dall'applicazione, ma consente all'amministratore di gestire le password e non richiede all'utente di conoscerle.
-* **Single Sign-On esistente** consente ad Azure AD di sfruttare qualunque Single Sign-On esistente configurato per l'applicazione, ma consente a queste applicazioni di essere collegate ai portali del pannello di accesso di Office 365 o di Azure AD e abilita il reporting aggiuntivo in Azure AD quando le applicazioni vengono avviate da questa posizione.
+* **Single Sign-On federato** consente applicazioni tooredirect tooAzure Active Directory per l'autenticazione utente anziché richiedere la propria password. Questa è supportata per le applicazioni che il supporto di protocolli, ad esempio SAML 2.0, WS-Federation oppure OpenID Connect e hello modalità più ricca di single sign-on.
+* **Single Sign-On basato su password** consente l’archiviazione e la riproduzione delle password delle applicazioni protette utilizzando un'estensione del browser Web o un’app mobile. Questo si avvale di hello esistente processo di accesso fornito da un'applicazione hello, ma consente una password di amministratore toomanage hello e non richiede hello utente tooknow hello password.
+* **Single Sign-On esistente** consente AD Azure tooleverage qualsiasi single sign-on esistente che è stato configurato un'applicazione hello, ma consente di queste applicazioni toobe collegati toohello Office 365 o portali del Pannello di accesso AD Azure e consente inoltre creazione di report in Azure AD quando hello vengono avviate sono aggiuntive.
 
-Una volta che un utente è stato autenticato con un'applicazione, deve disporre anche di un record di account con provisioning all'applicazione che indica all'applicazione dove si trovano le autorizzazioni e il livello di accesso all'interno dell'applicazione. Il provisioning di questo record di account può verificarsi automaticamente o può essere effettuato manualmente da un amministratore prima che all'utente venga fornito l'accesso Single Sign-On.
+Dopo avere autenticato con un'applicazione, occorre anche un account di cui è stato eseguito il provisioning dell'applicazione hello che indica un'applicazione hello toohave in cui sono le autorizzazioni e livello di accesso sono all'interno di un'applicazione hello. Hello provisioning di questo record di account possono verificarsi automaticamente o può verificarsi manualmente dall'amministratore prima che l'utente hello viene fornito l'accesso single sign-on.
 
  Ulteriori informazioni su queste modalità Single Sign-On e sul provisioning sono riportate di seguito.
 
 ### <a name="federated-single-sign-on"></a>Single Sign-On federato
-Single Sign-On federato consente agli utenti dell'organizzazione di accedere automaticamente a un'applicazione SaaS di terze parti tramite Azure AD utilizzando le informazioni dell’account utente di Azure AD.
+Single Sign-On federato consente agli utenti di hello sign-on consente in toobe l'organizzazione firmato automaticamente nell'applicazione SaaS di terze parti tooa da Azure AD con informazioni sull'account utente di hello da Azure AD.
 
-In questo scenario, quando è già stato effettuato l’accesso ad Azure AD e si desidera accedere alle risorse controllate da un'applicazione SaaS di terze parti, la federazione elimina la necessità per un utente di ripetere l'autenticazione.
+In questo scenario, quando sono già stati registrati in Azure AD e si desidera tooaccess risorse controllate da un'applicazione SaaS di terze parti, grazie alla federazione hello per toobe un utente autenticato nuovamente.
 
-Azure AD supporta il Single Sign-On federato con applicazioni che supportano i protocolli SAML 2.0, WS-Federation oppure OpenID Connect.
+Azure AD può supportare single sign-on federato con applicazioni che supportano hello SAML 2.0, WS-Federation oppure OpenID connect protocolli.
 
 Vedere anche: [Gestione dei certificati per Single Sign-On federato](active-directory-sso-certs.md)
 
 ### <a name="password-based-single-sign-on"></a>Single Sign-On basato su password
-La configurazione di Single Sign-On basato su password consente agli utenti dell'organizzazione di accedere automaticamente a un'applicazione SaaS di terze parti tramite Azure AD utilizzando le informazioni dell’account utente dall’applicazione SaaS di terze parti. Quando si abilita questa funzionalità, Azure AD raccoglie e archivia in modo sicuro le informazioni sull'account utente e la relativa password.
+Configurazione basata su password single sign-on consente agli utenti di hello in toobe l'organizzazione firmato automaticamente nell'applicazione SaaS di terze parti tooa da Azure AD con informazioni sull'account utente di hello provenienti dall'applicazione SaaS di terze parti hello. Quando si abilita questa funzionalità, Azure AD raccoglie e archivia in modo sicuro informazioni sull'account utente di hello e la password correlata hello.
 
-Azure AD supporta Single Sign-On basato su password per qualunque applicazione basata su cloud con pagina di accesso basata su HTML. Utilizzando un plug-in del browser personalizzato, AAD automatizza il processo di accesso dell’utente recuperando in modo sicuro le credenziali dell'applicazione come il nome utente e la password dalla directory e immettendole nella pagina di accesso dell’applicazione per conto dell'utente. Esistono due casi di utilizzo:
+Azure AD supporta Single Sign-On basato su password per qualunque applicazione basata su cloud con pagina di accesso basata su HTML. Usando un plug-in del browser personalizzato, consente di automatizzare processo recuperando in modo sicuro le credenziali dell'applicazione, ad esempio hello username e password di hello dalla directory hello di accesso dell'utente hello AAD e immettendo queste credenziali pagina di accesso dell'applicazione hello per conto dell'utente hello. Esistono due casi di utilizzo:
 
-1. **L’amministratore gestisce le credenziali** : gli amministratori possono creare e gestire le credenziali dell'applicazione e assegnare le credenziali a utenti o gruppi che devono accedere all'applicazione. In questi casi, l'utente finale non deve necessariamente conoscere le credenziali, ma comunque ottiene l’accesso Single Sign-On all'applicazione semplicemente facendo clic su di esso nel proprio pannello di accesso o tramite un collegamento fornito. Questo consente sia la gestione del ciclo di vita delle credenziali da parte dell’amministratore, che la comodità per gli utenti finali che non devono necessariamente ricordare o gestire le password specifiche dell’app. Le credenziali vengono nascoste all'utente finale durante il processo di accesso automatico; tuttavia, esse sono tecnicamente individuabili dall'utente utilizzando strumenti di debug Web; gli utenti e gli amministratori devono seguire gli stessi criteri di sicurezza utilizzati se le credenziali fossero presentate direttamente all'utente. Le credenziali fornite dall’amministratore sono molto utili quando si fornisce un accesso all'account condiviso tra più utenti, ad esempio i social media o applicazioni di condivisione dei documenti.
-2. **L’utente gestisce le credenziali** : gli amministratori possono assegnare le applicazioni agli utenti finali o ai gruppi e consentire agli utenti finali di immettere le proprie credenziali direttamente quando accedono all'applicazione per la prima volta nel proprio pannello di accesso. Questo crea una comodità per gli utenti finali poiché essi non devono immettere continuamente le password specifiche delle applicazioni ogni volta che accedono ad esse. Questo caso di utilizzo può essere usato anche come tappa della gestione amministrativa delle credenziali, poiché l'amministratore può impostare nuove credenziali per l'applicazione in un secondo momento senza modificare l'esperienza di accesso dell'utente finale all’app.
+1. **Gestione delle credenziali di amministratore** : gli amministratori possono creare e gestire le credenziali dell'applicazione e assegnare tali credenziali toousers o i gruppi che devono accedere toohello applicazione. In questi casi, degli utenti finali di hello non necessita di tooknow hello credenziali, ma ottiene comunque l'applicazione di accesso single sign-on toohello facendo semplicemente clic su di esso nel proprio pannello di accesso o tramite un collegamento fornito. In questo modo entrambi, la gestione del ciclo di vita delle credenziali hello dal messaggio per l'amministratore, nonché praticità per gli utenti finali in base al quale non è necessario tooremember o gestire password specifiche dell'app. Hello credenziali non sono visibili dall'utente finale di hello durante l'accesso automatico hello processo. Tuttavia, sono individuabili tecnicamente dall'utente di hello tramite debug web strumenti e gli utenti e gli amministratori devono seguire hello stessi criteri di sicurezza come se hello credenziali vengono presentate direttamente dall'utente hello. Le credenziali fornite dall’amministratore sono molto utili quando si fornisce un accesso all'account condiviso tra più utenti, ad esempio i social media o applicazioni di condivisione dei documenti.
+2. **Gestione delle credenziali di utente** : gli amministratori possono assegnare gli utenti tooend applicazioni o i gruppi e consentire tooenter gli utenti finali di hello le proprie credenziali direttamente dopo l'accesso a un'applicazione hello hello per la prima volta nel proprio pannello di accesso. Questo scenario è pratico per gli utenti finali, che non devono toocontinually immettere password specifiche dell'applicazione hello ogni volta che accedono a un'applicazione hello. In questo caso d'uso utilizzabile anche come un passo a passo tooadministrative Pietra di gestione delle credenziali hello, in base al quale amministratore hello impostare nuove credenziali per un'applicazione hello in una data futura senza modificare l'esperienza di accesso hello app dell'utente finale di hello.
 
-In entrambi i casi, le credenziali vengono archiviate in formato crittografato nella directory e vengono trasferite solo tramite HTTPS durante il processo di accesso automatico. Utilizzando Single Sign-On basato su password, Azure AD offre una soluzione di gestione dell’accesso all’identità pratica per le applicazioni che non sono in grado di supportare i protocolli di federazione.
+In entrambi i casi, le credenziali vengono archiviate in formato crittografato nella directory di hello e vengono passate solo tramite HTTPS durante il processo Accedi di hello automatizzata. Utilizzando Single Sign-On basato su password, Azure AD offre una soluzione di gestione dell’accesso all’identità pratica per le applicazioni che non sono in grado di supportare i protocolli di federazione.
 
-Single Sign-On basato su password si basa su un'estensione del browser per recuperare in modo sicuro le informazioni specifiche dell’applicazione e dell'utente da Azure AD e applicarle al servizio. La maggior parte delle applicazioni SaaS di terze parti supportate da Azure AD supportano questa funzionalità.
+SSO basato su password si basa su un browser estensione toosecurely recuperare hello applicazione e utente informazioni specifiche da Azure AD e applicarlo toohello servizio. La maggior parte delle applicazioni SaaS di terze parti supportate da Azure AD supportano questa funzionalità.
 
-Per l'accesso Single Sign-On basato su password il browser dell'utente finale può essere uno dei seguenti:
+Per SSO basato su password, browser dell'utente finale di hello può essere:
 
 * Internet Explorer 8, 9, 10 e 11 -- su Windows 7 o versione successiva (vedere anche [Guida alla distribuzione dell'estensione di Internet Explorer](active-directory-saas-ie-group-policy.md))
 * Chrome in Windows 7 o versione successiva e MacOS X o versione successiva
 * Firefox 26.0 o versione successiva in Windows XP SP2 o versione successiva e in Mac OS X 10.6 o versione successiva
 
-**Nota:** l'estensione SSO basata su password sarà disponibile per Edge in Windows 10, quando saranno supportate le estensioni del browser per Edge.
+**Nota:** estensione SSO basato su password hello diventerà disponibile per Edge in Windows 10, quando le estensioni browser diventano supportate per Edge.
 
 ### <a name="existing-single-sign-on"></a>Single Sign-On esistente
-Quando si configura Single Sign-On per un'applicazione, il portale di gestione di Azure fornisce una terza opzione di "Single Sign-On esistente". Questa opzione consente semplicemente all'amministratore di creare un collegamento a un'applicazione e di posizionarlo nel pannello di accesso per gli utenti selezionati.
+Quando si configura single sign-on per un'applicazione, il portale di gestione di Azure hello offre una terza opzione di "Single Sign-On esistente". Questa opzione consente a un'applicazione di tooan di collegamento hello amministratore toocreate semplicemente e inserirlo nel Pannello di accesso hello per utenti selezionati.
 
-Ad esempio, se è presente un'applicazione configurata per l'autenticazione degli utenti tramite Active Directory Federation Services 2.0, un amministratore può utilizzare l'opzione "Single Sign-On esistente" per creare un collegamento al pannello di accesso. Quando gli utenti accedono al collegamento, vengono autenticati utilizzando Active Directory Federation Services 2.0 o qualunque soluzione Single Sign-On esistente fornita dall'applicazione.
+Ad esempio, se è presente un'applicazione che viene configurato tooauthenticate utenti usando Active Directory Federation Services 2.0, un amministratore può utilizzare hello "Single Sign-On esistente" opzione toocreate tooit un collegamento nel Pannello di accesso hello. Quando gli utenti accedono al collegamento hello, saranno autenticati con Active Directory Federation Services 2.0 o qualsiasi esistente soluzione single sign-on è fornita dall'applicazione hello.
 
 ### <a name="user-provisioning"></a>Provisioning utente
-Per selezionare le applicazioni, Azure AD abilita il provisioning e il deprovisioning automatizzato degli utenti degli account nelle applicazioni SaaS di terze parti dal portale di gestione di Azure, utilizzando le informazioni dell’identità di Windows Server Active Directory o Azure AD. Quando a un utente vengono concesse le autorizzazioni in Azure AD per una di queste applicazioni, un account può essere creato automaticamente (provisioning) nell'applicazione SaaS di destinazione.
+Per selezionare le applicazioni, Azure AD Abilita provisioning utenti automatizzato e deprovisioning degli account nelle applicazioni SaaS di terze parti da di hello portale di gestione di Azure, utilizzando le informazioni di identità di Windows Server Active Directory o Azure AD. Quando un utente verrà concesse le autorizzazioni in Azure AD per una di queste applicazioni, può essere creato automaticamente un account (provisioning) nell'applicazione SaaS di destinazione hello.
 
-Quando un utente viene eliminato o le relative informazioni cambiano in Azure AD, tali modifiche si riflettono anche nell'applicazione SaaS. Ciò significa che la configurazione della gestione automatizzata del ciclo di vita dell’identità consente agli amministratori di controllare e fornire provisioning e deprovisioning automatizzato dalle applicazioni SaaS. In Azure AD questa automazione della gestione del ciclo di vita dell’identità è abilitata dal provisioning dell'utente.
+Quando un utente viene eliminato o le relative informazioni cambiano in Azure AD, tali modifiche si riflettono anche nell'applicazione SaaS hello. In questo modo, la configurazione di gestione del ciclo di vita automatica delle identità consente agli amministratori toocontrol e fornire automatizzati provisioning e deprovisioning dalle applicazioni SaaS. In Azure AD questa automazione della gestione del ciclo di vita dell’identità è abilitata dal provisioning dell'utente.
 
-Per altre informazioni, vedere [Automatizzare il provisioning e il deprovisioning utenti in applicazioni SaaS con Azure Active Directory](active-directory-saas-app-provisioning.md)
+vedere, più toolearn [tooSaaS automatizzata Provisioning e Deprovisioning applicazioni](active-directory-saas-app-provisioning.md)
 
-## <a name="get-started-with-the-azure-ad-application-gallery"></a>Iniziare a utilizzare la raccolta di applicazioni di Azure AD
-Informazioni introduttive Per distribuire il servizio Single Sign-On tra Azure AD e le applicazioni SaaS utilizzate dall'organizzazione, seguire queste linee guida.
+## <a name="get-started-with-hello-azure-ad-application-gallery"></a>Introduzione a una raccolta di applicazioni Azure AD hello
+Tooget pronto iniziare? toodeploy single sign-on tra Azure AD e le applicazioni SaaS che l'organizzazione utilizza, seguire queste linee guida.
 
-### <a name="using-the-azure-ad-application-gallery"></a>Utilizzo della raccolta di applicazioni di Azure AD
-La [raccolta delle applicazioni di Azure Active Directory](https://azure.microsoft.com/marketplace/active-directory/all/) fornisce un elenco di applicazioni che supportano una forma di Single Sign-On con Azure Active Directory.
+### <a name="using-hello-azure-ad-application-gallery"></a>Utilizzando una raccolta di applicazioni Azure AD hello
+Hello [raccolta di Azure Active Directory dell'applicazione](https://azure.microsoft.com/marketplace/active-directory/all/) fornisce un elenco di applicazioni che sono note toosupport una forma di single sign-on con Azure Active Directory.
 
 ![][1]
 
 Di seguito sono riportati alcuni suggerimenti per la ricerca delle applicazioni in base alle funzionalità che supportano:
 
-* Azure AD supporta il provisioning e deprovisioning automatico per tutte le applicazioni “In primo piano” nella [raccolta di applicazioni di Azure Active Directory](https://azure.microsoft.com/marketplace/active-directory/all/).
+* Azure AD supporta automatico il provisioning e deprovisioning per tutte le app "In primo piano" hello [raccolta di Azure Active Directory dell'applicazione](https://azure.microsoft.com/marketplace/active-directory/all/).
 * Un elenco di applicazioni federate che supportano in particolare il Single Sign-On federato tramite un protocollo, ad esempio SAML, WS-Federation oppure OpenID Connect, è disponibile [qui](http://social.technet.microsoft.com/wiki/contents/articles/20235.azure-active-directory-application-gallery-federated-saas-apps.aspx).
 
-Dopo aver trovato l'applicazione, è possibile iniziare seguendo le istruzioni dettagliate presentate nella raccolta delle applicazioni e nel portale di gestione di Azure per abilitare Single Sign-On.
+Dopo aver trovato l'applicazione, è possibile iniziare da seguire hello fornite istruzioni dettagliate presentate nella raccolta di app hello e in tooenable portale di gestione di Azure hello accesso single sign-on.
 
-### <a name="application-not-in-the-gallery"></a>L’applicazione non è presente nella raccolta?
-Se l'applicazione non è presente nella raccolta di applicazioni Azure AD, sono disponibili queste opzioni:
+### <a name="application-not-in-hello-gallery"></a>Applicazione non nella raccolta di hello?
+Se l'applicazione non viene trovato nella raccolta di applicazioni di hello Azure AD, sono disponibili queste opzioni:
 
-* **Aggiungere un'app non pubblicata attualmente in uso** : per connettere un'applicazione non in elenco usata dall'organizzazione, usare la categoria personalizzata nella raccolta di app del portale di gestione di Azure. È possibile aggiungere qualunque applicazione che supporta SAML 2.0 come applicazione federata o qualunque applicazione che dispone di una pagina di accesso basata su HTML come applicazione Single Sign-On con password. Per altre informazioni, vedere il blog sull' [aggiunta di un'applicazione personalizzata](active-directory-saas-custom-apps.md).
-* **Aggiungere l'app personalizzata che si sta sviluppando** : se l'applicazione è stata sviluppata personalmente, per implementare il Single Sign-On federato o il provisioning con l'API Graph di Azure AD, seguire le linee guida nella documentazione per sviluppatori di Azure AD. Per ulteriori informazioni, vedere le risorse:
+* **Aggiungere un'app non elencata in uso** -categoria di utilizzo hello personalizzata nella raccolta di app hello all'interno di hello tooconnect portale di gestione di Azure un'applicazione non pubblicata usata dall'organizzazione. È possibile aggiungere qualunque applicazione che supporta SAML 2.0 come applicazione federata o qualunque applicazione che dispone di una pagina di accesso basata su HTML come applicazione Single Sign-On con password. Per altre informazioni, vedere il blog sull' [aggiunta di un'applicazione personalizzata](active-directory-saas-custom-apps.md).
+* **Aggiungere la propria app che stai sviluppando** : se è stato sviluppato un'applicazione hello manualmente, seguire le linee guida hello in hello Azure developer documentazione tooimplement federata single sign-on AD o provisioning mediante hello API graph di Azure AD. Per ulteriori informazioni, vedere le risorse:
   
   * [Scenari di autenticazione per Azure AD](active-directory-authentication-scenarios.md)
   * [https://github.com/AzureADSamples/WebApp-MultiTenant-OpenIdConnect-DotNet](https://github.com/AzureADSamples/WebApp-MultiTenant-OpenIdConnect-DotNet)
   * [https://github.com/AzureADSamples/WebApp-WebAPI-MultiTenant-OpenIdConnect-DotNet](https://github.com/AzureADSamples/WebApp-WebAPI-MultiTenant-OpenIdConnect-DotNet)
   * [https://github.com/AzureADSamples/NativeClient-WebAPI-MultiTenant-WindowsStore](https://github.com/AzureADSamples/NativeClient-WebAPI-MultiTenant-WindowsStore)
-* **Richiedere l'integrazione di un'app** : richiedere il supporto per l'applicazione necessaria tramite il [forum dei commenti di Azure AD](https://feedback.azure.com/forums/169401-azure-active-directory/).
+* **Richiedere un'integrazione app** -richiesta di supporto per un'applicazione hello è necessario utilizzare hello [forum sul feedback su Azure AD](https://feedback.azure.com/forums/169401-azure-active-directory/).
 
-### <a name="using-the-azure-management-portal"></a>Utilizzo del portale di gestione di Azure
-È possibile utilizzare l'estensione di Active Directory nel portale di gestione di Azure per configurare l'applicazione Single Sign-On. Innanzitutto, è necessario selezionare una directory dalla sezione Active Directory nel portale:
+### <a name="using-hello-azure-management-portal"></a>Tramite il portale di gestione di Azure hello
+È possibile utilizzare l'estensione Active Directory hello in hello portale di gestione di Azure tooconfigure hello applicazione single sign-on. Come primo passaggio, è necessario tooselect una directory dalla sezione Active Directory nel portale di hello hello:
 
 ![][2]
 
-Per gestire le applicazioni SaaS di terze parti, è possibile passare alla scheda Applicazioni della directory selezionata. Questa vista consente agli amministratori di:
+toomanage delle applicazioni SaaS di terze parti, è possibile passare nella scheda applicazioni hello della directory selezionata hello. Questa vista consente agli amministratori di:
 
-* Aggiungere dalla raccolta di Azure AD nuove applicazioni, nonché le applicazioni che si stanno sviluppando
+* Aggiunta di nuove applicazioni dalla raccolta di Azure AD hello, nonché lo sviluppo di App
 * Eliminare applicazioni integrate
-* Gestire le applicazioni già integrate
+* Gestire le applicazioni di hello che già integrate
 
 Le attività amministrative tipiche per un'applicazione SaaS di terze parti sono:
 
-* Abilitazione di Single Sign-On con Azure AD, utilizzando Single Sign-On con password o, se disponibile per il SaaS di destinazione, Single Sign-On federato
+* Abilitazione di single sign-on con Azure AD, utilizzando SSO basato su password oppure, se disponibile per la destinazione hello SaaS e SSO federato
 * Facoltativamente, abilitare il provisioning e deprovisioning per l'utente (gestione del ciclo dell’identità)
-* Per le applicazioni in cui il provisioning dell'utente è abilitato, selezionare gli utenti che hanno accesso all'applicazione
+* Per le applicazioni in cui è abilitato il provisioning dell'utente, selezionando gli utenti che dispongono di accesso dell'applicazione toothat
 
-Per le applicazioni della raccolta che supportano Single Sign-On federato, la configurazione in genere richiede di fornire impostazioni di configurazione aggiuntive, ad esempio certificati e metadati per creare una relazione di trust federativa tra l'applicazione di terze parti e Azure AD. La configurazione guidata illustra i dettagli e fornisce l’accesso facile ai dati specifici dell'applicazione SaaS e istruzioni.
+Per le app di raccolta che supportano single sign-on federato, configurazione in genere richiede tooprovide impostazioni di configurazione aggiuntive, ad esempio certificati e metadati toocreate una relazione di trust federativa tra app di terze parti hello e Azure AD. Hello configurazione guidata vengono illustrati i dettagli di hello e offre un accesso semplice toohello dati specifici dell'applicazione SaaS e istruzioni.
 
-Per le applicazioni della raccolta che supportano il provisioning automatico dell’utente, ciò richiede di concedere le autorizzazioni di Azure AD per gestire gli account nell'applicazione SaaS. Come minimo, è necessario fornire le credenziali che Azure AD deve utilizzare per l'autenticazione attraverso l'applicazione di destinazione. Se è necessario specificare ulteriori impostazioni di configurazione dipende dai requisiti dell'applicazione.
+Per le app di raccolta che supportano il provisioning utente automatico, è necessario è toogive Azure AD autorizzazioni toomanage degli account nell'applicazione SaaS hello. Come minimo, è necessario tooprovide devono utilizzare le credenziali di Azure AD durante l'autenticazione toohello applicazione di destinazione. Se le impostazioni di configurazione aggiuntive necessario toobe fornito dipende dai requisiti di hello di un'applicazione hello.
 
-## <a name="deploying-azure-ad-integrated-applications-to-users"></a>Distribuzione di applicazioni integrate di Azure AD agli utenti
-Azure AD fornisce diverse soluzioni personalizzabili per distribuire le applicazioni agli utenti finali all'interno dell'organizzazione:
+## <a name="deploying-azure-ad-integrated-applications-toousers"></a>Distribuzione di Azure AD integrato toousers applicazioni
+Azure Active Directory fornisce diversi modi personalizzabili toodeploy applicazioni tooend-gli utenti dell'organizzazione:
 
 * Pannello di accesso di Azure AD
 * Applicazione di avvio di Office 365
-* Accesso diretto alle applicazioni federate
-* Collegamenti diretti per applicazioni federate, basate su password o esistenti
+* App diretto toofederated sign-on
+* Toofederated di collegamenti diretti, basato su password, o le app di esistenti
 
-I metodi che è possibile scegliere per la distribuzione nell'organizzazione sono a discrezione dell'utente.
+I metodi che si sceglie toodeploy nell'organizzazione è a propria discrezione.
 
 ### <a name="azure-ad-access-panel"></a>Pannello di accesso di Azure AD
-Il pannello di accesso in https://myapps.microsoft.com è un portale basato sul Web che consente a un utente finale con un account aziendale in Azure Active Directory di visualizzare e avviare applicazioni basate sul cloud a cui l'amministratore di Azure AD ha concesso l'accesso. Se si è un utente finale con [Azure Active Directory Premium](https://azure.microsoft.com/pricing/details/active-directory/), è anche possibile utilizzare le funzionalità di gestione di gruppi in modalità self-service tramite il riquadro di accesso.
+Hello Pannello di accesso a https://myapps.microsoft.com è un portale basato sul web che consente agli utenti finali con un account aziendale in Azure Active Directory tooview e avviare applicazioni basate su cloud toowhich sono stati concessi diritti di accesso hello Azure AD amministratore. Se si è un utente finale con [Azure Active Directory Premium](https://azure.microsoft.com/pricing/details/active-directory/), possono usare anche le funzionalità di gestione di gruppi self-service tramite hello Pannello di accesso.
 
 ![][3]
 
-Il riquadro di accesso non fa parte del portale di gestione di Azure e non richiede agli utenti di avere una sottoscrizione di Azure o di Office 365.
+Hello Pannello di accesso è separato dal portale di gestione Azure hello e non richiede agli utenti toohave un abbonamento Azure o Office 365.
 
-Per altre informazioni sul riquadro di accesso di Azure AD, vedere [Introduzione al riquadro di accesso](active-directory-saas-access-panel-introduction.md).
+Per ulteriori informazioni nel Pannello di accesso hello Azure AD, vedere hello [Pannello di accesso di introduzione toohello](active-directory-saas-access-panel-introduction.md).
 
 ### <a name="office-365-application-launcher"></a>Applicazione di avvio di Office 365
-Per le organizzazioni che hanno distribuito Office 365, le applicazioni assegnate agli utenti con Azure AD vengono visualizzate anche nel portale di Office 365 all'indirizzo https://portal.office.com/myapps. Questo rende facile e comodo per gli utenti all’interno di un'organizzazione avviare le proprie applicazioni senza dover utilizzare un secondo portale ed è la soluzione di avvio delle applicazioni consigliata per le organizzazioni che utilizzano Office 365.
+Per le organizzazioni che hanno distribuito Office 365, applicazioni assegnate toousers tramite Azure AD verranno visualizzato anche nel portale di Office 365 hello all'indirizzo https://portal.office.com/myapps. Questo rende semplice e pratico per gli utenti in un'organizzazione toolaunch le proprie App senza la necessità di un portale secondo toouse e hello consiglia app avvio soluzione per le organizzazioni che usano Office 365.
 
 ![][4]
 
-Per ulteriori informazioni sull'avvio di applicazioni di Office 365, vedere [Visualizzazione dell'applicazione nell’applicazione di avvio di Office 365](https://msdn.microsoft.com/office/office365/howto/connect-your-app-to-o365-app-launcher).
+Per ulteriori informazioni sull'avvio applicazione hello Office 365, vedere [visualizzare l'app avvio app di Office 365 hello](https://msdn.microsoft.com/office/office365/howto/connect-your-app-to-o365-app-launcher).
 
-### <a name="direct-sign-on-to-federated-apps"></a>Accesso diretto alle applicazioni federate
-La maggior parte delle applicazioni federate che supportano OpenID Connect, WS-Federation o SAML 2.0 supportano anche la possibilità per gli utenti di avviare l'applicazione e quindi ottenere l’accesso tramite Azure AD con il reindirizzamento automatico oppure facendo clic su un collegamento per accedere. Questo è noto come accesso avviato dal provider di servizi e la maggior parte delle applicazioni federate nella raccolta di applicazioni di Azure AD lo supporta (vedere la documentazione collegata dalla configurazione guidata di configurazione di Single Sign-On dell'app nel portale di gestione di Azure per i dettagli).
+### <a name="direct-sign-on-toofederated-apps"></a>App diretto toofederated sign-on
+Più applicazioni federate che supportano OpenID, WS-Federation o SAML 2.0 connettono anche supporto hello possibilità per gli utenti toostart in un'applicazione hello e quindi ottengano effettuato l'accesso tramite Azure AD per il reindirizzamento automatico o facendo clic su un collegamento di toosign in. Questo è noto come provider di servizi-sign-on avviato dall'e più alle applicazioni federate nella raccolta di applicazione hello Azure AD supportano questa (vedere la documentazione di hello collegata dalla procedura guidata di configurazione di single sign-on hello dell'app nel portale di gestione di Azure hello per Dettagli).
 
 ![][5]
 
 ### <a name="direct-sign-on-links-for-federated-password-based-or-existing-apps"></a>Collegamenti diretti di accesso per le applicazioni federate, basate su password o esistenti
-Azure AD supporta anche collegamenti diretti Single Sign-On alle singole applicazioni che supportano Single Sign-On basato su password, Single Sign-On esistente e qualunque forma di Single Sign-On federato.
+Inoltre, Azure AD supporta single sign-on collegamenti diretti tooindividual applicazioni che supportano basato su password single sign-on, single sign-on esistente e qualsiasi forma di single sign-on federato.
 
-Questi collegamenti sono URL realizzati appositamente che inviano un utente attraverso la procedura di accesso di Azure AD per un'applicazione specifica senza richiedere che la avvii dal pannello di accesso di Azure AD o Office 365. Questi URL Single Sign-On sono disponibili nella scheda Dashboard di qualunque applicazione già integrata nella sezione Active Directory del portale di gestione di Azure, come illustrato nella schermata riportata di seguito.
+Questi collegamenti sono opportunamente gli URL che inviano un utente tramite hello Azure AD sign in-process per un'applicazione specifica senza utente hello avviarle dal Pannello di accesso hello Azure AD o Office 365. Questi URL Single Sign-On è reperibile nella scheda Dashboard hello di qualsiasi applicazione nella sezione Active Directory del portale di gestione di Azure hello hello preintegrate, come illustrato nella schermata di hello riportata di seguito.
 
 ![][6]
 
-Questi collegamenti possono essere copiati e incollati ovunque per fornire un collegamento di accesso all'applicazione selezionata. Questo potrebbe essere all’interno di un messaggio di posta elettronica o in qualsiasi portale personalizzato basato sul Web configurato per l'accesso alle applicazioni dell’utente. Di seguito è riportato un esempio di URL Single Sign-On diretto di Azure AD per Twitter:
+Questi collegamenti possono essere copiati e incollati in qualsiasi posizione desiderata applicazione toohello selezionato di collegamento tooprovide sign-in. Questo potrebbe essere all’interno di un messaggio di posta elettronica o in qualsiasi portale personalizzato basato sul Web configurato per l'accesso alle applicazioni dell’utente. Di seguito è riportato un esempio di URL Single Sign-On diretto di Azure AD per Twitter:
 
 `https://myapps.microsoft.com/signin/Twitter/230848d52c8745d4b05a60d29a40fced`
 
-Analogamente agli URL specifici dell'organizzazione per il pannello di accesso, è possibile personalizzare ulteriormente questo URL mediante l'aggiunta di uno dei domini attivi o verificati per la directory dopo il dominio myapps.microsoft.com. Questo assicura che eventuali personalizzazioni dell’organizzazione vengano caricate immediatamente nella pagina di accesso senza che l'utente debba immettere prima l'ID utente:
+Un URL specifico tooorganization simile per il pannello di accesso di hello, è possibile personalizzare ulteriormente questo URL mediante l'aggiunta di uno dei domini di attivo o verificato hello per le directory dopo il dominio di indirizzo myapps.microsoft.com hello. In questo modo, che eventuali personalizzazioni organizzative viene caricato immediatamente nella pagina di accesso hello senza utente hello necessità tooenter innanzitutto l'ID utente:
 
 `https://myapps.microsoft.com/contosobuild.com/signin/Twitter/230848d52c8745d4b05a60d29a40fced`
 
-Quando un utente autorizzato fa clic su uno di questi collegamenti specifici dell'applicazione, per prima cosa vede le pagina di accesso aziendale (presupponendo che non abbia già effettuato l’accesso) e dopo l’accesso viene reindirizzato alla propria applicazione senza passare prima dal pannello di accesso. Se l'utente non dispone dei prerequisiti per l'accesso all'applicazione, ad esempio l'estensione browser di accesso singolo basato su password, il collegamento richiederà all'utente di installare l'estensione mancante. L'URL del collegamento rimane costante se la configurazione Single Sign-On per l'applicazione viene modificata.
+Quando un utente autorizzato fa clic su uno di questi collegamenti specifici dell'applicazione, vengono innanzitutto visualizzati relativi aziendale nella pagina di accesso (presupponendo che non sono già firmati) e dopo l'accesso tootheir reindirizzato app senza arrestare prima il pannello di accesso hello. Se l'utente hello manca prerequisiti tooaccess hello applicazione, ad esempio di estensione del browser di hello basato su password di accesso singolo, collegamento hello richiederà estensione mancante hello tooinstall utente hello. URL del collegamento Hello anche rimane costante se hello configurazione single sign-on per un'applicazione hello viene modificato.
 
-Questi collegamenti utilizzano gli stessi meccanismi di controllo dell’accesso come il pannello di accesso e Office 365 e solo gli utenti o i gruppi che sono stati assegnati all'applicazione nel portale di gestione di Azure potranno eseguire l'autenticazione. Tuttavia, gli utenti non autorizzati vedranno un messaggio che indica che non sono autorizzati all’accesso e verrà fornito loro un collegamento per caricare il pannello di accesso per visualizzare le applicazioni disponibili per cui dispongono dell’accesso.
+Questi collegamenti utilizzano hello stessi meccanismi di controllo di accesso come hello accedere pannello e Office 365, e solo gli utenti o gruppi che sono stati assegnati toohello applicazione nel portale di gestione di Azure hello saranno in grado di autenticare toosuccessfully. Tuttavia, tutti gli utenti non autorizzati verranno visualizzato un messaggio che indica che non dispongono di accesso e viene assegnati un collegamento tooload hello accesso pannello tooview applicazioni disponibili per i quali hanno accesso.
 
 ## <a name="related-articles"></a>Articoli correlati
 * [Indice di articoli per la gestione di applicazioni in Azure Active Directory](active-directory-apps-index.md)
-* [Elenco di esercitazioni sulla procedura di integrazione delle app SaaS con Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [Elenco di esercitazioni sulla tooIntegrate App SaaS con Azure Active Directory](active-directory-saas-tutorial-list.md)
 * [Ricerca di applicazioni cloud non autorizzate con Cloud App Discovery](active-directory-cloudappdiscovery-whatis.md)
-* [Introduzione alla gestione dell'accesso alle app](active-directory-managing-access-to-apps.md)
+* [Introduzione tooManaging tooApps accesso](active-directory-managing-access-to-apps.md)
 * [Confronto tra le funzionalità per la gestione di identità esterne con Azure AD](active-directory-b2b-compare-external-identities.md)
 
 <!--Image references-->

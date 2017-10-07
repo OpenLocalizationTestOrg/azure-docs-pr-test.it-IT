@@ -1,6 +1,6 @@
 ---
-title: Connettore Generic SQL | Documentazione Microsoft
-description: Questo articolo descrive come configurare il connettore Generic SQL di Microsoft.
+title: Connettore SQL aaaGeneric | Documenti Microsoft
+description: Questo articolo viene descritto come connettore SQL generico tooconfigure Microsoft.
 services: active-directory
 documentationcenter: 
 author: AndKjell
@@ -14,211 +14,211 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/12/2017
 ms.author: billmath
-ms.openlocfilehash: a84096ba53a308855beedd76d9dec827c025cd57
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 2eab8f0894e83ab4738b9f2deb05b03cdc9a9d43
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="generic-sql-connector-technical-reference"></a>Documentazione tecnica sul connettore Generic SQL
-Questo articolo descrive il connettore Generic SQL ed è applicabile ai prodotti seguenti:
+Questo articolo descrive hello connettore SQL generico. articolo Hello applica toohello i seguenti prodotti:
 
 * Microsoft Identity Manager 2016 (MIM2016)
 * Forefront Identity Manager 2010 R2 (FIM2010R2)
   * È necessario usare l'hotfix 4.1.3671.0 o versione successiva ( [KB3092178](https://support.microsoft.com/kb/3092178)).
 
-Per MIM2016 e FIM2010R2 il connettore è disponibile come download dall' [Area download Microsoft](http://go.microsoft.com/fwlink/?LinkId=717495).
+Per MIM2016 e FIM2010R2, è disponibile come download hello hello connettore [Microsoft Download Center](http://go.microsoft.com/fwlink/?LinkId=717495).
 
-Per vedere come funziona questo connettore, vedere l'articolo relativo alle [istruzioni dettagliate per il connettore SQL generico](active-directory-aadconnectsync-connector-genericsql-step-by-step.md) .
+toosee questo connettore in azione, vedere hello [connettore SQL generico dettagliate](active-directory-aadconnectsync-connector-genericsql-step-by-step.md) articolo.
 
-## <a name="overview-of-the-generic-sql-connector"></a>Panoramica del connettore Generic SQL
-Il connettore Generic SQL consente di integrare il servizio di sincronizzazione con un sistema di database che offre la connettività ODBC.  
+## <a name="overview-of-hello-generic-sql-connector"></a>Panoramica di hello connettore SQL generico
+Hello connettore SQL generico consente di servizio di sincronizzazione hello toointegrate con un sistema di database che offre connettività ODBC.  
 
-A livello generale, le funzionalità seguenti sono supportate dalla versione corrente del connettore:
+Dal punto di vista di alto livello, hello seguenti caratteristiche è supportata dalla versione corrente di hello del connettore hello:
 
 | Funzionalità | Supporto |
 | --- | --- |
-| Origine dati connessa |Il connettore è supportato con tutti i driver ODBC a 64 bit. È stato testato con quanto segue:  <li>Microsoft SQL Server e QL Azure</li><li>IBM DB2 10.x</li><li>IBM DB2 9.x</li><li>Oracle 10 e 11g</li><li>MySQL 5.x</li> |
+| Origine dati connessa |Connettore Hello è supportato con tutti i driver ODBC a 64 bit. È stato testato con seguenti hello: <li>Microsoft SQL Server e QL Azure</li><li>IBM DB2 10.x</li><li>IBM DB2 9.x</li><li>Oracle 10 e 11g</li><li>MySQL 5.x</li> |
 | Scenari |<li>Gestione del ciclo di vita degli oggetti</li><li>Gestione delle password</li> |
 | Operazioni |<li>Importazione completa e importazione ed esportazione differenziale</li><li>Per l'esportazione: Aggiungi, Elimina, Aggiorna e Sostituisci</li><li>Imposta password, Cambia password</li> |
 | Schema |<li>Individuazione dinamica di oggetti e attributi</li> |
 
 ### <a name="prerequisites"></a>Prerequisiti
-Prima di usare il connettore, verificare che nel server di sincronizzazione sia disponibile quanto segue:
+Prima di utilizzare connettore hello, verificare di che aver seguito hello sul server di sincronizzazione hello:
 
 * Microsoft .NET 4.5.2 Framework o versione successiva
 * Driver client ODBC a 64 bit
 
 ### <a name="permissions-in-connected-data-source"></a>Autorizzazioni nell'origine dati connessa
-Per creare o eseguire una delle operazioni supportate nel connettore Generic SQL, è necessario avere:
+toocreate o eseguire una delle operazioni di hello è supportato nel connettore SQL generico, è necessario disporre di:
 
 * db_datareader
 * db_datawriter
 
 ### <a name="ports-and-protocols"></a>Porte e protocolli
-Per le porte necessarie per il funzionamento del driver ODBC, vedere la documentazione del fornitore del database.
+Per hello porte necessarie per hello ODBC driver toowork, consultare la documentazione del fornitore del database hello.
 
 ## <a name="create-a-new-connector"></a>Creare un nuovo connettore
-Per creare un connettore Generic SQL, in **Synchronization Service** selezionare **Management Agent** e quindi **Create**. Selezionare il connettore **Generic SQL (Microsoft)** .
+tooCreate un connettore di SQL generico, in **servizio di sincronizzazione** selezionare **agente di gestione** e **crea**. Seleziona hello **SQL generico (Microsoft)** connettore.
 
 ![CreateConnector](./media/active-directory-aadconnectsync-connector-genericsql/createconnector.png)
 
 ### <a name="connectivity"></a>Connettività
-Il connettore usa un file DSN ODBC per la connettività. Creare il file DSN tramite **Origini dati ODBC** disponibile nel menu Start in **Strumenti di amministrazione**. Nello strumento di amministrazione creare un **DSN file** da passare al connettore.
+Hello connettore utilizza un file DSN ODBC per la connettività. Creare hello DSN file utilizzando **origini dati ODBC** disponibile nel menu start hello in **strumenti di amministrazione**. Nello strumento di amministrazione di hello, creare un **DSN su File** in modo che può essere fornita toohello connettore.
 
 ![CreateConnector](./media/active-directory-aadconnectsync-connector-genericsql/connectivity.png)
 
-La schermata Connectivity è la prima visualizzata quando si crea un nuovo connettore Generic SQL. Prima di tutto è necessario specificare le informazioni seguenti:
+schermata di connettività Hello è hello innanzitutto quando si crea un nuovo connettore SQL generico. È innanzitutto necessario hello tooprovide le seguenti informazioni:
 
 * Percorso del file DSN
 * Autenticazione
   * User Name
   * Password
 
-Il database deve supportare uno di questi metodi di autenticazione:
+database Hello deve supportare uno di questi metodi di autenticazione:
 
-* **Autenticazione di Windows**: il database di autenticazione usa le credenziali di Windows per verificare l'utente. Il nome utente e la password specificati vengono usati per l'autenticazione nel database. Questo account deve avere autorizzazioni sul database.
-* **Autenticazione SQL**: il database di autenticazione usa il nome utente e la password definiti nella schermata Connectivity (Connettività) per connettersi al database. Se si archiviano il nome utente e la password nel file DSN, le credenziali fornite nella schermata Connectivity (Connettività) hanno la precedenza.
-* **Autenticazione del database SQL di Azure**: per altre informazioni, vedere [Connettersi al database SQL con l'autenticazione di Azure Active Directory](../../sql-database/sql-database-aad-authentication.md).
+* **L'autenticazione di Windows**: hello autenticazione database Usa utente di hello tooverify credenziali Windows hello. Hello nome utente/password specificata è tooauthenticate utilizzate con database hello. Questo account deve database toohello delle autorizzazioni.
+* **L'autenticazione di SQL**: hello l'autenticazione di database utilizza hello nome utente/password è definito un database di toohello tooconnect hello connettività dello schermo. Se si archiviano hello nome di utente/password nel file DSN hello, credenziali hello fornite nella schermata di connettività hello hanno la precedenza.
+* **L'autenticazione del Database di SQL Azure**: per ulteriori informazioni, vedere [connettersi tooSQL Database usando Azure Active Directory l'autenticazione](../../sql-database/sql-database-aad-authentication.md).
 
-**DN is Anchor**(DN è Anchor): se si seleziona questa opzione, il DN viene usato anche come attributo di ancoraggio. Può essere usato per un'implementazione semplice, ma presenta anche la limitazione seguente:
+**Nome distinto è ancoraggio**: se si seleziona questa opzione, hello nome distinto viene usato anche come attributo di ancoraggio hello. Può essere utilizzato per un'implementazione semplice, ma dispone anche di hello seguente limitazione:
 
-* Il connettore supporta solo un tipo di oggetto. Di conseguenza gli attributi di riferimento possono fare riferimento solo allo stesso tipo di oggetto.
+* Il connettore supporta solo un tipo di oggetto. Pertanto, qualsiasi riferimento attributi possono fare riferimento solo hello stesso tipo di oggetto.
 
-**Export Type: Object Replace**(Tipo di esportazione: sostituzione oggetto): durante l'esportazione se solo alcuni attributi sono stati modificati, l'intero oggetto con tutti gli attributi viene esportato e sostituisce l'oggetto esistente.
+**Tipo di esportazione: Sostituzione dell'oggetto**: durante l'esportazione, quando sono stati modificati solo alcuni attributi, viene esportata l'intero oggetto di hello con tutti gli attributi e sostituisce hello oggetto esistente.
 
 ### <a name="schema-1-detect-object-types"></a>Schema 1 (rilevare i tipi di oggetto)
-In questa pagina si configura il modo in cui il connettore troverà i diversi tipi di oggetto nel database.
+In questa pagina si intende tooconfigure come hello connettore è corso toofind hello diversi tipi di oggetti nel database di hello.
 
 Ogni tipo di oggetto viene presentato come una partizione e configurato ulteriormente in **Configurare partizioni e gerarchie**.
 
 ![schema1a](./media/active-directory-aadconnectsync-connector-genericsql/schema1a.png)
 
-**Object Type detection method**: il connettore supporta questi metodi di rilevamento del tipo di oggetto.
+**Il metodo di rilevamento di tipo dell'oggetto**: hello connettore supporta questi metodi di rilevamento di tipo di oggetto.
 
-* **Fixed Value**(Valore fisso): specificare l'elenco dei tipi di oggetto con un elenco con valori delimitati da virgole. Ad esempio: `User,Group,Department`.  
+* **Valore fisso**: È fornire hello elenco di tipi di oggetto con un elenco delimitato da virgole. Ad esempio: `User,Group,Department`.  
   ![schema1b](./media/active-directory-aadconnectsync-connector-genericsql/schema1b.png)
-* **Table/View/Stored Procedure**(Tabella/Vista/Stored procedure): fornire il nome della tabella/vista/stored procedure, quindi il nome della colonna che fornisce l'elenco dei tipi di oggetto. Se si usa una stored procedure, fornire anche i relativi parametri nel formato **[Nome]:[Direzione]:[Valore]**. Specificare ogni parametro su una riga separata (usare CTRL+INVIO per ottenere una nuova riga).  
+* **Tabella/vista/Stored Procedure**: fornire hello nomi di tabella/vista/stored procedure hello e quindi hello colonna che fornisce l'elenco di hello dei tipi di oggetto. Se si utilizza una stored procedure, quindi anche fornire parametri per il nel formato hello **[nome]: [direzione]: [valore]**. Fornire ogni parametro in una riga separata (usare Ctrl + Invio tooget una nuova riga).  
   ![schema1c](./media/active-directory-aadconnectsync-connector-genericsql/schema1c.png)
-* **SQL Query** (Query SQL): questa opzione consente di fornire una query SQL che restituisce una singola colonna con i tipi di oggetto, ad esempio `SELECT [Column Name] FROM TABLENAME`. La colonna restituita deve essere di tipo stringa (varchar).
+* **Query SQL**: questa opzione consente di una query SQL che restituisce una singola colonna con tipi di oggetto, ad esempio tooprovide `SELECT [Column Name] FROM TABLENAME`. Hello restituito colonna deve essere di tipo stringa (varchar).
 
 ### <a name="schema-2-detect-attribute-types"></a>Schema 2 (rilevare i tipi di attributo)
-In questa pagina si configura in che modo verranno rilevati i nomi e i tipi di attributi. Le opzioni di configurazione sono elencate per ogni tipo di oggetto rilevato nella pagina precedente.
+In questa pagina, si sta tooconfigure hello come nomi di attributi e tipi verranno toobe rilevato. opzioni di configurazione Hello sono elencate per ogni tipo di oggetto rilevato nella pagina precedente hello.
 
 ![schema2a](./media/active-directory-aadconnectsync-connector-genericsql/schema2a.png)
 
-**Attribute Type detection method**: il connettore supporta questi metodi di rilevamento del tipo di attributo con ogni tipo di oggetto rilevato nella schermata di Schema 1.
+**Il metodo di rilevamento di tipo attributo**: hello connettore supporta i metodi di rilevamento di tipo attributo con ogni tipo di oggetto rilevato nella schermata di Schema 1.
 
-* **Table/View/Stored Procedure**(Tabella/Vista/Stored procedure): specificare il nome della tabella/vista/stored procedure da usare per trovare i nomi di attributo. Se si usa una stored procedure, fornire anche i relativi parametri nel formato **[Nome]:[Direzione]:[Valore]**. Specificare ogni parametro su una riga separata (usare CTRL+INVIO per ottenere una nuova riga). Per rilevare i nomi degli attributi in un attributo multivalore, fornire un elenco di tabelle o viste separate da virgole. Gli scenari multivalore non sono supportati quando le tabelle padre e figlio hanno gli stessi nomi di colonna.
-* **SQL query** (Query SQL): questa opzione consente di fornire una query SQL che restituisce una singola colonna con i nomi degli attributi, ad esempio `SELECT [Column Name] FROM TABLENAME`. La colonna restituita deve essere di tipo stringa (varchar).
+* **Tabella/vista/Stored Procedure**: specificare il nome di hello di hello tabella/vista/stored procedure che devono essere nomi di attributo hello toofind utilizzato. Se si utilizza una stored procedure, quindi anche fornire parametri per il nel formato hello **[nome]: [direzione]: [valore]**. Fornire ogni parametro in una riga separata (usare Ctrl + Invio tooget una nuova riga). i nomi di attributo hello toodetect in un attributo multivalore, fornire un elenco delimitato da virgole delle tabelle o viste. Gli scenari multivalore non sono supportati quando le tabelle padre e figlio hanno gli stessi nomi di colonna.
+* **Query SQL**: questa opzione consente di una query SQL che restituisce una singola colonna con i nomi di attributo, ad esempio tooprovide `SELECT [Column Name] FROM TABLENAME`. Hello restituito colonna deve essere di tipo stringa (varchar).
 
 ### <a name="schema-3-define-anchor-and-dn"></a>Schema 3 (definire ancoraggio e DN)
-Questa pagina consente di configurare l'attributo di ancoraggio e DN per ogni tipo di oggetto rilevato. È possibile selezionare più attributi per rendere univoco l'ancoraggio.
+Questa pagina consente tooconfigure ancoraggio e l'attributo DN per ogni tipo di oggetto rilevato. È possibile selezionare più attributi toomake hello ancoraggio univoco.
 
 ![schema3a](./media/active-directory-aadconnectsync-connector-genericsql/schema3a.png)
 
 * Non sono elencati gli attributi multivalore e booleani.
-* Lo stesso attributo non può essere usato per DN e ancoraggio, a meno che nella pagina Connectivity non sia selezionata l'opzione **DN is Anchor** .
-* Se **DN is Anchor** è selezionata nella pagina Connectivity, questa pagina richiede solo l'attributo DN. Questo attributo verrà usato anche come attributo di ancoraggio.
+* Attributo stesso non è possibile utilizzare per DN e ancoraggio, a meno che non **DN è ancoraggio** è selezionata nella pagina connettività hello.
+* Se **DN è ancoraggio** è selezionata nella pagina connettività hello, questa pagina richiede l'unico attributo hello DN. Questo attributo verrà utilizzato anche come attributo di ancoraggio hello.
 
   ![schema3b](./media/active-directory-aadconnectsync-connector-genericsql/schema3b.png)
 
 ### <a name="schema-4-define-attribute-type-reference-and-direction"></a>Schema 4 (definire tipo di attributo, riferimento e direzione)
-Questa pagina consente di configurare il tipo di attributo, ad esempio valore integer, binario o booleano, e la direzione per ogni attributo. Tutti gli attributi della pagina **Schema 2** sono elencati con i relativi attributi multivalore.
+Questa pagina consente di tipo di attributo hello tooconfigure, ad esempio integer, binary o valore booleano e direzione per ogni attributo. Tutti gli attributi della pagina **Schema 2** sono elencati con i relativi attributi multivalore.
 
 ![schema4a](./media/active-directory-aadconnectsync-connector-genericsql/schema4a.png)
 
-* **DataType**: usato per associare il tipo di attributo ai tipi noti al motore di sincronizzazione. Per impostazione predefinita, viene usato lo stesso tipo, come rilevato in SQL schema, ma DateTime e il Reference non sono facilmente rilevabili. Per questi è necessario specificare **DateTime** o **Reference**.
-* **Direction**: è possibile impostare la direzione dell'attributo su Import, Export o ImportExport. ImportExport è il valore predefinito.
+* **Tipo di dati**: toomap hello attributo tipo toothose tipi noti dal motore di sincronizzazione hello utilizzati. valore predefinito di Hello è hello toouse dello stesso tipo, come rilevato nello schema SQL hello, ma DateTime e il riferimento non sono facilmente rilevabili. Per gli utenti, è necessario toospecify **DateTime** o **riferimento**.
+* **Direzione**: È possibile impostare hello attributo direzione tooImport, l'esportazione o la soluzione del problema. ImportExport è il valore predefinito.
 
 ![schema4b](./media/active-directory-aadconnectsync-connector-genericsql/schema4b.png)
 
 Note:
 
-* Se un tipo di attributo non è rilevabile dal connettore, usa il tipo di dati stringa.
-* **Nested tables** possono essere considerate tabelle di database di una colonna. Oracle archivia le righe di una tabella annidata senza un ordine particolare. Tuttavia, quando si recupera la tabella annidata in una variabile PL/SQL, alle righe vengono assegnati pedici consecutivi a partire da 1. In questo modo si avrà un accesso di tipo matrice alle singole righe.
-* **VARRYS** non sono supportati nel connettore.
+* Se un tipo di attributo non è rilevabile da hello connettore, viene utilizzato il tipo di dati stringa hello.
+* **Nested tables** possono essere considerate tabelle di database di una colonna. Oracle archivia le righe di hello di una tabella nidificata in nessun ordine particolare. Tuttavia, quando si recupera la tabella nidificata hello in una variabile di PL/SQL, righe hello figurano pedici consecutivi a partire da 1. Che consente di righe tooindividual di accesso di tipo matrice.
+* **VARRYS** non sono supportati nel connettore hello.
 
 ### <a name="schema-5-define-partition-for-reference-attributes"></a>Schema 5 (definire la partizione per gli attributi di riferimento)
 In questa pagina si configura, per tutti gli attributi di riferimento, a quale partizione (tipo di oggetto) fa riferimento un attributo.
 
 ![schema5](./media/active-directory-aadconnectsync-connector-genericsql/schema5.png)
 
-Se si usa **DN is anchor**(DN è Anchor) è necessario usare lo stesso tipo di oggetto da cui si fa riferimento. Non è possibile fare riferimento a un altro tipo di oggetto.
+Se si utilizza **DN è ancoraggio**, è necessario utilizzare hello stesso tipo di oggetto come hello uno da cui si fa riferimento. Non è possibile fare riferimento a un altro tipo di oggetto.
 
 >[!NOTE]
-A partire dall'aggiornamento di marzo 2017 è disponibile un'opzione per "*" Quando l'opzione è selezionata, vengono importati tutti i possibili tipi di membro.
+Aggiornamento di marzo 2017 hello è ora disponibile un'opzione per a partire da "*" quando questa opzione è selezionata, quindi tutti i tipi di membro possibili verranno importati.
 
 ![globalparameters3](./media/active-directory-aadconnectsync-connector-genericsql/any-option.png)
 
 >[!IMPORTANT]
- A partire da maggio 2017 l'asterisco "*", ovvero **qualsiasi opzione**, è stato modificato per supportare il flusso di importazione ed esportazione. Se si desidera usare questa opzione, la tabella/vista multivalore deve avere un attributo contenente il tipo di oggetto.
+ A partire da maggio 2017 hello "*" aka **qualsiasi opzione** è stata modificata toosupport importare ed esportare il flusso. Se si desidera toouse questa opzione la tabella/vista multivalore deve avere un attributo che contiene il tipo di oggetto hello.
 
 ![](./media/active-directory-aadconnectsync-connector-genericsql/any-02.png)
 
- </br> Se si seleziona "*", è necessario specificare anche il nome della colonna con il tipo di oggetto.</br> ![](./media/active-directory-aadconnectsync-connector-genericsql/any-03.png)
+ </br> Se "*" è selezionata, quindi è necessario specificare anche il nome di hello della colonna di hello con tipo di oggetto hello.</br> ![](./media/active-directory-aadconnectsync-connector-genericsql/any-03.png)
 
-Dopo l'importazione verrà visualizzato qualcosa di simile all'immagine riportata di seguito:
+Dopo l'importazione verrà visualizzato un codice simile immagine toohello riportata di seguito:
 
   ![globalparameters3](./media/active-directory-aadconnectsync-connector-genericsql/after-import.png)
 
 
 
 ### <a name="global-parameters"></a>Global Parameters
-La pagina Global Parameters viene usata per configurare l'importazione delta, il formato di data/ora e il metodo di password.
+pagina parametri globali Hello è usato tooconfigure importazione Delta, il formato di data/ora e il metodo di Password.
 
 ![globalparameters1](./media/active-directory-aadconnectsync-connector-genericsql/globalparameters1.png)
 
 
 
-Il connettore Generic SQL supporta i seguenti metodi per l'importazione delta:
+Hello connettore SQL generico supporta hello dei seguenti metodi per l'importazione Delta:
 
 * **Trigger**: vedere l'articolo relativo alla [generazione di visualizzazioni delta con trigger](https://technet.microsoft.com/library/cc708665.aspx).
-* **Watermark**(Limite): approccio generico che può essere usato con qualsiasi database. L'opzione Water Mark Query è già popolata in base al fornitore del database. In ogni tabella o visualizzazione usata deve essere presente una colonna Watermark. Questa colonna deve tenere traccia di inserimenti e aggiornamenti delle tabelle, nonché delle tabelle dipendenti (multivalore o figlio). Gli orologi tra il server di database e il servizio di sincronizzazione devono essere sincronizzati. In caso contrario, potrebbero essere omesse alcune voci nell'importazione delta.  
+* **Watermark**(Limite): approccio generico che può essere usato con qualsiasi database. query di filigrana Hello viene pre-popolato in base fornitore hello del database. In ogni tabella o visualizzazione usata deve essere presente una colonna Watermark. Questa colonna deve essere rilevati relativi dipendenti e gli inserimenti e aggiornamenti di tabelle toohello come (multivalore o figlio) le tabelle. è necessario sincronizzare gli orologi di Hello tra il servizio di sincronizzazione e il server di database di hello. In caso contrario, potrebbero essere omesse alcune voci nell'importazione delta hello.  
   Limitazione:
   * La strategia Watermark (Limite) non supporta gli oggetti eliminati.
 * **Snapshot**(funziona solo con Microsoft SQL Server) [Generating Delta Views Using Snapshots](https://technet.microsoft.com/library/cc720640.aspx)
 * **Change Tracking**(funziona solo con Microsoft SQL Server) [Informazioni sul rilevamento delle modifiche (SQL Server)](https://msdn.microsoft.com/library/bb933875.aspx)  
   Limitazioni:
-  * L'attributo Anchor & DN deve essere parte della chiave primaria per l'oggetto selezionato nella tabella.
+  * Attributo DN & di ancoraggio deve essere parte della chiave primaria per l'oggetto selezionato di hello nella tabella hello.
   * La query SQL non è supportata durante l'importazione e l'esportazione con il rilevamento delle modifiche.
 
-**Additional Parameters**: specificare il fuso orario del server di database che indica dove si trova il server di database. Questo valore viene usato per supportare i diversi formati degli attributi di data e ora.
+**Parametri aggiuntivi**: specificare hello fuso orario del Server Database che indica dove si trova il server di Database. Questo valore viene utilizzato toosupport hello vari formati di data e ora di attributi.
 
-Il connettore archivia sempre data e data-ora in formato UTC. Per poter convertire correttamente la data e ora, è necessario specificare il fuso orario del server di database e il formato usato. Il formato deve essere espressa nel formato .Net.
+Hello connettore archivia sempre data e data e ora in formato UTC. toobe toocorrectly in grado di convertire volte e data hello, hello fuso orario del server di database hello e formato hello utilizzato deve essere specificato. formato Hello deve essere espressa nel formato .net.
 
-Durante l'esportazione è necessario fornire al connettore ogni attributo di data e ora in formato UTC.
+Durante l'esportazione è necessario fornire a ogni attributo di tempo data toohello connettore in formato ora UTC.
 
 ![globalparameters2](./media/active-directory-aadconnectsync-connector-genericsql/globalparameters2.png)
 
-**Password Configuration**: il connettore fornisce funzionalità di sincronizzazione password e supporta l'impostazione  e la modifica della password.
+**Configurazione delle password**: connettore hello fornisce funzionalità di sincronizzazione delle password e supporta imposta e modifica la password.
 
-Il connettore fornisce due metodi per supportare la sincronizzazione password:
+Hello Connector fornisce due metodi di sincronizzazione delle password toosupport:
 
-* **Stored Procedure**: questo metodo richiede due stored procedure per supportare l'impostazione e la modifica della password. Digitare tutti i parametri per aggiungere e modificare l'operazione di password nei parametri **Set Password SP** (Configura stored procedure password) e **Change Password SP** (Modifica stored procedure password), rispettivamente, come illustrato nell'esempio seguente.
+* **Stored Procedure**: questo metodo richiede due stored procedure toosupport Set e modificare la password. Digitare tutti i parametri per l'aggiunta e modifica password hello in **impostare Password SP** e **modificare Password SP** parametri rispettivamente come per ogni esempio seguente.
   ![globalparameters3](./media/active-directory-aadconnectsync-connector-genericsql/globalparameters3.png)
-* **Password Extension** (Estensione password): questo metodo richiede la DLL di estensione delle password. È necessario fornire il nome della DLL di estensione che implementa l'interfaccia [IMAExtensible2Password](https://msdn.microsoft.com/library/microsoft.metadirectoryservices.imaextensible2password.aspx). L'assembly di estensione della password deve essere inserito nella cartella dell'estensione in modo che il connettore possa caricare la DLL in fase di esecuzione.
+* **Estensione password**: questo metodo richiede una DLL di estensione delle Password (è necessario hello tooprovide nome di DLL di estensione che implementa hello [IMAExtensible2Password](https://msdn.microsoft.com/library/microsoft.metadirectoryservices.imaextensible2password.aspx) interface). Assembly dell'estensione per la password deve essere posizionato nella cartella di estensione in modo che il connettore hello in grado di caricare hello DLL in fase di esecuzione.
   ![globalparameters4](./media/active-directory-aadconnectsync-connector-genericsql/globalparameters4.png)
 
-È anche necessario attivare la gestione delle password nella pagina **Configure Extension** .
+È inoltre tooenable hello, la gestione delle Password in hello **configurare estensione** pagina.
 ![globalparameters5](./media/active-directory-aadconnectsync-connector-genericsql/globalparameters5.png)
 
 ### <a name="configure-partitions-and-hierarchies"></a>Configurare partizioni e gerarchie
-Nella pagina di configurazione di partizioni e gerarchie selezionare tutti i tipi di oggetto. Ogni tipo di oggetto si trova nella propria partizione.
+Nella pagina partizioni e gerarchie hello selezionare tutti i tipi di oggetto. Ogni tipo di oggetto si trova nella propria partizione.
 
 ![partitions1](./media/active-directory-aadconnectsync-connector-genericsql/partitions1.png)
 
-È anche possibile sostituire i valori definiti nella pagina **Connectivity** o **Global Parameters**.
+È inoltre possibile sostituire i valori hello definiti in hello **connettività** o **parametri globali** pagina.
 
 ![partitions2](./media/active-directory-aadconnectsync-connector-genericsql/partitions2.png)
 
 ### <a name="configure-anchors"></a>Configurare gli ancoraggi
-Questa pagina è di sola lettura perché l'ancoraggio è già stato definito. L'attributo di ancoraggio selezionato viene sempre aggiunto con il tipo di oggetto in modo che rimanga univoco in tutti i tipi di oggetto.
+Questa pagina è di sola lettura poiché ancoraggio hello è già stato definito. Hello attributo di ancoraggio selezionato viene sempre aggiunto con tooensure tipo di oggetto hello rimane univoco tra i tipi di oggetto.
 
 ![ancoraggi](./media/active-directory-aadconnectsync-connector-genericsql/anchors.png)
 
 ## <a name="configure-run-step-parameter"></a>Configurare il parametro per l'esecuzione dei passaggi
-Questi passaggi vengono configurati nei profili di esecuzione del connettore. Queste configurazioni eseguono l'effettiva operazione di importazione ed esportazione dei dati.
+Questi passaggi vengono configurati per profili di esecuzione hello connettore hello. Queste configurazioni hello l'effettiva operazione di importazione ed esportazione di dati.
 
 ### <a name="full-and-delta-import"></a>Importazione completa e delta
 Il connettore Generic SQL supporta l'importazione completa e delta usando questi metodi:
@@ -231,25 +231,25 @@ Il connettore Generic SQL supporta l'importazione completa e delta usando questi
 ![runstep1](./media/active-directory-aadconnectsync-connector-genericsql/runstep1.png)
 
 **Table/View**  
-Per importare gli attributi multivalore per un oggetto, è necessario specificare i nomi di tabella o vista delimitati da virgole in **Name of Multi-Valued table/views** e le rispettive condizioni di join in **Join condition** con la tabella padre.
+gli attributi multivalore tooimport per un oggetto, sono presenti nome tabella/vista delimitato da virgole di hello tooprovide **viste delle tabelle/nome di multivalore** e condizioni di join rispettivi in hello **condizioneJoin**con la tabella padre hello.
 
-Esempio: si vuole importare l'oggetto Employee e tutti i relativi attributi multivalore. Sono presenti due tabelle denominate Employee (tabella principale) e Department (multivalore).
-Eseguire le operazioni seguenti:
+Esempio: Si desidera oggetto dipendente di tooimport hello e tutti i relativi attributi multivalore. Sono presenti due tabelle denominate Employee (tabella principale) e Department (multivalore).
+Hello seguenti:
 
 * Digitare **Employee** in **Table/View/SP**.
 * Digitare Department in **Name of Multi-Valued table/views**.
-* Digitare la condizione di join tra Employee e Department in **Join Condition** (Condizione di join), ad esempio `Employee.DEPTID=Department.DepartmentID`.
+* Digitare la condizione di join hello tra dipendente e reparto **condizione di Join**, ad esempio `Employee.DEPTID=Department.DepartmentID`.
   ![runstep2](./media/active-directory-aadconnectsync-connector-genericsql/runstep2.png)
 
 **Stored procedure**  
 ![runstep3](./media/active-directory-aadconnectsync-connector-genericsql/runstep3.png)
 
-* Nel caso di una grande quantità di dati, è consigliabile implementare la paginazione con le stored procedure.
-* Per consentire alla stored procedure di supportare la paginazione, è necessario fornire i valori per l'inizio e la fine dell'indice. Vedere: [Paging in modo efficiente di grandi quantità di dati](https://msdn.microsoft.com/library/bb445504.aspx).
-* @StartIndex e @EndIndex vengono sostituiti in fase di esecuzione con il rispettivo valore di dimensione della pagina configurato nella pagina **Configure Step** (Passaggio di configurazione). Ad esempio, quando il connettore recupera la prima pagina e la dimensione della pagina è impostata su 500, il valore @StartIndex sarà 1 e @EndIndex sarà 500. Questi valori vengono incrementati quando il connettore recupera le pagine successive e il valore per @StartIndex e @EndIndex viene modificato.
-* Per eseguire la stored procedure con parametri, specificare i parametri nel formato `[Name]:[Direction]:[Value]` . Immettere ogni parametro su una riga separata (usare CTRL+INVIO per ottenere una nuova riga).
-* Il connettore Generic SQL supporta anche l'operazione di importazione dai server collegati in Microsoft SQL Server. Se è necessario recuperare informazioni da una tabella in un server collegato, la tabella deve essere fornita con questo formato: `[ServerName].[Database].[Schema].[TableName]`
-* Il connettore Generic SQL supporta solo gli oggetti che presentano una struttura simile (sia nome alias che tipo di dati) tra le informazioni sui passaggi esecuzione e il rilevamento dello schema. Se l'oggetto selezionato dallo schema e le informazioni fornite nel passaggio di esecuzione sono diverse, il connettore SQL non può supportare questo tipo di scenari.
+* Se si dispone di quantità di dati, si consiglia di paginazione tooimplement con le Stored procedure.
+* Per l'impaginazione toosupport Stored Procedure, è necessario tooprovide indice iniziale e finale. Vedere: [Paging in modo efficiente di grandi quantità di dati](https://msdn.microsoft.com/library/bb445504.aspx).
+* @StartIndex e @EndIndex vengono sostituiti in fase di esecuzione con il rispettivo valore di dimensione della pagina configurato nella pagina **Configure Step** (Passaggio di configurazione). Ad esempio, quando il connettore hello recupera prima e dimensioni di pagina hello è 500, in tale situazione @StartIndex sarà 1 e @EndIndex 500. Questi valori aumentare quando connettore consente di recuperare pagine successive e modificare hello @StartIndex & @EndIndex valore.
+* tooexecute Stored Procedure con parametri, specificare i parametri di hello in `[Name]:[Direction]:[Value]` formato. Immettere ogni parametro in una riga separata (usare Ctrl + Invio tooget una nuova riga).
+* Il connettore Generic SQL supporta anche l'operazione di importazione dai server collegati in Microsoft SQL Server. Se devono essere recuperati da una tabella nel server collegato, tabella deve essere fornita nel formato hello:`[ServerName].[Database].[Schema].[TableName]`
+* Il connettore Generic SQL supporta solo gli oggetti che presentano una struttura simile (sia nome alias che tipo di dati) tra le informazioni sui passaggi esecuzione e il rilevamento dello schema. Se selezionata hello oggetto dello schema e le informazioni fornite in fase di esecuzione è diverso, il connettore SQL toosupport Impossibile questo tipo di scenari.
 
 **Query SQL**  
 ![runstep4](./media/active-directory-aadconnectsync-connector-genericsql/runstep4.png)
@@ -257,18 +257,18 @@ Eseguire le operazioni seguenti:
 ![runstep5](./media/active-directory-aadconnectsync-connector-genericsql/runstep5.png)
 
 * Le query con più set di risultati non sono supportate.
-* La query SQL supporta la paginazione e fornisce i valori per Start Index e End Index di una variabile per supportare la paginazione.
+* Query SQL supporta hello paginazione e fornisce l'inizio e fine dell'indice come una variabile toosupport la paginazione.
 
-### <a name="delta-import"></a>Importazione delta
+### <a name="delta-import"></a>Importazione differenziale
 ![runstep6](./media/active-directory-aadconnectsync-connector-genericsql/runstep6.png)
 
 La configurazione dell'importazione differenziale richiede un numero maggiore di operazioni di configurazione rispetto all'importazione completa.
 
-* Se si sceglie l'approccio Trigger o Snapshot per rilevare le modifiche differenziali, specificare la tabella della cronologia o il database di snapshot nella casella **History Table or Snapshot database name** (Nome della tabella di cronologia o del database di snapshot).
-* È necessario fornire anche una condizione di join tra la tabella della cronologia o il database di snapshot, ad esempio `Employee.ID=History.EmployeeID`
-* Per tenere traccia della transazione nella tabella padre dalla tabella della cronologia, è necessario fornire il nome della colonna che contiene le informazioni sull'operazione (aggiunta/aggiornamento/eliminazione).
-* Se si sceglie Watermark (Limite) per tenere traccia delle modifiche differenziali, è necessario fornire il nome della colonna che contiene le informazioni sull'operazione in **Water Mark Column Name**(Nome colonna limite).
-* La colonna **Change Type Attribute** è necessaria per il tipo di modifica. Questa colonna è associata a una modifica che si verifica nella tabella primaria o nella tabella multivalore per un tipo di modifica nella visualizzazione delta. Questa colonna può contenere il tipo di modifica Modify_Attribute per la modifica a livello di attributo o un tipo di modifica Add, Modify o Delete per un tipo di modifica a livello di oggetto. Se è diverso dal valore predefinito per l'aggiunta, la modifica o l'eliminazione, l'utente può definire i valori usando questa opzione.
+* Se si sceglie approccio Trigger o di uno Snapshot di hello le modifiche delta tootrack, quindi specificare una tabella di cronologia o Snapshot del database in **nome tabella di cronologia o Snapshot del database** casella.
+* È inoltre necessario tooprovide condizione di join tra la tabella di cronologia e la tabella padre, ad esempio`Employee.ID=History.EmployeeID`
+* transazione di hello tootrack nella tabella padre hello dalla tabella di cronologia hello, è necessario fornire nome della colonna hello che contiene informazioni sull'operazione di hello (aggiunta/aggiornamento/eliminazione).
+* Se si sceglie di filigrana tootrack le modifiche delta, quindi fornire nome della colonna che contiene informazioni sull'operazione hello in hello **nome colonna di acqua contrassegno**.
+* Hello **modificare l'attributo di tipo** colonna è obbligatoria per il tipo di modifica di hello. Questa colonna esegue il mapping di una modifica che si verifica nella tabella primaria hello o tabella multivalore tooa cambiare tipo nella visualizzazione delta hello. Questa colonna può contenere i tipo di modifica di hello Modify_Attribute per modificare a livello di attributo o un'aggiunta, modifica o eliminazione cambiare tipo per un tipo di modifica a livello di oggetto. Se è diverso dal valore predefinito di hello Aggiungi, modifica o eliminazione, quindi è possibile definire tali valori usando questa opzione.
 
 ### <a name="export"></a>Esporta
 ![runstep7](./media/active-directory-aadconnectsync-connector-genericsql/runstep7.png)
@@ -281,28 +281,28 @@ Il connettore Generic SQL supporta l'esportazione tramite quattro metodi support
 * Query SQL
 
 **Table/View**  
-(Tabella/Vista) Se si sceglie l'opzione Table/View (Tabella/Vista), il connettore genera le rispettive query per eseguire l'esportazione.
+Se si sceglie l'opzione di tabella/vista hello, connettore hello genera hello rispettive query toodo hello esportazione.
 
 **Stored procedure**  
 ![runstep8](./media/active-directory-aadconnectsync-connector-genericsql/runstep8.png)
 
-Se si sceglie l'opzione relativa alle stored procedure, l'esportazione richiede tre diverse stored procedure per eseguire le operazioni di inserimento/aggiornamento/eliminazione.
+Se si sceglie l'opzione di Stored Procedure hello, esportazione richiede tre diverse Stored procedure tooperform Insert/Update/Delete operazioni.
 
-* **Add SP Name**(Aggiungi nome stored procedure): questa stored procedure viene eseguita se un oggetto qualsiasi perviene al connettore per l'inserimento nella rispettiva tabella.
-* **Update SP Name**(Aggiorna nome stored procedure): questa stored procedure viene eseguita se un oggetto qualsiasi perviene al connettore per l'aggiornamento nella rispettiva tabella.
-* **Delete SP Name**(Elimina nome stored procedure): questa stored procedure viene eseguita se un oggetto qualsiasi perviene al connettore per l'eliminazione nella rispettiva tabella.
-* L'attributo selezionato nello schema viene usato come valore di parametro per la stored procedure. Ad esempio, `EmployeeName: INPUT: @EmployeeName` (EmployeeName viene selezionato nello schema del connettore e il connettore sostituisce il rispettivo valore durante l'esportazione)
-* Per eseguire la stored procedure con parametri, specificare i parametri nel formato `[Name]:[Direction]:[Value]` . Immettere ogni parametro su una riga separata (usare CTRL+INVIO per ottenere una nuova riga).
+* **Aggiungere il nome del provider**: SP questo viene eseguito se qualsiasi oggetto proviene tooconnector per l'inserimento nella tabella corrispondente hello.
+* **Aggiornare il nome del provider**: SP questo viene eseguito se qualsiasi oggetto proviene tooconnector per l'aggiornamento nella tabella corrispondente hello.
+* **Eliminare il nome del provider**: SP questo viene eseguito se qualsiasi oggetto proviene tooconnector per l'eliminazione nella tabella corrispondente hello.
+* Attributo selezionato da hello utilizzato come toohello stored procedure valore parametro. Ad esempio, `EmployeeName: INPUT: @EmployeeName` (EmployeeName è selezionato nello schema connettore hello e connettore hello sostituisce rispettivo valore hello durante questa operazione di esportazione)
+* toorun stored procedure con parametri, specificare i parametri in `[Name]:[Direction]:[Value]` formato. Immettere ogni parametro in una riga separata (usare Ctrl + Invio tooget una nuova riga).
 
 **SQL query**  
 ![runstep9](./media/active-directory-aadconnectsync-connector-genericsql/runstep9.png)
 
-Se si sceglie l'opzione SQL query, l'esportazione richiede tre diverse query per eseguire le operazioni di inserimento/aggiornamento/eliminazione.
+Se si sceglie l'opzione di query SQL hello, esportazione richiede che tre diverse operazioni Insert/Update/Delete tooperform una query.
 
-* **Insert Query**(Inserisci query): questa query viene eseguita se un oggetto qualsiasi perviene al connettore per l'inserimento nella rispettiva tabella.
-* **Update Query**(Aggiorna query): questa query viene eseguita se un oggetto qualsiasi perviene al connettore per l'aggiornamento nella rispettiva tabella.
-* **Delete Query**(Elimina query): questa query viene eseguita se un oggetto qualsiasi perviene al connettore per l'eliminazione dalla rispettiva tabella.
-* L'attributo selezionato nello schema viene usato come valore di parametro per la query, ad esempio `Insert into Employee (ID, Name) Values (@ID, @EmployeeName)`
+* **Query di Accodamento**: questa query viene eseguita se qualsiasi oggetto proviene tooconnector per l'inserimento nella tabella corrispondente hello.
+* **Query di aggiornamento**: questa query viene eseguita se qualsiasi oggetto proviene tooconnector per l'aggiornamento nella tabella corrispondente hello.
+* **Query di eliminazione**: questa query viene eseguita se qualsiasi oggetto proviene tooconnector per l'eliminazione nella tabella corrispondente hello.
+* Attributo selezionato da hello utilizzato come una parametro del valore toohello query, ad esempio`Insert into Employee (ID, Name) Values (@ID, @EmployeeName)`
 
 ## <a name="troubleshooting"></a>Risoluzione dei problemi
-* Per informazioni su come abilitare la registrazione per risolvere i problemi relativi al connettore, vedere l'articolo relativo a [come abilitare la traccia ETW per i connettori](http://go.microsoft.com/fwlink/?LinkId=335731).
+* Per informazioni su come tootroubleshoot tooenable registrazione hello connettore, vedere hello [come tooEnable traccia ETW per i connettori](http://go.microsoft.com/fwlink/?LinkId=335731).

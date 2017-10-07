@@ -1,6 +1,6 @@
 ---
-title: "Accessi da più aree geografiche"
-description: "Report che segnala agli utenti situazioni in cui due accessi sembrano provenire da diverse aree, ma dato il tempo intercorso tra gli accessi non è possibile che l'utente si sia spostato da un'area all'altra."
+title: "aaaSign relativo ad accessi da più aree geografiche"
+description: Un report che indica gli utenti in cui due accessi sembrava toooriginate aree geografiche diverse e hello tempo intercorso tra hello che accessi rende impossibile per toohave utente hello intercorso.
 services: active-directory
 documentationcenter: 
 author: SSalahAhmed
@@ -14,22 +14,22 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/04/2016
 ms.author: saah;kenhoff
-ms.openlocfilehash: 1de57f64692ade442f9ef8d1e3b587ffee35d7cf
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8f7c2e9589558476f36f6ae319f807f151b6144e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="sign-ins-from-multiple-geographies"></a>Accessi da più aree geografiche
-Questo report mostra gli accessi effettuati da un utente e due di questi sembrano provenire da aree diverse. Dato il tempo intercorso tra gli accessi non è possibile che l'utente si sia spostato da un'area all'altra. Le possibili cause includono:
+Questo report include accessi ha esito positivo da un utente in cui due accessi sembrava toooriginate da aree geografiche diverse e il tempo di hello tra hello accessi rende impossibile toohave utente hello percorsa tra le aree geografiche. Le possibili cause includono:
 
 * L'utente sta condividendo la password
-* L'utente usa un desktop remoto per avviare un Web browser per l'accesso
-* Un pirata informatico ha effettuato l'accesso all'account di un utente da un altro paese
+* Utente utilizza un toolaunch desktop remoto un web browser per l'accesso
+* Un pirata informatico abbia eseguito l'accesso toohello account di un utente da un paese diverso
 * L’utente sta usando una VPN o un proxy
-* L'utente ha eseguito l'accesso da più dispositivi contemporaneamente, ad esempio da un computer desktop e da un cellulare, e l'indirizzo IP del cellulare è insolito.
+* Utente è connesso da più dispositivi in hello stesso tempo, ad esempio un desktop e di un telefono cellulare e hello IP indirizzo del telefono cellulare hello è insolito.
 
-Nei risultati del report verranno mostrati gli eventi di accesso riuscito, nonché il tempo tra gli accessi, le aree da cui gli accessi sembrano provenire e il tempo di spostamento stimato tra queste aree. Il tempo di spostamento mostrato è solo una stima e può essere diverso da quello effettivamente necessario per spostarsi da una posizione all’altra.
+Nei risultati del report verranno mostrati hello eventi di accesso ha esito positivo, insieme a tempo hello tra hello accessi, hello aree in cui è stato visualizzato hello accessi toooriginate da e hello stimato tra le aree geografiche. tempo impiegato Hello mostrato è solo una stima e può essere diverso da tempo effettivo hello tra i percorsi di hello.
 
 ![Accessi da più aree geografiche](./media/active-directory-reporting-sign-ins-from-multiple-geographies/signInsFromMultipleGeographies.PNG)
 

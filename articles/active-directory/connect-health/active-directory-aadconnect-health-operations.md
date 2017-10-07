@@ -1,5 +1,5 @@
 ---
-title: Operazioni di Azure Active Directory Connect Health
+title: operazioni di Active Directory Connect Health aaaAzure
 description: Questo articolo descrive le operazioni aggiuntive che possono essere eseguite dopo avere distribuito Azure AD Connect Health.
 services: active-directory
 documentationcenter: 
@@ -13,17 +13,17 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/18/2017
 ms.author: billmath
-ms.openlocfilehash: 06afc6b4149ea1590a2994d1638d6979a89035e3
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 1dddcee0bca3150ce08621c045a92a1b3ad9df30
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-active-directory-connect-health-operations"></a>Operazioni di Azure Active Directory Connect Health
-Questo argomento descrive le varie operazioni che è possibile eseguire tramite Azure Active Directory (Azure AD) Connect Health.
+In questo argomento descrive hello varie operazioni è possibile eseguire tramite Azure Active Directory (Azure AD) Connect Health.
 
 ## <a name="enable-email-notifications"></a>Abilitare le notifiche di posta elettronica
-È possibile configurare il servizio Azure AD Connect Health per l'invio di notifiche di posta elettronica quando vengono generati avvisi indicanti che l'infrastruttura di gestione delle identità non è integra. Questo errore si verifica quando viene generato un avviso e quando viene risolto.
+È possibile configurare notifiche tramite posta elettronica di hello Azure AD Connect Health service toosend quando gli avvisi indicano che l'infrastruttura di identità non è integro. Questo errore si verifica quando viene generato un avviso e quando viene risolto.
 
 ![Schermata delle impostazioni delle notifiche di posta elettronica di Azure AD Connect Health](./media/active-directory-aadconnect-health/email_noti_discover.png)
 
@@ -32,118 +32,118 @@ Questo argomento descrive le varie operazioni che è possibile eseguire tramite 
 >
 >
 
-### <a name="to-enable-azure-ad-connect-health-email-notifications"></a>Per abilitare le notifiche di posta elettronica di Azure AD Connect Health
-1. Aprire il pannello **Avvisi** per il servizio per cui si desidera ricevere una notifica di posta elettronica.
-2. Nella barra delle azioni fare clic su **Impostazioni di notifica**.
-3. Impostare l'opzione di notifica di posta elettronica su **ON**.
-4. Selezionare la casella di controllo per fare in modo che tutti gli amministratori globali ricevano notifiche di posta elettronica.
-5. Se si desidera ricevere notifiche di posta elettronica ad altri indirizzi di posta elettronica, specificarli nella casella **Destinatari di posta elettronica aggiuntivi**. Per rimuovere un indirizzo di posta elettronica da questo elenco, fare clic con il pulsante destro del mouse sulla voce interessata e scegliere **Elimina**.
-6. Per finalizzare le modifiche, fare clic su **Salva**. Le modifiche diventano effettive dopo il salvataggio.
+### <a name="tooenable-azure-ad-connect-health-email-notifications"></a>notifiche di posta elettronica tooenable Azure AD Connect Health
+1. Aprire hello **avvisi** pannello per il servizio di hello per cui si desidera tooreceive notifica di posta elettronica.
+2. Dalla barra delle azioni hello, fare clic su **le impostazioni di notifica**.
+3. Switch di notifica di posta elettronica hello, selezionare **ON**.
+4. Se si desidera che tutte le notifiche di posta elettronica agli amministratori globali tooreceive, selezionare la casella di controllo hello.
+5. Se si desidera tooreceive notifiche di posta elettronica a tutti gli altri indirizzi di posta elettronica, specificarle nel hello **altri destinatari di posta elettronica** casella. tooremove un indirizzo di posta elettronica da questo elenco, fare clic sulla voce hello e selezionare **eliminare**.
+6. Fare clic su modifiche hello toofinalize, **salvare**. Le modifiche diventano effettive dopo il salvataggio.
 
 ## <a name="delete-a-server-or-service-instance"></a>Eliminare un server o un'istanza del servizio
 
-In alcuni casi può essere utile fare in modo che un server non venga più monitorato. Ecco cosa si deve sapere per rimuovere un server dal servizio Azure AD Connect Health.
+In alcuni casi, è possibile tooremove un server di monitoraggio. Ecco cosa occorre tooknow tooremove un server dal servizio di hello Azure AD Connect Health.
 
-Quando si elimina un server, tenere presente quanto segue:
+Quando si vuole eliminare un server, tenere hello segue:
 
-* Questa azione interrompe la raccolta di altri dati da tale server. Questo server viene rimosso dal servizio di monitoraggio. Dopo questa azione non sarà possibile visualizzare nuovi avvisi né dati di monitoraggio o di analisi di utilizzo per questo server.
-* Questa azione non disinstalla o rimuove l'agente per l'integrità dal server. Se l'agente per l'integrità non è stato disinstallato prima di eseguire questo passaggio, potrebbero venire visualizzati errori correlati all'agente per l'integrità nel server.
-* Questa azione non elimina i dati già raccolti da questo server. I dati vengono eliminati in conformità con i criteri di conservazione dei dati di Azure.
-* Dopo avere eseguito questa azione, per avviare di nuovo il monitoraggio dello stesso server, disinstallare e reinstallare l'agente per l'integrità.
+* Questa azione interrompe la raccolta di altri dati da tale server. Questo server viene rimosso dal servizio di monitoraggio hello. Dopo questa azione, non è in grado di tooview nuovi avvisi, monitoraggio o dati di utilizzo analitica per questo server.
+* Questa azione non Disinstalla hello Agente integrità dal server. Se non è stato disinstallato hello integrità agente prima di eseguire questo passaggio, si potrebbe riscontrare errori correlati toohello Agente integrità nel server di hello.
+* Questa azione non elimina i dati di hello già raccolti da questo server. I dati vengono eliminati in base ai criteri di conservazione dei dati di Azure hello.
+* Dopo aver eseguito questa azione, se si desidera che il monitoraggio toostart hello nello stesso server nuovamente, è necessario disinstallare e reinstallare hello Agente integrità su questo server.
 
-### <a name="to-delete-a-server-from-the-azure-ad-connect-health-service"></a>Per eliminare un server dal servizio Azure AD Connect Health
+### <a name="toodelete-a-server-from-hello-azure-ad-connect-health-service"></a>un server dal servizio di hello Azure AD Connect Health toodelete
 Azure AD Connect Health per Active Directory Federation Services (AD FS) e Azure AD Connect (sincronizzazione):
 
-1. Aprire il pannello **Server** dal pannello **Elenco server** selezionando il nome del server da rimuovere.
-2. Nella barra delle azioni del pannello **Server** fare clic su **Elimina**.
-3. Confermare il nome del server digitandolo nella casella di conferma.
+1. Aprire hello **Server** pannello da hello **elenco Server** pannello selezionando toobe nome di server hello rimosso.
+2. In hello **Server** fare clic su pannello, dalla barra delle azioni hello **eliminare**.
+3. Confermare digitando il nome del server hello nella finestra di conferma hello.
 4. Fare clic su **Elimina**.
 
 Azure AD Connect Health per Azure Active Directory Domain Services:
 
-1. Aprire il dashboard **Controller di dominio**.
-2. Selezionare il controller di dominio da rimuovere.
-3. Nella barra delle azioni fare clic su **Elimina elemento selezionato**.
-4. Confermare l'azione per eliminare il server.
+1. Aprire hello **i controller di dominio** dashboard.
+2. Selezionare hello controller di dominio toobe rimosso.
+3. Dalla barra delle azioni hello, fare clic su **selezionata l'opzione Elimina**.
+4. Conferma hello azione toodelete hello server.
 5. Fare clic su **Elimina**.
 
 ### <a name="delete-a-service-instance-from-azure-ad-connect-health-service"></a>Eliminare un'istanza del servizio dal servizio Azure AD Connect Health
-In alcuni casi può essere utile rimuovere un'istanza del servizio. Ecco cosa si deve sapere per rimuovere un'istanza del servizio dal servizio Azure AD Connect Health.
+In alcuni casi, potrebbe essere tooremove un'istanza del servizio. Ecco cosa ne necessario tooknow tooremove un servizio dell'istanza dal servizio di hello Azure AD Connect Health.
 
-Quando si elimina un'istanza del servizio, tenere presente quanto segue:
+Quando si vuole eliminare un'istanza del servizio, tenere hello segue:
 
-* Questa azione rimuove l'istanza corrente del servizio dal servizio di monitoraggio.
-* Questa azione non disinstalla o rimuove l'agente per l'integrità da alcun server monitorato come parte di questa istanza del servizio. Se l'agente per l'integrità non è stato disinstallato prima di eseguire questo passaggio, potrebbero venire visualizzati errori correlati all'agente per l'integrità nei server.
-* Tutti i dati di questa istanza del servizio verranno eliminati secondo i criteri di conservazione dati di Azure.
-* Dopo avere eseguito questa azione, per avviare il monitoraggio del servizio, disinstallare e reinstallare gli agenti per l'integrità in tutti i server. Dopo avere eseguito questa azione, per avviare di nuovo il monitoraggio dello stesso server, disinstallare, reinstallare e registrare l'agente per l'integrità in quel server.
+* Questa azione rimuove l'istanza del servizio corrente hello dalla hello monitoraggio del servizio.
+* Questa azione non Disinstalla o rimuovere hello integrità agente da qualsiasi server hello che sono stati monitorati come parte di questa istanza del servizio. Se non è stato disinstallato hello integrità agente prima di eseguire questo passaggio, si potrebbe riscontrare errori correlati toohello Agente integrità nei server hello.
+* Tutti i dati da questa istanza del servizio viene eliminato in base ai criteri di conservazione dei dati di Azure hello.
+* Dopo aver eseguito questa azione, se si desidera toostart hello servizio di monitoraggio, disinstallare e reinstallare hello integrità agente su tutti i server hello. Dopo aver eseguito questa azione, se si desidera toostart monitoraggio hello nello stesso server, disinstallare, reinstallare e registrare hello integrità agente su tale server.
 
-#### <a name="to-delete-a-service-instance-from-the-azure-ad-connect-health-service"></a>Per eliminare un'istanza del servizio dal servizio Azure AD Connect Health
-1. Aprire il pannello **Servizio** dal pannello **Elenco servizi** selezionando l'identificatore del servizio (nome farm) che si desidera rimuovere.
-2. Nella barra delle azioni del pannello **Server** fare clic su **Elimina**.
-3. Confermare il nome del servizio digitandolo nella casella di conferma (ad esempio: sts.contoso.com).
+#### <a name="toodelete-a-service-instance-from-hello-azure-ad-connect-health-service"></a>toodelete un'istanza del servizio dal servizio di hello Azure AD Connect Health
+1. Aprire hello **servizio** pannello da hello **elenco servizio** pannello selezionando l'identificatore del servizio hello (nome di farm) che si desidera tooremove.
+2. In hello **Server** fare clic su pannello, dalla barra delle azioni hello **eliminare**.
+3. Conferma digitando il nome del servizio hello nella finestra di conferma hello (ad esempio: sts.contoso.com).
 4. Fare clic su **Elimina**.
    <br><br>
 
 [//]: # (Start of RBAC section)
 ## <a name="manage-access-with-role-based-access-control"></a>Gestire l'accesso con il controllo degli accessi in base al ruolo
-Il [controllo degli accessi in base al ruolo](../role-based-access-control-configure.md) per Azure AD Connect Health consente l'accesso a utenti e gruppi che non sono amministratori globali. Questa funzionalità assegna ruoli agli utenti e ai gruppi previsti e fornisce un meccanismo per limitare gli amministratori globali all'interno di una directory.
+[Controllo di accesso basato sui ruoli (RBAC)](../role-based-access-control-configure.md) per Azure AD Connect Health fornisce accesso toousers e gruppi diversi da amministratori globali. RBAC Assegna ruoli toohello destinato utenti e gruppi e consentono agli amministratori globali di hello toolimit all'interno della directory.
 
 ### <a name="roles"></a>Ruoli
-Azure AD Connect Health supporta i ruoli predefiniti seguenti:
+Azure AD Connect Health supporta hello ruoli predefiniti seguenti:
 
 | Ruolo | Autorizzazioni |
 | --- | --- |
-| Proprietario |I proprietari possono *gestire l'accesso* (ad esempio assegnare ruoli a un utente o gruppo), *visualizzare tutte le informazioni* (ad esempio visualizzare gli avvisi) dal portale e *modificare le impostazioni* (ad esempio le notifiche di posta elettronica) all'interno di Azure AD Connect Health. <br>Per impostazione predefinita, gli amministratori globali di Azure AD vengono assegnati a questo ruolo e questa assegnazione non è modificabile. |
-| Collaboratore |I collaboratori possono *visualizzare tutte le informazioni* (ad esempio visualizzare gli avvisi) dal portale e *modificare le impostazioni* (ad esempio le notifiche di posta elettronica) all'interno di Azure AD Connect Health. |
-| Lettore |I lettori possono *visualizzare tutte le informazioni* (ad esempio visualizzare gli avvisi) dal portale all'interno di Azure AD Connect Health. |
+| Proprietario |I proprietari possono *gestire l'accesso* (ad esempio, assegnare un ruolo tooa utente o gruppo), *tutte le informazioni sulla* (ad esempio, visualizzare gli avvisi) dal portale hello e *modificare le impostazioni di* ( ad esempio, le notifiche di posta elettronica) all'interno di Azure AD Connect Health. <br>Per impostazione predefinita, gli amministratori globali di Azure AD vengono assegnati a questo ruolo e questa assegnazione non è modificabile. |
+| Collaboratore |I collaboratori possono *tutte le informazioni sulla* (ad esempio, visualizzare gli avvisi) dal portale hello e *modificare le impostazioni di* (ad esempio, notifiche tramite posta elettronica) all'interno di Azure AD Connect Health. |
+| Reader |I lettori possono *tutte le informazioni sulla* (ad esempio, visualizzare gli avvisi) dal portale hello all'interno di Azure AD Connect Health. |
 
-Tutti gli altri ruoli, ad esempio gli amministratori dell'accesso utente o gli utenti DevTest Labs, anche se disponibili nell'esperienza del portale, non influiscono sull'accesso all'interno di Azure AD Connect Health.
+Tutti gli altri ruoli (ad esempio, gli amministratori di accesso utente o gli utenti di DevTest Labs) non hanno tooaccess alcun impatto all'interno di Azure AD Connect Health, anche se hello ruoli sono disponibili in esperienza del portale hello.
 
 ### <a name="access-scope"></a>Ambito di accesso
 Azure AD Connect Health supporta la gestione dell'accesso a due livelli:
 
-* **Tutte le istanze del servizio**: è il percorso consigliato nella maggior parte dei casi. Controlla l'accesso per tutte le istanze del servizio (ad esempio, una farm AD FS) in tutti i tipi di ruolo che vengono monitorati da Azure AD Connect Health.
-* **Istanza del servizio**: in alcuni casi potrebbe essere necessario separare l'accesso in base ai tipi di ruolo o in base a un'istanza del servizio. In questo caso, è possibile gestire l'accesso a livello di istanza del servizio.  
+* **Tutte le istanze di servizio**: si tratta di hello consigliata nella maggior parte dei casi. Controlla l'accesso per tutte le istanze del servizio (ad esempio, una farm AD FS) in tutti i tipi di ruolo che vengono monitorati da Azure AD Connect Health.
+* **Istanza del servizio**: In alcuni casi, potrebbe essere necessario toosegregate l'accesso basato sui tipi di ruolo o da un'istanza del servizio. In questo caso, è possibile gestire l'accesso a livello di istanza servizio hello.  
 
-L'autorizzazione viene concessa se un utente finale ha accesso a livello di directory o a livello di istanza del servizio.
+Se un utente finale ha accesso a directory hello o il servizio l'autorizzazione è concessa livello di istanza.
 
-### <a name="allow-users-or-groups-access-to-azure-ad-connect-health"></a>Consentire l'accesso a utenti o gruppi ad Azure AD Connect Health
-I passaggi che seguono spiegano come eseguire questa operazione.
-#### <a name="step-1-select-the-appropriate-access-scope"></a>Passaggio 1: Selezionare l'ambito di accesso appropriato
-Per consentire a un utente l'accesso a livello di *tutte le istanze del servizio* dall'interno di Azure AD Connect Health, aprire il pannello principale in Azure AD Connect Health.<br>
+### <a name="allow-users-or-groups-access-tooazure-ad-connect-health"></a>Consentire agli utenti o gruppi di accesso tooAzure AD Connect Health
+Hello passaggi seguenti viene illustrato come accedere a tooallow.
+#### <a name="step-1-select-hello-appropriate-access-scope"></a>Passaggio 1: Selezionare l'ambito di accesso appropriato hello
+un utente l'accesso a hello tooallow *tutte le istanze di servizio* livello all'interno di Azure AD Connect Health, pannello principale di hello open in Azure AD Connect Health.<br>
 
 #### <a name="step-2-add-users-and-groups-and-assign-roles"></a>Passaggio 2: Aggiungere utenti e gruppi e assegnare ruoli
-1. Nella sezione **Configura** fare clic su **Utenti**.<br>
+1. Da hello **configura** fare clic su **utenti**.<br>
    ![Schermata del pannello principale del Controllo degli accessi in base al ruolo di Azure AD Connect Health con gli utenti evidenziati](./media/active-directory-aadconnect-health/RBAC_main_blade.png)
 2. Selezionare **Aggiungi**.
-3. Nel riquadro **selezionare un ruolo** selezionare un ruolo, ad esempio **Proprietario**.<br>
+3. In hello **selezionare un ruolo** riquadro, selezionare un ruolo (ad esempio, **proprietario**).<br>
    ![Schermata della finestra Utenti del Controllo degli accessi in base al ruolo di Azure AD Connect Health](./media/active-directory-aadconnect-health/RBAC_add.png)
-4. Digitare il nome o l'identificatore dell'utente o del gruppo. È possibile selezionare uno o più utenti o gruppi contemporaneamente. Fare clic su **Seleziona**.
+4. Nome del tipo hello o identificatore di destinazione hello utente o gruppo. È possibile selezionare uno o più utenti o gruppi di hello contemporaneamente. Fare clic su **Seleziona**.
    ![Schermata della finestra Utenti del Controllo degli accessi in base al ruolo di Azure AD Connect Health](./media/active-directory-aadconnect-health/RBAC_select_users.png)
 5. Selezionare **OK**.<br>
-6. Dopo avere completato l'assegnazione dei ruoli, gli utenti e i gruppi vengono visualizzati nell'elenco.<br>
+6. Al termine dell'assegnazione di ruolo hello, hello utenti e gruppi vengono visualizzati nell'elenco di hello.<br>
    ![Schermata della finestra Utenti del Controllo degli accessi in base al ruolo di Azure AD Connect Health con nuovi utenti evidenziati](./media/active-directory-aadconnect-health/RBAC_user_list.png)
 
-Ora gli utenti e i gruppi elencati hanno accesso, in base ai relativi ruoli assegnati.
+Ora hello elencati utenti e gruppi dispongono dell'accesso, in base tootheir assegnati ruoli.
 
 > [!NOTE]
-> * Gli amministratori globali hanno sempre accesso completo a tutte le operazioni, ma gli account Global Administrator non saranno presenti nell'elenco precedente.
-> * La funzionalità Invita utenti non è supportata in Azure AD Connect Health.
+> * Gli amministratori globali hanno sempre le operazioni di accesso completo tooall hello, ma gli account di amministratore globale non sono presenti nel precedente elenco hello.
+> * funzionalità di Hello invitare gli utenti non è supportato in Azure AD Connect Health.
 >
 >
 
-#### <a name="step-3-share-the-blade-location-with-users-or-groups"></a>Passaggio 3: Condividere il percorso del pannello con utenti o gruppi
+#### <a name="step-3-share-hello-blade-location-with-users-or-groups"></a>Passaggio 3: Condividere il percorso di blade hello con utenti o gruppi
 1. Dopo che le autorizzazioni sono state assegnate, un utente può accedere ad Azure AD Connect Health da [qui](http://aka.ms/aadconnecthealth).
-2. Nel pannello l'utente può aggiungere il pannello o parti di esso al dashboard. Fare semplicemente clic sull'icona **Aggiungi a dashboard**.<br>
+2. Nel Pannello di hello, è possibile aggiungere utente hello pannello hello, o diverse parti di esso, toohello dashboard. Fare semplicemente clic hello **toodashboard Pin** icona.<br>
    ![Schermata del pannello di aggiunta del Controllo degli accessi in base al ruolo di Azure AD Connect Health con l'icona di aggiunta evidenziata](./media/active-directory-aadconnect-health/RBAC_pin_blade.png)
 
 > [!NOTE]
-> Un utente con il ruolo di lettore non può recuperare l'estensione Azure AD Connect Health da Azure Marketplace. L'utente non può eseguire l'operazione di creazione necessaria a tale compito. Potrà comunque ancora accedere al pannello tramite il collegamento sopra riportato. Per gli utilizzi successivi, l'utente può aggiungere il pannello al dashboard.
+> Un utente con ruolo di lettore hello assegnato non è in grado di tooget estensione di Azure AD Connect Health da hello Azure Marketplace. utente Hello non è possibile eseguire in modo toodo hello necessarie "Crea" operazione. utente Hello può comunque essere toohello pannello da toohello passare prima di collegamento. Per un uso successivo, utente hello può aggiungere dashboard di toohello di hello blade.
 >
 >
 
 ### <a name="remove-users-or-groups"></a>Rimuovere utenti o gruppi
-È possibile rimuovere un utente o un gruppo aggiunto al Controllo degli accessi in base al ruolo di Azure AD Connect Health. Fare semplicemente clic con il pulsante destro del mouse sull'utente o sul gruppo e selezionare **Rimuovi**.<br>
+È possibile rimuovere un utente o un gruppo aggiunto tooAzure AD connettersi RBAC di integrità. Semplicemente hello utente o gruppo e scegliere **rimuovere**.<br>
 ![Schermata della finestra Utenti del Controllo degli accessi in base al ruolo di Azure AD Connect Health con Rimuovi evidenziato](./media/active-directory-aadconnect-health/RBAC_remove.png)
 
 [//]: # (End of RBAC section)

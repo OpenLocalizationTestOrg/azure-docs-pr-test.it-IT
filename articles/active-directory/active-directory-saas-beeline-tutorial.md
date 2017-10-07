@@ -1,6 +1,6 @@
 ---
 title: 'Esercitazione: Integrazione di Azure Active Directory con BeeLine | Microsoft Docs'
-description: Informazioni su come configurare l'accesso Single Sign-On tra Azure Active Directory e BeeLine.
+description: Informazioni su come tooconfigure single sign-on tra Azure Active Directory e BeeLine.
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,119 +13,119 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/23/2017
 ms.author: jeedes
-ms.openlocfilehash: 93acbd90bbe5f0a40bf3f56edb766a0fdd30f68f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 92f228d33980c21ad934185ab89d73795f7f69bd
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-beeline"></a>Esercitazione: Integrazione di Azure Active Directory con BeeLine
 
-Questa esercitazione descrive come integrare BeeLine con Azure Active Directory (Azure AD).
+In questa esercitazione, è illustrato come toointegrate BeeLine con Azure Active Directory (Azure AD).
 
-L'integrazione di BeeLine con Azure AD offre i vantaggi seguenti:
+Integrazione BeeLine con Azure AD fornisce hello seguenti vantaggi:
 
-- È possibile controllare in Azure AD chi può accedere a BeeLine
-- È possibile abilitare gli utenti per l'accesso automatico a BeeLine (Single Sign-On) con gli account Azure AD personali
-- È possibile gestire gli account in un'unica posizione centrale: il portale di Azure.
+- È possibile controllare in Azure AD che ha accesso tooBeeLine
+- È possibile abilitare l'utenti tooautomatically get connesso tooBeeLine (Single Sign-On) con i propri account Azure AD
+- È possibile gestire gli account in un'unica posizione centrale - hello portale di Azure
 
-Per altre informazioni sull'integrazione di app SaaS con Azure AD, vedere [Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory](active-directory-appssoaccess-whatis.md).
+Se si desiderano tooknow ulteriori informazioni sull'integrazione dell'applicazione SaaS con Azure AD, vedere [novità di accesso alle applicazioni e single sign-on con Azure Active Directory](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-Per configurare l'integrazione di Azure AD con BeeLine, sono necessari gli elementi seguenti:
+integrazione di Azure AD con BeeLine tooconfigure, è necessario hello seguenti elementi:
 
 - Sottoscrizione di Azure AD.
 - Sottoscrizione di BeeLine abilitata per l'accesso Single Sign-On
 
 > [!NOTE]
-> Non è consigliabile usare un ambiente di produzione per testare i passaggi di questa esercitazione.
+> hello tootest i passaggi in questa esercitazione, è consigliabile utilizzare un ambiente di produzione.
 
-A questo scopo, è consigliabile seguire le indicazioni seguenti:
+passaggi di hello tootest in questa esercitazione, è necessario seguire questi suggerimenti:
 
 - Non usare l'ambiente di produzione a meno che non sia necessario.
 - Se non si dispone di un ambiente di prova di Azure AD, è possibile ottenere una versione di valutazione di un mese [qui](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Descrizione dello scenario
-In questa esercitazione viene eseguito il test dell'accesso Single Sign-On di Azure AD in un ambiente di test. Lo scenario descritto in questa esercitazione prevede i due blocchi predefiniti seguenti:
+In questa esercitazione viene eseguito il test dell'accesso Single Sign-On di Azure AD in un ambiente di test. scenario di Hello descritto in questa esercitazione è composto da due componenti principali:
 
-1. Aggiunta di BeeLine dalla raccolta
+1. Aggiunta di BeeLine dalla raccolta hello
 2. Configurazione e test dell'accesso Single Sign-On di Azure AD
 
-## <a name="adding-beeline-from-the-gallery"></a>Aggiunta di BeeLine dalla raccolta
-Per configurare l'integrazione di BeeLine in Azure AD, è necessario aggiungere BeeLine dalla raccolta all'elenco di app SaaS gestite.
+## <a name="adding-beeline-from-hello-gallery"></a>Aggiunta di BeeLine dalla raccolta hello
+integrazione hello tooconfigure di BeeLine in Azure AD, è necessario tooadd BeeLine dall'elenco di tooyour hello raccolta di App SaaS gestite.
 
-**Per aggiungere BeeLine dalla raccolta, seguire questa procedura:**
+**tooadd BeeLine dalla raccolta di hello, eseguire hello alla procedura seguente:**
 
-1. Nel **[portale di Azure](https://portal.azure.com)** fare clic sull'icona di **Azure Active Directory** nel riquadro di spostamento sinistro. 
+1. In hello  **[portale di Azure](https://portal.azure.com)**via hello del Pannello di navigazione a sinistra, fare clic su **Azure Active Directory** icona. 
 
     ![Active Directory][1]
 
-2. Passare ad **Applicazioni aziendali**. Andare quindi a **Tutte le applicazioni**.
+2. Passare troppo**applicazioni aziendali**. Quindi andare troppo**tutte le applicazioni**.
 
     ![Applicazioni][2]
     
-3. Fare clic sul pulsante **Nuova applicazione** nella parte superiore della finestra di dialogo per aggiungere una nuova applicazione.
+3. tooadd nuova applicazione, fare clic su **nuova applicazione** pulsante nella parte superiore di hello della finestra di dialogo.
 
     ![Applicazioni][3]
 
-4. Nella casella di ricerca digitare **BeeLine**.
+4. Nella casella di ricerca hello, digitare **BeeLine**.
 
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-beeline-tutorial/tutorial_beeline_search.png)
 
-5. Nel pannello dei risultati selezionare **BeeLine** e quindi fare clic sul pulsante **Aggiungi** per aggiungere l'applicazione.
+5. Nel riquadro dei risultati hello, selezionare **BeeLine**, quindi fare clic su **Aggiungi** pulsante applicazione hello tooadd.
 
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-beeline-tutorial/tutorial_beeline_addfromgallery.png)
 
 ##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>Configurazione e test dell'accesso Single Sign-On di Azure AD
 In questa sezione viene configurato e testato l'accesso Single Sign-On di Azure AD con BeeLine usando un utente di test di nome "Britta Simon".
 
-Per il funzionamento dell'accesso Single Sign-On, Azure AD deve conoscere l'utente controparte di BeeLine corrispondente a un utente di Azure AD. In altre parole, deve essere stabilita una relazione di collegamento tra un utente di Azure AD e l'utente correlato in BeeLine.
+Per toowork di accesso singolo, Azure AD deve tooknow quale utente controparte hello in BeeLine è tooa utente in Azure AD. In altre parole, una relazione di collegamento tra un utente di Azure Active Directory e l'utente correlato di hello in BeeLine deve toobe stabilita.
 
-Per stabilire la relazione di collegamento, in BeeLine assegnare il valore del **nome utente** in Azure AD come valore di **Username** (Nome utente).
+In BeeLine, assegnare il valore di hello di hello **nome utente** in Azure AD come valore hello hello **Username** tooestablish relazione di collegamento hello.
 
-Per configurare e testare l'accesso Single Sign-On di Azure AD con BeeLine, è necessario completare le procedure di base seguenti:
+tooconfigure e prova AD Azure single sign-on con BeeLine, è necessario hello toocomplete seguenti blocchi predefiniti:
 
-1. **[Configurazione dell'accesso Single Sign-On di Azure AD](#configuring-azure-ad-single-sign-on)** : per abilitare gli utenti all'utilizzo di questa funzionalità.
-2. **[Creazione di un utente test di Azure AD](#creating-an-azure-ad-test-user)** : per testare l'accesso Single Sign-On di Azure AD con l'utente Britta Simon.
-3. **[Creazione di un utente di test di BeeLine](#creating-a-beeline-test-user)**: per avere una controparte di Britta Simon in BeeLine collegata alla rappresentazione dell'utente in Azure AD.
-4. **[Assegnazione dell'utente test di Azure AD](#assigning-the-azure-ad-test-user)** : per abilitare Britta Simon all'uso dell'accesso Single Sign-On di Azure AD.
-5. **[Testing Single Sign-On](#testing-single-sign-on)** : per verificare se la configurazione funziona.
+1. **[Configurazione di Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)**  -tooenable il toouse utenti questa funzionalità.
+2. **[Creazione di un utente prova AD Azure](#creating-an-azure-ad-test-user)**  -tootest AD Azure single sign-on con Britta Simon.
+3. **[Creazione di un utente test BeeLine](#creating-a-beeline-test-user)**  -toohave un equivalente di Britta Simon in BeeLine che è la rappresentazione toohello collegato Azure AD dell'utente.
+4. **[Assegnazione utente di prova hello Azure AD](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD accesso single sign-on.
+5. **[Test di Single Sign-On](#testing-single-sign-on)**  -tooverify hello se funzionamento della configurazione.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Configurazione dell'accesso Single Sign-On di Azure AD
 
-In questa sezione viene abilitato l'accesso Single Sign-On di Azure AD nel portale di Azure e viene configurato l'accesso Single Sign-On nell'applicazione BeeLine.
+In questa sezione, si abilita Azure AD single sign-on in hello portale di Azure e configurare l'accesso single sign-on nell'applicazione BeeLine.
 
-**Per configurare l'accesso Single Sign-On di Azure AD con BeeLine, seguire questa procedura:**
+**Azure AD tooconfigure single sign-on con BeeLine, eseguire hello alla procedura seguente:**
 
-1. Nella pagina di integrazione dell'applicazione **BeeLine** del portale di Azure fare clic su **Single Sign-On**.
+1. Nel portale di Azure su hello hello **BeeLine** pagina di integrazione dell'applicazione, fare clic su **Single sign-on**.
 
     ![Configura accesso Single Sign-On][4]
 
-2. Nella finestra di dialogo **Single Sign-On** selezionare **Accesso basato su SAML** per **Modalità** per abilitare l'accesso Single Sign-On.
+2. In hello **Single sign-on** finestra di dialogo Seleziona **modalità** come **basato su SAML Sign-on** tooenable single sign-on.
  
     ![Configura accesso Single Sign-On](./media/active-directory-saas-beeline-tutorial/tutorial_beeline_samlbase.png)
 
-3. Nella sezione **URL e dominio BeeLine** seguire questa procedura:
+3. In hello **BeeLine dominio e gli URL** seguire hello alla procedura seguente:
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-beeline-tutorial/tutorial_beeline_url.png)
 
-    a. Nella casella di testo **Identificatore** digitare l'URL adottando il modello seguente: `https://projects.beeline.net/<instancename>`
+    a. In hello **identificatore** casella di testo, digitare un URL utilizzando hello seguente modello:`https://projects.beeline.net/<instancename>`
 
-    b. Nella casella di testo **URL di risposta** digitare l'URL usando il modello seguente:
+    b. In hello **URL di risposta** casella di testo, digitare un URL utilizzando hello seguente modello:
     | |
     |--|
     | `https://projects.beeline.net/<instancename>/SSO_External.ashx`|
     | `https://projects.beeline.net/<companyname>/SSO_External.ashx` |
 
     > [!NOTE] 
-    > Poiché questi non sono i valori reali, è necessario aggiornarli con l'identificatore e l'URL di risposta effettivi. Per ottenere questi valori contattare il [team di supporto di BeeLine](https://www.beeline.com/contact-us/).
+    > Poiché questi non sono i valori reali, Aggiornare questi valori con URL di risposta e identificatore effettivo hello. Contatto [team di supporto BeeLine](https://www.beeline.com/contact-us/) tooget questi valori.
  
-4. Nella sezione **Certificato di firma SAML** fare clic su **XML di metadati** e quindi salvare il file dei metadati nel computer.
+4. In hello **certificato di firma SAML** fare clic su **Metadata XML** e quindi salvare il file di metadati hello nel computer in uso.
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-beeline-tutorial/tutorial_beeline_certificate.png) 
 
-5. L'applicazione Beeline si aspetta che le asserzioni SAML abbiano un formato specifico. Rivolgersi prima al [team di supporto di BeeLine](https://www.beeline.com/contact-us/) per individuare l'identificatore utente corretto di cui verrà eseguito il mapping nell'applicazione. Seguire anche le indicazioni del [team di supporto di BeeLine](https://www.beeline.com/contact-us/) relative all'attributo da usare per il mapping. È possibile gestire il valore di questo attributo dalla scheda **User Attributes** (Attributi utente) dell'applicazione. La schermata seguente illustra un esempio relativo a questa operazione. In questo caso abbiamo mappato l'attestazione **Identificatore utente** con l'attributo **userprincipalname**, ottenendo un ID utente univoco che verrà inviato all'applicazione BeeLine in ogni risposta SAML corretta.
+5. L'applicazione Beeline prevede asserzioni SAML hello in un formato specifico. Rivolgersi [team di supporto BeeLine](https://www.beeline.com/contact-us/) tooidentify prima hello identificatore utente corretti che verrà eseguito il mapping in un'applicazione hello. Attenersi alle linee guida hello anche [team di supporto BeeLine](https://www.beeline.com/contact-us/) su hello attributo che desiderano toouse per questo mapping. È possibile gestire il valore di hello di questo attributo dal hello **gli attributi utente** scheda dell'applicazione hello. Hello seguente schermata mostra un esempio per questo oggetto. Di seguito è stato eseguito il mapping hello **identificatore utente** un'attestazione con hello **userprincipalname** attributo, che fornisce ID utente univoco, che sarà inviato toohello Beeline applicazione hello ogni SAML corretta Risposta.
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-beeline-tutorial/tutorial_attribute.png)  
 
@@ -133,68 +133,68 @@ In questa sezione viene abilitato l'accesso Single Sign-On di Azure AD nel porta
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-beeline-tutorial/tutorial_general_400.png)
 
-7. Nella sezione **Configurazione di BeeLine** fare clic su **Configura BeeLine** per aprire la finestra **Configura accesso**. Copiare l'**URL di disconnessione** e l'**ID di entità SAML** dalla **sezione di riferimento rapido**.
+7. In hello **BeeLine configurazione** fare clic su **configurare BeeLine** tooopen **Configura sign-on** finestra. Hello copia **Sign-Out URL** e **ID entità SAML** da hello **sezione di riferimento rapido.**
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-beeline-tutorial/tutorial_beeline_configure.png) 
 
-8. Per configurare l'accesso Single Sign-On sul lato **BeeLine**, è necessario inviare il file **XML metadati**, l'**ID di entità SAML** e l'**URL del servizio Single Sign-On SAML** al [team di supporto di BeeLine](https://www.beeline.com/contact-us/).
+8. tooconfigure single sign-on sul **BeeLine** lato, è necessario hello toosend scaricato **Metadata XML** e **ID entità SAML**, **Sign-Out URL**troppo[team di supporto BeeLine](https://www.beeline.com/contact-us/).
 
 > [!TIP]
-> Un riepilogo delle istruzioni è disponibile all'interno del [portale di Azure](https://portal.azure.com) durante la configurazione dell'app.  Dopo aver aggiunto l'app dalla sezione **Active Directory > Applicazioni aziendali** è sufficiente fare clic sulla scheda **Single Sign-On** e accedere alla documentazione incorporata tramite la sezione **Configurazione** nella parte inferiore. Altre informazioni sulla funzione di documentazione incorporata sono disponibili in [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985) (Documentazione incorporata di Azure AD).
+> È ora possibile leggere una versione di queste istruzioni all'interno di hello concisa [portale di Azure](https://portal.azure.com), mentre si stanno impostando app hello!  Dopo l'aggiunta di questa app da hello **Active Directory > applicazioni aziendali** fare semplicemente clic su hello **Single Sign-On** scheda e l'accesso hello incorporato documentazione tramite hello  **Configurazione** sezione nella parte inferiore di hello. È possibile leggere altre informazioni sulla funzionalità di documentazione embedded hello qui: [AD Azure incorporato documentazione]( https://go.microsoft.com/fwlink/?linkid=845985)
 > 
 
 ### <a name="creating-an-azure-ad-test-user"></a>Creazione di un utente test di Azure AD
-Questa sezione descrive come creare un utente test denominato Britta Simon nel portale di Azure.
+obiettivo di Hello di questa sezione è un utente di test nel portale di Azure chiamato Britta Simon hello toocreate.
 
 ![Creare un utente di Azure AD][100]
 
-**Per creare un utente test in Azure AD, eseguire la procedura seguente:**
+**un utente di prova in Azure AD, toocreate eseguire hello alla procedura seguente:**
 
-1. Nel **portale di Azure** fare clic sull'icona di **Azure Active Directory** nel riquadro di spostamento sinistro.
+1. In hello **portale di Azure**via hello riquadro di spostamento a sinistra, fare clic su **Azure Active Directory** icona.
 
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-beeline-tutorial/create_aaduser_01.png) 
 
-2. Passare a **Utenti e gruppi** e fare clic su **Tutti gli utenti** per visualizzare l'elenco di utenti.
+2. elenco di hello toodisplay di utenti, andare troppo**utenti e gruppi** e fare clic su **tutti gli utenti**.
     
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-beeline-tutorial/create_aaduser_02.png) 
 
-3. Nella parte superiore della finestra di dialogo fare clic su **Aggiungi** per aprire la finestra di dialogo **Utente**.
+3. hello tooopen **utente** finestra di dialogo, fare clic su **Aggiungi** nella parte superiore di hello della finestra di dialogo hello.
  
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-beeline-tutorial/create_aaduser_03.png) 
 
-4. Nella pagina della finestra di dialogo **Utente** seguire questa procedura:
+4. In hello **utente** finestra di dialogo eseguire hello alla procedura seguente:
  
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-beeline-tutorial/create_aaduser_04.png) 
 
-    a. Nella casella di testo **Nome** digitare **BrittaSimon**.
+    a. In hello **nome** casella tipo **BrittaSimon**.
 
-    b. Nella casella di testo **Nome utente** digitare l'**indirizzo di posta elettronica** di BrittaSimon.
+    b. In hello **nome utente** casella di testo, hello tipo **indirizzo di posta elettronica** di BrittaSimon.
 
-    c. Selezionare **Mostra password** e prendere nota del valore della **Password**.
+    c. Selezionare **Show Password** e annotare il valore di hello di hello **Password**.
 
     d. Fare clic su **Crea**.
  
 ### <a name="creating-a-beeline-test-user"></a>Creazione di un utente di test di BeeLine
 
-In questa sezione viene creato un utente di nome Britta Simon in Beeline. L'applicazione BeeLine richiede che venga effettuato il provisioning di tutti gli utenti all'interno dell'applicazione prima di eseguire l'accesso Single Sign-On. Contattare il [team di supporto di BeeLine](https://www.beeline.com/contact-us/) per effettuare il provisioning di tutti gli utenti nell'applicazione. 
+In questa sezione viene creato un utente di nome Britta Simon in Beeline. Applicazione di beeline deve tutti toobe agli utenti di hello eseguito il provisioning in un'applicazione hello prima di eseguire Single Sign-On. Pertanto, possono essere utilizzati con hello [team di supporto BeeLine](https://www.beeline.com/contact-us/) tooprovision tutti questi utenti in un'applicazione hello. 
 
-### <a name="assigning-the-azure-ad-test-user"></a>Assegnazione dell'utente test di Azure AD
+### <a name="assigning-hello-azure-ad-test-user"></a>Assegnazione utente test hello Azure AD
 
-In questa sezione Britta Simon viene abilitata per l'uso dell'accesso Single Sign-On di Azure concedendole l'accesso a BeeLine.
+In questa sezione per abilitare Britta Simon toouse single sign-on Azure concessione dell'accesso tooBeeLine.
 
 ![Assegna utente][200] 
 
-**Per assegnare Britta Simon a BeeLine, seguire questa procedura:**
+**tooassign Britta Simon tooBeeLine, eseguire hello alla procedura seguente:**
 
-1. Nel portale di Azure aprire la visualizzazione delle applicazioni e quindi la visualizzazione delle directory e passare ad **Applicazioni aziendali**, quindi fare clic su **Tutte le applicazioni**.
+1. Nel portale di Azure hello, aprire la visualizzazione di applicazioni hello, quindi selezionare Visualizza directory toohello e andare troppo**applicazioni aziendali** quindi fare clic su **tutte le applicazioni**.
 
     ![Assegna utente][201] 
 
-2. Nell'elenco delle applicazioni selezionare **BeeLine**.
+2. Nell'elenco di applicazioni hello, selezionare **BeeLine**.
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-beeline-tutorial/tutorial_beeline_app.png) 
 
-3. Scegliere **Utenti e gruppi** dal menu a sinistra.
+3. Dal menu hello hello sinistra, fare clic su **utenti e gruppi**.
 
     ![Assegna utente][202] 
 
@@ -202,7 +202,7 @@ In questa sezione Britta Simon viene abilitata per l'uso dell'accesso Single Sig
 
     ![Assegna utente][203]
 
-5. Nella finestra di dialogo **Utenti e gruppi** selezionare **Britta Simon** nell'elenco Utenti.
+5. In **utenti e gruppi** finestra di dialogo Seleziona **Britta Simon** nell'elenco di utenti hello.
 
 6. Fare clic sul pulsante **Seleziona** nella finestra di dialogo **Utenti e gruppi**.
 
@@ -210,11 +210,11 @@ In questa sezione Britta Simon viene abilitata per l'uso dell'accesso Single Sig
     
 ### <a name="testing-single-sign-on"></a>Test dell'accesso Single Sign-On
 
-In questa sezione viene testata la configurazione dell'accesso Single Sign-On di Azure AD usando il pannello di accesso. Quando si fa clic sul riquadro Beeline nel pannello di accesso, si dovrebbe accedere automaticamente all'applicazione Beeline.
+In questa sezione si test configurazione di Azure AD single sign-on utilizzando hello Pannello di accesso. Quando si fa clic su riquadro Beeline hello in hello Pannello di accesso, è necessario ottenere applicazione Beeline tooyour automaticamente firmato-on.
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
-* [Elenco di esercitazioni sulla procedura di integrazione delle app SaaS con Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [Elenco di esercitazioni sulla tooIntegrate App SaaS con Azure Active Directory](active-directory-saas-tutorial-list.md)
 * [Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory](active-directory-appssoaccess-whatis.md)
 
 <!--Image references-->

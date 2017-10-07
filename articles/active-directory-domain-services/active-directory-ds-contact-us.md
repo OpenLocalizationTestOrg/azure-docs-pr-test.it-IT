@@ -1,6 +1,6 @@
 ---
 title: Servizi di dominio Azure AD - Contatto | Documentazione Microsoft
-description: Contattare il team di prodotto di Servizi di dominio Azure AD
+description: Contattare il team del prodotto hello servizi di dominio Active Directory di Azure
 services: active-directory-ds
 documentationcenter: 
 author: mahesh-unnikrishnan
@@ -14,24 +14,24 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/23/2017
 ms.author: maheshu
-ms.openlocfilehash: 0a4a08a58302c113405756ad7d3bb6487887a72a
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 7a23d50a392549f6c7e1182bcd9a328a28e74bff
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-ad-domain-services---contact-us"></a>Servizi di dominio Azure AD - Contatto
-## <a name="contact-the-product-team"></a>Contattare il team del prodotto
-In caso di problemi con il dominio gestito, verificare se è possibile risolvere il problema seguendo la procedura descritta nella [Guida alla risoluzione dei problemi](active-directory-ds-troubleshooting.md) . Se non è possibile risolvere il problema in questo modo, contattare Microsoft.
+## <a name="contact-hello-product-team"></a>Team di prodotto hello contatto
+Se si verificano problemi con il dominio gestito, controllare toosee se hello passaggi descritti in hello [Troubleshooting Guide](active-directory-ds-troubleshooting.md) risolvere il problema di hello. Se si verificano ancora problemi, è disponibile toocontact us.
 
 È possibile contattare Microsoft inviando un messaggio di posta elettronica con [commenti e suggerimenti su Servizi di dominio Azure AD](mailto:aaddsfb@microsoft.com).
 
-Perché sia possibile analizzare il problema, assicurarsi di indicare i dati seguenti.
+Assicurarsi di includere seguenti hello, pertanto è possibile esaminare il problema di hello.
 
-* L'**ID tenant/ID directory** per la directory di Azure AD. L'ID tenant è il GUID presente nel campo ID directory della [pagina delle proprietà per la directory](https://ms.portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/Properties)
-* Il **nome di dominio DNS** configurato per il dominio gestito di Servizi di dominio Azure AD.
+* Hello **ID ID o la directory tenant** per la directory di Azure AD. ID tenant Hello è hello GUID viene visualizzato nel campo ID di directory hello in hello [pagina delle proprietà per la directory](https://ms.portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/Properties)
+* Hello **nome di dominio DNS** configurate per il dominio gestito di servizi di dominio di AAD.
 
 ## <a name="provide-feedback"></a>Commenti e suggerimenti
-È possibile inviare commenti e suggerimenti su Servizi di dominio Azure AD tramite il **[sito dedicato di Azure Active Director](https://feedback.azure.com/forums/169401-azure-active-directory/)**.
+Invitiamo i commenti e suggerimenti sui servizi di dominio Active Directory di Azure tramite hello  **[canale Azure Active Directory utente vocale](https://feedback.azure.com/forums/169401-azure-active-directory/)**.
 
-Per contattare Microsoft, assicurarsi di anteporre alla domanda o al commento/suggerimento le parole **"AADDS"**.
+Verificare che si pre-sospendere la domanda o il feedback con parole hello **'AADDS'**, per tale tooreach us.
